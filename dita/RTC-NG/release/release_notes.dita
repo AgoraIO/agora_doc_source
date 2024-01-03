@@ -10,6 +10,104 @@
         <topic id="compatibility">
             <title>升级必看</title>
             <body>
+                <p>该版本对部分功能的实现方式进行了优化，涉及一些 API 的改名或删除，为确保项目的正常运行，你需要在升级到该版本后更新 App 中的代码。</p>
+                <ol>
+                    <li><ph><b>回调中的参数改名</b></ph>
+                        <p>为了使一些回调中的参数以及枚举类中的枚举命名更加便于理解，该版本进行了如下修改，请在升级到该版本后修改回调中的参数设置。<table frame="all" rowsep="1" colsep="1">
+                        <tgroup cols="3">
+                            <colspec colname="c1" colnum="1" colwidth="1*"/>
+                            <colspec colname="c2" colnum="2" colwidth="1*"/>
+                            <colspec colname="c3" colnum="3" colwidth="1*"/>
+                            <thead>
+                                <row>
+                                    <entry>回调</entry>
+                                    <entry>原有参数名</entry>
+                                    <entry>现有参数名</entry>
+                                </row>
+                            </thead>
+                            <tbody>
+                                <row>
+                                    <entry><xref keyref="onLocalAudioStateChanged"/></entry>
+                                    <entry><parmname>error</parmname></entry>
+                                    <entry><parmname>reason</parmname></entry>
+                                </row>
+                                <row>
+                                    <entry><xref keyref="onLocalAudioStateChanged"/></entry>
+                                    <entry><parmname>error</parmname></entry>
+                                    <entry><parmname>reason</parmname></entry>
+                                </row>
+                                <row>
+                                    <entry/>
+                                    <entry/>
+                                    <entry/>
+                                </row>
+                                <row>
+                                    <entry/>
+                                    <entry/>
+                                    <entry/>
+                                </row>
+                                <row>
+                                    <entry/>
+                                    <entry/>
+                                    <entry/>
+                                </row>
+                                <row>
+                                    <entry/>
+                                    <entry/>
+                                    <entry/>
+                                </row>
+                                <row>
+                                    <entry/>
+                                    <entry/>
+                                    <entry/>
+                                </row>
+                            </tbody>
+                        </tgroup>
+                        </table><table frame="all" rowsep="1" colsep="1">
+                        <tgroup cols="2">
+                            <colspec colname="c1" colnum="1" colwidth="1*"/>
+                            <colspec colname="c2" colnum="2" colwidth="1*"/>
+                            <thead>
+                                <row>
+                                    <entry>原有枚举类</entry>
+                                    <entry>现有枚举类</entry>
+                                </row>
+                            </thead>
+                            <tbody>
+                                <row>
+                                    <entry><apiname keyref="LOCAL_AUDIO_STREAM_REASON"/></entry>
+                                    <entry><apiname keyref="LOCAL_AUDIO_STREAM_REASON"/></entry>
+                                </row>
+                                <row>
+                                    <entry><apiname keyref="LOCAL_VIDEO_STREAM_ERROR"/></entry>
+                                    <entry><apiname keyref="LOCAL_VIDEO_STREAM_ERROR"/></entry>
+                                </row>
+                                <row>
+                                    <entry/>
+                                    <entry/>
+                                </row>
+                                <row>
+                                    <entry/>
+                                    <entry/>
+                                </row>
+                                <row>
+                                    <entry/>
+                                    <entry/>
+                                </row>
+                                <row>
+                                    <entry/>
+                                    <entry/>
+                                </row>
+                                <row>
+                                    <entry/>
+                                    <entry/>
+                                </row>
+                            </tbody>
+                        </tgroup>
+                        </table>
+                        <note>有关具体枚举的改名详见 <xref href="#apichange"></xref>。</note></p>
+                    </li>
+                </ol>
                 <ol>
                     <li><ph><b>跨频道媒体流转发</b></ph>
                         <p>为提升接口易用性，该版本删除了部分跨频道媒体流转发的方法和回调，请改用下表中列出的替代选项：<table frame="all" rowsep="1" colsep="1" id="table_jvq_ltp_wzb">
@@ -53,6 +151,20 @@
                         <p props="android">该版本起，<codeph>pushExternalVideoFrameEx</codeph>[1/2] 和 <codeph>pushExternalVideoFrameEx</codeph>[2/2] 方法分别更名为 <codeph>pushExternalVideoFrameById</codeph>[1/2] 和 <codeph>pushExternalVideoFrameById</codeph>[2/2]，并从 <codeph><apiname keyref="IRtcEngineEx"/></codeph> 接口类迁移到 <codeph><apiname keyref="IRtcEngine"/></codeph> 接口类。</p>
                         <p props="ios">该版本起，<codeph>pushExternalVideoFrame</codeph>[1/2] 从 <codeph><apiname keyref="IRtcEngineEx"/></codeph> 接口类迁移到 <codeph><apiname keyref="IRtcEngine"/></codeph> 接口类。</p>
                     </li>
+                    <li props="android"><ph><b>远端视频流状态</b></ph>
+                        <p>为使枚举的名称便于理解，该版本将 <codeph>REMOTE_VIDEO_STATE_PLAYING</codeph> 枚举名变更为 <codeph><ph keyref="REMOTE_VIDEO_STATE_DECODING"/></codeph>，枚举的含义不变。</p>
+                    </li>
+                    <li><ph><b>本地视频出错原因</b></ph>
+                        <p>该版本对 <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON"/></codeph> 枚举类中的枚举进行了如下修改：
+                        <ul>
+                        <li props="cpp electron unity flutter"><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_PAUSED"/></codeph> （原 <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_PAUSED"/></codeph>）的值从 23 变更为 28。 (Windows)</li>
+                        <li props="cpp electron unity flutter"><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_RESUMED"/></codeph> （原 <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_RESUMED"/></codeph>）的值从 24 变更为 29。 (Windows)</li>
+                        <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_CODEC_NOT_SUPPORT"/></codeph> 的枚举名变更为 <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_CODEC_NOT_SUPPORT"/></codeph>。</li>
+                        </ul></p>
+                    </li>
+                    <li><ph><b>升级必看的标题</b></ph>
+                        <p><?oxy-placeholder content="用段落描述"?></p>
+                    </li>
                     <li><ph><b>升级必看的标题</b></ph>
                         <p><?oxy-placeholder content="用段落描述"?></p>
                     </li>
@@ -63,13 +175,30 @@
             <title>新增特性</title>
             <body>
                 <ol>
-                    <li><ph><b>新增特性名称</b></ph>
-                        <ul>
-                        <li><?oxy-placeholder content="用 list 描述"?></li>
-                        <li><?oxy-placeholder content="用 list 描述"?></li>
-                        </ul></li>
+                    <li><ph><b>接收端自定义合图布局</b></ph>
+                        <p>为支持接收端自定义多路合图流的布局，该版本新增了 <codeph><xref keyref="onTranscodedStreamLayoutInfo"/></codeph> 回调。当接收端收到合图服务器发送的频道内合图视频流时，该回调会被触发，上报合图视频流的布局信息、以及合图流中每一路子视频流的布局信息。接收端可以在调用 <xref keyref="setupRemoteVideo"/> 方法时，为合图视频流中的子视频流（通过 <codeph>subviewUid</codeph> 区分）设置单独的 <codeph>view</codeph> 进行渲染，从而达到自定义视频布局的效果。</p>
+                        <p>当合图视频流中的子视频流布局发生变化时，该回调也会被触发，实时上报最新的布局信息。</p>
+                        <p>通过该特性，接收端可以灵活调整本地的视图布局。当在多人视频场景下应用时，接收端只需接收并解码一路合图视频流，可以有效降低接收端解码多路视频时的 CPU 占用率和网络带宽。</p>
+                    </li>
+                    <li><ph><b>多视图本地预览</b></ph>
+                        <p>该版本支持在本地预览同时预览多个画面、且画面中显示的视频分别处于视频链路上的不同观测位置。使用方式举例如下：
+                        <ol>
+                        <li>调用 <codeph><xref keyref="setupLocalVideo"/></codeph> 设置第一个视图：在 <codeph><apiname keyref="VideoCanvas"/></codeph> 中设置 <codeph>position</codeph> 参数为 <codeph><apiname keyref="POSITION_POST_CAPTURER_ORIGIN"/></codeph>（该枚举为该版本新增），对应本地采集视频之后、前处理之前的位置，此处观测到的视频不具备前处理的效果。 </li>
+                        <li>调用 <codeph><xref keyref="setupLocalVideo"/></codeph> 设置第二个视图：在 <codeph><apiname keyref="VideoCanvas"/></codeph> 中设置 <codeph>position</codeph> 参数为 <codeph><apiname keyref="POSITION_POST_CAPTURER"/></codeph>，此处观测到的视频具备视频前处理的效果。 </li>
+                        <li>观察本地预览效果：视图一为真人原始视频；视图二为经过视频前处理的虚拟人像（包括美颜、虚拟背景、水印本地预览）效果。</li>
+                        </ol></p>
+                    </li>
                     <li><ph><b>新增特性名称</b></ph>
                         <p><?oxy-placeholder content="用段落描述"?></p>
+                    </li>
+                    <li><ph><b>新增特性名称</b></ph>
+                        <p><?oxy-placeholder content="用段落描述"?></p>
+                    </li>
+                    <li><ph><b>其他</b></ph>
+                        <p>该版本通过了如下 API 的测试验证，可以应用于全系列 RTC 4.x SDK。
+                        <ul>
+                        <li/>
+                        </ul></p>
                     </li>
                 </ol>
             </body>
@@ -84,8 +213,32 @@
                     <li><ph><b>双流模式优化</b></ph>
                         <p>该版本优化了视频双流模式。在小流自适应模式 (<codeph><apiname keyref="AUTO_SIMULCAST_STREAM"/></codeph>) 下，接收端调用 <codeph><apiname keyref="setRemoteVideoStreamType"/></codeph> 或 <codeph><apiname keyref="setRemoteVideoStreamTypeEx"/></codeph> 发起小流请求时，发送端不再限制请求来源的身份必须为主播。这一调整确保观众主动请求小流时正常生效，提升了小流模式的灵活性和适应性。</p>
                     </li>
+                    <li><ph><b>空间音效易用性提升</b></ph>
+                        <ul>
+                        <li>该版本优化了 <codeph><apiname keyref="setZones"/></codeph> 方法的设计，支持将 <codeph>zones</codeph> 参数设置为 <codeph>NULL</codeph>，表示清除所有隔声区域。 </li>
+                        <li>自该版本起，在调用 <codeph><apiname keyref="LocalSpatialAudioEngine"/></codeph> 中的方法之前，无需先取消订阅频道内所有远端用户的音频流。 </li>
+                        <li props="ios">该版本新增 <codeph><apiname keyref="updateSelfTransform"/></codeph> 方法，用于将位置向量传递到 iOS 原生的 SceneKit 或 RealityKit 等框架中直接进行渲染。</li>
+                        </ul> </li>
+                    <li props="apple"><ph><b>本地音频状态回调优化</b></ph>
+                        <p>该版本在 <codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON"/></codeph> 中增加了如下枚举，用户可通过 <codeph><apiname keyref="onLocalAudioStateChanged"/></codeph> 回调了解更多本地音频出错的原因： 
+                        <ul>
+                        <li props="mac"><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_NO_RECORDING_DEVICE"/></codeph>：无本地音频采集设备。请提示用户在设备的控制面板中检查麦克风是否与设备连接正常，检查麦克风是否正常工作。 </li>
+                        <li props="mac"><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_NO_PLAYOUT_DEVICE"/></codeph>：无本地音频播放设备。请提示用户在设备的控制面板中检查扬声器是否与设备连接正常，检查扬声器是否正常工作。</li>
+                        <li props="ios"><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_INTERRUPTED"/></codeph>：本地音频采集被系统来电、Siri、闹钟中断。如需恢复本地音频采集，请用户中止电话、Siri、闹钟。</li>
+                        </ul></p>
+                    </li>
                     <li><ph><b>改进名称</b></ph>
                         <p><?oxy-placeholder content="用段落描述"?></p>
+                    </li>
+                    <li><ph><b>其他改进</b></ph>
+                        <p>该版本还进行了如下改进：
+                        <ul>
+                        <li>优化视频模块的算法、减小视频传输时对带宽的要求，在网络环境保持不变的情况下，为用户提供了更好的视频体验。</li>
+                        <li props="android"><codeph><apiname keyref="VideoEncoderConfiguration"/></codeph> 中新增 <codeph>codecType</codeph> 成员，用于设置视频编码类型。</li>
+                        <li props="android"><codeph><apiname keyref="AudioCaptureParameters"/></codeph> 中新增 <codeph>allowCaptureCurrentApp</codeph> 成员，用于设置在屏幕共享时是否采集当前 App 中的音频。该成员默认值为 <codeph><apiname keyref="true"/></codeph>，即：默认采集当前 App 中的音频。在个别场景下，屏幕共享采集到的 App 音频可能由于信号延迟等原因引起远端出现回声，声网建议你在此场景下将该成员设置为 <codeph><apiname keyref="false"/></codeph>，以消除屏幕共享进程中引入的远端回声。</li>
+                        <li props="cpp unity flutter electron"><codeph><apiname keyref="onLocalVideoStateChanged"/></codeph> 回调中新增 <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_AUTO_FALLBACK"/></codeph> 枚举，表示屏幕共享过程中发生意外错误（可能由于窗口阻塞失败），导致性能下降，但屏幕共享过程本身没有受到影响。(Windows)</li>
+                        <li/>
+                        </ul></p>
                     </li>
                 </ol>
             </body>
@@ -95,7 +248,8 @@
             <body>
                 <p>该版本修复了以下问题：</p>
                 <ul>
-                    <li/> 
+                    <li>当同时共享两路屏幕共享视频流时，<codeph><apiname keyref="onLocalVideoStats"/></codeph> 回调上报的 <codeph>captureFrameRate</codeph> 为 0，不符合预期。 </li>
+                    <li props="cpp unity flutter electron">在指定屏幕区域共享时，鼠标在共享区域内的坐标不准确。当鼠标位于共享区域的边界附近时，可能导致共享的画面中看不到鼠标。(Windows)</li> 
                     <li/>
                 </ul>
             </body>
@@ -105,12 +259,62 @@
             <body>
                 <p><b>新增</b>
                     <ul>
-                    <li><codeph><apiname keyref="enableCustomAudioLocalPlayback"/></codeph></li>
+                        <li><codeph><xref keyref="onTranscodedStreamLayoutInfo"/></codeph></li>
+                        <li><codeph><xref keyref="VideoLayout"/></codeph></li>
+                        <li><codeph><xref keyref="VideoCanvas"/></codeph> 新增 <codeph>subviewUid</codeph> 成员</li>
+                        <li props="android"><codeph><xref keyref="VideoEncoderConfiguration"/></codeph> 新增 <codeph>codecType</codeph> 成员</li>
+                        <li props="android"><codeph><xref keyref="AudioCaptureParameters"/></codeph> 新增 <codeph>allowCaptureCurrentApp</codeph> 成员</li>
+                        <li props="ios"><codeph><xref keyref="updateSelfTransform"/></codeph></li>
+                        <li props="apple"><codeph><xref keyref="LOCAL_AUDIO_STREAM_REASON"/></codeph> 中新增以下枚举
+                            <ul>
+                                <li props="mac"><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_NO_RECORDING_DEVICE"/></codeph></li>
+                                <li props="mac"><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_NO_PLAYOUT_DEVICE"/></codeph></li>
+                                <li props="ios"><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_INTERRUPTED"/></codeph></li></ul></li>
+                        <li><codeph><apiname keyref="enableCustomAudioLocalPlayback"/></codeph></li>
                     </ul></p>
                 <p><b>修改</b>
                     <ul>
                     <li props="android"><codeph>pushExternalVideoFrameEx</codeph>[1/2] 和 <codeph>pushExternalVideoFrameEx</codeph>[2/2] 方法分别更名为 <codeph>pushExternalVideoFrameById</codeph>[1/2] 和 <codeph>pushExternalVideoFrameById</codeph>[2/2]，并从 <codeph><apiname keyref="IRtcEngineEx"/></codeph> 接口类迁移到 <codeph><apiname keyref="IRtcEngine"/></codeph> 接口类</li>
                     <li props="ios"><codeph>pushExternalVideoFrame</codeph>[1/2] 从 <codeph><apiname keyref="IRtcEngineEx"/></codeph> 接口类迁移到 <codeph><apiname keyref="IRtcEngine"/></codeph> 接口类</li>
+                    <li props="android"><codeph>REMOTE_VIDEO_STATE_PLAYING</codeph> 枚举名变更为 <codeph><ph keyref="REMOTE_VIDEO_STATE_DECODING"/></codeph></li>
+                    <li>以下枚举名中的 <codeph>ERROR</codeph> 字段全部修改为 <codeph>REASON</codeph>：
+                        <ul>
+                            <li><codeph><apiname keyref="LOCAL_AUDIO_STREAM_ERROR_OK"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_AUDIO_STREAM_ERROR_FAILURE"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_AUDIO_STREAM_ERROR_DEVICE_NO_PERMISSION"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_AUDIO_STREAM_ERROR_DEVICE_BUSY"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_AUDIO_STREAM_ERROR_RECORD_FAILURE"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_AUDIO_STREAM_ERROR_ENCODE_FAILURE"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_AUDIO_STREAM_ERROR_NO_RECORDING_DEVICE"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_AUDIO_STREAM_ERROR_NO_PLAYOUT_DEVICE"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_AUDIO_STREAM_ERROR_INTERRUPTED"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_AUDIO_STREAM_ERROR_RECORD_INVALID_ID"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_AUDIO_STREAM_ERROR_PLAYOUT_INVALID_ID"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_OK"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_FAILURE"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_NO_PERMISSION"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_ENCODE_FAILURE"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_INBACKGROUND"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_MULTIPLE_FOREGROUND_APPS"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_NOT_FOUND"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_DISCONNECTED"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_INVALID_ID"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_MINIMIZED"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_CLOSED"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_OCCLUDED"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_NOT_SUPPORTED"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_NO_PERMISSION"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_RESUMED"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_HIDDEN"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_HIDDEN"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_MINIMIZED"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_FAILURE"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_SYSTEM_PRESSURE"></apiname></codeph></li>
+                            <li><codeph><apiname keyref=""></apiname></codeph></li>
+                        </ul></li>
                     </ul></p>
                 <p><b>废弃</b>
                     <ul>
