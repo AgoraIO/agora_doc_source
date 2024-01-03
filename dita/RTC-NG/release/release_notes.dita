@@ -229,6 +229,7 @@
                         <li props="cpp flutter unity electron"><ph><codeph><xref keyref="setPlaybackDeviceVolume"/></codeph></ph><ph props="flutter unity electron"> (Windows)</ph><ph>：设置播放设备音量。</ph></li>
                             <li><ph><codeph><xref keyref="getRecordingDeviceVolume"/></codeph></ph><ph props="flutter unity cs bp unreal electron"> (Windows)</ph><ph>：获取音频采集设备音量。</ph></li>
                             <li><codeph><xref keyref="setPlayerOption"/></codeph>：设置媒体播放器的私有选项。</li>
+                        <li><codeph><apiname keyref="enableCustomAudioLocalPlayback"></codeph></li>
                         </ul></p>
                     </li>
                 </ol>
@@ -251,7 +252,7 @@
                         <li props="ios">该版本新增 <codeph><apiname keyref="updateSelfTransform"/></codeph> 方法，用于将位置向量传递到 iOS 原生的 SceneKit 或 RealityKit 等框架中直接进行渲染。</li>
                         </ul> </li>
                     <li props="apple"><ph><b>本地音频状态回调优化</b></ph>
-                        <p>该版本在 <codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON"/></codeph> 中增加了如下枚举，用户可通过 <codeph><apiname keyref="onLocalAudioStateChanged"/></codeph> 回调了解更多本地音频出错的原因： 
+                        <p>该版本在 <codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON"/></codeph> 中增加了如下枚举，用户可通过 <codeph><apiname keyref="onLocalAudioStateChanged"/></codeph> 回调了解更多本地音频出错的原因：
                         <ul>
                         <li props="mac"><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_NO_RECORDING_DEVICE"/></codeph>：无本地音频采集设备。请提示用户在设备的控制面板中检查麦克风是否与设备连接正常，检查麦克风是否正常工作。 </li>
                         <li props="mac"><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_NO_PLAYOUT_DEVICE"/></codeph>：无本地音频播放设备。请提示用户在设备的控制面板中检查扬声器是否与设备连接正常，检查扬声器是否正常工作。</li>
@@ -296,7 +297,7 @@
                 <p>该版本修复了以下问题：</p>
                 <ul>
                     <li>当同时共享两路屏幕共享视频流时，<codeph><apiname keyref="onLocalVideoStats"/></codeph> 回调上报的 <codeph>captureFrameRate</codeph> 为 0，不符合预期。 </li>
-                    <li props="cpp unity flutter electron">在指定屏幕区域共享时，鼠标在共享区域内的坐标不准确。当鼠标位于共享区域的边界附近时，可能导致共享的画面中看不到鼠标。(Windows)</li> 
+                    <li props="cpp unity flutter electron">在指定屏幕区域共享时，鼠标在共享区域内的坐标不准确。当鼠标位于共享区域的边界附近时，可能导致共享的画面中看不到鼠标。(Windows)</li>
                     <li props="cpp unity flutter electron"><ph>使用 3.5 mm 耳机多次插拔设备后，SDK 未能检测到音频路由的变化。</ph><ph props="unity flutter electron">(Windows)</ph></li>
                     <li props="android">会议场景下，本地听远端用户说话偶现卡顿。</li>
                 </ul>
