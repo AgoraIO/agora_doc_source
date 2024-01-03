@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaengine_pushvideoframe">
     <title><ph keyref="pushVideoFrame" /></title>
-    <shortdesc id="short"><ph id="shortdesc">推送外部原始视频帧到 SDK。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">将外部原始视频帧通过自定义视频轨道发布到频道中。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -13,8 +13,8 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int pushExternalVideoFrameEx(AgoraVideoFrame frame, int videoTrackId);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)pushExternalVideoFrame:(AgoraVideoFrame * _Nonnull)frame videoTrackId:(NSUInteger)videoTrackId;</codeblock>
+            <codeblock props="android" outputclass="language-java">public abstract int pushExternalVideoFrameById(AgoraVideoFrame frame, int videoTrackId);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)pushExternalVideoFrame:(AgoraVideoFrame * _Nonnull)frame videoTrackId:(NSUInteger)videoTrackId NS_SWIFT_NAME(pushExternalVideoFrame(_:videoTrackId:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int pushVideoFrame(base::ExternalVideoFrame* frame, unsigned int videoTrackId = 0) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract pushVideoFrame(
     frame: ExternalVideoFrame,
@@ -34,7 +34,7 @@
             <dl outputclass="deprecated" props="android">
             <dlentry>
                 <dt>弃用：</dt>
-                <dd>该方法已废弃，请改用 <xref keyref="pushVideoFrameEx2"/>。</dd>
+                <dd>如果你需要推送 I422 格式的视频帧，请使用该方法。其他情况下，请改用 <xref keyref="pushVideoFrame3"/>。</dd>
             </dlentry>
             </dl>
             <p id="desc1">推送自定义采集的视频流到频道内，参考如下步骤：<ol>
@@ -45,7 +45,7 @@
             <li>如果你不再需要采集外部视频数据，可以调用 <xref keyref="destroyCustomVideoTrack"/> 销毁自定义采集的视频轨道。</li>
             <li>如果你只想将采集到的外部视频数据用于本地预览、而不在频道内发布，可以调用 <xref keyref="muteLocalVideoStream"/> 取消发送视频流，或调用 <xref keyref="updateChannelMediaOptions"/> 将 <parmname>publishCustomVideoTrack</parmname> 设置为 <codeph><ph keyref="false"/></codeph>。</li>
             </ul></note>
-            <p props="android">调用该方法或 <xref keyref="pushVideoFrameEx2"/> 均能将视频帧数据传递给 SDK。区别为 <apiname keyref="pushVideoFrame"/> 方法不支持 texture 格式的视频数据。</p>
+            <p props="android">调用该方法或 <xref keyref="pushVideoFrame3"/> 均能将视频帧数据传递给 SDK。区别为该方法不支持 Texture 格式的视频数据。</p>
         </section>
         <section props="cpp" id="scenario">
             <title>适用场景</title>
@@ -69,7 +69,7 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="cpp unreal bp unity rn electron cs">
+            <ul props="android cpp unreal bp unity rn electron cs">
             <li>0：方法调用成功。</li>
             <li>&lt; 0：方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
             </ul>

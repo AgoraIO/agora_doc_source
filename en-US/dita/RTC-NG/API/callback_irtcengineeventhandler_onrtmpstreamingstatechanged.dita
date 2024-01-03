@@ -13,28 +13,30 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public void onRtmpStreamingStateChanged(String url, int state, int errCode) {}</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine rtmpStreamingChangedToState:(NSString* _Nonnull)url state:(AgoraRtmpStreamingState)state errCode:(AgoraRtmpStreamingErrorCode)errCode;</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onRtmpStreamingStateChanged(const char* url, RTMP_STREAM_PUBLISH_STATE state,
-                                         RTMP_STREAM_PUBLISH_ERROR_TYPE errCode) {
-  (void)url;
-  (void)state;
-  (void)errCode;
-}</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnRtmpStreamingStateChanged, FString, url, ERTMP_STREAM_PUBLISH_STATE, state, ERTMP_STREAM_PUBLISH_ERROR_TYPE, errCode);</codeblock>
+            <codeblock props="android" outputclass="language-java">public void onRtmpStreamingStateChanged(String url, int state, int reason) {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine rtmpStreamingChangedToState:(NSString * _Nonnull)url
+                                                                    state:(AgoraRtmpStreamingState)state
+                                                                  reason:(AgoraRtmpStreamingReason)reason NS_SWIFT_NAME(rtcEngine(_:rtmpStreamingChangedToState:state:reason:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">  virtual void onRtmpStreamingStateChanged(const char* url, RTMP_STREAM_PUBLISH_STATE state,
+                                           RTMP_STREAM_PUBLISH_REASON reason) {
+    (void)url;
+    (void)state;
+    (void)reason;
+  }</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnRtmpStreamingStateChanged, FString, url, ERTMP_STREAM_PUBLISH_STATE, state, ERTMP_STREAM_PUBLISH_REASON, errCode);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onRtmpStreamingStateChanged?(
     url: string,
     state: RtmpStreamPublishState,
-    errCode: RtmpStreamPublishErrorType
+    reason: RtmpStreamPublishReason
   ): void;</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnRtmpStreamingStateChanged(string url, RTMP_STREAM_PUBLISH_STATE state, RTMP_STREAM_PUBLISH_ERROR_TYPE errCode) { }</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnRtmpStreamingStateChanged(string url, RTMP_STREAM_PUBLISH_STATE state, RTMP_STREAM_PUBLISH_REASON reason)</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onRtmpStreamingStateChanged?(
     url: string,
     state: RtmpStreamPublishState,
-    errCode: RtmpStreamPublishErrorType
+    reason: RtmpStreamPublishReason
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(String url, RtmpStreamPublishState state,
-            RtmpStreamPublishErrorType errCode)? onRtmpStreamingStateChanged;</codeblock>
+    RtmpStreamPublishReason reason)? onRtmpStreamingStateChanged;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
