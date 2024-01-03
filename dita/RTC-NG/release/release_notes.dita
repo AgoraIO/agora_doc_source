@@ -37,29 +37,49 @@
                                     <entry><parmname>reason</parmname></entry>
                                 </row>
                                 <row>
-                                    <entry/>
-                                    <entry/>
-                                    <entry/>
+                                    <entry><xref keyref="onDirectCdnStreamingStateChanged"/></entry>
+                                    <entry><parmname>error</parmname></entry>
+                                    <entry><parmname>reason</parmname></entry>
                                 </row>
                                 <row>
-                                    <entry/>
-                                    <entry/>
-                                    <entry/>
+                                    <entry><xref keyref="onMusicChartsResult"/></entry>
+                                    <entry><parmname>errorCode</parmname></entry>
+                                    <entry><parmname>reason</parmname></entry>
                                 </row>
                                 <row>
-                                    <entry/>
-                                    <entry/>
-                                    <entry/>
+                                    <entry><xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/></entry>
+                                    <entry><ul><li><parmname>status</parmname></li><li><parmname>state</parmname></li></ul></entry>
+                                    <entry><ul><li><parmname>errorCode</parmname></li><li><parmname>reason</parmname></li></ul></entry>
                                 </row>
                                 <row>
-                                    <entry/>
-                                    <entry/>
-                                    <entry/>
+                                    <entry><xref keyref="onMusicCollectionResult"/></entry>
+                                    <entry><parmname>errorCode</parmname></entry>
+                                    <entry><parmname>reason</parmname></entry>
                                 </row>
                                 <row>
-                                    <entry/>
-                                    <entry/>
-                                    <entry/>
+                                    <entry><xref keyref="onLyricResult"/></entry>
+                                    <entry><parmname>errorCode</parmname></entry>
+                                    <entry><parmname>reason</parmname></entry>
+                                </row>
+                                <row>
+                                    <entry><xref keyref="onSongSimpleInfoResult"/></entry>
+                                    <entry><parmname>errorCode</parmname></entry>
+                                    <entry><parmname>reason</parmname></entry>
+                                </row>
+                                <row props="apple android">
+                                    <entry><xref keyref="onPlayerSourceStateChanged"/></entry>
+                                    <entry><parmname>error</parmname></entry>
+                                    <entry><parmname>reason</parmname></entry>
+                                </row>
+                                <row props="cpp">
+                                    <entry><xref keyref="onPlayerSourceStateChanged"/></entry>
+                                    <entry><parmname>ec</parmname></entry>
+                                    <entry><parmname>reason</parmname></entry>
+                                </row>
+                                <row>
+                                    <entry><xref keyref="onRtmpStreamingStateChanged"/></entry>
+                                    <entry><parmname>errCode</parmname></entry>
+                                    <entry><parmname>reason</parmname></entry>
                                 </row>
                             </tbody>
                         </tgroup>
@@ -83,24 +103,20 @@
                                     <entry><apiname keyref="LOCAL_VIDEO_STREAM_ERROR"/></entry>
                                 </row>
                                 <row>
-                                    <entry/>
-                                    <entry/>
+                                    <entry><apiname keyref="DIRECT_CDN_STREAMING_ERROR"/></entry>
+                                    <entry><apiname keyref="DIRECT_CDN_STREAMING_REASON"/></entry>
                                 </row>
                                 <row>
-                                    <entry/>
-                                    <entry/>
+                                    <entry><apiname keyref="MEDIA_PLAYER_ERROR"/></entry>
+                                    <entry><apiname keyref="MEDIA_PLAYER_REASON"/></entry>
                                 </row>
                                 <row>
-                                    <entry/>
-                                    <entry/>
+                                    <entry><apiname keyref="RTMP_STREAM_PUBLISH_ERROR"/></entry>
+                                    <entry><apiname keyref="RTMP_STREAM_PUBLISH_REASON"/></entry>
                                 </row>
                                 <row>
-                                    <entry/>
-                                    <entry/>
-                                </row>
-                                <row>
-                                    <entry/>
-                                    <entry/>
+                                    <entry><apiname keyref="MusicContentCenterStatusErrCode"/></entry>
+                                    <entry><apiname keyref="MusicContentCenterStateReason"/></entry>
                                 </row>
                             </tbody>
                         </tgroup>
@@ -168,12 +184,6 @@
                         <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_CODEC_NOT_SUPPORT"/></codeph> 的枚举名变更为 <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_CODEC_NOT_SUPPORT"/></codeph>。</li>
                         </ul></p>
                     </li>
-                    <li><ph><b>升级必看的标题</b></ph>
-                        <p><?oxy-placeholder content="用段落描述"?></p>
-                    </li>
-                    <li><ph><b>升级必看的标题</b></ph>
-                        <p><?oxy-placeholder content="用段落描述"?></p>
-                    </li>
                 </ol>
             </body>
         </topic>
@@ -197,16 +207,28 @@
                     <li><ph><b>查询设备评分等级</b></ph>
                         <p>该版本新增 <codeph><xref keyref="queryDeviceScore"/></codeph> 方法，用于查询设备的评分等级，以保证用户设置的参数不会超出其设备能力。例如，在高清或超高清视频场景下，可以先调用该方法查询设备的等级评分，如果返回的评分较低（比如低于 60），则需要适当调低视频分辨率，以避免影响视频体验。不同业务场景要求的最低设备评分等级不同，具体评分推荐请<xref keyref="ticket-link"/>。</p>
                     </li>
-                    <li><ph><b>新增特性名称</b></ph>
-                        <p><?oxy-placeholder content="用段落描述"?></p>
+                    <li><ph><b>本地播放及发布至远端的音轨控制</b></ph>
+                        <p><ph>该版本新增 <codeph><xref keyref="selectMultiAudioTrack"/></codeph> 方法，支持分别设置本地播放和发送至远端的音轨。在 K 歌等场景下，主播可以根据需求选择在本地播放一路音轨（如原声），然后发送另一路音轨至远端（如伴奏）以提升听众体验。</ph>
+                         <ph>使用该功能前，需要通过 <codeph><xref keyref="openWithMediaSource"/></codeph> 打开媒体文件，并通过 <codeph><xref keyref="MediaSource"/></codeph> 中新增的 <codeph>enableMultiAudioTrack</codeph> 成员来开启音轨控制。</ph></p>
                     </li>
-                    <li><ph><b>新增特性名称</b></ph>
-                        <p><?oxy-placeholder content="用段落描述"?></p>
+                    <li props="android"><ph><b>音频播放设备测试</b></ph>
+                        <p>该版本新增 <codeph><xref keyref="startPlaybackDeviceTest"/></codeph> 方法，用于在加入频道前测试音频播放设备能否正常工作。你可以通过 <codeph>testAudioFilePath</codeph> 参数指定需要播放的音频文件，测试者如果能听到声音，说明播放设备能正常工作。测试完毕后，你需要调用新增的 <codeph><xref keyref="stopPlaybackDeviceTest"/></codeph> 方法停止测试。</p>
+                    </li>
+                    <li props="ios"><ph><b>音频采集及播放设备测试</b></ph>
+                        <p>该版本新增下列方法，用于在加入频道前测试音频采集或播放设备能否正常工作：
+                        <ul>
+                            <li><codeph><xref keyref="startRecordingDeviceTest"/></codeph>：用于测试本地音频采集设备（如外放设备）能否正常工作。调用该方法后，SDK 会按设置的时间间隔触发相关回调报告采集设备的音量信息。测试完毕后，你需要调用新增的 <codeph><xref keyref="stopRecordingDeviceTest"/></codeph> 方法停止测试。</li>
+                            <li><codeph><xref keyref="startPlaybackDeviceTest"/></codeph>：用于在加入频道前测试音频播放设备能否正常工作。你可以通过 <codeph>testAudioFilePath</codeph> 参数指定需要播放的音频文件，测试者如果能听到声音，说明播放设备能正常工作。测试完毕后，你需要调用新增的 <codeph><xref keyref="stopPlaybackDeviceTest"/></codeph> 方法停止测试。</li>
+                        </ul></p>
                     </li>
                     <li><ph><b>其他</b></ph>
                         <p>该版本通过了如下 API 的测试验证，可以应用于全系列 RTC 4.x SDK。
                         <ul>
-                        <li/>
+                        <li><codeph><xref keyref="setRemoteSubscribeFallbackOption"/></codeph>：设置弱网环境下订阅的音视频流回退选项。</li>
+                        <li><codeph><xref keyref="onRemoteSubscribeFallbackToAudioOnly"/></codeph>：订阅流已回退为音频流或恢复为音视频流回调。</li>
+                        <li props="cpp flutter unity electron"><ph><codeph><xref keyref="setPlaybackDeviceVolume"/></codeph></ph><ph props="flutter unity electron"> (Windows)</ph><ph>：设置播放设备音量。</ph></li>
+                            <li><ph><codeph><xref keyref="getRecordingDeviceVolume"/></codeph></ph><ph props="flutter unity cs bp unreal electron"> (Windows)</ph><ph>：获取音频采集设备音量。</ph></li>
+                            <li><codeph><xref keyref="setPlayerOption"/></codeph>：设置媒体播放器的私有选项。</li>
                         </ul></p>
                     </li>
                 </ol>
@@ -259,7 +281,10 @@
                         <li>该版本优化了 SDK 的域名解析策略，提高了复杂网络环境下调用 <codeph><apiname keyref="setLocalAccessPoint"/></codeph> 解析域名时的稳定性。</li>
                         <li>传入含透明背景的图片作为虚拟背景的自定义背景图时，支持自定义图片透明背景的填充色。</li>
                         <li><codeph><apiname keyref="LocalAudioStats"/></codeph> 新增 <codeph>earMonitorDelay</codeph> 和 <codeph>aecEstimatedDelay</codeph> 成员，分别用于报告耳返延迟和回声消除 (Acoustic Echo Cancellation, AEC) 延迟。</li>
-                        <li/>
+                        <li props="mac">在使用声卡进行采集时，支持采集双声道的音频数据。</li>
+                        <li>新增 <codeph><xref keyref="onPlayerCacheStats"/></codeph> 回调，当媒体资源开始缓存后，SDK 会每秒触发一次该回调，报告当前缓存的媒体资源的相关数据。</li>
+                        <li>新增 <codeph><xref keyref="onPlayerPlaybackStats"/></codeph> 回调，当媒体资源开始播放后，SDK 会每秒触发一次该回调，报告媒体当前播放的媒体资源的相关信息。你可以通过 <codeph><xref keyref="PlayerPlaybackStats"/></codeph> 来获取当前音、视频的码率等信息。</li>
+                        <li props="ios android unity rn flutter"><ph><codeph><xref keyref="MusicContentCenterStateReason"/></codeph> 中新增状态码 <codeph><apiname keyref="kMusicContentCenterReasonHttpInternalError"/></codeph> 表示 HTTP 内部发生错误，请稍后重试。</ph><ph props="unity flutter">(Android, iOS)</ph></li>
                         </ul></p>
                     </li>
                 </ol>
@@ -272,7 +297,8 @@
                 <ul>
                     <li>当同时共享两路屏幕共享视频流时，<codeph><apiname keyref="onLocalVideoStats"/></codeph> 回调上报的 <codeph>captureFrameRate</codeph> 为 0，不符合预期。 </li>
                     <li props="cpp unity flutter electron">在指定屏幕区域共享时，鼠标在共享区域内的坐标不准确。当鼠标位于共享区域的边界附近时，可能导致共享的画面中看不到鼠标。(Windows)</li> 
-                    <li/>
+                    <li props="cpp unity flutter electron"><ph>使用 3.5 mm 耳机多次插拔设备后，SDK 未能检测到音频路由的变化。</ph><ph props="unity flutter electron">(Windows)</ph></li>
+                    <li props="android">会议场景下，本地听远端用户说话偶现卡顿。</li>
                 </ul>
             </body>
         </topic>
@@ -301,6 +327,13 @@
                         <li props="android ios"><codeph><xref keyref="enableVirtualBackground2"/></codeph></li>
                         <li><codeph><apiname keyref="AudioRoute"/></codeph> 中新增 <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_A2DP"/></codeph> 枚举</li>
                         <li props="android ios mac flutter unity rn"><codeph><apiname keyref="LocalAudioStats"/></codeph> 新增 <codeph>earMonitorDelay</codeph> 和 <codeph>aecEstimatedDelay</codeph> 成员</li>
+                        <li><codeph><apiname keyref="selectMultiAudioTrack"/></codeph></li>
+                        <li><codeph><apiname keyref="onPlayerCacheStats"/></codeph></li>
+                        <li><codeph><apiname keyref="onPlayerPlaybackStats"/></codeph></li>
+                        <li><codeph><apiname keyref="PlayerPlaybackStats"/></codeph></li>
+                        <li props="android ios unity flutter rn"><codeph><apiname keyref="MusicContentCenterStateReason"/> 中新增 <apiname keyref="kMusicContentCenterReasonHttpInternalError"/></codeph><ph props="unity flutter"> (Android,iOS)</ph></li>
+                        <li props="android ios"><codeph><apiname keyref="startPlaybackDeviceTest"/></codeph></li>
+                        <li props="android ios"><codeph><apiname keyref="stopPlaybackDeviceTest"/></codeph></li>
                     </ul></p>
                 <p><b>修改</b>
                     <ul>
@@ -347,8 +380,56 @@
                             <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_MINIMIZED"></apiname></codeph></li>
                             <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_FAILURE"></apiname></codeph></li>
                             <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_SYSTEM_PRESSURE"></apiname></codeph></li>
-                            <li><codeph><apiname keyref=""></apiname></codeph></li>
+                            <li><codeph><apiname keyref="DIRECT_CDN_STREAMING_ERROR_OK"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="DIRECT_CDN_STREAMING_ERROR_FAILED"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="DIRECT_CDN_STREAMING_ERROR_AUDIO_PUBLICATION"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="DIRECT_CDN_STREAMING_ERROR_VIDEO_PUBLICATION"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="DIRECT_CDN_STREAMING_ERROR_NET_CONNECT"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="DIRECT_CDN_STREAMING_ERROR_BAD_NAME"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_ERROR_NONE"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_ERROR_INVALID_ARGUMENTS"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_ERROR_INTERNAL"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_ERROR_NO_RESOURCE"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_ERROR_INVALID_MEDIA_SOURCE"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_ERROR_UNKNOWN_STREAM_TYPE"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_ERROR_OBJ_NOT_INITIALIZED"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_ERROR_CODEC_NOT_SUPPORTED"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_ERROR_VIDEO_RENDER_FAILED"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_ERROR_INVALID_STATE"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_ERROR_URL_NOT_FOUND"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_ERROR_INVALID_CONNECTION_STATE"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_ERROR_SRC_BUFFER_UNDERFLOW"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_ERROR_INTERRUPTED"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_ERROR_NOT_SUPPORTED"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_ERROR_TOKEN_EXPIRED"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_ERROR_IP_EXPIRED"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_ERROR_UNKNOWN"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_ERROR_OK"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_ERROR_INVALID_ARGUMENT"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_ERROR_ENCRYPTED_STREAM_NOT_ALLOWED"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_ERROR_CONNECTION_TIMEOUT"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_ERROR_INTERNAL_SERVER_ERROR"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_ERROR_RTMP_SERVER_ERROR"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_ERROR_TOO_OFTEN"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_ERROR_REACH_LIMIT"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_ERROR_NOT_AUTHORIZED"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_ERROR_STREAM_NOT_FOUND"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_ERROR_FORMAT_NOT_SUPPORTED"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_ERROR_NOT_BROADCASTER"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_ERROR_TRANSCODING_NO_MIX_STREAM"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_ERROR_NET_DOWN"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_ERROR_INVALID_PRIVILEGE"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="RTMP_STREAM_UNPUBLISH_ERROR_OK"></apiname></codeph></li>
+                            </ul></li>
+                        <li props="ios android flutter unity rn"><ph><codeph><apiname keyref="MusicContentCenterStatusErrCode"/></codeph> 修改为 <codeph><apiname keyref="MusicContentCenterStateReason"/></codeph>，其中的枚举名的 <codeph>StatusErr</codeph> 字段全部修改为 <codeph>Reason</codeph>：</ph><ph props="unity flutter">(Android, iOS)</ph>
+                            <ul>
+                            <li><codeph><apiname keyref="kMusicContentCenterStatusErrGateway"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="kMusicContentCenterStatusErrPermissionAndResource"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="kMusicContentCenterStatusErrInternalDataParse"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="kMusicContentCenterStatusErrMusicLoading"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="kMusicContentCenterStatusErrMusicDecryption"></apiname></codeph></li>
                         </ul></li>
+                    <li><codeph><apiname keyref="kMusicContentCenterStatusErr"></apiname></codeph> 修改为 <codeph><apiname keyref="kMusicContentCenterStatusError"/></codeph></li>
                     </ul></p>
                 <p><b>废弃</b>
                     <ul>
