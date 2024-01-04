@@ -3,17 +3,16 @@
 <topic id="release_notes">
     <title>v4.3.0</title>
     <body>
-        <p>v4.2.3 was released on September xx, 2023.</p>
+        <p>v4.3.0 was released on xx xx, 2024.</p>
     </body>
     <topic id="level2">
         <title/>
         <topic id="compatibility">
             <title>Compatibility changes</title>
             <body>
-                <p>该版本对部分功能的实现方式进行了优化，涉及一些 API 的改名或删除，为确保项目的正常运行，你需要在升级到该版本后更新 App 中的代码。</p>
+                <p>This version has optimized the implementation of some functions, involving renaming or deletion of some APIs. To ensure the normal operation of the project, you need to update the code in the App after upgrading to this version.</p>
                 <ol>
-                    <li><ph><b>回调中的参数改名</b></ph>
-                        <p>为了使一些回调中的参数以及枚举类中的枚举命名更加便于理解，该版本进行了如下修改，请在升级到该版本后修改回调中的参数设置。<table frame="all" rowsep="1" colsep="1">
+                    <li><ph><b>Renaming parameters in callbacks</b></ph><p>In order to make the parameters in some callbacks and the naming of enumerations in enumeration classes easier to understand, the following modifications have been made in this version. Please modify the parameter settings in the callbacks after upgrading to this version.<table frame="all" rowsep="1" colsep="1">
                         <tgroup cols="3">
                             <colspec colname="c1" colnum="1" colwidth="1*"/>
                             <colspec colname="c2" colnum="2" colwidth="1*"/>
@@ -21,8 +20,8 @@
                             <thead>
                                 <row>
                                     <entry>callbacks</entry>
-                                    <entry>原有参数名</entry>
-                                    <entry>现有参数名</entry>
+                                    <entry>Original parameter name</entry>
+                                    <entry>Existing parameter names</entry>
                                 </row>
                             </thead>
                             <tbody>
@@ -89,8 +88,8 @@
                             <colspec colname="c2" colnum="2" colwidth="1*"/>
                             <thead>
                                 <row>
-                                    <entry>原有枚举类</entry>
-                                    <entry>现有枚举类</entry>
+                                    <entry>Existing enumeration class</entry>
+                                    <entry>Existing enumeration class</entry>
                                 </row>
                             </thead>
                             <tbody>
@@ -121,18 +120,18 @@
                             </tbody>
                         </tgroup>
                         </table>
-                        <note>有关具体枚举的改名详见 <xref href="#apichange"></xref>。</note></p>
+                        <note>For specific renaming of enumerations, please refer to .<xref href="#apichange"></xref></note></p>
                     </li>
                 </ol>
                 <ol>
-                    <li><ph><b>Channel media stream relay</b></ph><p>为提升接口易用性，该版本删除了部分跨频道媒体流转发的方法和回调，请改用下表中列出的替代选项：<table frame="all" rowsep="1" colsep="1" id="table_jvq_ltp_wzb">
+                    <li><ph><b>Channel media relay</b></ph><p>To improve interface usability, this release removes some methods and callbacks for channel meda relay. Use the alternative options listed in the table below:<table frame="all" rowsep="1" colsep="1" id="table_jvq_ltp_wzb">
                         <tgroup cols="2">
                             <colspec colname="c1" colnum="1" colwidth="1*"/>
                             <colspec colname="c2" colnum="2" colwidth="1*"/>
                             <thead>
                                 <row>
-                                    <entry>已删除的方法和回调</entry>
-                                    <entry>替代的方法和回调</entry>
+                                    <entry>Deleted methods and callbacks</entry>
+                                    <entry>Alternative methods and callbacks</entry>
                                 </row>
                             </thead>
                             <tbody>
@@ -162,21 +161,20 @@
                         </tgroup>
                         </table></p>
                     </li>
-                    <li props="android ios"><ph><b>Custom video source</b></ph><p props="android">该版本起，<codeph>pushExternalVideoFrameEx</codeph>[1/2] 和 <codeph>pushExternalVideoFrameEx</codeph>[2/2] 方法分别更名为 <codeph>pushExternalVideoFrameById</codeph>[1/2] 和 <codeph>pushExternalVideoFrameById</codeph>[2/2]，并从 <codeph><apiname keyref="IRtcEngineEx"/></codeph> 接口类迁移到 <codeph><apiname keyref="IRtcEngine"/></codeph> 接口类。</p>
-                        <p props="ios">该版本起，<codeph>pushExternalVideoFrame</codeph>[1/2] 从 <codeph><apiname keyref="IRtcEngineEx"/></codeph> 接口类迁移到 <codeph><apiname keyref="IRtcEngine"/></codeph> 接口类。</p>
+                    <li props="android ios"><ph><b>Custom video source</b></ph><p props="android">Since this release, <codeph> pushExternalVideoFrameEx</codeph>[1/2] and <codeph>pushExternalVideoFrameEx</codeph>[2/2] are renamed to <codeph>pushExternalVideoFrameById</codeph>[1/2] and <codeph>pushExternalVideoFrameById</codeph>[2/2] respectively, and are migrated from <codeph><apiname keyref="IRtcEngineEx"/></codeph> to <codeph><apiname keyref="IRtcEngine"/></codeph>.</p>
+                        <p props="ios">Since this release, <codeph>pushExternalVideoFrame</codeph>[1/2] is migrated from <codeph><apiname keyref="IRtcEngineEx"/></codeph> to <codeph><apiname keyref="IRtcEngine"/></codeph>.</p>
                     </li>
-                    <li props="android ios flutter unity rn"><ph><b>Audio route</b></ph><p props="android unity">该版本起，<codeph><apiname keyref="AudioRoute"/></codeph> 中的 (5)<codeph>ROUTE_BLUETOOTH</codeph> 更名为 <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph>，表示音频路由为使用 HFP 协议的蓝牙设备，新增 (10)<codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_A2DP"/></codeph> 表示音频路由为使用 A2DP 协议的蓝牙设备。</p>
-                        <p props="ios">该版本起，<codeph><apiname keyref="AudioRoute"/></codeph> 中的 (5)<codeph>AgoraAudioOutputRoutingBluetooth</codeph> 更名为 <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph>，表示音频路由为使用 HFP 协议的蓝牙设备，新增 (10)<codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_A2DP"/></codeph> 表示音频路由为使用 A2DP 协议的蓝牙设备。</p>
-                        <p props="flutter rn">该版本起，<codeph><apiname keyref="AudioRoute"/></codeph> 中的 (5)<codeph>routeBluetooth</codeph> 更名为 <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph>，表示音频路由为使用 HFP 协议的蓝牙设备，新增 (10)<codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_A2DP"/></codeph> 表示音频路由为使用 A2DP 协议的蓝牙设备。</p>
-                        <p props="rn">该版本起，<codeph><apiname keyref="AudioRoute"/></codeph> 中的 (5)<codeph>RouteBluetooth</codeph> 更名为 <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph>，表示音频路由为使用 HFP 协议的蓝牙设备，新增 (10)<codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_A2DP"/></codeph> 表示音频路由为使用 A2DP 协议的蓝牙设备。</p>
+                    <li props="android ios flutter unity rn"><ph><b>Audio route</b></ph><p props="android unity">Starting from this version, (5)ROUTE_BLUETOOTH in 中 has been renamed to indicate audio routing for<codeph> Bluetooth</codeph> devices using the HFP protocol, and (10) has been added to indicate audio routing for Bluetooth devices using the A2DP protocol.<codeph><apiname keyref="AudioRoute"/></codeph><codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph><codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_A2DP"/></codeph></p>
+                        <p props="ios">Starting from this version, (5) <codeph>AgoraAudioOutputRoutingBluetooth</codeph> is renamed to indicate audio routing for Bluetooth devices using the HFP protocol, and (10) is added to indicate audio routing for Bluetooth devices using the A2DP protocol.<codeph><apiname keyref="AudioRoute"/></codeph><codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph><codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_A2DP"/></codeph></p>
+                        <p props="flutter rn">Starting from this version, (5)routeBluetooth in 中 has been renamed to indicate that the audio<codeph> route</codeph> is using HFP protocol for Bluetooth devices. Additionally, (10) has been added to indicate that the audio route is using A2DP protocol for Bluetooth devices.<codeph><apiname keyref="AudioRoute"/></codeph><codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph><codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_A2DP"/></codeph></p>
+                        <p props="rn">Starting from this version, (5)RouteBluetooth in 中 is renamed to indicate that the audio<codeph> route</codeph> is using HFP protocol for Bluetooth devices, and (10) is added to indicate that the audio route is using A2DP protocol for Bluetooth devices.<codeph><apiname keyref="AudioRoute"/></codeph><codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph><codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_A2DP"/></codeph></p>
                     </li>
-                    <li props="android"><ph><b>The state of the remote video:</b></ph><p>为使枚举的名称便于理解，该版本将 <codeph>REMOTE_VIDEO_STATE_PLAYING</codeph> 枚举名变更为 <codeph><ph keyref="REMOTE_VIDEO_STATE_DECODING"/></codeph>，枚举的含义不变。</p>
+                    <li props="android"><ph><b>The state of the remote video:</b></ph><p>To make the name of the enumeration easier to understand, this version changes the name of the enumeration from <codeph>REMOTE_VIDEO_STATE_PLAYING</codeph> to [new name], while the meaning of the enumeration remains unchanged.<codeph><ph keyref="REMOTE_VIDEO_STATE_DECODING"/></codeph></p>
                     </li>
-                    <li><ph><b>Local video state error codes</b></ph><p>该版本对 <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON"/></codeph> 枚举类中的枚举进行了如下修改：
-                        <ul>
-                        <li props="cpp electron unity flutter"><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_PAUSED"/></codeph>（原 <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_PAUSED"/></codeph>）的值从 23 变更为 28。 (Windows)</li>
-                        <li props="cpp electron unity flutter"><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_RESUMED"/></codeph>（原 <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_RESUMED"/></codeph>）的值从 24 变更为 29。 (Windows)</li>
-                        <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_CODEC_NOT_SUPPORT"/></codeph>的枚举名变更为 <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_CODEC_NOT_SUPPORT"/></codeph>。</li>
+                    <li><ph><b>Local video state error codes</b></ph><p>This version has made the following modifications to the enumerations in the enumeration class:<codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON"/></codeph><ul>
+                        <li props="cpp electron unity flutter">The value of (original) changed from 23 to 28. <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_PAUSED"/></codeph><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_PAUSED"/></codeph>(Windows)</li>
+                        <li props="cpp electron unity flutter">The value of (original) changed from 24 to 29. <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_RESUMED"/></codeph><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_RESUMED"/></codeph>(Windows)</li>
+                        <li>The enumeration name has been changed to .<codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_CODEC_NOT_SUPPORT"/></codeph><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_CODEC_NOT_SUPPORT"/></codeph></li>
                         </ul></p>
                     </li>
                 </ol>
@@ -186,41 +184,34 @@
             <title>New features</title>
             <body>
                 <ol>
-                    <li><ph><b>接收端自定义合图布局</b></ph>
-                        <p>为支持接收端自定义多路合图流的布局，该版本新增了 <codeph><xref keyref="onTranscodedStreamLayoutInfo"/></codeph> 回调。 当接收端收到合图服务器发送的频道内合图视频流时，该回调会被触发，上报合图视频流的布局信息、以及合图流中每一路子视频流的布局信息。 接收端可以在调用 <xref keyref="setupRemoteVideo"/> 方法时，为合图视频流中的子视频流（通过 <codeph>subviewUid</codeph> 区分）设置单独的 <codeph>view</codeph> 进行渲染，从而达到自定义视频布局的效果。</p>
-                        <p>当合图视频流中的子视频流布局发生变化时，该回调也会被触发，实时上报最新的布局信息。</p>
-                        <p>通过该特性，接收端可以灵活调整本地的视图布局。 当在多人视频场景下应用时，接收端只需接收并解码一路合图视频流，可以有效降低接收端解码多路视频时的 CPU 占用率和网络带宽。</p>
+                    <li><ph><b>Customized layout for the receiving end</b></ph><p>To support the layout of custom multi-stream images on the video mixing end, this version has added callbacks. <codeph><xref keyref="onTranscodedStreamLayoutInfo"/></codeph>When the receiver receives the channel's video mixing video stream sent by the video mixing server, this callback will be triggered, reporting the layout information of the video mixing video stream and the layout information of each sub-video stream in the mixed stream. The receiver can set a separate view for rendering<xref keyref="setupRemoteVideo"/> the sub-video stream (distinguished by <codeph>subviewUid</codeph>) in the merged video stream when calling the method, achieving a custom video layout effect.<codeph></codeph></p>
+                        <p>When the layout of the sub-video streams in the merged video stream changes, this callback will also be triggered to report the latest layout information in real time.</p>
+                        <p>Through this feature, the receiving end can flexibly adjust the local view layout. When applied in a multi-person video scenario, the receiving end only needs to receive and decode a video mixing video stream, which can effectively reduce the CPU usage and network bandwidth when decoding multiple video streams on the receiving end.</p>
                     </li>
-                    <li><ph><b>多视图本地预览</b></ph>
-                        <p>该版本支持在本地预览同时预览多个画面、且画面中显示的视频分别处于视频链路上的不同观测位置。 使用方式举例如下：
-                        <ol>
-                        <li>调用 <codeph><xref keyref="setupLocalVideo"/></codeph> 设置第一个视图：在 <codeph><apiname keyref="VideoCanvas"/></codeph> 中设置 <codeph>position</codeph> 参数为 <codeph><apiname keyref="POSITION_POST_CAPTURER_ORIGIN"/></codeph>（该枚举为该版本新增），对应本地采集视频之后、前处理之前的位置，此处观测到的视频不具备前处理的效果。 </li>
-                        <li>调用 <codeph><xref keyref="setupLocalVideo"/></codeph> 设置第二个视图：在 <codeph><apiname keyref="VideoCanvas"/></codeph> 中设置 <codeph>position</codeph> 参数为 <codeph><apiname keyref="POSITION_POST_CAPTURER"/></codeph>，此处观测到的视频具备视频前处理的效果。 </li>
-                        <li>观察本地预览效果：视图一为真人原始视频；视图二为经过视频前处理的虚拟人像（包括美颜、虚拟背景、水印本地预览）效果。</li>
+                    <li><ph><b>Multiple View Local Preview</b></ph><p>This version supports previewing multiple screens simultaneously locally, and the videos displayed in the screens are at different observation positions on the video link. Examples of usage are as follows:<ol>
+                        <li>Call: Set the first view: Set the <codeph>position</codeph> parameter in  to (this enumeration is newly added in this version), corresponding to the position after local video capture and before pre-processing. The observed video here does not have the effect of pre-processing.<codeph><xref keyref="setupLocalVideo"/></codeph><codeph><apiname keyref="VideoCanvas"/></codeph><codeph><apiname keyref="POSITION_POST_CAPTURER_ORIGIN"/></codeph></li>
+                        <li>Call set the second view: set the <codeph>position</codeph> parameter in to , the observed video here has the effect of video preprocessing.<codeph><xref keyref="setupLocalVideo"/></codeph><codeph><apiname keyref="VideoCanvas"/></codeph><codeph><apiname keyref="POSITION_POST_CAPTURER"/></codeph></li>
+                        <li>Observe the local preview effect: View one is the original video of a real person; view two is the virtual portrait after video preprocessing (including beauty, virtual background, and local preview of watermarks) effect.</li>
                         </ol></p>
                     </li>
-                    <li><ph><b>查询设备评分等级</b></ph>
-                        <p>该版本新增 <codeph><xref keyref="queryDeviceScore"/></codeph> 方法，用于查询设备的评分等级，以保证用户设置的参数不会超出其设备能力。 例如，在高清或超高清视频场景下，可以先调用该方法查询设备的等级评分，如果返回的评分较低（比如低于 60），则需要适当调低视频分辨率，以避免影响视频体验。 不同业务场景要求的最低设备评分等级不同，具体评分推荐请<xref keyref="ticket-link"/>。</p>
+                    <li><ph><b>Device Rating Level Query</b></ph><p>This version adds a method to query the rating level of the device to ensure that the parameters set by the user do not exceed the capabilities of their device. <codeph><xref keyref="queryDeviceScore"/></codeph>For example, in high-definition or ultra-high-definition video scenarios, you can first call this method to query the device's rating score. If the returned score is low (such as below 60), it is necessary to appropriately lower the video resolution to avoid affecting the video experience. Different business scenarios require different minimum device rating levels. Please refer to the specific rating recommendations<xref keyref="ticket-link"/>.</p>
                     </li>
-                    <li><ph><b>本地播放及发布至远端的音轨控制</b></ph>
-                        <p><ph>该版本新增 <codeph><xref keyref="selectMultiAudioTrack"/></codeph> 方法，支持分别设置本地播放和发送至远端的音轨。 在 K 歌等场景下，主播可以根据需求选择在本地播放一路音轨（如原声），然后发送另一路音轨至远端（如伴奏）以提升听众体验。 </ph>                         <ph>使用该功能前，需要通过 <codeph><xref keyref="openWithMediaSource"/></codeph> 打开媒体文件，并通过 <codeph><xref keyref="MediaSource"/></codeph> 中新增的 <codeph>enableMultiAudioTrack</codeph> 成员来开启音轨控制。</ph></p>
+                    <li><ph><b>Local playback and remote distribution of audio track control</b></ph><p><ph>This version adds a method to support setting separate audio tracks for local playback and sending to the remote end. <codeph><xref keyref="selectMultiAudioTrack"/></codeph>In karaoke and other similar scenarios, the host can choose to play one audio track locally (such as the original sound) and send another audio track to the remote end (such as the accompaniment) to enhance listener experience. </ph><ph>Before using this feature, you need to open the media file and enable track control through the newly added <codeph>enableMultiAudioTrack</codeph> member in .</ph><codeph><xref keyref="openWithMediaSource"/></codeph><codeph><xref keyref="MediaSource"/></codeph></p>
                     </li>
-                    <li props="android"><ph><b>Audio playback device test</b></ph><p>该版本新增 <codeph><xref keyref="startPlaybackDeviceTest"/></codeph> 方法，用于在加入频道前测试音频播放设备能否正常工作。 你可以通过 <codeph>testAudioFilePath</codeph> 参数指定需要播放的音频文件，测试者如果能听到声音，说明播放设备能正常工作。 测试完毕后，你需要调用新增的 <codeph><xref keyref="stopPlaybackDeviceTest"/></codeph> 方法停止测试。</p>
+                    <li props="android"><ph><b>Audio playback device test</b></ph><p>This version adds a method to test if the audio playback device is working properly before joining the channel. <codeph><xref keyref="startPlaybackDeviceTest"/></codeph>You can specify the audio file to be played through the <codeph>testAudioFilePath</codeph> parameter. If the tester can hear the sound, it means that the playback device is working properly. After the test is completed, you need to call the newly added method to stop the test.<codeph><xref keyref="stopPlaybackDeviceTest"/></codeph></p>
                     </li>
-                    <li props="ios"><ph><b>Audio playback device test</b></ph><p>该版本新增下列方法，用于在加入频道前测试音频采集或播放设备能否正常工作：
-                        <ul>
-                            <li>Call the startPlaybackDeviceTest method to test whether the local audio playback device, such as the speaker, is working properly. <codeph><xref keyref="startRecordingDeviceTest"/></codeph>After calling this method, the SDK triggers the  callback at the time interval set in this method, which reports uid = 0 and the volume information of the capturing device. 测试完毕后，你需要调用新增的 <codeph><xref keyref="stopRecordingDeviceTest"/></codeph> 方法停止测试。</li>
-                            <li><codeph><xref keyref="startPlaybackDeviceTest"/></codeph>：用于在加入频道前测试音频播放设备能否正常工作。 你可以通过 <codeph>testAudioFilePath</codeph> 参数指定需要播放的音频文件，测试者如果能听到声音，说明播放设备能正常工作。 测试完毕后，你需要调用新增的 <codeph><xref keyref="stopPlaybackDeviceTest"/></codeph> 方法停止测试。</li>
+                    <li props="ios"><ph><b>Audio playback device test</b></ph><p>This version adds the following methods to test whether the audio capture or playback devices work properly before joining a channel:<ul>
+                            <li>Call the startPlaybackDeviceTest method to test whether the local audio playback device, such as the speaker, is working properly. <codeph><xref keyref="startRecordingDeviceTest"/></codeph>After calling this method, the SDK triggers the  callback at the time interval set in this method, which reports uid = 0 and the volume information of the capturing device. After the test is completed, you need to call the newly added method to stop the test.<codeph><xref keyref="stopRecordingDeviceTest"/></codeph></li>
+                            <li>: Used to test if the audio playback device is working properly before joining the channel. <codeph><xref keyref="startPlaybackDeviceTest"/></codeph>You can specify the audio file to be played through the <codeph>testAudioFilePath</codeph> parameter. If the tester can hear the sound, it means that the playback device is working properly. After the test is completed, you need to call the newly added method to stop the test.<codeph><xref keyref="stopPlaybackDeviceTest"/></codeph></li>
                         </ul></p>
                     </li>
-                    <li><ph><b>Others</b></ph><p>该版本通过了如下 API 的测试验证，可以应用于全系列 RTC 4.x SDK。
-                        <ul>
+                    <li><ph><b>Others</b></ph><p>This version has passed the test verification of the following APIs and can be applied to the entire series of RTC 4.x SDK.<ul>
                         <li>Sets the fallback option for the remotely subscribed video stream based on the network conditions.<codeph><xref keyref="setRemoteSubscribeFallbackOption"/></codeph></li>
-                        <li><codeph><xref keyref="onRemoteSubscribeFallbackToAudioOnly"/></codeph>：订阅流已回退为音频流或恢复为音视频流回调。</li>
-                        <li props="cpp flutter unity electron"><ph><codeph><xref keyref="setPlaybackDeviceVolume"/></codeph></ph><ph props="flutter unity electron">(Windows)</ph><ph>：设置播放设备音量。</ph></li>
-                            <li><ph><codeph><xref keyref="getRecordingDeviceVolume"/></codeph></ph><ph props="flutter unity cs bp unreal electron">(Windows)</ph><ph>：获取音频采集设备音量。</ph></li>
+                        <li>: The subscription stream has been downgraded to an audio stream or restored to an audio-video stream callback.<codeph><xref keyref="onRemoteSubscribeFallbackToAudioOnly"/></codeph></li>
+                        <li props="cpp flutter unity electron"><ph props="flutter unity electron">(Windows)</ph><ph>: Adjust the volume of the playback device.</ph><ph><codeph><xref keyref="setPlaybackDeviceVolume"/></codeph></ph></li>
+                            <li><ph props="flutter unity cs bp unreal electron">(Windows)</ph><ph>: Get the volume of the audio capture device.</ph><ph><codeph><xref keyref="getRecordingDeviceVolume"/></codeph></ph></li>
                             <li>Sets the private options for the media player.<codeph><xref keyref="setPlayerOption"/></codeph></li>
-                        <li>Sets whether to enable the local playback of external audio source.<codeph><apiname keyref="enableCustomAudioLocalPlayback"/></codeph></li>
+                        <li><codeph><apiname keyref="enableCustomAudioLocalPlayback"/></codeph>: Sets whether to enable the local playback of external audio source.</li>
                         </ul></p>
                     </li>
                 </ol>
@@ -230,28 +221,22 @@
             <title>Improvements</title>
             <body>
                 <ol>
-                    <li><ph><b>耳返音量提升</b></ph>
-                        <p>该版本为用户提供更灵活的耳返音频调整选项，支持调用 <codeph><apiname keyref="setInEarMonitoringVolume"/></codeph> 将耳返音量设置为原始音量的 4 倍。</p>
+                    <li><ph><b>In-ear monitoring volume boost</b></ph><p>This release provides users with more flexible in-ear monitoring audio adjustment options, supporting the ability to set the in-ear monitoring volume to four times the original volume by calling <codeph><apiname keyref="setInEarMonitoringVolume"/></codeph>.</p>
                     </li>
-                    <li><ph><b>双流模式优化</b></ph>
-                        <p>该版本优化了视频双流模式。 在小流自适应模式 (<codeph><apiname keyref="AUTO_SIMULCAST_STREAM"/></codeph>) 下，接收端调用 <codeph><apiname keyref="setRemoteVideoStreamType"/></codeph> 或 <codeph><apiname keyref="setRemoteVideoStreamTypeEx"/></codeph> 发起小流请求时，发送端不再限制请求来源的身份必须为主播。 这一调整确保观众主动请求小流时正常生效，提升了小流模式的灵活性和适应性。</p>
+                    <li><ph><b>Dual-stream mode optimization</b></ph><p>This release optimizes the video dual-stream mode. In the low-quality video stream adaptive mode (<codeph><apiname keyref="AUTO_SIMULCAST_STREAM"/></codeph>), when the receiver requests a low-quality video stream by calling <codeph><apiname keyref="setRemoteVideoStreamType"/></codeph> or <codeph><apiname keyref="setRemoteVideoStreamTypeEx"/></codeph>, the sender no longer restricts the identity of the request source to be the broadcaster. This adjustment ensures that the audience‘s request for a low-quality video stream takes effect, improving the flexibility and adaptability of the low-quality video stream mode.</p>
                     </li>
-                    <li><ph><b>空间音效易用性提升</b></ph>
-                        <ul>
-                        <li>该版本优化了 <codeph><apiname keyref="setZones"/></codeph> 方法的设计，支持将 <codeph>zones</codeph> 参数设置为 <codeph>NULL</codeph>，表示清除所有隔声区域。 </li>
-                        <li>自该版本起，在调用 <codeph><apiname keyref="LocalSpatialAudioEngine"/></codeph> 中的方法之前，无需先取消订阅频道内所有远端用户的音频流。 </li>
-                        <li props="ios">该版本新增 <codeph><apiname keyref="updateSelfTransform"/></codeph> 方法，用于将位置向量传递到 iOS 原生的 SceneKit 或 RealityKit 等框架中直接进行渲染。</li>
+                    <li><ph><b>Improved spatial audio effect</b></ph><ul>
+                        <li>This version optimizes the design of the method, supporting setting the <codeph>zones</codeph> parameter to <codeph>NULL</codeph>, which means clearing all soundproof areas.<codeph><apiname keyref="setZones"/></codeph></li>
+                        <li>Starting from this version, it is not necessary to unsubscribe from all remote users' audio streams within the channel before calling the method.<codeph><apiname keyref="LocalSpatialAudioEngine"/></codeph></li>
+                        <li props="ios">This version adds a method to pass position vectors directly to native iOS frameworks such as SceneKit or RealityKit for rendering.<codeph><apiname keyref="updateSelfTransform"/></codeph></li>
                         </ul> </li>
-                    <li props="apple"><ph><b>本地音频状态回调优化</b></ph>
-                        <p>该版本在 <codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON"/></codeph> 中增加了如下枚举，用户可通过 <codeph><apiname keyref="onLocalAudioStateChanged"/></codeph> 回调了解更多本地音频出错的原因：
-                        <ul>
-                        <li props="mac"><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_NO_RECORDING_DEVICE"/></codeph>：无本地音频采集设备。 请提示用户在设备的控制面板中检查麦克风是否与设备连接正常，检查麦克风是否正常工作。 </li>
-                        <li props="mac"><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_NO_PLAYOUT_DEVICE"/></codeph>：无本地音频播放设备。 请提示用户在设备的控制面板中检查扬声器是否与设备连接正常，检查扬声器是否正常工作。</li>
-                        <li props="ios"><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_INTERRUPTED"/></codeph>：本地音频采集被系统来电、Siri、闹钟中断。 如需恢复本地音频采集，请用户中止电话、Siri、闹钟。</li>
+                    <li props="apple"><ph><b>Local audio state callback optimization</b></ph><p>This version adds the following enumerations in Chinese, users can learn more about the reasons for local audio errors through callbacks:<codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON"/></codeph><codeph><apiname keyref="onLocalAudioStateChanged"/></codeph><ul>
+                        <li props="mac">No recording device is available. <codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_NO_RECORDING_DEVICE"/></codeph>Remind your users to check whether the microphone is connected to the device properly in the control plane of the device or if the microphone is working properly.</li>
+                        <li props="mac">No playback device is available. <codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_NO_PLAYOUT_DEVICE"/></codeph>Remind your users to check whether the speaker is connected to the device properly in the control plane of the device or if the speaker is working properly.</li>
+                        <li props="ios">8: The local audio capture is interrupted by system calls, Siri, or alarm clocks. <codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_INTERRUPTED"/></codeph>Remind your users to end the phone call, Siri, or alarm clock if the local audio capture is required.</li>
                         </ul></p>
                     </li>
-                    <li props="android ios"><ph><b>视频前处理方法优化</b></ph>
-                        <p>该版本对以下 5 个视频前处理方法新增了带 <codeph>souceType</codeph> 参数的重载方法，支持通过传入 <codeph>sourceType</codeph> 来指定视频前处理特效应用的媒体源类型（例如应用在自定义的视频采集媒体源上）：</p>
+                    <li props="android ios"><ph><b>Optimization of video pre-processing methods</b></ph><p>This version adds overloaded methods with the <codeph>souceType </codeph>parameter for the following 5 video preprocessing methods, which support specifying the media source type for applying video preprocessing effects by passing in <codeph>sourceType</codeph> (for example, applying on a custom video capture media source):</p>
                         <ul>
                             <li><codeph><xref keyref="setBeautyEffectOptions2"/></codeph></li>
                             <li><codeph><xref keyref="setLowlightEnhanceOptions2"/></codeph></li>
@@ -260,22 +245,20 @@
                             <li><codeph><xref keyref="enableVirtualBackground2"/></codeph></li>
                         </ul>
                     </li>
-                    <li><ph><b>改进名称</b></ph>
-                        <p><?oxy-placeholder content="用段落描述"?></p>
+                    <li><ph><b>Improvements name</b></ph><p><?oxy-placeholder content="用段落描述"?></p>
                     </li>
-                    <li><ph><b>其他改进</b></ph>
-                        <p>This release includes the following additional improvements:<ul>
-                        <li>优化视频模块的算法、减小视频传输时对带宽的要求，在网络环境保持不变的情况下，为用户提供了更好的视频体验。</li>
-                        <li props="android"><codeph><apiname keyref="VideoEncoderConfiguration"/></codeph>中新增 <codeph>codecType</codeph> 成员，用于设置视频编码类型。</li>
-                        <li props="android"><codeph><apiname keyref="AudioCaptureParameters"/></codeph>中新增 <codeph>allowCaptureCurrentApp</codeph> 成员，用于设置在屏幕共享时是否采集当前 App 中的音频。 该成员默认值为 <codeph><apiname keyref="true"/></codeph>，即：默认采集当前 App 中的音频。 在个别场景下，屏幕共享采集到的 App 音频可能由于信号延迟等原因引起远端出现回声，声网建议你在此场景下将该成员设置为 <codeph><apiname keyref="false"/></codeph>，以消除屏幕共享进程中引入的远端回声。</li>
-                        <li props="cpp unity flutter electron"><codeph><apiname keyref="onLocalVideoStateChanged"/></codeph>回调中新增 <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_AUTO_FALLBACK"/></codeph> 枚举，表示屏幕共享过程中发生意外错误（可能由于窗口阻塞失败），导致性能下降，但屏幕共享过程本身没有受到影响。 (Windows)</li>
-                        <li>该版本优化了 SDK 的域名解析策略，提高了复杂网络环境下调用 <codeph><apiname keyref="setLocalAccessPoint"/></codeph> 解析域名时的稳定性。</li>
-                        <li>传入含透明背景的图片作为虚拟背景的自定义背景图时，支持自定义图片透明背景的填充色。</li>
-                        <li><codeph><apiname keyref="LocalAudioStats"/></codeph>新增 <codeph>earMonitorDelay</codeph> 和 <codeph>aecEstimatedDelay</codeph> 成员，分别用于报告耳返延迟和回声消除 (Acoustic Echo Cancellation, AEC) 延迟。</li>
-                        <li props="mac">在使用声卡进行采集时，支持采集双声道的音频数据。</li>
-                        <li>新增 <codeph><xref keyref="onPlayerCacheStats"/></codeph> 回调，当媒体资源开始缓存后，SDK 会每秒触发一次该回调，报告当前缓存的媒体资源的相关数据。</li>
-                        <li>新增 <codeph><xref keyref="onPlayerPlaybackStats"/></codeph> 回调，当媒体资源开始播放后，SDK 会每秒触发一次该回调，报告媒体当前播放的媒体资源的相关信息。 你可以通过 <codeph><xref keyref="PlayerPlaybackStats"/></codeph> 来获取当前音、视频的码率等信息。</li>
-                        <li props="ios android unity rn flutter"><ph><codeph><xref keyref="MusicContentCenterStateReason"/></codeph>中新增状态码 <codeph><apiname keyref="kMusicContentCenterReasonHttpInternalError"/></codeph> 表示 HTTP 内部发生错误，请稍后重试。 </ph><ph props="unity flutter">(Android, iOS)</ph></li>
+                    <li><ph><b>Other Improvements</b></ph><p>This release includes the following additional improvements:<ul>
+                        <li>Optimizing the algorithm of the video module and reducing the bandwidth requirements during video transmission, it provides users with a better video experience while keeping the network environment unchanged.</li>
+                        <li props="android">Add a new member called<codeph> codecType</codeph> to set the video encoding type.<codeph><apiname keyref="VideoEncoderConfiguration"/></codeph></li>
+                        <li props="android">Add a new member called <codeph>allowCaptureCurrentApp</codeph>, which is used to set whether to capture audio from the current app during screen sharing. <codeph><apiname keyref="AudioCaptureParameters"/></codeph>The default value of this member is , which means it will collect the audio from the current app by default. <codeph><apiname keyref="true"/></codeph>In certain scenarios, the shared screen audio captured by the app may cause echo on the remote side due to signal delay and other reasons. Agora suggests setting this member as  to eliminate the remote echo introduced during the screen sharing process.<codeph><apiname keyref="false"/></codeph></li>
+                        <li props="cpp unity flutter electron">Add an enumeration in the callback to indicate unexpected errors that occur during the screen sharing process (possibly due to window blocking failure), resulting in performance degradation, but the screen sharing process itself is not affected. <codeph><apiname keyref="onLocalVideoStateChanged"/></codeph><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_AUTO_FALLBACK"/></codeph>(Windows)</li>
+                        <li>This version optimizes the domain name resolution strategy of the SDK, improving the stability of calling and resolving domain names in complex network environments.<codeph><apiname keyref="setLocalAccessPoint"/></codeph></li>
+                        <li>When a picture with a transparent background is passed as a custom background image for virtual background, it supports customizing the fill color of the transparent background.</li>
+                        <li>Add <codeph>earMonitorDelay</codeph> and <codeph>aecEstimatedDelay</codeph> members, respectively used to report ear in-ear monitoring delay and Acoustic Echo Cancellation (AEC) delay.<codeph><apiname keyref="LocalAudioStats"/></codeph></li>
+                        <li props="mac">When using the sound card for recording, it supports capturing audio data in stereo.</li>
+                        <li>Add callback, when the media resource starts caching, the SDK will trigger this callback once per second, reporting the relevant data of the currently cached media resource.<codeph><xref keyref="onPlayerCacheStats"/></codeph></li>
+                        <li>Add callback, when the media resource starts playing, the SDK will trigger this callback once per second, reporting the relevant information of the currently playing media resource. <codeph><xref keyref="onPlayerPlaybackStats"/></codeph>You can obtain the current bitrate and other information of the audio and video through .<codeph><xref keyref="PlayerPlaybackStats"/></codeph></li>
+                        <li props="ios android unity rn flutter">Added a new status code to indicate an internal error in HTTP. Please try again later. <ph></ph><codeph><xref keyref="MusicContentCenterStateReason"/></codeph><codeph><apiname keyref="kMusicContentCenterReasonHttpInternalError"/></codeph><ph props="unity flutter">(Android, iOS)</ph></li>
                         </ul></p>
                     </li>
                 </ol>
@@ -286,10 +269,10 @@
             <body>
                 <p>This release fixed the following issues:</p>
                 <ul>
-                    <li>当同时共享两路屏幕共享视频流时，<codeph><apiname keyref="onLocalVideoStats"/></codeph> 回调上报的 <codeph>captureFrameRate</codeph> 为 0，不符合预期。 </li>
-                    <li props="cpp unity flutter electron">在指定屏幕区域共享时，鼠标在共享区域内的坐标不准确。 当鼠标位于共享区域的边界附近时，可能导致共享的画面中看不到鼠标。 (Windows)</li>
-                    <li props="cpp unity flutter electron"><ph>使用 3.5 mm 耳机多次插拔设备后，SDK 未能检测到音频路由的变化。 </ph>(Windows)<ph props="unity flutter electron"></ph></li>
-                    <li props="android">会议场景下，本地听远端用户说话偶现卡顿。</li>
+                    <li>When sharing two screen sharing video streams simultaneously, the reported captureFrameRate in the callback is 0, which is not as expected.<codeph><apiname keyref="onLocalVideoStats"/></codeph><codeph></codeph></li>
+                    <li props="cpp unity flutter electron">When sharing in a specified screen area, the mouse coordinates within the shared area are inaccurate. When the mouse is near the border of the shared area, the mouse may not be visible in the shared screen. (Windows)</li>
+                    <li props="cpp unity flutter electron"><ph>After multiple insertions and removals of the 3.5mm headphone, the SDK failed to detect any changes in the audio routing. </ph>(Windows)<ph props="unity flutter electron"></ph></li>
+                    <li props="android">In a meeting scenario, there are occasional lags when listening to remote users.</li>
                 </ul>
             </body>
         </topic>
@@ -299,12 +282,11 @@
                 <p><b>Added</b><ul>
                         <li><codeph><xref keyref="onTranscodedStreamLayoutInfo"/></codeph></li>
                         <li><codeph><xref keyref="VideoLayout"/></codeph></li>
-                        <li><codeph><xref keyref="VideoCanvas"/></codeph>新增 <codeph>subviewUid</codeph> 成员</li>
-                        <li props="android"><codeph><xref keyref="VideoEncoderConfiguration"/></codeph>新增 <codeph>codecType</codeph> 成员</li>
-                        <li props="android"><codeph><xref keyref="AudioCaptureParameters"/></codeph>新增 <codeph>allowCaptureCurrentApp</codeph> 成员</li>
+                        <li>Add <codeph>subviewUid</codeph> member<codeph><xref keyref="VideoCanvas"/></codeph></li>
+                        <li props="android">Add <codeph>codecType</codeph> member<codeph><xref keyref="VideoEncoderConfiguration"/></codeph></li>
+                        <li props="android">Add the member <codeph>allowCaptureCurrentApp</codeph>.<codeph><xref keyref="AudioCaptureParameters"/></codeph></li>
                         <li props="ios"><codeph><xref keyref="updateSelfTransform"/></codeph></li>
-                        <li props="apple"><codeph><xref keyref="LOCAL_AUDIO_STREAM_REASON"/></codeph>中新增以下枚举
-                            <ul>
+                        <li props="apple">The following enumerations in :<codeph><xref keyref="LOCAL_AUDIO_STREAM_REASON"/></codeph><ul>
                                 <li props="mac"><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_NO_RECORDING_DEVICE"/></codeph></li>
                                 <li props="mac"><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_NO_PLAYOUT_DEVICE"/></codeph></li>
                                 <li props="ios"><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_INTERRUPTED"/></codeph></li></ul></li>
@@ -315,27 +297,25 @@
                         <li props="android ios"><codeph><xref keyref="setVideoDenoiserOptions2"/></codeph></li>
                         <li props="android ios"><codeph><xref keyref="setColorEnhanceOptions2"/></codeph></li>
                         <li props="android ios"><codeph><xref keyref="enableVirtualBackground2"/></codeph></li>
-                        <li><codeph><apiname keyref="AudioRoute"/></codeph>中新增 <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_A2DP"/></codeph> 枚举</li>
-                        <li props="android ios mac flutter unity rn"><codeph><apiname keyref="LocalAudioStats"/></codeph>新增 <codeph>earMonitorDelay</codeph> 和 <codeph>aecEstimatedDelay</codeph> 成员</li>
+                        <li> in .<codeph><apiname keyref="AudioRoute"/></codeph><codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_A2DP"/></codeph></li>
+                        <li props="android ios mac flutter unity rn">Add <codeph>earMonitorDelay</codeph> and <codeph>aecEstimatedDelay</codeph> members.<codeph><apiname keyref="LocalAudioStats"/></codeph></li>
                         <li><codeph><apiname keyref="selectMultiAudioTrack"/></codeph></li>
                         <li><codeph><apiname keyref="onPlayerCacheStats"/></codeph></li>
                         <li><codeph><apiname keyref="onPlayerPlaybackStats"/></codeph></li>
                         <li><codeph><apiname keyref="PlayerPlaybackStats"/></codeph></li>
-                        <li props="android ios unity flutter rn"><codeph><apiname keyref="MusicContentCenterStateReason"/>中新增 <apiname keyref="kMusicContentCenterReasonHttpInternalError"/></codeph><ph props="unity flutter"> (Android,iOS)</ph></li>
+                        <li props="android ios unity flutter rn"><ph props="unity flutter">(Android, iOS)</ph><codeph><apiname keyref="MusicContentCenterStateReason"/><apiname keyref="kMusicContentCenterReasonHttpInternalError"/></codeph></li>
                         <li props="android ios"><codeph><apiname keyref="startPlaybackDeviceTest"/></codeph></li>
                         <li props="android ios"><codeph><apiname keyref="stopPlaybackDeviceTest"/></codeph></li>
                     </ul></p>
-                <p><b>修改</b>
-                    <ul>
-                    <li props="android"><codeph>pushExternalVideoFrameEx</codeph>[1/2] 和 <codeph>pushExternalVideoFrameEx</codeph>[2/2] 方法分别更名为 <codeph>pushExternalVideoFrameById</codeph>[1/2] 和 <codeph>pushExternalVideoFrameById</codeph>[2/2]，并从 <codeph><apiname keyref="IRtcEngineEx"/></codeph> 接口类迁移到 <codeph><apiname keyref="IRtcEngine"/></codeph> 接口类</li>
-                    <li props="ios"><codeph>pushExternalVideoFrame</codeph>[1/2] 从 <codeph><apiname keyref="IRtcEngineEx"/></codeph> 接口类迁移到 <codeph><apiname keyref="IRtcEngine"/></codeph> 接口类</li>
-                    <li props="android"><codeph>REMOTE_VIDEO_STATE_PLAYING</codeph> 枚举名变更为 <codeph><ph keyref="REMOTE_VIDEO_STATE_DECODING"/></codeph></li>
-                    <li props="android unity"><codeph>ROUTE_BLUETOOTH</codeph> 枚举名变更为 <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph></li>
-                    <li props="ios"><codeph>AgoraAudioOutputRoutingBluetooth</codeph> 枚举名变更为 <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph></li>
-                    <li props="rn"><codeph>RouteBluetooth</codeph> 枚举名变更为 <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph></li>
-                    <li props="flutter"><codeph>routeBluetooth</codeph> 枚举名变更为 <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph></li>
-                    <li>以下枚举名中的 <codeph>ERROR</codeph> 字段全部修改为 <codeph>REASON</codeph>：
-                        <ul>
+                <p><b>Modify</b><ul>
+                    <li props="android"><codeph>pushExternalVideoFrameEx</codeph>[1/2] and <codeph>pushExternalVideoFrameEx</codeph>[2/2] are renamed to <codeph>pushExternalVideoFrameById</codeph>[1/2] and <codeph>pushExternalVideoFrameById</codeph>[2/2], and are migrated from <codeph><apiname keyref="IRtcEngineEx"/></codeph> to <codeph><apiname keyref="IRtcEngine"/></codeph></li>
+                    <li props="ios"><codeph>pushExternalVideoFrame</codeph>[1/2] is migrated from <codeph><apiname keyref="IRtcEngineEx"/></codeph> to <codeph><apiname keyref="IRtcEngine"/></codeph></li>
+                    <li props="android"><codeph>REMOTE_VIDEO_STATE_PLAYING</codeph> enumeration name changed to<codeph><ph keyref="REMOTE_VIDEO_STATE_DECODING"/></codeph></li>
+                    <li props="android unity"><codeph>ROUTE_BLUETOOTH</codeph> enumeration name changed to<codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph></li>
+                    <li props="ios"><codeph>AgoraAudioOutputRoutingBluetooth</codeph> enumeration name changed to<codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph></li>
+                    <li props="rn"><codeph>RouteBluetooth</codeph> enumeration name changed to<codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph></li>
+                    <li props="flutter"><codeph>routeBluetooth</codeph> enumeration name changed to<codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph></li>
+                    <li>All <codeph>ERROR </codeph>fields in the following enumeration names are changed to <codeph>REASON</codeph>:<ul>
                             <li><codeph><apiname keyref="LOCAL_AUDIO_STREAM_ERROR_OK"></apiname></codeph></li>
                             <li><codeph><apiname keyref="LOCAL_AUDIO_STREAM_ERROR_FAILURE"></apiname></codeph></li>
                             <li><codeph><apiname keyref="LOCAL_AUDIO_STREAM_ERROR_DEVICE_NO_PERMISSION"></apiname></codeph></li>
@@ -411,22 +391,19 @@
                             <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_ERROR_INVALID_PRIVILEGE"></apiname></codeph></li>
                             <li><codeph><apiname keyref="RTMP_STREAM_UNPUBLISH_ERROR_OK"></apiname></codeph></li>
                             </ul></li>
-                        <li props="ios android flutter unity rn"><ph><codeph><apiname keyref="MusicContentCenterStatusErrCode"/></codeph>修改为 <codeph><apiname keyref="MusicContentCenterStateReason"/></codeph>，其中的枚举名的 <codeph>StatusErr</codeph> 字段全部修改为 <codeph>Reason</codeph>：</ph><ph props="unity flutter">(Android, iOS)</ph>
-                            <ul>
+                        <li props="ios android flutter unity rn">Change to, all occurrences of the enum name "<codeph>StatusErr</codeph>" should be changed to "Reason":<ph><ph props="unity flutter"> (Android, iOS)</ph></ph><codeph><apiname keyref="MusicContentCenterStatusErrCode"/></codeph><codeph><apiname keyref="MusicContentCenterStateReason"/></codeph><codeph></codeph><ul>
                             <li><codeph><apiname keyref="kMusicContentCenterStatusErrGateway"></apiname></codeph></li>
                             <li><codeph><apiname keyref="kMusicContentCenterStatusErrPermissionAndResource"></apiname></codeph></li>
                             <li><codeph><apiname keyref="kMusicContentCenterStatusErrInternalDataParse"></apiname></codeph></li>
                             <li><codeph><apiname keyref="kMusicContentCenterStatusErrMusicLoading"></apiname></codeph></li>
                             <li><codeph><apiname keyref="kMusicContentCenterStatusErrMusicDecryption"></apiname></codeph></li>
                         </ul></li>
-                    <li><codeph><apiname keyref="kMusicContentCenterStatusErr"></apiname></codeph>修改为 <codeph><apiname keyref="kMusicContentCenterStatusError"/></codeph></li>
+                    <li>Change to<codeph><apiname keyref="kMusicContentCenterStatusErr"></apiname></codeph><codeph><apiname keyref="kMusicContentCenterStatusError"/></codeph></li>
                     </ul></p>
-                <p><b>废弃</b>
-                    <ul>
+                <p><b>Deprecated</b><ul>
                     <li><apiname/></li>
                     </ul></p>
-                <p><b>删除</b>
-                    <ul>
+                <p><b>Deleted</b><ul>
                     <li><codeph><apiname keyref="startChannelMediaRelay"/></codeph></li>
                     <li><codeph><apiname keyref="updateChannelMediaRelay"/></codeph></li>
                     <li><codeph><apiname keyref="startChannelMediaRelayEx"/></codeph></li>
