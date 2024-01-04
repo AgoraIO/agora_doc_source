@@ -38,18 +38,18 @@
             </dlentry>
             </dl>
             <p id="desc1">To publish a custom video source, see the following steps:<ol>
-            <li><xref keyref="createCustomVideoTrack"/>Call this method to create a video track and get the video track ID.</li>
+            <li>Call <xref keyref="createCustomVideoTrack"/> to create a video track and get the video track ID.</li>
             <li>Call <xref keyref="joinChannel2"/> to join the channel. In <xref keyref="ChannelMediaOptions"/>, set <parmname>customVideoTrackId</parmname> to the video track ID that you want to publish, and set <parmname>publishCustomVideoTrack</parmname> to <codeph><ph keyref="true"/></codeph>.</li>
-            <li>Call  and specify <parmname>videoTrackId</parmname> as the video track ID set in step 2. You can then publish the corresponding custom video source in the channel.</li></ol></p>
-            <note type="danger" id="desc2">调用该方法后，即使你停止推送外部视频帧到 SDK，自定义采集的视频流仍然会被计入视频时长用量并产生费用，声网建议你根据实际情况采取相应措施避免此类视频计费：<ul>
-            <li>如果你不再需要采集外部视频数据，可以调用 <xref keyref="destroyCustomVideoTrack"/> 销毁自定义采集的视频轨道。</li>
-            <li>如果你只想将采集到的外部视频数据用于本地预览、而不在频道内发布，可以调用 <xref keyref="muteLocalVideoStream"/> 取消发送视频流，或调用 <xref keyref="updateChannelMediaOptions"/> 将 <parmname>publishCustomVideoTrack</parmname> 设置为 <codeph><ph keyref="false"/></codeph>。</li>
+            <li>Call this method and specify <parmname>videoTrackId</parmname> as the video track ID set in step 2. You can then publish the corresponding custom video source in the channel.</li></ol></p>
+            <note type="danger" id="desc2">After calling this method, even if you stop pushing external video frames to the SDK, the custom video stream will still be counted towards the video duration usage and incur charges. Agora recommends that you take appropriate measures based on the actual situation to avoid such video billing.<ul>
+            <li>If you no longer need to capture external video data, you can call <xref keyref="destroyCustomVideoTrack"/> to destroy the custom video track.</li>
+            <li>If you only want to use the external video data for local preview and not publish it in the channel, you can call <xref keyref="muteLocalVideoStream"/> to cancel sending video stream or call <xref keyref="updateChannelMediaOptions"/> to set <parmname>publishCustomVideoTrack</parmname> to <codeph><ph keyref="false"/></codeph>.</li>
             </ul></note>
-            <p props="android">You can push the video frame either by calling this method or by calling <xref keyref="pushVideoFrame3"/>. The difference is that this method does not support video data in texture format.</p>
+            <p props="android">You can push the video frame either by calling this method or by calling <xref keyref="pushVideoFrame3"/>. The difference is that this method does not support video data in Texture format.</p>
         </section>
         <section props="cpp" id="scenario">
             <title>Applicable scenarios</title>
-            <p>As of v4.2.3, the SDK supports the ID3D11Texture2D video format since , which is widely used in game scenarios. When you need to push this type of video frame to the SDK, call this method and set the <parmname>format</parmname> in the <parmname>frame</parmname> to <codeph>VIDEO_TEXTURE_ID3D11TEXTURE2D</codeph>, set the <parmname>d3d11_texture_2d</parmname> and <parmname>texture_slice_index</parmname> members, and set the format of the video frame to ID3D11Texture2D.</p>
+            <p>The SDK supports the ID3D11Texture2D video format since v4.2.3, which is widely used in game scenarios. When you need to push this type of video frame to the SDK, call this method and set the <parmname>format</parmname> in the <parmname>frame</parmname> to <codeph>VIDEO_TEXTURE_ID3D11TEXTURE2D</codeph>, set the <parmname>d3d11_texture_2d</parmname> and <parmname>texture_slice_index</parmname> members, and set the format of the video frame to ID3D11Texture2D.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
