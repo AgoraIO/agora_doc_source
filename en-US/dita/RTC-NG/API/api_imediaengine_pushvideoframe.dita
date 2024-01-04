@@ -37,15 +37,15 @@
                 <dd>If you need to push video frames in I422 format, you need to use this method; otherwise, use <xref keyref="pushVideoFrame3"/> instead.</dd>
             </dlentry>
             </dl>
-            <p id="desc1">推送自定义采集的视频流到频道内，参考如下步骤：<ol>
-            <li>The<xref keyref="createCustomVideoTrack"/> video track ID returned by calling the  method.</li>
-            <li>In each channel's<xref keyref="ChannelMediaOptions"/> , set the <parmname>customVideoTrackId</parmname> parameter to the ID of the video track you want to publish, and set <parmname>publishCustomVideoTrack</parmname> to .<codeph><ph keyref="true"/></codeph></li>
-            <li>调用本方法将未编码的外部视频帧推送到 SDK。</li></ol></p>
+            <p id="desc1">To publish a custom video source, see the following steps:<ol>
+            <li>Call <xref keyref="createCustomVideoTrack"/> method to create a video track and get the video track ID.</li>
+            <li>When joining the channel, set <parmname>customVideoTrackId</parmname> in <xref keyref="ChannelMediaOptions"/> to the video track ID that you want to publish, and set <parmname>publishCustomVideoTrack</parmname> to <codeph><ph keyref="true"/></codeph>.</li>
+            <li>Call this method and specify videoTrackId as the video track ID set in step 2. You can then publish the corresponding custom video source in the channel.</li></ol></p>
             <note type="danger" id="desc2">调用该方法后，即使你停止推送外部视频帧到 SDK，自定义采集的视频流仍然会被计入视频时长用量并产生费用，声网建议你根据实际情况采取相应措施避免此类视频计费：<ul>
             <li>如果你不再需要采集外部视频数据，可以调用 <xref keyref="destroyCustomVideoTrack"/> 销毁自定义采集的视频轨道。</li>
             <li>如果你只想将采集到的外部视频数据用于本地预览、而不在频道内发布，可以调用 <xref keyref="muteLocalVideoStream"/> 取消发送视频流，或调用 <xref keyref="updateChannelMediaOptions"/> 将 <parmname>publishCustomVideoTrack</parmname> 设置为 <codeph><ph keyref="false"/></codeph>。</li>
             </ul></note>
-            <p props="android">You can push the video frame either by calling this method or by calling <xref keyref="pushVideoFrame3"/>. The difference is that the  method does not support video data in texture format.</p>
+            <p props="android">You can push the video frame either by calling this method or by calling <xref keyref="pushVideoFrame3"/>. The difference is that this method does not support video data in texture format.</p>
         </section>
         <section props="cpp" id="scenario">
             <title>Applicable scenarios</title>
