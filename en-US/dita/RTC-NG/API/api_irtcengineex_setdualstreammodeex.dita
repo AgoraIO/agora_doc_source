@@ -48,7 +48,7 @@
                 <dd>v4.0.1</dd>
             </dlentry>
             </dl>
-            <p id="desc">The SDK defaults to enabling low-quality video stream adaptive mode (<apiname keyref="AUTO_SIMULCAST_STREAM"/>) on the sender side, which means the sender does not actively send low-quality video stream. The receiver can initiate<xref keyref="setRemoteVideoStreamTypeEx"/> a low-quality video stream request, and the sender will automatically start sending low-quality video stream upon receiving the request.<ul>
+            <p id="desc">The SDK defaults to enabling low-quality video stream adaptive mode (<apiname keyref="AUTO_SIMULCAST_STREAM"/>) on the sender side, which means the sender does not actively send low-quality video stream. The receiver can initiate a low-quality video stream request by calling <xref keyref="setRemoteVideoStreamTypeEx"/>, and the sender will automatically start sending low-quality video stream upon receiving the request.<ul>
                 <li>If you want to modify this behavior, you can call this method and modify the <parmname>mode</parmname> to <apiname keyref="DISABLE_SIMULCAST_STREAM"/> (never send low-quality video streams) or <apiname keyref="ENABLE_SIMULCAST_STREAM"/> (always send low-quality video streams).</li>
                 <li>If you want to restore the default behavior after making changes, you can call this method again with <parmname>mode</parmname> set to <apiname keyref="AUTO_SIMULCAST_STREAM"/>.</li></ul></p>
             <note id="note">The difference and connection between this method and <xref keyref="enableDualStreamModeEx"/> is as follows:<ul>
