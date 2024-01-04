@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaengine_pushvideoframe">
     <title><ph keyref="pushVideoFrame" /></title>
-    <shortdesc id="short"><ph id="shortdesc">将外部原始视频帧通过自定义视频轨道发布到频道中。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Pushes the external raw video frame to the SDK through video tracks.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -45,7 +45,7 @@
             <li>如果你不再需要采集外部视频数据，可以调用 <xref keyref="destroyCustomVideoTrack"/> 销毁自定义采集的视频轨道。</li>
             <li>如果你只想将采集到的外部视频数据用于本地预览、而不在频道内发布，可以调用 <xref keyref="muteLocalVideoStream"/> 取消发送视频流，或调用 <xref keyref="updateChannelMediaOptions"/> 将 <parmname>publishCustomVideoTrack</parmname> 设置为 <codeph><ph keyref="false"/></codeph>。</li>
             </ul></note>
-            <p props="android">You<xref keyref="pushVideoFrame3"/> can push the video frame either by calling this method or by calling . The difference is that the  method does not support video data in texture format.</p>
+            <p props="android">You can push the video frame either by calling this method or by calling <xref keyref="pushVideoFrame3"/>. The difference is that the  method does not support video data in texture format.</p>
         </section>
         <section props="cpp" id="scenario">
             <title>Applicable scenarios</title>
@@ -75,7 +75,7 @@
             </ul>
             <ul props="apple">
             <li><codeph><ph keyref="true"/></codeph>: Success.</li>
-            <li><xref keyref="error-code-link"/><codeph><ph keyref="false"/></codeph>: Failure. See  for details and resolution suggestions.<ph props="cn"></ph></li>
+            <li><codeph><ph keyref="false"/></codeph>: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>
 </reference>
