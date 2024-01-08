@@ -28,13 +28,13 @@
             <title>Details</title>
             <p>This method initializes the video view of a local stream on the local device. It affects only the video view that the local user sees, not the published local video stream. Call this method to bind the local video stream to a video view (<parmname>view</parmname>) and to set the rendering and mirror modes of the video view.</p>
             <p>After initialization, call this method to set the local video and then join the channel. The local video still binds to the view after you leave the channel. To unbind the local video from the view, set the <parmname>view</parmname> parameter as <ph keyref="NULL" />.</p>
-            <p>在实时互动场景下，如果你需要在本地视频预览的画面中同时看到多个预览画面、且不同画面分别处于视频链路上不同观测点，可以重复调用该方法设置不同的 <parmname>view</parmname>，并针对每个 <parmname>view</parmname> 设置不同的观测位置。 例如：将视频源设置为摄像头，然后对应两个 <parmname>view</parmname> 分别设置 <parmname>position</parmname> 为 <ph keyref="POSITION_POST_CAPTURER_ORIGIN"/> 和 <ph keyref="POSITION_POST_CAPTURER"/>，即可在本地视频预览中同时看到没有经过视频前处理的原始画面和已经过视频前处理（美颜、虚拟背景、水印本地预览）的画面。</p>
+            <p>In real-time interactive scenarios, if you need to simultaneously view multiple preview frames in the local video preview, and each frame is at a different observation position along the video link, you can repeatedly call this method to set different <parmname>view</parmname> and set different observation positions for each <parmname>view</parmname>. 例如：将视频源设置为摄像头，然后对应两个 <parmname>view</parmname> 分别设置 <parmname>position</parmname> 为 <ph keyref="POSITION_POST_CAPTURER_ORIGIN"/> 和 <ph keyref="POSITION_POST_CAPTURER"/>，即可在本地视频预览中同时看到没有经过视频前处理的原始画面和已经过视频前处理（美颜、虚拟背景、水印本地预览）的画面。</p>
             <note type="attention">
             <ul>
             <li props="unity cs">If you need to implement native window rendering, use this method; if you only need to render video images in your Unity project, use the methods in the <xref keyref="AgoraVideoSurface"/> class instead.</li>
             <li>You can call this method either before or after joining a channel.</li>
             <li props="native unreal bp unity rn flutter cs">To update the rendering or mirror mode of the local video view during a call, use the <xref keyref="setLocalRenderMode2" /> method.</li>
-            <li props="electron">如果想要停止渲染视图，需要将 <parmname>view</parmname> 设为 <ph keyref="NULL" /> 后再次调用该方法，以停止渲染并清理渲染缓存。</li>
+            <li props="electron">If you want to stop rendering the view, set <parmname>view </parmname>to <ph keyref="NULL" /> and then call this method again to stop rendering and clear the rendering cache.</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
