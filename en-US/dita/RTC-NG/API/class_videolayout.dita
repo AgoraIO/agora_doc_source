@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videolayout">
     <title><ph keyref="VideoLayout"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Layout information of a certain route's video mixing stream.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Layout information of a specific sub-video stream within the mixed stream.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -95,11 +95,11 @@ class VideoLayout {
             <parml>
             <plentry>
                 <pt>channelId</pt>
-                <pd>The channel name to which the sub-mixing video stream belongs.</pd>
+                <pd>The channel name to which the sub-video stream belongs.</pd>
             </plentry>
                 <plentry>
                     <pt>uid</pt>
-                    <pd>发布该合图子视频流的用户 ID。</pd>
+                    <pd>User ID who published this sub-video stream.</pd>
                 </plentry>
                 <plentry>
                     <pt>strUid</pt>
@@ -107,27 +107,26 @@ class VideoLayout {
                 </plentry>
                 <plentry>
                     <pt>x</pt>
-                    <pd>合图子视频在合图画布上的 x 坐标 (px)。 The relative lateral displacement of the top left corner of the video for local video mixing to the origin (the top left corner of the canvas).</pd>
+                    <pd>X-coordinate (px) of the sub-video stream on the mixing canvas. The relative lateral displacement of the top left corner of the video for video mixing to the origin (the top left corner of the canvas).</pd>
                 </plentry>
                 <plentry>
                     <pt>y</pt>
-                    <pd>合图子视频在合图画布上的 y 坐标 (px)。 The relative longitudinal displacement of the top left corner of the captured video to the origin (the top left corner of the canvas).</pd>
+                    <pd>Y-coordinate (px) of the sub-video stream on the mixing canvas. The relative longitudinal displacement of the top left corner of the captured video to the origin (the top left corner of the canvas).</pd>
                 </plentry>
                 <plentry>
                     <pt>width</pt>
-                    <pd>合图子视频流的宽度 (px)。</pd>
+                    <pd>Width (px) of the sub-video stream.</pd>
                 </plentry>
                 <plentry>
                     <pt>height</pt>
-                    <pd>合图子视频流的高度 (px)</pd>
+                    <pd>Heitht (px) of the sub-video stream.</pd>
                 </plentry>
                 <plentry>
                     <pt>videoState</pt>
-                    <pd>合图子视频流在合图画布上的状态。
-                        <ul>
-                        <li>0：正常。 该视频流已被渲染到合图画布。</li>
-                        <li>1：占位图。 该视频流无视频画面，在合图画布中显示为占位符。</li>
-                        <li>2：黑色图片。 该视频流被黑色图片替代。</li>
+                    <pd>Status of the sub-video stream on the video mixing canvas.<ul>
+                        <li>0: Normal. The sub-video stream has been rendered onto the mixing canvas.</li>
+                        <li>1: Placeholder image. The sub-video stream has no video frames and is displayed as a placeholder on the mixing canvas.</li>
+                        <li>2: Black image. The sub-video stream is replaced by a black image.</li>
                         </ul></pd>
                 </plentry>
             </parml> </section>

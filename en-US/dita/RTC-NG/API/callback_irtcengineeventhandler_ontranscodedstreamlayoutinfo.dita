@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_ontranscodedstreamlayoutinfo">
     <title><ph keyref="onTranscodedStreamLayoutInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc">已接收携带布局信息的合图视频流回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the local user receives a mixed video stream carrying layout information. </ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -42,7 +42,7 @@
                 <dd>v4.3.0</dd>
             </dlentry>
             </dl>
-            <p>当本地第一次接收到合图服务器发送的合图视频流，或者合图流的布局信息有变化时，SDK 会触发该回调，报告合图视频流中每一路子视频流的布局信息。</p>
+            <p>When the local user receives a mixed video stream sent by the video mixing server for the first time, or when there is a change in the layout information of the mixed stream, the SDK triggers this callback, reporting the layout information of each sub-video stream within the mixed video stream.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -53,25 +53,25 @@
                 </plentry>
             <plentry>
                 <pt>uid</pt>
-                <pd>发布合图视频流的用户 ID。</pd>
+                <pd>User ID who published this mixed video stream.</pd>
             </plentry>
                 <plentry props="cpp">
                     <pt>width</pt>
-                    <pd>合图视频流的宽度 (px)。</pd>
+                    <pd>Width (px) of the mixed video stream.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>height</pt>
-                    <pd>合图视频流的高度 (px)。</pd>
+                    <pd>Heitht (px) of the mixed video stream.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>layoutCount</pt>
-                    <pd>合图视频流中布局信息的数量。</pd>
+                    <pd>The number of layout information in the mixed video stream.</pd>
                 </plentry>
                 <plentry>
                     <pt props="android">info</pt>
                     <pt props="apple">videoLayoutInfo</pt>
                     <pt props="cpp">layoutlist</pt>
-                    <pd>某一路合图视频流的详细布局信息。 See <xref keyref="VideoLayout"/>.</pd>
+                    <pd>Layout information of a specific sub-video stream within the mixed stream. See <xref keyref="VideoLayout"/>.</pd>
                 </plentry>
             </parml> </section>
         </refbody>
