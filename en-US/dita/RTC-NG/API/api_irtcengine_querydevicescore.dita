@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_querydevicescore">
     <title><ph keyref="queryDeviceScore"/></title>
-    <shortdesc id="short"><ph id="shortdesc">查询设备评分等级。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Queries device score.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -34,13 +34,13 @@
         </section>
         <section id="scenario">
             <title>Applicable scenarios</title>
-            <p>在高清或超高清视频场景下，可以先调用该方法查询设备的等级评分。 如果返回的评分较低（比如低于 60），则需要适当调低视频分辨率，以避免影响视频体验。 不同业务场景要求的最低设备评分等级不同，具体评分推荐请<xref keyref="ticket-link" />。</p>
+            <p>In high-definition or ultra-high-definition video scenarios, you can first call this method to query the device's score. If the returned score is low (for example, below 60), you need to lower the video resolution to avoid affecting the video experience.  The minimum device score required for different business scenarios is varied. For specific score recommendations, please <xref keyref="ticket-link" />.</p>
         </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法调用成功时，返回一个取值范围为 [0,100] 的值，表示当前设备的评分等级，数值越大表示设备能力越强，大部分设备的评分在 60 到 100 之间；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
+            <p props="flutter">When the method call succeeds, it returns a value in the range of [0,100], indicating the current device's score. The larger the value, the stronger the device capability. Most devices are rated between 60 and 100. When the method call fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
             <ul>
-                <li props="native electron unity rn">>0: 方法调用成功，值为当前设备的评分等级，取值范围为[0,100]，数值越大表示设备能力越强。 大部分设备的评分在 60 到 100 之间。</li>
+                <li props="native electron unity rn">>0: The method call succeeeds, the value is the current device's score, the range is [0,100], the larger the value, the stronger the device capability.  Most devices are rated between 60 and 100.</li>
                 <li>&lt; 0: Failure.</li>
                 </ul> </section>
         </refbody>
