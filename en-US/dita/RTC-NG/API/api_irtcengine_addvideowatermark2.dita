@@ -47,7 +47,7 @@
             <li>If the dimensions of the PNG image differ from your settings in this method, the image will be cropped or zoomed to conform to your settings.</li>
             <li>If you have enabled the mirror mode for the local video, the watermark on the local video is also mirrored. To avoid mirroring the watermark, Agora recommends that you do not use the mirror and watermark functions for the local video at the same time. You can implement the watermark function in your application layer.</li>
             </ul> </note>
-            <p>你可以在调用该方法时通过 <codeph>visibleInPreview</codeph> 参数设置水印在预览时是否可见，但能否最终能够生效也取决于你在调用 <xref keyref="setupLocalVideo"/> 时设置的 <parmname>position</parmname> 参数（视频帧在视频链路中的位置），详见下表。</p>
+            <p>You can control the visibility of the watermark during preview by setting the <codeph>visibleInPreview</codeph> parameter when calling this method. However, whether it ultimately takes effect also depends on the <parmname>position</parmname> parameter you set when calling <xref keyref="setupLocalVideo"/> (the position of the video frame in the video link). Refer to the table below for details.</p>
             <table frame="all" rowsep="1" colsep="1">
                 <tgroup cols="3">
                     <colspec colname="c1" colnum="1" colwidth="1*"/>
@@ -55,14 +55,14 @@
                     <colspec colname="c3" colnum="3" colwidth="1*"/>
                     <thead>
                         <row>
-                            <entry>The frame position of the video observer.</entry>
-                            <entry>visibleInPreview</entry>
-                            <entry>水印是否可见</entry>
+                            <entry>Observation position</entry>
+                            <entry>visibleInPreview value</entry>
+                            <entry>Watermark visibility</entry>
                         </row>
                     </thead>
                     <tbody>
                         <row>
-                            <entry morerows="1">（默认） <apiname keyref="POSITION_POST_CAPTURER"/></entry>
+                            <entry morerows="1">(Default) <apiname keyref="POSITION_POST_CAPTURER"/></entry>
                             <entry><codeph><ph keyref="true"/></codeph></entry>
                             <entry>Yes</entry>
                         </row>
