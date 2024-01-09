@@ -234,11 +234,15 @@ class VideoCanvas {
             <parml>
             <plentry>
                 <pt>uid</pt>
-                <pd>User ID that publishes the video source. When the video source is a mixed video stream (<apiname keyref="VIDEO_SOURCE_TRANSCODED"/>), this parameter represents the user ID who publishes the mixed video stream.</pd>
-            </plentry>
+                <pd>User ID that publishes the video source.</pd>
+                <pd props="cpp unity rn flutter">对于 Android 和 iOS 平台，当视频源为合图视频流 (<apiname keyref="VIDEO_SOURCE_TRANSCODED"/>) 时，该参数表示发布合图视频流的用户 ID。</pd>
+                <pd props="android ios">When the video source is a mixed video stream (<apiname keyref="VIDEO_SOURCE_TRANSCODED"/>), this parameter represents the user ID who publishes the mixed video stream.</pd>
+              </plentry>
                 <plentry>
                     <pt>subviewUid</pt>
-                    <pd>User ID that publishes a specific sub-video stream within the mixed video stream.</pd>
+                    <pd props="cpp unity rn flutter">User ID that publishes a specific sub-video stream within the mixed video stream.</pd>
+                    <pd props="electron">Reserved for future use.</pd>
+                <note type="attention" props="cpp unity flutter">This parameter applies to Android and iOS only.</note>
                 </plentry>
                 <plentry>
                     <pt>view</pt>
