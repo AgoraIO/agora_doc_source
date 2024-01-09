@@ -111,7 +111,7 @@ You can also use `messagesDidRecall` to listen for the message recall state:
 /**
  * Occurs when a received message is recalled.
  */
-- (void)messagesInfoDidRecall:(NSArray<EMRecallMessageInfo *> * _Nonnull)aRecallMessagesInfo;
+- (void)messagesInfoDidRecall:(NSArray<AgoraChatRecallMessageInfo *> * _Nonnull)aRecallMessagesInfo;
 ```
 
 ### Send and receive an attachment message
