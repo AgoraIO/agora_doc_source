@@ -191,7 +191,7 @@
             <title>新增特性</title>
             <body>
                 <ol>
-                    <li><ph><b>接收端自定义合图布局</b></ph>
+                    <li props="ios android rn unity flutter"><ph><b>接收端自定义合图布局 (Android, iOS)</b></ph>
                         <p>为支持接收端自定义多路合图流的布局，该版本新增了 <xref keyref="onTranscodedStreamLayoutInfo"/> 回调。当接收端收到合图服务器发送的频道内合图视频流时，该回调会被触发，上报合图视频流的布局信息、以及合图流中每一路子视频流的布局信息。接收端可以在调用 <xref keyref="setupRemoteVideo"/> 方法时，为合图视频流中的子视频流（通过 <codeph>subviewUid</codeph> 区分）设置单独的 <codeph>view</codeph> 进行渲染，从而达到自定义视频布局的效果。</p>
                         <p>当合图视频流中的子视频流布局发生变化时，该回调也会被触发，实时上报最新的布局信息。</p>
                         <p>通过该特性，接收端可以灵活调整本地的视图布局。当在多人视频场景下应用时，接收端只需接收并解码一路合图视频流，可以有效降低接收端解码多路视频时的 CPU 占用率和网络带宽。</p>
@@ -305,9 +305,9 @@
             <body>
                 <p><b>新增</b>
                     <ul>
-                        <li><xref keyref="onTranscodedStreamLayoutInfo"/></li>
-                        <li><xref keyref="VideoLayout"/></li>
-                        <li><xref keyref="VideoCanvas"/> 新增 <codeph>subviewUid</codeph> 成员</li>
+                        <li props="ios android rn unity flutter"><xref keyref="onTranscodedStreamLayoutInfo"/> (Android, iOS)</li>
+                        <li props="ios android rn unity flutter"><xref keyref="VideoLayout"/> (Android, iOS)</li>
+                        <li><xref keyref="VideoCanvas"/> 新增 <codeph>subviewUid</codeph> 和 <codeph>uid</codeph> 成员</li>
                         <li props="android"><xref keyref="VideoEncoderConfiguration"/> 新增 <codeph>codecType</codeph> 成员</li>
                         <li props="android"><xref keyref="AudioCaptureParameters"/> 新增 <codeph>allowCaptureCurrentApp</codeph> 成员</li>
                         <li props="ios"><xref keyref="updateSelfTransform"/></li>
