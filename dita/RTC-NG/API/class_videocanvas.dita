@@ -236,11 +236,15 @@ class VideoCanvas {
             <parml>
             <plentry>
                 <pt>uid</pt>
-                <pd>发布视频源的用户 ID。当视频源为合图视频流 (<apiname keyref="VIDEO_SOURCE_TRANSCODED"/>) 时，该参数表示发布合图视频流的用户 ID。</pd>
-            </plentry>
+                <pd>发布视频源的用户 ID。</pd>
+                <pd props="cpp unity rn flutter">对于 Android 和 iOS 平台，当视频源为合图视频流 (<apiname keyref="VIDEO_SOURCE_TRANSCODED"/>) 时，该参数表示发布合图视频流的用户 ID。</pd>
+                <pd props="android ios">当视频源为合图视频流 (<apiname keyref="VIDEO_SOURCE_TRANSCODED"/>) 时，该参数表示发布合图视频流的用户 ID。</pd>
+              </plentry>
                 <plentry>
                     <pt>subviewUid</pt>
-                    <pd>发布某一路合图子视频流的用户 ID。</pd>
+                    <pd props="android ios cpp unity rn flutter">发布某一路合图子视频流的用户 ID。</pd>
+                    <pd props="mac electron">预留参数。
+                <note type="attention" props="cpp unity flutter">该参数仅适用于 Android 和 iOS 平台。</note></pd>
                 </plentry>
                 <plentry>
                     <pt>view</pt>
@@ -314,17 +318,15 @@ class VideoCanvas {
           </plentry>
           <plentry props="cpp ios mac unity electron flutter cs">
               <pt>enableAlphaMask</pt>
-              <pd props="cpp ios mac unity electron flutter">
-              <p>（可选）接收端是否开启 alpha 遮罩渲染：
+              <pd props="cpp mac unity electron flutter">（可选）接收端是否开启 alpha 遮罩渲染：
                 <ul>
                   <li><codeph><ph keyref="true"/></codeph>：接收端开启 alpha 遮罩渲染。</li>
                   <li><codeph><ph keyref="false"/></codeph>：（默认）接收端关闭 alpha 遮罩渲染。</li>
                 </ul>
-              </p>
               <p>alpha 遮罩渲染可以创建具有透明效果的图像，还可以提取视频中的人像。与其他方法结合使用时，可以实现人像画中画、添加水印等效果。</p>
-              <note type="attention"><ul><li>该属性仅适用于 macOS 平台。</li><li>仅当发送端开启 alpha 传输功能时，接收端才能渲染 alpha 通道的信息。</li><li>如需开启 alpha 传输功能，请<xref keyref="ticket-link"/>。</li></ul></note>
+              <note type="attention" props="cpp mac unity electron flutter"><ul><li>该属性仅适用于 macOS 平台。</li><li>仅当发送端开启 alpha 传输功能时，接收端才能渲染 alpha 通道的信息。</li><li>如需开启 alpha 传输功能，请<xref keyref="ticket-link"/>。</li></ul></note>
               </pd>
-              <pd props="cs">预留。</pd>
+              <pd props="cs ios">预留。</pd>
           </plentry>
                 <plentry>
                     <pt>position</pt>
