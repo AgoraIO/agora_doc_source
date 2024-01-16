@@ -17,9 +17,15 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)selectMultiAudioTrack:(NSInteger)playoutTrackIndex publishTrackIndex:(NSInteger)publishTrackIndex NS_SWIFT_NAME(selectMultiAudioTrack(_:publishTrackIndex:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int selectMultiAudioTrack(int playoutTrackIndex, int publishTrackIndex) = 0;</codeblock>
             <codeblock props="bp" outputclass="language-cpp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity cs" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract selectMultiAudioTrack(
+    playoutTrackIndex: number,
+    publishTrackIndex: number
+  ): number;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int SelectMultiAudioTrack(int playoutTrackIndex, int publishTrackIndex);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract selectMultiAudioTrack(
+    playoutTrackIndex: number,
+    publishTrackIndex: number
+  ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> selectMultiAudioTrack(
     {required int playoutTrackIndex, required int publishTrackIndex});</codeblock> </p>
         </section>
@@ -45,10 +51,10 @@
                 <pt>playoutTrackIndex</pt>
                 <pd>The index of audio tracks for local playback. You can obtain the index through <xref keyref="getStreamInfo"/>.</pd>
             </plentry>
-                <plentry>
-                    <pt>publishTrackIndex</pt>
-                    <pd>The index of audio tracks to be published in the channel. You can obtain the index through <xref keyref="getStreamInfo"/>.</pd>
-                </plentry>
+            <plentry>
+                <pt>publishTrackIndex</pt>
+                <pd>The index of audio tracks to be published in the channel. You can obtain the index through <xref keyref="getStreamInfo"/>.</pd>
+            </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>

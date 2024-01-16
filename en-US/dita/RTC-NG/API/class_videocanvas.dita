@@ -134,6 +134,7 @@ struct FVideoCanvas
             <codeblock props="electron" outputclass="language-typescript">export class VideoCanvas {
   view?: any
   uid?: number;
+  subviewUid?: number;
   backgroundColor?: number;
   renderMode?: RenderModeType
   mirrorMode?: VideoMirrorModeType
@@ -142,12 +143,14 @@ struct FVideoCanvas
   mediaPlayerId?: number;
   cropArea?: Rectangle;
   enableAlphaMask?: boolean;
+  position?: VideoModulePosition;
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class VideoCanvas
     {
 
         public view_t view;
         public uint uid;
+        public uint subviewUid;
         public uint backgroundColor;
         public RENDER_MODE_TYPE renderMode;
         public VIDEO_MIRROR_MODE_TYPE mirrorMode;
@@ -156,10 +159,12 @@ struct FVideoCanvas
         public int mediaPlayerId;
         public Rectangle cropArea;
         public bool enableAlphaMask;
+        public VIDEO_MODULE_POSITION position; 
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class VideoCanvas {
   view?: any
   uid?: number;
+  subviewUid?: number;
   backgroundColor?: number;
   renderMode?: RenderModeType
   mirrorMode?: VideoMirrorModeType
@@ -168,6 +173,7 @@ struct FVideoCanvas
   mediaPlayerId?: number;
   cropArea?: Rectangle;
   enableAlphaMask?: boolean;
+  position?: VideoModulePosition;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
 class VideoCanvas {
@@ -235,12 +241,12 @@ class VideoCanvas {
             <plentry>
                 <pt>uid</pt>
                 <pd>User ID that publishes the video source.</pd>
-                <pd props="cpp unity rn flutter">For Android and iOS platforms, when the video source is a mixed video stream ( <apiname keyref="VIDEO_SOURCE_TRANSCODED"/>), this parameter represents the user ID who publishes the mixed video stream.</pd>
-                <pd props="android ios">When the video source is a mixed video stream ( <apiname keyref="VIDEO_SOURCE_TRANSCODED"/>), this parameter represents the user ID who publishes the mixed video stream.</pd>
+                <pd props="cpp unity rn flutter">For Android and iOS platforms, when the video source is a mixed video stream ( <apiname keyref="VIDEO_SOURCE_TRANSCODED"/>), this parameter represents the ID of the user who publishes the mixed video stream.</pd>
+                <pd props="android ios">When the video source is a mixed video stream ( <apiname keyref="VIDEO_SOURCE_TRANSCODED"/>), this parameter represents the ID of the user who publishes the mixed video stream.</pd>
               </plentry>
                 <plentry>
                     <pt>subviewUid</pt>
-                    <pd props="android ios cpp unity rn flutter">User ID that publishes a specific sub-video stream within the mixed video stream.</pd>
+                    <pd props="android ios cpp unity rn flutter">The ID of the user who publishes a specific sub-video stream within the mixed video stream.</pd>
                     <pd props="mac electron">Reserved for future use.<note type="attention" props="cpp unity flutter">This parameter applies to Android and iOS only.</note></pd>
                 </plentry>
                 <plentry>
@@ -317,7 +323,7 @@ class VideoCanvas {
                   <li><codeph><ph keyref="true"/></codeph>: The receiver enables alpha mask rendering.</li>
                   <li><codeph><ph keyref="false"/></codeph>: (default) The receiver disables alpha mask rendering.</li>
                 </ul>
-              <p>Alpha mask rendering can create images with transparent effects and extract portraits from videos.  When used in combination with other methods, you can implement effects such as picture-in-picture and watermarking.</p>
+              <p>Alpha mask rendering can create images with transparent effects and extract portraits from videos.  When used in combination with other methods, you can implement effects such as portrait-in-picture and watermarking.</p>
               <note type="attention" props="cpp mac unity electron flutter"><ul><li>This property applies to macOS only.</li><li>The receiver can render alpha channel information only when the sender enables alpha transmission.</li><li>To enable alpha transmission, <xref keyref="ticket-link"/>.</li></ul></note>
               </pd>
               <pd props="cs ios">Reserved.</pd>
