@@ -17,9 +17,15 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)selectMultiAudioTrack:(NSInteger)playoutTrackIndex publishTrackIndex:(NSInteger)publishTrackIndex NS_SWIFT_NAME(selectMultiAudioTrack(_:publishTrackIndex:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int selectMultiAudioTrack(int playoutTrackIndex, int publishTrackIndex) = 0;</codeblock>
             <codeblock props="bp" outputclass="language-cpp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity cs" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract selectMultiAudioTrack(
+    playoutTrackIndex: number,
+    publishTrackIndex: number
+  ): number;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int SelectMultiAudioTrack(int playoutTrackIndex, int publishTrackIndex);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract selectMultiAudioTrack(
+    playoutTrackIndex: number,
+    publishTrackIndex: number
+  ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> selectMultiAudioTrack(
     {required int playoutTrackIndex, required int publishTrackIndex});</codeblock> </p>
         </section>
@@ -45,10 +51,10 @@
                 <pt>playoutTrackIndex</pt>
                 <pd>用于本地播放的音轨索引。你可以通过 <xref keyref="getStreamInfo"/> 来获取索引值。</pd>
             </plentry>
-                <plentry>
-                    <pt>publishTrackIndex</pt>
-                    <pd>用于发送至远端的音轨索引。你可以通过 <xref keyref="getStreamInfo"/> 来获取索引值。</pd>
-                </plentry>
+            <plentry>
+                <pt>publishTrackIndex</pt>
+                <pd>用于发送至远端的音轨索引。你可以通过 <xref keyref="getStreamInfo"/> 来获取索引值。</pd>
+            </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
