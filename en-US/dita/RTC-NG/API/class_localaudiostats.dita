@@ -56,55 +56,53 @@ struct FLocalAudioStats
 	int audioDeviceDelay;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LocalAudioStats {
-  
+
   numChannels?: number;
-  
+
   sentSampleRate?: number;
-  
+
   sentBitrate?: number;
-  
+
   internalCodec?: number;
-  
+
   txPacketLossRate?: number;
-  
+
   audioDeviceDelay?: number;
+
+  earMonitorDelay?: number;
+  
+  aecEstimatedDelay?: number;
 }</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public LocalAudioStats(int numChannels, int sentSampleRate, int sentBitrate, int internalCodec, ushort txPacketLossRate, int audioDeviceDelay)
-        {
-            this.numChannels = numChannels;
-            this.sentSampleRate = sentSampleRate;
-            this.sentBitrate = sentBitrate;
-            this.internalCodec = internalCodec;
-            this.txPacketLossRate = txPacketLossRate;
-            this.audioDeviceDelay = audioDeviceDelay;
-        }
-
-        public int numChannels { set; get; }
-
-        public int sentSampleRate { set; get; }
-
-        public int sentBitrate { set; get; }
-
-        public int internalCodec { set; get; }
-
-        public ushort txPacketLossRate { set; get; }
-
-        public int audioDeviceDelay { set; get; }
-    }
+            <codeblock props="unity cs" outputclass="language-csharp">public class LocalAudioStats
+                {
+                    public int numChannels;
+                    public int sentSampleRate;
+                    public int sentBitrate
+                    public int internalCodec;
+                    public ushort txPacketLossRate;
+                    public int audioDeviceDelay;
+                    public int audioPlayoutDelay
+                    public int earMonitorDelay
+                    public int aecEstimatedDelay;
+                }
 </codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class LocalAudioStats {
-  
+
   numChannels?: number;
-  
+
   sentSampleRate?: number;
-  
+
   sentBitrate?: number;
-  
+
   internalCodec?: number;
-  
+
   txPacketLossRate?: number;
-  
+
   audioDeviceDelay?: number;
+
+  earMonitorDelay?: number;
+  
+  aecEstimatedDelay?: number;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
 class LocalAudioStats {
