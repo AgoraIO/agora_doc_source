@@ -1,9 +1,8 @@
-## v4.2.1 Beta
+## v4.2.1 
 
-v4.2.1 Beta was released on July xx, 2023. 
+This version was released on October xx, 2023. 
 
 This is the first release of Video SDK for Unreal Blueprint.
-
 
 **Features**
 
@@ -11,8 +10,6 @@ This is the first release of Video SDK for Unreal Blueprint.
 Video SDK for Unreal Blueprint provides a simple and user-friendly real-time interactive solution for Unreal Engine users.
 
 Video SDK for Unreal Blueprint offers a visual interface and a set of intuitive and easy-to-use nodes. This enables developers to effortlessly implement real-time interactive features in games or apps within the Unreal project. You don't need to know C++, just drag, connect and configure nodes.
-
-Agora provides the open source [example project](https://github.com/AgoraIO-Extensions/Agora-Unreal-RTC-SDK/tree/main/Agora-Unreal-SDK-Blueprint-Example) on GitHub for your reference.
 
 **Reference**
 
@@ -24,3 +21,4 @@ To integrate real-time engagement functionality into your app using Video SDK fo
 - [Get Started with Interactive Live Streaming Standard]()
 - [API Reference]()
 
+Agora provides the open source [example project](https://github.com/AgoraIO-Extensions/Agora-Unreal-RTC-SDK/tree/main/Agora-Unreal-SDK-Blueprint-Example) on GitHub for your reference.

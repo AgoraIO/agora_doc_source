@@ -240,7 +240,7 @@
             </relcell>
             <relcell>
                 <topicref keyref="LOCAL_AUDIO_STREAM_STATE"/>
-                <topicref keyref="LOCAL_AUDIO_STREAM_ERROR"/>
+                <topicref keyref="LOCAL_AUDIO_STREAM_REASON"/>
             </relcell>
         </relrow>
         <relrow props="ios cpp unreal bp android unity rn flutter">
@@ -550,20 +550,12 @@
         <relrow>
             <relcell>
                 <topicref keyref="pushVideoFrame"/>
-                <topicref keyref="pushVideoFrameEx" props="android apple"/>
+                <topicref keyref="pushVideoFrame2" props="android apple"/>
             </relcell>
             <relcell>
                 <topicref keyref="ExternalVideoFrame"/>
                 <topicref keyref="VIDEO_BUFFER_TYPE" props="cpp unreal bp unity rn electron flutter"/>
                 <topicref keyref="VIDEO_PIXEL_FORMAT" props="cpp unreal bp"/>
-            </relcell>
-        </relrow>
-        <relrow props="android">
-            <relcell>
-                <topicref keyref="pushVideoFrame2"/>
-            </relcell>
-            <relcell>
-                <topicref keyref="ExternalVideoFrame"/>
             </relcell>
         </relrow>
         <relrow props="android ios">
@@ -660,7 +652,7 @@
             </relcell>
             <relcell>
                 <topicref keyref="LOCAL_AUDIO_STREAM_STATE"/>
-                <topicref keyref="LOCAL_AUDIO_STREAM_ERROR"/>
+                <topicref keyref="LOCAL_AUDIO_STREAM_REASON"/>
             </relcell>
         </relrow>
         <relrow>
@@ -669,7 +661,7 @@
             </relcell>
             <relcell>
                 <topicref keyref="LOCAL_VIDEO_STREAM_STATE" props="cpp unreal bp apple unity electron rn flutter"/>
-                <topicref keyref="LOCAL_VIDEO_STREAM_ERROR" props="cpp unreal bp apple unity electron rn flutter"/>
+                <topicref keyref="LOCAL_VIDEO_STREAM_REASON" props="cpp unreal bp apple unity electron rn flutter"/>
             </relcell>
         </relrow>
         <relrow>
@@ -776,7 +768,7 @@
             </relcell>
             <relcell>
                 <topicref keyref="RTMP_STREAM_PUBLISH_STATE"/>
-                <topicref keyref="RTMP_STREAM_PUBLISH_ERROR_TYPE"/>
+                <topicref keyref="RTMP_STREAM_PUBLISH_REASON"/>
             </relcell>
         </relrow>
         <relrow props="ios cpp unreal bp unity rn flutter">
@@ -785,7 +777,7 @@
             </relcell>
             <relcell>
                 <topicref keyref="RHYTHM_PLAYER_STATE_TYPE"/>
-                <topicref keyref="RHYTHM_PLAYER_ERROR_TYPE"/>
+                <topicref keyref="RHYTHM_PLAYER_REASON"/>
             </relcell>
         </relrow>
         <relrow props="ios mac cpp framework">
@@ -1103,7 +1095,7 @@
             </relcell>
             <relcell>
                 <topicref keyref="MEDIA_PLAYER_STATE"/>
-                <topicref keyref="MEDIA_PLAYER_ERROR"/>
+                <topicref keyref="MEDIA_PLAYER_REASON"/>
             </relcell>
         </relrow>
         <relrow props="android">
@@ -1274,7 +1266,7 @@
             </relcell>
             <relcell>
                 <topicref keyref="MusicChartInfo"/>
-                <topicref keyref="MusicContentCenterStatusCode" props="ios"/>
+                <topicref keyref="MusicContentCenterStateReason" props="ios"/>
             </relcell>
         </relrow>
         <relrow props="ios">
@@ -1282,7 +1274,7 @@
                 <topicref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/>
             </relcell>
             <relcell>
-                <topicref keyref="PreloadStatusCode"/>
+                <topicref keyref="PreloadState"/>
             </relcell>
         </relrow>
         <relrow>
@@ -1349,7 +1341,7 @@
                 <topicref keyref="getPlayPosition"/>
             </relcell>
             <relcell>
-                <topicref keyref="MEDIA_PLAYER_ERROR"/>
+                <topicref keyref="MEDIA_PLAYER_REASON"/>
             </relcell>
         </relrow>
         <relrow props="android">
@@ -1400,7 +1392,7 @@
             </relcell>
             <relcell>
                 <topicref keyref="DIRECT_CDN_STREAMING_STATE"/>
-                <topicref keyref="DIRECT_CDN_STREAMING_ERROR"/>
+                <topicref keyref="DIRECT_CDN_STREAMING_REASON"/>
             </relcell>
         </relrow>
         <relrow props="cn">
@@ -1414,6 +1406,7 @@
         <relrow>
             <relcell>
                 <topicref keyref="enableVirtualBackground"/>
+                <topicref keyref="enableVirtualBackground2" props="android apple"/>
             </relcell>
             <relcell>
                 <topicref keyref="VirtualBackgroundSource"/>
@@ -2222,6 +2215,8 @@
                 <topicref keyref="destroyCustomAudioTrack" props="android apple"/>
                 <topicref keyref="destroyCustomVideoTrack"/>
                 <topicref keyref="destroyMediaPlayer" props="apple cpp framework"/>
+                <topicref keyref="destroyRendererByConfig" props="electron"/>
+                <topicref keyref="destroyRendererByView" props="electron"/>
                 <topicref keyref="disableAudio"/>
                 <topicref keyref="disableAudioSpectrumMonitor"/>
                 <topicref keyref="disableVideo"/>
@@ -2230,6 +2225,7 @@
                 <topicref keyref="enableAudioSpectrumMonitor"/>
                 <topicref keyref="enableAudioVolumeIndication"/>
                 <topicref keyref="enableContentInspect"/>
+                <topicref keyref="enableCustomAudioLocalPlayback"/>
                 <topicref keyref="enableDualStreamMode" props="native unreal unity"/>
                 <topicref keyref="enableDualStreamMode3"/>
                 <topicref keyref="enableEchoCancellationExternal" props="hide"/>
@@ -2243,12 +2239,13 @@
                 <topicref keyref="enableLocalVideo"/>
                 <topicref keyref="enableLoopbackRecording" props="mac cpp unreal bp unity electron flutter"/>
                 <topicref keyref="enableMainQueueDispatch" props="apple"/>
-                <topicref keyref="enableMultiCamera" props="cpp ios framework"/>
+                <topicref keyref="enableMultiCamera" props="cpp ios unreal bp unity rn flutter"/>
                 <topicref keyref="enableSoundPositionIndication"/>
                 <topicref keyref="enableSpatialAudio"/>
                 <topicref keyref="enableVideo"/>
                 <topicref keyref="enableVideoImageSource"/>
                 <topicref keyref="enableVirtualBackground"/>
+                <topicref keyref="enableVirtualBackground2" props="android apple"/>
                 <topicref keyref="enableWebSdkInteroperability"/>
                 <topicref keyref="enumerateDevices" props="mac"/>
                 <topicref keyref="followSystemPlaybackDevice" props="mac"/>
@@ -2334,10 +2331,13 @@
                 <topicref keyref="pushExternalAudioFrameSampleBuffer1" props="apple"/>
                 <topicref keyref="pushReverseAudioFrame1" props="hide"/>
                 <topicref keyref="pushVideoFrame" props="android apple"/>
-                <topicref keyref="pushVideoFrame" props="unity"/>
-                <topicref keyref="pushVideoFrame2" props="android"/>
+                <topicref keyref="pushVideoFrame3" props="android"/>
+                <topicref keyref="pushVideoFrame2" props="android apple"/>
+                <topicref keyref="pushVideoFrame4" props="android"/>
                 <topicref keyref="queryInterface" props="cpp unreal bp"/>
                 <topicref keyref="queryCodecCapability"/>
+                <topicref keyref="queryDeviceScore"/>
+                <topicref keyref="queryInterface" props="cpp unreal bp"/>
                 <topicref keyref="queryScreenCaptureCapability" props="android cpp unreal bp ios flutter rn unity"/>
                 <topicref keyref="rate"/>
                 <topicref keyref="registerAudioEncodedFrameObserver"/>
@@ -2377,6 +2377,7 @@
                 <topicref keyref="setAudioSessionOperationRestriction" props="ios cpp unreal bp flutter unity rn"/>
                 <topicref keyref="setAVSyncSource" props="cn"/>
                 <topicref keyref="setBeautyEffectOptions"/>
+                <topicref keyref="setBeautyEffectOptions2" props="android apple"/>
                 <topicref keyref="setCameraAutoExposureFaceModeEnabled" props="ios cpp unreal bp flutter rn unity"/>
                 <topicref keyref="setCameraAutoFocusFaceModeEnabled" props="android ios cpp unreal bp flutter rn unity"/>
                 <topicref keyref="setCameraCapturerConfiguration" props="android ios cpp unreal bp flutter rn unity"/>
@@ -2391,6 +2392,7 @@
                 <topicref keyref="setClientRole2"/>
                 <topicref keyref="setCloudProxy"/>
                 <topicref keyref="setColorEnhanceOptions"/>
+                <topicref keyref="setColorEnhanceOptions2" props="android apple"/>
                 <topicref keyref="setDefaultAudioRouteToSpeakerphone" props="android ios cpp unreal bp unity rn flutter"/>
                 <topicref keyref="setDirectCdnStreamingAudioConfiguration"/>
                 <topicref keyref="setDirectCdnStreamingVideoConfiguration"/>
@@ -2428,6 +2430,7 @@
                 <topicref keyref="setLogFilter"/>
                 <topicref keyref="setLogLevel"/>
                 <topicref keyref="setLowlightEnhanceOptions"/>
+                <topicref keyref="setLowlightEnhanceOptions2" props="android apple"/>
                 <topicref keyref="setMaxMetadataSize" props="electron flutter rn unity"/>
                 <topicref keyref="setMixedAudioFrameParameters"/>
                 <topicref keyref="setParameters"/>
@@ -2437,7 +2440,7 @@
                 <topicref keyref="setRemoteDefaultVideoStreamType"/>
                 <topicref keyref="setRemoteRenderMode1" props="android ios mac"/>
                 <topicref keyref="setRemoteRenderMode2"/>
-                <topicref keyref="setRemoteSubscribeFallbackOption" props="hide"/>
+                <topicref keyref="setRemoteSubscribeFallbackOption"/>
                 <topicref keyref="setRemoteUserSpatialAudioParams"/>
                 <topicref keyref="setRemoteVideoStreamType"/>
                 <topicref keyref="setRemoteVideoSubscriptionOptions"/>
@@ -2453,6 +2456,7 @@
                 <topicref keyref="setupLocalVideo" props="native unreal bp unity electron flutter"/>
                 <topicref keyref="setupRemoteVideo" props="native unreal bp unity electron flutter"/>
                 <topicref keyref="setVideoDenoiserOptions"/>
+                <topicref keyref="setVideoDenoiserOptions2" props="android apple"/>
                 <topicref keyref="setVideoEncoderConfiguration"/>
                 <topicref keyref="setVideoProfile" props="android ios mac"/>
                 <topicref keyref="setVideoProfile2" props="apple"/>
@@ -2467,7 +2471,6 @@
                 <topicref keyref="startAudioRecording1" props="android ios mac unity"/>
                 <topicref keyref="startAudioRecording2" props="unity"/>
                 <topicref keyref="startAudioRecording3"/>
-                <topicref keyref="startChannelMediaRelay"/>
                 <topicref keyref="startDirectCdnStreaming"/>
                 <topicref keyref="startEchoTest1" props="native unreal unity cs"/>
                 <topicref keyref="startEchoTest2" props="native unreal unity cs"/>
@@ -2475,7 +2478,7 @@
                 <topicref keyref="startLastmileProbeTest"/>
                 <topicref keyref="startLocalVideoTranscoder"/>
                 <topicref keyref="startOrUpdateChannelMediaRelay"/>
-                <topicref keyref="startPreview" props="native unreal unity"/>
+                <topicref keyref="startPreview" props="native unreal unity flutter"/>
                 <topicref keyref="startPreview2"/>
                 <topicref keyref="startCameraCapture"/>
                 <topicref keyref="startRhythmPlayer" props="android ios cpp unreal bp flutter rn unity"/>
@@ -2514,7 +2517,6 @@
                 <topicref keyref="unregisterVideoFrameObserver_IMediaEngine" props="unity"/>
                 <topicref keyref="unregisterVideoEncodedFrameObserver" props="unity cs electron rn flutter"/>
                 <topicref keyref="updateChannelMediaOptions"/>
-                <topicref keyref="updateChannelMediaRelay"/>
                 <topicref keyref="updateDirectCdnStreamingMediaOptions" props="hide"/>
                 <topicref keyref="updateLocalTranscoderConfiguration"/>
                 <topicref keyref="updatePreloadChannelToken" props="native flutter unity cs electron rn"/>
@@ -2561,8 +2563,6 @@
                 <topicref keyref="muteRemoteAudioStreamEx"/>
                 <topicref keyref="muteRemoteVideoStreamEx"/>
                 <topicref keyref="pauseAllChannelMediaRelayEx"/>
-                <topicref keyref="pushVideoFrameEx" props="android"/>
-                <topicref keyref="pushVideoFrameEx2" props="android"/>
                 <topicref keyref="resumeAllChannelMediaRelayEx"/>
                 <topicref keyref="sendCustomReportMessageEx"/>
                 <topicref keyref="setDualStreamModeEx"/>
@@ -2577,7 +2577,6 @@
                 <topicref keyref="setupRemoteVideoEx" props="native unreal bp unity electron flutter"/>
                 <topicref keyref="setVideoEncoderConfigurationEx"/>
                 <topicref keyref="sendStreamMessageEx" props="android cpp framework"/>
-                <topicref keyref="startChannelMediaRelayEx"/>
                 <topicref keyref="startMediaRenderingTracingEx"/>
                 <topicref keyref="startOrUpdateChannelMediaRelayEx"/>
                 <topicref keyref="startRtmpStreamWithoutTranscodingEx"/>
@@ -2586,7 +2585,6 @@
                 <topicref keyref="stopRtmpStreamEx"/>
                 <topicref keyref="takeSnapshotEx"/>
                 <topicref keyref="updateChannelMediaOptionsEx"/>
-                <topicref keyref="updateChannelMediaRelayEx"/>
                 <topicref keyref="updateRtmpTranscodingEx"/>
                 <topicref keyref="setRemoteVideoSubscriptionOptionsEx"/>
                 <topicref keyref="adjustUserPlaybackSignalVolumeEx"/>
@@ -2608,7 +2606,7 @@
             <relcell>
                 <topicref keyref="onActiveSpeaker"/>
                 <topicref keyref="onAudioDeviceStateChanged" props="cpp unreal bp electron unity flutter"/>
-                <topicref keyref="onAudioDeviceVolumeChanged" props="cpp framework"/>
+                <topicref keyref="onAudioDeviceVolumeChanged" props="cpp unreal bp electron unity flutter"/>
                 <topicref keyref="onAudioEffectFinished"/>
                 <topicref keyref="onAudioMixingFinished"/>
                 <topicref keyref="onAudioMixingPositionChanged"/>
@@ -2621,7 +2619,6 @@
                 <topicref keyref="onCameraExposureAreaChanged" props="android ios cpp unreal bp flutter unity rn"/>
                 <topicref keyref="onCameraFocusAreaChanged" props="android ios cpp unreal bp flutter unity rn"/>
                 <topicref keyref="onCameraReady" props="android ios cpp framework"/>
-                <topicref keyref="onChannelMediaRelayEvent"/>
                 <topicref keyref="onChannelMediaRelayStateChanged"/>
                 <topicref keyref="onClientRoleChanged"/>
                 <topicref keyref="onClientRoleChangeFailed"/>
@@ -2654,6 +2651,7 @@
                 <topicref keyref="onLocalVideoStateChanged"/>
                 <topicref keyref="onLocalVideoStats"/>
                 <topicref keyref="onLocalVideoTranscoderError"/>
+                <topicref keyref="onTranscodedStreamLayoutInfo"/>
                 <topicref keyref="onMicrophoneEnabled" props="hide"/>
                 <topicref keyref="onNetworkQuality"/>
                 <topicref keyref="onNetworkTypeChanged"/>
@@ -2663,7 +2661,7 @@
                 <topicref keyref="onRemoteAudioStateChanged"/>
                 <topicref keyref="onRemoteAudioStats"/>
                 <topicref keyref="onRemoteAudioTransportStats"/>
-                <topicref keyref="onRemoteSubscribeFallbackToAudioOnly" props="hide"/>
+                <topicref keyref="onRemoteSubscribeFallbackToAudioOnly"/>
                 <topicref keyref="onRemoteVideoStateChanged"/>
                 <topicref keyref="onRemoteVideoStats"/>
                 <topicref keyref="onRemoteVideoTransportStats"/>
@@ -2746,11 +2744,13 @@
                 <topicref keyref="resume"/>
                 <topicref keyref="seek"/>
                 <topicref keyref="selectAudioTrack_IMediaPlayer"/>
+                <topicref keyref="selectMultiAudioTrack"/>
                 <topicref keyref="setAudioPitch"/>
                 <topicref keyref="setAudioDualMonoMode"/>
                 <topicref keyref="setLoopCount"/>
                 <topicref keyref="setPlaybackSpeed"/>
-                <topicref keyref="setPlayerOption" props="hide"/>
+                <topicref keyref="setPlayerOption"/>
+                <topicref keyref="setPlayerOption2"/>
                 <topicref keyref="setRenderMode"/>
                 <topicref keyref="setSpatialAudioParams"/>
                 <topicref keyref="setView"/>
@@ -2814,18 +2814,18 @@
                 <topicref keyref="IAudioDeviceManager"/>
             </relcell>
         </relrow>
-        <relrow props="apple">
+        <relrow props="android apple">
             <relcell>
                 <topicref keyref="startAudioDeviceLoopbackTest" props="mac"/>
-                <topicref keyref="startPlaybackDeviceTest" props="mac"/>
-                <topicref keyref="startRecordingDeviceTest" props="mac"/>
+                <topicref keyref="startPlaybackDeviceTest"/>
+                <topicref keyref="startRecordingDeviceTest"/>
                 <topicref keyref="stopAudioDeviceLoopbackTest" props="mac"/>
-                <topicref keyref="stopPlaybackDeviceTest" props="mac"/>
-                <topicref keyref="stopRecordingDeviceTest" props="mac"/>
+                <topicref keyref="stopPlaybackDeviceTest"/>
+                <topicref keyref="stopRecordingDeviceTest"/>
                 <topicref keyref="getDefaultDevice_IAudioDeviceCollection" props="mac"/>
                 <topicref keyref="setDevice_IVideoDeviceCollection" props="mac"/>
                 <topicref keyref="setDeviceVolume" props="mac"/>
-                <topicref keyref="setMediaMetadataDataSource"/>
+                <topicref keyref="setMediaMetadataDataSource" props="apple"/>
                 <topicref keyref="startAudioDeviceLoopbackTest" props="mac"/>
             </relcell>
             <relcell>
@@ -2874,7 +2874,7 @@
                 <topicref keyref="IVideoDeviceCollection"/>
             </relcell>
         </relrow>
-        <relrow props="cpp unreal flutter electron rn">
+        <relrow props="cpp framework">
             <relcell>
                 <topicref keyref="createCustomAudioTrack"/>
                 <topicref keyref="destroyCustomAudioTrack"/>
@@ -2883,7 +2883,6 @@
                 <topicref keyref="pushEncodedVideoImage" props="hide"/>
                 <topicref keyref="pushEncodedVideoImageEx" props="hide"/>
                 <topicref keyref="pushVideoFrame"/>
-                <topicref keyref="pushVideoFrameEx" props="hide"/>
                 <topicref keyref="registerAudioFrameObserver"/>
                 <topicref keyref="registerVideoEncodedFrameObserver"/>
                 <topicref keyref="registerVideoFrameObserver"/>
@@ -2941,14 +2940,6 @@
         </relrow>
         <relrow>
             <relcell>
-                <topicref keyref="onPlaybackAudioFrameBeforeMixing"/>
-            </relcell>
-            <relcell>
-                <topicref keyref="IAudioFrameObserver"/>
-            </relcell>
-        </relrow>
-        <relrow>
-            <relcell>
                 <topicref keyref="onFrame_IAudioPcmFrameSink"/>
             </relcell>
             <relcell>
@@ -2956,17 +2947,18 @@
                 <topicref keyref="IAudioPcmFrameSink" props="cpp unreal bp apple unity cs flutter"/>
             </relcell>
         </relrow>
-        <relrow props="ios mac cpp framework">
-            <relcell>
+        <relrow>
+        <relcell>
                 <topicref keyref="onEarMonitoringAudioFrame" props="native unreal flutter unity cs electron rn"/>
                 <topicref keyref="onMixedAudioFrame"/>
                 <topicref keyref="onPlaybackAudioFrame"/>
+                <topicref keyref="onPlaybackAudioFrameBeforeMixing"/>
                 <topicref keyref="onRecordAudioFrame"/>
                 <topicref keyref="getObservedAudioFramePosition" props="native unreal bp"/>
                 <topicref keyref="getRecordAudioParams" props="native unreal bp"/>
                 <topicref keyref="getMixedAudioParams" props="native unreal bp"/>
                 <topicref keyref="getPlaybackAudioParams" props="native unreal bp"/>
-                <topicref keyref="getEarMonitoringAudioParams" props="native unreal"/>
+                <topicref keyref="getEarMonitoringAudioParams" props="native unreal bp"/>
             </relcell>
             <relcell>
                 <topicref keyref="IAudioFrameObserverBase" props="cpp unreal bp rn flutter electron"/>
@@ -3086,6 +3078,7 @@
                 <topicref keyref="setZones" props="unity"/>
                 <topicref keyref="updatePlayerPositionInfo" props="unity"/>
                 <topicref keyref="updateSelfPosition" props="unity"/>
+                <topicref keyref="updateSelfTransform" props="ios"/>
             </relcell>
             <relcell>
                 <topicref keyref="ILocalSpatialAudioEngine"/>

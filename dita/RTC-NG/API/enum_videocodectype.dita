@@ -13,24 +13,24 @@
             </plentry>
             <plentry>
                 <pt><ph keyref="VIDEO_CODEC_H264"/></pt>
-                <pd>2：（默认值）标准 H.264。</pd>
+                <pd>2：标准 H.264。</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="VIDEO_CODEC_H265"/></pt>
-                <pd>3：标准 H.265。</pd>
+                <pd>3：（默认）标准 H.265。
+                    <note>在某些场景（如采集到的视频流分辨率过低、设备性能有限）下，SDK 会自动调整为 H.264 编码格式。</note>
+                </pd>
             </plentry>
-            <plentry props="cpp unreal bp unity flutter electron cs">
+            <plentry>
                 <pt><ph keyref="VIDEO_CODEC_GENERIC"/></pt>
                 <pd>
                     <p>6：Generic。</p>
                     <p>本类型主要用于传输视频裸数据(比如用户已加密的视频帧)，该类型视频帧以回调的形式返回给用户，需要用户自行解码与渲染。</p>
                 </pd>
             </plentry>
-            <plentry props="cpp unreal bp unity flutter electron cs">
+            <plentry>
                 <pt><ph keyref="VIDEO_CODEC_GENERIC_JPEG"/></pt>
                 <pd>20：Generic JPEG。
-
-
                     <p>本类型所需的算力较小，可用于算力有限的 IoT 设备。</p>
                 </pd>
             </plentry>

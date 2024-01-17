@@ -30,7 +30,8 @@
         </section>
         <section id="detailed_desc">
             <title>详情</title>
-            <p id="desc">设置本地视频的编码属性。</p>
+            <p id="desc">设置本地视频的编码属性。每一种视频编码属性对应一系列视频相关参数设置，包含分辨率、帧率和码率。</p>
+            <p>该方法的 <parmname>config</parmname> 参数设置是在理想网络状态下能达到的最大值。如果网络状态不好，视频引擎便不能使用该 <parmname>config</parmname> 渲染本地视频，它会自动降低到一个合适的视频参数设置。</p>
             <note type="attention" props="native unreal bp">
             <ul>
             <li>该方法在加入频道前后都能调用。如果用户在加入频道后不需要重新设置视频编码属性，则建议在 <xref keyref="enableVideo"/> 前调用该方法，可以加快首帧出图的时间。</li>
@@ -49,8 +50,8 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul>
-            <li props="native unreal bp electron unity rn cs">0: 方法调用成功。</li>
+            <ul props="native unreal bp electron unity rn cs">
+            <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
             </ul> </section>
     </refbody>

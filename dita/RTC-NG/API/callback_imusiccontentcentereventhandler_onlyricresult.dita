@@ -13,24 +13,24 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">void onLyricResult(String requestId, long songCode, String lyricUrl, int errorCode);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onLyricResult:(NSString*)requestId songCode:(NSInteger)songCode lyricUrl:(NSString* _Nullable)lyricUrl errorCode:(AgoraMusicContentCenterStatusCode)errorCode;</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onLyricResult(const char* requestId, int64_t songCode, const char* lyricUrl, MusicContentCenterStatusCode errorCode) = 0;</codeblock>
+            <codeblock props="android" outputclass="language-java">void onLyricResult(String requestId, long songCode, String lyricUrl, int reason);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onLyricResult:(NSString*)requestId songCode:(NSInteger)songCode lyricUrl:(NSString* _Nullable)lyricUrl reason:(AgoraMusicContentCenterStateReason)reason;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onLyricResult(const char* requestId, int64_t songCode, const char* lyricUrl, MusicContentCenterStateReason reason) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onLyricResult?(
     requestId: string,
     songCode: number,
     lyricUrl: string,
-    errorCode: MusicContentCenterStatusCode
+    reason: MusicContentCenterStateReason
   ): void;</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public abstract void OnLyricResult(string requestId, int64_t songCode, string lyricUrl, MusicContentCenterStatusCode errorCode);</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract void OnLyricResult(string requestId, long songCode, string lyricUrl, MusicContentCenterStateReason reason);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onLyricResult?(
     requestId: string,
     songCode: number,
     lyricUrl: string,
-    errorCode: MusicContentCenterStatusCode
+    reason: MusicContentCenterStateReason
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(String requestId, int songCode, String lyricUrl,
-      MusicContentCenterStatusCode errorCode)? onLyricResult;</codeblock>
+    MusicContentCenterStateReason reason)? onLyricResult;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">

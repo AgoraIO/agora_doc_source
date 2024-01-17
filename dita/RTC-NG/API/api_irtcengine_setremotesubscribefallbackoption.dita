@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setremotesubscribefallbackoption">
      <title> <ph keyref="setRemoteSubscribeFallbackOption" /> </title>
-     <shortdesc id="short"> <ph id="shortdesc">设置弱网条件下订阅的音视频流的回退选项。</ph> </shortdesc>
+     <shortdesc id="short"> <ph id="shortdesc">设置弱网环境下订阅的音视频流回退选项。</ph> </shortdesc>
      <prolog>
           <metadata>
                <keywords>
@@ -28,27 +28,27 @@
           </section>
           <section id="detailed_desc">
             <title>详情</title>
-               <p>当网络不理想时，直播音视频的质量都会下降。你可以调用该方法并将 <parmname>option</parmname> 设置为 <apiname keyref="STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW"/> 或 <apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/>，SDK 会在下行弱网且音视频质量严重受影响时，将视频流切换为小流或关断视频流，从而保证音频质量。同时 SDK 会持续监控网络质量，并在网络质量改善时恢复音视频流。</p>
-               <p>当远端订阅流回退为音频流或由音频流恢复为音视频流时，SDK 会触发 <xref keyref="onRemoteSubscribeFallbackToAudioOnly"/> 回调。</p>
+               <p>网络不理想的环境下，实时通信音视频的质量会下降。你可以调用该方法并将 <parmname>option</parmname> 设置为 <apiname keyref="STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW"/> 或 <apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/>，SDK 会在下行弱网且音视频质量严重受影响时，将视频流切换为小流或关闭视频流，从而保证音频质量。同时，SDK 会持续监控网络质量，并在网络质量改善时恢复订阅音视频流。</p>
+               <p>当订阅流回退为音频流或由音频流恢复为音视频流时，SDK 会触发 <xref keyref="onRemoteSubscribeFallbackToAudioOnly"/> 回调。</p>
                <note type="attention">该方法需要在加入频道前调用。</note> </section>
           <section id="parameters">
                <title>参数</title>
                <parml>
                <plentry>
                     <pt>option</pt>
-                    <pd><ph>订阅音视频流的回退选项。默认值为 <apiname keyref="STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW" />(1)。</ph><ph props="ios mac cpp unreal bp electron unity flutter rn cs">详见 <xref keyref="STREAM_FALLBACK_OPTIONS" />。</ph>
+                    <pd><ph>订阅流的回退选项。</ph><ph props="ios mac cpp unreal bp electron unity flutter rn cs">详见 <xref keyref="STREAM_FALLBACK_OPTIONS" />。</ph>
                          <ul props="android">
-                         <li><ph keyref="STREAM_FALLBACK_OPTION_DISABLED" /> (0): 上行/下行网络较弱时，不对音视频流作回退处理，但不能保证音视频流的质量。</li>
-                         <li><ph keyref="STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW" /><ph> (1): 在下行网络条件较差时只接收视频小流（低分辨率、低码率视频流）。该选项只对 <xref keyref="setRemoteSubscribeFallbackOption" /> 有效。</ph></li>
-                         <li><ph keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY" /> (2): 上行/下行网络较弱时，先尝试只接收视频小流（低分辨率、低码率视频流）；如果网络环境无法显示视频，则再回退到只接收远端订阅的音频流。</li>
+                         <li><ph keyref="STREAM_FALLBACK_OPTION_DISABLED" /> (0): 网络条件较差时，不对音视频流作回退处理，但不能保证音视频流的质量。</li>
+                         <li><ph keyref="STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW" /> (1):（默认）网络条件较差时，只接收视频小流（低分辨率、低码率视频流）。</li>
+                         <li><ph keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY" /> (2): 网络条件较差时，先尝试只接收视频小流；如果因网络环境太差无法显示视频，则再回退到只接收订阅的音频流。</li>
                          </ul></pd>
                </plentry>
                </parml> </section>
           <section id="return_values">
                <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-               <ul>
-               <li props="native unreal bp electron unity rn cs">0: 方法调用成功。</li>
+               <ul props="native unreal bp electron unity rn cs">
+               <li>0: 方法调用成功。</li>
                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
                </ul> </section>
      </refbody>
