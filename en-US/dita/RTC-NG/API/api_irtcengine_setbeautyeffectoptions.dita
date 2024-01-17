@@ -38,7 +38,7 @@
         <section id="detailed_desc">
             <title>Details</title>
             <p>Enables or disables image enhancement, and sets the options.</p>
-            <note type="note">
+            <note type="note" id="req">
                 <ul>
                     <li>Call this method before calling <xref keyref="enableVideo" /> or <xref keyref="startPreview2" />.</li>
                     <li props="android">This method only applies to Android 5.0 or later.</li>
@@ -49,7 +49,7 @@
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry>
+            <plentry id="enable">
                 <pt props="android cpp unreal bp unity flutter rn electron cs">enabled</pt>
                 <pt props="ios mac">enable</pt>
                 <pd>Whether to enable the image enhancement function:<ul>
@@ -57,7 +57,7 @@
                     <li><codeph><ph keyref="false"/></codeph>: (Default) Disable the image enhancement function.</li>
                     </ul></pd>
             </plentry>
-            <plentry>
+            <plentry id="options">
                 <pt>options</pt>
                 <pd>The image enhancement options. See <xref keyref="BeautyOptions" />.</pd>
             </plentry>
@@ -69,8 +69,8 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-            <ul>
-            <li props="native unreal bp electron unity rn cs">0: Success.</li>
+            <ul props="native unreal bp electron unity rn cs">
+            <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul>
                     <li>-4: The current device does not support this feature. Possible reasons include:<ul>
                             <li>The current device capabilities do not meet the requirements for image enhancement. Agora recommends you replace it with a high-performance device.</li>

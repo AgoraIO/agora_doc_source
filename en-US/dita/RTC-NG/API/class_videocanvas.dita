@@ -239,21 +239,32 @@ class VideoCanvas {
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
-                <pt>view</pt>
-                <pd props="native flutter unity cs electron rn">The video display window.</pd>
-                <pd props="unreal bp">The video image. You need to define a pointer of UImage type and pass in this parameter. The sample code is as follows:<codeblock props="reserve" outputclass="language-cpp">agora::rtc::VideoCanvas videoCanvas;
+                <pt>uid</pt>
+                <pd>User ID that publishes the video source.</pd>
+                <pd props="cpp unity rn flutter">For Android and iOS platforms, when the video source is a mixed video stream ( <apiname keyref="VIDEO_SOURCE_TRANSCODED"/>), this parameter represents the ID of the user who publishes the mixed video stream.</pd>
+                <pd props="android ios">When the video source is a mixed video stream ( <apiname keyref="VIDEO_SOURCE_TRANSCODED"/>), this parameter represents the ID of the user who publishes the mixed video stream.</pd>
+              </plentry>
+                <plentry>
+                    <pt>subviewUid</pt>
+                    <pd props="android ios cpp unity rn flutter">The ID of the user who publishes a specific sub-video stream within the mixed video stream.</pd>
+                    <pd props="mac electron">Reserved for future use.<note type="attention" props="cpp unity flutter">This parameter applies to Android and iOS only.</note></pd>
+                </plentry>
+                <plentry>
+                    <pt>view</pt>
+                    <pd props="native flutter unity cs electron rn">The video display window.</pd>
+                    <pd props="unreal bp">The video image. You need to define a pointer of UImage type and pass in this parameter. The sample code is as follows:<codeblock props="unreal bp" outputclass="language-cpp">agora::rtc::VideoCanvas videoCanvas;
     UImage* LocalVideo;
     videoCanvas.view = LocalVideo;</codeblock></pd>
-            </plentry>
-            <plentry props="native flutter unity cs electron rn">
-                <pt>renderMode</pt>
-                <pd props="ios mac cpp unity electron rn flutter cs">The rendering mode of the video. See <xref keyref="RENDER_MODE_TYPE"/>.</pd>
-                <pd props="android"><ul conkeyref="setLocalRenderMode2/rendermodetype"><li/></ul></pd>
-            </plentry>
-            <plentry props="native flutter unity cs electron rn">
-                <pt>mirrorMode</pt>
+                </plentry>
+                <plentry props="native flutter unity cs electron rn bp">
+                    <pt>renderMode</pt>
+                    <pd props="ios mac cpp unity electron rn flutter cs bp">The rendering mode of the video. See <xref keyref="RENDER_MODE_TYPE"/>.</pd>
+                    <pd props="android"><ul conkeyref="setLocalRenderMode2/rendermodetype"><li/></ul></pd>
+                </plentry>
+                <plentry props="native flutter unity cs electron rn bp">
+                    <pt>mirrorMode</pt>
                 <pd>
-                    <p props="ios mac cpp unity electron rn flutter cs">The mirror mode of the view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.</p>
+                    <p props="ios mac cpp unity electron rn flutter cs bp">The mirror mode of the view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.</p>
                     <p props="android">
                     <ul conkeyref="setLocalRenderMode2/videomirrormodetype">
                     <li/>
@@ -276,16 +287,16 @@ class VideoCanvas {
                 <pt>sourceId</pt>
                 <pd>The ID of the video source.</pd>
             </plentry>
-            <plentry props="native flutter unity cs electron rn">
+            <plentry props="native flutter unity cs electron rn bp">
                 <pt>setupMode</pt>
-                <pd props="ios mac cpp flutter unity cs electron rn">Setting mode of the view. See <xref keyref="VIDEO_VIEW_SETUP_MODE"/>.</pd>
+                <pd props="ios mac cpp flutter unity cs electron rn bp">Setting mode of the view. See <xref keyref="VIDEO_VIEW_SETUP_MODE"/>.</pd>
                 <pd props="android">Setting mode of the view.<ul>
                     <li><ph keyref="VIDEO_VIEW_SETUP_REPLACE"/>(0): (Default) Replaces a view.</li>
                     <li><ph keyref="VIDEO_VIEW_SETUP_ADD"/>(1): Adds a view.</li>
                     <li><ph keyref="VIDEO_VIEW_SETUP_REMOVE"/>(2): Deletes a view.</li>
                 </ul></pd>
             </plentry>
-            <plentry>
+            <plentry props="native unreal flutter unity cs electron rn">
                 <pt>mediaPlayerId</pt>
                 <pd>The ID of the media player. You can get the Device ID by calling <xref keyref="getMediaPlayerId"/>.</pd>
                 <pd>This parameter is required when <parmname>sourceType</parmname> is <apiname keyref="VIDEO_SOURCE_MEDIA_PLAYER"/>.</pd>
@@ -294,7 +305,7 @@ class VideoCanvas {
               <pt>rect</pt>
               <pd>(Optional) Display area for the video frame. See <xref keyref="rect-link"/>. <parmname>width</parmname> and <parmname>height</parmname> represent the video pixel width and height of the area. The default value is null (width or height is 0), which means that the actual resolution of the video frame is displayed.</pd>
           </plentry>
-          <plentry props="cpp flutter unity cs electron rn">
+          <plentry props="cpp flutter unity cs electron rn bp">
                 <pt>cropArea</pt>
                 <pd>(Optional) Display area of the video frame, see <xref keyref="Rectangle"/>. <parmname>width</parmname> and <parmname>height</parmname> represent the video pixel width and height of the area. The default value is null (width or height is 0), which means that the actual resolution of the video frame is displayed.</pd>
           </plentry>
@@ -308,17 +319,19 @@ class VideoCanvas {
           </plentry>
           <plentry props="cpp ios mac unity electron flutter cs">
               <pt>enableAlphaMask</pt>
-              <pd props="cpp ios mac unity electron flutter">
-              <p>(Optional) Whether the receiver enables alpha mask rendering:<ul>
+              <pd props="cpp mac unity electron flutter">(Optional) Whether the receiver enables alpha mask rendering:<ul>
                   <li><codeph><ph keyref="true"/></codeph>: The receiver enables alpha mask rendering.</li>
                   <li><codeph><ph keyref="false"/></codeph>: (default) The receiver disables alpha mask rendering.</li>
                 </ul>
-              </p>
-              <p>Alpha mask rendering can create images with transparent effects and extract portraits from videos.  When used in combination with other methods, you can implement effects such as picture-in-picture and watermarking.</p>
-              <note type="attention"><ul><li>This property applies to macOS only.</li><li>The receiver can render alpha channel information only when the sender enables alpha transmission.</li><li>To enable alpha transmission, <xref keyref="ticket-link"/>.</li></ul></note>
+              <p>Alpha mask rendering can create images with transparent effects and extract portraits from videos.  When used in combination with other methods, you can implement effects such as portrait-in-picture and watermarking.</p>
+              <note type="attention" props="cpp mac unity electron flutter"><ul><li>This property applies to macOS only.</li><li>The receiver can render alpha channel information only when the sender enables alpha transmission.</li><li>To enable alpha transmission, <xref keyref="ticket-link"/>.</li></ul></note>
               </pd>
-              <pd props="cs">Reserved.</pd>
+              <pd props="cs ios">Reserved.</pd>
           </plentry>
+                <plentry>
+                    <pt>position</pt>
+                    <pd>The observation position of the video frame in the video link. See <xref keyref="VIDEO_MODULE_POSITION"/>.</pd>
+                </plentry>
             </parml> </section>
     </refbody>
 </reference>

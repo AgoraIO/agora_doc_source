@@ -45,9 +45,42 @@
             <li>If you only want to add a watermark to the media push, you can call this method or the <xref keyref="setLiveTranscoding"/> method.</li>
             <li>This method supports adding a watermark image in the PNG file format only. Supported pixel formats of the PNG image are RGBA, RGB, Palette, Gray, and Alpha_gray.</li>
             <li>If the dimensions of the PNG image differ from your settings in this method, the image will be cropped or zoomed to conform to your settings.</li>
-            <li>If you have enabled the local video preview by calling the <xref keyref="startPreview2"/> method, you can use the <codeph>visibleInPreview</codeph> member to set whether or not the watermark is visible in the preview.</li>
             <li>If you have enabled the mirror mode for the local video, the watermark on the local video is also mirrored. To avoid mirroring the watermark, Agora recommends that you do not use the mirror and watermark functions for the local video at the same time. You can implement the watermark function in your application layer.</li>
-            </ul> </note> </section>
+            </ul> </note>
+            <p props="native">You can control the visibility of the watermark during preview by setting the <codeph>visibleInPreview</codeph> parameter when calling this method. However, whether it ultimately takes effect also depends on the position parameter you set when calling <xref keyref="setupLocalVideo"/> (the<parmname> position</parmname> of the video frame in the video link). Refer to the table below for details.<table frame="all" rowsep="1" colsep="1">
+                <tgroup cols="3">
+                    <colspec colname="c1" colnum="1" colwidth="1*"/>
+                    <colspec colname="c2" colnum="2" colwidth="1*"/>
+                    <colspec colname="c3" colnum="3" colwidth="1*"/>
+                    <thead>
+                        <row>
+                            <entry>Observation position</entry>
+                            <entry>visibleInPreview value</entry>
+                            <entry>Watermark visibility</entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry morerows="1">(Default) <apiname keyref="POSITION_POST_CAPTURER"/></entry>
+                            <entry><codeph><ph keyref="true"/></codeph></entry>
+                            <entry>Yes</entry>
+                        </row>
+                        <row>
+                            <entry><codeph><ph keyref="false"/></codeph></entry>
+                            <entry>No</entry>
+                        </row>
+                        <row>
+                            <entry morerows="1"><apiname keyref="POSITION_PRE_ENCODER"/></entry>
+                            <entry><codeph><ph keyref="true"/></codeph></entry>
+                            <entry>Yes</entry>
+                        </row>
+                        <row>
+                            <entry><codeph><ph keyref="false"/></codeph></entry>
+                            <entry>Yes</entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table></p> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
@@ -64,8 +97,8 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-            <ul>
-            <li props="native unreal bp electron unity rn cs">0: Success.</li>
+            <ul props="native unreal bp electron unity rn cs">
+            <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>

@@ -23,24 +23,24 @@
     percent: number,
     lyricUrl: string,
     status: PreloadState,
-    reason: MusicContentCenterStateReason
+    errorCode: MusicContentCenterStatusCode
   ): void;</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public abstract void OnPreLoadEvent(string requestId, long songCode, int percent, string lyricUrl, PreloadState state, MusicContentCenterStateReason reason);</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract void OnPreLoadEvent(string requestId, Int64 songCode, int percent, string lyricUrl, PreloadState status, MusicContentCenterStatusCode errorCode);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onPreLoadEvent?(
     requestId: string,
     songCode: number,
     percent: number,
     lyricUrl: string,
     status: PreloadState,
-    reason: MusicContentCenterStateReason
+    errorCode: MusicContentCenterStatusCode
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(
     String requestId,
     int songCode,
     int percent,
     String lyricUrl,
-    PreloadState state,
-    MusicContentCenterStateReason reason)? onPreLoadEvent;</codeblock>
+    PreloadState preloadStatus,
+    MusicContentCenterStatusCode mccStatus)? onPreLoadEvent;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
@@ -55,7 +55,11 @@
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry>
+            <plentry props="android ios cpp flutter unity rn" conkeyref="onMusicChartsResult/id">
+                <pt></pt>
+                <pd></pd>
+            </plentry>
+                <plentry>
                 <pt>songCode</pt>
                 <pd>The code of the music, which is an unique identifier of the music.</pd>
             </plentry>
@@ -68,9 +72,9 @@
                 <pd>The download URL for lyrics.</pd>
             </plentry>
             <plentry id="status">
-                <pt>status</pt>
+                <pt>state</pt>
                 <pd>
-                    <p props="apple cpp framework">The loading status of the current music asset. See .<xref keyref="PreloadStatusCode"/></p>
+                    <p props="apple cpp framework">The loading status of the current music asset. See <xref keyref="PreloadState"/>.</p>
                     <p props="android">The loading statuses of the current music asset contain the following:<ul>
                     <li>0: The preload of music assets is complete.</li>
                     <li>1: The preload of music assets fails.</li>

@@ -37,7 +37,10 @@
             <li>Machinery, etc.</li></ul>Non-stationary noise refers to noise signal with huge fluctuations of level within the period of observation; common sources of non-stationary noises are:<ul><li>Thunder;</li>
             <li>Explosion;</li>
             <li>Cracking, etc.</li></ul></p>
-            <note props="cpp android flutter unity bp unreal rn">Agora does not recommend enabling this function on devices running Android 6.0 and below.</note>
+            <note>
+                <ul><li props="native">This method relies on the AI noise suppression dynamic library <codeph><ph keyref="noisesuppression"/></codeph>. If the dynamic library is deleted, the function cannot be enabled.</li>
+                    <li props="hide">This method relies on the AI noise suppression dynamic library. If the dynamic library is deleted, the function cannot be enabled. For the name of the AI ​​noise suppression dynamic library, see <xref keyref="extensions"/>.</li>
+                    <li props="cpp android flutter unity bp unreal rn">Agora does not recommend enabling this function on devices running Android 6.0 and below.</li></ul></note>
         </section>
         <section id="scenario">
             <title>Applicable scenarios</title>
@@ -68,8 +71,8 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-            <ul>
-            <li props="native unreal bp unity rn electron cs">0: Success.</li>
+            <ul props="native unreal bp unity rn electron cs">
+            <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul></section>
     </refbody>

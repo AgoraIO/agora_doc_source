@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_setplayeroption2">
-    <title><ph keyref="setPlayerOption2" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the private options for the media player.</ph></shortdesc>
+    <title><ph keyref="setPlayerOption2"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Set media player options for providing technical previews or special customization features.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setPlayerOption2" />
+                <indexterm keyref="setPlayerOption2"/>
             </keywords>
         </metadata>
     </prolog>
@@ -23,14 +23,19 @@
     {required String key, required String value});</codeblock> 
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc" conkeyref="setPlayerOption/detailed_desc"> </section>
+        <section id="detailed_desc">
+            <title>Details</title>
+            <p conkeyref="setPlayerOption/desc1"/>
+            <p>The difference between this method and <xref keyref="setPlayerOption"/> is that the <parmname>value</parmname> parameter of this method is of type String, while the <parmname>value</parmname> of <apiname keyref="setPlayerOption"/> is of type String. These two methods cannot be used together.</p>
+            <note type="attention" conkeyref="setPlayerOption/desc2"/></section>
         <section id="parameters" conkeyref="setPlayerOption/parameters">
             </section>
         <section id="return_values">
-            <title>Returns</title>
-            <ul>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <ul props="native unreal bp electron unity rn cs">
             <li>0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>
 </reference>

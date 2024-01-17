@@ -26,16 +26,17 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>This method tests whether the audio playback device works properly. Once a user starts the test, the SDK plays an audio file specified by the user. If the user can hear the audio, the playback device works properly.</p>
-            <p>After calling this method, the SDK triggers the <xref keyref="onAudioVolumeIndication" /> callback every 100 ms, reporting <parmname>uid</parmname> = 1 and the volume information of the playback device.</p>
-            <note type="attention"><ul><li>Ensure that you call this method before joining a channel.</li>
-            <li props="cpp unreal bp unity flutter">This method is for Windows and macOS only.</li></ul></note> </section>
+            <p>This method tests whether the audio device for local playback works properly. Once a user starts the test, the SDK plays an audio file specified by the user. If the user can hear the audio, the playback device works properly.</p>
+            <p>After calling this method, the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback every 100 ms, reporting <parmname>uid</parmname> = 1 and the volume information of the playback device.</p>
+            <p>The difference between this method and the <xref keyref="startEchoTest3"/> method is that the former checks if the local audio playback device is working properly, while the latter can check the audio and video devices and network conditions.</p>
+            <note type="attention">Ensure that you call this method before joining a channel. After the test is completed, call <xref keyref="stopPlaybackDeviceTest"/> to stop the test before joining a channel.</note>
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry id="testAudioFilePath">
                 <pt props="cpp unreal bp electron rn flutter unity cs">testAudioFilePath</pt>
-                <pt props="mac">audioFileName</pt>
+                <pt props="apple android">audioFileName</pt>
                 <pd>
                     <p>The path of the audio file. The data format is string in UTF-8.<ul>
                     <li>Supported file formats: wav, mp3, m4a, and aac.</li>
@@ -47,8 +48,8 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-            <ul>
-            <li props="native unreal bp electron unity rn cs">0: Success.</li>
+            <ul props="native unreal bp electron unity rn cs">
+            <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>

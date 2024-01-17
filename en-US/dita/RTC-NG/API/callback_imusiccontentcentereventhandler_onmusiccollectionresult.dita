@@ -29,7 +29,7 @@
     reason: MusicContentCenterStateReason
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(String requestId, MusicCollection result,
-    MusicContentCenterStateReason reason)? onMusicCollectionResult;</codeblock>
+    MusicContentCenterStatusCode status)? onMusicCollectionResult;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
@@ -39,7 +39,7 @@
                 <dd>v4.1.0</dd>
             </dlentry>
             </dl>
-            <p>This callback occurs when you call<xref keyref="getMusicCollectionByMusicChartId"/> the  method to get music collection by music chart ID, and reports the details of music assets in the collection.</p>
+            <p>当你调 <xref keyref="getMusicCollectionByMusicChartId"/> 方法来获取指定榜单的音乐资源列表或调用 <xref keyref="searchMusic"/> 来搜索音乐资源时，SDK 会触发此回调报告榜单中音乐资源列表的详细信息。</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -58,7 +58,7 @@
             </plentry>
             <plentry props="android">
                 <pt>pageSize</pt>
-                <pd>当前音乐资源列表的总页面数量，最大值为 50。</pd>
+                <pd>The number of music displayed on each page. The maximum value is 50.</pd>
             </plentry>
             <plentry props="android">
                 <pt>total</pt>
@@ -67,7 +67,7 @@
             <plentry>
                 <pt props="android">list</pt>
                 <pt props="apple cpp framework">result</pt>
-                <pd><ph>The details of musci assets in the collection. </ph><ph>See <xref keyref="Music" props="android"/>.</ph><xref keyref="MusicCollection" props="apple cpp framework"/></pd>
+                <pd><xref keyref="Music" props="android"/><xref keyref="MusicCollection" props="apple cpp framework"/><ph>The details of musci assets in the collection. </ph>See .<ph></ph></pd>
             </plentry>
             </parml> </section>
     </refbody>
