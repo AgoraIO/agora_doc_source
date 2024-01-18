@@ -184,6 +184,11 @@
                         <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_CODEC_NOT_SUPPORT"/></codeph> 的枚举名变更为 <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_CODEC_NOT_SUPPORT"/></codeph>。</li>
                         </ul></p>
                     </li>
+                    <li><ph><b>声卡采集</b></ph>
+                        <p>
+                            <ul><li>在 v4.3.0 之前，当你调用 <xref keyref="disableAudio"/> 关闭整个音频模块后，声卡采集功能不会被关闭。</li>
+                        <li>从 v4.3.0 起，当你调用 <xref keyref="disableAudio"/> 关闭音频模块后，声卡采集功能也会被关闭，如果你需要再次启用声卡采集功能，需要在调用 <xref keyref="enableAudio"/> 启用音频模块后再次调用 <xref keyref="enableLoopbackRecording"/>。</li></ul></p>
+                    </li>
                 </ol>
             </body>
         </topic>
