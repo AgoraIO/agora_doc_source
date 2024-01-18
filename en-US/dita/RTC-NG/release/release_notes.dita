@@ -210,7 +210,7 @@
                         <li><xref keyref="onRemoteSubscribeFallbackToAudioOnly"/>: Occurs when the subscribed video stream falls back to audio-only stream due to weak network conditions or switches back to the video stream after the network conditions improve.</li>
                         <li props="cpp flutter unity electron"><ph><xref keyref="setPlaybackDeviceVolume"/></ph><ph props="flutter unity electron"> (Windows)</ph><ph>: Sets the volume of the audio playback device.</ph></li>
                         <li props="cpp flutter unity cs bp unreal electron"><ph><xref keyref="getRecordingDeviceVolume"/></ph><ph props="flutter unity cs bp unreal electron"> (Windows)</ph><ph>: Sets the volume of the audio capturing device.</ph></li>
-                        <li><xref keyref="setPlayerOption"/><xref keyref="setPlayerOption2"/> Set media player options for providing technical previews or special customization features.</li>
+                        <li><xref keyref="setPlayerOption"/> and <xref keyref="setPlayerOption2"/>: Sets media player options for providing technical previews or special customization features.</li>
                         <li><xref keyref="enableCustomAudioLocalPlayback"/>: Sets whether to enable the local playback of external audio source.</li>
                         </ul></p>
                     </li>
@@ -312,8 +312,8 @@
                     <li props="android unity"><codeph>ROUTE_BLUETOOTH</codeph> is renamed as <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph></li>
                     <li props="ios"><codeph>AgoraAudioOutputRoutingBluetooth</codeph> is renamed as <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph></li>
                     <li props="rn"><codeph>routeBluetooth</codeph> is renamed as <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph></li>
-                    <li props="flutter"><codeph>routeBluetooth</codeph> 枚举名变更为 <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph></li>
-                    <li><p>以下枚举名中的 <codeph>ERROR</codeph> 字段全部修改为 <codeph>REASON</codeph>：<ul>
+                    <li props="flutter"><codeph>routeBluetooth</codeph> is renamed as <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph></li>
+                    <li><p>All <codeph>ERROR </codeph>fields in the following enumerations are changed to <codeph>REASON</codeph>:<ul>
                             <li><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_OK"></apiname></codeph></li>
                             <li><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_FAILURE"></apiname></codeph></li>
                             <li><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_DEVICE_NO_PERMISSION"></apiname></codeph></li>
@@ -323,8 +323,8 @@
                             <li props="cpp mac unity flutter electron"><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_NO_RECORDING_DEVICE"></apiname></codeph> (macOS, Windwos)</li>
                             <li props="cpp mac unity flutter electron"><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_NO_PLAYOUT_DEVICE"></apiname></codeph> (macOS, Windwos)</li>
                             <li><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_INTERRUPTED"></apiname></codeph></li>
-                            <li props="cpp unity flutter electron"><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_RECORD_INVALID_ID"></apiname></codeph>(Windwos)</li>
-                            <li props="cpp unity flutter electron"><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_PLAYOUT_INVALID_ID"></apiname></codeph>(Windwos)</li>
+                            <li props="cpp unity flutter electron"><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_RECORD_INVALID_ID"></apiname></codeph> (Windwos)</li>
+                            <li props="cpp unity flutter electron"><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_PLAYOUT_INVALID_ID"></apiname></codeph> (Windwos)</li>
                             <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_OK"></apiname></codeph></li>
                             <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_FAILURE"></apiname></codeph></li>
                             <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_NO_PERMISSION"></apiname></codeph></li>
@@ -387,16 +387,16 @@
                             <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_REASON_INVALID_PRIVILEGE"></apiname></codeph></li>
                             <li><codeph><apiname keyref="RTMP_STREAM_UNPUBLISH_REASON_OK"></apiname></codeph></li>
                             </ul></p></li>
-                        <li props="ios android flutter unity rn"><ph><codeph><apiname keyref="MusicContentCenterStateReason"/></codeph> 修改为 <codeph><apiname keyref="MusicContentCenterStateReason"/></codeph>，其中的枚举名的 <codeph>StatusErr</codeph> 字段全部修改为 <codeph>Reason</codeph>：</ph><ph props="unity flutter">(Android, iOS)</ph><ul>
+                        <li props="ios android flutter unity rn">is renamed as , and the StatusErr in all enumerators is changed to <codeph>Reason</codeph>:<ph><ph props="unity flutter"> (Android, iOS)</ph></ph><codeph><apiname keyref="MusicContentCenterStateReason"/></codeph><codeph><apiname keyref="MusicContentCenterStateReason"/></codeph><codeph></codeph><ul>
                             <li><codeph><apiname keyref="kMusicContentCenterReasonGateway"></apiname></codeph></li>
                             <li><codeph><apiname keyref="kMusicContentCenterReasonPermissionAndResource"></apiname></codeph></li>
                             <li><codeph><apiname keyref="kMusicContentCenterReasonInternalDataParse"></apiname></codeph></li>
                             <li><codeph><apiname keyref="kMusicContentCenterReasonMusicLoading"></apiname></codeph></li>
                             <li><codeph><apiname keyref="kMusicContentCenterReasonMusicDecryption"></apiname></codeph></li>
                         </ul></li>
-                    <li><codeph><apiname keyref="kMusicContentCenterReasonError"></apiname></codeph> 修改为 <codeph><apiname keyref="kMusicContentCenterReasonError"/></codeph></li>
+                    <li>is changed to <codeph><apiname keyref="kMusicContentCenterReasonError"></apiname></codeph><codeph><apiname keyref="kMusicContentCenterReasonError"/></codeph></li>
                     </ul></p>
-                <p><b>删除</b><ul>
+                <p><b>Delete</b><ul>
                     <li><codeph><apiname keyref="startChannelMediaRelay"/></codeph></li>
                     <li><codeph><apiname keyref="updateChannelMediaRelay"/></codeph></li>
                     <li><codeph><apiname keyref="startChannelMediaRelayEx"/></codeph></li>
