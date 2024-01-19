@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_pushvideoframe2">
     <title><ph keyref="pushVideoFrame2"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Pushes the external video frame.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Pushes the external raw video frame to the SDK.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -24,22 +24,28 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p id="desc1">This method actively encapsulates the video frame data with the <xref keyref="VideoFrame"/> class and passes it to the SDK. Call the <xref keyref="setExternalVideoSource"/> method and set <parmname>enable</parmname> as <codeph><ph keyref="true"/></codeph> before calling this method; otherwise, a failure returns after calling this method.</p>
-            <p>You can push the video frame either by calling this method or by calling <xref keyref="pushVideoFrame"/>. The difference is that the <apiname keyref="pushVideoFrame2"/> method supports video data in texture format.</p>
+            <dl outputclass="deprecated" props="android">
+                <dlentry>
+                    <dt>Deprecated:</dt>
+                    <dd>If you need to push video frames in I422 format, you need to use this method; otherwise, use <xref keyref="pushVideoFrame4"/>.</dd>
+                </dlentry>
+            </dl>
+            <p id="desc">If you call <xref keyref="setExternalVideoSource"/>and set the <parmname>enabled </parmname>parameter as <codeph><ph keyref="true"/></codeph>and the <parmname>encodedFrame </parmname>parameter as <codeph><ph keyref="false"/></codeph>, you can call this method to push the external raw video frame to the SDK.</p>
+            <p props="android">You can push the video frame either by calling this method or by calling <xref keyref="pushVideoFrame4"/>. The difference is that this method does not support video data in Texture format.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry id="frame">
-                <pt>frame</pt>
-                <pd>Video frame to be pushed. See <apiname keyref="VideoFrame"/>.</pd>
+            <plentry conkeyref="pushVideoFrame/frame">
+                <pt/>
+                <pd/>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title>Returns</title>
             <ul>
-            <li><codeph><ph keyref="true"/></codeph>: Pushes the external raw video frame to the SDK successfully.</li>
-            <li><codeph><ph keyref="false"/></codeph>: Fails to push external raw video frame to the SDK.</li>
-            </ul> </section>
+                <li><codeph><ph keyref="true"/></codeph>: Success.</li>
+                <li><codeph><ph keyref="false"/></codeph>: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+                </ul> </section>
     </refbody>
 </reference>

@@ -142,11 +142,15 @@ struct FVirtualBackgroundSource
             </plentry>
             <plentry>
                 <pt>color</pt>
-                <pd>The type of the custom background image. The color of the custom background image. The format is a hexadecimal integer defined by RGB, without the # sign, such as 0xFFB6C1 for light pink. The default value is 0xFFFFFF, which signifies white. The value range is [0x000000, 0xffffff]. If the value is invalid, the SDK replaces the original background image with a white background image.<note type="attention">This parameter takes effect only when the type of the custom background image is <ph keyref="BACKGROUND_COLOR" />.</note></pd>
+                <pd>The type of the custom background image. The color of the custom background image. The format is a hexadecimal integer defined by RGB, without the # sign, such as 0xFFB6C1 for light pink. The default value is 0xFFFFFF, which signifies white. The value range is [0x000000, 0xffffff]. If the value is invalid, the SDK replaces the original background image with a white background image.<note type="attention">This parameter is only applicable to custom backgrounds of the following types:<ul>
+                        <li><ph keyref="BACKGROUND_COLOR" />: The background image is a solid-colored image of the color passed in by the parameter.</li>
+                        <li><ph keyref="BACKGROUND_IMG" />: If the image in <parmname>source</parmname> has a transparent background, the transparent background will be filled with the color passed in by the parameter.</li>
+                    </ul>
+                    </note></pd>
             </plentry>
             <plentry>
                 <pt>source</pt>
-                <pd>The local absolute path of the custom background image. PNG and JPG formats are supported. If the path is invalid, the SDK replaces the original background image with a white background image.<note type="attention">This parameter takes effect only when the type of the custom background image is <ph keyref="BACKGROUND_IMG" />.</note></pd>
+                <pd>The local absolute path of the custom background image. Supports PNG, JPG, MP4, AVI, MKV, and FLV formats. If the path is invalid, the SDK will use either the original background image or the solid color image specified by <parmname>color</parmname>.<note type="attention">This parameter takes effect only when the type of the custom background image is <ph keyref="BACKGROUND_IMG" /> or <ph keyref="BACKGROUND_VIDEO" />.</note></pd>
             </plentry>
             <plentry>
                 <pt props="ios mac android flutter">blurDegree</pt>
