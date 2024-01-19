@@ -41,30 +41,30 @@
                                     <entry><codeph>error</codeph></entry>
                                     <entry><codeph>reason</codeph></entry>
                                 </row>
-                                <row>
-                                    <entry><codeph><xref keyref="onMusicChartsResult"/></codeph></entry>
-                                    <entry><codeph>errorCode</codeph></entry>
-                                    <entry><codeph>reason</codeph></entry>
+                                <row props="android ios unity flutter rn">
+                                    <entry><xref keyref="onMusicChartsResult"/></entry>
+                                    <entry><parmname>errorCode</parmname></entry>
+                                    <entry><parmname>reason</parmname></entry>
                                 </row>
-                                <row>
-                                    <entry><codeph><xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/></codeph></entry>
-                                    <entry><ul><li><codeph>status</codeph></li><li><codeph>state</codeph></li></ul></entry>
-                                    <entry><ul><li><codeph>errorCode</codeph></li><li><codeph>reason</codeph></li></ul></entry>
+                                <row props="android ios unity flutter rn">
+                                    <entry><xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/></entry>
+                                    <entry><ul><li><parmname>status</parmname></li><li><parmname>state</parmname></li></ul></entry>
+                                    <entry><ul><li><parmname>errorCode</parmname></li><li><parmname>reason</parmname></li></ul></entry>
                                 </row>
-                                <row>
-                                    <entry><codeph><xref keyref="onMusicCollectionResult"/></codeph></entry>
-                                    <entry><codeph>errorCode</codeph></entry>
-                                    <entry><codeph>reason</codeph></entry>
+                                <row props="android ios unity flutter rn">
+                                    <entry><xref keyref="onMusicCollectionResult"/></entry>
+                                    <entry><parmname>errorCode</parmname></entry>
+                                    <entry><parmname>reason</parmname></entry>
                                 </row>
-                                <row>
-                                    <entry><codeph><xref keyref="onLyricResult"/></codeph></entry>
-                                    <entry><codeph>errorCode</codeph></entry>
-                                    <entry><codeph>reason</codeph></entry>
+                                <row props="android ios unity flutter rn">
+                                    <entry><xref keyref="onLyricResult"/></entry>
+                                    <entry><parmname>errorCode</parmname></entry>
+                                    <entry><parmname>reason</parmname></entry>
                                 </row>
-                                <row>
-                                    <entry><codeph><xref keyref="onSongSimpleInfoResult"/></codeph></entry>
-                                    <entry><codeph>errorCode</codeph></entry>
-                                    <entry><codeph>reason</codeph></entry>
+                                <row props="android ios unity flutter rn">
+                                    <entry><xref keyref="onSongSimpleInfoResult"/></entry>
+                                    <entry><parmname>errorCode</parmname></entry>
+                                    <entry><parmname>reason</parmname></entry>
                                 </row>
                                 <row props="apple android">
                                     <entry><codeph><xref keyref="onPlayerSourceStateChanged"/></codeph></entry>
@@ -114,17 +114,15 @@
                                     <entry><codeph><apiname keyref="RTMP_STREAM_PUBLISH_REASON"/></codeph></entry>
                                     <entry><codeph><apiname keyref="RTMP_STREAM_PUBLISH_REASON"/></codeph></entry>
                                 </row>
-                                <row>
-                                    <entry><codeph><apiname keyref="MusicContentCenterStateReason"/></codeph></entry>
-                                    <entry><codeph><apiname keyref="MusicContentCenterStateReason"/></codeph></entry>
+                                <row props="android ios unity flutter rn">
+                                    <entry><apiname keyref="MusicContentCenterStatusCode"/></entry>
+                                    <entry><apiname keyref="MusicContentCenterStateReason"/></entry>
                                 </row>
                             </tbody>
                         </tgroup>
                         </table>
                         <note>有关具体枚举的改名详见 <xref href="#apichange"></xref>。</note></p>
                     </li>
-                </ol>
-                <ol>
                     <li><ph><b>跨频道媒体流转发</b></ph>
                         <p>为提升接口易用性，该版本删除了部分跨频道媒体流转发的方法和回调，请改用下表中列出的替代选项：<table frame="all" rowsep="1" colsep="1" id="table_jvq_ltp_wzb">
                         <tgroup cols="2">
@@ -168,7 +166,8 @@
                         <p props="ios">该版本起，<codeph>pushExternalVideoFrame</codeph>[1/2] 从 <codeph><apiname keyref="IRtcEngineEx"/></codeph> 接口类迁移到 <codeph><apiname keyref="IRtcEngine"/></codeph> 接口类。</p>
                     </li>
                     <li props="android ios flutter unity rn"><ph><b>音频路由</b></ph>
-                        <p props="android unity">该版本起，<xref keyref="AudioRoute"/> 中的 <codeph>ROUTE_BLUETOOTH</codeph> 更名为 <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph>，表示音频路由为使用 HFP 协议的蓝牙设备，新增 <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_A2DP"/></codeph>(10) 表示音频路由为使用 A2DP 协议的蓝牙设备。</p>
+                        <p props="android">该版本起，<codeph>ROUTE_BLUETOOTH</codeph> 更名为 <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph>，表示音频路由为使用 HFP 协议的蓝牙设备，新增 <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_A2DP"/></codeph>(10) 表示音频路由为使用 A2DP 协议的蓝牙设备。</p>
+                        <p props="unity">该版本起，<xref keyref="AudioRoute"/> 中的 <codeph>ROUTE_BLUETOOTH</codeph> 更名为 <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph>，表示音频路由为使用 HFP 协议的蓝牙设备，新增 <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_A2DP"/></codeph>(10) 表示音频路由为使用 A2DP 协议的蓝牙设备。</p>
                         <p props="ios">该版本起，<xref keyref="AudioRoute"/> 中的<codeph>AgoraAudioOutputRoutingBluetooth</codeph> 更名为 <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph>，表示音频路由为使用 HFP 协议的蓝牙设备，新增 <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_A2DP"/></codeph>(10) 表示音频路由为使用 A2DP 协议的蓝牙设备。</p>
                         <p props="flutter rn">该版本起，<xref keyref="AudioRoute"/> 中的<codeph>routeBluetooth</codeph> 更名为 <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph>，表示音频路由为使用 HFP 协议的蓝牙设备，新增 <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_A2DP"/></codeph>(10) 表示音频路由为使用 A2DP 协议的蓝牙设备。</p>
                         <p props="rn">该版本起，<xref keyref="AudioRoute"/> 中的<codeph>RouteBluetooth</codeph> 更名为 <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph>，表示音频路由为使用 HFP 协议的蓝牙设备，新增 <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_A2DP"/></codeph>(10) 表示音频路由为使用 A2DP 协议的蓝牙设备。</p>
@@ -177,12 +176,17 @@
                         <p>为使枚举的名称便于理解，该版本将 <codeph>REMOTE_VIDEO_STATE_PLAYING</codeph> 枚举名变更为 <codeph><ph keyref="REMOTE_VIDEO_STATE_DECODING"/></codeph>，枚举的含义不变。</p>
                     </li>
                     <li><ph><b>本地视频状态改变原因</b></ph>
-                        <p>该版本对 <xref keyref="LOCAL_VIDEO_STREAM_REASON"/> 枚举类中的枚举进行了如下修改：
+                        <p><ph props="apple cpp framework">该版本对 <xref keyref="LOCAL_VIDEO_STREAM_REASON"/> 枚举类中的枚举进行了如下修改：</ph><ph props="android">该版本对以下枚举进行了修改：</ph>
                         <ul>
                         <li props="cpp electron unity flutter"><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_PAUSED"/></codeph> （原 <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_PAUSED"/></codeph>）的值从 23 变更为 28。 (Windows)</li>
                         <li props="cpp electron unity flutter"><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_RESUMED"/></codeph> （原 <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_RESUMED"/></codeph>）的值从 24 变更为 29。 (Windows)</li>
                         <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_CODEC_NOT_SUPPORT"/></codeph> 的枚举名变更为 <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_CODEC_NOT_SUPPORT"/></codeph>。</li>
                         </ul></p>
+                    </li>
+                    <li><ph><b>声卡采集</b></ph>
+                        <p>
+                            <ul><li>在 v4.3.0 之前，当你调用 <xref keyref="disableAudio"/> 关闭整个音频模块后，声卡采集功能不会被关闭。</li>
+                        <li>从 v4.3.0 起，当你调用 <xref keyref="disableAudio"/> 关闭音频模块后，声卡采集功能也会被关闭，如果你需要再次启用声卡采集功能，需要在调用 <xref keyref="enableAudio"/> 启用音频模块后再次调用 <xref keyref="enableLoopbackRecording"/>。</li></ul></p>
                     </li>
                 </ol>
             </body>
@@ -274,7 +278,7 @@
                         <ul>
                         <li>优化视频模块的算法、减小视频传输时对带宽的要求，在网络环境保持不变的情况下，为用户提供了更好的视频体验。</li>
                         <li props="android"><xref keyref="VideoEncoderConfiguration"/> 中新增 <codeph>codecType</codeph> 成员，用于设置视频编码类型。</li>
-                        <li props="android"><xref keyref="AudioCaptureParameters"/> 中新增 <codeph>allowCaptureCurrentApp</codeph> 成员，用于设置在屏幕共享时是否采集当前 App 中的音频。该成员默认值为 <codeph><apiname keyref="true"/></codeph>，即：默认采集当前 App 中的音频。在个别场景下，屏幕共享采集到的 App 音频可能由于信号延迟等原因引起远端出现回声，声网建议你在此场景下将该成员设置为 <codeph><apiname keyref="false"/></codeph>，以消除屏幕共享进程中引入的远端回声。</li>
+                        <li props="android"><xref keyref="ScreenAudioParameters"/> 中新增 <codeph>allowCaptureCurrentApp</codeph> 成员，用于设置在屏幕共享时是否采集当前 App 中的音频。该成员默认值为 <codeph><apiname keyref="true"/></codeph>，即：默认采集当前 App 中的音频。在个别场景下，屏幕共享采集到的 App 音频可能由于信号延迟等原因引起远端出现回声，声网建议你在此场景下将该成员设置为 <codeph><apiname keyref="false"/></codeph>，以消除屏幕共享进程中引入的远端回声。</li>
                         <li props="cpp unity flutter electron"><xref keyref="onLocalVideoStateChanged"/> 回调中新增 <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_AUTO_FALLBACK"/></codeph> 枚举，表示屏幕共享过程中发生意外错误（可能由于窗口阻塞失败），导致性能下降，但屏幕共享过程本身没有受到影响。(Windows)</li>
                         <li>该版本优化了 SDK 的域名解析策略，提高了复杂网络环境下调用 <xref keyref="setLocalAccessPoint"/> 解析域名时的稳定性。</li>
                         <li>传入含透明背景的图片作为虚拟背景的自定义背景图时，支持自定义图片透明背景的填充色。</li>
@@ -309,7 +313,7 @@
                         <li props="ios android rn unity flutter"><xref keyref="VideoLayout"/> (Android, iOS)</li>
                         <li><xref keyref="VideoCanvas"/> 新增 <codeph>subviewUid</codeph> 和 <codeph>uid</codeph> 成员</li>
                         <li props="android"><xref keyref="VideoEncoderConfiguration"/> 新增 <codeph>codecType</codeph> 成员</li>
-                        <li props="android"><xref keyref="AudioCaptureParameters"/> 新增 <codeph>allowCaptureCurrentApp</codeph> 成员</li>
+                        <li props="android"><xref keyref="ScreenAudioParameters"/> 新增 <codeph>allowCaptureCurrentApp</codeph> 成员</li>
                         <li props="ios"><xref keyref="updateSelfTransform"/></li>
                         <li props="apple"><p><xref keyref="LOCAL_AUDIO_STREAM_REASON"/> 中新增以下枚举
                             <ul>
@@ -323,7 +327,8 @@
                         <li props="android ios"><xref keyref="setVideoDenoiserOptions2"/></li>
                         <li props="android ios"><xref keyref="setColorEnhanceOptions2"/></li>
                         <li props="android ios"><xref keyref="enableVirtualBackground2"/></li>
-                        <li><xref keyref="AudioRoute"/> 中新增 <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_A2DP"/></codeph> 枚举</li>
+                        <li props="apple cpp framework"><xref keyref="AudioRoute"/> 中新增 <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_A2DP"/></codeph> 枚举</li>
+                        <li props="android">新增 <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_A2DP"/></codeph> 枚举</li>
                         <li props="android ios mac flutter unity rn"><xref keyref="LocalAudioStats"/> 新增 <codeph>earMonitorDelay</codeph> 和 <codeph>aecEstimatedDelay</codeph> 成员</li>
                         <li><xref keyref="selectMultiAudioTrack"/></li>
                         <li><xref keyref="onPlayerCacheStats"/></li>
@@ -414,7 +419,7 @@
                             <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_REASON_INVALID_PRIVILEGE"></apiname></codeph></li>
                             <li><codeph><apiname keyref="RTMP_STREAM_UNPUBLISH_REASON_OK"></apiname></codeph></li>
                             </ul></p></li>
-                        <li props="ios android flutter unity rn"><ph><codeph><apiname keyref="MusicContentCenterStateReason"/></codeph> 修改为 <codeph><apiname keyref="MusicContentCenterStateReason"/></codeph>，其中的枚举名的 <codeph>StatusErr</codeph> 字段全部修改为 <codeph>Reason</codeph>：</ph><ph props="unity flutter">(Android, iOS)</ph>
+                        <li props="ios android flutter unity rn"><ph><codeph><apiname keyref="MusicContentCenterStatusCode"/></codeph> 修改为 <codeph><apiname keyref="MusicContentCenterStateReason"/></codeph>，其中的枚举名的 <codeph>StatusErr</codeph> 字段全部修改为 <codeph>Reason</codeph>：</ph><ph props="unity flutter">(Android, iOS)</ph>
                             <ul>
                             <li><codeph><apiname keyref="kMusicContentCenterReasonGateway"></apiname></codeph></li>
                             <li><codeph><apiname keyref="kMusicContentCenterReasonPermissionAndResource"></apiname></codeph></li>
@@ -422,7 +427,7 @@
                             <li><codeph><apiname keyref="kMusicContentCenterReasonMusicLoading"></apiname></codeph></li>
                             <li><codeph><apiname keyref="kMusicContentCenterReasonMusicDecryption"></apiname></codeph></li>
                         </ul></li>
-                    <li><codeph><apiname keyref="kMusicContentCenterReasonError"></apiname></codeph> 修改为 <codeph><apiname keyref="kMusicContentCenterReasonError"/></codeph></li>
+                    <li props="ios android flutter unity rn"><codeph><apiname keyref="kMusicContentCenterStatusErr"></apiname></codeph> 修改为 <codeph><apiname keyref="kMusicContentCenterReasonError"/></codeph></li>
                     </ul></p>
                 <p><b>删除</b>
                     <ul>
