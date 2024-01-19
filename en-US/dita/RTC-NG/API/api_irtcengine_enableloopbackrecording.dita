@@ -15,20 +15,12 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java"/>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableLoopbackRecording:(BOOL)enabled deviceName:(NSString* _Nullable)deviceName NS_SWIFT_NAME(enableLoopbackRecording(_:deviceName:));</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">  virtual int enableLoopbackRecording(bool enabled, const char* deviceName = NULL) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
-	int EnableLoopbackRecording(bool enabled, FString deviceName);</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">abstract enableLoopbackRecording(
-    enabled: boolean,
-    deviceName?: string
-  ): number;</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public abstract int EnableLoopbackRecording(bool enabled, string deviceName = "");</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">abstract enableLoopbackRecording(
-    enabled: boolean,
-    deviceName?: string
-  ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableLoopbackRecording(
-    {required bool enabled, String? deviceName});</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int enableLoopbackRecording(bool enabled, const char* deviceName = NULL) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;) int EnableLoopbackRecording(bool enabled, FString deviceName);</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract enableLoopbackRecording( enabled: boolean, deviceName?: string ): number;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int EnableLoopbackRecording(bool enabled, string deviceName = &quot;&quot;);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract enableLoopbackRecording( enabled: boolean, deviceName?: string ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableLoopbackRecording( {required bool enabled, String? deviceName});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
@@ -39,13 +31,14 @@
             <li props="cpp unreal bp unity flutter">This method applies to the macOS and Windows only.</li>
             <li props="cpp unreal bp mac unity electron flutter">macOS does not support loopback audio capture of the default sound card. If you need to use this function, use a virtual sound card and pass its name to the <parmname>deviceName</parmname> parameter. Agora recommends using AgoraALD as the virtual sound card for audio capturing.</li>
             <li>You can call this method either before or after joining a channel.</li>
+            <li>如果你调用了 <xref keyref="disableAudio"/> 关闭音频模块，声卡采集功能也会被关闭。 如果你需要再次启用声卡采集功能，需要调用 <xref keyref="enableAudio"/> 启用音频模块后再次调用 <apiname keyref="enableLoopbackRecording"/>。</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>enabled</pt>
-                <pd>Whether to enable loopback audio capturing.<ul id="ul_qjq_swq_t4b">
+                <pd>Sets whether to enable loopback capturing.<ul id="ul_qjq_swq_t4b">
                     <li><codeph><ph keyref="true"/></codeph>: Enable loopback audio capturing.</li>
                     <li><codeph><ph keyref="false"/></codeph>: (Default) Disable loopback audio capturing.</li>
                     </ul></pd>
