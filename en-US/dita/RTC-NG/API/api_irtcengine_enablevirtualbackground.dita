@@ -45,7 +45,7 @@
             <title>Details</title>
             <p>The virtual background feature enables the local user to replace their original background with a static image, dynamic video, blurred background, or portrait-background segmentation to achieve picture-in-picture effect.  Once the virtual background feature is enabled, all users in the channel can see the custom background.</p>
             <p>Call this method before calling <xref keyref="enableVideo"/> or <xref keyref="startPreview2"/>.</p>
-            <note type="attention">
+            <note type="attention" id="hardware_req">
             <ul>
             <li>This feature has high requirements on device performance. When calling this method, the SDK automatically checks the capabilities of the current device. Agora recommends you use virtual background on devices with the following processors:<ul>
                 <li props="android unity cpp unreal bp rn flutter cs">Snapdragon 700 series 750G and later</li>
@@ -71,7 +71,7 @@
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry>
+            <plentry id="enable">
                 <pt props="cpp unreal bp android unity flutter rn electron cs">enabled</pt>
                 <pt props="ios mac">enable</pt>
                 <pd>Whether to enable virtual background:<ul>
@@ -79,17 +79,17 @@
                     <li><codeph><ph keyref="false"/></codeph>: Disable virtual background.</li>
                     </ul></pd>
             </plentry>
-            <plentry>
+            <plentry id="source">
                 <pt props="cpp unreal bp android unity flutter rn electron cs">backgroundSource</pt>
                 <pt props="mac ios">backData</pt>
                 <pd>The custom background. See <xref keyref="VirtualBackgroundSource"/>. To adapt the resolution of the custom background image to that of the video captured by the SDK, the SDK scales and crops the custom background image while ensuring that the content of the custom background image is not distorted.</pd>
             </plentry>
-            <plentry>
+            <plentry id="seg">
                 <pt props="android cpp unreal bp unity electron rn flutter cs">segproperty</pt>
                 <pt props="ios mac">segData</pt>
                 <pd>Processing properties for background images. See <xref keyref="SegmentationProperty"/>.</pd>
             </plentry>
-            <plentry props="cpp unreal bp unity rn electron flutter cs">
+            <plentry id="type" props="cpp unreal bp unity rn electron flutter cs">
                 <pt>type</pt>
                 <pd>The type of the video source. See <xref keyref="MEDIA_SOURCE_TYPE"/>.<note type="attention">In this method, this parameter supports only the following two settings:<ul>
                     <li>The default value is <apiname keyref="PRIMARY_CAMERA_SOURCE"/>.</li>
@@ -100,8 +100,8 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-            <ul>
-            <li props="native unreal bp electron unity rn cs">0: Success.</li>
+            <ul props="native unreal bp electron unity rn cs">
+            <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul>
                 <li>-4: The device capabilities do not meet the requirements for the virtual background feature. Agora recommends you try it on devices with higher performance.</li>
                 </ul></li>

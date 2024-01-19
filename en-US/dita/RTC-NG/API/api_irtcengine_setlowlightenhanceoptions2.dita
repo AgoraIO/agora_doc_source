@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setlowlightenhanceoptions2">
+    <title> <ph keyref="setLowlightEnhanceOptions2" /> </title>
+    <shortdesc id="short"><ph id="shortdesc">Sets low light enhance options and specifies the media source.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setLowlightEnhanceOptions2" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setLowlightEnhanceOptions(
+      boolean enabled, LowLightEnhanceOptions options, Constants.MediaSourceType sourceType);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLowlightEnhanceOptions:(BOOL)enable options:(AgoraLowlightEnhanceOptions* _Nullable)options sourceType:(AgoraMediaSourceType)sourceType NS_SWIFT_NAME(setLowlightEnhanceOptions(_:options:sourceType:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp"></codeblock>
+            <codeblock props="bp" outputclass="language-cpp"></codeblock>
+            <codeblock props="electron" outputclass="language-typescript"></codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp"></codeblock>
+            <codeblock props="rn" outputclass="language-typescript"></codeblock>
+            <codeblock props="flutter" outputclass="language-dart"></codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+        </section>
+        <section id="detailed_desc">
+            <title>Details</title>
+            <p>The low-light enhancement feature can adaptively adjust the brightness value of the video captured in situations with low or uneven lighting, such as backlit, cloudy, or dark scenes. It restores or highlights the image details and improves the overall visual effect of the video.</p>
+            <p>This method and <xref keyref="setLowlightEnhanceOptions"/> both set low light enhance options, but this method allows you to specify the media source to which the low light enhance options are applied.</p>
+            <note type="attention" conkeyref="setLowlightEnhanceOptions/req"/>
+        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry conkeyref="setLowlightEnhanceOptions/enable">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="setLowlightEnhanceOptions/options">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry props="cpp unreal bp rn unity electron flutter cs" id="type">
+                <pt>type</pt>
+                <pd>The type of the video source. See <xref keyref="MEDIA_SOURCE_TYPE"/>.</pd>
+            </plentry>
+            <plentry conkeyref="enableVirtualBackground2/sourcetype">
+                <pt/>
+                <pd/>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <ul>
+            <li props="native unreal bp electron unity rn cs">0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            </ul> </section>
+    </refbody>
+</reference>

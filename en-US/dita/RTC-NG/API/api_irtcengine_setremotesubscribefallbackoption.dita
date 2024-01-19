@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setremotesubscribefallbackoption">
      <title> <ph keyref="setRemoteSubscribeFallbackOption" /> </title>
-     <shortdesc id="short"><ph id="shortdesc">Sets the fallback option for the remotely subscribed video stream based on the network conditions.</ph></shortdesc>
+     <shortdesc id="short"><ph id="shortdesc">Sets the fallback option for the subscribed video stream based on the network conditions.</ph></shortdesc>
      <prolog>
           <metadata>
                <keywords>
@@ -28,26 +28,26 @@
           </section>
           <section id="detailed_desc">
             <title>Details</title>
-               <p>When the network is not ideal, the quality of live audio and video can be degraded. If <parmname>option</parmname> is set as <apiname keyref="STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW"/> or <apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/>, the SDK automatically switches the video from a high-quality stream to a low-quality stream or disables the video when the downlink network conditions cannot support both audio and video to guarantee the quality of the audio. The SDK monitors the network quality and restores the video stream when the network conditions improve.</p>
-               <p>When the remote video stream falls back to audio-only or when the audio-only stream switches back to the video, the SDK triggers the <xref keyref="onRemoteSubscribeFallbackToAudioOnly"/> callback.</p>
+               <p>An unstable network affects the audio and video quality in a video call or interactive live video streaming. If <parmname>option</parmname> is set as <apiname keyref="STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW"/> or <apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/>, the SDK automatically switches the video from a high-quality stream to a low-quality stream or disables the video when the downlink network conditions cannot support both audio and video to guarantee the quality of the audio. Meanwhile, the SDK continuously monitors network quality and resumes subscribing to audio and video streams when the network quality improves.</p>
+               <p>When the subscribed video stream falls back to an audio-only stream, or recovers from an audio-only stream to an audio-video stream, the SDK triggers the <xref keyref="onRemoteSubscribeFallbackToAudioOnly"/> callback.</p>
                <note type="attention">Ensure that you call this method before joining a channel.</note> </section>
           <section id="parameters">
                <title>Parameters</title>
                <parml>
                <plentry>
                     <pt>option</pt>
-                    <pd><ph>The fallback option for the remotely subscribed video stream. The default value is <apiname keyref="STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW" />(1). </ph><ph props="ios mac cpp unreal bp electron unity flutter rn cs">See <xref keyref="STREAM_FALLBACK_OPTIONS" />.</ph><ul props="android">
-                         <li><ph keyref="STREAM_FALLBACK_OPTION_DISABLED" />(0): No fallback behavior for the local/remote video stream when the uplink/downlink network conditions are poor. The quality of the stream is not guaranteed.</li>
-                         <li><ph keyref="STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW" /><ph>(1): Under poor downlink network conditions, the remote video stream, to which you subscribe, falls back to the low-quality (low resolution and low bitrate) video stream. This option is only valid for <xref keyref="setRemoteSubscribeFallbackOption" />.</ph></li>
-                         <li><ph keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY" />(2): Under poor uplink/downlink network conditions, the remote video stream, to which you subscribe, first falls back to the low-quality (low resolution and low bitrate) video stream; and then to an audio-only stream if the network conditions worsen.</li>
+                    <pd><ph>Fallback options for the subscribed stream. </ph><ph props="ios mac cpp unreal bp electron unity flutter rn cs">See <xref keyref="STREAM_FALLBACK_OPTIONS" />.</ph><ul props="android">
+                         <li><ph keyref="STREAM_FALLBACK_OPTION_DISABLED" />(0): No fallback processing is performed on audio and video streams, and the quality of the audio and video streams cannot be guaranteed.</li>
+                         <li><ph keyref="STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW" />(1): (Default) Under poor downlink network conditions, the remote video stream, to which you subscribe, falls back to the low-quality (low resolution and low bitrate) video stream.</li>
+                         <li><ph keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY" />(2): When the network conditions are poor, try to receive the low-quality video stream first. If the video cannot be displayed due to extremely poor network environment, then fall back to receiving audio-only stream.</li>
                          </ul></pd>
                </plentry>
                </parml> </section>
           <section id="return_values">
                <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-               <ul>
-               <li props="native unreal bp electron unity rn cs">0: Success.</li>
+               <ul props="native unreal bp electron unity rn cs">
+               <li>0: Success.</li>
                <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
                </ul> </section>
      </refbody>
