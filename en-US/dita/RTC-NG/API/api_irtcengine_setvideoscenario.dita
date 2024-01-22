@@ -39,13 +39,11 @@
             <parml>
             <plentry>
                 <pt>scenarioType</pt>
-                <pd>The type of video application scenario. See <xref keyref="VIDEO_APPLICATION_SCENARIO_TYPE"/>.<p id="meeting">If set to <apiname keyref="APPLICATION_SCENARIO_MEETING"/> (1), the SDK automatically enables the following strategies:
-<ul>
+                <pd>The type of video application scenario. See <xref keyref="VIDEO_APPLICATION_SCENARIO_TYPE"/>.<p id="meeting">If set to <apiname keyref="APPLICATION_SCENARIO_MEETING"/> (1), the SDK automatically enables the following strategies:<ul>
                         <li>In meeting scenarios where low-quality video streams are required to have a high bitrate, the SDK automatically enables multiple technologies used to deal with network congestions, to enhance the performance of the low-quality streams and to ensure the smooth reception by subscribers.</li>
                         <li>The SDK monitors the number of subscribers to the high-quality video stream in real time and dynamically adjusts its configuration based on the number of subscribers.<ul>
                             <li>If nobody subscribers to the high-quality stream, the SDK automatically reduces its bitrate and frame rate to save upstream bandwidth.</li>
-                            <li>If someone subscribes to the high-quality stream, the SDK resets the high-quality stream to the <xref keyref="VideoEncoderConfiguration"/> configuration used in the most recent calling of <xref keyref="setVideoEncoderConfiguration"/>. If no configuration has been set by the user previously, the following values are used:
-<ul props="cpp unreal bp flutter unity">
+                            <li>If someone subscribes to the high-quality stream, the SDK resets the high-quality stream to the <xref keyref="VideoEncoderConfiguration"/> configuration used in the most recent calling of <xref keyref="setVideoEncoderConfiguration"/>. If no configuration has been set by the user previously, the following values are used:<ul props="cpp unreal bp flutter unity">
                                 <li>Resolution: (Windows and macOS) 1280 × 720; (Android and iOS) 960 × 540</li>
                                 <li>Frame rate: 15 fps</li>
                                 <li>Bitrate: (Windows and macOS) 1600 Kbps; (Android and iOS) 1000 Kbps</li>
@@ -62,11 +60,9 @@
                                 </ul>
                             </li></ul>
                         </li>
-                        <li>The SDK monitors the number of subscribers to the low-quality video stream in real time and dynamically enables or disables it based on the number of subscribers.
-<note>If the user has called <xref keyref="setDualStreamMode2"/> to set that never send low-quality video stream (<apiname keyref="DISABLE_SIMULCAST_STREAM"/>), the dynamic adjustment of the low-quality stream in meeting scenarios will not take effect.</note><ul>
+                        <li>The SDK monitors the number of subscribers to the low-quality video stream in real time and dynamically enables or disables it based on the number of subscribers.<note>If the user has called <xref keyref="setDualStreamMode2"/> to set that never send low-quality video stream (<apiname keyref="DISABLE_SIMULCAST_STREAM"/>), the dynamic adjustment of the low-quality stream in meeting scenarios will not take effect.</note><ul>
                             <li>If nobody subscribes to the low-quality stream, the SDK automatically disables it to save upstream bandwidth.</li>
-                            <li>If someone subscribes to the low-quality stream, the SDK enables the low-quality stream and resets it to the <xref keyref="SimulcastStreamConfig"/> configuration used in the most recent calling of <apiname keyref="setDualStreamMode2"/>. If no configuration has been set by the user previously, the following values are used:
-<ul>
+                            <li>If someone subscribes to the low-quality stream, the SDK enables the low-quality stream and resets it to the <xref keyref="SimulcastStreamConfig"/> configuration used in the most recent calling of <apiname keyref="setDualStreamMode2"/>. If no configuration has been set by the user previously, the following values are used:<ul>
                                 <li>Resolution: 480 × 272</li>
                                 <li>Frame rate: 15 fps</li>
                                 <li>Bitrate: 500 Kbps</li>
