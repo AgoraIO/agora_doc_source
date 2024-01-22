@@ -36,13 +36,14 @@
         <section id="detailed_desc">
             <title>Details</title>
             <p>After calling <xref keyref="createDataStreamEx2" />, you can call this method to send data stream messages to all users in the channel.</p>
-            <p id="desc">The SDK has the following restrictions on this method:<ul>
+            <p id="desc">The SDK has the following restrictions on this method:
+<ul>
             <li>Up to 60 packets can be sent per second in a channel with each packet having a maximum size of 1 KB.</li>
             <li>Each client can send up to 30 KB of data per second.</li>
             <li>Each user can have up to five data streams simultaneously.</li>
             </ul></p>
             <p>A successful method call triggers the <xref keyref="onStreamMessage" /> callback on the remote client, from which the remote user gets the stream message.
-A failed method call triggers the <xref keyref="onStreamMessageError" /> callback on the remote client.</p>
+       A failed method call triggers the <xref keyref="onStreamMessageError" /> callback on the remote client.</p>
             <note type="attention">
             <ul>
             <li>Ensure that you call <apiname keyref="createDataStreamEx2" /> to create a data channel before calling this method.</li>

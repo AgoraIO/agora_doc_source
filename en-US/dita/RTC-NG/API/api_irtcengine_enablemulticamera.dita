@@ -41,25 +41,29 @@
                 <dd>v4.1.0</dd>
             </dlentry>
             </dl>
-            <p>In scenarios where there are existing cameras to capture video, Agora recommends that you use the following steps to capture and publish video with multiple cameras:<ol>
+            <p>In scenarios where there are existing cameras to capture video, Agora recommends that you use the following steps to capture and publish video with multiple cameras:
+<ol>
             <li>Call this method to enable multi-channel camera capture.</li>
             <li>Call <xref keyref="startPreview2"/> to start the local video preview.</li>
             <li>Call <xref keyref="startCameraCapture"/>, and set <parmname>sourceType</parmname> to start video capture with the second camera.</li>
             <li>Call <xref keyref="joinChannelEx"/>, and set <parmname>publishSecondaryCameraTrack</parmname> to <codeph><ph keyref="true"/></codeph> to publish the video stream captured by the second camera in the channel.</li>
             </ol></p>
-            <p>If you want to disable multi-channel camera capture, use the following steps:<ol>
+            <p>If you want to disable multi-channel camera capture, use the following steps:
+<ol>
             <li>Call <xref keyref="stopCameraCapture"/>.</li>
             <li>Call this method with <parmname>enabled</parmname> set to <codeph><ph keyref="false"/></codeph>.</li>
             </ol></p>
             <note>
-            <p>You can call this method before and after <xref keyref="startPreview2"/> to enable multi-camera capture:<ul>
+            <p>You can call this method before and after <xref keyref="startPreview2"/> to enable multi-camera capture:
+<ul>
             <li>If it is enabled before <apiname keyref="startPreview2"/>, the local video preview shows the image captured by the two cameras at the same time.</li>
             <li>If it is enabled after <apiname keyref="startPreview2"/>, the SDK stops the current camera capture first, and then enables the primary camera and the second camera. The local video preview appears black for a short time, and then automatically returns to normal.</li>
             </ul></p>
             </note>
             <p props="cpp unreal bp flutter unity rn">This method applies to iOS only.</p>
             <p>When using this function, ensure that the system version is 13.0 or later.</p>
-            <p>The minimum iOS device types that support multi-camera capture are as follows:<ul>
+            <p>The minimum iOS device types that support multi-camera capture are as follows:
+<ul>
             <li>iPhone XR</li>
             <li>iPhone XS</li>
             <li>iPhone XS Max</li>
@@ -71,7 +75,8 @@
             <parml>
             <plentry>
                 <pt>enabled</pt>
-                <pd>Whether to enable multi-camera video capture mode:<ul>
+                <pd>Whether to enable multi-camera video capture mode: 
+<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Enable multi-camera capture mode; the SDK uses multiple cameras to capture video.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Disable multi-camera capture mode; the SDK uses a single camera to capture video.</li>
                     </ul></pd>

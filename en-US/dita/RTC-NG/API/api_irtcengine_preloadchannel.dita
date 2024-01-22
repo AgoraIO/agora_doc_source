@@ -44,7 +44,7 @@
         <note><ul><li id="note1">When calling this method, ensure you set the user role as audience and do not set the audio scenario as <apiname keyref="AUDIO_SCENARIO_CHORUS"/>, otherwise, this method does not take effect.</li>
         <li>You also need to make sure that the channel name, user ID and token passed in for preloading are the same as the values passed in when joinning the channel, otherwise, this method does not take effect.</li>
         <li id="note2">One <xref keyref="IRtcEngine"/> instance supports preloading 20 channels at most. When exceeding this limit, the latest 20 preloaded channels take effect.</li>
-       <li id="note3">Failing to preload a channel does not mean that you can't join a channel, nor will it increase the time of joining a channel.</li></ul></note>
+       <li id="note3">Failing to preload a channel does not mean that you can&apos;t join a channel, nor will it increase the time of joining a channel.</li></ul></note>
        <p id="desc2">If you join a preloaded channel, leave it and want to rejoin the same channel, you do not need to call this method unless the token for preloading the channel expires.</p>
         </section>
         <section id="parameters">
@@ -52,7 +52,8 @@
             <parml>
             <plentry id="token">
                 <pt>token</pt>
-                <pd>The token generated on your server for authentication. See <xref keyref="guide-token"/>.<p>When the token for preloading channels expires, you can update the token based on the number of channels you preload.<ul><li>When preloading one channel, calling this method to pass in the new token.</li>
+                <pd>The token generated on your server for authentication. See <xref keyref="guide-token"/>.<p>When the token for preloading channels expires, you can update the token based on the number of channels you preload.
+<ul><li>When preloading one channel, calling this method to pass in the new token.</li>
                 <li>When preloading more than one channels:<ul><li>If you use a wildcard token for all preloaded channels, call <xref keyref="updatePreloadChannelToken"/> to update the token.<note type="note" id="uid">When generating a wildcard token, ensure the user ID is not set as 0. See <xref keyref="wildcard-token"/>.</note></li>
                 <li>If you use different tokens to preload different channels, call this method to pass in your user ID, channel name and the new token.</li></ul></li></ul></p>
                 </pd>
@@ -60,12 +61,14 @@
             <plentry id="channel">
                 <pt props="apple cpp framework">channelId</pt>
                 <pt props="android">channelName</pt>
-                <pd><p>The channel name that you want to preload. This parameter signifies the channel in which users engage in real-time audio and video interaction. Under the premise of the same App ID, users who fill in the same channel ID enter the same channel for audio and video interaction. The string length must be less than 64 bytes. Supported characters (89 characters in total):<ul>
+                <pd><p>The channel name that you want to preload. This parameter signifies the channel in which users engage in real-time audio and video interaction. Under the premise of the same App ID, users who fill in the same channel ID enter the same channel for audio and video interaction.
+The string length must be less than 64 bytes. Supported characters (89 characters in total):
+<ul>
                     <li>All lowercase English letters: a to z.</li>
                     <li>All uppercase English letters: A to Z.</li>
                     <li>All numeric characters: 0 to 9.</li>
                     <li>Space</li>
-                    <li>"!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", ">", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","</li>
+                    <li>&quot;!&quot;, &quot;#&quot;, &quot;$&quot;, &quot;%&quot;, &quot;&amp;&quot;, &quot;(&quot;, &quot;)&quot;, &quot;+&quot;, &quot;-&quot;, &quot;:&quot;, &quot;;&quot;, &quot;&lt;&quot;, &quot;=&quot;, &quot;.&quot;, &quot;>&quot;, &quot;?&quot;, &quot;@&quot;, &quot;[&quot;, &quot;]&quot;, &quot;^&quot;, &quot;_&quot;, &quot;{&quot;, &quot;}&quot;, &quot;|&quot;, &quot;~&quot;, &quot;,&quot;</li>
                     </ul></p></pd>
             </plentry>
             <plentry conkeyref="joinChannel1/uid">

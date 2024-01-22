@@ -53,7 +53,8 @@
             </plentry>
             <plentry>
                 <pt>attenuation</pt>
-                <pd>The sound attenuation coefficient of the remote user or media player. The value range is [0,1]. The values are as follows:<ul id="attenuation">
+                <pd>The sound attenuation coefficient of the remote user or media player. The value range is [0,1]. The values are as follows:
+<ul id="attenuation">
                     <li>0: Broadcast mode, where the volume and timbre are not attenuated with distance, and the volume and timbre heard by local users do not change regardless of distance.</li>
                     <li>(0,0.5): Weak attenuation mode, that is, the volume and timbre are only weakly attenuated during the propagation process, and the sound can travel farther than the real environment.</li>
                     <li>0.5: (Default) simulates the attenuation of the volume in the real environment; the effect is equivalent to not setting the <parmname>speaker_attenuation</parmname> parameter.</li>
@@ -62,7 +63,8 @@
             </plentry>
             <plentry>
                 <pt>forceSet</pt>
-                <pd>Whether to force the sound attenuation effect of the media player:<ul>
+                <pd>Whether to force the sound attenuation effect of the media player:
+<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Force <parmname>attenuation</parmname> to set the attenuation of the media player. At this time, the attenuation coefficient of the sound insulation are set in the <parmname>audioAttenuation</parmname> in the <xref keyref="SpatialAudioZone"/> does not take effect for the media player.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Do not force <parmname>attenuation</parmname> to set the sound attenuation effect of the media player, as shown in the following two cases.<ul id="forceset-false">
                         <li>If the sound source and listener are inside and outside the sound isolation area, the sound attenuation effect is determined by the <parmname>audioAttenuation</parmname> in <apiname keyref="SpatialAudioZone"/>.</li>
