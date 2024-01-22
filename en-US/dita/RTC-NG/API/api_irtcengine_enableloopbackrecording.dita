@@ -39,7 +39,7 @@
             <li props="cpp unreal bp unity flutter">This method applies to the macOS and Windows only.</li>
             <li props="cpp unreal bp mac unity electron flutter">macOS does not support loopback audio capture of the default sound card. If you need to use this function, use a virtual sound card and pass its name to the <parmname>deviceName</parmname> parameter. Agora recommends using AgoraALD as the virtual sound card for audio capturing.</li>
             <li>You can call this method either before or after joining a channel.</li>
-            <li>如果你调用了 <xref keyref="disableAudio"/> 关闭音频模块，声卡采集功能也会被关闭。 如果你需要再次启用声卡采集功能，需要调用 <xref keyref="enableAudio"/> 启用音频模块后再次调用 <apiname keyref="enableLoopbackRecording"/>。</li>
+            <li>If you call the <xref keyref="disableAudio"/> method to disable the audio module, audio capturing will be disabled as well. If you need to enable audio capturing, call the <xref keyref="enableAudio"/> method to enable the audio module and then call the <apiname keyref="enableLoopbackRecording"/> method.</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -64,7 +64,7 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter"><xref keyref="AgoraRtcException"/>When the method call succeeds, there is no return value; when fails, the <xref keyref="error-code-link"/> exception is thrown; and you need to catch the exception and handle it accordingly. See  for details and resolution suggestions.<ph props="cn"></ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul props="native unreal bp unity electron rn cs">
             <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
