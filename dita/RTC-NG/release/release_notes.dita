@@ -12,6 +12,13 @@
             <body>
                 <p>该版本对部分功能的实现方式进行了优化，涉及一些 API 的改名或删除，为确保项目的正常运行，你需要在升级到该版本后更新 App 中的代码。</p>
                 <ol>
+                    <li props="android"><ph><b>原始视频数据回调行为变更 (Android)</b></ph>
+                        <p>自该版本起，原始视频数据相关的回调处理从原有的固定单线程变更为随机线程，即：回调处理可以在不同的线程上进行。由于 Android 系统限制，OpenGL 必须与线程强绑定，声网建议你采取以下两种方式之一修改你的代码： 
+                        <ul>
+                        <li>（推荐）使用 <codeph>TextureBufferHelper</codeph> 类创建一个专门的 OpenGL 线程进行视频前处理或后处理（例如美颜、贴纸等效果）。</li>
+                        <li>使用 <codeph>eglMakeCurrent</codeph> 方法，将每一个视频帧所需的 OpenGL 环境都关联到当前的线程中。</li>
+                        </ul></p>
+                    </li>
                     <li><ph><b>回调中的参数改名</b></ph>
                         <p>为了使一些回调中的参数以及枚举类中的枚举命名更加便于理解，该版本进行了如下修改，请在升级到该版本后修改回调中的参数设置。<table frame="all" rowsep="1" colsep="1">
                         <tgroup cols="3">
@@ -48,8 +55,18 @@
                                 </row>
                                 <row props="android ios unity flutter rn">
                                     <entry><xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/></entry>
-                                    <entry><ul><li><parmname>status</parmname></li><li><parmname>state</parmname></li></ul></entry>
-                                    <entry><ul><li><parmname>errorCode</parmname></li><li><parmname>reason</parmname></li></ul></entry>
+                                    <entry>
+                                        <ul>
+                                            <li><parmname>status</parmname></li>
+                                            <li><parmname>state</parmname></li>
+                                        </ul>
+                                    </entry>
+                                    <entry>
+                                        <ul>
+                                            <li><parmname>errorCode</parmname></li>
+                                            <li><parmname>reason</parmname></li>
+                                        </ul>
+                                    </entry>
                                 </row>
                                 <row props="android ios unity flutter rn">
                                     <entry><xref keyref="onMusicCollectionResult"/></entry>
@@ -121,7 +138,7 @@
                             </tbody>
                         </tgroup>
                         </table>
-                        <note>有关具体枚举的改名详见 <xref href="#apichange"></xref>。</note></p>
+                        <note>有关具体枚举的改名详见 <xref href="#apichange"/>。</note></p>
                     </li>
                     <li><ph><b>跨频道媒体流转发</b></ph>
                         <p>为提升接口易用性，该版本删除了部分跨频道媒体流转发的方法和回调，请改用下表中列出的替代选项：<table frame="all" rowsep="1" colsep="1" id="table_jvq_ltp_wzb">
@@ -185,8 +202,11 @@
                     </li>
                     <li><ph><b>声卡采集</b></ph>
                         <p>
-                            <ul><li>在 v4.3.0 之前，当你调用 <xref keyref="disableAudio"/> 关闭整个音频模块后，声卡采集功能不会被关闭。</li>
-                        <li>从 v4.3.0 起，当你调用 <xref keyref="disableAudio"/> 关闭音频模块后，声卡采集功能也会被关闭，如果你需要再次启用声卡采集功能，需要在调用 <xref keyref="enableAudio"/> 启用音频模块后再次调用 <xref keyref="enableLoopbackRecording"/>。</li></ul></p>
+                        <ul>
+                            <li>在 v4.3.0 之前，当你调用 <xref keyref="disableAudio"/> 关闭整个音频模块后，声卡采集功能不会被关闭。</li>
+                            <li>从 v4.3.0 起，当你调用 <xref keyref="disableAudio"/> 关闭音频模块后，声卡采集功能也会被关闭，如果你需要再次启用声卡采集功能，需要在调用 <xref keyref="enableAudio"/> 启用音频模块后再次调用 <xref keyref="enableLoopbackRecording"/>。</li>
+                        </ul>
+                        </p>
                     </li>
                 </ol>
             </body>
@@ -202,11 +222,17 @@
                     </li>
                     <li><ph><b>多视图本地预览</b></ph>
                         <p>该版本支持在本地预览同时预览多个画面、且画面中显示的视频分别处于视频链路上的不同观测位置。使用方式举例如下：
-                        <ol>
+                        <ol props="native unity electron flutter cs unreal bp">
                         <li>调用 <xref keyref="setupLocalVideo"/> 设置第一个视图：在 <codeph><apiname keyref="VideoCanvas"/></codeph> 中设置 <codeph>position</codeph> 参数为 <codeph><apiname keyref="POSITION_POST_CAPTURER_ORIGIN"/></codeph>（该枚举为该版本新增），对应本地采集视频之后、前处理之前的位置，此处观测到的视频不具备前处理的效果。 </li>
                         <li>调用 <xref keyref="setupLocalVideo"/> 设置第二个视图：在 <codeph><apiname keyref="VideoCanvas"/></codeph> 中设置 <codeph>position</codeph> 参数为 <codeph><apiname keyref="POSITION_POST_CAPTURER"/></codeph>，此处观测到的视频具备视频前处理的效果。 </li>
                         <li>观察本地预览效果：视图一为真人原始视频；视图二为经过视频前处理的虚拟人像（包括美颜、虚拟背景、水印本地预览）效果。</li>
-                        </ol></p>
+                        </ol>
+                        <ol props="rn">
+                        <li>创建第一个视图，在 <codeph><apiname keyref="VideoCanvas"/></codeph> 中设置 <codeph>position</codeph> 参数为 <codeph><apiname keyref="POSITION_POST_CAPTURER_ORIGIN"/></codeph>（该枚举为该版本新增），对应本地采集视频之后、前处理之前的位置，此处观测到的视频不具备前处理的效果。 </li>
+                        <li>创建第二个视图，在 <codeph><apiname keyref="VideoCanvas"/></codeph> 中设置 <codeph>position</codeph> 参数为 <codeph><apiname keyref="POSITION_POST_CAPTURER"/></codeph>，此处观测到的视频具备视频前处理的效果。 </li>
+                        <li>观察本地预览效果：视图一为真人原始视频；视图二为经过视频前处理的虚拟人像（包括美颜、虚拟背景、水印本地预览）效果。</li>
+                        </ol>
+                        </p>
                     </li>
                     <li><ph><b>查询设备评分等级</b></ph>
                         <p>该版本新增 <xref keyref="queryDeviceScore"/> 方法，用于查询设备的评分等级，以保证用户设置的参数不会超出其设备能力。例如，在高清或超高清视频场景下，可以先调用该方法查询设备的等级评分，如果返回的评分较低（比如低于 60），则需要适当调低视频分辨率，以避免影响视频体验。不同业务场景要求的最低设备评分等级不同，具体评分推荐请<xref keyref="ticket-link"/>。</p>
@@ -243,6 +269,15 @@
             <title>改进</title>
             <body>
                 <ol>
+                    <li><ph><b>SDK 任务处理调度优化</b></ph>
+                        <p>该版本对 SDK 内部任务的调度机制进行了优化，具体表现在以下方面：
+                        <ul>
+                        <li>远端及本地的首帧出图与出声速度均有明显提升。</li>
+                        <li>API 的调用耗时和响应耗时缩短 50% 以上。 </li>
+                        <li>SDK 的并行处理能力有明显提升，在较低端的设备上也能体验到较高的视频质量 (720P，24 fps)；并且在高分辨率和高帧率视频场景下的图像处理更加稳定。 </li>
+                        <li>SDK 的稳定性进一步增强，在各种特定场景下崩溃率有明显下降。</li>
+                        </ul></p>
+                    </li>
                     <li><ph><b>耳返音量提升</b></ph>
                         <p>该版本为用户提供更灵活的耳返音频调整选项，支持调用 <xref keyref="setInEarMonitoringVolume"/> 将耳返音量设置为原始音量的 4 倍。</p>
                     </li>
@@ -276,7 +311,7 @@
                     <li><ph><b>其他改进</b></ph>
                         <p>该版本还进行了如下改进：
                         <ul>
-                        <li>优化视频模块的算法、减小视频传输时对带宽的要求，在网络环境保持不变的情况下，为用户提供了更好的视频体验。</li>
+                        <li props="cn">优化视频模块的算法、减小视频传输时对带宽的要求，在网络环境保持不变的情况下，为用户提供了更好的视频体验。</li>
                         <li props="android"><xref keyref="VideoEncoderConfiguration"/> 中新增 <codeph>codecType</codeph> 成员，用于设置视频编码类型。</li>
                         <li props="android"><xref keyref="ScreenAudioParameters"/> 中新增 <codeph>allowCaptureCurrentApp</codeph> 成员，用于设置在屏幕共享时是否采集当前 App 中的音频。该成员默认值为 <codeph><apiname keyref="true"/></codeph>，即：默认采集当前 App 中的音频。在个别场景下，屏幕共享采集到的 App 音频可能由于信号延迟等原因引起远端出现回声，声网建议你在此场景下将该成员设置为 <codeph><apiname keyref="false"/></codeph>，以消除屏幕共享进程中引入的远端回声。</li>
                         <li props="cpp unity flutter electron"><xref keyref="onLocalVideoStateChanged"/> 回调中新增 <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_AUTO_FALLBACK"/></codeph> 枚举，表示屏幕共享过程中发生意外错误（可能由于窗口阻塞失败），导致性能下降，但屏幕共享过程本身没有受到影响。(Windows)</li>
@@ -322,6 +357,7 @@
                                 <li props="ios"><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_INTERRUPTED"/></codeph></li></ul></p></li>
                         <li><xref keyref="enableCustomAudioLocalPlayback"/></li>
                         <li><xref keyref="queryDeviceScore"/></li>
+                        <li><xref keyref="MEDIA_SOURCE_TYPE"/> 中新增 <codeph><ph keyref="CUSTOM_VIDEO_SOURCE"/></codeph> 枚举</li> 
                         <li props="android ios"><xref keyref="setBeautyEffectOptions2"/></li>
                         <li props="android ios"><xref keyref="setLowlightEnhanceOptions2"/></li>
                         <li props="android ios"><xref keyref="setVideoDenoiserOptions2"/></li>
