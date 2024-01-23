@@ -13,7 +13,7 @@
                 <p>该版本对部分功能的实现方式进行了优化，涉及一些 API 的改名或删除，为确保项目的正常运行，你需要在升级到该版本后更新 App 中的代码。</p>
                 <ol>
                     <li props="android"><ph><b>原始视频数据回调行为变更 (Android)</b></ph>
-                        <p>自该版本起，原始视频数据相关的回调处理从原有的固定单线程变更为随机线程，即：回调处理可以在不同的线程上进行。由于 Android 系统限制，OpenGL 必须与线程强绑定，声网建议你采取以下两种方式之一修改你的代码： 
+                        <p>自该版本起，原始视频数据相关的回调处理从原有的固定单线程变更为随机线程，即：回调处理可以在不同的线程上进行。由于 Android 系统限制，OpenGL 必须与线程强绑定，声网建议你采取以下两种方式之一修改你的代码：
                         <ul>
                         <li>（推荐）使用 <codeph>TextureBufferHelper</codeph> 类创建一个专门的 OpenGL 线程进行视频前处理或后处理（例如美颜、贴纸等效果）。</li>
                         <li>使用 <codeph>eglMakeCurrent</codeph> 方法，将每一个视频帧所需的 OpenGL 环境都关联到当前的线程中。</li>
@@ -200,7 +200,7 @@
                         <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_CODEC_NOT_SUPPORT"/></codeph> 的枚举名变更为 <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_CODEC_NOT_SUPPORT"/></codeph>。</li>
                         </ul></p>
                     </li>
-                    <li><ph><b>声卡采集</b></ph>
+                    <li props="cpp mac unity flutter electron"><ph><b>声卡采集</b></ph><ph props="cpp unity flutter">（Windows，macOS）</ph>
                         <p>
                         <ul>
                             <li>在 v4.3.0 之前，当你调用 <xref keyref="disableAudio"/> 关闭整个音频模块后，声卡采集功能不会被关闭。</li>
@@ -357,7 +357,7 @@
                                 <li props="ios"><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_INTERRUPTED"/></codeph></li></ul></p></li>
                         <li><xref keyref="enableCustomAudioLocalPlayback"/></li>
                         <li><xref keyref="queryDeviceScore"/></li>
-                        <li><xref keyref="MEDIA_SOURCE_TYPE"/> 中新增 <codeph><ph keyref="CUSTOM_VIDEO_SOURCE"/></codeph> 枚举</li> 
+                        <li><xref keyref="MEDIA_SOURCE_TYPE"/> 中新增 <codeph><ph keyref="CUSTOM_VIDEO_SOURCE"/></codeph> 枚举</li>
                         <li props="android ios"><xref keyref="setBeautyEffectOptions2"/></li>
                         <li props="android ios"><xref keyref="setLowlightEnhanceOptions2"/></li>
                         <li props="android ios"><xref keyref="setVideoDenoiserOptions2"/></li>
