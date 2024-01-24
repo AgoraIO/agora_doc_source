@@ -18,13 +18,27 @@
 @property(assign, nonatomic) NSUInteger vad;
 @property (assign, nonatomic) double voicePitch;
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct AudioVolumeInfo {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct AudioVolumeInfo {
                     uid_t uid;
                     unsigned int volume;
                     unsigned int vad;
                     double voicePitch;
                     AudioVolumeInfo() : uid(0), volume(0), vad(0), voicePitch(0.0) {}
                     };</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FAudioVolumeInfo {
+
+	GENERATED_BODY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioVolumeInfo&quot;)
+	int64 uid;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioVolumeInfo&quot;)
+	int64 volume;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioVolumeInfo&quot;)
+	int64 vad;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioVolumeInfo&quot;)
+	float voicePitch;
+
+};</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class AudioVolumeInfo
     {
         public AudioVolumeInfo()
@@ -84,7 +98,7 @@
         _$AudioVolumeInfoFromJson(json);
     Map&lt;String, dynamic&gt; toJson() =&gt; _$AudioVolumeInfoToJson(this);
   }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
@@ -100,7 +114,7 @@
             </plentry>
             <plentry>
                 <pt>volume</pt>
-                <pd><ph>The volume of the user. The value ranges between 0 (the lowest volume) and 255 (the highest volume). If the local user enables audio capturing and calls <xref keyref="muteLocalAudioStream" /> and set it as <codeph><ph keyref="true" /></codeph> to mute, the value of <parmname>volume</parmname> indicates the volume of locally captured audio signal. </ph><ph props="native unreal bp">If the user calls <xref keyref="startAudioMixing2" />, the value of <parmname>volume</parmname> indicates the volume after audio mixing.</ph></pd>
+                <pd><ph>The volume of the user. The value ranges between 0 (the lowest volume) and 255 (the highest volume). If the local user enables audio capturing and calls <xref keyref="muteLocalAudioStream"/> and set it as <codeph><ph keyref="true"/></codeph> to mute, the value of <parmname>volume</parmname> indicates the volume of locally captured audio signal. </ph><ph props="native unreal bp">If the user calls <xref keyref="startAudioMixing2" />, the value of <parmname>volume</parmname> indicates the volume after audio mixing.</ph></pd>
             </plentry>
             <plentry>
                 <pt>vad</pt>

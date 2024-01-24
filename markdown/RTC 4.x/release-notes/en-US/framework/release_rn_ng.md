@@ -1,3 +1,168 @@
+## Known issues and limitations
+
+**Android 14 screen sharing issue**
+
+On Android 14 devices (such as OnePlus 11), screen sharing may not be available when `targetSdkVersion` is set to 34. For example, half of the shared screen may be black. To avoid this issue, Agora recommends setting `targetSdkVersion` to 34 or below. However, this may cause the screen sharing process to be interrupted when switching between portrait and landscape mode. In this case, a window will pop up on the device asking if you want to start recording the screen. After confirming, you can resume screen sharing.
+
+**AirPods Pro Bluetooth connection issue (iOS)**
+
+AirPods Pro does not support A2DP protocol in communication audio mode, which may lead to connection failure in that mode.
+
+## v4.2.6
+
+v4.2.6 was released on November xx, 2023.
+
+#### Issues fixed
+
+This version fixed the following issues that may occur when using Android 14:
+
+- When switching between portrait and landscape modes during screen sharing, the screen sharing process was interrupted. To restart screen sharing, users need to confirm recording the screen in the pop-up window. (Android)
+- When integrating the SDK, setting the Android `targetSdkVersion` to 34 may cause screen sharing to be unavailable or even cause the app to crash. (Android)
+- Calling `startScreenCapture` without sharing video (setting `captureVideo` to `false`) and then calling `updateScreenCaptureParameters` to share video (setting `captureVideo` to `true`) resulted in a frozen shared screen at the receiving end. (Android)
+- When screen sharing in landscape mode, the shared screen seen by the audience was divided into two parts: one side of the screen was compressed; the other side was black. (Android)
+
+This version also fixed the following issues:
+
+- When using an iOS 16 or later device with Bluetooth headphones connected before joining the channel, the audio routing after joining the channel was not as expected: audio was played from the speaker, not the Bluetooth headphones. (iOS)
+- In live streaming scenarios, the video on the audience end  occasionally distorted. (Android)
+- In specific scenarios (such as when the network packet loss rate was high or when the broadcaster left the channel without destroying the engine and then re-joined the channel), the video on the receiving end stuttered or froze.
+
+## v4.2.5
+
+v4.2.5 was released on October xx, 2023.
+
+#### Issues fixed
+
+This release fixed an incorrect path in the `types` filed in `package.json` which causes the error `Could not find a declaration file for module 'react-native-agora'` when integrating the SDK into a TypeScript project.
+
+## v4.2.4
+
+v4.2.4 was released on October xx, 2023.
+
+This version fixes the incorrect `CFBundleShortVersionString` version number in `AgoraRtcWrapper` which caused the app to be unable to be submitted to the App Store. (iOS)
+
+## v4.2.3
+
+v4.2.3 was released on September xx, 2023.
+
+#### New features
+
+1. **Update video screenshot and upload**
+
+   To facilitate the integration of third-party video moderation services from Agora Extensions Marketplace, this version has the following changes:
+
+   - An optional parameter `serverConfig` is added in `ContentInspectConfig`, which is for server-side configuration related to video screenshot and upload via extensions from Agora Extensions Marketplace. By configuring this parameter, you can integrate multiple third-party moderation extensions and achieve flexible control over extension switches and other features. For more details, please contact [technical support](mailto:support@agora.io).
+
+   In addition, this version also introduces the `enableContentInspectEx` method, which supports taking screenshots for multiple video streams and uploading them.
+
+2. **Check device support for advanced features**
+
+   This version adds the `isFeatureAvailableOnDevice` method to check whether the capability of the current device meet the requirements of the specified advanced feature, such as virtual background and image enhancement.
+
+   Before using advanced features, you can check whether the current device supports these features based on the call result. This helps to avoid performance degradation or unavailable features when enabling advanced features on low-end devices. Based on the return value of this method, you can decide whether to display or enable the corresponding feature button, or notify the user when the device's capabilities are insufficient.
+
+   In addition, since this version, calling `enableVirtualBackground` and `setBeautyEffectOptions` automatically triggers a test on the capability of the current device. When the device is considered underperformed, the error code `-4: ErrNotSupported` is returned, indicating the device does not support the feature.  
+
+3. **Wildcard token**
+
+   This release introduces wildcard tokens. Agora supports setting the channel name used for generating a token as a wildcard character. The token generated can be used to join any channel if you use the same user id. In scenarios involving multiple channels, such as switching between different channels, using a wildcard token can avoid repeated application of tokens every time users joining a new channel, which reduces the pressure on your token server. See [Wildcard tokens](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/wildcard_token?platform=All%20Platforms).
+
+   <div class="alert note">All 4.x SDKs support using wildcard tokens.</div>
+
+4. **Preloading channels**
+
+   This release adds `preloadChannel` and `preloadChannelWithUserAccount` methods, which allows a user whose role is set as audience to preload channels before joining one. Calling the method can help shortening the time of joining a channel, thus reducing the time it takes for audience members to hear and see the host.
+
+   When preloading more than one channels, Agora recommends that you use a wildcard token for preloading to avoid repeated application of tokens every time you joining a new channel, thus saving the time for switching between channels. See [Wildcard tokens](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/wildcard_token?platform=All%20Platforms).
+
+5. **Customized background color of video canvas**
+
+   In this release, the `backgroundColor` member has been added to `VideoCanvas`, which allows you to customize the background color of the video canvas when setting the properties of local or remote video display.
+
+
+#### Improvements
+
+1. **Improved camera capture effect**
+
+   This release has improved camera capture effect in the following aspects:
+
+   1. Support for camera exposure adjustment
+
+      This release adds `isCameraExposureSupported` to query whether the device supports exposure adjustment and `setCameraExposureFactor` to set the exposure ratio of the camera.
+
+   2. Optimization of default camera selection (iOS)
+
+      Since this release, the default camera selection behavior of the SDK is aligned with that of the iOS system camera. If the device has multiple rear cameras, better shooting perspectives, zooming capabilities, low-light performance, and depth sensing can be achieved during video capture, thereby improving the quality of video capture.
+
+
+2. **Virtual Background Algorithm Upgrade**
+
+   This version has upgraded the portrait segmentation algorithm of the virtual background, which comprehensively improves the accuracy of portrait segmentation, the smoothness of the portrait edge with the virtual background, and the fit of the edge when the person moves. In addition, it optimizes the precision of the person's edge in scenarios such as meetings, offices, homes, and under backlight or weak light conditions.
+
+   This version reduces the memory usage of the virtual background feature. Compared to the previous version, the memory consumption of the app during the use of the virtual background feature on low-end devices has been reduced by approximately 4% to 10% (specific values may vary depending on the device model and platform).
+
+3. **Screen sharing scenario optimization**
+
+   This release also optimizes the video encoding configuration in screen sharing scenarios. When users customize the `width` and `height` properties of the video, the SDK rounds down the actual encoding resolution while maintaining the aspect ratio of the video and the screen, ensuring that the final encoding resolution does not exceed the user-defined encoding resolution, thereby improving the accuracy of billing for screen sharing streams.
+
+4. **Channel media relay**
+
+   The number of target channels for media relay has been increased to 6. When calling `startOrUpdateChannelMediaRelay` and `startOrUpdateChannelMediaRelayEx`, you can specify up to 6 target channels.
+
+5. **Enhancement in video codec query capability**
+
+   To improve the video codec query capability, this release adds the `codecLevels` member in `CodecCapInfo`. After successfully calling `queryCodecCapability`, you can obtain the hardware and software decoding capability levels of the device for H.264 and H.265 video formats through `codecLevels`.
+
+
+**Other Improvements**
+
+This release includes the following additional improvements:
+
+- Optimizes the logic of handling invalid parameters. When you call the `setPlaybackSpeed` method to set the playback speed of audio files, if you pass an invalid parameter, the SDK returns the error code -2, which means that you need to reset the parameter.
+- Optimizes the logic of Token parsing, in order to prevent an app from crash when an invalid token is passed in.
+- To improve the switching experience between multiple audio routes, this release adds the `setRouteInCommunicationMode` method. This method can switch the audio route from a Bluetooth headphone to the earpiece, wired headphone or speaker in communication volume mode ([`MODE_IN_COMMUNICATION`](https://developer.android.google.cn/reference/kotlin/android/media/AudioManager?hl=en#mode_in_communication)). (Android)
+- The SDK automacially adjusts the frame rate of the sending end based on the screen sharing scenario. Especially in document sharing scenarios, this feature avoids exceeding the expected video bitrate on the sending end to improve transmission efficiency and reduce network burden.
+- To help users understand the reasons for more types of remote video state changes, the `remoteVideoStateReasonCodecNotSupport` enumeration has been added to the `onRemoteVideoStateChanged` callback, indicating that the local video decoder does not support decoding the received remote video stream.
+
+#### Issues fixed
+
+This release fixed the following issues:
+
+- Occasional failure of joining a channel when the local system time was not set correctly.
+- When calling the `playEffect` method to play two audio files using the same `soundId`, the first audio file was sometimes played repeatedly.
+- Calling `takeSnapshotEx` once receives the `onSnapshotTaken` callback for multiple times.
+- When the host called the `startAudioMixing` method to play music, sometimes the host couldn't hear the music while the remote users could hear it. (Android)
+- Occasional crashes occurred on certain Android devices. (Android)
+- In channels joined by calling `joinChannelEx` exclusively, calling `setEnableSpeakerphone` is unable to switch audio route from the speaker to the headphone. (Android)
+- Occasionally, noise occurred when the local user listened to their own and remote audio after joining the channel. (macOS)
+- Slow channel reconnection after the connection was interrupted due to network reasons.
+- In screen sharing scenarios, the delay of seeing the shared screen was occasionally higher than expected on some devices.
+- In custom video capturing scenarios, `setBeautyEffectOptions`, `setLowlightEnhanceOptions`, `setVideoDenoiserOptions`, and `setColorEnhanceOptions` could not load extensions automatically.
+
+
+#### API changes
+
+**Added**
+
+- `enableContentInspectEx`
+- `contentInspectImageModeration` in `ContentInspectType`
+- `serverConfig` in `ContentInspectConfig` 
+- `isFeatureAvailableOnDevice`
+- `FeatureType`
+- `setCameraExposureFactor` 
+- `isCameraExposureSupported` 
+- `preloadChannel`
+- `preloadChannelWithUserAccount`
+- `updatePreloadChannelToken`
+- `setRouteInCommunicationMode` (Android)
+- `CodecCapLevels`
+- `VideoCodecCapabilityLevel`
+- `backgroundColor` in `VideoCanvas`
+- `codecLevels` in `CodecCapInfo`
+- `remoteVideoStateReasonCodecNotSupport` in `RemoteVideoStateReason`
+
+
+
 ## v4.2.1
 
 This version was released on June 21, 2023.

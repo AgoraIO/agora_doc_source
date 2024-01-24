@@ -1,3 +1,121 @@
+## Known issues and limitations
+
+**Android 14 screen sharing issue (Android)**
+
+On Android 14 devices (such as OnePlus 11), screen sharing may not be available when `targetSdkVersion` is set to 34. For example, half of the shared screen may be black. To avoid this issue, Agora recommends setting `targetSdkVersion` to 34 or below. However, this may cause the screen sharing process to be interrupted when switching between portrait and landscape mode. In this case, a window will pop up on the device asking if you want to start recording the screen. After confirming, you can resume screen sharing.
+
+**AirPods Pro Bluetooth connection issue (iOS)**
+
+AirPods Pro does not support A2DP protocol in communication audio mode, which may lead to connection failure in that mode.
+
+## v6.2.6
+
+v6.2.6 was released on November xx, 2023.
+
+#### Issues fixed
+
+This version fixed the following issues that may occur when using Android 14:
+
+- When switching between portrait and landscape modes during screen sharing, the screen sharing process was interrupted. To restart screen sharing, users need to confirm recording the screen in the pop-up window. (Android)
+- When integrating the SDK, setting the Android `targetSdkVersion` to 34 may cause screen sharing to be unavailable or even cause the app to crash. (Android)
+- Calling `startScreenCapture` without sharing video (setting `captureVideo` to `false`) and then calling `updateScreenCaptureParameters` to share video (setting `captureVideo` to `true`) resulted in a frozen shared screen at the receiving end. (Android)
+- When screen sharing in landscape mode, the shared screen seen by the audience was divided into two parts: one side of the screen was compressed; the other side was black. (Android)
+
+This version also fixed the following issues:
+
+- When using an iOS 16 or later device with Bluetooth headphones connected before joining the channel, the audio routing after joining the channel was not as expected: audio was played from the speaker, not the Bluetooth headphones. (iOS)
+- In live streaming scenarios, the video on the audience end occasionally distorted. (Android)
+- In specific scenarios (such as when the network packet loss rate was high or when the broadcaster left the channel without destroying the engine and then re-joined the channel), the video on the receiving end stuttered or froze.
+
+## v6.2.4
+
+v6.2.4 was released on October xx, 2023.
+
+This version fixes the incorrect `CFBundleShortVersionString` version number in `AgoraRtcWrapper` which caused the app to be unable to be submitted to the App Store. (iOS, macOS)
+
+## v6.2.3
+
+v6.2.3 was released on September xx, 2023.
+
+#### New features
+
+1. **Update video screenshot and upload**
+
+   To facilitate the integration of third-party video moderation services from Agora Extensions Marketplace, this version has the following changes:
+
+   - The `contentInspectImageModeration` enumeration is added in `ContentInspectType` which means using video moderation extensions from Agora Extensions Marketplace to take video screenshots and upload them.
+   - An optional parameter `serverConfig` is added in `ContentInspectConfig`, which is for server-side configuration related to video screenshot and upload via extensions from Agora Extensions Marketplace. By configuring this parameter, you can integrate multiple third-party moderation extensions and achieve flexible control over extension switches and other features. For more details, please contact [technical support](mailto:support@agora.io).
+
+   In addition, this version also introduces the `enableContentInspectEx` method, which supports taking screenshots for multiple video streams and uploading them.
+
+2. **ID3D11Texture2D Rendering (Windows)**
+
+   As of this release, the SDK supports video formats of type ID3D11Texture2D, improving the rendering effect of video frames in game scenarios. You can set `format` to `VIDEO_TEXTURE_ID3D11TEXTURE2D` when pushing external raw video frames to the SDK by calling `pushVideoFrame`. By setting the `textureSliceIndex` property, you can determine the ID3D11Texture2D texture object to use.
+
+3. **Local video status error code update (Windows, macOS)**
+
+   In order to help users understand the exact reasons for local video errors in screen sharing scenarios, the following sets of enumerations have been added to the `onLocalVideoStateChanged` callback:
+
+   - `localVideoStreamErrorScreenCapturePaused`(23): Screen capture has been paused. Common scenarios for reporting this error code: The current screen may have been switched to a secure desktop, such as a UAC dialog box or Winlogon desktop.
+   - `localVideoStreamErrorScreenCaptureResumed`(24): Screen capture has resumed from the paused state.
+   - `localVideoStreamErrorScreenCaptureWindowHidden`(25): The window being captured on the current screen is in a hidden state and is not visible on the current screen.
+   - `localVideoStreamErrorScreenCaptureWindowRecoverFromHidden`(26): The window for screen capture has been restored from the hidden state.
+   - `localVideoStreamErrorScreenCaptureWindowRecoverFromMinimized`(27): The window for screen capture has been restored from the minimized state.
+
+4. **Check device support for advanced features**
+
+   This version adds the `isFeatureAvailableOnDevice` method to check whether the capability of the current device meets the requirements of the specified advanced feature, such as virtual background and image enhancement.
+
+   Before using advanced features, you can check whether the current device supports these features based on the call result. This helps to avoid performance degradation or unavailable features when enabling advanced features on low-end devices. Based on the return value of this method, you can decide whether to display or enable the corresponding feature button, or notify the user when the device's capabilities are insufficient.
+
+   In addition, since this version, calling `enableVirtualBackground` and `setBeautyEffectOptions` automatically triggers a test on the capability of the current device. When the device is considered underperformed, the error code `-4:errNotSupported` is returned, indicating the device does not support the feature.
+
+#### Improvements
+
+1. **Optimize virtual background memory usage**
+
+   This version has upgraded the virtual background algorithm, reducing the memory usage of the virtual background feature. Compared to the previous version, the memory consumption of the app during the use of the virtual background feature on low-end devices has been reduced by approximately 4% to 10% (specific values may vary depending on the device model and platform).
+
+2. **Screen sharing scenario optimization**
+
+   This release optimizes the performance and encoding efficiency in ultra-high-definition (4K, 60 fps) game sharing scenarios, effectively reducing the system resource usage during screen sharing. (Windows)
+
+**Other Improvements**
+
+This release optimizes the logic of Token parsing, in order to prevent an app from crash when an invalid token is passed in.
+
+#### Issues fixed
+
+This release fixed the following issues:
+
+- Occasional crashes and dropped frames occurred in screen sharing scenarios. (Windows)
+- Occasional crashes when joining a channel. (macOS)
+- Occasional failure of joining a channel when the local system time was not set correctly.
+- When calling the `playEffect` method to play two audio files using the same `soundId`, the first audio file was sometimes played repeatedly.
+- When the host called the `startAudioMixing` method to play music, sometimes the host couldn't hear the music while the remote users could hear it. (Android)
+- Occasional crashes occurred on certain Android devices. (Android)
+- Calling `takeSnapshotEx` once receives the `onSnapshotTaken` callback for multiple times.
+- In channels joined by calling `joinChannelEx` exclusively, calling `setEnableSpeakerphone` is unable to switch audio route from the speaker to the headphone. (Android)
+
+#### API changes
+
+**Added**
+
+- The following enumerations in `onLocalVideoStateChanged` (Windows, macOS):
+  - `localVideoStreamErrorScreenCapturePaused`
+  - `localVideoStreamErrorScreenCaptureResumed`
+  - `localVideoStreamErrorScreenCaptureWindowHidden`
+  - `localVideoStreamErrorScreenCaptureWindowRecoverFromHidden`
+  - `localVideoStreamErrorScreenCaptureWindowRecoverFromMinimized`
+- ``textureSliceIndex` members in `ExternalVideoFrame`. (Windows)
+- `videoTextureId3d11texture2d` in `VideoPixelFormat`. (Windows)
+- `enableContentInspectEx`
+- `contentInspectImageModeration` in `ContentInspectType`.
+- `serverConfig` in `ContentInspectConfig`
+- `isFeatureAvailableOnDevice`
+- `FeatureType`
+
+
 ## v6.2.2
 
 v6.2.2 was released on July xx, 2023.

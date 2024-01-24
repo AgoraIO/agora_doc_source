@@ -75,7 +75,7 @@
 @property(assign, nonatomic) float upLength;
 @property(assign, nonatomic) float audioAttenuation;
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct SpatialAudioZone {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct SpatialAudioZone {
   int zoneSetId;
   float position[3];
   float forward[3];
@@ -86,6 +86,30 @@
   float upLength;
   float audioAttenuation;
   SpatialAudioZone() = default;
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FSpatialAudioZone {
+
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FSpatialAudioZone&quot;)
+	int zoneSetId;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FSpatialAudioZone&quot;)
+	FVector position;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FSpatialAudioZone&quot;)
+	FVector forward;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FSpatialAudioZone&quot;)
+	FVector right;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FSpatialAudioZone&quot;)
+	FVector up;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FSpatialAudioZone&quot;)
+	float forwardLength;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FSpatialAudioZone&quot;)
+	float rightLength;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FSpatialAudioZone&quot;)
+	float upLength;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FSpatialAudioZone&quot;)
+	float audioAttenuation;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class SpatialAudioZone {
   zoneSetId?: number;

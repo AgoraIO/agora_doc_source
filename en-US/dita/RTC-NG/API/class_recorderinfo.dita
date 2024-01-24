@@ -22,13 +22,24 @@
 @property(copy, nonatomic) NSString* _Nonnull recorderFileName;
 @property(assign, nonatomic) NSUInteger durationMs;
 @property(assign, nonatomic) NSUInteger fileSize;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct RecorderInfo {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct RecorderInfo {
   const char* fileName;
   unsigned int durationMs;
   unsigned int fileSize;
 
   RecorderInfo() : fileName(NULL), durationMs(0), fileSize(0) {}
   RecorderInfo(const char* name, unsigned int dur, unsigned int size) : fileName(name), durationMs(dur), fileSize(size) {}
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FRecorderInfo {
+
+	GENERATED_BODY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RecorderInfo&quot;)
+	FString fileName;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RecorderInfo&quot;)
+	int64 durationMs;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RecorderInfo&quot;)
+	int64 fileSize;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class RecorderInfo {
   

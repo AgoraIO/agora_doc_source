@@ -16,13 +16,14 @@
             <codeblock props="android" outputclass="language-java">public void onProxyConnected(
     String channel, int uid, int proxyType, String localProxyIp, int elapsed) {}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine didProxyConnected:(NSString* _Nonnull)channel withUid:(NSUInteger)uid proxyType:(AgoraProxyType)proxyType localProxyIp:(NSString* _Nonnull)localProxyIp elapsed:(NSInteger)elapsed NS_SWIFT_NAME(rtcEngine(_:didProxyConnected:withUid:proxyType:localProxyIp:elapsed:));</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onProxyConnected(const char* channel, uid_t uid, PROXY_TYPE proxyType, const char* localProxyIp, int elapsed) {
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onProxyConnected(const char* channel, uid_t uid, PROXY_TYPE proxyType, const char* localProxyIp, int elapsed) {
   (void)channel;
   (void)uid;
   (void)proxyType;
   (void)localProxyIp;
   (void)elapsed;
 }</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnProxyConnected, FString, channel, int64, uid, EPROXY_TYPE, proxyType, FString, localProxyIp, int, elapsed);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onProxyConnected?(
     channel: string,
     uid: number,

@@ -19,8 +19,8 @@
             streamConfig:(AgoraSimulcastStreamConfig* _Nonnull)streamConfig;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setDualStreamMode(SIMULCAST_STREAM_MODE mode,
                                  const SimulcastStreamConfig&amp; streamConfig) = 0;</codeblock>
-            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|RtcEngineProxy")
-int SetDualStreamMode(ESIMULCAST_STREAM_MODE mode, const FSimulcastStreamConfig&amp; streamConfig);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int SetDualStreamMode(FENUMWRAP_SIMULCAST_STREAM_MODE mode, const FSimulcastStreamConfig&amp; streamConfig);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setDualStreamMode(
     mode: SimulcastStreamMode,
     streamConfig?: SimulcastStreamConfig
@@ -46,31 +46,28 @@ int SetDualStreamMode(ESIMULCAST_STREAM_MODE mode, const FSimulcastStreamConfig&
             <p props="native unreal unity cs">该方法跟 <xref keyref="setDualStreamMode"/> 的区别在于，该方法还可以进行视频小流的配置，SDK 会根据 <parmname>streamConfig</parmname> 中的配置发送小流。</p>
             <note id="note">该方法和 <xref keyref="enableDualStreamMode3"/> 的区别与联系如下：
                 <ul>
-                <li>调用该方法并设置 <parmname>mode</parmname> 为 <apiname keyref="DISABLE_SIMULCAST_STREAM"/> 时，跟调用 <apiname keyref="enableDualStreamMode2"/> 并设置 <parmname>enabled</parmname> 为 <codeph><ph keyref="false"/></codeph> 的效果相同。</li>
-                <li>调用该方法并设置 <parmname>mode</parmname> 为 <apiname keyref="ENABLE_SIMULCAST_STREAM"/> 时，跟调用 <apiname keyref="enableDualStreamMode2"/> 并设置 <parmname>enabled</parmname> 为 <codeph><ph keyref="true"/></codeph> 的效果相同。</li>
+                <li>调用该方法并设置 <parmname>mode</parmname> 为 <apiname keyref="DISABLE_SIMULCAST_STREAM"/> 时，跟调用 <apiname keyref="enableDualStreamMode3"/> 并设置 <parmname>enabled</parmname> 为 <codeph><ph keyref="false"/></codeph> 的效果相同。</li>
+                <li>调用该方法并设置 <parmname>mode</parmname> 为 <apiname keyref="ENABLE_SIMULCAST_STREAM"/> 时，跟调用 <apiname keyref="enableDualStreamMode3"/> 并设置 <parmname>enabled</parmname> 为 <codeph><ph keyref="true"/></codeph> 的效果相同。</li>
                 <li>两种方法均可在加入频道前后调用，若同时使用，则以后调用的方法中的设置为准。</li>
                 </ul></note>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry>
-                    <pt>mode</pt>
-                    <pd>发送视频流的模式。详见 <xref keyref="SIMULCAST_STREAM_MODE"/>。</pd>
+            <plentry conkeyref="setDualStreamMode/mode">
+                <pt/>
+                <pd/>
             </plentry>
-            <plentry>
-                <pt>streamConfig</pt>
-                <pd>
-                    <p>视频小流的配置。详见 <xref keyref="SimulcastStreamConfig"/>。</p>
-                    <note>当设置 <parmname>mode</parmname> 为 <apiname keyref="DISABLE_SIMULCAST_STREAM"/> 时，再设置 <parmname>streamConfig</parmname> 不会生效。</note>
-                </pd>
+            <plentry conkeyref="enableDualStreamMode3/streamconfig">
+                <pt/>
+                <pd/>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul id="ul_bpp_x2z_hqb">
-            <li props="native unreal bp electron rn unity cs">0: 方法调用成功。</li>
+            <ul id="ul_bpp_x2z_hqb" props="native unreal bp electron rn unity cs">
+            <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。 <ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
             </ul> </section>
     </refbody>

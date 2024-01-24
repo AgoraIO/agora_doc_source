@@ -19,7 +19,7 @@
                   delay:(NSUInteger)delay
                   lost:(NSUInteger)lost
                   rxKBitRate:(NSUInteger)rxKBitRate;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onRemoteVideoTransportStats(uid_t uid,
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onRemoteVideoTransportStats(uid_t uid,
      unsigned short delay,
      unsigned short lost,
      unsigned short rxKBitRate) {
@@ -28,6 +28,7 @@
      (void)lost;
      (void)rxKBitRate;
      }</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnRemoteVideoTransportStats, int64, uid, int, delay, int, lost, int, rxKBitRate);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onRemoteVideoTransportStats?(
     connection: RtcConnection,
     remoteUid: number,

@@ -16,19 +16,31 @@
 @property (assign, nonatomic) NSInteger fileSizeInKB;
 @property (assign, nonatomic) AgoraLogLevel level;
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct LogConfig
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct LogConfig
 {
   const char* filePath;
   uint32_t fileSizeInKB;
   LOG_LEVEL level;
   LogConfig() : filePath(NULL), fileSizeInKB(DEFAULT_LOG_SIZE_IN_KB), level(OPTIONAL_LOG_LEVEL_SPECIFIER LOG_LEVEL_INFO) {}
 };</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FLogConfig {
+
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LogConfig&quot;)
+	FString filePath;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LogConfig&quot;)
+	int64 fileSizeInKB = 1024;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LogConfig&quot;)
+	TEnumAsByte&lt;ELOG_LEVEL&gt;	level = ELOG_LEVEL::LOG_LEVEL_INFO;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LogConfig {
-  
+
   filePath?: string;
-  
+
   fileSizeInKB?: number;
-  
+
   level?: LogLevel;
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class LogConfig
@@ -51,11 +63,11 @@
         public LOG_LEVEL level { set; get; }
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class LogConfig {
-  
+
   filePath?: string;
-  
+
   fileSizeInKB?: number;
-  
+
   level?: LogLevel;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class LogConfig {
@@ -81,9 +93,6 @@
                 <pd>
                     <p>日志文件的完整路径。请确保你指定的目录存在且可写。你可以通过该参数修改日志文件名。</p>
                     <p props="cpp unreal bp unity electron rn cs">默认路径为：
-
-
-
                     <ul>
                     <li props="cpp unreal bp unity rn flutter">Android：<filepath id="android-path">/storage/emulated/0/Android/data/&lt;packagename&gt;/files/agorasdk.log</filepath>。</li>
                     <li props="cpp unreal bp unity rn flutter">iOS：<filepath id="ios-path">App Sandbox/Library/caches/agorasdk.log</filepath>。</li>

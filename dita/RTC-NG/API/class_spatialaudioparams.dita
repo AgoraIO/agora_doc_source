@@ -58,7 +58,7 @@
 @property(assign, nonatomic) double speaker_attenuation;
 @property(assign, nonatomic) BOOL enable_doppler;
 @end</codeblock>
-      <codeblock props="cpp unreal bp" outputclass="language-cpp">struct SpatialAudioParams {
+      <codeblock props="cpp unreal" outputclass="language-cpp">struct SpatialAudioParams {
   Optional&lt;double> speaker_azimuth;
   Optional&lt;double> speaker_elevation;
   Optional&lt;double> speaker_distance;
@@ -67,6 +67,44 @@
   Optional&lt;bool> enable_air_absorb;
   Optional&lt;double> speaker_attenuation;
   Optional&lt;bool> enable_doppler;
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FSpatialAudioParams
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
+	bool speaker_azimuth_SetValue;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
+	float speaker_azimuth;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
+	bool speaker_elevation_SetValue;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
+	float speaker_elevation;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
+	bool speaker_distance_SetValue;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
+	float speaker_distance;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
+	bool speaker_orientation_SetValue;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
+	int speaker_orientation;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
+	bool enable_blur_SetValue;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
+	bool enable_blur;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
+	bool enable_air_absorb_SetValue;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
+	bool enable_air_absorb;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
+	bool speaker_attenuation_SetValue;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
+	float speaker_attenuation;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
+	bool enable_doppler_SetValue;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
+	bool enable_doppler;
 };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class SpatialAudioParams {
   

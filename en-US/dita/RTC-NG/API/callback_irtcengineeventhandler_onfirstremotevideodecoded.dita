@@ -16,7 +16,7 @@
             <codeblock props="android" outputclass="language-java">public void onFirstRemoteVideoDecoded(int uid, int width, int height, int elapsed) {}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
         firstRemoteVideoDecodedOfUid:(NSUInteger)uid size:(CGSize)size elapsed:(NSInteger)elapsed;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onFirstRemoteVideoDecoded(uid_t uid,
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onFirstRemoteVideoDecoded(uid_t uid,
     int width,
     int height,
     int elapsed) {
@@ -25,6 +25,7 @@
     (void)height;
     (void)elapsed;
     }</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnFirstRemoteVideoDecoded, int64, uid, int, width, int, height, int, elapsed);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onFirstRemoteVideoDecoded?(
     connection: RtcConnection,
     remoteUid: number,

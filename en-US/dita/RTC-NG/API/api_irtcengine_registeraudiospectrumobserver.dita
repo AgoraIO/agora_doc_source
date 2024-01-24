@@ -15,8 +15,10 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int registerAudioSpectrumObserver(IAudioSpectrumObserver observer);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)registerAudioSpectrumDelegate:(id&lt;AgoraAudioSpectrumDelegate&gt; _Nullable )delegate;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int registerAudioSpectrumObserver(agora::media::IAudioSpectrumObserver * observer) = 0;
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int registerAudioSpectrumObserver(agora::media::IAudioSpectrumObserver * observer) = 0;
 </codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int RegisterAudioSpectrumObserver(UIAudioSpectrumObserver* observer);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract registerAudioSpectrumObserver(
     observer: IAudioSpectrumObserver
   ): number;</codeblock>
@@ -25,7 +27,7 @@
     observer: IAudioSpectrumObserver
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">void registerAudioSpectrumObserver(AudioSpectrumObserver observer);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
@@ -44,13 +46,13 @@
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul id="ul_jzc_zjf_3qb" props="native unreal bp unity cs">
             <li>0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul>
-            <p props="rn electron">One <xref keyref="IAudioSpectrumObserver" /> object.</p>
+            <p props="rn electron">One <xref keyref="IAudioSpectrumObserver"/> object.</p>
         </section>
     </refbody>
 </reference>

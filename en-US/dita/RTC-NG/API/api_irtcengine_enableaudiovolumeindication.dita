@@ -17,7 +17,9 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableAudioVolumeIndication:(NSInteger)interval
                             smooth:(NSInteger)smooth
                             reportVad:(BOOL)reportVad;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int enableAudioVolumeIndication(int interval, int smooth, bool reportVad) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int enableAudioVolumeIndication(int interval, int smooth, bool reportVad) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int EnableAudioVolumeIndication(int interval, int smooth, bool reportVad);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract enableAudioVolumeIndication(
     interval: number,
     smooth: number,
@@ -31,7 +33,7 @@
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableAudioVolumeIndication(
     {required int interval, required int smooth, required bool reportVad});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
@@ -44,7 +46,7 @@
                 <pt>interval</pt>
                 <pd>Sets the time interval between two consecutive volume indications:<ul>
                     <li>≤ 0: Disables the volume indication.</li>
-                    <li>&gt; 0: Time interval (ms) between two consecutive volume indications. The lowest value is 50.</li>
+                    <li>> 0: Time interval (ms) between two consecutive volume indications. Ensure this parameter is set to a value greater than 10, otherwise you will not receive the <apiname keyref="onAudioVolumeIndication"/> callback. Agora recommends that this value is set as greater than 100.</li>
                     </ul></pd>
             </plentry>
             <plentry id="smooth">
@@ -61,11 +63,11 @@
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul>
             <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>
 </reference>

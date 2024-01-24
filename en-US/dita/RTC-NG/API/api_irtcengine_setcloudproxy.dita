@@ -15,19 +15,21 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setCloudProxy(int proxyType);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setCloudProxy:(AgoraCloudProxyType)proxyType NS_SWIFT_NAME(setCloudProxy(_:));</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int setCloudProxy(CLOUD_PROXY_TYPE proxyType) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setCloudProxy(CLOUD_PROXY_TYPE proxyType) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int SetCloudProxy(ECLOUD_PROXY_TYPE proxyType);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setCloudProxy(proxyType: CloudProxyType): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetCloudProxy(CLOUD_PROXY_TYPE proxyType);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setCloudProxy(proxyType: CloudProxyType): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setCloudProxy(CloudProxyType proxyType);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
             <p>When users' network access is restricted by a firewall, configure the firewall to allow specific IP addresses and ports provided by Agora; then, call this method to enable the cloud <parmname>proxyType</parmname> and set the cloud proxy type with the proxyType parameter.</p>
             <p>After successfully connecting to the cloud proxy, the SDK triggers the <xref keyref="onConnectionStateChanged" /> (<ph keyref="CONNECTION_STATE_CONNECTING" />, <ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER" />) callback.</p>
-            <p>To disable the cloud proxy that has been set, call the <codeph><apiname keyref="setCloudProxy" /> (<apiname keyref="NONE_PROXY" />)</codeph>.</p>
-            <p>To change the cloud proxy type that has been set, call the <codeph><apiname keyref="setCloudProxy" /> (<apiname keyref="NONE_PROXY" />)</codeph> first, and then call the <apiname keyref="setCloudProxy" /> to set the <parmname>proxyType</parmname> you want.</p>
+            <p>To disable the cloud proxy that has been set, call the <codeph><apiname keyref="setCloudProxy" />(<ph keyref="NONE_PROXY" />)</codeph>.</p>
+            <p>To change the cloud proxy type that has been set, call the  <apiname keyref="setCloudProxy" /><codeph>(<ph keyref="NONE_PROXY" />) </codeph> first, and then call the <apiname keyref="setCloudProxy" /> to set the <parmname>proxyType</parmname> you want.</p>
             <note type="attention">
             <ul>
             <li>Agora recommends that you call this method after joining a channel.</li>
@@ -51,11 +53,11 @@
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
-            <ul>
-            <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li> &lt; 0: Failure.<ul>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <ul props="native unreal bp electron unity rn cs">
+            <li>0: Success.</li>
+            <li> &lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul>
                 <li>-2: The parameter is invalid.</li>
                 <li>-7: The SDK is not initialized.</li>
                 </ul> </li>

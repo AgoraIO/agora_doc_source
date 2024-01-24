@@ -17,8 +17,9 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">typedef long long(^AgoraRtcMediaPlayerCustomSourceOnSeekCallback)(id&lt;AgoraRtcMediaPlayerProtocol&gt; _Nonnull playerKit, long long offset, int whence);
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int64_t onSeek(int64_t offset, int whence) = 0;
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int64_t onSeek(int64_t offset, int whence) = 0;
 </codeblock>
+            <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnSeek, int64, offset, int, whence);</codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity cs" outputclass="language-csharp">public virtual Int64 OnSeek(Int64 offset, int whence)
         {
@@ -28,8 +29,7 @@
             <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
-            <p props="android ios">When you call the <xref keyref="openWithMediaSource" /> method to open a custom media resource, the SDK triggers this callback to request the specified location in the media resource.</p>
-            <p props="cpp unreal bp mac">When you call the <xref keyref="openWithCustomSource" /> method to open a custom media resource, the SDK triggers this callback to request the specified location in the media resource.</p>
+            <p>When you call the <xref keyref="openWithMediaSource"/> or <xref keyref="open"/> method to open a custom media resource, the SDK triggers this callback to request the specified location in the media resource.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>

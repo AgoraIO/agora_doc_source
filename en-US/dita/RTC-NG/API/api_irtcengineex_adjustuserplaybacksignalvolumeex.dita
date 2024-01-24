@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_adjustuserplaybacksignalvolumeex">
-    <title><ph keyref="adjustUserPlaybackSignalVolumeEx" /></title>
-    <shortdesc id="short" conkeyref="adjustUserPlaybackSignalVolume/short" />
+    <title><ph keyref="adjustUserPlaybackSignalVolumeEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Adjusts the playback signal volume of a specified remote user.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="adjustUserPlaybackSignalVolumeEx" />
+                <indexterm keyref="adjustUserPlaybackSignalVolumeEx"/>
             </keywords>
         </metadata>
     </prolog>
@@ -18,7 +18,9 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)adjustUserPlaybackSignalVolumeEx:(NSUInteger)uid
                               volume:(NSInteger)volume
                           connection:(AgoraRtcConnection* _Nonnull)connection;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int adjustUserPlaybackSignalVolumeEx(unsigned int uid, int volume, const RtcConnection&amp; connection) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int adjustUserPlaybackSignalVolumeEx(unsigned int uid, int volume, const RtcConnection&amp; connection) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int AdjustUserPlaybackSignalVolumeEx(int64 uid, int volume, const FRtcConnection&amp; connection);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract adjustUserPlaybackSignalVolumeEx(
     uid: number,
     volume: number,
@@ -30,11 +32,11 @@
     volume: number,
     connection: RtcConnection
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; adjustUserPlaybackSignalVolumeEx(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> adjustUserPlaybackSignalVolumeEx(
       {required int uid,
       required int volume,
       required RtcConnection connection});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
@@ -54,24 +56,24 @@
             <title>Parameters</title>
             <parml>
             <plentry conkeyref="adjustUserPlaybackSignalVolume/uid">
-                <pt />
-                <pd />
+                <pt/>
+                <pd/>
             </plentry>
             <plentry conkeyref="adjustUserPlaybackSignalVolume/volume">
-                <pt />
-                <pd />
+                <pt/>
+                <pd/>
             </plentry>
             <plentry conkeyref="joinChannelEx/connection">
-                <pt />
-                <pd />
+                <pt/>
+                <pd/>
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
-            <ul>
-            <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <ul props="native unreal bp electron unity rn cs">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>
 </reference>

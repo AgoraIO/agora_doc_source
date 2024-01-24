@@ -20,8 +20,9 @@
                 elapsedTime:(NSInteger)elapsedTime
                     message:(NSString *_Nullable)message;
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onPlayerEvent(media::base::MEDIA_PLAYER_EVENT eventCode, int64_t elapsedTime, const char* message) = 0;
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onPlayerEvent(media::base::MEDIA_PLAYER_EVENT eventCode, int64_t elapsedTime, const char* message) = 0;
 </codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnPlayerEvent, EMEDIA_PLAYER_EVENT, eventCode, int64, elapsedTime, const FString, message);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onPlayerEvent?(
     eventCode: MediaPlayerEvent,
     elapsedTime: number,

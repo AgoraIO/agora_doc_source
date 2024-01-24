@@ -18,7 +18,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)addPublishStreamUrlEx:(NSString * _Nonnull)url
           transcodingEnabled:(BOOL)transcodingEnabled
                   connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int addPublishStreamUrlEx(const char* url, bool transcodingEnabled, const RtcConnection&amp; connection) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int addPublishStreamUrlEx(const char* url, bool transcodingEnabled, const RtcConnection&amp; connection) = 0;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int AddPublishStreamUrlEx(string url, bool transcodingEnabled, RtcConnection connection);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract addPublishStreamUrlEx(url: string, transcodingEnabled: boolean, connection: RtcConnection): number;</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract addPublishStreamUrlEx(
@@ -62,8 +62,8 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul>
-            <li props="native unreal bp unity rn electron cs">0: 方法调用成功。</li>
+            <ul props="native unreal bp unity rn electron cs">
+            <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph>
                 <ul>
                 <li>-2: 参数无效，一般是 URL 为空或是长度为 0 的字符串。</li>

@@ -21,9 +21,11 @@
                    delegate:(id&lt;AgoraRtcEngineDelegate&gt; _Nullable)delegate
                mediaOptions:(AgoraRtcChannelMediaOptions* _Nonnull)mediaOptions
                 joinSuccess:(void(^ _Nullable)(NSString* _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int joinChannelWithUserAccountEx(const char* token, const char* channelId,
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int joinChannelWithUserAccountEx(const char* token, const char* channelId,
                                          const char* userAccount, const ChannelMediaOptions&amp; options,
                                          IRtcEngineEventHandler* eventHandler) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int JoinChannelWithUserAccountEx(FString token, FString channelId, FString userAccount, const FChannelMediaOptions&amp; options, UIRtcEngineEventHandler* eventHandler);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract joinChannelWithUserAccountEx(
     token: string,
     channelId: string,
@@ -43,7 +45,7 @@
     required String channelId,
     required String userAccount,
     required ChannelMediaOptions options});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
@@ -88,11 +90,11 @@
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
-            <ul>
-            <li props="native unreal bp electron rn">0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <ul props="native unreal bp electron rn">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>
 </reference>

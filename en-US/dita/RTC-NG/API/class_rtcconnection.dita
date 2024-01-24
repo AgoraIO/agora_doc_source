@@ -54,13 +54,23 @@
 @property (nonatomic, assign) NSUInteger localUid;
 
 @end</codeblock>
-      <codeblock props="cpp unreal bp" outputclass="language-cpp">struct RtcConnection {
+      <codeblock props="cpp unreal" outputclass="language-cpp">struct RtcConnection {
   const char* channelId;
   uid_t localUid;
 
   RtcConnection() : RtcConnection(NULL, 0) {}
   RtcConnection(const char* channel_id, uid_t local_uid)
       : channelId(channel_id), localUid(local_uid) {}
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FRtcConnection
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcConnection&quot;)
+	FString channelId;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcConnection&quot;)
+	int64 localUid;
 };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class RtcConnection {
   

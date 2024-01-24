@@ -15,12 +15,14 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract DeviceInfo getAudioDeviceInfo();</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec" />
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int getAudioDeviceInfo(DeviceInfo&amp; deviceInfo) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int getAudioDeviceInfo(DeviceInfo&amp; deviceInfo) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int GetAudioDeviceInfo(FDeviceInfo&amp; deviceInfo);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract getAudioDeviceInfo(): DeviceInfo;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int GetAudioDeviceInfo(ref DeviceInfoMobile deviceInfo);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract getAudioDeviceInfo(): DeviceInfo;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;DeviceInfo&gt; getAudioDeviceInfo();</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
@@ -35,25 +37,25 @@
             <parml>
             <plentry props="cpp unreal bp">
                 <pt>deviceInfo</pt>
-                <pd>Input and output parameter. A <xref keyref="DeviceInfo" /> object that identifies the audio device information.<ul>
+                <pd>Input and output parameter. A <xref keyref="DeviceInfo"/> object that identifies the audio device information.<ul>
                     <li>Input value: A <apiname keyref="DeviceInfo" /> object.</li>
-                    <li>Output value: A <apiname keyref="DeviceInfo" /> object containing audio device information.</li>
+                    <li>Output value: A <apiname keyref="DeviceInfo"/> object containing audio device information.</li>
                     </ul> </pd>
             </plentry>
             <plentry props="unity cs">
                 <pt>deviceInfo</pt>
-                <pd>Audio frame information. See <xref keyref="DeviceInfo" />.</pd>
+                <pd>Audio frame information. See <xref keyref="DeviceInfo"/>.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title>Returns</title>
             <ul props="cpp unreal bp unity cs">
             <li>0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul>
-            <p props="android rn electron flutter">The <xref keyref="DeviceInfo" /> object that identifies the audio device information.<ul>
+            <p props="android rn electron flutter">The <xref keyref="DeviceInfo"/> object that identifies the audio device information.<ul>
                 <li>Not null: Success.</li>
-                <li>Null: Failure.</li>
+                <li>Null: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
                 </ul></p>
         </section>
     </refbody>

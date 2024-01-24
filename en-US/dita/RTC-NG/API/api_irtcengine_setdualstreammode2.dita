@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setdualstreammode2">
-    <title><ph keyref="setDualStreamMode2" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets dual-stream mode configuration on the sender, and sets the low-quality video stream.</ph></shortdesc>
+    <title><ph keyref="setDualStreamMode2"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets dual-stream mode configuration on the sender side.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setDualStreamMode2" />
+                <indexterm keyref="setDualStreamMode2"/>
             </keywords>
         </metadata>
     </prolog>
@@ -19,8 +19,8 @@
             streamConfig:(AgoraSimulcastStreamConfig* _Nonnull)streamConfig;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setDualStreamMode(SIMULCAST_STREAM_MODE mode,
                                  const SimulcastStreamConfig&amp; streamConfig) = 0;</codeblock>
-            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|RtcEngineProxy")
-int SetDualStreamMode(ESIMULCAST_STREAM_MODE mode, const FSimulcastStreamConfig&amp; streamConfig);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int SetDualStreamMode(FENUMWRAP_SIMULCAST_STREAM_MODE mode, const FSimulcastStreamConfig&amp; streamConfig);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setDualStreamMode(
     mode: SimulcastStreamMode,
     streamConfig?: SimulcastStreamConfig
@@ -30,9 +30,9 @@ int SetDualStreamMode(ESIMULCAST_STREAM_MODE mode, const FSimulcastStreamConfig&
     mode: SimulcastStreamMode,
     streamConfig?: SimulcastStreamConfig
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setDualStreamMode(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setDualStreamMode(
       {required SimulcastStreamMode mode, SimulcastStreamConfig? streamConfig});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
@@ -42,35 +42,32 @@ int SetDualStreamMode(ESIMULCAST_STREAM_MODE mode, const FSimulcastStreamConfig&
                 <dd>v4.0.1</dd>
             </dlentry>
             </dl>
-            <p conkeyref="setDualStreamMode/desc" />
-            <p props="native unreal unity cs">The difference between this method and <xref keyref="setDualStreamMode" /> is that this method can also configure the low-quality video stream, and the SDK sends the stream according to the configuration in <parmname>streamConfig</parmname>.</p>
-            <note id="note">The difference and connection between this method and <xref keyref="enableDualStreamMode3" /> is as follows:<ul>
-                <li>When calling this method and setting <parmname>mode</parmname> to <apiname keyref="DISABLE_SIMULCAST_STREAM" />, it has the same effect as calling <apiname keyref="enableDualStreamMode2" /> and setting <parmname>enabled</parmname> to <codeph><ph keyref="false" /></codeph>.</li>
-                <li>When calling this method and setting <parmname>mode</parmname> to <apiname keyref="ENABLE_SIMULCAST_STREAM" />, it has the same effect as calling <apiname keyref="enableDualStreamMode2" /> and setting <parmname>enabled</parmname> to <codeph><ph keyref="true" /></codeph>.</li>
+            <p conkeyref="setDualStreamMode/desc"/>
+            <p props="native unreal unity cs">The difference between this method and <xref keyref="setDualStreamMode"/> is that this method can also configure the low-quality video stream, and the SDK sends the stream according to the configuration in <parmname>streamConfig</parmname>.</p>
+            <note id="note">The difference and connection between this method and <xref keyref="enableDualStreamMode3"/> is as follows:<ul>
+                <li>When calling this method and setting <parmname>mode</parmname> to <apiname keyref="DISABLE_SIMULCAST_STREAM"/>, it has the same effect as calling <apiname keyref="enableDualStreamMode2"/> and setting <parmname>enabled</parmname> to <codeph><ph keyref="false"/></codeph>.</li>
+                <li>When calling this method and setting <parmname>mode</parmname> to <apiname keyref="ENABLE_SIMULCAST_STREAM"/>, it has the same effect as calling <apiname keyref="enableDualStreamMode2"/> and setting <parmname>enabled</parmname> to <codeph><ph keyref="true"/></codeph>.</li>
                 <li>Both methods can be called before and after joining a channel. If both methods are used, the settings in the method called later takes precedence.</li>
                 </ul></note>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry>
-                    <pt>mode</pt>
-                    <pd>The mode in which the video stream is sent. See <xref keyref="SIMULCAST_STREAM_MODE" />.</pd>
+            <plentry conkeyref="setDualStreamMode/mode">
+                <pt/>
+                <pd/>
             </plentry>
-            <plentry>
-                <pt>streamConfig</pt>
-                <pd>
-                    <p>The configuration of the low-quality video stream. See <xref keyref="SimulcastStreamConfig" />.</p>
-                    <note>When setting <parmname>mode</parmname> to <apiname keyref="DISABLE_SIMULCAST_STREAM" />, setting <parmname>streamConfig</parmname> will not take effect.</note>
-                </pd>
+            <plentry conkeyref="enableDualStreamMode3/streamconfig">
+                <pt/>
+                <pd/>
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
-            <ul id="ul_bpp_x2z_hqb">
-            <li props="native unreal bp electron rn unity cs">0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <ul id="ul_bpp_x2z_hqb" props="native unreal bp electron rn unity cs">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>
 </reference>

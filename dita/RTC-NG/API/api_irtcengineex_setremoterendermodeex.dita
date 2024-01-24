@@ -19,8 +19,10 @@
                         mode:(AgoraVideoRenderMode)mode
                       mirror:(AgoraVideoMirrorMode)mirror
                   connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int setRemoteRenderModeEx(uid_t uid, media::base::RENDER_MODE_TYPE renderMode,
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setRemoteRenderModeEx(uid_t uid, media::base::RENDER_MODE_TYPE renderMode,
        VIDEO_MIRROR_MODE_TYPE mirrorMode, const RtcConnection&amp; connection) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int SetRemoteRenderModeEx(int64 uid, ERENDER_MODE_TYPE renderMode, EVIDEO_MIRROR_MODE_TYPE mirrorMode, const FRtcConnection&amp; connection);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setRemoteRenderModeEx(
     uid: number,
     renderMode: RenderModeType,

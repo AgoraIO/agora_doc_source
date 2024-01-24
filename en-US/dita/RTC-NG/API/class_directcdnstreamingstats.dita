@@ -28,12 +28,27 @@
 @property(assign, nonatomic) NSUInteger videoBitrate;
 @property(assign, nonatomic) NSUInteger audioBitrate;
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct DirectCdnStreamingStats {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct DirectCdnStreamingStats {
     int videoWidth;
     int videoHeight;
     int fps;
     int videoBitrate;
     int audioBitrate;
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FDirectCdnStreamingStats {
+
+	GENERATED_BODY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|DirectCdnStreamingStats&quot;)
+	int videoWidth;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|DirectCdnStreamingStats&quot;)
+	int videoHeight;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|DirectCdnStreamingStats&quot;)
+	int fps;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|DirectCdnStreamingStats&quot;)
+	int videoBitrate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|DirectCdnStreamingStats&quot;)
+	int audioBitrate;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class DirectCdnStreamingStats {
   videoWidth?: number;
@@ -80,12 +95,12 @@
   @JsonKey(name: 'audioBitrate')
   final int? audioBitrate;
 
-  factory DirectCdnStreamingStats.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory DirectCdnStreamingStats.fromJson(Map&lt;String, dynamic> json) =>
       _$DirectCdnStreamingStatsFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$DirectCdnStreamingStatsToJson(this);
+  Map&lt;String, dynamic> toJson() => _$DirectCdnStreamingStatsToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>

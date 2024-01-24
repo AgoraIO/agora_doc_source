@@ -28,7 +28,7 @@
 @property(nonatomic, assign) AgoraLowlightEnhanceMode mode;
 @property(nonatomic, assign) AgoraLowlightEnhanceLevel level;
 @end</codeblock>
-      <codeblock props="cpp unreal bp" outputclass="language-cpp">struct LowlightEnhanceOptions {
+      <codeblock props="cpp unreal" outputclass="language-cpp">struct LowlightEnhanceOptions {
     enum LOW_LIGHT_ENHANCE_MODE {
         LOW_LIGHT_ENHANCE_AUTO = 0,
         LOW_LIGHT_ENHANCE_MANUAL = 1,
@@ -47,6 +47,15 @@
   LowlightEnhanceOptions() : mode(LOW_LIGHT_ENHANCE_AUTO), level(LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY) {}
 };
 </codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FLowlightEnhanceOptions
+{
+	GENERATED_BODY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LowlightEnhanceOptions&quot;)
+	ELOW_LIGHT_ENHANCE_MODE mode = ELOW_LIGHT_ENHANCE_MODE::LOW_LIGHT_ENHANCE_AUTO;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LowlightEnhanceOptions&quot;)
+	ELOW_LIGHT_ENHANCE_LEVEL level = ELOW_LIGHT_ENHANCE_LEVEL::LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY;
+};</codeblock>
       <codeblock props="unity cs" outputclass="language-csharp">public class LowlightEnhanceOptions
     {
         public LOW_LIGHT_ENHANCE_MODE mode { set; get; }

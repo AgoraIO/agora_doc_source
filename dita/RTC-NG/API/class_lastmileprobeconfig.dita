@@ -20,12 +20,26 @@
 @property (assign, nonatomic) NSUInteger expectedUplinkBitrate;
 @property (assign, nonatomic) NSUInteger expectedDownlinkBitrate;
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct LastmileProbeConfig {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct LastmileProbeConfig {
     bool probeUplink;
     bool probeDownlink;
     unsigned int expectedUplinkBitrate;
     unsigned int expectedDownlinkBitrate;
     };</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FLastmileProbeConfig
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LastmileProbeConfig&quot;)
+	bool probeUplink;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LastmileProbeConfig&quot;)
+	bool probeDownlink;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LastmileProbeConfig&quot;)
+	int expectedUplinkBitrate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LastmileProbeConfig&quot;)
+	int expectedDownlinkBitrate;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LastmileProbeConfig {
   
   probeUplink?: boolean;

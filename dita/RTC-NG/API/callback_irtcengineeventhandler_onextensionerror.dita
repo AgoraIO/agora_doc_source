@@ -19,12 +19,13 @@
                      error:(int)error
                    message:(NSString * __nullable)message;
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onExtensionError(const char* provider, const char* extension, int error, const char* message) {
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onExtensionError(const char* provider, const char* extension, int error, const char* message) {
     (void)provider;
     (void)extension;
     (void)error;
     (void)message;
   }</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnExtensionError, FString, provider, FString, extension, int, error, FString, message);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onExtensionError?(
     provider: string,
     extension: string,

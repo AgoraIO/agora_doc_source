@@ -17,8 +17,9 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setColorEnhanceOptions:(BOOL)enable options:(AgoraColorEnhanceOptions* _Nullable)options NS_SWIFT_NAME(setColorEnhanceOptions(_:options:));
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int setColorEnhanceOptions(bool enabled, const ColorEnhanceOptions&amp; options) = 0;
-</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setColorEnhanceOptions(bool enabled, const ColorEnhanceOptions&amp; options, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int SetColorEnhanceOptions(bool enabled, const FColorEnhanceOptions&amp; options, EMEDIA_SOURCE_TYPE type);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setColorEnhanceOptions(
     enabled: boolean,
     options: ColorEnhanceOptions,
@@ -40,7 +41,7 @@
             <title>详情</title>
             <p>摄像头采集到的视频画面可能存在色彩失真的现象。色彩增强功能可以通过智能调节饱和度和对比度等视频特性，提升视频色彩丰富度和色彩还原度，最终使视频画面更生动。</p>
             <p>你可以调用该方法开启色彩增强功能并设置色彩增强的效果。</p>
-            <note type="attention">
+            <note type="attention" id="req">
             <ul>
             <li>请在 <xref keyref="enableVideo" /> 后调用该方法。</li>
             <li>色彩增强对设备性能有一定要求。开启色彩增强后，如果设备出现严重发烫等问题，建议你将色彩增强等级修改为消耗性能较少的等级或关闭色彩增强功能。</li>
@@ -54,7 +55,7 @@
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry>
+            <plentry id="enable">
                 <pt props="android cpp unreal bp unity electron rn flutter cs">enabled</pt>
                 <pt props="ios mac">enable</pt>
                 <pd>是否开启色彩增强功能：
@@ -63,20 +64,20 @@
                     <li><codeph><ph keyref="false" /></codeph>：（默认）关闭色彩增强功能。</li>
                     </ul></pd>
             </plentry>
-            <plentry>
+            <plentry id="options">
                 <pt>options</pt>
                 <pd>色彩增强选项，用于设置色彩增强的效果。详见 <xref keyref="ColorEnhanceOptions" />。</pd>
             </plentry>
-                <plentry conkeyref="setLowlightEnhanceOptions/type" props="cpp unreal bp rn unity electron flutter cs">
-                    <pt/>
-                    <pd/>
-                </plentry>
+            <plentry conkeyref="setLowlightEnhanceOptions/type" props="cpp unreal bp rn unity electron flutter cs">
+                <pt/>
+                <pd/>
+            </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul>
-            <li props="native unreal bp electron unity rn cs">0: 方法调用成功。</li>
+            <ul props="native unreal bp electron unity rn cs">
+            <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
             </ul> </section>
     </refbody>

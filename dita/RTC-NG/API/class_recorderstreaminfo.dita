@@ -16,10 +16,21 @@
 @property (nonatomic, nonatomic) NSUInteger uid;
 
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct RecorderStreamInfo {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct RecorderStreamInfo {
     const char* channelId;
     uid_t uid;
     RecorderStreamInfo() : channelId(NULL), uid(0) {}
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FRecorderStreamInfo {
+
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RecorderStreamInfo&quot;)
+	FString channelId;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RecorderStreamInfo&quot;)
+	int64 uid;
+
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class RecorderStreamInfo {
   channelId?: string;

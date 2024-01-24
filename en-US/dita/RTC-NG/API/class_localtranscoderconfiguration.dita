@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_localtranscoderconfiguration">
-    <title><ph keyref="LocalTranscoderConfiguration" /></title>
+    <title><ph keyref="LocalTranscoderConfiguration"/></title>
     <shortdesc id="short"><ph id="shortdesc">The configuration of the video mixing on the local client.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class LocalTranscoderConfiguration {
-  public ArrayList&lt;TranscodingVideoStream&gt; transcodingVideoStreams;
+  public ArrayList&lt;TranscodingVideoStream> transcodingVideoStreams;
 
   public VideoEncoderConfiguration videoOutputConfiguration;
 
   public LocalTranscoderConfiguration() {
-    transcodingVideoStreams = new ArrayList&lt;TranscodingVideoStream&gt;();
+    transcodingVideoStreams = new ArrayList&lt;TranscodingVideoStream>();
     videoOutputConfiguration = new VideoEncoderConfiguration();
   }
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLocalTranscoderConfiguration: NSObject
 
-@property(copy, nonatomic) NSArray&lt;AgoraTranscodingVideoStream *&gt; *_Nullable videoInputStreams;
+@property(copy, nonatomic) NSArray&lt;AgoraTranscodingVideoStream *> *_Nullable videoInputStreams;
 
 @property (strong, nonatomic) AgoraVideoEncoderConfiguration *_Nonnull videoOutputConfiguration;
 
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct LocalTranscoderConfiguration {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct LocalTranscoderConfiguration {
   unsigned int streamCount;
   TranscodingVideoStream* videoInputStreams;
   VideoEncoderConfiguration videoOutputConfiguration;
@@ -33,6 +33,20 @@
       videoOutputConfiguration() {}
 };
 </codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FLocalTranscoderConfiguration
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalTranscoderConfiguration&quot;)
+	int streamCount;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalTranscoderConfiguration&quot;)
+	TArray&lt;FTranscodingVideoStream&gt; VideoInputStreams;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalTranscoderConfiguration&quot;)
+	FVideoEncoderConfiguration videoOutputConfiguration;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalTranscoderConfiguration&quot;)
+	bool syncWithPrimaryCamera = true;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LocalTranscoderConfiguration {
 
   streamCount?: number;
@@ -68,19 +82,19 @@ class LocalTranscoderConfiguration {
   final int? streamCount;
 
   @JsonKey(name: 'videoInputStreams')
-  final List&lt;TranscodingVideoStream&gt;? videoInputStreams;
+  final List&lt;TranscodingVideoStream>? videoInputStreams;
 
   @JsonKey(name: 'videoOutputConfiguration')
   final VideoEncoderConfiguration? videoOutputConfiguration;
 
-  factory LocalTranscoderConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory LocalTranscoderConfiguration.fromJson(Map&lt;String, dynamic> json) =>
       _$LocalTranscoderConfigurationFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$LocalTranscoderConfigurationToJson(this);
+  Map&lt;String, dynamic> toJson() => _$LocalTranscoderConfigurationToJson(this);
 }</codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry props="cpp unreal bp unity cs electron rn flutter">
                 <pt>streamCount</pt>
@@ -89,11 +103,11 @@ class LocalTranscoderConfiguration {
             <plentry>
                 <pt props="apple cpp unreal bp unity cs electron rn flutter">videoInputStreams</pt>
                 <pt props="android">transcodingVideoStreams</pt>
-                <pd>The video streams for local video mixing. See <xref keyref="TranscodingVideoStream" />.</pd>
+                <pd>The video streams for local video mixing. See <xref keyref="TranscodingVideoStream"/>.</pd>
             </plentry>
             <plentry>
                 <pt>videoOutputConfiguration</pt>
-                <pd>The encoding configuration of the mixed video stream after the local video mixing. See <xref keyref="VideoEncoderConfiguration" />.</pd>
+                <pd>The encoding configuration of the mixed video stream after the local video mixing. See <xref keyref="VideoEncoderConfiguration"/>.</pd>
             </plentry>
             </parml> </section>
     </refbody>

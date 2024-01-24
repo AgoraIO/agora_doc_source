@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setlocalvoiceformant">
-    <title><ph keyref="setLocalVoiceFormant" /></title>
+    <title><ph keyref="setLocalVoiceFormant"/></title>
     <shortdesc id="short"><ph id="shortdesc">Set the formant ratio to change the timbre of human voice.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setLocalVoiceFormant" />
+                <indexterm keyref="setLocalVoiceFormant"/>
             </keywords>
         </metadata>
     </prolog>
@@ -17,12 +17,12 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLocalVoiceFormant:(double)formantRatio;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setLocalVoiceFormant(double formantRatio) = 0;</codeblock>
-            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|RtcEngineProxy")
-int SetLocalVoiceFormant(FString formantRatio = "0.0");</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int SetLocalVoiceFormant(FString formantRatio = &quot;0.0&quot;);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setLocalVoiceFormant(formantRatio: number): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetLocalVoiceFormant(double formantRatio);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setLocalVoiceFormant(formantRatio: number): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLocalVoiceFormant(double formantRatio);</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setLocalVoiceFormant(double formantRatio);</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
@@ -33,7 +33,7 @@ int SetLocalVoiceFormant(FString formantRatio = "0.0");</codeblock>
             </dlentry>
             </dl>
             <p>Formant ratio affects the timbre of voice. The smaller the value, the deeper the sound will be, and the larger, the sharper.</p>
-            <p>You can call this method to set the formant ratio of local audio to change the timbre of human voice. After you set the formant ratio, all users in the channel can hear the changed voice. If you want to change the timbre and pitch of voice at the same time, Agora recommends using this method together with <xref keyref="setLocalVoicePitch" />.<note type="attention">You can call this method either before or after joining a channel.</note></p>
+            <p>You can call this method to set the formant ratio of local audio to change the timbre of human voice. After you set the formant ratio, all users in the channel can hear the changed voice. If you want to change the timbre and pitch of voice at the same time, Agora recommends using this method together with <xref keyref="setLocalVoicePitch"/>.<note type="attention">You can call this method either before or after joining a channel.</note></p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -44,11 +44,11 @@ int SetLocalVoiceFormant(FString formantRatio = "0.0");</codeblock>
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
-            <ul>
-            <li props="native unreal bp unity rn electron">0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <ul props="native unreal bp unity rn electron">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul></section>
     </refbody>
 </reference>

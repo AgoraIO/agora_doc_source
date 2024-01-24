@@ -28,7 +28,7 @@
 @property(assign, nonatomic) AgoraMediaRecorderStreamType streamType;
 @property(assign, nonatomic) NSUInteger maxDurationMs;
 @property(assign, nonatomic) NSUInteger recorderInfoUpdateInterval;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct MediaRecorderConfiguration {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct MediaRecorderConfiguration {
   const char* storagePath;
   MediaRecorderContainerFormat containerFormat;
   MediaRecorderStreamType streamType;
@@ -37,6 +37,22 @@
 
   MediaRecorderConfiguration() : storagePath(NULL), containerFormat(FORMAT_MP4), streamType(STREAM_TYPE_BOTH), maxDurationMs(120000), recorderInfoUpdateInterval(0) {}
   MediaRecorderConfiguration(const char* path, MediaRecorderContainerFormat format, MediaRecorderStreamType type, int duration, int interval) : storagePath(path), containerFormat(format), streamType(type), maxDurationMs(duration), recorderInfoUpdateInterval(interval) {}
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FMediaRecorderConfiguration
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaRecorderConfiguration&quot;)
+	FString storagePath;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaRecorderConfiguration&quot;)
+	EMediaRecorderContainerFormat containerFormat = EMediaRecorderContainerFormat::FORMAT_MP4;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaRecorderConfiguration&quot;)
+	EMediaRecorderStreamType streamType = EMediaRecorderStreamType::STREAM_TYPE_BOTH;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaRecorderConfiguration&quot;)
+	int maxDurationMs;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaRecorderConfiguration&quot;)
+	int recorderInfoUpdateInterval;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class MediaRecorderConfiguration {
 

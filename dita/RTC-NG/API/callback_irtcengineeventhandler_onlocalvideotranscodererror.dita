@@ -17,10 +17,11 @@
       LocalTranscoderConfiguration.TranscodingVideoStream stream, int error) {}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didLocalVideoTranscoderErrorWithStream:(AgoraTranscodingVideoStream * _Nonnull )stream
         errorCode:(AgoraVideoTranscoderError)errorCode NS_SWIFT_NAME(rtcEngine(_:didLocalVideoTranscoderErrorWithStream:errorCode:));</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onLocalVideoTranscoderError(const TranscodingVideoStream&amp; stream, VIDEO_TRANSCODER_ERROR error){
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onLocalVideoTranscoderError(const TranscodingVideoStream&amp; stream, VIDEO_TRANSCODER_ERROR error){
     (void)stream;
     (void)error;
   }</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnLocalVideoTranscoderError, const FTranscodingVideoStream&amp;, stream, EVIDEO_TRANSCODER_ERROR, error);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onLocalVideoTranscoderError?(
     stream: TranscodingVideoStream,
     error: VideoTranscoderError

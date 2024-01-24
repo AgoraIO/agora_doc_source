@@ -19,7 +19,7 @@
                 channelId:(NSString * _Nonnull)channelId
               userAccount:(NSString * _Nonnull)userAccount
               joinSuccess:(void(^ _Nullable)(NSString * _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int joinChannelWithUserAccount(const char* token,
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int joinChannelWithUserAccount(const char* token,
     const char* channelId,
     const char* userAccount) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract joinChannelWithUserAccount(
@@ -35,12 +35,12 @@
     userAccount: string,
     options?: ChannelMediaOptions
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; joinChannelWithUserAccount(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> joinChannelWithUserAccount(
       {required String token,
       required String channelId,
       required String userAccount,
       ChannelMediaOptions? options});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
@@ -75,11 +75,11 @@
             </parml>
         </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
-            <ul>
-            <li props="native unreal bp unity rn electron cs">0: Success.</li>
-            <li>&lt; 0: Failure.<ul>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <ul props="native unreal bp unity rn electron cs">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul>
                 <li>-2: The parameter is invalid.</li>
                 <li>-3: The initialization of the SDK fails. You can try to initialize the SDK again.</li>
                 <li>-5: The request is rejected.</li>

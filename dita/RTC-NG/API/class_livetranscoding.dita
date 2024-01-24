@@ -249,7 +249,7 @@
 - (void)setAdvancedFeatures:(NSString* _Nonnull)featureName opened:(BOOL)opened;
 - (NSArray&lt;AgoraLiveStreamAdvancedFeature*&gt;* _Nullable)getAdvancedFeatures;
 @end</codeblock>
-      <codeblock props="cpp unreal bp" outputclass="language-cpp">struct LiveTranscoding {
+      <codeblock props="cpp unreal" outputclass="language-cpp">struct LiveTranscoding {
   int width;
   int height;
   int videoBitrate;
@@ -275,52 +275,104 @@
   unsigned int advancedFeatureCount;
   LiveTranscoding() : width(360), height(640), videoBitrate(400), videoFramerate(15), lowLatency(false), videoGop(30), videoCodecProfile(VIDEO_CODEC_PROFILE_HIGH), backgroundColor(0x000000), videoCodecType(VIDEO_CODEC_H264_FOR_STREAM), userCount(0), transcodingUsers(NULL), transcodingExtraInfo(NULL), metadata(NULL), watermark(NULL), watermarkCount(0), backgroundImage(NULL), backgroundImageCount(0), audioSampleRate(AUDIO_SAMPLE_RATE_48000), audioBitrate(48), audioChannels(1), audioCodecProfile(AUDIO_CODEC_PROFILE_LC_AAC), advancedFeatures(NULL), advancedFeatureCount(0) {}
 };</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FLiveTranscoding
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int width = 360;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int height = 640;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int videoBitrate = 400;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int videoFramerate = 15;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	bool lowLatency = false;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int videoGop = 30;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	EVIDEO_CODEC_PROFILE_TYPE videoCodecProfile = EVIDEO_CODEC_PROFILE_TYPE::VIDEO_CODEC_PROFILE_HIGH;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int64 backgroundColor = 0x000000;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	EVIDEO_CODEC_TYPE_FOR_STREAM videoCodecType = EVIDEO_CODEC_TYPE_FOR_STREAM::VIDEO_CODEC_H264_FOR_STREAM;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int userCount = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	TArray&lt;FTranscodingUser&gt; transcodingUsers;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	FString transcodingExtraInfo;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	FString metadata;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	TArray &lt;FRtcImage&gt; watermark;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int watermarkCount = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	TArray&lt;FRtcImage&gt; backgroundImage;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int backgroundImageCount = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	TEnumAsByte&lt;EAUDIO_SAMPLE_RATE_TYPE&gt; audioSampleRate = EAUDIO_SAMPLE_RATE_TYPE::AUDIO_SAMPLE_RATE_48000;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int audioBitrate = 48;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int audioChannels = 1;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	EAUDIO_CODEC_PROFILE_TYPE audioCodecProfile = EAUDIO_CODEC_PROFILE_TYPE::AUDIO_CODEC_PROFILE_LC_AAC;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	TArray&lt;FLiveStreamAdvancedFeature&gt; advancedFeatures;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int advancedFeatureCount = 0;
+};</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class LiveTranscoding {
-  
+
   width?: number;
-  
+
   height?: number;
-  
+
   videoBitrate?: number;
-  
+
   videoFramerate?: number;
-  
+
   lowLatency?: boolean;
-  
+
   videoGop?: number;
-  
+
   videoCodecProfile?: VideoCodecProfileType;
-  
+
   backgroundColor?: number;
-  
+
   videoCodecType?: VideoCodecTypeForStream;
-  
+
   userCount?: number;
-  
+
   transcodingUsers?: TranscodingUser[];
-  
+
   transcodingExtraInfo?: string;
-  
+
   metadata?: string;
-  
+
   watermark?: RtcImage[];
-  
+
   watermarkCount?: number;
-  
+
   backgroundImage?: RtcImage[];
-  
+
   backgroundImageCount?: number;
-  
+
   audioSampleRate?: AudioSampleRateType;
-  
+
   audioBitrate?: number;
-  
+
   audioChannels?: number;
-  
+
   audioCodecProfile?: AudioCodecProfileType;
-  
+
   advancedFeatures?: LiveStreamAdvancedFeature[];
-  
+
   advancedFeatureCount?: number;
 }</codeblock>
       <codeblock props="unity cs" outputclass="language-csharp">public class LiveTranscoding
@@ -409,51 +461,51 @@
         public uint advancedFeatureCount { set; get; }
     }</codeblock>
       <codeblock props="rn" outputclass="language-typescript">export class LiveTranscoding {
-  
+
   width?: number;
-  
+
   height?: number;
-  
+
   videoBitrate?: number;
-  
+
   videoFramerate?: number;
-  
+
   lowLatency?: boolean;
-  
+
   videoGop?: number;
-  
+
   videoCodecProfile?: VideoCodecProfileType;
-  
+
   backgroundColor?: number;
-  
+
   videoCodecType?: VideoCodecTypeForStream;
-  
+
   userCount?: number;
-  
+
   transcodingUsers?: TranscodingUser[];
-  
+
   transcodingExtraInfo?: string;
-  
+
   metadata?: string;
-  
+
   watermark?: RtcImage[];
-  
+
   watermarkCount?: number;
-  
+
   backgroundImage?: RtcImage[];
-  
+
   backgroundImageCount?: number;
-  
+
   audioSampleRate?: AudioSampleRateType;
-  
+
   audioBitrate?: number;
-  
+
   audioChannels?: number;
-  
+
   audioCodecProfile?: AudioCodecProfileType;
-  
+
   advancedFeatures?: LiveStreamAdvancedFeature[];
-  
+
   advancedFeatureCount?: number;
 }</codeblock>
       <codeblock props="flutter" outputclass="language-dart">class LiveTranscoding {
@@ -555,7 +607,7 @@
       _$LiveTranscodingFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$LiveTranscodingToJson(this);
-}</codeblock>            
+}</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
     </section>
     <section id="parameters">
@@ -587,7 +639,7 @@
           <li>如果推视频流，请注意：
 
 
-            
+
             <ul>
             <li>宽的取值范围为 [64,1920]。如果取值低于 64，声网服务器会自动调整为 64；如果取值高于 1920，声网服务器会自动调整为 1920。</li>
             <li>高的取值范围为 [64,1080]。如果取值低于 64，声网服务器会自动调整为 64；如果取值高于 1080，声网服务器会自动调整为 1080。</li>
@@ -599,7 +651,7 @@
         <pt>videoBitrate</pt>
         <pd>
           <p>用于旁路直播的输出视频的码率。单位为 Kbps。400 Kbps 为默认值。</p>
-          <p props="native unreal bp">你可以根据<xref keyref="video-profile-table">视频属性</xref>参考表中的码率值进行设置；如果设置的码率超出合理范围，声网服务器会在合理区间内自动调整码率值。</p>
+          <p>你可以根据<xref keyref="video-profile-table"/>参考表中的码率值进行设置；如果设置的码率超出合理范围，声网服务器会在合理区间内自动调整码率值。</p>
         </pd>
       </plentry>
       <plentry>
@@ -625,7 +677,7 @@
       </plentry>
       <plentry>
         <pt>videoGop</pt>
-        <pd>用于旁路直播的输出视频的 GOP（Group of Pictures)。单位为帧。默认值为 30。</pd>
+        <pd>用于旁路直播的输出视频的 GOP (Group of Pictures)。单位为帧。默认值为 30。</pd>
       </plentry>
       <plentry>
         <pt>videoCodecProfile</pt>
@@ -657,7 +709,7 @@
           <p>格式为 RGB 定义下的十六进制整数，不要带 # 号，如 0xFFB6C1 表示浅粉色。默认 0x000000，黑色。</p>
           <p>COLOR_CLASS 为类型统称，具体为：
 
-          
+
           <ul>
           <li>iOS: UIColor</li>
           <li>macOS: NSColor</li>
@@ -769,7 +821,7 @@
         <pd>开启的高级功能数量。默认值为 0。</pd>
       </plentry>
       </parml> </section>
-    <section props="android apple">
+    <section props="android apple" id="sub-method">
       <title>方法</title>
       <parml>
       <plentry props="android">

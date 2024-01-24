@@ -19,7 +19,9 @@
                           pan:(double)pan
                          gain:(double)gain
                    connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int setRemoteVoicePositionEx(uid_t uid, double pan, double gain, const RtcConnection&amp; connection) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setRemoteVoicePositionEx(uid_t uid, double pan, double gain, const RtcConnection&amp; connection) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int SetRemoteVoicePositionEx(int64 uid, float pan, float gain, const FRtcConnection&amp; connection);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setRemoteVoicePositionEx(
     uid: number,
     pan: number,
@@ -64,7 +66,7 @@
                     
                     <ul>
                     <li>-1.0: 声音出现在左边。</li>
-                    <li>(默认）0.0: 声音出现在正前方。</li>
+                    <li>（默认）0.0: 声音出现在正前方。</li>
                     <li>1.0: 声音出现在右边。</li>
                     </ul></pd>
             </plentry>
@@ -80,8 +82,8 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul>
-            <li props="native unreal bp unity rn electron cs">0: 方法调用成功。</li>
+            <ul props="native unreal bp unity rn electron cs">
+            <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
             </ul> </section>
     </refbody>

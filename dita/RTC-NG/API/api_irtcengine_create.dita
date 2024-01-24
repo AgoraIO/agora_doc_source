@@ -18,7 +18,7 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">+ (instancetype _Nonnull)sharedEngineWithAppId:(NSString * _Nonnull)appId
                                       delegate:(id&lt;AgoraRtcEngineDelegate&gt; _Nullable)delegate;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp"/>
+            <codeblock props="cpp unreal" outputclass="language-cpp"/>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity cs" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
@@ -32,7 +32,7 @@
             <ul id="ul_uy4_mtq_4qb">
             <li>请确保在调用其他 API 前先调用该方法创建并初始化 <apiname keyref="IRtcEngine"/>。</li>
             <li>调用该方法和 <xref keyref="initialize"/> 均能创建 <apiname keyref="IRtcEngine"/> 实例。该方法与 <apiname keyref="initialize"/> 的区别在于，<apiname keyref="initialize"/> 支持在创建 <apiname keyref="IRtcEngine"/> 实例时进行更多配置，如指定访问区域、设置日志文件等。</li>
-            <li>SDK 只支持每个 app 创建一个 <apiname keyref="IRtcEngine"/> 实例。</li>
+            <li>SDK 只支持每个 App 创建一个 <apiname keyref="IRtcEngine"/> 实例。</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>参数</title>
@@ -53,7 +53,10 @@
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title>返回值</title>
+            <title>
+            <ph props="apple">返回值</ph>
+            <ph props="android">返回/异常</ph>
+            </title>
             <ul>
             <li>方法调用成功，返回一个 <apiname keyref="IRtcEngine"/> 对象。</li>
             <li props="android">方法调用失败，抛出异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
@@ -62,17 +65,9 @@
                 <li>-1: 一般性的错误（未明确归类）。</li>
                 <li>-2: 设置了无效的参数。</li>
                 <li>-7: SDK 初始化失败。</li>
-                <li>-22: 资源申请失败。当 app 占用资源过多，或系统资源耗尽时，SDK 分配资源失败，会返回该错误。</li>
+                <li>-22: 资源申请失败。当 App 占用资源过多，或系统资源耗尽时，SDK 分配资源失败，会返回该错误。</li>
                 <li>-101: App ID 无效。</li>
                 </ul></li>
             </ul> </section>
-        <section id="section_yqx_kwq_4qb" props="android">
-            <title>异常</title>
-            <parml>
-            <plentry>
-                <pt>Exception</pt>
-                <pd>调用该方法时可能会发生的异常说明。</pd>
-            </plentry>
-            </parml> </section>
     </refbody>
 </reference>

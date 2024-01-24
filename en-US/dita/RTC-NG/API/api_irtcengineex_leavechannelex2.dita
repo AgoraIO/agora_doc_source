@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_leavechannelex2">
-    <title><ph keyref="leaveChannelEx2" /></title>
+    <title><ph keyref="leaveChannelEx2"/></title>
     <shortdesc id="short"><ph id="shortdesc">Sets channel options and leaves the channel.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="leaveChannelEx2" />
+                <indexterm keyref="leaveChannelEx2"/>
             </keywords>
         </metadata>
     </prolog>
@@ -18,8 +18,8 @@
               options:(AgoraLeaveChannelOptions * _Nonnull)options
     leaveChannelBlock:(void(^ _Nullable)(AgoraChannelStats* _Nonnull stat))leaveChannelBlock;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int leaveChannelEx(const RtcConnection&amp; connection, const LeaveChannelOptions&amp; options) = 0;</codeblock>
-            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|RtcEngineProxy")
-int LeaveChannelEx(const FRtcConnection&amp; connection, const FLeaveChannelOptions&amp; options);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int LeaveChannelEx(const FRtcConnection&amp; connection, const FLeaveChannelOptions&amp; options);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract leaveChannelEx(
     connection: RtcConnection,
     options?: LeaveChannelOptions
@@ -29,29 +29,29 @@ int LeaveChannelEx(const FRtcConnection&amp; connection, const FLeaveChannelOpti
     connection: RtcConnection,
     options?: LeaveChannelOptions
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; leaveChannelEx(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> leaveChannelEx(
       {required RtcConnection connection, LeaveChannelOptions? options});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
             <p>This method lets the user leave the channel, for example, by hanging up or exiting the call.</p>
-            <p>After calling <xref keyref="joinChannelEx" /> to join the channel, this method must be called to end the call before starting the next call.</p>
+            <p>After calling <xref keyref="joinChannelEx"/> to join the channel, this method must be called to end the call before starting the next call.</p>
             <p>This method can be called whether or not a call is currently in progress. This method releases all resources related to the session.</p>
-            <p props="native unreal bp unity electron flutter cs">This method call is asynchronous. When this method returns, it does not necessarily mean that the user has left the channel. After you leave the channel, the SDK triggers the <xref keyref="onLeaveChannel" /> callback.</p>
-            <p props="rn">Calling this method does not necessarily mean that the user has left the channel. After you leave the channel, the SDK triggers the <xref keyref="onLeaveChannel" /> callback.</p>
-            <p>After actually leaving the channel, the local user triggers the <apiname keyref="onLeaveChannel" /> callback; after the user in the communication scenario and the host in the live streaming scenario leave the channel, the remote user triggers the <xref keyref="onUserOffline" /> callback.</p>
+            <p props="native unreal bp unity electron flutter cs">This method call is asynchronous. When this method returns, it does not necessarily mean that the user has left the channel. After you leave the channel, the SDK triggers the <xref keyref="onLeaveChannel"/> callback.</p>
+            <p props="rn">Calling this method does not necessarily mean that the user has left the channel. After you leave the channel, the SDK triggers the <xref keyref="onLeaveChannel"/> callback.</p>
+            <p>After actually leaving the channel, the local user triggers the <apiname keyref="onLeaveChannel"/> callback; after the user in the communication scenario and the host in the live streaming scenario leave the channel, the remote user triggers the <xref keyref="onUserOffline"/> callback.</p>
             <note type="attention" id="note">
             <ul>
-            <li>If you call <xref keyref="release" /> immediately after calling this method, the SDK does not trigger the <apiname keyref="onLeaveChannel" /> callback.</li>
-            <li>If you want to leave the channels that you joined by calling <xref keyref="joinChannel2" /> and <xref keyref="joinChannelEx" />, call the <xref keyref="leaveChannel2" /> method.</li>
+            <li>If you call <xref keyref="release"/> immediately after calling this method, the SDK does not trigger the <apiname keyref="onLeaveChannel"/> callback.</li>
+            <li>If you want to leave the channels that you joined by calling <xref keyref="joinChannel2"/> and <xref keyref="joinChannelEx"/>, call the <xref keyref="leaveChannel2"/> method.</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry conkeyref="joinChannelEx/connection">
-                <pt />
-                <pd />
+                <pt/>
+                <pd/>
             </plentry>
             <plentry>
                 <pt>options</pt>
@@ -62,20 +62,20 @@ int LeaveChannelEx(const FRtcConnection&amp; connection, const FLeaveChannelOpti
                         <dd>v4.1.0</dd>
                     </dlentry>
                     </dl>
-                    <p>The options for leaving the channel. See <xref keyref="LeaveChannelOptions" />.</p>
-                    <note>This parameter only supports the <parmname>stopMicrophoneRecording</parmname> member in the <apiname keyref="LeaveChannelOptions" /> settings; setting other members does not take effect.</note></pd>
+                    <p>The options for leaving the channel. See <xref keyref="LeaveChannelOptions"/>.</p>
+                    <note>This parameter only supports the <parmname>stopMicrophoneRecording</parmname> member in the <apiname keyref="LeaveChannelOptions"/> settings; setting other members does not take effect.</note></pd>
             </plentry>
             <plentry props="ios mac" conkeyref="leaveChannel2/leavechannelblock">
-                <pt />
-                <pd />
+                <pt/>
+                <pd/>
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
-            <ul>
-            <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <ul props="native unreal bp electron unity rn cs">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>
 </reference>

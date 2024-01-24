@@ -15,7 +15,9 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public int setMediaRecorderObserver(IMediaRecorderCallback callback)</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setMediaRecorderDelegate:(id&lt;AgoraMediaRecorderDelegate> _Nullable)delegate;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int setMediaRecorderObserver(media::IMediaRecorderObserver* callback) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setMediaRecorderObserver(media::IMediaRecorderObserver* callback) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IMediaRecorder&quot;)
+	int SetMediaRecorderObserver(UIMediaRecorderObserver* callback);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setMediaRecorderObserver(callback: IMediaRecorderObserver): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetMediaRecorderObserver(IMediaRecorderObserver callback);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setMediaRecorderObserver(callback: IMediaRecorderObserver): number;</codeblock>
@@ -26,7 +28,7 @@
         </section>
         <section id="detailed_desc">
             <title>详情</title>
-            <p>该方法用于设置音视频录制的回调，以便在录制过程中向 app 通知音视频流的录制状态和信息。</p>
+            <p>该方法用于设置音视频录制的回调，以便在录制过程中向 App 通知音视频流的录制状态和信息。</p>
             <p>调用该方法前请确保：
             <ul>
             <li>已创建并初始化 <xref keyref="IRtcEngine"/> 对象。</li>
@@ -45,8 +47,8 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul>
-            <li props="native unreal bp rn electron unity cs">0: 方法调用成功。</li>
+            <ul props="native unreal bp rn electron unity cs">
+            <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
             </ul> </section>
     </refbody>

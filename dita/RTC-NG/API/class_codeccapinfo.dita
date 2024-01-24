@@ -35,7 +35,16 @@
   int codecCapMask;
   CodecCapLevels codecLevels;
 };</codeblock>
-            <codeblock props="unreal bp" outputclass="language-cpp">struct CodecCapInfo {
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FCodecCapInfo {
+
+	GENERATED_BODY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|CodecCapInfo&quot;)
+	EVIDEO_CODEC_TYPE codecType;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|CodecCapInfo&quot;)
+	int codecCapMask;
+};</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp">struct CodecCapInfo {
   VIDEO_CODEC_TYPE codecType;
   int codecCapMask;
 };</codeblock>
@@ -94,15 +103,15 @@ class CodecCapInfo {
                 <pd props="android">
                     <p>视频编解码类型：
                     <ul>
-                    <li>1: VP8。</li>
-                    <li>2:（默认值）H.264。</li>
-                    <li>3: H.265。</li></ul> </p>
+                    <li>1：VP8。</li>
+                    <li>2：H.264。</li>
+                    <li>3：（默认）H.265。</li></ul> </p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>codecCapMask</pt>
-                <pd props="apple cpp unreal bp unity electron rn flutter cs">编解码类型的 bit mask。详见 <xref keyref="CODEC_CAP_MASK"/>。</pd>
-                <pd props="android">
+                <pd props="apple cpp unreal unity electron rn flutter cs">编解码类型的 bit mask。详见 <xref keyref="CODEC_CAP_MASK"/>。</pd>
+                <pd props="android bp">
                     <p>编解码类型的 bit mask：
                     <ul>
                     <li>0：不支持编解码。</li>

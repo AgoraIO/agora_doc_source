@@ -1,3 +1,100 @@
+## v4.2.6
+
+v4.2.6 was released on November xx, 2023.
+
+#### Issues fixed
+
+This version fixed the issue that the video on the receiving end stuttered or froze in specific scenarios, such as when the network packet loss rate was high or when the broadcaster left the channel without destroying the engine and then re-joined the channel.
+
+## v4.2.4
+
+v4.2.4 was released on October xx, 2023.
+
+This version fixes the incorrect `CFBundleShortVersionString` version number in `AgoraRtcWrapper` which caused the app to be unable to be submitted to the App Store. (macOS)
+
+## v4.2.3
+
+v4.2.3 was released on September xx, 2023.
+
+#### New features
+
+1. **Update video screenshot and upload**
+
+   To facilitate the integration of third-party video moderation services from Agora Extensions Marketplace, this version has the following changes:
+
+   - An optional parameter `serverConfig` is added in `ContentInspectConfig`, which is for server-side configuration related to video screenshot and upload via extensions from Agora Extensions Marketplace. By configuring this parameter, you can integrate multiple third-party moderation extensions and achieve flexible control over extension switches and other features. For more details, please contact [technical support](mailto:support@agora.io).
+
+   In addition, this version also introduces the `enableContentInspectEx` method, which supports taking screenshots for multiple video streams and uploading them.
+
+2. **ID3D11Texture2D Rendering**
+
+  As of this release, the SDK supports video formats of type ID3D11Texture2D, improving the rendering effect of video frames in game scenarios. You can set **format** to `VideoTextureId3d11texture2d` when pushing external raw video frames to the SDK by calling `pushVideoFrame`. By setting the **d3d11_texture_2d** and **texture_slice_index** properties, you can determine the ID3D11Texture2D texture object to use.
+
+3. **Local video status error code update**
+
+  In order to help users understand the exact reasons for local video errors in screen sharing scenarios, the following sets of enumerations have been added to the `onLocalVideoStateChanged` callback:
+
+   - `LocalVideoStreamErrorScreenCapturePaused`(23): Screen capture has been paused. Common scenarios for reporting this error code: The current screen may have been switched to a secure desktop, such as a UAC dialog box or Winlogon desktop.
+   - `LocalVideoStreamErrorScreenCaptureResumed`(24): Screen capture has resumed from the paused state.
+   - `LocalVideoStreamErrorScreenCaptureWindowHidden`(25): The window being captured on the current screen is in a hidden state and is not visible on the current screen.
+   - `LocalVideoStreamErrorScreenCaptureWindowRecoverFromHidden`(26): The window for screen capture has been restored from the hidden state.
+   - `LocalVideoStreamErrorScreenCaptureWindowRecoverFromMinimized`(27): The window for screen capture has been restored from the minimized state.
+
+4. **Check device support for advanced features**
+
+   This version adds the `isFeatureAvailableOnDevice` method to check whether the capability of the current device meet the requirements of the specified advanced feature, such as virtual background and image enhancement.
+
+   Before using advanced features, you can check whether the current device supports these features based on the call result. This helps to avoid performance degradation or unavailable features when enabling advanced features on low-end devices. Based on the return value of this method, you can decide whether to display or enable the corresponding feature button, or notify the user when the device's capabilities are insufficient.
+
+   In addition, since this version, calling `enableVirtualBackground` and `setBeautyEffectOptions` automatically triggers a test on the capability of the current device. When the device is considered underperformed, the error code `-4: ErrNotSupported` is returned, indicating the device does not support the feature.
+
+#### Improvements
+
+1. **Optimize virtual background memory usage**
+
+   This version has upgraded the virtual background algorithm, reducing the memory usage of the virtual background feature. Compared to the previous version, the memory consumption of the app during the use of the virtual background feature on low-end devices has been reduced by approximately 4% to 10% (specific values may vary depending on the device model and platform).
+
+2. **Screen sharing scenario optimization**
+
+   This release optimizes the performance and encoding efficiency in ultra-high-definition (4K, 60 fps) game sharing scenarios, effectively reducing the system resource usage during screen sharing.
+
+**Other Improvements**
+
+This release includes the following additional improvements:
+
+- Optimizes the logic of handling invalid parameters. When you call the `setPlaybackSpeed` method to set the playback speed of audio files, if you pass an invalid parameter, the SDK returns the error code -2, which means that you need to reset the parameter.
+- Optimizes the logic of Token parsing, in order to prevent an app from crash when an invalid token is passed in.
+
+#### Issues fixed
+
+This release fixed the following issues:
+
+- Occasional crashes and dropped frames occurred in screen sharing scenarios. (macOS)
+- Occasional crashes when joining a channel. (macOS)
+- When calling the `playEffect` method to play two audio files using the same `soundId`, the first audio file was sometimes played repeatedly.
+- Calling `takeSnapshotEx` once receives the `onSnapshotTaken` callback for multiple times.
+
+#### API changes
+
+**Added**
+
+- `enableContentInspectEx`
+- `contentInspectImageModeration` in `ContentInspectType`
+- `serverConfig` in `ContentInspectConfig`
+- `onLocalVideoStateChanged` adds the following enumerations:
+
+  - `LocalVideoStreamErrorScreenCapturePaused`
+  - `LocalVideoStreamErrorScreenCaptureResumed`
+  - `LocalVideoStreamErrorScreenCaptureWindowHidden`
+  - `LocalVideoStreamErrorScreenCaptureWindowRecoverFromHidden`
+  - `LocalVideoStreamErrorScreenCaptureWindowRecoverFromMinimized`
+
+- `d3d11_texture_2d` and `texture_slice_index` in `ExternalVideoFrame`
+
+- `VideoTextureId3d11texture2d` in `VideoPixelFormat`
+- `isFeatureAvailableOnDevice`
+- `FeatureType`
+
 ## v4.2.2
 
 v4.2.2 was released on July xx, 2023.
@@ -20,7 +117,7 @@ v4.2.2 was released on July xx, 2023.
 
    In this release, the `backgroundColor` member has been added to `VideoCanvas`, which allows you to customize the background color of the video canvas when setting the properties of local or remote video display.
 
-4. **Publishing video streams from different sources** (Windows, macOS)
+4. **Publishing video streams from different sources**
 
    This release adds the following members in `ChannelMediaOptions` to allow you publish video streams captured from the third and fourth camera or screen:
 
@@ -136,7 +233,7 @@ This release optimizes the APIs for camera and screen capture function. As of v4
 - The `VideoInputStreams` in `LocalTranscoderConfiguration` is changed to `videoInputStreams`.
 - The `MediaSourceType` in `TranscodingVideoStream` is changed to `VideoSourceType`.
 
-**5. Virtual sound card (macOS)** 
+**5. Virtual sound card (macOS)**
 
 As of v4.2.0, Agora supports third-party virtual sound cards. You can use a third-party virtual sound card as the audio input or output device for the SDK. You can use the `stateChanged` callback to see whether the current input or output device selected by the SDK is a virtual sound card.
 
@@ -198,7 +295,7 @@ This release adds the `startMediaRenderingTracing` and `startMediaRenderingTraci
 
 Agora recommends that you use this method in conjunction with the UI settings, such as buttons and sliders, in your app. For example, call this method when the user clicks **Join Channel** button and then get the indicators in the video frame rendering process through the `onVideoRenderingTracingResult` callback. This enables developers to optimize the indicators and improve the user experience.
 
-#### Improvements 
+#### Improvements
 
 **1. Voice changer**
 

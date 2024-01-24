@@ -49,7 +49,7 @@ __attribute__((visibility("default"))) @interface AgoraEchoTestConfiguration : N
 @property(copy, nonatomic) NSString* _Nonnull channelId NS_SWIFT_NAME(channelId);
 @property(assign, nonatomic) NSInteger intervalInSeconds NS_SWIFT_NAME(intervalInSeconds);
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">
+            <codeblock props="cpp unreal" outputclass="language-cpp">
 struct EchoTestConfiguration {
   view_t view;
   bool enableAudio;
@@ -63,6 +63,24 @@ struct EchoTestConfiguration {
 
   EchoTestConfiguration()
    : view(OPTIONAL_NULLPTR), enableAudio(true), enableVideo(true), token(OPTIONAL_NULLPTR), channelId(OPTIONAL_NULLPTR), intervalInSeconds(2) {}
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FEchoTestConfiguration
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EchoTestConfiguration&quot;)
+	UImage* view;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EchoTestConfiguration&quot;)
+	bool enableAudio = true;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EchoTestConfiguration&quot;)
+	bool enableVideo = true;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EchoTestConfiguration&quot;)
+	FString token;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EchoTestConfiguration&quot;)
+	FString channelId;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EchoTestConfiguration&quot;)
+	int intervalInSeconds = 2;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class EchoTestConfiguration {
 
@@ -129,19 +147,19 @@ class EchoTestConfiguration {
   @JsonKey(name: 'intervalInSeconds')
   final int? intervalInSeconds;
 
-  factory EchoTestConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory EchoTestConfiguration.fromJson(Map&lt;String, dynamic> json) =>
       _$EchoTestConfigurationFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$EchoTestConfigurationToJson(this);
+  Map&lt;String, dynamic> toJson() => _$EchoTestConfigurationToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>view</pt>
-                <pd>The view used to render the local user's video. This parameter is only applicable to scenarios testing video devices, that is, when <parmname>enableVideo</parmname> is <ph keyref="true" />.</pd>
+                <pd>The view used to render the local user's video. This parameter is only applicable to scenarios testing video devices, that is, when <parmname>enableVideo</parmname> is <ph keyref="true"/>.</pd>
             </plentry>
             <plentry>
                 <pt>enableAudio</pt>
@@ -159,7 +177,7 @@ class EchoTestConfiguration {
             </plentry>
             <plentry>
                 <pt>token</pt>
-                <pd>The token used to secure the audio and video call loop test. If you do not enable App Certificate in Agora Console, you do not need to pass a value in this parameter; if you have enabled App Certificate in Agora Console, you must pass a token in this parameter; the <codeph>uid</codeph> used when you generate the token must be 0xFFFFFFFF, and the channel name used must be the channel name that identifies each audio and video call loop tested. For server-side token generation, see <xref keyref="guide-token" />.</pd>
+                <pd>The token used to secure the audio and video call loop test. If you do not enable App Certificate in Agora Console, you do not need to pass a value in this parameter; if you have enabled App Certificate in Agora Console, you must pass a token in this parameter; the <codeph>uid</codeph> used when you generate the token must be 0xFFFFFFFF, and the channel name used must be the channel name that identifies each audio and video call loop tested. For server-side token generation, see <xref keyref="guide-token"/>.</pd>
             </plentry>
             <plentry>
                 <pt>channelId</pt>
@@ -167,7 +185,11 @@ class EchoTestConfiguration {
             </plentry>
             <plentry>
                 <pt>intervalInSeconds</pt>
-                <pd>The time interval (s) between when you start the call and when the recording plays back. The value range is [2, 10], and the default value is 2.</pd>
+                <pd>Set the time interval or delay for returning the results of the audio and video loop test. The value range is [2,10], in seconds, with the default value being 2 seconds.<ul>
+                    <li>For audio loop tests, the test results will be returned according to the time interval you set.</li>
+                    <li>For video loop tests, the video will be displayed in a short time, after which the delay will gradually increase until it reaches the delay you set.</li>
+                    </ul>
+                </pd>
             </plentry>
             </parml> </section>
     </refbody>

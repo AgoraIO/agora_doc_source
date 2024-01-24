@@ -15,7 +15,9 @@
             <p outputclass="codeblock">
             <codeblock props="mac" outputclass="language-objectivec">- (AgoraRtcDeviceInfo* _Nullable)getDefaultAudioDevice:(AgoraMediaDeviceType)type;
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int getDefaultDevice(char deviceName[MAX_DEVICE_ID_LENGTH], char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int getDefaultDevice(char deviceName[MAX_DEVICE_ID_LENGTH], char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IAudioDeviceCollection&quot;)
+	int GetDefaultDevice(FString&amp; deviceName, FString&amp; deviceId);</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity cs" outputclass="language-csharp"/>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
@@ -47,7 +49,7 @@
             <title>返回值</title>
             <ul props="cpp unreal bp">
                 <li>0: 方法调用成功。</li>
-                <li>&lt; 0: 方法调用失败。详见 <xref keyref="error-code-link"/>了解详情和解决建议。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见 <xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
             </ul>
             <ul props="mac">
                 <li>调用成功时，返回 <xref keyref="AgoraRtcDeviceInfo"/> 对象，包含默认的音频设备信息。</li>

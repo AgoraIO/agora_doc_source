@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_enabledualstreammodeex">
-    <title><ph keyref="enableDualStreamModeEx" /></title>
+    <title><ph keyref="enableDualStreamModeEx"/></title>
     <shortdesc id="short"><ph id="shortdesc">Enables or disables dual-stream mode on the sender side.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="enableDualStreamModeEx" />
+                <indexterm keyref="enableDualStreamModeEx"/>
             </keywords>
         </metadata>
     </prolog>
@@ -18,8 +18,10 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableDualStreamModeEx:(BOOL)enabled
                  streamConfig:(AgoraSimulcastStreamConfig*)streamConfig
                    connection:(AgoraRtcConnection* _Nonnull)connection;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int enableDualStreamModeEx(bool enabled, const SimulcastStreamConfig&amp; streamConfig,
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int enableDualStreamModeEx(bool enabled, const SimulcastStreamConfig&amp; streamConfig,
                                        const RtcConnection&amp; connection) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int EnableDualStreamModeEx(bool enabled, const FSimulcastStreamConfig&amp; streamConfig, const FRtcConnection&amp; connection);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract enableDualStreamModeEx(
     enabled: boolean,
     streamConfig: SimulcastStreamConfig,
@@ -31,11 +33,11 @@
     streamConfig: SimulcastStreamConfig,
     connection: RtcConnection
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableDualStreamModeEx(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableDualStreamModeEx(
       {required bool enabled,
       required SimulcastStreamConfig streamConfig,
       required RtcConnection connection});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
@@ -45,31 +47,31 @@
                 <dd>v4.0.1</dd>
             </dlentry>
             </dl>
-            <p conkeyref="enableDualStreamMode2/desc1" />
-            <p conkeyref="enableDualStreamMode2/desc2" />
+            <p conkeyref="enableDualStreamMode2/desc1"/>
+            <p conkeyref="enableDualStreamMode2/desc2"/>
             <note type="note">This method is applicable to all types of streams from the sender, including but not limited to video streams collected from cameras, screen sharing streams, and custom-collected video streams.</note></section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry conkeyref="enableDualStreamMode3/enabled">
-                <pt />
-                <pd />
+                <pt/>
+                <pd/>
             </plentry>
             <plentry conkeyref="enableDualStreamMode3/streamconfig">
-                <pt />
-                <pd />
+                <pt/>
+                <pd/>
             </plentry>
             <plentry conkeyref="joinChannelEx/connection">
-                <pt />
-                <pd />
+                <pt/>
+                <pd/>
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
-            <ul>
-            <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <ul props="native unreal bp electron unity rn cs">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>
 </reference>

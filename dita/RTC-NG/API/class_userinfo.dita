@@ -26,14 +26,24 @@
  @property(assign, nonatomic) NSUInteger uid;
  @property (copy, nonatomic) NSString * _Nullable userAccount;
  @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct UserInfo {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct UserInfo {
                     uid_t uid;
                     char userAccount[MAX_USER_ACCOUNT_LENGTH];
                     UserInfo()
                     : uid(0) {
-                    userAccount[0] = '\0';
+                    userAccount[0] = '&#x5C;0';
                     }
                     };</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FUserInfo
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|UserInfo&quot;)
+	int64 uid;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|UserInfo&quot;)
+	FString userAccount;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class UserInfo {
   
   uid?: number;

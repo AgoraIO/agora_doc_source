@@ -123,8 +123,6 @@
         </topicref>
         <topicref href="API/toc_audio.dita" chunk="to-content">
             <topicref href="API/toc_audio_basic.dita" chunk="to-content">
-                <topicref keyref="adjustCustomAudioPlayoutVolume" toc="no"/>
-                <topicref keyref="adjustCustomAudioPublishVolume" toc="no"/>
                 <topicref keyref="adjustUserPlaybackSignalVolume" toc="no"/>
                 <topicref keyref="adjustUserPlaybackSignalVolumeEx" toc="no"/>
                 <topicref keyref="disableAudio" toc="no"/>
@@ -135,15 +133,12 @@
                 <topicref keyref="setAudioProfile2" toc="no" processing-role="resource-only"/>
                 <topicref keyref="setAudioScenario" toc="no"/>
                 <topicref keyref="setAudioSessionOperationRestriction" toc="no"/>
-                <topicref keyref="setHeadphoneEQParameters" toc="no"/>
-                <topicref keyref="setHeadphoneEQPreset" toc="no"/>
                 <topicref keyref="onActiveSpeaker" toc="no"/>
                 <topicref keyref="onAudioQuality" toc="no"/>
                 <topicref keyref="onAudioVolumeIndication" toc="no"/>
                 <topicref keyref="onFirstLocalAudioFramePublished" toc="no"/>
                 <topicref keyref="onFirstRemoteAudioDecoded" toc="no"/>
                 <topicref keyref="onFirstRemoteAudioFrame" toc="no"/>
-                <topicref keyref="onFrame_IAudioPcmFrameSink" toc="no"/>
                 <topicref keyref="onLocalAudioStateChanged" toc="no"/>
                 <topicref keyref="onLocalAudioStats" toc="no"/>
                 <topicref keyref="onRemoteAudioStateChanged" toc="no"/>
@@ -159,9 +154,7 @@
                 <topicref keyref="enableLoopbackRecording" toc="no"/>
                 <topicref keyref="enableLoopbackRecordingEx" toc="no"/>
                 <topicref keyref="muteRecordingSignal" toc="no"/>
-                <topicref keyref="setEarMonitoringAudioFrameParameters" toc="no"/>
                 <topicref keyref="setInEarMonitoringVolume" toc="no"/>
-                <topicref keyref="onEarMonitoringAudioFrame" toc="no"/>
             </topicref>
             <topicref href="API/toc_audio_prenpost.dita" chunk="to-content">
                 <topicref href="API/toc_audio_effect.dita" chunk="to-content">
@@ -195,6 +188,8 @@
                     <topicref keyref="removeRemotePosition" toc="no"/>
                     <topicref keyref="setAudioRecvRange" toc="no"/>
                     <topicref keyref="setDistanceUnit" toc="no"/>
+                    <topicref keyref="setHeadphoneEQParameters" toc="no"/>
+                    <topicref keyref="setHeadphoneEQPreset" toc="no"/>
                     <topicref keyref="setMaxAudioRecvCount" toc="no"/>
                     <topicref keyref="setPlayerAttenuation" toc="no"/>
                     <topicref keyref="setRemoteAudioAttenuation" toc="no"/>
@@ -206,11 +201,13 @@
             </topicref>
             <topicref href="API/toc_audio_raw.dita" chunk="to-content">
                 <topicref keyref="registerAudioFrameObserver" toc="no"/>
+                <topicref keyref="setEarMonitoringAudioFrameParameters" toc="no"/>
                 <topicref keyref="setMixedAudioFrameParameters" toc="no"/>
                 <topicref keyref="setPlaybackAudioFrameBeforeMixingParameters" toc="no"/>
                 <topicref keyref="setPlaybackAudioFrameParameters" toc="no"/>
                 <topicref keyref="setRecordingAudioFrameParameters" toc="no"/>
                 <topicref keyref="unregisterAudioFrameObserver_IMediaEngine" toc="no"/>
+                <topicref keyref="onEarMonitoringAudioFrame" toc="no"/>
                 <topicref keyref="onPlaybackAudioFrameBeforeMixing" toc="no"/>
                 <topicref keyref="onPlaybackAudioFrame" toc="no"/>
                 <topicref keyref="onRecordAudioFrame" toc="no"/>
@@ -224,8 +221,11 @@
                 <topicref keyref="onRecordAudioEncodedFrame" toc="no"/>
             </topicref>
             <topicref href="API/toc_audio_custom_capturenrendering.dita" chunk="to-content">
+                <topicref keyref="adjustCustomAudioPlayoutVolume" toc="no"/>
+                <topicref keyref="adjustCustomAudioPublishVolume" toc="no"/>
                 <topicref keyref="createCustomAudioTrack" toc="no"/>
                 <topicref keyref="destroyCustomAudioTrack" toc="no"/>
+                <topicref keyref="enableCustomAudioLocalPlayback" toc="no"/>
                 <topicref keyref="setExternalAudioSource2" toc="no"/>
                 <topicref keyref="pullAudioFrame" toc="no"/>
                 <topicref keyref="pushAudioFrame" toc="no"/>
@@ -249,7 +249,7 @@
                 <topicref keyref="setVideoEncoderConfiguration" toc="no"/>
                 <topicref keyref="setVideoEncoderConfigurationEx" toc="no"/>
                 <topicref keyref="setVideoScenario" toc="no"/>
-                <topicref keyref="startPreview" toc="no" processing-role="resource-only"/>
+                <topicref keyref="startPreview" toc="no"/>
                 <topicref keyref="startPreview2" toc="no"/>
                 <topicref keyref="stopPreview" toc="no" processing-role="resource-only"/>
                 <topicref keyref="stopPreview2" toc="no"/>
@@ -338,6 +338,7 @@
                     <topicref keyref="stopLocalVideoTranscoder" toc="no"/>
                     <topicref keyref="updateLocalTranscoderConfiguration" toc="no"/>
                     <topicref keyref="onLocalVideoTranscoderError" toc="no"/>
+                    <topicref keyref="onTranscodedStreamLayoutInfo" toc="no"/>
                 </topicref>
             </topicref>
             <topicref href="API/toc_video_rendering.dita" chunk="to-content">
@@ -388,6 +389,7 @@
                 <topicref keyref="pauseAudioMixing" toc="no"/>
                 <topicref keyref="resumeAudioMixing" toc="no"/>
                 <topicref keyref="selectAudioTrack" toc="no"/>
+                <topicref keyref="selectMultiAudioTrack" toc="no"/>
                 <topicref keyref="setAudioMixingDualMonoMode" toc="no"/>
                 <topicref keyref="setAudioMixingPitch" toc="no"/>
                 <topicref keyref="setAudioMixingPosition" toc="no"/>
@@ -443,7 +445,8 @@
                     <topicref keyref="setAudioPitch" toc="no"/>
                     <topicref keyref="setLoopCount" toc="no"/>
                     <topicref keyref="setPlaybackSpeed" toc="no"/>
-                    <topicref keyref="setPlayerOption" toc="no" props="hide"/>
+                    <topicref keyref="setPlayerOption" toc="no"/>
+                    <topicref keyref="setPlayerOption2" toc="no"/>
                     <topicref keyref="setSpatialAudioParams" toc="no"/>
                     <topicref keyref="setView" toc="no"/>
                 </topicref>
@@ -469,6 +472,7 @@
                     <topicref keyref="getState" toc="no"/>
                     <topicref keyref="getStreamCount" toc="no"/>
                     <topicref keyref="getStreamInfo" toc="no"/>
+                    <topicref keyref="onPlayerPlaybackStats" toc="no"/>
                 </topicref>
                 <topicref href="API/toc_mediaplayer_observer.dita" chunk="to-content">
                     <topicref keyref="registerAudioFrameObserver2_IMediaPlayer" toc="no"/>
@@ -478,6 +482,7 @@
                     <topicref keyref="unregisterPlayerSourceObserver" toc="no"/>
                     <topicref keyref="unregisterVideoFrameObserver_IMediaPlayer" toc="no"/>
                     <topicref keyref="onAudioVolumeIndication_IMediaPlayerSourceObserver" toc="no"/>
+                    <topicref keyref="onFrame_IAudioPcmFrameSink" toc="no"/>
                     <topicref keyref="onMetaData" toc="no"/>
                     <topicref keyref="onPlayBufferUpdated" toc="no"/>
                     <topicref keyref="onPlayerEvent" toc="no"/>
@@ -500,6 +505,7 @@
                 <topicref keyref="setCacheDir" toc="no"/>
                 <topicref keyref="setMaxCacheFileCount" toc="no"/>
                 <topicref keyref="setMaxCacheFileSize" toc="no"/>
+                <topicref keyref="onPlayerCacheStats" toc="no"/>
             </topicref>
             <topicref href="API/toc_drm.dita" chunk="to-content" props="cn">
                 <topicref keyref="createMusicPlayer" toc="no"/>
@@ -545,15 +551,10 @@
                 <topicref keyref="pauseAllChannelMediaRelayEx" toc="no"/>
                 <topicref keyref="resumeAllChannelMediaRelay" toc="no"/>
                 <topicref keyref="resumeAllChannelMediaRelayEx" toc="no"/>
-                <topicref keyref="startChannelMediaRelay" toc="no"/>
-                <topicref keyref="startChannelMediaRelayEx" toc="no"/>
                 <topicref keyref="startOrUpdateChannelMediaRelay" toc="no"/>
                 <topicref keyref="startOrUpdateChannelMediaRelayEx" toc="no"/>
                 <topicref keyref="stopChannelMediaRelay" toc="no"/>
                 <topicref keyref="stopChannelMediaRelayEx" toc="no"/>
-                <topicref keyref="updateChannelMediaRelay" toc="no"/>
-                <topicref keyref="updateChannelMediaRelayEx" toc="no"/>
-                <topicref keyref="onChannelMediaRelayEvent" toc="no"/>
                 <topicref keyref="onChannelMediaRelayStateChanged" toc="no"/>
             </topicref>
             <topicref href="API/toc_media_push.dita" chunk="to-content">
@@ -649,14 +650,17 @@
                 <topicref keyref="getPlaybackDevice" toc="no"/>
                 <topicref keyref="getPlaybackDeviceInfo" toc="no"/>
                 <topicref keyref="getPlaybackDeviceMute" toc="no"/>
+                <topicref keyref="getPlaybackDeviceVolume" toc="no"/>
                 <topicref keyref="getLoopbackDevice" toc="no"/>
                 <topicref keyref="getRecordingDefaultDevice" toc="no"/>
                 <topicref keyref="getRecordingDevice" toc="no"/>
                 <topicref keyref="getRecordingDeviceInfo" toc="no"/>
+                <topicref keyref="getRecordingDeviceVolume" toc="no"/>
                 <topicref keyref="release_IAudioDeviceManager" toc="no"/>
                 <topicref keyref="setLoopbackDevice" toc="no"/>
                 <topicref keyref="setPlaybackDevice" toc="no"/>
                 <topicref keyref="setPlaybackDeviceMute" toc="no"/>
+                <topicref keyref="setPlaybackDeviceVolume" toc="no"/>
                 <topicref keyref="startPlaybackDeviceTest" toc="no"/>
                 <topicref keyref="setRecordingDevice" toc="no"/>
                 <topicref keyref="setRecordingDeviceVolume" toc="no"/>
@@ -706,7 +710,7 @@
             <topicref keyref="getNtpWallTimeInMs" toc="no"/>
             <topicref keyref="getVersion" toc="no"/>
             <topicref keyref="isFeatureAvailableOnDevice" toc="no"/>
-            <topicref keyref="onRemoteSubscribeFallbackToAudioOnly" toc="no" props="hide"/>
+            <topicref keyref="queryDeviceScore" toc="no"/>
             <topicref keyref="rate" toc="no"/>
             <topicref keyref="sendCustomReportMessage" toc="no"/>
             <topicref keyref="sendCustomReportMessageEx" toc="no"/>
@@ -721,7 +725,7 @@
             <topicref keyref="setLogFilter" toc="no"/>
             <topicref keyref="setLogLevel" toc="no"/>
             <topicref keyref="setParameters" toc="no"/>
-            <topicref keyref="setRemoteSubscribeFallbackOption" toc="no" props="hide"/>
+            <topicref keyref="setRemoteSubscribeFallbackOption" toc="no"/>
             <topicref keyref="startEchoTest3" toc="no"/>
             <topicref keyref="startLastmileProbeTest" toc="no"/>
             <topicref keyref="stopEchoTest" toc="no"/>
@@ -737,6 +741,7 @@
             <topicref keyref="onNetworkTypeChanged" toc="no"/>
             <topicref keyref="onPermissionError" toc="no"/>
             <topicref keyref="onProxyConnected" toc="no"/>
+            <topicref keyref="onRemoteSubscribeFallbackToAudioOnly" toc="no"/>
             <topicref keyref="onUplinkNetworkInfoUpdated" toc="no"/>
         </topicref>
         <topicref href="API/rtc_api_data_type.dita" chunk="to-content"/>

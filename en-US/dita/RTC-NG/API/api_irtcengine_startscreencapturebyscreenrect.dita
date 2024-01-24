@@ -15,9 +15,11 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java" />
             <codeblock props="ios mac" outputclass="language-objectivec" />
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int startScreenCaptureByScreenRect(const Rectangle&amp; screenRect,
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int startScreenCaptureByScreenRect(const Rectangle&amp; screenRect,
      const Rectangle&amp; regionRect,
      const ScreenCaptureParameters&amp; captureParams) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int StartScreenCaptureByScreenRect(const FRectangle&amp; screenRect, const FRectangle&amp; regionRect, const FScreenCaptureParameters&amp; captureParams) __deprecated;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract startScreenCaptureByScreenRect(
     screenRect: Rectangle,
     regionRect: Rectangle,
@@ -34,7 +36,7 @@
     {required Rectangle screenRect,
     required Rectangle regionRect,
     required ScreenCaptureParameters captureParams});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
@@ -65,11 +67,11 @@
    </parml>
         </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
-            <ul>
-            <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li>&lt; 0: Failure.<ul conkeyref="startScreenCaptureByDisplayId/err"><li /></ul>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <ul props="native unreal bp electron unity rn cs">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul conkeyref="startScreenCaptureByDisplayId/err"><li /></ul>
             </li>
             </ul> </section>
     </refbody>

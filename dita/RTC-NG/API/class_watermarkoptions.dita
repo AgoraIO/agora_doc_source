@@ -36,7 +36,7 @@
 @property(assign, nonatomic) CGRect positionInPortraitMode;
 @end
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct WatermarkOptions {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct WatermarkOptions {
   bool visibleInPreview;
   Rectangle positionInLandscapeMode;
   Rectangle positionInPortraitMode;
@@ -49,6 +49,22 @@
       mode(FIT_MODE_COVER_POSITION) {}
 };
 </codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FWatermarkOptions
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkOptions&quot;)
+	bool visibleInPreview;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkOptions&quot;)
+	FRectangle positionInLandscapeMode;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkOptions&quot;)
+	FRectangle positionInPortraitMode;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkOptions&quot;)
+	FWatermarkRatio watermarkRatio;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkOptions&quot;)
+	EWATERMARK_FIT_MODE mode = EWATERMARK_FIT_MODE::FIT_MODE_COVER_POSITION;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class WatermarkOptions {
   
   visibleInPreview?: boolean;
@@ -99,7 +115,8 @@
   
   mode?: WatermarkFitMode;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class WatermarkOptions {
+            <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class WatermarkOptions {
   const WatermarkOptions(
       {this.visibleInPreview,
       this.positionInLandscapeMode,
@@ -107,18 +124,24 @@
       this.watermarkRatio,
       this.mode});
 
-  @JsonKey(name: 'visibleInPreview')
+  @JsonKey(name: &#x27;visibleInPreview&#x27;)
   final bool? visibleInPreview;
-  @JsonKey(name: 'positionInLandscapeMode')
+
+  @JsonKey(name: &#x27;positionInLandscapeMode&#x27;)
   final Rectangle? positionInLandscapeMode;
-  @JsonKey(name: 'positionInPortraitMode')
+
+  @JsonKey(name: &#x27;positionInPortraitMode&#x27;)
   final Rectangle? positionInPortraitMode;
-  @JsonKey(name: 'watermarkRatio')
+
+  @JsonKey(name: &#x27;watermarkRatio&#x27;)
   final WatermarkRatio? watermarkRatio;
-  @JsonKey(name: 'mode')
+
+  @JsonKey(name: &#x27;mode&#x27;)
   final WatermarkFitMode? mode;
+
   factory WatermarkOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$WatermarkOptionsFromJson(json);
+
   Map&lt;String, dynamic&gt; toJson() =&gt; _$WatermarkOptionsToJson(this);
 }</codeblock>            
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
@@ -131,7 +154,12 @@
             <parml>
             <plentry>
                 <pt>visibleInPreview</pt>
-                <pd>预留参数。</pd>
+                <pd>水印是否在本地预览视图中可见：
+                    <ul>
+                    <li><codeph><ph keyref="true"/></codeph>: （默认）水印在本地预览视图中可见。</li>
+                    <li><codeph><ph keyref="false"/></codeph>: 水印在本地预览视图中不可见。</li>
+                    </ul>
+                </pd>
             </plentry>
             <plentry>
                 <pt>positionInLandscapeMode</pt>
@@ -141,8 +169,8 @@
                     <ul>
                     <li>x：水印相对左上角的横向偏移。</li>
                     <li>y：水印相对左上角的纵向偏移。</li>
-                    <li>width：水印区域的宽（pixel）。</li>
-                    <li>height：水印区域的高（pixel）。</li>
+                    <li>width：水印区域的宽 (px)。</li>
+                    <li>height：水印区域的高 (px)。</li>
                     </ul> </pd>
             </plentry>
             <plentry>
@@ -153,8 +181,8 @@
                     <ul>
                     <li>x：水印相对左上角的横向偏移。</li>
                     <li>y：水印相对左上角的纵向偏移。</li>
-                    <li>width：水印区域的宽（pixel）。</li>
-                    <li>height：水印区域的高（pixel）。</li>
+                    <li>width：水印区域的宽 (px)。</li>
+                    <li>height：水印区域的高 (px)。</li>
                     </ul> </pd>
             </plentry>
             <plentry props="cpp unreal bp unity electron rn flutter cs">

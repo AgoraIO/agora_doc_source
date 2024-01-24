@@ -19,9 +19,8 @@
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int enableExtension(
                     const char* provider, const char* extension, bool enable=true, agora::media::MEDIA_SOURCE_TYPE type = agora::media::UNKNOWN_MEDIA_SOURCE) = 0;
                 </codeblock>
-            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|RtcEngineProxy")
-int EnableExtension(FString provider, FString extension, bool enable = true, EMEDIA_SOURCE_TYPE type = EMEDIA_SOURCE_TYPE::UNKNOWN_MEDIA_SOURCE);
-                </codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int EnableExtension(FString provider, FString extension, bool enable = true, EMEDIA_SOURCE_TYPE type = EMEDIA_SOURCE_TYPE::UNKNOWN_MEDIA_SOURCE);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract enableExtension(
     provider: string,
     extension: string,
@@ -40,7 +39,7 @@ int EnableExtension(FString provider, FString extension, bool enable = true, EME
     required String extension,
     bool enable = true,
     MediaSourceType type = MediaSourceType.unknownMediaSource});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
@@ -80,10 +79,10 @@ int EnableExtension(FString provider, FString extension, bool enable = true, EME
                 </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
-            <ul>
-            <li props="native unreal bp unity rn electron cs">0: Success.</li>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <ul props="native unreal bp unity rn electron cs">
+            <li>0: Success.</li>
             <li>&lt; 0: Failure.<ul>
                 <li>-3: The extension library is not loaded. Agora recommends that you check the storage location or the name of the dynamic library.</li>
                 </ul>

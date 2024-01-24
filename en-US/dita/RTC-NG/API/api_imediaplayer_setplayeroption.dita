@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_setplayeroption">
-    <title><ph keyref="setPlayerOption" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the private options for the media player.</ph></shortdesc>
+    <title><ph keyref="setPlayerOption"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Set media player options for providing technical previews or special customization features.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setPlayerOption" />
+                <indexterm keyref="setPlayerOption"/>
             </keywords>
         </metadata>
     </prolog>
@@ -14,23 +14,19 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">int setPlayerOption(String key, int value);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)setPlayerOptionInt:(NSString *)key value:(NSInteger)value;
-</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int setPlayerOption(const char* key, int value) = 0;</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setPlayerOption:(NSString *)key value:(NSInteger)value NS_SWIFT_NAME(setPlayerOption(_:value:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setPlayerOption(const char* key, int64_t value) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setPlayerOptionInInt(key: string, value: number): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetPlayerOption(string key, int value);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setPlayerOptionInInt(key: string, value: number): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setPlayerOptionInInt({required String key, required int value});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setPlayerOptionInInt({required String key, required int value});</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>The media player supports setting private options by key and value. Under normal circumstances, you do not need to know the private option settings, and just use the default option settings.</p>
-            <note type="attention">
-            <ul>
-            <li>Ensure that you call this method before <xref keyref="open" />.</li>
-            <li>If you need to push streams with SEI into the CDN, call <apiname keyref="setPlayerOption" /><codeph>("sei_data_with_uuid", 1)</codeph>; otherwise, the loss of SEI might occurs.</li>
-            </ul> </note> </section>
+            <p id="desc1">The media player supports setting options through <parmname>key</parmname> and <parmname>value</parmname>. In general, you don't need to know about the option settings. You can use the default option settings of the media player.</p>
+            <p>The difference between this method and <xref keyref="setPlayerOption2"/> is that the <parmname>value</parmname> parameter of this method is of type Int, while the <parmname>value</parmname> of <apiname keyref="setPlayerOption2"/> is of type String. These two methods cannot be used together.</p>
+            <note type="attention" id="desc2">Ensure that you call this method before <xref keyref="open"/> or <xref keyref="openWithMediaSource"/>.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
@@ -44,11 +40,11 @@
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
-            <ul id="ul_uns_l2y_hqb">
-            <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <ul props="native unreal bp electron unity rn cs">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>
 </reference>

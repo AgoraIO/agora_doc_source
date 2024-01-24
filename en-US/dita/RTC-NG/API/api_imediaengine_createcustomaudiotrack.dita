@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaengine_createcustomaudiotrack">
-    <title><ph keyref="createCustomAudioTrack" /></title>
+    <title><ph keyref="createCustomAudioTrack"/></title>
     <shortdesc id="short"><ph id="shortdesc">Creates a custom audio track.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="createCustomAudioTrack" />
+                <indexterm keyref="createCustomAudioTrack"/>
             </keywords>
         </metadata>
     </prolog>
@@ -17,7 +17,7 @@
       Constants.AudioTrackType trackType, AudioTrackConfig config);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)createCustomAudioTrack:(AgoraAudioTrackType)trackType
                        config:(AgoraAudioTrackConfig* _Nonnull)config;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual rtc::track_id_t createCustomAudioTrack(rtc::AUDIO_TRACK_TYPE trackType, const rtc::AudioTrackConfig&amp; config) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual rtc::track_id_t createCustomAudioTrack(rtc::AUDIO_TRACK_TYPE trackType, const rtc::AudioTrackConfig&amp; config) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract createCustomAudioTrack(
     trackType: AudioTrackType,
     config: AudioTrackConfig
@@ -27,9 +27,9 @@
     trackType: AudioTrackType,
     config: AudioTrackConfig
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; createCustomAudioTrack(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;int> createCustomAudioTrack(
       {required AudioTrackType trackType, required AudioTrackConfig config});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
@@ -39,10 +39,11 @@
                 <dd>v4.2.0</dd>
             </dlentry>
             </dl>
-            <p>To publish a custom audio source to multiple channels, see the following steps:<ol>
+            <note type="attention">Ensure that you call this method before joining a channel.</note>
+            <p>To publish a custom audio source, see the following steps:<ol>
             <li>Call this method to create a custom audio track and get the audio track ID.</li>
-            <li>In <xref keyref="ChannelMediaOptions" /> of each channel, set <parmname>publishCustomAduioTrackId</parmname> to the audio track ID that you want to publish, and set <parmname>publishCustomAudioTrack</parmname> to <codeph><ph keyref="true" /></codeph>.</li>
-            <li>If you call <xref keyref="pushAudioFrame" props="cpp framework" /><xref keyref="pushAudioFrame2" props="android apple" />, and specify <parmname>trackId</parmname> as the audio track ID set in step 2, you can publish the corresponding custom audio source in multiple channels.</li>
+            <li>Call <xref keyref="joinChannel2"/> to join the channel. In <xref keyref="ChannelMediaOptions"/>, set <parmname>publishCustomAduioTrackId</parmname> to the audio track ID that you want to publish, and set <parmname>publishCustomAudioTrack</parmname> to <codeph><ph keyref="true"/></codeph>.</li>
+            <li>Call <xref keyref="pushAudioFrame" props="cpp framework"/><xref keyref="pushAudioFrame2" props="android apple"/> and specify <parmname>trackId</parmname> as the audio track ID set in step 2. You can then publish the corresponding custom audio source in the channel.</li>
             </ol></p>
         </section>
         <section id="parameters">
@@ -50,11 +51,11 @@
             <parml>
             <plentry>
                 <pt>trackType</pt>
-                <pd>The type of the custom audio track. See <xref keyref="AUDIO_TRACK_TYPE" />.<note type="attention">If <apiname keyref="AUDIO_TRACK_DIRECT" /> is specified for this parameter, you must set <codeph>publishMicrophoneTrack</codeph> to <codeph><ph keyref="false" /></codeph> in <xref keyref="ChannelMediaOptions" /> when calling <xref keyref="joinChannel2" /> to join the channel; otherwise, joining the channel fails and returns the error code -2.</note></pd>
+                <pd>The type of the custom audio track. See <xref keyref="AUDIO_TRACK_TYPE"/>.<note type="attention">If <apiname keyref="AUDIO_TRACK_DIRECT"/> is specified for this parameter, you must set <codeph>publishMicrophoneTrack</codeph> to <codeph><ph keyref="false"/></codeph> in <xref keyref="ChannelMediaOptions"/> when calling <xref keyref="joinChannel2"/> to join the channel; otherwise, joining the channel fails and returns the error code -2.</note></pd>
             </plentry>
             <plentry>
                 <pt>config</pt>
-                <pd>The configuration of the custom audio track. See <xref keyref="AudioTrackConfig" />.</pd>
+                <pd>The configuration of the custom audio track. See <xref keyref="AudioTrackConfig"/>.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">

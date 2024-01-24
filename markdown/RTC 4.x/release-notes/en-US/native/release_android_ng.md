@@ -1,3 +1,91 @@
+## Known issues and limitations
+
+**Android 14 screen sharing issue**
+
+On Android 14 devices (such as OnePlus 11), screen sharing may not be available when `targetSdkVersion` is set to 34. For example, half of the shared screen may be black. To avoid this issue, Agora recommends setting `targetSdkVersion` to 34 or below. However, this may cause the screen sharing process to be interrupted when switching between portrait and landscape mode. In this case, a window will pop up on the device asking if you want to start recording the screen. After confirming, you can resume screen sharing.
+
+## v4.2.6
+
+v4.2.6 was released on November xx, 2023.
+
+#### Issues fixed
+
+This version fixed the following issues that may occur when using Android 14:
+
+- When switching between portrait and landscape modes during screen sharing, the screen sharing process was interrupted. To restart screen sharing, users need to confirm recording the screen in the pop-up window.
+- When integrating the SDK, setting the Android `targetSdkVersion` to 34 may cause screen sharing to be unavailable or even cause the app to crash.
+- Calling `startScreenCapture` without sharing video (setting `captureVideo` to `false`) and then calling `updateScreenCaptureParameters` to share video (setting `captureVideo` to `true`) resulted in a frozen shared screen at the receiving end.
+- When screen sharing in landscape mode, the shared screen seen by the audience was divided into two parts: one side of the screen was compressed; the other side was black.
+
+This version also fixed the following issues:
+
+- In live streaming scenarios, the video on the audience end occasionally distorted.
+- In specific scenarios (such as when the network packet loss rate was high or when the broadcaster left the channel without destroying the engine and then re-joined the channel), the video on the receiving end stuttered or froze.
+
+## v4.2.3
+
+v4.2.3 was released on September xx, 2023.
+
+#### New features
+
+1. **Update video screenshot and upload**
+
+   To facilitate the integration of third-party video moderation services from Agora Extensions Marketplace, this version has the following changes:
+
+   - The `CONTENT_INSPECT_TYPE_IMAGE_MODERATION` enumeration is added in the `type` parameter of `ContentInspectModule`, which means using video moderation extensions from Agora Extensions Marketplace to take video screenshots and upload them.
+   - An optional parameter `serverConfig` is added in `ContentInspectConfig`, which is for server-side configuration related to video screenshot and upload via extensions from Agora Extensions Marketplace. By configuring this parameter, you can integrate multiple third-party moderation extensions and achieve flexible control over extension switches and other features. For more details, please contact [technical support](mailto:support@agora.io).
+
+   In addition, this version also introduces the `enableContentInspectEx` method, which supports taking screenshots for multiple video streams and uploading them.
+
+2. **Check device support for advanced features**
+
+   This version adds the `isFeatureAvailableOnDevice` method to check whether the capability of the current device meets the requirements of the specified advanced feature, such as virtual background and image enhancement.
+
+   Before using advanced features, you can check whether the current device supports these features based on the call result. This helps to avoid performance degradation or unavailable features when enabling advanced features on low-end devices. Based on the return value of this method, you can decide whether to display or enable the corresponding feature button, or notify the user when the device's capabilities are insufficient.
+
+   In addition, since this version, calling `enableVirtualBackground` and `setBeautyEffectOptions` automatically triggers a test on the capability of the current device. When the device is considered underperformed, the error code `-4:ERR_NOT_SUPPORTED` is returned, indicating the device does not support the feature.
+
+#### Improvements
+
+1. **Optimize virtual background memory usage**
+
+   This version has upgraded the virtual background algorithm, reducing the memory usage of the virtual background feature. Compared to the previous version, the memory consumption of the app during the use of the virtual background feature on low-end devices has been reduced by approximately 4% to 10% (specific values may vary depending on the device model and platform).
+
+2. **Screen sharing scenario optimization**
+
+   This release also optimizes the video encoding configuration in screen sharing scenarios. When users customize the `width` and `height` properties of the video, the SDK rounds down the actual encoding resolution while maintaining the aspect ratio of the video and the screen, ensuring that the final encoding resolution does not exceed the user-defined encoding resolution, thereby improving the accuracy of billing for screen sharing streams.
+
+**Other Improvements**
+
+This release includes the following additional improvements:
+
+- Optimizes the management method of Texture Buffer for SDK capture and custom video capture scenarios, effectively eliminating frame dropping and crash risks.
+- Optimizes the logic of handling invalid parameters. When you call the `setPlaybackSpeed` method to set the playback speed of audio files, if you pass an invalid parameter, the SDK returns the error code -2, which means that you need to reset the parameter.
+- Optimizes the logic of Token parsing, in order to prevent an app from crash when an invalid token is passed in.
+
+#### Issues fixed
+
+This release fixed the following issues:
+
+- When using the H.265 encoding mode, when a Web client joined the interactivity, it caused a redundant `onUserEnableLocalVideo` callback on the native side: when the host called `enableLocalVideo (true)`, the receiving end first received a `onUserEnableLocalVideo` callback (with `enabled` as `false`) before receiving a `onUserEnableLocalVideo` callback (with `enabled` as `true`).
+- Occasional failure of joining a channel when the local system time was not set correctly.
+- When calling the `playEffect [2/2]` method to play two audio files using the same `soundId`, the first audio file was sometimes played repeatedly.
+- When the host called the `startAudioMixing [2/2]` method to play music, sometimes the host couldn't hear the music while the remote users could hear it.
+- Occasional crashes occurred on certain Android devices.
+- Calling `takeSnapshotEx` once receives the `onSnapshotTaken` callback for multiple times.
+- In channels joined by calling `joinChannelEx` exclusively, calling `setEnableSpeakerphone` is unable to switch audio route from the speaker to the headphone.
+
+#### API changes
+
+**Added**
+
+- `enableContentInspectEx`
+- `CONTENT_INSPECT_TYPE_IMAGE_MODERATION` in `type` of `ContentInspectModule`.
+- `serverConfig` in `ContentInspectConfig`
+- `isFeatureAvailableOnDevice`
+- `FeatureType`
+
+
 ## v4.2.2
 
 v4.2.2 was released on July xx, 2023.
@@ -103,7 +191,7 @@ If you use the features mentioned in this section, ensure that you modify the im
 **1. Video data acquisition**
 
 - The `onCaptureVideoFrame` and `onPreEncodeVideoFrame` callbacks are added with a new parameter called `sourceType`, which is used to indicate the specific video source type.
-- The following callbacks are deleted. Get the video source type through the `sourceType` parameter in the `onPreEncodeVideoFrame` and `onCaptureVideoFrame` callbacks. 
+- The following callbacks are deleted. Get the video source type through the `sourceType` parameter in the `onPreEncodeVideoFrame` and `onCaptureVideoFrame` callbacks.
 - `onScreenCaptureVideoFrame`
 - `onPreEncodeScreenVideoFrame`
 

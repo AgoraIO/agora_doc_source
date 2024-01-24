@@ -20,7 +20,7 @@
             error:(NSInteger)error
             missed:(NSInteger)missed
             cached:(NSInteger)cached;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onStreamMessageError(uid_t userId, int streamId, int code, int missed, int cached) {
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onStreamMessageError(uid_t userId, int streamId, int code, int missed, int cached) {
                 (void)userId;
                 (void)streamId;
                 (void)code;
@@ -28,6 +28,7 @@
                 (void)cached;
               }
             </codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnStreamMessageError, int64, userId, int, streamId, int, code, int, missed, int, cached);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onStreamMessageError?(
     connection: RtcConnection,
     remoteUid: number,
@@ -75,9 +76,9 @@
                 <pd>接收到的消息的 Stream ID。</pd>
             </plentry>
             <plentry id="code">
-                <pt props="cpp unreal bp electron rn unity flutter cs">code</pt>
+                <pt props="cpp framework">code</pt>
                 <pt props="android ios mac">error</pt>
-                <pd>发生错误的错误码。</pd>
+                <pd>发生错误的错误码。详见 <xref keyref="ERROR_CODE_TYPE" props="flutter electron rn"/><xref keyref="error-code-link" props="native unreal bp unity"/>。</pd>
             </plentry>
             <plentry id="missed">
                 <pt>missed</pt>

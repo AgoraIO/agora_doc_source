@@ -17,7 +17,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)enableExternalAudioSink:(BOOL)enabled
                      sampleRate:(NSUInteger)sampleRate
                        channels:(NSUInteger)channels;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int setExternalAudioSink(bool enabled, int sampleRate, int channels) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setExternalAudioSink(bool enabled, int sampleRate, int channels) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setExternalAudioSink(
     enabled: boolean,
     sampleRate: number,
@@ -40,7 +40,7 @@
             <ul>
             <li>使用该方法前，你需要在 <xref keyref="RtcEngineConfig" /> 中设置 <parmname>enableAudioDevice</parmname> 为 <codeph><ph keyref="false" /></codeph>。</li>
             <li>该方法需要在加入频道前调用。</li>
-            <li>开启外部音频渲染后，app 会无法从 <xref keyref="onPlaybackAudioFrame" /> 回调中获得数据。</li>
+            <li>开启外部音频渲染后，App 会无法从 <xref keyref="onPlaybackAudioFrame" /> 回调中获得数据。</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>参数</title>
@@ -73,8 +73,8 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul>
-            <li props="android cpp unreal bp electron unity rn cs">0: 方法调用成功。</li>
+            <ul props="android cpp unreal bp electron unity rn cs">
+            <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
             </ul> </section>
     </refbody>

@@ -21,8 +21,10 @@
                            label:(NSString * _Nullable)label
                            value:(NSInteger)value
                       connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int sendCustomReportMessageEx(const char* id, const char* category, const char* event, const char* label,
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int sendCustomReportMessageEx(const char* id, const char* category, const char* event, const char* label,
       int value, const RtcConnection&amp; connection) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int SendCustomReportMessageEx(FString id, FString category, FString event, FString label, int value, const FRtcConnection&amp; connection);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract sendCustomReportMessageEx(
     id: string,
     category: string,

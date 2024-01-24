@@ -49,7 +49,7 @@ __attribute__((visibility("default"))) @interface AgoraEchoTestConfiguration : N
 @property(copy, nonatomic) NSString* _Nonnull channelId NS_SWIFT_NAME(channelId);
 @property(assign, nonatomic) NSInteger intervalInSeconds NS_SWIFT_NAME(intervalInSeconds);
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">
+            <codeblock props="cpp unreal" outputclass="language-cpp">
 struct EchoTestConfiguration {
   view_t view;
   bool enableAudio;
@@ -63,6 +63,24 @@ struct EchoTestConfiguration {
 
   EchoTestConfiguration()
    : view(OPTIONAL_NULLPTR), enableAudio(true), enableVideo(true), token(OPTIONAL_NULLPTR), channelId(OPTIONAL_NULLPTR), intervalInSeconds(2) {}
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FEchoTestConfiguration
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EchoTestConfiguration&quot;)
+	UImage* view;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EchoTestConfiguration&quot;)
+	bool enableAudio = true;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EchoTestConfiguration&quot;)
+	bool enableVideo = true;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EchoTestConfiguration&quot;)
+	FString token;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EchoTestConfiguration&quot;)
+	FString channelId;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EchoTestConfiguration&quot;)
+	int intervalInSeconds = 2;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class EchoTestConfiguration {
 
@@ -141,24 +159,25 @@ class EchoTestConfiguration {
             <parml>
             <plentry>
                 <pt>view</pt>
-                <pd>用于渲染本地用户视频的视图。该参数仅适用于测试视频设备的场景，即该结构体中 <parmname>enableVideo</parmname> 为 <ph keyref="true"/>。</pd>
+                <pd>用于渲染本地用户视频的视图。该参数仅适用于测试视频设备的场景，请确保 <parmname>enableVideo</parmname> 为 <ph keyref="true"/>。</pd>
             </plentry>
             <plentry>
                 <pt>enableAudio</pt>
                 <pd>是否开启音频设备：
                     <ul>
-                    <li><ph keyref="true" />: (默认) 开启音频设备。如需测试音频设备，请设为 <ph keyref="true" />。</li>
-                    <li><ph keyref="false" />: 关闭音频设备。</li>
+                    <li><codeph><ph keyref="true" /></codeph>: (默认) 开启音频设备。如需测试音频设备，请设为 <ph keyref="true" />。</li>
+                    <li><codeph><ph keyref="false" /></codeph>: 关闭音频设备。</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>enableVideo</pt>
-                <pd>是否开启视频设备：
-
+                <pd props="native">是否开启视频设备：
                     <ul>
-                    <li><ph keyref="true" />: (默认) 开启视频设备。如需测试视频设备，请设为 <ph keyref="true" />。</li>
-                    <li><ph keyref="false" />: 关闭视频设备。</li>
-                    </ul></pd>
+                    <li><codeph><ph keyref="true" /></codeph>: (默认) 开启视频设备。如需测试视频设备，请设为 <ph keyref="true" />。</li>
+                    <li><codeph><ph keyref="false" /></codeph>: 关闭视频设备。</li>
+                    </ul>
+                </pd>
+                <pd props="framework">是否开启视频设备。暂不支持视频设备检测，请将该参数设为 <codeph><ph keyref="false"/></codeph>。</pd>
             </plentry>
             <plentry>
                 <pt>token</pt>
@@ -170,7 +189,12 @@ class EchoTestConfiguration {
             </plentry>
             <plentry>
                 <pt>intervalInSeconds</pt>
-                <pd>设置返回音频或视频通话回路测试结果的时间间隔，取值范围为 [2,10]，单位为秒，默认为 2 秒。</pd>
+                <pd>设置返回音视频回路测试结果的时间间隔或延迟，取值范围为 [2,10]，单位为秒，默认为 2 秒。
+                    <ul>
+                    <li>对于音频回路测试，测试结果会根据你设置的时间间隔返回。</li>
+                    <li>对于视频回路测试，视频画面会在短时间内显示，之后延迟会逐渐增加，直至达到你设置的延迟。</li>
+                    </ul>
+                </pd>
             </plentry>
             </parml> </section>
     </refbody>

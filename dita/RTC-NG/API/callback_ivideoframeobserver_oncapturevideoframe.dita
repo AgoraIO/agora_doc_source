@@ -15,7 +15,8 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">boolean onCaptureVideoFrame(int sourceType, VideoFrame videoFrame);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onCaptureVideoFrame:(AgoraOutputVideoFrame * _Nonnull)videoFrame sourceType:(AgoraVideoSourceType)sourceType;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual bool onCaptureVideoFrame(agora::rtc::VIDEO_SOURCE_TYPE sourceType, VideoFrame&amp; videoFrame) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual bool onCaptureVideoFrame(agora::rtc::VIDEO_SOURCE_TYPE sourceType, VideoFrame&amp; videoFrame) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnCaptureVideoFrame, EVIDEO_SOURCE_TYPE, sourceType, const FVideoFrame&amp;, videoFrame);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onCaptureVideoFrame?(
     sourceType: VideoSourceType,
     videoFrame: VideoFrame
@@ -34,7 +35,7 @@
             <p props="native unreal bp unity electron rn cs">完成前处理后，你可以在该回调中直接修改 <parmname>videoFrame</parmname>，并将返回值设置为 <codeph><ph keyref="true"/></codeph>，即可将修改后的视频数据发送给 SDK。</p>
             <note type="attention" id="note">
             <ul>
-            <li>此处获取的视频数据未经过前处理，如水印、裁剪、旋转和美颜等。</li>
+            <li>此处获取的视频数据未经过水印、裁剪和旋转等前处理。</li>
             <li>如果你获取到的视频数据类型为 RGBA，SDK 不支持对 alpha 通道的值进行处理。</li>
             <li props="flutter">由于 Flutter 框架的限制，该回调不支持将处理后的视频数据发送回 SDK。</li>
         </ul></note> </section>
@@ -50,10 +51,10 @@
                 <pd>视频帧数据。详见 <xref keyref="VideoFrame"/>。
                 <note>通过该回调获取的视频帧数据格式默认值如下：
                     <ul>
-                        <li props="android cpp unreal bp rn unity flutter">Android：texture</li>
-                        <li props="ios cpp unreal bp rn unity flutter">iOS：cvPixelBuffer</li>
-                        <li props="mac cpp unreal bp electron unity flutter">macOS：YUV 420</li>
-                        <li props="cpp unreal bp electron unity flutter cs">Windows：YUV 420</li></ul></note></pd>
+                        <li props="android cpp unreal bp rn unity flutter">Android：I420 或 RGB (GLES20.GL_TEXTURE_2D)</li>
+                        <li props="ios cpp unreal bp rn unity flutter">iOS：I420 或 CVPixelBufferRef</li>
+                        <li props="mac cpp unreal bp electron unity flutter">macOS：I420 或 CVPixelBufferRef</li>
+                        <li props="cpp unreal bp electron unity flutter cs">Windows：YUV420</li></ul></note></pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native unreal bp unity electron rn cs">

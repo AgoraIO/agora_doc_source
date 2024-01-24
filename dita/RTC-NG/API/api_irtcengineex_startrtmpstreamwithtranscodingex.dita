@@ -18,7 +18,9 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)startRtmpStreamWithTranscodingEx:(NSString* _Nonnull)url
                             transcoding:(AgoraLiveTranscoding* _Nullable)transcoding
                              connection:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(startRtmpStreamWithTranscodingEx(_:transcoding:connection:));</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int startRtmpStreamWithTranscodingEx(const char* url, const LiveTranscoding&amp; transcoding, const RtcConnection&amp; connection) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int startRtmpStreamWithTranscodingEx(const char* url, const LiveTranscoding&amp; transcoding, const RtcConnection&amp; connection) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int StartRtmpStreamWithTranscodingEx(FString url, const FLiveTranscoding&amp; transcoding, const FRtcConnection&amp; connection);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract startRtmpStreamWithTranscodingEx(
     url: string,
     transcoding: LiveTranscoding,
@@ -69,17 +71,6 @@
                 <pd/>
             </plentry>
             </parml> </section>
-        <section id="return_values">
-            <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul>
-            <li props="native unreal bp unity electron rn cs">0: 方法调用成功。</li>
-            <li>&lt; 0: 方法调用失败。                
-                <ul>
-                <li>-2：url 为空或为长度为 0 的字符串。</li>
-                <li>-7：调用该方法前，未初始化 SDK。</li>
-                <li>-19：该旁路推流 URL 已在使用中，请使用其他旁路推流 URL。</li>
-                </ul> </li>
-            </ul> </section>
+        <section id="return_values" conkeyref="startRtmpStreamWithTranscoding/return_values"></section>
     </refbody>
 </reference>

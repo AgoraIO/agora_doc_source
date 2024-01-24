@@ -17,7 +17,8 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (AgoraVideoFormat)getVideoFormatPreference;
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual VIDEO_PIXEL_FORMAT getVideoFormatPreference() { return VIDEO_PIXEL_DEFAULT; }</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual VIDEO_PIXEL_FORMAT getVideoFormatPreference() { return VIDEO_PIXEL_DEFAULT; }</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE(FGetVideoFormatPreference);</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual VIDEO_OBSERVER_FRAME_TYPE GetVideoFormatPreference()
         {
@@ -28,32 +29,17 @@
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>If you want to get raw video data in a color encoding format other than YUV 420, register this callback when calling <xref keyref="registerVideoFrameObserver"/>. After you successfully register the video frame observer, the SDK triggers this callback each time it receives a video frame. You need to set your preferred video data in the return value of this callback.</p>
-            <note type="note" props="hide">If you want the video captured by the sender to be the original format, set the original video data format to <apiname keyref="VIDEO_PIXEL_DEFAULT"/> in the return value. The original video pixel format varies based on different platforms. For the actual video pixel format, see <xref keyref="VideoFrame"/>.</note> </section>
+            <p>You need to register the callback when calling the <xref keyref="registerVideoFrameObserver"/> method. After you successfully register the video frame observer, the SDK triggers this callback each time it receives a video frame. You need to set your preferred video data in the return value of this callback.</p>
+        </section>
         <section id="return_values">
             <title>Returns</title>
-            <p><ph>Sets the video format. </ph><ph props="cpp unreal bp ios mac unity">See <xref keyref="VIDEO_PIXEL_FORMAT" props="cpp unreal bp ios mac"/><xref keyref="VIDEO_OBSERVER_FRAME_TYPE" props="unity"/>.</ph></p>  
+            <p><ph>Sets the raw data format of the SDK output. </ph><ph props="cpp bp unreal apple">See <xref keyref="VIDEO_PIXEL_FORMAT"/>.</ph></p>
+            <p>The default types of pixel format (<ph keyref="VIDEO_PIXEL_DEFAULT"/>) for the raw video are as follows:<ul><li props="cpp bp unreal">On the Android platform, the default video frame type may be I420Buffer or TextureBuffer. As of v4.2.3, the texture formats of TextureBuffer type no longer include OES format, only RGB format is available. You need to add support for I420 and RGB texture formats when processing video data.</li>
+                <li props="android">The default video frame type may be I420Buffer or TextureBuffer. As of v4.2.3, the texture formats of TextureBuffer type no longer include OES format, only RGB format is available. You need to add support for I420 and RGB texture formats when processing video data.</li>
+                <li props="cpp unreal bp">On iOS and macOS platforms, the default video frame type may be I420 or CVPixelBufferRef.</li>
+                <li props="apple">The default video frame type may be I420 or CVPixelBufferRef.</li>
+                <li props="cpp unreal bp">On Windows platforms, the default video frame type is YUV420.</li></ul></p>
             <p props="android">
-            <note id="default" props="hide">
-                    <p>According to different observation locations and collection scenarios, the actual video pixel format corresponding to this enumeration value is different. Agora recommends that you do not use this value. Some common situations are listed below.</p>
-                    <ul>
-                        <li>When the observation position is <apiname keyref="POSITION_POST_CAPTURER"/>, common scenarios are as follows:<ul>
-                            <li props="ios">Only video with pixel format CVPixelBufferRef is supported.</li>
-                            <li props="android">When the user collects video data in YUV format, or the resolution of the captured video is less than 256 × 256, the supported video pixel format is I420; in other cases, the Texture format is supported.</li>
-                            <li props="mac cpp unreal bp">Only video with pixel format I420 is supported.</li>
-                            </ul></li>
-                        <li>When the observation position is <apiname keyref="POSITION_PRE_ENCODER"/>, common scenarios are as follows:<ul>
-                            <li props="ios">Only video with pixel format CVPixelBufferRef is supported.</li>
-                            <li props="android">When the user collects video data in YUV format, or the resolution of the captured video is less than 256 × 256, the supported video pixel format is I420; in other cases, the Texture format is supported.</li>
-                            <li props="mac cpp unreal bp">Only video with pixel format I420 is supported.</li>
-                            </ul></li>
-                        <li>When the observation position is <apiname keyref="POSITION_PRE_RENDERER"/>, common scenarios are as follows:<ul>
-                            <li props="ios mac">Video with pixel format CVPixelBufferRef is supported by default.</li>
-                            <li props="android">Video with a pixel format of Texture is supported by default.</li>
-                            <li props="cpp unreal bp">Video with pixel format I420 is supported.</li>
-                            </ul></li>
-                    </ul>
-                </note>
             <ul>
             <li><ph keyref="VIDEO_PIXEL_DEFAULT"/>(0): Raw video.</li>
             <li><ph keyref="VIDEO_PIXEL_I420"/>(1): I420.</li>

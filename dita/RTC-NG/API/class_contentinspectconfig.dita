@@ -39,10 +39,10 @@
 @property (nonatomic, copy) NSString* _Nullable serverConfig;
 @property(copy, nonatomic) NSArray&lt;AgoraContentInspectModule*&gt;* _Nullable modules;
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct ContentInspectConfig {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct ContentInspectConfig {
   const char* extraInfo;
   const char* serverConfig;
-    
+
   ContentInspectModule modules[MAX_CONTENT_INSPECT_MODULE_COUNT];
   int moduleCount;
    ContentInspectConfig&amp; operator=(const ContentInspectConfig&amp; rth)
@@ -55,34 +55,51 @@
 	}
   ContentInspectConfig() :extraInfo(NULL), serverConfig(NULL), moduleCount(0){}
 };</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FContentInspectConfig
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ContentInspectConfig&quot;)
+	FString extraInfo;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ContentInspectConfig&quot;)
+	TArray&lt;FContentInspectModule&gt; modules;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ContentInspectConfig&quot;)
+	int moduleCount;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ContentInspectConfig {
-  
-  extraInfo?: string;
-    
-  modules?: ContentInspectModule[];
-  
-  moduleCount?: number;
-}</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public class ContentInspectConfig
-    {
-        public ContentInspectModule[] modules { set; get; }
 
-        public int moduleCount { set; get; }
-
-        public ContentInspectConfig()
-        {
-            modules = null;
-            moduleCount = 0;
-        }
-    };</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">export class ContentInspectConfig {
-  
   extraInfo?: string;
-  
+
   serverConfig?: string;
 
   modules?: ContentInspectModule[];
-  
+
+  moduleCount?: number;
+}</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public class ContentInspectConfig
+                {
+                    public string extraInfo;
+                    public string serverConfig;
+                    public ContentInspectModule[] modules;
+                    public int moduleCount;
+
+                    public ContentInspectConfig()
+                    {
+                        extraInfo = "";
+                        serverConfig = "";
+                        modules = null;
+                        moduleCount = 0;
+                    }
+                };</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class ContentInspectConfig {
+
+  extraInfo?: string;
+
+  serverConfig?: string;
+
+  modules?: ContentInspectModule[];
+
   moduleCount?: number;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
@@ -128,7 +145,7 @@ class ContentInspectConfig {
                 <pt>CONTENT_INSPECT_TYPE_IMAGE_MODERATION</pt>
                 <pd>3：使用云市场插件截图上传。SDK 会使用云市场视频审核插件对视频流进行截图并上传。</pd>
             </plentry>
-            <plentry props="native unreal bp electron rn flutter">
+            <plentry>
                 <pt>extraInfo</pt>
                 <pd>
                     <p>附加信息，最大长度为 1024 字节。</p>
@@ -138,7 +155,7 @@ class ContentInspectConfig {
             </plentry>
             <plentry props="native rn flutter unity">
                 <pt>serverConfig</pt>
-                <pd>（可选）云市场视频截图上传相关服务端配置，该参数仅在 <xref keyref="ContentInspectModule"/> 中的 <codeph>type</codeph> 设置为 <ph keyref="CONTENT_INSPECT_IMAGE_MODERATION"/> 时生效。如需使用，请<xref keyref="ticket-link" />。</pd>
+                <pd>（可选）云市场视频截图上传相关服务端配置，该参数仅在 <xref keyref="ContentInspectModule"/> 中的 <codeph>type</codeph> 设置为 <apiname keyref="CONTENT_INSPECT_IMAGE_MODERATION"/> 时生效。如需使用，请<xref keyref="ticket-link" />。</pd>
             </plentry>
             <plentry>
                 <pt>modules</pt>

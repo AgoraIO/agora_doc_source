@@ -19,10 +19,11 @@
                  firstLocalVideoFramePublishedWithElapsed:(NSInteger)elapsed
                  sourceType:(AgoraVideoSourceType)sourceType;
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">  virtual void onFirstLocalVideoFramePublished(VIDEO_SOURCE_TYPE source, int elapsed) {
+            <codeblock props="cpp unreal" outputclass="language-cpp">  virtual void onFirstLocalVideoFramePublished(VIDEO_SOURCE_TYPE source, int elapsed) {
     (void)source;
     (void)elapsed;
     }</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnFirstLocalVideoFramePublished, EVIDEO_SOURCE_TYPE, source, int, elapsed);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onFirstLocalVideoFramePublished?(
     connection: RtcConnection,
     elapsed: number

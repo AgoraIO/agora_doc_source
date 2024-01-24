@@ -177,6 +177,20 @@ The behavior differences of Agora SDK between ^5.x and ^6.0.0 are listed as foll
 - In ^5.x, the local user receives the `onRemoteAudioStateChanged` or `onRemoteVideoStateChanged` callback, which reports the status changes of the remote host's audio or video streams.
 - In ^6.0.0, instead of the `onRemoteAudioStateChanged` or `onRemoteVideoStateChanged` callback, the local user receives the `onUserMuteAudio` or `onUserMuteVideo` callback, which reports the changes in the remote host's publishing status.
 
+#### Media options
+
+There are differences in the behavior of the SDK when setting channel media options while joining a channel between agora_rtc_engine: ^5.x and agora_rtc_engine: ^6.0.0:
+
+- In agora_rtc_engine: ^5.x, if you set `publishLocalAudio` in `ChannelMediaOptions` to `false`, it will stop publishing the local audio stream within the channel.
+- In agora_rtc_engine: ^6.0.0, if you set `publishMicrophoneTrack` in `ChannelMediaOptions` to `false`, it will not only stop publishing the local audio stream within the channel but also stop local microphone capture.
+
+#### Video information change event (iOS)
+
+If the video capture device is adjusted to landscape or portrait mode during video capture, in agora_rtc_engine: ^5.x and agora_rtc_engine: ^6.0.0, the following differences exit in the video information change events reported by the SDK:
+
+- In agora_rtc_engine: ^5.x, the `rotation` parameter in the `videoSizeChanged` callback displays the current device rotation information.
+- In agora_rtc_engine: ^6.0.0, the `rotation` parameter in the `onVideoSizeChanged` callback is always `0`.
+
 ### Function gaps
 
 This section introduces functions that were supported in agora_rtc_engine: <Vpd k="NAME"/> ^<Vg k="VSDK_FLUTTER_PREVIOUS_RELEASE" /> but are no longer supported or behave inconsistently in agora_rtc_engine: ^<Vg k="VSDK_FLUTTER_RELEASE" />. Plans exist to support them or make them consistent in a future release, however.

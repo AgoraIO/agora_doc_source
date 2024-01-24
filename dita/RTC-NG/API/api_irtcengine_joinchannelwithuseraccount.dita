@@ -19,7 +19,7 @@
                 channelId:(NSString * _Nonnull)channelId
               userAccount:(NSString * _Nonnull)userAccount
               joinSuccess:(void(^ _Nullable)(NSString * _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int joinChannelWithUserAccount(const char* token,
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int joinChannelWithUserAccount(const char* token,
     const char* channelId,
     const char* userAccount) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract joinChannelWithUserAccount(
@@ -78,8 +78,8 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul>
-            <li props="native unreal bp unity rn electron cs">0: 方法调用成功。</li>
+            <ul props="native unreal bp unity rn electron cs">
+            <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph>
                 <ul>
                 <li>-2: 参数无效。</li>

@@ -19,8 +19,14 @@
             <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AdvancedConfigInfo) __attribute__((visibility("default"))) @interface AdvancedConfigInfo : NSObject
 @property(strong, nonatomic) LogUploadServerInfo* _Nullable logUploadServer;
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct AdvancedConfigInfo {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct AdvancedConfigInfo {
   LogUploadServerInfo logUploadServer;
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FAdvancedConfigInfo {
+
+	GENERATED_BODY()
+	FLogUploadServerInfo logUploadServer;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class AdvancedConfigInfo {
   logUploadServer?: LogUploadServerInfo;

@@ -17,7 +17,8 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onRenderVideoFrame:(AgoraOutputVideoFrame * _Nonnull)videoFrame
     uid:(NSUInteger)uid
     channelId:(NSString * _Nonnull)channelId;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual bool onRenderVideoFrame(const char* channelId, rtc::uid_t remoteUid, VideoFrame&amp; videoFrame) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual bool onRenderVideoFrame(const char* channelId, rtc::uid_t remoteUid, VideoFrame&amp; videoFrame) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnRenderVideoFrame, const FString, channelId, int64, remoteUid, const FVideoFrame&amp;, videoFrame);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onRenderVideoFrame?(
     channelId: string,
     remoteUid: number,

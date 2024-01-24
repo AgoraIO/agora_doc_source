@@ -7,38 +7,32 @@
     <section id="prototype">
       <p outputclass="codeblock">
       <codeblock props="android" outputclass="language-java">public class ScreenCaptureParameters {
-    public static class VideoCaptureParameters {
-        public int bitrate = 0;
-        public int framerate = 15;
-        public int width = 1280;
-        public int height = 720;
-        public int contentHint = Constants.SCREEN_CAPTURE_CONTENT_HINT_MOTION;
-
+  public static class VideoCaptureParameters {
+    public int bitrate = 0;
+    public int framerate = 15;
+    public int width = 1280;
+    public int height = 720;
+    public int contentHint = Constants.SCREEN_CAPTURE_CONTENT_HINT_MOTION;
     @CalledByNative("VideoCaptureParameters")
     public int getBitrate() {
       return bitrate;
     }
-
     @CalledByNative("VideoCaptureParameters")
     public int getFramerate() {
       return framerate;
     }
-
     @CalledByNative("VideoCaptureParameters")
     public int getWidth() {
       return width;
     }
-
     @CalledByNative("VideoCaptureParameters")
     public int getHeight() {
       return height;
     }
-
     @CalledByNative("VideoCaptureParameters")
     public int getContentHint() {
       return contentHint;
     }
-
     @Override
     public String toString() {
       return "VideoCaptureParameters{"
@@ -46,59 +40,50 @@
           + ", height=" + height + ", contentHint=" + contentHint + '}';
     }
   }
-
-    public static class AudioCaptureParameters {
-        public int sampleRate = 16000;
-        public int channels = 2;
-        public int captureSignalVolume = 100;
-
+  public static class AudioCaptureParameters {
+    public int sampleRate = 16000;
+    public int channels = 2;
+    public int captureSignalVolume = 100;
+    public boolean allowCaptureCurrentApp = true;
     @CalledByNative("AudioCaptureParameters")
     public int getSampleRate() {
       return sampleRate;
     }
-
     @CalledByNative("AudioCaptureParameters")
     public int getChannels() {
       return channels;
     }
-
     @CalledByNative("AudioCaptureParameters")
     public int getCaptureSignalVolume() {
       return captureSignalVolume;
     }
-
     @Override
     public String toString() {
       return "AudioCaptureParameters{"
-          + "sampleRate=" + sampleRate + ", channels=" + channels
-          + ", captureSignalVolume=" + captureSignalVolume + '}';
+          + "sampleRate=" + sampleRate + ", channels=" + channels + ", captureSignalVolume="
+          + captureSignalVolume + ", allowCaptureCurrentApp=" + allowCaptureCurrentApp + '}';
     }
   }
-    public boolean captureAudio = false;
-    public VideoCaptureParameters videoCaptureParameters = new VideoCaptureParameters();
-    public boolean captureVideo = true;
-    public AudioCaptureParameters audioCaptureParameters = new AudioCaptureParameters();
-
+  public boolean captureAudio = false;
+  public VideoCaptureParameters videoCaptureParameters = new VideoCaptureParameters();
+  public boolean captureVideo = true;
+  public AudioCaptureParameters audioCaptureParameters = new AudioCaptureParameters();
   @CalledByNative
   public boolean isCaptureAudio() {
     return captureAudio;
   }
-
   @CalledByNative
   public VideoCaptureParameters getVideoCaptureParameters() {
     return videoCaptureParameters;
   }
-
   @CalledByNative
   public boolean isCaptureVideo() {
     return captureVideo;
   }
-
   @CalledByNative
   public AudioCaptureParameters getAudioCaptureParameters() {
     return audioCaptureParameters;
   }
-
   @Override
   public String toString() {
     return "ScreenCaptureParameters{"
@@ -106,7 +91,8 @@
         + ", captureVideo=" + captureVideo + ", audioCaptureParameters=" + audioCaptureParameters
         + '}';
   }
-}</codeblock>
+}
+</codeblock>
       <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenCaptureParameters2 : NSObject
 @property(assign, nonatomic) BOOL captureAudio;
 @property(strong, nonatomic) AgoraScreenAudioParameters* _Nonnull audioParams;
@@ -114,13 +100,27 @@
 @property(strong, nonatomic) AgoraScreenVideoParameters* _Nonnull videoParams;
 @end
 </codeblock>
-      <codeblock props="cpp unreal bp" outputclass="language-cpp">struct ScreenCaptureParameters2 {
+      <codeblock props="cpp unreal" outputclass="language-cpp">struct ScreenCaptureParameters2 {
     bool captureAudio = false;
     ScreenAudioParameters audioParams;
     bool captureVideo = true;
     ScreenVideoParameters videoParams;
 };
 </codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FScreenCaptureParameters2
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureParameters2&quot;)
+	bool captureAudio;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureParameters2&quot;)
+	FScreenAudioParameters audioParams;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureParameters2&quot;)
+	bool captureVideo;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureParameters2&quot;)
+	FScreenVideoParameters videoParams;
+};</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class ScreenCaptureParameters2 {
   captureAudio?: boolean;
   audioParams?: ScreenAudioParameters
@@ -213,8 +213,8 @@
             <note type="attention">该参数仅在 <parmname>captureVideo</parmname> 为 <codeph><ph keyref="true"/></codeph> 时生效。</note></pd>
         </plentry>
       </parml> </section>
-      <section id="class" props="android">
-        <title>子类</title>
+      <section id="sub-class" props="android">
+        <title>类</title>
         <parml>
           <plentry>
             <pt><ph keyref="ScreenVideoParameters"/></pt>

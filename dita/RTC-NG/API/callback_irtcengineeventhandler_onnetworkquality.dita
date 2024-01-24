@@ -18,11 +18,12 @@
     networkQuality:(NSUInteger)uid
     txQuality:(AgoraNetworkQuality)txQuality
     rxQuality:(AgoraNetworkQuality)rxQuality;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onNetworkQuality(uid_t uid, int txQuality, int rxQuality) {
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onNetworkQuality(uid_t uid, int txQuality, int rxQuality) {
     (void)uid;
     (void)txQuality;
     (void)rxQuality;
     }</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnNetworkQuality, int64, uid, int, txQuality, int, rxQuality);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onNetworkQuality?(
     connection: RtcConnection,
     remoteUid: number,
@@ -64,15 +65,15 @@
             </plentry>
             <plentry id="txQuality">
                 <pt>txQuality</pt>
-                <pd>该用户的上行网络质量，基于发送码率、上行丢包率、平均往返时延和网络抖动计算。 该值代表当前的上行网络质量，帮助判断是否可以支持当前设置的视频编码属性。 假设上行码率是 1000 Kbps，那么支持直播场景下 640 × 480 的分辨率、15 fps 的帧率没有问题，但是支持 1280 × 720 的分辨率就会有困难。 <ph props="ios mac cpp unreal bp unity electron flutter cs">详见 <xref keyref="QUALITY_TYPE" />。</ph>
-                    <ul conkeyref="RemoteAudioStats/qualitytype" props="android">
+                <pd>该用户的上行网络质量，基于发送码率、上行丢包率、平均往返时延和网络抖动计算。 该值代表当前的上行网络质量，帮助判断是否可以支持当前设置的视频编码属性。 假设上行码率是 1000 Kbps，那么支持直播场景下 640 × 480 的分辨率、15 fps 的帧率没有问题，但是支持 1280 × 720 的分辨率就会有困难。 <ph props="ios mac cpp unreal unity electron flutter cs">详见 <xref keyref="QUALITY_TYPE" />。</ph>
+                    <ul conkeyref="RemoteAudioStats/qualitytype" props="android bp">
                     <li />
                     </ul> </pd>
             </plentry>
             <plentry id="rxQuality">
                 <pt>rxQuality</pt>
-                <pd>该用户的下行网络质量，基于下行网络的丢包率、平均往返延时和网络抖动计算。<ph props="ios mac cpp unreal bp unity electron flutter cs">详见 <xref keyref="QUALITY_TYPE" />。</ph>
-                    <ul conkeyref="RemoteAudioStats/qualitytype" props="android">
+                <pd>该用户的下行网络质量，基于下行网络的丢包率、平均往返延时和网络抖动计算。<ph props="ios mac cpp unreal unity electron flutter cs">详见 <xref keyref="QUALITY_TYPE" />。</ph>
+                    <ul conkeyref="RemoteAudioStats/qualitytype" props="android bp">
                     <li />
                     </ul></pd>
             </plentry>

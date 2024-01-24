@@ -19,10 +19,11 @@
  localVideoStats:(AgoraRtcLocalVideoStats * _Nonnull)stats
  sourceType:(AgoraVideoSourceType)sourceType;
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onLocalVideoStats(VIDEO_SOURCE_TYPE source, const LocalVideoStats&amp; stats) {
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onLocalVideoStats(VIDEO_SOURCE_TYPE source, const LocalVideoStats&amp; stats) {
     (void)source;
     (void)stats;
     }</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnLocalVideoStats, EVIDEO_SOURCE_TYPE, source, const FLocalVideoStats&amp;, stats);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onLocalVideoStats?(connection: RtcConnection, stats: LocalVideoStats): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnLocalVideoStats(RtcConnection connection, LocalVideoStats stats) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onLocalVideoStats?(connection: RtcConnection, stats: LocalVideoStats): void;</codeblock>

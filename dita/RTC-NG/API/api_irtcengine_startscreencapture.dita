@@ -19,8 +19,8 @@
             <codeblock props="cpp unreal" outputclass="language-cpp">#if defined(__ANDROID__) || (defined(__APPLE__) &amp;&amp; TARGET_OS_IOS)
                 virtual int startScreenCapture(const ScreenCaptureParameters2&amp; captureParams) = 0;
               #endif</codeblock>
-              <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|RtcEngineProxy")
-int StartScreenCapture(const FScreenCaptureParameters2&amp; captureParams);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int StartScreenCapture(const FScreenCaptureParameters2&amp; captureParams);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract startScreenCapture(captureParams: ScreenCaptureParameters2): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int StartScreenCapture(ScreenCaptureParameters2 captureParams);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract startScreenCapture(captureParams: ScreenCaptureParameters2): number;</codeblock>
@@ -45,7 +45,7 @@ int StartScreenCapture(const FScreenCaptureParameters2&amp; captureParams);</cod
             <li props="cpp unreal bp ios unity rn flutter cs">在 iOS 平台上，如果你使用音频自采集而非 SDK 采集音频，为避免应用退后台后屏幕共享停止，建议你对应用添加保活处理逻辑。</li>
             <li props="cpp unreal bp ios unity rn flutter cs">在 iOS 平台上，该功能对设备性能要求较高，建议你在 iPhone X 及之后机型上使用。</li>
             <li props="cpp unreal bp ios unity rn flutter cs">在 iOS 平台上，该方法依赖于屏幕共享动态库 <codeph>AgoraReplayKitExtension.xcframework</codeph>，如果删除该动态库会导致无法正常开启屏幕共享。</li>
-            <li props="cpp unreal bp android unity rn flutter cs">在 Android 平台上，请确保用户已授予 app 屏幕采集权限。</li>
+            <li props="cpp unreal bp android unity rn flutter cs">在 Android 平台上，请确保用户已授予 App 屏幕采集权限。</li>
             <li props="cpp unreal bp android">请确保 Android API 级别不低于 21，否则 SDK 会报告错误码 <codeph><apiname keyref="ERR_SCREEN_CAPTURE_PERMISSION_DENIED"/>(16)</codeph> 和 <codeph><apiname keyref="ERR_SCREEN_CAPTURE_SYSTEM_NOT_SUPPORTED"/>(2)</codeph>。 </li>
             <li props="cpp unreal bp android">如需在屏幕共享时采集系统音频，你还需确保 Android API 级别不低于 29，否则 SDK 会报告错误码 <codeph><apiname keyref="ERR_SCREEN_CAPTURE_SYSTEM_AUDIO_NOT_SUPPORTED"/>(3)</codeph>。</li>
             <li props="cpp unreal bp android unity rn flutter cs">在 Android 9 及之后版本上，为避免应用退后台后被系统杀死，建议你在 <codeph>/app/Manifests/AndroidManifest.xml</codeph> 文件中添加前台服务权限：<codeph>android.permission.FOREGROUND_SERVICE</codeph>。</li>
@@ -67,8 +67,8 @@ int StartScreenCapture(const FScreenCaptureParameters2&amp; captureParams);</cod
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul>
-            <li props="cpp unreal bp android ios unity rn cs">0: 方法调用成功。</li>
+            <ul props="cpp unreal bp android ios unity rn cs">
+            <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败
                 <ul>
                 <li>-2: 参数为空。</li>

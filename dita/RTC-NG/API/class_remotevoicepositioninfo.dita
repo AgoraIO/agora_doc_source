@@ -19,11 +19,21 @@
 @property(assign, nonatomic) simd_float3 position;
 @property(assign, nonatomic) simd_float3 forward;
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct RemoteVoicePositionInfo {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct RemoteVoicePositionInfo {
   float position[3];
   float forward[3];
 
   RemoteVoicePositionInfo() = default;
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FRemoteVoicePositionInfo
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVoicePositionInfo&quot;)
+	FVector position;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVoicePositionInfo&quot;)
+	FVector forward;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class RemoteVoicePositionInfo {
   
@@ -59,7 +69,8 @@
             </plentry>
             <plentry>
                 <pt>forward</pt>
-                <pd conkeyref="updateSelfPosition/axisforward_desc" />
+                <pd props="native unreal bp electron rn cs">在世界坐标系前轴的单位向量。该参数是长度为 3 的数组，三个值依次表示前、右、上的坐标值。</pd>
+                <pd props="unity">在世界坐标系前轴的单位向量。该参数是长度为 3 的数组，三个值依次表示前、右、上的坐标值。前、右、上分别对应 Unity Vector3 的 z、x、y 轴的正方向。</pd>
             </plentry>
             </parml> </section>
     </refbody>

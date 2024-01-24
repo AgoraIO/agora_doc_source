@@ -15,7 +15,9 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setupRemoteVideo(VideoCanvas remote);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setupRemoteVideo:(AgoraRtcVideoCanvas * _Nonnull)remote;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int setupRemoteVideo(const VideoCanvas&amp; canvas) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setupRemoteVideo(const VideoCanvas&amp; canvas) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int SetupRemoteVideo(const FVideoCanvas&amp; canvas);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setupRemoteVideo(canvas: VideoCanvas): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetupRemoteVideo(VideoCanvas canvas);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setupRemoteVideo(canvas: VideoCanvas): number;</codeblock>
@@ -28,11 +30,13 @@
             <p>调用该方法时需要指定远端视频的用户 ID，一般可以在进频道前提前设置好。如果无法在加入频道前得到远端用户的 ID，可以在收到 <xref keyref="onUserJoined"/> 回调时调用该方法。</p>
             <p>如需解除某个远端用户的绑定视图，可以调用该方法并将 <parmname>view</parmname> 设置为空。</p>
             <p>离开频道后，SDK 会清除远端用户视图的绑定关系。</p>
+            <p props="android ios cpp unity flutter rn">在移动端自定义合图布局场景下，你可以调用该方法并针对合图视频流的每一路子视频流设置一个单独的 <parmname>view</parmname> 进行渲染。</p>
             <note type="attention">
             <ul>
              <li props="unity cs">如果你想要在原生窗口上渲染图像，请调用此方法；如果你仅需在 Unity 项目内渲染图像，可直接通过 <xref keyref="AgoraVideoSurface"/> 类来实现。</li>
             <li props="native unreal bp unity rn flutter cs">如果你希望在通话中更新远端用户视图的渲染或镜像模式，请使用 <xref keyref="setRemoteRenderMode2"/> 方法。</li>
-            <li>如果你使用了录制服务，录制服务会作为一个哑客户端加入频道，因此也会触发 <xref keyref="onUserJoined"/> 回调。由于录制服务不会发送视频流，app 无需为它绑定视图。如果 app 无法识别哑客户端，可以在收到 <xref keyref="onFirstRemoteVideoDecoded"/> 回调时再绑定远端用户视图。</li>
+            <li>如果你使用了录制服务，录制服务会作为一个哑客户端加入频道，因此也会触发 <xref keyref="onUserJoined"/> 回调。由于录制服务不会发送视频流，App 无需为它绑定视图。如果 App 无法识别哑客户端，可以在收到 <xref keyref="onFirstRemoteVideoDecoded"/> 回调时再绑定远端用户视图。</li>
+            <li props="electron">如果想要停止渲染视图，需要将 <parmname>view</parmname> 设为 <ph keyref="NULL" /> 后再次调用该方法，以停止渲染并清理渲染缓存。</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>参数</title>

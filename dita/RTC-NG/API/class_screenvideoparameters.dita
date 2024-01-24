@@ -55,7 +55,7 @@
 
 @end
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct ScreenVideoParameters {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct ScreenVideoParameters {
     VideoDimensions dimensions;
     int frameRate = 15;
      int bitrate;
@@ -64,6 +64,20 @@
   ScreenVideoParameters() : dimensions(1280, 720) {}
 };
 </codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FScreenVideoParameters {
+
+	GENERATED_BODY()
+
+	FVideoDimensions dimensions;
+
+	int frameRate = 15;
+
+	int bitrate;
+
+	EVIDEO_CONTENT_HINT contentHint = EVIDEO_CONTENT_HINT::CONTENT_HINT_MOTION;
+
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ScreenVideoParameters {
   
   dimensions?: VideoDimensions;

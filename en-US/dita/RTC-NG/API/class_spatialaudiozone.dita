@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_spatialaudiozone">
-    <title><ph keyref="SpatialAudioZone" /></title>
+    <title><ph keyref="SpatialAudioZone"/></title>
     <shortdesc id="short"><ph id="shortdesc">Sound insulation area settings.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -75,7 +75,7 @@
 @property(assign, nonatomic) float upLength;
 @property(assign, nonatomic) float audioAttenuation;
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct SpatialAudioZone {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct SpatialAudioZone {
   int zoneSetId;
   float position[3];
   float forward[3];
@@ -86,6 +86,30 @@
   float upLength;
   float audioAttenuation;
   SpatialAudioZone() = default;
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FSpatialAudioZone {
+
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FSpatialAudioZone&quot;)
+	int zoneSetId;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FSpatialAudioZone&quot;)
+	FVector position;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FSpatialAudioZone&quot;)
+	FVector forward;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FSpatialAudioZone&quot;)
+	FVector right;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FSpatialAudioZone&quot;)
+	FVector up;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FSpatialAudioZone&quot;)
+	float forwardLength;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FSpatialAudioZone&quot;)
+	float rightLength;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FSpatialAudioZone&quot;)
+	float upLength;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FSpatialAudioZone&quot;)
+	float audioAttenuation;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class SpatialAudioZone {
   zoneSetId?: number;
@@ -137,16 +161,16 @@
   final int? zoneSetId;
 
   @JsonKey(name: 'position')
-  final List&lt;double&gt;? position;
+  final List&lt;double>? position;
 
   @JsonKey(name: 'forward')
-  final List&lt;double&gt;? forward;
+  final List&lt;double>? forward;
 
   @JsonKey(name: 'right')
-  final List&lt;double&gt;? right;
+  final List&lt;double>? right;
 
   @JsonKey(name: 'up')
-  final List&lt;double&gt;? up;
+  final List&lt;double>? up;
 
   @JsonKey(name: 'forwardLength')
   final double? forwardLength;
@@ -160,12 +184,12 @@
   @JsonKey(name: 'audioAttenuation')
   final double? audioAttenuation;
 
-  factory SpatialAudioZone.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory SpatialAudioZone.fromJson(Map&lt;String, dynamic> json) =>
       _$SpatialAudioZoneFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$SpatialAudioZoneToJson(this);
+  Map&lt;String, dynamic> toJson() => _$SpatialAudioZoneToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -174,10 +198,10 @@
                 <dd>v4.0.1</dd>
             </dlentry>
             </dl>
-            <p />
+            <p/>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
                 <pt>zoneSetId</pt>

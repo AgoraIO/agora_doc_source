@@ -59,7 +59,7 @@
 @property(assign, nonatomic) NSInteger rxPacketLossRate;
 @end
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct RtcStats {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct RtcStats {
   unsigned int duration;
   unsigned int txBytes;
   unsigned int rxBytes;
@@ -111,6 +111,78 @@
       rxPacketLossRate(0) {}
 };
 </codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FRtcStats
+{
+	GENERATED_BODY()
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int64 duration;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int64 txBytes;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int64 rxBytes;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int64 txAudioBytes;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int64 txVideoBytes;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int64 rxAudioBytes;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int64 rxVideoBytes;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 txKBitRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 rxKBitRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 rxAudioKBitRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 txAudioKBitRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 rxVideoKBitRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 txVideoKBitRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 lastmileDelay;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int64 userCount;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	float cpuAppUsage;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	float cpuTotalUsage;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 connectTimeMs;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 firstAudioPacketDuration;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 firstVideoPacketDuration;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 firstVideoKeyFramePacketDuration;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 packetsBeforeFirstKeyFramePacket;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 firstAudioPacketDurationAfterUnmute;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 firstVideoPacketDurationAfterUnmute;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 firstVideoKeyFramePacketDurationAfterUnmute;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 firstVideoKeyFrameDecodedDurationAfterUnmute;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 firstVideoKeyFrameRenderedDurationAfterUnmute;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 txPacketLossRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 rxPacketLossRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int gatewayRtt;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	float memoryAppUsageRatio;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	float memoryTotalUsageRatio;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int memoryAppUsageInKbytes;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class RtcStats {
   
   duration?: number;
@@ -452,11 +524,11 @@
             </plentry>
             <plentry>
                 <pt>txKBitRate</pt>
-                <pd>Video transmission bitrate (Kbps), represented by an instantaneous value.</pd>
+                <pd>The actual bitrate (Kbps) while sending the local video stream.</pd>
             </plentry>
             <plentry>
                 <pt>rxKBitRate</pt>
-                <pd>The receiving bitrate (Kbps), represented by an instantaneous value.</pd>
+                <pd>The receiving bitrate (Kbps).</pd>
             </plentry>
             <plentry>
                 <pt>rxAudioKBitRate</pt>
@@ -520,7 +592,7 @@
                         <p>This property is disabled on devices running iOS 14 or later, and enabled on devices running versions earlier than iOS 14 by default. </p>
                         <p>To enable this property on devices running iOS 14 or later, <xref keyref="ticket-link" />.</p>
                         </note>
-                        <note props="android cpp unreal bp unity flutter rn">On Android, to get <parmname>gatewayRtt</parmname>, ensure that you add the <codeph>android.permission.ACCESS_WIFI_STATE</codeph> permission after <codeph>&lt;/application&gt;</codeph> in the <codeph>AndroidManifest.xml</codeph> file in your project.</note></pd>
+                        <note props="android cpp unreal bp unity flutter rn">On Android, to get <parmname>gatewayRtt</parmname>, ensure that you add the <codeph>android.permission.ACCESS_WIFI_STATE</codeph> permission after <codeph>&lt;/application></codeph> in the <codeph>AndroidManifest.xml</codeph> file in your project.</note></pd>
             </plentry>
             <plentry>
                 <pt>memoryAppUsageRatio</pt>

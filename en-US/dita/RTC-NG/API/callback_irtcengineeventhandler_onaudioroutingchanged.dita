@@ -15,8 +15,9 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onAudioRouteChanged(int routing) {}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didAudioRouteChanged:(AgoraAudioOutputRouting)routing;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onAudioRoutingChanged(int routing) { (void)routing; }
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onAudioRoutingChanged(int routing) { (void)routing; }
             </codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnAudioRoutingChanged, int, routing);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onAudioRoutingChanged?(routing: number): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnAudioRoutingChanged(int routing) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onAudioRoutingChanged?(routing: number): void;</codeblock>
@@ -40,15 +41,16 @@
             <plentry>
                 <pt>routing</pt>
                 <pd>
-                    <p props="ios mac unity flutter cpp unreal bp cs">The current audio routing. See <xref keyref="AudioRoute" />.</p>
-                    <p props="android">The current audio routing.<ul>
+                    <p props="ios mac unity flutter cpp unreal cs">The current audio routing. See <xref keyref="AudioRoute" />.</p>
+                    <p props="android bp">The current audio routing.<ul>
                     <li><ph keyref="ROUTE_DEFAULT" />(-1): The default audio route.</li>
                     <li><ph keyref="ROUTE_HEADSET" />(0): The audio route is a headset with a microphone.</li>
                     <li><ph keyref="ROUTE_EARPIECE" />(1): The audio route is an earpiece.</li>
                     <li><ph keyref="ROUTE_HEADSETNOMIC" />(2): The audio route is a headset without a microphone.</li>
                     <li><ph keyref="ROUTE_SPEAKERPHONE" />(3): The audio route is the speaker that comes with the device.</li>
                     <li><ph keyref="ROUTE_LOUDSPEAKER" />(4): (For future use) The audio route is an external speaker.</li>
-                    <li><ph keyref="ROUTE_BLUETOOTH" />(5): The audio route is a Bluetooth headset.</li>
+                    <li><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP" />(5): The audio route is a Bluetooth device using the HFP protocol.</li>
+                    <li><ph keyref="ROUTE_BLUETOOTH_DEVICE_A2DP" />(10): The audio route is a Bluetooth device using the A2DP protocol..</li>
                     </ul> </p>
                     <p props="electron rn">The current audio routing.<ul>
                     <li>-1: The default audio route.</li>

@@ -31,7 +31,7 @@
 @property(assign, nonatomic) double alpha;
 @property(assign, nonatomic) NSInteger audioChannel;
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">truct TranscodingUser {
+            <codeblock props="cpp unreal" outputclass="language-cpp">truct TranscodingUser {
   uid_t uid;
   int x;
   int y;
@@ -49,6 +49,29 @@
         zOrder(0),
         alpha(1.0),
         audioChannel(0) {}
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FTranscodingUser {
+
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingUser&quot;)
+	int64 uid;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingUser&quot;)
+	int x;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingUser&quot;)
+	int y;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingUser&quot;)
+	int width;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingUser&quot;)
+	int height;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingUser&quot;)
+	int zOrder;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingUser&quot;)
+	float alpha = 1.0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingUser&quot;)
+	int audioChannel;
+
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class TranscodingUser {
   uid?: number
@@ -151,21 +174,21 @@
             <plentry props="android cpp unreal bp unity electron rn flutter cs">
                 <pt>x</pt>
                 <pd>
-                    <p>主播视频画面在输出视频画面的 x 坐标 (pixel)，以输出视频画面的左上角为原点。取值范围为[0,width]，width 为 <xref keyref="LiveTranscoding" /> 中设置的 <codeph>width</codeph>。</p>
+                    <p>主播视频画面在输出视频画面的 x 坐标 (px)，以输出视频画面的左上角为原点。取值范围为[0,width]，width 为 <xref keyref="LiveTranscoding" /> 中设置的 <codeph>width</codeph>。</p>
                 </pd>
             </plentry>
             <plentry props="android cpp unreal bp unity electron rn flutter cs">
                 <pt>y</pt>
-                <pd>主播视频画面在输出视频画面的 y 坐标 (pixel)，以输出视频画面的左上角为原点。取值范围为[0,height]，height 为 <xref keyref="LiveTranscoding" /> 中设置的 <codeph>height</codeph>。</pd>
+                <pd>主播视频画面在输出视频画面的 y 坐标 (px)，以输出视频画面的左上角为原点。取值范围为[0,height]，height 为 <xref keyref="LiveTranscoding" /> 中设置的 <codeph>height</codeph>。</pd>
             </plentry>
             <plentry props="android cpp unreal bp unity electron rn flutter cs">
                 <pt>width</pt>
-                <pd>主播视频画面的宽 (pixel)。</pd>
+                <pd>主播视频画面的宽 (px)。</pd>
             </plentry>
             <plentry props="android cpp unreal bp unity electron rn flutter cs">
                 <pt>height</pt>
                 <pd>
-                    <p>主播视频画面的高 (pixel)。</p>
+                    <p>主播视频画面的高 (px)。</p>
                 </pd>
             </plentry>
             <plentry props="ios mac">

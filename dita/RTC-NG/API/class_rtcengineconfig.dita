@@ -105,7 +105,7 @@
 @property (copy, nonatomic) NSArray&lt;id&lt;AgoraMediaFilterExtensionDelegate&gt;&gt;* _Nullable mediaFilterExtensions;
 @property (weak, nonatomic) id&lt;AgoraMediaFilterEventDelegate&gt; _Nullable eventDelegate;
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct RtcEngineContext {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct RtcEngineContext {
   IRtcEngineEventHandler* eventHandler;
   const char* appId;
   void* context;
@@ -123,6 +123,34 @@
         areaCode(AREA_CODE_GLOB),
         logConfig(), domainLimit(false),
         autoRegisterAgoraExtensions(true) {}
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FRtcEngineContext
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	FString appId;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	UIRtcEngineEventHandler* eventHandler;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	int64 context;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	FString license;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	ECHANNEL_PROFILE_TYPE channelProfile = ECHANNEL_PROFILE_TYPE::CHANNEL_PROFILE_LIVE_BROADCASTING;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	EAUDIO_SCENARIO_TYPE audioScenario = EAUDIO_SCENARIO_TYPE::AUDIO_SCENARIO_DEFAULT;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	bool threadPriority_SetValue;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	ETHREAD_PRIORITY_TYPE threadPriority;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	FLogConfig logConfig;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	FENUMWRAP_AREA_CODE areaCode = EENUMCUSTOM_AREA_CODE::AREA_CODE_GLOB;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	bool useExternalEglContext;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class RtcEngineContext {
 
@@ -232,7 +260,7 @@ class RtcEngineContext {
             <plentry>
                 <pt props="cpp unreal bp ios mac unity electron rn flutter">appId</pt>
                 <pt props="android">mAppId</pt>
-                <pd id="appid">声网为 app 开发者签发的 App ID。 使用同一个 App ID 的 app 才能进入同一个频道进行通话或直播。一个 App ID 只能用于创建一个 <apiname keyref="IRtcEngine"/>。如需更换 App ID，必须先调用 <xref keyref="release"/> 销毁当前 <apiname keyref="IRtcEngine"/> 再重新创建。</pd>
+                <pd id="appid">声网为 App 开发者签发的 App ID。 使用同一个 App ID 的 App 才能进入同一个频道进行通话或直播。一个 App ID 只能用于创建一个 <apiname keyref="IRtcEngine"/>。如需更换 App ID，必须先调用 <xref keyref="release"/> 销毁当前 <apiname keyref="IRtcEngine"/> 再重新创建。</pd>
             </plentry>
             <plentry props="android cpp unreal bp unity cs">
                 <pt props="cpp unreal bp unity cs">context</pt>
@@ -248,10 +276,10 @@ class RtcEngineContext {
             <plentry props="android">
                 <pt>mNativeLibPath</pt>
                 <pd>
-                    <p>指定 <codeph>.so</codeph> 文件的存储目录。存储目录必须为有效的 app 的私有目录，可以通过 <codeph>Context.getDir()</codeph> 获取。</p>
+                    <p>指定 <codeph>.so</codeph> 文件的存储目录。存储目录必须为有效的 App 的私有目录，可以通过 <codeph>Context.getDir()</codeph> 获取。</p>
                     <ul>
-                    <li>如果你设置了该参数，SDK 会在你指定的目录下自动加载 <codeph>.so</codeph> 文件，使 app 在运行时动态加载需要的 <codeph>.so</codeph> 文件，从而减小 app 的包体积。</li>
-                    <li>如果你不设置该参数或将其设置为 null，SDK 会从 app 默认的 <codeph>native unreal bpLibraryPath</codeph> 中加载打包所需的 <codeph>.so</codeph> 文件，相对于上一种方式，app 的包体积会增加。</li>
+                    <li>如果你设置了该参数，SDK 会在你指定的目录下自动加载 <codeph>.so</codeph> 文件，使 App 在运行时动态加载需要的 <codeph>.so</codeph> 文件，从而减小 App 的包体积。</li>
+                    <li>如果你不设置该参数或将其设置为 null，SDK 会从 App 默认的 <codeph>native unreal bpLibraryPath</codeph> 中加载打包所需的 <codeph>.so</codeph> 文件，相对于上一种方式，App 的包体积会增加。</li>
                     </ul>
                     <note type="attention">
                     <ul>
@@ -267,13 +295,13 @@ class RtcEngineContext {
             <plentry>
                 <pt props="cpp unreal bp ios mac unity cs electron rn flutter">audioScenario</pt>
                 <pt props="android">mAudioScenario</pt>
-                <pd conkeyref="setAudioProfile/scenario-ng"/>
+                <pd conkeyref="setAudioScenario/scenario-ng"/>
             </plentry>
             <plentry>
                 <pt props="cpp unreal bp ios mac unity cs electron rn flutter">areaCode</pt>
                 <pt props="android">mAreaCode</pt>
                 <pd>服务器的访问区域。该功能为高级设置，适用于有访问安全限制的场景。支持的区域详见 <xref keyref="AREA_CODE"/>。区域码支持位操作。</pd>
-                <pd>指定访问区域后，集成了 SDK 的 app 会连接指定区域内的声网服务器。</pd>
+                <pd>指定访问区域后，集成了 SDK 的 App 会连接指定区域内的声网服务器。</pd>
             </plentry>
             <plentry>
                 <pt props="cpp unreal bp ios mac unity cs electron rn flutter">logConfig</pt>
@@ -321,7 +349,7 @@ class RtcEngineContext {
               </pd>
           </plentry>
             </parml> </section>
-            <section props="android">
+            <section props="android" id="sub-method">
               <title>方法</title>
               <parml>
                 <plentry>

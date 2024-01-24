@@ -17,9 +17,11 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int) setExtensionProviderPropertyWithVendor:(NSString * __nonnull)provider key:(NSString * __nonnull)key value:(NSString * __nonnull)value;
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int setExtensionProviderProperty(
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setExtensionProviderProperty(
       const char* provider, const char* key, const char* value) = 0;
 </codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int SetExtensionProviderProperty(FString provider, FString key, FString value);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setExtensionProviderProperty(
     provider: string,
     key: string,
@@ -62,8 +64,8 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul>
-            <li props="native unreal bp unity electron rn cs">0: 方法调用成功。</li>
+            <ul props="native unreal bp unity electron rn cs">
+            <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
             </ul> </section>
     </refbody>

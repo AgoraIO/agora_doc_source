@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_livetranscoding">
-  <title> <ph keyref="LiveTranscoding" /> </title>
+  <title> <ph keyref="LiveTranscoding"/> </title>
   <shortdesc id="short"><ph id="shortdesc">Transcoding configurations for Media Push.</ph></shortdesc>
   <refbody>
     <section id="prototype">
@@ -249,7 +249,7 @@
 - (void)setAdvancedFeatures:(NSString* _Nonnull)featureName opened:(BOOL)opened;
 - (NSArray&lt;AgoraLiveStreamAdvancedFeature*&gt;* _Nullable)getAdvancedFeatures;
 @end</codeblock>
-      <codeblock props="cpp unreal bp" outputclass="language-cpp">struct LiveTranscoding {
+      <codeblock props="cpp unreal" outputclass="language-cpp">struct LiveTranscoding {
   int width;
   int height;
   int videoBitrate;
@@ -275,52 +275,104 @@
   unsigned int advancedFeatureCount;
   LiveTranscoding() : width(360), height(640), videoBitrate(400), videoFramerate(15), lowLatency(false), videoGop(30), videoCodecProfile(VIDEO_CODEC_PROFILE_HIGH), backgroundColor(0x000000), videoCodecType(VIDEO_CODEC_H264_FOR_STREAM), userCount(0), transcodingUsers(NULL), transcodingExtraInfo(NULL), metadata(NULL), watermark(NULL), watermarkCount(0), backgroundImage(NULL), backgroundImageCount(0), audioSampleRate(AUDIO_SAMPLE_RATE_48000), audioBitrate(48), audioChannels(1), audioCodecProfile(AUDIO_CODEC_PROFILE_LC_AAC), advancedFeatures(NULL), advancedFeatureCount(0) {}
 };</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FLiveTranscoding
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int width = 360;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int height = 640;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int videoBitrate = 400;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int videoFramerate = 15;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	bool lowLatency = false;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int videoGop = 30;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	EVIDEO_CODEC_PROFILE_TYPE videoCodecProfile = EVIDEO_CODEC_PROFILE_TYPE::VIDEO_CODEC_PROFILE_HIGH;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int64 backgroundColor = 0x000000;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	EVIDEO_CODEC_TYPE_FOR_STREAM videoCodecType = EVIDEO_CODEC_TYPE_FOR_STREAM::VIDEO_CODEC_H264_FOR_STREAM;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int userCount = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	TArray&lt;FTranscodingUser&gt; transcodingUsers;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	FString transcodingExtraInfo;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	FString metadata;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	TArray &lt;FRtcImage&gt; watermark;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int watermarkCount = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	TArray&lt;FRtcImage&gt; backgroundImage;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int backgroundImageCount = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	TEnumAsByte&lt;EAUDIO_SAMPLE_RATE_TYPE&gt; audioSampleRate = EAUDIO_SAMPLE_RATE_TYPE::AUDIO_SAMPLE_RATE_48000;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int audioBitrate = 48;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int audioChannels = 1;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	EAUDIO_CODEC_PROFILE_TYPE audioCodecProfile = EAUDIO_CODEC_PROFILE_TYPE::AUDIO_CODEC_PROFILE_LC_AAC;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	TArray&lt;FLiveStreamAdvancedFeature&gt; advancedFeatures;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int advancedFeatureCount = 0;
+};</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class LiveTranscoding {
-  
+
   width?: number;
-  
+
   height?: number;
-  
+
   videoBitrate?: number;
-  
+
   videoFramerate?: number;
-  
+
   lowLatency?: boolean;
-  
+
   videoGop?: number;
-  
+
   videoCodecProfile?: VideoCodecProfileType;
-  
+
   backgroundColor?: number;
-  
+
   videoCodecType?: VideoCodecTypeForStream;
-  
+
   userCount?: number;
-  
+
   transcodingUsers?: TranscodingUser[];
-  
+
   transcodingExtraInfo?: string;
-  
+
   metadata?: string;
-  
+
   watermark?: RtcImage[];
-  
+
   watermarkCount?: number;
-  
+
   backgroundImage?: RtcImage[];
-  
+
   backgroundImageCount?: number;
-  
+
   audioSampleRate?: AudioSampleRateType;
-  
+
   audioBitrate?: number;
-  
+
   audioChannels?: number;
-  
+
   audioCodecProfile?: AudioCodecProfileType;
-  
+
   advancedFeatures?: LiveStreamAdvancedFeature[];
-  
+
   advancedFeatureCount?: number;
 }</codeblock>
       <codeblock props="unity cs" outputclass="language-csharp">public class LiveTranscoding
@@ -409,51 +461,51 @@
         public uint advancedFeatureCount { set; get; }
     }</codeblock>
       <codeblock props="rn" outputclass="language-typescript">export class LiveTranscoding {
-  
+
   width?: number;
-  
+
   height?: number;
-  
+
   videoBitrate?: number;
-  
+
   videoFramerate?: number;
-  
+
   lowLatency?: boolean;
-  
+
   videoGop?: number;
-  
+
   videoCodecProfile?: VideoCodecProfileType;
-  
+
   backgroundColor?: number;
-  
+
   videoCodecType?: VideoCodecTypeForStream;
-  
+
   userCount?: number;
-  
+
   transcodingUsers?: TranscodingUser[];
-  
+
   transcodingExtraInfo?: string;
-  
+
   metadata?: string;
-  
+
   watermark?: RtcImage[];
-  
+
   watermarkCount?: number;
-  
+
   backgroundImage?: RtcImage[];
-  
+
   backgroundImageCount?: number;
-  
+
   audioSampleRate?: AudioSampleRateType;
-  
+
   audioBitrate?: number;
-  
+
   audioChannels?: number;
-  
+
   audioCodecProfile?: AudioCodecProfileType;
-  
+
   advancedFeatures?: LiveStreamAdvancedFeature[];
-  
+
   advancedFeatureCount?: number;
 }</codeblock>
       <codeblock props="flutter" outputclass="language-dart">class LiveTranscoding {
@@ -513,7 +565,7 @@
   final int? userCount;
 
   @JsonKey(name: 'transcodingUsers')
-  final List&lt;TranscodingUser&gt;? transcodingUsers;
+  final List&lt;TranscodingUser>? transcodingUsers;
 
   @JsonKey(name: 'transcodingExtraInfo')
   final String? transcodingExtraInfo;
@@ -522,13 +574,13 @@
   final String? metadata;
 
   @JsonKey(name: 'watermark')
-  final List&lt;RtcImage&gt;? watermark;
+  final List&lt;RtcImage>? watermark;
 
   @JsonKey(name: 'watermarkCount')
   final int? watermarkCount;
 
   @JsonKey(name: 'backgroundImage')
-  final List&lt;RtcImage&gt;? backgroundImage;
+  final List&lt;RtcImage>? backgroundImage;
 
   @JsonKey(name: 'backgroundImageCount')
   final int? backgroundImageCount;
@@ -546,20 +598,20 @@
   final AudioCodecProfileType? audioCodecProfile;
 
   @JsonKey(name: 'advancedFeatures')
-  final List&lt;LiveStreamAdvancedFeature&gt;? advancedFeatures;
+  final List&lt;LiveStreamAdvancedFeature>? advancedFeatures;
 
   @JsonKey(name: 'advancedFeatureCount')
   final int? advancedFeatureCount;
 
-  factory LiveTranscoding.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory LiveTranscoding.fromJson(Map&lt;String, dynamic> json) =>
       _$LiveTranscodingFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$LiveTranscodingToJson(this);
-}</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+  Map&lt;String, dynamic> toJson() => _$LiveTranscodingToJson(this);
+}</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
     </section>
     <section id="parameters">
-      <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+      <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
       <parml>
       <plentry props="android cpp unreal bp electron rn unity flutter cs">
         <pt>width</pt>
@@ -595,7 +647,7 @@
         <pt>videoBitrate</pt>
         <pd>
           <p>Bitrate of the output video stream for Media Push in Kbps. The default value is 400 Kbps.</p>
-          <p props="native unreal bp">Set this member according to the <xref keyref="video-profile-table">Video profile</xref> table. If you set a bitrate beyond the proper range, the SDK automatically adapts it to a value within the range.</p>
+          <p>Set this member according to the <xref keyref="video-profile-table"/> table. If you set a bitrate beyond the proper range, the SDK automatically adapts it to a value within the range.</p>
         </pd>
       </plentry>
       <plentry>
@@ -615,28 +667,28 @@
           </dl>
           <p>Latency mode:</p>
           <ul>
-          <li><codeph><ph keyref="true" /></codeph>: Low latency with unassured quality.</li>
-          <li><codeph><ph keyref="false" /></codeph>: (Default) High latency with assured quality.</li>
+          <li><codeph><ph keyref="true"/></codeph>: Low latency with unassured quality.</li>
+          <li><codeph><ph keyref="false"/></codeph>: (Default) High latency with assured quality.</li>
           </ul></pd>
       </plentry>
       <plentry>
         <pt>videoGop</pt>
-        <pd>GOP (Group of Pictures) in fps of the video frames  for Media Push. The default value is 30.</pd>
+        <pd>GOP (Group of Pictures) in fps of the video frames for Media Push. The default value is 30.</pd>
       </plentry>
       <plentry>
         <pt>videoCodecProfile</pt>
         <pd>
-          <p>Video codec profile type for Media Push. Set it as 66, 77, or 100 (default). See <xref keyref="VIDEO_CODEC_PROFILE_TYPE" /> for details.</p>
+          <p>Video codec profile type for Media Push. Set it as 66, 77, or 100 (default). See <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/> for details.</p>
           <note type="attention">If you set this parameter to any other value, Agora adjusts it to the default value.</note></pd>
       </plentry>
       <plentry>
         <pt>videoCodecType</pt>
-        <pd>Video codec profile types for Media Push. See <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM" />.</pd>
+        <pd>Video codec profile types for Media Push. See <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/>.</pd>
       </plentry>
       <plentry>
         <pt>transcodingUsers</pt>
         <pd>
-          <p>Manages the user layout configuration in the Media Push. Agora supports a maximum of 17 transcoding users in a Media Push channel. See <xref keyref="TranscodingUser" />.</p>
+          <p>Manages the user layout configuration in the Media Push. Agora supports a maximum of 17 transcoding users in a Media Push channel. See <xref keyref="TranscodingUser"/>.</p>
         </pd>
       </plentry>
       <plentry>
@@ -663,7 +715,7 @@
           <dl outputclass="deprecated">
           <dlentry>
             <dt>Deprecated</dt>
-            <dd>Obsolete and not recommended for use. Use <xref keyref="setBackgroundColor" /> instead.</dd>
+            <dd>Obsolete and not recommended for use. Use <xref keyref="setBackgroundColor"/> instead.</dd>
           </dlentry>
           </dl>
         </pd>
@@ -677,7 +729,7 @@
           <dl outputclass="deprecated" props="android">
           <dlentry>
             <dt>Deprecated</dt>
-            <dd>Obsolete and not recommended for use. Use <xref keyref="getUserCount" /> instead.</dd>
+            <dd>Obsolete and not recommended for use. Use <xref keyref="getUserCount"/> instead.</dd>
           </dlentry>
           </dl>
           <p>The number of users in the Media Push. The value range is [0,17].</p>
@@ -698,25 +750,25 @@
       <plentry props="cpp unreal bp unity flutter electron rn cs">
         <pt>watermark</pt>
         <pd>
-          <p>The watermark on the live video. The image format needs to be PNG. See <xref keyref="RtcImage" />.</p>
+          <p>The watermark on the live video. The image format needs to be PNG. See <xref keyref="RtcImage"/>.</p>
           <p>You can add one watermark, or add multiple watermarks using an array. <ph props="cpp unreal bp unity electron rn cs">This parameter is used with <parmname>watermarkCount</parmname>.</ph></p>
         </pd>
       </plentry>
       <plentry props="cpp unreal bp unity electron rn flutter cs">
         <pt>backgroundImage</pt>
         <pd>
-          <p>The number of background images on the live video. The image format needs to be PNG. See <xref keyref="RtcImage" />.</p>
+          <p>The number of background images on the live video. The image format needs to be PNG. See <xref keyref="RtcImage"/>.</p>
           <p>You can add a background image or use an array to add multiple background images. This parameter is used with <parmname>backgroundImageCount</parmname>.</p>
         </pd>
       </plentry>
       <plentry props="ios mac">
         <pt>backgroundImageArray</pt>
-        <pd>An array of background images on the live video. See <xref keyref="RtcImage" />. You can use <parmname>backgroundImageArray</parmname> to add one or more background images. The image format needs to be PNG. The total number of watermarks and background images on a live video must be greater than or equal to 0 and less than or equal to 10.</pd>
+        <pd>An array of background images on the live video. See <xref keyref="RtcImage"/>. You can use <parmname>backgroundImageArray</parmname> to add one or more background images. The image format needs to be PNG. The total number of watermarks and background images on a live video must be greater than or equal to 0 and less than or equal to 10.</pd>
       </plentry>
       <plentry>
         <pt>audioSampleRate</pt>
         <pd>
-          <p>The audio sampling rate (Hz) of the output media stream. See <xref keyref="AUDIO_SAMPLE_RATE_TYPE" />.</p>
+          <p>The audio sampling rate (Hz) of the output media stream. See <xref keyref="AUDIO_SAMPLE_RATE_TYPE"/>.</p>
         </pd>
       </plentry>
       <plentry>
@@ -739,11 +791,11 @@
       </plentry>
       <plentry>
         <pt>audioCodecProfile</pt>
-        <pd>Audio codec profile type for Media Push. See <xref keyref="AUDIO_CODEC_PROFILE_TYPE" />.</pd>
+        <pd>Audio codec profile type for Media Push. See <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/>.</pd>
       </plentry>
       <plentry props="ios mac">
         <pt>watermarkArray</pt>
-        <pd>The array of watermarks on the live video. See <xref keyref="RtcImage" />. You can add one or more <parmname>watermarks</parmname> using <parmname>watermarkArray</parmname>. The image format needs to be PNG. The total number of watermarks and background images on a live video must be greater than or equal to 0 and less than or equal to 10.</pd>
+        <pd>The array of watermarks on the live video. See <xref keyref="RtcImage"/>. You can add one or more <parmname>watermarks</parmname> using <parmname>watermarkArray</parmname>. The image format needs to be PNG. The total number of watermarks and background images on a live video must be greater than or equal to 0 and less than or equal to 10.</pd>
       </plentry>
       <plentry props="cpp unreal bp unity electron rn flutter cs">
         <pt>watermarkCount</pt>
@@ -755,39 +807,39 @@
       </plentry>
       <plentry props="cpp unreal bp unity electron rn flutter cs">
         <pt>advancedFeatures</pt>
-        <pd>Advanced features of the Media Push with transcoding. See <xref keyref="LiveStreamAdvancedFeature" />.</pd>
+        <pd>Advanced features of the Media Push with transcoding. See <xref keyref="LiveStreamAdvancedFeature"/>.</pd>
       </plentry>
       <plentry props="cpp unreal bp unity electron rn flutter cs">
         <pt>advancedFeatureCount</pt>
         <pd>The number of enabled advanced features. The default value is 0.</pd>
       </plentry>
       </parml> </section>
-    <section props="android apple">
+    <section props="android apple" id="sub-method">
       <title>Method</title>
       <parml>
       <plentry props="android">
         <pt>addBackgroundImage</pt>
-        <pd>Adds a background image. See <xref keyref="addBackgroundImage" />.</pd>
+        <pd>Adds a background image. See <xref keyref="addBackgroundImage"/>.</pd>
       </plentry>
       <plentry props="android apple">
         <pt>addUser</pt>
-        <pd>Adds a user for video mixing during the CDN live streaming. See <xref keyref="addUser" />.</pd>
+        <pd>Adds a user for video mixing during the CDN live streaming. See <xref keyref="addUser"/>.</pd>
       </plentry>
       <plentry props="android">
         <pt>addWatermark</pt>
-        <pd>Adds a watermark. See <xref keyref="addWatermark" />.</pd>
+        <pd>Adds a watermark. See <xref keyref="addWatermark"/>.</pd>
       </plentry>
       <plentry props="android apple">
         <pt>getAdvancedFeatures</pt>
-        <pd>Gets the status of the advanced features of streaming with transcoding. See <xref keyref="getAdvancedFeatures" />.</pd>
+        <pd>Gets the status of the advanced features of streaming with transcoding. See <xref keyref="getAdvancedFeatures"/>.</pd>
       </plentry>
       <plentry props="android">
         <pt>getBackgroundColor</pt>
-        <pd>Gets the background color in hex. See <xref keyref="getBackgroundColor" />.</pd>
+        <pd>Gets the background color in hex. See <xref keyref="getBackgroundColor"/>.</pd>
       </plentry>
       <plentry props="android">
         <pt>getBackgroundImageList</pt>
-        <pd>Gets the list of background images. See <xref keyref="getBackgroundImageList" />.</pd>
+        <pd>Gets the list of background images. See <xref keyref="getBackgroundImageList"/>.</pd>
       </plentry>
       <plentry props="android">
         <pt>getBlue</pt>
@@ -798,7 +850,7 @@
             <dd>Obsolete and not recommended for use.</dd>
           </dlentry>
           </dl>
-         <p>Gets the background color's blue component. See <xref keyref="getBlue" />.</p>
+         <p>Gets the background color's blue component. See <xref keyref="getBlue"/>.</p>
         </pd>
       </plentry>
       <plentry props="android">
@@ -810,7 +862,7 @@
             <dd>Obsolete and not recommended for use.</dd>
           </dlentry>
           </dl>
-         <p>Gets the background color's green component. See <xref keyref="getGreen" />.</p>
+         <p>Gets the background color's green component. See <xref keyref="getGreen"/>.</p>
         </pd>
       </plentry>
       <plentry props="android">
@@ -822,44 +874,44 @@
             <dd>Obsolete and not recommended for use.</dd>
           </dlentry>
           </dl>
-          <p>Gets the background color's red component. See <xref keyref="getRed" />.</p>
+          <p>Gets the background color's red component. See <xref keyref="getRed"/>.</p>
         </pd>
       </plentry>
       <plentry props="android">
         <pt>getUserCount</pt>
-        <pd>Gets the number of users transcoded in the CDN live streaming. See <xref keyref="getUserCount" />.</pd>
+        <pd>Gets the number of users transcoded in the CDN live streaming. See <xref keyref="getUserCount"/>.</pd>
       </plentry>
       <plentry props="android">
         <pt>getUsers</pt>
-        <pd>Gets the user list in the CDN live streaming. See <xref keyref="getUsers" />.</pd>
+        <pd>Gets the user list in the CDN live streaming. See <xref keyref="getUsers"/>.</pd>
       </plentry>
       <plentry props="android">
         <pt>getWatermarkList</pt>
-        <pd>Gets the watermark list. See <xref keyref="getWatermarkList" />.</pd>
+        <pd>Gets the watermark list. See <xref keyref="getWatermarkList"/>.</pd>
       </plentry>
       <plentry props="android">
         <pt>removeBackgroundImage</pt>
-        <pd>Removes a background image from the background image list. See <xref keyref="removeBackgroundImage" />.</pd>
+        <pd>Removes a background image from the background image list. See <xref keyref="removeBackgroundImage"/>.</pd>
       </plentry>
       <plentry props="android apple">
         <pt>removeUser</pt>
-        <pd>Removes a user from video mixing during the CDN live streaming. See <xref keyref="removeUser" />.</pd>
+        <pd>Removes a user from video mixing during the CDN live streaming. See <xref keyref="removeUser"/>.</pd>
       </plentry>
       <plentry props="android">
         <pt>removeWatermark</pt>
-        <pd>Removes a watermark from the watermark list. See <xref keyref="removeWatermark" />.</pd>
+        <pd>Removes a watermark from the watermark list. See <xref keyref="removeWatermark"/>.</pd>
       </plentry>
       <plentry props="android apple">
         <pt>setAdvancedFeatures</pt>
-        <pd>Sets whether to enable the advanced features of streaming with transcoding. See <xref keyref="setAdvancedFeatures" />.</pd>
+        <pd>Sets whether to enable the advanced features of streaming with transcoding. See <xref keyref="setAdvancedFeatures"/>.</pd>
       </plentry>
       <plentry props="android">
         <pt>setBackgroundColor [1/2]</pt>
-        <pd>Sets the background color of the CDN live stream in the format of RGB hex. See <xref keyref="setBackgroundColor" />.</pd>
+        <pd>Sets the background color of the CDN live stream in the format of RGB hex. See <xref keyref="setBackgroundColor"/>.</pd>
       </plentry>
       <plentry props="android">
         <pt>setBackgroundColor [2/2]</pt>
-        <pd>Sets the background color in RGB format. See <xref keyref="setBackgroundColor2" />.</pd>
+        <pd>Sets the background color in RGB format. See <xref keyref="setBackgroundColor2"/>.</pd>
       </plentry>
       <plentry props="android">
         <pt>setBlue</pt>
@@ -870,7 +922,7 @@
             <dd>Obsolete and not recommended for use.</dd>
           </dlentry>
           </dl>
-          <p>Sets the background color's blue component. See <xref keyref="setBlue" />.</p>
+          <p>Sets the background color's blue component. See <xref keyref="setBlue"/>.</p>
         </pd>
       </plentry>
       <plentry props="android">
@@ -882,7 +934,7 @@
             <dd>Obsolete and not recommended for use.</dd>
           </dlentry>
           </dl>
-          <p>Sets the background color's green component. See <xref keyref="setGreen" />.</p>
+          <p>Sets the background color's green component. See <xref keyref="setGreen"/>.</p>
         </pd>
       </plentry>
       <plentry props="android">
@@ -894,20 +946,20 @@
             <dd>Obsolete and not recommended for use.</dd>
           </dlentry>
           </dl>
-          <p>Sets the background color's red component. See <xref keyref="setRed" />.</p>
+          <p>Sets the background color's red component. See <xref keyref="setRed"/>.</p>
         </pd>
       </plentry>
       <plentry props="android">
         <pt>setUsers [1/2]</pt>
-        <pd>Sets the users in batches in the CDN live streaming. See <xref keyref="setUsers" />.</pd>
+        <pd>Sets the users in batches in the CDN live streaming. See <xref keyref="setUsers"/>.</pd>
       </plentry>
       <plentry props="android">
         <pt>setUsers [2/2]</pt>
-        <pd>Sets the users in batches in the CDN live streaming. See <xref keyref="setUsers2" />.</pd>
+        <pd>Sets the users in batches in the CDN live streaming. See <xref keyref="setUsers2"/>.</pd>
       </plentry>
         <plentry props="apple">
           <pt>defaultTranscoding</pt>
-          <pd>Applies the default transcoding settings, see <xref keyref="defaultTranscoding" />.</pd>
+          <pd>Applies the default transcoding settings, see <xref keyref="defaultTranscoding"/>.</pd>
         </plentry>
       </parml>
     </section>

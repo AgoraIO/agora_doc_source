@@ -16,7 +16,9 @@
             <codeblock props="android" outputclass="language-java">public abstract int updateSelfPosition(
     float[] position, float[] axisForward, float[] axisRight, float[] axisUp);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)updateSelfPosition:(simd_float3)position axisForward:(simd_float3)axisForward axisRight:(simd_float3)axisRight axisUp:(simd_float3)axisUp NS_SWIFT_NAME(updateSelfPosition(_:axisForward:axisRight:axisUp:));</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int updateSelfPosition(float position[3], float axisForward[3], float axisRight[3], float axisUp[3]) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int updateSelfPosition(float position[3], float axisForward[3], float axisRight[3], float axisUp[3]) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|ILocalSpatialAudioEngine&quot;)
+	int UpdateSelfPosition(FVector position, FVector axisForward, FVector axisRight, FVector axisUp);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract updateSelfPosition(
     position: number[],
     axisForward: number[],
@@ -30,12 +32,12 @@
     axisRight: number[],
     axisUp: number[]
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; updateSelfPosition(
-      {required List&lt;double&gt; position,
-      required List&lt;double&gt; axisForward,
-      required List&lt;double&gt; axisRight,
-      required List&lt;double&gt; axisUp});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> updateSelfPosition(
+      {required List&lt;double> position,
+      required List&lt;double> axisForward,
+      required List&lt;double> axisRight,
+      required List&lt;double> axisUp});</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
@@ -57,11 +59,13 @@
             <parml>
             <plentry id="position">
                 <pt>position</pt>
-                <pd>The coordinates in the world coordinate system. This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn.</pd>
+                <pd props="native unreal bp electron rn cs">The coordinates in the world coordinate system. This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn.</pd>
+                <pd props="unity">The coordinates in the world coordinate system. This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn. And the front, right, and top coordinates correspond to the positive directions of Unity's Vector3 axes (z, x, and y, respectively).</pd>
             </plentry>
             <plentry id="axisforward">
                 <pt>axisForward</pt>
-                <pd id="axisforward_desc">The unit vector of the x axis in the coordinate system. This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn.</pd>
+                <pd id="axisforward_desc" props="native unreal bp electron rn cs">The unit vector of the x axis in the coordinate system. This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn.</pd>
+                <pd props="unity">The unit vector of the x axis in the coordinate system. This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn. And the front, right, and top coordinates correspond to the positive directions of Unity's Vector3 axes (z, x, and y, respectively).</pd>
             </plentry>
             <plentry id="axisright">
                 <pt>axisRight</pt>
@@ -73,11 +77,11 @@
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
-            <ul>
-            <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <ul props="native unreal bp electron unity rn cs">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>
 </reference>

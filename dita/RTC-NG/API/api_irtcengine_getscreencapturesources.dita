@@ -16,7 +16,9 @@
             <codeblock props="android" outputclass="language-java" />
             <codeblock props="ios mac" outputclass="language-objectivec">- (NSArray&lt;AgoraScreenCaptureSourceInfo*&gt;* _Nullable)getScreenCaptureSourcesWithThumbSize:(NSSize)thumbSize iconSize:(NSSize)iconSize includeScreen:(BOOL)includeScreen;
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual IScreenCaptureSourceList* getScreenCaptureSources(const SIZE&amp; thumbSize, const SIZE&amp; iconSize, const bool includeScreen) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual IScreenCaptureSourceList* getScreenCaptureSources(const SIZE&amp; thumbSize, const SIZE&amp; iconSize, const bool includeScreen) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	UIScreenCaptureSourceList* GetScreenCaptureSources(FSIZE thumbSize, FSIZE iconSize, bool includeScreen);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract getScreenCaptureSources(
     thumbSize: Size,
     iconSize: Size,
@@ -44,7 +46,7 @@
             <parml>
             <plentry>
                 <pt>thumbSize</pt>
-                <pd><ph>屏幕或窗口的缩略图的目标尺寸（宽高单位为像素）。</ph><ph props="cpp unreal bp">详见 <xref keyref="SIZE-link" />。</ph><ph> SDK 会在保证原图不变形的前提下，缩放原图，使图片最长边和目标尺寸的最长边的长度一致。例如，原图宽高为 400 × 300，<parmname>thumbSize</parmname> 为 100 x 100，缩略图实际尺寸为 100 × 75。如果目标尺寸大于原图尺寸，缩略图即为原图，SDK 不进行缩放操作。</ph></pd>
+                <pd><ph>屏幕或窗口的缩略图的目标尺寸（宽高单位为像素）。</ph><ph props="cpp unreal bp">详见 <xref keyref="SIZE-link" />。</ph><ph>SDK 会在保证原图不变形的前提下，缩放原图，使图片最长边和目标尺寸的最长边的长度一致。例如，原图宽高为 400 × 300，<parmname>thumbSize</parmname> 为 100 x 100，缩略图实际尺寸为 100 × 75。如果目标尺寸大于原图尺寸，缩略图即为原图，SDK 不进行缩放操作。</ph></pd>
             </plentry>
             <plentry>
                 <pt>iconSize</pt>

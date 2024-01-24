@@ -41,7 +41,7 @@
 @property(nonatomic, assign) AgoraBlurDegree blurDegree;
 @end
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct VirtualBackgroundSource {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct VirtualBackgroundSource {
     enum BACKGROUND_SOURCE_TYPE {
     BACKGROUND_NONE = 0,
     BACKGROUND_COLOR = 1,
@@ -59,6 +59,20 @@
     const char* source;
     BACKGROUND_BLUR_DEGREE blur_degree;
     VirtualBackgroundSource() : background_source_type(BACKGROUND_COLOR), color(0xffffff), source(NULL),  blur_degree(BLUR_DEGREE_HIGH) {}
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FVirtualBackgroundSource
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VirtualBackgroundSource&quot;)
+	EBACKGROUND_SOURCE_TYPE background_source_type = EBACKGROUND_SOURCE_TYPE::BACKGROUND_COLOR;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VirtualBackgroundSource&quot;)
+	int64 color = 0xffffff;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VirtualBackgroundSource&quot;)
+	FString source;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VirtualBackgroundSource&quot;)
+	EBACKGROUND_BLUR_DEGREE blur_degree = EBACKGROUND_BLUR_DEGREE::BLUR_DEGREE_HIGH;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VirtualBackgroundSource {
   
@@ -129,17 +143,18 @@
             </plentry>
             <plentry>
                 <pt>color</pt>
-                <pd>自定义的背景图颜色。格式为 RGB 定义下的十六进制整数，不要带 # 号，如 0xFFB6C1 表示浅粉色。 默认值为 0xFFFFFF，表示白色。 取值范围为 [0x000000，0xffffff]。如果取值非法，SDK 会用白色背景图替换原背景图。
-
-                    
-                    <note type="attention">该参数仅在自定义背景图类型为 <ph keyref="BACKGROUND_COLOR" /> 时生效。</note></pd>
+                <pd>自定义的背景图颜色。格式为 RGB 定义下的十六进制整数，不带 # 号，如 0xFFB6C1 表示浅粉色。 默认值为 0xFFFFFF，表示白色。 取值范围为 [0x000000，0xffffff]。如果取值非法，SDK 会用白色背景图替换原背景图。
+                    <note type="attention">该参数仅在自定义背景为以下类型时生效，具体效果如下：
+                    <ul>
+                        <li><ph keyref="BACKGROUND_COLOR" />：背景图为该参数传入颜色的纯色图片。</li>
+                        <li><ph keyref="BACKGROUND_IMG" />：如果 <parmname>source</parmname> 中的图片使用了透明背景，则会使用该参数传入的颜色填充透明背景。</li>
+                    </ul>
+                    </note></pd>
             </plentry>
             <plentry>
                 <pt>source</pt>
-                <pd>自定义背景图的本地绝对路径。支持 PNG 和 JPG 格式。如果路径无效，SDK 会用白色背景图替换原背景图。
-
-                    
-                    <note type="attention">该参数仅在自定义背景图类型为 <ph keyref="BACKGROUND_IMG" /> 时生效。</note></pd>
+                <pd>自定义背景的本地绝对路径。支持 PNG、JPG、MP4、 AVI、 MKV 和 FLV 格式。如果路径无效，SDK 会使用原背景图或 <parmname>color</parmname> 指定的纯色背景。
+                    <note type="attention">该参数仅在自定义背景图类型为 <ph keyref="BACKGROUND_IMG" /> 或 <ph keyref="BACKGROUND_VIDEO" /> 时生效。</note></pd>
             </plentry>
             <plentry>
                 <pt props="ios mac android flutter">blurDegree</pt>

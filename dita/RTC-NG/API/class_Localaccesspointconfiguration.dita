@@ -2,8 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_Localaccesspointconfiguration">
     <title><ph keyref="LocalAccessPointConfiguration"/></title>
-    <shortdesc id="short"><ph id="shortdesc"
-        >Local Access Point 配置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Local Access Point 配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -73,7 +72,7 @@
 @property(assign, nonatomic) AgoraLocalProxyMode mode NS_SWIFT_NAME(mode);
 @property(strong, nonatomic) AdvancedConfigInfo* _Nullable advancedConfig NS_SWIFT_NAME(advancedConfig);
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct LocalAccessPointConfiguration {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct LocalAccessPointConfiguration {
   const char** ipList;
   int ipListSize;
   const char** domainList;
@@ -82,6 +81,24 @@
   LOCAL_PROXY_MODE mode;
   AdvancedConfigInfo advancedConfig;
   LocalAccessPointConfiguration() : ipList(NULL), ipListSize(0), domainList(NULL), domainListSize(0), verifyDomainName(NULL), mode(ConnectivityFirst) {}
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FLocalAccessPointConfiguration
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAccessPointConfiguration&quot;)
+	FString ipList;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAccessPointConfiguration&quot;)
+	int ipListSize;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAccessPointConfiguration&quot;)
+	FString domainList;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAccessPointConfiguration&quot;)
+	int domainListSize;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAccessPointConfiguration&quot;)
+	FString verifyDomainName;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAccessPointConfiguration&quot;)
+	ELOCAL_PROXY_MODE mode = ELOCAL_PROXY_MODE::ConnectivityFirst;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LocalAccessPointConfiguration {
   
@@ -200,22 +217,17 @@
             <plentry>
                 <pt>mode</pt>
                 <pd>
-                    <p props="ios mac cpp unreal bp electron unity rn flutter cs"
-                    >连接模式。详见 <xref keyref="LOCAL_PROXY_MODE"/>。</p>
+                    <p props="ios mac cpp unreal bp electron unity rn flutter cs">连接模式。详见 <xref keyref="LOCAL_PROXY_MODE"/>。</p>
                     <p props="android">连接模式：
-                    
-                    
                     <ul>
-                    <li><ph keyref="ConnectivityFirst"
-                        /> (0)：SDK 优先尝试连接指定的声网私有媒体服务器；如果无法连接到指定的声网私有媒体服务器，则连接声网 SD-RTN™。</li>
+                    <li><ph keyref="ConnectivityFirst"/> (0)：SDK 优先尝试连接指定的声网私有媒体服务器；如果无法连接到指定的声网私有媒体服务器，则连接声网 SD-RTN™。</li>
                     <li><ph keyref="LocalOnly"/> (1)：SDK 只尝试连接指定的声网私有媒体服务器。</li>
                     </ul></p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>advancedConfig</pt>
-                <pd>Local Access Point 的高级选项。详见 <xref
-                    keyref="AdvancedConfigInfo"/>。</pd>
+                <pd>Local Access Point 的高级选项。详见 <xref keyref="AdvancedConfigInfo"/>。</pd>
             </plentry>
             </parml> </section>
     </refbody>

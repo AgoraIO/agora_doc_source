@@ -22,7 +22,7 @@
            newState:(AgoraStreamPublishState)newState
 elapseSinceLastState:(int)elapseSinceLastState;
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onVideoPublishStateChanged(VIDEO_SOURCE_TYPE source, const char* channel, STREAM_PUBLISH_STATE oldState, STREAM_PUBLISH_STATE newState, int elapseSinceLastState) {
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onVideoPublishStateChanged(VIDEO_SOURCE_TYPE source, const char* channel, STREAM_PUBLISH_STATE oldState, STREAM_PUBLISH_STATE newState, int elapseSinceLastState) {
     (void)source;
     (void)channel;
     (void)oldState;
@@ -30,6 +30,7 @@ elapseSinceLastState:(int)elapseSinceLastState;
     (void)elapseSinceLastState;
   }
 </codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnVideoPublishStateChanged, EVIDEO_SOURCE_TYPE, source, FString, channel, ESTREAM_PUBLISH_STATE, oldState, ESTREAM_PUBLISH_STATE, newState, int, elapseSinceLastState);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onVideoPublishStateChanged?(
     source: VideoSourceType,
     channel: string,

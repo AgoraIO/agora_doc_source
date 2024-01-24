@@ -33,7 +33,7 @@
  @property (copy, nonatomic) NSString * _Nullable encryptionKey;
  @property (strong, nonatomic) NSData * _Nullable encryptionKdfSalt;
  @end</codeblock>
-      <codeblock props="cpp unreal bp" outputclass="language-cpp">struct EncryptionConfig {
+      <codeblock props="cpp unreal" outputclass="language-cpp">struct EncryptionConfig {
   ENCRYPTION_MODE encryptionMode;
   const char* encryptionKey;
   uint8_t encryptionKdfSalt[32];
@@ -69,12 +69,24 @@
     return "aes-128-gcm-2";
   }
 };    </codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FEncryptionConfig
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncryptionConfig&quot;)
+	ENCRYPTION_MODE encryptionMode = ENCRYPTION_MODE::AES_128_GCM;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncryptionConfig&quot;)
+	FString encryptionKey;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncryptionConfig&quot;)
+	FString encryptionKdfSalt;
+};</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class EncryptionConfig {
-  
+
   encryptionMode?: EncryptionMode;
-  
+
   encryptionKey?: string;
-  
+
   encryptionKdfSalt?: number[];
 }</codeblock>
       <codeblock props="unity cs" outputclass="language-csharp">public class EncryptionConfig
@@ -104,11 +116,11 @@
         }
     }</codeblock>
       <codeblock props="rn" outputclass="language-typescript">export class EncryptionConfig {
-  
+
   encryptionMode?: EncryptionMode;
-  
+
   encryptionKey?: string;
-  
+
   encryptionKdfSalt?: number[];
 }</codeblock>
       <codeblock props="flutter" outputclass="language-dart">class EncryptionConfig {
@@ -145,7 +157,8 @@
       <plentry>
         <pt>encryptionKdfSalt</pt>
         <pd>
-          <p><ph>盐，长度为 32 字节。建议你在服务端使用 OpenSSL 生成盐。</ph><ph props="native unreal bp">详见《媒体流加密》。</ph></p>
+          <p>盐，长度为 32 字节。建议你在服务端使用 OpenSSL 生成盐。</p>
+          <p props="native"><ph props="cn">如需在 App 中添加声网内置媒体流加密，详见<xref keyref="channel-encryption"/>。</ph></p>
           <note type="attention">只有在 <codeph><ph keyref="AES_128_GCM2" /></codeph> 或 <codeph><ph keyref="AES_256_GCM2" /></codeph> 加密模式下，该参数才生效。此时，需确保填入该参数的值不全为 <codeph>0</codeph>。</note>
         </pd>
       </plentry>

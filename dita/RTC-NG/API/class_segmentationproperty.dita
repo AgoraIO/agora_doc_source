@@ -25,7 +25,7 @@
 @property(nonatomic, assign) SegModelType modelType;
 @property(nonatomic, assign) float greenCapacity;
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct SegmentationProperty {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct SegmentationProperty {
     enum SEG_MODEL_TYPE {
     SEG_MODEL_AI = 1,
     SEG_MODEL_GREEN = 2
@@ -35,6 +35,16 @@
   SegmentationProperty() : modelType(SEG_MODEL_AI), greenCapacity(0.5){}
 };
 </codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FSegmentationProperty
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SegmentationProperty&quot;)
+	ESEG_MODEL_TYPE modelType = ESEG_MODEL_TYPE::SEG_MODEL_AI;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SegmentationProperty&quot;)
+	float greenCapacity = 0.5;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class SegmentationProperty {
 
   modelType?: SegModelType;

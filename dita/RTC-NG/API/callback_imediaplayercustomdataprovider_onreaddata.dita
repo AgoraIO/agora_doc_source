@@ -17,8 +17,9 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">typedef int(^AgoraRtcMediaPlayerCustomSourceOnReadCallback)(id&lt;AgoraRtcMediaPlayerProtocol&gt; _Nonnull playerKit, unsigned char * _Nullable buffer, int bufferSize);
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int onReadData(unsigned char *buffer, int bufferSize) = 0;
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int onReadData(unsigned char *buffer, int bufferSize) = 0;
 </codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnReadData, TArray&lt;int64&gt;, buffer, int, bufferSize);</codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity cs" outputclass="language-csharp">public virtual int OnReadData(IntPtr bufferPtr, int bufferSize)
         {
@@ -27,8 +28,8 @@
             <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
-        <section id="detailed_desc" conkeyref="onSeek/detailed_desc">
-            <p />
+        <section id="detailed_desc">
+            <p>使用 <xref keyref="openWithMediaSource"/> 打开媒体资源时，SDK 会触发该回调向你请求传入媒体资源数据的 Buffer。</p>
         </section>
         <section id="parameters">
             <title>参数</title>

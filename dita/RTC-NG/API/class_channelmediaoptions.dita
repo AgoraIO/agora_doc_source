@@ -120,7 +120,93 @@
 
   ChannelMediaOptions() {}
   ~ChannelMediaOptions() {}</codeblock>
-            <codeblock props="unreal bp" outputclass="language-cpp">struct ChannelMediaOptions {
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FChannelMediaOptions
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	AGORAOPTIONAL publishCameraTrack;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	AGORAOPTIONAL publishSecondaryCameraTrack;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	AGORAOPTIONAL publishMicrophoneTrack;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	AGORAOPTIONAL publishScreenCaptureVideo;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	AGORAOPTIONAL publishScreenCaptureAudio;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	AGORAOPTIONAL publishScreenTrack;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	AGORAOPTIONAL publishSecondaryScreenTrack;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	AGORAOPTIONAL publishCustomAudioTrack;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	bool publishCustomAudioTrackId_SetValue;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	int publishCustomAudioTrackId;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	AGORAOPTIONAL publishCustomVideoTrack;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	AGORAOPTIONAL publishEncodedVideoTrack;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	AGORAOPTIONAL publishMediaPlayerAudioTrack;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	AGORAOPTIONAL publishMediaPlayerVideoTrack;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	AGORAOPTIONAL publishTranscodedVideoTrack;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	AGORAOPTIONAL autoSubscribeAudio;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	AGORAOPTIONAL autoSubscribeVideo;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	AGORAOPTIONAL enableAudioRecordingOrPlayout;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	bool publishMediaPlayerId_SetValue;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	int publishMediaPlayerId;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	bool clientRoleType_SetValue = true;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	ECLIENT_ROLE_TYPE clientRoleType = ECLIENT_ROLE_TYPE::CLIENT_ROLE_BROADCASTER;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	bool audienceLatencyLevel_SetValue;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	EAUDIENCE_LATENCY_LEVEL_TYPE audienceLatencyLevel;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	bool defaultVideoStreamType_SetValue;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	EVIDEO_STREAM_TYPE defaultVideoStreamType;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	bool channelProfile_SetValue = true;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	ECHANNEL_PROFILE_TYPE channelProfile = ECHANNEL_PROFILE_TYPE::CHANNEL_PROFILE_LIVE_BROADCASTING;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	bool audioDelayMs_SetValue;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	int audioDelayMs;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	bool mediaPlayerAudioDelayMs_SetValue;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	int mediaPlayerAudioDelayMs;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	bool token_SetValue;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	FString token;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	AGORAOPTIONAL enableBuiltInMediaEncryption;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	AGORAOPTIONAL publishRhythmPlayerTrack;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	AGORAOPTIONAL isInteractiveAudience;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	bool customVideoTrackId_SetValue;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	int64 customVideoTrackId;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	AGORAOPTIONAL isAudioFilterable;
+};</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp">struct ChannelMediaOptions {
   Optional&lt;bool&gt; publishCameraTrack;
   Optional&lt;bool&gt; publishSecondaryCameraTrack;
   Optional&lt;bool&gt; publishMicrophoneTrack;
@@ -601,7 +687,16 @@ class ChannelMediaOptions {
                     <p><note type="note" props="native">自 v4.2.0 起，该参数名称由 <parmname>publishTrancodedVideoTrack</parmname> 更正为 <parmname>publishTranscodedVideoTrack</parmname>。</note></p>
                 </pd>
             </plentry>
-            <plentry>
+             <plentry props="hide">
+                 <pt>publishMixedAudioTrack</pt>
+                 <pd>设置是否发布本地混音音频：
+                     <ul>
+                    <li><codeph><ph keyref="true"/></codeph>：发布本地混音音频。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：不发布本地混音音频。</li>
+                    </ul>
+                 </pd>
+             </plentry>
+                <plentry>
                 <pt>publishCustomAudioTrack</pt>
                 <pd>设置是否发布自定义采集的音频：
 
@@ -620,11 +715,11 @@ class ChannelMediaOptions {
             <plentry>
                 <pt>publishCustomVideoTrack</pt>
                 <pd>设置是否发布自定义采集的视频：
-
-                    <ul>
-                    <li><codeph><ph keyref="true"/></codeph>：发布自定义采集的视频。</li>
-                    <li><codeph><ph keyref="false"/></codeph>：不发布自定义采集到的视频。</li>
-                    </ul></pd>
+                        <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：发布自定义采集的视频。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不发布自定义采集到的视频。</li>
+                        </ul>
+                </pd>
             </plentry>
             <plentry>
                 <pt>publishEncodedVideoTrack</pt>
@@ -724,7 +819,7 @@ class ChannelMediaOptions {
             <plentry>
                 <pt>token</pt>
                 <pd>
-                    <p>（可选）在服务端生成的用于鉴权的动态密钥。详见<xref keyref="guide-token" props="native unreal bp">使用 Token 鉴权</xref>。</p>
+                    <p>（可选）在服务端生成的用于鉴权的动态密钥。详见<xref keyref="guide-token"/>。</p>
                     <note type="caution">
                     <ul>
                     <li>该参数仅在调用 <xref keyref="updateChannelMediaOptions"/> 或 <xref keyref="updateChannelMediaOptionsEx"/> 时生效。</li>

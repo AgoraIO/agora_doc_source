@@ -17,10 +17,11 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
     didLocalVideoEnabled:(BOOL)enabled
     byUid:(NSUInteger)uid</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onUserEnableLocalVideo(uid_t uid, bool enabled) {
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onUserEnableLocalVideo(uid_t uid, bool enabled) {
     (void)uid;
     (void)enabled;
     }</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnUserEnableLocalVideo, int64, uid, bool, enabled);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onUserEnableLocalVideo?(
     connection: RtcConnection,
     remoteUid: number,

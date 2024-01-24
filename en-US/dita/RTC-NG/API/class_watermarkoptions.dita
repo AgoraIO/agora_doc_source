@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_watermarkoptions">
-    <title><ph keyref="WatermarkOptions" /></title>
+    <title><ph keyref="WatermarkOptions"/></title>
     <shortdesc id="short"><ph id="shortdesc">Configurations of the watermark image.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -36,7 +36,7 @@
 @property(assign, nonatomic) CGRect positionInPortraitMode;
 @end
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct WatermarkOptions {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct WatermarkOptions {
   bool visibleInPreview;
   Rectangle positionInLandscapeMode;
   Rectangle positionInPortraitMode;
@@ -49,6 +49,22 @@
       mode(FIT_MODE_COVER_POSITION) {}
 };
 </codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FWatermarkOptions
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkOptions&quot;)
+	bool visibleInPreview;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkOptions&quot;)
+	FRectangle positionInLandscapeMode;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkOptions&quot;)
+	FRectangle positionInPortraitMode;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkOptions&quot;)
+	FWatermarkRatio watermarkRatio;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkOptions&quot;)
+	EWATERMARK_FIT_MODE mode = EWATERMARK_FIT_MODE::FIT_MODE_COVER_POSITION;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class WatermarkOptions {
   
   visibleInPreview?: boolean;
@@ -99,7 +115,8 @@
   
   mode?: WatermarkFitMode;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class WatermarkOptions {
+            <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class WatermarkOptions {
   const WatermarkOptions(
       {this.visibleInPreview,
       this.positionInLandscapeMode,
@@ -107,61 +124,71 @@
       this.watermarkRatio,
       this.mode});
 
-  @JsonKey(name: 'visibleInPreview')
+  @JsonKey(name: &#x27;visibleInPreview&#x27;)
   final bool? visibleInPreview;
-  @JsonKey(name: 'positionInLandscapeMode')
+
+  @JsonKey(name: &#x27;positionInLandscapeMode&#x27;)
   final Rectangle? positionInLandscapeMode;
-  @JsonKey(name: 'positionInPortraitMode')
+
+  @JsonKey(name: &#x27;positionInPortraitMode&#x27;)
   final Rectangle? positionInPortraitMode;
-  @JsonKey(name: 'watermarkRatio')
+
+  @JsonKey(name: &#x27;watermarkRatio&#x27;)
   final WatermarkRatio? watermarkRatio;
-  @JsonKey(name: 'mode')
+
+  @JsonKey(name: &#x27;mode&#x27;)
   final WatermarkFitMode? mode;
+
   factory WatermarkOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$WatermarkOptionsFromJson(json);
+
   Map&lt;String, dynamic&gt; toJson() =&gt; _$WatermarkOptionsToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p />
+            <p/>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
                 <pt>visibleInPreview</pt>
-                <pd>Reserved for future use.</pd>
+                <pd>Is the watermark visible in the local preview view?<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: (Default) The watermark is visible in the local preview view.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: The watermark is not visible in the local preview view.</li>
+                    </ul>
+                </pd>
             </plentry>
             <plentry>
                 <pt>positionInLandscapeMode</pt>
-                <pd props="android">The area to display the watermark image in landscape mode. See <xref keyref="Rectangle" />.</pd>
-                <pd props="cpp unreal bp unity electron rn flutter cs">When the adaptation mode of the watermark is <ph keyref="FIT_MODE_COVER_POSITION" />, it is used to set the area of the watermark image in landscape mode. See <xref keyref="Rectangle" />.</pd>
+                <pd props="android">The area to display the watermark image in landscape mode. See <xref keyref="Rectangle"/>.</pd>
+                <pd props="cpp unreal bp unity electron rn flutter cs">When the adaptation mode of the watermark is <ph keyref="FIT_MODE_COVER_POSITION"/>, it is used to set the area of the watermark image in landscape mode. See <xref keyref="Rectangle"/>.</pd>
                 <pd props="ios mac">The area to display the watermark image in landscape mode. This parameter contains the following members:<ul>
                     <li>x: The horizontal position of the watermark relative to the upper left corner.</li>
                     <li>y: The vertical position of the watermark relative to the upper left corner.</li>
-                    <li>width: The width (pixel) of the watermark area.</li>
-                    <li>height: The height (pixel) of the watermark area.</li>
+                    <li>width: The width of the watermark area (px).</li>
+                    <li>height: The height of the watermark area (px).</li>
                     </ul> </pd>
             </plentry>
             <plentry>
                 <pt>positionInPortraitMode</pt>
-                <pd props="android">The area to display the watermark image in portrait mode. See <xref keyref="Rectangle" />.</pd>
-                <pd props="cpp unreal bp unity electron rn flutter cs">When the adaptation mode of the watermark is <ph keyref="FIT_MODE_COVER_POSITION" />, it is used to set the area of the watermark image in portrait mode. See <xref keyref="Rectangle" />.</pd>
+                <pd props="android">The area to display the watermark image in portrait mode. See <xref keyref="Rectangle"/>.</pd>
+                <pd props="cpp unreal bp unity electron rn flutter cs">When the adaptation mode of the watermark is <ph keyref="FIT_MODE_COVER_POSITION"/>, it is used to set the area of the watermark image in portrait mode. See <xref keyref="Rectangle"/>.</pd>
                 <pd props="ios mac">The area to display the watermark image in portrait mode. This parameter contains the following members:<ul>
                     <li>x: The horizontal position of the watermark relative to the upper left corner.</li>
                     <li>y: The vertical position of the watermark relative to the upper left corner.</li>
-                    <li>width: The width (pixel) of the watermark area.</li>
-                    <li>height: The height (pixel) of the watermark area.</li>
+                    <li>width: The width of the watermark area (px).</li>
+                    <li>height: The height of the watermark area (px).</li>
                     </ul> </pd>
             </plentry>
             <plentry props="cpp unreal bp unity electron rn flutter cs">
                 <pt>watermarkRatio</pt>
-                <pd>When the watermark adaptation mode is <ph keyref="FIT_MODE_USE_IMAGE_RATIO" />, this parameter is used to set the watermark coordinates. See <xref keyref="WatermarkRatio" />.</pd>
+                <pd>When the watermark adaptation mode is <ph keyref="FIT_MODE_USE_IMAGE_RATIO"/>, this parameter is used to set the watermark coordinates. See <xref keyref="WatermarkRatio"/>.</pd>
             </plentry>
             <plentry props="cpp unreal bp unity electron rn flutter cs">
                 <pt>mode</pt>
-                <pd>The adaptation mode of the watermark. See <xref keyref="WATERMARK_FIT_MODE" />.</pd>
+                <pd>The adaptation mode of the watermark. See <xref keyref="WATERMARK_FIT_MODE"/>.</pd>
             </plentry>
             </parml> </section>
     </refbody>

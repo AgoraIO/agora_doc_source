@@ -17,18 +17,18 @@
             <codeblock props="ios mac" outputclass="language-objectivec">
 - (int)startScreenCapture:(AgoraVideoSourceType)sourceType config:(AgoraScreenCaptureConfiguration * _Nullable)config NS_SWIFT_NAME(startScreenCapture(_:config:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int startScreenCapture(VIDEO_SOURCE_TYPE sourceType, const ScreenCaptureConfiguration&amp; config) = 0;</codeblock>
-            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|RtcEngineProxy")
-int StartScreenCaptureBySourceType(EVIDEO_SOURCE_TYPE sourceType, const FScreenCaptureConfiguration&amp; config);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int StartScreenCaptureBySourceType(EVIDEO_SOURCE_TYPE sourceType, const FScreenCaptureConfiguration&amp; config);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract startScreenCaptureBySourceType(
     sourceType: VideoSourceType,
     config: ScreenCaptureConfiguration
   ): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int StartScreenCapture(VIDEO_SOURCE_TYPE sourceType, ScreenCaptureConfiguration config);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startScreenCaptureBySourceType(
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> startScreenCaptureBySourceType(
       {required VideoSourceType sourceType,
       required ScreenCaptureConfiguration config});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
@@ -38,15 +38,15 @@ int StartScreenCaptureBySourceType(EVIDEO_SOURCE_TYPE sourceType, const FScreenC
                 <dd>v4.2.0</dd>
             </dlentry>
             </dl>
-            <p><ph props="mac electron cs">This method, as well as <xref keyref="startScreenCaptureByDisplayId" /> and <xref keyref="startScreenCaptureByWindowId" />, all have the capability to start screen capture, with the following differences:</ph>
-<ph props="cpp unreal bp unity flutter">This method, as well as <xref keyref="startScreenCapture" />, <xref keyref="startScreenCaptureByDisplayId" />, and <xref keyref="startScreenCaptureByWindowId" />, all have the capability to start screen capture, with the following differences:</ph><ul>
-                    <li props="cpp unreal bp unity flutter"><apiname keyref="startScreenCapture" /> only applies to Android and iOS, whereas this method only applies to Windows and iOS.</li>
-                    <li><apiname keyref="startScreenCaptureByDisplayId" /> and <apiname keyref="startScreenCaptureByWindowId" /> only support capturing video from a single screen or window. By calling this method and specifying the <parmname>sourceType</parmname> parameter, you can capture multiple video streams used for local video mixing or multi-channel publishing.</li>
+            <p><ph props="mac electron cs">This method, as well as <xref keyref="startScreenCaptureByDisplayId"/> and <xref keyref="startScreenCaptureByWindowId"/>, all have the capability to start screen capture, with the following differences:</ph>
+<ph props="cpp unreal bp unity flutter">This method, as well as <xref keyref="startScreenCapture"/>, <xref keyref="startScreenCaptureByDisplayId"/>, and <xref keyref="startScreenCaptureByWindowId"/>, all have the capability to start screen capture, with the following differences:</ph><ul>
+                    <li props="cpp unreal bp unity flutter"><apiname keyref="startScreenCapture"/> only applies to Android and iOS, whereas this method only applies to Windows and iOS.</li>
+                    <li><apiname keyref="startScreenCaptureByDisplayId"/> and <apiname keyref="startScreenCaptureByWindowId"/> only support capturing video from a single screen or window. By calling this method and specifying the <parmname>sourceType</parmname> parameter, you can capture multiple video streams used for local video mixing or multi-channel publishing.</li>
                 </ul>
             </p>
             <note type="attention"><ul>
             <li props="cpp unreal bp unity flutter">This method applies to the macOS and Windows only.</li>
-            <li>If you call this method to start screen capture, Agora recommends that you call <xref keyref="stopScreenCapture2" /> to stop the capture and avoid using <xref keyref="stopScreenCapture" />.</li></ul></note>
+            <li>If you call this method to start screen capture, Agora recommends that you call <xref keyref="stopScreenCapture2"/> to stop the capture and avoid using <xref keyref="stopScreenCapture"/>.</li></ul></note>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -54,10 +54,10 @@ int StartScreenCaptureBySourceType(EVIDEO_SOURCE_TYPE sourceType, const FScreenC
             <plentry>
                 <pt>sourceType</pt>
                 <pd>
-                    <p>The type of the video source. See <xref keyref="VIDEO_SOURCE_TYPE" />.</p>
+                    <p>The type of the video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</p>
                     <note><ul>
                     <li props="cpp unreal bp flutter unity cs electron">Windows supports up to four screen capture video streams.</li>
-                    <li props="cpp unreal bp mac flutter unity electron">macOS supports only one screen capture video stream. You can only set this parameter to <codeph><apiname keyref="VIDEO_SOURCE_SCREEN" />(2)</codeph>.</li></ul></note>
+                    <li props="cpp unreal bp mac flutter unity electron">macOS supports only one screen capture video stream. You can only set this parameter to <codeph><apiname keyref="VIDEO_SOURCE_SCREEN"/>(2)</codeph>.</li></ul></note>
                 </pd>
             </plentry>
             <plentry>
@@ -66,13 +66,11 @@ int StartScreenCaptureBySourceType(EVIDEO_SOURCE_TYPE sourceType, const FScreenC
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
-        </section>
-        <section>
-            <ul>
-            <li props="native unreal bp electron unity cs">0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <ul props="native unreal bp electron unity cs">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>
 </reference>

@@ -15,11 +15,12 @@
                <p outputclass="codeblock">
                <codeblock props="android" outputclass="language-java"/>
                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine device:(NSString * _Nonnull)deviceId type:(AgoraMediaDeviceType)deviceType stateChanged:(NSInteger)state NS_SWIFT_NAME(rtcEngine(_:device:type:stateChanged:));</codeblock>
-               <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onVideoDeviceStateChanged(const char* deviceId, int deviceType, int deviceState) {
+               <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onVideoDeviceStateChanged(const char* deviceId, int deviceType, int deviceState) {
      (void)deviceId;
      (void)deviceType;
      (void)deviceState;
      }</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnVideoDeviceStateChanged, FString, deviceId, int, deviceType, int, deviceState);</codeblock>
                <codeblock props="electron" outputclass="language-typescript">  onVideoDeviceStateChanged?(
     deviceId: string,
     deviceType: MediaDeviceType,
@@ -51,17 +52,7 @@
                </plentry>
                <plentry id="state">
                     <pt>deviceState</pt>
-                    <pd>设备状态。</pd>
-                    <pd>
-                         <ul>
-                         <li>在 Windows  平台上，详见 <xref keyref="MEDIA_DEVICE_STATE_TYPE"/> 。</li>
-                         <li props="cpp unreal bp electron unity flutter">在 macOS 平台上：
-                                        
-                              <ul>
-                              <li>0: 设备就绪。</li>
-                              <li>8: 设备被拔出。</li>
-                              </ul></li>
-                         </ul> </pd>
+                    <pd>设备状态。详见 <xref keyref="MEDIA_DEVICE_STATE_TYPE"/> 。</pd>
                </plentry>
                </parml> </section>
      </refbody>

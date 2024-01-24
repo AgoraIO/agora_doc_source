@@ -17,8 +17,9 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">typedef long long(^AgoraRtcMediaPlayerCustomSourceOnSeekCallback)(id&lt;AgoraRtcMediaPlayerProtocol&gt; _Nonnull playerKit, long long offset, int whence);
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int64_t onSeek(int64_t offset, int whence) = 0;
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int64_t onSeek(int64_t offset, int whence) = 0;
 </codeblock>
+            <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnSeek, int64, offset, int, whence);</codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity cs" outputclass="language-csharp">public virtual Int64 OnSeek(Int64 offset, int whence)
         {
@@ -28,8 +29,7 @@
             <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
-            <p props="android ios">使用 <xref keyref="openWithMediaSource" /> 打开自定义媒体资源时，SDK 会触发该回调，向你请求定位到媒体资源中的指定位置。</p>
-            <p props="cpp unreal bp mac">使用 <xref keyref="openWithCustomSource" /> 打开自定义媒体资源时，SDK 会触发该回调，向你请求定位到媒体资源中的指定位置。</p>
+            <p>使用 <xref keyref="openWithMediaSource"/> 或 <xref keyref="open"/> 打开媒体资源时，SDK 会触发该回调，向你请求定位到媒体资源中的指定位置。</p>
         </section>
         <section id="parameters">
             <title>参数</title>

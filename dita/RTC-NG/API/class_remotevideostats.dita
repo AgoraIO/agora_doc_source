@@ -43,7 +43,7 @@
 @property(assign, nonatomic) NSInteger publishDuration;
 @property(assign, nonatomic) NSInteger avSyncTimeMs;
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct RemoteVideoStats {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct RemoteVideoStats {
   uid_t uid;
   int delay;
   int e2eDelay;
@@ -60,6 +60,48 @@
   int avSyncTimeMs;
   int totalActiveTime;
   int publishDuration;
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FRemoteVideoStats {
+
+	GENERATED_BODY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
+	int64 uid;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
+	int delay;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
+	int e2eDelay;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
+	int width;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
+	int height;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
+	int receivedBitrate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
+	int decoderOutputFrameRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
+	int rendererOutputFrameRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
+	int frameLossRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
+	int packetLossRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
+	EVIDEO_STREAM_TYPE rxStreamType;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
+	int totalFrozenTime;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
+	int frozenRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
+	int avSyncTimeMs;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
+	int totalActiveTime;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
+	int publishDuration;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
+	int mosValue;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
+	int64 rxVideoBytes;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class RemoteVideoStats {
 

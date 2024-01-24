@@ -18,12 +18,20 @@
 @property (assign, nonatomic) BOOL enableLocalPlayback NS_SWIFT_NAME(enableLocalPlayback);
  
 @end</codeblock>
-      <codeblock props="cpp unreal bp" outputclass="language-cpp">struct AudioTrackConfig {
+      <codeblock props="cpp unreal" outputclass="language-cpp">struct AudioTrackConfig {
   bool enableLocalPlayback;
  
  
   AudioTrackConfig()
     : enableLocalPlayback(true) {}
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FAudioTrackConfig
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioTrackConfig&quot;)
+	bool enableLocalPlayback = true;
 };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class AudioTrackConfig {
   enableLocalPlayback?: boolean;
@@ -53,12 +61,12 @@ class AudioTrackConfig {
   @JsonKey(name: 'enableLocalPlayback')
   final bool? enableLocalPlayback;
 
-  factory AudioTrackConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory AudioTrackConfig.fromJson(Map&lt;String, dynamic> json) =>
       _$AudioTrackConfigFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$AudioTrackConfigToJson(this);
+  Map&lt;String, dynamic> toJson() => _$AudioTrackConfigToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
     </section>
     <section id="parameters">
       <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
@@ -66,8 +74,8 @@ class AudioTrackConfig {
       <plentry>
         <pt>enableLocalPlayback</pt>
         <pd>Whether to enable the local audio-playback device:<ul>
-                <li><codeph><ph keyref="true" /></codeph>: (Default) Enable the local audio-playback device.</li>
-                <li><codeph><ph keyref="false" /></codeph>: Do not enable the local audio-playback device.</li>
+                <li><codeph><ph keyref="true"/></codeph>: (Default) Enable the local audio-playback device.</li>
+                <li><codeph><ph keyref="false"/></codeph>: Do not enable the local audio-playback device.</li>
             </ul>
         </pd>
       </plentry>

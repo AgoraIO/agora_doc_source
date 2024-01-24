@@ -15,12 +15,14 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setEffectPosition(int soundId, int pos);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setEffectPosition:(int)soundId pos:(NSInteger)pos NS_SWIFT_NAME(setEffectPosition(_:pos:));</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int setEffectPosition(int soundId, int pos) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setEffectPosition(int soundId, int pos) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int SetEffectPosition(int soundId, int pos);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setEffectPosition(soundId: number, pos: number): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetEffectPosition(int soundId, int pos);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setEffectPosition(soundId: number, pos: number): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setEffectPosition({required int soundId, required int pos});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setEffectPosition({required int soundId, required int pos});</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
@@ -39,11 +41,11 @@
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
-            <ul>
-            <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <ul props="native unreal bp electron unity rn cs">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>
 </reference>

@@ -18,7 +18,9 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)preloadEffect:(int)soundId
             filePath:(NSString* _Nonnull)filePath;
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int preloadEffect(int soundId, const char* filePath) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int preloadEffect(int soundId, const char* filePath) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int PreloadEffect(int soundId, FString filePath, int startPos);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract preloadEffect(
     soundId: number,
     filePath: string,
@@ -32,16 +34,14 @@
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; preloadEffect(
     {required int soundId, required String filePath, int startPos = 0});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>To ensure smooth communication, It is recommended that you limit the size of the audio effect file. You can call this method to preload the audio effect before calling <apiname keyref="joinChannel2" />.</p>
-            <note type="attention">
-            <ul>
-            <li>This method does not support online audio effect files.</li>
-            <li id="audioFormats">For the audio file formats supported by this method, see <xref keyref="audio-format">What formats of audio files does the Agora RTC SDK support</xref>.</li>
-            </ul></note> </section>
+            <p>To ensure smooth communication, It is recommended that you limit the size of the audio effect file. You can call this method to preload the audio effect before calling <apiname keyref="joinChannel2"/>.</p>
+            <note type="note">
+            <p id="audioFormats">For the audio file formats supported by this method, see <xref keyref="audio-format">What formats of audio files does the Agora RTC SDK support</xref>.</p>
+            </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
@@ -65,11 +65,11 @@
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
-            <ul>
-            <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <ul props="native unreal bp electron unity rn cs">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>
 </reference>

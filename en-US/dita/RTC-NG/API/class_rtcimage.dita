@@ -41,7 +41,7 @@
             @property (assign, nonatomic) NSInteger zOrder;
             @property(assign, nonatomic) double alpha;
             @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">typedef struct RtcImage {
+            <codeblock props="cpp unreal" outputclass="language-cpp">typedef struct RtcImage {
             const char* url;
             int x;
             int y;
@@ -51,6 +51,26 @@
             double alpha;
 
             RtcImage() : url(NULL), x(0), y(0), width(0), height(0), zOrder(0), alpha(1.0) {}</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FRtcImage
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcImage&quot;)
+	FString url;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcImage&quot;)
+	int x;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcImage&quot;)
+	int y;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcImage&quot;)
+	int width;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcImage&quot;)
+	int height;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcImage&quot;)
+	int zOrder;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcImage&quot;)
+	float alpha;
+};</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class RtcImage
     {
         public RtcImage()
@@ -142,7 +162,7 @@
       _$RtcImageFromJson(json);
   Map&lt;String, dynamic&gt; toJson() =&gt; _$RtcImageToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>This class sets the properties of the watermark and background images in the live video.</p>
@@ -156,19 +176,19 @@
             </plentry>
             <plentry props="android cpp unreal bp unity electron rn flutter cs">
                 <pt>x</pt>
-                <pd>The x coordinate (pixel) of the image on the video frame (taking the upper left corner of the video frame as the origin).</pd>
+                <pd>The x-coordinate (px) of the image on the video frame (taking the upper left corner of the video frame as the origin).</pd>
             </plentry>
             <plentry props="android cpp unreal bp unity electron rn flutter cs">
                 <pt>y</pt>
-                <pd>The y coordinate (pixel) of the image on the video frame (taking the upper left corner of the video frame as the origin).</pd>
+                <pd>The y-coordinate (px) of the image on the video frame (taking the upper left corner of the video frame as the origin).</pd>
             </plentry>
             <plentry props="android cpp unreal bp unity electron rn flutter cs">
                 <pt>width</pt>
-                <pd>The width (pixel) of the image on the video frame.</pd>
+                <pd>The width (px) of the image on the video frame.</pd>
             </plentry>
             <plentry props="android cpp unreal bp unity electron rn flutter cs">
                 <pt>height</pt>
-                <pd>The height (pixel) of the image on the video frame.</pd>
+                <pd>The height (px) of the image on the video frame.</pd>
             </plentry>
             <plentry props="ios mac">
                 <pt>rect</pt>

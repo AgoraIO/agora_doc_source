@@ -15,11 +15,12 @@
                <p outputclass="codeblock">
                <codeblock props="android" outputclass="language-java"/>
                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine device:(NSString * _Nonnull)deviceId type:(AgoraMediaDeviceType)deviceType stateChanged:(NSInteger)state NS_SWIFT_NAME(rtcEngine(_:device:type:stateChanged:));</codeblock>
-               <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onVideoDeviceStateChanged(const char* deviceId, int deviceType, int deviceState) {
+               <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onVideoDeviceStateChanged(const char* deviceId, int deviceType, int deviceState) {
      (void)deviceId;
      (void)deviceType;
      (void)deviceState;
      }</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnVideoDeviceStateChanged, FString, deviceId, int, deviceType, int, deviceState);</codeblock>
                <codeblock props="electron" outputclass="language-typescript">  onVideoDeviceStateChanged?(
     deviceId: string,
     deviceType: MediaDeviceType,
@@ -51,15 +52,7 @@
                </plentry>
                <plentry id="state">
                     <pt>deviceState</pt>
-                    <pd>Media device states.</pd>
-                    <pd>
-                         <ul>
-                         <li>On the Windows platform, see <xref keyref="MEDIA_DEVICE_STATE_TYPE"/>.</li>
-                         <li props="cpp unreal bp electron unity flutter">On the macOS platform:<ul>
-                              <li>0: The device is ready for use.</li>
-                              <li>8: The device is unplugged.</li>
-                              </ul></li>
-                         </ul> </pd>
+                    <pd>Media device states. See <xref keyref="MEDIA_DEVICE_STATE_TYPE"/>.</pd>
                </plentry>
                </parml> </section>
      </refbody>

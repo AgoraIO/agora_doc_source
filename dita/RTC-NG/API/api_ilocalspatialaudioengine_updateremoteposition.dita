@@ -15,7 +15,9 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int updateRemotePosition(int uid, RemoteVoicePositionInfo posInfo);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)updateRemotePosition:(NSUInteger)uid positionInfo:(AgoraRemoteVoicePositionInfo* _Nonnull)posInfo;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int updateRemotePosition(uid_t uid, const RemoteVoicePositionInfo &amp;posInfo) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int updateRemotePosition(uid_t uid, const RemoteVoicePositionInfo &amp;posInfo) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|ILocalSpatialAudioEngine&quot;)
+	int UpdateRemotePosition(int64 uid, FRemoteVoicePositionInfo&amp; posInfo);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract updateRemotePosition(
     uid: number,
     posInfo: RemoteVoicePositionInfo
@@ -48,8 +50,8 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul>
-            <li props="native unreal bp electron unity rn cs">0: 方法调用成功。</li>
+            <ul props="native unreal bp electron unity rn cs">
+            <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
             </ul> </section>
     </refbody>

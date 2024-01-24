@@ -28,7 +28,7 @@
 @property(nonatomic, assign) AgoraLowlightEnhanceMode mode;
 @property(nonatomic, assign) AgoraLowlightEnhanceLevel level;
 @end</codeblock>
-      <codeblock props="cpp unreal bp" outputclass="language-cpp">struct LowlightEnhanceOptions {
+      <codeblock props="cpp unreal" outputclass="language-cpp">struct LowlightEnhanceOptions {
     enum LOW_LIGHT_ENHANCE_MODE {
         LOW_LIGHT_ENHANCE_AUTO = 0,
         LOW_LIGHT_ENHANCE_MANUAL = 1,
@@ -47,6 +47,15 @@
   LowlightEnhanceOptions() : mode(LOW_LIGHT_ENHANCE_AUTO), level(LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY) {}
 };
 </codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FLowlightEnhanceOptions
+{
+	GENERATED_BODY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LowlightEnhanceOptions&quot;)
+	ELOW_LIGHT_ENHANCE_MODE mode = ELOW_LIGHT_ENHANCE_MODE::LOW_LIGHT_ENHANCE_AUTO;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LowlightEnhanceOptions&quot;)
+	ELOW_LIGHT_ENHANCE_LEVEL level = ELOW_LIGHT_ENHANCE_LEVEL::LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY;
+};</codeblock>
       <codeblock props="unity cs" outputclass="language-csharp">public class LowlightEnhanceOptions
     {
         public LOW_LIGHT_ENHANCE_MODE mode { set; get; }
@@ -86,12 +95,12 @@
   @JsonKey(name: 'level')
   final LowLightEnhanceLevel? level;
 
-  factory LowlightEnhanceOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory LowlightEnhanceOptions.fromJson(Map&lt;String, dynamic> json) =>
       _$LowlightEnhanceOptionsFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$LowlightEnhanceOptionsToJson(this);
+  Map&lt;String, dynamic> toJson() => _$LowlightEnhanceOptionsToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
     </section>
     <section id="parameters">
       <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" />
@@ -99,16 +108,16 @@
       <parml>
       <plentry>
         <pt>level</pt>
-        <pd><ph>The low-light enhancement level. </ph><ph props="apple cpp unreal bp rn unity electron flutter cs">See <xref keyref="LOW_LIGHT_ENHANCE_LEVEL" />.</ph><ul props="android">
-            <li><ph keyref="LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY" />(0): (Default) Promotes video quality during low-light enhancement. It processes the brightness, details, and noise of the video image. The performance consumption is moderate, the processing speed is moderate, and the overall video quality is optimal.</li>
-            <li><ph keyref="LOW_LIGHT_ENHANCE_LEVEL_FAST" />(1): Promotes performance during low-light enhancement. It processes the brightness and details of the video image. The processing speed is faster.</li>
+        <pd><ph>The low-light enhancement level. </ph><ph props="apple cpp unreal bp rn unity electron flutter cs">See <xref keyref="LOW_LIGHT_ENHANCE_LEVEL"/>.</ph><ul props="android">
+            <li><ph keyref="LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY"/>(0): (Default) Promotes video quality during low-light enhancement. It processes the brightness, details, and noise of the video image. The performance consumption is moderate, the processing speed is moderate, and the overall video quality is optimal.</li>
+            <li><ph keyref="LOW_LIGHT_ENHANCE_LEVEL_FAST"/>(1): Promotes performance during low-light enhancement. It processes the brightness and details of the video image. The processing speed is faster.</li>
             </ul> </pd>
       </plentry>
       <plentry>
         <pt>mode</pt>
-        <pd><ph>The low-light enhancement mode. </ph><ph props="apple cpp unreal bp rn unity electron flutter cs">See <xref keyref="LOW_LIGHT_ENHANCE_MODE" />.</ph><ul props="android">
-            <li><ph keyref="LOW_LIGHT_ENHANCE_AUTO" />(0): (Default) Automatic mode. The SDK automatically enables or disables the low-light enhancement feature according to the ambient light to compensate for the lighting level or prevent overexposure, as necessary.</li>
-            <li><ph keyref="LOW_LIGHT_ENHANCE_MANUAL" />(1): Manual mode. Users need to enable or disable the low-light enhancement feature manually.</li>
+        <pd><ph>The low-light enhancement mode. </ph><ph props="apple cpp unreal bp rn unity electron flutter cs">See <xref keyref="LOW_LIGHT_ENHANCE_MODE"/>.</ph><ul props="android">
+            <li><ph keyref="LOW_LIGHT_ENHANCE_AUTO"/>(0): (Default) Automatic mode. The SDK automatically enables or disables the low-light enhancement feature according to the ambient light to compensate for the lighting level or prevent overexposure, as necessary.</li>
+            <li><ph keyref="LOW_LIGHT_ENHANCE_MANUAL"/>(1): Manual mode. Users need to enable or disable the low-light enhancement feature manually.</li>
             </ul> </pd>
       </plentry>
       </parml> </section>

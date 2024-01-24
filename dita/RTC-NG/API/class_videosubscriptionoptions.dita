@@ -47,11 +47,22 @@
 @property (nonatomic, assign) bool encodedFrameOnly;
 
 @end</codeblock>
-      <codeblock props="cpp unreal bp" outputclass="language-cpp">struct VideoSubscriptionOptions {
+      <codeblock props="cpp unreal" outputclass="language-cpp">struct VideoSubscriptionOptions {
         Optional&lt;VIDEO_STREAM_TYPE> type;
         Optional&lt;bool> encodedFrameOnly;
 
     VideoSubscriptionOptions() {}
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FVideoSubscriptionOptions
+{
+	GENERATED_BODY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	bool type_SetValue;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoSubscriptionOptions&quot;)
+	EVIDEO_STREAM_TYPE type;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoSubscriptionOptions&quot;)
+	AGORAOPTIONAL encodedFrameOnly;
 };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class VideoSubscriptionOptions {
   

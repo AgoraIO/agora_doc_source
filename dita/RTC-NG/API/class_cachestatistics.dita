@@ -22,10 +22,20 @@
 @property(assign, nonatomic) NSInteger cacheSize;
 @property(assign, nonatomic) NSInteger downloadSize;
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct CacheStatistics {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct CacheStatistics {
   int64_t fileSize;
   int64_t cacheSize;
   int64_t downloadSize;
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FCacheStatistics {
+	GENERATED_BODY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|CacheStatistics&quot;)
+	int64 fileSize;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|CacheStatistics&quot;)
+	int64 cacheSize;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|CacheStatistics&quot;)
+	int64 downloadSize;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class CacheStatistics {
 

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaengine_setexternalaudiosource2">
-    <title><ph keyref="setExternalAudioSource2" /></title>
+    <title><ph keyref="setExternalAudioSource2"/></title>
     <shortdesc id="short"><ph id="shortdesc">Sets the external audio source parameters.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setExternalAudioSource2" />
+                <indexterm keyref="setExternalAudioSource2"/>
             </keywords>
         </metadata>
     </prolog>
@@ -19,7 +19,7 @@
                      channels:(NSInteger)channels
                 localPlayback:(BOOL)localPlayback
                       publish:(BOOL)publish;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int setExternalAudioSource(bool enabled,
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setExternalAudioSource(bool enabled,
                                    int sampleRate,
                                    int channels,
                                    bool localPlayback = false,
@@ -39,13 +39,13 @@
     localPlayback?: boolean,
     publish?: boolean
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setExternalAudioSource(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setExternalAudioSource(
     {required bool enabled,
     required int sampleRate,
     required int channels,
     bool localPlayback = false,
     bool publish = true});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
@@ -63,8 +63,8 @@
                 <pt>enabled</pt>
                 <pd>
                     <p>Whether to enable the external audio source:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Enable the external audio source.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: (Default) Disable the external audio source.</li>
+                    <li><codeph><ph keyref="true"/></codeph>: Enable the external audio source.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) Disable the external audio source.</li>
                     </ul></p>
                 </pd>
             </plentry>
@@ -78,10 +78,10 @@
             </plentry>
             <plentry>
                 <pt>localPlayback</pt>
-                <pd>
+                <pd id="localplayback">
                     <p>Whether to play the external audio source:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Play the external audio source.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: (Default) Do not play the external source.</li>
+                    <li><codeph><ph keyref="true"/></codeph>: Play the external audio source.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not play the external source.</li>
                     </ul></p>
                 </pd>
             </plentry>
@@ -89,18 +89,18 @@
                 <pt>publish</pt>
                 <pd>
                     <p>Whether to publish audio to the remote users:<ul id="ul_agk_dnf_3qb">
-                    <li><codeph><ph keyref="true" /></codeph>: (Default) Publish audio to the remote users.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Do not publish audio to the remote users.</li>
+                    <li><codeph><ph keyref="true"/></codeph>: (Default) Publish audio to the remote users.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Do not publish audio to the remote users.</li>
                     </ul></p>
                 </pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul id="ul_cff_fnf_3qb">
             <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>
 </reference>

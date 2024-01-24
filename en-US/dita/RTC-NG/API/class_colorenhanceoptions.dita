@@ -25,11 +25,21 @@
 @property(nonatomic, assign) float skinProtectLevel;
 @end
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct ColorEnhanceOptions {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct ColorEnhanceOptions {
     float strengthLevel;
     float skinProtectLevel;
   ColorEnhanceOptions(float stength, float skinProtect) : strengthLevel(stength), skinProtectLevel(skinProtect) {}
   ColorEnhanceOptions() : strengthLevel(0), skinProtectLevel(1) {}
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FColorEnhanceOptions
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ColorEnhanceOptions&quot;)
+	float strengthLevel;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ColorEnhanceOptions&quot;)
+	float skinProtectLevel;
 };</codeblock>
             <codeblock props="unity cs" outputclass="language-chsarp">public class ColorEnhanceOptions
     {
@@ -66,12 +76,12 @@
   final double? strengthLevel;
   @JsonKey(name: 'skinProtectLevel')
   final double? skinProtectLevel;
-  factory ColorEnhanceOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory ColorEnhanceOptions.fromJson(Map&lt;String, dynamic> json) =>
       _$ColorEnhanceOptionsFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$ColorEnhanceOptionsToJson(this);
+  Map&lt;String, dynamic> toJson() => _$ColorEnhanceOptionsToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">
             <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>

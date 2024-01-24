@@ -21,7 +21,7 @@
            oldState:(AgoraStreamSubscribeState)oldState
            newState:(AgoraStreamSubscribeState)newState
 elapseSinceLastState:(int)elapseSinceLastState;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onAudioSubscribeStateChanged(const char* channel,
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onAudioSubscribeStateChanged(const char* channel,
      uid_t uid,
      STREAM_SUBSCRIBE_STATE oldState,
      STREAM_SUBSCRIBE_STATE newState,
@@ -32,6 +32,7 @@ elapseSinceLastState:(int)elapseSinceLastState;</codeblock>
      (void)newState;
      (void)elapseSinceLastState;
      }</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnAudioSubscribeStateChanged, FString, channel, int64, uid, ESTREAM_SUBSCRIBE_STATE, oldState, ESTREAM_SUBSCRIBE_STATE, newState, int, elapseSinceLastState);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onAudioSubscribeStateChanged?(
     channel: string,
     uid: number,

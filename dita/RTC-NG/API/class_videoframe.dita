@@ -255,9 +255,10 @@
 @property (nonatomic, assign) int64_t renderTimeMs;
 @property (nonatomic, assign) int avSyncType;
 @property(assign, nonatomic) CVPixelBufferRef _Nullable pixelBuffer;
+@property(nonatomic, strong) NSDictionary *_Nonnull metaInfo;
 
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct VideoFrame {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct VideoFrame {
   VideoFrame():
   type(VIDEO_PIXEL_DEFAULT),
   width(0),
@@ -275,7 +276,8 @@
   metadata_size(0),
   sharedContext(0),
   textureId(0),
-  pixelBuffer(NULL){
+  pixelBuffer(NULL),
+  metaInfo(NULL){
     memset(matrix, 0, sizeof(matrix));
   }
   VIDEO_PIXEL_FORMAT type;
@@ -296,6 +298,50 @@
   int textureId;
   float matrix[16];
   void* pixelBuffer;
+  IVideoFrameMetaInfo* metaInfo;
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FVideoFrame {
+
+	GENERATED_BODY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	EVIDEO_PIXEL_FORMAT type;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int width;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int height;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int yStride;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int uStride;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int vStride;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int rotation;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	TArray&lt;int64&gt; yBuffer;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	TArray&lt;int64&gt; uBuffer;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	TArray&lt;int64&gt; vBuffer;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int64 renderTimeMs;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int avsync_type;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	TArray&lt;int64&gt; metadata_buffer;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int metadata_size;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int64 sharedContext;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int textureId;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	TArray&lt;float&gt; matrix;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	TArray&lt;int64&gt; alphaBuffer;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	TArray&lt;float&gt; pixelBuffer;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoFrame {
 
@@ -623,6 +669,12 @@ class VideoFrame {
             <p>表示人像分割算法输出的 alpha 通道数据，跟视频帧的尺寸一致。每个像素点的取值范围为 [0,255]，其中 0 表示背景；255 代表前景（人像）。</p>
             <p>在用户自定义视频渲染场景下，该参数可帮助实现将视频背景自渲染为各种效果，例如：透明、纯色、图片、视频等。
               <note>该参数需要<xref keyref="ticket-link"/>开通。</note></p>
+          </pd>
+        </plentry>
+        <plentry>
+          <pt>metaInfo</pt>
+          <pd>
+            <p>视频帧中的元信息。该参数需要<xref keyref="ticket-link"/>使用。</p>
           </pd>
         </plentry>
       </parml></section>

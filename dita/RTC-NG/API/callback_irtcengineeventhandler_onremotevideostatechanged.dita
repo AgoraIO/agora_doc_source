@@ -16,7 +16,7 @@
                <codeblock props="android" outputclass="language-java">public void onRemoteVideoStateChanged(int uid, int state, int reason, int elapsed) {}</codeblock>
                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
      remoteVideoStateChangedOfUid:(NSUInteger)uid state:(AgoraVideoRemoteState)state reason:(AgoraVideoRemoteReason)reason elapsed:(NSInteger)elapsed;</codeblock>
-               <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onRemoteVideoStateChanged(uid_t uid,
+               <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onRemoteVideoStateChanged(uid_t uid,
      REMOTE_VIDEO_STATE state,
      REMOTE_VIDEO_STATE_REASON reason,
      int elapsed) {
@@ -25,6 +25,7 @@
      (void)reason;
      (void)elapsed;
      }</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnRemoteVideoStateChanged, int64, uid, EREMOTE_VIDEO_STATE, state, EREMOTE_VIDEO_STATE_REASON, reason, int, elapsed);</codeblock>
                <codeblock props="electron" outputclass="language-typescript">  onRemoteVideoStateChanged?(
     connection: RtcConnection,
     remoteUid: number,
@@ -71,16 +72,12 @@
                     <pd>
                          <p props="ios mac cpp unreal bp unity flutter electron rn cs">远端视频流状态，详见 <xref keyref="REMOTE_VIDEO_STATE" />。</p>
                          <p props="android">远端视频流状态：
-
-
-
-
                          <ul>
-                         <li> <ph keyref="REMOTE_VIDEO_STATE_STOPPED"/>(0)：远端视频默认初始状态。在 <codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED(3)</codeph>、<codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED(5)</codeph>、<codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE(7)</codeph> 或 <codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK(8)</codeph> 的情况下，会报告该状态。</li>
-                         <li> <ph keyref="REMOTE_VIDEO_STATE_STARTING"/>(1)：本地用户已接收远端视频首包。</li>
-                         <li> <ph keyref="REMOTE_VIDEO_STATE_DECODING"/>(2)：远端视频流正常解码播放。在 <codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY(2)</codeph>、<codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED(4)</codeph>、<codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED(6)</codeph> 或 <codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY(9)</codeph> 的情况下，会报告该状态。</li>
-                         <li> <ph keyref="REMOTE_VIDEO_STATE_FROZEN"/>(3)：远端视频流卡顿。在 <codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION(1)</codeph> 的情况下，会报告该状态。</li>
-                         <li> <ph keyref="REMOTE_VIDEO_STATE_FAILED"/>(4)：远端视频流播放失败。在 <codeph>REMOTE_VIDEO_STATE_REASON_INTERNAL(0)</codeph> 的情况下，会报告该状态。</li>
+                         <li> <ph keyref="REMOTE_VIDEO_STATE_STOPPED"/> (0)：远端视频默认初始状态。在 <apiname keyref="REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED"/> (3)、<apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED"/> (5) 或 <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE"/> (7) 的情况下，会报告该状态。</li>
+                         <li> <ph keyref="REMOTE_VIDEO_STATE_STARTING"/> (1)：本地用户已接收远端视频首包。</li>
+                         <li> <ph keyref="REMOTE_VIDEO_STATE_DECODING"/> (2)： 远端视频流正在解码，正常播放。在 <apiname keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY"/> (2)、<apiname keyref="REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED"/> (4)、<apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED"/> (6) 或 <apiname keyref="REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY"/> (9) 的情况下，会报告该状态。</li>
+                         <li> <ph keyref="REMOTE_VIDEO_STATE_FROZEN"/> (3)：远端视频流卡顿。在 <apiname keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION"/> (1) 或 <apiname keyref="REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK"/> (8) 的情况下，会报告该状态。</li>
+                         <li> <ph keyref="REMOTE_VIDEO_STATE_FAILED"/> (4)：远端视频流播放失败。在 <apiname keyref="REMOTE_VIDEO_STATE_REASON_INTERNAL"/> (0) 的情况下，会报告该状态。</li>
                          </ul> </p>
                     </pd>
                </plentry>
@@ -90,17 +87,17 @@
                          <p props="ios mac cpp unreal bp unity flutter electron rn cs">远端视频流状态改变的具体原因，详见 <xref keyref="REMOTE_VIDEO_STATE_REASON" />。</p>
                          <p props="android">远端视频流状态改变的具体原因：
                          <ul>
-                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_INTERNAL" />(0)：内部原因。</li>
-                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION" />(1)：网络阻塞。</li>
-                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY" />(2)：网络恢复正常。</li>
-                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED" />(3)：本地用户停止接收远端视频流或本地用户禁用视频模块。</li>
-                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED" />(4)：本地用户恢复接收远端视频流或本地用户启动视频模块。</li>
-                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED" />(5)：远端用户停止发送视频流或远端用户禁用视频模块。</li>
-                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED" />(6)：远端用户恢复发送视频流或远端用户启用视频模块。</li>
-                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE" />(7)：远端用户离开频道。</li>
-                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK" />(8)：远端视频流已回退为音频流。</li>
-                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY" />(9)：回退的远端音频流恢复为视频流。</li>
-                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_CODEC_NOT_SUPPORT" />(13)：本地的视频解码器不支持对收到的远端视频流进行解码。</li>
+                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_INTERNAL" /> (0)：内部原因。</li>
+                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION" /> (1)：网络阻塞。</li>
+                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY" /> (2)：网络恢复正常。</li>
+                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED" /> (3)：本地用户停止接收远端视频流或本地用户禁用视频模块。</li>
+                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED" /> (4)：本地用户恢复接收远端视频流或本地用户启动视频模块。</li>
+                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED" /> (5)：远端用户停止发送视频流或远端用户禁用视频模块。</li>
+                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED" /> (6)：远端用户恢复发送视频流或远端用户启用视频模块。</li>
+                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE" /> (7)：远端用户离开频道。</li>
+                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK" /> (8)：远端视频流已回退为音频流。</li>
+                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY" /> (9)：回退的远端音频流恢复为视频流。</li>
+                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_CODEC_NOT_SUPPORT" /> (13)：本地的视频解码器不支持对收到的远端视频流进行解码。</li>
                          </ul> </p>
                     </pd>
                </plentry>
