@@ -13,7 +13,7 @@
                 <p>该版本对部分功能的实现方式进行了优化，涉及一些 API 的改名或删除，为确保项目的正常运行，你需要在升级到该版本后更新 App 中的代码。</p>
                 <ol>
                     <li props="android"><ph><b>原始视频数据回调行为变更 (Android)</b></ph>
-                        <p>自该版本起，原始视频数据相关的回调处理从原有的固定单线程变更为随机线程，即：回调处理可以在不同的线程上进行。由于 Android 系统限制，OpenGL 必须与线程强绑定，声网建议你采取以下两种方式之一修改你的代码： 
+                        <p>自该版本起，原始视频数据相关的回调处理从原有的固定单线程变更为随机线程，即：回调处理可以在不同的线程上进行。由于 Android 系统限制，OpenGL 必须与线程强绑定，声网建议你采取以下两种方式之一修改你的代码：
                         <ul>
                         <li>（推荐）使用 <codeph>TextureBufferHelper</codeph> 类创建一个专门的 OpenGL 线程进行视频前处理或后处理（例如美颜、贴纸等效果）。</li>
                         <li>使用 <codeph>eglMakeCurrent</codeph> 方法，将每一个视频帧所需的 OpenGL 环境都关联到当前的线程中。</li>
@@ -200,7 +200,7 @@
                         <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_CODEC_NOT_SUPPORT"/></codeph> 的枚举名变更为 <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_CODEC_NOT_SUPPORT"/></codeph>。</li>
                         </ul></p>
                     </li>
-                    <li><ph><b>声卡采集</b></ph>
+                    <li props="cpp mac unity flutter electron"><ph><b>声卡采集</b></ph><ph props="cpp unity flutter">（Windows，macOS）</ph>
                         <p>
                         <ul>
                             <li>在 v4.3.0 之前，当你调用 <xref keyref="disableAudio"/> 关闭整个音频模块后，声卡采集功能不会被关闭。</li>
@@ -219,7 +219,7 @@
                         <p>为支持接收端自定义多路合图流的布局，该版本新增了 <xref keyref="onTranscodedStreamLayoutInfo"/> 回调。当接收端收到合图服务器发送的频道内合图视频流时，该回调会被触发，上报合图视频流的布局信息、以及合图流中每一路子视频流的布局信息。接收端可以在调用 <xref keyref="setupRemoteVideo"/> 方法时，为合图视频流中的子视频流（通过 <codeph>subviewUid</codeph> 区分）设置单独的 <codeph>view</codeph> 进行渲染，从而达到自定义视频布局的效果。</p>
                         <p>当合图视频流中的子视频流布局发生变化时，该回调也会被触发，实时上报最新的布局信息。</p>
                         <p>通过该特性，接收端可以灵活调整本地的视图布局。当在多人视频场景下应用时，接收端只需接收并解码一路合图视频流，可以有效降低接收端解码多路视频时的 CPU 占用率和网络带宽。</p>
-                    </li>
+                        <note type="note" props="cn">关于该特性在多主播场景下的最佳实践，详见<xref keyref="custom-layout"/>。</note> </li>
                     <li><ph><b>多视图本地预览</b></ph>
                         <p>该版本支持在本地预览同时预览多个画面、且画面中显示的视频分别处于视频链路上的不同观测位置。使用方式举例如下：
                         <ol props="native unity electron flutter cs unreal bp">
@@ -357,7 +357,7 @@
                                 <li props="ios"><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_INTERRUPTED"/></codeph></li></ul></p></li>
                         <li><xref keyref="enableCustomAudioLocalPlayback"/></li>
                         <li><xref keyref="queryDeviceScore"/></li>
-                        <li><xref keyref="MEDIA_SOURCE_TYPE"/> 中新增 <codeph><ph keyref="CUSTOM_VIDEO_SOURCE"/></codeph> 枚举</li> 
+                        <li><xref keyref="MEDIA_SOURCE_TYPE"/> 中新增 <codeph><ph keyref="CUSTOM_VIDEO_SOURCE"/></codeph> 枚举</li>
                         <li props="android ios"><xref keyref="setBeautyEffectOptions2"/></li>
                         <li props="android ios"><xref keyref="setLowlightEnhanceOptions2"/></li>
                         <li props="android ios"><xref keyref="setVideoDenoiserOptions2"/></li>
