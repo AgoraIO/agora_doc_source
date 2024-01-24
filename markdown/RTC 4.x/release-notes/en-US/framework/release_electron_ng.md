@@ -29,7 +29,7 @@ This release has optimized the implementation of some functions, involving renam
 
 2. **Channel media relay**
 
-   To improve interface usability, this release removes some methods and callbacks for channel meda relay. Use the alternative options listed in the table below:
+   To improve interface usability, this release removes some methods and callbacks for channel media relay. Use the alternative options listed in the table below:
 
    | Deleted methods and callbacks                         | Alternative methods and callbacks  |
    | ----------------------------------------------------- | ---------------------------------- |
@@ -96,7 +96,7 @@ This release has optimized the implementation of some functions, involving renam
 
 3. **Dual-stream mode optimization**
 
-   This release optimizes the video dual-stream mode. In the low-quality video stream adaptive mode (`AutoSimulcastStream`), when the receiver requests a low-quality video stream by calling [setRemoteVideoStreamType](API/api_irtcengine_setremotevideostreamtype.html) or [setRemoteVideoStreamTypeEx](API/api_irtcengineex_setremotevideostreamtypeex.html), the sender no longer restricts the identity of the request source to be the broadcaster. This adjustment ensures that the audience‘s request for a low-quality video stream takes effect, improving the flexibility and adaptability of the low-quality video stream.
+   This release optimizes the video dual-stream mode. In the low-quality video stream adaptive mode (`AutoSimulcastStream`), when the receiver requests a low-quality video stream by calling [setRemoteVideoStreamType](API/api_irtcengine_setremotevideostreamtype.html) or [setRemoteVideoStreamTypeEx](API/api_irtcengineex_setremotevideostreamtypeex.html), the sender now processes requests from all users, expanding beyond the previous restriction to broadcasters only. This change ensures that the audience requests for low-quality video streams are implemented, thus improving the flexibility and adaptability of the dual-stream mode.
 
 4. **Spatial audio effects usability improvement**
 
