@@ -13,7 +13,7 @@ This release has optimized the implementation of some functions, involving renam
    | Callback                           | Original parameter name | Existing parameter name |
    | ---------------------------------- | ----------------------- | ----------------------- |
    | `onLocalAudioStateChanged`         | `error`                 | `reason`                |
-   | `onLocalAudioStateChanged`         | `error`                 | `reason`                |
+   | `onLocalVideoStateChanged`         | `error`                 | `reason`                |
    | `onDirectCdnStreamingStateChanged` | `error`                 | `reason`                |
    | `onRtmpStreamingStateChanged`      | `errCode`               | `reason`                |
 
