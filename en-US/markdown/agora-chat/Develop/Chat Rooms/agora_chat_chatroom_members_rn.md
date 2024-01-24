@@ -128,6 +128,7 @@ Only the chat room owner and admins can call `muteChatRoomMembers` to add the sp
 The following code sample shows how to add a member to the chat room mute list:
 
 ```typescript
+// duration: The mute duration. If you pass `-1`, members are muted permanently.
 ChatClient.getInstance()
   .roomManager.muteChatRoomMembers(roomId, muteMembers, duration)
   .then(() => {
@@ -240,6 +241,40 @@ ChatClient.getInstance()
   });
 ```
 
+### Mute and unmute all the chat room members
+
+#### Mute all the chat room members
+
+Only the chat room owner and admins can call `muteAllChatRoomMembers` to mute all the chat room members. Once all the members are muted, the `onAllChatRoomMemberMuteStateChanged` callback is triggered and only those in the chat room allow list can send messages in the chat room.
+
+Unlike muting a chat room member, this kind of mute has no expiration period, you need to call the `unMuteAllChatRoomMembers` method to unmute all members in the chat room.
+
+The following sample code shows how to mute all the chat room members:
+
+```typescript
+ChatClient.getInstance()
+  .roomManager.muteAllChatRoomMembers(roomId)
+  .then((members) => {
+    console.log("success.", members);
+  })
+  .catch((reason) => {
+    console.log("fail.", reason);
+  });
+```
+
+#### Unmute all the chat room members
+
+Only the chat room owner and admins can call `unMuteAllChatRoomMembers` to unmute all the chat room members. Once all the members are muted, the `onAllChatRoomMemberMuteStateChanged` callback is triggered.
+
+The following sample code shows how to unmute all the chat room members:
+
+```dart
+try {
+  await ChatClient.getInstance.chatRoomManager.unMuteAllChatRoomMembers();
+} on ChatError catch (e) {
+}
+```
+
 ### Manage the chat room owner and admins
 
 #### Transfer the chat room ownership
@@ -250,12 +285,12 @@ The following code sample shows how to transfer the chat room ownership:
 
 ```typescript
 ChatClient.getInstance()
-  .roomManager.changeOwner(roomId, newOwner)
-  .then(() => {
-    console.log("change owner success.");
+  .roomManager.unMuteAllChatRoomMembers(roomId)
+  .then((members) => {
+    console.log("success.", members);
   })
   .catch((reason) => {
-    console.log("change owner fail.", reason);
+    console.log("fail.", reason);
   });
 ```
 

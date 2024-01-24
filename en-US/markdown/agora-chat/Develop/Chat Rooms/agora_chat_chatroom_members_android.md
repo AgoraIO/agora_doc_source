@@ -76,6 +76,7 @@ To manage the messages in the chat room, the chat room owner and admin can add t
 
 ```
 // The chat room owner or admin call muteChatRoomMembers to add the specified user to the chat room block list. The muted member and all the other chat room admins or owner receive the onMuteListAdded callback.
+// duration: The mute duration. If you pass `-1`, members are muted permanently.
 ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().muteChatRoomMembers(chatRoomId, members, duration);
 
 // The chat room owner or admin can call unMuteChatRoomMembers to remove the specified user from the chat room block list. The unmuted member and all the other chat room admins or owner receive the onMuteListRemoved callback.
@@ -89,6 +90,8 @@ Map<String, Long> memberMap =  ChatClient.getInstance().chatroomManager().fetchC
 ### [Mute and unmute all the chat room members](https://docs.agora.io/en/agora-chat/client-api/chat-room/manage-chatroom-members?platform=android#mute-and-unmute-all-the-chat-room-members)
 
 The chat room owner or admin can mute or unmute all the chat room members using `muteAllMembers`. Once all the members are muted, only those in the chat room allow list can send messages in the chat room.
+
+Unlike muting a chat room member, this kind of mute has no expiration period, you need to call the `unmuteAllMembers` method to unmute all members in the chat room.
 
 ```
 // The chat room owner or admin can call muteAllMembers to mute all the chat room members. Once all the members are muted, these members receive the onAllMemberMuteStateChanged callback.

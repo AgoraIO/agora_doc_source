@@ -84,7 +84,7 @@ The chat room owner and admins can add and remove the specified members from the
 let option = {
     chatRoomId: "chatRoomId", // The ID of the chat room
     username: 'username',     // The username of the muted user
-    muteDuration: -1000       // The mute duration. Unit: millisecond. The value of "-1000" means permanant mute.
+    muteDuration: -1       // muteDuration: The mute duration. If you pass `-1`, members are muted permanently.
 };
 conn.muteChatRoomMember(option).then(res => console.log(res))
 
@@ -103,10 +103,11 @@ let option = {
 conn.getChatRoomMuteList(option).then(res => console.log(res))
 ```
 
-
 ### Mute and unmute all chat room members
 
 The chat room owner and admins can mute or unmute all chat room members. Once all members are muted, only those in the chat room allow list can send messages in the chat room.
+
+Unlike muting a chat room member, this kind of mute has no expiration period, you need to call the `enableSendChatRoomMsg` method to unmute all members in the chat room.
 
 ```javascript
 // The chat room owner or admin can call disableSendChatRoomMsg to mute all the chat room members.

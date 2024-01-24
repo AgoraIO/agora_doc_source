@@ -121,7 +121,7 @@ Refer to the following sample code to manage the chat group mute list:
 
 ```java
 // The chat group owner and admins can call muteGroupMember to add the specified member to the chat group mute list. The muted member and all the other chat group admins or owner receive the onMuteListAdded callback. 
-// If you pass `-1` to `duration`, members are muted permanently.
+// duration: The mute duration. If you pass `-1`, members are muted permanently.
 ChatClient.getInstance().groupManager().muteGroupMembers(groupId, muteMembers, duration);
 
 // The chat group owner and admins can call unmuteGroupMember to remove the specified user from the chat group mute list. The unmuted member and all the other chat group admins or owner receive the onMuteListRemoved callback.
@@ -136,6 +136,8 @@ ChatClient.getInstance().groupManager().fetchGroupMuteList(String groupId, int p
 
 The chat group owner and chat group admins can mute or unmute all the chat group members. Once all the members are muted, only those in the chat group allow list can send messages in the chat group.
 
+Unlike muting a chat group member, this kind of mute has no expiration period, you need to call the `unmuteAllMembers` method to unmute all members in the chat group.
+
 Refer to the following sample code to mute and unmute all the chat group members:
 
 ```java
@@ -145,7 +147,6 @@ public void muteAllMembers(final String groupId, final ValueCallBack<Group> call
 // The chat group owner or admin can call unmuteAllMembers to unmute all the chat group members. Once all the members are unmuted, these members receive the onAllMemberMuteStateChanged callback.
 public void unmuteAllMembers(final String groupId, final ValueCallBack<Group> callBack);
 ```
-
 
 ### Manage the chat group allow list
 
