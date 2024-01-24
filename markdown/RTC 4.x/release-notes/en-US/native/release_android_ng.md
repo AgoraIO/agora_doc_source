@@ -63,7 +63,7 @@ This release has optimized the implementation of some functions, involving renam
 
 7. **Reasons for local video state changes**
 
-   The `LOCAL_VIDEO_STREAM_REASON_CODEC_NOT_SUPPORT` enumeration has been changed to `LOCAL_VIDEO_STREAM_REASON_CODEC_NOT_SUPPORT`.
+   The `LOCAL_VIDEO_STREAM_ERROR_ENCODE_FAILURE` enumeration has been changed to `LOCAL_VIDEO_STREAM_REASON_CODEC_NOT_SUPPORT`.
 
 #### New features
 
@@ -83,7 +83,7 @@ This release has optimized the implementation of some functions, involving renam
    2. Call [`setupLocalVideo`](API/api_irtcengine_setuplocalvideo.html) to set the second view: Set the `position` parameter to `VIDEO_MODULE_POSITION_POST_CAPTURER` in `VideoCanvas`, the video observed here has the effect of video preprocessing.
    3. Observe the local preview effect: The first view is the original video of a real person; the second view is the virtual portrait after video preprocessing (including image enhancement, virtual background, and local preview of watermarks) effects.
 
-3. **Query Device Score**
+3. **Query device score**
 
    This release adds the [`queryDeviceScore`](API/api_irtcengine_querydevicescore.html) method to query the device's score level to ensure that the user-set parameters do not exceed the device's capabilities. For example, in HD or UHD video scenarios, you can first call this method to query the device's score. If the returned score is low (for example, below 60), you need to lower the video resolution to avoid affecting the video experience. The minimum device score required for different business scenarios is varied. For specific score recommendations, please contact [technical support](mailto:support@agora.io).
 
@@ -144,7 +144,7 @@ This release has optimized the implementation of some functions, involving renam
 
    - Adds `codecType` in [`VideoEncoderConfiguration`](API/class_videoencoderconfiguration.html) to set the video encoding type.
    - Adds `allowCaptureCurrentApp` member in [`AudioCaptureParameters`](API/class_screenaudioparameters.html), which is used to set whether to capture audio from the current app during screen sharing. The default value of this member is `true`, which means it collects the audio from the current app by default. In certain scenarios, the shared screen audio captured by the app may cause echo on the remote side due to signal delay and other reasons. Agora suggests setting this member as `false` to eliminate the remote echo introduced during the screen sharing process.
-   - This release optimizes the SDK's domain name resolution strategy, improving the stability of calling to resolve domain names in complex network environments.
+   - This release optimizes the SDK's domain name resolution strategy, improving the stability of calling `setLocalAccessPoint` to resolve domain names in complex network environments.
    - When passing in an image with transparent background as the virtual background image, the transparent background can be filled with customized color.
    - This release adds the `earMonitorDelay` and `aecEstimatedDelay` members in [`LocalAudioStats`](API/class_localaudiostats.html) to report ear monitor delay and acoustic echo cancellation (AEC) delay, respectively.
    - The [`onPlayerCacheStats`](API/callback_imediaplayersourceobserver_onplayercachestats.html) callback is added to reports the statistics of the media file being cached. This callback is triggered once per second after file caching is started.
