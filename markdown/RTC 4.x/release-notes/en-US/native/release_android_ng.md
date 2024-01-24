@@ -45,8 +45,8 @@ This release has optimized the implementation of some functions, involving renam
 
    | Deleted methods and callbacks                         | Alternative methods and callbacks  |
    | ----------------------------------------------------- | ---------------------------------- |
-   | `startChannelMediaRelay``updateChannelMediaRelay`     | `startOrUpdateChannelMediaRelay`   |
-   | `startChannelMediaRelayEx``updateChannelMediaRelayEx` | `startOrUpdateChannelMediaRelayEx` |
+   | <ul><li>`startChannelMediaRelay`</li><li>`updateChannelMediaRelay`</li></ul>     | `startOrUpdateChannelMediaRelay`   |
+   | <ul><li>`startChannelMediaRelayEx`</li><li>`updateChannelMediaRelayEx`</li></ul> | `startOrUpdateChannelMediaRelayEx` |
    | `onChannelMediaRelayEvent`                            | `onChannelMediaRelayStateChanged`  |
 
 4. **Custom video source**
