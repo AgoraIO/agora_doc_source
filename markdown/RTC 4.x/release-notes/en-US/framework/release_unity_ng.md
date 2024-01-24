@@ -41,11 +41,11 @@ This release has optimized the implementation of some functions, involving renam
 
    To improve interface usability, this release removes some methods and callbacks for channel meda relay. Use the alternative options listed in the table below:
 
-   | Deleted methods and callbacks                                | Alternative methods and callbacks                            |
-   | ------------------------------------------------------------ | ------------------------------------------------------------ |
-   | <li>`startChannelMediaRelay`</li><li>`updateChannelMediaRelay`</li> | `startOrUpdateChannelMediaRelay`                             |
-   | <li>`startChannelMediaRelayEx`</li><li>`updateChannelMediaRelayEx`</li> | `startOrUpdateChannelMediaRelayEx`                           |
-   | <li>`onChannelMediaRelayEvent`</li><li>`CHANNEL_MEDIA_RELAY_EVENT`</li> | <li>`onChannelMediaRelayStateChanged`</li><li>`CHANNEL_MEDIA_RELAY_STATE`</li><li>`CHANNEL_MEDIA_RELAY_ERROR`</li> |
+   | Deleted methods and callbacks                                | Alternative methods and callbacks  |
+   | ------------------------------------------------------------ | ---------------------------------- |
+   | <li>`startChannelMediaRelay`</li><li>`updateChannelMediaRelay`</li> | `startOrUpdateChannelMediaRelay`   |
+   | <li>`startChannelMediaRelayEx`</li><li>`updateChannelMediaRelayEx`</li> | `startOrUpdateChannelMediaRelayEx` |
+   | `onChannelMediaRelayEvent`                                   | `onChannelMediaRelayStateChanged`  |
 
 3. **Reasons for local video state changes**
 
