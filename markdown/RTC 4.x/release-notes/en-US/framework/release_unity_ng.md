@@ -51,8 +51,8 @@ This release has optimized the implementation of some functions, involving renam
 
    This release makes the following modifications to the enumerations in the [LOCAL_VIDEO_STREAM_REASON](API/enum_localvideostreamreason.html) class:
 
-   - The value of `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED` (formerly `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED`) has been changed from 23 to 28. 
-   - The value of `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_RESUMED` (formerly `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_RESUMED`) has been changed from 24 to 29. 
+   - The value of `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED` (formerly `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED`) has been changed from 23 to 28.
+   - The value of `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_RESUMED` (formerly `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_RESUMED`) has been changed from 24 to 29.
    - The `LOCAL_VIDEO_STREAM_ERROR_CODEC_NOT_SUPPORT` enumeration has been changed to `LOCAL_VIDEO_STREAM_ERROR_CODEC_NOT_SUPPORT`.
 
 #### New features
@@ -112,10 +112,10 @@ This release has optimized the implementation of some functions, involving renam
    This release also includes the following improvements:
 
    - This release optimizes the SDK's domain name resolution strategy, improving the stability of calling to resolve domain names in complex network environments.
-   - When passing in an image with transparent background as the virtual background image, the transparent background can be filled with customized color. 
+   - When passing in an image with transparent background as the virtual background image, the transparent background can be filled with customized color.
    - This release adds the `earMonitorDelay` and `aecEstimatedDelay` members in [LocalAudioStats](API/class_localaudiostats.html) to report ear monitor delay and acoustic echo cancellation (AEC) delay, respectively.
-   - The [OnPlayerCacheStats](API/callback_imediaplayersourceobserver_onplayercachestats.html) callback is added to reports the statistics of the media file being cached. This callback is triggered once per second after file caching is started.
-   - The [OnPlayerPlaybackStats](API/callback_imediaplayersourceobserver_onplayerplaybackstats.html) callback is added to reports the statistics of the media file being played. This callback is triggered once per second after the media file starts playing. You can obtain information like the audio and video bitrate of the media file through [PlayerPlaybackStats](API/class_playerplaybackstats.html).
+   - The [OnPlayerCacheStats](API/callback_imediaplayersourceobserver_onplayercachestats.html) callback is added to report the statistics of the media file being cached. This callback is triggered once per second after file caching is started.
+   - The [OnPlayerPlaybackStats](API/callback_imediaplayersourceobserver_onplayerplaybackstats.html) callback is added to report the statistics of the media file being played. This callback is triggered once per second after the media file starts playing. You can obtain information like the audio and video bitrate of the media file through [PlayerPlaybackStats](API/class_playerplaybackstats.html).
 
 #### Issues fixed
 
@@ -149,8 +149,8 @@ This release fixed the following issues:
   - `LOCAL_AUDIO_STREAM_ERROR_DEVICE_BUSY`
   - `LOCAL_AUDIO_STREAM_ERROR_RECORD_FAILURE`
   - `LOCAL_AUDIO_STREAM_ERROR_ENCODE_FAILURE`
-  - `LOCAL_AUDIO_STREAM_ERROR_RECORD_INVALID_ID` 
-  - `LOCAL_AUDIO_STREAM_ERROR_PLAYOUT_INVALID_ID` 
+  - `LOCAL_AUDIO_STREAM_ERROR_RECORD_INVALID_ID`
+  - `LOCAL_AUDIO_STREAM_ERROR_PLAYOUT_INVALID_ID`
   - `LOCAL_VIDEO_STREAM_ERROR_OK`
   - `LOCAL_VIDEO_STREAM_ERROR_FAILURE`
   - `LOCAL_VIDEO_STREAM_ERROR_DEVICE_NO_PERMISSION`
@@ -163,14 +163,14 @@ This release fixed the following issues:
   - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_MINIMIZED`
   - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_CLOSED`
   - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_OCCLUDED`
-  - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_NO_PERMISSION` 
-  - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED` 
-  - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_RESUMED` 
-  - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_HIDDEN` 
-  - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_HIDDEN` 
-  - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_MINIMIZED` 
-  - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_FAILURE` 
-  - `LOCAL_VIDEO_STREAM_ERROR_DEVICE_SYSTEM_PRESSURE` 
+  - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_NO_PERMISSION`
+  - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED`
+  - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_RESUMED`
+  - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_HIDDEN`
+  - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_HIDDEN`
+  - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_MINIMIZED`
+  - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_FAILURE`
+  - `LOCAL_VIDEO_STREAM_ERROR_DEVICE_SYSTEM_PRESSURE`
   - `DIRECT_CDN_STREAMING_ERROR_OK`
   - `DIRECT_CDN_STREAMING_ERROR_FAILED`
   - `DIRECT_CDN_STREAMING_ERROR_AUDIO_PUBLICATION`

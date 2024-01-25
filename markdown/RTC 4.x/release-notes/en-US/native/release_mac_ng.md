@@ -117,8 +117,8 @@ This release has optimized the implementation of some functions, involving renam
    - When passing in an image with transparent background as the virtual background image, the transparent background can be filled with customized color.
    - This release adds the `earMonitorDelay` and `aecEstimatedDelay` members in [AgoraRtcLocalAudioStats](API/class_localaudiostats.html) to report ear monitor delay and acoustic echo cancellation (AEC) delay, respectively.
    - When using the sound card for recording, it supports capturing audio data in stereo.
-   - The [cacheStats](API/callback_imediaplayersourceobserver_onplayercachestats.html) callback is added to reports the statistics of the media file being cached. This callback is triggered once per second after file caching is started.
-   - The [playbackStats](API/callback_imediaplayersourceobserver_onplayerplaybackstats.html) callback is added to reports the statistics of the media file being played. This callback is triggered once per second after the media file starts playing. You can obtain information like the audio and video bitrate of the media file through .
+   - The [cacheStats](API/callback_imediaplayersourceobserver_onplayercachestats.html) callback is added to report the statistics of the media file being cached. This callback is triggered once per second after file caching is started.
+   - The [playbackStats](API/callback_imediaplayersourceobserver_onplayerplaybackstats.html) callback is added to report the statistics of the media file being played. This callback is triggered once per second after the media file starts playing. You can obtain information like the audio and video bitrate of the media file through .
 
 #### Issues fixed
 
@@ -212,7 +212,7 @@ This release fixed the following issues:
 - `updateChannelMediaRelayEx`
 - `didReceiveChannelMediaRelayEvent`
 - `AgoraChannelMediaRelayEvent`
-  
+
 ## v4.2.6
 
 v4.2.6 was released on November xx, 2023.

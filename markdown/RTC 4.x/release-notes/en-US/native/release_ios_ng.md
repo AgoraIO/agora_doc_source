@@ -149,8 +149,8 @@ This release has optimized the implementation of some functions, involving renam
    - This release optimizes the SDK's domain name resolution strategy, improving the stability of calling to resolve domain names in complex network environments.
    - When passing in an image with transparent background as the virtual background image, the transparent background can be filled with customized color.
    - This release adds the `earMonitorDelay` and `aecEstimatedDelay` members in [AgoraRtcLocalAudioStats](API/class_localaudiostats.html) to report ear monitor delay and acoustic echo cancellation (AEC) delay, respectively.
-   - The [cacheStats](API/callback_imediaplayersourceobserver_onplayercachestats.html) callback is added to reports the statistics of the media file being cached. This callback is triggered once per second after file caching is started.
-   - The [playbackStats](API/callback_imediaplayersourceobserver_onplayerplaybackstats.html) callback is added to reports the statistics of the media file being played. This callback is triggered once per second after the media file starts playing. You can obtain information like the audio and video bitrate of the media file through [AgoraMediaPlayerPlaybackStats](API/class_playerplaybackstats.html).
+   - The [cacheStats](API/callback_imediaplayersourceobserver_onplayercachestats.html) callback is added to report the statistics of the media file being cached. This callback is triggered once per second after file caching is started.
+   - The [playbackStats](API/callback_imediaplayersourceobserver_onplayerplaybackstats.html) callback is added to report the statistics of the media file being played. This callback is triggered once per second after the media file starts playing. You can obtain information like the audio and video bitrate of the media file through [AgoraMediaPlayerPlaybackStats](API/class_playerplaybackstats.html).
    - An error code `AgoraMusicContentCenterStateReasonErrorHttpInternalError` is added to suggest that an internal error in HTTP. You can try again later.
 
 #### Issues fixed
@@ -267,7 +267,7 @@ v4.2.6 was released on November xx, 2023.
 
 This version fixed the following issues:
 
-- When using an iOS 16 or later device with Bluetooth headphones connected before joining the channel, the audio routing after joining the channel was not as expected: audio was played from the speaker, not the Bluetooth headphones. 
+- When using an iOS 16 or later device with Bluetooth headphones connected before joining the channel, the audio routing after joining the channel was not as expected: audio was played from the speaker, not the Bluetooth headphones.
 - In specific scenarios (such as when the network packet loss rate was high or when the broadcaster left the channel without destroying the engine and then re-joined the channel), the video on the receiving end stuttered or froze.
 
 ## v4.2.3

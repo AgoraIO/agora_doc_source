@@ -42,8 +42,8 @@ This release has optimized the implementation of some functions, involving renam
 
    This release makes the following modifications to the enumerations in the [LOCAL_VIDEO_STREAM_ERROR](API/enum_localvideostreamreason.html) class:
 
-   - The value of `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED` (formerly `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED`) has been changed from 23 to 28. 
-   - The value of `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_RESUMED` (formerly `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_RESUMED`) has been changed from 24 to 29. 
+   - The value of `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED` (formerly `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED`) has been changed from 23 to 28.
+   - The value of `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_RESUMED` (formerly `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_RESUMED`) has been changed from 24 to 29.
    - The `LOCAL_VIDEO_STREAM_ERROR_CODEC_NOT_SUPPORT` enumeration has been changed to `LOCAL_VIDEO_STREAM_ERROR_CODEC_NOT_SUPPORT`.
 
 4. **Audio loopback capturing**
@@ -111,10 +111,10 @@ This release has optimized the implementation of some functions, involving renam
 
    - The [onLocalVideoStateChanged](API/callback_irtcengineeventhandler_onlocalvideostatechanged.html) callback is improved with the inclusion of the `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_AUTO_FALLBACK` enumeration, singaling unexpected errors during the screen sharing process (potentially due to window blocking failure), resulting in performance degradation without impacting the screen sharing process itself. (Windows)
    - This release optimizes the SDK's domain name resolution strategy, improving the stability of calling to resolve domain names in complex network environments.
-   - When passing in an image with transparent background as the virtual background image, the transparent background can be filled with customized color. 
+   - When passing in an image with transparent background as the virtual background image, the transparent background can be filled with customized color.
    - This release adds the `earMonitorDelay` and `aecEstimatedDelay` members in [LocalAudioStats](API/class_localaudiostats.html) to report ear monitor delay and acoustic echo cancellation (AEC) delay, respectively.
-   - The [onPlayerCacheStats](API/callback_imediaplayersourceobserver_onplayercachestats.html) callback is added to reports the statistics of the media file being cached. This callback is triggered once per second after file caching is started.
-   - The [onPlayerPlaybackStats](API/callback_imediaplayersourceobserver_onplayerplaybackstats.html) callback is added to reports the statistics of the media file being played. This callback is triggered once per second after the media file starts playing. You can obtain information like the audio and video bitrate of the media file through [PlayerPlaybackStats](API/class_playerplaybackstats.html).
+   - The [onPlayerCacheStats](API/callback_imediaplayersourceobserver_onplayercachestats.html) callback is added to report the statistics of the media file being cached. This callback is triggered once per second after file caching is started.
+   - The [onPlayerPlaybackStats](API/callback_imediaplayersourceobserver_onplayerplaybackstats.html) callback is added to report the statistics of the media file being played. This callback is triggered once per second after the media file starts playing. You can obtain information like the audio and video bitrate of the media file through [PlayerPlaybackStats](API/class_playerplaybackstats.html).
 
 #### Issues fixed
 
@@ -124,7 +124,7 @@ This release fixed the following issues:
 - When sharing in a specified screen area, the mouse coordinates within the shared area are inaccurate. When the mouse is near the border of the shared area, the mouse may not be visible in the shared screen. (Windows)
 - The SDK failed to detect any changes in the audio routing after plugging in and out 3.5mm earphones.
 
-#### API changes 
+#### API changes
 
 #### <a name="change"></a>
 
@@ -149,8 +149,8 @@ This release fixed the following issues:
   - `LOCAL_AUDIO_STREAM_ERROR_DEVICE_BUSY`
   - `LOCAL_AUDIO_STREAM_ERROR_RECORD_FAILURE`
   - `LOCAL_AUDIO_STREAM_ERROR_ENCODE_FAILURE`
-  - `LOCAL_AUDIO_STREAM_ERROR_RECORD_INVALID_ID` 
-  - `LOCAL_AUDIO_STREAM_ERROR_PLAYOUT_INVALID_ID` 
+  - `LOCAL_AUDIO_STREAM_ERROR_RECORD_INVALID_ID`
+  - `LOCAL_AUDIO_STREAM_ERROR_PLAYOUT_INVALID_ID`
   - `LOCAL_VIDEO_STREAM_ERROR_OK`
   - `LOCAL_VIDEO_STREAM_ERROR_FAILURE`
   - `LOCAL_VIDEO_STREAM_ERROR_DEVICE_NO_PERMISSION`
@@ -163,14 +163,14 @@ This release fixed the following issues:
   - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_MINIMIZED`
   - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_CLOSED`
   - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_OCCLUDED`
-  - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_NO_PERMISSION` 
-  - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED` 
-  - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_RESUMED` 
-  - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_HIDDEN` 
-  - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_HIDDEN` 
-  - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_MINIMIZED` 
-  - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_FAILURE` 
-  - `LOCAL_VIDEO_STREAM_ERROR_DEVICE_SYSTEM_PRESSURE` 
+  - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_NO_PERMISSION`
+  - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED`
+  - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_RESUMED`
+  - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_HIDDEN`
+  - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_HIDDEN`
+  - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_MINIMIZED`
+  - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_FAILURE`
+  - `LOCAL_VIDEO_STREAM_ERROR_DEVICE_SYSTEM_PRESSURE`
   - `DIRECT_CDN_STREAMING_ERROR_OK`
   - `DIRECT_CDN_STREAMING_ERROR_FAILED`
   - `DIRECT_CDN_STREAMING_ERROR_AUDIO_PUBLICATION`

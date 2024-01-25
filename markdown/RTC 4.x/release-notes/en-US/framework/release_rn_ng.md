@@ -123,8 +123,8 @@ This release has optimized the implementation of some functions, involving renam
    - This release optimizes the SDK's domain name resolution strategy, improving the stability of calling to resolve domain names in complex network environments.
    - When passing in an image with transparent background as the virtual background image, the transparent background can be filled with customized color.
    - This release adds the `earMonitorDelay` and `aecEstimatedDelay` members in [LocalAudioStats](API/class_localaudiostats.html) to report ear monitor delay and acoustic echo cancellation (AEC) delay, respectively.
-   - The [onPlayerCacheStats](API/callback_imediaplayersourceobserver_onplayercachestats.html) callback is added to reports the statistics of the media file being cached. This callback is triggered once per second after file caching is started.
-   - The [onPlayerPlaybackStats](API/callback_imediaplayersourceobserver_onplayerplaybackstats.html) callback is added to reports the statistics of the media file being played. This callback is triggered once per second after the media file starts playing. You can obtain information like the audio and video bitrate of the media file through [PlayerPlaybackStats](API/class_playerplaybackstats.html).
+   - The [onPlayerCacheStats](API/callback_imediaplayersourceobserver_onplayercachestats.html) callback is added to report the statistics of the media file being cached. This callback is triggered once per second after file caching is started.
+   - The [onPlayerPlaybackStats](API/callback_imediaplayersourceobserver_onplayerplaybackstats.html) callback is added to report the statistics of the media file being played. This callback is triggered once per second after the media file starts playing. You can obtain information like the audio and video bitrate of the media file through [PlayerPlaybackStats](API/class_playerplaybackstats.html).
    - An error code `kMusicContentCenterReasonHttpInternalError` is added to suggest that an internal error in HTTP. You can try again later.
 
 #### Issues fixed
@@ -274,7 +274,7 @@ v4.2.3 was released on September xx, 2023.
 
    Before using advanced features, you can check whether the current device supports these features based on the call result. This helps to avoid performance degradation or unavailable features when enabling advanced features on low-end devices. Based on the return value of this method, you can decide whether to display or enable the corresponding feature button, or notify the user when the device's capabilities are insufficient.
 
-   In addition, since this version, calling `enableVirtualBackground` and `setBeautyEffectOptions` automatically triggers a test on the capability of the current device. When the device is considered underperformed, the error code `-4: ErrNotSupported` is returned, indicating the device does not support the feature.  
+   In addition, since this version, calling `enableVirtualBackground` and `setBeautyEffectOptions` automatically triggers a test on the capability of the current device. When the device is considered underperformed, the error code `-4: ErrNotSupported` is returned, indicating the device does not support the feature.
 
 3. **Wildcard token**
 
@@ -359,11 +359,11 @@ This release fixed the following issues:
 
 - `enableContentInspectEx`
 - `contentInspectImageModeration` in `ContentInspectType`
-- `serverConfig` in `ContentInspectConfig` 
+- `serverConfig` in `ContentInspectConfig`
 - `isFeatureAvailableOnDevice`
 - `FeatureType`
-- `setCameraExposureFactor` 
-- `isCameraExposureSupported` 
+- `setCameraExposureFactor`
+- `isCameraExposureSupported`
 - `preloadChannel`
 - `preloadChannelWithUserAccount`
 - `updatePreloadChannelToken`
@@ -416,7 +416,7 @@ This release optimizes the APIs for camera and screen capture function. As of v4
 **2. Video data acquisition**
 
 - The `onCaptureVideoFrame` and `onPreEncodeVideoFrame` callbacks are added with a new parameter called `sourceType`, which is used to indicate the specific video source type.
-- The following callbacks are deleted. Get the video source type through the `sourceType` parameter in the `onPreEncodeVideoFrame` and `onCaptureVideoFrame` callbacks. 
+- The following callbacks are deleted. Get the video source type through the `sourceType` parameter in the `onPreEncodeVideoFrame` and `onCaptureVideoFrame` callbacks.
   - `onScreenCaptureVideoFrame`
   - `onPreEncodeScreenVideoFrame`
 
@@ -440,7 +440,7 @@ Call the setVideoEncoderConfiguration method to set the expected video encoding 
 **5. Miscellaneous**
 
 - `onApiCallExecuted` is deleted. Agora recommends getting the results of the API implementation through relevant channels and media callbacks.
-- The `IAudioFrameObserver` class is renamed to `IAudioPcmFrameSink`, thus the prototype of the following methods are updated accordingly: 
+- The `IAudioFrameObserver` class is renamed to `IAudioPcmFrameSink`, thus the prototype of the following methods are updated accordingly:
   - `onFrame`
 - `startChannelMediaRelay`, `updateChannelMediaRelay`, `startChannelMediaRelayEx` and `updateChannelMediaRelayEx` are deprecated. Use `startOrUpdateChannelMediaRelay` and `startOrUpdateChannelMediaRelayEx` instead.
 
@@ -448,13 +448,13 @@ Call the setVideoEncoderConfiguration method to set the expected video encoding 
 
 **1. AI noise reduction**
 
-This release introduces the AI noise reduction function. Once enabled, the SDK automatically detects and reduces background noises. Whether in bustling public venues or real-time competitive arenas that demand lightning-fast responsiveness, this function guarantees optimal audio clarity, providing users with an elevated audio experience. You can enable this function through the newly-introduced `setAINSMode` method and set the noise reduction mode as balance, aggressive or low latency according to your scenarios. 
+This release introduces the AI noise reduction function. Once enabled, the SDK automatically detects and reduces background noises. Whether in bustling public venues or real-time competitive arenas that demand lightning-fast responsiveness, this function guarantees optimal audio clarity, providing users with an elevated audio experience. You can enable this function through the newly-introduced `setAINSMode` method and set the noise reduction mode as balance, aggressive or low latency according to your scenarios.
 
 **2. Enhanced Virtual Background**
 
 To increase the fun of real-time video calls and protect user privacy, this version has enhanced the virtual background feature. You can now set custom backgrounds of various types by calling the `enableVirtualBackground` method, including:
 
-- Process the background as alpha information without replacement, only separating the portrait and the background. This can be combined with the local video mixing feature to achieve a portrait-in-picture effect. 
+- Process the background as alpha information without replacement, only separating the portrait and the background. This can be combined with the local video mixing feature to achieve a portrait-in-picture effect.
 - Replace the background with various formats of local videos.
 
 **3. Video scenario settings**
@@ -466,7 +466,7 @@ Currently, this feature provides targeted optimizations for real-time video conf
 - Automatically activate multiple anti-weak network technologies to enhance the capability and performance of low-quality video streams in meeting scenarios where high bitrates are required, ensuring smoothness when multiple streams are subscribed by the receiving end.
 - Monitor the number of subscribers for the high-quality and low-quality video streams in real time, dynamically adjusting the configuration of the high-quality stream and dynamically enabling or disabling the low-quality stream, to save uplink bandwidth and consumption.
 
-**4. Local video mixing** 
+**4. Local video mixing**
 
 This release adds the local video mixing feature. You can use the `startLocalVideoTranscoder` method to mix and render multiple video streams locally, such as camera-captured video, screen sharing streams, video files, images, etc. This allows you to achieve custom layouts and effects, making it easy to create personalized video display effects to meet various scenario requirements, such as remote meetings, live streaming, online education, while also supporting features like portrait-in-picture effect.
 
@@ -488,7 +488,7 @@ This release adds the `startMediaRenderingTracing` and `startMediaRenderingTraci
 
 Agora recommends that you use this method in conjunction with the UI settings, such as buttons and sliders, in your app. For example, call this method when the user clicks **Join Channel** button and then get the indicators in the video frame rendering process through the `onVideoRenderingTracingResult` callback. This enables developers to optimize the indicators and improve the user experience.
 
-#### Improvements 
+#### Improvements
 
 **1. Voice changer**
 
@@ -496,7 +496,7 @@ This release introduces the `setLocalVoiceFormant` method that allows you to adj
 
 **2. Enhanced screen share**
 
-This release adds the `queryScreenCaptureCapability` method, which is used to query the screen capture capabilities of the current device. To ensure optimal screen sharing performance, particularly in enabling high frame rates like 60 fps, Agora recommends you to query the device's maximum supported frame rate using this method beforehand. 
+This release adds the `queryScreenCaptureCapability` method, which is used to query the screen capture capabilities of the current device. To ensure optimal screen sharing performance, particularly in enabling high frame rates like 60 fps, Agora recommends you to query the device's maximum supported frame rate using this method beforehand.
 
 This release also adds the `setScreenCaptureScenario` method, which is used to set the scenario type for screen sharing. The SDK automatically adjusts the smoothness and clarity of the shared screen based on the scenario type you set.
 
@@ -508,7 +508,7 @@ As of v4.2.0, you can use the following methods to open files with a URI startin
 
 For custom video and audio capture scenarios, this release introduces `getCurrentMonotonicTimeInMs` for obtaining the current Monotonic Time. By passing this value into the timestamps of audio and video frames, developers can accurately control the timing of their audio and video streams, ensuring proper synchronization.
 
-**5. Multi-camera capture** 
+**5. Multi-camera capture**
 
 This release introduces `startCameraCapture`. By calling this method multiple times and specifying the `sourceType` parameter, developers can start capturing video streams from multiple cameras for local video mixing or multi-channel publishing. This is particularly useful for scenarios such as remote medical care and online education, where multiple cameras need to be connected.
 
@@ -533,7 +533,7 @@ When the video processing mode is `ProcessModeReadWrite`, the SDK receives the v
 
 **9. Super resolution**
 
-This release improves the performance of super resolution. To optimize the usability of super resolution, this release removes `enableRemoteSuperResolution`; super resolution no longer needs to be enabled manually. The SDK now automatically optimizes the resolution of the remote video based on the performance of the user's device. 
+This release improves the performance of super resolution. To optimize the usability of super resolution, this release removes `enableRemoteSuperResolution`; super resolution no longer needs to be enabled manually. The SDK now automatically optimizes the resolution of the remote video based on the performance of the user's device.
 
 #### Issues fixed
 
@@ -549,10 +549,10 @@ This release fixed the following issues:
 - Crashes occurred after users set the video resolution as 3840 × 2160 and started CDN streaming on Xiaomi Redmi 9A devices. (Android)
 - In real-time chorus scenarios, remote users heard noises and echoes when an OPPO R11 device joined the channel in loudspeaker mode. (Android)
 - When the playback of the local music finished, the onAudioMixingFinished callback was not properly triggered. (Android)
-- When using a video frame observer, the first video frame was occasionally missed on the receiver's end. (Android) 
+- When using a video frame observer, the first video frame was occasionally missed on the receiver's end. (Android)
 - When sharing screens in scenarios involving multiple channels, remote users occasionally saw black screens. (Android)
 - Switching to the rear camera with the virtual background enabled occasionally caused the background to be inverted.  (Android)
-- When there were multiple video streams in a channel, calling some video enhancement APIs occasionally failed. 
+- When there were multiple video streams in a channel, calling some video enhancement APIs occasionally failed.
 
 #### API changes
 
@@ -568,8 +568,8 @@ This release fixed the following issues:
 - `onLocalVideoTranscoderError`
 - `startLocalVideoTranscoder`
 - `updateLocalTranscoderConfiguration`
-- `queryScreenCaptureCapability` 
-- `setScreenCaptureScenario` 
+- `queryScreenCaptureCapability`
+- `setScreenCaptureScenario`
 - `setAINSMode`
 - `createCustomAudioTrack`
 - `destroyCustomAudioTrack`
@@ -751,7 +751,7 @@ This release fixed the following issues:
 
 **All**
 - When calling `setVideoEncoderConfigurationEx` in the channel to increase the resolution of the video, it occasionally failed.
-- When using the Agora media player to play videos, after you played and paused the video, and then called the `seek` method to specify a new position for playback, the video image occasionally remained unchanged; if you called the `resume` method to resume playback, the video was sometimes played at a speed faster than the original one. 
+- When using the Agora media player to play videos, after you played and paused the video, and then called the `seek` method to specify a new position for playback, the video image occasionally remained unchanged; if you called the `resume` method to resume playback, the video was sometimes played at a speed faster than the original one.
 - When entering a live streaming room that has been played for a long time as an audience, the time for the first frame to be rendered was shortened.
 - The call `getExtensionProperty` failed and returned an empty string.
 - Audience members heard buzzing noises when the host switched between speakers and earphones during live streaming.
