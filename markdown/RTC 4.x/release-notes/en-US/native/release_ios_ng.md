@@ -107,8 +107,8 @@ This release has optimized the implementation of some functions, involving renam
 
    This release optimizes the scheduling mechanism for internal tasks within the SDK, with improvements in the following aspects:
 
-   - There is a noticeable increase in the speed of video rendering and audio playback for both remote and local first frames.
-   - The time taken for API calls and response is reduced by more than 50%.
+   - The speed of vieo rendering and audio playback for both remote and local first frames improves by 10% to 20%.
+   - The API call duration and response time are reduced by 5% to 50%.
    - The SDK's parallel processing capability significantly improves, delivering higher video quality (720P, 24 fps) even on lower-end devices. Additionally, image processing remains more stable in scenarios involving high resolutions and frame rates.
    - The stability of the SDK is further enhanced, leading to a noticeable decrease in the crash rate across various specific scenarios.
 
@@ -151,7 +151,6 @@ This release has optimized the implementation of some functions, involving renam
    - This release adds the `earMonitorDelay` and `aecEstimatedDelay` members in [AgoraRtcLocalAudioStats](API/class_localaudiostats.html) to report ear monitor delay and acoustic echo cancellation (AEC) delay, respectively.
    - The [cacheStats](API/callback_imediaplayersourceobserver_onplayercachestats.html) callback is added to report the statistics of the media file being cached. This callback is triggered once per second after file caching is started.
    - The [playbackStats](API/callback_imediaplayersourceobserver_onplayerplaybackstats.html) callback is added to report the statistics of the media file being played. This callback is triggered once per second after the media file starts playing. You can obtain information like the audio and video bitrate of the media file through [AgoraMediaPlayerPlaybackStats](API/class_playerplaybackstats.html).
-   - An error code `AgoraMusicContentCenterStateReasonErrorHttpInternalError` is added to suggest that an internal error in HTTP. You can try again later.
 
 #### Issues fixed
 
