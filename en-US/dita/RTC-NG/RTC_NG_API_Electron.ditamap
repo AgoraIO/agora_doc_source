@@ -8,9 +8,9 @@
     <topichead navtitle="Configurations" toc="no">
         <topicref href="conref/conref_api_metadata.dita" processing-role="resource-only"/>
         <topicref href="config/subject-scheme-rtc.ditamap" format="ditamap" type="subjectScheme" navtitle="Conditional processing attributes"/>
-        <ditavalref href="config/filter-product.ditaval" processing-role="resource-only"/>        
+        <ditavalref href="config/filter-product.ditaval" processing-role="resource-only"/>
         <topicref href="config/keys-rtc-ng-api-electron.ditamap" format="ditamap"/>
-        <topicref href="config/keys-global.ditamap" format="ditamap" processing-role="resource-only"/>                        
+        <topicref href="config/keys-global.ditamap" format="ditamap" processing-role="resource-only"/>
         <topicref href="config/keys-rtc-ng-links.ditamap" format="ditamap"/>
         <topicref href="config/keys-rtc-ng-links-electron.ditamap" format="ditamap"/>
     </topichead>
@@ -18,13 +18,14 @@
         <topicmeta>
             <navtitle><ph keyref="sdk-name"/> for <ph keyref="platform"/></navtitle>
         </topicmeta>                
-        <topicref href="API/rtc_api_overview_ng.dita"/>
+        <topicref href="API/rtc_api_overview.dita"/>
         <topicref keyref="IRtcEngine" chunk="to-content">
             <topicref keyref="addListener" toc="no"/>
             <topicref keyref="addVideoWatermark2" toc="no"/>
             <topicref keyref="adjustAudioMixingPlayoutVolume" toc="no"/>
             <topicref keyref="adjustAudioMixingPublishVolume" toc="no"/>
             <topicref keyref="adjustAudioMixingVolume" toc="no"/>
+            <topicref keyref="adjustCustomAudioPlayoutVolume" toc="no"/>
             <topicref keyref="adjustCustomAudioPublishVolume" toc="no"/>
             <topicref keyref="adjustPlaybackSignalVolume" toc="no"/>
             <topicref keyref="adjustLoopbackSignalVolume" toc="no"/>
@@ -90,6 +91,7 @@
             <topicref keyref="getVersion" toc="no"/>
             <topicref keyref="getUserInfoByUid" toc="no"/>
             <topicref keyref="getUserInfoByUserAccount" toc="no"/>
+            <topicref keyref="isFeatureAvailableOnDevice" toc="no"/>
             <topicref keyref="joinChannel1" toc="no" processing-role="resource-only"/>
             <topicref keyref="joinChannel2" toc="no"/>
             <topicref keyref="joinChannelWithUserAccount2" toc="no"/>
@@ -109,6 +111,8 @@
             <topicref keyref="pauseEffect" toc="no"/>
             <topicref keyref="playAllEffects" toc="no"/>
             <topicref keyref="playEffect3" toc="no"/>
+            <topicref keyref="preloadChannel" toc="no"/>
+            <topicref keyref="preloadChannel2" toc="no"/>
             <topicref keyref="preloadEffect" toc="no"/>
             <topicref keyref="rate" toc="no"/>
             <topicref keyref="registerAudioEncodedFrameObserver" toc="no"/>
@@ -245,6 +249,7 @@
             <topicref keyref="updateChannelMediaOptions" toc="no"/>
             <topicref keyref="updateChannelMediaRelay" toc="no"/>
             <topicref keyref="updateLocalTranscoderConfiguration" toc="no"/>
+            <topicref keyref="updatePreloadChannelToken" toc="no"/>
             <topicref keyref="updateRtmpTranscoding" toc="no"/>
             <topicref keyref="updateScreenCaptureParameters" toc="no"/>
             <topicref keyref="updateScreenCaptureRegion1" toc="no"/>
@@ -255,6 +260,7 @@
             <topicref keyref="clearVideoWatermarkEx" toc="no"/>
             <topicref keyref="createDataStreamEx2" toc="no"/>
             <topicref keyref="enableAudioVolumeIndicationEx" toc="no"/>
+            <topicref keyref="enableContentInspectEx" toc="no"/>
             <topicref keyref="enableLoopbackRecordingEx" toc="no"/>
             <topicref keyref="enableDualStreamModeEx" toc="no"/>
             <topicref keyref="getConnectionStateEx" toc="no"/>
@@ -312,7 +318,6 @@
             <topicref keyref="onConnectionBanned" toc="no"/>
             <topicref keyref="onConnectionInterrupted" toc="no"/>
             <topicref keyref="onConnectionLost" toc="no"/>
-            <topicref keyref="onContentInspectResult" toc="no" props="hide"/>
             <topicref keyref="onEncryptionError" toc="no"/>
             <topicref keyref="onError" toc="no"/>
             <topicref keyref="onExtensionError" toc="no"/>
@@ -409,7 +414,7 @@
             <topicref keyref="setAudioDualMonoMode" toc="no"/>
             <topicref keyref="setLoopCount" toc="no"/>
             <topicref keyref="setPlaybackSpeed" toc="no"/>
-            <topicref keyref="setPlayerOption" toc="no"/>
+            <topicref keyref="setPlayerOption" toc="no" props="hide"/>
             <topicref keyref="setRenderMode" toc="no"/>
             <topicref keyref="setSpatialAudioParams" toc="no"/>
             <topicref keyref="setView" toc="no"/>
@@ -437,12 +442,14 @@
             <topicref keyref="getPlaybackDefaultDevice" toc="no"/>
             <topicref keyref="getPlaybackDevice" toc="no"/>
             <topicref keyref="getPlaybackDeviceInfo" toc="no"/>
+            <topicref keyref="getPlaybackDeviceMute" toc="no"/>
             <topicref keyref="getRecordingDefaultDevice" toc="no"/>
             <topicref keyref="getRecordingDevice" toc="no"/>
             <topicref keyref="getRecordingDeviceInfo" toc="no"/>
             <topicref keyref="release_IAudioDeviceManager" toc="no"/>
             <topicref keyref="setLoopbackDevice" toc="no"/>
             <topicref keyref="setPlaybackDevice" toc="no"/>
+            <topicref keyref="setPlaybackDeviceMute" toc="no"/>
             <topicref keyref="setRecordingDevice" toc="no"/>
             <topicref keyref="setRecordingDeviceVolume" toc="no"/>
             <topicref keyref="startAudioDeviceLoopbackTest" toc="no"/>
@@ -504,7 +511,7 @@
         <topicref keyref="IAudioFrameObserver" chunk="to-content">
             <topicref keyref="onPlaybackAudioFrameBeforeMixing" toc="no"/>
         </topicref>
-        <topicref keyref="IMediaPlayerAudioFrameObserver" chunk="to-content">
+        <topicref keyref="IMediaPlayerAudioFrameObserver" chunk="to-content" props="hide">
             <topicref keyref="onFrame_IMediaPlayerAudioFrameObserver" toc="no"/>
         </topicref>
         <topicref keyref="IAudioFrameObserverBase" chunk="to-content">
@@ -531,7 +538,6 @@
         </topicref>
         <topicref keyref="IVideoFrameObserver" chunk="to-content">
             <topicref keyref="onCaptureVideoFrame" toc="no"/>
-            <topicref keyref="onMediaPlayerVideoFrame" toc="no"/>
             <topicref keyref="onPreEncodeVideoFrame" toc="no"/>
             <topicref keyref="onPreEncodeScreenVideoFrame" toc="no"/>
             <topicref keyref="onSecondaryPreEncodeScreenVideoFrame" toc="no"/>
@@ -558,7 +564,7 @@
             <topicref keyref="removeRemotePosition" toc="no"/>
             <topicref keyref="updateRemotePosition" toc="no"/>
         </topicref>
-        <topicref keyref="IMediaRecorder" chunk="to-content">
+        <topicref keyref="IMediaRecorder" chunk="to-content" props="cn">
             <topicref keyref="addListener_IMediaRecorder" toc="no"/>
             <topicref keyref="releaseRecorder" toc="no"/>
             <topicref keyref="removeAllListeners_IMediaRecorder" toc="no"/>
@@ -567,7 +573,7 @@
             <topicref keyref="startRecording" toc="no"/>
             <topicref keyref="stopRecording" toc="no"/>
         </topicref>
-        <topicref keyref="IMediaRecorderObserver" chunk="to-content">
+        <topicref keyref="IMediaRecorderObserver" chunk="to-content" props="cn">
             <topicref keyref="onRecorderStateChanged" toc="no"/>
             <topicref keyref="onRecorderInfoUpdated" toc="no"/>
         </topicref>
