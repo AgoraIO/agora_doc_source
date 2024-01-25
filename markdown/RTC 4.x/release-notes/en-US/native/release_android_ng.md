@@ -37,7 +37,7 @@ This release has optimized the implementation of some functions, involving renam
    | `DirectCdnStreamingReason` | `DirectCdnStreamingReason` |
    | `MediaPlayerReason`        | `MediaPlayerReason`        |
 
-   **Note:** For specific renaming of enumerations, please refer to [API changes](Chunk916049832.html#apichange).
+   **Note:** For specific renaming of enumerations, please refer to [API changes](C#apichange).
 
 3. **Channel media relay**
 
@@ -149,7 +149,6 @@ This release has optimized the implementation of some functions, involving renam
    - This release adds the `earMonitorDelay` and `aecEstimatedDelay` members in [`LocalAudioStats`](API/class_localaudiostats.html) to report ear monitor delay and acoustic echo cancellation (AEC) delay, respectively.
    - The [`onPlayerCacheStats`](API/callback_imediaplayersourceobserver_onplayercachestats.html) callback is added to report the statistics of the media file being cached. This callback is triggered once per second after file caching is started.
    - The [`onPlayerPlaybackStats`](API/callback_imediaplayersourceobserver_onplayerplaybackstats.html) callback is added to report the statistics of the media file being played. This callback is triggered once per second after the media file starts playing. You can obtain information like the audio and video bitrate of the media file through [`PlayerPlaybackStats`](API/class_playerplaybackstats.html).
-   - An error code `MUSIC_CONTENT_CENTER_STATUS_ERR_HTTP_INTERNAL` is added to suggest that an internal error in HTTP. You can try again later.
 
 #### Issues fixed
 
@@ -159,6 +158,8 @@ This release fixed the following issues:
 - In a online meeting scenario, occasional audio freezes occured when the local user was listening to remote users.
 
 #### API changes
+
+<a name="apichange"></a>
 
 **Added**
 
@@ -172,7 +173,6 @@ This release fixed the following issues:
 - [`onPlayerCacheStats`](API/callback_imediaplayersourceobserver_onplayercachestats.html)
 - [`onPlayerPlaybackStats`](API/callback_imediaplayersourceobserver_onplayerplaybackstats.html)
 - [`PlayerPlaybackStats`](API/class_playerplaybackstats.html)
-- The `MUSIC_CONTENT_CENTER_STATUS_ERR_HTTP_INTERNAL` enumeration in `MusicContentCenterStateReason`
 - [`startPlaybackDeviceTest`](API/api_iaudiodevicemanager_startplaybackdevicetest.html)
 - [`stopPlaybackDeviceTest`](API/api_iaudiodevicemanager_stopplaybackdevicetest.html)
 - The `earMonitorDelay` and `aecEstimatedDelay` members in [LocalAudioStats](API/class_localaudiostats.html)
@@ -237,14 +237,6 @@ This release fixed the following issues:
   - `RTMP_STREAM_PUBLISH_ERROR_NET_DOWN`
   - `RTMP_STREAM_PUBLISH_ERROR_INVALID_PRIVILEGE`
   - `RTMP_STREAM_UNPUBLISH_ERROR_OK`
-- `MusicContentCenterStatusCode` is renamed as `MusicContentCenterStateReason`, and the `STATUS_ERR` in all enumerators is changed to `STATE_REASON`:
-  - `MUSIC_CONTENT_CENTER_STATUS_ERR_GATEWAY`
-  - `MUSIC_CONTENT_CENTER_STATUS_ERR_PERMISSION_AND_RESOURCE`
-  - `MUSIC_CONTENT_CENTER_STATUS_ERR_INTERNAL_DATA_PARSE`
-  - `MUSIC_CONTENT_CENTER_STATUS_ERR_MUSIC_LOADING`
-  - `MUSIC_CONTENT_CENTER_STATUS_ERR_MUSIC_DECRYPTION`
-- `MUSIC_CONTENT_CENTER_STATUS_OK` is changed to `MUSIC_CONTENT_CENTER_STATE_REASON_OK`
-- `MUSIC_CONTENT_CENTER_STATUS_ERR` is changed to `MUSIC_CONTENT_CENTER_STATE_REASON_ERROR`
 
 **Deleted**
 
