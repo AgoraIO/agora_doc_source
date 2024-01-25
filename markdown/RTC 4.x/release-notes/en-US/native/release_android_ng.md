@@ -110,7 +110,7 @@ This release has optimized the implementation of some functions, involving renam
 
    This release optimizes the scheduling mechanism for internal tasks within the SDK, with improvements in the following aspects:
 
-   - The speed of vieo rendering and audio playback for both remote and local first frames improves by 10% to 20%.
+   - The speed of video rendering and audio playback for both remote and local first frames improves by 10% to 20%.
    - The API call duration and response time are reduced by 5% to 50%.
    - The SDK's parallel processing capability significantly improves, delivering higher video quality (720P, 24 fps) even on lower-end devices. Additionally, image processing remains more stable in scenarios involving high resolutions and frame rates.
    - The stability of the SDK is further enhanced, leading to a noticeable decrease in the crash rate across various specific scenarios.
