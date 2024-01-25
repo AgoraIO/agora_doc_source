@@ -27,13 +27,13 @@ This release has optimized the implementation of some functions, involving renam
    | `OnDirectCdnStreamingStateChanged` | `error`                 | `reason`                |
    | `OnRtmpStreamingStateChanged`      | `errCode`               | `reason`                |
 
-   | Original enumeration class   | Current enumeration class    |
-   | ---------------------------- | ---------------------------- |
-   | `LOCAL_AUDIO_STREAM_ERROR`   | `LOCAL_AUDIO_STREAM_ERROR`   |
-   | `LOCAL_VIDEO_STREAM_ERROR`   | `LOCAL_VIDEO_STREAM_ERROR`   |
-   | `DIRECT_CDN_STREAMING_ERROR` | `DIRECT_CDN_STREAMING_ERROR` |
-   | `MEDIA_PLAYER_ERROR`         | `MEDIA_PLAYER_ERROR`         |
-   | `RTMP_STREAM_PUBLISH_ERROR`  | `RTMP_STREAM_PUBLISH_ERROR`  |
+   | Original enumeration class   | Current enumeration class     |
+   | ---------------------------- | ----------------------------- |
+   | `LOCAL_AUDIO_STREAM_ERROR`   | `LOCAL_AUDIO_STREAM_REASON`   |
+   | `LOCAL_VIDEO_STREAM_ERROR`   | `LOCAL_VIDEO_STREAM_REASON`   |
+   | `DIRECT_CDN_STREAMING_ERROR` | `DIRECT_CDN_STREAMING_REASON` |
+   | `MEDIA_PLAYER_ERROR`         | `MEDIA_PLAYER_REASON`         |
+   | `RTMP_STREAM_PUBLISH_ERROR`  | `RTMP_STREAM_PUBLISH_REASON`  |
 
    **Note:** For specific renaming of enumerations, please refer to [API changes](#change).
 
@@ -51,9 +51,9 @@ This release has optimized the implementation of some functions, involving renam
 
    This release makes the following modifications to the enumerations in the [LOCAL_VIDEO_STREAM_REASON](API/enum_localvideostreamreason.html) class:
 
-   - The value of `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED` (formerly `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED`) has been changed from 23 to 28.
-   - The value of `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_RESUMED` (formerly `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_RESUMED`) has been changed from 24 to 29.
-   - The `LOCAL_VIDEO_STREAM_ERROR_CODEC_NOT_SUPPORT` enumeration has been changed to `LOCAL_VIDEO_STREAM_ERROR_CODEC_NOT_SUPPORT`.
+   - The value of `LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_PAUSED` (formerly `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED`) has been changed from 23 to 28.
+   - The value of `LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_RESUMED` (formerly `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_RESUMED`) has been changed from 24 to 29.
+   - The `LOCAL_VIDEO_STREAM_REASON_CODEC_NOT_SUPPORT` enumeration has been changed to `LOCAL_VIDEO_STREAM_ERROR_CODEC_NOT_SUPPORT`.
 
 #### New features
 
@@ -129,7 +129,7 @@ This release fixed the following issues:
 
 **Added**
 
-- The ` subviewUid` member in [VideoCanvas](API/class_videocanvas.html)
+- The `subviewUid` member in [VideoCanvas](API/class_videocanvas.html)
 - [EnableCustomAudioLocalPlayback](API/api_irtcengine_enablecustomaudiolocalplayback.html)
 - [QueryDeviceScore](API/api_irtcengine_querydevicescore.html)
 - The `CUSTOM_VIDEO_SOURCE` enumeration in [MEDIA_SOURCE_TYPE](API/enum_mediasourcetype.html)
@@ -143,7 +143,7 @@ This release fixed the following issues:
 
 - All `ERROR` fields in the following enumerations are changed to `REASON`:
 
-- - `LOCAL_AUDIO_STREAM_ERROR_OK`
+  - `LOCAL_AUDIO_STREAM_ERROR_OK`
   - `LOCAL_AUDIO_STREAM_ERROR_FAILURE`
   - `LOCAL_AUDIO_STREAM_ERROR_DEVICE_NO_PERMISSION`
   - `LOCAL_AUDIO_STREAM_ERROR_DEVICE_BUSY`
