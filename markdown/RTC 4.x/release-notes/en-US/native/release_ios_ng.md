@@ -57,7 +57,7 @@ This release has optimized the implementation of some functions, involving renam
 
    This release makes the following modifications to the enumerations in the [AgoraLocalVideoStreamReason](API/enum_localvideostreamreason.html) class:
 
-   - The `AgoraLocalVideoStreamReasonCodecNotSupport` enumeration has been changed to `AgoraLocalVideoStreamReasonCodecNotSupport`.
+   - The `AgoraLocalVideoStreamErrorEncodeFailure` enumeration has been changed to `AgoraLocalVideoStreamReasonCodecNotSupport`.
 
 #### New features
 
