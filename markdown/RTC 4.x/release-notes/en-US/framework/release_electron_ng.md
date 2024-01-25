@@ -41,8 +41,8 @@ This release has optimized the implementation of some functions, involving renam
 
    This release makes the following modifications to the enumerations in the [LocalVideoStreamReason](API/enum_localvideostreamreason.html) class:
 
-   - The value of `LocalVideoStreamReasonScreenCapturePaused` (formerly `LocalVideoStreamReasonScreenCapturePaused`) has been changed from 23 to 28. (Windows)
-   - The value of `LocalVideoStreamReasonScreenCaptureResumed` (formerly `LocalVideoStreamReasonScreenCaptureResumed`) has been changed from 24 to 29. (Windows)
+   - The value of `LocalVideoStreamReasonScreenCapturePaused` (formerly `LocalVideoStreamReasonScreenCapturePaused`) has been changed from 23 to 28.
+   - The value of `LocalVideoStreamReasonScreenCaptureResumed` (formerly `LocalVideoStreamReasonScreenCaptureResumed`) has been changed from 24 to 29.
    - The `LocalVideoStreamReasonCodecNotSupport` enumeration has been changed to `LocalVideoStreamReasonCodecNotSupport`.
 
 4. **Audio loopback capturing**
@@ -107,7 +107,7 @@ This release has optimized the implementation of some functions, involving renam
 
    This release also includes the following improvements:
 
-   - The [onLocalVideoStateChanged](API/callback_irtcengineeventhandler_onlocalvideostatechanged.html) callback is improved with the inclusion of the `LocalVideoStreamReasonScreenCaptureAutoFallback` enumeration, singaling unexpected errors during the screen sharing process (potentially due to window blocking failure), resulting in performance degradation without impacting the screen sharing process itself. (Windows)
+   - The [onLocalVideoStateChanged](API/callback_irtcengineeventhandler_onlocalvideostatechanged.html) callback is improved with the inclusion of the `LocalVideoStreamReasonScreenCaptureAutoFallback` enumeration, singaling unexpected errors during the screen sharing process (potentially due to window blocking failure), resulting in performance degradation without impacting the screen sharing process itself. 
    - This release optimizes the SDK's domain name resolution strategy, improving the stability of calling to resolve domain names in complex network environments.
    - When passing in an image with transparent background as the virtual background image, the transparent background can be filled with customized color.
    - This release adds the `earMonitorDelay` and `aecEstimatedDelay` members in [LocalAudioStats](API/class_localaudiostats.html) to report ear monitor delay and acoustic echo cancellation (AEC) delay, respectively.
@@ -139,64 +139,64 @@ This release fixed the following issues:
 **Modified**
 
 - All `ERROR` fields in the following enumerations are changed to `REASON`:
-  - `LocalAudioStreamReasonOk`
-  - `LocalAudioStreamReasonFailure`
-  - `LocalAudioStreamReasonDeviceNoPermission`
-  - `LocalAudioStreamReasonDeviceBusy`
-  - `LocalAudioStreamReasonRecordFailure`
-  - `LocalAudioStreamReasonEncodeFailure`
-  - `LocalAudioStreamReasonRecordInvalidId` (Windows)
-  - `LocalAudioStreamReasonPlayoutInvalidId` (Windows)
-  - `LocalVideoStreamReasonOk`
-  - `LocalVideoStreamReasonFailure`
-  - `LocalVideoStreamReasonDeviceNoPermission`
-  - `LocalVideoStreamReasonDeviceBusy`
-  - `LocalVideoStreamReasonCaptureFailure`
-  - `LocalVideoStreamReasonCodecNotSupport`
-  - `LocalVideoStreamReasonDeviceNotFound`
-  - `LocalVideoStreamReasonDeviceDisconnected`
-  - `LocalVideoStreamReasonDeviceInvalidId`
-  - `LocalVideoStreamReasonScreenCaptureWindowMinimized`
-  - `LocalVideoStreamReasonScreenCaptureWindowClosed`
-  - `LocalVideoStreamReasonScreenCaptureWindowOccluded`
-  - `DirectCdnStreamingReasonOk`
-  - `DirectCdnStreamingReasonFailed`
-  - `DirectCdnStreamingReasonAudioPublication`
-  - `DirectCdnStreamingReasonVideoPublication`
-  - `DirectCdnStreamingReasonNetConnect`
-  - `DirectCdnStreamingReasonBadName`
-  - `PlayerReasonNone`
-  - `PlayerReasonInvalidArguments`
-  - `PlayerReasonInternal`
-  - `PlayerReasonNoResource`
-  - `PlayerReasonInvalidMediaSource`
-  - `PlayerReasonUnknownStreamType`
-  - `PlayerReasonObjNotInitialized`
-  - `PlayerReasonCodecNotSupported`
-  - `PlayerReasonVideoRenderFailed`
-  - `PlayerReasonInvalidState`
-  - `PlayerReasonUrlNotFound`
-  - `PlayerReasonInvalidConnectionState`
-  - `PlayerReasonSrcBufferUnderflow`
-  - `PlayerReasonInterrupted`
-  - `PlayerReasonNotSupported`
-  - `PlayerReasonTokenExpired`
-  - `PlayerReasonUnknown`
-  - `RtmpStreamPublishReasonOk`
-  - `RtmpStreamPublishReasonInvalidArgument`
-  - `RtmpStreamPublishReasonEncryptedStreamNotAllowed`
-  - `RtmpStreamPublishReasonConnectionTimeout`
-  - `RtmpStreamPublishReasonInternalServerError`
-  - `RtmpStreamPublishReasonRtmpServerError`
-  - `RtmpStreamPublishReasonTooOften`
-  - `RtmpStreamPublishReasonReachLimit`
-  - `RtmpStreamPublishReasonNotAuthorized`
-  - `RtmpStreamPublishReasonStreamNotFound`
-  - `RtmpStreamPublishReasonFormatNotSupported`
-  - `RtmpStreamPublishReasonNotBroadcaster`
-  - `RtmpStreamPublishReasonTranscodingNoMixStream`
-  - `RtmpStreamPublishReasonNetDown`
-  - `RtmpStreamPublishReasonInvalidPrivilege`
+  - `LocalAudioStreamErrorOk`
+  - `LocalAudioStreamErrorFailure`
+  - `LocalAudioStreamErrorDeviceNoPermission`
+  - `LocalAudioStreamErrorDeviceBusy`
+  - `LocalAudioStreamErrorRecordFailure`
+  - `LocalAudioStreamErrorEncodeFailure`
+  - `LocalAudioStreamErrorRecordInvalidId` (Windows)
+  - `LocalAudioStreamErrorPlayoutInvalidId` (Windows)
+  - `LocalVideoStreamErrorOk`
+  - `LocalVideoStreamErrorFailure`
+  - `LocalVideoStreamErrorDeviceNoPermission`
+  - `LocalVideoStreamErrorDeviceBusy`
+  - `LocalVideoStreamErrorCaptureFailure`
+  - `LocalVideoStreamErrorCodecNotSupport`
+  - `LocalVideoStreamErrorDeviceNotFound`
+  - `LocalVideoStreamErrorDeviceDisconnected`
+  - `LocalVideoStreamErrorDeviceInvalidId`
+  - `LocalVideoStreamErrorScreenCaptureWindowMinimized`
+  - `LocalVideoStreamErrorScreenCaptureWindowClosed`
+  - `LocalVideoStreamErrorScreenCaptureWindowOccluded`
+  - `DirectCdnStreamingErrorOk`
+  - `DirectCdnStreamingErrorFailed`
+  - `DirectCdnStreamingErrorAudioPublication`
+  - `DirectCdnStreamingErrorVideoPublication`
+  - `DirectCdnStreamingErrorNetConnect`
+  - `DirectCdnStreamingErrorBadName`
+  - `PlayerErrorNone`
+  - `PlayerErrorInvalidArguments`
+  - `PlayerErrorInternal`
+  - `PlayerErrorNoResource`
+  - `PlayerErrorInvalidMediaSource`
+  - `PlayerErrorUnknownStreamType`
+  - `PlayerErrorObjNotInitialized`
+  - `PlayerErrorCodecNotSupported`
+  - `PlayerErrorVideoRenderFailed`
+  - `PlayerErrorInvalidState`
+  - `PlayerErrorUrlNotFound`
+  - `PlayerErrorInvalidConnectionState`
+  - `PlayerErrorSrcBufferUnderflow`
+  - `PlayerErrorInterrupted`
+  - `PlayerErrorNotSupported`
+  - `PlayerErrorTokenExpired`
+  - `PlayerErrorUnknown`
+  - `RtmpStreamPublishErrorOk`
+  - `RtmpStreamPublishErrorInvalidArgument`
+  - `RtmpStreamPublishErrorEncryptedStreamNotAllowed`
+  - `RtmpStreamPublishErrorConnectionTimeout`
+  - `RtmpStreamPublishErrorInternalServerError`
+  - `RtmpStreamPublishErrorRtmpServerError`
+  - `RtmpStreamPublishErrorTooOften`
+  - `RtmpStreamPublishErrorReachLimit`
+  - `RtmpStreamPublishErrorNotAuthorized`
+  - `RtmpStreamPublishErrorStreamNotFound`
+  - `RtmpStreamPublishErrorFormatNotSupported`
+  - `RtmpStreamPublishErrorNotBroadcaster`
+  - `RtmpStreamPublishErrorTranscodingNoMixStream`
+  - `RtmpStreamPublishErrorNetDown`
+  - `RtmpStreamPublishErrorInvalidPrivilege`
   - `RtmpStreamUnpublishErrorOk`
 
 **Deleted**
