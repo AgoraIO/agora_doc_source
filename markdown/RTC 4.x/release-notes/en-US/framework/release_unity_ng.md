@@ -53,7 +53,7 @@ This release has optimized the implementation of some functions, involving renam
 
    - The value of `LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_PAUSED` (formerly `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED`) has been changed from 23 to 28.
    - The value of `LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_RESUMED` (formerly `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_RESUMED`) has been changed from 24 to 29.
-   - The `LOCAL_VIDEO_STREAM_REASON_CODEC_NOT_SUPPORT` enumeration has been changed to `LOCAL_VIDEO_STREAM_ERROR_CODEC_NOT_SUPPORT`.
+   - The `LOCAL_VIDEO_STREAM_ERROR_CODEC_NOT_SUPPORT` enumeration has been changed to `LOCAL_VIDEO_STREAM_REASON_CODEC_NOT_SUPPORT`.
 
 #### New features
 
