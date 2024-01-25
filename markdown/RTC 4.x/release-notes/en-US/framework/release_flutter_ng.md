@@ -36,7 +36,7 @@ This release has optimized the implementation of some functions, involving renam
    | `MediaPlayerError`        | `MediaPlayerReason`           |
    | `RtmpStreamPublishErrorType`  | `RtmpStreamPublishReason`     |
 
-   **Note:** For specific renaming of enumerations, please refer to [API changes](#api-change).
+   **Note:** For specific renaming of enumerations, please refer to [API changes](#apichange).
 
 2. **Channel media relay**
 
@@ -108,7 +108,7 @@ This release has optimized the implementation of some functions, involving renam
 
    This release optimizes the scheduling mechanism for internal tasks within the SDK, with improvements in the following aspects:
 
-   - The speed of vieo rendering and audio playback for both remote and local first frames improves by 10% to 20%.
+   - The speed of video rendering and audio playback for both remote and local first frames improves by 10% to 20%.
    - The API call duration and response time are reduced by 5% to 50%.
    - The SDK's parallel processing capability significantly improves, delivering higher video quality (720P, 24 fps) even on lower-end devices. Additionally, image processing remains more stable in scenarios involving high resolutions and frame rates.
    - The stability of the SDK is further enhanced, leading to a noticeable decrease in the crash rate across various specific scenarios.
@@ -133,7 +133,6 @@ This release has optimized the implementation of some functions, involving renam
    - The [`onLocalVideoStateChanged`](API/callback_irtcengineeventhandler_onlocalvideostatechanged.html) callback is improved with the inclusion of the `localVideoStreamReasonScreenCaptureAutoFallback` enumeration, signaling unexpected errors during the screen sharing process (potentially due to window blocking failure), resulting in performance degradation without impacting the screen sharing process itself. (Windows)
    - The [`onPlayerCacheStats`](API/callback_imediaplayersourceobserver_onplayercachestats.html) callback is added to reports the statistics of the media file being cached. This callback is triggered once per second after file caching is started.
    - The [`onPlayerPlaybackStats`](API/callback_imediaplayersourceobserver_onplayerplaybackstats.html) callback is added to reports the statistics of the media file being played. This callback is triggered once per second after the media file starts playing. You can obtain information like the audio and video bitrate of the media file through [`PlayerPlaybackStats`](API/class_playerplaybackstats.html).
-   - An error code `kMusicContentCenterReasonHttpInternalError` is added to suggest that an internal error in HTTP. You can try again later. (Android, iOS)
    - This release optimizes the SDK's domain name resolution strategy, improving the stability of calling `setLocalAccessPoint` to resolve domain names in complex network environments.
    - When passing in an image with transparent background as the virtual background image, the transparent background can be filled with customized color.
    - This release adds the `earMonitorDelay` and `aecEstimatedDelay` members in [`LocalAudioStats`](API/class_localaudiostats.html) to report ear monitor delay and acoustic echo cancellation (AEC) delay, respectively.
@@ -148,6 +147,8 @@ This release fixed the following issues:
 
 #### API changes
 
+<a name="apichange"></a>
+
 **Added**
 
 - [`onTranscodedStreamLayoutInfo`](API/callback_irtcengineeventhandler_ontranscodedstreamlayoutinfo.html)(Android, iOS)
@@ -158,7 +159,6 @@ This release fixed the following issues:
 - [`onPlayerCacheStats`](API/callback_imediaplayersourceobserver_onplayercachestats.html)
 - [`onPlayerPlaybackStats`](API/callback_imediaplayersourceobserver_onplayerplaybackstats.html)
 - [`PlayerPlaybackStats`](API/class_playerplaybackstats.html)
-- The `kMusicContentCenterReasonHttpInternalError` enumeration in `MusicContentCenterStateReason` (Android, iOS)
 - The `earMonitorDelay` and `aecEstimatedDelay` members in [`LocalAudioStats`](API/class_localaudiostats.html)
 - [`queryDeviceScore`](API/api_irtcengine_querydevicescore.html)
 - The `customVideoSource` enumeration in [`MediaSourceType`](API/enum_mediasourcetype.html)
@@ -237,14 +237,6 @@ This release fixed the following issues:
   - `rtmpStreamPublishErrorNetDown`
   - `rtmpStreamPublishErrorInvalidPrivilege`
   - `rtmpStreamUnpublishErrorOk`
-- `MusicContentCenterStatusCode` is renamed as `MusicContentCenterStateReason`, and the `StatusErr` in all enumerators is changed to `Reason`: (Android, iOS)
-  - `kMusicContentCenterStatusErrGateway`
-  - `kMusicContentCenterStatusErrPermissionAndResource`
-  - `kMusicContentCenterStatusErrInternalDataParse`
-  - `kMusicContentCenterStatusErrMusicLoading`
-  - `kMusicContentCenterStatusErrMusicDecryption`
-- `kMusicContentCenterStatusOk` is changed to `kMusicContentCenterReasonOk` (Android, iOS)
-- `kMusicContentCenterStatusErr` is changed to `kMusicContentCenterReasonError` (Android, iOS)
 
 **Deleted**
 
