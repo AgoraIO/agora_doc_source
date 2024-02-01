@@ -83,22 +83,22 @@
 
 
                     <ul>
-                    <li><ph keyref="RTMP_STREAM_PUBLISH_REASON_OK"/> (0)：推流成功。</li>
-                    <li><ph keyref="RTMP_STREAM_PUBLISH_REASON_INVALID_ARGUMENT"/> (1)：参数无效。请检查输入参数是否正确。</li>
-                    <li><ph keyref="RTMP_STREAM_PUBLISH_REASON_ENCRYPTED_STREAM_NOT_ALLOWED"/> (2)：推流已加密，不能推流。</li>
-                    <li><ph keyref="RTMP_STREAM_PUBLISH_REASON_CONNECTION_TIMEOUT"/> (3)：推流超时未成功。可尝试重新推流。</li>
-                    <li><ph keyref="RTMP_STREAM_PUBLISH_REASON_INTERNAL_SERVER_ERROR"/> (4)：推流服务器出现错误。请尝试重新推流。</li>
-                    <li><ph keyref="RTMP_STREAM_PUBLISH_REASON_RTMP_SERVER_ERROR"/> (5)：CDN 服务器出现错误。</li>
-                    <li><ph keyref="RTMP_STREAM_PUBLISH_REASON_TOO_OFTEN"/> (6)：预留参数。</li>
-                    <li><ph keyref="RTMP_STREAM_PUBLISH_REASON_REACH_LIMIT"/> (7)：单个主播的推流地址数目达到上限 10。请先停止对一些非必要地址的推流。</li>
-                    <li><ph keyref="RTMP_STREAM_PUBLISH_REASON_NOT_AUTHORIZED"/> (8)：主播操作不属于自己的流。例如更新其他主播的流参数、停止其他主播的流。请检查 App 逻辑。</li>
-                    <li><ph keyref="RTMP_STREAM_PUBLISH_REASON_STREAM_NOT_FOUND"/> (9)：服务器未找到这个流。</li>
-                    <li><ph keyref="RTMP_STREAM_PUBLISH_REASON_FORMAT_NOT_SUPPORTED"/> (10)：推流地址格式有错误。请检查推流地址格式是否正确。</li>
-                    <li><ph keyref="RTMP_STREAM_PUBLISH_REASON_NOT_BROADCASTER"/> (11)：用户角色不是主播，该用户无法使用推流功能。请检查你的应用代码逻辑。</li>
-                    <li><ph keyref="RTMP_STREAM_PUBLISH_REASON_TRANSCODING_NO_MIX_STREAM"/> (13)：非转码推流情况下，调用了 <xref keyref="updateRtmpTranscoding"/> 或 <xref keyref="setLiveTranscoding"/> 方法更新转码属性。请检查你的应用代码逻辑。</li>
-                    <li><ph keyref="RTMP_STREAM_PUBLISH_REASON_NET_DOWN"/> (14)：主播的网络出错。</li>
-                    <li><ph keyref="RTMP_STREAM_PUBLISH_REASON_INVALID_PRIVILEGE"/><ph> (16)：你的项目没有使用声网推流服务的权限。</ph><ph props="hide">请参考<xref keyref="guide-cdn-streaming">旁路推流</xref>中的前提条件开启推流服务。</ph></li>
-                    <li><ph keyref="RTMP_STREAM_UNPUBLISH_REASON_OK"/> (100)：推流已正常结束。当你调用 <xref keyref="stopRtmpStream"/> 结束推流后，SDK 会返回该值。</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_OK"/> (0)：推流成功。</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_INVALID_ARGUMENT"/> (1)：参数无效。请检查输入参数是否正确。</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_ENCRYPTED_STREAM_NOT_ALLOWED"/> (2)：推流已加密，不能推流。</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_CONNECTION_TIMEOUT"/> (3)：推流超时未成功。可尝试重新推流。</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_INTERNAL_SERVER_ERROR"/> (4)：推流服务器出现错误。请尝试重新推流。</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_RTMP_SERVER_ERROR"/> (5)：CDN 服务器出现错误。</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_TOO_OFTEN"/> (6)：预留参数。</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_REACH_LIMIT"/> (7)：单个主播的推流地址数目达到上限 10。请先停止对一些非必要地址的推流。</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_NOT_AUTHORIZED"/> (8)：主播操作不属于自己的流。例如更新其他主播的流参数、停止其他主播的流。请检查 App 逻辑。</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_STREAM_NOT_FOUND"/> (9)：服务器未找到这个流。</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_FORMAT_NOT_SUPPORTED"/> (10)：推流地址格式有错误。请检查推流地址格式是否正确。</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_NOT_BROADCASTER"/> (11)：用户角色不是主播，该用户无法使用推流功能。请检查你的应用代码逻辑。</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_TRANSCODING_NO_MIX_STREAM"/> (13)：非转码推流情况下，调用了 <xref keyref="updateRtmpTranscoding"/> 或 <xref keyref="setLiveTranscoding"/> 方法更新转码属性。请检查你的应用代码逻辑。</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_NET_DOWN"/> (14)：主播的网络出错。</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_INVALID_PRIVILEGE"/><ph> (16)：你的项目没有使用声网推流服务的权限。</ph><ph props="hide">请参考<xref keyref="guide-cdn-streaming">旁路推流</xref>中的前提条件开启推流服务。</ph></li>
+                    <li><ph keyref="RTMP_STREAM_UNPUBLISH_ERROR_OK"/> (100)：推流已正常结束。当你调用 <xref keyref="stopRtmpStream"/> 结束推流后，SDK 会返回该值。</li>
                     </ul> </pd>
             </plentry>
             </parml> </section>
