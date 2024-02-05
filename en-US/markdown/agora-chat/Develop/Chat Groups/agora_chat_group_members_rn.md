@@ -230,7 +230,7 @@ ChatClient.getInstance()
 
 Only the chat group owner and admins can call `muteAllMembers` to mute all the chat group members. Once all the members are muted, only those in the chat group allow list can send messages in the chat group.
 
-Unlike muting a chat group member, this kind of mute has no expiration period, you need to call the `unMuteAllMembers` method to unmute all members in the chat group.
+Unlike muting a chat group member, this kind of mute does not expire automatically and you need to call the `unMuteAllMembers` method to unmute all members in the chat group.
 
 The following sample code shows how to mute all the chat group members:
 

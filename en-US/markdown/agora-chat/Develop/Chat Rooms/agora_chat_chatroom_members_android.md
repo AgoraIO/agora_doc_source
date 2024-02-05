@@ -91,7 +91,7 @@ Map<String, Long> memberMap =  ChatClient.getInstance().chatroomManager().fetchC
 
 The chat room owner or admin can mute or unmute all the chat room members using `muteAllMembers`. Once all the members are muted, only those in the chat room allow list can send messages in the chat room.
 
-Unlike muting a chat room member, this kind of mute has no expiration period, you need to call the `unmuteAllMembers` method to unmute all members in the chat room.
+Unlike muting a chat room member, this kind of mute does not expire automatically and you need to call the `unmuteAllMembers` method to unmute all members in the chat room.
 
 ```
 // The chat room owner or admin can call muteAllMembers to mute all the chat room members. Once all the members are muted, these members receive the onAllMemberMuteStateChanged callback.
