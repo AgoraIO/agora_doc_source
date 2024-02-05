@@ -8,6 +8,9 @@ SQLCipher is used to encrypt the database that stores local messages. The Agora 
 
 - `ChatManager.loadAllConversations`: Loads the conversation list on the local device.
 - `ChatManage.deleteConversation`: Deletes the specified conversation.
+- `ChatManager.deleteMessage`: Deletes a message sent or received in a local conversation.
+- `ChatManager.deleteAllMessages`: Deletes all messages sent and received in a local conversation.
+- `ChatManager.deleteMessagesWithTs`: Deletes messages sent and received in a certain period in a local conversation.
 - `ChatConversation.getUnreadMessageCount`: Retrieves the count of unread messages in the specified conversation.
 - `ChatManager.getUnreadMessageCount`: Retrieves the count of all unread messages.
 - `ChatManager.deleteRemoteConversation`: Deletes the conversation and historical messages from the server.
@@ -131,6 +134,31 @@ await ChatClient.getInstance.chatManager.deleteRemoteConversation(
   isDeleteMessage: deleteMessage,
 );
 ```
+
+### Delete all messages in a local conversation
+
+You can call `deleteAllMessages` to delete all messages sent and received in a local conversation:
+
+```dart
+// conversationId: The conversation ID, which is the user ID of the peer user in one-to-one chat, group ID in group chat, and chat room ID in room chat.
+    ChatConversation? conversation = await ChatClient.getInstance.chatManager
+        .getConversation(conversationId);
+    await conversation?.deleteAllMessages();
+```
+
+### Delete messages in a local conversation by time period
+
+You can call `deleteMessagesWithTs` to delete messages sent and received in a certain period in a local conversation.
+
+```dart
+// conversationId: The conversation ID, which is the user ID of the peer user in one-to-one chat, group ID in group chat, and chat room ID in room chat.
+// startTs: The starting UNIX timestamp for message deletion.
+// endTs: The end UNIX timestamp for message deletion.
+    ChatConversation? conversation = await ChatClient.getInstance.chatManager
+        .getConversation(conversationId);
+    await conversation?.deleteMessagesWithTs(startTs, endTs);
+```
+
 
 ### Search for messages using keywords
 

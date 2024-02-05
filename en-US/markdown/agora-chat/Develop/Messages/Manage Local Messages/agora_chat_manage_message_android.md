@@ -9,6 +9,9 @@ SQLCipher is used to encrypt the database that stores local messages. The Agora 
 - `getAllConversations`: Loads the conversation list on the local device.
 - `getAllMessages`/`loadMoreMsgFromDB`: Loads messages of a conversation.
 - `deleteConversation`: Deletes the specified conversation.
+- `removeMessage`: Deletes a message sent or received in a local conversation.
+- `clearAllMessages`：Deletes all messages sent and received in a local conversation
+- `removeMessages`: Deletes messages sent and received in a certain period in a local conversation.
 - `Conversation.getUnreadMsgCount`: Retrieves the count of unread messages in the specified conversation.
 - `getUnreadMessageCount`: Retrieves the count of all unread messages.
 - `deleteConversation`: Deletes the conversation from the server.
@@ -90,6 +93,32 @@ ChatClient.getInstance().chatManager().deleteConversation(conversationId, delete
 // Delete the specified message in the current conversaiton.
 Conversation conversation = ChatClient.getInstance().chatManager().getConversation(conversationId);
 conversation.removeMessage(deleteMsg.msgId);
+```
+
+### Delete all messages in a local conversation
+
+You can call `clearAllMessages` to delete all messages sent and received in a local conversation:
+
+```java
+// conversationId: The conversation ID, which is the user ID of the peer user in one-to-one chat, group ID in group chat, and chat room ID in room chat.
+Conversation conversation = ChatClient.getInstance().chatManager().getConversation(conversationId);
+if(conversation != null) {
+    conversation.clearAllMessages();
+}
+```
+
+### Delete messages in a local conversation by time period
+
+You can call `removeMessages` to delete messages sent and received in a certain period in a local conversation.
+
+```java
+// conversationId: The conversation ID, which is the user ID of the peer user in one-to-one chat, group ID in group chat, and chat room ID in room chat.
+// startTime: The starting UNIX timestamp for message deletion.
+// endTime: The end UNIX timestamp for message deletion.
+Conversation conversation = ChatClient.getInstance().chatManager().getConversation(conversationId);
+if(conversation != null) {
+    conversation.removeMessages(startTime, endTime);
+}
 ```
 
 ### Search for messages using keywords

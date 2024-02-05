@@ -7,7 +7,9 @@ This page introduces how to use the Agora Chat SDK to implement these functional
 SQLCipher is used to encrypt the database that stores local messages. The Agora Chat SDK uses `ChatManager` and `ChatConversation` to manage local messages. Followings are the core methods:
 
 - `ChatManager.getAllConversations`: Loads the conversation list on the local device.
-- `ChatManage.deleteConversation`: Deletes the specified conversation.
+- `ChatManager.deleteConversation`: Deletes the specified conversation.
+- `ChatManager.deleteAllMessages`: Deletes all messages sent and received in a local conversation.
+- `ChatManager.deleteMessagesWithTimestamp`: Deletes messages sent and received in a certain period in a local conversation.
 - `ChatConversation.getConversationUnreadCount`: Retrieves the count of unread messages in the specified conversation.
 - `ChatManager.getUnreadCount`: Retrieves the count of all unread messages.
 - `ChatManager.removeConversationFromServer`: Deletes the conversation and historical messages from the server.
@@ -172,6 +174,40 @@ ChatClient.getInstance()
   })
   .catch((reason) => {
     console.log("Removing conversations fails.", reason);
+  });
+```
+
+ ### Delete all messages in a local conversation
+
+You can call `deleteAllMessages` to delete all messages sent and received in a local conversation:
+
+```typescript
+// convId: The conversation ID.
+// convType: The conversation type, which is `Chat` for one-to-one chat, `Group` for group chat, and `Room` for room chat.
+ChatClient.getInstance()
+  .chatManager.deleteAllMessages(convId, convType)
+  .then(() => {
+    console.log("delete message success");
+  })
+  .catch((reason) => {
+    console.log("delete message fail.", reason);
+  });
+```
+
+### Delete messages in a local conversation by time period
+
+You can call `deleteMessagesWithTimestamp` to delete messages sent and received in a certain period in a local conversation.
+
+```typescript
+// startTs: The starting UNIX timestamp for message deletion.
+// endTs: The end UNIX timestamp for message deletion.
+ChatClient.getInstance()
+  .chatManager.deleteMessagesWithTimestamp({ startTs, endTs })
+  .then(() => {
+    console.log("delete message success");
+  })
+  .catch((reason) => {
+    console.log("delete message fail.", reason);
   });
 ```
 
