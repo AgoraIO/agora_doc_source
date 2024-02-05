@@ -126,4 +126,4 @@ The storage duration for historical messages varies according to your pricing pl
 | **Pro** | 90 |
 | **Enterprise** | 180 |
 
-<div class="alert info">Attachments in messages like images, voices, videos, and other files can be stored on the server for seven days by default. To raise the limit, you can contact <a href="mailto:support@agora.io">support@agora.io</a >.</div>
+<div class="alert info">Message attachments like images, voices, videos, and other files can be stored on the server for seven days by default. To raise the limit, you can contact <a href="mailto:support@agora.io">support@agora.io</a >.</div>
