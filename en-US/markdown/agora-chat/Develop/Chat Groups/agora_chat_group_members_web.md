@@ -167,7 +167,7 @@ conn.getGroupMutelist(option).then(res => console.log(res))
 
 The chat group owner and chat group admins can mute or unmute all the chat group members. Once all the members are muted, only those in the chat group allow list can send messages in the chat group.
 
-Unlike muting a chat group member, this kind of mute does not expire automatically and you need to call the `enableSendGroupMsg` method to unmute all members in the chat group.
+Unlike muting a chat group member, this kind of mute does not expire automatically after a period and you need to call the `enableSendGroupMsg` method to unmute all members in the chat group.
 
 Refer to the following sample code to mute and unmute all the chat group members:
 
