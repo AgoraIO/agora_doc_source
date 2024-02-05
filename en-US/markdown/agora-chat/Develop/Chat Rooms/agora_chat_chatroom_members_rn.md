@@ -285,12 +285,12 @@ The following code sample shows how to transfer the chat room ownership:
 
 ```typescript
 ChatClient.getInstance()
-  .roomManager.unMuteAllChatRoomMembers(roomId)
-  .then((members) => {
-    console.log("success.", members);
+  .roomManager.changeOwner(roomId, newOwner)
+  .then(() => {
+    console.log("change owner success.");
   })
   .catch((reason) => {
-    console.log("fail.", reason);
+    console.log("change owner fail.", reason);
   });
 ```
 
