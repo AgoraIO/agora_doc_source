@@ -232,22 +232,22 @@
 @property(assign, nonatomic) NSInteger videoFramerate;
 @property(assign, nonatomic) BOOL lowLatency;
 @property(assign, nonatomic) NSInteger videoGop;
-@property(assign, nonatomic) AgoraVideoCodecProfileType videoCodecProfile;
-@property(assign, nonatomic) AgoraVideoCodecTypeForStream videoCodecType;
-@property(copy, nonatomic) NSArray&lt;AgoraLiveTranscodingUser *&gt; *_Nullable transcodingUsers;
+@property(assign, nonatomic) CmviotVideoCodecProfileType videoCodecProfile;
+@property(assign, nonatomic) CmviotVideoCodecTypeForStream videoCodecType;
+@property(copy, nonatomic) NSArray&lt;CmviotLiveTranscodingUser *&gt; *_Nullable transcodingUsers;
 @property(copy, nonatomic) NSString *_Nullable transcodingExtraInfo;
-@property (copy, nonatomic) NSArray&lt;AgoraImage *&gt; *_Nullable watermarkArray;
-@property (copy, nonatomic) NSArray&lt;AgoraImage *&gt; *_Nullable backgroundImageArray;
+@property (copy, nonatomic) NSArray&lt;CmviotImage *&gt; *_Nullable watermarkArray;
+@property (copy, nonatomic) NSArray&lt;CmviotImage *&gt; *_Nullable backgroundImageArray;
 @property(strong, nonatomic) COLOR_CLASS *_Nullable backgroundColor;
-@property(assign, nonatomic) AgoraAudioSampleRateType audioSampleRate;
+@property(assign, nonatomic) CmviotAudioSampleRateType audioSampleRate;
 @property(assign, nonatomic) NSInteger audioBitrate;
 @property(assign, nonatomic) NSInteger audioChannels;
-@property(assign, nonatomic) AgoraAudioCodecProfileType audioCodecProfile;
-+ (AgoraLiveTranscoding *_Nonnull)defaultTranscoding;
-- (int)addUser:(AgoraLiveTranscodingUser *_Nonnull)user;
+@property(assign, nonatomic) CmviotAudioCodecProfileType audioCodecProfile;
++ (CmviotLiveTranscoding *_Nonnull)defaultTranscoding;
+- (int)addUser:(CmviotLiveTranscodingUser *_Nonnull)user;
 - (int)removeUser:(NSUInteger)uid;
 - (void)setAdvancedFeatures:(NSString* _Nonnull)featureName opened:(BOOL)opened;
-- (NSArray&lt;AgoraLiveStreamAdvancedFeature*&gt;* _Nullable)getAdvancedFeatures;
+- (NSArray&lt;CmviotLiveStreamAdvancedFeature*&gt;* _Nullable)getAdvancedFeatures;
 @end</codeblock>
       <codeblock props="cpp unreal bp" outputclass="language-cpp">struct LiveTranscoding {
   int width;
