@@ -53,7 +53,7 @@ int JoinChannel(FString token, FString channelId, int64 uid, const FChannelMedia
             <li>本地会触发 <xref keyref="onJoinChannelSuccess" /> 和 <xref keyref="onConnectionStateChanged" /> 回调。</li>
             <li>通信场景下的用户和直播场景下的主播加入频道后，远端会触发 <xref keyref="onUserJoined" /> 回调。</li>
             </ul></p>
-            <p id="desc3">在网络状况不理想的情况下，客户端可能会与声网服务器失去连接；SDK 会自动尝试重连，重连成功后，本地会触发 <xref keyref="onRejoinChannelSuccess" /> 回调。</p>
+            <p id="desc3">在网络状况不理想的情况下，客户端可能会与服务器失去连接；SDK 会自动尝试重连，重连成功后，本地会触发 <xref keyref="onRejoinChannelSuccess" /> 回调。</p>
             <p props="native unreal unity cs">相比 <xref keyref="joinChannel1" />，该方法增加了 <parmname>options</parmname> 参数，用于配置用户加入频道时是否自动订阅频道内所有远端音视频流。默认情况下，用户订阅频道内所有其他用户的音频流和视频流，因此会产生用量并影响计费。如果想取消订阅，可以通过设置 <parmname>options</parmname> 参数或相应的 <apiname>mute</apiname> 方法实现。</p>
             <note id="note_cyz_w1l_mqb" type="attention">
             <ul id="ul_sz1_y1l_mqb">
@@ -66,7 +66,7 @@ int JoinChannel(FString token, FString channelId, int64 uid, const FChannelMedia
             <plentry id="token">
                 <pt>token</pt>
                 <pd>在服务端生成的用于鉴权的动态密钥。详见<xref keyref="guide-token"/>。
-                <note type="note">如果你需要同时加入多个频道或在频道间频繁切换，声网推荐你使用通配 Token 以避免每加入一个新的频道都需向服务端申请一个新的 Token，详见 <xref keyref="wildcard-token"/>。</note></pd>
+                <note type="note">如果你需要同时加入多个频道或在频道间频繁切换，建议你使用通配 Token 以避免每加入一个新的频道都需向服务端申请一个新的 Token，详见 <xref keyref="wildcard-token"/>。</note></pd>
             </plentry>
             <plentry id="channelID">
                 <pt>channelId</pt>
