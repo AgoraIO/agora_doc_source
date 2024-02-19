@@ -15,7 +15,7 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int startScreenCapture(ScreenCaptureParameters screenCaptureParameters);
 </codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (int)startScreenCapture:(AgoraScreenCaptureParameters2* _Nullable)parameters NS_SWIFT_NAME(startScreenCapture(_:));</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (int)startScreenCapture:(CmviotScreenCaptureParameters2* _Nullable)parameters NS_SWIFT_NAME(startScreenCapture(_:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">#if defined(__ANDROID__) || (defined(__APPLE__) &amp;&amp; TARGET_OS_IOS)
                 virtual int startScreenCapture(const ScreenCaptureParameters2&amp; captureParams) = 0;
               #endif</codeblock>
@@ -44,7 +44,7 @@ int StartScreenCapture(const FScreenCaptureParameters2&amp; captureParams);</cod
             <li props="cpp unreal bp ios unity rn flutter cs">屏幕共享流的计费以 <apiname keyref="ScreenVideoParameters"/> 中的 <parmname>dimensions</parmname> 值为准：当你未传值时，以 1280 × 720 计费；当你传值时，以你传入的值计费。详细的计费规则请参考<xref keyref="guide-bill"/>。</li>
             <li props="cpp unreal bp ios unity rn flutter cs">在 iOS 平台上，如果你使用音频自采集而非 SDK 采集音频，为避免应用退后台后屏幕共享停止，建议你对应用添加保活处理逻辑。</li>
             <li props="cpp unreal bp ios unity rn flutter cs">在 iOS 平台上，该功能对设备性能要求较高，建议你在 iPhone X 及之后机型上使用。</li>
-            <li props="cpp unreal bp ios unity rn flutter cs">在 iOS 平台上，该方法依赖于屏幕共享动态库 <codeph>AgoraReplayKitExtension.xcframework</codeph>，如果删除该动态库会导致无法正常开启屏幕共享。</li>
+            <li props="cpp unreal bp ios unity rn flutter cs">在 iOS 平台上，该方法依赖于屏幕共享动态库 <codeph>Cmviot_v2v_rtc_ReplayKitExtension_ios.xcframework</codeph>，如果删除该动态库会导致无法正常开启屏幕共享。</li>
             <li props="cpp unreal bp android unity rn flutter cs">在 Android 平台上，请确保用户已授予 app 屏幕采集权限。</li>
             <li props="cpp unreal bp android">请确保 Android API 级别不低于 21，否则 SDK 会报告错误码 <codeph><apiname keyref="ERR_SCREEN_CAPTURE_PERMISSION_DENIED"/>(16)</codeph> 和 <codeph><apiname keyref="ERR_SCREEN_CAPTURE_SYSTEM_NOT_SUPPORTED"/>(2)</codeph>。 </li>
             <li props="cpp unreal bp android">如需在屏幕共享时采集系统音频，你还需确保 Android API 级别不低于 29，否则 SDK 会报告错误码 <codeph><apiname keyref="ERR_SCREEN_CAPTURE_SYSTEM_AUDIO_NOT_SUPPORTED"/>(3)</codeph>。</li>

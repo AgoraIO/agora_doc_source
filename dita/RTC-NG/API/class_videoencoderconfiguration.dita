@@ -202,28 +202,28 @@
         ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY);
   }
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoEncoderConfiguration : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface CmviotVideoEncoderConfiguration : NSObject
 @property(assign, nonatomic) CGSize dimensions;
-@property(assign, nonatomic) AgoraVideoCodecType codecType;
-@property(assign, nonatomic) AgoraVideoFrameRate frameRate;
+@property(assign, nonatomic) CmviotVideoCodecType codecType;
+@property(assign, nonatomic) CmviotVideoFrameRate frameRate;
 @property(assign, nonatomic) NSInteger bitrate;
 @property(assign, nonatomic) NSInteger minBitrate;
-@property(assign, nonatomic) AgoraVideoOutputOrientationMode orientationMode;
-@property(assign, nonatomic) AgoraVideoMirrorMode mirrorMode;
-@property (assign, nonatomic) AgoraDegradationPreference degradationPreference;
+@property(assign, nonatomic) CmviotVideoOutputOrientationMode orientationMode;
+@property(assign, nonatomic) CmviotVideoMirrorMode mirrorMode;
+@property (assign, nonatomic) CmviotDegradationPreference degradationPreference;
 
 - (instancetype _Nonnull)initWithSize:(CGSize)size
-                            frameRate:(AgoraVideoFrameRate)frameRate
+                            frameRate:(CmviotVideoFrameRate)frameRate
                               bitrate:(NSInteger)bitrate
-                      orientationMode:(AgoraVideoOutputOrientationMode)orientationMode
-                           mirrorMode:(AgoraVideoMirrorMode)mirrorMode;
+                      orientationMode:(CmviotVideoOutputOrientationMode)orientationMode
+                           mirrorMode:(CmviotVideoMirrorMode)mirrorMode;
 
 - (instancetype _Nonnull)initWithWidth:(NSInteger)width
                                 height:(NSInteger)height
-                             frameRate:(AgoraVideoFrameRate)frameRate
+                             frameRate:(CmviotVideoFrameRate)frameRate
                                bitrate:(NSInteger)bitrate
-                       orientationMode:(AgoraVideoOutputOrientationMode)orientationMode
-                            mirrorMode:(AgoraVideoMirrorMode)mirrorMode;
+                       orientationMode:(CmviotVideoOutputOrientationMode)orientationMode
+                            mirrorMode:(CmviotVideoMirrorMode)mirrorMode;
 @end</codeblock>
             <codeblock props="cpp unreal bp" outputclass="language-cpp">struct VideoEncoderConfiguration {
   VIDEO_CODEC_TYPE codecType;

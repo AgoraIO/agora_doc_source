@@ -93,17 +93,17 @@
     return mLogConfig;
   }
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcEngineConfig: NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface CmviotRtcEngineConfig: NSObject
 
 @property (copy, nonatomic) NSString * _Nullable appId;
-@property (assign, nonatomic) AgoraChannelProfile channelProfile;
-@property (assign, nonatomic) AgoraAudioScenario audioScenario;
-@property (assign, nonatomic) AgoraAreaCodeType areaCode;
-@property (strong, nonatomic) AgoraLogConfig * _Nullable logConfig;
+@property (assign, nonatomic) CmviotChannelProfile channelProfile;
+@property (assign, nonatomic) CmviotAudioScenario audioScenario;
+@property (assign, nonatomic) CmviotAreaCodeType areaCode;
+@property (strong, nonatomic) CmviotLogConfig * _Nullable logConfig;
 @property (assign, nonatomic) BOOL domainLimit;
-@property (assign, nonatomic) BOOL autoRegisterAgoraExtensions;
-@property (copy, nonatomic) NSArray&lt;id&lt;AgoraMediaFilterExtensionDelegate&gt;&gt;* _Nullable mediaFilterExtensions;
-@property (weak, nonatomic) id&lt;AgoraMediaFilterEventDelegate&gt; _Nullable eventDelegate;
+@property (assign, nonatomic) BOOL autoRegisterCmviotExtensions;
+@property (copy, nonatomic) NSArray&lt;id&lt;CmviotMediaFilterExtensionDelegate&gt;&gt;* _Nullable mediaFilterExtensions;
+@property (weak, nonatomic) id&lt;CmviotMediaFilterEventDelegate&gt; _Nullable eventDelegate;
 @end</codeblock>
             <codeblock props="cpp unreal bp" outputclass="language-cpp">struct RtcEngineContext {
   IRtcEngineEventHandler* eventHandler;
@@ -311,7 +311,7 @@ class RtcEngineContext {
             </plentry>
             <plentry>
               <pt props="android">mAutoRegisterAgoraExtensions</pt>
-              <pt props="cpp unreal bp ios mac electron unity cs rn flutter">autoRegisterAgoraExtensions</pt>
+              <pt props="cpp unreal bp ios mac electron unity cs rn flutter">autoRegisterCmviotExtensions</pt>
               <pd>
                   <p>是否在初始化 <xref keyref="IRtcEngine"/> 时自动注册声网插件：
                   <ul>
