@@ -128,7 +128,11 @@
                 <pt><ph keyref="ERR_TOKEN_EXPIRED"/></pt>
                 <pd>109：当前使用的 Token 过期，不再有效。请在服务端申请生成新的 Token，并调用 <xref keyref="renewToken"/> 更新 Token。
                     <dl outputclass="deprecated">
-                                        </dl>
+                    <dlentry>
+                        <dt>弃用：</dt>
+                        <dd>该枚举已废弃。请改用 <xref keyref="onConnectionStateChanged"/> 回调中的 <apiname keyref="CONNECTION_CHANGED_TOKEN_EXPIRED"/>(9)。</dd>
+                    </dlentry>
+                    </dl>
                 </pd>
             </plentry>
             <plentry>
@@ -139,7 +143,11 @@
                     <li>生成 Token 时填入的 <codeph>uid</codeph> 字段，和用户加入频道时填入的 <parmname>uid</parmname> 不匹配。</li>
                     </ul>
                     <dl>
-                                        </dl>
+                    <dlentry>
+                        <dt>弃用：</dt>
+                        <dd>该枚举已废弃。请改用 <xref keyref="onConnectionStateChanged"/> 回调中的 <apiname keyref="CONNECTION_CHANGED_INVALID_TOKEN"/>(8)。</dd>
+                    </dlentry>
+                    </dl>
                 </pd>
             </plentry>
             <plentry>
