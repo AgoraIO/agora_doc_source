@@ -116,23 +116,20 @@ This release has optimized the implementation of some functions, involving renam
 
    This release provides users with more flexible in-ear monitoring audio adjustment options, supporting the ability to set the in-ear monitoring volume to four times the original volume by calling [setInEarMonitoringVolume](API/api_irtcengine_setinearmonitoringvolume.html).
 
-3. **Dual-stream mode optimization**
 
-   This release optimizes the video dual-stream mode. In the low-quality video stream adaptive mode (`AgoraAutoSimulcastStream`), when the receiver requests a low-quality video stream by calling [setRemoteVideoStream](API/api_irtcengine_setremotevideostreamtype.html) or [setRemoteVideoStreamEx](API/api_irtcengineex_setremotevideostreamtypeex.html), the sender now processes requests from all users, expanding beyond the previous restriction to broadcasters only. This change ensures that the audience requests for low-quality video streams are implemented, thus improving the flexibility and adaptability of the dual-stream mode.
-
-4. **Spatial audio effects usability improvement**
+3. **Spatial audio effects usability improvement**
 
    - This release optimizes the design of the [setZones](API/api_ibasespatialaudioengine_setzones.html) method, supporting the ability to set the `zones` parameter to `NULL`, indicating the clearing of all echo cancellation zones.
    - As of this release, it is no longer necessary to unsubscribe from the audio streams of all remote users within the channel before calling methods in [AgoraLocalSpatialAudioKit](API/class_ilocalspatialaudioengine.html).
    - This release introduces the [updateSelfTransform](API/api_ilocalspatialaudioengine_updateselftransform.html) method, designed to pass position vectors for direct rendering in iOS native frameworks such as SceneKit or RealityKit.
 
-5. **Local audio state changed callback optimization**
+4. **Local audio state changed callback optimization**
 
    This release introduces the following enumerations in [AgoraAudioLocalReason](API/enum_localaudiostreamreason.html), enabling users to obtain more details about local audio errors through the [localAudioStateChanged](API/callback_irtcengineeventhandler_onlocalaudiostatechanged.html) callback:
 
    - `AgoraAudioLocalReasonInterrupted`: The local audio capture is interrupted by system calls, Siri, or alarm clocks. Remind your users to end the phone call, Siri, or alarm clock if the local audio capture is required.
 
-6. **Optimization of video pre-processing methods**
+5. **Optimization of video pre-processing methods**
 
    This release adds overloaded methods with the `souceType` parameter for the following 5 video preprocessing methods, which support specifying the media source type for applying video preprocessing effects by passing in `sourceType` (for example, applying on a custom video capture media source):
 
@@ -142,7 +139,7 @@ This release has optimized the implementation of some functions, involving renam
    - [setColorEnhanceOptions [2/2\]](API/api_irtcengine_setcolorenhanceoptions2.html)
    - [enableVirtualBackground [2/2\]](API/api_irtcengine_enablevirtualbackground2.html)
 
-7. **Other Improvements**
+6. **Other Improvements**
 
    This release also includes the following improvements:
 

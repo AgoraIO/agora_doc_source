@@ -93,23 +93,20 @@ This release has optimized the implementation of some functions, involving renam
 
    This release provides users with more flexible in-ear monitoring audio adjustment options, supporting the ability to set the in-ear monitoring volume to four times the original volume by calling [setInEarMonitoringVolume](API/api_irtcengine_setinearmonitoringvolume.html).
 
-3. **Dual-stream mode optimization**
 
-   This release optimizes the video dual-stream mode. In the low-quality video stream adaptive mode (`AgoraAutoSimulcastStream`), when the receiver requests a low-quality video stream by calling [setRemoteVideoStream](API/api_irtcengine_setremotevideostreamtype.html) or [setRemoteVideoStreamEx](API/api_irtcengineex_setremotevideostreamtypeex.html), the sender now processes requests from all users, expanding beyond the previous restriction to broadcasters only. This change ensures that the audience requests for low-quality video streams are implemented, thus improving the flexibility and adaptability of the dual-stream mode.
-
-4. **Spatial audio effects usability improvement**
+3. **Spatial audio effects usability improvement**
 
    - This release optimizes the design of the [setZones](API/api_ibasespatialaudioengine_setzones.html) method, supporting the ability to set the `zones` parameter to `NULL`, indicating the clearing of all echo cancellation zones.
    - As of this release, it is no longer necessary to unsubscribe from the audio streams of all remote users within the channel before calling methods in [AgoraLocalSpatialAudioKit](API/class_ilocalspatialaudioengine.html).
 
-5. **Local audio state changed callback optimization**
+4. **Local audio state changed callback optimization**
 
    This release introduces the following enumerations in [AgoraAudioLocalReason](API/enum_localaudiostreamreason.html), enabling users to obtain more details about local audio errors through the [localAudioStateChanged](API/callback_irtcengineeventhandler_onlocalaudiostatechanged.html) callback:
 
    - `AgoraAudioLocalReasonNoRecordingDevice`: No recording device is available. Remind your users to check whether the microphone is connected to the device properly in the control plane of the device or if the microphone is working properly.
    - `AgoraAudioLocalReasonNoPlayoutDevice`: No playback device is available. Remind your users to check whether the speaker is connected to the device properly in the control plane of the device or if the speaker is working properly.
 
-6. **Other Improvements**
+5. **Other Improvements**
 
    This release also includes the following improvements:
 
