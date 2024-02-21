@@ -117,16 +117,12 @@ This release has optimized the implementation of some functions, involving renam
 
    This release provides users with more flexible in-ear monitoring audio adjustment options, supporting the ability to set the in-ear monitoring volume to four times the original volume by calling [`setInEarMonitoringVolume`](API/api_irtcengine_setinearmonitoringvolume.html).
 
-3. **Dual-stream mode optimization**
-
-   This release optimizes the video dual-stream mode. In the low-quality video stream adaptive mode (`autoSimulcastStream`), when the receiver requests a low-quality video stream by calling [`setRemoteVideoStreamType`](API/api_irtcengine_setremotevideostreamtype.html) or [`setRemoteVideoStreamTypeEx`](API/api_irtcengineex_setremotevideostreamtypeex.html), the sender now processes requests from all users, expanding beyond the previous restriction to broadcasters only. This change ensures that the audience requests for low-quality video streams are implemented, thus improving the flexibility and adaptability of the dual-stream mode.
-
-4. **Spatial audio effects usability improvement**
+3. **Spatial audio effects usability improvement**
 
    - This release optimizes the design of the [`setZones`](API/api_ibasespatialaudioengine_setzones.html) method, supporting the ability to set the `zones` parameter to `NULL`, indicating the clearing of all echo cancellation zones.
    - As of this release, it is no longer necessary to unsubscribe from the audio streams of all remote users within the channel before calling the [`LocalSpatialAudioEngine`](API/class_ilocalspatialaudioengine.html) method.
 
-5. **Other Improvements**
+4. **Other Improvements**
 
    This release also includes the following improvements:
 
