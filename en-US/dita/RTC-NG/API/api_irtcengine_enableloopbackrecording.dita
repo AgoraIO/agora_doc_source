@@ -39,13 +39,14 @@
             <li props="cpp unreal bp unity flutter">This method applies to the macOS and Windows only.</li>
             <li props="cpp unreal bp mac unity electron flutter">macOS does not support loopback audio capture of the default sound card. If you need to use this function, use a virtual sound card and pass its name to the <parmname>deviceName</parmname> parameter. Agora recommends using AgoraALD as the virtual sound card for audio capturing.</li>
             <li>You can call this method either before or after joining a channel.</li>
+            <li>If you call the <xref keyref="disableAudio"/> method to disable the audio module, audio capturing will be disabled as well. If you need to enable audio capturing, call the <xref keyref="enableAudio"/> method to enable the audio module and then call the <apiname keyref="enableLoopbackRecording"/> method.</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>enabled</pt>
-                <pd>Whether to enable loopback audio capturing.<ul id="ul_qjq_swq_t4b">
+                <pd>Sets whether to enable loopback audio capturing.<ul id="ul_qjq_swq_t4b">
                     <li><codeph><ph keyref="true"/></codeph>: Enable loopback audio capturing.</li>
                     <li><codeph><ph keyref="false"/></codeph>: (Default) Disable loopback audio capturing.</li>
                     </ul></pd>
