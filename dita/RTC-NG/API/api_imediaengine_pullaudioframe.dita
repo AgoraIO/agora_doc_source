@@ -25,20 +25,17 @@
         </section>
         <section id="detailed_desc">
             <title>详情</title>
-            <p>使用该方法前，你需要调用 <xref keyref="setExternalAudioSink"/> 通知 App 开启并设置外部渲染。</p>
+            <p>使用该方法前，你需要调用 <xref keyref="setExternalAudioSink"/><codeph>(<parmname>enabled</parmname>: <ph keyref="true"/>)</codeph> 通知 App 开启并设置外部渲染。</p>
             <p>调用该方法后，App 会采取主动拉取的方式获取远端已解码和混音后的音频数据，用于音频播放。</p>
             <note type="attention">
             <ul>
-            <li>该方法仅支持拉取自采集的数据。如果你需要拉取 SDK 采集的数据，请不要调用该方法。</li>
             <li>该方法需要在加入频道后调用。</li>
-            <li>开启外部音频渲染后，App 将无法从 <xref keyref="onPlaybackAudioFrame"/> 回调中获得数据。</li>
-            <li>该方法和 <apiname keyref="onPlaybackAudioFrame"/> 回调相比，区别在于：
-
-                
+            <li>该方法和 <xref keyref="onPlaybackAudioFrame"/> 回调均可用于获取远端混音后的音频数据。需要注意的是：在调用 <apiname keyref="setExternalAudioSink"/> 开启外部音频渲染后，App 将无法从 <apiname keyref="onPlaybackAudioFrame"/> 回调中获得数据，因此，请根据实际的业务需求在该方法和 <apiname keyref="onPlaybackAudioFrame"/> 回调之间进行选择。二者的处理机制不同，具体区别如下：
                 <ul>
-                <li>SDK 通过 <apiname keyref="onPlaybackAudioFrame"/> 回调将音频数据传输给 App。如果 App 处理延时，可能会导致音频播放抖动。</li>
                 <li>调用该方法后 App 会主动拉取音频数据。通过设置音频数据，SDK 可以调整缓存，帮助 App 处理延时，从而有效避免音频播放抖动。</li>
+                <li>SDK 通过 <apiname keyref="onPlaybackAudioFrame"/> 回调将音频数据传输给 App。如果 App 处理延时，可能会导致音频播放抖动。</li>
                 </ul></li>
+            <li>该方法仅用于拉取远端混音后的音频数据，如需获取采集、播放等不同音频处理阶段的音频数据，可以通过调用 <xref keyref="registerAudioFrameObserver"/> 注册相应的回调。</li>
             </ul> </note> </section>
         <section id="parameters" props="native unreal bp unity flutter cs">
             <title>参数</title>

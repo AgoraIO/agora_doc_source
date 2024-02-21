@@ -1,35 +1,245 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic id="release-notes">
-    <title>v4.2.3</title>
+<topic id="release_notes">
+    <title>v4.3.0</title>
     <body>
-        <p>v4.2.3 was released on September xx, 2023.</p>
+        <p>v4.3.0 was released on xx xx, 2024.</p>
     </body>
     <topic id="level2">
         <title/>
+        <topic id="compatibility">
+            <title>Compatibility changes</title>
+            <body>
+                <p>This release has optimized the implementation of some functions, involving renaming or deletion of some APIs. To ensure the normal operation of the project, you need to update the code in the app after upgrading to this release.</p>
+                <ol>
+                    <li props="android"><ph><b>Raw video data callback behaviour change (Android)</b></ph><p>As of this release, the callback processing related to raw video data changes from the previous fixed single thread to a random thread, meaning that callback processing can occur on different threads. Due to limitations in the Android system, OpenGL must be tightly bound to a specific thread. Therefore, Agora suggests that you make one of the following modifications to your code:<ul>
+                        <li>(Recommended) Use the <codeph>TextureBufferHelper</codeph> class to create a dedicated OpenGL thread for video pre-processing or post-processing (for example, image enhancement, stickers, etc.).</li>
+                        <li>Use the <codeph>eglMakeCurrent</codeph> method to associate the necessary OpenGL context for each video frame with the current thread.</li>
+                        </ul></p>
+                    </li>
+                    <li><ph><b>Renaming parameters in callbacks</b></ph><p>In order to make the parameters in some callbacks and the naming of enumerations in enumeration classes easier to understand, the following modifications have been made in this release. Please modify the parameter settings in the callbacks after upgrading to this release.<table frame="all" rowsep="1" colsep="1">
+                        <tgroup cols="3">
+                            <colspec colname="c1" colnum="1" colwidth="1*"/>
+                            <colspec colname="c2" colnum="2" colwidth="1*"/>
+                            <colspec colname="c3" colnum="3" colwidth="1*"/>
+                            <thead>
+                                <row>
+                                    <entry>Callback</entry>
+                                    <entry>Original parameter name</entry>
+                                    <entry>Existing parameter name</entry>
+                                </row>
+                            </thead>
+                            <tbody>
+                                <row>
+                                    <entry><codeph><xref keyref="onLocalAudioStateChanged"/></codeph></entry>
+                                    <entry><codeph>error</codeph></entry>
+                                    <entry><codeph>reason</codeph></entry>
+                                </row>
+                                <row>
+                                    <entry><codeph><xref keyref="onLocalAudioStateChanged"/></codeph></entry>
+                                    <entry><codeph>error</codeph></entry>
+                                    <entry><codeph>reason</codeph></entry>
+                                </row>
+                                <row>
+                                    <entry><codeph><xref keyref="onDirectCdnStreamingStateChanged"/></codeph></entry>
+                                    <entry><codeph>error</codeph></entry>
+                                    <entry><codeph>reason</codeph></entry>
+                                </row>
+                                <row props="android ios unity flutter rn">
+                                    <entry><xref keyref="onMusicChartsResult"/></entry>
+                                    <entry><parmname>errorCode</parmname></entry>
+                                    <entry><parmname>reason</parmname></entry>
+                                </row>
+                                <row props="android ios unity flutter rn">
+                                    <entry><xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/></entry>
+                                    <entry>
+                                        <ul>
+                                            <li><parmname>status</parmname></li>
+                                            <li><parmname>state</parmname></li>
+                                        </ul>
+                                    </entry>
+                                    <entry>
+                                        <ul>
+                                            <li><parmname>errorCode</parmname></li>
+                                            <li><parmname>reason</parmname></li>
+                                        </ul>
+                                    </entry>
+                                </row>
+                                <row props="android ios unity flutter rn">
+                                    <entry><xref keyref="onMusicCollectionResult"/></entry>
+                                    <entry><parmname>errorCode</parmname></entry>
+                                    <entry><parmname>reason</parmname></entry>
+                                </row>
+                                <row props="android ios unity flutter rn">
+                                    <entry><xref keyref="onLyricResult"/></entry>
+                                    <entry><parmname>errorCode</parmname></entry>
+                                    <entry><parmname>reason</parmname></entry>
+                                </row>
+                                <row props="android ios unity flutter rn">
+                                    <entry><xref keyref="onSongSimpleInfoResult"/></entry>
+                                    <entry><parmname>errorCode</parmname></entry>
+                                    <entry><parmname>reason</parmname></entry>
+                                </row>
+                                <row props="apple android">
+                                    <entry><codeph><xref keyref="onPlayerSourceStateChanged"/></codeph></entry>
+                                    <entry><codeph>error</codeph></entry>
+                                    <entry><codeph>reason</codeph></entry>
+                                </row>
+                                <row props="cpp">
+                                    <entry><codeph><xref keyref="onPlayerSourceStateChanged"/></codeph></entry>
+                                    <entry><codeph>ec</codeph></entry>
+                                    <entry><codeph>reason</codeph></entry>
+                                </row>
+                                <row>
+                                    <entry><codeph><xref keyref="onRtmpStreamingStateChanged"/></codeph></entry>
+                                    <entry><codeph>errCode</codeph></entry>
+                                    <entry><codeph>reason</codeph></entry>
+                                </row>
+                            </tbody>
+                        </tgroup>
+                        </table><table frame="all" rowsep="1" colsep="1">
+                        <tgroup cols="2">
+                            <colspec colname="c1" colnum="1" colwidth="1*"/>
+                            <colspec colname="c2" colnum="2" colwidth="1*"/>
+                            <thead>
+                                <row>
+                                    <entry>Original enumeration class</entry>
+                                    <entry>Current enumeration class</entry>
+                                </row>
+                            </thead>
+                            <tbody>
+                                <row>
+                                    <entry><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON"/></codeph></entry>
+                                    <entry><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON"/></codeph></entry>
+                                </row>
+                                <row>
+                                    <entry><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON"/></codeph></entry>
+                                    <entry><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON"/></codeph></entry>
+                                </row>
+                                <row>
+                                    <entry><codeph><apiname keyref="DIRECT_CDN_STREAMING_REASON"/></codeph></entry>
+                                    <entry><codeph><apiname keyref="DIRECT_CDN_STREAMING_REASON"/></codeph></entry>
+                                </row>
+                                <row>
+                                    <entry><codeph><apiname keyref="MEDIA_PLAYER_REASON"/></codeph></entry>
+                                    <entry><codeph><apiname keyref="MEDIA_PLAYER_REASON"/></codeph></entry>
+                                </row>
+                                <row>
+                                    <entry><codeph><apiname keyref="RTMP_STREAM_PUBLISH_REASON"/></codeph></entry>
+                                    <entry><codeph><apiname keyref="RTMP_STREAM_PUBLISH_REASON"/></codeph></entry>
+                                </row>
+                                <row props="android ios unity flutter rn">
+                                    <entry><apiname keyref="MusicContentCenterStatusCode"/></entry>
+                                    <entry><apiname keyref="MusicContentCenterStateReason"/></entry>
+                                </row>
+                            </tbody>
+                        </tgroup>
+                        </table>
+                        <note>For specific renaming of enumerations, please refer to <xref href="#apichange"/>.</note></p>
+                    </li>
+                    <li><ph><b>Channel media relay</b></ph><p>To improve interface usability, this release removes some methods and callbacks for channel meda relay. Use the alternative options listed in the table below:<table frame="all" rowsep="1" colsep="1" id="table_jvq_ltp_wzb">
+                        <tgroup cols="2">
+                            <colspec colname="c1" colnum="1" colwidth="1*"/>
+                            <colspec colname="c2" colnum="2" colwidth="1*"/>
+                            <thead>
+                                <row>
+                                    <entry>Deleted methods and callbacks</entry>
+                                    <entry>Alternative methods and callbacks</entry>
+                                </row>
+                            </thead>
+                            <tbody>
+                                <row>
+                                    <entry>
+                                        <ul id="ul_nwr_4tp_wzb">
+                                            <li><codeph><apiname keyref="startChannelMediaRelay"/></codeph></li>
+                                            <li><codeph><apiname keyref="updateChannelMediaRelay"/></codeph></li>
+                                        </ul>
+                                    </entry>
+                                    <entry><codeph><apiname keyref="startOrUpdateChannelMediaRelay"/></codeph></entry>
+                                </row>
+                                <row>
+                                    <entry>
+                                        <ul id="ul_kmq_ptp_wzb">
+                                            <li><codeph><apiname keyref="startChannelMediaRelayEx"/></codeph></li>
+                                            <li><codeph><apiname keyref="updateChannelMediaRelayEx"/></codeph></li>
+                                        </ul>
+                                    </entry>
+                                    <entry><codeph><apiname keyref="startOrUpdateChannelMediaRelayEx"/></codeph></entry>
+                                </row>
+                                <row>
+                                    <entry><codeph><apiname keyref="onChannelMediaRelayEvent"/></codeph></entry>
+                                    <entry><codeph><apiname keyref="onChannelMediaRelayStateChanged"/></codeph></entry>
+                                </row>
+                            </tbody>
+                        </tgroup>
+                        </table></p>
+                    </li>
+                    <li props="android ios"><ph><b>Custom video source</b></ph><p props="android">Since this release, <codeph>pushExternalVideoFrameEx</codeph>[1/2] and <codeph>pushExternalVideoFrameEx</codeph>[2/2] are renamed to <xref keyref="pushVideoFrame"/> and <xref keyref="pushVideoFrame2"/>, and are migrated from <codeph><apiname keyref="IRtcEngineEx"/></codeph> to <codeph><apiname keyref="IRtcEngine"/></codeph>.</p>
+                        <p props="ios">Since this release, <codeph>pushExternalVideoFrame</codeph>[1/2] is migrated from <codeph><apiname keyref="IRtcEngineEx"/></codeph> to <codeph><apiname keyref="IRtcEngine"/></codeph>.</p>
+                    </li>
+                    <li props="android ios flutter unity rn"><ph><b>Audio route</b></ph><p props="android">Since this release, <codeph>RouteBluetooth</codeph> is renamed to <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph>, representing a Bluetooth device using the HFP protocol. The <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_A2DP"/></codeph>(10) is added to represent a Bluetooth device using the A2DP protocol.</p>
+                        <p props="unity">Since this release, <codeph>ROUTE_BLUETOOTH</codeph> in <xref keyref="AudioRoute"/> is renamed to <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph>, representing a Bluetooth device using the HFP protocol. <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_A2DP"/></codeph>(10) is added to represent a Bluetooth device using the A2DP protocol.</p>
+                        <p props="ios">Starting with this release, <codeph>AgoraAudioOutputRoutingBluetooth</codeph> in <xref keyref="AudioRoute"/> is renamed to <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph>, representing a Bluetooth device using the HFP protocol. <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_A2DP"/></codeph>(10) is added to represent the audio route to a Bluetooth device using the A2DP protocol.</p>
+                        <p props="flutter rn">Starting with this release, <codeph>routeBluetooth</codeph> in <xref keyref="AudioRoute"/> is renamed to <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph>, representing a Bluetooth device using the HFP protocol. <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_A2DP"/></codeph>(10) is added to represent a Bluetooth device using the A2DP protocol.</p>
+                        <p props="rn">Starting with this release, <codeph>RouteBluetooth</codeph> in <xref keyref="AudioRoute"/> is renamed to <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph>, representing a Bluetooth device using the HFP protocol. <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_A2DP"/></codeph>(10) is added to represent a Bluetooth device using the A2DP protocol.</p>
+                    </li>
+                    <li props="android"><ph><b>The state of the remote video</b></ph><p>To make the name of the enumeration easier to understand, this release changes the name of the enumeration from <codeph>REMOTE_VIDEO_STATE_PLAYING</codeph> to <codeph><ph keyref="REMOTE_VIDEO_STATE_DECODING"/></codeph>, while the meaning of the enumeration remains unchanged.</p>
+                    </li>
+                    <li><ph><b>Reasons for local video state changes</b></ph><p><ph props="apple cpp framework">This release makes the following modifications to the enumerations in the <xref keyref="LOCAL_VIDEO_STREAM_REASON"/> class:</ph><ph props="android">This release makes the following modifications:</ph><ul>
+                        <li props="cpp electron unity flutter">The value of <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_PAUSED"/></codeph> (formerly <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_PAUSED"/></codeph>) has been changed from 23 to 28. (Windows)</li>
+                        <li props="cpp electron unity flutter">The value of <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_RESUMED"/></codeph> (formerly <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_RESUMED"/></codeph>) has been changed from 24 to 29. (Windows)</li>
+                        <li>The <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_CODEC_NOT_SUPPORT"/></codeph> enumeration has been changed to <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_CODEC_NOT_SUPPORT"/></codeph>.</li>
+                        </ul></p>
+                    </li>
+                    <li props="cpp mac unity flutter electron"><ph><b>Audio loopback capturing</b></ph><ph props="cpp unity flutter">  (Windows, macOS)</ph><p>
+                        <ul>
+                            <li>Before v4.3.0, if you call the <xref keyref="disableAudio"/> method to disable the audio module, audio loopback capturing will not be disabled.</li>
+                            <li>As of v4.3.0, if you call the <xref keyref="disableAudio"/> method to disable the audio module, audio loopback capturing will be disabled as well. If you need to enable audio loopback capturing, you need to enable the audio module by calling the <xref keyref="enableAudio"/> method and then call <xref keyref="enableLoopbackRecording"/>.</li>
+                        </ul>
+                        </p>
+                    </li>
+                </ol>
+            </body>
+        </topic>
         <topic id="newfeature">
             <title>New features</title>
             <body>
                 <ol>
-                    <li><ph><b>Update video screenshot and upload</b></ph><p><ph>To facilitate the integration of third-party video moderation services from Agora Extensions Marketplace, this version has the following changes:</ph><ul>
-                                <li props="cpp apple unity rn flutter">The <codeph><apiname keyref="CONTENT_INSPECT_IMAGE_MODERATION"/></codeph> enumeration is added in <codeph><apiname keyref="CONTENT_INSPECT_TYPE"/></codeph> which means using video moderation extensions from Agora Extensions Marketplace to take video screenshots and upload them.</li>
-                                <li props="android">The <codeph><apiname keyref="CONTENT_INSPECT_IMAGE_MODERATION"/></codeph> enumeration is added in the <codeph>type</codeph> parameter of <codeph><apiname keyref="ContentInspectModule"/></codeph>, which means using video moderation extensions from Agora Extensions Marketplace to take video screenshots and upload them.</li>
-                                <li>An optional parameter <codeph>serverConfig</codeph> is added in <codeph><apiname keyref="ContentInspectConfig"/></codeph>, which is for server-side configuration related to video screenshot and upload via extensions from Agora Extensions Marketplace. By configuring this parameter, you can integrate multiple third-party moderation extensions and achieve flexible control over extension switches and other features. For more details, please contact <ph keyref="ticket-link"/>.</li>
-                            </ul><ph>In addition, this version also introduces the <codeph><apiname keyref="enableContentInspectEx"/></codeph> method, which supports taking screenshots for multiple video streams and uploading them.</ph></p>
+                    <li props="ios android rn unity flutter"><ph><b>Custom mixed video layout on receiving end (Android, iOS)</b></ph><p>To facilitate customized layout of mixed video stream at the receiver end, this release introduces the <xref keyref="onTranscodedStreamLayoutInfo"/> callback. When the receiver receives the channel's mixed video stream sent by the video mixing server, this callback is triggered, reporting the layout information of the mixed video stream and the layout information of each sub-video stream in the mixed stream. The receiver can set a separate <codeph>view</codeph> for rendering the sub-video stream (distinguished by <codeph>subviewUid</codeph>) in the mixed video stream when calling the <xref keyref="setupRemoteVideo"/> method, achieving a custom video layout effect.</p>
+                        <p>When the layout of the sub-video streams in the mixed video stream changes, this callback will also be triggered to report the latest layout information in real time.</p>
+                        <p>Through this feature, the receiver end can flexibly adjust the local view layout. When applied in a multi-person video scenario, the receiving end only needs to receive and decode a mixed video stream, which can effectively reduce the CPU usage and network bandwidth when decoding multiple video streams on the receiving end.</p>
+                        <note type="note" props="cn">For best practices regarding this feature in multi-host scenarios, see <xref keyref="custom-layout"/>.</note> </li>
+                    <li><ph><b>Local preview with multiple views</b></ph><p>This release supports local preview with simultaneous display of multiple frames, where the videos shown in the frames are positioned at different observation positions along the video link. Examples of usage are as follows:<ol props="native unity electron flutter cs unreal bp">
+                        <li>Call <xref keyref="setupLocalVideo"/> to set the first view: Set the <codeph>position</codeph> parameter to <codeph><apiname keyref="POSITION_POST_CAPTURER_ORIGIN"/></codeph> (introduced in this release) in <codeph><apiname keyref="VideoCanvas"/></codeph>. This corresponds to the position after local video capture and before preprocessing. The video observed here does not have preprocessing effects.</li>
+                        <li>Call <xref keyref="setupLocalVideo"/> to set the second view: Set the <codeph>position</codeph> parameter to <codeph><apiname keyref="POSITION_POST_CAPTURER"/></codeph> in <codeph><apiname keyref="VideoCanvas"/></codeph>, the video observed here has the effect of video preprocessing.</li>
+                        <li>Observe the local preview effect: The first view is the original video of a real person; the second view is the virtual portrait after video preprocessing (including image enhancement, virtual background, and local preview of watermarks) effects.</li>
+                        </ol>
+                        <ol props="rn">
+                        <li>Create the first view: Set the <codeph>position</codeph> parameter to <codeph><apiname keyref="POSITION_POST_CAPTURER_ORIGIN"/></codeph> (introduced in this release) in <codeph><apiname keyref="VideoCanvas"/></codeph>. This corresponds to the position after local video capture and before preprocessing. The video observed here does not have preprocessing effects.</li>
+                        <li>Create the second view: Set the <codeph>position</codeph> parameter to <codeph><apiname keyref="POSITION_POST_CAPTURER"/></codeph> in <codeph><apiname keyref="VideoCanvas"/></codeph>, the video observed here has the effect of video preprocessing.</li>
+                        <li>Observe the local preview effect: The first view is the original video of a real person; the second view is the virtual portrait after video preprocessing (including image enhancement, virtual background, and local preview of watermarks) effects.</li>
+                        </ol>
+                        </p>
                     </li>
-                    <li props="cpp unity flutter electron"><ph><b>ID3D11Texture2D Rendering</b></ph> (Windows)<p>As of this release, the SDK supports video formats of type ID3D11Texture2D, improving the rendering effect of video frames in game scenarios. You can set <codeph>format</codeph> to <codeph>VIDEO_TEXTURE_ID3D11TEXTURE2D</codeph> when pushing external raw video frames to the SDK by calling <codeph><apiname keyref="pushVideoFrame"/></codeph>. By setting the <codeph>d3d11_texture_2d</codeph> and <codeph>texture_slice_index</codeph> properties, you can determine the ID3D11Texture2D texture object to use.</p>
+                    <li><ph><b>Query Device Score</b></ph><p>This release adds the <xref keyref="queryDeviceScore"/> method to query the device's score level to ensure that the user-set parameters do not exceed the device's capabilities. For example, in HD or UHD video scenarios, you can first call this method to query the device's score. If the returned score is low (for example, below 60), you need to lower the video resolution to avoid affecting the video experience. The minimum device score required for different business scenarios is varied. For specific score recommendations, please <xref keyref="ticket-link"/>.</p>
                     </li>
-                    <li props="cpp unity flutter electron"><ph><b>Local video status error code update</b></ph> (Windows, macOS)<p>In order to help users understand the exact reasons for local video errors in screen sharing scenarios, the following sets of enumerations have been added to the <codeph><apiname keyref="onLocalVideoStateChanged"/></codeph> callback:<ul>
-                        <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED"/></codeph>(23): Screen capture has been paused. Common scenarios for reporting this error code: The current screen may have been switched to a secure desktop, such as a UAC dialog box or Winlogon desktop.</li>
-                        <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_RESUMED"/></codeph>(24): Screen capture has resumed from the paused state.</li>
-                        <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_HIDDEN"/></codeph>(25): The window being captured on the current screen is in a hidden state and is not visible on the current screen.</li>
-                        <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_HIDDEN"/></codeph>(26): The window for screen capture has been restored from the hidden state.</li>
-                        <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_MINIMIZED"/></codeph>(27): The window for screen capture has been restored from the minimized state.</li>
+                    <li><ph><b>Select different audio tracks for local playback and streaming</b></ph><p><ph>This release introduces the <xref keyref="selectMultiAudioTrack"/> method that allows you to select different audio tracks for local playback and streaming to remote users. For example, in scenarios like online karaoke, the host can choose to play the original sound locally and publish the accompaniment in the channel. </ph><ph>Before using this function, you need to open the media file through the <xref keyref="openWithMediaSource"/> method and enable this function by setting the <codeph>enableMultiAudioTrack</codeph> parameter in <xref keyref="MediaSource"/>.</ph></p>
+                    </li>
+                    <li props="android"><ph><b>Audio playback device test</b></ph><p>This release introduces the <xref keyref="startPlaybackDeviceTest"/> method to allow you to test whether you local audio device for playback works properly. You can specify the audio file to be played through the <codeph>testAudioFilePath</codeph> parameter and see if your audio device works properly. After the test is completed, you need to call the newly added <xref keyref="stopPlaybackDeviceTest"/> method to stop the test.</p>
+                    </li>
+                    <li props="ios"><ph><b>Device test for audio capturing and playback</b></ph><p>This release introduces the following methods to test whether the audio capturing or playback devices work properly before joining a channel:<ul>
+                            <li><xref keyref="startRecordingDeviceTest"/>: Tests whether the local audio capturing device, such as the speaker, is working properly. After calling this method, the SDK triggers a callback at the time interval set in this method, which reports uid = 0 and the volume information of the capturing device. After the test is completed, you need to call the newly added <xref keyref="stopRecordingDeviceTest"/> method to stop the test.</li>
+                            <li><xref keyref="startPlaybackDeviceTest"/>: Tests whether the local audio playback device is working properly. You can specify the audio file to be played through the <codeph>testAudioFilePath</codeph> parameter and see if your audio device works properly. After the test is completed, you need to call the newly added <xref keyref="stopPlaybackDeviceTest"/> method to stop the test.</li>
                         </ul></p>
                     </li>
-                    <li><ph><b>Check device support for advanced features</b></ph><p>This version adds the <codeph><apiname keyref="isFeatureAvailableOnDevice"/></codeph> method to check whether the capability of the current device meets the requirements of the specified advanced feature, such as virtual background and image enhancement. </p>
-                        <p>Before using advanced features, you can check whether the current device supports these features based on the call result. This helps to avoid performance degradation or unavailable features when enabling advanced features on low-end devices. Based on the return value of this method, you can decide whether to display or enable the corresponding feature button, or notify the user when the device's capabilities are insufficient.</p>
-                        <p>In addition, since this version, calling <codeph><apiname keyref="enableVirtualBackground"/></codeph> and <codeph><apiname keyref="setBeautyEffectOptions"/></codeph> automatically triggers a test on the capability of the current device. When the device is considered underperformed, the error code <codeph> -4:<ph keyref="ERR_NOT_SUPPORTED"/></codeph> is returned, indicating the device does not support the feature.</p>
+                    <li><ph><b>Others</b></ph><p>This release has passed the test verification of the following APIs and can be applied to the entire series of RTC 4.x SDK.<ul>
+                        <li><xref keyref="setRemoteSubscribeFallbackOption"/>: Sets fallback option for the subscribed video stream in weak network conditions.</li>
+                        <li><xref keyref="onRemoteSubscribeFallbackToAudioOnly"/>: Occurs when the subscribed video stream falls back to audio-only stream due to weak network conditions or switches back to the video stream after the network conditions improve.</li>
+                        <li props="cpp flutter unity electron"><ph><xref keyref="setPlaybackDeviceVolume"/></ph><ph props="flutter unity electron">(Windows)</ph><ph>: Sets the volume of the audio playback device.</ph></li>
+                        <li props="cpp flutter unity cs bp unreal electron"><ph><xref keyref="getRecordingDeviceVolume"/></ph><ph props="flutter unity cs bp unreal electron">(Windows)</ph><ph>: Sets the volume of the audio capturing device.</ph></li>
+                        <li><xref keyref="setPlayerOption"/> and <xref keyref="setPlayerOption2"/>: Sets media player options for providing technical previews or special customization features.</li>
+                        <li><xref keyref="enableCustomAudioLocalPlayback"/>: Sets whether to enable the local playback of external audio source.</li>
+                        </ul></p>
                     </li>
                 </ol>
             </body>
@@ -38,18 +248,52 @@
             <title>Improvements</title>
             <body>
                 <ol>
-                    <li><ph><b>Optimize virtual background memory usage</b></ph><p>This version has upgraded the virtual background algorithm, reducing the memory usage of the virtual background feature.  Compared to the previous version, the memory consumption of the app during the use of the virtual background feature on low-end devices has been reduced by approximately 4% to 10% (specific values may vary depending on the device model and platform).</p>
+                    <li><ph><b>SDK task processing scheduling optimization</b></ph><p>This release optimizes the scheduling mechanism for internal tasks within the SDK, with improvements in the following aspects:<ul>
+                        <li>There is a noticeable increase in the speed of video rendering and audio playback for both remote and local first frames.</li>
+                        <li>The time taken for API calls and response is reduced by more than 50%.</li>
+                        <li>The SDK's parallel processing capability significantly improves, delivering higher video quality (720P, 24 fps) even on lower-end devices. Additionally, image processing remains more stable in scenarios involving high resolutions and frame rates.</li>
+                        <li>The stability of the SDK is further enhanced, leading to a noticeable decrease in the crash rate across various specific scenarios.</li>
+                        </ul></p>
                     </li>
-                    <li props="cpp unity flutter electron android"><ph><b>Screen sharing scenario optimization</b></ph><p props="cpp unity flutter electron">This release optimizes the performance and encoding efficiency in ultra-high-definition (4K, 60 fps) game sharing scenarios, effectively reducing the system resource usage during screen sharing.</p>
-                        <p props="android">This release also optimizes the video encoding configuration in screen sharing scenarios. When users customize the <codeph>width</codeph> and <codeph>height</codeph> properties of the video, the SDK rounds down the actual encoding resolution while maintaining the aspect ratio of the video and the screen, ensuring that the final encoding resolution does not exceed the user-defined encoding resolution, thereby improving the accuracy of billing for screen sharing streams.</p>
+                    <li><ph><b>In-ear monitoring volume boost</b></ph><p>This release provides users with more flexible in-ear monitoring audio adjustment options, supporting the ability to set the in-ear monitoring volume to four times the original volume by calling <xref keyref="setInEarMonitoringVolume"/>.</p>
+                    </li>
+                    <li><ph><b>Dual-stream mode optimization</b></ph><p>This release optimizes the video dual-stream mode. In the low-quality video stream adaptive mode (<codeph><apiname keyref="AUTO_SIMULCAST_STREAM"/></codeph>), when the receiver requests a low-quality video stream by calling <xref keyref="setRemoteVideoStreamType"/> or <xref keyref="setRemoteVideoStreamTypeEx"/>, the sender no longer restricts the identity of the request source to be the broadcaster. This adjustment ensures that the audience‘s request for a low-quality video stream takes effect, improving the flexibility and adaptability of the low-quality video stream.</p>
+                    </li>
+                    <li><ph><b>Spatial audio effects usability improvement</b></ph><ul>
+                        <li>This release optimizes the design of the <xref keyref="setZones"/> method, supporting the ability to set the <codeph>zones</codeph> parameter to <codeph>NULL</codeph>, indicating the clearing of all echo cancellation zones.</li>
+                        <li>As of this release, it is no longer necessary to unsubscribe from the audio streams of all remote users within the channel before calling the <xref keyref="ILocalSpatialAudioEngine"/> method.</li>
+                        <li props="ios">This release introduces the <xref keyref="updateSelfTransform"/> method, designed to pass position vectors for direct rendering in iOS native frameworks such as SceneKit or RealityKit.</li>
+                        </ul> </li>
+                    <li props="apple"><ph><b>Local audio state changed callback optimization</b></ph><p>This release introduces the following enumerations in <xref keyref="LOCAL_AUDIO_STREAM_REASON"/>, enabling users to obtain more details about local audio errors through the <xref keyref="onLocalAudioStateChanged"/> callback:<ul>
+                        <li props="mac"><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_NO_RECORDING_DEVICE"/></codeph>: No recording device is available. Remind your users to check whether the microphone is connected to the device properly in the control plane of the device or if the microphone is working properly.</li>
+                        <li props="mac"><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_NO_PLAYOUT_DEVICE"/></codeph>: No playback device is available. Remind your users to check whether the speaker is connected to the device properly in the control plane of the device or if the speaker is working properly.</li>
+                        <li props="ios"><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_INTERRUPTED"/></codeph>: The local audio capture is interrupted by system calls, Siri, or alarm clocks. Remind your users to end the phone call, Siri, or alarm clock if the local audio capture is required.</li>
+                        </ul></p>
+                    </li>
+                    <li props="android ios"><ph><b>Optimization of video pre-processing methods</b></ph><p>This release adds overloaded methods with the <codeph>souceType</codeph> parameter for the following 5 video preprocessing methods, which support specifying the media source type for applying video preprocessing effects by passing in <codeph>sourceType</codeph> (for example, applying on a custom video capture media source):</p>
+                        <ul>
+                            <li><xref keyref="setBeautyEffectOptions2"/></li>
+                            <li><xref keyref="setLowlightEnhanceOptions2"/></li>
+                            <li><xref keyref="setVideoDenoiserOptions2"/></li>
+                            <li><xref keyref="setColorEnhanceOptions2"/></li>
+                            <li><xref keyref="enableVirtualBackground2"/></li>
+                        </ul>
+                    </li>
+                    <li><ph><b>Other Improvements</b></ph><p>This release also includes the following improvements:<ul>
+                        <li props="cn">Optimizes algorithms in the video module, reduces bandwidth requirements during video transmission, and enhances the video experience for users while maintaining network stability.</li>
+                        <li props="android">Adds <codeph>codecType</codeph> in <xref keyref="VideoEncoderConfiguration"/> to set the video encoding type.</li>
+                        <li props="android">Adds <codeph>allowCaptureCurrentApp</codeph> member in <xref keyref="ScreenAudioParameters"/>, which is used to set whether to capture audio from the current app during screen sharing. The default value of this member is <codeph><apiname keyref="true"/></codeph>, which means it collects the audio from the current app by default. In certain scenarios, the shared screen audio captured by the app may cause echo on the remote side due to signal delay and other reasons. Agora suggests setting this member as <codeph><apiname keyref="false"/></codeph> to eliminate the remote echo introduced during the screen sharing process.</li>
+                        <li props="cpp unity flutter electron">The <xref keyref="onLocalVideoStateChanged"/> callback is improved with the inclusion of the <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_AUTO_FALLBACK"/></codeph> enumeration, singaling unexpected errors during the screen sharing process (potentially due to window blocking failure), resulting in performance degradation without impacting the screen sharing process itself. (Windows)</li>
+                        <li>This release optimizes the SDK's domain name resolution strategy, improving the stability of calling <xref keyref="setLocalAccessPoint"/> to resolve domain names in complex network environments.</li>
+                        <li>When passing in an image with transparent background as the virtual background image, the transparent background can be filled with customized color. </li>
+                        <li>This release adds the <codeph>earMonitorDelay</codeph> and <codeph>aecEstimatedDelay</codeph> members in <xref keyref="LocalAudioStats"/> to report ear monitor delay and acoustic echo cancellation (AEC) delay, respectively.</li>
+                        <li props="mac">When using the sound card for recording, it supports capturing audio data in stereo.</li>
+                        <li>The <xref keyref="onPlayerCacheStats"/> callback is added to reports the statistics of the media file being cached. This callback is triggered once per second after file caching is started.</li>
+                        <li>The <xref keyref="onPlayerPlaybackStats"/> callback is added to reports the statistics of the media file being played. This callback is triggered once per second after the media file starts playing. You can obtain information like the audio and video bitrate of the media file through <xref keyref="PlayerPlaybackStats"/>.</li>
+                        <li props="ios android unity rn flutter"><ph><xref keyref="MusicContentCenterStateReason"/>An error code <codeph><apiname keyref="kMusicContentCenterReasonHttpInternalError"/></codeph> is added to suggest that an internal error in HTTP. You can try again later. </ph><ph props="unity flutter">(Android, iOS)</ph></li>
+                        </ul></p>
                     </li>
                 </ol>
-                <p><b>Other Improvements</b></p>
-                <p>This release includes the following additional improvements:<ul>
-                    <li props="android">Optimizes the management method of Texture Buffer for SDK capture and custom video capture scenarios, effectively eliminating frame dropping and crash risks.</li>
-                     <li>Optimizes the logic of handling invalid parameters. When you call the <codeph><apiname keyref="setPlaybackSpeed"/></codeph> method to set the playback speed of audio files, if you pass an invalid parameter, the SDK returns the error code -2, which means that you need to reset the parameter.</li>
-                     <li>Optimizes the logic of Token parsing, in order to prevent an app from crash when an invalid token is passed in.</li>
-                    </ul></p>
             </body>
         </topic>
         <topic id="bugfix">
@@ -57,17 +301,10 @@
             <body>
                 <p>This release fixed the following issues:</p>
                 <ul>
-                    <li props="cpp unity flutter electron">Occasional crashes and dropped frames occured in screen sharing scenarios. (Windows)</li>
-                    <li props="android">When using the H.265 encoding mode, when a Web client joined the interactivity, it caused a redundant <codeph><apiname keyref="onUserEnableLocalVideo"/></codeph> callback on the native side: when the host called <codeph><apiname keyref="enableLocalVideo"/> (true)</codeph>, the receiving end first received a <codeph><apiname keyref="onUserEnableLocalVideo"/></codeph> callback (with <codeph>enabled</codeph> as <codeph>false</codeph>) before receiving a <codeph><apiname keyref="onUserEnableLocalVideo"/></codeph> callback (with <codeph>enabled</codeph> as <codeph>true</codeph>).</li>
-                    <li props="mac unity flutter electron"><p><ph>Occasional crashes when joining a channel. </ph><ph>(macOS)</ph></p></li>
-                    <li>Occasional failure of joining a channel when the local system time was not set correctly.</li>
-                    <li>When calling the <codeph><apiname keyref="playEffect3"></apiname></codeph> method to play two audio files using the same <codeph>soundId</codeph>, the first audio file was somtimes played repeatedly.</li>
-                    <li props="android unity flutter rn"><p><ph>When the host called the <codeph><apiname keyref="startAudioMixing2"/></codeph> method to play music, sometimes the host couldn't hear the music while the remote users could hear it. </ph><ph props="unity flutter rn">(Android)</ph></p></li>
-                    <li props="android ios unity flutter rn"><p><ph>In a chorus scenario, calling the <codeph><apiname keyref="preload"/></codeph> method to load music sometimes failed. </ph><ph props="unity flutter">(Android, iOS)</ph></p></li>
-                    <li props="android unity flutter rn"><p><ph>Occasional crashes occured on certain Android devices. </ph><ph props="unity flutter rn">(Android)</ph></p></li>
-                    <li props="android ios unity flutter rn"><p><ph>Loading music lists failed when the local system time was not correct. </ph><ph props="unity flutter">(Android, iOS)</ph></p></li>
-                    <li>Calling <codeph><apiname keyref="takeSnapshotEx"/></codeph> once receives the <codeph><apiname keyref="onSnapshotTaken"/></codeph> callback for multiple times. </li>
-                    <li props="android unity flutter rn"><p><ph>In channels joined by calling <codeph><apiname keyref="joinChannelEx"/></codeph> exclusively, calling <codeph><apiname keyref="setEnableSpeakerphone"/></codeph> is unable to switch audio route from the speaker to the headphone. </ph><ph props="unity flutter rn">(Android)</ph></p></li>
+                    <li>When sharing two screen sharing video streams simultaneously, the reported <codeph>captureFrameRate</codeph> in the <xref keyref="onLocalVideoStats"/> callback is 0, which is not as expected.</li>
+                    <li props="cpp unity flutter electron">When sharing in a specified screen area, the mouse coordinates within the shared area are inaccurate. When the mouse is near the border of the shared area, the mouse may not be visible in the shared screen. (Windows)</li>
+                    <li props="cpp unity flutter electron"><ph>The SDK failed to detect any changes in the audio routing after plugging in and out 3.5mm earphones.</ph><ph props="unity flutter electron"> (Windows)</ph></li>
+                    <li props="android">In a online meeting scenario, occasional audio freezes occured when the local user was listening to remote users.</li>
                 </ul>
             </body>
         </topic>
@@ -75,19 +312,130 @@
             <title>API changes</title>
             <body>
                 <p><b>Added</b><ul>
-                    <li props="cpp unity flutter electron">The following enumerations in <codeph><apiname keyref="onLocalVideoStateChanged"/></codeph>: (Windows, macOS)<ul>
-                        <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED"/></codeph></li>
-                        <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_RESUMED"/></codeph></li>
-                        <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_HIDDEN"/></codeph></li>
-                        <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_HIDDEN"/></codeph></li>
-                        <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_MINIMIZED"/></codeph></li>
+                        <li props="ios android rn unity flutter"><xref keyref="onTranscodedStreamLayoutInfo"/>(Android, iOS)</li>
+                        <li props="ios android rn unity flutter"><xref keyref="VideoLayout"/>(Android, iOS)</li>
+                        <li>The<xref keyref="VideoCanvas"/><codeph> subviewUid</codeph> member in<codeph></codeph></li>
+                        <li props="android">The <codeph>codecType</codeph> member in <xref keyref="VideoEncoderConfiguration"/></li>
+                        <li props="android">The <codeph>allowCaptureCurrentApp</codeph> member in <xref keyref="ScreenAudioParameters"/></li>
+                        <li props="ios"><xref keyref="updateSelfTransform"/></li>
+                        <li props="apple"><p>The following enumerations in <xref keyref="LOCAL_AUDIO_STREAM_REASON"/>:<ul>
+                                <li props="mac"><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_NO_RECORDING_DEVICE"/></codeph></li>
+                                <li props="mac"><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_NO_PLAYOUT_DEVICE"/></codeph></li>
+                                <li props="ios"><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_INTERRUPTED"/></codeph></li></ul></p></li>
+                        <li><xref keyref="enableCustomAudioLocalPlayback"/></li>
+                        <li><xref keyref="queryDeviceScore"/></li>
+                        <li>The <codeph><ph keyref="CUSTOM_VIDEO_SOURCE"/></codeph> enumeration in <xref keyref="MEDIA_SOURCE_TYPE"/></li>
+                        <li props="android ios"><xref keyref="setBeautyEffectOptions2"/></li>
+                        <li props="android ios"><xref keyref="setLowlightEnhanceOptions2"/></li>
+                        <li props="android ios"><xref keyref="setVideoDenoiserOptions2"/></li>
+                        <li props="android ios"><xref keyref="setColorEnhanceOptions2"/></li>
+                        <li props="android ios"><xref keyref="enableVirtualBackground2"/></li>
+                        <li props="apple cpp framework">The <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_A2DP"/></codeph> enumeration in <xref keyref="AudioRoute"/></li>
+                        <li props="android">The <codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_A2DP"/></codeph> enumeration</li>
+                        <li props="android ios mac flutter unity rn"><xref keyref="LocalAudioStats"/>Adds the <codeph>earMonitorDelay</codeph> and <codeph>aecEstimatedDelay</codeph></li>
+                        <li><xref keyref="selectMultiAudioTrack"/></li>
+                        <li><xref keyref="onPlayerCacheStats"/></li>
+                        <li><xref keyref="onPlayerPlaybackStats"/></li>
+                        <li><xref keyref="PlayerPlaybackStats"/></li>
+                        <li props="android ios unity flutter rn"><codeph><apiname keyref="kMusicContentCenterReasonHttpInternalError"/></codeph> in <xref keyref="MusicContentCenterStateReason"/> <ph props="unity flutter">(Android, iOS)</ph></li>
+                        <li props="android ios"><xref keyref="startPlaybackDeviceTest"/></li>
+                        <li props="android ios"><xref keyref="stopPlaybackDeviceTest"/></li>
+                    </ul></p>
+                <p><b>Modified</b><ul>
+                    <li props="android"><codeph>pushExternalVideoFrameEx</codeph>[1/2] and <codeph>pushExternalVideoFrameEx</codeph>[2/2] are renamed to <codeph>pushExternalVideoFrameById</codeph>[1/2] and <codeph>pushExternalVideoFrameById</codeph>[2/2], and are migrated from <codeph><apiname keyref="IRtcEngineEx"/></codeph> to <codeph><apiname keyref="IRtcEngine"/></codeph></li>
+                    <li props="ios"><codeph>pushExternalVideoFrame</codeph>[1/2] is migrated from <codeph><apiname keyref="IRtcEngineEx"/></codeph> to <codeph><apiname keyref="IRtcEngine"/></codeph></li>
+                    <li props="android"><codeph>REMOTE_VIDEO_STATE_PLAYING</codeph> enumeration name changed to<codeph><ph keyref="REMOTE_VIDEO_STATE_DECODING"/></codeph></li>
+                    <li props="android unity"><codeph>ROUTE_BLUETOOTH</codeph> is renamed as<codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph></li>
+                    <li props="ios"><codeph>AgoraAudioOutputRoutingBluetooth</codeph> is renamed as<codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph></li>
+                    <li props="rn"><codeph>routeBluetooth</codeph> is renamed as<codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph></li>
+                    <li props="flutter"><codeph>routeBluetooth</codeph> is renamed as<codeph><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/></codeph></li>
+                    <li><p>All <codeph>ERROR</codeph> fields in the following enumerations are changed to <codeph>REASON</codeph>:<ul>
+                            <li><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_OK"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_FAILURE"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_DEVICE_NO_PERMISSION"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_DEVICE_BUSY"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_RECORD_FAILURE"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_ENCODE_FAILURE"></apiname></codeph></li>
+                            <li props="cpp unity flutter electron"><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_RECORD_INVALID_ID"></apiname></codeph> (Windows)</li>
+                            <li props="cpp unity flutter electron"><codeph><apiname keyref="LOCAL_AUDIO_STREAM_REASON_PLAYOUT_INVALID_ID"></apiname></codeph> (Windows)</li>
+                            <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_OK"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_FAILURE"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_NO_PERMISSION"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_BUSY"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_CAPTURE_FAILURE"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_CODEC_NOT_SUPPORT"></apiname></codeph></li>
+                            <li props="ios cpp rn unity flutter"><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_CAPTURE_INBACKGROUND"></apiname></codeph> (iOS)</li>
+                            <li props="ios cpp rn unity flutter"><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_CAPTURE_MULTIPLE_FOREGROUND_APPS"></apiname></codeph> (iOS)</li>
+                            <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_NOT_FOUND"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_DISCONNECTED"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_INVALID_ID"></apiname></codeph></li>
+                            <li props="cpp unreal bp mac flutter unity electron"><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_MINIMIZED"></apiname></codeph></li>
+                            <li props="cpp unreal bp mac flutter unity electron cs"><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_CLOSED"></apiname></codeph></li>
+                            <li props="cpp unreal bp unity electron flutter cs"><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_OCCLUDED"></apiname></codeph></li>
+                            <li props="cpp flutter unity"><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_NO_PERMISSION"></apiname></codeph> (Windows)</li>
+                            <li props="cpp flutter unity"><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_PAUSED"></apiname></codeph> (Windows)</li>
+                            <li props="cpp flutter unity"><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_RESUMED"></apiname></codeph> (Windows)</li>
+                            <li props="cpp flutter unity"><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_HIDDEN"></apiname></codeph> (Windows)</li>
+                            <li props="cpp flutter unity"><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_HIDDEN"></apiname></codeph> (Windows)</li>
+                            <li props="cpp flutter unity"><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_MINIMIZED"></apiname></codeph> (Windows)</li>
+                            <li props="cpp flutter unity"><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_FAILURE"></apiname></codeph> (Windows)</li>
+                            <li props="cpp flutter unity"><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_SYSTEM_PRESSURE"></apiname></codeph> (Windows)</li>
+                            <li><codeph><apiname keyref="DIRECT_CDN_STREAMING_REASON_OK"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="DIRECT_CDN_STREAMING_REASON_FAILED"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="DIRECT_CDN_STREAMING_REASON_AUDIO_PUBLICATION"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="DIRECT_CDN_STREAMING_REASON_VIDEO_PUBLICATION"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="DIRECT_CDN_STREAMING_REASON_NET_CONNECT"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="DIRECT_CDN_STREAMING_REASON_BAD_NAME"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_REASON_NONE"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_REASON_INVALID_ARGUMENTS"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_REASON_INTERNAL"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_REASON_NO_RESOURCE"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_REASON_INVALID_MEDIA_SOURCE"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_REASON_UNKNOWN_STREAM_TYPE"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_REASON_OBJ_NOT_INITIALIZED"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_REASON_CODEC_NOT_SUPPORTED"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_REASON_VIDEO_RENDER_FAILED"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_REASON_INVALID_STATE"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_REASON_URL_NOT_FOUND"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_REASON_INVALID_CONNECTION_STATE"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_REASON_SRC_BUFFER_UNDERFLOW"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_REASON_INTERRUPTED"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_REASON_NOT_SUPPORTED"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_REASON_TOKEN_EXPIRED"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="PLAYER_REASON_UNKNOWN"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_REASON_OK"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_REASON_INVALID_ARGUMENT"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_REASON_ENCRYPTED_STREAM_NOT_ALLOWED"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_REASON_CONNECTION_TIMEOUT"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_REASON_INTERNAL_SERVER_ERROR"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_REASON_RTMP_SERVER_ERROR"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_REASON_TOO_OFTEN"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_REASON_REACH_LIMIT"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_REASON_NOT_AUTHORIZED"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_REASON_STREAM_NOT_FOUND"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_REASON_FORMAT_NOT_SUPPORTED"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_REASON_NOT_BROADCASTER"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_REASON_TRANSCODING_NO_MIX_STREAM"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_REASON_NET_DOWN"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="RTMP_STREAM_PUBLISH_REASON_INVALID_PRIVILEGE"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="RTMP_STREAM_UNPUBLISH_REASON_OK"></apiname></codeph></li>
+                            </ul></p></li>
+                        <li props="ios android flutter unity rn"><ph><codeph><apiname keyref="MusicContentCenterStatusCode"/></codeph> is renamed as <codeph><apiname keyref="MusicContentCenterStateReason"/></codeph>, and the <codeph>StatusErr</codeph> in all enumerators is changed to <codeph></codeph>Reason: </ph><ph props="unity flutter">(Android, iOS)</ph><ul>
+                            <li><codeph><apiname keyref="kMusicContentCenterReasonGateway"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="kMusicContentCenterReasonPermissionAndResource"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="kMusicContentCenterReasonInternalDataParse"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="kMusicContentCenterReasonMusicLoading"></apiname></codeph></li>
+                            <li><codeph><apiname keyref="kMusicContentCenterReasonMusicDecryption"></apiname></codeph></li>
                         </ul></li>
-                    <li  props="cpp unity flutter electron"><codeph>d3d11_texture_2d</codeph> and <codeph>texture_slice_index</codeph> members in <codeph><apiname keyref="ExternalVideoFrame"/></codeph>.(Windows)</li><li  props="cpp unity flutter electron"><codeph><apiname keyref="VIDEO_TEXTURE_ID3D11TEXTURE2D"/></codeph> in <codeph><apiname keyref="VIDEO_PIXEL_FORMAT"/></codeph>.(Windows)</li><li><codeph><apiname keyref="enableContentInspectEx"/></codeph></li>
-                    <li props="cpp apple rn unity flutter"><codeph><apiname keyref="CONTENT_INSPECT_IMAGE_MODERATION"/></codeph> in <codeph><apiname keyref="CONTENT_INSPECT_TYPE"/></codeph>.</li>
-                    <li props="android"><codeph><apiname keyref="CONTENT_INSPECT_IMAGE_MODERATION"/></codeph> in <codeph>type</codeph> of <codeph><apiname keyref="ContentInspectModule"/></codeph>.</li>
-                    <li><codeph>serverConfig</codeph> in <codeph><apiname keyref="ContentInspectConfig"/></codeph></li>
-                    <li><codeph><apiname keyref="isFeatureAvailableOnDevice"/></codeph></li>
-                    <li><codeph><apiname keyref="FeatureType"/></codeph></li>
+                    <li props="ios android flutter unity rn"> is changed to<codeph><apiname keyref="kMusicContentCenterStatusErr"></apiname></codeph><codeph><apiname keyref="kMusicContentCenterReasonError"/></codeph></li>
+                    </ul></p>
+                <p><b>Deleted</b><ul>
+                    <li><codeph><apiname keyref="startChannelMediaRelay"/></codeph></li>
+                    <li><codeph><apiname keyref="updateChannelMediaRelay"/></codeph></li>
+                    <li><codeph><apiname keyref="startChannelMediaRelayEx"/></codeph></li>
+                    <li><codeph><apiname keyref="updateChannelMediaRelayEx"/></codeph></li>
+                    <li><codeph><apiname keyref="onChannelMediaRelayEvent"/></codeph></li>
+                    <li><codeph><apiname keyref="CHANNEL_MEDIA_RELAY_EVENT"/></codeph></li>
                     </ul></p>
             </body>
         </topic>
