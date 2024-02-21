@@ -25,13 +25,13 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>Before calling this method, call the <xref keyref="setExternalAudioSink"/><codeph>(<parmname>enabled</parmname>: <ph keyref="true"/>)</codeph> method to notify the app to enable and set the external audio sink.</p>
+            <p>Before calling this method, call <xref keyref="setExternalAudioSink"/><codeph>(<parmname>enabled</parmname>: <ph keyref="true"/>)</codeph> to notify the app to enable and set the external audio rendering.</p>
             <p>After a successful call of this method, the app pulls the decoded and mixed audio data for playback.</p>
             <note type="attention">
             <ul>
             <li>Call this method after joining a channel.</li>
-            <li>Both this method and <xref keyref="onPlaybackAudioFrame"/> callback can be used to get audio data after remote mixing. It should be noted that after calling <apiname keyref="setExternalAudioSink"/> to enable external audio rendering, the app no longer receives data from the <apiname keyref="onPlaybackAudioFrame"/> callback. Therefore, you should choose between this method and the <apiname keyref="onPlaybackAudioFrame"/> callback based on your actual business requirements. The specific distinctions between them are as follows:<ul>
-                <li>After a successful method call, the app automatically pulls the audio data from the SDK. After setting the audio data parameters, the SDK adjusts the frame buffer and avoids problems caused by jitter in the external audio playback.</li>
+            <li>Both this method and <xref keyref="onPlaybackAudioFrame"/> callback can be used to get audio data after remote mixing. Note that after calling <apiname keyref="setExternalAudioSink"/> to enable external audio rendering, the app no longer receives data from the <apiname keyref="onPlaybackAudioFrame"/> callback. Therefore, you should choose between this method and the <apiname keyref="onPlaybackAudioFrame"/> callback based on your actual business requirements. The specific distinctions between them are as follows:<ul>
+                <li>After calling this method, the app automatically pulls the audio data from the SDK. By setting the audio data parameters, the SDK adjusts the frame buffer to help the app handle latency, effectively avoiding audio playback jitter.</li>
                 <li>The SDK sends the audio data to the app through the <apiname keyref="onPlaybackAudioFrame"/> callback. Any delay in processing the audio frames may result in audio jitter.</li>
                 </ul></li>
             <li>This method is only used for retrieving audio data after remote mixing. If you need to get audio data from different audio processing stages such as capture and playback, you can register the corresponding callbacks by calling <xref keyref="registerAudioFrameObserver"/>.</li>
