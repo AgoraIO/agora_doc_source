@@ -17,8 +17,7 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setVideoDenoiserOptions:(BOOL)enable options:(AgoraVideoDenoiserOptions* _Nullable)options NS_SWIFT_NAME(setVideoDenoiserOptions(_:options:));
 </codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setVideoDenoiserOptions(bool enabled, const VideoDenoiserOptions&amp; options) = 0;
-</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setVideoDenoiserOptions(bool enabled, const VideoDenoiserOptions&amp; options, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
 	int SetVideoDenoiserOptions(bool enabled, const FVideoDenoiserOptions&amp; options, EMEDIA_SOURCE_TYPE type);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setVideoDenoiserOptions(
@@ -42,7 +41,7 @@
             <title>Details</title>
             <p>Underlit environments and low-end video capture devices can cause video images to contain significant noise, which affects video quality. In real-time interactive scenarios, video noise also consumes bitstream resources and reduces encoding efficiency during encoding.</p>
             <p>You can call this method to enable the video noise reduction feature and set the options of the video noise reduction effect.</p>
-            <note type="attention">
+            <note type="attention" id="req">
             <ul>
             <li>Call this method after calling <xref keyref="enableVideo"/>.</li>
             <li>Video noise reduction has certain requirements for equipment performance. If your device overheats after you enable video noise reduction, Agora recommends modifying the video noise reduction options to a less performance-consuming level or disabling video noise reduction entirely.</li>
@@ -55,7 +54,7 @@
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry>
+            <plentry id="enable">
                 <pt props="android cpp unreal bp unity electron rn flutter cs">enabled</pt>
                 <pt props="ios mac">enable</pt>
                 <pd>Whether to enable video noise reduction:<ul>
@@ -63,20 +62,20 @@
                     <li><codeph><ph keyref="false"/></codeph>: (Default) Disable video noise reduction.</li>
                     </ul> </pd>
             </plentry>
-            <plentry>
+            <plentry id="options">
                 <pt>options</pt>
                 <pd>The video noise reduction options. See <xref keyref="VideoDenoiserOptions"/>.</pd>
             </plentry>
-                <plentry props="cpp unreal bp rn unity electron flutter cs" conkeyref="setLowlightEnhanceOptions/type">
-                    <pt/>
-                    <pd/>
-                </plentry>
+            <plentry props="cpp unreal bp rn unity electron flutter cs" conkeyref="setLowlightEnhanceOptions/type">
+                <pt/>
+                <pd/>
+            </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-            <ul>
-            <li props="native unreal bp electron unity rn cs">0: Success.</li>
+            <ul props="native unreal bp electron unity rn cs">
+            <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>

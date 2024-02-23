@@ -48,18 +48,20 @@
                 <dd>v4.0.1</dd>
             </dlentry>
             </dl>
-            <p>The SDK enables the low-quality video stream auto mode on the sender by default, which is equivalent to calling this method and setting the <parmname>mode</parmname> to <apiname keyref="AUTO_SIMULCAST_STREAM"/>. If you want to modify this behavior, you can call this method and modify the <parmname>mode</parmname> to <apiname keyref="DISABLE_SIMULCAST_STREAM"/> (never send low-quality video streams) or <apiname keyref="ENABLE_SIMULCAST_STREAM"/> (always send low-quality video streams).</p>
+            <p id="desc">The SDK defaults to enabling low-quality video stream adaptive mode (<apiname keyref="AUTO_SIMULCAST_STREAM"/>) on the sending end, which means the sender does not actively send low-quality video stream. The receiver with the role of the <b>host</b> can initiate a low-quality video stream request by calling <xref keyref="setRemoteVideoStreamTypeEx"/>, and upon receiving the request, the sending end automatically starts sending the low-quality video stream.<ul>
+                <li>If you want to modify this behavior, you can call this method and set <parmname>mode</parmname> to <apiname keyref="DISABLE_SIMULCAST_STREAM"/> (never send low-quality video streams) or <apiname keyref="ENABLE_SIMULCAST_STREAM"/> (always send low-quality video streams).</li>
+                <li>If you want to restore the default behavior after making changes, you can call this method again with <parmname>mode</parmname> set to <apiname keyref="AUTO_SIMULCAST_STREAM"/>.</li></ul></p>
             <note id="note">The difference and connection between this method and <xref keyref="enableDualStreamModeEx"/> is as follows:<ul>
-            <li>When calling this method and setting <parmname>mode</parmname> to <ph keyref="DISABLE_SIMULCAST_STREAM"/>, it has the same effect as <apiname keyref="enableDualStreamModeEx"/><codeph>(<ph keyref="false"/>)</codeph>.</li>
-            <li>When calling this method and setting <parmname>mode</parmname> to <ph keyref="ENABLE_SIMULCAST_STREAM"/>, it has the same effect as <apiname keyref="enableDualStreamModeEx"/><codeph>(<ph keyref="true"/>)</codeph>.</li>
-            <li>Both methods can be called before and after joining a channel. If both methods are used, the settings in the method called later takes precedence.</li>
-            </ul></note> </section>
+                <li>When calling this method and setting <parmname>mode</parmname> to <ph keyref="DISABLE_SIMULCAST_STREAM"/>, it has the same effect as <apiname keyref="enableDualStreamModeEx"/><codeph>(<ph keyref="false"/>)</codeph>.</li>
+                <li>When calling this method and setting <parmname>mode</parmname> to <ph keyref="ENABLE_SIMULCAST_STREAM"/>, it has the same effect as <apiname keyref="enableDualStreamModeEx"/><codeph>(<ph keyref="true"/>)</codeph>.</li>
+                <li>Both methods can be called before and after joining a channel. If both methods are used, the settings in the method called later takes precedence.</li></ul>
+            </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry>
-                <pt>mode</pt>
-                <pd>The mode in which the video stream is sent. See <xref keyref="SIMULCAST_STREAM_MODE"/>.</pd>
+            <plentry conkeyref="setDualStreamMode/mode">
+                <pt/>
+                <pd/>
             </plentry>
             <plentry conkeyref="enableDualStreamMode3/streamconfig">
                 <pt/>
@@ -73,8 +75,8 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-            <ul id="ul_bpp_x2z_hqb">
-            <li props="native unreal bp unity rn electron cs">0: Success.</li>
+            <ul props="native unreal bp unity rn electron cs">
+            <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>

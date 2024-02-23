@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediaplayersourceobserver_onplayerplaybackstats">
+    <title><ph keyref="onPlayerPlaybackStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc">报告当前播放的媒体资源的相关信息。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPlayerPlaybackStats"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">void onPlayerPlaybackStats(PlayerPlaybackStats stats);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">(void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol> _Nonnull)playerKit playbackStats:(AgoraMediaPlayerPlaybackStats *_Nonnull)info NS_SWIFT_NAME(AgoraRtcMediaPlayer(_:playbackStats:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onPlayerPlaybackStats(const media::base::PlayerPlaybackStats&amp; stats) {
+    (void)stats;
+  }</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript">onPlayerPlaybackStats?(stats: PlayerPlaybackStats): void;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnPlayerPlaybackStats(PlayerPlaybackStats stats)
+                {
+                }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onPlayerPlaybackStats?(stats: PlayerPlaybackStats): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(PlayerPlaybackStats stats)? onPlayerPlaybackStats;</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <title>详情</title>
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.3.0</dd>
+            </dlentry>
+            </dl>
+            <p>当媒体资源开始播放后，SDK 会每秒触发一次该回调，报告媒体资源的相关信息。</p>
+        </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt props="cpp android framework">stats</pt>
+                <pt props="apple">info</pt>
+                <pd>媒体资源的相关信息，详见 <xref keyref="PlayerPlaybackStats"/>。</pd>
+            </plentry>
+             <plentry props="apple" id="kit">
+                 <pt>playerKit</pt>
+                 <pd><xref keyref="IMediaPlayer"/> 实例。</pd>
+             </plentry>
+            </parml> </section>
+        </refbody>
+</reference>

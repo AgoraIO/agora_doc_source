@@ -17,8 +17,7 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLowlightEnhanceOptions:(BOOL)enable options:(AgoraLowlightEnhanceOptions* _Nullable)options NS_SWIFT_NAME(setLowlightEnhanceOptions(_:options:));
 </codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setLowlightEnhanceOptions(bool enabled, const LowlightEnhanceOptions&amp; options) = 0;
-</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setLowlightEnhanceOptions(bool enabled, const LowlightEnhanceOptions&amp; options, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
 	int SetLowlightEnhanceOptions(bool enabled, const FLowlightEnhanceOptions&amp; options, EMEDIA_SOURCE_TYPE type);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setLowlightEnhanceOptions(
@@ -42,7 +41,7 @@
             <title>Details</title>
             <p>The low-light enhancement feature can adaptively adjust the brightness value of the video captured in situations with low or uneven lighting, such as backlit, cloudy, or dark scenes. It restores or highlights the image details and improves the overall visual effect of the video.</p>
             <p>You can call this method to enable the color enhancement feature and set the options of the color enhancement effect.</p>
-            <note type="attention">
+            <note type="attention" id="req">
             <ul>
             <li>Call this method after calling <xref keyref="enableVideo" />.</li>
             <li>Dark light enhancement has certain requirements for equipment performance. The low-light enhancement feature has certain performance requirements on devices. If your device overheats after you enable low-light enhancement, Agora recommends modifying the low-light enhancement options to a less performance-consuming level or disabling low-light enhancement entirely.</li>
@@ -55,7 +54,7 @@
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry>
+            <plentry id="enable">
                 <pt props="android cpp unreal bp electron unity rn flutter cs">enabled</pt>
                 <pt props="ios mac">enable</pt>
                 <pd>Whether to enable low-light enhancement function:<ul>
@@ -63,7 +62,7 @@
                     <li><codeph><ph keyref="false" /></codeph>: (Default) Disable low-light enhancement function.</li>
                     </ul></pd>
             </plentry>
-            <plentry>
+            <plentry id="options">
                 <pt>options</pt>
                 <pd>The low-light enhancement options. See <xref keyref="LowlightEnhanceOptions" />.</pd>
             </plentry>
@@ -75,8 +74,8 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-            <ul>
-            <li props="native unreal bp electron unity rn cs">0: Success.</li>
+            <ul props="native unreal bp electron unity rn cs">
+            <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>

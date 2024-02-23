@@ -164,16 +164,18 @@ class EchoTestConfiguration {
             <plentry>
                 <pt>enableAudio</pt>
                 <pd>Whether to enable the audio device for the loop test:<ul>
-                    <li><ph keyref="true" />: (Default) Enable the audio device. To test the audio device, set this parameter as <ph keyref="true" />.</li>
-                    <li><ph keyref="false" />: Disable the audio device.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: (Default) Enable the audio device. To test the audio device, set this parameter as <ph keyref="true" />.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Disable the audio device.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>enableVideo</pt>
-                <pd>Whether to enable the video device for the loop test:<ul>
-                    <li><ph keyref="true" />: (Default) Enable the video device. To test the video device, set this parameter as <ph keyref="true" />.</li>
-                    <li><ph keyref="false" />: Disable the video device.</li>
-                    </ul></pd>
+                <pd props="native">Whether to enable the video device for the loop test:<ul>
+                    <li><codeph><ph keyref="true" /></codeph>: (Default) Enable the video device. To test the video device, set this parameter as <ph keyref="true" />.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Disable the video device.</li>
+                    </ul>
+                </pd>
+                <pd props="framework">Whether to enable the video device for the loop test. Currently, video device loop test is not supported. Please set this parameter to <codeph><ph keyref="false"/></codeph>.</pd>
             </plentry>
             <plentry>
                 <pt>token</pt>
@@ -185,7 +187,11 @@ class EchoTestConfiguration {
             </plentry>
             <plentry>
                 <pt>intervalInSeconds</pt>
-                <pd>The time interval (s) between when you start the call and when the recording plays back. The value range is [2, 10], and the default value is 2.</pd>
+                <pd>Set the time interval or delay for returning the results of the audio and video loop test. The value range is [2,10], in seconds, with the default value being 2 seconds.<ul>
+                    <li>For audio loop tests, the test results will be returned according to the time interval you set.</li>
+                    <li>For video loop tests, the video will be displayed in a short time, after which the delay will gradually increase until it reaches the delay you set.</li>
+                    </ul>
+                </pd>
             </plentry>
             </parml> </section>
     </refbody>
