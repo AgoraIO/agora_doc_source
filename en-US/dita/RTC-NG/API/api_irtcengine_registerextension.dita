@@ -13,8 +13,11 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="android" outputclass="language-java">public abstract int registerExtension(
+      String provider, String extension, Constants.MediaSourceType sourceType);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)registerExtensionWithVendor:(NSString * __nonnull)provider
+                         extension:(NSString * __nonnull)extension
+                        sourceType:(AgoraMediaSourceType)sourceType NS_SWIFT_NAME(registerExtension(withVendor:extension:sourceType:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int registerExtension(const char* provider, const char* extension,
                         agora::media::MEDIA_SOURCE_TYPE type = agora::media::UNKNOWN_MEDIA_SOURCE) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
@@ -45,7 +48,14 @@
             </dlentry>
             </dl>
             <p>After the extension is loaded, you can call this method to register the extension.</p>
-            <p props="cpp unreal bp electron unity flutter">This method applies to Windows only.</p>
+            <note type="attention">
+                <ul>
+                <li props="android">调用该方法前，需要先调用 <xref keyref="addExtension"/> 加载插件。</li>
+                <li props="apple">调用该方法前，需要先在 Xcode 中将插件动态库（.xcframework）链接至你的工程。</li>
+                <li props="cpp framework">调用该方法前，需要先调用 <xref keyref="loadExtensionProvider"/> 加载插件。</li>
+                <li>对于 SDK 外部的插件（例如云市场插件、SDK 拓展插件），在调用 <xref keyref="setExtensionProperty"/> 前需要调用该方法注册。</li> 
+                </ul>              
+            </note>
         </section>
         <section id="parameters">
             <title>Parameters</title>

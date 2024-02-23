@@ -42,9 +42,7 @@
             <li props="cpp unreal bp ios unity rn flutter cs">If you are using the custom audio source instead of the SDK to capture audio, Agora recommends you add the keep-alive processing logic to your application to avoid screen sharing stopping when the application goes to the background.</li>
             <li props="cpp unreal bp ios unity rn flutter cs">This feature requires high-performance device, and Agora recommends that you use it on iPhone X and later models.</li>
             <li props="cpp unreal bp ios unity rn flutter cs">This method relies on the iOS screen sharing dynamic library <codeph>AgoraReplayKitExtension.xcframework</codeph>. If the dynamic library is deleted, screen sharing cannot be enabled normally.</li>
-            <li props="cpp unreal bp android unity rn flutter cs">On the Android platform, make sure the user has granted the app screen capture permission.</li>
-            <li props="cpp unreal bp android">Make sure that the Android API level is not earlier than 21, otherwise, the SDK reports error codes <codeph><apiname keyref="ERR_SCREEN_CAPTURE_PERMISSION_DENIED"/>(16)</codeph> and <codeph><apiname keyref="ERR_SCREEN_CAPTURE_SYSTEM_NOT_SUPPORTED"/>(2)</codeph>.</li>
-            <li props="cpp unreal bp android">To capture system audio during screen sharing, ensure that the Android API level is not earlier than 29 as well; otherwise, the SDK reports the error code <codeph><apiname keyref="ERR_SCREEN_CAPTURE_SYSTEM_AUDIO_NOT_SUPPORTED"/>(3)</codeph>.</li>
+            <li props="cpp unreal bp android unity rn flutter cs">在 Android 平台上，如果用户未授予 App 屏幕采集权限，SDK 会上报 <xref keyref="onPermissionError"/><codeph>(2)</codeph> 回调。</li>
             <li props="cpp unreal bp android unity rn flutter cs">On Android 9 and later, to avoid the application being killed by the system after going to the background, Agora recommends you add the foreground service <codeph>android.permission.FOREGROUND_SERVICE</codeph> to the <codeph>/app/Manifests/AndroidManifest.xml</codeph> file.</li>
             <li props="cpp unreal bp android unity rn flutter cs">Due to performance limitations, screen sharing is not supported on Android TV.</li>
             <li props="cpp unreal bp android unity rn flutter cs">Due to system limitations, if you are using Huawei phones, do not adjust the video encoding resolution of the screen sharing stream during the screen sharing, or you could experience crashes.</li>
@@ -66,8 +64,10 @@
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul props="cpp unreal bp android ios unity rn cs">
             <li>0: Success.</li>
-            <li>&lt; 0: Failure.<ul>
-                <li>-2: The parameter is null.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul>
+                <li props="apple cpp framework">-2 (iOS 平台): 参数为空。</li>
+                <li props="android cpp">-2 (Anroid 平台): 系统版本过低，请确保 Android API 级别不低于 21。</li>
+                <li props="android">-3 (Anroid 平台): 无法采集系统音频，请确保 Android API 级别不低于 29。</li>
                 </ul></li>
             </ul> </section>
     </refbody>
