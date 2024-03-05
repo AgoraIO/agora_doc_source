@@ -29,7 +29,7 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p id="apisequence" props="android ios cpp unreal bp unity flutter cs">There are two ways to start screen sharing, you can choose one according to your needs:<ul>
+            <p id="apisequence" props="android ios cpp unreal bp unity flutter cs">There are two options for enabling screen sharing. You can choose the one that best suits your specific scenario:<ul>
             <li>Call this method before joining a channel, then call <xref keyref="joinChannel2"/> to join channel and set <parmname>publishScreenCaptureVideo</parmname> to <codeph><ph keyref="true"/></codeph> to start screen sharing.</li>
             <li>Call this method after joining a channel, then call <xref keyref="updateChannelMediaOptions"/> and set <parmname>publishScreenCaptureVideo</parmname> to <codeph><ph keyref="true"/></codeph> to start screen sharing.</li>
             </ul></p>
@@ -42,9 +42,7 @@
             <li props="cpp unreal bp ios unity rn flutter cs">If you are using the custom audio source instead of the SDK to capture audio, Agora recommends you add the keep-alive processing logic to your application to avoid screen sharing stopping when the application goes to the background.</li>
             <li props="cpp unreal bp ios unity rn flutter cs">This feature requires high-performance device, and Agora recommends that you use it on iPhone X and later models.</li>
             <li props="cpp unreal bp ios unity rn flutter cs">This method relies on the iOS screen sharing dynamic library <codeph>AgoraReplayKitExtension.xcframework</codeph>. If the dynamic library is deleted, screen sharing cannot be enabled normally.</li>
-            <li props="cpp unreal bp android unity rn flutter cs">On the Android platform, make sure the user has granted the app screen capture permission.</li>
-            <li props="cpp unreal bp android">Make sure that the Android API level is not earlier than 21, otherwise, the SDK reports error codes <codeph><apiname keyref="ERR_SCREEN_CAPTURE_PERMISSION_DENIED"/>(16)</codeph> and <codeph><apiname keyref="ERR_SCREEN_CAPTURE_SYSTEM_NOT_SUPPORTED"/>(2)</codeph>.</li>
-            <li props="cpp unreal bp android">To capture system audio during screen sharing, ensure that the Android API level is not earlier than 29 as well; otherwise, the SDK reports the error code <codeph><apiname keyref="ERR_SCREEN_CAPTURE_SYSTEM_AUDIO_NOT_SUPPORTED"/>(3)</codeph>.</li>
+            <li props="cpp unreal bp android unity rn flutter cs">On the Android platform, if the user has not granted the app screen capture permission, the SDK reports the <xref keyref="onPermissionError"/><codeph>(2)</codeph> callback.</li>
             <li props="cpp unreal bp android unity rn flutter cs">On Android 9 and later, to avoid the application being killed by the system after going to the background, Agora recommends you add the foreground service <codeph>android.permission.FOREGROUND_SERVICE</codeph> to the <codeph>/app/Manifests/AndroidManifest.xml</codeph> file.</li>
             <li props="cpp unreal bp android unity rn flutter cs">Due to performance limitations, screen sharing is not supported on Android TV.</li>
             <li props="cpp unreal bp android unity rn flutter cs">Due to system limitations, if you are using Huawei phones, do not adjust the video encoding resolution of the screen sharing stream during the screen sharing, or you could experience crashes.</li>
@@ -66,8 +64,10 @@
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul props="cpp unreal bp android ios unity rn cs">
             <li>0: Success.</li>
-            <li>&lt; 0: Failure.<ul>
-                <li>-2: The parameter is null.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul>
+                <li props="ios cpp framework">-2 (iOS platform): Empty parameter.</li>
+                <li props="android cpp framework">-2 (Android platform): The system version is too low. Ensure that the Android API level is not lower than 21.</li>
+                <li props="android cpp framework">-3 (Android platform): Unable to capture system audio. Ensure that the Android API level is not lower than 29.</li>
                 </ul></li>
             </ul> </section>
     </refbody>
