@@ -412,10 +412,6 @@
                     <stentry><xref keyref="muteRecordingSignal"/></stentry>
                     <stentry><ph conkeyref="muteRecordingSignal/shortdesc"/></stentry>
                 </strow>
-                <strow props="cpp unreal bp android flutter rn unity">
-                    <stentry><xref keyref="getAudioDeviceInfo"/></stentry>
-                    <stentry><ph conkeyref="getAudioDeviceInfo/shortdesc"/></stentry>
-                </strow>
                 <strow props="android apple">
                     <stentry><xref keyref="enableInEarMonitoring"/></stentry>
                     <stentry><ph conkeyref="enableInEarMonitoring/shortdesc"/></stentry>
@@ -2145,19 +2141,6 @@
             </strow>
             </simpletable></section>
         <section props="ios android cpp unreal bp flutter unity rn electron">
-            <title>音频设备管理</title>
-            <simpletable>
-                <sthead>
-                    <stentry>方法/回调</stentry>
-                    <stentry>描述</stentry>
-                </sthead>
-                <strow>
-                    <stentry/>
-                    <stentry/>
-                </strow>
-            </simpletable>
-        </section>
-        <section props="ios android cpp unreal bp flutter unity rn electron">
             <title>视频设备管理</title>
             <simpletable>
                 <sthead>
@@ -2314,181 +2297,184 @@
                 </strow>
             </simpletable>
         </section>
-        <section id="pc_audio_device_management" props="cpp unreal bp unity flutter electron cs">
-            <title>桌面端音频设备管理</title>
-            <p props="cpp unreal bp unity flutter">该组方法仅适用于 Windows 和 macOS 平台。</p>
+        <section id="audio_device" props="ios android cpp unreal bp flutter unity rn electron">
+            <title>音频设备管理</title>
             <simpletable>
             <sthead>
                 <stentry>方法/回调</stentry>
                 <stentry>描述</stentry>
             </sthead>
-            <strow>
-                <stentry><xref keyref="enumeratePlaybackDevices"/></stentry>
-                <stentry><ph conkeyref="enumeratePlaybackDevices/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="enumerateRecordingDevices"/></stentry>
-                <stentry><ph conkeyref="enumerateRecordingDevices/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="followSystemPlaybackDevice"/></stentry>
-                <stentry><ph conkeyref="followSystemPlaybackDevice/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="followSystemRecordingDevice"/></stentry>
-                <stentry><ph conkeyref="followSystemRecordingDevice/shortdesc"/></stentry>
-            </strow>
-            <strow props="cs electron flutter unity">
-                <stentry><xref keyref="getAudioDeviceManager"/></stentry>
-                <stentry><ph conkeyref="getAudioDeviceManager/shortdesc"/>（仅适用于 Windows）</stentry>
-            </strow>
-            <strow props="cs electron flutter unity">
-                <stentry><xref keyref="getPlaybackDefaultDevice"/></stentry>
-                <stentry><ph conkeyref="getPlaybackDefaultDevice/shortdesc"/></stentry>
-            </strow>
-            <strow props="cs electron flutter unity">
-                <stentry><xref keyref="getRecordingDefaultDevice"/></stentry>
-                <stentry><ph conkeyref="getRecordingDefaultDevice/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="setPlaybackDevice"/></stentry>
-                <stentry><ph conkeyref="setPlaybackDevice/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="getPlaybackDevice"/></stentry>
-                <stentry><ph conkeyref="getPlaybackDevice/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="getPlaybackDeviceInfo"/></stentry>
-                <stentry><ph conkeyref="getPlaybackDeviceInfo/shortdesc"/></stentry>
-            </strow>
-            <strow props="cpp unreal unity flutter electron cs">
-                <stentry><xref keyref="setLoopbackDevice"/></stentry>
-                <stentry><ph conkeyref="setLoopbackDevice/shortdesc"/></stentry>
-            </strow>
-            <strow props="cpp unreal unity flutter electron cs">
-                <stentry><xref keyref="getLoopbackDevice"/></stentry>
-                <stentry><ph conkeyref="getLoopbackDevice/shortdesc"/></stentry>
-            </strow>
-            <strow props="cpp unreal unity flutter electron cs">
-                <stentry><xref keyref="followSystemLoopbackDevice"/></stentry>
-                <stentry><ph conkeyref="followSystemLoopbackDevice/shortdesc"/></stentry>
-            </strow>
-            <strow props="cpp unreal unity flutter electron cs">
-                <stentry><xref keyref="setPlaybackDeviceVolume"/></stentry>
-                <stentry><ph conkeyref="setPlaybackDeviceVolume/shortdesc"/>（仅适用于 Windows）</stentry>
-            </strow>
-            <strow props="hide">
-                <stentry><xref keyref="getPlaybackDeviceVolume"/></stentry>
-                <stentry><ph conkeyref="getPlaybackDeviceVolume/shortdesc"/>（仅适用于 Windows）</stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="setRecordingDevice"/></stentry>
-                <stentry><ph conkeyref="setRecordingDevice/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="getRecordingDevice"/></stentry>
-                <stentry><ph conkeyref="getRecordingDevice/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="getRecordingDeviceInfo"/></stentry>
-                <stentry><ph conkeyref="getRecordingDeviceInfo/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="setRecordingDeviceVolume"/></stentry>
-                <stentry><ph conkeyref="setRecordingDeviceVolume/shortdesc"/></stentry>
-            </strow>
-            <strow props="cpp unreal bp electron unity flutter">
-                <stentry><xref keyref="getRecordingDeviceVolume"/></stentry>
-                <stentry><ph conkeyref="getRecordingDeviceVolume/shortdesc"/>（仅适用于 Windows）</stentry>
-            </strow>
-            <strow props="cpp unreal bp electron unity flutter">
-                <stentry><xref keyref="setPlaybackDeviceMute"/></stentry>
-                <stentry><ph conkeyref="setPlaybackDeviceMute/shortdesc"/>（仅适用于 Windows）</stentry>
-            </strow>
-            <strow props="cpp unreal bp electron unity flutter">
-                <stentry><xref keyref="getPlaybackDeviceMute"/></stentry>
-                <stentry><ph conkeyref="getPlaybackDeviceMute/shortdesc"/>（仅适用于 Windows）</stentry>
-            </strow>
-            <strow props="hide">
-                <stentry><xref keyref="setRecordingDeviceMute"/></stentry>
-                <stentry><ph conkeyref="setRecordingDeviceMute/shortdesc"/>（仅适用于 Windows）</stentry>
-            </strow>
-            <strow props="hide">
-                <stentry><xref keyref="getRecordingDeviceMute"/></stentry>
-                <stentry><ph conkeyref="getRecordingDeviceMute/shortdesc"/>（仅适用于 Windows）</stentry>
-            </strow>
-            <strow>
+             <strow props="cpp unreal bp unity flutter electron cs android ios">
                 <stentry><xref keyref="startPlaybackDeviceTest"/></stentry>
                 <stentry><ph conkeyref="startPlaybackDeviceTest/shortdesc"/></stentry>
             </strow>
-            <strow>
+            <strow  props="cpp unreal bp unity flutter electron cs android ios">
                 <stentry><xref keyref="stopPlaybackDeviceTest"/></stentry>
                 <stentry><ph conkeyref="stopPlaybackDeviceTest/shortdesc"/></stentry>
             </strow>
-            <strow>
+            <strow  props="cpp unreal bp unity flutter electron cs android ios">
                 <stentry><xref keyref="startRecordingDeviceTest"/></stentry>
                 <stentry><ph conkeyref="startRecordingDeviceTest/shortdesc"/></stentry>
             </strow>
-            <strow>
+            <strow  props="cpp unreal bp unity flutter electron cs android ios">
                 <stentry><xref keyref="stopRecordingDeviceTest"/></stentry>
                 <stentry><ph conkeyref="stopRecordingDeviceTest/shortdesc"/></stentry>
             </strow>
-            <strow>
-                <stentry><xref keyref="startAudioDeviceLoopbackTest"/></stentry>
-                <stentry><ph conkeyref="startAudioDeviceLoopbackTest/shortdesc"/></stentry>
+            <strow  props="cpp unreal bp unity flutter electron cs">
+                <stentry><xref keyref="enumeratePlaybackDevices"/></stentry>
+                <stentry><ph conkeyref="enumeratePlaybackDevices/shortdesc"/><ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
             </strow>
-            <strow>
+            <strow  props="cpp unreal bp unity flutter electron cs">
+                <stentry><xref keyref="enumerateRecordingDevices"/></stentry>
+                <stentry><ph conkeyref="enumerateRecordingDevices/shortdesc"/><ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
+            </strow>
+            <strow  props="cpp unreal bp unity flutter electron cs">
+                <stentry><xref keyref="followSystemPlaybackDevice"/></stentry>
+                <stentry><ph conkeyref="followSystemPlaybackDevice/shortdesc"/><ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
+            </strow>
+            <strow  props="cpp unreal bp unity flutter electron cs">
+                <stentry><xref keyref="followSystemRecordingDevice"/></stentry>
+                <stentry><ph conkeyref="followSystemRecordingDevice/shortdesc"/><ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
+            </strow>
+            <strow props="cs electron flutter unity">
+                <stentry><xref keyref="getAudioDeviceManager"/></stentry>
+                <stentry><ph conkeyref="getAudioDeviceManager/shortdesc"/><ph>（仅适用于 Windows）</ph></stentry>
+            </strow>
+            <strow props="cs electron flutter unity">
+                <stentry><xref keyref="getPlaybackDefaultDevice"/></stentry>
+                <stentry><ph conkeyref="getPlaybackDefaultDevice/shortdesc"/><ph>（仅适用于 Windows 和 macOS）</ph></stentry>
+            </strow>
+            <strow props="cs electron flutter unity">
+                <stentry><xref keyref="getRecordingDefaultDevice"/></stentry>
+                <stentry><ph conkeyref="getRecordingDefaultDevice/shortdesc"/><ph>（仅适用于 Windows 和 macOS）</ph></stentry>
+            </strow>
+            <strow  props="cpp unreal bp unity flutter electron cs">
+                <stentry><xref keyref="setPlaybackDevice"/></stentry>
+                <stentry><ph conkeyref="setPlaybackDevice/shortdesc"/><ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
+            </strow>
+            <strow  props="cpp unreal bp unity flutter electron cs">
+                <stentry><xref keyref="getPlaybackDevice"/></stentry>
+                <stentry><ph conkeyref="getPlaybackDevice/shortdesc"/><ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
+            </strow>
+            <strow  props="cpp unreal bp unity flutter electron cs">
+                <stentry><xref keyref="getPlaybackDeviceInfo"/></stentry>
+                <stentry><ph conkeyref="getPlaybackDeviceInfo/shortdesc"/><ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
+            </strow>
+            <strow props="cpp unreal unity flutter electron cs">
+                <stentry><xref keyref="setLoopbackDevice"/></stentry>
+                <stentry><ph conkeyref="setLoopbackDevice/shortdesc"/><ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
+            </strow>
+            <strow props="cpp unreal unity flutter electron cs">
+                <stentry><xref keyref="getLoopbackDevice"/></stentry>
+                <stentry><ph conkeyref="getLoopbackDevice/shortdesc"/><ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
+            </strow>
+            <strow props="cpp unreal unity flutter electron cs">
+                <stentry><xref keyref="followSystemLoopbackDevice"/></stentry>
+                <stentry><ph conkeyref="followSystemLoopbackDevice/shortdesc"/><ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
+            </strow>
+            <strow props="cpp unreal unity flutter electron cs">
+                <stentry><xref keyref="setPlaybackDeviceVolume"/></stentry>
+                <stentry><ph conkeyref="setPlaybackDeviceVolume/shortdesc"/><ph>（仅适用于 Windows）</ph></stentry>
+            </strow>
+            <strow props="hide">
+                <stentry><xref keyref="getPlaybackDeviceVolume"/></stentry>
+                <stentry><ph conkeyref="getPlaybackDeviceVolume/shortdesc"/><ph>（仅适用于 Windows）</ph></stentry>
+            </strow>
+            <strow  props="cpp unreal bp unity flutter electron cs">
+                <stentry><xref keyref="setRecordingDevice"/></stentry>
+                <stentry><ph conkeyref="setRecordingDevice/shortdesc"/><ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
+            </strow>
+            <strow  props="cpp unreal bp unity flutter electron cs">
+                <stentry><xref keyref="getRecordingDevice"/></stentry>
+                <stentry><ph conkeyref="getRecordingDevice/shortdesc"/><ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
+            </strow>
+            <strow  props="cpp unreal bp unity flutter electron cs">
+                <stentry><xref keyref="getRecordingDeviceInfo"/></stentry>
+                <stentry><ph conkeyref="getRecordingDeviceInfo/shortdesc"/><ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
+            </strow>
+            <strow  props="cpp unreal bp unity flutter electron cs">
+                <stentry><xref keyref="setRecordingDeviceVolume"/></stentry>
+                <stentry><ph conkeyref="setRecordingDeviceVolume/shortdesc"/><ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
+            </strow>
+            <strow props="cpp unreal bp electron unity flutter">
+                <stentry><xref keyref="getRecordingDeviceVolume"/></stentry>
+                <stentry><ph conkeyref="getRecordingDeviceVolume/shortdesc"/><ph>（仅适用于 Windows）</ph></stentry>
+            </strow>
+            <strow props="cpp unreal bp electron unity flutter">
+                <stentry><xref keyref="setPlaybackDeviceMute"/></stentry>
+                <stentry><ph conkeyref="setPlaybackDeviceMute/shortdesc"/><ph>（仅适用于 Windows）</ph></stentry>
+            </strow>
+            <strow props="cpp unreal bp electron unity flutter">
+                <stentry><xref keyref="getPlaybackDeviceMute"/></stentry>
+                <stentry><ph conkeyref="getPlaybackDeviceMute/shortdesc"/><ph>（仅适用于 Windows）</ph></stentry>
+            </strow>
+            <strow props="hide">
+                <stentry><xref keyref="setRecordingDeviceMute"/></stentry>
+                <stentry><ph conkeyref="setRecordingDeviceMute/shortdesc"/><ph>（仅适用于 Windows）</ph></stentry>
+            </strow>
+            <strow props="hide">
+                <stentry><xref keyref="getRecordingDeviceMute"/></stentry>
+                <stentry><ph conkeyref="getRecordingDeviceMute/shortdesc"/><ph>（仅适用于 Windows）</ph></stentry>
+            </strow>
+            <strow  props="cpp unreal bp unity flutter electron cs">
+                <stentry><xref keyref="startAudioDeviceLoopbackTest"/></stentry>
+                <stentry><ph conkeyref="startAudioDeviceLoopbackTest/shortdesc"/><ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
+            </strow>
+            <strow  props="cpp unreal bp unity flutter electron cs">
                 <stentry><xref keyref="stopAudioDeviceLoopbackTest"/></stentry>
-                <stentry><ph conkeyref="stopAudioDeviceLoopbackTest/shortdesc"/></stentry>
+                <stentry><ph conkeyref="stopAudioDeviceLoopbackTest/shortdesc"/><ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
             </strow>
             <strow props="cpp unreal bp electron flutter">
                 <stentry><xref keyref="release_IAudioDeviceManager"/></stentry>
-                <stentry><ph conkeyref="release_IAudioDeviceManager/shortdesc"/>（仅适用于 Windows）</stentry>
+                <stentry><ph conkeyref="release_IAudioDeviceManager/shortdesc"/><ph>（仅适用于 Windows）</ph></stentry>
             </strow>
             <strow props="cpp unreal bp">
                 <stentry><xref keyref="setDevice_IAudioDeviceCollection"/></stentry>
-                <stentry><ph conkeyref="setDevice_IAudioDeviceCollection/shortdesc"/></stentry>
+                <stentry><ph conkeyref="setDevice_IAudioDeviceCollection/shortdesc"/><ph>（仅适用于 Windows 和 macOS）</ph></stentry>
             </strow>
             <strow props="cpp mac unreal bp">
                 <stentry><xref keyref="getDefaultDevice_IAudioDeviceCollection"/></stentry>
-                <stentry><ph conkeyref="getDefaultDevice_IAudioDeviceCollection/shortdesc"/></stentry>
+                <stentry><ph conkeyref="getDefaultDevice_IAudioDeviceCollection/shortdesc"/><ph>（仅适用于 Windows 和 macOS）</ph></stentry>
             </strow>
             <strow props="cpp unreal bp">
                 <stentry><xref keyref="getDevice_IAudioDeviceCollection"/></stentry>
-                <stentry><ph conkeyref="getDevice_IAudioDeviceCollection/shortdesc"/></stentry>
+                <stentry><ph conkeyref="getDevice_IAudioDeviceCollection/shortdesc"/><ph>（仅适用于 Windows 和 macOS）</ph></stentry>
             </strow>
             <strow props="cpp unreal bp">
                 <stentry><xref keyref="getCount_IAudioDeviceCollection"/></stentry>
-                <stentry><ph conkeyref="getCount_IAudioDeviceCollection/shortdesc"/></stentry>
+                <stentry><ph conkeyref="getCount_IAudioDeviceCollection/shortdesc"/><ph>（仅适用于 Windows 和 macOS）</ph></stentry>
             </strow>
             <strow props="cpp unreal bp">
                 <stentry><xref keyref="setApplicationVolume"/></stentry>
-                <stentry><ph conkeyref="setApplicationVolume/shortdesc"/></stentry>
+                <stentry><ph conkeyref="setApplicationVolume/shortdesc"/><ph>（仅适用于 Windows 和 macOS）</ph></stentry>
             </strow>
             <strow props="cpp unreal bp">
                 <stentry><xref keyref="getApplicationVolume"/></stentry>
-                <stentry><ph conkeyref="getApplicationVolume/shortdesc"/></stentry>
+                <stentry><ph conkeyref="getApplicationVolume/shortdesc"/><ph>（仅适用于 Windows 和 macOS）</ph></stentry>
             </strow>
             <strow props="cpp unreal bp">
                 <stentry><xref keyref="setApplicationMute"/></stentry>
-                <stentry><ph conkeyref="setApplicationMute/shortdesc"/></stentry>
+                <stentry><ph conkeyref="setApplicationMute/shortdesc"/><ph>（仅适用于 Windows 和 macOS）</ph></stentry>
             </strow>
             <strow props="cpp unreal bp">
                 <stentry><xref keyref="isApplicationMute"/></stentry>
-                <stentry><ph conkeyref="isApplicationMute/shortdesc"/></stentry>
+                <stentry><ph conkeyref="isApplicationMute/shortdesc"/><ph>（仅适用于 Windows 和 macOS）</ph></stentry>
             </strow>
             <strow props="cpp unreal bp">
                 <stentry><xref keyref="release_IAudioDeviceCollection"/></stentry>
-                <stentry><ph conkeyref="release_IAudioDeviceCollection/shortdesc"/></stentry>
+                <stentry><ph conkeyref="release_IAudioDeviceCollection/shortdesc"/><ph>（仅适用于 Windows 和 macOS）</ph></stentry>
             </strow>
-            <strow>
+            <strow  props="cpp unreal bp unity flutter electron cs">
                 <stentry><xref keyref="onAudioDeviceStateChanged"/></stentry>
-                <stentry><ph conkeyref="onAudioDeviceStateChanged/shortdesc"/></stentry>
+                <stentry><ph conkeyref="onAudioDeviceStateChanged/shortdesc"/><ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
             </strow>
-            <strow>
+            <strow  props="cpp unreal bp unity flutter electron cs">
                 <stentry><xref keyref="onAudioDeviceVolumeChanged"/></stentry>
-                <stentry><ph conkeyref="onAudioDeviceVolumeChanged/shortdesc"/></stentry>
+                <stentry><ph conkeyref="onAudioDeviceVolumeChanged/shortdesc"/><ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
+            </strow>
+            <strow props="android bp cpp cs flutter rn unity unreal">
+                <stentry><xref keyref="getAudioDeviceInfo"/></stentry>
+                <stentry><ph conkeyref="getAudioDeviceInfo/shortdesc"/><ph props="bp cpp cs flutter rn unity unreal">（仅适用于 Android）</ph></stentry>
             </strow>
             </simpletable> </section>
         <section id="extension">
