@@ -28,15 +28,19 @@
         </section>
         <section id="detailed_desc">
             <title>详情</title>
-            <p>该方法删除指定的回调句柄。对于某些注册的回调句柄，如果你在收到相应回调事件后无需再次接收回调消息，可以调用该方法移除回调句柄。</p>
+            <p props="android">该方法删除指定的回调句柄。对于某些注册的回调句柄，如果你在收到相应回调事件后无需再次接收回调消息，可以调用该方法移除回调句柄。</p>
+            <p props="framework">该方法用于删除已添加的所有回调事件。</p>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry>
-                <pt props="android">handler</pt>
-                <pt props="rn electron flutter">eventHandler</pt>
+            <plentry props="android">
+                <pt>handler</pt>
                 <pd>待删除的回调句柄。详见 <xref keyref="IRtcEngineEventHandler" />。</pd>
+            </plentry>
+            <plentry props="framework">
+                <pt>eventHandler</pt>
+                <pd>待删除的回调事件。详见 <xref keyref="IRtcEngineEventHandler" />。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
