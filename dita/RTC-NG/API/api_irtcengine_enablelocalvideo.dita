@@ -26,15 +26,43 @@
         </section>
         <section id="detailed_desc">
             <title>详情</title>
-            <p id="desc1">该方法禁用或重新启用本地视频采集，不影响接收远端视频。</p>
-            <p>调用 <xref keyref="enableVideo" /> 后，本地视频采集即默认开启。</p>
-            <p>如果你在频道内调用 <xref keyref="enableLocalVideo" />(<codeph><ph keyref="false" /></codeph>) 关闭本地视频采集，也会同时停止在频道内发布视频流。如果想要重新开启，则可调用 <apiname keyref="enableLocalVideo" />(<codeph><ph keyref="true" /></codeph>)，然后调用 <xref keyref="updateChannelMediaOptions"/> 并设置 <parmname>options</parmname> 参数，将本地采集的视频流发布到频道中。</p>
-            <p>成功禁用或启用本地视频采集后，远端会触发 <xref keyref="onRemoteVideoStateChanged" /> 回调。</p>
-            <note type="attention">
-            <ul>
-            <li>该方法在加入频道前后都能调用。</li>
-            <li>该方法设置内部引擎为启用状态，在离开频道后仍然有效。</li>
-            </ul> </note> </section>
+            <p>在调用 <xref keyref="enableVideo"/> 后，SDK 默认使能本地视频采集。</p>
+            <p>你可以调用该方法禁用本地视频采集，或在已禁用本地视频采集后重新开启。在频道内成功调用该方法后，远端会触发 <xref keyref="onRemoteVideoStateChanged"/> 回调。</p>
+            <note>该方法的调用结果不影响接收远端视频。</note>
+            <p>该方法在加入频道前后都能调用，调用结果如下表所示：<table frame="all" rowsep="1" colsep="1">
+                <tgroup cols="3">
+                    <colspec colname="c1" colnum="1" colwidth="1*"/>
+                    <colspec colname="c2" colnum="2" colwidth="1.29*"/>
+                    <colspec colname="c3" colnum="3" colwidth="4.1*"/>
+                    <thead>
+                        <row>
+                            <entry>调用时机</entry>
+                            <entry>enabled 取值</entry>
+                            <entry>调用结果</entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry morerows="1">加入频道前</entry>
+                            <entry><codeph><ph keyref="true"/></codeph></entry>
+                            <entry>使能本地视频采集（在调用 <xref keyref="startPreview"/> 或 <xref keyref="joinChannel2"/> 后，正式开启本地视频采集）</entry>
+                        </row>
+                        <row>
+                            <entry><codeph><ph keyref="false"/></codeph></entry>
+                            <entry>关闭本地视频采集（即使调用 <xref keyref="startPreview"/> 或 <xref keyref="joinChannel2"/>，也不会开启本地采集 。）</entry>
+                        </row>
+                        <row>
+                            <entry morerows="1">加入频道后</entry>
+                            <entry><codeph><ph keyref="true"/></codeph></entry>
+                            <entry>使能本地视频采集（在调用 <xref keyref="startPreview"/> 或 <xref keyref="joinChannel2"/> 后，正式开启本地视频采集；在离开频道后，本地视频采集会继续进行。）</entry>
+                        </row>
+                        <row>
+                            <entry><codeph><ph keyref="false"/></codeph></entry>
+                            <entry>关闭本地视频采集（同时停止在频道内发布视频流。如果想要重新发流，可重新调用 <apiname keyref="enableLocalVideo"/>(<codeph><ph keyref="true"/></codeph>)，然后调用 <xref keyref="updateChannelMediaOptions"/> 并设置 <parmname>options</parmname> 参数，将本地采集的视频流发布到频道中。）</entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+                </table></p> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
