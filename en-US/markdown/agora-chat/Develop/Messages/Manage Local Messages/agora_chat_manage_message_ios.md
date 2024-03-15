@@ -9,6 +9,9 @@ SQLCipher is used to encrypt the database that stores local messages. The Agora 
 - `getAllConversations`: Loads the conversation list on the local device.
 - `loadMessagesStartFromId`: Loads messages of a conversation.
 - `deleteConversations`: Deletes the specified conversation.
+- `deleteMessage`: Deletes a message sent or received in a local conversation.
+- `deleteAllMessages`: Deletes all messages in a local conversation.
+- `removeMessagesStart`: Deletes messages sent and received in a certain period in a local conversation.
 - `AgoraChatConversation.unreadMessagesCount`: Retrieves the count of unread messages in the specified conversation.
 - `deleteConversation`: Deletes the conversation from the server.
 - `AgoraChatConversation.loadMessagesStartFromId`: Searches for messages from the local database.
@@ -97,6 +100,36 @@ NSArray *conversations = @{@"conversationID1",@"conversationID2"};
 // Deletes the specified message of the current conversation.
 AgoraChatConversation *conversation = [[AgoraChatClient sharedClient].chatManager getConversation:conversationId type:type createIfNotExist:YES];
 [conversation deleteMessageWithId:.messageId error:nil];
+```
+
+### Delete all messages in a local conversation
+
+You can call `deleteAllMessages` to delete all messages in a local conversation:
+
+```swift
+// conversationId: The conversation ID, which is the user ID of the peer user in one-to-one chat, group ID in group chat, and chat room ID in room chat.
+if let conversation = AgoraChatClient.shared().chatManager?.getConversationWithConvId("conversationId") {
+    var err: AgoraChatError? = nil
+    conversation.deleteAllMessages(&err)
+     if let err = err {
+         // Failed to delete messages
+     } else {
+        // Succeeded in deleting messages
+     }
+}
+```
+
+### Delete messages in a local conversation by time period
+
+You can call `removeMessagesStart` to delete messages sent and received in a certain period in a local conversation.
+
+```swift
+// conversationId: The conversation ID, which is the user ID of the peer user in one-to-one chat, group ID in group chat, and chat room ID in room chat.
+// startTime: The starting UNIX timestamp for message deletion.
+// endTime: The end UNIX timestamp for message deletion.
+if let conversation = AgoraChatClient.shared().chatManager?.getConversationWithConvId("conversationId") {
+    conversation.removeMessagesStart(startTime, to: endTime)
+}
 ```
 
 ### Search for messages using keywords

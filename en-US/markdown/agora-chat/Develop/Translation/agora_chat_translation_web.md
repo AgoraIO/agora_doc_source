@@ -11,7 +11,7 @@ Before proceeding, ensure that your development environment meets the following 
 
 - Your project integrates a version of the Agora Chat SDK later than v1.0.3 and has implemented the basic [real-time chat functionalities](./agora_chat_get_started_web?platform=Web).
 - You understand the API call frequency limit as described in [Limitations](./agora_chat_limitation?platform=Web).
-- Because this feature is enabled by the Microsoft Azure Translation API, ensure that you understand the supported target languages as described in [Language support](https://docs.microsoft.com/en-us/azure).
+- Because this feature is enabled by the Microsoft Azure Translation API, ensure that you understand the supported target languages as described in [Language support](https://learn.microsoft.com/en-us/azure/ai-services/translator/language-support).
 - Translation is not enabled by default. To use this feature, you need to subscribe to the **Pro** or **Enterprise** [pricing plan](./agora_chat_plan) and enable it in [Agora Console](https://console.agora.io/).
 
 <div class="alert note">Add-on fees are incurred if you use this feature. See <a href="https://docs.agora.io/en/agora-chat/agora_chat_pricing#optional-add-on-fee">Pricing</a> for details.</div>
@@ -41,7 +41,7 @@ conn.getSupportedLanguages().then(res => console.log(res))
 When the recipient receives a text message, call `translateMessage` to translate the message:
 
 ```javascript
-conn.translateMessage('hello', ['zh']).then(res => console.log(res))
+conn.translateMessage({text: 'hello', languages: [zh-Hans]})
 ```
 
 ### Automatic translation
@@ -55,7 +55,7 @@ let option = {
     type: 'txt',
     to: 'userId',
     msg: 'hello',
-    msgConfig:{ languages: ['zh'] } // Set the target language for translation.
+    msgConfig:{ languages: ['zh-Hans'] } // Set the target language for translation.
 }
 let msg = WebIM.message.create(option);
 conn.send(msg)

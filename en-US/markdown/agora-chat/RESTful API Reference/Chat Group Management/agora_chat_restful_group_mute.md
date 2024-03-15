@@ -259,7 +259,7 @@ curl -X GET -H 'Accept: application/json' 'http://XXXX/XXXX/XXXX/chatgroups/1013
 
 ## Muting all chat group members
 
-This method mutes all the chat group members. If this method call succeeds, none of the chat group members can send messages in the chat group or in any threads within the chat group, except those in the group [allow list](./agora_chat_restful_group_allowlist?platform=RESTful).
+This method mutes all the chat group members. If this method call succeeds, none of the chat group members can send messages in the chat group or in any threads within the chat group, except those in the group [allow list](./agora_chat_restful_group_allowlist?platform=RESTful). As the mute does not expire in a certain period, you need to call the API of unmuting all chat group members to stop muting them.
 
 ### HTTP request
 
@@ -282,12 +282,6 @@ For other parameters and detailed descriptions, see [Common parameters](#param).
 | `Content-Type` | String | The parameter type. Set it as `application/json`. | Yes |
 | `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
-#### Request body
-
-| Parameter | Type | Description |
-| --- | --- | --- |
-| `mute-duration` | Long | The amount of time the group members remain muted, in milliseconds. |
-
 ### HTTP response
 
 #### Response body
@@ -296,8 +290,7 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 
 | Parameter | Type | Description |
 | :----- | :----- | :---------------------------- |
-| `result`| Boolean | Whether all the chat group members are muted.<ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> |
-| `expire` | Long | The Unix timestamp when the mute state expires, in milliseconds. |
+| `data.mute`| Boolean | Whether all the chat group members are muted.<ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> |
 
 For other fields and descriptions, see [Common parameters](#param).
 

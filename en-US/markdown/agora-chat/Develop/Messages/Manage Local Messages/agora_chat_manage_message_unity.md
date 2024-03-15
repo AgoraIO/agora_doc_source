@@ -8,6 +8,8 @@ SQLCipher is used to encrypt the database that stores local messages. The Agora 
 
 - `IChatManager.LoadAllConversations`: Loads the conversation list on the local device.
 - `IChatManage.DeleteConversation`: Deletes the specified conversation.
+- `Conversation#DeleteAllMessages`：Deletes all messages sent and received in a local conversation.
+- `Conversation#DeleteMessages`: Deletes messages sent and received in a certain period in a local conversation.
 - `IConversationManager.UnReadCount`: Retrieves the count of unread messages in the specified conversation.
 - `IChatManager.GetUnreadMessageCount`: Retrieves the count of all unread messages.
 - `IChatManager.DeleteConversationFromServer`: Deletes the conversation from the server.
@@ -107,6 +109,40 @@ SDKClient.Instance.ChatManager.DeleteConversationFromServer(conversationId, type
     onError: (code, desc) => {
     }
 ));
+```
+
+### Delete all messages in a local conversation
+
+You can call `DeleteAllMessages` to delete all messages sent and received in a local conversation:
+
+```csharp
+// conversationId: The conversation ID, which is the user ID of the peer user in one-to-one chat, group ID in group chat, and chat room ID in room chat.
+// conversationType: The conversation type, which is `Chat` for one-to-one chat, `Group` for group chat, and `Room` for room chat.
+Conversation conv = SDKClient.Instance.ChatManager.GetConversation(conversionId, conversationType);
+
+if (conv.DeleteAllMessages()){
+    //Succeeded in deleting messages
+}
+else{
+    //Failed to delete messages
+}
+```
+
+### Delete messages in a local conversation by time period
+
+You can call `DeleteMessages` to delete messages sent and received in a certain period in a local conversation.
+
+```csharp
+// conversationId: The conversation ID, which is the user ID of the peer user in one-to-one chat, group ID in group chat, and chat room ID in room chat.
+// conversationType: The conversation type, which is `Chat` for one-to-one chat, `Group` for group chat, and `Room` for room chat.
+Conversation conv = SDKClient.Instance.ChatManager.GetConversation(conversionId, conversationType);
+
+if (conv.DeleteMessages(startTime, endTime)) {
+    //Succeeded in deleting messages
+}
+else {
+    //Failed to delete messages
+}
 ```
 
 ### Search for messages using keywords
