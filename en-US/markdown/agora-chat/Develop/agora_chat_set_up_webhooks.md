@@ -84,7 +84,7 @@ Note the following for the rule configurations:
 
 The following figure shows how the pre-delivery callbacks work.
 
-![](pre-delivery-callback.png)
+![](pre_delivery_callback.png)
 
 As shown in the figure, the workflow of pre-delivery callbacks is as follows:
 
