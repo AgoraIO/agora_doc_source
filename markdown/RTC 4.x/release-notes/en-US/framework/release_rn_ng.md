@@ -8,6 +8,16 @@ On Android 14 devices (such as OnePlus 11), screen sharing may not be available 
 
 AirPods Pro does not support A2DP protocol in communication audio mode, which may lead to connection failure in that mode.
 
+## v4.3.0-build.1
+
+v4.3.0-build.1 was released on xx xx, 2024.
+
+#### Issues fixed
+
+This release fixed the following issue:
+
+Directly calling `engine.release` to destroy the engine without prior call of `engine.unregisterEventHandler` to remove all callback events may lead to App crashes. (Android)
+
 ## v4.3.0
 
 v4.3.0 was released on xx xx, 2024.
