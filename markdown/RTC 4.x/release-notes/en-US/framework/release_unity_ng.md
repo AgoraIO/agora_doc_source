@@ -53,7 +53,25 @@ This release has optimized the implementation of some functions, involving renam
 
    - The value of `LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_PAUSED` (formerly `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED`) has been changed from 23 to 28.
    - The value of `LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_RESUMED` (formerly `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_RESUMED`) has been changed from 24 to 29.
-   - The `LOCAL_VIDEO_STREAM_ERROR_CODEC_NOT_SUPPORT` enumeration has been changed to `LOCAL_VIDEO_STREAM_REASON_CODEC_NOT_SUPPORT`.
+   - The `LOCAL_VIDEO_STREAM_ERROR_CODEC_NOT_SUPPORT` enumeration has been changed to `LOCAL_VIDEO_STREAM_REASON_CODEC_NOT_SUPPORT`
+
+4. **Audio route**
+
+   Starting with this release, `routeBluetooth` in [`AudioRoute`](/api-ref/rtc/unity/API/enum_audioroute) is renamed to `ROUTE_BLUETOOTH_DEVICE_HFP`, representing a Bluetooth device using the HFP protocol. `ROUTE_BLUETOOTH_DEVICE_A2DP`(10) is added to represent a Bluetooth device using the A2DP protocol
+
+5. **Audio loopback capturing (Windows, macOS)**
+
+- Before v4.3.0, if you call the [`DisableAudio`](/api-ref/rtc/unity/API/toc_audio_basic#api_irtcengine_disableaudio) method to disable the audio module, audio loopback capturing will not be disabled.
+- As of v4.3.0, if you call the [`DisableAudio`](/api-ref/rtc/unity/API/toc_audio_basic#api_irtcengine_disableaudio) method to disable the audio module, audio loopback capturing will be disabled as well. If you need to enable audio loopback capturing, you need to enable the audio module by calling the [`EnableAudio`](/api-ref/rtc/unity/API/toc_audio_basic#api_irtcengine_enableaudio) method and then call [`EnableLoopbackRecording`](/api-ref/rtc/unity/API/toc_audio_capture#api_irtcengine_enableloopbackrecording).
+
+6. **Log encryption behavior changes**
+
+   For security and performance reasons, as of this release, the SDK encrypts logs and no longer supports printing plaintext logs via the console. 
+
+   Refer to the following solutions for different needs:
+
+   - If you need to know the API call status, please check the API logs and print the SDK callback logs yourself.
+   - For any other special requirements, please contact [technical support](mailto:support@agora.io) and provide the corresponding encrypted logs.
 
 #### New features
 
@@ -65,15 +83,23 @@ This release has optimized the implementation of some functions, involving renam
    2. Call [SetupLocalVideo](API/api_irtcengine_setuplocalvideo.html) to set the second view: Set the `position` parameter to `POSITION_POST_CAPTURER` in `VideoCanvas`, the video observed here has the effect of video preprocessing.
    3. Observe the local preview effect: The first view is the original video of a real person; the second view is the virtual portrait after video preprocessing (including image enhancement, virtual background, and local preview of watermarks) effects.
 
-2. **Query Device Score**
+2. **Custom mixed video layout on receiving end (Android, iOS)**
+
+   To facilitate customized layout of mixed video stream at the receiver end, this release introduces the [OnTranscodedStreamLayoutInfo](API/callback_irtcengineeventhandler_ontranscodedstreamlayoutinfo.html) callback. When the receiver receives the channel's mixed video stream sent by the video mixing server, this callback is triggered, reporting the layout information of the mixed video stream and the layout information of each sub-video stream in the mixed stream. The receiver can set a separate `view` for rendering the sub-video stream (distinguished by `subviewUid`) in the mixed video stream when calling the [SetupRemoteVideo](API/api_irtcengine_setupremotevideo.html) method, achieving a custom video layout effect.
+
+   When the layout of the sub-video streams in the mixed video stream changes, this callback will also be triggered to report the latest layout information in real time.
+
+   Through this feature, the receiver end can flexibly adjust the local view layout. When applied in a multi-person video scenario, the receiving end only needs to receive and decode a mixed video stream, which can effectively reduce the CPU usage and network bandwidth when decoding multiple video streams on the receiving end.
+
+3. **Query Device Score**
 
    This release adds the [QueryDeviceScore](API/api_irtcengine_querydevicescore.html) method to query the device's score level to ensure that the user-set parameters do not exceed the device's capabilities. For example, in HD or UHD video scenarios, you can first call this method to query the device's score. If the returned score is low (for example, below 60), you need to lower the video resolution to avoid affecting the video experience. The minimum device score required for different business scenarios is varied. For specific score recommendations, please contact [technical support](mailto:support@agora.io).
 
-3. **Select different audio tracks for local playback and streaming**
+4. **Select different audio tracks for local playback and streaming**
 
    This release introduces the [SelectMultiAudioTrack](API/api_imediaplayer_selectmultiaudiotrack.html) method that allows you to select different audio tracks for local playback and streaming to remote users. For example, in scenarios like online karaoke, the host can choose to play the original sound locally and publish the accompaniment in the channel. Before using this function, you need to open the media file through the [OpenWithMediaSource](API/api_imediaplayer_openwithmediasource.html) method and enable this function by setting the `enableMultiAudioTrack` parameter in [MediaSource](API/class_mediasource.html).
 
-4. **Others**
+5. **Others**
 
    This release has passed the test verification of the following APIs and can be applied to the entire series of RTC 4.x SDK.
 
@@ -125,6 +151,8 @@ This release fixed the following issues:
 
 **Added**
 
+- [OnTranscodedStreamLayoutInfo](API/callback_irtcengineeventhandler_ontranscodedstreamlayoutinfo.html) (Android, iOS)
+- [VideoLayout](API/class_videolayout.html) (Android, iOS)
 - The `subviewUid` member in [VideoCanvas](API/class_videocanvas.html)
 - [EnableCustomAudioLocalPlayback](API/api_irtcengine_enablecustomaudiolocalplayback.html)
 - [QueryDeviceScore](API/api_irtcengine_querydevicescore.html)
@@ -137,9 +165,9 @@ This release fixed the following issues:
 
 **Modified**
 
+- `ROUTE_BLUETOOTH` is renamed as`ROUTE_BLUETOOTH_DEVICE_HFP`
 - All `ERROR` fields in the following enumerations are changed to `REASON`:
-
-  - `LOCAL_AUDIO_STREAM_ERROR_OK`
+- `LOCAL_AUDIO_STREAM_ERROR_OK`
   - `LOCAL_AUDIO_STREAM_ERROR_FAILURE`
   - `LOCAL_AUDIO_STREAM_ERROR_DEVICE_NO_PERMISSION`
   - `LOCAL_AUDIO_STREAM_ERROR_DEVICE_BUSY`
@@ -413,7 +441,7 @@ This release deletes `GetMaxMetadataSize` and `OnReadyToSendMetadata` in the `IM
 This release includes the following additional improvements:
 
 1. To improve the switching experience between multiple audio routes, this release adds the `SetRouteInCommunicationMode` method. This method can switch the audio route from a Bluetooth headphone to the earpiece, wired headphone or speaker in communication volume mode ([`MODE_IN_COMMUNICATION`](https://developer.android.google.cn/reference/kotlin/android/media/AudioManager?hl=en#mode_in_communication)). (Android)
-2. The SDK automacially adjusts the frame rate of the sending end based on the screen sharing scenario. Especially in document sharing scenarios, this feature avoids exceeding the expected video bitrate on the sending end to improve transmission efficiency and reduce network burden.
+2. The SDK automatically adjusts the frame rate of the sending end based on the screen sharing scenario. Especially in document sharing scenarios, this feature avoids exceeding the expected video bitrate on the sending end to improve transmission efficiency and reduce network burden.
 3. To help users understand the reasons for more types of remote video state changes, the `REMOTE_VIDEO_STATE_REASON_CODEC_NOT_SUPPORT` enumeration has been added to the `OnRemoteVideoStateChanged` callback, indicating that the local video decoder does not support decoding the received remote video stream.
 
 #### Issues fixed
