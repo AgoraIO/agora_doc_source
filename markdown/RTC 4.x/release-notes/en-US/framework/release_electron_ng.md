@@ -45,10 +45,21 @@ This release has optimized the implementation of some functions, involving renam
    - The value of `LocalVideoStreamReasonScreenCaptureResumed` (formerly `LocalVideoStreamReasonScreenCaptureResumed`) has been changed from 24 to 29.
    - The `LocalVideoStreamReasonCodecNotSupport` enumeration has been changed to `LocalVideoStreamReasonCodecNotSupport`.
 
-4. **Audio loopback capturing**
+4. **Log encryption behavior changes**
+   
+   For security and performance reasons, as of this release, the SDK encrypts logs and no longer supports printing plaintext logs via the console. 
+   
+   Refer to the following solutions for different needs:
+   - If you need to know the API call status, please check the API logs and print the SDK callback logs yourself.
+   - For any other special requirements, please contact [technical support](mailto:support@agora.io) and provide the corresponding encrypted logs.
+
+
+
+5. **Audio loopback capturing**
 
    - Before v4.3.0, if you call the [disableAudio](API/api_irtcengine_disableaudio.html) method to disable the audio module, audio loopback capturing will not be disabled.
    - As of v4.3.0, if you call the [disableAudio](API/api_irtcengine_disableaudio.html) method to disable the audio module, audio loopback capturing will be disabled as well. If you need to enable audio loopback capturing, you need to enable the audio module by calling the [enableAudio](API/api_irtcengine_enableaudio.html) method and then call [enableLoopbackRecording](API/api_irtcengine_enableloopbackrecording.html).
+
 
 #### New features
 
