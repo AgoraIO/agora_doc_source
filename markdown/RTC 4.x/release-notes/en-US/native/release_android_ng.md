@@ -72,6 +72,10 @@ This release has optimized the implementation of some functions, involving renam
    Refer to the following solutions for different needs:
    - If you need to know the API call status, please check the API logs and print the SDK callback logs yourself.
    - For any other special requirements, please contact [technical support](mailto:support@agora.io) and provide the corresponding encrypted logs.
+   
+9. **Removing IAgoraEventHandler interface**
+
+   This release deletes the `IAgoraEventHandler` interface class. All callback events that were previously managed under this class are now processed through the `IRtcEngineEventHandler` interface class.
 
 #### New features
 
