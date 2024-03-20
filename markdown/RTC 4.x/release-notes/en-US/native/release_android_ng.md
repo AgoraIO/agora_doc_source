@@ -139,7 +139,7 @@ This release has optimized the implementation of some functions, involving renam
 
 4. **Optimization of video pre-processing methods**
 
-   This release adds overloaded methods with the `souceType` parameter for the following 5 video preprocessing methods, which support specifying the media source type for applying video preprocessing effects by passing in `sourceType` (for example, applying on a custom video capture media source):
+   This release adds overloaded methods with the `sourceType` parameter for the following 5 video preprocessing methods, which support specifying the media source type for applying video preprocessing effects by passing in `sourceType` (for example, applying on a custom video capture media source):
 
    - [`setBeautyEffectOptions` [2/2]](API/api_irtcengine_setbeautyeffectoptions2.html)
    - [`setLowlightEnhanceOptions` [2/2]](API/api_irtcengine_setlowlightenhanceoptions2.html)
@@ -164,7 +164,7 @@ This release has optimized the implementation of some functions, involving renam
 This release fixed the following issues:
 
 - When sharing two screen sharing video streams simultaneously, the reported `captureFrameRate` in the [`onLocalVideoStats`](API/callback_irtcengineeventhandler_onlocalvideostats.html) callback is 0, which is not as expected.
-- In a online meeting scenario, occasional audio freezes occured when the local user was listening to remote users.
+- In a online meeting scenario, occasional audio freezes occurred when the local user was listening to remote users.
 
 #### API changes
 
@@ -525,7 +525,7 @@ This release introduces `startCameraCapture`. By calling this method multiple ti
 
 **6. Channel media relay**
 
-This release introduces `startOrUpdateChannleMediaRelay` and `startOrUpdateChannleMediaRelayEx`, allowing for a simpler and smoother way to start and update media relay across channels. With these methods, developers can easily start the media relay across channels and update the target channels for media relay with a single method. Additionally, the internal interaction frequency has been optimized, effectively reducing latency in function calls.
+This release introduces `startOrUpdateChannelMediaRelay` and `startOrUpdateChannelMediaRelayEx`, allowing for a simpler and smoother way to start and update media relay across channels. With these methods, developers can easily start the media relay across channels and update the target channels for media relay with a single method. Additionally, the internal interaction frequency has been optimized, effectively reducing latency in function calls.
 
 **7. Custom audio tracks**
 
