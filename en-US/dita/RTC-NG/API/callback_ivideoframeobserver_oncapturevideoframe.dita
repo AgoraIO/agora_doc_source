@@ -20,12 +20,12 @@
             <codeblock props="electron" outputclass="language-typescript">onCaptureVideoFrame?(
     sourceType: VideoSourceType,
     videoFrame: VideoFrame
-  ): boolean;</codeblock>
+  ): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual bool OnCaptureVideoFrame(VIDEO_SOURCE_TYPE sourceType, VideoFrame videoFrame)</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onCaptureVideoFrame?(
     sourceType: VideoSourceType,
     videoFrame: VideoFrame
-  ): boolean;</codeblock>
+  ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(VideoSourceType sourceType, VideoFrame videoFrame)?
       onCaptureVideoFrame;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
@@ -55,15 +55,15 @@
                         <li props="cpp unreal bp electron unity flutter cs">Windows: YUV420</li></ul></note></pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unreal bp unity electron rn cs">
+        <section id="return_values" props="native unreal bp unity cs">
             <title>Returns</title>
             <p id="return">
             <ul>
-            <li props="native unreal bp electron rn">When the video processing mode is <apiname keyref="PROCESS_MODE_READ_ONLY"/>:<ul>
+            <li props="native unreal bp electron rn">When the video processing mode is<apiname keyref="PROCESS_MODE_READ_ONLY"/> :<ul>
                 <li><codeph><ph keyref="true"/></codeph>: Reserved for future use.</li>
                 <li><codeph><ph keyref="false"/></codeph>: Reserved for future use.</li>
                 </ul></li>
-            <li props="native unreal bp electron rn">When the video processing mode is <apiname keyref="PROCESS_MODE_READ_WRITE"/>:<ul>
+            <li props="native unreal bp electron rn">When the video processing mode is<apiname keyref="PROCESS_MODE_READ_WRITE"/> :<ul>
                 <li><codeph><ph keyref="true"/></codeph>: Sets the SDK to receive the video frame.</li>
                 <li><codeph><ph keyref="false"/></codeph>: Sets the SDK to discard the video frame.</li>
                 </ul></li>

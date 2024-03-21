@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_removehandler">
     <title><ph keyref="removeHandler" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Removes the specified callback handler.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc"><ph props="android">Removes the specified IRtcEngineEventHandler instance. </ph><ph props="framework">Removes the specified callback handler.</ph></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void removeHandler(IRtcEngineEventHandler handler) {
-    mInstance.removeHandler((IAgoraEventHandler) handler);
-  }</codeblock>
+                mInstance.removeHandler(handler);
+              }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec" />
             <codeblock props="cpp unreal" outputclass="language-cpp" />
             <codeblock props="electron" outputclass="language-typescript">abstract unregisterEventHandler(eventHandler: IRtcEngineEventHandler): boolean;</codeblock>
@@ -28,15 +28,19 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>This method removes the specified callback handler. For callback events that you want to listen for only once, call this method to remove the relevant callback handler after you have received them.</p>
+            <p props="android">This method removes the specified callback handler. For callback events that you want to listen for only once, call this method to remove the relevant callback handler after you have received them.</p>
+            <p props="framework">该方法用于删除已添加的所有回调事件。</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry>
-                <pt props="android">handler</pt>
-                <pt props="rn electron flutter">eventHandler</pt>
+            <plentry props="android">
+                <pt>handler</pt>
                 <pd>The callback handler to be deleted. See <xref keyref="IRtcEngineEventHandler" />.</pd>
+            </plentry>
+            <plentry props="framework">
+                <pt>eventHandler</pt>
+                <pd>待删除的回调事件。 See <xref keyref="IRtcEngineEventHandler" />.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">

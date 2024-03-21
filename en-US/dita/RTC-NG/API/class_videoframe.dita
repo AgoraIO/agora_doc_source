@@ -555,15 +555,18 @@ class VideoFrame {
         </plentry>
         <plentry props="apple cpp unreal bp unity flutter rn electron cs">
           <pt>yStride</pt>
-          <pd>For YUV data, the line span of the Y buffer; for RGBA data, the total data length.</pd>
+          <pd>For YUV data, the line span of the Y buffer; for RGBA data, the total data length.<note type="attention">在处理视频数据时，需根据该参数处理每行像素数据之间的偏移量，否则可能导致图像失真。</note>
+          </pd>
         </plentry>
         <plentry props="apple cpp unreal bp unity flutter rn electron cs">
           <pt>uStride</pt>
-          <pd>For YUV data, the line span of the U buffer; for RGBA data, the value is 0.</pd>
+          <pd>For YUV data, the line span of the U buffer; for RGBA data, the value is 0.<note type="attention">在处理视频数据时，需根据该参数处理每行像素数据之间的偏移量，否则可能导致图像失真。</note>
+          </pd>
         </plentry>
         <plentry props="apple cpp unreal bp unity flutter rn electron cs">
           <pt>vStride</pt>
-          <pd>For YUV data, the line span of the V buffer; for RGBA data, the value is 0.</pd>
+          <pd>For YUV data, the line span of the V buffer; for RGBA data, the value is 0.<note type="attention">在处理视频数据时，需根据该参数处理每行像素数据之间的偏移量，否则可能导致图像失真。</note>
+          </pd>
         </plentry>
         <plentry props="apple cpp unreal bp unity flutter rn electron cs">
           <pt>yBuffer</pt>
@@ -592,7 +595,7 @@ class VideoFrame {
         <plentry props="android">
           <pt>buffer</pt>
           <pd>
-            <note type="caution">This parameter cannot be empty; otherwise, an error  can occur.</note>Buffer data. The methods associated with this parameter are as follows:</pd>
+            <note type="attention">This parameter cannot be empty; otherwise, an error  can occur.</note>Buffer data. The methods associated with this parameter are as follows:</pd>
           <pd>
             <ul>
               <li><codeph>getRotatedWidth</codeph>: Gets the width of the rotated video frame.</li>

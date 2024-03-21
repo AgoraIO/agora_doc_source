@@ -19,12 +19,12 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onMixedAudioFrame:(AgoraAudioFrame* _Nonnull)frame channelId:(NSString * _Nonnull)channelId  NS_SWIFT_NAME(onMixedAudioFrame(_:channelId:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual bool onMixedAudioFrame(const char* channelId, AudioFrame&amp; audioFrame) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnMixedAudioFrame, const FString, channelId, const FAudioFrame&amp;, audioFrame);</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">  onMixedAudioFrame?(channelId: string, audioFrame: AudioFrame): boolean;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onMixedAudioFrame?(channelId: string, audioFrame: AudioFrame): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual bool OnMixedAudioFrame(string channelId, AudioFrame audio_frame)
         {
             return true;
         }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">  onMixedAudioFrame?(channelId: string, audioFrame: AudioFrame): boolean;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onMixedAudioFrame?(channelId: string, audioFrame: AudioFrame): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(String channelId, AudioFrame audioFrame)?
       onMixedAudioFrame;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"/></p>
@@ -94,7 +94,7 @@
                 <pd>Reserved for future use.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unreal bp unity rn electron cs">
+        <section id="return_values" props="native unreal bp unity cs">
             <title>Returns</title>
             <p>Without practical meaning.</p>
         </section>

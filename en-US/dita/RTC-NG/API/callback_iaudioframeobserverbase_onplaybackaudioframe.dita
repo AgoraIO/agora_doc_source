@@ -19,12 +19,12 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onPlaybackAudioFrame:(AgoraAudioFrame* _Nonnull)frame;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual bool onPlaybackAudioFrame(const char* channelId, AudioFrame&amp; audioFrame) = 0;</codeblock>
             <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnPlaybackAudioFrame, const FString, channelId, const FAudioFrame&amp;, audioFrame);</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">  onPlaybackAudioFrame?(channelId: string, audioFrame: AudioFrame): boolean;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onPlaybackAudioFrame?(channelId: string, audioFrame: AudioFrame): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual bool OnPlaybackAudioFrame(string channelId, AudioFrame audio_frame)
         {
             return true;
         }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">  onPlaybackAudioFrame?(channelId: string, audioFrame: AudioFrame): boolean;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onPlaybackAudioFrame?(channelId: string, audioFrame: AudioFrame): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(String channelId, AudioFrame audioFrame)?
       onPlaybackAudioFrame;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"/></p>
@@ -42,6 +42,6 @@
             </ul></note>
         <p props="unity">To ensure that the data format of audio frame for playback is as expected, Agora recommends that you set the audio data format as follows: After calling <xref keyref="setPlaybackAudioFrameParameters"/> to set the audio data format and <xref keyref="registerAudioFrameObserver"/> to register the audio frame observer object, the SDK calculates the sampling interval according to the parameters set in the methods, and triggers the <apiname keyref="onPlaybackAudioFrame"/> callback according to the sampling interval.</p></section>
         <section id="parameters" conkeyref="onMixedAudioFrame/parameters"/>
-        <section id="return_values" conkeyref="onMixedAudioFrame/return_values" props="native unreal bp unity electron rn cs"/>
+        <section id="return_values" conkeyref="onMixedAudioFrame/return_values" props="native unreal bp unity cs"/>
     </refbody>
 </reference>
