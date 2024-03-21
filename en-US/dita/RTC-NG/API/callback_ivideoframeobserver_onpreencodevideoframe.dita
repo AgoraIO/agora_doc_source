@@ -17,9 +17,15 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onPreEncodeVideoFrame:(AgoraOutputVideoFrame * _Nonnull)videoFrame sourceType:(AgoraVideoSourceType)sourceType;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual bool onPreEncodeVideoFrame(agora::rtc::VIDEO_SOURCE_TYPE sourceType, VideoFrame&amp; videoFrame) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnPreEncodeVideoFrame, EVIDEO_SOURCE_TYPE, sourceType, const FVideoFrame&amp;, videoFrame);</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">  onPreEncodeVideoFrame?(videoFrame: VideoFrame): boolean;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">onPreEncodeVideoFrame?(
+    sourceType: VideoSourceType,
+    videoFrame: VideoFrame
+  ): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual bool OnPreEncodeVideoFrame(VIDEO_SOURCE_TYPE sourceType, VideoFrame videoFrame)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">  onPreEncodeVideoFrame?(videoFrame: VideoFrame): boolean;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onPreEncodeVideoFrame?(
+    sourceType: VideoSourceType,
+    videoFrame: VideoFrame
+  ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(VideoFrame videoFrame)? onPreEncodeVideoFrame;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
