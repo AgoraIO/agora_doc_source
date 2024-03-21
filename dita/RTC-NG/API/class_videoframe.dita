@@ -555,15 +555,21 @@ class VideoFrame {
         </plentry>
         <plentry props="apple cpp unreal bp unity flutter rn electron cs">
           <pt>yStride</pt>
-          <pd>对 YUV 数据，表示 Y 缓冲区的行跨度；对 RGBA 数据，表示总的数据长度。</pd>
+          <pd>对 YUV 数据，表示 Y 缓冲区的行跨度；对 RGBA 数据，表示总的数据长度。
+            <note type="attention">在处理视频数据时，需根据该参数处理每行像素数据之间的偏移量，否则可能导致图像失真。</note>
+          </pd>
         </plentry>
         <plentry props="apple cpp unreal bp unity flutter rn electron cs">
           <pt>uStride</pt>
-          <pd>对 YUV 数据，表示 U 缓冲区的行跨度；对 RGBA 数据，值为 0。</pd>
+          <pd>对 YUV 数据，表示 U 缓冲区的行跨度；对 RGBA 数据，值为 0。
+            <note type="attention">在处理视频数据时，需根据该参数处理每行像素数据之间的偏移量，否则可能导致图像失真。</note>
+          </pd>
         </plentry>
         <plentry props="apple cpp unreal bp unity flutter rn electron cs">
           <pt>vStride</pt>
-          <pd>对 YUV 数据，表示 V 缓冲区的行跨度；对 RGBA 数据，值为 0。</pd>
+          <pd>对 YUV 数据，表示 V 缓冲区的行跨度；对 RGBA 数据，值为 0。
+           <note type="attention">在处理视频数据时，需根据该参数处理每行像素数据之间的偏移量，否则可能导致图像失真。</note>
+          </pd>
         </plentry>
         <plentry props="apple cpp unreal bp unity flutter rn electron cs">
           <pt>yBuffer</pt>
