@@ -26,8 +26,8 @@ The message delivery receipts and read receipts are implemented as follows:
 - Message read receipt for group chats
 
   1. A group member sends a message with `allowGroupAck` set to `true` to request message read receipts.
-  2. After reading the message, the recipient calls `send` to send a read recipient.
-  3. The sender receives the message read recipient by listening for `onReadMessage` when online or `onStatisticsMessage` when offline.
+  2. After reading the message, the recipient calls `send` to send a read receipt.
+  3. The sender receives the message read receipt by listening for `onReadMessage` when online or `onStatisticsMessage` when offline.
   4. The sender can know which group members have read the message by calling `getGroupMsgReadUser`.
 
 ## [Prerequisites](https://docs.agora.io/en/agora-chat/client-api/messages/message-receipts?platform=web#prerequisites)
@@ -85,7 +85,7 @@ The message recipient opens the conversation page to check whether there are unr
 let option = {
   chatType: "singleChat", // The chat type: singleChat for one-to-one.
   type: "channel", // The type of read receipt: channel indicates the conversation read receipt.
-  to: "userId", // The user ID of the message receipt.
+  to: "userId", // The user ID of the message recipient.
 };
 let msg = WebIM.message.create(option);
 conn.send(msg);
@@ -112,8 +112,8 @@ Refer to the following steps to implement message read receipt in one-to-one cha
    ```javascript
    let option = {
      chatType: "singleChat", // The chat type: singleChat for one-to-one chat.
-     type: "channel", // The conversation read recipient.
-     to: "userId", // The user ID of the message recipient.
+     type: "channel", // The type of read receipt: channel indicates the conversation read receipt.
+     to: "userId", // The user ID of the message receipt.
    };
    let msg = WebIM.message.create(option);
    conn.send(msg);
@@ -125,8 +125,8 @@ Refer to the following steps to implement message read receipt in one-to-one cha
 let option = {
   type: "read", // The message read receipt.
   chatType: "singleChat", // The chat type: singleChat for one-to-one chat.
-  to: "userId", // The user ID of the message recipient.
-  id: "id", // The ID of the message that requires the read recipient.
+  to: "userId", // The user ID of the message receipt.
+  id: "id", // The ID of the message that requires the read receipt.
 };
 let msg = WebIM.message.create(option);
 conn.send(msg);
@@ -174,9 +174,9 @@ The read receipts for group messages are valid only for three days. Specifically
      let option = {
        type: "read", // Whether the message has been read.
        chatType: "groupChat", // Conversation type: groupChat means group chat.
-       id: "msgId", // The message ID for which read receipts are sent.
+       id: "msgId", // The message ID for which the read receipt is sent.
        to: "groupId", // Group ID.
-       ackContent: JSON.stringify({}), // The content of the read receipt.
+       ackContent: JSON.stringify({}), // The content of the message read receipt.
      };
      let msg = WebIM.message.create(option);
      conn.send(msg);
