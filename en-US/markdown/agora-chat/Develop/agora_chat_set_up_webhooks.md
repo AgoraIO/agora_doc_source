@@ -364,7 +364,7 @@ For details, see [HTTP Status Codes](https://docs.agora.io/en/agora-chat/referen
 
   Q: Why is the message delivered to the intended recipient even though the value of the `valid` field is `false` in the pre-delivery callback response?
 
-  A: Maybe your server fails to return the pre-delivery callback response within the period specified with the **Timeout** parameter in the pre-delivery callback rule on the **Pre Send** page on the [Agora Console](https://console.agora.io/). To avoid this issue, you are advised to increase the value of the **Timeout** parameter (200 milliseconds by default), for example, to 1000 milliseconds.
+  A: This maybe the server fails to return the pre-delivery callback response within the period specified with the **Timeout** parameter in the pre-delivery callback rule on the **Pre Send** page on the [Agora Console](https://console.agora.io/). The message is delivered if **Fallback Action** on the **Pre Send** page page is set to **Passed** in this case. To avoid this issue, you are advised to increase the value of the **Timeout** parameter (200 milliseconds by default), for example, to 1000 milliseconds.
 
 
 
