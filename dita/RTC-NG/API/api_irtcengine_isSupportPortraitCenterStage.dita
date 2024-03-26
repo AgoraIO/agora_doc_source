@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_irtcengine_isSupportPortraitCenterStage">
+<reference id="api_irtcengine_issupportportraitcenterstage">
     <title><ph keyref="isSupportPortraitCenterStage"/></title>
     <shortdesc id="short"><ph id="shortdesc">查询摄像头是否支持人脸跟随。</ph></shortdesc>
     <prolog>
@@ -22,21 +22,25 @@
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
             <dlentry props="native">
                 <dt>自从</dt>
                 <dd>v4.3.1</dd>
             </dlentry>
             </dl>
-            <note type="attention">
-                <ul>
-                    <li props="cpp">该方法仅适用于 iOS 和 macOS。</li>
-                    <li>该方法必须在摄像头成功开启后调用，即 SDK 触发 <xref keyref="onLocalVideoStateChanged" /> 回调，返回本地视频状态为 <apiname keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/> (1) 后。</li>
-                </ul>
+            <note type="attention" props="cpp">
+                <p>该方法仅适用于 iOS 和 macOS。</p>
             </note>
             <p>在开启人脸跟随功能前，建议你先调用该方法查询当前摄像头是否支持人脸跟随。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>该方法必须在摄像头成功开启后调用，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调，返回本地视频状态为 <apiname keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/> (1) 后。</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无</p>
         </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
