@@ -22,6 +22,14 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> pushAudioFrame({required AudioFrame frame, int trackId = 0});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
+        <section id="detailed_desc">
+            <title>详情</title>
+            <note type="attention">
+            <p>调用该方法推送外部音频数据前，请先进行以下操作：<ol>
+                <li>调用 <xref keyref="createCustomAudioTrack"> 创建音频轨道并获得音频轨道 ID。</li>
+                <li>调用 <xref keyref="joinChannel2"/> 加入频道时，将 <xref keyref="ChannelMediaOptions"/> 中的 <parmname>publishCustomAudioTrackId</parmname> 设置为你想要发布的音频轨道 ID，并将 <parmname>publishCustomAudioTrack</parmname> 设置为 <codeph><ph keyref="true"/></codeph>。</li>
+            </ol></p>
+            </note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
