@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_querycamerafocallengthcapability">
+    <title><ph keyref="queryCameraFocalLengthCapability" /></title>
+    <shortdesc id="short"><ph id="shortdesc">查询摄像头支持的焦距能力。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="queryCameraFocalLengthCapability" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract AgoraFocalLengthInfo[] queryCameraFocalLengthCapability();</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (NSArray<AgoraFocalLengthInfo *>* __nullable)queryCameraFocalLengthCapability NS_SWIFT_NAME(queryCameraFocalLengthCapability());</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int queryCameraFocalLengthCapability(agora::rtc::FocalLengthInfo* focalLengthInfos, int&amp; size) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp"></codeblock>
+            <codeblock props="electron" outputclass="language-typescript"></codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp"></codeblock>
+            <codeblock props="rn" outputclass="language-typescript"></codeblock>
+            <codeblock props="flutter" outputclass="language-dart"></codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+        </section>
+        <section id="detailed_desc">
+            <title>详情</title>
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.3.1</dd>
+            </dlentry>
+            </dl>
+            <p>如需拍摄更广阔的画面、获得更宽广的视角，建议先调用该方法查询设备是否具备广角、超广角的焦距能力，再根据查询结果调用 <xref keyref="setCameraCapturerConfiguration"/> 调整摄像头的焦距配置，以优化视频的采集效果。</p>
+            <note type="attention" props="cpp unreal bp flutter unity">该方法仅适用于 Android 和 iOS。</note> </section>
+        <section id="parameters" props="cpp">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt>focalLengthInfos</pt>
+                <pd>输出参数。指向 <xref keyref="FocalLengthInfo"/> 对象数组的指针，该数组用于接收摄像头支持的焦距信息。</pd>
+            </plentry>
+            <plentry>
+                <pt>size</pt>
+                <pd>输出参数。指定 <parmname>focalLengthInfos</parmname> 数组可以存储焦距信息的最大数量。请确保该值不小于 8，即 <parmname>focalLengthInfos</parmname> 至少有空间存储 8 个焦距信息。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+            <p props="android ios">返回一个 <xref keyref="FocalLengthInfo"/> 对象，其中包含摄像头支持的焦距集合。</p>
+            <ul props="cpp">
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+            </ul> </section>
+    </refbody>
+</reference>
