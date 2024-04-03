@@ -22,6 +22,7 @@
     public long publishDuration;
     public long qoeQuality;
     public int qualityChangedReason;
+    public int e2eDelay;
   }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcRemoteAudioStats : NSObject
 @property(assign, nonatomic) NSUInteger uid;
@@ -39,6 +40,7 @@
 @property(assign, nonatomic) NSUInteger mosValue;
 @property(assign, nonatomic) NSInteger qoeQuality;
 @property(assign, nonatomic) AgoraExperiencePoorReason qualityChangedReason;
+@property(assign, nonatomic) NSInteger e2eDelay;
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct RemoteAudioStats
 {
@@ -57,6 +59,7 @@
   int publishDuration;
   int qoeQuality;
   int qualityChangedReason;
+  int e2eDelay;
 
   RemoteAudioStats() :
     uid(0),
@@ -72,8 +75,9 @@
     mosValue(0),
     totalActiveTime(0),
     publishDuration(0),
-    qoeQuality(0) {}
-    qualityChangedReason(0){}
+    qoeQuality(0)
+    qualityChangedReason(0)
+    e2eDelay(0) {}
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FRemoteAudioStats
@@ -436,6 +440,10 @@ struct FRemoteAudioStats
                     </strow>
                     </simpletable></p>
                 </pd>
+            </plentry>
+            <plentry>
+                <pt>e2eDelay</pt>
+                <pd>端到端音频延时（毫秒），即自远端用户音频采集起，至本地用户播放音频的总时长。</pd>
             </plentry>
             </parml> </section>
     </refbody>

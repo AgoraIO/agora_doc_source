@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicecollection_getdevice2">
+    <title><ph keyref="getDevice2_IAudioDeviceCollection"/></title>
+    <shortdesc id="short"><ph id="shortdesc">获取指定 index 的设备信息及设备类型。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getDevice2_IAudioDeviceCollection"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int getDevice(int index, char deviceName[MAX_DEVICE_ID_LENGTH], char deviceTypeName[MAX_DEVICE_ID_LENGTH],
+                        char deviceId[MAX_DEVICE_ID_LENGTH]) = 0; </codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <title>详情</title>
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.3.1</dd>
+            </dlentry>
+            </dl>
+            <p>你可以调用该方法获取指定音频设备的名称、类型名称及 ID。</p>
+            <p conkeyref="getDevice_IAudioDeviceCollection/note"/>
+        </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry conkeyref="getDevice_IAudioDeviceCollection/index">
+                <pt></pt>
+                <pd></pd>
+            </plentry>
+            <plentry conkeyref="getDevice_IAudioDeviceCollection/id">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="getDevice_IAudioDeviceCollection/device">
+                <pt></pt>
+                <pd></pd>
+            </plentry>
+            <plentry id="typename">
+                <pt>deviceTypeName</pt>
+                <pd><ph>输出参数，音频设备类型，如：内建、USB、HDMI 等。最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE" />。</ph>
+                <note type="attention">该参数仅适用于 macOS 平台。</note></pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" conkeyref="getDevice_IAudioDeviceCollection/return_values"> </section>
+        </refbody>
+</reference>
