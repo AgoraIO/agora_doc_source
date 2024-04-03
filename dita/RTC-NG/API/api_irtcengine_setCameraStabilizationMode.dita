@@ -32,6 +32,7 @@
             <note type="attention" props="cpp">
                 <p>该方法仅适用于 iOS。</p>
             </note>
+            <p>摄像头防抖模式默认关闭，你需要调用该方法开启并设置合适的防抖模式。</p>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>适用场景</title>
@@ -43,7 +44,10 @@
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p>开启摄像头防抖后，相机的视角会相应变小、相机时延也会增大。为保障用户体验，建议你将 <parmname>mode</parmname> 参数设置为 <apiname keyref="CAMERA_STABILIZATION_MODE_LEVEL_1"/>。</p>
+            <ul>
+                <li>摄像头防抖只对视频分辨率大于 1280 × 720 以上的场景生效。</li>
+                <li>开启摄像头防抖后，相机的视角会相应变小、相机时延也会增大。为保障用户体验，建议你将 <parmname>mode</parmname> 参数设置为 <apiname keyref="CAMERA_STABILIZATION_MODE_LEVEL_1"/>。</li>
+            </ul>
         </section>
         <section id="related" deliveryTarget="details">
             <title>相关回调</title>
