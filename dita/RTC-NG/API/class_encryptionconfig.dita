@@ -7,68 +7,39 @@
     <section id="prototype">
       <p outputclass="codeblock">
       <codeblock props="android" outputclass="language-java">public class EncryptionConfig {
-  public enum EncryptionMode {
-    AES_128_XTS(1),
-    AES_128_ECB(2),
-    AES_256_XTS(3),
-    SM4_128_ECB(4),
-    AES_128_GCM(5),
-    AES_256_GCM(6),
-    AES_128_GCM2(7),
-    AES_256_GCM2(8),
-    MODE_END(9);
-    private int value;
+  public EncryptionMode encryptionMode;
+  public String encryptionKey;
+  public final byte[] encryptionKdfSalt = new byte[32];
+  public boolean datastreamEncryptionEnabled;
 
-    private EncryptionMode(int v) {
-      value = v;
-    }
-
-    public int getValue() {
-      return this.value;
-    }
+  public EncryptionConfig() {
+    encryptionMode = EncryptionMode.AES_128_GCM2;
+    encryptionKey = null;
+    datastreamEncryptionEnabled = false;
+    java.util.Arrays.fill(encryptionKdfSalt, (byte) 0);
+  }
 }</codeblock>
       <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraEncryptionConfig: NSObject
 
  @property (assign, nonatomic) AgoraEncryptionMode encryptionMode;
  @property (copy, nonatomic) NSString * _Nullable encryptionKey;
  @property (strong, nonatomic) NSData * _Nullable encryptionKdfSalt;
+ @property (assign, nonatomic) BOOL  datastreamEncryptionEnabled;
  @end</codeblock>
       <codeblock props="cpp unreal" outputclass="language-cpp">struct EncryptionConfig {
   ENCRYPTION_MODE encryptionMode;
   const char* encryptionKey;
-  uint8_t encryptionKdfSalt[32];
+  uint8_t encryptionKdfSalt[32];  
+  bool datastreamEncryptionEnabled;
 
   EncryptionConfig()
     : encryptionMode(AES_128_GCM2),
-      encryptionKey(NULL)
+      encryptionKey(OPTIONAL_NULLPTR),
+      datastreamEncryptionEnabled(false)
   {
     memset(encryptionKdfSalt, 0, sizeof(encryptionKdfSalt));
   }
-
-  const char* getEncryptionString() const {
-    switch(encryptionMode) {
-      case AES_128_XTS:
-        return "aes-128-xts";
-      case AES_128_ECB:
-        return "aes-128-ecb";
-      case AES_256_XTS:
-        return "aes-256-xts";
-      case SM4_128_ECB:
-        return "sm4-128-ecb";
-      case AES_128_GCM:
-        return "aes-128-gcm";
-      case AES_256_GCM:
-        return "aes-256-gcm";
-      case AES_128_GCM2:
-        return "aes-128-gcm-2";
-      case AES_256_GCM2:
-        return "aes-256-gcm-2";
-      default:
-        return "aes-128-gcm-2";
-    }
-    return "aes-128-gcm-2";
-  }
-};    </codeblock>
+};   </codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FEncryptionConfig
 {
@@ -160,6 +131,15 @@ struct FEncryptionConfig
           <p>盐，长度为 32 字节。建议你在服务端使用 OpenSSL 生成盐。</p>
           <p props="native"><ph props="cn">如需在 App 中添加声网内置媒体流加密，详见<xref keyref="channel-encryption"/>。</ph></p>
           <note type="attention">只有在 <codeph><ph keyref="AES_128_GCM2" /></codeph> 或 <codeph><ph keyref="AES_256_GCM2" /></codeph> 加密模式下，该参数才生效。此时，需确保填入该参数的值不全为 <codeph>0</codeph>。</note>
+        </pd>
+      </plentry>
+      <plentry>
+        <pt>datastreamEncryptionEnabled</pt>
+        <pd><ph>是否开启数据流加密：</ph>
+          <ul>
+            <li><codeph><ph keyref="true"/></codeph>：开启数据流加密。</li>
+            <li><codeph><ph keyref="false"/></codeph>：（默认）关闭数据流加密。</li>
+          </ul>
         </pd>
       </plentry>
       </parml> </section>
