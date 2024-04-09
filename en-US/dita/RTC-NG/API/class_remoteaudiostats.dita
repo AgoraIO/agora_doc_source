@@ -22,6 +22,7 @@
     public long publishDuration;
     public long qoeQuality;
     public int qualityChangedReason;
+    public int e2eDelay;
   }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcRemoteAudioStats : NSObject
 @property(assign, nonatomic) NSUInteger uid;
@@ -39,6 +40,7 @@
 @property(assign, nonatomic) NSUInteger mosValue;
 @property(assign, nonatomic) NSInteger qoeQuality;
 @property(assign, nonatomic) AgoraExperiencePoorReason qualityChangedReason;
+@property(assign, nonatomic) NSInteger e2eDelay;
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct RemoteAudioStats
 {
@@ -57,6 +59,7 @@
   int publishDuration;
   int qoeQuality;
   int qualityChangedReason;
+  int e2eDelay;
 
   RemoteAudioStats() :
     uid(0),
@@ -72,8 +75,9 @@
     mosValue(0),
     totalActiveTime(0),
     publishDuration(0),
-    qoeQuality(0) {}
-    qualityChangedReason(0){}
+    qoeQuality(0)
+    qualityChangedReason(0)
+    e2eDelay(0) {}
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FRemoteAudioStats
@@ -112,35 +116,35 @@ struct FRemoteAudioStats
 	int qualityChangedReason;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class RemoteAudioStats {
-  
+
   uid?: number;
-  
+
   quality?: number;
-  
+
   networkTransportDelay?: number;
-  
+
   jitterBufferDelay?: number;
-  
+
   audioLossRate?: number;
-  
+
   numChannels?: number;
-  
+
   receivedSampleRate?: number;
-  
+
   receivedBitrate?: number;
-  
+
   totalFrozenTime?: number;
-  
+
   frozenRate?: number;
-  
+
   mosValue?: number;
-  
+
   totalActiveTime?: number;
-  
+
   publishDuration?: number;
-  
+
   qoeQuality?: number;
-  
+
   qualityChangedReason?: number;
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class RemoteAudioStats
@@ -202,35 +206,35 @@ struct FRemoteAudioStats
         public int qualityChangedReason { set; get; }
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class RemoteAudioStats {
-  
+
   uid?: number;
-  
+
   quality?: number;
-  
+
   networkTransportDelay?: number;
-  
+
   jitterBufferDelay?: number;
-  
+
   audioLossRate?: number;
-  
+
   numChannels?: number;
-  
+
   receivedSampleRate?: number;
-  
+
   receivedBitrate?: number;
-  
+
   totalFrozenTime?: number;
-  
+
   frozenRate?: number;
-  
+
   mosValue?: number;
-  
+
   totalActiveTime?: number;
-  
+
   publishDuration?: number;
-  
+
   qoeQuality?: number;
-  
+
   qualityChangedReason?: number;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class RemoteAudioStats {
