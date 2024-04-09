@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_iaudiodevicecollection_getdevice">
     <title><ph keyref="getDevice_IAudioDeviceCollection" /></title>
-    <shortdesc id="short"><ph id="shortdesc">获取指定 index 的设备信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">获取指定 index 的音频设备信息。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -24,18 +24,21 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;String&gt; getDevice();</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
+       <section id="detailed_desc">
+            <p id="note">该方法仅适用于 Windows 和 macOS。</p>
+        </section>
         <section id="parameters" props="cpp unreal bp">
             <title>参数</title>
             <parml>
-            <plentry>
+            <plentry id="index">
                 <pt>index</pt>
                 <pd>输入参数，指定想查询的设备信息。</pd>
             </plentry>
-            <plentry>
+            <plentry id="device">
                 <pt>deviceName</pt>
                 <pd>输出参数，设备名称。最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE" />。</pd>
             </plentry>
-            <plentry>
+            <plentry id="id">
                 <pt>deviceId</pt>
                 <pd>输出参数，设备 ID。最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE" />。</pd>
             </plentry>
