@@ -220,6 +220,7 @@
             <relcell>
                 <topicref keyref="getPlaybackDevice"/>
                 <topicref keyref="getPlaybackDeviceInfo"/>
+                <topicref keyref="getPlaybackDeviceInfo2"/>
                 <topicref keyref="setPlaybackDevice"/>
                 <topicref keyref="setRecordingDevice"/>
                 <topicref keyref="getDevice_IVideoDeviceCollection"/>
@@ -2363,6 +2364,7 @@
                 <topicref keyref="resumeAudioMixing"/>
                 <topicref keyref="resumeEffect"/>
                 <topicref keyref="selectAudioTrack"/>
+                <topicref keyref="sendAudioMetadata" props="hide"/>
                 <topicref keyref="sendCustomReportMessage"/>
                 <topicref keyref="sendMetaData" props="electron flutter rn unity"/>
                 <topicref keyref="sendStreamMessage"/>
@@ -2373,6 +2375,7 @@
                 <topicref keyref="setAudioMixingDualMonoMode"/>
                 <topicref keyref="setAudioMixingPitch"/>
                 <topicref keyref="setAudioMixingPosition"/>
+                <topicref keyref="setAudioMixingPlaybackSpeed"/>
                 <topicref keyref="setAudioProfile"/>
                 <topicref keyref="setAudioProfile2" props="native unreal unity"/>
                 <topicref keyref="setAudioScenario"/>
@@ -2551,6 +2554,7 @@
                 <topicref keyref="enableAudioVolumeIndicationEx"/>
                 <topicref keyref="enableContentInspectEx" props="native flutter unity cs electron rn"/>
                 <topicref keyref="enableDualStreamModeEx"/>
+                <topicref keyref="enableEncryptionEx"/>
                 <topicref keyref="enableLoopbackRecordingEx" props="mac cpp unreal bp electron unity flutter"/>
                 <topicref keyref="getConnectionStateEx"/>
                 <topicref keyref="getUserInfoByUidEx" props="android ios mac"/>
@@ -2567,6 +2571,7 @@
                 <topicref keyref="muteRemoteVideoStreamEx"/>
                 <topicref keyref="pauseAllChannelMediaRelayEx"/>
                 <topicref keyref="resumeAllChannelMediaRelayEx"/>
+                <topicref keyref="sendAudioMetadataEx" props="hide"/>
                 <topicref keyref="sendCustomReportMessageEx"/>
                 <topicref keyref="setDualStreamModeEx"/>
                 <topicref keyref="setRemoteRenderModeEx" props="cpp unreal bp android ios mac unity rn electron"/>
@@ -2591,6 +2596,7 @@
                 <topicref keyref="updateRtmpTranscodingEx"/>
                 <topicref keyref="setRemoteVideoSubscriptionOptionsEx"/>
                 <topicref keyref="adjustUserPlaybackSignalVolumeEx"/>
+                <topicref keyref="onAudioMetadataReceived_IRtcEngineEx" props="hide"/>
             </relcell>
             <relcell>
                 <topicref keyref="IRtcEngineEx"/>
@@ -2611,6 +2617,7 @@
                 <topicref keyref="onAudioDeviceStateChanged" props="cpp unreal bp electron unity flutter"/>
                 <topicref keyref="onAudioDeviceVolumeChanged" props="cpp unreal bp electron unity flutter"/>
                 <topicref keyref="onAudioEffectFinished"/>
+                <topicref keyref="onAudioMetadataReceived" props="hide"/>
                 <topicref keyref="onAudioMixingFinished"/>
                 <topicref keyref="onAudioMixingPositionChanged"/>
                 <topicref keyref="onAudioMixingStateChanged"/>
@@ -2792,11 +2799,13 @@
                 <topicref keyref="getPlaybackDefaultDevice" props="electron unity flutter"/>
                 <topicref keyref="getPlaybackDevice"/>
                 <topicref keyref="getPlaybackDeviceInfo"/>
+                <topicref keyref="getPlaybackDeviceInfo2"/>
                 <topicref keyref="getPlaybackDeviceMute"/>
                 <topicref keyref="getPlaybackDeviceVolume" props="hide"/>
                 <topicref keyref="getRecordingDefaultDevice" props="electron unity flutter"/>
                 <topicref keyref="getRecordingDevice"/>
                 <topicref keyref="getRecordingDeviceInfo"/>
+                <topicref keyref="getRecordingDeviceInfo2" props="cpp"/>
                 <topicref keyref="getRecordingDeviceMute" props="hide"/>
                 <topicref keyref="getRecordingDeviceVolume" props="hide"/>
                 <topicref keyref="release_IAudioDeviceManager" props="cpp unreal bp electron flutter"/>
@@ -2841,7 +2850,9 @@
                 <topicref keyref="getApplicationVolume"/>
                 <topicref keyref="getCount_IAudioDeviceCollection"/>
                 <topicref keyref="getDefaultDevice_IAudioDeviceCollection"/>
+                <topicref keyref="getDefaultDevice2_IAudioDeviceCollection"/>
                 <topicref keyref="getDevice_IAudioDeviceCollection"/>
+                <topicref keyref="getDevice2_IAudioDeviceCollection"/>
                 <topicref keyref="isApplicationMute"/>
                 <topicref keyref="release_IAudioDeviceCollection"/>
                 <topicref keyref="setApplicationMute"/>
