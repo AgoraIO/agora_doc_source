@@ -286,22 +286,18 @@ struct FCameraCapturerConfiguration
   Map&lt;String, dynamic> toJson() => _$CameraCapturerConfigurationToJson(this);
 }</codeblock>            
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
-    </section>
-    <section id="detailed_desc">
-      <note type="attention">该类中的成员参数均为可选，你可以按需进行设置，SDK 只会应用你设置过的参数。</note>      
-    </section>
     <section id="parameters">
       <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/>
       </title>
       <parml>
       <plentry props="android ios cpp unreal bp unity rn flutter cs">
         <pt>cameraDirection</pt>
-        <pd>
+        <pd>（可选）
           <note type="attention" props="cpp unreal bp unity flutter">该参数仅适用于 Android 和 iOS 平台。</note> <ph>摄像头方向。详见 <xref keyref="CAMERA_DIRECTION"/>。</ph></pd>
       </plentry>
       <plentry props="android cpp unreal bp flutter unity rn">
         <pt>cameraId</pt>
-        <pd>摄像头 ID。你可以通过 Android 原生系统 API 获取摄像头 ID，详见 <xref keyref="camera1-link"/> 和 <xref keyref="camera2-link"/>。
+        <pd>（可选）摄像头 ID。你可以通过 Android 原生系统 API 获取摄像头 ID，详见 <xref keyref="camera1-link"/> 和 <xref keyref="camera2-link"/>。
         <note type="attention"><ul>
         <li props="cpp unreal bp flutter unity rn">该参数仅适用于 Android。</li>
         <li>该参数和 <parmname>cameraDirection</parmname> 均用于指定摄像头，二者为互斥关系，你可以按需选用其中之一，具体区别如下：<ul>
@@ -312,7 +308,7 @@ struct FCameraCapturerConfiguration
       </plentry>
       <plentry props="android ios cpp unreal bp flutter unity rn">
         <pt>cameraFocalLengthType</pt>
-        <pd>摄像头的焦距类型。详见 <xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/>。
+        <pd>（可选）摄像头的焦距类型。详见 <xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/>。
         <note type="attention"><ul>
           <li props="cpp unreal bp flutter unity">该参数仅适用于 Android 和 iOS。</li>
           <li props="android cpp unreal bp flutter unity rn">如需设置摄像头的焦距类型，仅支持通过 <parmname>cameraDirection</parmname> 指定摄像头，不支持通过 <parmname>cameraId</parmname> 进行指定。</li>
@@ -327,25 +323,25 @@ struct FCameraCapturerConfiguration
       <plentry props="android cpp framework">
         <pt props="cpp framework">format</pt>
         <pt props="android">captureFormat</pt>
-        <pd>视频帧格式。详见 <xref keyref="VideoFormat"/>。</pd>
+        <pd>（可选）视频帧格式。详见 <xref keyref="VideoFormat"/>。</pd>
       </plentry>
       <plentry props="apple">
         <pt>dimension</pt>
-        <pd>视频帧的分辨率 (px)。</pd>
+        <pd>（可选）视频帧的分辨率 (px)。</pd>
       </plentry>
       <plentry props="apple">
         <pt>frameRate</pt>
-        <pd>视频帧的帧率 (fps)。</pd>
+        <pd>（可选）视频帧的帧率 (fps)。</pd>
       </plentry>
       <plentry props="mac cpp unreal bp unity electron flutter cs">
         <pt>deviceId</pt>
-        <pd>
-          <note type="attention" props="cpp unreal bp unity flutter">该参数仅适用于 Windows 和 macOS。</note>
-          <ph>摄像头的 ID。</ph><ph props="cpp unreal bp electron flutter">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</ph></pd>
+        <pd>（可选）
+          <ph>摄像头的 ID。</ph><ph props="cpp unreal bp electron flutter">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</ph>
+          <note type="attention" props="cpp unreal bp unity flutter">该参数仅适用于 Windows 和 macOS。</note></pd>
       </plentry>
       <plentry>
         <pt>followEncodeDimensionRatio</pt>
-        <pd>是否跟随 <xref keyref="setVideoEncoderConfiguration"/> 中设置的视频宽高比：             
+        <pd>（可选）是否跟随 <xref keyref="setVideoEncoderConfiguration"/> 中设置的视频宽高比：             
           <ul>
           <li><codeph><ph keyref="true"/></codeph>：(默认) 跟随。SDK 会将采集到的视频按照已设置的视频宽高比进行裁剪，会同步改变本地预览画面、<xref keyref="onCaptureVideoFrame"/> 和 <xref keyref="onPreEncodeVideoFrame"/> 中的视频画面。</li>
           <li><codeph><ph keyref="false"/></codeph>：不跟随。SDK不改变采集到的视频帧宽高比。</li>
