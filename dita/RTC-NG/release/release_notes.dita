@@ -27,6 +27,25 @@
                             </ul>
                         </note>
                     </li>
+                    <li props="android ios flutter unity rn"><ph><b>摄像头广角和超广角 (Android, iOS)</b></ph>
+                        <p>为了让用户捕捉到更宽阔的视野和更完整的画面内容，该版本新增了对广角和超广角摄像头的支持。你可以先调用 <xref keyref="queryCameraFocalLengthCapability"/> 查询设备支持的焦距能力，然后调用 <xref keyref="setCameraCapturerConfiguration"/> 并将 <codeph>cameraFocalLengthType</codeph> 设置为支持的焦距类型，包括广角、超广角等。</p>
+                    </li>
+                    <li props="android flutter unity rn"><ph><b>摄像头多路采集 (Android)</b></ph>
+                        <p>该版本针对 Android 摄像头采集新增以下功能：
+                        <ol>
+                        <li>支持第三个和第四个摄像头视频流的采集和发布。<ul>
+                            <li props="android">在 <xref keyref="VIDEO_SOURCE_TYPE"/> 中新增 <codeph><apiname keyref="VIDEO_SOURCE_CAMERA_THIRD"/></codeph>(11) 和 <codeph><apiname keyref="VIDEO_SOURCE_CAMERA_FOURTH"/></codeph>(12) 枚举，分别用于指定视频源为第三个和第四个摄像头。此项改动允许你在调用 <xref keyref="startCameraCapture"/> 开启摄像头采集时，指定最多 4 路摄像头采集的视频流。</li>
+                            <li props="flutter unity rn"><xref keyref="VIDEO_SOURCE_TYPE"/> 中的 <codeph><apiname keyref="VIDEO_SOURCE_CAMERA_THIRD"/></codeph>(11) 和 <codeph><apiname keyref="VIDEO_SOURCE_CAMERA_FOURTH"/></codeph>(12) 枚举新增对 Android 的支持，分别用于指定视频源为第三个和第四个摄像头。此项改动允许你在调用 <xref keyref="startCameraCapture"/> 开启摄像头采集时，指定最多 4 路摄像头采集的视频流。</li>
+                            <li props="android">在 <xref keyref="ChannelMediaOptions"/> 中新增 <codeph>publishThirdCameraTrack</codeph> 和 <codeph>publishFourthCameraTrack</codeph> 成员。调用 <xref keyref="joinChannel2"/> 加入频道时，将这两个成员参数设置为 <codeph><ph keyref="true"/></codeph> 即可在频道内发布第三个和第四个摄像头采集的视频流。</li>
+                            <li props="flutter unity rn"><xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishThirdCameraTrack</codeph> 和 <codeph>publishFourthCameraTrack</codeph> 成员新增对 Android 的支持。调用 <xref keyref="joinChannel2"/> 加入频道时，将这两个成员参数设置为 <codeph><ph keyref="true"/></codeph> 即可在频道内发布第三个和第四个摄像头采集的视频流。</li></ul></li>
+                        <li>支持通过摄像头 ID 指定摄像头。
+                            <ul props="android">
+                            <li>在 <xref keyref="CameraCapturerConfiguration"/> 中新增 <codeph>cameraId</codeph> 成员。对于多摄像头的设备，<codeph>cameraDirection</codeph> 无法识别或访问全部可用摄像头。这种情况下，你可以通过 Android 原生系统 API 获取摄像头 ID，再调用 <xref keyref="startCameraCapture"/> 并传入 <codeph>cameraId</codeph> 指定所需的摄像头。</li>
+                            <li>新增 <xref keyref="switchCamera2"/>，支持通过 <codeph>cameraId</codeph> 切换摄像头，允许 App 在运行期间基于可用摄像头的实际情况动态调整摄像头使用。</li></ul>
+                            <p props="flutter unity rn">在 <xref keyref="CameraCapturerConfiguration"/> 中新增 <codeph>cameraId</codeph> 成员。对于多摄像头的设备，特别是当设备支持外接摄像头时，<codeph>cameraDirection</codeph> 无法识别或访问全部可用摄像头。这种情况下，你通过系统 API 获取摄像头 ID，再调用 <xref keyref="startCameraCapture"/> 并传入 <codeph>cameraId</codeph> 指定摄像头。</p></li>
+                        </ol>
+                        </p>
+                    </li>
                     <li><ph><b>数据流加密</b></ph>
                         <p>该版本在 <codeph><xref keyref="EncryptionConfig"/></codeph> 中新增 <codeph>datastreamEncryptionEnabled</codeph> 成员用于启用数据流加密。你可以在调用 <codeph><xref keyref="enableEncryption"/></codeph> 开启加密时来进行设置。如果在数据流加密或解密的过程中遇到问题导致失败，你可以通过新增的 <codeph><apiname keyref="ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE"/></codeph>  和 <codeph><apiname keyref="ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE"/></codeph> 枚举得知。</p>
                     </li>                    <li><ph><b></b></ph>
@@ -57,6 +76,12 @@
                             <li>对背景颜色的识别更加准确，并且在分割人像时露出的背景更少。</li>
                             <li>分割后的人像边缘（尤其是手指边缘）更加稳定，显著减少边缘的画面闪动现象。</li>
                         </ul></p>
+                    </li>
+                    <li props="ios mac"><ph><b>音频自采集优化</b></ph>
+                        <p>为提升音频自采集的灵活性，该版本废弃 <xref keyref="pushExternalAudioFrameSampleBuffer1"/> 并新增 <xref keyref="pushExternalAudioFrameSampleBuffer2"/>。相比废弃方法，新增方法中增加了 <codeph>sampleRate</codeph>、<codeph>channels</codeph>、<codeph>trackId</codeph> 参数，支持你通过自定义音频轨道将外部 CMSampleBuffer 音频数据推送到频道内，并支持设置外部音频源的采样率和声道数。</p>
+                    </li>
+                    <li><ph><b>降低耳返的 CPU 消耗</b></ph>
+                        <p>该版本<ph props="apple cpp framework">在 <codeph><apiname keyref="EAR_MONITORING_FILTER_TYPE"/></codeph> 中</ph>新增 <codeph><apiname keyref="EAR_MONITORING_FILTER_REUSE_POST_PROCESSING_FILTER"/></codeph>(1 &lt;&lt;15) 枚举。针对复杂的音效处理场景，你可以指定该选项，复用发送端音效处理后的 Audio filter，从而降低 CPU 的消耗。需要注意的是该选项会导致耳返延迟增加，适用于对耳返延迟不敏感的使用场景。</p>
                     </li>
                     <li><ph><b>其他改进</b></ph>
                         <p>该版本还进行了如下改进：
@@ -89,11 +114,6 @@
             <body>
                 <p><b>新增</b>
                     <ul>
-                     <li props="android"><codeph><xref keyref="ChannelMediaOptions"/></codeph> 新增如下成员：
-                     <ul>
-                         <li><codeph><apiname keyref="publishThirdCameraTrack"/></codeph></li>
-                         <li><codeph><apiname keyref="publishFourthCameraTrack"/></codeph></li>
-                     </ul></li>
                     <li><codeph><xref keyref="EncryptionConfig"/></codeph> 中新增 <codeph>datastreamEncryptionEnabled</codeph></li>
                     <li props="cpp apple framework"><codeph><xref keyref="ENCRYPTION_ERROR_TYPE"/></codeph> 中新增如下枚举：
                     <ul>
@@ -117,10 +137,25 @@
                     <li><xref keyref="IFaceInfoObserver"/></li>
                     <li><xref keyref="onFaceInfo"/></li>
                     <li><xref keyref="getCallIdEx"/></li>
+                    <li props="android ios flutter unity rn"><xref keyref="queryCameraFocalLengthCapability"/> (Android, iOS)</li>
+                    <li props="android ios flutter unity rn"><codeph><apiname keyref="FocalLengthInfo"/></codeph> (Android, iOS)</li>
+                    <li props="android ios flutter unity rn"><codeph><apiname keyref="CAMERA_FOCAL_LENGTH_TYPE"/></codeph> (Android, iOS)</li>
+                    <li props="android ios flutter unity rn"><codeph><apiname keyref="CameraCapturerConfiguration"/></codeph> 新增成员 <codeph>cameraFocalLengthType</codeph> (Android, iOS)</li>
+                    <li props="android flutter unity rn"><codeph><apiname keyref="VIDEO_SOURCE_TYPE"/></codeph> 新增以下枚举：(Android)<ul>
+                        <li><codeph><apiname keyref="VIDEO_SOURCE_CAMERA_THIRD"/></codeph>(11)</li>
+                        <li><codeph><apiname keyref="VIDEO_SOURCE_CAMERA_FOURTH"/></codeph>(12)</li></ul></li>
+                    <li props="android flutter unity rn"><codeph><apiname keyref="ChannelMediaOptions"/></codeph> 新增以下成员：(Android)<ul>
+                        <li><codeph>publishThirdCameraTrack</codeph></li>
+                        <li><codeph>publishFourthCameraTrack</codeph></li></ul></li>
+                    <li props="android flutter unity rn"><codeph><apiname keyref="CameraCapturerConfiguration"/></codeph> 新增成员 <codeph>cameraId</codeph> (Android)</li>
+                    <li props="android"><codeph><apiname keyref="CAMERA_DIRECTION"/></codeph> 中新增 <codeph>CAMERA_EXTRA</codeph>(2)</li>
+                    <li props="android"><xref keyref="switchCamera2"/></li>
+                    <li><codeph><apiname keyref="EAR_MONITORING_FILTER_TYPE"/></codeph> 新增枚举 <codeph><apiname keyref="EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS"/></codeph>(1 &lt;&lt;15)</li>
+                    <li props="ios mac"><xref keyref="pushExternalAudioFrameSampleBuffer2"/></li>
                     </ul></p>
                 <p><b>废弃</b>
                     <ul>
-                    <li></li>
+                    <li props="ios mac"><xref keyref="pushExternalAudioFrameSampleBuffer1"/></li>
                     <li></li>
                     </ul></p>
                 <p><b>删除</b>
