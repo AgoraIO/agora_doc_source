@@ -57,16 +57,12 @@
                 <pd props="android bp">耳返 Audio filter 类型：                      
                     <ul id="ul_nwv_hcy_4qb">
                     <li><ph keyref="EAR_MONITORING_FILTER_NONE"/> (1 &lt;&lt; 0)：不在耳返中添加 Audio filter。</li>
-                    <li><ph keyref="EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS"/> (1 &lt;&lt; 1): 在耳返中添加人声效果 Audio filter。如果你实现了美声、音效等功能，用户可以在耳返中听到添加效果后的声音。</li>
-                    <li><ph keyref="EAR_MONITORING_FILTER_NOISE_SUPPRESSION"/> (1 &lt;&lt;2)：在耳返中添加降噪 Audio filter。</li>
-                    <li><ph keyref="EAR_MONITORING_FILTER_REUSE_POST_PROCESSING_FILTER"/> (1 &lt;&lt;15)：复用发送端音效处理后的 Audio filter。该选项通过复用 Audio filter 降低耳返的 CPU 使用，但会导致耳返延迟增加，适用于需要降低 CPU 消耗且对耳返延迟不敏感的场景。</li>                
+                    <li><ph keyref="EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS"/> (1 &lt;&lt; 1): 在耳返中添加人声效果 Audio filter。如果你实现了美声、音效等功能，用户可以在耳返中听到添加效果后的声音。该枚举值支持使用按位或运算符（|）进行组合。</li>
+                    <li><ph keyref="EAR_MONITORING_FILTER_NOISE_SUPPRESSION"/> (1 &lt;&lt;2)：在耳返中添加降噪 Audio filter。该枚举值支持使用按位或运算符（|）进行组合。</li>
+                    <li><ph keyref="EAR_MONITORING_FILTER_REUSE_POST_PROCESSING_FILTER"/> (1 &lt;&lt;15)：
+                    复用发送端已进行过音效处理的 Audio filter。通过复用 Audio filter 降低耳返对 CPU 的占用率，但会增加耳返延迟，适用于需要降低 CPU 消耗且对耳返延迟不敏感的场景。该枚举值仅支持单独使用，一旦指定了该选项，其他 Audio filter 配置将自动失效。</li>                
                     </ul>
-                    <note type="attention">
-                    <ul>
-                    <li>如果你将 <parmname>enabled</parmname> 参数设为 <codeph><ph keyref="false"/></codeph>，则无需设置 <parmname>includeAudioFilters</parmname> 参数。</li>
-                    <li><ph keyref="EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS"/> (1 &lt;&lt; 1) 和 <ph keyref="EAR_MONITORING_FILTER_NOISE_SUPPRESSION"/> (1 &lt;&lt;2) 支持使用按位或运算符（|）进行组合，可以在耳返信号中同时添加人声效果和降噪处理。</li>
-                    <li><ph keyref="EAR_MONITORING_FILTER_REUSE_POST_PROCESSING_FILTER"/> (1 &lt;&lt;15) 仅支持单独使用，一旦指定了该选项，其他 Audio filter 配置将自动失效。</li></ul>
-                    </note>
+                    <note type="attention">该参数仅在 <parmname>enabled</parmname> 设为 <codeph><ph keyref="true"/></codeph> 时生效。</note>
                     </pd>
             </plentry>
             </parml> </section>

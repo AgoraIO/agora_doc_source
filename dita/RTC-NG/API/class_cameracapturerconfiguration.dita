@@ -297,16 +297,16 @@ struct FCameraCapturerConfiguration
       <plentry props="android ios cpp unreal bp unity rn flutter cs">
         <pt>cameraDirection</pt>
         <pd>
-          <note type="attention" props="cpp unreal bp unity flutter">该参数仅适用于 Android 和 iOS 平台。</note> <ph>摄像头方向设置。详见 <xref keyref="CAMERA_DIRECTION"/>。</ph></pd>
+          <note type="attention" props="cpp unreal bp unity flutter">该参数仅适用于 Android 和 iOS 平台。</note> <ph>摄像头方向。详见 <xref keyref="CAMERA_DIRECTION"/>。</ph></pd>
       </plentry>
       <plentry props="android cpp unreal bp flutter unity rn">
         <pt>cameraId</pt>
-        <pd>摄像头 ID。你可以通过系统 API 获取摄像头 ID，详见 <xref keyref="camera1-link"/> 和 <xref keyref="camera2-link"/>。
+        <pd>摄像头 ID。你可以通过 Android 原生系统 API 获取摄像头 ID，详见 <xref keyref="camera1-link"/> 和 <xref keyref="camera2-link"/>。
         <note type="attention"><ul>
         <li props="cpp unreal bp flutter unity rn">该参数仅适用于 Android。</li>
         <li>该参数和 <parmname>cameraDirection</parmname> 均用于指定摄像头，二者为互斥关系，你可以按需选用其中之一，具体区别如下：<ul>
-          <li><parmname>cameraDirection</parmname> 提供了一种简便的摄像头选择方式。你只需指定摄像头的方向（前置或后置），无需知道具体的摄像头 ID，SDK 内部会通过系统 API 去检索和确定实际的摄像头 ID。</li>
-          <li><parmname>cameraId</parmname> 则允许更精确的摄像头选择。对于多摄像头的设备，特别是当设备支持外接摄像头时，<parmname>cameraDirection</parmname> 无法识别或访问全部可用摄像头，这种情况建议直接使用 <parmname>cameraId</parmname> 传递特定的摄像头 ID。</li>
+          <li>通过 <parmname>cameraDirection</parmname> 指定摄像头的方式更为简便。你只需指定摄像头的方向（前置或后置），无需指定具体的摄像头 ID，SDK 会通过系统 API 去检索和确定实际的摄像头 ID。</li>
+          <li>通过 <parmname>cameraId</parmname> 则可以更精确地指定某个特定的摄像头。对于多摄像头的设备，<parmname>cameraDirection</parmname> 无法识别或访问全部可用摄像头，这种情况建议使用 <parmname>cameraId</parmname> 直接指定你想要的摄像头 ID。</li>
         </ul></li></ul></note>
         </pd>
       </plentry>
@@ -318,8 +318,8 @@ struct FCameraCapturerConfiguration
           <li props="android cpp unreal bp flutter unity rn">如需设置摄像头的焦距类型，仅支持通过 <parmname>cameraDirection</parmname> 指定摄像头，不支持通过 <parmname>cameraId</parmname> 进行指定。</li>
           <li props="ios cpp unreal bp flutter unity rn">部分 iOS 设备的后置摄像头为多个摄像头组成的融合镜头，如双摄（广角和超广角）或三摄（广角、超广角和长焦），对于这种具备超广角能力的融合镜头，你可以通过以下任意一种方式实现超广角的采集效果：
             <ul>
-              <li>方式一：将该参数设置为 <codeph><ph keyref="CAMERA_FOCAL_LENGTH_URLTRA_WIDE"/></codeph> (2)（超广角镜头）。</li>
-              <li>方式二：将该参数设置为 <codeph><ph keyref="CAMERA_FOCAL_LENGTH_DEFAULT"/></codeph> (0)（标准镜头），然后调用 <xref keyref="setCameraZoomFactor"/> 将相机缩放比例设置为小于 1.0 的数值，最小可以设置为 0.5。</li></ul>
+              <li>方式一：将该参数设置为 <apiname keyref="CAMERA_FOCAL_LENGTH_URLTRA_WIDE"/> (2)（超广角镜头）。</li>
+              <li>方式二：将该参数设置为 <apiname keyref="CAMERA_FOCAL_LENGTH_DEFAULT"/> (0)（标准镜头），然后调用 <xref keyref="setCameraZoomFactor"/> 将相机缩放比例设置为小于 1.0 的数值，最小可以设置为 0.5。</li></ul>
             区别为方式一的超广角大小不可调节，方式二支持自由调节相机的缩放比例。</li>
         </ul></note>
         </pd>

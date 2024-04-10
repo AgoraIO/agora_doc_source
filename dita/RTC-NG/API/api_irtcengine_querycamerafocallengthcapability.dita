@@ -31,24 +31,30 @@
                 <dd>v4.3.1</dd>
             </dlentry>
             </dl>
-            <p>如需拍摄更广阔的画面、获得更宽广的视角，建议先调用该方法查询设备是否具备广角、超广角的焦距能力，再根据查询结果调用 <xref keyref="setCameraCapturerConfiguration"/> 调整摄像头的焦距配置，以优化视频的采集效果。</p>
+            <p>如需开启摄像头广角、超广角拍摄模式，建议你先调用该方法查询设备是否具备相应的焦距能力，再根据查询结果调用 <xref keyref="setCameraCapturerConfiguration"/> 调整摄像头的焦距配置，以达到最佳的摄像头采集效果。</p>
             <note type="attention" props="cpp unreal bp flutter unity">该方法仅适用于 Android 和 iOS。</note> </section>
         <section id="parameters" props="cpp">
             <title>参数</title>
             <parml>
             <plentry>
                 <pt>focalLengthInfos</pt>
-                <pd>输出参数。指向 <xref keyref="FocalLengthInfo"/> 对象数组的指针，该数组用于接收摄像头支持的焦距信息。</pd>
+                <pd>输入和输出参数。指向 <xref keyref="FocalLengthInfo"/> 对象数组的指针：<ul>
+                    <li>输入值：指定焦距信息的存储位置。</li>
+                    <li>输出值：返回查询到的摄像头焦距信息。</li></ul>
+                </pd>
             </plentry>
             <plentry>
                 <pt>size</pt>
-                <pd>输出参数。指定 <parmname>focalLengthInfos</parmname> 数组可以存储焦距信息的最大数量。请确保该值不小于 8，即 <parmname>focalLengthInfos</parmname> 至少有空间存储 8 个焦距信息。</pd>
+                <pd>输入和输出参数。焦距信息数量：<ul>
+                    <li>输入值：指定 <parmname>focalLengthInfos</parmname> 可以容纳的最大焦距信息数量。请确保该值不小于 8，即 <parmname>focalLengthInfos</parmname> 至少有空间存储 8 个焦距信息。</li>
+                    <li>输出值：返回查询到的焦距信息数量。</li></ul>
+                </pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <p props="android ios">返回一个 <xref keyref="FocalLengthInfo"/> 对象，其中包含摄像头支持的焦距集合。</p>
+            <p props="android ios">返回一个 <xref keyref="FocalLengthInfo"/> 对象，其中包含摄像头支持的焦距信息。</p>
             <ul props="cpp">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
