@@ -26,12 +26,12 @@
         </section>
         <section id="detailed_desc">
             <title>详情</title>
-            <p>客户端在每次加入频道后会生成一个对应的 <parmname>callId</parmname>，标识该客户端的此次通话。有些方法，如 <xref keyref="rate" />、<xref keyref="complain" /> 等，需要在通话结束后调用，向 SDK 提交反馈。这些方法中需要填入指定的 <parmname>callId</parmname> 参数。</p>
-            <note type="attention">该方法需要在加入频道后调用。</note> </section>
+            <p id="detail">客户端在每次加入频道后会生成一个对应的 <parmname>callId</parmname>，标识该客户端的此次通话。你可以调用该方法获取 <parmname>callId</parmname> 参数，然后在调用 <xref keyref="rate" />、<xref keyref="complain" /> 等方法时填入。</p>
+            <note id="seq" type="attention">该方法需要在加入频道后调用。</note> </section>
         <section id="parameters" props="cpp unreal bp unity cs">
             <title>参数</title>
             <parml>
-                <plentry>
+                <plentry id="callid">
                     <pt>callId</pt>
                     <pd>输出参数，当前的通话 ID。</pd>
                 </plentry>
