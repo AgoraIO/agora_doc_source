@@ -17,10 +17,19 @@
             <title>新增特性</title>
             <body>
                 <ol>
+                    <li><ph><b>语音驱动虚拟人</b></ph>
+                        <p>SDK 新增语音驱动插件，可以将语音信息转换为对应口型的人脸信息，用于驱动虚拟人面部做出语音对应的口型变化。你可以通过该版本新增的 <xref keyref="registerFaceInfoObserver"/> 方法和 <xref keyref="onFaceInfo"/> 回调获取语音驱动插件处理后的人脸信息。该人脸信息为符合 ARkit 标准的 BS（Blend Shape）数据，你可以使用第三方 3D 渲染引擎对 BS 数据进一步处理。</p>
+                        <p>语音驱动插件为可裁剪动态库，集成后 App 增加的体积等信息详见<xref keyref="reduce-app-size"/>。</p>
+                        <note type="attention">
+                            <ul>
+                                <li>声网 SDK 拓展插件 MetaKit 可帮助你简化语音驱动虚拟人的实现流程，无需自行搭建采集、编码和传输的框架。有关 MetaKit 的介绍和集成指导，详见 <xref keyref="metakit-overview"/>。</li>
+                                <li>语音驱动虚拟人功能处于公测阶段，如需使用请<xref keyref="ticket-link"/>。</li>
+                            </ul>
+                        </note>
+                    </li>
                     <li><ph><b>数据流加密</b></ph>
                         <p>该版本在 <codeph><xref keyref="EncryptionConfig"/></codeph> 中新增 <codeph>datastreamEncryptionEnabled</codeph> 成员用于启用数据流加密。你可以在调用 <codeph><xref keyref="enableEncryption"/></codeph> 开启加密时来进行设置。如果在数据流加密或解密的过程中遇到问题导致失败，你可以通过新增的 <codeph><apiname keyref="ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE"/></codeph>  和 <codeph><apiname keyref="ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE"/></codeph> 枚举得知。</p>
-                    </li>
-                    <li><ph><b></b></ph>
+                    </li>                    <li><ph><b></b></ph>
                         <p></p>
                     </li>
                     <li><ph><b>其他</b></ph>
@@ -28,6 +37,7 @@
                         <ul>
                         <li>新增 <codeph><xref keyref="enableEncryptionEx"/></codeph> 方法，用于多频道场景下开启媒体流或数据流加密。</li>
                         <li>新增 <codeph><xref keyref="setAudioMixingPlaybackSpeed"/></codeph> 方法，用于设置音乐文件的播放速度。</li>
+                        <li>新增 <codeph><xref keyref="getCallIdEx"/></codeph> 方法，用于多频道场景下获取通话 ID。。</li>
                         </ul></p>
                     </li>
                 </ol>
@@ -39,6 +49,14 @@
                 <ol>
                     <li props="mac"><ph><b>获取音频设备类型</b></ph>
                         <p>该版本在 <codeph><xref keyref="AgoraRtcDeviceInfo"/></codeph> 中新增 <codeph>deviceTypeName</codeph> 成员，用于获取音频设备的类型，如 built-in、USB、HDMI 等。</p>
+                    </li>
+                    <li><ph><b>虚拟背景算法优化</b></ph>
+                        <p>为了提高纯色背景下开启虚拟背景时人像分割的精确度和稳定性，该版本优化了绿幕分割算法：
+                        <ul>
+                            <li>支持识别任意纯色背景，不再局限于绿幕。</li>
+                            <li>对背景颜色的识别更加准确，并且在分割人像时露出的背景更少。</li>
+                            <li>分割后的人像边缘（尤其是手指边缘）更加稳定，显著减少边缘的画面闪动现象。</li>
+                        </ul></p>
                     </li>
                     <li><ph><b>其他改进</b></ph>
                         <p>该版本还进行了如下改进：
@@ -59,6 +77,10 @@
                 <ul>
                     <li>使用媒体播放器播放包含 SEI 数据的媒体流时，SEI 数据的输出与视频渲染不同步。</li>
                     <li props="cpp mac">用户插拔一次蓝牙或有线耳机，音频状态改变回调 <codeph><xref keyref="onAudioDeviceStateChanged"/></codeph> 会触发多次。</li>
+                    <li props="unity">播放指定用户混音前的音频流时偶现回声。(macOS、Windows)</li>
+                    <li props="android unity rn flutter">主播使用部分型号设备在扬声器下进行音视频互动，之后切换 App 进程到后台再切回前台，偶现本地音频采集失败，远端用户听不到主播的声音。(Android)</li>
+                    <li props="cpp electron unity flutter">屏幕共享场景中，App 调用 <xref keyref="enableLoopbackRecording"/> 开启声卡采集功能采集共享屏幕的音频，本地用户手动禁用本地音频采集设备后，声卡采集的音频发送失败，远端用户听不见共享屏幕的声音。(Windows)</li>
+                    <li props="mac electron">在音视频互动中，如果用户将耳机插入设备并手动将系统音频输出切换为扬声器，之后 App 调用 <xref keyref="setPlaybackDevice"/> 方法指定音频播放设备为耳机，用户移除耳机后，音频输出并未按预期行为切换至扬声器。<ph props="electron"> (macOS)</ph></li>
                 </ul>
             </body>
         </topic>
@@ -90,6 +112,11 @@
                     <li props="android"><codeph><apiname keyref="ERR_DATASTREAM_DECRYPTION_FAILED"/></codeph></li>
                     <li props="apple cpp framework"><codeph><xref keyref="AUDIO_EFFECT_PRESET"/></codeph> 新增 <codeph><apiname keyref="ROOM_ACOUSTICS_CHORUS"/></codeph></li>
                     <li props="android"><codeph><apiname keyref="ROOM_ACOUSTICS_CHORUS"/></codeph></li>
+                    <li><xref keyref="registerFaceInfoObserver"/></li>
+                    <li props="electron rn flutter unity"><xref keyref="unregisterFaceInfoObserver"/></li>
+                    <li><xref keyref="IFaceInfoObserver"/></li>
+                    <li><xref keyref="onFaceInfo"/></li>
+                    <li><xref keyref="getCallIdEx"/></li>
                     </ul></p>
                 <p><b>废弃</b>
                     <ul>
