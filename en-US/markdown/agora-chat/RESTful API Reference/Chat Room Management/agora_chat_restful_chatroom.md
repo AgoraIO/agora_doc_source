@@ -132,7 +132,7 @@ For the parameters and detailed descriptions, see [Common parameters ](#param).
 | Parameter | Type   | Description   | Required |
 | :------- | :----- | :------------------------ | :------- |
 | `limit`  | Number |  The number of chat rooms to retrieve per page. The default value is `10`. The value range is [1,100].   | No  |
-| `cursor` | String |  The start position for the next query.  | No  |
+| `cursor` | String |  The starting position for data query. This parameter is required only for paginated queries. <br/> For the first query, you do not need to set `cursor` and the server returns the number of chat rooms specified with `limit` in the descending order of their creation time. You can get the cursor from the response body and pass it in the URL of the next query request. If there is no longer a `cursor` field in the response body, all chat rooms in the app are retrieved. | No  |
 
 <div class="alert info">If the <code>limit</code> and <code>cursor</code> parameters are not specified, the basic information of 10 chat rooms on the first page is returned by default.<div>
 

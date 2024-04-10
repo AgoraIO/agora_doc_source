@@ -235,6 +235,22 @@ You can also use `ChatMessageEventListener` to listen for the state of recalling
 onMessagesRecalled(messages: ChatMessage[]): void;
 ```
 
+### Use message extensions
+
+If the message types listed above do not meet your requirements, you can use message extensions to add attributes to the message. This can be applied in more complicated messaging scenarios.
+
+```typescript
+const msg = ChatMessage.createTextMessage(targetId, 'textmessage', chatType);
+msg.attributes = {
+  key: "value",
+  {
+    key2: 100
+  }
+};
+EMClient.getInstance().chatManager().sendMessage(msg, callback).then().catch();
+
+```
+
 ## Next steps
 
 After implementing sending and receiving messages, you can refer to the following documents to add more messaging functionalities to your app:

@@ -295,6 +295,23 @@ ChatClient.getInstance.chatManager.addEventHandler(
 );
 ```
 
+### Use message extensions
+
+If the message types listed above do not meet your requirements, you can use message extensions to add attributes to the message. This can be applied in more complicated messaging scenarios.
+
+```typescript
+try {
+  final msg = ChatMessage.createTxtSendMessage(
+    targetId: targetId,
+    content: 'content',
+  );
+
+  msg.attributes = {'k': 'v'};
+  ChatClient.getInstance.chatManager.sendMessage(msg);
+} on ChatError catch (e) {}
+
+```
+
 ## Next steps
 
 After implementing sending and receiving messages, you can refer to the following documents to add more messaging functionalities to your app:
