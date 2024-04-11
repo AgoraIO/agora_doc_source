@@ -59,7 +59,7 @@
                         </ol> </p>
                     </li>
                     <li><ph><b>数据流加密</b></ph>
-                        <p>该版本在 <codeph><xref keyref="EncryptionConfig"/></codeph> 中新增 <codeph>datastreamEncryptionEnabled</codeph> 成员用于启用数据流加密。你可以在调用 <codeph><xref keyref="enableEncryption"/></codeph> 开启加密时来进行设置。如果在数据流加密或解密的过程中遇到问题导致失败，你可以通过新增的 <codeph><apiname keyref="ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE"/></codeph> 和 <codeph><apiname keyref="ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE"/></codeph> 枚举得知。</p>
+                        <p>该版本在 <xref keyref="EncryptionConfig"/> 中新增 <codeph>datastreamEncryptionEnabled</codeph> 成员用于启用数据流加密。你可以在调用 <xref keyref="enableEncryption"/> 开启加密时来进行设置。如果在数据流加密或解密的过程中遇到问题导致失败，你可以通过新增的 <codeph><apiname keyref="ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE"/></codeph> 和 <codeph><apiname keyref="ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE"/></codeph> 枚举得知。</p>
                     </li>
                     <li props="android ios"><ph><b>本地视频渲染</b></ph>
                         <p>该版本在 <xref keyref="VideoCanvas"/> 中新增如下成员，以支持更多本地渲染功能。
@@ -83,9 +83,9 @@
                     <li><ph><b>其他</b></ph>
                         <p>
                         <ul>
-                        <li>新增 <codeph><xref keyref="enableEncryptionEx"/></codeph> 方法，用于多频道场景下开启媒体流或数据流加密。</li>
-                        <li>新增 <codeph><xref keyref="setAudioMixingPlaybackSpeed"/></codeph> 方法，用于设置音乐文件的播放速度。</li>
-                        <li>新增 <codeph><xref keyref="getCallIdEx"/></codeph> 方法，用于多频道场景下获取通话 ID。</li>
+                        <li>新增 <xref keyref="enableEncryptionEx"/> 方法，用于多频道场景下开启媒体流或数据流加密。</li>
+                        <li>新增 <xref keyref="setAudioMixingPlaybackSpeed"/> 方法，用于设置音乐文件的播放速度。</li>
+                        <li>新增 <xref keyref="getCallIdEx"/> 方法，用于多频道场景下获取通话 ID。</li>
                         </ul> </p>
                     </li>
                 </ol>
@@ -137,9 +137,9 @@
                         <li props="android flutter unity rn">提升了本地合图功能的性能和稳定性，并降低了该功能对 CPU 的占用率。(Android)</li>
                         <li props="ios flutter">提升了原始视频帧观测器在处理视频时的稳定性。(iOS) </li>
                         <li>优化了媒体播放器对 WebM 格式视频的处理能力，支持渲染 alpha 通道。</li>
-                        <li props="cpp apple framework">在 <codeph><xref keyref="AUDIO_EFFECT_PRESET"/></codeph> 中新增 <codeph><apiname keyref="ROOM_ACOUSTICS_CHORUS"/></codeph>（合唱音效），可使人声在合唱场景下更具空间立体感。</li>
+                        <li props="cpp apple framework">在 <xref keyref="AUDIO_EFFECT_PRESET"/> 中新增 <codeph><apiname keyref="ROOM_ACOUSTICS_CHORUS"/></codeph>（合唱音效），可使人声在合唱场景下更具空间立体感。</li>
                         <li props="android">新增 <codeph><apiname keyref="ROOM_ACOUSTICS_CHORUS"/></codeph>（合唱音效），可使人声在合唱场景下更具空间立体感。</li>
-                        <li>在 <codeph><xref keyref="RemoteAudioStats"/></codeph> 中新增 <codeph>e2eDelay</codeph>，用于报告从发送端采集音频起，到接收端开始播放音频时的延时。</li>
+                        <li>在 <xref keyref="RemoteAudioStats"/> 中新增 <codeph>e2eDelay</codeph>，用于报告从发送端采集音频起，到接收端开始播放音频时的延时。</li>
                         </ul></p>
                     </li>
                 </ol>
@@ -183,7 +183,7 @@
                             <li props="mac"><codeph><ph keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_MINIMIZED"/></codeph></li>
                         </ul></li>
                     <li><xref keyref="EncryptionConfig"/> 中新增 <codeph>datastreamEncryptionEnabled</codeph></li>
-                    <li props="cpp apple framework"><codeph><xref keyref="ENCRYPTION_ERROR_TYPE"/></codeph> 中新增如下枚举：
+                    <li props="cpp apple framework"><xref keyref="ENCRYPTION_ERROR_TYPE"/> 中新增如下枚举：
                     
                         <ul>
                         <li><codeph><apiname keyref="ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE"/></codeph></li>
@@ -191,15 +191,15 @@
                         </ul></li>
                     <li props="android"><codeph><apiname keyref="ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE"/></codeph></li>
                     <li props="android"><codeph><apiname keyref="ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE"/></codeph></li>
-                    <li props="cpp"><codeph><xref keyref="getDevice2_IAudioDeviceCollection"/></codeph><ph> (macOS)</ph></li>
-                    <li props="cpp"><codeph><xref keyref="getDefaultDevice2_IAudioDeviceCollection"/></codeph><ph> (macOS)</ph></li>
-                    <li props="cpp"><codeph><xref keyref="getPlaybackDeviceInfo2"/></codeph><ph> (macOS)</ph></li>
-                    <li props="cpp"><codeph><xref keyref="getRecordingDeviceInfo2"/></codeph><ph> (macOS)</ph></li>
-                    <li props="mac"><codeph><xref keyref="AgoraRtcDeviceInfo"/></codeph> 新增 <codeph>deviceTypeName</codeph></li>
-                    <li><codeph><xref keyref="RemoteAudioStats"/></codeph> 新增 <codeph>e2eDelay</codeph></li>
-                    <li props="apple cpp framework"><codeph><xref keyref="ERROR_CODE_TYPE"/></codeph> 新增 <codeph><apiname keyref="ERR_DATASTREAM_DECRYPTION_FAILED"/></codeph></li>
+                    <li props="unity electron flutter"><xref keyref="getDevice2_IAudioDeviceCollection"/><ph> (macOS)</ph></li>
+                    <li props="unity electron flutter"><xref keyref="getDefaultDevice2_IAudioDeviceCollection"/><ph> (macOS)</ph></li>
+                    <li props="unity electron flutter"><xref keyref="getPlaybackDeviceInfo2"/><ph> (macOS)</ph></li>
+                    <li props="unity electron flutter"><xref keyref="getRecordingDeviceInfo2"/><ph> (macOS)</ph></li>
+                    <li props="mac"><xref keyref="AgoraRtcDeviceInfo"/> 新增 <codeph>deviceTypeName</codeph></li>
+                    <li><xref keyref="RemoteAudioStats"/> 新增 <codeph>e2eDelay</codeph></li>
+                    <li props="apple cpp framework"><xref keyref="ERROR_CODE_TYPE"/> 新增 <codeph><apiname keyref="ERR_DATASTREAM_DECRYPTION_FAILED"/></codeph></li>
                     <li props="android"><codeph><apiname keyref="ERR_DATASTREAM_DECRYPTION_FAILED"/></codeph></li>
-                    <li props="apple cpp framework"><codeph><xref keyref="AUDIO_EFFECT_PRESET"/></codeph> 新增 <codeph><apiname keyref="ROOM_ACOUSTICS_CHORUS"/></codeph></li>
+                    <li props="apple cpp framework"><xref keyref="AUDIO_EFFECT_PRESET"/> 新增 <codeph><apiname keyref="ROOM_ACOUSTICS_CHORUS"/></codeph></li>
                     <li props="android"><codeph><apiname keyref="ROOM_ACOUSTICS_CHORUS"/></codeph></li>
                     <li><xref keyref="registerFaceInfoObserver"/></li>
                     <li props="electron rn flutter unity"><xref keyref="unregisterFaceInfoObserver"/></li>
