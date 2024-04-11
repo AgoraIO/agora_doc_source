@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_querycamerafocallengthcapability">
     <title><ph keyref="queryCameraFocalLengthCapability" /></title>
-    <shortdesc id="short"><ph id="shortdesc">查询摄像头支持的焦距能力。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Queries the focal length capability supported by the camera.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -31,29 +31,29 @@
                 <dd>v4.3.1</dd>
             </dlentry>
             </dl>
-            <p>如需开启摄像头广角、超广角拍摄模式，建议你先调用该方法查询设备是否具备相应的焦距能力，再根据查询结果调用 <xref keyref="setCameraCapturerConfiguration"/> 调整摄像头的焦距配置，以达到最佳的摄像头采集效果。</p>
+            <p>If you need to enable wide-angle or ultra-wide-angle mode for the camera capture, it is recommended to call this method first to query whether the device has the corresponding focal length capability, and then adjust the camera's focal length configuration based on the query result by calling <xref keyref="setCameraCapturerConfiguration"/>, to achieve the best camera capture effect.</p>
             <note type="attention" props="cpp unreal bp flutter unity">This method is for Android and iOS only.</note> </section>
         <section id="parameters" props="cpp">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>focalLengthInfos</pt>
-                <pd>Input and output parameter. 指向 <xref keyref="FocalLengthInfo"/> 对象数组的指针：<ul>
-                    <li>输入值：指定焦距信息的存储位置。</li>
-                    <li>输出值：输出查询到的摄像头焦距信息。</li></ul>
+                <pd>Input and output parameter. A pointer to an array of <xref keyref="FocalLengthInfo"/> objects:<ul>
+                    <li>Input value: Specifies the storage location of the focal length information.</li>
+                    <li>Output value: Outputs the queried camera focal length information.</li></ul>
                 </pd>
             </plentry>
             <plentry>
                 <pt>size</pt>
-                <pd>Input and output parameter. 焦距信息数量：<ul>
-                    <li>输入值：指定 <parmname>focalLengthInfos</parmname> 可以容纳的最大焦距信息数量。 请确保该值不小于 8，即 <parmname>focalLengthInfos</parmname> 至少有空间存储 8 个焦距信息。</li>
+                <pd>Input and output parameter. The number of focal length information:<ul>
+                    <li>Input value: Specifies the maximum number of focal length information that <parmname>focalLengthInfos</parmname> can accommodate. Make sure that this value is not less than 8, meaning that <parmname>focalLengthInfos</parmname> has at least enough space to store 8 focal length information.</li>
                     <li>输出值：输出查询到的焦距信息数量。</li></ul>
                 </pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. See  for details and resolution suggestions.<ph props="cn"><xref keyref="error-code-link"/></ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <p props="android ios">返回一个 <xref keyref="FocalLengthInfo"/> 对象，其中包含摄像头支持的焦距信息。</p>
             <ul props="cpp">
             <li>0: Success.</li>

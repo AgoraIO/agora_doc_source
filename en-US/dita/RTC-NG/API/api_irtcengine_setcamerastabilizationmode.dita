@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setcamerastabilizationmode">
     <title><ph keyref="setCameraStabilizationMode"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置摄像头防抖模式。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Set the camera stabilization mode.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -32,33 +32,33 @@
             <note type="attention" props="cpp">
                 <p>This method applies to iOS only.</p>
             </note>
-            <p>摄像头防抖模式默认关闭，你需要调用该方法开启并设置合适的防抖模式。</p>
+            <p>The camera stabilization mode is off by default. You need to call this method to turn it on and set the appropriate stabilization mode.</p>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>Applicable scenarios</title>
-            <p>在移动拍摄、暗光环境拍摄、手持拍摄时，你可以设置摄像头防抖模式，以减小摄像头晃动导致的影响，获得更加稳定、清晰的画面。</p>
+            <p>When shooting on the move, in low light conditions, or handheld, you can set the camera stabilization mode to reduce the impact of camera shake and get a more stable, clear picture.</p>
         </section>
         <section id="timing" deliveryTarget="details">
-            <title>调用时机</title>
+            <title>Call timing</title>
             <p>This method must be called after the camera is successfully enabled, that is, after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <apiname keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/> (1).</p>
         </section>        
         <section id="restriction" deliveryTarget="details">
-            <title>调用限制</title>
+            <title>Restrictions</title>
             <ul>
-                <li>摄像头防抖只对视频分辨率大于 1280 × 720 以上的场景生效。</li>
-                <li>开启摄像头防抖后，摄像头防抖等级越高，相机的视角就越小、相机时延就越大。 为保障用户体验，建议你将 <parmname>mode</parmname> 参数设置为 <apiname keyref="CAMERA_STABILIZATION_MODE_LEVEL_1"/>。</li>
+                <li>Camera stabilization only works for scenarios with a video resolution greater than 1280 x 720.</li>
+                <li>After enabling camera stabilization, the higher the camera stabilization level, the smaller the camera's field of view and the greater the camera's latency. To ensure user experience, it is recommended that you set the <parmname>mode</parmname> parameter to <apiname keyref="CAMERA_STABILIZATION_MODE_LEVEL_1"/>.</li>
             </ul>
         </section>
         <section id="related" deliveryTarget="details">
-            <title>相关回调</title>
-            <p>No</p>
+            <title>Related callbacks</title>
+            <p>No.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>mode</pt>
-                <pd>摄像头的防抖模式。 See <xref keyref="CAMERA_STABILIZATION_MODE"/>.</pd>
+                <pd>Camera stabilization mode. See <xref keyref="CAMERA_STABILIZATION_MODE"/>.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enablecameracenterstage">
     <title><ph keyref="enableCameraCenterStage"/></title>
-    <shortdesc id="short"><ph id="shortdesc">开启或关闭人像锁定功能。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Enables or disables portrait lock function.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -29,7 +29,7 @@
                 <dd>v4.3.1</dd>
             </dlentry>
             </dl>
-            <p>人像锁定功能默认关闭，你需要调用该方法开启。 如果需要关闭该功能，则需重新调用该方法并将 <parmname>enabled</parmname> 设置为 <codeph><ph keyref="false"/></codeph>。</p>
+            <p>The portrait lock function is turned off by default, you need to call this method to turn it on. 如果需要关闭该功能，则需重新调用该方法并将 <parmname>enabled</parmname> 设置为 <codeph><ph keyref="false"/></codeph>。</p>
             <note type="attention" props="cpp">
                 <p>This method is for Windows and macOS only.</p>
             </note>
@@ -39,11 +39,11 @@
             <p>人像锁定功能可广泛应用于在线会议、秀场、在线教育等场景。 主播可以开启该功能，确保无论移动与否，自己始终在画面中心，以便取得良好的展示效果。</p>
         </section>
         <section id="timing" deliveryTarget="details">
-            <title>调用时机</title>
+            <title>Call timing</title>
             <p>This method must be called after the camera is successfully enabled, that is, after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <apiname keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/> (1).</p>
         </section>        
         <section id="restriction" deliveryTarget="details">
-            <title>调用限制</title>
+            <title>Restrictions</title>
             <p>由于该功能对设备性能要求较高，你需要在以下类型或更高性能的设备上使用该功能：<ul>
                 <li>iPad：<ul>
                     <li>12.9 英寸 iPad Pro（第五代）</li>
@@ -56,8 +56,8 @@
             <p>声网建议你在开启该功能前，先调用 <xref keyref="isCameraCenterStageSupported"/> 查询当前设备是否支持人像锁定。</p>
         </section>
         <section id="related" deliveryTarget="details">
-            <title>相关回调</title>
-            <p>No</p>
+            <title>Related callbacks</title>
+            <p>No.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
