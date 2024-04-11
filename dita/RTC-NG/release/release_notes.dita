@@ -50,12 +50,11 @@
                             <li props="flutter unity rn"><xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishThirdCameraTrack</codeph> 和 <codeph>publishFourthCameraTrack</codeph> 成员新增对 Android 的支持。调用 <xref keyref="joinChannel2"/> 加入频道时，将这两个成员参数设置为 <codeph><ph keyref="true"/></codeph> 即可在频道内发布第三个和第四个摄像头采集的视频流。</li>
                             </ul></li>
                         <li>支持通过摄像头 ID 指定摄像头。
-                            
                             <ul props="android">
                             <li>在 <xref keyref="CameraCapturerConfiguration"/> 中新增 <codeph>cameraId</codeph> 成员。对于多摄像头的设备，<codeph>cameraDirection</codeph> 无法识别或访问全部可用摄像头。这种情况下，你可以通过 Android 原生系统 API 获取摄像头 ID，再调用 <xref keyref="startCameraCapture"/> 并传入 <codeph>cameraId</codeph> 指定所需的摄像头。</li>
                             <li>新增 <xref keyref="switchCamera2"/>，支持通过 <codeph>cameraId</codeph> 切换摄像头，允许 App 在运行期间基于可用摄像头的实际情况动态调整摄像头使用。</li>
                             </ul>
-                            <p props="flutter unity rn">在 <xref keyref="CameraCapturerConfiguration"/> 中新增 <codeph>cameraId</codeph> 成员。对于多摄像头的设备，特别是当设备支持外接摄像头时，<codeph>cameraDirection</codeph> 无法识别或访问全部可用摄像头。这种情况下，你通过系统 API 获取摄像头 ID，再调用 <xref keyref="startCameraCapture"/> 并传入 <codeph>cameraId</codeph> 指定摄像头。</p>
+                            <p props="flutter unity rn">在 <xref keyref="CameraCapturerConfiguration"/> 中新增 <codeph>cameraId</codeph> 成员。对于多摄像头的设备，<codeph>cameraDirection</codeph> 无法识别或访问全部可用摄像头。这种情况下，你通过系统 API 获取摄像头 ID，再调用 <xref keyref="startCameraCapture"/> 并传入 <codeph>cameraId</codeph> 指定摄像头。</p>
                         </li>
                         </ol> </p>
                     </li>
@@ -197,23 +196,23 @@
                     <li><xref keyref="onFaceInfo"/></li>
                     <li><xref keyref="getCallIdEx"/></li>
                     <li props="android ios flutter unity rn"><xref keyref="queryCameraFocalLengthCapability"/> (Android, iOS)</li>
-                    <li props="android ios flutter unity rn"><codeph><apiname keyref="FocalLengthInfo"/></codeph> (Android, iOS)</li>
-                    <li props="android ios flutter unity rn"><codeph><apiname keyref="CAMERA_FOCAL_LENGTH_TYPE"/></codeph> (Android, iOS)</li>
-                    <li props="android ios flutter unity rn"><codeph><apiname keyref="CameraCapturerConfiguration"/></codeph> 新增成员 <codeph>cameraFocalLengthType</codeph> (Android, iOS)</li>
-                    <li props="android flutter unity rn"><codeph><apiname keyref="VIDEO_SOURCE_TYPE"/></codeph> 新增以下枚举：(Android)
+                    <li props="android ios flutter unity rn"><xref keyref="FocalLengthInfo"/> (Android, iOS)</li>
+                    <li props="android ios flutter unity rn"><xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/> (Android, iOS)</li>
+                    <li props="android ios flutter unity rn"><xref keyref="CameraCapturerConfiguration"/> 新增成员 <codeph>cameraFocalLengthType</codeph> (Android, iOS)</li>
+                    <li props="android"><xref keyref="VIDEO_SOURCE_TYPE"/> 新增以下枚举：
                         <ul>
                         <li><codeph><apiname keyref="VIDEO_SOURCE_CAMERA_THIRD"/></codeph>(11)</li>
                         <li><codeph><apiname keyref="VIDEO_SOURCE_CAMERA_FOURTH"/></codeph>(12)</li>
                         </ul></li>
-                    <li props="android flutter unity rn"><codeph><apiname keyref="ChannelMediaOptions"/></codeph> 新增以下成员：(Android)
+                    <li props="android"><xref keyref="ChannelMediaOptions"/> 新增以下成员：
                         <ul>
                         <li><codeph>publishThirdCameraTrack</codeph></li>
                         <li><codeph>publishFourthCameraTrack</codeph></li>
                         </ul></li>
-                    <li props="android flutter unity rn"><codeph><apiname keyref="CameraCapturerConfiguration"/></codeph> 新增成员 <codeph>cameraId</codeph> (Android)</li>
-                    <li props="android"><codeph><apiname keyref="CAMERA_DIRECTION"/></codeph> 中新增 <codeph>CAMERA_EXTRA</codeph>(2)</li>
+                    <li props="android flutter unity rn"><xref keyref="CameraCapturerConfiguration"/> 新增成员 <codeph>cameraId</codeph> (Android)</li>
+                    <li props="android"><xref keyref="CAMERA_DIRECTION"/> 中新增 <codeph>CAMERA_EXTRA</codeph>(2)</li>
                     <li props="android"><xref keyref="switchCamera2"/></li>
-                    <li><codeph><apiname keyref="EAR_MONITORING_FILTER_TYPE"/></codeph> 新增枚举 <codeph><apiname keyref="EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS"/></codeph>(1 &lt;&lt;15)</li>
+                    <li><xref keyref="EAR_MONITORING_FILTER_TYPE"/> 新增枚举 <codeph><apiname keyref="EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS"/></codeph>(1 &lt;&lt;15)</li>
                     <li props="ios mac"><xref keyref="pushExternalAudioFrameSampleBuffer2"/></li>
                     </ul></p>
                 <p><b>废弃</b>
