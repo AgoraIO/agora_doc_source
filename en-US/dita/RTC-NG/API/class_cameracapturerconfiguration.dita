@@ -7,9 +7,10 @@
     <section id="prototype">
       <p outputclass="codeblock">
       <codeblock props="android" outputclass="language-java">public class CameraCapturerConfiguration {
-    public enum CAMERA_DIRECTION {
-        CAMERA_REAR(0),
-        CAMERA_FRONT(1);
+  public enum CAMERA_DIRECTION {
+    CAMERA_REAR(0),
+    CAMERA_FRONT(1),
+    CAMERA_EXTRA(2);
 
     private int value;
 
@@ -22,12 +23,32 @@
     }
   }
 
-    public CAMERA_DIRECTION cameraDirection;
+  public enum CAMERA_FOCAL_LENGTH_TYPE {
+    CAMERA_FOCAL_LENGTH_DEFAULT(0),
+    CAMERA_FOCAL_LENGTH_WIDE_ANGLE(1),
+    CAMERA_FOCAL_LENGTH_URLTRA_WIDE(2),
+    CAMERA_FOCAL_LENGTH_TELEPHOTO(3);
+
+    private int value;
+    private CAMERA_FOCAL_LENGTH_TYPE(int v) {
+      value = v;
+    }
+
+    public int getValue() {
+      return this.value;
+    }
+  }
+
+  public CAMERA_DIRECTION cameraDirection;
+
+  public String cameraId = null;
+
+  public CAMERA_FOCAL_LENGTH_TYPE cameraFocalLengthType;
 
   static public class CaptureFormat {
-        public int width;
-        public int height;
-        public int fps;
+    public int width;
+    public int height;
+    public int fps;
 
     public CaptureFormat(int width, int height, int fps) {
       this.width = width;
@@ -65,30 +86,64 @@
 
   public CaptureFormat captureFormat;
 
-    public boolean followEncodeDimensionRatio;
+  public boolean followEncodeDimensionRatio;
 
-    public CameraCapturerConfiguration(CAMERA_DIRECTION cameraDirection) {
+  public CameraCapturerConfiguration(CAMERA_DIRECTION cameraDirection) {
     this.cameraDirection = cameraDirection;
     this.captureFormat = new CaptureFormat();
     this.followEncodeDimensionRatio = true;
+    this.cameraId = null;
+    this.cameraFocalLengthType = CAMERA_FOCAL_LENGTH_TYPE.CAMERA_FOCAL_LENGTH_DEFAULT;
   }
 
-    public CameraCapturerConfiguration(CaptureFormat captureFormat) {
+  public CameraCapturerConfiguration(
+      CAMERA_DIRECTION cameraDirection, CAMERA_FOCAL_LENGTH_TYPE cameraFocalLengthType) {
+    this.cameraDirection = cameraDirection;
+    this.cameraFocalLengthType = cameraFocalLengthType;
+    this.captureFormat = new CaptureFormat();
+    this.followEncodeDimensionRatio = true;
+    this.cameraId = null;
+  }
+
+  public CameraCapturerConfiguration(CaptureFormat captureFormat) {
     this.captureFormat = captureFormat;
     this.cameraDirection = CAMERA_DIRECTION.CAMERA_FRONT;
+    this.cameraFocalLengthType = CAMERA_FOCAL_LENGTH_TYPE.CAMERA_FOCAL_LENGTH_DEFAULT;
     this.followEncodeDimensionRatio = true;
+    this.cameraId = null;
   }
 
-    public CameraCapturerConfiguration(
+  public CameraCapturerConfiguration(
       CAMERA_DIRECTION cameraDirection, CaptureFormat captureFormat) {
     this.cameraDirection = cameraDirection;
     this.captureFormat = captureFormat;
+    this.cameraFocalLengthType = CAMERA_FOCAL_LENGTH_TYPE.CAMERA_FOCAL_LENGTH_DEFAULT;
     this.followEncodeDimensionRatio = true;
+    this.cameraId = null;
+  }
+
+  public CameraCapturerConfiguration(CAMERA_DIRECTION cameraDirection,
+      CAMERA_FOCAL_LENGTH_TYPE cameraFocalLengthType, CaptureFormat captureFormat) {
+    this.cameraDirection = cameraDirection;
+    this.cameraFocalLengthType = cameraFocalLengthType;
+    this.captureFormat = captureFormat;
+    this.followEncodeDimensionRatio = true;
+    cameraId = null;
   }
 
   @CalledByNative
   public int getCameraDirection() {
     return cameraDirection.value;
+  }
+
+  @CalledByNative
+  public String getCameraId() {
+    return cameraId;
+  }
+
+  @CalledByNative
+  public int getCameraFocalLengthType() {
+    return cameraFocalLengthType.value;
   }
 
   @CalledByNative
@@ -105,32 +160,45 @@
   public String toString() {
     return "CameraCapturerConfiguration{"
         + "cameraDirection=" + cameraDirection + ", captureDimensions=" + captureFormat
-        + ", followEncodeDimensionRatio=" + followEncodeDimensionRatio + '}';
+        + ", cameraId=" + cameraId + ", followEncodeDimensionRatio=" + followEncodeDimensionRatio
+        + '}';
   }
 }</codeblock>
       <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraCameraCapturerConfiguration: NSObject
 #if TARGET_OS_IOS
 @property (assign, nonatomic) AgoraCameraDirection cameraDirection;
-#endif
+@property(assign, nonatomic) AgoraFocalLength cameraFocalLengthType;
 #elif TARGET_OS_MAC
 @property (copy, nonatomic) NSString * _Nullable deviceId;
+#endif
 @property(assign, nonatomic) CGSize dimensions;
 @property(assign, nonatomic) int frameRate;
 @property(assign, nonatomic) BOOL followEncodeDimensionRatio;
 @end</codeblock>
       <codeblock props="cpp unreal" outputclass="language-cpp">struct CameraCapturerConfiguration {
-  #if defined(__ANDROID__) || (defined(__APPLE__) &amp;&amp; TARGET_OS_IOS)
-    CAMERA_DIRECTION cameraDirection;
+#if defined(__ANDROID__) || (defined(__APPLE__) &amp;&amp; TARGET_OS_IOS)
+  CAMERA_DIRECTION cameraDirection;
+
+  CAMERA_FOCAL_LENGTH_TYPE cameraFocalLengthType;
 #else
-    char deviceId[MAX_DEVICE_ID_LENGTH];
+  char deviceId[MAX_DEVICE_ID_LENGTH];
 #endif
-    VideoFormat format;
+
+#if defined(__ANDROID__)
+  char cameraId[MAX_DEVICE_ID_LENGTH];
+#endif
+  VideoFormat format;
   bool followEncodeDimensionRatio;
   CameraCapturerConfiguration() : followEncodeDimensionRatio(true) {
 #if defined(__ANDROID__) || (defined(__APPLE__) &amp;&amp; TARGET_OS_IOS)
   cameraDirection = CAMERA_REAR;
+
 #else
   memset(deviceId, 0, sizeof(deviceId));
+#endif
+
+#if defined(__ANDROID__)
+  memset(cameraId, 0, sizeof(cameraId));
 #endif
   }
 };</codeblock>
@@ -217,8 +285,7 @@ struct FCameraCapturerConfiguration
 
   Map&lt;String, dynamic> toJson() => _$CameraCapturerConfigurationToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
-    </section>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p></section>
     <section id="parameters">
       <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/>
       </title>

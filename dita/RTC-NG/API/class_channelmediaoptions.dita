@@ -9,6 +9,8 @@
             <codeblock props="android" outputclass="language-java">public class ChannelMediaOptions {
   public Boolean publishCameraTrack;
   public Boolean publishSecondaryCameraTrack;
+  public Boolean publishThirdCameraTrack;
+  public Boolean publishFourthCameraTrack;
   public Boolean publishMicrophoneTrack;
   public Boolean publishScreenCaptureVideo;
   public Boolean publishScreenCaptureAudio;
@@ -593,22 +595,23 @@ class ChannelMediaOptions {
                     </ul></note>
                 </pd>
             </plentry>
-            <plentry props="cpp mac unity cs flutter electron">
+            <plentry props="android cpp mac unity cs flutter electron rn">
                 <pt>publishThirdCameraTrack</pt>
                 <pd>设置是否发布第三个摄像头采集的视频：
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：发布第三个摄像头采集的视频。</li>
                     <li><codeph><ph keyref="false"/></codeph>：不发布第三个摄像头采集的视频。</li>
                     </ul>
-                <p><note type="attention" props="cpp unreal bp unity cs flutter">该参数仅适用于 Windows 和 macOS 平台。</note></p></pd>
+                    <note type="attention" props="cpp unreal bp unity flutter">该参数仅适用于 Android、Windows 和 macOS 平台。</note><note type="attention" props="rn">该参数仅适用于 Android 平台。</note></pd>
             </plentry>
-            <plentry props="cpp mac unity cs flutter electron">
+            <plentry props="android cpp mac unity cs flutter electron rn">
                 <pt>publishFourthCameraTrack</pt>
                 <pd>设置是否发布第四个摄像头采集的视频：
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：发布第四个摄像头采集的视频。</li>
                     <li><codeph><ph keyref="false"/></codeph>：不发布第四个摄像头采集的视频。</li>
-                    </ul><p><note type="attention" props="cpp unreal bp unity cs flutter">该参数仅适用于 Windows 和 macOS 平台。</note></p></pd>
+                    </ul>
+                    <note type="attention" props="cpp unreal bp unity flutter">该参数仅适用于 Android、Windows 和 macOS 平台。</note><note type="attention" props="rn">该参数仅适用于 Android 平台。</note></pd>
             </plentry>
             <plentry props="mac cpp flutter unreal bp unity cs electron">
                 <pt>publishScreenTrack</pt>
@@ -684,7 +687,7 @@ class ChannelMediaOptions {
                     <li><codeph><ph keyref="true"/></codeph>：发布本地的转码视频。</li>
                     <li><codeph><ph keyref="false"/></codeph>：不发布本地的转码视频。</li>
                     </ul>
-                    <p><note type="note" props="native">自 v4.2.0 起，该参数名称由 <parmname>publishTrancodedVideoTrack</parmname> 更正为 <parmname>publishTranscodedVideoTrack</parmname>。</note></p>
+                    <note type="note" props="native">自 v4.2.0 起，该参数名称由 <parmname>publishTrancodedVideoTrack</parmname> 更正为 <parmname>publishTranscodedVideoTrack</parmname>。</note>
                 </pd>
             </plentry>
              <plentry props="hide">
@@ -800,11 +803,11 @@ class ChannelMediaOptions {
                 <pt>channelProfile</pt>
                 <pd conkeyref="setChannelProfile/channelprofiletype"/>
             </plentry>
-            <plentry props="hide">
+            <plentry>
                 <pt>audioDelayMs</pt>
                 <pd>
-                    <p>发送音频帧的时延（以毫秒为单位），用于控制 A/V 同步。</p>
-                    <p>如果要关闭时延，将此参数值设置为 0。</p>
+                    <p>发送音频帧的延时（毫秒）。在视频延迟较大的场景下，你可以通过该参数来设置需要发送的音频帧的延时，以确保音画同步。</p>
+                    <p>如果要关闭延时，将此参数值设置为 0。</p>
                 </pd>
             </plentry>
             <plentry props="hide">
