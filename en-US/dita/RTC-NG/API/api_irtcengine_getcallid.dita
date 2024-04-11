@@ -26,12 +26,12 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>When a user joins a channel on a client, a <parmname>callId</parmname> is generated to identify the call from the client. Some methods, such as <xref keyref="rate" /> and <xref keyref="complain" />, must be called after the call ends to submit feedback to the SDK. These methods require the <parmname>callId</parmname> parameter.</p>
-            <note type="attention">Call this method after joining a channel.</note> </section>
+            <p id="detail">When a user joins a channel on a client, a <parmname>callId</parmname> is generated to identify the call from the client. 你可以调用该方法获取 <parmname>callId</parmname> 参数，然后在调用 <xref keyref="rate" />、<xref keyref="complain" /> 等方法时填入。</p>
+            <note id="seq" type="attention">Call this method after joining a channel.</note> </section>
         <section id="parameters" props="cpp unreal bp unity cs">
             <title>Parameters</title>
             <parml>
-                <plentry>
+                <plentry id="callid">
                     <pt>callId</pt>
                     <pd>Output parameter, the current call ID.</pd>
                 </plentry>

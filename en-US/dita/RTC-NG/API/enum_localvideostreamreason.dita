@@ -20,13 +20,13 @@
                 <pd>2: No permission to use the local video capturing device. Remind the user to grant permissions and rejoin the channel.<dl outputclass="deprecated">
                         <dlentry>
                             <dt>Deprecated:</dt>
-                            <dd>This enumerator is deprecated. Please use <xref keyref="CAMERA"/> in the <xref keyref="onPermissionError"/> callback instead.</dd>
+                            <dd>This enumerator is deprecated. Please use <apiname keyref="CAMERA"/> in the <xref keyref="onPermissionError"/> callback instead.</dd>
                         </dlentry>
                         </dl></pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_BUSY"/></pt>
-                <pd>3: The local video capturing device is in use. Remind the user to check whether another application occupies the camera.</pd>
+                <pd>3: The local video capturing device is in use. 请提示用户检查摄像头是否被其他 App 占用。</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_CAPTURE_FAILURE"/></pt>
@@ -79,6 +79,17 @@
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_OCCLUDED"/></pt>
                 <pd>13: (Windows only) The window being shared is overlapped by another window, so the overlapped area is blacked out by the SDK during window sharing.</pd>
             </plentry>
+            <plentry props="android cpp">
+                <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_INTERRUPT"/></pt>
+                <pd>14:<ph props="cpp">（仅适用于 Android）</ph>视频采集中断。 Possible reasons include the following:<ul>
+                    <li>摄像头被其他 App 占用。 请提示用户检查摄像头是否被其他 App 占用。</li>
+                    <li>当前 App 已被切换到后台。 可以使用前台服务通知操作系统，确保 App 在切换到后台时仍可采集视频。 <ph props="cn">For more details, see<xref keyref="android-background"/></ph></li>
+                </ul></pd>
+            </plentry>
+            <plentry props="android cpp">
+                <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_FATAL_ERROR"/></pt>
+                <pd>15:<ph props="cpp">（仅适用于 Android）</ph>视频采集设备出错。 请提示用户关闭并重新启动摄像头以恢复功能，如果该操作不能解决问题，请检查摄像头是否出现硬件故障。</pd>
+            </plentry>
             <plentry props="hide">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_NOT_SUPPORTED"/></pt>
                 <pd>20: (Windows only) The SDK does not support sharing this type of window.</pd>
@@ -103,9 +114,9 @@
                     <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_HIDDEN"/></pt>
                     <pd>26: (Windows only) The window for screen capture has been restored from hidden state.</pd>
                 </plentry>
-                <plentry props="cpp flutter unity">
+                <plentry props="cpp mac flutter unity">
                     <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_MINIMIZED"/></pt>
-                    <pd>27: (Windows only) The window for screen capture has been restored from minimized state.</pd>
+                    <pd><ph>27：</ph><ph props="cpp flutter unity">（仅适用于 macOS 和 Windows）</ph>进行屏幕采集的窗口已经从最小化状态恢复正常。</pd>
                 </plentry>
                 <plentry props="cpp flutter unity">
                     <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_PAUSED"/></pt>

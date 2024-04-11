@@ -33,8 +33,10 @@
             <title>Details</title>
             <note type="attention">
             <ul>
-            <li props="cpp unreal bp unity flutter cs">This method is for Android and iOS only.</li>
+            <li props="cpp unreal bp unity flutter">This method is for Android and iOS only.</li>
             <li>Call this method before enabling local camera capture, such as before calling <xref keyref="startPreview2"/> and <xref keyref="joinChannel2"/>.</li>
+            <li props="android ios cpp unreal bp flutter unity rn">在调整摄像头的焦距配置前，建议先调用 <xref keyref="queryCameraFocalLengthCapability"/> 查询设备支持的焦距能力，再根据查询结果进行配置。</li>
+            <li props="android cpp unreal bp flutter unity rn">由于部分 Android 设备的限制，即使根据 <apiname keyref="queryCameraFocalLengthCapability"/> 的查询结果设置焦距类型，设置结果也可能不生效。</li>
             </ul></note> </section>
         <section id="parameters">
             <title>Parameters</title>

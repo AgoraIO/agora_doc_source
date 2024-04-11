@@ -22,6 +22,14 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> pushAudioFrame({required AudioFrame frame, int trackId = 0});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
+        <section id="detailed_desc">
+            <title>Details</title>
+            <note type="attention">
+            <p>调用该方法推送外部音频数据前，请先进行以下操作：<ol>
+                <li>Call<xref keyref="createCustomAudioTrack"/> this method to create a custom audio track and get the audio track ID.</li>
+                <li>Call <xref keyref="joinChannel2"/> to join the channel. In <xref keyref="ChannelMediaOptions"/>, set <parmname>publishCustomAduioTrackId</parmname> to the audio track ID that you want to publish, and set <parmname>publishCustomAudioTrack</parmname> to <codeph><ph keyref="true"/></codeph>.</li>
+            </ol></p>
+            </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>

@@ -16,12 +16,14 @@
   public static final int VIEW_SETUP_MODE_ADD = 1;
   public static final int VIEW_SETUP_MODE_REMOVE = 2;
   public View view;
+  public SurfaceTexture surfaceTexture;
   public int renderMode;
   public int mirrorMode;
   public int setupMode = VIEW_SETUP_MODE_REPLACE;
   public int sourceType;
   public int mediaPlayerId;
   public Rect rect;
+  public boolean enableAlphaMask;
   public int backgroundColor;
   public Constants.VideoModulePosition position =
       Constants.VideoModulePosition.VIDEO_MODULE_POSITION_POST_CAPTURER;
@@ -251,10 +253,14 @@ class VideoCanvas {
                 </plentry>
                 <plentry>
                     <pt>view</pt>
-                    <pd props="native flutter unity cs electron rn">The video display window.</pd>
+                    <pd props="native flutter unity cs electron rn">The video display window. <ph props="android">必须为一个 <xref keyref="SurfaceView-link"/> 或 <xref keyref="TextureView-link"/> 对象。</ph><note type="attention">在一个 <apiname keyref="VideoCanvas"/> 中，你只能选择 <parmname>view</parmname> 或 <parmname>surfaceTexture</parmname> 其中一个进行设置，如果同时设置，只有 <parmname>view</parmname> 中的设置会生效。</note></pd>
                     <pd props="unreal bp">The video image. You need to define a pointer of UImage type and pass in this parameter. The sample code is as follows:<codeblock props="unreal bp" outputclass="language-cpp">agora::rtc::VideoCanvas videoCanvas;
     UImage* LocalVideo;
     videoCanvas.view = LocalVideo;</codeblock></pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>Get the SurfaceTexture</pt>
+                    <pd>提供视频图像的容器，当你使用该成员时，需要自行实现 OPENGL 中的纹理绘制。 See <xref keyref="SurfaceTexture-link"/>.<note type="attention">在一个 <apiname keyref="VideoCanvas"/> 中，你只能选择 <parmname>view</parmname> 或 <parmname>surfaceTexture</parmname> 其中一个进行设置，如果同时设置，只有 <parmname>view</parmname> 中的设置会生效。</note></pd>
                 </plentry>
                 <plentry props="native flutter unity cs electron rn bp">
                     <pt>renderMode</pt>
@@ -264,16 +270,19 @@ class VideoCanvas {
                 <plentry props="native flutter unity cs electron rn bp">
                     <pt>mirrorMode</pt>
                 <pd>
-                    <p props="ios mac cpp unity electron rn flutter cs bp">The mirror mode of the view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.</p>
-                    <p props="android">
-                    <ul conkeyref="setLocalRenderMode2/videomirrormodetype">
-                    <li/>
-                    </ul> </p>
-                    <note type="attention">
-                    <ul>
-                    <li>For the mirror mode of the local video view: If you use a front camera, the SDK enables the mirror mode by default; if you use a rear camera, the SDK disables the mirror mode by default.</li>
-                    <li>For the remote user: The mirror mode is disabled by default.</li>
-                    </ul> </note> </pd>
+                        <p props="ios mac cpp unity electron rn flutter cs bp">The mirror mode of the view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</p>
+                        <p props="android">
+                            <ul conkeyref="setLocalRenderMode2/videomirrormodetype">
+                                <li/>
+                            </ul>
+                        </p>
+                        <note type="attention">
+                            <ul>
+                                <li>For the mirror mode of the local video view: If you use a front camera, the SDK enables the mirror mode by default; if you use a rear camera, the SDK disables the mirror mode by default.</li>
+                                <li>For the remote user: The mirror mode is disabled by default.</li>
+                            </ul>
+                        </note>
+                    </pd>
             </plentry>
             <plentry>
                 <pt>uid</pt>
@@ -313,17 +322,21 @@ class VideoCanvas {
               <pt>backgroundColor</pt>
               <pd>The background color of the video canvas in RGBA format. The default value is 0x00000000, which represents completely transparent black.</pd>
           </plentry>
-          <plentry props="cpp ios mac unity electron flutter cs">
-              <pt>enableAlphaMask</pt>
-              <pd props="cpp mac unity electron flutter">(Optional) Whether the receiver enables alpha mask rendering:<ul>
-                  <li><codeph><ph keyref="true"/></codeph>: The receiver enables alpha mask rendering.</li>
-                  <li><codeph><ph keyref="false"/></codeph>: (default) The receiver disables alpha mask rendering.</li>
-                </ul>
-              <p>Alpha mask rendering can create images with transparent effects and extract portraits from videos. When used in combination with other methods, you can implement effects such as portrait-in-picture and watermarking.</p>
-              <note type="attention" props="cpp mac unity electron flutter"><ul><li>This property applies to macOS only.</li><li>The receiver can render alpha channel information only when the sender enables alpha transmission.</li><li>To enable alpha transmission, <xref keyref="ticket-link"/>.</li></ul></note>
-              </pd>
-              <pd props="cs ios">Reserved.</pd>
-          </plentry>
+          <plentry props="native unity electron flutter cs">
+                    <pt>enableAlphaMask</pt>
+                    <pd props="native rn unity electron flutter">(Optional) Whether the receiver enables alpha mask rendering:<ul>
+                        <li><codeph><ph keyref="true"/></codeph>: The receiver enables alpha mask rendering.</li>
+                        <li><codeph><ph keyref="false"/></codeph>: (default) The receiver disables alpha mask rendering.</li>
+                        </ul>
+                        <p>Alpha mask rendering can create images with transparent effects and extract portraits from videos. When used in combination with other methods, you can implement effects such as portrait-in-picture and watermarking.</p>
+                        <note type="attention" props="cpp mac unity electron flutter">
+                        <ul>
+                            <li>The receiver can render alpha channel information only when the sender enables alpha transmission.</li>
+                            <li>To enable alpha transmission, <xref keyref="ticket-link"/>.</li>
+                        </ul>
+                        </note> </pd>
+                    <pd props="cs">Reserved.</pd>
+                </plentry>
                 <plentry>
                     <pt>position</pt>
                     <pd>The observation position of the video frame in the video link. See <xref keyref="VIDEO_MODULE_POSITION"/>.</pd>
