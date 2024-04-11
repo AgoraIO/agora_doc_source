@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setaudiomixingplaybackspeed">
     <title><ph keyref="setAudioMixingPlaybackSpeed"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the channel mode of the current audio file.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the playback speed of the current audio file.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -30,14 +30,14 @@
                 <dd>v4.3.1</dd>
             </dlentry>
             </dl>
-            <p>你需要在调用 <xref keyref="startAudioMixing2"/> 并收到 <xref keyref="onAudioMixingStateChanged"/> 回调报告播放状态为 <apiname keyref="AUDIO_MIXING_STATE_PLAYING"/> 后再调用该方法。</p>
+            <p>Ensure you call this method after calling <xref keyref="startAudioMixing2"/> receiving the <xref keyref="onAudioMixingStateChanged"/> callback reporting the state as <apiname keyref="AUDIO_MIXING_STATE_PLAYING"/>.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>speed</pt>
-                <pd>The number of times the music file plays. Agora recommends that you limit this value to between 50 and 400, defined as follows:<ul>
+                <pd>The playback speed. Agora recommends that you set this to a value between 50 and 400, defined as follows:<ul>
                     <li>50: Half the original speed.</li>
                     <li>100: The original speed.</li>
                     <li>400: 4 times the original speed.</li>

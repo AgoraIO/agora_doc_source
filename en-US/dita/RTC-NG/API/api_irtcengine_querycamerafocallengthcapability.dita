@@ -31,7 +31,7 @@
                 <dd>v4.3.1</dd>
             </dlentry>
             </dl>
-            <p>If you need to enable wide-angle or ultra-wide-angle mode for the camera capture, it is recommended to call this method first to query whether the device has the corresponding focal length capability, and then adjust the camera's focal length configuration based on the query result by calling <xref keyref="setCameraCapturerConfiguration"/>, to achieve the best camera capture effect.</p>
+            <p>If you want to enable wide-angle or ultra-wide-angle mode for camera capture, it is recommended to start by calling this method to check whether the device supports the required focal length capability. Then, adjust the camera's focal length configuration based on the query result by calling <xref keyref="setCameraCapturerConfiguration"/>, ensuring the best camera capture performance.</p>
             <note type="attention" props="cpp unreal bp flutter unity">This method is for Android and iOS only.</note> </section>
         <section id="parameters" props="cpp">
             <title>Parameters</title>
@@ -47,14 +47,14 @@
                 <pt>size</pt>
                 <pd>Input and output parameter. The number of focal length information:<ul>
                     <li>Input value: Specifies the maximum number of focal length information that <parmname>focalLengthInfos</parmname> can accommodate. Make sure that this value is not less than 8, meaning that <parmname>focalLengthInfos</parmname> has at least enough space to store 8 focal length information.</li>
-                    <li>输出值：输出查询到的焦距信息数量。</li></ul>
+                    <li>Output value: Outputs the number of queried focal length information.</li></ul>
                 </pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-            <p props="android ios">返回一个 <xref keyref="FocalLengthInfo"/> 对象，其中包含摄像头支持的焦距信息。</p>
+            <p props="android ios">Returns one <xref keyref="FocalLengthInfo"/> object containing the supported focal length information of the camera.</p>
             <ul props="cpp">
             <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>

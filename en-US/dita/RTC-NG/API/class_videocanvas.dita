@@ -253,14 +253,14 @@ class VideoCanvas {
                 </plentry>
                 <plentry>
                     <pt>view</pt>
-                    <pd props="native flutter unity cs electron rn">The video display window. <ph props="android">必须为一个 <xref keyref="SurfaceView-link"/> 或 <xref keyref="TextureView-link"/> 对象。</ph><note type="attention">在一个 <apiname keyref="VideoCanvas"/> 中，你只能选择 <parmname>view</parmname> 或 <parmname>surfaceTexture</parmname> 其中一个进行设置，如果同时设置，只有 <parmname>view</parmname> 中的设置会生效。</note></pd>
+                    <pd props="native flutter unity cs electron rn">The video display window. <ph props="android">It must be one <xref keyref="SurfaceView-link"/> or <xref keyref="TextureView-link"/> object.</ph><note type="attention">In one <apiname keyref="VideoCanvas"/> , you can only choose to set either <parmname>view</parmname> or <parmname>surfaceTexture</parmname>, if both are set, only the settings in <parmname>view</parmname> takes effect.</note></pd>
                     <pd props="unreal bp">The video image. You need to define a pointer of UImage type and pass in this parameter. The sample code is as follows:<codeblock props="unreal bp" outputclass="language-cpp">agora::rtc::VideoCanvas videoCanvas;
     UImage* LocalVideo;
     videoCanvas.view = LocalVideo;</codeblock></pd>
                 </plentry>
                 <plentry props="android">
-                    <pt>Get the SurfaceTexture</pt>
-                    <pd>提供视频图像的容器，当你使用该成员时，需要自行实现 OPENGL 中的纹理绘制。 See <xref keyref="SurfaceTexture-link"/>.<note type="attention">在一个 <apiname keyref="VideoCanvas"/> 中，你只能选择 <parmname>view</parmname> 或 <parmname>surfaceTexture</parmname> 其中一个进行设置，如果同时设置，只有 <parmname>view</parmname> 中的设置会生效。</note></pd>
+                    <pt>surfaceTexture</pt>
+                    <pd>A container that provides video images. When you use this member, you need to implement texture drawing in OPENGL yourself. See <xref keyref="SurfaceTexture-link"/>.<note type="attention">In one <apiname keyref="VideoCanvas"/> , you can only choose to set either <parmname>view</parmname> or <parmname>surfaceTexture</parmname>, if both are set, only the settings in <parmname>view</parmname> takes effect.</note></pd>
                 </plentry>
                 <plentry props="native flutter unity cs electron rn bp">
                     <pt>renderMode</pt>
