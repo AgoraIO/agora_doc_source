@@ -96,7 +96,7 @@
             <title>改进</title>
             <body>
                 <ol>
-                    <li props="mac"><ph><b>屏幕共享游戏场景优化 (Windows) </b></ph>
+                    <li props="cpp unity flutter electron"><ph><b>屏幕共享游戏场景优化 (Windows) </b></ph>
                         <p>该版本对屏幕共享的游戏场景进行了专项优化，在超高清（4K, 60 fps）游戏场景下提升了性能表现，增强了窗口采集的稳定性，为游戏玩家带来更清晰、流畅、稳定的游戏体验。 </p>
                     </li>
                     <li props="android mac">
@@ -152,13 +152,13 @@
                 <p>该版本修复了以下问题：</p>
                 <ul>
                     <li>使用媒体播放器播放包含 SEI 数据的媒体流时，SEI 数据的输出与视频渲染不同步。</li>
-                    <li props="cpp mac">用户插拔一次蓝牙或有线耳机，音频状态改变回调 <codeph><xref keyref="onAudioDeviceStateChanged"/></codeph> 会触发多次。</li>
-                    <li props="unity">播放指定用户混音前的音频流时偶现回声。(macOS、Windows)</li>
-                    <li props="android unity rn flutter">主播使用部分型号设备在扬声器下进行音视频互动，之后切换 App 进程到后台再切回前台，偶现本地音频采集失败，远端用户听不到主播的声音。(Android)</li>
+                    <li props="android">加入频道后调用 <xref keyref="disableAudio"/> 关闭音频模块，音频播放没有立即停止。(Android)</li>
                     <li props="cpp electron unity flutter">屏幕共享场景中，App 调用 <xref keyref="enableLoopbackRecording"/> 开启声卡采集功能采集共享屏幕的音频，本地用户手动禁用本地音频采集设备后，声卡采集的音频发送失败，远端用户听不见共享屏幕的声音。(Windows)</li>
                     <li props="mac electron">在音视频互动中，如果用户将耳机插入设备并手动将系统音频输出切换为扬声器，之后 App 调用 <xref keyref="setPlaybackDevice"/> 方法指定音频播放设备为耳机，用户移除耳机后，音频输出并未按预期行为切换至扬声器。<ph props="electron"> (macOS)</ph></li>
+                    <li props="cpp mac">用户插拔一次蓝牙或有线耳机，音频状态改变回调 <xref keyref="onAudioDeviceStateChanged"/> 会触发多次。</li>
+                    <li props="android unity rn flutter">主播使用部分型号设备在扬声器下进行音视频互动，之后切换 App 进程到后台再切回前台，偶现本地音频采集失败，远端用户听不到主播的声音。(Android)</li>
                     <li props="unity">播放指定用户混音前的音频流时偶现回声。(macOS、Windows)</li>
-                    <li props="cpp unity flutter electron">在音视频互动过程中，本地用户调用 <xref keyref="setDevice"/> 设置系统默认播放设备为扬声器后，听远端无声。(Windows)</li>
+                    <li props="cpp unity flutter electron">在音视频互动过程中，本地用户调用 <xref keyref="setDevice_IAudioDeviceCollection"/> 设置系统默认播放设备为扬声器后，听远端无声。(Windows)</li>
                     <li props="android unity flutter rn">在 Android 8.0 系统的设备上，启用屏幕共享功能时 App 偶现崩溃。(Android)</li>
                     <li props="cpp unity flutter electron">在共享 Excel 文档窗口时，偶现远端用户看到的画面出现绿屏。(Windows)</li>
                     <li props="android unity flutter rn">使用摄像头采集本地视频场景下，在 App 切后台时已调用 <xref keyref="disableVideo"/> 或 <xref keyref="stopPreview"/> 关闭视频采集，但将 App 再切回前台时，摄像头采集被打开，不符合预期。(Android)</li>
@@ -171,7 +171,18 @@
             <body>
                 <p><b>新增</b>
                     <ul>
-                    <li/>
+                    <li props="apple flutter unity electron rn"><xref keyref="enableCameraCenterStage"/> (iOS,macOS)</li>
+                    <li props="apple flutter unity electron rn"><xref keyref="isCameraCenterStageSupported"/> (iOS,macOS)</li>
+                    <li props="ios flutter unity rn"><xref keyref="setCameraStabilizationMode"/> (iOS)</li>
+                    <li props="ios flutter unity rn"><xref keyref="CAMERA_STABILIZATION_MODE"/> (iOS)</li>
+                        <li props="android"><xref keyref="VideoCanvas"/> 中新增 <codeph>surfaceTexture</codeph> 和 <codeph>enableAlphaMask</codeph></li>
+                        <li props="ios"><xref keyref="VideoCanvas"/> 中新增 <codeph>enableAlphaMask</codeph></li>
+                        <li props="android mac"><xref keyref="LOCAL_VIDEO_STREAM_REASON"/> 中新增如下枚举：
+                        <ul>
+                            <li props="android"><codeph>LOCAL_VIDEO_STREAM_REASON_DEVICE_INTERRUPT</codeph></li>
+                            <li props="android"><codeph>LOCAL_VIDEO_STREAM_REASON_DEVICE_FATAL_ERROR</codeph></li>
+                            <li props="mac"><codeph><ph keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_MINIMIZED"/></codeph></li>
+                        </ul></li>
                     <li><xref keyref="EncryptionConfig"/> 中新增 <codeph>datastreamEncryptionEnabled</codeph></li>
                     <li props="cpp apple framework"><codeph><xref keyref="ENCRYPTION_ERROR_TYPE"/></codeph> 中新增如下枚举：
                     
@@ -219,9 +230,7 @@
                 <p><b>废弃</b>
                     <ul>
                     <li props="ios mac"><xref keyref="pushExternalAudioFrameSampleBuffer1"/></li>
-                    <li/>
                     </ul></p>
-                <p><b>删除</b> </p>
             </body>
         </topic>
     </topic>
