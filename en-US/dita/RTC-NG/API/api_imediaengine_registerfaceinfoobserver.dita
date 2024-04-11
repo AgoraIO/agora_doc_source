@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaengine_registerfaceinfoobserver">
+    <title><ph keyref="registerFaceInfoObserver" /></title>
+    <shortdesc id="short"><ph id="shortdesc">注册一个人脸信息观测器。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="registerFaceInfoObserver"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int registerFaceInfoObserver(IFaceInfoObserver receiver);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)setFaceInfoDelegate:(id&lt;AgoraFaceInfoDelegate> _Nullable)delegate NS_SWIFT_NAME(setFaceInfoDelegate(_:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int registerFaceInfoObserver(IFaceInfoObserver* observer) = 0;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <title>Details</title>
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.3.1</dd>
+            </dlentry>
+            </dl>
+            <p>你可以调用该方法注册 <xref keyref="onFaceInfo"/> 回调获取声网语音驱动插件处理后的人脸信息。 When calling this method to register a video observer, you can register callbacks<apiname keyref="IFaceInfoObserver"/> in the  class as needed. 在成功注册人脸信息观测器后，SDK 会在捕捉到经过语音驱动插件转换的人脸信息时，触发你所注册的回调。</p>
+            <note type="attention">
+                <ul>
+                    <li>Ensure that you call this method before joining a channel.</li>
+                    <li>调用该方法前，你需要确保已调用 <xref keyref="enableExtension"/> 启用语音驱动插件。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="scenario">
+            <title>Applicable scenarios</title>
+            <p>通过声网语音驱动插件处理后的人脸信息为符合 ARkit 标准的 BS（Blend Shape）数据，你可以使用第三方 3D 渲染引擎对 BS 数据进一步处理，例如驱动虚拟人面部作出语音对应的口型变化。</p>
+        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>observer</pt>
+                <pd>人脸信息观测器，详见 <xref keyref="IFaceInfoObserver"/>。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
+            <ul props="native electron unity rn unreal bp">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+                </ul> </section>
+        </refbody>
+</reference>
