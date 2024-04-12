@@ -30,15 +30,32 @@
       onCaptureVideoFrame;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <p>成功注册视频数据观测器后，SDK 会在捕捉到每个视频帧时触发该回调。你可以在回调中获取本地设备采集到的视频数据，然后根据场景需要，对视频数据进行前处理。</p>
-            <p props="native unreal bp unity electron rn cs">完成前处理后，你可以在该回调中直接修改 <parmname>videoFrame</parmname>，并将返回值设置为 <codeph><ph keyref="true"/></codeph>，即可将修改后的视频数据发送给 SDK。</p>
-            <note type="attention" id="note">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="native unreal bp unity electron rn cs">你可以在回调中获取本地设备采集到的原始视频数据，并可根据需要进行前处理。完成前处理后，你可以在该回调中直接修改 <parmname>videoFrame</parmname>，并将返回值设置为 <codeph><ph keyref="true"/></codeph>，即可将修改后的视频数据发送给 SDK。</p>
+            <p props="flutter">你可以在回调中获取本地设备采集到的原始视频数据。</p>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
             <ul>
-            <li>此处获取的视频数据未经过水印、裁剪和旋转等前处理。</li>
-            <li>如果你获取到的视频数据类型为 RGBA，SDK 不支持对 alpha 通道的值进行处理。</li>
-            <li props="flutter">由于 Flutter 框架的限制，该回调不支持将处理后的视频数据发送回 SDK。</li>
-        </ul></note> </section>
+            <li props="native unreal bp unity electron rn cs">在本地采集的视频数据被 SDK 处理之前对其进行前处理。例如：通过该回调中获取视频数据，并对其进行滤镜、水印、裁剪、旋转等处理。</li>
+            <li>获取本地采集的视频数据被 SDK 处理之前的信息。例如：视频帧的原始宽度、高度、帧率等。</li></ul>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>触发时机</title>
+            <p>成功注册视频数据观测器后，SDK 捕捉到每个视频帧时。</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>使用限制</title>
+            <ul>
+                <li>此处获取的视频数据为原始视频数据，即：未经过水印、裁剪和旋转等前处理的视频数据。</li>
+                <li>如果你获取到的视频数据类型为 RGBA，SDK 不支持对 alpha 通道的值进行处理。</li>
+                <li props="flutter">由于 Flutter 框架的限制，该回调不支持将处理后的视频数据发送回 SDK。</li>
+            </ul>
+        </section>
+        <section id="related" deliveryTarget="details" props="native unreal bp unity electron rn cs">
+            <title>相关方法</title>
+            <p>如果你需要将处理后的数据发送给 SDK，需要先调用 <xref keyref="getVideoFrameProcessMode"/><codeph>(0)</codeph> 方法，将视频处理模式设置为读写模式。</p>
+        </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
