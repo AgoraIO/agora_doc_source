@@ -31,8 +31,8 @@
         <section id="detailed_desc">
             <title>Details</title>
             <note type="attention" id="sequence">
-            <p>调用该方法推送外部音频数据前，请先进行以下操作：<ol>
-                <li>Call<xref keyref="createCustomAudioTrack"/> this method to create a custom audio track and get the audio track ID.</li>
+            <p>Before calling this method to push external audio data, perform the following steps:<ol>
+                <li>Call <xref keyref="createCustomAudioTrack"/> to create a custom audio track and obtain the audio track ID.</li>
                 <li>Call <xref keyref="joinChannel2"/> to join the channel. In <xref keyref="ChannelMediaOptions"/>, set <parmname>publishCustomAduioTrackId</parmname> to the audio track ID that you want to publish, and set <parmname>publishCustomAudioTrack</parmname> to <codeph><ph keyref="true"/></codeph>.</li>
             </ol></p>
             </note> </section>
@@ -41,7 +41,7 @@
             <parml>
             <plentry>
                 <pt>data</pt>
-                <pd>External audio data.</pd>
+                <pd>The external audio data.</pd>
             </plentry>
             <plentry props="apple">
                 <pt>samples</pt>
@@ -49,11 +49,11 @@
             </plentry>
             <plentry>
                 <pt>timestamp</pt>
-                <pd>The timestamp (ms) of the external audio frame. It is required. You can use it to restore the order of the captured audio frame, or synchronize audio and video frames in video-related scenarios (including scenarios where external video sources are used).</pd>
+                <pd>The timestamp (ms) of the external audio frame. This parameter is required. You can use it to restore the order of the captured audio frame, or synchronize audio and video frames in video-related scenarios (including scenarios where external video sources are used).</pd>
             </plentry>
             <plentry id="samplerate">
                 <pt>sampleRate</pt>
-                <pd>The sample rate (Hz) of the external audio source which can be set as 8000, 16000, 32000, 44100, or 48000.</pd>
+                <pd>The sample rate (Hz) of the external audio source, which can be set as 8000, 16000, 32000, 44100, or 48000.</pd>
             </plentry>
             <plentry id="channels">
                 <pt>channels</pt>
@@ -64,7 +64,7 @@
             </plentry>
             <plentry props="android">
                 <pt>bytesPerSample</pt>
-                <pd>The number of bytes per sample. The number of bytes per audio sample, which is usually 16-bit (2-byte).</pd>
+                <pd>The number of bytes per sample. For PCM, this parameter is generally set to 16 bits (2 bytes).</pd>
             </plentry>
             <plentry id="trackid">
                 <pt>trackId</pt>
