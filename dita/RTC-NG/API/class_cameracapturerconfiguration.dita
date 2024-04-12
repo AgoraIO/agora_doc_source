@@ -18,6 +18,7 @@
       value = v;
     }
 
+    @CalledByNative("CAMERA_DIRECTION")
     public int getValue() {
       return this.value;
     }
@@ -30,20 +31,22 @@
     CAMERA_FOCAL_LENGTH_TELEPHOTO(3);
 
     private int value;
+
     private CAMERA_FOCAL_LENGTH_TYPE(int v) {
       value = v;
     }
 
+    @CalledByNative("CAMERA_FOCAL_LENGTH_TYPE")
     public int getValue() {
       return this.value;
     }
   }
 
-  public CAMERA_DIRECTION cameraDirection;
+  public CAMERA_DIRECTION cameraDirection = null;
 
   public String cameraId = null;
 
-  public CAMERA_FOCAL_LENGTH_TYPE cameraFocalLengthType;
+  public CAMERA_FOCAL_LENGTH_TYPE cameraFocalLengthType = null;
 
   static public class CaptureFormat {
     public int width;
@@ -57,8 +60,8 @@
     }
 
     public CaptureFormat() {
-      this.width = 640;
-      this.height = 480;
+      this.width = 960;
+      this.height = 540;
       this.fps = 15;
     }
 
@@ -86,40 +89,28 @@
 
   public CaptureFormat captureFormat;
 
-  public boolean followEncodeDimensionRatio;
+  public Boolean followEncodeDimensionRatio = null;
 
   public CameraCapturerConfiguration(CAMERA_DIRECTION cameraDirection) {
     this.cameraDirection = cameraDirection;
-    this.captureFormat = new CaptureFormat();
-    this.followEncodeDimensionRatio = true;
-    this.cameraId = null;
-    this.cameraFocalLengthType = CAMERA_FOCAL_LENGTH_TYPE.CAMERA_FOCAL_LENGTH_DEFAULT;
+    this.captureFormat = new CaptureFormat(0, 0, 0);
   }
 
   public CameraCapturerConfiguration(
       CAMERA_DIRECTION cameraDirection, CAMERA_FOCAL_LENGTH_TYPE cameraFocalLengthType) {
     this.cameraDirection = cameraDirection;
     this.cameraFocalLengthType = cameraFocalLengthType;
-    this.captureFormat = new CaptureFormat();
-    this.followEncodeDimensionRatio = true;
-    this.cameraId = null;
+    this.captureFormat = new CaptureFormat(0, 0, 0);
   }
 
   public CameraCapturerConfiguration(CaptureFormat captureFormat) {
     this.captureFormat = captureFormat;
-    this.cameraDirection = CAMERA_DIRECTION.CAMERA_FRONT;
-    this.cameraFocalLengthType = CAMERA_FOCAL_LENGTH_TYPE.CAMERA_FOCAL_LENGTH_DEFAULT;
-    this.followEncodeDimensionRatio = true;
-    this.cameraId = null;
   }
 
   public CameraCapturerConfiguration(
       CAMERA_DIRECTION cameraDirection, CaptureFormat captureFormat) {
     this.cameraDirection = cameraDirection;
     this.captureFormat = captureFormat;
-    this.cameraFocalLengthType = CAMERA_FOCAL_LENGTH_TYPE.CAMERA_FOCAL_LENGTH_DEFAULT;
-    this.followEncodeDimensionRatio = true;
-    this.cameraId = null;
   }
 
   public CameraCapturerConfiguration(CAMERA_DIRECTION cameraDirection,
@@ -127,13 +118,11 @@
     this.cameraDirection = cameraDirection;
     this.cameraFocalLengthType = cameraFocalLengthType;
     this.captureFormat = captureFormat;
-    this.followEncodeDimensionRatio = true;
-    cameraId = null;
   }
 
   @CalledByNative
-  public int getCameraDirection() {
-    return cameraDirection.value;
+  public CAMERA_DIRECTION getCameraDirection() {
+    return cameraDirection;
   }
 
   @CalledByNative
@@ -142,8 +131,8 @@
   }
 
   @CalledByNative
-  public int getCameraFocalLengthType() {
-    return cameraFocalLengthType.value;
+  public CAMERA_FOCAL_LENGTH_TYPE getCameraFocalLengthType() {
+    return cameraFocalLengthType;
   }
 
   @CalledByNative
@@ -152,7 +141,7 @@
   }
 
   @CalledByNative
-  public boolean isFollowEncodeDimensionRatio() {
+  public Boolean isFollowEncodeDimensionRatio() {
     return followEncodeDimensionRatio;
   }
 
@@ -161,7 +150,7 @@
     return "CameraCapturerConfiguration{"
         + "cameraDirection=" + cameraDirection + ", captureDimensions=" + captureFormat
         + ", cameraId=" + cameraId + ", followEncodeDimensionRatio=" + followEncodeDimensionRatio
-        + '}';
+        + ", cameraFocalLengthType=" + cameraFocalLengthType + '}';
   }
 }</codeblock>
       <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraCameraCapturerConfiguration: NSObject
@@ -171,36 +160,29 @@
 #elif TARGET_OS_MAC
 @property (copy, nonatomic) NSString * _Nullable deviceId;
 #endif
+
 @property(assign, nonatomic) CGSize dimensions;
+
 @property(assign, nonatomic) int frameRate;
+
 @property(assign, nonatomic) BOOL followEncodeDimensionRatio;
+
 @end</codeblock>
       <codeblock props="cpp unreal" outputclass="language-cpp">struct CameraCapturerConfiguration {
 #if defined(__ANDROID__) || (defined(__APPLE__) &amp;&amp; TARGET_OS_IOS)
-  CAMERA_DIRECTION cameraDirection;
+  Optional&lt;CAMERA_DIRECTION> cameraDirection;
 
-  CAMERA_FOCAL_LENGTH_TYPE cameraFocalLengthType;
+  Optional&lt;CAMERA_FOCAL_LENGTH_TYPE> cameraFocalLengthType;
 #else
-  char deviceId[MAX_DEVICE_ID_LENGTH];
+  Optional&lt;const char *> deviceId;
 #endif
 
 #if defined(__ANDROID__)
-  char cameraId[MAX_DEVICE_ID_LENGTH];
+  Optional&lt;const char *> cameraId;
 #endif
+  Optional&lt;bool> followEncodeDimensionRatio;
   VideoFormat format;
-  bool followEncodeDimensionRatio;
-  CameraCapturerConfiguration() : followEncodeDimensionRatio(true) {
-#if defined(__ANDROID__) || (defined(__APPLE__) &amp;&amp; TARGET_OS_IOS)
-  cameraDirection = CAMERA_REAR;
-
-#else
-  memset(deviceId, 0, sizeof(deviceId));
-#endif
-
-#if defined(__ANDROID__)
-  memset(cameraId, 0, sizeof(cameraId));
-#endif
-  }
+  CameraCapturerConfiguration() : format(VideoFormat(0, 0, 0)) {}
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FCameraCapturerConfiguration
@@ -292,12 +274,12 @@ struct FCameraCapturerConfiguration
       <parml>
       <plentry props="android ios cpp unreal bp unity rn flutter cs">
         <pt>cameraDirection</pt>
-        <pd>（可选）
-          <note type="attention" props="cpp unreal bp unity flutter">该参数仅适用于 Android 和 iOS 平台。</note> <ph>摄像头方向。详见 <xref keyref="CAMERA_DIRECTION"/>。</ph></pd>
+        <pd>（可选）摄像头方向。详见 <xref keyref="CAMERA_DIRECTION"/>。
+          <note type="attention" props="cpp unreal bp unity flutter">该参数仅适用于 Android 和 iOS 平台。</note></pd>
       </plentry>
       <plentry props="android cpp unreal bp flutter unity rn">
         <pt>cameraId</pt>
-        <pd>（可选）摄像头 ID。你可以通过 Android 原生系统 API 获取摄像头 ID，详见 <xref keyref="camera1-link"/> 和 <xref keyref="camera2-link"/>。
+        <pd>（可选）摄像头 ID。默认为前置摄像头对应的摄像头 ID。你可以通过 Android 原生系统 API 获取摄像头 ID，详见 <xref keyref="camera1-link"/> 和 <xref keyref="camera2-link"/>。
         <note type="attention"><ul>
         <li props="cpp unreal bp flutter unity rn">该参数仅适用于 Android。</li>
         <li>该参数和 <parmname>cameraDirection</parmname> 均用于指定摄像头，二者为互斥关系，你可以按需选用其中之一，具体区别如下：<ul>
@@ -327,16 +309,15 @@ struct FCameraCapturerConfiguration
       </plentry>
       <plentry props="apple">
         <pt>dimension</pt>
-        <pd>（可选）视频帧的分辨率 (px)。</pd>
+        <pd>（可选）视频帧的分辨率 (px)。默认值为 960 × 540。</pd>
       </plentry>
       <plentry props="apple">
         <pt>frameRate</pt>
-        <pd>（可选）视频帧的帧率 (fps)。</pd>
+        <pd>（可选）视频帧的帧率 (fps)。默认值为 15。</pd>
       </plentry>
       <plentry props="mac cpp unreal bp unity electron flutter cs">
         <pt>deviceId</pt>
-        <pd>（可选）
-          <ph>摄像头的 ID。</ph><ph props="cpp unreal bp electron flutter">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</ph>
+        <pd>（可选）摄像头的 ID。<ph props="cpp unreal bp electron flutter">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</ph>
           <note type="attention" props="cpp unreal bp unity flutter">该参数仅适用于 Windows 和 macOS。</note></pd>
       </plentry>
       <plentry>
