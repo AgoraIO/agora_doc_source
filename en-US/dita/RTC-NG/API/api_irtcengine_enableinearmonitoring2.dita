@@ -53,13 +53,13 @@
             <plentry>
                 <pt>includeAudioFilters</pt>
                 <pd props="ios mac cpp unreal electron unity rn flutter cs">The audio filter types of in-ear monitoring. See <xref keyref="EAR_MONITORING_FILTER_TYPE"/>.</pd>
-                <pd props="android bp">The audio filter of in-ear monitoring:<ul id="ul_nwv_hcy_4qb">
-                    <li><ph keyref="EAR_MONITORING_FILTER_NONE"/>(1 &lt;&lt; 0): Do not add an audio filter to the in-ear monitor.</li>
-                    <li><ph keyref="EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS"/>(1 &lt;&lt; 1): Add an audio filter to the in-ear monitor. If you implement functions such as voice beautifier and audio effect, users can hear the voice after adding these effects. 该枚举值支持使用按位或运算符（|）进行组合。</li>
-                    <li><ph keyref="EAR_MONITORING_FILTER_NOISE_SUPPRESSION"/>(1 &lt;&lt; 2): Enable noise suppression to the in-ear monitor. 该枚举值支持使用按位或运算符（|）进行组合。</li>
-                    <li><ph keyref="EAR_MONITORING_FILTER_REUSE_POST_PROCESSING_FILTER"/>(1 &lt;&lt;15)： 复用发送端已进行过音效处理的 Audio filter。 This enumerator reduces CPU usage while increasing in-ear monitoring latency, which is suitable for latency-tolerant scenarios requiring low CPU consumption. 该枚举值仅支持单独使用，一旦指定了该选项，其他 Audio filter 配置将自动失效。</li>                
+                <pd props="android bp">The audio filter types of in-ear monitoring:<ul id="ul_nwv_hcy_4qb">
+                    <li><ph keyref="EAR_MONITORING_FILTER_NONE"/>(1 &lt;&lt; 0): No audio filter added to in-ear monitoring.</li>
+                    <li><ph keyref="EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS"/>(1 &lt;&lt; 1): Add vocal effects audio filter to in-ear monitoring. If you implement functions such as voice beautifier and audio effect, users can hear the voice after adding these effects. This enumerator supports combination using the bitwise OR operator (|).</li>
+                    <li><ph keyref="EAR_MONITORING_FILTER_NOISE_SUPPRESSION"/>(1 &lt;&lt; 2): Add noise suppression audio filter to in-ear monitoring. This enumerator supports combination using the bitwise OR operator (|).</li>
+                    <li><ph keyref="EAR_MONITORING_FILTER_REUSE_POST_PROCESSING_FILTER"/>(1 &lt;&lt;15)： Reuse the audio filter that has been processed on the sending end for in-ear monitoring. This enumerator reduces CPU usage while increasing in-ear monitoring latency, which is suitable for latency-tolerant scenarios requiring low CPU consumption. 该枚举值仅支持单独使用，一旦指定了该选项，其他 Audio filter 配置将自动失效。</li>                
                     </ul>
-                    <note type="attention">This parameter only takes effect when the enable parameter is .<parmname></parmname><codeph><ph keyref="true"/></codeph></note>
+                    <note type="attention">This parameter only takes effect when <parmname>enabled</parmname> is set as <codeph><ph keyref="true"/></codeph>.</note>
                     </pd>
             </plentry>
             </parml> </section>
