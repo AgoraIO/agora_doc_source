@@ -15,6 +15,9 @@ The Agora Chat SDK provides a message reporting API, which allows end-users to r
 To use the reporting feature, refer to the following code sample to call the reporting API:
 
 ```c#
+// msgId: The ID of the message to report.
+// tag: The label of the illegal message. You need to add custom labels, like, pornography or advertising. It corresponds to the `Label` field on the `Message Report` page on the Agora Console.
+// reason: The reason for reporting the message. It cannot exceed 512 bytes. It corresponds to the `Reason` field on the Message Report page on the Agora Console. 
 SDKClient.Instance.ChatManager.ReportMessage(msgId, tag, reason, new CallBack(
     onSuccess: () =>
     {

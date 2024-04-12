@@ -18,7 +18,7 @@ The SDK provides the following APIs to implement reaction functionalities:
 
 - `addReaction`: Adds a reaction to the specified message.
 - `deleteReaction`: Removes the reaction from the specified message.
-- `getReactionList`: Retrieves a list of reactions from the server.
+- `getReactionlist`: Retrieves a list of reactions from the server.
 - `getReactionDetail`: Retrieves the details of the reaction from the server.
 - `getHistoryMessages`：Retrieves the reactions in historical messages from the server.
 
@@ -69,11 +69,11 @@ conn.addEventHandler("REACTION", {
 
 ### Retrieve a list of reactions
 
-Call `getReactionList` to retrieve a list of reactions of messages from the server. This method also returns the basic information of the reactions, including the content of the reaction, the number of users that added or removed the reaction, and a list of the first three user IDs that added or removed the reaction.
+Call `getReactionlist` to retrieve a list of reactions of messages from the server. This method also returns the basic information of the reactions, including the content of the reaction, the number of users that added or removed the reaction, and a list of the first three user IDs that added or removed the reaction.
 
 ```javascript
 conn
-  .getReactionList({ chatType: "singleChat", messageId: "messageId" })
+  .getReactionlist({ chatType: "singleChat", messageId: "messageId" })
   .then((res) => {
     console.log(res);
   });
