@@ -26,7 +26,7 @@
             </plentry>
             <plentry>
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_BUSY"/></pt>
-                <pd>3: The local video capturing device is in use. Prompt the user to check if the camera is being occupied by another app.</pd>
+                <pd>3: The local video capturing device is in use. 请提示用户检查摄像头是否被其他 App 占用，或者尝试重新加入频道。</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_CAPTURE_FAILURE"/></pt>
@@ -43,7 +43,7 @@
                 </plentry>
             <plentry props="ios cpp unreal bp rn unity flutter cs">
                     <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_CAPTURE_MULTIPLE_FOREGROUND_APPS"/></pt>
-                    <pd props="ios cpp unreal bp rn unity flutter"><ph>7:</ph><ph props="cpp unreal bp rn flutter unity"> (iOS only)</ph><ph> The current app window is running in Slide Over, Split View, or Picture in Picture mode, and another app is occupying the camera. Prompt the user that the application cannot capture video properly when the app is running in Slide Over, Split View, or Picture in Picture mode and another app is occupying the camera.</ph></pd>
+                    <pd props="ios cpp unreal bp rn unity flutter"><ph>7：</ph><ph props="cpp unreal bp rn flutter unity">（仅适用于 iOS）</ph><ph>当前 App 窗口处于侧拉、分屏、画中画模式，且其他 App 正占用摄像头。 Prompt the user that the application cannot capture video properly when the app is running in Slide Over, Split View, or Picture in Picture mode and another app is occupying the camera.</ph></pd>
                     <pd props="cs">7: Reserved.</pd>
                 </plentry>
             <plentry props="android cpp unreal bp unity electron flutter rn cs">
@@ -61,7 +61,7 @@
             </plentry>
             <plentry props="cpp unreal bp mac flutter unity electron cs">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_MINIMIZED"/></pt>
-                <pd props="cpp unreal bp mac flutter unity electron"><ph>11:</ph><ph props="cpp unreal bp flutter unity electron"> (macOS and Windows only)</ph><ph> The shared windows is minimized when you call the <xref keyref="startScreenCaptureByWindowId"/> method to share a window. The SDK cannot share a minimized window. You can cancel the minimization of this window at the application layer, for example by maximizing this window.</ph></pd>
+                <pd props="cpp unreal bp mac flutter unity electron"><ph>11:</ph><ph props="cpp unreal bp flutter unity electron"> (macOS and Windows only)</ph><ph> The shared windows is minimized when you call the <xref keyref="startScreenCaptureByWindowId"/> method to share a window. The SDK cannot share a minimized window. 请提示用户将共享窗口取消最小化。</ph></pd>
                 <pd props="cs">11: Reserved.</pd>
             </plentry>
             <plentry props="cpp unreal bp mac flutter unity electron cs">
@@ -69,7 +69,7 @@
                 <pd>
                     <p><ph>12:</ph><ph props="cpp unreal bp flutter unity electron"> (macOS and Windows only)</ph><ph> The error code indicates that a window shared by the window ID has been closed or a full-screen window shared by the window ID has exited full-screen mode. After exiting full-screen mode, remote users cannot see the shared window. To prevent remote users from seeing a black screen, Agora recommends that you immediately stop screen sharing.</ph></p>
                     <p>Common scenarios reporting this error code:<ul>
-                    <li>When the local user closes the shared window, the SDK reports this error code.</li>
+                    <li>本地用户关闭共享的窗口。</li>
                     <li>The local user shows some slides in full-screen mode first, and then shares the windows of the slides. After the user exits full-screen mode, the SDK reports this error code.</li>
                     <li>The local user watches a web video or reads a web document in full-screen mode first, and then shares the window of the web video or document. After the user exits full-screen mode, the SDK reports this error code.</li>
                     </ul></p>
@@ -83,7 +83,7 @@
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_INTERRUPT"/></pt>
                 <pd>14: <ph props="cpp">(Android only) </ph>Video capture is interrupted.. Possible reasons include the following:<ul>
                     <li>The camera is being occupied by another app. Prompt the user to check if the camera is being occupied by another app.</li>
-                    <li>The current app has been switched to the background. You can use foreground services to notify the operating system and ensure that the app can still collect video when it switches to the background. <ph props="cn">For more details, see <xref keyref="android-background"/>.</ph></li>
+                    <li>The current app has been switched to the background. You can use foreground services to notify the operating system and ensure that the app can still collect video when it switches to the background. See <xref keyref="android-background"/>.<ph props="cn"></ph></li>
                 </ul></pd>
             </plentry>
             <plentry props="android cpp">
@@ -92,7 +92,7 @@
             </plentry>
             <plentry props="hide">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_NOT_SUPPORTED"/></pt>
-                <pd>20: (Windows only) The SDK does not support sharing this type of window.</pd>
+                <pd>20: (Windows only) The SDK does not support sharing this type of window. 请提示用户不支持此类窗口共享，请尝试共享整个屏幕。</pd>
             </plentry>
             <plentry props="cpp unreal bp">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_FAILURE"/></pt>
