@@ -12,7 +12,7 @@ This page shows how to implement sending and receiving these messages using the 
 
 ## Understand the tech
 
-The Agora Chat SDK for Unity uses the `ChatMessage` and `ChatMessage` classes to send, receive, and withdraw messages.
+The Agora Chat SDK for Flutter uses the `ChatMessage` and `ChatMessage` classes to send, receive, and withdraw messages.
 
 The process of sending and receiving a message is as follows:
 
@@ -293,6 +293,23 @@ ChatClient.getInstance.chatManager.addEventHandler(
     onMessagesRecalled: (messages) {},
     ),
 );
+```
+
+### Use message extensions
+
+If the message types listed above do not meet your requirements, you can use message extensions to add attributes to the message. This can be applied in more complicated messaging scenarios.
+
+```typescript
+try {
+  final msg = ChatMessage.createTxtSendMessage(
+    targetId: targetId,
+    content: 'content',
+  );
+
+  msg.attributes = {'k': 'v'};
+  ChatClient.getInstance.chatManager.sendMessage(msg);
+} on ChatError catch (e) {}
+
 ```
 
 ## Next steps

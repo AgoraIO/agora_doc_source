@@ -163,7 +163,9 @@ curl -X POST 'http://XXXX/XXXX/XXXX/users/wzy/presence/1000' \
 
 ## Retrieve the presence status of multiple users
 
-Retrieves the presence status of multiple users.
+Retrieves the presence status of multiple users. 
+
+<div class="alert note">By default, if a user logs in and out several times in one second, the Chat server sends the presence status change notification to the SDK only after the last login or logout of the user.</div>
 
 For each App Key, the call frequency limit of this method is 50 per second.
 

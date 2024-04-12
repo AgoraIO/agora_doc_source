@@ -17,6 +17,9 @@ Before proceeding, ensure that you meet the following requirements:
 The following code sample shows how to call the reporting API:
 
 ```javascript
+// reportType: The label of the illegal message. You need to add custom labels, like, pornography or advertising. It corresponds to the `Label` field on the `Message Report` page on the Agora Console.
+// reason: The reason for reporting the message. It cannot exceed 512 bytes. It corresponds to the `Reason` field on the `Message Report` page on the Agora Console.
+// messageId: The ID of the message to report.
 connection.reportMessage({
     reportType: 'report type';
         reportReason: 'report reason';
