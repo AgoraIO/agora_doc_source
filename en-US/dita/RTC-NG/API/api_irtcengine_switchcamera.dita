@@ -27,11 +27,11 @@
         <section id="detailed_desc">
             <title>Details</title>
             <note type="attention">
-            <p id="desc0">You can call this method to dynamically switch cameras based on the actual availability of cameras during the App's run time, without having to restart the video stream or reconfigure the video source.</p>
+            <p id="desc0">You can call this method to dynamically switch cameras based on the actual camera availability during the app's runtime, without having to restart the video stream or reconfigure the video source.</p>
             <ul><li props="cpp unreal bp flutter unity">This method is for Android and iOS only.</li>
             <li id="desc1">This method must be called after the camera is successfully enabled, that is, after the SDK triggers the <xref keyref="onLocalVideoStateChanged" /> callback and returns the local video state as <apiname keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/> (1).</li>
-            <li id="desc2">该方法仅会对第一路摄像头采集的视频流进行摄像头切换操作，即调用 <xref keyref="startCameraCapture"/> 时设置为 <apiname keyref="VIDEO_SOURCE_CAMERA_PRIMARY" props="android"/><apiname keyref="VIDEO_SOURCE_CAMERA" props="apple cpp framework"/> (0) 的视频源。</li>
-            <li props="android">该方法和 <xref keyref="switchCamera2"/> 均用于切换摄像头，区别在于 <apiname keyref="switchCamera2"/> 通过指定摄像头 ID 切换到特定的摄像头，该方法则切换摄像头的方向（前置或后置）。</li>
+            <li id="desc2">This method only switches the camera for the video stream captured by the first camera, that is, the video source set to <apiname keyref="VIDEO_SOURCE_CAMERA_PRIMARY" props="android"/><apiname keyref="VIDEO_SOURCE_CAMERA" props="apple cpp framework"/> (0) when calling <xref keyref="startCameraCapture"/>.</li>
+            <li props="android">This method and <xref keyref="switchCamera2"/> are both used to switch cameras. The difference is that <apiname keyref="switchCamera2"/> switches to a specific camera by specifying the camera ID, while this method switches the direction of the camera (front or rear).</li>
             </ul></note>
         </section>
         <section id="return_values">
