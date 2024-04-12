@@ -17,7 +17,7 @@
             </plentry>
             <plentry>
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_NO_PERMISSION"/></pt>
-                <pd>2：没有权限启动本地视频采集设备。请提示用户开启权限再重新加入频道。
+                <pd>2：没有权限启动本地视频采集设备。请提示用户开启设备权限后再重新加入频道。
                     <dl outputclass="deprecated">
                         <dlentry>
                             <dt>弃用：</dt>
@@ -27,7 +27,7 @@
             </plentry>
             <plentry>
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_BUSY"/></pt>
-                <pd>3：本地视频采集设备正在使用中。请提示用户检查摄像头是否被其他 App 占用。</pd>
+                <pd>3：本地视频采集设备正在使用中。请提示用户检查摄像头是否被其他 App 占用，或者尝试重新加入频道。</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_CAPTURE_FAILURE"/></pt>
@@ -44,7 +44,7 @@
                 </plentry>
             <plentry props="ios cpp unreal bp rn unity flutter cs">
                     <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_CAPTURE_MULTIPLE_FOREGROUND_APPS"/></pt>
-                    <pd props="ios cpp unreal bp rn unity flutter"><ph>7：</ph><ph props="cpp unreal bp rn flutter unity">（仅适用于 iOS）</ph><ph>当前 App 窗口处于侧拉、分屏、画中画模式，且其他 App 正占用摄像头时，SDK 会报告该错误码。请提示用户 App 窗口处于侧拉、分屏、画中画模式，且其他 App 正占用摄像头时，无法正常进行视频采集。</ph></pd>
+                    <pd props="ios cpp unreal bp rn unity flutter"><ph>7：</ph><ph props="cpp unreal bp rn flutter unity">（仅适用于 iOS）</ph><ph>当前 App 窗口处于侧拉、分屏、画中画模式，且其他 App 正占用摄像头。请提示用户当 App 窗口处于侧拉、分屏、画中画模式，且其他 App 正占用摄像头时，无法正常进行视频采集。</ph></pd>
                     <pd props="cs">7：预留。</pd>
                 </plentry>
             <plentry props="android cpp unreal bp unity electron flutter rn cs">
@@ -62,18 +62,17 @@
             </plentry>
             <plentry props="cpp unreal bp mac flutter unity electron cs">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_MINIMIZED"/></pt>
-                <pd props="cpp unreal bp mac flutter unity electron"><ph>11：</ph><ph props="cpp unreal bp flutter unity electron">（仅适用于 macOS 和 Windows）</ph><ph>调用 <xref keyref="startScreenCaptureByWindowId"/> 方法共享窗口时，共享窗口处于最小化的状态。SDK 无法共享被最小化的窗口。请在应用层对此类窗口取消最小化，例如，将窗口最大化。</ph></pd>
+                <pd props="cpp unreal bp mac flutter unity electron"><ph>11：</ph><ph props="cpp unreal bp flutter unity electron">（仅适用于 macOS 和 Windows）</ph><ph>调用 <xref keyref="startScreenCaptureByWindowId"/> 方法共享窗口时，共享窗口处于最小化的状态。SDK 无法共享被最小化的窗口。请提示用户将共享窗口取消最小化。</ph></pd>
                 <pd props="cs">11：预留。</pd>
             </plentry>
             <plentry props="cpp unreal bp mac flutter unity electron cs">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_CLOSED"/></pt>
                 <pd>
-                    <p><ph>12：</ph><ph props="cpp unreal bp flutter unity electron">（仅适用于 macOS 和 Windows）</ph><ph>该错误码表示通过窗口 ID 共享的窗口已关闭，或通过窗口 ID 共享的全屏窗口已退出全屏。退出全屏模式后，远端用户将无法看到共享的窗口。为避免远端用户看到黑屏，建议你立即结束本次共享。</ph></p>
+                    <p><ph>12：</ph><ph props="cpp unreal bp flutter unity electron">（仅适用于 macOS 和 Windows）</ph><ph>通过窗口 ID 共享的窗口已关闭，或通过窗口 ID 共享的全屏窗口已退出全屏。退出全屏模式后，远端用户将无法看到共享的窗口。为避免远端用户看到黑屏，建议你立即结束本次共享。</ph></p>
                     <p>报告该错误码的常见场景：
-
                     <ul>
-                    <li>本地用户关闭共享的窗口时，SDK 会报告该错误码。</li>
-                    <li>本地用户先放映幻灯片，然后共享放映中的幻灯片。结束放映时，SDK 会报告该错误码。</li>
+                    <li>本地用户关闭共享的窗口。</li>
+                    <li>本地用户先播放映幻灯片，然后共享放映中的幻灯片。结束放映时，SDK 会报告该错误码。</li>
                     <li>本地用户先全屏观看网页视频或网页文档，然后共享网页视频或网页文档。结束全屏时，SDK 会报告该错误码。</li>
                     </ul></p>
                 </pd>
@@ -86,7 +85,7 @@
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_INTERRUPT"/></pt>
                 <pd>14:<ph props="cpp">（仅适用于 Android）</ph>视频采集中断。可能的原因是：<ul>
                     <li>摄像头被其他 App 占用。请提示用户检查摄像头是否被其他 App 占用。</li>
-                    <li>当前 App 已被切换到后台。可以使用前台服务通知操作系统，确保 App 在切换到后台时仍可采集视频。<ph props="cn">详见<xref keyref="android-background"/></ph></li>
+                    <li>当前 App 已被切换到后台。可以使用前台服务通知操作系统，确保 App 在切换到后台时仍可采集视频。<ph props="cn">详见<xref keyref="android-background"/>。</ph></li>
                 </ul></pd>
             </plentry>
             <plentry props="android cpp">
@@ -95,7 +94,7 @@
             </plentry>
             <plentry props="hide">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_NOT_SUPPORTED"/></pt>
-                <pd>20：（仅适用于 Windows）SDK 不支持共享该类型的窗口。</pd>
+                <pd>20：（仅适用于 Windows）SDK 不支持共享该类型的窗口。请提示用户不支持此类窗口共享，请尝试共享整个屏幕。</pd>
             </plentry>
             <plentry props="cpp unreal bp">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_FAILURE"/></pt>
