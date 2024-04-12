@@ -41,14 +41,14 @@
                     <li>faces: Object sequence. Includes recognized facial information, with each face corresponding to an object.</li>
                     <li>blendshapes: Object. The collection of face capture coefficients, named according to ARkit standards, with each key-value pair representing a blendshape coefficient. The blendshape coefficient is a floating point number with a range of [0.0, 1.0].</li>
                     <li>rotation: Object sequence. The rotation of the head, which includes the following three key-value pairs, with values as floating point numbers ranging from -180.0 to 180.0:<ul>
-                        <li>pitch: The vertical rotation angle of the head. Looking down is positive, looking up is negative.</li>
-                        <li>yaw: The horizontal rotation angle of the head. equals to positive value, right turn is negative value.</li>
-                        <li>roll：头部垂直旋转角度。 右倾为正值，左倾为负值。</li>
+                        <li>pitch: Head pitch angle.. A positve value meansing looking down, while a negative value means looking up.</li>
+                        <li>yaw: Head yaw angle. A positve value meansing turning left, while a negative value means turning right.</li>
+                        <li>roll: Head roll angle. A positve value meansing tilting to the right, while a negative value means tilting to the left.</li>
                         </ul>
                     </li>
-                    <li>timestamp：String。 输出结果的时间戳，单位为毫秒。</li>
+                    <li>timestamp: String. The timestamp of the output result, in milliseconds.</li>
                     </ul>
-                <p><ph>以下为 JSON 示例：</ph><codeblock outputclass="language-json">
+                <p><ph>Here is an example of JSON:</ph><codeblock outputclass="language-json">
 {
     "faces":[{         
                 "blendshapes":{
@@ -77,8 +77,8 @@
         <section id="return_values">
             <title>Returns</title>
             <ul>
-            <li><codeph><ph keyref="true"/></codeph>: 人脸信息 JSON 解析成功。</li>
-            <li><codeph><ph keyref="false"/></codeph>: 人脸信息 JSON 解析失败。</li>
+            <li><codeph><ph keyref="true"/></codeph>: Facial information JSON parsing successful.</li>
+            <li><codeph><ph keyref="false"/></codeph>: Facial information JSON parsing failure.</li>
             </ul>
         </section>
     </refbody>
