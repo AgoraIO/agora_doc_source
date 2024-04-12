@@ -30,24 +30,24 @@
                 <dd>v4.3.1</dd>
             </dlentry>
             </dl>
-            <p>You can call this method to register the <xref keyref="onFaceInfo"/> callback to receive the facial information processed by Agora speech driven extension. When calling this method to register a video observer, you can register callbacks<apiname keyref="IFaceInfoObserver"/> in the  class as needed. 在成功注册人脸信息观测器后，SDK 会在捕捉到经过语音驱动插件转换的人脸信息时，触发你所注册的回调。</p>
+            <p>You can call this method to register the <xref keyref="onFaceInfo"/> callback to receive the facial information processed by Agora speech driven extension. When calling this method to register a facial information observer, you can register callbacks in the <apiname keyref="IFaceInfoObserver"/> class as needed. After successfully registering the facial information observer, the SDK will trigger the callback you registered when it captures the facial information converted by the speech driven extension.</p>
             <note type="attention">
                 <ul>
                     <li>Ensure that you call this method before joining a channel.</li>
-                    <li>调用该方法前，你需要确保已调用 <xref keyref="enableExtension"/> 启用语音驱动插件。</li>
+                    <li>Before calling this method, you need to make sure that the speech driven extension has been enabled by calling <xref keyref="enableExtension"/>.</li>
                 </ul>
             </note>
         </section>
         <section id="scenario">
             <title>Applicable scenarios</title>
-            <p>通过声网语音驱动插件处理后的人脸信息为符合 ARkit 标准的 BS（Blend Shape）数据，你可以使用第三方 3D 渲染引擎对 BS 数据进一步处理，例如驱动虚拟人面部作出语音对应的口型变化。</p>
+            <p>Facial information processed by the Agora speech driven extension is BS (Blend Shape) data that complies with ARkit standards. You can further process the BS data using third-party 3D rendering engines, such as driving avatar to make mouth movements corresponding to speech.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>observer</pt>
-                <pd>人脸信息观测器，详见 <xref keyref="IFaceInfoObserver"/>。</pd>
+                <pd>Facial information observer, see <xref keyref="IFaceInfoObserver"/>.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">

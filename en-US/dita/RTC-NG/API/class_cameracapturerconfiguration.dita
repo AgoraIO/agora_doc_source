@@ -274,49 +274,49 @@ struct FCameraCapturerConfiguration
       <parml>
       <plentry props="android ios cpp unreal bp unity rn flutter cs">
         <pt>cameraDirection</pt>
-        <pd>(Optional) The camera direction. See <xref keyref="CAMERA_DIRECTION"/>.<note type="attention" props="cpp unreal bp unity flutter">This parameter applies to Android and iOS only.</note></pd>
+        <pd>(Optional) The camera direction. See <xref keyref="CAMERA_DIRECTION"/>.<note type="attention" props="cpp unreal bp unity flutter">This parameter is for Android and iOS only.</note></pd>
       </plentry>
       <plentry props="android cpp unreal bp flutter unity rn">
         <pt>cameraId</pt>
-        <pd>(Optional) The camera ID. 默认为前置摄像头对应的摄像头 ID。 You can obtain the camera ID through the Android native system API, see <xref keyref="camera1-link"/> and <xref keyref="camera2-link"/> for details.<note type="attention"><ul>
-        <li props="cpp unreal bp flutter unity rn">This method is for Android only.</li>
-        <li>该参数和 <parmname>cameraDirection</parmname> 均用于指定摄像头，二者为互斥关系，你可以按需选用其中之一，具体区别如下：<ul>
-          <li>通过 <parmname>cameraDirection</parmname> 指定摄像头的方式更为简便。 你只需指定摄像头的方向（前置或后置），无需指定具体的摄像头 ID，SDK 会通过系统 API 去检索和确定实际的摄像头 ID。</li>
-          <li>通过 <parmname>cameraId</parmname> 则可以更精确地指定某个特定的摄像头。 对于多摄像头的设备，<parmname>cameraDirection</parmname> 无法识别或访问全部可用摄像头，这种情况建议使用 <parmname>cameraId</parmname> 直接指定你想要的摄像头 ID。</li>
+        <pd>(Optional) The camera ID. The default value is the camera ID of the front camera. You can obtain the camera ID through the Android native system API, see <xref keyref="camera1-link"/> and <xref keyref="camera2-link"/> for details.<note type="attention"><ul>
+        <li props="cpp unreal bp flutter unity rn">This parameter is for Android only.</li>
+        <li>This parameter and <parmname>cameraDirection</parmname> are mutually exclusive in specifying the camera; you can choose one based on your needs. The differences are as follows:<ul>
+          <li>Specifying the camera via <parmname>cameraDirection</parmname> is more straightforward. You only need to indicate the camera direction (front or rear), without specifying a specific camera ID; the SDK will retrieve and confirm the actual camera ID through Android native system APIs.</li>
+          <li>Specifying via <parmname>cameraId</parmname> allows for more precise identification of a particular camera. For devices with multiple cameras, where <parmname>cameraDirection</parmname> cannot recognize or access all available cameras, it is recommended to use <parmname>cameraId</parmname> to specify the desired camera ID directly.</li>
         </ul></li></ul></note>
         </pd>
       </plentry>
       <plentry props="android ios cpp unreal bp flutter unity rn">
         <pt>cameraFocalLengthType</pt>
-        <pd>（可选）摄像头的焦距类型。 See <xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/>.<note type="attention"><ul>
-          <li props="cpp unreal bp flutter unity">This method is for Android and iOS only.</li>
-          <li props="android cpp unreal bp flutter unity rn">如需设置摄像头的焦距类型，仅支持通过 <parmname>cameraDirection</parmname> 指定摄像头，不支持通过 <parmname>cameraId</parmname> 进行指定。</li>
-          <li props="ios cpp unreal bp flutter unity rn">部分 iOS 设备的后置摄像头为多个摄像头组成的融合镜头，如双摄（广角和超广角）或三摄（广角、超广角和长焦），对于这种具备超广角能力的融合镜头，你可以通过以下任意一种方式实现超广角的采集效果：<ul>
-              <li>方式一：将该参数设置为 <apiname keyref="CAMERA_FOCAL_LENGTH_URLTRA_WIDE"/> (2)（超广角镜头）。</li>
-              <li>方式二：将该参数设置为 <apiname keyref="CAMERA_FOCAL_LENGTH_DEFAULT"/> (0)（标准镜头），然后调用 <xref keyref="setCameraZoomFactor"/> 将相机缩放比例设置为小于 1.0 的数值，最小可以设置为 0.5。</li></ul>            区别为方式一的超广角大小不可调节，方式二支持自由调节相机的缩放比例。</li>
+        <pd>(Optional) The camera focal length type. See <xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/>.<note type="attention"><ul>
+          <li props="cpp unreal bp flutter unity">This parameter is for Android and iOS only.</li>
+          <li props="android cpp unreal bp flutter unity rn">To set the focal length type of the camera, it is only supported to specify the camera through <parmname>cameraDirection</parmname>, and not suppored to specify it through <parmname>cameraId</parmname>.</li>
+          <li props="ios cpp unreal bp flutter unity rn">For iOS devices equipped with multi-lens rear cameras, such as those featuring dual-camera (wide-angle and ultra-wide-angle) or triple-camera (wide-angle, ultra-wide-angle, and telephoto), you can use one of the following methods to capture video with an ultra-wide-angle perspective:<ul>
+              <li>Method one: Set this parameter to <apiname keyref="CAMERA_FOCAL_LENGTH_URLTRA_WIDE"/> (2) (ultra-wide lens).</li>
+              <li>Method two: Set this parameter to <apiname keyref="CAMERA_FOCAL_LENGTH_DEFAULT"/> (0) (standard lens), then call <xref keyref="setCameraZoomFactor"/> to set the camera's zoom factor to a value less than 1.0, with the minimum setting being 0.5.</li></ul>The difference is that the size of the ultra-wide angle in method one is not adjustable, whereas method two supports adjusting the camera's zoom factor freely.</li>
         </ul></note>
         </pd>
       </plentry>
       <plentry props="android cpp framework">
         <pt props="cpp framework">format</pt>
         <pt props="android">captureFormat</pt>
-        <pd>（可选）视频帧格式。 See <xref keyref="VideoFormat"/>.</pd>
+        <pd>(Optional) The format of the video frame. See <xref keyref="VideoFormat"/>.</pd>
       </plentry>
       <plentry props="apple">
         <pt>dimension</pt>
-        <pd>（可选）视频帧的分辨率 (px)。 The default value is 960 × 540.</pd>
+        <pd>(Optional) The dimension (px) of the video frame. The default value is 960 × 540.</pd>
       </plentry>
       <plentry props="apple">
         <pt>frameRate</pt>
-        <pd>（可选）视频帧的帧率 (fps)。 The default value is 15.</pd>
+        <pd>(Optional) The frame rate (fps) of the video frame. The default value is 15.</pd>
       </plentry>
       <plentry props="mac cpp unreal bp unity electron flutter cs">
         <pt>deviceId</pt>
-        <pd>（可选）摄像头的 ID。 <ph props="cpp unreal bp electron flutter">The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>.</ph><note type="attention" props="cpp unreal bp unity flutter">This method is for Windows and macOS only.</note></pd>
+        <pd>The camera ID. <ph props="cpp unreal bp electron flutter">The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>.</ph><note type="attention" props="cpp unreal bp unity flutter">This method is for Windows and macOS only.</note></pd>
       </plentry>
       <plentry>
         <pt>followEncodeDimensionRatio</pt>
-        <pd>（可选）是否跟随 <xref keyref="setVideoEncoderConfiguration"/> 中设置的视频宽高比：<ul>
+        <pd>(Optional) Whether to follow the video aspect ratio set in <xref keyref="setVideoEncoderConfiguration"/>:<ul>
           <li><codeph><ph keyref="true"/></codeph>: (Default) Follow the set video aspect ratio. The SDK crops the captured video according to the set video aspect ratio and synchronously changes the local preview screen and the video frame in <xref keyref="onCaptureVideoFrame"/> and <xref keyref="onPreEncodeVideoFrame"/>.</li>
           <li><codeph><ph keyref="false"/></codeph>: Do not follow the system default audio playback device. The SDK does not change the aspect ratio of the captured video frame.</li>
           </ul></pd>
