@@ -995,6 +995,262 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
     }
     ```
 
+### Send a broadcast message to all chat rooms under an app
+
+This API sends a broadcast message to all active chat rooms under an app. Here active chat rooms indicate those that contain at least one member and in which at least one message is sent. This API can send all types of message to active chat rooms.
+
+This API is available only to Chat of the Pro or Enterprise plans.
+
+For each App Key, the call frequency limit of this method is 10 per minute and 100 per day.
+
+#### HTTP request
+
+```http
+POST https://{host}/{org_name}/{app_name}/messages/chatrooms/broadcast
+```
+
+##### Path parameter
+
+For the descriptions of path parameters, see [Common Parameters](#param). 
+
+##### Request header
+
+| Parameter | Type | Description | Required |
+|:---------------| :------ | :------- |:------------------|
+| `Content-Type` | String | The content type. Set it to `application/json`.  | Yes |
+| `Authorization` | String | The authentication token of the app administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
+
+##### Request body
+
+The request body is a JSON object, which contains the following parameters:
+
+| Parameter | Type | Description | Required |
+| --- | --- | --- | --- |
+| `from` | String | The user ID of the message sender. If you do not set this field, the Chat server takes the `admin` as the sender. If you set it as the empty string "", this request fails.  | No |
+| `chatroom_msg_level` | String | The chat room message priority: <ul><li>`high`</li><li>(Default) `normal`</li><li>`low`</li></ul> | No  |
+| `msg` | String | The message body. | Yes |
+| `msg.type` | String | The broadcast message type: <ul><li>`txt`: Text message</li><li>`img`: Image message</li><li>`audio`: Audio message</li><li>`video`: Video message</li><li>`file`: File message</li><li>`loc`: Location message</li><li>`cmd`: Command message</li><li>`custom`: Custom message</li></ul> | Yes |
+| `msg.msg` | String | The message content. For different message types, this parameter contains different fields. For details, see [Body of different message types](#body). | Yes |
+| `ext`  | JSON  | The extension filed of the message. It cannot be `null`. Also, the offline push notification can contain custom extension fields. For details, see custom displays of [Android](https://docs.agora.io/en/agora-chat/develop/offline-push?platform=android#custom-displays) and [iOS](https://docs.agora.io/en/agora-chat/develop/offline-push?platform=ios#custom-displays) offline push | No |
+
+For the request body, different types of message only differ in fields in `msg`. Except `type`, fields in `msg` in this request have the same meanings as those in `body` in the request body of an HTTP request of [sending a one-to-one message](https://docs.agora.io/en/agora-chat/restful-api/message-management?platform=ios#send-a-one-to-one-message).
+
+#### HTTP response
+
+##### Response body
+
+For various types of broadcast messages, the HTTP responses contain the same fields.
+
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following parameters:
+
+| Parameter | Type | Description |
+| :----- | :--- | :----------- |
+| `data.id` | JSON | The broadcast ID. |
+
+For the other parameters and descriptions, see [Common parameters](#param).
+
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible causes.
+
+#### Example
+
+##### Request example
+
+- Send a text broadcast message
+
+```bash
+# Replace {YourAppToken} with the app token generated in your server.
+curl -L 'https://XXXX/XXXX/XXXX/messages/chatrooms/broadcast' \
+-H 'Content-Type: application/json' \
+-H 'Authorization: Bearer <YourAppToken>' \
+-d '{
+    "msg": {
+        "type": "txt",
+        "msg": "send broadcast to all chatroom"
+    },
+    "from": "admin",
+    "ext": {
+        "extKey": "extValue"
+    },
+    "chatroom_msg_level": "low"
+}'
+```
+
+- Send an image broadcast message
+
+```bash
+# Replace {YourAppToken} with the app token generated in your server.
+curl -L 'https://XXXX/XXXX/XXXX/messages/chatrooms/broadcast' \
+-H 'Content-Type: application/json' \
+-H 'Authorization: Bearer <YourAppToken>' \
+-d '{
+    "msg": {
+        "type": "img",
+        "filename":"testimg.jpg",
+        "secret":"VfXXXXNb_",
+        "url":"https://XXXX/XXXX/XXXX/chatfiles/55f12940-XXXX-XXXX-8a5b-ff2336f03252",
+        "size":{
+           "width":480,
+           "height":720
+        }
+    },
+    "from": "admin",
+    "ext": {
+        "extKey": "extValue"
+    },
+    "chatroom_msg_level": "low"
+}'
+```
+
+- Send a voice broadcast message
+
+```bash
+# Replace {YourAppToken} with the app token generated in your server.
+curl -L 'https://XXXX/XXXX/XXXX/messages/chatrooms/broadcast' \
+-H 'Content-Type: application/json' \
+-H 'Authorization: Bearer <YourAppToken>' \
+-d '{
+    "msg": {
+        "type": "audio",
+        "url": "https://XXXX/XXXX/XXXX/chatfiles/1dfc7f50-XXXX-XXXX-8a07-7d75b8fb3d42",
+        "filename": "testaudio.amr",
+        "length": 10,
+        "secret": "HfXXXXCjM"
+    },
+    "from": "admin",
+    "ext": {
+        "extKey": "extValue"
+    },
+    "chatroom_msg_level": "low"
+}'
+```
+
+- Send an video broadcast message
+
+```bash
+# Replace {YourAppToken} with the app token generated in your server.
+curl -L 'https://XXXX/XXXX/XXXX/messages/chatrooms/broadcast' \
+-H 'Content-Type: application/json' \
+-H 'Authorization: Bearer <YourAppToken>' \
+-d '{
+    "msg": {
+        "type": "video",
+        "thumb" : "https://XXXX/XXXX/XXXX/chatfiles/67279b20-7f69-11e4-8eee-21d3334b3a97",
+        "length" : 0,
+        "secret":"VfXXXXNb_",
+        "file_length" : 58103,
+        "thumb_secret" : "ZyXXXX2I",
+        "url" : "https://XXXX/XXXX/XXXX/chatfiles/671dfe30-XXXX-XXXX-ba67-8fef0d502f46"
+    },
+    "from": "admin",
+    "ext": {
+        "extKey": "extValue"
+    },
+    "chatroom_msg_level": "low"
+}'
+```
+
+- Send a file broadcast message
+
+```bash
+# Replace {YourAppToken} with the app token generated in your server.
+curl -L 'https://XXXX/XXXX/XXXX/messages/chatrooms/broadcast' \
+-H 'Content-Type: application/json' \
+-H 'Authorization: Bearer <YourAppToken>' \
+-d '{
+    "msg": {
+        "type": "file",
+        "filename":"test.txt",
+        "secret":"1-g0XXXXua",
+        "url":"https://XXXX/XXXX/XXXX/chatfiles/d7eXXXX7444"
+    },
+    "from": "admin",
+    "ext": {
+        "extKey": "extValue"
+    },
+    "chatroom_msg_level": "low"
+}'
+```
+
+- Send a location broadcast message
+
+```bash
+# Replace {YourAppToken} with the app token generated in your server.
+curl -L 'https://XXXX/XXXX/XXXX/messages/chatrooms/broadcast' \
+-H 'Content-Type: application/json' \
+-H 'Authorization: Bearer <YourAppToken>' \
+-d '{
+    "msg": {
+        "type": "loc",
+        "lat": "39.966",
+        "lng":"116.322",
+        "addr":"California"
+    },
+    "from": "admin",
+    "ext": {
+        "extKey": "extValue"
+    },
+    "chatroom_msg_level": "low"
+}'
+```
+
+- Send a transparent broadcast message
+
+```bash
+# Replace {YourAppToken} with the app token generated in your server.
+curl -L 'https://XXXX/XXXX/XXXX/messages/chatrooms/broadcast' \
+-H 'Content-Type: application/json' \
+-H 'Authorization: Bearer <YourAppToken>' \
+-d '{
+    "msg": {
+        "type": "cmd",
+        "action":"action1"
+    },
+    "from": "admin",
+    "ext": {
+        "extKey": "extValue"
+    },
+    "chatroom_msg_level": "low"
+}'
+```
+
+- Send a custom broadcast message
+
+```bash
+# Replace {YourAppToken} with the app token generated in your server.
+curl -L 'https://XXXX/XXXX/XXXX/messages/chatrooms/broadcast' \
+-H 'Content-Type: application/json' \
+-H 'Authorization: Bearer <YourAppToken>' \
+-d '{
+    "msg": {
+        "type": "custom",
+        "customEvent": "custom_event",
+    },
+    "from": "admin",
+    "ext": {
+        "extKey": "extValue"
+    },
+    "chatroom_msg_level": "low"
+}'
+```
+
+##### Response example
+
+```json
+{
+  "path": "/messages/chatrooms/broadcast",
+  "uri": "https://XXXX/XXXX/XXXX/messages/chatrooms/broadcast",
+  "timestamp": 1699944653964,
+  "organization": "XXXX",
+  "application": "331d42e6-ad85-460f-b6b0-d1fb6fef9f12",
+  "action": "post",
+  "data": {
+    "id": 1173998498812376874
+   },
+  "duration": 1,
+  "applicationName": "wang"
+}
+```
+
 <a name="upload"></a>
 
 ## Upload a file
@@ -1542,6 +1798,140 @@ The fields of `bodies` for different message types vary:
         ]
     }
     ```
+
+ ## Modify a text or custom message
+
+You can call the RESTful API to send a text or custom message that is successfully sent.
+
+For each App Key, the call frequency limit of this method is 100 per second.
+
+### HTTP request
+
+```http
+PUT https://{host}/{org_name}/{app_name}/messages/rewrite/{msg_id}
+```
+
+#### Path parameter
+
+| Parameter | Type | Description | Required |
+| :--------- | :----- | :--------------- | :------- |
+| `msg_id` | String| The ID of the message to be modified. | Yes |
+
+For the other parameters and detailed descriptions, see [Common parameters](#param).
+
+#### Request header
+
+| Parameter | Type | Description | Required |
+| :------------ | :----- | :------ | :------- |
+| `Content-Type` | String | The parameter type. Set it as `application/json`. | Yes |
+| `Accept` | String | The parameter type. Set it as `application/json`. | Yes |
+| `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
+
+#### Request body
+
+| Parameter | Type | Description | Required |
+| :------------ | :----- | :------ | :------- |
+| `user`| String | The user that modifies the message. | No |
+| `new_msg` | JSON | The modified message. | Yes |
+| `new_msg.type` | String | The type of message to modify: <ul><li>`txt`: The text message;</li><li> `custom`: The custom message.</li></ul> | Yes |
+| `new_msg.msg` | String | The modified message content. **This parameter is valid only for text messages.**   | Yes |
+| `new_msg.customEvent` | String | The event type customized by the user. The value of this parameter should be a regular expression, for example, [a-zA-Z0-9-_/\.]{1,32}. This parameter value can contain up to 32 characters. **This parameter is valid only for custom messages.**  | No  |
+| `new_msg.customExts`  | JSON   | The event attribute customized by the user. The data type is Map<String,String>. You can set a maximum of 16 elements. **This parameter is valid only for custom messages.**  | No |
+| `new_ext` | JSON | The modified message extension information. | No |
+| `is_combine_ext` | Boolean | Whether the modified message extension information is merged with or replaces the original information:<ul><li>(Default)`true`: Merge; </li><li> `false`: Replace.</li></ul> | No |
+
+### HTTP response
+
+#### Response body
+
+If the returned HTTP status code is 200, the request succeeds, and the response body contains the following fields:
+
+| Parameter | Type | Description |
+| :--- | :---- | :----------------------------- |
+| `data` | String | The value `success` indicates that the message is successfully modified.| 
+
+For other fields and detailed descriptions, see [Common parameters](#param).
+
+If the returned HTTP status code is not `200`, the request fails. Common errors are shown in the following table:
+
+| Error |  HTTP Status Code  | Code Information  | Error Description   |
+| :-------- | :----- | :------ |:----- |
+| `UnsupportedMessageTypeException` | 400  | The message is of a type that is currently not supported for modification.  | This type of message cannot be modified. Currently, only text messages and custom messages that are successful sent can be modified. |
+| `InvalidMessageIdException`  | 400   | The provided message ID is not a valid number.  | The message ID can only contain digits.  |
+| `RewriteMessageNotAuthorizedException` | 401  | You are not authorized to edit this message.  | The ID of the message to be modified does not belong to the current app.   |
+| `EditLimitExceededException` | 403  | The message has reached its edit limit and cannot be modified further.  | The number of times the message is modified has reached the upper limit which is 10.   | 
+| `EditFeatureNotEnabledException`  | 403   | The edit message feature is not enabled for this user or system.   | The message modification feature is not enabled. Before using this feature, you need to contact [support@agora.io](mailto:support@agora.io) to enable it.  | 
+| `MessageUnavailableException`  | 404  | The message is unavailable or has expired.   | The message to be modified does not exist or has been removed due to expiration.   |
+| `RewriteMessageInternalErrorException` | 500  | An unknown error occurred while processing the request.   | The message modification fails due to an internal error.    |
+
+You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
+
+### Example
+
+#### Request example
+
+- Modify a sent text message:
+
+```bash
+# Replace {YourAppToken} with the app token generated in your server.
+curl -X PUT -i 'https://XXXX/XXXX/XXXX/messages/rewrite/1235807318835202004' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer <YourAppToken>' \
+-d '{
+  "user": "user1",
+  "new_msg": { 
+    "type": "txt",
+    "msg": "update message content"
+  },
+  "new_ext": { 
+    "key": "value",
+    "old_key": "new_value"
+  },
+  "is_combine_ext": true
+}'
+```
+
+- Modify a sent custom message:
+
+```bash
+# Replace {YourAppToken} with the app token generated in your server.
+curl -X PUT -i 'https://XXXX/XXXX/XXXX/messages/rewrite/1235807318835202004' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer <YourAppToken>' \
+-d '{
+  "user": "user1",
+  "new_msg": { 
+    "type": "custom",
+    "customEvent": "custom_event",
+    "customExts":{
+      "ext_key1":"ext_value1"
+    }
+  },
+  "new_ext": { 
+    "key": "value",
+    "old_key": "new_value"
+  },
+  "is_combine_ext": true
+}'
+```
+
+#### Response example
+
+```json
+{
+  "path": "/messages/rewrite/1235807318835202004",
+  "uri": "https://XXXX/XXXX/XXXX/messages/rewrite/1235807318835202004",
+  "timestamp": 1705372388118,
+  "organization": "XXXX",
+  "application": "ff678832-XXXX-XXXX-8130-58ac38cb6c15",
+  "action": "put",
+  "data": "success",
+  "duration": 49,
+  "applicationName": "XXXX"
+}
+```   
     
 ## Recall a message
 
