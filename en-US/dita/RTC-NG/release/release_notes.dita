@@ -27,15 +27,15 @@
                             </ul>
                         </note>
                     </li>
-                    <li props="ios unity flutter rn"><ph><b>Privacy Manifest File (iOS)</b></ph>
+                    <li props="ios unity flutter rn"><ph><b>Privacy manifest file (iOS)</b></ph>
                         <p>To meet Apple's safety compliance requirements for app publication, the SDK now includes a privacy manifest file, <codeph>PrivacyInfo.xcprivacy</codeph>, detailing the SDK's API calls that access or use user data, along with a description of the types of data collected.</p>
                         <note>If you need to publish an app with SDK versions prior to v4.3.1 to the Apple App Store, you must manually add the <codeph>PrivacyInfo.xcprivacy</codeph> file to your Xcode project. For more details, see <xref keyref="privacyinfo"/>.</note>
                     </li>
-                    <li props="apple framework"><ph><b>Center Stage Camera (iOS, macOS)</b></ph>
+                    <li props="apple framework"><ph><b>Center stage camera (iOS, macOS)</b></ph>
                         <p>To enhance the presentation effect in online meetings, shows, and online education scenarios, this version introduces the <xref keyref="enableCameraCenterStage"/> method to activate the center stage camera feature. This ensures that presenters, regardless of movement, always remain centered in the video frame, achieving better presentation effects.</p>
-                        <p>Before enabling Center Stage, it is recommended to verify whether your current device supports this feature by using <xref keyref="isCameraCenterStageSupported"/>. A list of supported devices can be found in the API documentation at <xref keyref="enableCameraCenterStage"/>.</p>
+                        <p>Before enabling Center Stage, it is recommended to verify whether your current device supports this feature by calling <xref keyref="isCameraCenterStageSupported"/>. A list of supported devices can be found in the API documentation at <xref keyref="enableCameraCenterStage"/>.</p>
                     </li>
-                    <li props="ios unity flutter rn"><ph><b>Camera Stabilization (iOS)</b></ph>
+                    <li props="ios unity flutter rn"><ph><b>Camera stabilization (iOS)</b></ph>
                         <p>To improve video stability in mobile filming, low-light environments, and hand-held shooting scenarios, this version introduces a camera stabilization feature. You can activate this feature and select an appropriate stabilization mode by calling <xref keyref="setCameraStabilizationMode"/>, achieving more stable and clearer video footage.</p>
                     </li>
                     <li props="android ios flutter unity rn"><ph><b>Wide and Ultra-Wide Cameras (Android, iOS)</b></ph>
@@ -73,15 +73,15 @@
                             </ul>
                         </p>
                     </li>
-                    <li><ph><b>Adaptive Configuration for Small Video Streams</b></ph>
-                        <p>This version introduces adaptive configuration for small video streams. When you activate dual-stream mode and set up small video streams on the sending side using <xref keyref="setDualStreamMode2"/>, the SDK defaults to the following behaviors:
+                    <li><ph><b>Adaptive configuration for low-quality video streams</b></ph>
+                        <p>This version introduces adaptive configuration for low-quality video streams. When you activate dual-stream mode and set up low-quality video streams on the sending side using <xref keyref="setDualStreamMode2"/>, the SDK defaults to the following behaviors:
                             <ul>
-                                <li>The default encoding resolution for small video streams is set to 50% of the original video encoding resolution.</li>
+                                <li>The default encoding resolution for low-quality video streams is set to 50% of the original video encoding resolution.</li>
                                 <li>The bitrate for the small streams is automatically matched based on the video resolution and frame rate, eliminating the need for manual specification.</li>
                             </ul>
                         </p>
                     </li>
-                    <li><ph><b>Other Features</b></ph>
+                    <li><ph><b>Other features</b></ph>
                         <p>
                             <ul>
                                 <li>New method <xref keyref="enableEncryptionEx"/> is added for enabling media stream or data stream encryption in multi-channel scenarios.</li>
@@ -97,11 +97,11 @@
             <title>Improvements</title>
             <body>
                 <ol>
-                    <li props="cpp unity flutter electron"><ph><b>Optimization for Game Scene Screen Sharing (Windows)</b></ph>
-                        <p>This version specifically optimizes screen sharing for game scenes, enhancing performance, stability, and clarity in ultra-high definition (4K, 60 fps) game scenarios, resulting in a clearer, smoother, and more stable gaming experience for players.</p>
+                    <li props="cpp unity flutter electron"><ph><b>Optimization for game scenario screen sharing (Windows)</b></ph>
+                        <p>This version specifically optimizes screen sharing for game scenarios, enhancing performance, stability, and clarity in ultra-high definition (4K, 60 fps) game scenarios, resulting in a clearer, smoother, and more stable gaming experience for players.</p>
                     </li>
                     <li props="android mac">
-                        <p><b>Optimization of Local Video Status Callbacks</b></p>
+                        <p><b>Optimization of local video status callbacks</b></p>
                         <p props="mac">To facilitate understanding of the specific reasons for changes in local video status, this version adds the following enumerations to the <xref keyref="onLocalVideoStateChanged"/> callback's <xref keyref="LOCAL_VIDEO_STREAM_REASON"/> enumeration class:</p>
                         <p props="android">This version introduces the following enumerations, allowing you to understand more about the reasons behind changes in local video status through the <xref keyref="onLocalVideoStateChanged"/> callback:</p>
                         <ul>
@@ -110,7 +110,7 @@
                             <li props="mac"><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_MINIMIZED"/></codeph> (27): The window being captured for screen sharing has recovered from a minimized state.</li>
                         </ul>
                     </li>
-                    <li props="android"><ph><b>Camera Capture Improvements</b></ph>
+                    <li props="android"><ph><b>Camera capture improvements</b></ph>
                         <p>Improvements have been made to the video processing mechanism of camera capture, reducing noise, enhancing brightness, and improving color, making the captured images clearer, brighter, and more realistic.</p>
                     </li>
                     <li props="mac"><ph><b>Audio Device Type Detection</b></ph>
@@ -131,7 +131,7 @@
                     <li><ph><b>Reducing CPU Usage for Ear Return</b></ph>
                         <p>In this version<ph props="apple cpp framework"> within <codeph><apiname keyref="EAR_MONITORING_FILTER_TYPE"/></codeph>,</ph> a new enumeration <codeph><apiname keyref="EAR_MONITORING_FILTER_REUSE_POST_PROCESSING_FILTER"/></codeph>(1 &lt;&lt;15) is added. This option is designated for complex sound effect processing scenarios, allowing the reuse of audio filters processed on the sender's side to reduce CPU consumption. Note that this option may increase ear return latency, suitable for scenarios less sensitive to such delays.</p>
                     </li>
-                    <li><ph><b>Other Improvements</b></ph>
+                    <li><ph><b>Other improvements</b></ph>
                         <p>This version also includes the following improvements:
                             <ul>
                                 <li props="ios mac cpp unity flutter rn electron ">Optimization of video encoding and decoding strategies in non-screen sharing scenarios to save system performance overhead. (iOS, macOS, Windows)</li>
