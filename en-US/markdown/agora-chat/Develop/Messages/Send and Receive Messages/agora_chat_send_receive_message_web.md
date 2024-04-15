@@ -34,27 +34,25 @@ Use the `Message` class to create a text message, and send the message.
 
 ```javascript
 // Send a text message.
-function sendPrivateText() {
+function sendTextMessage() {
   let option = {
     // Set the message type.
-    type: "txt", 
+    type: "txt",
     // Set the message content.
     msg: "message content",
     // Set the user ID of the recipient for one-to-one chat, group ID for group chat, or chat room ID for room chat.
-    to: "userId",
+    to: "username",
     // Set `chatType` as `singleChat` for one-to-one chat, `groupChat` for group chat, or `chatRoom` for room chat.
+    // The default value is `singleChat`.
     chatType: "singleChat",
   };
   // Create a text message.
   let msg = AC.message.create(option);
-  // Call `send` to send the message
-  conn
-    .send(msg)
-    .then((res) => {
-      console.log("Send message success", res);
-    })
-    .catch((e) => {
-      console.log("Send message fail", e);
+  // Call `send` to send the message.
+    conn.send(msg).then((res)=>{
+      console.log("Send message success",res);
+    }).catch((e)=>{
+      console.log("Send message fail",e);
     });
 }
 ```
