@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enablevirtualbackground">
+    <title><ph keyref="enableVirtualBackground"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Enables/Disables the virtual background.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableVirtualBackground"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int enableVirtualBackground(
+      boolean enabled, VirtualBackgroundSource backgroundSource, SegmentationProperty segproperty);
+</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableVirtualBackground:(BOOL)enable backData:(AgoraVirtualBackgroundSource* _Nullable)backData segData:(AgoraSegmentationProperty* _Nullable)segData NS_SWIFT_NAME(enableVirtualBackground(_:backData:segData:));</codeblock>
+            <codeblock props="cpp unreal">virtual int enableVirtualBackground(bool enabled, VirtualBackgroundSource backgroundSource, SegmentationProperty segproperty, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;
+</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int EnableVirtualBackground(bool enabled, FVirtualBackgroundSource backgroundSource, FSegmentationProperty segproperty, EMEDIA_SOURCE_TYPE type);</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract enableVirtualBackground(
+    enabled: boolean,
+    backgroundSource: VirtualBackgroundSource,
+    segproperty: SegmentationProperty,
+    type?: MediaSourceType
+  ): number;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int EnableVirtualBackground(bool enabled, VirtualBackgroundSource backgroundSource, SegmentationProperty segproperty, MEDIA_SOURCE_TYPE type = MEDIA_SOURCE_TYPE.PRIMARY_CAMERA_SOURCE);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract enableVirtualBackground(
+    enabled: boolean,
+    backgroundSource: VirtualBackgroundSource,
+    segproperty: SegmentationProperty,
+    type?: MediaSourceType
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableVirtualBackground(
+      {required bool enabled,
+      required VirtualBackgroundSource backgroundSource,
+      required SegmentationProperty segproperty,
+      MediaSourceType type = MediaSourceType.primaryCameraSource});</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+        </section>
+        <section id="detailed_desc">
+            <title>Details</title>
+            <p>The virtual background feature enables the local user to replace their original background with a static image, dynamic video, blurred background, or portrait-background segmentation to achieve picture-in-picture effect. Once the virtual background feature is enabled, all users in the channel can see the custom background.</p>
+            <p>Call this method after calling <xref keyref="enableVideo"/> or <xref keyref="startPreview2"/>.</p>
+            <note type="attention" id="hardware_req">
+            <ul>
+            <li>This feature has high requirements on device performance. When calling this method, the SDK automatically checks the capabilities of the current device. Agora recommends you use virtual background on devices with the following processors:<ul>
+                <li props="android unity cpp unreal bp rn flutter cs">Snapdragon 700 series 750G and later</li>
+                <li props="android unity cpp unreal bp rn flutter cs">Snapdragon 800 series 835 and later</li>
+                <li props="android unity cpp unreal bp rn flutter cs">Dimensity 700 series 720 and later</li>
+                <li props="android unity cpp unreal bp rn flutter cs">Kirin 800 series 810 and later</li>
+                <li props="android unity cpp unreal bp rn flutter cs">Kirin 900 series 980 and later</li>
+                <li props="mac cpp unreal bp unity electron cs">Devices with an i5 CPU and better</li>
+                <li props="ios cpp unreal bp unity rn flutter cs">Devices with an A9 chip and better, as follows:<ul>
+                    <li>iPhone 6S and later</li>
+                    <li>iPad Air 3rd generation and later</li>
+                    <li>iPad 5th generation and later</li>
+                    <li>iPad Pro 1st generation and later</li>
+                    <li>iPad mini 5th generation and later</li>
+                    </ul></li>
+                </ul></li>
+            <li>Agora recommends that you use this feature in scenarios that meet the following conditions:<ul>
+                <li>A high-definition camera device is used, and the environment is uniformly lit.</li>
+                <li>There are few objects in the captured video. Portraits are half-length and unobstructed. Ensure that the background is a solid color that is different from the color of the user's clothing.</li>
+                </ul></li>
+            <li>This method relies on the virtual background dynamic library <codeph><ph keyref="segmentation"/></codeph>. If the dynamic library is deleted, the function cannot be enabled normally.</li>
+            </ul></note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry id="enable">
+                <pt props="cpp unreal bp android unity flutter rn electron cs">enabled</pt>
+                <pt props="ios mac">enable</pt>
+                <pd>Whether to enable virtual background:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Enable virtual background.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Disable virtual background.</li>
+                    </ul></pd>
+            </plentry>
+            <plentry id="source">
+                <pt props="cpp unreal bp android unity flutter rn electron cs">backgroundSource</pt>
+                <pt props="mac ios">backData</pt>
+                <pd>The custom background. See <xref keyref="VirtualBackgroundSource"/>. To adapt the resolution of the custom background image to that of the video captured by the SDK, the SDK scales and crops the custom background image while ensuring that the content of the custom background image is not distorted.</pd>
+            </plentry>
+            <plentry id="seg">
+                <pt props="android cpp unreal bp unity electron rn flutter cs">segproperty</pt>
+                <pt props="ios mac">segData</pt>
+                <pd>Processing properties for background images. See <xref keyref="SegmentationProperty"/>.</pd>
+            </plentry>
+            <plentry id="type" props="cpp unreal bp unity rn electron flutter cs">
+                <pt>type</pt>
+                <pd>The type of the video source. See <xref keyref="MEDIA_SOURCE_TYPE"/>.<note type="attention">In this method, this parameter supports only the following two settings:<ul>
+                    <li>The default value is <apiname keyref="PRIMARY_CAMERA_SOURCE"/>.</li>
+                    <li>If you want to use the second camera to capture video, set this parameter to <apiname keyref="SECONDARY_CAMERA_SOURCE"/>.</li>
+                    </ul></note></pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <ul props="native unreal bp electron unity rn cs">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul>
+                <li>-4: The device capabilities do not meet the requirements for the virtual background feature. Agora recommends you try it on devices with higher performance.</li>
+                </ul></li>
+            </ul> </section>
+    </refbody>
+</reference>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_getmediaplayercachemanager">
-    <title><ph keyref="getMediaPlayerCacheManager"/></title>
-    <shortdesc id="short"><ph id="shortdesc"><ph props="ios">Creates a <xref keyref="IMediaPlayerCacheManager"/> instance. </ph><ph props="android">Gets a <xref keyref="IMediaPlayerCacheManager"/> instance.</ph></ph></shortdesc>
+    <title><ph keyref="getMediaPlayerCacheManager" /></title>
+    <shortdesc id="short"><ph id="shortdesc"><ph props="apple">Creates one <xref keyref="IMediaPlayerCacheManager" /> instance. </ph><ph props="android cpp unreal bp electron rn unity flutter cs">Gets one <xref keyref="IMediaPlayerCacheManager" /> instance.</ph></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="getMediaPlayerCacheManager"/>
+                <indexterm keyref="getMediaPlayerCacheManager" />
             </keywords>
         </metadata>
     </prolog>
@@ -14,21 +14,27 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract IMediaPlayerCacheManager getMediaPlayerCacheManager();</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (id&lt;AgoraRtcMediaPlayerCacheManagerProtocol> _Nullable)createMediaPlayerCacheManager;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp"/>
-            <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (id&lt;AgoraRtcMediaPlayerCacheManagerProtocol&gt; _Nullable)createMediaPlayerCacheManager;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">AGORA_API agora::rtc::IMediaPlayerCacheManager* AGORA_CALL getMediaPlayerCacheManager();</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export function getMediaPlayerCacheManager(): IMediaPlayerCacheManager {
+  return new IMediaPlayerCacheManagerImpl();
+}</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract IMediaPlayerCacheManager GetMediaPlayerCacheManager();</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export function getMediaPlayerCacheManager(): IMediaPlayerCacheManager {
+  return new IMediaPlayerCacheManagerImpl();
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">MediaPlayerCacheManager getMediaPlayerCacheManager()</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
+            <title>Details</title>
+            <p>When you successfully call this method, the SDK returns a media player cache manager instance. The cache manager is a singleton pattern. Therefore, multiple calls to this method returns the same instance.</p>
             <note type="attention">
-            <p>Make sure the <xref keyref="IRtcEngine"/> is initialized before you call this method.</p>
+            <p>Make sure the <xref keyref="IRtcEngine" /> is initialized before you call this method.</p>
             </note> </section>
         <section id="return_values">
             <title>Returns</title>
-            <p>The <xref keyref="IMediaPlayerCacheManager"/> instance.</p>
+            <p>The <xref keyref="IMediaPlayerCacheManager" /> instance.</p>
         </section>
     </refbody>
 </reference>

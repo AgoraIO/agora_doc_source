@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setdirectcdnstreamingvideoconfiguration">
+    <title><ph keyref="setDirectCdnStreamingVideoConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置主播端直接向 CDN 推流时的视频编码属性。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setDirectCdnStreamingVideoConfiguration"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setDirectCdnStreamingVideoConfiguration(VideoEncoderConfiguration config);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setDirectCdnStreamingVideoConfiguration:(AgoraVideoEncoderConfiguration * _Nonnull)config;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual
+            int setDirectCdnStreamingVideoConfiguration(const VideoEncoderConfiguration&amp; config)
+            = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int SetDirectCdnStreamingVideoConfiguration(const FVideoEncoderConfiguration&amp; config);</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract setDirectCdnStreamingVideoConfiguration(
+    config: VideoEncoderConfiguration
+  ): number;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetDirectCdnStreamingVideoConfiguration(VideoEncoderConfiguration config);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract setDirectCdnStreamingVideoConfiguration(
+    config: VideoEncoderConfiguration
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setDirectCdnStreamingVideoConfiguration(
+      VideoEncoderConfiguration config);</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+        </section>
+        <section id="detailed_desc">
+            <title>详情</title>
+            <p><ph>该方法仅对摄像头采集、屏幕共享或自采集的视频有效。</ph><ph>即对在 <xref keyref="DirectCdnStreamingMediaOptions"/> 中设置 <parmname>publishCameraTrack</parmname> 或 <parmname>publishCustomVideoTrack</parmname> 为 <codeph><ph keyref="true"/></codeph> 时所采集的视频有效。</ph></p>
+            <p>如果你设置的视频分辨率超出你的摄像头设备支持的范围，SDK 会根据你的设置进行自适应，取最接近、且长宽比与你设置的分辨率一致的值进行采集、编码、推流。你可以通过 <xref keyref="onDirectCdnStreamingStats"/> 回调了解推送的视频流的实际分辨率。</p>
+        </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry id="config">
+                <pt>config</pt>
+                <pd>视频编码参数配置。详见 <xref keyref="VideoEncoderConfiguration"/>。
+                <note>在直接向 CDN 推流时，SDK 目前仅支持将 <apiname keyref="ORIENTATION_MODE"/> 设为横屏模式（<apiname keyref="ORIENTATION_MODE_FIXED_LANDSCAPE"/>）或竖屏模式（<apiname keyref="ORIENTATION_MODE_FIXED_PORTRAIT"/>）。</note></pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+            <ul props="native unreal bp rn unity cs electron">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+            </ul>
+        </section>
+    </refbody>
+</reference>

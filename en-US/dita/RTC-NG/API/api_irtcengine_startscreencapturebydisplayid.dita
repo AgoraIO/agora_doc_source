@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startscreencapturebydisplayid">
+    <title><ph keyref="startScreenCaptureByDisplayId" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Captures the screen by specifying the display ID.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startScreenCaptureByDisplayId" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="mac" outputclass="language-objectivec">- (int)startScreenCaptureByDisplayId:(UInt32)displayId
+                regionRect:(CGRect)regionRect
+                captureParams:(AgoraScreenCaptureParameters *_Nonnull)captureParams;</codeblock>
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int startScreenCaptureByDisplayId(uint32_t displayId, const Rectangle&amp; regionRect,
+                                            const ScreenCaptureParameters&amp; captureParams) = 0;
+</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int StartScreenCaptureByDisplayId(int displayId, const FRectangle&amp; regionRect, const FScreenCaptureParameters&amp; captureParams);</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract startScreenCaptureByDisplayId(
+    displayId: number,
+    regionRect: Rectangle,
+    captureParams: ScreenCaptureParameters
+  ): number;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int StartScreenCaptureByDisplayId(uint displayId, Rectangle regionRect, ScreenCaptureParameters captureParams);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract startScreenCaptureByDisplayId(
+    displayId: number,
+    regionRect: Rectangle,
+    captureParams: ScreenCaptureParameters
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startScreenCaptureByDisplayId(
+    {required int displayId,
+    required Rectangle regionRect,
+    required ScreenCaptureParameters captureParams});</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+        </section>
+        <section id="detailed_desc">
+            <title>Details</title>
+            <p>This method shares a screen or part of the screen.</p>
+            <p id="apisequence">There are two ways to start screen sharing, you can choose one according to your needs:<ul>
+                <li>Call this method before joining a channel, and then call <xref keyref="joinChannel2" /> to join a channel and set <parmname>publishScreenTrack</parmname> or <parmname>publishSecondaryScreenTrack</parmname> to <codeph><ph keyref="true" /></codeph> to start screen sharing.</li>
+                <li>Call this method after joining a channel, and then call <xref keyref="updateChannelMediaOptions" /> and set <parmname>publishScreenTrack</parmname> or <parmname>publishSecondaryScreenTrack</parmname> to <codeph><ph keyref="true" /></codeph> to start screen sharing.</li>
+                </ul></p>
+            <note type="attention" props="cpp unreal bp flutter unity">This method is for Windows and macOS only.</note> 
+        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>displayId</pt>
+                <pd>The display ID of the screen to be shared.<note type="note" props="cpp unreal bp unity flutter electron">For the Windows platform, if you need to simultaneously share two screens (main screen and secondary screen), you can set <parmname>displayId</parmname> to <codeph>-1</codeph> when calling this method.</note>
+                </pd>
+            </plentry>
+            <plentry props="cpp unreal bp unity flutter electron cs">
+                <pt>regionRect</pt>
+                <pd><ph>(Optional) Sets the relative location of the region to the screen. Pass in <codeph>nil</codeph> to share the entire screen. </ph><ph props="cpp unreal bp unity flutter cs">See <xref keyref="Rectangle" />. </ph><ph props="mac">It consists of the following parameters:</ph><ul props="mac">
+                    <li>x: The horizontal offset from the top-left corner.</li>
+                    <li>y: The vertical offset from the top-left corner.</li>
+                    <li>width: The width of the region.</li>
+                    <li>height: The height of the region.</li>
+                    </ul></pd>
+                <pd>If the specified region overruns the screen, the SDK shares only the region within it; if you set width or height as 0, the SDK shares the whole screen.</pd>
+            </plentry>
+            <plentry>
+                <pt>captureParams</pt>
+                <pd>Screen sharing configurations. The default video dimension is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges. See <xref keyref="ScreenCaptureParameters" props="cpp unreal bp electron flutter mac unity" />.</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <ul props="native unreal bp electron unity rn cs">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul id="err">
+                    <li>-2: The parameter is invalid.</li>
+                    <li>-8: The screen sharing state is invalid. Probably because you have shared other screens or windows. Try calling <xref keyref="stopScreenCapture" /> to stop the current sharing and start sharing the screen again.</li>
+                </ul> </li>
+            </ul> </section>
+    </refbody>
+</reference>

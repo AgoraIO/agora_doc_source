@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onvideopublishstatechanged">
+    <title> <ph keyref="onVideoPublishStateChanged" /> </title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the video publishing state changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onVideoPublishStateChanged" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onVideoPublishStateChanged(Constants.VideoSourceType source, String channel,
+      int oldState, int newState, int elapseSinceLastState) {}
+</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit *_Nonnull)engine didVideoPublishStateChange:(NSString * _Nonnull)channelId
+         sourceType:(AgoraVideoSourceType)sourceType
+           oldState:(AgoraStreamPublishState)oldState
+           newState:(AgoraStreamPublishState)newState
+elapseSinceLastState:(int)elapseSinceLastState;
+</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onVideoPublishStateChanged(VIDEO_SOURCE_TYPE source, const char* channel, STREAM_PUBLISH_STATE oldState, STREAM_PUBLISH_STATE newState, int elapseSinceLastState) {
+    (void)source;
+    (void)channel;
+    (void)oldState;
+    (void)newState;
+    (void)elapseSinceLastState;
+  }
+</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnVideoPublishStateChanged, EVIDEO_SOURCE_TYPE, source, FString, channel, ESTREAM_PUBLISH_STATE, oldState, ESTREAM_PUBLISH_STATE, newState, int, elapseSinceLastState);</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onVideoPublishStateChanged?(
+    source: VideoSourceType,
+    channel: string,
+    oldState: StreamPublishState,
+    newState: StreamPublishState,
+    elapseSinceLastState: number
+  ): void;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnVideoPublishStateChanged(VIDEO_SOURCE_TYPE source, string channel, STREAM_PUBLISH_STATE oldState, STREAM_PUBLISH_STATE newState, int elapseSinceLastState) { }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onVideoPublishStateChanged?(
+    source: VideoSourceType,
+    channel: string,
+    oldState: StreamPublishState,
+    newState: StreamPublishState,
+    elapseSinceLastState: number
+  ): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(
+      VideoSourceType source,
+      String channel,
+      StreamPublishState oldState,
+      StreamPublishState newState,
+      int elapseSinceLastState)? onVideoPublishStateChanged;</codeblock>            
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+        </section>
+        <section id="detailed_desc">
+        </section>
+        <section id="parameters">
+            <title> <ph keyref="callback-section-title" /> </title>
+            <parml>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt />
+                <pd />
+            </plentry>
+            <plentry>
+                <pt props="android cpp unreal bp unity flutter electron rn cs">channel</pt>
+                <pt props="ios mac">channelId</pt>
+                <pd>The channel name.</pd>
+            </plentry>
+            <plentry id="source">
+                    <pt props="apple">sourceType</pt>
+                    <pt props="android cpp unreal bp unity electron rn flutter cs">source</pt>
+                    <pd>The type of the video source. See <xref keyref="VIDEO_SOURCE_TYPE" />.</pd>
+                </plentry>
+                <plentry>
+                <pt>oldState</pt>
+                <pd>The previous publishing state. See <xref keyref="STREAM_PUBLISH_STATE" />.</pd>
+            </plentry>
+            <plentry>
+                <pt>newState</pt>
+                <pd>The current publishing stat. See <apiname keyref="STREAM_PUBLISH_STATE" />.</pd>
+            </plentry>
+            <plentry>
+                <pt>elapseSinceLastState</pt>
+                <pd>The time elapsed (ms) from the previous state to the current state.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

@@ -2,58 +2,75 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaengine_registervideoframeobserver">
     <title><ph keyref="registerVideoFrameObserver"/></title>
-    <shortdesc id="short"><ph id="shortdesc">注册视频观测器对象。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">注册原始视频观测器对象。</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="registerVideoFrameObserver"/>
-   </keywords>
+            <keywords>
+                <indexterm keyref="registerVideoFrameObserver"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public abstract int registerVideoFrameObserver(IVideoFrameObserver observer);</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)setVideoFrameDelegate:(id&lt;AgoraVideoFrameDelegate&gt; _Nullable)delegate;</codeblock>
-                <codeblock props="cpp" outputclass="language-cpp">virtual int registerVideoFrameObserver(IVideoFrameObserver* observer) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript"/>
-                <codeblock props="unity" outputclass="language-csharp">public abstract void RegisterVideoFrameObserver(IAgoraRtcVideoFrameObserver videoFrameObserver);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
-        </p>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int registerVideoFrameObserver(IVideoFrameObserver observer);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)setVideoFrameDelegate:(id&lt;AgoraVideoFrameDelegate&gt; _Nullable)delegate;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int registerVideoFrameObserver(IVideoFrameObserver* observer) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract registerVideoFrameObserver(observer: IVideoFrameObserver): number;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int RegisterVideoFrameObserver(IVideoFrameObserver videoFrameObserver, VIDEO_OBSERVER_FRAME_TYPE formatPreference, VIDEO_OBSERVER_POSITION position, OBSERVER_MODE mode = OBSERVER_MODE.INTPTR);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract registerVideoFrameObserver(observer: IVideoFrameObserver): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">void registerVideoFrameObserver(VideoFrameObserver observer);</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-   
-   <p>你需要在该方法中实现一个 <xref keyref="IVideoFrameObserver"/> 类，并根据场景需要，注册该类的回调。 成功注册视频观测器后，SDK
-       会在捕捉到每个视频帧时，触发你所注册的上述回调。</p>
-   <note type="attention">
-       <ul>
-  <li>在处理回调时，你需要考虑视频帧中 <parmname>width</parmname> 和 <parmname>height</parmname>
-      参数的变化，因为观测得到的视频帧可能会随以下情况变化： <ul id="ul_qms_zys_r4b">
- <li>当网络状况差时，分辨率会阶梯式下降。</li>
- <li>当用户自行调整分辨率时，回调中报告的分辨率也会变化。</li>
-      </ul></li>
-  <li>该方法需要在加入频道前调用。</li>
-       </ul>
-   </note>
-        </section>
-        <section id="parameters"><title>参数</title>
-   <parml>
-       <plentry>
-           <pt props="android cpp">observer</pt>
-           <pt props="ios mac">delegate</pt>
-           <pt props="unity">videoFrameObserver</pt>
-  <pd>
-      <p>接口对象实例。如果传入 <ph keyref="NULL"/>，则取消注册。详见 <xref keyref="IVideoFrameObserver"/>。</p>
-  </pd>
-       </plentry>
-   </parml>
-        </section>
-        <section>
-   <title>返回值</title>
-   <ul id="ul_r1t_n1t_r4b">
-       <li>0：方法调用成功。</li>
-       <li>&lt; 0：方法调用失败。</li>
-   </ul>
-        </section>
+            <title>详情</title>
+            <p>如果你想要观测原始视频帧 (如 YUV 或 RGBA 格式)，声网推荐你通过该方法注册一个 <xref keyref="IVideoFrameObserver"/> 类。</p>
+            <p>调用该方法注册视频观测器时，你可以根据需要注册 <apiname keyref="IVideoFrameObserver"/> 类中的回调。在成功注册视频观测器后，SDK 会在捕捉到每个视频帧时，触发你所注册的上述回调。</p>
+            <p conkeyref="registerVideoEncodedFrameObserver/mix"/>
+            <note type="attention">
+            <ul>
+            <li>该方法需要在加入频道前调用。</li>
+            <li>在处理回调时，你需要考虑视频帧中 <parmname>width</parmname> 和 <parmname>height</parmname> 参数的变化，因为观测得到的视频帧可能会随以下情况变化：
+
+                <ul id="ul_qms_zys_r4b">
+                <li>当网络状况差时，分辨率会阶梯式下降。</li>
+                <li>当用户自行调整分辨率时，回调中报告的分辨率也会变化。</li>
+                </ul></li>
+            </ul> </note>
+        <note type="tip" props="android ios">注册原始视频观测器后，你可以将获取到的原始视频数据应用于各种视频前处理场景，例如自行实现虚拟背景、美颜等场景，声网在 GitHub 上提供了开源的示例项目 <xref keyref="beautyapi-link"/> 供你参考。
+        </note></section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt props="android cpp unreal bp electron rn flutter">observer</pt>
+                <pt props="ios mac">delegate</pt>
+                <pt props="unity cs">videoFrameObserver</pt>
+                <pd><ph>接口对象实例。详见 <xref keyref="IVideoFrameObserver"/>。</ph><ph props="android cpp unreal bp ios mac unity cs">如果传入 <ph keyref="NULL"/>，则取消注册。</ph> </pd>
+            </plentry>
+            <plentry props="unity cs">
+                <pt>mode</pt>
+                <pd>视频数据回调模式，详见 <xref keyref="OBSERVER_MODE"/>。</pd>
+            </plentry>
+            <plentry props="unity">
+                <pt>formatPreference</pt>
+                <pd>视频数据类型，详见 <xref keyref="VIDEO_OBSERVER_FRAME_TYPE"/>。</pd>
+            </plentry>
+            <plentry props="unity">
+                <pt>position</pt>
+                <pd>视频观测位置的 bit mask。详见 <xref keyref="VIDEO_MODULE_POSITION"/>。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+            <ul>
+            <li props="android cpp unreal bp electron rn unity cs">0：方法调用成功。</li>
+            <li>&lt; 0：方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+            </ul>
+            <ul props="ios mac">
+            <li><codeph><ph keyref="true"/></codeph>：方法调用成功。</li>
+            <li><codeph><ph keyref="false"/></codeph>：方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+            </ul> </section>
     </refbody>
 </reference>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_imediaplayersourceobserver_onplayersourcestatechanged">
     <title><ph keyref="onPlayerSourceStateChanged" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Reports the playback state change.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Reports the changes of playback state.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -13,39 +13,45 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">void onPlayerStateChanged(Constants.MediaPlayerState state, Constants.MediaPlayerError error);
+            <codeblock props="android" outputclass="language-java">void onPlayerStateChanged(Constants.MediaPlayerState state, Constants.MediaPlayerReason reason);
 </codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraMediaPlayer:(AgoraMediaPlayer *_Nonnull)playerKit
-       didChangedToState:(AgoraMediaPlayerState)state
-                   error:(AgoraMediaPlayerError)error;
-</codeblock>
-                <codeblock props="cpp" outputclass="language-cpp">virtual void onPlayerSourceStateChanged(media::base::MEDIA_PLAYER_STATE state,
-                                        media::base::MEDIA_PLAYER_ERROR ec) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp" />
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol> _Nonnull)playerKit
+          didChangedToState:(AgoraMediaPlayerState)state
+                      reason:(AgoraMediaPlayerReason)reason NS_SWIFT_NAME(AgoraRtcMediaPlayer(_:didChangedTo:reason:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onPlayerSourceStateChanged(media::base::MEDIA_PLAYER_STATE state,
+                                          media::base::MEDIA_PLAYER_REASON reason) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnPlayerSourceStateChanged, EMEDIA_PLAYER_STATE, state, FENUMWRAP_MEDIA_PLAYER_ERROR, ec);</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onPlayerSourceStateChanged?(
+    state: MediaPlayerState,
+    reason: MediaPlayerReason
+  ): void;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnPlayerSourceStateChanged(MEDIA_PLAYER_STATE state, MEDIA_PLAYER_REASON reason)</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onPlayerSourceStateChanged?(
+    state: MediaPlayerState,
+    reason: MediaPlayerReason
+  ): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(MediaPlayerState state, MediaPlayerReason reason)?
+    onPlayerSourceStateChanged;</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>When the state of the media player changes, the SDK triggers this callback to report the current playback state.</p>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters">
+            <title>Parameters</title>
             <parml>
-                <plentry conkeyref="onPlayerEvent/playerkit" props="ios mac">
-                    <pt />
-                    <pd />
-                </plentry>
-                <plentry>
-                    <pt>state</pt>
-                    <pd>For details about the playback state, see <xref keyref="MEDIA_PLAYER_STATE" />.</pd>
-                </plentry>
-                <plentry>
-                    <pt props="android ios mac">error</pt>
-                    <pt props="cpp">ec</pt>
-                    <pd>The error code. See <xref keyref="MEDIA_PLAYER_ERROR" />.</pd>
-                </plentry>
-            </parml>
-        </section>
+            <plentry conkeyref="onPlayerEvent/playerkit" props="ios mac">
+                <pt />
+                <pd />
+            </plentry>
+            <plentry>
+                <pt>state</pt>
+                <pd>The playback state. See <xref keyref="MEDIA_PLAYER_STATE" />.</pd>
+            </plentry>
+            <plentry>
+                <pt>reason</pt>
+                <pd>The reason for the changes in the media player status. See <xref keyref="MEDIA_PLAYER_REASON" />.</pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

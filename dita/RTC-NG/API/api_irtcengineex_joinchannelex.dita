@@ -20,22 +20,38 @@
                    delegate:(id&lt;AgoraRtcEngineDelegate&gt; _Nullable)delegate
                mediaOptions:(AgoraRtcChannelMediaOptions* _Nonnull)mediaOptions
                 joinSuccess:(void(^ _Nullable)(NSString* _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int joinChannelEx(const char* token, const RtcConnection&amp; connection,
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int joinChannelEx(const char* token, const RtcConnection&amp; connection,
                               const ChannelMediaOptions&amp; options,
                               IRtcEngineEventHandler* eventHandler) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int JoinChannelEx(string token, RtcConnection connection, ChannelMediaOptions options, IAgoraRtcEngineEventHandler eventHandler);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int JoinChannelEx(FString token, const FRtcConnection&amp; connection, const FChannelMediaOptions&amp; options, UIRtcEngineEventHandler* eventHandler);</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract joinChannelEx(
+    token: string,
+    connection: RtcConnection,
+    options: ChannelMediaOptions
+  ): number;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int JoinChannelEx(string token, RtcConnection connection, ChannelMediaOptions options);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract joinChannelEx(
+    token: string,
+    connection: RtcConnection,
+    options: ChannelMediaOptions
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; joinChannelEx(
+    {required String token,
+    required RtcConnection connection,
+    required ChannelMediaOptions options});</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
+            <title>详情</title>
             <p>调用该方法，你可以同时加入多个频道。</p>
             <note id="note_ppw_nh5_3qb" type="attention">
             <ul id="ul_rjs_4h5_3qb">
             <li>如果你已经在一个频道内，你不能用相同的用户 UID 再次加入该频道。</li>
             <li>如果你想在不同的设备上加入相同的频道，请确保你在不同设备上使用的用户 UID 都不同。</li>
-            <li>请确保生成 Token 时传入的 app ID 和创建 <xref keyref="IRtcEngine"/> 实例时传入的 app ID
-                        一致。</li>
+            <li>请确保生成 Token 时传入的 App ID 和创建 <xref keyref="IRtcEngine"/> 实例时传入的 App ID 一致。</li>
+            <li>如果你的项目仅开启调试模式（即选择 APP ID 为鉴权机制），成功加入频道 24 小时后会自动退出该频道。</li>
+            <li props="cpp unreal bp">在多摄像头采集场景下，你需要在调用该方法之后调用 <xref keyref="startPreview2"/> 方法设置 <parmname>sourceType</parmname> 为 <apiname keyref="VIDEO_SOURCE_CAMERA_SECONDARY"/>，以确保第二个摄像头采集正常。</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>参数</title>
@@ -52,10 +68,10 @@
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry id="event">
-                <pt props="android cpp unity">eventHandler</pt>
+            <plentry id="event" props="native unreal bp">
+                <pt props="android cpp unreal bp">eventHandler</pt>
                 <pt props="ios mac">delegate</pt>
-                <pd><ph props="native"><xref keyref="IRtcEngineEx"/> 的回调类，</ph><ph>详见 <xref keyref="IRtcEngineEventHandler"/>。</ph></pd>
+                <pd><ph props="native unreal bp"><xref keyref="IRtcEngineEx"/> 的回调类，</ph><ph>详见 <xref keyref="IRtcEngineEventHandler"/>。</ph></pd>
             </plentry>
             <plentry props="ios mac" conkeyref="joinChannel2/joinsuccessblock">
                 <pt/>

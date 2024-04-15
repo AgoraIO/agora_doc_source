@@ -1,46 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_channelmediarelayconfiguration">
-    <title><ph keyref="ChannelMediaRelayConfiguration" /></title>
-    <shortdesc>The definition of <apiname keyref="ChannelMediaRelayConfiguration" />.</shortdesc>
+    <title> <ph keyref="ChannelMediaRelayConfiguration"/> </title>
+    <shortdesc>Configuration of cross channel media relay.</shortdesc>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="unity" outputclass="language-csharp">public class ChannelMediaRelayConfiguration
-    {
-        public ChannelMediaRelayConfiguration()
-        {
-            srcInfo = null;
-            destInfos = new ChannelMediaInfo[0];
-            destCount = 0;
-        }
-        public ChannelMediaRelayConfiguration(ChannelMediaInfo srcInfo, ChannelMediaInfo[] destInfos, int destCount)
-        {
-            this.srcInfo = srcInfo;
-            this.destInfos = destInfos ?? new ChannelMediaInfo[0];
-            this.destCount = destCount;
-        }
-        
-        public ChannelMediaInfo srcInfo { set; get; }
-        
-        public ChannelMediaInfo[] destInfos { set; get; }
-        
-        public int destCount { set; get; }
-    }
-    }</codeblock> </p>
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class ChannelMediaRelayConfiguration {
   private ChannelMediaInfo srcInfo = null;
-  private Map&lt;String, ChannelMediaInfo&gt; destInfos = null;
+  private Map&lt;String, ChannelMediaInfo> destInfos = null;
 
   public ChannelMediaRelayConfiguration() {
-    destInfos = new HashMap&lt;String, ChannelMediaInfo&gt;();
+    destInfos = new HashMap&lt;String, ChannelMediaInfo>();
     srcInfo = new ChannelMediaInfo(null, null, 0);
   }
-  
+
   public void setSrcChannelInfo(ChannelMediaInfo srcInfo) {
     this.srcInfo = srcInfo;
-  }</codeblock>
+  }
+
+  public void setDestChannelInfo(String channelName, ChannelMediaInfo destInfo) {
+    destInfos.put(channelName, destInfo);
+  }
+
+  public void removeDestChannelInfo(String channelName) {
+    destInfos.remove(channelName);
+  }
+
+  public ChannelMediaInfo getSrcChannelMediaInfo() {
+    return srcInfo;
+  }
+
+  public Map&lt;String, ChannelMediaInfo> getDestChannelMediaInfos() {
+    return destInfos;
+  }
+}
+</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraChannelMediaRelayConfiguration: NSObject
 
 @property (strong, nonatomic, readonly) NSDictionary&lt;NSString *, AgoraChannelMediaRelayInfo *&gt; *_Nullable destinationInfos;
@@ -49,7 +44,7 @@
 - (BOOL)setDestinationInfo:(AgoraChannelMediaRelayInfo *_Nonnull)destinationInfo forChannelName:(NSString *_Nonnull)channelName;
 - (BOOL)removeDestinationInfoForChannelName:(NSString *_Nonnull)channelName;
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct ChannelMediaRelayConfiguration {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct ChannelMediaRelayConfiguration {
 	ChannelMediaInfo *srcInfo;
 	ChannelMediaInfo *destInfos;
 	int destCount;
@@ -60,64 +55,138 @@
 			, destCount(0)
 	{}
     };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">export interface ChannelMediaRelayConfiguration {
-    srcInfo: ChannelMediaInfo;
-    destInfos: [ChannelMediaInfo];
-    }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">class ChannelMediaRelayConfiguration {
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FChannelMediaRelayConfiguration
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaRelayConfiguration&quot;)
+	FChannelMediaInfo srcInfo;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaRelayConfiguration&quot;)
+	TArray&lt;FChannelMediaInfo&gt; destInfos;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaRelayConfiguration&quot;)
+	int destCount;
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export class ChannelMediaRelayConfiguration {
   
-  ChannelMediaInfo srcInfo;
-  List&lt;ChannelMediaInfo&gt; destInfos;
+  srcInfo?: ChannelMediaInfo;
+  
+  destInfos?: ChannelMediaInfo[];
+  
+  destCount?: number;
+}</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public class ChannelMediaRelayConfiguration
+    {
+        public ChannelMediaRelayConfiguration()
+        {
+            srcInfo = null;
+            destInfos = new ChannelMediaInfo[0];
+            destCount = 0;
+        }
 
-  ChannelMediaRelayConfiguration(
-    this.srcInfo,
-    this.destInfos,
-  );
+        public ChannelMediaRelayConfiguration(ChannelMediaInfo srcInfo, ChannelMediaInfo[] destInfos, int destCount)
+        {
+            this.srcInfo = srcInfo;
+            this.destInfos = destInfos ?? new ChannelMediaInfo[0];
+            this.destCount = destCount;
+        }
+        public ChannelMediaInfo srcInfo { set; get; }
+        public ChannelMediaInfo[] destInfos { set; get; }
+        public int destCount { set; get; }
+    }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class ChannelMediaRelayConfiguration {
+  
+  srcInfo?: ChannelMediaInfo;
+  
+  destInfos?: ChannelMediaInfo[];
+  
+  destCount?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class ChannelMediaRelayConfiguration {
+    const ChannelMediaRelayConfiguration(
+        {this.srcInfo, this.destInfos, this.destCount});
 
-  factory ChannelMediaRelayConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
-      _$ChannelMediaRelayConfigurationFromJson(json);
-
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$ChannelMediaRelayConfigurationToJson(this);
-}</codeblock> </p>
+    @JsonKey(name: 'srcInfo')
+    final ChannelMediaInfo? srcInfo;
+    @JsonKey(name: 'destInfos')
+    final List&lt;ChannelMediaInfo&gt;? destInfos;
+    @JsonKey(name: 'destCount')
+    final int? destCount;
+    factory ChannelMediaRelayConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+        _$ChannelMediaRelayConfigurationFromJson(json);
+    Map&lt;String, dynamic&gt; toJson() =&gt; _$ChannelMediaRelayConfigurationToJson(this);
+  }</codeblock>            
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+        <section props="android" id="sub-method">
+          <title>Method</title>
+          <parml>
+            <plentry>
+              <pt>setSrcChannelInfo</pt>
+              <pd>Sets the information of the source channel. See <xref keyref="setSrcChannelInfo"/>.</pd>
+            </plentry>
+            <plentry>
+              <pt>setDestChannelInfo</pt>
+              <pd>Sets the information of the target channel. See <xref keyref="setDestChannelInfo"/>.</pd>
+            </plentry>
+            <plentry>
+              <pt>removeDestChannelInfo</pt>
+              <pd>Deletes the information of target channel. See <xref keyref="removeDestChannelInfo"/>.</pd>
+            </plentry>
+            <plentry>
+              <pt>getSrcChannelMediaInfo</pt>
+              <pd>Gets the information of the source channel. See <xref keyref="getSrcChannelMediaInfo"/>.</pd>
+            </plentry>
+            <plentry>
+              <pt>getDestChannelMediaInfos</pt>
+              <pd>Gets the information of the target channel. See <xref keyref="getDestChannelMediaInfos"/>.</pd>
+            </plentry>
+          </parml>
+        </section>
+        <section id="parameters" props="ios mac cpp framework">
+            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/> </title>
             <parml>
-                <plentry>
-                    <pt props="android cpp unity flutter">srcInfo</pt>
-                    <pt props="ios mac">sourceInfo</pt>
-                    <pd>
-                        <p>The information of the source channel <xref keyref="ChannelMediaInfo" />. It contains the following members:<ul>
-                                <li>channelName: The name of the source channel. The default value is , which means the SDK applies the name of the current channel.<codeph /><codeph><ph keyref="NULL" /></codeph></li>
-                                <li><codeph>uid</codeph>: The unique ID to identify the relay stream in the source channel. The default value is 0, which means the SDK generates a random <codeph>UID</codeph>. You must set it as 0.</li>
-                                <li><codeph>token</codeph>: The token for joining the source channel<codeph />. It is generated with the <codeph>channelName</codeph> and <codeph>uid</codeph> you set in <codeph>srcInfo</codeph>.<ul>
-                                        <li>If you have not enabled the App Certificate, set this parameter as the default value <codeph><ph keyref="NULL" /></codeph> , which means the SDK applies the App ID.</li>
-                                        <li>If you have enabled the App Certificate, you must use the <codeph>token</codeph> generated with the <codeph>channelName</codeph> and <codeph>uid</codeph>, and the <codeph>uid</codeph> must be set as 0.</li>
-                                    </ul></li>
-                            </ul>
-                        </p>
-                    </pd>
-                </plentry>
-                <plentry>
-                    <pt props="android cpp unity flutter">destInfos</pt>
-                    <pt props="ios mac">destinationInfos</pt>
-                    <pd>
-                        <p>The information of the destination channel <apiname keyref="ChannelMediaInfo" />. It contains the following members:<ul>
-                                <li><codeph>channelName</codeph>: The name of the destination channel.</li>
-                                <li><codeph>uid</codeph>: The unique ID to identify the relay stream in the destination channel. The value ranges from 0 to (2<sup>32</sup>-1). To avoid UID conflicts, this `UID` must be different from any other `UID` in the destination channel. The default value is 0, which means the SDK generates a random `UID`. Do not set this parameter as the `UID` of the host in the destination channel, and ensure that this `UID` is different from any other `UID` in the channel.</li>
-                                <li><codeph>token</codeph>: The <codeph>token</codeph> for joining the destination channel. It is generated with the <codeph>channelName</codeph> and <codeph>uid</codeph> you set in <codeph>destInfos</codeph>.<ul>
-                                        <li>If you have not enabled the App Certificate, set this parameter as the default value <codeph><ph keyref="NULL" /></codeph> , which means the SDK applies the App ID.</li>
-                                        <li>If you have enabled the App Certificate, you must use the <codeph>token</codeph> generated with the <codeph>channelName</codeph> and <codeph>uid</codeph>.</li>
-                                    </ul></li>
-                            </ul>
-                        </p>
-                    </pd>
-                </plentry>
-                <plentry props="cpp unity">
-                    <pt>destCount</pt>
-                    <pd>The number of destination channels. The default value is 0, and the value range is from 0 to 4. Ensure that the value of this parameter corresponds to the number of <apiname keyref="ChannelMediaInfo" /> structs you define in <codeph>destInfo</codeph>.</pd>
-                </plentry>
-            </parml>
-        </section></refbody>
+            <plentry>
+                <pt props="cpp framework">srcInfo</pt>
+                <pt props="ios mac">sourceInfo</pt>
+                <pd props="cpp ios mac framework">
+                    <p>The information of the source channel. See <xref keyref="ChannelMediaInfo"/>. It contains the following members:<ul>
+                    <li><parmname>channelName</parmname>: The name of the source channel. The default value is <codeph><ph keyref="NULL"/></codeph>, which means the SDK applies the name of the current channel.</li>
+                    <li><parmname>token</parmname>: The <parmname>token</parmname> for joining the source channel. This token is generated with the <parmname>channelName</parmname> and <parmname>uid</parmname> you set in <parmname>srcInfo</parmname>.<ul>
+                        <li>If you have not enabled the App Certificate, set this parameter as the default value <codeph><ph keyref="NULL"/></codeph>, which means the SDK applies the App ID.</li>
+                        <li>If you have enabled the App Certificate, you must use the <parmname>token</parmname> generated with the <parmname>channelName</parmname> and <parmname>uid</parmname>, and the <parmname>uid</parmname> must be set as 0.</li>
+                        </ul> </li>
+                      <li><parmname>uid</parmname>: The unique user ID to identify the relay stream in the source channel. Agora recommends leaving the default value of 0 unchanged.</li>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt props="cpp framework">destInfos</pt>
+                <pt props="ios mac">destinationInfos</pt>
+                <pd props="cpp ios mac framework">
+                    <p>The information of the target channel <apiname keyref="ChannelMediaInfo"/>. It contains the following members:<ul>
+                    <li><parmname>channelName</parmname>: The name of the target channel.</li>
+                    <li><parmname>token</parmname>: The <parmname>token</parmname> for joining the target channel. It is generated with the <parmname>channelName</parmname> and <parmname>uid</parmname> you set in <parmname>destInfos</parmname>.<ul>
+                        <li>If you have not enabled the App Certificate, set this parameter as the default value <codeph><ph keyref="NULL"/></codeph>, which means the SDK applies the App ID.</li>
+                        <li>If you have enabled the App Certificate, you must use the <parmname>token</parmname> generated with the <parmname>channelName</parmname> and <parmname>uid</parmname>.</li>
+                        </ul> <note type="attention"><p>If the token of any target channel expires, the whole media relay stops; hence Agora recommends that you specify the same expiration time for the tokens of all the target channels.</p></note></li>
+                      <li><parmname>uid</parmname>: The unique user ID to identify the relay stream in the target channel. The value ranges from 0 to (2 <sup>32</sup>-1). To avoid user ID conflicts, this user ID must be different from any other user ID in the target channel. The default value is 0, which means the SDK generates a random user ID.</li>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            <plentry props="cpp framework">
+                <pt>destCount</pt>
+                <pd>The number of target channels. The default value is 0, and the value range is from 0 to 6. Ensure that the value of this parameter corresponds to the number of <apiname keyref="ChannelMediaInfo"/> structs you define in <parmname>destInfo</parmname>.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>setDestinationInfo</pt>
+                <pd>Sets the information of the target channel. See <xref keyref="setDestChannelInfo"/>.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>removeDestinationInfoForChannelName</pt>
+                <pd>Deletes the information of target channel. See <xref keyref="removeDestChannelInfo"/>.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
 </reference>

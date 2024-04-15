@@ -31,7 +31,6 @@
             </dlentry>
             </dl>
             <p>Call this method to set the following parameters for the local user who sends an audio stream:
-            
             <ul>
             <li>3D voice effect: Sets the cycle period of the 3D voice effect.</li>
             <li>Pitch correction effect: Sets the basic mode and tonic pitch of the pitch correction effect. Different songs have different modes and tonic pitches. Agora recommends bounding this method with interface elements to enable users to adjust the pitch correction interactively.</li>
@@ -45,7 +44,6 @@
             <li props="android ios mac flutter">Do not set the <parmname>profile</parmname> parameter in <apiname keyref="setAudioProfile" /> to <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD" /> (1), or the method does not take effect.</li>
             <li>This method works best with the human voice. Agora does not recommend using this method for audio containing music.</li>
             <li>After calling <apiname keyref="setAudioEffectParameters" />, Agora recommends not calling the following methods, or the settings in <apiname keyref="setAudioEffectParameters" /> are overridden :
-                
                 <ul>
                 <li><xref keyref="setAudioEffectPreset" /></li>
                 <li><xref keyref="setVoiceBeautifierPreset" /></li>
@@ -64,10 +62,8 @@
             <plentry>
                 <pt>preset</pt>
                 <pd>The options for SDK preset audio effects:
-                    
                     <ul>
                     <li><apiname keyref="ROOM_ACOUSTICS_3D_VOICE" />, 3D voice effect:
-                        
                         <ul>
                         <li>Call and set the <parmname>profile</parmname> parameter in <apiname keyref="setAudioProfile" /> to <apiname keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO" /> (3) or <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO" />(5) before setting this enumerator; otherwise, the enumerator setting does not take effect.</li>
                         <li>If the 3D voice effect is enabled, users need to use stereo audio playback devices to hear the anticipated voice effect.</li>
@@ -81,7 +77,6 @@
                     <ul>
                     <li>If you set <parmname>preset</parmname> to <apiname keyref="ROOM_ACOUSTICS_3D_VOICE" /> , <parmname>param1</parmname> sets the cycle period of the 3D voice effect. The value range is [1,60] and the unit is seconds. The default value is 10, indicating that the voice moves around you every 10 seconds.</li>
                     <li>If you set <parmname>preset</parmname> to <apiname keyref="PITCH_CORRECTION" /> , <parmname>param1</parmname> sets the basic mode of the pitch correction effect:
-                        
                         <ul>
                         <li><codeph>1</codeph>: (Default) Natural major scale.</li>
                         <li><codeph>2</codeph>: Natural minor scale.</li>
@@ -95,7 +90,6 @@
                     <ul>
                     <li>If you set <parmname>preset</parmname> to <apiname keyref="ROOM_ACOUSTICS_3D_VOICE" />, you need to set <parmname>param2</parmname> to <codeph>0</codeph>.</li>
                     <li>If you set <parmname>preset</parmname> to <apiname keyref="PITCH_CORRECTION" />, <parmname>param2</parmname> sets the tonic pitch of the pitch correction effect:
-                        
                         <ul>
                         <li><codeph>1</codeph>: A</li>
                         <li><codeph>2</codeph>: A#</li>

@@ -5,27 +5,43 @@
     <shortdesc id="short"><ph id="shortdesc">The statistics of the local video stream.</ph></shortdesc>
     <refbody>
         <section id="prototype">
-            <p props="rtc-ng" outputclass="codeblock">
+            <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public static class LocalVideoStats {
-    public int uid;
-    public int sentBitrate;
-    public int sentFrameRate;
-    public int encoderOutputFrameRate;
-    public int rendererOutputFrameRate;
-    public int targetBitrate;
-    public int targetFrameRate;
-    public int qualityAdaptIndication;
-    public int encodedBitrate;
-    public int encodedFrameWidth;
-    public int encodedFrameHeight;
-    public int encodedFrameCount;
-    public int codecType;
-    public int txPacketLossRate;
-  }</codeblock>
+  public int uid;
+  public int sentBitrate;
+  public int sentFrameRate;
+  public int captureFrameRate;
+  public int captureFrameWidth;
+  public int captureFrameHeight;
+  public int regulatedCaptureFrameRate;
+  public int regulatedCaptureFrameWidth;
+  public int regulatedCaptureFrameHeight;
+  public int encoderOutputFrameRate;
+  public int rendererOutputFrameRate;
+  public int targetBitrate;
+  public int targetFrameRate;
+  public int qualityAdaptIndication;
+  public int encodedBitrate;
+  public int encodedFrameWidth;
+  public int encodedFrameHeight;
+  public int encodedFrameCount;
+  public int codecType;
+  public int txPacketLossRate;
+  public int captureBrightnessLevel;
+  public int hwEncoderAccelerating;
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcLocalVideoStats : NSObject
 @property(assign, nonatomic) NSUInteger sentBitrate;
 @property(assign, nonatomic) NSUInteger sentFrameRate;
 @property(assign, nonatomic) NSUInteger uid;
+
+@property(assign, nonatomic) NSInteger captureFrameRate;
+@property(assign, nonatomic) NSInteger captureFrameWidth;
+@property(assign, nonatomic) NSInteger captureFrameHeight;
+@property(assign, nonatomic) NSInteger regulatedCaptureFrameRate;
+@property(assign, nonatomic) NSInteger regulatedCaptureFrameWidth;
+@property(assign, nonatomic) NSInteger regulatedCaptureFrameHeight;
+
 @property(assign, nonatomic) NSInteger encoderOutputFrameRate;
 @property(assign, nonatomic) NSInteger rendererOutputFrameRate;
 @property(assign, nonatomic) NSInteger targetFrameRate;
@@ -36,83 +52,311 @@
 @property(assign, nonatomic) NSInteger encodedFrameHeight;
 @property(assign, nonatomic) NSInteger encodedFrameCount;
 @property(assign, nonatomic) AgoraVideoCodecType codecType;
+@property(assign, nonatomic) AgoraVideoHwEncoderAccelerating hwEncoderAccelerating;
 @property(assign, nonatomic) NSInteger txPacketLossRate;
+@property(assign, nonatomic) AgoraCaptureBrightnessLevelType captureBrightnessLevel NS_SWIFT_NAME(captureBrightnessLevel);
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct LocalVideoStats
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct LocalVideoStats
 {
     uid_t uid;
     int sentBitrate;
     int sentFrameRate;
+    int captureFrameRate;
+    int captureFrameWidth;
+    int captureFrameHeight;
+    int regulatedCaptureFrameRate;
+    int regulatedCaptureFrameWidth;
+    int regulatedCaptureFrameHeight;
     int encoderOutputFrameRate;
+    int encodedFrameWidth;
+    int encodedFrameHeight;
     int rendererOutputFrameRate;
     int targetBitrate;
     int targetFrameRate;
     QUALITY_ADAPT_INDICATION qualityAdaptIndication;
     int encodedBitrate;
-    int encodedFrameWidth;
-    int encodedFrameHeight;
     int encodedFrameCount;
     VIDEO_CODEC_TYPE codecType;
     unsigned short txPacketLossRate;
+    CAPTURE_BRIGHTNESS_LEVEL_TYPE captureBrightnessLevel;
+    int hwEncoderAccelerating;
+
 };</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class LocalVideoStats
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FLocalVideoStats
+{
+	GENERATED_BODY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int64 uid;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int sentBitrate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int sentFrameRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int captureFrameRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int captureFrameWidth;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int captureFrameHeight;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int regulatedCaptureFrameRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int regulatedCaptureFrameWidth;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int regulatedCaptureFrameHeight;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int encoderOutputFrameRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int encodedFrameWidth;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int encodedFrameHeight;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int rendererOutputFrameRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int targetBitrate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int targetFrameRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	EQUALITY_ADAPT_INDICATION qualityAdaptIndication;
+	int encodedBitrate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int encodedFrameCount;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	EVIDEO_CODEC_TYPE codecType;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int64 txPacketLossRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	FENUMWRAP_CAPTURE_BRIGHTNESS_LEVEL_TYPE  captureBrightnessLevel;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	bool dualStreamEnabled;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int hwEncoderAccelerating;
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export class LocalVideoStats {
+  
+  uid?: number;
+  
+  sentBitrate?: number;
+  
+  sentFrameRate?: number;
+  
+  captureFrameRate?: number;
+  
+  captureFrameWidth?: number;
+  
+  captureFrameHeight?: number;
+  
+  regulatedCaptureFrameRate?: number;
+  
+  regulatedCaptureFrameWidth?: number;
+  
+  regulatedCaptureFrameHeight?: number;
+  
+  encoderOutputFrameRate?: number;
+  
+  encodedFrameWidth?: number;
+  
+  encodedFrameHeight?: number;
+  
+  rendererOutputFrameRate?: number;
+  
+  targetBitrate?: number;
+  
+  targetFrameRate?: number;
+  
+  qualityAdaptIndication?: QualityAdaptIndication;
+  
+  encodedBitrate?: number;
+  
+  encodedFrameCount?: number;
+  
+  codecType?: VideoCodecType;
+  
+  txPacketLossRate?: number;
+  
+  captureBrightnessLevel?: CaptureBrightnessLevelType;
+
+  hwEncoderAccelerating?: number;
+
+}</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public class LocalVideoStats
     {
         public LocalVideoStats()
         {
         }
-        public LocalVideoStats(uint uid, int sentBitrate, int sentFrameRate, int encoderOutputFrameRate,
-            int rendererOutputFrameRate, int targetBitrate, int targetFrameRate, QUALITY_ADAPT_INDICATION qualityAdaptIndication,
-            int encodedBitrate, int encodedFrameWidth,int encodedFrameHeight, int encodedFrameCount,
-            VIDEO_CODEC_TYPE codecType)
-        {
-            this.uid = uid;
-            this.sentBitrate = sentBitrate;
-            this.sentFrameRate = sentFrameRate;
-            this.encoderOutputFrameRate = encoderOutputFrameRate;
-            this.rendererOutputFrameRate = rendererOutputFrameRate;
-            this.targetBitrate = targetBitrate;
-            this.targetFrameRate = targetFrameRate;
-            this.qualityAdaptIndication = qualityAdaptIndication;
-            this.encodedBitrate = encodedBitrate;
-            this.encodedFrameWidth = encodedFrameWidth;
-            this.encodedFrameHeight = encodedFrameHeight;
-            this.encodedFrameCount = encodedFrameCount;
-            this.codecType = codecType;
-        }
 
         public uint uid { set; get; }
-
         public int sentBitrate { set; get; }
-
         public int sentFrameRate { set; get; }
-
+        public int captureFrameRate { set; get; }
+        public int captureFrameWidth { set; get; }
+        public int captureFrameHeight { set; get; }
+        public int regulatedCaptureFrameRate { set; get; }
+        public int regulatedCaptureFrameWidth { set; get; 
+        public int regulatedCaptureFrameHeight { set; get; }
         public int encoderOutputFrameRate { set; get; }
-
-        public int rendererOutputFrameRate { set; get; }
-
-        public int targetBitrate { set; get; }
-
-        public int targetFrameRate { set; get; }
-
-        public QUALITY_ADAPT_INDICATION qualityAdaptIndication;
-
-        public int encodedBitrate { set; get; }
-
         public int encodedFrameWidth { set; get; }
-
         public int encodedFrameHeight { set; get; }
-
+        public int rendererOutputFrameRate { set; get; }
+        public int targetBitrate { set; get; }
+        public int targetFrameRate { set; get; }
+        public QUALITY_ADAPT_INDICATION qualityAdaptIndication { set; get; }
+        public int encodedBitrate { set; get; }
         public int encodedFrameCount { set; get; }
-
         public VIDEO_CODEC_TYPE codecType { set; get; }
-    }</codeblock> </p>
+        public ushort txPacketLossRate { set; get; }
+        public CAPTURE_BRIGHTNESS_LEVEL_TYPE captureBrightnessLevel { set; get; }
+        public int hwEncoderAccelerating { set; get; }
+    };</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class LocalVideoStats {
+  
+  uid?: number;
+  
+  sentBitrate?: number;
+  
+  sentFrameRate?: number;
+  
+  captureFrameRate?: number;
+  
+  captureFrameWidth?: number;
+  
+  captureFrameHeight?: number;
+  
+  regulatedCaptureFrameRate?: number;
+  
+  regulatedCaptureFrameWidth?: number;
+  
+  regulatedCaptureFrameHeight?: number;
+  
+  encoderOutputFrameRate?: number;
+  
+  encodedFrameWidth?: number;
+  
+  encodedFrameHeight?: number;
+  
+  rendererOutputFrameRate?: number;
+  
+  targetBitrate?: number;
+  
+  targetFrameRate?: number;
+  
+  qualityAdaptIndication?: QualityAdaptIndication;
+  
+  encodedBitrate?: number;
+  
+  encodedFrameCount?: number;
+  
+  codecType?: VideoCodecType;
+  
+  txPacketLossRate?: number;
+  
+  captureBrightnessLevel?: CaptureBrightnessLevelType;
+
+  hwEncoderAccelerating?: number;
+  
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class LocalVideoStats {
+  const LocalVideoStats(
+      {this.uid,
+      this.sentBitrate,
+      this.sentFrameRate,
+      this.captureFrameRate,
+      this.captureFrameWidth,
+      this.captureFrameHeight,
+      this.regulatedCaptureFrameRate,
+      this.regulatedCaptureFrameWidth,
+      this.regulatedCaptureFrameHeight,
+      this.encoderOutputFrameRate,
+      this.encodedFrameWidth,
+      this.encodedFrameHeight,
+      this.rendererOutputFrameRate,
+      this.targetBitrate,
+      this.targetFrameRate,
+      this.qualityAdaptIndication,
+      this.encodedBitrate,
+      this.encodedFrameCount,
+      this.codecType,
+      this.txPacketLossRate,
+      this.captureBrightnessLevel,
+      this.hwEncoderAccelerating});
+
+  @JsonKey(name: 'uid')
+  final int? uid;
+
+  @JsonKey(name: 'sentBitrate')
+  final int? sentBitrate;
+
+  @JsonKey(name: 'sentFrameRate')
+  final int? sentFrameRate;
+
+  @JsonKey(name: 'captureFrameRate')
+  final int? captureFrameRate;
+
+  @JsonKey(name: 'captureFrameWidth')
+  final int? captureFrameWidth;
+
+  @JsonKey(name: 'captureFrameHeight')
+  final int? captureFrameHeight;
+
+  @JsonKey(name: 'regulatedCaptureFrameRate')
+  final int? regulatedCaptureFrameRate;
+
+  @JsonKey(name: 'regulatedCaptureFrameWidth')
+  final int? regulatedCaptureFrameWidth;
+
+  @JsonKey(name: 'regulatedCaptureFrameHeight')
+  final int? regulatedCaptureFrameHeight;
+
+  @JsonKey(name: 'encoderOutputFrameRate')
+  final int? encoderOutputFrameRate;
+
+  @JsonKey(name: 'encodedFrameWidth')
+  final int? encodedFrameWidth;
+
+  @JsonKey(name: 'encodedFrameHeight')
+  final int? encodedFrameHeight;
+
+  @JsonKey(name: 'rendererOutputFrameRate')
+  final int? rendererOutputFrameRate;
+
+  @JsonKey(name: 'targetBitrate')
+  final int? targetBitrate;
+
+  @JsonKey(name: 'targetFrameRate')
+  final int? targetFrameRate;
+
+  @JsonKey(name: 'qualityAdaptIndication')
+  final QualityAdaptIndication? qualityAdaptIndication;
+
+  @JsonKey(name: 'encodedBitrate')
+  final int? encodedBitrate;
+
+  @JsonKey(name: 'encodedFrameCount')
+  final int? encodedFrameCount;
+
+  @JsonKey(name: 'codecType')
+  final VideoCodecType? codecType;
+
+  @JsonKey(name: 'txPacketLossRate')
+  final int? txPacketLossRate;
+
+  @JsonKey(name: 'captureBrightnessLevel')
+  final CaptureBrightnessLevelType? captureBrightnessLevel;
+
+  @JsonKey(name: 'hwEncoderAccelerating')
+  final int? hwEncoderAccelerating;
+
+  factory LocalVideoStats.fromJson(Map&lt;String, dynamic> json) =>
+      _$LocalVideoStatsFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$LocalVideoStatsToJson(this);
+}</codeblock>            
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry props="rtc-ng">
+            <plentry>
                 <pt>uid</pt>
                 <pd>The ID of the local user.</pd>
             </plentry>
@@ -125,6 +369,30 @@
             <plentry>
                 <pt>sentFrameRate</pt>
                 <pd>The actual frame rate (fps) while sending the local video stream.<note type="attention">This value does not include the frame rate for resending the video after packet loss.</note></pd>
+            </plentry>
+            <plentry>
+                <pt>captureFrameRate</pt>
+                <pd>The frame rate (fps) for capturing the local video stream.</pd>
+            </plentry>
+            <plentry>
+                <pt>captureFrameWidth</pt>
+                <pd>The width (px) for capturing the local video stream.</pd>
+            </plentry>
+            <plentry>
+                <pt>captureFrameHeight</pt>
+                <pd>The height (px) for capturing the local video stream.</pd>
+            </plentry>
+            <plentry>
+                <pt>regulatedCaptureFrameRate</pt>
+                <pd>The frame rate (fps) adjusted by the built-in video capture adapter (regulator) of the SDK for capturing the local video stream. The regulator adjusts the frame rate of the video captured by the camera according to the video encoding configuration.</pd>
+            </plentry>
+            <plentry>
+                <pt>regulatedCaptureFrameWidth</pt>
+                <pd>The width (px) adjusted by the built-in video capture adapter (regulator) of the SDK for capturing the local video stream. The regulator adjusts the height and width of the video captured by the camera according to the video encoding configuration.</pd>
+            </plentry>
+            <plentry>
+                <pt>regulatedCaptureFrameHeight</pt>
+                <pd>The height (px) adjusted by the built-in video capture adapter (regulator) of the SDK for capturing the local video stream. The regulator adjusts the height and width of the video captured by the camera according to the video encoding configuration.</pd>
             </plentry>
             <plentry>
                 <pt>encoderOutputFrameRate</pt>
@@ -144,13 +412,7 @@
             </plentry>
             <plentry>
                 <pt>qualityAdaptIndication</pt>
-                <pd>
-                    <dl outputclass="since" props="rtc">
-                    <dlentry props="native">
-                        <dt>Since</dt>
-                        <dd>v2.4.0</dd>
-                    </dlentry>
-                    </dl><ph>Quality adaption of the local video stream in the reported interval (based on the target frame rate and target bitrate). </ph><ph props="cpp ios mac unity">See <xref  keyref="QUALITY_ADAPT_INDICATION"/>.</ph><p props="android">
+                <pd><ph>The quality adaptation of the local video stream in the reported interval (based on the target frame rate and target bitrate). </ph><ph props="cpp unreal bp ios mac unity electron rn flutter cs">See <xref keyref="QUALITY_ADAPT_INDICATION"/>.</ph><p props="android">
                     <ul>
                     <li><ph keyref="ADAPT_NONE"/>(0): The local video quality stays the same.</li>
                     <li><ph keyref="ADAPT_UP_BANDWIDTH"/>(1): The local video quality improves because the network bandwidth increases.</li>
@@ -165,12 +427,12 @@
                 </pd>
             </plentry>
             <plentry>
-                <pt>encodedFrameWidth</pt>
-                <pd>The width of the encoded video (px).</pd>
-            </plentry>
-            <plentry>
                 <pt>encodedFrameHeight</pt>
                 <pd>The height of the encoded video (px).</pd>
+            </plentry>
+            <plentry>
+                <pt>encodedFrameWidth</pt>
+                <pd>The width of the encoded video (px).</pd>
             </plentry>
             <plentry>
                 <pt>encodedFrameCount</pt>
@@ -178,32 +440,42 @@
             </plentry>
             <plentry>
                 <pt>codecType</pt>
-                <pd><ph>The codec type of the local video. </ph><ph props="ios mac cpp unity">See <xref keyref="VIDEO_CODEC_TYPE"/>.</ph><p props="android">
+                <pd>The codec type of the local video. See <xref keyref="VIDEO_CODEC_TYPE"/>.<p props="android">
                     <ul>
                     <li><ph keyref="VIDEO_CODEC_VP8"/>(1): VP8.</li>
-                    <li><ph keyref="VIDEO_CODEC_H264"/>(2): (Default) H.264.</li>
-                    </ul> </p>
+                    <li><ph keyref="VIDEO_CODEC_H264"/>(2): H.264.</li>
+                    <li><ph keyref="VIDEO_CODEC_H265"/>(3): (Default) H.265.</li>
+                    </ul>
+                    <note>In certain scenarios, such as low resolution of the captured video stream or limited device performance, the SDK automatically adjusts to the H.264 encoding format.</note></p>
                 </pd>
             </plentry>
             <plentry>
-                    <pt>txPacketLossRate</pt>
-                    <pd>The video packet loss rate (%) from the local client to the Agora server before applying the anti-packet loss strategies.</pd>
-                </plentry>
-            <plentry props="rtc">
+                <pt>txPacketLossRate</pt>
+                <pd>The video packet loss rate (%) from the local client to the Agora server before applying the anti-packet loss strategies.</pd>
+            </plentry>
+            <plentry props="unity electron rn flutter cs">
                 <pt>captureFrameRate</pt>
                 <pd>The frame rate (fps) for capturing the local video stream.</pd>
             </plentry>
-            <plentry props="rtc">
+            <plentry props="apple cpp framework">
                 <pt>captureBrightnessLevel</pt>
-                <pd>
-                    <dl outputclass="since" props="rtc">
-                    <dlentry props="native">
-                        <dt>Since</dt>
-                        <dd>v3.3.0</dd>
-                    </dlentry>
-                    </dl>
-                    <p>The brightness level of the video image captured by the local camera. See <xref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE"/>.</p>
-                </pd>
+                <pd>The brightness level of the video image captured by the local camera. See <xref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE"/>.</pd>
+            </plentry>
+            <plentry props="android">
+                <pt>captureBrightnessLevel</pt>
+                <pd>The brightness level of the video image captured by the local camera.<ul>
+                    <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_INVALID"/>(-1): The SDK does not detect the brightness level of the video image. Wait a few seconds to get the brightness level from <parmname>captureBrightnessLevel</parmname> in the next callback.</li>
+                    <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_NORMAL"/>(0): The brightness level of the video image is normal.</li>
+                    <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_BRIGHT"/>(1): The brightness level of the video image is too bright.</li>
+                    <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_DARK"/>(2): The brightness level of the video image is too dark.</li>
+                    </ul></pd>
+            </plentry>
+            <plentry>
+                <pt>hwEncoderAccelerating</pt>
+                <pd>The local video encoding acceleration type. <ph props="apple">See <xref keyref="hwEncoderAccelerating"/>.</ph><ul props="cpp android framework">
+                    <li>0: Software encoding is applied without acceleration.</li>
+                    <li>1: Hardware encoding is applied for acceleration.</li>
+                    </ul></pd>
             </plentry>
             </parml> </section>
     </refbody>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setrouteincommunicationmode">
+    <title><ph keyref="setRouteInCommunicationMode"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Selects the audio playback route in communication audio mode.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setRouteInCommunicationMode"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setRouteInCommunicationMode(int route);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setRouteInCommunicationMode(int route) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetRouteInCommunicationMode(int route);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract setRouteInCommunicationMode(route: number): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setRouteInCommunicationMode(int route);</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <title>Details</title>
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.2.2</dd>
+            </dlentry>
+            </dl>
+            <p>This method is used to switch the audio route from Bluetooth headphones to earpiece, wired headphones or speakers in communication audio mode (<xref keyref="communication-audio-mode"/>). After the method is called successfully, the SDK will trigger the <xref keyref="onAudioRoutingChanged"/> callback to report the modified route.</p>
+            <note type="attention" props="android">Using this method and the <xref keyref="setEnableSpeakerphone"/> method at the same time may cause conflicts. Agora recommends that you use the <xref keyref="setRouteInCommunicationMode"/> method alone.</note>
+            <note type="attention" props="cpp unity rn flutter unreal bp"><ul><li>This method is for Android only.</li><li>Using this method and the <xref keyref="setEnableSpeakerphone"/> method at the same time may cause conflicts. Agora recommends that you use the <xref keyref="setRouteInCommunicationMode"/> method alone.</li></ul></note>
+        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>route</pt>
+                <pd>The audio playback route you want to use:<ul>
+                    <li>-1: The default audio route.</li>
+                    <li>0: Headphones with microphone.</li>
+                    <li>1: Handset.</li>
+                    <li>2: Headphones without microphone.</li>
+                    <li>3: Device's built-in speaker.</li>
+                    <li>4: (Not supported yet) External speakers.</li>
+                    <li>5: Bluetooth headphones.</li>
+                    <li>6: USB device.</li>
+                    </ul>              
+                </pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p>Without practical meaning.</p> </section>
+        </refbody>
+</reference>

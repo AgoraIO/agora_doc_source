@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_updatertmptranscodingex">
+    <title> <ph keyref="updateRtmpTranscodingEx"/> </title>
+    <shortdesc id="short"> <ph id="shortdesc">更新旁路推流转码属性。</ph> </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="updateRtmpTranscodingEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int updateRtmpTranscodingEx(
+    LiveTranscoding transcoding, RtcConnection connection);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)updateRtmpTranscodingEx:(AgoraLiveTranscoding* _Nullable)transcoding
+                    connection:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(updateRtmpTranscodingEx(_:connection:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int updateRtmpTranscodingEx(const LiveTranscoding&amp; transcoding, const RtcConnection&amp; connection) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int UpdateRtmpTranscodingEx(const FLiveTranscoding&amp; transcoding, const FRtcConnection&amp; connection);</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract updateRtmpTranscodingEx(
+    transcoding: LiveTranscoding,
+    connection: RtcConnection
+  ): number;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int UpdateRtmpTranscodingEx(LiveTranscoding transcoding, RtcConnection connection);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract updateRtmpTranscodingEx(
+    transcoding: LiveTranscoding,
+    connection: RtcConnection
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> updateRtmpTranscodingEx(
+      {required LiveTranscoding transcoding,
+      required RtcConnection connection});</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
+        </section>
+        <section id="detailed_desc">
+            <title>详情</title>
+            <p>声网推荐你使用更加完善的服务端推流功能，详见<xref keyref="cdn-streaming-restful">实现服务端旁路推流</xref>。</p>
+            <p>开启转码推流后，你可以根据场景需求，动态更新转码属性。转码属性更新后，SDK 会触发 <xref keyref="onTranscodingUpdated"/> 回调。</p>
+        </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry conkeyref="startRtmpStreamWithTranscoding/transcoding">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="joinChannelEx/connection">
+                <pt/>
+                <pd/>
+            </plentry>               
+            </parml> </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+            <ul props="native unreal bp electron unity rn cs">
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+            </ul> </section>
+    </refbody>
+</reference>

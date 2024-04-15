@@ -24,7 +24,6 @@
         <section id="detailed_desc">
             <p>This method sets whether the audio is routed to the speakerphone or earpiece. After a successful method call, the SDK triggers the <xref keyref="onAudioRouteChanged" /> callback.</p>
             <p props="android cpp"><ph props="cpp">On Android,</ph> the settings of <parmname>scenario</parmname>in <xref keyref="setAudioProfile" /> and <xref keyref="setChannelProfile" /> affect the behavior of <apiname keyref="setEnableSpeakerphone" />. The following are scenarios where <apiname keyref="setEnableSpeakerphone" /> does not take effect:
-            
             <ul>
             <li>If you set <parmname>scenario</parmname> as <apiname keyref="AUDIO_SCENARIO_GAME_STREAMING" />, no user can change the audio playback route.</li>
             <li>If you set <parmname>scenario</parmname> as <apiname keyref="AUDIO_SCENARIO_DEFAULT" /> or <apiname keyref="AUDIO_SCENARIO_SHOWROOM" />, the audience cannot change the audio playback route. If there is only one broadcaster is in the channel, the broadcaster cannot change the audio playback route either.</li>
@@ -43,7 +42,6 @@
                 <pt props="android">enabled</pt>
                 <pt props="ios mac">enableSpeaker</pt>
                 <pd>Whether the audio is routed to the speakerphone or earpiece.
-                    
                     <ul>
                     <li><codeph><ph keyref="true" /></codeph>: Route the audio to the speakerphone. If the device connects to the earpiece or Bluetooth, the audio cannot be routed to the speakerphone.</li>
                     <li><codeph><ph keyref="false" /></codeph>: Route the audio to the earpiece. If a headset is plugged in, the audio is routed to the headset.</li>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_updatepreloadchanneltoken">
+    <title><ph keyref="updatePreloadChannelToken"/></title>
+    <shortdesc id="short"><ph id="shortdesc">更新预加载频道的通配 Token。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="updatePreloadChannelToken"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int updatePreloadChannelToken(String token);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)updatePreloadChannelToken:(NSString * _Nonnull)token NS_SWIFT_NAME(updatePreloadChannelToken(_:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int updatePreloadChannelToken(const char* token) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract updatePreloadChannelToken(token: string): number;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int UpdatePreloadChannelToken(string token);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract updatePreloadChannelToken(token: string): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> updatePreloadChannelToken(String token);</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <title>详情</title>
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.2.2</dd>
+            </dlentry>
+            </dl>
+            <p>你需要自行维护通配 Token 的生命周期。当通配 Token 过期后，你需要在你的服务端生成新的通配 Token，然后通过此方法来传入新的 Token。</p>
+        </section>
+        <section id="scenario">
+            <title>适用场景</title>
+            <p>在需要频繁切换频道及多频道场景下，使用通配 Token 可以避免观众在切换不同频道时需多次申请 Token 从而导致切换频道时间增长，可以进一步加快切换频道的速度，同时减少你的 Token 服务端的压力。</p>
+        </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt>token</pt>
+                <pd>新的 Token。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+            <ul props="native unreal bp electron unity cs rn">
+                <li>0: 方法调用成功。</li>
+               <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph>
+                   <ul>
+                       <li>-2：传入的参数无效。例如，使用了不合法的 Token。你需要填入有效的参数，重新加入频道。</li>
+                       <li>-7：<apiname keyref="IRtcEngine" /> 对象尚未初始化。你需要在调用该方法前成功初始化 <apiname keyref="IRtcEngine" /> 对象。</li>
+                   </ul></li>
+            </ul></section>
+        </refbody>
+</reference>
