@@ -17,14 +17,6 @@
             <title>新增特性</title>
             <body>
                 <ol>
-                    <li><ph><b>语音驱动虚拟人</b></ph>
-                        <p>SDK 新增语音驱动插件，可以将语音信息转换为对应口型的人脸信息，用于驱动虚拟人面部做出语音对应的口型变化。你可以通过该版本新增的 <xref keyref="registerFaceInfoObserver"/> 方法和 <xref keyref="onFaceInfo"/> 回调获取语音驱动插件处理后的人脸信息。该人脸信息为符合 ARkit 标准的 BS（Blend Shape）数据，你可以使用第三方 3D 渲染引擎对 BS 数据进一步处理。</p>
-                        <p>语音驱动插件为可裁剪动态库，集成后 App 增加的体积等信息详见<xref keyref="reduce-app-size"/>。</p>
-                        <note type="attention">
-                        <ul>
-                        <li>声网 SDK 拓展插件 MetaKit 可帮助你简化语音驱动虚拟人的实现流程，无需自行搭建采集、编码和传输的框架。有关 MetaKit 的介绍和集成指导，详见 <xref keyref="metakit-overview"/>。</li>
-                        <li>语音驱动虚拟人功能处于公测阶段，如需使用请<xref keyref="ticket-link"/>。</li>
-                        </ul> </note> </li>
                     <li props="ios unity flutter rn"><ph><b>隐私清单文件 (iOS)</b></ph>
                         <p>为满足 Apple 对于 App 发布的安全合规要求，SDK 自该版本起新增隐私清单文件 <codeph>PrivacyInfo.xcprivacy</codeph>，其中包含 SDK 中需要访问或使用用户数据的 API 调用说明和 SDK 采集的数据类型说明。</p>
                         <note>如果你需要将集成 v4.3.1 之前的 SDK 版本的 App 发布到苹果应用商店，则需要在 Xcode 工程中手动添加 <codeph>PrivacyInfo.xcprivacy</codeph> 文件。详见<xref keyref="privacyinfo"/></note></li>
@@ -201,10 +193,6 @@
                     <li props="android"><codeph><apiname keyref="ERR_DATASTREAM_DECRYPTION_FAILED"/></codeph></li>
                     <li props="apple cpp framework"><xref keyref="AUDIO_EFFECT_PRESET"/> 新增 <codeph><apiname keyref="ROOM_ACOUSTICS_CHORUS"/></codeph></li>
                     <li props="android"><codeph><apiname keyref="ROOM_ACOUSTICS_CHORUS"/></codeph></li>
-                    <li><xref keyref="registerFaceInfoObserver"/></li>
-                    <li props="electron rn flutter unity"><xref keyref="unregisterFaceInfoObserver"/></li>
-                    <li><xref keyref="IFaceInfoObserver"/></li>
-                    <li><xref keyref="onFaceInfo"/></li>
                     <li><xref keyref="getCallIdEx"/></li>
                     <li props="android ios flutter unity rn"><xref keyref="queryCameraFocalLengthCapability"/> (Android, iOS)</li>
                     <li props="android ios flutter unity rn"><xref keyref="FocalLengthInfo"/> (Android, iOS)</li>
