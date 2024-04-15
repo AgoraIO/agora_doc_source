@@ -52,6 +52,8 @@ This group of methods enables you to set the push message display mode, display 
 
 | Name | Method | Request | Description |
 | :------------------- | :--- | :-------------------------------------- | :------------------------------------------------------ |
+| Binding or unbinding push information | PUT | `/{org_name}/{app_name}/users/{username}/push/binding` | Binds or unbinds push information. |
+| Retrieving the push information bound to devices of a user | GET | `/{org_name}/{app_name}/users/{username}/push/binding` | Retrieves the push information bound to devices of a user. |
 | Setting the display nickname | PUT | `/{org_name}/{app_name}/users/{username}` | Sets the display nickname of the push message. |
 | Setting the display options | PUT | `/{org_name}/{app_name}/users/{username}` | Sets whether the push messages are displayed as notifications only or details are visible. |
 | Setting do-not-disturb (DND) | PUT | `/{org_name}/{app_name}/users/{username}` | Sets whether to enable DND, and the time to enable and disable DND. |
@@ -82,10 +84,12 @@ This group of methods enables you to send text, image, voice, video, pass-throug
 | Name | Method | Request | Description |
 | :--------------- | :--- | :------------------------------------------ | :----------------------------------------------------------- |
 | Sending a message | POST | `/{org_name}/{app_name}/messages` | App admins use this method to send messages to users, chat groups, and chat rooms. This method supports sending text, image, voice, video, pass-through, extension, and file messages. |
+| Sending a broadcast message to all chat rooms under an app | POST  | `/{org_name}/{app_name}/messages/chatrooms/broadcast`  | Sends a broadcast message to all active chat rooms under an app.  |
 | Uploading files | POST | `/{org_name}/{app_name}/chatfiles` | Uploads voice and image files. |
 | Downloading files | POST | `/{org_name}/{app_name}/chatfiles/{file_uuid}` | Downloads voice and image files. |
 | Retrieving historical messages | GET | `/{org_name}/{app_name}/chatmessages/${time}` | Retrieves chat historical messages |
 | Retrieving the conversation list | GET | `/{org_name}/{app_name}/user/{username}/user_channels` | Retrieves a list of conversations of the specified user.|
+| Modify a text or custom message | PUT | `/{org_name}/{app_name}/messages/rewrite/{msg_id}` | Modifies a text message or custom message. |
 | Recalling a message | POST | `{org_name}/{app_name}/messages/recall` | Recalls a message two minutes after it is sent. |
 | Deleting conversations from the server | DELETE | `/{orgName}/{appName}/users/{userName}/user_channel` | Deletes the conversation from the server. |
 
@@ -110,6 +114,7 @@ This group of methods enables you to manage the user's contact list and block li
 | Adding a contact | POST | `/{org_name}/{app_name}/users/{owner_username}/contacts/users/{friend_username}` | Adds the specified user as a contact. |
 | Removing a contact | DELETE | `/{org_name}/{app_name}/users/{owner_username}/contacts/users/{friend_username}` | Removes the specified user from the contact list. |
 | Retrieving a contact list | GET | `/{org_name}/{app_name}/users/{owner_username}/contacts/users` | Retrieves the contact list. |
+| Retrieving the contact list with pagination | GET   | `/{org_name}/{app_name}/user/{username}/contacts?limit={N}&cursor={cursor}&needReturnRemark={true/false}`   | Retrieves the contact list with pagination. |
 | Retrieving a block list | GET | `/{org_name}/{app_name}/users/{owner_username}/blocks/users` | Retrieves the block list. |
 | Adding user to block list | POST | `/{org_name}/{app_name}/users/{owner_username}/blocks/users` | Add the specified user to the block list. |
 | Removing user from block list | DELETE | `/{org_name}/{app_name}/users/{owner_username}/blocks/users/{blocked_username}` | Removes the specified user from the block list. |
