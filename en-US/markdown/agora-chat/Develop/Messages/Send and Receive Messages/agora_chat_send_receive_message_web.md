@@ -36,7 +36,8 @@ Use the `Message` class to create a text message, and send the message.
 // Send a text message.
 function sendPrivateText() {
   let option = {
-    type: "txt", //***
+    // Set the message type.
+    type: "txt", 
     // Set the message content.
     msg: "message content",
     // Set the user ID of the recipient for one-to-one chat, group ID for group chat, or chat room ID for room chat.
