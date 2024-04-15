@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_audiotracktype">
+    <title><ph keyref="AUDIO_TRACK_TYPE"/></title>
+    <shortdesc id="short"><ph id="shortdesc">自定义音频采集轨道的类型。</ph></shortdesc>
+    <refbody>
+        <section id="parameters">
+            <title>枚举值</title>
+            <parml>
+            <plentry>
+                <pt><ph keyref="AUDIO_TRACK_MIXABLE"/></pt>
+                <pd>0：可混流的音频轨道。支持与其他音频流 (例如：麦克风采集的音频流) 混音后，再在本地播放或发布到频道中。与非混流的音频轨道相比，延迟更高。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="AUDIO_TRACK_DIRECT"/></pt>
+                <pd>
+                <p>1：非混流的音频轨道。会替代麦克风采集，且不支持与其他音频流混音。与可混流的音频轨道相比，延迟更低。</p>
+                <note type="attention">如指定 <apiname keyref="AUDIO_TRACK_DIRECT"/>，则必须在调用 <xref keyref="joinChannel2"/> 加入频道时，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishMicrophoneTrack</codeph> 设为 <codeph><ph keyref="false"/></codeph>，否则加入频道失败并返回错误码 -2.</note></pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setlocalaccesspoint">
+    <title><ph keyref="setLocalAccessPoint" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Configures the connection with the access module of the Agora network private media server.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setLocalAccessPoint" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setLocalAccessPoint(LocalAccessPointConfiguration config);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLocalAccessPoint:(AgoraLocalAccessPointConfiguration* _Nonnull)config NS_SWIFT_NAME(setLocalAccessPoint(withConfig:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setLocalAccessPoint(const LocalAccessPointConfiguration&amp; config) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int SetLocalAccessPoint(const FLocalAccessPointConfiguration&amp; config);</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract setLocalAccessPoint(config: LocalAccessPointConfiguration): number;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetLocalAccessPoint(LocalAccessPointConfiguration config);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract setLocalAccessPoint(config: LocalAccessPointConfiguration): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLocalAccessPoint(LocalAccessPointConfiguration config);</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+        </section>
+        <section id="detailed_desc">
+            <title>Details</title>
+            <p>After successfully deploying the Agora private media server and integrating the RTC SDK on the intranet terminal, you can call this method to specify the Local Access Point and assign the access module to the SDK.</p>
+            <note type="attention">
+            <ul>
+            <li>This method takes effect only after the Agora hybrid cloud solution is deployed. You can contact <xref keyref="mailto-link" /> to get to know more about the Agora hybrid cloud solution.</li>
+            <li>Ensure that you call this method before joining a channel.</li>
+            </ul> </note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>config</pt>
+                <pd>The configurations of the Local Access Point. See <xref keyref="LocalAccessPointConfiguration" />.</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <ul props="native unreal bp electron unity rn cs">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            </ul> </section>
+    </refbody>
+</reference>

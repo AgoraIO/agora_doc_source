@@ -1,0 +1,639 @@
+Agora provides cloud transcoding service for single or multi-hosted interactive streaming scenarios and supports transcoding and stream mixing on the Agora server to push the streams of multiple hosts to the Agora RTC channel. Audience users in the RTC channel only need to subscribe to the transcoded and mixed streams to watch the live broadcast.
+
+When you use the cloud transcoding service, audience users do not need to subscribe to the streams of multiple hosts. This can significantly reduce downstream bandwidth use and help improve performance on user devices.
+
+This page describes how to implement cloud transcoding through RESTful API.
+
+## Prerequisites
+
+- Agora RESTful API requires Basic HTTP authentication. Make sure to complete [HTTP Basic Authentication](https://docs.agora.io/en/video-calling/reference/restful-authentication).
+- Cloud transcoding is a sub-service of cloud recording. Make sure that the cloud recording service is enabled. See [Project setup](https://docs.agora.io/en/cloud-recording/get-started/getstarted#project-setup).
+
+## Understand the tech
+
+The process of transcoding and mixing multiple streams on the Agora server is equivalent to creating a cloud transcoder. The multiple streams before transcoding are the input of the cloud transcoder, and the stream after transcoding is the output.
+
+You can control the cloud transcoder through the cloud transcoding RESTful API:
+
+- `Acquire`: Before starting cloud transcoding, you must obtain a cloud transcoding resource for cloud transcoding tasks.
+- `Create`: Create a cloud transcoder. The Agora server starts transcoding and mixing the multiple streams you specify into a single stream and pushes it to the Agora RTC channel.
+- `Delete`: Destroy the cloud transcoder. The Agora server stops transcoding and mixing streams.
+- `Query`: Query the information of the cloud transcoder. The Agora server queries the cloud transcoder you specify.
+
+## Acquire: Obtain a cloud transcoding resource
+
+Before starting a cloud transcoding task, you must call the `Acquire` method to obtain a cloud transcoding resource.
+
+After calling this method successfully, you can get a builderToken in the response body. The validity period of the builderToken is 5 minutes, and you need to use the builderToken to start cloud transcoding within 5 minutes. A builderToken can only be used for one cloud transcoding task.
+
+### HTTP request
+
+```http
+POST https://api.agora.io/v1/projects/<appId>/rtsc/cloud-transcoder/builderTokens
+```
+
+`appId`: (Required) String type parameter. The App ID provided by Agora for each developer. You can get an App ID after creating a project in Agora Console. The App ID identifies each project.
+
+#### Request header
+
+- `Content-Type`: `application/json`
+- `Authorization`: The value of this field should refer to the `authentication `[instructions ](https://docs.agora.io/en/faq/restful_authentication)
+
+#### Request body
+
+The following parameters need to be passed in the request body:
+
+| Field | Type | Description |
+| :----------- | :----------- | :----------------------------------------------------------- |
+| `instanceId` | (Required)String | User-specified instance ID. The length must be a maximum of  64 characters. The supported character set range is as follows:<li>All lowercase English letters (a-z)<li>All uppercase English letters (A-Z)<li>Numbers 0-9<li>"-", "_"<br>You can use one `instanceId` to generate multiple builderTokens, but only one builderToken can be used to initiate a request in a task. |
+
+The request body example:
+
+```json
+{
+  "instanceId" : "abc13328"
+}
+```
+
+### HTTP response
+
+#### Response header
+
+`X-Request-ID`: UUID (Universal Unique Identifier), which identifies this request.
+<div class="alert note"><ul><li>If there is an error in the request, print out the value in the log to troubleshoot the problem.</li><li>If the response status code of this request is not 2XX, this field might not appear in the response header.</li></ul></div>
+
+#### Response body
+
+The response body contains the following fields:
+
+| Field | Type | Description |
+| :----------- | :----- | :---------------------------------------------------- |
+| `tokenName` | String | The value of builderToken, which needs to be passed in when calling other methods later. |
+| `createTs` | Number | The Unix timestamp in seconds when the builderToken was generated. |
+| `instanceId` | Number | The `instanceId` set in request body. |
+
+Response body example:
+
+```json
+{
+    "createTs": 1661324606,
+    "instanceId": "abc13328",
+    "tokenName": "nUwUbQf9Zg6tsgtLslGnDg0lk8RYaUE0***"
+}
+```
+
+## Create: Start the task for creating a cloud transcoder
+
+### HTTP request
+
+```
+POST https://api.agora.io/v1/projects/<appid>/rtsc/cloud-transcoder/tasks?builderToken=<tokenName>
+```
+
+#### Path parameter
+
+`appId`: (Required) String type parameter. The App ID provided by Agora for each developer. You can get an App ID after creating a project in Agora Console. The App ID identifies each project.
+
+#### Query parameter
+
+`builderToken`: (Required)String. Obtain the value of the builderToken through the `Acquire` method.``
+
+#### Request header
+
+- `Content-Type`: `application/json`
+- `Authorization`: The value of this field should refer to the `authentication `[instructions ](https://docs.agora.io/en/faq/restful_authentication)
+
+#### Request body
+
+The request body is the `services` field of JSON Object type. The field structure is shown in the following figure:
+
+![](https://web-cdn.agora.io/docs-files/1664351637544)
+
+- `services` contains the following fields:
+
+   | Field | Type | Description |
+   | :---------------------------------- | :---------------- | :----------------------------------------------------------- |
+   | cloudTranscoder | (Required)JSON Object | Service name, set by the developer. The service name used in a cloud transcoder must be unique. |
+   | cloudTranscoder.serviceType | (Required)String | Service type. Cloud transcoding: `cloudTranscoderV2`. |
+   | cloudTranscoder.config | (Required)JSON Object | The cloud transcoding parameter settings. Used to set the business parameters of the cloud transcoder. |
+   | cloudTranscoder.config.transcoder | (Required)String | An object of the cloud transcoder. |
+
+- **`transcoder`** contains the following fields:
+
+   | Field | Type | Description |
+   | :--------------------------------- | :---------------- | :----------------------------------------------------------- |
+   | idleTimeOut | (Optional)Number | The maximum amount of time (seconds) that the cloud transcoder is idle. Idle means that all hosts corresponding to the audio and video streams processed by the cloud transcoder have left the channel. After the idle state exceeds the set `idleTimeOut`, the cloud transcoder is destroyed automatically. The value range is [1,86400], and the default value is 300. |
+   | audioInputs[] | (Optional)JSON Object | The audio input source configuration for cloud transcoder.<li>If you do not pass a value, Agora use the input source corresponding to `videoInputs[].rtc.rtcUid` as the audio input source of the cloud transcoder. This method is suitable for scenarios where both the audio and video of the host are transcoded.<li>If you pass a value, Agora transcode and mixes the audio input source you specify. This value method is suitable for scenarios where the `audioInputs[].rtc.rtcUid` and `videoInputs[].rtc.rtcUid` are not exactly the same, that is, the video of some hosts is transcoded but the audio is not transcoded. |
+   | audioInputs[].rtc | (Required)JSON Array | The RTC audio input source for cloud transcoder. Multiple RTC input sources are supported. |
+   | audioInputs[].rtc.rtcChannel | (Required)String | The name of the RTC channel to which the input source belongs. Currently Agora only supports subscribing to the audio and video sources of a single channel. The audio and video sources must belong to the same channel. |
+   | audioInputs[].rtc.rtcUid | (Required)Number | The UID corresponding to the input source. The same UID is not allowed within an RTC channel. |
+   | audioInputs[].rtc.rtcToken | (Required)String | The token required to enter the RTC channel is used to ensure the security of the channel. See [Secure authentication with tokens](https://docs.agora.io/en/interactive-live-streaming/develop/authentication-workflow).|
+   | videoInputs[] | (Required)JSON Array | The video input configuration for cloud transcoder. |
+   | videoInputs[].rtc | (Required)JSON Array | The RTC video input source for the cloud transcoder. Multiple RTC input sources are supported. |
+   | videoInputs[].rtc.rtcChannel | (Required)String | The name of the RTC channel to which the video input source belongs. Currently Agora only supports subscribing to audio and video sources of a single channel. The audio and video sources must belong to the same channel. |
+   | videoInputs[].rtc.rtcUid | (Required)Number | The UID corresponding to the video input source. |
+   | videoInputs[].region | (Required)JSON Object | The position of the video input source picture on the canvas. |
+   | videoInputs[].region.x | (Required)Number | The x coordinate (pixels) of the video on the canvas. The horizontal position of the canvas relative to the origin, where the upper left corner of the canvas is the origin, and the x-coordinate is the upper left corner of the canvas. The value range is [0,3840]. |
+   | videoInputs[].region.y | (Required)Number | The y coordinate (pixels) of the video on the canvas. The vertical position of the canvas relative to the origin, where the upper left corner of the canvas is the origin, and the y-coordinate is the upper left corner of the canvas. The value range is [0,3840]. |
+   | videoInputs[].region.width | (Required)Number | The width (pixels) of the video. The value range is [120,3840]. |
+   | videoInputs[].region.height | (Required)Number | The height (pixels) of the video. The value range is [120,3840]. |
+   | videoInputs[].region.zOrder | (Required)Number | The layer number of the video. The value range is [0,100]. 0 represents the lowest layer. 100 represents the top layer. |
+   | videoInputs [].placeholderImageUrl | (Required)String | The URL of the placeholder image when the user is offline. This url must be a valid URL with a `jpg` or `png` suffix. |
+   | canvas | (Required)JSON Object | The canvas that hosts the cloud transcoder video mixing. |
+   | canvas.height | (Required)Number | The height (pixel) of the canvas. The value range is [120,3840]. |
+   | canvas.width | (Required)Number | The width (pixel) of the canvas. The value range is [120,3840]. |
+   | canvas.color | (Required)String | The background color of the canvas. RGB color value, expressed as a decimal number. For example, 0 is black, 255 is blue. The value range is [0,16777215]. |
+   | canvas.backgroundImage | (Optional)String | The background color of the canvas. This URL must be valid with a `jpg` or `png` suffix. |
+   | canvas.fillMode | (Optional)String | The fill mode of the canvas background image.<li>(Default) `FILL`: Scales the screen while maintaining the aspect ratio and cropping in the center. <br>![img](https://web-cdn.agora.io/docs-files/1628837665989)<li>`FIT`:In order to maintain the aspect ratio, zoom the screen to fully display the image. <br>![img](https://web-cdn.agora.io/docs-files/1628837708782) |
+   | waterMarks [] | (Optional)JSON Array  | Watermark input configuration for cloud transcoder. |
+   | waterMarks [].imageUrl | (Required)String | The URL of the image. This URL must be valid with a `jpg` or `png` suffix. |
+   | waterMarks [].fillMode | (Optional)String | The adaptation mode of the watermark.<li>(Default) `FILL`: Scales the screen while maintaining the aspect ratio, and cropping in the center. <br>![ img](https://web-cdn.agora.io/docs-files/1628837665989)<li>`FIT`: In order to maintain the aspect ratio, zoom the screen to fully display the image.<br> ![img](https://web-cdn.agora.io/docs-files/1628837708782) |
+   | waterMarks [].region | (Required)JSON Object | The position of the watermark on the canvas. |
+   | waterMarks [].region.x | (Required)Number | The x coordinate (pixels) of the watermark on the canvas. The horizontal position relative to the origin, where the upper left corner of the canvas is the origin, and the x-coordinate is the upper left corner of the canvas. The value range is [0,3840]. |
+   | waterMarks [].region.y | (Required)Number | The y coordinate (pixels) of the watermark on the canvas. The vertical position of the canvas relative to the origin, where the upper left corner of the canvas is the origin, and the y-coordinate is the upper left corner of the canvas. The value range is [0,3840]. |
+   | waterMarks [].region.width | (Required)Number | The width (pixels) of the watermark. The value range is [120,3840]. |
+   | waterMarks [].region.height | (Required)Number | The height (pixels) of the watermark. The value range is [120,3840]. |
+   | waterMarks.region.zOrder[] | (Required)Number | The layer number of the watermark image. The value range is [0,100]. 0 represents the lowest layer. 100 represents the top layer. |
+   | outputs.rtc | (Required)JSON Object | The output configuration for cloud transcoder. |
+   | outputs.rtc.rtcChannel | (Required)String | The name of the RTC channel to which the output video belongs. |
+   | outputs.rtc.rtcToken | (Required)String | The token required to enter the RTC channel is used to ensure the security of the channel. |
+   | outputs.rtc.rtcUid | (Required)Number | The user ID. |
+   | outputs.audioOption | (Optional)JSON Object | The transcoding configuration for the mixed audio stream. If you do not pass a value, the audio property of Agora transcoding output is `AUDIO_PROFILE_DEFAULT`, which is a 48 kHz sampling rate, music encoding, mono, and a maximum encoding bitrate of 64 Kbps. |
+   | outputs.audioOption.profileType | (Optional)String | Audio profiles. The values supported are as follows:<li>`AUDIO_PROFILE_DEFAULT`: (Default) A sample rate of 48 kHz, music encoding, mono, and a maximum encoding bitrate of 64 Kbps.<li>`AUDIO_PROFILE_SPEECH_STANDARD`: A sample rate of 32 kHz, audio encoding, mono, and a bitrate of up to 18 Kbps.<li>`AUDIO_PROFILE_MUSIC_STANDARD`: A sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 64 Kbps.<li>`AUDIO_PROFILE_MUSIC_STANDARD_STEREO`: A sample rate of 48 kHz, music encoding, stereo, and a bitrate of up to 80 Kbps.<li>`AUDIO_PROFILE_MUSIC_HIGH_QUALITY`: A sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 96 Kbps.<li>`AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO`: A sample rate of 48 kHz, music encoding, stereo, and a bitrate of up to 128 Kbps. |
+   | outputs.videoOption | (Required)JSON Object | Transcoding configuration for mixed video stream. |
+   | outputs.videoOption.fps | (Optional)Number | The frame rate (fps) of the output video. The value range is [1,30]. The default value is 15. |
+   | outputs.videoOption.codec | (Required)String | The codec for the output video. The supported value is `"H264"`. |
+   | outputs.videoOption.bitrate | (Optional)Number | The bitrate of the output video. The value range is [1,10000]. If you don't pass a value, Agora automatically sets the video bitrate based on network conditions and other video properties. |
+   | outputs.videoOption.width | (Required)Number | The width (pixels) of the video. The value range is [120,3840]. |
+   | outputs.videoOption.height | (Required)Number | The height (pixels) of the output video. The value range is [120,3840]. |
+
+#### Request body example
+
+**Seneario 1: Audio and video trascoding with canvas and watermark**
+
+This example is transcoding and mixing the audio and video streams of two hosts with the user IDs `"123"` and `"456"` and publishing them into the channel "test".
+
+```json
+{
+    "services":{
+        "cloudTranscoder":{
+            "serviceType":"cloudTranscoderV2",
+            "config":{
+                "transcoder":{
+                    "idleTimeout":300,
+                    "audioInputs":[
+                        {
+                            "rtc":{
+                                "rtcChannel":"test01",
+                                "rtcUid": 123,
+                                "rtcToken":"aab8b8f5a8cd4469a63042fcfafe7063"
+                            }
+                        },
+                        {
+                            "rtc":{
+                                "rtcChannel":"test01",
+                                "rtcUid": 456,
+                                "rtcToken":"aab8b8f5a8cd4469a63042fcfafe7063"
+                            }
+                        }
+                    ],
+                    "canvas":{
+                        "width":960,
+                        "height":480,
+                        "color":0,
+                        "backgroundImage":"https://XXXX.jpg"，
+                        "fillMode": "FIT"
+                    },
+                    "waterMarks":[
+                        {
+                            "imageUrl":"https://XXXX.png",
+                            "region":{
+                                "x":0,
+                                "y":0,
+                                "width":100,
+                                "height":100,
+                                "zOrder":50
+                            }
+                        }
+                    ],
+                    "videoInputs":[
+                        {
+                            "rtc":{
+                                "rtcChannel":"test01",
+                                "rtcUid": 123,
+                                "rtcToken":"aab8b8f5a8cd4469a63042fcfafe7063"
+                            },
+                            "placeholderImageUrl":"https://XXXX.jpg",
+                            "region":{
+                                "x":0,
+                                "y":0,
+                                "width":320,
+                                "height":360,
+                                "zOrder":1
+                            }
+                        },
+                        {
+                            "rtc":{
+                                "rtcChannel":"test01",
+                                "rtcUid": 456,
+                                "rtcToken":"aab8b8f5a8cd4469a63042fcfafe7063"
+                            },
+                            "placeholderImageUrl":"https://XXXX.jpg",
+                            "region":{
+                                "x":320,
+                                "y":0,
+                                "width":320,
+                                "height":320,
+                                "zOrder":1
+                            }
+                        }
+                    ],
+                    "outputs":[
+                        {
+                            "rtc":{
+                                "rtcChannel":"test",
+                                "rtcUid":1000,
+                                "rtcToken":"aab8b8f5a8cd4469a63042fcfafe7063"
+                            },
+                            "audioOption":{
+                                "profileType":"AUDIO_PROFILE_MUSIC_STANDARD"
+                            },
+                            "videoOption":{
+                                "fps":30,
+                                "codec":"H264",
+                                "bitrate":800,
+                                "width":960,
+                                "height":480,
+                                "lowBitrateHighQuality":false
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}
+```
+
+**Scenario 2: Audio only with canvas**
+
+```json
+{
+    "services":{
+        "cloudTranscoder":{
+            "serviceType":"cloudTranscoderV2",
+            "config":{
+                "transcoder":{
+                    "idleTimeout":180,
+                    "audioInputs":[
+                        {
+                            "rtc":{
+                                "rtcChannel":"test01",
+                                "rtcUid": 123,
+                                "rtcToken":"aab8b8f5a8cd4469a63042fcfafe7063"
+                            }
+                        },
+                        {
+                            "rtc":{
+                                "rtcChannel":"test01",
+                                "rtcUid": 456,
+                                "rtcToken":"aab8b8f5a8cd4469a63042fcfafe7063"
+                            }
+                        }
+                    ],
+                    "canvas":{
+                        "width":960,
+                        "height":480,
+                        "color":0,
+                        "backgroundImage":"https://XXXX.jpg"
+                    },
+                    "outputs":[
+                        {
+                            "rtc":{
+                                "rtcChannel":"test02",
+                                "rtcUid":1000,
+                                "rtcToken":"aab8b8f5a8cd4469a63042fcfafe7063"
+                            },
+                            "audioOption":{
+                                "profileType":"AUDIO_PROFILE_MUSIC_STANDARD"
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}
+```
+
+**Scenario 3: Audio mixing for all users in the channel with canvas**
+
+```json
+{
+    "services":{
+        "cloudTranscoder":{
+            "serviceType":"cloudTranscoderV2",
+            "config":{
+                "transcoder":{
+                    "idleTimeout":180,
+                    "audioInputs":[
+                        {
+                            "rtc":{
+                                "rtcChannel":"test01",
+                                "rtcUid": 0,
+                                "rtcToken":"aab8b8f5a8cd4469a63042fcfafe7063"
+                            }
+                        }
+                    ],
+                    "canvas":{
+                        "width":960,
+                        "height":480,
+                        "color":0,
+                        "backgroundImage":"https://XXXX.jpg"
+                    },
+                    "outputs":[
+                        {
+                            "rtc":{
+                                "rtcChannel":"test02",
+                                "rtcUid":1000,
+                                "rtcToken":"aab8b8f5a8cd4469a63042fcfafe7063"
+                            },
+                            "audioOption":{
+                                "profileType":"AUDIO_PROFILE_MUSIC_STANDARD"
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}
+```
+
+### HTTP response
+
+#### Response header
+
+`X-Request-ID`: UUID (Universal Unique Identifier), which identifies this request.
+<div class="alert note"><ul><li>If there is an error in the request, print out the value in the log to troubleshoot the problem.</li><li>If the response status code of this request is not 2XX, this field might not appear in the response header.</li></ul></div>
+
+#### Response body
+
+The field structure contained in the response body is shown in the following figure:
+
+![](https://web-cdn.agora.io/docs-files/1664351656358)
+
+The meanings of the fields are shown in the following table:
+
+| Field | Type | Description |
+| :------------------------------------------- | :----------- | :----------------------------------------------------------- |
+| taskId | JSON Object | The task ID, which is the UUID, is used to identify the cloud transcoder created by this request. |
+| createTs | Number | The Unix timestamp (seconds) when the cloud transcoding task was created. |
+| status | String | The running status of the create task:<li>`IDLE`: The task is not started.<li>`PREPARED`: The task has received a request to start.<li>`STARTING`: The task is starting.<li>`CREATED`: The task initialization is completed.<li>`STARTED`: The task has been started.<li>`IN_PROGRESS`: The task is in progress.<li>`STOPPING`: The task is stopping.<li>`STOPPED`: The task has been stopped.<li>`EXIT`: The task exits normally.<li>`FAILURE_STOP`: The task exits abnormally. |
+| services | JSON Object | The service information included in the task. |
+| services.cloudTranscoder | JSON Object | The service name. |
+| services.cloudTranscoder.serviceType | String | Service type. Cloud transcoding: `cloudTranscoderV2`. |
+| services.cloudTranscoder.config | JSON Object | The service parameters. |
+| services.cloudTranscoder.config.transcoder | (Required)String | The cloud transcoder object. For the fields and meanings included in the cloud transcoder object, refer to the fields and meanings in the request body. |
+| services.cloudTranscoder.createTs | Number | The unix timestamp (seconds) when the cloud transcoder was created. |
+| services.cloudTranscoder.status | String | The running status of the service:<li>`serviceIdle`:The service is not started.<li>`serviceReady`: The service is ready.<li>`serviceStarted`: The service has been started.<li>`serviceInProgress`: The service is in progress.<li>`serviceCompleted`: The service has been stopped and the tasks are all completed.<li>`servicePartialCompleted`: The service has been stopped and the task is partially completed.<li>`serviceValidationFailed`: The service parameter validation failed.<li>`serviceAbnormal`: The service exited abnormally.<li>`serviceUnknown`: The service status is unknown. |
+| services.cloudTranscoder.message | String | The execution information of the service, describing the specific cause of the service exception. |
+| services.cloudTranscoder.details | JSON Object | The execution details of the service. |
+| eventHandlers | String | Reserved fields. |
+| execution | JSON Object | Reserved fields. |
+| execution.workflows | String | Reserved fields. |
+| properties | String | Reserved fields. |
+| sequenceId | String | Reserved fields. |
+| variables | JSON Object | Reserved fields. |
+| workflows | JSON Object | Reserved fields. |
+
+Response body example:
+
+```json
+{
+    "createTs": 1661324613,
+    "eventHandlers": {},
+    "execution": {
+        "workflows": {}
+    },
+    "properties": {},
+    "sequenceId": "0",
+    "services": {
+        "cloudTranscoder": {
+            "config": {},
+            "createTs": 1661324614,
+            "details": {},
+            "message": "",
+            "serviceType": "cloudTranscoderV2",
+            "status": "serviceReady"
+        }
+    },
+    "status": "STARTED",
+    "taskId": "609f28f2644f1ae1ceb041b7047e39aa",
+    "variables": {},
+    "workflows": {}
+}
+```
+
+## Delete: Destroy the cloud transcoder
+
+### HTTP request
+
+```
+DELETE https://api.agora.io/v1/projects/<appid>/rtsc/cloud-transcoder/tasks/<taskId>?builderToken=<tokenName>
+```
+
+#### Path parameter
+
+- `appId`: (Required) String type parameter. The App ID provided by Agora for each developer. You can get an App ID after creating a project in Agora Console. The App ID identifies each project.
+- `taskId`: The task ID of the cloud transcoder, which is UUID, used to identify the cloud transcoder created by this request.
+
+#### Query parameter
+
+`builderToken`: (Required)String. Obtain the value of the builderToken through the `Acquire` method.``
+
+#### Request header
+
+- `Content-Type`: `application/json`
+- `Authorization`: The value of this field should refer to the `authentication `[instructions ](https://docs.agora.io/en/faq/restful_authentication)
+
+### HTTP response
+
+#### Response header
+
+`X-Request-ID`: UUID (Universal Unique Identifier), which identifies this request.
+<div class="alert note"><ul><li>If there is an error in the request, print out the value in the log to troubleshoot the problem.</li><li>If the response status code of this request is not 2XX, this field might not appear in the response header.</li></ul></div>
+
+#### Response body
+
+The response body contains the following fields:
+
+![](https://web-cdn.agora.io/docs-files/1664351673569)
+
+The meanings of the fields are shown in the following table:
+
+| Field | Type | Description |
+| :------------------------------------------- | :----------- | :----------------------------------------------------------- |
+| taskId | JSON Object | The task ID, which is UUID, is used to identify the cloud transcoder created by this request. |
+| createTs | Number |The unix timestamp (seconds) when the task was created. |
+| status | String | The running status of the create task:<li>`IDLE`: The task is not started.<li>`PREPARED`: The task has received a request to start.<li>`STARTING`: The task is starting.<li>`CREATED`: The task initialization is completed.<li>`STARTED`: The task has been started.<li>`IN_PROGRESS`: The task is in progress.<li>`STOPPING`: The task is stopping.<li>`STOPPED`: The task has been stopped.<li>`EXIT`: The task exits normally.<li>`FAILURE_STOP`: The task exits abnormally. |
+| services | JSON Object | Service information included in the task. |
+| services.cloudTranscoder | JSON Object | The service name. |
+| services.cloudTranscoder.serviceType | String | Service type. Cloud transcoding: `cloudTranscoderV2`. |
+| services.cloudTranscoder.config | JSON Object | The service parameters. |
+| services.cloudTranscoder.config.transcoder | (Required)String | The cloud transcoder object. For the fields and meanings included in the cloud transcoder object, refer to the fields and meanings in the request body. |
+| services.cloudTranscoder.createTs | Number | The unix timestamp (seconds) when the cloud transcoder was created. |
+| services.cloudTranscoder.status | String | The running status of the service:<li>`serviceIdle`:The service is not started.<li>`serviceReady`: The service is ready.<li>`serviceStarted`: The service has been started.<li>`serviceInProgress`: The service is in progress.<li>`serviceCompleted`: The service has been stopped and the tasks are all completed.<li>`servicePartialCompleted`: The service has been stopped and the task is partially completed.<li>`serviceValidationFailed`: The service parameter validation failed.<li>`serviceAbnormal`: The service exited abnormally.<li>`serviceUnknown`: The service is in unknown status. |
+| services.cloudTranscoder.message | String | The execution information of the service, describing the specific cause of the service exception. |
+| services.cloudTranscoder.details | JSON Object | The execution details of the service. |
+| eventHandlers | String | Reserved fields. |
+| execution | JSON Object | Reserved fields. |
+| execution.workflows | String | Reserved fields. |
+| properties | String | Reserved fields. |
+| sequenceId | String | Reserved fields. |
+| variables | JSON Object | Reserved fields. |
+| workflows | JSON Object | Reserved fields. |
+
+Response body example:
+
+```json
+{
+    "createTs": 1661324613,
+    "eventHandlers": {},
+    "execution": {
+        "workflows": {}
+    },
+    "properties": {},
+    "sequenceId": "0",
+    "services": {
+        "cloudTranscoder": {
+            "config": {},
+            "createTs": 1661324614,
+            "details": {},
+            "message": "OnSlaveServiceStopped",
+            "serviceType": "cloudTranscoderV2",
+            "status": "serviceCompleted"
+        }
+    },
+    "status": "STOPPED",
+    "taskId": "609f28f2644f1ae1ceb041b7047e39aa",
+    "variables": {},
+    "workflows": {}
+}
+```
+
+## Query: Query cloud transcoder status information
+
+### HTTP request
+
+```
+GET https://api.agora.io/v1/projects/<appid>/rtsc/cloud-transcoder/tasks/<taskId>?builderToken=<tokenName>
+```
+
+### Path parameter
+
+- `appId`: (Required) String type parameter. The App ID provided by Agora for each developer. You can get an App ID after creating a project in Agora Console. The App ID identifies each project.
+- `taskId`: The task ID of the cloud transcoder, which is UUID, used to identify the cloud transcoder created by this request.
+
+### Query parameter
+
+`builderToken`: (Required)String. Obtain the value of the builderToken through the `Acquire` method.````
+
+#### Request header
+
+- `Content-Type`: `application/json`
+- `Authorization`: The value of this field should refer to the `authentication `[instructions ](https://docs.agora.io/en/faq/restful_authentication)
+
+### HTTP response
+
+#### Response header
+
+`X-Request-ID`: UUID (Universal Unique Identifier), which identifies this request.
+<div class="alert note"><ul><li>If there is an error in the request, print out the value in the log to troubleshoot the problem.</li><li>If the response status code of this request is not 2XX, this field might not appear in the response header.</li></ul></div>
+
+#### Response body
+
+The response body contains the following fields:
+
+![](https://web-cdn.agora.io/docs-files/1664351715856)
+
+The meanings of the fields are shown in the following table:
+
+| Field | Type | Description |
+| :------------------------------------------- | :----------- | :----------------------------------------------------------- |
+| taskId | JSON Object | The task ID, which is the UUID, is used to identify the cloud transcoder created by this request. |
+| createTs | Number | The unix timestamp (seconds) when the task was created. |
+| status | String | The running status of the create task:<li>`IDLE`: The task is not started.<li>`PREPARED`: The task has received a request to start.<li>`STARTING`: The task is starting.<li>`CREATED`: The task initialization is completed.<li>`STARTED`: The task has been started.<li>`IN_PROGRESS`: The task is in progress.<li>`STOPPING`: The task is stopping.<li>`STOPPED`: The task has been stopped.<li>`EXIT`: The task exits normally.<li>`FAILURE_STOP`: The task exits abnormally. |
+| services | JSON Object |The service information included in the task. |
+| services.cloudTranscoder | JSON Object | The service name. |
+| services.cloudTranscoder.serviceType | String | Service type. Cloud transcoding: `cloudTranscoderV2`. |
+| services.cloudTranscoder.config | JSON Object | The service parameters. |
+| services.cloudTranscoder.config.transcoder | (Required)String | The cloud transcoder object. For the fields and meanings included in the cloud transcoder object, refer to the fields and meanings in the request body. |
+| services.cloudTranscoder.createTs | Number | Unix timestamp (seconds) when the cloud transcoder was created. |
+| services.cloudTranscoder.status | String | The running status of the service:<li>`serviceIdle`:The service is not started.<li>`serviceReady`: The service is ready.<li>`serviceStarted`: The service has been started.<li>`serviceInProgress`: The service is in progress.<li>`serviceCompleted`: The service has been stopped and the tasks are all completed.<li>`servicePartialCompleted`: The service has been stopped and the task is partially completed.<li>`serviceValidationFailed`: The service parameter validation failed.<li>`serviceAbnormal`: The service exited abnormally.<li>`serviceUnknown`: The service is in unknown status. |
+| services.cloudTranscoder.message | String | Execution information of the service, describing the specific cause of the service exception. |
+| services.cloudTranscoder.details | JSON Object | The execution details of the service. |
+| eventHandlers | String | Reserved fields. |
+| execution | JSON Object | Reserved fields. |
+| execution.workflows | String | Reserved fields. |
+| properties | String | Reserved fields. |
+| sequenceId | String | Reserved fields. |
+| variables | JSON Object | Reserved fields. |
+| workflows | JSON Object | Reserved fields. |
+
+Response body example:
+
+```json
+{
+    "createTs": 1661420011,
+    "eventHandlers": {},
+    "execution": {
+        "workflows": {}
+    },
+    "properties": {},
+    "sequenceId": "0",
+    "services": {
+        "cloudTranscoder": {
+            "config": {},
+            "createTs": 1661420011,
+            "message": "OnSlaveServiceQueryUpdated",
+            "serviceType": "cloudTranscoderV2",
+            "status": "serviceInProgress"
+        }
+    },
+    "status": "IN_PROGRESS",
+    "taskId": "c0077139e34d0949c719189a393aa7c0",
+    "variables": {},
+    "workflows": {}
+}
+```
+
+## Status codes
+
+- If the status code is `2XX`, the request is successful.
+- If the status code is not `2XX`, the request fails. You can troubleshoot the problem based on the content of the `message` field in the corresponding response body.
+
+| Status code | Description |
+| :---------------------- | :----------------------------------------------------------- |
+| 200 OK | The request succeeds. |
+| 201 Created | The task is already in progress, do not use the same builderToken to start the task repeatedly. |
+| 202 Accepted | The server has received the task request, but has not completed the execution. Use the `Query` method to` query` the execution status. |
+| 400 Bad Request | The request has a syntax error (such as a parameter error). If the App ID you fill in `appid` does not have the Cloud Transcoding permission, it also returns `400`. Process it in combination with the `message` field of the response body. |
+| 401 Unauthorized | Authorization is invalid. |
+| 403 Forbidden | Your App ID has not yet activated the cloud transcoder; contact Agora. |
+| 404 Not Found | The cloud transcoder is not found. |
+| 409 Conflict |A cloud transcoder already exists with the same name. If you want to create a new cloud transcoder, delete the old cloud transcoder with the same name first. |
+| 429 Too Many Requests | The request rate exceeds the upper limit. |
+| 500 Unknown | An error occurs in the Agora server. Try uploading the log files later. |
+| 501 Not Implemented | This method is not implemented. |
+| 503 Service Unavailable | The Agora server is temporarily overloaded or under maintenance. Use the retry mechanism or contact Agora. |
+| 504 Gateway Timeout | Agora server internal error, the server acting as a gateway or proxy did not get the request from the upstream server, the upstream server is down. Contact Agora. |
+
+## Considerations
+
+This section summarizes the most important considerations for using Push Streaming RESTful API.
+
+- Do not do any logic to the content of the `message` field in the response body. If the request fails, troubleshoot the problem based on the status code.
+- The status code of `202` only means that the server has received the task request. It does not mean that the execution is completed. You need to continue to query the execution status through the `Query` method to determine whether the task is completed.
+- After receiving the `404` status code, if the `Create` request has returned successfully and the `Delete `method has not been actively called, or the idle state of the cloud transcoder exceeds the `idleTimeout` field in the request parameters, it is recommended you adopt a backoff algorithm (for example, the interval of 5 seconds, 10 seconds, 15 seconds) to call the `Query` method to confirm.
+- After receiving the response status code of` 5xx`, there is generally a problem in the response process of the server. It is recommended that you use a backoff algorithm (such as 5 seconds, 10 seconds, 15 seconds interval) to call the `Query` request for confirmation.

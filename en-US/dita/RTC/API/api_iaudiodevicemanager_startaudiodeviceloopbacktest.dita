@@ -30,18 +30,15 @@
             <p>This method tests whether the local audio capturing device and playback device work properly. After calling this method, the audio capturing device samples the local audio, and then the audio playback device plays the sampled audio.</p>
             <p>As of v3.6.2, you can call this method either before or after joining a channel. Depending on the call sequence, the SDK triggers the following callbacks at the set time interval to report the volume of the audio capturing and playback devices: 
                 
-            
             <ul>
             <li>Two <xref keyref="onAudioVolumeIndication" /> callbacks and two <xref keyref="onAudioDeviceTestVolumeIndication" /> callbacks when you call this method before joining the channel, with the following values: 
                     
-                
                 <ul>
                 <li><codeph>uid = 0</codeph> and <codeph>volume</codeph> in one <apiname keyref="onAudioVolumeIndication" /> callback; <codeph>uid = 1</codeph> and <codeph>volume</codeph> in the other <apiname keyref="onAudioVolumeIndication" /> callback.</li>
                 <li><codeph>volumeType = <ph keyref="AudioTestRecordingVolume" />(0)</codeph> and <codeph>volume</codeph> in one <apiname keyref="onAudioDeviceTestVolumeIndication" /> callback; <codeph>volumeType = <ph keyref="AudioTestPlaybackVolume" />(1)</codeph> and <codeph>volume</codeph> in the other <apiname keyref="onAudioDeviceTestVolumeIndication" /> callback.</li>
                 </ul>The <apiname keyref="onAudioVolumeIndication" /> and <apiname keyref="onAudioDeviceTestVolumeIndication" /> callbacks report the same volume information. Agora recommends using <apiname keyref="onAudioVolumeIndication" />.</li>
             <li>Two <apiname keyref="onAudioDeviceTestVolumeIndication" /> callbacks when you call this method after joining a channel, with the following values: 
                     
-                
                 <ul>
                 <li><codeph>volumeType = <ph keyref="AudioTestRecordingVolume" />(0)</codeph> and <codeph>volume</codeph> in one callback;</li>
                 <li><codeph>volumeType = <ph keyref="AudioTestPlaybackVolume" />(1)</codeph> and <codeph>volume</codeph> in the other one.</li>

@@ -1,44 +1,49 @@
 import 'package:agora_rtc_ng/src/impl/agora_rtc_engine_impl.dart';
-
+import 'agora_media_player.dart';
 import 'agora_rtc_engine.dart';
 import 'agora_rtc_engine_ex.dart';
 import 'impl/agora_rtc_engine_impl.dart' as impl;
+import 'impl/media_player_impl.dart';
 
-/// Extension for [RtcEngine]
+/// The derived interface class from RtcEngine.
+///
 extension RtcEngineExt on RtcEngine {
-  /// Get the absolute path of flutter asset
+  /// @nodoc
   Future<String?> getAssetAbsolutePath(String assetPath) async {
     final impl = this as RtcEngineImpl;
     final p = await impl.engineMethodChannel
         .invokeMethod<String>('getAssetAbsolutePath', assetPath);
-
     return p;
+  }
+
+  /// @nodoc
+  MediaPlayerCacheManager getMediaPlayerCacheManager() {
+    return MediaPlayerCacheManagerImpl.create(this);
   }
 }
 
-/// Exceptions are thrown when [RtcEngine] and releative class call error.
+/// @nodoc
 class AgoraRtcException implements Exception {
-  AgoraRtcException({
-    required this.code,
-    this.message,
-  });
+  /// @nodoc
+  AgoraRtcException({required this.code, this.message});
 
-  /// The error code, see [ErrorCodeType]
+  /// @nodoc
   final int code;
 
-  /// The error description of the [code].
+  /// @nodoc
   final String? message;
 
+  /// @nodoc
   @override
   String toString() => 'AgoraRtcException($code, $message)';
 }
 
-/// Create the [RtcEngine]
+/// @nodoc
 RtcEngine createAgoraRtcEngine() {
   return impl.RtcEngineImpl.create();
 }
 
-/// Create the [RtcEngineEx]
+/// @nodoc
 RtcEngineEx createAgoraRtcEngineEx() {
   return impl.RtcEngineImpl.create();
 }

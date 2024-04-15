@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_musiccollection">
+    <title><ph keyref="MusicCollection"/></title>
+    <shortdesc id="short"><ph id="shortdesc">音乐资源列表的详细信息。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMusicCollection : NSObject
+@property(nonatomic, assign) NSInteger count;
+@property(nonatomic, assign) NSInteger total;
+@property(nonatomic, assign) NSInteger page;
+@property(nonatomic, assign) NSInteger pageSize;
+@property(nonatomic, strong) NSArray&lt;AgoraMusic *>* musicList;
+@end</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">class MusicCollection : public RefCountInterface {
+public:
+    virtual int getCount() = 0;
+    virtual int getTotal() = 0;
+    virtual int getPage() = 0;
+    virtual int getPageSize() = 0;
+    virtual Music* getMusic(int32_t index) = 0;
+protected:
+    virtual ~MusicCollection() = default;
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export abstract class MusicCollection {
+  abstract getCount(): number;
+  abstract getTotal(): number;
+  abstract getPage(): number;
+  abstract getPageSize(): number;
+  abstract getMusic(index: number): Music;
+}</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public class MusicCollection
+    {
+        public int count;
+        public int total;
+        public int page;
+        public int pageSize;
+        public Music[] music;
+    };</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export abstract class MusicCollection {
+  abstract getCount(): number;
+  abstract getTotal(): number;
+  abstract getPage(): number;
+  abstract getPageSize(): number;
+  abstract getMusic(index: number): Music;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">abstract class MusicCollection {
+  int getCount();
+
+  int getTotal();
+
+  int getPage();
+
+  int getPageSize();
+
+  Music getMusic(int index);
+}</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.1.0</dd>
+            </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" props="apple unity cs">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry>
+                <pt>count</pt>
+                <pd>此次请求的音乐资源列表中的音乐数量。</pd>
+            </plentry>
+            <plentry>
+                <pt>total</pt>
+                <pd>列表内音乐资源的总数量。</pd>
+            </plentry>
+            <plentry>
+                <pt>page</pt>
+                <pd>当前页面编号，默认从 1 开始。</pd>
+            </plentry>
+            <plentry>
+                <pt>pageSize</pt>
+                <pd>当前音乐资源列表的页面总数量，最大值为 50。</pd>
+            </plentry>
+            <plentry>
+                <pt>musicList</pt>
+                <pd>当前页面列表中音乐资源的详细信息，详见 <xref keyref="Music"/>。</pd>
+            </plentry>
+            </parml>
+        </section>
+        <section props="cpp unreal bp flutter electron rn" id="sub-method">
+            <title>方法</title>
+            <parml>
+                <plentry>
+                    <pt>getCount</pt>
+                    <pd>获取本次请求的音乐资源数量，详见 <xref keyref="getCount_MusicCollection"/>。</pd>
+                </plentry>
+                <plentry>
+                    <pt>getTotal</pt>
+                    <pd>获取列表内音乐资源的总数量，详见 <xref keyref="getTotal_MusicCollection"/>。</pd>
+                </plentry>
+                <plentry>
+                    <pt>getPage</pt>
+                    <pd>获取音乐资源列表当前页的页码，详见 <xref keyref="getPage_MusicCollection"/>。</pd>
+                </plentry>
+                <plentry>
+                    <pt>getPageSize</pt>
+                    <pd>获取 SDK 实际返回的音乐资源数量，详见 <xref keyref="getPageSize_MusicCollection"/>。</pd>
+                </plentry>
+                <plentry>
+                    <pt>getMusic</pt>
+                    <pd>获取当前页面列表中音乐资源的详细信息，详见 <xref keyref="getMusic_MusicCollection"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

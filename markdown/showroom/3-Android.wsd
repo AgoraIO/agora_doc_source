@@ -1,0 +1,47 @@
+@startuml
+autonumber
+title 秀场直播 API 时序图
+participant "声网 RTC SDK" as sdk
+participant "秀场直播 App" as app #White
+participant "声网云服务\n(Service)" as service
+== 主播 PK 连麦 ==
+app -> service: 获取可参与 PK 连麦的主播列表 \ngetAllPKUserList
+activate service
+service -->> app: 显示可参与 PK 连麦的主播列表
+deactivate service
+app -> service: 获取当前 PK 连麦的邀请列表 \ngetAllPKInvitationList
+activate service
+service -->> app: 判断是否出于 PK 连麦的状态中 \n过滤出可参与 PK 连麦的主播列表
+deactivate service
+app -> app: 主播 A 点击选择可参与 PK 连麦的主播
+app -> service: 主播 A 发起 PK 连麦申请 \ncreatePKInvitation
+activate service
+service -->> app: 主播 B 收到 PK 申请通知 \nsubscribePKInvitationChanged(status=updated)
+alt#LightSkyBlue #WhiteSmoke 对方主播拒绝 PK 连麦申请
+app -> service: 主播 B 拒绝 PK 连麦申请 \nrejectPKInvitation
+end
+alt#LightSkyBlue #WhiteSmoke 对方主播接受 PK 连麦申请
+app -> service: 主播 B 接受 PK 连麦申请 \nacceptPKInvitation
+deactivate service
+service -->> app: 主播 A 收到主播 B 接受连麦的通知，并知晓主播 B 的 UID 和频道名 \nsubscribePKInvitationChanged(status=updated)
+app -> sdk: joinChannelEx
+note right
+房间 A 和 B 的用户都以观众的角色加入对方频道
+end note
+app -> sdk: setupRemoteVideoEx
+note right
+进入对方频道后，渲染对方房主的视频
+end note
+app -> app: 切换到主播 A 和 B 在 PK 连麦的界面
+end
+== 结束主播 PK 连麦 ==
+app -> service: 结束 PK 连麦 \nstopInteraction
+activate service
+service -->> app: PK 连麦结束通知 \nsubscribePKInvitationChanged(status=deleted)
+deactivate service
+app -> sdk:  leaveChannelEx
+note right
+房间 A 和 B 的用户都离开对方频道
+end note
+app -> app: 切换到主播 A 或 B 单人直播的界面
+@enduml

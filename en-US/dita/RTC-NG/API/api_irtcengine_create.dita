@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_create">
+    <title><ph keyref="create"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Creates and initializes <xref keyref="IRtcEngine"/>.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="create"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public static synchronized RtcEngine create(
+      Context context, String appId, IRtcEngineEventHandler handler) throws Exception {}
+</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">+ (instancetype _Nonnull)sharedEngineWithAppId:(NSString * _Nonnull)appId
+                                      delegate:(id&lt;AgoraRtcEngineDelegate&gt; _Nullable)delegate;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
+        </section>
+        <section id="detailed_desc">
+            <title>Details</title>
+            <p props="native unreal bp unity electron flutter cs">All called methods provided by the <apiname keyref="IRtcEngine"/> class are executed asynchronously. Agora recommends calling these methods in the same thread.</p>
+            <note type="attention">
+            <ul id="ul_uy4_mtq_4qb">
+            <li>Before calling other APIs, you must call this method to create the <apiname keyref="IRtcEngine"/> object.</li>
+            <li>You can create the <apiname keyref="IRtcEngine"/> instance either by calling this method or by calling <xref keyref="initialize"/>. The difference between <apiname keyref="initialize"/> and this method is that <apiname keyref="initialize"/> supports more configurations when creating the <apiname keyref="IRtcEngine"/> instance, for example, specifying the region for connection and setting the log files.</li>
+            <li>The SDK supports creating only one <apiname keyref="IRtcEngine"/> instance for an app.</li>
+            </ul> </note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry props="android cpp unreal bp">
+                <pt>context</pt>
+                <pd conkeyref="RtcEngineConfig/context"/>
+            </plentry>
+            <plentry>
+                <pt>appId</pt>
+                <pd conkeyref="RtcEngineConfig/appid"/>
+            </plentry>
+            <plentry props="android ios mac">
+                <pt props="android">handler</pt>
+                <pt props="ios mac">delegate</pt>
+                <pd id="handler">The event handler for <xref keyref="IRtcEngine"/>. See <xref keyref="IRtcEngineEventHandler"/>.</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title><ph props="apple">Returns </ph><ph props="android">Returns/Exceptions</ph></title>
+            <ul>
+            <li>The <apiname keyref="IRtcEngine"/> instance, if the method call succeeds.</li>
+            <li props="android">The method call fails and an exception is thrown, you need to catch the exception and handle it. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            <li props="ios mac">An error code, if the method call fails.<ul>
+                <li>-1: A general error occurs (no specified reason).</li>
+                <li>-2: The parameter is invalid.</li>
+                <li>-7: The SDK is not initialized.</li>
+                <li>-22: The resource request failed. The SDK fails to allocate resources because your app consumes too much system resource or the system resources are insufficient.</li>
+                <li>-101: The App ID is invalid.</li>
+                </ul></li>
+            </ul> </section>
+    </refbody>
+</reference>

@@ -1,0 +1,56 @@
+@startuml
+autonumber
+title 融合场景的 API 时序图
+participant "App" as app #LightGrey
+participant "RtcEngine" as rtc #White
+participant "IMetaService" as service
+participant "IMetaScene" as scene
+participant "ILocalUserAvatar" as avatar
+participant "IMetaServiceEventHandler" as serviceevent
+participant "IMetaSceneEventHandler" as sceneevent
+== 创建并初始化 IMetaService ==
+app -> rtc: RtcEngine.create
+app -> service: create
+app -> service: initialize
+== 获取并下载场景资源 ==
+app -> service: getSceneAssetsInfo
+serviceevent -->> app: onGetSceneAssetsInfoResult
+app -> service: downloadSceneAssets
+serviceevent -->> app: onDownloadSceneAssetsProgress
+== 创建场景 ==
+app -> service: createScene
+note right
+config 中开启并设置面部捕捉插件
+end note
+service -> scene: new
+scene -->> service: return
+service -->> app: IMetaScene
+serviceevent -->> app: onCreateSceneResult
+serviceevent -->> app: onConnectionStateChanged
+== 设置用户信息并进入场景 ==
+app -> scene: getLocalUserAvatar
+app -> avatar: setUserInfo
+app -> avatar: setModelInfo
+app -> avatar: setExtraInfo
+app -> scene: enterScene
+sceneevent -->> app: onEnterSceneResult
+note right
+Android 可以在该回调之前渲染 Texture
+end note
+== 加入频道并开启直播 ==
+app -> rtc: setupLocalVideo
+app -> rtc: joinChannel
+app -> scene: addSceneView
+sceneevent -->> app: onAddSceneViewResult
+app -> scene: enableSceneVideoCapture(view,true)
+== 离开频道并释放资源 ==
+app -> scene: removeSceneView
+sceneevent -->> app: onRemoveSceneViewResult
+app -> rtc: leaveChannel
+app -> scene: leaveScene
+sceneevent -->> app: onLeaveSceneResult
+app -> scene: release
+sceneevent -->> app: onReleasedScene
+app -> service: destroy
+app -> rtc: destroy
+@enduml

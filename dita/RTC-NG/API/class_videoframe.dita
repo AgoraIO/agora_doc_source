@@ -1,0 +1,688 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_videoframe">
+    <title><ph keyref="VideoFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc">视频帧的属性设置。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class VideoFrame implements RefCounted {
+  public interface Buffer extends RefCounted {
+    @CalledByNative("Buffer") int getWidth();
+    @CalledByNative("Buffer") int getHeight();
+    @CalledByNative("Buffer") I420Buffer toI420();
+    @Override @CalledByNative("Buffer") void retain();
+    @Override @CalledByNative("Buffer") void release();
+    @CalledByNative("Buffer")
+    Buffer cropAndScale(
+        int cropX, int cropY, int cropWidth, int cropHeight, int scaleWidth, int scaleHeight);
+    @CalledByNative("Buffer") @Nullable Buffer mirror(int frameRotation);
+    @CalledByNative("Buffer") @Nullable Buffer rotate(int frameRotation);
+    @CalledByNative("Buffer")
+    @Nullable
+    Buffer transform(int cropX, int cropY, int cropWidth, int cropHeight, int scaleWidth,
+        int scaleHeight, int frameRotation);
+  }
+  public interface I420Buffer extends Buffer {
+    @CalledByNative("I420Buffer") ByteBuffer getDataY();
+    @CalledByNative("I420Buffer") ByteBuffer getDataU();
+    @CalledByNative("I420Buffer") ByteBuffer getDataV();
+    @CalledByNative("I420Buffer") int getStrideY();
+    @CalledByNative("I420Buffer") int getStrideU();
+    @CalledByNative("I420Buffer") int getStrideV();
+  }
+  public interface I422Buffer extends Buffer {
+    @CalledByNative("I422Buffer") ByteBuffer getDataY();
+    @CalledByNative("I422Buffer") ByteBuffer getDataU();
+    @CalledByNative("I422Buffer") ByteBuffer getDataV();
+    @CalledByNative("I422Buffer") int getStrideY();
+    @CalledByNative("I422Buffer") int getStrideU();
+    @CalledByNative("I422Buffer") int getStrideV();
+  }
+  public interface RgbaBuffer extends Buffer {
+    @CalledByNative("RgbaBuffer") ByteBuffer getData();
+  }
+  public interface TextureBuffer extends Buffer {
+    enum Type {
+      OES(GLES11Ext.GL_TEXTURE_EXTERNAL_OES),
+      RGB(GLES20.GL_TEXTURE_2D);
+      private final int glTarget;
+      private Type(final int glTarget) {
+        this.glTarget = glTarget;
+      }
+      public int getGlTarget() {
+        return glTarget;
+      }
+    }
+    enum ContextType {
+      EGL_CONTEXT_10,
+      EGL_CONTEXT_14;
+    }
+    Type getType();
+    @CalledByNative("TextureBuffer") int getTextureId();
+    Matrix getTransformMatrix();
+    EglBase.Context getEglBaseContext();
+    @CalledByNative("TextureBuffer") long getNativeEglContext();
+    @CalledByNative("TextureBuffer") int getEglContextType();
+    @CalledByNative("TextureBuffer") float[] getTransformMatrixArray();
+    @CalledByNative("TextureBuffer") int getSequence();
+  }
+  public interface ColorSpace {
+    enum Range {
+      Invalid(0),
+      Limited(1),
+      Full(2),
+      Derived(3);
+      private final int range;
+      private Range(int range) {
+        this.range = range;
+      }
+      public int getRange() {
+        return range;
+      };
+    }
+    enum Matrix {
+      RGB(0),
+      BT709(1),
+      Unspecified(2),
+      FCC(4),
+      BT470BG(5),
+      SMPTE170M(6),
+      SMPTE240M(7),
+      YCOCG(8),
+      BT2020_NCL(9),
+      BT2020_CL(10),
+      SMPTE2085(11),
+      CDNCLS(12),
+      CDCLS(13),
+      BT2100_ICTCP(14);
+      private final int matrix;
+      private Matrix(int matrix) {
+        this.matrix = matrix;
+      }
+      public int getMatrix() {
+        return matrix;
+      };
+    }
+    enum Transfer {
+      BT709(1),
+      Unspecified(2),
+      GAMMA22(4),
+      GAMMA28(5),
+      SMPTE170M(6),
+      SMPTE240M(7),
+      LINEAR(8),
+      LOG(9),
+      LOG_SQRT(10),
+      IEC61966_2_4(11),
+      BT1361_ECG(12),
+      IEC61966_2_1(13),
+      BT2020_10(14),
+      BT2020_12(15),
+      SMPTEST2084(16),
+      SMPTEST428(17),
+      ARIB_STD_B67(18);
+      private final int transfer;
+      private Transfer(int transfer) {
+        this.transfer = transfer;
+      }
+      public int getTransfer() {
+        return transfer;
+      }
+    }
+    enum Primary {
+      BT709(1),
+      Unspecified(2),
+      BT470M(4),
+      BT470BG(5),
+      kSMPTE170M(6),
+      kSMPTE240M(7),
+      kFILM(8),
+      kBT2020(9),
+      kSMPTEST428(10),
+      kSMPTEST431(11),
+      kSMPTEST432(12),
+      kJEDECP22(22);
+      private final int primary;
+      private Primary(int primary) {
+        this.primary = primary;
+      }
+      public int getPrimary() {
+        return primary;
+      }
+    }
+    Range getRange();
+    Matrix getMatrix();
+    Transfer getTransfer();
+    Primary getPrimary();
+  }
+  public enum SourceType {
+    kFrontCamera,
+    kBackCamera,
+    kUnspecified,
+  }
+  private Buffer buffer;
+  private int rotation;
+  private long timestampNs;
+  private ColorSpace colorSpace;
+  private SourceType sourceType;
+  private float sampleAspectRatio;
+  private VideoFrameMetaInfo metaInfo = new VideoFrameMetaInfo();
+  public VideoFrame(Buffer buffer, int rotation, long timestampNs) {
+    this(buffer, rotation, timestampNs, null, null, 1.0f, SourceType.kUnspecified.ordinal());
+  }
+  @CalledByNative
+  public VideoFrame(Buffer buffer, int rotation, long timestampNs, ColorSpace colorSpace,
+      float sampleAspectRatio, int sourceType) {
+    if (buffer == null) {
+      throw new IllegalArgumentException("buffer not allowed to be null");
+    }
+    if (rotation % 90 != 0) {
+      throw new IllegalArgumentException("rotation must be a multiple of 90");
+    }
+    this.buffer = buffer;
+    this.rotation = rotation;
+    this.timestampNs = timestampNs;
+    this.colorSpace = colorSpace;
+    this.sampleAspectRatio = sampleAspectRatio;
+    this.sourceType = SourceType.values()[sourceType];
+  }
+  @CalledByNative
+  public SourceType getSourceType() {
+    return sourceType;
+  }
+  public float getSampleAspectRatio() {
+    return sampleAspectRatio;
+  }
+  @CalledByNative
+  public Buffer getBuffer() {
+    return buffer;
+  }
+  @CalledByNative
+  public int getRotation() {
+    return rotation;
+  }
+  @CalledByNative
+  public long getTimestampNs() {
+    return timestampNs;
+  }
+  @CalledByNative
+  public VideoFrameMetaInfo getMetaInfo() {
+    return metaInfo;
+  }
+  public int getRotatedWidth() {
+    if (rotation % 180 == 0) {
+      return buffer.getWidth();
+    }
+    return buffer.getHeight();
+  }
+  public int getRotatedHeight() {
+    if (rotation % 180 == 0) {
+      return buffer.getHeight();
+    }
+    return buffer.getWidth();
+  }
+  public void replaceBuffer(Buffer buffer, int rotation, long timestampNs) {
+    release();
+    this.buffer = buffer;
+    this.rotation = rotation;
+    this.timestampNs = timestampNs;
+  }
+  public ColorSpace getColorSpace() {
+    return colorSpace;
+  }
+  @Override
+  public void retain() {
+    buffer.retain();
+  }
+  @Override
+  @CalledByNative
+  public void release() {
+    buffer.release();
+  }
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraOutputVideoFrame : NSObject
+@property (nonatomic, assign) NSInteger type;
+@property (nonatomic, assign) int width;
+@property (nonatomic, assign) int height;
+@property (nonatomic, assign) int yStride;
+@property (nonatomic, assign) int uStride;
+@property (nonatomic, assign) int vStride;
+@property (nonatomic, assign) uint8_t* _Nullable yBuffer;
+@property (nonatomic, assign) uint8_t* _Nullable uBuffer;
+@property (nonatomic, assign) uint8_t* _Nullable vBuffer;
+@property (nonatomic, assign) int rotation;
+@property (nonatomic, assign) int64_t renderTimeMs;
+@property (nonatomic, assign) int avSyncType;
+@property(assign, nonatomic) CVPixelBufferRef _Nullable pixelBuffer;
+@property(nonatomic, strong) NSDictionary *_Nonnull metaInfo;
+
+@end</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct VideoFrame {
+  VideoFrame():
+  type(VIDEO_PIXEL_DEFAULT),
+  width(0),
+  height(0),
+  yStride(0),
+  uStride(0),
+  vStride(0),
+  yBuffer(NULL),
+  uBuffer(NULL),
+  vBuffer(NULL),
+  rotation(0),
+  renderTimeMs(0),
+  avsync_type(0),
+  metadata_buffer(NULL),
+  metadata_size(0),
+  sharedContext(0),
+  textureId(0),
+  pixelBuffer(NULL),
+  metaInfo(NULL){
+    memset(matrix, 0, sizeof(matrix));
+  }
+  VIDEO_PIXEL_FORMAT type;
+  int width;
+  int height;
+  int yStride;
+  int uStride;
+  int vStride;
+  uint8_t* yBuffer;
+  uint8_t* uBuffer;
+  uint8_t* vBuffer;
+  int rotation;
+  int64_t renderTimeMs;
+  int avsync_type;
+  uint8_t* metadata_buffer;
+  int metadata_size;
+  void* sharedContext;
+  int textureId;
+  float matrix[16];
+  void* pixelBuffer;
+  IVideoFrameMetaInfo* metaInfo;
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FVideoFrame {
+
+	GENERATED_BODY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	EVIDEO_PIXEL_FORMAT type;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int width;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int height;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int yStride;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int uStride;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int vStride;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int rotation;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	TArray&lt;int64&gt; yBuffer;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	TArray&lt;int64&gt; uBuffer;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	TArray&lt;int64&gt; vBuffer;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int64 renderTimeMs;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int avsync_type;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	TArray&lt;int64&gt; metadata_buffer;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int metadata_size;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int64 sharedContext;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int textureId;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	TArray&lt;float&gt; matrix;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	TArray&lt;int64&gt; alphaBuffer;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	TArray&lt;float&gt; pixelBuffer;
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export class VideoFrame {
+
+  type?: VideoPixelFormat;
+
+  width?: number;
+
+  height?: number;
+
+  yStride?: number;
+
+  uStride?: number;
+
+  vStride?: number;
+
+  yBuffer?: Uint8Array;
+
+  uBuffer?: Uint8Array;
+
+  vBuffer?: Uint8Array;
+
+  rotation?: number;
+
+  renderTimeMs?: number;
+
+  avsync_type?: number;
+
+  metadata_buffer?: Uint8Array;
+
+  metadata_size?: number;
+
+  textureId?: number;
+
+  matrix?: number[];
+
+}</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public class VideoFrame
+    {
+        public VIDEO_PIXEL_FORMAT type;
+
+        public int width;
+
+        public int height;
+
+        public int yStride;
+
+        public int uStride;
+
+        public int vStride;
+
+        public byte[] yBuffer;
+
+        public IntPtr yBufferPtr;
+
+        public byte[] uBuffer;
+
+        public IntPtr uBufferPtr;
+
+        public byte[] vBuffer;
+
+        public IntPtr vBufferPtr;
+
+        public int rotation;
+
+        public long renderTimeMs;
+
+        public int avsync_type;
+
+        public IntPtr metadata_buffer;
+
+        public int metadata_size;
+
+        public IntPtr sharedContext;
+
+        public int textureId;
+
+        public float[] matrix;
+    };</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class VideoFrame {
+
+  type?: VideoPixelFormat;
+
+  width?: number;
+
+  height?: number;
+
+  yStride?: number;
+
+  uStride?: number;
+
+  vStride?: number;
+
+  yBuffer?: Uint8Array;
+
+  uBuffer?: Uint8Array;
+
+  vBuffer?: Uint8Array;
+
+  rotation?: number;
+
+  renderTimeMs?: number;
+
+  avsync_type?: number;
+
+  metadata_buffer?: Uint8Array;
+
+  metadata_size?: number;
+
+  textureId?: number;
+
+  matrix?: number[];
+
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class VideoFrame {
+  const VideoFrame(
+      {this.type,
+      this.width,
+      this.height,
+      this.yStride,
+      this.uStride,
+      this.vStride,
+      this.yBuffer,
+      this.uBuffer,
+      this.vBuffer,
+      this.rotation,
+      this.renderTimeMs,
+      this.avsyncType,
+      this.metadataBuffer,
+      this.metadataSize,
+      this.textureId,
+      this.matrix,
+      this.pixelBuffer});
+
+  @JsonKey(name: 'type')
+  final VideoPixelFormat? type;
+
+  @JsonKey(name: 'width')
+  final int? width;
+
+  @JsonKey(name: 'height')
+  final int? height;
+
+  @JsonKey(name: 'yStride')
+  final int? yStride;
+
+  @JsonKey(name: 'uStride')
+  final int? uStride;
+
+  @JsonKey(name: 'vStride')
+  final int? vStride;
+
+  @JsonKey(name: 'yBuffer', ignore: true)
+  final Uint8List? yBuffer;
+
+  @JsonKey(name: 'uBuffer', ignore: true)
+  final Uint8List? uBuffer;
+
+  @JsonKey(name: 'vBuffer', ignore: true)
+  final Uint8List? vBuffer;
+
+  @JsonKey(name: 'rotation')
+  final int? rotation;
+
+  @JsonKey(name: 'renderTimeMs')
+  final int? renderTimeMs;
+
+  @JsonKey(name: 'avsync_type')
+  final int? avsyncType;
+
+  @JsonKey(name: 'metadata_buffer', ignore: true)
+  final Uint8List? metadataBuffer;
+
+  @JsonKey(name: 'metadata_size')
+  final int? metadataSize;
+
+  @JsonKey(name: 'textureId')
+  final int? textureId;
+
+  @JsonKey(name: 'matrix')
+  final List&lt;double>? matrix;
+
+  @JsonKey(name: 'pixelBuffer', ignore: true)
+  final Uint8List? pixelBuffer;
+
+  factory VideoFrame.fromJson(Map&lt;String, dynamic> json) =>
+      _$VideoFrameFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$VideoFrameToJson(this);
+}</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+        </section>
+        <section id="detailed_desc">
+            <p>缓冲区给出的是指向指针的指针，该接口不能修改缓冲区的指针，只能修改缓冲区的内容。</p>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+        <plentry props="apple cpp unreal bp unity flutter rn electron cs">
+          <pt>type</pt>
+          <pd props="cpp unreal bp unity electron rn flutter cs">像素格式。详见 <xref keyref="VIDEO_PIXEL_FORMAT"/>。</pd>
+          <pd props="ios mac" conkeyref="ExternalVideoFrame/oc-format"/>
+        </plentry>
+        <plentry props="apple cpp unreal bp unity flutter rn electron cs">
+          <pt>width</pt>
+          <pd>视频像素宽度。</pd>
+        </plentry>
+        <plentry props="apple cpp unreal bp unity flutter rn electron cs">
+          <pt>height</pt>
+          <pd>视频像素高度。</pd>
+        </plentry>
+        <plentry props="apple cpp unreal bp unity flutter rn electron cs">
+          <pt>yStride</pt>
+          <pd>对 YUV 数据，表示 Y 缓冲区的行跨度；对 RGBA 数据，表示总的数据长度。
+            <note type="attention">在处理视频数据时，需根据该参数处理每行像素数据之间的偏移量，否则可能导致图像失真。</note>
+          </pd>
+        </plentry>
+        <plentry props="apple cpp unreal bp unity flutter rn electron cs">
+          <pt>uStride</pt>
+          <pd>对 YUV 数据，表示 U 缓冲区的行跨度；对 RGBA 数据，值为 0。
+            <note type="attention">在处理视频数据时，需根据该参数处理每行像素数据之间的偏移量，否则可能导致图像失真。</note>
+          </pd>
+        </plentry>
+        <plentry props="apple cpp unreal bp unity flutter rn electron cs">
+          <pt>vStride</pt>
+          <pd>对 YUV 数据，表示 V 缓冲区的行跨度；对 RGBA 数据，值为 0。
+           <note type="attention">在处理视频数据时，需根据该参数处理每行像素数据之间的偏移量，否则可能导致图像失真。</note>
+          </pd>
+        </plentry>
+        <plentry props="apple cpp unreal bp unity flutter rn electron cs">
+          <pt>yBuffer</pt>
+          <pd>对 YUV 数据，表示 Y 缓冲区的指针；对 RGBA 数据，表示数据缓冲区。</pd>
+        </plentry>
+        <plentry props="apple cpp unreal bp unity flutter rn electron cs">
+          <pt>uBuffer</pt>
+          <pd>对 YUV 数据，表示 U 缓冲区的指针；对 RGBA 数据，值为空。</pd>
+        </plentry>
+        <plentry props="apple cpp unreal bp unity flutter rn electron cs">
+          <pt>vBuffer</pt>
+          <pd>对 YUV 数据，表示 V 缓冲区的指针；对 RGBA 数据，值为空。</pd>
+        </plentry>
+        <plentry props="hide">
+          <pt>I420Buffer</pt>
+          <pd>I420 视频帧的缓冲区，包括 Y、U、V 平面的数据。</pd>
+        </plentry>
+        <plentry props="hide">
+          <pt>I422Buffer</pt>
+          <pd>I422 视频帧的缓冲区，包括 Y、U、V 平面的数据。</pd>
+        </plentry>
+        <plentry props="hide">
+          <pt>TextureBuffer</pt>
+          <pd>Texture 视频帧的缓冲区，可以为 OES 或 RGB 格式。</pd>
+        </plentry>
+        <plentry props="android">
+          <pt>buffer</pt>
+          <pd>
+            <note type="attention">该参数不可为空，否则会发生异常。</note>缓冲区的数据。与该参数相关的方法如下所示：</pd>
+          <pd>
+            <ul>
+              <li><codeph>getRotatedWidth</codeph>：获取旋转后的视频帧宽度。</li>
+              <li><codeph>getRotatedHeight</codeph>：获取旋转后的视频帧高度。</li>
+              <li><codeph>replaceBuffer</codeph>：将缓冲区中的数据替换为新的视频帧。</li>
+              <li><codeph>retain</codeph>：将缓冲区的引用计数加 1。</li>
+              <li><codeph>release</codeph>：将缓冲区的引用计数减 1。当计数为 0 时，缓冲区的资源会被释放。</li>
+            </ul>
+          </pd>
+        </plentry>
+        <plentry>
+          <pt>rotation</pt>
+          <pd>在渲染视频前设置该帧的顺时针旋转角度，目前支持 0 度、90 度、180 度，和 270 度。</pd>
+        </plentry>
+        <plentry props="apple cpp unreal bp unity flutter rn electron cs">
+          <pt>renderTimeMs</pt>
+          <pd>视频帧被渲染时的 Unix 时间戳（毫秒）。该时间戳可用于指导渲染视频帧。该参数为必填。</pd>
+        </plentry>
+        <plentry props="android">
+          <pt>timestampNs</pt>
+          <pd>视频帧的时间戳（纳秒）。</pd>
+        </plentry>
+        <plentry props="apple cpp unreal bp electron rn unity flutter cs">
+          <pt props="apple cpp unreal bp unity rn electron cs">avsync_type</pt>
+          <pt props="flutter">avsyncType</pt>
+          <pd>保留参数。</pd>
+        </plentry>
+        <plentry props="cpp unreal bp electron rn unity flutter cs">
+          <pt props="cpp unreal bp electron unity rn cs">metadata_buffer</pt>
+          <pt props="flutter">metadataBuffer</pt>
+          <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的数据缓冲区，默认值为 <codeph>NULL</codeph>。</pd>
+        </plentry>
+        <plentry props="cpp unreal bp electron rn unity flutter cs">
+          <pt props="cpp unreal bp electron unity rn cs">metadata_size</pt>
+          <pt props="flutter">metadataSize</pt>
+          <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的大小，默认值为 <codeph>0</codeph>。</pd>
+        </plentry>
+        <plentry props="cpp unreal bp unity cs">
+          <pt>sharedContext</pt>
+          <pd>该参数仅适用于 Texture 格式的视频数据。EGL Context。</pd>
+        </plentry>
+        <plentry props="cpp unreal bp electron unity rn flutter cs">
+          <pt>textureId</pt>
+          <pd>该参数仅适用于 Texture 格式的视频数据。Texture ID。</pd>
+        </plentry>
+        <plentry props="cpp unreal bp electron unity rn flutter cs">
+          <pt>matrix</pt>
+          <pd>该参数仅适用于 Texture 格式的视频数据。为一个输入的 4x4 变换矩阵，典型值为一个单位矩阵。</pd>
+        </plentry>
+        <plentry props="ios mac">
+          <pt>pixelBuffer</pt>
+          <pd>将数据填充到 CVPixelBuffer。</pd>
+        </plentry>
+        <plentry props="android">
+          <pt>colorSpace</pt>
+          <pd>表示视频帧的色彩空间。详见 <xref keyref="videocolorspace-link"/>。</pd>
+        </plentry>
+        <plentry props="android">
+          <pt>sourceType</pt>
+          <pd>在使用 SDK 采集视频时，表示该视频源的类型。
+            <ul>
+            <li><parmname>kFrontCamera</parmname>：前置摄像头。</li>
+            <li><parmname>kBackCamera</parmname>：后置摄像头。</li>
+            <li><parmname>kUnspecified</parmname>：(默认) 视频源类型未知。</li>
+            </ul></pd>
+        </plentry>
+        <plentry props="android">
+          <pt>sampleAspectRatio</pt>
+          <pd>单个像素的宽高比，即每个像素宽度与高度的比值。</pd>
+        </plentry>
+        <plentry props="hide">
+          <pt>alphaBuffer</pt>
+          <pd>
+            <p>表示人像分割算法输出的 alpha 通道数据，跟视频帧的尺寸一致。每个像素点的取值范围为 [0,255]，其中 0 表示背景；255 代表前景（人像）。</p>
+            <p>在用户自定义视频渲染场景下，该参数可帮助实现将视频背景自渲染为各种效果，例如：透明、纯色、图片、视频等。
+              <note>该参数需要<xref keyref="ticket-link"/>开通。</note></p>
+          </pd>
+        </plentry>
+        <plentry>
+          <pt>metaInfo</pt>
+          <pd>
+            <p>视频帧中的元信息。该参数需要<xref keyref="ticket-link"/>使用。</p>
+          </pd>
+        </plentry>
+      </parml></section>
+    </refbody>
+</reference>

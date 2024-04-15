@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusiccontentcenter_getcaches">
+    <title><ph keyref="getCaches" /></title>
+    <shortdesc id="short"><ph id="shortdesc">获取已缓存的音乐资源信息。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getCaches" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract MusicCacheInfo[] getCaches();</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (NSArray *)getCaches NS_SWIFT_NAME(getCaches());</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int getCaches(MusicCacheInfo *cacheInfo, int32_t* cacheInfoSize) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract getCaches(): { cacheInfo: MusicCacheInfo[]; cacheInfoSize: number };</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int GetCaches(ref MusicCacheInfo[] cacheInfo, ref Int32 cacheInfoSize);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract getCaches(): { cacheInfo: MusicCacheInfo[]; cacheInfoSize: number };</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;List&lt;MusicCacheInfo>> getCaches(int cacheInfoSize);</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <title>Details</title>
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.2.0</dd>
+            </dlentry>
+            </dl>
+            <p props="cpp">调用该方法前，你需要预先分配一定大小的内存空间用来存储缓存音乐资源的信息。</p>
+            <p>当你不再需要使用已缓存的音乐资源时，你需要及时释放内存以防止内存泄漏。</p>
+        </section>
+        <section id="parameters" props="cpp">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>cacheInfo</pt>
+                <pd>输出参数；指向用于存储已缓存音乐资源的内存缓冲区的指针。</pd>
+            </plentry>
+             <plentry>
+                 <pt>cacheInfoSize</pt>
+                 <pd>Input and output parameter.<ul><li>输入值：<parmname>cacheInfo</parmname> 数组的长度，即你所分配的 <xref keyref="MusicCacheInfo" /> 结构体的数量。</li>
+                 <li>输出值：方法执行完毕后输出的 <apiname keyref="MusicCacheInfo" /> 结构体的数量。</li></ul></pd>
+             </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul props="cpp">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+            <ul props="android ios">
+                <li>方法调用成功时，返回包含 <xref keyref="MusicCacheInfo" /> 对象的数组。</li>
+                <li>If the call fails, returns <ph keyref="NULL" />.</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>

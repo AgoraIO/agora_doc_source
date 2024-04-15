@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusicplayer_getplaysrc">
+    <title><ph keyref="getPlaySrc"/></title>
+    <shortdesc id="short"><ph id="shortdesc">获取当前播放的音乐资源的编号或 URL。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getPlaySrc"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">@Override String getPlaySrc();</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp unreal" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <title>详情</title>
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.2.0</dd>
+            </dlentry>
+            </dl>
+            <p>该方法需要在打开音乐资源之后调用：
+                <ul><li>如果你调用 <xref keyref="open2_IMusicPlayer"/> 方法打开了音乐资源，则此方法返回的是该音乐资源的编号（songCode）。</li>
+                <li>如果你调用 <xref keyref="open_IMusicPlayer"/> 方法打开了音乐资源，则返回的是该音乐资源的 URL。</li></ul></p>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p><ul><li>方法调用成功，返回音乐资源的编号或 URL。</li>
+            <li>方法调用失败，返回 <ph keyref="NULL"/>。</li></ul></p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setlocalvideomirrormode">
+    <title><ph keyref="setLocalVideoMirrorMode" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the local video mirror mode.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setLocalVideoMirrorMode" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setLocalVideoMirrorMode(int mode);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLocalVideoMirrorMode:(AgoraVideoMirrorMode)mode;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setLocalVideoMirrorMode(VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int SetLocalVideoMirrorMode(EVIDEO_MIRROR_MODE_TYPE mirrorMode);</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract setLocalVideoMirrorMode(mirrorMode: VideoMirrorModeType): number;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetLocalVideoMirrorMode(VIDEO_MIRROR_MODE_TYPE mirrorMode);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract setLocalVideoMirrorMode(mirrorMode: VideoMirrorModeType): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLocalVideoMirrorMode(VideoMirrorModeType mirrorMode);</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+        </section>
+        <section id="detailed_desc">
+            <title>Details</title>
+            <dl outputclass="deprecated">
+            <dlentry>
+                <dt>Deprecated:</dt>
+                <dd>This method is deprecated.</dd>
+                <dd props="native unreal bp flutter electron">Use <xref keyref="setupLocalVideo" /> or <xref keyref="setLocalRenderMode2" /> instead.</dd>
+                <dd props="unity rn">Use <xref keyref="setLocalRenderMode2" /> instead.</dd>
+            </dlentry>
+            </dl>
+        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt props="ios mac android">mode</pt>
+                <pt props="cpp unreal bp unity electron flutter rn cs">mirrorMode</pt>
+                <pd>
+                    <p props="ios mac cpp unreal bp unity flutter rn electron cs">The local video mirror mode. See <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</p>
+                    <p props="android">
+                    <ul conkeyref="setLocalRenderMode2/videomirrormodetype">
+                    <li />
+                    </ul> </p>
+                </pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <ul props="native unreal bp electron unity rn cs">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            </ul> </section>
+    </refbody>
+</reference>

@@ -1,57 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_selectaudiotrack">
-    <title><ph keyref="selectAudioTrack"/></title>
+    <title><ph keyref="selectAudioTrack_IMediaPlayer" /></title>
     <shortdesc id="short"><ph id="shortdesc">指定当前音频文件的播放音轨。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="selectAudioTrack"/>
+                <indexterm keyref="selectAudioTrack_IMediaPlayer" />
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)selectAudioTrack:(int)index;</codeblock>
-            <codeblock props="android" outputclass="language-java">int selectAudioTrack(int index);</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int SelectAudioTrack(int playerId, int index);</codeblock> </p>
-            <p outputclass="codeblock" props="rtc">
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)selectAudioTrack:(NSInteger)index;</codeblock>
-            <codeblock props="android" outputclass="language-java">public abstract int selectAudioTrack(int index);</codeblock> </p>
             <p outputclass="codeblock">
-            <codeblock props="cpp" outputclass="language-cpp">virtual int selectAudioTrack(int index) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; selectAudioTrack(int index);</codeblock> </p>
+            <codeblock props="android" outputclass="language-java">int selectAudioTrack(int index);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)selectAudioTrack:(int)index;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int selectAudioTrack(int index) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IMediaPlayer&quot;)
+	int SelectAudioTrack(int index);</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract selectAudioTrack(index: number): number;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int SelectAudioTrack(int index);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract selectAudioTrack(index: number): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; selectAudioTrack(int index);</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-            <dlentry>
-                <dt>自从</dt>
-                <dd>v3.5.1</dd>
-            </dlentry>
-            </dl>
+            <title>详情</title>
             <p>获取音频文件的音轨索引后，你可以调用该方法指定任一音轨进行播放。例如，如果一个多音轨文件的不同音轨存放了不同语言的歌曲，则你可以调用该方法设置播放语言。</p>
-            <note type="attention" id="note"><ph props="rtc-ng">你需要在调用 <xref keyref="getStreamInfo"/> 获取音频流索引值后调用该方法。</ph><ph props="rtc">你需要在调用 <xref keyref="startAudioMixing2"/> 并收到 <xref keyref="onAudioMixingStateChanged"/> (<apiname keyref="AUDIO_MIXING_STATE_PLAYING"/>) 回调后调用该方法</ph></note> </section>
+            <note type="attention" id="note"><ph>你需要在调用 <xref keyref="getStreamInfo" /> 获取音频流索引值后调用该方法。</ph></note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry props="rtc-ng">
-                <pt props="unity">playerId</pt>
-                <pd props="unity">播放器 ID。</pd>
-            </plentry>
             <plentry>
-                <pt props="ios mac cpp unity flutter">index</pt>
-                <pt props="android"><ph props="rtc-ng">index</ph><ph props="rtc">audioIndex</ph></pt>
+                <pt>index</pt>
                 <pd>音轨的索引值。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
-            <title>返回值</title>
-            <ul>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+            <ul props="native unreal bp electron unity rn cs">
             <li>0: 方法调用成功。</li>
-            <li>&lt; 0: 方法调用失败。</li>
+            <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
             </ul> </section>
     </refbody>
 </reference>

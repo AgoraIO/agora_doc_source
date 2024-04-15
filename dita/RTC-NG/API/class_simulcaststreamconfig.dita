@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_simulcaststreamconfig">
-    <title><ph keyref="SimulcastStreamConfig"/></title>
+    <title><ph keyref="SimulcastStreamConfig" /></title>
     <shortdesc id="short"><ph id="shortdesc">视频小流的配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -29,50 +29,72 @@
  @property (assign, nonatomic) int framerate;
  @property (assign, nonatomic) CGSize dimensions;
  @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct SimulcastStreamConfig {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct SimulcastStreamConfig {
+
   VideoDimensions dimensions;
-  int bitrate;
+
+  int kBitrate;
+
   int framerate;
-  SimulcastStreamConfig() : dimensions(160, 120), bitrate(65), framerate(5) {}
+  SimulcastStreamConfig() : dimensions(160, 120), kBitrate(65), framerate(5) {}
   bool operator==(const SimulcastStreamConfig&amp; rhs) const {
-    return dimensions == rhs.dimensions &amp;&amp; bitrate == rhs.bitrate &amp;&amp; framerate == rhs.framerate;
+    return dimensions == rhs.dimensions &amp;&amp; kBitrate == rhs.kBitrate &amp;&amp; framerate == rhs.framerate;
   }
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public class SimulcastStreamConfig {
-        public SimulcastStreamConfig()
-        {
-            dimensions = new VideoDimensions(160, 120);
-            bitrate = 65;
-            framerate = 5;
-        }
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FSimulcastStreamConfig
+{
+	GENERATED_BODY()
 
-        public SimulcastStreamConfig(VideoDimensions dimensions, int bitrate, int framerate)
-        {
-            this.dimensions = dimensions;
-            this.bitrate = bitrate;
-            this.framerate = framerate;
-        }
-        public VideoDimensions dimensions { set; get; }
-        public int bitrate { set; get; }
-        public int framerate { set; get; }
-    }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SimulcastStreamConfig&quot;)
+	FVideoDimensions dimensions;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SimulcastStreamConfig&quot;)
+	int bitrate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SimulcastStreamConfig&quot;)
+	int framerate;
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export class SimulcastStreamConfig {
+  dimensions?: VideoDimensions;
+  kBitrate?: number;
+  framerate?: number;
+}</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public class SimulcastStreamConfig
+    {
+        public VideoDimensions dimensions;
+        public int kBitrate;
+        public int framerate;
+    };</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class SimulcastStreamConfig {
+  dimensions?: VideoDimensions;
+  kBitrate?: number;
+  framerate?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class SimulcastStreamConfig {
+  const SimulcastStreamConfig({this.dimensions, this.kBitrate, this.framerate});
+
+  @JsonKey(name: 'dimensions')
+  final VideoDimensions? dimensions;
+  @JsonKey(name: 'kBitrate')
+  final int? kBitrate;
+  @JsonKey(name: 'framerate')
+  final int? framerate;
+  factory SimulcastStreamConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$SimulcastStreamConfigFromJson(json);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$SimulcastStreamConfigToJson(this);
+}</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>dimensions</pt>
-                <pd>视频尺寸<ph props="android cpp unity">，详见 <xref
-                    keyref="VideoDimensions"/></ph>。默认值为 160 × 120。</pd>
+                <pd><ph>视频尺寸。</ph><ph props="android cpp unreal bp unity electron rn flutter cs">详见 <xref keyref="VideoDimensions" />。</ph><ph>默认值为视频大流的 50%。</ph></pd>
             </plentry>
             <plentry>
-                <pt>bitrate</pt>
-                <pd>视频码率 (Kbps)。默认值为 65。</pd>
+                <pt props="android apple">bitrate</pt>
+                <pt props="cpp framework">kBitrate</pt>
+                <pd>视频码率 (Kbps)。该参数无需设置，SDK 会根据你设定的视频分辨率和帧率自动匹配最合适的码率。</pd>
             </plentry>
             <plentry>
                 <pt>framerate</pt>

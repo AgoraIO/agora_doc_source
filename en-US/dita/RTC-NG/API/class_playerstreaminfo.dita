@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_playerstreaminfo">
-    <title><ph keyref="PlayerStreamInfo"/></title>
+    <title><ph keyref="PlayerStreamInfo" /></title>
     <shortdesc id="short"><ph id="shortdesc">The detailed information of the media stream.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -39,7 +39,7 @@
 @property(nonatomic, assign) NSInteger rotation;
 
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct PlayerStreamInfo {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct PlayerStreamInfo {
   int streamIndex;
   MEDIA_STREAM_TYPE streamType;
   char codecName[kMaxCharBufferLength];
@@ -66,44 +66,189 @@
                        duration(0) {
     memset(codecName, 0, sizeof(codecName));
     memset(language, 0, sizeof(language));</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public struct PlayerStreamInfo {
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FPlayerStreamInfo
+{
+	GENERATED_BODY()
 
-      public int streamIndex;
-      public MEDIA_STREAM_TYPE streamType;
-      public string codecName;
-      public string language;
-      public int videoFrameRate;
-      public int videoBitRate;
-      public int videoWidth;
-      public int videoHeight;
-      public int videoRotation;
-      public int audioSampleRate;
-      public int audioChannels;
-      public int audioBitsPerSample;
-      public Int64 duration;
-   };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	int streamIndex;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	EMEDIA_STREAM_TYPE streamType;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	FString codecName;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	FString language;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	int videoFrameRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	int videoBitRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	int videoWidth;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	int videoHeight;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	int videoRotation;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	int audioSampleRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	int audioChannels;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	int audioBitsPerSample;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	int duration;
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export class PlayerStreamInfo {
+
+  streamIndex?: number;
+
+  streamType?: MediaStreamType;
+
+  codecName?: string;
+
+  language?: string;
+
+  videoFrameRate?: number;
+
+  videoBitRate?: number;
+
+  videoWidth?: number;
+
+  videoHeight?: number;
+
+  videoRotation?: number;
+
+  audioSampleRate?: number;
+
+  audioChannels?: number;
+
+  audioBitsPerSample?: number;
+
+  duration?: number;
+}</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public class PlayerStreamInfo
+    {
+        public int streamIndex { set; get; }
+        public MEDIA_STREAM_TYPE streamType { set; get; }
+        public string codecName { set; get; }
+        public string language { set; get; }
+        public int videoFrameRate { set; get; }
+        public int videoBitRate { set; get; }
+        public int videoWidth { set; get; }
+        public int videoHeight { set; get; }
+        public int videoRotation { set; get; }
+        public int audioSampleRate { set; get; }
+        public int audioChannels { set; get; }
+        public int audioBitsPerSample { set; get;
+        public int64_t duration { set; get; }
+        public PlayerStreamInfo()
+        {
+            streamIndex = 0;
+            streamType = MEDIA_STREAM_TYPE.STREAM_TYPE_UNKNOWN;
+            videoFrameRate = 0;
+            videoBitRate = 0;
+            videoWidth = 0;
+            videoHeight = 0;
+            videoRotation = 0;
+            audioSampleRate = 0;
+            audioChannels = 0;
+            audioBitsPerSample = 0;
+            duration = 0;
+            codecName = "";
+            language = "";
+        }
+    };</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class PlayerStreamInfo {
+
+  streamIndex?: number;
+
+  streamType?: MediaStreamType;
+
+  codecName?: string;
+
+  language?: string;
+
+  videoFrameRate?: number;
+
+  videoBitRate?: number;
+
+  videoWidth?: number;
+
+  videoHeight?: number;
+
+  videoRotation?: number;
+
+  audioSampleRate?: number;
+
+  audioChannels?: number;
+
+  audioBitsPerSample?: number;
+
+  duration?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class PlayerStreamInfo {
+  const PlayerStreamInfo(
+      {this.streamIndex,
+      this.streamType,
+      this.codecName,
+      this.language,
+      this.videoFrameRate,
+      this.videoBitRate,
+      this.videoWidth,
+      this.videoHeight,
+      this.videoRotation,
+      this.audioSampleRate,
+      this.audioChannels,
+      this.audioBitsPerSample,
+      this.duration});
+
+  @JsonKey(name: 'streamIndex')
+  final int? streamIndex;
+  @JsonKey(name: 'streamType')
+  final MediaStreamType? streamType;
+  @JsonKey(name: 'codecName')
+  final String? codecName;
+  @JsonKey(name: 'language')
+  final String? language;
+  @JsonKey(name: 'videoFrameRate')
+  final int? videoFrameRate;
+  @JsonKey(name: 'videoBitRate')
+  final int? videoBitRate;
+  @JsonKey(name: 'videoWidth')
+  final int? videoWidth;
+  @JsonKey(name: 'videoHeight')
+  final int? videoHeight;
+  @JsonKey(name: 'videoRotation')
+  final int? videoRotation;
+  @JsonKey(name: 'audioSampleRate')
+  final int? audioSampleRate;
+  @JsonKey(name: 'audioChannels')
+  final int? audioChannels;
+  @JsonKey(name: 'audioBitsPerSample')
+  final int? audioBitsPerSample;
+  @JsonKey(name: 'duration')
+  final int? duration;
+  factory PlayerStreamInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$PlayerStreamInfoFromJson(json);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$PlayerStreamInfoToJson(this);
+}</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>streamIndex</pt>
                 <pd>The index of the media stream.</pd>
             </plentry>
             <plentry>
-                <pt props="ios mac cpp unity">streamType</pt>
+                <pt props="ios mac cpp unreal bp unity electron rn flutter cs">streamType</pt>
                 <pt props="android">mediaStreamType</pt>
-                <pd><ph>The type of the media stream. </ph><ph props="ios mac cpp unity">See <xref
-                    keyref="MEDIA_STREAM_TYPE"/>.</ph><ul props="android">
-                    <li><ph keyref="STREAM_TYPE_UNKNOWN"/>(0): The type is unknown.</li>
-                    <li><ph keyref="STREAM_TYPE_VIDEO"/>(1): The video stream.</li>
-                    <li><ph keyref="STREAM_TYPE_AUDIO"/>(2): The audio stream.</li>
-                    <li><ph keyref="STREAM_TYPE_SUBTITLE"/>(3): The subtitle stream.</li>
+                <pd><ph>The type of the media stream. </ph><ph props="ios mac cpp unreal bp unity electron rn flutter cs">See <xref keyref="MEDIA_STREAM_TYPE" />.</ph><ul props="android">
+                    <li><ph keyref="STREAM_TYPE_UNKNOWN" />(0): The type is unknown.</li>
+                    <li><ph keyref="STREAM_TYPE_VIDEO" />(1): The video stream.</li>
+                    <li><ph keyref="STREAM_TYPE_AUDIO" />(2): The audio stream.</li>
+                    <li><ph keyref="STREAM_TYPE_SUBTITLE" />(3): The subtitle stream.</li>
                     </ul> </pd>
             </plentry>
             <plentry>
@@ -131,7 +276,7 @@
                 <pd>This parameter only takes effect for video streams, and indicates the video height (pixel).</pd>
             </plentry>
             <plentry>
-                <pt props="android unity cpp">videoRotation</pt>
+                <pt props="android unity cpp unreal bp electron rn flutter cs">videoRotation</pt>
                 <pt props="ios mac">rotation</pt>
                 <pd>This parameter only takes effect for video streams, and indicates the video rotation angle.</pd>
             </plentry>
@@ -143,14 +288,14 @@
                 <pt>audioChannels</pt>
                 <pd>This parameter only takes effect for audio streams, and indicates the audio channel number.</pd>
             </plentry>
-            <plentry props="android cpp unity">
-                <pt props="cpp unity">audioBitsPerSample</pt>
+            <plentry props="android cpp unreal bp unity electron rn flutter cs">
+                <pt props="cpp unreal bp unity electron rn flutter cs">audioBitsPerSample</pt>
                 <pt props="android">audioBytesPerSample</pt>
                 <pd>This parameter only takes effect for audio streams, and indicates the bit number of each audio sample.</pd>
             </plentry>
             <plentry>
                 <pt>duration</pt>
-                <pd>The total duration (s) of the media stream.</pd>
+                <pd>The total duration (ms) of the media stream.</pd>
             </plentry>
             </parml> </section>
     </refbody>

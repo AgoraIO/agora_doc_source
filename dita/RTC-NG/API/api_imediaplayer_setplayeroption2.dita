@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_setplayeroption2">
+    <title><ph keyref="setPlayerOption2"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置媒体播放器选项，用于提供技术预览或特别定制功能。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setPlayerOption2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">int setPlayerOptionString(String key, String value);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setPlayerOptionString:(NSString *)key value:(NSString *)value NS_SWIFT_NAME(setPlayerOptionString(_:value:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setPlayerOption(const char* key, const char* value) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract setPlayerOptionInString(key: string, value: string): number;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetPlayerOption(string key, string value);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract setPlayerOptionInString(key: string, value: string): number;</codeblock>
+           <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setPlayerOptionInString(
+    {required String key, required String value});</codeblock> 
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+        </section>
+        <section id="detailed_desc">
+            <title>详情</title>
+            <p conkeyref="setPlayerOption/desc1"/>
+            <p>该方法和 <xref keyref="setPlayerOption"/> 的区别在于，该方法的 <parmname>value</parmname> 是 String 型，<apiname keyref="setPlayerOption"/> 的 <parmname>value</parmname> 是 Int 型。二者不可混用。</p>
+            <note type="attention" conkeyref="setPlayerOption/desc2"/></section>
+        <section id="parameters" conkeyref="setPlayerOption/parameters">
+            </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+            <ul props="native unreal bp electron unity rn cs">
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+            </ul> </section>
+    </refbody>
+</reference>

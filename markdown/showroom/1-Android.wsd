@@ -1,0 +1,25 @@
+@startuml
+autonumber
+title 秀场直播 API 时序图
+participant "声网 RTC SDK" as sdk
+participant "秀场直播 App" as app #White
+participant "声网云服务\n(Service)" as service
+app -> service: 获取房间列表 \ngetRoomList
+activate service
+service -->> app: 显示房间列表
+deactivate service
+== 创建房间 ==
+app -> app: 进入单人直播预览界面
+app -> sdk: RtcEngine.create(RtcEngineConfig)
+app -> sdk: registerVideoFrameObserver(sencestimeBeautyObserver)
+note right
+注册原始视频观测器
+用于对接第三方美颜 SDK
+end note
+app -> sdk: setupLocalVideo
+app -> sdk: startPreview
+app -> service: 创建房间 \ncreateRoom
+activate service
+service -->> app: 创建房间成功
+deactivate service
+@enduml

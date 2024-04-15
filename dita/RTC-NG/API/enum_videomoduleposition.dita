@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_videomoduleposition">
+    <title><ph keyref="VIDEO_MODULE_POSITION"/></title>
+    <shortdesc id="short"><ph id="shortdesc">视频观测位置。</ph></shortdesc>
+    <refbody>
+        <section id="parameters">
+            <title>枚举值</title>
+            <note>不同视频观测点在视频链路上的具体位置详见<xref keyref="videomodule"/>。</note>
+            <parml>
+            <plentry>
+                <pt><ph keyref="POSITION_POST_CAPTURER"/></pt>
+                <pd>1: 本地采集视频数据并且经过前处理之后的位置，对应 <xref keyref="onCaptureVideoFrame"/> 回调。此处观测到的视频具备视频前处理的效果，可通过开启美颜、虚拟背景或水印等方式验证。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="POSITION_PRE_RENDERER"/></pt>
+                <pd>2: 接收远端发送的视频在渲染前的位置，对应 <xref keyref="onRenderVideoFrame"/> 回调。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="POSITION_PRE_ENCODER"/></pt>
+                <pd>4: 本地视频编码前的位置，对应 <xref keyref="onPreEncodeVideoFrame"/> 回调。此处观测到的视频具备视频前处理和编码前处理的效果：<ul>
+                    <li>对于视频前处理效果，可通过开启美颜、虚拟背景或水印等方式验证。</li>
+                    <li>对于编码前处理效果，可通过设置一个较低的帧率（例如 5 fps）验证。</li></ul></pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="POSITION_POST_CAPTURER_ORIGIN"/></pt>
+                <pd>8: 本地采集视频之后、前处理之前的位置。此处观测到的视频不具备前处理的效果，可通过开启美颜、虚拟背景或设置水印等方式验证。</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>
