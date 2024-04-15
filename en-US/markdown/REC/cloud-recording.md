@@ -49,7 +49,7 @@ Before starting a cloud recording, you need to call `this` method to get a resou
 
 ```json
 {
-  "cname": "httpClient463224"
+  "cname": "httpClient463224",
   "uid": "527841",
   "clientRequest": {
     "scene": 0,
@@ -60,7 +60,7 @@ Before starting a cloud recording, you need to call `this` method to get a resou
 
 ### Parameters
 
-| name | In | type | Required | 描述 |
+| name | In | type | Required | Description |
 |---|---|---|---|---|
 | Content-Type | header | string |                     false | `application/json` |
 | appid | path | string |                     true | Your project uses the[ App ID ](http://doc.shengwang.cn/doc/cloud-recording/restful/get-started/enable-service#%E8%8E%B7%E5%8F%96-app-id).<li>For web page recording mode, simply enter the App ID that has Cloud Recording service.</li><li>For single-stream and composite recording modes, you must use the same App ID as the channel to be recorded, and this App ID needs to have Cloud Recording service enabled.</li> |
@@ -80,7 +80,7 @@ Before starting a cloud recording, you need to call `this` method to get a resou
 
 ### Responses
 
-| status | 描述 | Schema |
+| status | Description | Schema |
 |---|---|---|
 | 200 OK | If the returned HTTP status code is `200`, the request is successful. If you set the `startParameter `object in the request body and its value is invalid, it will not affect the success of the` acquire` request, but you will receive an error in the subsequent `start` request. | [acquire-response](#schemaacquire-response) |
 | Not 200 | If the HTTP status code is not `200`, please refer to [the response status code at ](https://doc.shengwang.cn/api-ref/cloud-recording/restful/response-code )to troubleshoot the issue. | Response [status ](code https://doc.shengwang.cn/api-ref/cloud-recording/restful/response-code) |
@@ -103,14 +103,14 @@ After obtaining cloud recording resources through the [`acquire`](#opIdpost-v1-a
 
 ```json
 {
-  "cname": "httpClient463224"
+  "cname": "httpClient463224",
   "uid": "527841",
   "clientRequest": {
     "recordingConfig": {
-      "channelType": 1
+      "channelType": 1,
       "streamTypes": 2,
       "streamMode": "default",
-                    VideoStreamType
+      "videoStreamType": 0,
       "maxIdleTime": 30,
       "subscribeAudioUids": [
         "123",
@@ -122,14 +122,14 @@ After obtaining cloud recording resources through the [`acquire`](#opIdpost-v1-a
       ],
       "subscribeUidGroup": 0
     },
-    You cannot set both recordingFileConfig and snapshotConfig at the same time.
+    "recordingFileConfig": {
       "avFileType": [
         "hls"
       ]
     },
     "storageConfig": {
-      "vendor": 0,
-      "region": 0,
+      "vendor": 2,
+      "region": 3,
       "bucket": "xxxxx",
       "accessKey": "xxxxx",
       "secretKey": "xxxxx",
@@ -144,7 +144,7 @@ After obtaining cloud recording resources through the [`acquire`](#opIdpost-v1-a
 
 ### Parameters
 
-| name | In | type | Required | 描述 |
+| name | In | type | Required | Description |
 |---|---|---|---|---|
 | Content-Type | header | string |                     false | `application/json` |
 | appid | path | string |                     true | Your project uses the[ App ID ](http://doc.shengwang.cn/doc/cloud-recording/restful/get-started/enable-service#%E8%8E%B7%E5%8F%96-app-id).<li>For web page recording mode, simply enter the App ID that has Cloud Recording service.</li><li>For single-stream and composite recording modes, you must use the same App ID as the channel to be recorded, and this App ID needs to have Cloud Recording service enabled.</li> |
@@ -160,14 +160,14 @@ After obtaining cloud recording resources through the [`acquire`](#opIdpost-v1-a
 {
   "cname": "string",
   "uid": "string",
-        "resourceId": "xxxxxx",
+  "resourceId": "string",
   "sid": "string"
 }
 ```
 
 ### Responses
 
-| status | 描述 | Schema |
+| status | Description | Schema |
 |---|---|---|
 | 200 | If the returned HTTP status code is `200`, the request is successful. To check if the recording service has been successfully started, please refer to the best practices [at ](https://doc.shengwang.cn/doc/cloud-recording/restful/best-practices/integration#confirming-that-the-recording-service-has-successfully-started). | [Response Schema]() |
 | Not 200 | If the HTTP status code is not `200`, please refer to [the response status code at ](https://doc.shengwang.cn/api-ref/cloud-recording/restful/response-code )to troubleshoot the issue. | Response [status ](code https://doc.shengwang.cn/api-ref/cloud-recording/restful/response-code) |
@@ -176,7 +176,7 @@ After obtaining cloud recording resources through the [`acquire`](#opIdpost-v1-a
 
 Status Code **200**
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | cname | string |                     false | The name of the channel to be recorded. |
 | uid | string |                     false | The string content is the UID used by the Cloud Recording service in the RTC channel to identify the recording service within the channel. |
@@ -206,7 +206,7 @@ After starting the recording, you can call the `update` method to update the fol
 
 ```json
 {
-  "cname": "httpClient463224"
+  "cname": "httpClient463224",
   "uid": "527841",
   "clientRequest": {
     "streamSubscribe": {
@@ -229,7 +229,7 @@ After starting the recording, you can call the `update` method to update the fol
 
 ### Parameters
 
-| name | In | type | Required | 描述 |
+| name | In | type | Required | Description |
 |---|---|---|---|---|
 | Content-Type | header | string |                     false | `application/json` |
 | appid | path | string |                     true | Your project uses the[ App ID ](http://doc.shengwang.cn/doc/cloud-recording/restful/get-started/enable-service#%E8%8E%B7%E5%8F%96-app-id).<li>For web page recording mode, simply enter the App ID that has Cloud Recording service.</li><li>For single-stream and composite recording modes, you must use the same App ID as the channel to be recorded, and this App ID needs to have Cloud Recording service enabled.</li> |
@@ -246,14 +246,14 @@ After starting the recording, you can call the `update` method to update the fol
 {
   "cname": "string",
   "uid": "string",
-        "resourceId": "xxxxxx",
+  "resourceId": "string",
   "sid": "string"
 }
 ```
 
 ### Responses
 
-| status | 描述 | Schema |
+| status | Description | Schema |
 |---|---|---|
 | 200 | If the returned HTTP status code is `200`, the request is successful. | [Response Schema](#response-schema-1) |
 | Not 200 | If the HTTP status code is not `200`, please refer to [the response status code at ](https://doc.shengwang.cn/api-ref/cloud-recording/restful/response-code )to troubleshoot the issue. | Response [status ](code https://doc.shengwang.cn/api-ref/cloud-recording/restful/response-code) |
@@ -262,7 +262,7 @@ After starting the recording, you can call the `update` method to update the fol
 
 Status Code **200**
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | cname | string |                     false | The name of the channel to be recorded. |
 | uid | string |                     false | The string content is the UID used by the Cloud Recording service in the RTC channel to identify the recording service within the channel. |
@@ -292,15 +292,15 @@ This method call overrides the existing subscription configuration. For example,
 
 ```json
 {
-  "cname": "httpClient463224"
+  "cname": "httpClient463224",
   "uid": "527841",
   "clientRequest": {
     "mixedVideoLayout": 3,
-    backgroundColor = 0xFF000000;
+    "backgroundColor": "#FF0000",
     "layoutConfig": [
       {
-        uid: "",
-         "x_axis": 0.1,
+        "uid": "1",
+        "x_axis": 0.1,
         "y_axis": 0.1,
         "width": 0.1,
         "height": 0.1,
@@ -308,8 +308,8 @@ This method call overrides the existing subscription configuration. For example,
         "render_mode": 1
       },
       {
-        uid: "",
-         "x_axis": 0.2,
+        "uid": "2",
+        "x_axis": 0.2,
         "y_axis": 0.2,
         "width": 0.1,
         "height": 0.1,
@@ -323,7 +323,7 @@ This method call overrides the existing subscription configuration. For example,
 
 ### Parameters
 
-| name | In | type | Required | 描述 |
+| name | In | type | Required | Description |
 |---|---|---|---|---|
 | Content-Type | header | string |                     false | `application/json` |
 | appid | path | string |                     true | Your project uses the[ App ID ](http://doc.shengwang.cn/doc/cloud-recording/restful/get-started/enable-service#%E8%8E%B7%E5%8F%96-app-id).<li>For web page recording mode, simply enter the App ID that has Cloud Recording service.</li><li>For single-stream and composite recording modes, you must use the same App ID as the channel to be recorded, and this App ID needs to have Cloud Recording service enabled.</li> |
@@ -340,14 +340,14 @@ This method call overrides the existing subscription configuration. For example,
 {
   "cname": "string",
   "uid": "string",
-        "resourceId": "xxxxxx",
+  "resourceId": "string",
   "sid": "string"
 }
 ```
 
 ### Responses
 
-| status | 描述 | Schema |
+| status | Description | Schema |
 |---|---|---|
 | 200 | If the returned HTTP status code is `200`, the request is successful. | [Response Schema](#response-schema-2) |
 | Not 200 | If the HTTP status code is not `200`, please refer to [the response status code at ](https://doc.shengwang.cn/api-ref/cloud-recording/restful/response-code )to troubleshoot the issue. | Response [status ](code https://doc.shengwang.cn/api-ref/cloud-recording/restful/response-code) |
@@ -356,7 +356,7 @@ This method call overrides the existing subscription configuration. For example,
 
 Status Code **200**
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | cname | string |                     false | The name of the channel to be recorded. |
 | uid | string |                     false | The string content is the UID used by the Cloud Recording service in the RTC channel to identify the recording service within the channel. |
@@ -380,7 +380,7 @@ After you start a recording, you can call `query` to check its status.
 
 ### Parameters
 
-| name | In | type | Required | 描述 |
+| name | In | type | Required | Description |
 |---|---|---|---|---|
 | Content-Type | header | string |                     false | `application/json` |
 | appid | path | string |                     true | Your project uses the[ App ID ](http://doc.shengwang.cn/doc/cloud-recording/restful/get-started/enable-service#%E8%8E%B7%E5%8F%96-app-id).<li>For web page recording mode, simply enter the App ID that has Cloud Recording service.</li><li>For single-stream and composite recording modes, you must use the same App ID as the channel to be recorded, and this App ID needs to have Cloud Recording service enabled.</li> |
@@ -394,20 +394,20 @@ After you start a recording, you can call `query` to check its status.
 
 ```json
 {
-        "resourceId": "xxxxxx",
+  "resourceId": "string",
   "sid": "string",
   "serverResponse": {
-        "status": 2,
+    "status": 0,
     "extensionServiceState": [
       {
-        "payload": {...}
+        "payload": {
           "fileList": [
             {
               "filename": "string",
               "sliceStartTime": 0
             }
           ],
-          "on hold": true,
+          "onhold": true,
           "state": "string"
         },
         "serviceName": "string"
@@ -421,7 +421,7 @@ After you start a recording, you can call `query` to check its status.
 
 ### Responses
 
-| status | 描述 | Schema |
+| status | Description | Schema |
 |---|---|---|
 | 200 | If the returned HTTP status code is `200`, the request is successful. | [query-response](#schemaquery-response) |
 | Not 200 | If the HTTP status code is not `200`, please refer to [the response status code at ](https://doc.shengwang.cn/api-ref/cloud-recording/restful/response-code )to troubleshoot the issue. | Response [status ](code https://doc.shengwang.cn/api-ref/cloud-recording/restful/response-code) |
@@ -446,7 +446,7 @@ You can call the `stop` method to leave the channel and stop recording. To use A
 
 ```json
 {
-  "cname": "httpClient463224"
+  "cname": "httpClient463224",
   "uid": "527841",
   "clientRequest": {
     "async_stop": false
@@ -456,7 +456,7 @@ You can call the `stop` method to leave the channel and stop recording. To use A
 
 ### Parameters
 
-| name | In | type | Required | 描述 |
+| name | In | type | Required | Description |
 |---|---|---|---|---|
 | Content-Type | header | string |                     false | `application/json` |
 | appid | path | string |                     true | Your project uses the[ App ID ](http://doc.shengwang.cn/doc/cloud-recording/restful/get-started/enable-service#%E8%8E%B7%E5%8F%96-app-id).<li>For web page recording mode, simply enter the App ID that has Cloud Recording service.</li><li>For single-stream and composite recording modes, you must use the same App ID as the channel to be recorded, and this App ID needs to have Cloud Recording service enabled.</li> |
@@ -471,12 +471,12 @@ You can call the `stop` method to leave the channel and stop recording. To use A
 
 ```json
 {
-        "resourceId": "xxxxxx",
+  "resourceId": "string",
   "sid": "string",
   "serverResponse": {
     "extensionServiceState": [
       {
-        "payload": {
+        "playload": {
           "uploadingStatus": "string"
         },
         "serviceName": "string"
@@ -490,7 +490,7 @@ You can call the `stop` method to leave the channel and stop recording. To use A
 
 ### Responses
 
-| status | 描述 | Schema |
+| status | Description | Schema |
 |---|---|---|
 | 200 | If the returned HTTP status code is `200`, the request is successful. | [stop-response](#schema) |
 | Not 200 | If the HTTP status code is not `200`, please refer to [the response status code at ](https://doc.shengwang.cn/api-ref/cloud-recording/restful/response-code )to troubleshoot the issue. | Response [status ](code https://doc.shengwang.cn/api-ref/cloud-recording/restful/response-code) |
@@ -536,7 +536,7 @@ You only need to pay attention to the `PrimaryIP `field in the response Body, an
 
 ### Responses
 
-| status | 描述 | Schema |
+| status | Description | Schema |
 |---|---|---|
 | 200 | If the returned HTTP status code is 200, the request is successful. You only need to pay attention to the `PrimaryIP `field in the response Body, and you don't need to care about the response Header or other fields in the response Body. | [Response Schema](#response-schema-3) |
 
@@ -544,7 +544,7 @@ You only need to pay attention to the `PrimaryIP `field in the response Body, an
 
 Status Code **200**
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | data | object |                     false | No need to understand. |
 | » service | object |                     false | No need to understand. |
@@ -568,7 +568,7 @@ Status Code **200**
   "uid": "string",
   "clientRequest": {
     "scene": 0,
-    "resourceExpiredHour": 24
+    "resourceExpiredHour": 72,
     "startParameter": {
       "token": "string",
       "storageConfig": {
@@ -578,7 +578,7 @@ Status Code **200**
         "accessKey": "string",
         "secretKey": "string",
         "fileNamePrefix": [
-          String
+          "string"
         ],
         "extensionParams": {
           "sse": "string",
@@ -586,38 +586,38 @@ Status Code **200**
         }
       },
       "recordingConfig": {
-        "channelType": 0
+        "channelType": 0,
         "decryptionMode": 0,
-        "secret": "string"
+        "secret": "string",
         "salt": "string",
         "maxIdleTime": 30,
         "streamTypes": 2,
-                    VideoStreamType
+        "videoStreamType": 0,
         "subscribeAudioUids": [
-          String
+          "string"
         ],
         "unsubscribeAudioUids": [
-          String
+          "string"
         ],
         "subscribeVideoUids": [
-          String
+          "string"
         ],
         "unsubscribeVideoUids": [
-          String
+          "string"
         ],
         "subscribeUidGroup": 0,
         "streamMode": "default",
         "audioProfile": 0,
         "transcodingConfig": {
-          width: 160,
-          height = 640;
+          "width": 360,
+          "height": 640,
           "fps": 15,
-          bitrate: 120,
+          "bitrate": 500,
           "maxResolutionUid": "string",
           "mixedVideoLayout": 0,
-          backgroundColor(0x000000),
+          "backgroundColor": "#000000",
           "backgroundImage": "string",
-          "default user background image: "string""
+          "defaultUserBackgroundImage": "string",
           "layoutConfig": [
             {
               "uid": "string",
@@ -638,7 +638,7 @@ Status Code **200**
           ]
         }
       },
-      You cannot set both recordingFileConfig and snapshotConfig at the same time.
+      "recordingFileConfig": {
         "avFileType": [
           "hls"
         ]
@@ -649,7 +649,7 @@ Status Code **200**
           "jpg"
         ]
       },
-      extensionServiceConfig has the following fields:
+      "extensionServiceConfig": {
         "errorHandlePolicy": "error_abort",
         "extensionServices": [
           {
@@ -661,11 +661,11 @@ Status Code **200**
               "videoWidth": 240,
               "videoHeight": 240,
               "maxRecordingHour": 1,
-              VideoBitrate (400),
+              "videoBitrate": 0,
               "videoFps": 15,
               "mobile": false,
               "maxVideoDuration": 120,
-              "on hold": false,
+              "onhold": false,
               "readyTimeout": 0
             }
           }
@@ -674,7 +674,7 @@ Status Code **200**
       "appsCollection": {
         "combinationPolicy": "default"
       },
-      transcodeOptions
+      "transcodeOptions": {
         "transConfig": {
           "transMode": "string"
         },
@@ -689,7 +689,7 @@ Status Code **200**
       }
     },
     "excludeResourceIds": [
-      String
+      "string"
     ],
     "regionAffinity": 0
   }
@@ -698,7 +698,7 @@ Status Code **200**
 
 ### properties
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | cname | string |                     true | Channel Name:<br> - For single-Individual Recording and composite recording modes, this field is used to set the name of the channel to be recorded. <br>- For web page recording mode, this field is used to differentiate the recording process. The maximum length of this parameter is 1024 bytes. <br>**Note**: A unique recording instance can be located through `appid`, `cname`, and `uid`. Therefore, if you want to record multiple times for the same channel, you can use the same `appId` and `cname`, as well as different `uid` for management and differentiation. |
 | uid | string |                     true | A string that contains the UID of the recording client, for example `"527841"`. The string content must meet the following conditions:<br> - The value range is from 1 to (<sup>232</sup>-1), and cannot be set to `0`. <br>It is unique and does not clash with any existing UID in the channel. <br>- The value inside the quotation marks is an integer UID, and all users in the channel use integer UIDs. |
@@ -727,7 +727,7 @@ Status Code **200**
     "accessKey": "string",
     "secretKey": "string",
     "fileNamePrefix": [
-      String
+      "string"
     ],
     "extensionParams": {
       "sse": "string",
@@ -735,38 +735,38 @@ Status Code **200**
     }
   },
   "recordingConfig": {
-    "channelType": 0
+    "channelType": 0,
     "decryptionMode": 0,
-    "secret": "string"
+    "secret": "string",
     "salt": "string",
     "maxIdleTime": 30,
     "streamTypes": 2,
-                    VideoStreamType
+    "videoStreamType": 0,
     "subscribeAudioUids": [
-      String
+      "string"
     ],
     "unsubscribeAudioUids": [
-      String
+      "string"
     ],
     "subscribeVideoUids": [
-      String
+      "string"
     ],
     "unsubscribeVideoUids": [
-      String
+      "string"
     ],
     "subscribeUidGroup": 0,
     "streamMode": "default",
     "audioProfile": 0,
     "transcodingConfig": {
-      width: 160,
-      height = 640;
+      "width": 360,
+      "height": 640,
       "fps": 15,
-      bitrate: 120,
+      "bitrate": 500,
       "maxResolutionUid": "string",
       "mixedVideoLayout": 0,
-      backgroundColor(0x000000),
+      "backgroundColor": "#000000",
       "backgroundImage": "string",
-      "default user background image: "string""
+      "defaultUserBackgroundImage": "string",
       "layoutConfig": [
         {
           "uid": "string",
@@ -787,7 +787,7 @@ Status Code **200**
       ]
     }
   },
-  You cannot set both recordingFileConfig and snapshotConfig at the same time.
+  "recordingFileConfig": {
     "avFileType": [
       "hls"
     ]
@@ -798,7 +798,7 @@ Status Code **200**
       "jpg"
     ]
   },
-  extensionServiceConfig has the following fields:
+  "extensionServiceConfig": {
     "errorHandlePolicy": "error_abort",
     "extensionServices": [
       {
@@ -810,11 +810,11 @@ Status Code **200**
           "videoWidth": 240,
           "videoHeight": 240,
           "maxRecordingHour": 1,
-          VideoBitrate (400),
+          "videoBitrate": 0,
           "videoFps": 15,
           "mobile": false,
           "maxVideoDuration": 120,
-          "on hold": false,
+          "onhold": false,
           "readyTimeout": 0
         }
       }
@@ -823,7 +823,7 @@ Status Code **200**
   "appsCollection": {
     "combinationPolicy": "default"
   },
-  transcodeOptions
+  "transcodeOptions": {
     "transConfig": {
       "transMode": "string"
     },
@@ -842,7 +842,7 @@ Status Code **200**
 
 ### properties
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | token. | string |                     false | Dynamic key (Token) used for authentication. Ensure that you set this parameter if App Certificate is enabled for your application. See[ Token Authentication ](for details: https://doc.shengwang.cn/doc/rtc/android/basic-features/token-authentication).<br><p><b>Note</b>:<br><li>Just need to set in <b>Individual Recording </b>and <b>composite recording </b>mode.</li><br><li>Cloud Recording service does not currently support updating tokens. To ensure normal recording, please make sure that the token is valid for a duration longer than your expected recording time, to avoid the token expiring and causing the recording task to exit the channel and end the recording.</li><br></p> |
 | storageConfig | [storageConfig](#schemastorageconfig) |                     true | Configuration options for third-party cloud storage. |
@@ -868,7 +868,7 @@ Status Code **200**
   "accessKey": "string",
   "secretKey": "string",
   "fileNamePrefix": [
-    String
+    "string"
   ],
   "extensionParams": {
     "sse": "string",
@@ -881,7 +881,7 @@ Configuration options for third-party cloud storage.
 
 ### properties
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | vendor | number |                     true | Third-party cloud storage platform. <br>- `1`:[ Amazon S3 ](https://aws.amazon.com/s3/)<br>
 - `2`: [Alibaba ](Cloud https://www.aliyun.com/product/oss)<br>
@@ -915,7 +915,7 @@ Third-party cloud storage services will encrypt and tag the uploaded recording f
 
 ### properties
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | see | string |                     true | The encryption mode. After setting this field, the third-party cloud storage service will encrypt the uploaded recording files according to this encryption mode. This field is only applicable to Amazon S3, see the[ official Amazon S3 documentation at ](https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/UsingEncryption.html). <br>- `kms`: KMS encryption. <br>- `aes256`: AES256 encryption. |
 | tag | string |                     true | Tag content. After setting this field, the third-party cloud storage service will tag the uploaded recording files according to the content of this tag. This field is only applicable to Alibaba Cloud and Amazon S3. For more information, please refer to [the official Alibaba Cloud documentation at ](https://help.aliyun.com/zh/oss/user-guide/object-tagging-8) and the[ official Amazon S3 documentation at ](https://docs.aws.amazon.com/zh_cn/AmazonS3/latest/userguide/UsingEncryption.html). |
@@ -924,43 +924,40 @@ Third-party cloud storage services will encrypt and tag the uploaded recording f
 <!-- backwards compatibility -->
 <a id="schemarecordingconfig"></a>
 
-
-
-
 ```json
 {
-  "channelType": 0
+  "channelType": 0,
   "decryptionMode": 0,
-  "secret": "string"
+  "secret": "string",
   "salt": "string",
   "maxIdleTime": 30,
   "streamTypes": 2,
-                    VideoStreamType
+  "videoStreamType": 0,
   "subscribeAudioUids": [
-    String
+    "string"
   ],
   "unsubscribeAudioUids": [
-    String
+    "string"
   ],
   "subscribeVideoUids": [
-    String
+    "string"
   ],
   "unsubscribeVideoUids": [
-    String
+    "string"
   ],
   "subscribeUidGroup": 0,
   "streamMode": "default",
   "audioProfile": 0,
   "transcodingConfig": {
-    width: 160,
-    height = 640;
+    "width": 360,
+    "height": 640,
     "fps": 15,
-    bitrate: 120,
+    "bitrate": 500,
     "maxResolutionUid": "string",
     "mixedVideoLayout": 0,
-    backgroundColor(0x000000),
+    "backgroundColor": "#000000",
     "backgroundImage": "string",
-    "default user background image: "string""
+    "defaultUserBackgroundImage": "string",
     "layoutConfig": [
       {
         "uid": "string",
@@ -988,7 +985,7 @@ Recorded audio and video stream configuration options.
 
 ### properties
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | channelType | number |                     true | The channel profile. <br>- `0`: Communication scenario. <br>- `1`: Live streaming scene. <br>The channel scene must be consistent with the Agora RTC SDK, otherwise it may cause issues. |
 | decryption mode | number |                     false | The encryption mode. If you have set channel encryption in the SDK client, you need to set the same decryption mode for the Cloud Recording recording service. <br>- `0`: No encryption. <br>- `1`: AES_128_XTS encryption mode. 128-bit AES encryption, XTS mode. <br>- `2`: AES_128_ECB encryption mode. 128-bit AES encryption, ECB mode. <br>- `3`: AES_256_XTS encryption mode. 256-bit AES encryption, XTS mode. <br>- `4`: SM4_128_ECB encryption mode. 128-bit SM4 encryption, ECB mode. <br>- `5`: AES_128_GCM encryption mode. 128-bit AES encryption, GCM mode. <br>- `6`: AES_256_GCM encryption mode. 256-bit AES encryption, GCM mode. <br>- `7`: AES_128_GCM2 encryption mode. 128-bit AES encryption, GCM mode. Compared to AES_128_GCM encryption mode, AES_128_GCM2 encryption mode has higher security and requires setting a key and salt. <br>- `8`: AES_256_GCM2 encryption mode. 256-bit AES encryption, GCM mode. Compared to the AES_256_GCM encryption mode, the AES_256_GCM2 encryption mode is more secure and requires setting a key and salt. |
@@ -1020,15 +1017,15 @@ Recorded audio and video stream configuration options.
 
 ```json
 {
-  width: 160,
-  height = 640;
+  "width": 360,
+  "height": 640,
   "fps": 15,
-  bitrate: 120,
+  "bitrate": 500,
   "maxResolutionUid": "string",
   "mixedVideoLayout": 0,
-  backgroundColor(0x000000),
+  "backgroundColor": "#000000",
   "backgroundImage": "string",
-  "default user background image: "string""
+  "defaultUserBackgroundImage": "string",
   "layoutConfig": [
     {
       "uid": "string",
@@ -1055,7 +1052,7 @@ Video encoding settings. The value can refer to [setting the resolution of the r
 
 ### properties
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | width | number |                     true | The width (pixels) of the video. The product of `width` and `height` cannot exceed 1920 × 1080. |
 | height | number |                     true | The height (pixels) of the video. The product of `width` and `height` cannot exceed 1920 × 1080. |
@@ -1094,7 +1091,7 @@ Layout of the merged screen for users. An array of the configuration of each use
 
 ### properties
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | uid | string |                     false | The string contains the UID of the user displaying the video in the region.<br><p>If this parameter is not specified, the configurations apply in the order of<b></b> the users joining the channel.</p> |
 | x_axis | number(float) |                     true | The relative horizontal position of the top-left corner of the region. Layout from left to right, with `0.0` at the extreme left and `1.0` at the extreme right. This field can also be set to the integer 0 or 1. |
@@ -1127,7 +1124,7 @@ User's background image settings.
 
 ### properties
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | uid | string |                     true | The string content is the user UID. |
 | image_url | string |                     true | The URL of the user's background image. After setting the background image, if the user stops sending video stream for more than 3.5 seconds, the screen will switch to the background image. <br><br>URL supports the HTTP and HTTPS protocols, and the image formats supported are JPG and BMP. The image size must not exceed 6 MB. The settings will only take effect after the recording service successfully downloads the image; if the download fails, the settings will not take effect. Different field settings may overlap each other. For specific rules, please refer to [the setting background color or background image at ](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-composite-layout#%E8%BF%9B%E9%98%B6%E8%AE%BE%E7%BD%AE%E8%83%8C%E6%99%AF%E8%89%B2%E6%88%96%E8%83%8C%E6%99%AF%E5%9B%BE).</br> |
@@ -1147,7 +1144,7 @@ User's background image settings.
 }
 ```
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | avFileType | arraystring[] |                     false | Recorded video file type:<br> - `"hls"`: default value. The format of recorded files is M3U8 and TS. <br>- `"mp4"`: MP4 file. <br>**Note**:<br> - **Individual Recording **mode, and **not only in screenshot **mode, the default values can be used. <br>- **composite recording **and **web page recording** modes, you need to set it as `["hls","mp4"]`. Setting it as `["mp4"]` will result in an error. After setting, the recording file behavior is as follows:<br> - In the composite recording mode, the recording service will create a new MP4 file when the current file duration exceeds about 2 hours or the file size exceeds about 2 GB.<br>    - web page recording mode: The recording service will create a new MP4 file when the current file's duration exceeds `maxVideoDuration`. |
 
@@ -1170,7 +1167,7 @@ User's background image settings.
 
 ### properties
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | captureInterval | number |                     false | Screenshot cycle for Cloud Recording regular screenshots. The unit is seconds. |
 | file type | arraystring[] |                     true | Screenshot file format. fileType can only take `["jpg"]`, setting screenshots to the JPG format. |
@@ -1192,11 +1189,11 @@ User's background image settings.
         "videoWidth": 240,
         "videoHeight": 240,
         "maxRecordingHour": 1,
-        VideoBitrate (400),
+        "videoBitrate": 0,
         "videoFps": 15,
         "mobile": false,
         "maxVideoDuration": 120,
-        "on hold": false,
+        "onhold": false,
         "readyTimeout": 0
       }
     }
@@ -1209,7 +1206,7 @@ Extend service configuration options.
 
 ### properties
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | errorHandlePolicy | string |                     false | Error handling policy. You can only set it to the default value, `"error_abort"`, which means that once an error occurs to an extension service, all other non-extension services, such as stream subscription, also stop. |
 | extension services | arrayobject[] |                     true | As described below. |
@@ -1231,11 +1228,11 @@ Extend service configuration options.
   "videoWidth": 240,
   "videoHeight": 240,
   "maxRecordingHour": 1,
-  VideoBitrate (400),
+  "videoBitrate": 0,
   "videoFps": 15,
   "mobile": false,
   "maxVideoDuration": 120,
-  "on hold": false,
+  "onhold": false,
   "readyTimeout": 0
 }
 ```
@@ -1247,7 +1244,7 @@ Extend service configuration options.
 
 The following fields need to be set when **web page recording**:
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | url | string |                     true | The address of the page to be recorded. |
 |                     AudioProfile
@@ -1266,7 +1263,7 @@ The following fields need to be set when **web page recording**:
 
 **web page recording to the CDN**, the following fields need to be set.
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | outputs | arrayobject[] |                     true | As described below. |
 | rtmpUrl | string |                     true | The CDN streaming address. |
@@ -1290,7 +1287,7 @@ Application configuration item.
 
 ### properties
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | combinationPolicy | string |                     false | The combination of Cloud Recording applications. <br>- `postpone_transcoding`: Use this method if you need to delay transcoding or delay mixing. <br>- `default`: This method is used for everything except for delayed transcoding and delayed mixing. |
 
@@ -1322,7 +1319,7 @@ Configuration options for the recorded files generated under time-delay transcod
 
 ### properties
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | transConfig | object |                     true | As described below. |
 | » transMode | string |                     true | Mode: <br>`"postponeTranscoding"`: Delay transcoding. <br>- `"audioMix"`: Delayed mixing. |
@@ -1350,7 +1347,7 @@ Configuration options for the recorded files generated under time-delay transcod
 
 ### properties
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | cname | string |                     false | The name of the channel to be recorded. |
 | uid | string |                     false | The string content is the UID used by the Cloud Recording service in the RTC channel to identify the recording service within the channel. |
@@ -1378,7 +1375,7 @@ Configuration options for the recorded files generated under time-delay transcod
       "accessKey": "string",
       "secretKey": "string",
       "fileNamePrefix": [
-        String
+        "string"
       ],
       "extensionParams": {
         "sse": "string",
@@ -1386,38 +1383,38 @@ Configuration options for the recorded files generated under time-delay transcod
       }
     },
     "recordingConfig": {
-      "channelType": 0
+      "channelType": 0,
       "decryptionMode": 0,
-      "secret": "string"
+      "secret": "string",
       "salt": "string",
       "maxIdleTime": 30,
       "streamTypes": 2,
-                    VideoStreamType
+      "videoStreamType": 0,
       "subscribeAudioUids": [
-        String
+        "string"
       ],
       "unsubscribeAudioUids": [
-        String
+        "string"
       ],
       "subscribeVideoUids": [
-        String
+        "string"
       ],
       "unsubscribeVideoUids": [
-        String
+        "string"
       ],
       "subscribeUidGroup": 0,
       "streamMode": "default",
       "audioProfile": 0,
       "transcodingConfig": {
-        width: 160,
-        height = 640;
+        "width": 360,
+        "height": 640,
         "fps": 15,
-        bitrate: 120,
+        "bitrate": 500,
         "maxResolutionUid": "string",
         "mixedVideoLayout": 0,
-        backgroundColor(0x000000),
+        "backgroundColor": "#000000",
         "backgroundImage": "string",
-        "default user background image: "string""
+        "defaultUserBackgroundImage": "string",
         "layoutConfig": [
           {
             "uid": "string",
@@ -1438,7 +1435,7 @@ Configuration options for the recorded files generated under time-delay transcod
         ]
       }
     },
-    You cannot set both recordingFileConfig and snapshotConfig at the same time.
+    "recordingFileConfig": {
       "avFileType": [
         "hls"
       ]
@@ -1449,7 +1446,7 @@ Configuration options for the recorded files generated under time-delay transcod
         "jpg"
       ]
     },
-    extensionServiceConfig has the following fields:
+    "extensionServiceConfig": {
       "errorHandlePolicy": "error_abort",
       "extensionServices": [
         {
@@ -1461,11 +1458,11 @@ Configuration options for the recorded files generated under time-delay transcod
             "videoWidth": 240,
             "videoHeight": 240,
             "maxRecordingHour": 1,
-            VideoBitrate (400),
+            "videoBitrate": 0,
             "videoFps": 15,
             "mobile": false,
             "maxVideoDuration": 120,
-            "on hold": false,
+            "onhold": false,
             "readyTimeout": 0
           }
         }
@@ -1474,7 +1471,7 @@ Configuration options for the recorded files generated under time-delay transcod
     "appsCollection": {
       "combinationPolicy": "default"
     },
-    transcodeOptions
+    "transcodeOptions": {
       "transConfig": {
         "transMode": "string"
       },
@@ -1493,7 +1490,7 @@ Configuration options for the recorded files generated under time-delay transcod
 
 ### properties
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | cname | string |                     true | The name of the channel where the recording service is located. The cname you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request needs to be the same as` yours`. |
 | uid | string |                     true | The string content is the UID used by the recording service in the RTC channel to identify the recording service. It needs to be the same as the UID you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request.`` |
@@ -1516,18 +1513,18 @@ Configuration options for the recorded files generated under time-delay transcod
     "streamSubscribe": {
       "audioUidList": {
         "subscribeAudioUids": [
-          String
+          "string"
         ],
         "unsubscribeAudioUids": [
-          String
+          "string"
         ]
       },
       "videoUidList": {
         "subscribeVideoUids": [
-          String
+          "string"
         ],
-        "unsubscribeVideoUids": [
-          String
+        "unsunscribeVideoUids": [
+          "string"
         ]
       }
     },
@@ -1535,7 +1532,7 @@ Configuration options for the recorded files generated under time-delay transcod
       "onhold": false
     },
     "rtmpPublishConfig": {
-      "outputs": {
+      "outputs": [
         {
           "rtmpUrl": "string"
         }
@@ -1547,7 +1544,7 @@ Configuration options for the recorded files generated under time-delay transcod
 
 ### properties
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | cname | string |                     true | The name of the channel where the recording service is located. The cname you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request needs to be the same as` yours`. |
 | uid | string |                     true | The string content is the UID used by the recording service in the RTC channel to identify the recording service. It needs to be the same as the UID you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request.`` |
@@ -1567,18 +1564,18 @@ Configuration options for the recorded files generated under time-delay transcod
   "streamSubscribe": {
     "audioUidList": {
       "subscribeAudioUids": [
-        String
+        "string"
       ],
       "unsubscribeAudioUids": [
-        String
+        "string"
       ]
     },
     "videoUidList": {
       "subscribeVideoUids": [
-        String
+        "string"
       ],
-      "unsubscribeVideoUids": [
-        String
+      "unsunscribeVideoUids": [
+        "string"
       ]
     }
   },
@@ -1586,7 +1583,7 @@ Configuration options for the recorded files generated under time-delay transcod
     "onhold": false
   },
   "rtmpPublishConfig": {
-    "outputs": {
+    "outputs": [
       {
         "rtmpUrl": "string"
       }
@@ -1597,7 +1594,7 @@ Configuration options for the recorded files generated under time-delay transcod
 
 ### properties
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | streamSubscribe | [streamSubscribe](#schemastreamsubscribe) |                     false | Update subscription lists<br><p><b>Note: </b>Only need to set in <b>Individual Recording </b>and <b>composite recording </b>modes.</p> |
 | webRecordingConfig | [webRecordingConfig](#schemawebrecordingconfig) |                     false | Used to update web page recording items.<br><p><b>Note: </b>Only need to set in <b>web page recording </b>mode.</p> |
@@ -1614,18 +1611,18 @@ Configuration options for the recorded files generated under time-delay transcod
 {
   "audioUidList": {
     "subscribeAudioUids": [
-      String
+      "string"
     ],
     "unsubscribeAudioUids": [
-      String
+      "string"
     ]
   },
   "videoUidList": {
     "subscribeVideoUids": [
-      String
+      "string"
     ],
-    "unsubscribeVideoUids": [
-      String
+    "unsunscribeVideoUids": [
+      "string"
     ]
   }
 }
@@ -1636,7 +1633,7 @@ Update subscription lists
 
 ### properties
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | audioUidList | [audioUidList](#schemaaudiouidlist) |                     false | The audio subscription list.<br><p><b>Note:</b> This field only applies to <b>streamTypes</b> set to audio, or audio and video.</p> |
 | videoUidList | [videoUidList](#schemavideouidlist) |                     false | The video subscription list.<br><p><b>Note:</b> This field only applies when the <b>streamTypes</b> are set to video, or audio and video.</p> |
@@ -1651,10 +1648,10 @@ Update subscription lists
 ```json
 {
   "subscribeAudioUids": [
-    String
+    "string"
   ],
   "unsubscribeAudioUids": [
-    String
+    "string"
   ]
 }
 ```
@@ -1664,7 +1661,7 @@ The audio subscription list.
 
 ### properties
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | subscribeAudioUids | arraystring[] |                     false | Specify which audio streams to subscribe to for the specified UIDs. If you want to subscribe to the audio stream of all UIDs, you don't need to set this field. The length of the array should not exceed 32 UIDs. Only one of the fields, ``unsubscribeAudioUids`` and `unsubscribeAudioUids`, can be set. See the [subscription list settings at ](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe).<br><p><b>Note:</b><br><li>This field is only applicable when the <b>streamTypes</b> are set to audio, or audio and video.</li><br><li>If you set up a subscription list for audio, but not for video, then Agora Cloud Recording will not subscribe to any video streams. If you set up a subscription list for video, but not for audio, then Agora Cloud Recording will not subscribe to any audio streams.</li><br><li>Set to <b>["#allstream#"]</b> to subscribe to the audio streams of all UIDs in the channel.</li><br></p> |
 | unsubscribe audio UIDs | arraystring[] |                     false | Specify which UID audio streams not to subscribe to. Once you set this parameter, the recording service subscribes to the audio of all UIDs except the specified ones. The length of the array should not exceed 32 UIDs. Only one of the fields, subscribeAudioUid and `subscribeAudioUids`, can be set. See the [subscription list settings at ](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe). |
@@ -1679,10 +1676,10 @@ The audio subscription list.
 ```json
 {
   "subscribeVideoUids": [
-    String
+    "string"
   ],
-  "unsubscribeVideoUids": [
-    String
+  "unsunscribeVideoUids": [
+    "string"
   ]
 }
 ```
@@ -1692,7 +1689,7 @@ The video subscription list.
 
 ### properties
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | subscribeVideoUids | arraystring[] |                     false | Specify which UID's video streams to subscribe to. If you want to subscribe to the video stream of all UIDs, you don't need to set this field. The length of the array should not exceed 32 UIDs. Only one of the fields, ``unsubscribeVideoUids``, can be set. See the [subscription list settings at ](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe).<br><p><b>Note:</b><br><li>This field is only applicable when the <b>streamTypes</b> are set to video, or audio and video.</li><br><li>If you set up a subscription list for audio, but not for video, then Agora Cloud Recording will not subscribe to any video streams. If you set up a subscription list for video, but not for audio, then Agora Cloud Recording will not subscribe to any audio streams.</li><br><li>Set to <b>["#allstream#"]</b> to subscribe to the video streams of all UIDs in the channel.</li><br></p> |
 | unsubscribeVideoUids | arraystring[] |                     false | Specify which UID's video streams should not be subscribed to. Once you set this parameter, the recording service subscribes to the video of all UIDs except the specified ones. The length of the array should not exceed 32 UIDs. Only one of the fields, either this one or `subscribeVideoUids`, can be set. See the [subscription list settings at ](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe). |
@@ -1715,7 +1712,7 @@ Used to update web page recording items.
 
 ### properties
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | on hold | boolean |                     false | Should the web page recording be paused when starting a task on web page recording. <br>- `true`: Pause web page recording when starting a recording task web page recording. After starting the web page recording task, immediately pause the recording. The recording service will open and render the page to be recorded, but will not generate slice files. <br>- `false`: Start a web page recording task and perform web page recording. <br>We suggest using the `onhold` field<br> according to the following process: 1. Set onhold to `true` when calling the `start` method, which will start and pause web page recording. Determine the appropriate time to start web page recording `on `your own. <br>2. Call `update` and set `onhold` to `false`, continue with web page recording. If you need to pause or resume web page recording by continuously calling the` update` method, please make the call after receiving the response from the previous `update`, otherwise it may cause inconsistent results with expectations. |
 
@@ -1728,7 +1725,7 @@ Used to update web page recording items.
 
 ```json
 {
-  "outputs": {
+  "outputs": [
     {
       "rtmpUrl": "string"
     }
@@ -1741,7 +1738,7 @@ Used to update the configuration items recorded to CDN for web page recording.
 
 ### properties
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | outputs | arrayobject[] |                     false | As described below. |
 | rtmpUrl | string |                     false | The CDN live streaming URL.<br><p><b>Note</b>:<br><li>URL only supports RTMP and RTMPS protocols.</li><br><li>The maximum number of supported CDN routes for retweeting is 1.</li><br></p> |
@@ -1760,9 +1757,9 @@ Used to update the configuration items recorded to CDN for web page recording.
   "clientRequest": {
     "maxResolutionUid": "string",
     "mixedVideoLayout": 0,
-    backgroundColor(0x000000),
+    "backgroundColor": "#000000",
     "backgroundImage": "string",
-    "default user background image: "string""
+    "defaultUserBackgroundImage": "string",
     "layoutConfig": [
       {
         "uid": "string",
@@ -1788,7 +1785,7 @@ Used to update the configuration items recorded to CDN for web page recording.
 
 ### properties
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | cname | string |                     true | The name of the channel where the recording service is located. The cname you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request needs to be the same as` yours`. |
 | uid | string |                     true | The string content is the UID used by the recording service in the RTC channel to identify the recording service. It needs to be the same as the UID you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request.`` |
@@ -1806,9 +1803,9 @@ Used to update the configuration items recorded to CDN for web page recording.
 {
   "maxResolutionUid": "string",
   "mixedVideoLayout": 0,
-  backgroundColor(0x000000),
+  "backgroundColor": "#000000",
   "backgroundImage": "string",
-  "default user background image: "string""
+  "defaultUserBackgroundImage": "string",
   "layoutConfig": [
     {
       "uid": "string",
@@ -1832,7 +1829,7 @@ Used to update the configuration items recorded to CDN for web page recording.
 
 ### properties
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | maxResolutionUid | string |                     false | Just need to set it in **vertical layout**. Specify the user UID to display the large window screen. It is a 32</sup>-bit unsigned integer within the range between 1 and (232<sup>-1). |
 | mixedVideoLayout | number |                     false | Video merging layout:<br> - `0`: Floating layout. The first user in the channel occupies the full canvas. The other users occupy the small regions on top of the canvas, starting from the bottom left corner. The small regions are arranged in the order of the users joining the channel. This layout supports one full-size region and up to four rows of small regions on top with four regions per row, comprising 17 users. <br>-`1`: Adaptive preference. This is a grid layout. The number of columns and rows and the grid size vary depending on the number of users in the channel. This layout supports up to 17 users. <br>`2`: Vertical layout. One large region is displayed on the left edge of the canvas, and several smaller regions are displayed along the right edge of the canvas. The space on the right supports up to 2 columns of small regions with 8 regions per column. This layout supports up to 17 users. ``<br>`3`: Customized layout. Set the `layoutConfig` parameter to customize the layout. |
@@ -1851,20 +1848,20 @@ Used to update the configuration items recorded to CDN for web page recording.
 
 ```json
 {
-        "resourceId": "xxxxxx",
+  "resourceId": "string",
   "sid": "string",
   "serverResponse": {
-        "status": 2,
+    "status": 0,
     "extensionServiceState": [
       {
-        "payload": {...}
+        "payload": {
           "fileList": [
             {
               "filename": "string",
               "sliceStartTime": 0
             }
           ],
-          "on hold": true,
+          "onhold": true,
           "state": "string"
         },
         "serviceName": "string"
@@ -1878,7 +1875,7 @@ Used to update the configuration items recorded to CDN for web page recording.
 
 ### properties
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | resourceId | string |                     false | Resource ID used Cloud Recording. |
 | sid | string |                     false | Recording ID |
@@ -1895,17 +1892,17 @@ Used to update the configuration items recorded to CDN for web page recording.
 
 ```json
 {
-        "status": 2,
+  "status": 0,
   "extensionServiceState": [
     {
-      "payload": {...}
+      "payload": {
         "fileList": [
           {
             "filename": "string",
             "sliceStartTime": 0
           }
         ],
-        "on hold": true,
+        "onhold": true,
         "state": "string"
       },
       "serviceName": "string"
@@ -1920,7 +1917,7 @@ Used to update the configuration items recorded to CDN for web page recording.
 
 Fields returned in **web page recording **mode.
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | status | number |                     false | Current status of cloud service:<br> - `0`: Cloud service has not started. <br>`1`: The initialization is complete. <br>`2`: The cloud service is starting. <br>`3`: The cloud service is partially ready. <br>`4`: The cloud service is ready. <br>`5`: The cloud service is in progress. <br>`6`: The cloud service receives the request to stop. <br>`7`: The cloud service stops. <br>`8`: The cloud service exits. <br>`20`: The cloud service exits abnormally. |
 | arrayobject[] |                     false | extensionServiceState | [extensionServiceState](#schemaextensionservicestate) |
@@ -1929,7 +1926,7 @@ Fields returned in **web page recording **mode.
 
 **Individual Recording **when **video screenshot is enabled in single-stream recording **mode.
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | status | number |                     false | Current status of cloud service:<br> - `0`: Cloud service has not started. <br>`1`: The initialization is complete. <br>`2`: The cloud service is starting. <br>`3`: The cloud service is partially ready. <br>`4`: The cloud service is ready. <br>`5`: The cloud service is in progress. <br>`6`: The cloud service receives the request to stop. <br>`7`: The cloud service stops. <br>`8`: The cloud service exits. <br>`20`: The cloud service exits abnormally. |
 | sliceStartTime | number |                     false | The start time of the new file recording, the Unix timestamp, in seconds. |
@@ -1938,7 +1935,7 @@ Fields returned in **web page recording **mode.
 
 Fields returned in scenes other than single-stream video screenshots and page recording.
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | status | number |                     false | Current status of cloud service:<br> - `0`: Cloud service has not started. <br>`1`: The initialization is complete. <br>`2`: The cloud service is starting. <br>`3`: The cloud service is partially ready. <br>`4`: The cloud service is ready. <br>`5`: The cloud service is in progress. <br>`6`: The cloud service receives the request to stop. <br>`7`: The cloud service stops. <br>`8`: The cloud service exits. <br>`20`: The cloud service exits abnormally. |
 | fileListMode | string |                     false | `fileList` 字段的数据格式：<br>- `"string"`：`fileList` 为 String 类型。 composite recording mode, if `avFileType` is set to `["hls"]`, `fileListMode` is `"string"`. <br>`"json"`: `fileList` is a JSONArray. When `avFileType` is set to `["hls","mp4"] in single-composite` recording recording mode, `fileListMode` is set to `"json"`. |
@@ -1948,7 +1945,7 @@ Fields returned in scenes other than single-stream video screenshots and page re
 ## fileList-string
 <a id="schemafilelist-string"></a>
 
-| type | Required | 描述 |
+| type | Required | Description |
 |---|---|---|
 | string |                     false | The file name of the M3U8 file generated during recording. |
 
@@ -1963,14 +1960,14 @@ Fields returned in scenes other than single-stream video screenshots and page re
 ```json
 [
   {
-    "payload": {...}
+    "payload": {
       "fileList": [
         {
           "filename": "string",
           "sliceStartTime": 0
         }
       ],
-      "on hold": true,
+      "onhold": true,
       "state": "string"
     },
     "serviceName": "string"
@@ -1980,7 +1977,7 @@ Fields returned in scenes other than single-stream video screenshots and page re
 
 ### properties
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | payload | object |                     false | [payload](#payload) |
 | serviceName | string |                     false | Name of the extension service:<br> - web_recorder_service: Represents the extension `service for web web `**page recording**. <br>- `rtmp_publish_service`: Represents the extended service for** pushing web page recording to CDN from the relay page**. |
@@ -1993,7 +1990,7 @@ Fields returned in scenes other than single-stream video screenshots and page re
 
 The following fields will be returned during web page recording.
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | fileList | arrayobject[] |                     false | As described below. |
 | filename | string |                     false | The file names of the M3U8 and MP4 files generated during recording. |
@@ -2005,7 +2002,7 @@ The following fields will be returned during web page recording.
 
 When recording the web page recording to CDN, the following fields will be returned.
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | outputs | arrayobject[] |                     false | As described below. |
 | rtmpUrl | string |                     false | The CDN streaming address. |
@@ -2034,7 +2031,7 @@ arrayobject [type].
 
 ### properties
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | filename | string |                     false | The file names of the M3U8 and MP4 files generated during recording. |
 | trackType | string |                     false | The format of the recording file. <br>`"audio": Audio `file. <br>`"video": Video `file (no audio). <br>`"audio_and_video": Video `file (with audio). |
@@ -2063,7 +2060,7 @@ arrayobject [type].
 
 ### properties
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | cname | string |                     true | The name of the channel where the recording service is located. The cname you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request needs to be the same as` yours`. |
 | uid | string |                     true | The string content is the UID used by the recording service in the RTC channel to identify the recording service. It needs to be the same as the UID you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request.`` |
@@ -2080,12 +2077,12 @@ arrayobject [type].
 
 ```json
 {
-        "resourceId": "xxxxxx",
+  "resourceId": "string",
   "sid": "string",
   "serverResponse": {
     "extensionServiceState": [
       {
-        "payload": {
+        "playload": {
           "uploadingStatus": "string"
         },
         "serviceName": "string"
@@ -2100,7 +2097,7 @@ arrayobject [type].
 
 ### properties
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | resourceId | string |                     false | Resource ID used Cloud Recording. |
 | sid | string |                     false | Recording ID Identify a recording cycle. |
@@ -2119,7 +2116,7 @@ arrayobject [type].
 {
   "extensionServiceState": [
     {
-      "payload": {
+      "playload": {
         "uploadingStatus": "string"
       },
       "serviceName": "string"
@@ -2134,7 +2131,7 @@ arrayobject [type].
 
 Fields returned web page recording scene.
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | extensionServiceState | arrayobject[] |                     false | As described below. |
 | playload | object |                     false | [playload-stop](#playload-stop) |
@@ -2144,7 +2141,7 @@ Fields returned web page recording scene.
 
 Fields returned in the screenshot scene of single-stream video.
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | uploadingStatus | string |                     false | <br>`"uploaded"`: All the recorded files are uploaded to the third-party cloud storage. <br>`"backuped"`: Some of the recorded files fail to upload to the third-party cloud storage and upload to Agora Cloud Backup instead. Agora Cloud Backup automatically uploads these files to your cloud storage. <br>`"unknown": Unknown `status. |
 
@@ -2152,7 +2149,7 @@ Fields returned in the screenshot scene of single-stream video.
 
 Fields returned in scenes other than single-stream video screenshots and page recording.
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | fileListMode | string |                     false | `fileList` 字段的数据格式：<br>- `"string"`：`fileList` 为 String 类型。 composite recording mode, if `avFileType` is set to `["hls"]`, `fileListMode` is `"string"`. <br>`"json"`: `fileList` is a JSONArray. When `avFileType` is set to `["hls","mp4"] in single-composite` recording recording mode, `fileListMode` is set to `"json"`. |
 | fileList | [fileList-string](#schemafilelist-string) or [fileList-json](#schemafilelist-json) |                     false | [fileList-string](#schemafilelist-string) or [fileList-json](#schemafilelist-json) |
@@ -2166,7 +2163,7 @@ Fields returned in scenes other than single-stream video screenshots and page re
 
 Fields returned **by the upload service in ****web page recording **mode.
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | uploadingStatus | string |                     false | <br>`"uploaded"`: All the recorded files are uploaded to the third-party cloud storage. <br>`"backuped"`: Some of the recorded files fail to upload to the third-party cloud storage and upload to Agora Cloud Backup instead. Agora Cloud Backup automatically uploads these files to your cloud storage. <br>`"unknown": Unknown `status. |
 
@@ -2174,7 +2171,7 @@ Fields returned **by the upload service in ****web page recording **mode.
 
 **web page recording **by the **web page recording service in page recording mode**.
 
-| name | type | Required | 描述 |
+| name | type | Required | Description |
 |---|---|---|---|
 | fileList | arrayobject[] |                     false | As described below. |
 | filename | string |                     false | The file names of the M3U8 and MP4 files generated during recording. |
