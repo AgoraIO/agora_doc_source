@@ -917,9 +917,6 @@ Status Code **200**
 <!-- backwards compatibility -->
 <a id="schemarecordingconfig"></a>
 
-
-
-
 ```json
 {
   "channelType": 0,
