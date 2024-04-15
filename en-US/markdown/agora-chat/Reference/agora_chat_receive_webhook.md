@@ -910,6 +910,144 @@ When the owner demotes an admin to a member in a chat group or chat room, the Ag
 }
 ```
 
+### Set or update custom attributes of a group member
+
+When a user sets or updates custom attributes of a group member, the Chat server sends a callback to your app server. The sample code is as follows:
+
+```json
+{ 
+    "chat_type": "muc", 
+    "callId": "XXXX#XXXX_976432657191668068", 
+    "security": "f8956ab6d6f78df93efb2dbca5f2eb83", 
+    "payload": { 
+        "muc_id": "XXXX#XXXX@conference.easemob.com", 
+        "is_chatroom": false, 
+        "event_info":{
+           "ext":"{\"result\":{\"successKeys\": [\"key1\",\"key2\"],\"errorKeys\":{}},\"identify\":\"\",\"is_forced\":false,\"muc_name\":\"Take\",\"need_notify\":true, \"properties\":{\"key1\": \"value1\",\"key2\": \"value2 \"}, \"operator \": \"user1\"}",
+           "type":"event_none" 
+        },
+        "operation": "group_member_metadata_update", 
+        "status": { 
+            "description": "", 
+            "error_code": "ok" 
+        } 
+    }, 
+    "group_id": "632XXXX13", 
+    "host": "XXXX", 
+    "appkey": "XXXX#XXXX", 
+    "from": "632XXXX13", 
+    "to": "aaa111", 
+    "eventType": "chat", 
+    "msg_id": "976432657191668068", 
+    "timestamp": 1644908244060 
+}
+```
+
+Fields in the callback request are described:
+
+| Field          | Data Type     | Description           |
+| :------------ | :------- | :---------------------------------- |
+| `payload.event_info.ext`   | String   |  The message extension field that contains the custom attribute contents of a group member.   |
+| `payload.event_info.type`   | String   | The event type, which is the custom group member attribute.    |
+| `payload.operation`   | String   | `group_member_metadata_update`: Set or update custom attributes of a group member. |
+| `from`   | String   | The group ID。  |
+| `to`   | String   | The user ID of a group member.  |
+
+For descriptions of other fields, see [Chat group and chat room events](https://docs.agora.io/en/agora-chat/reference/callbacks-events?platform=android#chat-group-and-chat-room-events).
+
+### Set or update custom attributes of a chat room
+
+When a user sets or updates custom attributes of a chat room, the Chat server sends a callback to your app server. The sample code is as follows:
+
+```json
+{ 
+    "chat_type": "muc", 
+    "callId": "XXXX#XXXX_976432657191668068", 
+    "security": "f8956ab6d6f78df93efb2dbca5f2eb83", 
+    "payload": { 
+        "muc_id": "XXXX#XXXX@conference.easemob.com", 
+        "is_chatroom": true, 
+        "event_info":{
+           "ext":"{\"result\":{\"successKeys\": [\"key1\",\"key2\"],\"errorKeys\":{}},\"identify\":\"\",\"is_forced\":false,\"muc_name\":\"Take\",\"need_notify\":true, \"properties\":{\"key1\": \"value1\",\"key2\": \"value2 \"}, \"operator \": \"user1\"}",
+           "type":"event_none" 
+        },
+        "operation": "set_metadata", 
+        "status": { 
+            "description": "", 
+            "error_code": "ok" 
+        } 
+    }, 
+    "group_id": "662XXXX13", 
+    "host": "XXXX", 
+    "appkey": "XXXX#XXXX", 
+    "from": "662XXXX13", 
+    "to": "aaa111", 
+    "eventType": "chat", 
+    "msg_id": "976432657191668068", 
+    "timestamp": 1644908244060 
+}
+```
+
+Fields in the callback request are described:
+
+| Field          | Data Type | Description                                                       |
+| :------------ | :------- | :----------------------------------------------------------- |
+| `payload.event_info.ext`   | String   |  The message extension field that contains the custom attribute contents of the chat room.   |
+| `payload.event_info.type`   | String   | The event type, which is the custom chat room attribute.    |
+| `payload.operation`   | String   | `set_metadata`: Set or update custom attributes of a chat room. |
+| `from`   | String   | The chat room ID。  |
+| `to`   | String   | The user ID of a chat room member.  |
+
+For descriptions of other fields, see [Chat group and chat room events](https://docs.agora.io/en/agora-chat/reference/callbacks-events?platform=android#chat-group-and-chat-room-events).
+
+
+### Delete custom attributes of a chat room
+
+When a user deletes custom attributes of a chat room, the Chat server sends a callback to your app server. The sample code is as follows:
+
+```json
+{ 
+    "chat_type": "muc", 
+    "callId": "XXXX#XXXX_976432657191668068", 
+    "security": "f8956ab6d6f78df93efb2dbca5f2eb83", 
+    "payload": { 
+        "muc_id": "XXXX#XXXX@conference.easemob.com", 
+        "is_chatroom": true, 
+        "event_info":{
+           "ext":"{\"result\":{\"successKeys\": [\"key1\",\"key2\"],\"errorKeys\":{}},\"identify\":\"\",\"is_forced\":false,\"muc_name\":\"Take\",\"need_notify\":true, \"properties\":{\"key1\": \"value1\",\"key2\": \"value2 \"}, \"operator \": \"user1\"}",
+           "type":"event_none" 
+        },
+        "operation": "delete_metadata", 
+        "status": { 
+            "description": "", 
+            "error_code": "ok" 
+        } 
+    }, 
+    "group_id": "662XXXX13", 
+    "host": "XXXX", 
+    "appkey": "XXXX#XXXX", 
+    "from": "662XXXX13", 
+    "to": "aaa111", 
+    "eventType": "chat", 
+    "msg_id": "976432657191668068", 
+    "timestamp": 1644908244060 
+}
+```
+
+
+Fields in the callback request are described:
+
+| Field          | Data Type | Description                                                       |
+| :------------ | :------- | :----------------------------------------------------------- |
+| `payload.event_info.ext`   | String   |  The message extension field that contains the custom attribute contents of the chat room.   |
+| `payload.event_info.type`   | String   | The event type, which is the custom chat room attribute.    |
+| `payload.operation`   | String   | `delete_metadata`: Delete custom attributes of a chat room. |
+| `from`   | String   | The chat room ID。  |
+| `to`   | String   | The user ID of a chat room member.  |
+
+
+For descriptions of other fields, see [Chat group and chat room events](https://docs.agora.io/en/agora-chat/reference/callbacks-events?platform=android#chat-group-and-chat-room-events).
+
 ### Update the information of a chat group or chat room
 
 When the owner or an admin updates the information of a chat group or chat room, the Agora Chat server sends a callback to your app server. The sample code of the `payload` field is as follows:

@@ -34,6 +34,8 @@ This section describes how to call the APIs provided by the Agora Chat SDK to im
 
 Only the [app super admin](./agora_chat_restful_chatroom_superadmin#adding-a-chat-room-super-admin) can call `createChatRoom` to create a chat room and set the chat room attributes such as the chat room name, description, and maximum number of members. Once a chat room is created, the super admin automatically becomes the chat room owner.
 
+<div class="alert note">You are advised to call the [RESTful API](https://docs.agora.io/en/agora-chat/restful-api/chatroom-management/manage-chatrooms?platform=android#creating-a-chat-room) to create a chat room from the server.</div>
+
 The following code sample shows how to create a chat room:
 
 ```dart
