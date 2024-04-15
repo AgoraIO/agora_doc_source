@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_imediaplayersourceobserver_onpositionchanged">
     <title><ph keyref="onPositionChanged" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Reports current playback progress.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Reports the playback progress of the media file.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -13,32 +13,37 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">void onPositionChanged(long position);
-</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraMediaPlayer:(AgoraMediaPlayer *_Nonnull)playerKit
-    didChangedToPosition:(NSInteger)position;
-</codeblock>
-                <codeblock props="cpp" outputclass="language-cpp">virtual void onPositionChanged(int64_t position) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp" />
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
-            </p>
+            <codeblock props="android" outputclass="language-java">void onPositionChanged(long positionMs, long timestampMs);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraMediaPlayer:(AgoraMediaPlayer *_Nonnull)playerKit
+    didChangedToPosition:(NSInteger)positionMs
+             atTimestamp:(NSTimeInterval)timestampMs NS_SWIFT_NAME(AgoraMediaPlayer(_:didChangedToPosition:atTimestamp:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onPositionChanged(int64_t positionMs, int64_t timestampMs) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnPositionChanged, int64, position_ms);</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onPositionChanged?(positionMs: number): void;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnPositionChanged(Int64 position_ms) { }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onPositionChanged?(positionMs: number): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(int position)? onPositionChanged;</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>When playing media files, the SDK triggers this callback every one second to report current playback progress.</p>
+            <p>When playing media files, the SDK triggers this callback every two second to report current playback progress.</p>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters">
+            <title>Parameters</title>
             <parml>
-                <plentry conkeyref="onPlayerEvent/playerkit" props="ios mac">
-                    <pt />
-                    <pd />
-                </plentry>
-                <plentry>
-                    <pt>position</pt>
-                    <pd>The playback position (ms) of media files.</pd>
-                </plentry>
-            </parml>
-        </section>
+            <plentry conkeyref="onPlayerEvent/playerkit" props="ios mac">
+                <pt />
+                <pd />
+            </plentry>
+            <plentry>
+                <pt props="native unreal bp electron rn flutter">positionMs</pt>
+                <pt props="unity cs">position_ms</pt>
+                <pd>The playback position (ms) of media files.</pd>
+            </plentry>
+            <plentry>
+                <pt>timeStampMs</pt>
+                <pd>The NTP timestamp (ms) of the current playback progress.</pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

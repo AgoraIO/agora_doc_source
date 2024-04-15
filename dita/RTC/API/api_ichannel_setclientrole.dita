@@ -25,8 +25,9 @@
             <p conkeyref="setClientRole1/desc"/>
             <p>如果你在加入频道后调用该方法切换用户角色，调用成功后，SDK 会自动进行如下操作：
             <ul>
-            <li>调用 <xref keyref="IChannel_muteLocalAudioStream"/> 和 <xref keyref="IChannel_muteLocalVideoStream"/> 修改发布状态。</li>
-            <li>本地会触发 <xref keyref="IChannel_onClientRoleChanged"/> 或 <xref keyref="IChannel_onClientRoleChangeFailed"/> 回调。</li>
+            <li>调用 <xref keyref="muteLocalAudioStream"/> 和 <xref keyref="muteLocalVideoStream"/> 修改发布状态。</li>
+            <li props="native flutter">本地会触发 <xref keyref="IChannel_onClientRoleChanged"/> 或 <xref keyref="IChannel_onClientRoleChangeFailed"/> 回调。</li>
+            <li props="cs">本地会触发 <xref keyref="IChannel_onClientRoleChanged"/> 回调。</li>
             <li>远端会触发 <xref keyref="IChannel_onUserJoined"/> 或 <xref keyref="IChannel_onUserOffline"/>(USER_OFFLINE_BECOME_AUDIENCE) 回调。</li>
             </ul></p>
             <note type="attention">该方法仅适用于直播场景。</note> </section>

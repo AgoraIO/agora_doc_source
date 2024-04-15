@@ -1,0 +1,38 @@
+@startuml
+title 点歌 API 时序图
+autonumber
+skinparam monochrome true
+participant "App" as a
+participant "声网 SDK" as b
+== 初始化 KTV API 模块并注册事件==
+a -> b: init
+a -> b: addEventHandler
+== 获取歌曲列表（方式一：用关键词）==
+a -> b: searchMusic[2/2]
+b -->> a: completion
+note right
+搜索歌曲的结果通过回调闭包直接返回。
+end note
+== 获取歌曲列表（方式二：用音乐榜单）==
+a -> b: searchMusic[1/2]
+b -->> a: completion
+note right
+搜索歌曲的结果通过回调闭包直接返回。
+end note
+== 加载歌曲 ==
+a -> b: loadMusic()
+b -->> a: onMusicLoadSuccess
+== 切换用户角色 ==
+a -> b: switchSingerRole(SoloSinger)
+b -->> a:onSwitchRoleState
+b -->> a: KTV 模块内部根据设置的用户角色控制歌曲播放、同步。
+b -->> a:onMusicPlayerStateChanged(AgoraMediaPlayerStatePlaying)
+== 控制播放器 ==
+a ->b: seekSing/pauseSing/resumeSing
+b -->> a: onMusicPlayerStateChanged(AgoraMediaPlayerStateXX)
+== 停止播放或中途切歌 ==
+a -> b: switchSingerRole(Audience)
+b -->> a: onMusicPlayerStateChanged(AgoraMediaPlayerStateStopped)
+== 释放 KTV API 模块资源 ==
+a ->b: cleanCache()
+@enduml

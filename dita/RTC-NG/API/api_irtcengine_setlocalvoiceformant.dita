@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setlocalvoiceformant">
+    <title><ph keyref="setLocalVoiceFormant"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置共振峰比率以改变语音的音色。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setLocalVoiceFormant"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setLocalVoiceFormant(double formantRatio);
+</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLocalVoiceFormant:(double)formantRatio;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setLocalVoiceFormant(double formantRatio) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int SetLocalVoiceFormant(FString formantRatio = &quot;0.0&quot;);</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract setLocalVoiceFormant(formantRatio: number): number;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetLocalVoiceFormant(double formantRatio);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract setLocalVoiceFormant(formantRatio: number): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setLocalVoiceFormant(double formantRatio);</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <title>详情</title>
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.2.0</dd>
+            </dlentry>
+            </dl>
+            <p>共振峰比率是影响声音音色的一个参数，共振峰比率取值越小声音会更低沉，取值越大声音会更尖锐。</p>
+            <p>在语音直播、语聊房、K 歌房等场景中，你可以调用该方法设置本地语音的共振峰比率参数从而改变音色效果。设置共振峰比率后，频道内所有用户都能听到该效果。如果你想要在调整音色的同时改变音调，声网推荐你搭配 <xref keyref="setLocalVoicePitch"/> 一起使用。
+            <note type="attention">该方法在加入频道前后均可调用。</note></p>
+        </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt>formantRatio</pt>
+                <pd>共振峰比率，取值范围为 [-1.0，1.0]。默认值为 0.0，即不改变原声的音色。
+                <note type="note">声网推荐的取值范围为 [-0.4，0.6] ，超出此范围外音效听感可能不佳。</note></pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+            <ul props="native unreal bp unity rn electron">
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+            </ul></section>
+    </refbody>
+</reference>

@@ -1,57 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaengine_registervideoframeobserver">
-    <title><ph keyref="registerVideoFrameObserver" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Registers a video frame observer object.</ph></shortdesc>
+    <title><ph keyref="registerVideoFrameObserver"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Registers a raw video frame observer object.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="registerVideoFrameObserver" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="registerVideoFrameObserver"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public abstract int registerVideoFrameObserver(IVideoFrameObserver observer);</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)setVideoFrameDelegate:(id&lt;AgoraVideoFrameDelegate&gt; _Nullable)delegate;</codeblock>
-                <codeblock props="cpp" outputclass="language-cpp">virtual int registerVideoFrameObserver(IVideoFrameObserver* observer) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp">public abstract void RegisterVideoFrameObserver(IAgoraRtcVideoFrameObserver videoFrameObserver);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
-        </p>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int registerVideoFrameObserver(IVideoFrameObserver observer);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)setVideoFrameDelegate:(id&lt;AgoraVideoFrameDelegate&gt; _Nullable)delegate;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int registerVideoFrameObserver(IVideoFrameObserver* observer) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract registerVideoFrameObserver(observer: IVideoFrameObserver): number;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int RegisterVideoFrameObserver(IVideoFrameObserver videoFrameObserver, VIDEO_OBSERVER_FRAME_TYPE formatPreference, VIDEO_OBSERVER_POSITION position, OBSERVER_MODE mode = OBSERVER_MODE.INTPTR);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract registerVideoFrameObserver(observer: IVideoFrameObserver): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">void registerVideoFrameObserver(VideoFrameObserver observer);</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-
-   <p>You need to implement the class in this method <xref keyref="IVideoFrameObserver" /> and register callbacks according to your scenarios. After you successfully register the video frame observer, the SDK triggers the registered callbacks each time a video frame is received.</p>
-   <note type="attention">
-       <ul>
-  <li>When handling the video data returned in the callbacks, pay attention to the changes in the <parmname>width</parmname> and <parmname>height</parmname> parameters, which may be adapted under the following circumstances:<ul id="ul_qms_zys_r4b">
- <li>When the network condition deteriorates, the video resolution decreases incrementally.</li>
- <li>If the user adjusts the video profile, the resolution of the video returned in the callbacks also changes.</li>
-      </ul></li>
-  <li>Ensure that you call this method before joining a channel.</li>
-       </ul>
-   </note>
-        </section>
-        <section id="parameters"><title>Parameters</title>
-   <parml>
-       <plentry>
-           <pt props="android cpp">observer</pt>
-           <pt props="ios mac">delegate</pt>
-           <pt props="unity">videoFrameObserver</pt>
-  <pd>
-      <p>The observer object instance. To release the instance, set the value as <ph keyref="NULL" />. For details, see <xref keyref="IVideoFrameObserver" />.</p>
-  </pd>
-       </plentry>
-   </parml>
-        </section>
-        <section>
-   <title>Returns</title>
-   <ul id="ul_r1t_n1t_r4b">
-       <li>0: Success.</li>
-       <li>&lt; 0: Failure.</li>
-   </ul>
-        </section>
+            <title>Details</title>
+            <p>If you want to observe raw video frames (such as YUV or RGBA format), Agora recommends that you implement one <xref keyref="IVideoFrameObserver"/> class with this method.</p>
+            <p>When calling this method to register a video observer, you can register callbacks in the <apiname keyref="IVideoFrameObserver"/> class as needed. After you successfully register the video frame observer, the SDK triggers the registered callbacks each time a video frame is received.</p>
+            <p conkeyref="registerVideoEncodedFrameObserver/mix"/>
+            <note type="attention">
+            <ul>
+            <li>Ensure that you call this method before joining a channel.</li>
+            <li>When handling the video data returned in the callbacks, pay attention to the changes in the <parmname>width</parmname> and <parmname>height</parmname> parameters, which may be adapted under the following circumstances:<ul id="ul_qms_zys_r4b">
+                <li>When network conditions deteriorate, the video resolution decreases incrementally.</li>
+                <li>If the user adjusts the video profile, the resolution of the video returned in the callbacks also changes.</li>
+                </ul></li>
+            </ul> </note>
+        <note type="tip" props="android ios">After registering the raw video observer, you can use the obtained raw video data in various video pre-processing scenarios, such as implementing virtual backgrounds and image enhacement scenarios by yourself, Agora provides an open source sample project <xref keyref="beautyapi-link"/> on GitHub for your reference.</note></section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt props="android cpp unreal bp electron rn flutter">observer</pt>
+                <pt props="ios mac">delegate</pt>
+                <pt props="unity cs">videoFrameObserver</pt>
+                <pd>The  observer instance. <ph>See <xref keyref="IVideoFrameObserver"/></ph>. <ph props="android cpp unreal bp ios mac unity cs">To release the instance, set the value as <ph keyref="NULL"/>.</ph></pd>
+            </plentry>
+            <plentry props="unity cs">
+                <pt>mode</pt>
+                <pd>The video data callback mode. See <xref keyref="OBSERVER_MODE"/>.</pd>
+            </plentry>
+            <plentry props="unity">
+                <pt>formatPreference</pt>
+                <pd>The video frame type. See <xref keyref="VIDEO_OBSERVER_FRAME_TYPE"/>.</pd>
+            </plentry>
+            <plentry props="unity">
+                <pt>position</pt>
+                <pd>A bit mask that controls the frame position of the video observer. See <xref keyref="VIDEO_MODULE_POSITION"/>.</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <ul>
+            <li props="android cpp unreal bp electron rn unity cs">0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            </ul>
+            <ul props="ios mac">
+            <li><codeph><ph keyref="true"/></codeph>: Success.</li>
+            <li><codeph><ph keyref="false"/></codeph>: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            </ul> </section>
     </refbody>
 </reference>

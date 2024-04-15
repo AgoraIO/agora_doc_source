@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_createcustomvideotrack">
+    <title><ph keyref="createCustomVideoTrack"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Creates a custom video track.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="createCustomVideoTrack"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int createCustomVideoTrack();</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (unsigned int)createCustomVideoTrack;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual video_track_id_t createCustomVideoTrack() = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int64 CreateCustomVideoTrack();</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract createCustomVideoTrack(): number;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract video_track_id_t CreateCustomVideoTrack();</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract createCustomVideoTrack(): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; createCustomVideoTrack();</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+        </section>
+        <section id="detailed_desc">
+            <title>Details</title>
+            <p>To publish a custom video source, see the following steps:<ol>
+            <li>Call this method to create a video track and get the video track ID.</li>
+            <li>Call <xref keyref="joinChannel2"/> to join the channel. In <xref keyref="ChannelMediaOptions"/>, set <parmname>customVideoTrackId</parmname> to the video track ID that you want to publish, and set <parmname>publishCustomVideoTrack</parmname> to <codeph><ph keyref="true"/></codeph>.</li>
+            <li>Call <xref keyref="pushVideoFrame" props="apple cpp framework"/><xref keyref="pushVideoFrame3" props="android"/> and specify <parmname>videoTrackId</parmname> as the video track ID set in step 2. You can then publish the corresponding custom video source in the channel.</li>
+            </ol></p>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul>
+            <li>If the method call is successful, the video track ID is returned as the unique identifier of the video track.</li>
+            <li>If the method call fails, a negative value is returned. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            </ul> </section>
+    </refbody>
+</reference>

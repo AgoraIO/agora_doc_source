@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setrouteincommunicationmode">
+    <title><ph keyref="setRouteInCommunicationMode"/></title>
+    <shortdesc id="short"><ph id="shortdesc">选择通话音量模式下的音频路由。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setRouteInCommunicationMode"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setRouteInCommunicationMode(int route);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setRouteInCommunicationMode(int route) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetRouteInCommunicationMode(int route);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract setRouteInCommunicationMode(route: number): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setRouteInCommunicationMode(int route);</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <title>详情</title>
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.2.2</dd>
+            </dlentry>
+            </dl>
+            <p>该方法用于在通话音量模式（<xref keyref="communication-audio-mode"/>）下，将音频路由从蓝牙耳机切换为听筒、有线耳机或扬声器。该方法调用成功后，SDK 会触发 <xref keyref="onAudioRoutingChanged"/> 回调，报告修改后的路由。</p>
+            <note type="attention" props="android">该方法与 <xref keyref="setEnableSpeakerphone"/> 同时使用时可能引起冲突。声网建议你单独使用 <xref keyref="setRouteInCommunicationMode"/>。</note>
+            <note type="attention" props="cpp unity rn flutter unreal bp"><ul><li>该方法仅适用于 Android。</li><li>该方法与 <xref keyref="setEnableSpeakerphone"/> 同时使用时可能引起冲突。声网建议你单独使用 <xref keyref="setRouteInCommunicationMode"/>。</li></ul></note>
+        </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt>route</pt>
+                <pd>期望使用的音频路由:
+                    <ul>
+                    <li>-1：系统默认的音频路由。</li>
+                    <li>0：带麦克风的耳机。</li>
+                    <li>1：听筒。</li>
+                    <li>2：不带麦克风的耳机。</li>
+                    <li>3：设备自带的扬声器。</li>
+                    <li>4：（暂不支持）外接的扬声器。</li>
+                    <li>5：蓝牙耳机。</li>
+                    <li>6：USB 设备。</li>
+                    </ul>              
+                </pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p>无实际意义。</p> </section>
+        </refbody>
+</reference>

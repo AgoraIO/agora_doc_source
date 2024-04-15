@@ -1,0 +1,30 @@
+@startuml
+autonumber
+title 秀场直播 API 时序图
+participant "声网 RTC SDK" as sdk
+participant "秀场直播 App" as app #White
+participant "声网云服务\n(Service)" as service
+== 加入房间 ==
+app -> app: 进入直播间
+app -> sdk: 主播调用 setupLocalVideoEx\n观众调用 setupRemoteVideoEx
+app -> sdk: joinChannelEx(ChannelMediaOptions)
+app -> service: 加入房间 \njoinChannel
+activate service
+service -->> app: 加入房间成功
+deactivate service
+app -> service: 获取房间内用户列表 \ngetAllUserList
+activate service
+service -->> app: 获取用户列表成功
+deactivate service
+app -> service: 获取房间内的互动状态，如主播 PK 连麦或观众连麦 \ngetAllInterationList
+activate service
+service -->> app: 获取房间内互动状态成功
+deactivate service
+app -> service: 订阅断网重连事件 \nsubscribeReConnectEvent
+app -> service: 订阅房间销毁事件 \nsubscribeCurrRoomEvent
+app -> service: 订阅用户进出房间事件 \nsubscribeUser
+app -> service: 订阅聊天消息事件 \nsubscribeMessage
+app -> service: 订阅 PK 连麦消息事件 \nsubscribePKInvitationChanged
+app -> service: 订阅观众连麦消息事件 \nsubscribeInteractionChanged
+app -> service: 订阅麦位变化事件 \nsusbscribeMicSeatApply
+@enduml

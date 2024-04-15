@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setlocalpublishfallbackoption">
+    <title><ph keyref="setLocalPublishFallbackOption" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the fallback option for the published video stream based on the network conditions.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setLocalPublishFallbackOption" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setLocalPublishFallbackOption(int option);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLocalPublishFallbackOption:(AgoraStreamFallbackOptions)option;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setLocalPublishFallbackOption(STREAM_FALLBACK_OPTIONS option) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetLocalPublishFallbackOption(STREAM_FALLBACK_OPTIONS option);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLocalPublishFallbackOption(StreamFallbackOptions option);</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+        </section>
+        <section id="detailed_desc">
+            <title>Details</title>
+            <p>An unstable network affects the audio and video quality in a video call or interactive live video streaming. If <parmname>option</parmname> is set as<apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY" />  (2), the SDK disables the upstream video but enables audio only when the network conditions deteriorate and cannot support both video and audio. The SDK monitors the network quality and restores the video stream when the network conditions improve. When the published video stream falls back to audio-only or when the audio-only stream switches back to the video, the SDK triggers<xref keyref="onLocalPublishFallbackToAudioOnly"/> the  callback.</p>
+            <note type="attention">
+            <ul>
+            <li>In stream push scenarios, set the local push fallback to <apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY" /> (2) may result n some delay for remote CDN users to hear the sound. In this case, Agora recommends that you do not enable this option.</li>
+            <li>Ensure that you call this method before joining a channel.</li>
+            </ul> </note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>option</pt>
+                <pd props="cpp unreal bp unity ios mac flutter cs">The stream fallback option. See <xref keyref="STREAM_FALLBACK_OPTIONS" />.</pd>
+                <pd props="android">The stream fallback option.<ul>
+                    <li><apiname keyref="STREAM_FALLBACK_OPTION_DISABLED" />(0)：（默认）上行网络较弱时，不对音视频流作回退处理。</li>
+                    <li><apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY" />(2): The published video stream falls back to audio only when the uplink network condition is poor.</li>
+                    </ul> </pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <ul props="native unreal bp electron unity rn cs">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            </ul> </section>
+    </refbody>
+</reference>

@@ -16,29 +16,49 @@
   }
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRemoteVoicePositionInfo : NSObject
-@property(strong, nonatomic) NSArray&lt;NSNumber*&gt; * _Nonnull position;
-@property(strong, nonatomic) NSArray&lt;NSNumber*&gt; * _Nullable forward;
+@property(assign, nonatomic) simd_float3 position;
+@property(assign, nonatomic) simd_float3 forward;
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct RemoteVoicePositionInfo {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct RemoteVoicePositionInfo {
   float position[3];
   float forward[3];
 
   RemoteVoicePositionInfo() = default;
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp">public class RemoteVoicePositionInfo
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FRemoteVoicePositionInfo
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVoicePositionInfo&quot;)
+	FVector position;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVoicePositionInfo&quot;)
+	FVector forward;
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export class RemoteVoicePositionInfo {
+  
+  position?: number[];
+  
+  forward?: number[];
+}</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public class RemoteVoicePositionInfo
     {
         public RemoteVoicePositionInfo(float[] position, float[] forward)
         {
-            this.position= position;
+            this.position = position;
             this.forward = forward;
         }
-      
         public float[] position { set; get; }
         public float[] forward { set; get; }
     };</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="rn" outputclass="language-typescript">export class RemoteVoicePositionInfo {
+  
+  position?: number[];
+  
+  forward?: number[];
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock>            
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
@@ -49,7 +69,8 @@
             </plentry>
             <plentry>
                 <pt>forward</pt>
-                <pd conkeyref="updateSelfPosition/axisforward_desc" />
+                <pd props="native unreal bp electron rn cs">The unit vector of the x axis in the coordinate system. This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn.</pd>
+                <pd props="unity">The unit vector of the x axis in the coordinate system. This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn. And the front, right, and top coordinates correspond to the positive directions of Unity's Vector3 axes (z, x, and y, respectively).</pd>
             </plentry>
             </parml> </section>
     </refbody>

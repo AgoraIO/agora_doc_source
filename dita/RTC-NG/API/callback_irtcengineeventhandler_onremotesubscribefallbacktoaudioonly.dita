@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onremotesubscribefallbacktoaudioonly">
+    <title> <ph keyref="onRemoteSubscribeFallbackToAudioOnly" /> </title>
+    <shortdesc id="short"> <ph id="shortdesc">订阅流已回退为音频流或恢复为音视频流回调。</ph> </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRemoteSubscribeFallbackToAudioOnly" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onRemoteSubscribeFallbackToAudioOnly(int uid, boolean isFallbackOrRecover) {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+    didRemoteSubscribeFallbackToAudioOnly:(BOOL)isFallbackOrRecover byUid:(NSUInteger)uid;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onRemoteSubscribeFallbackToAudioOnly(uid_t uid, bool isFallbackOrRecover) {
+    (void)uid;
+    (void)isFallbackOrRecover;
+    }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onRemoteSubscribeFallbackToAudioOnly?(
+    uid: number,
+    isFallbackOrRecover: boolean
+  ): void;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnRemoteSubscribeFallbackToAudioOnly(uint uid, bool isFallbackOrRecover)</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onRemoteSubscribeFallbackToAudioOnly?(
+    uid: number,
+    isFallbackOrRecover: boolean
+  ): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">  final void Function(int uid, bool isFallbackOrRecover)?
+      onRemoteSubscribeFallbackToAudioOnly;</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+        </section>
+        <section id="detailed_desc">
+            <p>当你调用了 <xref keyref="setRemoteSubscribeFallbackOption"/> 并将 <parmname>option</parmname> 设置为 <apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/> 后，该回调会在下列情况时被触发：
+                <ul>
+                    <li>下行网络环境较差，订阅的音视频流回退为音频流</li>
+                    <li>下行网络环境改善，订阅音频流恢复为音视频流</li>
+                </ul></p>
+            <note type="attention">订阅流因弱网环境而回退为视频小流时，你可以通过 <xref keyref="onRemoteVideoStats"/> 回调来监控远端视频大小流的切换。</note>
+        </section>
+        <section id="parameters">
+            <title> <ph keyref="callback-section-title" /> </title>
+            <parml>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt />
+                <pd />
+            </plentry>
+            <plentry id="uid">
+                <pt>uid</pt>
+                <pd>远端用户的用户 ID。</pd>
+            </plentry>
+            <plentry id="isFallbackOrRecover">
+                <pt>isFallbackOrRecover</pt>
+                <pd>
+                    <ul>
+                    <li><codeph><ph keyref="true" /></codeph>: 由于网络环境不理想，订阅流已回退为音频流。</li>
+                    <li><codeph><ph keyref="false" /></codeph>: 由于网络环境改善，订阅流已恢复为音视频流。</li>
+                    </ul> </pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

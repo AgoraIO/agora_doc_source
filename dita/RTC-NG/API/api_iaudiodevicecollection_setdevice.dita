@@ -5,35 +5,43 @@
     <shortdesc id="short"><ph id="shortdesc">指定音频设备。</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="setDevice_IAudioDeviceCollection" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="setDevice_IAudioDeviceCollection" />
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="cpp" outputclass="language-cpp">virtual int setDevice(const char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp">public abstract int SetDevice(string deviceIdUTF8);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
-        </p>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setDevice(const char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IAudioDeviceCollection&quot;)
+	int SetDevice(FString deviceId);</codeblock>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetDevice(string deviceIdUTF8);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setDevice(String deviceIdUTF8);</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="parameters"><title>参数</title>
-   <parml>
-       <plentry>
-  <pt>deviceId</pt>
-           <pd>设备 ID。最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE" />。</pd>
-       </plentry>
-   </parml>
-        </section>
+        <section id="detailed_desc">
+            <title>详情</title>
+            <p>该方法可以更改当前的音频路由，但不会改变系统默认的音频路由。假设系统默认的音频路由是扬声器 1，你在加入频道前调用该方法设置当前的音频路由为扬声器 2，如果在此时进行设备检测，SDK 会对扬声器 2 进行检测。检测结束后，当你加入频道时 SDK 依然会选择使用系统默认的音频路由，即扬声器 1。</p>
+            </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt>deviceId</pt>
+                <pd>设备 ID。最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE" />。</pd>
+            </plentry>
+            </parml> </section>
         <section id="return_values">
-   <title>返回值</title>
-   <ul>
-       <li>0: 方法调用成功。</li>
-       <li>&lt; 0: 方法调用失败。</li>
-   </ul>
-        </section></refbody>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+            <ul props="native unreal bp electron unity rn cs">
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+            </ul> </section>
+    </refbody>
 </reference>

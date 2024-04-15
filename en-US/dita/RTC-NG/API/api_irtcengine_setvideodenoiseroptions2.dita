@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setvideodenoiseroptions2">
+    <title> <ph keyref="setVideoDenoiserOptions2"/> </title>
+    <shortdesc id="short">                                                                                                                                                                                                                                                                                                                                                                                                    <ph id="shortdesc">Sets video noise reduction and specifies the media source.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setVideoDenoiserOptions2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setVideoDenoiserOptions(
+      boolean enabled, VideoDenoiserOptions options, Constants.MediaSourceType sourceType);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setVideoDenoiserOptions:(BOOL)enable options:(AgoraVideoDenoiserOptions* _Nullable)options sourceType:(AgoraMediaSourceType)sourceType NS_SWIFT_NAME(setVideoDenoiserOptions(_:options:sourceType:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp"></codeblock>
+            <codeblock props="bp" outputclass="language-cpp"></codeblock>
+            <codeblock props="electron" outputclass="language-typescript"></codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp"></codeblock>
+            <codeblock props="rn" outputclass="language-typescript"></codeblock>
+            <codeblock props="flutter" outputclass="language-dart"></codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+        </section>
+        <section id="detailed_desc">
+            <title>Details</title>
+            <p>Underlit environments and low-end video capture devices can cause video images to contain significant noise, which affects video quality. In real-time interactive scenarios, video noise also consumes bitstream resources and reduces encoding efficiency during encoding.</p>
+            <p>Both this method and <xref keyref="setVideoDenoiserOptions"/> set video noise reduction, but this method allows you to specify the media source to which the noise reduction is applied.</p>
+            <note type="attention" conkeyref="setVideoDenoiserOptions/req"/>
+        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry conkeyref="setVideoDenoiserOptions/enable">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="setVideoDenoiserOptions/options">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry props="cpp unreal bp rn unity electron flutter cs" conkeyref="setVideoDenoiserOptions/type">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="enableVirtualBackground2/sourcetype">
+                <pt/>
+                <pd/>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <ul>
+            <li props="native unreal bp electron unity rn cs">0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            </ul> </section>
+    </refbody>
+</reference>

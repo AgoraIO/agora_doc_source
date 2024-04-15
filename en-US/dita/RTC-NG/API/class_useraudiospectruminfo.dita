@@ -17,7 +17,7 @@
 @property(nonatomic, strong) NSArray&lt;NSNumber *&gt; * _Nullable audioSpectrumData;
 
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct UserAudioSpectrumInfo  {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct UserAudioSpectrumInfo  {
   agora::rtc::uid_t uid;
   struct AudioSpectrumData spectrumData;
 
@@ -25,28 +25,60 @@
   UserAudioSpectrumInfo(agora::rtc::uid_t _uid, const float *data, int length) :
     uid(_uid) { spectrumData.audioSpectrumData = data; spectrumData.dataLength = length; }
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" />
-            </p>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FUserAudioSpectrumInfo {
+
+	GENERATED_BODY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|UserAudioSpectrumInfo&quot;)
+	int64 uid;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|UserAudioSpectrumInfo&quot;)
+	FAudioSpectrumData spectrumData;
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export class UserAudioSpectrumInfo {
+  
+  uid?: number;
+  
+  spectrumData?: AudioSpectrumData;
+}</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public struct UserAudioSpectrumInfo
+                {
+                    public uint uid;
+                    public AudioSpectrumData spectrumData;
+                };</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class UserAudioSpectrumInfo {
+  
+  uid?: number;
+  
+  spectrumData?: AudioSpectrumData;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class UserAudioSpectrumInfo {
+  const UserAudioSpectrumInfo({this.uid, this.spectrumData});
+
+  @JsonKey(name: 'uid')
+  final int? uid;
+  @JsonKey(name: 'spectrumData')
+  final AudioSpectrumData? spectrumData;
+  factory UserAudioSpectrumInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$UserAudioSpectrumInfoFromJson(json);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$UserAudioSpectrumInfoToJson(this);
+}</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
-                <plentry>
-                    <pt>uid</pt>
-                    <pd>The ID of the remote user.</pd>
-                </plentry>
-                <plentry>
-                    <pt props="android">audioSpectrumInfo</pt>
-                    <pt props="ios mac">audioSpectrumData</pt>
-                    <pt props="cpp">spectrumData</pt>
-                    <pd>
-                        <p>Audio spectrum information of the remote user.<ph props="android cpp"> For details, see <xref keyref="AudioSpectrumData" />.</ph></p>
-                    </pd>
-                </plentry>
-            </parml>
-        </section>
+            <plentry>
+                <pt>uid</pt>
+                <pd>The user ID of the remote user.</pd>
+            </plentry>
+            <plentry>
+                <pt props="android">AudioSpectrumInfo</pt>
+                <pt props="ios mac">audioSpectrumData</pt>
+                <pt props="cpp unreal bp unity electron flutter cs">spectrumData</pt>
+                <pd>
+                    <p>Audio spectrum information of the remote user. <ph props="android cpp unreal bp unity electron flutter cs">See <xref keyref="AudioSpectrumData" />.</ph></p>
+                </pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

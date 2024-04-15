@@ -10,6 +10,7 @@ import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 /// A web implementation of the AgoraRtcFlutter plugin.
 class AgoraRtcNgWeb {
+  /// @nodoc
   static void registerWith(Registrar registrar) {
     final MethodChannel channel = MethodChannel(
       'agora_rtc_flutter',
@@ -31,7 +32,8 @@ class AgoraRtcNgWeb {
       default:
         throw PlatformException(
           code: 'Unimplemented',
-          details: 'agora_rtc_flutter for web doesn\'t implement \'${call.method}\'',
+          details:
+              'agora_rtc_flutter for web doesn\'t implement \'${call.method}\'',
         );
     }
   }

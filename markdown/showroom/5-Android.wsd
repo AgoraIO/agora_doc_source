@@ -1,0 +1,25 @@
+@startuml
+autonumber
+title 秀场直播 API 时序图
+participant "声网 RTC SDK" as sdk
+participant "秀场直播 App" as app #White
+participant "声网云服务\n(Service)" as service
+== 离开并销毁房间 ==
+app -> app: 判断是否在主播 PK 连麦或观众连麦中
+app -> service: 停止连麦 \nstopInteraction
+note left
+如果在连麦中，停止连麦
+如果不在连麦中，直接进行下一步
+end note
+app -> service: 主播离开房间 \nleaveRoom
+activate service
+service -->> app: 通知所有观众房间已关闭 \nsubscribeCurrRoomEvent(status=deleted)
+deactivate service
+app -> service: 观众离开房间 \nleaveRoom
+activate service
+service -->> app: 通知所有用户并刷新用户列表 \nsusbscribeUser(status=updated)
+deactivate service
+app -> sdk: leaveChannel
+app -> sdk: RtcEngine.destroy
+app -> app: 回到房间列表界面
+@enduml

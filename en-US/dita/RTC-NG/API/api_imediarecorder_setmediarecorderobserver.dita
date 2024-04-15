@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediarecorder_setmediarecorderobserver">
+    <title><ph keyref="setMediaRecorderObserver"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Registers one <xref keyref="IMediaRecorderObserver"/>oberver.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setMediaRecorderObserver"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public int setMediaRecorderObserver(IMediaRecorderCallback callback)</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setMediaRecorderDelegate:(id&lt;AgoraMediaRecorderDelegate> _Nullable)delegate;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setMediaRecorderObserver(media::IMediaRecorderObserver* callback) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IMediaRecorder&quot;)
+	int SetMediaRecorderObserver(UIMediaRecorderObserver* callback);</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract setMediaRecorderObserver(callback: IMediaRecorderObserver): number;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetMediaRecorderObserver(IMediaRecorderObserver callback);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract setMediaRecorderObserver(callback: IMediaRecorderObserver): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setMediaRecorderObserver(
+      {required RtcConnection connection,
+      required MediaRecorderObserver callback});</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
+        </section>
+        <section id="detailed_desc">
+            <title>Details</title>
+            <p>This method is used to set the callbacks of audio and video recording, so as to notify the app of the recording status and information of the audio and video stream during recording.</p>
+            <p>Before calling this method, ensure the following:<ul>
+            <li>The <xref keyref="IRtcEngine"/> object is created and initialized.</li>
+            <li>The recording object is created through <xref keyref="createMediaRecorder"/>.</li>
+            </ul></p>
+        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt props="cpp android framework">callback</pt>
+                <pt props="apple">delegate</pt>
+                <pd>The callbacks for recording audio and video streams. See <xref keyref="IMediaRecorderObserver"/>.</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <ul props="native unreal bp rn electron unity cs">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            </ul> </section>
+    </refbody>
+</reference>

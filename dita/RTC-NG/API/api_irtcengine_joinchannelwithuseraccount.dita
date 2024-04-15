@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_joinchannelwithuseraccount">
+    <title><ph keyref="joinChannelWithUserAccount1" /></title>
+    <shortdesc id="short"><ph id="shortdesc">使用 User Account 和 Token 加入频道。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="joinChannelWithUserAccount1" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int joinChannelWithUserAccount(
+                    String token, String channelName, String userAccount);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)joinChannelByToken:(NSString * _Nullable)token
+                channelId:(NSString * _Nonnull)channelId
+              userAccount:(NSString * _Nonnull)userAccount
+              joinSuccess:(void(^ _Nullable)(NSString * _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int joinChannelWithUserAccount(const char* token,
+    const char* channelId,
+    const char* userAccount) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract joinChannelWithUserAccount(
+    token: string,
+    channelId: string,
+    userAccount: string,
+    options?: ChannelMediaOptions
+  ): number;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int JoinChannelWithUserAccount(string token, string channelId, string userAccount);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract joinChannelWithUserAccount(
+    token: string,
+    channelId: string,
+    userAccount: string,
+    options?: ChannelMediaOptions
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> joinChannelWithUserAccount(
+      {required String token,
+      required String channelId,
+      required String userAccount,
+      ChannelMediaOptions? options});</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+        </section>
+        <section id="detailed_desc">
+            <title>详情</title>
+            <p>该方法允许本地用户使用 User Account 和 Token 加入频道。成功加入频道后，会触发以下回调：
+            <ul>
+            <li>本地：<xref keyref="onLocalUserRegistered" />、<xref keyref="onJoinChannelSuccess" /> 和 <xref keyref="onConnectionStateChanged" /> 回调。</li>
+            <li>通信场景下的用户和直播场景下的主播加入频道后，远端会依次触发 <xref keyref="onUserJoined" /> 和 <xref keyref="onUserInfoUpdated" /> 回调。</li>
+            </ul></p>
+            <p>用户成功加入频道后，默认订阅频道内所有其他用户的音频流和视频流，因此产生用量并影响计费。如果想取消订阅，可以通过调用相应的 <apiname>mute</apiname> 方法实现。</p>
+            <note type="attention" id="note"><ul><li>为保证通信质量，请确保频道内使用同一类型的数据标识用户身份。即同一频道内需要统一使用 UID 或 User Account。如果有用户通过 Web SDK 加入频道，请确保 Web 加入的用户也是同样类型。</li>
+            <li>如果你的项目仅开启调试模式（即选择 APP ID 为鉴权机制），成功加入频道 24 小时后会自动退出该频道。</li></ul></note> </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry conkeyref="joinChannel2/token">
+                <pt />
+                <pd />
+            </plentry>
+            <plentry>
+                <pt props="android">channelName</pt>
+                <pt props="cpp unreal bp ios mac unity rn electron flutter cs">channelId</pt>
+                <pd>
+                    <p conkeyref="joinChannel2/channelID_desc" />
+                </pd>
+            </plentry>
+            <plentry conkeyref="joinChannelWithUserAccount2/userAccount">
+                <pt />
+                <pd />
+            </plentry>
+            <plentry conkeyref="joinChannel2/joinsuccessblock" props="ios mac">
+                <pt />
+                <pd />
+            </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+            <ul props="native unreal bp unity rn electron cs">
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph>
+                <ul>
+                <li>-2: 参数无效。</li>
+                <li>-3: SDK 初始化失败，请尝试重新初始化 SDK。</li>
+                <li>-5: 调用被拒绝。</li>
+                <li>-17: 加入频道被拒绝。由于 SDK 仅支持用户同一时间加入一个 <xref keyref="IRtcEngine" /> 频道，当已经加入 <xref keyref="IRtcEngine" /> 频道的用户使用有效的频道名再次调用 <xref keyref="IRtcEngine" /> 类中的加入频道方法时，会返回此错误码。</li>
+                </ul></li>
+            </ul> </section>
+    </refbody>
+</reference>

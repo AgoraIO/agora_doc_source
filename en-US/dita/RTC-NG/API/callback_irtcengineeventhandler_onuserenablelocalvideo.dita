@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onuserenablelocalvideo">
+    <title> <ph keyref="onUserEnableLocalVideo" /> </title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when a specific remote user enables/disables the local video capturing function.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onUserEnableLocalVideo" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onUserEnableLocalVideo(int uid, boolean enabled) {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+    didLocalVideoEnabled:(BOOL)enabled
+    byUid:(NSUInteger)uid</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onUserEnableLocalVideo(uid_t uid, bool enabled) {
+    (void)uid;
+    (void)enabled;
+    }</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnUserEnableLocalVideo, int64, uid, bool, enabled);</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onUserEnableLocalVideo?(
+    connection: RtcConnection,
+    remoteUid: number,
+    enabled: boolean
+  ): void;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnUserEnableLocalVideo(RtcConnection connection, uint remoteUid, bool enabled) {}</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onUserEnableLocalVideo?(
+    connection: RtcConnection,
+    remoteUid: number,
+    enabled: boolean
+  ): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, bool enabled)?
+      onUserEnableLocalVideo;</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="deprecated">
+            <dlentry>
+                <dt>Deprecated:</dt>
+                <dd>This callback is deprecated, use the following enumerations in the <xref keyref="onRemoteVideoStateChanged" /> callback:<ul>
+                    <li><apiname keyref="REMOTE_VIDEO_STATE_STOPPED" />(0) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED" />(5).</li>
+                    <li><apiname keyref="REMOTE_VIDEO_STATE_DECODING" />(2) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED" />(6).</li>
+                    </ul> </dd>
+            </dlentry>
+            </dl>
+            <p id="desc">The SDK triggers this callback when the remote user resumes or stops capturing the video stream by calling the <xref keyref="enableLocalVideo" /> method.</p>
+        </section>
+        <section id="parameters">
+            <title> <ph keyref="callback-section-title" /> </title>
+            <parml>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt />
+                <pd />
+            </plentry>
+            <plentry props="unity electron rn flutter cs" conkeyref="joinChannelEx/connection">
+                <pt />
+                <pd />
+            </plentry>
+            <plentry>
+                <pt props="native unreal bp">uid</pt>
+                <pt props="unity electron rn flutter cs">remoteUid</pt>
+                <pd>The user ID of the remote user.</pd>
+            </plentry>
+            <plentry>
+                <pt>enabled</pt>
+                <pd>
+                    <p>Whether the specified remote user enables/disables local video capturing:<ul>
+                    <li><codeph><ph keyref="true" /></codeph>: The video module is enabled. Other users in the channel can see the video of this remote user.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: The video module is disabled. Other users in the channel can no longer receive the video stream from this remote user, while this remote user can still receive the video streams from other users.</li>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

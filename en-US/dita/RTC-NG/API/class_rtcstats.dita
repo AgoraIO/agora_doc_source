@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_rtcstats">
-    <title><ph keyref="RtcStats"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Statistics of the channel.</ph></shortdesc>
+    <title><ph keyref="RtcStats" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Statistics of a call session.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -59,7 +59,7 @@
 @property(assign, nonatomic) NSInteger rxPacketLossRate;
 @end
 </codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct RtcStats {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct RtcStats {
   unsigned int duration;
   unsigned int txBytes;
   unsigned int rxBytes;
@@ -111,7 +111,147 @@
       rxPacketLossRate(0) {}
 };
 </codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class RtcStats
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FRtcStats
+{
+	GENERATED_BODY()
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int64 duration;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int64 txBytes;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int64 rxBytes;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int64 txAudioBytes;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int64 txVideoBytes;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int64 rxAudioBytes;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int64 rxVideoBytes;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 txKBitRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 rxKBitRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 rxAudioKBitRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 txAudioKBitRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 rxVideoKBitRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 txVideoKBitRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 lastmileDelay;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int64 userCount;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	float cpuAppUsage;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	float cpuTotalUsage;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 connectTimeMs;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 firstAudioPacketDuration;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 firstVideoPacketDuration;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 firstVideoKeyFramePacketDuration;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 packetsBeforeFirstKeyFramePacket;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 firstAudioPacketDurationAfterUnmute;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 firstVideoPacketDurationAfterUnmute;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 firstVideoKeyFramePacketDurationAfterUnmute;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 firstVideoKeyFrameDecodedDurationAfterUnmute;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 firstVideoKeyFrameRenderedDurationAfterUnmute;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 txPacketLossRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int32 rxPacketLossRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int gatewayRtt;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	float memoryAppUsageRatio;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	float memoryTotalUsageRatio;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
+	int memoryAppUsageInKbytes;
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export class RtcStats {
+  
+  duration?: number;
+  
+  txBytes?: number;
+  
+  rxBytes?: number;
+  
+  txAudioBytes?: number;
+  
+  txVideoBytes?: number;
+  
+  rxAudioBytes?: number;
+  
+  rxVideoBytes?: number;
+  
+  txKBitRate?: number;
+  
+  rxKBitRate?: number;
+  
+  rxAudioKBitRate?: number;
+  
+  txAudioKBitRate?: number;
+  
+  rxVideoKBitRate?: number;
+  
+  txVideoKBitRate?: number;
+  
+  lastmileDelay?: number;
+  
+  userCount?: number;
+  
+  cpuAppUsage?: number;
+  
+  cpuTotalUsage?: number;
+  
+  gatewayRtt?: number;
+  
+  memoryAppUsageRatio?: number;
+  
+  memoryTotalUsageRatio?: number;
+  
+  memoryAppUsageInKbytes?: number;
+  
+  connectTimeMs?: number;
+  
+  firstAudioPacketDuration?: number;
+  
+  firstVideoPacketDuration?: number;
+  
+  firstVideoKeyFramePacketDuration?: number;
+  
+  packetsBeforeFirstKeyFramePacket?: number;
+  
+  firstAudioPacketDurationAfterUnmute?: number;
+  
+  firstVideoPacketDurationAfterUnmute?: number;
+  
+  firstVideoKeyFramePacketDurationAfterUnmute?: number;
+  
+  firstVideoKeyFrameDecodedDurationAfterUnmute?: number;
+  
+  firstVideoKeyFrameRenderedDurationAfterUnmute?: number;
+  
+  txPacketLossRate?: number;
+  
+  rxPacketLossRate?: number;
+}</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public class RtcStats
     {
         public RtcStats()
         {
@@ -120,14 +260,34 @@
         public RtcStats(uint duration, uint txBytes, uint rxBytes, uint txAudioBytes, uint txVideoBytes,
             uint rxAudioBytes, uint rxVideoBytes, UInt16 txKBitRate, UInt16 rxKBitRate, UInt16 rxAudioKBitRate,
             UInt16 txAudioKBitRate, UInt16 rxVideoKBitRate, UInt16 txVideoKBitRate, UInt16 lastmileDelay,
-            int txPacketLossRate, int rxPacketLossRate, uint userCount, double cpuAppUsage, double cpuTotalUsage, int gatewayRtt,
-            double memoryAppUsageRatio, double memoryTotalUsageRatio, int memoryAppUsageInKbytes,int connectTimeMs,
-            int firstAudioPacketDuration, int firstVideoPacketDuration, int firstVideoKeyFramePacketDuration,
-            int packetsBeforeFirstKeyFramePacket, int firstAudioPacketDurationAfterUnmute, int firstVideoPacketDurationAfterUnmute,
-            int firstVideoKeyFramePacketDurationAfterUnmute, int firstVideoKeyFrameDecodedDurationAfterUnmute,
-            int firstVideoKeyFrameRenderedDurationAfterUnmute)
+            uint userCount, double cpuAppUsage, double cpuTotalUsage, int gatewayRtt,
+            double memoryAppUsageRatio, double memoryTotalUsageRatio, int memoryAppUsageInKbytes, int connectTimeMs, int txPacketLossRate, int rxPacketLossRate)
         {
-
+            this.duration = duration;
+            this.txBytes = txBytes;
+            this.rxBytes = rxBytes;
+            this.txAudioBytes = txAudioBytes;
+            this.txVideoBytes = txVideoBytes;
+            this.rxAudioBytes = rxAudioBytes;
+            this.rxVideoBytes = rxVideoBytes;
+            this.txKBitRate = txKBitRate;
+            this.rxKBitRate = rxKBitRate;
+            this.rxAudioKBitRate = rxAudioKBitRate;
+            this.txAudioKBitRate = txAudioKBitRate;
+            this.rxVideoKBitRate = rxVideoKBitRate;
+            this.txVideoKBitRate = txVideoKBitRate;
+            this.lastmileDelay = lastmileDelay;
+            this.userCount = userCount;
+            this.cpuAppUsage = cpuAppUsage;
+            this.cpuTotalUsage = cpuTotalUsage;
+            this.gatewayRtt = gatewayRtt;
+            this.memoryAppUsageRatio = memoryAppUsageRatio;
+            this.memoryTotalUsageRatio = memoryTotalUsageRatio;
+            this.memoryAppUsageInKbytes = memoryAppUsageInKbytes;
+            this.connectTimeMs = connectTimeMs;
+            this.txPacketLossRate = txPacketLossRate;
+            this.rxPacketLossRate = rxPacketLossRate;
+        }
         public uint duration { set; get; }
         public uint txBytes { set; get; }
         public uint rxBytes { set; get; }
@@ -135,15 +295,13 @@
         public uint txVideoBytes { set; get; }
         public uint rxAudioBytes { set; get; }
         public uint rxVideoBytes { set; get; }
-        public UInt16 txKBitRate { set; get; }
-        public UInt16 rxKBitRate { set; get; }
-        public UInt16 rxAudioKBitRate { set; get; }
-        public UInt16 txAudioKBitRate { set; get; }
-        public UInt16 rxVideoKBitRate { set; get; }
-        public UInt16 txVideoKBitRate { set; get; }
-        public UInt16 lastmileDelay { set; get; }
-        public int txPacketLossRate { set; get; }
-        public int rxPacketLossRate { set; get; }
+        public ushort txKBitRate { set; get; }
+        public ushort rxKBitRate { set; get; }
+        public ushort rxAudioKBitRate { set; get; }
+        public ushort txAudioKBitRate { set; get; }
+        public ushort rxVideoKBitRate { set; get; }
+        public ushort txVideoKBitRate { set; get; }
+        public ushort lastmileDelay { set; get; }
         public uint userCount { set; get; }
         public double cpuAppUsage { set; get; }
         public double cpuTotalUsage { set; get; }
@@ -152,29 +310,205 @@
         public double memoryTotalUsageRatio { set; get; }
         public int memoryAppUsageInKbytes { set; get; }
         public int connectTimeMs { set; get; }
-        }</codeblock> </p>
+        public int txPacketLossRate { set; get; }
+        public int rxPacketLossRate { set; get; }
+    }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class RtcStats {
+  
+  duration?: number;
+  
+  txBytes?: number;
+  
+  rxBytes?: number;
+  
+  txAudioBytes?: number;
+  
+  txVideoBytes?: number;
+  
+  rxAudioBytes?: number;
+  
+  rxVideoBytes?: number;
+  
+  txKBitRate?: number;
+  
+  rxKBitRate?: number;
+  
+  rxAudioKBitRate?: number;
+  
+  txAudioKBitRate?: number;
+  
+  rxVideoKBitRate?: number;
+  
+  txVideoKBitRate?: number;
+  
+  lastmileDelay?: number;
+  
+  userCount?: number;
+  
+  cpuAppUsage?: number;
+  
+  cpuTotalUsage?: number;
+  
+  gatewayRtt?: number;
+  
+  memoryAppUsageRatio?: number;
+  
+  memoryTotalUsageRatio?: number;
+  
+  memoryAppUsageInKbytes?: number;
+  
+  connectTimeMs?: number;
+  
+  firstAudioPacketDuration?: number;
+  
+  firstVideoPacketDuration?: number;
+  
+  firstVideoKeyFramePacketDuration?: number;
+  
+  packetsBeforeFirstKeyFramePacket?: number;
+  
+  firstAudioPacketDurationAfterUnmute?: number;
+  
+  firstVideoPacketDurationAfterUnmute?: number;
+  
+  firstVideoKeyFramePacketDurationAfterUnmute?: number;
+  
+  firstVideoKeyFrameDecodedDurationAfterUnmute?: number;
+  
+  firstVideoKeyFrameRenderedDurationAfterUnmute?: number;
+  
+  txPacketLossRate?: number;
+  
+  rxPacketLossRate?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class RtcStats {
+  const RtcStats(
+      {this.duration,
+      this.txBytes,
+      this.rxBytes,
+      this.txAudioBytes,
+      this.txVideoBytes,
+      this.rxAudioBytes,
+      this.rxVideoBytes,
+      this.txKBitRate,
+      this.rxKBitRate,
+      this.rxAudioKBitRate,
+      this.txAudioKBitRate,
+      this.rxVideoKBitRate,
+      this.txVideoKBitRate,
+      this.lastmileDelay,
+      this.userCount,
+      this.cpuAppUsage,
+      this.cpuTotalUsage,
+      this.gatewayRtt,
+      this.memoryAppUsageRatio,
+      this.memoryTotalUsageRatio,
+      this.memoryAppUsageInKbytes,
+      this.connectTimeMs,
+      this.firstAudioPacketDuration,
+      this.firstVideoPacketDuration,
+      this.firstVideoKeyFramePacketDuration,
+      this.packetsBeforeFirstKeyFramePacket,
+      this.firstAudioPacketDurationAfterUnmute,
+      this.firstVideoPacketDurationAfterUnmute,
+      this.firstVideoKeyFramePacketDurationAfterUnmute,
+      this.firstVideoKeyFrameDecodedDurationAfterUnmute,
+      this.firstVideoKeyFrameRenderedDurationAfterUnmute,
+      this.txPacketLossRate,
+      this.rxPacketLossRate});
+
+  @JsonKey(name: 'duration')
+  final int? duration;
+  @JsonKey(name: 'txBytes')
+  final int? txBytes;
+  @JsonKey(name: 'rxBytes')
+  final int? rxBytes;
+  @JsonKey(name: 'txAudioBytes')
+  final int? txAudioBytes;
+  @JsonKey(name: 'txVideoBytes')
+  final int? txVideoBytes;
+  @JsonKey(name: 'rxAudioBytes')
+  final int? rxAudioBytes;
+  @JsonKey(name: 'rxVideoBytes')
+  final int? rxVideoBytes;
+  @JsonKey(name: 'txKBitRate')
+  final int? txKBitRate;
+  @JsonKey(name: 'rxKBitRate')
+  final int? rxKBitRate;
+  @JsonKey(name: 'rxAudioKBitRate')
+  final int? rxAudioKBitRate;
+  @JsonKey(name: 'txAudioKBitRate')
+  final int? txAudioKBitRate;
+  @JsonKey(name: 'rxVideoKBitRate')
+  final int? rxVideoKBitRate;
+  @JsonKey(name: 'txVideoKBitRate')
+  final int? txVideoKBitRate;
+  @JsonKey(name: 'lastmileDelay')
+  final int? lastmileDelay;
+  @JsonKey(name: 'userCount')
+  final int? userCount;
+  @JsonKey(name: 'cpuAppUsage')
+  final double? cpuAppUsage;
+  @JsonKey(name: 'cpuTotalUsage')
+  final double? cpuTotalUsage;
+  @JsonKey(name: 'gatewayRtt')
+  final int? gatewayRtt;
+  @JsonKey(name: 'memoryAppUsageRatio')
+  final double? memoryAppUsageRatio;
+  @JsonKey(name: 'memoryTotalUsageRatio')
+  final double? memoryTotalUsageRatio;
+  @JsonKey(name: 'memoryAppUsageInKbytes')
+  final int? memoryAppUsageInKbytes;
+  @JsonKey(name: 'connectTimeMs')
+  final int? connectTimeMs;
+  @JsonKey(name: 'firstAudioPacketDuration')
+  final int? firstAudioPacketDuration;
+  @JsonKey(name: 'firstVideoPacketDuration')
+  final int? firstVideoPacketDuration;
+  @JsonKey(name: 'firstVideoKeyFramePacketDuration')
+  final int? firstVideoKeyFramePacketDuration;
+  @JsonKey(name: 'packetsBeforeFirstKeyFramePacket')
+  final int? packetsBeforeFirstKeyFramePacket;
+  @JsonKey(name: 'firstAudioPacketDurationAfterUnmute')
+  final int? firstAudioPacketDurationAfterUnmute;
+  @JsonKey(name: 'firstVideoPacketDurationAfterUnmute')
+  final int? firstVideoPacketDurationAfterUnmute;
+  @JsonKey(name: 'firstVideoKeyFramePacketDurationAfterUnmute')
+  final int? firstVideoKeyFramePacketDurationAfterUnmute;
+  @JsonKey(name: 'firstVideoKeyFrameDecodedDurationAfterUnmute')
+  final int? firstVideoKeyFrameDecodedDurationAfterUnmute;
+  @JsonKey(name: 'firstVideoKeyFrameRenderedDurationAfterUnmute')
+  final int? firstVideoKeyFrameRenderedDurationAfterUnmute;
+  @JsonKey(name: 'txPacketLossRate')
+  final int? txPacketLossRate;
+  @JsonKey(name: 'rxPacketLossRate')
+  final int? rxPacketLossRate;
+  factory RtcStats.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$RtcStatsFromJson(json);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$RtcStatsToJson(this);
+}
+</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
-                <pt props="ios mac cpp electron unity">duration</pt>
+                <pt props="ios mac cpp unreal bp unity electron flutter rn cs">duration</pt>
                 <pt props="android">totalDuration</pt>
                 <pd>Call duration of the local user in seconds, represented by an aggregate value.</pd>
             </plentry>
             <plentry>
                 <pt>txBytes</pt>
-                <pd>Total number of bytes transmitted, represented by an aggregate value.</pd>
+                <pd>The number of bytes sent.</pd>
             </plentry>
             <plentry>
                 <pt>rxBytes</pt>
-                <pd>Total number of bytes received, represented by an aggregate value.</pd>
+                <pd>The number of bytes received.</pd>
             </plentry>
             <plentry>
                 <pt>txAudioBytes</pt>
-                <pd>Total number of audio bytes sent, represented by an aggregate value.</pd>
+                <pd>The total number of audio bytes sent, represented by an aggregate value.</pd>
             </plentry>
             <plentry>
                 <pt>txVideoBytes</pt>
@@ -190,15 +524,15 @@
             </plentry>
             <plentry>
                 <pt>txKBitRate</pt>
-                <pd>Video transmission bitrate (Kbps), represented by an instantaneous value.</pd>
+                <pd>The actual bitrate (Kbps) while sending the local video stream.</pd>
             </plentry>
             <plentry>
                 <pt>rxKBitRate</pt>
-                <pd>The receiving bitrate (Kbps), represented by an instantaneous value.</pd>
+                <pd>The receiving bitrate (Kbps).</pd>
             </plentry>
             <plentry>
                 <pt>rxAudioKBitRate</pt>
-                <pd>Audio receive bitrate (Kbps), represented by an instantaneous value.</pd>
+                <pd>The bitrate (Kbps) of receiving the audio.</pd>
             </plentry>
             <plentry>
                 <pt>txAudioKBitRate</pt>
@@ -206,7 +540,7 @@
             </plentry>
             <plentry>
                 <pt>rxVideoKBitRate</pt>
-                <pd>Video receive bitrate (Kbps), represented by an instantaneous value.</pd>
+                <pd>The bitrate (Kbps) of receiving the video.</pd>
             </plentry>
             <plentry>
                 <pt>txVideoKBitRate</pt>
@@ -214,7 +548,7 @@
             </plentry>
             <plentry>
                 <pt>lastmileDelay</pt>
-                <pd>The client-to-server delay (ms).</pd>
+                <pd>The client-to-server delay (milliseconds).</pd>
             </plentry>
             <plentry>
                 <pt>txPacketLossRate</pt>
@@ -225,25 +559,27 @@
                 <pd>The packet loss rate (%) from the Agora server to the client before using the anti-packet-loss method.</pd>
             </plentry>
             <plentry>
-                <pt props="ios mac cpp electron unity flutter">userCount</pt>
+                <pt props="ios mac cpp unreal bp electron rn unity flutter cs">userCount</pt>
                 <pt props="android">users</pt>
                 <pd>The number of users in the channel.</pd>
             </plentry>
             <plentry>
                 <pt>cpuAppUsage</pt>
-                <pd>Application CPU usage (%).<note type="attention"><ul>
-                    <li>The value of <parmname>cpuTotalUsage</parmname> is always reported as 0 in the <xref keyref="onLeaveChannel"/> callback.</li>
-                    <li props="cpp unity android">As of Android 8.1, you cannot get the CPU usage from this attribute due to system limitations.</li>
+                <pd>Application CPU usage (%).<note type="attention">
+                    <ul>
+                    <li>The value of <parmname>cpuAppUsage</parmname> is always reported as 0 in the <xref keyref="onLeaveChannel" /> callback.</li>
+                    <li props="android cpp unreal bp unity flutter">As of Android 8.1, you cannot get the CPU usage from this attribute due to system limitations.</li>
                     </ul></note></pd>
             </plentry>
             <plentry>
                 <pt>cpuTotalUsage</pt>
                 <pd>
                     <p>The system CPU usage (%).</p>
-                    <p props="cpp electron unity">For Windows, in the multi-kernel environment, this member represents the average CPU usage. The value = (100 - System Idle Progress in Task Manager)/100.</p>
-                    <note type="attention"><ul>
-                    <li>The value of <parmname>cpuTotalUsage</parmname> is always reported as 0 in the <xref keyref="onLeaveChannel"/> callback.</li>
-                    <li props="cpp unity android">As of Android 8.1, you cannot get the CPU usage from this attribute due to system limitations.</li>
+                    <p props="cpp unreal bp unity electron flutter cs">For Windows, in the multi-kernel environment, this member represents the average CPU usage. The value = (100 - System Idle Progress in Task Manager)/100.</p>
+                    <note type="attention">
+                    <ul>
+                    <li>The value of <parmname>cpuTotalUsage</parmname> is always reported as 0 in the <xref keyref="onLeaveChannel" /> callback.</li>
+                    <li props="cpp unreal bp unity android rn">As of Android 8.1, you cannot get the CPU usage from this attribute due to system limitations.</li>
                     </ul></note> </pd>
             </plentry>
             <plentry>
@@ -252,11 +588,11 @@
             </plentry>
             <plentry>
                 <pt>gatewayRtt</pt>
-                <pd>The round-trip time delay from the client to the local router.<note props="ios">
-                    <p>This property is disabled on devices running iOS 14 or later, and enabled on devices running versions earlier than iOS 14 by default. </p>
-                    <p>To enable this property on devices running iOS 14 or later, <xref keyref="ticket-link"/>.</p>
-                    </note>
-                    <note props="android cpp unity">On Android, to get <parmname>gatewayRtt</parmname>, ensure that you add the <codeph>android.permission.ACCESS_WIFI_STATE</codeph> permission after <codeph>&lt;/application></codeph> in the <codeph>AndroidManifest.xml</codeph> file in your project.</note></pd>
+                <pd>The round-trip time delay (ms) from the client to the local router.<note props="cpp unreal bp ios unity rn flutter">
+                        <p>This property is disabled on devices running iOS 14 or later, and enabled on devices running versions earlier than iOS 14 by default. </p>
+                        <p>To enable this property on devices running iOS 14 or later, <xref keyref="ticket-link" />.</p>
+                        </note>
+                        <note props="android cpp unreal bp unity flutter rn">On Android, to get <parmname>gatewayRtt</parmname>, ensure that you add the <codeph>android.permission.ACCESS_WIFI_STATE</codeph> permission after <codeph>&lt;/application></codeph> in the <codeph>AndroidManifest.xml</codeph> file in your project.</note></pd>
             </plentry>
             <plentry>
                 <pt>memoryAppUsageRatio</pt>
