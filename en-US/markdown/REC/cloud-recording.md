@@ -894,8 +894,8 @@ Configurations for third-party cloud storage.
 | bucket | string | true | Third-party cloud storage bucket. The bucket name needs to comply with the naming rules of the corresponding third-party cloud storage service. |
 | accessKey | string | true | Access Key for third-party cloud storage. If postponed transcoding is required, the Access Key must have read and write permissions; otherwise, it is recommended to only provide the write permission. |
 | secretKey | string | true | (Required) The secret key of the third-party cloud storage. |
-| fileNamePrefix | array[string] | false | The storage location of the recorded files in the third-party cloud is related to the prefix of the file name. For example, if fileNamePrefix = `["directory1","directory2"]`, Agora Cloud Recording will add the prefix `"directory1/directory2/"` before the name of the recorded file, that is, `directory1/directory2/xxx.m3u8`. The prefix's length, including the slashes, should not exceed 128 characters. The string itself should not contain symbols such as slash, underscore, or parenthesis. The following are the supported character set ranges:<br> 26 lowercase English letters a-~z26<br> uppercase English letters A~-Z10<br> numbers 0-9 |
-| extensionParams | [extensionParams](#schemaextensionparams) | false | Third-party cloud storage services will encrypt and tag the uploaded recording files according to this field setting. |
+| fileNamePrefix | array[string] | false | The storage location of the recorded files in the third-party cloud is related to the prefix of the file name. If it is set to `["directory1","directory2"]`, then the prefix of the recording file name is `"directory1/directory2/"`, that is, the recording file name is `directory1/directory2/xxx.m3u8`. The prefix's length, including the slashes, should not exceed 128 characters. The string itself should not contain symbols such as slash, underscore, or parenthesis. The following are the supported character set ranges:<br>- 26 lowercase English letters: a~z<br> - 26 uppercase English letters: A~Z<br> - 10 numbers: 0-9 |
+| extensionParams | [extensionParams](#schemaextensionparams) | false | Third-party cloud storage services will encrypt and tag the uploaded recording files according to this field. |
 
 ## extensionParams
 <!-- backwards compatibility -->
@@ -911,7 +911,7 @@ Configurations for third-party cloud storage.
 }
 ```
 
-Third-party cloud storage services will encrypt and tag the uploaded recording files according to this field setting.
+Third-party cloud storage services will encrypt and tag the uploaded recording files according to this field.
 
 ### Properties
 
