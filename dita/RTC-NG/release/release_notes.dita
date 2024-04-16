@@ -145,8 +145,9 @@
                     <li>使用媒体播放器播放包含 SEI 数据的媒体流时，SEI 数据的输出与视频渲染不同步。</li>
                     <li props="android">加入频道后调用 <xref keyref="disableAudio"/> 关闭音频模块，音频播放没有立即停止。(Android)</li>
                     <li props="cpp electron unity flutter">屏幕共享场景中，App 调用 <xref keyref="enableLoopbackRecording"/> 开启声卡采集功能采集共享屏幕的音频，本地用户手动禁用本地音频采集设备后，声卡采集的音频发送失败，远端用户听不见共享屏幕的声音。(Windows)</li>
-                    <li props="mac electron">在音视频互动中，如果用户将耳机插入设备并手动将系统音频输出切换为扬声器，之后 App 调用 <xref keyref="setPlaybackDevice"/> 方法指定音频播放设备为耳机，用户移除耳机后，音频输出并未按预期行为切换至扬声器。<ph props="electron"> (macOS)</ph></li>
+                    <li props="electron">在音视频互动中，如果用户将耳机插入设备并手动将系统音频输出切换为扬声器，之后 App 调用 <xref keyref="setPlaybackDevice"/> 方法指定音频播放设备为耳机，用户移除耳机后，音频输出并未按预期行为切换至扬声器。<ph props="electron"> (macOS)</ph></li>
                     <li props="cpp">用户插拔一次蓝牙或有线耳机，音频状态改变回调 <xref keyref="onAudioDeviceStateChanged"/> 会触发多次。</li>
+                    <li props="mac">用户插拔一次蓝牙或有线耳机，音频状态改变回调 <xref keyref="stateChanged"/> 会触发多次。</li>
                     <li props="android unity rn flutter">主播使用部分型号设备在扬声器下进行音视频互动，之后切换 App 进程到后台再切回前台，偶现本地音频采集失败，远端用户听不到主播的声音。(Android)</li>
                     <li props="unity">播放指定用户混音前的音频流时偶现回声。(macOS、Windows)</li>
                     <li props="cpp unity flutter electron">在音视频互动过程中，本地用户调用 <xref keyref="setDevice_IAudioDeviceCollection"/> 设置系统默认播放设备为扬声器后，听远端无声。(Windows)</li>
