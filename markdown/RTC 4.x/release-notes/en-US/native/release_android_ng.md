@@ -10,7 +10,7 @@ This version is released on 2024 Month x, Day x.
 
 #### Compatibility changes
 
-To ensure parameter naming consistency, this version renames `channelName` to `channelId` and `optionalUid` to `uid` in `joinChannel [1/2]`. You must update your app's code after upgrading to this version to ensure normal project operations.
+To ensure parameter naming consistency, this version renames `channelName` to `channelId` and `optionalUid` to `uid` in `joinChannel` [1/2]. You must update your app's code after upgrading to this version to ensure normal project operations.
 
 #### New Features
 
@@ -24,11 +24,11 @@ To ensure parameter naming consistency, this version renames `channelName` to `c
 
    The speech driven avatar feature is currently in beta testing. To use it, please contact [technical support](mailto:support@agora.io).
 
-1. **Wide and ultra-wide cameras (Android, iOS)**
+2. **Wide and ultra-wide cameras**
 
    To allow users to capture a broader field of view and more complete scene content, this release introduces support for wide and ultra-wide cameras. You can first call [`queryCameraFocalLengthCapability`](/api-ref/rtc/android/API/toc_video_device#api_irtcengine_querycamerafocallengthcapability) to check the device's focal length capabilities, and then call [`setCameraCapturerConfiguration`](/api-ref/rtc/android/API/toc_video_device#api_irtcengine_setcameracapturerconfiguration) and set `cameraFocalLengthType` to the supported focal length types, including wide and ultra-wide.
 
-2. **Multi-camera capture (Android)**
+3. **Multi-camera capture**
 
    This release introduces additional functionalities for Android camera capture:
 
@@ -39,25 +39,25 @@ To ensure parameter naming consistency, this version renames `channelName` to `c
       - A new parameter `cameraId` is added to [`CameraCapturerConfiguration`](/api-ref/rtc/android/API/class_cameracapturerconfiguration). For devices with multiple cameras, where `cameraDirection` cannot identify or access all available cameras, you can obtain the camera ID through Android's native system APIs and specify the desired camera by calling [`startCameraCapture`](/api-ref/rtc/android/API/toc_camera_capture#api_irtcengine_startcameracapture) with the specific `cameraId`.
       - New method [`switchCamera`](/api-ref/rtc/android/API/toc_video_device#api_irtcengine_switchcamera2)[2/2] supports switching cameras by `cameraId`, allowing apps to dynamically adjust camera usage during runtime based on available cameras.
 
-3. **Data stream encryption**
+4. **Data stream encryption**
 
    This version adds `datastreamEncryptionEnabled` to [`EncryptionConfig`](/api-ref/rtc/android/API/class_encryptionconfig) for enabling data stream encryption. You can set this when you activate encryption with [`enableEncryption`](/api-ref/rtc/android/API/toc_network#api_irtcengine_enableencryption). If there are issues causing failures in data stream encryption or decryption, these can be identified by the newly added `ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE` and `ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE` enumerations.
 
-4. **Local Video Rendering**
+5. **Local Video Rendering**
 
    This version adds the following members to [`VideoCanvas`](/api-ref/rtc/android/API/class_videocanvas) to support more local rendering capabilities:
 
    - `surfaceTexture`: Set a native Android `SurfaceTexture` object as the container providing video imagery, then use SDK external methods to perform OpenGL texture rendering.
    - `enableAlphaMask`: This member enables the receiving end to initiate alpha mask rendering. Alpha mask rendering can create images with transparent effects or extract human figures from video content.
 
-5. **Adaptive configuration for low-quality video streams**
+6. **Adaptive configuration for low-quality video streams**
 
    This version introduces adaptive configuration for low-quality video streams. When you activate dual-stream mode and set up low-quality video streams on the sending side using [`setDualStreamMode`](/api-ref/rtc/android/API/toc_dual_stream#api_irtcengine_setdualstreammode2)[2/2], the SDK defaults to the following behaviors:
 
    - The default encoding resolution for low-quality video streams is set to 50% of the original video encoding resolution.
    - The bitrate for the small streams is automatically matched based on the video resolution and frame rate, eliminating the need for manual specification.
 
-6. **Other features**
+7. **Other features**
 
    - New method [`enableEncryptionEx`](/api-ref/rtc/android/API/toc_network#api_irtcengineex_enableencryptionex) is added for enabling media stream or data stream encryption in multi-channel scenarios.
    - New method [`setAudioMixingPlaybackSpeed`](/api-ref/rtc/android/API/toc_audio_mixing#api_irtcengine_setaudiomixingplaybackspeed) is introduced for setting the playback speed of audio files.
@@ -92,9 +92,9 @@ To ensure parameter naming consistency, this version renames `channelName` to `c
 
    This version also includes the following improvements:
 
-   - Enhanced performance and stability of the local compositing feature, reducing its CPU usage. (Android)
+   - Enhanced performance and stability of the local compositing feature, reducing its CPU usage.
    - Enhanced media player capabilities to handle WebM format videos, including support for rendering alpha channels.
-   - New chorus effect `ROOM_ACOUSTICS_CHORUS` is added to enhances the spatial presence of vocals in chorus scenarios. (Android)
+   - New chorus effect `ROOM_ACOUSTICS_CHORUS` is added to enhances the spatial presence of vocals in chorus scenarios.
    - In [`RemoteAudioStats`](/api-ref/rtc/android/API/class_remoteaudiostats), a new `e2eDelay` field is added to report the delay from when the audio is captured on the sending end to when the audio is played on the receiving end.
 
 #### Issues fixed
@@ -102,10 +102,10 @@ To ensure parameter naming consistency, this version renames `channelName` to `c
 This version fixed the following issues:
 
 - Fixed an issue where SEI data output did not synchronize with video rendering when playing media streams containing SEI data using the media player.
-- After joining a channel and calling [`disableAudio`](/api-ref/rtc/android/API/toc_audio_basic#api_irtcengine_disableaudio), audio playback did not immediately stop. (Android)
-- Broadcasters using certain models of devices under speaker mode experienced occasional local audio capture failures when switching the app process to the background and then back to the foreground, causing remote users to not hear the broadcaster's audio. (Android)
-- On devices with Android 8.0, enabling screen sharing occasionally caused the app to crash. (Android)
-- In scenarios using camera capture for local video, when the app was moved to the background and [`disableVideo`](/api-ref/rtc/android/API/toc_video_basic#api_irtcengine_disablevideo) or [`stopPreview`](/api-ref/rtc/android/API/toc_video_basic#api_irtcengine_stoppreview)[1/2] was called to stop video capture, camera capture was unexpectedly activated when the app was brought back to the foreground. (Android)
+- After joining a channel and calling [`disableAudio`](/api-ref/rtc/android/API/toc_audio_basic#api_irtcengine_disableaudio), audio playback did not immediately stop.
+- Broadcasters using certain models of devices under speaker mode experienced occasional local audio capture failures when switching the app process to the background and then back to the foreground, causing remote users to not hear the broadcaster's audio.
+- On devices with Android 8.0, enabling screen sharing occasionally caused the app to crash.
+- In scenarios using camera capture for local video, when the app was moved to the background and [`disableVideo`](/api-ref/rtc/android/API/toc_video_basic#api_irtcengine_disablevideo) or [`stopPreview`](/api-ref/rtc/android/API/toc_video_basic#api_irtcengine_stoppreview)[1/2] was called to stop video capture, camera capture was unexpectedly activated when the app was brought back to the foreground.
 
 #### API Changes
 
@@ -124,7 +124,7 @@ This version fixed the following issues:
 - `ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE`
 - [`RemoteAudioStats`](/api-ref/rtc/android/API/class_remoteaudiostats) adds `e2eDelay`
 - `ERR_DATASTREAM_DECRYPTION_FAILED`
-- `ROOM_ACOUSTICS_CHORUS` is added, enhancing the spatial presence of vocals in chorus scenarios. (Android)
+- `ROOM_ACOUSTICS_CHORUS` is added, enhancing the spatial presence of vocals in chorus scenarios.
 - [`getCallIdEx`](/api-ref/rtc/android/API/toc_network#api_irtcengineex_getcallidex)
 - [`enableEncryptionEx`](/api-ref/rtc/android/API/toc_network#api_irtcengineex_enableencryptionex)
 - [`setAudioMixingPlaybackSpeed`](/api-ref/rtc/android/API/toc_audio_mixing#api_irtcengine_setaudiomixingplaybackspeed)
@@ -138,7 +138,7 @@ This version fixed the following issues:
 - [`ChannelMediaOptions`](/api-ref/rtc/android/API/class_channelmediaoptions) adds the following members:
   - `publishThirdCameraTrack`
   - `publishFourthCameraTrack`
-- [`CameraCapturerConfiguration`](/api-ref/rtc/android/API/class_cameracapturerconfiguration) adds a new member `cameraId` (Android)
+- [`CameraCapturerConfiguration`](/api-ref/rtc/android/API/class_cameracapturerconfiguration) adds a new member `cameraId`
 - [`CAMERA_DIRECTION`](/api-ref/rtc/android/API/enum_cameradirection) adds `CAMERA_EXTRA`(2)
 - [`switchCamera`](/api-ref/rtc/android/API/toc_video_device#api_irtcengine_switchcamera2)[2/2]
 - `EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS`(1 <<15)
