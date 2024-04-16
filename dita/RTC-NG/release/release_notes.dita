@@ -32,7 +32,7 @@
                     </li>
                     <li props="android flutter unity rn"><ph><b>摄像头多路采集 (Android)</b></ph>
                         <p>该版本针对 Android 摄像头采集新增以下功能：
-                        
+
                         <ol>
                         <li>支持第三个和第四个摄像头视频流的采集和发布。
                             <ul>
@@ -55,15 +55,15 @@
                     </li>
                     <li props="android ios"><ph><b>本地视频渲染</b></ph>
                         <p>该版本在 <xref keyref="VideoCanvas"/> 中新增如下成员，以支持更多本地渲染功能。
-                        
+
                         <ul>
                         <li props="android"><codeph>surfaceTexture</codeph>：设置一个 Android 原生的 <codeph>SurfaceTexture</codeph> 对象作为提供视频图像的容器，然后使用 SDK 外部的方法自行实现 OpenGL 中的纹理绘制。</li>
                         <li>enableAlphaMask：可以通过该成员设置接收端是否开启 alpha 遮罩渲染。alpha 遮罩渲染功能可以创建具有透明效果的图像或提取视频中的人像。</li>
                         </ul></p>
                     </li>
                     <li><ph><b>视频小流自适应配置</b></ph>
-                        <p>该版本新增视频小流的自适应配置功能，当你调用 <xref keyref="setDualStreamMode2"/> 在发送端设置双流模式并设置视频小流时，SDK 的默认行为如下所示： 
-                        
+                        <p>该版本新增视频小流的自适应配置功能，当你调用 <xref keyref="setDualStreamMode2"/> 在发送端设置双流模式并设置视频小流时，SDK 的默认行为如下所示：
+
                         <ul>
                         <li>将视频小流的默认编码分辨率设为原始视频编码分辨率的 50%。 </li>
                         <li>视频小流的码率根据视频分辨率和帧率自动匹配，无需指定。</li>
@@ -104,7 +104,7 @@
                     </li>
                     <li><ph><b>虚拟背景算法优化</b></ph>
                         <p>为了提高纯色背景下开启虚拟背景时人像分割的精确度和稳定性，该版本优化了绿幕分割算法：
-                        
+
                         <ul>
                         <li>支持识别任意纯色背景，不再局限于绿幕。</li>
                         <li>对背景颜色的识别更加准确，并且在分割人像时露出的背景更少。</li>
@@ -119,7 +119,7 @@
                     </li>
                     <li><ph><b>其他改进</b></ph>
                         <p>该版本还进行了如下改进：
-                        
+
                         <ul>
                         <li props="ios mac cpp unity flutter rn electron ">优化了非屏幕共享场景的视频编解码策略，节省系统性能开销。(iOS, macOS, Windows)</li>
                         <li props="mac">针对 macOS 14 及以上系统，优化了 <xref keyref="getScreenCaptureSources"/> 的行为。自该版本起，调用该方法返回的可用窗口资源中会自动过滤小组件窗口。(macOS)</li>
@@ -174,7 +174,7 @@
                         </ul></li>
                     <li><xref keyref="EncryptionConfig"/> 中新增 <codeph>datastreamEncryptionEnabled</codeph></li>
                     <li props="cpp apple framework"><xref keyref="ENCRYPTION_ERROR_TYPE"/> 中新增如下枚举：
-                    
+
                         <ul>
                         <li><codeph><apiname keyref="ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE"/></codeph></li>
                         <li><codeph><apiname keyref="ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE"/></codeph></li>
@@ -193,7 +193,7 @@
                     <li props="android"><codeph><apiname keyref="ROOM_ACOUSTICS_CHORUS"/></codeph></li>
                     <li><xref keyref="getCallIdEx"/></li>
                     <li><xref keyref="enableEncryptionEx"/></li>
-                    <li><xref keyref="setAudioMixingPlaybackSpeed"/></li>    
+                    <li><xref keyref="setAudioMixingPlaybackSpeed"/></li>
                     <li props="android ios flutter unity rn"><xref keyref="queryCameraFocalLengthCapability"/> (Android, iOS)</li>
                     <li props="android ios flutter unity rn"><xref keyref="FocalLengthInfo"/> (Android, iOS)</li>
                     <li props="android ios flutter unity rn"><xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/> (Android, iOS)</li>
@@ -214,9 +214,9 @@
                     <li><xref keyref="EAR_MONITORING_FILTER_TYPE"/> 新增枚举 <codeph><apiname keyref="EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS"/></codeph>(1 &lt;&lt;15)</li>
                     <li props="ios mac"><xref keyref="pushExternalAudioFrameSampleBuffer2"/></li>
                     </ul></p>
-                <p><b>废弃</b>
+                <p props="ios mac"><b>废弃</b>
                     <ul>
-                    <li props="ios mac"><xref keyref="pushExternalAudioFrameSampleBuffer1"/></li>
+                    <li><xref keyref="pushExternalAudioFrameSampleBuffer1"/></li>
                     </ul></p>
             </body>
         </topic>
