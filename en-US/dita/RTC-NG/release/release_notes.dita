@@ -17,6 +17,16 @@
             <title>New Features</title>
             <body>
                 <ol>
+                    <li><ph><b>Speech Driven Avatar</b></ph>
+                        <p>The SDK introduces a speech driven extension that converts speech information into corresponding facial expressions to animate avatar. You can access the facial information through the newly added <xref keyref="registerFaceInfoObserver"/> method and <xref keyref="onFaceInfo"/> callback. This facial information conforms to the ARKit standard for Blend Shapes (BS), which you can further process using third-party 3D rendering engines.</p>
+                        <p>The speech driven extension is a trimmable dynamic library, and details about the increase in app size are available at <xref keyref="reduce-app-size"/>.</p>
+                        <note type="attention">
+                            <ul>
+                                <li>The Agora SDK extension extension, MetaKit, simplifies the implementation process of animating avatar with speech, eliminating the need to build your own framework for collection, encoding, and transmission. Detailed introduction and integration guidance for MetaKit are available at <xref keyref="metakit-overview"/>.</li>
+                                <li>The speech driven avatar feature is currently in beta testing. To use it, please <xref keyref="ticket-link"/>.</li>
+                            </ul>
+                        </note>
+                    </li>
                     <li props="ios unity flutter rn"><ph><b>Privacy manifest file (iOS)</b></ph>
                         <p>To meet Apple's safety compliance requirements for app publication, the SDK now includes a privacy manifest file, <codeph>PrivacyInfo.xcprivacy</codeph>, detailing the SDK's API calls that access or use user data, along with a description of the types of data collected.</p>
                         <note>If you need to publish an app with SDK versions prior to v4.3.1 to the Apple App Store, you must manually add the <codeph>PrivacyInfo.xcprivacy</codeph> file to your Xcode project. For more details, see <xref keyref="privacyinfo"/>.</note>
@@ -147,7 +157,7 @@
                     <li props="android">After joining a channel and calling <xref keyref="disableAudio"/>, audio playback did not immediately stop. (Android)</li>
                     <li props="cpp electron unity flutter">In screen sharing scenarios, when the app enabled sound card capture with <xref keyref="enableLoopbackRecording"/> to capture audio from the shared screen, the transmission of sound card captured audio failed after a local user manually disabled the local audio capture device, causing remote users to not hear the shared screen's audio. (Windows)</li>
                     <li props="mac electron">In audio-video interactions, if a user inserted headphones into the device and manually switched the system audio output to speakers, and later the app called <xref keyref="setPlaybackDevice"/> to specify the headphone as the audio playback device, audio output did not switch back to speakers as expected after the headphones were removed. <ph props="electron"> (macOS)</ph></li>
-                    <li props="cpp mac">When a user plugged and unplugged a Bluetooth or wired headset once, the audio state change callback <xref keyref="onAudioDeviceStateChanged"/> was triggered multiple times.</li>
+                    <li props="cpp">When a user plugged and unplugged a Bluetooth or wired headset once, the audio state change callback <xref keyref="onAudioDeviceStateChanged"/> was triggered multiple times.</li>
                     <li props="android unity rn flutter">Broadcasters using certain models of devices under speaker mode experienced occasional local audio capture failures when switching the app process to the background and then back to the foreground, causing remote users to not hear the broadcaster's audio. (Android)</li>
                     <li props="unity">An occasional echo was observed when playing the audio stream of a specified user before mixing. (macOS, Windows)</li>
                     <li props="cpp unity flutter electron">During interactions, when a local user set the system default playback device to speakers using <xref keyref="setDevice_IAudioDeviceCollection"/>, there was no sound from the remote end. (Windows)</li>
@@ -175,6 +185,12 @@
                             <li props="android"><codeph>LOCAL_VIDEO_STREAM_REASON_DEVICE_FATAL_ERROR</codeph></li>
                             <li props="mac"><codeph><ph keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_MINIMIZED"/></codeph></li>
                         </ul></li>
+                    <li><xref keyref="registerFaceInfoObserver"/></li>
+                    <li props="electron rn flutter unity"><xref keyref="unregisterFaceInfoObserver"/></li>
+                    <li><xref keyref="IFaceInfoObserver"/></li>
+                    <li><xref keyref="onFaceInfo"/></li>
+                    <li><xref keyref="MEDIA_SOURCE_TYPE"/> adds <codeph><apiname keyref="SPEECH_DRIVEN_VIDEO_SOURCE"/></codeph></li>
+                    <li><xref keyref="VIDEO_SOURCE_TYPE"/> adds <codeph><apiname keyref="VIDEO_SOURCE_SPEECH_DRIVEN"/></codeph></li>
                     <li><xref keyref="EncryptionConfig"/> adds <codeph>datastreamEncryptionEnabled</codeph></li>
                     <li props="cpp apple framework"><xref keyref="ENCRYPTION_ERROR_TYPE"/> adds the following enumerations:
                         <ul>
