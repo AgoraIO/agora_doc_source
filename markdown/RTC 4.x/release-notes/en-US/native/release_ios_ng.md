@@ -27,7 +27,7 @@ This version is released on 2024 Month x, Day x.
 
    To meet Apple's safety compliance requirements for app publication, the SDK now includes a privacy manifest file, `PrivacyInfo.xcprivacy`, detailing the SDK's API calls that access or use user data, along with a description of the types of data collected.
 
-   **Note:** If you need to publish an app with SDK versions prior to v4.3.1 to the Apple App Store, you must manually add the `PrivacyInfo.xcprivacy` file to your Xcode project. For more details, see .
+   **Note:** If you need to publish an app with SDK versions prior to v4.3.1 to the Apple App Store, you must manually add the `PrivacyInfo.xcprivacy` file to your Xcode project. For more details, see []().
 
 3. **Center stage camera**
 
@@ -115,7 +115,7 @@ This version fixed the following issues:
 - [AgoraMediaSourceType](API/enum_mediasourcetype.html) adds `AgoraMediaSourceTypeSpeechDriven`
 - [AgoraVideoSourceType](API/enum_videosourcetype.html) adds `AgoraVideoSourceTypeSpeechDriven`
 - [AgoraEncryptionConfig](API/class_encryptionconfig.html) adds `datastreamEncryptionEnabled`
-- `AgoraEncryptionErrorType` adds the following enumerations:
+- [`AgoraEncryptionErrorType`](/api-ref/rtc/ios/API/enum_encryptionerrortype)  adds the following enumerations:
   - `ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE`
   - `ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE`
 - [AgoraRtcRemoteAudioStats](API/class_remoteaudiostats.html) adds `e2eDelay`

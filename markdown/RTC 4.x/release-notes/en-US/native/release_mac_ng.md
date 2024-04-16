@@ -91,7 +91,7 @@ This version fixed the following issues:
 
 - [enableCameraCenterStage](API/api_irtcengine_enablecameracenterstage.html)
 - [isCameraCenterStageSupported](API/api_irtcengine_iscameracenterstagesupported.html)
-- The following enumerations in `AgoraLocalVideoStreamReason`:
+- The following enumerations in [`AgoraLocalVideoStreamReason`](/api-ref/rtc/macos/API/enum_localvideostreamreason):
   - `AgoraLocalVideoStreamReasonScreenCaptureRecoverFromMinimized`
 - [setFaceInfoDelegate](API/api_imediaengine_registerfaceinfoobserver.html)
 - [AgoraFaceInfoDelegate](API/class_ifaceinfoobserver.html)
@@ -99,7 +99,7 @@ This version fixed the following issues:
 - [AgoraMediaSourceType](API/enum_mediasourcetype.html) adds `AgoraMediaSourceTypeSpeechDriven`
 - [AgoraVideoSourceType](API/enum_videosourcetype.html) adds `AgoraVideoSourceTypeSpeechDriven`
 - [AgoraEncryptionConfig](API/class_encryptionconfig.html) adds `datastreamEncryptionEnabled`
-- `AgoraEncryptionErrorType` adds the following enumerations:
+- [`AgoraEncryptionErrorType`](/api-ref/rtc/macos/API/enum_encryptionerrortype)  adds the following enumerations:
   - `ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE`
   - `ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE`
 - [AgoraRtcDeviceInfo](API/class_agorartcdeviceinfo.html) adds `deviceTypeName`
@@ -241,7 +241,7 @@ This release has optimized the implementation of some functions, involving renam
    - This release adds the `earMonitorDelay` and `aecEstimatedDelay` members in [AgoraRtcLocalAudioStats](API/class_localaudiostats.html) to report ear monitor delay and acoustic echo cancellation (AEC) delay, respectively.
    - When using the sound card for recording, it supports capturing audio data in stereo.
    - The [cacheStats](API/callback_imediaplayersourceobserver_onplayercachestats.html) callback is added to report the statistics of the media file being cached. This callback is triggered once per second after file caching is started.
-   - The [playbackStats](API/callback_imediaplayersourceobserver_onplayerplaybackstats.html) callback is added to report the statistics of the media file being played. This callback is triggered once per second after the media file starts playing. You can obtain information like the audio and video bitrate of the media file through .
+   - The [playbackStats](API/callback_imediaplayersourceobserver_onplayerplaybackstats.html) callback is added to report the statistics of the media file being played. This callback is triggered once per second after the media file starts playing. You can obtain information like the audio and video bitrate of the media file through [AgoraMediaPlayerPlaybackStats](API/class_playerplaybackstats.html).
 
 #### Issues fixed
 
