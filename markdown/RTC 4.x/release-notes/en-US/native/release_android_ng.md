@@ -86,7 +86,7 @@ To ensure parameter naming consistency, this version renames `channelName` to `c
 
 4. **CPU consumption reduction of in-ear monitoring**
 
-   This release adds an enumerator `EAR_MONITORING_FILTER_REUSE_POST_PROCESSING_FILTER` (1 < 15). For complex audio processing scenarios, you can specify this option to reuse the audio filter post sender-side processing in in-ear monitoring, thereby reducing CPU consumption. Note that this option may increase the latency of in-ear monitoring, which is suitable for latency-tolerant scenarios requiring low CPU consumption.
+   This release adds an enumerator `EAR_MONITORING_FILTER_REUSE_POST_PROCESSING_FILTER` (1 <<15). For complex audio processing scenarios, you can specify this option to reuse the audio filter post sender-side processing in in-ear monitoring, thereby reducing CPU consumption. Note that this option may increase the latency of in-ear monitoring, which is suitable for latency-tolerant scenarios requiring low CPU consumption.
 
 5. **Other improvements**
 
@@ -141,7 +141,7 @@ This version fixed the following issues:
 - [`CameraCapturerConfiguration`](/api-ref/rtc/android/API/class_cameracapturerconfiguration) adds a new member `cameraId` (Android)
 - [`CAMERA_DIRECTION`](/api-ref/rtc/android/API/enum_cameradirection) adds `CAMERA_EXTRA`(2)
 - [`switchCamera`](/api-ref/rtc/android/API/toc_video_device#api_irtcengine_switchcamera2)[2/2]
-- `EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS`(1 < 15)
+- `EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS`(1 <<15)
 
 ## v4.3.0
 
