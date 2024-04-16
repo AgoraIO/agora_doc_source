@@ -128,10 +128,10 @@ This version fixed the following issues:
 - [`getCallIdEx`](/api-ref/rtc/android/API/toc_network#api_irtcengineex_getcallidex)
 - [`enableEncryptionEx`](/api-ref/rtc/android/API/toc_network#api_irtcengineex_enableencryptionex)
 - [`setAudioMixingPlaybackSpeed`](/api-ref/rtc/android/API/toc_audio_mixing#api_irtcengine_setaudiomixingplaybackspeed)
-- [`queryCameraFocalLengthCapability`](/api-ref/rtc/android/API/toc_video_device#api_irtcengine_querycamerafocallengthcapability) (Android, iOS)
-- [`AgoraFocalLengthInfo`](/api-ref/rtc/android/API/class_focallengthinfo) (Android, iOS)
-- [`CAMERA_FOCAL_LENGTH_TYPE`](/api-ref/rtc/android/API/enum_camerafocallengthtype) (Android, iOS)
-- [`CameraCapturerConfiguration`](/api-ref/rtc/android/API/class_cameracapturerconfiguration) adds a new member `cameraFocalLengthType` (Android, iOS)
+- [`queryCameraFocalLengthCapability`](/api-ref/rtc/android/API/toc_video_device#api_irtcengine_querycamerafocallengthcapability)
+- [`AgoraFocalLengthInfo`](/api-ref/rtc/android/API/class_focallengthinfo)
+- [`CAMERA_FOCAL_LENGTH_TYPE`](/api-ref/rtc/android/API/enum_camerafocallengthtype)
+- [`CameraCapturerConfiguration`](/api-ref/rtc/android/API/class_cameracapturerconfiguration) adds a new member `cameraFocalLengthType`
 - [`VideoSourceType`](/api-ref/rtc/android/API/enum_videosourcetype) adds the following enumerations:
   - `VIDEO_SOURCE_CAMERA_THIRD`(11)
   - `VIDEO_SOURCE_CAMERA_FOURTH`(12)
