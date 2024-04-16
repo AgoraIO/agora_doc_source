@@ -17,14 +17,6 @@
             <title>新增特性</title>
             <body>
                 <ol>
-                    <li><ph><b>语音驱动虚拟人</b></ph>
-                        <p>SDK 新增语音驱动插件，可以将语音信息转换为对应口型的人脸信息，用于驱动虚拟人面部做出语音对应的口型变化。你可以通过该版本新增的 <xref keyref="registerFaceInfoObserver"/> 方法和 <xref keyref="onFaceInfo"/> 回调获取语音驱动插件处理后的人脸信息。该人脸信息为符合 ARkit 标准的 BS（Blend Shape）数据，你可以使用第三方 3D 渲染引擎对 BS 数据进一步处理。</p>
-                        <p>语音驱动插件为可裁剪动态库，集成后 App 增加的体积等信息详见<xref keyref="reduce-app-size"/>。</p>
-                        <note type="attention">
-                        <ul>
-                        <li>声网 SDK 拓展插件 MetaKit 可帮助你简化语音驱动虚拟人的实现流程，无需自行搭建采集、编码和传输的框架。有关 MetaKit 的介绍和集成指导，详见 <xref keyref="metakit-overview"/>。</li>
-                        <li>语音驱动虚拟人功能处于公测阶段，如需使用请<xref keyref="ticket-link"/>。</li>
-                        </ul> </note> </li>
                     <li props="ios unity flutter rn"><ph><b>隐私清单文件 (iOS)</b></ph>
                         <p>为满足 Apple 对于 App 发布的安全合规要求，SDK 自该版本起新增隐私清单文件 <codeph>PrivacyInfo.xcprivacy</codeph>，其中包含 SDK 中需要访问或使用用户数据的 API 调用说明和 SDK 采集的数据类型说明。</p>
                         <note>如果你需要将集成 v4.3.1 之前的 SDK 版本的 App 发布到苹果应用商店，则需要在 Xcode 工程中手动添加 <codeph>PrivacyInfo.xcprivacy</codeph> 文件。详见<xref keyref="privacyinfo"/></note></li>
@@ -40,7 +32,7 @@
                     </li>
                     <li props="android flutter unity rn"><ph><b>摄像头多路采集 (Android)</b></ph>
                         <p>该版本针对 Android 摄像头采集新增以下功能：
-                        
+
                         <ol>
                         <li>支持第三个和第四个摄像头视频流的采集和发布。
                             <ul>
@@ -63,22 +55,19 @@
                     </li>
                     <li props="android ios"><ph><b>本地视频渲染</b></ph>
                         <p>该版本在 <xref keyref="VideoCanvas"/> 中新增如下成员，以支持更多本地渲染功能。
-                        
+
                         <ul>
                         <li props="android"><codeph>surfaceTexture</codeph>：设置一个 Android 原生的 <codeph>SurfaceTexture</codeph> 对象作为提供视频图像的容器，然后使用 SDK 外部的方法自行实现 OpenGL 中的纹理绘制。</li>
                         <li>enableAlphaMask：可以通过该成员设置接收端是否开启 alpha 遮罩渲染。alpha 遮罩渲染功能可以创建具有透明效果的图像或提取视频中的人像。</li>
                         </ul></p>
                     </li>
                     <li><ph><b>视频小流自适应配置</b></ph>
-                        <p>该版本新增视频小流的自适应配置功能，当你调用 <xref keyref="setDualStreamMode2"/> 在发送端设置双流模式并设置视频小流时，SDK 的默认行为如下所示： 
-                        
+                        <p>该版本新增视频小流的自适应配置功能，当你调用 <xref keyref="setDualStreamMode2"/> 在发送端设置双流模式并设置视频小流时，SDK 的默认行为如下所示：
+
                         <ul>
                         <li>将视频小流的默认编码分辨率设为原始视频编码分辨率的 50%。 </li>
                         <li>视频小流的码率根据视频分辨率和帧率自动匹配，无需指定。</li>
                         </ul></p>
-                    </li>
-                    <li><ph><b/></ph>
-                        <p/>
                     </li>
                     <li><ph><b>其他</b></ph>
                         <p>
@@ -115,7 +104,7 @@
                     </li>
                     <li><ph><b>虚拟背景算法优化</b></ph>
                         <p>为了提高纯色背景下开启虚拟背景时人像分割的精确度和稳定性，该版本优化了绿幕分割算法：
-                        
+
                         <ul>
                         <li>支持识别任意纯色背景，不再局限于绿幕。</li>
                         <li>对背景颜色的识别更加准确，并且在分割人像时露出的背景更少。</li>
@@ -130,7 +119,7 @@
                     </li>
                     <li><ph><b>其他改进</b></ph>
                         <p>该版本还进行了如下改进：
-                        
+
                         <ul>
                         <li props="ios mac cpp unity flutter rn electron ">优化了非屏幕共享场景的视频编解码策略，节省系统性能开销。(iOS, macOS, Windows)</li>
                         <li props="mac">针对 macOS 14 及以上系统，优化了 <xref keyref="getScreenCaptureSources"/> 的行为。自该版本起，调用该方法返回的可用窗口资源中会自动过滤小组件窗口。(macOS)</li>
@@ -153,8 +142,9 @@
                     <li>使用媒体播放器播放包含 SEI 数据的媒体流时，SEI 数据的输出与视频渲染不同步。</li>
                     <li props="android">加入频道后调用 <xref keyref="disableAudio"/> 关闭音频模块，音频播放没有立即停止。(Android)</li>
                     <li props="cpp electron unity flutter">屏幕共享场景中，App 调用 <xref keyref="enableLoopbackRecording"/> 开启声卡采集功能采集共享屏幕的音频，本地用户手动禁用本地音频采集设备后，声卡采集的音频发送失败，远端用户听不见共享屏幕的声音。(Windows)</li>
-                    <li props="mac electron">在音视频互动中，如果用户将耳机插入设备并手动将系统音频输出切换为扬声器，之后 App 调用 <xref keyref="setPlaybackDevice"/> 方法指定音频播放设备为耳机，用户移除耳机后，音频输出并未按预期行为切换至扬声器。<ph props="electron"> (macOS)</ph></li>
-                    <li props="cpp mac">用户插拔一次蓝牙或有线耳机，音频状态改变回调 <xref keyref="onAudioDeviceStateChanged"/> 会触发多次。</li>
+                    <li props="electron">在音视频互动中，如果用户将耳机插入设备并手动将系统音频输出切换为扬声器，之后 App 调用 <xref keyref="setPlaybackDevice"/> 方法指定音频播放设备为耳机，用户移除耳机后，音频输出并未按预期行为切换至扬声器。<ph props="electron"> (macOS)</ph></li>
+                    <li props="cpp">用户插拔一次蓝牙或有线耳机，音频状态改变回调 <xref keyref="onAudioDeviceStateChanged"/> 会触发多次。</li>
+                    <li props="mac">用户插拔一次蓝牙或有线耳机，音频状态改变回调 <xref keyref="stateChanged"/> 会触发多次。</li>
                     <li props="android unity rn flutter">主播使用部分型号设备在扬声器下进行音视频互动，之后切换 App 进程到后台再切回前台，偶现本地音频采集失败，远端用户听不到主播的声音。(Android)</li>
                     <li props="unity">播放指定用户混音前的音频流时偶现回声。(macOS、Windows)</li>
                     <li props="cpp unity flutter electron">在音视频互动过程中，本地用户调用 <xref keyref="setDevice_IAudioDeviceCollection"/> 设置系统默认播放设备为扬声器后，听远端无声。(Windows)</li>
@@ -184,7 +174,7 @@
                         </ul></li>
                     <li><xref keyref="EncryptionConfig"/> 中新增 <codeph>datastreamEncryptionEnabled</codeph></li>
                     <li props="cpp apple framework"><xref keyref="ENCRYPTION_ERROR_TYPE"/> 中新增如下枚举：
-                    
+
                         <ul>
                         <li><codeph><apiname keyref="ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE"/></codeph></li>
                         <li><codeph><apiname keyref="ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE"/></codeph></li>
@@ -201,11 +191,9 @@
                     <li props="android"><codeph><apiname keyref="ERR_DATASTREAM_DECRYPTION_FAILED"/></codeph></li>
                     <li props="apple cpp framework"><xref keyref="AUDIO_EFFECT_PRESET"/> 新增 <codeph><apiname keyref="ROOM_ACOUSTICS_CHORUS"/></codeph></li>
                     <li props="android"><codeph><apiname keyref="ROOM_ACOUSTICS_CHORUS"/></codeph></li>
-                    <li><xref keyref="registerFaceInfoObserver"/></li>
-                    <li props="electron rn flutter unity"><xref keyref="unregisterFaceInfoObserver"/></li>
-                    <li><xref keyref="IFaceInfoObserver"/></li>
-                    <li><xref keyref="onFaceInfo"/></li>
                     <li><xref keyref="getCallIdEx"/></li>
+                    <li><xref keyref="enableEncryptionEx"/></li>
+                    <li><xref keyref="setAudioMixingPlaybackSpeed"/></li>
                     <li props="android ios flutter unity rn"><xref keyref="queryCameraFocalLengthCapability"/> (Android, iOS)</li>
                     <li props="android ios flutter unity rn"><xref keyref="FocalLengthInfo"/> (Android, iOS)</li>
                     <li props="android ios flutter unity rn"><xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/> (Android, iOS)</li>
@@ -226,9 +214,9 @@
                     <li><xref keyref="EAR_MONITORING_FILTER_TYPE"/> 新增枚举 <codeph><apiname keyref="EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS"/></codeph>(1 &lt;&lt;15)</li>
                     <li props="ios mac"><xref keyref="pushExternalAudioFrameSampleBuffer2"/></li>
                     </ul></p>
-                <p><b>废弃</b>
+                <p props="ios mac"><b>废弃</b>
                     <ul>
-                    <li props="ios mac"><xref keyref="pushExternalAudioFrameSampleBuffer1"/></li>
+                    <li><xref keyref="pushExternalAudioFrameSampleBuffer1"/></li>
                     </ul></p>
             </body>
         </topic>
