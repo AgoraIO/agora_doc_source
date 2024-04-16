@@ -42,8 +42,8 @@ Before starting a cloud recording, you need to call `acquire` method to get a re
 
 **Note**: To ensure successfully starting cloud recording, proceed as follows:
 - The requests for `acquire` and `start` need to be called in pairs.
-- Immediately start the corresponding [`start`](#opIdpost-v1-apps-appid-cloud_recording-resourceid-resourceid-mode-mode-start) request within two seconds of getting the Resource ID for each `acquire` request. A group `start` requests after getting Resource IDs in a batch might result in request failure.
-- Resource ID is valid within five minutes of getting it and should be used as soon as possible.
+- Immediately start the corresponding [`start`](#opIdpost-v1-apps-appid-cloud_recording-resourceid-resourceid-mode-mode-start) request within two seconds of getting the resource ID for each `acquire` request. A group `start` requests after getting resource IDs in a batch might result in request failure.
+- The resource ID is valid within five minutes of getting it and should be used as soon as possible.
 
 > Request body
 
@@ -97,7 +97,7 @@ Before starting a cloud recording, you need to call `acquire` method to get a re
 
 After getting a cloud recording resources with the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) method, call `start` method to start a cloud recording.
 
-> After initiating the `start` request, you also need to check whether the recording service has [been successfully started based ](on best practices. Please refer to https://doc.shengwang.cn/doc/cloud-recording/restful/best-practices/integration#确认录制服务已成功启动 )for checking if the recording service has been successfully started.
+> After starting the `start` request, you further need to check that the recording service has started successfully according to the [best practices](https://doc.shengwang.cn/doc/cloud-recording/restful/best-practices/integration#确认录制服务已成功启动).
 
 > Request body
 
@@ -148,8 +148,8 @@ After getting a cloud recording resources with the [`acquire`](#opIdpost-v1-apps
 |---|---|---|---|---|
 | Content-Type | header | string | false | `application/json`. |
 | appid | path | string | true | The [App ID](http://doc.shengwang.cn/doc/cloud-recording/restful/get-started/enable-service#%E8%8E%B7%E5%8F%96-app-id) that your project uses.<li>For web page recording mode, simply enter the App ID for which the cloud recording service is enabled.</li><li>For individual and composite recording modes, you must use the same App ID as the channel to be record. Ensure that the cloud recording service has been enabled for this App ID.</li> |
-| resourceid | path | string | true | [`Resource ID`]( obtained through the acquire#opIdpost-v1-apps-appid-cloud_recording-acquire) request. |
-| mode | path | string | true | Recording mode<li>individual: single-`Individual Recording `recording mode https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/set-individual).[](</li><li>`mix: Composite recording `mode https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-composite).[](</li><li>`web`: web [page ](recording recording mode https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/web-mode/set-webpage-recording).</li> |
+| resourceid | path | string | true | The resource ID obtained by the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request. |
+| mode | path | string | true | The recording modes:<li>`individual`: [Individual recording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/set-individual).</li><li>`mix`: [Composite recording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-composite).</li><li>`web`: [Web pagerecording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/web-mode/set-webpage-recording).</li> |
 | body | body | JSON Object | true | [start-request](#schema start-request) |
 
 > Example responses
@@ -169,7 +169,7 @@ After getting a cloud recording resources with the [`acquire`](#opIdpost-v1-apps
 
 | status | Description | Schema |
 |---|---|---|
-| 200 | If the returned HTTP status code is `200`, the request is successful. To check if the recording service has been successfully started, please refer to the best practices [at ](https://doc.shengwang.cn/doc/cloud-recording/restful/best-practices/integration#confirming-that-the-recording-service-has-successfully-started). | [Response Schema]() |
+| 200 | If the returned HTTP status code is `200`, the request is successful. To check whether the recording service has started successfully, see the [best practices](https://doc.shengwang.cn/doc/cloud-recording/restful/best-practices/integration#确认录制服务已成功启动) to proceed. | [Response Schema](#response-schema) |
 | Not 200 | If the HTTP status code is not `200`, see [the response status code](https://doc.shengwang.cn/api-ref/cloud-recording/restful/response-code) for troubleshooting. | [Response status code](https://doc.shengwang.cn/api-ref/cloud-recording/restful/response-code) |
 
 #### Response Schema
@@ -179,28 +179,28 @@ Status Code **200**
 | Name | Type | Required | Description |
 |---|---|---|---|
 | cname | string | false | The name of the channel to be recorded. |
-| uid | string | false | The string content is the UID used by the Cloud Recording service in the RTC channel to identify the recording service within the channel. |
-| resourceId | string | false | Cloud Recording resource ID. You can start Cloud Recording with this Resource ID. The validity period of this Resource ID is 5 minutes. If it times out, you need to request it again. |
-| sid | string | false | Recording ID After successfully starting Cloud Recording, you will receive a Sid (recording ID). This ID is the unique identification of the current recording. |
+| uid | string | false | The string content is the user ID used by the cloud recording service in the RTC channel to identify the recording service in the channel. |
+| resourceId | string | false | The cloud recording resource ID. You can start a cloud recording with this resource ID. The resource ID is valid for five minutes, after which time you need to re-request it. |
+| sid | string | false | The recording ID. After successfully starting a cloud recording, you will receive a Sid (the recording ID). This ID uniquely identifies a recording cycle. |
 
 
 
-## Update
+## update
 
 <a id="opIdpost-v1-apps-appid-cloud_recording-resourceid-resourceid-sid-sid-mode-mode-update"></a>
 
 
 `POST /v1/apps/{appid}/cloud_recording/resourceid/{resourceid}/sid/{sid}/mode/{mode}/update`
 
-*Update: Update Cloud Recording settings*
+*Update: Update the cloud recording settings*
 
 After starting the recording, you can call the `update` method to update the following recording configuration:
-- Update the subscription list for Individual Recording and composite recording.
-- To web page recording, set pause/resume web page recording, or update the streaming address (URL) web page recording to CDN.
+- For individual and composite recordings, update the subscription list.
+- For the web page recording, set pause/resume the web page recording, or update the CDN streaming address (URL) where the web page recording are pushed to.
 
 
-> - The` update` request is only valid within the session. If you call query after a recording ends or after it starts with error, you get a 404 (Not Found) `error`.``
-> - If you need to continuously call the `update` method to update the recording settings, please wait until you receive the response from the previous `update` before making the call, otherwise it may cause the request result to be inconsistent with expectations.
+> - The` update` request is only valid within the session. If the recording is started incorrectly, or if the recording is finished, the `update` call will return `404`.
+> - If you need to call the `update` method successively to update the recording settings, repeat the call after receiving the last `update` response; otherwise, the request result might not be as expected.
 
 > Request body
 
@@ -233,10 +233,10 @@ After starting the recording, you can call the `update` method to update the fol
 |---|---|---|---|---|
 | Content-Type | header | string | false | `application/json`. |
 | appid | path | string | true | The [App ID](http://doc.shengwang.cn/doc/cloud-recording/restful/get-started/enable-service#%E8%8E%B7%E5%8F%96-app-id) that your project uses.<li>For web page recording mode, simply enter the App ID for which the cloud recording service is enabled.</li><li>For individual and composite recording modes, you must use the same App ID as the channel to be record. Ensure that the cloud recording service has been enabled for this App ID.</li> |
-| resourceid | path | string | true | [`Resource ID`]( obtained through the acquire#opIdpost-v1-apps-appid-cloud_recording-acquire) request. |
+| resourceid | path | string | true | The resource ID obtained by the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request. |
 | sid | path | string | true | [`Recording ID`]( obtained through start#opIdpost-v1-apps-appid-cloud_recording-resourceid-resourceid-mode-mode-start). |
-| mode | path | string | true | Recording mode<li>individual: single-`Individual Recording `recording mode https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/set-individual).[](</li><li>`mix: Composite recording `mode https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-composite).[](</li><li>`web`: web [page ](recording recording mode https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/web-mode/set-webpage-recording).</li> |
-| body | body | JSON Object | true | [update request schema update ](request) |
+| mode | path | string | true | The recording modes:<li>`individual`: [Individual recording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/set-individual).</li><li>`mix`: [Composite recording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-composite).</li><li>`web`: [Web pagerecording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/web-mode/set-webpage-recording).</li> |
+| body | body | JSON Object | true | [update-request](#schemaupdate-request) |
 
 > Example responses
 
@@ -265,28 +265,28 @@ Status Code **200**
 | Name | Type | Required | Description |
 |---|---|---|---|
 | cname | string | false | The name of the channel to be recorded. |
-| uid | string | false | The string content is the UID used by the Cloud Recording service in the RTC channel to identify the recording service within the channel. |
-| resourceId | string | false | Resource ID used Cloud Recording. |
-| sid | string | false | Recording ID Identify each recording cycle. |
+| uid | string | false | The string content is the user ID used by the cloud recording service in the RTC channel to identify the recording service in the channel. |
+| resourceId | string | false | The resource ID used by Cloud Recording. |
+| sid | string | false | The recording ID, identifying each recording cycle. |
 
 
 
-## A request example of updateLayout
+## updateLayout
 
 <a id="opIdpost-v1-apps-appid-cloud_recording-resourceid-resourceid-sid-sid-mode-mode-updateLayout"></a>
 
 
 `POST /v1/apps/{appid}/cloud_recording/resourceid/{resourceid}/sid/{sid}/mode/{mode}/updateLayout`
 
-*UpdateLayout: Update the Cloud Recording layout.*
+*UpdateLayout: Update the mixing layout of the cloud recording.*
 
-After starting the composite recording, you can call this method (`updateLayout`) to update the mixed layout.
+After starting the composite recording, you can call this method (`updateLayout`) to update the mixing layout.
 
-This method call overrides the existing subscription configuration. For example, if the backgroundColor is set to `"#FF0000"` (red) when starting the recording, if the `updateLayout` method is called to update the layout of the mixed stream without setting the `backgroundColor` field again, the background color will become black (default value).``
+Each call to this method overrides the original layout settings. For example, if you set the `backgroundColor` field as `"#FF0000"` (red) when starting a recording and call the `updateLayout` method to update the mixing layout without setting the `backgroundColor` field again, the background color will change to black (the default value).
 
 
-> - The` updateLayout` request is only valid within the session. If you call query after a recording ends or after it starts with error, you get a `404 `(Not Found`) error`.
-> - If you need to continuously call the `updateLayout` method to update the layout of the merged stream, please make the call after receiving the response from the previous `updateLayout`, otherwise it may result in inconsistent results with expectations.
+> - The `updateLayout` request is only valid within the session. If the recording is started incorrectly, or if the recording is finished, the `updateLayout` call will return `404`.
+> - If you need to call the `updateLayout` method successively to update the recording settings, repeat the call after receiving the last `updateLayout` response; otherwise, the request result might not be as expected.
 
 > Request body
 
@@ -327,9 +327,9 @@ This method call overrides the existing subscription configuration. For example,
 |---|---|---|---|---|
 | Content-Type | header | string | false | `application/json`. |
 | appid | path | string | true | The [App ID](http://doc.shengwang.cn/doc/cloud-recording/restful/get-started/enable-service#%E8%8E%B7%E5%8F%96-app-id) that your project uses.<li>For web page recording mode, simply enter the App ID for which the cloud recording service is enabled.</li><li>For individual and composite recording modes, you must use the same App ID as the channel to be record. Ensure that the cloud recording service has been enabled for this App ID.</li> |
-| resourceid | path | string | true | [`Resource ID`]( obtained through the acquire#opIdpost-v1-apps-appid-cloud_recording-acquire) request. |
+| resourceid | path | string | true | The resource ID obtained by the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request. |
 | sid | path | string | true | [`Recording ID`]( obtained through start#opIdpost-v1-apps-appid-cloud_recording-resourceid-resourceid-mode-mode-start). |
-| mode | path | string | true | Recording mode Only support mix, which represents the `composite recording mode`[. ](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-composite). |
+| mode | path | string | true | The recording modes. Supports `mix` only, which means [composite recording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-composite). |
 | body | body | JSON Object | true | [updateLayout-request](#schemaupdatelayout-request) |
 
 > Example responses
@@ -359,9 +359,9 @@ Status Code **200**
 | Name | Type | Required | Description |
 |---|---|---|---|
 | cname | string | false | The name of the channel to be recorded. |
-| uid | string | false | The string content is the UID used by the Cloud Recording service in the RTC channel to identify the recording service within the channel. |
-| resourceId | string | false | Resource ID used Cloud Recording. |
-| sid | string | false | Recording ID Identify a recording cycle. |
+| uid | string | false | The string content is the user ID used by the cloud recording service in the RTC channel to identify the recording service in the channel. |
+| resourceId | string | false | The resource ID used by Cloud Recording. |
+| sid | string | false | The recording ID, identifying a recording cycle. |
 
 
 
@@ -372,11 +372,11 @@ Status Code **200**
 
 `GET /v1/apps/{appid}/cloud_recording/resourceid/{resourceid}/sid/{sid}/mode/{mode}/query`
 
-*Query: Check Cloud Recording status*
+*Query: Query the status of the cloud recording*
 
-After you start a recording, you can call `query` to check its status.
+After you start recording, you can call `query` to query the recording status.
 
-> `query` works only with an ongoing recording session. If you call query after a recording ends or after it starts with error, you get a `404` (Not Found) error.``
+> The `query` request is only valid within the session. If the recording is started incorrectly, or if the recording is finished, the `query` call will return `404`.
 
 ### Parameters
 
@@ -384,9 +384,9 @@ After you start a recording, you can call `query` to check its status.
 |---|---|---|---|---|
 | Content-Type | header | string | false | `application/json`. |
 | appid | path | string | true | The [App ID](http://doc.shengwang.cn/doc/cloud-recording/restful/get-started/enable-service#%E8%8E%B7%E5%8F%96-app-id) that your project uses.<li>For web page recording mode, simply enter the App ID for which the cloud recording service is enabled.</li><li>For individual and composite recording modes, you must use the same App ID as the channel to be record. Ensure that the cloud recording service has been enabled for this App ID.</li> |
-| resourceid | path | string | true | [`Resource ID`]( obtained through the acquire#opIdpost-v1-apps-appid-cloud_recording-acquire) request. |
+| resourceid | path | string | true | The resource ID obtained by the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request. |
 | sid | path | string | true | [`Recording ID`]( obtained through start#opIdpost-v1-apps-appid-cloud_recording-resourceid-resourceid-mode-mode-start). |
-| mode | path | string | true | Recording mode<li>individual: single-`Individual Recording `recording mode https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/set-individual).[](</li><li>`mix: Composite recording `mode https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-composite).[](</li><li>`web`: web [page ](recording recording mode https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/web-mode/set-webpage-recording).</li> |
+| mode | path | string | true | The recording modes:<li>`individual`: [Individual recording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/set-individual).</li><li>`mix`: [Composite recording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-composite).</li><li>`web`: [Web pagerecording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/web-mode/set-webpage-recording).</li> |
 
 > Example responses
 
@@ -428,19 +428,19 @@ After you start a recording, you can call `query` to check its status.
 
 
 
-##                         stop
+## stop
 
 <a id="opIdpost-v1-apps-appid-cloud_recording-resourceid-resourceid-sid-sid-mode-mode-stop"></a>
 
 
 `POST /v1/apps/{appid}/cloud_recording/resourceid/{resourceid}/sid/{sid}/mode/{mode}/stop`
 
-*Stop: Stop Cloud Recording*
+*Stop: Stop the cloud recording*
 
-You can call the `stop` method to leave the channel and stop recording. To use Agora Cloud Recording again, you need to call the acquire method for a new resource ID.``
+After starting recording, you can call the `stop` method to leave the channel and stop recording. To re-record after the recording has stopped, you must call the `acquire` method again to request a new resource ID.
 
-> - The` stop` request is only valid within the session. If you call query after a recording ends or after it starts with error, you get a 404 (Not `Found`) error.``
-> - Agora Cloud Recording automatically leaves the channel and stops recording when no user is in the channel for more than 30 seconds by default.
+> - The ` stop` request is only valid within the session. If the recording is started incorrectly, or if the recording is finished, the `stop` call will return `404`.
+> - In non-web page recording mode, when the channel is idle (without users) for more than the predefined duration (default is 30 seconds), cloud recording automatically leaves the channel and stops recording.
 
 > Request body
 
@@ -460,9 +460,9 @@ You can call the `stop` method to leave the channel and stop recording. To use A
 |---|---|---|---|---|
 | Content-Type | header | string | false | `application/json`. |
 | appid | path | string | true | The [App ID](http://doc.shengwang.cn/doc/cloud-recording/restful/get-started/enable-service#%E8%8E%B7%E5%8F%96-app-id) that your project uses.<li>For web page recording mode, simply enter the App ID for which the cloud recording service is enabled.</li><li>For individual and composite recording modes, you must use the same App ID as the channel to be record. Ensure that the cloud recording service has been enabled for this App ID.</li> |
-| resourceid | path | string | true | [`Resource ID`]( obtained through the acquire#opIdpost-v1-apps-appid-cloud_recording-acquire) request. |
+| resourceid | path | string | true | The resource ID obtained by the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request. |
 | sid | path | string | true | [`Recording ID`]( obtained through start#opIdpost-v1-apps-appid-cloud_recording-resourceid-resourceid-mode-mode-start). |
-| mode | path | string | true | Recording mode<li>individual: single-`Individual Recording `recording mode https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/set-individual).[](</li><li>`mix: Composite recording `mode https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-composite).[](</li><li>`web`: web [page ](recording recording mode https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/web-mode/set-webpage-recording).</li> |
+| mode | path | string | true | The recording modes:<li>`individual`: [Individual recording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/set-individual).</li><li>`mix`: [Composite recording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-composite).</li><li>`web`: [Web pagerecording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/web-mode/set-webpage-recording).</li> |
 | body | body | JSON Object | true | [stop-request](#schemastop-request) |
 
 > Example responses
@@ -492,7 +492,7 @@ You can call the `stop` method to leave the channel and stop recording. To use A
 
 | status | Description | Schema |
 |---|---|---|
-| 200 | If the returned HTTP status code is `200`, the request is successful. | [stop-response](#schema) |
+| 200 | If the returned HTTP status code is `200`, the request is successful. | [stop-response](#schemastop-response) |
 | Not 200 | If the HTTP status code is not `200`, see [the response status code](https://doc.shengwang.cn/api-ref/cloud-recording/restful/response-code) for troubleshooting. | [Response status code](https://doc.shengwang.cn/api-ref/cloud-recording/restful/response-code) |
 
 
@@ -501,21 +501,21 @@ You can call the `stop` method to leave the channel and stop recording. To use A
 
 <a id="opIdget-v1-ncs-ip"></a>
 
-`GET request to retrieve the IP address from the ncs endpoint version 1.`
+`GET /v1/ncs/ip`
 
-*Query the IP address of the message notification server.*
+*Query the IP addresses of the message notification server*
 
 Query the IP address or IP address list of the message notification server.
 
-After enabling the message notification service, Agora message notification service can notify your server of certain events that occur in the online media streaming business through HTTPS requests. Agora will dynamically adjust the IP address of the message notification server every 24 hours. You can query the IP address using this method. After the query, you need to add the IP address (or IP address list) to the whitelist.
+After you enable the message notification service, Agora message notification service can notify your server of events that occur during a media pull with HTTPS requests. Agora dynamically adjust the IP addresses of the message notification server every 24 hours. You can query the IP addresses using this method. After the query, add the IP address (or IP address list) to the whitelist.
 
-> We strongly recommend that you perform a query at least every 24 hours and automatically update the firewall configuration, otherwise it may affect your receipt of notifications.
+> We strongly recommend performing a query at least every 24 hours and automatically updating the firewall configuration; otherwise, it may affect your reception of notifications.
 
 > Example responses
 
 > If the returned HTTP status code is 200, the request is successful.
 
-You only need to pay attention to the `PrimaryIP `field in the response Body, and you don't need to care about the response Header or other fields in the response Body.
+You only need to pay attention to the `PrimaryIP` field in the response body, but not the response header or other fields in the response body.
 
 ```json
 {
@@ -538,7 +538,7 @@ You only need to pay attention to the `PrimaryIP `field in the response Body, an
 
 | status | Description | Schema |
 |---|---|---|
-| 200 | If the returned HTTP status code is 200, the request is successful. You only need to pay attention to the `PrimaryIP `field in the response Body, and you don't need to care about the response Header or other fields in the response Body. | [Response Schema](#response-schema-3) |
+| 200 | If the returned HTTP status code is 200, the request is successful. You only need to pay attention to the `PrimaryIP` field in the response body, but not the response header or other fields in the response body. | [Response Schema](#response-schema-3) |
 
 #### Response Schema
 
@@ -546,10 +546,10 @@ Status Code **200**
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| data | object | false | No need to understand. |
-| » service | object | false | No need to understand. |
-| hosts | arrayobject[] | false | No need to understand. |
-| »»» primaryIP | string | false | Agora notification server IP address. |
+| data | object | false | Unnecessary to know. |
+| » service | object | false | Unnecessary to know. |
+| »» hosts | array[object] | false | Unnecessary to know. |
+| »»» primaryIP | string | false | The IP address of the Agora message notification server. |
 
 
 
@@ -704,10 +704,10 @@ Status Code **200**
 | uid | string | true | The string contains the UID used by the cloud recording service within the channel to identify the recording service, for example, `"527841"`. The string must meet the following conditions:<br> - The value is ranged from 1 to (2<sup>32</sup>-1), and cannot be set to `0`. <br>- It must not duplicate any UID within the current channel. <br>- The field value within the quotation marks is an integer UID, and all users in the channel should use the integer UIDs. |
 | clientRequest
  | object | false | As described below. |
-| » scene | number | false | Use cases for cloud recording resources:<br> - `0`: Real-time audio and video recording. <br>- `1`: Web page recording. <br>- `2`: Individual recording mode, with postponed transcoding or audio mixing enabled.<br>    - Postponed transcoding: The recording service will transcode the recorded files into the MP4 format within 24 hours after recording (it may take up to 48 hours or more in special cases), and upload the MP4 files to the third-party cloud storage you select. This scene is only applicable to Individual Recording mode.<br>    - Delayed Mixing: The recording service will merge and transcode all recording files of specified UIDs within 24 hours after the recording ends (in special cases, it may take more than 48 hours) and generate an MP3/M4A/AAC file, then upload the file to your specified third-party cloud storage. This scenario is only applicable to the audio single-stream non-transcoding recording mode.<br>    - When` scene` is set to `2`, you need to set the `appsCollection `field in the `start` method at the same time.<br>    - In scenarios involving transcoding and audio mixing with delay, recorded files will be cached on Agora edge servers for up to 24 hours. If your business is sensitive to information security and to ensure data compliance, please carefully consider whether to use delayed transcoding and delayed mixing functions. If you have any doubts, please contact Agora technical support. |
-| "resourceExpiredHour": 24 | number | false | For details, see Agora Cloud Recording RESTful API Callback Service. Start calculating after successfully initiating Cloud Recording and obtaining the `SID` (Recording ID). Unit is hours. <br><br>**The** time limit starts from when you successfully start a `cloud ``recording` and get sid(`the recording ID` ).``</br> |
-| "startParameter" | [client-request](#schemaclient-request) | false | Setting this field can improve availability and optimize load balancing. <br><br>**Note**: If this field is filled out, it must be ensured that the `startParameter` object and the `clientRequest `object filled out in subsequent `start `requests are completely consistent and valid, otherwise the` start` request will receive an error. |
-| » excludeResourceIds | arraystring[] | false | The resourceId of another or multiple recording tasks. ``This field is used to exclude specified recording resources so that newly initiated recording tasks can use resources from a new region, enabling cross-regional multi-channel recording. See [multi-channel task guarantee at ](https://doc.shengwang.cn/doc/cloud-recording/restful/best-practices/integration#multi-channel-task-guarantee). |
+| » scene | number | false | Use cases for cloud recording resources:<br> - `0`: Real-time audio and video recording. <br>- `1`: Web page recording. <br>- `2`: Individual recording mode, with postponed transcoding or audio mixing enabled.<br>    - Postponed transcoding: The recording service will transcode the recorded files into the MP4 format within 24 hours after the recording ends (in special cases, it may take more than 48 hours), and then upload the MP4 files to your third-party cloud storage. This scene is only applicable to the individual recording mode.<br>    - Postponed audio mixing: The recording service will merge and transcode the recorded files of all UIDs in the specified channel into a single MP3/M4A/AAC file within 24 hours after the recording ends (in special cases, it may take more than 48 hours), and then upload the file to your specified third-party cloud storage. This scene is only applicable to the individual audio non-transcoding recording mode.<br>    > - When `scene` is set to `2`, you need to set the `appsCollection`field in the `start` method at the same time.<br>    > - In scenarios involving postponed transcoding and audio mixing, the recorded files will be cached on the Agora edge servers for up to 24 hours. If your business is sensitive to information security and to ensure data compliance, please carefully consider whether to use postponed transcoding and audio mixing functions. Contact Agora technical support if you need any help. |
+| » resourceExpiredHour | number | false | The validity period for calling the cloud recording RESTful API Start calculating after you successfully initiate the cloud recording service and obtain the `sid` (Recording ID). The calculation unit is hours. <br><br>**Note**: After the timeout, you will not be able to call the `query`, `update`, `updateLayout`, and `stop` methods.</br> |
+| » startParameter | [client-request](#schemaclient-request) | false | Setting this field can improve availability and optimize load balancing. <br><br>**Note**: When populating the `startParameter` object, make sure the values are valid and consistent with the `clientRequest` object in the subsequent `start` request body; otherwise, the `start` request will receive an error response. |
+| » excludeResourceIds | array[string] | false | The `resourceId` of another or multiple recording tasks. This field is used to exclude specified recording resources so that newly initiated recording tasks can use resources from a new region, enabling cross-regional multi-channel recording. See [multi-channel task guarantee at ](https://doc.shengwang.cn/doc/cloud-recording/restful/best-practices/integration#multi-channel-task-guarantee). |
 | "regionAffinity" | number | false | Specify the use of resources from a certain region for recording. The supported values are as follows:<br> - `0`: Call resources based on the region where the request is initiated. <br>- `1`: China. <br>- `2`: Southeast Asia. <br>- `3`: Europe. <br>- `4`: North America. <br>**Note**:<br> To speed up file uploads during recording, it is recommended that you set the field to the cloud storage region when the region you are using for cloud storage is different from the region you are requesting. <br>- When the available capacity in the specified region is insufficient, overflow will occur based on proximity to the geographical location. |
 
 ## client-request
@@ -844,10 +844,10 @@ Status Code **200**
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| token. | string | false | Dynamic key (Token) used for authentication. Ensure that you set this parameter if App Certificate is enabled for your application. See[ Token Authentication ](for details: https://doc.shengwang.cn/doc/rtc/android/basic-features/token-authentication).<br><p><b>Note</b>:<br><li>Just need to set in <b>Individual Recording </b>and <b>composite recording </b>mode.</li><br><li>Cloud Recording service does not currently support updating tokens. To ensure normal recording, please make sure that the token is valid for a duration longer than your expected recording time, to avoid the token expiring and causing the recording task to exit the channel and end the recording.</li><br></p> |
+| token. | string | false | A dynamic key used for authentication. If your project has enabled the App certificate, pass in the dynamic key of your project in this field. See [Token Authentication]( https://doc.shengwang.cn/doc/rtc/android/basic-features/token-authentication) for details.<br><p><b>Note</b>:<br><li>You only need to set the authentication token in <b>individual recording</b> and <b>composite recording</b> modes.</li><br><li>Cloud recording service does not support updating tokens currently. To ensure normal recording, please guarantee the Token's effective duration is longer than your expected recording time, to avoid the token expiring and causing the recording task to exit the channel and end the recording.</li><br></p> |
 | storageConfig | [storageConfig](#schemastorageconfig) | true | Configuration options for third-party cloud storage. |
-| recordingConfig | [recordingConfig](#schemarecordingconfig) | false | Recorded audio and video stream configuration options.<br><p><b>Note: </b>Only need to set in <b>Individual Recording </b>and <b>composite recording </b>modes.</p> |
-| You cannot set both recordingFileConfig and snapshotConfig at the same time. | [recordingFileConfig](#schemarecordingfileconfig) | false | Recording file configuration item.<br><p><b>Note</b>: <b>This field should not be set only when taking </b>screenshots, it needs to be set in all other cases. Other situations include the following:<br><li>Individual Recording mode, you can choose to record without transcoding, record with transcoding, or record and take screenshots simultaneously.</li><br><li>Composite recording</li><br><li>web page recording mode, only web page recording, or both web page recording to CDN.</li><br></p> |
+| recordingConfig | [recordingConfig](#schemarecordingconfig) | false | Configuration options for recorded audio and video streams.<br><p><b>Note: </b>You only need to set the authentication token in <b>individual recording</b> and <b>composite</b> recording modes.</p> |
+| recordingFileConfig | [recordingFileConfig](#schemarecordingfileconfig) | false | Configuration options for recorded files.<br><p><b>Note</b>: <b>This field should not be set only when taking </b>screenshots, it needs to be set in all other cases. Other situations include the following:<br><li>Individual Recording mode, you can choose to record without transcoding, record with transcoding, or record and take screenshots simultaneously.</li><br><li>Composite recording</li><br><li>web page recording mode, only web page recording, or both web page recording to CDN.</li><br></p> |
 | snapshotConfig | [snapshot ](configuration schema) | false | Video screenshot configuration item.<p><b>Note: </b>Only need to set when <b></b>using the screenshot function in single-stream recording mode.</p><br>**Screenshot **usage notice:<br> - The screenshot function is only applicable to Individual Recording mode (`individual`). <br>- You can either take screenshots in a single-stream recording process, or record and take screenshots at the same time. For more information, please refer to [the video screenshot at ](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/snapshot). The situation of simultaneous recording and screenshot requires setting the `recordingFileConfig` field. <br>- If the recording service or recording upload service is abnormal, the screenshot will fail. Recording is not affected when there is a screenshot exception. <br>`streamTypes` must be 1 or 2. If you have set `subscribeAudioUid`, you must also set `subscribeVideoUids`. |
 | extensionServiceConfig has the following fields: | [extension service configuration ](for schema extensions.) | false | Extend service configuration options.<br><p><b>Note: </b>Only need to set in <b>web page recording </b>mode.</p> |
 | appsCollection | [appsCollection](#schemaappscollection) | false | Application configuration item.<br><p><b>Note: </b>This setting is only required when in <b>Individual Recording mode </b>and when delayed transcoding or delayed mixing is enabled.</p> |
@@ -894,7 +894,7 @@ Configuration options for third-party cloud storage.
 | bucket | string | true | Third-party cloud storage bucket. The bucket name needs to comply with the naming rules of the corresponding third-party cloud storage service. |
 | accessKey | string | true | Access Key for third-party cloud storage. If transcoding delay is required, the access key must have read and write permissions; otherwise, it is recommended to only provide write permissions. |
 | secretKey | string | true | (Required) The secret key of the third-party cloud storage. |
-| fileNamePrefix | arraystring[] | false | The storage location of the recorded files in the third-party cloud storage is related to the prefix of the file name. For example, if fileNamePrefix = `["directory1","directory2"]`, Agora Cloud Recording will add the prefix `"directory1/directory2/"` before the name of the recorded file, that is, `directory1/directory2/xxx.m3u8`. The prefix's length, including the slashes, should not exceed 128 characters. The string itself should not contain symbols such as slash, underscore, or parenthesis. The following are the supported character set ranges:<br> 26 lowercase English letters a-~z26<br> uppercase English letters A~-Z10<br> numbers 0-9 |
+| fileNamePrefix | array[string] | false | The storage location of the recorded files in the third-party cloud storage is related to the prefix of the file name. For example, if fileNamePrefix = `["directory1","directory2"]`, Agora Cloud Recording will add the prefix `"directory1/directory2/"` before the name of the recorded file, that is, `directory1/directory2/xxx.m3u8`. The prefix's length, including the slashes, should not exceed 128 characters. The string itself should not contain symbols such as slash, underscore, or parenthesis. The following are the supported character set ranges:<br> 26 lowercase English letters a-~z26<br> uppercase English letters A~-Z10<br> numbers 0-9 |
 | extensionParams | [extensionParams](#schemaextensionparams) | false | Third-party cloud storage services will encrypt and tag the uploaded recording files according to this field setting. |
 
 ## extensionParams
@@ -980,8 +980,8 @@ Third-party cloud storage services will encrypt and tag the uploaded recording f
 }
 ```
 
-Recorded audio and video stream configuration options.
-<p><b>Note: </b>Only need to set in <b>Individual Recording </b>and <b>composite recording </b>modes.</p>
+Configuration options for recorded audio and video streams.
+<p><b>Note: </b>You only need to set the authentication token in <b></b><b></b>individual recording and composite recording modes.</p>
 
 ### Properties
 
@@ -995,15 +995,15 @@ Recorded audio and video stream configuration options.
 | streamTypes | number | false | Subscribed media stream type. <br>`0`: Subscribes to audio streams only. Suitable for smart voice review scenarios. <br>`1`: Subscribes to video streams only. <br>- `2`: Subscribe to audio and video. |
 |                     VideoStreamType | number | false | Sets the stream type of the remote video. If you enable dual-stream mode in the SDK client, you can choose to subscribe to either the high-quality video stream or the low-quality video stream. <br>- `0`: Video high-quality video stream, which refers to high-resolution and high-bitrate video stream.<br>
 - `1`: Video low-quality video stream, which refers to low-resolution and low-bitrate video stream. |
-| subscribeAudioUids | arraystring[] | false | Specify which audio streams to subscribe to for the specified UIDs. If you want to subscribe to the audio stream of all UIDs, you don't need to set this field. The length of the array should not exceed 32 UIDs. Only one of the fields, ``unsubscribeAudioUids`` and `unsubscribeAudioUids`, can be set. See the [subscription list settings at ](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe).<br><p><b>Note:</b><br><li>This field is only applicable when the <b>streamTypes</b> are set to audio, or audio and video.</li><br><li>If you set up a subscription list for audio, but not for video, then Agora Cloud Recording will not subscribe to any video streams. If you set up a subscription list for video, but not for audio, then Agora Cloud Recording will not subscribe to any audio streams.</li><br><li>Set to <b>["#allstream#"]</b> to subscribe to the audio streams of all UIDs in the channel.</li><br></p> |
-| unsubscribe audio UIDs | arraystring[] | false | Specify which UID audio streams not to subscribe to. Once you set this parameter, the recording service subscribes to the audio of all UIDs except the specified ones. The length of the array should not exceed 32 UIDs. Only one of the fields, subscribeAudioUid and `subscribeAudioUids`, can be set. See the [subscription list settings at ](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe). |
-| subscribeVideoUids | arraystring[] | false | Specify which UID's video streams to subscribe to. If you want to subscribe to the video stream of all UIDs, you don't need to set this field. The length of the array should not exceed 32 UIDs. Only one of the fields, ``unsubscribeVideoUids``, can be set. See the [subscription list settings at ](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe).<br><p><b>Note:</b><br><li>This field is only applicable when the <b>streamTypes</b> are set to video, or audio and video.</li><br><li>If you set up a subscription list for audio, but not for video, then Agora Cloud Recording will not subscribe to any video streams. If you set up a subscription list for video, but not for audio, then Agora Cloud Recording will not subscribe to any audio streams.</li><br><li>Set to <b>["#allstream#"]</b> to subscribe to the video streams of all UIDs in the channel.</li><br></p> |
-| unsubscribe video UIDs | arraystring[] | false | Specify which UID's video streams should not be subscribed to. Once you set this parameter, the recording service subscribes to the video of all UIDs except the specified ones. The length of the array should not exceed 32 UIDs. Only one of the fields, either this one or `subscribeVideoUids`, can be set. See the [subscription list settings at ](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe). |
+| subscribeAudioUids | array[string] | false | Specify which audio streams to subscribe to for the specified UIDs. If you want to subscribe to the audio stream of all UIDs, you don't need to set this field. The length of the array should not exceed 32 UIDs. Only one of the fields, ``unsubscribeAudioUids`` and `unsubscribeAudioUids`, can be set. See the [subscription list settings at ](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe).<br><p><b>Note</b><br>:<li>This field is only applicable when the <b>streamTypes</b> are set to audio, or audio and video.</li><br><li>If you set up a subscription list for audio, but not for video, then Agora Cloud Recording will not subscribe to any video streams. If you set up a subscription list for video, but not for audio, then Agora Cloud Recording will not subscribe to any audio streams.</li><br><li>Set to <b>["#allstream#"]</b> to subscribe to the audio streams of all UIDs in the channel.</li><br></p> |
+| unsubscribe audio UIDs | array[string] | false | Specify which UID audio streams not to subscribe to. Once you set this parameter, the recording service subscribes to the audio of all UIDs except the specified ones. The length of the array should not exceed 32 UIDs. Only one of the fields, subscribeAudioUid and `subscribeAudioUids`, can be set. See the [subscription list settings at ](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe). |
+| subscribeVideoUids | array[string] | false | Specify which UID's video streams to subscribe to. If you want to subscribe to the video stream of all UIDs, you don't need to set this field. The length of the array should not exceed 32 UIDs. Only one of the fields, ``unsubscribeVideoUids``, can be set. See the [subscription list settings at ](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe).<br><p><b>Note</b><br>:<li>This field is only applicable when the <b>streamTypes</b> are set to video, or audio and video.</li><br><li>If you set up a subscription list for audio, but not for video, then Agora Cloud Recording will not subscribe to any video streams. If you set up a subscription list for video, but not for audio, then Agora Cloud Recording will not subscribe to any audio streams.</li><br><li>Set to <b>["#allstream#"]</b> to subscribe to the video streams of all UIDs in the channel.</li><br></p> |
+| unsubscribe video UIDs | array[string] | false | Specify which UID's video streams should not be subscribed to. Once you set this parameter, the recording service subscribes to the video of all UIDs except the specified ones. The length of the array should not exceed 32 UIDs. Only one of the fields, either this one or `subscribeVideoUids`, can be set. See the [subscription list settings at ](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe). |
 | subscribeUidGroup | number | false | Estimated peak number of subscribers. <br>- `0`: 1 to 2 UIDs. <br>- `1`:3 to 7 UIDs. <br>`2`: 8 to 12 UIDs <br>`3`: 13 to 17 UIDs <br>- `4`:17 to 32 UIDs. <br>- `5`:32 to 49 UIDs. <br>**Note**:<br> - Only need to be set in **Individual Recording **mode, and must be filled in Individual Recording mode. <br>For example, if `subscribeVideoUids` is `["100","101","102"] `and `subscribeAudioUids` is `["101","102","103"]`, the number of subscribed users is 4. |
 | streamMode | string | false | Output mode of media stream. See the [media stream output mode at ](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/stream-mode). <br>- `"default": Default `mode. During the recording process, audio transcoding is performed to generate separate M3U8 audio index files and video index files. <br>- `"standard": Standard `mode. Agora recommends using this mode. During the recording process, audio transcoding is performed to generate separate M3U8 audio index files, video index files, and merged audio and video index files. If VP8 encoding is used on the a Web client, a merged MPD audio-video index file will be generated. <br>- `"original": Original `encoding mode. For [single-stream audio ](non-transcoding recording, please refer to http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/set-individual-nontranscoding). This field only takes effect when subscribing to audio only (`streamTypes` is 0). During the recording process, the audio is not transcoded, and an M3U8 audio index file is generated. <br>**Note**: Only need to set in **Individual Recording **mode. |
 |                     AudioProfile
                  | number | false | Set the sampling rate, bitrate, encoding mode, and number of channels for the output audio. <br>`0`: Sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 48 Kbps. <br>`1`: Sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 128 Kbps. <br>`2`: Sample rate of 48 kHz, music encoding, stereo, and a bitrate of up to 192 Kbps. <br>**Note**: Only need to set in the **composite recording **mode. |
-| transcodingConfig | [transcodingConfig](#schematranscodingconfig) | false | Video encoding settings. The value can refer to [setting the resolution of the recorded ](output video at http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-output-video-profile).<br><p><b>Note: </b>Only need to set in <b>Individual Recording </b>and <b>composite recording </b>modes.</p> |
+| transcodingConfig | [transcodingConfig](#schematranscodingconfig) | false | Video encoding settings. The value can refer to [setting the resolution of the recorded ](output video at http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-output-video-profile).<br><p><b>Note: </b>You only need to set the authentication token in <b>individual recording</b> and <b>composite</b> recording modes.</p> |
 
 
 
@@ -1048,7 +1048,7 @@ Recorded audio and video stream configuration options.
 ```
 
 Video encoding settings. The value can refer to [setting the resolution of the recorded ](output video at http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-output-video-profile).
-<p><b>Note: </b>Only need to set in <b>Individual Recording </b>and <b>composite recording </b>modes.</p>
+<p><b>Note: </b>You only need to set the authentication token in <b></b><b></b>individual recording and composite recording modes.</p>
 
 ### Properties
 
@@ -1063,7 +1063,7 @@ Video encoding settings. The value can refer to [setting the resolution of the r
 | backgroundColor | string | false | The background color of the canvas. Fill in an RGB hex value starting with a "#". The default value is `"#000000"`, the black color. |
 | backgroundImage | string | false | URL of the background image of the video canvas. The display mode of the background image is set to cropped mode.<br><p>cropped mode: prioritize filling the frame. Uniformly scales the video until it fills the visible boundaries (cropped). One dimension of the video may have clipped contents.</p> |
 | defaultUserBackgroundImage | string | false | The URL of the default user interface background image.<br><p>After configuring this field, when any user stops sending video stream for more than 3.5 seconds, the screen will switch to the background image; if a background image is set separately for a specific UID, this setting will be overridden.</p> |
-| layoutConfig | arrayobject[] | false | [layoutConfig](#schemalayoutconfig) |
+| layoutConfig | array[object] | false | [layoutConfig](#schemalayoutconfig) |
 | backgroundConfig | [backgroundConfig](#schemabackgroundconfig) | false | User's background image settings. |
 
 
@@ -1131,7 +1131,7 @@ User's background image settings.
 |                     RENDER_MODE
                  | number | false | Screen display mode:<br> - `0`: cropped mode. (Default) Cropped mode. Uniformly scales the video until it fills the visible boundaries (cropped). One dimension of the video may have clipped contents. <br>- `1`: Fit mode. Fit mode. Uniformly scales the video until one of its dimension fits the boundary (zoomed to fit). Areas that are not filled due to the disparity in the aspect ratio will be filled with black. |
 
-## You cannot set both recordingFileConfig and snapshotConfig at the same time.
+## recordingFileConfig
 <!-- backwards compatibility -->
 <a id="schemarecordingfileconfig"></a>
 
@@ -1146,7 +1146,7 @@ User's background image settings.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| avFileType | arraystring[] | false | Recorded video file type:<br> - `"hls"`: default value. The format of recorded files is M3U8 and TS. <br>- `"mp4"`: MP4 file. <br>**Note**:<br> - **Individual Recording **mode, and **not only in screenshot **mode, the default values can be used. <br>- **composite recording **and **web page recording** modes, you need to set it as `["hls","mp4"]`. Setting it as `["mp4"]` will result in an error. After setting, the recording file behavior is as follows:<br> - In the composite recording mode, the recording service will create a new MP4 file when the current file duration exceeds about 2 hours or the file size exceeds about 2 GB.<br>    - web page recording mode: The recording service will create a new MP4 file when the current file's duration exceeds `maxVideoDuration`. |
+| avFileType | array[string] | false | Recorded video file type:<br> - `"hls"`: default value. The format of recorded files is M3U8 and TS. <br>- `"mp4"`: MP4 file. <br>**Note**:<br> - **Individual Recording **mode, and **not only in screenshot **mode, the default values can be used. <br>- **composite recording **and **web page recording** modes, you need to set it as `["hls","mp4"]`. Setting it as `["mp4"]` will result in an error. After setting, the recording file behavior is as follows:<br> - In the composite recording mode, the recording service will create a new MP4 file when the current file duration exceeds about 2 hours or the file size exceeds about 2 GB.<br>    - web page recording mode: The recording service will create a new MP4 file when the current file's duration exceeds `maxVideoDuration`. |
 
 ## snapshotConfig
 <!-- backwards compatibility -->
@@ -1170,7 +1170,7 @@ User's background image settings.
 | Name | Type | Required | Description |
 |---|---|---|---|
 | captureInterval | number | false | Screenshot cycle for Cloud Recording regular screenshots. The unit is seconds. |
-| file type | arraystring[] | true | Screenshot file format. fileType can only take `["jpg"]`, setting screenshots to the JPG format. |
+| file type | array[string] | true | Screenshot file format. fileType can only take `["jpg"]`, setting screenshots to the JPG format. |
 
 ## extensionServiceConfig has the following fields:
 <!-- backwards compatibility -->
@@ -1209,7 +1209,7 @@ Extend service configuration options.
 | Name | Type | Required | Description |
 |---|---|---|---|
 | errorHandlePolicy | string | false | Error handling policy. You can only set it to the default value, `"error_abort"`, which means that once an error occurs to an extension service, all other non-extension services, such as stream subscription, also stop. |
-| extension services | arrayobject[] | true | As described below. |
+| extension services | array[object] | true | As described below. |
 | » serviceName | string | true | Name of the extension service:<br> - web_recorder_service: Represents the extension `service for web web `**page recording**. <br>- `rtmp_publish_service`: Represents the extended service for** pushing web page recording to CDN from the relay page**. |
 | "errorHandlePolicy" | string | false | Error handling strategy within the extension service:<br> - `"error_abort"`: the default and only value during **web page recording**. Stop other extension services when the current extension service encounters an error. <br>- `"error_ignore"`: The default and only value when** web page recording page to CDN**. Other extension services are not affected when the current extension service encounters an error.<br><p>If the web page recording service or recording upload service is abnormal, then pushing to CDN will fail, so if the <b>web page recording </b>service is wrong, it will affect the<b> forwarding of web page recording to CDN</b> service.</p><br><p>When an exception occurs during the process of pushing to CDN, web page recording is not affected.</p> |
 | » serviceParam | [serviceParam](#schemaserviceparam) | true | Specific configuration items for extending services. |
@@ -1265,7 +1265,7 @@ The following fields need to be set when **web page recording**:
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| outputs | arrayobject[] | true | As described below. |
+| outputs | array[object] | true | As described below. |
 | rtmpUrl | string | true | The CDN streaming address. |
 
 
@@ -1350,8 +1350,8 @@ Configuration options for the recorded files generated under time-delay transcod
 | Name | Type | Required | Description |
 |---|---|---|---|
 | cname | string | false | The name of the channel to be recorded. |
-| uid | string | false | The string content is the UID used by the Cloud Recording service in the RTC channel to identify the recording service within the channel. |
-| resourceId | string | false | Cloud Recording resource ID. You can start Cloud Recording with this Resource ID. The validity period of this Resource ID is 5 minutes. If it times out, you need to request it again. |
+| uid | string | false | The string content is the user ID used by the cloud recording service in the RTC channel to identify the recording service in the channel. |
+| resourceId | string | false | The cloud recording resource ID. You can start a cloud recording with this resource ID. The resource ID is valid for five minutes, after which time you need to re-request it. |
 
 
 
@@ -1596,7 +1596,7 @@ Configuration options for the recorded files generated under time-delay transcod
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| streamSubscribe | [streamSubscribe](#schemastreamsubscribe) | false | Update subscription lists<br><p><b>Note: </b>Only need to set in <b>Individual Recording </b>and <b>composite recording </b>modes.</p> |
+| streamSubscribe | [streamSubscribe](#schemastreamsubscribe) | false | Update subscription lists<br><p><b>Note: </b>You only need to set the authentication token in <b>individual recording</b> and <b>composite</b> recording modes.</p> |
 | webRecordingConfig | [webRecordingConfig](#schemawebrecordingconfig) | false | Used to update web page recording items.<br><p><b>Note: </b>Only need to set in <b>web page recording </b>mode.</p> |
 | rtmpPublishConfig | [rtmpPublishConfig](#schemaRtmpPublishConfig) | false | Used to update the configuration items recorded to CDN for web page recording.<br><p><b>Note: </b>Only need to set when recording in <b>web page recording </b>mode and<b> pushing web page recording to CDN</b>.<p> |
 
@@ -1629,7 +1629,7 @@ Configuration options for the recorded files generated under time-delay transcod
 ```
 
 Update subscription lists
-<p><b>Note: </b>Only need to set in <b>Individual Recording </b>and <b>composite recording </b>modes.</p>
+<p><b>Note: </b>You only need to set the authentication token in <b></b><b></b>individual recording and composite recording modes.</p>
 
 ### Properties
 
@@ -1663,8 +1663,8 @@ The audio subscription list.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| subscribeAudioUids | arraystring[] | false | Specify which audio streams to subscribe to for the specified UIDs. If you want to subscribe to the audio stream of all UIDs, you don't need to set this field. The length of the array should not exceed 32 UIDs. Only one of the fields, ``unsubscribeAudioUids`` and `unsubscribeAudioUids`, can be set. See the [subscription list settings at ](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe).<br><p><b>Note:</b><br><li>This field is only applicable when the <b>streamTypes</b> are set to audio, or audio and video.</li><br><li>If you set up a subscription list for audio, but not for video, then Agora Cloud Recording will not subscribe to any video streams. If you set up a subscription list for video, but not for audio, then Agora Cloud Recording will not subscribe to any audio streams.</li><br><li>Set to <b>["#allstream#"]</b> to subscribe to the audio streams of all UIDs in the channel.</li><br></p> |
-| unsubscribe audio UIDs | arraystring[] | false | Specify which UID audio streams not to subscribe to. Once you set this parameter, the recording service subscribes to the audio of all UIDs except the specified ones. The length of the array should not exceed 32 UIDs. Only one of the fields, subscribeAudioUid and `subscribeAudioUids`, can be set. See the [subscription list settings at ](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe). |
+| subscribeAudioUids | array[string] | false | Specify which audio streams to subscribe to for the specified UIDs. If you want to subscribe to the audio stream of all UIDs, you don't need to set this field. The length of the array should not exceed 32 UIDs. Only one of the fields, ``unsubscribeAudioUids`` and `unsubscribeAudioUids`, can be set. See the [subscription list settings at ](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe).<br><p><b>Note</b><br>:<li>This field is only applicable when the <b>streamTypes</b> are set to audio, or audio and video.</li><br><li>If you set up a subscription list for audio, but not for video, then Agora Cloud Recording will not subscribe to any video streams. If you set up a subscription list for video, but not for audio, then Agora Cloud Recording will not subscribe to any audio streams.</li><br><li>Set to <b>["#allstream#"]</b> to subscribe to the audio streams of all UIDs in the channel.</li><br></p> |
+| unsubscribe audio UIDs | array[string] | false | Specify which UID audio streams not to subscribe to. Once you set this parameter, the recording service subscribes to the audio of all UIDs except the specified ones. The length of the array should not exceed 32 UIDs. Only one of the fields, subscribeAudioUid and `subscribeAudioUids`, can be set. See the [subscription list settings at ](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe). |
 
 ## videoUidList
 <!-- backwards compatibility -->
@@ -1691,8 +1691,8 @@ The video subscription list.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| subscribeVideoUids | arraystring[] | false | Specify which UID's video streams to subscribe to. If you want to subscribe to the video stream of all UIDs, you don't need to set this field. The length of the array should not exceed 32 UIDs. Only one of the fields, ``unsubscribeVideoUids``, can be set. See the [subscription list settings at ](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe).<br><p><b>Note:</b><br><li>This field is only applicable when the <b>streamTypes</b> are set to video, or audio and video.</li><br><li>If you set up a subscription list for audio, but not for video, then Agora Cloud Recording will not subscribe to any video streams. If you set up a subscription list for video, but not for audio, then Agora Cloud Recording will not subscribe to any audio streams.</li><br><li>Set to <b>["#allstream#"]</b> to subscribe to the video streams of all UIDs in the channel.</li><br></p> |
-| unsubscribeVideoUids | arraystring[] | false | Specify which UID's video streams should not be subscribed to. Once you set this parameter, the recording service subscribes to the video of all UIDs except the specified ones. The length of the array should not exceed 32 UIDs. Only one of the fields, either this one or `subscribeVideoUids`, can be set. See the [subscription list settings at ](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe). |
+| subscribeVideoUids | array[string] | false | Specify which UID's video streams to subscribe to. If you want to subscribe to the video stream of all UIDs, you don't need to set this field. The length of the array should not exceed 32 UIDs. Only one of the fields, ``unsubscribeVideoUids``, can be set. See the [subscription list settings at ](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe).<br><p><b>Note</b><br>:<li>This field is only applicable when the <b>streamTypes</b> are set to video, or audio and video.</li><br><li>If you set up a subscription list for audio, but not for video, then Agora Cloud Recording will not subscribe to any video streams. If you set up a subscription list for video, but not for audio, then Agora Cloud Recording will not subscribe to any audio streams.</li><br><li>Set to <b>["#allstream#"]</b> to subscribe to the video streams of all UIDs in the channel.</li><br></p> |
+| unsubscribeVideoUids | array[string] | false | Specify which UID's video streams should not be subscribed to. Once you set this parameter, the recording service subscribes to the video of all UIDs except the specified ones. The length of the array should not exceed 32 UIDs. Only one of the fields, either this one or `subscribeVideoUids`, can be set. See the [subscription list settings at ](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe). |
 
 ## webRecordingConfig
 <!-- backwards compatibility -->
@@ -1740,7 +1740,7 @@ Used to update the configuration items recorded to CDN for web page recording.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| outputs | arrayobject[] | false | As described below. |
+| outputs | array[object] | false | As described below. |
 | rtmpUrl | string | false | The CDN live streaming URL.<br><p><b>Note</b>:<br><li>URL only supports RTMP and RTMPS protocols.</li><br><li>The maximum number of supported CDN routes for retweeting is 1.</li><br></p> |
 
 ## updateLayout-request
@@ -1836,8 +1836,8 @@ Used to update the configuration items recorded to CDN for web page recording.
 | backgroundColor | string | false | The background color of the canvas. Fill in an RGB hex value starting with a "#". The default value is `"#000000"`, the black color. |
 | backgroundImage | string | false | URL of the background image of the video canvas. The display mode of the background image is set to cropped mode.<br><p>cropped mode: prioritize filling the frame. Uniformly scales the video until it fills the visible boundaries (cropped). One dimension of the video may have clipped contents.</p> |
 | defaultUserBackgroundImage | string | false | The URL of the default user interface background image.<br><p>After configuring this field, when any user stops sending video stream for more than 3.5 seconds, the screen will switch to the background image; if a background image is set separately for a specific UID, this setting will be overridden.</p> |
-| layoutConfig | arrayobject[] | false | [layoutConfig](#schemalayoutconfig) |
-| backgroundConfig | arrayobject[] | false | [backgroundConfig](#schemabackgroundconfig) |
+| layoutConfig | array[object] | false | [layoutConfig](#schemalayoutconfig) |
+| backgroundConfig | array[object] | false | [backgroundConfig](#schemabackgroundconfig) |
 
 ## query-response
 <!-- backwards compatibility -->
@@ -1877,11 +1877,11 @@ Used to update the configuration items recorded to CDN for web page recording.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| resourceId | string | false | Resource ID used Cloud Recording. |
-| sid | string | false | Recording ID |
+| resourceId | string | false | The resource ID used by Cloud Recording. |
+| sid | string | false | The recording ID. |
 | serverResponse | object | false | [serverResponse](#schemaserverresponse) |
 | cname | string | false | The name of the channel to be recorded. |
-| uid | string | false | The string content is the UID used by the Cloud Recording service in the RTC channel to identify the recording service within the channel. |
+| uid | string | false | The string content is the user ID used by the cloud recording service in the RTC channel to identify the recording service in the channel. |
 
 ## serverResponse
 <!-- backwards compatibility -->
@@ -1920,7 +1920,7 @@ Fields returned in **web page recording **mode.
 | Name | Type | Required | Description |
 |---|---|---|---|
 | status | number | false | Current status of cloud service:<br> - `0`: Cloud service has not started. <br>`1`: The initialization is complete. <br>`2`: The cloud service is starting. <br>`3`: The cloud service is partially ready. <br>`4`: The cloud service is ready. <br>`5`: The cloud service is in progress. <br>`6`: The cloud service receives the request to stop. <br>`7`: The cloud service stops. <br>`8`: The cloud service exits. <br>`20`: The cloud service exits abnormally. |
-| arrayobject[] | false | extensionServiceState | [extensionServiceState](#schemaextensionservicestate) |
+| array[object] | false | extensionServiceState | [extensionServiceState](#schemaextensionservicestate) |
 
 #### Scenario 2
 
@@ -1992,7 +1992,7 @@ The following fields will be returned during web page recording.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| fileList | arrayobject[] | false | As described below. |
+| fileList | array[object] | false | As described below. |
 | filename | string | false | The file names of the M3U8 and MP4 files generated during recording. |
 | » sliceStartTime | number | false | The start time of the new file recording, the Unix timestamp, in seconds. |
 | on hold | boolean | false | web page recording in pause state:<br> - `true`: in pause state. <br>- `false`: in running state. |
@@ -2004,7 +2004,7 @@ When recording the web page recording to CDN, the following fields will be retur
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| outputs | arrayobject[] | false | As described below. |
+| outputs | array[object] | false | As described below. |
 | rtmpUrl | string | false | The CDN streaming address. |
 | status | string | false | web page recording current streaming status:<br> - `"connecting": connecting` to the CDN server. <br>- `"publishing"`: currently streaming. <br>- `"onhold"`: Set whether to pause the live stream. <br>`"Disconnected"`: Failed to connect to the CDN server. Agora suggests that you change the CDN streaming address. |
 | state | string | false | The status of uploading subscription content to the extension service:<br> - `"init"`: Service is initializing. <br>- `"inProgress"`: The service has started and is currently in progress. <br>- `"exit"`: Service exit. |
@@ -2099,11 +2099,11 @@ arrayobject [type].
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| resourceId | string | false | Resource ID used Cloud Recording. |
-| sid | string | false | Recording ID Identify a recording cycle. |
+| resourceId | string | false | The resource ID used by Cloud Recording. |
+| sid | string | false | The recording ID. Identify a recording cycle. |
 | serverResponse | object | false | [serverResponse](#schemaserverresponse-stop) |
 | cname | string | false | The name of the channel to be recorded. |
-| uid | string | false | The string content is the UID used by the Cloud Recording service in the RTC channel to identify the recording service within the channel. |
+| uid | string | false | The string content is the user ID used by the cloud recording service in the RTC channel to identify the recording service in the channel. |
 
 ## serverResponse-stop
 <!-- backwards compatibility -->
@@ -2133,7 +2133,7 @@ Fields returned web page recording scene.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| extensionServiceState | arrayobject[] | false | As described below. |
+| extensionServiceState | array[object] | false | As described below. |
 | playload | object | false | [playload-stop](#playload-stop) |
 | » serviceName | string | false | Service Type:<br> - `"upload_service": Upload service`. <br>- `"web_recorder_service": Web recording service`. |
 
@@ -2173,7 +2173,7 @@ Fields returned **by the upload service in ****web page recording **mode.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| fileList | arrayobject[] | false | As described below. |
+| fileList | array[object] | false | As described below. |
 | filename | string | false | The file names of the M3U8 and MP4 files generated during recording. |
 | » sliceStartTime | number | false | The start time of the new file recording, the Unix timestamp, in seconds. |
 | on hold | boolean | false | web page recording in pause state:<br> - `true`: in pause state. <br>- `false`: in running state. |
