@@ -6,7 +6,7 @@ This version is released on 2024 Month x, Day x.
 
 1. **Speech Driven Avatar**
 
-   The SDK introduces a speech driven extension that converts speech information into corresponding facial expressions to animate avatar. You can access the facial information through the newly added [registerFaceInfoObserver](API/api_imediaengine_registerfaceinfoobserver.html) method and [onFaceInfo](API/callback_ifaceinfoobserver_onfaceinfo.html) callback. This facial information conforms to the ARKit standard for Blend Shapes (BS), which you can further process using third-party 3D rendering engines.
+   The SDK introduces a speech driven extension that converts speech information into corresponding facial expressions to animate avatar. You can access the facial information through the newly added [`registerFaceInfoObserver`](/api-ref/rtc/windows/API/toc_speech_driven#api_imediaengine_registerfaceinfoobserver) method and [`onFaceInfo`](/api-ref/rtc/windows/API/toc_speech_driven#callback_ifaceinfoobserver_onfaceinfo) callback. This facial information conforms to the ARKit standard for Blend Shapes (BS), which you can further process using third-party 3D rendering engines.
 
    The speech driven extension is a trimmable dynamic library, and details about the increase in app size are available at [reduce-app-size]().
 
@@ -16,20 +16,20 @@ This version is released on 2024 Month x, Day x.
 
 2. **Data stream encryption**
 
-   This version adds `datastreamEncryptionEnabled` to [EncryptionConfig](API/class_encryptionconfig.html) for enabling data stream encryption. You can set this when you activate encryption with [enableEncryption](API/api_irtcengine_enableencryption.html). If there are issues causing failures in data stream encryption or decryption, these can be identified by the newly added `ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE` and `ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE` enumerations.
+   This version adds `datastreamEncryptionEnabled` to [`EncryptionConfig`](/api-ref/rtc/windows/API/class_encryptionconfig) for enabling data stream encryption. You can set this when you activate encryption with [`enableEncryption`](/api-ref/rtc/windows/API/toc_network#api_irtcengine_enableencryption). If there are issues causing failures in data stream encryption or decryption, these can be identified by the newly added `ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE` and `ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE` enumerations.
 
 3. **Adaptive configuration for low-quality video streams**
 
-   This version introduces adaptive configuration for low-quality video streams. When you activate dual-stream mode and set up low-quality video streams on the sending side using [setDualStreamMode](API/api_irtcengine_setdualstreammode2.html)[2/2], the SDK defaults to the following behaviors:
+   This version introduces adaptive configuration for low-quality video streams. When you activate dual-stream mode and set up low-quality video streams on the sending side using [`setDualStreamMode`](/api-ref/rtc/windows/API/toc_dual_stream#api_irtcengine_setdualstreammode2)[2/2], the SDK defaults to the following behaviors:
 
    - The default encoding resolution for low-quality video streams is set to 50% of the original video encoding resolution.
    - The bitrate for the small streams is automatically matched based on the video resolution and frame rate, eliminating the need for manual specification.
 
 4. **Other features**
 
-   - New method [enableEncryptionEx](API/api_irtcengineex_enableencryptionex.html) is added for enabling media stream or data stream encryption in multi-channel scenarios.
-   - New method [setAudioMixingPlaybackSpeed](API/api_irtcengine_setaudiomixingplaybackspeed.html) is introduced for setting the playback speed of audio files.
-   - New method [getCallIdEx](API/api_irtcengineex_getcallidex.html) is introduced for retrieving call IDs in multi-channel scenarios.
+   - New method [`enableEncryptionEx`](/api-ref/rtc/windows/API/toc_network#api_irtcengineex_enableencryptionex) is added for enabling media stream or data stream encryption in multi-channel scenarios.
+   - New method [`setAudioMixingPlaybackSpeed`](/api-ref/rtc/windows/API/toc_audio_mixing#api_irtcengine_setaudiomixingplaybackspeed) is introduced for setting the playback speed of audio files.
+   - New method [`getCallIdEx`](/api-ref/rtc/windows/API/toc_network#api_irtcengineex_getcallidex) is introduced for retrieving call IDs in multi-channel scenarios.
 
 #### Improvements
 
@@ -53,19 +53,19 @@ This version is released on 2024 Month x, Day x.
 
    This version also includes the following improvements:
 
-   - Optimization of video encoding and decoding strategies in non-screen sharing scenarios to save system performance overhead. 
+   - Optimization of video encoding and decoding strategies in non-screen sharing scenarios to save system performance overhead.
    - Enhanced media player capabilities to handle WebM format videos, including support for rendering alpha channels.
-   - In [AUDIO_EFFECT_PRESET](API/enum_audioeffectpreset.html), a new enumeration `ROOM_ACOUSTICS_CHORUS` (chorus effect) is added, enhancing the spatial presence of vocals in chorus scenarios.
-   - In [RemoteAudioStats](API/class_remoteaudiostats.html), a new `e2eDelay` field is added to report the delay from when the audio is captured on the sending end to when the audio is played on the receiving end.
+   - In [`AUDIO_EFFECT_PRESET`](/api-ref/rtc/windows/API/enum_audioeffectpreset), a new enumeration `ROOM_ACOUSTICS_CHORUS` (chorus effect) is added, enhancing the spatial presence of vocals in chorus scenarios.
+   - In [`RemoteAudioStats`](/api-ref/rtc/windows/API/class_remoteaudiostats), a new `e2eDelay` field is added to report the delay from when the audio is captured on the sending end to when the audio is played on the receiving end.
 
 #### Issues fixed
 
 This version fixed the following issues:
 
 - Fixed an issue where SEI data output did not synchronize with video rendering when playing media streams containing SEI data using the media player.
-- In screen sharing scenarios, when the app enabled sound card capture with [enableLoopbackRecording](API/api_irtcengine_enableloopbackrecording.html) to capture audio from the shared screen, the transmission of sound card captured audio failed after a local user manually disabled the local audio capture device, causing remote users to not hear the shared screen's audio. 
-- When a user plugged and unplugged a Bluetooth or wired headset once, the audio state change callback [onAudioDeviceStateChanged](API/callback_irtcengineeventhandler_onaudiodevicestatechanged.html) was triggered multiple times.
-- During interactions, when a local user set the system default playback device to speakers using [setDevice](API/api_iaudiodevicecollection_setdevice.html), there was no sound from the remote end.
+- In screen sharing scenarios, when the app enabled sound card capture with [`enableLoopbackRecording`](/api-ref/rtc/windows/API/toc_audio_capture#api_irtcengine_enableloopbackrecording) to capture audio from the shared screen, the transmission of sound card captured audio failed after a local user manually disabled the local audio capture device, causing remote users to not hear the shared screen's audio.
+- When a user plugged and unplugged a Bluetooth or wired headset once, the audio state change callback [`onAudioDeviceStateChanged`](/api-ref/rtc/windows/API/toc_audio_device#callback_irtcengineeventhandler_onaudiodevicestatechanged) was triggered multiple times.
+- During interactions, when a local user set the system default playback device to speakers using [`setDevice`](/api-ref/rtc/windows/API/toc_audio_device#api_iaudiodevicecollection_setdevice), there was no sound from the remote end.
 - When sharing an Excel document window, remote users occasionally saw a green screen.
 - On devices using Intel graphics cards, occasionally there was a performance regression when publishing a small video stream. 
 
@@ -155,10 +155,10 @@ This release has optimized the implementation of some functions, involving renam
 
    - Before v4.3.0, if you call the [disableAudio](API/api_irtcengine_disableaudio.html) method to disable the audio module, audio loopback capturing will not be disabled.
 - As of v4.3.0, if you call the [disableAudio](API/api_irtcengine_disableaudio.html) method to disable the audio module, audio loopback capturing will be disabled as well. If you need to enable audio loopback capturing, you need to enable the audio module by calling the [enableAudio](API/api_irtcengine_enableaudio.html) method and then call [enableLoopbackRecording](API/api_irtcengine_enableloopbackrecording.html).
-  
+
 5. **Log encryption behavior changes**
 
-   For security and performance reasons, as of this release, the SDK encrypts logs and no longer supports printing plaintext logs via the console. 
+   For security and performance reasons, as of this release, the SDK encrypts logs and no longer supports printing plaintext logs via the console.
 
    Refer to the following solutions for different needs:
 
