@@ -19,7 +19,7 @@
                 <ol>
                     <li props="ios unity flutter rn"><ph><b>隐私清单文件 (iOS)</b></ph>
                         <p>为满足 Apple 对于 App 发布的安全合规要求，SDK 自该版本起新增隐私清单文件 <codeph>PrivacyInfo.xcprivacy</codeph>，其中包含 SDK 中需要访问或使用用户数据的 API 调用说明和 SDK 采集的数据类型说明。</p>
-                        <note>如果你需要将集成 v4.3.1 之前的 SDK 版本的 App 发布到苹果应用商店，则需要在 Xcode 工程中手动添加 <codeph>PrivacyInfo.xcprivacy</codeph> 文件。详见<xref keyref="privacyinfo"/></note></li>
+                        <note>如果你需要将集成 v4.3.1 之前的 SDK 版本的 App 发布到苹果应用商店，则需要在 Xcode 工程中手动添加 <codeph>PrivacyInfo.xcprivacy</codeph> 文件。<ph props="cn">详见<xref keyref="privacyinfo"/></ph></note></li>
                     <li props="apple framework"><ph><b>人像锁定 (iOS, macOS)</b></ph>
                         <p>为提升在线会议、秀场、在线教育等场景中的主播演讲效果，该版本新增 <xref keyref="enableCameraCenterStage"/> 方法开启人像锁定功能。该功能可确保主播无论移动与否，始终位于画面中心，以取得良好的演讲效果。 </p>
                         <p>在开启人像锁定前，建议你先调用 <xref keyref="isCameraCenterStageSupported"/> 查询当前设备性能是否支持该功能。支持的设备清单可参考 <xref keyref="enableCameraCenterStage">API 文档</xref>。</p>
@@ -58,7 +58,7 @@
 
                         <ul>
                         <li props="android"><codeph>surfaceTexture</codeph>：设置一个 Android 原生的 <codeph>SurfaceTexture</codeph> 对象作为提供视频图像的容器，然后使用 SDK 外部的方法自行实现 OpenGL 中的纹理绘制。</li>
-                        <li>enableAlphaMask：可以通过该成员设置接收端是否开启 alpha 遮罩渲染。alpha 遮罩渲染功能可以创建具有透明效果的图像或提取视频中的人像。</li>
+                        <li><codeph>enableAlphaMask</codeph>：可以通过该成员设置接收端是否开启 alpha 遮罩渲染。alpha 遮罩渲染功能可以创建具有透明效果的图像或提取视频中的人像。</li>
                         </ul></p>
                     </li>
                     <li><ph><b>视频小流自适应配置</b></ph>
@@ -166,14 +166,14 @@
                     <li props="ios flutter unity rn"><xref keyref="CAMERA_STABILIZATION_MODE"/> (iOS)</li>
                         <li props="android"><xref keyref="VideoCanvas"/> 中新增 <codeph>surfaceTexture</codeph> 和 <codeph>enableAlphaMask</codeph></li>
                         <li props="ios"><xref keyref="VideoCanvas"/> 中新增 <codeph>enableAlphaMask</codeph></li>
-                        <li props="android mac"><xref keyref="LOCAL_VIDEO_STREAM_REASON"/> 中新增如下枚举：
+                        <li props="android mac"><ph><xref keyref="LOCAL_VIDEO_STREAM_REASON"/> 中新增如下枚举：</ph>
                         <ul>
                             <li props="android"><codeph>LOCAL_VIDEO_STREAM_REASON_DEVICE_INTERRUPT</codeph></li>
                             <li props="android"><codeph>LOCAL_VIDEO_STREAM_REASON_DEVICE_FATAL_ERROR</codeph></li>
                             <li props="mac"><codeph><ph keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_MINIMIZED"/></codeph></li>
                         </ul></li>
                     <li><xref keyref="EncryptionConfig"/> 中新增 <codeph>datastreamEncryptionEnabled</codeph></li>
-                    <li props="cpp apple framework"><xref keyref="ENCRYPTION_ERROR_TYPE"/> 中新增如下枚举：
+                    <li props="cpp apple framework"><ph><xref keyref="ENCRYPTION_ERROR_TYPE"/> 中新增如下枚举：</ph>
 
                         <ul>
                         <li><codeph><apiname keyref="ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE"/></codeph></li>
@@ -198,12 +198,12 @@
                     <li props="android ios flutter unity rn"><xref keyref="FocalLengthInfo"/> (Android, iOS)</li>
                     <li props="android ios flutter unity rn"><xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/> (Android, iOS)</li>
                     <li props="android ios flutter unity rn"><xref keyref="CameraCapturerConfiguration"/> 新增成员 <codeph>cameraFocalLengthType</codeph> (Android, iOS)</li>
-                    <li props="android"><xref keyref="VIDEO_SOURCE_TYPE"/> 新增以下枚举：
+                    <li props="android"><ph><xref keyref="VIDEO_SOURCE_TYPE"/> 新增以下枚举：</ph>
                         <ul>
                         <li><codeph><apiname keyref="VIDEO_SOURCE_CAMERA_THIRD"/></codeph>(11)</li>
                         <li><codeph><apiname keyref="VIDEO_SOURCE_CAMERA_FOURTH"/></codeph>(12)</li>
                         </ul></li>
-                    <li props="android"><xref keyref="ChannelMediaOptions"/> 新增以下成员：
+                    <li props="android"><ph><xref keyref="ChannelMediaOptions"/> 新增以下成员：</ph>
                         <ul>
                         <li><codeph>publishThirdCameraTrack</codeph></li>
                         <li><codeph>publishFourthCameraTrack</codeph></li>
