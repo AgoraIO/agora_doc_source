@@ -848,7 +848,7 @@ Status Code **200**
 | storageConfig | [storageConfig](#schemastorageconfig) | true | Configuration options for third-party cloud storage. |
 | recordingConfig | [recordingConfig](#schemarecordingconfig) | false | Configuration options for recorded audio and video streams.<br><p><b>Note: </b>You only need to set the authentication token in <b>individual recording</b> and <b>composite</b> recording modes.</p> |
 | recordingFileConfig | [recordingFileConfig](#schemarecordingfileconfig) | false | Configuration options for recorded files.<br><p><b>Note</b>: This field <b>cannot be set when only taking screenshots</b>, but it needs to be set in all other cases. Other cases include the following:<br><li>Recording without transcoding, recording with transcoding, or recording and taking screenshots simultaneously in individual recording mode.</li><br><li>Composite recording.</li><br><li>Only web page recording, or web page recording and pushing to CDN simultaneously in web page recording mode.</li><br></p> |
-| snapshotConfig | [snapshotConfig](#schemasnapshotconfig) | false | Configuration options for video screenshot.<p><b>Note: </b>Only need to set when <b></b>using the screenshot function in single-stream recording mode.</p><br>**Screenshot **usage notice:<br> - The screenshot function is only applicable to Individual Recording mode (`individual`). <br>- You can either take screenshots in a single-stream recording process, or record and take screenshots at the same time. For more information, please refer to [the video screenshot at ](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/snapshot). The situation of simultaneous recording and screenshot requires setting the `recordingFileConfig` field. <br>- If the recording service or recording upload service is abnormal, the screenshot will fail. Recording is not affected when there is a screenshot exception. <br>`streamTypes` must be 1 or 2. If you have set `subscribeAudioUid`, you must also set `subscribeVideoUids`. |
+| snapshotConfig | [snapshotConfig](#schemasnapshotconfig) | false | Configuration options for screenshot capture.<p><b>Note: </b>Only need to set this field when using the screenshot function in <b>individual recording mode</b>.</p><br>**Screenshot**usage instructions:<br> - The screenshot function is only applicable to individual recording mode (`individual`). <br>- You can either take screenshots in an individual recording process, or record and take screenshots at the same time. For more information, see [Capture Screenshots](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/snapshot). The scenario of simultaneous recording and screenshot capture requires setting the `recordingFileConfig` field. <br>- If the recording service or recording upload service is abnormal, the screenshot will fail. Recording is not affected when there is a screenshot exception. <br>`streamTypes` must be 1 or 2. If you have set `subscribeAudioUid`, you must also set `subscribeVideoUids`. |
 | extensionServiceConfig has the following fields: | [extension service configuration ](for schema extensions.) | false | Extend service configuration options.<br><p><b>Note: </b>Only need to set in <b>web page recording </b>mode.</p> |
 | appsCollection | [appsCollection](#schemaappscollection) | false | Application configuration item.<br><p><b>Note: </b>This setting is only required when in <b>Individual Recording mode </b>and when delayed transcoding or delayed mixing is enabled.</p> |
 | transcodeOptions | [transcodeOptions](#schematranscodeoptions) | false | Configuration options for the recorded files generated under time-delay transcoding or time-delay mixing.<br><p><b>Note: </b>This setting is only required when in <b>Individual Recording mode </b>and when delayed transcoding or delayed mixing is enabled.</p> |
@@ -1000,7 +1000,7 @@ Configuration options for recorded audio and video streams.
 | subscribeVideoUids | array[string] | false | Specify which UID's video streams to subscribe to. If you want to subscribe to the video stream of all UIDs, you don't need to set this field. The length of the array should not exceed 32 UIDs. Only one of the fields, ``unsubscribeVideoUids``, can be set. See the [subscription list settings at ](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe).<br><p><b>Note</b><br>:<li>This field is only applicable when the <b>streamTypes</b> are set to video, or audio and video.</li><br><li>If you set up a subscription list for audio, but not for video, then Agora Cloud Recording will not subscribe to any video streams. If you set up a subscription list for video, but not for audio, then Agora Cloud Recording will not subscribe to any audio streams.</li><br><li>Set to <b>["#allstream#"]</b> to subscribe to the video streams of all UIDs in the channel.</li><br></p> |
 | unsubscribe video UIDs | array[string] | false | Specify which UID's video streams should not be subscribed to. Once you set this parameter, the recording service subscribes to the video of all UIDs except the specified ones. The length of the array should not exceed 32 UIDs. Only one of the fields, either this one or `subscribeVideoUids`, can be set. See the [subscription list settings at ](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe). |
 | subscribeUidGroup | number | false | Estimated peak number of subscribers. <br>- `0`: 1 to 2 UIDs. <br>- `1`:3 to 7 UIDs. <br>`2`: 8 to 12 UIDs <br>`3`: 13 to 17 UIDs <br>- `4`:17 to 32 UIDs. <br>- `5`:32 to 49 UIDs. <br>**Note**:<br> - Only need to be set in **Individual Recording **mode, and must be filled in Individual Recording mode. <br>For example, if `subscribeVideoUids` is `["100","101","102"] `and `subscribeAudioUids` is `["101","102","103"]`, the number of subscribed users is 4. |
-| streamMode | string | false | Output mode of media stream. See the [media stream output mode at ](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/stream-mode). <br>- `"default": Default `mode. During the recording process, audio transcoding is performed to generate separate M3U8 audio index files and video index files. <br>- `"standard": Standard `mode. Agora recommends using this mode. During the recording process, audio transcoding is performed to generate separate M3U8 audio index files, video index files, and merged audio and video index files. If VP8 encoding is used on the a Web client, a merged MPD audio-video index file will be generated. <br>- `"original": Original `encoding mode. For [single-stream audio ](non-transcoding recording, please refer to http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/set-individual-nontranscoding). This field only takes effect when subscribing to audio only (`streamTypes` is 0). During the recording process, the audio is not transcoded, and an M3U8 audio index file is generated. <br>**Note**: Only need to set in **Individual Recording **mode. |
+| streamMode | string | false | Output mode of media stream. See the [media stream output mode at ](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/stream-mode). <br>- `"default": Default `mode. During the recording process, audio transcoding is performed to generate separate M3U8 audio index files and video index files. <br>- `"standard": Standard `mode. Agora recommends using this mode. During the recording process, audio transcoding is performed to generate separate M3U8 audio index files, video index files, and merged audio and video index files. If VP8 encoding is used on the a Web client, a merged MPD audio-video index file will be generated. <br>- `"original": Original `encoding mode. For [individual audio ](non-transcoding recording, please refer to http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/set-individual-nontranscoding). This field only takes effect when subscribing to audio only (`streamTypes` is 0). During the recording process, the audio is not transcoded, and an M3U8 audio index file is generated. <br>**Note**: Only need to set in **Individual Recording **mode. |
 |                     AudioProfile
                  | number | false | Set the sampling rate, bitrate, encoding mode, and number of channels for the output audio. <br>`0`: Sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 48 Kbps. <br>`1`: Sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 128 Kbps. <br>`2`: Sample rate of 48 kHz, music encoding, stereo, and a bitrate of up to 192 Kbps. <br>**Note**: Only need to set in the **composite recording **mode. |
 | transcodingConfig | [transcodingConfig](#schematranscodingconfig) | false | Video encoding settings. The value can refer to [setting the resolution of the recorded ](output video at http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-output-video-profile).<br><p><b>Note: </b>You only need to set the authentication token in <b>individual recording</b> and <b>composite</b> recording modes.</p> |
@@ -1924,7 +1924,7 @@ Fields returned in **web page recording **mode.
 
 #### Scenario 2
 
-**Individual Recording **when **video screenshot is enabled in single-stream recording **mode.
+**Individual Recording **when **video screenshot is enabled in individual recording **mode.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
@@ -1933,7 +1933,7 @@ Fields returned in **web page recording **mode.
 
 #### Case three
 
-Fields returned in scenes other than single-stream video screenshots and page recording.
+Fields returned in scenes other than individual video screenshots and page recording.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
@@ -2139,7 +2139,7 @@ Fields returned web page recording scene.
 
 #### Scenario 2
 
-Fields returned in the screenshot scene of single-stream video.
+Fields returned in the screenshot scene of individual video.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
@@ -2147,7 +2147,7 @@ Fields returned in the screenshot scene of single-stream video.
 
 #### Case three
 
-Fields returned in scenes other than single-stream video screenshots and page recording.
+Fields returned in scenes other than individual video screenshots and page recording.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
