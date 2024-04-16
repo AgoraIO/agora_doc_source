@@ -8,7 +8,7 @@ This version is released on 2024 Month x, Day x.
 
 1. **Speech Driven Avatar**
 
-   The SDK introduces a speech driven extension that converts speech information into corresponding facial expressions to animate avatar. You can access the facial information through the newly added [setFaceInfoDelegate](API/api_imediaengine_registerfaceinfoobserver.html) method and [onFaceInfo](API/callback_ifaceinfoobserver_onfaceinfo.html) callback. This facial information conforms to the ARKit standard for Blend Shapes (BS), which you can further process using third-party 3D rendering engines.
+   The SDK introduces a speech driven extension that converts speech information into corresponding facial expressions to animate avatar. You can access the facial information through the newly added [`setFaceInfoDelegate`](/api-ref/rtc/macos/API/toc_speech_driven#api_imediaengine_registerfaceinfoobserver) method and [`onFaceInfo`](/api-ref/rtc/macos/API/toc_speech_driven#callback_ifaceinfoobserver_onfaceinfo) callback. This facial information conforms to the ARKit standard for Blend Shapes (BS), which you can further process using third-party 3D rendering engines.
 
    The speech driven extension is a trimmable dynamic library, and details about the increase in app size are available at [reduce-app-size]().
 
@@ -18,32 +18,32 @@ This version is released on 2024 Month x, Day x.
 
 2. **Center stage camera**
 
-   To enhance the presentation effect in online meetings, shows, and online education scenarios, this version introduces the [enableCameraCenterStage](API/api_irtcengine_enablecameracenterstage.html) method to activate the center stage camera feature. This ensures that presenters, regardless of movement, always remain centered in the video frame, achieving better presentation effects.
+   To enhance the presentation effect in online meetings, shows, and online education scenarios, this version introduces the [`enableCameraCenterStage`](/api-ref/rtc/macos/API/toc_center_stage#api_irtcengine_enablecameracenterstage) method to activate the center stage camera feature. This ensures that presenters, regardless of movement, always remain centered in the video frame, achieving better presentation effects.
 
-   Before enabling Center Stage, it is recommended to verify whether your current device supports this feature by calling [isCameraCenterStageSupported](API/api_irtcengine_iscameracenterstagesupported.html). A list of supported devices can be found in the API documentation at [enableCameraCenterStage](API/api_irtcengine_enablecameracenterstage.html).
+   Before enabling Center Stage, it is recommended to verify whether your current device supports this feature by calling [`isCameraCenterStageSupported`](/api-ref/rtc/macos/API/toc_center_stage#api_irtcengine_iscameracenterstagesupported). A list of supported devices can be found in the API documentation at [`enableCameraCenterStage`](/api-ref/rtc/macos/API/toc_center_stage#api_irtcengine_enablecameracenterstage).
 
 3. **Data stream encryption**
 
-   This version adds `datastreamEncryptionEnabled` to [AgoraEncryptionConfig](API/class_encryptionconfig.html) for enabling data stream encryption. You can set this when you activate encryption with [enableEncryption](API/api_irtcengine_enableencryption.html). If there are issues causing failures in data stream encryption or decryption, these can be identified by the newly added `ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE` and `ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE` enumerations.
+   This version adds `datastreamEncryptionEnabled` to [`AgoraEncryptionConfig`](/api-ref/rtc/macos/API/class_encryptionconfig) for enabling data stream encryption. You can set this when you activate encryption with [`enableEncryption`](/api-ref/rtc/macos/API/toc_network#api_irtcengine_enableencryption). If there are issues causing failures in data stream encryption or decryption, these can be identified by the newly added `ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE` and `ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE` enumerations.
 
 4. **Adaptive configuration for low-quality video streams**
 
-   This version introduces adaptive configuration for low-quality video streams. When you activate dual-stream mode and set up low-quality video streams on the sending side using [setDualStreamMode [2/2\]](API/api_irtcengine_setdualstreammode2.html), the SDK defaults to the following behaviors:
+   This version introduces adaptive configuration for low-quality video streams. When you activate dual-stream mode and set up low-quality video streams on the sending side using [`setDualStreamMode`](/api-ref/rtc/macos/API/toc_dual_stream#api_irtcengine_setdualstreammode2)[2/2], the SDK defaults to the following behaviors:
 
    - The default encoding resolution for low-quality video streams is set to 50% of the original video encoding resolution.
    - The bitrate for the small streams is automatically matched based on the video resolution and frame rate, eliminating the need for manual specification.
 
 5. **Other features**
 
-   - New method [enableEncryptionEx](API/api_irtcengineex_enableencryptionex.html) is added for enabling media stream or data stream encryption in multi-channel scenarios.
-   - New method [setAudioMixingPlaybackSpeed](API/api_irtcengine_setaudiomixingplaybackspeed.html) is introduced for setting the playback speed of audio files.
-   - New method [getCallIdEx](API/api_irtcengineex_getcallidex.html) is introduced for retrieving call IDs in multi-channel scenarios.
+   - New method [`enableEncryptionEx`](/api-ref/rtc/macos/API/toc_network#api_irtcengineex_enableencryptionex) is added for enabling media stream or data stream encryption in multi-channel scenarios.
+   - New method [`setAudioMixingPlaybackSpeed`](/api-ref/rtc/macos/API/toc_audio_mixing#api_irtcengine_setaudiomixingplaybackspeed) is introduced for setting the playback speed of audio files.
+   - New method [`getCallIdEx`](/api-ref/rtc/macos/API/toc_network#api_irtcengineex_getcallidex) is introduced for retrieving call IDs in multi-channel scenarios.
 
 #### Improvements
 
 1. **Optimization of local video status callbacks**
 
-   To facilitate understanding of the specific reasons for changes in local video status, this version adds the following enumerations to the [localVideoStateChangedOfState](API/callback_irtcengineeventhandler_onlocalvideostatechanged.html) callback's [AgoraLocalVideoStreamReason](API/enum_localvideostreamreason.html) enumeration class:
+   To facilitate understanding of the specific reasons for changes in local video status, this version adds the following enumerations to the [`localVideoStateChangedOfState`](/api-ref/rtc/macos/API/toc_video_basic#callback_irtcengineeventhandler_onlocalvideostatechanged) callback's [`AgoraLocalVideoStreamReason`](/api-ref/rtc/macos/API/enum_localvideostreamreason) enumeration class:
 
    - `AgoraLocalVideoStreamReasonScreenCaptureRecoverFromMinimized` (27): The window being captured for screen sharing has recovered from a minimized state.
 
@@ -61,7 +61,7 @@ This version is released on 2024 Month x, Day x.
 
 4. **Custom audio capture optimization**
 
-   To enhance the flexibility of custom audio capture, this release deprecates [pushExternalAudioFrameSampleBuffer [1/2\]](API/api_irtcengine_pushexternalaudioframesamplebuffer.html) and introduces [pushExternalAudioFrameSampleBuffer [2/2\]](API/api_irtcengine_pushexternalaudioframesamplebuffer2.html). Compared to the deprecated method, the new method adds parameters such as `sampleRate`, `channels`, and `trackId`. These support pushing external CMSampleBuffer audio data to the channel via custom audio tracks, and allow for the setting of sample rates and channel counts for external audio sources.
+   To enhance the flexibility of custom audio capture, this release deprecates [`pushExternalAudioFrameSampleBuffer`](/api-ref/rtc/macos/API/toc_audio_custom_capturenrendering#api_irtcengine_pushexternalaudioframesamplebuffer)[1/2] and introduces [`pushExternalAudioFrameSampleBuffer`](/api-ref/rtc/macos/API/toc_audio_custom_capturenrendering#api_irtcengine_pushexternalaudioframesamplebuffer2)[2/2]. Compared to the deprecated method, the new method adds parameters such as `sampleRate`, `channels`, and `trackId`. These support pushing external CMSampleBuffer audio data to the channel via custom audio tracks, and allow for the setting of sample rates and channel counts for external audio sources.
 
 5. **CPU consumption reduction of in-ear monitoring**
 
@@ -72,48 +72,48 @@ This version is released on 2024 Month x, Day x.
    This version also includes the following improvements:
 
    - Optimization of video encoding and decoding strategies in non-screen sharing scenarios to save system performance overhead.
-   - For macOS 14 and above, optimization of [getScreenCaptureSourcesWithThumbSize](API/api_irtcengine_getscreencapturesources.html) behavior. From this version onward, the method automatically filters out widget windows from the list of available window resources. 
+   - For macOS 14 and above, optimization of [`getScreenCaptureSourcesWithThumbSize`](/api-ref/rtc/macos/API/toc_screencapture#api_irtcengine_getscreencapturesources) behavior. From this version onward, the method automatically filters out widget windows from the list of available window resources. 
    - Enhanced media player capabilities to handle WebM format videos, including support for rendering alpha channels.
-   - In [AgoraAudioEffectPreset](API/enum_audioeffectpreset.html), a new enumeration `AgoraAudioEffectPresetRoomAcousticsChorus` (chorus effect) is added, enhancing the spatial presence of vocals in chorus scenarios.
-   - In [AgoraRtcRemoteAudioStats](API/class_remoteaudiostats.html), a new `e2eDelay` field is added to report the delay from when the audio is captured on the sending end to when the audio is played on the receiving end.
+   - In [`AgoraAudioEffectPreset`](/api-ref/rtc/macos/API/enum_audioeffectpreset), a new enumeration `AgoraAudioEffectPresetRoomAcousticsChorus` (chorus effect) is added, enhancing the spatial presence of vocals in chorus scenarios.
+   - In [`AgoraRtcRemoteAudioStats`](/api-ref/rtc/macos/API/class_remoteaudiostats), a new `e2eDelay` field is added to report the delay from when the audio is captured on the sending end to when the audio is played on the receiving end.
 
 #### Issues fixed
 
 This version fixed the following issues:
 
 - Fixed an issue where SEI data output did not synchronize with video rendering when playing media streams containing SEI data using the media player.
-- When a user plugged and unplugged a Bluetooth or wired headset once, the audio state change callback [stateChanged](API/api_irtcengine_statechanged.html) was triggered multiple times.
+- When a user plugged and unplugged a Bluetooth or wired headset once, the audio state change callback [`stateChanged`](/api-ref/rtc/macos/API/toc_common_device#api_irtcengine_statechanged) was triggered multiple times.
 
 #### API Changes
 
 **Added**
 
-- [enableCameraCenterStage](API/api_irtcengine_enablecameracenterstage.html)
-- [isCameraCenterStageSupported](API/api_irtcengine_iscameracenterstagesupported.html)
-- The following enumerations in [`AgoraLocalVideoStreamReason`](/api-ref/rtc/macos/API/enum_localvideostreamreason):
+- [`enableCameraCenterStage`](/api-ref/rtc/macos/API/toc_center_stage#api_irtcengine_enablecameracenterstage)
+- [`isCameraCenterStageSupported`](/api-ref/rtc/macos/API/toc_center_stage#api_irtcengine_iscameracenterstagesupported)
+- The following enumerations in [``AgoraLocalVideoStreamReason``](/api-ref/rtc/macos/API/enum_localvideostreamreason):
   - `AgoraLocalVideoStreamReasonScreenCaptureRecoverFromMinimized`
-- [setFaceInfoDelegate](API/api_imediaengine_registerfaceinfoobserver.html)
-- [AgoraFaceInfoDelegate](API/class_ifaceinfoobserver.html)
-- [onFaceInfo](API/callback_ifaceinfoobserver_onfaceinfo.html)
-- [AgoraMediaSourceType](API/enum_mediasourcetype.html) adds `AgoraMediaSourceTypeSpeechDriven`
-- [AgoraVideoSourceType](API/enum_videosourcetype.html) adds `AgoraVideoSourceTypeSpeechDriven`
-- [AgoraEncryptionConfig](API/class_encryptionconfig.html) adds `datastreamEncryptionEnabled`
-- [`AgoraEncryptionErrorType`](/api-ref/rtc/macos/API/enum_encryptionerrortype)  adds the following enumerations:
+- [`setFaceInfoDelegate`](/api-ref/rtc/macos/API/toc_speech_driven#api_imediaengine_registerfaceinfoobserver)
+- [`AgoraFaceInfoDelegate`](/api-ref/rtc/macos/API/class_ifaceinfoobserver)
+- [`onFaceInfo`](/api-ref/rtc/macos/API/toc_speech_driven#callback_ifaceinfoobserver_onfaceinfo)
+- [`AgoraMediaSourceType`](/api-ref/rtc/macos/API/enum_mediasourcetype) adds `AgoraMediaSourceTypeSpeechDriven`
+- [`AgoraVideoSourceType`](/api-ref/rtc/macos/API/enum_videosourcetype) adds `AgoraVideoSourceTypeSpeechDriven`
+- [`AgoraEncryptionConfig`](/api-ref/rtc/macos/API/class_encryptionconfig) adds `datastreamEncryptionEnabled`
+- [``AgoraEncryptionErrorType``](/api-ref/rtc/macos/API/enum_encryptionerrortype)  adds the following enumerations:
   - `ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE`
   - `ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE`
-- [AgoraRtcDeviceInfo](API/class_agorartcdeviceinfo.html) adds `deviceTypeName`
-- [AgoraRtcRemoteAudioStats](API/class_remoteaudiostats.html) adds `e2eDelay`
-- [AgoraErrorCode](API/enum_errorcodetype.html) adds `AgoraErrorCodeDatastreamDecryptionFailed`
-- [AgoraAudioEffectPreset](API/enum_audioeffectpreset.html) adds `AgoraAudioEffectPresetRoomAcousticsChorus`, enhancing the spatial presence of vocals in chorus scenarios.
-- [getCallIdEx](API/api_irtcengineex_getcallidex.html)
-- [enableEncryptionEx](API/api_irtcengineex_enableencryptionex.html)
-- [setAudioMixingPlaybackSpeed](API/api_irtcengine_setaudiomixingplaybackspeed.html)
-- [AgoraEarMonitoringFilterType](API/enum_earmonitoringfiltertype.html) adds a new enumeration `AgoraEarMonitoringFilterBuiltInAudioFilters`(1 <<15)
-- [pushExternalAudioFrameSampleBuffer [2/2\]](API/api_irtcengine_pushexternalaudioframesamplebuffer2.html)
+- [`AgoraRtcDeviceInfo`](/api-ref/rtc/macos/API/class_agorartcdeviceinfo) adds `deviceTypeName`
+- [`AgoraRtcRemoteAudioStats`](/api-ref/rtc/macos/API/class_remoteaudiostats) adds `e2eDelay`
+- [`AgoraErrorCode`](/api-ref/rtc/macos/API/enum_errorcodetype) adds `AgoraErrorCodeDatastreamDecryptionFailed`
+- [`AgoraAudioEffectPreset`](/api-ref/rtc/macos/API/enum_audioeffectpreset) adds `AgoraAudioEffectPresetRoomAcousticsChorus`, enhancing the spatial presence of vocals in chorus scenarios.
+- [`getCallIdEx`](/api-ref/rtc/macos/API/toc_network#api_irtcengineex_getcallidex)
+- [`enableEncryptionEx`](/api-ref/rtc/macos/API/toc_network#api_irtcengineex_enableencryptionex)
+- [`setAudioMixingPlaybackSpeed`](/api-ref/rtc/macos/API/toc_audio_mixing#api_irtcengine_setaudiomixingplaybackspeed)
+- [`AgoraEarMonitoringFilterType`](/api-ref/rtc/macos/API/enum_earmonitoringfiltertype) adds a new enumeration `AgoraEarMonitoringFilterBuiltInAudioFilters`(1<<15)
+- [`pushExternalAudioFrameSampleBuffer`](/api-ref/rtc/macos/API/toc_audio_custom_capturenrendering#api_irtcengine_pushexternalaudioframesamplebuffer2)[2/2]
 
 **Deprecated**
 
-- [pushExternalAudioFrameSampleBuffer [1/2\]](API/api_irtcengine_pushexternalaudioframesamplebuffer.html)
+- [`pushExternalAudioFrameSampleBuffer`](/api-ref/rtc/macos/API/toc_audio_custom_capturenrendering#api_irtcengine_pushexternalaudioframesamplebuffer)[1/2]
 
 ## v4.3.0
 

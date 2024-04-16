@@ -101,7 +101,7 @@ This version fixed the following issues:
 
 - [setAudioMixingPlaybackSpeed](API/api_irtcengine_setaudiomixingplaybackspeed.html)
 
-- [EAR_MONITORING_FILTER_TYPE](API/enum_earmonitoringfiltertype.html) adds a new enumeration `EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS`(1 <<15)
+- [EAR_MONITORING_FILTER_TYPE](API/enum_earmonitoringfiltertype.html) adds a new enumeration `EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS`(1<<15)
 
 ## v4.3.0
 

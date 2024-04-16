@@ -14,7 +14,7 @@ This version is released on 2024 Month x, Day x.
 
 1. **Speech Driven Avatar**
 
-   The SDK introduces a speech driven extension that converts speech information into corresponding facial expressions to animate avatar. You can access the facial information through the newly added [setFaceInfoDelegate](API/api_imediaengine_registerfaceinfoobserver.html) method and [onFaceInfo](API/callback_ifaceinfoobserver_onfaceinfo.html) callback. This facial information conforms to the ARKit standard for Blend Shapes (BS), which you can further process using third-party 3D rendering engines.
+   The SDK introduces a speech driven extension that converts speech information into corresponding facial expressions to animate avatar. You can access the facial information through the newly added [`setFaceInfoDelegate`](/api-ref/rtc/ios/API/toc_speech_driven#api_imediaengine_registerfaceinfoobserver) method and [`onFaceInfo`](/api-ref/rtc/ios/API/toc_speech_driven#callback_ifaceinfoobserver_onfaceinfo) callback. This facial information conforms to the ARKit standard for Blend Shapes (BS), which you can further process using third-party 3D rendering engines.
 
    The speech driven extension is a trimmable dynamic library, and details about the increase in app size are available at [reduce-app-size]().
 
@@ -30,40 +30,40 @@ This version is released on 2024 Month x, Day x.
 
 3. **Center stage camera**
 
-   To enhance the presentation effect in online meetings, shows, and online education scenarios, this version introduces the [enableCameraCenterStage](API/api_irtcengine_enablecameracenterstage.html) method to activate the center stage camera feature. This ensures that presenters, regardless of movement, always remain centered in the video frame, achieving better presentation effects.
+   To enhance the presentation effect in online meetings, shows, and online education scenarios, this version introduces the [`enableCameraCenterStage`](/api-ref/rtc/ios/API/toc_center_stage#api_irtcengine_enablecameracenterstage) method to activate the center stage camera feature. This ensures that presenters, regardless of movement, always remain centered in the video frame, achieving better presentation effects.
 
-   Before enabling Center Stage, it is recommended to verify whether your current device supports this feature by calling [isCameraCenterStageSupported](API/api_irtcengine_iscameracenterstagesupported.html). A list of supported devices can be found in the API documentation at [enableCameraCenterStage](API/api_irtcengine_enablecameracenterstage.html).
+   Before enabling Center Stage, it is recommended to verify whether your current device supports this feature by calling [`isCameraCenterStageSupported`](/api-ref/rtc/ios/API/toc_center_stage#api_irtcengine_iscameracenterstagesupported). A list of supported devices can be found in the API documentation at [`enableCameraCenterStage`](/api-ref/rtc/ios/API/toc_center_stage#api_irtcengine_enablecameracenterstage).
 
 4. **Camera stabilization**
 
-   To improve video stability in mobile filming, low-light environments, and hand-held shooting scenarios, this version introduces a camera stabilization feature. You can activate this feature and select an appropriate stabilization mode by calling [setCameraStabilizationMode](API/api_irtcengine_setcamerastabilizationmode.html), achieving more stable and clearer video footage.
+   To improve video stability in mobile filming, low-light environments, and hand-held shooting scenarios, this version introduces a camera stabilization feature. You can activate this feature and select an appropriate stabilization mode by calling [`setCameraStabilizationMode`](/api-ref/rtc/ios/API/toc_camera_capture#api_irtcengine_setcamerastabilizationmode), achieving more stable and clearer video footage.
 
 5. **Wide and ultra-wide cameras**
 
-   To allow users to capture a broader field of view and more complete scene content, this release introduces support for wide and ultra-wide cameras. You can first call [queryCameraFocalLengthCapability](API/api_irtcengine_querycamerafocallengthcapability.html) to check the device's focal length capabilities, and then call [setCameraCapturerConfiguration](API/api_irtcengine_setcameracapturerconfiguration.html) and set `cameraFocalLengthType` to the supported focal length types, including wide and ultra-wide.
+   To allow users to capture a broader field of view and more complete scene content, this release introduces support for wide and ultra-wide cameras. You can first call [`queryCameraFocalLengthCapability`](/api-ref/rtc/ios/API/toc_video_device#api_irtcengine_querycamerafocallengthcapability) to check the device's focal length capabilities, and then call [`setCameraCapturerConfiguration`](/api-ref/rtc/ios/API/toc_video_device#api_irtcengine_setcameracapturerconfiguration) and set `cameraFocalLengthType` to the supported focal length types, including wide and ultra-wide.
 
 6. **Data stream encryption**
 
-   This version adds `datastreamEncryptionEnabled` to [AgoraEncryptionConfig](API/class_encryptionconfig.html) for enabling data stream encryption. You can set this when you activate encryption with [enableEncryption](API/api_irtcengine_enableencryption.html). If there are issues causing failures in data stream encryption or decryption, these can be identified by the newly added `ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE` and `ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE` enumerations.
+   This version adds `datastreamEncryptionEnabled` to [`AgoraEncryptionConfig`](/api-ref/rtc/ios/API/class_encryptionconfig) for enabling data stream encryption. You can set this when you activate encryption with [`enableEncryption`](/api-ref/rtc/ios/API/toc_network#api_irtcengine_enableencryption). If there are issues causing failures in data stream encryption or decryption, these can be identified by the newly added `ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE` and `ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE` enumerations.
 
 7. **Local Video Rendering**
 
-   This version adds the following members to [AgoraRtcVideoCanvas](API/class_videocanvas.html) to support more local rendering capabilities:
+   This version adds the following members to [`AgoraRtcVideoCanvas`](/api-ref/rtc/ios/API/class_videocanvas) to support more local rendering capabilities:
 
    - enableAlphaMask: This member enables the receiving end to initiate alpha mask rendering. Alpha mask rendering can create images with transparent effects or extract human figures from video content.
 
 8. **Adaptive configuration for low-quality video streams**
 
-   This version introduces adaptive configuration for low-quality video streams. When you activate dual-stream mode and set up low-quality video streams on the sending side using [setDualStreamMode [2/2\]](API/api_irtcengine_setdualstreammode2.html), the SDK defaults to the following behaviors:
+   This version introduces adaptive configuration for low-quality video streams. When you activate dual-stream mode and set up low-quality video streams on the sending side using [`setDualStreamMode`](/api-ref/rtc/ios/API/toc_dual_stream#api_irtcengine_setdualstreammode2)[2/2], the SDK defaults to the following behaviors:
 
    - The default encoding resolution for low-quality video streams is set to 50% of the original video encoding resolution.
    - The bitrate for the small streams is automatically matched based on the video resolution and frame rate, eliminating the need for manual specification.
 
 9. **Other features**
 
-   - New method [enableEncryptionEx](API/api_irtcengineex_enableencryptionex.html) is added for enabling media stream or data stream encryption in multi-channel scenarios.
-   - New method [setAudioMixingPlaybackSpeed](API/api_irtcengine_setaudiomixingplaybackspeed.html) is introduced for setting the playback speed of audio files.
-   - New method [getCallIdEx](API/api_irtcengineex_getcallidex.html) is introduced for retrieving call IDs in multi-channel scenarios.
+   - New method [`enableEncryptionEx`](/api-ref/rtc/ios/API/toc_network#api_irtcengineex_enableencryptionex) is added for enabling media stream or data stream encryption in multi-channel scenarios.
+   - New method [`setAudioMixingPlaybackSpeed`](/api-ref/rtc/ios/API/toc_audio_mixing#api_irtcengine_setaudiomixingplaybackspeed) is introduced for setting the playback speed of audio files.
+   - New method [`getCallIdEx`](/api-ref/rtc/ios/API/toc_network#api_irtcengineex_getcallidex) is introduced for retrieving call IDs in multi-channel scenarios.
 
 #### Improvements
 
@@ -77,7 +77,7 @@ This version is released on 2024 Month x, Day x.
 
 2. **Custom audio capture optimization**
 
-   To enhance the flexibility of custom audio capture, this release deprecates [pushExternalAudioFrameSampleBuffer [1/2\]](API/api_irtcengine_pushexternalaudioframesamplebuffer.html) and introduces [pushExternalAudioFrameSampleBuffer [2/2\]](API/api_irtcengine_pushexternalaudioframesamplebuffer2.html). Compared to the deprecated method, the new method adds parameters such as `sampleRate`, `channels`, and `trackId`. These support pushing external CMSampleBuffer audio data to the channel via custom audio tracks, and allow for the setting of sample rates and channel counts for external audio sources.
+   To enhance the flexibility of custom audio capture, this release deprecates [`pushExternalAudioFrameSampleBuffer`](/api-ref/rtc/ios/API/toc_audio_custom_capturenrendering#api_irtcengine_pushexternalaudioframesamplebuffer)[1/2] and introduces [`pushExternalAudioFrameSampleBuffer`](/api-ref/rtc/ios/API/toc_audio_custom_capturenrendering#api_irtcengine_pushexternalaudioframesamplebuffer2)[2/2]. Compared to the deprecated method, the new method adds parameters such as `sampleRate`, `channels`, and `trackId`. These support pushing external CMSampleBuffer audio data to the channel via custom audio tracks, and allow for the setting of sample rates and channel counts for external audio sources.
 
 3. **CPU consumption reduction of in-ear monitoring**
 
@@ -90,8 +90,8 @@ This version is released on 2024 Month x, Day x.
    - Optimization of video encoding and decoding strategies in non-screen sharing scenarios to save system performance overhead.
    - Improved stability in processing video by the raw video frame observer.
    - Enhanced media player capabilities to handle WebM format videos, including support for rendering alpha channels.
-   - In [AgoraAudioEffectPreset](API/enum_audioeffectpreset.html), a new enumeration `AgoraAudioEffectPresetRoomAcousticsChorus` (chorus effect) is added, enhancing the spatial presence of vocals in chorus scenarios.
-   - In [AgoraRtcRemoteAudioStats](API/class_remoteaudiostats.html), a new `e2eDelay` field is added to report the delay from when the audio is captured on the sending end to when the audio is played on the receiving end.
+   - In [`AgoraAudioEffectPreset`](/api-ref/rtc/ios/API/enum_audioeffectpreset), a new enumeration `AgoraAudioEffectPresetRoomAcousticsChorus` (chorus effect) is added, enhancing the spatial presence of vocals in chorus scenarios.
+   - In [`AgoraRtcRemoteAudioStats`](/api-ref/rtc/ios/API/class_remoteaudiostats), a new `e2eDelay` field is added to report the delay from when the audio is captured on the sending end to when the audio is played on the receiving end.
 
 #### Issues fixed
 
@@ -103,35 +103,35 @@ This version fixed the following issues:
 
 **Added**
 
-- [enableCameraCenterStage](API/api_irtcengine_enablecameracenterstage.html)
-- [isCameraCenterStageSupported](API/api_irtcengine_iscameracenterstagesupported.html)
-- [setCameraStabilizationMode](API/api_irtcengine_setcamerastabilizationmode.html)
-- [AgoraCameraStabilizationMode](API/enum_camerastabilizationmode.html)
-- The `enableAlphaMask` member in [AgoraRtcVideoCanvas](API/class_videocanvas.html)
-- [setFaceInfoDelegate](API/api_imediaengine_registerfaceinfoobserver.html)
-- [AgoraFaceInfoDelegate](API/class_ifaceinfoobserver.html)
-- [onFaceInfo](API/callback_ifaceinfoobserver_onfaceinfo.html)
-- [AgoraMediaSourceType](API/enum_mediasourcetype.html) adds `AgoraMediaSourceTypeSpeechDriven`
-- [AgoraVideoSourceType](API/enum_videosourcetype.html) adds `AgoraVideoSourceTypeSpeechDriven`
-- [AgoraEncryptionConfig](API/class_encryptionconfig.html) adds `datastreamEncryptionEnabled`
-- [`AgoraEncryptionErrorType`](/api-ref/rtc/ios/API/enum_encryptionerrortype)  adds the following enumerations:
+- [`enableCameraCenterStage`](/api-ref/rtc/ios/API/toc_center_stage#api_irtcengine_enablecameracenterstage)
+- [`isCameraCenterStageSupported`](/api-ref/rtc/ios/API/toc_center_stage#api_irtcengine_iscameracenterstagesupported)
+- [`setCameraStabilizationMode`](/api-ref/rtc/ios/API/toc_camera_capture#api_irtcengine_setcamerastabilizationmode)
+- [`AgoraCameraStabilizationMode`](/api-ref/rtc/ios/API/enum_camerastabilizationmode)
+- The `enableAlphaMask` member in [`AgoraRtcVideoCanvas`](/api-ref/rtc/ios/API/class_videocanvas)
+- [`setFaceInfoDelegate`](/api-ref/rtc/ios/API/toc_speech_driven#api_imediaengine_registerfaceinfoobserver)
+- [`AgoraFaceInfoDelegate`](/api-ref/rtc/ios/API/class_ifaceinfoobserver)
+- [`onFaceInfo`](/api-ref/rtc/ios/API/toc_speech_driven#callback_ifaceinfoobserver_onfaceinfo)
+- [`AgoraMediaSourceType`](/api-ref/rtc/ios/API/enum_mediasourcetype) adds `AgoraMediaSourceTypeSpeechDriven`
+- [`AgoraVideoSourceType`](/api-ref/rtc/ios/API/enum_videosourcetype) adds `AgoraVideoSourceTypeSpeechDriven`
+- [`AgoraEncryptionConfig`](/api-ref/rtc/ios/API/class_encryptionconfig) adds `datastreamEncryptionEnabled`
+- [``AgoraEncryptionErrorType``](/api-ref/rtc/ios/API/enum_encryptionerrortype)  adds the following enumerations:
   - `ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE`
   - `ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE`
-- [AgoraRtcRemoteAudioStats](API/class_remoteaudiostats.html) adds `e2eDelay`
-- [AgoraErrorCode](API/enum_errorcodetype.html) adds `AgoraErrorCodeDatastreamDecryptionFailed`
-- [AgoraAudioEffectPreset](API/enum_audioeffectpreset.html) adds `AgoraAudioEffectPresetRoomAcousticsChorus`, enhancing the spatial presence of vocals in chorus scenarios.
-- [getCallIdEx](API/api_irtcengineex_getcallidex.html)
-- [enableEncryptionEx](API/api_irtcengineex_enableencryptionex.html)
-- [setAudioMixingPlaybackSpeed](API/api_irtcengine_setaudiomixingplaybackspeed.html)
-- [queryCameraFocalLengthCapability](API/api_irtcengine_querycamerafocallengthcapability.html)
-- [AgoraFocalLengthInfo](API/class_focallengthinfo.html)
-- [AgoraFocalLength](API/enum_camerafocallengthtype.html)
-- [AgoraCameraCapturerConfiguration](API/class_cameracapturerconfiguration.html) adds a new member `cameraFocalLengthType`
-- [AgoraEarMonitoringFilterType](API/enum_earmonitoringfiltertype.html) adds a new enumeration `AgoraEarMonitoringFilterBuiltInAudioFilters`(1 <<15)
-- [pushExternalAudioFrameSampleBuffer [2/2\]](API/api_irtcengine_pushexternalaudioframesamplebuffer2.html)
-- 
+- [`AgoraRtcRemoteAudioStats`](/api-ref/rtc/ios/API/class_remoteaudiostats) adds `e2eDelay`
+- [`AgoraErrorCode`](/api-ref/rtc/ios/API/enum_errorcodetype) adds `AgoraErrorCodeDatastreamDecryptionFailed`
+- [`AgoraAudioEffectPreset`](/api-ref/rtc/ios/API/enum_audioeffectpreset) adds `AgoraAudioEffectPresetRoomAcousticsChorus`, enhancing the spatial presence of vocals in chorus scenarios.
+- [`getCallIdEx`](/api-ref/rtc/ios/API/toc_network#api_irtcengineex_getcallidex)
+- [`enableEncryptionEx`](/api-ref/rtc/ios/API/toc_network#api_irtcengineex_enableencryptionex)
+- [`setAudioMixingPlaybackSpeed`](/api-ref/rtc/ios/API/toc_audio_mixing#api_irtcengine_setaudiomixingplaybackspeed)
+- [`queryCameraFocalLengthCapability`](/api-ref/rtc/ios/API/toc_video_device#api_irtcengine_querycamerafocallengthcapability)
+- [`AgoraFocalLengthInfo`](/api-ref/rtc/ios/API/class_focallengthinfo)
+- [`AgoraFocalLength`](/api-ref/rtc/ios/API/enum_camerafocallengthtype)
+- [`AgoraCameraCapturerConfiguration`](/api-ref/rtc/ios/API/class_cameracapturerconfiguration) adds a new member `cameraFocalLengthType`
+- [`AgoraEarMonitoringFilterType`](/api-ref/rtc/ios/API/enum_earmonitoringfiltertype) adds a new enumeration `AgoraEarMonitoringFilterBuiltInAudioFilters`(1<<15)
+- [`pushExternalAudioFrameSampleBuffer`](/api-ref/rtc/ios/API/toc_audio_custom_capturenrendering#api_irtcengine_pushexternalaudioframesamplebuffer2)[2/2]
+
 **Deprecated**
-- [pushExternalAudioFrameSampleBuffer [1/2\]](API/api_irtcengine_pushexternalaudioframesamplebuffer.html)
+- [`pushExternalAudioFrameSampleBuffer`](/api-ref/rtc/ios/API/toc_audio_custom_capturenrendering#api_irtcengine_pushexternalaudioframesamplebuffer)[1/2]
 
 
 ## v4.3.0
