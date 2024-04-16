@@ -27,12 +27,16 @@
         <section id="detailed_desc">
             <title>Details</title>
             <note type="attention">
+            <p id="desc0">You can call this method to dynamically switch cameras based on the actual camera availability during the app's runtime, without having to restart the video stream or reconfigure the video source.</p>
             <ul><li props="cpp unreal bp flutter unity">This method is for Android and iOS only.</li>
-            <li>This method must be called after the camera is successfully enabled, that is, after the SDK triggers the <xref keyref="onLocalVideoStateChanged" /> callback and returns the local video state as <apiname keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/> (1).</li></ul></note>
+            <li id="desc1">This method must be called after the camera is successfully enabled, that is, after the SDK triggers the <xref keyref="onLocalVideoStateChanged" /> callback and returns the local video state as <apiname keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/> (1).</li>
+            <li id="desc2">This method only switches the camera for the video stream captured by the first camera, that is, the video source set to <apiname keyref="VIDEO_SOURCE_CAMERA_PRIMARY" props="android"/><apiname keyref="VIDEO_SOURCE_CAMERA" props="apple cpp framework"/> (0) when calling <xref keyref="startCameraCapture"/>.</li>
+            <li props="android">This method and <xref keyref="switchCamera2"/> are both used to switch cameras. The difference is that <apiname keyref="switchCamera2"/> switches to a specific camera by specifying the camera ID, while this method switches the direction of the camera (front or rear).</li>
+            </ul></note>
         </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul props="native unreal bp unity rn cs">
             <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>

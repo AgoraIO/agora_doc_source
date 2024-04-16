@@ -2,28 +2,28 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_earmonitoringfiltertype">
     <title><ph keyref="EAR_MONITORING_FILTER_TYPE"/></title>
-    <shortdesc id="short"><ph id="shortdesc">The audio filter of in-ear monitoring.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">The audio filter types of in-ear monitoring.</ph></shortdesc>
     <refbody>
         <section id="parameters">
             <title>Enumerator</title>
             <parml>
             <plentry>
                 <pt><ph keyref="EAR_MONITORING_FILTER_NONE"/></pt>
-                <pd>
-                    <p>1&lt;&lt;0: Do not add an audio filter to the in-ear monitor.</p>
-                </pd>
+                <pd>1&lt;&lt;0: No audio filter added to in-ear monitoring.</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS"/></pt>
-                <pd>
-                    <p>1&lt;&lt;1: Add an audio filter to the in-ear monitor. If you implement functions such as voice beautifier and audio effect, users can hear the voice after adding these effects.</p>
-                </pd>
+                <pd>1&lt;&lt;1: Add vocal effects audio filter to in-ear monitoring. If you implement functions such as voice beautifier and audio effect, users can hear the voice after adding these effects.</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="EAR_MONITORING_FILTER_NOISE_SUPPRESSION"/></pt>
                 <pd>
-                    <p>1&lt;&lt;2: Enable noise suppression to the in-ear monitor.</p>
+                    <p>1&lt;&lt;2: Add noise suppression audio filter to in-ear monitoring.</p>
                 </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="EAR_MONITORING_FILTER_REUSE_POST_PROCESSING_FILTER"/></pt>
+                <pd>1&lt;&lt;15: Reuse the audio filter that has been processed on the sending end for in-ear monitoring. This enumerator reduces CPU usage while increasing in-ear monitoring latency, which is suitable for latency-tolerant scenarios requiring low CPU consumption.</pd>
             </plentry>
             </parml> </section>
     </refbody>
