@@ -849,9 +849,9 @@ Status Code **200**
 | recordingConfig | [recordingConfig](#schemarecordingconfig) | false | Configurations for recorded audio and video streams.<br><p><b>Note: </b>You only need to set the authentication token in <b>individual recording</b> and <b>composite</b> recording modes.</p> |
 | recordingFileConfig | [recordingFileConfig](#schemarecordingfileconfig) | false | Configurations for recorded files.<br><p><b>Note</b>: This field <b>cannot be set when only taking screenshots</b>, but it needs to be set in all other cases. Other cases include the following:<br><li>Recording without transcoding, recording with transcoding, or recording and taking screenshots simultaneously in individual recording mode.</li><br><li>Composite recording.</li><br><li>Only web page recording, or web page recording and pushing to CDN simultaneously in web page recording mode.</li><br></p> |
 | snapshotConfig | [snapshotConfig](#schemasnapshotconfig) | false | Configurations for screenshot capture.<p><b>Note: </b>Only need to set this field when using the screenshot function in <b>individual recording mode</b>.</p><br>**Screenshot**usage instructions:<br> - The screenshot function is only applicable to individual recording mode (`individual`). <br>- You can either take screenshots in an individual recording process, or record and take screenshots at the same time. For more information, see [Capture Screenshots](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/snapshot). The scenario of simultaneous recording and screenshot capture requires setting the `recordingFileConfig` field. <br>- If the recording service or recording upload service is abnormal, the screenshot will fail. Recording is not affected when there is a screenshot exception. <br>- `streamTypes` must be set as 1 or 2 when capturing screenshots. If you have set `subscribeAudioUid`, you must also set `subscribeVideoUids`. |
-| extensionServiceConfig | [extensionServiceConfig](#schemaextensionserviceconfig) | false | Configurations for extended services.<br><p><b>Note: </b>Only need to set in <b>web page recording</b> mode.</p> |
-| appsCollection | [appsCollection](#schemaappscollection) | false | Application configurations<br><p><b>Note:This setting is </b>only required when in <b>individual recording mode</b> and when postponed transcoding or audio mixing is enabled.</p> |
-| transcodeOptions | [transcodeOptions](#schematranscodeoptions) | false | Configurations for the recorded files generated under time-delay transcoding or time-delay mixing.<br><p><b>Note:This setting is </b>only required when in <b>individual recording mode</b> and when postponed transcoding or audio mixing is enabled.</p> |
+| extensionServiceConfig | [extensionServiceConfig](#schemaextensionserviceconfig) | false | Configurations for extended services.<br><p><b>Note</b>:Only need to set in <b>web page recording</b> mode.</p> |
+| appsCollection | [appsCollection](#schemaappscollection) | false | Application configurations<br><p><b>Note</b>:This setting is only required when in <b>individual recording mode</b> and when postponed transcoding or audio mixing is enabled.</p> |
+| transcodeOptions | [transcodeOptions](#schematranscodeoptions) | false | Configurations for the recorded files generated under postponed transcoding or audio mixing.<br><p><b>Note</b>:This setting is only required when in <b>individual recording mode</b> and when postponed transcoding or audio mixing is enabled.</p> |
 
 ## storageConfig
 <!-- backwards compatibility -->
@@ -889,12 +889,12 @@ Configurations for third-party cloud storage.
 - `5`: [Microsoft Azure]( https://azure.microsoft.com/en-us/products/storage/blobs/)<br>
 - `6`: [Google Cloud]( https://cloud.google.com/storage)<br>
 - `7`: [Huawei Cloud]( https://www.huaweicloud.com/product/obs.html)<br>
-- `8`: [BaiduIntelligentCloud]( https://cloud.baidu.com/product/bos.html) |
-| region | number | true | (Required) The region information specified for the third-party cloud storage. <br><br><b>Note:</b> To ensure the success rate and real-time upload of recorded files, the region of the third-party cloud storage must be the same as the` region` of the application server where you initiate the request. For example, if the app server you are requesting is located in mainland China, then the third-party cloud storage needs to be set within the mainland China region. See [the third-party storage area description at ](https://doc.shengwang.cn/api-ref/cloud-recording/restful/region-vendor).</br> |
+- `8`: [Baidu Intelligent Cloud]( https://cloud.baidu.com/product/bos.html) |
+| region | number | true | (Required) The region information specified for the third-party cloud storage. <br><br><b>Note</b>:To ensure the success rate and real-time performance of the upload of the recording file, the region of the third-party cloud storage must be the same as the `region` of the application server where you initiate the request. For example: If the App server from which you initiate the request is in mainland China, and meanwhile the third-party cloud storage needs to be set to a region within mainland China. See [Third-party Cloud Storage Service]( https://doc.shengwang.cn/api-ref/cloud-recording/restful/region-vendor).</br> |
 | bucket | string | true | Third-party cloud storage bucket. The bucket name needs to comply with the naming rules of the corresponding third-party cloud storage service. |
-| accessKey | string | true | Access Key for third-party cloud storage. If transcoding delay is required, the access key must have read and write permissions; otherwise, it is recommended to only provide write permissions. |
+| accessKey | string | true | Access Key for third-party cloud storage. If postponed transcoding is required, the Access Key must have read and write permissions; otherwise, it is recommended to only provide the write permission. |
 | secretKey | string | true | (Required) The secret key of the third-party cloud storage. |
-| fileNamePrefix | array[string] | false | The storage location of the recorded files in the third-party cloud storage is related to the prefix of the file name. For example, if fileNamePrefix = `["directory1","directory2"]`, Agora Cloud Recording will add the prefix `"directory1/directory2/"` before the name of the recorded file, that is, `directory1/directory2/xxx.m3u8`. The prefix's length, including the slashes, should not exceed 128 characters. The string itself should not contain symbols such as slash, underscore, or parenthesis. The following are the supported character set ranges:<br> 26 lowercase English letters a-~z26<br> uppercase English letters A~-Z10<br> numbers 0-9 |
+| fileNamePrefix | array[string] | false | The storage location of the recorded files in the third-party cloud is related to the prefix of the file name. For example, if fileNamePrefix = `["directory1","directory2"]`, Agora Cloud Recording will add the prefix `"directory1/directory2/"` before the name of the recorded file, that is, `directory1/directory2/xxx.m3u8`. The prefix's length, including the slashes, should not exceed 128 characters. The string itself should not contain symbols such as slash, underscore, or parenthesis. The following are the supported character set ranges:<br> 26 lowercase English letters a-~z26<br> uppercase English letters A~-Z10<br> numbers 0-9 |
 | extensionParams | [extensionParams](#schemaextensionparams) | false | Third-party cloud storage services will encrypt and tag the uploaded recording files according to this field setting. |
 
 ## extensionParams
@@ -1202,7 +1202,7 @@ User's background image settings.
 ```
 
 Configurations for extended services.
-<p><b>Note: </b>Only need to set in <b>web page recording</b> mode.</p>
+<p><b>Note</b>:Only need to set in <b>web page recording</b> mode.</p>
 
 ### Properties
 
@@ -1283,7 +1283,7 @@ The following fields need to be set when **web page recording**:
 ```
 
 Application configurations
-<p><b>Note:This setting is </b>only required when in <b>individual recording mode</b> and when postponed transcoding or audio mixing is enabled.</p>
+<p><b>Note</b>:This setting is only required when in <b>individual recording mode</b> and when postponed transcoding or audio mixing is enabled.</p>
 
 ### Properties
 
@@ -1314,8 +1314,8 @@ Application configurations
 }
 ```
 
-Configurations for the recorded files generated under time-delay transcoding or time-delay mixing.
-<p><b>Note:This setting is </b>only required when in <b>individual recording mode</b> and when postponed transcoding or audio mixing is enabled.</p>
+Configurations for the recorded files generated under postponed transcoding or audio mixing.
+<p><b>Note</b>:This setting is only required when in <b>individual recording mode</b> and when postponed transcoding or audio mixing is enabled.</p>
 
 ### Properties
 
@@ -1597,8 +1597,8 @@ Configurations for the recorded files generated under time-delay transcoding or 
 | Name | Type | Required | Description |
 |---|---|---|---|
 | streamSubscribe | [streamSubscribe](#schemastreamsubscribe) | false | Update subscription lists<br><p><b>Note: </b>You only need to set the authentication token in <b>individual recording</b> and <b>composite</b> recording modes.</p> |
-| webRecordingConfig | [webRecordingConfig](#schemawebrecordingconfig) | false | Used to update web page recording items.<br><p><b>Note: </b>Only need to set in <b>web page recording</b> mode.</p> |
-| rtmpPublishConfig | [rtmpPublishConfig](#schemaRtmpPublishConfig) | false | Used to update the configuration items recorded to CDN for web page recording.<br><p><b>Note: </b>Only need to set when recording in <b>web page recording </b>mode and<b> pushing web page recording to CDN</b>.<p> |
+| webRecordingConfig | [webRecordingConfig](#schemawebrecordingconfig) | false | Used to update web page recording items.<br><p><b>Note</b>:Only need to set in <b>web page recording</b> mode.</p> |
+| rtmpPublishConfig | [rtmpPublishConfig](#schemaRtmpPublishConfig) | false | Used to update the configuration items recorded to CDN for web page recording.<br><p><b>Note</b>:Only need to set when recording in <b>web page recording</b> mode and <b>pushing web page recording to CDN</b>.<p> |
 
 ## streamSubscribe
 <!-- backwards compatibility -->
@@ -1635,8 +1635,8 @@ Update subscription lists
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| audioUidList | [audioUidList](#schemaaudiouidlist) | false | The audio subscription list.<br><p><b>Note:</b> This field only applies to <b>streamTypes</b> set to audio, or audio and video.</p> |
-| videoUidList | [videoUidList](#schemavideouidlist) | false | The video subscription list.<br><p><b>Note:</b> This field only applies when the <b>streamTypes</b> are set to video, or audio and video.</p> |
+| audioUidList | [audioUidList](#schemaaudiouidlist) | false | The audio subscription list.<br><p><b>Note</b>:This field only applies to <b>streamTypes</b> set to audio, or audio and video.</p> |
+| videoUidList | [videoUidList](#schemavideouidlist) | false | The video subscription list.<br><p><b>Note</b>:This field only applies when the <b>streamTypes</b> are set to video, or audio and video.</p> |
 
 ## audioUidList
 <!-- backwards compatibility -->
@@ -1657,7 +1657,7 @@ Update subscription lists
 ```
 
 The audio subscription list.
-<p><b>Note:</b> This field only applies to <b>streamTypes</b> set to audio, or audio and video.</p>
+<p><b>Note</b>:This field only applies to <b>streamTypes</b> set to audio, or audio and video.</p>
 
 ### Properties
 
@@ -1685,7 +1685,7 @@ The audio subscription list.
 ```
 
 The video subscription list.
-<p><b>Note:</b> This field only applies when the <b>streamTypes</b> are set to video, or audio and video.</p>
+<p><b>Note</b>:This field only applies when the <b>streamTypes</b> are set to video, or audio and video.</p>
 
 ### Properties
 
@@ -1708,7 +1708,7 @@ The video subscription list.
 ```
 
 Used to update web page recording items.
-<p><b>Note: </b>Only need to set in <b>web page recording</b> mode.</p>
+<p><b>Note</b>:Only need to set in <b>web page recording</b> mode.</p>
 
 ### Properties
 
@@ -1734,7 +1734,7 @@ Used to update web page recording items.
 ```
 
 Used to update the configuration items recorded to CDN for web page recording.
-<p><b>Note: </b>Only need to set when recording in <b>web page recording </b>mode and<b> pushing web page recording to CDN</b>.<p>
+<p><b>Note</b>:Only need to set when recording in <b>web page recording</b> mode and <b>pushing web page recording to CDN</b>.<p>
 
 ### Properties
 
