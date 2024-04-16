@@ -136,6 +136,7 @@ After a message is sent, you can recall it. The `recallMessage` method recalls a
 
 You can recall a message sent within two minutes by default. If you want to adjust the time limit, contact [support@agora.io](mailto:support@agora.io).
 
+<div class="alert info">Except CMD messages, you can recall all types of message.</div>
 
 ```javascript
 let option = {
