@@ -12,8 +12,7 @@ This version is released on 2024 Month x, Day x.
 
    **Attention:**
 
-   - The Agora SDK extension extension, MetaKit, simplifies the implementation process of animating avatar with speech, eliminating the need to build your own framework for collection, encoding, and transmission. Detailed introduction and integration guidance for MetaKit are available at .
-   - The speech driven avatar feature is currently in beta testing. To use it, please contact [technical support](mailto:support@agora.io).
+   The speech driven avatar feature is currently in beta testing. To use it, please contact [technical support](mailto:support@agora.io).
 
 2. **Data stream encryption**
 

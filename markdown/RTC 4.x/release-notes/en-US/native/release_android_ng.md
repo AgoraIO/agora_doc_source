@@ -18,18 +18,17 @@ To ensure parameter naming consistency, this version renames `channelName` to `c
 
    The SDK introduces a speech driven extension that converts speech information into corresponding facial expressions to animate avatar. You can access the facial information through the newly added [`registerFaceInfoObserver`](/api-ref/rtc/android/API/toc_speech_driven#api_imediaengine_registerfaceinfoobserver) method and [`onFaceInfo`](/api-ref/rtc/android/API/toc_speech_driven#callback_ifaceinfoobserver_onfaceinfo) callback. This facial information conforms to the ARKit standard for Blend Shapes (BS), which you can further process using third-party 3D rendering engines.
 
-   The speech driven extension is a trimmable dynamic library, and details about the increase in app size are available at .
+   The speech driven extension is a trimmable dynamic library, and details about the increase in app size are available at [reduce-app-size]().
 
    **Attention:**
 
-   - The Agora SDK extension extension, MetaKit, simplifies the implementation process of animating avatar with speech, eliminating the need to build your own framework for collection, encoding, and transmission. Detailed introduction and integration guidance for MetaKit are available at .
-   - The speech driven avatar feature is currently in beta testing. To use it, please [technical support](mailto:support@agora.io).
+   The speech driven avatar feature is currently in beta testing. To use it, please contact [technical support](mailto:support@agora.io).
 
-2. **Wide and ultra-wide cameras (Android, iOS)**
+1. **Wide and ultra-wide cameras (Android, iOS)**
 
    To allow users to capture a broader field of view and more complete scene content, this release introduces support for wide and ultra-wide cameras. You can first call [`queryCameraFocalLengthCapability`](/api-ref/rtc/android/API/toc_video_device#api_irtcengine_querycamerafocallengthcapability) to check the device's focal length capabilities, and then call [`setCameraCapturerConfiguration`](/api-ref/rtc/android/API/toc_video_device#api_irtcengine_setcameracapturerconfiguration) and set `cameraFocalLengthType` to the supported focal length types, including wide and ultra-wide.
 
-3. **Multi-camera capture (Android)**
+2. **Multi-camera capture (Android)**
 
    This release introduces additional functionalities for Android camera capture:
 
@@ -40,25 +39,25 @@ To ensure parameter naming consistency, this version renames `channelName` to `c
       - A new parameter `cameraId` is added to [`CameraCapturerConfiguration`](/api-ref/rtc/android/API/class_cameracapturerconfiguration). For devices with multiple cameras, where `cameraDirection` cannot identify or access all available cameras, you can obtain the camera ID through Android's native system APIs and specify the desired camera by calling [`startCameraCapture`](/api-ref/rtc/android/API/toc_camera_capture#api_irtcengine_startcameracapture) with the specific `cameraId`.
       - New method [`switchCamera`](/api-ref/rtc/android/API/toc_video_device#api_irtcengine_switchcamera2)[2/2] supports switching cameras by `cameraId`, allowing apps to dynamically adjust camera usage during runtime based on available cameras.
 
-4. **Data stream encryption**
+3. **Data stream encryption**
 
    This version adds `datastreamEncryptionEnabled` to [`EncryptionConfig`](/api-ref/rtc/android/API/class_encryptionconfig) for enabling data stream encryption. You can set this when you activate encryption with [`enableEncryption`](/api-ref/rtc/android/API/toc_network#api_irtcengine_enableencryption). If there are issues causing failures in data stream encryption or decryption, these can be identified by the newly added `ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE` and `ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE` enumerations.
 
-5. **Local Video Rendering**
+4. **Local Video Rendering**
 
    This version adds the following members to [`VideoCanvas`](/api-ref/rtc/android/API/class_videocanvas) to support more local rendering capabilities:
 
    - `surfaceTexture`: Set a native Android `SurfaceTexture` object as the container providing video imagery, then use SDK external methods to perform OpenGL texture rendering.
    - `enableAlphaMask`: This member enables the receiving end to initiate alpha mask rendering. Alpha mask rendering can create images with transparent effects or extract human figures from video content.
 
-6. **Adaptive configuration for low-quality video streams**
+5. **Adaptive configuration for low-quality video streams**
 
    This version introduces adaptive configuration for low-quality video streams. When you activate dual-stream mode and set up low-quality video streams on the sending side using [`setDualStreamMode`](/api-ref/rtc/android/API/toc_dual_stream#api_irtcengine_setdualstreammode2)[2/2], the SDK defaults to the following behaviors:
 
    - The default encoding resolution for low-quality video streams is set to 50% of the original video encoding resolution.
    - The bitrate for the small streams is automatically matched based on the video resolution and frame rate, eliminating the need for manual specification.
 
-7. **Other features**
+6. **Other features**
 
    - New method [`enableEncryptionEx`](/api-ref/rtc/android/API/toc_network#api_irtcengineex_enableencryptionex) is added for enabling media stream or data stream encryption in multi-channel scenarios.
    - New method [`setAudioMixingPlaybackSpeed`](/api-ref/rtc/android/API/toc_audio_mixing#api_irtcengine_setaudiomixingplaybackspeed) is introduced for setting the playback speed of audio files.

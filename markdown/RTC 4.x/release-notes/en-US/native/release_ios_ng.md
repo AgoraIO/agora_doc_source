@@ -16,12 +16,11 @@ This version is released on 2024 Month x, Day x.
 
    The SDK introduces a speech driven extension that converts speech information into corresponding facial expressions to animate avatar. You can access the facial information through the newly added [setFaceInfoDelegate](API/api_imediaengine_registerfaceinfoobserver.html) method and [onFaceInfo](API/callback_ifaceinfoobserver_onfaceinfo.html) callback. This facial information conforms to the ARKit standard for Blend Shapes (BS), which you can further process using third-party 3D rendering engines.
 
-   The speech driven extension is a trimmable dynamic library, and details about the increase in app size are available at .
+   The speech driven extension is a trimmable dynamic library, and details about the increase in app size are available at [reduce-app-size]().
 
    **Attention:**
 
-   - The Agora SDK extension extension, MetaKit, simplifies the implementation process of animating avatar with speech, eliminating the need to build your own framework for collection, encoding, and transmission. Detailed introduction and integration guidance for MetaKit are available at .
-   - The speech driven avatar feature is currently in beta testing. To use it, please [technical support](mailto:support@agora.io).
+   The speech driven avatar feature is currently in beta testing. To use it, please contact [technical support](mailto:support@agora.io).
 
 2. **Privacy manifest file**
 
