@@ -411,6 +411,40 @@ When a user recalls a message in a one-to-one chat, chat group, or chat room of 
 | `appkey` | String | The key of the app. The unique identifier assigned to each app by the Agora Chat service. |
 | `host` | String | The domain name assigned by the Agora Chat service to access RESTful APIs. |
 
+### Send a conversation read receipt
+
+When a conversation is read, the Agora Chat server sends a callback to your app server. 
+
+The sample code is as follows:
+
+```json
+{
+"callId": "easemob-demo#testy_1252106597610555348",
+"eventType": "chat",  
+"chat_type": "channel_ack", 
+"security": "203e3c86710ebdbd776d8aa9cc057b2d",
+"payload": {
+"ack_message_id": "1252106100258375636", 
+"type": "channel_ack" 
+},
+"host": "easemob@hsb-im-msync0",
+"appkey": "easemob-demo#testy",
+"from": "wzy",   
+"to": "wzy1",   
+"msg_id": "1252106597610555348",  
+"timestamp": 1709093585046
+}
+```
+
+| Field     | Data Type  | Description         |
+| :------------ | :------- | :----------------- |
+| chat_type | String    |  The conversation read receipt.          |
+| payload.ack_message_id | String     |  The ID of the message for which the read receipt is returned.                 |
+| payload.type | The conversation read receipt.      |                |
+| from | String          | The user that sends the conversation read receipt.|
+| to | String    |  The user that receives the conversation read receipt.                 |
+| msg_id | String      | The ID of the read receipt.  |
+
 ## Chat group and chat room events
 
 When a user performs operations on a chat group or chat room in the Agora Chat app, the Agora Chat server sends a callback to your app server. The sample code is as follows:
@@ -607,6 +641,8 @@ When a user joins a chat group or chat room, the Agora Chat server sends a callb
 }
 ```
 
+In this callback, `from` indicates *user ID of the new member*@easemob and `to` indicates the group ID or chat room ID.
+
 ### Leave a chat group or chat room
 
 When a member voluntarily leaves a group or chat room, the Agora Chat server sends a callback to your app server. The sample code of the `payload` field is as follows:
@@ -642,6 +678,8 @@ When a member voluntarily or passively leaves a chat group or chat room, the Ago
     }
 }
 ```
+
+In this callback, `from` indicates *user ID of the leaving member*@easemob and `to` indicates the group ID or chat room ID.
 
 ### Remove a member from a chat group or chat room
 

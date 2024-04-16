@@ -92,7 +92,6 @@ curl -X POST 'http://XXXX/XXXX/XXXX/users/c1/presence/android_123423453246/0' \
 {"result":"ok"}
 ```
 
-
 ## Subscribe to the presence status of multiple users
 
 Subscribes to the presence status of multiple users.
@@ -109,6 +108,7 @@ POST https://{host}/{org_name}/{app_name}/users/{uid}/presence/{expiry}
 
 | Parameter | Type | Description | Required |
 |:---------------| :------ | :------- |:------------------|
+| `uid` | String | The user ID of user for which the presence status is subscribed. | Required |
 | `expiry` | String |  The subscription duration in seconds. The maximum value is 2,592,000, which equals 30 days.  | Yes |
 
 For the descriptions of the other path parameters, see [Common Parameters](#param).
@@ -177,7 +177,11 @@ POST https://{host}/{org_name}/{app_name}/users/{uid}/presence
 
 #### Path parameter
 
-For the descriptions of the path parameters, see [Common Parameters](#param).
+| Parameter | Type | Description | Required |
+|:---------------| :------ | :------- |:------------------|
+| `uid` | String | The user whose subscribed presence statuses are retrieved. If the user ID you passed does not exist or the user does not subscribe to the presence status of any users, an empty list is returned. | Yes |
+
+For other parameters and descriptions, see [Common Parameters](#param).
 
 #### Request header
 
@@ -253,7 +257,11 @@ DELETE https://{host}/{org_name}/{app_name}/users/{uid}/presence
 
 #### Path parameter
 
-For the descriptions of the path parameters, see [Common Parameters](#param).
+| Parameter | Type | Description | Required |
+|:---------------| :------ | :------- |:------------------|
+| `uid` | String | The user whose subscribed presence statuses are unsubscribed from. | Yes |
+
+For other parameters and descriptions, see [Common Parameters](#param).
 
 #### Request header
 
@@ -311,7 +319,11 @@ GET https://{host}/{org_name}/{app_name}/users/{uid}/presence/sublist?pageNum=1&
 
 #### Path parameter
 
-For the descriptions of the path parameters, see [Common Parameters](#param).
+| Parameter | Type | Description | Required |
+|:---------------| :------ | :------- |:------------------|
+| `uid` | String |  The user for which the subscriptions are retrieved.  | Yes |
+
+For other parameters and descriptions, see [Common Parameters](#param).
 
 #### Query parameter
 
