@@ -917,7 +917,7 @@ Third-party cloud storage services will encrypt and tag the uploaded recording f
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| see | string | true | The encryption mode. After setting this field, the third-party cloud storage service will encrypt the uploaded recording files according to this encryption mode. This field is only applicable to Amazon S3, see the[ official Amazon S3 documentation at ](https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/UsingEncryption.html). <br>- `kms`: KMS encryption. <br>- `aes256`: AES256 encryption. |
+| see | string | true | The encryption mode. After setting this field, the third-party cloud storage service will encrypt the uploaded recording files according to this encryption mode. This field is only applicable to Amazon S3, see the [Amazon S3 official documentation](https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/UsingEncryption.html). <br>- `kms`: KMS encryption. <br>- `aes256`: AES256 encryption. |
 | tag | string | true | Tag content. After setting this field, the third-party cloud storage service will tag the uploaded recording files according to the content of this tag. This field is only applicable to Alibaba Cloud and Amazon S3. For more information, please refer to [the official Alibaba Cloud documentation at ](https://help.aliyun.com/zh/oss/user-guide/object-tagging-8) and the[ official Amazon S3 documentation at ](https://docs.aws.amazon.com/zh_cn/AmazonS3/latest/userguide/UsingEncryption.html). |
 
 ## recordingConfig
