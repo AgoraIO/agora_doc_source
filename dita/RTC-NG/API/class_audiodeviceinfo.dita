@@ -20,16 +20,23 @@
   deviceTypeName?: string;
   deviceName?: string;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class AudioDeviceInfo {
-  const AudioDeviceInfo({this.deviceId, this.deviceName});
+            <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class AudioDeviceInfo {
+  const AudioDeviceInfo({this.deviceId, this.deviceTypeName, this.deviceName});
 
   @JsonKey(name: 'deviceId')
   final String? deviceId;
+
+  @JsonKey(name: 'deviceTypeName')
+  final String? deviceTypeName;
+
   @JsonKey(name: 'deviceName')
   final String? deviceName;
-  factory AudioDeviceInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+
+  factory AudioDeviceInfo.fromJson(Map&lt;String, dynamic> json) =>
       _$AudioDeviceInfoFromJson(json);
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$AudioDeviceInfoToJson(this);
+
+  Map&lt;String, dynamic> toJson() => _$AudioDeviceInfoToJson(this);
 }</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
@@ -43,6 +50,10 @@
             <plentry conkeyref="VideoDeviceInfo/name">
                 <pt/>
                 <pd/>
+            </plentry>
+            <plentry>
+                <pt>deviceTypeName</pt>
+                <pd>音频设备类型，如：built-in、USB、HDMI 等。</pd>
             </plentry>
             </parml> </section>
     </refbody>

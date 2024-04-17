@@ -98,19 +98,30 @@ struct FEncryptionConfig
 
   datastreamEncryptionEnabled?: boolean;
 }</codeblock>
-      <codeblock props="flutter" outputclass="language-dart">class EncryptionConfig {
+      <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class EncryptionConfig {
   const EncryptionConfig(
-      {this.encryptionMode, this.encryptionKey, this.encryptionKdfSalt});
+      {this.encryptionMode,
+      this.encryptionKey,
+      this.encryptionKdfSalt,
+      this.datastreamEncryptionEnabled});
 
   @JsonKey(name: 'encryptionMode')
   final EncryptionMode? encryptionMode;
+
   @JsonKey(name: 'encryptionKey')
   final String? encryptionKey;
+
   @JsonKey(name: 'encryptionKdfSalt', ignore: true)
   final Uint8List? encryptionKdfSalt;
-  factory EncryptionConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+
+  @JsonKey(name: 'datastreamEncryptionEnabled')
+  final bool? datastreamEncryptionEnabled;
+
+  factory EncryptionConfig.fromJson(Map&lt;String, dynamic> json) =>
       _$EncryptionConfigFromJson(json);
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$EncryptionConfigToJson(this);
+
+  Map&lt;String, dynamic> toJson() => _$EncryptionConfigToJson(this);
 }</codeblock>
       </p>
     </section>
