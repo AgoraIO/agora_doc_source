@@ -243,24 +243,33 @@ struct FCameraCapturerConfiguration
   followEncodeDimensionRatio?: boolean;
 
 }</codeblock>
-      <codeblock props="flutter" outputclass="language-dart">class CameraCapturerConfiguration {
+      <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class CameraCapturerConfiguration {
   const CameraCapturerConfiguration(
       {this.cameraDirection,
+      this.cameraFocalLengthType,
       this.deviceId,
-      this.format,
-      this.followEncodeDimensionRatio});
+      this.cameraId,
+      this.followEncodeDimensionRatio,
+      this.format});
 
   @JsonKey(name: 'cameraDirection')
   final CameraDirection? cameraDirection;
 
+  @JsonKey(name: 'cameraFocalLengthType')
+  final CameraFocalLengthType? cameraFocalLengthType;
+
   @JsonKey(name: 'deviceId')
   final String? deviceId;
 
-  @JsonKey(name: 'format')
-  final VideoFormat? format;
+  @JsonKey(name: 'cameraId')
+  final String? cameraId;
 
   @JsonKey(name: 'followEncodeDimensionRatio')
   final bool? followEncodeDimensionRatio;
+
+  @JsonKey(name: 'format')
+  final VideoFormat? format;
 
   factory CameraCapturerConfiguration.fromJson(Map&lt;String, dynamic> json) =>
       _$CameraCapturerConfigurationFromJson(json);
