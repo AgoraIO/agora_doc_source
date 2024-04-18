@@ -208,29 +208,29 @@ struct FCameraCapturerConfiguration
   followEncodeDimensionRatio?: boolean;
 
 }</codeblock>
-      <codeblock props="unity cs" outputclass="language-csharp">public class CameraCapturerConfiguration
+      <codeblock props="unity cs" outputclass="language-csharp">public class CameraCapturerConfiguration : IOptionalJsonParse
     {
+        public Optional&lt;CAMERA_DIRECTION> cameraDirection = new Optional&lt;CAMERA_DIRECTION>();
+        public Optional&lt;CAMERA_FOCAL_LENGTH_TYPE> cameraFocalLengthType = new Optional&lt;CAMERA_FOCAL_LENGTH_TYPE>();
+        public Optional&lt;string> deviceId = new Optional&lt;string>();
+        public Optional&lt;string> cameraId = new Optional&lt;string>();
+        public Optional&lt;bool> followEncodeDimensionRatio = new Optional&lt;bool>();
+        public VideoFormat format;
+
         public CameraCapturerConfiguration()
         {
-            deviceId = "";
-            cameraDirection = CAMERA_DIRECTION.CAMERA_FRONT;
-            format = new VideoFormat();
-            this.followEncodeDimensionRatio = true;
+            this.format = new VideoFormat(0, 0, 0);
         }
 
-        public CameraCapturerConfiguration(string deviceId, VideoFormat format,
-            CAMERA_DIRECTION cameraDirection, bool followEncodeDimensionRatio)
+        public CameraCapturerConfiguration(Optional&lt;CAMERA_DIRECTION> cameraDirection, Optional&lt;CAMERA_FOCAL_LENGTH_TYPE> cameraFocalLengthType, Optional&lt;string> deviceId, Optional&lt;string> cameraId, Optional&lt;bool> followEncodeDimensionRatio, VideoFormat format)
         {
-            this.deviceId = deviceId;
-            this.format = format;
             this.cameraDirection = cameraDirection;
+            this.cameraFocalLengthType = cameraFocalLengthType;
+            this.deviceId = deviceId;
+            this.cameraId = cameraId;
             this.followEncodeDimensionRatio = followEncodeDimensionRatio;
+            this.format = format;
         }
-
-        public string deviceId { set; get; }
-        public VideoFormat format { set; get; }
-        public bool followEncodeDimensionRatio { set; get; }
-        public CAMERA_DIRECTION cameraDirection { set; get; }
     }</codeblock>
       <codeblock props="rn" outputclass="language-typescript">export class CameraCapturerConfiguration {
   
