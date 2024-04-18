@@ -1063,7 +1063,7 @@ Configurations for transcoded video output The value can refer to [Setting the R
 | backgroundImage | string | false | The URL of the background image of the video canvas. The display mode of the background image is set to cropped mode.<br><p>Cropped mode: Will prioritize to ensure that the screen is filled. The background image size is scaled in equal proportion until the entire screen is filled with the background image. If the length and width of the background image is different from the display window, the background image will be peripherally cropped to fill the screen according to the ratio set on the screen.</p> |
 | defaultUserBackgroundImage | string | false | The URL of the default user screen background image.<br><p>After configuring this field, when any user stops sending video streams for more than 3.5 seconds, the screen will switch to the background image; this setting will be overridden if the background image is set separately for a UID.</p> |
 | layoutConfig | array[object] | false | [layoutConfig](#schemalayoutconfig) |
-| backgroundConfig | [backgroundConfig](#schemabackgroundconfig) | false | User's background image settings. |
+| backgroundConfig | [backgroundConfig](#schemabackgroundconfig) | false | Configurations of user's background image. |
 
 
 
@@ -1085,14 +1085,14 @@ Configurations for transcoded video output The value can refer to [Setting the R
 ]
 ```
 
-Mixed video layout of users. An array of the configuration of each user's region.
-<p><b>Note: </b>Only need to set in <b>custom layout</b>.</p>
+Mixed video layout of users. An array of screen layout settings for each user, supporting up to 17 users.
+<p><b>Note</b>:Only need to set in <b>custom layout</b>.</p>
 
 ### Properties
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| uid | string | false | The string contains the UID of the user displaying the video in the region.<br><p>If this parameter is not specified, the configurations apply in the order of<b></b> the users joining the channel.</p> |
+| uid | string | false | The content of the string is the UID of the user to be displayed in the area, 32-bit unsigned integer.<br><p>If this parameter is not specified, the configurations apply in the order of<b></b> the users joining the channel.</p> |
 | x_axis | number(float) | true | The relative horizontal position of the top-left corner of the region. Layout from left to right, with `0.0` at the extreme left and `1.0` at the extreme right. This field can also be set to the integer 0 or 1. |
 | y_axis | number(float) | true | The relative vertical position of the top-left corner of the region. Layout from top to bottom, with `0.0` at the top and `1.0` at the bottom. This field can also be set to the integer 0 or 1. |
 | width | number(float) | true | The relative value of the width of this screen, accurate to six decimal places. This field can also be set to the integer 0 or 1. |
@@ -1119,7 +1119,7 @@ Mixed video layout of users. An array of the configuration of each user's region
 ]
 ```
 
-User's background image settings.
+Configurations of user's background image.
 
 ### Properties
 
