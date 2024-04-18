@@ -1094,7 +1094,7 @@ Mixed video layout of users. An array of screen layout settings for each user, s
 |---|---|---|---|
 | uid | string | false | The content of the string is the UID of the user to be displayed in the area, 32-bit unsigned integer.<br><p>If the UID is not specified, the screen settings in <b>layoutConfig</b> will be matched automatically in the order that users join the channel.</p> |
 | x_axis | number(float) | true | The relative value of the horizontal coordinate of the upper-left corner of the screen, to six decimal places. Layout from left to right, with `0.0` at the far left and `1.0` at the far right. This field can also be set to the integer 0 or 1. |
-| y_axis | number(float) | true | The relative vertical position of the top-left corner of the region. Layout from top to bottom, with `0.0` at the top and `1.0` at the bottom. This field can also be set to the integer 0 or 1. |
+| y_axis | number(float) | true | The relative vertical position of the top-left corner of the region. The relative value of the vertical coordinate of the upper-left corner of this screen in the screen, accurate to six decimal places. Layout from top to bottom, with `0.0` at the top and `1.0` at the bottom. This field can also be set to the integer 0 or 1. |
 | width | number(float) | true | The relative value of the width of this screen, accurate to six decimal places. This field can also be set to the integer 0 or 1. |
 | height | number(float) | true | The relative value of the height of this screen, accurate to six decimal places. This field can also be set to the integer 0 or 1. |
 | alpha | number(float) | false | The transparency of the image. Accurate to six decimal places. The default value is `1.0`.`` |
