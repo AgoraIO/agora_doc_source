@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_irtcengine_preloadchannel2">
-    <title><ph keyref="preloadChannel2"/></title>
+<reference id="api_irtcengine_preloadchannelwithuseraccount">
+    <title><ph keyref="preloadChannelWithUserAccount"/></title>
     <shortdesc id="short"><ph id="shortdesc">使用 <parmname>token</parmname>、<parmname props="apple cpp framework">channelId</parmname><parmname props="android">channelName</parmname>、<parmname>userAccount</parmname> 预加载频道。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="preloadChannel2"/>
+                <indexterm keyref="preloadChannelWithUserAccount"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int preloadChannel(String token, String channelName, String userAccount);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)preloadChannelByToken:(NSString * _Nullable)token
+            <codeblock props="android" outputclass="language-java">public abstract int preloadChannelWithUserAccount(
+      String token, String channelName, String userAccount);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)preloadChannelByTokenWithUserAccount:(NSString * _Nullable)token
                    channelId:(NSString * _Nonnull)channelId
-                 userAccount:(NSString * _Nonnull)uid NS_SWIFT_NAME(preloadChannel(byToken:channelId:userAccount:));</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int preloadChannel(const char* token, const char* channelId, const char* userAccount) = 0;</codeblock>
+                 userAccount:(NSString * _Nonnull)userAccount NS_SWIFT_NAME(preloadChannelWithUserAccount(byToken:channelId:userAccount:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int preloadChannelWithUserAccount(const char* token, const char* channelId, const char* userAccount) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract preloadChannelWithUserAccount(
     token: string,
     channelId: string,

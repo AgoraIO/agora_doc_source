@@ -281,7 +281,7 @@
   VIDEO_MIRROR_MODE_TYPE mirrorMode;
   AdvanceOptions advanceOptions;
   VideoEncoderConfiguration(const VideoDimensions&amp; d, int f, int b, ORIENTATION_MODE m, VIDEO_MIRROR_MODE_TYPE mirror = VIDEO_MIRROR_MODE_DISABLED)
-    : codecType(VIDEO_CODEC_H265),
+    : codecType(VIDEO_CODEC_NONE),
       dimensions(d),
       frameRate(f),
       bitrate(b),
@@ -291,7 +291,7 @@
       mirrorMode(mirror),
       advanceOptions(PREFER_AUTO, PREFER_LOW_LATENCY) {}
   VideoEncoderConfiguration(int width, int height, int f, int b, ORIENTATION_MODE m, VIDEO_MIRROR_MODE_TYPE mirror = VIDEO_MIRROR_MODE_DISABLED)
-    : codecType(VIDEO_CODEC_H265),
+    : codecType(VIDEO_CODEC_NONE),
       dimensions(width, height),
       frameRate(f),
       bitrate(b),
@@ -311,7 +311,7 @@
       mirrorMode(config.mirrorMode),
       advanceOptions(config.advanceOptions) {}
   VideoEncoderConfiguration()
-    : codecType(VIDEO_CODEC_H265),
+    : codecType(VIDEO_CODEC_NONE),
       dimensions(FRAME_WIDTH_960, FRAME_HEIGHT_540),
       frameRate(FRAME_RATE_FPS_15),
       bitrate(STANDARD_BITRATE),
@@ -605,7 +605,7 @@ struct FVideoEncoderConfiguration
                 <pt>mirrorMode</pt>
                 <pd>
                     <p props="ios mac cpp framework">Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.</p>
-                    <p props="android">The mirror mode specified in video encoder configurations only affect the view of remote users.<ul>
+                    <p props="android">Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees.<ul>
                       <li><ph keyref="VIDEO_MIRROR_MODE_AUTO" />(0): The SDK determines whether to enable the mirror mode. The SDK disables mirror mode by default.</li>
                       <li><ph keyref="VIDEO_MIRROR_MODE_ENABLED" />(1): Enables the mirror mode for remote users.</li>
                       <li><ph keyref="VIDEO_MIRROR_MODE_DISABLED" />(2): Disables the mirror mode for remote users.</li>

@@ -18,12 +18,12 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onLocalAudioSpectrum:(NSArray&lt;NSNumber *&gt; * _Nullable)audioSpectrumData;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual bool onLocalAudioSpectrum(const AudioSpectrumData&amp; data) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnLocalAudioSpectrum, const FAudioSpectrumData&amp;, data);</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onLocalAudioSpectrum?(data: AudioSpectrumData): boolean;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">onLocalAudioSpectrum?(data: AudioSpectrumData): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual bool OnLocalAudioSpectrum(AudioSpectrumData data)
         {
             return true;
         }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">onLocalAudioSpectrum?(data: AudioSpectrumData): boolean;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onLocalAudioSpectrum?(data: AudioSpectrumData): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(AudioSpectrumData data)? onLocalAudioSpectrum;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
@@ -40,7 +40,7 @@
                 <pd props="ios mac">本地用户的音频频谱数据。声网将声音频率分为 256 个频域，通过该参数报告各频域的能量值，每个能量值的取值范围为 [-300,1]，单位为 dBFS。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unreal bp electron unity rn cs">
+        <section id="return_values" props="native unreal bp unity cs">
             <title>返回值</title>
             <p>是否接收频谱数据：
             <ul>

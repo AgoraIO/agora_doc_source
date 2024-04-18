@@ -9,6 +9,8 @@
             <codeblock props="android" outputclass="language-java">public class ChannelMediaOptions {
   public Boolean publishCameraTrack;
   public Boolean publishSecondaryCameraTrack;
+  public Boolean publishThirdCameraTrack;
+  public Boolean publishFourthCameraTrack;
   public Boolean publishMicrophoneTrack;
   public Boolean publishScreenCaptureVideo;
   public Boolean publishScreenCaptureAudio;
@@ -589,20 +591,21 @@ class ChannelMediaOptions {
                     </ul></note>
                 </pd>
             </plentry>
-            <plentry props="cpp mac unity cs flutter electron">
+            <plentry props="android cpp mac unity cs flutter electron rn">
                 <pt>publishThirdCameraTrack</pt>
                 <pd>Whether to publish the video captured by the third camera:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the video captured by the third camera.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured by the third camera.</li>
                     </ul>
-                <p><note type="attention" props="cpp unreal bp unity cs flutter">This is for Windows and macOS only.</note></p></pd>
+                    <note type="attention" props="cpp unreal bp unity flutter">This parameter is for Android, Windows and macOS only.</note><note type="attention" props="rn">This parameter is for Android only.</note></pd>
             </plentry>
-            <plentry props="cpp mac unity cs flutter electron">
+            <plentry props="android cpp mac unity cs flutter electron rn">
                 <pt>publishFourthCameraTrack</pt>
                 <pd>Whether to publish the video captured by the fourth camera:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the video captured by the fourth camera.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured by the fourth camera.</li>
-                    </ul><p><note type="attention" props="cpp unreal bp unity cs flutter">This is for Windows and macOS only.</note></p></pd>
+                    </ul>
+                    <note type="attention" props="cpp unreal bp unity flutter">This parameter is for Android, Windows and macOS only.</note><note type="attention" props="rn">This parameter is for Android only.</note></pd>
             </plentry>
             <plentry props="mac cpp flutter unreal bp unity cs electron">
                 <pt>publishScreenTrack</pt>
@@ -621,7 +624,7 @@ class ChannelMediaOptions {
                     <li><codeph><ph keyref="true"/></codeph>: Publish the video captured from the screen.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured from the screen.</li>
                     </ul></p>
-                    <note type="attention" props="cpp unreal bp unity flutter">This parameter applies to Android and iOS only.</note>
+                    <note type="attention" props="cpp unreal bp unity flutter">This parameter is for Android and iOS only.</note>
                     <note type="note" props="android ios">As of v4.0.0, the parameter name is changed from <parmname>publishScreenTrack</parmname> to <parmname>publishScreenCaptureVideo</parmname>.</note> </pd>
             </plentry>
             <plentry props="android ios cpp flutter unreal bp unity rn">
@@ -631,7 +634,7 @@ class ChannelMediaOptions {
                     <li><codeph><ph keyref="true"/></codeph>: Publish the audio captured from the screen.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Publish the audio captured from the screen.</li>
                     </ul></p>
-                    <note type="attention" props="cpp unreal bp unity flutter">This parameter applies to Android and iOS only.</note>
+                    <note type="attention" props="cpp unreal bp unity flutter">This parameter is for Android and iOS only.</note>
                 </pd>
             </plentry>
             <plentry props="mac cpp unreal bp unity cs flutter rn electron">
@@ -668,7 +671,7 @@ class ChannelMediaOptions {
                     <li><codeph><ph keyref="true"/></codeph>: Publish the local transcoded video.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Do not publish the local transcoded video.</li>
                     </ul>
-                    <p><note type="note" props="native">As of v4.2.0, the parameter name is corrected from <parmname>publishTrancodedVideoTrack</parmname> to <parmname>publishTranscodedVideoTrack</parmname>.</note></p>
+                    <note type="note" props="native">As of v4.2.0, the parameter name is corrected from <parmname>publishTrancodedVideoTrack</parmname> to <parmname>publishTranscodedVideoTrack</parmname>.</note>
                 </pd>
             </plentry>
              <plentry props="hide">
@@ -766,10 +769,10 @@ class ChannelMediaOptions {
                 <pt>channelProfile</pt>
                 <pd conkeyref="setChannelProfile/channelprofiletype"/>
             </plentry>
-            <plentry props="hide">
+            <plentry>
                 <pt>audioDelayMs</pt>
                 <pd>
-                    <p>The delay in milliseconds for sending audio frames. This is used for explicit control of A/V sync.</p>
+                    <p>Delay (in milliseconds) for sending audio frames. You can use this parameter to set the delay of the audio frames that need to be sent, to ensure audio and video synchronization.</p>
                     <p>To switch off the delay, set the value to 0.</p>
                 </pd>
             </plentry>
@@ -784,7 +787,7 @@ class ChannelMediaOptions {
                 <pt>token</pt>
                 <pd>
                     <p>(Optional) The token generated on your server for authentication. See <xref keyref="guide-token"/>.</p>
-                    <note type="caution">
+                    <note type="attention">
                     <ul>
                     <li>This parameter takes effect only when calling <xref keyref="updateChannelMediaOptions"/> or <xref keyref="updateChannelMediaOptionsEx"/>.</li>
                     <li>Ensure that the App ID, channel name, and user name used for creating the token are the same as those used by the <xref keyref="initialize"/> method for initializing the RTC engine, and those used by the <xref keyref="joinChannel2"/> and <xref keyref="joinChannelEx"/> methods for joining the channel.</li>

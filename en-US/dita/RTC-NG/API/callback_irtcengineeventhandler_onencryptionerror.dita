@@ -14,7 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onEncryptionError(int errorType) {}</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine 
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
                     didOccurEncryptionError:(AgoraEncryptionErrorType)errorType;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onEncryptionError(ENCRYPTION_ERROR_TYPE errorType) {
   (void)errorType;
@@ -55,9 +55,11 @@
             <plentry props="android">
                 <pt>errorType</pt>
                 <pd>Error types.<ul>
-                    <li><ph keyref="ENCRYPTION_ERROR_INTERNAL_FAILURE" />(0): Internal reasons.</li>
-                    <li><ph keyref="ENCRYPTION_ERROR_DECRYPTION_FAILURE" />(1): Decryption errors. Ensure that the receiver and the sender use the same encryption mode and key.</li>
-                    <li><ph keyref="ENCRYPTION_ERROR_ENCRYPTION_FAILURE" />(2): Encryption errors.</li>
+                    <li><ph keyref="ENCRYPTION_ERROR_INTERNAL_FAILURE"/>(0): Internal reasons.</li>
+                    <li><ph keyref="ENCRYPTION_ERROR_DECRYPTION_FAILURE"/>(1): Media stream decryption error. Ensure that the receiver and the sender use the same encryption mode and key.</li>
+                    <li><ph keyref="ENCRYPTION_ERROR_ENCRYPTION_FAILURE"/>(2): Media stream encryption error.</li>
+                    <li><ph keyref="ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE"/>(3): Data stream decryption error. Ensure that the receiver and the sender use the same encryption mode and key.</li>
+                    <li><ph keyref="ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE"/>(4): Data stream encryption error.</li>
                 </ul></pd>
             </plentry>
             </parml> </section>
