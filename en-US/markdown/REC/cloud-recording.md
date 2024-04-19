@@ -847,7 +847,7 @@ Status Code **200**
 | token | string | false | A dynamic key used for authentication. If your project has enabled the App certificate, pass in the dynamic key of your project in this field. See [Token Authentication]( https://doc.shengwang.cn/doc/rtc/android/basic-features/token-authentication) for details.<br><p><b>Note</b>:<br><li>You only need to set the authentication token in <b>individual recording</b> and <b>composite recording</b> modes.</li><br><li>Cloud recording service does not support updating tokens currently. To ensure normal recording, please guarantee the Token's effective duration is longer than your expected recording time, to avoid the token expiring and causing the recording task to exit the channel and end the recording.</li><br></p> |
 | storageConfig | [storageConfig](#schemastorageconfig) | true | Configurations for third-party cloud storage. |
 | recordingConfig | [recordingConfig](#schemarecordingconfig) | false | Configurations for recorded audio and video streams.<br><p><b>Note: </b>You only need to set this field in <b>individual recording</b> and <b>composite recording</b> modes.</p> |
-| recordingFileConfig | [recordingFileConfig](#schemarecordingfileconfig) | false | Configurations for recorded files.<br><p><b>Note</b>: This field <b>cannot be set when only taking screenshots</b>, but it needs to be set in all other cases. Other cases include the following:<br><li>Recording without transcoding, recording with transcoding, or recording and taking screenshots simultaneously in individual recording mode.</li><br><li>Composite recording.</li><br><li>In the web page recording mode, you can do page recording only, or simultaneously do page recording and push to the CDN.</li><br></p> |
+| recordingFileConfig | [recordingFileConfig](#schemarecordingfileconfig) | false | Configurations for recorded files.<br><p><b>Note</b>: This field <b>cannot be set when only taking screenshots</b>, but it needs to be set in all other cases. Other cases include the following:<br><li>Recording without transcoding, recording with transcoding, or recording and taking screenshots simultaneously in individual recording mode.</li><br><li>Composite recording.</li><br><li>In the web page recording mode, you can do page recording only, or simultaneously do the page recording and push it to the CDN.</li><br></p> |
 | snapshotConfig | [snapshotConfig](#schemasnapshotconfig) | false | Configurations for screenshot capture.<p><b>Note: </b>Only need to set this field when using the screenshot function in <b>individual recording mode</b>.</p><br>**Screenshot**usage instructions:<br> - The screenshot function is only applicable to individual recording mode (`individual`). <br>- You can either take screenshots in an individual recording process, or record and take screenshots at the same time. For more information, see [Capture Screenshots](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/snapshot). The scenario of simultaneous recording and screenshot capture requires setting the `recordingFileConfig` field. <br>- If the recording service or recording upload service is abnormal, the screenshot will fail. Recording is not affected when there is a screenshot exception. <br>- `streamTypes` must be set as 1 or 2 when capturing screenshots. If you have set `subscribeAudioUid`, you must also set `subscribeVideoUids`. |
 | extensionServiceConfig | [extensionServiceConfig](#schemaextensionserviceconfig) | false | Configurations for extended services.<br><p><b>Note</b>:Only need to set in <b>web page recording</b> mode.</p> |
 | appsCollection | [appsCollection](#schemaappscollection) | false | Application configurations<br><p><b>Note</b>:This setting is only required when in <b>individual recording mode</b> and when postponed transcoding or audio mixing is enabled.</p> |
@@ -1208,7 +1208,7 @@ Configurations for extended services.
 | errorHandlePolicy | string | false | Error handling policy. You can only set it to the default value, `"error_abort"`, which means that once an error occurs to an extension service, all other non-extension services, such as stream subscription, also stop. |
 | extension services | array[object] | true | As described below. |
 | » serviceName | string | true | Name of the extended service:<br> - `web_recorder_service`: Represents the extended service is **web page recording**. <br>- `rtmp_publish_service`: Represents the extended service is to **push web page recording to the CDN**. |
-| "errorHandlePolicy" | string | false | Error handling strategy within the extension service:<br> - `"error_abort"`: the default and only value during **web page recording**. Stop other extension services when the current extension service encounters an error. <br>- `"error_ignore"`: The default and only value when you **push the web page recording to the CDN**. Other extension services are not affected when the current extension service encounters an error.<br><p>If the web page recording service or the recording upload service is abnormal, then pushing the stream to the CDN will fail. Therefore, errors in the <b>web page recording</b> service can affect the <b>pushing of page recording to the CDN</b> service.</p><br><p>When an exception occurs during the process of pushing to the CDN, web page recording is not affected.</p> |
+| "errorHandlePolicy" | string | false | Error handling strategy within the extension service:<br> - `"error_abort"`: the default and only value during **web page recording**. Stop other extension services when the current extension service encounters an error. <br>- `"error_ignore"`: The only default value when you **push the web page recording to the CDN**. Other extension services are not affected when the current extension service encounters an error.<br><p>If the web page recording service or the recording upload service is abnormal, then pushing the stream to the CDN will fail. Therefore, errors in the <b>web page recording</b> service can affect the <b>pushing of page recording to the CDN</b> service.</p><br><p>When an exception occurs during the process of pushing to the CDN, web page recording is not affected.</p> |
 | » serviceParam | [serviceParam](#schemaserviceparam) | true | Specific configuration items for extending services. |
 
 ## serviceParam
@@ -1257,7 +1257,7 @@ The following fields need to be set when **web page recording**:
 
 #### Scenario 2
 
-**web page recording to the CDN**, the following fields need to be set. The following fields need to be set when recording a retweeted page to a CDN.
+**Pushing web page recording to the CDN** requires to configure the following fields.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
@@ -1594,7 +1594,7 @@ Configurations for the recorded files generated under postponed transcoding or a
 |---|---|---|---|
 | streamSubscribe | [streamSubscribe](#schemastreamsubscribe) | false | Update subscription lists.<br><p><b>Note: </b>You only need to set this field in <b>individual recording</b> and <b>composite recording</b> modes.</p> |
 | webRecordingConfig | [webRecordingConfig](#schemawebrecordingconfig) | false | Used to update the web page recording configurations.<br><p><b>Note</b>:Only need to set in <b>web page recording</b> mode.</p> |
-| rtmpPublishConfig | [rtmpPublishConfig](#schemaRtmpPublishConfig) | false | Used to update the configuration items recorded to CDN for web page recording.<br><p><b>Note</b>:Only need to set when recording in <b>web page recording</b> mode and <b>pushing web page recording to CDN</b>.<p> |
+| rtmpPublishConfig | [rtmpPublishConfig](#schemaRtmpPublishConfig) | false | Used to update the configurations recorded to CDN for web page recording. To update configurations of pushing media stream to the CDN during a web page recording. <br><p><b>Note</b>:Only need to set when recording in <b>web page recording</b> mode and <b>pushing web page recording to CDN</b>.<p> |
 
 ## streamSubscribe
 <!-- backwards compatibility -->
@@ -1729,7 +1729,7 @@ Used to update the web page recording configurations.
 }
 ```
 
-Used to update the configuration items recorded to CDN for web page recording.
+Used to update the configurations recorded to CDN for web page recording. To update configurations of pushing media stream to the CDN during a web page recording.
 <p><b>Note</b>:Only need to set when recording in <b>web page recording</b> mode and <b>pushing web page recording to CDN</b>.<p>
 
 ### Properties
