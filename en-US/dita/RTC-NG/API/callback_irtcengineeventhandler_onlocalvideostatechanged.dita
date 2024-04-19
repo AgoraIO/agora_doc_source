@@ -46,7 +46,7 @@
             <p>你可以通过该回调及时了解本地视频流的状态变化，并根据状态改变的原因采取相应的措施，更好地管理和调试视频流相关的问题。</p>
         </section>
         <section id="timing" deliveryTarget="details">
-            <title>触发时机</title>
+            <title>Trigger timing</title>
             <ul><li>SDK 会在如下情况触发该回调，且 <parmname>state</parmname> 为 <ph keyref="LOCAL_VIDEO_STREAM_STATE_FAILED"/>，<parmname>reason</parmname> 为 <codeph><ph keyref="LOCAL_VIDEO_STREAM_REASON_CAPTURE_FAILURE"/></codeph>：<ul>
                     <li props="cpp apple framework">The app switches to the background, and the system gets the camera resource.</li>
                     <li props="cpp unreal bp android unity flutter rn">For Android 9 and later versions, after an app is in the background for a period, the system automatically revokes camera permissions.</li>
@@ -55,7 +55,7 @@
                 <li>当摄像头输出采集的视频帧时，如果 SDK 检测到连续 15 个重复的视频帧，会触发该回调，且 <parmname>state</parmname> 为 <apiname keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/>，<parmname>reason</parmname> 为 <apiname keyref="LOCAL_VIDEO_STREAM_REASON_CAPTURE_FAILURE"/>。<note>Note that the video frame duplication detection is only available for video frames with a resolution greater than 200 × 200, a frame rate greater than or equal to 10 fps, and a bitrate less than 20 Kbps.</note></li></ul>
         </section>        
         <section id="restriction" deliveryTarget="details">
-            <title>使用限制</title>
+            <title>Restrictions</title>
             <p>For some device models, the SDK does not trigger this callback when the state of the local video changes while the local video capturing device is in use, so you have to make your own timeout judgment.</p>
         </section>
         <section id="parameters">

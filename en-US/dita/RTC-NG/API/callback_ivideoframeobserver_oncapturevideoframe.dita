@@ -31,22 +31,22 @@
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="native unreal bp unity electron rn cs">你可以在回调中获取本地设备采集到的原始视频数据，并可根据需要进行前处理。 Once the pre-processing is complete, you can directly modify <parmname>videoFrame</parmname> in this callback, and set the return value to <codeph><ph keyref="true"/></codeph> to send the modified video data to the SDK.</p>
-            <p props="native unreal bp unity electron rn cs">如果你需要将处理后的数据发送给 SDK，需要先调用 <xref keyref="getVideoFrameProcessMode"/><codeph>(0)</codeph> 方法，将视频处理模式设置为读写模式。</p>
-            <p props="flutter">你可以在回调中获取本地设备采集到的原始视频数据。</p>
+            <p props="native unreal bp unity electron rn cs">You can get raw video data collected by the local device through this callback and preprocess it as needed. Once the preprocessing is complete, you can directly modify <parmname>videoFrame</parmname> in this callback, and set the return value to <codeph><ph keyref="true"/></codeph> to send the modified video data to the SDK.</p>
+            <p props="native unreal bp unity electron rn cs">If you need to send the preprocessed data to the SDK, you need to call <xref keyref="getVideoFrameProcessMode"/><codeph>(0)</codeph> first to set the video processing mode to read and write mode.</p>
+            <p props="flutter">You can get raw video data collected by the local device through this callback.</p>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>Applicable scenarios</title>
             <ul>
-            <li props="native unreal bp unity electron rn cs">在本地采集的视频数据被 SDK 处理之前对其进行前处理。 例如：通过该回调中获取视频数据，并对其进行滤镜、水印、裁剪、旋转等处理。</li>
-            <li>获取本地采集的视频数据被 SDK 处理之前的信息。 例如：视频帧的原始宽度、高度、帧率等。</li></ul>
+            <li props="native unreal bp unity electron rn cs">Preprocess the locally collected video data before it is processed by the SDK. For example, get video data through this callback and process it with filters, watermarks, cropping, rotation, etc.</li>
+            <li>Get information about the locally collected video data before it is processed by the SDK. For example, the original width, height, frame rate of the video frame, etc.</li></ul>
         </section>
         <section id="timing" deliveryTarget="details">
-            <title>触发时机</title>
+            <title>Trigger timing</title>
             <p>成功注册视频数据观测器后，SDK 捕捉到每个视频帧时。</p>
         </section>        
         <section id="restriction" deliveryTarget="details">
-            <title>使用限制</title>
+            <title>Restrictions</title>
             <ul>
                 <li>此处获取的视频数据为原始视频数据，即：未经过水印、裁剪和旋转等前处理的视频数据。</li>
                 <li>If the video data type you get is RGBA, the SDK does not support processing the data of the alpha channel.</li>
