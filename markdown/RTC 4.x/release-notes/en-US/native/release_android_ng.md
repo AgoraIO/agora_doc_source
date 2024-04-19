@@ -106,6 +106,7 @@ This version fixed the following issues:
 - Broadcasters using certain models of devices under speaker mode experienced occasional local audio capture failures when switching the app process to the background and then back to the foreground, causing remote users to not hear the broadcaster's audio.
 - On devices with Android 8.0, enabling screen sharing occasionally caused the app to crash.
 - In scenarios using camera capture for local video, when the app was moved to the background and [`disableVideo`](/api-ref/rtc/android/API/toc_video_basic#api_irtcengine_disablevideo) or [`stopPreview`](/api-ref/rtc/android/API/toc_video_basic#api_irtcengine_stoppreview)[1/2] was called to stop video capture, camera capture was unexpectedly activated when the app was brought back to the foreground.
+- When the network environment of the sending end deteriorated (for example, in poor network conditions), the receiving end occasionally experienced a decrease in video smoothness and an increase in lag.
 
 #### API Changes
 

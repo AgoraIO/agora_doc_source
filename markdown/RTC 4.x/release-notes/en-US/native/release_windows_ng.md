@@ -68,6 +68,7 @@ This version fixed the following issues:
 - During interactions, when a local user set the system default playback device to speakers using [`setDevice`](/api-ref/rtc/windows/API/toc_audio_device#api_iaudiodevicecollection_setdevice), there was no sound from the remote end.
 - When sharing an Excel document window, remote users occasionally saw a green screen.
 - On devices using Intel graphics cards, occasionally there was a performance regression when publishing a small video stream. 
+- When the network environment of the sending end deteriorated (for example, in poor network conditions), the receiving end occasionally experienced a decrease in video smoothness and an increase in lag.
 
 #### API Changes
 

@@ -98,6 +98,7 @@ This version is released on 2024 Month x, Day x.
 This version fixed the following issues:
 
 - Fixed an issue where SEI data output did not synchronize with video rendering when playing media streams containing SEI data using the media player.
+- When the network environment of the sending end deteriorated (for example, in poor network conditions), the receiving end occasionally experienced a decrease in video smoothness and an increase in lag.
 
 #### API Changes
 

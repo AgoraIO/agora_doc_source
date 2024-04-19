@@ -83,6 +83,7 @@ This version fixed the following issues:
 
 - Fixed an issue where SEI data output did not synchronize with video rendering when playing media streams containing SEI data using the media player.
 - When a user plugged and unplugged a Bluetooth or wired headset once, the audio state change callback [`stateChanged`](/api-ref/rtc/macos/API/toc_common_device#api_irtcengine_statechanged) was triggered multiple times.
+- When the network environment of the sending end deteriorated (for example, in poor network conditions), the receiving end occasionally experienced a decrease in video smoothness and an increase in lag.
 
 #### API Changes
 
