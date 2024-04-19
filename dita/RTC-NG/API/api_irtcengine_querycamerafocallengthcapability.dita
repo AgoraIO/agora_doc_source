@@ -20,7 +20,7 @@
             <codeblock props="electron" outputclass="language-typescript"></codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int QueryCameraFocalLengthCapability(ref FocalLengthInfo[] focalLengthInfos, ref int size);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract queryCameraFocalLengthCapability(): {
-    focalLengthInfos: FocalLengthInfo;
+    focalLengthInfos: FocalLengthInfo[];
     size: number;
   };</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;List&lt;FocalLengthInfo>> queryCameraFocalLengthCapability();</codeblock>
@@ -41,26 +41,28 @@
             <parml>
             <plentry>
                 <pt>focalLengthInfos</pt>
-                <pd>输入和输出参数。<xref keyref="FocalLengthInfo"/> 对象数组：<ul>
-                    <li>输入值：指定焦距信息的存储位置。</li>
-                    <li>输出值：输出查询到的摄像头焦距信息。</li></ul>
+                <pd props="cpp">输入和输出参数。指向 <xref keyref="FocalLengthInfo"/> 对象数组的指针：<ul>
+                    <li>输入值：指向一个 <xref keyref="FocalLengthInfo"/> 对象数组，用于存储焦距信息。</li>
+                    <li>输出值：方法执行后，输出查询到的焦距信息。</li></ul>
                 </pd>
+                <pd props="unity">输出参数。方法执行后，输出包含摄像头焦距信息的 <xref keyref="FocalLengthInfo"/> 对象数组。</pd>
             </plentry>
             <plentry>
                 <pt>size</pt>
-                <pd>输入和输出参数。焦距信息数量：<ul>
-                    <li>输入值：指定 <parmname>focalLengthInfos</parmname> 可以容纳的最大焦距信息数量。请确保该值不小于 8，即 <parmname>focalLengthInfos</parmname> 至少有空间存储 8 个焦距信息。</li>
-                    <li>输出值：输出查询到的焦距信息数量。</li></ul>
+                <pd props="cpp">输入和输出参数。焦距信息数量：<ul>
+                    <li>输入值：指定 <parmname>focalLengthInfos</parmname> 数组可以容纳的最大焦距信息数量。请确保该值不小于 8，即 <parmname>focalLengthInfos</parmname> 至少有空间存储 8 个焦距信息。</li>
+                    <li>输出值：方法执行后，输出查询到的焦距信息数量。</li></ul>
                 </pd>
+                <pd props="unity">输出参数。方法执行后，输出查询到的焦距信息数量。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="android ios flutter">返回 <xref keyref="FocalLengthInfo"/> 对象数组，其中包含摄像头支持的焦距信息。</p>
-            <p props="rn">返回一个对象，其中包含：
+            <p props="android ios flutter">返回 <xref keyref="FocalLengthInfo"/> 对象数组，其中包含摄像头的方向和焦距类型。</p>
+            <p props="rn">返回一个包含以下属性的对象：
             <ul>
-                <li><parmname>focalLengthInfos</parmname>： <xref keyref="FocalLengthInfo"/> 对象数组，其中包含摄像头支持的焦距信息。</li>
-                <li><parmname>size</parmname>：查询到的焦距信息数量。</li></ul>
+                <li><parmname>focalLengthInfos</parmname>： <xref keyref="FocalLengthInfo"/> 对象数组，其中包含摄像头的方向和焦距类型。</li>
+                <li><parmname>size</parmname>：实际查询到的焦距信息数量。</li></ul>
             </p>
             <ul props="cpp unity">
             <li>0: 方法调用成功。</li>
