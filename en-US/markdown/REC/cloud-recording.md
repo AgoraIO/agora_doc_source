@@ -1207,8 +1207,8 @@ Configurations for extended services.
 |---|---|---|---|
 | errorHandlePolicy | string | false | Error handling policy. You can only set it to the default value, `"error_abort"`, which means that once an error occurs to an extension service, all other non-extension services, such as stream subscription, also stop. |
 | extension services | array[object] | true | As described below. |
-| » serviceName | string | true | Name of the extended service:<br> - `web_recorder_service`: Represents the extended service is **web page recording**. <br>- `rtmp_publish_service`: Represents the extended service for** pushing web page recording to CDN from the relay page**. |
-| "errorHandlePolicy" | string | false | Error handling strategy within the extension service:<br> - `"error_abort"`: the default and only value during **web page recording**. Stop other extension services when the current extension service encounters an error. <br>- `"error_ignore"`: The default and only value when** web page recording page to CDN**. Other extension services are not affected when the current extension service encounters an error.<br><p>If the web page recording service or recording upload service is abnormal, then pushing to CDN will fail, so if the <b>web page recording </b>service is wrong, it will affect the<b> forwarding of web page recording to CDN</b> service.</p><br><p>When an exception occurs during the process of pushing to CDN, web page recording is not affected.</p> |
+| » serviceName | string | true | Name of the extended service:<br> - `web_recorder_service`: Represents the extended service is **web page recording**. <br>- `rtmp_publish_service`: Represents the extended service is to **push web page recording to the CDN**. |
+| "errorHandlePolicy" | string | false | Error handling strategy within the extension service:<br> - `"error_abort"`: the default and only value during **web page recording**. Stop other extension services when the current extension service encounters an error. <br>- `"error_ignore"`: The default and only value when you **push the web page recording to the CDN**. Other extension services are not affected when the current extension service encounters an error.<br><p>If the web page recording service or recording upload service is abnormal, then pushing to CDN will fail, so if the <b>web page recording </b>service is wrong, it will affect the<b> forwarding of web page recording to CDN</b> service. If the page recording service or the recording upload service is abnormal, then pushing the stream to the CDN will fail. Therefore, errors in the page recording service can affect the redirection of page recording to the CDN service.null</p><br><p>When an exception occurs during the process of pushing to CDN, web page recording is not affected.</p> |
 | » serviceParam | [serviceParam](#schemaserviceparam) | true | Specific configuration items for extending services. |
 
 ## serviceParam
@@ -1976,7 +1976,7 @@ Fields returned in scenes other than individual video screenshots and page recor
 | Name | Type | Required | Description |
 |---|---|---|---|
 | payload | object | false | [payload](#payload) |
-| serviceName | string | false | Name of the extended service:<br> - `web_recorder_service`: Represents the extended service is **web page recording**. <br>- `rtmp_publish_service`: Represents the extended service for** pushing web page recording to CDN from the relay page**. |
+| serviceName | string | false | Name of the extended service:<br> - `web_recorder_service`: Represents the extended service is **web page recording**. <br>- `rtmp_publish_service`: Represents the extended service is to **push web page recording to the CDN**. |
 
 ## payload
 
