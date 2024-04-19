@@ -1320,11 +1320,11 @@ Configurations for the recorded files generated under postponed transcoding or a
 | transConfig | object | true | As described below. |
 | » transMode | string | true | Mode:<br>- `"postponeTranscoding"`: Postponed transcoding. <br>- `"audioMix"`: Postponed audio mixing. |
 | container | object | false | As described below. |
-| » format | string | false | The container format of the file, supports the following values:<br> - `"mp4"`: the default format for transcoding with delay. MP4 format. <br>- `"mp3"`: The default format for delay mixing. MP3 format. <br>- `"m4a"`: M4A format. <br>- `"aac"`: AAC format. <br>**Note**: Postponed transcoding can currently only be set to MP4 format. |
-| audio | object | false | Audio properties of the file.<br><p><b>Note: </b>This setting is only required when recording in <b>Individual Recording mode </b>and enabling <b>delay mixing</b>.</p> |
-| sampleRate | string | false | Audio sampling rate (Hz), supports the following values:<br> - `"48000"`: 48 kHz.<br> - `"32000"`：32 kHz。 <br>- `"16000"`：16 kHz。 |
-| bitrate | string | false | Audio bitrate (Kbps), supports and defaults to `"48000"`. |
-| channels | string | false | Audio channel number, supports the following values:<br> - `"1"`: mono. <br>- `"2"`: Stereo. |
+| » format | string | false | The container format of the file, which supports the following values:<br>- `"mp4"`: the default format for the postponed transcoding. MP4 format. <br>- `"mp3"`: The default format for postponed audio mixing. MP3 format. <br>- `"m4a"`: M4A format. <br>- `"aac"`: AAC format. <br>**Note**: Postponed transcoding can currently only be set to MP4 format. |
+| audio | object | false | Audio properties of the file.<br><p><b>Note: </b>This setting is only required in <b>individual recording mode</b> with <b>postponed audio mixing</b> turned on.</p> |
+| » sampleRate | string | false | Audio sampling rate (Hz) supports the following values:<br>- `"48000"`: 48 kHz.<br> - `"32000"`：32 kHz。 <br>- `"16000"`：16 kHz。 |
+| » bitrate | string | false | Audio bit rate (Kbps) supports a customized value and the default value is `"48000"`. |
+| » channels | string | false | The number of audio channels supports the following values:<br>- `"1"`: mono. <br>- `"2"`: Stereo. |
 
 ## acquire-response
 <!-- backwards compatibility -->
