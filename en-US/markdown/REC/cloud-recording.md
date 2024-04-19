@@ -1208,7 +1208,7 @@ Configurations for extended services.
 | errorHandlePolicy | string | false | Error handling policy. You can only set it to the default value, `"error_abort"`, which means that once an error occurs to an extension service, all other non-extension services, such as stream subscription, also stop. |
 | extension services | array[object] | true | As described below. |
 | » serviceName | string | true | Name of the extended service:<br> - `web_recorder_service`: Represents the extended service is **web page recording**. <br>- `rtmp_publish_service`: Represents the extended service is to **push web page recording to the CDN**. |
-| "errorHandlePolicy" | string | false | Error handling strategy within the extension service:<br> - `"error_abort"`: the default and only value during **web page recording**. Stop other extension services when the current extension service encounters an error. <br>- `"error_ignore"`: The only default value when you **push the web page recording to the CDN**. Other extension services are not affected when the current extension service encounters an error.<br><p>If the web page recording service or the recording upload service is abnormal, then pushing the stream to the CDN will fail. Therefore, errors in the <b>web page recording</b> service can affect the <b>pushing of page recording to the CDN</b> service.</p><br><p>When an exception occurs during the process of pushing to the CDN, web page recording is not affected.</p> |
+| "errorHandlePolicy" | string | false | Error handling strategy within the extension service:<br> - `"error_abort"`: the default and only value during **web page recording**. Stop other extension services when the current extension service encounters an error. <br>- `"error_ignore"`: The only default value when you **push the web page recording to the CDN**. Other extension services are not affected when the current extension service encounters an error.<br><p>If the web page recording service or the recording upload service is abnormal, pushing the stream to the CDN will fail. Therefore, errors in the <b>web page recording</b> service can affect the service of <b>pushing page recording to the CDN</b>.</p><br><p>When an exception occurs during the process of pushing to the CDN, web page recording is not affected.</p> |
 | » serviceParam | [serviceParam](#schemaserviceparam) | true | Specific configuration items for extending services. |
 
 ## serviceParam
@@ -1262,7 +1262,7 @@ The following fields need to be set when **web page recording**:
 | Name | Type | Required | Description |
 |---|---|---|---|
 | outputs | array[object] | true | As described below. |
-| rtmpUrl | string | true | The CDN streaming address. |
+| rtmpUrl | string | true | The CDN address where the media streams being pushed to. |
 
 
 ## appsCollection
@@ -1594,7 +1594,7 @@ Configurations for the recorded files generated under postponed transcoding or a
 |---|---|---|---|
 | streamSubscribe | [streamSubscribe](#schemastreamsubscribe) | false | Update subscription lists.<br><p><b>Note: </b>You only need to set this field in <b>individual recording</b> and <b>composite recording</b> modes.</p> |
 | webRecordingConfig | [webRecordingConfig](#schemawebrecordingconfig) | false | Used to update the web page recording configurations.<br><p><b>Note</b>:Only need to set in <b>web page recording</b> mode.</p> |
-| rtmpPublishConfig | [rtmpPublishConfig](#schemaRtmpPublishConfig) | false | Used to update the configurations recorded to CDN for web page recording. To update configurations of pushing media stream to the CDN during a web page recording. <br><p><b>Note</b>:Only need to set when recording in <b>web page recording</b> mode and <b>pushing web page recording to CDN</b>.<p> |
+| rtmpPublishConfig | [rtmpPublishConfig](#schemaRtmpPublishConfig) | false | Used to update the configurations for pushing media streams to the CDN. <br><p><b>Note</b>:Onlyneed to set in <b>web page recording</b> mode and <b>pushing web page recording to the CDN</b>.<p> |
 
 ## streamSubscribe
 <!-- backwards compatibility -->
@@ -1729,8 +1729,8 @@ Used to update the web page recording configurations.
 }
 ```
 
-Used to update the configurations recorded to CDN for web page recording. To update configurations of pushing media stream to the CDN during a web page recording.
-<p><b>Note</b>:Only need to set when recording in <b>web page recording</b> mode and <b>pushing web page recording to CDN</b>.<p>
+Used to update the configurations for pushing media streams to the CDN.
+<p><b>Note</b>:Onlyneed to set in <b>web page recording</b> mode and <b>pushing web page recording to the CDN</b>.<p>
 
 ### Properties
 
@@ -2001,7 +2001,7 @@ When recording the web page recording to CDN, the following fields will be retur
 | Name | Type | Required | Description |
 |---|---|---|---|
 | outputs | array[object] | false | As described below. |
-| rtmpUrl | string | false | The CDN streaming address. |
+| rtmpUrl | string | false | The CDN address where the media streams being pushed to. |
 | status | string | false | web page recording current streaming status:<br> - `"connecting": connecting` to the CDN server. <br>- `"publishing"`: currently streaming. <br>- `"onhold"`: Set whether to pause the live stream. <br>`"Disconnected"`: Failed to connect to the CDN server. Agora suggests that you change the CDN streaming address. |
 | state | string | false | The status of uploading subscription content to the extension service:<br> - `"init"`: Service is initializing. <br>- `"inProgress"`: The service has started and is currently in progress. <br>- `"exit"`: Service exit. |
 
