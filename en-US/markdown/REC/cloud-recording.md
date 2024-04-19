@@ -847,7 +847,7 @@ Status Code **200**
 | token | string | false | A dynamic key used for authentication. If your project has enabled the App certificate, pass in the dynamic key of your project in this field. See [Token Authentication]( https://doc.shengwang.cn/doc/rtc/android/basic-features/token-authentication) for details.<br><p><b>Note</b>:<br><li>You only need to set the authentication token in <b>individual recording</b> and <b>composite recording</b> modes.</li><br><li>Cloud recording service does not support updating tokens currently. To ensure normal recording, please guarantee the Token's effective duration is longer than your expected recording time, to avoid the token expiring and causing the recording task to exit the channel and end the recording.</li><br></p> |
 | storageConfig | [storageConfig](#schemastorageconfig) | true | Configurations for third-party cloud storage. |
 | recordingConfig | [recordingConfig](#schemarecordingconfig) | false | Configurations for recorded audio and video streams.<br><p><b>Note: </b>You only need to set this field in <b>individual recording</b> and <b>composite recording</b> modes.</p> |
-| recordingFileConfig | [recordingFileConfig](#schemarecordingfileconfig) | false | Configurations for recorded files.<br><p><b>Note</b>: This field <b>cannot be set when only taking screenshots</b>, but it needs to be set in all other cases. Other cases include the following:<br><li>Recording without transcoding, recording with transcoding, or recording and taking screenshots simultaneously in individual recording mode.</li><br><li>Composite recording.</li><br><li>Only web page recording, or web page recording and pushing to CDN simultaneously in web page recording mode.</li><br></p> |
+| recordingFileConfig | [recordingFileConfig](#schemarecordingfileconfig) | false | Configurations for recorded files.<br><p><b>Note</b>: This field <b>cannot be set when only taking screenshots</b>, but it needs to be set in all other cases. Other cases include the following:<br><li>Recording without transcoding, recording with transcoding, or recording and taking screenshots simultaneously in individual recording mode.</li><br><li>Composite recording.</li><br><li>In the web page recording mode, you can do page recording only, or simultaneously do page recording and push to the CDN.</li><br></p> |
 | snapshotConfig | [snapshotConfig](#schemasnapshotconfig) | false | Configurations for screenshot capture.<p><b>Note: </b>Only need to set this field when using the screenshot function in <b>individual recording mode</b>.</p><br>**Screenshot**usage instructions:<br> - The screenshot function is only applicable to individual recording mode (`individual`). <br>- You can either take screenshots in an individual recording process, or record and take screenshots at the same time. For more information, see [Capture Screenshots](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/snapshot). The scenario of simultaneous recording and screenshot capture requires setting the `recordingFileConfig` field. <br>- If the recording service or recording upload service is abnormal, the screenshot will fail. Recording is not affected when there is a screenshot exception. <br>- `streamTypes` must be set as 1 or 2 when capturing screenshots. If you have set `subscribeAudioUid`, you must also set `subscribeVideoUids`. |
 | extensionServiceConfig | [extensionServiceConfig](#schemaextensionserviceconfig) | false | Configurations for extended services.<br><p><b>Note</b>:Only need to set in <b>web page recording</b> mode.</p> |
 | appsCollection | [appsCollection](#schemaappscollection) | false | Application configurations<br><p><b>Note</b>:This setting is only required when in <b>individual recording mode</b> and when postponed transcoding or audio mixing is enabled.</p> |
@@ -1488,13 +1488,13 @@ Configurations for the recorded files generated under postponed transcoding or a
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| cname | string | true | The name of the channel where the recording service is located. The cname you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request needs to be the same as` yours`. |
-| uid | string | true | The string content is the UID used by the recording service in the RTC channel to identify the recording service. It needs to be the same as the UID you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request.`` |
+| cname | string | true | The name of the channel where the recording service is located. The `cname` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request needs to be the same . |
+| uid | string | true | The string content is the UID used by the recording service in the RTC channel to identify the recording service. It needs to be the same as the `uid` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request. |
 | clientRequest
  | object | true | [client-request](#schemaclient-request) |
 
 
-## update request
+## update-request
 <!-- backwards compatibility -->
 <a id="schemaupdate-request"></a>
 
@@ -1542,8 +1542,8 @@ Configurations for the recorded files generated under postponed transcoding or a
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| cname | string | true | The name of the channel where the recording service is located. The cname you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request needs to be the same as` yours`. |
-| uid | string | true | The string content is the UID used by the recording service in the RTC channel to identify the recording service. It needs to be the same as the UID you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request.`` |
+| cname | string | true | The name of the channel where the recording service is located. The `cname` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request needs to be the same . |
+| uid | string | true | The string content is the UID used by the recording service in the RTC channel to identify the recording service. It needs to be the same as the `uid` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request. |
 | clientRequest
  | object | true | [clientRequest](#schemaclientrequest) |
 
@@ -1592,8 +1592,8 @@ Configurations for the recorded files generated under postponed transcoding or a
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| streamSubscribe | [streamSubscribe](#schemastreamsubscribe) | false | Update subscription lists<br><p><b>Note: </b>You only need to set this field in <b>individual recording</b> and <b>composite recording</b> modes.</p> |
-| webRecordingConfig | [webRecordingConfig](#schemawebrecordingconfig) | false | Used to update web page recording items.<br><p><b>Note</b>:Only need to set in <b>web page recording</b> mode.</p> |
+| streamSubscribe | [streamSubscribe](#schemastreamsubscribe) | false | Update subscription lists.<br><p><b>Note: </b>You only need to set this field in <b>individual recording</b> and <b>composite recording</b> modes.</p> |
+| webRecordingConfig | [webRecordingConfig](#schemawebrecordingconfig) | false | Used to update the web page recording configurations.<br><p><b>Note</b>:Only need to set in <b>web page recording</b> mode.</p> |
 | rtmpPublishConfig | [rtmpPublishConfig](#schemaRtmpPublishConfig) | false | Used to update the configuration items recorded to CDN for web page recording.<br><p><b>Note</b>:Only need to set when recording in <b>web page recording</b> mode and <b>pushing web page recording to CDN</b>.<p> |
 
 ## streamSubscribe
@@ -1624,7 +1624,7 @@ Configurations for the recorded files generated under postponed transcoding or a
 }
 ```
 
-Update subscription lists
+Update subscription lists.
 <p><b>Note: </b>You only need to set this field in <b>individual recording</b> and <b>composite recording</b> modes.</p>
 
 ### Properties
@@ -1703,7 +1703,7 @@ The video subscription list.
 }
 ```
 
-Used to update web page recording items.
+Used to update the web page recording configurations.
 <p><b>Note</b>:Only need to set in <b>web page recording</b> mode.</p>
 
 ### Properties
@@ -1783,8 +1783,8 @@ Used to update the configuration items recorded to CDN for web page recording.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| cname | string | true | The name of the channel where the recording service is located. The cname you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request needs to be the same as` yours`. |
-| uid | string | true | The string content is the UID used by the recording service in the RTC channel to identify the recording service. It needs to be the same as the UID you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request.`` |
+| cname | string | true | The name of the channel where the recording service is located. The `cname` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request needs to be the same . |
+| uid | string | true | The string content is the UID used by the recording service in the RTC channel to identify the recording service. It needs to be the same as the `uid` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request. |
 | clientRequest
  | object | true | [clientRequest-updateLayout](#schemaclientrequest-updatelayout) |
 
@@ -2058,8 +2058,8 @@ arrayobject [type].
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| cname | string | true | The name of the channel where the recording service is located. The cname you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request needs to be the same as` yours`. |
-| uid | string | true | The string content is the UID used by the recording service in the RTC channel to identify the recording service. It needs to be the same as the UID you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request.`` |
+| cname | string | true | The name of the channel where the recording service is located. The `cname` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request needs to be the same . |
+| uid | string | true | The string content is the UID used by the recording service in the RTC channel to identify the recording service. It needs to be the same as the `uid` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request. |
 | clientRequest
  | object | true | As described below. |
 | » async_stop | boolean | false | Set the response mechanism for the` stop` method:<br> - `true`: asynchronous. Immediately receive a response after calling` stop`. <br>- `false`: synchronous. After calling `stop`, you need to wait for all the recorded files to be uploaded to the third-party cloud storage before receiving a response. Agora expects the upload time to be no more than 20 seconds. If the upload exceeds the time limit, you will receive error code `50`. |
