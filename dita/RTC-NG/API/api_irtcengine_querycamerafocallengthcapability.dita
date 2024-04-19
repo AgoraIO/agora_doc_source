@@ -36,12 +36,12 @@
             </dl>
             <p>如需开启摄像头广角、超广角拍摄模式，建议你先调用该方法查询设备是否具备相应的焦距能力，再根据查询结果调用 <xref keyref="setCameraCapturerConfiguration"/> 调整摄像头的焦距配置，以达到最佳的摄像头采集效果。</p>
             <note type="attention" props="cpp unreal bp flutter unity">该方法仅适用于 Android 和 iOS。</note> </section>
-        <section id="parameters" props="cpp">
+        <section id="parameters" props="cpp unity">
             <title>参数</title>
             <parml>
             <plentry>
                 <pt>focalLengthInfos</pt>
-                <pd>输入和输出参数。指向 <xref keyref="FocalLengthInfo"/> 对象数组的指针：<ul>
+                <pd>输入和输出参数。<xref keyref="FocalLengthInfo"/> 对象数组：<ul>
                     <li>输入值：指定焦距信息的存储位置。</li>
                     <li>输出值：输出查询到的摄像头焦距信息。</li></ul>
                 </pd>
@@ -56,9 +56,13 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <p props="android ios">返回一个 <xref keyref="FocalLengthInfo"/> 对象，其中包含摄像头支持的焦距信息。</p>
-            <ul props="cpp">
+            <p props="android ios flutter">返回 <xref keyref="FocalLengthInfo"/> 对象数组，其中包含摄像头支持的焦距信息。</p>
+            <p props="rn">返回一个对象，其中包含：
+            <ul>
+                <li><parmname>focalLengthInfos</parmname>： <xref keyref="FocalLengthInfo"/> 对象数组，其中包含摄像头支持的焦距信息。</li>
+                <li><parmname>size</parmname>：查询到的焦距信息数量。</li></ul>
+            </p>
+            <ul props="cpp unity">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
             </ul> </section>
