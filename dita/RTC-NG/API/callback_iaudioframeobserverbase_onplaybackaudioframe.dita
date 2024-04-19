@@ -19,12 +19,12 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onPlaybackAudioFrame:(AgoraAudioFrame* _Nonnull)frame;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual bool onPlaybackAudioFrame(const char* channelId, AudioFrame&amp; audioFrame) = 0;</codeblock>
             <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnPlaybackAudioFrame, const FString, channelId, const FAudioFrame&amp;, audioFrame);</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">  onPlaybackAudioFrame?(channelId: string, audioFrame: AudioFrame): boolean;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onPlaybackAudioFrame?(channelId: string, audioFrame: AudioFrame): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual bool OnPlaybackAudioFrame(string channelId, AudioFrame audio_frame)
         {
             return true;
         }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">  onPlaybackAudioFrame?(channelId: string, audioFrame: AudioFrame): boolean;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onPlaybackAudioFrame?(channelId: string, audioFrame: AudioFrame): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(String channelId, AudioFrame audioFrame)?
       onPlaybackAudioFrame;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"/></p>
@@ -44,6 +44,6 @@
             </ul></note>
         <p props="unity">为保证播放的音频数据格式符合预期，你可以调用 <xref keyref="setPlaybackAudioFrameParameters"/> 设置音频数据格式后，调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象，SDK 会根据该方法中的参数计算采样间隔，并根据该采样间隔触发 <apiname keyref="onPlaybackAudioFrame"/> 回调。</p></section>
         <section id="parameters" conkeyref="onMixedAudioFrame/parameters"/>
-        <section id="return_values" conkeyref="onMixedAudioFrame/return_values" props="native unreal bp unity electron rn cs"/>
+        <section id="return_values" conkeyref="onMixedAudioFrame/return_values" props="native unreal bp unity cs"/>
     </refbody>
 </reference>

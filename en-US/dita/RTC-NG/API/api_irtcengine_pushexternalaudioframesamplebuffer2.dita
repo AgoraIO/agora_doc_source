@@ -1,43 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_pushexternalaudioframesamplebuffer2">
-    <title><ph keyref="pushExternalAudioFrameSampleBuffer2" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Pushes external CMSampleBuffer audio frames to the specified position</ph>.</shortdesc>
+    <title><ph keyref="pushExternalAudioFrameSampleBuffer2"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Pushes the external CMSampleBuffer audio frames to the channel through a custom audio track.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="pushExternalAudioFrameSampleBuffer2" />
+                <indexterm keyref="pushExternalAudioFrameSampleBuffer2"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)pushExternalAudioFrameSampleBuffer:(AgoraAudioExternalSourcePos)sourcePos sampleBuffer:(CMSampleBufferRef _Nonnull)sampleBuffer;</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)pushExternalAudioFrameSampleBuffer:(CMSampleBufferRef _Nonnull)sampleBuffer 
+                               sampleRate:(NSInteger)sampleRate 
+                                 channels:(NSInteger)channels
+                                  trackId:(NSInteger)trackId NS_SWIFT_NAME(pushExternalAudioFrameSampleBuffer(_:sampleRate:channels:trackId:));</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity cs" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
            <codeblock props="flutter" outputclass="language-dart"/> 
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc" conkeyref="pushAudioFrame2/detailed_desc" />
+        <section id="detailed_desc">
+            <title>Details</title>
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.3.1</dd>
+            </dlentry>
+            </dl>
+            <note type="attention" conkeyref="pushAudioFrame2/sequence"/>
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry conkeyref="pushAudioFrame2/sourcepos">
-                <pt />
-                <pd />
-            </plentry>
             <plentry conkeyref="pushExternalAudioFrameSampleBuffer1/samplebuffer">
-                <pt />
-                <pd />
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="pushAudioFrame2/samplerate">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="pushAudioFrame2/channels">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="pushAudioFrame2/trackid">
+                <pt/>
+                <pd/>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title>Returns</title>
             <ul>
             <li>0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>
 </reference>

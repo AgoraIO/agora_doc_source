@@ -58,6 +58,7 @@
             <ul id="ul_sz1_y1l_mqb">
             <li>This method allows users to join only one channel at a time.</li>
             <li>Ensure that the app ID you use to generate the token is the same app ID that you pass in the <xref keyref="initialize" /> method; otherwise, you may fail to join the channel by token.</li>
+            <li>If you choose the Testing Mode (using an App ID for authentication) for your project and call this method to join a channel, you will automatically exit the channel after 24 hours.</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -69,7 +70,7 @@
             <plentry id="channelID">
                 <pt>channelId</pt>
                 <pd>
-                    <p id="channelID_desc">The channel name. This parameter signifies the channel in which users engage in real-time audio and video interaction. Under the premise of the same App ID, users who fill in the same channel ID enter the same channel for audio and video interaction. The string length must be less than 64 bytes. Supported characters:<ul id="char_support">
+                    <p id="channelID_desc">The channel name. This parameter signifies the channel in which users engage in real-time audio and video interaction. Under the premise of the same App ID, users who fill in the same channel ID enter the same channel for audio and video interaction. The string length must be less than 64 bytes. Supported characters (89 characters in total):<ul id="char_support">
                     <li>All lowercase English letters: a to z.</li>
                     <li>All uppercase English letters: A to Z.</li>
                     <li>All numeric characters: 0 to 9.</li>
@@ -94,7 +95,7 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul>
             <li props="native unreal bp unity rn electron cs">0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul>
