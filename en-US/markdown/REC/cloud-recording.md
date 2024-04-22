@@ -1166,8 +1166,8 @@ Configurations of user's background image.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| captureInterval | number | false | The capturing cycle for Cloud Recording regular screenshots. The unit is seconds. |
-| file type | array[string] | true | Screenshot file format. fileType can only take `["jpg"]`, setting screenshots to the JPG format. |
+| captureInterval | number | false | The cycle for regular screenshots in the cloud recording. The unit is seconds. |
+| file type | array[string] | true | The file format of screenshots. Currently only `["jpg"]` is supported, which generates screenshot files in JPG format. |
 
 ## extensionServiceConfig
 <!-- backwards compatibility -->
@@ -1920,7 +1920,7 @@ Fields returned in **web page recording **mode.
 
 #### Scenario 2
 
-Fields that are returned when in **individual recording** mode and **video capture** is turned on.
+Fields that are returned when in **individual recording** mode and **video screenshot capture** is turned on.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
@@ -1929,7 +1929,7 @@ Fields that are returned when in **individual recording** mode and **video captu
 
 #### Scenario 3
 
-Fields returned in scenes other than individual video screenshots and page recording.
+Fields returned in scenarios other than individual video screenshot capturing and web page recording.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
@@ -2135,7 +2135,7 @@ Fields that will be returned in the web page recording scenario.
 
 #### Scenario 2
 
-Fields returned in the screenshot scene of individual video.
+Fields returned in the case of individual video screenshot capturing .
 
 | Name | Type | Required | Description |
 |---|---|---|---|
@@ -2143,7 +2143,7 @@ Fields returned in the screenshot scene of individual video.
 
 #### Scenario 3
 
-Fields returned in scenes other than individual video screenshots and page recording.
+Fields returned in scenarios other than individual video screenshot capturing and web page recording.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
