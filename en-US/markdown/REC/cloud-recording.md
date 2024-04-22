@@ -1262,7 +1262,7 @@ The following fields need to be set when **web page recording**:
 | Name | Type | Required | Description |
 |---|---|---|---|
 | outputs | array[object] | true | As described below. |
-| rtmpUrl | string | true | The CDN address which you want to push stream to. |
+| rtmpUrl | string | true | The CDN address which you push the stream to. |
 
 
 ## appsCollection
@@ -1594,7 +1594,7 @@ Configurations for the recorded files generated under postponed transcoding or a
 |---|---|---|---|
 | streamSubscribe | [streamSubscribe](#schemastreamsubscribe) | false | Update subscription lists.<br><p><b>Note: </b>You only need to set this field in <b>individual recording</b> and <b>composite recording</b> modes.</p> |
 | webRecordingConfig | [webRecordingConfig](#schemawebrecordingconfig) | false | Used to update the web page recording configurations.<br><p><b>Note</b>:Only need to set in <b>web page recording</b> mode.</p> |
-| rtmpPublishConfig | [rtmpPublishConfig](#schemaRtmpPublishConfig) | false | Used to update the configurations for pushing web page recording to the CDN. <br><p><b>Note</b>: This should only be set when you are in <b>web page recording</b> mode and are <b>forwarding the recording to a CDN</b>.<p> |
+| rtmpPublishConfig | [rtmpPublishConfig](#schemaRtmpPublishConfig) | false | Used to update the configurations for pushing web page recording to the CDN. <br><p><b>Note</b>: This should only be set when you <b>push media stream to the CDN</b> during a<b>web page recording</b>.<p> |
 
 ## streamSubscribe
 <!-- backwards compatibility -->
@@ -1730,14 +1730,14 @@ Used to update the web page recording configurations.
 ```
 
 Used to update the configurations for pushing web page recording to the CDN.
-<p><b>Note</b>: This should only be set when you are in <b>web page recording</b> mode and are <b>forwarding the recording to a CDN</b>.<p>
+<p><b>Note</b>: This should only be set when you <b>push media stream to the CDN</b> during a<b>web page recording</b>.<p>
 
 ### Properties
 
 | Name | Type | Required | Description |
 |---|---|---|---|
 | outputs | array[object] | false | As described below. |
-| rtmpUrl | string | false | The CDN live streaming URL.<br><p><b>Note</b>:<br><li>URL only supports RTMP and RTMPS protocols.</li><br><li>The maximum number of supported CDN routes for retweeting is 1.</li><br></p> |
+| rtmpUrl | string | false | The CDN URL where you push the stream to.<br><p><b>Note</b>:<br><li>URL only supports RTMP and RTMPS protocols.</li><br><li>The maximum number of streams being pushed to the CDN is 1.</li><br></p> |
 
 ## updateLayout-request
 <!-- backwards compatibility -->
@@ -1996,13 +1996,13 @@ The following fields will be returned during web page recording.
 
 #### Scenario 2
 
-When recording the web page recording to CDN, the following fields will be returned.
+When push the web page recording to CDN, the following fields will be returned.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
 | outputs | array[object] | false | As described below. |
-| rtmpUrl | string | false | The CDN address which you want to push stream to. |
-| status | string | false | web page recording current streaming status:<br> - `"connecting": connecting` to the CDN server. <br>- `"publishing"`: currently streaming. <br>- `"onhold"`: Set whether to pause the live stream. <br>`"Disconnected"`: Failed to connect to the CDN server. Agora suggests that you change the CDN streaming address. |
+| rtmpUrl | string | false | The CDN address which you push the stream to. |
+| status | string | false | The current status of stream pushing of the web page recording :<br> - `"connecting"`: connecting to the CDN server. <br>- `"publishing"`: currently streaming. <br>- `"onhold"`: Set whether to pause the live stream. <br>- `"disconnected"`: Failed to connect to the CDN server. Agora suggests that you change the CDN address to push the stream to. |
 | state | string | false | The status of uploading subscription content to the extension service:<br> - `"init"`: Service is initializing. <br>- `"inProgress"`: The service has started and is currently in progress. <br>- `"exit"`: Service exit. |
 
 
