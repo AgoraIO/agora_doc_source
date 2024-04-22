@@ -1262,7 +1262,7 @@ The following fields need to be set when **web page recording**:
 | Name | Type | Required | Description |
 |---|---|---|---|
 | outputs | array[object] | true | As described below. |
-| rtmpUrl | string | true | The CDN address where the media streams being pushed to. |
+| rtmpUrl | string | true | The CDN address which you want to push stream to. |
 
 
 ## appsCollection
@@ -1594,7 +1594,7 @@ Configurations for the recorded files generated under postponed transcoding or a
 |---|---|---|---|
 | streamSubscribe | [streamSubscribe](#schemastreamsubscribe) | false | Update subscription lists.<br><p><b>Note: </b>You only need to set this field in <b>individual recording</b> and <b>composite recording</b> modes.</p> |
 | webRecordingConfig | [webRecordingConfig](#schemawebrecordingconfig) | false | Used to update the web page recording configurations.<br><p><b>Note</b>:Only need to set in <b>web page recording</b> mode.</p> |
-| rtmpPublishConfig | [rtmpPublishConfig](#schemaRtmpPublishConfig) | false | Used to update the configurations for pushing web page recording to the CDN. <br><p><b>Note</b>:Only need to set in <b>web page recording</b> mode and <b>pushing web page recording to the CDN</b>.<p> |
+| rtmpPublishConfig | [rtmpPublishConfig](#schemaRtmpPublishConfig) | false | Used to update the configurations for pushing web page recording to the CDN. <br><p><b>Note</b>: This should only be set when you are in <b>web page recording</b> mode and are <b>forwarding the recording to a CDN</b>.<p> |
 
 ## streamSubscribe
 <!-- backwards compatibility -->
@@ -1730,7 +1730,7 @@ Used to update the web page recording configurations.
 ```
 
 Used to update the configurations for pushing web page recording to the CDN.
-<p><b>Note</b>:Only need to set in <b>web page recording</b> mode and <b>pushing web page recording to the CDN</b>.<p>
+<p><b>Note</b>: This should only be set when you are in <b>web page recording</b> mode and are <b>forwarding the recording to a CDN</b>.<p>
 
 ### Properties
 
@@ -2001,7 +2001,7 @@ When recording the web page recording to CDN, the following fields will be retur
 | Name | Type | Required | Description |
 |---|---|---|---|
 | outputs | array[object] | false | As described below. |
-| rtmpUrl | string | false | The CDN address where the media streams being pushed to. |
+| rtmpUrl | string | false | The CDN address which you want to push stream to. |
 | status | string | false | web page recording current streaming status:<br> - `"connecting": connecting` to the CDN server. <br>- `"publishing"`: currently streaming. <br>- `"onhold"`: Set whether to pause the live stream. <br>`"Disconnected"`: Failed to connect to the CDN server. Agora suggests that you change the CDN streaming address. |
 | state | string | false | The status of uploading subscription content to the extension service:<br> - `"init"`: Service is initializing. <br>- `"inProgress"`: The service has started and is currently in progress. <br>- `"exit"`: Service exit. |
 
