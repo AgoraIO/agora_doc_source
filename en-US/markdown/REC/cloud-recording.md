@@ -1207,7 +1207,7 @@ Configurations for extended services.
 |---|---|---|---|
 | errorHandlePolicy | string | false | Error handling policy. You can only set it to the default value, `"error_abort"`, which means that once an error occurs to an extension service, all other non-extension services, such as stream subscription, also stop. |
 | extension services | array[object] | true | As described below. |
-| » serviceName | string | true | Name of the extended service:<br> - `web_recorder_service`: Represents the extended service is **web page recording**. <br>- `rtmp_publish_service`: Represents the extended service is to **push web page recording to the CDN**. |
+| » serviceName | string | true | Name of the extended service:<br>- `web_recorder_service`: Represents the extended service is **web page recording**. <br>- `rtmp_publish_service`: Represents the extended service is to **push web page recording to the CDN**. |
 | "errorHandlePolicy" | string | false | Error handling strategy within the extension service:<br> - `"error_abort"`: the default and only value during **web page recording**. Stop other extension services when the current extension service encounters an error. <br>- `"error_ignore"`: The only default value when you **push the web page recording to the CDN**. Other extension services are not affected when the current extension service encounters an error.<br><p>If the web page recording service or the recording upload service is abnormal, pushing the stream to the CDN will fail. Therefore, errors in the <b>web page recording</b> service can affect the service of <b>pushing page recording to the CDN</b>.</p><br><p>When an exception occurs during the process of pushing to the CDN, web page recording is not affected.</p> |
 | » serviceParam | [serviceParam](#schemaserviceparam) | true | Specific configuration items for extending services. |
 
@@ -1237,7 +1237,7 @@ Configurations for extended services.
 
 ### Properties
 
-#### Scenario One
+#### Scenario 1
 
 The following fields need to be set when **web page recording**:
 
@@ -1909,7 +1909,7 @@ Used to update the configurations for pushing web page recording to the CDN.
 
 ### Properties
 
-#### Scenario One
+#### Scenario 1
 
 Fields returned in **web page recording **mode.
 
@@ -1927,14 +1927,14 @@ Fields that are returned when in **individual recording** mode and **video captu
 | status | number | false | Current status of the cloud service:<br>- `0`: Cloud service has not started. <br>- `1`: The cloud service initialization is complete. <br>- `2`: The cloud service components are starting. <br>- `3`: Some cloud service components are ready. <br>- `4`: All cloud service components are ready. <br>- `5`: The cloud service is in progress. <br>- `6`: The cloud service receives the request to stop. <br>- `7`: All components of the cloud service stops. <br>- `8`: The cloud service exits. <br>- `20`: The cloud service exits abnormally. |
 | sliceStartTime | number | false | Recording start time, the Unix timestamp, in milliseconds. |
 
-#### Case three
+#### Scenario 3
 
 Fields returned in scenes other than individual video screenshots and page recording.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
 | status | number | false | Current status of the cloud service:<br>- `0`: Cloud service has not started. <br>- `1`: The cloud service initialization is complete. <br>- `2`: The cloud service components are starting. <br>- `3`: Some cloud service components are ready. <br>- `4`: All cloud service components are ready. <br>- `5`: The cloud service is in progress. <br>- `6`: The cloud service receives the request to stop. <br>- `7`: All components of the cloud service stops. <br>- `8`: The cloud service exits. <br>- `20`: The cloud service exits abnormally. |
-| fileListMode | string | false | `fileList` 字段的数据格式：<br>- `"string"`：`fileList` 为 String 类型。 composite recording mode, if `avFileType` is set to `["hls"]`, `fileListMode` is `"string"`. <br>`"json"`: `fileList` is a JSONArray. When `avFileType` is set to `["hls","mp4"] in single-composite` recording recording mode, `fileListMode` is set to `"json"`. |
+| fileListMode | string | false | Data format of `fileList` field: <br>- `"string"`: `fileList` is of String type. In composite recording mode, if `avFileType` is set to `["hls"]`, `fileListMode` is `"string"`. <br>- `"json"`: `fileList` is a JSON Array. When `avFileType` is set to `["hls","mp4"] in the individual or composite` recording mode, `fileListMode` is set to `"json"`. |
 | fileList | [fileList-string](#schemafilelist-string) or [fileList-json](#schemafilelist-json) | false | [fileList-string](#schemafilelist-string) or [fileList-json](#schemafilelist-json) |
 | sliceStartTime | number | false | Recording start time, the Unix timestamp, in milliseconds. |
 
@@ -1943,7 +1943,7 @@ Fields returned in scenes other than individual video screenshots and page recor
 
 | Type | Required | Description |
 |---|---|---|
-| string | false | The file name of the M3U8 file generated during recording. |
+| string | false | The filename of the M3U8 file generated by the recording. |
 
 
 ## extensionServiceState
@@ -1976,23 +1976,23 @@ Fields returned in scenes other than individual video screenshots and page recor
 | Name | Type | Required | Description |
 |---|---|---|---|
 | payload | object | false | [payload](#payload) |
-| serviceName | string | false | Name of the extended service:<br> - `web_recorder_service`: Represents the extended service is **web page recording**. <br>- `rtmp_publish_service`: Represents the extended service is to **push web page recording to the CDN**. |
+| serviceName | string | false | Name of the extended service:<br>- `web_recorder_service`: Represents the extended service is **web page recording**. <br>- `rtmp_publish_service`: Represents the extended service is to **push web page recording to the CDN**. |
 
 ## payload
 
 ### Properties
 
-#### Scenario One
+#### Scenario 1
 
 The following fields will be returned during web page recording.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
 | fileList | array[object] | false | As described below. |
-| filename | string | false | The file names of the M3U8 and MP4 files generated during recording. |
+| » filename | string | false | The file names of the M3U8 and MP4 files generated during recording. |
 | » sliceStartTime | number | false | The recording start time of the file, the Unix timestamp, in seconds. |
-| onhold | boolean | false | web page recording in pause state:<br> - `true`: in pause state. <br>- `false`: in running state. |
-| state | string | false | The status of uploading subscription content to the extension service:<br> - `"init"`: Service is initializing. <br>- `"inProgress"`: The service has started and is currently in progress. <br>- `"exit"`: Service exit. |
+| onhold | boolean | false | Whether the page recording is in pause state:<br>- `true`: in pause state. <br>- `false`: the page recording is running. |
+| state | string | false | The status of uploading subscription content to the extension service:<br>- `"init"`: The service is initializing. <br>- `"inProgress"`: The service has started and is currently in progress. <br>- `"exit"`: Service exits. |
 
 #### Scenario 2
 
@@ -2002,8 +2002,8 @@ When push the web page recording to CDN, the following fields will be returned.
 |---|---|---|---|
 | outputs | array[object] | false | As described below. |
 | » rtmpUrl | string | false | The CDN address which you push the stream to. |
-| status | string | false | The current status of stream pushing of the web page recording :<br> - `"connecting"`: connecting to the CDN server. <br>- `"publishing"`: currently streaming. <br>- `"onhold"`: Set whether to pause the live stream. <br>- `"disconnected"`: Failed to connect to the CDN server. Agora suggests that you change the CDN address to push the stream to. |
-| state | string | false | The status of uploading subscription content to the extension service:<br> - `"init"`: Service is initializing. <br>- `"inProgress"`: The service has started and is currently in progress. <br>- `"exit"`: Service exit. |
+| » status | string | false | The current status of stream pushing of the web page recording :<br> - `"connecting"`: connecting to the CDN server. <br>- `"publishing"`: The stream pushing is going on. <br>- `"onhold"`: Set whether to pause the stream pushing. <br>- `"disconnected"`: Failed to connect to the CDN server. Agora suggests that you change the CDN address to push the stream to. |
+| state | string | false | The status of uploading subscription content to the extension service:<br>- `"init"`: The service is initializing. <br>- `"inProgress"`: The service has started and is currently in progress. <br>- `"exit"`: Service exits. |
 
 
 ## fileList-json
@@ -2023,14 +2023,14 @@ When push the web page recording to CDN, the following fields will be returned.
   }
 ]
 ```
-arrayobject [type].
+array[object] type.
 
 ### Properties
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| filename | string | false | The file names of the M3U8 and MP4 files generated during recording. |
-| trackType | string | false | The format of the recording file. <br>`"audio": Audio `file. <br>`"video": Video `file (no audio). <br>`"audio_and_video": Video `file (with audio). |
+| fileName | string | false | The file names of the M3U8 and MP4 files generated during recording. |
+| trackType | string | false | The recording file type. <br>`"audio": Audio `file. <br>`"video": Video `file (no audio). <br>`"audio_and_video": Video `file (with audio). |
 | uid | string | false | User UID, indicating which user's audio or video stream is being recorded. composite recording mode, the `uid` is `"0"`. |
 | mixedAllUser | boolean | false | Is the user recorded separately. <br>`true`: All users are recorded in a single file. <br>`false`: Each user is recorded separately. |
 | isPlayable | boolean | false | Can it be played online? `true`: <br>The file can be played online. `false`: <br>The file cannot be played online. |
@@ -2123,7 +2123,7 @@ arrayobject [type].
 
 ### Properties
 
-#### Scenario One
+#### Scenario 1
 
 Fields returned web page recording scene.
 
@@ -2141,13 +2141,13 @@ Fields returned in the screenshot scene of individual video.
 |---|---|---|---|
 | uploadingStatus | string | false | <br>`"uploaded"`: All the recorded files are uploaded to the third-party cloud storage. <br>`"backuped"`: Some of the recorded files fail to upload to the third-party cloud storage and upload to Agora Cloud Backup instead. Agora Cloud Backup automatically uploads these files to your cloud storage. <br>`"unknown": Unknown `status. |
 
-#### Case three
+#### Scenario 3
 
 Fields returned in scenes other than individual video screenshots and page recording.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| fileListMode | string | false | `fileList` 字段的数据格式：<br>- `"string"`：`fileList` 为 String 类型。 composite recording mode, if `avFileType` is set to `["hls"]`, `fileListMode` is `"string"`. <br>`"json"`: `fileList` is a JSONArray. When `avFileType` is set to `["hls","mp4"] in single-composite` recording recording mode, `fileListMode` is set to `"json"`. |
+| fileListMode | string | false | Data format of `fileList` field: <br>- `"string"`: `fileList` is of String type. In composite recording mode, if `avFileType` is set to `["hls"]`, `fileListMode` is `"string"`. <br>- `"json"`: `fileList` is a JSON Array. When `avFileType` is set to `["hls","mp4"] in the individual or composite` recording mode, `fileListMode` is set to `"json"`. |
 | fileList | [fileList-string](#schemafilelist-string) or [fileList-json](#schemafilelist-json) | false | [fileList-string](#schemafilelist-string) or [fileList-json](#schemafilelist-json) |
 | uploadingStatus | string | false | <br>`"uploaded"`: All the recorded files are uploaded to the third-party cloud storage. <br>`"backuped"`: Some of the recorded files fail to upload to the third-party cloud storage and upload to Agora Cloud Backup instead. Agora Cloud Backup automatically uploads these files to your cloud storage. <br>`"unknown": Unknown `status. |
 
@@ -2155,7 +2155,7 @@ Fields returned in scenes other than individual video screenshots and page recor
 
 ### Properties
 
-#### Scenario One
+#### Scenario 1
 
 Fields returned **by the upload service in ****web page recording **mode.
 
@@ -2170,9 +2170,9 @@ Fields returned **by the upload service in ****web page recording **mode.
 | Name | Type | Required | Description |
 |---|---|---|---|
 | fileList | array[object] | false | As described below. |
-| filename | string | false | The file names of the M3U8 and MP4 files generated during recording. |
+| » filename | string | false | The file names of the M3U8 and MP4 files generated during recording. |
 | » sliceStartTime | number | false | The recording start time of the file, the Unix timestamp, in seconds. |
-| onhold | boolean | false | web page recording in pause state:<br> - `true`: in pause state. <br>- `false`: in running state. |
-| state | string | false | The status of uploading subscription content to the extension service:<br> - `"init"`: Service is initializing. <br>- `"inProgress"`: The service has started and is currently in progress. <br>- `"exit"`: Service exit. |
+| onhold | boolean | false | Whether the page recording is in pause state:<br>- `true`: in pause state. <br>- `false`: the page recording is running. |
+| state | string | false | The status of uploading subscription content to the extension service:<br>- `"init"`: The service is initializing. <br>- `"inProgress"`: The service has started and is currently in progress. <br>- `"exit"`: Service exits. |
 
 
