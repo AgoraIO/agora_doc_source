@@ -42,7 +42,7 @@
             <plentry>
                 <pt>focalLengthInfos</pt>
                 <pd props="cpp">Input and output parameter. The pointer to an array of <xref keyref="FocalLengthInfo"/> objects:<ul>
-                    <li>Input value: Pointer to an array of <xref keyref="FocalLengthInfo"/> objects, used to store focal length information.</li>
+                    <li>Input value: The pointer to an array of <xref keyref="FocalLengthInfo"/> objects, used to store focal length information.</li>
                     <li>Output value: After the method is executed, output the queried focal length information.</li></ul>
                 </pd>
                 <pd props="unity">An output parameter. After the method is executed, output an array of <xref keyref="FocalLengthInfo"/> objects containing camera focal length information.</pd>
@@ -50,18 +50,18 @@
             <plentry>
                 <pt>size</pt>
                 <pd props="cpp">Input and output parameter. The number of focal length information items:<ul>
-                    <li>Input value: Specifies the maximum number of focal length information items that the <parmname>focalLengthInfos</parmname> array can hold. Ensure this value is not less than 8, meaning the <parmname>focalLengthInfos</parmname> array has space for at least 8 focal length information items.</li>
-                    <li>Output value: After the method is executed, output the number of queried focal length information items.</li></ul>
+                    <li>Input value: Specifies the maximum number of focal length information items that <parmname>focalLengthInfos</parmname> can hold. Ensure this value is not less than 8, meaning <parmname>focalLengthInfos</parmname> has space for at least 8 focal length information items.</li>
+                    <li>Output value: After the method is executed, output the number of focal length information items retrieved.</li></ul>
                 </pd>
-                <pd props="unity">An output parameter. 方法执行后，输出查询到的焦距信息数量。</pd>
+                <pd props="unity">An output parameter. Output parameter. After the method is executed, output the number of focal length information items retrieved.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="android ios flutter">返回 <xref keyref="FocalLengthInfo"/> 对象数组，其中包含摄像头的方向和焦距类型。</p>
-            <p props="rn">返回一个包含以下属性的对象：<ul>
-                <li><parmname>focalLengthInfos</parmname>：<xref keyref="FocalLengthInfo"/> 对象数组，其中包含摄像头的方向和焦距类型。</li>
-                <li><parmname>size</parmname>：实际查询到的焦距信息数量。</li></ul>
+            <p props="android ios flutter">Returns an array of <xref keyref="FocalLengthInfo"/> objects, which contain the camera's orientation and focal length type.</p>
+            <p props="rn">Returns an object containing the following properties:<ul>
+                <li><parmname>focalLengthInfos</parmname>: An array of <xref keyref="FocalLengthInfo"/> objects, which contain the camera's orientation and focal length type.</li>
+                <li><parmname>size</parmname>: The number of focal length information items retrieved.</li></ul>
             </p>
             <ul props="cpp unity">
             <li>0: Success.</li>
