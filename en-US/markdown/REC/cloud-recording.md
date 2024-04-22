@@ -1594,7 +1594,7 @@ Configurations for the recorded files generated under postponed transcoding or a
 |---|---|---|---|
 | streamSubscribe | [streamSubscribe](#schemastreamsubscribe) | false | Update subscription lists.<br><p><b>Note: </b>You only need to set this field in <b>individual recording</b> and <b>composite recording</b> modes.</p> |
 | webRecordingConfig | [webRecordingConfig](#schemawebrecordingconfig) | false | Used to update the web page recording configurations.<br><p><b>Note</b>:Only need to set in <b>web page recording</b> mode.</p> |
-| rtmpPublishConfig | [rtmpPublishConfig](#schemaRtmpPublishConfig) | false | Used to update the configurations for pushing web page recording to the CDN. <br><p><b>Note</b>:Onlyneed to set in <b>web page recording</b> mode and <b>pushing web page recording to the CDN</b>.<p> |
+| rtmpPublishConfig | [rtmpPublishConfig](#schemaRtmpPublishConfig) | false | Used to update the configurations for pushing web page recording to the CDN. <br><p><b>Note</b>:Only need to set in <b>web page recording</b> mode and <b>pushing web page recording to the CDN</b>.<p> |
 
 ## streamSubscribe
 <!-- backwards compatibility -->
@@ -1730,7 +1730,7 @@ Used to update the web page recording configurations.
 ```
 
 Used to update the configurations for pushing web page recording to the CDN.
-<p><b>Note</b>:Onlyneed to set in <b>web page recording</b> mode and <b>pushing web page recording to the CDN</b>.<p>
+<p><b>Note</b>:Only need to set in <b>web page recording</b> mode and <b>pushing web page recording to the CDN</b>.<p>
 
 ### Properties
 
