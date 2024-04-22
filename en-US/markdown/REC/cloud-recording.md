@@ -1143,7 +1143,7 @@ Configurations of user's background image.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| avFileType | array[string] | false | Recorded video file type:<br> - `"hls"`: default value. The format of recorded files is M3U8 and TS. <br>- `"mp4"`: MP4 file. <br>**Note**:<br> - **Individual Recording **mode, and **not only in screenshot **mode, the default values can be used. <br>- **Composite recording **and **web page recording** modes, you need to set it as `["hls","mp4"]`. Setting it as `["mp4"]` will result in an error. After setting, the recording file behavior is as follows:<br> - In the composite recording mode, the recording service will create a new MP4 file when the current file duration exceeds about 2 hours or the file size exceeds about 2 GB.<br>    - Web page recording mode: The recording service will create a new MP4 file when the current file's duration exceeds `maxVideoDuration`. |
+| avFileType | array[string] | false | Recorded video file type:<br> - `"hls"`: default value. The format of recorded files is M3U8 and TS. <br>- `"mp4"`: MP4 file. <br>**Note**:<br>- In **individual recording** mode and **not in screenshot-only** case, you can use the default value. <br>- **Composite recording **and **web page recording** modes, you need to set it as `["hls","mp4"]`. Setting it as `["mp4"]` will result in an error. After setting, the recording file behavior is as follows:<br> - In the composite recording mode, the recording service will create a new MP4 file when the current file duration exceeds about 2 hours or the file size exceeds about 2 GB.<br>    - Web page recording mode: The recording service will create a new MP4 file when the current file's duration exceeds `maxVideoDuration`. |
 
 ## snapshotConfig
 <!-- backwards compatibility -->
@@ -1166,7 +1166,7 @@ Configurations of user's background image.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| captureInterval | number | false | Screenshot cycle for Cloud Recording regular screenshots. The unit is seconds. |
+| captureInterval | number | false | The capturing cycle for Cloud Recording regular screenshots. The unit is seconds. |
 | file type | array[string] | true | Screenshot file format. fileType can only take `["jpg"]`, setting screenshots to the JPG format. |
 
 ## extensionServiceConfig
@@ -2030,10 +2030,10 @@ array[object] type.
 | Name | Type | Required | Description |
 |---|---|---|---|
 | fileName | string | false | The file names of the M3U8 and MP4 files generated during recording. |
-| trackType | string | false | The recording file type. <br>`"audio": Audio `file. <br>`"video": Video `file (no audio). <br>`"audio_and_video": Video `file (with audio). |
+| trackType | string | false | The recording file type. <br>- `"audio"`: Audio-only files. <br>- `"video"`: Video-only files. <br>- `"audio_and_video"`: audio and video files |
 | uid | string | false | User UID, indicating which user's audio or video stream is being recorded. composite recording mode, the `uid` is `"0"`. |
-| mixedAllUser | boolean | false | Is the user recorded separately. <br>`true`: All users are recorded in a single file. <br>`false`: Each user is recorded separately. |
-| isPlayable | boolean | false | Can it be played online? `true`: <br>The file can be played online. `false`: <br>The file cannot be played online. |
+| mixedAllUser | boolean | false | Whether the users were recorded separately. <br>- `true`: All users are recorded in a single file. <br>- `false`: Each user is recorded separately. |
+| isPlayable | boolean | false | Whether or not can be played online. <br>- `true`: The file can be played online. <br>- `false`: The file cannot be played online. |
 | sliceStartTime | number | false | The recording start time of the file, the Unix timestamp, in seconds. |
 
 ## stop-request
@@ -2062,9 +2062,9 @@ array[object] type.
 | uid | string | true | The string content is the UID used by the recording service in the RTC channel to identify the recording service. It needs to be the same as the `uid` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request. |
 | clientRequest
  | object | true | As described below. |
-| » async_stop | boolean | false | Set the response mechanism for the` stop` method:<br> - `true`: asynchronous. Immediately receive a response after calling` stop`. <br>- `false`: synchronous. After calling `stop`, you need to wait for all the recorded files to be uploaded to the third-party cloud storage before receiving a response. Agora expects the upload time to be no more than 20 seconds. If the upload exceeds the time limit, you will receive error code `50`. |
+| » async_stop | boolean | false | Set the response mechanism for the `stop` method:<br>- `true`: Asynchronous. Immediately receive a response after calling `stop`. <br>- `false`: Synchronous. After calling `stop`, you need to wait for all the recorded files to be uploaded to the third-party cloud storage before receiving a response. Agora expects the upload time to be no more than 20 seconds. If the upload exceeds the time limit, you will receive an error code of `50`. |
 
-## stop response
+## stop-response
 <!-- backwards compatibility -->
 <a id="schemastop-response"></a>
 
@@ -2125,13 +2125,13 @@ array[object] type.
 
 #### Scenario 1
 
-Fields returned web page recording scene.
+Fields that will be returned in the web page recording scenario.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
 | extensionServiceState | array[object] | false | As described below. |
-| playload | object | false | [playload-stop](#playload-stop) |
-| » serviceName | string | false | Service Type:<br> - `"upload_service": Upload service`. <br>- `"web_recorder_service": Web recording service`. |
+| » playload | object | false | [playload-stop](#playload-stop) |
+| » serviceName | string | false | Service type:<br>- `"upload_service"`: Upload service. <br>- `"web_recorder_service"`: Web recording service. |
 
 #### Scenario 2
 
