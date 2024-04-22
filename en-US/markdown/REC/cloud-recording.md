@@ -1143,7 +1143,7 @@ Configurations of user's background image.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| avFileType | array[string] | false | Recorded video file type:<br> - `"hls"`: default value. The format of recorded files is M3U8 and TS. <br>- `"mp4"`: MP4 file. <br>**Note**:<br>- In **individual recording** mode and **not in screenshot-only** case, you can use the default value. <br>- **Composite recording **and **web page recording** modes, you need to set it as `["hls","mp4"]`. Setting it as `["mp4"]` will result in an error. After setting, the recording file behavior is as follows:<br> - In the composite recording mode, the recording service will create a new MP4 file when the current file duration exceeds about 2 hours or the file size exceeds about 2 GB.<br>    - Web page recording mode: The recording service will create a new MP4 file when the current file's duration exceeds `maxVideoDuration`. |
+| avFileType | array[string] | false | Recorded video file type:<br> - `"hls"`: default value. The format of recorded files is M3U8 and TS. <br>- `"mp4"`: MP4 files. <br>**Note**:<br>- In **individual recording** mode and **not in screenshot-only** case, you can use the default value. <br>- **Composite recording **and **web page recording** modes, you need to set it as `["hls","mp4"]`. Setting it as `["mp4"]` will result in an error. After setting, the recording file behavior is as follows:<br> - In the composite recording mode, the recording service will create a new MP4 file when the current file duration exceeds about 2 hours or the file size exceeds about 2 GB.<br>    - Web page recording mode: The recording service will create a new MP4 file when the current file's duration exceeds `maxVideoDuration`. |
 
 ## snapshotConfig
 <!-- backwards compatibility -->
@@ -1167,7 +1167,7 @@ Configurations of user's background image.
 | Name | Type | Required | Description |
 |---|---|---|---|
 | captureInterval | number | false | The cycle for regular screenshots in the cloud recording. The unit is seconds. |
-| file type | array[string] | true | The file format of screenshots. Currently only `["jpg"]` is supported, which generates screenshot files in JPG format. |
+| file Type | array[string] | true | The file format of screenshots. Currently only `["jpg"]` is supported, which generates screenshot files in JPG format. |
 
 ## extensionServiceConfig
 <!-- backwards compatibility -->
@@ -1206,9 +1206,9 @@ Configurations for extended services.
 | Name | Type | Required | Description |
 |---|---|---|---|
 | errorHandlePolicy | string | false | Error handling policy. You can only set it to the default value, `"error_abort"`, which means that once an error occurs to an extension service, all other non-extension services, such as stream subscription, also stop. |
-| extension services | array[object] | true | As described below. |
+| extensionServices | array[object] | true | As described below. |
 | » serviceName | string | true | Name of the extended service:<br>- `web_recorder_service`: Represents the extended service is **web page recording**. <br>- `rtmp_publish_service`: Represents the extended service is to **push web page recording to the CDN**. |
-| "errorHandlePolicy" | string | false | Error handling strategy within the extension service:<br> - `"error_abort"`: the default and only value during **web page recording**. Stop other extension services when the current extension service encounters an error. <br>- `"error_ignore"`: The only default value when you **push the web page recording to the CDN**. Other extension services are not affected when the current extension service encounters an error.<br><p>If the web page recording service or the recording upload service is abnormal, pushing the stream to the CDN will fail. Therefore, errors in the <b>web page recording</b> service can affect the service of <b>pushing page recording to the CDN</b>.</p><br><p>When an exception occurs during the process of pushing to the CDN, web page recording is not affected.</p> |
+| » errorHandlePolicy | string | false | Error handling strategy within the extension service:<br> - `"error_abort"`: the default and only value during **web page recording**. Stop other extension services when the current extension service encounters an error. <br>- `"error_ignore"`: The only default value when you **push the web page recording to the CDN**. Other extension services are not affected when the current extension service encounters an error.<br><p>If the web page recording service or the recording upload service is abnormal, pushing the stream to the CDN will fail. Therefore, errors in the <b>web page recording</b> service can affect the service of <b>pushing page recording to the CDN</b>.</p><br><p>When an exception occurs during the process of pushing to the CDN, web page recording is not affected.</p> |
 | » serviceParam | [serviceParam](#schemaserviceparam) | true | Specific configuration items for extending services. |
 
 ## serviceParam
@@ -2157,7 +2157,7 @@ Fields returned in scenarios other than video screenshot capturing during the in
 
 #### Scenario 1
 
-Fields returned **by the upload service in ****web page recording **mode.
+Fields returned by the **upload service** in **web page recording** mode.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
@@ -2165,7 +2165,7 @@ Fields returned **by the upload service in ****web page recording **mode.
 
 #### Scenario 2
 
-**web page recording **by the **web page recording service in page recording mode**.
+Fields returned by the **page recording service** in **web page recording** mode.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
