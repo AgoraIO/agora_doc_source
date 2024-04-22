@@ -1929,7 +1929,7 @@ Fields that are returned when in **individual recording** mode and **video scree
 
 #### Scenario 3
 
-Fields returned in scenarios other than individual video screenshot capturing and web page recording.
+Fields returned in scenarios other than video screenshot capturing during the individual recording and web page recording.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
@@ -2031,7 +2031,7 @@ array[object] type.
 |---|---|---|---|
 | fileName | string | false | The file names of the M3U8 and MP4 files generated during recording. |
 | trackType | string | false | The recording file type. <br>- `"audio"`: Audio-only files. <br>- `"video"`: Video-only files. <br>- `"audio_and_video"`: audio and video files |
-| uid | string | false | User UID, indicating which user's audio or video stream is being recorded. composite recording mode, the `uid` is `"0"`. |
+| uid | string | false | User UID, indicating which user's audio or video stream is being recorded. In composite recording mode, the `uid` is `"0"`. |
 | mixedAllUser | boolean | false | Whether the users were recorded separately. <br>- `true`: All users are recorded in a single file. <br>- `false`: Each user is recorded separately. |
 | isPlayable | boolean | false | Whether or not can be played online. <br>- `true`: The file can be played online. <br>- `false`: The file cannot be played online. |
 | sliceStartTime | number | false | The recording start time of the file, the Unix timestamp, in seconds. |
@@ -2135,21 +2135,21 @@ Fields that will be returned in the web page recording scenario.
 
 #### Scenario 2
 
-Fields returned in the case of individual video screenshot capturing .
+Fields returned in the case of video screenshot capturing during individual recording .
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| uploadingStatus | string | false | <br>`"uploaded"`: All the recorded files are uploaded to the third-party cloud storage. <br>`"backuped"`: Some of the recorded files fail to upload to the third-party cloud storage and upload to Agora Cloud Backup instead. Agora Cloud Backup automatically uploads these files to your cloud storage. <br>`"unknown": Unknown `status. |
+| uploadingStatus | string | false | Current upload status of the recording file:<br>- `"uploaded"`: All recording files have been uploaded to the specified third-party cloud storage. <br>- `"backuped"`: All files of this recording have been uploaded, but at least one TS file has been uploaded to the Agora Backup Cloud. The Agora server will automatically continue to upload this portion of the file to the designated third-party cloud storage. <br>- `"unknown": Unknown `status. |
 
 #### Scenario 3
 
-Fields returned in scenarios other than individual video screenshot capturing and web page recording.
+Fields returned in scenarios other than video screenshot capturing during the individual recording and web page recording.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
 | fileListMode | string | false | Data format of `fileList` field: <br>- `"string"`: `fileList` is of String type. In composite recording mode, if `avFileType` is set to `["hls"]`, `fileListMode` is `"string"`. <br>- `"json"`: `fileList` is a JSON Array. When `avFileType` is set to `["hls","mp4"] in the individual or composite` recording mode, `fileListMode` is set to `"json"`. |
 | fileList | [fileList-string](#schemafilelist-string) or [fileList-json](#schemafilelist-json) | false | [fileList-string](#schemafilelist-string) or [fileList-json](#schemafilelist-json) |
-| uploadingStatus | string | false | <br>`"uploaded"`: All the recorded files are uploaded to the third-party cloud storage. <br>`"backuped"`: Some of the recorded files fail to upload to the third-party cloud storage and upload to Agora Cloud Backup instead. Agora Cloud Backup automatically uploads these files to your cloud storage. <br>`"unknown": Unknown `status. |
+| uploadingStatus | string | false | Current upload status of the recording file:<br>- `"uploaded"`: All recording files have been uploaded to the specified third-party cloud storage. <br>- `"backuped"`: All files of this recording have been uploaded, but at least one TS file has been uploaded to the Agora Backup Cloud. The Agora server will automatically continue to upload this portion of the file to the designated third-party cloud storage. <br>- `"unknown": Unknown `status. |
 
 ## playload-stop
 
@@ -2161,7 +2161,7 @@ Fields returned **by the upload service in ****web page recording **mode.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| uploadingStatus | string | false | <br>`"uploaded"`: All the recorded files are uploaded to the third-party cloud storage. <br>`"backuped"`: Some of the recorded files fail to upload to the third-party cloud storage and upload to Agora Cloud Backup instead. Agora Cloud Backup automatically uploads these files to your cloud storage. <br>`"unknown": Unknown `status. |
+| uploadingStatus | string | false | Current upload status of the recording file:<br>- `"uploaded"`: All recording files have been uploaded to the specified third-party cloud storage. <br>- `"backuped"`: All files of this recording have been uploaded, but at least one TS file has been uploaded to the Agora Backup Cloud. The Agora server will automatically continue to upload this portion of the file to the designated third-party cloud storage. <br>- `"unknown": Unknown `status. |
 
 #### Scenario 2
 
