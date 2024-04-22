@@ -24,15 +24,30 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; muteAllRemoteAudioStreams(bool mute);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p id="desc">成功调用该方法后，本地用户会取消或恢复订阅所有远端用户的音频流，包括在调用该方法后加入频道的用户的音频流。</p>
             <note type="attention" id="note">
-            <ul>
-            <li>该方法需要在加入频道后调用。</li>
-            <li>如果需要在加入频道前设置默认不订阅远端用户音频流，可以在调用 <xref keyref="joinChannel2"/> 加入频道时设置 <parmname>autoSubscribeAudio</parmname> 为 <codeph><ph keyref="false"/></codeph>。</li>
-            <li props="hide"><ph>该方法的推荐设置详见<xref keyref="guide-set-subscribing-state">设置订阅状态</xref>。</ph></li>
-            </ul> </note> </section>
+            <p>如果需要在加入频道前设置默认不订阅远端用户音频流，可以在调用 <xref keyref="joinChannel2"/> 加入频道时设置 <parmname>autoSubscribeAudio</parmname> 为 <codeph><ph keyref="false"/></codeph>。</p>
+            </note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p/>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <ul><li>该方法需要在加入频道后调用。</li>
+                <li>如果你在离开频道后调用该方法，则下次加入频道时，将不会订阅任何用户的音频流。</li>
+            </ul></p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p/>
+        </section>
+        <section id="related" deliveryTarget="details">
+            <title>相关回调</title>
+            <p/>
+        </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
