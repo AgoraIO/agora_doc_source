@@ -17,10 +17,10 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)isCameraCenterStageSupported NS_SWIFT_NAME(isCameraCenterStageSupported());</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual bool isCameraCenterStageSupported() = 0;</codeblock>
             <codeblock props="bp" outputclass="language-cpp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity cs" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="electron" outputclass="language-typescript">abstract isCameraCenterStageSupported(): boolean;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract bool IsCameraCenterStageSupported();</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract isCameraCenterStageSupported(): boolean;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;bool> isCameraCenterStageSupported();</codeblock> </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
@@ -29,9 +29,9 @@
                 <dd>v4.3.1</dd>
             </dlentry>
             </dl>
-            <note type="attention" props="cpp">
-                <p>This method is for Windows and macOS only.</p>
-            </note>
+            <note type="attention" props="cpp flutter unreal bp unity">This method is for Windows and macOS only.</note>
+            <note type="attention" props="rn">This method applies to iOS only.</note>
+            <note type="attention" props="electron">This method applies to macOS only.</note>
             <p>Before calling <xref keyref="enableCameraCenterStage"/> to enable portrait lock, it is recommended to call this method to check if the current device supports portrait lock.</p>
         </section>
         <section id="timing" deliveryTarget="details">
