@@ -146,6 +146,8 @@ struct FRemoteAudioStats
   qoeQuality?: number;
 
   qualityChangedReason?: number;
+
+  e2eDelay?: number;
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class RemoteAudioStats
     {
@@ -166,6 +168,7 @@ struct FRemoteAudioStats
             publishDuration = 0;
             qoeQuality = 0;
             qualityChangedReason = 0;
+            public int e2eDelay;
         }
 
         public RemoteAudioStats(uint uid, int quality, int networkTransportDelay, int jitterBufferDelay,
@@ -236,8 +239,12 @@ struct FRemoteAudioStats
   qoeQuality?: number;
 
   qualityChangedReason?: number;
+
+  e2eDelay?: number;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class RemoteAudioStats {
+            <codeblock props="flutter" outputclass="language-dart">
+@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class RemoteAudioStats {
   const RemoteAudioStats(
       {this.uid,
       this.quality,
@@ -253,7 +260,8 @@ struct FRemoteAudioStats
       this.totalActiveTime,
       this.publishDuration,
       this.qoeQuality,
-      this.qualityChangedReason});
+      this.qualityChangedReason,
+      this.e2eDelay});
 
   @JsonKey(name: 'uid')
   final int? uid;
@@ -300,12 +308,14 @@ struct FRemoteAudioStats
   @JsonKey(name: 'qualityChangedReason')
   final int? qualityChangedReason;
 
+  @JsonKey(name: 'e2eDelay')
+  final int? e2eDelay;
+
   factory RemoteAudioStats.fromJson(Map&lt;String, dynamic> json) =>
       _$RemoteAudioStatsFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$RemoteAudioStatsToJson(this);
-}
-</codeblock>
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
