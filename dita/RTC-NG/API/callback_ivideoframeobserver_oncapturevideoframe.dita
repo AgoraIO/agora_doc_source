@@ -31,9 +31,9 @@
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="native unreal bp unity electron rn cs">你可以在回调中获取本地设备采集到的原始视频数据，并可根据需要进行前处理。完成前处理后，你可以在该回调中直接修改 <parmname>videoFrame</parmname>，并将返回值设置为 <codeph><ph keyref="true"/></codeph>，即可将修改后的视频数据发送给 SDK。</p>
-            <p props="native unreal bp unity electron rn cs">如果你需要将处理后的数据发送给 SDK，需要先调用 <xref keyref="getVideoFrameProcessMode"/><codeph>(0)</codeph> 方法，将视频处理模式设置为读写模式。</p>
-            <p props="flutter">你可以在回调中获取本地设备采集到的原始视频数据。</p>
+            <p props="native unreal bp unity cs">你可以在回调中获取本地设备采集到的原始视频数据，并可根据需要进行前处理。完成前处理后，你可以在该回调中直接修改 <parmname>videoFrame</parmname>，并将返回值设置为 <codeph><ph keyref="true"/></codeph>，即可将修改后的视频数据发送给 SDK。</p>
+            <p props="native unreal bp">如果你需要将处理后的数据发送给 SDK，需要先调用 <xref keyref="getVideoFrameProcessMode"/><codeph>(0)</codeph> 方法，将视频处理模式设置为读写模式。</p>
+            <p props="flutter rn electron">你可以在回调中获取本地设备采集到的原始视频数据。</p>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>适用场景</title>
@@ -50,7 +50,7 @@
             <ul>
                 <li>此处获取的视频数据为原始视频数据，即：未经过水印、裁剪和旋转等前处理的视频数据。</li>
                 <li>如果你获取到的视频数据类型为 RGBA，SDK 不支持对 alpha 通道的值进行处理。</li>
-                <li props="flutter">由于 Flutter 框架的限制，该回调不支持将处理后的视频数据发送回 SDK。</li>
+                <li props="flutter rn electron">由于框架的限制，该回调不支持将处理后的视频数据发送回 SDK。</li>
             </ul>
         </section>
         <section id="parameters">
@@ -75,13 +75,13 @@
             <title>返回值</title>
             <p id="return">
             <ul>
-            <li props="native unreal bp electron rn">当视频处理模式为 <apiname keyref="PROCESS_MODE_READ_ONLY"/> 时：
+            <li props="native unreal bp">当视频处理模式为 <apiname keyref="PROCESS_MODE_READ_ONLY"/> 时：
 
                 <ul>
                 <li><codeph><ph keyref="true"/></codeph>：无实际含义。</li>
                 <li><codeph><ph keyref="false"/></codeph>：无实际含义。</li>
                 </ul></li>
-            <li props="native unreal bp electron rn">当视频处理模式为 <apiname keyref="PROCESS_MODE_READ_WRITE"/> 时：
+            <li props="native unreal bp">当视频处理模式为 <apiname keyref="PROCESS_MODE_READ_WRITE"/> 时：
 
                 <ul>
                 <li><codeph><ph keyref="true"/></codeph>：设置 SDK 接收视频帧。</li>
@@ -91,7 +91,7 @@
             <ul props="unity cs">
             <li><codeph><ph keyref="true"/></codeph>：设置 SDK 接收视频帧。</li>
             <li><codeph><ph keyref="false"/></codeph>：设置 SDK 丢弃视频帧。</li>
-            </ul> </p>
+            </ul></p>
         </section>
     </refbody>
 </reference>
