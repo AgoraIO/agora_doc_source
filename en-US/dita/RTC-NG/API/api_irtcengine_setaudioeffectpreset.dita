@@ -52,7 +52,7 @@
             <plentry>
                 <pt>preset</pt>
                 <pd props="ios mac cpp unreal bp unity flutter rn electron cs">The options for SDK preset audio effects. See <xref keyref="AUDIO_EFFECT_PRESET" />.</pd>
-                <pd props="android">Preset voice effects.<ul>
+                <pd props="android">Preset audio effects.<ul>
                     <li><ph keyref="AUDIO_EFFECT_OFF" />: Turn off audio effects and use the original voice.</li>
                     <li><ph keyref="ROOM_ACOUSTICS_KTV" />: The reverberation style typical of a KTV venue.</li>
                     <li><ph keyref="ROOM_ACOUSTICS_VOCAL_CONCERT" />: The reverberation style typical of a concert hall.</li>
@@ -61,7 +61,9 @@
                     <li><ph keyref="ROOM_ACOUSTICS_VIRTUAL_STEREO" />: A virtual stereo effect that renders monophonic audio as stereo audio. Before using this preset, set the <parmname>profile</parmname> parameter of <xref keyref="setAudioProfile" /> to <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY" /> or <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO" />; otherwise, the preset setting is invalid.</li>
                     <li><ph keyref="ROOM_ACOUSTICS_SPACIAL" />: A more spatial audio effect.</li>
                     <li><ph keyref="ROOM_ACOUSTICS_ETHEREAL" />: A more ethereal audio effect.</li>
-                    <li><ph keyref="ROOM_ACOUSTICS_3D_VOICE" />: A 3D voice effect that makes the voice appear to be moving around the user. The default movement cycle is 10 seconds. After setting this effect, you can call <xref keyref="setAudioEffectParameters" /> to modify the movement period.<ul>
+                    <li><ph keyref="ROOM_ACOUSTICS_VIRTUAL_SURROUND_SOUND" />: <ph>Virtual surround sound, that is, the SDK generates a simulated surround sound field on the basis of stereo channels, thereby creating a surround sound effect.</ph><note type="attention">If the virtual surround sound is enabled, users need to use stereo audio playback devices to hear the anticipated audio effect.</note></li>
+                    <li><ph keyref="ROOM_ACOUSTICS_CHORUS" />: A chorus audio effect. Agora recommends using this effect in chorus scenarios to enhance the sense of depth and dimension in the vocals.</li>
+                    <li><ph keyref="ROOM_ACOUSTICS_3D_VOICE" />: A 3D voice effect that makes the voice appear to be moving around the user. The default cycle period is 10 seconds. After setting this effect, you can call <xref keyref="setAudioEffectParameters" /> to modify the movement period.<ul>
                         <li>Before using this preset, set the <parmname>profile</parmname> parameter of <xref keyref="setAudioProfile" /> to <ph keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO" /> or <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO" />; otherwise, the preset setting is invalid.</li>
                         <li>If the 3D voice effect is enabled, users need to use stereo audio playback devices to hear the anticipated voice effect.</li>
                         </ul></li>
@@ -80,7 +82,7 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul props="native unreal bp electron unity rn cs">
             <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>

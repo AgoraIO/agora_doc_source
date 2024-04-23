@@ -18,10 +18,13 @@
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual bool onFaceInfo(const char* outFaceInfo) = 0;</codeblock>
             <codeblock props="bp" outputclass="language-cpp"/>
             <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity cs" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="electron" outputclass="language-typescript">onFaceInfo?(outFaceInfo: string): void;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual bool OnFaceInfo(string outFaceInfo)
+        {
+            return true;
+        }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onFaceInfo?(outFaceInfo: string): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(String outFaceInfo)? onFaceInfo;</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -51,7 +54,7 @@
                     <li>timestamp：String。输出结果的时间戳，单位为毫秒。</li>
                     </ul>
                 <p><ph>以下为 JSON 示例：</ph>
-                    <codeblock outputclass="language-json">
+                    <div base="raw-codeblock-json"><text>
 {
     "faces":[{         
                 "blendshapes":{
@@ -71,8 +74,7 @@
 
             }],
     "timestamp":"654879876546"
-}
-                    </codeblock>
+}</text></div>                    
                 </p>
                 </pd>
             </plentry>

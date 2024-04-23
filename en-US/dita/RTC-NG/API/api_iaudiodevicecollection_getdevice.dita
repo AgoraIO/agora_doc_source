@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_iaudiodevicecollection_getdevice">
     <title><ph keyref="getDevice_IAudioDeviceCollection" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Gets the information of a specified audio device.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Gets the information of a specified audio device by index.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -24,18 +24,21 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;String&gt; getDevice();</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
+       <section id="detailed_desc">
+            <p id="note">This method is for Windows and macOS only.</p>
+        </section>
         <section id="parameters" props="cpp unreal bp">
             <title>Parameters</title>
             <parml>
-            <plentry>
+            <plentry id="index">
                 <pt>index</pt>
                 <pd>An input parameter. The index of the device.</pd>
             </plentry>
-            <plentry>
+            <plentry id="device">
                 <pt>deviceName</pt>
                 <pd>An output parameter. The device name. The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE" />.</pd>
             </plentry>
-            <plentry>
+            <plentry id="id">
                 <pt>deviceId</pt>
                 <pd>An output parameter. The device ID. The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE" />.</pd>
             </plentry>
@@ -46,7 +49,7 @@
             <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul>
-            <p props="unity flutter electron rn cs">Retrieves the volume of the audio recording device.</p>
+            <p props="unity flutter electron rn cs">Retrieves the information of the audio recording device.</p>
         </section>
     </refbody>
 </reference>
