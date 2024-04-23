@@ -701,8 +701,7 @@ Status Code **200**
 |---|---|---|---|
 | cname | string | true | Channel name:<br> - For individual recording and composite recording modes, this field is used to set the name of the channel to be recorded. <br>- For web page recording mode, this field is used to differentiate the recording process. The string length cannot exceed 1024 bytes. <br>**Note**: A unique recording instance can be located through `appid`, `cname`, and `uid`. Therefore, if you intend to record the same channel multiple times, you can effectively manage this by using the same `appId` and `cname`, while differentiating them with different `uids`. |
 | uid | string | true | The string contains the UID used by the cloud recording service within the channel to identify the recording service, for example, `"527841"`. The string must meet the following conditions:<br>- The value is ranged from 1 to (2<sup>32</sup>-1), and cannot be set to `0`. <br>- It must not duplicate any UID within the current channel. <br>- The field value within the quotation marks is an integer UID, and all users in the channel should use the integer UIDs. |
-| clientRequest
- | object | false | As described below. |
+| clientRequest | object | false | As described below. |
 | » scene | number | false | Use cases for cloud recording resources:<br> - `0`: Real-time audio and video recording. <br>- `1`: Web page recording. <br>- `2`: Individual recording mode, with postponed transcoding or audio mixing enabled.<br>    - Postponed transcoding: The recording service will transcode the recorded files into the MP4 format within 24 hours after the recording ends (in special cases, it may take more than 48 hours), and then upload the MP4 files to your third-party cloud storage. This scene is only applicable to the individual recording mode.<br>    - Postponed audio mixing: The recording service will merge and transcode the recorded files of all UIDs in the specified channel into a single MP3/M4A/AAC file within 24 hours after the recording ends (in special cases, it may take more than 48 hours), and then upload the file to your specified third-party cloud storage. This scene is only applicable to the individual audio non-transcoding recording mode.<br>    > - When `scene` is set to `2`, you need to set the `appsCollection`field in the `start` method at the same time.<br>    > - In scenarios involving postponed transcoding and audio mixing, the recorded files will be cached on the Agora edge servers for up to 24 hours. If your business is sensitive to information security and to ensure data compliance, please carefully consider whether to use postponed transcoding and audio mixing functions. Contact Agora technical support if you need assistance. |
 | » resourceExpiredHour | number | false | The validity period for calling the cloud recording RESTful API Start calculating after you successfully initiate the cloud recording service and obtain the `sid` (Recording ID). The calculation unit is hours. The value range is [1,30]. The default value is 72. <br><br>**Note**: After the timeout, you will not be able to call the `query`, `update`, `updateLayout`, and `stop` methods.</br> |
 | » startParameter | [client-request](#schemaclient-request) | false | Setting this field can improve availability and optimize load balancing. <br><br>**Note**: When populating the `startParameter` object, make sure the values are valid and consistent with the `clientRequest` object in the subsequent `start` request body; otherwise, the `start` request will receive an error response. |
@@ -1491,8 +1490,7 @@ Configurations for the recorded files generated under postponed transcoding or a
 |---|---|---|---|
 | cname | string | true | The name of the channel where the recording service is located. The `cname` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request needs to be the same . |
 | uid | string | true | The string content is the UID used by the recording service in the RTC channel to identify the recording service. It needs to be the same as the `uid` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request. |
-| clientRequest
- | object | true | [client-request](#schemaclient-request) |
+| clientRequest | object | true | [client-request](#schemaclient-request) |
 
 
 ## update-request
@@ -1545,11 +1543,9 @@ Configurations for the recorded files generated under postponed transcoding or a
 |---|---|---|---|
 | cname | string | true | The name of the channel where the recording service is located. The `cname` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request needs to be the same . |
 | uid | string | true | The string content is the UID used by the recording service in the RTC channel to identify the recording service. It needs to be the same as the `uid` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request. |
-| clientRequest
- | object | true | [clientRequest](#schemaclientrequest) |
+| clientRequest | object | true | [clientRequest](#schemaclientrequest) |
 
 ## clientRequest
-
 <!-- backwards compatibility -->
 <a id="schemaclientrequest"></a>
 
@@ -1786,8 +1782,7 @@ Used to update the configurations for pushing web page recording to the CDN.
 |---|---|---|---|
 | cname | string | true | The name of the channel where the recording service is located. The `cname` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request needs to be the same . |
 | uid | string | true | The string content is the UID used by the recording service in the RTC channel to identify the recording service. It needs to be the same as the `uid` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request. |
-| clientRequest
- | object | true | [clientRequest-updateLayout](#schemaclientrequest-updatelayout) |
+| clientRequest | object | true | [clientRequest-updateLayout](#schemaclientrequest-updatelayout) |
 
 ## clientRequest-updateLayout
 <!-- backwards compatibility -->
@@ -2061,8 +2056,7 @@ array[object] type.
 |---|---|---|---|
 | cname | string | true | The name of the channel where the recording service is located. The `cname` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request needs to be the same . |
 | uid | string | true | The string content is the UID used by the recording service in the RTC channel to identify the recording service. It needs to be the same as the `uid` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request. |
-| clientRequest
- | object | true | As described below. |
+| clientRequest | object | true | As described below. |
 | » async_stop | boolean | false | Set the response mechanism for the `stop` method:<br>- `true`: Asynchronous. Immediately receive a response after calling `stop`. <br>- `false`: (default) not enabled. After calling `stop`, you need to wait for all the recorded files to be uploaded to the third-party cloud storage before receiving a response. Agora expects the upload time to be no more than 20 seconds. If the upload exceeds the time limit, you will receive an error code of `50`. |
 
 ## stop-response
