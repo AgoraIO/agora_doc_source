@@ -267,7 +267,7 @@ Status Code **200**
 | cname | string | false | The name of the channel to be recorded. |
 | uid | string | false | The string content is the user ID used by the cloud recording service in the RTC channel to identify the recording service in the channel. |
 | resourceId | string | false | The resource ID used by Cloud Recording. |
-| sid | string | false | The recording ID, identifying each recording cycle. |
+| sid | string | false | The recording ID. Identify a recording cycle. |
 
 
 
@@ -361,7 +361,7 @@ Status Code **200**
 | cname | string | false | The name of the channel to be recorded. |
 | uid | string | false | The string content is the user ID used by the cloud recording service in the RTC channel to identify the recording service in the channel. |
 | resourceId | string | false | The resource ID used by Cloud Recording. |
-| sid | string | false | The recording ID, identifying a recording cycle. |
+| sid | string | false | The recording ID. Identify a recording cycle. |
 
 
 
@@ -883,13 +883,13 @@ Configurations for third-party cloud storage.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| vendor | number | true | Third-party cloud storage platforms. <br>- `1`: [Amazon S3]( https://aws.amazon.com/s3/)<br>
-- `2`: [Alibaba Cloud]( https://www.aliyun.com/product/oss)<br>
-- `3`: [Tencent Cloud]( https://cloud.tencent.com/product/cos)<br>
-- `5`: [Microsoft Azure]( https://azure.microsoft.com/en-us/products/storage/blobs/)<br>
-- `6`: [Google Cloud]( https://cloud.google.com/storage)<br>
-- `7`: [Huawei Cloud]( https://www.huaweicloud.com/product/obs.html)<br>
-- `8`: [Baidu Intelligent Cloud]( https://cloud.baidu.com/product/bos.html) |
+| vendor | number | true | Third-party cloud storage platforms. <br>- `1`:[ Amazon S3 ](https://aws.amazon.com/s3/)<br>
+- `2`: [Alibaba ](Cloud https://www.aliyun.com/product/oss)<br>
+- `3`: Tencent Cloud https://cloud.tencent.com/product/cos)<br>
+- `5`:[ Microsoft Azure ](https://azure.microsoft.com/en-us/products/storage/blobs/)<br>
+- `6`: Google Cloud https://cloud.google.com/storage)<br>
+- `7`: Huawei Cloud https://www.huaweicloud.com/product/obs.html)<br>
+- `8`: Baidu [Intelligent ](Cloud https://cloud.baidu.com/product/bos.html)[]([]([]( |
 | region | number | true | (Required) The region information specified for the third-party cloud storage. <br><br><b>Note</b>:To ensure the success rate and real-time performance of the upload of the recording file, the region of the third-party cloud storage must be the same as the `region` of the application server where you initiate the request. For example: If the App server from which you initiate the request is in mainland China, and meanwhile the third-party cloud storage needs to be set to a region within mainland China. See [Third-party Cloud Storage Service]( https://doc.shengwang.cn/api-ref/cloud-recording/restful/region-vendor).</br> |
 | bucket | string | true | Third-party cloud storage bucket. The bucket name needs to comply with the naming rules of the corresponding third-party cloud storage service. |
 | accessKey | string | true | Access Key for third-party cloud storage. If postponed transcoding is required, the Access Key must have read and write permissions; otherwise, it is recommended to only provide the write permission. |
@@ -917,12 +917,15 @@ Third-party cloud storage services will encrypt and tag the uploaded recording f
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| sse | string | true | The encryption mode. After setting this field, the third-party cloud storage service will encrypt the uploaded recording files according to this encryption mode. This field is only applicable to Amazon S3, see [the official Amazon S3 documentation](https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/UsingEncryption.html). <br>- `kms`: KMS encryption. <br>- `aes256`: AES256 encryption. |
-| tag | string | true | Tag content. After setting this field, the third-party cloud storage service will tag the uploaded recording files according to the content of this tag. This field is only applicable to Alibaba Cloud and Amazon S3. For more information, see [the official Alibaba Cloud documentation](https://help.aliyun.com/zh/oss/user-guide/object-tagging-8) and [the official Amazon S3 documentation at](https://docs.aws.amazon.com/zh_cn/AmazonS3/latest/userguide/UsingEncryption.html). |
+| sse | string | true | The encryption mode. After setting this field, the third-party cloud storage service will encrypt the uploaded recording files according to this encryption mode. This field is only applicable to Amazon S3, see the[ official Amazon S3 documentationhttps](://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/UsingEncryption.html). <br>- `kms`: KMS encryption. <br>- `aes256`: AES256 encryption. |
+| tag | string | true | Tag content. After setting this field, the third-party cloud storage service will tag the uploaded recording files according to the content of this tag. 该字段仅适用于阿里云和 Amazon S3，详见[阿里云官方文档](https://www.alibabacloud.com/help/en/doc-detail/106678.html)和 [Amazon S3 官方文档](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-tagging.html)。 |
 
 ## recordingConfig
 <!-- backwards compatibility -->
 <a id="schemarecordingconfig"></a>
+
+
+
 
 ```json
 {
@@ -995,14 +998,14 @@ Configurations for recorded audio and video streams.
 | streamTypes | number | false | Subscribed media stream type. <br>`0`: Subscribes to audio streams only. Suitable for smart voice review scenarios. <br>- `1`: Subscribes to video streams only. <br>- `2`: Subscribe to both audio and video streams. |
 | videoStreamType | number | false | Sets the stream type of the remote video. If you enable dual-stream mode in the SDK client, you can choose to subscribe to either the high-quality video stream or the low-quality video stream. <br>- `0`: High-quality video stream refers to high-resolution and high-bitrate video stream.<br>
 - `1`: Low-quality video stream refers to low-resolution and low-bitrate video stream. |
-| subscribeAudioUids | array[string] | false | Specify which UIDs' audio streams to subscribe to. If you want to subscribe to the audio stream of all UIDs, no need to set this field. The length of the array should not exceed 32, and using an empty array is not recommended. Only one of the fields can be set: this field or `unsubscribeAudioUids`. For details, see [Set up subscription lists](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe).<br><p><b>Note</b><br>:<li>This field is only applicable when the <b>streamTypes</b> are set to audio, or audio and video.</li><br><li>If you have set up a subscription list for audio or video only, but not at the same time, then the cloud recording service will not subscribe to any video streams. 反之亦然。</li><br><li>Set as <b>["#allstream#"]</b> to subscribe to the audio streams of all UIDs in the channel.</li><br></p> |
+| subscribeAudioUids | array[string] | false | Specify which UIDs' audio streams to subscribe to. If you want to subscribe to the audio stream of all UIDs, no need to set this field. The length of the array should not exceed 32, and using an empty array is not recommended. Only one of the fields can be set: this field or `unsubscribeAudioUids`. For details, see [Set up subscription lists](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe).<br><p><b>Note</b><br>:<li>This field is only applicable when the <b>streamTypes</b> are set to audio, or audio and video.</li><br><li>If you have set up a subscription list for audio or video only, but not at the same time, then the cloud recording service will not subscribe to any video streams. If you set up a subscription list for video, but not for audio, then Agora Cloud Recording will not subscribe to any audio streams.</li><br><li>Set as <b>["#allstream#"]</b> to subscribe to the audio streams of all UIDs in the channel.</li><br></p> |
 | unsubscribeAudioUids | array[string] | false | Specify which UIDs' audio streams not to subscribe to. The cloud recording service will subscribe to the audio streams of all other UIDs except the specified ones. The length of the array should not exceed 32, and using an empty array is not recommended. Only one of the fields can be set: this field or `subscribeAudioUids`. For details, see [Set up subscription lists](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe). |
-| subscribeVideoUids | array[string] | false | Specify which UID's video streams to subscribe to. If you want to subscribe to the video streams of all UIDs, no need to set this field. The length of the array should not exceed 32, and using an empty array is not recommended. Only one of the fields can be set: this field or `unsubscribeVideoUids`. For details, see [Set up subscription lists](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe).<br><p><b>Note</b><br>:<li>This field is only applicable when the <b>streamTypes</b> are set to video, or audio and video.</li><br><li>If you have set up a subscription list for audio or video only, but not at the same time, then the cloud recording service will not subscribe to any video streams. 反之亦然。</li><br><li>Set as <b>["#allstream#"]</b> to subscribe to the video streams of all UIDs in the channel.</li><br></p> |
+| subscribeVideoUids | array[string] | false | Specify which UID's video streams to subscribe to. If you want to subscribe to the video streams of all UIDs, no need to set this field. The length of the array should not exceed 32, and using an empty array is not recommended. Only one of the fields can be set: this field or `unsubscribeVideoUids`. For details, see [Set up subscription lists](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe).<br><p><b>Note</b><br>:<li>This field is only applicable when the <b>streamTypes</b> are set to video, or audio and video.</li><br><li>If you have set up a subscription list for audio or video only, but not at the same time, then the cloud recording service will not subscribe to any video streams. If you set up a subscription list for video, but not for audio, then Agora Cloud Recording will not subscribe to any audio streams.</li><br><li>Set as <b>["#allstream#"]</b> to subscribe to the video streams of all UIDs in the channel.</li><br></p> |
 | unsubscribeVideoUids | array[string] | false | Specify which UIDs' audio streams not to subscribe to. The cloud recording service will subscribe to the video streams of all UIDs except the specified ones. The length of the array should not exceed 32, and using an empty array is not recommended. Only one of the fields can be set: this field or `subscribeVideoUids`. For details, see [Set up subscription lists](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe). |
-| subscribeUidGroup | number | false | Estimated peak number of subscribers. <br>- `0`: 1 to 2 UIDs. <br>- `1`:3 to 7 UIDs. <br>- `2`: 8 to 12 UIDs <br>- `3`: 13 to 17 UIDs <br>- `4`:17 to 32 UIDs. <br>- `5`:32 to 49 UIDs. <br>**Note**:<br>- Only need to be set in **individual recording**mode, and it is required in this mode. <br>- For example, if `subscribeVideoUids` is `["100","101","102"]` and `subscribeAudioUids` is `["101","102","103"]`, the number of subscribers is 4. |
+| subscribeUidGroup | number | false | Estimated peak number of subscribers. <br>- `0`: 1 to 2 UIDs. <br>- `1`:3 to 7 UIDs. <br>- `2`: 8 to 12 UIDs <br>- `3`: 13 to 17 UIDs <br>- `4`: 18 to 32 UIDs. <br>- `5`: 33 to 49 UIDs. <br>**Note**:<br>- Only need to be set in **individual recording**mode, and it is required in this mode. <br>- For example, if `subscribeVideoUids` is `["100","101","102"]` and `subscribeAudioUids` is `["101","102","103"]`, the number of subscribers is 4. |
 | streamMode | string | false | Output mode of media stream. See the [Output mode of media stream](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/stream-mode). <br>- `"default"`: Default mode. Recording with audio transcoding will separately generate an M3U8 audio index file and a video index file. <br>- `"standard"`: Standard mode. Agora recommends using this mode. Recording with audio transcoding will separately generate an M3U8 audio index file, a video index file, and a merged audio and video index file. If VP8 encoding is used on the a Web client, a merged MPD audio-video index file will be generated. <br>- `"original"`: Original encoding mode. It is applicable to [individual non-transcoding audio recording](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/set-individual-nontranscoding). This field only takes effect when subscribing to audio only (`streamTypes` is 0). During the recording process, the audio is not transcoded, and an M3U8 audio index file is generated. <br>**Note**: Only need to set in **individual recording** mode. |
 | audioProfile | number | false | Set the sampling rate, bitrate, encoding mode, and number of channels for the output audio. <br>`0`: 48 kHz sampling rate, music encoding, mono audio channel, and the encoding bitrate is approximately 48 Kbps. <br>`1`: 48 kHz sampling rate, music encoding, mono audio channel, and the encoding bitrate is approximately 128 Kbps. <br>`2`: 48 kHz sampling rate, music encoding, stereo audio channel, and the encoding bitrate is approximately 192 Kbps. <br>**Note**: Only need to set in the **composite recording** mode. |
-| transcodingConfig | [transcodingConfig](#schematranscodingconfig) | false | Configurations for transcoded video output The value can refer to [Setting the Resolution of the Recorded Video Output](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-output-video-profile).<br><p><b>Note: </b>You only need to set this field in <b>individual recording</b> and <b>composite recording</b> modes.</p> |
+| transcodingConfig | [transcodingConfig](#schematranscodingconfig) | false | Configurations for transcoded video output The value can refer to [Setting the Resolution of the Recorded Video Output](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-output-video-profile).<br><p><b>Note: </b>Only need to set in the <b>composite recording </b>mode.</p> |
 
 
 
@@ -1047,16 +1050,16 @@ Configurations for recorded audio and video streams.
 ```
 
 Configurations for transcoded video output The value can refer to [Setting the Resolution of the Recorded Video Output](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-output-video-profile).
-<p><b>Note: </b>You only need to set this field in <b>individual recording</b> and <b>composite recording</b> modes.</p>
+<p><b>Note: </b>Only need to set in the <b>composite recording </b>mode.</p>
 
 ### Properties
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| width | number | true | The width of the video (pixels). `width` * `height` cannot exceed 1920 × 1080. |
-| height | number | true | The height of the video (pixels). `width` * `height` cannot exceed 1920 × 1080. |
-| fps | number | true | The frame rate of the video (fps). |
-| bitrate | number | true | The bitrate of the video (kbps). |
+| width | number | false | The width of the video (pixels). `width` * `height` cannot exceed 1920 × 1080. |
+| height | number | false | The height of the video (pixels). `width` * `height` cannot exceed 1920 × 1080. |
+| fps | number | false | The frame rate of the video (fps). |
+| bitrate | number | false | The bitrate of the video (kbps). |
 | maxResolutionUid | string | false | Only need to set it in **vertical layout**. Specify the user ID of the large video window. The string value should be an integer ranged from 1 to (2<sup>32</sup>-1), and cannot be set to 0. |
 | mixedVideoLayout | number | false | Video mixed layout:<br>- `0`: Floating layout. The first user to join the channel will be displayed as a large window, filling the entire canvas. The video windows of other users will be displayed as small windows, arranged horizontally from bottom to top, up to 4 rows, each with 4 windows. It supports up to a total of 17 windows of different users' videos. <br>- `1`: Adaptive layout. Automatically adjust the size of each user's video window according to the number of users, each user's video window size is consistent, and supports up to 17 windows. <br>- `2`: Vertical layout. The `maxResolutionUid` is specified to display the large video window on the left side of the screen, and the small video windows of other users are vertically arranged on the right side, with a maximum of two columns, 8 windows per column, supporting up to 17 windows. <br>- `3`: Customized layout. Set the `layoutConfig` field to customize the mixed layout. |
 | backgroundColor | string | false | The background color of the video canvas. The RGB color table is supported, with strings formatted as a # sign and 6 hexadecimal digits. The default value is `"#000000"`, representing the black color. |
@@ -1143,7 +1146,7 @@ Configurations of user's background image.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| avFileType | array[string] | false | Type of video files generated by recording:<br>- `"hls"`: default value. M3U8 and TS files. <br>- `"mp4"`: MP4 files. <br>**Note**:<br>- In **individual recording** mode and **not in screenshot-only** case, you can use the default value. <br>- In **composite recording** and **web page recording** modes, you need to set it as `["hls","mp4"]`. Setting it as `["mp4"]` will result in an error. After setting, the recording file behavior is as follows:<br> - In the composite recording mode, the recording service will create a new MP4 file when the current recording duration exceeds about 2 hours or the file size roughly exceeds 2 GB.<br>    - Web page recording mode: The recording service will create a new MP4 file when the current file's duration exceeds `maxVideoDuration`. |
+| avFileType | array[string] | false | Type of video files generated by recording:<br>- `"hls"`: default value. M3U8 and TS files. <br>- `"mp4"`: MP4 files. <br>**Note**:<br>- In **individual recording** mode and **not in screenshot-only** case, you can use the default value. <br>- **合流录制**和**页面录制**模式下，如果你需要生成 MP4 文件，那么需设为 `["hls","mp4"]`。 Setting it as `["mp4"]` will result in an error. After setting, the recording file behavior is as follows:<br> - In the composite recording mode, the recording service will create a new MP4 file when the current recording duration exceeds about 2 hours or the file size roughly exceeds 2 GB.<br>    - Web page recording mode: The recording service will create a new MP4 file when the current file's duration exceeds `maxVideoDuration`. |
 
 ## snapshotConfig
 <!-- backwards compatibility -->
@@ -1659,7 +1662,7 @@ The audio subscription list.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| subscribeAudioUids | array[string] | false | Specify which UIDs' audio streams to subscribe to. If you want to subscribe to the audio stream of all UIDs, no need to set this field. The length of the array should not exceed 32, and using an empty array is not recommended. Only one of the fields can be set: this field or `unsubscribeAudioUids`. For details, see [Set up subscription lists](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe).<br><p><b>Note</b><br>:<li>This field is only applicable when the <b>streamTypes</b> are set to audio, or audio and video.</li><br><li>If you have set up a subscription list for audio or video only, but not at the same time, then the cloud recording service will not subscribe to any video streams. 反之亦然。</li><br><li>Set as <b>["#allstream#"]</b> to subscribe to the audio streams of all UIDs in the channel.</li><br></p> |
+| subscribeAudioUids | array[string] | false | Specify which UIDs' audio streams to subscribe to. If you want to subscribe to the audio stream of all UIDs, no need to set this field. The length of the array should not exceed 32, and using an empty array is not recommended. Only one of the fields can be set: this field or `unsubscribeAudioUids`. For details, see [Set up subscription lists](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe).<br><p><b>Note</b><br>:<li>This field is only applicable when the <b>streamTypes</b> are set to audio, or audio and video.</li><br><li>If you have set up a subscription list for audio or video only, but not at the same time, then the cloud recording service will not subscribe to any video streams. If you set up a subscription list for video, but not for audio, then Agora Cloud Recording will not subscribe to any audio streams.</li><br><li>Set as <b>["#allstream#"]</b> to subscribe to the audio streams of all UIDs in the channel.</li><br></p> |
 | unsubscribeAudioUids | array[string] | false | Specify which UIDs' audio streams not to subscribe to. The cloud recording service will subscribe to the audio streams of all other UIDs except the specified ones. The length of the array should not exceed 32, and using an empty array is not recommended. Only one of the fields can be set: this field or `subscribeAudioUids`. For details, see [Set up subscription lists](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe). |
 
 ## videoUidList
@@ -1687,7 +1690,7 @@ The video subscription list.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| subscribeVideoUids | array[string] | false | Specify which UID's video streams to subscribe to. If you want to subscribe to the video streams of all UIDs, no need to set this field. The length of the array should not exceed 32, and using an empty array is not recommended. Only one of the fields can be set: this field or `unsubscribeVideoUids`. For details, see [Set up subscription lists](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe).<br><p><b>Note</b><br>:<li>This field is only applicable when the <b>streamTypes</b> are set to video, or audio and video.</li><br><li>If you have set up a subscription list for audio or video only, but not at the same time, then the cloud recording service will not subscribe to any video streams. 反之亦然。</li><br><li>Set as <b>["#allstream#"]</b> to subscribe to the video streams of all UIDs in the channel.</li><br></p> |
+| subscribeVideoUids | array[string] | false | Specify which UID's video streams to subscribe to. If you want to subscribe to the video streams of all UIDs, no need to set this field. The length of the array should not exceed 32, and using an empty array is not recommended. Only one of the fields can be set: this field or `unsubscribeVideoUids`. For details, see [Set up subscription lists](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe).<br><p><b>Note</b><br>:<li>This field is only applicable when the <b>streamTypes</b> are set to video, or audio and video.</li><br><li>If you have set up a subscription list for audio or video only, but not at the same time, then the cloud recording service will not subscribe to any video streams. If you set up a subscription list for video, but not for audio, then Agora Cloud Recording will not subscribe to any audio streams.</li><br><li>Set as <b>["#allstream#"]</b> to subscribe to the video streams of all UIDs in the channel.</li><br></p> |
 | unsubscribeVideoUids | array[string] | false | Specify which UIDs' audio streams not to subscribe to. The cloud recording service will subscribe to the video streams of all UIDs except the specified ones. The length of the array should not exceed 32, and using an empty array is not recommended. Only one of the fields can be set: this field or `subscribeVideoUids`. For details, see [Set up subscription lists](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe). |
 
 ## webRecordingConfig
@@ -1710,7 +1713,7 @@ Used to update the web page recording configurations.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| onhold | boolean | false | Whether to pause page recording when starting a web page recording task. <br>- `true`：Pause the web page recording that has been started. Immediately pause the recording after starting the web page recording task. The recording service will open and render the page to be recorded, but will not generate slice files. <br>- `false`: Start a web page recording task and perform web page recording. <br>We suggest using theonholdfieldaccording to the following process: 1. Set onhold to `true` when calling the `start` method, which will start and pause web page recording. Determine the appropriate time to start web page recording `on `your own. It is recommended that you use the `onhold` field as follows: <br>1. <br>2. Call `update` and set `onhold` to `false`, continue with web page recording. If you need to pause or resume web page recording by continuously calling the` update` method, please make the call after receiving the response from the previous `update`, otherwise it may cause inconsistent results with expectations. |
+| onhold | boolean | false | 设置是否暂停页面录制。 <br>- `true`：暂停页面录制，并暂停生成页面录制文件。 <br>- `false`：继续页面录制，并继续生成页面录制文件。 <br>如果想恢复已暂停的页面录制，你可以调用 `update` 方法并将 `onhold` 设为 `false`。 |
 
 ## rtmpPublishConfig
 <!-- backwards compatibility -->
@@ -2174,5 +2177,3 @@ Fields returned by the **page recording service** in **web page recording** mode
 | » sliceStartTime | number | false | The recording start time of the file, the Unix timestamp, in seconds. |
 | onhold | boolean | false | Whether the page recording is in pause state:<br>- `true`: in pause state. <br>- `false`: the page recording is running. |
 | state | string | false | The status of uploading subscription content to the extension service:<br>- `"init"`: The service is initializing. <br>- `"inProgress"`: The service has started and is currently in progress. <br>- `"exit"`: Service exits. |
-
-
