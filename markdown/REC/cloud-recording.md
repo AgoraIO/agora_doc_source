@@ -702,7 +702,7 @@ Status Code **200**
 |cname|string|true|频道名：<br>- 对于单流录制和合流录制模式，该字段用于设置待录制的频道名。<br>- 对于页面录制模式，该字段用于区分录制进程。字符串长度不得超过 128 字节。<br>**注意**：通过 `appid`、`cname` 和 `uid` 可以定位一个唯一的录制实例。因此，如果你想针对同一个频道进行多次录制，可以使用相同的 `appId` 和 `cname`，以及不同的 `uid` 来进行管理和区分。|
 |uid|string|true|字符串内容为云端录制服务在频道内使用的 UID，用于标识频道内的录制服务，例如 `"527841"`。字符串内容需满足以下条件：<br>- 取值范围 1 到 (2<sup>32</sup>-1)，不可设置为 `0`。<br>- 不能与当前频道内的任何 UID 重复。<br>- 字段引号内为整型 UID，且频道内所有用户均使用整型 UID。|
 |clientRequest|object|false|见下所述。|
-|» scene|number|false|云端录制资源使用场景：<br>- `0`（默认）：实时音视频录制。<br>- `1`：页面录制。<br>- `2`：单流录制模式，且开启延时转码或延时混音。<br>    - 延时转码：录制服务会在录制后 24 小时内（特殊情况下会到 48 小时以上）对录制文件进行转码生成 MP4 文件，并将 MP4 文件上传至你指定的第三方云存储。该场景仅适用于单流录制模式。<br>    - 延时混音：录制服务会在录制结束后 24 小时内（特殊情况下会到 48 小时以上）将指定频道内所有 UID 的录制文件合并并转码生成一个 MP3/M4A/AAC 文件，并将文件上传至你指定的第三方云存储。该场景仅适用于音频单流不转码录制模式。<br>    > - `scene` 设为 `2` 时，你需要同时在 `start` 方法中设置 `appsCollection` 字段。<br>    > - 在延时转码和延时混音的场景下，录制文件会在声网边缘服务器上缓存，最长不超过 24 小时。如果你的业务对信息安全敏感，为了确保数据合规，请慎重考虑是否使用延时转码和延时混音功能。如有任何疑虑，请联系声网技术支持。|
+|» scene|number|false|云端录制资源使用场景：<br>- `0`：（默认）实时音视频录制。<br>- `1`：页面录制。<br>- `2`：单流录制模式，且开启延时转码或延时混音。<br>    - 延时转码：录制服务会在录制后 24 小时内（特殊情况下会到 48 小时以上）对录制文件进行转码生成 MP4 文件，并将 MP4 文件上传至你指定的第三方云存储。该场景仅适用于单流录制模式。<br>    - 延时混音：录制服务会在录制结束后 24 小时内（特殊情况下会到 48 小时以上）将指定频道内所有 UID 的录制文件合并并转码生成一个 MP3/M4A/AAC 文件，并将文件上传至你指定的第三方云存储。该场景仅适用于音频单流不转码录制模式。<br>    > - `scene` 设为 `2` 时，你需要同时在 `start` 方法中设置 `appsCollection` 字段。<br>    > - 在延时转码和延时混音的场景下，录制文件会在声网边缘服务器上缓存，最长不超过 24 小时。如果你的业务对信息安全敏感，为了确保数据合规，请慎重考虑是否使用延时转码和延时混音功能。如有任何疑虑，请联系声网技术支持。|
 |» resourceExpiredHour|number|false|云端录制 RESTful API 的调用时效。从成功开启云端录制并获得 `sid` （录制 ID）后开始计算。单位为小时。取值范围为 [1,720]。默认值为 72。<br><br>**注意**：超时后，你将无法调用 `query`，`update`，`updateLayout` 和 `stop` 方法。</br>|
 |» startParameter|[client-request](#schemaclient-request)|false|设置该字段后，可以提升可用性并优化负载均衡。<br><br>**注意**：如果填写该字段，则必须确保 `startParameter` object 和后续 `start` 请求中填写的 `clientRequest` object 完全一致，且取值合法，否则 `start` 请求会收到报错。|
 |» excludeResourceIds|array[string]|false|另一路或几路录制任务的 `resourceId`。该字段用于排除指定的录制资源，以便新发起的录制任务可以使用新区域的资源，实现跨区域多路录制。详见[多路任务保障](https://doc.shengwang.cn/doc/cloud-recording/restful/best-practices/integration#多路任务保障)。|
@@ -982,20 +982,20 @@ Status Code **200**
 
 |Name|Type|Required|Description|
 |---|---|---|---|
-|channelType|number|true|频道场景。<br>- `0`（默认）：通信场景。<br>- `1`：直播场景。<br>频道场景必须与声网 RTC SDK 的设置一致，否则可能导致问题。|
-|decryptionMode|number|false|解密模式。如果你在 SDK 客户端设置了频道加密，那么你需要对云端录制服务设置与加密相同的解密模式。<br>- `0`（默认）：不加密。<br>- `1`：AES_128_XTS 加密模式。128 位 AES 加密，XTS 模式。<br>- `2`：AES_128_ECB 加密模式。128 位 AES 加密，ECB 模式。<br>- `3`：AES_256_XTS 加密模式。256 位 AES 加密，XTS 模式。<br>- `4`：SM4_128_ECB 加密模式。128 位 SM4 加密，ECB 模式。<br>- `5`：AES_128_GCM 加密模式。128 位 AES 加密，GCM 模式。<br>- `6`：AES_256_GCM 加密模式。256 位 AES 加密，GCM 模式。<br>- `7`：AES_128_GCM2 加密模式。128 位 AES 加密，GCM 模式。相比于 AES_128_GCM 加密模式，AES_128_GCM2 加密模式安全性更高且需要设置密钥和盐。<br>- `8`：AES_256_GCM2 加密模式。256 位 AES 加密，GCM 模式。相比于 AES_256_GCM 加密模式，AES_256_GCM2 加密模式安全性更高且需要设置密钥和盐。|
+|channelType|number|true|频道场景。<br>- `0`：（默认）通信场景。<br>- `1`：直播场景。<br>频道场景必须与声网 RTC SDK 的设置一致，否则可能导致问题。|
+|decryptionMode|number|false|解密模式。如果你在 SDK 客户端设置了频道加密，那么你需要对云端录制服务设置与加密相同的解密模式。<br>- `0`：（默认）不加密。<br>- `1`：AES_128_XTS 加密模式。128 位 AES 加密，XTS 模式。<br>- `2`：AES_128_ECB 加密模式。128 位 AES 加密，ECB 模式。<br>- `3`：AES_256_XTS 加密模式。256 位 AES 加密，XTS 模式。<br>- `4`：SM4_128_ECB 加密模式。128 位 SM4 加密，ECB 模式。<br>- `5`：AES_128_GCM 加密模式。128 位 AES 加密，GCM 模式。<br>- `6`：AES_256_GCM 加密模式。256 位 AES 加密，GCM 模式。<br>- `7`：AES_128_GCM2 加密模式。128 位 AES 加密，GCM 模式。相比于 AES_128_GCM 加密模式，AES_128_GCM2 加密模式安全性更高且需要设置密钥和盐。<br>- `8`：AES_256_GCM2 加密模式。256 位 AES 加密，GCM 模式。相比于 AES_256_GCM 加密模式，AES_256_GCM2 加密模式安全性更高且需要设置密钥和盐。|
 |secret|string|false|与加解密相关的密钥。仅需在 `decryptionMode` 非 `0` 时设置。|
 |salt|string|false|与加解密相关的盐。Base64 编码、32 位字节。仅需在 `decryptionMode` 为 `7` 或 `8` 时设置。|
 |maxIdleTime|number|false|最大频道空闲时间。单位为秒。取值范围为 [5,2592000]。默认值为 30。最大值不超过 30 天。超出最大频道空闲时间后，录制服务会自动退出。录制服务退出后，如果你再次发起 `start` 请求，会产生新的录制文件。<br><p>频道空闲：直播频道内无任何主播，或通信频道内无任何用户。</p>|
-|streamTypes|number|false|订阅的媒体流类型。<br>- `0`：仅订阅音频。适用于智能语音审核场景。<br>- `1`：仅订阅视频。<br>- `2`（默认）：订阅音频和视频。|
-|videoStreamType|number|false|设置订阅的视频流类型。如果你在 SDK 客户端开启了双流模式，你可以选择订阅视频大流或者小流。<br>- `0`（默认）：视频大流，即高分辨率高码率的视频流<br>- `1`：视频小流，即低分辨率低码率的视频流|
+|streamTypes|number|false|订阅的媒体流类型。<br>- `0`：仅订阅音频。适用于智能语音审核场景。<br>- `1`：仅订阅视频。<br>- `2`：（默认）订阅音频和视频。|
+|videoStreamType|number|false|设置订阅的视频流类型。如果你在 SDK 客户端开启了双流模式，你可以选择订阅视频大流或者小流。<br>- `0`：（默认）视频大流，即高分辨率高码率的视频流<br>- `1`：视频小流，即低分辨率低码率的视频流|
 |subscribeAudioUids|array[string]|false|指定订阅哪几个 UID 的音频流。如需订阅全部 UID 的音频流，则无需设置该字段。数组长度不得超过 32，不推荐使用空数组。该字段和 `unsubscribeAudioUids` 只能设一个。详见[设置订阅名单](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe)。<br><p><b>注意：</b><br><li>该字段仅适用于 <b>streamTypes</b> 设为音频，或音频和视频的情况。</li><br><li>如果你设置了音频的订阅名单，但没有设置视频的订阅名单，云端录制服务不会订阅任何视频流。反之亦然。</li><br><li>设为 <b>["#allstream#"]</b> 可订阅频道内所有 UID 的音频流。</li><br></p>|
 |unsubscribeAudioUids|array[string]|false|指定不订阅哪几个 UID 的音频流。云端录制会订阅频道内除指定 UID 外所有 UID 的音频流。数组长度不得超过 32，不推荐使用空数组。该字段和 `subscribeAudioUids` 只能设一个。详见[设置订阅名单](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe)。|
 |subscribeVideoUids|array[string]|false|指定订阅哪几个 UID 的视频流。如需订阅全部 UID 的视频流，则无需设置该字段。数组长度不得超过 32，不推荐使用空数组。该字段和 `unsubscribeVideoUids` 只能设一个。详见[设置订阅名单](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe)。<br><p><b>注意：</b><br><li>该字段仅适用于 <b>streamTypes</b> 设为视频，或音频和视频的情况。</li><br><li>如果你设置了视频的订阅名单，但没有设置音频的订阅名单，云端录制服务不会订阅任何音频流。反之亦然。</li><br><li>设为 <b>["#allstream#"]</b> 可订阅频道内所有 UID 的视频流。</li><br></p>|
 |unsubscribeVideoUids|array[string]|false|指定不订阅哪几个 UID 的视频流。云端录制会订阅频道内除指定 UID 外所有 UID 的视频流。数组长度不得超过 32，不推荐使用空数组。该字段和 `subscribeVideoUids` 只能设一个。详见[设置订阅名单](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe)。|
 |subscribeUidGroup|number|false|预估的订阅人数峰值。<br>- `0`：1 到 2 个 UID。<br>- `1`：3 到 7 个 UID。<br>- `2`：8 到 12 个 UID。<br>- `3`：13 到 17 个 UID。<br>- `4`：18 到 32 个 UID。<br>- `5`：33 到 49 个 UID。<br>**注意**：<br>- 仅需在**单流录制**模式下设置，且单流录制模式下必填。<br>- 举例来说，如果 `subscribeVideoUids` 为 `["100","101","102"]`，`subscribeAudioUids` 为 `["101","102","103"]`，则订阅人数为 4 人。|
 |streamMode|string|false|媒体流的输出模式。详见[媒体流输出模式](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/stream-mode)。<br>- `"default"`：默认模式。录制过程中音频转码，分别生成 M3U8 音频索引文件和视频索引文件。<br>- `"standard"`：标准模式。声网推荐使用该模式。录制过程中音频转码，分别生成 M3U8 音频索引文件、视频索引文件和合并的音视频索引文件。如果在 Web 端使用 VP8 编码，则生成一个合并的 MPD 音视频索引文件。<br>- `"original"`：原始编码模式。适用于[单流音频不转码录制](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/set-individual-nontranscoding)。仅订阅音频时（`streamTypes` 为 0）时该字段生效，录制过程中音频不转码，生成 M3U8 音频索引文件。<br>**注意**：仅需在**单流录制**模式下设置。|
-|audioProfile|number|false|设置输出音频的采样率、码率、编码模式和声道数。<br>- `0`（默认）：48 kHz 采样率，音乐编码，单声道，编码码率约 48 Kbps。<br>- `1`：48 kHz 采样率，音乐编码，单声道，编码码率约 128 Kbps。<br>- `2`：48 kHz 采样率，音乐编码，双声道，编码码率约 192 Kbps。<br>**注意**：仅需在**合流录制**模式下设置。|
+|audioProfile|number|false|设置输出音频的采样率、码率、编码模式和声道数。<br>- `0`：（默认）48 kHz 采样率，音乐编码，单声道，编码码率约 48 Kbps。<br>- `1`：48 kHz 采样率，音乐编码，单声道，编码码率约 128 Kbps。<br>- `2`：48 kHz 采样率，音乐编码，双声道，编码码率约 192 Kbps。<br>**注意**：仅需在**合流录制**模式下设置。|
 |transcodingConfig|[transcodingConfig](#schematranscodingconfig)|false|转码输出的视频配置项。取值可参考[设置录制输出视频的分辨率](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-output-video-profile)。<br><p><b>注意：</b>仅需在<b>合流录制</b>模式下设置。</p>|
 
 
@@ -1052,7 +1052,7 @@ Status Code **200**
 |fps|number|false|视频的帧率，单位 fps。默认值为 15。|
 |bitrate|number|false|视频的码率，单位 Kbps。默认值为 500。|
 |maxResolutionUid|string|false|仅需在**垂直布局**下设置。指定显示大视窗画面的用户 UID。字符串内容的整型取值范围 1 到 (2<sup>32</sup>-1)，且不可设置为 0。|
-|mixedVideoLayout|number|false|视频合流布局：<br>- `0`（默认）：悬浮布局。第一个加入频道的用户在屏幕上会显示为大视窗，铺满整个画布，其他用户的视频画面会显示为小视窗，从下到上水平排列，最多 4 行，每行 4 个画面，最多支持共 17 个画面。<br>- `1`：自适应布局。根据用户的数量自动调整每个画面的大小，每个用户的画面大小一致，最多支持 17 个画面。<br>- `2`：垂直布局。指定 `maxResolutionUid` 在屏幕左侧显示大视窗画面，其他用户的小视窗画面在右侧垂直排列，最多两列，一列 8 个画面，最多支持共 17 个画面。<br>- `3`：自定义布局。由你在 `layoutConfig` 字段中自定义合流布局。|
+|mixedVideoLayout|number|false|视频合流布局：<br>- `0`：（默认）悬浮布局。第一个加入频道的用户在屏幕上会显示为大视窗，铺满整个画布，其他用户的视频画面会显示为小视窗，从下到上水平排列，最多 4 行，每行 4 个画面，最多支持共 17 个画面。<br>- `1`：自适应布局。根据用户的数量自动调整每个画面的大小，每个用户的画面大小一致，最多支持 17 个画面。<br>- `2`：垂直布局。指定 `maxResolutionUid` 在屏幕左侧显示大视窗画面，其他用户的小视窗画面在右侧垂直排列，最多两列，一列 8 个画面，最多支持共 17 个画面。<br>- `3`：自定义布局。由你在 `layoutConfig` 字段中自定义合流布局。|
 |backgroundColor|string|false|视频画布的背景颜色。支持 RGB 颜色表，字符串格式为 # 号和 6 个十六进制数。默认值 `"#000000"`，代表黑色。|
 |backgroundImage|string|false|视频画布的背景图的 URL。背景图的显示模式为裁剪模式。<br><p>裁剪模式：优先保证画面被填满。背景图尺寸等比缩放，直至整个画面被背景图填满。如果背景图长宽与显示窗口不同，则背景图会按照画面设置的比例进行周边裁剪后填满画面。</p>|
 |defaultUserBackgroundImage|string|false|默认的用户画面背景图的 URL。<br><p>配置该字段后，当任一⽤户停止发送视频流超过 3.5 秒，画⾯将切换为该背景图；如果针对某 UID 单独设置了背景图，则该设置会被覆盖。</p>|
@@ -1092,7 +1092,7 @@ Status Code **200**
 |width|number(float)|true|该画面宽度的相对值，精确到小数点后六位。该字段也可以设置为整数 0 或 1。取值范围为 [0,1]。|
 |height|number(float)|true|该画面高度的相对值，精确到小数点后六位。该字段也可以设置为整数 0 或 1。取值范围为 [0,1]。|
 |alpha|number(float)|false|图像的透明度。精确到小数点后六位。`0.0` 表示图像为透明的，`1.0` 表示图像为完全不透明的。取值范围为 [0,1]。默认值为 1。|
-|render_mode|number|false|画面显示模式：<br>- `0`（默认）：裁剪模式。优先保证画面被填满。视频尺寸等比缩放，直至整个画面被视频填满。如果视频长宽与显示窗口不同，则视频流会按照画面设置的比例进行周边裁剪后填满画面。<br>- `1`：缩放模式。优先保证视频内容全部显示。视频尺寸等比缩放，直至视频窗口的一边与画面边框对齐。如果视频尺寸与画面尺寸不一致，在保持长宽比的前提下，将视频进行缩放后填满画面，缩放后的视频四周会有一圈黑边。|
+|render_mode|number|false|画面显示模式：<br>- `0`：（默认）裁剪模式。优先保证画面被填满。视频尺寸等比缩放，直至整个画面被视频填满。如果视频长宽与显示窗口不同，则视频流会按照画面设置的比例进行周边裁剪后填满画面。<br>- `1`：缩放模式。优先保证视频内容全部显示。视频尺寸等比缩放，直至视频窗口的一边与画面边框对齐。如果视频尺寸与画面尺寸不一致，在保持长宽比的前提下，将视频进行缩放后填满画面，缩放后的视频四周会有一圈黑边。|
 
 
 ## backgroundConfig
@@ -1120,7 +1120,7 @@ Status Code **200**
 |---|---|---|---|
 |uid|string|true|字符串内容为用户 UID。|
 |image_url|string|true|该用户的背景图 URL。配置背景图后，当该⽤户停止发送视频流超过 3.5 秒，画⾯将切换为该背景图。<br><br>URL 支持 HTTP 和 HTTPS 协议，图片格式支持 JPG 和 BMP。图片大小不得超过 6 MB。录制服务成功下载图片后，设置才会生效；如果下载失败，则设置不⽣效。不同字段设置可能会互相覆盖，具体规则详见[设置背景色或背景图](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-composite-layout#%E8%BF%9B%E9%98%B6%E8%AE%BE%E7%BD%AE%E8%83%8C%E6%99%AF%E8%89%B2%E6%88%96%E8%83%8C%E6%99%AF%E5%9B%BE)。</br>|
-|render_mode|number|false|画面显示模式：<br>- `0`（默认）：裁剪模式。优先保证画面被填满。视频尺寸等比缩放，直至整个画面被视频填满。如果视频长宽与显示窗口不同，则视频流会按照画面设置的比例进行周边裁剪后填满画面。<br>- `1`：缩放模式。优先保证视频内容全部显示。视频尺寸等比缩放，直至视频窗口的一边与画面边框对齐。如果视频尺寸与画面尺寸不一致，在保持长宽比的前提下，将视频进行缩放后填满画面，缩放后的视频四周会有一圈黑边。|
+|render_mode|number|false|画面显示模式：<br>- `0`：（默认）裁剪模式。优先保证画面被填满。视频尺寸等比缩放，直至整个画面被视频填满。如果视频长宽与显示窗口不同，则视频流会按照画面设置的比例进行周边裁剪后填满画面。<br>- `1`：缩放模式。优先保证视频内容全部显示。视频尺寸等比缩放，直至视频窗口的一边与画面边框对齐。如果视频尺寸与画面尺寸不一致，在保持长宽比的前提下，将视频进行缩放后填满画面，缩放后的视频四周会有一圈黑边。|
 
 ## recordingFileConfig
 <!-- backwards compatibility -->
@@ -1246,7 +1246,7 @@ Status Code **200**
 | videoFps|number|false|输出视频的帧率，单位为 fps。取值范围为 [5,60]。默认值为 15。|
 | mobile|boolean|false|是否开启移动端网页模式：<br>- `true`：开启。开启后，录制服务使用移动端网页渲染模式录制当前页面。<br>- `false`：（默认）不开启。|
 | maxVideoDuration|number|false|页面录制生成的 MP4 切片文件的最大时长，单位为分钟。页面录制过程中，录制服务会在当前 MP4 文件时长超过约 `maxVideoDuration` 左右时创建一个新的 MP4 切片文件。取值范围 [30,240]。默认值为 120。|
-| onhold|boolean|false|是否在启动页面录制任务时暂停页面录制。<br>- `true`：在启动页面录制任务时暂停页面录制。开启页面录制任务后立即暂停录制，录制服务会打开并渲染待录制页面，但不生成切片文件。<br>- `false`（默认）：启动页面录制任务并进行页面录制。<br>建议你按照如下流程使用 `onhold` 字段：<br>1. 调用 `start` 方法时将 `onhold` 设为 `true`，开启并暂停页面录制，自行判断页面录制开始的合适时机。<br>2. 调用 `update` 并将 `onhold` 设为 `false`，继续进行页面录制。如果需要连续调用 `update` 方法暂停或继续页面录制，请在收到上一次 `update` 响应后再进行调用，否则可能导致请求结果与预期不一致。|
+| onhold|boolean|false|是否在启动页面录制任务时暂停页面录制。<br>- `true`：在启动页面录制任务时暂停页面录制。开启页面录制任务后立即暂停录制，录制服务会打开并渲染待录制页面，但不生成切片文件。<br>- `false`：（默认）启动页面录制任务并进行页面录制。<br>建议你按照如下流程使用 `onhold` 字段：<br>1. 调用 `start` 方法时将 `onhold` 设为 `true`，开启并暂停页面录制，自行判断页面录制开始的合适时机。<br>2. 调用 `update` 并将 `onhold` 设为 `false`，继续进行页面录制。如果需要连续调用 `update` 方法暂停或继续页面录制，请在收到上一次 `update` 响应后再进行调用，否则可能导致请求结果与预期不一致。|
 | readyTimeout|number|false|设置页面加载超时时间，单位为秒。详见[页面加载超时检测](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/web-mode/detect-timeout)。取值范围为 [0,60]。默认值为 0。<br>- `0` 或不设置，表示不检测页面加载状态。<br>- [1,60] 之间的整数，表示页面加载超时时间。|
 
 #### 情况二
@@ -1279,7 +1279,7 @@ Status Code **200**
 
 |Name|Type|Required|Description|
 |---|---|---|---|
-|combinationPolicy|string|false|各云端录制应用的组合方式。<br>- `postpone_transcoding`：如需延时转码或延时混音，则选用此种方式。<br>- `default`（默认）：除延时转码和延时混音外，均选用此种方式。|
+|combinationPolicy|string|false|各云端录制应用的组合方式。<br>- `postpone_transcoding`：如需延时转码或延时混音，则选用此种方式。<br>- `default`：（默认）除延时转码和延时混音外，均选用此种方式。|
 
 ## transcodeOptions
 <!-- backwards compatibility -->
@@ -1316,9 +1316,9 @@ Status Code **200**
 |container|object|false|见下所述。|
 |» format|string|false|文件的容器格式，支持如下取值：<br>- `"mp4"`：延时转码时的默认格式。MP4 格式。<br>- `"mp3"`：延时混音时的默认格式。MP3 格式。<br>- `"m4a"`：M4A 格式。<br>- `"aac"`：AAC 格式。<br>**注意**：延时转码暂时只能设为 MP4 格式。|
 |audio|object|false|文件的音频属性。<br><p><b>注意：</b>仅需在<b>单流录制模式</b>下，且开启<b>延时混音</b>时设置。</p>|
-|» sampleRate|string|false|音频采样率 (Hz)，支持如下取值：<br>- `"48000"`（默认）：48 kHz。 <br>- `"32000"`：32 kHz。<br>- `"16000"`：16 kHz。|
+|» sampleRate|string|false|音频采样率 (Hz)，支持如下取值：<br>- `"48000"`：（默认）48 kHz。 <br>- `"32000"`：32 kHz。<br>- `"16000"`：16 kHz。|
 |» bitrate|string|false|音频码率 (Kbps)，支持取值且默认取值为 `"48000"`。|
-|» channels|string|false|音频声道数，支持如下取值：<br>- `"1"`：单声道。<br>- `"2"`（默认）：双声道。|
+|» channels|string|false|音频声道数，支持如下取值：<br>- `"1"`：单声道。<br>- `"2"`：（默认）双声道。|
 
 ## acquire-response
 <!-- backwards compatibility -->
@@ -1701,7 +1701,7 @@ Status Code **200**
 
 |Name|Type|Required|Description|
 |---|---|---|---|
-|onhold|boolean|false|设置是否暂停页面录制。<br>- `true`：暂停页面录制，并暂停生成页面录制文件。<br>- `false`（默认）：继续页面录制，并继续生成页面录制文件。<br>如果想恢复已暂停的页面录制，你可以调用 `update` 方法并将 `onhold` 设为 `false`。|
+|onhold|boolean|false|设置是否暂停页面录制。<br>- `true`：暂停页面录制，并暂停生成页面录制文件。<br>- `false`：（默认）继续页面录制，并继续生成页面录制文件。<br>如果想恢复已暂停的页面录制，你可以调用 `update` 方法并将 `onhold` 设为 `false`。|
 
 ## rtmpPublishConfig
 <!-- backwards compatibility -->
@@ -1818,7 +1818,7 @@ Status Code **200**
 |Name|Type|Required|Description|
 |---|---|---|---|
 |maxResolutionUid|string|false|仅需在**垂直布局**下设置。指定显示大视窗画面的用户 UID。字符串内容的整型取值范围 1 到 (2<sup>32</sup>-1)，且不可设置为 0。|
-|mixedVideoLayout|number|false|视频合流布局：<br>- `0`（默认）：悬浮布局。第一个加入频道的用户在屏幕上会显示为大视窗，铺满整个画布，其他用户的视频画面会显示为小视窗，从下到上水平排列，最多 4 行，每行 4 个画面，最多支持共 17 个画面。<br>- `1`：自适应布局。根据用户的数量自动调整每个画面的大小，每个用户的画面大小一致，最多支持 17 个画面。<br>- `2`：垂直布局。指定 `maxResolutionUid` 在屏幕左侧显示大视窗画面，其他用户的小视窗画面在右侧垂直排列，最多两列，一列 8 个画面，最多支持共 17 个画面。<br>- `3`：自定义布局。由你在 `layoutConfig` 字段中自定义合流布局。|
+|mixedVideoLayout|number|false|视频合流布局：<br>- `0`：（默认）悬浮布局。第一个加入频道的用户在屏幕上会显示为大视窗，铺满整个画布，其他用户的视频画面会显示为小视窗，从下到上水平排列，最多 4 行，每行 4 个画面，最多支持共 17 个画面。<br>- `1`：自适应布局。根据用户的数量自动调整每个画面的大小，每个用户的画面大小一致，最多支持 17 个画面。<br>- `2`：垂直布局。指定 `maxResolutionUid` 在屏幕左侧显示大视窗画面，其他用户的小视窗画面在右侧垂直排列，最多两列，一列 8 个画面，最多支持共 17 个画面。<br>- `3`：自定义布局。由你在 `layoutConfig` 字段中自定义合流布局。|
 |backgroundColor|string|false|视频画布的背景颜色。支持 RGB 颜色表，字符串格式为 # 号和 6 个十六进制数。默认值 `"#000000"`，代表黑色。|
 |backgroundImage|string|false|视频画布的背景图的 URL。背景图的显示模式为裁剪模式。<br><p>裁剪模式：优先保证画面被填满。背景图尺寸等比缩放，直至整个画面被背景图填满。如果背景图长宽与显示窗口不同，则背景图会按照画面设置的比例进行周边裁剪后填满画面。</p>|
 |defaultUserBackgroundImage|string|false|默认的用户画面背景图的 URL。<br><p>配置该字段后，当任一⽤户停止发送视频流超过 3.5 秒，画⾯将切换为该背景图；如果针对某 UID 单独设置了背景图，则该设置会被覆盖。</p>|
@@ -2051,7 +2051,7 @@ array[object] 类型。
 |cname|string|true|录制服务所在频道的名称。需要和你在 [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) 请求中输入的 `cname` 相同。|
 |uid|string|true|字符串内容为录制服务在 RTC 频道内使用的 UID，用于标识该录制服务，需要和你在 [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) 请求中输入的 `uid` 相同。|
 |clientRequest|object|true|见下所述。|
-|» async_stop|boolean|false|设置 `stop` 方法的响应机制：<br>- `true`：异步。调用 `stop` 后立即收到响应。<br>- `false`（默认）：同步。调用 `stop` 后，你需等待所有录制文件上传至第三方云存储方后会收到响应。声网预期上传时间不超过 20 秒，如果上传超时，你会收到错误码 `50`。|
+|» async_stop|boolean|false|设置 `stop` 方法的响应机制：<br>- `true`：异步。调用 `stop` 后立即收到响应。<br>- `false`：（默认）同步。调用 `stop` 后，你需等待所有录制文件上传至第三方云存储方后会收到响应。声网预期上传时间不超过 20 秒，如果上传超时，你会收到错误码 `50`。|
 
 ## stop-response
 <!-- backwards compatibility -->
