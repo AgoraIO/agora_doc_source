@@ -30,15 +30,29 @@
       onCaptureVideoFrame;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <p>After you successfully register the video frame observer, the SDK triggers this callback each time it receives a video frame. In this callback, you can get the video data captured by local devices. You can then pre-process the data according to your scenarios.</p>
-            <p props="native unreal bp unity electron rn cs">Once the pre-processing is complete, you can directly modify <parmname>videoFrame</parmname> in this callback, and set the return value to <codeph><ph keyref="true"/></codeph> to send the modified video data to the SDK.</p>
-            <note type="attention" id="note">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="native unreal bp unity electron rn cs">You can get raw video data collected by the local device through this callback and preprocess it as needed. Once the preprocessing is complete, you can directly modify <parmname>videoFrame</parmname> in this callback, and set the return value to <codeph><ph keyref="true"/></codeph> to send the modified video data to the SDK.</p>
+            <p props="native unreal bp unity electron rn cs">If you need to send the preprocessed data to the SDK, you need to call <xref keyref="getVideoFrameProcessMode"/><codeph>(0)</codeph> first to set the video processing mode to read and write mode.</p>
+            <p props="flutter">You can get raw video data collected by the local device through this callback.</p>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Applicable scenarios</title>
             <ul>
-            <li>The video data that this callback gets has not been pre-processed such as watermarking, cropping, and rotating.</li>
-            <li>If the video data type you get is RGBA, the SDK does not support processing the data of the alpha channel.</li>
-            <li props="flutter">Due to the limitations of Flutter, this callback does not support sending processed video data back to the SDK.</li>
-        </ul></note> </section>
+            <li props="native unreal bp unity electron rn cs">Preprocess the locally collected video data before it is processed by the SDK. For example, get video data through this callback and process it with filters, watermarks, cropping, rotation, etc.</li>
+            <li>Get information about the locally collected video data before it is processed by the SDK. For example, the original width, height, frame rate of the video frame, etc.</li></ul>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Trigger timing</title>
+            <p>After the successful registration of the video data observer, each time the SDK captures a video frame.</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <ul>
+                <li>The video data you get here is the raw video data, that is, video data that has not undergone preprocessing such as watermarking, cropping, and rotation.</li>
+                <li>If the video data type you get is RGBA, the SDK does not support processing the data of the alpha channel.</li>
+                <li props="flutter">Due to the limitations of Flutter, this callback does not support sending processed video data back to the SDK.</li>
+            </ul>
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>

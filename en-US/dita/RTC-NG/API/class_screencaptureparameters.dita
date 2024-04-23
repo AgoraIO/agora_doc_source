@@ -259,11 +259,19 @@ struct FScreenCaptureParameters
             <plentry>
                 <pt>dimensions</pt>
                 <pd>
-                    <p><ph>The video encoding resolution of the shared screen stream. </ph><ph props="cpp unreal bp unity electron flutter cs">See <xref keyref="VideoDimensions"/>. The default value is 1920 × 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges.</ph></p>
-                    <p>If the screen dimensions are different from the value of this parameter, Agora applies the following strategies for encoding. Suppose <parmname props="mac cpp unreal bp unity flutter cs">dimensions</parmname> is set to 1920 × 1080:<ul>
-                    <li>If the value of the screen dimensions is lower than that of <parmname>dimensions</parmname>, for example, 1000 × 1000 pixels, the SDK uses the screen dimensions, that is, 1000 × 1000 pixels, for encoding.</li>
-                    <li>If the value of the screen dimensions is higher than that of <parmname>dimensions</parmname>, for example, 2000 × 1500, the SDK uses the maximum value under <parmname props="mac cpp unreal bp unity flutter cs">dimensions</parmname> with the aspect ratio of the screen dimension (4:3) for encoding, that is, 1440 × 1080.</li>
-                    </ul></p>
+                    <p><ph>The video encoding resolution of the screen sharing stream. </ph><ph props="cpp unreal bp unity electron flutter cs">See <xref keyref="VideoDimensions"/>. The default value is 1920 × 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges.</ph></p>
+                    <p>If the screen dimensions are different from the value of this parameter, Agora applies the following strategies for encoding. Suppose <parmname>dimensions</parmname> is set to 1920 × 1080:<ul>
+                            <li>If the value of the screen dimensions is lower than that of <parmname>dimensions</parmname>, for example, 1000 × 1000 pixels, the SDK uses the screen dimensions, that is, 1000 × 1000 pixels, for encoding.</li>
+                            <li>If the value of the screen dimensions is higher than that of <parmname>dimensions</parmname>, for example, 2000 × 1500, the SDK uses the maximum value under <parmname>dimensions</parmname> with the aspect ratio of the screen dimension (4:3) for encoding, that is, 1440 × 1080.</li>
+                            </ul>
+                            <note>When setting the encoding resolution in the scenario of sharing documents (<ph keyref="SCREEN_SCENARIO_DOCUMENT"/>), choose one of the following two methods:<ul>
+                            <li>If you require the best image quality, it is recommended to set the encoding resolution to be the same as the capture resolution.</li>
+                            <li>If you wish to achieve a relative balance between image quality, bandwidth, and system performance, then:<ul>
+                                <li>When the capture resolution is greater than 1920 × 1080, it is recommended that the encoding resolution is not less than 1920 × 1080.</li>
+                                <li>When the capture resolution is less than 1920 × 1080, it is recommended that the encoding resolution is not less than 1280 × 720.</li>
+                                </ul></li>
+                            </ul></note>
+                            </p>
                 </pd>
             </plentry>
             <plentry>
