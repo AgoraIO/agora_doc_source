@@ -267,7 +267,7 @@ Status Code **200**
 | cname | string | false | The name of the channel to be recorded. |
 | uid | string | false | The string content is the user ID used by the cloud recording service in the RTC channel to identify the recording service in the channel. |
 | resourceId | string | false | The resource ID used by Cloud Recording. |
-| sid | string | false | The recording ID, identifying a recording cycle. |
+| sid | string | false | The recording ID. Identify a recording cycle. |
 
 
 
@@ -690,8 +690,7 @@ Status Code **200**
     },
     "excludeResourceIds": [
       "string"
-    ],
-    "regionAffinity": 0
+    ]
   }
 }
 ```
@@ -705,10 +704,10 @@ Status Code **200**
 | clientRequest
  | object | false | As described below. |
 | » scene | number | false | Use cases for cloud recording resources:<br> - `0`: Real-time audio and video recording. <br>- `1`: Web page recording. <br>- `2`: Individual recording mode, with postponed transcoding or audio mixing enabled.<br>    - Postponed transcoding: The recording service will transcode the recorded files into the MP4 format within 24 hours after the recording ends (in special cases, it may take more than 48 hours), and then upload the MP4 files to your third-party cloud storage. This scene is only applicable to the individual recording mode.<br>    - Postponed audio mixing: The recording service will merge and transcode the recorded files of all UIDs in the specified channel into a single MP3/M4A/AAC file within 24 hours after the recording ends (in special cases, it may take more than 48 hours), and then upload the file to your specified third-party cloud storage. This scene is only applicable to the individual audio non-transcoding recording mode.<br>    > - When `scene` is set to `2`, you need to set the `appsCollection`field in the `start` method at the same time.<br>    > - In scenarios involving postponed transcoding and audio mixing, the recorded files will be cached on the Agora edge servers for up to 24 hours. If your business is sensitive to information security and to ensure data compliance, please carefully consider whether to use postponed transcoding and audio mixing functions. Contact Agora technical support if you need assistance. |
-| » resourceExpiredHour | number | false | The validity period for calling the cloud recording RESTful API Start calculating after you successfully initiate the cloud recording service and obtain the `sid` (Recording ID). The calculation unit is hours. <br><br>**Note**: After the timeout, you will not be able to call the `query`, `update`, `updateLayout`, and `stop` methods.</br> |
+| » resourceExpiredHour | number | false | The validity period for calling the cloud recording RESTful API Start calculating after you successfully initiate the cloud recording service and obtain the `sid` (Recording ID). The calculation unit is hours. The value range is [1,30]. The default value is 72. <br><br>**Note**: After the timeout, you will not be able to call the `query`, `update`, `updateLayout`, and `stop` methods.</br> |
 | » startParameter | [client-request](#schemaclient-request) | false | Setting this field can improve availability and optimize load balancing. <br><br>**Note**: When populating the `startParameter` object, make sure the values are valid and consistent with the `clientRequest` object in the subsequent `start` request body; otherwise, the `start` request will receive an error response. |
 | » excludeResourceIds | array[string] | false | The `resourceId` of another or several other recording tasks. This field is used to exclude specified recording resources so that newly initiated recording tasks can use resources from a new region, enabling cross-regional multi-stream recording. See [multi-stream task guarantee]( https://doc.shengwang.cn/doc/cloud-recording/restful/best-practices/integration#多路任务保障). |
-| » regionAffinity | number | false | Specify the use of resources from a certain region for recording. The supported values are as follows: <br>- `0`: Call resources based on the region where the request is initiated. <br>- `1`: China. <br>- `2`: Southeast Asia. <br>- `3`: Europe. <br>- `4`: North America. <br>**Note**:<br>- If your request region differs from your cloud storage region, set this field to the cloud storage region to speed up file uploads. <br>- When the specified region's available capacity is insufficient, overflow will occur to the nearest geographical location. |
+| region | string | false | 限定云端录制服务访问的区域。 云端录制服务默认访问你发起请求的服务器所在区域，一旦你通过 `region` 指定了访问区域，云端录制服务将不会访问指定区域以外的服务器。 区域可设为：<br>- `"CN"`：中国大陆<br>- `"AP"`：除中国大陆以外的亚洲区域<br>- `"EU"`：欧洲<br>- `"NA"`：北美<br>**注意**：调用 `start` 方法时第三方云存储的 `region` 必须与该字段一致。 在延时转码和延时混音的场景中，声网建议你不要设置 `region` 字段。 否则，由于声网边缘服务器的动态调整和延时场景下录制文件缓存带来的数据合规风险，声网录制服务将无法正常使用。 |
 
 ## client-request
 <!-- backwards compatibility -->
@@ -990,11 +989,11 @@ Configurations for recorded audio and video streams.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| channelType | number | true | The channel profile. <br>- `0`: Communication scene. <br>- `1`: Live streaming scene. <br>The channel scene must be consistent with the Agora RTC SDK, otherwise it may cause issues. |
-| decryptionMode | number | false | The decryption mode. If you have set channel encryption in the SDK client, you need to set the same decryption mode for the cloud recording service. <br>- `0`: No encryption. <br>- `1`: AES_128_XTS encryption mode. 128-bit AES encryption, XTS mode. <br>- `2`: AES_128_ECB encryption mode. 128-bit AES encryption, ECB mode. <br>- `3`: AES_256_XTS encryption mode. 256-bit AES encryption, XTS mode. <br>- `4`: SM4_128_ECB encryption mode. 128-bit SM4 encryption, ECB mode. <br>- `5`: AES_128_GCM encryption mode. 128-bit AES encryption, GCM mode. <br>- `6`: AES_256_GCM encryption mode. 256-bit AES encryption, GCM mode. <br>- `7`: AES_128_GCM2 encryption mode. 128-bit AES encryption, GCM mode. Compared to AES_128_GCM encryption mode, AES_128_GCM2 encryption mode has higher security and requires setting a key and salt. <br>- `8`: AES_256_GCM2 encryption mode. 256-bit AES encryption, GCM mode. Compared to the AES_256_GCM encryption mode, the AES_256_GCM2 encryption mode is more secure and requires setting a key and salt. |
+| channelType | number | true | The channel profile. <br>- `0`（默认）：通信场景。 <br>- `1`: Live streaming scene. <br>The channel scene must be consistent with the Agora RTC SDK, otherwise it may cause issues. |
+| decryptionMode | number | false | The decryption mode. If you have set channel encryption in the SDK client, you need to set the same decryption mode for the cloud recording service. <br>- `0`（默认）：不加密。 <br>- `1`: AES_128_XTS encryption mode. 128-bit AES encryption, XTS mode. <br>- `2`: AES_128_ECB encryption mode. 128-bit AES encryption, ECB mode. <br>- `3`: AES_256_XTS encryption mode. 256-bit AES encryption, XTS mode. <br>- `4`: SM4_128_ECB encryption mode. 128-bit SM4 encryption, ECB mode. <br>- `5`: AES_128_GCM encryption mode. 128-bit AES encryption, GCM mode. <br>- `6`: AES_256_GCM encryption mode. 256-bit AES encryption, GCM mode. <br>- `7`: AES_128_GCM2 encryption mode. 128-bit AES encryption, GCM mode. Compared to AES_128_GCM encryption mode, AES_128_GCM2 encryption mode has higher security and requires setting a key and salt. <br>- `8`: AES_256_GCM2 encryption mode. 256-bit AES encryption, GCM mode. Compared to the AES_256_GCM encryption mode, the AES_256_GCM2 encryption mode is more secure and requires setting a key and salt. |
 | secret | string | false | Keys related to encryption and decryption. Only needs to be set when `decryptionMode` is not `0`. |
 | salt | string | false | Salt related to encryption and decryption. Base64 encoding, 32-bit bytes. Only need to set when `decryptionMode` is `7` or `8`. |
-| maxIdleTime | number | false | Maximum channel idle time. The unit is seconds. The maximum value can not exceed 30 days. The recording service will automatically exit after exceeding the maximum channel idle time. Once the recording stops, the recording service generates new recording files if you call `start` for the second time.<br><p>Channel idle: There are no broadcasters in the live channel, or there are no users in the communication channel.</p> |
+| maxIdleTime | number | false | Maximum channel idle time. The unit is seconds. 取值范围为 [5,2592000]。 The default value is 30. The maximum value can not exceed 30 days. The recording service will automatically exit after exceeding the maximum channel idle time. Once the recording stops, the recording service generates new recording files if you call `start` for the second time.<br><p>Channel idle: There are no broadcasters in the live channel, or there are no users in the communication channel.</p> |
 | streamTypes | number | false | Subscribed media stream type. <br>`0`: Subscribes to audio streams only. Suitable for smart voice review scenarios. <br>- `1`: Subscribes to video streams only. <br>- `2`: Subscribe to both audio and video streams. |
 | videoStreamType | number | false | Sets the stream type of the remote video. If you enable dual-stream mode in the SDK client, you can choose to subscribe to either the high-quality video stream or the low-quality video stream. <br>- `0`: High-quality video stream refers to high-resolution and high-bitrate video stream.<br>
 - `1`: Low-quality video stream refers to low-resolution and low-bitrate video stream. |
@@ -1056,10 +1055,10 @@ Configurations for transcoded video output The value can refer to [Setting the R
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| width | number | false | The width of the video (pixels). `width` * `height` cannot exceed 1920 × 1080. |
-| height | number | false | The height of the video (pixels). `width` * `height` cannot exceed 1920 × 1080. |
-| fps | number | false | The frame rate of the video (fps). |
-| bitrate | number | false | The bitrate of the video (kbps). |
+| width | number | false | The width of the video (pixels). `width` * `height` cannot exceed 1920 × 1080. The default value is 360. |
+| height | number | false | The height of the video (pixels). `width` * `height` cannot exceed 1920 × 1080. The default value is 640. |
+| fps | number | false | The frame rate of the video (fps). The default value is 15. |
+| bitrate | number | false | The bitrate of the video (kbps). The default value is 500. |
 | maxResolutionUid | string | false | Only need to set it in **vertical layout**. Specify the user ID of the large video window. The string value should be an integer ranged from 1 to (2<sup>32</sup>-1), and cannot be set to 0. |
 | mixedVideoLayout | number | false | Video mixed layout:<br>- `0`: Floating layout. The first user to join the channel will be displayed as a large window, filling the entire canvas. The video windows of other users will be displayed as small windows, arranged horizontally from bottom to top, up to 4 rows, each with 4 windows. It supports up to a total of 17 windows of different users' videos. <br>- `1`: Adaptive layout. Automatically adjust the size of each user's video window according to the number of users, each user's video window size is consistent, and supports up to 17 windows. <br>- `2`: Vertical layout. The `maxResolutionUid` is specified to display the large video window on the left side of the screen, and the small video windows of other users are vertically arranged on the right side, with a maximum of two columns, 8 windows per column, supporting up to 17 windows. <br>- `3`: Customized layout. Set the `layoutConfig` field to customize the mixed layout. |
 | backgroundColor | string | false | The background color of the video canvas. The RGB color table is supported, with strings formatted as a # sign and 6 hexadecimal digits. The default value is `"#000000"`, representing the black color. |
@@ -1096,11 +1095,11 @@ Mixed video layout of users. An array of screen layout settings for each user, s
 | Name | Type | Required | Description |
 |---|---|---|---|
 | uid | string | false | The content of the string is the UID of the user to be displayed in the area, 32-bit unsigned integer.<br><p>If the UID is not specified, the screen settings in <b>layoutConfig</b> will be matched automatically in the order that users join the channel.</p> |
-| x_axis | number(float) | true | The relative value of the horizontal coordinate of the upper-left corner of the screen, accurate to six decimal places. Layout from left to right, with `0.0` at the far left and `1.0` at the far right. This field can also be set to the integer 0 or 1. |
-| y_axis | number(float) | true | The relative value of the vertical coordinate of the upper-left corner of this screen in the screen, accurate to six decimal places. Layout from top to bottom, with `0.0` at the top and `1.0` at the bottom. This field can also be set to the integer 0 or 1. |
-| width | number(float) | true | The relative value of the width of this screen, accurate to six decimal places. This field can also be set to the integer 0 or 1. |
-| height | number(float) | true | The relative value of the height of this screen, accurate to six decimal places. This field can also be set to the integer 0 or 1. |
-| alpha | number(float) | false | The transparency of the user's video window. Accurate to six decimal places. `0.0` means the user's video window is transparent, and `1.0` indicates that it is completely opaque. |
+| x_axis | number(float) | true | The relative value of the horizontal coordinate of the upper-left corner of the screen, accurate to six decimal places. Layout from left to right, with `0.0` at the far left and `1.0` at the far right. This field can also be set to the integer 0 or 1. The value range is [0,100]. |
+| y_axis | number(float) | true | The relative value of the vertical coordinate of the upper-left corner of this screen in the screen, accurate to six decimal places. Layout from top to bottom, with `0.0` at the top and `1.0` at the bottom. This field can also be set to the integer 0 or 1. The value range is [0,100]. |
+| width | number(float) | true | The relative value of the width of this screen, accurate to six decimal places. This field can also be set to the integer 0 or 1. The value range is [0,100]. |
+| height | number(float) | true | The relative value of the height of this screen, accurate to six decimal places. This field can also be set to the integer 0 or 1. The value range is [0,100]. |
+| alpha | number(float) | false | The transparency of the user's video window. Accurate to six decimal places. `0.0` means the user's video window is transparent, and `1.0` indicates that it is completely opaque. The value range is [0,100]. The default value is 1. |
 | render_mode | number | false | The display mode of users' video windows:<br> - `0`: cropped mode. Prioritize to ensure the screen is filled. The video window size is proportionally scaled until it entirely fills the screen. If the video's length and width differ from the video window, the video stream will be cropped from its edges to fit the  window, in accordance with the aspect ratio set for the video window. <br>- `1`: Fit mode. Prioritize to ensure that all video content is displayed. The video size is scaled proportionally until one side of the video window is aligned with the screen border. If the video scale does not comply with the window size, the video will be scaled to fill the screen while maintaining its aspect ratio. This scaling may result in a black border around the edges of the video.. |
 
 
@@ -1169,7 +1168,7 @@ Configurations of user's background image.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| captureInterval | number | false | The cycle for regular screenshots in the cloud recording. The unit is seconds. |
+| captureInterval | number | false | The cycle for regular screenshots in the cloud recording. The unit is seconds. The value range is [1,30]. The default value is 10. |
 | file Type | array[string] | true | The file format of screenshots. Currently only `["jpg"]` is supported, which generates screenshot files in JPG format. |
 
 ## extensionServiceConfig
@@ -1250,13 +1249,13 @@ The following fields need to be set during **web page recording**:
 | audioProfile | number | true | Sampling rate, bitrate, encoding mode, and number of channels for the audio output. <br>`0`: 48 kHz sampling rate, music encoding, mono audio channel, and the encoding bitrate is approximately 48 Kbps. <br>`1`: 48 kHz sampling rate, music encoding, mono audio channel, and the encoding bitrate is approximately 128 Kbps. <br>`2`: 48 kHz sampling rate, music encoding, stereo audio channel, and the encoding bitrate is approximately 192 Kbps. |
 | videoWidth | number | true | The output video width (pixel). The product of `videoWidth` and `videoHeight` should be less than or equal to 1920 × 1080. For recommended values, see [How to Set Output Video Resolution for Web Page Recording in the Mobile Mode](https://doc.shengwang.cn/faq/integration-issues/mobile-video-profile). |
 | videoHeight | number | true | The height of the output video (pixel). The product of `videoWidth` and `videoHeight` should be less than or equal to 1920 × 1080. For recommended values, see [How to Set Output Video Resolution for Web Page Recording in the Mobile Mode](https://doc.shengwang.cn/faq/integration-issues/mobile-video-profile). |
-| maxRecordingHour | number | true | The maximum duration of web page recording (hours). The web page recording will automatically stop after exceeding this value. <br>> The recommended value should not exceed the value you set in the `acquire` method for `resourceExpiredHour`.<br><p><b>Billing related</b>:The charge will continue until the web page recording stops, so you need to set a reasonable value according to the actual business situation or stop the page recording voluntarily.</p> |
+| maxRecordingHour | number | true | The maximum duration of web page recording (hours). The web page recording will automatically stop after exceeding this value. The value range is [1,30]. <br>> The recommended value should not exceed the value you set in the `acquire` method for `resourceExpiredHour`.<br><p><b>Billing related</b>:The charge will continue until the web page recording stops, so you need to set a reasonable value according to the actual business situation or stop the page recording voluntarily.</p> |
 | videoBitrate | number | false | The bitrate of the output video (Kbps). For different output video resolutions, the default value of `videoBitrate` is different: <br>- Output video resolution is greater than or equal to 1280 × 720, and the default value is 2000. <br>- Output video resolution is less than 1280 × 720, and the default value is 1500. |
-| videoFps | number | false | The frame rate of the output video (fps). |
+| videoFps | number | false | The frame rate of the output video (fps). The value range is [1,30]. The default value is 15. |
 | mobile | boolean | false | Whether to enable the mobile web mode:<br>- `true`: enable. After enabling, the recording service uses the mobile web rendering mode to record the current page. <br>- `false`: (default) not enabled. |
-| maxVideoDuration | number | false | Maximum length of MP4 slice file generated by web page recording, in minutes During the web page recording process, the recording service will create a new MP4 slice file when the current MP4 file duration exceeds the `maxVideoDuration` approximately. |
-| onhold | boolean | false | Whether to pause page recording when starting a web page recording task. <br>- `true`：Pause the web page recording that has been started. Immediately pause the recording after starting the web page recording task. The recording service will open and render the page to be recorded, but will not generate slice files. <br>- `false`: Start a web page recording task and perform web page recording. <br>We suggest using the `onhold` field according to the following process: <br>1. Set `onhold` to `true` when calling the `start` method, which will start and pause web page recording, and you need to etermine the appropriate time to start web page recording on your own. <br>2. Call `update` and set `onhold` to `false`, continue with web page recording. If you need to pause or resume the web page recording by continuously calling the `update` method, please make the call after receiving the response from the previous `update`, otherwise it may cause inconsistent results with your expectations. |
-| readyTimeout | number | false | Set the page load timeout in seconds. See [Page Load Timeout Detection](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/web-mode/detect-timeout). <br>Set to `0` or not set, which means the web page loading status is not detected. <br>-[ An integer between 1 and 60], representing the page load timeout. |
+| maxVideoDuration | number | false | Maximum length of MP4 slice file generated by web page recording, in minutes During the web page recording process, the recording service will create a new MP4 slice file when the current MP4 file duration exceeds the `maxVideoDuration` approximately. The value ranges from [0 to 24]. The default value is 120. |
+| onhold | boolean | false | Whether to pause page recording when starting a web page recording task. <br>- `true`：Pause the web page recording that has been started. Immediately pause the recording after starting the web page recording task. The recording service will open and render the page to be recorded, but will not generate slice files. <br>- `false`（默认）：启动页面录制任务并进行页面录制。 <br>We suggest using the `onhold` field according to the following process: <br>1. Set `onhold` to `true` when calling the `start` method, which will start and pause web page recording, and you need to etermine the appropriate time to start web page recording on your own. <br>2. Call `update` and set `onhold` to `false`, continue with web page recording. If you need to pause or resume the web page recording by continuously calling the `update` method, please make the call after receiving the response from the previous `update`, otherwise it may cause inconsistent results with your expectations. |
+| readyTimeout | number | false | Set the page load timeout in seconds. 详见[页面加载超时检测](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/web-mode/detect-timeout)。 取值范围为 [0,60]。 默认值为 0。 <br>- `0` 或不设置，表示不检测页面加载状态。 <br>- [1,60] 之间的整数，表示页面加载超时时间。 |
 
 #### Scenario 2
 
@@ -1288,7 +1287,7 @@ Application configurations
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| combinationPolicy | string | false | The combination of cloud recording applications. <br>- `postpone_transcoding`: Use this method if you need to psotpone transcoding or audio mixing. <br>- `default`: Use this method except for postponed transcoding and audio mixing. |
+| combinationPolicy | string | false | The combination of cloud recording applications. <br>- `postpone_transcoding`: Use this method if you need to psotpone transcoding or audio mixing. <br>- `default`（默认）：除延时转码和延时混音外，均选用此种方式。 |
 
 ## transcodeOptions
 <!-- backwards compatibility -->
@@ -1325,9 +1324,9 @@ Configurations for the recorded files generated under postponed transcoding or a
 | container | object | false | As described below. |
 | » format | string | false | The container format of the file, which supports the following values:<br>- `"mp4"`: the default format for the postponed transcoding. MP4 format. <br>- `"mp3"`: The default format for postponed audio mixing. MP3 format. <br>- `"m4a"`: M4A format. <br>- `"aac"`: AAC format. <br>**Note**: Postponed transcoding can currently only be set to MP4 format. |
 | audio | object | false | Audio properties of the file.<br><p><b>Note: </b>This setting is only required in <b>individual recording mode</b> with <b>postponed audio mixing</b> turned on.</p> |
-| » sampleRate | string | false | Audio sampling rate (Hz) supports the following values:<br>- `"48000"`: 48 kHz.<br> - `"32000"`：32 kHz。 <br>- `"16000"`：16 kHz。 |
+| » sampleRate | string | false | 音频采样率 (Hz)，支持如下取值：<br>- `"48000"`（默认）：48 kHz。<br> - `"32000"`：32 kHz。 <br>- `"16000"`：16 kHz。 |
 | » bitrate | string | false | Audio bit rate (Kbps) supports a customized value and the default value is `"48000"`. |
-| » channels | string | false | The number of audio channels supports the following values:<br>- `"1"`: mono. <br>- `"2"`: Stereo. |
+| » channels | string | false | The number of audio channels supports the following values:<br>- `"1"`: mono. <br>- `"2"`（默认）：双声道。 |
 
 ## acquire-response
 <!-- backwards compatibility -->
@@ -1713,7 +1712,7 @@ Used to update the web page recording configurations.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| onhold | boolean | false | Set whether to pause the web page recording. <br>- `true`: Pause web page recording and generating recording files. <br>- `false`: Continue web page recording and generating recording files. <br>If you want to resume a paused web page recording, you can call the `update` method and set `onhold` to `false`. |
+| onhold | boolean | false | Set whether to pause the web page recording. <br>- `true`: Pause web page recording and generating recording files. <br>- `false`（默认）：继续页面录制，并继续生成页面录制文件。 <br>If you want to resume a paused web page recording, you can call the `update` method and set `onhold` to `false`. |
 
 ## rtmpPublishConfig
 <!-- backwards compatibility -->
@@ -1831,7 +1830,7 @@ Used to update the configurations for pushing web page recording to the CDN.
 | Name | Type | Required | Description |
 |---|---|---|---|
 | maxResolutionUid | string | false | Only need to set it in **vertical layout**. Specify the user ID of the large video window. The string value should be an integer ranged from 1 to (2<sup>32</sup>-1), and cannot be set to 0. |
-| mixedVideoLayout | number | false | Video mixed layout:<br>- `0`: Floating layout. The first user to join the channel will be displayed as a large window, filling the entire canvas. The video windows of other users will be displayed as small windows, arranged horizontally from bottom to top, up to 4 rows, each with 4 windows. It supports up to a total of 17 windows of different users' videos. <br>- `1`: Adaptive layout. Automatically adjust the size of each user's video window according to the number of users, each user's video window size is consistent, and supports up to 17 windows. <br>- `2`: Vertical layout. The `maxResolutionUid` is specified to display the large video window on the left side of the screen, and the small video windows of other users are vertically arranged on the right side, with a maximum of two columns, 8 windows per column, supporting up to 17 windows. <br>- `3`: Customized layout. Set the `layoutConfig` field to customize the mixed layout. |
+| mixedVideoLayout | number | false | 视频合流布局：<br>- `0`（默认）：悬浮布局。 The first user to join the channel will be displayed as a large window, filling the entire canvas. The video windows of other users will be displayed as small windows, arranged horizontally from bottom to top, up to 4 rows, each with 4 windows. It supports up to a total of 17 windows of different users' videos. <br>- `1`: Adaptive layout. Automatically adjust the size of each user's video window according to the number of users, each user's video window size is consistent, and supports up to 17 windows. <br>- `2`: Vertical layout. The `maxResolutionUid` is specified to display the large video window on the left side of the screen, and the small video windows of other users are vertically arranged on the right side, with a maximum of two columns, 8 windows per column, supporting up to 17 windows. <br>- `3`: Customized layout. Set the `layoutConfig` field to customize the mixed layout. |
 | backgroundColor | string | false | The background color of the video canvas. The RGB color table is supported, with strings formatted as a # sign and 6 hexadecimal digits. The default value is `"#000000"`, representing the black color. |
 | backgroundImage | string | false | The URL of the background image of the video canvas. The display mode of the background image is set to cropped mode.<br><p>Cropped mode: Will prioritize to ensure that the screen is filled. The background image size is scaled in equal proportion until the entire screen is filled with the background image. If the length and width of the background image differ from the video window, the background image will be peripherally cropped to fill the window.</p> |
 | defaultUserBackgroundImage | string | false | The URL of the default user screen background image.<br><p>After configuring this field, when any user stops sending video streams for more than 3.5 seconds, the screen will switch to the background image; this setting will be overridden if the background image is set separately for a UID.</p> |
@@ -2065,7 +2064,7 @@ array[object] type.
 | uid | string | true | The string content is the UID used by the recording service in the RTC channel to identify the recording service. It needs to be the same as the `uid` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request. |
 | clientRequest
  | object | true | As described below. |
-| » async_stop | boolean | false | Set the response mechanism for the `stop` method:<br>- `true`: Asynchronous. Immediately receive a response after calling `stop`. <br>- `false`: Synchronous. After calling `stop`, you need to wait for all the recorded files to be uploaded to the third-party cloud storage before receiving a response. Agora expects the upload time to be no more than 20 seconds. If the upload exceeds the time limit, you will receive an error code of `50`. |
+| » async_stop | boolean | false | Set the response mechanism for the `stop` method:<br>- `true`: Asynchronous. Immediately receive a response after calling `stop`. <br>- `false`（默认）：同步。 After calling `stop`, you need to wait for all the recorded files to be uploaded to the third-party cloud storage before receiving a response. Agora expects the upload time to be no more than 20 seconds. If the upload exceeds the time limit, you will receive an error code of `50`. |
 
 ## stop-response
 <!-- backwards compatibility -->
