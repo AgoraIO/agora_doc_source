@@ -882,7 +882,7 @@ Status Code **200**
 
 |Name|Type|Required|Description|
 |---|---|---|---|
-|vendor|number|true|第三方云存储平台。<br>- `1`：[Amazon S3](https://aws.amazon.com/cn/s3/?c=s&sec=srv)<br>- `2`：[阿里云](https://www.aliyun.com/product/oss)<br>- `3`：[腾讯云](https://cloud.tencent.com/product/cos)<br>- `5`：[Microsoft Azure](https://azure.microsoft.com/zh-cn/products/storage/blobs/)<br>- `6`：[谷歌云](https://cloud.google.com/storage)<br>- `7`：[华为云](https://www.huaweicloud.com/product/obs.html)<br>- `8`：[百度智能云](https://cloud.baidu.com/product/bos.html)|
+|vendor|number|true|第三方云存储平台。<br>- `1`：[Amazon S3](https://aws.amazon.com/s3/?nc1=h_ls)<br>- `2`：[阿里云](https://www.alibabacloud.com/product/oss)<br>- `3`：[腾讯云](https://intl.cloud.tencent.com/product/cos)<br>- `5`：[Microsoft Azure](https://azure.microsoft.com/en-us/services/storage/blobs/)<br>- `6`：[谷歌云](https://cloud.google.com/storage)<br>- `7`：[华为云](https://www.huaweicloud.com/intl/en-us/product/obs.html)<br>- `8`：[百度智能云](https://intl.cloud.baidu.com/product/bos.html)|
 |region|number|true|第三方云存储指定的地区信息。<br><br><b>注意：</b>为确保录制文件上传的成功率和实时性，第三方云存储的 `region` 与你发起请求的应用服务器必须在同一个区域中。例如：你发起请求的 App 服务器在中国大陆地区，则第三方云存储需要设置为中国大陆区域内。详见[第三方存储地区说明](https://doc.shengwang.cn/api-ref/cloud-recording/restful/region-vendor)。</br>|
 |bucket|string|true|第三方云存储的 Bucket。Bucket 名称需要符合对应第三方云存储服务的命名规则。|
 |accessKey|string|true|第三方云存储的 Access Key（访问密钥）。如需延时转码，则访问密钥必须具备读写权限；否则建议只需提供写权限。|
@@ -910,12 +910,15 @@ Status Code **200**
 
 |Name|Type|Required|Description|
 |---|---|---|---|
-|sse|string|true|加密模式。设置该字段后，第三方云存储服务会按照该加密模式将已上传的录制文件进行加密。该字段仅适用于 Amazon S3，详见 [Amazon S3 官方文档](https://docs.aws.amazon.com/zh_cn/AmazonS3/latest/userguide/UsingEncryption.html)。<br>- `kms`：KMS 加密。<br>- `aes256`：AES256 加密。|
-|tag|string|true|标签内容。设置该字段后，第三方云存储服务会按照该标签内容将已上传的录制文件进行打标签操作。该字段仅适用于阿里云和 Amazon S3，详见[阿里云官方文档](https://help.aliyun.com/zh/oss/user-guide/object-tagging-8)和 [Amazon S3 官方文档](https://docs.aws.amazon.com/zh_cn/AmazonS3/latest/userguide/UsingEncryption.html)。|
+|sse|string|true|加密模式。设置该字段后，第三方云存储服务会按照该加密模式将已上传的录制文件进行加密。该字段仅适用于 Amazon S3，详见 [Amazon S3 官方文档](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingEncryption.html)。<br>- `kms`：KMS 加密。<br>- `aes256`：AES256 加密。|
+|tag|string|true|标签内容。设置该字段后，第三方云存储服务会按照该标签内容将已上传的录制文件进行打标签操作。该字段仅适用于阿里云和 Amazon S3，详见[阿里云官方文档](https://www.alibabacloud.com/help/en/doc-detail/106678.html)和 [Amazon S3 官方文档](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-tagging.html)。|
 
 ## recordingConfig
 <!-- backwards compatibility -->
 <a id="schemarecordingconfig"></a>
+
+
+
 
 ```json
 {
@@ -991,10 +994,10 @@ Status Code **200**
 |unsubscribeAudioUids|array[string]|false|指定不订阅哪几个 UID 的音频流。云端录制会订阅频道内除指定 UID 外所有 UID 的音频流。数组长度不得超过 32，不推荐使用空数组。该字段和 `subscribeAudioUids` 只能设一个。详见[设置订阅名单](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe)。|
 |subscribeVideoUids|array[string]|false|指定订阅哪几个 UID 的视频流。如需订阅全部 UID 的视频流，则无需设置该字段。数组长度不得超过 32，不推荐使用空数组。该字段和 `unsubscribeVideoUids` 只能设一个。详见[设置订阅名单](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe)。<br><p><b>注意：</b><br><li>该字段仅适用于 <b>streamTypes</b> 设为视频，或音频和视频的情况。</li><br><li>如果你设置了视频的订阅名单，但没有设置音频的订阅名单，云端录制服务不会订阅任何音频流。反之亦然。</li><br><li>设为 <b>["#allstream#"]</b> 可订阅频道内所有 UID 的视频流。</li><br></p>|
 |unsubscribeVideoUids|array[string]|false|指定不订阅哪几个 UID 的视频流。云端录制会订阅频道内除指定 UID 外所有 UID 的视频流。数组长度不得超过 32，不推荐使用空数组。该字段和 `subscribeVideoUids` 只能设一个。详见[设置订阅名单](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe)。|
-|subscribeUidGroup|number|false|预估的订阅人数峰值。<br>- `0`：1 到 2 个 UID。<br>- `1`：3 到 7 个 UID。<br>- `2`：8 到 12 个 UID。<br>- `3`：13 到 17 个 UID。<br>- `4`：17 到 32 个 UID。<br>- `5`：32 到 49 个 UID。<br>**注意**：<br>- 仅需在**单流录制**模式下设置，且单流录制模式下必填。<br>- 举例来说，如果 `subscribeVideoUids` 为 `["100","101","102"]`，`subscribeAudioUids` 为 `["101","102","103"]`，则订阅人数为 4 人。|
+|subscribeUidGroup|number|false|预估的订阅人数峰值。<br>- `0`：1 到 2 个 UID。<br>- `1`：3 到 7 个 UID。<br>- `2`：8 到 12 个 UID。<br>- `3`：13 到 17 个 UID。<br>- `4`：18 到 32 个 UID。<br>- `5`：33 到 49 个 UID。<br>**注意**：<br>- 仅需在**单流录制**模式下设置，且单流录制模式下必填。<br>- 举例来说，如果 `subscribeVideoUids` 为 `["100","101","102"]`，`subscribeAudioUids` 为 `["101","102","103"]`，则订阅人数为 4 人。|
 |streamMode|string|false|媒体流的输出模式。详见[媒体流输出模式](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/stream-mode)。<br>- `"default"`：默认模式。录制过程中音频转码，分别生成 M3U8 音频索引文件和视频索引文件。<br>- `"standard"`：标准模式。声网推荐使用该模式。录制过程中音频转码，分别生成 M3U8 音频索引文件、视频索引文件和合并的音视频索引文件。如果在 Web 端使用 VP8 编码，则生成一个合并的 MPD 音视频索引文件。<br>- `"original"`：原始编码模式。适用于[单流音频不转码录制](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/set-individual-nontranscoding)。仅订阅音频时（`streamTypes` 为 0）时该字段生效，录制过程中音频不转码，生成 M3U8 音频索引文件。<br>**注意**：仅需在**单流录制**模式下设置。|
 |audioProfile|number|false|设置输出音频的采样率、码率、编码模式和声道数。<br>- `0`：48 kHz 采样率，音乐编码，单声道，编码码率约 48 Kbps。<br>- `1`：48 kHz 采样率，音乐编码，单声道，编码码率约 128 Kbps。<br>- `2`：48 kHz 采样率，音乐编码，双声道，编码码率约 192 Kbps。<br>**注意**：仅需在**合流录制**模式下设置。|
-|transcodingConfig|[transcodingConfig](#schematranscodingconfig)|false|转码输出的视频配置项。取值可参考[设置录制输出视频的分辨率](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-output-video-profile)。<br><p><b>注意：</b>仅需在<b>单流录制</b>和<b>合流录制</b>模式下设置。</p>|
+|transcodingConfig|[transcodingConfig](#schematranscodingconfig)|false|转码输出的视频配置项。取值可参考[设置录制输出视频的分辨率](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-output-video-profile)。<br><p><b>注意：</b>仅需在<b>合流录制</b>模式下设置。</p>|
 
 
 
@@ -1039,16 +1042,16 @@ Status Code **200**
 ```
 
 转码输出的视频配置项。取值可参考[设置录制输出视频的分辨率](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-output-video-profile)。
-<p><b>注意：</b>仅需在<b>单流录制</b>和<b>合流录制</b>模式下设置。</p>
+<p><b>注意：</b>仅需在<b>合流录制</b>模式下设置。</p>
 
 ### Properties
 
 |Name|Type|Required|Description|
 |---|---|---|---|
-|width|number|true|视频的宽度，单位为像素。`width` 和 `height` 的乘积不能超过 1920 × 1080。|
-|height|number|true|视频的高度，单位为像素。`width` 和 `height` 的乘积不能超过 1920 × 1080。|
-|fps|number|true|视频的帧率，单位 fps。|
-|bitrate|number|true|视频的码率，单位 Kbps。|
+|width|number|false|视频的宽度，单位为像素。`width` 和 `height` 的乘积不能超过 1920 × 1080。|
+|height|number|false|视频的高度，单位为像素。`width` 和 `height` 的乘积不能超过 1920 × 1080。|
+|fps|number|false|视频的帧率，单位 fps。|
+|bitrate|number|false|视频的码率，单位 Kbps。|
 |maxResolutionUid|string|false|仅需在**垂直布局**下设置。指定显示大视窗画面的用户 UID。字符串内容的整型取值范围 1 到 (2<sup>32</sup>-1)，且不可设置为 0。|
 |mixedVideoLayout|number|false|视频合流布局：<br>- `0`：悬浮布局。第一个加入频道的用户在屏幕上会显示为大视窗，铺满整个画布，其他用户的视频画面会显示为小视窗，从下到上水平排列，最多 4 行，每行 4 个画面，最多支持共 17 个画面。<br>- `1`：自适应布局。根据用户的数量自动调整每个画面的大小，每个用户的画面大小一致，最多支持 17 个画面。<br>- `2`：垂直布局。指定 `maxResolutionUid` 在屏幕左侧显示大视窗画面，其他用户的小视窗画面在右侧垂直排列，最多两列，一列 8 个画面，最多支持共 17 个画面。<br>- `3`：自定义布局。由你在 `layoutConfig` 字段中自定义合流布局。|
 |backgroundColor|string|false|视频画布的背景颜色。支持 RGB 颜色表，字符串格式为 # 号和 6 个十六进制数。默认值 `"#000000"`，代表黑色。|
@@ -1135,7 +1138,7 @@ Status Code **200**
 
 |Name|Type|Required|Description|
 |---|---|---|---|
-|avFileType|array[string]|false|录制生成的视频文件类型：<br>- `"hls"`：默认值。M3U8 和 TS 文件。<br>- `"mp4"`：MP4 文件。<br>**注意**：<br>- **单流录制**模式下，且**非仅截图**情况，使用默认值即可。<br>- **合流录制**和**页面录制**模式下，你需设为 `["hls","mp4"]`。仅设为 `["mp4"]` 会收到报错。设置后，录制文件行为如下：<br>    - 合流录制模式：录制服务会在当前 MP4 文件时长超过约 2 小时或文件大小超过约 2 GB 左右时，创建一个新的 MP4 文件。<br>    - 页面录制模式：录制服务会在当前 MP4 文件时长超过 `maxVideoDuration` 时，创建一个新的 MP4 文件。|
+|avFileType|array[string]|false|录制生成的视频文件类型：<br>- `"hls"`：默认值。M3U8 和 TS 文件。<br>- `"mp4"`：MP4 文件。<br>**注意**：<br>- **单流录制**模式下，且**非仅截图**情况，使用默认值即可。<br>- **合流录制**和**页面录制**模式下，如果你需要生成 MP4 文件，那么需设为 `["hls","mp4"]`。仅设为 `["mp4"]` 会收到报错。设置后，录制文件行为如下：<br>    - 合流录制模式：录制服务会在当前 MP4 文件时长超过约 2 小时或文件大小超过约 2 GB 左右时，创建一个新的 MP4 文件。<br>    - 页面录制模式：录制服务会在当前 MP4 文件时长超过 `maxVideoDuration` 时，创建一个新的 MP4 文件。|
 
 ## snapshotConfig
 <!-- backwards compatibility -->
@@ -1699,7 +1702,7 @@ Status Code **200**
 
 |Name|Type|Required|Description|
 |---|---|---|---|
-|onhold|boolean|false|是否在启动页面录制任务时暂停页面录制。<br>- `true`：在启动页面录制任务时暂停页面录制。开启页面录制任务后立即暂停录制，录制服务会打开并渲染待录制页面，但不生成切片文件。<br>- `false`：启动页面录制任务并进行页面录制。<br>建议你按照如下流程使用 `onhold` 字段：<br>1. 调用 `start` 方法时将 `onhold` 设为 `true`，开启并暂停页面录制，自行判断页面录制开始的合适时机。<br>2. 调用 `update` 并将 `onhold` 设为 `false`，继续进行页面录制。如果需要连续调用 `update` 方法暂停或继续页面录制，请在收到上一次 `update` 响应后再进行调用，否则可能导致请求结果与预期不一致。|
+|onhold|boolean|false|设置是否暂停页面录制。<br>- `true`：暂停页面录制，并暂停生成页面录制文件。<br>- `false`：继续页面录制，并继续生成页面录制文件。<br>如果想恢复已暂停的页面录制，你可以调用 `update` 方法并将 `onhold` 设为 `false`。|
 
 ## rtmpPublishConfig
 <!-- backwards compatibility -->
@@ -2161,5 +2164,3 @@ array[object] 类型。
 |» sliceStartTime|number|false|该文件的录制开始时间，Unix 时间戳，单位为毫秒。|
 |onhold|boolean|false|页面录制是否处于暂停状态：<br>- `true`：处于暂停状态。<br>- `false`：处于运行状态。|
 |state|string|false|将订阅内容上传至扩展服务的状态：<br>- `"init"`：服务正在初始化。<br>- `"inProgress"`：服务启动完成，正在进行中。<br>- `"exit"`：服务退出。|
-
-

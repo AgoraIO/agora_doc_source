@@ -18,9 +18,12 @@
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int queryCameraFocalLengthCapability(agora::rtc::FocalLengthInfo* focalLengthInfos, int&amp; size) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp"></codeblock>
             <codeblock props="electron" outputclass="language-typescript"></codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp"></codeblock>
-            <codeblock props="rn" outputclass="language-typescript"></codeblock>
-            <codeblock props="flutter" outputclass="language-dart"></codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int QueryCameraFocalLengthCapability(ref FocalLengthInfo[] focalLengthInfos, ref int size);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract queryCameraFocalLengthCapability(): {
+    focalLengthInfos: FocalLengthInfo[];
+    size: number;
+  };</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;List&lt;FocalLengthInfo>> queryCameraFocalLengthCapability();</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
@@ -33,29 +36,34 @@
             </dl>
             <p>If you want to enable the wide-angle or ultra-wide-angle mode for camera capture, it is recommended to start by calling this method to check whether the device supports the required focal length capability. Then, adjust the camera's focal length configuration based on the query result by calling <xref keyref="setCameraCapturerConfiguration"/>, ensuring the best camera capture performance.</p>
             <note type="attention" props="cpp unreal bp flutter unity">This method is for Android and iOS only.</note> </section>
-        <section id="parameters" props="cpp">
+        <section id="parameters" props="cpp unity">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>focalLengthInfos</pt>
-                <pd>Input and output parameter. A pointer to an array of <xref keyref="FocalLengthInfo"/> objects:<ul>
-                    <li>Input value: Specifies the storage location of the focal length information.</li>
-                    <li>Output value: Outputs the queried camera focal length information.</li></ul>
+                <pd props="cpp">Input and output parameter. The pointer to an array of <xref keyref="FocalLengthInfo"/> objects:<ul>
+                    <li>Input value: The pointer to an array of <xref keyref="FocalLengthInfo"/> objects, used to store focal length information.</li>
+                    <li>Output value: After the method is executed, output the queried focal length information.</li></ul>
                 </pd>
+                <pd props="unity">An output parameter. After the method is executed, output an array of <xref keyref="FocalLengthInfo"/> objects containing camera focal length information.</pd>
             </plentry>
             <plentry>
                 <pt>size</pt>
-                <pd>Input and output parameter. The size of focal length information:<ul>
-                    <li>Input value: Specifies the maximum number of focal length information that <parmname>focalLengthInfos</parmname> can accommodate. Make sure that this value is not less than 8, meaning that <parmname>focalLengthInfos</parmname> has at least enough space to store 8 focal length information.</li>
-                    <li>Output value: Outputs the number of queried focal length information.</li></ul>
+                <pd props="cpp">Input and output parameter. The number of focal length information items:<ul>
+                    <li>Input value: Specifies the maximum number of focal length information items that <parmname>focalLengthInfos</parmname> can hold. Ensure this value is not less than 8, meaning <parmname>focalLengthInfos</parmname> has space for at least 8 focal length information items.</li>
+                    <li>Output value: After the method is executed, output the number of focal length information items retrieved.</li></ul>
                 </pd>
+                <pd props="unity">An output parameter. After the method is executed, output the number of focal length information items retrieved.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-            <p props="android ios">Returns one <xref keyref="FocalLengthInfo"/> object containing the supported focal length information of the camera.</p>
-            <ul props="cpp">
+            <p props="android ios flutter">Returns an array of <xref keyref="FocalLengthInfo"/> objects, which contain the camera's orientation and focal length type.</p>
+            <p props="rn">Returns an object containing the following properties:<ul>
+                <li><parmname>focalLengthInfos</parmname>: An array of <xref keyref="FocalLengthInfo"/> objects, which contain the camera's orientation and focal length type.</li>
+                <li><parmname>size</parmname>: The number of focal length information items retrieved.</li></ul>
+            </p>
+            <ul props="cpp unity">
             <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>

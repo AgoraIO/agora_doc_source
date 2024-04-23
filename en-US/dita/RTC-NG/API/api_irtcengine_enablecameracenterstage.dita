@@ -17,10 +17,10 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableCameraCenterStage:(BOOL)enabled NS_SWIFT_NAME(enableCameraCenterStage(_:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int enableCameraCenterStage(bool enabled) = 0;</codeblock>
             <codeblock props="bp" outputclass="language-cpp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity cs" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="electron" outputclass="language-typescript">abstract enableCameraCenterStage(enabled: boolean): number;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int EnableCameraCenterStage(bool enabled);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract enableCameraCenterStage(enabled: boolean): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableCameraCenterStage(bool enabled);</codeblock> </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
@@ -30,9 +30,9 @@
             </dlentry>
             </dl>
             <p>The portrait lock feature is off by default. You need to call this method to turn it on. If you need to disable this feature, you need to call this method again and set <parmname>enabled</parmname> to <codeph><ph keyref="false"/></codeph>.</p>
-            <note type="attention" props="cpp">
-                <p>This method is for Windows and macOS only.</p>
-            </note>
+            <note type="attention" props="cpp flutter unreal bp unity">This method is for Windows and macOS only.</note>
+            <note type="attention" props="rn">This method applies to iOS only.</note>
+            <note type="attention" props="electron">This method applies to macOS only.</note>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>Applicable scenarios</title>
