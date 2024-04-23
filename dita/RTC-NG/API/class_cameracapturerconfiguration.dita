@@ -27,7 +27,7 @@
   public enum CAMERA_FOCAL_LENGTH_TYPE {
     CAMERA_FOCAL_LENGTH_DEFAULT(0),
     CAMERA_FOCAL_LENGTH_WIDE_ANGLE(1),
-    CAMERA_FOCAL_LENGTH_URLTRA_WIDE(2),
+    CAMERA_FOCAL_LENGTH_ULTRA_WIDE(2),
     CAMERA_FOCAL_LENGTH_TELEPHOTO(3);
 
     private int value;
@@ -307,7 +307,7 @@ class CameraCapturerConfiguration {
           <li props="android cpp unreal bp flutter unity rn">如需设置摄像头的焦距类型，仅支持通过 <parmname>cameraDirection</parmname> 指定摄像头，不支持通过 <parmname>cameraId</parmname> 进行指定。</li>
           <li props="ios cpp unreal bp flutter unity rn">部分 iOS 设备的后置摄像头为多个摄像头组成的融合镜头，如双摄（广角和超广角）或三摄（广角、超广角和长焦），对于这种具备超广角能力的融合镜头，你可以通过以下任意一种方式实现超广角的采集效果：
             <ul>
-              <li>方式一：将该参数设置为 <apiname keyref="CAMERA_FOCAL_LENGTH_URLTRA_WIDE"/> (2)（超广角镜头）。</li>
+              <li>方式一：将该参数设置为 <apiname keyref="CAMERA_FOCAL_LENGTH_ULTRA_WIDE"/> (2)（超广角镜头）。</li>
               <li>方式二：将该参数设置为 <apiname keyref="CAMERA_FOCAL_LENGTH_DEFAULT"/> (0)（标准镜头），然后调用 <xref keyref="setCameraZoomFactor"/> 将相机缩放比例设置为小于 1.0 的数值，最小可以设置为 0.5。</li></ul>
             区别为方式一的超广角大小不可调节，方式二支持自由调节相机的缩放比例。</li>
         </ul></note>
