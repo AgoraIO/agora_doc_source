@@ -883,13 +883,13 @@ Configurations for third-party cloud storage.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| vendor | number | true | Third-party cloud storage platforms. <br>- `1`:[ Amazon S3 ](https://aws.amazon.com/s3/)<br>
-- `2`: [Alibaba ](Cloud https://www.aliyun.com/product/oss)<br>
-- `3`: Tencent Cloud https://cloud.tencent.com/product/cos)<br>
-- `5`:[ Microsoft Azure ](https://azure.microsoft.com/en-us/products/storage/blobs/)<br>
-- `6`: Google Cloud https://cloud.google.com/storage)<br>
-- `7`: Huawei Cloud https://www.huaweicloud.com/product/obs.html)<br>
-- `8`: Baidu [Intelligent ](Cloud https://cloud.baidu.com/product/bos.html)[]([]([]( |
+| vendor | number | true | Third-party cloud storage platforms. <br>- `1`: [ Amazon S3 ](https://aws.amazon.com/s3/)<br>
+- `2`: [Alibaba Cloud]( https://www.aliyun.com/product/oss)<br>
+- `3`: [Tencent Cloud]( https://cloud.tencent.com/product/cos)<br>
+- `5`: [Microsoft Azure](https://azure.microsoft.com/en-us/products/storage/blobs/)<br>
+- `6`: [Google Cloud]( https://cloud.google.com/storage)<br>
+- `7`: [Huawei Cloud](https://www.huaweicloud.com/product/obs.html)<br>
+- `8`: [Baidu IntelligentCloud]( https://cloud.baidu.com/product/bos.html) |
 | region | number | true | (Required) The region information specified for the third-party cloud storage. <br><br><b>Note</b>:To ensure the success rate and real-time performance of the upload of the recording file, the region of the third-party cloud storage must be the same as the `region` of the application server where you initiate the request. For example: If the App server from which you initiate the request is in mainland China, and meanwhile the third-party cloud storage needs to be set to a region within mainland China. See [Third-party Cloud Storage Service]( https://doc.shengwang.cn/api-ref/cloud-recording/restful/region-vendor).</br> |
 | bucket | string | true | Third-party cloud storage bucket. The bucket name needs to comply with the naming rules of the corresponding third-party cloud storage service. |
 | accessKey | string | true | Access Key for third-party cloud storage. If postponed transcoding is required, the Access Key must have read and write permissions; otherwise, it is recommended to only provide the write permission. |
@@ -917,8 +917,8 @@ Third-party cloud storage services will encrypt and tag the uploaded recording f
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| sse | string | true | The encryption mode. After setting this field, the third-party cloud storage service will encrypt the uploaded recording files according to this encryption mode. This field is only applicable to Amazon S3, see the[ official Amazon S3 documentationhttps](://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/UsingEncryption.html). <br>- `kms`: KMS encryption. <br>- `aes256`: AES256 encryption. |
-| tag | string | true | Tag content. After setting this field, the third-party cloud storage service will tag the uploaded recording files according to the content of this tag. This field is only applicable to Alibaba Cloud and Amazon S3. For more information, please refer to [the Alibaba Cloud official documentation at ](https://www.alibabacloud.com/help/en/doc-detail/106678.html) and the[ Amazon S3 official documentation at ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-tagging.html). |
+| sse | string | true | The encryption mode. After setting this field, the third-party cloud storage service will encrypt the uploaded recording files according to this encryption mode. This field is only applicable to Amazon S3, see the [official Amazon S3 documentation](https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/UsingEncryption.html). <br>- `kms`: KMS encryption. <br>- `aes256`: AES256 encryption. |
+| tag | string | true | Tag content. After setting this field, the third-party cloud storage service will tag the uploaded recording files according to the content of this tag. This field is only applicable to Alibaba Cloud and Amazon S3. For more information, please refer to [the Alibaba Cloud official documentation]( https://www.alibabacloud.com/help/en/doc-detail/106678.html) and the [Amazon S3 official documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-tagging.html). |
 
 ## recordingConfig
 <!-- backwards compatibility -->
@@ -1004,8 +1004,8 @@ Configurations for recorded audio and video streams.
 | unsubscribeVideoUids | array[string] | false | Specify which UIDs' audio streams not to subscribe to. The cloud recording service will subscribe to the video streams of all UIDs except the specified ones. The length of the array should not exceed 32, and using an empty array is not recommended. Only one of the fields can be set: this field or `subscribeVideoUids`. For details, see [Set up subscription lists](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe). |
 | subscribeUidGroup | number | false | Estimated peak number of subscribers. <br>- `0`: 1 to 2 UIDs. <br>- `1`:3 to 7 UIDs. <br>- `2`: 8 to 12 UIDs <br>- `3`: 13 to 17 UIDs <br>- `4`: 18 to 32 UIDs. <br>- `5`: 33 to 49 UIDs. <br>**Note**:<br>- Only need to be set in **individual recording**mode, and it is required in this mode. <br>- For example, if `subscribeVideoUids` is `["100","101","102"]` and `subscribeAudioUids` is `["101","102","103"]`, the number of subscribers is 4. |
 | streamMode | string | false | Output mode of media stream. See the [Output mode of media stream](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/stream-mode). <br>- `"default"`: Default mode. Recording with audio transcoding will separately generate an M3U8 audio index file and a video index file. <br>- `"standard"`: Standard mode. Agora recommends using this mode. Recording with audio transcoding will separately generate an M3U8 audio index file, a video index file, and a merged audio and video index file. If VP8 encoding is used on the a Web client, a merged MPD audio-video index file will be generated. <br>- `"original"`: Original encoding mode. It is applicable to [individual non-transcoding audio recording](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/set-individual-nontranscoding). This field only takes effect when subscribing to audio only (`streamTypes` is 0). During the recording process, the audio is not transcoded, and an M3U8 audio index file is generated. <br>**Note**: Only need to set in **individual recording** mode. |
-| audioProfile | number | false | Set the sampling rate, bitrate, encoding mode, and number of channels for the output audio. <br>`0`: 48 kHz sampling rate, music encoding, mono audio channel, and the encoding bitrate is approximately 48 Kbps. <br>`1`: 48 kHz sampling rate, music encoding, mono audio channel, and the encoding bitrate is approximately 128 Kbps. <br>`2`: 48 kHz sampling rate, music encoding, stereo audio channel, and the encoding bitrate is approximately 192 Kbps. <br>**Note**: Only need to set in the **composite recording** mode. |
-| transcodingConfig | [transcodingConfig](#schematranscodingconfig) | false | Configurations for transcoded video output The value can refer to [Setting the Resolution of the Recorded Video Output](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-output-video-profile).<br><p><b>Note: </b>Only need to set in the <b>composite recording </b>mode.</p> |
+| audioProfile | number | false | Set the sampling rate, bitrate, encoding mode, and number of channels for the output audio. <br>`0`: 48 kHz sampling rate, music encoding, mono audio channel, and the encoding bitrate is approximately 48 Kbps. <br>`1`: 48 kHz sampling rate, music encoding, mono audio channel, and the encoding bitrate is approximately 128 Kbps. <br>`2`: 48 kHz sampling rate, music encoding, stereo audio channel, and the encoding bitrate is approximately 192 Kbps. <br>**Note:Only** need to set in the composite recording **mode.** |
+| transcodingConfig | [transcodingConfig](#schematranscodingconfig) | false | Configurations for transcoded video output The value can refer to [Setting the Resolution of the Recorded Video Output](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-output-video-profile).<br><p><b></b>Note:Only<b> need to set in the composite recording </b>mode.</p> |
 
 
 
@@ -1050,7 +1050,7 @@ Configurations for recorded audio and video streams.
 ```
 
 Configurations for transcoded video output The value can refer to [Setting the Resolution of the Recorded Video Output](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-output-video-profile).
-<p><b>Note: </b>Only need to set in the <b>composite recording </b>mode.</p>
+<p><b>Note:Only</b> need to set in the composite recording <b>mode.</b></p>
 
 ### Properties
 
