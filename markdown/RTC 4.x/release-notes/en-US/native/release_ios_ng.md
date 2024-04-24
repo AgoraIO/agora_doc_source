@@ -28,9 +28,9 @@ This version is released on 2024 Month x, Day x.
 
    **Note:** If you need to publish an app with SDK versions prior to v4.3.1 to the Apple App Store, you must manually add the `PrivacyInfo.xcprivacy` file to your Xcode project. For more details, see []().
 
-3. **Center stage camera**
+3. **Portrait center stage**
 
-   To enhance the presentation effect in online meetings, shows, and online education scenarios, this version introduces the [`enableCameraCenterStage`](/api-ref/rtc/ios/API/toc_center_stage#api_irtcengine_enablecameracenterstage) method to activate the center stage camera feature. This ensures that presenters, regardless of movement, always remain centered in the video frame, achieving better presentation effects.
+   To enhance the presentation effect in online meetings, shows, and online education scenarios, this version introduces the [`enableCameraCenterStage`](/api-ref/rtc/ios/API/toc_center_stage#api_irtcengine_enablecameracenterstage) method to activate portrait center stage. This ensures that presenters, regardless of movement, always remain centered in the video frame, achieving better presentation effects.
 
    Before enabling Center Stage, it is recommended to verify whether your current device supports this feature by calling [`isCameraCenterStageSupported`](/api-ref/rtc/ios/API/toc_center_stage#api_irtcengine_iscameracenterstagesupported). A list of supported devices can be found in the API documentation at [`enableCameraCenterStage`](/api-ref/rtc/ios/API/toc_center_stage#api_irtcengine_enablecameracenterstage).
 
@@ -98,6 +98,7 @@ This version is released on 2024 Month x, Day x.
 This version fixed the following issues:
 
 - Fixed an issue where SEI data output did not synchronize with video rendering when playing media streams containing SEI data using the media player.
+- When the network conditions of the sender deteriorated (for example, in poor network environments), the receiver occasionally experienced a decrease in video smoothness and an increase in lag.
 
 #### API Changes
 
