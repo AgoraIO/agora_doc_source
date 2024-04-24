@@ -197,7 +197,58 @@ https://doc.easemob.com/document/ios/message_forward.html
 
 ```
 let result: AgoraChatError? = agoraChatClient.login(withUsername: userId, agoraToken: token)
-``
+```
+
+11. Chatroom: member count callback
+
+### Update the chat room member count in real time
+
+If many members join or leave a chat room in a very short time, you can update the chat room member count in real time:
+
+1. When a user joins a chat room, other members in the chat room receive the `userDidJoinChatroom:user:` event. When a member leaves or is removed from a chat room, other members in the chat room receive the `userDidLeaveChatroom:user:` event.
+
+2. After the event is received, you can call the `occupantsCount` method to get the current number of members in the chat room.
+
+```Swift
+extension ViewController: AgoraChatroomManagerDelegate {
+  func userDidJoin(_ aChatroom: AgoraChatroom, user aUsername: String) {
+    let memberCount = aChatroom.occupantsCount
+  }
+  func userDidLeave(_ aChatroom: AgoraChatroom, user aUsername: String) {
+    let memberCount = aChatroom.occupantsCount
+  }
+}
+
+AgoraChatClient.shared().roomManager?.add(self, delegateQueue: nil)
+```
+
+Above is my English translation. 
+
+Following is the Chinese version of the Agora Chat doc for your reference. 
+
+### 实时更新聊天室成员人数
+
+如果聊天室短时间内有成员频繁加入或退出时，实时更新聊天室成员人数的逻辑如下：
+
+1. 聊天室内有成员加入时，其他成员会收到 `userDidJoinChatroom:user:` 事件。有成员主动或被动退出时，其他成员会收到 `userDidLeaveChatroom:user:`  事件。
+
+2. 收到通知事件后，通过 `AgoraChatroom#occupantsCount` 获取聊天室当前人数。
+
+```Swift
+extension ViewController: AgoraChatroomManagerDelegate {
+  func userDidJoin(_ aChatroom: AgoraChatroom, user aUsername: String) {
+    let memberCount = aChatroom.occupantsCount
+  }
+  func userDidLeave(_ aChatroom: AgoraChatroom, user aUsername: String) {
+    let memberCount = aChatroom.occupantsCount
+  }
+}
+
+AgoraChatClient.shared().roomManager?.add(self, delegateQueue: nil)
+```
+
+
+
 
 
 

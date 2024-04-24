@@ -396,6 +396,63 @@ ChatClient.getInstance().init(mContext, options);
 
 ```
 
+10. Chatroom: member count callback
+
+### Update the chat room member count in real time
+
+If many members join or leave a chat room in a very short time, you can update the chat room member count in real time:
+
+1. When a user joins a chat room, other members in the chat room receive the `onMemberJoined` event. When a member leaves or is removed from a chat room, other members in the chat room receive the `onMemberExited` or `onRemovedFromChatRoom` event.
+
+2. After the event is received, you can call the `getChatRoom` method to get local details of the chat room and call the `ChatRoom#getMemberCount` method to get the current number of members in the chat room.
+
+```java
+ChatClient.getInstance().chatroomManager().addChatRoomChangeListener(new ChatRoomChangeListener() {
+
+        @Override
+        public void onMemberJoined(String roomId, String participant) {
+            //Get the current number of members in the chat room.
+            ChatClient.getInstance().chatroomManager().getChatRoom(roomId).getMemberCount();
+        }
+
+        @Override
+        public void onMemberExited(String roomId, String roomName, String participant) {
+            //ChatClient.getInstance().chatroomManager().getChatRoom(roomId).getMemberCount();
+        }
+
+    });
+```
+
+Above is my English translation. 
+
+Following is the Chinese version of the Agora Chat doc for your reference. 
+
+### 实时更新聊天室成员人数
+
+如果聊天室短时间内有成员频繁加入或退出时，实时更新聊天室成员人数的逻辑如下：
+
+1. 聊天室内有成员加入时，其他成员会收到 `onMemberJoined` 事件。有成员主动或被动退出时，其他成员会收到 `onMemberExited` 和 `onRemovedFromChatRoom` 事件。
+
+2. 收到通知事件后，调用 `ChatRoomManager#getChatRoom` 方法获取本地聊天室详情，再通过`ChatRoom#getMemberCount`获取聊天室当前人数。
+
+
+```java
+ChatClient.getInstance().chatroomManager().addChatRoomChangeListener(new ChatRoomChangeListener() {
+
+        @Override
+        public void onMemberJoined(String roomId, String participant) {
+            //获取聊天室在线人数
+            ChatClient.getInstance().chatroomManager().getChatRoom(roomId).getMemberCount();
+        }
+
+        @Override
+        public void onMemberExited(String roomId, String roomName, String participant) {
+            //ChatClient.getInstance().chatroomManager().getChatRoom(roomId).getMemberCount();
+        }
+
+    });
+```
+
 
 
 

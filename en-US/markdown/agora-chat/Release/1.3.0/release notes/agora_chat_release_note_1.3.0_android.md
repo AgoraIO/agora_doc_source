@@ -60,7 +60,7 @@ v1.3.0 was released on XXXX, 2024.
 - For a modified message, the `from` property is missing from the body of the message pulled from the server by an offline user that gets online. 
 - In special scenarios, chat room events are missing when users exit the SDK before login to it.
 - The SDK reconnects to the server twice after the network is back to normal.
-- An incorrect error message is returned for an unlogged-in user that calls the `leaveChatroom` method.
+- An incorrect error message is returned for an unlogged-in user that calls the `leaveChatRoom` method.
 - The members in a group are double counted in certain scenarios.
 - The data reporting module crashes occasionally.
 - The SDK is instantiated repeatedly when the `ChatClient#init` method is called frequently for SDK initialization in multi-thread scenarios.
