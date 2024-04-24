@@ -108,8 +108,10 @@
                     <li props="android"><ph><b>Camera capture improvements</b></ph>
                         <p>Improvements have been made to the video processing mechanism of camera capture, reducing noise, enhancing brightness, and improving color, making the captured images clearer, brighter, and more realistic.</p>
                     </li>
-                    <li props="mac"><ph><b>Audio device type detection</b></ph>
-                        <p>This version adds the <codeph>deviceTypeName</codeph> member to <codeph><xref keyref="AgoraRtcDeviceInfo"/></codeph>, used to identify the type of audio devices, such as built-in, USB, HDMI, etc.</p>
+                    <li props="mac unity flutter electron"><ph><b>Audio device type detection</b></ph><ph props="unity rn flutter electron"> (macOS)</ph>
+                        <p props="mac">This version adds the <codeph>deviceTypeName</codeph> member to <codeph><xref keyref="AgoraRtcDeviceInfo"/></codeph>, used to identify the type of audio devices, such as built-in, USB, HDMI, etc.</p>
+                        <p props="flutter electron">This version adds the <codeph>deviceTypeName</codeph> in <xref keyref="AudioDeviceInfo"/>, used to identify the type of audio devices, such as built-in, USB, HDMI, etc.</p>
+                        <p props="unity">This version adds the <xref keyref="getPlaybackDefaultDevice2"/>, <xref keyref="getRecordingDefaultDevice2"/>, <xref keyref="getPlaybackDeviceInfo2"/>, and <xref keyref="getRecordingDeviceInfo2"/> method to obtain the information and type of audio playback and recording deivces.</p>
                     </li>
                     <li><ph><b>Virtual Background Algorithm Optimization</b></ph>
                         <p>To enhance the accuracy and stability of human segmentation when activating virtual backgrounds against solid colors, this version optimizes the green screen segmentation algorithm:
@@ -195,10 +197,11 @@
                         </ul></li>
                     <li props="android"><codeph><apiname keyref="ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE"/></codeph></li>
                     <li props="android"><codeph><apiname keyref="ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE"/></codeph></li>
-                    <li props="unity electron flutter"><xref keyref="getDevice2_IAudioDeviceCollection"/> (macOS)</li>
-                    <li props="unity electron flutter"><xref keyref="getDefaultDevice2_IAudioDeviceCollection"/> (macOS)</li>
-                    <li props="unity electron flutter"><xref keyref="getPlaybackDeviceInfo2"/> (macOS)</li>
-                    <li props="unity electron flutter"><xref keyref="getRecordingDeviceInfo2"/> (macOS)</li>
+                    <li props="unity"><xref keyref="getPlaybackDefaultDevice2"/><ph> (macOS)</ph></li>
+                    <li props="unity"><xref keyref="getRecordingDefaultDevice2"/><ph> (macOS)</ph></li>
+                    <li props="unity"><xref keyref="getPlaybackDeviceInfo2"/><ph> (macOS)</ph></li>
+                    <li props="unity"><xref keyref="getRecordingDeviceInfo2"/><ph> (macOS)</ph></li>
+                    <li props="electron flutter"><xref keyref="AudioDeviceInfo"/> adds <codeph>deviceTypeName</codeph> (macOS)</ph></li>
                     <li props="mac"><xref keyref="AgoraRtcDeviceInfo"/> adds <codeph>deviceTypeName</codeph></li>
                     <li><xref keyref="RemoteAudioStats"/> adds <codeph>e2eDelay</codeph></li>
                     <li props="apple cpp framework"><xref keyref="ERROR_CODE_TYPE"/> adds <codeph><apiname keyref="ERR_DATASTREAM_DECRYPTION_FAILED"/></codeph></li>
