@@ -12,11 +12,11 @@ This version is released on 2024 Month x, Day x.
 
    **Attention:** The speech driven avatar feature is currently in beta testing. To use it, please contact [technical support](mailto:support@agora.io).
 
-2. **Center stage camera (macOS)**
+2. **Portrait center stage (macOS)**
 
-   To enhance the presentation effect in online meetings, shows, and online education scenarios, this version introduces the [`enableCameraCenterStage`](/api-ref/rtc/electron/API/toc_center_stage#api_irtcengine_enablecameracenterstage) method to activate the center stage camera feature. This ensures that presenters, regardless of movement, always remain centered in the video frame, achieving better presentation effects.
+   To enhance the presentation effect in online meetings, shows, and online education scenarios, this version introduces the [`enableCameraCenterStage`](/api-ref/rtc/electron/API/toc_center_stage#api_irtcengine_enablecameracenterstage) method to activate portrait center stage. This ensures that presenters, regardless of movement, always remain centered in the video frame, achieving better presentation effects.
 
-   Before enabling Center Stage, it is recommended to verify whether your current device supports this feature by calling [`isCameraCenterStageSupported`](/api-ref/rtc/electron/API/toc_center_stage#api_irtcengine_iscameracenterstagesupported). A list of supported devices can be found in the API documentation at [`enableCameraCenterStage`](/api-ref/rtc/electron/API/toc_center_stage#api_irtcengine_enablecameracenterstage).
+   Before enabling portrait center stage, it is recommended to verify whether your current device supports this feature by calling [`isCameraCenterStageSupported`](/api-ref/rtc/electron/API/toc_center_stage#api_irtcengine_iscameracenterstagesupported). A list of supported devices can be found in the API documentation at [`enableCameraCenterStage`](/api-ref/rtc/electron/API/toc_center_stage#api_irtcengine_enablecameracenterstage).
 
 3. **Data stream encryption**
 
@@ -76,6 +76,7 @@ This version fixed the following issues:
 <!-- - During interactions, when a local user set the system default playback device to speakers using , there was no sound from the remote end. (Windows) -->
 - When sharing an Excel document window, remote users occasionally saw a green screen. (Windows)
 - On devices using Intel graphics cards, occasionally there was a performance regression when publishing a small video stream. (Windows)
+- When the network conditions of the sender deteriorated (for example, in poor network environments), the receiver occasionally experienced a decrease in video smoothness and an increase in lag.
 
 #### API Changes
 

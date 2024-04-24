@@ -28,11 +28,11 @@ This version is released on 2024 Month x, Day x.
 
    **Note:** If you need to publish an app with SDK versions prior to v4.3.1 to the Apple App Store, you must manually add the `PrivacyInfo.xcprivacy` file to your Xcode project.
 
-3. **Center stage camera (iOS)**
+3. **Portrait center stage (iOS)**
 
-   To enhance the presentation effect in online meetings, shows, and online education scenarios, this version introduces the [`enableCameraCenterStage`](/api-ref/rtc/rn/API/toc_center_stage#api_irtcengine_enablecameracenterstage) method to activate the center stage camera feature. This ensures that presenters, regardless of movement, always remain centered in the video frame, achieving better presentation effects.
+   To enhance the presentation effect in online meetings, shows, and online education scenarios, this version introduces the [`enableCameraCenterStage`](/api-ref/rtc/rn/API/toc_center_stage#api_irtcengine_enablecameracenterstage) method to activate portrait center stage. This ensures that presenters, regardless of movement, always remain centered in the video frame, achieving better presentation effects.
 
-   Before enabling Center Stage, it is recommended to verify whether your current device supports this feature by calling [`isCameraCenterStageSupported`](/api-ref/rtc/rn/API/toc_center_stage#api_irtcengine_iscameracenterstagesupported). A list of supported devices can be found in the API documentation at [`enableCameraCenterStage`](/api-ref/rtc/rn/API/toc_center_stage#api_irtcengine_enablecameracenterstage).
+   Before enabling portrait center stage, it is recommended to verify whether your current device supports this feature by calling [`isCameraCenterStageSupported`](/api-ref/rtc/rn/API/toc_center_stage#api_irtcengine_iscameracenterstagesupported). A list of supported devices can be found in the API documentation at [`enableCameraCenterStage`](/api-ref/rtc/rn/API/toc_center_stage#api_irtcengine_enablecameracenterstage).
 
 4. **Camera stabilization (iOS)**
 
@@ -104,6 +104,7 @@ This version fixed the following issues:
 - Broadcasters using certain models of devices under speaker mode experienced occasional local audio capture failures when switching the app process to the background and then back to the foreground, causing remote users to not hear the broadcaster's audio. (Android)
 - On devices with Android 8.0, enabling screen sharing occasionally caused the app to crash. (Android)
 - In scenarios using camera capture for local video, when the app was moved to the background and [`disableVideo`](/api-ref/rtc/rn/API/toc_video_basic#api_irtcengine_disablevideo) or was called to stop video capture, camera capture was unexpectedly activated when the app was brought back to the foreground. (Android)
+- When the network conditions of the sender deteriorated (for example, in poor network environments), the receiver occasionally experienced a decrease in video smoothness and an increase in lag.
 
 #### API Changes
 
