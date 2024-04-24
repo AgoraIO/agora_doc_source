@@ -19,7 +19,7 @@ v1.3.0 was released on XXXX, 2024.
 - Added the `AgoraChatMessage#broadcast` property to indicate whether the message is a broadcast message sent via a RESTful API to all chat rooms under an app.
 - Added the `AgoraChatMessage#deliverOnlineOnly` property to determine whether the message is delivered only when the recipient(s) is/are online. If this property is set to `YES`, the message is discarded when the recipient is offline.
 - Added the `AgoraChatGroupManager#getJoinedGroupsCountFromServerWithCompletion` method to allow the current user to retrieve the total number of joined groups.
-- Added the error code 706 `AgoraChatErrorChatroomOwnerNotAllowLeave` that occurs when chat room owner leaves the chat room. If `AgoraChatOptions#canChatroomOwnerLeave` is set to `NO` during SDK initialization, the chat room is not allowed to leave the chat room. In this case, error 706 is reported if the chat room owner calls the `leaveChatRoom` method to leave the chat room.
+- Added the error code 706 `AgoraChatErrorChatroomOwnerNotAllowLeave` that occurs when chat room owner leaves the chat room. If `AgoraChatOptions#canChatroomOwnerLeave` is set to `NO` during SDK initialization, the chat room is not allowed to leave the chat room. In this case, error 706 is reported if the chat room owner calls the `leaveChatroom` method to leave the chat room.
 - Added the support for retrieval of historical messages of chat rooms from the server.
 - Added the `AgoraChatOptions#useReplacedMessageContents` method to determine whether the server returns the adjusted text message to the sender if the message content is replaced during text moderation.
 - Added the function of pinning a message:

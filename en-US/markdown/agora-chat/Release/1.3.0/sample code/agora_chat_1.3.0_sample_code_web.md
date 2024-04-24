@@ -318,6 +318,65 @@ miniCore.open({
 			accessToken: token,
 
 
+7. Chatroom: member count callback
+
+### Update the chat room member count in real time
+
+If many members join or leave a chat room in a very short time, you can update the chat room member count in real time:
+
+1. When a user joins a chat room, other members in the chat room receive the `memberPresence` event. When a member leaves or is removed from a chat room, other members in the chat room receive the `memberAbsence` event.
+
+2. After the event is received, you can get the current member count of the chat room by checking the value of the `memberCount` parameter in the event.
+
+```javascript
+conn.addEventHandler("CHATROOM", {
+        onChatroomEvent: (e) => {
+          switch (e.operation) {
+            case "memberPresence":
+              // The current number of members in the chat room.
+              console.log(e?.memberCount);
+              break;
+            case "memberAbsence":
+              // The current number of members in the chat room.
+              console.log(e?.memberCount);
+              break;
+            default:
+              break;
+          }
+        }
+      });
+```
+
+Above is my English translation. 
+
+Following is the Chinese version of the Agora Chat doc for your reference. 
+
+### 实时更新聊天室成员人数
+
+如果聊天室短时间内有成员频繁加入或退出时，实时更新聊天室成员人数的逻辑如下：
+
+1. 聊天室内有成员加入时，其他成员会收到 `onChatroomEvent` 的 `memberPresence` 事件。有成员主动或被动退出时，其他成员会收到 `onChatroomEvent` 的 `memberAbsence` 事件。
+
+2. 收到通知事件后，可以通过事件回调参数获取聊天室当前人数。
+
+```javascript
+conn.addEventHandler("CHATROOM", {
+        onChatroomEvent: (e) => {
+          switch (e.operation) {
+            case "memberPresence":
+              // 当前聊天室在线人数
+              console.log(e?.memberCount);
+              break;
+            case "memberAbsence":
+              // 当前聊天室在线人数
+              console.log(e?.memberCount);
+              break;
+            default:
+              break;
+          }
+        }
+      });
+```
 
 
 

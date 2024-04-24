@@ -28,7 +28,7 @@ v1.3.0 was released on XXXX, 2024.
   - `getServerConversations`: Synchronizes the conversation list from the server to the local database.
 - Added the `applicant` parameter to the `joinPublicGroupDeclined` event to indicate the user that applies to join the group. 
 - Added the `message` field to the parameter type `SendMsgResult` in the message sending success callback to return the message object that is successfully sent.
-- Added the `onMessage` event which returns the the following types of received messages to the recipient in bulk: text, image, video, voice, location, and file messages and combined messages.
+- Added the `onMessage` event which returns the following types of received messages to the recipient in bulk: text, image, video, voice, location, and file messages and combined messages.
 - Added the thumbnail for a video message by using the first video frame as the video thumbnail whose URL can be accessed via the `videoMessage.thumb` field. 
 - Added the `memberCount` field to the events that occur when a member joins or exits a group or chat room. 
 - Added the `getSelfIdsOnOtherPlatform` method to get the list of login IDs of other login devices of the current user so that the user can send messages to a specific device.
