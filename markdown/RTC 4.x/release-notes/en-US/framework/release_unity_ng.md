@@ -8,6 +8,150 @@ On Android 14 devices (such as OnePlus 11), screen sharing may not be available 
 
 AirPods Pro does not support A2DP protocol in communication audio mode, which may lead to connection failure in that mode.
 
+## v4.3.1
+
+This version is released on 2024 Month x, Day x.
+
+#### New Features
+
+1. **Speech Driven Avatar**
+
+   The SDK introduces a speech driven extension that converts speech information into corresponding facial expressions to animate avatar. You can access the facial information through the newly added [`RegisterFaceInfoObserver`](/api-ref/rtc/unity/API/toc_speech_driven#api_imediaengine_registerfaceinfoobserver) method and [`OnFaceInfo`](/api-ref/rtc/unity/API/toc_speech_driven#callback_ifaceinfoobserver_onfaceinfo) callback. This facial information conforms to the ARKit standard for Blend Shapes (BS), which you can further process using third-party 3D rendering engines.
+
+   The speech driven extension is a trimmable dynamic library, and details about the increase in app size are available at [reduce-app-size]().
+
+   **Attention:** The speech driven avatar feature is currently in beta testing. To use it, please contact [technical support](mailto:support@agora.io).
+
+2. **Privacy manifest file (iOS)**
+
+   To meet Apple's safety compliance requirements for app publication, the SDK now includes a privacy manifest file, `PrivacyInfo.xcprivacy`, detailing the SDK's API calls that access or use user data, along with a description of the types of data collected.
+
+   **Note:** If you need to publish an app with SDK versions prior to v4.3.1 to the Apple App Store, you must manually add the `PrivacyInfo.xcprivacy` file to your Xcode project.
+
+3. **Portrait center stage (iOS, macOS)**
+
+   To enhance the presentation effect in online meetings, shows, and online education scenarios, this version introduces the [`EnableCameraCenterStage`](/api-ref/rtc/unity/API/toc_center_stage#api_irtcengine_enablecameracenterstage) method to activate the portrait center stage feature. This ensures that presenters, regardless of movement, always remain centered in the video frame, achieving better presentation effects.
+
+   Before enabling portrait center stage it is recommended to verify whether your current device supports this feature by calling [`IsCameraCenterStageSupported`](/api-ref/rtc/unity/API/toc_center_stage#api_irtcengine_iscameracenterstagesupported). A list of supported devices can be found in the API documentation at [`EnableCameraCenterStage`](/api-ref/rtc/unity/API/toc_center_stage#api_irtcengine_enablecameracenterstage).
+
+4. **Camera stabilization (iOS)**
+
+   To improve video stability in mobile filming, low-light environments, and hand-held shooting scenarios, this version introduces a camera stabilization feature. You can activate this feature and select an appropriate stabilization mode by calling [`SetCameraStabilizationMode`](/api-ref/rtc/unity/API/toc_camera_capture#api_irtcengine_setcamerastabilizationmode), achieving more stable and clearer video footage.
+
+5. **Wide and ultra-wide cameras (Android, iOS)**
+
+   To allow users to capture a broader field of view and more complete scene content, this release introduces support for wide and ultra-wide cameras. You can first call [`QueryCameraFocalLengthCapability`](/api-ref/rtc/unity/API/toc_video_device#api_irtcengine_querycamerafocallengthcapability) to check the device's focal length capabilities, and then call [`SetCameraCapturerConfiguration`](/api-ref/rtc/unity/API/toc_video_device#api_irtcengine_setcameracapturerconfiguration) and set `cameraFocalLengthType` to the supported focal length types, including wide and ultra-wide.
+
+6. **Multi-camera capture (Android)**
+
+   This release introduces additional functionalities for Android camera capture:
+
+   1. Support for capturing and publishing video streams from the third and fourth cameras:
+
+      - `VIDEO_SOURCE_CAMERA_THIRD` (11) and `VIDEO_SOURCE_CAMERA_FOURTH` (12) in [`VIDEO_SOURCE_TYPE`](/api-ref/rtc/unity/API/enum_videosourcetype) add support for Android, specifically for the third and fourth camera sources. This change allows you to specify up to four camera streams when initiating camera capture by calling [`StartCameraCapture`](/api-ref/rtc/unity/API/toc_camera_capture#api_irtcengine_startcameracapture).
+      - `publishThirdCameraTrack` and `publishFourthCameraTrack` in [`ChannelMediaOptions`](/api-ref/rtc/unity/API/class_channelmediaoptions) add support for Android. Set these parameters to `true` when joining a channel with [`JoinChannel`](/api-ref/rtc/unity/API/toc_channel#api_irtcengine_joinchannel2)[2/2] to publish video streams captured from the third and fourth cameras.
+
+   2. Support for specifying cameras by camera ID:
+
+      A new parameter `cameraId` is added to [`CameraCapturerConfiguration`](/api-ref/rtc/unity/API/class_cameracapturerconfiguration). For devices with multiple cameras, where `cameraDirection` cannot identify or access all available cameras, you can obtain the camera ID through Android's native system APIs and specify the desired camera by calling [`StartCameraCapture`](/api-ref/rtc/unity/API/toc_camera_capture#api_irtcengine_startcameracapture) with the specific `cameraId`.
+
+7. **Data stream encryption**
+
+   This version adds `datastreamEncryptionEnabled` to [`EncryptionConfig`](/api-ref/rtc/unity/API/class_encryptionconfig) for enabling data stream encryption. You can set this when you activate encryption with [`EnableEncryption`](/api-ref/rtc/unity/API/toc_network#api_irtcengine_enableencryption). If there are issues causing failures in data stream encryption or decryption, these can be identified by the newly added `ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE` and `ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE` enumerations.
+
+8. **Adaptive configuration for low-quality video streams**
+
+   This version introduces adaptive configuration for low-quality video streams. When you activate dual-stream mode and set up low-quality video streams on the sending side using [`SetDualStreamMode`](/api-ref/rtc/unity/API/toc_dual_stream#api_irtcengine_setdualstreammode2)[2/2], the SDK defaults to the following behaviors:
+
+   - The default encoding resolution for low-quality video streams is set to 50% of the original video encoding resolution.
+   - The bitrate for the small streams is automatically matched based on the video resolution and frame rate, eliminating the need for manual specification.
+
+9. **Other features**
+
+   - New method [`EnableEncryptionEx`](/api-ref/rtc/unity/API/toc_network#api_irtcengineex_enableencryptionex) is added for enabling media stream or data stream encryption in multi-channel scenarios.
+   - New method [`SetAudioMixingPlaybackSpeed`](/api-ref/rtc/unity/API/toc_audio_mixing#api_irtcengine_setaudiomixingplaybackspeed) is introduced for setting the playback speed of audio files.
+   - New method [`GetCallIdEx`](/api-ref/rtc/unity/API/toc_network#api_irtcengineex_getcallidex) is introduced for retrieving call IDs in multi-channel scenarios.
+
+#### Improvements
+
+1. **Optimization for game scenario screen sharing (Windows)**
+
+   This version specifically optimizes screen sharing for game scenarios, enhancing performance, stability, and clarity in ultra-high definition (4K, 60 fps) game scenarios, resulting in a clearer, smoother, and more stable gaming experience for players.
+
+2. **Audio device type detection (macOS)**
+
+   This version adds the [GetPlaybackDefaultDevice [2/2]](/api-ref/rtc/unity/API/toc_audio_device#api_iaudiodevicemanager_getplaybackdefaultdevice2), [`GetRecordingDefaultDevice`](/api-ref/rtc/unity/API/toc_audio_device#api_iaudiodevicemanager_getrecordingdefaultdevice2)[2/2], [`GetPlaybackDeviceInfo`](/api-ref/rtc/unity/API/toc_audio_device#api_iaudiodevicemanager_getplaybackdeviceinfo2)[2/2], and [`GetRecordingDeviceInfo`](/api-ref/rtc/unity/API/toc_audio_device#api_iaudiodevicemanager_getrecordingdeviceinfo2)[2/2] method to obtain the information and type of audio playback and recording devices.
+
+3. **Virtual Background Algorithm Optimization**
+
+   To enhance the accuracy and stability of human segmentation when activating virtual backgrounds against solid colors, this version optimizes the green screen segmentation algorithm:
+
+   - Supports recognition of any solid color background, no longer limited to green screens.
+   - Improves accuracy in recognizing background colors and reduces the background exposure during human segmentation.
+   - After segmentation, the edges of the human figure (especially around the fingers) are more stable, significantly reducing flickering at the edges.
+
+4. **CPU consumption reduction of in-ear monitoring**
+
+   This release adds an enumerator `EAR_MONITORING_FILTER_REUSE_POST_PROCESSING_FILTER` (1 << 15) in `EAR_MONITORING_FILTER_TYPE`. For complex audio processing scenarios, you can specify this option to reuse the audio filter post sender-side processing in in-ear monitoring, thereby reducing CPU consumption. Note that this option may increase the latency of in-ear monitoring, which is suitable for latency-tolerant scenarios requiring low CPU consumption.
+
+5. **Other improvements**
+
+   This version also includes the following improvements:
+
+   - Optimization of video encoding and decoding strategies in non-screen sharing scenarios to save system performance overhead. (Windows)
+   - Enhanced media player capabilities to handle WebM format videos, including support for rendering alpha channels.
+   - In [`AUDIO_EFFECT_PRESET`](/api-ref/rtc/unity/API/enum_audioeffectpreset), a new enumeration `ROOM_ACOUSTICS_CHORUS` (chorus effect) is added, enhancing the spatial presence of vocals in chorus scenarios.
+   - In [`RemoteAudioStats`](/api-ref/rtc/unity/API/class_remoteaudiostats), a new `e2eDelay` field is added to report the delay from when the audio is captured on the sending end to when the audio is played on the receiving end.
+
+#### Issues fixed
+
+This version fixed the following issues:
+
+- Fixed an issue where SEI data output did not synchronize with video rendering when playing media streams containing SEI data using the media player.
+- In screen sharing scenarios, when the app enabled sound card capture with [`EnableLoopbackRecording`](/api-ref/rtc/unity/API/toc_audio_capture#api_irtcengine_enableloopbackrecording) to capture audio from the shared screen, the transmission of sound card captured audio failed after a local user manually disabled the local audio capture device, causing remote users to not hear the shared screen's audio. (Windows)
+- Broadcasters using certain models of devices under speaker mode experienced occasional local audio capture failures when switching the app process to the background and then back to the foreground, causing remote users to not hear the broadcaster's audio. (Android)
+- An occasional echo was observed when playing the audio stream of a specified user before mixing. (macOS, Windows)
+- During interactions, when a local user set the system default playback device to speakers using , there was no sound from the remote end. (Windows)
+- On devices with Android 8.0, enabling screen sharing occasionally caused the app to crash. (Android)
+- When sharing an Excel document window, remote users occasionally saw a green screen. (Windows)
+- In scenarios using camera capture for local video, when the app was moved to the background and [`DisableVideo`](/api-ref/rtc/unity/API/toc_video_basic#api_irtcengine_disablevideo) or [`StopPreview`](/api-ref/rtc/unity/API/toc_video_basic#api_irtcengine_stoppreview)[1/2] was called to stop video capture, camera capture was unexpectedly activated when the app was brought back to the foreground. (Android)
+- When the network conditions of the sender deteriorated (for example, in poor network environments), the receiver occasionally experienced a decrease in video smoothness and an increase in lag.
+
+#### API Changes
+
+**Added**
+
+- [`EnableCameraCenterStage`](/api-ref/rtc/unity/API/toc_center_stage#api_irtcengine_enablecameracenterstage) (iOS, macOS)
+- [`IsCameraCenterStageSupported`](/api-ref/rtc/unity/API/toc_center_stage#api_irtcengine_iscameracenterstagesupported) (iOS, macOS)
+- [`SetCameraStabilizationMode`](/api-ref/rtc/unity/API/toc_camera_capture#api_irtcengine_setcamerastabilizationmode) (iOS)
+- [`CAMERA_STABILIZATION_MODE`](/api-ref/rtc/unity/API/enum_camerastabilizationmode) (iOS)
+- [`RegisterFaceInfoObserver`](/api-ref/rtc/unity/API/toc_speech_driven#api_imediaengine_registerfaceinfoobserver)
+- [`UnregisterFaceInfoObserver`](/api-ref/rtc/unity/API/toc_speech_driven#api_imediaengine_unregisterfaceinfoobserver)
+- [`IFaceInfoObserver`](/api-ref/rtc/unity/API/class_ifaceinfoobserver)
+- [`OnFaceInfo`](/api-ref/rtc/unity/API/toc_speech_driven#callback_ifaceinfoobserver_onfaceinfo)
+- [`MEDIA_SOURCE_TYPE`](/api-ref/rtc/unity/API/enum_mediasourcetype) adds `SPEECH_DRIVEN_VIDEO_SOURCE`
+- [`VIDEO_SOURCE_TYPE`](/api-ref/rtc/unity/API/enum_videosourcetype) adds `VIDEO_SOURCE_SPEECH_DRIVEN`
+- [`EncryptionConfig`](/api-ref/rtc/unity/API/class_encryptionconfig) adds `datastreamEncryptionEnabled`
+- [`ENCRYPTION_ERROR_TYPE`](/api-ref/rtc/unity/API/enum_encryptionerrortype) adds the following enumerations:
+  - `ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE`
+  - `ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE`
+- [`GetPlaybackDefaultDevice`](/api-ref/rtc/unity/API/toc_audio_device#api_iaudiodevicemanager_getplaybackdefaultdevice2)[2/2] (macOS)
+- [`GetRecordingDefaultDevice`](/api-ref/rtc/unity/API/toc_audio_device#api_iaudiodevicemanager_getrecordingdefaultdevice2)[2/2] (macOS)
+- [`GetPlaybackDeviceInfo`](/api-ref/rtc/unity/API/toc_audio_device#api_iaudiodevicemanager_getplaybackdeviceinfo2)[2/2] (macOS)
+- [`GetRecordingDeviceInfo`](/api-ref/rtc/unity/API/toc_audio_device#api_iaudiodevicemanager_getrecordingdeviceinfo2)[2/2] (macOS)
+- [`RemoteAudioStats`](/api-ref/rtc/unity/API/class_remoteaudiostats) adds `e2eDelay`
+- [`ERROR_CODE_TYPE`](/api-ref/rtc/unity/API/enum_errorcodetype) adds `ERR_DATASTREAM_DECRYPTION_FAILED`
+- [`AUDIO_EFFECT_PRESET`](/api-ref/rtc/unity/API/enum_audioeffectpreset) adds `ROOM_ACOUSTICS_CHORUS`, enhancing the spatial presence of vocals in chorus scenarios.
+- [`GetCallIdEx`](/api-ref/rtc/unity/API/toc_network#api_irtcengineex_getcallidex)
+- [`EnableEncryptionEx`](/api-ref/rtc/unity/API/toc_network#api_irtcengineex_enableencryptionex)
+- [`SetAudioMixingPlaybackSpeed`](/api-ref/rtc/unity/API/toc_audio_mixing#api_irtcengine_setaudiomixingplaybackspeed)
+- [`QueryCameraFocalLengthCapability`](/api-ref/rtc/unity/API/toc_video_device#api_irtcengine_querycamerafocallengthcapability) (Android, iOS)
+- [`FocalLengthInfo`](/api-ref/rtc/unity/API/class_focallengthinfo) (Android, iOS)
+- [`CAMERA_FOCAL_LENGTH_TYPE`](/api-ref/rtc/unity/API/enum_camerafocallengthtype) (Android, iOS)
+- [`CameraCapturerConfiguration`](/api-ref/rtc/unity/API/class_cameracapturerconfiguration) adds a new member `cameraFocalLengthType` (Android, iOS)
+- [`CameraCapturerConfiguration`](/api-ref/rtc/unity/API/class_cameracapturerconfiguration) adds a new member `cameraId` (Android)
+- [`EAR_MONITORING_FILTER_TYPE`](/api-ref/rtc/unity/API/enum_earmonitoringfiltertype) adds a new enumeration `EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS`(1 <<15)
+
 ## v4.3.0
 
 v4.3.0 was released on xx xx, 2024.
@@ -66,7 +210,7 @@ This release has optimized the implementation of some functions, involving renam
 
 6. **Log encryption behavior changes**
 
-   For security and performance reasons, as of this release, the SDK encrypts logs and no longer supports printing plaintext logs via the console. 
+   For security and performance reasons, as of this release, the SDK encrypts logs and no longer supports printing plaintext logs via the console.
 
    Refer to the following solutions for different needs:
 
