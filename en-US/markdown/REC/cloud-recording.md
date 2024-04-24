@@ -706,12 +706,11 @@ Status Code **200**
 | » resourceExpiredHour | number | false | The validity period for calling the cloud recording RESTful API Start calculating after you successfully initiate the cloud recording service and obtain the `sid` (Recording ID). The calculation unit is hours. The value range is [1,720]. The default value is 72. <br><br>**Note**: After the timeout, you will not be able to call the `query`, `update`, `updateLayout`, and `stop` methods.</br> |
 | » startParameter | [client-request](#schemaclient-request) | false | Setting this field can improve availability and optimize load balancing. <br><br>**Note**: When populating the `startParameter` object, make sure the values are valid and consistent with the `clientRequest` object in the subsequent `start` request body; otherwise, the `start` request will receive an error response. |
 | » excludeResourceIds | array[string] | false | The `resourceId` of another or several other recording tasks. This field is used to exclude specified recording resources so that newly initiated recording tasks can use resources from a new region, enabling cross-regional multi-stream recording. See [multi-stream task guarantee]( https://doc.shengwang.cn/doc/cloud-recording/restful/best-practices/integration#多路任务保障). |
-| region | string | false | Restrict the access area for Cloud Recording service. Cloud Recording service by default accesses the server in the region where you initiated the request. Once you specify the `region` through the "region" parameter, Cloud Recording service will not access servers outside the specified region. The region can be set as:<br>
+| » region | string | false | Specify regions that the cloud recording service can access. By default, the cloud recording service accesses the region where the server you initiated the request is located. Once you specify the access region through `region`, the cloud recording service will not access servers outside the specified region. The region can be set as:<br>
 - `"CN"`: Mainland China<br>
-- `"AP"`: Asia region excluding Mainland China<br>
+- `"AP"`: Asia excluding Mainland China<br>
 - `"EU"`: Europe<br>
-- `"NA"`: North America
-<br>**Note**: When calling the `start` method, the region of the third-party cloud storage must be consistent with this field. ``In scenarios involving delayed transcoding and delayed mixing, Agora recommends that you do not set the `region` field. Otherwise, due to the dynamic adjustment of Agora edge servers and the data compliance risks caused by recording file caching in delay scenarios, the Agora recording service will not be able to function properly. |
+- `"NA"`: North America<br>**Note**: When calling the `start` method, the `region` of the third-party cloud storage must be consistent with this field. In scenarios of postponed transcoding and audio mixing, Agora recommends that you do not set the `region` field. Otherwise, due to the dynamic adjustment of Agora edge servers and the data compliance risks caused by recording file caching in delay scenarios, the Agora recording service will not be able to function properly. |
 
 ## client-request
 <!-- backwards compatibility -->
