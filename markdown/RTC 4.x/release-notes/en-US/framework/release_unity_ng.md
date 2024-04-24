@@ -80,7 +80,7 @@ This version is released on 2024 Month x, Day x.
 
 2. **Audio device type detection (macOS)**
 
-   This version adds the [GetPlaybackDefaultDevice [2/2]](/api-ref/rtc/unity/API/toc_audio_device#api_iaudiodevicemanager_getplaybackdefaultdevice2), [`GetRecordingDefaultDevice`](/api-ref/rtc/unity/API/toc_audio_device#api_iaudiodevicemanager_getrecordingdefaultdevice2)[2/2], [`GetPlaybackDeviceInfo`](/api-ref/rtc/unity/API/toc_audio_device#api_iaudiodevicemanager_getplaybackdeviceinfo2)[2/2], and [`GetRecordingDeviceInfo`](/api-ref/rtc/unity/API/toc_audio_device#api_iaudiodevicemanager_getrecordingdeviceinfo2)[2/2] method to obtain the information and type of audio playback and recording deivces.
+   This version adds the [GetPlaybackDefaultDevice [2/2]](/api-ref/rtc/unity/API/toc_audio_device#api_iaudiodevicemanager_getplaybackdefaultdevice2), [`GetRecordingDefaultDevice`](/api-ref/rtc/unity/API/toc_audio_device#api_iaudiodevicemanager_getrecordingdefaultdevice2)[2/2], [`GetPlaybackDeviceInfo`](/api-ref/rtc/unity/API/toc_audio_device#api_iaudiodevicemanager_getplaybackdeviceinfo2)[2/2], and [`GetRecordingDeviceInfo`](/api-ref/rtc/unity/API/toc_audio_device#api_iaudiodevicemanager_getrecordingdeviceinfo2)[2/2] method to obtain the information and type of audio playback and recording devices.
 
 3. **Virtual Background Algorithm Optimization**
 
@@ -107,7 +107,14 @@ This version is released on 2024 Month x, Day x.
 
 This version fixed the following issues:
 
-- The SEI data output did not synchronize with video rendering when playing media streams containing SEI data using the media player.
+- Fixed an issue where SEI data output did not synchronize with video rendering when playing media streams containing SEI data using the media player.
+- In screen sharing scenarios, when the app enabled sound card capture with [`EnableLoopbackRecording`](/api-ref/rtc/unity/API/toc_audio_capture#api_irtcengine_enableloopbackrecording) to capture audio from the shared screen, the transmission of sound card captured audio failed after a local user manually disabled the local audio capture device, causing remote users to not hear the shared screen's audio. (Windows)
+- Broadcasters using certain models of devices under speaker mode experienced occasional local audio capture failures when switching the app process to the background and then back to the foreground, causing remote users to not hear the broadcaster's audio. (Android)
+- An occasional echo was observed when playing the audio stream of a specified user before mixing. (macOS, Windows)
+- During interactions, when a local user set the system default playback device to speakers using , there was no sound from the remote end. (Windows)
+- On devices with Android 8.0, enabling screen sharing occasionally caused the app to crash. (Android)
+- When sharing an Excel document window, remote users occasionally saw a green screen. (Windows)
+- In scenarios using camera capture for local video, when the app was moved to the background and [`DisableVideo`](/api-ref/rtc/unity/API/toc_video_basic#api_irtcengine_disablevideo) or [`StopPreview`](/api-ref/rtc/unity/API/toc_video_basic#api_irtcengine_stoppreview)[1/2] was called to stop video capture, camera capture was unexpectedly activated when the app was brought back to the foreground. (Android)
 - When the network conditions of the sender deteriorated (for example, in poor network environments), the receiver occasionally experienced a decrease in video smoothness and an increase in lag.
 
 #### API Changes
