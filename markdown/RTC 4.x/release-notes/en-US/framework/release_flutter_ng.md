@@ -33,7 +33,7 @@ This version is released on 2024 Month x, Day x.
 
    To enhance the presentation effect in online meetings, shows, and online education scenarios, this version introduces the [`enableCameraCenterStage`](/api-ref/rtc/flutter/API/toc_center_stage#api_irtcengine_enablecameracenterstage) method to activate portrait center stage. This ensures that presenters, regardless of movement, always remain centered in the video frame, achieving better presentation effects.
 
-   Before enabling Center Stage, it is recommended to verify whether your current device supports this feature by calling [`isCameraCenterStageSupported`](/api-ref/rtc/flutter/API/toc_center_stage#api_irtcengine_iscameracenterstagesupported). A list of supported devices can be found in the API documentation at [`enableCameraCenterStage`](/api-ref/rtc/flutter/API/toc_center_stage#api_irtcengine_enablecameracenterstage).
+   Before enabling portrait center stage, it is recommended to verify whether your current device supports this feature by calling [`isCameraCenterStageSupported`](/api-ref/rtc/flutter/API/toc_center_stage#api_irtcengine_iscameracenterstagesupported). A list of supported devices can be found in the API documentation at [`enableCameraCenterStage`](/api-ref/rtc/flutter/API/toc_center_stage#api_irtcengine_enablecameracenterstage).
 
 4. **Camera stabilization (iOS)**
 
@@ -113,7 +113,6 @@ This version fixed the following issues:
 - Fixed an issue where SEI data output did not synchronize with video rendering when playing media streams containing SEI data using the media player.
 - In screen sharing scenarios, when the app enabled sound card capture with [enableLoopbackRecording](API/api_irtcengine_enableloopbackrecording.html) to capture audio from the shared screen, the transmission of sound card captured audio failed after a local user manually disabled the local audio capture device, causing remote users to not hear the shared screen's audio. (Windows)
 - Broadcasters using certain models of devices under speaker mode experienced occasional local audio capture failures when switching the app process to the background and then back to the foreground, causing remote users to not hear the broadcaster's audio. (Android)
-- During interactions, when a local user set the system default playback device to speakers using , there was no sound from the remote end. (Windows)
 - On devices with Android 8.0, enabling screen sharing occasionally caused the app to crash. (Android)
 - When sharing an Excel document window, remote users occasionally saw a green screen. (Windows)
 - In scenarios using camera capture for local video, when the app was moved to the background and [disableVideo](API/api_irtcengine_disablevideo.html) or stopPreview was called to stop video capture, camera capture was unexpectedly activated when the app was brought back to the foreground. (Android)
@@ -149,7 +148,7 @@ This version fixed the following issues:
 - [CameraFocalLengthType](API/enum_camerafocallengthtype.html) (Android, iOS)
 - [CameraCapturerConfiguration](API/class_cameracapturerconfiguration.html) adds a new member `cameraFocalLengthType` (Android, iOS)
 - [CameraCapturerConfiguration](API/class_cameracapturerconfiguration.html) adds a new member `cameraId` (Android)
-- [EarMonitoringFilterType](API/enum_earmonitoringfiltertype.html) adds a new enumeration `earMonitoringFilterBuiltInAudioFilters`(1 <<15)
+- [EarMonitoringFilterType](API/enum_earmonitoringfiltertype.html) adds a new enumeration `earMonitoringFilterBuiltInAudioFilters`(1 << 15)
 
 
 ## v6.3.0
