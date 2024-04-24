@@ -33,7 +33,9 @@ This section introduces how to call the APIs provided by the Agora Chat SDK to i
 All chat room members can call `getChatroomMemberListFromServerWithId` to retrieve the member list of the current chat room.
 
 ```objective-c
-AgoraChatError *error = nil;
+// pageSize: The number of chat room members to retrieve per page. The maximum value is 1000.
+// cursor: The starting position for data query. Pass in `nil` or an empty string at the first call and the server returns chat room members, starting from the latest one.
+AgoraChatError *error = nil; 
 [[AgoraChatClient sharedClient].roomManager getChatroomMemberListFromServerWithId:@"chatroomId" cursor:1 pageSize:20 error:&error];
 ```
 

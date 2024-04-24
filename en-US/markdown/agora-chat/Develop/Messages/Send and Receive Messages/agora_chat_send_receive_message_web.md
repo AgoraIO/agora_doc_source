@@ -34,20 +34,22 @@ Use the `Message` class to create a text message, and send the message.
 
 ```javascript
 // Send a text message.
-function sendPrivateText() {
-
-    let option = {
-        // Set the message content.
-        msg: "message content",
-        // Set the user ID of the recipient for one-to-one chat, group ID for group chat, or chat room ID for room chat.
-        to: "userId",
-        // Set `chatType` as `singleChat` for one-to-one chat, `groupChat` for group chat, or `chatRoom` for room chat.
-        chatType: "singleChat",
-    };
-    // Create a text message.
-    let msg = AC.message.create(option);
-    // Call `send` to send the message
-     conn.send(msg).then((res)=>{
+function sendTextMessage() {
+  let option = {
+    // Set the message type.
+    type: "txt",
+    // Set the message content.
+    msg: "message content",
+    // Set the user ID of the recipient for one-to-one chat, group ID for group chat, or chat room ID for room chat.
+    to: "username",
+    // Set `chatType` as `singleChat` for one-to-one chat, `groupChat` for group chat, or `chatRoom` for room chat.
+    // The default value is `singleChat`.
+    chatType: "singleChat",
+  };
+  // Create a text message.
+  let msg = AC.message.create(option);
+  // Call `send` to send the message.
+    conn.send(msg).then((res)=>{
       console.log("Send message success",res);
     }).catch((e)=>{
       console.log("Send message fail",e);
@@ -60,19 +62,22 @@ You can set the priority of chat room messages.
 ```javascript
 // Send a text message.
 function sendTextMessage() {
-    let option = {
-        type: "txt",
-        msg: "message content",
-        // Set the message priority. The default value is `normal`, indicating the normal priority.
-        priority: "high"
-        to: "chat room ID",
-        chatType: "chatRoom",
-    };
-    let msg = AC.message.create(opt);
-    conn.send(msg).then(()=>{
-        console.log("Send message success");
-    }).catch((e)=>{
-        console.log("Send message fail");
+  let option = {
+    type: "txt",
+    msg: "message content",
+    // Set the message priority. The default value is `normal`, indicating the normal priority.
+    priority: "high",
+    to: "chat room ID",
+    chatType: "chatRoom",
+  };
+  let msg = AC.message.create(opt);
+  conn
+    .send(msg)
+    .then(() => {
+      console.log("Send message success");
+    })
+    .catch((e) => {
+      console.log("Send message fail");
     });
 }
 ```
@@ -92,8 +97,6 @@ connection.addEventHandler("eventName",{
     onClosed: function (message) {},
     // Occurs when the text message is received.
     onTextMessage: function (message) {},
-    // Occurs when the emoji message is received.
-    onEmojiMessage: function (message) {},
     // Occurs when the image message is received.
     onImageMessage: function (message) {},
     // Occurs when the CMD message is received.
@@ -108,31 +111,20 @@ connection.addEventHandler("eventName",{
     onCustomMessage: function (message) {},
     // Occurs when the video message is received.
     onVideoMessage: function (message) {},
-    // Occurs when the presence state is updated.
-    onPresence: function (message) {}, 
-    // Occurs when a contact invitation is received.
-    onRoster: function (message) {},
-    // Occurs when a group invitation is received.
-    onInviteMessage: function (message) {},
     // Occurs when the local network is connected.
     onOnline: function () {},
     // Occurs when the local network is disconnected.
     onOffline: function () {},
     // Occurs when an error occurs.
     onError: function (message) {},
-    // Occurs when the block list is updated, for example, if you add a contact to the block list. list contains all the usernames on the block list.
-    onBlacklistUpdate: function (list) {
-    },
     // Occurs when the message is recalled.
     onRecallMessage: function (message) {},
     // Occurs when the message is received.
     onReceivedMessage: function (message) {},
-    // Occurs when the message delevery receipt is received.
+    // Occurs when the message delivery receipt is received.
     onDeliveredMessage: function (message) {},
     // Occurs when the message read receipt is received.
     onReadMessage: function (message) {},
-    // Occurs when the local user is muted and still attempts to send a group message. This callback is triggered only on the local client, not on other clients in the group.
-    onMutedMessage: function (message) {},
     // Occurs when the conversation read receipt is received.
     onChannelMessage: function (message) {},
 });
@@ -144,14 +136,15 @@ After a message is sent, you can recall it. The `recallMessage` method recalls a
 
 You can recall a message sent within two minutes by default. If you want to adjust the time limit, contact [support@agora.io](mailto:support@agora.io).
 
+<div class="alert info">Except CMD messages, you can recall all types of message.</div>
 
 ```javascript
 let option = {
-  // The ID of the message to recall.   
+  // The ID of the message to recall.
   mid: "msgId",
   // The message recipient.
   to: "userID",
-  // The message type: singleChat, groupChat, and chatRoom respectively indicate one-to-one chat, group chat, and room chat.
+  // The chat type: singleChat, groupChat, and chatRoom respectively indicate one-to-one chat, group chat, and room chat.
   chatType: "singleChat",
 };
 connection
@@ -169,10 +162,10 @@ You can also use `onRecallMessage` to listen for the message recall state:
 
 ```javascript
 connection.addEventHandler('MESSAGES',{
-   onRecallMessage: => (msg) {
+   onRecallMessage: (msg) =>  {
        // You can insert a message here, for example, XXX has recalled a message.
-   	   console.log('Recalling the message succeeds'，msg) 
-   }, 
+   	   console.log('Recalling the message succeeds'，msg)
+   },
 })
 ```
 
