@@ -16,7 +16,7 @@ This version is released on 2024 Month x, Day x.
 
    The speech driven avatar feature is currently in beta testing. To use it, please contact [technical support](mailto:support@agora.io).
 
-2. **Center stage camera**
+2. **Portrait lock**
 
    To enhance the presentation effect in online meetings, shows, and online education scenarios, this version introduces the [`enableCameraCenterStage`](/api-ref/rtc/macos/API/toc_center_stage#api_irtcengine_enablecameracenterstage) method to activate the center stage camera feature. This ensures that presenters, regardless of movement, always remain centered in the video frame, achieving better presentation effects.
 
