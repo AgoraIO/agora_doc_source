@@ -32,7 +32,7 @@ This version is released on 2024 Month x, Day x.
 
    To enhance the presentation effect in online meetings, shows, and online education scenarios, this version introduces the [`EnableCameraCenterStage`](/api-ref/rtc/unity/API/toc_center_stage#api_irtcengine_enablecameracenterstage) method to activate the portrait center stage feature. This ensures that presenters, regardless of movement, always remain centered in the video frame, achieving better presentation effects.
 
-   Before enabling Center Stage, it is recommended to verify whether your current device supports this feature by calling [`IsCameraCenterStageSupported`](/api-ref/rtc/unity/API/toc_center_stage#api_irtcengine_iscameracenterstagesupported). A list of supported devices can be found in the API documentation at [`EnableCameraCenterStage`](/api-ref/rtc/unity/API/toc_center_stage#api_irtcengine_enablecameracenterstage).
+   Before enabling portrait center stage it is recommended to verify whether your current device supports this feature by calling [`IsCameraCenterStageSupported`](/api-ref/rtc/unity/API/toc_center_stage#api_irtcengine_iscameracenterstagesupported). A list of supported devices can be found in the API documentation at [`EnableCameraCenterStage`](/api-ref/rtc/unity/API/toc_center_stage#api_irtcengine_enablecameracenterstage).
 
 4. **Camera stabilization (iOS)**
 
