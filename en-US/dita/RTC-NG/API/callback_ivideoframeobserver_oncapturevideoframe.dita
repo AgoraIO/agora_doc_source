@@ -31,9 +31,9 @@
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="native unreal bp unity electron rn cs">You can get raw video data collected by the local device through this callback and preprocess it as needed. Once the preprocessing is complete, you can directly modify <parmname>videoFrame</parmname> in this callback, and set the return value to <codeph><ph keyref="true"/></codeph> to send the modified video data to the SDK.</p>
-            <p props="native unreal bp unity electron rn cs">If you need to send the preprocessed data to the SDK, you need to call <xref keyref="getVideoFrameProcessMode"/><codeph>(0)</codeph> first to set the video processing mode to read and write mode.</p>
-            <p props="flutter">You can get raw video data collected by the local device through this callback.</p>
+            <p props="native unreal bp unity cs">You can get raw video data collected by the local device through this callback and preprocess it as needed. Once the preprocessing is complete, you can directly modify <parmname>videoFrame</parmname> in this callback, and set the return value to <codeph><ph keyref="true"/></codeph> to send the modified video data to the SDK.</p>
+            <p props="native unreal bp">If you need to send the preprocessed data to the SDK, you need to call <xref keyref="getVideoFrameProcessMode"/><codeph>(0)</codeph> first to set the video processing mode to read and write mode.</p>
+            <p props="flutter rn electron">You can get raw video data collected by the local device through this callback.</p>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>Applicable scenarios</title>
@@ -50,7 +50,7 @@
             <ul>
                 <li>The video data you get here is the raw video data, that is, video data that has not undergone preprocessing such as watermarking, cropping, and rotation.</li>
                 <li>If the video data type you get is RGBA, the SDK does not support processing the data of the alpha channel.</li>
-                <li props="flutter">Due to the limitations of Flutter, this callback does not support sending processed video data back to the SDK.</li>
+                <li props="flutter rn electron">Due to framework limitations, this callback does not support sending processed video data back to the SDK.</li>
             </ul>
         </section>
         <section id="parameters">
@@ -73,11 +73,11 @@
             <title>Returns</title>
             <p id="return">
             <ul>
-            <li props="native unreal bp electron rn">When the video processing mode is <apiname keyref="PROCESS_MODE_READ_ONLY"/>:<ul>
+            <li props="native unreal bp">When the video processing mode is <apiname keyref="PROCESS_MODE_READ_ONLY"/>:<ul>
                 <li><codeph><ph keyref="true"/></codeph>: Reserved for future use.</li>
                 <li><codeph><ph keyref="false"/></codeph>: Reserved for future use.</li>
                 </ul></li>
-            <li props="native unreal bp electron rn">When the video processing mode is <apiname keyref="PROCESS_MODE_READ_WRITE"/>:<ul>
+            <li props="native unreal bp">When the video processing mode is <apiname keyref="PROCESS_MODE_READ_WRITE"/>:<ul>
                 <li><codeph><ph keyref="true"/></codeph>: Sets the SDK to receive the video frame.</li>
                 <li><codeph><ph keyref="false"/></codeph>: Sets the SDK to discard the video frame.</li>
                 </ul></li>
@@ -85,7 +85,7 @@
             <ul props="unity cs">
             <li><codeph><ph keyref="true"/></codeph>: Sets the SDK to receive the video frame.</li>
             <li><codeph><ph keyref="false"/></codeph>: Sets the SDK to discard the video frame.</li>
-            </ul> </p>
+            </ul></p>
         </section>
     </refbody>
 </reference>
