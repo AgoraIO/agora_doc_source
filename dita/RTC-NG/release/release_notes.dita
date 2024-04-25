@@ -99,8 +99,10 @@
                     <li props="android"><ph><b>摄像头采集改进</b></ph>
                         <p>优化了摄像头采集的视频处理机制，减少噪点、提高亮度、改善色彩，使采集到的图形更加清晰、明亮和真实。</p>
                     </li>
-                    <li props="mac"><ph><b>获取音频设备类型</b></ph>
-                        <p>该版本在 <codeph><xref keyref="AgoraRtcDeviceInfo"/></codeph> 中新增 <codeph>deviceTypeName</codeph> 成员，用于获取音频设备的类型，如 built-in、USB、HDMI 等。</p>
+                    <li props="mac unity flutter electron"><ph><b>获取音频设备类型</b></ph><ph props="unity rn flutter electron">（macOS）</ph>
+                        <p props="mac">该版本在 <xref keyref="AgoraRtcDeviceInfo"/> 中新增 <codeph>deviceTypeName</codeph> 成员，用于获取音频设备的类型，如 built-in、USB、HDMI 等。</p>
+                        <p props="flutter electron">该版本在 <xref keyref="AudioDeviceInfo"/> 中新增 <codeph>deviceTypeName</codeph> 成员，用于获取音频设备的类型，如 built-in、USB、HDMI 等。</p>
+                        <p props="unity">该版本新增 <xref keyref="getPlaybackDefaultDevice2"/>、<xref keyref="getRecordingDefaultDevice2"/>、<xref keyref="getPlaybackDeviceInfo2"/>、<xref keyref="getRecordingDeviceInfo2"/> 方法，分别用于获取音频播放、采集设备的设备信息及类型。</p>
                     </li>
                     <li><ph><b>虚拟背景算法优化</b></ph>
                         <p>为了提高纯色背景下开启虚拟背景时人像分割的精确度和稳定性，该版本优化了绿幕分割算法：
@@ -181,10 +183,11 @@
                         </ul></li>
                     <li props="android"><codeph><apiname keyref="ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE"/></codeph></li>
                     <li props="android"><codeph><apiname keyref="ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE"/></codeph></li>
-                    <li props="unity electron flutter"><xref keyref="getDevice2_IAudioDeviceCollection"/><ph> (macOS)</ph></li>
-                    <li props="unity electron flutter"><xref keyref="getDefaultDevice2_IAudioDeviceCollection"/><ph> (macOS)</ph></li>
-                    <li props="unity electron flutter"><xref keyref="getPlaybackDeviceInfo2"/><ph> (macOS)</ph></li>
-                    <li props="unity electron flutter"><xref keyref="getRecordingDeviceInfo2"/><ph> (macOS)</ph></li>
+                    <li props="unity"><xref keyref="getPlaybackDefaultDevice2"/><ph> (macOS)</ph></li>
+                    <li props="unity"><xref keyref="getRecordingDefaultDevice2"/><ph> (macOS)</ph></li>
+                    <li props="unity"><xref keyref="getPlaybackDeviceInfo2"/><ph> (macOS)</ph></li>
+                    <li props="unity"><xref keyref="getRecordingDeviceInfo2"/><ph> (macOS)</ph></li>
+                    <li props="electron flutter"><xref keyref="AudioDeviceInfo"/> 中新增 <codeph>deviceTypeName</codeph> (macOS)</li>
                     <li props="mac"><xref keyref="AgoraRtcDeviceInfo"/> 新增 <codeph>deviceTypeName</codeph></li>
                     <li><xref keyref="RemoteAudioStats"/> 新增 <codeph>e2eDelay</codeph></li>
                     <li props="apple cpp framework"><xref keyref="ERROR_CODE_TYPE"/> 新增 <codeph><apiname keyref="ERR_DATASTREAM_DECRYPTION_FAILED"/></codeph></li>
