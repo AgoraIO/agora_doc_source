@@ -11,7 +11,7 @@ Agora Cloud Recording is a component provided by Agora to record and save voice 
    - `updateLayout`: Update the video mixing layout.
 - `stop`: When a recording finishes, call `stop` to leave the channel and stop the recording.
 
-> Cloud Recording does not support completing multiple tasks in one recording session. For example, if you need to start individual and composite recording for a channel simultaneously, start two recording sessions. More specifically, use two different `uid`s to call `acquire` to obtain two `resourceId`s, and then call start separately to start two recording tasks. Both recording sessions are charged.
+> Cloud Recording does not support completing multiple tasks in one recording session. For example, if you need to start individual and composite recording for a channel simultaneously, start two recording sessions. More specifically, use two different `uids` to call `acquire` to obtain two `resourceId`s, and then call start separately to start two recording tasks. Both recording sessions are charged.
 
 To monitor the status of your cloud recording, Agora provides the [message notification service](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/enable-ncs). After enabling this service, you can receive [the events related to cloud recording](https://doc.shengwang.cn/api-ref/cloud-recording/restful/webhook/ncs-events) through Webhook.
 
@@ -37,12 +37,12 @@ When sending an HTTP request, you must use Basic HTTP authentication and fill in
 
 *Acquire: Get a cloud recording resource*
 
-Before starting a cloud recording, you need to call `acquire` method to get a resource ID. One resource ID can only be used for one recording session.
+Before starting a cloud recording, you need to call the `acquire` method to get a resource ID. One resource ID can only be used for one recording session.
 
 
 **Note**: To ensure successfully starting cloud recording, proceed as follows:
 - The requests for `acquire` and `start` need to be called in pairs.
-- Immediately start the corresponding [`start`](#opIdpost-v1-apps-appid-cloud_recording-resourceid-resourceid-mode-mode-start) request within two seconds of getting the resource ID for each `acquire` request. A group `start` requests after getting resource IDs in a batch might result in request failure.
+- Immediately start the corresponding [`start`](#opIdpost-v1-apps-appid-cloud_recording-resourceid-resourceid-mode-mode-start) request within two seconds of getting the resource ID for each `acquire` request. Batch fetching of Resource IDs followed by batch `start` requests may lead to request failure.
 - The resource ID is valid within five minutes of getting it and should be used as soon as possible.
 
 > Request body
@@ -63,7 +63,7 @@ Before starting a cloud recording, you need to call `acquire` method to get a re
 | Name | In | Type | Required | Description |
 |---|---|---|---|---|
 | Content-Type | header | string | false | `application/json`. |
-| appid | path | string | true | The [App ID](http://doc.shengwang.cn/doc/cloud-recording/restful/get-started/enable-service#%E8%8E%B7%E5%8F%96-app-id) that your project uses.<li>For web page recording mode, simply enter the App ID for which the cloud recording service is enabled.</li><li>For individual and composite recording modes, you must use the same App ID as the channel to be record. Ensure that the cloud recording service has been enabled for this App ID.</li> |
+| appid | path | string | true | The [App ID](http://doc.shengwang.cn/doc/cloud-recording/restful/get-started/enable-service#%E8%8E%B7%E5%8F%96-app-id) that your project uses.<li>For web page recording mode, simply enter the App ID for which the cloud recording service is enabled.</li><li>For individual and composite recording modes, you must use the same App ID as the channel to be recorded. Ensure that the cloud recording service has been enabled for this App ID.</li> |
 | body | body | JSON Object | true | [acquire-request](#schemaacquire-request) |
 
 > Example responses
@@ -95,7 +95,7 @@ Before starting a cloud recording, you need to call `acquire` method to get a re
 
 *Start: Start a cloud recording*
 
-After getting a cloud recording resources with the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) method, call `start` method to start a cloud recording.
+After getting a cloud recording resources with the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) method, call the `start` method to start a cloud recording.
 
 > After starting the `start` request, you further need to check that the recording service has started successfully according to the [best practices](https://doc.shengwang.cn/doc/cloud-recording/restful/best-practices/integration#确认录制服务已成功启动).
 
@@ -147,9 +147,9 @@ After getting a cloud recording resources with the [`acquire`](#opIdpost-v1-apps
 | Name | In | Type | Required | Description |
 |---|---|---|---|---|
 | Content-Type | header | string | false | `application/json`. |
-| appid | path | string | true | The [App ID](http://doc.shengwang.cn/doc/cloud-recording/restful/get-started/enable-service#%E8%8E%B7%E5%8F%96-app-id) that your project uses.<li>For web page recording mode, simply enter the App ID for which the cloud recording service is enabled.</li><li>For individual and composite recording modes, you must use the same App ID as the channel to be record. Ensure that the cloud recording service has been enabled for this App ID.</li> |
+| appid | path | string | true | The [App ID](http://doc.shengwang.cn/doc/cloud-recording/restful/get-started/enable-service#%E8%8E%B7%E5%8F%96-app-id) that your project uses.<li>For web page recording mode, simply enter the App ID for which the cloud recording service is enabled.</li><li>For individual and composite recording modes, you must use the same App ID as the channel to be recorded. Ensure that the cloud recording service has been enabled for this App ID.</li> |
 | resourceid | path | string | true | The resource ID obtained by the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request. |
-| mode | path | string | true | The recording modes:<li>`individual`: [Individual recording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/set-individual).</li><li>`mix`: [Composite recording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-composite).</li><li>`web`: [Web pagerecording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/web-mode/set-webpage-recording).</li> |
+| mode | path | string | true | The recording modes:<li>`individual`: [Individual recording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/set-individual).</li><li>`mix`: [Composite recording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-composite).</li><li>`web`: [Web page recording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/web-mode/set-webpage-recording).</li> |
 | body | body | JSON Object | true | [start-request](#schema start-request) |
 
 > Example responses
@@ -196,7 +196,7 @@ Status Code **200**
 
 After starting the recording, you can call the `update` method to update the following recording configuration:
 - For individual and composite recordings, update the subscription list.
-- For the web page recording, set pause/resume the web page recording, or update the CDN streaming address (URL) where the web page recording are pushed to.
+- For the web page recording, set pause/resume the web page recording, or update the CDN streaming address (URL) where the web page recording is pushed to.
 
 
 > - The` update` request is only valid within the session. If the recording is started incorrectly, or if the recording is finished, the `update` call will return `404`.
@@ -232,10 +232,10 @@ After starting the recording, you can call the `update` method to update the fol
 | Name | In | Type | Required | Description |
 |---|---|---|---|---|
 | Content-Type | header | string | false | `application/json`. |
-| appid | path | string | true | The [App ID](http://doc.shengwang.cn/doc/cloud-recording/restful/get-started/enable-service#%E8%8E%B7%E5%8F%96-app-id) that your project uses.<li>For web page recording mode, simply enter the App ID for which the cloud recording service is enabled.</li><li>For individual and composite recording modes, you must use the same App ID as the channel to be record. Ensure that the cloud recording service has been enabled for this App ID.</li> |
+| appid | path | string | true | The [App ID](http://doc.shengwang.cn/doc/cloud-recording/restful/get-started/enable-service#%E8%8E%B7%E5%8F%96-app-id) that your project uses.<li>For web page recording mode, simply enter the App ID for which the cloud recording service is enabled.</li><li>For individual and composite recording modes, you must use the same App ID as the channel to be recorded. Ensure that the cloud recording service has been enabled for this App ID.</li> |
 | resourceid | path | string | true | The resource ID obtained by the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request. |
 | sid | path | string | true | The recording ID obtained through [`start`](#opIdpost-v1-apps-appid-cloud_recording-resourceid-resourceid-mode-mode-start). |
-| mode | path | string | true | The recording modes:<li>`individual`: [Individual recording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/set-individual).</li><li>`mix`: [Composite recording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-composite).</li><li>`web`: [Web pagerecording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/web-mode/set-webpage-recording).</li> |
+| mode | path | string | true | The recording modes:<li>`individual`: [Individual recording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/set-individual).</li><li>`mix`: [Composite recording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-composite).</li><li>`web`: [Web page recording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/web-mode/set-webpage-recording).</li> |
 | body | body | JSON Object | true | [update-request](#schemaupdate-request) |
 
 > Example responses
@@ -326,7 +326,7 @@ Each call to this method overrides the original layout settings. For example, if
 | Name | In | Type | Required | Description |
 |---|---|---|---|---|
 | Content-Type | header | string | false | `application/json`. |
-| appid | path | string | true | The [App ID](http://doc.shengwang.cn/doc/cloud-recording/restful/get-started/enable-service#%E8%8E%B7%E5%8F%96-app-id) that your project uses.<li>For web page recording mode, simply enter the App ID for which the cloud recording service is enabled.</li><li>For individual and composite recording modes, you must use the same App ID as the channel to be record. Ensure that the cloud recording service has been enabled for this App ID.</li> |
+| appid | path | string | true | The [App ID](http://doc.shengwang.cn/doc/cloud-recording/restful/get-started/enable-service#%E8%8E%B7%E5%8F%96-app-id) that your project uses.<li>For web page recording mode, simply enter the App ID for which the cloud recording service is enabled.</li><li>For individual and composite recording modes, you must use the same App ID as the channel to be recorded. Ensure that the cloud recording service has been enabled for this App ID.</li> |
 | resourceid | path | string | true | The resource ID obtained by the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request. |
 | sid | path | string | true | The recording ID obtained through [`start`](#opIdpost-v1-apps-appid-cloud_recording-resourceid-resourceid-mode-mode-start). |
 | mode | path | string | true | The recording modes. Supports `mix` only, which means [composite recording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-composite). |
@@ -383,10 +383,10 @@ After you start recording, you can call `query` to query the recording status.
 | Name | In | Type | Required | Description |
 |---|---|---|---|---|
 | Content-Type | header | string | false | `application/json`. |
-| appid | path | string | true | The [App ID](http://doc.shengwang.cn/doc/cloud-recording/restful/get-started/enable-service#%E8%8E%B7%E5%8F%96-app-id) that your project uses.<li>For web page recording mode, simply enter the App ID for which the cloud recording service is enabled.</li><li>For individual and composite recording modes, you must use the same App ID as the channel to be record. Ensure that the cloud recording service has been enabled for this App ID.</li> |
+| appid | path | string | true | The [App ID](http://doc.shengwang.cn/doc/cloud-recording/restful/get-started/enable-service#%E8%8E%B7%E5%8F%96-app-id) that your project uses.<li>For web page recording mode, simply enter the App ID for which the cloud recording service is enabled.</li><li>For individual and composite recording modes, you must use the same App ID as the channel to be recorded. Ensure that the cloud recording service has been enabled for this App ID.</li> |
 | resourceid | path | string | true | The resource ID obtained by the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request. |
 | sid | path | string | true | The recording ID obtained through [`start`](#opIdpost-v1-apps-appid-cloud_recording-resourceid-resourceid-mode-mode-start). |
-| mode | path | string | true | The recording modes:<li>`individual`: [Individual recording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/set-individual).</li><li>`mix`: [Composite recording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-composite).</li><li>`web`: [Web pagerecording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/web-mode/set-webpage-recording).</li> |
+| mode | path | string | true | The recording modes:<li>`individual`: [Individual recording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/set-individual).</li><li>`mix`: [Composite recording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-composite).</li><li>`web`: [Web page recording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/web-mode/set-webpage-recording).</li> |
 
 > Example responses
 
@@ -459,10 +459,10 @@ After starting recording, you can call the `stop` method to leave the channel an
 | Name | In | Type | Required | Description |
 |---|---|---|---|---|
 | Content-Type | header | string | false | `application/json`. |
-| appid | path | string | true | The [App ID](http://doc.shengwang.cn/doc/cloud-recording/restful/get-started/enable-service#%E8%8E%B7%E5%8F%96-app-id) that your project uses.<li>For web page recording mode, simply enter the App ID for which the cloud recording service is enabled.</li><li>For individual and composite recording modes, you must use the same App ID as the channel to be record. Ensure that the cloud recording service has been enabled for this App ID.</li> |
+| appid | path | string | true | The [App ID](http://doc.shengwang.cn/doc/cloud-recording/restful/get-started/enable-service#%E8%8E%B7%E5%8F%96-app-id) that your project uses.<li>For web page recording mode, simply enter the App ID for which the cloud recording service is enabled.</li><li>For individual and composite recording modes, you must use the same App ID as the channel to be recorded. Ensure that the cloud recording service has been enabled for this App ID.</li> |
 | resourceid | path | string | true | The resource ID obtained by the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request. |
 | sid | path | string | true | The recording ID obtained through [`start`](#opIdpost-v1-apps-appid-cloud_recording-resourceid-resourceid-mode-mode-start). |
-| mode | path | string | true | The recording modes:<li>`individual`: [Individual recording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/set-individual).</li><li>`mix`: [Composite recording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-composite).</li><li>`web`: [Web pagerecording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/web-mode/set-webpage-recording).</li> |
+| mode | path | string | true | The recording modes:<li>`individual`: [Individual recording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/set-individual).</li><li>`mix`: [Composite recording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-composite).</li><li>`web`: [Web page recording mode](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/web-mode/set-webpage-recording).</li> |
 | body | body | JSON Object | true | [stop-request](#schemastop-request) |
 
 > Example responses
@@ -989,9 +989,9 @@ Configurations for recorded audio and video streams.
 | maxIdleTime | number | false | Maximum channel idle time. The unit is seconds. The value range is [5,259,200]. The default value is 30. The maximum value can not exceed 30 days. The recording service will automatically exit after exceeding the maximum channel idle time. After the recording service exits, if you initiate a `start` request again, a new recording file will be generated.<br><p>Channel idle: There are no broadcasters in the live channel, or there are no users in the communication channel.</p> |
 | streamTypes | number | false | Subscribed media stream type. <br>- `0`: Subscribes to audio streams only. Suitable for smart voice review scenarios. <br>- `1`: Subscribes to video streams only. <br>- `2`: (Default) Subscribes to both audio and video streams. |
 | videoStreamType | number | false | Sets the stream type of the remote video. If you enable dual-stream mode in the SDK client, you can choose to subscribe to either the high-quality video stream or the low-quality video stream. <br>- `0`: High-quality video stream refers to high-resolution and high-bitrate video stream.<br> - `1`: Low-quality video stream refers to low-resolution and low-bitrate video stream. |
-| subscribeAudioUids | array[string] | false | Specify which UIDs' audio streams to subscribe to. If you want to subscribe to the audio stream of all UIDs, no need to set this field. The length of the array should not exceed 32, and using an empty array is not recommended. Only one of the fields can be set: this field or `unsubscribeAudioUids`. For details, see [Set up subscription lists](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe).<br><p><b>Note:</b><br><li>This field is only applicable when the <b>streamTypes</b> are set to audio, or audio and video.</li><br><li>If you have set up a subscription list for audio or video only, but not at the same time, then the cloud recording service will not subscribe to any video streams. If you set up a subscription list for video, but not for audio, then Agora Cloud Recording will not subscribe to any audio streams.</li><br><li>Set as <b>["#allstream#"]</b> to subscribe to the audio streams of all UIDs in the channel.</li><br></p> |
+| subscribeAudioUids | array[string] | false | Specify which UIDs' audio streams to subscribe to. If you want to subscribe to the audio stream of all UIDs, no need to set this field. The length of the array should not exceed 32, and using an empty array is not recommended. Only one of the fields can be set: this field or `unsubscribeAudioUids`. For details, see [Set up subscription lists](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe).<br><p><b>Note:</b><br><li>This field is only applicable when the <b>streamTypes</b> field is set to audio, or both audio and video.</li><br><li>If you have set up a subscription list for audio or video only, but not at the same time, then the cloud recording service will not subscribe to any video streams. If you set up a subscription list for video, but not for audio, then Agora Cloud Recording will not subscribe to any audio streams.</li><br><li>Set as <b>["#allstream#"]</b> to subscribe to the audio streams of all UIDs in the channel.</li><br></p> |
 | unsubscribeAudioUids | array[string] | false | Specify which UIDs' audio streams not to subscribe to. The cloud recording service will subscribe to the audio streams of all other UIDs except the specified ones. The length of the array should not exceed 32, and using an empty array is not recommended. Only one of the fields can be set: this field or `subscribeAudioUids`. For details, see [Set up subscription lists](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe). |
-| subscribeVideoUids | array[string] | false | Specify which UID's video streams to subscribe to. If you want to subscribe to the video streams of all UIDs, no need to set this field. The length of the array should not exceed 32, and using an empty array is not recommended. Only one of the fields can be set: this field or `unsubscribeVideoUids`. For details, see [Set up subscription lists](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe).<br><p><b>Note:</b><br><li>This field is only applicable when the <b>streamTypes</b> are set to video, or audio and video.</li><br><li>If you have set up a subscription list for audio or video only, but not at the same time, then the cloud recording service will not subscribe to any video streams. If you set up a subscription list for video, but not for audio, then Agora Cloud Recording will not subscribe to any audio streams.</li><br><li>Set as <b>["#allstream#"]</b> to subscribe to the video streams of all UIDs in the channel.</li><br></p> |
+| subscribeVideoUids | array[string] | false | Specify which UID's video streams to subscribe to. If you want to subscribe to the video streams of all UIDs, no need to set this field. The length of the array should not exceed 32, and using an empty array is not recommended. Only one of the fields can be set: this field or `unsubscribeVideoUids`. For details, see [Set up subscription lists](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe).<br><p><b>Note:</b><br><li>This field is only applicable when the <b>streamTypes</b> field is set to video, or both audio and video.</li><br><li>If you have set up a subscription list for audio or video only, but not at the same time, then the cloud recording service will not subscribe to any video streams. If you set up a subscription list for video, but not for audio, then Agora Cloud Recording will not subscribe to any audio streams.</li><br><li>Set as <b>["#allstream#"]</b> to subscribe to the video streams of all UIDs in the channel.</li><br></p> |
 | unsubscribeVideoUids | array[string] | false | Specify which UIDs' audio streams not to subscribe to. The cloud recording service will subscribe to the video streams of all UIDs except the specified ones. The length of the array should not exceed 32, and using an empty array is not recommended. Only one of the fields can be set: this field or `subscribeVideoUids`. For details, see [Set up subscription lists](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe). |
 | subscribeUidGroup | number | false | Estimated peak number of subscribers. <br>- `0`: 1 to 2 UIDs. <br>- `1`:3 to 7 UIDs. <br>- `2`: 8 to 12 UIDs <br>- `3`: 13 to 17 UIDs <br>- `4`: 18 to 32 UIDs. <br>- `5`: 33 to 49 UIDs. <br>**Note**:<br>- Only need to be set in **individual recording**mode, and it is required in this mode. <br>- For example, if `subscribeVideoUids` is `["100","101","102"]` and `subscribeAudioUids` is `["101","102","103"]`, the number of subscribers is 4. |
 | streamMode | string | false | Output mode of media stream. See the [Output mode of media stream](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/stream-mode). <br>- `"default"`: Default mode. Recording with audio transcoding will separately generate an M3U8 audio index file and a video index file. <br>- `"standard"`: Standard mode. Agora recommends using this mode. Recording with audio transcoding will separately generate an M3U8 audio index file, a video index file, and a merged audio and video index file. If VP8 encoding is used on the a Web client, a merged MPD audio-video index file will be generated. <br>- `"original"`: Original encoding mode. It is applicable to [individual non-transcoding audio recording](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/set-individual-nontranscoding). This field only takes effect when subscribing to audio only (`streamTypes` is 0). During the recording process, the audio is not transcoded, and an M3U8 audio index file is generated. <br>**Note**: Only need to set in **individual recording** mode. |
@@ -1051,11 +1051,11 @@ Configurations for transcoded video output The value can refer to [Setting the R
 | height | number | false | The height of the video (pixels). `width` × `height` cannot exceed 1920 × 1080. The default value is 640. |
 | fps | number | false | The frame rate of the video (fps). The default value is 15. |
 | bitrate | number | false | The bitrate of the video (Kbps). The default value is 500. |
-| maxResolutionUid | string | false | Only need to set it in **vertical layout**. Specify the user ID of the large video window. The string value should be an integer ranged from 1 to (2<sup>32</sup>-1), and cannot be set to 0. |
+| maxResolutionUid | string | false | Only need to set it in **vertical layout**. Specify the user ID of the large video window. The string value should be an integer ranging from 1 to (2<sup>32</sup>-1), and cannot be set to 0. |
 | mixedVideoLayout | number | false | Composite video layout:<br>- `0`: (Default) Floating layout. The first user to join the channel will be displayed as a large window, filling the entire canvas. The video windows of other users will be displayed as small windows, arranged horizontally from bottom to top, up to 4 rows, each with 4 windows. It supports up to a total of 17 windows of different users' videos. <br>- `1`: Adaptive layout. Automatically adjust the size of each user's video window according to the number of users, each user's video window size is consistent, and supports up to 17 windows. <br>- `2`: Vertical layout. The `maxResolutionUid` is specified to display the large video window on the left side of the screen, and the small video windows of other users are vertically arranged on the right side, with a maximum of two columns, 8 windows per column, supporting up to 17 windows. <br>- `3`: Customized layout. Set the `layoutConfig` field to customize the mixed layout. |
 | backgroundColor | string | false | The background color of the video canvas. The RGB color table is supported, with strings formatted as a # sign and 6 hexadecimal digits. The default value is `"#000000"`, representing the black color. |
 | backgroundImage | string | false | The URL of the background image of the video canvas. The display mode of the background image is set to cropped mode.<br><p>Cropped mode: Will prioritize to ensure that the screen is filled. The background image size is scaled in equal proportion until the entire screen is filled with the background image. If the length and width of the background image differ from the video window, the background image will be peripherally cropped to fill the window.</p> |
-| defaultUserBackgroundImage | string | false | The URL of the default user screen background image.<br><p>After configuring this field, when any user stops sending video streams for more than 3.5 seconds, the screen will switch to the background image; this setting will be overridden if the background image is set separately for a UID.</p> |
+| defaultUserBackgroundImage | string | false | The URL of the default user screen background image.<br><p>After configuring this field, when any user stops sending the video streams for more than 3.5 seconds, the screen will switch to the background image; this setting will be overridden if the background image is set separately for a UID.</p> |
 | layoutConfig | array[object] | false | [layoutConfig](#schemalayoutconfig) |
 | backgroundConfig | [backgroundConfig](#schemabackgroundconfig) | false | Configurations of user's background image. |
 
@@ -1079,7 +1079,7 @@ Configurations for transcoded video output The value can refer to [Setting the R
 ]
 ```
 
-Mixed video layout of users. An array of screen layout settings for each user, supporting up to 17 users.
+The mixed video layout of users. An array of screen layout settings for each user, supporting up to 17 users.
 <p><b>Note</b>: Only need to set in <b>custom layout</b>.</p>
 
 ### Properties
@@ -1092,7 +1092,7 @@ Mixed video layout of users. An array of screen layout settings for each user, s
 | width | number(float) | true | The relative value of the width of this screen, accurate to six decimal places. This field can also be set to the integer 0 or 1. The value range is [0,1]. |
 | height | number(float) | true | The relative value of the height of this screen, accurate to six decimal places. This field can also be set to the integer 0 or 1. The value range is [0,1]. |
 | alpha | number(float) | false | The transparency of the user's video window. Accurate to six decimal places. `0.0` means the user's video window is transparent, and `1.0` indicates that it is completely opaque. The value range is [0,1]. The default value is 1. |
-| render_mode | number | false | The display mode of users' video windows:<br>- `0`: (Default) cropped mode. Prioritize to ensure the screen is filled. The video window size is proportionally scaled until it entirely fills the screen. If the video's length and width differ from the video window, the video stream will be cropped from its edges to fit the  window, in accordance with the aspect ratio set for the video window. <br>- `1`: Fit mode. Prioritize to ensure that all video content is displayed. The video size is scaled proportionally until one side of the video window is aligned with the screen border. If the video scale does not comply with the window size, the video will be scaled to fill the screen while maintaining its aspect ratio. This scaling may result in a black border around the edges of the video.. |
+| render_mode | number | false | The display mode of users' video windows:<br>- `0`: (Default) cropped mode. Prioritize to ensure the screen is filled. The video window size is proportionally scaled until it fills the screen. If the video's length and width differ from the video window, the video stream will be cropped from its edges to fit the  window, under the aspect ratio set for the video window. <br>- `1`: Fit mode. Prioritize to ensure that all video content is displayed. The video size is scaled proportionally until one side of the video window is aligned with the screen border. If the video scale does not comply with the window size, the video will be scaled to fill the screen while maintaining its aspect ratio. This scaling may result in a black border around the edges of the video. |
 
 
 ## backgroundConfig
@@ -1119,8 +1119,8 @@ Configurations of user's background image.
 | Name | Type | Required | Description |
 |---|---|---|---|
 | uid | string | true | The string content is the UID. |
-| image_url | string | true | The URL of the user's background image. After setting the background image, if the user stops sending video stream for more than 3.5 seconds, the screen will switch to the background image. <br><br>URL supports the HTTP and HTTPS protocols, and the image formats supported are JPG and BMP. The image size must not exceed 6 MB. The settings will only take effect after the recording service successfully downloads the image; if the download fails, the settings will not take effect. Different field settings may overlap each other. For specific rules, see [Set the background color or background image](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-composite-layout#%E8%BF%9B%E9%98%B6%E8%AE%BE%E7%BD%AE%E8%83%8C%E6%99%AF%E8%89%B2%E6%88%96%E8%83%8C%E6%99%AF%E5%9B%BE).</br> |
-| render_mode | number | false | The display mode of users' video windows:<br>- `0`: (Default) cropped mode. Prioritize to ensure the screen is filled. The video window size is proportionally scaled until it entirely fills the screen. If the video's length and width differ from the video window, the video stream will be cropped from its edges to fit the  window, in accordance with the aspect ratio set for the video window. <br>- `1`: Fit mode. Prioritize to ensure that all video content is displayed. The video size is scaled proportionally until one side of the video window is aligned with the screen border. If the video scale does not comply with the window size, the video will be scaled to fill the screen while maintaining its aspect ratio. This scaling may result in a black border around the edges of the video.. |
+| image_url | string | true | The URL of the user's background image. After setting the background image, if the user stops sending the video stream for more than 3.5 seconds, the screen will switch to the background image. <br><br>URL supports the HTTP and HTTPS protocols, and the image formats supported are JPG and BMP. The image size must not exceed 6 MB. The settings will only take effect after the recording service successfully downloads the image; if the download fails, the settings will not take effect. Different field settings may overlap each other. For specific rules, see [Set the background color or background image](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-composite-layout#%E8%BF%9B%E9%98%B6%E8%AE%BE%E7%BD%AE%E8%83%8C%E6%99%AF%E8%89%B2%E6%88%96%E8%83%8C%E6%99%AF%E5%9B%BE).</br> |
+| render_mode | number | false | The display mode of users' video windows:<br>- `0`: (Default) cropped mode. Prioritize to ensure the screen is filled. The video window size is proportionally scaled until it fills the screen. If the video's length and width differ from the video window, the video stream will be cropped from its edges to fit the  window, under the aspect ratio set for the video window. <br>- `1`: Fit mode. Prioritize to ensure that all video content is displayed. The video size is scaled proportionally until one side of the video window is aligned with the screen border. If the video scale does not comply with the window size, the video will be scaled to fill the screen while maintaining its aspect ratio. This scaling may result in a black border around the edges of the video. |
 
 ## recordingFileConfig
 <!-- backwards compatibility -->
@@ -1246,17 +1246,17 @@ The following fields need to be set during **web page recording**:
 | videoFps | number | false | The frame rate of the output video (fps). The value range is [5,60]. The default value is 15. |
 | mobile | boolean | false | Whether to enable the mobile web mode:<br>- `true`: Enables the mode. After enabling, the recording service uses the mobile web rendering mode to record the current page. <br>- `false`: (default) Disables the mode. |
 | maxVideoDuration | number | false | Maximum length of MP4 slice file generated by web page recording, in minutes During the web page recording process, the recording service will create a new MP4 slice file when the current MP4 file duration exceeds the `maxVideoDuration` approximately. The value range is [30,240]. The default value is 120. |
-| onhold | boolean | false | Whether to pause page recording when starting a web page recording task. <br>- `true`: Pauses the web page recording that has been started. Immediately pause the recording after starting the web page recording task. The recording service will open and render the page to be recorded, but will not generate slice files. <br>- `false`: (Default) Starts a web page recording task and perform web page recording. <br>We suggest using the `onhold` field according to the following process: <br>1. Set `onhold` to `true` when calling the `start` method, which will start and pause web page recording, and you need to etermine the appropriate time to start web page recording on your own. <br>2. Call `update` and set `onhold` to `false`, continue with web page recording. If you need to pause or resume the web page recording by continuously calling the `update` method, please make the call after receiving the response from the previous `update`, otherwise it may cause inconsistent results with your expectations. |
+| onhold | boolean | false | Whether to pause page recording when starting a web page recording task. <br>- `true`: Pauses the web page recording that has been started. Immediately pause the recording after starting the web page recording task. The recording service will open and render the page to be recorded, but will not generate slice files. <br>- `false`: (Default) Starts a web page recording task and perform web page recording. <br>We suggest using the `onhold` field according to the following process: <br>1. Set `onhold` to `true` when calling the `start` method, which will start and pause web page recording, and you need to determine the appropriate time to start web page recording on your own. <br>2. Call `update` and set `onhold` to `false`, continue with web page recording. If you need to pause or resume the web page recording by continuously calling the `update` method, please make the call after receiving the response from the previous `update`, otherwise it may cause inconsistent results with your expectations. |
 | readyTimeout | number | false | Set the page load timeout in seconds. See [Page Load Timeout Detection](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/web-mode/detect-timeout). The value range is [0,60]. The default value is 0. <br>- Set to `0` or not set, which means the web page loading status is not detected. <br>-An integer between [1,60], representing the page load timeout. |
 
 #### Scenario 2
 
-**Pushing web page recording to the CDN** requires to configure the following fields.
+**Pushing web page recording to the CDN** requires configuring the following fields.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
 | outputs | array[object] | true | See the following. |
-| » rtmpUrl | string | true | The CDN address which you push the stream to. |
+| » rtmpUrl | string | true | The CDN address to which you push the stream. |
 
 
 ## appsCollection
@@ -1279,7 +1279,7 @@ Application configurations
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| combinationPolicy | string | false | The combination of cloud recording applications. <br>- `postpone_transcoding`: Use this method if you need to psotpone transcoding or audio mixing. <br>- `default`: (Default) Use this method except for postponed transcoding and audio mixing. |
+| combinationPolicy | string | false | The combination of cloud recording applications. <br>- `postpone_transcoding`: Use this method if you need to postpone transcoding or audio mixing. <br>- `default`: (Default) Use this method except for postponed transcoding and audio mixing. |
 
 ## transcodeOptions
 <!-- backwards compatibility -->
@@ -1622,8 +1622,8 @@ Update subscription lists.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| audioUidList | [audioUidList](#schemaaudiouidlist) | false | The audio subscription list.<br><p><b>Note: </b> This field is only applicable when the <b>streamTypes</b> are set to audio, or audio and video.</p> |
-| videoUidList | [videoUidList](#schemavideouidlist) | false | The video subscription list.<br><p><b>Note</b>: This field only applies when the <b>streamTypes</b> are set to video, or audio and video.</p> |
+| audioUidList | [audioUidList](#schemaaudiouidlist) | false | The audio subscription list.<br><p><b>Note: </b> This field is only applicable when the <b>streamTypes</b> field is set to audio, or both audio and video.</p> |
+| videoUidList | [videoUidList](#schemavideouidlist) | false | The video subscription list.<br><p><b>Note</b>: This field only applies when the <b>streamTypes</b> field is set to video, or both audio and video.</p> |
 
 ## audioUidList
 <!-- backwards compatibility -->
@@ -1644,13 +1644,13 @@ Update subscription lists.
 ```
 
 The audio subscription list.
-<p><b>Note: </b> This field is only applicable when the <b>streamTypes</b> are set to audio, or audio and video.</p>
+<p><b>Note: </b> This field is only applicable when the <b>streamTypes</b> field is set to audio, or both audio and video.</p>
 
 ### Properties
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| subscribeAudioUids | array[string] | false | Specify which UIDs' audio streams to subscribe to. If you want to subscribe to the audio stream of all UIDs, no need to set this field. The length of the array should not exceed 32, and using an empty array is not recommended. Only one of the fields can be set: this field or `unsubscribeAudioUids`. For details, see [Set up subscription lists](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe).<br><p><b>Note:</b><br><li>This field is only applicable when the <b>streamTypes</b> are set to audio, or audio and video.</li><br><li>If you have set up a subscription list for audio or video only, but not at the same time, then the cloud recording service will not subscribe to any video streams. If you set up a subscription list for video, but not for audio, then Agora Cloud Recording will not subscribe to any audio streams.</li><br><li>Set as <b>["#allstream#"]</b> to subscribe to the audio streams of all UIDs in the channel.</li><br></p> |
+| subscribeAudioUids | array[string] | false | Specify which UIDs' audio streams to subscribe to. If you want to subscribe to the audio stream of all UIDs, no need to set this field. The length of the array should not exceed 32, and using an empty array is not recommended. Only one of the fields can be set: this field or `unsubscribeAudioUids`. For details, see [Set up subscription lists](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe).<br><p><b>Note:</b><br><li>This field is only applicable when the <b>streamTypes</b> field is set to audio, or both audio and video.</li><br><li>If you have set up a subscription list for audio or video only, but not at the same time, then the cloud recording service will not subscribe to any video streams. If you set up a subscription list for video, but not for audio, then Agora Cloud Recording will not subscribe to any audio streams.</li><br><li>Set as <b>["#allstream#"]</b> to subscribe to the audio streams of all UIDs in the channel.</li><br></p> |
 | unsubscribeAudioUids | array[string] | false | Specify which UIDs' audio streams not to subscribe to. The cloud recording service will subscribe to the audio streams of all other UIDs except the specified ones. The length of the array should not exceed 32, and using an empty array is not recommended. Only one of the fields can be set: this field or `subscribeAudioUids`. For details, see [Set up subscription lists](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe). |
 
 ## videoUidList
@@ -1672,13 +1672,13 @@ The audio subscription list.
 ```
 
 The video subscription list.
-<p><b>Note</b>: This field only applies when the <b>streamTypes</b> are set to video, or audio and video.</p>
+<p><b>Note</b>: This field only applies when the <b>streamTypes</b> field is set to video, or both audio and video.</p>
 
 ### Properties
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| subscribeVideoUids | array[string] | false | Specify which UID's video streams to subscribe to. If you want to subscribe to the video streams of all UIDs, no need to set this field. The length of the array should not exceed 32, and using an empty array is not recommended. Only one of the fields can be set: this field or `unsubscribeVideoUids`. For details, see [Set up subscription lists](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe).<br><p><b>Note:</b><br><li>This field is only applicable when the <b>streamTypes</b> are set to video, or audio and video.</li><br><li>If you have set up a subscription list for audio or video only, but not at the same time, then the cloud recording service will not subscribe to any video streams. If you set up a subscription list for video, but not for audio, then Agora Cloud Recording will not subscribe to any audio streams.</li><br><li>Set as <b>["#allstream#"]</b> to subscribe to the video streams of all UIDs in the channel.</li><br></p> |
+| subscribeVideoUids | array[string] | false | Specify which UID's video streams to subscribe to. If you want to subscribe to the video streams of all UIDs, no need to set this field. The length of the array should not exceed 32, and using an empty array is not recommended. Only one of the fields can be set: this field or `unsubscribeVideoUids`. For details, see [Set up subscription lists](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe).<br><p><b>Note:</b><br><li>This field is only applicable when the <b>streamTypes</b> field is set to video, or both audio and video.</li><br><li>If you have set up a subscription list for audio or video only, but not at the same time, then the cloud recording service will not subscribe to any video streams. If you set up a subscription list for video, but not for audio, then Agora Cloud Recording will not subscribe to any audio streams.</li><br><li>Set as <b>["#allstream#"]</b> to subscribe to the video streams of all UIDs in the channel.</li><br></p> |
 | unsubscribeVideoUids | array[string] | false | Specify which UIDs' audio streams not to subscribe to. The cloud recording service will subscribe to the video streams of all UIDs except the specified ones. The length of the array should not exceed 32, and using an empty array is not recommended. Only one of the fields can be set: this field or `subscribeVideoUids`. For details, see [Set up subscription lists](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe). |
 
 ## webRecordingConfig
@@ -1817,11 +1817,11 @@ Used to update the configurations for pushing web page recording to the CDN.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| maxResolutionUid | string | false | Only need to set it in **vertical layout**. Specify the user ID of the large video window. The string value should be an integer ranged from 1 to (2<sup>32</sup>-1), and cannot be set to 0. |
+| maxResolutionUid | string | false | Only need to set it in **vertical layout**. Specify the user ID of the large video window. The string value should be an integer ranging from 1 to (2<sup>32</sup>-1), and cannot be set to 0. |
 | mixedVideoLayout | number | false | Composite video layout:<br>- `0`: (Default) Floating layout. The first user to join the channel will be displayed as a large window, filling the entire canvas. The video windows of other users will be displayed as small windows, arranged horizontally from bottom to top, up to 4 rows, each with 4 windows. It supports up to a total of 17 windows of different users' videos. <br>- `1`: Adaptive layout. Automatically adjust the size of each user's video window according to the number of users, each user's video window size is consistent, and supports up to 17 windows. <br>- `2`: Vertical layout. The `maxResolutionUid` is specified to display the large video window on the left side of the screen, and the small video windows of other users are vertically arranged on the right side, with a maximum of two columns, 8 windows per column, supporting up to 17 windows. <br>- `3`: Customized layout. Set the `layoutConfig` field to customize the mixed layout. |
 | backgroundColor | string | false | The background color of the video canvas. The RGB color table is supported, with strings formatted as a # sign and 6 hexadecimal digits. The default value is `"#000000"`, representing the black color. |
 | backgroundImage | string | false | The URL of the background image of the video canvas. The display mode of the background image is set to cropped mode.<br><p>Cropped mode: Will prioritize to ensure that the screen is filled. The background image size is scaled in equal proportion until the entire screen is filled with the background image. If the length and width of the background image differ from the video window, the background image will be peripherally cropped to fill the window.</p> |
-| defaultUserBackgroundImage | string | false | The URL of the default user screen background image.<br><p>After configuring this field, when any user stops sending video streams for more than 3.5 seconds, the screen will switch to the background image; this setting will be overridden if the background image is set separately for a UID.</p> |
+| defaultUserBackgroundImage | string | false | The URL of the default user screen background image.<br><p>After configuring this field, when any user stops sending the video streams for more than 3.5 seconds, the screen will switch to the background image; this setting will be overridden if the background image is set separately for a UID.</p> |
 | layoutConfig | array[object] | false | [layoutConfig](#schemalayoutconfig) |
 | backgroundConfig | array[object] | false | [backgroundConfig](#schemabackgroundconfig) |
 
@@ -1905,7 +1905,7 @@ Fields returned in **web page recording **mode.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| status | number | false | Current status of the cloud service:<br>- `0`: Cloud service has not started. <br>- `1`: The cloud service initialization is complete. <br>- `2`: The cloud service components are starting. <br>- `3`: Some cloud service components are ready. <br>- `4`: All cloud service components are ready. <br>- `5`: The cloud service is in progress. <br>- `6`: The cloud service receives the request to stop. <br>- `7`: All components of the cloud service stops. <br>- `8`: The cloud service exits. <br>- `20`: The cloud service exits abnormally. |
+| status | number | false | Current status of the cloud service:<br>- `0`: Cloud service has not started. <br>- `1`: The cloud service initialization is complete. <br>- `2`: The cloud service components are starting. <br>- `3`: Some cloud service components are ready. <br>- `4`: All cloud service components are ready. <br>- `5`: The cloud service is in progress. <br>- `6`: The cloud service receives the request to stop. <br>- `7`: All components of the cloud service stop. <br>- `8`: The cloud service exits. <br>- `20`: The cloud service exits abnormally. |
 | array[object] | false | extensionServiceState | [extensionServiceState](#schemaextensionservicestate) |
 
 #### Scenario 2
@@ -1914,7 +1914,7 @@ Fields returned when in **individual recording** mode and **video screenshot cap
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| status | number | false | Current status of the cloud service:<br>- `0`: Cloud service has not started. <br>- `1`: The cloud service initialization is complete. <br>- `2`: The cloud service components are starting. <br>- `3`: Some cloud service components are ready. <br>- `4`: All cloud service components are ready. <br>- `5`: The cloud service is in progress. <br>- `6`: The cloud service receives the request to stop. <br>- `7`: All components of the cloud service stops. <br>- `8`: The cloud service exits. <br>- `20`: The cloud service exits abnormally. |
+| status | number | false | Current status of the cloud service:<br>- `0`: Cloud service has not started. <br>- `1`: The cloud service initialization is complete. <br>- `2`: The cloud service components are starting. <br>- `3`: Some cloud service components are ready. <br>- `4`: All cloud service components are ready. <br>- `5`: The cloud service is in progress. <br>- `6`: The cloud service receives the request to stop. <br>- `7`: All components of the cloud service stop. <br>- `8`: The cloud service exits. <br>- `20`: The cloud service exits abnormally. |
 | sliceStartTime | number | false | Recording start time, the Unix timestamp, in milliseconds. |
 
 #### Scenario 3
@@ -1923,7 +1923,7 @@ Fields returned in scenarios other than video screenshot capturing during the in
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| status | number | false | Current status of the cloud service:<br>- `0`: Cloud service has not started. <br>- `1`: The cloud service initialization is complete. <br>- `2`: The cloud service components are starting. <br>- `3`: Some cloud service components are ready. <br>- `4`: All cloud service components are ready. <br>- `5`: The cloud service is in progress. <br>- `6`: The cloud service receives the request to stop. <br>- `7`: All components of the cloud service stops. <br>- `8`: The cloud service exits. <br>- `20`: The cloud service exits abnormally. |
+| status | number | false | Current status of the cloud service:<br>- `0`: Cloud service has not started. <br>- `1`: The cloud service initialization is complete. <br>- `2`: The cloud service components are starting. <br>- `3`: Some cloud service components are ready. <br>- `4`: All cloud service components are ready. <br>- `5`: The cloud service is in progress. <br>- `6`: The cloud service receives the request to stop. <br>- `7`: All components of the cloud service stop. <br>- `8`: The cloud service exits. <br>- `20`: The cloud service exits abnormally. |
 | fileListMode | string | false | Data format of `fileList` field: <br>- `"string"`: `fileList` is of String type. In composite recording mode, if `avFileType` is set to `["hls"]`, `fileListMode` is `"string"`. <br>- `"json"`: `fileList` is a JSON Array. When `avFileType` is set to `["hls","mp4"] in the individual or composite` recording mode, `fileListMode` is set to `"json"`. |
 | fileList | [fileList-string](#schemafilelist-string) or [fileList-json](#schemafilelist-json) | false | [fileList-string](#schemafilelist-string) or [fileList-json](#schemafilelist-json) |
 | sliceStartTime | number | false | Recording start time, the Unix timestamp, in milliseconds. |
@@ -1986,12 +1986,12 @@ The following fields will be returned during web page recording.
 
 #### Scenario 2
 
-When push the web page recording to CDN, the following fields will be returned.
+When pushing the web page recording to CDN, the following fields will be returned.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
 | outputs | array[object] | false | See the following. |
-| » rtmpUrl | string | false | The CDN address which you push the stream to. |
+| » rtmpUrl | string | false | The CDN address to which you push the stream. |
 | » status | string | false | The current status of stream pushing of the web page recording:<br> - `"connecting"`: Connecting to the CDN server. <br>- `"publishing"`: The stream pushing is going on. <br>- `"onhold"`: Set whether to pause the stream pushing. <br>- `"disconnected"`: Failed to connect to the CDN server. Agora suggests that you change the CDN address to push the stream to. |
 | state | string | false | The status of uploading subscription content to the extension service:<br>- `"init"`: The service is initializing. <br>- `"inProgress"`: The service has started and is currently in progress. <br>- `"exit"`: Service exits. |
 
