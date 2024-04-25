@@ -846,14 +846,14 @@ Status Code **200**
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| token | string | false | A dynamic key used for authentication. If your project has enabled the App certificate, pass in the dynamic key of your project in this field. See [Token Authentication]( https://doc.shengwang.cn/doc/rtc/android/basic-features/token-authentication) for details.<br><p><b>Note</b>:<br><li>You only need to set the authentication token in <b>individual recording</b> and <b>composite recording</b> modes.</li><br><li>Cloud recording service does not support updating tokens currently. To ensure normal recording, please guarantee the Token's effective duration is longer than your expected recording time, to avoid the token expiring and causing the recording task to exit the channel and end the recording.</li><br></p> |
+| token | string | false | A dynamic key used for authentication. If your project has enabled the App certificate, pass in the dynamic key of your project in this field. See [Token Authentication]( https://doc.shengwang.cn/doc/rtc/android/basic-features/token-authentication) for details.<br><p><b>Note</b>:<br><li>You only need to set the authentication token in <b>individual recording</b> and <b>composite recording</b> modes.</li><br><li>Cloud recording service does not support updating tokens currently. To ensure normal recording, guarantee the effective duration of Token is longer than your expected recording time, to avoid the token expiring and causing the recording task to exit the channel and end the recording.</li><br></p> |
 | storageConfig | [storageConfig](#schemastorageconfig) | true | Configurations for third-party cloud storage. |
 | recordingConfig | [recordingConfig](#schemarecordingconfig) | false | Configurations for recorded audio and video streams.<br><p><b>Note: </b>You only need to set this field in <b>individual recording</b> and <b>composite recording</b> modes.</p> |
 | recordingFileConfig | [recordingFileConfig](#schemarecordingfileconfig) | false | Configurations for recorded files.<br><p><b>Note</b>: This field <b>cannot be set when only taking screenshots</b>, but it needs to be set in all other cases. Other cases include the following:<br><li>Recording without transcoding, recording with transcoding, or recording and taking screenshots simultaneously in individual recording mode.</li><br><li>Composite recording.</li><br><li>In the web page recording mode, you can do page recording only, or simultaneously do the page recording and push it to the CDN.</li><br></p> |
-| snapshotConfig | [snapshotConfig](#schemasnapshotconfig) | false | Configurations for screenshot capture.<p><b>Note: </b>Only need to set this field when using the screenshot function in <b>individual recording mode</b>.</p><br>**Screenshot**usage instructions:<br> - The screenshot function is only applicable to individual recording mode (`individual`). <br>- You can either take screenshots in an individual recording process, or record and take screenshots at the same time. For more information, see [Capture Screenshots](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/snapshot). The scenario of simultaneous recording and screenshot capture requires setting the `recordingFileConfig` field. <br>- If the recording service or recording upload service is abnormal, the screenshot will fail. Recording is not affected when there is a screenshot exception. <br>- `streamTypes` must be set as 1 or 2 when capturing screenshots. If you have set `subscribeAudioUid`, you must also set `subscribeVideoUids`. |
+| snapshotConfig | [snapshotConfig](#schemasnapshotconfig) | false | Configurations for screenshot capture.<p><b>Note: </b>Only need to set this field when using the screenshot function in <b>individual recording mode</b>.</p><br>**Screenshot** usage instructions:<br> - The screenshot function is only applicable to individual recording mode (`individual`). <br>- You can either take screenshots in an individual recording process, or record and take screenshots at the same time. For more information, see [Capture Screenshots](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/snapshot). The scenario of simultaneous recording and screenshot capture requires setting the `recordingFileConfig` field. <br>- If the recording service or recording upload service is abnormal, the screenshot will fail. Recording is not affected when there is a screenshot exception. <br>- `streamTypes` must be set as 1 or 2 when capturing screenshots. If you have set `subscribeAudioUid`, you must also set `subscribeVideoUids`. |
 | extensionServiceConfig | [extensionServiceConfig](#schemaextensionserviceconfig) | false | Configurations for extended services.<br><p><b>Note</b>:Only need to set in <b>web page recording</b> mode.</p> |
-| appsCollection | [appsCollection](#schemaappscollection) | false | Application configurations<br><p><b>Note</b>:This setting is only required when in <b>individual recording mode</b> and when postponed transcoding or audio mixing is enabled.</p> |
-| transcodeOptions | [transcodeOptions](#schematranscodeoptions) | false | Configurations for the recorded files generated under postponed transcoding or audio mixing.<br><p><b>Note</b>:This setting is only required when in <b>individual recording mode</b> and when postponed transcoding or audio mixing is enabled.</p> |
+| appsCollection | [appsCollection](#schemaappscollection) | false | Application configurations<br><p><b>Note</b>: This setting is only required when in <b>individual recording mode</b> and when postponed transcoding or audio mixing is enabled.</p> |
+| transcodeOptions | [transcodeOptions](#schematranscodeoptions) | false | Configurations for the recorded files generated under postponed transcoding or audio mixing.<br><p><b>Note</b>: This setting is only required when in <b>individual recording mode</b> and when postponed transcoding or audio mixing is enabled.</p> |
 
 ## storageConfig
 <!-- backwards compatibility -->
@@ -914,7 +914,7 @@ Third-party cloud storage services will encrypt and tag the uploaded recording f
 | Name | Type | Required | Description |
 |---|---|---|---|
 | sse | string | true | The encryption mode. After setting this field, the third-party cloud storage service will encrypt the uploaded recording files according to this encryption mode. This field is only applicable to Amazon S3, see the [official Amazon S3 documentation](https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/UsingEncryption.html). <br>- `kms`: KMS encryption. <br>- `aes256`: AES256 encryption. |
-| tag | string | true | Tag content. After setting this field, the third-party cloud storage service will tag the uploaded recording files according to the content of this tag. This field is only applicable to Alibaba Cloud and Amazon S3. For more information, please refer to [the Alibaba Cloud official documentation]( https://www.alibabacloud.com/help/en/doc-detail/106678.html) and the [Amazon S3 official documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-tagging.html). |
+| tag | string | true | Tag content. After setting this field, the third-party cloud storage service will tag the uploaded recording files according to the content of this tag. This field is only applicable to Alibaba Cloud and Amazon S3. See [the Alibaba Cloud official documentation]( https://www.alibabacloud.com/help/en/doc-detail/106678.html) and the [Amazon S3 official documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-tagging.html). |
 
 ## recordingConfig
 <!-- backwards compatibility -->
@@ -1252,7 +1252,7 @@ The following fields need to be set during **web page recording**:
 | mobile | boolean | false | Whether to enable the mobile web mode:<br>- `true`: enable. After enabling, the recording service uses the mobile web rendering mode to record the current page. <br>- `false`: (default) not enabled. |
 | maxVideoDuration | number | false | Maximum length of MP4 slice file generated by web page recording, in minutes During the web page recording process, the recording service will create a new MP4 slice file when the current MP4 file duration exceeds the `maxVideoDuration` approximately. The value range is [30,240]. The default value is 120. |
 | onhold | boolean | false | Whether to pause page recording when starting a web page recording task. <br>- `true`：Pause the web page recording that has been started. Immediately pause the recording after starting the web page recording task. The recording service will open and render the page to be recorded, but will not generate slice files. <br>- `false`: (Default) Start a web page recording task and perform web page recording. <br>We suggest using the `onhold` field according to the following process: <br>1. Set `onhold` to `true` when calling the `start` method, which will start and pause web page recording, and you need to etermine the appropriate time to start web page recording on your own. <br>2. Call `update` and set `onhold` to `false`, continue with web page recording. If you need to pause or resume the web page recording by continuously calling the `update` method, please make the call after receiving the response from the previous `update`, otherwise it may cause inconsistent results with your expectations. |
-| readyTimeout | number | false | Set the page load timeout in seconds. See [Page Load Timeout Detection](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/web-mode/detect-timeout). The value range is [0,60]. The default value is 0. <br>Set to `0` or not set, which means the web page loading status is not detected. <br>- [An integer between 1 and 60], representing the page load timeout. |
+| readyTimeout | number | false | Set the page load timeout in seconds. See [Page Load Timeout Detection](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/web-mode/detect-timeout). The value range is [0,60]. The default value is 0. <br>Set to `0` or not set, which means the web page loading status is not detected. <br>-An integer between [1,60], representing the page load timeout. |
 
 #### Scenario 2
 
@@ -1278,13 +1278,13 @@ The following fields need to be set during **web page recording**:
 ```
 
 Application configurations
-<p><b>Note</b>:This setting is only required when in <b>individual recording mode</b> and when postponed transcoding or audio mixing is enabled.</p>
+<p><b>Note</b>: This setting is only required when in <b>individual recording mode</b> and when postponed transcoding or audio mixing is enabled.</p>
 
 ### Properties
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| combinationPolicy | string | false | The combination of cloud recording applications. <br>- `postpone_transcoding`: Use this method if you need to psotpone transcoding or audio mixing. <br>- `default`: Use this method except for postponed transcoding and audio mixing. |
+| combinationPolicy | string | false | The combination of cloud recording applications. <br>- `postpone_transcoding`: Use this method if you need to psotpone transcoding or audio mixing. <br>- `default`: (Default) Use this method except for postponed transcoding and audio mixing. |
 
 ## transcodeOptions
 <!-- backwards compatibility -->
@@ -1310,7 +1310,7 @@ Application configurations
 ```
 
 Configurations for the recorded files generated under postponed transcoding or audio mixing.
-<p><b>Note</b>:This setting is only required when in <b>individual recording mode</b> and when postponed transcoding or audio mixing is enabled.</p>
+<p><b>Note</b>: This setting is only required when in <b>individual recording mode</b> and when postponed transcoding or audio mixing is enabled.</p>
 
 ### Properties
 
@@ -1320,10 +1320,10 @@ Configurations for the recorded files generated under postponed transcoding or a
 | » transMode | string | true | Mode:<br>- `"postponeTranscoding"`: Postponed transcoding. <br>- `"audioMix"`: Postponed audio mixing. |
 | container | object | false | As described below. |
 | » format | string | false | The container format of the file, which supports the following values:<br>- `"mp4"`: the default format for the postponed transcoding. MP4 format. <br>- `"mp3"`: The default format for postponed audio mixing. MP3 format. <br>- `"m4a"`: M4A format. <br>- `"aac"`: AAC format. <br>**Note**: Postponed transcoding can currently only be set to MP4 format. |
-| audio | object | false | Audio properties of the file.<br><p><b>Note: </b>This setting is only required in <b>individual recording mode</b> with <b>postponed audio mixing</b> turned on.</p> |
+| audio | object | false | Audio properties of the file.<br><p><b>Note</b>: This setting is only required in <b>individual recording mode</b> with <b>postponed audio mixing</b> turned on.</p> |
 | » sampleRate | string | false | Audio sampling rate (Hz) supports the following values:<br>- `"48000"`: (Default) 48 kHz.<br> - `"32000"`：32 kHz。 <br>- `"16000"`：16 kHz。 |
 | » bitrate | string | false | Audio bit rate (Kbps) supports a customized value and the default value is `"48000"`. |
-| » channels | string | false | The number of audio channels supports the following values:<br>- `"1"`: mono. <br>- `"2"`: Stereo. |
+| » channels | string | false | The number of audio channels supports the following values:<br>- `"1"`: mono. <br>- `"2"`: (Default) Stereo. |
 
 ## acquire-response
 <!-- backwards compatibility -->
@@ -1706,7 +1706,7 @@ Used to update the web page recording configurations.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| onhold | boolean | false | Set whether to pause the web page recording. <br>- `true`: Pause web page recording and generating recording files. <br>- `false`: Continue web page recording and generating recording files. <br>If you want to resume a paused web page recording, you can call the `update` method and set `onhold` to `false`. |
+| onhold | boolean | false | Set whether to pause the web page recording. <br>- `true`: Pause web page recording and generating recording files. <br>- `false`: (Default) Continue web page recording and generating recording files. <br>If you want to resume a paused web page recording, you can call the `update` method and set `onhold` to `false`. |
 
 ## rtmpPublishConfig
 <!-- backwards compatibility -->
@@ -2056,7 +2056,7 @@ array[object] type.
 | cname | string | true | The name of the channel where the recording service is located. The `cname` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request needs to be the same . |
 | uid | string | true | The string content is the UID used by the recording service in the RTC channel to identify the recording service. It needs to be the same as the `uid` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request. |
 | clientRequest | object | true | As described below. |
-| » async_stop | boolean | false | Set the response mechanism for the `stop` method:<br>- `true`: Asynchronous. Immediately receive a response after calling `stop`. <br>- `false`: (default) not enabled. After calling `stop`, you need to wait for all the recorded files to be uploaded to the third-party cloud storage before receiving a response. Agora expects the upload time to be no more than 20 seconds. If the upload exceeds the time limit, you will receive an error code of `50`. |
+| » async_stop | boolean | false | Set the response mechanism for the `stop` method:<br>- `true`: Asynchronous. Immediately receive a response after calling `stop`. <br>- `false`: (Default) Synchronous. After calling `stop`, you need to wait for all the recorded files to be uploaded to the third-party cloud storage before receiving a response. Agora expects the upload time to be no more than 20 seconds. If the upload exceeds the time limit, you will receive an error code of `50`. |
 
 ## stop-response
 <!-- backwards compatibility -->
@@ -2133,7 +2133,7 @@ Fields returned in the case of video screenshot capturing during individual reco
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| uploadingStatus | string | false | Current upload status of the recording file:<br>- `"uploaded"`: All recording files have been uploaded to the specified third-party cloud storage. <br>- `"backuped"`: All files of this recording have been uploaded, but at least one TS file has been uploaded to the Agora Backup Cloud. The Agora server will automatically continue to upload this portion of the file to the designated third-party cloud storage. <br>- `"unknown": Unknown `status. |
+| uploadingStatus | string | false | Current upload status of the recording file:<br>- `"uploaded"`: All recording files have been uploaded to the specified third-party cloud storage. <br>- `"backuped"`: All files of this recording have been uploaded, but at least one TS file has been uploaded to the Agora Backup Cloud. The Agora server will automatically continue to upload this portion of the file to the designated third-party cloud storage. <br>- `"unknown"`: Unknown status. |
 
 #### Scenario 3
 
@@ -2143,7 +2143,7 @@ Fields returned in scenarios other than video screenshot capturing during the in
 |---|---|---|---|
 | fileListMode | string | false | Data format of `fileList` field: <br>- `"string"`: `fileList` is of String type. In composite recording mode, if `avFileType` is set to `["hls"]`, `fileListMode` is `"string"`. <br>- `"json"`: `fileList` is a JSON Array. When `avFileType` is set to `["hls","mp4"] in the individual or composite` recording mode, `fileListMode` is set to `"json"`. |
 | fileList | [fileList-string](#schemafilelist-string) or [fileList-json](#schemafilelist-json) | false | [fileList-string](#schemafilelist-string) or [fileList-json](#schemafilelist-json) |
-| uploadingStatus | string | false | Current upload status of the recording file:<br>- `"uploaded"`: All recording files have been uploaded to the specified third-party cloud storage. <br>- `"backuped"`: All files of this recording have been uploaded, but at least one TS file has been uploaded to the Agora Backup Cloud. The Agora server will automatically continue to upload this portion of the file to the designated third-party cloud storage. <br>- `"unknown": Unknown `status. |
+| uploadingStatus | string | false | Current upload status of the recording file:<br>- `"uploaded"`: All recording files have been uploaded to the specified third-party cloud storage. <br>- `"backuped"`: All files of this recording have been uploaded, but at least one TS file has been uploaded to the Agora Backup Cloud. The Agora server will automatically continue to upload this portion of the file to the designated third-party cloud storage. <br>- `"unknown"`: Unknown status. |
 
 ## playload-stop
 
@@ -2155,7 +2155,7 @@ Fields returned by the **upload service** in **web page recording** mode.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| uploadingStatus | string | false | Current upload status of the recording file:<br>- `"uploaded"`: All recording files have been uploaded to the specified third-party cloud storage. <br>- `"backuped"`: All files of this recording have been uploaded, but at least one TS file has been uploaded to the Agora Backup Cloud. The Agora server will automatically continue to upload this portion of the file to the designated third-party cloud storage. <br>- `"unknown": Unknown `status. |
+| uploadingStatus | string | false | Current upload status of the recording file:<br>- `"uploaded"`: All recording files have been uploaded to the specified third-party cloud storage. <br>- `"backuped"`: All files of this recording have been uploaded, but at least one TS file has been uploaded to the Agora Backup Cloud. The Agora server will automatically continue to upload this portion of the file to the designated third-party cloud storage. <br>- `"unknown"`: Unknown status. |
 
 #### Scenario 2
 
