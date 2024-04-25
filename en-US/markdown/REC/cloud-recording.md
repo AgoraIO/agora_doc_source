@@ -267,7 +267,7 @@ Status Code **200**
 | cname | string | false | The name of the channel to be recorded. |
 | uid | string | false | The string content is the user ID used by the cloud recording service in the RTC channel to identify the recording service in the channel. |
 | resourceId | string | false | The resource ID used by Cloud Recording. |
-| sid | string | false | The recording ID, identifying a recording cycle. |
+| sid | string | false | The recording ID, identifying each recording cycle. |
 
 
 
@@ -507,7 +507,7 @@ After starting recording, you can call the `stop` method to leave the channel an
 
 Query the IP address or IP address list of the message notification server.
 
-After you enable the message notification service, Agora message notification service can notify your server of events that occur during a media pull with HTTPS requests. Agora dynamically adjusts the IP addresses of the message notification server every 24 hours. You can query the IP addresses using this method. After the query, add the IP address (or IP address list) to the whitelist.
+After you enable the message notification service, the Agora message notification service can notify your server of events that occur during a cloud recording with HTTPS requests. Agora dynamically adjusts the IP addresses of the message notification server every 24 hours. You can query the IP addresses using this method. After the query, add the IP address (or IP address list) to the whitelist.
 
 > We strongly recommend performing a query at least every 24 hours and automatically updating the firewall configuration; otherwise, it may affect your reception of notifications.
 
