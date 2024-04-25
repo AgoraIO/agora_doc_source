@@ -701,7 +701,7 @@ Status Code **200**
 |---|---|---|---|
 | cname | string | true | Channel name:<br> - For individual recording and composite recording modes, this field is used to set the name of the channel to be recorded. <br>- For web page recording mode, this field is used to differentiate the recording process. The string length cannot exceed 1024 bytes. <br>**Note**: A unique recording instance can be located through `appid`, `cname`, and `uid`. Therefore, if you intend to record the same channel multiple times, you can effectively manage this by using the same `appId` and `cname`, while differentiating them with different `uids`. |
 | uid | string | true | The string contains the UID used by the cloud recording service within the channel to identify the recording service, for example, `"527841"`. The string must meet the following conditions:<br>- The value is ranged from 1 to (2<sup>32</sup>-1), and cannot be set to `0`. <br>- It must not duplicate any UID within the current channel. <br>- The field value within the quotation marks is an integer UID, and all users in the channel should use the integer UIDs. |
-| clientRequest | object | false | As described below. |
+| clientRequest | object | false | See the following . |
 | » scene | number | false | Use cases for cloud recording resources:<br> - `0`: (default) Real-time audio and video recording. <br>- `1`: Web page recording. <br>- `2`: Individual recording mode, with postponed transcoding or audio mixing enabled.<br>    - Postponed transcoding: The recording service will transcode the recorded files into the MP4 format within 24 hours after the recording ends (in special cases, it may take more than 48 hours), and then upload the MP4 files to your third-party cloud storage. This scene is only applicable to the individual recording mode.<br>    - Postponed audio mixing: The recording service will merge and transcode the recorded files of all UIDs in the specified channel into a single MP3/M4A/AAC file within 24 hours after the recording ends (in special cases, it may take more than 48 hours), and then upload the file to your specified third-party cloud storage. This scene is only applicable to the individual audio non-transcoding recording mode.<br>    > - When `scene` is set to `2`, you need to set the `appsCollection`field in the `start` method at the same time.<br>    > - In scenarios involving postponed transcoding and audio mixing, the recorded files will be cached on the Agora edge servers for up to 24 hours. If your business is sensitive to information security and to ensure data compliance, please carefully consider whether to use postponed transcoding and audio mixing functions. Contact Agora technical support if you need assistance. |
 | » resourceExpiredHour | number | false | The validity period for calling the cloud recording RESTful API Start calculating after you successfully initiate the cloud recording service and obtain the `sid` (Recording ID). The calculation unit is hours. The value range is [1,720]. The default value is 72. <br><br>**Note**: After the timeout, you will not be able to call the `query`, `update`, `updateLayout`, and `stop` methods.</br> |
 | » startParameter | [client-request](#schemaclient-request) | false | Setting this field can improve availability and optimize load balancing. <br><br>**Note**: When populating the `startParameter` object, make sure the values are valid and consistent with the `clientRequest` object in the subsequent `start` request body; otherwise, the `start` request will receive an error response. |
@@ -914,7 +914,7 @@ Third-party cloud storage services will encrypt and tag the uploaded recording f
 | Name | Type | Required | Description |
 |---|---|---|---|
 | sse | string | true | The encryption mode. After setting this field, the third-party cloud storage service will encrypt the uploaded recording files according to this encryption mode. This field is only applicable to Amazon S3, see the [official Amazon S3 documentation](https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/UsingEncryption.html). <br>- `kms`: KMS encryption. <br>- `aes256`: AES256 encryption. |
-| tag | string | true | Tag content. After setting this field, the third-party cloud storage service will tag the uploaded recording files according to the content of this tag. This field is only applicable to Alibaba Cloud and Amazon S3. See [the Alibaba Cloud official documentation]( https://www.alibabacloud.com/help/en/doc-detail/106678.html) and the [Amazon S3 official documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-tagging.html). |
+| tag | string | true | Tag content. After setting this field, the third-party cloud storage service will tag the uploaded recording files according to the content of this tag. This field is only applicable to Alibaba Cloud and Amazon S3. For details, see [the Alibaba Cloud official documentation]( https://www.alibabacloud.com/help/en/doc-detail/106678.html) and the [Amazon S3 official documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-tagging.html). |
 
 ## recordingConfig
 <!-- backwards compatibility -->
@@ -991,7 +991,7 @@ Configurations for recorded audio and video streams.
 | secret | string | false | Keys related to encryption and decryption. Only needs to be set when `decryptionMode` is not `0`. |
 | salt | string | false | Salt related to encryption and decryption. Base64 encoding, 32-bit bytes. Only need to set when `decryptionMode` is `7` or `8`. |
 | maxIdleTime | number | false | Maximum channel idle time. The unit is seconds. The value range is [5,259,200]. The default value is 30. The maximum value can not exceed 30 days. The recording service will automatically exit after exceeding the maximum channel idle time. After the recording service exits, if you initiate a `start` request again, a new recording file will be generated.<br><p>Channel idle: There are no broadcasters in the live channel, or there are no users in the communication channel.</p> |
-| streamTypes | number | false | Subscribed media stream type. <br>`0`: Subscribes to audio streams only. Suitable for smart voice review scenarios. <br>- `1`: Subscribes to video streams only. <br>- `2`: (Default) Subscribes to both audio and video streams. |
+| streamTypes | number | false | Subscribed media stream type. <br>- `0`: Subscribes to audio streams only. Suitable for smart voice review scenarios. <br>- `1`: Subscribes to video streams only. <br>- `2`: (Default) Subscribes to both audio and video streams. |
 | videoStreamType | number | false | Sets the stream type of the remote video. If you enable dual-stream mode in the SDK client, you can choose to subscribe to either the high-quality video stream or the low-quality video stream. <br>- `0`: High-quality video stream refers to high-resolution and high-bitrate video stream.<br>
 - `1`: Low-quality video stream refers to low-resolution and low-bitrate video stream. |
 | subscribeAudioUids | array[string] | false | Specify which UIDs' audio streams to subscribe to. If you want to subscribe to the audio stream of all UIDs, no need to set this field. The length of the array should not exceed 32, and using an empty array is not recommended. Only one of the fields can be set: this field or `unsubscribeAudioUids`. For details, see [Set up subscription lists](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe).<br><p><b>Note</b><br>:<li>This field is only applicable when the <b>streamTypes</b> are set to audio, or audio and video.</li><br><li>If you have set up a subscription list for audio or video only, but not at the same time, then the cloud recording service will not subscribe to any video streams. If you set up a subscription list for video, but not for audio, then Agora Cloud Recording will not subscribe to any audio streams.</li><br><li>Set as <b>["#allstream#"]</b> to subscribe to the audio streams of all UIDs in the channel.</li><br></p> |
@@ -1052,10 +1052,10 @@ Configurations for transcoded video output The value can refer to [Setting the R
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| width | number | false | The width of the video (pixels). `width` * `height` cannot exceed 1920 × 1080. The default value is 360. |
-| height | number | false | The height of the video (pixels). `width` * `height` cannot exceed 1920 × 1080. The default value is 640. |
+| width | number | false | The width of the video (pixels). `width` × `height` cannot exceed 1920 × 1080. The default value is 360. |
+| height | number | false | The height of the video (pixels). `width` × `height` cannot exceed 1920 × 1080. The default value is 640. |
 | fps | number | false | The frame rate of the video (fps). The default value is 15. |
-| bitrate | number | false | The bitrate of the video (kbps). The default value is 500. |
+| bitrate | number | false | The bitrate of the video (Kbps). The default value is 500. |
 | maxResolutionUid | string | false | Only need to set it in **vertical layout**. Specify the user ID of the large video window. The string value should be an integer ranged from 1 to (2<sup>32</sup>-1), and cannot be set to 0. |
 | mixedVideoLayout | number | false | Composite video layout:<br>- `0`: (Default) Floating layout. The first user to join the channel will be displayed as a large window, filling the entire canvas. The video windows of other users will be displayed as small windows, arranged horizontally from bottom to top, up to 4 rows, each with 4 windows. It supports up to a total of 17 windows of different users' videos. <br>- `1`: Adaptive layout. Automatically adjust the size of each user's video window according to the number of users, each user's video window size is consistent, and supports up to 17 windows. <br>- `2`: Vertical layout. The `maxResolutionUid` is specified to display the large video window on the left side of the screen, and the small video windows of other users are vertically arranged on the right side, with a maximum of two columns, 8 windows per column, supporting up to 17 windows. <br>- `3`: Customized layout. Set the `layoutConfig` field to customize the mixed layout. |
 | backgroundColor | string | false | The background color of the video canvas. The RGB color table is supported, with strings formatted as a # sign and 6 hexadecimal digits. The default value is `"#000000"`, representing the black color. |
@@ -1205,7 +1205,7 @@ Configurations for extended services.
 | Name | Type | Required | Description |
 |---|---|---|---|
 | errorHandlePolicy | string | false | Error handling policy. You can only set it to the default value, `"error_abort"`, which means that once an error occurs to an extension service, all other non-extension services, such as stream subscription, also stop. |
-| extensionServices | array[object] | true | As described below. |
+| extensionServices | array[object] | true | See the following . |
 | » serviceName | string | true | Name of the extended service:<br>- `web_recorder_service`: Represents the extended service is **web page recording**. <br>- `rtmp_publish_service`: Represents the extended service is to **push web page recording to the CDN**. |
 | » errorHandlePolicy | string | false | Error handling strategy within the extension service:<br>- `"error_abort"`: the default and only value during **web page recording**. Stop other extension services when the current extension service encounters an error. <br>- `"error_ignore"`: The only default value when you **push the web page recording to the CDN**. Other extension services are not affected when the current extension service encounters an error.<br><p>If the web page recording service or the recording upload service is abnormal, pushing the stream to the CDN will fail. Therefore, errors in the <b>web page recording</b> service can affect the service of <b>pushing page recording to the CDN</b>.</p><br><p>When an exception occurs during the process of pushing to the CDN, web page recording is not affected.</p> |
 | » serviceParam | [serviceParam](#schemaserviceparam) | true | Specific configurations for extension services. |
@@ -1246,12 +1246,12 @@ The following fields need to be set during **web page recording**:
 | audioProfile | number | true | Sampling rate, bitrate, encoding mode, and number of channels for the audio output. <br>`0`: 48 kHz sampling rate, music encoding, mono audio channel, and the encoding bitrate is approximately 48 Kbps. <br>`1`: 48 kHz sampling rate, music encoding, mono audio channel, and the encoding bitrate is approximately 128 Kbps. <br>`2`: 48 kHz sampling rate, music encoding, stereo audio channel, and the encoding bitrate is approximately 192 Kbps. |
 | videoWidth | number | true | The output video width (pixel). The product of `videoWidth` and `videoHeight` should be less than or equal to 1920 × 1080. For recommended values, see [How to Set Output Video Resolution for Web Page Recording in the Mobile Mode](https://doc.shengwang.cn/faq/integration-issues/mobile-video-profile). |
 | videoHeight | number | true | The height of the output video (pixel). The product of `videoWidth` and `videoHeight` should be less than or equal to 1920 × 1080. For recommended values, see [How to Set Output Video Resolution for Web Page Recording in the Mobile Mode](https://doc.shengwang.cn/faq/integration-issues/mobile-video-profile). |
-| maxRecordingHour | number | true | The maximum duration of web page recording (hours). The web page recording will automatically stop after exceeding this value. The value range is [1,720]. <br>> The recommended value should not exceed the value you set in the `acquire` method for `resourceExpiredHour`.<br><p><b>Billing related</b>:The charge will continue until the web page recording stops, so you need to set a reasonable value according to the actual business situation or stop the page recording voluntarily.</p> |
+| maxRecordingHour | number | true | The maximum duration of web page recording (hours). The web page recording will automatically stop after exceeding this value. The value range is [1,720]. <br>> The recommended value should not exceed the value you set in the `acquire` method for `resourceExpiredHour`.<br><p><b>Billing related</b>: The charge will continue until the web page recording stops, so you need to set a reasonable value according to the actual business situation or stop the page recording voluntarily.</p> |
 | videoBitrate | number | false | The bitrate of the output video (Kbps). For different output video resolutions, the default value of `videoBitrate` is different: <br>- Output video resolution is greater than or equal to 1280 × 720, and the default value is 2000. <br>- Output video resolution is less than 1280 × 720, and the default value is 1500. |
 | videoFps | number | false | The frame rate of the output video (fps). The value range is [5,60]. The default value is 15. |
-| mobile | boolean | false | Whether to enable the mobile web mode:<br>- `true`: enable. After enabling, the recording service uses the mobile web rendering mode to record the current page. <br>- `false`: (default) not enabled. |
+| mobile | boolean | false | Whether to enable the mobile web mode:<br>- `true`: Enables the mode. After enabling, the recording service uses the mobile web rendering mode to record the current page. <br>- `false`: (default) Disables the mode. |
 | maxVideoDuration | number | false | Maximum length of MP4 slice file generated by web page recording, in minutes During the web page recording process, the recording service will create a new MP4 slice file when the current MP4 file duration exceeds the `maxVideoDuration` approximately. The value range is [30,240]. The default value is 120. |
-| onhold | boolean | false | Whether to pause page recording when starting a web page recording task. <br>- `true`：Pause the web page recording that has been started. Immediately pause the recording after starting the web page recording task. The recording service will open and render the page to be recorded, but will not generate slice files. <br>- `false`: (Default) Start a web page recording task and perform web page recording. <br>We suggest using the `onhold` field according to the following process: <br>1. Set `onhold` to `true` when calling the `start` method, which will start and pause web page recording, and you need to etermine the appropriate time to start web page recording on your own. <br>2. Call `update` and set `onhold` to `false`, continue with web page recording. If you need to pause or resume the web page recording by continuously calling the `update` method, please make the call after receiving the response from the previous `update`, otherwise it may cause inconsistent results with your expectations. |
+| onhold | boolean | false | Whether to pause page recording when starting a web page recording task. <br>- `true`: Pauses the web page recording that has been started. Immediately pause the recording after starting the web page recording task. The recording service will open and render the page to be recorded, but will not generate slice files. <br>- `false`: (Default) Starts a web page recording task and perform web page recording. <br>We suggest using the `onhold` field according to the following process: <br>1. Set `onhold` to `true` when calling the `start` method, which will start and pause web page recording, and you need to etermine the appropriate time to start web page recording on your own. <br>2. Call `update` and set `onhold` to `false`, continue with web page recording. If you need to pause or resume the web page recording by continuously calling the `update` method, please make the call after receiving the response from the previous `update`, otherwise it may cause inconsistent results with your expectations. |
 | readyTimeout | number | false | Set the page load timeout in seconds. See [Page Load Timeout Detection](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/web-mode/detect-timeout). The value range is [0,60]. The default value is 0. <br>Set to `0` or not set, which means the web page loading status is not detected. <br>-An integer between [1,60], representing the page load timeout. |
 
 #### Scenario 2
@@ -1260,7 +1260,7 @@ The following fields need to be set during **web page recording**:
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| outputs | array[object] | true | As described below. |
+| outputs | array[object] | true | See the following . |
 | » rtmpUrl | string | true | The CDN address which you push the stream to. |
 
 
@@ -1316,12 +1316,12 @@ Configurations for the recorded files generated under postponed transcoding or a
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| transConfig | object | true | As described below. |
+| transConfig | object | true | See the following . |
 | » transMode | string | true | Mode:<br>- `"postponeTranscoding"`: Postponed transcoding. <br>- `"audioMix"`: Postponed audio mixing. |
-| container | object | false | As described below. |
+| container | object | false | See the following . |
 | » format | string | false | The container format of the file, which supports the following values:<br>- `"mp4"`: the default format for the postponed transcoding. MP4 format. <br>- `"mp3"`: The default format for postponed audio mixing. MP3 format. <br>- `"m4a"`: M4A format. <br>- `"aac"`: AAC format. <br>**Note**: Postponed transcoding can currently only be set to MP4 format. |
 | audio | object | false | Audio properties of the file.<br><p><b>Note</b>: This setting is only required in <b>individual recording mode</b> with <b>postponed audio mixing</b> turned on.</p> |
-| » sampleRate | string | false | Audio sampling rate (Hz) supports the following values:<br>- `"48000"`: (Default) 48 kHz.<br> - `"32000"`：32 kHz。 <br>- `"16000"`：16 kHz。 |
+| » sampleRate | string | false | Audio sampling rate (Hz) supports the following values:<br>- `"48000"`: (Default) 48 kHz.<br> - `"32000"`: 32 kHz. <br>- `"16000"`: 16 kHz. |
 | » bitrate | string | false | Audio bit rate (Kbps) supports a customized value and the default value is `"48000"`. |
 | » channels | string | false | The number of audio channels supports the following values:<br>- `"1"`: mono. <br>- `"2"`: (Default) Stereo. |
 
@@ -1706,7 +1706,7 @@ Used to update the web page recording configurations.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| onhold | boolean | false | Set whether to pause the web page recording. <br>- `true`: Pause web page recording and generating recording files. <br>- `false`: (Default) Continue web page recording and generating recording files. <br>If you want to resume a paused web page recording, you can call the `update` method and set `onhold` to `false`. |
+| onhold | boolean | false | Set whether to pause the web page recording. <br>- `true`: Pauses web page recording and generating recording files. <br>- `false`: (Default) Continues web page recording and generates recording files. <br>If you want to resume a paused web page recording, you can call the `update` method and set `onhold` to `false`. |
 
 ## rtmpPublishConfig
 <!-- backwards compatibility -->
@@ -1732,7 +1732,7 @@ Used to update the configurations for pushing web page recording to the CDN.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| outputs | array[object] | false | As described below. |
+| outputs | array[object] | false | See the following . |
 | » rtmpUrl | string | false | The CDN URL where you push the stream to.<br><p><b>Note</b>:<br><li>URLs only support the RTMP and RTMPS protocols.</li><br><li>The maximum number of streams being pushed to the CDN is 1.</li><br></p> |
 
 ## updateLayout-request
@@ -1983,10 +1983,10 @@ The following fields will be returned during web page recording.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| fileList | array[object] | false | As described below. |
+| fileList | array[object] | false | See the following . |
 | » filename | string | false | The file names of the M3U8 and MP4 files generated during recording. |
 | » sliceStartTime | number | false | The recording start time of the file, the Unix timestamp, in seconds. |
-| onhold | boolean | false | Whether the page recording is in pause state:<br>- `true`: in pause state. <br>- `false`: The page recording is running. |
+| onhold | boolean | false | Whether the page recording is in pause state:<br>- `true`: In pause state. <br>- `false`: The page recording is running. |
 | state | string | false | The status of uploading subscription content to the extension service:<br>- `"init"`: The service is initializing. <br>- `"inProgress"`: The service has started and is currently in progress. <br>- `"exit"`: Service exits. |
 
 #### Scenario 2
@@ -1995,7 +1995,7 @@ When push the web page recording to CDN, the following fields will be returned.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| outputs | array[object] | false | As described below. |
+| outputs | array[object] | false | See the following . |
 | » rtmpUrl | string | false | The CDN address which you push the stream to. |
 | » status | string | false | The current status of stream pushing of the web page recording:<br> - `"connecting"`: Connecting to the CDN server. <br>- `"publishing"`: The stream pushing is going on. <br>- `"onhold"`: Set whether to pause the stream pushing. <br>- `"disconnected"`: Failed to connect to the CDN server. Agora suggests that you change the CDN address to push the stream to. |
 | state | string | false | The status of uploading subscription content to the extension service:<br>- `"init"`: The service is initializing. <br>- `"inProgress"`: The service has started and is currently in progress. <br>- `"exit"`: Service exits. |
@@ -2055,7 +2055,7 @@ array[object] type.
 |---|---|---|---|
 | cname | string | true | The name of the channel where the recording service is located. The `cname` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request needs to be the same . |
 | uid | string | true | The string content is the UID used by the recording service in the RTC channel to identify the recording service. It needs to be the same as the `uid` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request. |
-| clientRequest | object | true | As described below. |
+| clientRequest | object | true | See the following . |
 | » async_stop | boolean | false | Set the response mechanism for the `stop` method:<br>- `true`: Asynchronous. Immediately receive a response after calling `stop`. <br>- `false`: (Default) Synchronous. After calling `stop`, you need to wait for all the recorded files to be uploaded to the third-party cloud storage before receiving a response. Agora expects the upload time to be no more than 20 seconds. If the upload exceeds the time limit, you will receive an error code of `50`. |
 
 ## stop-response
@@ -2123,7 +2123,7 @@ Fields that will be returned in the web page recording scenario.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| extensionServiceState | array[object] | false | As described below. |
+| extensionServiceState | array[object] | false | See the following . |
 | » playload | object | false | [playload-stop](#playload-stop) |
 | » serviceName | string | false | Service type:<br>- `"upload_service"`: Upload service. <br>- `"web_recorder_service"`: Web recording service. |
 
@@ -2163,8 +2163,8 @@ Fields returned by the **page recording service** in **web page recording** mode
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| fileList | array[object] | false | As described below. |
+| fileList | array[object] | false | See the following . |
 | » filename | string | false | The file names of the M3U8 and MP4 files generated during recording. |
 | » sliceStartTime | number | false | The recording start time of the file, the Unix timestamp, in seconds. |
-| onhold | boolean | false | Whether the page recording is in pause state:<br>- `true`: in pause state. <br>- `false`: The page recording is running. |
+| onhold | boolean | false | Whether the page recording is in pause state:<br>- `true`: In pause state. <br>- `false`: The page recording is running. |
 | state | string | false | The status of uploading subscription content to the extension service:<br>- `"init"`: The service is initializing. <br>- `"inProgress"`: The service has started and is currently in progress. <br>- `"exit"`: Service exits. |
