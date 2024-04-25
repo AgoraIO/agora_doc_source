@@ -1906,7 +1906,7 @@ Status Code **200**
 |Name|Type|Required|Description|
 |---|---|---|---|
 |status|number|false|当前云服务的状态：<br>- `0`：没有开始云服务。<br>- `1`：云服务初始化完成。<br>- `2`：云服务组件开始启动。<br>- `3`：云服务部分组件启动完成。<br>- `4`：云服务所有组件启动完成。<br>- `5`：云服务正在进行中。<br>- `6`：云服务收到停止请求。<br>- `7`：云服务所有组件均停止。<br>- `8`：云服务已退出。<br>- `20`：云服务异常退出。|
-|array[object]|false|extensionServiceState|[extensionServiceState](#schemaextensionservicestate)|
+|extensionServiceState|array[object]|false|[extensionServiceState](#schemaextensionservicestate)|
 
 #### 情况二
 
