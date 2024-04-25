@@ -267,7 +267,7 @@ Status Code **200**
 | cname | string | false | The name of the channel to be recorded. |
 | uid | string | false | The string content is the user ID used by the cloud recording service in the RTC channel to identify the recording service in the channel. |
 | resourceId | string | false | The resource ID used by Cloud Recording. |
-| sid | string | false | The recording ID. Identify a recording cycle. |
+| sid | string | false | The recording ID, identifying a recording cycle. |
 
 
 
@@ -1915,7 +1915,7 @@ Fields returned in **web page recording **mode.
 
 #### Scenario 2
 
-Fields that are returned when in **individual recording** mode and **video screenshot capture** is turned on.
+Fields returned when in **individual recording** mode and **video screenshot capture** is turned on.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
@@ -2119,7 +2119,7 @@ array[object] type.
 
 #### Scenario 1
 
-Fields that will be returned in the web page recording scenario.
+Fields returned in the web page recording scenario.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
