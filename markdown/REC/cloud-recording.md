@@ -267,7 +267,7 @@ Status Code **200**
 |cname|string|false|录制的频道名。|
 |uid|string|false|字符串内容为云端录制服务在 RTC 频道内使用的 UID，用于标识频道内的录制服务。|
 |resourceId|string|false|云端录制使用的 Resource ID。|
-|sid|string|false|录制 ID。标识每次录制周期。|
+|sid|string|false|录制 ID，标识每次录制周期。|
 
 
 
@@ -361,7 +361,7 @@ Status Code **200**
 |cname|string|false|录制的频道名。|
 |uid|string|false|字符串内容为云端录制服务在 RTC 频道内使用的 UID，用于标识频道内的录制服务。|
 |resourceId|string|false|云端录制使用的 Resource ID。|
-|sid|string|false|录制 ID。标识一次录制周期。|
+|sid|string|false|录制 ID，标识一次录制周期。|
 
 
 
@@ -507,7 +507,7 @@ Status Code **200**
 
 查询消息通知服务器的 IP 地址或 IP 地址列表。
 
-开通消息通知服务后，声网消息通知服务可以将输入在线媒体流业务中的发生的一些事件以 HTTPS 请求的方式通知到你的服务器。声网会动态调整消息通知服务器的 IP 地址，周期为 24 小时。你可以通过本方法查询 IP 地址。查询后，你需要将 IP 地址（或 IP 地址列表）添加到白名单中。
+开通消息通知服务后，声网消息通知服务可以将云端录制业务中的发生的一些事件以 HTTPS 请求的方式通知到你的服务器。声网会动态调整消息通知服务器的 IP 地址，周期为 24 小时。你可以通过本方法查询 IP 地址。查询后，你需要将 IP 地址（或 IP 地址列表）添加到白名单中。
 
 > 我们强烈推荐你至少每 24 小时进行一次查询，并自动更新防火墙配置，否则可能会影响你接收通知。
 
@@ -2085,7 +2085,7 @@ array[object] 类型。
 |Name|Type|Required|Description|
 |---|---|---|---|
 |resourceId|string|false|云端录制使用的 Resource ID。|
-|sid|string|false|录制 ID。标识一次录制周期。|
+|sid|string|false|录制 ID，标识一次录制周期。|
 |serverResponse|object|false|[serverResponse](#schemaserverresponse-stop)|
 |cname|string|false|录制的频道名。|
 |uid|string|false|字符串内容为云端录制服务在 RTC 频道内使用的 UID，用于标识频道内的录制服务。|
