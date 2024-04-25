@@ -11,7 +11,7 @@ Agora Cloud Recording is a component provided by Agora to record and save voice 
    - `updateLayout`: Update the video mixing layout.
 - `stop`: When a recording finishes, call `stop` to leave the channel and stop the recording.
 
-> Cloud Recording does not support completing multiple tasks in one recording session. For example, if you need to start individual and composite recording for a channel simultaneously, start two recording sessions. More specifically, use two different `uids` to call `acquire` to obtain two `resourceIds`, and then call start separately to `start` two recording tasks. Both recording sessions are charged.
+> Cloud Recording does not support completing multiple tasks in one recording session. For example, if you need to start individual and composite recording for a channel simultaneously, start two recording sessions. More specifically, use two different `uid`s to call `acquire` to obtain two `resourceId`s, and then call `start` separately to start two recording tasks. Both recording sessions are charged.
 
 To monitor the status of your cloud recording, Agora provides the [message notification service](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/enable-ncs). After enabling this service, you can receive [the events related to cloud recording](https://doc.shengwang.cn/api-ref/cloud-recording/restful/webhook/ncs-events) through Webhook.
 
@@ -267,7 +267,7 @@ Status Code **200**
 | cname | string | false | The name of the channel to be recorded. |
 | uid | string | false | The string content is the user ID used by the cloud recording service in the RTC channel to identify the recording service in the channel. |
 | resourceId | string | false | The resource ID used by Cloud Recording. |
-| sid | string | false | The recording ID. Identify a recording cycle. |
+| sid | string | false | The recording ID, identifying a recording cycle. |
 
 
 
@@ -361,7 +361,7 @@ Status Code **200**
 | cname | string | false | The name of the channel to be recorded. |
 | uid | string | false | The string content is the user ID used by the cloud recording service in the RTC channel to identify the recording service in the channel. |
 | resourceId | string | false | The resource ID used by Cloud Recording. |
-| sid | string | false | The recording ID. Identify a recording cycle. |
+| sid | string | false | The recording ID, identifying a recording cycle. |
 
 
 
@@ -507,7 +507,7 @@ After starting recording, you can call the `stop` method to leave the channel an
 
 Query the IP address or IP address list of the message notification server.
 
-After you enable the message notification service, the Agora message notification service can notify your server of events that occur during a media pull with HTTPS requests. Agora dynamically adjusts the IP addresses of the message notification server every 24 hours. You can query the IP addresses using this method. After the query, add the IP address (or IP address list) to the whitelist.
+After you enable the message notification service, Agora message notification service can notify your server of events that occur during a media pull with HTTPS requests. Agora dynamically adjusts the IP addresses of the message notification server every 24 hours. You can query the IP addresses using this method. After the query, add the IP address (or IP address list) to the whitelist.
 
 > We strongly recommend performing a query at least every 24 hours and automatically updating the firewall configuration; otherwise, it may affect your reception of notifications.
 
@@ -2085,7 +2085,7 @@ The array[object] type.
 | Name | Type | Required | Description |
 |---|---|---|---|
 | resourceId | string | false | The resource ID used by Cloud Recording. |
-| sid | string | false | The recording ID. Identify a recording cycle. |
+| sid | string | false | The recording ID, identifying a recording cycle. |
 | serverResponse | object | false | [serverResponse](#schemaserverresponse-stop) |
 | cname | string | false | The name of the channel to be recorded. |
 | uid | string | false | The string content is the user ID used by the cloud recording service in the RTC channel to identify the recording service in the channel. |
