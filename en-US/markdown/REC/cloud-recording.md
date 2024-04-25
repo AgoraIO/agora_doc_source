@@ -1161,7 +1161,7 @@ Configurations of user's background image.
 | Name | Type | Required | Description |
 |---|---|---|---|
 | captureInterval | number | false | The cycle for regular screenshots in the cloud recording. The unit is seconds. The value range is [5,3600]. The default value is 10. |
-| file Type | array[string] | true | The file format of screenshots. Currently only `["jpg"]` is supported, which generates screenshot files in JPG format. |
+| fileType | array[string] | true | The file format of screenshots. Currently only `["jpg"]` is supported, which generates screenshot files in JPG format. |
 
 ## extensionServiceConfig
 <!-- backwards compatibility -->
