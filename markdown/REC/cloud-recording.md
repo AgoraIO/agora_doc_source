@@ -62,8 +62,8 @@
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|Content-Type|header|string|false|`application/json`。|
-|appid|path|string|true|你的项目使用的 [App ID](http://doc.shengwang.cn/doc/cloud-recording/restful/get-started/enable-service#%E8%8E%B7%E5%8F%96-app-id)。<li>对于页面录制模式，只需输入开通了云端录制服务的 App ID。</li><li>对于单流和合流录制模式，必须使用和待录制的频道相同的 App ID，且该 App ID 需要开通云端录制服务。</li>|
+|`Content-Type`|header|string|false|`application/json`。|
+|`appid`|path|string|true|你的项目使用的 [App ID](http://doc.shengwang.cn/doc/cloud-recording/restful/get-started/enable-service#%E8%8E%B7%E5%8F%96-app-id)。<li>对于页面录制模式，只需输入开通了云端录制服务的 App ID。</li><li>对于单流和合流录制模式，必须使用和待录制的频道相同的 App ID，且该 App ID 需要开通云端录制服务。</li>|
 |body|body|json object|true|[acquire-request](#schemaacquire-request)|
 
 > Example responses
@@ -146,10 +146,10 @@
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|Content-Type|header|string|false|`application/json`。|
-|appid|path|string|true|你的项目使用的 [App ID](http://doc.shengwang.cn/doc/cloud-recording/restful/get-started/enable-service#%E8%8E%B7%E5%8F%96-app-id)。<li>对于页面录制模式，只需输入开通了云端录制服务的 App ID。</li><li>对于单流和合流录制模式，必须使用和待录制的频道相同的 App ID，且该 App ID 需要开通云端录制服务。</li>|
-|resourceid|path|string|true|通过 [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) 请求获取到的 Resource ID。|
-|mode|path|string|true|录制模式：<li>`individual`：[单流录制模式](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/set-individual)。</li><li>`mix`：[合流录制模式](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-composite)。</li><li>`web`：[页面录制模式](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/web-mode/set-webpage-recording)。</li>|
+|`Content-Type`|header|string|false|`application/json`。|
+|`appid`|path|string|true|你的项目使用的 [App ID](http://doc.shengwang.cn/doc/cloud-recording/restful/get-started/enable-service#%E8%8E%B7%E5%8F%96-app-id)。<li>对于页面录制模式，只需输入开通了云端录制服务的 App ID。</li><li>对于单流和合流录制模式，必须使用和待录制的频道相同的 App ID，且该 App ID 需要开通云端录制服务。</li>|
+|`resourceid`|path|string|true|通过 [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) 请求获取到的 Resource ID。|
+|`mode`|path|string|true|录制模式：<li>`individual`：[单流录制模式](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/set-individual)。</li><li>`mix`：[合流录制模式](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-composite)。</li><li>`web`：[页面录制模式](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/web-mode/set-webpage-recording)。</li>|
 |body|body|json object|true|[start-request](#schemastart-request)|
 
 > Example responses
@@ -178,10 +178,10 @@ Status Code **200**
 
 |Name|Type|Required|Description|
 |---|---|---|---|
-|cname|string|false|录制的频道名。|
-|uid|string|false|字符串内容为云端录制服务在 RTC 频道内使用的 UID，用于标识频道内的录制服务。|
-|resourceId|string|false|云端录制资源 Resource ID。使用这个 Resource ID 可以开始一段云端录制。这个 Resource ID 的有效期为 5 分钟，超时需要重新请求。|
-|sid|string|false|录制 ID。成功开始云端录制后，你会得到一个 Sid （录制 ID）。该 ID 是一次录制周期的唯一标识。|
+|`cname`|string|false|录制的频道名。|
+|`uid`|string|false|字符串内容为云端录制服务在 RTC 频道内使用的 UID，用于标识频道内的录制服务。|
+|`resourceId`|string|false|云端录制资源 Resource ID。使用这个 Resource ID 可以开始一段云端录制。这个 Resource ID 的有效期为 5 分钟，超时需要重新请求。|
+|`sid`|string|false|录制 ID。成功开始云端录制后，你会得到一个 Sid （录制 ID）。该 ID 是一次录制周期的唯一标识。|
 
 
 
@@ -231,11 +231,11 @@ Status Code **200**
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|Content-Type|header|string|false|`application/json`。|
-|appid|path|string|true|你的项目使用的 [App ID](http://doc.shengwang.cn/doc/cloud-recording/restful/get-started/enable-service#%E8%8E%B7%E5%8F%96-app-id)。<li>对于页面录制模式，只需输入开通了云端录制服务的 App ID。</li><li>对于单流和合流录制模式，必须使用和待录制的频道相同的 App ID，且该 App ID 需要开通云端录制服务。</li>|
-|resourceid|path|string|true|通过 [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) 请求获取到的 Resource ID。|
-|sid|path|string|true|通过 [`start`](#opIdpost-v1-apps-appid-cloud_recording-resourceid-resourceid-mode-mode-start) 获取的录制 ID。|
-|mode|path|string|true|录制模式：<li>`individual`：[单流录制模式](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/set-individual)。</li><li>`mix`：[合流录制模式](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-composite)。</li><li>`web`：[页面录制模式](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/web-mode/set-webpage-recording)。</li>|
+|`Content-Type`|header|string|false|`application/json`。|
+|`appid`|path|string|true|你的项目使用的 [App ID](http://doc.shengwang.cn/doc/cloud-recording/restful/get-started/enable-service#%E8%8E%B7%E5%8F%96-app-id)。<li>对于页面录制模式，只需输入开通了云端录制服务的 App ID。</li><li>对于单流和合流录制模式，必须使用和待录制的频道相同的 App ID，且该 App ID 需要开通云端录制服务。</li>|
+|`resourceid`|path|string|true|通过 [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) 请求获取到的 Resource ID。|
+|`sid`|path|string|true|通过 [`start`](#opIdpost-v1-apps-appid-cloud_recording-resourceid-resourceid-mode-mode-start) 获取的录制 ID。|
+|`mode`|path|string|true|录制模式：<li>`individual`：[单流录制模式](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/individual-mode/set-individual)。</li><li>`mix`：[合流录制模式](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-composite)。</li><li>`web`：[页面录制模式](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/web-mode/set-webpage-recording)。</li>|
 |body|body|json object|true|[update-request](#schemaupdate-request)|
 
 > Example responses
@@ -264,10 +264,10 @@ Status Code **200**
 
 |Name|Type|Required|Description|
 |---|---|---|---|
-|cname|string|false|录制的频道名。|
-|uid|string|false|字符串内容为云端录制服务在 RTC 频道内使用的 UID，用于标识频道内的录制服务。|
-|resourceId|string|false|云端录制使用的 Resource ID。|
-|sid|string|false|录制 ID。标识每次录制周期。|
+|`cname`|string|false|录制的频道名。|
+|`uid`|string|false|字符串内容为云端录制服务在 RTC 频道内使用的 UID，用于标识频道内的录制服务。|
+|`resourceId`|string|false|云端录制使用的 Resource ID。|
+|`sid`|string|false|录制 ID。标识每次录制周期。|
 
 
 
@@ -1907,7 +1907,7 @@ Status Code **200**
 |Name|Type|Required|Description|
 |---|---|---|---|
 |status|number|false|当前云服务的状态：<br>- `0`：没有开始云服务。<br>- `1`：云服务初始化完成。<br>- `2`：云服务组件开始启动。<br>- `3`：云服务部分组件启动完成。<br>- `4`：云服务所有组件启动完成。<br>- `5`：云服务正在进行中。<br>- `6`：云服务收到停止请求。<br>- `7`：云服务所有组件均停止。<br>- `8`：云服务已退出。<br>- `20`：云服务异常退出。|
-|array[object]|false|extensionServiceState|[extensionServiceState](#schemaextensionservicestate)|
+|extensionServiceState|array[object]|false|[extensionServiceState](#schemaextensionservicestate)|
 
 #### 情况二
 
