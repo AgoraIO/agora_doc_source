@@ -439,7 +439,7 @@ After you start recording, you can call `query` to query the recording status.
 
 After starting recording, you can call the `stop` method to leave the channel and stop recording. To re-record after the recording has stopped, you must call the `acquire` method again to request a new resource ID.
 
-> - The ` stop` request is only valid within the session. If the recording is started incorrectly, or if the recording is finished, the `stop` call will return `404`.
+> - The `stop` request is only valid within the session. If the recording is started incorrectly, or if the recording is finished, the `stop` call will return `404`.
 > - In non-web page recording mode, when the channel is idle (without users) for more than the predefined duration (default is 30 seconds), cloud recording automatically leaves the channel and stops recording.
 
 > Request body
