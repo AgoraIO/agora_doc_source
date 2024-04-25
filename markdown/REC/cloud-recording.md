@@ -11,7 +11,7 @@
    - `updateLayout`：更新合流布局。
 - `stop`：录制完成后，调用 `stop` 离开频道，停止录制。
 
-> 云端录制不支持在一路录制中完成多个任务。例如，如果你需要同时对某个频道进行单流录制和合流录制，那么需要起两路录制。即，使用两个不同的 `uid` 分别调用 `acquire`，获取两个 `resourceId`，再分别调用 start 启动两路录制任务。两路录制均会产生费用。
+> 云端录制不支持在一路录制中完成多个任务。例如，如果你需要同时对某个频道进行单流录制和合流录制，那么需要起两路录制。即，使用两个不同的 `uid` 分别调用 `acquire`，获取两个 `resourceId`，再分别调用 `start` 启动两路录制任务。两路录制均会产生费用。
 
 为方便你监听云端录制的状态，声网提供[消息通知服务](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/enable-ncs)。开通该服务后，你可以通过 Webhook 接收[云端录制相关事件](https://doc.shengwang.cn/api-ref/cloud-recording/restful/webhook/ncs-events)。
 
