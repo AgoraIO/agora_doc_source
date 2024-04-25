@@ -267,7 +267,7 @@ Status Code **200**
 | cname | string | false | The name of the channel to be recorded. |
 | uid | string | false | The string content is the user ID used by the cloud recording service in the RTC channel to identify the recording service in the channel. |
 | resourceId | string | false | The resource ID used by Cloud Recording. |
-| sid | string | false | The recording ID, identifying each recording cycle. |
+| sid | string | false | The recording ID. Identify a recording cycle. |
 
 
 
@@ -1097,7 +1097,7 @@ Mixed video layout of users. An array of screen layout settings for each user, s
 | width | number(float) | true | The relative value of the width of this screen, accurate to six decimal places. This field can also be set to the integer 0 or 1. The value range is [0,1]. |
 | height | number(float) | true | The relative value of the height of this screen, accurate to six decimal places. This field can also be set to the integer 0 or 1. The value range is [0,1]. |
 | alpha | number(float) | false | The transparency of the user's video window. Accurate to six decimal places. `0.0` means the user's video window is transparent, and `1.0` indicates that it is completely opaque. The value range is [0,1]. The default value is 1. |
-| render_mode | number | false | The display mode of users' video windows:<br> - `0`: (Default) cropped mode. Prioritize to ensure the screen is filled. The video window size is proportionally scaled until it entirely fills the screen. If the video's length and width differ from the video window, the video stream will be cropped from its edges to fit the  window, in accordance with the aspect ratio set for the video window. <br>- `1`: Fit mode. Prioritize to ensure that all video content is displayed. The video size is scaled proportionally until one side of the video window is aligned with the screen border. If the video scale does not comply with the window size, the video will be scaled to fill the screen while maintaining its aspect ratio. This scaling may result in a black border around the edges of the video.. |
+| render_mode | number | false | The display mode of users' video windows:<br>- `0`: (Default) cropped mode. Prioritize to ensure the screen is filled. The video window size is proportionally scaled until it entirely fills the screen. If the video's length and width differ from the video window, the video stream will be cropped from its edges to fit the  window, in accordance with the aspect ratio set for the video window. <br>- `1`: Fit mode. Prioritize to ensure that all video content is displayed. The video size is scaled proportionally until one side of the video window is aligned with the screen border. If the video scale does not comply with the window size, the video will be scaled to fill the screen while maintaining its aspect ratio. This scaling may result in a black border around the edges of the video.. |
 
 
 ## backgroundConfig
@@ -1125,7 +1125,7 @@ Configurations of user's background image.
 |---|---|---|---|
 | uid | string | true | The string content is the UID. |
 | image_url | string | true | The URL of the user's background image. After setting the background image, if the user stops sending video stream for more than 3.5 seconds, the screen will switch to the background image. <br><br>URL supports the HTTP and HTTPS protocols, and the image formats supported are JPG and BMP. The image size must not exceed 6 MB. The settings will only take effect after the recording service successfully downloads the image; if the download fails, the settings will not take effect. Different field settings may overlap each other. For specific rules, see [Set the background color or background image](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/mix-mode/set-composite-layout#%E8%BF%9B%E9%98%B6%E8%AE%BE%E7%BD%AE%E8%83%8C%E6%99%AF%E8%89%B2%E6%88%96%E8%83%8C%E6%99%AF%E5%9B%BE).</br> |
-| render_mode | number | false | The display mode of users' video windows:<br> - `0`: (Default) cropped mode. Prioritize to ensure the screen is filled. The video window size is proportionally scaled until it entirely fills the screen. If the video's length and width differ from the video window, the video stream will be cropped from its edges to fit the  window, in accordance with the aspect ratio set for the video window. <br>- `1`: Fit mode. Prioritize to ensure that all video content is displayed. The video size is scaled proportionally until one side of the video window is aligned with the screen border. If the video scale does not comply with the window size, the video will be scaled to fill the screen while maintaining its aspect ratio. This scaling may result in a black border around the edges of the video.. |
+| render_mode | number | false | The display mode of users' video windows:<br>- `0`: (Default) cropped mode. Prioritize to ensure the screen is filled. The video window size is proportionally scaled until it entirely fills the screen. If the video's length and width differ from the video window, the video stream will be cropped from its edges to fit the  window, in accordance with the aspect ratio set for the video window. <br>- `1`: Fit mode. Prioritize to ensure that all video content is displayed. The video size is scaled proportionally until one side of the video window is aligned with the screen border. If the video scale does not comply with the window size, the video will be scaled to fill the screen while maintaining its aspect ratio. This scaling may result in a black border around the edges of the video.. |
 
 ## recordingFileConfig
 <!-- backwards compatibility -->
@@ -1165,7 +1165,7 @@ Configurations of user's background image.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| captureInterval | number | false | The cycle for regular screenshots in the cloud recording. The unit is seconds. The value range is [1,30]. The default value is 10. |
+| captureInterval | number | false | The cycle for regular screenshots in the cloud recording. The unit is seconds. The value range is [5,3600]. The default value is 10. |
 | file Type | array[string] | true | The file format of screenshots. Currently only `["jpg"]` is supported, which generates screenshot files in JPG format. |
 
 ## extensionServiceConfig
@@ -1248,11 +1248,11 @@ The following fields need to be set during **web page recording**:
 | videoHeight | number | true | The height of the output video (pixel). The product of `videoWidth` and `videoHeight` should be less than or equal to 1920 × 1080. For recommended values, see [How to Set Output Video Resolution for Web Page Recording in the Mobile Mode](https://doc.shengwang.cn/faq/integration-issues/mobile-video-profile). |
 | maxRecordingHour | number | true | The maximum duration of web page recording (hours). The web page recording will automatically stop after exceeding this value. The value range is [1,720]. <br>> The recommended value should not exceed the value you set in the `acquire` method for `resourceExpiredHour`.<br><p><b>Billing related</b>:The charge will continue until the web page recording stops, so you need to set a reasonable value according to the actual business situation or stop the page recording voluntarily.</p> |
 | videoBitrate | number | false | The bitrate of the output video (Kbps). For different output video resolutions, the default value of `videoBitrate` is different: <br>- Output video resolution is greater than or equal to 1280 × 720, and the default value is 2000. <br>- Output video resolution is less than 1280 × 720, and the default value is 1500. |
-| videoFps | number | false | The frame rate of the output video (fps). The value range is [1,30]. The default value is 15. |
+| videoFps | number | false | The frame rate of the output video (fps). The value range is [5,60]. The default value is 15. |
 | mobile | boolean | false | Whether to enable the mobile web mode:<br>- `true`: enable. After enabling, the recording service uses the mobile web rendering mode to record the current page. <br>- `false`: (default) not enabled. |
-| maxVideoDuration | number | false | Maximum length of MP4 slice file generated by web page recording, in minutes During the web page recording process, the recording service will create a new MP4 slice file when the current MP4 file duration exceeds the `maxVideoDuration` approximately. The value ranges from [0 to 24]. The default value is 120. |
-| onhold | boolean | false | Whether to pause page recording when starting a web page recording task. <br>- `true`：Pause the web page recording that has been started. Immediately pause the recording after starting the web page recording task. The recording service will open and render the page to be recorded, but will not generate slice files. <br>- `false`: Start a web page recording task and perform web page recording. <br>We suggest using the `onhold` field according to the following process: <br>1. Set `onhold` to `true` when calling the `start` method, which will start and pause web page recording, and you need to etermine the appropriate time to start web page recording on your own. <br>2. Call `update` and set `onhold` to `false`, continue with web page recording. If you need to pause or resume the web page recording by continuously calling the `update` method, please make the call after receiving the response from the previous `update`, otherwise it may cause inconsistent results with your expectations. |
-| readyTimeout | number | false | Set the page load timeout in seconds. See [Page Load Timeout Detectionhttp](://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/web-mode/detect-timeout). The value range is [0,100]. The default value is 0. <br>Set to `0` or not set, which means the web page loading status is not detected. <br>-[ An integer between 1 and 60], representing the page load timeout. |
+| maxVideoDuration | number | false | Maximum length of MP4 slice file generated by web page recording, in minutes During the web page recording process, the recording service will create a new MP4 slice file when the current MP4 file duration exceeds the `maxVideoDuration` approximately. The value range is [30,240]. The default value is 120. |
+| onhold | boolean | false | Whether to pause page recording when starting a web page recording task. <br>- `true`：Pause the web page recording that has been started. Immediately pause the recording after starting the web page recording task. The recording service will open and render the page to be recorded, but will not generate slice files. <br>- `false`: (Default) Start a web page recording task and perform web page recording. <br>We suggest using the `onhold` field according to the following process: <br>1. Set `onhold` to `true` when calling the `start` method, which will start and pause web page recording, and you need to etermine the appropriate time to start web page recording on your own. <br>2. Call `update` and set `onhold` to `false`, continue with web page recording. If you need to pause or resume the web page recording by continuously calling the `update` method, please make the call after receiving the response from the previous `update`, otherwise it may cause inconsistent results with your expectations. |
+| readyTimeout | number | false | Set the page load timeout in seconds. See [Page Load Timeout Detection](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/web-mode/detect-timeout). The value range is [0,60]. The default value is 0. <br>Set to `0` or not set, which means the web page loading status is not detected. <br>- [An integer between 1 and 60], representing the page load timeout. |
 
 #### Scenario 2
 
@@ -1986,7 +1986,7 @@ The following fields will be returned during web page recording.
 | fileList | array[object] | false | As described below. |
 | » filename | string | false | The file names of the M3U8 and MP4 files generated during recording. |
 | » sliceStartTime | number | false | The recording start time of the file, the Unix timestamp, in seconds. |
-| onhold | boolean | false | Whether the page recording is in pause state:<br>- `true`: in pause state. <br>- `false`: the page recording is running. |
+| onhold | boolean | false | Whether the page recording is in pause state:<br>- `true`: in pause state. <br>- `false`: The page recording is running. |
 | state | string | false | The status of uploading subscription content to the extension service:<br>- `"init"`: The service is initializing. <br>- `"inProgress"`: The service has started and is currently in progress. <br>- `"exit"`: Service exits. |
 
 #### Scenario 2
@@ -1997,7 +1997,7 @@ When push the web page recording to CDN, the following fields will be returned.
 |---|---|---|---|
 | outputs | array[object] | false | As described below. |
 | » rtmpUrl | string | false | The CDN address which you push the stream to. |
-| » status | string | false | The current status of stream pushing of the web page recording :<br> - `"connecting"`: connecting to the CDN server. <br>- `"publishing"`: The stream pushing is going on. <br>- `"onhold"`: Set whether to pause the stream pushing. <br>- `"disconnected"`: Failed to connect to the CDN server. Agora suggests that you change the CDN address to push the stream to. |
+| » status | string | false | The current status of stream pushing of the web page recording:<br> - `"connecting"`: Connecting to the CDN server. <br>- `"publishing"`: The stream pushing is going on. <br>- `"onhold"`: Set whether to pause the stream pushing. <br>- `"disconnected"`: Failed to connect to the CDN server. Agora suggests that you change the CDN address to push the stream to. |
 | state | string | false | The status of uploading subscription content to the extension service:<br>- `"init"`: The service is initializing. <br>- `"inProgress"`: The service has started and is currently in progress. <br>- `"exit"`: Service exits. |
 
 
@@ -2166,5 +2166,5 @@ Fields returned by the **page recording service** in **web page recording** mode
 | fileList | array[object] | false | As described below. |
 | » filename | string | false | The file names of the M3U8 and MP4 files generated during recording. |
 | » sliceStartTime | number | false | The recording start time of the file, the Unix timestamp, in seconds. |
-| onhold | boolean | false | Whether the page recording is in pause state:<br>- `true`: in pause state. <br>- `false`: the page recording is running. |
+| onhold | boolean | false | Whether the page recording is in pause state:<br>- `true`: in pause state. <br>- `false`: The page recording is running. |
 | state | string | false | The status of uploading subscription content to the extension service:<br>- `"init"`: The service is initializing. <br>- `"inProgress"`: The service has started and is currently in progress. <br>- `"exit"`: Service exits. |
