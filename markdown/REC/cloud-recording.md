@@ -1992,7 +1992,7 @@ Status Code **200**
 |---|---|---|---|
 |outputs|array[object]|false|见下所述。|
 |» rtmpUrl|string|false|CDN 推流地址。|
-|» status|string|false|页面录制当前的推流状态：<br>- `"connecting"`：正在连接 CDN 服务器。<br>- `"publishing"`：正在推流。<br>- `"onhold"`：设置是否暂停推流。<br>- `"disconnected"`：连接 CDN 服务器失败，声网建议你更换 CDN 推流地址。|
+|» status|string|false|页面录制当前的推流状态：<br>- `"connecting"`：正在连接 CDN 服务器。<br>- `"publishing"`：正在推流。<br>- `"onhold"`：暂停推流。<br>- `"disconnected"`：连接 CDN 服务器失败，声网建议你更换 CDN 推流地址。|
 |state|string|false|将订阅内容上传至扩展服务的状态：<br>- `"init"`：服务正在初始化。<br>- `"inProgress"`：服务启动完成，正在进行中。<br>- `"exit"`：服务退出。|
 
 
