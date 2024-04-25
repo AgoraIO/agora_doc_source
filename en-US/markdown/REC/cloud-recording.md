@@ -701,16 +701,12 @@ Status Code **200**
 |---|---|---|---|
 | cname | string | true | Channel name:<br> - For individual recording and composite recording modes, this field is used to set the name of the channel to be recorded. <br>- For web page recording mode, this field is used to differentiate the recording process. The string length cannot exceed 1024 bytes. <br>**Note**: A unique recording instance can be located through `appid`, `cname`, and `uid`. Therefore, if you intend to record the same channel multiple times, you can effectively manage this by using the same `appId` and `cname`, while differentiating them with different `uids`. |
 | uid | string | true | The string contains the UID used by the cloud recording service within the channel to identify the recording service, for example, `"527841"`. The string must meet the following conditions:<br>- The value is ranged from 1 to (2<sup>32</sup>-1), and cannot be set to `0`. <br>- It must not duplicate any UID within the current channel. <br>- The field value within the quotation marks is an integer UID, and all users in the channel should use the integer UIDs. |
-| clientRequest | object | false | See the following . |
+| clientRequest | object | false | See the following. |
 | » scene | number | false | Use cases for cloud recording resources:<br> - `0`: (default) Real-time audio and video recording. <br>- `1`: Web page recording. <br>- `2`: Individual recording mode, with postponed transcoding or audio mixing enabled.<br>    - Postponed transcoding: The recording service will transcode the recorded files into the MP4 format within 24 hours after the recording ends (in special cases, it may take more than 48 hours), and then upload the MP4 files to your third-party cloud storage. This scene is only applicable to the individual recording mode.<br>    - Postponed audio mixing: The recording service will merge and transcode the recorded files of all UIDs in the specified channel into a single MP3/M4A/AAC file within 24 hours after the recording ends (in special cases, it may take more than 48 hours), and then upload the file to your specified third-party cloud storage. This scene is only applicable to the individual audio non-transcoding recording mode.<br>    > - When `scene` is set to `2`, you need to set the `appsCollection`field in the `start` method at the same time.<br>    > - In scenarios involving postponed transcoding and audio mixing, the recorded files will be cached on the Agora edge servers for up to 24 hours. If your business is sensitive to information security and to ensure data compliance, please carefully consider whether to use postponed transcoding and audio mixing functions. Contact Agora technical support if you need assistance. |
 | » resourceExpiredHour | number | false | The validity period for calling the cloud recording RESTful API Start calculating after you successfully initiate the cloud recording service and obtain the `sid` (Recording ID). The calculation unit is hours. The value range is [1,720]. The default value is 72. <br><br>**Note**: After the timeout, you will not be able to call the `query`, `update`, `updateLayout`, and `stop` methods.</br> |
 | » startParameter | [client-request](#schemaclient-request) | false | Setting this field can improve availability and optimize load balancing. <br><br>**Note**: When populating the `startParameter` object, make sure the values are valid and consistent with the `clientRequest` object in the subsequent `start` request body; otherwise, the `start` request will receive an error response. |
 | » excludeResourceIds | array[string] | false | The `resourceId` of another or several other recording tasks. This field is used to exclude specified recording resources so that newly initiated recording tasks can use resources from a new region, enabling cross-regional multi-stream recording. See [multi-stream task guarantee]( https://doc.shengwang.cn/doc/cloud-recording/restful/best-practices/integration#多路任务保障). |
-| » region | string | false | Specify regions that the cloud recording service can access. By default, the cloud recording service accesses the region where the server you initiated the request is located. Once you specify the access region through `region`, the cloud recording service will not access servers outside the specified region. The region can be set as:<br>
-- `"CN"`: Mainland China<br>
-- `"AP"`: Asia excluding Mainland China<br>
-- `"EU"`: Europe<br>
-- `"NA"`: North America<br>**Note**: When calling the `start` method, the `region` of the third-party cloud storage must be consistent with this field. In scenarios of postponed transcoding and audio mixing, Agora recommends that you do not set the `region` field. Otherwise, due to the data compliance risks arising from the dynamic adjustment of Agora edge servers and the caching of recording files in scenarios of postponed transcoding and audio mixing, the Agora recording service may fail to function properly. |
+| » region | string | false | Specify regions that the cloud recording service can access. By default, the cloud recording service accesses the region where the server you initiated the request is located. Once you specify the access region through `region`, the cloud recording service will not access servers outside the specified region. The region can be set as:<br>- `"CN"`: Mainland China<br> - `"AP"`: Asia excluding Mainland China<br> - `"EU"`: Europe<br> - `"NA"`: North America<br>**Note**: When calling the `start` method, the `region` of the third-party cloud storage must be consistent with this field. In scenarios of postponed transcoding and audio mixing, Agora recommends that you do not set the `region` field. Otherwise, due to the data compliance risks arising from the dynamic adjustment of Agora edge servers and the caching of recording files in scenarios of postponed transcoding and audio mixing, the Agora recording service may fail to function properly. |
 
 ## client-request
 <!-- backwards compatibility -->
@@ -992,8 +988,7 @@ Configurations for recorded audio and video streams.
 | salt | string | false | Salt related to encryption and decryption. Base64 encoding, 32-bit bytes. Only need to set when `decryptionMode` is `7` or `8`. |
 | maxIdleTime | number | false | Maximum channel idle time. The unit is seconds. The value range is [5,259,200]. The default value is 30. The maximum value can not exceed 30 days. The recording service will automatically exit after exceeding the maximum channel idle time. After the recording service exits, if you initiate a `start` request again, a new recording file will be generated.<br><p>Channel idle: There are no broadcasters in the live channel, or there are no users in the communication channel.</p> |
 | streamTypes | number | false | Subscribed media stream type. <br>- `0`: Subscribes to audio streams only. Suitable for smart voice review scenarios. <br>- `1`: Subscribes to video streams only. <br>- `2`: (Default) Subscribes to both audio and video streams. |
-| videoStreamType | number | false | Sets the stream type of the remote video. If you enable dual-stream mode in the SDK client, you can choose to subscribe to either the high-quality video stream or the low-quality video stream. <br>- `0`: High-quality video stream refers to high-resolution and high-bitrate video stream.<br>
-- `1`: Low-quality video stream refers to low-resolution and low-bitrate video stream. |
+| videoStreamType | number | false | Sets the stream type of the remote video. If you enable dual-stream mode in the SDK client, you can choose to subscribe to either the high-quality video stream or the low-quality video stream. <br>- `0`: High-quality video stream refers to high-resolution and high-bitrate video stream.<br> - `1`: Low-quality video stream refers to low-resolution and low-bitrate video stream. |
 | subscribeAudioUids | array[string] | false | Specify which UIDs' audio streams to subscribe to. If you want to subscribe to the audio stream of all UIDs, no need to set this field. The length of the array should not exceed 32, and using an empty array is not recommended. Only one of the fields can be set: this field or `unsubscribeAudioUids`. For details, see [Set up subscription lists](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe).<br><p><b>Note:</b><br><li>This field is only applicable when the <b>streamTypes</b> are set to audio, or audio and video.</li><br><li>If you have set up a subscription list for audio or video only, but not at the same time, then the cloud recording service will not subscribe to any video streams. If you set up a subscription list for video, but not for audio, then Agora Cloud Recording will not subscribe to any audio streams.</li><br><li>Set as <b>["#allstream#"]</b> to subscribe to the audio streams of all UIDs in the channel.</li><br></p> |
 | unsubscribeAudioUids | array[string] | false | Specify which UIDs' audio streams not to subscribe to. The cloud recording service will subscribe to the audio streams of all other UIDs except the specified ones. The length of the array should not exceed 32, and using an empty array is not recommended. Only one of the fields can be set: this field or `subscribeAudioUids`. For details, see [Set up subscription lists](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe). |
 | subscribeVideoUids | array[string] | false | Specify which UID's video streams to subscribe to. If you want to subscribe to the video streams of all UIDs, no need to set this field. The length of the array should not exceed 32, and using an empty array is not recommended. Only one of the fields can be set: this field or `unsubscribeVideoUids`. For details, see [Set up subscription lists](http://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/set-subscribe).<br><p><b>Note:</b><br><li>This field is only applicable when the <b>streamTypes</b> are set to video, or audio and video.</li><br><li>If you have set up a subscription list for audio or video only, but not at the same time, then the cloud recording service will not subscribe to any video streams. If you set up a subscription list for video, but not for audio, then Agora Cloud Recording will not subscribe to any audio streams.</li><br><li>Set as <b>["#allstream#"]</b> to subscribe to the video streams of all UIDs in the channel.</li><br></p> |
@@ -1205,7 +1200,7 @@ Configurations for extended services.
 | Name | Type | Required | Description |
 |---|---|---|---|
 | errorHandlePolicy | string | false | Error handling policy. You can only set it to the default value, `"error_abort"`, which means that once an error occurs to an extension service, all other non-extension services, such as stream subscription, also stop. |
-| extensionServices | array[object] | true | See the following . |
+| extensionServices | array[object] | true | See the following. |
 | » serviceName | string | true | Name of the extended service:<br>- `web_recorder_service`: Represents the extended service is **web page recording**. <br>- `rtmp_publish_service`: Represents the extended service is to **push web page recording to the CDN**. |
 | » errorHandlePolicy | string | false | Error handling strategy within the extension service:<br>- `"error_abort"`: the default and only value during **web page recording**. Stop other extension services when the current extension service encounters an error. <br>- `"error_ignore"`: The only default value when you **push the web page recording to the CDN**. Other extension services are not affected when the current extension service encounters an error.<br><p>If the web page recording service or the recording upload service is abnormal, pushing the stream to the CDN will fail. Therefore, errors in the <b>web page recording</b> service can affect the service of <b>pushing page recording to the CDN</b>.</p><br><p>When an exception occurs during the process of pushing to the CDN, web page recording is not affected.</p> |
 | » serviceParam | [serviceParam](#schemaserviceparam) | true | Specific configurations for extension services. |
@@ -1260,7 +1255,7 @@ The following fields need to be set during **web page recording**:
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| outputs | array[object] | true | See the following . |
+| outputs | array[object] | true | See the following. |
 | » rtmpUrl | string | true | The CDN address which you push the stream to. |
 
 
@@ -1316,9 +1311,9 @@ Configurations for the recorded files generated under postponed transcoding or a
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| transConfig | object | true | See the following . |
+| transConfig | object | true | See the following. |
 | » transMode | string | true | Mode:<br>- `"postponeTranscoding"`: Postponed transcoding. <br>- `"audioMix"`: Postponed audio mixing. |
-| container | object | false | See the following . |
+| container | object | false | See the following. |
 | » format | string | false | The container format of the file, which supports the following values:<br>- `"mp4"`: the default format for the postponed transcoding. MP4 format. <br>- `"mp3"`: The default format for postponed audio mixing. MP3 format. <br>- `"m4a"`: M4A format. <br>- `"aac"`: AAC format. <br>**Note**: Postponed transcoding can currently only be set to MP4 format. |
 | audio | object | false | Audio properties of the file.<br><p><b>Note</b>: This setting is only required in <b>individual recording mode</b> with <b>postponed audio mixing</b> turned on.</p> |
 | » sampleRate | string | false | Audio sampling rate (Hz) supports the following values:<br>- `"48000"`: (Default) 48 kHz.<br> - `"32000"`: 32 kHz. <br>- `"16000"`: 16 kHz. |
@@ -1487,7 +1482,7 @@ Configurations for the recorded files generated under postponed transcoding or a
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| cname | string | true | The name of the channel where the recording service is located. The `cname` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request needs to be the same . |
+| cname | string | true | The name of the channel where the recording service is located. The `cname` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request needs to be the same. |
 | uid | string | true | The string content is the UID used by the recording service in the RTC channel to identify the recording service. It needs to be the same as the `uid` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request. |
 | clientRequest | object | true | [client-request](#schemaclient-request) |
 
@@ -1540,7 +1535,7 @@ Configurations for the recorded files generated under postponed transcoding or a
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| cname | string | true | The name of the channel where the recording service is located. The `cname` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request needs to be the same . |
+| cname | string | true | The name of the channel where the recording service is located. The `cname` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request needs to be the same. |
 | uid | string | true | The string content is the UID used by the recording service in the RTC channel to identify the recording service. It needs to be the same as the `uid` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request. |
 | clientRequest | object | true | [clientRequest](#schemaclientrequest) |
 
@@ -1732,7 +1727,7 @@ Used to update the configurations for pushing web page recording to the CDN.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| outputs | array[object] | false | See the following . |
+| outputs | array[object] | false | See the following. |
 | » rtmpUrl | string | false | The CDN URL where you push the stream to.<br><p><b>Note:</b><br><li>URLs only support the RTMP and RTMPS protocols.</li><br><li>The maximum number of streams being pushed to the CDN is 1.</li><br></p> |
 
 ## updateLayout-request
@@ -1779,7 +1774,7 @@ Used to update the configurations for pushing web page recording to the CDN.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| cname | string | true | The name of the channel where the recording service is located. The `cname` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request needs to be the same . |
+| cname | string | true | The name of the channel where the recording service is located. The `cname` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request needs to be the same. |
 | uid | string | true | The string content is the UID used by the recording service in the RTC channel to identify the recording service. It needs to be the same as the `uid` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request. |
 | clientRequest | object | true | [clientRequest-updateLayout](#schemaclientrequest-updatelayout) |
 
@@ -1983,7 +1978,7 @@ The following fields will be returned during web page recording.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| fileList | array[object] | false | See the following . |
+| fileList | array[object] | false | See the following. |
 | » filename | string | false | The file names of the M3U8 and MP4 files generated during recording. |
 | » sliceStartTime | number | false | The recording start time of the file, the Unix timestamp, in seconds. |
 | onhold | boolean | false | Whether the page recording is in pause state:<br>- `true`: In pause state. <br>- `false`: The page recording is running. |
@@ -1995,7 +1990,7 @@ When push the web page recording to CDN, the following fields will be returned.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| outputs | array[object] | false | See the following . |
+| outputs | array[object] | false | See the following. |
 | » rtmpUrl | string | false | The CDN address which you push the stream to. |
 | » status | string | false | The current status of stream pushing of the web page recording:<br> - `"connecting"`: Connecting to the CDN server. <br>- `"publishing"`: The stream pushing is going on. <br>- `"onhold"`: Set whether to pause the stream pushing. <br>- `"disconnected"`: Failed to connect to the CDN server. Agora suggests that you change the CDN address to push the stream to. |
 | state | string | false | The status of uploading subscription content to the extension service:<br>- `"init"`: The service is initializing. <br>- `"inProgress"`: The service has started and is currently in progress. <br>- `"exit"`: Service exits. |
@@ -2053,9 +2048,9 @@ array[object] type.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| cname | string | true | The name of the channel where the recording service is located. The `cname` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request needs to be the same . |
+| cname | string | true | The name of the channel where the recording service is located. The `cname` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request needs to be the same. |
 | uid | string | true | The string content is the UID used by the recording service in the RTC channel to identify the recording service. It needs to be the same as the `uid` you input in the [`acquire`](#opIdpost-v1-apps-appid-cloud_recording-acquire) request. |
-| clientRequest | object | true | See the following . |
+| clientRequest | object | true | See the following. |
 | » async_stop | boolean | false | Set the response mechanism for the `stop` method:<br>- `true`: Asynchronous. Immediately receive a response after calling `stop`. <br>- `false`: (Default) Synchronous. After calling `stop`, you need to wait for all the recorded files to be uploaded to the third-party cloud storage before receiving a response. Agora expects the upload time to be no more than 20 seconds. If the upload exceeds the time limit, you will receive an error code of `50`. |
 
 ## stop-response
@@ -2123,13 +2118,13 @@ Fields returned in the web page recording scenario.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| extensionServiceState | array[object] | false | See the following . |
+| extensionServiceState | array[object] | false | See the following. |
 | » playload | object | false | [playload-stop](#playload-stop) |
 | » serviceName | string | false | Service type:<br>- `"upload_service"`: Upload service. <br>- `"web_recorder_service"`: Web recording service. |
 
 #### Scenario 2
 
-Fields returned in the case of video screenshot capturing during individual recording .
+Fields returned in the case of video screenshot capturing during individual recording.
 
 | Name | Type | Required | Description |
 |---|---|---|---|
@@ -2163,7 +2158,7 @@ Fields returned by the **page recording service** in **web page recording** mode
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| fileList | array[object] | false | See the following . |
+| fileList | array[object] | false | See the following. |
 | » filename | string | false | The file names of the M3U8 and MP4 files generated during recording. |
 | » sliceStartTime | number | false | The recording start time of the file, the Unix timestamp, in seconds. |
 | onhold | boolean | false | Whether the page recording is in pause state:<br>- `true`: In pause state. <br>- `false`: The page recording is running. |
