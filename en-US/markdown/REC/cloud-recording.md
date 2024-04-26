@@ -1906,7 +1906,7 @@ Fields returned in **web page recording **mode.
 | Name | Type | Required | Description |
 |---|---|---|---|
 | `status` | Number | false | Current status of the cloud service:<br>- `0`: Cloud service has not started. <br>- `1`: The cloud service initialization is complete. <br>- `2`: The cloud service components are starting. <br>- `3`: Some cloud service components are ready. <br>- `4`: All cloud service components are ready. <br>- `5`: The cloud service is in progress. <br>- `6`: The cloud service receives the request to stop. <br>- `7`: All components of the cloud service stop. <br>- `8`: The cloud service exits. <br>- `20`: The cloud service exits abnormally. |
-| extensionServiceState | Array[object] | false | [extensionServiceState](#schemaextensionservicestate) |
+| `extensionServiceState` | Array[object] | false | [extensionServiceState](#schemaextensionservicestate) |
 
 #### Scenario 2
 
