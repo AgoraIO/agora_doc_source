@@ -17,10 +17,10 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableCameraCenterStage:(BOOL)enabled NS_SWIFT_NAME(enableCameraCenterStage(_:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int enableCameraCenterStage(bool enabled) = 0;</codeblock>
             <codeblock props="bp" outputclass="language-cpp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity cs" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="electron" outputclass="language-typescript">abstract enableCameraCenterStage(enabled: boolean): number;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int EnableCameraCenterStage(bool enabled);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract enableCameraCenterStage(enabled: boolean): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableCameraCenterStage(bool enabled);</codeblock> </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
@@ -30,9 +30,9 @@
             </dlentry>
             </dl>
             <p>人像锁定功能默认关闭，你需要调用该方法开启。如果需要关闭该功能，则需重新调用该方法并将 <parmname>enabled</parmname> 设置为 <codeph><ph keyref="false"/></codeph>。</p>
-            <note type="attention" props="cpp">
-                <p>该方法仅适用于 iOS 和 macOS。</p>
-            </note>
+            <note type="attention" props="cpp flutter unreal bp unity">该方法仅适用于 iOS 和 macOS。</note>
+            <note type="attention" props="rn">该方法仅适用于 iOS。</note>
+            <note type="attention" props="electron">该方法仅适用于 macOS。</note>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>适用场景</title>
