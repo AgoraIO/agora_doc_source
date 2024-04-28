@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_querycodeccapability">
     <title><ph keyref="queryCodecCapability"/></title>
-    <shortdesc id="short"><ph id="shortdesc">查询当前设备支持的视频编解码能力。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">查询 SDK 支持的视频编解码能力。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -40,10 +40,10 @@
             <plentry props="cpp unreal bp unity cs">
                 <pt>codecInfo</pt>
                 <pd>
-                        <p>输入和输出参数，表示设备视频编码能力的数组。详见 <xref keyref="CodecCapInfo"/>。</p>
+                        <p>输入和输出参数，表示 SDK 的视频编码能力数组。详见 <xref keyref="CodecCapInfo"/>。</p>
                         <ul>
                             <li>输入值：用户执行该方法时定义的 <apiname keyref="CodecCapInfo"/>，表示待查询的视频编解码能力。</li>
-                            <li>输出值：方法执行完毕后输出的 <apiname keyref="CodecCapInfo"/>，表示设备实际支持的视频编解码能力。</li>
+                            <li>输出值：方法执行完毕后输出的 <apiname keyref="CodecCapInfo"/>，表示 SDK 实际支持的视频编解码能力。</li>
                         </ul>
                     </pd>
             </plentry>
@@ -61,7 +61,7 @@
             <title>返回值</title>
             <ul props="electron rn">
             <li>如果调用成功，则返回一个包含以下属性的对象：<ul>
-                <li><codeph>codecInfo</codeph>：<xref keyref="CodecCapInfo"/> 数组，表示设备的视频编码能力。</li>
+                <li><codeph>codecInfo</codeph>：<xref keyref="CodecCapInfo"/> 数组，表示 SDK 的视频编码能力。</li>
                 <li><codeph>size</codeph>：<apiname keyref="CodecCapInfo"/> 数组的大小。</li></ul></li>
             <li>如果调用超时，请修改调用逻辑，不要在主线程中调用该方法。</li>
             </ul>
@@ -70,7 +70,7 @@
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
             </ul>
             <ul props="android apple flutter">
-            <li>如果调用成功，则返回 <xref keyref="CodecCapInfo"/> 数组，表示设备的视频编码能力。</li>
+            <li>如果调用成功，则返回 <xref keyref="CodecCapInfo"/> 数组，表示 SDK 的视频编码能力。</li>
             <li>如果调用超时，请修改调用逻辑，不要在主线程中调用该方法。</li>
             </ul> </section>
     </refbody>
