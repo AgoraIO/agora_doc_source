@@ -29,13 +29,15 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p id="desc">You can call this method either before or after joining the channel to set the user role as audience or host.</p>
+            <p id="desc">In the interactive live streaming profile, the SDK sets the user role as audience by default. You can call this method to set the user role as host.</p>
+            <p>You can call this method either before or after joining a channel.</p>
             <p conkeyref="setClientRole2/preview" props="native unreal bp electron flutter"/>
-            <p>If you call this method to switch the user role after joining the channel, the SDK triggers the following callbacks:<ul>
-            <li>The local client: <xref keyref="onClientRoleChanged" />.</li>
-            <li>The remote client: <xref keyref="onUserJoined" /> or <xref keyref="onUserOffline" /><codeph>(<ph keyref="USER_OFFLINE_BECOME_AUDIENCE" />)</codeph>.</li>
-            </ul></p>
-            </section>
+            <p>If you call this method to switch the user role after joining a channel, the SDK automatically does the following:<ul>
+                <li>Calls <xref keyref="muteLocalAudioStream" /> and <xref keyref="muteLocalVideoStream" /> to change the publishing state.</li>
+                <li>Triggers <xref keyref="onClientRoleChanged" /> on the local client.</li>
+                <li>Triggers <xref keyref="onUserJoined" /> or <xref keyref="onUserOffline" /> on the remote client.</li>
+                </ul></p>
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
