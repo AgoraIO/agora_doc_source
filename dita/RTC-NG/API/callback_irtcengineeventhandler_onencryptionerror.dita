@@ -14,7 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onEncryptionError(int errorType) {}</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine 
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
                     didOccurEncryptionError:(AgoraEncryptionErrorType)errorType;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onEncryptionError(ENCRYPTION_ERROR_TYPE errorType) {
   (void)errorType;
@@ -56,9 +56,11 @@
                 <pt>errorType</pt>
                 <pd>错误类型。
                 <ul>
-                    <li><ph keyref="ENCRYPTION_ERROR_INTERNAL_FAILURE" /> (0): 内部原因。</li>
-                    <li><ph keyref="ENCRYPTION_ERROR_DECRYPTION_FAILURE" /> (1): 解密错误。请确保接收端和发送端使用的加密模式或密钥一致。</li>
-                    <li><ph keyref="ENCRYPTION_ERROR_ENCRYPTION_FAILURE" /> (2): 加密错误。</li>
+                    <li><ph keyref="ENCRYPTION_ERROR_INTERNAL_FAILURE"/> (0): 内部原因。</li>
+                    <li><ph keyref="ENCRYPTION_ERROR_DECRYPTION_FAILURE"/> (1): 媒体流解密错误。请确保接收端和发送端使用的加密模式或密钥一致。</li>
+                    <li><ph keyref="ENCRYPTION_ERROR_ENCRYPTION_FAILURE"/> (2): 媒体流加密错误。</li>
+                    <li><ph keyref="ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE"/> (3): 数据流解密错误。请确保接收端和发送端使用的加密模式或密钥一致。</li>
+                    <li><ph keyref="ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE"/> (4): 数据流加密错误。</li>
                 </ul></pd>
             </plentry>
             </parml> </section>

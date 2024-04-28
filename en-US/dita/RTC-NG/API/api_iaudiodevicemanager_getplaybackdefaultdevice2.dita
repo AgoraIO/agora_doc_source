@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicemanager_getplaybackdefaultdevice2">
+    <title><ph keyref="getPlaybackDefaultDevice2"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Get the system‘s default audio playback device and its type.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getPlaybackDefaultDevice2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp unreal" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int GetPlaybackDefaultDevice(ref string deviceId, ref string deviceTypeName, ref string deviceName);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+        </section>
+        <section id="detailed_desc">
+            <title>Details</title>
+            <note type="attention">This method applies to macOS only.</note> 
+        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>deviceId</pt>
+                <pd>Output parameter; indicates the ID of the default audio playback device.</pd>
+            </plentry>
+            <plentry>
+                <pt>deviceName</pt>
+                <pd>Output parameter; indicates the name of the default audio playback device.</pd>
+            </plentry>
+            <plentry id="typename">
+                <pt>deviceTypeName</pt>
+                <pd>Output parameter; indicates the type of audio devices, such as built-in, USB and HDMI.</pd>
+            </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            </ul>
+        </section>
+    </refbody>
+</reference>

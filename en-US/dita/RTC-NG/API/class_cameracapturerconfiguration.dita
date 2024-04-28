@@ -7,9 +7,10 @@
     <section id="prototype">
       <p outputclass="codeblock">
       <codeblock props="android" outputclass="language-java">public class CameraCapturerConfiguration {
-    public enum CAMERA_DIRECTION {
-        CAMERA_REAR(0),
-        CAMERA_FRONT(1);
+  public enum CAMERA_DIRECTION {
+    CAMERA_REAR(0),
+    CAMERA_FRONT(1),
+    CAMERA_EXTRA(2);
 
     private int value;
 
@@ -17,17 +18,40 @@
       value = v;
     }
 
+    @CalledByNative("CAMERA_DIRECTION")
     public int getValue() {
       return this.value;
     }
   }
 
-    public CAMERA_DIRECTION cameraDirection;
+  public enum CAMERA_FOCAL_LENGTH_TYPE {
+    CAMERA_FOCAL_LENGTH_DEFAULT(0),
+    CAMERA_FOCAL_LENGTH_WIDE_ANGLE(1),
+    CAMERA_FOCAL_LENGTH_ULTRA_WIDE(2),
+    CAMERA_FOCAL_LENGTH_TELEPHOTO(3);
+
+    private int value;
+
+    private CAMERA_FOCAL_LENGTH_TYPE(int v) {
+      value = v;
+    }
+
+    @CalledByNative("CAMERA_FOCAL_LENGTH_TYPE")
+    public int getValue() {
+      return this.value;
+    }
+  }
+
+  public CAMERA_DIRECTION cameraDirection = null;
+
+  public String cameraId = null;
+
+  public CAMERA_FOCAL_LENGTH_TYPE cameraFocalLengthType = null;
 
   static public class CaptureFormat {
-        public int width;
-        public int height;
-        public int fps;
+    public int width;
+    public int height;
+    public int fps;
 
     public CaptureFormat(int width, int height, int fps) {
       this.width = width;
@@ -36,8 +60,8 @@
     }
 
     public CaptureFormat() {
-      this.width = 640;
-      this.height = 480;
+      this.width = 960;
+      this.height = 540;
       this.fps = 15;
     }
 
@@ -65,30 +89,50 @@
 
   public CaptureFormat captureFormat;
 
-    public boolean followEncodeDimensionRatio;
+  public Boolean followEncodeDimensionRatio = null;
 
-    public CameraCapturerConfiguration(CAMERA_DIRECTION cameraDirection) {
+  public CameraCapturerConfiguration(CAMERA_DIRECTION cameraDirection) {
     this.cameraDirection = cameraDirection;
-    this.captureFormat = new CaptureFormat();
-    this.followEncodeDimensionRatio = true;
+    this.captureFormat = new CaptureFormat(0, 0, 0);
   }
 
-    public CameraCapturerConfiguration(CaptureFormat captureFormat) {
+  public CameraCapturerConfiguration(
+      CAMERA_DIRECTION cameraDirection, CAMERA_FOCAL_LENGTH_TYPE cameraFocalLengthType) {
+    this.cameraDirection = cameraDirection;
+    this.cameraFocalLengthType = cameraFocalLengthType;
+    this.captureFormat = new CaptureFormat(0, 0, 0);
+  }
+
+  public CameraCapturerConfiguration(CaptureFormat captureFormat) {
     this.captureFormat = captureFormat;
-    this.cameraDirection = CAMERA_DIRECTION.CAMERA_FRONT;
-    this.followEncodeDimensionRatio = true;
   }
 
-    public CameraCapturerConfiguration(
+  public CameraCapturerConfiguration(
       CAMERA_DIRECTION cameraDirection, CaptureFormat captureFormat) {
     this.cameraDirection = cameraDirection;
     this.captureFormat = captureFormat;
-    this.followEncodeDimensionRatio = true;
+  }
+
+  public CameraCapturerConfiguration(CAMERA_DIRECTION cameraDirection,
+      CAMERA_FOCAL_LENGTH_TYPE cameraFocalLengthType, CaptureFormat captureFormat) {
+    this.cameraDirection = cameraDirection;
+    this.cameraFocalLengthType = cameraFocalLengthType;
+    this.captureFormat = captureFormat;
   }
 
   @CalledByNative
-  public int getCameraDirection() {
-    return cameraDirection.value;
+  public CAMERA_DIRECTION getCameraDirection() {
+    return cameraDirection;
+  }
+
+  @CalledByNative
+  public String getCameraId() {
+    return cameraId;
+  }
+
+  @CalledByNative
+  public CAMERA_FOCAL_LENGTH_TYPE getCameraFocalLengthType() {
+    return cameraFocalLengthType;
   }
 
   @CalledByNative
@@ -97,7 +141,7 @@
   }
 
   @CalledByNative
-  public boolean isFollowEncodeDimensionRatio() {
+  public Boolean isFollowEncodeDimensionRatio() {
     return followEncodeDimensionRatio;
   }
 
@@ -105,34 +149,40 @@
   public String toString() {
     return "CameraCapturerConfiguration{"
         + "cameraDirection=" + cameraDirection + ", captureDimensions=" + captureFormat
-        + ", followEncodeDimensionRatio=" + followEncodeDimensionRatio + '}';
+        + ", cameraId=" + cameraId + ", followEncodeDimensionRatio=" + followEncodeDimensionRatio
+        + ", cameraFocalLengthType=" + cameraFocalLengthType + '}';
   }
 }</codeblock>
       <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraCameraCapturerConfiguration: NSObject
 #if TARGET_OS_IOS
 @property (assign, nonatomic) AgoraCameraDirection cameraDirection;
-#endif
+@property(assign, nonatomic) AgoraFocalLength cameraFocalLengthType;
 #elif TARGET_OS_MAC
 @property (copy, nonatomic) NSString * _Nullable deviceId;
+#endif
+
 @property(assign, nonatomic) CGSize dimensions;
+
 @property(assign, nonatomic) int frameRate;
+
 @property(assign, nonatomic) BOOL followEncodeDimensionRatio;
+
 @end</codeblock>
       <codeblock props="cpp unreal" outputclass="language-cpp">struct CameraCapturerConfiguration {
-  #if defined(__ANDROID__) || (defined(__APPLE__) &amp;&amp; TARGET_OS_IOS)
-    CAMERA_DIRECTION cameraDirection;
-#else
-    char deviceId[MAX_DEVICE_ID_LENGTH];
-#endif
-    VideoFormat format;
-  bool followEncodeDimensionRatio;
-  CameraCapturerConfiguration() : followEncodeDimensionRatio(true) {
 #if defined(__ANDROID__) || (defined(__APPLE__) &amp;&amp; TARGET_OS_IOS)
-  cameraDirection = CAMERA_REAR;
+  Optional&lt;CAMERA_DIRECTION> cameraDirection;
+
+  Optional&lt;CAMERA_FOCAL_LENGTH_TYPE> cameraFocalLengthType;
 #else
-  memset(deviceId, 0, sizeof(deviceId));
+  Optional&lt;const char *> deviceId;
 #endif
-  }
+
+#if defined(__ANDROID__)
+  Optional&lt;const char *> cameraId;
+#endif
+  Optional&lt;bool> followEncodeDimensionRatio;
+  VideoFormat format;
+  CameraCapturerConfiguration() : format(VideoFormat(0, 0, 0)) {}
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FCameraCapturerConfiguration
@@ -149,8 +199,6 @@ struct FCameraCapturerConfiguration
 };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class CameraCapturerConfiguration {
   
-  cameraDirection?: CameraDirection;
-  
   deviceId?: string;
   
   format?: VideoFormat;
@@ -158,90 +206,128 @@ struct FCameraCapturerConfiguration
   followEncodeDimensionRatio?: boolean;
 
 }</codeblock>
-      <codeblock props="unity cs" outputclass="language-csharp">public class CameraCapturerConfiguration
+      <codeblock props="unity cs" outputclass="language-csharp">public class CameraCapturerConfiguration : IOptionalJsonParse
     {
+        public Optional&lt;CAMERA_DIRECTION> cameraDirection = new Optional&lt;CAMERA_DIRECTION>();
+        public Optional&lt;CAMERA_FOCAL_LENGTH_TYPE> cameraFocalLengthType = new Optional&lt;CAMERA_FOCAL_LENGTH_TYPE>();
+        public Optional&lt;string> deviceId = new Optional&lt;string>();
+        public Optional&lt;string> cameraId = new Optional&lt;string>();
+        public Optional&lt;bool> followEncodeDimensionRatio = new Optional&lt;bool>();
+        public VideoFormat format;
+
         public CameraCapturerConfiguration()
         {
-            deviceId = "";
-            cameraDirection = CAMERA_DIRECTION.CAMERA_FRONT;
-            format = new VideoFormat();
-            this.followEncodeDimensionRatio = true;
+            this.format = new VideoFormat(0, 0, 0);
         }
 
-        public CameraCapturerConfiguration(string deviceId, VideoFormat format,
-            CAMERA_DIRECTION cameraDirection, bool followEncodeDimensionRatio)
+        public CameraCapturerConfiguration(Optional&lt;CAMERA_DIRECTION> cameraDirection, Optional&lt;CAMERA_FOCAL_LENGTH_TYPE> cameraFocalLengthType, Optional&lt;string> deviceId, Optional&lt;string> cameraId, Optional&lt;bool> followEncodeDimensionRatio, VideoFormat format)
         {
-            this.deviceId = deviceId;
-            this.format = format;
             this.cameraDirection = cameraDirection;
+            this.cameraFocalLengthType = cameraFocalLengthType;
+            this.deviceId = deviceId;
+            this.cameraId = cameraId;
             this.followEncodeDimensionRatio = followEncodeDimensionRatio;
+            this.format = format;
         }
-
-        public string deviceId { set; get; }
-        public VideoFormat format { set; get; }
-        public bool followEncodeDimensionRatio { set; get; }
-        public CAMERA_DIRECTION cameraDirection { set; get; }
     }</codeblock>
       <codeblock props="rn" outputclass="language-typescript">export class CameraCapturerConfiguration {
   
   cameraDirection?: CameraDirection;
+
+  cameraFocalLengthType?: CameraFocalLengthType;
   
   deviceId?: string;
+
+  cameraId?: string;
   
   format?: VideoFormat;
 
   followEncodeDimensionRatio?: boolean;
 
 }</codeblock>
-      <codeblock props="flutter" outputclass="language-dart">class CameraCapturerConfiguration {
+      <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class CameraCapturerConfiguration {
   const CameraCapturerConfiguration(
       {this.cameraDirection,
+      this.cameraFocalLengthType,
       this.deviceId,
-      this.format,
-      this.followEncodeDimensionRatio});
+      this.cameraId,
+      this.followEncodeDimensionRatio,
+      this.format});
 
   @JsonKey(name: 'cameraDirection')
   final CameraDirection? cameraDirection;
 
+  @JsonKey(name: 'cameraFocalLengthType')
+  final CameraFocalLengthType? cameraFocalLengthType;
+
   @JsonKey(name: 'deviceId')
   final String? deviceId;
 
-  @JsonKey(name: 'format')
-  final VideoFormat? format;
+  @JsonKey(name: 'cameraId')
+  final String? cameraId;
 
   @JsonKey(name: 'followEncodeDimensionRatio')
   final bool? followEncodeDimensionRatio;
+
+  @JsonKey(name: 'format')
+  final VideoFormat? format;
 
   factory CameraCapturerConfiguration.fromJson(Map&lt;String, dynamic> json) =>
       _$CameraCapturerConfigurationFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$CameraCapturerConfigurationToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
-    </section>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p></section>
     <section id="parameters">
       <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/>
       </title>
       <parml>
       <plentry props="android ios cpp unreal bp unity rn flutter cs">
         <pt>cameraDirection</pt>
-        <pd>
-          <note type="attention" props="cpp unreal bp unity rn flutter">This parameter applies to Android and iOS only.</note><ph>The camera direction. </ph><ph props="ios cpp unreal bp unity android rn flutter cs">See <xref keyref="CAMERA_DIRECTION"/>.</ph></pd>
+        <pd>(Optional) The camera direction. See <xref keyref="CAMERA_DIRECTION"/>.<note type="attention" props="cpp unreal bp unity flutter">This parameter is for Android and iOS only.</note></pd>
       </plentry>
-      <plentry props="cpp unreal bp android unity electron rn flutter cs">
-        <pt props="cpp unreal bp unity electron rn flutter cs">format</pt>
+      <plentry props="android cpp unreal bp flutter unity rn">
+        <pt>cameraId</pt>
+        <pd>(Optional) The camera ID. The default value is the camera ID of the front camera. You can get the camera ID through the Android native system API, see <xref keyref="camera1-link"/> and <xref keyref="camera2-link"/> for details.<note type="attention"><ul>
+        <li props="cpp unreal bp flutter unity rn">This parameter is for Android only.</li>
+        <li>This parameter and <parmname>cameraDirection</parmname> are mutually exclusive in specifying the camera; you can choose one based on your needs. The differences are as follows:<ul>
+          <li>Specifying the camera via <parmname>cameraDirection</parmname> is more straightforward. You only need to indicate the camera direction (front or rear), without specifying a specific camera ID; the SDK will retrieve and confirm the actual camera ID through Android native system APIs.</li>
+          <li>Specifying via <parmname>cameraId</parmname> allows for more precise identification of a particular camera. For devices with multiple cameras, where <parmname>cameraDirection</parmname> cannot recognize or access all available cameras, it is recommended to use <parmname>cameraId</parmname> to specify the desired camera ID directly.</li>
+        </ul></li></ul></note>
+        </pd>
+      </plentry>
+      <plentry props="android ios cpp unreal bp flutter unity rn">
+        <pt>cameraFocalLengthType</pt>
+        <pd>(Optional) The camera focal length type. See <xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/>.<note type="attention"><ul>
+          <li props="cpp unreal bp flutter unity">This parameter is for Android and iOS only.</li>
+          <li props="android cpp unreal bp flutter unity rn">To set the focal length type of the camera, it is only supported to specify the camera through <parmname>cameraDirection</parmname>, and not supported to specify it through <parmname>cameraId</parmname>.</li>
+          <li props="ios cpp unreal bp flutter unity rn">For iOS devices equipped with multi-lens rear cameras, such as those featuring dual-camera (wide-angle and ultra-wide-angle) or triple-camera (wide-angle, ultra-wide-angle, and telephoto), you can use one of the following methods to capture video with an ultra-wide-angle perspective:<ul>
+              <li>Method one: Set this parameter to <apiname keyref="CAMERA_FOCAL_LENGTH_ULTRA_WIDE"/> (2) (ultra-wide lens).</li>
+              <li>Method two: Set this parameter to <apiname keyref="CAMERA_FOCAL_LENGTH_DEFAULT"/> (0) (standard lens), then call <xref keyref="setCameraZoomFactor"/> to set the camera's zoom factor to a value less than 1.0, with the minimum setting being 0.5.</li></ul>The difference is that the size of the ultra-wide angle in method one is not adjustable, whereas method two supports adjusting the camera's zoom factor freely.</li>
+        </ul></note>
+        </pd>
+      </plentry>
+      <plentry props="android cpp framework">
+        <pt props="cpp framework">format</pt>
         <pt props="android">captureFormat</pt>
-        <pd>The format of the video frame. See <xref keyref="VideoFormat"/>.</pd>
+        <pd>(Optional) The format of the video frame. See <xref keyref="VideoFormat"/>.</pd>
       </plentry>
-      <plentry props="cpp unreal bp apple unity electron flutter cs">
+      <plentry props="apple">
+        <pt>dimension</pt>
+        <pd>(Optional) The dimension (px) of the video frame. The default value is 960 × 540.</pd>
+      </plentry>
+      <plentry props="apple">
+        <pt>frameRate</pt>
+        <pd>(Optional) The frame rate (fps) of the video frame. The default value is 15.</pd>
+      </plentry>
+      <plentry props="mac cpp unreal bp unity electron flutter cs">
         <pt>deviceId</pt>
-        <pd>
-          <note type="attention" props="cpp unreal bp unity electron flutter">This method applies to Windows only.</note>
-          <note type="attention" props="apple">This method applies to macOS only.</note><ph>The ID of the camera. </ph><ph props="cpp unreal bp electron flutter">The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>.</ph></pd>
+        <pd>The camera ID. <ph props="cpp unreal bp electron flutter">The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>.</ph><note type="attention" props="cpp unreal bp unity flutter">This parameter is for Windows and macOS only.</note></pd>
       </plentry>
       <plentry>
         <pt>followEncodeDimensionRatio</pt>
-        <pd>Whether to follow the video aspect ratio set in <xref keyref="setVideoEncoderConfiguration"/>:<ul>
+        <pd>(Optional) Whether to follow the video aspect ratio set in <xref keyref="setVideoEncoderConfiguration"/>:<ul>
           <li><codeph><ph keyref="true"/></codeph>: (Default) Follow the set video aspect ratio. The SDK crops the captured video according to the set video aspect ratio and synchronously changes the local preview screen and the video frame in <xref keyref="onCaptureVideoFrame"/> and <xref keyref="onPreEncodeVideoFrame"/>.</li>
           <li><codeph><ph keyref="false"/></codeph>: Do not follow the system default audio playback device. The SDK does not change the aspect ratio of the captured video frame.</li>
           </ul></pd>

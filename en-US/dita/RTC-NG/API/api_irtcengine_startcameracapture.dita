@@ -51,7 +51,11 @@
                 <pt>sourceType</pt>
                 <pd>
                     <p>The type of the video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</p>
-                    <note><ul><li props="android ios cpp unreal bp flutter unity rn">On the mobile platforms, you can capture video from up to 2 cameras, provided the device has dual cameras or supports an external camera.</li><li props="mac cpp unreal bp flutter unity cs electron">On the desktop platforms, you can capture video from up to 4 cameras.</li></ul></note>
+                    <note><ul>
+                    <li props="ios cpp unreal bp flutter unity rn">On iOS devices, you can capture video from up to 2 cameras, provided the device has multiple cameras or supports external cameras.</li>
+                    <li props="android cpp unreal bp flutter unity rn">On Android devices, you can capture video from up to 4 cameras, provided the device has multiple cameras or supports external cameras.</li>
+                    <li props="mac cpp unreal bp flutter unity cs electron">On the desktop platforms, you can capture video from up to 4 cameras.</li>
+                    </ul></note>
                 </pd>
             </plentry>
             </parml>
@@ -65,7 +69,7 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul props="native unreal bp electron unity cs rn">
             <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
