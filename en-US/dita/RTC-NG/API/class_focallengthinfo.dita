@@ -8,14 +8,14 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class AgoraFocalLengthInfo {
 
-  public CameraCapturerConfiguration.CAMERA_DIRECTION cameraDirection;
+  int cameraDirection;
 
-  public CameraCapturerConfiguration.CAMERA_FOCAL_LENGTH_TYPE focalLengthType;
+  int focalLengthType;
 
   @CalledByNative
   public AgoraFocalLengthInfo(int cameraDirection, int focalLengthType) {
-    this.cameraDirection = CameraCapturerConfiguration.CAMERA_DIRECTION.values()[cameraDirection];
-    this.focalLengthType = CameraCapturerConfiguration.CAMERA_FOCAL_LENGTH_TYPE.values()[focalLengthType];
+    this.cameraDirection = cameraDirection;
+    this.focalLengthType = focalLengthType;
   }
 
   @Override
