@@ -13,7 +13,7 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract AgoraFocalLengthInfo[] queryCameraFocalLengthCapability();</codeblock>
+            <codeblock props="android" outputclass="language-java">public AgoraFocalLengthInfo[] queryCameraFocalLengthCapability();</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (NSArray&lt;AgoraFocalLengthInfo *>* __nullable)queryCameraFocalLengthCapability NS_SWIFT_NAME(queryCameraFocalLengthCapability());</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int queryCameraFocalLengthCapability(agora::rtc::FocalLengthInfo* focalLengthInfos, int&amp; size) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp"></codeblock>
@@ -35,6 +35,7 @@
             </dlentry>
             </dl>
             <p>如需开启摄像头广角、超广角拍摄模式，建议你先调用该方法查询设备是否具备相应的焦距能力，再根据查询结果调用 <xref keyref="setCameraCapturerConfiguration"/> 调整摄像头的焦距配置，以达到最佳的摄像头采集效果。</p>
+            <note type="attention" props="android">通过该方法获取摄像头焦距能力的具体实现请参考<xref keyref="focallength-link"/>。</note>
             <note type="attention" props="cpp unreal bp flutter unity">该方法仅适用于 Android 和 iOS。</note> </section>
         <section id="parameters" props="cpp unity">
             <title>参数</title>
