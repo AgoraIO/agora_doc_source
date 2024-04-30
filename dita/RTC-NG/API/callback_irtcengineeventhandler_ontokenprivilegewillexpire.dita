@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_ontokenprivilegewillexpire">
     <title> <ph keyref="onTokenPrivilegeWillExpire" /> </title>
-    <shortdesc id="short"> <ph id="shortdesc">Token 服务将在30s内过期回调。</ph> </shortdesc>
+    <shortdesc id="short"> <ph id="shortdesc">Token 即将在 30s 内过期回调。</ph> </shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -27,13 +27,30 @@
       onTokenPrivilegeWillExpire;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <p id="desc1">在通话过程中如果 Token 即将失效，SDK 会提前 30 秒触发该回调，提醒 App 更新 Token。</p>
-            <p>
-                当收到该回调时，你需要重新在服务端生成新的 Token，然后调用 <xref keyref="renewToken" /> 将新生成的 Token 传给 SDK。在多频道场景下，你需要调用 <xref keyref="updateChannelMediaOptionsEx"/> 来传入新的 Token。
-            </p>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p id="desc1">在音视频互动过程中如果 Token 即将失效，SDK 会提前 30 秒触发该回调，提醒 App 更新 Token。</p>
         </section>
-        <section id="parameters">
+        <section id="scenario" deliveryTarget="details" props="hide">
+            <title>适用场景</title>
+            <p/>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>当收到该回调时，声网建议你在服务端生成新的 Token，然后根据场景，选择下列任意一种方式更新 Token：
+            <ul>
+                <li>单频道场景：调用 <xref keyref="renewToken" /> 传入新生成的 Token。</li>
+                <li>多频道场景：调用 <xref keyref="updateChannelMediaOptionsEx"/> 传入新的 Token。</li>
+            </ul></p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="related" deliveryTarget="details">
+            <title>相关回调</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title> <ph keyref="callback-section-title" /> </title>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
@@ -46,7 +63,7 @@
             </plentry>
             <plentry id="token">
                 <pt>token</pt>
-                <pd>即将服务失效的 Token。</pd>
+                <pd>即将过期的 Token。</pd>
             </plentry>
             </parml> </section>
     </refbody>
