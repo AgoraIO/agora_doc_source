@@ -24,15 +24,20 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; muteAllRemoteAudioStreams(bool mute);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p id="desc">After successfully calling this method, the local user stops or resumes subscribing to the audio streams of all remote users, including all subsequent users.</p>
             <note type="attention" id="note">
-            <ul>
-            <li>Call this method after joining a channel.</li>
-            <li>If you do not want to subscribe the audio streams of remote users before joining a channel, you can set <parmname>autoSubscribeAudio</parmname> as <codeph><ph keyref="false"/></codeph> when calling <xref keyref="joinChannel2"/>.</li>
-            <li props="hide"><ph>See recommended settings in <xref keyref="guide-set-subscribing-state">Set the Subscribing State</xref>.</ph></li>
-            </ul> </note> </section>
+            <p>SDK 默认在加入频道时订阅所有远端用户的音频流，如果要修改此行为，可以在调用 <xref keyref="joinChannel2"/> 加入频道时设置 <parmname>autoSubscribeAudio</parmname> 为 <codeph><ph keyref="false"/></codeph>，即可在加入频道时取消订阅所有用户的音频流。</p>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>Call this method after joining a channel.</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>如果在调用该方法之后又调用了 <xref keyref="enableAudio"/> 或 <xref keyref="disableAudio"/>，则后调用的方法会生效。</p>
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
