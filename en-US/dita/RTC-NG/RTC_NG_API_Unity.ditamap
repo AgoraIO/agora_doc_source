@@ -52,6 +52,7 @@
             <topicref keyref="enableAudio" toc="no"/>
             <topicref keyref="enableAudioSpectrumMonitor" toc="no"/>
             <topicref keyref="enableAudioVolumeIndication" toc="no"/>
+            <topicref keyref="enableCameraCenterStage" toc="no"/>
             <topicref keyref="enableContentInspect" toc="no"/>
             <topicref keyref="enableDualStreamMode" toc="no"/>
             <topicref keyref="enableDualStreamMode2" toc="no" processing-role="resource-only"/>
@@ -100,7 +101,9 @@
             <topicref keyref="getNetworkType" toc="no"/>
             <topicref keyref="getNtpWallTimeInMs" toc="no"/>
             <topicref keyref="getPlaybackDefaultDevice" toc="no"/>
+            <topicref keyref="getPlaybackDefaultDevice2" toc="no"/>
             <topicref keyref="getRecordingDefaultDevice" toc="no"/>
+            <topicref keyref="getRecordingDefaultDevice2" toc="no"/>
             <topicref keyref="getScreenCaptureSources" toc="no"/>
             <topicref keyref="getVolumeOfEffect" toc="no"/>
             <topicref keyref="getVersion" toc="no"/>
@@ -108,6 +111,7 @@
             <topicref keyref="getUserInfoByUserAccount" toc="no"/>
             <topicref keyref="isCameraAutoFocusFaceModeSupported" toc="no"/>
             <topicref keyref="isCameraAutoExposureFaceModeSupported" toc="no"/>
+            <topicref keyref="isCameraCenterStageSupported" toc="no"/>
             <topicref keyref="isCameraExposurePositionSupported" toc="no"/>
             <topicref keyref="isCameraExposureSupported" toc="no"/>
             <topicref keyref="isCameraFaceDetectSupported" toc="no"/>
@@ -138,19 +142,22 @@
             <topicref keyref="playEffect2" toc="no" processing-role="resource-only"/>
             <topicref keyref="playEffect3" toc="no"/>
             <topicref keyref="preloadChannel" toc="no"/>
-            <topicref keyref="preloadChannel2" toc="no"/>
+            <topicref keyref="preloadChannelWithUserAccount" toc="no"/>
             <topicref keyref="preloadEffect" toc="no"/>
             <topicref keyref="pullAudioFrame" toc="no"/>
             <topicref keyref="pushAudioFrame" toc="no"/>
-            <topicref keyref="pushEncodedVideoImage" toc="no" props="hide"/>
             <topicref keyref="pushVideoFrame" toc="no"/>
+            <topicref keyref="pushEncodedVideoImage" toc="no" props="hide"/>
+            <topicref keyref="queryCameraFocalLengthCapability" toc="no"/>
+            <topicref keyref="queryCodecCapability" toc="no"/>
             <topicref keyref="queryDeviceScore" toc="no"/>
             <topicref keyref="queryScreenCaptureCapability" toc="no"/>
             <topicref keyref="rate" toc="no"/>
-            <topicref keyref="registerAudioEncodedFrameObserver" toc="no"/>
             <topicref keyref="registerAudioFrameObserver" toc="no"/>
+            <topicref keyref="registerAudioEncodedFrameObserver" toc="no"/>
             <topicref keyref="registerAudioSpectrumObserver" toc="no"/>
             <topicref keyref="registerExtension" toc="no"/>
+            <topicref keyref="registerFaceInfoObserver" toc="no"/>
             <topicref keyref="registerLocalUserAccount" toc="no"/>
             <topicref keyref="registerMediaMetadataObserver" toc="no"/>
             <topicref keyref="registerVideoEncodedFrameObserver" toc="no"/>
@@ -169,6 +176,7 @@
             <topicref keyref="setAudioEffectParameters" toc="no"/>
             <topicref keyref="setAudioEffectPreset" toc="no"/>
             <topicref keyref="setAudioMixingDualMonoMode" toc="no"/>
+            <topicref keyref="setAudioMixingPlaybackSpeed" toc="no"/>
             <topicref keyref="setAudioMixingPitch" toc="no"/>
             <topicref keyref="setAudioMixingPosition" toc="no"/>
             <topicref keyref="setAudioProfile" toc="no"/>
@@ -183,6 +191,7 @@
             <topicref keyref="setCameraExposureFactor" toc="no"/>
             <topicref keyref="setCameraExposurePosition" toc="no"/>
             <topicref keyref="setCameraFocusPositionInPreview" toc="no"/>
+            <topicref keyref="setCameraStabilizationMode" toc="no"/>
             <topicref keyref="setCameraTorchOn" toc="no"/>
             <topicref keyref="setCameraZoomFactor" toc="no"/>
             <topicref keyref="setChannelProfile" toc="no"/>
@@ -303,10 +312,12 @@
             <topicref keyref="unloadEffect" toc="no"/>
             <topicref keyref="unregisterAudioEncodedFrameObserver" toc="no"/>
             <topicref keyref="unregisterAudioFrameObserver" toc="no"/>
+            <topicref keyref="unregisterAudioFrameObserver_IMediaEngine" toc="no"/>
             <topicref keyref="unregisterAudioSpectrumObserver" toc="no"/>
+            <topicref keyref="unregisterFaceInfoObserver" toc="no"/>
             <topicref keyref="unregisterMediaMetadataObserver" toc="no"/>
-            <topicref keyref="unregisterVideoFrameObserver_IMediaEngine" toc="no"/>
             <topicref keyref="unregisterVideoEncodedFrameObserver" toc="no"/>
+            <topicref keyref="unregisterVideoFrameObserver_IMediaEngine" toc="no"/>
             <topicref keyref="updateDirectCdnStreamingMediaOptions" toc="no" props="hide"/>
             <topicref keyref="updateChannelMediaOptions" toc="no"/>
             <topicref keyref="updateLocalTranscoderConfiguration" toc="no"/>
@@ -326,7 +337,9 @@
             <topicref keyref="enableAudioVolumeIndicationEx" toc="no"/>
             <topicref keyref="enableContentInspectEx" toc="no"/>
             <topicref keyref="enableDualStreamModeEx" toc="no"/>
+            <topicref keyref="enableEncryptionEx" toc="no"/>
             <topicref keyref="enableLoopbackRecordingEx" toc="no"/>
+            <topicref keyref="getCallIdEx" toc="no"/>
             <topicref keyref="getConnectionStateEx" toc="no"/>
             <topicref keyref="joinChannelEx" toc="no"/>
             <topicref keyref="leaveChannelEx" toc="no"/>
@@ -548,9 +561,11 @@
             <topicref keyref="followSystemRecordingDevice" toc="no"/>
             <topicref keyref="getPlaybackDevice" toc="no"/>
             <topicref keyref="getPlaybackDeviceInfo" toc="no"/>
+            <topicref keyref="getPlaybackDeviceInfo2" toc="no"/>
             <topicref keyref="getPlaybackDeviceVolume" toc="no"/>
             <topicref keyref="getRecordingDevice" toc="no"/>
             <topicref keyref="getRecordingDeviceInfo" toc="no"/>
+            <topicref keyref="getRecordingDeviceInfo2" toc="no"/>
             <topicref keyref="getRecordingDeviceMute" toc="no" props="hide"/>
             <topicref keyref="getRecordingDeviceVolume" toc="no"/>
             <topicref keyref="setPlaybackDevice" toc="no"/>
@@ -604,6 +619,9 @@
             <topicref keyref="onPreEncodeVideoFrame" toc="no"/>
             <topicref keyref="onRenderVideoFrame" toc="no"/>
         </topicref>
+        <topicref keyref="IFaceInfoObserver" chunk="to-content">
+            <topicref keyref="onFaceInfo" toc="no"/>
+        </topicref>        
         <topicref keyref="ICloudSpatialAudioEngine" chunk="to-content" props="hide">
             <topicref keyref="addEventHandler" toc="no"/>
             <topicref keyref="enableSpatializer" toc="no"/>
