@@ -24,13 +24,20 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; muteAllRemoteVideoStreams(bool mute);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p id="desc">After successfully calling this method, the local user stops or resumes subscribing to the audio streams of all remote users, including all subsequent users.</p>
-            <note type="attention" id="note"><ul>
-                <li>Call this method after joining a channel.</li>
-                <li>If you do not want to subscribe the video streams of remote users before joining a channel, you can call <xref keyref="joinChannel2"/> and set <parmname>autoSubscribeVideo</parmname> as <codeph><ph keyref="false"/></codeph>.</li>
-            </ul></note>
+            <note type="attention" id="note">
+                <p>By default, the SDK subscribes to the video streams of all remote users when joining a channel. To modify this behavior, you can set <parmname>autoSubscribeVideo</parmname> to<codeph><ph keyref="false"/></codeph> when calling <xref keyref="joinChannel2"/> to join the channel, which will cancel the subscription to the video streams of all users upon joining the channel.</p>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>Call this method after joining a channel.</p>
+            <note type="attention">If you call <apiname keyref="muteAllRemoteVideoStreams"/>(<codeph><ph keyref="true"/></codeph>) after leaving the channel, you will not subscribe to any user's video stream the next time you join the channel.</note>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>If you call this method and then call <xref keyref="enableVideo"/> or <xref keyref="disableVideo"/>, the latest call will prevail.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
