@@ -27,18 +27,18 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p id="desc">After successfully calling this method, the local user stops or resumes subscribing to the audio streams of all remote users, including all subsequent users.</p>
             <note type="attention" id="note">
-                <p>SDK 默认在加入频道时订阅所有远端用户的视频流，如果要修改此行为，可以在调用 <xref keyref="joinChannel2"/> 加入频道时设置 <parmname>autoSubscribeVideo</parmname> 为 <codeph><ph keyref="false"/></codeph>，即可在加入频道时取消订阅所有用户的视频流。</p>
+                <p>By default, the SDK subscribes to the video streams of all remote users when joining a channel. To modify this behavior, you can set <parmname>autoSubscribeVideo</parmname> to<codeph><ph keyref="false"/></codeph> when calling <xref keyref="joinChannel2"/> to join the channel, which will cancel the subscription to the video streams of all users upon joining the channel.</p>
             </note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>Call timing</title>
             <ul><li>Call this method after joining a channel.</li>
-                <li>如果你在离开频道后调用 <apiname keyref="muteAllRemoteVideoStreams"/>(<codeph><ph keyref="true"/></codeph>)，则下次加入频道时，将不会订阅任何用户的视频流。</li>
+                <li>If you call <apiname keyref="muteAllRemoteVideoStreams"/>(<codeph><ph keyref="true"/></codeph>) after leaving the channel, you will not subscribe to any user's video stream the next time you join the channel.</li>
             </ul>
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>Restrictions</title>
-            <p>如果在调用该方法之后又调用了 <xref keyref="enableVideo"/> 或 <xref keyref="disableVideo"/>，则后调用的方法会生效。</p>
+            <p>If you call this method and then call <xref keyref="enableVideo"/> or <xref keyref="disableVideo"/>, the latter method that you call takes effect.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>

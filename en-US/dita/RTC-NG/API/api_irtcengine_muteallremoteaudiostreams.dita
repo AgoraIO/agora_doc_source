@@ -27,7 +27,7 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p id="desc">After successfully calling this method, the local user stops or resumes subscribing to the audio streams of all remote users, including all subsequent users.</p>
             <note type="attention" id="note">
-            <p>SDK 默认在加入频道时订阅所有远端用户的音频流，如果要修改此行为，可以在调用 <xref keyref="joinChannel2"/> 加入频道时设置 <parmname>autoSubscribeAudio</parmname> 为 <codeph><ph keyref="false"/></codeph>，即可在加入频道时取消订阅所有用户的音频流。</p>
+            <p>By default, the SDK subscribes to the audio streams of all remote users when joining a channel. To modify this behavior, you can set <parmname>autoSubscribeAudio</parmname> to <codeph><ph keyref="false"/></codeph> when calling <xref keyref="joinChannel2"/> to join the channel, which will cancel the subscription to the audio streams of all users upon joining the channel.</p>
             </note>
         </section>
         <section id="timing" deliveryTarget="details">
@@ -36,7 +36,7 @@
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>Restrictions</title>
-            <p>如果在调用该方法之后又调用了 <xref keyref="enableAudio"/> 或 <xref keyref="disableAudio"/>，则后调用的方法会生效。</p>
+            <p>If you call this method and then call <xref keyref="enableAudio"/> or <xref keyref="disableAudio"/>, the latter method that you call takes effect.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>

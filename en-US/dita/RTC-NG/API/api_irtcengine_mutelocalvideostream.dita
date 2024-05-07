@@ -25,12 +25,12 @@
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p>This method is used to control whether to publish the locally captured video stream. If the locally captured video stream is not published, the video collection device is not disabled, hence it does not affect the status of video capture.</p>
-            <p>Compared to calling <xref keyref="enableLocalVideo"/>(<codeph><ph keyref="false"/></codeph>) to disable local video stream capture and cancel publishing locally captured video stream, this method has a faster response speed.</p>
+            <p>This method is used to control whether to publish the locally captured video stream. If the locally captured video stream is not published, the video capturing device remains enabled, thus it does not affect the status of video capture.</p>
+            <p>Compared to the method of calling <xref keyref="enableLocalVideo"/>(<codeph><ph keyref="false"/></codeph>) to disable local video stream capture, thereby canceling the publishing of local video stream, this method responds faster.</p>
             </section>
         <section id="timing" deliveryTarget="details">
             <title>Call timing</title>
-            <p>加入频道前后均可调用。</p>
+            <p>It can be called either before or after joining the channel.</p>
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>Restrictions</title>
@@ -38,7 +38,7 @@
         </section>
         <section id="related" deliveryTarget="details">
             <title>Related callbacks</title>
-            <p>成功调用该方法后，本地会触发 <xref keyref="onVideoPublishStateChanged"/> 回调；远端会触发 <xref keyref="onUserMuteVideo"/> 回调和 <xref keyref="onRemoteVideoStateChanged"/> 回调。</p>
+            <p>After successfully calling this method, the local end triggers callback <xref keyref="onVideoPublishStateChanged"/>; the remote end triggers callbacks <xref keyref="onUserMuteVideo"/> and <xref keyref="onRemoteVideoStateChanged"/>.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
