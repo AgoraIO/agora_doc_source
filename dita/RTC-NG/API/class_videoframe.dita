@@ -532,7 +532,21 @@ class VideoFrame {
 
   Map&lt;String, dynamic> toJson() => _$VideoFrameToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock>
+            <codeblock props="hmos" outputclass="language-ets">export class VideoFrame {
+  public buffer:ArrayBuffer | null = null;
+  public rotation:number = 0;
+  public timestamp:number = 0;
+  public stride:number = 0;
+  public height:number = 0;
+  public type:VIDEO_BUFFER_TYPE = VIDEO_BUFFER_TYPE.VIDEO_BUFFER_RAW_DATA;
+  public format:VIDEO_PIXEL_FORMAT = VIDEO_PIXEL_FORMAT.VIDEO_PIXEL_NV21;
+  public faceInfo:Array&lt;FaceDetectionInfo&gt; | undefined = undefined;
+  constructor(type:VIDEO_BUFFER_TYPE,format:VIDEO_PIXEL_FORMAT) {
+    this.type = type;
+    this.format = format;
+  }
+}</codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>缓冲区给出的是指向指针的指针，该接口不能修改缓冲区的指针，只能修改缓冲区的内容。</p>

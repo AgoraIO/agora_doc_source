@@ -488,7 +488,20 @@ public:
   Map&lt;String, dynamic&gt; toJson() =&gt; _$RtcStatsToJson(this);
 }
 </codeblock>
-            </p>
+            
+            <codeblock props="hmos" outputclass="language-ets">export class RtcStats {
+  public duration : number = 0;           public rtcTxRxBytes : PTxRxBytes = new PTxRxBytes;
+  public audioTxRxBytes : PTxRxBytes = new PTxRxBytes;
+  public videoTxRxBytes : PTxRxKBitrate = new PTxRxKBitrate;
+  public rtc_kbitrate : PTxRxKBitrate = new PTxRxKBitrate;
+  public audio_kbitrate:PTxRxKBitrate = new PTxRxKBitrate;
+  public video_kbitrate: PTxRxKBitrate = new PTxRxKBitrate;
+  public lastmileDelay: PTxRxLossRate = new PTxRxLossRate;
+  public loss_rate: PTxRxLossRate = new PTxRxLossRate;
+  public cpuTotalUsage: number = 0;           public gatewayRtt: number = 0;              public cpuAppUsage:number = 0;              public memoryAppUsageRatio: number = 0;     public memoryTotalUsageRatio: number = 0;   public memoryAppUsageInKbytes: number = 0;  public userCount: number = 0;               public connectTimeMs: number = 0;         
+  public RtcStats() {
+  }
+}</codeblock></p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>

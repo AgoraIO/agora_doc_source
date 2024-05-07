@@ -521,7 +521,18 @@ struct FVideoEncoderConfiguration
 
   Map&lt;String, dynamic> toJson() => _$VideoEncoderConfigurationToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock>
+            <codeblock props="hmos" outputclass="language-ets">export class VideoEncoderConfiguration{
+  public dimensions:VideoDimensions = new VideoDimensions(960,540);
+  public frameRate:number = 15;
+  public bitrate:number = 0;
+  public minBitrate:number = -1;
+  public orientationMode:ORIENTATION_MODE = ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE;
+  public degradationPrefer:DEGRADATION_PREFERENCE = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
+  public mirrorMode:MIRROR_MODE_TYPE = MIRROR_MODE_TYPE.MIRROR_MODE_DISABLED;
+  public advanceOptions:AdvanceOptions = new AdvanceOptions();
+  constructor() {}
+}</codeblock></p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>

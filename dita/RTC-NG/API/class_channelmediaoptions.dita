@@ -555,7 +555,69 @@ class ChannelMediaOptions {
 
   Map&lt;String, dynamic> toJson() => _$ChannelMediaOptionsToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock>
+            <codeblock props="hmos" outputclass="language-ets">export class ChannelMediaOptions {
+  
+  public publishCameraTrack?:boolean;
+  
+  public publishSecondaryCameraTrack?:boolean;
+  
+  public publishMicrophoneTrack?:boolean;
+  
+  public publishScreenCaptureVideo?:boolean;
+  
+  public publishScreenCaptureAudio?:boolean;
+  
+  public publishCustomAudioTrack?:boolean;
+  
+  public publishCustomAudioTrackId?:number;
+  
+  public publishCustomVideoTrack?:boolean;
+  
+  public publishEncodedVideoTrack?:boolean;
+  
+  public publishMediaPlayerAudioTrack?:boolean;
+  
+  public publishMediaPlayerVideoTrack?:boolean;
+  
+  public publishTranscodedVideoTrack?:boolean;
+  
+  public publishMixedAudioTrack?:boolean;
+  
+  public autoSubscribeAudio?:boolean;
+  
+  public autoSubscribeVideo?:boolean;
+  
+  public enableAudioRecordingOrPlayout?:boolean;
+  
+  public publishMediaPlayerId?:number;
+  
+  public clientRoleType?:number;
+  
+  public audienceLatencyLevel?:number;
+  
+  public defaultVideoStreamType?:number;
+  
+  public channelProfile?:number;
+  
+  public audioDelayMs?:number;
+  
+  public mediaPlayerAudioDelayMs?:number;
+      
+  public enableBuiltInMediaEncryption?:boolean;
+  
+  public publishRhythmPlayerTrack?:boolean;
+  
+  public isInteractiveAudience?:boolean;
+  
+  public customVideoTrackId?:number;
+  
+  public isAudioFilterable?:boolean;
+  
+  public startPreview?:boolean;
+  public constructor() {
+  }
+}</codeblock></p>
         </section>
         <section id="detailed_desc">SDK 支持在同一时间、同一 <xref keyref="RtcConnection"/> 中发布多路音频流、一路视频流。例如，<parmname>publishMicrophoneTrack</parmname>、<parmname>publishCustomAudioTrack</parmname> 和 <parmname>publishMediaPlayerAudioTrack</parmname> 可以同时为 <codeph><ph keyref="true"/></codeph>； <parmname>publishCameraTrack</parmname>、<parmname props="android ios cpp unreal bp flutter unity rn">publishScreenCaptureVideo</parmname><parmname props="mac cpp unreal bp flutter unity electron">publishScreenTrack</parmname>、<parmname>publishCustomVideoTrack</parmname> 或 <parmname>publishEncodedVideoTrack</parmname> 之中同一时间只能有一个为 <codeph><ph keyref="true"/></codeph>。
             <note type="attention" id="note">建议你根据业务场景自行设置成员参数值，否则 SDK 会自动对成员参数进行赋值。</note>

@@ -234,7 +234,20 @@ class VideoCanvas {
 
   Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoCanvasToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock>
+            <codeblock props="hmos" outputclass="language-ets">export class VideoCanvas{
+  public static readonly RENDER_MODE_HIDDEN = 1;
+  public static readonly RENDER_MODE_FIT = 2;
+  public static readonly VIDEO_MIRROR_MODE_ENABLED = 1;
+  public static readonly VIDEO_MIRROR_MODE_DISABLED = 2;
+  public xcomponentId:string = &#x27;&#x27;;
+  public uid:number = 0;
+  public renderMode:number = VideoCanvas.RENDER_MODE_HIDDEN;
+  public mirrorMode:number = VideoCanvas.VIDEO_MIRROR_MODE_DISABLED;
+  constructor(componentId:string) {
+    this.xcomponentId = componentId;
+  }
+}</codeblock></p>
         </section>
         <section id="detailed_desc"> </section>
         <section id="parameters">
