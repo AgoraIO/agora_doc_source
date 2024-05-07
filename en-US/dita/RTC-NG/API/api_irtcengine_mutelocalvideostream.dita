@@ -25,8 +25,8 @@
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p>This method is used to control whether to publish the locally captured video stream. If the locally captured video stream is not published, the video capturing device remains enabled, thus it does not affect the status of video capture.</p>
-            <p>Compared to the method of calling <xref keyref="enableLocalVideo"/>(<codeph><ph keyref="false"/></codeph>) to disable local video stream capture, thereby canceling the publishing of local video stream, this method responds faster.</p>
+            <p>This method is used to control whether to publish the locally captured video stream. If you call this method to stop publishing locally captured video streams, the video capturing device will still work and won't be affected.</p>
+            <p>Compared to <xref keyref="enableLocalVideo"/>(<codeph><ph keyref="false"/></codeph>), which can also cancel the publishing of local video stream by turning off the local video stream capture, this method responds faster.</p>
             </section>
         <section id="timing" deliveryTarget="details">
             <title>Call timing</title>
@@ -38,7 +38,7 @@
         </section>
         <section id="related" deliveryTarget="details">
             <title>Related callbacks</title>
-            <p>After successfully calling this method, the local end triggers callback <xref keyref="onVideoPublishStateChanged"/>; the remote end triggers callbacks <xref keyref="onUserMuteVideo"/> and <xref keyref="onRemoteVideoStateChanged"/>.</p>
+            <p>After successfully calling this method, the local end triggers callback <xref keyref="onVideoPublishStateChanged"/>; the remote end triggers <xref keyref="onUserMuteVideo"/> and <xref keyref="onRemoteVideoStateChanged"/> callbacks.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
