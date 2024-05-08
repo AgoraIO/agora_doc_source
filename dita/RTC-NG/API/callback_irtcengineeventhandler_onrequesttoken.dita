@@ -25,23 +25,17 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p id="desc1">在音视频互动过程中如果 Token 失效，SDK 会触发该回调报告 Token 已过期。</p>
+            <p id="renew">当收到该回调时，你需要重新在服务端生成新的 Token，然后通过下列任意一种方式来更新 Token：
+                <ul>
+                   <li>单频道场景：<ul>
+                            <li>调用 <xref keyref="renewToken"/> 来传入新的 Token。</li>
+                            <li>调用 <xref keyref="leaveChannel2"/> 离开当前频道，然后在调用 <xref keyref="joinChannel2" /> 时传入新的 Token 重新加入频道。</li>
+                        </ul></li>
+                   <li>多频道场景：调用 <xref keyref="updateChannelMediaOptionsEx"/> 传入新的 Token。</li>
+                   </ul></p>
         </section>
-        <section id="scenario" deliveryTarget="details" props="hide">
-            <title>适用场景</title>
-            <p/>
-        </section>
-       <section id="timing" deliveryTarget="details">
-            <title>调用时机</title>
-            <p>当收到该回调时，你需要重新在服务端生成新的 Token，然后通过下列任意一种方式来更新 Token：
-                <ul><li>调用 <xref keyref="renewToken"/> 来传入新的 Token。 </li>
-                <li>调用 <xref keyref="leaveChannel2"/> 离开当前频道，然后在调用 <xref keyref="joinChannel2" /> 时传入新的 Token 重新加入频道。</li></ul></p>
-        </section>        
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p>无。</p>
-        </section>
-        <section id="related" deliveryTarget="details">
-            <title>相关回调</title>
             <p>无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
