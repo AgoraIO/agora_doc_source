@@ -11,7 +11,7 @@
    - `updateLayout`：更新合流布局。
 - `stop`：录制完成后，调用 `stop` 离开频道，停止录制。
 
-> 云端录制不支持在一路录制中完成多个任务。例如，如果你需要同时对某个频道进行单流录制和合流录制，那么需要起两路录制。即，使用两个不同的 `uid` 分别调用 `acquire`，获取两个 `resourceId`，再分别调用 start 启动两路录制任务。两路录制均会产生费用。
+> 云端录制不支持在一路录制中完成多个任务。例如，如果你需要同时对某个频道进行单流录制和合流录制，那么需要起两路录制。即，使用两个不同的 `uid` 分别调用 `acquire`，获取两个 `resourceId`，再分别调用 `start` 启动两路录制任务。两路录制均会产生费用。
 
 为方便你监听云端录制的状态，声网提供[消息通知服务](https://doc.shengwang.cn/doc/cloud-recording/restful/user-guide/enable-ncs)。开通该服务后，你可以通过 Webhook 接收[云端录制相关事件](https://doc.shengwang.cn/api-ref/cloud-recording/restful/webhook/ncs-events)。
 
@@ -267,7 +267,7 @@ Status Code **200**
 |cname|string|false|录制的频道名。|
 |uid|string|false|字符串内容为云端录制服务在 RTC 频道内使用的 UID，用于标识频道内的录制服务。|
 |resourceId|string|false|云端录制使用的 Resource ID。|
-|sid|string|false|录制 ID。标识每次录制周期。|
+|sid|string|false|录制 ID，标识每次录制周期。|
 
 
 
@@ -361,7 +361,7 @@ Status Code **200**
 |cname|string|false|录制的频道名。|
 |uid|string|false|字符串内容为云端录制服务在 RTC 频道内使用的 UID，用于标识频道内的录制服务。|
 |resourceId|string|false|云端录制使用的 Resource ID。|
-|sid|string|false|录制 ID。标识一次录制周期。|
+|sid|string|false|录制 ID，标识一次录制周期。|
 
 
 
@@ -507,7 +507,7 @@ Status Code **200**
 
 查询消息通知服务器的 IP 地址或 IP 地址列表。
 
-开通消息通知服务后，声网消息通知服务可以将输入在线媒体流业务中的发生的一些事件以 HTTPS 请求的方式通知到你的服务器。声网会动态调整消息通知服务器的 IP 地址，周期为 24 小时。你可以通过本方法查询 IP 地址。查询后，你需要将 IP 地址（或 IP 地址列表）添加到白名单中。
+开通消息通知服务后，声网消息通知服务可以将云端录制业务中的发生的一些事件以 HTTPS 请求的方式通知到你的服务器。声网会动态调整消息通知服务器的 IP 地址，周期为 24 小时。你可以通过本方法查询 IP 地址。查询后，你需要将 IP 地址（或 IP 地址列表）添加到白名单中。
 
 > 我们强烈推荐你至少每 24 小时进行一次查询，并自动更新防火墙配置，否则可能会影响你接收通知。
 
@@ -1906,7 +1906,7 @@ Status Code **200**
 |Name|Type|Required|Description|
 |---|---|---|---|
 |status|number|false|当前云服务的状态：<br>- `0`：没有开始云服务。<br>- `1`：云服务初始化完成。<br>- `2`：云服务组件开始启动。<br>- `3`：云服务部分组件启动完成。<br>- `4`：云服务所有组件启动完成。<br>- `5`：云服务正在进行中。<br>- `6`：云服务收到停止请求。<br>- `7`：云服务所有组件均停止。<br>- `8`：云服务已退出。<br>- `20`：云服务异常退出。|
-|array[object]|false|extensionServiceState|[extensionServiceState](#schemaextensionservicestate)|
+|extensionServiceState|array[object]|false|[extensionServiceState](#schemaextensionservicestate)|
 
 #### 情况二
 
@@ -1992,7 +1992,7 @@ Status Code **200**
 |---|---|---|---|
 |outputs|array[object]|false|见下所述。|
 |» rtmpUrl|string|false|CDN 推流地址。|
-|» status|string|false|页面录制当前的推流状态：<br>- `"connecting"`：正在连接 CDN 服务器。<br>- `"publishing"`：正在推流。<br>- `"onhold"`：设置是否暂停推流。<br>- `"disconnected"`：连接 CDN 服务器失败，声网建议你更换 CDN 推流地址。|
+|» status|string|false|页面录制当前的推流状态：<br>- `"connecting"`：正在连接 CDN 服务器。<br>- `"publishing"`：正在推流。<br>- `"onhold"`：暂停推流。<br>- `"disconnected"`：连接 CDN 服务器失败，声网建议你更换 CDN 推流地址。|
 |state|string|false|将订阅内容上传至扩展服务的状态：<br>- `"init"`：服务正在初始化。<br>- `"inProgress"`：服务启动完成，正在进行中。<br>- `"exit"`：服务退出。|
 
 
@@ -2085,7 +2085,7 @@ array[object] 类型。
 |Name|Type|Required|Description|
 |---|---|---|---|
 |resourceId|string|false|云端录制使用的 Resource ID。|
-|sid|string|false|录制 ID。标识一次录制周期。|
+|sid|string|false|录制 ID，标识一次录制周期。|
 |serverResponse|object|false|[serverResponse](#schemaserverresponse-stop)|
 |cname|string|false|录制的频道名。|
 |uid|string|false|字符串内容为云端录制服务在 RTC 频道内使用的 UID，用于标识频道内的录制服务。|

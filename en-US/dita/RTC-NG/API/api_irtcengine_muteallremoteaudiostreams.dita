@@ -24,15 +24,20 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; muteAllRemoteAudioStreams(bool mute);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p id="desc">After successfully calling this method, the local user stops or resumes subscribing to the audio streams of all remote users, including all subsequent users.</p>
             <note type="attention" id="note">
-            <ul>
-            <li>Call this method after joining a channel.</li>
-            <li>If you do not want to subscribe the audio streams of remote users before joining a channel, you can set <parmname>autoSubscribeAudio</parmname> as <codeph><ph keyref="false"/></codeph> when calling <xref keyref="joinChannel2"/>.</li>
-            <li props="hide"><ph>See recommended settings in <xref keyref="guide-set-subscribing-state">Set the Subscribing State</xref>.</ph></li>
-            </ul> </note> </section>
+            <p>By default, the SDK subscribes to the audio streams of all remote users when joining a channel. To modify this behavior, you can set <parmname>autoSubscribeAudio</parmname> to <codeph><ph keyref="false"/></codeph> when calling <xref keyref="joinChannel2"/> to join the channel, which will cancel the subscription to the audio streams of all users upon joining the channel.</p>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>Call this method after joining a channel.</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>If you call this method and then call <xref keyref="enableAudio"/> or <xref keyref="disableAudio"/>, the latest call will prevail.</p>
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>

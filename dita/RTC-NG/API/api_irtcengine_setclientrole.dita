@@ -29,16 +29,16 @@
         </section>
         <section id="detailed_desc">
             <title>详情</title>
-            <p id="desc">在加入频道前和加入频道后均可调用该方法设置用户角色。</p>
+            <p id="desc">直播场景下，SDK 会默认设置用户角色为观众，你可以调用该方法设置用户角色为主播。</p>
+            <p>该方法在加入频道前后均可调用。</p>
             <p conkeyref="setClientRole2/preview" props="native unreal bp electron flutter"/>
-            <p>如果你在加入频道后调用该方法切换用户角色，调用成功后：
-
-
-            <ul>
-            <li>本地会触发 <xref keyref="onClientRoleChanged" /> 回调。</li>
-            <li>远端会触发 <xref keyref="onUserJoined" /> 或 <xref keyref="onUserOffline" /><codeph>(<ph keyref="USER_OFFLINE_BECOME_AUDIENCE" />)</codeph> 回调。</li>
-            </ul></p>
-            </section>
+            <p>如果你在加入频道后调用该方法切换用户角色，调用成功后，SDK 会自动进行如下操作：
+                <ul>
+                <li>调用 <xref keyref="muteLocalAudioStream" /> 和 <xref keyref="muteLocalVideoStream" /> 修改发布状态。</li>
+                <li>本地触发 <xref keyref="onClientRoleChanged" /> 回调。</li>
+                <li>远端触发 <xref keyref="onUserJoined" /> 或 <xref keyref="onUserOffline" /> 回调。</li>
+                </ul></p>
+        </section>
         <section id="parameters">
             <title>参数</title>
             <parml>

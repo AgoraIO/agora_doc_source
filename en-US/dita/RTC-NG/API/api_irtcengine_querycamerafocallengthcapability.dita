@@ -13,7 +13,7 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract AgoraFocalLengthInfo[] queryCameraFocalLengthCapability();</codeblock>
+            <codeblock props="android" outputclass="language-java">public AgoraFocalLengthInfo[] queryCameraFocalLengthCapability();</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (NSArray&lt;AgoraFocalLengthInfo *>* __nullable)queryCameraFocalLengthCapability NS_SWIFT_NAME(queryCameraFocalLengthCapability());</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int queryCameraFocalLengthCapability(agora::rtc::FocalLengthInfo* focalLengthInfos, int&amp; size) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp"></codeblock>
@@ -35,6 +35,7 @@
             </dlentry>
             </dl>
             <p>If you want to enable the wide-angle or ultra-wide-angle mode for camera capture, it is recommended to start by calling this method to check whether the device supports the required focal length capability. Then, adjust the camera's focal length configuration based on the query result by calling <xref keyref="setCameraCapturerConfiguration"/>, ensuring the best camera capture performance.</p>
+            <note type="attention" props="android">For the specific implementation of querying camera focal length capabilities through this method, refer to the provided <xref keyref="focallength-link"/>.</note>
             <note type="attention" props="cpp unreal bp flutter unity">This method is for Android and iOS only.</note> </section>
         <section id="parameters" props="cpp unity">
             <title>Parameters</title>

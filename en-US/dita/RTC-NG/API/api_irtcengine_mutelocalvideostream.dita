@@ -24,14 +24,22 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; muteLocalVideoStream(bool mute);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <p>A successful call of this method triggers the <xref keyref="onUserMuteVideo"/> callback on the remote client.</p>
-            <note type="attention">
-            <ul id="ul_ogk_hwc_f4b">
-            <li>This method executes faster than the <xref keyref="enableLocalVideo"/>(<codeph><ph keyref="false"/></codeph>) method, which controls the sending of the local video stream.</li>
-            <li>This method does not affect any ongoing video recording, because it does not disable the camera.</li>
-            </ul> </note> </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>This method is used to control whether to publish the locally captured video stream. If you call this method to stop publishing locally captured video streams, the video capturing device will still work and won't be affected.</p>
+            <p>Compared to <xref keyref="enableLocalVideo"/>(<codeph><ph keyref="false"/></codeph>), which can also cancel the publishing of local video stream by turning off the local video stream capture, this method responds faster.</p>
+            </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>It can be called either before or after joining the channel.</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="related" deliveryTarget="details">
+            <title>Related callbacks</title>
+            <p>After successfully calling this method, the local end triggers callback <xref keyref="onVideoPublishStateChanged"/>; the remote end triggers <xref keyref="onUserMuteVideo"/> and <xref keyref="onRemoteVideoStateChanged"/> callbacks.</p>
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>

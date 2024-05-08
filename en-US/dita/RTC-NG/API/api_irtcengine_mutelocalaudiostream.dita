@@ -24,10 +24,21 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; muteLocalAudioStream(bool mute);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <note type="attention">This method does not affect any ongoing audio recording, because it does not disable the audio capture device.</note> 
-            <p>A successful call of this method triggers the <xref keyref="onUserMuteAudio"/> and <xref keyref="onRemoteAudioStateChanged"/> callbacks on the remote client.</p></section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>This method is used to control whether to publish the locally captured audio stream. If you call this method to stop publishing locally captured audio streams, the audio capturing device will still work and won't be affected.</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>It can be called either before or after joining the channel.</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="related" deliveryTarget="details">
+            <title>Related callbacks</title>
+            <p>After successfully calling this method, the local end triggers callback <xref keyref="onAudioPublishStateChanged"/>; the remote end triggers <xref keyref="onUserMuteAudio"/> and <xref keyref="onRemoteAudioStateChanged"/> callbacks.</p>
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
