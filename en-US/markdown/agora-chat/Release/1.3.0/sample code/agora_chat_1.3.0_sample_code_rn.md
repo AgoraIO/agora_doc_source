@@ -25,39 +25,35 @@ https://doc.easemob.com/document/react-native/message_deliver_only_online.html
 
 https://doc.easemob.com/document/react-native/group_manage.html#查询当前用户已加入的群组数量
 
-6. Added the support for retrieval of historical messages of chat rooms from the server
-
-
-
-7. `ChatGroupEventListener#onRequestToJoinDeclined`
+6. `ChatGroupEventListener#onRequestToJoinDeclined`
 
 Search for `onRequestToJoinDeclined` on the following page:
 
 https://doc.easemob.com/document/react-native/group_manage.html#监听群组事件   
 
-8. Pin a message
+7. Pin a message
 
 https://doc.easemob.com/document/react-native/message_pin.html
 
-9. Forward a single message    
+8. Forward a single message    
 
 https://doc.easemob.com/document/react-native/message_forward.html
 
 
-10. Quick start modification
+9. Quick start modification
 
 Search for `loginWithAgoraToken(username, chatToken)` in the quick start and replace it with `login(username, chatToken, false)`, as the former method is deprecated.
 
 
-11. Chatroom: member count callback
+10. Chatroom: member count callback
 
 ### Update the chat room member count in real time
 
 https://doc.easemob.com/document/react-native/room_manage.html#实时更新聊天室成员人数
 
-12. Replace `searchMsgFromDB` with `getMsgsWithMsgType` on the page of the URL: https://docs.agora.io/en/agora-chat/client-api/messages/manage-messages?platform=react-native#search-for-messages-using-keywords
+11. Replace `searchMsgFromDB` with `getMsgsWithMsgType` on the page of the URL: https://docs.agora.io/en/agora-chat/client-api/messages/manage-messages?platform=react-native#search-for-messages-using-keywords
 
-See the following:
+Add the following in this section:
 
 ### Retrieves messages of a certain type in a local conversation
 
