@@ -14,7 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int enableAudio();</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableAudio NS_SWIFT_NAME(enableAudio());</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableAudio;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int enableAudio() = 0;</codeblock>
             <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
 	int EnableAudio();</codeblock>
@@ -25,11 +25,11 @@
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p id="desc">音频模块默认为开启状态。</p>
+            <p id="desc">音频模块默认开启。如果你调用 <xref keyref="disableAudio"/> 关闭了音频模块，可调用该方法重新开启。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p>在频道内和频道外均可调用。在离开频道后仍然有效。</p>
+            <p>加入频道前后均可调用。离开频道后仍然有效。</p>
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
