@@ -21,15 +21,22 @@
             <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
-            <note type="attention">
-            <ul>
-            <li>该方法在加入频道前后均可调用。</li>
-            <li>在有高音质需求的场景（例如音乐教学场景）中，建议将 <codeph>profile</codeph> 设置为 <codeph><ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY" /> (4)</codeph>。</li>
-            <li>如果你想设置音频应用场景，可以直接调用 <xref keyref="setAudioScenario"/> 方法进行设置，也可以调用 <xref keyref="initialize" /> 并设置 <xref keyref="RtcEngineConfig" /> 结构体中的 <parmname props="android">mAudioScenario</parmname><parmname props="ios mac cpp unreal bp unity cs flutter">audioScenario</parmname>。</li>
-            </ul> </note> </section>
-        <section id="parameters">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>如果你想设置音频应用场景，可以直接调用 <xref keyref="setAudioScenario"/> 方法进行设置，也可以调用 <xref keyref="initialize" /> 并设置 <xref keyref="RtcEngineConfig" /> 结构体中的 <parmname props="android">mAudioScenario</parmname><parmname props="apple cpp framework">audioScenario</parmname>。</p>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p>该方法适用于各种音频场景，你可以按需选择。例如，在音乐教学等高音质需求的场景中，建议将 <codeph>profile</codeph> 设置为 <codeph><ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY" /></codeph>(4)。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>该方法在加入频道前后均可调用。</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
             <plentry>
@@ -39,11 +46,11 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unreal bp electron unity rn cs">
+        <section id="return_values" props="native unreal unity cs">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功。</li>
             <li> &lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
             </ul> </section>
-    </refbody>
+        </refbody>
 </reference>
