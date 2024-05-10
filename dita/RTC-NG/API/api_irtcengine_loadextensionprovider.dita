@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_loadextensionprovider">
     <title><ph keyref="loadExtensionProvider"/></title>
-    <shortdesc id="short"><ph id="shortdesc">将插件添加到 SDK 中。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">加载插件。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -31,13 +31,21 @@
       {required String path, bool unloadAfterUse = false});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>该方法用于将 SDK 外部插件（例如云市场插件和 SDK 拓展插件）添加到 SDK 中。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>请在初始化 <xref keyref="IRtcEngine" /> 后立即调用该方法。</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>如果要加载多个插件，需要多次调用该方法。</p>
             <note type="attention" props="cpp unreal bp unity flutter">该方法仅适用于 Windows 和 Android。</note>
             <note type="attention" props="rn">该方法仅适用于 Android。</note>
             <note type="attention" props="electron">该方法仅适用于 Windows。</note>
         </section>
-        <section id="parameters">
+        <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
             <plentry>
