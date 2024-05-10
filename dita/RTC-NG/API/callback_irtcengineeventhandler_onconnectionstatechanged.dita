@@ -77,27 +77,29 @@
                     <li><ph keyref="CONNECTION_CHANGED_CONNECTING" /> (0)：建立网络连接中。</li>
                     <li><ph keyref="CONNECTION_CHANGED_JOIN_SUCCESS" /> (1)：成功加入频道。</li>
                     <li><ph keyref="CONNECTION_CHANGED_INTERRUPTED" /> (2)：网络连接中断。</li>
-                    <li><ph keyref="CONNECTION_CHANGED_BANNED_BY_SERVER" /> (3)：网络连接被服务器禁止，有可能是因为用户被踢出频道。</li>
-                    <li><ph keyref="CONNECTION_CHANGED_JOIN_FAILED" /> (4)：加入频道失败。</li>
+                    <li><ph keyref="CONNECTION_CHANGED_BANNED_BY_SERVER" /> (3)：网络连接被服务器禁止，例如，当用户被踢出频道时，会返回该状态。</li>
+                    <li><ph keyref="CONNECTION_CHANGED_JOIN_FAILED" /> (4)：加入频道失败。SDK 在尝试加入频道 20 分钟后仍未能加入频道，会返回该状态并不再尝试重连。请提示用户尝试切换网络后重新加入频道。</li>
                     <li><ph keyref="CONNECTION_CHANGED_LEAVE_CHANNEL" /> (5)：离开频道。</li>
-                    <li><ph keyref="CONNECTION_CHANGED_INVALID_APP_ID" /> (6)：不是有效的 APP ID。请更换有效的 APP ID 重新加入频道。</li>
-                    <li><ph keyref="CONNECTION_CHANGED_INVALID_CHANNEL_NAME" /> (7)：不是有效的频道名。请更换有效的频道名重新加入频道。</li>
-                    <li><ph keyref="CONNECTION_CHANGED_INVALID_TOKEN" /> (8)：生成的 Token 无效。一般有以下原因：
-
-
-
-                        <ul id="ul_pf4_kcx_qqb">
-                        <li>在控制台上启用了 App Certificate，但加入频道未使用 Token。当启用了 App Certificate，必须使用 Token。</li>
-                        <li>在调用 <xref keyref="joinChannel2" /> 加入频道时指定的 uid 与生成 Token 时传入的 uid 不一致。</li>
-                        </ul> </li>
-                    <li><ph keyref="CONNECTION_CHANGED_TOKEN_EXPIRED" /> (9)：当前使用的 Token 过期，不再有效，需要重新在你的服务端申请生成 Token 。</li>
+                    <li><ph keyref="CONNECTION_CHANGED_INVALID_APP_ID" /> (6)：App ID 无效。请使用有效的 APP ID 重新加入频道，并确保你使用的 App ID 与在声网控制台生成的一致。</li>
+                    <li><ph keyref="CONNECTION_CHANGED_INVALID_CHANNEL_NAME" /> (7)：频道名无效。请更换有效的频道名重新加入频道。有效的频道名为长度在 64 字节以内的字符串。以下为支持的字符集范围（共 89 个字符）: <ul conkeyref="joinChannel2/char_support"><li/></ul></li>
+                    <li><ph keyref="CONNECTION_CHANGED_INVALID_TOKEN" /> (8)：Token 无效。一般有以下原因：                    
+                    <ul>
+                    <li>你的项目启用了 App Certificate，但加入频道未使用 Token。</li>
+                    <li>在调用 <apiname keyref="joinChannel2"/> 加入频道时指定的用户 ID 与生成 Token 时传入的用户 ID 不一致。</li>
+                    <li>生成的 Token 和加入频道使用的 Token 不一致。</li>
+                    </ul>
+                    请确保：
+                        <ul><li>当你的项目启用了 App Certificate 时，使用 Token 加入频道。</li>
+                            <li>生成 Token 时指定的用户 ID 与加入频道时使用的用户 ID 一致，</li>
+                            <li>生成的 Token 和加入频道使用的 Token 一致。</li></ul></li>
+                    <li><ph keyref="CONNECTION_CHANGED_TOKEN_EXPIRED" /> (9)：当前使用的 Token 已过期。请重新在你的服务端生成 Token，然后用新的 Token 重新加入频道。</li>
                     <li><ph keyref="CONNECTION_CHANGED_REJECTED_BY_SERVER" /> (10)：此用户被服务器禁止 。</li>
                     <li><ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER" /> (11)：由于设置了代理服务器，SDK 尝试重连 。</li>
                     <li><ph keyref="CONNECTION_CHANGED_RENEW_TOKEN" /> (12)：更新 Token 引起网络连接状态改变 。</li>
-                    <li><ph keyref="CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED" /> (13)：客户端 IP 地址变更，可能是由于网络类型，或网络运营商的 IP 或端口发生改变引起 。</li>
-                    <li><ph keyref="CONNECTION_CHANGED_KEEP_ALIVE_TIMEOUT" /> (14)：SDK 和服务器连接保活超时，进入自动重连状态 。</li>
+                    <li><ph keyref="CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED" /> (13)：客户端 IP 地址变更。如多次收到该状态码，请提示用户更换网络后尝试重新加入频道。</li>
+                    <li><ph keyref="CONNECTION_CHANGED_KEEP_ALIVE_TIMEOUT" /> (14)：SDK 和服务器连接保活超时，进入自动重连状态。</li>
                     <li><ph keyref="CONNECTION_CHANGED_REJOIN_SUCCESS" /> (15)：重新加入频道成功。</li>
-                    <li><ph keyref="CONNECTION_CHANGED_LOST" /> (16)：SDK 和服务器失去连接 。</li>
+                    <li><ph keyref="CONNECTION_CHANGED_LOST" /> (16)：SDK 和服务器失去连接。</li>
                     <li><ph keyref="CONNECTION_CHANGED_ECHO_TEST" /> (17)：连接状态变化由回声测试引起。</li>
                     <li><ph keyref="CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED_BY_USER" /> (18)：本地 IP 地址被用户更改。</li>
                     <li><ph keyref="CONNECTION_CHANGED_SAME_UID_LOGIN" /> (19)：使用相同的 UID 从不同的设备加入同一频道。</li>
