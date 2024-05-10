@@ -46,12 +46,13 @@
                 <dd>v4.1.0</dd>
             </dlentry>
             </dl>
+            <p>对于 SDK 外部的插件（例如云市场插件和 SDK 拓展插件），加载插件后，你需要调用该方法注册插件。SDK 内部插件（包含在 SDK 包中的插件）在初始化 <xref keyref="IRtcEngine" /> 后会自动加载并注册，无需调用该方法。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
                 <ul>
                 <li>建议你在初始化 <xref keyref="IRtcEngine" /> 后、加入频道前调用该方法。</li>
-                <li>对于视频相关插件（例如美颜插件），需要在启用视频（<xref keyref="enableVideo" />/<xref keyref="enableLocalVideo" />）之前调用该方法。</li>
+                <li>对于视频相关插件（例如美颜插件），需要在启用视频模块（<xref keyref="enableVideo" />/<xref keyref="enableLocalVideo" />）之前调用该方法。</li>
                 <li props="android">调用该方法前，需要先调用 <xref keyref="addExtension"/> 加载插件。</li>
                 <li props="apple">调用该方法前，需要先在 Xcode 中将插件动态库（.xcframework）链接至工程以加载插件。</li>
                 <li props="cpp framework">调用该方法前，需要先调用 <xref keyref="loadExtensionProvider"/> 加载插件。</li>
@@ -60,7 +61,6 @@
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
             <ul>
-            <li>对于 SDK 外部的插件（例如云市场插件和 SDK 拓展插件），加载插件后，你需要调用该方法注册插件。SDK 内部插件（包含在 SDK 包中的插件）在初始化 <xref keyref="IRtcEngine" /> 后会自动加载并注册，无需调用该方法。 </li>
             <li>如果要注册多个插件，需要多次调用该方法。</li>
             <li>不同插件在 SDK 中处理数据的顺序由插件的注册顺序决定。即先注册的插件会先处理数据。</li>
             </ul>
