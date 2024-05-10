@@ -21,11 +21,11 @@
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_BANNED_BY_SERVER"/></pt>
-                <pd>3: 网络连接被服务器禁止。服务端踢人场景时会报这个错。</pd>
+                <pd>3: 网络连接被服务器禁止。例如，当用户被踢出频道时，会返回该状态。</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_JOIN_FAILED"/></pt>
-                <pd>4: 加入频道失败。SDK 在尝试加入频道 20 分钟后还是没能加入频道，会返回该状态，并停止尝试重连。</pd>
+                <pd>4: 加入频道失败。SDK 在尝试加入频道 20 分钟后仍未能加入频道，会返回该状态并不再尝试重连。请提示用户尝试切换网络后重新加入频道。</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_LEAVE_CHANNEL"/></pt>
@@ -33,25 +33,31 @@
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_INVALID_APP_ID"/></pt>
-                <pd>6: 不是有效的 APP ID。请更换有效的 APP ID 重新加入频道。</pd>
+                <pd>6: App ID 无效。请使用有效的 APP ID 重新加入频道，并确保你使用的 App ID 与在声网控制台生成的一致。</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_INVALID_CHANNEL_NAME"/></pt>
-                <pd>7: 不是有效的频道名。请更换有效的频道名重新加入频道。</pd>
+                <pd>7: 频道名无效。请更换有效的频道名重新加入频道。有效的频道名为长度在 64 字节以内的字符串。以下为支持的字符集范围（共 89 个字符）: <ul conkeyref="joinChannel2/char_support"><li/></ul>
+                    </pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_INVALID_TOKEN"/></pt>
                 <pd>
-                    <p>8: 生成的 Token 无效。一般有以下原因：                    
+                    <p>8: Token 无效。一般有以下原因：                    
                     <ul>
-                    <li>在控制台上启用了 App Certificate，但加入频道未使用 Token。当启用了 App Certificate，必须使用 Token。</li>
+                    <li>你的项目启用了 App Certificate，但加入频道未使用 Token。</li>
                     <li>在调用 <apiname keyref="joinChannel2"/> 加入频道时指定的用户 ID 与生成 Token 时传入的用户 ID 不一致。</li>
-                    </ul></p>
+                    <li>生成的 Token 和加入频道使用的 Token 不一致。</li>
+                    </ul>
+                    请确保：
+                        <ul><li>当你的项目启用了 App Certificate 时，使用 Token 加入频道。</li>
+                            <li>生成 Token 时指定的用户 ID 与加入频道时使用的用户 ID 一致，</li>
+                            <li>生成的 Token 和加入频道使用的 Token 一致。</li></ul></p>
                 </pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_TOKEN_EXPIRED"/></pt>
-                <pd>9: 当前使用的 Token 过期，不再有效，需要重新在你的服务端申请生成 Token。</pd>
+                <pd>9: 当前使用的已 Token 过期。请重新在你的服务端生成 Token，然后用新的 Token 重新加入频道。</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_REJECTED_BY_SERVER"/></pt>
@@ -73,7 +79,7 @@
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED"/></pt>
-                <pd>13: 客户端 IP 地址变更，可能是由于网络类型，或网络运营商的 IP 或端口发生改变引起。</pd>
+                <pd>13: 由于网络类型，或网络运营商的 IP 或端口发生改变而进入重连。如多次收到该状态码，请提示用户切换网络再尝试重新加入频道。</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_KEEP_ALIVE_TIMEOUT"/></pt>
