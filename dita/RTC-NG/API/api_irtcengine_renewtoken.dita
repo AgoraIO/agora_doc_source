@@ -24,9 +24,12 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; renewToken(String token);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>该方法用于更新 Token。Token 会在一定时间后失效，此时 SDK 将无法和服务器建立连接。</p>
+        </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p>在以下任意一种情况下，声网推荐你在你的服务端重新生成 Token，然后调用该方法传入新的 Token，否则 Token 过期后，SDK 将无法和服务器建立连接：
+            <p>在以下任意一种情况下，声网推荐你在你的服务端重新生成 Token，然后调用该方法传入新的 Token：
                 <ul><li>收到 <xref keyref="onTokenPrivilegeWillExpire"/> 回调报告 Token 即将过期时；</li>
                  <li>收到 <xref keyref="onRequestToken"/> 回调报告 Token 已过期；</li>
                 <li>收到 <xref keyref="onConnectionStateChanged"/> 回调报告 <apiname keyref="CONNECTION_CHANGED_TOKEN_EXPIRED"/>(9) 时；</li>
@@ -38,10 +41,10 @@
         </section>
         <section id="related" deliveryTarget="details">
             <title>相关回调</title>
-            <p><ul><li><xref keyref="onTokenPrivilegeWillExpire"/></li>
+            <ul><li><xref keyref="onTokenPrivilegeWillExpire"/></li>
                  <li><xref keyref="onRequestToken"/></li>
                 <li><xref keyref="onConnectionStateChanged"/></li>
-                </ul></p>
+                </ul>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
