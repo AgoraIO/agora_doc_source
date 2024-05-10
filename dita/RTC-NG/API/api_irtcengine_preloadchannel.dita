@@ -32,22 +32,29 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> preloadChannel(
       {required String token, required String channelId, required int uid});</codeblock> </p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
             <dlentry props="native">
                 <dt>自从</dt>
                 <dd>v4.2.2</dd>
             </dlentry>
             </dl>
-            <p id="desc1">调用该方法可以减少观众频繁切换频道时加入频道的时间，从而缩短观众听到主播首帧音频以及看到首帧画面的耗时，提升观众端的视频体验。由于 SDK 预加载频道需要一定的时间，因此声网推荐你在确认频道信息和用户信息后、加入频道前，尽早调用该方法。</p>
-        <note><ul><li id="note1">调用该方法时，请确保用户角色设为观众、音频应用场景设为非合唱场景（<apiname keyref="AUDIO_SCENARIO_CHORUS"/>），否则预加载不生效。</li>
-        <li>请确保预加载频道时传入的频道名、用户 ID、Token 和后续加入频道时传入的值相同，否则预加载不生效。</li>
-        <li id="note2">目前一个 <xref keyref="IRtcEngine"/> 实例最多支持预加载 20 个频道，如超出限制，仅最新预加载的 20 频道个生效。</li>
-       <li id="note3">预加载不生效不会影响后续正常加入频道，也不会增加加入频道的耗时。</li></ul></note>
-       <p id="desc2">如果当前频道已经成功预加载，观众加入、离开频道后如需再次加入该频道，只要预加载时传入的 Token 仍在有效期内，则无需重新预加载。</p>
+            <p id="desc1">调用该方法可以减少观众频繁切换频道时加入频道的时间，从而缩短观众听到主播首帧音频以及看到首帧画面的耗时，提升观众端的视频体验。</p>
+            <p id="desc2">如果当前频道已经成功预加载，观众加入、离开频道后如需再次加入该频道，只要预加载时传入的 Token 仍在有效期内，则无需重新预加载。</p>
+            <note type="note" id="note3">预加载不生效不会影响后续正常加入频道，也不会增加加入频道的耗时。</note>
         </section>
-        <section id="parameters">
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>为了提升预加载频道的用户体验，声网推荐你在确认频道名、用户信息后、加入频道前，尽早调用该方法。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <ul><li id="note1">调用该方法时，请确保用户角色设为观众、音频应用场景设为非合唱场景（<apiname keyref="AUDIO_SCENARIO_CHORUS"/>），否则预加载不生效。</li>
+        <li>请确保预加载频道时传入的频道名、用户 ID、Token 和后续加入频道时传入的值相同，否则预加载不生效。</li>
+        <li id="note2">目前一个 <xref keyref="IRtcEngine"/> 实例最多支持预加载 20 个频道，如超出限制，仅最新预加载的 20 个频道生效。</li>
+       </ul>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
             <plentry id="token">
