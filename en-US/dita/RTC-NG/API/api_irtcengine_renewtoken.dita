@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_renewtoken">
-    <title><ph keyref="renewToken" /></title>
+    <title><ph keyref="renewToken"/></title>
     <shortdesc id="short"><ph id="shortdesc">Renews the token.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="renewToken" />
+                <indexterm keyref="renewToken"/>
             </keywords>
         </metadata>
     </prolog>
@@ -24,12 +24,28 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; renewToken(String token);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>You can call this method to pass a new token to the SDK. A token expires after a certain period of time. In the following two cases, the app should call this method to pass in a new token. Failure to do so will result in the SDK disconnecting from the server.<ul>
-            <li>The SDK triggers the <xref keyref="onTokenPrivilegeWillExpire" /> callback.</li>
-            <li><xref keyref="onConnectionStateChanged" />The <apiname keyref="CONNECTION_CHANGED_TOKEN_EXPIRED" /> callback reports (9).</li>
-            </ul> </section>
-        <section id="parameters">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>You can call this method to pass a new token to the SDK. Token 会在一定时间后失效，此时 SDK 将无法和服务器建立连接。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>在以下任意一种情况下，声网推荐你在你的服务端重新生成 Token，然后调用该方法传入新的 Token：<ul><li>收到 <xref keyref="onTokenPrivilegeWillExpire"/> 回调报告 Token 即将过期时；</li>
+                 <li>收到 <xref keyref="onRequestToken"/> 回调报告 Token 已过期；</li>
+                <li>收到 <xref keyref="onConnectionStateChanged"/> 回调报告 <apiname keyref="CONNECTION_CHANGED_TOKEN_EXPIRED"/>(9) 时；</li>
+                </ul></p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="related" deliveryTarget="details">
+            <title>Related callbacks</title>
+            <ul><li><xref keyref="onTokenPrivilegeWillExpire"/></li>
+                 <li><xref keyref="onRequestToken"/></li>
+                <li><xref keyref="onConnectionStateChanged"/></li>
+                </ul>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>
@@ -43,9 +59,12 @@
             <ul props="native unreal bp electron unity rn electron cs">
             <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul>
-                <li>-2: The parameter is invalid. For example, the token is invalid. You need to fill in a valid parameter.</li>
-                <li>-7: The <apiname keyref="IRtcEngine" /> object has not been initialized. You need to initialize the <apiname keyref="IRtcEngine" /> object before calling this method.</li>
+                <li>-2: The parameter is invalid. 例如，Token 为空。</li>
+                <li>-7: The <apiname keyref="IRtcEngine"/> object has not been initialized. You need to initialize the <apiname keyref="IRtcEngine" /> object before calling this method.</li>
+                <li>110: Invalid token. Ensure the following:<ul>
+                        <li>生成 Token 时指定的用户 ID 与加入频道时使用的用户 ID 一致，</li>
+                        <li>生成的 Token 和加入频道使用的 Token 一致。</li></ul></li>
                 </ul></li>
             </ul> </section>
-    </refbody>
+        </refbody>
 </reference>

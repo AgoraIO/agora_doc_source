@@ -21,11 +21,11 @@
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_BANNED_BY_SERVER"/></pt>
-                <pd>3: The connection between the SDK and the Agora edge server is banned by the Agora edge server. This error occurs when the user is kicked out of the channel by the server.</pd>
+                <pd>3: The connection between the SDK and the Agora edge server is banned by the Agora edge server. 例如，当用户被踢出频道时，会返回该状态。</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_JOIN_FAILED"/></pt>
-                <pd>4: The SDK fails to join the channel. When the SDK fails to join the channel for more than 20 minutes, this error occurs and the SDK stops reconnecting to the channel.</pd>
+                <pd>4: The SDK fails to join the channel. When the SDK fails to join the channel for more than 20 minutes, this error occurs and the SDK stops reconnecting to the channel. 请提示用户尝试切换网络后重新加入频道。</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_LEAVE_CHANNEL"/></pt>
@@ -33,24 +33,28 @@
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_INVALID_APP_ID"/></pt>
-                <pd>6: The connection failed because the App ID is not valid. Please rejoin the channel with a valid App ID.</pd>
+                <pd>3: The App ID is invalid. 请使用有效的 APP ID 重新加入频道，并确保你使用的 App ID 与在声网控制台生成的一致。</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_INVALID_CHANNEL_NAME"/></pt>
-                <pd>7: The connection failed since channel name is not valid. Rejoin the channel with a valid channel name.</pd>
+                <pd>7: 频道名无效。 Rejoin the channel with a valid channel name. 有效的频道名为长度在 64 字节以内的字符串。 Supported characters:<ul conkeyref="joinChannel2/char_support"><li/></ul>
+                    </pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_INVALID_TOKEN"/></pt>
                 <pd>
-                    <p>8: The connection failed because the token is not valid. Possible reasons are as follows:<ul>
-                    <li>The App Certificate for the project is enabled in Agora Console, but you do not use a token when joining the channel. If you enable the App Certificate, you must use a token to join the channel.</li>
+                    <p>8: Token 无效。 Possible reasons are as follows:<ul>
+                    <li>The App Certificate for the project is enabled in Agora Console, but you do not use a token when joining the channel.</li>
                     <li>The uid specified when calling <apiname keyref="joinChannel2"/> to join the channel is inconsistent with the uid passed in when generating the token.</li>
-                    </ul></p>
+                    <li>生成的 Token 和加入频道使用的 Token 不一致。</li>
+                    </ul>Ensure the following:<ul><li>当你的项目启用了 App Certificate 时，使用 Token 加入频道。</li>
+                            <li>生成 Token 时指定的用户 ID 与加入频道时使用的用户 ID 一致，</li>
+                            <li>生成的 Token 和加入频道使用的 Token 一致。</li></ul></p>
                 </pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_TOKEN_EXPIRED"/></pt>
-                <pd>9: The connection failed since token is expired.</pd>
+                <pd>9: 当前使用的 Token 已过期。 请重新在你的服务端生成 Token，然后用新的 Token 重新加入频道。</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_REJECTED_BY_SERVER"/></pt>
@@ -71,7 +75,7 @@
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED"/></pt>
-                <pd>13: The IP address of the client has changed, possibly because the network type, IP address, or port has been changed.</pd>
+                <pd>13: 客户端 IP 地址变更。 如多次收到该状态码，请提示用户更换网络后尝试重新加入频道。</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_KEEP_ALIVE_TIMEOUT"/></pt>

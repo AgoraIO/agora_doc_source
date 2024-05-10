@@ -72,20 +72,23 @@
                     <li><ph keyref="CONNECTION_CHANGED_CONNECTING" />(0): The SDK is connecting to Agora's edge server.</li>
                     <li><ph keyref="CONNECTION_CHANGED_JOIN_SUCCESS" />(1): The SDK has joined the channel successfully.</li>
                     <li><ph keyref="CONNECTION_CHANGED_INTERRUPTED" />(2): The connection between the SDK and Agora's edge server is interrupted.</li>
-                    <li><ph keyref="CONNECTION_CHANGED_BANNED_BY_SERVER" />(3): The network connection is blocked by the server, possibly because the user is kicked out of the channel.</li>
-                    <li><ph keyref="CONNECTION_CHANGED_JOIN_FAILED" />(4): The SDK fails to join the channel.</li>
+                    <li><ph keyref="CONNECTION_CHANGED_BANNED_BY_SERVER" />(3)：网络连接被服务器禁止，例如，当用户被踢出频道时，会返回该状态。</li>
+                    <li><ph keyref="CONNECTION_CHANGED_JOIN_FAILED" />(4): The SDK fails to join the channel. When the SDK fails to join the channel for more than 20 minutes, this error occurs and the SDK stops reconnecting to the channel. 请提示用户尝试切换网络后重新加入频道。</li>
                     <li><ph keyref="CONNECTION_CHANGED_LEAVE_CHANNEL" />(5): The SDK has left the channel.</li>
-                    <li><ph keyref="CONNECTION_CHANGED_INVALID_APP_ID" />(6): The connection failed because the App ID is not valid. Please rejoin the channel with a valid App ID.</li>
-                    <li><ph keyref="CONNECTION_CHANGED_INVALID_CHANNEL_NAME" />(7): The connection failed because the channel name is invalid. Rejoin the channel with a valid channel name.</li>
-                    <li><ph keyref="CONNECTION_CHANGED_INVALID_TOKEN" />(8): The connection failed because the token is invalid. Possible reasons are as follows:<ul id="ul_pf4_kcx_qqb">
-                        <li>The App Certificate for the project is enabled in Agora Console, but you do not use a token when joining the channel. If you enable the App Certificate, you must use a token to join the channel.</li>
-                        <li>The uid specified when calling <xref keyref="joinChannel2" /> to join the channel is inconsistent with the uid passed in when generating the token.</li>
-                        </ul> </li>
-                    <li><ph keyref="CONNECTION_CHANGED_TOKEN_EXPIRED" />(9): The token has expired. You need to generate a new token from your server.</li>
+                    <li><ph keyref="CONNECTION_CHANGED_INVALID_APP_ID" />(6)：App ID 无效。 请使用有效的 APP ID 重新加入频道，并确保你使用的 App ID 与在声网控制台生成的一致。</li>
+                    <li><ph keyref="CONNECTION_CHANGED_INVALID_CHANNEL_NAME" />(7)：频道名无效。 Rejoin the channel with a valid channel name. 有效的频道名为长度在 64 字节以内的字符串。 Supported characters:<ul conkeyref="joinChannel2/char_support"><li/></ul></li>
+                    <li><ph keyref="CONNECTION_CHANGED_INVALID_TOKEN" />(110): Invalid token Possible reasons are as follows:<ul>
+                    <li>The App Certificate for the project is enabled in Agora Console, but you do not use a token when joining the channel.</li>
+                    <li>The uid specified when calling <apiname keyref="joinChannel2"/> to join the channel is inconsistent with the uid passed in when generating the token.</li>
+                    <li>生成的 Token 和加入频道使用的 Token 不一致。</li>
+                    </ul>Ensure the following:<ul><li>当你的项目启用了 App Certificate 时，使用 Token 加入频道。</li>
+                            <li>生成 Token 时指定的用户 ID 与加入频道时使用的用户 ID 一致，</li>
+                            <li>生成的 Token 和加入频道使用的 Token 一致。</li></ul></li>
+                    <li><ph keyref="CONNECTION_CHANGED_TOKEN_EXPIRED" />(9)：当前使用的 Token 已过期。 请重新在你的服务端生成 Token，然后用新的 Token 重新加入频道。</li>
                     <li><ph keyref="CONNECTION_CHANGED_REJECTED_BY_SERVER" />(10): The user is banned by the server.</li>
                     <li><ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER" />(11): The SDK tries to reconnect after setting a proxy server.</li>
                     <li><ph keyref="CONNECTION_CHANGED_RENEW_TOKEN" />(12): The connection state changed because the token is renewed.</li>
-                    <li><ph keyref="CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED" />(13): The IP Address of the SDK client has changed, probably due to a change of the network type, IP address, or network port.</li>
+                    <li><ph keyref="CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED" />(13)：客户端 IP 地址变更。 如多次收到该状态码，请提示用户更换网络后尝试重新加入频道。</li>
                     <li><ph keyref="CONNECTION_CHANGED_KEEP_ALIVE_TIMEOUT" />(14): Timeout for the keep-alive of the connection between the SDK and the Agora edge server. The SDK tries to reconnect to the server automatically.</li>
                     <li><ph keyref="CONNECTION_CHANGED_REJOIN_SUCCESS" />(15): The SDK has rejoined the channel successfully.</li>
                     <li><ph keyref="CONNECTION_CHANGED_LOST" />(16): The connection between the SDK and the server is lost.</li>

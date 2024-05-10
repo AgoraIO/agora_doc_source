@@ -27,11 +27,18 @@
       onTokenPrivilegeWillExpire;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <p id="desc1">When the token is about to expire in 30 seconds, the SDK triggers this callback to remind the app to renew the token.</p>
-            <p>Upon receiving this callback, you need to generate a new token on your server, and call <xref keyref="renewToken" /> to pass the new token to the SDK. In scenarios involving multiple channels, you need to call <xref keyref="updateChannelMediaOptionsEx"/> to pass the new token to the SDK.</p>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p conkeyref="onRequestToken/renew"/>
         </section>
-        <section id="parameters">
+        <section id="timing" deliveryTarget="details">
+            <title>Trigger timing</title>
+            <p id="desc1">在音视频互动过程中，SDK 会在 Token 过期前 30 秒触发该回调，提醒 App 更新 Token。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title> <ph keyref="callback-section-title" /> </title>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
@@ -44,7 +51,7 @@
             </plentry>
             <plentry id="token">
                 <pt>token</pt>
-                <pd>The token that expires in 30 seconds.</pd>
+                <pd>即将过期的 Token。</pd>
             </plentry>
             </parml> </section>
     </refbody>
