@@ -175,7 +175,7 @@ As shown in the figure, the workflow of post-delivery callbacks is as follows:
 2. The Chat server sends an HTTP request that contains the information of the message or event to your app server.
 3. Your app server sends an HTTP response to the Chat server to indicate that the callback is received.
 
-<div class="alert note">If you have set both pre- and post-delivery callbacks, and a message is rejected after the pre-delivery callback returns, the post-delivery callbacks are not triggered.</div>
+<div class="alert note">1. If you have set both pre- and post-delivery callbacks, and a message is rejected after the pre-delivery callback returns, the post-delivery callbacks are not triggered. <br/>2. If you want to use strong encryption for your data, you can encrypt data yourself and enable your app server to decrypt the data included in the post-delivery callback requests received from the Chat server.</div>
 
 For post-delivery callback request examples, see [event callbacks](https://docs.agora.io/en/agora-chat/reference/callbacks-events). 
 

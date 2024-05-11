@@ -178,6 +178,20 @@ conn.addEventHandler("eventName", {
 
 5. Add the `LocalCache` module for local conversation data management
 
+This feature involves three parts:
+
+1. Import the Web SDK files as required
+
+The local conversation data management is supported only if the Web SDK files are imported as required. Therefore, you need to add the item g (presenting how to import the SDK files as required). You can determine where to put the item g.
+
+2. To use the local conversation data management, you need to integrate the plug-in. 
+
+3. APIs for local conversation management
+
+For the part 2 and part 3, you can translate the local conversation management page of Easemob IM (https://doc.easemob.com/document/web/conversation_local.html), except that you replace `easemob-websdk` with `agora-chat` in the sample code.
+
+As Agora Chat Web SDK shares the same sample code as Easemob IM, the sample code (a-f) is the same as the Easemob IM doc page and I have translated the Chinese comments into English.
+
 a. `getLocalConversations`
 
 ```javascript
@@ -271,9 +285,9 @@ miniCore.contact.getServerConversations(options).then((res)=>{
 })
 ``` 
 
-g. Add the following descriptions:
+g. Import the Web SDK files as required:
 
-If you want to minimize the SDK size, you can import the SDK file as required.
+If you want to minimize the SDK size, you can import the SDK files as required.
 
 | Function    | File for import       | Usage                     |
 | :------------- | :---------------- | :------------------- |
