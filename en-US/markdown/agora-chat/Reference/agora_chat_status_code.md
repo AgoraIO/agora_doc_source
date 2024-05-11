@@ -86,7 +86,7 @@ This status code indicates that the API request is larger than the server can pr
 
 | Status code | Error code  | Error message | Description   |
 | :-----  | :------------ | :----------------------------------------------------------- | :------------------------------------------------|
-| `413`            | `Request Entity Too Large`           | "Request Entity Too Large."   | The error message returned because the size of the client request exceeds the maximum size limit of the server. For example, the message body exceeds 5 KB or the uploaded files exceed 10 MB. |
+| `413`            | `Request Entity Too Large`           | "Request Entity Too Large."   | The error message returned because the size of the uploaded message attachment exceeds the upper limit. |
 
 ### 415 Unsupported Media Type
 This status code indicates that the format of the API request is not supported by the server.
