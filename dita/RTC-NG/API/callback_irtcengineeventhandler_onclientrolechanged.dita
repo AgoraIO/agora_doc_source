@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onclientrolechanged">
     <title><ph keyref="onClientRoleChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc">直播场景下用户角色已切换回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">用户角色、观众端延时级别已切换回调。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -37,10 +37,21 @@ NS_SWIFT_NAME(rtcEngine(_:didClientRoleChanged:newRole:newRoleOptions:));</codeb
       ClientRoleOptions newRoleOptions)? onClientRoleChanged;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <p>该回调是由本地用户在加入频道后调用 <xref keyref="setClientRole2"/> 改变用户角色触发的。</p>
+        <section id="scenario" deliveryTarget="details" props="hide">
+            <title>适用场景</title>
+            <p/>
         </section>
-        <section id="parameters">
+        <section id="timing" deliveryTarget="details">
+            <title>触发时机</title>
+            <p>在以下任意一种情况时，会触发此回调：<ul>
+                <li>当你在<b>频道内</b>调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2"/> 切换用户角色或观众端延时级别。</li>
+                <li>当你在<b>频道外</b>调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2"/> 并将用户角色设为 <parmname>AUDIENCE</parmname>。</li></ul></p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>使用限制</title>
+            <p>当你在<b>频道外</b>调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2"/> 并将用户角色设为 <parmname>BROADCASTER</parmname> 时，不会触发此回调。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title><ph keyref="callback-section-title"/></title>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
