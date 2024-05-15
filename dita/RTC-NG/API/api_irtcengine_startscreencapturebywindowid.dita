@@ -39,13 +39,10 @@
     required ScreenCaptureParameters captureParams});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <title>详情</title>
             <p id="desc">共享一个窗口或该窗口的部分区域。用户需要在该方法中指定想要共享的窗口 ID。</p>
-            <p conkeyref="startScreenCaptureByDisplayId/apisequence" />
-            <note type="attention" id="note">
-                <ul><li props="cpp unreal bp unity flutter">该方法仅适用于 macOS 和 Windows 平台。</li>
-                <li>SDK 的窗口共享功能依赖于 WGC（Windows Graphics Capture）或 GDI（Graphics Device Interface）采集，WGC 在早于 Windows 10 2004 的系统上无法设置关闭鼠标采集，因此，当你在搭载早于 Windows 10 2004 系统的设备上进行窗口共享时，可能出现 <codeph>captureMouseCursor(false)</codeph> 不生效的现象。详见 <xref keyref="ScreenCaptureParameters" />。</li></ul></note>
+            <note type="attention" id="note">该方法仅适用于 macOS 和 Windows 平台。</note>
             <p props="cpp unreal bp unity flutter electron cs">该方法支持共享通用 Windows 平台（UWP）应用窗口。声网使用最新版 SDK 对主流的 UWP 应用进行了测试，结果如下：</p>
             <p props="cpp unreal bp unity flutter electron cs"> <table id="table_lvk_tfs_r4b">
             <tgroup cols="4">
@@ -169,13 +166,25 @@
             </tgroup>
             </table> </p>
         </section>
-        <section id="parameters">
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p>在屏幕共享场景下，你需要调用该方法开始采集屏幕视频流。有关屏幕共享的实现方法，详见<xref keyref="screen-share"/>。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" >
+            <title>调用时机</title>
+            <p conkeyref="startScreenCaptureByDisplayId/apisequence"/>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+                <p props="cpp unreal bp unity cs electron flutter">SDK 的窗口共享功能依赖于 WGC（Windows Graphics Capture）或 GDI（Graphics Device Interface）采集，WGC 在早于 Windows 10 2004 的系统上无法设置关闭鼠标采集，因此，当你在搭载早于 Windows 10 2004 系统的设备上进行窗口共享时，可能出现 <codeph>captureMouseCursor(false)</codeph> 不生效的现象。详见 <xref keyref="ScreenCaptureParameters" />。</p>
+                <p props="mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
             <plentry>
                 <pt>windowId</pt>
-                <pd>指定待共享的窗口 ID。
-                </pd>
+                <pd>指定待共享的窗口 ID。</pd>
             </plentry>
             <plentry props="cpp unreal bp electron unity flutter cs">
                 <pt>regionRect</pt>

@@ -24,22 +24,35 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; disableVideo();</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <title>详情</title>
-            <p>该方法用于关闭视频模块，可以在加入频道前或者通话中调用，在加入频道前调用，则自动开启纯音频模式，在通话中调用则由视频模式切换为纯音频模式。 调用 <xref keyref="enableVideo" /> 方法可开启视频模式。</p>
-            <p>成功调用该方法后，远端会触发 <xref keyref="onUserEnableVideo" /> (<codeph><ph keyref="false" /></codeph>) 回调。</p>
-            <note type="attention">
+            <p>该方法用于关闭视频模块。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>该方法可以在加入频道前或者通话中调用：<ul>
+                <li>如果在加入频道前调用，则开启纯音频模式。</li>
+                <li>如果在通话中调用，则由视频模式切换为纯音频模式，然后再调用 <xref keyref="enableVideo" /> 方法可开启视频模式。</li>
+            </ul></p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
             <ul>
             <li>该方法设置的是内部引擎为禁用状态，在离开频道后仍然有效。</li>
-            <li>该方法重置整个引擎，响应时间较慢，因此声网建议使用如下方法来控制视频模块：
-
+            <li>调用该方法会重置整个引擎，响应时间较慢。你可以根据实际需求用以下方法来独立控制视频模块的某一项功能：
                 <ul>
                 <li><xref keyref="enableLocalVideo" />: 是否启动摄像头采集并创建本地视频流。</li>
                 <li><xref keyref="muteLocalVideoStream" />: 是否发布本地视频流。</li>
                 <li><xref keyref="muteRemoteVideoStream" />: 是否接收并播放远端视频流。</li>
                 <li><xref keyref="muteAllRemoteVideoStreams" />: 是否接收并播放所有远端视频流。</li>
                 </ul></li>
-            </ul></note> </section>
+            </ul>
+        </section>
+        <section id="related" deliveryTarget="details">
+            <title>相关回调</title>
+            <p>成功调用该方法后，远端会触发 <xref keyref="onUserEnableVideo" /> (<codeph><ph keyref="false" /></codeph>) 回调。</p>
+        </section>
+
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
