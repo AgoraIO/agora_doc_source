@@ -18,8 +18,8 @@
                             smooth:(NSInteger)smooth
                             reportVad:(BOOL)reportVad;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int enableAudioVolumeIndication(int interval, int smooth, bool reportVad) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
-	int EnableAudioVolumeIndication(int interval, int smooth, bool reportVad);</codeblock>
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+        int EnableAudioVolumeIndication(int interval, int smooth, bool reportVad);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract enableAudioVolumeIndication(
     interval: number,
     smooth: number,
@@ -35,11 +35,22 @@
     {required int interval, required int smooth, required bool reportVad});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <p>This method enables the SDK to regularly report the volume information to the app of the local user who sends a stream and remote users (three users at most) whose instantaneous volumes are the highest. Once you call this method and users send streams in the channel, the SDK triggers the <xref keyref="onAudioVolumeIndication" /> callback at the time interval set in this method.</p>
-            <note type="attention">You can call this method either before or after joining a channel.</note> </section>
-        <section id="parameters">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>This method enables the SDK to regularly report the volume information to the app of the local user who sends a stream and remote users (three users at most) whose instantaneous volumes are the highest.</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>It can be called either before or after joining the channel.</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="related" deliveryTarget="details">
+            <title>Related callbacks</title>
+            <p>成功调用该方法、且频道内存在发流用户时，SDK 会按设置的时间间隔触发 <xref keyref="onAudioVolumeIndication" /> 回调。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry id="interval">
@@ -65,9 +76,9 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-            <ul>
-            <li props="native unreal bp electron unity rn cs">0: Success.</li>
+            <ul props="native unreal bp electron unity rn cs">
+            <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
-    </refbody>
+        </refbody>
 </reference>
