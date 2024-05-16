@@ -46,23 +46,23 @@
                 <dd>v4.1.0</dd>
             </dlentry>
             </dl>
-            <p>对于 SDK 外部的插件（例如云市场插件和 SDK 拓展插件），加载插件后，你需要调用该方法注册插件。 SDK 内部插件（包含在 SDK 包中的插件）在初始化 <xref keyref="IRtcEngine" /> 后会自动加载并注册，无需调用该方法。</p>
+            <p>For extensions external to the SDK (such as those from Extensions Marketplace and SDK Extensions), you need to  load them before calling this method. Extensions internal to the SDK (those included in the full SDK package) are automatically loaded and registered after the initialization of <xref keyref="IRtcEngine" />, so there is no need to call this method.</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>Call timing</title>
                 <ul>
-                <li>建议你在初始化 <xref keyref="IRtcEngine" /> 后、加入频道前调用该方法。</li>
-                <li>对于视频相关插件（例如美颜插件），需要在启用视频模块（<xref keyref="enableVideo" />/<xref keyref="enableLocalVideo" />）之前调用该方法。</li>
+                <li>Agora recommends you call this method after the initialization of <xref keyref="IRtcEngine" /> and before joining a channel.</li>
+                <li>For video extensions (such as the image enhancement extension), you need to call this method after enabling the video module (<xref keyref="enableVideo" />/<xref keyref="enableLocalVideo" />).</li>
                 <li props="android">Before calling this method, you need to call <xref keyref="addExtension"/> to load the extension first.</li>
-                <li props="apple">Before calling this method, you need to link the extension dynamic library (.xcframework) to your project in Xcode.</li>
+                <li props="apple">Before calling this method, you need to link the extension dynamic library (.xcframework) to your project in Xcode to load the extension.</li>
                 <li props="cpp framework">Before calling this method, you need to call <xref keyref="loadExtensionProvider"/> to load the extension first.</li>
                 </ul>
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>Restrictions</title>
             <ul>
-            <li>If you want to enable multiple extensions, you need to call this method multiple times.</li>
-            <li>The data processing order of different extensions in the SDK is determined by the order in which the extensions are enabled. That is, the extension that is enabled first will process the data first.</li>
+            <li>If you want to register multiple extensions, you need to call this method multiple times.</li>
+            <li>The data processing order of different extensions in the SDK is determined by the order in which the extensions are registered. That is, the extension that is registered first will process the data first.</li>
             </ul>
         </section>
         <section id="parameters" deliveryTarget="details">

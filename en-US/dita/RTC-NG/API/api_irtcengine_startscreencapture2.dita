@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startscreencapture2">
     <title><ph keyref="startScreenCapture2" /></title>
-    <shortdesc id="short"><ph id="shortdesc">开始屏幕采集并指定视频源。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Start screen capture from the specified video source.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -41,10 +41,10 @@
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>Applicable scenarios</title>
-            <p>在屏幕共享场景下，你需要调用该方法开始采集屏幕视频流。</p>
-            <p>SDK 支持一系列开启屏幕采集的方法，它们之间存在以下区别，请根据实际场景选用：<ul>
-                <li><ph props="cpp unreal bp unity flutter"><xref keyref="startScreenCapture"/>/</ph><xref keyref="startScreenCaptureByDisplayId"/>/<xref keyref="startScreenCaptureByWindowId"/>：仅支持采集单个屏幕或窗口，适合仅共享单个屏幕的场景。</li>
-                <li><xref keyref="startScreenCapture2"/>：支持指定多个视频源，以采集多路屏幕共享流，用于本地合图或者多频道发布场景。</li></ul></p>
+            <p>In the screen sharing scenario, you need to call this method to start capturing the screen video stream.</p>
+            <p>The SDK supports a series of methods screen capture, with the following distinctions between them. Please choose according to the actual scenario:<ul>
+                <li><ph props="cpp unreal bp unity flutter"><xref keyref="startScreenCapture"/>/</ph><xref keyref="startScreenCaptureByDisplayId"/>/<xref keyref="startScreenCaptureByWindowId"/>: Only supports capturing a single screen or window, suitable for scenarios where only a single screen is shared.</li>
+                <li><xref keyref="startScreenCapture2"/>: Supports specifying multiple video sources to capture multiple screen sharing streams, used for local video mixing or multi-channel scenarios.</li></ul></p>
         </section>
         <section id="timing" deliveryTarget="details" conkeyref="startScreenCapture/timing">
             <title/>
@@ -52,16 +52,16 @@
         <section id="restriction" deliveryTarget="details">
             <title>Restrictions</title>
             <ul>
-                <li>如果调用该方法开始屏幕采集，则停止屏幕采集时需要调用 <xref keyref="stopScreenCapture2"/> 。</li>
-                <li>Windows supports up to four screen capture video streams.</li>
-                <li props="cpp unreal bp flutter unity electron">在 macOS 平台上，最多支持 1 路屏幕采集的视频流。</li></ul>
+                <li>If you start screen capture by calling this method, you need to call <xref keyref="stopScreenCapture2"/> to stop screen capture.</li>
+                <li>On the Windows platform, it supports up to four screen capture video streams.</li>
+                <li props="cpp unreal bp flutter unity electron">On the macOS platform, it supports only one screen capture video stream.</li></ul>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>sourceType</pt>
-                <pd>The type of the video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.<note props="cpp unreal bp flutter unity electron" type="attention">在 macOS 平台上，仅支持将该参数设置为 <ph keyref="VIDEO_SOURCE_SCREEN"/> (2)。</note>
+                <pd>The type of the video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.<note props="cpp unreal bp flutter unity electron" type="attention">On the macOS platform, this parameter can only be set to <ph keyref="VIDEO_SOURCE_SCREEN"/> (2).</note>
                 </pd>
             </plentry>
             <plentry>
