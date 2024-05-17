@@ -21,11 +21,11 @@
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_BANNED_BY_SERVER"/></pt>
-                <pd>3: The connection between the SDK and the Agora edge server is banned by the Agora edge server. 例如，当用户被踢出频道时，会返回该状态。</pd>
+                <pd>3: The connection between the SDK and the Agora edge server is banned by the Agora edge server. For example, when a user is kicked out of the channel, this status will be returned.</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_JOIN_FAILED"/></pt>
-                <pd>4: The SDK fails to join the channel. When the SDK fails to join the channel for more than 20 minutes, this error occurs and the SDK stops reconnecting to the channel. 请提示用户尝试切换网络后重新加入频道。</pd>
+                <pd>4: The SDK fails to join the channel. When the SDK fails to join the channel for more than 20 minutes, this status will be returned and the SDK stops reconnecting to the channel. Please prompt the user to try to switch to another network and rejoin the channel.</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_LEAVE_CHANNEL"/></pt>
@@ -33,28 +33,28 @@
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_INVALID_APP_ID"/></pt>
-                <pd>3: The App ID is invalid. 请使用有效的 APP ID 重新加入频道，并确保你使用的 App ID 与在声网控制台生成的一致。</pd>
+                <pd>6: The App ID is invalid. Please rejoin the channel with a valid APP ID and make sure the App ID you are using is consistent with the one generated in the Agora Console.</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_INVALID_CHANNEL_NAME"/></pt>
-                <pd>7: 频道名无效。 Rejoin the channel with a valid channel name. 有效的频道名为长度在 64 字节以内的字符串。 Supported characters:<ul conkeyref="joinChannel2/char_support"><li/></ul>
+                <pd>7: Invalid channel name. Rejoin the channel with a valid channel name. A valid channel name is a string of up to 64 bytes in length. Supported characters (89 characters in total):<ul conkeyref="joinChannel2/char_support"><li/></ul>
                     </pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_INVALID_TOKEN"/></pt>
                 <pd>
-                    <p>8: Token 无效。 Possible reasons are as follows:<ul>
-                    <li>The App Certificate for the project is enabled in Agora Console, but you do not use a token when joining the channel.</li>
+                    <p>8: Invalid token. Possible reasons are as follows:<ul>
+                    <li>The App Certificate for the project is enabled in Agora Console, but you do not pass in a token when joining a channel.</li>
                     <li>The uid specified when calling <apiname keyref="joinChannel2"/> to join the channel is inconsistent with the uid passed in when generating the token.</li>
-                    <li>生成的 Token 和加入频道使用的 Token 不一致。</li>
-                    </ul>Ensure the following:<ul><li>当你的项目启用了 App Certificate 时，使用 Token 加入频道。</li>
-                            <li>生成 Token 时指定的用户 ID 与加入频道时使用的用户 ID 一致，</li>
-                            <li>生成的 Token 和加入频道使用的 Token 一致。</li></ul></p>
+                    <li>The generated token and the token used to join the channel are not consistent.</li>
+                    </ul>Ensure the following:<ul><li>When your project enables App Certificate, you need to pass in a token to join a channel.</li>
+                            <li>The user ID specified when generating the token is consistent with the user ID used when joining the channel.</li>
+                            <li>The generated token is the same as the token passed in to join the channel.</li></ul></p>
                 </pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_TOKEN_EXPIRED"/></pt>
-                <pd>9: 当前使用的 Token 已过期。 请重新在你的服务端生成 Token，然后用新的 Token 重新加入频道。</pd>
+                <pd>(9): The token currently being used has expired. Please generate a new token on your server and rejoin the channel with the new token.</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_REJECTED_BY_SERVER"/></pt>
@@ -75,7 +75,7 @@
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED"/></pt>
-                <pd>13: 客户端 IP 地址变更。 如多次收到该状态码，请提示用户更换网络后尝试重新加入频道。</pd>
+                <pd>(13): Client IP address changed. If you receive this status code multiple times, please prompt the user to switch networks and try joining the channel again.</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_KEEP_ALIVE_TIMEOUT"/></pt>

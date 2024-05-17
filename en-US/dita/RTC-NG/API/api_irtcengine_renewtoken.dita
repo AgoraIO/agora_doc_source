@@ -25,13 +25,13 @@
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p>You can call this method to pass a new token to the SDK. Token 会在一定时间后失效，此时 SDK 将无法和服务器建立连接。</p>
+            <p>You can call this method to pass a new token to the SDK. The token will expire after a certain period of time, at which point the SDK will be unable to establish a connection with the server.</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>Call timing</title>
-            <p>在以下任意一种情况下，声网推荐你在你的服务端重新生成 Token，然后调用该方法传入新的 Token：<ul><li>收到 <xref keyref="onTokenPrivilegeWillExpire"/> 回调报告 Token 即将过期时；</li>
-                 <li>收到 <xref keyref="onRequestToken"/> 回调报告 Token 已过期；</li>
-                <li>收到 <xref keyref="onConnectionStateChanged"/> 回调报告 <apiname keyref="CONNECTION_CHANGED_TOKEN_EXPIRED"/>(9) 时；</li>
+            <p>In any of the following cases, Agora recommends that you generate a new token on your server and then call this method to renew your token:<ul><li>Receiving the <xref keyref="onTokenPrivilegeWillExpire"/> callback reporting the token is about to expire.</li>
+                 <li>Receiving the <xref keyref="onRequestToken"/> callback reporting the token has expired.</li>
+                <li>Receiving the <xref keyref="onConnectionStateChanged"/> callback reporting <apiname keyref="CONNECTION_CHANGED_TOKEN_EXPIRED"/>(9).</li>
                 </ul></p>
         </section>
         <section id="restriction" deliveryTarget="details">
@@ -59,11 +59,11 @@
             <ul props="native unreal bp electron unity rn electron cs">
             <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul>
-                <li>-2: The parameter is invalid. 例如，Token 为空。</li>
+                <li>-2: The parameter is invalid. For example, the token is empty.</li>
                 <li>-7: The <apiname keyref="IRtcEngine"/> object has not been initialized. You need to initialize the <apiname keyref="IRtcEngine" /> object before calling this method.</li>
                 <li>110: Invalid token. Ensure the following:<ul>
-                        <li>生成 Token 时指定的用户 ID 与加入频道时使用的用户 ID 一致，</li>
-                        <li>生成的 Token 和加入频道使用的 Token 一致。</li></ul></li>
+                        <li>The user ID specified when generating the token is consistent with the user ID used when joining the channel.</li>
+                        <li>The generated token is the same as the token passed in to join the channel.</li></ul></li>
                 </ul></li>
             </ul> </section>
         </refbody>
