@@ -133,22 +133,22 @@ class VideoRenderingTracingInfo {
             <parml>
             <plentry>
                 <pt>elapsedTime</pt>
-                <pd>The time interval from calling the <xref keyref="startMediaRenderingTracing"/> method to SDK triggering the <xref keyref="onVideoRenderingTracingResult"/> callback. The unit is milliseconds. Agora recommends you call <apiname keyref="startMediaRenderingTracing"/> before joining a channel.</pd>
+                <pd>从调用 <xref keyref="startMediaRenderingTracing"/> 到触发 <xref keyref="onVideoRenderingTracingResult"/> 回调的时间间隔 (ms)。 Agora recommends you call <apiname keyref="startMediaRenderingTracing"/> before joining a channel.</pd>
             </plentry>
             <plentry>
                 <pt>start2JoinChannel</pt>
-                <pd>The time interval from calling <apiname keyref="startMediaRenderingTracing"/> to calling <ph props="native unreal unity cs"><apiname keyref="joinChannel1" /> or </ph><xref keyref="joinChannel2"/>. The unit is milliseconds. A negative number indicates that <apiname keyref="startMediaRenderingTracing"/> is called after calling <apiname keyref="joinChannel2"/>.</pd>
+                <pd>从调用 <apiname keyref="startMediaRenderingTracing"/> 到调用 <ph props="native unreal unity cs"><apiname keyref="joinChannel1" /> 或 </ph><xref keyref="joinChannel2"/> 的时间间隔 (ms)。 A negative number indicates that <apiname keyref="startMediaRenderingTracing"/> is called after calling <apiname keyref="joinChannel2"/>.</pd>
             </plentry>
             <plentry>
                 <pt>join2JoinSuccess</pt>
-                <pd>Time interval from calling <apiname keyref="joinChannel1"/> or <apiname keyref="joinChannel2"/> to successfully joining the channel. The unit is milliseconds.</pd>
+                <pd>从调用 <apiname keyref="joinChannel1"/> 或 <apiname keyref="joinChannel2"/> 到成功加入频道的时间间隔 (ms)。</pd>
             </plentry>
             <plentry>
                 <pt>joinSuccess2RemoteJoined</pt>
                 <pd>
                     <ul>
-                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> before successfully joining the channel, this value is the time interval from the local user successfully joining the channel to the remote user joining the channel. The unit is milliseconds.</li>
-                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after successfully joining the channel, the value is the time interval from calling <apiname keyref="startMediaRenderingTracing"/> to when the remote user joins the channel. The unit is milliseconds.</li>
+                    <li>If the local user calls  before successfully joining the channel<apiname keyref="startMediaRenderingTracing"/>, this value is the time interval from the local user successfully joining the channel to the remote user joining the channel.</li>
+                    <li>If the local user calls  after successfully joining the channel<apiname keyref="startMediaRenderingTracing"/>, the value is the<apiname keyref="startMediaRenderingTracing"/> time interval from calling  to when the remote user joins the channel.</li>
                     </ul>
                     <note type="note">
                         <ul>
@@ -161,8 +161,8 @@ class VideoRenderingTracingInfo {
                 <pt>remoteJoined2SetView</pt>
                 <pd>
                     <ul>
-                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> before the remote user joins the channel, this value is the time interval from when the remote user joins the channel to when the local user sets the remote view. The unit is milliseconds.</li>
-                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after the remote user joins the channel, this value is the time interval from calling <apiname keyref="startMediaRenderingTracing"/> to setting the remote view. The unit is milliseconds.</li>
+                    <li>If the local user calls  before the remote user joins the channel<apiname keyref="startMediaRenderingTracing"/>, this value is the time interval from when the remote user joins the channel to when the local user sets the remote view.</li>
+                    <li>If the local user calls  after the remote user joins the channel<apiname keyref="startMediaRenderingTracing"/>, this value is the<apiname keyref="startMediaRenderingTracing"/> time interval from calling  to setting the remote view.</li>
                     </ul>
                     <note type="note">
                     <ul>
@@ -174,8 +174,8 @@ class VideoRenderingTracingInfo {
                 <pt>remoteJoined2UnmuteVideo</pt>
                 <pd>
                     <ul>
-                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> before the remote user joins the channel, this value is the time interval from the remote user joining the channel to subscribing to the remote video stream. The unit is milliseconds.</li>
-                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after the remote user joins the channel, this value is the time interval from calling <apiname keyref="startMediaRenderingTracing"/> to subscribing to the remote video stream. The unit is milliseconds.</li>
+                    <li>If the local user calls  before the remote user joins the channel<apiname keyref="startMediaRenderingTracing"/>, this value is the time interval from the remote user joining the channel to subscribing to the remote video stream.</li>
+                    <li>If the local user calls  after the remote user joins the channel<apiname keyref="startMediaRenderingTracing"/>, this value is the time interval from calling  to subscribing<apiname keyref="startMediaRenderingTracing"/> to the remote video stream.</li>
                     </ul>
                     <note type="note">
                         <ul>
@@ -188,8 +188,8 @@ class VideoRenderingTracingInfo {
                 <pt>remoteJoined2PacketReceived</pt>
                 <pd>
                     <ul>
-                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> before the remote user joins the channel, this value is the time interval from when the remote user joins the channel to when the local user receives the remote video stream. The unit is milliseconds.</li>
-                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after the remote user joins the channel, this value is the time interval from calling <apiname keyref="startMediaRenderingTracing"/> to receiving the remote video stream. The unit is milliseconds.</li>
+                    <li>If the local user calls  before the remote user joins the channel<apiname keyref="startMediaRenderingTracing"/>, this value is the time interval from when the remote user joins the channel to when the local user receives the remote video stream.</li>
+                    <li>If the local user calls  after the remote user joins the channel<apiname keyref="startMediaRenderingTracing"/>, this value is the<apiname keyref="startMediaRenderingTracing"/> time interval from calling  to receiving the remote video stream.</li>
                     </ul>
                     <note type="note">
                         <ul>
