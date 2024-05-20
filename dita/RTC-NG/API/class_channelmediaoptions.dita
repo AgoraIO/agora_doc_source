@@ -21,7 +21,6 @@
   public Boolean publishMediaPlayerAudioTrack;
   public Boolean publishMediaPlayerVideoTrack;
   public Boolean publishTranscodedVideoTrack;
-  public Boolean publishLipSyncTrack;
   public Boolean autoSubscribeAudio;
   public Boolean autoSubscribeVideo;
   public Boolean enableAudioRecordingOrPlayout;
@@ -61,7 +60,6 @@
 @property(assign, nonatomic) BOOL publishMediaPlayerAudioTrack;
 @property(assign, nonatomic) BOOL publishMediaPlayerVideoTrack;
 @property(assign, nonatomic) BOOL publishTranscodedVideoTrack;
-@property(assign, nonatomic) BOOL publishLipSyncTrack;
 @property(assign, nonatomic) BOOL autoSubscribeAudio;
 @property(assign, nonatomic) BOOL autoSubscribeVideo;
 @property(assign, nonatomic) BOOL enableAudioRecordingOrPlayout;
@@ -105,7 +103,6 @@
   Optional&lt;bool&gt; publishMediaPlayerAudioTrack;
   Optional&lt;bool&gt; publishMediaPlayerVideoTrack;
   Optional&lt;bool&gt; publishTranscodedVideoTrack;
-  Optional&lt;bool&gt; publishLipSyncTrack;
   Optional&lt;bool&gt; autoSubscribeAudio;
   Optional&lt;bool&gt; autoSubscribeVideo;
   Optional&lt;bool&gt; enableAudioRecordingOrPlayout;
@@ -284,8 +281,6 @@ struct FChannelMediaOptions
 
   publishTranscodedVideoTrack?: boolean;
 
-  publishLipSyncTrack?: boolean;
-
   autoSubscribeAudio?: boolean;
 
   autoSubscribeVideo?: boolean;
@@ -334,7 +329,6 @@ struct FChannelMediaOptions
         public Optional&lt;bool> publishMediaPlayerAudioTrack = new Optional&lt;bool>();
         public Optional&lt;bool> publishMediaPlayerVideoTrack = new Optional&lt;bool>();
         public Optional&lt;bool> publishTranscodedVideoTrack = new Optional&lt;bool>();
-        public Optional&lt;bool> publishLipSyncTrack = new Optional&lt;bool>();
         public Optional&lt;bool> autoSubscribeAudio = new Optional&lt;bool>();
         public Optional&lt;bool> autoSubscribeVideo = new Optional&lt;bool>();
         public Optional&lt;bool> enableAudioRecordingOrPlayout = new Optional&lt;bool>();
@@ -388,8 +382,6 @@ struct FChannelMediaOptions
 
   publishTranscodedVideoTrack?: boolean;
 
-  publishLipSyncTrack?: boolean;
-
   autoSubscribeAudio?: boolean;
 
   autoSubscribeVideo?: boolean;
@@ -439,7 +431,6 @@ class ChannelMediaOptions {
       this.publishMediaPlayerAudioTrack,
       this.publishMediaPlayerVideoTrack,
       this.publishTranscodedVideoTrack,
-      this.publishLipSyncTrack,
       this.autoSubscribeAudio,
       this.autoSubscribeVideo,
       this.enableAudioRecordingOrPlayout,
@@ -510,9 +501,6 @@ class ChannelMediaOptions {
 
   @JsonKey(name: 'publishTranscodedVideoTrack')
   final bool? publishTranscodedVideoTrack;
-
-  @JsonKey(name: 'publishLipSyncTrack')
-  final bool? publishLipSyncTrack;
 
   @JsonKey(name: 'autoSubscribeAudio')
   final bool? autoSubscribeAudio;
@@ -713,10 +701,10 @@ class ChannelMediaOptions {
              </plentry>
              <plentry props="en">
                  <pt>publishLipSyncTrack</pt>
-                 <pd>设置是否发布本地唇音同步视频：
+                 <pd>设置是否发布语音驱动插件处理后的视频：
                      <ul>
-                    <li><codeph><ph keyref="true"/></codeph>：发布本地唇音同步视频。</li>
-                    <li><codeph><ph keyref="false"/></codeph>：不发布本地唇音同步视频。</li>
+                    <li><codeph><ph keyref="true"/></codeph>：发布语音驱动插件处理后的视频。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：不发布语音驱动插件处理后的视频。</li>
                     </ul>
                  </pd>
              </plentry>
