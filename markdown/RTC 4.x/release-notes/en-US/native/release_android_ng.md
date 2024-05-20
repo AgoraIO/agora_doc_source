@@ -139,6 +139,7 @@ This version fixed the following issues:
 - [`ChannelMediaOptions`](/api-ref/rtc/android/API/class_channelmediaoptions) adds the following members:
   - `publishThirdCameraTrack`
   - `publishFourthCameraTrack`
+  - `publishLipSyncTrack`
 - [`CameraCapturerConfiguration`](/api-ref/rtc/android/API/class_cameracapturerconfiguration) adds a new member `cameraId`
 - [`CAMERA_DIRECTION`](/api-ref/rtc/android/API/enum_cameradirection) adds `CAMERA_EXTRA`(2)
 - [`switchCamera`](/api-ref/rtc/android/API/toc_video_device#api_irtcengine_switchcamera2)[2/2]
