@@ -25,22 +25,25 @@
     {required int uid, required int volume});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p>You can call this method to adjust the playback volume of a specified remote user. To adjust the playback volume of different remote users, call the method as many times, once for each remote user.</p>
-            <note type="attention">
-            <ul>
-            <li>Call this method after joining a channel.</li>
-            <li>The playback volume here refers to the mixed volume of a specified remote user.</li>
-            </ul> </note> </section>
-        <section id="parameters">
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>Call this method after joining a channel.</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry id="uid">
                 <pt>uid</pt>
                 <pd>The user ID of the remote user.</pd>
             </plentry>
-            <plentry id="volume" conkeyref="adjustAudioMixingVolume/volume">
+            <plentry conkeyref="adjustRecordingSignalVolume/volume">
                 <pt />
                 <pd />
             </plentry>
@@ -52,5 +55,5 @@
             <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
-    </refbody>
+        </refbody>
 </reference>

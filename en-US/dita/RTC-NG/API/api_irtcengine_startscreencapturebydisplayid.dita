@@ -40,16 +40,26 @@
     required ScreenCaptureParameters captureParams});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <p>This method shares a screen or part of the screen.</p>
-            <p id="apisequence">There are two ways to start screen sharing, you can choose one according to your needs:<ul>
-                <li>Call this method before joining a channel, and then call <xref keyref="joinChannel2" /> to join a channel and set <parmname>publishScreenTrack</parmname> or <parmname>publishSecondaryScreenTrack</parmname> to <codeph><ph keyref="true" /></codeph> to start screen sharing.</li>
-                <li>Call this method after joining a channel, and then call <xref keyref="updateChannelMediaOptions" /> and set <parmname>publishScreenTrack</parmname> or <parmname>publishSecondaryScreenTrack</parmname> to <codeph><ph keyref="true" /></codeph> to start screen sharing.</li>
-                </ul></p>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>Captures the video stream of a screen or a part of the screen area.</p>
             <note type="attention" props="cpp unreal bp flutter unity">This method is for Windows and macOS only.</note> 
         </section>
-        <section id="parameters">
+        <section id="scenario" deliveryTarget="details">
+            <title>Applicable scenarios</title>
+            <p>In the screen sharing scenario, you need to call this method to start capturing the screen video stream. For implementation guidance of screen sharing, please refer to <xref keyref="screen-share"/>.</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p id="apisequence">You can call this method either before or after joining the channel, with the following differences:<ul>
+            <li>Call this method before joining a channel, and then call <xref keyref="joinChannel2"/> to join a channel and set <parmname>publishScreenTrack</parmname> or <parmname>publishSecondaryScreenTrack</parmname> to <codeph><ph keyref="true" /></codeph> to start screen sharing.</li>
+            <li>Call this method after joining a channel, and then call <xref keyref="updateChannelMediaOptions"/> to join a channel and set <parmname>publishScreenTrack</parmname> or <parmname>publishSecondaryScreenTrack</parmname> to <codeph><ph keyref="true" /></codeph> to start screen sharing.</li>
+            </ul></p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>
