@@ -51,7 +51,7 @@
                     <ul>
                     <li props="cpp apple framework">应用退到后台，系统回收摄像头。</li>
                     <li props="cpp unreal bp android unity flutter rn">Android 9 及以上版本，App 切后台一段时间后，系统会收回相机权限。</li>
-                    <li props="cpp unreal bp android unity flutter rn">Android 6 及以上版本，如果相机被第三方应用占用一段时间后释放，则 SDK 会触发该回调，并报告 <codeph><apiname keyref="onLocalVideoStateChanged"/>(<ph keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/>，<ph keyref="LOCAL_VIDEO_STREAM_REASON_OK"/>)</codeph> 回调。</li>
+                    <li props="cpp unreal bp android unity flutter rn">Android 6 及以上版本，如果相机被第三方应用占用一段时间后释放，则 SDK 会触发该回调，并报告 <apiname keyref="onLocalVideoStateChanged"/>(<codeph><ph keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/>，<ph keyref="LOCAL_VIDEO_STREAM_REASON_OK"/></codeph>) 回调。</li>
                     <li>摄像头正常启动，但连续 4 秒都没有输出采集的视频。</li></ul></li>
                 <li>当摄像头输出采集的视频帧时，如果 SDK 检测到连续 15 个重复的视频帧，会触发该回调，且 <parmname>state</parmname> 为 <apiname keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/>，<parmname>reason</parmname> 为 <apiname keyref="LOCAL_VIDEO_STREAM_REASON_CAPTURE_FAILURE"/>。
                 <note>帧重复检测仅针对分辨率大于 200 × 200、帧率大于等于 10 fps、码率小于 20 Kbps 的视频帧。</note></li></ul>

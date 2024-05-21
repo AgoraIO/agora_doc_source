@@ -39,25 +39,33 @@
       MediaSourceType type = MediaSourceType.unknownMediaSource});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
             <dlentry props="native">
                 <dt>Since</dt>
                 <dd>v4.1.0</dd>
             </dlentry>
             </dl>
-            <p>After the extension is loaded, you can call this method to register the extension.</p>
-            <note type="attention">
-                <ul>
-                <li props="android">Before calling this method, you need to call <xref keyref="addExtension"/> to load the extension first.</li>
-                <li props="apple">Before calling this method, you need to link the extension dynamic library (.xcframework) to your project in Xcode.</li>
-                <li props="cpp framework">Before calling this method, you need to call <xref keyref="loadExtensionProvider"/> to load the extension first.</li>
-                <li>For extensions external to the SDK (such as those from Extensions Marketplace and SDK Extensions), you need to call this method before calling <xref keyref="setExtensionProperty"/>.</li> 
-                </ul>              
-            </note>
+            <p>For extensions external to the SDK (such as those from Extensions Marketplace and SDK Extensions), you need to  load them before calling this method. Extensions internal to the SDK (those included in the full SDK package) are automatically loaded and registered after the initialization of <xref keyref="IRtcEngine" />.</p>
         </section>
-        <section id="parameters">
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+                <ul>
+                <li>Agora recommends you call this method after the initialization of <xref keyref="IRtcEngine" /> and before joining a channel.</li>
+                <li>For video extensions (such as the image enhancement extension), you need to call this method after enabling the video module by calling <xref keyref="enableVideo" /> or <xref keyref="enableLocalVideo" />.</li>
+                <li props="android">Before calling this method, you need to call <xref keyref="addExtension"/> to load the extension first.</li>
+                <li props="apple">Before calling this method, you need to link the extension dynamic library (.xcframework) to your project in Xcode to load the extension.</li>
+                <li props="cpp framework">Before calling this method, you need to call <xref keyref="loadExtensionProvider"/> to load the extension first.</li>
+                </ul>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <ul>
+            <li>If you want to register multiple extensions, you need to call this method multiple times.</li>
+            <li>The data processing order of different extensions in the SDK is determined by the order in which the extensions are registered. That is, the extension that is registered first will process the data first.</li>
+            </ul>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry conkeyref="setExtensionProperty/vendor">
@@ -76,9 +84,12 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-            <ul props="cpp unreal bp unity electron cs">
+            <ul props="native unreal bp unity electron cs">
             <li>0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul>
+                <li>-3: The extension library is not loaded. Agora recommends that you check the storage location or the name of the dynamic library.</li>
+                </ul>
+            </li>
             </ul> </section>
     </refbody>
 </reference>

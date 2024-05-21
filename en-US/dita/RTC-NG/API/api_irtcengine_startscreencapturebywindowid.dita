@@ -39,13 +39,9 @@
     required ScreenCaptureParameters captureParams});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p id="desc">This method captures a window or part of the window. You need to specify the ID of the window to be captured.</p>
-            <p conkeyref="startScreenCaptureByDisplayId/apisequence" />
-            <note type="attention" id="note">
-                <ul><li props="cpp unreal bp unity flutter">This method applies to the macOS and Windows only.</li>
-                <li>The window sharing feature of the Agora SDK relies on WGC (Windows Graphics Capture) or GDI (Graphics Device Interface) capture, and WGC cannot be set to disable mouse capture on systems earlier than Windows 10 2004. Therefore, <codeph>captureMouseCursor(false)</codeph> might not work when you start window sharing on a device with a system earlier than Windows 10 2004. See <xref keyref="ScreenCaptureParameters" />.</li></ul></note>
+            <note type="attention" id="note">This method applies to the macOS and Windows only.</note>
             <p props="cpp unreal bp unity flutter electron cs">This method supports window sharing of UWP (Universal Windows Platform) applications. Agora tests the mainstream UWP applications by using the lastest SDK, see details as follows:</p>
             <p props="cpp unreal bp unity flutter electron cs"> <table id="table_lvk_tfs_r4b">
             <tgroup cols="4">
@@ -169,7 +165,20 @@
             </tgroup>
             </table> </p>
         </section>
-        <section id="parameters">
+        <section id="scenario" deliveryTarget="details">
+            <title>Applicable scenarios</title>
+            <p>In the screen sharing scenario, you need to call this method to start capturing the screen video stream. For implementation guidance of screen sharing, please refer to <xref keyref="screen-share"/>.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" >
+            <title>Call timing</title>
+            <p conkeyref="startScreenCaptureByDisplayId/apisequence"/>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+                <p props="cpp unreal bp unity cs electron flutter">The window sharing feature of the Agora SDK relies on WGC (Windows Graphics Capture) or GDI (Graphics Device Interface) capture, and WGC cannot be set to disable mouse capture on systems earlier than Windows 10 2004. Therefore, <codeph>captureMouseCursor(false)</codeph> might not work when you start window sharing on a device with a system earlier than Windows 10 2004. See <xref keyref="ScreenCaptureParameters" />.</p>
+                <p props="mac">None.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>

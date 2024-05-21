@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_stopscreencapture2">
     <title><ph keyref="stopScreenCapture2" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Stops screen capture.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Stops screen capture from the specified video source.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -24,21 +24,28 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> stopScreenCaptureBySourceType(VideoSourceType sourceType);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
             <dlentry props="native">
                 <dt>Since</dt>
                 <dd>v4.2.0</dd>
             </dlentry>
             </dl>
-            <p>After calling <xref keyref="startScreenCapture2"/>to start capturing video from one or more screens, you can call this method and set the <parmname>sourceType </parmname>parameter to stop capturing from the specified screens.</p>
-            <note type="attention"><ul>
-            <li props="cpp unreal bp flutter unity">This method applies to the macOS and Windows only.</li>
-            <li props="cpp unreal bp flutter unity">If you call <xref keyref="startScreenCapture"/>, <xref keyref="startScreenCaptureByWindowId"/>, or <xref keyref="startScreenCaptureByDisplayId"/> to start screen capure, Agora recommends that you call <xref keyref="stopScreenCapture"/> instead to stop the capture.</li>
-            <li props="mac electron cs">If you call <xref keyref="startScreenCaptureByWindowId"/> or <xref keyref="startScreenCaptureByDisplayId"/> to start screen capture, Agora recommends that you call <xref keyref="stopScreenCapture"/> to stop the capture and do not use this one.</li></ul></note>
+            <note props="cpp unreal bp flutter unity" type="attention">This method applies to the macOS and Windows only.</note>
         </section>
-        <section id="parameters">
+        <section id="scenario" deliveryTarget="details">
+            <title>Applicable scenarios</title>
+            <p>If you start screen capture from one or more screens by calling <xref keyref="startScreenCapture2"/>, you need to call this method to stop screen capture, specifying the screen through the <parmname>sourceType</parmname> parameter.</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>You can call this method either before or after joining a channel.</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>

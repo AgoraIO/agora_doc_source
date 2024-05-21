@@ -557,7 +557,7 @@ class ChannelMediaOptions {
 }</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">SDK 支持在同一时间、同一 <xref keyref="RtcConnection"/> 中发布多路音频流、一路视频流。例如，<parmname>publishMicrophoneTrack</parmname>、<parmname>publishCustomAudioTrack</parmname> 和 <parmname>publishMediaPlayerAudioTrack</parmname> 可以同时为 <codeph><ph keyref="true"/></codeph>； <parmname>publishCameraTrack</parmname>、<parmname props="android ios cpp unreal bp flutter unity rn">publishScreenCaptureVideo</parmname><parmname props="mac cpp unreal bp flutter unity electron">publishScreenTrack</parmname>、<parmname>publishCustomVideoTrack</parmname> 或 <parmname>publishEncodedVideoTrack</parmname> 之中同一时间只能有一个为 <codeph><ph keyref="true"/></codeph>。
+        <section id="detailed_desc">SDK 支持在同一时间、同一 <xref keyref="RtcConnection"/> 中发布多路音频流、一路视频流。例如，<parmname>publishMicrophoneTrack</parmname>、<parmname>publishCustomAudioTrack</parmname> 和 <parmname>publishMediaPlayerAudioTrack</parmname> 可以同时为 <codeph><ph keyref="true"/></codeph>； <parmname>publishCameraTrack</parmname>、<ph props="android ios cpp unreal bp flutter unity rn"><parmname>publishScreenCaptureVideo</parmname>、</ph><ph props="mac cpp unreal bp flutter unity electron"><parmname>publishScreenTrack</parmname>、</ph><parmname>publishCustomVideoTrack</parmname> 或 <parmname>publishEncodedVideoTrack</parmname> 之中同一时间只能有一个为 <codeph><ph keyref="true"/></codeph>。
             <note type="attention" id="note">建议你根据业务场景自行设置成员参数值，否则 SDK 会自动对成员参数进行赋值。</note>
         </section>
         <section id="parameters">
@@ -699,7 +699,16 @@ class ChannelMediaOptions {
                     </ul>
                  </pd>
              </plentry>
-                <plentry>
+             <plentry props="en">
+                 <pt>publishLipSyncTrack</pt>
+                 <pd>设置是否发布语音驱动插件处理后的视频：
+                     <ul>
+                    <li><codeph><ph keyref="true"/></codeph>：发布语音驱动插件处理后的视频。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：不发布语音驱动插件处理后的视频。</li>
+                    </ul>
+                 </pd>
+             </plentry>
+            <plentry>
                 <pt>publishCustomAudioTrack</pt>
                 <pd>设置是否发布自定义采集的音频：
 

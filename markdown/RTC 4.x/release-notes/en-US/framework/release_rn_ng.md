@@ -118,6 +118,7 @@ This version fixed the following issues:
 - [`unregisterFaceInfoObserver`](/api-ref/rtc/rn/API/toc_speech_driven#api_imediaengine_unregisterfaceinfoobserver)
 - [`IFaceInfoObserver`](/api-ref/rtc/rn/API/class_ifaceinfoobserver)
 - [`onFaceInfo`](/api-ref/rtc/rn/API/toc_speech_driven#callback_ifaceinfoobserver_onfaceinfo)
+- The `publishLipSyncTrack` member in [`ChannelMediaOptions`](/api-ref/rtc/rn/API/class_channelmediaoptions)
 - [`MediaSourceType`](/api-ref/rtc/rn/API/enum_mediasourcetype) adds `SpeechDrivenVideoSource`
 - [`VideoSourceType`](/api-ref/rtc/rn/API/enum_videosourcetype) adds `VideoSourceSpeechDriven`
 - [`EncryptionConfig`](/api-ref/rtc/rn/API/class_encryptionconfig) adds `datastreamEncryptionEnabled`

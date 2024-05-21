@@ -80,6 +80,8 @@ This version fixed the following issues:
 
 - [onFaceInfo](API/callback_ifaceinfoobserver_onfaceinfo.html)
 
+- The `publishLipSyncTrack` member in [ChannelMediaOptions](API/class_channelmediaoptions)
+
 - [MEDIA_SOURCE_TYPE](API/enum_mediasourcetype.html) adds `SPEECH_DRIVEN_VIDEO_SOURCE`
 
 - [VIDEO_SOURCE_TYPE](API/enum_videosourcetype.html) adds `VIDEO_SOURCE_SPEECH_DRIVEN`

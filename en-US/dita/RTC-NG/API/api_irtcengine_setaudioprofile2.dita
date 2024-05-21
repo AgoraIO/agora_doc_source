@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setaudioprofile2">
     <title><ph keyref="setAudioProfile2" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the audio parameters and application scenarios.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets audio profiles.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -21,15 +21,22 @@
             <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <note type="attention">
-            <ul>
-            <li>You can call this method either before or after joining a channel.</li>
-            <li>In scenarios requiring high-quality audio, such as online music tutoring, Agora recommends you set <codeph>profile</codeph> as <codeph><ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY" />(4)</codeph>.</li>
-            <li>If you need to set the audio scenario, you can either call <xref keyref="setAudioScenario"/>, or <xref keyref="initialize" /> and set the <parmname props="android">mAudioScenario</parmname><parmname props="ios mac cpp unreal bp unity cs flutter">audioScenario</parmname> in <xref keyref="RtcEngineConfig" />.</li>
-            </ul> </note> </section>
-        <section id="parameters">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>If you need to set the audio scenario, you can either call <xref keyref="setAudioScenario"/>, or <xref keyref="initialize" /> and set the <parmname props="android">mAudioScenario</parmname><parmname props="apple cpp framework">audioScenario</parmname> in <xref keyref="RtcEngineConfig" />.</p>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Applicable scenarios</title>
+            <p>This method is suitable for various audio scenarios. You can choose as needed. For example, in scenarios with high audio quality requirements such as music teaching, it is recommended to set <codeph>profile</codeph> to <codeph><ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY" /></codeph>(4).</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>You can call this method either before or after joining a channel.</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>
@@ -39,11 +46,11 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unreal bp electron unity rn cs">
+        <section id="return_values" props="native unreal unity cs">
             <title>Returns</title>
             <ul>
             <li>0: Success.</li>
             <li> &lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
-    </refbody>
+        </refbody>
 </reference>

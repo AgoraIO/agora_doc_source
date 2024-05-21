@@ -96,6 +96,7 @@ This version fixed the following issues:
 - [`setFaceInfoDelegate`](/api-ref/rtc/macos/API/toc_speech_driven#api_imediaengine_registerfaceinfoobserver)
 - [`AgoraFaceInfoDelegate`](/api-ref/rtc/macos/API/class_ifaceinfoobserver)
 - [`onFaceInfo`](/api-ref/rtc/macos/API/toc_speech_driven#callback_ifaceinfoobserver_onfaceinfo)
+- The `publishLipSyncTrack` member in [`AgoraRtcChannelMediaOptions`](/api-ref/rtc/macos/API/class_channelmediaoptions)
 - [`AgoraMediaSourceType`](/api-ref/rtc/macos/API/enum_mediasourcetype) adds `AgoraMediaSourceTypeSpeechDriven`
 - [`AgoraVideoSourceType`](/api-ref/rtc/macos/API/enum_videosourcetype) adds `AgoraVideoSourceTypeSpeechDriven`
 - [`AgoraEncryptionConfig`](/api-ref/rtc/macos/API/class_encryptionconfig) adds `datastreamEncryptionEnabled`

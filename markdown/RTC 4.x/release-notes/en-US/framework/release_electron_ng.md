@@ -88,6 +88,7 @@ This version fixed the following issues:
 - [`unregisterFaceInfoObserver`](/api-ref/rtc/electron/API/toc_speech_driven#api_imediaengine_unregisterfaceinfoobserver)
 - [`IFaceInfoObserver`](/api-ref/rtc/electron/API/class_ifaceinfoobserver)
 - [`onFaceInfo`](/api-ref/rtc/electron/API/toc_speech_driven#callback_ifaceinfoobserver_onfaceinfo)
+- The `publishLipSyncTrack` member in [`ChannelMediaOptions`](/api-ref/rtc/electron/API/class_channelmediaoptions)
 - [`MediaSourceType`](/api-ref/rtc/electron/API/enum_mediasourcetype) adds `SpeechDrivenVideoSource`
 - [`VideoSourceType`](/api-ref/rtc/electron/API/enum_videosourcetype) adds `VideoSourceSpeechDriven`
 - [`EncryptionConfig`](/api-ref/rtc/electron/API/class_encryptionconfig) adds `datastreamEncryptionEnabled`

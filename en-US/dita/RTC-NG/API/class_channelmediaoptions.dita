@@ -557,7 +557,7 @@ class ChannelMediaOptions {
 }</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">Agora supports publishing multiple audio streams and one video stream at the same time and in the same <xref keyref="RtcConnection"/>. For example, <parmname>publishMicrophoneTrack</parmname>, <parmname>publishCustomAudioTrack</parmname>, and <parmname>publishMediaPlayerAudioTrack</parmname> can be set as <codeph><ph keyref="true"/></codeph> at the same time, but only one of <parmname>publishCameraTrack</parmname>, <parmname props="android ios cpp unreal bp flutter unity rn">publishScreenCaptureVideo</parmname><parmname props="mac cpp unreal bp flutter unity electron">publishScreenTrack</parmname>, <parmname>publishCustomVideoTrack</parmname>, or <parmname>publishEncodedVideoTrack</parmname> can be set as <codeph><ph keyref="true"/></codeph>.<note type="attention" id="note">Agora recommends that you set member parameter values yourself according to your business scenario, otherwise the SDK will automatically assign values to member parameters.</note>
+        <section id="detailed_desc">Agora supports publishing multiple audio streams and one video stream at the same time and in the same <xref keyref="RtcConnection"/>. For example, <parmname>publishMicrophoneTrack</parmname>, <parmname>publishCustomAudioTrack</parmname>, and <parmname>publishMediaPlayerAudioTrack</parmname> can be set as <codeph><ph keyref="true"/></codeph> at the same time, but only one of <parmname>publishCameraTrack</parmname>, <ph props="android ios cpp unreal bp flutter unity rn"><parmname>publishScreenCaptureVideo</parmname>, </ph><ph props="mac cpp unreal bp flutter unity electron"><parmname>publishScreenTrack</parmname>, </ph><parmname>publishCustomVideoTrack</parmname>, or <parmname>publishEncodedVideoTrack</parmname> can be set as <codeph><ph keyref="true"/></codeph>.<note type="attention" id="note">Agora recommends that you set member parameter values yourself according to your business scenario, otherwise the SDK will automatically assign values to member parameters.</note>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
@@ -682,7 +682,15 @@ class ChannelMediaOptions {
                     </ul>
                  </pd>
              </plentry>
-                <plentry>
+             <plentry props="en">
+                 <pt>publishLipSyncTrack</pt>
+                 <pd>Whether to publish the video track processed by the speech driven extension:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Publish the video track processed by the speech driven extension.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Do not publish the video track processed by the speech driven extension.</li>
+                    </ul>
+                 </pd>
+             </plentry>
+            <plentry>
                 <pt>publishCustomAudioTrack</pt>
                 <pd>Whether to publish the audio captured from a custom source:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the audio captured from the custom source.</li>

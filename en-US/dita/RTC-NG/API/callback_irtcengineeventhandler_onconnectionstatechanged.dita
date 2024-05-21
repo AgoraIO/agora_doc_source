@@ -72,20 +72,23 @@
                     <li><ph keyref="CONNECTION_CHANGED_CONNECTING" />(0): The SDK is connecting to Agora's edge server.</li>
                     <li><ph keyref="CONNECTION_CHANGED_JOIN_SUCCESS" />(1): The SDK has joined the channel successfully.</li>
                     <li><ph keyref="CONNECTION_CHANGED_INTERRUPTED" />(2): The connection between the SDK and Agora's edge server is interrupted.</li>
-                    <li><ph keyref="CONNECTION_CHANGED_BANNED_BY_SERVER" />(3): The network connection is blocked by the server, possibly because the user is kicked out of the channel.</li>
-                    <li><ph keyref="CONNECTION_CHANGED_JOIN_FAILED" />(4): The SDK fails to join the channel.</li>
+                    <li><ph keyref="CONNECTION_CHANGED_BANNED_BY_SERVER" />(3): The connection is banned by the Agora server. For example, when a user is kicked out of the channel, this code will be returned.</li>
+                    <li><ph keyref="CONNECTION_CHANGED_JOIN_FAILED" />(4): The SDK fails to join the channel. When the SDK fails to join the channel for more than 20 minutes, this code will be returned and the SDK stops reconnecting to the channel. You need to prompt the user to try to switch to another network and rejoin the channel.</li>
                     <li><ph keyref="CONNECTION_CHANGED_LEAVE_CHANNEL" />(5): The SDK has left the channel.</li>
-                    <li><ph keyref="CONNECTION_CHANGED_INVALID_APP_ID" />(6): The connection failed because the App ID is not valid. Please rejoin the channel with a valid App ID.</li>
-                    <li><ph keyref="CONNECTION_CHANGED_INVALID_CHANNEL_NAME" />(7): The connection failed because the channel name is invalid. Rejoin the channel with a valid channel name.</li>
-                    <li><ph keyref="CONNECTION_CHANGED_INVALID_TOKEN" />(8): The connection failed because the token is invalid. Possible reasons are as follows:<ul id="ul_pf4_kcx_qqb">
-                        <li>The App Certificate for the project is enabled in Agora Console, but you do not use a token when joining the channel. If you enable the App Certificate, you must use a token to join the channel.</li>
-                        <li>The uid specified when calling <xref keyref="joinChannel2" /> to join the channel is inconsistent with the uid passed in when generating the token.</li>
-                        </ul> </li>
-                    <li><ph keyref="CONNECTION_CHANGED_TOKEN_EXPIRED" />(9): The token has expired. You need to generate a new token from your server.</li>
+                    <li><ph keyref="CONNECTION_CHANGED_INVALID_APP_ID" />(6): Invalid App ID. You need to rejoin the channel with a valid APP ID and make sure the App ID you are using is consistent with the one generated in the Agora Console.</li>
+                    <li><ph keyref="CONNECTION_CHANGED_INVALID_CHANNEL_NAME" />(7): Invalid channel name. Rejoin the channel with a valid channel name. A valid channel name is a string of up to 64 bytes in length. Supported characters (89 characters in total):<ul conkeyref="joinChannel2/char_support"><li/></ul></li>
+                    <li><ph keyref="CONNECTION_CHANGED_INVALID_TOKEN" />(8): Invalid token. Possible reasons are as follows:<ul>
+                    <li>The App Certificate for the project is enabled in Agora Console, but you do not pass in a token when joining a channel.</li>
+                    <li>The uid specified when calling <apiname keyref="joinChannel2"/> to join the channel is inconsistent with the uid passed in when generating the token.</li>
+                    <li>The generated token and the token used to join the channel are not consistent.</li>
+                    </ul>Ensure the following:<ul><li>When your project enables App Certificate, you need to pass in a token to join a channel.</li>
+                            <li>The user ID specified when generating the token is consistent with the user ID used when joining the channel.</li>
+                            <li>The generated token is the same as the token passed in to join the channel.</li></ul></li>
+                    <li><ph keyref="CONNECTION_CHANGED_TOKEN_EXPIRED" />(9): The token currently being used has expired. You need to generate a new token on your server and rejoin the channel with the new token.</li>
                     <li><ph keyref="CONNECTION_CHANGED_REJECTED_BY_SERVER" />(10): The user is banned by the server.</li>
                     <li><ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER" />(11): The SDK tries to reconnect after setting a proxy server.</li>
                     <li><ph keyref="CONNECTION_CHANGED_RENEW_TOKEN" />(12): The connection state changed because the token is renewed.</li>
-                    <li><ph keyref="CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED" />(13): The IP Address of the SDK client has changed, probably due to a change of the network type, IP address, or network port.</li>
+                    <li><ph keyref="CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED" />(13): Client IP address changed. If you receive this code multiple times, You need to prompt the user to switch networks and try joining the channel again.</li>
                     <li><ph keyref="CONNECTION_CHANGED_KEEP_ALIVE_TIMEOUT" />(14): Timeout for the keep-alive of the connection between the SDK and the Agora edge server. The SDK tries to reconnect to the server automatically.</li>
                     <li><ph keyref="CONNECTION_CHANGED_REJOIN_SUCCESS" />(15): The SDK has rejoined the channel successfully.</li>
                     <li><ph keyref="CONNECTION_CHANGED_LOST" />(16): The connection between the SDK and the server is lost.</li>
