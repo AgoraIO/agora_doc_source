@@ -139,46 +139,63 @@ To monitor the chat room events, you can listen for the callbacks in the `ChatRo
 The following code sample shows how to add and remove the chat room event handler:
 
 ```dart
-    // Adds the chat room event handler.
+
+/// Add a chat room event listener.
 ChatClient.getInstance.chatRoomManager.addEventHandler(
-  "UNIQUE_HANDLER_ID",
+  'UNIQUE_HANDLER_ID',
   ChatRoomEventHandler(
-    // Occurs when the chat room ownership is transferred.
-    onOwnerChangedFromChatRoom: (roomId, newOwner, oldOwner) {},
-    // Occurs when chat room members are added to the mute list.
-    onMuteListAddedFromChatRoom: (roomId, mutes, expireTime) {},
-    // Occurs when chat room members are removed from the mute list.
-    onMuteListRemovedFromChatRoom: (roomId, mutes) {},
-    // Occurs when the chat room is destroyed.
-    onChatRoomDestroyed: (roomId, roomName) {},
-    // Occurs when the chat room specifications are changed. 
-    onSpecificationChanged: (room) {},
-    // Occurs when a user joins the chat room.
-    onMemberJoinedFromChatRoom: (roomId, participant) {},
-    // Occurs when a member leaves the chat room.
-    onMemberExitedFromChatRoom: (roomId, roomName, participant) {},
-    // Occurs when a member is removed from a chat room.
-    onRemovedFromChatRoom: (roomId, roomName, participant) {},
-    // Occurs when the chat room announcement is changed.
-    onAnnouncementChangedFromChatRoom: (roomId, announcement) {},
-    // Occurs when chat room members are added to the allow list.
-    onAllowListAddedFromChatRoom: (roomId, members) {},
-    // Occurs when chat room members are removed from the allow list.
-    onAllowListRemovedFromChatRoom: (roomId, members) {},
-    // Occurs when all chat room members are muted or unmuted.
-    onAllChatRoomMemberMuteStateChanged: (roomId, isAllMuted) {},
-    // Occurs when a member is promoted to an admin.
+    /// Occurs when a member is added to the chat room admin list.
     onAdminAddedFromChatRoom: (roomId, admin) {},
-    // Occurs when an admin is demoted to a member.
+
+    /// Occurs when a member is removed from the chat room admin list.
     onAdminRemovedFromChatRoom: (roomId, admin) {},
-    // Occurs when the custom chat room attributes (key-value) are updated.
+
+    /// Occurs when the state of muting all the chat room members changes.
+    onAllChatRoomMemberMuteStateChanged: (roomId, isAllMuted) {},
+
+    /// Occurs when a member is added to the chat room allow list.
+    onAllowListAddedFromChatRoom: (roomId, members) {},
+
+    /// Occurs when a member is removed from the chat room allow list.
+    onAllowListRemovedFromChatRoom: (roomId, members) {},
+
+    /// Occurs when the chat room announcement is changed.
+    onAnnouncementChangedFromChatRoom: (roomId, announcement) {},
+
+    /// Occurs when custom chat room attributes are removed.
+    onAttributesRemoved: (roomId, removedKeys, from) {},
+
+    /// Occurs when custom chat room attributes are changed.
     onAttributesUpdated: (roomId, attributes, from) {},
-    // Occurs when the custom chat room attributes (key-value) are removed.
-    onAttributesRemoved: (roomId, keys, fromId) {},
+
+    /// Occurs when the chat room instance is destroyed.
+    onChatRoomDestroyed: (roomId, roomName) {},
+
+    /// Occurs when a member leaves the chat room.
+    onMemberExitedFromChatRoom: (roomId, roomName, participant) {},
+
+    /// Occurs when a new member joins the chat room.
+    onMemberJoinedFromChatRoom: (roomId, participant) {},
+
+    /// Occurs when a member is added to the chat room mute list.
+    onMuteListAddedFromChatRoom: (roomId, mutes, expireTime) {},
+
+    /// Occurs when a member is removed from the chat room mute list.
+    onMuteListRemovedFromChatRoom: (roomId, mutes) {},
+
+    /// Occurs when the chat room ownership is transferred.
+    onOwnerChangedFromChatRoom: (roomId, newOwner, oldOwner) {},
+
+    ///Occurs when a chat room member is removed.
+    onRemovedFromChatRoom: (roomId, roomName, participant, reason) {},
+
+    /// Occurs when the specifications of a chat room is changed.
+    onSpecificationChanged: (room) {},
   ),
 );
-    ...
 
-    // Removes the chat room event handler.
-    ChatClient.getInstance.chatRoomManager.removeEventHandler("UNIQUE_HANDLER_ID");
+// ...
+
+/// Remove a chat room event listener.
+ChatClient.getInstance.chatRoomManager.removeEventHandler('UNIQUE_HANDLER_ID');
 ```

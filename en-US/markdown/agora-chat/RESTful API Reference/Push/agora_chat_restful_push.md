@@ -64,12 +64,16 @@ You can call this API to bind the push information to the device or unbind them 
 ### HTTP request
 
 ```
-PUT https://{host}/{org_name}/{app_name}/users/{username}/push/binding
+PUT https://{host}/{org_name}/{app_name}/users/{userId}/push/binding
 ```
 
 #### Path parameter
 
-For the descriptions of path parameters, see [Common Parameters](#param). 
+| Parameter | Type | Description | Required |
+|:---------------| :------ | :------- |:------------------|
+| `userId` | String | The user ID of the current user.  | Yes |
+
+For the descriptions of other path parameters, see [Common Parameters](#param). 
 
 #### Request header
 
@@ -167,12 +171,16 @@ Retrieves the push information bound to all devices of the current user.
 ### HTTP request
 
 ```
-GET https://{host}/{org_name}/{app_name}/users/{username}/push/binding
+GET https://{host}/{org_name}/{app_name}/users/{userId}/push/binding
 ```
 
 #### Path parameter
 
-For the descriptions of path parameters, see [Common Parameters](#param). 
+| Parameter | Type | Description | Required |
+|:---------------| :------ | :------- |:------------------|
+| `userId` | String | The user ID of the current user.  | Yes |
+
+For the descriptions of other path parameters, see [Common Parameters](#param). 
 
 #### Request header
 
@@ -234,12 +242,16 @@ For each App Key, the total call frequency limit of this method and the method t
 ### HTTP request
 
 ```http
-PUT https://{host}/{org_name}/{app_name}/users/{username}
+PUT https://{host}/{org_name}/{app_name}/users/{userId}
 ```
 
 #### Path parameter
 
-For the descriptions of path parameters, see [Common Parameters](#request).
+| Parameter | Type | Description | Required |
+|:---------------| :------ | :------- |:------------------|
+| `userId` | String | The user ID of the current user.  | Yes |
+
+For the descriptions of other path parameters, see [Common Parameters](#param). 
 
 #### Request header
 
@@ -318,17 +330,22 @@ For each App Key, the total call frequency limit of this method and the method t
 ### HTTP request
 
 ```http
-PUT https://{host}/{org_name}/{app_name}/users/{username}
+PUT https://{host}/{org_name}/{app_name}/users/{userId}
 ```
 
 #### Path parameter
 
-For the descriptions of path parameters, see [Common Parameters](#request).
+| Parameter | Type | Description | Required |
+|:---------------| :------ | :------- |:------------------|
+| `userId` | String | The user ID of the current user.  | Yes |
+
+For the descriptions of other path parameters, see [Common Parameters](#param). 
 
 #### Request header
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | -------- |
+| `Content-Type` | String | The content type. Set it as `application/json`.   | Yes  |
 | `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 #### Request body
@@ -364,7 +381,10 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```bash
-curl -X PUT -H "Authorization: Bearer <YourAppToken>" -i https://XXXX/XXXX/XXXX/users/a -d '{"notification_display_style": "1"}'
+curl -X PUT https://XXXX/XXXX/XXXX/users/XXXX \
+-H 'Content-Type: application/json'  \
+-H "Authorization: Bearer <YourAppToken>" \
+-d '{"notification_display_style": "1"}'
 ```
 
 #### Response example
@@ -374,7 +394,7 @@ curl -X PUT -H "Authorization: Bearer <YourAppToken>" -i https://XXXX/XXXX/XXXX/
   "action" : "put",  
   "application" : "17d59e50-XXXX-XXXX-8092-0dc80c0f5e99",  
   "path" : "/users",  
-  "uri" : "https://XXXX/XXXX/XXXX/users",  
+  "uri" : "https://XXXX/XXXX/XXXX/users/XXXX",  
   "entities" : [ 
     {    
       "uuid" : "3b8c9890-XXXX-XXXX-9d88-f50bf55cafad",    
@@ -411,6 +431,7 @@ PUT https://{host}/{org}/{app}/users/{username}/notification/{chattype}/{key}
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | -------- |
+| `userId` | String | The user ID of the current user.  | Yes |
 | `chattype` | String | The type of the chat:<li>`user`: one-to-one chats.<li>`chatgroup`: Group chats.  | Yes |
 | `key` | String | The identifier of the chat:<li>If `type` is set to `user`, `key` indicates the user ID of the peer user.<li>If `type` is set to `chatgroup`, `key` indicates the ID of the chat group. | Yes |
 
@@ -457,10 +478,10 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```bash
-curl -L -X PUT 'http://XXXX/XXXX/XXXX/users/{username}/notification/user/{key}' \
+curl -L -X PUT 'http://XXXX/XXXX/XXXX/users/XXXX/notification/user/XXXX' \
 -H 'Authorization: Bearer <YourAppToken>' \
 -H 'Content-Type: application/json' \
---data-raw '{
+-d '{
     "type":"NONE",
     "ignoreInterval":"21:30-08:00",
     "ignoreDuration":86400000
@@ -472,7 +493,7 @@ curl -L -X PUT 'http://XXXX/XXXX/XXXX/users/{username}/notification/user/{key}' 
 ```json
 {
     "path": "/users",
-    "uri": "https://XXXX/XXXX/XXXX/users/notification/user/hxtest",
+    "uri": "https://XXXX/XXXX/XXXX/users/notification/user/XXXX",
     "timestamp": 1647503749918,
     "organization": "XXX",
     "application": "17fe201b-XXXX-XXXX-83df-1ed1ebd7b227",
@@ -497,13 +518,14 @@ For each App Key, the call frequency limit of this method is 100 per second.
 ### HTTP request
 
 ```http
-GET https://{host}/{org_name}/{app_name}/users/{username}/notification/{chattype}/{key}
+GET https://{host}/{org_name}/{app_name}/users/{userId}/notification/{chattype}/{key}
 ```
 
 #### Path parameter
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | -------- |
+| `userId` | String | The user ID of the current user.  | Yes |
 | `chattype` | String | The type of the chat:<li>`user`: One-to-one chats.<li>`chatgroup`: Group chats.  | Yes |
 | `key` | String | The identifier of the chat:<li>If `type` is set to `user`, `key` indicates the user ID of the peer user.<li>If `type` is set to `chatgroup`, `key` indicates the ID of the chat group. | Yes |
 
@@ -536,7 +558,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```bash
-curl -L -X GET 'https://XXXX/XXXX/XXXX/users/{username}/notification/chatgroup/{key}' \
+curl -L -X GET 'https://XXXX/XXXX/XXXX/users/XXXX/notification/chatgroup/XXXX' \
 -H 'Authorization: Bearer <YourAppToken>' 
 ```
 
@@ -570,10 +592,14 @@ For each App Key, the call frequency limit of this method is 100 per second.
 ### HTTP request
 
 ```http
-PUT https://{host}/{org_name}/{app_name}/users/{username}/notification/language
+PUT https://{host}/{org_name}/{app_name}/users/{userId}/notification/language
 ```
 
 #### Path parameter
+
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | -------- |
+| `userId` | String | The user ID of the current user.  | Yes |
 
 For the descriptions of path parameters, see [Common Parameters](#request).
 
@@ -609,10 +635,10 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```bash
-curl -L -X PUT 'https://XXXX/XXXX/XXXX/users/{username}/notification/language' \
+curl -L -X PUT 'https://XXXX/XXXX/XXXX/users/XXXX/notification/language' \
 -H 'Authorization: Bearer <YourAppToken>' \
 -H 'Content-Type: application/json' \
---data-raw '{
+-d '{
     "translationLanguage":"EU"
 }'
 ```
@@ -622,7 +648,7 @@ curl -L -X PUT 'https://XXXX/XXXX/XXXX/users/{username}/notification/language' \
 ```json
 {
     "path": "/users",
-    "uri": "https://XXXX/XXXX/XXXX/users/notification/language",
+    "uri": "https://XXXX/XXXX/XXXX/users/XXXX/notification/language",
     "timestamp": 1648089630244,
     "organization": "XXXX",
     "application": "17fe201b-XXXX-XXXX-83df-1ed1ebd7b227",
@@ -645,10 +671,14 @@ For each App Key, the call frequency limit of this method is 100 per second.
 ### HTTP request
 
 ```http
-GET https://{host}/{org}/{app}/users/{username}/notification/language
+GET https://{host}/{org}/{app}/users/{userId}/notification/language
 ```
 
 #### Path parameter
+
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | -------- |
+| `userId` | String | The user ID of the current user.  | Yes |
 
 For the descriptions of path parameters, see [Common Parameters](#request).
 
@@ -656,7 +686,6 @@ For the descriptions of path parameters, see [Common Parameters](#request).
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | -------- |
-| `Content-Type` | String | The content type. Set it as `application/json`.   | Yes |
 | `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 ### HTTP response
@@ -678,7 +707,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```bash
-curl -L -X GET 'https://XXXX/XXXX/XXXX/users/{username}/notification/language' \
+curl -L -X GET 'https://XXXX/XXXX/XXXX/users/XXXX/notification/language' \
 -H 'Authorization: Bearer <YourAppToken>'
 ```
 
@@ -687,7 +716,7 @@ curl -L -X GET 'https://XXXX/XXXX/XXXX/users/{username}/notification/language' \
 ```json
 {
     "path": "/users",
-    "uri": "https://XXXX/XXXX/XXXX/users/notification/language",
+    "uri": "https://XXXX/XXXX/XXXX/users/XXXX/notification/language",
     "timestamp": 1648089630244,
     "organization": "XXXX",
     "application": "17fe201b-XXXX-XXXX-83df-1ed1ebd7b227",
@@ -758,7 +787,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 curl -X POST 'https://XXXX/XXXX/XXXX/notification/template' \
 -H 'Authorization: Bearer <YourAppToken>' \
 -H 'Content-Type: application/json' \
---data-raw '{
+-d '{
     "name": "test7",
     "title_pattern": "Hello,{0}",
     "content_pattern": "Test,{0}"
@@ -836,7 +865,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```bash
-curl -X GET 'https://XXXX/XXXX/XXXX/notification/template/{name}' \
+curl -X GET 'https://XXXX/XXXX/XXXX/notification/template/XXXX' \
 -H 'Authorization: Bearer <YourAppToken>' 
 ```
 
@@ -844,7 +873,7 @@ curl -X GET 'https://XXXX/XXXX/XXXX/notification/template/{name}' \
 
 ```json
 {
-    "uri": "https://XXXX/XXXX/XXXX/notification/template/test7",
+    "uri": "https://XXXX/XXXX/XXXX/notification/template/XXXX",
     "timestamp": 1646989686393,
     "organization": "XXXX",
     "application": "17fe201b-XXXX-XXXX-83df-1ed1ebd7b227",
@@ -911,7 +940,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```bash
-curl -X DELETE 'https://XXXX/XXXX/XXXX/notification/template' \
+curl -X DELETE 'https://XXXX/XXXX/XXXX/notification/template/XXXX' \
 -H 'Authorization: Bearer <YourAppToken>' 
 ```
 
@@ -919,7 +948,7 @@ curl -X DELETE 'https://XXXX/XXXX/XXXX/notification/template' \
 
 ```json
 {
-    "uri": "https://XXXX/XXXX/XXXX/notification/template",
+    "uri": "https://XXXX/XXXX/XXXX/notification/template/XXXX",
     "timestamp": 1646989686393,
     "organization": "XXXX",
     "application": "17fe201b-XXXX-XXXX-83df-1ed1ebd7b227",
