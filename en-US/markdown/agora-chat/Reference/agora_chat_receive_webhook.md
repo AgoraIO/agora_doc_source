@@ -1386,7 +1386,7 @@ When a user sends read receipt, the Agora Chat server sends a callback to your a
 | `timestamp` | long     | The Unix timestamp when the Agora Chat server receives the callback event, in milliseconds.               |
 | `msg_id`    | String   | The message ID of the receipt.                                    |
 
-## Moderation callback content
+## Content moderation result
 
 When the message moderation is complete, the Chat server sends the moderation result to your app server.
 
