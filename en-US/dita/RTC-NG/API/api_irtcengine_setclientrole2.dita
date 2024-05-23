@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setclientrole2">
     <title><ph keyref="setClientRole2" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the user role and level in an interactive live streaming channel.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">设置直播场景下的用户角色和观众端延时级别。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -31,31 +31,42 @@
     {required ClientRoleType role, ClientRoleOptions? options});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <p>In the interactive live streaming profile, the SDK sets the user role as audience by default. You can call this method to set the user role as host.</p>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>In the interactive live streaming profile, the SDK sets the user role as audience by default. You can call this method to set the user role as host. 用户角色（<parmname>role</parmname>）确定用户在 SDK 层的权限，包含是否有发流权限等。</p>
+            <p props="native unreal unity cs">该方法与 <xref keyref="setClientRole1"/> 的区别在于，该方法还支持设置观众端延时级别（<parmname>audienceLatencyLevel</parmname>）。 <parmname>audienceLatencyLevel</parmname> 需与 <parmname>role</parmname> 结合使用，确定用户在其权限范围内可以享受到的服务。 For example, an audience member can choose to receive remote streams with low latency or ultra-low latency. 不同的延时级别会影响计费，详见 <xref keyref="billing-streaming"/>。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
             <p>You can call this method either before or after joining a channel.</p>
-            <p id="preview" props="native unreal bp electron flutter">If you call this method to set the user's role as the host before joining the channel and set the local video property through the <xref keyref="setupLocalVideo" /> method, the local video preview is automatically enabled when the user joins the channel.</p>
-            <p>If you call this method to switch the user role after joining a channel, the SDK automatically does the following:<ul>
-            <li>Calls <xref keyref="muteLocalAudioStream" /> and <xref keyref="muteLocalVideoStream" /> to change the publishing state.</li>
-            <li>Triggers <xref keyref="onClientRoleChanged" /> on the local client.</li>
-            <li>Triggers <xref keyref="onUserJoined" /> or <xref keyref="onUserOffline" /> on the remote client.</li>
-            </ul></p>
-            <p props="native unreal unity cs">The difference between this method and <xref keyref="setClientRole1"/> is that this method can set the user level in addition to the user role.<ul id="diff">
-            <li>The user role (<parmname>role</parmname>) determines the permissions that the SDK grants to a user, such as permission to send local streams, receive remote streams, and push streams to a CDN address.</li>
-            <li>The user level (<parmname>level</parmname>) determines the <parmname>level</parmname> of services that a user can enjoy within the permissions of the user's role. For example, an audience member can choose to receive remote streams with low latency or ultra-low latency. <b>User level affects the pricing of services.</b></li>
-            </ul></p>
-            <note type="attention">This method applies to the interactive live streaming profile (the <parmname>profile</parmname> parameter of <xref keyref="setChannelProfile" /> is set as <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING" />) only.</note> </section>
-        <section id="parameters">
+            <p id="preview1" props="native unreal bp electron flutter">If you call this method to set the user's role as the host before joining the channel and set the local video property through the <xref keyref="setupLocalVideo" /> method, the local video preview is automatically enabled when the user joins the channel.</p>
+            <p id="preview2" props="unity">If you call this method to set the user's role as the host before joining the channel and set<xref keyref="setEnable" /> the local video property through the  method, the local video preview is automatically enabled when the user joins the channel.</p>
+            <p id="sdk">如果你在加入频道后调用该方法切换用户角色，调用成功后，SDK 会自动调用 <xref keyref="muteLocalAudioStream" /> 和 <xref keyref="muteLocalVideoStream" /> 修改发布音视频流的状态。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>当用户角色设为主播时，观众端延时级别仅支持设置为 <ph keyref="AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY"/>（超低延时）。</p>
+            <p>在加入频道前调用该方法并将 <parmname>role</parmname> 设为 <parmname>BROADCASTER</parmname>（主播）时，本地不会触发 <xref keyref="onClientRoleChanged"/> 回调。</p>
+        </section>
+        <section id="related" deliveryTarget="details">
+            <title>Related callbacks</title>
+            <p>If you call this method to switch the user role after joining the channel, the SDK triggers the following callbacks:<ul>
+                <li>Triggers <xref keyref="onClientRoleChanged"/> on the local client.<note type="note">在加入频道前调用该方法并将 <parmname>role</parmname> 设为 <parmname>AUDIENCE</parmname>（观众）时，也会触发该回调。</note></li>
+                <li>Triggers <xref keyref="onUserJoined" /> or <xref keyref="onUserOffline"/> on the remote client.</li>
+                </ul></p>
+            <p>如果你在加入频道后调用该方法切换用户角色失败，SDK 会触发 <xref keyref="onClientRoleChangeFailed"/>，报告切换失败的原因和当前的用户角色。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt props="native unreal flutter unity cs electron rn">role</pt>
                 <pt props="bp">clientRoleType</pt>
-                <pd><ph>The user role in the interactive live streaming. </ph><ph props="ios mac cpp unreal bp electron unity flutter rn cs">See <xref keyref="CLIENT_ROLE_TYPE" />.</ph><ul props="android">
+                <pd>The user role. <ph props="ios mac cpp unreal bp electron unity flutter rn cs">See <xref keyref="CLIENT_ROLE_TYPE" />.</ph><ph></ph><ul props="android">
                     <li><ph keyref="CLIENT_ROLE_BROADCASTER" />(1): Host. A host can both send and receive streams.</li>
                     <li><ph keyref="CLIENT_ROLE_AUDIENCE" />(2): (Default) Audience. An audience member can only receive streams.</li>
-                    </ul> </pd>
+                    </ul>
+                    <note type="note">If you set the user role as an audience member, you cannot publish audio and video streams in the channel. If you want to publish media streams in a channel during live streaming, ensure you set the user role as broadcaster.</note>
+                </pd>
             </plentry>
             <plentry>
                 <pt>options</pt>

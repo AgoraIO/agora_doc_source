@@ -27,18 +27,23 @@
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart" /></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <p id="desc">In the interactive live streaming profile, the SDK sets the user role as audience by default. You can call this method to set the user role as host.</p>
-            <p>You can call this method either before or after joining a channel.</p>
-            <p conkeyref="setClientRole2/preview" props="native unreal bp electron flutter"/>
-            <p>If you call this method to switch the user role after joining a channel, the SDK automatically does the following:<ul>
-                <li>Calls <xref keyref="muteLocalAudioStream" /> and <xref keyref="muteLocalVideoStream" /> to change the publishing state.</li>
-                <li>Triggers <xref keyref="onClientRoleChanged" /> on the local client.</li>
-                <li>Triggers <xref keyref="onUserJoined" /> or <xref keyref="onUserOffline" /> on the remote client.</li>
-                </ul></p>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p id="desc">In the interactive live streaming profile, the SDK sets the user role as audience by default. You can call this method to set the user role as host. 用户角色（<parmname>role</parmname>）确定用户在 SDK 层的权限，包含是否可以发送流等。</p>
         </section>
-        <section id="parameters">
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>You can call this method either before or after joining a channel.</p>
+            <p conkeyref="setClientRole2/preview1" props="native unreal bp electron flutter"/>
+            <p conkeyref="setClientRole2/preview2" props="unity"/>
+            <p conkeyref="setClientRole2/sdk"/>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>在频道外调用本方法并将用户角色设为 <parmname>BROADCASTER</parmname>（主播）时，本地不会触发 <xref keyref="onClientRoleChanged"/> 回调。</p>
+        </section>
+        <section id="related" deliveryTarget="details" conkeyref="setClientRole2/related">
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>

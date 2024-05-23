@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onclientrolechanged">
     <title><ph keyref="onClientRoleChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the user role switches during the interactive live streaming.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">用户角色、观众端延时级别已切换回调。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -37,10 +37,21 @@ NS_SWIFT_NAME(rtcEngine(_:didClientRoleChanged:newRole:newRoleOptions:));</codeb
       ClientRoleOptions newRoleOptions)? onClientRoleChanged;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <p>The SDK triggers this callback when the local user switches their user role by calling <xref keyref="setClientRole2"/> after joining the channel.</p>
+        <section id="scenario" deliveryTarget="details" props="hide">
+            <title>Applicable scenarios</title>
+            <p/>
         </section>
-        <section id="parameters">
+        <section id="timing" deliveryTarget="details">
+            <title>Trigger timing</title>
+            <p>在以下任意一种情况时，会触发此回调：<ul>
+                <li>在<b>加入频道后</b>调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2"/> 设置用户角色或观众端延时级别。</li>
+                <li>在<b>加入频道前</b>调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2"/> 并将用户角色设为 <parmname>AUDIENCE</parmname>。</li></ul></p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>当你在<b>加入频道前</b>调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2"/> 并将用户角色设为 <parmname>BROADCASTER</parmname> 时，不会触发此回调。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title><ph keyref="callback-section-title"/></title>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">

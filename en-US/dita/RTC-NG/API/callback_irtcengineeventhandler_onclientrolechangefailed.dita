@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onclientrolechangefailed">
     <title><ph keyref="onClientRoleChangeFailed" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the user role switching fails in the interactive live streaming.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">用户角色切换失败回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -37,16 +37,29 @@
             ClientRoleType currentRole)? onClientRoleChangeFailed;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
       </section>
-       <section id="detailed_desc">
-            <p>In the live broadcasting channel profile, when the local user calls <xref keyref="setClientRole2" /> to switch the user role after joining the channel but the switch fails, the SDK triggers this callback to report the reason for the failure and the current user role.</p>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>当用户角色切换失败时，你可以通过此回调得知切换失败的原因和当前的用户角色。</p>
         </section>
-        <section id="parameters">
+            <section id="scenario" deliveryTarget="details" props="hide">
+                <title>Applicable scenarios</title>
+                <p/>
+            </section>
+            <section id="timing" deliveryTarget="details">
+                <title>Trigger timing</title>
+                <p props="native unity cs">本地用户加入频道后调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2" /> 设置用户角色失败时，SDK 会触发该回调。</p>
+                <p props="flutter rn electron">本地用户加入频道后调用 <xref keyref="setClientRole2" /> 设置用户角色失败时，SDK 会触发该回调。</p>
+            </section>
+            <section id="restriction" deliveryTarget="details">
+                <title>Restrictions</title>
+                <p>None.</p>
+            </section>
+            <section id="parameters" deliveryTarget="details">
             <title><ph keyref="callback-section-title" /></title>
             <parml>
             <plentry>
                 <pt>reason</pt>
                 <pd props="ios mac cpp unreal bp unity electron rn flutter cs">The reason for a user role switch failure. See <xref keyref="CLIENT_ROLE_CHANGE_FAILED_REASON"/>.</pd>
-                <pd props="android">The possible reasons for the switch failure include the following:<ul>
+                <pd props="android">The reason for a user role switch failure.<ul>
                         <li><ph keyref="CLIENT_ROLE_CHANGE_FAILED_TOO_MANY_BROADCASTERS" />(1): The number of hosts in the channel is already at the upper limit.<note type="note">This enumerator is reported only when the support for 128 users is enabled. The maximum number of hosts is based on the actual number of hosts configured when you enable the 128-user feature.</note></li>
                         <li><ph keyref="CLIENT_ROLE_CHANGE_FAILED_NOT_AUTHORIZED" />(2): The request is rejected by the Agora server. Agora recommends you prompt the user to try to switch their user role again.</li>
                         <li><ph keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT" />(3): The request is timed out. Agora recommends you prompt the user to check the network connection and try to switch their user role again.</li>

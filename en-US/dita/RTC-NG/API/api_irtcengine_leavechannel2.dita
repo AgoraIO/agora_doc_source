@@ -25,14 +25,33 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; leaveChannel({LeaveChannelOptions? options});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <p>This method will release all resources related to the session, leave the channel, that is, hang up or exit the call. This method can be called whether or not a call is currently in progress.</p>
-            <p>After joining the channel, you must call this method or  to end the call, otherwise, the next call cannot be started.</p>
-            <p props="native unreal bp unity electron flutter cs">This method call is asynchronous. When this method returns, it does not necessarily mean that the user has left the channel. After actually leaving the channel, the local user triggers the <apiname keyref="onLeaveChannel"/> callback; after the user in the communication scenario and the host in the live streaming scenario leave the channel, the remote user triggers the <xref keyref="onUserOffline"/> callback.</p>
-            <p props="rn">Calling this method does not necessarily mean that the user has left the channel. After actually leaving the channel, the local user triggers the <apiname keyref="onLeaveChannel"/> callback; after the user in the communication scenario and the host in the live streaming scenario leave the channel, the remote user triggers the <xref keyref="onUserOffline"/> callback.</p>
-            <note conkeyref="leaveChannel/note" props="native unreal bp flutter unity electron rn cs"/> </section>
-        <section id="parameters">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+                <p>调用该方法后，SDK 会终止音视频互动、离开当前频道，并会释放会话相关的所有资源。</p>
+                <p props="native unity cs unreal">After joining the channel, you must call this method or  to<apiname keyref="leaveChannel"/> end the call, otherwise, the next call cannot be started. If you have called<xref keyref="joinChannelEx"/>  to join multiple channels, calling this method will leave the channels when calling  and  at the same time.</p>
+                <p props="flutter electron rn bp">After joining the channel, you must call this method to end the call; otherwise, you cannot join the next call. If you have called<xref keyref="joinChannelEx"/>  to join multiple channels, calling this method will leave the channels when calling  and  at the same time.</p>
+                <note type="attention">This method call is asynchronous. When this method returns, it does not necessarily mean that the user has left the channel.</note>
+        </section>
+        <section id="scenario" deliveryTarget="details" props="hide">
+            <title>Applicable scenarios</title>
+            <p/>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>Call this method after joining a channel.</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>If you call  immediately after calling this method<xref keyref="release"/>, the SDK does not trigger the<apiname keyref="onLeaveChannel"/>  callback.</p>
+        </section>
+        <section id="related" deliveryTarget="details">
+            <title>Related callbacks</title>
+            <p>A successful call of this method triggers the following callbacks: <ul>
+                <li>The local client:<xref keyref="onLeaveChannel"/> .</li>
+                <li>远端：主播离开频道后，远端会触发 <xref keyref="onUserOffline"/> 回调。</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml id="parml_jsr_dky_hqb">
             <plentry id="options">
