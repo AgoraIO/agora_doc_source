@@ -41,11 +41,7 @@
             <title>改进</title>
             <body>
                 <ol>
-                    <li><ph><b>改进名称</b></ph>
-                        <ul>
-                        <li><?oxy-placeholder content="用 list 描述"?></li>
-                        <li><?oxy-placeholder content="用 list 描述"?></li>
-                        </ul></li>
+                    <li>提升了 <xref keyref="setRemoteSubscribeFallbackOption"/> 方法的易用性，取消了调用时序要求，即：在加入频道前后，均可调用 <xref keyref="setRemoteSubscribeFallbackOption"/> 动态切换弱网环境下的音视频流回退选项。</li>
                     <li><ph><b>改进名称</b></ph>
                         <p><?oxy-placeholder content="用段落描述"?></p>
                     </li>
@@ -63,7 +59,10 @@
                     <li props="android flutter unity rn">首次安装 App 或重启系统后，打开 App 并开启屏幕共享时出现崩溃。</li>
                     <li props="android flutter unity rn">接听系统电话时加入频道，挂断电话后，本地音频采集失败，远端用户听不到声音。</li>
                     <li>远端用户离开频道时偶现崩溃。</li>
-                    <li/>
+                    <li props="cpp flutter unity electron">调用 <xref keyref="startScreenCaptureByWindowId"/> 共享 PPT 窗口，当 PPT 播放动画画面时，接收端偶现画面闪烁。(Windows)</li>
+                    <li props="cpp flutter unity electron">在 Windows 7 系统上调用 <xref keyref="startScreenCaptureByWindowId"/> 共享 WPS PPT 窗口，并设置 <xref keyref="ScreenCaptureParameters"/> 的 <codeph>enableHighLight</codeph> 为 <codeph><ph keyref="true"/></codeph> 开启窗口描边，放映该 PPT 后退出放映，之后选择最大化 PPT 窗口，窗口描边没有保留原始窗口大小，不符合预期。(Windows)</li>
+                    <li props="cpp flutter unity electron">调用 <xref keyref="startScreenCaptureByWindowId"/> 共享窗口，并设置 <xref keyref="ScreenCaptureParameters"/> 的 <codeph>windowFocus</codeph> 和 <codeph>enableHighLight</codeph> 为 <codeph><ph keyref="true"/></codeph> 以前置指定窗口并开启窗口描边，如果当前该窗口被其他窗口覆盖，无法前置该窗口，不符合预期。(Windows)</li>
+                    <li props="android">调用 <xref keyref="queryCameraFocalLengthCapability"/> 返回的 <xref keyref="AgoraFocalLengthInfo"/> 中，<codpeh>cameraDirection</codeph> 和 <codeph>focalLengthType</codeph> 的值无法被直接读取。</li>
                 </ul>
             </body>
         </topic>
