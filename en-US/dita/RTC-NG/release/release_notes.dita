@@ -1,89 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="release_notes">
-    <title>v4.3.1</title>
+    <title>v4.3.2</title>
     <body>
-        <p>This version is released on 2024 Month x, Day x.</p>
+        <p>This version was released on May x, 20xx.</p>
     </body>
     <topic id="level2">
         <title/>
-        <topic id="compatibility" props="android">
-            <title>Compatibility changes</title>
+        <topic id="compatibility" props="hide">
+            <title>Upgrade Notes</title>
             <body>
-                <p>To ensure parameter naming consistency, this version renames <codeph>channelName</codeph> to <codeph>channelId</codeph> and <codeph>optionalUid</codeph> to <codeph>uid</codeph> in <codeph><xref keyref="joinChannel1"/></codeph>. You must update your app's code after upgrading to this version to ensure normal project operations.</p>
+                <ol>
+                    <li><ph><b>Important Upgrade Information</b></ph>
+                        <ul>
+                            <li><?oxy-placeholder content="Describe using a list"?></li>
+                            <li><?oxy-placeholder content="Describe using a list"?></li>
+                        </ul>
+                    </li>
+                    <li><ph><b>Important Upgrade Information</b></ph>
+                        <p><?oxy-placeholder content="Describe using a paragraph"?></p>
+                    </li>
+                </ol>
             </body>
         </topic>
-        <topic id="newfeature">
+        <topic id="newfeature" props="hide">
             <title>New Features</title>
             <body>
                 <ol>
-                    <li><ph><b>Speech Driven Avatar</b></ph>
-                        <p>The SDK introduces a speech driven extension that converts speech information into corresponding facial expressions to animate avatar. You can access the facial information through the newly added <xref keyref="registerFaceInfoObserver"/> method and <xref keyref="onFaceInfo"/> callback. This facial information conforms to the ARKit standard for Blend Shapes (BS), which you can further process using third-party 3D rendering engines.</p>
-                        <p>The speech driven extension is a trimmable dynamic library, and details about the increase in app size are available at [reduce-app-size]().</p>
-                        <note type="attention">The speech driven avatar feature is currently in beta testing. To use it, please contact <xref keyref="ticket-link"/>.</note>
+                    <li><ph><b>New Feature Name</b></ph>
+                        <ul>
+                            <li><?oxy-placeholder content="Describe using a list"?></li>
+                            <li><?oxy-placeholder content="Describe using a list"?></li>
+                        </ul>
                     </li>
-                    <li props="ios unity flutter rn"><ph><b>Privacy manifest file (iOS)</b></ph>
-                        <p>To meet Apple's safety compliance requirements for app publication, the SDK now includes a privacy manifest file, <codeph>PrivacyInfo.xcprivacy</codeph>, detailing the SDK's API calls that access or use user data, along with a description of the types of data collected.</p>
-                        <note>If you need to publish an app with SDK versions prior to v4.3.1 to the Apple App Store, you must manually add the <codeph>PrivacyInfo.xcprivacy</codeph> file to your Xcode project.</note>
-                    </li>
-                    <li props="apple framework"><ph><b>Center stage camera (iOS, macOS)</b></ph>
-                        <p>To enhance the presentation effect in online meetings, shows, and online education scenarios, this version introduces the <xref keyref="enableCameraCenterStage"/> method to activate the center stage camera feature. This ensures that presenters, regardless of movement, always remain centered in the video frame, achieving better presentation effects.</p>
-                        <p>Before enabling Center Stage, it is recommended to verify whether your current device supports this feature by calling <xref keyref="isCameraCenterStageSupported"/>. A list of supported devices can be found in the API documentation at <xref keyref="enableCameraCenterStage"/>.</p>
-                    </li>
-                    <li props="ios unity flutter rn"><ph><b>Camera stabilization (iOS)</b></ph>
-                        <p>To improve video stability in mobile filming, low-light environments, and hand-held shooting scenarios, this version introduces a camera stabilization feature. You can activate this feature and select an appropriate stabilization mode by calling <xref keyref="setCameraStabilizationMode"/>, achieving more stable and clearer video footage.</p>
-                    </li>
-                    <li props="android ios flutter unity rn"><ph><b>Wide and ultra-wide cameras (Android, iOS)</b></ph>
-                        <p>To allow users to capture a broader field of view and more complete scene content, this release introduces support for wide and ultra-wide cameras. You can first call <xref keyref="queryCameraFocalLengthCapability"/> to check the device's focal length capabilities, and then call <xref keyref="setCameraCapturerConfiguration"/> and set <codeph>cameraFocalLengthType</codeph> to the supported focal length types, including wide and ultra-wide.</p>
-                    </li>
-                    <li props="android flutter unity rn"><ph><b>Multi-camera capture (Android)</b></ph>
-                        <p>This release introduces additional functionalities for Android camera capture:
-                            <ol>
-                                <li>Support for capturing and publishing video streams from the third and fourth cameras:
-                                    <ul>
-                                        <li props="android">New enumerators <codeph><apiname keyref="VIDEO_SOURCE_CAMERA_THIRD"/></codeph>(11) and <codeph><apiname keyref="VIDEO_SOURCE_CAMERA_FOURTH"/></codeph>(12) are added to <xref keyref="VIDEO_SOURCE_TYPE"/>, specifically for the third and fourth camera sources. This change allows you to specify up to four camera streams when initiating camera capture by calling <xref keyref="startCameraCapture"/>.</li>
-                                        <li props="flutter unity rn"><codeph><apiname keyref="VIDEO_SOURCE_CAMERA_THIRD"/></codeph> (11) and <codeph><apiname keyref="VIDEO_SOURCE_CAMERA_FOURTH"/></codeph> (12) in <xref keyref="VIDEO_SOURCE_TYPE"/> add support for Android, specifically for the third and fourth camera sources. This change allows you to specify up to four camera streams when initiating camera capture by calling <xref keyref="startCameraCapture"/>.</li>
-                                        <li props="android">New parameters <codeph>publishThirdCameraTrack</codeph> and <codeph>publishFourthCameraTrack</codeph> are added to <xref keyref="ChannelMediaOptions"/>. Set these parameters to <codeph><ph keyref="true"/></codeph> when joining a channel with <xref keyref="joinChannel2"/> to publish video streams captured from the third and fourth cameras.</li>
-                                        <li props="flutter unity rn"><codeph>publishThirdCameraTrack</codeph> and <codeph>publishFourthCameraTrack</codeph> in <xref keyref="ChannelMediaOptions"/> add support for Android. Set these parameters to <codeph><ph keyref="true"/></codeph> when joining a channel with <xref keyref="joinChannel2"/> to publish video streams captured from the third and fourth cameras.</li>
-                                    </ul>
-                                </li>
-                                <li>Support for specifying cameras by camera ID:
-                                    <ul props="android">
-                                        <li>A new parameter <codeph>cameraId</codeph> is added to <xref keyref="CameraCapturerConfiguration"/>. For devices with multiple cameras, where <codeph>cameraDirection</codeph> cannot identify or access all available cameras, you can obtain the camera ID through Android's native system APIs and specify the desired camera by calling <xref keyref="startCameraCapture"/> with the specific <codeph>cameraId</codeph>.</li>
-                                        <li>New method <xref keyref="switchCamera2"/> supports switching cameras by <codeph>cameraId</codeph>, allowing apps to dynamically adjust camera usage during runtime based on available cameras.</li>
-                                    </ul>
-                                    <p props="flutter unity rn">A new parameter <codeph>cameraId</codeph> is added to <xref keyref="CameraCapturerConfiguration"/>. For devices with multiple cameras, where <codeph>cameraDirection</codeph> cannot identify or access all available cameras, you can obtain the camera ID through Android's native system APIs and specify the desired camera by calling <xref keyref="startCameraCapture"/> with the specific <codeph>cameraId</codeph>.</p>
-                                </li>
-                            </ol>
-                        </p>
-                    </li>
-                    <li><ph><b>Data stream encryption</b></ph>
-                        <p>This version adds <codeph>datastreamEncryptionEnabled</codeph> to <xref keyref="EncryptionConfig"/> for enabling data stream encryption. You can set this when you activate encryption with <xref keyref="enableEncryption"/>. If there are issues causing failures in data stream encryption or decryption, these can be identified by the newly added <codeph><apiname keyref="ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE"/></codeph> and <codeph><apiname keyref="ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE"/></codeph> enumerations.</p>
-                    </li>
-                    <li props="android ios"><ph><b>Local Video Rendering</b></ph>
-                        <p>This version adds the following members to <xref keyref="VideoCanvas"/> to support more local rendering capabilities:
-                            <ul>
-                                <li props="android"><codeph>surfaceTexture</codeph>: Set a native Android <codeph>SurfaceTexture</codeph> object as the container providing video imagery, then use SDK external methods to perform OpenGL texture rendering.</li>
-                                <li>enableAlphaMask: This member enables the receiving end to initiate alpha mask rendering. Alpha mask rendering can create images with transparent effects or extract human figures from video content.</li>
-                            </ul>
-                        </p>
-                    </li>
-                    <li><ph><b>Adaptive configuration for low-quality video streams</b></ph>
-                        <p>This version introduces adaptive configuration for low-quality video streams. When you activate dual-stream mode and set up low-quality video streams on the sending side using <xref keyref="setDualStreamMode2"/>, the SDK defaults to the following behaviors:
-                            <ul>
-                                <li>The default encoding resolution for low-quality video streams is set to 50% of the original video encoding resolution.</li>
-                                <li>The bitrate for the small streams is automatically matched based on the video resolution and frame rate, eliminating the need for manual specification.</li>
-                            </ul>
-                        </p>
-                    </li>
-                    <li><ph><b>Other features</b></ph>
-                        <p>
-                            <ul>
-                                <li>New method <xref keyref="enableEncryptionEx"/> is added for enabling media stream or data stream encryption in multi-channel scenarios.</li>
-                                <li>New method <xref keyref="setAudioMixingPlaybackSpeed"/> is introduced for setting the playback speed of audio files.</li>
-                                <li>New method <xref keyref="getCallIdEx"/> is introduced for retrieving call IDs in multi-channel scenarios.</li>
-                            </ul>
-                        </p>
+                    <li><ph><b>New Feature Name</b></ph>
+                        <p><?oxy-placeholder content="Describe using a paragraph"?></p>
                     </li>
                 </ol>
             </body>
@@ -92,77 +43,30 @@
             <title>Improvements</title>
             <body>
                 <ol>
-                    <li props="cpp unity flutter electron"><ph><b>Optimization for game scenario screen sharing (Windows)</b></ph>
-                        <p>This version specifically optimizes screen sharing for game scenarios, enhancing performance, stability, and clarity in ultra-high definition (4K, 60 fps) game scenarios, resulting in a clearer, smoother, and more stable gaming experience for players.</p>
-                    </li>
-                    <li props="android mac">
-                        <p><b>Optimization of local video status callbacks</b></p>
-                        <p props="mac">To facilitate understanding of the specific reasons for changes in local video status, this version adds the following enumerations to the <xref keyref="onLocalVideoStateChanged"/> callback's <xref keyref="LOCAL_VIDEO_STREAM_REASON"/> enumeration class:</p>
-                        <p props="android">This version introduces the following enumerations, allowing you to understand more about the reasons behind changes in local video status through the <xref keyref="onLocalVideoStateChanged"/> callback:</p>
-                        <ul>
-                            <li props="android"><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_INTERRUPT"/></codeph> (14): Video capture is interrupted due to the camera being occupied by another app or the app moving to the background.</li>
-                            <li props="android"><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_FATAL_ERROR"/></codeph> (15): Video capture device errors, possibly due to camera equipment failure.</li>
-                            <li props="mac"><codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_MINIMIZED"/></codeph> (27): The window being captured for screen sharing has recovered from a minimized state.</li>
-                        </ul>
-                    </li>
-                    <li props="android"><ph><b>Camera capture improvements</b></ph>
-                        <p>Improvements have been made to the video processing mechanism of camera capture, reducing noise, enhancing brightness, and improving color, making the captured images clearer, brighter, and more realistic.</p>
-                    </li>
-                    <li props="mac unity flutter electron"><ph><b>Audio device type detection</b></ph><ph props="unity rn flutter electron"> (macOS)</ph>
-                        <p props="mac">This version adds the <codeph>deviceTypeName</codeph> member to <codeph><xref keyref="AgoraRtcDeviceInfo"/></codeph>, used to identify the type of audio devices, such as built-in, USB, HDMI, etc.</p>
-                        <p props="flutter electron">This version adds the <codeph>deviceTypeName</codeph> in <xref keyref="AudioDeviceInfo"/>, used to identify the type of audio devices, such as built-in, USB, HDMI, etc.</p>
-                        <p props="unity">This version adds the <xref keyref="getPlaybackDefaultDevice2"/>, <xref keyref="getRecordingDefaultDevice2"/>, <xref keyref="getPlaybackDeviceInfo2"/>, and <xref keyref="getRecordingDeviceInfo2"/> method to obtain the information and type of audio playback and recording deivces.</p>
-                    </li>
-                    <li><ph><b>Virtual Background Algorithm Optimization</b></ph>
-                        <p>To enhance the accuracy and stability of human segmentation when activating virtual backgrounds against solid colors, this version optimizes the green screen segmentation algorithm:
-                            <ul>
-                                <li>Supports recognition of any solid color background, no longer limited to green screens.</li>
-                                <li>Improves accuracy in recognizing background colors and reduces the background exposure during human segmentation.</li>
-                                <li>After segmentation, the edges of the human figure (especially around the fingers) are more stable, significantly reducing flickering at the edges.</li>
-                            </ul>
-                        </p>
-                    </li>
-                    <li props="ios mac"><ph><b>Custom audio capture optimization</b></ph>
-                        <p>To enhance the flexibility of custom audio capture, this release deprecates <xref keyref="pushExternalAudioFrameSampleBuffer1"/> and introduces <xref keyref="pushExternalAudioFrameSampleBuffer2"/>. Compared to the deprecated method, the new method adds parameters such as <codeph>sampleRate</codeph>, <codeph>channels</codeph>, and <codeph>trackId</codeph>. These support pushing external CMSampleBuffer audio data to the channel via custom audio tracks, and allow for the setting of sample rates and channel counts for external audio sources.</p>
-                    </li>
-                    <li><ph><b>CPU consumption reduction of in-ear monitoring</b></ph>
-                        <p>This release adds an enumerator <codeph><apiname keyref="EAR_MONITORING_FILTER_REUSE_POST_PROCESSING_FILTER"/></codeph> (1 &lt;&lt; 15)<ph props="apple cpp framework"> in <codeph><apiname keyref="EAR_MONITORING_FILTER_TYPE"/></codeph></ph>. For complex audio processing scenarios, you can specify this option to reuse the audio filter post sender-side processing in in-ear monitoring, thereby reducing CPU consumption. Note that this option may increase the latency of in-ear monitoring, which is suitable for latency-tolerant scenarios requiring low CPU consumption.</p>
-                    </li>
-                    <li><ph><b>Other improvements</b></ph>
-                        <p>This version also includes the following improvements:
-                            <ul>
-                                <li props="ios mac cpp unity flutter rn electron ">Optimization of video encoding and decoding strategies in non-screen sharing scenarios to save system performance overhead. (iOS, macOS, Windows)</li>
-                                <li props="mac">For macOS 14 and above, optimization of <xref keyref="getScreenCaptureSources"/> behavior. From this version onward, the method automatically filters out widget windows from the list of available window resources. (macOS)</li>
-                                <li props="android flutter unity rn">Enhanced performance and stability of the local compositing feature, reducing its CPU usage. (Android)</li>
-                                <li props="ios flutter">Improved stability in processing video by the raw video frame observer. (iOS)</li>
-                                <li>Enhanced media player capabilities to handle WebM format videos, including support for rendering alpha channels.</li>
-                                <li props="cpp apple framework">In <xref keyref="AUDIO_EFFECT_PRESET"/>, a new enumeration <codeph><apiname keyref="ROOM_ACOUSTICS_CHORUS"/></codeph> (chorus effect) is added, enhancing the spatial presence of vocals in chorus scenarios.</li>
-                                <li props="android">New chorus effect <codeph><apiname keyref="ROOM_ACOUSTICS_CHORUS"/></codeph> is added to enhances the spatial presence of vocals in chorus scenarios. (Android)</li>
-                                <li>In <xref keyref="RemoteAudioStats"/>, a new <codeph>e2eDelay</codeph> field is added to report the delay from when the audio is captured on the sending end to when the audio is played on the receiving end.</li>
-                            </ul>
-                        </p>
-                    </li>
+                    <li>Enhances the usability of the <xref keyref="setRemoteSubscribeFallbackOption"/> method by removing the timing requirements for invocation. It can now be called before or after joining the channel to dynamically switch audio and video stream fallback options in weak network conditions.</li>
+                    <li>The media player now supports playing mp4 files with an Alpha channel. (iOS, Android)</li>
+                    <li>The media player fully supports playing music resource files located in the <codeph>/assets/</codeph> directory or starting with <codeph>content://</codeph>. (Android)</li>
                 </ol>
             </body>
         </topic>
         <topic id="bugfix">
-            <title>Issues fixed</title>
+            <title>Bug Fixes</title>
             <body>
-                <p>This version fixed the following issues:</p>
                 <ul>
-                    <li>Fixed an issue where SEI data output did not synchronize with video rendering when playing media streams containing SEI data using the media player.</li>
-                    <li props="android">After joining a channel and calling <xref keyref="disableAudio"/>, audio playback did not immediately stop. (Android)</li>
-                    <li props="cpp electron unity flutter">In screen sharing scenarios, when the app enabled sound card capture with <xref keyref="enableLoopbackRecording"/> to capture audio from the shared screen, the transmission of sound card captured audio failed after a local user manually disabled the local audio capture device, causing remote users to not hear the shared screen's audio. (Windows)</li>
-                    <li props="electron">In audio-video interactions, if a user inserted headphones into the device and manually switched the system audio output to speakers, and later the app called <xref keyref="setPlaybackDevice"/> to specify the headphone as the audio playback device, audio output did not switch back to speakers as expected after the headphones were removed. <ph props="electron"> (macOS)</ph></li>
-                    <li props="cpp">When a user plugged and unplugged a Bluetooth or wired headset once, the audio state change callback <xref keyref="onAudioDeviceStateChanged"/> was triggered multiple times.</li>
-                    <li props="mac">When a user plugged and unplugged a Bluetooth or wired headset once, the audio state change callback <xref keyref="stateChanged"/> was triggered multiple times.</li>
-                    <li props="android unity rn flutter">Broadcasters using certain models of devices under speaker mode experienced occasional local audio capture failures when switching the app process to the background and then back to the foreground, causing remote users to not hear the broadcaster's audio. (Android)</li>
-                    <li props="unity">An occasional echo was observed when playing the audio stream of a specified user before mixing. (macOS, Windows)</li>
-                    <li props="cpp unity flutter electron">During interactions, when a local user set the system default playback device to speakers using <xref keyref="setDevice_IAudioDeviceCollection"/>, there was no sound from the remote end. (Windows)</li>
-                    <li props="android unity flutter rn">On devices with Android 8.0, enabling screen sharing occasionally caused the app to crash. (Android)</li>
-                    <li props="cpp unity flutter electron">When sharing an Excel document window, remote users occasionally saw a green screen. (Windows)</li>
-                    <li props="android unity flutter rn">In scenarios using camera capture for local video, when the app was moved to the background and <xref keyref="disableVideo"/> or <xref keyref="stopPreview"/> was called to stop video capture, camera capture was unexpectedly activated when the app was brought back to the foreground. (Android)</li>
-                    <li props="cpp electron">On devices using Intel graphics cards, occasionally there was a performance regression when publishing a small video stream. (Windows)</li>
+                    <li props="ios flutter unity rn">Fixed an issue where the remote video froze or became pixelated when the app returned to the foreground after being in the background for a long time.</li>
+                    <li props="ios flutter unity rn">Corrected the local preview image rotation by 90° on some iPad devices, which did not meet expectations.</li>
+                    <li>Resolved occasional video smoothness issues during audio and video interactions.</li>
+                    <li>Fixed an issue where the app occasionally crashed when the decoded video resolution on the receiving end was an odd number.</li>
+                    <li props="android flutter unity rn">Fixed a crash issue when opening the app and starting screen sharing after the first installation or system reboot.</li>
+                    <li props="android flutter unity rn">Resolved an issue where local audio capture failed after joining a channel while answering a system phone call and hanging up, causing remote users to not hear any sound.</li>
+                    <li>Fixed an occasional crash when remote users left the channel.</li>
+                    <li props="cpp flutter unity electron">Resolved an issue where the screen occasionally flickered on the receiver's side when sharing a PPT window using <xref keyref="startScreenCaptureByWindowId"/> and playing PPT animations. (Windows)</li>
+                    <li props="cpp flutter unity electron">Fixed an issue where the window border did not retain its original size after exiting the presentation and then maximizing the PPT window when sharing a WPS PPT window on Windows 7 using <xref keyref="startScreenCaptureByWindowId"/> and setting <xref keyref="ScreenCaptureParameters"/>'s <codeph>enableHighLight</codeph> to <codeph><ph keyref="true"/></codeph>. (Windows)</li>
+                    <li props="cpp flutter unity electron">Resolved an issue where the specified window could not be brought to the foreground if it was covered by other windows when sharing a window using <xref keyref="startScreenCaptureByWindowId"/> and setting <xref keyref="ScreenCaptureParameters"/>'s <codeph>windowFocus</codeph> and <codeph>enableHighLight</codeph> to <codeph><ph keyref="true"/></codeph>. (Windows)</li>
+                    <li props="android">Fixed an issue where the values of <codeph>cameraDirection</codeph> and <codeph>focalLengthType</codeph> in <xref keyref="AgoraFocalLengthInfo"/> returned by <xref keyref="queryCameraFocalLengthCapability"/> could not be read directly.</li>
+                    <li props="ios flutter unity rn">Resolved an occasional failure to trigger the <xref keyref="onAudioMixingStateChanged"/>(<ph keyref="AUDIO_MIXING_STATE_STOPPED"/>, <ph keyref="AUDIO_MIXING_REASON_ALL_LOOPS_COMPLETED"/>) callback after playing an audio file using <xref keyref="startAudioMixing"/> when the audio file ended. (iOS)</li>
+                    <li props="ios flutter unity rn">Fixed a silent issue when playing sound effect files shorter than 1 second with loopCount set to 0 using <xref keyref="playEffect3"/>. (iOS)</li>
+                    <li props="ios flutter unity rn">Resolved a short period of no sound after resuming playback when using the media player to play video. (iOS)</li>
                 </ul>
             </body>
         </topic>
@@ -171,70 +75,24 @@
             <body>
                 <p><b>Added</b>
                     <ul>
-                    <li props="apple flutter unity electron rn"><xref keyref="enableCameraCenterStage"/> (iOS, macOS)</li>
-                    <li props="apple flutter unity electron rn"><xref keyref="isCameraCenterStageSupported"/> (iOS, macOS)</li>
-                    <li props="ios flutter unity rn"><xref keyref="setCameraStabilizationMode"/> (iOS)</li>
-                    <li props="ios flutter unity rn"><xref keyref="CAMERA_STABILIZATION_MODE"/> (iOS)</li>
-                    <li props="android">The <codeph>surfaceTexture</codeph> and <codeph>enableAlphaMask</codeph> members in <xref keyref="VideoCanvas"/></li>
-                    <li props="ios">The <codeph>enableAlphaMask</codeph> member in <xref keyref="VideoCanvas"/></li>
-                    <li props="android mac"><ph>The following enumerations in <xref keyref="LOCAL_VIDEO_STREAM_REASON"/>:</ph>
-                        <ul>
-                            <li props="android"><codeph>LOCAL_VIDEO_STREAM_REASON_DEVICE_INTERRUPT</codeph></li>
-                            <li props="android"><codeph>LOCAL_VIDEO_STREAM_REASON_DEVICE_FATAL_ERROR</codeph></li>
-                            <li props="mac"><codeph><ph keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_MINIMIZED"/></codeph></li>
-                        </ul></li>
-                    <li><xref keyref="registerFaceInfoObserver"/></li>
-                    <li props="electron rn flutter unity"><xref keyref="unregisterFaceInfoObserver"/></li>
-                    <li><xref keyref="IFaceInfoObserver"/></li>
-                    <li><xref keyref="onFaceInfo"/></li>
-                    <li><xref keyref="MEDIA_SOURCE_TYPE"/> adds <codeph><apiname keyref="SPEECH_DRIVEN_VIDEO_SOURCE"/></codeph></li>
-                    <li><xref keyref="VIDEO_SOURCE_TYPE"/> adds <codeph><apiname keyref="VIDEO_SOURCE_SPEECH_DRIVEN"/></codeph></li>
-                    <li><xref keyref="EncryptionConfig"/> adds <codeph>datastreamEncryptionEnabled</codeph></li>
-                    <li props="cpp apple framework"><ph><xref keyref="ENCRYPTION_ERROR_TYPE"/> adds the following enumerations:</ph>
-                        <ul>
-                            <li><codeph><apiname keyref="ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE"/></codeph></li>
-                            <li><codeph><apiname keyref="ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE"/></codeph></li>
-                        </ul></li>
-                    <li props="android"><codeph><apiname keyref="ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE"/></codeph></li>
-                    <li props="android"><codeph><apiname keyref="ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE"/></codeph></li>
-                    <li props="unity"><xref keyref="getPlaybackDefaultDevice2"/><ph> (macOS)</ph></li>
-                    <li props="unity"><xref keyref="getRecordingDefaultDevice2"/><ph> (macOS)</ph></li>
-                    <li props="unity"><xref keyref="getPlaybackDeviceInfo2"/><ph> (macOS)</ph></li>
-                    <li props="unity"><xref keyref="getRecordingDeviceInfo2"/><ph> (macOS)</ph></li>
-                    <li props="electron flutter"><xref keyref="AudioDeviceInfo"/> adds <codeph>deviceTypeName</codeph> (macOS)</li>
-                    <li props="mac"><xref keyref="AgoraRtcDeviceInfo"/> adds <codeph>deviceTypeName</codeph></li>
-                    <li><xref keyref="RemoteAudioStats"/> adds <codeph>e2eDelay</codeph></li>
-                    <li props="apple cpp framework"><xref keyref="ERROR_CODE_TYPE"/> adds <codeph><apiname keyref="ERR_DATASTREAM_DECRYPTION_FAILED"/></codeph></li>
-                    <li props="android"><codeph><apiname keyref="ERR_DATASTREAM_DECRYPTION_FAILED"/></codeph></li>
-                    <li props="apple cpp framework"><xref keyref="AUDIO_EFFECT_PRESET"/> adds <codeph><apiname keyref="ROOM_ACOUSTICS_CHORUS"/></codeph>, enhancing the spatial presence of vocals in chorus scenarios.</li>
-                    <li props="android"><codeph><apiname keyref="ROOM_ACOUSTICS_CHORUS"/></codeph> is added, enhancing the spatial presence of vocals in chorus scenarios. (Android)</li>
-                    <li><xref keyref="getCallIdEx"/></li>
-                    <li><xref keyref="enableEncryptionEx"/></li>
-                    <li><xref keyref="setAudioMixingPlaybackSpeed"/></li>
-                    <li props="android ios flutter unity rn"><xref keyref="queryCameraFocalLengthCapability"/> (Android, iOS)</li>
-                    <li props="android ios flutter unity rn"><xref keyref="FocalLengthInfo"/> (Android, iOS)</li>
-                    <li props="android ios flutter unity rn"><xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/> (Android, iOS)</li>
-                    <li props="android ios flutter unity rn"><xref keyref="CameraCapturerConfiguration"/> adds a new member <codeph>cameraFocalLengthType</codeph> (Android, iOS)</li>
-                    <li props="android"><ph><xref keyref="VIDEO_SOURCE_TYPE"/> adds the following enumerations:</ph>
-                        <ul>
-                            <li><codeph><apiname keyref="VIDEO_SOURCE_CAMERA_THIRD"/></codeph>(11)</li>
-                            <li><codeph><apiname keyref="VIDEO_SOURCE_CAMERA_FOURTH"/></codeph>(12)</li>
-                        </ul></li>
-                    <li props="android"><ph><xref keyref="ChannelMediaOptions"/> adds the following members:</ph>
-                        <ul>
-                            <li><codeph>publishThirdCameraTrack</codeph></li>
-                            <li><codeph>publishFourthCameraTrack</codeph></li>
-                        </ul></li>
-                    <li props="android flutter unity rn"><xref keyref="CameraCapturerConfiguration"/> adds a new member <codeph>cameraId</codeph> (Android)</li>
-                    <li props="android"><xref keyref="CAMERA_DIRECTION"/> adds <codeph>CAMERA_EXTRA</codeph>(2)</li>
-                    <li props="android"><xref keyref="switchCamera2"/></li>
-                    <li><xref keyref="EAR_MONITORING_FILTER_TYPE"/> adds a new enumeration <codeph><apiname keyref="EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS"/></codeph>(1 &lt;&lt;15)</li>
-                    <li props="ios mac"><xref keyref="pushExternalAudioFrameSampleBuffer2"/></li>
-                    </ul></p>
-                <p props="ios mac"><b>Deprecated</b>
+                        <li><codeph><apiname/></codeph></li>
+                    </ul>
+                </p>
+                <p><b>Modified</b>
                     <ul>
-                    <li><xref keyref="pushExternalAudioFrameSampleBuffer1"/></li>
-                    </ul></p>
+                        <li><apiname/></li>
+                    </ul>
+                </p>
+                <p><b>Deprecated</b>
+                    <ul>
+                        <li><apiname/></li>
+                    </ul>
+                </p>
+                <p><b>Removed</b>
+                    <ul>
+                        <li><apiname/></li>
+                    </ul>
+                </p>
             </body>
         </topic>
     </topic>
