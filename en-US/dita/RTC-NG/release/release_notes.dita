@@ -44,8 +44,8 @@
             <body>
                 <ol>
                     <li>This release enhances the usability of the <xref keyref="setRemoteSubscribeFallbackOption"/> method by removing the timing requirements for invocation. It can now be called both before and after joining the channel to dynamically switch audio and video stream fallback options in weak network conditions.</li>
-                    <li>The media player now supports playing mp4 files with an Alpha channel. (iOS, Android)</li>
-                    <li>The media player fully supports playing music resource files located in the <codeph>/assets/</codeph> directory or starting with <codeph>content://</codeph>. (Android)</li>
+                    <li>The Agora media player supports playing mp4 files with an Alpha channel. (iOS, Android)</li>
+                    <li>The Agora media player fully supports playing music files located in the <codeph>/assets/</codeph> directory or from URI starting with <codeph>content://</codeph>. (Android)</li>
                 </ol>
             </body>
         </topic>
@@ -64,9 +64,9 @@
                     <li props="cpp flutter unity electron">The window border did not retain its original size after exiting the presentation and then maximizing the PPT window when sharing a WPS PPT window on Windows 7 using <xref keyref="startScreenCaptureByWindowId"/> and setting <codeph>enableHighLight</codeph> in <xref keyref="ScreenCaptureParameters"/> to <codeph><ph keyref="true"/></codeph>. (Windows)</li>
                     <li props="cpp flutter unity electron">The specified window could not be brought to the foreground if it was covered by other windows when sharing a window using <xref keyref="startScreenCaptureByWindowId"/> and setting <codeph>windowFocus</codeph> and <codeph>enableHighLight</codeph> in <xref keyref="ScreenCaptureParameters"/> to <codeph><ph keyref="true"/></codeph>. (Windows)</li>
                     <li props="android">The values of <codeph>cameraDirection</codeph> and <codeph>focalLengthType</codeph> in <xref keyref="AgoraFocalLengthInfo"/> returned by <xref keyref="queryCameraFocalLengthCapability"/> could not be read directly.</li>
-                    <li props="ios flutter unity rn">Resolved an occasional failure to trigger the <xref keyref="onAudioMixingStateChanged"/>(<ph keyref="AUDIO_MIXING_STATE_STOPPED"/>, <ph keyref="AUDIO_MIXING_REASON_ALL_LOOPS_COMPLETED"/>) callback after playing an audio file using <xref keyref="startAudioMixing"/> when the audio file ended. (iOS)</li>
-                    <li props="ios flutter unity rn">Fixed a silent issue when playing sound effect files shorter than 1 second with loopCount set to 0 using <xref keyref="playEffect3"/>. (iOS)</li>
-                    <li props="ios flutter unity rn">Resolved a short period of no sound after resuming playback when using the media player to play video. (iOS)</li>
+                    <li props="ios flutter unity rn">When playing an audio file using <xref keyref="startAudioMixing"/> and the playing finished, the SDK sometimes failed to trigger the <xref keyref="onAudioMixingStateChanged"/>(<ph keyref="AUDIO_MIXING_STATE_STOPPED"/>, <ph keyref="AUDIO_MIXING_REASON_ALL_LOOPS_COMPLETED"/>) callback which reports that the playing is completed. (iOS)</li>
+                    <li props="ios flutter unity rn">When calling the <xref keyref="playEffect3"/> method to play sound effect files shorter than 1 second with <codeph>loopCount</codeph> set to 0, there was no sound. (iOS)</li>
+                    <li props="ios flutter unity rn">When using the Agora media player to play a video and stopping it during playing, sometimes there was no sound for a short time after the playing was resumed. (iOS)</li>
                 </ul>
             </body>
         </topic>
