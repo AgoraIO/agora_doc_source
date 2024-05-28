@@ -4,6 +4,32 @@
 
 On Android 14 devices (such as OnePlus 11), screen sharing may not be available when `targetSdkVersion` is set to 34. For example, half of the shared screen may be black. To avoid this issue, Agora recommends setting `targetSdkVersion` to 34 or below. However, this may cause the screen sharing process to be interrupted when switching between portrait and landscape mode. In this case, a window will pop up on the device asking if you want to start recording the screen. After confirming, you can resume screen sharing.
 
+
+
+
+## v4.3.2
+
+This version was released on May x, 20xx.
+
+#### Improvements
+
+1. This release enhances the usability of the [setRemoteSubscribeFallbackOption](API/api_irtcengine_setremotesubscribefallbackoption.html) method by removing the timing requirements for invocation. It can now be called both before and after joining the channel to dynamically switch audio and video stream fallback options in weak network conditions.
+2. The Agora media player supports playing MP4 files with an Alpha channel.
+3. The Agora media player fully supports playing music files located in the `/assets/` directory or from URI starting with `content://`. 
+
+#### Issues fixed
+
+This version fixed the following issues:
+
+- Occasional video smoothness issues during audio and video interactions.
+- The app occasionally crashed when the decoded video resolution on the receiving end was an odd number.
+- The app crashed when opening the app and starting screen sharing after the first installation or system reboot.
+- Local audio capture failed after joining a channel while answering a system phone call and hanging up, causing remote users to not hear any sound.
+- During the interaction process on certain devices (for example, Redmi Note8), after answering and hanging up a system call, local media files were played without sound and no sound was heard from the remote end. (Android)
+- The app occasionally crashed when remote users left the channel.
+- The values of `cameraDirection` and `focalLengthType` in returned by [queryCameraFocalLengthCapability](API/api_irtcengine_querycamerafocallengthcapability.html) could not be read directly.
+
+
 ## v4.3.1
 
 This version is released on 2024 Month x, Day x.
