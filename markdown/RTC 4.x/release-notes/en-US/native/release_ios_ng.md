@@ -4,6 +4,26 @@
 
 AirPods Pro does not support A2DP protocol in communication audio mode, which may lead to connection failure in that mode.
 
+This version was released on May x, 20xx.
+
+#### Improvements
+
+1. This release enhances the usability of the [setRemoteSubscribeFallbackOption](API/api_irtcengine_setremotesubscribefallbackoption.html) method by removing the timing requirements for invocation. It can now be called both before and after joining the channel to dynamically switch audio and video stream fallback options in weak network conditions.
+2. The Agora media player supports playing mp4 files with an Alpha channel.
+
+#### Issues fixed
+
+This version fixed the following issues:
+
+- The remote video froze or became pixelated when the app returned to the foreground after being in the background for a long time. 
+- The local preview image rotated by 90° on some iPad devices, which did not meet expectations. 
+- Occasional video smoothness issues during audio and video interactions.
+- The app occasionally crashed when the decoded video resolution on the receiving end was an odd number.
+- Fixed an occasional crash when remote users left the channel.
+- When playing an audio file using [startAudioMixing [1/2\]](API/api_irtcengine_startaudiomixing.html) and the playing finished, the SDK sometimes failed to trigger the [audioMixingStateChanged](API/callback_irtcengineeventhandler_onaudiomixingstatechanged.html)(AgoraAudioMixingStateTypeStopped, AgoraAudioMixingReasonAllLoopsCompleted) callback which reports that the playing is completed. 
+- When calling the [playEffect [3/3\]](API/api_irtcengine_playeffect3.html) method to play sound effect files shorter than 1 second with `loopCount` set to 0, there was no sound. 
+- When using the Agora media player to play a video and stopping it during playing, sometimes there was no sound for a short time after the playing was resumed. 
+- 
 
 ## v4.3.1
 
