@@ -4,6 +4,8 @@
 
 AirPods Pro does not support A2DP protocol in communication audio mode, which may lead to connection failure in that mode.
 
+## v4.3.2
+
 This version was released on May x, 20xx.
 
 #### Improvements
