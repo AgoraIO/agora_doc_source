@@ -14,7 +14,7 @@ This version fixed the following issues:
 
 - Occasional video smoothness issues during audio and video interactions.
 - The app occasionally crashed when the decoded video resolution on the receiving end was an odd number.
-- Fixed an occasional crash when remote users left the channel.
+- The app occasionally crashed when remote users left the channel.
 
 
 ## v4.3.1

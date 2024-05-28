@@ -27,7 +27,7 @@ This version fixed the following issues:
 - The app crashed when opening the app and starting screen sharing after the first installation or system reboot. (Android)
 - Local audio capture failed after joining a channel while answering a system phone call and hanging up, causing remote users to not hear any sound. (Android)
 - During the interaction process on certain devices (for example, Redmi Note8), after answering and hanging up a system call, local media files were played without sound and no sound was heard from the remote end. (Android)
-- Fixed an occasional crash when remote users left the channel.
+- The app occasionally crashed when remote users left the channel.
 - When playing an audio file using and the playing finished, the SDK sometimes failed to trigger the [onAudioMixingStateChanged](API/callback_irtcengineeventhandler_onaudiomixingstatechanged.html)(AudioMixingStateStopped, AudioMixingReasonAllLoopsCompleted) callback which reports that the playing is completed. (iOS)
 - When calling the [playEffect](API/api_irtcengine_playeffect3.html) method to play sound effect files shorter than 1 second with `loopCount` set to 0, there was no sound. (iOS)
 - When using the Agora media player to play a video and stopping it during playing, sometimes there was no sound for a short time after the playing was resumed. (iOS)

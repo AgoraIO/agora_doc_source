@@ -19,7 +19,7 @@ This version fixed the following issues:
 - The local preview image rotated by 90° on some iPad devices, which did not meet expectations. 
 - Occasional video smoothness issues during audio and video interactions.
 - The app occasionally crashed when the decoded video resolution on the receiving end was an odd number.
-- Fixed an occasional crash when remote users left the channel.
+- The app occasionally crashed when remote users left the channel.
 - When playing an audio file using [startAudioMixing [1/2\]](API/api_irtcengine_startaudiomixing.html) and the playing finished, the SDK sometimes failed to trigger the [audioMixingStateChanged](API/callback_irtcengineeventhandler_onaudiomixingstatechanged.html)(AgoraAudioMixingStateTypeStopped, AgoraAudioMixingReasonAllLoopsCompleted) callback which reports that the playing is completed. 
 - When calling the [playEffect [3/3\]](API/api_irtcengine_playeffect3.html) method to play sound effect files shorter than 1 second with `loopCount` set to 0, there was no sound. 
 - When using the Agora media player to play a video and stopping it during playing, sometimes there was no sound for a short time after the playing was resumed. 
