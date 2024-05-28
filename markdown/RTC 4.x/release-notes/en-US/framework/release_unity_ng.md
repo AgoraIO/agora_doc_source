@@ -20,8 +20,8 @@ This release enhances the usability of the [SetRemoteSubscribeFallbackOption](AP
 
 This version fixed the following issues:
 
-- The remote video froze or became pixelated when the app returned to the foreground after being in the background for a long time. （iOS）
-- The local preview image rotated by 90° on some iPad devices, which did not meet expectations. （iOS）
+- The remote video froze or became pixelated when the app returned to the foreground after being in the background for a long time. (iOS)
+- The local preview image rotated by 90° on some iPad devices, which did not meet expectations. (iOS)
 - Occasional video smoothness issues during audio and video interactions.
 - The app occasionally crashed when the decoded video resolution on the receiving end was an odd number.
 - The app crashed when opening the app and starting screen sharing after the first installation or system reboot. (Android)
