@@ -26,7 +26,7 @@ This version fixed the following issues:
 - The app crashed when opening the app and starting screen sharing after the first installation or system reboot.
 - Local audio capture failed after joining a channel while answering a system phone call and hanging up, causing remote users to not hear any sound.
 - During the interaction process on certain devices (for example, Redmi Note8), after answering and hanging up a system call, local media files were played without sound and no sound was heard from the remote end. (Android)
-- Fixed an occasional crash when remote users left the channel.
+- The app occasionally crashed when remote users left the channel.
 - The values of `cameraDirection` and `focalLengthType` in returned by [queryCameraFocalLengthCapability](API/api_irtcengine_querycamerafocallengthcapability.html) could not be read directly.
 
 
