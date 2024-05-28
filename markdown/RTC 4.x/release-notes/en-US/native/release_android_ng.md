@@ -14,8 +14,8 @@ This version was released on May x, 20xx.
 #### Improvements
 
 1. This release enhances the usability of the [setRemoteSubscribeFallbackOption](API/api_irtcengine_setremotesubscribefallbackoption.html) method by removing the timing requirements for invocation. It can now be called both before and after joining the channel to dynamically switch audio and video stream fallback options in weak network conditions.
-2. The Agora media player supports playing MP4 files with an Alpha channel. (iOS, Android)
-3. The Agora media player fully supports playing music files located in the `/assets/` directory or from URI starting with `content://`. (Android)
+2. The Agora media player supports playing MP4 files with an Alpha channel.
+3. The Agora media player fully supports playing music files located in the `/assets/` directory or from URI starting with `content://`. 
 
 #### Issues fixed
 
