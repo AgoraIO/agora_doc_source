@@ -17,20 +17,26 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)createDataStream:(NSInteger * _Nonnull)streamId
                   config:(AgoraDataStreamConfig * _Nonnull)config;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int createDataStream(int* streamId, DataStreamConfig&amp; config) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
-	int CreateDataStream(int&amp; streamId, const FDataStreamConfig&amp; config);</codeblock>
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+        int CreateDataStream(int&amp; streamId, const FDataStreamConfig&amp; config);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract createDataStream(config: DataStreamConfig): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int CreateDataStream(ref int streamId, DataStreamConfig config);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract createDataStream(config: DataStreamConfig): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; createDataStream(DataStreamConfig config);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
-            <p id="desc">该方法用于创建数据流。每个用户在每个频道中最多只能创建 5 个数据流。</p>
-            <p id="diff" props="native unreal unity cs">相比 <xref keyref="createDataStream1" />，该方法不支持数据可靠。接收方会丢弃超出发送时间 5 秒后的数据包。</p>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="native unreal unity cs">
+            <p>相比 <xref keyref="createDataStream1" />，该方法不支持数据可靠。接收方会丢弃超出发送时间 5 秒后的数据包。</p>
         </section>
-        <section id="parameters">
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>该方法需要在加入频道后调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>在 <xref keyref="IRtcEngine" /> 生命周期内，每个用户最多只能创建 5 个数据流。离开频道时数据流会被销毁，如需使用需要重新创建数据流。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
             <plentry props="cpp unreal bp ios mac unity cs" id="streamId">
@@ -43,11 +49,11 @@
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title>返回值</title>
+            <title><ph keyref="return-section-title"/></title>
             <ul>
             <li props="cpp unreal bp ios mac unity cs">0: 创建数据流成功。</li>
             <li props="android electron flutter rn">创建的数据流的 ID：方法调用成功。</li>
             <li>&lt; 0：方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
-            </ul> </section>
-    </refbody>
+            </ul></section>
+        </refbody>
 </reference>
