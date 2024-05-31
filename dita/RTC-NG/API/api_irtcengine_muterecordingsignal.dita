@@ -25,7 +25,10 @@
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p>如果你已经调用 <xref keyref="adjustRecordingSignalVolume"/> 调节了音频采集信号音量，则调用该方法并设置为 <codeph><ph keyref="true" /></codeph> 时，SDK 会记录调节后的音量并将其静音，再次调用该方法并设置为 <codeph><ph keyref="false" /></codeph> 即可恢复为 SDK 记录的音量。</p>
+            <p>如果你已经调用 <xref keyref="adjustRecordingSignalVolume"/> 调节了音频采集信号音量，则调用该方法并设置为 <codeph><ph keyref="true" /></codeph> 时，SDK 的行为如下：<ol>
+            <li>记录调节后的音量。</li>
+            <li>将音频采集信号静音。</li></ol>
+            当你再次调用该方法并设置为 <codeph><ph keyref="false" /></codeph> 时，录音信号会恢复为静音前 SDK 记录的音量。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
