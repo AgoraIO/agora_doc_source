@@ -34,14 +34,7 @@
         <section id="return_values">
             <title>返回值</title>
             <p><ph>设置 SDK 输出的原始数据格式。</ph><ph props="cpp bp unreal apple">详见 <xref keyref="VIDEO_PIXEL_FORMAT"/>。</ph></p>
-            <p>在默认情况下，原始视频像素格式 (<ph keyref="VIDEO_PIXEL_DEFAULT"/>) 存在以下类型：
-                <ul><li props="cpp bp unreal">在 Android 平台上，默认的视频帧类型可能为 I420Buffer 或 TextureBuffer。自 v4.2.3 起，TextureBuffer 类型的纹理格式不再包括 OES 格式，仅为 RGB 格式。你需要在处理视频数据时增加对 I420、RGB 纹理格式的适配。</li>
-                <li props="android">默认的视频帧类型可能为 I420Buffer 或 TextureBuffer。自 v4.2.3 起，TextureBuffer 类型的纹理格式不再包括 OES 格式，仅为 RGB 格式。你需要在处理视频数据时增加对 I420、RGB 纹理格式的适配。</li>
-                <li props="cpp unreal bp">在 iOS 和 macOS 平台上，默认的视频帧类型可能为 I420 或 CVPixelBufferRef。</li>
-                <li props="apple">默认的视频帧类型可能为 I420 或 CVPixelBufferRef。</li>
-                <li props="cpp unreal bp">在 Windows 平台上，默认为 YUV420。</li></ul></p>
-            <p props="android">
-            <ul>
+            <ul props="android">
             <li><ph keyref="VIDEO_PIXEL_DEFAULT"/>(0): 原始视频像素格式。</li>
             <li><ph keyref="VIDEO_PIXEL_I420"/>(1): I420 格式。</li>
             <li props="hide"><ph keyref="VIDEO_PIXEL_BGRA"/>(2): BGRA 格式。</li>
@@ -50,7 +43,17 @@
             <li props="hide"><ph keyref="VIDEO_PIXEL_NV12"/>(8): NV12 格式。</li>
             <li props="hide"><ph keyref="VIDEO_TEXTURE_2D"/>(10)：TEXTURE_2D 格式。</li>
             <li><ph keyref="VIDEO_PIXEL_I422"/>(16): I422 格式。</li>
-            </ul></p>
+            </ul>
+            <note>
+            <p>在默认情况下，原始视频像素格式 (<ph keyref="VIDEO_PIXEL_DEFAULT"/>) 存在以下类型：<ul>
+                <li props="android cpp bp unreal">在 Android 平台上，默认的视频帧类型可能为 I420Buffer 或 TextureBuffer。自 v4.2.3 起，TextureBuffer 类型的纹理格式不再包括 OES 格式，仅为 RGB 格式。你需要在处理视频数据时增加对 I420、RGB 纹理格式的适配。视频帧类型固定为 I420Buffer 的情况包括但不限于：<ul>
+                    <li>特定机型，例如：LG G5 SE (H848)，Google Pixel 4a，Samsung Galaxy A7 或 Xiaomi Mi Max。</li>
+                    <li>已集成视频增强插件并开启视频降噪或暗光增强功能。</li>
+                    </ul></li>
+                <li props="cpp unreal bp">在 iOS 和 macOS 平台上，默认的视频帧类型可能为 I420 或 CVPixelBufferRef。</li>
+                <li props="apple">默认的视频帧类型可能为 I420 或 CVPixelBufferRef。</li>
+                <li props="cpp unreal bp">在 Windows 平台上，默认为 YUV420。</li></ul></p>
+            </note>
         </section>
     </refbody>
 </reference>
