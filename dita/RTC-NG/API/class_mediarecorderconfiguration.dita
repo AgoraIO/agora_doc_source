@@ -22,7 +22,26 @@
       this.recorderInfoUpdateInterval = recorderInfoUpdateInterval;
     }
   }</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class MediaRecorderConfiguration {
+  
+  public storagePath: string;
+  
+  public containerFormat: number = AgoraMediaRecorder.CONTAINER_MP4;
+  
+  public streamType: number = AgoraMediaRecorder.STREAM_TYPE_BOTH;
+  
+  public maxDurationMs: number = 120000;
+  
+  public recorderInfoUpdateInterval: number = 0;
+  public constructor(storagePath: string, containerFormat: number, streamType: number,
+                     maxDurationMs: number, recorderInfoUpdateInterval: number) {
+    this.storagePath = storagePath;
+    this.containerFormat = containerFormat;
+    this.streamType = streamType;
+    this.maxDurationMs = maxDurationMs;
+    this.recorderInfoUpdateInterval = recorderInfoUpdateInterval;
+  }
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaRecorderConfiguration : NSObject
 @property(copy, nonatomic) NSString* _Nonnull storagePath;
 @property(assign, nonatomic) AgoraMediaRecorderContainerFormat containerFormat;

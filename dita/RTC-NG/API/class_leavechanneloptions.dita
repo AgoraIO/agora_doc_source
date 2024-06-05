@@ -11,7 +11,19 @@
   public boolean stopAllEffect;
   public boolean stopMicrophoneRecording;
 }</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class LeaveChannelOptions {
+  
+  public stopAudioMixing: boolean;
+  
+  public stopAllEffect: boolean;
+  
+  public stopMicrophoneRecording: boolean;
+  constructor() {
+    this.stopAudioMixing = true;
+    this.stopAllEffect = true;
+    this.stopMicrophoneRecording = true;
+  }
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLeaveChannelOptions : NSObject
 @property(nonatomic, assign) BOOL stopAudioMixing;
 @property(nonatomic, assign) BOOL stopAllEffect;

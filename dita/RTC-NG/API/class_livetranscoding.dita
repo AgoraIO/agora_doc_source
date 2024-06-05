@@ -225,7 +225,55 @@
     this.backgroundColor = (red &lt;&lt; 16) | (green &lt;&lt; 8) | (blue &lt;&lt; 0);
   }
 }</codeblock>
-      <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+      <codeblock props="hmos" outputclass="language-arkts">export class LiveTranscoding {
+  
+  public width: number;
+  
+  public height: number;
+  
+  public videoBitrate: number;
+  
+  public videoFramerate: number;
+  
+  public videoGop: number;
+  
+  private watermarkList?: Array&lt;AgoraImage&gt;;
+  
+  private backgroundImageList?: Array&lt;AgoraImage&gt;;
+  
+  public audioSampleRate: Constants.AudioSampleRateType;
+  
+  public audioBitrate: number;
+  
+  public audioChannels: number;
+  
+  public audioCodecProfile: Constants.AudioCodecProfileType;
+  
+  public videoCodecProfile: Constants.VideoCodecProfileType;
+  
+  public videoCodecType: Constants.VideoCodecType;
+  
+  public userConfigExtraInfo?: string | null = null;
+  
+  private transcodingUsers: Map&lt;number, TranscodingUser&gt;;
+  
+  private advancedFeatures: Map&lt;string, boolean&gt;;
+  constructor() {
+    this.width = 360;
+    this.height = 640;
+    this.videoBitrate = 400;
+    this.videoCodecProfile = Constants.VideoCodecProfileType.HIGH;
+    this.videoCodecType = Constants.VideoCodecType.H264;
+    this.videoGop = 30;
+    this.videoFramerate = 15;
+    this.audioSampleRate = Constants.AudioSampleRateType.TYPE_44100;
+    this.audioBitrate = 48;
+    this.audioChannels = 1;
+    this.audioCodecProfile = Constants.AudioCodecProfileType.LC_AAC;
+    this.advancedFeatures = new Map&lt;string, boolean&gt;();
+    this.transcodingUsers = new Map&lt;number, TranscodingUser&gt;();
+  }
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLiveTranscoding : NSObject
 
 @property(assign, nonatomic) CGSize size;

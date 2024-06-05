@@ -36,7 +36,13 @@
   }
 }
 </codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class ChannelMediaRelayConfiguration {
+  public srcInfo:ChannelMediaInfo = new ChannelMediaInfo(null,null,0);
+  public destInfos:Map&lt;string, ChannelMediaInfo&gt; = new Map&lt;string, ChannelMediaInfo&gt;();
+  
+  public setSrcChannelInfo(srcInfo: ChannelMediaInfo) {
+  this.srcInfo = srcInfo;
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraChannelMediaRelayConfiguration: NSObject
 
 @property (strong, nonatomic, readonly) NSDictionary&lt;NSString *, AgoraChannelMediaRelayInfo *&gt; *_Nullable destinationInfos;
