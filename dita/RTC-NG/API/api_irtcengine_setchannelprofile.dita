@@ -26,21 +26,17 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p>你可以调用该方法设置频道的使用场景。SDK 会针对不同的使用场景采用不同的优化策略，如直播场景优先保证画质。SDK 初始化后默认的频道场景为直播场景。</p>
-            <note type="attention">
-            <ul>
-                <li>为保证实时音视频质量，相同频道内的用户必须使用同一种频道场景。</li>
-                <li props="android ios cpp unreal bp rn">不同的频道场景下，SDK 的默认音频路由和默认视频编码码率是不同的，详见 <xref keyref="setDefaultAudioRouteToSpeakerphone" /> 和 <xref keyref="setVideoEncoderConfiguration" /> 中的说明。</li>
-                <li props="electron">不同的频道场景下，SDK 的默认视频编码码率是不同的，详见 <xref keyref="setVideoEncoderConfiguration" /> 中的说明。</li>
-            </ul></note>
+            <note type="attention" props="android ios cpp unreal bp rn">
+            <p>不同的频道场景下，SDK 的默认音频路由是不同的，详见 <xref keyref="setDefaultAudioRouteToSpeakerphone" /> 中的说明。</p>
+           </note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="electron rn flutter bp">该方法必须在 <apiname keyref="joinChannel2"/> 前调用和进行设置，进入频道后无法再设置。</p>
-            <p props="native unity cs">该方法必须在 <apiname keyref="joinChannel2"/> 前调用和进行设置，进入频道后无法再设置。</p>
+            <p>该方法需要在加入频道前调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p>无。</p>
+            <p>为保证实时音视频质量，相同频道内的用户必须使用同一种频道场景。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -76,7 +72,7 @@
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
             <ul>
-            <li props="native unreal bp electron unity rn cs">0(ERR_OK) 方法调用成功。</li>
+            <li props="native unreal bp electron unity rn cs">0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph>
                 <ul>
                 <li>-2: 参数无效。</li>
