@@ -243,7 +243,9 @@ class VideoCanvas {
             <plentry>
                 <pt>uid</pt>
                 <pd>发布视频源的用户 ID。</pd>
-                <pd props="cpp unity rn flutter">对于 Android 和 iOS 平台，当视频源为合图视频流 (<apiname keyref="VIDEO_SOURCE_TRANSCODED"/>) 时，该参数表示发布合图视频流的用户 ID。</pd>
+                <pd props="cpp unity rn flutter">对于 Android 和 iOS 平台，当视频源为合图视频流 (<apiname keyref="VIDEO_SOURCE_TRANSCODED"/>) 时，该参数表示发布合图视频流的用户 ID。
+                      <note type="attention" props="rn">本地用户 <parmname>uid</parmname> 默认为 0。如果你想使用自定义的 <parmname>uid</parmname> 渲染本地视图，你还需要同时传入 <parmname>souceType</parmname>。</note>
+                </pd>
                 <pd props="android ios">当视频源为合图视频流 (<apiname keyref="VIDEO_SOURCE_TRANSCODED"/>) 时，该参数表示发布合图视频流的用户 ID。</pd>
               </plentry>
                 <plentry>
@@ -255,7 +257,8 @@ class VideoCanvas {
                 <plentry>
                     <pt>view</pt>
                     <pd props="native flutter unity cs electron rn">视频显示窗口。<ph props="android">必须为一个 <xref keyref="SurfaceView-link"/> 或 <xref keyref="TextureView-link"/> 对象。</ph>
-                      <note type="attention">在一个 <apiname keyref="VideoCanvas"/> 中，你只能选择 <parmname>view</parmname> 或 <parmname>surfaceTexture</parmname> 其中一个进行设置，如果同时设置，只有 <parmname>view</parmname> 中的设置会生效。</note></pd>
+                      <note type="attention" props="native flutter unity cs rn">在一个 <apiname keyref="VideoCanvas"/> 中，你只能选择 <parmname>view</parmname> 或 <parmname>surfaceTexture</parmname> 其中一个进行设置，如果同时设置，只有 <parmname>view</parmname> 中的设置会生效。</note>
+                    </pd>
                     <pd props="unreal bp">视频图像。你需要定义 UImage 类型的指针，并传入该参数，示例代码如下： 
                         <codeblock props="unreal bp" outputclass="language-cpp">agora::rtc::VideoCanvas videoCanvas;
     UImage* LocalVideo;
@@ -287,10 +290,6 @@ class VideoCanvas {
                             </ul>
                         </note>
                     </pd>
-            </plentry>
-            <plentry>
-                <pt>uid</pt>
-                <pd>用户 ID。</pd>
             </plentry>
             <plentry id="sourcetype">
                 <pt>sourceType</pt>
