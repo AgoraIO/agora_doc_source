@@ -31,7 +31,7 @@
         <section id="restriction" deliveryTarget="details" conkeyref="createDataStream2/restriction"/>
         <section id="related" deliveryTarget="details">
             <title>Related callbacks</title>
-            <p>将 <parmname>reliable</parmname> 设置为 <codeph><ph keyref="true" /></codeph> 后，如果接收方 5 秒没有收到发送方所发送的数据，会触发 <xref keyref="onStreamMessageError" /> 回调并获得相应报错信息。</p>
+            <p>After setting <parmname>reliable</parmname> to <codeph><ph keyref="true" /></codeph>, if the recipient does not receive the data within five seconds, the SDK triggers the <xref keyref="onStreamMessageError" /> callback and returns an error code.</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
@@ -43,11 +43,11 @@
             <plentry id="reliable">
                 <pt>reliable</pt>
                 <pd>
-                    <p>Sets whether the recipients are guaranteed to receive the data stream from the sender within five seconds:<ul>
+                    <p>Sets whether the recipients are guaranteed to receive the data stream within five seconds:<ul>
                     <li><codeph><ph keyref="true" /></codeph>: The recipients receive the data from the sender within five seconds. If the recipient does not receive the data within five seconds, the SDK triggers the <apiname keyref="onStreamMessageError" /> callback and returns an error code.</li>
                     <li><codeph><ph keyref="false" /></codeph>: There is no guarantee that the recipients receive the data stream within five seconds and no error message is reported for any delay or missing data stream.</li>
                     </ul></p>
-                    <note type="attention">请确保将 <parmname>reliable</parmname> 和 <parmname>ordered</parmname> 同时设为 <codeph><ph keyref="true"/></codeph> 或同时设为 <codeph><ph keyref="false"/></codeph>。</note>
+                    <note type="attention">Please ensure that <parmname>reliable</parmname> and <parmname>ordered</parmname> are either both set to<codeph><ph keyref="true"/></codeph> or both set to <codeph><ph keyref="false"/></codeph>.</note>
                 </pd>
             </plentry>
             <plentry id="ordered">

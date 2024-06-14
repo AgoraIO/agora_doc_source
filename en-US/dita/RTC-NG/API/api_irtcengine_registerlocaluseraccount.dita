@@ -27,13 +27,13 @@
         </section>
             <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p>Once registered, the user account can be used to identify the local user when the user joins the channel. After the registration is successful, the user account can identify the identity of the local user, and the user can use it to join the channel.</p>
-            <p>This method is optional. 如果你希望用户使用 User Account 加入频道，可参考下列任意一种方式实现：<ul props="electron flutter rn">
-            <li>先调用 <apiname keyref="registerLocalUserAccount" /> 方法注册 Account，再调用 <xref keyref="joinChannelWithUserAccount2"/> 方法加入频道，可以缩短进入频道的时间。</li>
-            <li>Call the <apiname keyref="joinChannelWithUserAccount2" /> method to join the channel.</li>
+            <p>This method is optional. If you want to join a channel using a user account, you can choose one of the following methods:<ul props="electron flutter rn">
+            <li>Call the <apiname keyref="registerLocalUserAccount" /> method to register a user account, and then call the <xref keyref="joinChannelWithUserAccount2"/> method to join a channel, which can shorten the time it takes to enter the channel.</li>
+            <li>Call the <apiname keyref="joinChannelWithUserAccount2" /> method to join a channel.</li>
             </ul>
             <ul props="native unity cs">
-                <li>先调用 <apiname keyref="registerLocalUserAccount" /> 方法注册 Account，再调用 <xref keyref="joinChannelWithUserAccount1"/> 或 <xref keyref="joinChannelWithUserAccount2"/> 方法加入频道，可以缩短进入频道的时间。</li>
-                <li>Call<xref keyref="joinChannelWithUserAccount1"/><apiname keyref="joinChannelWithUserAccount2" /> the  method to join the channel.</li>
+                <li>Call the <apiname keyref="registerLocalUserAccount" /> method to register a user account, and then call the <xref keyref="joinChannelWithUserAccount1"/> or <xref keyref="joinChannelWithUserAccount2"/> method to join a channel, which can shorten the time it takes to enter the channel.</li>
+                <li>Call the <xref keyref="joinChannelWithUserAccount1"/> or <apiname keyref="joinChannelWithUserAccount2" /> method to join a channel.</li>
             </ul>
         </p>
             <note type="attention">
@@ -48,7 +48,7 @@
             </section>
             <section id="related" deliveryTarget="details">
                 <title>Related callbacks</title>
-                <p>成功调用该方法后，本地会触发 <xref keyref="onLocalUserRegistered" /> 回调，告知本地用户的 UID 和 User Account。</p>
+                <p>After successfully calling this method, the <xref keyref="onLocalUserRegistered" /> callback will be triggered on the local client to report the local user's UID and user account.</p>
             </section>
             <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>

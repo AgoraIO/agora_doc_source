@@ -34,14 +34,14 @@
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
             <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-                <p>调用该方法后，SDK 会终止音视频互动、离开当前频道，并会释放会话相关的所有资源。</p>
-                <p props="native unity cs"><xref keyref="joinChannelEx"/>After joining the channel, you must call this method or<xref keyref="leaveChannelEx"/>  to end the call, otherwise, the next call cannot be started.</p>
-                <p props="flutter electron rn flutter"><xref keyref="joinChannelEx"/>After joining the channel, you must call this method to end the call; otherwise, you cannot join the next call.</p>
+                <p>After calling this method, the SDK terminates the audio and video interaction, leaves the current channel, and releases all resources related to the session.</p>
+                <p props="native unity cs">After calling <xref keyref="joinChannelEx"/> to join a channel, you must call this method or <xref keyref="leaveChannelEx"/> to end the call, otherwise, the next call cannot be started.</p>
+                <p props="flutter electron rn flutter">After calling <xref keyref="joinChannelEx"/> to join a channel, you must call this method to end the call, otherwise, the next call cannot be started.</p>
             <note type="attention">
                 <ul>
                     <li>This method call is asynchronous. When this method returns, it does not necessarily mean that the user has left the channel.</li>
-                    <li props="native unity cs">如果你调用了 <xref keyref="leaveChannel"/> 或 <xref keyref="leaveChannel2"/> 后，会同时离开 <xref keyref="joinChannel1"/> 或 <xref keyref="joinChannel2"/> 及 <xref keyref="joinChannelEx"/> 加入的频道。</li>
-                    <li props="flutter electron rn bp">如果你调用了 <xref keyref="leaveChannel2"/> 后，会同时离开 <xref keyref="joinChannel2"/> 及 <xref keyref="joinChannelEx"/> 加入的频道。</li>
+                    <li props="native unity cs">If you call <xref keyref="leaveChannel"/> or <xref keyref="leaveChannel2"/>, you will leave all the channels you have joined by calling <xref keyref="joinChannel1"/>, <xref keyref="joinChannel2"/>, or <xref keyref="joinChannelEx"/>.</li>
+                    <li props="flutter electron rn bp">If you call <xref keyref="leaveChannel2"/>, you will leave all the channels you have joined by calling <xref keyref="joinChannel2"/> or <xref keyref="joinChannelEx"/>.</li>
                 </ul></note>
             </section>
             <section id="scenario" deliveryTarget="details" conkeyref="leaveChannelEx/scenario">

@@ -28,7 +28,7 @@
             <codeblock props="flutter" outputclass="language-dart" /></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p id="desc">In the interactive live streaming profile, the SDK sets the user role as audience by default. You can call this method to set the user role as host. 用户角色（<parmname>role</parmname>）确定用户在 SDK 层的权限，包含是否可以发送流等。</p>
+            <p id="desc">By default,the SDK sets the user role as audience. You can call this method to set the user role as host. The user role (<parmname>roles</parmname>) determines the users' permissions at the SDK level, including whether they can publish audio and video streams in a channel.</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>Call timing</title>
@@ -39,7 +39,7 @@
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>Restrictions</title>
-            <p>在频道外调用本方法并将用户角色设为 <parmname>BROADCASTER</parmname>（主播）时，本地不会触发 <xref keyref="onClientRoleChanged"/> 回调。</p>
+            <p>When calling this method before joining a channel and setting the user role to <parmname>BROADCASTER</parmname>, the <xref keyref="onClientRoleChanged"/> callback will not be triggered on the local client.</p>
         </section>
         <section id="related" deliveryTarget="details" conkeyref="setClientRole2/related">
         </section>

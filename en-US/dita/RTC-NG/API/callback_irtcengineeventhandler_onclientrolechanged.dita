@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onclientrolechanged">
     <title><ph keyref="onClientRoleChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc">用户角色、观众端延时级别已切换回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the user role or the audience latency level changes.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -43,13 +43,13 @@ NS_SWIFT_NAME(rtcEngine(_:didClientRoleChanged:newRole:newRoleOptions:));</codeb
         </section>
         <section id="timing" deliveryTarget="details">
             <title>Trigger timing</title>
-            <p>在以下任意一种情况时，会触发此回调：<ul>
-                <li>在<b>加入频道后</b>调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2"/> 设置用户角色或观众端延时级别。</li>
-                <li>在<b>加入频道前</b>调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2"/> 并将用户角色设为 <parmname>AUDIENCE</parmname>。</li></ul></p>
+            <p>This callback will be triggered in any of the following situations:<ul>
+                <li>Calling <xref keyref="setClientRole1"/> or <xref keyref="setClientRole2"/> to set the user role or audience latency level <b>after joining a channel</b></li>
+                <li>Calling <xref keyref="setClientRole1"/> or <xref keyref="setClientRole2"/> and set the user role to <parmname>AUDIENCE</parmname> <b>before joining a channel</b>.</li></ul></p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>Restrictions</title>
-            <p>当你在<b>加入频道前</b>调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2"/> 并将用户角色设为 <parmname>BROADCASTER</parmname> 时，不会触发此回调。</p>
+            <p>This callback will not be triggered when you call <xref keyref="setClientRole1"/> or <xref keyref="setClientRole2"/> and set the user role to <parmname>BROADCASTER</parmname> <b>before joining a channel</b>.</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title><ph keyref="callback-section-title"/></title>

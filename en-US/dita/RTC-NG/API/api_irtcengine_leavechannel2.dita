@@ -26,9 +26,9 @@
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-                <p>调用该方法后，SDK 会终止音视频互动、离开当前频道，并会释放会话相关的所有资源。</p>
-                <p props="native unity cs unreal">After joining the channel, you must call this method or  to<apiname keyref="leaveChannel"/> end the call, otherwise, the next call cannot be started. If you have called<xref keyref="joinChannelEx"/>  to join multiple channels, calling this method will leave the channels when calling  and  at the same time.</p>
-                <p props="flutter electron rn bp">After joining the channel, you must call this method to end the call; otherwise, you cannot join the next call. If you have called<xref keyref="joinChannelEx"/>  to join multiple channels, calling this method will leave the channels when calling  and  at the same time.</p>
+                <p>After calling this method, the SDK terminates the audio and video interaction, leaves the current channel, and releases all resources related to the session.</p>
+                <p props="native unity cs unreal">After joining a channel, you must call this method or <apiname keyref="leaveChannel"/> to end the call, otherwise, the next call cannot be started. If you have called <xref keyref="joinChannelEx"/> to join multiple channels, calling this method will leave all the channels you joined.</p>
+                <p props="flutter electron rn bp">After joining the channel, you must call this method to end the call; otherwise, the next call cannot be started. If you have called <xref keyref="joinChannelEx"/> to join multiple channels, calling this method will leave all the channels you joined.</p>
                 <note type="attention">This method call is asynchronous. When this method returns, it does not necessarily mean that the user has left the channel.</note>
         </section>
         <section id="scenario" deliveryTarget="details" props="hide">
@@ -41,13 +41,13 @@
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>Restrictions</title>
-            <p>If you call  immediately after calling this method<xref keyref="release"/>, the SDK does not trigger the<apiname keyref="onLeaveChannel"/>  callback.</p>
+            <p>If you call <xref keyref="release"/> immediately after calling this method, the SDK does not trigger the <apiname keyref="onLeaveChannel"/> callback.</p>
         </section>
         <section id="related" deliveryTarget="details">
             <title>Related callbacks</title>
-            <p>A successful call of this method triggers the following callbacks: <ul>
-                <li>The local client:<xref keyref="onLeaveChannel"/> .</li>
-                <li>远端：主播离开频道后，远端会触发 <xref keyref="onUserOffline"/> 回调。</li>
+            <p>A successful call of this method triggers the following callbacks:<ul>
+                <li>The local client: The <xref keyref="onLeaveChannel"/> callback will be triggered.</li>
+                <li>The remote client: The <xref keyref="onUserOffline"/> callback will be triggered after the remote host leaves the channel.</li>
                 </ul>
             </p>
         </section>
