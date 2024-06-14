@@ -26,17 +26,20 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; initialize(RtcEngineContext context);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <p props="native unreal bp unity electron flutter cs">All called methods provided by the <apiname keyref="IRtcEngine"/> class are executed asynchronously. Agora recommends calling these methods in the same thread.</p>
-            <note type="attention">
-            <ul>
-            <li props="cpp unreal flutter rn electron">Before calling other APIs, you must call <xref keyref="createAgoraRtcEngine"/> and <apiname keyref="initialize"/> to create and initialize the <apiname keyref="IRtcEngine"/> object.</li>
-            <li props="android ios mac bp">Before calling other APIs, you must call this method to create the <apiname keyref="IRtcEngine"/> object.</li>
-            <li props="android ios mac">You can create the <apiname keyref="IRtcEngine"/> instance either by calling this method or by calling <xref keyref="create"/>. The difference between <apiname keyref="create"/> and this method is that this method supports more configurations when creating the <apiname keyref="IRtcEngine"/> instance, for example, specifying the region for connection and setting the log files.</li>
-            <li>The SDK supports creating only one <apiname keyref="IRtcEngine"/> instance for an app.</li>
-            </ul> </note> </section>
-        <section id="parameters">
+            <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+                <p props="android ios mac">You can create<apiname keyref="IRtcEngine"/> the  instance either<xref keyref="create"/> by calling this method or by calling . The difference between  and this method<apiname keyref="create"/> is that this method supports<apiname keyref="IRtcEngine"/> more configurations when creating the  instance, for example, specifying the region for connection and setting the log files.</p>
+                <note type="attention">All called methods provided by the <apiname keyref="IRtcEngine"/> class are executed asynchronously. Agora recommends calling these methods in the same thread.</note>
+            </section>
+            <section id="timing" deliveryTarget="details">
+                <title>Call timing</title>
+                <p props="cpp unreal flutter rn electron">Before calling other APIs, you must call <xref keyref="createAgoraRtcEngine"/> and <apiname keyref="initialize"/> to create and initialize the <apiname keyref="IRtcEngine"/> object.</p>
+                <p props="android ios mac bp">Before calling other APIs, you must call this method to create the <apiname keyref="IRtcEngine"/> object.</p>
+            </section>
+            <section id="restriction" deliveryTarget="details">
+                <title>Restrictions</title>
+                <p>The SDK supports creating only one <apiname keyref="IRtcEngine"/> instance for an app.</p>
+            </section>
+            <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>
