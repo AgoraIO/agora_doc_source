@@ -52,8 +52,8 @@
                 <pt>appId</pt>
                 <pd conkeyref="RtcEngineConfig/appid"/>
             </plentry>
-            <plentry props="android ios mac">
-                <pt props="android">handler</pt>
+            <plentry props="android hmos ios mac">
+                <pt props="android hmos">handler</pt>
                 <pt props="ios mac">delegate</pt>
                 <pd id="handler"><xref keyref="IRtcEngine"/> 的事件句柄，详见 <xref keyref="IRtcEngineEventHandler"/>。
                     </pd>
@@ -62,11 +62,11 @@
         <section id="return_values">
             <title>
             <ph props="apple">返回值</ph>
-            <ph props="android">返回/异常</ph>
+            <ph props="android hmos">返回/异常</ph>
             </title>
             <ul>
             <li>方法调用成功，返回一个 <apiname keyref="IRtcEngine"/> 对象。</li>
-            <li props="android">方法调用失败，抛出异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+            <li props="android hmos">方法调用失败，抛出异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
             <li props="ios mac">方法调用失败，返回错误码：
                 <ul>
                 <li>-1: 一般性的错误（未明确归类）。</li>
