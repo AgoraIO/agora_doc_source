@@ -662,7 +662,7 @@ struct FLiveTranscoding
     <section id="parameters">
       <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
       <parml>
-      <plentry props="android cpp unreal bp electron rn unity flutter cs">
+      <plentry props="android hmos cpp unreal bp electron rn unity flutter cs">
         <pt>width</pt>
         <pd>
           <p>推流视频的总宽度，默认值 360，单位为像素。</p>
@@ -671,7 +671,7 @@ struct FLiveTranscoding
           <li>如果推音频流，请将 <codeph>width</codeph> 和 <codeph>height</codeph> 设为 0。</li>
           </ul> </pd>
       </plentry>
-      <plentry props="android cpp unreal bp electron rn unity flutter cs">
+      <plentry props="android hmos cpp unreal bp electron rn unity flutter cs">
         <pt>height</pt>
         <pd>
           <p>推流视频的总高度，默认值 640，单位为像素。</p>
@@ -708,7 +708,7 @@ struct FLiveTranscoding
           <p>用于旁路直播的输出视频的帧率。取值范围是 (0,30]，单位为 fps。15 fps 为默认值。</p>
           <note type="attention">声网服务器会将高于 30 fps 的帧率统一调整为 30 fps。</note></pd>
       </plentry>
-      <plentry>
+      <plentry props="android cpp apple framework">
         <pt>lowLatency</pt>
         <pd>
           <dl outputclass="deprecated">
@@ -764,7 +764,7 @@ struct FLiveTranscoding
           </ul></p>
         </pd>
       </plentry>
-      <plentry props="android hmos cpp unreal bp unity electron rn flutter cs">
+      <plentry props="android cpp unreal bp unity electron rn flutter cs">
         <pt>backgroundColor</pt>
         <pd props="android hmos">
           <dl outputclass="deprecated">
@@ -778,10 +778,10 @@ struct FLiveTranscoding
           <p>用于旁路直播的输出视频的背景色，格式为 RGB 定义下的十六进制整数，不要带 # 号，如 0xFFB6C1 表示浅粉色。默认0x000000，黑色。</p>
         </pd>
       </plentry>
-      <plentry props="android hmos cpp unreal bp electron rn unity flutter cs">
+      <plentry props="android cpp unreal bp electron rn unity flutter cs">
         <pt>userCount</pt>
         <pd>
-          <dl outputclass="deprecated" props="android hmos">
+          <dl outputclass="deprecated" props="android">
           <dlentry>
             <dt>弃用</dt>
             <dd>已废弃，不建议使用。请改用 <xref keyref="getUserCount"/> 方法。</dd>
@@ -872,31 +872,31 @@ struct FLiveTranscoding
     <section props="android hmos apple" id="sub-method">
       <title>方法</title>
       <parml>
-      <plentry props="android hmos">
+      <plentry props="android">
         <pt>addBackgroundImage</pt>
         <pd>添加背景图。详见 <xref keyref="addBackgroundImage"/>。</pd>
       </plentry>
-      <plentry props="android hmos apple">
+      <plentry props="android apple">
         <pt>addUser</pt>
         <pd>添加转码合图用户。详见 <xref keyref="addUser"/>。</pd>
       </plentry>
-      <plentry props="android hmos">
+      <plentry props="android">
         <pt>addWatermark</pt>
         <pd>添加水印。详见 <xref keyref="addWatermark"/>。</pd>
       </plentry>
-      <plentry props="android hmos apple">
+      <plentry props="android apple">
         <pt>getAdvancedFeatures</pt>
         <pd>获取转码推流高级功能的开/关状态。详见 <xref keyref="getAdvancedFeatures"/>。</pd>
       </plentry>
-      <plentry props="android hmos">
+      <plentry props="android">
         <pt>getBackgroundColor</pt>
         <pd>获取背景颜色。详见 <xref keyref="getBackgroundColor"/>。</pd>
       </plentry>
-      <plentry props="android hmos">
+      <plentry props="android">
         <pt>getBackgroundImageList</pt>
         <pd>获取背景图列表。详见 <xref keyref="getBackgroundImageList"/>。</pd>
       </plentry>
-      <plentry props="android hmos">
+      <plentry props="android">
         <pt>getBlue</pt>
         <pd>
           <dl outputclass="deprecated">
@@ -908,7 +908,7 @@ struct FLiveTranscoding
          <p>获取背景蓝色分量。详见 <xref keyref="getBlue"/>。</p>
         </pd>
       </plentry>
-      <plentry props="android hmos">
+      <plentry props="android">
         <pt>getGreen</pt>
         <pd>
           <dl outputclass="deprecated">
@@ -920,7 +920,7 @@ struct FLiveTranscoding
          <p>获取背景绿色分量。详见 <xref keyref="getGreen"/>。</p>
         </pd>
       </plentry>
-      <plentry props="android hmos">
+      <plentry props="android">
         <pt>getRed</pt>
         <pd>
           <dl outputclass="deprecated">
@@ -932,19 +932,19 @@ struct FLiveTranscoding
           <p>获取背景红色分量。详见 <xref keyref="getRed"/>。</p>
         </pd>
       </plentry>
-      <plentry props="android hmos">
+      <plentry props="android">
         <pt>getUserCount</pt>
         <pd>获取转码合图用户人数。详见 <xref keyref="getUserCount"/>。</pd>
       </plentry>
-      <plentry props="android hmos">
+      <plentry props="android ">
         <pt>getUsers</pt>
         <pd>获取参与合图的用户列表。详见 <xref keyref="getUsers"/>。</pd>
       </plentry>
-      <plentry props="android hmos">
+      <plentry props="android">
         <pt>getWatermarkList</pt>
         <pd>获取水印列表。详见 <xref keyref="getWatermarkList"/>。</pd>
       </plentry>
-      <plentry props="android hmos">
+      <plentry props="android">
         <pt>removeBackgroundImage</pt>
         <pd>从背景图列表中删除一张背景图。详见 <xref keyref="removeBackgroundImage"/>。</pd>
       </plentry>
@@ -952,23 +952,23 @@ struct FLiveTranscoding
         <pt>removeUser</pt>
         <pd>删除转码合图用户。详见 <xref keyref="removeUser"/>。</pd>
       </plentry>
-      <plentry props="android hmos">
+      <plentry props="android">
         <pt>removeWatermark</pt>
         <pd>从水印列表中删除一个水印。详见 <xref keyref="removeWatermark"/>。</pd>
       </plentry>
-      <plentry props="android hmos apple">
+      <plentry props="android apple">
         <pt>setAdvancedFeatures</pt>
         <pd>设置是否启用转码推流的高级功能。详见 <xref keyref="setAdvancedFeatures"/>。</pd>
       </plentry>
-      <plentry props="android hmos">
+      <plentry props="android">
         <pt>setBackgroundColor [1/2]</pt>
         <pd>设置背景色。详见 <xref keyref="setBackgroundColor"/>。</pd>
       </plentry>
-      <plentry props="android hmos">
+      <plentry props="android">
         <pt>setBackgroundColor [2/2]</pt>
         <pd>设置背景色 RGB。详见 <xref keyref="setBackgroundColor2"/>。</pd>
       </plentry>
-      <plentry props="android hmos">
+      <plentry props="android">
         <pt>setBlue</pt>
         <pd>
           <dl outputclass="deprecated">
@@ -980,7 +980,7 @@ struct FLiveTranscoding
           <p>设置背景蓝色分量。详见 <xref keyref="setBlue"/>。</p>
         </pd>
       </plentry>
-      <plentry props="android hmos">
+      <plentry props="android">
         <pt>setGreen</pt>
         <pd>
           <dl outputclass="deprecated">
@@ -992,7 +992,7 @@ struct FLiveTranscoding
           <p>设置背景绿色分量。详见 <xref keyref="setGreen"/>。</p>
         </pd>
       </plentry>
-      <plentry props="android hmos">
+      <plentry props="android">
         <pt>setRed</pt>
         <pd>
           <dl outputclass="deprecated">
@@ -1004,11 +1004,11 @@ struct FLiveTranscoding
           <p>设置背景红色分量。详见 <xref keyref="setRed"/>。</p>
         </pd>
       </plentry>
-      <plentry props="android hmos">
+      <plentry props="android">
         <pt>setUsers [1/2]</pt>
         <pd>批量设置用户。详见 <xref keyref="setUsers"/>。</pd>
       </plentry>
-      <plentry props="android hmos">
+      <plentry props="android">
         <pt>setUsers [2/2]</pt>
         <pd>批量设置用户。详见 <xref keyref="setUsers2"/>。</pd>
       </plentry>
