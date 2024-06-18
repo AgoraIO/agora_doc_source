@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onclientrolechangefailed">
     <title><ph keyref="onClientRoleChangeFailed" /></title>
-    <shortdesc id="short"><ph id="shortdesc">直播场景下切换用户角色失败回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">用户角色切换失败回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -37,10 +37,19 @@
             ClientRoleType currentRole)? onClientRoleChangeFailed;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
       </section>
-       <section id="detailed_desc">
-            <p>直播场景下，本地用户加入频道后调用 <xref keyref="setClientRole2" /> 切换用户角色失败时，SDK 会触发该回调，报告切换失败的原因和当前的用户角色。</p>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>当用户角色切换失败时，你可以通过此回调得知切换失败的原因和当前的用户角色。</p>
         </section>
-        <section id="parameters">
+            <section id="timing" deliveryTarget="details">
+                <title>触发时机</title>
+                <p props="native unity cs unreal">本地用户加入频道后调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2" /> 设置用户角色失败时，SDK 会触发该回调。</p>
+                <p props="flutter rn electron bp">本地用户加入频道后调用 <xref keyref="setClientRole2" /> 设置用户角色失败时，SDK 会触发该回调。</p>
+            </section>
+            <section id="restriction" deliveryTarget="details">
+                <title>使用限制</title>
+                <p>无。</p>
+            </section>
+            <section id="parameters" deliveryTarget="details">
             <title><ph keyref="callback-section-title" /></title>
             <parml>
             <plentry>

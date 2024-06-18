@@ -17,9 +17,15 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onPreEncodeVideoFrame:(AgoraOutputVideoFrame * _Nonnull)videoFrame sourceType:(AgoraVideoSourceType)sourceType;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual bool onPreEncodeVideoFrame(agora::rtc::VIDEO_SOURCE_TYPE sourceType, VideoFrame&amp; videoFrame) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnPreEncodeVideoFrame, EVIDEO_SOURCE_TYPE, sourceType, const FVideoFrame&amp;, videoFrame);</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">  onPreEncodeVideoFrame?(videoFrame: VideoFrame): boolean;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">onPreEncodeVideoFrame?(
+    sourceType: VideoSourceType,
+    videoFrame: VideoFrame
+  ): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual bool OnPreEncodeVideoFrame(VIDEO_SOURCE_TYPE sourceType, VideoFrame videoFrame)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">  onPreEncodeVideoFrame?(videoFrame: VideoFrame): boolean;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onPreEncodeVideoFrame?(
+    sourceType: VideoSourceType,
+    videoFrame: VideoFrame
+  ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(VideoFrame videoFrame)? onPreEncodeVideoFrame;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
@@ -30,7 +36,8 @@
             <ul>
                 <li props="native unreal bp cs">你需要通过 <xref keyref="getObservedFramePosition"/> 设置观测 <apiname keyref="POSITION_PRE_ENCODER"/>(1 &lt;&lt; 2) 后，才能使用该回调获取本地视频编码前的视频数据。</li>
                 <li props="unity">你需要通过 <xref keyref="registerVideoFrameObserver"/> 的 <parmname>position</parmname> 参数设置观测 <apiname keyref="POSITION_PRE_ENCODER"/>(1 &lt;&lt; 2) 后，才能使用该回调获取本地视频编码前的视频数据。</li>
-                <li props="flutter">由于 Flutter 框架的限制，该回调不支持将处理后的视频数据发送回 SDK。</li>
+                <li props="rn electron">建议你通过 C++ API 实现该回调。</li>
+                <li props="flutter rn electron">由于框架的限制，该回调不支持将处理后的视频数据发送回 SDK。</li>
                 <li>此处获取的视频数据已经过前处理，如裁剪、旋转和美颜等。</li>
             </ul></note>
         </section>
@@ -46,7 +53,7 @@
                     <pd/>
                 </plentry>
             </parml> </section>
-        <section id="return_values" props="native unreal bp electron unity rn cs">
+        <section id="return_values" props="native unreal bp unity cs">
             <title>返回值</title>
             <p conkeyref="onCaptureVideoFrame/return"/>
         </section>

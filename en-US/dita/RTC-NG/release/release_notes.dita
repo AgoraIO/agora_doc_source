@@ -1,35 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic id="release-notes">
-    <title>v4.2.3</title>
+<topic id="release_notes">
+    <title>v4.3.2</title>
     <body>
-        <p>v4.2.3 was released on September xx, 2023.</p>
+        <p>This version was released on May x, 20xx.</p>
     </body>
     <topic id="level2">
         <title/>
-        <topic id="newfeature">
-            <title>New features</title>
+        <topic id="compatibility" props="hide">
+            <title>Upgrade Notes</title>
             <body>
                 <ol>
-                    <li><ph><b>Update video screenshot and upload</b></ph><p><ph>To facilitate the integration of third-party video moderation services from Agora Extensions Marketplace, this version has the following changes:</ph><ul>
-                                <li props="cpp apple unity rn flutter">The <codeph><apiname keyref="CONTENT_INSPECT_IMAGE_MODERATION"/></codeph> enumeration is added in <codeph><apiname keyref="CONTENT_INSPECT_TYPE"/></codeph> which means using video moderation extensions from Agora Extensions Marketplace to take video screenshots and upload them.</li>
-                                <li props="android">The <codeph><apiname keyref="CONTENT_INSPECT_IMAGE_MODERATION"/></codeph> enumeration is added in the <codeph>type</codeph> parameter of <codeph><apiname keyref="ContentInspectModule"/></codeph>, which means using video moderation extensions from Agora Extensions Marketplace to take video screenshots and upload them.</li>
-                                <li>An optional parameter <codeph>serverConfig</codeph> is added in <codeph><apiname keyref="ContentInspectConfig"/></codeph>, which is for server-side configuration related to video screenshot and upload via extensions from Agora Extensions Marketplace. By configuring this parameter, you can integrate multiple third-party moderation extensions and achieve flexible control over extension switches and other features. For more details, please contact <ph keyref="ticket-link"/>.</li>
-                            </ul><ph>In addition, this version also introduces the <codeph><apiname keyref="enableContentInspectEx"/></codeph> method, which supports taking screenshots for multiple video streams and uploading them.</ph></p>
+                    <li><ph><b>Important Upgrade Information</b></ph>
+                        <ul>
+                            <li><?oxy-placeholder content="Describe using a list"?></li>
+                            <li><?oxy-placeholder content="Describe using a list"?></li>
+                        </ul>
                     </li>
-                    <li props="cpp unity flutter electron"><ph><b>ID3D11Texture2D Rendering</b></ph> (Windows)<p>As of this release, the SDK supports video formats of type ID3D11Texture2D, improving the rendering effect of video frames in game scenarios. You can set <codeph>format</codeph> to <codeph>VIDEO_TEXTURE_ID3D11TEXTURE2D</codeph> when pushing external raw video frames to the SDK by calling <codeph><apiname keyref="pushVideoFrame"/></codeph>. By setting the <codeph>d3d11_texture_2d</codeph> and <codeph>texture_slice_index</codeph> properties, you can determine the ID3D11Texture2D texture object to use.</p>
+                    <li><ph><b>Important Upgrade Information</b></ph>
+                        <p><?oxy-placeholder content="Describe using a paragraph"?></p>
                     </li>
-                    <li props="cpp unity flutter electron"><ph><b>Local video status error code update</b></ph> (Windows, macOS)<p>In order to help users understand the exact reasons for local video errors in screen sharing scenarios, the following sets of enumerations have been added to the <codeph><apiname keyref="onLocalVideoStateChanged"/></codeph> callback:<ul>
-                        <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED"/></codeph>(23): Screen capture has been paused. Common scenarios for reporting this error code: The current screen may have been switched to a secure desktop, such as a UAC dialog box or Winlogon desktop.</li>
-                        <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_RESUMED"/></codeph>(24): Screen capture has resumed from the paused state.</li>
-                        <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_HIDDEN"/></codeph>(25): The window being captured on the current screen is in a hidden state and is not visible on the current screen.</li>
-                        <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_HIDDEN"/></codeph>(26): The window for screen capture has been restored from the hidden state.</li>
-                        <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_MINIMIZED"/></codeph>(27): The window for screen capture has been restored from the minimized state.</li>
-                        </ul></p>
+                </ol>
+            </body>
+        </topic>
+        <topic id="newfeature" props="hide">
+            <title>New Features</title>
+            <body>
+                <ol>
+                    <li><ph><b>New Feature Name</b></ph>
+                        <ul>
+                            <li><?oxy-placeholder content="Describe using a list"?></li>
+                            <li><?oxy-placeholder content="Describe using a list"?></li>
+                        </ul>
                     </li>
-                    <li><ph><b>Check device support for advanced features</b></ph><p>This version adds the <codeph><apiname keyref="isFeatureAvailableOnDevice"/></codeph> method to check whether the capability of the current device meets the requirements of the specified advanced feature, such as virtual background and image enhancement. </p>
-                        <p>Before using advanced features, you can check whether the current device supports these features based on the call result. This helps to avoid performance degradation or unavailable features when enabling advanced features on low-end devices. Based on the return value of this method, you can decide whether to display or enable the corresponding feature button, or notify the user when the device's capabilities are insufficient.</p>
-                        <p>In addition, since this version, calling <codeph><apiname keyref="enableVirtualBackground"/></codeph> and <codeph><apiname keyref="setBeautyEffectOptions"/></codeph> automatically triggers a test on the capability of the current device. When the device is considered underperformed, the error code <codeph> -4:<ph keyref="ERR_NOT_SUPPORTED"/></codeph> is returned, indicating the device does not support the feature.</p>
+                    <li><ph><b>New Feature Name</b></ph>
+                        <p><?oxy-placeholder content="Describe using a paragraph"?></p>
                     </li>
                 </ol>
             </body>
@@ -38,57 +43,58 @@
             <title>Improvements</title>
             <body>
                 <ol>
-                    <li><ph><b>Optimize virtual background memory usage</b></ph><p>This version has upgraded the virtual background algorithm, reducing the memory usage of the virtual background feature.  Compared to the previous version, the memory consumption of the app during the use of the virtual background feature on low-end devices has been reduced by approximately 4% to 10% (specific values may vary depending on the device model and platform).</p>
-                    </li>
-                    <li props="cpp unity flutter electron android"><ph><b>Screen sharing scenario optimization</b></ph><p props="cpp unity flutter electron">This release optimizes the performance and encoding efficiency in ultra-high-definition (4K, 60 fps) game sharing scenarios, effectively reducing the system resource usage during screen sharing.</p>
-                        <p props="android">This release also optimizes the video encoding configuration in screen sharing scenarios. When users customize the <codeph>width</codeph> and <codeph>height</codeph> properties of the video, the SDK rounds down the actual encoding resolution while maintaining the aspect ratio of the video and the screen, ensuring that the final encoding resolution does not exceed the user-defined encoding resolution, thereby improving the accuracy of billing for screen sharing streams.</p>
-                    </li>
+                    <li>This release enhances the usability of the <xref keyref="setRemoteSubscribeFallbackOption"/> method by removing the timing requirements for invocation. It can now be called both before and after joining the channel to dynamically switch audio and video stream fallback options in weak network conditions.</li>
+                    <li props="android ios">The Agora media player supports playing MP4 files with an Alpha channel. (iOS, Android)</li>
+                    <li props="android">The Agora media player fully supports playing music files located in the <codeph>/assets/</codeph> directory or from URI starting with <codeph>content://</codeph>. (Android)</li>
                 </ol>
-                <p><b>Other Improvements</b></p>
-                <p>This release includes the following additional improvements:<ul>
-                    <li props="android">Optimizes the management method of Texture Buffer for SDK capture and custom video capture scenarios, effectively eliminating frame dropping and crash risks.</li>
-                     <li>Optimizes the logic of handling invalid parameters. When you call the <codeph><apiname keyref="setPlaybackSpeed"/></codeph> method to set the playback speed of audio files, if you pass an invalid parameter, the SDK returns the error code -2, which means that you need to reset the parameter.</li>
-                     <li>Optimizes the logic of Token parsing, in order to prevent an app from crash when an invalid token is passed in.</li>
-                    </ul></p>
             </body>
         </topic>
         <topic id="bugfix">
             <title>Issues fixed</title>
-            <body>
-                <p>This release fixed the following issues:</p>
+            <body><p>This version fixed the following issues:</p>
                 <ul>
-                    <li props="cpp unity flutter electron">Occasional crashes and dropped frames occured in screen sharing scenarios. (Windows)</li>
-                    <li props="android">When using the H.265 encoding mode, when a Web client joined the interactivity, it caused a redundant <codeph><apiname keyref="onUserEnableLocalVideo"/></codeph> callback on the native side: when the host called <codeph><apiname keyref="enableLocalVideo"/> (true)</codeph>, the receiving end first received a <codeph><apiname keyref="onUserEnableLocalVideo"/></codeph> callback (with <codeph>enabled</codeph> as <codeph>false</codeph>) before receiving a <codeph><apiname keyref="onUserEnableLocalVideo"/></codeph> callback (with <codeph>enabled</codeph> as <codeph>true</codeph>).</li>
-                    <li props="mac unity flutter electron"><p><ph>Occasional crashes when joining a channel. </ph><ph>(macOS)</ph></p></li>
-                    <li>Occasional failure of joining a channel when the local system time was not set correctly.</li>
-                    <li>When calling the <codeph><apiname keyref="playEffect3"></apiname></codeph> method to play two audio files using the same <codeph>soundId</codeph>, the first audio file was somtimes played repeatedly.</li>
-                    <li props="android unity flutter rn"><p><ph>When the host called the <codeph><apiname keyref="startAudioMixing2"/></codeph> method to play music, sometimes the host couldn't hear the music while the remote users could hear it. </ph><ph props="unity flutter rn">(Android)</ph></p></li>
-                    <li props="android ios unity flutter rn"><p><ph>In a chorus scenario, calling the <codeph><apiname keyref="preload"/></codeph> method to load music sometimes failed. </ph><ph props="unity flutter">(Android, iOS)</ph></p></li>
-                    <li props="android unity flutter rn"><p><ph>Occasional crashes occured on certain Android devices. </ph><ph props="unity flutter rn">(Android)</ph></p></li>
-                    <li props="android ios unity flutter rn"><p><ph>Loading music lists failed when the local system time was not correct. </ph><ph props="unity flutter">(Android, iOS)</ph></p></li>
-                    <li>Calling <codeph><apiname keyref="takeSnapshotEx"/></codeph> once receives the <codeph><apiname keyref="onSnapshotTaken"/></codeph> callback for multiple times. </li>
-                    <li props="android unity flutter rn"><p><ph>In channels joined by calling <codeph><apiname keyref="joinChannelEx"/></codeph> exclusively, calling <codeph><apiname keyref="setEnableSpeakerphone"/></codeph> is unable to switch audio route from the speaker to the headphone. </ph><ph props="unity flutter rn">(Android)</ph></p></li>
+                    <li props="ios flutter unity rn">The remote video froze or became pixelated when the app returned to the foreground after being in the background for a long time. （iOS）</li>
+                    <li props="ios flutter unity rn">The local preview image rotated by 90° on some iPad devices, which did not meet expectations. （iOS）</li>
+                    <li>Occasional video smoothness issues during audio and video interactions.</li>
+                    <li>The app occasionally crashed when the decoded video resolution on the receiving end was an odd number.</li>
+                    <li props="android flutter unity rn">The app crashed when opening the app and starting screen sharing after the first installation or system reboot. (Android)</li>
+                    <li props="android flutter unity rn">Local audio capture failed after joining a channel while answering a system phone call and hanging up, causing remote users to not hear any sound. (Android)</li>
+                    <li props="android flutter unity rn">During the interaction process on certain devices (for example, Redmi Note8), after answering and hanging up a system call, local media files were played without sound and no sound was heard from the remote end. (Android)</li>
+                    <li>Fixed an occasional crash when remote users left the channel.</li>
+                    <li props="cpp flutter unity electron">The screen occasionally flickered on the receiver's side when sharing a PPT window using <xref keyref="startScreenCaptureByWindowId"/> and playing PPT animations. (Windows)</li>
+                    <li props="cpp flutter unity electron">The window border did not retain its original size after exiting the presentation and then maximizing the PPT window when sharing a WPS PPT window on Windows 7 using <xref keyref="startScreenCaptureByWindowId"/> and setting <codeph>enableHighLight</codeph> in <xref keyref="ScreenCaptureParameters"/> to <codeph><ph keyref="true"/></codeph>. (Windows)</li>
+                    <li props="cpp flutter unity electron">The specified window could not be brought to the foreground if it was covered by other windows when sharing a window using <xref keyref="startScreenCaptureByWindowId"/> and setting <codeph>windowFocus</codeph> and <codeph>enableHighLight</codeph> in <xref keyref="ScreenCaptureParameters"/> to <codeph><ph keyref="true"/></codeph>. (Windows)</li>
+                    <li props="cpp flutter unity electron">Clicking on the desktop widget caused the outlined part to flicker when sharing and highlighting a window on a Windows 7 device. (Windows)</li>
+                    <li props="android">The values of <codeph>cameraDirection</codeph> and <codeph>focalLengthType</codeph> in <xref keyref="AgoraFocalLengthInfo"/> returned by <xref keyref="queryCameraFocalLengthCapability"/> could not be read directly.</li>
+                    <li props="ios flutter unity rn">When playing an audio file using <xref keyref="startAudioMixing"/> and the playing finished, the SDK sometimes failed to trigger the <xref keyref="onAudioMixingStateChanged"/>(<ph keyref="AUDIO_MIXING_STATE_STOPPED"/>, <ph keyref="AUDIO_MIXING_REASON_ALL_LOOPS_COMPLETED"/>) callback which reports that the playing is completed. (iOS)</li>
+                    <li props="ios flutter unity rn">When calling the <xref keyref="playEffect3"/> method to play sound effect files shorter than 1 second with <codeph>loopCount</codeph> set to 0, there was no sound. (iOS)</li>
+                    <li props="ios flutter unity rn">When using the Agora media player to play a video and stopping it during playing, sometimes there was no sound for a short time after the playing was resumed. (iOS)</li>
                 </ul>
             </body>
         </topic>
         <topic id="apichange">
-            <title>API changes</title>
+            <title>API Changes</title>
             <body>
-                <p><b>Added</b><ul>
-                    <li props="cpp unity flutter electron">The following enumerations in <codeph><apiname keyref="onLocalVideoStateChanged"/></codeph>: (Windows, macOS)<ul>
-                        <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED"/></codeph></li>
-                        <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_RESUMED"/></codeph></li>
-                        <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_HIDDEN"/></codeph></li>
-                        <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_HIDDEN"/></codeph></li>
-                        <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_MINIMIZED"/></codeph></li>
-                        </ul></li>
-                    <li  props="cpp unity flutter electron"><codeph>d3d11_texture_2d</codeph> and <codeph>texture_slice_index</codeph> members in <codeph><apiname keyref="ExternalVideoFrame"/></codeph>.(Windows)</li><li  props="cpp unity flutter electron"><codeph><apiname keyref="VIDEO_TEXTURE_ID3D11TEXTURE2D"/></codeph> in <codeph><apiname keyref="VIDEO_PIXEL_FORMAT"/></codeph>.(Windows)</li><li><codeph><apiname keyref="enableContentInspectEx"/></codeph></li>
-                    <li props="cpp apple rn unity flutter"><codeph><apiname keyref="CONTENT_INSPECT_IMAGE_MODERATION"/></codeph> in <codeph><apiname keyref="CONTENT_INSPECT_TYPE"/></codeph>.</li>
-                    <li props="android"><codeph><apiname keyref="CONTENT_INSPECT_IMAGE_MODERATION"/></codeph> in <codeph>type</codeph> of <codeph><apiname keyref="ContentInspectModule"/></codeph>.</li>
-                    <li><codeph>serverConfig</codeph> in <codeph><apiname keyref="ContentInspectConfig"/></codeph></li>
-                    <li><codeph><apiname keyref="isFeatureAvailableOnDevice"/></codeph></li>
-                    <li><codeph><apiname keyref="FeatureType"/></codeph></li>
-                    </ul></p>
+                <p><b>Added</b>
+                    <ul>
+                        <li><codeph><apiname/></codeph></li>
+                    </ul>
+                </p>
+                <p><b>Modified</b>
+                    <ul>
+                        <li><apiname/></li>
+                    </ul>
+                </p>
+                <p><b>Deprecated</b>
+                    <ul>
+                        <li><apiname/></li>
+                    </ul>
+                </p>
+                <p><b>Removed</b>
+                    <ul>
+                        <li><apiname/></li>
+                    </ul>
+                </p>
             </body>
         </topic>
     </topic>

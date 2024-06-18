@@ -42,6 +42,9 @@
       int height, int elapsed)? onFirstRemoteVideoFrame;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
           </section>
+          <section id="detailed_desc">
+               <note type="attention">该回调只在 SDK 渲染时才会触发；如果用户采用自定义视频渲染则不会触发，客户需要通过 SDK 以外的方法自行实现。</note>
+           </section>   
           <section id="parameters">
                <title><ph keyref="callback-section-title" /></title>
                <parml>
@@ -73,7 +76,7 @@
                </plentry>
                <plentry>
                     <pt>elapsed</pt>
-                    <pd> 从本地调用 <apiname keyref="joinChannel2" /> 到发生此事件过去的时间（毫秒）。</pd>
+                    <pd> 从本地调用 <ph props="native unreal unity cs"><apiname keyref="joinChannel1" /> 或 </ph><apiname keyref="joinChannel2" /> 到发生此事件过去的时间（毫秒）。</pd>
                </plentry>
                </parml> </section>
      </refbody>

@@ -50,6 +50,7 @@
             <li>如果你已经在一个频道内，你不能用相同的用户 UID 再次加入该频道。</li>
             <li>如果你想在不同的设备上加入相同的频道，请确保你在不同设备上使用的用户 UID 都不同。</li>
             <li>请确保生成 Token 时传入的 App ID 和创建 <xref keyref="IRtcEngine"/> 实例时传入的 App ID 一致。</li>
+            <li>如果你的项目仅开启调试模式（即选择 APP ID 为鉴权机制），成功加入频道 24 小时后会自动退出该频道。</li>
             <li props="cpp unreal bp">在多摄像头采集场景下，你需要在调用该方法之后调用 <xref keyref="startPreview2"/> 方法设置 <parmname>sourceType</parmname> 为 <apiname keyref="VIDEO_SOURCE_CAMERA_SECONDARY"/>，以确保第二个摄像头采集正常。</li>
             </ul> </note> </section>
         <section id="parameters">
@@ -70,7 +71,7 @@
             <plentry id="event" props="native unreal bp">
                 <pt props="android cpp unreal bp">eventHandler</pt>
                 <pt props="ios mac">delegate</pt>
-                <pd><ph props="native unreal bp"><xref keyref="IRtcEngineEx"/> 的回调类，</ph><ph>详见 <xref keyref="IRtcEngineEventHandler"/>。</ph></pd>
+                <pd><xref keyref="IRtcEngineEx"/> 的回调类，详见 <xref keyref="IRtcEngineEventHandler"/>。多频道相关的事件通知通过你在此参数中传递的 <parmname props="android cpp unreal bp">eventHandler</parmname><parmname props="ios mac">delegate</parmname> 对象回调。</pd>
             </plentry>
             <plentry props="ios mac" conkeyref="joinChannel2/joinsuccessblock">
                 <pt/>

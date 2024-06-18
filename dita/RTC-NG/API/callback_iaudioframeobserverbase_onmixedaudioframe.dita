@@ -19,12 +19,12 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onMixedAudioFrame:(AgoraAudioFrame* _Nonnull)frame channelId:(NSString * _Nonnull)channelId  NS_SWIFT_NAME(onMixedAudioFrame(_:channelId:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual bool onMixedAudioFrame(const char* channelId, AudioFrame&amp; audioFrame) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnMixedAudioFrame, const FString, channelId, const FAudioFrame&amp;, audioFrame);</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">  onMixedAudioFrame?(channelId: string, audioFrame: AudioFrame): boolean;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onMixedAudioFrame?(channelId: string, audioFrame: AudioFrame): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual bool OnMixedAudioFrame(string channelId, AudioFrame audio_frame)
         {
             return true;
         }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">  onMixedAudioFrame?(channelId: string, audioFrame: AudioFrame): boolean;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onMixedAudioFrame?(channelId: string, audioFrame: AudioFrame): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(String channelId, AudioFrame audioFrame)?
       onMixedAudioFrame;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"/></p>
@@ -40,7 +40,7 @@
             <note type="note" id="attention" props="native unreal bp flutter cs">
             <ul>
             <li props="native unreal bp cs">方法一的优先级高于方法二，如果使用方法一设置音频数据格式，方法二设置无效。</li>
-            <li props="flutter">由于 Flutter 框架的限制，该回调不支持将处理后的音频数据发送回 SDK。</li>
+            <li props="flutter rn electron">由于框架的限制，该回调不支持将处理后的音频数据发送回 SDK。</li>
             </ul></note>
         <p props="unity">为保证采集和播放混音后的音频数据格式符合预期，你可以调用 <xref keyref="setMixedAudioFrameParameters"/> 设置音频数据格式后，调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象，SDK 会根据该方法中的参数计算采样间隔，并根据该采样间隔触发 <apiname keyref="onMixedAudioFrame"/> 回调。</p></section>
         <section id="parameters">
@@ -98,7 +98,7 @@
                 <pd>预留参数。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unreal bp unity rn electron cs">
+        <section id="return_values" props="native unreal bp unity cs">
             <title>返回值</title>
             <p>无实际含义。</p>
         </section>

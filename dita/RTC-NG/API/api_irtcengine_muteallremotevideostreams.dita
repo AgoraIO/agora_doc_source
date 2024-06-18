@@ -24,13 +24,19 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; muteAllRemoteVideoStreams(bool mute);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p id="desc">成功调用该方法后，本地用户会取消或恢复订阅所有远端用户的视频流，包括在调用该方法后加入频道的用户的视频流。</p>
-            <note type="attention" id="note"><ul>
-                <li>该方法需要在加入频道后调用。</li>
-                <li>如果需要在加入频道前设置默认不订阅远端用户视频流，可以在调用 <xref keyref="joinChannel2"/> 加入频道时设置 <parmname>autoSubscribeVideo</parmname> 为 <codeph><ph keyref="false"/></codeph>。</li>
-            </ul></note>
+            <note type="attention" id="note">
+                <p>SDK 默认在加入频道时订阅所有远端用户的视频流，如果要修改此行为，可以在调用 <xref keyref="joinChannel2"/> 加入频道时设置 <parmname>autoSubscribeVideo</parmname> 为 <codeph><ph keyref="false"/></codeph>，即可在加入频道时取消订阅所有用户的视频流。</p>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>该方法需要在加入频道后调用。</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>如果在调用该方法之后又调用了 <xref keyref="enableVideo"/> 或 <xref keyref="disableVideo"/>，则后调用的方法会生效。</p>
         </section>
         <section id="parameters">
             <title>参数</title>

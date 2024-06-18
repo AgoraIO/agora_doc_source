@@ -8,6 +8,10 @@
             <title>枚举值</title>
             <parml>
             <plentry>
+                <pt><ph keyref="VIDEO_CODEC_NONE"/></pt>
+                <pd>0：（默认）不指定编解码格式。SDK 会根据当前视频流的分辨率、设备性能自动匹配适合的编解码格式。</pd>
+            </plentry>
+            <plentry>
                 <pt><ph keyref="VIDEO_CODEC_VP8"/></pt>
                 <pd>1：标准 VP8。</pd>
             </plentry>
@@ -17,9 +21,7 @@
             </plentry>
             <plentry>
                 <pt><ph keyref="VIDEO_CODEC_H265"/></pt>
-                <pd>3：（默认）标准 H.265。
-                    <note>在某些场景（如采集到的视频流分辨率过低、设备性能有限）下，SDK 会自动调整为 H.264 编码格式。</note>
-                </pd>
+                <pd>3：标准 H.265。</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="VIDEO_CODEC_GENERIC"/></pt>
@@ -27,6 +29,10 @@
                     <p>6：Generic。</p>
                     <p>本类型主要用于传输视频裸数据(比如用户已加密的视频帧)，该类型视频帧以回调的形式返回给用户，需要用户自行解码与渲染。</p>
                 </pd>
+            </plentry>
+            <plentry props="hide">
+                <pt><ph keyref="VIDEO_CODEC_AV1"/></pt>
+                <pd>12：AV1。</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="VIDEO_CODEC_GENERIC_JPEG"/></pt>

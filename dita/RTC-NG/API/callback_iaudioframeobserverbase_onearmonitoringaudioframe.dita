@@ -20,12 +20,12 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onEarMonitoringAudioFrame:(AgoraAudioFrame* _Nonnull)frame;
 </codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual bool onEarMonitoringAudioFrame(AudioFrame&amp; audioFrame) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onEarMonitoringAudioFrame?(audioFrame: AudioFrame): boolean;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">onEarMonitoringAudioFrame?(audioFrame: AudioFrame): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual bool OnEarMonitoringAudioFrame(AudioFrame audioFrame)
         {
             return true;
         }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">onEarMonitoringAudioFrame?(audioFrame: AudioFrame): boolean;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onEarMonitoringAudioFrame?(audioFrame: AudioFrame): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(AudioFrame audioFrame)? onEarMonitoringAudioFrame;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
@@ -38,7 +38,7 @@
             <p props="flutter rn electron">为保证耳返的音频数据格式符合预期，你可以使用如下方法设置耳返音频数据格式：调用 <xref keyref="setEarMonitoringAudioFrameParameters"/> 设置音频数据格式后，调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象，SDK 会根据该方法中的参数计算采样间隔，并根据该采样间隔触发 <apiname keyref="onEarMonitoringAudioFrame"/> 回调。</p>
             <note type="note" id="attention" props="native unreal bp flutter cs"><ul>
             <li props="native unreal bp cs">方法一的优先级高于方法二，如果已使用方法一设置了音频数据格式，则使用方法二的设置不生效。</li>
-            <li props="flutter">由于 Flutter 框架的限制，该回调不支持将处理后的音频数据发送回 SDK。</li></ul></note>
+            <li props="flutter rn electron">由于框架的限制，该回调不支持将处理后的音频数据发送回 SDK。</li></ul></note>
         <p props="unity">为保证耳返的音频数据格式符合预期，你可以调用 <xref keyref="setEarMonitoringAudioFrameParameters"/> 设置音频数据格式后，调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象，SDK 会根据该方法中的参数计算采样间隔，并根据该采样间隔触发 <apiname keyref="onEarMonitoringAudioFrame"/> 回调。</p>
         </section>
         <section id="parameters">
@@ -91,7 +91,7 @@
                 <pd>预留参数。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unreal bp electron rn unity cs">
+        <section id="return_values" props="native unreal bp unity cs">
             <title>返回值</title>
             <p>无实际含义。</p>
         </section>

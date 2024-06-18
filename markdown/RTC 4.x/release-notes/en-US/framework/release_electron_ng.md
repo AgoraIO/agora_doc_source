@@ -1,3 +1,347 @@
+## v4.3.2
+
+This version was released on May x, 20xx.
+
+#### Improvements
+
+This release enhances the usability of the [setRemoteSubscribeFallbackOption](API/api_irtcengine_setremotesubscribefallbackoption.html) method by removing the timing requirements for invocation. It can now be called both before and after joining the channel to dynamically switch audio and video stream fallback options in weak network conditions.
+
+#### Issues fixed
+
+This version fixed the following issues:
+
+- Occasional video smoothness issues during audio and video interactions.
+- The app occasionally crashed when the decoded video resolution on the receiving end was an odd number.
+- The app occasionally crashed when remote users left the channel.
+- The screen occasionally flickered on the receiver's side when sharing a PPT window using [startScreenCaptureByWindowId](API/api_irtcengine_startscreencapturebywindowid.html) and playing PPT animations. (Windows)
+- The window border did not retain its original size after exiting the presentation and then maximizing the PPT window when sharing a WPS PPT window on Windows 7 using [startScreenCaptureByWindowId](API/api_irtcengine_startscreencapturebywindowid.html) and setting `enableHighLight` in [ScreenCaptureParameters](API/class_screencaptureparameters.html) to `true`. (Windows)
+- The specified window could not be brought to the foreground if it was covered by other windows when sharing a window using [startScreenCaptureByWindowId](API/api_irtcengine_startscreencapturebywindowid.html) and setting `windowFocus` and `enableHighLight` in [ScreenCaptureParameters](API/class_screencaptureparameters.html) to `true`. (Windows)
+- Clicking on the desktop widget caused the outlined part to flicker when sharing and highlighting a window on a Windows 7 device. (Windows)
+
+## v4.3.1
+
+This version is released on 2024 Month x, Day x.
+
+#### New Features
+
+1. **Speech Driven Avatar**
+
+   The SDK introduces a speech driven extension that converts speech information into corresponding facial expressions to animate avatar. You can access the facial information through the newly added [`registerFaceInfoObserver`](/api-ref/rtc/electron/API/toc_speech_driven#api_imediaengine_registerfaceinfoobserver) method and [`onFaceInfo`](/api-ref/rtc/electron/API/toc_speech_driven#callback_ifaceinfoobserver_onfaceinfo) callback. This facial information conforms to the ARKit standard for Blend Shapes (BS), which you can further process using third-party 3D rendering engines.
+
+   The speech driven extension is a trimmable dynamic library, and details about the increase in app size are available at [reduce-app-size]().
+
+   **Attention:** The speech driven avatar feature is currently in beta testing. To use it, please contact [technical support](mailto:support@agora.io).
+
+2. **Portrait center stage (macOS)**
+
+   To enhance the presentation effect in online meetings, shows, and online education scenarios, this version introduces the [`enableCameraCenterStage`](/api-ref/rtc/electron/API/toc_center_stage#api_irtcengine_enablecameracenterstage) method to activate portrait center stage. This ensures that presenters, regardless of movement, always remain centered in the video frame, achieving better presentation effects.
+
+   Before enabling portrait center stage, it is recommended to verify whether your current device supports this feature by calling [`isCameraCenterStageSupported`](/api-ref/rtc/electron/API/toc_center_stage#api_irtcengine_iscameracenterstagesupported). A list of supported devices can be found in the API documentation at [`enableCameraCenterStage`](/api-ref/rtc/electron/API/toc_center_stage#api_irtcengine_enablecameracenterstage).
+
+3. **Data stream encryption**
+
+   This version adds `datastreamEncryptionEnabled` to [`EncryptionConfig`](/api-ref/rtc/electron/API/class_encryptionconfig) for enabling data stream encryption. You can set this when you activate encryption with [`enableEncryption`](/api-ref/rtc/electron/API/toc_network#api_irtcengine_enableencryption). If there are issues causing failures in data stream encryption or decryption, these can be identified by the newly added `EncryptionErrorDatastreamDecryptionFailure` and `EncryptionErrorDatastreamEncryptionFailure` enumerations.
+
+4. **Adaptive configuration for low-quality video streams**
+
+   This version introduces adaptive configuration for low-quality video streams. When you activate dual-stream mode and set up low-quality video streams on the sending side using [`setDualStreamMode`](/api-ref/rtc/electron/API/toc_dual_stream#api_irtcengine_setdualstreammode2), the SDK defaults to the following behaviors:
+
+   - The default encoding resolution for low-quality video streams is set to 50% of the original video encoding resolution.
+   - The bitrate for the small streams is automatically matched based on the video resolution and frame rate, eliminating the need for manual specification.
+
+5. **Other features**
+
+   - New method [`enableEncryptionEx`](/api-ref/rtc/electron/API/toc_network#api_irtcengineex_enableencryptionex) is added for enabling media stream or data stream encryption in multi-channel scenarios.
+   - New method [`setAudioMixingPlaybackSpeed`](/api-ref/rtc/electron/API/toc_audio_mixing#api_irtcengine_setaudiomixingplaybackspeed) is introduced for setting the playback speed of audio files.
+   - New method [`getCallIdEx`](/api-ref/rtc/electron/API/toc_network#api_irtcengineex_getcallidex) is introduced for retrieving call IDs in multi-channel scenarios.
+
+#### Improvements
+
+1. **Optimization for game scenario screen sharing (Windows)**
+
+   This version specifically optimizes screen sharing for game scenarios, enhancing performance, stability, and clarity in ultra-high definition (4K, 60 fps) game scenarios, resulting in a clearer, smoother, and more stable gaming experience for players.
+
+2. **Audio device type detection (macOS)**
+   
+   This version adds the `deviceTypeName` in [`AudioDeviceInfo`](/api-ref/rtc/electron/API/class_audiodeviceinfo), used to identify the type of audio devices, such as built-in, USB, HDMI, etc.
+
+3. **Virtual Background Algorithm Optimization**
+
+   To enhance the accuracy and stability of human segmentation when activating virtual backgrounds against solid colors, this version optimizes the green screen segmentation algorithm:
+
+   - Supports recognition of any solid color background, no longer limited to green screens.
+   - Improves accuracy in recognizing background colors and reduces the background exposure during human segmentation.
+   - After segmentation, the edges of the human figure (especially around the fingers) are more stable, significantly reducing flickering at the edges.
+
+4. **CPU consumption reduction of in-ear monitoring**
+
+   This release adds an enumerator `EarMonitoringFilterReusePostProcessingFilter` (1 << 15) in `EarMonitoringFilterType`. For complex audio processing scenarios, you can specify this option to reuse the audio filter post sender-side processing in in-ear monitoring, thereby reducing CPU consumption. Note that this option may increase the latency of in-ear monitoring, which is suitable for latency-tolerant scenarios requiring low CPU consumption.
+
+5. **Other improvements**
+
+   This version also includes the following improvements:
+
+   - Optimization of video encoding and decoding strategies in non-screen sharing scenarios to save system performance overhead. (macOS, Windows)
+   - Enhanced media player capabilities to handle WebM format videos, including support for rendering alpha channels.
+   - In [`AudioEffectPreset`](/api-ref/rtc/electron/API/enum_audioeffectpreset), a new enumeration `RoomAcousticsChorus` (chorus effect) is added, enhancing the spatial presence of vocals in chorus scenarios.
+   - In [`RemoteAudioStats`](/api-ref/rtc/electron/API/class_remoteaudiostats), a new `e2eDelay` field is added to report the delay from when the audio is captured on the sending end to when the audio is played on the receiving end.
+
+#### Issues fixed
+
+This version fixed the following issues:
+
+- Fixed an issue where SEI data output did not synchronize with video rendering when playing media streams containing SEI data using the media player.
+- In screen sharing scenarios, when the app enabled sound card capture with [`enableLoopbackRecording`](/api-ref/rtc/electron/API/toc_audio_capture#api_irtcengine_enableloopbackrecording) to capture audio from the shared screen, the transmission of sound card captured audio failed after a local user manually disabled the local audio capture device, causing remote users to not hear the shared screen's audio. (Windows)
+- In audio-video interactions, if a user inserted headphones into the device and manually switched the system audio output to speakers, and later the app called [`setPlaybackDevice`](/api-ref/rtc/electron/API/toc_audio_device#api_iaudiodevicemanager_setplaybackdevice) to specify the headphone as the audio playback device, audio output did not switch back to speakers as expected after the headphones were removed. (macOS)
+<!-- - During interactions, when a local user set the system default playback device to speakers using , there was no sound from the remote end. (Windows) -->
+- When sharing an Excel document window, remote users occasionally saw a green screen. (Windows)
+- On devices using Intel graphics cards, occasionally there was a performance regression when publishing a small video stream. (Windows)
+- When the network conditions of the sender deteriorated (for example, in poor network environments), the receiver occasionally experienced a decrease in video smoothness and an increase in lag.
+
+#### API Changes
+
+**Added**
+
+- [`enableCameraCenterStage`](/api-ref/rtc/electron/API/toc_center_stage#api_irtcengine_enablecameracenterstage) (macOS)
+- [`isCameraCenterStageSupported`](/api-ref/rtc/electron/API/toc_center_stage#api_irtcengine_iscameracenterstagesupported) (macOS)
+- [`registerFaceInfoObserver`](/api-ref/rtc/electron/API/toc_speech_driven#api_imediaengine_registerfaceinfoobserver)
+- [`unregisterFaceInfoObserver`](/api-ref/rtc/electron/API/toc_speech_driven#api_imediaengine_unregisterfaceinfoobserver)
+- [`IFaceInfoObserver`](/api-ref/rtc/electron/API/class_ifaceinfoobserver)
+- [`onFaceInfo`](/api-ref/rtc/electron/API/toc_speech_driven#callback_ifaceinfoobserver_onfaceinfo)
+- The `publishLipSyncTrack` member in [`ChannelMediaOptions`](/api-ref/rtc/electron/API/class_channelmediaoptions)
+- [`MediaSourceType`](/api-ref/rtc/electron/API/enum_mediasourcetype) adds `SpeechDrivenVideoSource`
+- [`VideoSourceType`](/api-ref/rtc/electron/API/enum_videosourcetype) adds `VideoSourceSpeechDriven`
+- [`EncryptionConfig`](/api-ref/rtc/electron/API/class_encryptionconfig) adds `datastreamEncryptionEnabled`
+- [`EncryptionErrorType`](/api-ref/rtc/electron/API/enum_encryptionerrortype) adds the following enumerations:
+  - `EncryptionErrorDatastreamDecryptionFailure`
+  - `EncryptionErrorDatastreamEncryptionFailure`
+- [`AudioDeviceInfo`](/api-ref/rtc/electron/API/class_audiodeviceinfo) adds `deviceTypeName` (macOS)
+- [`RemoteAudioStats`](/api-ref/rtc/electron/API/class_remoteaudiostats) adds `e2eDelay`
+- [`ErrorCodeType`](/api-ref/rtc/electron/API/enum_errorcodetype) adds `ErrDatastreamDecryptionFailed`
+- [`AudioEffectPreset`](/api-ref/rtc/electron/API/enum_audioeffectpreset) adds `RoomAcousticsChorus`, enhancing the spatial presence of vocals in chorus scenarios.
+- [`getCallIdEx`](/api-ref/rtc/electron/API/toc_network#api_irtcengineex_getcallidex)
+- [`enableEncryptionEx`](/api-ref/rtc/electron/API/toc_network#api_irtcengineex_enableencryptionex)
+- [`setAudioMixingPlaybackSpeed`](/api-ref/rtc/electron/API/toc_audio_mixing#api_irtcengine_setaudiomixingplaybackspeed)
+- [`EarMonitoringFilterType`](/api-ref/rtc/electron/API/enum_earmonitoringfiltertype) adds a new enumeration `EarMonitoringFilterBuiltInAudioFilters`(1 << 15)
+
+## v4.3.0
+
+v4.3.0 was released on xx xx, 2024.
+
+#### Compatibility changes
+
+This release has optimized the implementation of some functions, involving renaming or deletion of some APIs. To ensure the normal operation of the project, you need to update the code in the app after upgrading to this release.
+
+1. **Renaming parameters in callbacks**
+
+   In order to make the parameters in some callbacks and the naming of enumerations in enumeration classes easier to understand, the following modifications have been made in this release. Please modify the parameter settings in the callbacks after upgrading to this release.
+
+   | Callback                           | Original parameter name | Existing parameter name |
+   | ---------------------------------- | ----------------------- | ----------------------- |
+   | `onLocalAudioStateChanged`         | `error`                 | `reason`                |
+   | `onLocalVideoStateChanged`         | `error`                 | `reason`                |
+   | `onDirectCdnStreamingStateChanged` | `error`                 | `reason`                |
+   | `onRtmpStreamingStateChanged`      | `errCode`               | `reason`                |
+
+   | Original enumeration class   | Current enumeration class  |
+   | ---------------------------- | -------------------------- |
+   | `LocalAudioStreamError`      | `LocalAudioStreamReason`   |
+   | `LocalVideoStreamError`      | `LocalVideoStreamReason`   |
+   | `DirectCdnStreamingError`    | `DirectCdnStreamingReason` |
+   | `MediaPlayerError`           | `MediaPlayerReason`        |
+   | `RtmpStreamPublishErrorType` | `RtmpStreamPublishReason`  |
+
+   **Note:** For specific renaming of enumerations, please refer to [API changes](Chunk2067875538.html#apichange).
+
+2. **Channel media relay**
+
+   To improve interface usability, this release removes some methods and callbacks for channel media relay. Use the alternative options listed in the table below:
+
+   | Deleted methods and callbacks                         | Alternative methods and callbacks  |
+   | ----------------------------------------------------- | ---------------------------------- |
+   | `startChannelMediaRelay``updateChannelMediaRelay`     | `startOrUpdateChannelMediaRelay`   |
+   | `startChannelMediaRelayEx``updateChannelMediaRelayEx` | `startOrUpdateChannelMediaRelayEx` |
+   | `onChannelMediaRelayEvent`                            | `onChannelMediaRelayStateChanged`  |
+
+3. **Reasons for local video state changes**
+
+   This release makes the following modifications to the enumerations in the [LocalVideoStreamReason](API/enum_localvideostreamreason.html) class:
+
+   - The value of `LocalVideoStreamReasonScreenCapturePaused` (formerly `LocalVideoStreamReasonScreenCapturePaused`) has been changed from 23 to 28.
+   - The value of `LocalVideoStreamReasonScreenCaptureResumed` (formerly `LocalVideoStreamReasonScreenCaptureResumed`) has been changed from 24 to 29.
+   - The `LocalVideoStreamReasonCodecNotSupport` enumeration has been changed to `LocalVideoStreamReasonCodecNotSupport`.
+
+4. **Log encryption behavior changes**
+   
+   For security and performance reasons, as of this release, the SDK encrypts logs and no longer supports printing plaintext logs via the console. 
+   
+   Refer to the following solutions for different needs:
+   - If you need to know the API call status, please check the API logs and print the SDK callback logs yourself.
+   - For any other special requirements, please contact [technical support](mailto:support@agora.io) and provide the corresponding encrypted logs.
+
+
+
+5. **Audio loopback capturing**
+
+   - Before v4.3.0, if you call the [disableAudio](API/api_irtcengine_disableaudio.html) method to disable the audio module, audio loopback capturing will not be disabled.
+   - As of v4.3.0, if you call the [disableAudio](API/api_irtcengine_disableaudio.html) method to disable the audio module, audio loopback capturing will be disabled as well. If you need to enable audio loopback capturing, you need to enable the audio module by calling the [enableAudio](API/api_irtcengine_enableaudio.html) method and then call [enableLoopbackRecording](API/api_irtcengine_enableloopbackrecording.html).
+
+
+#### New features
+
+1. **Local preview with multiple views**
+
+   This release supports local preview with simultaneous display of multiple frames, where the videos shown in the frames are positioned at different observation positions along the video link. Examples of usage are as follows:
+
+   1. Call [setupLocalVideo](API/api_irtcengine_setuplocalvideo.html) to set the first view: Set the `position` parameter to `PositionPostCapturerOrigin` (introduced in this release) in `VideoCanvas`. This corresponds to the position after local video capture and before preprocessing. The video observed here does not have preprocessing effects.
+   2. Call [setupLocalVideo](API/api_irtcengine_setuplocalvideo.html) to set the second view: Set the `position` parameter to `PositionPostCapturer` in `VideoCanvas`, the video observed here has the effect of video preprocessing.
+   3. Observe the local preview effect: The first view is the original video of a real person; the second view is the virtual portrait after video preprocessing (including image enhancement, virtual background, and local preview of watermarks) effects.
+
+2. **Query Device Score**
+
+   This release adds the [queryDeviceScore](API/api_irtcengine_querydevicescore.html) method to query the device's score level to ensure that the user-set parameters do not exceed the device's capabilities. For example, in HD or UHD video scenarios, you can first call this method to query the device's score. If the returned score is low (for example, below 60), you need to lower the video resolution to avoid affecting the video experience. The minimum device score required for different business scenarios is varied. For specific score recommendations, please contact [technical support](mailto:support@agora.io).
+
+3. **Select different audio tracks for local playback and streaming**
+
+   This release introduces the [selectMultiAudioTrack](API/api_imediaplayer_selectmultiaudiotrack.html) method that allows you to select different audio tracks for local playback and streaming to remote users. For example, in scenarios like online karaoke, the host can choose to play the original sound locally and publish the accompaniment in the channel. Before using this function, you need to open the media file through the [openWithMediaSource](API/api_imediaplayer_openwithmediasource.html) method and enable this function by setting the `enableMultiAudioTrack` parameter in [MediaSource](API/class_mediasource.html).
+
+4. **Others**
+
+   This release has passed the test verification of the following APIs and can be applied to the entire series of RTC 4.x SDK.
+
+   - [setRemoteSubscribeFallbackOption](API/api_irtcengine_setremotesubscribefallbackoption.html): Sets fallback option for the subscribed video stream in weak network conditions.
+   - [onRemoteSubscribeFallbackToAudioOnly](API/callback_irtcengineeventhandler_onremotesubscribefallbacktoaudioonly.html): Occurs when the subscribed video stream falls back to audio-only stream due to weak network conditions or switches back to the video stream after the network conditions improve.
+   - [setPlaybackDeviceVolume](API/api_iaudiodevicemanager_setplaybackdevicevolume.html)(Windows): Sets the volume of the audio playback device.
+   - [getRecordingDeviceVolume](API/api_iaudiodevicemanager_getrecordingdevicevolume.html)(Windows): Sets the volume of the audio capturing device.
+   - [setPlayerOptionInInt](API/api_imediaplayer_setplayeroption.html) and [setPlayerOptionInString](API/api_imediaplayer_setplayeroption2.html): Sets media player options for providing technical previews or special customization features.
+   - [enableCustomAudioLocalPlayback](API/api_irtcengine_enablecustomaudiolocalplayback.html): Sets whether to enable the local playback of external audio source.
+
+#### Improvements
+
+1. **SDK task processing scheduling optimization**
+
+   This release optimizes the scheduling mechanism for internal tasks within the SDK, with improvements in the following aspects:
+
+   - The speed of video rendering and audio playback for both remote and local first frames improves by 10% to 20%.
+   - The API call duration and response time are reduced by 5% to 50%.
+   - The SDK's parallel processing capability significantly improves, delivering higher video quality (720P, 24 fps) even on lower-end devices. Additionally, image processing remains more stable in scenarios involving high resolutions and frame rates.
+   - The stability of the SDK is further enhanced, leading to a noticeable decrease in the crash rate across various specific scenarios.
+
+2. **In-ear monitoring volume boost**
+
+   This release provides users with more flexible in-ear monitoring audio adjustment options, supporting the ability to set the in-ear monitoring volume to four times the original volume by calling [setInEarMonitoringVolume](API/api_irtcengine_setinearmonitoringvolume.html).
+
+3. **Spatial audio effects usability improvement**
+
+   - This release optimizes the design of the [setZones](API/api_ibasespatialaudioengine_setzones.html) method, supporting the ability to set the `zones` parameter to `NULL`, indicating the clearing of all echo cancellation zones.
+   - As of this release, it is no longer necessary to unsubscribe from the audio streams of all remote users within the channel before calling the [ILocalSpatialAudioEngine](API/class_ilocalspatialaudioengine.html) method.
+
+4. **Other Improvements**
+
+   This release also includes the following improvements:
+
+   - The [onLocalVideoStateChanged](API/callback_irtcengineeventhandler_onlocalvideostatechanged.html) callback is improved with the inclusion of the `LocalVideoStreamReasonScreenCaptureAutoFallback` enumeration, singaling unexpected errors during the screen sharing process (potentially due to window blocking failure), resulting in performance degradation without impacting the screen sharing process itself. 
+   - This release optimizes the SDK's domain name resolution strategy, improving the stability of calling to resolve domain names in complex network environments.
+   - When passing in an image with transparent background as the virtual background image, the transparent background can be filled with customized color.
+   - This release adds the `earMonitorDelay` and `aecEstimatedDelay` members in [LocalAudioStats](API/class_localaudiostats.html) to report ear monitor delay and acoustic echo cancellation (AEC) delay, respectively.
+   - The [onPlayerCacheStats](API/callback_imediaplayersourceobserver_onplayercachestats.html) callback is added to report the statistics of the media file being cached. This callback is triggered once per second after file caching is started.
+   - The [onPlayerPlaybackStats](API/callback_imediaplayersourceobserver_onplayerplaybackstats.html) callback is added to report the statistics of the media file being played. This callback is triggered once per second after the media file starts playing. You can obtain information like the audio and video bitrate of the media file through [PlayerPlaybackStats](API/class_playerplaybackstats.html).
+
+#### Issues fixed
+
+This release fixed the following issues:
+
+- When sharing two screen sharing video streams simultaneously, the reported `captureFrameRate` in the [onLocalVideoStats](API/callback_irtcengineeventhandler_onlocalvideostats.html) callback is 0, which is not as expected.
+- When sharing in a specified screen area, the mouse coordinates within the shared area are inaccurate. When the mouse is near the border of the shared area, the mouse may not be visible in the shared screen. (Windows)
+- The SDK failed to detect any changes in the audio routing after plugging in and out 3.5 mm earphones. (Windows)
+
+#### API changes
+
+**Added**
+
+- The `subviewUid` member in [`VideoCanvas`](API/class_videocanvas.html)
+- [enableCustomAudioLocalPlayback](API/api_irtcengine_enablecustomaudiolocalplayback.html)
+- [queryDeviceScore](API/api_irtcengine_querydevicescore.html)
+- The `CustomVideoSource` enumeration in [MediaSourceType](API/enum_mediasourcetype.html)
+- The `RouteBluetoothDeviceA2DP` enumeration in [AudioRoute](API/enum_audioroute.html)
+- [selectMultiAudioTrack](API/api_imediaplayer_selectmultiaudiotrack.html)
+- [onPlayerCacheStats](API/callback_imediaplayersourceobserver_onplayercachestats.html)
+- [onPlayerPlaybackStats](API/callback_imediaplayersourceobserver_onplayerplaybackstats.html)
+- [PlayerPlaybackStats](API/class_playerplaybackstats.html)
+
+**Modified**
+
+- All `ERROR` fields in the following enumerations are changed to `REASON`:
+  - `LocalAudioStreamErrorOk`
+  - `LocalAudioStreamErrorFailure`
+  - `LocalAudioStreamErrorDeviceNoPermission`
+  - `LocalAudioStreamErrorDeviceBusy`
+  - `LocalAudioStreamErrorRecordFailure`
+  - `LocalAudioStreamErrorEncodeFailure`
+  - `LocalAudioStreamErrorRecordInvalidId` (Windows)
+  - `LocalAudioStreamErrorPlayoutInvalidId` (Windows)
+  - `LocalVideoStreamErrorOk`
+  - `LocalVideoStreamErrorFailure`
+  - `LocalVideoStreamErrorDeviceNoPermission`
+  - `LocalVideoStreamErrorDeviceBusy`
+  - `LocalVideoStreamErrorCaptureFailure`
+  - `LocalVideoStreamErrorCodecNotSupport`
+  - `LocalVideoStreamErrorDeviceNotFound`
+  - `LocalVideoStreamErrorDeviceDisconnected`
+  - `LocalVideoStreamErrorDeviceInvalidId`
+  - `LocalVideoStreamErrorScreenCaptureWindowMinimized`
+  - `LocalVideoStreamErrorScreenCaptureWindowClosed`
+  - `LocalVideoStreamErrorScreenCaptureWindowOccluded`
+  - `DirectCdnStreamingErrorOk`
+  - `DirectCdnStreamingErrorFailed`
+  - `DirectCdnStreamingErrorAudioPublication`
+  - `DirectCdnStreamingErrorVideoPublication`
+  - `DirectCdnStreamingErrorNetConnect`
+  - `DirectCdnStreamingErrorBadName`
+  - `PlayerErrorNone`
+  - `PlayerErrorInvalidArguments`
+  - `PlayerErrorInternal`
+  - `PlayerErrorNoResource`
+  - `PlayerErrorInvalidMediaSource`
+  - `PlayerErrorUnknownStreamType`
+  - `PlayerErrorObjNotInitialized`
+  - `PlayerErrorCodecNotSupported`
+  - `PlayerErrorVideoRenderFailed`
+  - `PlayerErrorInvalidState`
+  - `PlayerErrorUrlNotFound`
+  - `PlayerErrorInvalidConnectionState`
+  - `PlayerErrorSrcBufferUnderflow`
+  - `PlayerErrorInterrupted`
+  - `PlayerErrorNotSupported`
+  - `PlayerErrorTokenExpired`
+  - `PlayerErrorUnknown`
+  - `RtmpStreamPublishErrorOk`
+  - `RtmpStreamPublishErrorInvalidArgument`
+  - `RtmpStreamPublishErrorEncryptedStreamNotAllowed`
+  - `RtmpStreamPublishErrorConnectionTimeout`
+  - `RtmpStreamPublishErrorInternalServerError`
+  - `RtmpStreamPublishErrorRtmpServerError`
+  - `RtmpStreamPublishErrorTooOften`
+  - `RtmpStreamPublishErrorReachLimit`
+  - `RtmpStreamPublishErrorNotAuthorized`
+  - `RtmpStreamPublishErrorStreamNotFound`
+  - `RtmpStreamPublishErrorFormatNotSupported`
+  - `RtmpStreamPublishErrorNotBroadcaster`
+  - `RtmpStreamPublishErrorTranscodingNoMixStream`
+  - `RtmpStreamPublishErrorNetDown`
+  - `RtmpStreamPublishErrorInvalidPrivilege`
+  - `RtmpStreamUnpublishErrorOk`
+
+**Deleted**
+
+- `startChannelMediaRelay`
+- `updateChannelMediaRelay`
+- `startChannelMediaRelayEx`
+- `updateChannelMediaRelayEx`
+- `onChannelMediaRelayEvent`
+- `ChannelMediaRelayEvent`
+
+
 ## v4.2.6
 
 v4.2.6 was released on November xx, 2023.
@@ -144,7 +488,7 @@ v4.2.2 was released on July xx, 2023.
 
 This release includes the following additional improvements:
 
-1. The SDK automacially adjusts the frame rate of the sending end based on the screen sharing scenario. Especially in document sharing scenarios, this feature avoids exceeding the expected video bitrate on the sending end to improve transmission efficiency and reduce network burden.
+1. The SDK automatically adjusts the frame rate of the sending end based on the screen sharing scenario. Especially in document sharing scenarios, this feature avoids exceeding the expected video bitrate on the sending end to improve transmission efficiency and reduce network burden.
 2. To help users understand the reasons for more types of remote video state changes, the `remoteVideoStateReasonCodecNotSupport` enumeration has been added to the `onRemoteVideoStateChanged` callback, indicating that the local video decoder does not support decoding the received remote video stream.
 
 #### Issues fixed
@@ -315,7 +659,7 @@ This release introduces `startCameraCapture` and `startScreenCaptureBySourceType
 
 **5. Channel media relay**
 
-This release introduces `startOrUpdateChannleMediaRelay` and `startOrUpdateChannleMediaRelayEx`, allowing for a simpler and smoother way to start and update media relay across channels. With these methods, developers can easily start the media relay across channels and update the target channels for media relay with a single method. Additionally, the internal interaction frequency has been optimized, effectively reducing latency in function calls.
+This release introduces `startOrUpdateChannelMediaRelay` and `startOrUpdateChannelMediaRelayEx`, allowing for a simpler and smoother way to start and update media relay across channels. With these methods, developers can easily start the media relay across channels and update the target channels for media relay with a single method. Additionally, the internal interaction frequency has been optimized, effectively reducing latency in function calls.
 
 **6. Custom audio tracks**
 

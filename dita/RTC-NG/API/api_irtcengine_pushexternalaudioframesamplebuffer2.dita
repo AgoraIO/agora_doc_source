@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_pushexternalaudioframesamplebuffer2">
     <title><ph keyref="pushExternalAudioFrameSampleBuffer2"/></title>
-    <shortdesc id="short"><ph id="shortdesc">推送外部 CMSampleBufferRef 音频帧到指定位置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">将外部 CMSampleBuffer 音频帧通过自定义音频轨道推送到频道中。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -13,22 +13,42 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)pushExternalAudioFrameSampleBuffer:(AgoraAudioExternalSourcePos)sourcePos sampleBuffer:(CMSampleBufferRef _Nonnull)sampleBuffer;</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)pushExternalAudioFrameSampleBuffer:(CMSampleBufferRef _Nonnull)sampleBuffer 
+                               sampleRate:(NSInteger)sampleRate 
+                                 channels:(NSInteger)channels
+                                  trackId:(NSInteger)trackId NS_SWIFT_NAME(pushExternalAudioFrameSampleBuffer(_:sampleRate:channels:trackId:));</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity cs" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
            <codeblock props="flutter" outputclass="language-dart"/> 
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc" conkeyref="pushAudioFrame2/detailed_desc"/>
+        <section id="detailed_desc">
+            <title>详情</title>
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.3.1</dd>
+            </dlentry>
+            </dl>
+            <note type="attention" conkeyref="pushAudioFrame2/sequence"/>
+        </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry conkeyref="pushAudioFrame2/sourcepos">
+            <plentry conkeyref="pushExternalAudioFrameSampleBuffer1/samplebuffer">
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry conkeyref="pushExternalAudioFrameSampleBuffer1/samplebuffer">
+            <plentry conkeyref="pushAudioFrame2/samplerate">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="pushAudioFrame2/channels">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="pushAudioFrame2/trackid">
                 <pt/>
                 <pd/>
             </plentry>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_iaudioframeobserver_onplaybackaudioframebeforemixing">
     <title><ph keyref="onPlaybackAudioFrameBeforeMixing"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获得混音前的指定用户的声音。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">获取所订阅的远端用户混音前的声音。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -23,7 +23,7 @@
     channelId: string,
     uid: number,
     audioFrame: AudioFrame
-  ): boolean;</codeblock>
+  ): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual bool OnPlaybackAudioFrameBeforeMixing(string channel_id,
                                                         uint uid,
                                                         AudioFrame audio_frame)
@@ -34,13 +34,13 @@
     channelId: string,
     uid: number,
     audioFrame: AudioFrame
-  ): boolean;</codeblock>
+  ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(String channelId, int uid, AudioFrame audioFrame)?
       onPlaybackAudioFrameBeforeMixing;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
-        <section id="detailed_desc" props="flutter">
-            <note type="attention">由于 Flutter 框架的限制，该回调不支持将处理后的音频数据发送回 SDK。</note> </section>
+        <section id="detailed_desc" props="flutter rn electron">
+            <note type="attention">由于框架的限制，该回调不支持将处理后的音频数据发送回 SDK。</note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
@@ -52,7 +52,7 @@
             <plentry>
                 <pt props="cpp unreal bp ios mac unity electron rn flutter cs">uid</pt>
                 <pt props="android">userId</pt>
-                <pd>指定用户的用户 ID。</pd>
+                <pd>订阅的远端用户的 ID。</pd>
             </plentry>
             <plentry props="cpp unreal bp unity ios mac electron rn flutter cs">
                 <pt props="cpp unreal bp electron rn flutter">audioFrame</pt>
@@ -95,6 +95,6 @@
                 <pd/>
             </plentry>
             </parml> </section>
-        <section id="return_values" conkeyref="onMixedAudioFrame/return_values" props="native unreal bp unity rn electron cs"/>
+        <section id="return_values" conkeyref="onMixedAudioFrame/return_values" props="native unreal bp unity cs"/>
     </refbody>
 </reference>

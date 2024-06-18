@@ -42,6 +42,7 @@
             <topicref keyref="IMusicContentCenter" toc="no" props="cn"/>
             <topicref keyref="IMusicContentCenterEventHandler" toc="no" props="cn"/>
             <topicref keyref="IMusicPlayer" toc="no" props="cn"/>
+            <topicref keyref="IFaceInfoObserver" toc="no" props="en"/>
         </topicref>
         <topicref href="API/toc_initialize.dita" chunk="to-content">
             <topicref keyref="create" toc="no" processing-role="resource-only"/>
@@ -61,13 +62,15 @@
             <topicref keyref="joinChannel1" toc="no" processing-role="resource-only"/>
             <topicref keyref="joinChannel2" toc="no"/>
             <topicref keyref="joinChannelEx" toc="no"/>
+            <topicref keyref="joinChannelWithUserAccount1" toc="no" processing-role="resource-only"/>
             <topicref keyref="joinChannelWithUserAccount2" toc="no"/>
             <topicref keyref="joinChannelWithUserAccountEx" toc="no"/>
             <topicref keyref="leaveChannel" toc="no" processing-role="resource-only"/>
             <topicref keyref="leaveChannel2" toc="no"/>
+            <topicref keyref="leaveChannelEx" toc="no" processing-role="resource-only"/>
             <topicref keyref="leaveChannelEx2" toc="no"/>
             <topicref keyref="preloadChannel" toc="no"/>
-            <topicref keyref="preloadChannel2" toc="no"/>
+            <topicref keyref="preloadChannelWithUserAccount" toc="no"/>
             <topicref keyref="registerLocalUserAccount" toc="no"/>
             <topicref keyref="renewToken" toc="no"/>
             <topicref keyref="setChannelProfile" toc="no"/>
@@ -189,6 +192,7 @@
                     <topicref keyref="setPlayerAttenuation" toc="no"/>
                     <topicref keyref="setRemoteAudioAttenuation" toc="no"/>
                     <topicref keyref="setRemoteUserSpatialAudioParams" toc="no"/>
+                    <topicref keyref="setSpatialAudioParams" toc="no"/>
                     <topicref keyref="setZones" toc="no"/>
                     <topicref keyref="updatePlayerPositionInfo" toc="no"/>
                     <topicref keyref="enableSpatialAudio" toc="no"/>
@@ -298,7 +302,14 @@
                     <topicref keyref="setLowlightEnhanceOptions" toc="no"/>
                     <topicref keyref="setVideoDenoiserOptions" toc="no"/>
                 </topicref>
-                <topicref href="API/toc_face_detection.dita" chunk="to-content">
+                <topicref href="API/toc_speech_driven.dita" chunk="to-content" props="en">
+                    <topicref keyref="registerFaceInfoObserver" toc="no"/>
+                    <topicref keyref="unregisterFaceInfoObserver" toc="no"/>
+                    <topicref keyref="onFaceInfo" toc="no"/>
+                </topicref>
+                <topicref href="API/toc_center_stage.dita" chunk="to-content">
+                    <topicref keyref="enableCameraCenterStage" toc="no"/>
+                    <topicref keyref="isCameraCenterStageSupported" toc="no"/>
                 </topicref>
                 <topicref href="API/toc_watermark.dita" chunk="to-content">
                     <topicref keyref="addVideoWatermark2" toc="no"/>
@@ -386,6 +397,7 @@
                 <topicref keyref="selectMultiAudioTrack" toc="no"/>
                 <topicref keyref="setAudioMixingDualMonoMode" toc="no"/>
                 <topicref keyref="setAudioMixingPitch" toc="no"/>
+                <topicref keyref="setAudioMixingPlaybackSpeed" toc="no"/>
                 <topicref keyref="setAudioMixingPosition" toc="no"/>
                 <topicref keyref="startAudioMixing2" toc="no"/>
                 <topicref keyref="stopAudioMixing" toc="no"/>
@@ -442,7 +454,6 @@
                     <topicref keyref="setPlaybackSpeed" toc="no"/>
                     <topicref keyref="setPlayerOption" toc="no"/>
                     <topicref keyref="setPlayerOption2" toc="no"/>
-                    <topicref keyref="setSpatialAudioParams" toc="no"/>
                     <topicref keyref="setView" toc="no"/>
                 </topicref>
                 <topicref href="API/toc_mediaplayer_control.dita" chunk="to-content">
@@ -548,15 +559,10 @@
                 <topicref keyref="pauseAllChannelMediaRelayEx" toc="no"/>
                 <topicref keyref="resumeAllChannelMediaRelay" toc="no"/>
                 <topicref keyref="resumeAllChannelMediaRelayEx" toc="no"/>
-                <topicref keyref="startChannelMediaRelay" toc="no"/>
-                <topicref keyref="startChannelMediaRelayEx" toc="no"/>
                 <topicref keyref="startOrUpdateChannelMediaRelay" toc="no"/>
                 <topicref keyref="startOrUpdateChannelMediaRelayEx" toc="no"/>
                 <topicref keyref="stopChannelMediaRelay" toc="no"/>
                 <topicref keyref="stopChannelMediaRelayEx" toc="no"/>
-                <topicref keyref="updateChannelMediaRelay" toc="no"/>
-                <topicref keyref="updateChannelMediaRelayEx" toc="no"/>
-                <topicref keyref="onChannelMediaRelayEvent" toc="no"/>
                 <topicref keyref="onChannelMediaRelayStateChanged" toc="no"/>
             </topicref>
             <topicref href="API/toc_media_push.dita" chunk="to-content">
@@ -611,17 +617,23 @@
             <topicref href="API/toc_audio_route.dita" chunk="to-content">
                 <topicref keyref="onAudioRoutingChanged" toc="no"/>
             </topicref>
-            <topicref href="API/toc_mobile_camera.dita" chunk="to-content">
+            <topicref href="API/toc_pc_video_device_management.dita" chunk="to-content">
+                <topicref keyref="enumerateVideoDevices" toc="no"/>
+                <topicref keyref="getCapability" toc="no"/>
+                <topicref keyref="getDevice_IVideoDeviceManager" toc="no"/>
+                <topicref keyref="getVideoDeviceManager" toc="no"/>
+                <topicref keyref="numberOfCapabilities" toc="no"/>
+                <topicref keyref="setDevice_IVideoDeviceManager" toc="no"/>
                 <topicref keyref="setCameraDeviceOrientation" toc="no"/>
                 <topicref keyref="onCameraReady" toc="no"/>
+                <topicref keyref="onVideoDeviceStateChanged" toc="no"/>
             </topicref>
-            <topicref href="API/toc_pc_audio_device_management.dita" chunk="to-content">
+            <topicref href="API/toc_audio_device.dita" chunk="to-content">
                 <topicref keyref="enumeratePlaybackDevices" toc="no"/>
                 <topicref keyref="enumerateRecordingDevices" toc="no"/>
                 <topicref keyref="followSystemLoopbackDevice" toc="no"/>
                 <topicref keyref="followSystemPlaybackDevice" toc="no"/>
                 <topicref keyref="followSystemRecordingDevice" toc="no"/>
-                <topicref keyref="getAudioDeviceInfo" toc="no"/>
                 <topicref keyref="getAudioDeviceManager" toc="no"/>
                 <topicref keyref="getPlaybackDefaultDevice" toc="no"/>
                 <topicref keyref="getPlaybackDevice" toc="no"/>
@@ -649,15 +661,6 @@
                 <topicref keyref="onAudioDeviceStateChanged" toc="no"/>
                 <topicref keyref="onAudioDeviceVolumeChanged" toc="no"/>
             </topicref>
-            <topicref href="API/toc_pc_video_device_management.dita" chunk="to-content">
-                <topicref keyref="enumerateVideoDevices" toc="no"/>
-                <topicref keyref="getCapability" toc="no"/>
-                <topicref keyref="getDevice_IVideoDeviceManager" toc="no"/>
-                <topicref keyref="getVideoDeviceManager" toc="no"/>
-                <topicref keyref="numberOfCapabilities" toc="no"/>
-                <topicref keyref="setDevice_IVideoDeviceManager" toc="no"/>
-                <topicref keyref="onVideoDeviceStateChanged" toc="no"/>
-            </topicref>
         </topicref>
         <topicref href="API/toc_extension.dita" chunk="to-content">
             <topicref keyref="enableExtension" toc="no"/>
@@ -674,8 +677,10 @@
         <topicref href="API/toc_network.dita" chunk="to-content">
             <topicref keyref="complain" toc="no"/>
             <topicref keyref="enableEncryption" toc="no"/>
+            <topicref keyref="enableEncryptionEx" toc="no"/>
             <topicref keyref="enableWebSdkInteroperability" toc="no"/>
             <topicref keyref="getCallId" toc="no"/>
+            <topicref keyref="getCallIdEx" toc="no"/>
             <topicref keyref="getConnectionState" toc="no"/>
             <topicref keyref="getConnectionStateEx" toc="no"/>
             <topicref keyref="getCurrentMonotonicTimeInMs" toc="no"/>
@@ -694,7 +699,6 @@
             <topicref keyref="setEncryptionMode" toc="no"/>
             <topicref keyref="setEncryptionSecret" toc="no"/>
             <topicref keyref="setLocalAccessPoint" toc="no" props="cn"/>
-            <topicref keyref="setLocalPublishFallbackOption" toc="no"/>
             <topicref keyref="setLogFile" toc="no"/>
             <topicref keyref="setLogFileSize" toc="no"/>
             <topicref keyref="setLogFilter" toc="no"/>
@@ -719,6 +723,6 @@
             <topicref keyref="onRemoteSubscribeFallbackToAudioOnly" toc="no"/>
             <topicref keyref="onUplinkNetworkInfoUpdated" toc="no"/>
         </topicref>
-        <topicref href="API/rtc_api_data_type.dita" chunk="to-content"/>
+        <topicref href="API/rtc_api_data_type.dita"/>
     </topichead>
 </map>

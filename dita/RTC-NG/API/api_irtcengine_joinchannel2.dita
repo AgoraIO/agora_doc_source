@@ -59,6 +59,7 @@
             <ul id="ul_sz1_y1l_mqb">
             <li>该方法允许用户一次加入仅一个频道。</li>
             <li>请务必确保用于生成 Token 的 App ID 和 <xref keyref="initialize" /> 方法初始化引擎时用的是同一个 App ID，否则使用 Token 加入频道失败。</li>
+            <li>如果你的项目仅开启调试模式（即选择 APP ID 为鉴权机制），成功加入频道 24 小时后会自动退出该频道。</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>参数</title>
@@ -79,14 +80,14 @@
                     <li>26 个小写英文字母 a~z</li>
                     <li>26 个大写英文字母 A~Z</li>
                     <li>10 个数字 0~9</li>
-                    <li>空格</li>
+                    <li props="hide">空格</li>
                     <li>"!"、"#"、"$"、"%"、"&amp;"、"("、")"、"+"、"-"、":"、";"、"&lt;"、"="、"."、"&gt;"、"?"、"@"、"["、"]"、"^"、"_"、"{"、"}"、"|"、"~"、","</li>
                     </ul></p>
                 </pd>
             </plentry>
             <plentry id="uid">
                 <pt>uid</pt>
-                <pd>用户 ID。该参数用于标识在实时音视频互动频道中的用户。你需要自行设置和管理用户 ID，并确保同一频道内的每个用户 ID 是唯一的。该参数为 32 位无符号整数。建议设置范围：1 到 2<sup>32</sup>-1。如果不指定（即设为 0），SDK 会自动分配一个，并在 <apiname keyref="onJoinChannelSuccess" /> 回调中返回， App 层必须记住该返回值并维护，SDK 不对该返回值进行维护。</pd>
+                <pd>用户 ID。该参数用于标识在实时音视频互动频道中的用户。你需要自行设置和管理用户 ID，并确保同一频道内的每个用户 ID 是唯一的。<ph props="android">该参数为 32 位有符号整数。取值范围为：-2<sup>31</sup>-1 到 2<sup>31</sup>-1。</ph><ph props="cpp apple framework">该参数为 32 位无符号整数。建议设置范围：1 到 2<sup>32</sup>-1。</ph>如果不指定（即设为 0），SDK 会自动分配一个，并在 <apiname keyref="onJoinChannelSuccess" /> 回调中返回， 应用层必须记住该返回值并维护，SDK 不对该返回值进行维护。</pd>
             </plentry>
             <plentry id="options">
                 <pt props="android cpp unreal bp electron unity rn flutter cs">options</pt>

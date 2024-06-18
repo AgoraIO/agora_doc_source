@@ -30,8 +30,11 @@
         </section>
         <section id="detailed_desc">
             <title>详情</title>
-            <note type="attention">
-            <p>调用该方法前，请将 <xref keyref="ChannelMediaOptions"/> 中的 <parmname>publishCustomAudioTrackId</parmname> 参数设置为你想要发布的音频轨道 ID，并将 <parmname>publishCustomAudioTrack</parmname> 设为 <codeph><ph keyref="true"/></codeph>。</p>
+            <note type="attention" id="sequence">
+            <p>调用该方法推送外部音频数据前，请先进行以下操作：<ol>
+                <li>调用 <xref keyref="createCustomAudioTrack"/> 创建音频轨道并获得音频轨道 ID。</li>
+                <li>调用 <xref keyref="joinChannel2"/> 加入频道时，将 <xref keyref="ChannelMediaOptions"/> 中的 <parmname>publishCustomAudioTrackId</parmname> 设置为你想要发布的音频轨道 ID，并将 <parmname>publishCustomAudioTrack</parmname> 设置为 <codeph><ph keyref="true"/></codeph>。</li>
+            </ol></p>
             </note> </section>
         <section id="parameters">
             <title>参数</title>
@@ -48,11 +51,11 @@
                 <pt>timestamp</pt>
                 <pd>外部音频帧的时间戳（毫秒）。该参数为必填。你可以使用该时间戳还原音频帧顺序；在有视频的场景中（包含使用外部视频源的场景），该参数可以帮助实现音视频同步。</pd>
             </plentry>
-            <plentry>
+            <plentry id="samplerate">
                 <pt>sampleRate</pt>
                 <pd>外部音频渲染的采样率 (Hz)，可设置为 8000，16000，32000，44100 或 48000。</pd>
             </plentry>
-            <plentry>
+            <plentry id="channels">
                 <pt>channels</pt>
                 <pd>外部音频渲染的声道数:
                     <ul>
@@ -64,7 +67,7 @@
                 <pt>bytesPerSample</pt>
                 <pd>每个采样点的字节数。对于 PCM 来说，一般使用 16 bit，即两个字节。</pd>
             </plentry>
-            <plentry>
+            <plentry id="trackid">
                 <pt>trackId</pt>
                 <pd>音频轨道 ID。将该参数设置为 <xref keyref="createCustomAudioTrack"/> 方法中返回的自定义音频轨道 ID。</pd>
             </plentry>
