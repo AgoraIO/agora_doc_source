@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onclientrolechanged">
     <title><ph keyref="onClientRoleChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the user role switches during the interactive live streaming.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the user role or the audience latency level changes.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -37,10 +37,20 @@ NS_SWIFT_NAME(rtcEngine(_:didClientRoleChanged:newRole:newRoleOptions:));</codeb
       ClientRoleOptions newRoleOptions)? onClientRoleChanged;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <p>The SDK triggers this callback when the local user switches their user role by calling <xref keyref="setClientRole2"/> after joining the channel.</p>
+        <section id="timing" deliveryTarget="details">
+            <title>Trigger timing</title>
+            <p props="native cs unity unreal">This callback will be triggered in any of the following situations:<ul>
+                <li>Calling <xref keyref="setClientRole1"/> or <xref keyref="setClientRole2"/> to set the user role or audience latency level <b>after joining a channel</b></li>
+                <li>Calling <xref keyref="setClientRole1"/> or <xref keyref="setClientRole2"/> and set the user role to <parmname>AUDIENCE</parmname> <b>before joining a channel</b>.</li></ul></p>
+            <p props="flutter rn electron bp">This callback will be triggered in any of the following situations:<ul>
+                    <li>Calling <xref keyref="setClientRole2"/> to set the user role or audience latency level <b>after joining a channel</b>.</li>
+                    <li>Calling <xref keyref="setClientRole2"/> to set the user role to <parmname>AUDIENCE </parmname><b>before joining a channel</b>.</li></ul></p>
         </section>
-        <section id="parameters">
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>This callback will not be triggered when you call <xref keyref="setClientRole1"/> or <xref keyref="setClientRole2"/> and set the user role to <parmname>BROADCASTER</parmname> <b>before joining a channel</b>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title><ph keyref="callback-section-title"/></title>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">

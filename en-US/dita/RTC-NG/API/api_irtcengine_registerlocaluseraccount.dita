@@ -25,22 +25,32 @@
     {required String appId, required String userAccount});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
+            <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p>Once registered, the user account can be used to identify the local user when the user joins the channel. After the registration is successful, the user account can identify the identity of the local user, and the user can use it to join the channel.</p>
-            <p>After the user successfully registers a user account, the SDK triggers the <xref keyref="onLocalUserRegistered" /> callback on the local client, reporting the user ID and account of the local user.</p>
-            <p>This method is optional. To join a channel with a user account, you can choose either of the following ways:<ul>
-            <li>Call <apiname keyref="registerLocalUserAccount" /> to create a user account, and then call <xref keyref="joinChannelWithUserAccount2" /> to join the channel.</li>
-            <li>Call the <apiname keyref="joinChannelWithUserAccount2" /> method to join the channel.</li>
-            </ul></p>
-            <p>The difference between the two ways is that the time elapsed between calling the <apiname keyref="registerLocalUserAccount" /> method and joining the channel is shorter than directly calling <apiname keyref="joinChannelWithUserAccount2" />.</p>
+            <p>This method is optional. If you want to join a channel using a user account, you can choose one of the following methods:<ul props="electron flutter rn bp">
+            <li>Call the <apiname keyref="registerLocalUserAccount" /> method to register a user account, and then call the <xref keyref="joinChannelWithUserAccount2"/> method to join a channel, which can shorten the time it takes to enter the channel.</li>
+            <li>Call the <apiname keyref="joinChannelWithUserAccount2" /> method to join a channel.</li>
+            </ul>
+            <ul props="native unity cs unreal">
+                <li>Call the <apiname keyref="registerLocalUserAccount" /> method to register a user account, and then call the <xref keyref="joinChannelWithUserAccount1"/> or <xref keyref="joinChannelWithUserAccount2"/> method to join a channel, which can shorten the time it takes to enter the channel.</li>
+                <li>Call the <xref keyref="joinChannelWithUserAccount1"/> or <apiname keyref="joinChannelWithUserAccount2" /> method to join a channel.</li>
+            </ul>
+        </p>
             <note type="attention">
-            <ul>
-            <li>Ensure that you set the <parmname>userAccount</parmname> parameter; otherwise, this method does not take effect.</li>
-            <li>Ensure that the <parmname>userAccount</parmname> is unique in the channel.</li>
-            <li>To ensure smooth communication, use the same parameter type to identify the user. For example, if a user joins the channel with a user ID, then ensure all the other users use the user ID too. The same applies to the user account. If a user joins the channel with the Agora Web SDK, ensure that the ID of the user is set to the same parameter type.</li>
-            </ul> </note> </section>
-        <section id="parameters">
+                <ul>
+                <li>Ensure that the <parmname>userAccount</parmname> is unique in the channel.</li>
+                <li>To ensure smooth communication, use the same parameter type to identify the user. For example, if a user joins the channel with a user ID, then ensure all the other users use the user ID too. The same applies to the user account. If a user joins the channel with the Agora Web SDK, ensure that the ID of the user is set to the same parameter type.</li>
+                </ul> </note>
+            </section>
+            <section id="restriction" deliveryTarget="details">
+                <title>Restrictions</title>
+                <p>None.</p>
+            </section>
+            <section id="related" deliveryTarget="details">
+                <title>Related callbacks</title>
+                <p>After successfully calling this method, the <xref keyref="onLocalUserRegistered" /> callback will be triggered on the local client to report the local user's UID and user account.</p>
+            </section>
+            <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>

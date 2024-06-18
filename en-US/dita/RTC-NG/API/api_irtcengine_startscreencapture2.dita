@@ -46,8 +46,12 @@
                 <li><ph props="cpp unreal bp unity flutter"><xref keyref="startScreenCapture"/>/</ph><xref keyref="startScreenCaptureByDisplayId"/>/<xref keyref="startScreenCaptureByWindowId"/>: Only supports capturing a single screen or window, suitable for scenarios where only a single screen is shared.</li>
                 <li><xref keyref="startScreenCapture2"/>: Supports specifying multiple video sources to capture multiple screen sharing streams, used for local video mixing or multi-channel scenarios.</li></ul></p>
         </section>
-        <section id="timing" deliveryTarget="details" conkeyref="startScreenCapture/timing">
-            <title/>
+        <section id="timing" deliveryTarget="details">
+        <title>Call timing</title>
+            <p>You can call this method either before or after joining the channel, with the following differences:<ul>
+            <li>Call this method first and then call <xref keyref="joinChannel2"/> to join channel and set <parmname>publishScreenCaptureVideo</parmname> to <codeph><ph keyref="true"/></codeph> to start screen sharing.</li>
+            <li>Call this method after joining a channel, then call <xref keyref="updateChannelMediaOptions"/> and set <parmname>publishScreenCaptureVideo</parmname> to <codeph><ph keyref="true"/></codeph> to start screen sharing.</li>
+            </ul></p>
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>Restrictions</title>

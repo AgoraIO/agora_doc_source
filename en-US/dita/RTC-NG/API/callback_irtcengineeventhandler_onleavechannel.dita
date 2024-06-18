@@ -26,10 +26,19 @@
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, RtcStats stats)? onLeaveChannel;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <p>This callback notifies the app that the user leaves the channel by calling <xref keyref="leaveChannel2" />. From this callback, the app can get information such as the call duration and statistics.</p>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>You can obtain information such as the total duration of a call, and the data traffic that the SDK transmits and receives.</p>
         </section>
-        <section id="parameters">
+        <section id="timing" deliveryTarget="details">
+            <title>Trigger timing</title>
+            <p props="native unity cs unreal">The SDK triggers this callback after you call <xref keyref="leaveChannel"/>, <xref keyref="leaveChannel2"/>, <xref keyref="leaveChannelEx"/>, or <xref keyref="leaveChannelEx2"/> to leave a channel.</p>
+            <p props="flutter rn electron bp">The SDK triggers this callback after you call <xref keyref="leaveChannel2"/> or <xref keyref="leaveChannelEx2"/> to leave a channel.</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title><ph keyref="callback-section-title" /></title>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
@@ -42,7 +51,7 @@
             </plentry>
             <plentry id="stats">
                 <pt>stats</pt>
-                <pd>The statistics of the call. See <xref keyref="RtcStats" />.</pd>
+                <pd>Call statistics. See <xref keyref="RtcStats" />.</pd>
             </plentry>
             </parml> </section>
     </refbody>
