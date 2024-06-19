@@ -70,15 +70,10 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p conkeyref="startAudioMixing2/uri" props="android"></p>
             <p id="playEffect-desc">你可以多次调用该方法，传入不同的 <parmname>soundID</parmname> 和 <parmname>filePath</parmname>，同时播放多个音效文件。为获得最佳用户体验，建议同时播放的音效文件不超过 3 个。</p>
-            <p props="apple">该方法和 <xref keyref="playEffect1"/>、<xref keyref="playEffect2"/> 的区别在于该方法还可以设置音效文件起始的播放位置。</p>
-        </section>
-        <section id="scenario" deliveryTarget="details">
-            <title>适用场景</title>
-            <p/>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p>//TODO待确认 该方法在加入频道前后均可调用。</p>
+            <p>该方法在加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -99,9 +94,11 @@
             </plentry>
             <plentry id="filepath">
                 <pt>filePath</pt>
-                <pd>
-                    <p>播放文件的绝对路径或 URL 地址，需精确到文件名及后缀。通过绝对路径访问本地文件可能会遇到权限问题，建议使用 URL 地址访问本地文件。例如 <codeph><ph keyref="filePath-example" /></codeph>。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV、3GP。详见<xref keyref="filePath-link">支持的媒体格式</xref>。</p>
-                    <note type="attention">如果你已通过 <xref keyref="preloadEffect" /> 将音效加载至内存，请确保该参数与 <apiname keyref="preloadEffect" /> 中设置的 <parmname>filePath</parmname> 相同。</note> </pd>
+                    <pd>
+                        <p props="cpp framework">播放文件的地址，支持在线文件的 URL 地址、播放文件的绝对路径，需精确到文件名及后缀。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV、3GP 等。<ph props="cpp">详见<xref keyref="filePath-link">支持的媒体格式</xref>。</ph></p>
+                        <p props="android">播放文件的地址，支持以 <codeph>content://</codeph> 开头的 URI 地址、以 <codeph>/assets/</codeph> 开头的路径、在线文件的 URL 地址、本地文件的绝对路径，需精确到文件名及后缀。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV、3GP。详见<xref keyref="filePath-link">支持的媒体格式</xref>。</p>
+                        <p props="apple">播放文件的地址，支持以 <codeph>ipod-library//</codeph> 开头的文件路径、在线文件的 URL 地址、文件的绝对路径，需精确到文件名及后缀。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV、3GP。详见<xref keyref="filePath-link">支持的媒体格式</xref>。</p>
+                        <note type="attention">如果你已通过 <xref keyref="preloadEffect" /> 将音效加载至内存，请确保该参数与 <apiname keyref="preloadEffect" /> 中设置的 <parmname>filePath</parmname> 相同。</note> </pd>
             </plentry>
             <plentry id="loopcount">
                 <pt>loopCount</pt>
