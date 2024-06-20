@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusicplayer_setplaymode">
+    <title><ph keyref="setPlayMode"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置版权音乐播放时的音频轨道。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setPlayMode"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">int setPlayMode(MusicPlayMode mode);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (NSInteger)setPlayMode:(AgoraMusicPlayMode)mode NS_SWIFT_NAME(setPlayMode(mode:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setPlayMode(MusicPlayMode mode) = 0;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.4.0</dd>
+            </dlentry>
+            </dl>
+            <p>你可以调用该方法来设置某一音乐资源播放时的音轨，包括原唱、伴奏、导唱。如不调用该方法进行设置，则默认播放伴奏。（如果没有伴奏默认播放啥）
+            如果使用的版权音乐，是通过 music 这个结构体里面的 type 参数来判断支持什么音乐资源吗？
+            <note type="attention">你可以通过 <xref keyref="Music"/> 中的 <parmname>type</parmname> 参数来得知需播放的版权音乐支持的音轨类型。</note>
+            </p>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p/>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>该方法需要在 <xref keyref="createMusicPlayer"/> 之后调用。</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无，</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt>mode</pt>
+                <pd>需播放的音轨类型，详见 <xref keyref="MusicPlayMode"/>。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+            <ul props="native unreal bp electron unity rn cs">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph>
+            <ul>
+                <li>-2: 参数设置错误，请重新设置参数。</li>
+            </ul></li></ul> </section>
+        </refbody>
+</reference>
