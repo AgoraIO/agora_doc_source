@@ -237,9 +237,9 @@
   
   public videoGop: number;
   
-  private watermarkList?: Array&lt;AgoraImage&gt;;
+  public watermarkList?: Array&lt;AgoraImage&gt;;
   
-  private backgroundImageList?: Array&lt;AgoraImage&gt;;
+  public backgroundImageList?: Array&lt;AgoraImage&gt;;
   
   public audioSampleRate: Constants.AudioSampleRateType;
   
@@ -253,11 +253,13 @@
   
   public videoCodecType: Constants.VideoCodecType;
   
-  public userConfigExtraInfo?: string | null = null;
+  public userConfigExtraInfo?: string;
   
-  private transcodingUsers: Map&lt;number, TranscodingUser&gt;;
+  public metadata?: string;
   
-  private advancedFeatures: Map&lt;string, boolean&gt;;
+  public transcodingUsers: Map&lt;number, TranscodingUser&gt;;
+  
+  public advancedFeatures: Map&lt;string, boolean&gt;;
   constructor() {
     this.width = 360;
     this.height = 640;

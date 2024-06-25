@@ -243,14 +243,20 @@
 }</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">export class VideoFrame {
   public buffer:ArrayBuffer | null = null;
+  public yBuffer: ArrayBuffer | null = null;
+  public uBuffer: ArrayBuffer | null = null;
+  public vBuffer: ArrayBuffer | null = null;
   public rotation:number = 0;
   public timestamp:number = 0;
   public stride:number = 0;
+  public uStride:number = 0;
+  public vStride:number = 0;
+  public width:number = 0;
   public height:number = 0;
-  public type:VIDEO_BUFFER_TYPE = VIDEO_BUFFER_TYPE.VIDEO_BUFFER_RAW_DATA;
-  public format:VIDEO_PIXEL_FORMAT = VIDEO_PIXEL_FORMAT.VIDEO_PIXEL_NV21;
+  public type:VideoBufferType = VideoBufferType.VIDEO_BUFFER_RAW_DATA;
+  public format:VideoPixelFormat = VideoPixelFormat.VIDEO_PIXEL_NV21;
   public faceInfo:Array&lt;FaceDetectionInfo&gt; | undefined = undefined;
-  constructor(type:VIDEO_BUFFER_TYPE,format:VIDEO_PIXEL_FORMAT) {
+  constructor(type:VideoBufferType,format:VideoPixelFormat) {
     this.type = type;
     this.format = format;
   }
