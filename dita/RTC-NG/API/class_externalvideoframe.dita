@@ -428,11 +428,16 @@ class ExternalVideoFrame {
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry conkeyref="VideoFrame/alphabuffer">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry conkeyref="VideoFrame/fillalphabuffer">
+            <plentry id="alphabuffer">
+                <pt props="cpp android">alphaBuffer</pt>
+                <pt props="apple">alphaBuf</pt>
+                <pd>
+                  <p>采用人像分割算法输出的 Alpha 通道数据。该数据跟视频帧的尺寸一致，每个像素点的取值范围为 [0,255]，其中 0 代表背景；255 代表前景（人像）。</p>
+                  <p>你可以通过设置该参数，实现将视频背景自渲染为各种效果，例如：透明、纯色、图片、视频等。</p>
+                  <note type="attention" props="android">在自定义视频渲染场景下，需确保传入的视频帧和 <parmname>alphaBuffer</parmname> 均为 Full Range 类型；其他类型可能导致 Alpha 数据渲染不正常。</note>
+                </pd>
+              </plentry>
+                  <plentry conkeyref="VideoFrame/fillalphabuffer">
                 <pt/>
                 <pd/>
             </plentry>
