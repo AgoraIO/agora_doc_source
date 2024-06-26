@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imusicplayer_setplaymode">
     <title><ph keyref="setPlayMode"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置版权音乐播放时的音频轨道。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">设置音乐资源的播放模式。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -29,29 +29,27 @@
                 <dd>v4.4.0</dd>
             </dlentry>
             </dl>
-            <p>你可以调用该方法来设置某一音乐资源播放时的音轨，包括原唱、伴奏、导唱。如不调用该方法进行设置，则默认播放伴奏。（如果没有伴奏默认播放啥）
-            如果使用的版权音乐，是通过 music 这个结构体里面的 type 参数来判断支持什么音乐资源吗？
-            <note type="attention">你可以通过 <xref keyref="Music"/> 中的 <parmname>type</parmname> 参数来得知需播放的版权音乐支持的音轨类型。</note>
-            </p>
+            <p>你可以调用该方法来设置启用原唱、伴奏或导唱。如不调用该方法进行设置，则默认播放伴奏；如果音乐资源没有伴奏，则播放原唱。</p>
+            <note type="attention">你可以通过 <xref keyref="Music"/> 中的 <parmname>type</parmname> 参数来得知需播放的版权音乐支持的播放类型。</note>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>适用场景</title>
-            <p/>
+            <p>推荐在线 K 歌场景下，如果你需要播放声网内容中心提供的版权音乐，你可以调用该方法来设置播放模式。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p>该方法需要在 <xref keyref="createMusicPlayer"/> 之后调用。</p>
-        </section>        
+        </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p>无，</p>
+            <p>无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
             <plentry>
                 <pt>mode</pt>
-                <pd>需播放的音轨类型，详见 <xref keyref="MusicPlayMode"/>。</pd>
+                <pd>播放模式，详见 <xref keyref="MusicPlayMode"/>。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
