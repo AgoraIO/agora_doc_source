@@ -34,12 +34,13 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p id="desc">Sends data stream messages to all users in a channel. The SDK has the following restrictions on this method:<ul>
-            <li>Up to 30 packets can be sent per second in a channel with each packet having a maximum size of 1 KB.</li>
-            <li>Each client can send up to 6 KB of data per second.</li>
+            <p>调用 <xref keyref="createDataStream2" /> 后，你可以调用该方法向频道内所有用户发送数据流消息。</p>
+            <p id="limit">The SDK has the following restrictions on this method:<ul>
             <li>Each user can have up to five data streams simultaneously.</li>
+            <li>每个数据通道每秒最多能发送 60 个包（每个包最大为 1 KB）。</li>
+            <li>每个数据通道每秒最多能发送 30 KB 数据。</li>
             </ul></p>
-            <p>A successful method call triggers the <xref keyref="onStreamMessage" /> callback on the remote client, from which the remote user gets the stream message. A failed method call triggers the <xref keyref="onStreamMessageError" /> callback on the remote client.</p>
+            <p id="error">A successful method call triggers the <xref keyref="onStreamMessage" /> callback on the remote client, from which the remote user gets the stream message. A failed method call triggers the <xref keyref="onStreamMessageError" /> callback on the remote client.</p>
             <note type="attention">
             <ul>
             <li>Ensure that you call <xref keyref="createDataStream2" /> to create a data channel before calling this method.</li>
