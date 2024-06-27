@@ -18,19 +18,21 @@
           </section>
           <section id="detailed_desc">
             <title>详情</title>
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.4.0</dd>
+            </dlentry>
+            </dl>
                <p conkeyref="setRemoteVideoStreamType/desc1"/>
                <p conkeyref="setRemoteVideoStreamType/desc2"/>
-               <note type="attention"><ul>
-                    <li>该方法在加入频道前后都能调用。</li>
-                    <li>如果发送端已调用 <xref keyref="setDualStreamMode2"/> 并将 <parmname>mode</parmname> 设置为 <apiname keyref="DISABLE_SIMULCAST_STREAM"/>（始终不发送小流），则调用该方法不生效，你需要在发送端重新调用 <apiname keyref="setDualStreamMode2"/> 修改设置。</li>
-                         <li><b>观众角色</b>的接收端调用该方法不生效。</li>
-                         <li>如果既调用了 <apiname keyref="setRemoteVideoStreamType2"/>，也调用了 <xref keyref="setRemoteDefaultVideoStreamType2"/>，则 SDK 以 <apiname keyref="setRemoteVideoStreamType2"/> 中的设置为准。</li></ul></note> </section>
+               <note type="attention" conkeyref="setRemoteVideoStreamType/note"/></section>
           <section id="parameters">
                <title>参数</title>
                <parml>
-               <plentry id="uid">
-                    <pt>uid</pt>
-                    <pd>用户 ID。</pd>
+               <plentry conkeyref="setRemoteVideoStreamType/uid">
+                    <pt/>
+                    <pd/>
                </plentry>
                <plentry id="streamtype">
                     <pt>streamType</pt>
