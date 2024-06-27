@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setplaybackaudioframeparameters">
     <title><ph keyref="setPlaybackAudioFrameParameters" /></title>
-    <shortdesc id="short"><ph id="shortdesc">设置播放的音频格式。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">设置播放的原始音频数据格式。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -23,8 +23,8 @@
     int channel,
     RAW_AUDIO_FRAME_OP_MODE_TYPE mode,
     int samplesPerCall) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
-	int SetPlaybackAudioFrameParameters(int sampleRate, int channel, ERAW_AUDIO_FRAME_OP_MODE_TYPE mode, int samplesPerCall);</codeblock>
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+        int SetPlaybackAudioFrameParameters(int sampleRate, int channel, ERAW_AUDIO_FRAME_OP_MODE_TYPE mode, int samplesPerCall);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setPlaybackAudioFrameParameters(
     sampleRate: number,
     channel: number,
@@ -46,43 +46,39 @@
     required int samplesPerCall});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
-            <p>该方法设置 <xref keyref="onPlaybackAudioFrame" /> 回调数据的格式。</p>
-            <note type="attention">
-            <ul id="ul_t13_lnz_r4b">
-            <li>该方法需要在加入频道前调用。</li>
-            <li>SDK 会通过该方法中的 <parmname>samplesPerCall</parmname>、<parmname>sampleRate</parmname> 和 <parmname>channel</parmname> 参数计算出采样间隔，计算公式为<equation-inline>采样间隔 = <parmname>samplesPerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>。请确保采样间隔不小于 0.01 秒。SDK 会根据该采样间隔触发 <apiname keyref="onPlaybackAudioFrame" /> 回调。</li>
-            </ul> </note> </section>
-        <section id="parameters">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p><ph conkeyref="setRecordingAudioFrameParameters/function"/><ph>SDK 会根据该采样间隔触发 <xref keyref="onPlaybackAudioFrame" /> 回调。</ph></p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>该方法需要在加入频道前调用。</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="related" deliveryTarget="details">
+            <title>相关回调</title>
+            <p>该方法设置 <apiname keyref="onPlaybackAudioFrame" /> 回调数据的格式。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-            <plentry>
-                <pt>sampleRate</pt>
-                <pd><apiname keyref="onPlaybackAudioFrame" /> 中返回数据的采样率，可设置为 8000、 16000、 32000、44100 或 48000。</pd>
+            <plentry conkeyref="setRecordingAudioFrameParameters/sampleRate">
+                <pt/>
+                <pd/>
             </plentry>
-            <plentry>
-                <pt>channel</pt>
-                <pd>
-                    <p><apiname keyref="onPlaybackAudioFrame" /> 中返回数据的通道数，可设置为 1 或 2:
-
-
-                    <ul id="ul_xg2_cnz_r4b">
-                    <li>1: 单声道</li>
-                    <li>2: 双声道</li>
-                    </ul></p>
-                </pd>
+            <plentry conkeyref="setRecordingAudioFrameParameters/channel">
+                <pt/>
+                <pd/>
             </plentry>
-            <plentry>
-                <pt>mode</pt>
-                <pd>
-                    <p props="ios mac cpp unreal bp unity flutter electron rn cs">音频帧的使用模式，详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />。</p>
-                    <p conkeyref="registerAudioFrameObserver2_IMediaPlayer/mode" props="android" />
-                </pd>
+            <plentry conkeyref="setRecordingAudioFrameParameters/mode">
+                <pt/>
+                <pd/>
             </plentry>
-            <plentry>
-                <pt>samplesPerCall</pt>
-                <pd><apiname keyref="onPlaybackAudioFrame" /> 中返回数据的采样点数，如旁路推流应用中通常为 1024。</pd>
+            <plentry conkeyref="setRecordingAudioFrameParameters/samplesPerCall">
+                <pt/>
+                <pd/>
             </plentry>
             </parml> </section>
         <section id="return_values">
@@ -92,5 +88,5 @@
             <li props="native unreal bp unity electron rn cs">0：方法调用成功。</li>
             <li>&lt; 0：方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
             </ul> </section>
-    </refbody>
+        </refbody>
 </reference>
