@@ -22,6 +22,29 @@
     recordingChannel = 1;
   }
 }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class AudioRecordingConfiguration{
+  
+  public filePath:string;
+  
+  public sampleRate:number;
+  
+  public codec:boolean;
+  
+  public fileRecordOption:number;
+  
+  public quality:number;
+  
+  public recordingChannel:number;
+  
+  public constructor(filepath:string) {
+    this.filePath = filepath;
+    this.sampleRate = 32000;
+    this.codec = true;
+    this.fileRecordOption = Constants.AudioRecordingType.MIXED;
+    this.quality = Constants.AudioRecordingQuality.MEDIUM;
+    this.recordingChannel = 1;
+  }
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioRecordingConfiguration: NSObject
 @property (copy, nonatomic) NSString * _Nullable filePath;
 @property (assign, nonatomic) NSUInteger sampleRate;
