@@ -586,8 +586,7 @@ struct FVideoEncoderConfiguration
                   <li><ph keyref="FRAME_RATE_FPS_15"/>(15): 15 fps。</li>
                   <li><ph keyref="FRAME_RATE_FPS_24"/>(24): 24 fps。</li>
                   <li><ph keyref="FRAME_RATE_FPS_30"/>(30): 30 fps。</li>
-                  <li><ph keyref="FRAME_RATE_FPS_60"/>(60): 60 fps。
-                  <note type="attention">仅适用于 Windows 和 macOS 平台。</note></li>
+                  <li><ph keyref="FRAME_RATE_FPS_60"/>(60): 60 fps。该帧率仅适用于 Windows 和 macOS 平台。</li>
                 </ul></pd>
             </plentry>
             <plentry>
@@ -612,7 +611,8 @@ struct FVideoEncoderConfiguration
             </plentry>
             <plentry>
                 <pt>degradationPreference</pt>
-                <pd>带宽受限时，视频编码降级偏好。详见 <xref keyref="DEGRADATION_PREFERENCE"/> 。</pd>
+                <pd>带宽受限时，视频编码降级偏好。详见 <xref keyref="DEGRADATION_PREFERENCE"/> 。
+                  <note type="attention">当该参数设置为 <ph keyref="MAINTAIN_FRAMERATE"/> (1) 或者 <ph keyref="MAINTAIN_BALANCED"/> (2) 时，需要同时将 <parmname>orientationMode</parmname> 设置为 <ph keyref="ORIENTATION_MODE_ADAPTIVE"/> (0)，否则设置不生效。</note></pd>
             </plentry>
             <plentry>
                 <pt>mirrorMode</pt>

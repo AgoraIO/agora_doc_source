@@ -25,11 +25,22 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;UserInfo&gt; getUserInfoByUid(int uid);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
-            <p id="getUserInfo_desc">远端用户加入频道后，SDK 会获取到该远端用户的 UID 和 User Account，然后缓存一个包含了远端用户 UID 和 User Account 的 Mapping 表，并在本地触发 <xref keyref="onUserInfoUpdated" /> 回调。收到这个回调后，你可以调用该方法，通过传入 UID 获取包含了指定用户 User Account 的 <xref keyref="UserInfo" /> 对象。</p>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p id="getUserInfo_desc">远端用户加入频道后，SDK 会获取到该远端用户的 UID 和 User Account，然后缓存一个包含了远端用户 UID 和 User Account 的映射表，并在本地触发 <xref keyref="onUserInfoUpdated"/> 回调。收到回调后，调用该方法传入 UID 来获取包含了指定用户 User Account 的 <xref keyref="UserInfo" /> 对象。</p>
         </section>
-        <section id="parameters">
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>在收到 <xref keyref="onUserInfoUpdated"/> 回调后调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="related" deliveryTarget="details">
+            <title>相关回调</title>
+            <p><xref keyref="onUserInfoUpdated"/></p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
             <plentry>
@@ -40,9 +51,9 @@
                 <pt>userInfo</pt>
                 <pd>输入和输出参数。标识用户的 <xref keyref="UserInfo" /> 对象：
                     <ul>
-                    <li>输入值：一个 <apiname keyref="UserInfo" /> 对象</li>
-                    <li>输出值：一个包含了用户 User Account 和 UID 的 <apiname keyref="UserInfo" /> 对象</li>
-                    </ul> 
+                    <li>输入值：一个 <apiname keyref="UserInfo"/> 对象。</li>
+                    <li>输出值：一个包含了用户 User Account 和 UID 的 <apiname keyref="UserInfo" /> 对象。</li>
+                    </ul>
                 </pd>
             </plentry>
             <plentry id="channelId" props="cpp unreal bp">

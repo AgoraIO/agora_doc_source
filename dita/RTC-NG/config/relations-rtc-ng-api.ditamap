@@ -2830,7 +2830,7 @@
                 <topicref keyref="setLoopbackDevice" props="cpp unreal electron unity flutter"/>
                 <topicref keyref="setPlaybackDevice"/>
                 <topicref keyref="setPlaybackDeviceMute"/>
-                <topicref keyref="setPlaybackDeviceVolume" props="hide"/>
+                <topicref keyref="setPlaybackDeviceVolume"/>
                 <topicref keyref="setRecordingDevice"/>
                 <topicref keyref="setRecordingDeviceMute" props="hide"/>
                 <topicref keyref="setRecordingDeviceVolume"/>
@@ -3033,15 +3033,31 @@
                 <topicref keyref="IPacketObserver"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="cpp framework">
             <relcell>
-                <topicref keyref="getMaxMetadataSize" props="native unreal bp"/>
+                <topicref keyref="getMaxMetadataSize" props="cpp unreal bp"/>
                 <topicref keyref="onMetadataReceived"/>
-                <topicref keyref="onReadyToSendMetadata" props="native unreal bp"/>
+                <topicref keyref="onReadyToSendMetadata" props="cpp unreal bp"/>
             </relcell>
             <relcell>
-                <topicref keyref="IMetadataObserver" props="android hmos cpp unreal bp unity"/>
-                <topicref keyref="AgoraMediaMetadataDataSource" props="apple"/>
+                <topicref keyref="IMetadataObserver" props="cpp unreal bp unity"/>
+            </relcell>
+        </relrow>
+        <relrow props="apple">
+            <relcell>
+                <topicref keyref="onMetadataReceived"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="IMetadataObserver"/>
+            </relcell>
+        </relrow>
+        <relrow props="apple">
+            <relcell>
+                <topicref keyref="getMaxMetadataSize"/>
+                <topicref keyref="onReadyToSendMetadata"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="AgoraMediaMetadataDataSource"/>
             </relcell>
         </relrow>
         <relrow props="ios mac cpp unreal flutter unity cs electron rn">
