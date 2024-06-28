@@ -22,6 +22,26 @@
       this.recorderInfoUpdateInterval = recorderInfoUpdateInterval;
     }
   }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class MediaRecorderConfiguration {
+  
+  public storagePath: string;
+  
+  public containerFormat: number = AgoraMediaRecorder.CONTAINER_MP4;
+  
+  public streamType: number = AgoraMediaRecorder.STREAM_TYPE_BOTH;
+  
+  public maxDurationMs: number = 120000;
+  
+  public recorderInfoUpdateInterval: number = 0;
+  public constructor(storagePath: string, containerFormat: number, streamType: number,
+                     maxDurationMs: number, recorderInfoUpdateInterval: number) {
+    this.storagePath = storagePath;
+    this.containerFormat = containerFormat;
+    this.streamType = streamType;
+    this.maxDurationMs = maxDurationMs;
+    this.recorderInfoUpdateInterval = recorderInfoUpdateInterval;
+  }
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaRecorderConfiguration : NSObject
 @property(copy, nonatomic) NSString* _Nonnull storagePath;
 @property(assign, nonatomic) AgoraMediaRecorderContainerFormat containerFormat;
@@ -136,12 +156,12 @@ struct FMediaRecorderConfiguration
             <plentry>
                 <pt>containerFormat</pt>
                 <pd props="cpp unreal bp ios mac electron rn flutter unity cs">录制文件的格式。详见 <xref keyref="MediaRecorderContainerFormat" />。</pd>
-                <pd props="android">录制文件的格式，目前仅支持 <apiname keyref="FORMAT_MP4" />。</pd>
+                <pd props="android hmos">录制文件的格式，目前仅支持 <apiname keyref="FORMAT_MP4" />。</pd>
             </plentry>
             <plentry>
                 <pt>streamType</pt>
                 <pd props="ios mac cpp unreal bp rn unity electron flutter cs">录制内容。详见 <xref keyref="MediaRecorderStreamType"/>。</pd>
-                <pd props="android">录制内容：
+                <pd props="android hmos">录制内容：
                 <ul>
                     <li><apiname keyref="STREAM_TYPE_AUDIO" />：仅音频。</li>
                     <li><apiname keyref="STREAM_TYPE_VIDEO" />：仅视频。</li>

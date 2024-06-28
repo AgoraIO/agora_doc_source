@@ -30,6 +30,53 @@
   public int captureBrightnessLevel;
   public int hwEncoderAccelerating;
 }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class LocalVideoStats {
+  
+  public uid:number = 0;
+  public sentBitrate:number = 0;
+  
+  public sentFrameRate:number = 0;
+  
+  public captureFrameRate:number = 0;
+  
+  public captureFrameWidth:number = 0;
+  
+  public captureFrameHeight:number = 0;
+  
+  public regulatedCaptureFrameRate:number = 0;
+  
+  public regulatedCaptureFrameWidth:number = 0;
+  
+  public regulatedCaptureFrameHeight:number = 0;
+  
+  public encoderOutputFrameRate:number = 0;
+  
+  public rendererOutputFrameRate:number = 0;
+  
+  public targetBitrate:number = 0;
+  
+  public targetFrameRate:number = 0;
+  
+  public qualityAdaptIndication:number = 0;
+  
+  public encodedBitrate:number = 0;
+  
+  public encodedFrameWidth:number = 0;
+  
+  public encodedFrameHeight:number = 0;
+  
+  public encodedFrameCount:number = 0;
+  
+  public codecType:number = 0;
+  
+  public txPacketLossRate:number = 0;
+  
+  public captureBrightnessLevel:number = 0;
+  
+  public dualStreamEnabled:boolean = false;
+  
+  public hwEncoderAccelerating:number = 0;
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcLocalVideoStats : NSObject
 @property(assign, nonatomic) NSUInteger sentBitrate;
 @property(assign, nonatomic) NSUInteger sentFrameRate;
@@ -415,7 +462,7 @@ struct FLocalVideoStats
             <plentry>
                 <pt>qualityAdaptIndication</pt>
                 <pd><ph>统计周期内本地视频质量（基于目标帧率和目标码率）的自适应情况。</ph><ph props="cpp unreal bp ios mac unity electron rn flutter cs">详见 <xref keyref="QUALITY_ADAPT_INDICATION"/>。</ph>
-                    <p props="android">
+                    <p props="android hmos">
                     <ul>
                     <li><ph keyref="ADAPT_NONE"/> (0): 本地视频质量不变。</li>
                     <li><ph keyref="ADAPT_UP_BANDWIDTH"/> (1): 因网络带宽增加，本地视频质量改善。</li>
@@ -445,7 +492,7 @@ struct FLocalVideoStats
             <plentry>
                 <pt>codecType</pt>
                 <pd>视频的编码类型。详见 <xref keyref="VIDEO_CODEC_TYPE"/>。
-                    <p props="android">
+                    <p props="android hmos">
                     <ul>
                     <li><ph keyref="VIDEO_CODEC_VP8"/> (1)：VP8。</li>
                     <li><ph keyref="VIDEO_CODEC_H264"/> (2)：H.264。</li>
@@ -466,7 +513,7 @@ struct FLocalVideoStats
                 <pt>captureBrightnessLevel</pt>
                 <pd>本地采集的画质亮度级别。详见 <xref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE"/>。</pd>
             </plentry>
-            <plentry props="android">
+            <plentry props="android hmos">
                 <pt>captureBrightnessLevel</pt>
                 <pd>本地采集的画质亮度级别。
                     <ul>

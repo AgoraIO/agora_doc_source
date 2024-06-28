@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int startAudioMixing(String filePath, boolean loopback, int cycle);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public abstract startAudioMixing(filepath: string, loopback: boolean, cycle: number): number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)startAudioMixing:(NSString *  _Nonnull)filePath
                 loopback:(BOOL)loopback
                    cycle:(NSInteger)cycle NS_SWIFT_NAME(startAudioMixing(_:loopback:cycle:));</codeblock>
@@ -42,7 +43,7 @@
             </dlentry>
             </dl>
             <p id="audiomixing_detailed">该方法支持将本地或在线音乐文件和麦克风采集的音频进行混音或替换。成功播放音乐文件后，本地会触发 <xref keyref="onAudioMixingStateChanged" /> (<apiname keyref="AUDIO_MIXING_STATE_PLAYING" />) 回调。播放结束后，本地会触发 <apiname keyref="onAudioMixingStateChanged" /> (<apiname keyref="AUDIO_MIXING_STATE_STOPPED" />) 回调。</p>
-            <p id="uri" props="android">该方法支持播放以 <codeph>content://</codeph> 开头的 URI 文件。</p>
+            <p id="uri" props="android hmos">该方法支持播放以 <codeph>content://</codeph> 开头的 URI 文件。</p>
             <note type="attention" id="audiomixing_note">
             <ul>
             <li>该方法在加入频道前后均可调用。如需多次调用 <apiname keyref="startAudioMixing" />，请确保调用间隔大于 500 ms。</li>

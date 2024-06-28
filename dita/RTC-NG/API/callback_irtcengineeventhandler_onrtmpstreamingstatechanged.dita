@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onRtmpStreamingStateChanged(String url, int state, int reason) {}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">onRtmpStreamingStateChanged? : (url:string,state:Constants.RtmpStreamPublishState,errCode:Constants.RtmpStreamPublishReason) =&gt; void;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine rtmpStreamingChangedToState:(NSString * _Nonnull)url
                                                                     state:(AgoraRtmpStreamingState)state
                                                                   reason:(AgoraRtmpStreamingReason)reason NS_SWIFT_NAME(rtcEngine(_:rtmpStreamingChangedToState:state:reason:));</codeblock>
@@ -58,7 +59,7 @@
             <plentry id="state">
                 <pt>state</pt>
                 <pd props="ios mac cpp unreal bp electron unity rn flutter cs">当前的推流状态，详见 <xref keyref="RTMP_STREAM_PUBLISH_STATE"/>。</pd>
-                <pd props="android">当前的推流状态:
+                <pd props="android hmos">当前的推流状态:
 
 
 
@@ -81,7 +82,7 @@
             <plentry id="errCode">
                 <pt>reason</pt>
                 <pd props="ios mac cpp unreal bp electron unity rn flutter cs">推流状态改变的原因，详见 <xref keyref="RTMP_STREAM_PUBLISH_REASON"/>。</pd>
-                <pd props="android">推流状态改变的原因。
+                <pd props="android hmos">推流状态改变的原因。
                     <ul>
                     <li><ph keyref="RTMP_STREAM_PUBLISH_REASON_OK"/> (0)：推流成功。</li>
                     <li><ph keyref="RTMP_STREAM_PUBLISH_REASON_INVALID_ARGUMENT"/> (1)：参数无效。请检查输入参数是否正确。</li>

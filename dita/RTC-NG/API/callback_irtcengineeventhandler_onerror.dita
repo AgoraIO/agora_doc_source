@@ -15,6 +15,7 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onError(int err) {}
 </codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">onError?:(err:number,message:string) =&gt; void</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didOccurError:(AgoraErrorCode)errorCode;
 </codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onError(int err, const char* msg) {
@@ -48,7 +49,7 @@
                 <pt>msg</pt>
                 <pd>错误描述。</pd>
             </plentry>
-            <plentry props="android bp">
+            <plentry props="android hmos bp">
                 <pt>err</pt>
                 <pd>错误码。</pd>
                 <pd>
@@ -69,7 +70,7 @@
 
 
                             <ul>
-                            <li props="android">Android 平台调用 <xref keyref="setBeautyEffectOptions" /> 方法时，如果设备版本低于 Android 5.0，会上报该错误码。请确认 Android 设备版本。 </li>
+                            <li props="android hmos">Android 平台调用 <xref keyref="setBeautyEffectOptions" /> 方法时，如果设备版本低于 Android 5.0，会上报该错误码。请确认 Android 设备版本。 </li>
                             <li>使用内置加密时，设置的加密模式不正确，或加载外部加密库失败。请检查加密的枚举值是否正确，或重新加载外部加密库。</li>
                             </ul></li>
                         <li><ph keyref="ERR_REFUSED" />(5)：方法调用被拒绝。可能的原因有：

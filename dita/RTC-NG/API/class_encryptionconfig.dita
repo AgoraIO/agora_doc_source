@@ -19,7 +19,14 @@
     java.util.Arrays.fill(encryptionKdfSalt, (byte) 0);
   }
 }</codeblock>
-      <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraEncryptionConfig: NSObject
+      <codeblock props="hmos" outputclass="language-arkts">export class EncryptionConfig {
+  encryptionMode : EncryptionMode = EncryptionMode.AES_128_GCM2;
+  encryptionKey : string = &quot;&quot;;
+  encryptionKdfSalt : ArrayBuffer = new ArrayBuffer(32);
+  public EncryptionConfig() {
+  }
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraEncryptionConfig: NSObject
 
  @property (assign, nonatomic) AgoraEncryptionMode encryptionMode;
  @property (copy, nonatomic) NSString * _Nullable encryptionKey;

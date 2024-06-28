@@ -62,6 +62,7 @@
         + ", timestamp=" + timestamp + '}';
   }
 }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">
 __attribute__((visibility("default"))) @interface AgoraAudioFrame : NSObject
 
@@ -206,7 +207,7 @@ struct FAudioFrame {
                 <pd>每个采样点的字节数。对于 PCM 来说，一般使用 16 bit，即两个字节。</pd>
             </plentry>
             <plentry>
-                <pt><ph props="cpp unreal bp ios mac unity electron rn flutter cs">channels</ph><ph props="android">channelNums</ph></pt>
+                <pt><ph props="cpp unreal bp ios mac unity electron rn flutter cs">channels</ph><ph props="android hmos">channelNums</ph></pt>
                 <pd>
                     <p>声道数量(如果是立体声，数据是交叉的)。
                         <ul id="ul_zxz_2wt_r4b">
@@ -217,7 +218,7 @@ struct FAudioFrame {
             </plentry>
             <plentry>
                 <pt props="cpp unreal bp ios mac unity electron rn flutter cs">samplesPerSec</pt>
-                <pt props="android">sampleRataHz</pt>
+                <pt props="android hmos">sampleRataHz</pt>
                 <pd>每声道每秒的采样点数。</pd>
             </plentry>
             <plentry>
@@ -239,7 +240,7 @@ struct FAudioFrame {
                 <pt> <ph props="ios mac flutter">avsyncType</ph> <ph props="cpp unreal bp unity electron rn cs">avsync_type</ph> </pt>
                 <pd>保留参数。</pd>
             </plentry>
-            <plentry props="android">
+            <plentry props="android hmos">
                 <pt>timestamp</pt>
                 <pd>音频帧的时间戳。</pd>
             </plentry>

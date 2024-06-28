@@ -41,6 +41,16 @@ struct FLastmileProbeResult {
     public LastmileProbeOneWayResult uplinkReport = new LastmileProbeOneWayResult();
     public LastmileProbeOneWayResult downlinkReport = new LastmileProbeOneWayResult();
   }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class LastmileProbeResult {
+  
+  public state:number = 0;
+  
+  public rtt:number = 0;
+  
+  public uplinkReport:LastmileProbeOneWayResult = new LastmileProbeOneWayResult();
+  
+  public downlinkReport:LastmileProbeOneWayResult = new LastmileProbeOneWayResult();
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLastmileProbeResult : NSObject
 
 @property (assign, nonatomic) AgoraLastmileProbeResultState state;
@@ -115,7 +125,7 @@ struct FLastmileProbeResult {
                 <pt>state</pt>
                 <pd>
                     <p props="ios mac cpp unreal bp unity electron rn flutter cs">Last mile 质量探测结果的状态。详见: <xref keyref="LASTMILE_PROBE_RESULT_STATE" /> 。</p>
-                    <p props="android">Last-mile 质量探测结果的状态，有如下几种：
+                    <p props="android hmos">Last-mile 质量探测结果的状态，有如下几种：
 
 
                     <ul>
