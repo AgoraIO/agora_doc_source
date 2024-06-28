@@ -67,7 +67,6 @@
     @CalledByNative("TextureBuffer") int getEglContextType();
     @CalledByNative("TextureBuffer") float[] getTransformMatrixArray();
     @CalledByNative("TextureBuffer") int getSequence();
-    @CalledByNative("TextureBuffer") long getFenceObject();
     @CalledByNative("TextureBuffer") boolean is10BitTexture();
   }
   public interface ColorSpace {
@@ -158,25 +157,6 @@
     Matrix getMatrix();
     Transfer getTransfer();
     Primary getPrimary();
-    HdrMetadata getHdrMetadata();
-  }
-  public interface HdrMetadata {
-    class Chromaticity {
-      public int x;
-      public int y;
-      public Chromaticity(int x, int y) {
-        this.x = x;
-        this.y = y;
-      }
-    }
-    int getMaxContentLightLevel();
-    int getMaxFrameAverageLightLevel();
-    Chromaticity getprimaryR();
-    Chromaticity getprimaryG();
-    Chromaticity getprimaryB();
-    Chromaticity getWhitePoint();
-    int getLuminanceMax();
-    int getLuminanceMin();
   }
   public enum SourceType {
     kFrontCamera,
@@ -729,23 +709,9 @@ class VideoFrame {
             <note type="attention" props="android apple">在自定义视频渲染场景下，需确保传入的视频帧和 <parmname>alphaBuffer</parmname> 均为 Full Range 类型；其他类型可能导致 Alpha 数据渲染不正常。</note>
           </pd>
         </plentry>
-        <plentry id="fillalphabuffer" props="cpp apple">
-          <pt props="cpp">fillAlphaBuffer</pt>
-          <pt props="apple">fillAlphaData</pt>
-          <pd>该参数仅适用于 BGRA 或 RGBA 格式的视频数据。设置是否提取视频帧中的 Alpha 通道数据并自动填入到 <parmname>alphaBuffer</parmname> 中： 
-            <ul>
-            <li><codeph><ph keyref="true"/></codeph>：提取 Alpha 通道数据。</li>
-            <li><codeph><ph keyref="false"/></codeph>：（默认）不提取 Alpha 通道数据。</li>
-            </ul>
-            <note>对于 BGRA 或 RGBA 格式的视频数据，你可以任选一种方式设置 Alpha 通道数据：
-            <ul>
-            <li>通过将该参数设置为 <codeph><ph keyref="true"/></codeph> 自动填写。</li>
-            <li>通过 <parmname>alphaBuffer</parmname> 参数设置。</li>
-            </ul></note></pd>
-        </plentry>
       <plentry id="alphastitchmode">
         <pt>alphaStitchMode</pt>
-        <pd>当视频帧中包含 Alpha 通道数据时，设置 <parmname>alphaBuffer</parmname> 和视频帧的相对位置 
+        <pd>当视频帧中包含 Alpha 通道数据时，设置 <parmname>alphaBuffer</parmname> 和视频帧的相对位置：
             <ul>
             <li>0：（默认）仅视频帧，即  <parmname>alphaBuffer</parmname> 不和视频帧拼接。</li>
             <li>1：<parmname>alphaBuffer</parmname> 位于视频帧的上方。</li>

@@ -98,7 +98,6 @@
         eglContext(NULL),
         eglType(EGL_CONTEXT10),
         textureId(0),
-        fence_object(0),
         metadata_buffer(NULL),
         metadata_size(0),
         alphaBuffer(NULL),
@@ -129,7 +128,6 @@
   void *eglContext;
   EGL_CONTEXT_TYPE eglType;
   int textureId;
-  long long fence_object; 
   float matrix[16];
   uint8_t* metadata_buffer;
   int metadata_size;
@@ -279,13 +277,7 @@ class ExternalVideoFrame {
 }</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
-        <section id="detailed_desc" props="android">
-            <dl outputclass="deprecated">
-            <dlentry>
-                <dt>弃用：</dt>
-                <dd>该类已废弃。</dd>
-            </dlentry>
-            </dl>
+        <section id="detailed_desc">
         </section>
         <section id="parameters">
             <title><text
@@ -424,7 +416,7 @@ class ExternalVideoFrame {
                 <pt props="flutter">metadataSize</pt>
                 <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的大小，默认值为 <codeph>0</codeph>。</pd>
             </plentry>
-            <plentry conkeyref="VideoFrame/d3d" props="cpp">
+            <plentry conkeyref="VideoFrame/d3d" props="cpp unity electron">
                 <pt/>
                 <pd/>
             </plentry>
@@ -437,11 +429,21 @@ class ExternalVideoFrame {
                   <note type="attention" props="android">在自定义视频渲染场景下，需确保传入的视频帧和 <parmname>alphaBuffer</parmname> 均为 Full Range 类型；其他类型可能导致 Alpha 数据渲染不正常。</note>
                 </pd>
               </plentry>
-                  <plentry conkeyref="VideoFrame/fillalphabuffer">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry conkeyref="VideoFrame/alphastitchmode">
+              <plentry>
+                <pt props="cpp">fillAlphaBuffer</pt>
+                <pt props="android apple">fillAlphaData</pt>
+                <pd>该参数仅适用于 BGRA 或 RGBA 格式的视频数据。设置是否提取视频帧中的 Alpha 通道数据并自动填入到 <parmname>alphaBuffer</parmname> 中： 
+                  <ul>
+                  <li><codeph><ph keyref="true"/></codeph>：提取 Alpha 通道数据。</li>
+                  <li><codeph><ph keyref="false"/></codeph>：（默认）不提取 Alpha 通道数据。</li>
+                  </ul>
+                  <note>对于 BGRA 或 RGBA 格式的视频数据，你可以任选一种方式设置 Alpha 通道数据：
+                  <ul>
+                  <li>通过将该参数设置为 <codeph><ph keyref="true"/></codeph> 自动填写。</li>
+                  <li>通过 <parmname>alphaBuffer</parmname> 参数设置。</li>
+                  </ul></note></pd>
+              </plentry>
+                  <plentry conkeyref="VideoFrame/alphastitchmode">
                 <pt/>
                 <pd/>
             </plentry>
