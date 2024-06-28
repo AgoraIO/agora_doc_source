@@ -153,7 +153,12 @@
         + ", cameraFocalLengthType=" + cameraFocalLengthType + '}';
   }
 }</codeblock>
-      <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraCameraCapturerConfiguration: NSObject
+      <codeblock props="hmos" outputclass="language-arkts">export class CameraCapturerConfiguration {
+  public cameraDirection: Constants.CameraDirection = Constants.CameraDirection.FRONT;
+  public cameraFormat: CaptureFormat = new CaptureFormat();
+  public followEncodeDimensionRatio: boolean = true;
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraCameraCapturerConfiguration: NSObject
 #if TARGET_OS_IOS
 @property (assign, nonatomic) AgoraCameraDirection cameraDirection;
 @property(assign, nonatomic) AgoraFocalLength cameraFocalLengthType;
