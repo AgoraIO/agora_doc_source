@@ -11,8 +11,8 @@
     @CalledByNative("Buffer") int getWidth();
     @CalledByNative("Buffer") int getHeight();
     @CalledByNative("Buffer") I420Buffer toI420();
-    @Override @CalledByNative("Buffer") void retain();
     @Override @CalledByNative("Buffer") void release();
+    @Override @CalledByNative("Buffer") void retain();
     @CalledByNative("Buffer")
     Buffer cropAndScale(
         int cropX, int cropY, int cropWidth, int cropHeight, int scaleWidth, int scaleHeight);
@@ -61,11 +61,13 @@
     Type getType();
     @CalledByNative("TextureBuffer") int getTextureId();
     Matrix getTransformMatrix();
-    EglBase.Context getEglBaseContext();
+    @CalledByNative("TextureBuffer") EglBase.Context getEglBaseContext();
+    @CalledByNative("TextureBuffer") Object getSourceTexturePool();
     @CalledByNative("TextureBuffer") long getNativeEglContext();
     @CalledByNative("TextureBuffer") int getEglContextType();
     @CalledByNative("TextureBuffer") float[] getTransformMatrixArray();
     @CalledByNative("TextureBuffer") int getSequence();
+    @CalledByNative("TextureBuffer") boolean is10BitTexture();
   }
   public interface ColorSpace {
     enum Range {
@@ -135,7 +137,7 @@
       Unspecified(2),
       BT470M(4),
       BT470BG(5),
-      kSMPTE170M(6),
+      kSMPTE170M(6), 
       kSMPTE240M(7),
       kFILM(8),
       kBT2020(9),
@@ -168,12 +170,14 @@
   private SourceType sourceType;
   private float sampleAspectRatio;
   private VideoFrameMetaInfo metaInfo = new VideoFrameMetaInfo();
+  private @Nullable ByteBuffer alphaBuffer;
+  private int alphaStitchMode;
   public VideoFrame(Buffer buffer, int rotation, long timestampNs) {
-    this(buffer, rotation, timestampNs, null, null, 1.0f, SourceType.kUnspecified.ordinal());
+    this(buffer, rotation, timestampNs, new WrappedNativeColorSpace(), null, 0L, 1.0f, SourceType.kUnspecified.ordinal());
   }
   @CalledByNative
   public VideoFrame(Buffer buffer, int rotation, long timestampNs, ColorSpace colorSpace,
-      float sampleAspectRatio, int sourceType) {
+      ByteBuffer alphaBuffer, float sampleAspectRatio, int sourceType) {
     if (buffer == null) {
       throw new IllegalArgumentException("buffer not allowed to be null");
     }
@@ -184,6 +188,7 @@
     this.rotation = rotation;
     this.timestampNs = timestampNs;
     this.colorSpace = colorSpace;
+    this.alphaBuffer = alphaBuffer;
     this.sampleAspectRatio = sampleAspectRatio;
     this.sourceType = SourceType.values()[sourceType];
   }
@@ -201,6 +206,10 @@
   @CalledByNative
   public int getRotation() {
     return rotation;
+  }
+  @CalledByNative
+  public int getAlphaStitchMode() {
+    return alphaStitchMode;
   }
   @CalledByNative
   public long getTimestampNs() {
@@ -231,6 +240,16 @@
   public ColorSpace getColorSpace() {
     return colorSpace;
   }
+  @CalledByNative
+  public ByteBuffer getAlphaBuffer() {
+    return alphaBuffer;
+  }
+  public void fillAlphaData(ByteBuffer buffer) {
+    alphaBuffer = buffer;
+  }
+  public void setAlphaStitchMode(int mode) {
+    this.alphaStitchMode = mode;
+  }
   @Override
   public void retain() {
     buffer.retain();
@@ -240,7 +259,8 @@
   public void release() {
     buffer.release();
   }
-}</codeblock>
+}
+</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraOutputVideoFrame : NSObject
 @property (nonatomic, assign) NSInteger type;
 @property (nonatomic, assign) int width;
@@ -255,8 +275,9 @@
 @property (nonatomic, assign) int64_t renderTimeMs;
 @property (nonatomic, assign) int avSyncType;
 @property(assign, nonatomic) CVPixelBufferRef _Nullable pixelBuffer;
+@property (nonatomic, assign) uint8_t* _Nullable alphaBuffer;
+@property (nonatomic, assign) int alphaStitchMode;
 @property(nonatomic, strong) NSDictionary *_Nonnull metaInfo;
-
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct VideoFrame {
   VideoFrame():
@@ -276,6 +297,9 @@
   metadata_size(0),
   sharedContext(0),
   textureId(0),
+  d3d11Texture2d(NULL),
+  alphaBuffer(NULL),
+  alphaStitchMode(0),
   pixelBuffer(NULL),
   metaInfo(NULL){
     memset(matrix, 0, sizeof(matrix));
@@ -296,7 +320,10 @@
   int metadata_size;
   void* sharedContext;
   int textureId;
+  void* d3d11Texture2d;
   float matrix[16];
+  uint8_t* alphaBuffer;
+  int alphaStitchMode;
   void* pixelBuffer;
   IVideoFrameMetaInfo* metaInfo;
 };</codeblock>
