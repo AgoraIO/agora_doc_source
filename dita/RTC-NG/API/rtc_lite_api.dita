@@ -163,7 +163,6 @@
             <li props="unity"><xref keyref="registerAudioFrameObserver"/></li>
             <li><xref keyref="registerAudioSpectrumObserver"/></li>
             <li><xref keyref="registerExtension"/></li>
-            <li props="en"><xref keyref="registerFaceInfoObserver" props="android apple"/></li>
             <li><xref keyref="registerLocalUserAccount"/></li>
             <li><xref keyref="registerMediaMetadataObserver"/></li>
             <li props="cpp unreal bp"><xref keyref="registerPacketObserver"/></li>
@@ -379,7 +378,11 @@
             <li><xref keyref="startMediaRenderingTracingEx"/></li>
             <li><xref keyref="startOrUpdateChannelMediaRelayEx"/></li>
             <li><xref keyref="stopChannelMediaRelayEx"/></li>
-            <li><xref keyref="updateChannelMediaOptionsEx"/></li>
+            <li><xref keyref="updateChannelMediaOptionsEx"/> 中，以下跟屏幕采集相关的参数设置无效：
+                <ul>
+                    <li><parmname>publishScreenCaptureVideo</parmname></li>
+                    <li><parmname>publishScreenCaptureAudio</parmname></li>
+                </ul></li>
             <li><xref keyref="setRemoteVideoSubscriptionOptionsEx"/></li>
             <li><xref keyref="adjustUserPlaybackSignalVolumeEx"/></li>
             <li props="hide"><xref keyref="onAudioMetadataReceived_IRtcEngineEx"/></li>
@@ -485,6 +488,7 @@
     </section>
     <section>
         <title><ph keyref="IMediaPlayer"/></title>
+        <note type="attention">媒体播放器中的 API 仅支持处理音频媒体文件、不支持处理视频媒体文件。</note>
         <ul>
             <li><xref keyref="adjustPlayoutVolume"/></li>
             <li><xref keyref="adjustPublishSignalVolume"/></li>
@@ -582,12 +586,6 @@
             <li props="android"><xref keyref="stop_IMusicPlayer"/></li>
             <li><xref keyref="setPlayMode"/></li>
             <li props="android"><xref keyref="destroy_IMusicPlayer"/></li>
-        </ul>
-    </section>
-    <section>
-        <title />
-        <ul>
-            <li></li>
         </ul>
     </section>
     </refbody>
