@@ -48,54 +48,55 @@
     bool publish = true});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="deprecated">
             <dlentry>
                 <dt>弃用：</dt>
                 <dd>该方法已废弃，请改用 <xref keyref="createCustomAudioTrack" />。</dd>
             </dlentry>
             </dl>
-            <note type="attention">请在加入频道前调用该方法。</note> </section>
-        <section id="parameters">
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>该方法需要在加入频道前调用。</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-            <plentry>
+            <plentry id="enabled">
                 <pt>enabled</pt>
-                <pd>
-                    <p>是否开启使用外部音频源的功能：                   
-                    
+                <pd>是否开启使用外部音频源的功能：
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：开启外部音频源。</li>
                     <li><codeph><ph keyref="false"/></codeph>：（默认）关闭外部音频源。</li>
-                    </ul></p>
+                    </ul>
                 </pd>
             </plentry>
-            <plentry>
+            <plentry id="samplerate">
                 <pt>sampleRate</pt>
                 <pd>外部音频源的采样率 (Hz)，可设置为 <codeph>8000</codeph>，<codeph>16000</codeph>，<codeph>32000</codeph>，<codeph>44100</codeph> 或 <codeph>48000</codeph>。</pd>
             </plentry>
-            <plentry>
+            <plentry id="channels">
                 <pt>channels</pt>
                 <pd>外部音频源的声道数，可设置为 <codeph>1</codeph>（单声道）或 <codeph>2</codeph>（双声道）。</pd>
             </plentry>
             <plentry>
                 <pt>localPlayback</pt>
-                <pd id="localplayback">
-                    <p>是否在本地播放外部音频源：                    
-                    
+                <pd id="localplayback">是否在本地播放外部音频源：
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：在本地播放。</li>
                     <li><codeph><ph keyref="false"/></codeph>：（默认）不在本地播放。</li>
-                    </ul></p>
+                    </ul>
                 </pd>
             </plentry>
             <plentry>
                 <pt>publish</pt>
-                <pd>
-                    <p>是否将音频发布到远端：                    
-                    
-                    <ul id="ul_agk_dnf_3qb">
+                <pd>是否将音频发布到远端：
+                    <ul>
                     <li><codeph><ph keyref="true"/></codeph>：（默认）发布到远端。</li>
                     <li><codeph><ph keyref="false"/></codeph>：不发布到远端。</li>
                     </ul></p>
