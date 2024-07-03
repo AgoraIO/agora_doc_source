@@ -1,28 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="callback_irtcengineeventhandler_onextensionerror">
-    <title><ph keyref="onExtensionError" /></title>
+<reference id="callback_irtcengineeventhandler_onextensionerrorwithcontext">
+    <title><ph keyref="onExtensionErrorWithContext" /></title>
     <shortdesc id="short"><ph id="shortdesc">插件出错回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onExtensionError" />
+                <indexterm keyref="onExtensionErrorWithContext" />
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">void onError(String provider, String extension, int error, String message);</codeblock>
+            <codeblock props="android" outputclass="language-java">void onErrorWithContext(ExtensionContext extContext, int error, String message){};</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">onError?:(err:number,message:string) =&gt; void</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onExtensionError:(NSString * __nullable)provider
-                 extension:(NSString * __nullable)extension
-                     error:(int)error
-                   message:(NSString * __nullable)message;
-</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onExtensionError(const char* provider, const char* extension, int error, const char* message) {
-    (void)provider;
-    (void)extension;
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onExtensionErrorWithContext:(AgoraExtensionContext * __nonnull)context
+                   error:(int)error
+                 message:(NSString * __nullable)message NS_SWIFT_NAME(onExtensionErrorWithContext(_:error:message:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onExtensionErrorWithContext(const ExtensionContext &amp;context, int error, const char* message) {
+    (void)context;
     (void)error;
     (void)message;
   }</codeblock>
@@ -46,16 +43,21 @@
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>启用插件失败或者插件运行出错时，插件会触发该回调并上报错误码和错误原因。</p>
+            <p>启用插件失败或者插件运行出错时，插件会触发该回调并报告错误码和错误原因。</p>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry conkeyref="setExtensionProperty/vendor">
+            <plentry id="context">
+                <pt props="cpp apple">context</pt>
+                <pt props="android">extContext</pt>
+                <pd>插件上下文信息，详见 <xref keyref="ExtensionContext"/>。</pd>
+            </plentry>
+            <plentry conkeyref="setExtensionProperty/vendor" props="framework">
                 <pt />
                 <pd />
             </plentry>
-            <plentry>
+            <plentry props="framework">
                 <pt>extension</pt>
                 <pd>插件的名称。</pd>
             </plentry>

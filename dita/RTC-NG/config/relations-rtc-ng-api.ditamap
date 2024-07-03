@@ -2063,9 +2063,9 @@
                 <topicref keyref="enableExtension"/>
             </relcell>
             <relcell>
-                <topicref keyref="onExtensionStarted"/>
-                <topicref keyref="onExtensionStopped"/>
-                <topicref keyref="onExtensionError"/>
+                <topicref keyref="onExtensionStartedWithContext"/>
+                <topicref keyref="onExtensionStoppedWithContext"/>
+                <topicref keyref="onExtensionErrorWithContext"/>
             </relcell>
         </relrow>
         <relrow props="cpp unreal bp ios android unity rn flutter">
@@ -2231,7 +2231,6 @@
                 <topicref keyref="disableAudioSpectrumMonitor"/>
                 <topicref keyref="disableVideo"/>
                 <topicref keyref="enableAudio"/>
-                <topicref keyref="enableAudioQualityIndication" props="android"/>
                 <topicref keyref="enableAudioSpectrumMonitor"/>
                 <topicref keyref="enableAudioVolumeIndication"/>
                 <topicref keyref="enableContentInspect"/>
@@ -2257,6 +2256,7 @@
                 <topicref keyref="enableVideoImageSource"/>
                 <topicref keyref="enableVirtualBackground" props="android cpp apple framework"/>
                 <topicref keyref="enableVirtualBackground2" props="android hmos apple"/>
+                <topicref keyref="enableVoiceAITuner"/>
                 <topicref keyref="enableWebSdkInteroperability"/>
                 <topicref keyref="enumerateDevices" props="mac"/>
                 <topicref keyref="followSystemPlaybackDevice" props="mac"/>
@@ -2458,11 +2458,14 @@
                 <topicref keyref="setPlaybackAudioFrameParameters"/>
                 <topicref keyref="setRecordingAudioFrameParameters"/>
                 <topicref keyref="setRemoteDefaultVideoStreamType"/>
+                <topicref keyref="setRemoteDefaultVideoStreamType2" props="android"/>
                 <topicref keyref="setRemoteRenderMode1" props="android ios mac"/>
                 <topicref keyref="setRemoteRenderMode2"/>
                 <topicref keyref="setRemoteSubscribeFallbackOption"/>
+                <topicref keyref="setRemoteSubscribeFallbackOption2" props="android" />
                 <topicref keyref="setRemoteUserSpatialAudioParams"/>
                 <topicref keyref="setRemoteVideoStreamType"/>
+                <topicref keyref="setRemoteVideoStreamType2" props="android"/>
                 <topicref keyref="setRemoteVideoSubscriptionOptions"/>
                 <topicref keyref="setRemoteVoice3DPosition" props="hide"/>
                 <topicref keyref="setRemoteVoicePosition"/>
@@ -2593,6 +2596,7 @@
                 <topicref keyref="setRemoteRenderModeEx" props="cpp unreal bp android ios mac unity rn electron"/>
                 <topicref keyref="setRemoteVoice3DPositionEx" props="hide"/>
                 <topicref keyref="setRemoteVideoStreamTypeEx"/>
+                <topicref keyref="setRemoteVideoStreamTypeEx2" props="android"/>
                 <topicref keyref="setRemoteVoicePositionEx"/>
                 <topicref keyref="setSubscribeAudioBlocklistEx"/>
                 <topicref keyref="setSubscribeAudioAllowlistEx"/>
@@ -2655,10 +2659,10 @@
                 <topicref keyref="onContentInspectResult" props="hide"/>
                 <topicref keyref="onEncryptionError"/>
                 <topicref keyref="onError"/>
-                <topicref keyref="onExtensionError" props="cpp framework"/>
-                <topicref keyref="onExtensionEvent" props="cpp framework"/>
-                <topicref keyref="onExtensionStarted" props="cpp framework"/>
-                <topicref keyref="onExtensionStopped" props="cpp framework"/>
+                <topicref keyref="onExtensionErrorWithContext" props="cpp framework"/>
+                <topicref keyref="onExtensionEventWithContext" props="cpp framework"/>
+                <topicref keyref="onExtensionStartedWithContext" props="cpp framework"/>
+                <topicref keyref="onExtensionStoppedWithContext" props="cpp framework"/>
                 <topicref keyref="onFacePositionChanged" props="android ios cpp unreal bp unity rn flutter"/>
                 <topicref keyref="onFirstLocalAudioFramePublished"/>
                 <topicref keyref="onFirstLocalVideoFrame" props="native unreal bp rn electron flutter"/>
@@ -2723,10 +2727,10 @@
         </relrow>
         <relrow props="android apple">
             <relcell>
-                <topicref keyref="onExtensionError"/>
-                <topicref keyref="onExtensionEvent"/>
-                <topicref keyref="onExtensionStarted"/>
-                <topicref keyref="onExtensionStopped"/>
+                <topicref keyref="onExtensionErrorWithContext"/>
+                <topicref keyref="onExtensionEventWithContext"/>
+                <topicref keyref="onExtensionStartedWithContext"/>
+                <topicref keyref="onExtensionStoppedWithContext"/>
             </relcell>
             <relcell>
                 <topicref keyref="IMediaExtensionObserver"/>
@@ -3211,6 +3215,7 @@
                 <topicref keyref="initialize_IMusicContentCenter" props="ios"/>
                 <topicref keyref="enableMainQueueDispatch_IMusicContentCenter" props="ios"/>
                 <topicref keyref="destroy_IMusicContentCenter" props="ios android"/>
+                <topicref keyref="destroyMusicPlayer"/>
             </relcell>
             <relcell props="cn">
                 <topicref keyref="IMusicContentCenter"/>
@@ -3222,6 +3227,8 @@
                 <topicref keyref="open_IMusicPlayer"/>
                 <topicref keyref="open2_IMusicPlayer" props="android"/>
                 <topicref keyref="stop_IMusicPlayer" props="android"/>
+                <topicref keyref="setPlayMode"/>
+                <topicref keyref="destroy_IMusicPlayer" props="android"/>
             </relcell>
             <relcell props="cn">
                 <topicref keyref="IMusicPlayer"/>
