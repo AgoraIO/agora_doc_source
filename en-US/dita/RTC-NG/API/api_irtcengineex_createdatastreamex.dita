@@ -15,6 +15,7 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int createDataStreamEx(
       boolean reliable, boolean ordered, RtcConnection connection);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public abstract createDataStreamEx(config:DataStreamConfig,connection:RtcConnection):number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)createDataStreamEx:(NSInteger * _Nonnull)streamId
                  reliable:(BOOL)reliable
                   ordered:(BOOL)ordered
@@ -25,57 +26,38 @@
             <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <dl outputclass="deprecated" id="dl_fvq_yqm_3qb">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
             <dlentry>
                 <dt>Deprecated:</dt>
                 <dd>This method is deprecated. Use <xref keyref="createDataStreamEx2" /> instead.</dd>
             </dlentry>
             </dl>
-            <p id="desc">You can call this method to create a data stream and improve the reliability and ordering of data transmission.</p>
-            <note type="attention" id="note">
-            <ul id="ul_gvq_yqm_3qb">
-            <li>Ensure that you set the same value for <parmname>reliable</parmname> and <parmname>ordered</parmname>.</li>
-            <li>Each user can create up to five data streams during the lifecycle of <xref keyref="IRtcEngine" />.</li>
-            <li>The data channel allows a data delay of up to 5 seconds. If the receiver does not receive the data stream within 5 seconds, the data channel reports an error.</li>
-            </ul> </note> </section>
-        <section id="parameters">
+            <p conkeyref="createDataStream1/desc"/>
+        </section>
+        <section id="timing" deliveryTarget="details" conkeyref="createDataStreamEx2/timing"/>       
+        <section id="restriction" deliveryTarget="details" conkeyref="createDataStream2/restriction"/>
+        <section id="related" deliveryTarget="details" conkeyref="createDataStream1/related"/>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
-            <parml id="parml_cwc_jsm_3qb">
+            <parml>
             <plentry props="cpp unreal bp ios mac unity cs" conkeyref="createDataStream2/streamId">
                 <pt />
                 <pd />
             </plentry>
-            <plentry>
-                <pt>reliable</pt>
-                <pd>
-                    <p>Sets whether the recipients are guaranteed to receive the data stream from the sender within five seconds:<ul id="ul_dwc_jsm_3qb">
-                    <li><codeph><ph keyref="true" /></codeph>: The recipients receive the data stream from the sender within five seconds. If the recipient does not receive the data stream within five seconds, an error is reported to the application.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: There is no guarantee that the recipients receive the data stream from the sender within five seconds. The SDK does not report errors if reception is delayed or data is lost.</li>
-                    </ul></p>
-                </pd>
+            <plentry conkeyref="createDataStream1/reliable">
+                <pt />
+                <pd />
             </plentry>
-            <plentry id="ordered">
-                <pt>ordered</pt>
-                <pd>
-                    <p>Sets whether the recipients receive the data stream in the sent order:<ul id="ul_gwc_jsm_3qb">
-                    <li><codeph><ph keyref="true" /></codeph>: The recipients receive the data stream in the sent order.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: There is no guarantee that the recipients receive the data stream in the sent order.</li>
-                    </ul></p>
-                </pd>
+            <plentry conkeyref="createDataStream1/ordered">
+                <pt />
+                <pd />
             </plentry>
             <plentry conkeyref="joinChannelEx/connection">
                 <pt />
                 <pd />
             </plentry>
             </parml> </section>
-        <section id="return_values">
-            <title>Returns</title>
-            <ul>
-            <li props="android ios mac electron">Returns the stream ID, if the method call is successful.</li>
-            <li props="cpp unreal bp unity cs">0: The data stream is successfully created.</li>
-            <li>&lt; 0: Fails to create the data stream.</li>
-            </ul> </section>
+        <section id="return_values" conkeyref="createDataStream2/return_values" />
     </refbody>
 </reference>

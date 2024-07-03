@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setAudioScenario(int scenario);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public abstract setAudioScenario(scenario: Constants.AudioScenarioType): number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setAudioScenario:(AgoraAudioScenario)scenario;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setAudioScenario(AUDIO_SCENARIO_TYPE scenario) = 0;</codeblock>
             <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
@@ -43,7 +44,7 @@
                 <pt>scenario</pt>
                 <pd id="scenario-ng"><ph>音频场景。不同的音频场景下，设备的音量类型是不同的。</ph>
                     <ph props="ios mac cpp framework">详见 <xref keyref="AUDIO_SCENARIO_TYPE" /> 。</ph>
-                    <ul props="android">
+                    <ul props="android hmos">
                     <li><codeph><ph keyref="AUDIO_SCENARIO_DEFAULT" /></codeph>(0):（默认）自动场景，根据用户角色和音频路由自动匹配合适的音质。</li>
                     <li><codeph><ph keyref="AUDIO_SCENARIO_GAME_STREAMING" /></codeph>(3): 高音质场景，适用于音乐为主的场景。</li>
                     <li><codeph><ph keyref="AUDIO_SCENARIO_CHATROOM" /></codeph>(5): 聊天室场景，适用于用户需要频繁上下麦的场景。</li>

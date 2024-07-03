@@ -64,6 +64,7 @@
         + ", rotation=" + rotation + ", alphaStitchMode=" + alphaStitchMode + '}';
   }
 }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoFrame : NSObject
 @property(assign, nonatomic) NSInteger format;
 @property(assign, nonatomic) CMTime time;  
@@ -308,7 +309,7 @@ class ExternalVideoFrame {
                     <li>12: iOS 纹理 (CVPixelBufferRef)。</li>
                     <li>16: I422。</li>
                     </ul> </pd>
-                <pd props="android">视频数据的格式：
+                <pd props="android hmos">视频数据的格式：
                 
                     <ul>
                     <li>10：TEXTURE_2D。</li>
@@ -321,10 +322,10 @@ class ExternalVideoFrame {
             </plentry>
             <plentry>
                 <pt props="cpp unreal bp unity electron rn flutter cs">buffer</pt>
-                <pt props="android">buf</pt>
+                <pt props="android hmos">buf</pt>
                 <pt props="ios mac">dataBuf</pt>
                 <pd props="cpp unreal bp android unity electron rn flutter cs">视频缓冲区。</pd>
-                <pd props="android">该参数仅适用于非 Texture 格式的视频数据。</pd>
+                <pd props="android hmos">该参数仅适用于非 Texture 格式的视频数据。</pd>
                 <pd props="ios mac">原始数据缓冲区，该参数不用于 iOS 纹理。</pd>
             </plentry>
             <plentry props="ios mac">
@@ -362,11 +363,11 @@ class ExternalVideoFrame {
                 <pt>height</pt>
                 <pd>传入视频帧的高度。</pd>
             </plentry>
-            <plentry props="android">
+            <plentry props="android hmos">
                 <pt>textureID</pt>
                 <pd>该帧的 Texture ID。该参数仅适用于 Texture 格式的视频数据。</pd>
             </plentry>
-            <plentry props="android">
+            <plentry props="android hmos">
                 <pt>syncMode</pt>
                 <pd>设置是否开启同步模式，开启后 SDK 会在 Texture 处理时进行等待。该参数仅适用于 Texture 格式的视频数据。
                     <ul id="ul_oxx_wmy_4qb">
@@ -374,15 +375,15 @@ class ExternalVideoFrame {
                     <li><codeph><ph keyref="false"/></codeph>：不开启同步模式。</li>
                     </ul></pd>
             </plentry>
-            <plentry props="android">
+            <plentry props="android hmos">
                 <pt>transform</pt>
                 <pd>Texture 帧额外的转换。该参数仅适用于 Texture 格式的视频数据。</pd>
             </plentry>
-            <plentry props="android">
+            <plentry props="android hmos">
                 <pt>eglContext11</pt>
                 <pd>EGLContext11。该参数仅适用于 Texture 格式的视频数据。</pd>
             </plentry>
-            <plentry props="android">
+            <plentry props="android hmos">
                 <pt>eglContext14</pt>
                 <pd>EGLContext14。该参数仅适用于 Texture 格式的视频数据。</pd>
             </plentry>
@@ -455,25 +456,25 @@ class ExternalVideoFrame {
             <plentry>
                 <pt>cropLeft</pt>
                 <pd>原始数据相关字段。指定左边裁剪掉的像素数量。默认为 0。</pd>
-                <pd props="android">该参数仅适用于非 Texture 格式的视频数据。</pd>
+                <pd props="android hmos">该参数仅适用于非 Texture 格式的视频数据。</pd>
                 <pd props="cpp unreal bp unity rn electron flutter cs">该参数仅适用于原始视频数据。</pd>
             </plentry>
             <plentry>
                 <pt>cropTop</pt>
                 <pd>原始数据相关字段。指定顶边裁剪掉的像素数量。默认为 0。</pd>
-                <pd props="android">该参数仅适用于非 Texture 格式的视频数据。</pd>
+                <pd props="android hmos">该参数仅适用于非 Texture 格式的视频数据。</pd>
                 <pd props="cpp unreal bp unity electron rn flutter cs">该参数仅适用于原始视频数据。</pd>
             </plentry>
             <plentry>
                 <pt>cropRight</pt>
                 <pd>原始数据相关字段。指定右边裁剪掉的像素数量。默认为 0。</pd>
-                <pd props="android">该参数仅适用于非 Texture 格式的视频数据。</pd>
+                <pd props="android hmos">该参数仅适用于非 Texture 格式的视频数据。</pd>
                 <pd props="cpp unreal bp unity electron rn flutter cs">该参数仅适用于原始视频数据。</pd>
             </plentry>
             <plentry>
                 <pt>cropBottom</pt>
                 <pd>原始数据相关字段。指定底边裁剪掉的像素数量。默认为 0。</pd>
-                <pd props="android">该参数仅适用于非 Texture 格式的视频数据。</pd>
+                <pd props="android hmos">该参数仅适用于非 Texture 格式的视频数据。</pd>
                 <pd props="cpp unreal bp unity electron flutter rn cs">该参数仅适用于原始视频数据。</pd>
             </plentry>
             <plentry>

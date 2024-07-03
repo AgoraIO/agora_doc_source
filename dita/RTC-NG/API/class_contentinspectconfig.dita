@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_contentinspectconfig">
     <title><ph keyref="ContentInspectConfig"/></title>
-    <shortdesc id="short"><ph id="shortdesc">视频截图上传配置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">本地截图上传配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -34,6 +34,7 @@
     moduleCount = 0;
   }
 }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac">__attribute__((visibility("default"))) @interface AgoraContentInspectConfig: NSObject
 @property (nonatomic, copy) NSString* _Nullable extraInfo;
 @property (nonatomic, copy) NSString* _Nullable serverConfig;
@@ -129,7 +130,7 @@ class ContentInspectConfig {
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry props="android">
+            <plentry props="android hmos">
                 <pt>CONTENT_INSPECT_TYPE_INVALID</pt>
                 <pd>0：（默认）无实际功能。请不要将 <parmname>type</parmname> 设为该值。</pd>
             </plentry>
@@ -137,11 +138,11 @@ class ContentInspectConfig {
                 <pt>CONTENT_INSPECT_TYPE_MODERATION</pt>
                 <pd>1：视频鉴黄。SDK 会对本地用户发送的视频进行截图、鉴黄，并将截图和审核结果上传。</pd>
             </plentry>
-            <plentry props="android">
+            <plentry props="android hmos">
                 <pt>CONTENT_INSPECT_TYPE_SUPERVISE</pt>
                 <pd>2：使用声网自研插件截图上传。SDK 会对本地用户发送的视频进行截图并上传。</pd>
             </plentry>
-            <plentry props="android">
+            <plentry props="android hmos">
                 <pt>CONTENT_INSPECT_TYPE_IMAGE_MODERATION</pt>
                 <pd>3：使用云市场插件截图上传。SDK 会使用云市场视频审核插件对视频流进行截图并上传。</pd>
             </plentry>
@@ -155,7 +156,7 @@ class ContentInspectConfig {
             </plentry>
             <plentry props="native rn flutter unity">
                 <pt>serverConfig</pt>
-                <pd>（可选）云市场视频截图上传相关服务端配置，该参数仅在 <xref keyref="ContentInspectModule"/> 中的 <codeph>type</codeph> 设置为 <apiname keyref="CONTENT_INSPECT_IMAGE_MODERATION"/> 时生效。如需使用，请<xref keyref="ticket-link" />。</pd>
+                <pd>（可选）云市场视频审核相关服务端配置，该参数仅在 <xref keyref="ContentInspectModule"/> 中的 <codeph>type</codeph> 设置为 <apiname keyref="CONTENT_INSPECT_IMAGE_MODERATION"/> 时生效。如需使用，请<xref keyref="ticket-link" />。</pd>
             </plentry>
             <plentry>
                 <pt>modules</pt>

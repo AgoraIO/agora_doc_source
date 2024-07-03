@@ -153,7 +153,12 @@
         + ", cameraFocalLengthType=" + cameraFocalLengthType + '}';
   }
 }</codeblock>
-      <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraCameraCapturerConfiguration: NSObject
+      <codeblock props="hmos" outputclass="language-arkts">export class CameraCapturerConfiguration {
+  public cameraDirection: Constants.CameraDirection = Constants.CameraDirection.FRONT;
+  public cameraFormat: CaptureFormat = new CaptureFormat();
+  public followEncodeDimensionRatio: boolean = true;
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraCameraCapturerConfiguration: NSObject
 #if TARGET_OS_IOS
 @property (assign, nonatomic) AgoraCameraDirection cameraDirection;
 @property(assign, nonatomic) AgoraFocalLength cameraFocalLengthType;
@@ -313,9 +318,9 @@ class CameraCapturerConfiguration {
         </ul></note>
         </pd>
       </plentry>
-      <plentry props="android cpp framework">
+      <plentry props="android hmos cpp framework">
         <pt props="cpp framework">format</pt>
-        <pt props="android">captureFormat</pt>
+        <pt props="android hmos">captureFormat</pt>
         <pd>（可选）视频帧格式。详见 <xref keyref="VideoFormat"/>。</pd>
       </plentry>
       <plentry props="apple">

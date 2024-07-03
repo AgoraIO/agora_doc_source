@@ -13,6 +13,7 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (AgoraUserInfo* _Nullable)getUserInfoByUserAccount:(NSString* _Nonnull)userAccount withError:(AgoraErrorCode* _Nullable)error;</codeblock>
             <codeblock props="android" outputclass="language-java">public abstract int getUserInfoByUserAccount(String userAccount, UserInfo userInfo);</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int getUserInfoByUserAccount(const char* userAccount, rtc::UserInfo* userInfo, const char* channelId = NULL, const char* localUserAccount = NULL) = 0;</codeblock>
@@ -24,11 +25,22 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;UserInfo&gt; getUserInfoByUserAccount(String userAccount);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <p conkeyref="getUserInfoByUid/getUserInfo_desc"/>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>After a remote user joins the channel, the SDK gets the UID and user account of the remote user, caches them in a mapping table object, and triggers the <xref keyref="onUserInfoUpdated"/> callback on the local client. After receiving the callback, you can call this method and pass in the user account to get the UID of the remote user from the <xref keyref="UserInfo" /> object.</p>
         </section>
-        <section id="parameters">
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>Call this method after receiving the <xref keyref="onUserInfoUpdated"/> callback.</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="related" deliveryTarget="details" conkeyref="getUserInfoByUid/related">
+            <title>Related callbacks</title>
+            <p/>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>

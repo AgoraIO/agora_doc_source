@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onNetworkQuality(int uid, int txQuality, int rxQuality) {}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">onNetworkQuality? : (uid: number, txQuality: Constants.NetworkQuality, rxQuality: Constants.NetworkQuality) =&gt; void;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
     networkQuality:(NSUInteger)uid
     txQuality:(AgoraNetworkQuality)txQuality
@@ -44,6 +45,7 @@
         <section id="detailed_desc">
             <p id="desc1">This callback reports the last mile network conditions of each user in the channel. Last mile refers to the connection between the local device and Agora's edge server.</p>
             <p id="desc2">The SDK triggers this callback once every two seconds. If a channel includes multiple users, the SDK triggers this callback as many times.</p>
+            <p>This callback provides feedback on network quality through sending and receiving broadcast packets within the channel. Excessive broadcast packets can lead to broadcast storms. To prevent broadcast storms from causing a large amount of data transmission within the channel, this callback supports feedback on the network quality of up to 4 remote hosts simultaneously by default.</p>
             <note type="note"><ph><parmname>txQuality</parmname> is <codeph props="cpp unreal bp android unity">UNKNOWN</codeph><codeph props="ios mac electron rn">Unknown</codeph> when the user is not sending a stream; <parmname>rxQuality</parmname> is <codeph props="cpp unreal bp android unity">UNKNOWN</codeph><codeph props="ios mac electron rn">Unknown</codeph> when the user is not receiving a stream.</ph></note> </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title" /></title>

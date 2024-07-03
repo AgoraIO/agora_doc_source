@@ -15,6 +15,7 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int createCustomAudioTrack(
       Constants.AudioTrackType trackType, AudioTrackConfig config);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public abstract createCustomAudioTrack(trackType: Constants.AudioTrackType, config: AudioTrackConfig): number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)createCustomAudioTrack:(AgoraAudioTrackType)trackType
                        config:(AgoraAudioTrackConfig* _Nonnull)config;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual rtc::track_id_t createCustomAudioTrack(rtc::AUDIO_TRACK_TYPE trackType, const rtc::AudioTrackConfig&amp; config) = 0;</codeblock>
@@ -64,7 +65,7 @@
             <title>返回值</title>
             <ul>
             <li>方法调用成功，返回音频轨道 ID 作为该音频轨道的唯一标识。</li>
-            <li>方法调用失败，返回负值。</li>
+            <li>方法调用失败，返回 0xffffffff。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
             </ul> </section>
     </refbody>
 </reference>

@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java"> public abstract int selectAudioTrack(int audioIndex);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)selectAudioTrack:(NSInteger)index;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int selectAudioTrack(int index) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
@@ -38,7 +39,7 @@
             <plentry>
                 <pt props="apple cpp unreal bp unity rn electron flutter cs">index</pt>
                 <pt props="android">audioIndex</pt>
-                <pd>指定的播放音轨。取值范围为 [0, <xref keyref="getAudioTrackCount"/>()]。</pd>
+                <pd>指定的播放音轨。取值范围应大于等于 0 且小于 <xref keyref="getAudioTrackCount"/> 的返回值。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">

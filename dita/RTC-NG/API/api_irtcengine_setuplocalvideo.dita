@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setupLocalVideo(VideoCanvas local);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public abstract setupLocalVideo(canvas: VideoCanvas): number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setupLocalVideo:(AgoraRtcVideoCanvas * _Nullable)local;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setupLocalVideo(const VideoCanvas&amp; canvas) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
@@ -31,6 +32,7 @@
             <p>在实时互动场景下，如果你需要在本地视频预览的画面中同时看到多个预览画面、且不同画面分别处于视频链路上不同观测点，可以重复调用该方法设置不同的 <parmname>view</parmname>，并针对每个 <parmname>view</parmname> 设置不同的观测位置。例如：将视频源设置为摄像头，然后对应两个 <parmname>view</parmname> 分别设置 <parmname>position</parmname> 为 <ph keyref="POSITION_POST_CAPTURER_ORIGIN"/> 和 <ph keyref="POSITION_POST_CAPTURER"/>，即可在本地视频预览中同时看到没有经过视频前处理的原始画面和已经过视频前处理（美颜、虚拟背景、水印本地预览）的画面。</p>
             <note type="attention">
             <ul>
+            <li conkeyref="setupRemoteVideo/render" props="flutter"/>
             <li props="unity cs">如果你想要在原生窗口上渲染图像，请调用此方法；如果你仅需在 Unity 项目内渲染图像，可直接通过 <xref keyref="VideoSurface"/> 类来实现。</li>
             <li>该方法在加入频道前后都能调用。</li>
             <li props="native unreal bp unity rn flutter cs">如果你希望在通话中更新本地用户视图的渲染或镜像模式，请使用 <xref keyref="setLocalRenderMode2" /> 方法。</li>

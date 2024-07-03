@@ -16,6 +16,7 @@
             <codeblock props="android" outputclass="language-java">public abstract boolean onPlaybackAudioFrameBeforeMixing(int userId, int type,
                 int samplesPerChannel, int bytesPerSample, int channels, int samplesPerSec, ByteBuffer buffer,
                 long renderTimeMs, int avsync_type);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">onPlaybackAudioFrameBeforeMixing?: (channelId: string, userId: number, type: number, samplesPerChannel: number, bytesPerSample: number, channels: number, samplesPerSec: number, buffer: ArrayBuffer, renderTimeMs: number, avsync_type: number) =&gt; boolean;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onPlaybackAudioFrameBeforeMixing:(AgoraAudioFrame* _Nonnull)frame channelId:(NSString * _Nonnull)channelId uid:(NSUInteger)uid  NS_SWIFT_NAME(onPlaybackAudioFrame(beforeMixing:channelId:uid:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual bool onPlaybackAudioFrameBeforeMixing(const char* channelId, rtc::uid_t uid, AudioFrame&amp; audioFrame) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnPlaybackAudioFrameBeforeMixing, const FString, channelId, int64, uid, const FAudioFrame&amp;, audioFrame);</codeblock>

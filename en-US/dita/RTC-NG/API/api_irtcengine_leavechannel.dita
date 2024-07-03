@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int leaveChannel();</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)leaveChannel:(void(^ _Nullable)(AgoraChannelStats * _Nonnull stat))leaveChannelBlock;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int leaveChannel() = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract leaveChannel(options?: LeaveChannelOptions): number;</codeblock>
@@ -22,25 +23,28 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; leaveChannel({LeaveChannelOptions? options});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <p>This method releases all resources related to the session.</p>
-            <p props="native unreal bp unity electron flutter cs">This method call is asynchronous. When this method returns, it does not necessarily mean that the user has left the channel.</p>
-            <p props="rn">Calling this method does not necessarily mean that the user has left the channel.</p>
-            <p>After joining the channel, you must call this method or <apiname keyref="leaveChannel2"/> to end the call, otherwise, the next call cannot be started.</p>
-            <p>If you successfully call this method and leave the channel, the following callbacks are triggered:<ul id="ul_enf_q2p_lpb">
-            <li>The local client: <xref keyref="onLeaveChannel"/>.</li>
-            <li>The remote client: <xref keyref="onUserOffline"/>, if the user joining the channel is in the Communication profile, or is a host in the Live-broadcasting profile.</li>
-            </ul></p>
-            <note type="attention" id="note">
-            <ul>
-            <li>If you call <xref keyref="release"/> immediately after calling this method, the SDK does not trigger the <apiname keyref="onLeaveChannel"/> callback.</li>
-            <li>If you have called <xref keyref="joinChannelEx"/> to join multiple channels, calling this method will leave the channels when calling <xref keyref="joinChannel2"/> and <apiname keyref="joinChannelEx"/> at the same time.</li>
-            <li props="hide">If you call this method during a Media Push, the SDK automatically calls the <xref keyref="removePublishStreamUrl"/> method.</li>
-            </ul> </note> </section>
-        <section props="ios mac" id="parameters">
-            <title>Parameters</title>
-            <parml>
+            <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+                <p>After calling this method, the SDK terminates the audio and video interaction, leaves the current channel, and releases all resources related to the session.</p>
+                <p>After joining the channel, you must call this method to end the call; otherwise, the next call cannot be started.</p>
+                <note type="attention">
+                    <ul><li>This method call is asynchronous. When this method returns, it does not necessarily mean that the user has left the channel.</li>
+                <li>If you have called <xref keyref="joinChannelEx"/> to join multiple channels, calling this method will leave all the channels you joined.</li></ul></note>
+            </section>
+            <section id="timing" deliveryTarget="details" conkeyref="leaveChannel2/timing">
+                <title>Call timing</title>
+                <p/>
+            </section>
+            <section id="restriction" deliveryTarget="details" conkeyref="leaveChannel2/restriction">
+                <title>Restrictions</title>
+                <p/>
+            </section>
+            <section id="related" deliveryTarget="details" conkeyref="leaveChannel2/related">
+                <title>Related callbacks</title>
+                <p/>
+            </section>
+        <section id="parameters" deliveryTarget="details">
+            <title><ph props="ios mac">Parameters</ph></title>
+            <parml props="ios mac">
             <plentry conkeyref="leaveChannel2/leavechannelblock">
                 <pt/>
                 <pd/>

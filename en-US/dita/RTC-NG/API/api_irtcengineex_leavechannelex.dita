@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int leaveChannelEx(RtcConnection connection);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)leaveChannelEx:(AgoraRtcConnection * _Nonnull)connection
     leaveChannelBlock:(void(^ _Nullable)(AgoraChannelStats* _Nonnull stat))leaveChannelBlock NS_SWIFT_NAME(leaveChannelEx(_:leaveChannelBlock:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int leaveChannelEx(const RtcConnection&amp; connection) = 0;</codeblock>
@@ -26,20 +27,32 @@
             <codeblock props="flutter" outputclass="language-dart"/>
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <p>This method lets the user leave the channel, for example, by hanging up or exiting the call.</p>
-            <p>After calling <xref keyref="joinChannelEx"/> to join the channel, this method must be called to end the call before starting the next call.</p>
-            <p>This method can be called whether or not a call is currently in progress. This method releases all resources related to the session.</p>
-            <p props="native unreal bp unity electron flutter cs">This method call is asynchronous. When this method returns, it does not necessarily mean that the user has left the channel. After you leave the channel, the SDK triggers the <xref keyref="onLeaveChannel"/> callback.</p>
-            <p props="rn">Calling this method does not necessarily mean that the user has left the channel. After you leave the channel, the SDK triggers the <xref keyref="onLeaveChannel"/> callback.</p>
-            <p>After actually leaving the channel, the local user triggers the <apiname keyref="onLeaveChannel"/> callback; after the user in the communication scenario and the host in the live streaming scenario leave the channel, the remote user triggers the <xref keyref="onUserOffline"/> callback.</p>
-            <note type="attention" id="note">
-            <ul>
-            <li>If you call <xref keyref="release"/> immediately after calling this method, the SDK does not trigger the <apiname keyref="onLeaveChannel"/> callback.</li>
-            <li>If you want to leave the channels that you joined by calling <xref keyref="joinChannel2"/> and <xref keyref="joinChannelEx"/>, call the <xref keyref="leaveChannel"/> method.</li>
-            </ul> </note> </section>
-        <section id="parameters">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>After calling this method, the SDK terminates the audio and video interaction, leaves the current channel, and releases all resources related to the session.</p>
+            <p>After calling <xref keyref="joinChannelEx"/> to join a channel, you must call this method or <xref keyref="leaveChannelEx2"/> to end the call, otherwise, the next call cannot be started.</p>
+            <note type="attention">
+                <ul>
+                    <li>This method call is asynchronous. When this method returns, it does not necessarily mean that the user has left the channel.</li>
+                    <li>If you call <xref keyref="leaveChannel"/> or <xref keyref="leaveChannel2"/>, you will leave all the channels you have joined by calling <xref keyref="joinChannel1"/>, <xref keyref="joinChannel2"/>, or <xref keyref="joinChannelEx"/>.</li>
+                </ul></note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Applicable scenarios</title>
+            <p>This method can be called in scenarios involving multiple channels.</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>Call this method after <xref keyref="joinChannelEx"/>.</p>
+        </section>
+        <section id="restriction" deliveryTarget="details" conkeyref="leaveChannel2/restriction">
+            <title>Restrictions</title>
+            <p/>
+        </section>
+        <section id="related" deliveryTarget="details" conkeyref="leaveChannel2/related">
+            <title>Related callbacks</title>
+            <p/>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry conkeyref="joinChannelEx/connection">

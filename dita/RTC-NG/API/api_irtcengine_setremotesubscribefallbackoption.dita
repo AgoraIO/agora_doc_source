@@ -14,7 +14,8 @@
           <section id="prototype">
                <p outputclass="codeblock">
                <codeblock props="android" outputclass="language-java">public abstract int setRemoteSubscribeFallbackOption(int option);</codeblock>
-               <codeblock props="ios mac" outputclass="language-objectivec">- (int)setRemoteSubscribeFallbackOption:(AgoraStreamFallbackOptions)option;</codeblock>
+               <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setRemoteSubscribeFallbackOption:(AgoraStreamFallbackOptions)option;</codeblock>
                <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setRemoteSubscribeFallbackOption(STREAM_FALLBACK_OPTIONS option) = 0;</codeblock>
                <codeblock props="electron" outputclass="language-typescript">abstract setRemoteSubscribeFallbackOption(
     option: StreamFallbackOptions
@@ -42,7 +43,7 @@
                <plentry>
                     <pt>option</pt>
                     <pd><ph>订阅流的回退选项。</ph><ph props="ios mac cpp unreal bp electron unity flutter rn cs">详见 <xref keyref="STREAM_FALLBACK_OPTIONS" />。</ph>
-                         <ul props="android">
+                         <ul props="android hmos">
                          <li><ph keyref="STREAM_FALLBACK_OPTION_DISABLED" /> (0): 网络条件较差时，不对音视频流作回退处理，但不能保证音视频流的质量。</li>
                          <li><ph keyref="STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW" /> (1):（默认）网络条件较差时，只接收视频小流（低分辨率、低码率视频流）。</li>
                          <li><ph keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY" /> (2): 网络条件较差时，先尝试只接收视频小流；如果因网络环境太差无法显示视频，则再回退到只接收订阅的音频流。</li>

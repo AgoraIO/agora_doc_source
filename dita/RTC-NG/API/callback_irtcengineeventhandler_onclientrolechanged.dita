@@ -8,6 +8,7 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onClientRoleChanged(int oldRole, int newRole, ClientRoleOptions newRoleOptions) {}
 </codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">onClientRoleChanged?:(oldRole:Constants.ClientRole, newRole:Constants.ClientRole, newRoleOptions:ClientRoleOptions) =&gt; void;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didClientRoleChanged:(AgoraClientRole)oldRole
 newRole:(AgoraClientRole)newRole newRoleOptions:(AgoraClientRoleOptions * _Nullable)newRoleOptions
 NS_SWIFT_NAME(rtcEngine(_:didClientRoleChanged:newRole:newRoleOptions:));</codeblock>
@@ -37,15 +38,14 @@ NS_SWIFT_NAME(rtcEngine(_:didClientRoleChanged:newRole:newRoleOptions:));</codeb
       ClientRoleOptions newRoleOptions)? onClientRoleChanged;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="scenario" deliveryTarget="details" props="hide">
-            <title>适用场景</title>
-            <p/>
-        </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
-            <p>在以下任意一种情况时，会触发此回调：<ul>
+            <p props="native cs unity unreal">在以下任意一种情况时，会触发此回调：<ul>
                 <li>在<b>加入频道后</b>调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2"/> 设置用户角色或观众端延时级别。</li>
                 <li>在<b>加入频道前</b>调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2"/> 并将用户角色设为 <parmname>AUDIENCE</parmname>。</li></ul></p>
+            <p props="flutter rn electron bp">在以下任意一种情况时，会触发此回调：<ul>
+                    <li>在<b>加入频道后</b>调用 <xref keyref="setClientRole2"/> 设置用户角色或观众端延时级别。</li>
+                    <li>在<b>加入频道前</b>调用 <xref keyref="setClientRole2"/> 并将用户角色设为 <parmname>AUDIENCE</parmname>。</li></ul></p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
@@ -65,14 +65,14 @@ NS_SWIFT_NAME(rtcEngine(_:didClientRoleChanged:newRole:newRoleOptions:));</codeb
             <plentry id="oldRole">
                 <pt>oldRole</pt>
                 <pd>切换前的角色：<ph props="cpp unreal bp ios mac electron unity flutter rn cs"><xref keyref="CLIENT_ROLE_TYPE"/>。</ph>
-                    <ul conkeyref="setClientRole1/clientroletype" props="android">
+                    <ul conkeyref="setClientRole1/clientroletype" props="android hmos">
                     <li/>
                     </ul> </pd>
             </plentry>
             <plentry id="newRole">
                 <pt>newRole</pt>
                 <pd>切换后的角色：<ph props="cpp unreal bp ios mac electron unity flutter rn cs"><xref keyref="CLIENT_ROLE_TYPE"/>。</ph>
-                    <ul conkeyref="setClientRole1/clientroletype" props="android">
+                    <ul conkeyref="setClientRole1/clientroletype" props="android hmos">
                     <li/>
                     </ul> </pd>
             </plentry>

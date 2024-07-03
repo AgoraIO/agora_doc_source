@@ -48,6 +48,20 @@
   }
 }
 </codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class VideoCanvas{
+  public static readonly RENDER_MODE_HIDDEN = 1;
+  public static readonly RENDER_MODE_FIT = 2;
+  public static readonly VIDEO_MIRROR_MODE_ENABLED = 1;
+  public static readonly VIDEO_MIRROR_MODE_DISABLED = 2;
+  
+  public xcomponentId:string = &#x27;&#x27;;
+  public uid:number = 0;
+  public renderMode:number = VideoCanvas.RENDER_MODE_HIDDEN;
+  public mirrorMode:number = 0;
+  constructor(componentId:string) {
+    this.xcomponentId = componentId;
+  }
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcVideoCanvas : NSObject
 @property(assign, nonatomic) NSUInteger uid;
 @property(assign, nonatomic) NSUInteger subviewUid;
@@ -243,7 +257,8 @@ class VideoCanvas {
             <plentry>
                 <pt>uid</pt>
                 <pd>User ID that publishes the video source.</pd>
-                <pd props="cpp unity rn flutter">For Android and iOS platforms, when the video source is a mixed video stream ( <apiname keyref="VIDEO_SOURCE_TRANSCODED"/>), this parameter represents the ID of the user who publishes the mixed video stream.</pd>
+                <pd props="cpp unity rn flutter">For Android and iOS platforms, when the video source is a mixed video stream ( <apiname keyref="VIDEO_SOURCE_TRANSCODED"/>), this parameter represents the ID of the user who publishes the mixed video stream.<note type="attention" props="rn">The <parmname>uid</parmname> for the local user is 0 by default. If you want to render a local view with a customized <parmname>uid</parmname>, you need to pass in <parmname>sourceType</parmname> at the same time.</note>
+                </pd>
                 <pd props="android ios">When the video source is a mixed video stream ( <apiname keyref="VIDEO_SOURCE_TRANSCODED"/>), this parameter represents the ID of the user who publishes the mixed video stream.</pd>
               </plentry>
                 <plentry>
@@ -253,7 +268,8 @@ class VideoCanvas {
                 </plentry>
                 <plentry>
                     <pt>view</pt>
-                    <pd props="native flutter unity cs electron rn">The video display window. <ph props="android">It must be one <xref keyref="SurfaceView-link"/> or <xref keyref="TextureView-link"/> object.</ph><note type="attention">In one <apiname keyref="VideoCanvas"/>, you can only choose to set either <parmname>view</parmname> or <parmname>surfaceTexture</parmname>. If both are set, only the settings in <parmname>view</parmname> take effect.</note></pd>
+                    <pd props="native flutter unity cs electron rn">The video display window. <ph props="android">It must be one <xref keyref="SurfaceView-link"/> or <xref keyref="TextureView-link"/> object.</ph><note type="attention" props="native flutter unity cs rn">In one <apiname keyref="VideoCanvas"/>, you can only choose to set either <parmname>view</parmname> or <parmname>surfaceTexture</parmname>. If both are set, only the settings in <parmname>view</parmname> take effect.</note>
+                    </pd>
                     <pd props="unreal bp">The video image. You need to define a pointer of UImage type and pass in this parameter. The sample code is as follows:<codeblock props="unreal bp" outputclass="language-cpp">agora::rtc::VideoCanvas videoCanvas;
     UImage* LocalVideo;
     videoCanvas.view = LocalVideo;</codeblock></pd>
@@ -283,10 +299,6 @@ class VideoCanvas {
                             </ul>
                         </note>
                     </pd>
-            </plentry>
-            <plentry>
-                <pt>uid</pt>
-                <pd>The user ID.</pd>
             </plentry>
             <plentry id="sourcetype">
                 <pt>sourceType</pt>

@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setupRemoteVideoEx(VideoCanvas remote, RtcConnection connection);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public abstract setupRemoteVideoEx(remote:VideoCanvas, connection:RtcConnection) : number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setupRemoteVideoEx:(AgoraRtcVideoCanvas* _Nonnull)remote
                connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setupRemoteVideoEx(const VideoCanvas&amp; canvas, const RtcConnection&amp; connection) = 0;</codeblock>
@@ -40,7 +41,10 @@
             <p>如需解除某个远端用户的绑定视图，可以调用该方法并将 <parmname>view</parmname> 设置为空。</p>
             <p>离开频道后，SDK 会清除远端用户视图的绑定关系。</p>
             <note type="attention">
-            <p>如果你希望在通话中更新远端用户视图的渲染或镜像模式，请使用 <xref keyref="setRemoteRenderModeEx" /> 方法。</p>
+            <ul>
+            <li conkeyref="setupRemoteVideo/render" props="flutter"/>
+            <li>如果你希望在通话中更新远端用户视图的渲染或镜像模式，请使用 <xref keyref="setRemoteRenderModeEx" /> 方法。</li>
+            </ul>
             </note> </section>
         <section id="parameters">
             <title>参数</title>

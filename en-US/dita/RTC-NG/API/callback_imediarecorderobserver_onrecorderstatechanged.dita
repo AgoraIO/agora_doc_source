@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">void onRecorderStateChanged(String channelId, int uid, int state, int reason);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">onRecorderStateChanged(channelId: string, uid: number, state: number, reason: number): void;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)mediaRecorder:(AgoraMediaRecorder* _Nonnull)recorder stateDidChanged:(NSString * _Nonnull)channelId uid:(NSUInteger)uid state:(AgoraMediaRecorderState)state reason:(AgoraMediaRecorderReasonCode)reason;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onRecorderStateChanged(const char* channelId, rtc::uid_t uid, RecorderState state, RecorderReasonCode reason) = 0;</codeblock>
             <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnRecorderStateChanged, FString, channelId, int64, uid, FENUMWRAP_RecorderState, state, ERecorderErrorCode, error);</codeblock>

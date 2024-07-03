@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setClientRole(int role);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setClientRole:(AgoraClientRole)role;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setClientRole(CLIENT_ROLE_TYPE role) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setClientRole(
@@ -27,18 +28,23 @@
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart" /></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <p id="desc">In the interactive live streaming profile, the SDK sets the user role as audience by default. You can call this method to set the user role as host.</p>
-            <p>You can call this method either before or after joining a channel.</p>
-            <p conkeyref="setClientRole2/preview" props="native unreal bp electron flutter"/>
-            <p>If you call this method to switch the user role after joining a channel, the SDK automatically does the following:<ul>
-                <li>Calls <xref keyref="muteLocalAudioStream" /> and <xref keyref="muteLocalVideoStream" /> to change the publishing state.</li>
-                <li>Triggers <xref keyref="onClientRoleChanged" /> on the local client.</li>
-                <li>Triggers <xref keyref="onUserJoined" /> or <xref keyref="onUserOffline" /> on the remote client.</li>
-                </ul></p>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p id="desc">By default,the SDK sets the user role as audience. You can call this method to set the user role as host. The user role (<parmname>roles</parmname>) determines the users' permissions at the SDK level, including whether they can publish audio and video streams in a channel.</p>
         </section>
-        <section id="parameters">
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>You can call this method either before or after joining a channel.</p>
+            <p conkeyref="setClientRole2/preview1" props="native unreal bp electron flutter"/>
+            <p conkeyref="setClientRole2/preview2" props="unity"/>
+            <p conkeyref="setClientRole2/sdk"/>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>When calling this method before joining a channel and setting the user role to <parmname>BROADCASTER</parmname>, the <xref keyref="onClientRoleChanged"/> callback will not be triggered on the local client.</p>
+        </section>
+        <section id="related" deliveryTarget="details" conkeyref="setClientRole2/related">
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>
