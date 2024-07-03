@@ -48,6 +48,20 @@
   }
 }
 </codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class VideoCanvas{
+  public static readonly RENDER_MODE_HIDDEN = 1;
+  public static readonly RENDER_MODE_FIT = 2;
+  public static readonly VIDEO_MIRROR_MODE_ENABLED = 1;
+  public static readonly VIDEO_MIRROR_MODE_DISABLED = 2;
+  
+  public xcomponentId:string = &#x27;&#x27;;
+  public uid:number = 0;
+  public renderMode:number = VideoCanvas.RENDER_MODE_HIDDEN;
+  public mirrorMode:number = 0;
+  constructor(componentId:string) {
+    this.xcomponentId = componentId;
+  }
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcVideoCanvas : NSObject
 @property(assign, nonatomic) NSUInteger uid;
 @property(assign, nonatomic) NSUInteger subviewUid;
@@ -260,20 +274,20 @@ class VideoCanvas {
     UImage* LocalVideo;
     videoCanvas.view = LocalVideo;</codeblock></pd>
                 </plentry>
-                <plentry props="android">
+                <plentry props="android hmos">
                     <pt>surfaceTexture</pt>
                     <pd>A container that provides video images. When you use this member, you need to implement texture drawing in OPENGL yourself. See <xref keyref="SurfaceTexture-link"/>.<note type="attention">In one <apiname keyref="VideoCanvas"/>, you can only choose to set either <parmname>view</parmname> or <parmname>surfaceTexture</parmname>. If both are set, only the settings in <parmname>view</parmname> take effect.</note></pd>
                 </plentry>
                 <plentry props="native flutter unity cs electron rn bp">
                     <pt>renderMode</pt>
                     <pd props="ios mac cpp unity electron rn flutter cs bp">The rendering mode of the video. See <xref keyref="RENDER_MODE_TYPE"/>.</pd>
-                    <pd props="android"><ul conkeyref="setLocalRenderMode2/rendermodetype"><li/></ul></pd>
+                    <pd props="android hmos"><ul conkeyref="setLocalRenderMode2/rendermodetype"><li/></ul></pd>
                 </plentry>
                 <plentry props="native flutter unity cs electron rn bp">
                     <pt>mirrorMode</pt>
                 <pd>
                         <p props="ios mac cpp unity electron rn flutter cs bp">The mirror mode of the view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</p>
-                        <p props="android">
+                        <p props="android hmos">
                             <ul conkeyref="setLocalRenderMode2/videomirrormodetype">
                                 <li/>
                             </ul>
@@ -293,18 +307,18 @@ class VideoCanvas {
             <plentry props="native flutter unity cs electron rn bp">
                 <pt>setupMode</pt>
                 <pd props="ios mac cpp flutter unity cs electron rn bp">Setting mode of the view. See <xref keyref="VIDEO_VIEW_SETUP_MODE"/>.</pd>
-                <pd props="android">Setting mode of the view.<ul>
+                <pd props="android hmos">Setting mode of the view.<ul>
                     <li><ph keyref="VIDEO_VIEW_SETUP_REPLACE"/>(0): (Default) Replaces a view.</li>
                     <li><ph keyref="VIDEO_VIEW_SETUP_ADD"/>(1): Adds a view.</li>
                     <li><ph keyref="VIDEO_VIEW_SETUP_REMOVE"/>(2): Deletes a view.</li>
                 </ul></pd>
             </plentry>
-            <plentry props="native unreal flutter unity cs electron rn">
+            <plentry props="android cpp apple unreal flutter unity cs electron rn">
                 <pt>mediaPlayerId</pt>
                 <pd>The ID of the media player. You can get the Device ID by calling <xref keyref="getMediaPlayerId"/>.</pd>
                 <pd>This parameter is required when <parmname>sourceType</parmname> is <apiname keyref="VIDEO_SOURCE_MEDIA_PLAYER"/>.</pd>
             </plentry>
-            <plentry props="android">
+            <plentry props="android hmos">
               <pt>rect</pt>
               <pd>(Optional) Display area for the video frame. See <xref keyref="rect-link"/>. <parmname>width</parmname> and <parmname>height</parmname> represent the video pixel width and height of the area. The default value is null (width or height is 0), which means that the actual resolution of the video frame is displayed.</pd>
           </plentry>
@@ -323,8 +337,8 @@ class VideoCanvas {
           <plentry props="native unity electron flutter cs">
                     <pt>enableAlphaMask</pt>
                     <pd props="native rn unity electron flutter">(Optional) Whether the receiver enables alpha mask rendering:<ul>
-                        <li><codeph><ph keyref="true"/></codeph>: The receiver enables alpha mask rendering.</li>
-                        <li><codeph><ph keyref="false"/></codeph>: (Default) The receiver disables alpha mask rendering.</li>
+                        <li><codeph><ph keyref="true"/>: The receiver enables alpha mask rendering.</codeph></li>
+                        <li><codeph><ph keyref="false"/>: (Default) The receiver disables alpha mask rendering.</codeph></li>
                         </ul>
                         <p>Alpha mask rendering can create images with transparent effects and extract portraits from videos. When used in combination with other methods, you can implement effects such as portrait-in-picture and watermarking.</p>
                         <note type="attention" props="cpp mac unity electron flutter">

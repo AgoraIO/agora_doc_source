@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int enableInstantMediaRendering();</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableInstantMediaRendering NS_SWIFT_NAME(enableInstantMediaRendering());</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int enableInstantMediaRendering() = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
@@ -31,12 +32,8 @@
                 <dd>v4.1.1</dd>
             </dlentry>
             </dl>
-            <p>After successfully calling this method, the SDK enables the instant frame rendering mode, which can speed up the first frame rendering speed after the user joins the channel.<note type="attention">
-                <ul>
-                    <li>Once the instant rendering function is enabled, it can only be canceled by calling the <xref keyref="release"/> method to destroy the <apiname keyref="IRtcEngine"/> object.</li>
-                    <li>In this mode, the SDK uses Agora's custom encryption algorithm to shorten the time required to establish transmission links, and the security is reduced compared to the standard DTLS (Datagram Transport Layer Security). If the application scenario requires higher security standards, Agora recommends that you do not use this method.</li>
-                </ul>
-                </note></p>
+            <p>After successfully calling this method, the SDK enables the instant frame rendering mode, which can speed up the first frame rendering speed after the user joins the channel.</p>
+            <note type="attention">Once the instant rendering function is enabled, it can only be canceled by calling the <xref keyref="release"/> method to destroy the <apiname keyref="IRtcEngine"/> object.</note>
         </section>
         <section id="scenario">
             <title>Applicable scenarios</title>

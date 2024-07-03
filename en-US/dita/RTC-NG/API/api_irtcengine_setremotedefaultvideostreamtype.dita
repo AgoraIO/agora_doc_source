@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setRemoteDefaultVideoStreamType(int streamType);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public abstract setRemoteDefaultVideoStreamType(streamType: Constants.VideoStreamType): number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setRemoteDefaultVideoStreamType:(AgoraVideoStreamType)streamType;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setRemoteDefaultVideoStreamType(VIDEO_STREAM_TYPE streamType) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
@@ -26,9 +27,15 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
+            <dl outputclass="deprecated" props="android">
+            <dlentry>
+                <dt>Deprecated:</dt>
+                <dd>This method is deprecated as of v2.4.0. Use  instead<xref keyref="setRemoteDefaultVideoStreamType2"/>.</dd>
+            </dlentry>
+            </dl>
             <p conkeyref="setRemoteVideoStreamType/desc1"/>
             <p conkeyref="setRemoteVideoStreamType/desc2"/>
-            <note type="attention">
+            <note type="attention" id="note">
             <ul>
             <li>Call this method before joining a channel. The SDK does not support changing the default subscribed video stream type after joining a channel.</li>
             <li>If you call both this method and <xref keyref="setRemoteVideoStreamType" />, the setting of <apiname keyref="setRemoteVideoStreamType" /> takes effect.</li>
@@ -40,7 +47,7 @@
                 <pt>streamType</pt>
                 <pd id="defaultstreamtype">
                     <p props="apple cpp framework">The default video-stream type. See <xref keyref="VIDEO_STREAM_TYPE" />.</p>
-                    <p props="android">The default video-stream type:<ul>
+                    <p props="android hmos">The default video-stream type:<ul>
                     <li><ph keyref="VIDEO_STREAM_HIGH"/>(0): High-quality stream, that is, a high-resolution and high-bitrate video stream.</li>
                     <li><ph keyref="VIDEO_STREAM_LOW"/>(1): Low-quality stream, that is, a low-resolution and low-bitrate video stream.</li>
                     </ul> </p>

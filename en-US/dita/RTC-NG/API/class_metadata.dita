@@ -6,13 +6,41 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
-            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="android" outputclass="language-java" >public class AgoraMetadata {
+  public String channelId;
+  public int uid;
+  public byte[] data;
+  public long timeStampMs;
+
+  public AgoraMetadata() {
+    channelId = null;
+    uid = 0;
+    data = null;
+    timeStampMs = 0;
+  }
+
+  @CalledByNative
+  public AgoraMetadata(String channelId, int uid, byte[] data, long timeStampMs) {
+    this.channelId = channelId;
+    this.uid = uid;
+    this.data = data;
+    this.timeStampMs = timeStampMs;
+  }
+}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraMetadata) __attribute__((visibility("default"))) @interface AgoraMetadata : NSObject
+@property (copy, nonatomic) NSString* _Nonnull channelId NS_SWIFT_NAME(channelId);
+@property (assign, nonatomic) NSInteger uid NS_SWIFT_NAME(uid);
+@property (strong, nonatomic) NSData* _Nonnull data NS_SWIFT_NAME(data);
+@property (assign, nonatomic) NSTimeInterval timestamp NS_SWIFT_NAME(timestamp);
+@end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct Metadata {
+    const char* channelId;
     unsigned int uid;
     unsigned int size;
     unsigned char *buffer;
     long long timeStampMs;
+    Metadata() : channelId(NULL), uid(0), size(0), buffer(NULL), timeStampMs(0) {}
     };</codeblock>
             <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FAgoraMetadata
@@ -49,23 +77,23 @@ struct FAgoraMetadata
         public long timeStampMs;
     };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class Metadata {
-  
+
   uid?: number;
-  
+
   size?: number;
-  
+
   buffer?: Uint8Array;
-  
+
   timeStampMs?: number;
 }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class Metadata {
-  
+
   uid?: number;
-  
+
   size?: number;
-  
+
   buffer?: Uint8Array;
-  
+
   timeStampMs?: number;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class Metadata {
@@ -89,6 +117,10 @@ struct FAgoraMetadata
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
+                <pt>channelId</pt>
+                <pd>The channel name.</pd>
+            </plentry>
+                <plentry>
                 <pt>uid</pt>
                 <pd>
                     <p>The user ID.<ul id="ul_c1t_3wg_s4b">
@@ -97,17 +129,23 @@ struct FAgoraMetadata
                     </ul></p>
                 </pd>
             </plentry>
-            <plentry>
+            <plentry props="cpp framework">
                 <pt>size</pt>
                 <pd>The buffer size of the sent or received <apiname keyref="Metadata" />.</pd>
             </plentry>
-            <plentry>
-                <pt>buffer</pt>
-                <pd>The buffer address of the sent or received <apiname keyref="Metadata" />.</pd>
+            <plentry props="cpp framework android">
+                <pt props="cpp framework">buffer</pt>
+                <pt props="android">data</pt>
+                <pd>接收到的 <apiname keyref="Metadata" /> 的缓存地址。</pd>
             </plentry>
-            <plentry>
-                <pt>timeStampMs</pt>
-                <pd>The timestamp (ms) of <apiname keyref="Metadata" />.</pd>
+            <plentry props="apple">
+                <pt>data</pt>
+                <pd>接收的数据。</pd>
+            </plentry>
+                <plentry>
+                <pt props="cpp framework android">timeStampMs</pt>
+                <pt props="apple">timestamp</pt>
+                <pd>发送 <apiname keyref="Metadata"/> 的时间戳，单位为毫秒。</pd>
             </plentry>
             </parml> </section>
     </refbody>

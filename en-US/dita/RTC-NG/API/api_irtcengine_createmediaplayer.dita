@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_createmediaplayer">
     <title><ph keyref="createMediaPlayer" /></title>
-    <shortdesc id="short"><ph props="android cpp unreal bp unity rn electron flutter cs" id="shortdesc">Creates a media player instance. </ph><ph props="apple" id="shortdesc1">Creates one <xref keyref="IMediaPlayer" /> instance.</ph></shortdesc>
+    <shortdesc id="short"><ph props="android cpp unreal bp unity rn electron flutter cs" id="shortdesc">Creates a media player instance. </ph><ph props="apple" id="shortdesc1">Creates a media player instance.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract IMediaPlayer createMediaPlayer();</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (id&lt;AgoraRtcMediaPlayerProtocol&gt;_Nullable)createMediaPlayerWithDelegate:
                     (id&lt;AgoraRtcMediaPlayerDelegate&gt;_Nullable)delegate;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual agora_refptr &lt;IMediaPlayer&gt; createMediaPlayer() = 0;</codeblock>
@@ -25,9 +26,20 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;MediaPlayer&gt; createMediaPlayer();</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section props="ios mac" id="parameters">
-            <title>Parameters</title>
-            <parml>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>在调用 <xref keyref="IMediaPlayer"/> 类下的其他 API 前，你需要先调用该方法创建一个媒体播放器实例。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>You can call this method either before or after joining a channel.</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>No</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title><ph props="apple">Parameters</ph></title>
+            <parml props="apple">
             <plentry>
                 <pt>delegate</pt>
                 <pd conkeyref="create/handler" />

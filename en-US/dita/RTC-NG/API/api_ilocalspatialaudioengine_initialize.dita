@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int initialize(LocalSpatialAudioConfig config);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">+ (instancetype _Nonnull)sharedLocalSpatialAudioWithConfig:(AgoraLocalSpatialAudioConfig* _Nonnull)config;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int initialize(const LocalSpatialAudioConfig&amp; config) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|ILocalSpatialAudioEngine&quot;)
@@ -29,7 +30,7 @@
             <note type="note">
             <ul>
             <li props="cpp unreal bp">Call this method after calling <xref keyref="queryInterface"/><codeph>(<ph keyref="AGORA_IID_LOCAL_SPATIAL_AUDIO"/>)</codeph>.</li>
-            <li props="android">Call this method after calling <xref keyref="create_ILocalSpatialAudioEngine"/>.</li>
+            <li props="android hmos">Call this method after calling <xref keyref="create_ILocalSpatialAudioEngine"/>.</li>
             <li>Before calling other methods of the <apiname keyref="ILocalSpatialAudioEngine"/> class, you need to call this method to initialize <apiname keyref="ILocalSpatialAudioEngine"/>.</li>
             <li>The SDK supports creating only one <apiname keyref="ILocalSpatialAudioEngine"/> instance for an app.</li>
             </ul> </note> </section>

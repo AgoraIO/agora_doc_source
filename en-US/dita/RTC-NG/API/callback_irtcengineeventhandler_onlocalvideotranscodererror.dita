@@ -15,6 +15,7 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onLocalVideoTranscoderError(
       LocalTranscoderConfiguration.TranscodingVideoStream stream, int error) {}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didLocalVideoTranscoderErrorWithStream:(AgoraTranscodingVideoStream * _Nonnull )stream
         errorCode:(AgoraVideoTranscoderError)errorCode NS_SWIFT_NAME(rtcEngine(_:didLocalVideoTranscoderErrorWithStream:errorCode:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onLocalVideoTranscoderError(const TranscodingVideoStream&amp; stream, VIDEO_TRANSCODER_ERROR error){
@@ -56,7 +57,7 @@
                 <pt props="android cpp framework">error</pt>
                 <pt props="apple">errorCode</pt>
                 <pd>The reason for local video mixing error. <ph props="apple cpp framework">See <xref keyref="VIDEO_TRANSCODER_ERROR"/>.</ph></pd>
-                <pd props="android">The reason for local video mixing error:<ul>
+                <pd props="android hmos">The reason for local video mixing error:<ul>
                         <li>1: The selected video source has not started video capture. You need to create a video track for it and start video capture.</li>
                         <li>2: The video source type is invalid. You need to re-specify the supported video source type.</li>
                         <li>3: The image path is invalid. You need to re-specify the correct image path.</li>

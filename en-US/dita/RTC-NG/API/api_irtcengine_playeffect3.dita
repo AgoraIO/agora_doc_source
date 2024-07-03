@@ -16,6 +16,7 @@
             <codeblock props="android" outputclass="language-java">public int playEffect(int soundId, String filePath, int loopCount, double pitch,
                         double pan, double gain, boolean publish, int startPos);
 </codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public abstract playEffect(soundId:number,filePath:string,loopCount:number,pitch:number,pan:number,gain:number,publish:boolean,startPos?:number):number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)playEffect:(int)soundId
          filePath:(NSString* _Nonnull)filePath
         loopCount:(NSInteger)loopCount
@@ -67,24 +68,36 @@
     int startPos = 0});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <note type="attention" id="note">If you use this method to play an online audio effect file, Agora recommends that you cache the online audio effect file to your local device, call <xref keyref="preloadEffect"/> to preload the cached audio effect file into memory, and then call this method to play the audio effect. Otherwise, you might encounter playback failures or no sound during playback due to loading timeouts or failures.</note>
-            <p id="playEffect-desc">To play multiple audio effect files at the same time, call this method multiple times with different <parmname>soundId</parmname> and <parmname>filePath</parmname>. To achieve the optimal user experience, Agora recommends that do not playing more than three audio files at the same time. After the playback of an audio effect file completes, the SDK triggers the <apiname keyref="onAudioEffectFinished"/> callback.</p>
-        <p conkeyref="startAudioMixing2/uri" props="android"></p>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p conkeyref="startAudioMixing2/uri" props="android"></p>
+            <p id="playEffect-desc">To play multiple audio effect files at the same time, call this method multiple times with different <parmname>soundId</parmname> and <parmname>filePath</parmname>. To achieve the optimal user experience, Agora recommends that do not playing more than three audio files at the same time.</p>
         </section>
-        <section id="parameters">
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>You can call this method either before or after joining a channel.</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>If you use this method to play an online audio effect file, Agora recommends that you cache the online audio effect file to your local device, call  to<xref keyref="preloadEffect"/> preload the cached audio effect file into memory, and then call this method to play the audio effect. Otherwise, you might encounter playback failures or no sound during playback due to loading timeouts or failures.</p>
+        </section>
+        <section id="related" deliveryTarget="details">
+            <title>Related callbacks</title>
+            <p>After the playback of an audio effect file completes, the SDK triggers the<apiname keyref="onAudioEffectFinished"/>  callback.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry id="soundid">
                 <pt>soundId</pt>
                 <pd>The audio effect ID. The ID of each audio effect file is unique.<note type="attention">If you have preloaded an audio effect into memory by calling <xref keyref="preloadEffect" />, ensure that the value of this parameter is the same as that of <parmname>soundId</parmname> in <apiname keyref="preloadEffect" />.</note> </pd>
             </plentry>
-            <plentry>
+            <plentry id="filepath">
                 <pt>filePath</pt>
-                <pd>
-                    <p id="filepath">The absolute path or URL address (including the suffixes of the filename) of the audio effect file. For example, <codeph><ph keyref="filePath-example" /></codeph>. Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See <xref keyref="filePath-link">supported audio formats</xref>.</p>
-                    <note type="attention">If you have preloaded an audio effect into memory by calling <xref keyref="preloadEffect" />, ensure that the value of this parameter is the same as that of <parmname>filePath</parmname> in <apiname keyref="preloadEffect" />.</note> </pd>
+                    <pd>
+                        <p props="cpp framework">播放文件的地址，支持在线文件的 URL 地址、播放文件的绝对路径，需精确到文件名及后缀。 Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. <ph props="cpp">See <xref keyref="filePath-link">supported audio formats</xref>.</ph></p>
+                        <p props="android">播放文件的地址，支持以 <codeph>content://</codeph> 开头的 URI 地址、以 <codeph>/assets/</codeph> 开头的路径、在线文件的 URL 地址、本地文件的绝对路径，需精确到文件名及后缀。 Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See <xref keyref="filePath-link">supported audio formats</xref>.</p>
+                        <p props="apple">播放文件的地址，支持以 <codeph>ipod-library//</codeph> 开头的文件路径、在线文件的 URL 地址、文件的绝对路径，需精确到文件名及后缀。 Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See <xref keyref="filePath-link">supported audio formats</xref>.</p>
+                        <note type="attention">If you have preloaded an audio effect into memory by calling <xref keyref="preloadEffect" />, ensure that the value of this parameter is the same as that of <parmname>filePath</parmname> in <apiname keyref="preloadEffect" />.</note> </pd>
             </plentry>
             <plentry id="loopcount">
                 <pt>loopCount</pt>

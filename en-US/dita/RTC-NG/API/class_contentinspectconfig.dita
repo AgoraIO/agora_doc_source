@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_contentinspectconfig">
     <title><ph keyref="ContentInspectConfig"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Configuration of video screenshot and upload.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">本地截图上传配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -34,6 +34,7 @@
     moduleCount = 0;
   }
 }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac">__attribute__((visibility("default"))) @interface AgoraContentInspectConfig: NSObject
 @property (nonatomic, copy) NSString* _Nullable extraInfo;
 @property (nonatomic, copy) NSString* _Nullable serverConfig;
@@ -129,7 +130,7 @@ class ContentInspectConfig {
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry props="android">
+            <plentry props="android hmos">
                 <pt>CONTENT_INSPECT_TYPE_INVALID</pt>
                 <pd>0: (Default) No actual function. Do not set <parmname>type</parmname> to this value.</pd>
             </plentry>
@@ -137,11 +138,11 @@ class ContentInspectConfig {
                 <pt>CONTENT_INSPECT_TYPE_MODERATION</pt>
                 <pd>1: Video content moderation. The SDK takes screenshots and inspect videos sent by local users, and uploads the screenshots and moderation results.</pd>
             </plentry>
-            <plentry props="android">
+            <plentry props="android hmos">
                 <pt>CONTENT_INSPECT_TYPE_SUPERVISE</pt>
                 <pd>2: Video screenshot and upload via Agora self-developed extension. The SDK takes screenshots of videos sent by local users and upload them.</pd>
             </plentry>
-            <plentry props="android">
+            <plentry props="android hmos">
                 <pt>CONTENT_INSPECT_TYPE_IMAGE_MODERATION</pt>
                 <pd>3: Video screenshot and upload via extensions from Agora Extensions Marketplace. SDK uses video moderation extensions from Agora Extensions Marketplace to take screenshots of the video stream in the channel and uploads them.</pd>
             </plentry>
@@ -155,7 +156,7 @@ class ContentInspectConfig {
             </plentry>
             <plentry props="native rn flutter unity">
                 <pt>serverConfig</pt>
-                <pd>(Optional) Server configuration related to uploading video screenshots via extensions from Agora Extensions Marketplace. This parameter only takes effect when <codeph>type</codeph> in <xref keyref="ContentInspectModule"/> is set to <apiname keyref="CONTENT_INSPECT_IMAGE_MODERATION"/>. If you want to use it, contact <xref keyref="ticket-link" />.</pd>
+                <pd>(Optional) Server configuration related to uploading video screenshots via extensions from Agora Extensions Marketplace. This parameter only takes effect when <xref keyref="ContentInspectModule"/><codeph>type</codeph><apiname keyref="CONTENT_INSPECT_IMAGE_MODERATION"/> in  is set to . If you want to use it, contact <xref keyref="ticket-link" />.</pd>
             </plentry>
             <plentry>
                 <pt>modules</pt>

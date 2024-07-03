@@ -247,6 +247,17 @@
     this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_H265;
   }
 }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class VideoEncoderConfiguration{
+  public dimensions:VideoDimensions = new VideoDimensions(960,540);
+  public frameRate:number = 15;
+  public bitrate:number = 0;
+  public minBitrate:number = -1;
+  public orientationMode:OrientationMode = OrientationMode.ORIENTATION_MODE_ADAPTIVE;
+  public degradationPrefer:DegradationPreference = DegradationPreference.MAINTAIN_QUALITY;
+  public mirrorMode:MirrorModeType = MirrorModeType.MIRROR_MODE_DISABLED;
+  public advanceOptions:AdvanceOptions = new AdvanceOptions();
+  constructor() {}
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoEncoderConfiguration : NSObject
 @property(assign, nonatomic) CGSize dimensions;
 @property(assign, nonatomic) AgoraVideoCodecType codecType;
@@ -605,7 +616,7 @@ struct FVideoEncoderConfiguration
                 <pt>mirrorMode</pt>
                 <pd>
                     <p props="ios mac cpp framework">Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.</p>
-                    <p props="android">Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees.<ul>
+                    <p props="android hmos">Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees.<ul>
                       <li><ph keyref="VIDEO_MIRROR_MODE_AUTO" />(0): The SDK determines whether to enable the mirror mode. The SDK disables mirror mode by default.</li>
                       <li><ph keyref="VIDEO_MIRROR_MODE_ENABLED" />(1): Enables the mirror mode for remote users.</li>
                       <li><ph keyref="VIDEO_MIRROR_MODE_DISABLED" />(2): Disables the mirror mode for remote users.</li>

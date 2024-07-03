@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract byte[] onReadyToSendMetadata(long timeStampMs, int sourceType);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">onReadyToSendMetadata?:(timeStampMs:bigint,sourceType:Constants.VideoSourceType) =&gt;ArrayBuffer;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (NSData * _Nullable)readyToSendMetadataAtTimestamp:(NSTimeInterval)timestamp
                     sourceType:(AgoraVideoSourceType)sourceType;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual bool onReadyToSendMetadata(Metadata &amp;metadata, VIDEO_SOURCE_TYPE source_type) = 0;</codeblock>
@@ -34,8 +35,8 @@
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry props="android ios mac">
-                <pt props="android">timeStampMs</pt>
+            <plentry props="android hmos ios mac">
+                <pt props="android hmos">timeStampMs</pt>
                 <pt props="ios mac">timestamp</pt>
                 <pd>The timestamp.</pd>
             </plentry>
@@ -61,7 +62,7 @@
             <li><codeph>buffer</codeph>: The metadata data.</li>
             <li><codeph>timeStampMs</codeph>: The NTP timestamp (ms) when the metadata is sent.</li>
             </ul> </p>
-            <p props="android">The metadata that you want to send in the format of byte. Ensure that you set the return value.</p>
+            <p props="android hmos">The metadata that you want to send in the format of byte. Ensure that you set the return value.</p>
         </section>
     </refbody>
 </reference>

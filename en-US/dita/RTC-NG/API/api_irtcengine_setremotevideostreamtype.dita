@@ -14,7 +14,8 @@
           <section id="prototype">
                <p outputclass="codeblock">
                <codeblock props="android" outputclass="language-java">public abstract int setRemoteVideoStreamType(int uid, int streamType);</codeblock>
-               <codeblock props="ios mac" outputclass="language-objectivec">- (int)setRemoteVideoStream:(NSUInteger)uid
+               <codeblock props="hmos" outputclass="language-arkts">public abstract setRemoteVideoStreamType(uid: number, streamType: Constants.VideoStreamType): number;</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setRemoteVideoStream:(NSUInteger)uid
                        type:(AgoraVideoStreamType)streamType;</codeblock>
                <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setRemoteVideoStreamType(uid_t uid, VIDEO_STREAM_TYPE streamType) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
@@ -34,13 +35,19 @@
           </section>
           <section id="detailed_desc">
             <title>Details</title>
+            <dl outputclass="deprecated" props="android">
+            <dlentry>
+                <dt>Deprecated:</dt>
+                <dd>This method is deprecated as of v2.4.0. Use  instead<xref keyref="setRemoteVideoStreamType2"/>.</dd>
+            </dlentry>
+            </dl>
                <p id="desc1">The SDK defaults to enabling low-quality video stream adaptive mode (<apiname keyref="AUTO_SIMULCAST_STREAM"/>) on the sending end, which means the sender does not actively send low-quality video stream. The receiver with the role of the <b>host</b> can initiate a low-quality video stream request by calling this method, and upon receiving the request, the sending end automatically starts sending the low-quality video stream.</p>
                <p id="desc2">The SDK will dynamically adjust the size of the corresponding video stream based on the size of the video window to save bandwidth and computing resources. The default aspect ratio of the low-quality video stream is the same as that of the high-quality video stream. According to the current aspect ratio of the high-quality video stream, the system will automatically allocate the resolution, frame rate, and bitrate of the low-quality video stream.</p>
-               <note type="attention"><ul>
+               <note type="attention" id="note"><ul>
                     <li>You can call this method either before or after joining a channel.</li>
                     <li>If the publisher has already called <xref keyref="setDualStreamMode2"/> and set <parmname>mode</parmname> to <apiname keyref="DISABLE_SIMULCAST_STREAM"/> (never send low-quality video stream), calling this method will not take effect, you should call <apiname keyref="setDualStreamMode2"/> again on the sending end and adjust the settings.</li>
-                         <li>Calling this method on the receiving end of the <b>audience</b> role will not take effect.</li>
-                         <li>If you call both <apiname keyref="setRemoteVideoStreamType"/> and <xref keyref="setRemoteDefaultVideoStreamType"/>, the settings in <apiname keyref="setRemoteVideoStreamType"/> take effect.</li></ul></note> </section>
+                    <li>Calling this method on the receiving end of the <b>audience</b> role will not take effect.</li>
+                    <li>If you call both this method<xref keyref="setRemoteDefaultVideoStreamType"/> and , the setting of  takes effect.</li></ul></note> </section>
           <section id="parameters">
                <title>Parameters</title>
                <parml>
@@ -52,7 +59,7 @@
                     <pt>streamType</pt>
                     <pd>
                          <p props="apple cpp framework">The video stream type, see <xref keyref="VIDEO_STREAM_TYPE"/>.</p>
-                         <p props="android">The video stream type:<ul>
+                         <p props="android hmos">The video stream type:<ul>
                          <li>0: High-quality video stream.</li>
                          <li>1: Low-quality video stream.</li>
                          </ul> </p>

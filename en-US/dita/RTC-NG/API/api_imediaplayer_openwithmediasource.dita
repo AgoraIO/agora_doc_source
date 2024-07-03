@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">int openWithMediaSource(MediaPlayerSource source);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)openWithMediaSource:(AgoraMediaSource *)source;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int openWithMediaSource(const media::base::MediaSource &amp;source) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IMediaPlayer&quot;)
@@ -23,13 +24,21 @@
             <codeblock props="rn" outputclass="language-typescript">abstract openWithMediaSource(source: MediaSource): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; openWithMediaSource(MediaSource source);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p></section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <p>This method supports opening media files of different sources, including a custom media source, and allows you to configure the playback scenarios.</p>
-            <p conkeyref="open/uri" props="android"/>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp framework">This method supports opening media files of different sources, including a custom media source, and allows you to configure the playback scenarios.</p>
+            <p props="android hmos">该方法支持你打开不同类型的媒体资源，包括以 <codeph>content://</codeph> 开头的 URI 文件、<codeph>assets</codeph> 文件夹中的媒体文件、以及其他自定义的媒体资源文件，并可进行播放设置。</p>
+            <p props="apple">该方法支持你打开不同类型的媒体资源，包括以 <codeph>ipod-library://</codeph> 开头的文件、以及其他自定义的媒体资源文件，并可进行播放设置。</p>
             <p id="format" props="native"><ph props="cn">For supported formats of Agora media player, see <xref keyref="media-player"/>.</ph></p>
         </section>
-        <section id="parameters">
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>You can call this method either before or after joining a channel.</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>This method is called asynchronously. If you need to play a media file, make sure you receive the<xref keyref="onPlayerSourceStateChanged"/>  callback reporting<apiname keyref="PLAYER_STATE_OPEN_COMPLETED"/>  before calling the<xref keyref="play"/>  method to play the file.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>

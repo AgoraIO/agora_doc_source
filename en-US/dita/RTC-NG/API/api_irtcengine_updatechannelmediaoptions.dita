@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int updateChannelMediaOptions(ChannelMediaOptions options);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public abstract updateChannelMediaOptions(options: ChannelMediaOptions): number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)updateChannelWithMediaOptions:(AgoraRtcChannelMediaOptions* _Nonnull)mediaOptions;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int updateChannelMediaOptions(const ChannelMediaOptions&amp; options) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
@@ -39,7 +40,7 @@
             <ul props="native unreal bp electron unity rn cs">
             <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul>
-                <li>-2: The value of a member in the <xref keyref="ChannelMediaOptions" /> structure is invalid. For example, the token or the user ID is invalid. You need to fill in a valid parameter.</li>
+                <li>-2:<xref keyref="ChannelMediaOptions" /> The value of a member in the  structure is invalid. For example, the token or the user ID is invalid. You need to fill in a valid parameter.</li>
                 <li>-7: The <apiname keyref="IRtcEngine" /> object has not been initialized. You need to initialize the <apiname keyref="IRtcEngine" /> object before calling this method.</li>
                 <li>-8: The internal state of the <apiname keyref="IRtcEngine" /> object is wrong. The possible reason is that the user is not in the channel. Agora recommends that you use the <xref keyref="onConnectionStateChanged" /> callback to determine whether the user exists in the channel. If you receive the <apiname keyref="CONNECTION_STATE_DISCONNECTED" /> (1) or <apiname keyref="CONNECTION_STATE_FAILED" /> (5) state, the user is not in the channel. You need to call <xref keyref="joinChannel2" /> to join a channel before calling this method.</li>
                 </ul></li>

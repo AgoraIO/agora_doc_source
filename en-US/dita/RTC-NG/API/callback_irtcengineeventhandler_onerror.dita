@@ -15,6 +15,7 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onError(int err) {}
 </codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">onError?:(err:number,message:string) =&gt; void</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didOccurError:(AgoraErrorCode)errorCode;
 </codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onError(int err, const char* msg) {
@@ -48,7 +49,7 @@
                 <pt>msg</pt>
                 <pd>The error message.</pd>
             </plentry>
-            <plentry props="android bp">
+            <plentry props="android hmos bp">
                 <pt>err</pt>
                 <pd>Error code.</pd>
                 <pd>
@@ -63,7 +64,7 @@
                             <li>The audio module is disabled. The program is not complete.</li>
                             </ul></li>
                         <li><ph keyref="ERR_NOT_SUPPORTED" />(4): <apiname keyref="IRtcEngine" /> does not support the request. Possible reasons include the following:<ul>
-                            <li props="android">The <xref keyref="setBeautyEffectOptions" /> method is called on devices running versions earlier than Android 5.0. Check the Android version.</li>
+                            <li props="android hmos">The <xref keyref="setBeautyEffectOptions" /> method is called on devices running versions earlier than Android 5.0. Check the Android version.</li>
                             <li>The built-in encryption mode is incorrect, or the SDK fails to load the external encryption library. Check the encryption mode setting, or reload the external encryption library.</li>
                             </ul></li>
                         <li><ph keyref="ERR_REFUSED" />(5): The request is rejected. Possible reasons include the following:<ul>

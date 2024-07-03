@@ -15,6 +15,7 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onProxyConnected(
     String channel, int uid, int proxyType, String localProxyIp, int elapsed) {}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine didProxyConnected:(NSString* _Nonnull)channel withUid:(NSUInteger)uid proxyType:(AgoraProxyType)proxyType localProxyIp:(NSString* _Nonnull)localProxyIp elapsed:(NSInteger)elapsed NS_SWIFT_NAME(rtcEngine(_:didProxyConnected:withUid:proxyType:localProxyIp:elapsed:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onProxyConnected(const char* channel, uid_t uid, PROXY_TYPE proxyType, const char* localProxyIp, int elapsed) {
   (void)channel;
@@ -57,10 +58,10 @@
                 <pt>uid</pt>
                 <pd>The user ID.</pd>
             </plentry>
-            <plentry id="proxyType" props="android ios mac cpp unreal bp unity electron rn cs">
+            <plentry id="proxyType" props="android hmos ios mac cpp unreal bp unity electron rn cs">
                 <pt>proxyType</pt>
                 <pd props="ios mac cpp unreal bp unity electron rn cs">The proxy type connected. See <xref keyref="PROXY_TYPE" />.</pd>
-                <pd props="android">The proxy type connected.<ul>
+                <pd props="android hmos">The proxy type connected.<ul>
                     <li><ph keyref="NONE_PROXY_TYPE" />(0): Reserved for future use.</li>
                     <li><ph keyref="UDP_PROXY_TYPE" />(1): The cloud proxy for the UDP protocol, that is, the Force UDP cloud proxy mode. In this mode, the SDK always transmits data over UDP.</li>
                     <li><ph keyref="TCP_PROXY_TYPE" />(2): The cloud proxy for the TCP (encryption) protocol, that is, the Force TCP cloud proxy mode. In this mode, the SDK always transmits data over TCP/TLS 443.</li>

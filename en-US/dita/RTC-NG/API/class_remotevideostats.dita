@@ -24,6 +24,44 @@
     public long totalActiveTime;
     public long publishDuration;
   }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class RemoteVideoStats {
+  
+  public uid:number = 0;
+  
+  public delay:number = 0;
+  
+  public e2eDelay:number = 0;
+  
+  public width:number = 0;
+  
+  public height:number = 0;
+  
+  public receivedBitrate:number = 0;
+  
+  public decoderOutputFrameRate:number = 0;
+  
+  public rendererOutputFrameRate:number = 0;
+  
+  public frameLossRate:number = 0;
+  
+  public packetLossRate:number = 0;
+  
+  public rxStreamType:number = 0;
+  
+  public totalFrozenTime:number = 0;
+  
+  public frozenRate:number = 0;
+  
+  public avSyncTimeMs:number = 0;
+  
+  public totalActiveTime:bigint = BigInt(0);
+  
+  public publishDuration:bigint = BigInt(0);
+  
+  public mosValue:number = 0;
+  
+  public rxVideoBytes:number = 0;
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcRemoteVideoStats : NSObject
 @property(assign, nonatomic) NSUInteger uid;
 @property(assign, nonatomic) NSUInteger delay __deprecated;
@@ -331,7 +369,7 @@ class RemoteVideoStats {
             </plentry>
             <plentry>
                 <pt>rxStreamType</pt>
-                <pd><ph>The type of the video stream. </ph><ph props="ios mac cpp unreal bp unity cs rn electron flutter">See <xref keyref="VIDEO_STREAM_TYPE"/>.</ph><p props="android">
+                <pd><ph>The type of the video stream. </ph><ph props="ios mac cpp unreal bp unity cs rn electron flutter">See <xref keyref="VIDEO_STREAM_TYPE"/>.</ph><p props="android hmos">
                     <ul>
                     <li><ph keyref="VIDEO_STREAM_HIGH"/>(0): High-quality stream, that is, a high-resolution and high-bitrate video stream.</li>
                     <li><ph keyref="VIDEO_STREAM_LOW"/>(1): Low-quality stream, that is, a low-resolution and low-bitrate video stream.</li>
