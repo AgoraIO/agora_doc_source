@@ -25,33 +25,39 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setAINSMode(
       {required bool enabled, required AudioAinsMode mode});</codeblock> </p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
-            <dlentry props="native">
-                <dt>自从</dt>
-                <dd>v4.2.0</dd>
-            </dlentry>
+                <dlentry props="native">
+                    <dt>自从</dt>
+                    <dd>v4.2.0</dd>
+                </dlentry>
             </dl>
             <p>你可以调用开方法来开启 AI 降噪功能。该功能可以在保证语音质量的前提下，智能化检测并降低周围环境中多种稳态与非稳态噪声，使人声更加清晰。
-稳态噪声指在任何时间点上都具有相同频率的噪声，常见的稳态噪声有：
-            <ul><li>电视机噪声</li>
-            <li>空调噪声</li>
-            <li>工厂机器噪声等</li></ul>
-非稳态噪声是指随时间而快速变化的噪声，常见的非稳态噪声有：
-            <ul><li>雷声</li>
-            <li>爆炸声</li>
-            <li>破裂声等</li></ul></p>
-            <note>
-                <ul><li props="native">该方法依赖于 AI 降噪动态库 <codeph><ph keyref="noisesuppression"/></codeph>，如果删除该动态库会导致无法正常开启该功能。</li>
-                    <li props="hide">该方法依赖于 AI 降噪动态库，如果删除该动态库会导致无法正常开启该功能。AI 降噪动态库名称见<xref keyref="extensions"/>。</li>
-                    <li props="cpp android flutter unity bp unreal rn">目前暂不推荐在 Android 6.0 及以下版本的设备上开启该功能。</li></ul></note>
+                稳态噪声指在任何时间点上都具有相同频率的噪声，常见的稳态噪声有：
+                            <ul><li>电视机噪声</li>
+                            <li>空调噪声</li>
+                            <li>工厂机器噪声等</li></ul>
+                非稳态噪声是指随时间而快速变化的噪声，常见的非稳态噪声有：
+                            <ul><li>雷声</li>
+                            <li>爆炸声</li>
+                            <li>破裂声等</li></ul>
+            </p>
         </section>
-        <section id="scenario">
+        <section id="scenario" deliveryTarget="details">
             <title>适用场景</title>
             <p>在语音连麦、在线教育、在线会议等场景中，如果周围环境比较嘈杂，AI 降噪功能可以在保证语音质量的前提下，识别并降低周围的稳态噪声和非稳态噪声，提高语音质量和体验。</p>
         </section>
-        <section id="parameters">
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>该方法在加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <ul><li props="native">该方法依赖于 AI 降噪动态库 <codeph><ph keyref="noisesuppression"/></codeph>，如果删除该动态库会导致无法正常开启该功能。</li>
+                <li props="unity flutter rn">该方法依赖于 AI 降噪动态库，如果删除该动态库会导致无法正常开启该功能。AI 降噪动态库名称见<xref keyref="reduce-app-size"/>。</li>
+                <li props="cpp android flutter unity bp unreal rn">目前暂不推荐在 Android 6.0 及以下版本的设备上开启该功能。</li></ul>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
             <plentry>
