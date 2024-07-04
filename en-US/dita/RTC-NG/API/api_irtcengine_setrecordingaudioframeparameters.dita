@@ -47,7 +47,7 @@
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p><ph id="function">The SDK calculates the sampling interval based on the samplesPerCall, <parmname>sampleRate</parmname> and <parmname>channel</parmname> parameters set in this method.<parmname></parmname><equation-inline>Sample interval (sec) = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>. Ensure that the sample interval ≥ 0.01 (s). <ph>The SDK triggers the <xref keyref="onRecordAudioFrame" /> callback according to the sampling interval.</ph></ph></p>
+            <p><ph id="function">The SDK calculates the sampling interval based on the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname> and <parmname>channel</parmname> parameters set in this method.<equation-inline>Sample interval (sec) = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>. Ensure that the sample interval ≥ 0.01 (s). </ph><ph>The SDK triggers the <xref keyref="onRecordAudioFrame" /> callback according to the sampling interval.</ph></p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>Call timing</title>
@@ -70,7 +70,7 @@
             </plentry>
             <plentry id="channel">
                 <pt>channel</pt>
-                <pd>The number of audio channels of the external audio sink:<ul>
+                <pd>The number of audio channels. You can set the value as 1 or 2.<ul>
                     <li>1: Mono.</li>
                     <li>2: Stereo.</li>
                     </ul>
@@ -85,7 +85,7 @@
             </plentry>
             <plentry id="samplesPerCall">
                 <pt>samplesPerCall</pt>
-                <pd>The number of samples, such as 1024 for the media push.</pd>
+                <pd>The number of data samples, such as 1024 for the Media Push.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
