@@ -78,7 +78,7 @@
                         <li><ph keyref="ERR_NO_PERMISSION" />(9): Permission to access is not granted. Check whether your app has access to the audio and video device.</li>
                         <li><ph keyref="ERR_TIMEDOUT" />(10): A timeout occurs. Some API calls require the SDK to return the execution result. This error occurs if the SDK takes too long (more than 10 seconds) to return the result.</li>
                         <li><ph keyref="ERR_JOIN_CHANNEL_REJECTED" />(17): The request to join the channel is rejected. Possible reasons include the following:<ul>
-                            <li>The user is already in the channel. Agora recommends that you use the <xref keyref="onConnectionStateChanged" /> callback to determine whether the user exists in the channel. Do not call this method to join the channel unless you receive the <apiname keyref="CONNECTION_STATE_DISCONNECTED" />(1) state.</li>
+                            <li>The user is already in the channel. Agora recommends that you use the <xref keyref="onConnectionStateChanged" /> callback to see whether the user is in the channel. Do not call this method to join the channel unless you receive the <apiname keyref="CONNECTION_STATE_DISCONNECTED" />(1) state.</li>
                             <li>After calling <xref keyref="startEchoTest3" /> for the call test, the user tries to join the channel without calling <xref keyref="stopEchoTest" /> to end the current test. To join a channel, the call test must be ended by calling <apiname keyref="stopEchoTest" />.</li>
                             </ul></li>
                         <li><ph keyref="ERR_LEAVE_CHANNEL_REJECTED" />(18): Fails to leave the channel. Possible reasons include the following:<ul>
