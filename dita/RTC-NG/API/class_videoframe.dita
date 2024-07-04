@@ -39,9 +39,7 @@
     @CalledByNative("I422Buffer") int getStrideU();
     @CalledByNative("I422Buffer") int getStrideV();
   }
-  public interface RgbaBuffer extends Buffer {
-    @CalledByNative("RgbaBuffer") ByteBuffer getData();
-  }
+  public interface RgbaBuffer extends Buffer { @CalledByNative("RgbaBuffer") ByteBuffer getData(); }
   public interface TextureBuffer extends Buffer {
     enum Type {
       OES(GLES11Ext.GL_TEXTURE_EXTERNAL_OES),
@@ -295,7 +293,7 @@
 @property (nonatomic, assign) int avSyncType;
 @property(assign, nonatomic) CVPixelBufferRef _Nullable pixelBuffer;
 @property (nonatomic, assign) uint8_t* _Nullable alphaBuffer;
-@property (nonatomic, assign) int alphaStitchMode;
+@property (nonatomic, assign) AgoraAlphaStitchMode alphaStitchMode;
 @property(nonatomic, strong) NSDictionary *_Nonnull metaInfo;
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct VideoFrame {
@@ -730,13 +728,13 @@ class VideoFrame {
         </plentry>
       <plentry id="alphastitchmode">
         <pt>alphaStitchMode</pt>
-        <pd>当视频帧中包含 Alpha 通道数据时，设置 <parmname>alphaBuffer</parmname> 和视频帧的相对位置：
-            <ul>
-            <li>0：（默认）仅视频帧，即  <parmname>alphaBuffer</parmname> 不和视频帧拼接。</li>
-            <li>1：<parmname>alphaBuffer</parmname> 位于视频帧的上方。</li>
-            <li>2：<parmname>alphaBuffer</parmname> 位于视频帧的下方。</li>
-            <li>3：<parmname>alphaBuffer</parmname> 位于视频帧的左侧。</li>
-            <li>4：<parmname>alphaBuffer</parmname> 位于视频帧的右侧。</li>
+        <pd>当视频帧中包含 Alpha 通道数据时，设置 <parmname>alphaBuffer</parmname> 和视频帧的相对位置。<ph props="cpp apple">详见 <xref keyref="ALPHA_STITCH_MODE"/>。</ph>
+          <ul props="android">
+            <li><ph keyref="NO_ALPHA_STITCH"/> (0)：（默认）仅视频帧，即  <parmname>alphaBuffer</parmname> 不和视频帧拼接。</li>
+            <li><ph keyref="ALPHA_STITCH_UP"/> (1)：<parmname>alphaBuffer</parmname> 位于视频帧的上方。</li>
+            <li><ph keyref="ALPHA_STITCH_BELOW"/> (2)：<parmname>alphaBuffer</parmname> 位于视频帧的下方。</li>
+            <li><ph keyref="ALPHA_STITCH_LEFT"/> (3)：<parmname>alphaBuffer</parmname> 位于视频帧的左侧。</li>
+            <li><ph keyref="ALPHA_STITCH_RIGHT"/> (4)：<parmname>alphaBuffer</parmname> 位于视频帧的右侧。</li>
             </ul></pd>
       </plentry>
       <plentry>
