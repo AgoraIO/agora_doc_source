@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onextensionerrorwithcontext">
+    <title><ph keyref="onExtensionErrorWithContext" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the extension runs incorrectly.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onExtensionErrorWithContext" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">void onErrorWithContext(ExtensionContext extContext, int error, String message){};</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">onError?:(err:number,message:string) =&gt; void</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onExtensionErrorWithContext:(AgoraExtensionContext * __nonnull)context
+                   error:(int)error
+                 message:(NSString * __nullable)message NS_SWIFT_NAME(onExtensionErrorWithContext(_:error:message:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onExtensionErrorWithContext(const ExtensionContext &amp;context, int error, const char* message) {
+    (void)context;
+    (void)error;
+    (void)message;
+  }</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnExtensionError, FString, provider, FString, extension, int, error, FString, message);</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">onExtensionError?(
+    provider: string,
+    extension: string,
+    error: number,
+    message: string
+  ): void;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnExtensionError(string provider, string extension, int error, string message) { }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onExtensionError?(
+    provider: string,
+    extension: string,
+    error: number,
+    message: string
+  ): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(
+          String provider, String extension, int error, String message)?
+      onExtensionError;</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+        </section>
+        <section id="detailed_desc">
+            <p>In case of extension enabling failure or runtime errors, the extension triggers this callback and reports the error code along with the reasons.</p>
+        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry id="context">
+                <pt props="cpp apple">context</pt>
+                <pt props="android">extContext</pt>
+                <pd>插件上下文信息，详见 <xref keyref="ExtensionContext"/>。</pd>
+            </plentry>
+            <plentry conkeyref="setExtensionProperty/vendor" props="framework">
+                <pt />
+                <pd />
+            </plentry>
+            <plentry props="framework">
+                <pt>extension</pt>
+                <pd>The name of the extension.</pd>
+            </plentry>
+            <plentry>
+                <pt>error</pt>
+                <pd>Error code. For details, see the extension documentation provided by the extension provider.</pd>
+            </plentry>
+            <plentry>
+                <pt>message</pt>
+                <pd>Reason. For details, see the extension documentation provided by the extension provider.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

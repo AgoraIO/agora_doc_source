@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onextensionstoppedwithcontext">
+    <title><ph keyref="onExtensionStoppedWithContext" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the extension is disabled.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onExtensionStoppedWithContext" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">void onStoppedWithContext(ExtensionContext extContext){};</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onExtensionStoppedWithContext:(AgoraExtensionContext * __nonnull)context NS_SWIFT_NAME(onExtensionStoppedWithContext(_:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onExtensionStoppedWithContext(const ExtensionContext &amp;context) {
+    (void)context;
+  }</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnExtensionStopped, FString, provider, FString, extension);</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onExtensionStopped?(provider: string, extension: string): void;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnExtensionStopped(string provider, string extension) { }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onExtensionStopped?(provider: string, extension: string): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(String provider, String extName)? onExtensionStopped;</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+        </section>
+        <section id="detailed_desc">
+            <p>成功禁用插件后会触发该回调。</p>
+        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry conkeyref="onExtensionErrorWithContext/context">
+                <pt />
+                <pd />
+            </plentry>
+            <plentry conkeyref="setExtensionProperty/vendor" props="framework">
+                <pt />
+                <pd />
+            </plentry>
+            <plentry conkeyref="onExtensionEventWithContext/extension" props="framework">
+                <pt />
+                <pd />
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>
