@@ -39,9 +39,7 @@
     @CalledByNative("I422Buffer") int getStrideU();
     @CalledByNative("I422Buffer") int getStrideV();
   }
-  public interface RgbaBuffer extends Buffer {
-    @CalledByNative("RgbaBuffer") ByteBuffer getData();
-  }
+  public interface RgbaBuffer extends Buffer { @CalledByNative("RgbaBuffer") ByteBuffer getData(); }
   public interface TextureBuffer extends Buffer {
     enum Type {
       OES(GLES11Ext.GL_TEXTURE_EXTERNAL_OES),
@@ -295,7 +293,7 @@
 @property (nonatomic, assign) int avSyncType;
 @property(assign, nonatomic) CVPixelBufferRef _Nullable pixelBuffer;
 @property (nonatomic, assign) uint8_t* _Nullable alphaBuffer;
-@property (nonatomic, assign) int alphaStitchMode;
+@property (nonatomic, assign) AgoraAlphaStitchMode alphaStitchMode;
 @property(nonatomic, strong) NSDictionary *_Nonnull metaInfo;
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct VideoFrame {
