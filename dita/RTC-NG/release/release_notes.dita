@@ -10,10 +10,10 @@
         <topic id="compatibility">
             <title>升级必看</title>
             <body>
-                <p>该版本对部分功能的实现方式进行了优化，包括 SDK 的行为变更、API 的改名或删除，为确保项目的正常运行，你需要在升级到该版本后更新 App 中的代码。 
+                <p>该版本对部分功能的实现方式进行了优化，包括 SDK 的行为变更、API 的改名或删除，为确保项目的正常运行，你需要在升级到该版本后更新 App 中的代码。
                     <note type="attention" props="native">自 v4.4.0 起，RTC SDK 提供 API 下架说明，包含各版本废弃及删除的 API 信息。详见 <xref href="https://doc.shengwang.cn/api-ref/rtc/android/API/rtc_api_sunset" props="android">API 下架说明</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/android/API/rtc_api_sunset" props="cpp">API 下架说明</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/ios/API/rtc_api_sunset" props="ios">API 下架说明</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/macos/API/rtc_api_sunset" props="mac">API 下架说明</xref>。</note></p>
                 <ol>
-                    <li>为区分不同插件回调中的上下文信息，该版本将原有的插件相关回调删除并新增可标识插件上下文信息的对应回调（见下表），你可以通过各回调中的 <apiname keyref="ExtensionContext"/> 了解插件的名称、使用该插件的用户 ID、和提供插件的服务商名等信息。 
+                    <li>为区分不同插件回调中的上下文信息，该版本将原有的插件相关回调删除并新增可标识插件上下文信息的对应回调（见下表），你可以通过各回调中的 <apiname keyref="ExtensionContext"/> 了解插件的名称、使用该插件的用户 ID、和提供插件的服务商名等信息。
                         <simpletable frame="all" relcolwidth="1* 1*" id="simpletable_zqj_n1t_xbc">
                             <sthead>
                                 <stentry>原有回调</stentry>
@@ -38,8 +38,8 @@
                         </simpletable>
                     </li>
                     <li props="ios">在 v4.4.0 之前，当你的用户角色为观众时，调用 <apiname keyref="setAudioScenario"/> 将音频场景设为聊天室场景（<apiname keyref="AUDIO_SCENARIO_CHATROOM"/>）会收到申请麦克风权限的弹窗提示。自 v4.4.0 起，SDK 通过 iOS 原生的 API 控制麦克风开关，因此观众角色在聊天室场景下不会再收到申请麦克风权限的弹窗。</li>
-                    <li props="apple">改版本将 <parmname>receiveMetadata</parmname> 回调改名为 <apiname keyref="onMetadataReceived"/>，并删除了回调中的 <parmname>data</parmname>、<parmname>timeStamp</parmname> 参数，你可以通过新增的 <parmname>metadata</parmname> 参数来获取 Metadata 的相关信息，包括 <parmname>timeStamp</parmname>（发送数据的时间戳）、<parmname>uid</parmname>（用户 ID）、<parmname>channelId</parmname>（源频道名称）等。</li>
-                    <li props="android">改版本删除了 <apiname keyref="onMetadataReceived"/> 回调中的 <parmname>buffer</parmname>、<parmname>uid</parmname>、<parmname>timeStampMs</parmname> 参数，你可以通过新增的 <parmname>metadata</parmname> 参数来获取 Metadata 的相关信息，包括 <parmname>timeStampMs</parmname>（发送数据的时间戳）、<parmname>uid</parmname>（用户 ID）、<parmname>channelId</parmname>（源频道名称）等。</li>
+                    <li props="apple">改版本将 <codeph>receiveMetadata</codeph> 回调改名为 <apiname keyref="onMetadataReceived"/>，并删除了回调中的 <codeph>data</codeph>、<codeph>timeStamp</codeph> 参数，你可以通过新增的 <codeph>metadata</codeph> 参数来获取 Metadata 的相关信息，包括 <codeph>timeStamp</codeph>（发送数据的时间戳）、<codeph>uid</codeph>（用户 ID）、<codeph>channelId</codeph>（源频道名称）等。</li>
+                    <li props="android">改版本删除了 <apiname keyref="onMetadataReceived"/> 回调中的 <codeph>buffer</codeph>、<codeph>uid</codeph>、<codeph>timeStampMs</codeph> 参数，你可以通过新增的 <codeph>metadata</codeph> 参数来获取 Metadata 的相关信息，包括 <codeph>timeStampMs</codeph>（发送数据的时间戳）、<codeph>uid</codeph>（用户 ID）、<codeph>channelId</codeph>（源频道名称）等。</li>
                 </ol>
             </body>
         </topic>
@@ -92,14 +92,12 @@
                     <li><ph><b>其他改进</b></ph>
                         <p>该版本还进行了如下改进：
                         <ul>
-                        <li/>
                         <li>优化了传输策略，调用 <apiname keyref="enableInstantMediaRendering"/> 不再对传输链路的安全性产生影响。</li>
-                        <li/>
                         <li props="cpp mac electron unity flutter unreal bp"><apiname keyref="onLocalVideoStateChanged"/> 回调中新增 <apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_DISPLAY_DISCONNECTED"/> 枚举，表示进行屏幕采集的显示器已断开连接。(Windows, macOS)</li>
-                        <li/>
                         <li props="mac electron unity flutter unreal bp">优化了共享窗口的视频链路，降低了 CPU 占用率。(macOS) </li>
                         <li props="cpp unity flutter electron unreal">优化了屏幕共享场景下的回声消除。</li>
-                        <li props="cpp framework">该版本在 <apiname keyref="Metadata"/> 中新增 <parmname>channelId</parmname> 参数，用于获取发送 Metadata 的源频道名称。</li>
+                        <li props="cpp framework">该版本在 <apiname keyref="Metadata"/> 中新增 <codeph>channelId</codeph> 参数，用于获取发送 Metadata 的源频道名称。</li>
+                        <li>废弃了 <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REASON"/> 中的冗余枚举值 <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT"/>、<apiname keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED"/>。</li>
                         <li props="android">优化了以下 API 的参数类型。此改进有助于提升代码的可读性，减少潜在的错误，并便于后续维护。<ul>
                             <li>废弃了 <codeph>option</codeph> 参数为 int 类型的 <apiname keyref="setRemoteSubscribeFallbackOption"/>，新增了 <codeph>option</codeph> 参数为 <apiname keyref="STREAM_FALLBACK_OPTIONS"/> 类型的重载函数 <apiname keyref="setRemoteSbscribeFallbackOption2"/>。</li>
                             <li>废弃了 <codeph>streamType</codeph> 参数为 int 类型的 <apiname keyref="setRemoteVideoStreamType"/>、<apiname keyref="setRemoteDefaultVideoStreamType"/>、<apiname keyref="setRemoteVideoStreamTypeEx"/>，新增了 <codeph>streamType</codeph> 参数为 <apiname keyref="VIDEO_STREAM_TYPE"/> 类型的重载函数 <apiname keyref="setRemoteVideoStreamType2"/>、<apiname keyref="setRemoteDefaultVideoStreamType2"/>、<apiname keyref="setRemoteVideoStreamTypeEx2"/>。</li></ul></li>
