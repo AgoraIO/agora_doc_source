@@ -36,9 +36,9 @@
             <title>Restrictions</title>
             <p>Both this method and the <xref keyref="onPlaybackAudioFrame"/> callback can be used to get audio data after remote mixing. After calling <apiname keyref="setExternalAudioSink"/> to enable external audio rendering, the app will no longer be able to obtain data from the <apiname keyref="onPlaybackAudioFrame"/> callback. Therefore, you should choose between this method and the <apiname keyref="onPlaybackAudioFrame"/> callback based on your actual business requirements. The specific distinctions between them are as follows:<ul>
                 <li>After calling this method, the app automatically pulls the audio data from the SDK. By setting the audio data parameters, the SDK adjusts the frame buffer to help the app handle latency, effectively avoiding audio playback jitter.</li>
-                <li>注册 <apiname keyref="onPlaybackAudioFrame"/> 回调后，SDK 通过该回调将音频数据传输给 App。 App 在处理音频帧的延迟时，可能会导致音频播放抖动。</li>
+                <li>After registering the <apiname keyref="onPlaybackAudioFrame"/> callback, the SDK sends the audio data to the app through the callback. Any delay in processing the audio frames may result in audio jitter.</li>
                 </ul></p>
-            <p>该方法仅用于拉取远端混音后的音频播放数据，如需获取采集的原始音频数据、混音前每条拉流单独的原始音频播放数据等，可以通过调用 <xref keyref="registerAudioFrameObserver"/> 注册相应的回调。</p>
+            <p>This method is only used for retrieving audio data after remote mixing. If you need to get audio data from different audio processing stages such as capture and playback, you can register the corresponding callbacks by calling <xref keyref="registerAudioFrameObserver"/>.</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title><ph props="android apple cpp unreal bp flutter unity cs">Parameters</ph></title>
