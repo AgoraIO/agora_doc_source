@@ -23,17 +23,19 @@
            <codeblock props="flutter" outputclass="language-dart"/> 
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section conkeyref="pullAudioFrame/detailed_desc" id="detailed_desc"/>
-        <section id="parameters">
+        <section conkeyref="pullAudioFrame/detailed_desc" id="detailed_desc" deliveryTarget="details" otherprops="no-title" />
+        <section conkeyref="pullAudioFrame/timing" id="timing" deliveryTarget="details" />      
+        <section conkeyref="pullAudioFrame/restriction" id="restriction" deliveryTarget="details" />
+        <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
             <plentry>
                 <pt>data</pt>
                 <pd>待拉取的远端音频数据，数据类型为 <codeph>ByteBuffer</codeph>。</pd>
             </plentry>
-            <plentry>
-                <pt>lengthInByte</pt>
-                <pd>远端音频数据长度，单位为字节。 该参数的值由音频数据时长、<apiname keyref="setExternalAudioSink"/> 的 <parmname>sampleRate</parmname> 和 <parmname>channels</parmname> 参数确定。<parmname>lengthInByte</parmname> = <parmname>sampleRate</parmname>/1000 × 2 × <parmname>channels</parmname> × 音频数据时长 (ms)。</pd>
+            <plentry conkeyref="pullAudioFrame/length">
+                <pt/>
+                <pd/>
             </plentry>
             </parml> </section>
         <section id="return_values">
