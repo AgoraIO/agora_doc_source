@@ -25,18 +25,26 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableFaceDetection(bool enabled);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <p>You can call this method either before or after joining a channel.</p>
-            <note type="attention" props="cpp unreal bp unity flutter">This method is for Android and iOS only.</note>
-            <p>Once face detection is enabled, the SDK triggers the <xref keyref="onFacePositionChanged" /> callback to report the face information of the local user, which includes the following:<ul>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p><note type="attention" props="cpp unreal bp unity flutter">This method is for Android and iOS only.</note></p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>This method needs to be called after the camera is started (for example, by calling <apiname keyref="startPreview2" /> or<apiname keyref="enableVideo" /> ).</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="related" deliveryTarget="details">
+            <title>Related callbacks</title>
+            <p>成功调用该方法后，SDK 会触发 <xref keyref="onFacePositionChanged" /> 回调向你报告人脸检测的信息：<ul>
             <li>The width and height of the local video.</li>
             <li>The position of the human face in the local view.</li>
             <li>The distance between the human face and the screen.</li>
             </ul> </p>
-            <p>This method needs to be called after the camera is started (for example, by calling <apiname keyref="startPreview2" /> or<apiname keyref="enableVideo" /> ).</p>
         </section>
-        <section id="parameters">
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>

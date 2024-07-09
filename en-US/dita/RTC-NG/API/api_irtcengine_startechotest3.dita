@@ -25,17 +25,24 @@
            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> startEchoTest(EchoTestConfiguration config);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p>To test whether the user's local sending and receiving streams are normal, you can call this method to perform an audio and video call loop test, which tests whether the audio and video devices and the user's upstream and downstream networks are working properly.</p>
-            <p>After starting the test, the user needs to make a sound or face the camera. The audio or video is output after about two seconds. If the audio playback is normal, the audio device and the user's upstream and downstream networks are working properly; if the video playback is normal, the video device and the user's upstream and downstream networks are working properly.<note id="note_ygl_znn_5sb" type="attention">
-            <ul id="ul_gyv_znn_5sb">
-            <li>You can call this method either before or after joining a channel. When calling in a channel, make sure that no audio or video stream is being published.</li>
-            <li>After calling this method, call <xref keyref="stopEchoTest"/> to end the test; otherwise, the user cannot perform the next audio and video call loop test and cannot join the channel.</li>
-            <li>In live streaming scenarios, this method only applies to hosts.</li>
-            </ul> </note></p>
+            <p>After starting the test, the user needs to make a sound or face the camera. The audio or video is output after about two seconds. If the audio playback is normal, the audio device and the user's upstream and downstream networks are working properly; if the video playback is normal, the video device and the user's upstream and downstream networks are working properly.</p>
         </section>
-        <section id="parameters">
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>You can call this method either before or after joining a channel.</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+                <ul>
+                    <li>When calling in a channel, make sure that no audio or video stream is being published.</li>
+                    <li>After calling this method, call  to<xref keyref="stopEchoTest"/> end the test; otherwise, the user cannot perform the next audio and video call loop test and cannot join the channel.</li>
+                    <li>In live streaming scenarios, this method only applies to hosts.</li>
+                </ul>
+            <p/>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>
