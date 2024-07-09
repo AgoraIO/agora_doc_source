@@ -23,21 +23,28 @@
             <codeblock props="flutter" outputclass="language-dart">void registerVideoFrameObserver(VideoFrameObserver observer);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p>If you want to observe raw video frames (such as YUV or RGBA format), Agora recommends that you implement one <xref keyref="IVideoFrameObserver"/> class with this method.</p>
             <p>When calling this method to register a video observer, you can register callbacks in the <apiname keyref="IVideoFrameObserver"/> class as needed. After you successfully register the video frame observer, the SDK triggers the registered callbacks each time a video frame is received.</p>
             <p conkeyref="registerVideoEncodedFrameObserver/mix"/>
-            <note type="attention">
-            <ul>
-            <li>Ensure that you call this method before joining a channel.</li>
-            <li>When handling the video data returned in the callbacks, pay attention to the changes in the <parmname>width</parmname> and <parmname>height</parmname> parameters, which may be adapted under the following circumstances:<ul id="ul_qms_zys_r4b">
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Applicable scenarios</title>
+            <p>注册原始视频观测器后，你可以将获取到的原始视频数据应用于各种视频前处理场景，例如自行实现虚拟背景、美颜等场景。</p>
+            <p props="android ios">声网在 GitHub 上提供了开源的示例项目 <xref keyref="beautyapi-link"/> 供你参考。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>Ensure that you call this method before joining a channel.</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>When handling the video data returned in the callbacks, pay attention to the changes in the <parmname>width</parmname> and <parmname>height</parmname> parameters, which may be adapted under the following circumstances:<ul>
                 <li>When network conditions deteriorate, the video resolution decreases incrementally.</li>
                 <li>If the user adjusts the video profile, the resolution of the video returned in the callbacks also changes.</li>
-                </ul></li>
-            </ul> </note>
-        <note type="tip" props="android ios">After registering the raw video observer, you can use the obtained raw video data in various video pre-processing scenarios, such as implementing virtual backgrounds and image enhacement scenarios by yourself, Agora provides an open source sample project <xref keyref="beautyapi-link"/> on GitHub for your reference.</note></section>
-        <section id="parameters">
+                </ul></p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>

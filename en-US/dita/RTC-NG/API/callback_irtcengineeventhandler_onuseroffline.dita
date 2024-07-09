@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onuseroffline">
     <title> <ph keyref="onUserOffline" /> </title>
-    <shortdesc id="short"><ph id="shortdesc">远端用户或主播离开当前频道回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when a remote user (COMMUNICATION)/ host (LIVE_BROADCASTING) leaves the channel.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -71,8 +71,8 @@
             <plentry id="reason">
                 <pt>reason</pt>
                 <pd>
-                    <p props="ios mac cpp unreal bp unity flutter electron rn cs">离线原因，详见 <xref keyref="USER_OFFLINE_REASON_TYPE" />。</p>
-                    <p props="android hmos">远端用户或主播离线的原因：<ul>
+                    <p props="ios mac cpp unreal bp unity flutter electron rn cs">远端用户（通信场景）或主播（直播场景）离线的原因，详见 <xref keyref="USER_OFFLINE_REASON_TYPE" />。</p>
+                    <p props="android hmos">Reasons why a remote user (COMMUNICATION) or a host (LIVE_BROADCASTING) goes offline:<ul>
                     <li><ph keyref="USER_OFFLINE_QUIT" />(0): The user has quit the call. When the user leaves the channel, the user sends a goodbye message.</li>
                     <li><ph keyref="USER_OFFLINE_DROPPED" />(1): The SDK timed out and the user dropped offline because it has not received any data package within a certain period of time. A poor network connection may lead to false detection. It is recommended to use the Agora RTM SDK for reliable offline detection.</li>
                     <li><ph keyref="USER_OFFLINE_BECOME_AUDIENCE" />(2): The user switches the user role from a broadcaster to an audience.</li>
