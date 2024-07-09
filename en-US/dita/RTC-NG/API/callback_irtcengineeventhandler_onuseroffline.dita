@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onuseroffline">
     <title> <ph keyref="onUserOffline" /> </title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when a remote user (COMMUNICATION)/ host (LIVE_BROADCASTING) leaves the channel.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when a remote user (in the communication profile)/ host (in the live streaming profile) leaves the channel.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -39,8 +39,8 @@
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p id="desc">用户离开频道一般有以下两个原因：<ul>
-                <li>正常离开：远端用户或主播会发送类似“再见”的消息然后主动离开频道。</li>
+            <p id="desc">There are generally two reasons why users leave a channel:<ul>
+                <li>Leave the channel :</li>
                 <li>Drop offline: When no data packet of the user or host is received for a certain period of time (20 seconds for the communication profile, and more for the live broadcast profile), the SDK assumes that the user/host drops offline. A poor network connection may lead to false detections. It is recommended to use the Agora RTM SDK for reliable offline detection.</li>
                 </ul></p>
         </section>
