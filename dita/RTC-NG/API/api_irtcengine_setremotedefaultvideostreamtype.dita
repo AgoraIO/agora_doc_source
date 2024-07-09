@@ -25,8 +25,7 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRemoteDefaultVideoStreamType(VideoStreamType streamType);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="deprecated" props="android">
             <dlentry>
                 <dt>弃用：</dt>
@@ -35,13 +34,17 @@
             </dl>
             <p conkeyref="setRemoteVideoStreamType/desc1"/>
             <p conkeyref="setRemoteVideoStreamType/desc2"/>
-            <note type="attention" id="note">
-            <ul>
-            <li>该方法只能在加入频道前调用。SDK 不支持你在加入频道后修改默认订阅的视频流类型。</li>
-            <li>如果你既调用了该方法，也调用了 <xref keyref="setRemoteVideoStreamType" />，则 SDK 以 <apiname keyref="setRemoteVideoStreamType" /> 中的设置为准。</li>
-            </ul></note> </section>
-        <section id="parameters">
-            <title>参数</title>
+        </section>
+            <section id="timing" deliveryTarget="details">
+                <title>调用时机</title>
+                <p>该方法只能在加入频道前调用。SDK 不支持你在加入频道后修改默认订阅的视频流类型。</p>
+            </section>        
+            <section id="restriction" deliveryTarget="details">
+                <title>调用限制</title>
+                <p>如果你既调用了该方法，也调用了 <xref keyref="setRemoteVideoStreamType" />，则 SDK 以 <apiname keyref="setRemoteVideoStreamType" /> 中的设置为准。</p>
+            </section>
+                <section id="parameters" deliveryTarget="details">
+                <title>参数</title>
             <parml>
             <plentry>
                 <pt>streamType</pt>
