@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onuseroffline">
     <title> <ph keyref="onUserOffline" /> </title>
-    <shortdesc id="short"> <ph id="shortdesc">远端用户或主播离开当前频道回调。</ph> </shortdesc>
+    <shortdesc id="short"> <ph id="shortdesc">远端用户（通信场景）/主播（直播场景）离开当前频道回调。</ph> </shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -72,8 +72,8 @@
             <plentry id="reason">
                 <pt>reason</pt>
                 <pd>
-                    <p props="ios mac cpp unreal bp unity flutter electron rn cs">离线原因，详见 <xref keyref="USER_OFFLINE_REASON_TYPE" />。</p>
-                    <p props="android hmos">远端用户或主播离线的原因：
+                    <p props="ios mac cpp unreal bp unity flutter electron rn cs">远端用户（通信场景）或主播（直播场景）离线的原因，详见 <xref keyref="USER_OFFLINE_REASON_TYPE" />。</p>
+                    <p props="android hmos">远端用户（通信场景）或主播（直播场景）离线的原因：
                     <ul>
                     <li> <ph keyref="USER_OFFLINE_QUIT" />(0)：用户主动离开。此时离开频道的用户会发送一个类似“再见”的消息。</li>
                     <li> <ph keyref="USER_OFFLINE_DROPPED" />(1)：因过长时间收不到对方数据包，SDK 判定该远端用户超时掉线。注意：在网络连接不稳定时，该判定可能会有误。建议使用 RTM SDK 来做可靠的掉线检测。</li>
