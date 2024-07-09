@@ -25,29 +25,35 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setAINSMode(
       {required bool enabled, required AudioAinsMode mode});</codeblock> </p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
-            <dlentry props="native">
-                <dt>Since</dt>
-                <dd>v4.2.0</dd>
-            </dlentry>
+                <dlentry props="native">
+                    <dt>Since</dt>
+                    <dd>v4.2.0</dd>
+                </dlentry>
             </dl>
             <p>You can call this method to enable AI noise suppression function. Once enabled, the SDK automatically detects and reduces stationary and non-stationary noise from your audio on the premise of ensuring the quality of human voice. Stationary noise refers to noise signal with constant average statistical properties and negligibly small fluctuations of level within the period of observation. Common sources of stationary noises are:<ul><li>Television;</li>
-            <li>Air conditioner;</li>
-            <li>Machinery, etc.</li></ul>Non-stationary noise refers to noise signal with huge fluctuations of level within the period of observation; common sources of non-stationary noises are:<ul><li>Thunder;</li>
-            <li>Explosion;</li>
-            <li>Cracking, etc.</li></ul></p>
-            <note>
-                <ul><li props="native">This method relies on the AI noise suppression dynamic library <codeph><ph keyref="noisesuppression"/></codeph>. If the dynamic library is deleted, the function cannot be enabled.</li>
-                    <li props="hide">This method relies on the AI noise suppression dynamic library. If the dynamic library is deleted, the function cannot be enabled. For the name of the AI ​​noise suppression dynamic library, see <xref keyref="extensions"/>.</li>
-                    <li props="cpp android flutter unity bp unreal rn">Agora does not recommend enabling this function on devices running Android 6.0 and below.</li></ul></note>
+                            <li>Air conditioner;</li>
+                            <li>Machinery, etc.</li></ul>Non-stationary noise refers to noise signal with huge fluctuations of level within the period of observation; common sources of non-stationary noises are:<ul><li>Thunder;</li>
+                            <li>Explosion;</li>
+                            <li>Cracking, etc.</li></ul>
+            </p>
         </section>
-        <section id="scenario">
+        <section id="scenario" deliveryTarget="details">
             <title>Applicable scenarios</title>
             <p>In scenarios such as co-streaming, online education and video meeting, this function can detect and reduce background noises to improve experience.</p>
         </section>
-        <section id="parameters">
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>You can call this method either before or after joining a channel.</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <ul><li props="native">This method relies on the AI noise suppression dynamic library <codeph><ph keyref="noisesuppression"/></codeph>. If the dynamic library is deleted, the function cannot be enabled.</li>
+                <li props="unity flutter rn">This method relies on the AI noise suppression dynamic library. If the dynamic library is deleted, the function cannot be enabled. For the name of the AI ​​noise suppression dynamic library, see <xref keyref="reduce-app-size"/>.</li>
+                <li props="cpp android flutter unity bp unreal rn">Agora does not recommend enabling this function on devices running Android 6.0 and below.</li></ul>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>
