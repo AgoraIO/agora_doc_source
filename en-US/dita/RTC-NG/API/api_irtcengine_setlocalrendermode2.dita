@@ -36,7 +36,7 @@
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p>After initializing the local video view, you can call this method to update its rendering and mirror modes. It affects only the video view that the local user sees, not the published local video stream.</p>
+            <p>After initializing the local video view, you can call this method to update its rendering and mirror modes. It affects only the video view that the local user sees and does not impact the publishing of the local video.</p>
             </section>
             <section id="timing" deliveryTarget="details">
                 <title><ph props="native unreal bp electron rn flutter">Call timing</ph></title>
@@ -59,10 +59,10 @@
                     <p props="android hmos">The local video display mode.<ul id="rendermodetype">
                     <li><ph keyref="RENDER_MODE_HIDDEN" />(1): Hidden mode. Uniformly scale the video until it fills the visible boundaries (cropped). One dimension of the video may have clipped contents.</li>
                     <li><ph keyref="RENDER_MODE_FIT" />(2): Fit mode. Uniformly scale the video until one of its dimension fits the boundary (zoomed to fit). Areas that are not filled due to the disparity in the aspect ratio are filled with black.</li>
-                    <li><ph keyref="RENDER_MODE_ADAPTIVE" />(3)：匹配模式。<dl outputclass="deprecated">
+                    <li><ph keyref="RENDER_MODE_ADAPTIVE" />(3): Adaptive mode.<dl outputclass="deprecated">
                             <dlentry>
                                 <dt>Deprecated:</dt>
-                                <dd>该枚举已废弃，不推荐使用。</dd>
+                                <dd>This enumerator is deprecated and not recommended for use.</dd>
                             </dlentry>
                             </dl>
                     </li>

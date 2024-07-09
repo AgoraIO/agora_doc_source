@@ -39,14 +39,14 @@
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p id="desc">There are generally two reasons why users leave a channel:<ul>
-                <li>Leave the channel :</li>
+            <p id="desc">There are generally two reasons for users to become offline:<ul>
+                <li>Leave the channel :When a user/host leaves the channel, the user/host sends a goodbye message.</li>
                 <li>Drop offline: When no data packet of the user or host is received for a certain period of time (20 seconds for the communication profile, and more for the live broadcast profile), the SDK assumes that the user/host drops offline. A poor network connection may lead to false detections. It is recommended to use the Agora RTM SDK for reliable offline detection.</li>
                 </ul></p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>Trigger timing</title>
-            <p>在音视频互动过程中，当远端用户或主播离开当前频道时会触发该回调。</p>
+            <p>This callback is triggered when a remote user (in the communication profile) or host (in the live streaming profile) leaves a channel.</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>Restrictions</title>
@@ -66,13 +66,13 @@
             <plentry id="uid">
                 <pt props="native unreal bp">uid</pt>
                 <pt props="unity electron rn flutter cs">remoteUid</pt>
-                <pd>离线的远端用户或主播的 ID。</pd>
+                <pd>The ID of the user who leaves the channel or goes offline.</pd>
             </plentry>
             <plentry id="reason">
                 <pt>reason</pt>
                 <pd>
-                    <p props="ios mac cpp unreal bp unity flutter electron rn cs">远端用户（通信场景）或主播（直播场景）离线的原因，详见 <xref keyref="USER_OFFLINE_REASON_TYPE" />。</p>
-                    <p props="android hmos">Reasons why a remote user (COMMUNICATION) or a host (LIVE_BROADCASTING) goes offline:<ul>
+                    <p props="ios mac cpp unreal bp unity flutter electron rn cs">Reasons why a remote user (in the communication profile) or host (in the live streaming profile) goes offline. See <xref keyref="USER_OFFLINE_REASON_TYPE" />.</p>
+                    <p props="android hmos">Reasons why a remote user (in the communication profile) or host (in the live streaming profile) goes offline:<ul>
                     <li><ph keyref="USER_OFFLINE_QUIT" />(0): The user has quit the call. When the user leaves the channel, the user sends a goodbye message.</li>
                     <li><ph keyref="USER_OFFLINE_DROPPED" />(1): The SDK timed out and the user dropped offline because it has not received any data package within a certain period of time. A poor network connection may lead to false detection. It is recommended to use the Agora RTM SDK for reliable offline detection.</li>
                     <li><ph keyref="USER_OFFLINE_BECOME_AUDIENCE" />(2): The user switches the user role from a broadcaster to an audience.</li>
