@@ -26,14 +26,14 @@
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p>该方法初始化本地视图并设置本地用户视频显示属性，只影响本地用户看到的视频画面，不影响本地发布视频。调用该方法绑定本地视频流的显示视窗(<parmname>view</parmname>)，并设置本地用户视图的渲染模式和镜像模式。</p>
+            <p>该方法初始化本地视图并设置本地用户视频显示属性，只影响本地用户看到的视频画面，不影响本地视频的发布。调用该方法绑定本地视频流的显示视窗(<parmname>view</parmname>)，并设置本地用户视图的渲染模式和镜像模式。</p>
             <p>退出频道后，绑定仍然有效，如果需要解除绑定，可以调用该方法将参数 <parmname>view</parmname> 设为 <ph keyref="NULL" />。</p>
             <note type="attention">
             <ul>
             <li conkeyref="setupRemoteVideo/render" props="flutter"/>
             <li props="unity cs">如果你想要在原生窗口上渲染图像，请调用此方法；如果你仅需在 Unity 项目内渲染图像，可直接通过 <xref keyref="VideoSurface"/> 类来实现。</li>
-            <li props="native unreal bp unity rn flutter cs">如果你希望在通话中更新本地用户视图的渲染或镜像模式，请使用 <xref keyref="setLocalRenderMode2" /> 方法。</li>
-            <li props="electron">如果想要停止渲染视图，需要将 <parmname>view</parmname> 设为 <ph keyref="NULL" /> 后再次调用该方法，以停止渲染并清理渲染缓存。</li>
+            <li props="native unreal bp unity rn flutter cs">如果你希望在通话中仅更新本地用户视图的渲染或镜像模式，请使用 <xref keyref="setLocalRenderMode2" /> 方法。</li>
+            <li props="electron">如果想要停止渲染视图，需要在调用该方法时将 <parmname>view</parmname> 设为 <ph keyref="NULL" /> ，以停止渲染并清理渲染缓存。</li>
             </ul> </note> </section>
             <section id="scenario" deliveryTarget="details">
                 <title>适用场景</title>
