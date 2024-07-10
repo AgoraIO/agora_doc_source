@@ -1,40 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="release_notes">
-    <title>v4.3.2</title>
+    <title>v4.4.0</title>
     <body>
-        <p>This version was released on May x, 20xx.</p>
+        <p>This version was released on July x, 2024.</p>
     </body>
     <topic id="level2">
         <title/>
-        <topic id="compatibility" props="hide">
-            <title>Upgrade Notes</title>
+        <topic id="compatibility">
+            <title>Compatibility changes</title>
             <body>
+                <p>This version includes optimizations to some features, including changes to SDK behavior, API renaming, or removal. To ensure your project runs smoothly, you need to update the code in your app after upgrading to this version.
+                    <note type="attention" props="native">Starting from v4.4.0, the RTC SDK provides an API deprecation notice, which includes information about deprecated and removed APIs in each version. See <xref href="https://doc.shengwang.cn/api-ref/rtc/android/API/rtc_api_sunset" props="android">API Deprecation Notice</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/android/API/rtc_api_sunset" props="cpp">API Deprecation Notice</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/ios/API/rtc_api_sunset" props="ios">API Deprecation Notice</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/macos/API/rtc_api_sunset" props="mac">API Deprecation Notice</xref>.</note></p>
                 <ol>
-                    <li><ph><b>Important Upgrade Information</b></ph>
-                        <ul>
-                            <li><?oxy-placeholder content="Describe using a list"?></li>
-                            <li><?oxy-placeholder content="Describe using a list"?></li>
-                        </ul>
+                    <li>To distinguish context information in different plugin callbacks, this version removes the original plugin-related callbacks and adds corresponding callbacks that can identify plugin context information (see the table below). You can learn the plugin name, user ID using the plugin, and the service provider name through the <apiname keyref="ExtensionContext"/> in each callback.
+                        <simpletable frame="all" relcolwidth="1* 1*" id="simpletable_zqj_n1t_xbc">
+                            <sthead>
+                                <stentry>Original Callback</stentry>
+                                <stentry>Current Callback</stentry>
+                            </sthead>
+                            <strow>
+                                <stentry>onExtensionEvent</stentry>
+                                <stentry><apiname keyref="onExtensionEventWithContext"/></stentry>
+                            </strow>
+                            <strow>
+                                <stentry>onExtensionStarted</stentry>
+                                <stentry><apiname keyref="onExtensionStartedWithContext"/></stentry>
+                            </strow>
+                            <strow>
+                                <stentry>onExtensionStopped</stentry>
+                                <stentry><apiname keyref="onExtensionStoppedWithContext"/></stentry>
+                            </strow>
+                            <strow>
+                                <stentry>onExtensionError</stentry>
+                                <stentry><apiname keyref="onExtensionErrorWithContext"/></stentry>
+                            </strow>
+                        </simpletable>
                     </li>
-                    <li><ph><b>Important Upgrade Information</b></ph>
-                        <p><?oxy-placeholder content="Describe using a paragraph"?></p>
-                    </li>
+                    <li props="ios">Before v4.4.0, when your user role was set to audience, calling <apiname keyref="setAudioScenario"/> to set the audio scenario to chatroom (<apiname keyref="AUDIO_SCENARIO_CHATROOM"/>) would trigger a microphone permission request popup. From v4.4.0 onwards, the SDK uses native iOS APIs to control the microphone, so audience users in a chatroom scenario will no longer see the microphone permission request popup.</li>
+                    <li props="apple">This version renames the <codeph>receiveMetadata</codeph> callback to <apiname keyref="onMetadataReceived"/> and removes the <codeph>data</codeph> and <codeph>timeStamp</codeph> parameters. You can get metadata-related information, including <codeph>timeStamp</codeph> (timestamp of the sent data), <codeph>uid</codeph> (user ID), and <codeph>channelId</codeph> (source channel name) through the new <codeph>metadata</codeph> parameter.</li>
+                    <li props="android">This version removes the <apiname keyref="onMetadataReceived"/> callback's <codeph>buffer</codeph>, <codeph>uid</codeph>, and <codeph>timeStampMs</codeph> parameters. You can get metadata-related information, including <codeph>timeStampMs</codeph> (timestamp of the sent data), <codeph>uid</codeph> (user ID), and <codeph>channelId</codeph> (source channel name) through the new <codeph>metadata</codeph> parameter.</li>
                 </ol>
             </body>
         </topic>
-        <topic id="newfeature" props="hide">
+        <topic id="newfeature">
             <title>New Features</title>
             <body>
                 <ol>
-                    <li><ph><b>New Feature Name</b></ph>
+                    <li props="android ios"><ph><b>Lite SDK</b></ph>
+                        <p>Starting from this version, Agora introduces the Lite SDK, which includes only the basic audio and video capabilities and partially cuts high-level audio and video processing features, effectively reducing the app size after integrating the SDK.</p>
                         <ul>
-                            <li><?oxy-placeholder content="Describe using a list"?></li>
-                            <li><?oxy-placeholder content="Describe using a list"?></li>
+                            <li>Lite SDK supports manual integration or third-party repository integration. For details, see <xref keyref="resource"/> and <xref keyref="quick-start"/>.</li>
+                            <li>For information on dynamic libraries included in the Lite SDK, see <xref keyref="reduce-app-size"/>.</li>
+                            <li>For the list of APIs supported by the Lite SDK, see <xref href="https://doc.shengwang.cn/api-ref/rtc/android/API/rtc_lite_api" props="android">Lite SDK API List</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/ios/API/rtc_lite_api" props="ios">Lite SDK API List</xref>.</li>
                         </ul>
                     </li>
-                    <li><ph><b>New Feature Name</b></ph>
-                        <p><?oxy-placeholder content="Describe using a paragraph"?></p>
+                    <li><ph><b>Alpha Transparency Effects</b></ph>
+                        <p>This version introduces the Alpha transparency effects feature, supporting the transmission and rendering of Alpha channel data in video frames for SDK capture and custom capture scenarios, enabling transparent gift effects, custom backgrounds on the receiver end, etc.:</p>
+                        <ul>
+                            <li><apiname keyref="VideoFrame"/> and <apiname keyref="ExternalVideoFrame"/> add the <codeph>alphaBuffer</codeph>: Set the Alpha channel data.</li>
+                            <li><apiname keyref="ExternalVideoFrame"/> adds the <codeph>fillAlphaBuffer</codeph>: For BGRA or RGBA formatted video data, set whether to automatically extract the Alpha channel data and fill it into <codeph>alphaBuffer</codeph>.</li>
+                            <li><apiname keyref="VideoFrame"/> and <apiname keyref="ExternalVideoFrame"/> add the <codeph>alphaStitchMode</codeph>: Set the relative position of <codeph>alphaBuffer</codeph> and video frame stitching.</li>
+                        </ul>
+                        <p>Additionally, <apiname keyref="AdvanceOptions"/> adds a new member <codeph>encodeAlpha</codeph>, which is used to set whether to encode and send Alpha information to the remote end. By default, the SDK does not encode and send Alpha information; if you need to encode and send Alpha information to the remote end (e.g., when virtual background is enabled), explicitly call <apiname keyref="setVideoEncoderConfiguration"/> to set the video encoding properties and set <codeph>encodeAlpha</codeph> to <codeph><ph keyref="true"/></codeph>.</p>
+                    </li>
+                    <li><ph><b>AI Voice Tuner</b></ph>
+                        <p>This version introduces the AI Voice Tuner feature, which can enhance the sound quality and tone, similar to a physical sound card. You can enable the AI Voice Tuner feature by calling the <apiname keyref="setVoiceAITuner"/> method and passing in the sound effect types supported in the <apiname keyref="VOICE_AI_TUNER_TYPE"/> enum to achieve effects like deep voice, cute voice, husky singing voice, etc.</p>
+                    </li>
+                    <li props="ios android"><ph><b>Copyright Music Optimization</b></ph>
+                        <ul>
+                            <li>This version adds the <apiname keyref="setPlayMode"/> method under the <apiname keyref="IMusicPlayer"/> class to set the playback mode of music resources. In online karaoke room scenarios, you can enable accompaniment, original singing, or guide singing mode as needed.</li>
+                            <li props="ios">This version adds the <apiname keyref="destroyMusicPlayer"/> method under the <apiname keyref="IMusicContentCenter"/> class to destroy the music player and release the corresponding resources.</li>
+                            <li props="android">This version deprecates the <apiname keyref="destroy_IMusicPlayer"/> method under the <apiname keyref="IMusicPlayer"/> class. To destroy the music player, use the new <apiname keyref="destroyMusicPlayer"/> method under the <apiname keyref="IMusicContentCenter"/> class.</li>
+                        </ul>
                     </li>
                 </ol>
             </body>
@@ -43,59 +81,45 @@
             <title>Improvements</title>
             <body>
                 <ol>
-                    <li>This release enhances the usability of the <xref keyref="setRemoteSubscribeFallbackOption"/> method by removing the timing requirements for invocation. It can now be called both before and after joining the channel to dynamically switch audio and video stream fallback options in weak network conditions.</li>
-                    <li props="android ios">The Agora media player supports playing MP4 files with an Alpha channel. (iOS, Android)</li>
-                    <li props="android">The Agora media player fully supports playing music files located in the <codeph>/assets/</codeph> directory or from URI starting with <codeph>content://</codeph>. (Android)</li>
+                    <li props="android cpp framework"><ph><b>Adaptive Hardware Decoding Support (Android, Windows)</b></ph>
+                        <p>This release introduces adaptive hardware decoding support, enhancing rendering smoothness on low-end devices and significantly reducing system load.</p>
+                    </li>
+                    <li props="cpp electron unity flutter unreal bp"><ph><b>Rendering Performance Enhancement (Windows)</b></ph>
+                        <p>DirectX 11 renderer is now enabled by default on Windows devices, providing high-performance and high-quality graphics rendering capabilities.</p>
+                    </li>
+                    <li><ph><b>Facial Region Beautification</b></ph>
+                        <p>To avoid losing details in non-facial areas during heavy skin smoothing, this version improves the skin smoothing algorithm. It now recognizes various parts of the face, applying smoothing to facial skin areas excluding the mouth, eyes, and eyebrows, and supports smoothing up to two faces simultaneously.</p>
+                    </li>
+                    <li><ph><b>Other Improvements</b></ph>
+                        <p>This version also includes the following improvements:
+                        <ul>
+                            <li>Optimized transmission strategy: invoking <apiname keyref="enableInstantMediaRendering"/> no longer impacts the security of the transmission link.</li>
+                            <li props="cpp mac electron unity flutter unreal bp"><apiname keyref="onLocalVideoStateChanged"/> callback now includes the <apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_DISPLAY_DISCONNECTED"/> enumeration, indicating that the display used for screen capture has been disconnected. (Windows, macOS)</li>
+                            <li props="mac electron unity flutter unreal bp">Optimized the video link for window sharing, reducing CPU usage. (macOS)</li>
+                            <li props="cpp unity flutter electron unreal">Improved echo cancellation for screen sharing scenarios.</li>
+                            <li props="cpp framework">Added <codeph>channelId</codeph> parameter to <apiname keyref="Metadata"/>, enabling retrieval of the source channel name for sent Metadata.</li>
+                            <li>Deprecated redundant enumeration values <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT"/> and <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED"/> in <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REASON"/>.</li>
+                            <li props="android">Optimized parameter types for the following APIs to enhance code readability, reduce potential errors, and facilitate future maintenance:
+                            <ul>
+                                <li>Deprecated <codeph>option</codeph> parameter of type int in <apiname keyref="setRemoteSubscribeFallbackOption"/>, introduced overloaded function <apiname keyref="setRemoteSbscribeFallbackOption2"/> with <codeph>option</codeph> parameter of type <apiname keyref="STREAM_FALLBACK_OPTIONS"/>.</li>
+                                <li>Deprecated <codeph>streamType</codeph> parameter of type int in <apiname keyref="setRemoteVideoStreamType"/>, <apiname keyref="setRemoteDefaultVideoStreamType"/>, and <apiname keyref="setRemoteVideoStreamTypeEx"/>, introduced overloaded functions <apiname keyref="setRemoteVideoStreamType2"/>, <apiname keyref="setRemoteDefaultVideoStreamType2"/>, and <apiname keyref="setRemoteVideoStreamTypeEx2"/> with <codeph>streamType</codeph> parameter of type <apiname keyref="VIDEO_STREAM_TYPE"/>.</li>
+                            </ul></li>
+                        </ul></p>
+                    </li>
                 </ol>
             </body>
         </topic>
         <topic id="bugfix">
             <title>Issues fixed</title>
-            <body><p>This version fixed the following issues:</p>
+            <body>
+                <p>This release fixed the following issues:</p>
                 <ul>
-                    <li props="ios flutter unity rn">The remote video froze or became pixelated when the app returned to the foreground after being in the background for a long time. （iOS）</li>
-                    <li props="ios flutter unity rn">The local preview image rotated by 90° on some iPad devices, which did not meet expectations. （iOS）</li>
-                    <li>Occasional video smoothness issues during audio and video interactions.</li>
-                    <li>The app occasionally crashed when the decoded video resolution on the receiving end was an odd number.</li>
-                    <li props="android flutter unity rn">The app crashed when opening the app and starting screen sharing after the first installation or system reboot. (Android)</li>
-                    <li props="android flutter unity rn">Local audio capture failed after joining a channel while answering a system phone call and hanging up, causing remote users to not hear any sound. (Android)</li>
-                    <li props="android flutter unity rn">During the interaction process on certain devices (for example, Redmi Note8), after answering and hanging up a system call, local media files were played without sound and no sound was heard from the remote end. (Android)</li>
-                    <li>Fixed an occasional crash when remote users left the channel.</li>
-                    <li props="cpp flutter unity electron">The screen occasionally flickered on the receiver's side when sharing a PPT window using <xref keyref="startScreenCaptureByWindowId"/> and playing PPT animations. (Windows)</li>
-                    <li props="cpp flutter unity electron">The window border did not retain its original size after exiting the presentation and then maximizing the PPT window when sharing a WPS PPT window on Windows 7 using <xref keyref="startScreenCaptureByWindowId"/> and setting <codeph>enableHighLight</codeph> in <xref keyref="ScreenCaptureParameters"/> to <codeph><ph keyref="true"/></codeph>. (Windows)</li>
-                    <li props="cpp flutter unity electron">The specified window could not be brought to the foreground if it was covered by other windows when sharing a window using <xref keyref="startScreenCaptureByWindowId"/> and setting <codeph>windowFocus</codeph> and <codeph>enableHighLight</codeph> in <xref keyref="ScreenCaptureParameters"/> to <codeph><ph keyref="true"/></codeph>. (Windows)</li>
-                    <li props="cpp flutter unity electron">Clicking on the desktop widget caused the outlined part to flicker when sharing and highlighting a window on a Windows 7 device. (Windows)</li>
-                    <li props="android">The values of <codeph>cameraDirection</codeph> and <codeph>focalLengthType</codeph> in <xref keyref="AgoraFocalLengthInfo"/> returned by <xref keyref="queryCameraFocalLengthCapability"/> could not be read directly.</li>
-                    <li props="ios flutter unity rn">When playing an audio file using <xref keyref="startAudioMixing"/> and the playing finished, the SDK sometimes failed to trigger the <xref keyref="onAudioMixingStateChanged"/>(<ph keyref="AUDIO_MIXING_STATE_STOPPED"/>, <ph keyref="AUDIO_MIXING_REASON_ALL_LOOPS_COMPLETED"/>) callback which reports that the playing is completed. (iOS)</li>
-                    <li props="ios flutter unity rn">When calling the <xref keyref="playEffect3"/> method to play sound effect files shorter than 1 second with <codeph>loopCount</codeph> set to 0, there was no sound. (iOS)</li>
-                    <li props="ios flutter unity rn">When using the Agora media player to play a video and stopping it during playing, sometimes there was no sound for a short time after the playing was resumed. (iOS)</li>
+                    <li props="ios rn unity flutter unreal bp">Occasional app crashes occurred when multiple remote users joined the channel simultaneously during real-time interaction. (iOS)</li>
+                    <li props="ios rn unity flutter unreal bp">Remote video occasionally froze or displayed corrupted images when the app returned to the foreground after being in the background for a while. (iOS)</li>
+                    <li props="ios rn unity flutter unreal bp">After the sender called <apiname keyref="startDirectCdnStreaming"/> to start direct CDN streaming, frequent switching or toggling of the network occasionally resulted in a black screen on the receiver's end without a streaming failure callback on the sender's end. (iOS)</li>
+                    <li props="android ios unity flutter rn unreal bp">Audio playback failed when pushing external audio data using <xref keyref="pushAudioFrame" props="unity flutter rn unreal bp"/><xref keyref="pushAudioFrame2" props="android ios"/> if the external audio rendering sample rate was not the recommended value by the SDK, such as 22050 Hz and 11025 Hz.</li>
                 </ul>
             </body>
-        </topic>
-        <topic id="apichange">
-            <title>API Changes</title>
-            <body>
-                <p><b>Added</b>
-                    <ul>
-                        <li><codeph><apiname/></codeph></li>
-                    </ul>
-                </p>
-                <p><b>Modified</b>
-                    <ul>
-                        <li><apiname/></li>
-                    </ul>
-                </p>
-                <p><b>Deprecated</b>
-                    <ul>
-                        <li><apiname/></li>
-                    </ul>
-                </p>
-                <p><b>Removed</b>
-                    <ul>
-                        <li><apiname/></li>
-                    </ul>
-                </p>
-            </body>
-        </topic>
+        </topic>                               
     </topic>
 </topic>
