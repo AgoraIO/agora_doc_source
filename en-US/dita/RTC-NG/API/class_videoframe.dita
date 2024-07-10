@@ -39,9 +39,7 @@
     @CalledByNative("I422Buffer") int getStrideU();
     @CalledByNative("I422Buffer") int getStrideV();
   }
-  public interface RgbaBuffer extends Buffer {
-    @CalledByNative("RgbaBuffer") ByteBuffer getData();
-  }
+  public interface RgbaBuffer extends Buffer { @CalledByNative("RgbaBuffer") ByteBuffer getData(); }
   public interface TextureBuffer extends Buffer {
     enum Type {
       OES(GLES11Ext.GL_TEXTURE_EXTERNAL_OES),
@@ -295,7 +293,7 @@
 @property (nonatomic, assign) int avSyncType;
 @property(assign, nonatomic) CVPixelBufferRef _Nullable pixelBuffer;
 @property (nonatomic, assign) uint8_t* _Nullable alphaBuffer;
-@property (nonatomic, assign) int alphaStitchMode;
+@property (nonatomic, assign) AgoraAlphaStitchMode alphaStitchMode;
 @property(nonatomic, strong) NSDictionary *_Nonnull metaInfo;
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct VideoFrame {
@@ -726,12 +724,12 @@ class VideoFrame {
         </plentry>
       <plentry id="alphastitchmode">
         <pt>alphaStitchMode</pt>
-        <pd>When the video frame contains alpha channel data, set the relative position of <parmname>alphaBuffer</parmname> and the video frame:<ul>
-            <li>0: (Default) Only video frame, that is, <parmname>alphaBuffer</parmname> is not stitched with the video frame.</li>
-            <li>1: <parmname>alphaBuffer</parmname> is above the video frame.</li>
-            <li>2: <parmname>alphaBuffer</parmname> is below the video frame.</li>
-            <li>3: <parmname>alphaBuffer</parmname> is to the left of the video frame.</li>
-            <li>4: <parmname>alphaBuffer</parmname> is to the right of the video frame.</li>
+        <pd>When the video frame contains alpha channel data, set the relative position of <parmname>alphaBuffer</parmname> and the video frame: See .<ph props="cpp apple"><xref keyref="ALPHA_STITCH_MODE"/></ph><ul props="android">
+            <li><ph keyref="NO_ALPHA_STITCH"/>0: (Default) Only video frame, that is, <parmname>alphaBuffer</parmname> is not stitched with the video frame.</li>
+            <li><ph keyref="ALPHA_STITCH_UP"/>1: <parmname>alphaBuffer</parmname> is above the video frame.</li>
+            <li><ph keyref="ALPHA_STITCH_BELOW"/>2: <parmname>alphaBuffer</parmname> is below the video frame.</li>
+            <li><ph keyref="ALPHA_STITCH_LEFT"/>3: <parmname>alphaBuffer</parmname> is to the left of the video frame.</li>
+            <li><ph keyref="ALPHA_STITCH_RIGHT"/>4: <parmname>alphaBuffer</parmname> is to the right of the video frame.</li>
             </ul></pd>
       </plentry>
       <plentry>

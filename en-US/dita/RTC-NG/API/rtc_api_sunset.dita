@@ -190,34 +190,23 @@
                     <colspec colname="c2" colnum="2" colwidth="1*"/>
                     <colspec colname="c3" colnum="3" colwidth="1*"/>
                     <colspec colname="c4" colnum="4" colwidth="1*"/>
-                    <tbody>
+                    <thead>
                         <row>
                             <entry>API</entry>
                             <entry>Description</entry>
                             <entry>Alternative API</entry>
                             <entry>Deleted version</entry>
                         </row>
-                        <row props="android">
-                            <entry>setVideoProfile</entry>
-                            <entry>Sets the video encoder configuration.</entry>
-                            <entry><xref keyref="setVideoEncoderConfiguration"/></entry>
-                            <entry>v4.4.0</entry>
-                        </row>
-                        <row props="apple">
-                            <entry>setVideoProfile [1/2]</entry>
-                            <entry>Sets the video encoder configuration.</entry>
-                            <entry><xref keyref="setVideoEncoderConfiguration"/></entry>
-                            <entry>v4.4.0</entry>
-                        </row>
-                        <row props="apple">
-                            <entry>setVideoProfile [2/2]</entry>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry><ph props="android">setVideoProfile</ph><ph props="apple">setVideoProfile:profile:swapWidthAndHeight:</ph></entry>
                             <entry>Sets the video encoder configuration.</entry>
                             <entry><xref keyref="setVideoEncoderConfiguration"/></entry>
                             <entry>v4.4.0</entry>
                         </row>
                         <row props="android apple">
-                            <entry>                        setRemoteRenderMode [1/2]
-                    </entry>
+                            <entry><ph props="android">setRemoteRenderMode(userId, renderMode)</ph><ph props="apple">setRemoteRenderMode:uid:mode:</ph></entry>
                             <entry>Sets the video display mode of a specified remote user.</entry>
                             <entry><xref keyref="setRemoteRenderMode2"/></entry>
                             <entry>v4.4.0</entry>
@@ -235,16 +224,8 @@
                             <entry>Android 原生的 <xref keyref="TextureView-link"/>。</entry>
                             <entry>v4.4.0</entry>
                         </row>
-                        <row props="android cpp">
-                            <entry>                                openWithCustomSource
-                            </entry>
-                            <entry>Opens the custom media resource file.</entry>
-                            <entry><xref keyref="openWithMediaSource"/></entry>
-                            <entry>v4.4.0</entry>
-                        </row>
-                        <row props="apple">
-                            <entry>                        openWithCustomSourceAtStartPos
-                    </entry>
+                        <row>
+                            <entry><ph props="android cpp">openWithCustomSource</ph><ph props="apple">openWithCustomSourceAtStartPos</ph></entry>
                             <entry>Opens the custom media resource file.</entry>
                             <entry><xref keyref="openWithMediaSource"/></entry>
                             <entry>v4.4.0</entry>
@@ -253,30 +234,17 @@
                             <entry>setVideoQualityParameters
                     </entry>
                             <entry>Sets the preferences for high-quality video. (LIVE_BROADCASTING only).</entry>
-                            <entry>Agora recommends using<xref keyref="VideoEncoderConfiguration"/> the <parmname>degradationPreference</parmname> parameter in the  class to set the video quality preference.</entry>
+                            <entry>使用 <xref keyref="VideoEncoderConfiguration"/> 类中的 <parmname>degradationPreference</parmname> 参数</entry>
                             <entry>v4.4.0</entry>
                         </row>
-                        <row props="cpp android">
-                            <entry>                        startEchoTest [2/2]</entry>
+                        <row>
+                            <entry><ph props="android cpp">startEchoTest()</ph><ph props="apple">startEchoTest</ph></entry>
                             <entry>Starts an audio call test.</entry>
                             <entry><xref keyref="startEchoTest3"/></entry>
                             <entry>v4.4.0</entry>
                         </row>
-                        <row props="apple">
-                            <entry>                        startEchoTest</entry>
-                            <entry>Starts an audio call test.</entry>
-                            <entry><xref keyref="startEchoTest3"/></entry>
-                            <entry>v4.4.0</entry>
-                        </row>
-                        <row props="cpp android">
-                            <entry>                        startEchoTest [2/2]</entry>
-                            <entry>Starts an audio call test.</entry>
-                            <entry><xref keyref="startEchoTest3"/></entry>
-                            <entry>v4.4.0</entry>
-                        </row>
-                        <row props="apple">
-                            <entry>                        startEchoTestWithInterval
-                    </entry>
+                        <row>
+                            <entry><ph props="android cpp">startEchoTest(intervalInSeconds)</ph><ph props="apple">startEchoTestWithInterval</ph></entry>
                             <entry>Starts an audio call test.</entry>
                             <entry><xref keyref="startEchoTest3"/></entry>
                             <entry>v4.4.0</entry>
@@ -293,61 +261,31 @@
                             <entry><xref keyref="enableEncryption"/></entry>
                             <entry>v4.4.0</entry>
                         </row>
-                        <row props="cpp">
-                            <entry>                        onExtensionEvent</entry>
+                        <row >
+                            <entry><ph props="cpp">onExtensionEvent</ph><ph props="apple android">onEvent</ph></entry>
                             <entry>The event callback of the extension.</entry>
                             <entry><xref keyref="onExtensionEventWithContext"/></entry>
-                            <entry>v4.4.0</entry>
-                        </row>
-                        <row props="apple android">
-                            <entry>onEvent</entry>
-                            <entry>The event callback of the extension.</entry>
-                            <entry><xref keyref="onExtensionEventWithContext"/></entry>
-                            <entry>v4.4.0</entry>
-                        </row>
-                        <row props="apple cpp">
-                            <entry>onExtensionStarted</entry>
-                            <entry>Occurs when the extension is enabled.</entry>
-                            <entry><xref keyref="onExtensionStartedWithContext"/></entry>
-                            <entry>v4.4.0</entry>
-                        </row>
-                        <row props="android">
-                            <entry>onStarted</entry>
-                            <entry>Occurs when the extension is enabled.</entry>
-                            <entry><xref keyref="onExtensionStartedWithContext"/></entry>
-                            <entry>v4.4.0</entry>
-                        </row>
-                        <row props="apple cpp">
-                            <entry>onExtensionStopped</entry>
-                            <entry>Occurs when the extension is disabled.</entry>
-                            <entry><xref keyref="onExtensionStoppedWithContext"/></entry>
-                            <entry>v4.4.0</entry>
-                        </row>
-                        <row props="android">
-                            <entry>onStopped</entry>
-                            <entry>Occurs when the extension is disabled.</entry>
-                            <entry><xref keyref="onExtensionStoppedWithContext"/></entry>
-                            <entry>v4.4.0</entry>
-                        </row>
-                        <row props="apple cpp">
-                            <entry>onExtensionError</entry>
-                            <entry>Occurs when the extension runs incorrectly.</entry>
-                            <entry><xref keyref="onExtensionErrorWithContext"/></entry>
-                            <entry>v4.4.0</entry>
-                        </row>
-                        <row props="android">
-                            <entry>                        onError</entry>
-                            <entry>Occurs when the extension runs incorrectly.</entry>
-                            <entry><xref keyref="onExtensionErrorWithContext"/></entry>
                             <entry>v4.4.0</entry>
                         </row>
                         <row>
-                            <entry></entry>
-                            <entry></entry>
-                            <entry></entry>
-                            <entry></entry>
+                            <entry><ph props="apple cpp">onExtensionStarted</ph><ph props="android">onStarted</ph></entry>
+                            <entry>Occurs when the extension is enabled.</entry>
+                            <entry><xref keyref="onExtensionStartedWithContext"/></entry>
+                            <entry>v4.4.0</entry>
                         </row>
-                    </tbody>
+                        <row>
+                            <entry><ph props="apple cpp">onExtensionStopped</ph><ph props="android">onStopped</ph></entry>
+                            <entry>Occurs when the extension is disabled.</entry>
+                            <entry><xref keyref="onExtensionStoppedWithContext"/></entry>
+                            <entry>v4.4.0</entry>
+                        </row>
+                        <row>
+                            <entry><ph props="apple cpp">onExtensionError</ph><ph props="android">onError</ph></entry>
+                            <entry>Occurs when the extension runs incorrectly.</entry>
+                            <entry><xref keyref="onExtensionErrorWithContext"/></entry>
+                            <entry>v4.4.0</entry>
+                        </row>
+                    </tbody>                    
                 </tgroup>
             </table>
         </section>

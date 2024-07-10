@@ -59,8 +59,16 @@
                 <pd props="android hmos">The reason for a user role switch failure.<ul>
                         <li><ph keyref="CLIENT_ROLE_CHANGE_FAILED_TOO_MANY_BROADCASTERS" />(1): The number of hosts in the channel is already at the upper limit.<note type="note">This enumerator is reported only when the support for 128 users is enabled. The maximum number of hosts is based on the actual number of hosts configured when you enable the 128-user feature.</note></li>
                         <li><ph keyref="CLIENT_ROLE_CHANGE_FAILED_NOT_AUTHORIZED" />(2): The request is rejected by the Agora server. Agora recommends you prompt the user to try to switch their user role again.</li>
-                        <li><ph keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT" />(3): Agora recommends you prompt the user to check the network connection and try to switch their user role again.</li>
-                        <li><ph keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED" />(4): （已废弃）网络连接断开。 You can troubleshoot the failure through the <parmname>reason</parmname> reported by <xref keyref="onConnectionStateChanged" />.</li>
+                        <li><ph keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT" />(3): The request is timed out. Agora recommends you prompt the user to check the network connection and try to switch their user role again.<dl outputclass="deprecated">
+                                <dlentry>
+                                <dt>Deprecated:</dt>
+                                <dd>This enumeration is deprecated since v4.4.0 and is not recommended for use.</dd>
+                                </dlentry></dl></li>
+                        <li><ph keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED" />(4): The SDK connection fails. You can troubleshoot the failure through the <parmname>reason</parmname> reported by <xref keyref="onConnectionStateChanged" />.<dl outputclass="deprecated">
+                                <dlentry>
+                                <dt>Deprecated:</dt>
+                                <dd>This enumeration is deprecated since v4.4.0 and is not recommended for use.</dd>
+                                </dlentry></dl></li>
                     </ul></pd>
             </plentry>
             <plentry>

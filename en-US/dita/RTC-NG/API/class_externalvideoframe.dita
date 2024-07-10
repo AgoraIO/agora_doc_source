@@ -75,7 +75,7 @@
 @property(strong, nonatomic) IMAGE_CLASS * _Nullable image;
 @property(strong, nonatomic) NSData *_Nullable dataBuf;  
 @property(strong, nonatomic) NSData *_Nullable alphaBuf;
-@property(assign, nonatomic) int alphaStitchMode;
+@property(assign, nonatomic) AgoraAlphaStitchMode alphaStitchMode;
 @property(assign, nonatomic) int cropLeft;  
 @property(assign, nonatomic) int cropTop;  
 @property(assign, nonatomic) int cropRight;  
@@ -423,11 +423,11 @@ class ExternalVideoFrame {
               <plentry>
                 <pt props="cpp">fillAlphaBuffer</pt>
                 <pt props="android apple">fillAlphaData</pt>
-                <pd>This parameter only applies to video data in BGRA or RGBA format. 设置是否提取视频帧中的 Alpha 通道数据并自动填入到 <parmname>alphaBuffer</parmname> 中：<ul>
-                  <li><codeph><ph keyref="true"/></codeph>：提取 Alpha 通道数据。</li>
-                  <li><codeph><ph keyref="false"/></codeph>：（默认）不提取 Alpha 通道数据。</li>
+                <pd>This parameter only applies to video data in BGRA or RGBA format. Whether to extract the alpha channel data from the video frame and automatically fill it into <parmname>alphaBuffer</parmname>:<ul>
+                  <li><codeph><ph keyref="true"/>：Extract the alpha channel data.</codeph></li>
+                  <li><codeph><ph keyref="false"/></codeph>：（默认）不提取填充 Alpha 通道数据。</li>
                   </ul>
-                  <note>对于 BGRA 或 RGBA 格式的视频数据，你可以任选一种方式设置 Alpha 通道数据：<ul>
+                  <note>For video data in BGRA or RGBA format, you can choose one of the following ways to set the Alpha channel data:<ul>
                   <li>通过将该参数设置为 <codeph><ph keyref="true"/></codeph> 自动填写。</li>
                   <li>通过 <parmname>alphaBuffer</parmname> 参数设置。</li>
                   </ul></note></pd>
