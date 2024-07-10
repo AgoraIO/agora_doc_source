@@ -10,7 +10,8 @@
         <topic id="compatibility">
             <title>Compatibility changes</title>
             <body>
-                <p>This version includes optimizations to some features, including changes to SDK behavior, API renaming, or removal. To ensure your project runs smoothly, you need to update the code in your app after upgrading to this version.
+                <p>This version includes optimizations to some features, including changes to SDK behavior, API renaming and deletion. To ensure normal operation of the project, update the code in the app after upgrading to this release.
+
                     <note type="attention" props="native">Starting from v4.4.0, the RTC SDK provides an API sunset notice, which includes information about deprecated and removed APIs in each version. See <xref href="https://doc.shengwang.cn/api-ref/rtc/android/API/rtc_api_sunset" props="android">API Sunset Notice</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/android/API/rtc_api_sunset" props="cpp">API Sunset Notice</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/ios/API/rtc_api_sunset" props="ios">API Sunset Notice</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/macos/API/rtc_api_sunset" props="mac">API Sunset Notice</xref>.</note></p>
                 <ol>
                     <li>To distinguish context information in different plugin callbacks, this version removes the original plugin-related callbacks and adds corresponding callbacks that can identify plugin context information (see the table below). You can learn the plugin name, user ID using the plugin, and the service provider name through the <apiname keyref="ExtensionContext"/> in each callback.
@@ -37,9 +38,9 @@
                             </strow>
                         </simpletable>
                     </li>
-                    <li props="ios">Before v4.4.0, when your user role was set to audience, calling <apiname keyref="setAudioScenario"/> to set the audio scenario to chatroom (<apiname keyref="AUDIO_SCENARIO_CHATROOM"/>) would trigger a microphone permission request popup. From v4.4.0 onwards, the SDK uses native iOS APIs to control the microphone, so audience users in a chatroom scenario will no longer see the microphone permission request popup.</li>
-                    <li props="apple">This version renames the <codeph>receiveMetadata</codeph> callback to <apiname keyref="onMetadataReceived"/> and removes the <codeph>data</codeph> and <codeph>timeStamp</codeph> parameters. You can get metadata-related information, including <codeph>timeStamp</codeph> (timestamp of the sent data), <codeph>uid</codeph> (user ID), and <codeph>channelId</codeph> (source channel name) through the new <codeph>metadata</codeph> parameter.</li>
-                    <li props="android">This version removes the <apiname keyref="onMetadataReceived"/> callback's <codeph>buffer</codeph>, <codeph>uid</codeph>, and <codeph>timeStampMs</codeph> parameters. You can get metadata-related information, including <codeph>timeStampMs</codeph> (timestamp of the sent data), <codeph>uid</codeph> (user ID), and <codeph>channelId</codeph> (source channel name) through the new <codeph>metadata</codeph> parameter.</li>
+                    <li props="ios">Before v4.4.0, when a user role was set to audience and called <apiname keyref="setAudioScenario"/> to set the audio scenario to chatroom (<apiname keyref="AUDIO_SCENARIO_CHATROOM"/>), the user would see a microphone permission request popup. As of v4.4.0, the SDK uses native iOS APIs to control the microphone, so audience members in a chatroom scenario will no longer receive the microphone permission request popup.</li>
+                    <li props="apple">This version renames the <codeph>receiveMetadata</codeph> callback to <apiname keyref="onMetadataReceived"/> and removes the <codeph>data</codeph> and <codeph>timeStamp</codeph> parameters. You can get metadata-related information, including <codeph>timeStamp</codeph> (timestamp of the sent data), <codeph>uid</codeph> (user ID), and <codeph>channelId</codeph> (channel name) through the newly-added <codeph>metadata</codeph> parameter.</li>
+                    <li props="android">This version removes the <codeph>buffer</codeph>, <codeph>uid</codeph>, and <codeph>timeStampMs</codeph> parameters of the <apiname keyref="onMetadataReceived"/> callback. You can get metadata-related information, including <codeph>timeStampMs</codeph> (timestamp of the sent data), <codeph>uid</codeph> (user ID), and <codeph>channelId</codeph> (channel name) through the newly-added <codeph>metadata</codeph> parameter.</li>
                 </ol>
             </body>
         </topic>
@@ -85,7 +86,7 @@
                     <li><ph><b>Other Improvements</b></ph>
                         <p>This version also includes the following improvements:
                         <ul>
-                        <li props="android">Optimized parameter types for the following APIs to enhance code readability, reduce potential errors, and facilitate future maintenance: 
+                        <li props="android">Optimized parameter types for the following APIs to enhance code readability, reduce potential errors, and facilitate future maintenance:
                             <ul>
                             <li>Deprecated <codeph>option</codeph> parameter of type int in <apiname keyref="setRemoteSubscribeFallbackOption"/>, introduced overloaded function <apiname keyref="setRemoteSbscribeFallbackOption2"/> with <codeph>option</codeph> parameter of type <apiname keyref="STREAM_FALLBACK_OPTIONS"/>.</li>
                             <li>Deprecated <codeph>streamType</codeph> parameter of type int in <apiname keyref="setRemoteVideoStreamType"/>, <apiname keyref="setRemoteDefaultVideoStreamType"/>, and <apiname keyref="setRemoteVideoStreamTypeEx"/>, introduced overloaded functions <apiname keyref="setRemoteVideoStreamType2"/>, <apiname keyref="setRemoteDefaultVideoStreamType2"/>, and <apiname keyref="setRemoteVideoStreamTypeEx2"/> with <codeph>streamType</codeph> parameter of type <apiname keyref="VIDEO_STREAM_TYPE"/>.</li>
@@ -94,7 +95,7 @@
                             <li props="cpp mac electron unity flutter unreal bp">The <apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_DISPLAY_DISCONNECTED"/> enumerator is added in <apiname keyref="onLocalVideoStateChanged"/> callback , indicating that the display used for screen capture has been disconnected. (Windows, macOS)</li>
                             <li props="mac electron unity flutter unreal bp">Optimized the video link for window sharing, reducing CPU usage. (macOS)</li>
                             <li props="cpp unity flutter electron unreal">Improved echo cancellation for screen sharing scenarios.</li>
-                            <li props="cpp framework">Added <codeph>channelId</codeph> parameter to <apiname keyref="Metadata"/>, enabling retrieval of the source channel name for sent Metadata.</li>
+                            <li props="cpp framework">Added the <codeph>channelId</codeph> parameter to <apiname keyref="Metadata"/>, which is used to get the channel name from which the metadata is sent.</li>
                             <li>Deprecated redundant enumeration values <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT"/> and <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED"/> in <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REASON"/>.</li>
                         </ul></p>
                     </li>
@@ -109,9 +110,9 @@
                     <li props="ios rn unity flutter unreal bp">Occasional app crashes occurred when multiple remote users joined the channel simultaneously during real-time interaction. (iOS)</li>
                     <li props="ios rn unity flutter unreal bp">Remote video occasionally froze or displayed corrupted images when the app returned to the foreground after being in the background for a while. (iOS)</li>
                     <li props="ios rn unity flutter unreal bp">After the sender called <apiname keyref="startDirectCdnStreaming"/> to start direct CDN streaming, frequent switching or toggling of the network occasionally resulted in a black screen on the receiver's end without a streaming failure callback on the sender's end. (iOS)</li>
-                    <li props="android ios unity flutter rn unreal bp">Audio playback failed when pushing external audio data using <xref keyref="pushAudioFrame" props="unity flutter rn unreal bp"/><xref keyref="pushAudioFrame2" props="android ios"/> if the external audio rendering sample rate was not the recommended value by the SDK, such as 22050 Hz and 11025 Hz.</li>
+                    <li props="android ios unity flutter rn unreal bp">Audio playback failed when pushing external audio data using <xref keyref="pushAudioFrame" props="unity flutter rn unreal bp"/><xref keyref="pushAudioFrame2" props="android ios"/> and the sample rate was not set as a recommended value, such as 22050 Hz and 11025 Hz.</li>
                 </ul>
             </body>
-        </topic>                               
+        </topic>
     </topic>
 </topic>
