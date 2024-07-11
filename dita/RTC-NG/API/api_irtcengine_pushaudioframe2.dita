@@ -29,15 +29,21 @@
            <codeblock props="flutter" outputclass="language-dart"/> 
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
-            <note type="attention" id="sequence">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>调用该方法通过音频轨道推送外部音频帧。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
             <p>调用该方法推送外部音频数据前，请先进行以下操作：<ol>
                 <li>调用 <xref keyref="createCustomAudioTrack"/> 创建音频轨道并获得音频轨道 ID。</li>
                 <li>调用 <xref keyref="joinChannel2"/> 加入频道时，将 <xref keyref="ChannelMediaOptions"/> 中的 <parmname>publishCustomAudioTrackId</parmname> 设置为你想要发布的音频轨道 ID，并将 <parmname>publishCustomAudioTrack</parmname> 设置为 <codeph><ph keyref="true"/></codeph>。</li>
             </ol></p>
-            </note> </section>
-        <section id="parameters">
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
             <plentry>
@@ -54,15 +60,11 @@
             </plentry>
             <plentry id="samplerate">
                 <pt>sampleRate</pt>
-                <pd>外部音频渲染的采样率 (Hz)，可设置为 8000，16000，32000，44100 或 48000。</pd>
+                <pd>外部音频源的采样率 (Hz)，可设置为 <codeph>8000</codeph>，<codeph>16000</codeph>，<codeph>32000</codeph>，<codeph>44100</codeph> 或 <codeph>48000</codeph>。</pd>
             </plentry>
             <plentry id="channels">
                 <pt>channels</pt>
-                <pd>外部音频渲染的声道数:
-                    <ul>
-                    <li>1: 单声道</li>
-                    <li>2: 双声道</li>
-                    </ul></pd>
+                <pd>外部音频源的声道数，可设置为 <codeph>1</codeph>（单声道）或 <codeph>2</codeph>（双声道）。</pd>
             </plentry>
             <plentry props="android hmos">
                 <pt>bytesPerSample</pt>
@@ -70,7 +72,7 @@
             </plentry>
             <plentry id="trackid">
                 <pt>trackId</pt>
-                <pd>音频轨道 ID。将该参数设置为 <xref keyref="createCustomAudioTrack"/> 方法中返回的自定义音频轨道 ID。</pd>
+                <pd>音频轨道 ID。将该参数设置为 <apiname keyref="createCustomAudioTrack"/> 方法中返回的自定义音频轨道 ID。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">

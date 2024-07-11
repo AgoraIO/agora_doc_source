@@ -40,15 +40,23 @@
     SenderOptions encodedVideoOption = const SenderOptions()});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
-            <note type="attention">请在加入频道前调用该方法。</note> </section>
-        <section id="parameters">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>调用该方法启用外部视频源后，你可以调用 <xref keyref="pushVideoFrame"/> 向 SDK 推送外部视频数据。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>该方法需要在加入频道前调用。</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>不支持在频道内动态切换视频源。如果已调用该方法启用外部视频源并加入频道，若想切换为内部视频源，必须先退出频道，然后调用该方法关闭外部视频源，再重新加入频道。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
             <plentry>
-                <pt props="ios mac android">enable</pt>
-                <pt props="cpp unreal bp unity electron rn flutter cs">enabled</pt>
+                <pt props="android hmos apple">enable</pt>
+                <pt props="cpp framework">enabled</pt>
                 <pd>是否启用外部视频源： 
                     <ul>
                     <li><codeph><ph keyref="true" /></codeph>: 启用外部视频源。SDK 准备接收外部视频帧。</li>
@@ -67,18 +75,18 @@
                 <pt>sourceType</pt>
                 <pd>外部视频帧是否编码，详见 <xref keyref="EXTERNAL_VIDEO_SOURCE_TYPE" />。</pd>
             </plentry>
-            <plentry props="unity cpp unreal bp electron rn flutter cs">
+            <plentry props="cpp framework">
                 <pt>encodedVideoOption</pt>
                 <pd>视频编码选项。如果 <parmname>sourceType</parmname> 为 <apiname keyref="ENCODED_VIDEO_FRAME" />，则需要设置该参数。你可以<xref keyref="ticket-link" />了解如何设置该参数。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="android cpp unreal bp electron unity rn flutter cs">
+        <section id="return_values" props="android hmos cpp framework">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul>
-            <li props="android cpp unreal bp electron unity rn cs">0：方法调用成功。</li>
+            <ul props="android hmos cpp unreal bp electron unity rn cs">
+            <li>0：方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
             </ul>
         </section>
-    </refbody>
+        </refbody>
 </reference>
