@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_stopaudiomixing">
     <title><ph keyref="stopAudioMixing" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Stops playing and mixing the music file.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Stops playing the music file.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -25,9 +25,16 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; stopAudioMixing();</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <p>This method stops the audio mixing. Call this method when you are in a channel.</p>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>After calling <xref keyref="startAudioMixing2"/> to play a music file, you can call this method to stop the playing. If you only need to pause the playback, call <xref keyref="pauseAudioMixing"/>.</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>Call this method after joining a channel.</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
         </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>

@@ -24,22 +24,25 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; pullAudioFrame(AudioFrame frame);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <p>Before calling this method, call <xref keyref="setExternalAudioSink"/><codeph>(<parmname>enabled</parmname>: <ph keyref="true"/>)</codeph> to notify the app to enable and set the external audio rendering.</p>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p>After a successful call of this method, the app pulls the decoded and mixed audio data for playback.</p>
-            <note type="attention">
-            <ul>
-            <li>Call this method after joining a channel.</li>
-            <li>Both this method and <xref keyref="onPlaybackAudioFrame"/> callback can be used to get audio data after remote mixing. Note that after calling <apiname keyref="setExternalAudioSink"/> to enable external audio rendering, the app no longer receives data from the <apiname keyref="onPlaybackAudioFrame"/> callback. Therefore, you should choose between this method and the <apiname keyref="onPlaybackAudioFrame"/> callback based on your actual business requirements. The specific distinctions between them are as follows:<ul>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+             <p>Call this method after joining a channel.</p>
+             <p>Before calling this method, call <xref keyref="setExternalAudioSink"/><codeph>(<parmname>enabled</parmname>: <ph keyref="true"/>)</codeph> to notify the app to enable and set the external audio rendering.</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>Both this method and the <xref keyref="onPlaybackAudioFrame"/> callback can be used to get audio data after remote mixing. After calling <apiname keyref="setExternalAudioSink"/> to enable external audio rendering, the app will no longer be able to obtain data from the <apiname keyref="onPlaybackAudioFrame"/> callback. Therefore, you should choose between this method and the <apiname keyref="onPlaybackAudioFrame"/> callback based on your actual business requirements. The specific distinctions between them are as follows:<ul>
                 <li>After calling this method, the app automatically pulls the audio data from the SDK. By setting the audio data parameters, the SDK adjusts the frame buffer to help the app handle latency, effectively avoiding audio playback jitter.</li>
-                <li>The SDK sends the audio data to the app through the <apiname keyref="onPlaybackAudioFrame"/> callback. Any delay in processing the audio frames may result in audio jitter.</li>
-                </ul></li>
-            <li>This method is only used for retrieving audio data after remote mixing. If you need to get audio data from different audio processing stages such as capture and playback, you can register the corresponding callbacks by calling <xref keyref="registerAudioFrameObserver"/>.</li>
-            </ul> </note> </section>
-        <section id="parameters" props="native unreal bp unity flutter cs">
-            <title>Parameters</title>
-            <parml>
+                <li>After registering the <apiname keyref="onPlaybackAudioFrame"/> callback, the SDK sends the audio data to the app through the callback. Any delay in processing the audio frames may result in audio jitter.</li>
+                </ul></p>
+            <p>This method is only used for retrieving audio data after remote mixing. If you need to get audio data from different audio processing stages such as capture and playback, you can register the corresponding callbacks by calling <xref keyref="registerAudioFrameObserver"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title><ph props="android apple cpp unreal bp flutter unity cs">Parameters</ph></title>
+            <parml props="android apple cpp unreal bp flutter unity cs">
             <plentry props="cpp unreal bp unity flutter cs">
                 <pt>frame</pt>
                 <pd>Pointers to <xref keyref="AudioFrame"/>.</pd>
@@ -68,5 +71,5 @@
             <li>The <apiname keyref="AudioFrame" /> instance, if the method call succeeds.</li>
             <li>An error code, if the call fails,.</li>
             </ul> </section>
-    </refbody>
+        </refbody>
 </reference>

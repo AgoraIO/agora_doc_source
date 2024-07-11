@@ -40,15 +40,23 @@
     SenderOptions encodedVideoOption = const SenderOptions()});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <note type="attention">Call this method before joining a channel.</note> </section>
-        <section id="parameters">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>After calling this method to enable an external video source, you can call <xref keyref="pushVideoFrame"/> to push external video data to the SDK.</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>Call this method before joining a channel.</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>Dynamic switching of video sources is not supported within the channel. To switch from an external video source to an internal video source, you must first leave the channel, call this method to disable the external video source, and then rejoin the channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>
-                <pt props="ios mac android">enable</pt>
-                <pt props="cpp unreal bp unity electron rn flutter cs">enabled</pt>
+                <pt props="android hmos apple">enable</pt>
+                <pt props="cpp framework">enabled</pt>
                 <pd>Whether to use the external video source:<ul>
                     <li><codeph><ph keyref="true" /></codeph>: Use the external video source. The SDK prepares to accept the external video frame.</li>
                     <li><codeph><ph keyref="false" /></codeph>: (Default) Do not use the external video source.</li>
@@ -65,18 +73,18 @@
                 <pt>sourceType</pt>
                 <pd>Whether the external video frame is encoded. See <xref keyref="EXTERNAL_VIDEO_SOURCE_TYPE" />.</pd>
             </plentry>
-            <plentry props="unity cpp unreal bp electron rn flutter cs">
+            <plentry props="cpp framework">
                 <pt>encodedVideoOption</pt>
                 <pd>Video encoding options. This parameter needs to be set if <parmname>sourceType</parmname> is <apiname keyref="ENCODED_VIDEO_FRAME" />. To set this parameter, contact <xref keyref="ticket-link" />.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="android cpp unreal bp electron unity rn flutter cs">
+        <section id="return_values" props="android hmos cpp framework">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-            <ul>
-            <li props="android cpp unreal bp electron unity rn cs">0: Success.</li>
+            <ul props="android hmos cpp unreal bp electron unity rn cs">
+            <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul>
         </section>
-    </refbody>
+        </refbody>
 </reference>

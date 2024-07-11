@@ -117,6 +117,10 @@ struct FAgoraMetadata
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
+                <pt>channelId</pt>
+                <pd>The channel name.</pd>
+            </plentry>
+                <plentry>
                 <pt>uid</pt>
                 <pd>
                     <p>The user ID.<ul id="ul_c1t_3wg_s4b">
@@ -125,17 +129,23 @@ struct FAgoraMetadata
                     </ul></p>
                 </pd>
             </plentry>
-            <plentry>
+            <plentry props="cpp framework">
                 <pt>size</pt>
                 <pd>The buffer size of the sent or received <apiname keyref="Metadata" />.</pd>
             </plentry>
-            <plentry>
-                <pt>buffer</pt>
-                <pd>The buffer address of the sent or received <apiname keyref="Metadata" />.</pd>
+            <plentry props="cpp framework android">
+                <pt props="cpp framework">buffer</pt>
+                <pt props="android">data</pt>
+                <pd>The buffer address of the received <apiname keyref="Metadata" />.</pd>
             </plentry>
-            <plentry>
-                <pt>timeStampMs</pt>
-                <pd>The timestamp (ms) of <apiname keyref="Metadata" />.</pd>
+            <plentry props="apple">
+                <pt>data</pt>
+                <pd>The received metadata.</pd>
+            </plentry>
+                <plentry>
+                <pt props="cpp framework android">timeStampMs</pt>
+                <pt props="apple">timestamp</pt>
+                <pd>The timestamp (ms) of when the <apiname keyref="Metadata"/> is sent.</pd>
             </plentry>
             </parml> </section>
     </refbody>

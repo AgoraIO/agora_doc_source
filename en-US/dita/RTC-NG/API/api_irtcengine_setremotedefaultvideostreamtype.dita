@@ -25,23 +25,32 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRemoteDefaultVideoStreamType(VideoStreamType streamType);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated" props="android">
+            <dlentry>
+                <dt>Deprecated:</dt>
+                <dd>This method is deprecated as of v4.4.0. Use <xref keyref="setRemoteDefaultVideoStreamType2"/> instead.</dd>
+            </dlentry>
+            </dl>
             <p conkeyref="setRemoteVideoStreamType/desc1"/>
             <p conkeyref="setRemoteVideoStreamType/desc2"/>
-            <note type="attention">
-            <ul>
-            <li>Call this method before joining a channel. The SDK does not support changing the default subscribed video stream type after joining a channel.</li>
-            <li>If you call both this method and <xref keyref="setRemoteVideoStreamType" />, the setting of <apiname keyref="setRemoteVideoStreamType" /> takes effect.</li>
-            </ul></note> </section>
-        <section id="parameters">
-            <title>Parameters</title>
+        </section>
+            <section id="timing" deliveryTarget="details">
+                <title>Call timing</title>
+                <p>Call this method before joining a channel. The SDK does not support changing the default subscribed video stream type after joining a channel.</p>
+            </section>        
+            <section id="restriction" deliveryTarget="details">
+                <title>Restrictions</title>
+                <p>If you call both this method and <xref keyref="setRemoteVideoStreamType" />, the setting of <apiname keyref="setRemoteVideoStreamType" /> takes effect.</p>
+            </section>
+                <section id="parameters" deliveryTarget="details">
+                <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>streamType</pt>
                 <pd id="defaultstreamtype">
                     <p props="apple cpp framework">The default video-stream type. See <xref keyref="VIDEO_STREAM_TYPE" />.</p>
-                    <p props="android">The default video-stream type:<ul>
+                    <p props="android hmos">The default video-stream type:<ul>
                     <li><ph keyref="VIDEO_STREAM_HIGH"/>(0): High-quality stream, that is, a high-resolution and high-bitrate video stream.</li>
                     <li><ph keyref="VIDEO_STREAM_LOW"/>(1): Low-quality stream, that is, a low-resolution and low-bitrate video stream.</li>
                     </ul> </p>

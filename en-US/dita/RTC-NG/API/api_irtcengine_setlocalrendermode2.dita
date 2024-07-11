@@ -35,36 +35,46 @@
         VideoMirrorModeType.videoMirrorModeAuto});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <p>After initializing the local video view, you can call this method to update its rendering and mirror modes. It affects only the video view that the local user sees, not the published local video stream.</p>
-            <note type="attention">
-            <ul>
-            <li props="native unreal bp electron flutter unity cs">Ensure that you have called the <xref keyref="setupLocalVideo" /> method to initialize the local video view before calling this method.</li>
-            <li>During a call, you can call this method as many times as necessary to update the display mode of the local video view.</li>
-            <li props="cpp bp unreal apple electron unity cs flutter">This  method only takes effect on the primary camera <codeph>(<ph keyref="PRIMARY_CAMERA_SOURCE"/>)</codeph>. In scenarios involving custom video capture or the use of alternative video sources, you need to use <xref keyref="setupLocalVideo"/> instead of this method.</li>
-            </ul> </note> </section>
-        <section id="parameters">
-            <title>Parameters</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>After initializing the local video view, you can call this method to update its rendering and mirror modes. It affects only the video view that the local user sees and does not impact the publishing of the local video.</p>
+            </section>
+            <section id="timing" deliveryTarget="details">
+                <title><ph props="native unreal bp electron rn flutter">Call timing</ph></title>
+                <ul props="native unreal bp electron rn flutter"><li>Ensure that you have called the <xref keyref="setupLocalVideo" /> method to initialize the local video view before calling this method.</li>
+                    <li>During a call, you can call this method as many times as necessary to update the display mode of the local video view.</li></ul>
+            </section>        
+            <section id="restriction" deliveryTarget="details">
+                <title><ph props="native unreal bp electron rn flutter">Restrictions</ph></title>
+                <p props="cpp bp unreal apple electron flutter">This method only takes effect on the primary camera <codeph>(<ph keyref="PRIMARY_CAMERA_SOURCE"/>)</codeph>. In scenarios involving custom video capture or the use of alternative video sources, you need to use <xref keyref="setupLocalVideo"/> instead of this method.</p>
+                <p props="android hmos rn">None.</p>
+            </section>
+            <section id="parameters" deliveryTarget="details">
+                <title>Parameters</title>
             <parml>
             <plentry>
                 <pt props="android cpp unreal bp unity flutter rn electron cs">renderMode</pt>
                 <pt props="ios mac">mode</pt>
                 <pd>
                     <p props="ios mac cpp unreal bp unity flutter rn electron cs">The local video display mode. See <xref keyref="RENDER_MODE_TYPE" />.</p>
-                    <p props="android">The local video display mode.<ul id="rendermodetype">
+                    <p props="android hmos">The local video display mode.<ul id="rendermodetype">
                     <li><ph keyref="RENDER_MODE_HIDDEN" />(1): Hidden mode. Uniformly scale the video until it fills the visible boundaries (cropped). One dimension of the video may have clipped contents.</li>
                     <li><ph keyref="RENDER_MODE_FIT" />(2): Fit mode. Uniformly scale the video until one of its dimension fits the boundary (zoomed to fit). Areas that are not filled due to the disparity in the aspect ratio are filled with black.</li>
-                    <li><ph keyref="RENDER_MODE_ADAPTIVE" />(3): This mode is deprecated.</li>
+                    <li><ph keyref="RENDER_MODE_ADAPTIVE" />(3): Adaptive mode.<dl outputclass="deprecated">
+                            <dlentry>
+                                <dt>Deprecated:</dt>
+                                <dd>This enumerator is deprecated and not recommended for use.</dd>
+                            </dlentry>
+                            </dl>
+                    </li>
                     </ul> </p>
                 </pd>
             </plentry>
             <plentry>
-                <pt props="android cpp unreal bp unity flutter rn electron cs">mirrorMode</pt>
+                <pt props="android hmos cpp unreal bp unity flutter rn electron cs">mirrorMode</pt>
                 <pt props="ios mac">mirror</pt>
                 <pd>
                     <p props="ios mac cpp unreal bp unity flutter rn electron cs">The mirror mode of the local video view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.<note type="attention" props="unity cs">This parameter is only effective when rendering custom videos. If you want to mirror the video view, set the scaleX of the GameObject attached to the video view as <codeph>-1</codeph> or <codeph>+1</codeph>.</note></p>
-                    <p props="android">For the local user:<ul id="videomirrormodetype">
+                    <p props="android hmos">For the local user:<ul id="videomirrormodetype">
                     <li><ph keyref="VIDEO_MIRROR_MODE_AUTO" />(0): The SDK determines whether to enable the mirror mode. If you use a front camera, the SDK enables the mirror mode by default; if you use a rear camera, the SDK disables the mirror mode by default.</li>
                     <li><ph keyref="VIDEO_MIRROR_MODE_ENABLED" />(1): Enable the mirroring mode of the local view.</li>
                     <li><ph keyref="VIDEO_MIRROR_MODE_DISABLED" />(2): Disable the mirroring mode of the local view.</li>

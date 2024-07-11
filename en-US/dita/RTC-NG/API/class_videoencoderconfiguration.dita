@@ -610,13 +610,13 @@ struct FVideoEncoderConfiguration
             </plentry>
             <plentry>
                 <pt>degradationPreference</pt>
-                <pd>Video degradation preference under limited bandwidth. See <xref keyref="DEGRADATION_PREFERENCE"/>.</pd>
+                <pd>Video degradation preference under limited bandwidth. See <xref keyref="DEGRADATION_PREFERENCE"/>.<note type="attention">When this parameter is set to <ph keyref="MAINTAIN_FRAMERATE"/> (1) or <ph keyref="MAINTAIN_BALANCED"/> (2), <parmname>orientationMode</parmname> needs to be set to <ph keyref="ORIENTATION_MODE_ADAPTIVE"/> (0) at the same time, otherwise the setting will not take effect.</note></pd>
             </plentry>
             <plentry>
                 <pt>mirrorMode</pt>
                 <pd>
                     <p props="ios mac cpp framework">Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.</p>
-                    <p props="android">Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees.<ul>
+                    <p props="android hmos">Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees.<ul>
                       <li><ph keyref="VIDEO_MIRROR_MODE_AUTO" />(0): The SDK determines whether to enable the mirror mode. The SDK disables mirror mode by default.</li>
                       <li><ph keyref="VIDEO_MIRROR_MODE_ENABLED" />(1): Enables the mirror mode for remote users.</li>
                       <li><ph keyref="VIDEO_MIRROR_MODE_DISABLED" />(2): Disables the mirror mode for remote users.</li>

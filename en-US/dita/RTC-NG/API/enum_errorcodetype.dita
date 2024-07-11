@@ -35,7 +35,7 @@
             <plentry>
                 <pt><ph keyref="ERR_NOT_SUPPORTED"/></pt>
                 <pd>4: The <apiname keyref="IRtcEngine"/> does not support the request. Possible reasons include the following:<ul>
-                    <li props="android">The <xref keyref="setBeautyEffectOptions"/> method is called on devices running versions earlier than Android 5.0. Check the Android version.</li>
+                    <li props="android hmos">The <xref keyref="setBeautyEffectOptions"/> method is called on devices running versions earlier than Android 5.0. Check the Android version.</li>
                     <li>The built-in encryption mode is incorrect, or the SDK fails to load the external encryption library. Check the encryption mode setting, or reload the external encryption library.</li>
                     </ul></pd>
             </plentry>
@@ -70,7 +70,7 @@
             <plentry>
                 <pt><ph keyref="ERR_JOIN_CHANNEL_REJECTED"/></pt>
                 <pd>17: The request to join the channel is rejected. Possible reasons include the following:<ul>
-                    <li>The user is already in the channel. Agora recommends that you use the <xref keyref="onConnectionStateChanged"/> callback to determine whether the user exists in the channel. Do not call this method to join the channel unless you receive the <apiname keyref="CONNECTION_STATE_DISCONNECTED"/>(1) state.</li>
+                    <li>The user is already in the channel. Agora recommends that you use the <xref keyref="onConnectionStateChanged"/> callback to see whether the user is in the channel. Do not call this method to join the channel unless you receive the <apiname keyref="CONNECTION_STATE_DISCONNECTED"/>(1) state.</li>
                     <li>After calling <xref keyref="startEchoTest3"/> for the call test, the user tries to join the channel without calling <xref keyref="stopEchoTest"/> to end the current test. To join a channel, the call test must be ended by calling <apiname keyref="stopEchoTest"/>.</li>
                     </ul></pd>
             </plentry>
