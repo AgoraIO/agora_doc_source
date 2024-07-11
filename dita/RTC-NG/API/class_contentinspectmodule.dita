@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_contentinspectmodule">
     <title><ph keyref="ContentInspectModule"/></title>
-    <shortdesc id="short"><ph id="shortdesc"><apiname keyref="ContentInspectModule"/> 结构体，用于配置视频截图上传的频率。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc"><apiname keyref="ContentInspectModule"/> 结构体，用于配置本地截图上传的频率。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -13,6 +13,7 @@
     type = CONTENT_INSPECT_TYPE_INVALID;
     interval = 0;
   }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraContentInspectModule: NSObject
 @property (assign, nonatomic) AgoraContentInspectType type;
 
@@ -78,7 +79,7 @@ struct FContentInspectModule {
             <plentry>
                 <pt>type</pt>
                 <pd props="apple cpp unreal bp flutter unity electron rn cs">功能模块的类型。详见 <xref keyref="CONTENT_INSPECT_TYPE"/>。</pd>
-                <pd props="android">
+                <pd props="android hmos">
                     <p>功能模块的类型：
                     <ul>
                     <li><ph keyref="CONTENT_INSPECT_INVALID"/>(0)：（默认）该功能模块无实际功能。请不要设为该值。</li>
@@ -90,7 +91,7 @@ struct FContentInspectModule {
             </plentry>
             <plentry>
                 <pt>interval</pt>
-                <pd><ph>视频截图上传的间隔，单位为秒，取值必须大于 0。默认值为 0，表示不进行截图上传。</ph><ph props="hide">视频内容审核的间隔，单位为秒，取值必须大于 0。默认值为 0，表示不进行内容审核。</ph><ph>推荐值为 10 秒，你也可以根据业务需求自行调整。</ph></pd>
+                <pd><ph>本地截图上传的间隔，单位为秒，取值必须大于 0。默认值为 0，表示不进行截图上传。</ph><ph props="hide">视频内容审核的间隔，单位为秒，取值必须大于 0。默认值为 0，表示不进行内容审核。</ph><ph>推荐值为 10 秒，你也可以根据业务需求自行调整。</ph></pd>
             </plentry>
             </parml> </section>
     </refbody>

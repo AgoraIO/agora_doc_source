@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">boolean onCaptureVideoFrame(int sourceType, VideoFrame videoFrame);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">onCaptureVideoFrame?: (sourceType: Constants.VideoSourceType, videoFrame: VideoFrame) =&gt; boolean;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onCaptureVideoFrame:(AgoraOutputVideoFrame * _Nonnull)videoFrame sourceType:(AgoraVideoSourceType)sourceType;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual bool onCaptureVideoFrame(agora::rtc::VIDEO_SOURCE_TYPE sourceType, VideoFrame&amp; videoFrame) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnCaptureVideoFrame, EVIDEO_SOURCE_TYPE, sourceType, const FVideoFrame&amp;, videoFrame);</codeblock>
@@ -49,8 +50,8 @@
             <title>使用限制</title>
             <ul>
                 <li>此处获取的视频数据为原始视频数据，即：未经过水印、裁剪和旋转等前处理的视频数据。</li>
-                <li>如果你获取到的视频数据类型为 RGBA，SDK 不支持对 alpha 通道的值进行处理。</li>
-                <li>建议你在修改 <parmname>videoFrame</parmname> 中的参数时，需确保修改后的参数跟视频帧缓冲区中的视频帧实际情况保持一致，否则可能导致本地预览画面和对端的视频画面出现非预期的旋转、失真等问题。</li>
+                <li>如果你获取到的视频数据类型为 RGBA，SDK 不支持对 Alpha 通道的值进行处理。</li>
+                <li id="restric1">建议你在修改 <parmname>videoFrame</parmname> 中的参数时，需确保修改后的参数跟视频帧缓冲区中的视频帧实际情况保持一致，否则可能导致本地预览画面和对端的视频画面出现非预期的旋转、失真等问题。</li>
                 <li props="rn electron">建议你通过 C++ API 实现该回调。</li>
                 <li props="flutter rn electron">由于框架的限制，该回调不支持将处理后的视频数据发送回 SDK。</li>
             </ul>

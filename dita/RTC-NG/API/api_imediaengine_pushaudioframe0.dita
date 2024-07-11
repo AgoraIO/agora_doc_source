@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java" />
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec" />
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int pushAudioFrame(IAudioFrameObserver::AudioFrame* frame, rtc::track_id_t trackId = 0) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract pushAudioFrame(frame: AudioFrame, trackId?: number): number;</codeblock>
@@ -22,15 +23,21 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> pushAudioFrame({required AudioFrame frame, int trackId = 0});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
-            <note type="attention">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>调用该方法通过音频轨道推送外部音频帧。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
             <p>调用该方法推送外部音频数据前，请先进行以下操作：<ol>
                 <li>调用 <xref keyref="createCustomAudioTrack"/> 创建音频轨道并获得音频轨道 ID。</li>
                 <li>调用 <xref keyref="joinChannel2"/> 加入频道时，将 <xref keyref="ChannelMediaOptions"/> 中的 <parmname>publishCustomAudioTrackId</parmname> 设置为你想要发布的音频轨道 ID，并将 <parmname>publishCustomAudioTrack</parmname> 设置为 <codeph><ph keyref="true"/></codeph>。</li>
             </ol></p>
-            </note> </section>
-        <section id="parameters">
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
             <plentry>
@@ -45,8 +52,8 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul>
-            <li props="cpp unreal bp unity electron rn cs">0：方法调用成功。</li>
+            <ul props="cpp unreal bp unity electron rn cs">
+            <li>0：方法调用成功。</li>
             <li>&lt; 0：方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
             </ul> </section>
     </refbody>

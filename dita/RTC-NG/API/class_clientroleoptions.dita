@@ -14,6 +14,10 @@
     return audienceLatencyLevel;
   }
 }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class ClientRoleOptions {
+  
+  public audienceLatencyLevel: Constants.AudienceLatencyLevel = Constants.AudienceLatencyLevel.LOW_LATENCY;
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraClientRoleOptions: NSObject
 @property (assign, nonatomic) AgoraAudienceLatencyLevelType audienceLatencyLevel;
 
@@ -66,7 +70,7 @@ struct FClientRoleOptions
             <plentry id="audiencelatencylevel">
                 <pt>audienceLatencyLevel</pt>
                 <pd><ph>观众端延时级别。</ph><ph props="ios mac cpp unreal bp unity electron rn flutter cs">详见 <xref keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/>。</ph>
-                    <ul props="android">
+                    <ul props="android hmos">
                     <li><ph keyref="AUDIENCE_LATENCY_LEVEL_LOW_LATENCY"/>(1): 低延时。</li>
                     <li><ph keyref="AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY"/>(2): （默认）超低延时。</li>
                     </ul></pd>

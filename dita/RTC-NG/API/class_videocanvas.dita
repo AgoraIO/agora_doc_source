@@ -48,6 +48,20 @@
   }
 }
 </codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class VideoCanvas{
+  public static readonly RENDER_MODE_HIDDEN = 1;
+  public static readonly RENDER_MODE_FIT = 2;
+  public static readonly VIDEO_MIRROR_MODE_ENABLED = 1;
+  public static readonly VIDEO_MIRROR_MODE_DISABLED = 2;
+  
+  public xcomponentId:string = &#x27;&#x27;;
+  public uid:number = 0;
+  public renderMode:number = VideoCanvas.RENDER_MODE_HIDDEN;
+  public mirrorMode:number = 0;
+  constructor(componentId:string) {
+    this.xcomponentId = componentId;
+  }
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcVideoCanvas : NSObject
 @property(assign, nonatomic) NSUInteger uid;
 @property(assign, nonatomic) NSUInteger subviewUid;
@@ -264,7 +278,7 @@ class VideoCanvas {
     UImage* LocalVideo;
     videoCanvas.view = LocalVideo;</codeblock></pd>
                 </plentry>
-                <plentry props="android">
+                <plentry props="android hmos">
                     <pt>surfaceTexture</pt>
                     <pd>提供视频图像的容器，当你使用该成员时，需要自行实现 OPENGL 中的纹理绘制。详见 <xref keyref="SurfaceTexture-link"/>。 
                       <note type="attention">在一个 <apiname keyref="VideoCanvas"/> 中，你只能选择 <parmname>view</parmname> 或 <parmname>surfaceTexture</parmname> 其中一个进行设置，如果同时设置，只有 <parmname>view</parmname> 中的设置会生效。</note></pd>
@@ -272,13 +286,13 @@ class VideoCanvas {
                 <plentry props="native flutter unity cs electron rn bp">
                     <pt>renderMode</pt>
                     <pd props="ios mac cpp unity electron rn flutter cs bp">视频渲染模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</pd>
-                    <pd props="android"><ul conkeyref="setLocalRenderMode2/rendermodetype"><li/></ul></pd>
+                    <pd props="android hmos"><ul conkeyref="setLocalRenderMode2/rendermodetype"><li/></ul></pd>
                 </plentry>
                 <plentry props="native flutter unity cs electron rn bp">
                     <pt>mirrorMode</pt>
                 <pd>
                         <p props="ios mac cpp unity electron rn flutter cs bp">视图镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE" />。</p>
-                        <p props="android">
+                        <p props="android hmos">
                             <ul conkeyref="setLocalRenderMode2/videomirrormodetype">
                                 <li/>
                             </ul>
@@ -298,19 +312,19 @@ class VideoCanvas {
             <plentry props="native flutter unity cs electron rn bp">
                 <pt>setupMode</pt>
                 <pd props="ios mac cpp flutter unity cs electron rn bp">视图设置模式。详见 <xref keyref="VIDEO_VIEW_SETUP_MODE"/>。</pd>
-                <pd props="android">视图设置模式：
+                <pd props="android hmos">视图设置模式：
                 <ul>
                     <li><ph keyref="VIDEO_VIEW_SETUP_REPLACE"/> (0): (默认) 替换一个视图。</li>
                     <li><ph keyref="VIDEO_VIEW_SETUP_ADD"/> (1): 增加一个视图。</li>
                     <li><ph keyref="VIDEO_VIEW_SETUP_REMOVE"/> (2): 删除一个视图。</li>
                 </ul></pd>
             </plentry>
-            <plentry props="native unreal flutter unity cs electron rn">
+            <plentry props="android cpp apple unreal flutter unity cs electron rn">
                 <pt>mediaPlayerId</pt>
                 <pd>媒体播放器 ID。可通过 <xref keyref="getMediaPlayerId"/> 获取。</pd>
                 <pd>当 <parmname>sourceType</parmname> 为 <apiname keyref="VIDEO_SOURCE_MEDIA_PLAYER"/> 时，此参数为必填项。</pd>
             </plentry>
-            <plentry props="android">
+            <plentry props="android hmos">
               <pt>rect</pt>
               <pd>（可选）视频帧的展示区域。详见 <xref keyref="rect-link"/>。其中，<parmname>width</parmname> 和 <parmname>height</parmname> 表示该区域的视频像素宽度和高度。默认值为空值 (宽或高为 0)，表示展示实际分辨率的视频帧。</pd>
           </plentry>
@@ -328,16 +342,16 @@ class VideoCanvas {
           </plentry>
           <plentry props="native unity electron flutter cs">
                     <pt>enableAlphaMask</pt>
-                    <pd props="native rn unity electron flutter">（可选）接收端是否开启 alpha 遮罩渲染： 
+                    <pd props="native rn unity electron flutter">（可选）是否开启 Alpha 遮罩渲染： 
                         <ul>
-                        <li><codeph><ph keyref="true"/></codeph>：接收端开启 alpha 遮罩渲染。</li>
-                        <li><codeph><ph keyref="false"/></codeph>：（默认）接收端关闭 alpha 遮罩渲染。</li>
+                        <li><codeph><ph keyref="true"/></codeph>：开启 Alpha 遮罩渲染。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）关闭 Alpha 遮罩渲染。</li>
                         </ul>
-                        <p>alpha 遮罩渲染可以创建具有透明效果的图像，还可以提取视频中的人像。与其他方法结合使用时，可以实现人像画中画、添加水印等效果。</p>
+                        <p>Alpha 遮罩渲染可以创建具有透明效果的图像，还可以提取视频中的人像。与其他方法结合使用时，可以实现人像画中画、添加水印等效果。</p>
                         <note type="attention" props="cpp mac unity electron flutter">
                         <ul>
-                            <li>仅当发送端开启 alpha 传输功能时，接收端才能渲染 alpha 通道的信息。</li>
-                            <li>如需开启 alpha 传输功能，请<xref keyref="ticket-link"/>。</li>
+                            <li>仅当发送端开启 Alpha 传输功能时，接收端才能渲染 Alpha 通道的信息。</li>
+                            <li>如需开启 Alpha 传输功能，请<xref keyref="ticket-link"/>。</li>
                         </ul>
                         </note> </pd>
                     <pd props="cs">预留。</pd>

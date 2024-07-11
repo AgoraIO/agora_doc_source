@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setVoiceBeautifierPreset(int preset);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setVoiceBeautifierPreset:(AgoraVoiceBeautifierPreset)preset;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setVoiceBeautifierPreset(VOICE_BEAUTIFIER_PRESET preset) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
@@ -24,40 +25,46 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setVoiceBeautifierPreset(VoiceBeautifierPreset preset);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
-            <p>调用该方法可以为本地发流用户设置预设的人声美化效果。设置美声效果后，频道内所有用户都能听到该效果。根据不同的场景，你可以为用户设置不同的美声效果。<ph props="android ios">各美声效果的适用场景可参考<xref keyref="guide-voice-changer" format="html" scope="external">设置人声效果</xref>。</ph></p>
-            <p id="recommend">为获取更好的人声效果，建议你在调用该方法前进行以下操作：
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>调用该方法可以为本地发流用户设置预设的人声美化效果。设置美声效果后，频道内所有用户都能听到该效果。根据不同的场景，你可以为用户设置不同的美声效果。<ph props="android ios">各美声效果的适用场景可参考<xref keyref="voice-changer-link" format="html" scope="external"/>。</ph></p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>加入频道前后均可调用。</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
             <ul>
-                <li>调用 <xref keyref="setAudioScenario" /> 将音频场景设为高音质场景，即 <apiname keyref="AUDIO_SCENARIO_GAME_STREAMING" />(3)。</li>
-                <li>调用 <xref keyref="setAudioProfile2" props="native unity cs unreal"/><xref keyref="setAudioProfile" props="electron rn flutter bp"/> 将 <parmname>profile</parmname> 设为 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY" />(4) 或 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO" />(5)。</li>
+                <li><p id="recommend">为获取更好的人声效果，建议你在调用该方法前进行以下操作：
+                        <ul>
+                            <li>调用 <xref keyref="setAudioScenario" /> 将音频场景设为高音质场景，即 <apiname keyref="AUDIO_SCENARIO_GAME_STREAMING" />(3)。</li>
+                            <li>调用 <xref keyref="setAudioProfile2" props="native unity cs unreal"/><xref keyref="setAudioProfile" props="electron rn flutter bp"/> 将 <parmname>profile</parmname> 设为 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY" />(4) 或 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO" />(5)。</li>
+                        </ul>
+                    </p>
+                </li>
+                <li id="profile-note">请勿将 <apiname keyref="setAudioProfile2" props="native unity cs unreal"/><apiname keyref="setAudioProfile" props="electron rn flutter bp"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD" />(1)<ph props="cpp unreal bp rn electron unity flutter cs"> 或 <apiname keyref="AUDIO_PROFILE_IOT" />(6)</ph>，否则该方法不生效。</li>
+                <li>该方法对人声的处理效果最佳，不建议调用该方法处理含音乐的音频数据。</li>
+                <li>调用 <apiname keyref="setVoiceBeautifierPreset" />，不建议调用以下方法，否则 <apiname keyref="setVoiceBeautifierPreset" /> 设置的效果会被覆盖：
+                    <ul>
+                    <li><xref keyref="setAudioEffectPreset" /></li>
+                    <li><xref keyref="setAudioEffectParameters" /></li>
+                    <li><xref keyref="setLocalVoicePitch" /></li>
+                    <li><xref keyref="setLocalVoiceEqualization" /></li>
+                    <li><xref keyref="setLocalVoiceReverb" /></li>
+                    <li><xref keyref="setVoiceBeautifierParameters" /></li>
+                    <li><xref keyref="setVoiceConversionPreset" /></li>
+                    </ul> </li>
+                <li>该方法依赖于美声动态库 <codeph><ph keyref="audiobeauty"/></codeph>，如果删除该动态库会导致无法正常开启该功能。</li>
             </ul>
-            </p>
-            <note type="attention">
-            <ul>
-            <li>该方法在加入频道前后都能调用。</li>
-            <li id="profile-note">请勿将 <apiname keyref="setAudioProfile2" props="native unity cs unreal"/><apiname keyref="setAudioProfile" props="electron rn flutter bp"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD" />(1)<ph props="cpp unreal bp rn electron unity flutter cs"> 或 <apiname keyref="AUDIO_PROFILE_IOT" />(6)</ph>，否则该方法不生效。</li>
-            <li>该方法对人声的处理效果最佳，不建议调用该方法处理含音乐的音频数据。</li>
-            <li>调用 <apiname keyref="setVoiceBeautifierPreset" />，不建议调用以下方法，否则 <apiname keyref="setVoiceBeautifierPreset" /> 设置的效果会被覆盖：
-                <ul>
-                <li><xref keyref="setAudioEffectPreset" /></li>
-                <li><xref keyref="setAudioEffectParameters" /></li>
-                <li><xref keyref="setLocalVoicePitch" /></li>
-                <li><xref keyref="setLocalVoiceEqualization" /></li>
-                <li><xref keyref="setLocalVoiceReverb" /></li>
-                <li><xref keyref="setVoiceBeautifierParameters" /></li>
-                <li><xref keyref="setVoiceConversionPreset" /></li>
-                </ul> </li>
-            <li>该方法依赖于美声动态库 <codeph><ph keyref="audiobeauty"/></codeph>，如果删除该动态库会导致无法正常开启该功能。</li>
-            </ul> </note> </section>
-        <section id="parameters">
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
             <plentry>
                 <pt>preset</pt>
                 <pd>
                     <p props="ios mac cpp unreal bp unity flutter rn electron cs">预设的美声效果选项，详见 <xref keyref="VOICE_BEAUTIFIER_PRESET" />。</p>
-                    <p props="android">预设的美声效果选项：
+                    <p props="android hmos">预设的美声效果选项：
                     <ul>
                     <li><ph keyref="VOICE_BEAUTIFIER_OFF" />: 原声，即关闭美声效果。</li>
                     <li><ph keyref="CHAT_BEAUTIFIER_MAGNETIC" />: 磁性（男）。</li>

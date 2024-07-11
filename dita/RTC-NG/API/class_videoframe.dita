@@ -11,8 +11,8 @@
     @CalledByNative("Buffer") int getWidth();
     @CalledByNative("Buffer") int getHeight();
     @CalledByNative("Buffer") I420Buffer toI420();
-    @Override @CalledByNative("Buffer") void retain();
     @Override @CalledByNative("Buffer") void release();
+    @Override @CalledByNative("Buffer") void retain();
     @CalledByNative("Buffer")
     Buffer cropAndScale(
         int cropX, int cropY, int cropWidth, int cropHeight, int scaleWidth, int scaleHeight);
@@ -39,9 +39,7 @@
     @CalledByNative("I422Buffer") int getStrideU();
     @CalledByNative("I422Buffer") int getStrideV();
   }
-  public interface RgbaBuffer extends Buffer {
-    @CalledByNative("RgbaBuffer") ByteBuffer getData();
-  }
+  public interface RgbaBuffer extends Buffer { @CalledByNative("RgbaBuffer") ByteBuffer getData(); }
   public interface TextureBuffer extends Buffer {
     enum Type {
       OES(GLES11Ext.GL_TEXTURE_EXTERNAL_OES),
@@ -61,11 +59,13 @@
     Type getType();
     @CalledByNative("TextureBuffer") int getTextureId();
     Matrix getTransformMatrix();
-    EglBase.Context getEglBaseContext();
+    @CalledByNative("TextureBuffer") EglBase.Context getEglBaseContext();
+    @CalledByNative("TextureBuffer") Object getSourceTexturePool();
     @CalledByNative("TextureBuffer") long getNativeEglContext();
     @CalledByNative("TextureBuffer") int getEglContextType();
     @CalledByNative("TextureBuffer") float[] getTransformMatrixArray();
     @CalledByNative("TextureBuffer") int getSequence();
+    @CalledByNative("TextureBuffer") boolean is10BitTexture();
   }
   public interface ColorSpace {
     enum Range {
@@ -135,7 +135,7 @@
       Unspecified(2),
       BT470M(4),
       BT470BG(5),
-      kSMPTE170M(6),
+      kSMPTE170M(6), 
       kSMPTE240M(7),
       kFILM(8),
       kBT2020(9),
@@ -168,12 +168,14 @@
   private SourceType sourceType;
   private float sampleAspectRatio;
   private VideoFrameMetaInfo metaInfo = new VideoFrameMetaInfo();
+  private @Nullable ByteBuffer alphaBuffer;
+  private int alphaStitchMode;
   public VideoFrame(Buffer buffer, int rotation, long timestampNs) {
-    this(buffer, rotation, timestampNs, null, null, 1.0f, SourceType.kUnspecified.ordinal());
+    this(buffer, rotation, timestampNs, new WrappedNativeColorSpace(), null, 0L, 1.0f, SourceType.kUnspecified.ordinal());
   }
   @CalledByNative
   public VideoFrame(Buffer buffer, int rotation, long timestampNs, ColorSpace colorSpace,
-      float sampleAspectRatio, int sourceType) {
+      ByteBuffer alphaBuffer, float sampleAspectRatio, int sourceType) {
     if (buffer == null) {
       throw new IllegalArgumentException("buffer not allowed to be null");
     }
@@ -184,6 +186,7 @@
     this.rotation = rotation;
     this.timestampNs = timestampNs;
     this.colorSpace = colorSpace;
+    this.alphaBuffer = alphaBuffer;
     this.sampleAspectRatio = sampleAspectRatio;
     this.sourceType = SourceType.values()[sourceType];
   }
@@ -201,6 +204,10 @@
   @CalledByNative
   public int getRotation() {
     return rotation;
+  }
+  @CalledByNative
+  public int getAlphaStitchMode() {
+    return alphaStitchMode;
   }
   @CalledByNative
   public long getTimestampNs() {
@@ -231,6 +238,16 @@
   public ColorSpace getColorSpace() {
     return colorSpace;
   }
+  @CalledByNative
+  public ByteBuffer getAlphaBuffer() {
+    return alphaBuffer;
+  }
+  public void fillAlphaData(ByteBuffer buffer) {
+    alphaBuffer = buffer;
+  }
+  public void setAlphaStitchMode(int mode) {
+    this.alphaStitchMode = mode;
+  }
   @Override
   public void retain() {
     buffer.retain();
@@ -239,6 +256,26 @@
   @CalledByNative
   public void release() {
     buffer.release();
+  }
+}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class VideoFrame {
+  public buffer:ArrayBuffer | null = null;
+  public yBuffer: ArrayBuffer | null = null;
+  public uBuffer: ArrayBuffer | null = null;
+  public vBuffer: ArrayBuffer | null = null;
+  public rotation:number = 0;
+  public timestamp:number = 0;
+  public stride:number = 0;
+  public uStride:number = 0;
+  public vStride:number = 0;
+  public width:number = 0;
+  public height:number = 0;
+  public type:VideoBufferType = VideoBufferType.VIDEO_BUFFER_RAW_DATA;
+  public format:VideoPixelFormat = VideoPixelFormat.VIDEO_PIXEL_NV21;
+  public faceInfo:Array&lt;FaceDetectionInfo&gt; | undefined = undefined;
+  constructor(type:VideoBufferType,format:VideoPixelFormat) {
+    this.type = type;
+    this.format = format;
   }
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraOutputVideoFrame : NSObject
@@ -255,8 +292,9 @@
 @property (nonatomic, assign) int64_t renderTimeMs;
 @property (nonatomic, assign) int avSyncType;
 @property(assign, nonatomic) CVPixelBufferRef _Nullable pixelBuffer;
+@property (nonatomic, assign) uint8_t* _Nullable alphaBuffer;
+@property (nonatomic, assign) AgoraAlphaStitchMode alphaStitchMode;
 @property(nonatomic, strong) NSDictionary *_Nonnull metaInfo;
-
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct VideoFrame {
   VideoFrame():
@@ -276,6 +314,9 @@
   metadata_size(0),
   sharedContext(0),
   textureId(0),
+  d3d11Texture2d(NULL),
+  alphaBuffer(NULL),
+  alphaStitchMode(0),
   pixelBuffer(NULL),
   metaInfo(NULL){
     memset(matrix, 0, sizeof(matrix));
@@ -296,7 +337,10 @@
   int metadata_size;
   void* sharedContext;
   int textureId;
+  void* d3d11Texture2d;
   float matrix[16];
+  uint8_t* alphaBuffer;
+  int alphaStitchMode;
   void* pixelBuffer;
   IVideoFrameMetaInfo* metaInfo;
 };</codeblock>
@@ -595,7 +639,7 @@ class VideoFrame {
           <pt>TextureBuffer</pt>
           <pd>Texture 视频帧的缓冲区，可以为 OES 或 RGB 格式。</pd>
         </plentry>
-        <plentry props="android">
+        <plentry props="android hmos">
           <pt>buffer</pt>
           <pd>
             <note type="attention">该参数不可为空，否则会发生异常。</note>缓冲区的数据。与该参数相关的方法如下所示：</pd>
@@ -617,7 +661,7 @@ class VideoFrame {
           <pt>renderTimeMs</pt>
           <pd>视频帧被渲染时的 Unix 时间戳（毫秒）。该时间戳可用于指导渲染视频帧。该参数为必填。</pd>
         </plentry>
-        <plentry props="android">
+        <plentry props="android hmos">
           <pt>timestampNs</pt>
           <pd>视频帧的时间戳（纳秒）。</pd>
         </plentry>
@@ -644,6 +688,10 @@ class VideoFrame {
           <pt>textureId</pt>
           <pd>该参数仅适用于 Texture 格式的视频数据。Texture ID。</pd>
         </plentry>
+        <plentry props="cpp" id="d3d">
+          <pt>d3d11Texture2d</pt>
+          <pd>该参数仅适用于 Windows Texture 格式的视频数据。表示一个指向 <codeph>ID3D11Texture2D</codeph> 类型对象的指针，该类型对象被视频帧所使用。</pd>
+        </plentry>
         <plentry props="cpp unreal bp electron unity rn flutter cs">
           <pt>matrix</pt>
           <pd>该参数仅适用于 Texture 格式的视频数据。为一个输入的 4x4 变换矩阵，典型值为一个单位矩阵。</pd>
@@ -652,11 +700,11 @@ class VideoFrame {
           <pt>pixelBuffer</pt>
           <pd>将数据填充到 CVPixelBuffer。</pd>
         </plentry>
-        <plentry props="android">
+        <plentry props="android hmos">
           <pt>colorSpace</pt>
           <pd>表示视频帧的色彩空间。详见 <xref keyref="videocolorspace-link"/>。</pd>
         </plentry>
-        <plentry props="android">
+        <plentry props="android hmos">
           <pt>sourceType</pt>
           <pd>在使用 SDK 采集视频时，表示该视频源的类型。
             <ul>
@@ -665,19 +713,31 @@ class VideoFrame {
             <li><parmname>kUnspecified</parmname>：(默认) 视频源类型未知。</li>
             </ul></pd>
         </plentry>
-        <plentry props="android">
+        <plentry props="android hmos">
           <pt>sampleAspectRatio</pt>
           <pd>单个像素的宽高比，即每个像素宽度与高度的比值。</pd>
         </plentry>
-        <plentry props="hide">
-          <pt>alphaBuffer</pt>
+        <plentry id="alphabuffer">
+          <pt props="cpp android">alphaBuffer</pt>
+          <pt props="apple">alphaBuf</pt>
           <pd>
-            <p>表示人像分割算法输出的 alpha 通道数据，跟视频帧的尺寸一致。每个像素点的取值范围为 [0,255]，其中 0 表示背景；255 代表前景（人像）。</p>
-            <p>在用户自定义视频渲染场景下，该参数可帮助实现将视频背景自渲染为各种效果，例如：透明、纯色、图片、视频等。
-              <note>该参数需要<xref keyref="ticket-link"/>开通。</note></p>
+            <p>采用人像分割算法输出的 Alpha 通道数据。该数据跟视频帧的尺寸一致，每个像素点的取值范围为 [0,255]，其中 0 代表背景；255 代表前景（人像）。</p>
+            <p>你可以通过设置该参数，实现将视频背景自渲染为各种效果，例如：透明、纯色、图片、视频等。</p>
+            <note type="attention" props="android apple">在自定义视频渲染场景下，需确保传入的视频帧和 <parmname>alphaBuffer</parmname> 均为 Full Range 类型；其他类型可能导致 Alpha 数据渲染不正常。</note>
           </pd>
         </plentry>
-        <plentry>
+      <plentry id="alphastitchmode">
+        <pt>alphaStitchMode</pt>
+        <pd>当视频帧中包含 Alpha 通道数据时，设置 <parmname>alphaBuffer</parmname> 和视频帧的相对位置。<ph props="cpp apple">详见 <xref keyref="ALPHA_STITCH_MODE"/>。</ph>
+          <ul props="android">
+            <li><ph keyref="NO_ALPHA_STITCH"/> (0)：（默认）仅视频帧，即  <parmname>alphaBuffer</parmname> 不和视频帧拼接。</li>
+            <li><ph keyref="ALPHA_STITCH_UP"/> (1)：<parmname>alphaBuffer</parmname> 位于视频帧的上方。</li>
+            <li><ph keyref="ALPHA_STITCH_BELOW"/> (2)：<parmname>alphaBuffer</parmname> 位于视频帧的下方。</li>
+            <li><ph keyref="ALPHA_STITCH_LEFT"/> (3)：<parmname>alphaBuffer</parmname> 位于视频帧的左侧。</li>
+            <li><ph keyref="ALPHA_STITCH_RIGHT"/> (4)：<parmname>alphaBuffer</parmname> 位于视频帧的右侧。</li>
+            </ul></pd>
+      </plentry>
+      <plentry>
           <pt>metaInfo</pt>
           <pd>
             <p>视频帧中的元信息。该参数需要<xref keyref="ticket-link"/>使用。</p>

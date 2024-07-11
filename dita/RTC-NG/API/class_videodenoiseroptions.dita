@@ -26,6 +26,7 @@
   }
 }
 </codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoDenoiserOptions : NSObject
 @property(nonatomic, assign) AgoraVideoDenoiserMode mode;
 @property(nonatomic, assign) AgoraVideoDenoiserLevel level;
@@ -109,7 +110,7 @@ struct FVideoDenoiserOptions
             <plentry>
                 <pt>level</pt>
                 <pd><ph>视频降噪等级。</ph><ph props="apple cpp unreal bp">详见 <xref keyref="VIDEO_DENOISER_LEVEL" />。</ph>
-                  <ul props="android">
+                  <ul props="android hmos">
                     <li><ph keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY" />(0):（默认）优先画质的暗光增强，会处理视频图像的亮度、细节、噪声，消耗的性能适中，处理速度适中，综合画质最优。</li>
                     <li><ph keyref="VIDEO_DENOISER_LEVEL_FAST" />(1)：优先性能的视频降噪。是在性能消耗和视频降噪效果中侧重于节省性能的等级。性能消耗较少，视频降噪速度较快。为避免处理后的视频有明显的拖影效果，建议你在摄像头固定的情况下使用该设置。</li>
                     <li><ph keyref="VIDEO_DENOISER_LEVEL_STRENGTH" />(2)：强效的视频降噪。是在性能消耗和视频降噪效果中侧重于视频降噪效果的等级。性能消耗较多，视频降噪速度较慢，视频降噪效果较好。如果 <parmname keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY" /> 不能满足你的视频降噪需求，你可以使用该设置。</li>
@@ -119,7 +120,7 @@ struct FVideoDenoiserOptions
             <plentry>
                 <pt>mode</pt>
                 <pd><ph>视频降噪模式。</ph><ph props="apple cpp unreal bp">详见 <xref keyref="VIDEO_DENOISER_MODE" />。</ph>
-                  <ul props="android">
+                  <ul props="android hmos">
                     <li><ph keyref="VIDEO_DENOISER_AUTO" />(0):（默认）自动模式。SDK 会根据环境光亮度自动开启或关闭视频降噪功能。</li>
                     <li><ph keyref="VIDEO_DENOISER_MANUAL" />(1)：手动模式。用户需手动开启或关闭视频降噪功能。</li>
                   </ul>

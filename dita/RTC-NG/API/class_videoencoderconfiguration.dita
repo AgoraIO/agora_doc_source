@@ -247,6 +247,17 @@
     this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_H265;
   }
 }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class VideoEncoderConfiguration{
+  public dimensions:VideoDimensions = new VideoDimensions(960,540);
+  public frameRate:number = 15;
+  public bitrate:number = 0;
+  public minBitrate:number = -1;
+  public orientationMode:OrientationMode = OrientationMode.ORIENTATION_MODE_ADAPTIVE;
+  public degradationPrefer:DegradationPreference = DegradationPreference.MAINTAIN_QUALITY;
+  public mirrorMode:MirrorModeType = MirrorModeType.MIRROR_MODE_DISABLED;
+  public advanceOptions:AdvanceOptions = new AdvanceOptions();
+  constructor() {}
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoEncoderConfiguration : NSObject
 @property(assign, nonatomic) CGSize dimensions;
 @property(assign, nonatomic) AgoraVideoCodecType codecType;
@@ -607,7 +618,7 @@ struct FVideoEncoderConfiguration
                 <pt>mirrorMode</pt>
                 <pd>
                     <p props="ios mac cpp framework">发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
-                    <p props="android">发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。
+                    <p props="android hmos">发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。
                       <ul>
                       <li><ph keyref="VIDEO_MIRROR_MODE_AUTO" /> (0)：SDK 决定镜像模式。默认关闭远端用户的镜像模式。</li>
                       <li><ph keyref="VIDEO_MIRROR_MODE_ENABLED" /> (1)：开启远端用户的镜像模式。</li>

@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int startLocalVideoTranscoder(LocalTranscoderConfiguration config);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public abstract startLocalVideoTranscoder(config: LocalTranscoderConfiguration): number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)startLocalVideoTranscoder:(AgoraLocalTranscoderConfiguration* _Nonnull)config NS_SWIFT_NAME(startLocalVideoTranscoder(_:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int startLocalVideoTranscoder(const LocalTranscoderConfiguration&amp; config) = 0;
 </codeblock>
@@ -57,7 +58,7 @@
                     <li props="cpp unreal bp electron unity cs flutter">在 Windows 平台上，最多支持 4 路摄像头采集的视频流 + 4 路屏幕共享流合图。</li>
                     <li props="cpp unreal bp mac unity electron flutter">在 macOS 平台上，最多支持 4 路摄像头采集的视频流 + 1 路屏幕共享流合图。</li>
                     <li props="cpp unreal bp unity rn flutter">在 Android 和 iOS 平台上，最多支持 2 路摄像头采集的视频流（需要设备本身支持双摄或支持外接摄像头）+ 1 路屏幕共享合图。</li>
-                    <li props="android">在 Android 平台上，最多支持 2 路摄像头采集的视频流（需要设备本身支持双摄或支持外接摄像头）+ 1 路屏幕共享合图。</li>
+                    <li props="android hmos">在 Android 平台上，最多支持 2 路摄像头采集的视频流（需要设备本身支持双摄或支持外接摄像头）+ 1 路屏幕共享合图。</li>
                     <li props="ios">在 iOS 平台上，最多支持 2 路摄像头采集的视频流（需要设备本身支持双摄或支持外接摄像头）+ 1 路屏幕共享合图。</li></ul></li>
                     <li>在进行合图配置时，需确保采集人像的摄像头视频流在合图中的图层编号大于屏幕共享流的图层编号，否则人像会被屏幕共享覆盖、无法显示在最终合图的视频流中。</li>
             </ul>
