@@ -4,6 +4,80 @@
 
 AirPods Pro does not support A2DP protocol in communication audio mode, which may lead to connection failure in that mode.
 
+## v4.4.0
+
+This version was released on July x, 2024.
+
+#### Compatibility changes
+
+This version includes optimizations to some features, including changes to SDK behavior, API renaming and deletion. To ensure normal operation of the project, update the code in the app after upgrading to this release.
+
+**Attention:** Starting from v4.4.0, the RTC SDK provides an API sunset notice, which includes information about deprecated and removed APIs in each version. See [API Sunset Notice](https://doc.shengwang.cn/api-ref/rtc/ios/API/rtc_api_sunset).
+
+1. To distinguish context information in different extension callbacks, this version removes the original extension callbacks and adds corresponding callbacks that contain context information (see the table below). You can identify the extension name, the user ID, and the service provider name through `AgoraExtensionContext` in each callback.
+
+   | Original Callback  | Current Callback                |
+   | ------------------ | ------------------------------- |
+   | `onExtensionEvent`   | `onExtensionEventWithContext`   |
+   | `onExtensionStarted` | `onExtensionStartedWithContext` |
+   | `onExtensionStopped` | `onExtensionStoppedWithContext` |
+   | `onExtensionError`   | `onExtensionErrorWithContext`   |
+
+2. Before v4.4.0, when a user role was set to audience and called `setAudioScenario` to set the audio scenario to chatroom (`AgoraAudioScenarioChatRoom`), the user would see a microphone permission request popup. As of v4.4.0, the SDK uses native iOS APIs to control the microphone, so audience members in a chatroom scenario will no longer receive the microphone permission request popup.
+
+3. This version renames the `receiveMetadata` callback to `didMetadataReceived` and removes the `data` and `timeStamp` parameters. You can get metadata-related information, including `timeStamp` (timestamp of the sent data), `uid` (user ID), and `channelId` (channel name) through the newly-added `metadata` parameter.
+
+#### New Features
+
+1. **Lite SDK**
+
+   Starting from this version, Agora introduces the Lite SDK, which includes only the basic audio and video capabilities and partially cuts advanced features, effectively reducing the app size after integrating the SDK.
+
+   - Lite SDK supports manual integration or third-party repository integration. For details, see and .
+   - For information on dynamic libraries included in the Lite SDK, see App size optimization.
+   - For the list of APIs supported by the Lite SDK, see [Lite SDK API List](https://doc.shengwang.cn/api-ref/rtc/ios/API/rtc_lite_api).
+   - For the limitations and precautions when using the Lite SDK to play media files, please refer to [Which audio file formats are supported by RTC SDK?](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format)
+
+2. **Alpha Transparency Effects**
+
+   This version introduces the Alpha transparency effects feature, supporting the transmission and rendering of Alpha channel data in video frames for SDK capture and custom capture scenarios, enabling transparent gift effects, custom backgrounds on the receiver end, etc.:
+
+   - `AgoraOutputVideoFrame` and `AgoraVideoFrame` add the `alphaBuffer` member: Sets the Alpha channel data.
+   - `AgoraVideoFrame` adds the `fillAlphaBuffer` member: For BGRA or RGBA formatted video data, sets whether to automatically extract the Alpha channel data and fill it into `alphaBuffer`.
+   - `AgoraOutputVideoFrame` and `AgoraVideoFrame` add the `alphaStitchMode` member: Sets the relative position of `alphaBuffer` and video frame stitching.
+
+   Additionally, `AgoraAdvancedVideoOptions` adds a new member `encodeAlpha`, which is used to set whether to encode and send Alpha information to the remote end. By default, the SDK does not encode and send Alpha information; if you need to encode and send Alpha information to the remote end (for example, when virtual background is enabled), explicitly call `setVideoEncoderConfiguration` to set the video encoding properties and set `encodeAlpha` to `YES`.
+
+3. **Voice AI Tuner**
+
+   This version introduces the voice AI tuner feature, which can enhance the sound quality and tone, similar to a physical sound card. You can enable the voice AI tuner feature by calling the `enableVoiceAITuner` method and passing in the sound effect types supported in the `AgoraVoiceAITunerType` enum to achieve effects like deep voice, cute voice, husky singing voice, etc.
+
+#### Improvements
+
+1. **Facial Region Beautification**
+
+   To avoid losing details in non-facial areas during heavy skin smoothing, this version improves the skin smoothing algorithm. The SDK now recognizes various parts of the face, applying smoothing to facial skin areas excluding the mouth, eyes, and eyebrows. In addition, the SDK supports smoothing up to two faces simultaneously.
+
+2. **Other Improvements**
+
+   This version also includes the following improvements:
+
+   - Optimizes transmission strategy: calling `enableInstantMediaRendering` no longer impacts the security of the transmission link.
+   - Deprecates redundant enumeration values `AgoraClientRoleChangeFailedRequestTimeout` and `AgoraClientRoleChangeFailedConnectionFailed` in `AgoraClientRoleChangeFailedReason`.
+   - Optimizes transmission strategy: calling `enableInstantMediaRendering` no longer impacts the security of the transmission link.
+   - Deprecates redundant enumerations `AgoraClientRoleChangeFailedRequestTimeout` and `AgoraClientRoleChangeFailedConnectionFailed` in `AgoraClientRoleChangeFailedReason`.
+
+#### Issues fixed
+
+This release fixed the following issues:
+
+- Occasional app crashes occurred when multiple remote users joined the channel simultaneously during real-time interaction. 
+- Remote video occasionally froze or displayed corrupted images when the app returned to the foreground after being in the background for a while. 
+- After the sender called `startDirectCdnStreaming` to start direct CDN streaming, frequent switching or toggling of the network occasionally resulted in a black screen on the receiver's end without a streaming failure callback on the sender's end. 
+- Audio playback failed when pushing external audio data using [pushExternalAudioFrameRawData](API/api_irtcengine_pushaudioframe2.html) and the sample rate was not set as a recommended value, such as 22050 Hz and 11025 Hz.
+
+
+
 ## v4.3.2
 
 This version was released on May x, 20xx.
