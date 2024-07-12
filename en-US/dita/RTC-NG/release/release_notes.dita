@@ -41,6 +41,14 @@
                     <li props="ios">Before v4.4.0, when a user role was set to audience and called <apiname keyref="setAudioScenario"/> to set the audio scenario to chatroom (<apiname keyref="AUDIO_SCENARIO_CHATROOM"/>), the user would see a microphone permission request popup. As of v4.4.0, the SDK uses native iOS APIs to control the microphone, so audience members in a chatroom scenario will no longer receive the microphone permission request popup.</li>
                     <li props="apple">This version renames the <codeph>receiveMetadata</codeph> callback to <apiname keyref="onMetadataReceived"/> and removes the <codeph>data</codeph> and <codeph>timeStamp</codeph> parameters. You can get metadata-related information, including <codeph>timeStamp</codeph> (timestamp of the sent data), <codeph>uid</codeph> (user ID), and <codeph>channelId</codeph> (channel name) through the newly-added <codeph>metadata</codeph> parameter.</li>
                     <li props="android">This version removes the <codeph>buffer</codeph>, <codeph>uid</codeph>, and <codeph>timeStampMs</codeph> parameters of the <apiname keyref="onMetadataReceived"/> callback. You can get metadata-related information, including <codeph>timeStampMs</codeph> (timestamp of the sent data), <codeph>uid</codeph> (user ID), and <codeph>channelId</codeph> (channel name) through the newly-added <codeph>metadata</codeph> parameter.</li>
+                    <li props="cpp">This version renames the following members in <xref keyref="ExternalVideoFrame"/>:
+                        <ul>
+                            <li><parmname>d3d11_texture_2d</parmname> is renamed to <parmname>d3d11Texture2d</parmname>.</li>
+                            <li><parmname>texture_slice_index</parmname> is renamed to <parmname>textureSliceIndex</parmname>.</li>
+                            <li><parmname>metadata_buffer</parmname> is renamed to <parmname>metadataBuffer</parmname>.</li>
+                            <li><parmname>metadata_size</parmname> is renamed to <parmname>metadataSize</parmname>.</li>
+                        </ul>
+                    </li>
                 </ol>
             </body>
         </topic>
@@ -91,13 +99,13 @@
                                 <ul>
                                     <li>Deprecates the <codeph>option</codeph> parameter of type int in <codeph><apiname keyref="setRemoteSubscribeFallbackOption"/></codeph>, and adds an overloaded function <codeph><apiname keyref="setRemoteSubscribeFallbackOption2"/></codeph> with the <codeph>option</codeph> parameter of type <codeph><apiname keyref="STREAM_FALLBACK_OPTIONS"/></codeph>.</li>
                                     <li>Deprecates the <codeph>streamType</codeph> parameter of type int in <codeph><apiname keyref="setRemoteVideoStreamType"/></codeph>, <codeph><apiname keyref="setRemoteDefaultVideoStreamType"/></codeph>, and <codeph><apiname keyref="setRemoteVideoStreamTypeEx"/></codeph>, and adds overloaded functions <codeph><apiname keyref="setRemoteVideoStreamType2"/></codeph>, <codeph><apiname keyref="setRemoteDefaultVideoStreamType2"/></codeph>, and <codeph><apiname keyref="setRemoteVideoStreamTypeEx2"/></codeph> with the <codeph>streamType</codeph> parameter of type <codeph><apiname keyref="VIDEO_STREAM_TYPE"/></codeph>.</li></ul></li>
-                            <li>Optimized transmission strategy: calling <apiname keyref="enableInstantMediaRendering"/> no longer impacts the security of the transmission link.</li>
-                            <li props="cpp mac electron unity flutter unreal bp">The <apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_DISPLAY_DISCONNECTED"/> enumerator is added in <apiname keyref="onLocalVideoStateChanged"/> callback , indicating that the display used for screen capture has been disconnected. (Windows, macOS)</li>
-                            <li props="mac electron unity flutter unreal bp">Optimized the video link for window sharing, reducing CPU usage. (macOS)</li>
-                            <li props="cpp unity flutter electron unreal">Improved echo cancellation for screen sharing scenarios.</li>
-                            <li props="cpp framework">Added the <codeph>channelId</codeph> parameter to <apiname keyref="Metadata"/>, which is used to get the channel name from which the metadata is sent.</li>
-                            <li props="apple cpp framework">Deprecated redundant enumeration values <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT"/> and <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED"/> in <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REASON"/>.</li>
-                            <li props="android">Deprecated redundant enumeration values <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT"/> and <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED"/>.</li>
+                            <li>Optimizes transmission strategy: calling <apiname keyref="enableInstantMediaRendering"/> no longer impacts the security of the transmission link.</li>
+                            <li props="cpp mac electron unity flutter unreal bp">The <apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_DISPLAY_DISCONNECTED"/> enumerator is Adds in <apiname keyref="onLocalVideoStateChanged"/> callback , indicating that the display used for screen capture has been disconnected. (Windows, macOS)</li>
+                            <li props="mac electron unity flutter unreal bp">Optimizes the video link for window sharing, reducing CPU usage. (macOS)</li>
+                            <li props="cpp unity flutter electron unreal">Improves echo cancellation for screen sharing scenarios.</li>
+                            <li props="cpp framework">Adds the <codeph>channelId</codeph> parameter to <apiname keyref="Metadata"/>, which is used to get the channel name from which the metadata is sent.</li>
+                            <li props="apple cpp framework">Deprecates redundant enumeration values <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT"/> and <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED"/> in <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REASON"/>.</li>
+                            <li props="android">Deprecates redundant enumeration values <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT"/> and <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED"/>.</li>
                         <li>Optimizes transmission strategy: calling <apiname keyref="enableInstantMediaRendering"/> no longer impacts the security of the transmission link.</li>
                         <li props="cpp mac electron unity flutter unreal bp">The <apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_DISPLAY_DISCONNECTED"/> enumerator is added in <apiname keyref="onLocalVideoStateChanged"/> callback, indicating that the display used for screen capture has been disconnected. (Windows, macOS)</li>
                         <li props="mac electron unity flutter unreal bp">Optimizes the video link for window sharing, reducing CPU usage. (macOS)</li>

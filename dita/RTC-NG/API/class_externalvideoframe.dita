@@ -99,13 +99,13 @@
         eglContext(NULL),
         eglType(EGL_CONTEXT10),
         textureId(0),
-        metadata_buffer(NULL),
-        metadata_size(0),
+        metadataBuffer(NULL),
+        metadataSize(0),
         alphaBuffer(NULL),
         fillAlphaBuffer(false),
         alphaStitchMode(0),
-        d3d11_texture_2d(NULL),
-        texture_slice_index(0){}
+        d3d11Texture2d(NULL),
+        textureSliceIndex(0){}
   enum EGL_CONTEXT_TYPE {
     EGL_CONTEXT10 = 0,
     EGL_CONTEXT14 = 1,
@@ -130,13 +130,13 @@
   EGL_CONTEXT_TYPE eglType;
   int textureId;
   float matrix[16];
-  uint8_t* metadata_buffer;
-  int metadata_size;
+  uint8_t* metadataBuffer;
+  int metadataSize;
   uint8_t* alphaBuffer;
   bool fillAlphaBuffer;
   int alphaStitchMode;
-  void *d3d11_texture_2d;
-  int texture_slice_index;
+  void *d3d11Texture2d;
+  int textureSliceIndex;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ExternalVideoFrame {
   type?: VideoBufferType;
@@ -408,13 +408,13 @@ class ExternalVideoFrame {
                 <pd>该参数仅适用于 Texture 格式的视频数据。为一个输入的 4x4 变换矩阵，典型值为一个单位矩阵。</pd>
             </plentry>
             <plentry props="cpp unreal bp unity electron rn cs flutter">
-                <pt props="cpp unreal bp unity electron rn cs">metadata_buffer</pt>
-                <pt props="flutter">metadataBuffer</pt>
+                <pt props="bp unity electron rn cs">metadata_buffer</pt>
+                <pt props="cpp unreal flutter">metadataBuffer</pt>
                 <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的数据缓冲区，默认值为 <codeph>NULL</codeph>。</pd>
             </plentry>
             <plentry props="cpp unreal bp unity electron rn cs flutter">
-                <pt props="cpp unreal bp unity electron rn cs">metadata_size</pt>
-                <pt props="flutter">metadataSize</pt>
+                <pt props="bp unity electron rn cs">metadata_size</pt>
+                <pt props="cpp unreal flutter">metadataSize</pt>
                 <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的大小，默认值为 <codeph>0</codeph>。</pd>
             </plentry>
             <plentry conkeyref="VideoFrame/d3d" props="cpp unity electron">
@@ -448,9 +448,13 @@ class ExternalVideoFrame {
                 <pt/>
                 <pd/>
             </plentry>
+            <plentry conkeyref="VideoFrame/d3d">
+                <pt/>
+                <pd/>
+            </plentry>
             <plentry props="cpp unity electron flutter">
-                <pt props="cpp unity electron">texture_slice_index</pt>
-                <pt props="flutter">textureSliceIndex</pt>
+                <pt props="unity electron">texture_slice_index</pt>
+                <pt props="cpp flutter">textureSliceIndex</pt>
                 <pd>该参数仅适用于 Windows Texture 格式的视频数据。表示在 <codeph>ID3D11Texture2D</codeph> 数组中，被视频帧使用的某一个 <codeph>ID3D11Texture2D</codeph> 纹理对象的索引。</pd>
             </plentry>
             <plentry>
