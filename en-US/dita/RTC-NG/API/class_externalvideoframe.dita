@@ -99,13 +99,13 @@
         eglContext(NULL),
         eglType(EGL_CONTEXT10),
         textureId(0),
-        metadata_buffer(NULL),
-        metadata_size(0),
+        metadataBuffer(NULL),
+        metadataSize(0),
         alphaBuffer(NULL),
         fillAlphaBuffer(false),
         alphaStitchMode(0),
-        d3d11_texture_2d(NULL),
-        texture_slice_index(0){}
+        d3d11Texture2d(NULL),
+        textureSliceIndex(0){}
   enum EGL_CONTEXT_TYPE {
     EGL_CONTEXT10 = 0,
     EGL_CONTEXT14 = 1,
@@ -130,13 +130,13 @@
   EGL_CONTEXT_TYPE eglType;
   int textureId;
   float matrix[16];
-  uint8_t* metadata_buffer;
-  int metadata_size;
+  uint8_t* metadataBuffer;
+  int metadataSize;
   uint8_t* alphaBuffer;
   bool fillAlphaBuffer;
   int alphaStitchMode;
-  void *d3d11_texture_2d;
-  int texture_slice_index;
+  void *d3d11Texture2d;
+  int textureSliceIndex;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ExternalVideoFrame {
   type?: VideoBufferType;
