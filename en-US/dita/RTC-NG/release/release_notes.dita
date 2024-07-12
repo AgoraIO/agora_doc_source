@@ -64,7 +64,7 @@
                         </ul>
                         <p>Additionally, <apiname keyref="AdvanceOptions"/> adds a new member <codeph>encodeAlpha</codeph>, which is used to set whether to encode and send Alpha information to the remote end. By default, the SDK does not encode and send Alpha information; if you need to encode and send Alpha information to the remote end (for example, when virtual background is enabled), explicitly call <apiname keyref="setVideoEncoderConfiguration"/> to set the video encoding properties and set <codeph>encodeAlpha</codeph> to <codeph><ph keyref="true"/></codeph>.</p>
                     </li>
-                    <li><ph><b>AI Voice Tuner</b></ph>
+                    <li><ph><b>Voice AI Tuner</b></ph>
                         <p>This version introduces the voice AI tuner feature, which can enhance the sound quality and tone, similar to a physical sound card. You can enable the voice AI tuner feature by calling the <apiname keyref="enableVoiceAITuner"/> method and passing in the sound effect types supported in the <apiname keyref="VOICE_AI_TUNER_TYPE"/> enum to achieve effects like deep voice, cute voice, husky singing voice, etc.</p>
                     </li>
                 </ol>
@@ -97,6 +97,13 @@
                             <li props="cpp framework">Added the <codeph>channelId</codeph> parameter to <apiname keyref="Metadata"/>, which is used to get the channel name from which the metadata is sent.</li>
                             <li props="apple cpp framework">Deprecated redundant enumeration values <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT"/> and <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED"/> in <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REASON"/>.</li>
                             <li props="android">Deprecated redundant enumeration values <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT"/> and <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED"/>.</li>
+                        <li>Optimizes transmission strategy: calling <apiname keyref="enableInstantMediaRendering"/> no longer impacts the security of the transmission link.</li>
+                        <li props="cpp mac electron unity flutter unreal bp">The <apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_DISPLAY_DISCONNECTED"/> enumerator is added in <apiname keyref="onLocalVideoStateChanged"/> callback, indicating that the display used for screen capture has been disconnected. (Windows, macOS)</li>
+                        <li props="mac electron unity flutter unreal bp">Optimizes the video link for window sharing, reducing CPU usage. (macOS)</li>
+                        <li props="cpp unity flutter electron unreal">Improves echo cancellation for screen sharing scenarios.</li>
+                        <li props="cpp framework">Adds the <codeph>channelId</codeph> parameter to <apiname keyref="Metadata"/>, which is used to get the channel name from which the metadata is sent.</li>
+                        <li props="apple cpp framework">Deprecates redundant enumerations <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT"/> and <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED"/> in <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REASON"/>.</li>
+                        <li props="android">Deprecates redundant enumerations <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT"/> and <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED"/>.</li>
                         </ul></p>
                     </li>
                 </ol>
