@@ -74,7 +74,7 @@ This release fixed the following issues:
 - Occasional app crashes occurred when multiple remote users joined the channel simultaneously during real-time interaction. 
 - Remote video occasionally froze or displayed corrupted images when the app returned to the foreground after being in the background for a while. 
 - After the sender called `startDirectCdnStreaming` to start direct CDN streaming, frequent switching or toggling of the network occasionally resulted in a black screen on the receiver's end without a streaming failure callback on the sender's end. 
-- Audio playback failed when pushing external audio data using [pushExternalAudioFrameRawData](API/api_irtcengine_pushaudioframe2.html) and the sample rate was not set as a recommended value, such as 22050 Hz and 11025 Hz.
+- Audio playback failed when pushing external audio data using `pushExternalAudioFrameRawData` and the sample rate was not set as a recommended value, such as 22050 Hz and 11025 Hz.
 
 
 
