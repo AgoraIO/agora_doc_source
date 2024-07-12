@@ -75,7 +75,7 @@
             <body>
                 <ol>
                     <li props="android cpp framework"><ph><b>Adaptive Hardware Decoding Support (Android, Windows)</b></ph>
-                        <p>This release introduces adaptive hardware decoding support, enhancing rendering smoothness on low-end devices and significantly reducing system load.</p>
+                        <p>This release introduces adaptive hardware decoding support, enhancing rendering smoothness on low-end devices and effectively reducing system load.</p>
                     </li>
                     <li props="cpp electron unity flutter unreal bp"><ph><b>Rendering Performance Enhancement (Windows)</b></ph>
                         <p>DirectX 11 renderer is now enabled by default on Windows devices, providing high-performance and high-quality graphics rendering capabilities.</p>
@@ -86,11 +86,10 @@
                     <li><ph><b>Other Improvements</b></ph>
                         <p>This version also includes the following improvements:
                         <ul>
-                        <li props="android">Optimized parameter types for the following APIs to enhance code readability, reduce potential errors, and facilitate future maintenance:
-                            <ul>
-                            <li>Deprecated <codeph>option</codeph> parameter of type int in <apiname keyref="setRemoteSubscribeFallbackOption"/>, introduced overloaded function <apiname keyref="setRemoteSubscribeFallbackOption2"/> with <codeph>option</codeph> parameter of type <apiname keyref="STREAM_FALLBACK_OPTIONS"/>.</li>
-                            <li>Deprecated <codeph>streamType</codeph> parameter of type int in <apiname keyref="setRemoteVideoStreamType"/>, <apiname keyref="setRemoteDefaultVideoStreamType"/>, and <apiname keyref="setRemoteVideoStreamTypeEx"/>, introduced overloaded functions <apiname keyref="setRemoteVideoStreamType2"/>, <apiname keyref="setRemoteDefaultVideoStreamType2"/>, and <apiname keyref="setRemoteVideoStreamTypeEx2"/> with <codeph>streamType</codeph> parameter of type <apiname keyref="VIDEO_STREAM_TYPE"/>.</li>
-                            </ul></li>
+                            <li props="android">Optimizes the parameter types of the following APIs. These improvements enhance code readability, reduce potential errors, and facilitate future maintenance.
+                                <ul>
+                                    <li>Deprecates the <codeph>option</codeph> parameter of type int in <codeph><apiname keyref="setRemoteSubscribeFallbackOption"/></codeph>, and adds an overloaded function <codeph><apiname keyref="setRemoteSubscribeFallbackOption2"/></codeph> with the <codeph>option</codeph> parameter of type <codeph><apiname keyref="STREAM_FALLBACK_OPTIONS"/></codeph>.</li>
+                                    <li>Deprecates the <codeph>streamType</codeph> parameter of type int in <codeph><apiname keyref="setRemoteVideoStreamType"/></codeph>, <codeph><apiname keyref="setRemoteDefaultVideoStreamType"/></codeph>, and <codeph><apiname keyref="setRemoteVideoStreamTypeEx"/></codeph>, and adds overloaded functions <codeph><apiname keyref="setRemoteVideoStreamType2"/></codeph>, <codeph><apiname keyref="setRemoteDefaultVideoStreamType2"/></codeph>, and <codeph><apiname keyref="setRemoteVideoStreamTypeEx2"/></codeph> with the <codeph>streamType</codeph> parameter of type <codeph><apiname keyref="VIDEO_STREAM_TYPE"/></codeph>.</li></ul></li>
                             <li>Optimized transmission strategy: calling <apiname keyref="enableInstantMediaRendering"/> no longer impacts the security of the transmission link.</li>
                             <li props="cpp mac electron unity flutter unreal bp">The <apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_DISPLAY_DISCONNECTED"/> enumerator is added in <apiname keyref="onLocalVideoStateChanged"/> callback , indicating that the display used for screen capture has been disconnected. (Windows, macOS)</li>
                             <li props="mac electron unity flutter unreal bp">Optimized the video link for window sharing, reducing CPU usage. (macOS)</li>
