@@ -46,7 +46,7 @@ This version includes optimizations to some features, including changes to SDK b
    This version also includes the following improvements:
 
    - Optimizes transmission strategy: calling `enableInstantMediaRendering` no longer impacts the security of the transmission link.
-   - The `AgoraLocalVideoStreamReasonScreenCaptureDisplayDisconnected` enumerator is Adds in `localVideoStateChangedOfState` callback , indicating that the display used for screen capture has been disconnected. 
+   - The `AgoraLocalVideoStreamReasonScreenCaptureDisplayDisconnected` enumerator is added in `localVideoStateChangedOfState` callback , indicating that the display used for screen capture has been disconnected. 
    - Optimizes the video link for window sharing, reducing CPU usage. 
    - Deprecates redundant enumeration values `AgoraClientRoleChangeFailedRequestTimeout` and `AgoraClientRoleChangeFailedConnectionFailed` in `AgoraClientRoleChangeFailedReason`.
    - Optimizes transmission strategy: calling `enableInstantMediaRendering` no longer impacts the security of the transmission link.
