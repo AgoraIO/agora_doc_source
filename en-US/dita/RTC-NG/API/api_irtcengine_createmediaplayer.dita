@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_createmediaplayer">
     <title><ph keyref="createMediaPlayer" /></title>
-    <shortdesc id="short"><ph props="android cpp unreal bp unity rn electron flutter cs" id="shortdesc">Creates a media player instance. </ph><ph props="apple" id="shortdesc1">Creates one <xref keyref="IMediaPlayer" /> instance.</ph></shortdesc>
+    <shortdesc id="short"><ph props="android cpp unreal bp unity rn electron flutter cs" id="shortdesc">Creates a media player object. </ph><ph props="apple" id="shortdesc1">Creates a media player instance.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -26,9 +26,20 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;MediaPlayer&gt; createMediaPlayer();</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section props="ios mac" id="parameters">
-            <title>Parameters</title>
-            <parml>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>Before calling any APIs in the <xref keyref="IMediaPlayer"/> class, you need to call this method to create an instance of the media player.</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>You can call this method either before or after joining a channel.</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title><ph props="apple">Parameters</ph></title>
+            <parml props="apple">
             <plentry>
                 <pt>delegate</pt>
                 <pd conkeyref="create/handler" />
@@ -37,7 +48,7 @@
         <section id="return_values">
             <title>Returns</title>
             <ul id="ul_cwj_3ry_hqb" props="native unreal bp rn electron flutter unity cs">
-            <li>The <xref keyref="IMediaPlayer" /> instance, if the method call succeeds.</li>
+            <li>An <xref keyref="IMediaPlayer" /> object, if the method call succeeds.</li>
             <li>An empty pointer, if the method call fails.</li>
             </ul>
             <p props="apple">An <xref keyref="IMediaPlayer" /> instance, if the method call succeeds.</p>

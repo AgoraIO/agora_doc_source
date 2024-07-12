@@ -27,12 +27,17 @@
             <codeblock props="flutter" outputclass="language-dart">MediaPlayerCacheManager getMediaPlayerCacheManager()</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <p>When you successfully call this method, the SDK returns a media player cache manager instance. The cache manager is a singleton pattern. Therefore, multiple calls to this method returns the same instance.</p>
-            <note type="attention">
-            <p>Make sure the <xref keyref="IRtcEngine" /> is initialized before you call this method.</p>
-            </note> </section>
+            <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+                <p>Before calling any APIs in the <xref keyref="IMediaPlayerCacheManager"/> class, you need to call this method to get a cache manager instance of a media player.</p>
+            </section>
+            <section id="timing" deliveryTarget="details">
+                <title>Call timing</title>
+                <p>Make sure the <xref keyref="IRtcEngine" /> is initialized before you call this method.</p>
+            </section>
+            <section id="restriction" deliveryTarget="details">
+                <title>Restrictions</title>
+                <p>The cache manager is a singleton pattern. Therefore, multiple calls to this method returns the same instance.</p>
+            </section>
         <section id="return_values">
             <title>Returns</title>
             <p>The <xref keyref="IMediaPlayerCacheManager" /> instance.</p>

@@ -24,13 +24,21 @@
             <codeblock props="rn" outputclass="language-typescript">abstract openWithMediaSource(source: MediaSource): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; openWithMediaSource(MediaSource source);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p></section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <p>This method supports opening media files of different sources, including a custom media source, and allows you to configure the playback scenarios.</p>
-            <p conkeyref="open/uri" props="android"/>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp framework">This method supports opening media files of different sources, including a custom media source, and allows you to configure the playback scenarios.</p>
+            <p props="android hmos">This method supports opening different types of media files, including URI files starting with <codeph>content://</codeph>, media files in the <codeph>assets</codeph> folder, and setting the playback options.</p>
+            <p props="apple">This method supports opening different types of media files, including files starting with <codeph>ipod-library://</codeph>, and setting the playback options.</p>
             <p id="format" props="native"><ph props="cn">For supported formats of Agora media player, see <xref keyref="media-player"/>.</ph></p>
         </section>
-        <section id="parameters">
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>You can call this method either before or after joining a channel.</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>This method is called asynchronously. If you need to play a media file, make sure you receive the <xref keyref="onPlayerSourceStateChanged"/> callback reporting <apiname keyref="PLAYER_STATE_OPEN_COMPLETED"/> before calling the <xref keyref="play"/> method to play the file.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>

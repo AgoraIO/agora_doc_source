@@ -664,7 +664,7 @@ struct FLiveTranscoding
     <section id="parameters">
       <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
       <parml>
-      <plentry props="android cpp unreal bp electron rn unity flutter cs">
+      <plentry props="android hmos cpp unreal bp electron rn unity flutter cs">
         <pt>width</pt>
         <pd>
           <p>The width of the video in pixels. The default value is 360.</p>
@@ -673,7 +673,7 @@ struct FLiveTranscoding
           <li>When pushing audio streams to the CDN, set <codeph>width</codeph> and <codeph>height</codeph> as 0.</li>
           </ul> </pd>
       </plentry>
-      <plentry props="android cpp unreal bp electron rn unity flutter cs">
+      <plentry props="android hmos cpp unreal bp electron rn unity flutter cs">
         <pt>height</pt>
         <pd>
           <p>The height of the video in pixels. The default value is 640.</p>
@@ -706,7 +706,7 @@ struct FLiveTranscoding
           <p>Frame rate (fps) of the output video stream set for Media Push. The default value is 15. The value range is (0,30].</p>
           <note type="attention">The Agora server adjusts any value over 30 to 30.</note></pd>
       </plentry>
-      <plentry>
+      <plentry props="android cpp apple framework">
         <pt>lowLatency</pt>
         <pd>
           <dl outputclass="deprecated">
@@ -743,7 +743,7 @@ struct FLiveTranscoding
       </plentry>
       <plentry>
         <pt props="ios mac cpp unreal bp unity electron rn flutter cs">transcodingExtraInfo</pt>
-        <pt props="android">userConfigExtraInfo</pt>
+        <pt props="android hmos">userConfigExtraInfo</pt>
         <pd>
           <p>Reserved property. Extra user-defined information to send SEI for the H.264/H.265 video stream to the CDN live client. Maximum length: 4096 bytes. For more information on SEI, see <xref keyref="faq-sei">SEI-related questions</xref>.</p>
         </pd>
@@ -761,7 +761,7 @@ struct FLiveTranscoding
       </plentry>
       <plentry props="android cpp unreal bp unity electron rn flutter cs">
         <pt>backgroundColor</pt>
-        <pd props="android">
+        <pd props="android hmos">
           <dl outputclass="deprecated">
           <dlentry>
             <dt>Deprecated</dt>
@@ -931,7 +931,7 @@ struct FLiveTranscoding
         <pt>getUserCount</pt>
         <pd>Gets the number of users transcoded in the CDN live streaming. See <xref keyref="getUserCount"/>.</pd>
       </plentry>
-      <plentry props="android">
+      <plentry props="android ">
         <pt>getUsers</pt>
         <pd>Gets the user list in the CDN live streaming. See <xref keyref="getUsers"/>.</pd>
       </plentry>
@@ -943,7 +943,7 @@ struct FLiveTranscoding
         <pt>removeBackgroundImage</pt>
         <pd>Removes a background image from the background image list. See <xref keyref="removeBackgroundImage"/>.</pd>
       </plentry>
-      <plentry props="android apple">
+      <plentry props="android hmos apple">
         <pt>removeUser</pt>
         <pd>Removes a user from video mixing during the CDN live streaming. See <xref keyref="removeUser"/>.</pd>
       </plentry>

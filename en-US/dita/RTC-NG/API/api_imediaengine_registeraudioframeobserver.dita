@@ -23,11 +23,18 @@
             <codeblock props="flutter" outputclass="language-dart">void registerAudioFrameObserver(AudioFrameObserver observer);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <p>Call this method to register an audio frame observer object (register a callback). When you need the SDK to trigger <xref keyref="onMixedAudioFrame"/>, <xref keyref="onRecordAudioFrame"/>, <xref keyref="onPlaybackAudioFrame"/> or <xref keyref="onEarMonitoringAudioFrame"/> callback, you need to use this method to register the callbacks.</p>
-            <note type="attention">Ensure that you call this method before joining a channel.</note> </section>
-        <section id="parameters">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>Call this method to register an audio frame observer object (register a callback). When you need the SDK to trigger the <xref keyref="onMixedAudioFrame"/>, <xref keyref="onRecordAudioFrame"/>, <xref keyref="onPlaybackAudioFrame"/>, <xref keyref="onPlaybackAudioFrameBeforeMixing"/> or <xref keyref="onEarMonitoringAudioFrame"/> callback, you need to use this method to register the callbacks.</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>Call this method before joining a channel.</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>
@@ -35,7 +42,7 @@
                 <pt props="ios mac">delegate</pt>
                 <pt props="unity cs">audioFrameObserver</pt>
                 <pd>
-                    <p>The  observer instance. <ph>See <xref keyref="IAudioFrameObserver"/></ph>. <ph props="android mac ios unity cpp unreal bp cs">Set the value as <ph keyref="NULL"/> to release the instance. </ph><ph>Agora recommends calling this method after receiving <xref keyref="onLeaveChannel"/> to release the audio observer object.</ph></p>
+                    <p><ph>The observer instance. See <xref keyref="IAudioFrameObserver"/>. </ph><ph props="android mac ios unity cpp unreal bp cs">Set the value as <ph keyref="NULL"/> to release the instance. </ph><ph>Agora recommends calling this method after receiving <xref keyref="onLeaveChannel"/> to release the audio observer object.</ph></p>
                 </pd>
             </plentry>
             <plentry props="unity cs">
@@ -65,5 +72,5 @@
             <li><codeph><ph keyref="true"/></codeph>: Success.</li>
             <li><codeph><ph keyref="false"/></codeph>: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul></section>
-    </refbody>
+        </refbody>
 </reference>

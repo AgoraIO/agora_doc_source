@@ -35,12 +35,13 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p id="desc">Sends data stream messages to all users in a channel. The SDK has the following restrictions on this method:<ul>
-            <li>Up to 30 packets can be sent per second in a channel with each packet having a maximum size of 1 KB.</li>
-            <li>Each client can send up to 6 KB of data per second.</li>
+            <p>After calling <xref keyref="createDataStream2" />, you can call this method to send data stream messages to all users in the channel.</p>
+            <p id="limit">The SDK has the following restrictions on this method:<ul>
             <li>Each user can have up to five data streams simultaneously.</li>
+            <li>Up to 60 packets can be sent per second in a data stream with each packet having a maximum size of 1 KB.</li>
+            <li>Up to 30 KB of data can be sent per second in a data stream.</li>
             </ul></p>
-            <p>A successful method call triggers the <xref keyref="onStreamMessage" /> callback on the remote client, from which the remote user gets the stream message. A failed method call triggers the <xref keyref="onStreamMessageError" /> callback on the remote client.</p>
+            <p id="error">A successful method call triggers the <xref keyref="onStreamMessage" /> callback on the remote client, from which the remote user gets the stream message. A failed method call triggers the <xref keyref="onStreamMessageError" /> callback on the remote client.</p>
             <note type="attention">
             <ul>
             <li>Ensure that you call <xref keyref="createDataStream2" /> to create a data channel before calling this method.</li>
@@ -54,7 +55,7 @@
                 <pd>The data stream ID. You can get the data stream ID by calling <apiname keyref="createDataStream2" />.</pd>
             </plentry>
             <plentry>
-                <pt props="android">message</pt>
+                <pt props="android hmos">message</pt>
                 <pt props="electron cpp unreal bp ios mac unity flutter rn cs">data</pt>
                 <pd>The message to be sent.</pd>
             </plentry>

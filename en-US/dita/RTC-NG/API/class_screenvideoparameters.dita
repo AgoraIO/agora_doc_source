@@ -133,7 +133,7 @@ struct FScreenVideoParameters {
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p props="android">Only available for scenarios where <parmname>captureVideo</parmname> is <codeph><ph keyref="true"/></codeph>.</p>
+            <p props="android hmos">Only available for scenarios where <parmname>captureVideo</parmname> is <codeph><ph keyref="true"/></codeph>.</p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
@@ -160,7 +160,7 @@ struct FScreenVideoParameters {
                       </ul></note>
                     </pd>
             </plentry>
-            <plentry props="android">
+            <plentry props="android hmos">
                 <pt>width</pt>
                 <pd>The width (px) of the video encoding resolution. The default value is 1280. If the aspect ratio of width to height is different from that of the screen, the SDK adjusts the video encoding resolution according to the following rules (take width × height of 1280 × 720 as an example):<ul>
                     <li>When the width and height of the screen are both lower than those of dimensions, the SDK uses the resolution of the screen for video encoding. For example, if the screen is 640 × 360, the SDK uses 640 × 360 for video encoding.</li>
@@ -181,7 +181,7 @@ struct FScreenVideoParameters {
                       </ul></note>
                     </pd>
             </plentry>
-            <plentry props="android">
+            <plentry props="android hmos">
                 <pt>height</pt>
                 <pd>The height (px) of the video encoding resolution. The default value is 720. If the aspect ratio of width to height is different from that of the screen, the SDK adjusts the video encoding resolution according to the following rules (take width × height of 1280 × 720 as an example):<ul>
                     <li>When the width and height of the screen are both lower than those of dimensions, the SDK uses the resolution of the screen for video encoding. For example, if the screen is 640 × 360, the SDK uses 640 × 360 for video encoding.</li>
@@ -203,7 +203,7 @@ struct FScreenVideoParameters {
                     </pd>
             </plentry>
             <plentry>
-                <pt props="android">frameRate</pt>
+                <pt props="android hmos">frameRate</pt>
                 <pt props="ios cpp unreal bp electron unity rn flutter cs">frameRate</pt>
                 <pd>The video encoding frame rate (fps). The default value is 15.</pd>
             </plentry>
@@ -213,7 +213,7 @@ struct FScreenVideoParameters {
             </plentry>
             <plentry>
                 <pt>contentHint</pt>
-                <pd><ph>The content hint for screen sharing. </ph><ph props="cpp unreal bp ios">See <xref keyref="VIDEO_CONTENT_HINT"/>.</ph><ul props="android">
+                <pd><ph>The content hint for screen sharing. </ph><ph props="cpp unreal bp ios">See <xref keyref="VIDEO_CONTENT_HINT"/>.</ph><ul props="android hmos">
                     <li><ph keyref="CONTENT_HINT_NONE"/>(0): (Default) No content hint.</li>
                     <li><ph keyref="CONTENT_HINT_MOTION"/>(1): Motion-intensive content. Choose this option if you prefer smoothness or when you are sharing a video clip, movie, or video game.</li>
                     <li><ph keyref="CONTENT_HINT_DETAILS"/>(2): Motionless content. Choose this option if you prefer sharpness or when you are sharing a picture, PowerPoint slides, or texts.</li>

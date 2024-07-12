@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setmixedaudioframeparameters">
     <title><ph keyref="setMixedAudioFrameParameters" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the audio data format reported by <xref keyref="onMixedAudioFrame" />.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Set the format of the raw audio data after mixing for audio capture and playback.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -38,35 +38,33 @@
     required int samplesPerCall});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="parameters">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p><ph conkeyref="setRecordingAudioFrameParameters/function"/><ph>The SDK triggers the <xref keyref="onMixedAudioFrame" /> callback according to the sampling interval.</ph></p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>Call this method before joining a channel.</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
-            <plentry>
-                <pt>sampleRate</pt>
-                <pd>
-                    <p>The sample rate (Hz) of the audio data, which can be set as <codeph>8000</codeph>, <codeph>16000</codeph>, <codeph>32000</codeph>, <codeph>44100</codeph>, or <codeph>48000</codeph>.</p>
-                </pd>
+            <plentry conkeyref="setRecordingAudioFrameParameters/sampleRate">
+                <pt/>
+                <pd/>
             </plentry>
-            </parml>
-            <parml id="parml_i4h_rfg_3qb">
-            <plentry>
-                <pt>channel</pt>
-                <pd>
-                    <p>The number of channels of the audio data, which can be set as <codeph>1(Mono)</codeph> or <codeph>2(Stereo)</codeph>.</p>
-                </pd>
+            <plentry conkeyref="setRecordingAudioFrameParameters/channel">
+                <pt/>
+                <pd/>
             </plentry>
-            </parml>
-            <parml id="parml_q4f_sfg_3qb">
-            <plentry>
-                <pt>samplesPerCall</pt>
-                <pd>
-                    <p>Sets the number of samples. In Media Push scenarios, set it as <codeph>1024</codeph>.</p>
-                </pd>
+            <plentry conkeyref="setRecordingAudioFrameParameters/samplesPerCall">
+                <pt/>
+                <pd/>
             </plentry>
-            </parml>
-            <note id="note_n1y_cgg_3qb">
-            <p>The SDK triggers the <apiname keyref="onMixedAudioFrame" /> callback according to the sample interval. Sampleinterval (sec) = <codeph>samplePerCall</codeph>/(<codeph>sampleRate</codeph> × <codeph>channel</codeph>) Ensure that the value of sample interval more than or equal to 0.01.</p>
-            </note> </section>
+            </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
@@ -74,5 +72,5 @@
             <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
-    </refbody>
+        </refbody>
 </reference>
