@@ -19,6 +19,8 @@ This version includes optimizations to some features, including changes to SDK b
 
 1. This version renames the `receiveMetadata` callback to `didMetadataReceived` and removes the `data` and `timeStamp` parameters. You can get metadata-related information, including `timeStamp` (timestamp of the sent data), `uid` (user ID), and `channelId` (channel name) through the newly-added `metadata` parameter.
 
+1. Before v4.4.0, when a device was plugged in or in an idle state, the SDK only reported the status code `0` through the `state` parameter in the `stateChanged` callback. As of v4.4.0, a new status code `3` is added to report that a device is plugged in.
+
 #### New Features
 
 1. **Alpha Transparency Effects**
