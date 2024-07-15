@@ -6,7 +6,7 @@
 <refbody>
     <section><note type="attention">如果在本页中无法查询到你要使用的 API，则代表 Lite SDK 不支持该 API，调用该 API 时会返回错误码 -2。</note></section>
     <section>
-        <title><ph keyref="IRtcEngine"/></title>
+        <title><apiname keyref="IRtcEngine"/></title>
         <ul>
             <li props="android electron flutter rn unity"><xref keyref="addHandler"/></li>
             <li><xref keyref="adjustAudioMixingPlayoutVolume"/></li>
@@ -164,7 +164,7 @@
             <li><xref keyref="queryDeviceScore"/></li>
             <li props="cpp unreal bp"><xref keyref="queryInterface"/></li>
             <li><xref keyref="rate"/></li>
-            <li><xref keyref="registerAudioEncodedFrameObserver"/></li>
+            <li>在 <xref keyref="registerAudioEncodedFrameObserver"/> 中，<parmname>config</parmname> 中的 <parmname>encodingType</parmname> 仅支持 OPUS 编码格式。</li>
             <li props="android apple"><xref keyref="registerAudioFrameObserver"/></li>
             <li props="unity"><xref keyref="registerAudioFrameObserver"/></li>
             <li><xref keyref="registerAudioSpectrumObserver"/></li>
@@ -335,7 +335,7 @@
     </ul>
     </section>
     <section>
-        <title><ph keyref="IRtcEngineEx"/></title>
+        <title><apiname keyref="IRtcEngineEx"/></title>
         <ul>
             <li props="unity flutter"><xref keyref="createAgoraRtcEngineEx"/></li>
             <li props="android cpp unreal unity"><xref keyref="createDataStreamEx1"/></li>
@@ -390,7 +390,7 @@
         </ul>
     </section>
     <section>
-        <title><ph keyref="IRtcEngineEventHandler"/></title>
+        <title><apiname keyref="IRtcEngineEventHandler"/></title>
         <ul>
             <li><xref keyref="onActiveSpeaker"/></li>
             <li props="cpp unreal bp electron unity flutter"><xref keyref="onAudioDeviceStateChanged"/></li>
@@ -479,7 +479,7 @@
         </ul>
     </section>
     <section props="android apple">
-        <title><ph keyref="IMediaExtensionObserver"/></title>
+        <title><apiname keyref="IMediaExtensionObserver"/></title>
         <ul>
             <li><xref keyref="onExtensionErrorWithContext"/></li>
             <li><xref keyref="onExtensionEventWithContext"/></li>
@@ -488,7 +488,7 @@
         </ul>
     </section>
     <section>
-        <title><ph keyref="IMediaPlayer"/></title>
+        <title><apiname keyref="IMediaPlayer"/></title>
         <note type="attention">媒体播放器中的 API 仅支持处理音频媒体文件、不支持处理视频媒体文件。</note>
         <ul>
             <li><xref keyref="adjustPlayoutVolume"/></li>
@@ -547,28 +547,29 @@
         </ul>
     </section>
     <section>
-        <title><ph keyref="IVideoEncodedFrameObserver"/></title>
+        <title><apiname keyref="IVideoEncodedFrameObserver"/></title>
         <ul>
             <li><xref keyref="onEncodedVideoFrameReceived"/></li>
         </ul>
     </section>
     <section>
-        <title><ph keyref="IVideoFrameObserver"/></title>
+        <title><apiname keyref="IVideoFrameObserver"/></title>
+        <note type="attention">通过 <xref keyref="onCaptureVideoFrame"/>、<xref keyref="onPreEncodeVideoFrame"/> 和 <xref keyref="onRenderVideoFrame"/> 回调返回的视频数据中，<parmname>alphabuffer</parmname> 为 <codeph><ph keyref="NULL"/></codeph>。</note>
         <ul>
             <li props="native unreal bp"><xref keyref="getMirrorApplied"/></li>
             <li props="native unreal bp"><xref keyref="getObservedFramePosition"/></li>
             <li props="native unreal bp"><xref keyref="getRotationApplied"/></li>
             <li props="native unreal bp"><xref keyref="getVideoFormatPreference"/></li>
             <li props="native unreal bp"><xref keyref="getVideoFrameProcessMode"/></li>
-            <li><xref keyref="onCaptureVideoFrame"/></li>
             <li props="cpp unreal bp"><xref keyref="onFrame_IVideoFrameObserver"/></li>
             <li props="hide"><xref keyref="onMediaPlayerVideoFrame"/></li>
+            <li><xref keyref="onCaptureVideoFrame"/></li>
             <li><xref keyref="onPreEncodeVideoFrame"/></li>
             <li><xref keyref="onRenderVideoFrame"/></li>
         </ul>
     </section>
     <section>
-        <title><ph keyref="IMediaExtensionObserver"/></title>
+        <title><apiname keyref="IMediaExtensionObserver"/></title>
         <ul>
             <li><xref keyref="onExtensionErrorWithContext"/></li>
             <li><xref keyref="onExtensionEventWithContext"/></li>
@@ -577,7 +578,7 @@
         </ul>
     </section>
     <section>
-        <title><ph keyref="IMusicPlayer"/></title>
+        <title><apiname keyref="IMusicPlayer"/></title>
         <ul>
             <li props="android"><xref keyref="getPlaySrc"/></li>
             <li><xref keyref="open_IMusicPlayer"/></li>
