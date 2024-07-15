@@ -18,7 +18,7 @@ This version includes optimizations to some features, including changes to SDK b
 
    | Original Callback  | Current Callback                |
    | ------------------ | ------------------------------- |
-   | `onExtensionEvent`   | `onExtensionEventWithContext`   |
+   | `onEvent`   | `onExtensionEventWithContext`   |
    | `onExtensionStarted` | `onExtensionStartedWithContext` |
    | `onExtensionStopped` | `onExtensionStoppedWithContext` |
    | `onExtensionError`   | `onExtensionErrorWithContext`   |

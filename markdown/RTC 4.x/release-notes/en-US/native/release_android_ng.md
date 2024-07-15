@@ -21,10 +21,10 @@ This version includes optimizations to some features, including changes to SDK b
 
    | Original Callback  | Current Callback       |
    | ------------------ | ---------------------- |
-   | `onExtensionEvent`   | `onEventWithContext`   |
-   | `onExtensionStarted` | `onStartedWithContext` |
-   | `onExtensionStopped` | `onStoppedWithContext` |
-   | `onExtensionError`   | `onErrorWithContext`   |
+   | `onEvent`   | `onEventWithContext`   |
+   | `onStarted` | `onStartedWithContext` |
+   | `onStopped` | `onStoppedWithContext` |
+   | `onError`   | `onErrorWithContext`   |
 
 2. This version removes the `buffer`, `uid`, and `timeStampMs` parameters of the `onMetadataReceived` callback. You can get metadata-related information, including `timeStampMs` (timestamp of the sent data), `uid` (user ID), and `channelId` (channel name) through the newly-added `metadata` parameter.
 
