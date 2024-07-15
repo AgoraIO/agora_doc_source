@@ -17,12 +17,12 @@ This version includes optimizations to some features, including changes to SDK b
    | `onExtensionStopped` | `onExtensionStoppedWithContext` |
    | `onExtensionError`   | `onExtensionErrorWithContext`   |
 
-2. This version renames the following members in `ExternalVideoFrame` :
+2. This version renames the following members in `ExternalVideoFrame`:
 
-   - **d3d11_texture_2d** is renamed to **d3d11Texture2d**.
-   - **texture_slice_index** is renamed to **textureSliceIndex**.
-   - **metadata_buffer** is renamed to **metadataBuffer**.
-   - **metadata_size** is renamed to **metadataSize**.
+   - `d3d11_texture_2d` is renamed to `d3d11Texture2d`.
+   - `texture_slice_index` is renamed to `textureSliceIndex`.
+   - `metadata_buffer` is renamed to `metadataBuffer`.
+   - `metadata_size` is renamed to `metadataSize`.
 
 #### New Features
 

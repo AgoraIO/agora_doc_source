@@ -34,8 +34,8 @@ This version includes optimizations to some features, including changes to SDK b
 
    Starting from this version, Agora introduces the Lite SDK, which includes only the basic audio and video capabilities and partially cuts advanced features, effectively reducing the app size after integrating the SDK.
 
-   - Lite SDK supports manual integration or third-party repository integration. For details, see [SDK Downloads](xxx) and [Integrate SDK](xxx).
-   - For information on dynamic libraries included in the Lite SDK, see [App size optimization](xxx).
+   - Lite SDK supports manual integration or third-party repository integration. For details, see [Download SDKs]() and [Integrate the SDK]().
+   - For information on dynamic libraries included in the Lite SDK, see [App size optimization]().
    - For the list of APIs supported by the Lite SDK, see [Lite SDK API List](https://doc.shengwang.cn/api-ref/rtc/android/API/rtc_lite_api).
    - For the limitations and precautions when using the Lite SDK to play media files, please refer to [Which audio file formats are supported by RTC SDK?](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format)
 
