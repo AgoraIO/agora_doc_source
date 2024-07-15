@@ -14,7 +14,7 @@
 
                     <note type="attention" props="native">Starting from v4.4.0, the RTC SDK provides an API sunset notice, which includes information about deprecated and removed APIs in each version. See <xref href="https://doc.shengwang.cn/api-ref/rtc/android/API/rtc_api_sunset" props="android">API Sunset Notice</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/android/API/rtc_api_sunset" props="cpp">API Sunset Notice</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/ios/API/rtc_api_sunset" props="ios">API Sunset Notice</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/macos/API/rtc_api_sunset" props="mac">API Sunset Notice</xref>.</note></p>
                 <ol>
-                    <li>To distinguish context information in different extension callbacks, this version removes the original extension callbacks and adds corresponding callbacks that contain context information (see the table below). You can identify the extension name, the user ID, and the service provider name through <apiname keyref="ExtensionContext"/> in each callback.
+                    <li>To distinguish context information in different extension callbacks, this version removes the original extension callbacks and adds corresponding callbacks that contain context information (see the table below). You can identify the extension name, the user ID, and the service provider name through <codeph><apiname keyref="ExtensionContext"/></codeph> in each callback.
                         <simpletable frame="all" relcolwidth="1* 1*" id="simpletable_zqj_n1t_xbc">
                             <sthead>
                                 <stentry>Original Callback</stentry>
@@ -22,31 +22,31 @@
                             </sthead>
                             <strow>
                                 <stentry>onExtensionEvent</stentry>
-                                <stentry><apiname keyref="onExtensionEventWithContext"/></stentry>
+                                <stentry><codeph><apiname keyref="onExtensionEventWithContext"/></codeph></stentry>
                             </strow>
                             <strow>
                                 <stentry>onExtensionStarted</stentry>
-                                <stentry><apiname keyref="onExtensionStartedWithContext"/></stentry>
+                                <stentry><codeph><apiname keyref="onExtensionStartedWithContext"/></codeph></stentry>
                             </strow>
                             <strow>
                                 <stentry>onExtensionStopped</stentry>
-                                <stentry><apiname keyref="onExtensionStoppedWithContext"/></stentry>
+                                <stentry><codeph><apiname keyref="onExtensionStoppedWithContext"/></codeph></stentry>
                             </strow>
                             <strow>
                                 <stentry>onExtensionError</stentry>
-                                <stentry><apiname keyref="onExtensionErrorWithContext"/></stentry>
+                                <stentry><codeph><apiname keyref="onExtensionErrorWithContext"/></codeph></stentry>
                             </strow>
                         </simpletable>
                     </li>
-                    <li props="ios">Before v4.4.0, when a user role was set to audience and called <apiname keyref="setAudioScenario"/> to set the audio scenario to chatroom (<apiname keyref="AUDIO_SCENARIO_CHATROOM"/>), the user would see a microphone permission request popup. As of v4.4.0, the SDK uses native iOS APIs to control the microphone, so audience members in a chatroom scenario will no longer receive the microphone permission request popup.</li>
-                    <li props="apple">This version renames the <codeph>receiveMetadata</codeph> callback to <apiname keyref="onMetadataReceived"/> and removes the <codeph>data</codeph> and <codeph>timeStamp</codeph> parameters. You can get metadata-related information, including <codeph>timeStamp</codeph> (timestamp of the sent data), <codeph>uid</codeph> (user ID), and <codeph>channelId</codeph> (channel name) through the newly-added <codeph>metadata</codeph> parameter.</li>
-                    <li props="android">This version removes the <codeph>buffer</codeph>, <codeph>uid</codeph>, and <codeph>timeStampMs</codeph> parameters of the <apiname keyref="onMetadataReceived"/> callback. You can get metadata-related information, including <codeph>timeStampMs</codeph> (timestamp of the sent data), <codeph>uid</codeph> (user ID), and <codeph>channelId</codeph> (channel name) through the newly-added <codeph>metadata</codeph> parameter.</li>
+                    <li props="ios">Before v4.4.0, when a user role was set to audience and called <codeph><apiname keyref="setAudioScenario"/></codeph> to set the audio scenario to chatroom (<codeph><apiname keyref="AUDIO_SCENARIO_CHATROOM"/></codeph>), the user would see a microphone permission request popup. As of v4.4.0, the SDK uses native iOS APIs to control the microphone, so audience members in a chatroom scenario will no longer receive the microphone permission request popup.</li>
+                    <li props="apple">This version renames the <codeph>receiveMetadata</codeph> callback to <codeph><apiname keyref="onMetadataReceived"/></codeph> and removes the <codeph>data</codeph> and <codeph>timeStamp</codeph> parameters. You can get metadata-related information, including <codeph>timeStamp</codeph> (timestamp of the sent data), <codeph>uid</codeph> (user ID), and <codeph>channelId</codeph> (channel name) through the newly-added <codeph>metadata</codeph> parameter.</li>
+                    <li props="android">This version removes the <codeph>buffer</codeph>, <codeph>uid</codeph>, and <codeph>timeStampMs</codeph> parameters of the <codeph><apiname keyref="onMetadataReceived"/></codeph> callback. You can get metadata-related information, including <codeph>timeStampMs</codeph> (timestamp of the sent data), <codeph>uid</codeph> (user ID), and <codeph>channelId</codeph> (channel name) through the newly-added <codeph>metadata</codeph> parameter.</li>
                     <li props="cpp">This version renames the following members in <xref keyref="ExternalVideoFrame"/>:
                         <ul>
-                            <li><parmname>d3d11_texture_2d</parmname> is renamed to <parmname>d3d11Texture2d</parmname>.</li>
-                            <li><parmname>texture_slice_index</parmname> is renamed to <parmname>textureSliceIndex</parmname>.</li>
-                            <li><parmname>metadata_buffer</parmname> is renamed to <parmname>metadataBuffer</parmname>.</li>
-                            <li><parmname>metadata_size</parmname> is renamed to <parmname>metadataSize</parmname>.</li>
+                            <li><codeph>d3d11_texture_2d</codeph> is renamed to <codeph>d3d11Texture2d</codeph>.</li>
+                            <li><codeph>texture_slice_index</codeph> is renamed to <codeph>textureSliceIndex</codeph>.</li>
+                            <li><codeph>metadata_buffer</codeph> is renamed to <codeph>metadataBuffer</codeph>.</li>
+                            <li><codeph>metadata_size</codeph> is renamed to <codeph>metadataSize</codeph>.</li>
                         </ul>
                     </li>
                 </ol>
@@ -67,14 +67,14 @@
                     <li><ph><b>Alpha Transparency Effects</b></ph>
                         <p>This version introduces the Alpha transparency effects feature, supporting the transmission and rendering of Alpha channel data in video frames for SDK capture and custom capture scenarios, enabling transparent gift effects, custom backgrounds on the receiver end, etc.:</p>
                         <ul>
-                        <li><apiname keyref="VideoFrame"/> and <apiname keyref="ExternalVideoFrame"/> add the <codeph>alphaBuffer</codeph> member: Sets the Alpha channel data.</li>
-                        <li><apiname keyref="ExternalVideoFrame"/> adds the <codeph>fillAlphaBuffer</codeph> member: For BGRA or RGBA formatted video data, sets whether to automatically extract the Alpha channel data and fill it into <codeph>alphaBuffer</codeph>.</li>
-                        <li><apiname keyref="VideoFrame"/> and <apiname keyref="ExternalVideoFrame"/> add the <codeph>alphaStitchMode</codeph> member: Sets the relative position of <codeph>alphaBuffer</codeph> and video frame stitching.</li>
+                        <li><codeph><apiname keyref="VideoFrame"/></codeph> and <codeph><apiname keyref="ExternalVideoFrame"/></codeph> add the <codeph>alphaBuffer</codeph> member: Sets the Alpha channel data.</li>
+                        <li><codeph><apiname keyref="ExternalVideoFrame"/></codeph> adds the <codeph>fillAlphaBuffer</codeph> member: For BGRA or RGBA formatted video data, sets whether to automatically extract the Alpha channel data and fill it into <codeph>alphaBuffer</codeph>.</li>
+                        <li><codeph><apiname keyref="VideoFrame"/></codeph> and <codeph><apiname keyref="ExternalVideoFrame"/></codeph> add the <codeph>alphaStitchMode</codeph> member: Sets the relative position of <codeph>alphaBuffer</codeph> and video frame stitching.</li>
                         </ul>
-                        <p>Additionally, <apiname keyref="AdvanceOptions"/> adds a new member <codeph>encodeAlpha</codeph>, which is used to set whether to encode and send Alpha information to the remote end. By default, the SDK does not encode and send Alpha information; if you need to encode and send Alpha information to the remote end (for example, when virtual background is enabled), explicitly call <apiname keyref="setVideoEncoderConfiguration"/> to set the video encoding properties and set <codeph>encodeAlpha</codeph> to <codeph><ph keyref="true"/></codeph>.</p>
+                        <p>Additionally, <codeph><apiname keyref="AdvanceOptions"/></codeph> adds a new member <codeph>encodeAlpha</codeph>, which is used to set whether to encode and send Alpha information to the remote end. By default, the SDK does not encode and send Alpha information; if you need to encode and send Alpha information to the remote end (for example, when virtual background is enabled), explicitly call <codeph><apiname keyref="setVideoEncoderConfiguration"/></codeph> to set the video encoding properties and set <codeph>encodeAlpha</codeph> to <codeph><ph keyref="true"/></codeph>.</p>
                     </li>
                     <li><ph><b>Voice AI Tuner</b></ph>
-                        <p>This version introduces the voice AI tuner feature, which can enhance the sound quality and tone, similar to a physical sound card. You can enable the voice AI tuner feature by calling the <apiname keyref="enableVoiceAITuner"/> method and passing in the sound effect types supported in the <apiname keyref="VOICE_AI_TUNER_TYPE"/> enum to achieve effects like deep voice, cute voice, husky singing voice, etc.</p>
+                        <p>This version introduces the voice AI tuner feature, which can enhance the sound quality and tone, similar to a physical sound card. You can enable the voice AI tuner feature by calling the <codeph><apiname keyref="enableVoiceAITuner"/></codeph> method and passing in the sound effect types supported in the <codeph><apiname keyref="VOICE_AI_TUNER_TYPE"/></codeph> enum to achieve effects like deep voice, cute voice, husky singing voice, etc.</p>
                     </li>
                 </ol>
             </body>
@@ -97,22 +97,15 @@
                         <ul>
                             <li props="android">Optimizes the parameter types of the following APIs. These improvements enhance code readability, reduce potential errors, and facilitate future maintenance.
                                 <ul>
-                                    <li>Deprecates the <codeph>option</codeph> parameter of type int in <codeph><apiname keyref="setRemoteSubscribeFallbackOption"/></codeph>, and adds an overloaded function <codeph><apiname keyref="setRemoteSubscribeFallbackOption2"/></codeph> with the <codeph>option</codeph> parameter of type <codeph><apiname keyref="STREAM_FALLBACK_OPTIONS"/></codeph>.</li>
-                                    <li>Deprecates the <codeph>streamType</codeph> parameter of type int in <codeph><apiname keyref="setRemoteVideoStreamType"/></codeph>, <codeph><apiname keyref="setRemoteDefaultVideoStreamType"/></codeph>, and <codeph><apiname keyref="setRemoteVideoStreamTypeEx"/></codeph>, and adds overloaded functions <codeph><apiname keyref="setRemoteVideoStreamType2"/></codeph>, <codeph><apiname keyref="setRemoteDefaultVideoStreamType2"/></codeph>, and <codeph><apiname keyref="setRemoteVideoStreamTypeEx2"/></codeph> with the <codeph>streamType</codeph> parameter of type <codeph><apiname keyref="VIDEO_STREAM_TYPE"/></codeph>.</li></ul></li>
-                            <li>Optimizes transmission strategy: calling <apiname keyref="enableInstantMediaRendering"/> no longer impacts the security of the transmission link.</li>
-                            <li props="cpp mac electron unity flutter unreal bp">The <apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_DISPLAY_DISCONNECTED"/> enumerator is Adds in <apiname keyref="onLocalVideoStateChanged"/> callback , indicating that the display used for screen capture has been disconnected. (Windows, macOS)</li>
+                                    <li>Deprecates the <codeph>option</codeph> parameter of type int in <codeph><codeph><apiname keyref="setRemoteSubscribeFallbackOption"/></codeph></codeph>, and adds an overloaded function <codeph><codeph><apiname keyref="setRemoteSubscribeFallbackOption2"/></codeph></codeph> with the <codeph>option</codeph> parameter of type <codeph><codeph><apiname keyref="STREAM_FALLBACK_OPTIONS"/></codeph></codeph>.</li>
+                                    <li>Deprecates the <codeph>streamType</codeph> parameter of type int in <codeph><codeph><apiname keyref="setRemoteVideoStreamType"/></codeph></codeph>, <codeph><codeph><apiname keyref="setRemoteDefaultVideoStreamType"/></codeph></codeph>, and <codeph><codeph><apiname keyref="setRemoteVideoStreamTypeEx"/></codeph></codeph>, and adds overloaded functions <codeph><codeph><apiname keyref="setRemoteVideoStreamType2"/></codeph></codeph>, <codeph><codeph><apiname keyref="setRemoteDefaultVideoStreamType2"/></codeph></codeph>, and <codeph><codeph><apiname keyref="setRemoteVideoStreamTypeEx2"/></codeph></codeph> with the <codeph>streamType</codeph> parameter of type <codeph><codeph><apiname keyref="VIDEO_STREAM_TYPE"/></codeph></codeph>.</li></ul></li>
+                            <li>Optimizes transmission strategy: calling <codeph><apiname keyref="enableInstantMediaRendering"/></codeph> no longer impacts the security of the transmission link.</li>
+                            <li props="cpp mac electron unity flutter unreal bp">The <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_DISPLAY_DISCONNECTED"/></codeph> enumerator is added in <codeph><apiname keyref="onLocalVideoStateChanged"/></codeph> callback , indicating that the display used for screen capture has been disconnected. (Windows, macOS)</li>
                             <li props="mac electron unity flutter unreal bp">Optimizes the video link for window sharing, reducing CPU usage. (macOS)</li>
                             <li props="cpp unity flutter electron unreal">Improves echo cancellation for screen sharing scenarios.</li>
-                            <li props="cpp framework">Adds the <codeph>channelId</codeph> parameter to <apiname keyref="Metadata"/>, which is used to get the channel name from which the metadata is sent.</li>
-                            <li props="apple cpp framework">Deprecates redundant enumeration values <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT"/> and <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED"/> in <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REASON"/>.</li>
-                            <li props="android">Deprecates redundant enumeration values <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT"/> and <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED"/>.</li>
-                        <li>Optimizes transmission strategy: calling <apiname keyref="enableInstantMediaRendering"/> no longer impacts the security of the transmission link.</li>
-                        <li props="cpp mac electron unity flutter unreal bp">The <apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_DISPLAY_DISCONNECTED"/> enumerator is added in <apiname keyref="onLocalVideoStateChanged"/> callback, indicating that the display used for screen capture has been disconnected. (Windows, macOS)</li>
-                        <li props="mac electron unity flutter unreal bp">Optimizes the video link for window sharing, reducing CPU usage. (macOS)</li>
-                        <li props="cpp unity flutter electron unreal">Improves echo cancellation for screen sharing scenarios.</li>
-                        <li props="cpp framework">Adds the <codeph>channelId</codeph> parameter to <apiname keyref="Metadata"/>, which is used to get the channel name from which the metadata is sent.</li>
-                        <li props="apple cpp framework">Deprecates redundant enumerations <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT"/> and <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED"/> in <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REASON"/>.</li>
-                        <li props="android">Deprecates redundant enumerations <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT"/> and <apiname keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED"/>.</li>
+                            <li props="cpp framework">Adds the <codeph>channelId</codeph> parameter to <codeph><apiname keyref="Metadata"/></codeph>, which is used to get the channel name from which the metadata is sent.</li>
+                            <li props="apple cpp framework">Deprecates redundant enumeration values <codeph><apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT"/></codeph> and <codeph><apiname keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED"/></codeph> in <codeph><apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REASON"/></codeph>.</li>
+                            <li props="android">Deprecates redundant enumeration values <codeph><apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT"/></codeph> and <codeph><apiname keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED"/></codeph>.</li>
                         </ul></p>
                     </li>
                 </ol>
@@ -125,7 +118,7 @@
                 <ul>
                     <li props="ios rn unity flutter unreal bp">Occasional app crashes occurred when multiple remote users joined the channel simultaneously during real-time interaction. (iOS)</li>
                     <li props="ios rn unity flutter unreal bp">Remote video occasionally froze or displayed corrupted images when the app returned to the foreground after being in the background for a while. (iOS)</li>
-                    <li props="ios rn unity flutter unreal bp">After the sender called <apiname keyref="startDirectCdnStreaming"/> to start direct CDN streaming, frequent switching or toggling of the network occasionally resulted in a black screen on the receiver's end without a streaming failure callback on the sender's end. (iOS)</li>
+                    <li props="ios rn unity flutter unreal bp">After the sender called <codeph><apiname keyref="startDirectCdnStreaming"/></codeph> to start direct CDN streaming, frequent switching or toggling of the network occasionally resulted in a black screen on the receiver's end without a streaming failure callback on the sender's end. (iOS)</li>
                     <li props="android ios unity flutter rn unreal bp">Audio playback failed when pushing external audio data using <xref keyref="pushAudioFrame" props="unity flutter rn unreal bp"/><xref keyref="pushAudioFrame2" props="android ios"/> and the sample rate was not set as a recommended value, such as 22050 Hz and 11025 Hz.</li>
                 </ul>
             </body>

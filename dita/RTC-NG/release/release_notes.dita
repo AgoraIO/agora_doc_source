@@ -20,19 +20,19 @@
                                 <stentry>现有回调</stentry>
                             </sthead>
                             <strow>
-                                <stentry><codeph>onExtensionEvent</codeph></stentry>
+                                <stentry><codeph props="cpp">onExtensionEvent</codeph><codeph props="apple android">onEvent</codeph></stentry>
                                 <stentry><codeph><apiname keyref="onExtensionEventWithContext"/></codeph></stentry>
                             </strow>
                             <strow>
-                                <stentry><codeph>onExtensionStarted</codeph></stentry>
+                                <stentry><codeph props="apple cpp">onExtensionStarted</codeph><codeph props="android">onStarted</codeph></stentry>
                                 <stentry><codeph><apiname keyref="onExtensionStartedWithContext"/></codeph></stentry>
                             </strow>
                             <strow>
-                                <stentry><codeph>onExtensionStopped</codeph></stentry>
+                                <stentry><codeph props="apple cpp">onExtensionStopped</codeph><codeph props="android">onStopped</codeph></stentry>
                                 <stentry><codeph><apiname keyref="onExtensionStoppedWithContext"/></codeph></stentry>
                             </strow>
                             <strow>
-                                <stentry><codeph>onExtensionError</codeph></stentry>
+                                <stentry><codeph props="apple cpp">onExtensionError</codeph><codeph props="android">onError</codeph></stentry>
                                 <stentry><codeph><apiname keyref="onExtensionErrorWithContext"/></codeph></stentry>
                             </strow>
                         </simpletable>
@@ -42,11 +42,13 @@
                     <li props="android">该版本删除了 <codeph><apiname keyref="onMetadataReceived"/></codeph> 回调中的 <codeph>buffer</codeph>、<codeph>uid</codeph>、<codeph>timeStampMs</codeph> 参数，你可以通过新增的 <codeph>metadata</codeph> 参数来获取 Metadata 的相关信息，包括 <codeph>timeStampMs</codeph>（发送数据的时间戳）、<codeph>uid</codeph>（用户 ID）、<codeph>channelId</codeph>（源频道名称）等。</li>
                     <li props="cpp">该版本修改了 <xref keyref="ExternalVideoFrame"/> 中的以下成员名称：
                         <ul>
-                        <li><parmname>d3d11_texture_2d</parmname> 更名为 <parmname>d3d11Texture2d</parmname>。</li>
-                        <li><parmname>texture_slice_index</parmname> 更名为 <parmname>textureSliceIndex</parmname>。</li>
-                        <li><parmname>metadata_buffer</parmname> 更名为 <parmname>metadataBuffer</parmname>。</li>
-                        <li><parmname>metadata_size</parmname> 更名为 <parmname>metadataSize</parmname>。</li>
+                        <li><codeph>d3d11_texture_2d</codeph> 更名为 <codeph>d3d11Texture2d</codeph>。</li>
+                        <li><codeph>texture_slice_index</codeph> 更名为 <codeph>textureSliceIndex</codeph>。</li>
+                        <li><codeph>metadata_buffer</codeph> 更名为 <codeph>metadataBuffer</codeph>。</li>
+                        <li><codeph>metadata_size</codeph> 更名为 <codeph>metadataSize</codeph>。</li>
                         </ul></li>
+                    <li props="windows">在 v4.4.0 之前，音视频设备已插入、已就绪均会通过 <codeph><apiname keyref="MEDIA_DEVICE_STATE_TYPE"/></codeph> 中的 <codeph><apiname keyref="MEDIA_DEVICE_STATE_IDLE"/></codeph>（0）状态报告。为进一步区分设备状态，自 v4.4.0 起，SDK 会通过新增的 <codeph><apiname keyref="MEDIA_DEVICE_STATE_PLUGGED_IN"/></codeph>（3）报告设备已插入。</li>
+                    <li props="mac">在 v4.4.0 之前，音视频设备已插入、已就绪均会通过 <codeph><apiname keyref="stateChanged"/></codeph> 回调中的 <codeph>state</codeph> 参数报告状态码 <codeph>0</codeph>。为进一步区分设备状态，自 v4.4.0 起，SDK 会通过新增的状态码 <codeph>3</codeph> 报告设备已插入。</li>
                 </ol>
             </body>
         </topic>
