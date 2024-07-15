@@ -64,8 +64,6 @@ This version includes optimizations to some features, including changes to SDK b
 
    - Optimizes transmission strategy: calling `enableInstantMediaRendering` no longer impacts the security of the transmission link.
    - Deprecates redundant enumeration values `AgoraClientRoleChangeFailedRequestTimeout` and `AgoraClientRoleChangeFailedConnectionFailed` in `AgoraClientRoleChangeFailedReason`.
-   - Optimizes transmission strategy: calling `enableInstantMediaRendering` no longer impacts the security of the transmission link.
-   - Deprecates redundant enumerations `AgoraClientRoleChangeFailedRequestTimeout` and `AgoraClientRoleChangeFailedConnectionFailed` in `AgoraClientRoleChangeFailedReason`.
 
 #### Issues fixed
 
