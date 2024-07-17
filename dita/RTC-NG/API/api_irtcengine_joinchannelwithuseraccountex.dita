@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_joinchannelwithuseraccountex">
     <title><ph keyref="joinChannelWithUserAccountEx" /></title>
-    <shortdesc id="short"><ph id="shortdesc">使用 User Account 加入频道，并设置是否自动订阅音频或视频流。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">使用 User Account 和 Token 加入频道，并设置频道媒体选项。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -48,20 +48,13 @@
     required ChannelMediaOptions options});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
-            <p props="native unreal bp flutter" conkeyref="joinChannelWithUserAccount2/desc1" />
-            <p props="rn electron" id="desc1">该方法允许本地用户使用 User Account 加入频道。成功加入频道后，会触发以下回调：
-
-
-            <ul>
-            <li>本地：<xref keyref="onLocalUserRegistered" />、<xref keyref="onJoinChannelSuccess" /> 和 <xref keyref="onConnectionStateChanged" /> 回调。</li>
-            <li>远端：通信场景下的用户和直播场景下的主播加入频道后，远端会分别触发 <xref keyref="onUserJoined" /> 和 <xref keyref="onUserInfoUpdated" /> 回调。</li>
-            </ul></p>
-            <p props="native unreal bp flutter" conkeyref="joinChannelWithUserAccount2/desc2" />
-            <p props="rn electron" id="desc2">用户成功加入频道后，默认订阅频道内所有其他用户的音频流和视频流，因此产生用量并影响计费。如果想取消订阅，可以通过调用相应的 <apiname>mute</apiname> 方法实现。</p>
-            <note conkeyref="joinChannelWithUserAccount1/note" props="native unreal bp flutter unity cs" />
-            <note type="attention" id="note" props="rn electron">为保证通信质量，请确保频道内使用同一类型的数据标识用户身份。即同一频道内需要统一使用 UID 或 User Account。如果有用户通过 Web SDK 加入频道，请确保 Web 加入的用户也是同样类型。</note> </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" conkeyref="joinChannelWithUserAccount2/detailed_desc"></section>
+        <section id="timing" deliveryTarget="details" conkeyref="joinChannel2/timing">
+        </section>
+        <section id="restriction" deliveryTarget="details" conkeyref="joinChannel2/restriction">
+        </section>
+        <section id="related" deliveryTarget="details" conkeyref="joinChannelWithUserAccount2/related">
+        </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
@@ -93,12 +86,7 @@
                 <pd />
             </plentry>
             </parml> </section>
-        <section id="return_values">
-            <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp electron rn">
-            <li>0: 方法调用成功。</li>
-            <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
-            </ul> </section>
+        <section id="return_values" conkeyref="joinChannel2/return_values">
+            </section>
     </refbody>
 </reference>
