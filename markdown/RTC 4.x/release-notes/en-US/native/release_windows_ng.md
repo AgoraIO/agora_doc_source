@@ -24,7 +24,6 @@ This version includes optimizations to some features, including changes to SDK b
    - `metadata_buffer` is renamed to `metadataBuffer`.
    - `metadata_size` is renamed to `metadataSize`.
    
-3. Before v4.4.0, when a device was plugged in or in an idle state, the SDK only reported `MEDIA_DEVICE_STATE_IDLE` (0). As of v4.4.0, a new status code `MEDIA_DEVICE_STATE_PLUGGED_IN` (3) is added to report that a device is plugged in. 
 
 #### New Features
 
