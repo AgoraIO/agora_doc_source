@@ -30,10 +30,10 @@
         <section id="detailed_desc">
             <title>Details</title>
             <p>After successfully calling this method, you will receive the <xref keyref="onPlayerEvent" /> callback, reporting the result of the seek operation to the new playback position.</p>
-            <p>To play the media file from a specific position, do the following:<ul>
-            <li>Call this method to seek to the position you want to begin playback.</li>
-            <li>Call the <xref keyref="play" /> method to play the media file.</li>
-            </ul></p>
+            <ul>
+                <li>如果你在播放已经完成后（收到 <xref keyref="onPlayerSourceStateChanged"/> 回调报告播放状态为 <ph keyref="PLAYER_STATE_PLAYBACK_COMPLETED"/> 或 <ph keyref="PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED"/>）再调用 <apiname keyref="seek"/>，方法调用成功后，SDK 会从你指定的位置开始自动播放，此时你会收到 <xref keyref="onPlayerSourceStateChanged"/> 回调报告播放状态为 <ph keyref="PLAYER_STATE_PLAYING"/>。</li>
+                <li>如果你在播放暂停的情况下调用 <apiname keyref="seek"/>，调用成功后 SDK 会定位到你指定位置，如需播放，请调用 <xref keyref="resume"/> 或 <xref keyref="play"/>。</li>
+            </ul>
         </section>
         <section id="parameters">
             <title>Parameters</title>
