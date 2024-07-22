@@ -1837,6 +1837,38 @@
                 </topicmeta>
             </keydef>
         </topichead>
+        <topichead navtitle="虚拟节拍器">
+            <keydef keys="startRhythmPlayer" href="../API/api_irtcengine_startrhythmplayer.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>startRhythmPlayer</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="stopRhythmPlayer" href="../API/api_irtcengine_stoprhythmplayer.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>stopRhythmPlayer</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="configRhythmPlayer" href="../API/api_irtcengine_configrhythmplayer.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>configRhythmPlayer</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+        </topichead>
+        <topichead navtitle="虚拟节拍器事件">
+            <keydef keys="onRhythmPlayerStateChanged" href="../API/callback_irtcengineeventhandler_onrhythmplayerstatechanged.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onRhythmPlayerStateChanged</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+        </topichead>
         <topichead navtitle="人声效果">
             <keydef keys="setLocalVoicePitch" href="../API/api_irtcengine_setlocalvoicepitch.dita">
                 <topicmeta>
@@ -1918,7 +1950,7 @@
                 </topicmeta>
             </keydef>
         </topichead>
-        <topichead navtitle="空间音效基础方法">
+        <topichead navtitle="空间音频基础方法">
             <keydef keys="muteLocalAudioStream_IBaseSpatialAudioEngine" href="../API/api_ibasespatialaudioengine_mutelocalaudiostream.dita">
                 <topicmeta>
                     <keywords>
@@ -2004,7 +2036,7 @@
                 </topicmeta>
             </keydef>
         </topichead>
-        <topichead navtitle="本地直角坐标空间音效算法">
+        <topichead navtitle="本地直角坐标空间音频算法">
             <keydef keys="clearRemotePositions" href="../API/api_ilocalspatialaudioengine_clearremotepositions.dita">
                 <topicmeta>
                     <keywords>
@@ -2034,7 +2066,7 @@
                 </topicmeta>
             </keydef>
         </topichead>
-        <topichead navtitle="本地球坐标空间音效算法">
+        <topichead navtitle="本地球坐标空间音频算法">
             <keydef keys="enableSpatialAudio" href="../API/api_irtcengine_enablespatialaudio.dita">
                 <topicmeta>
                     <keywords>
@@ -9956,20 +9988,20 @@
                     </keywords>
                 </topicmeta>
             </keydef>
-        <keydef keys="AgoraRhythmPlayerConfig" href="../API/class_agorarhythmplayerconfig.dita">
-            <topicmeta>
-                <keywords>
-                    <keyword>AgoraRhythmPlayerConfig</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="RecorderReasonCode" href="../API/enum_recorderreasoncode.dita">
-            <topicmeta>
-                <keywords>
-                    <keyword>RecorderReasonCode</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
+            <keydef keys="AgoraRhythmPlayerConfig" href="../API/class_agorarhythmplayerconfig.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>AgoraRhythmPlayerConfig</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="RecorderReasonCode" href="../API/enum_recorderreasoncode.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>RecorderReasonCode</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
             <keydef keys="RECORDER_REASON_NONE">
                 <topicmeta>
                     <keywords>
@@ -10282,6 +10314,90 @@
             <topicmeta>
                 <keywords>
                     <keyword>RtmpStreamingEventRequestTooOften</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="RHYTHM_PLAYER_STATE_TYPE" href="../API/enum_rhythmplayerstatetype.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>RhythmPlayerStateType</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="RHYTHM_PLAYER_STATE_IDLE">
+                <topicmeta>
+                    <keywords>
+                        <keyword>RhythmPlayerStateIdle</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="RHYTHM_PLAYER_STATE_OPENING">
+                <topicmeta>
+                    <keywords>
+                        <keyword>RhythmPlayerStateOpening</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="RHYTHM_PLAYER_STATE_DECODING">
+                <topicmeta>
+                    <keywords>
+                        <keyword>RhythmPlayerStateDecoding</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="RHYTHM_PLAYER_STATE_PLAYING">
+                <topicmeta>
+                    <keywords>
+                        <keyword>RhythmPlayerStatePlaying</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="RHYTHM_PLAYER_STATE_FAILED">
+                <topicmeta>
+                    <keywords>
+                        <keyword>RhythmPlayerStateFailed</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+            <keydef keys="RHYTHM_PLAYER_REASON" href="../API/enum_rhythmplayerreason.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>RhythmPlayerReason</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="RHYTHM_PLAYER_REASON_OK">
+                <topicmeta>
+                    <keywords>
+                        <keyword>RhythmPlayerReasonOk</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="RHYTHM_PLAYER_REASON_FAILED">
+                <topicmeta>
+                    <keywords>
+                        <keyword>RhythmPlayerReasonFailed</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="RHYTHM_PLAYER_REASON_CAN_NOT_OPEN">
+                <topicmeta>
+                    <keywords>
+                        <keyword>RhythmPlayerReasonCanNotOpen</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="RHYTHM_PLAYER_REASON_CAN_NOT_PLAY">
+                <topicmeta>
+                    <keywords>
+                        <keyword>RhythmPlayerReasonCanNotPlay</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="RHYTHM_PLAYER_REASON_FILE_OVER_DURATION_LIMIT">
+                <topicmeta>
+                    <keywords>
+                        <keyword>RhythmPlayerReasonFileOverDurationLimit</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
