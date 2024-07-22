@@ -46,29 +46,42 @@
       required ChannelMediaOptions options});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
-            <p id="desc1">该方法让用户加入通话频道，在同一个频道内的用户可以互相通话，多个用户加入同一个频道，可以群聊。 使用不同 App ID 的 App 不能互通。</p>
-            <p id="desc2">成功调用该方法加入频道后会触发以下回调：
-            <ul>
-            <li>本地会触发 <xref keyref="onJoinChannelSuccess" /> 和 <xref keyref="onConnectionStateChanged" /> 回调。</li>
-            <li>通信场景下的用户和直播场景下的主播加入频道后，远端会触发 <xref keyref="onUserJoined" /> 回调。</li>
-            </ul></p>
-            <p id="desc3">在网络状况不理想的情况下，客户端可能会与声网服务器失去连接；SDK 会自动尝试重连，重连成功后，本地会触发 <xref keyref="onRejoinChannelSuccess" /> 回调。</p>
-            <p props="native unreal unity cs">相比 <xref keyref="joinChannel1" />，该方法增加了 <parmname>options</parmname> 参数，用于配置用户加入频道时是否自动订阅频道内所有远端音视频流。默认情况下，用户订阅频道内所有其他用户的音频流和视频流，因此会产生用量并影响计费。如果想取消订阅，可以通过设置 <parmname>options</parmname> 参数或相应的 <apiname>mute</apiname> 方法实现。</p>
-            <note id="note_cyz_w1l_mqb" type="attention">
-            <ul id="ul_sz1_y1l_mqb">
-            <li>该方法允许用户一次加入仅一个频道。</li>
-            <li>请务必确保用于生成 Token 的 App ID 和 <xref keyref="initialize" /> 方法初始化引擎时用的是同一个 App ID，否则使用 Token 加入频道失败。</li>
-            <li>如果你的项目仅开启调试模式（即选择 APP ID 为鉴权机制），成功加入频道 24 小时后会自动退出该频道。</li>
-            </ul> </note> </section>
-        <section id="parameters">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="native unreal unity cs">相比 <xref keyref="joinChannel1" />，该方法增加了 <parmname>options</parmname> 参数，用于设置媒体选项，如是否在频道内发布音视频流等。用户加入频道时是否自动订阅频道内所有远端音视频流。默认情况下，用户订阅频道内所有其他用户的音频流和视频流，因此会产生用量并<b>影响计费</b>。如果想取消订阅，可以通过设置 <parmname>options</parmname> 参数或相应的 <apiname>mute</apiname> 方法实现。</p>
+            <p id="flutter rn electron bp">该方法可以在加入频道时设置媒体选项，如是否在频道内发布音视频流等。用户加入频道时是否自动订阅频道内所有远端音视频流。默认情况下，用户订阅频道内所有其他用户的音频流和视频流，因此会产生用量并<b>影响计费</b>。如果想取消订阅，可以通过设置 <parmname>options</parmname> 参数或相应的 <apiname>mute</apiname> 方法实现。</p>
+            </section>
+            <section id="timing" deliveryTarget="details">
+                <title>调用时机</title>
+                <p>该方法需要在 <xref keyref="initialize"/> 之后再调用。</p>
+            </section>
+            <section id="restriction" deliveryTarget="details">
+                <title>调用限制</title>
+                <ul>
+                    <li>该方法仅支持用户一次加入一个频道。</li>
+                    <li>使用不同 App ID 的 App 不能互通。</li>
+                    <li>加入频道前，请确保用于生成 Token 的 App ID 和调用 <xref keyref="initialize" /> 方法初始化引擎时使用的是同一个 App ID，否则使用 Token 加入频道会失败。</li>
+                </ul>
+            </section>
+            <section id="related" deliveryTarget="details">
+                <title>相关回调</title>
+                <p>成功调用该方法加入频道后会触发以下回调：
+                    <ul>
+                    <li>本地会触发 <xref keyref="onJoinChannelSuccess" /> 和 <xref keyref="onConnectionStateChanged" /> 回调。</li>
+                    <li>通信场景下的用户和直播场景下的主播加入频道后，远端会触发 <xref keyref="onUserJoined" /> 回调。</li>
+                    </ul></p>
+                    <p>在网络状况不理想的情况下，客户端可能会与声网服务器失去连接，此时 SDK 会自动尝试重连，重连成功后，本地会触发 <xref keyref="onRejoinChannelSuccess" /> 回调。</p>
+            </section>
+            <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
             <plentry id="token">
                 <pt>token</pt>
                 <pd>在服务端生成的用于鉴权的动态密钥。详见<xref keyref="guide-token"/>。
-                <note type="note">如果你需要同时加入多个频道或在频道间频繁切换，声网推荐你使用通配 Token 以避免每加入一个新的频道都需向服务端申请一个新的 Token，详见 <xref keyref="wildcard-token"/>。</note></pd>
+                <note type="note">
+                    <ul>
+                        <li>（推荐）如果你的项目开启了安全模式，即选择 APP ID + Token 为鉴权机制，则该参数为必填。</li>
+                        <li>如果你的项目仅开启调试模式，即选择 APP ID 为鉴权机制，则无需填入 Token 即可加入频道。成功加入频道 24 小时后会自动退出该频道。</li>
+                        <li>如果你需要同时加入多个频道或在频道间频繁切换，声网推荐你使用通配 Token 以避免每加入一个新的频道都需向服务端申请一个新的 Token，详见 <xref keyref="wildcard-token"/>。</li></ul></note></pd>
             </plentry>
             <plentry id="channelID">
                 <pt>channelId</pt>
@@ -113,7 +126,7 @@
                 <li>-2：传入的参数无效。例如，使用了不合法的 Token，<parmname>uid</parmname> 参数未设置为整型，或 <xref keyref="ChannelMediaOptions" /> 成员值不合法。你需要填入有效的参数，重新加入频道。</li>
                 <li>-3：<xref keyref="IRtcEngine" /> 对象初始化失败。你需要重新初始化 <apiname keyref="IRtcEngine" /> 对象。</li>
                 <li>-7：<apiname keyref="IRtcEngine" /> 对象尚未初始化。你需要在调用该方法前成功初始化 <apiname keyref="IRtcEngine" /> 对象。</li>
-                <li>-8：<apiname keyref="IRtcEngine" /> 对象内部状态错误。<ph props="android cpp apple framework">可能的原因是：调用 <xref keyref="startEchoTest3" /> 开始通话回路测试后，未调用 <xref keyref="stopEchoTest" /> 停止测试就调用该方法加入频道。你需要在该方法前调用 <apiname keyref="stopEchoTest" />。</ph></li>
+                <li>-8：<apiname keyref="IRtcEngine" /> 对象内部状态错误。可能的原因是：调用 <xref keyref="startEchoTest3" /> 开始通话回路测试后，未调用 <xref keyref="stopEchoTest" /> 停止测试就调用该方法加入频道。你需要在该方法前调用 <apiname keyref="stopEchoTest" />。</li>
                 <li>-17：加入频道被拒绝。可能的原因是用户已经在频道中。建议通过 <xref keyref="onConnectionStateChanged" /> 回调判断用户是否在频道中。除收到 <apiname keyref="CONNECTION_STATE_DISCONNECTED" />(1) 状态外，不要再次调用该方法加入频道。</li>
                 <li>-102：频道名无效。你需要在 <parmname>channelId</parmname> 中填入有效的频道名，重新加入频道。</li>
                 <li>-121：用户 ID 无效。你需要在 <parmname>uid</parmname> 中填入有效的用户 ID，重新加入频道。</li>
