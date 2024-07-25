@@ -41,7 +41,7 @@
             <plentry>
                 <pt>scenarioType</pt>
                 <pd>视频业务场景。详见 <xref keyref="VIDEO_APPLICATION_SCENARIO_TYPE"/>。
-                <p id="meeting">设置为 <apiname keyref="APPLICATION_SCENARIO_MEETING"/> (1) 后，SDK 会启用以下策略：
+                <p id="meeting"><apiname keyref="APPLICATION_SCENARIO_MEETING"/> (1) 适用于会议场景，SDK 会针对该场景启用以下策略：
                     <ul>
                         <li>针对会议场景对小流码率要求较高的情况，自动启用多项抗弱网技术，提升小流的抗弱网能力，确保多路流订阅时接收端的流畅性。</li>
                         <li>实时监测接收端大流的订阅人数，根据订阅人数动态调节大流配置：<ul>
@@ -77,12 +77,7 @@
                         </li>
                     </ul>
                 </p>
-                <p id="1v1">设置为 <apiname keyref="APPLICATION_SCENARIO_1V1"/> (2) 后，针对 1v1 视频通话场景对首帧出图要求较高的情况，SDK 会自动启用以下策略，以提升首帧出图的表现：
-                    <ul>
-		                <li>视频编码中会定期插入关键帧（I 帧），提高视频的解码速度和首帧显示效果。</li>
-		                <li>大流的默认帧率调整为 24 fps，确保视频的流畅体验。</li>
-		                <li>用户加入视频通话时，SDK 会加快视频渲染，确保尽快显示出视频画面。</li>
-                </ul></p>
+                <p id="1v1"><apiname keyref="APPLICATION_SCENARIO_1V1"/> (2) 适用于视频 1v1 通话场景。针对该场景低延迟、高画质的体验要求，SDK 进行了策略调优，提升了画质、首帧出图、中低端机延迟及弱网流畅度等性能表现。</p>
                 </pd>
             </plentry>
             </parml>
