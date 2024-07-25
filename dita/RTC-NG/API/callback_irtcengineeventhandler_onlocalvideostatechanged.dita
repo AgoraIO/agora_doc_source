@@ -98,6 +98,11 @@
                     <li><ph keyref="LOCAL_VIDEO_STREAM_REASON_CAPTURE_FAILURE"/> (4): 本地视频采集失败。请提示用户检查视频采集设备是否正常工作，检查摄像头是否被其他 App 占用，或者尝试重新加入频道。</li>
                     <li><ph keyref="LOCAL_VIDEO_STREAM_REASON_CODEC_NOT_SUPPORT"/> (5)：本地视频编码失败。</li>
                     <li><ph keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_NOT_FOUND"/> (8)：找不到本地视频采集设备。需检查摄像头是否与设备正常连接、摄像头是否正常工作，或者尝试重新加入频道。</li>
+                    <li><ph keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_INTERRUPT"/> (14)：视频采集中断。可能的原因是：<ul>
+                        <li>摄像头被其他 App 占用。请提示用户检查摄像头是否被其他 App 占用。</li>
+                        <li>当前 App 已被切换到后台。可以使用前台服务通知操作系统，确保 App 在切换到后台时仍可采集视频。<ph props="cn">详见<xref keyref="android-background"/>。</ph></li>
+                    </ul></li>
+                    <li><ph keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_FATAL_ERROR"/> (15)：视频采集设备出错。请提示用户关闭并重新启动摄像头以恢复功能，如果该操作不能解决问题，请检查摄像头是否出现硬件故障。</li>
                     </ul> </p>
                 </pd>
             </plentry>
