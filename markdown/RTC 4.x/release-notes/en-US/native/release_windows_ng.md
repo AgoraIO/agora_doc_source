@@ -10,7 +10,7 @@ This version includes optimizations to some features, including changes to SDK b
 
 1. To distinguish context information in different extension callbacks, this version removes the original extension callbacks and adds corresponding callbacks that contain context information (see the table below). You can identify the extension name, the user ID, and the service provider name through `ExtensionContext` in each callback.
 
-   | Original Callback    | Current Callback                |
+   | Original callback    | Current callback                |
    | -------------------- | ------------------------------- |
    | `onExtensionEvent`   | `onExtensionEventWithContext`   |
    | `onExtensionStarted` | `onExtensionStartedWithContext` |
@@ -25,9 +25,9 @@ This version includes optimizations to some features, including changes to SDK b
    - `metadata_size` is renamed to `metadataSize`.
    
 
-#### New Features
+#### New features
 
-1. **Alpha Transparency Effects**
+1. **Alpha transparency effects**
 
    This version introduces the Alpha transparency effects feature, supporting the transmission and rendering of Alpha channel data in video frames for SDK capture and custom capture scenarios, enabling transparent gift effects, custom backgrounds on the receiver end, etc.:
 
@@ -37,25 +37,29 @@ This version includes optimizations to some features, including changes to SDK b
 
    Additionally, `AdvanceOptions` adds a new member `encodeAlpha`, which is used to set whether to encode and send Alpha information to the remote end. By default, the SDK does not encode and send Alpha information; if you need to encode and send Alpha information to the remote end (for example, when virtual background is enabled), explicitly call `setVideoEncoderConfiguration` to set the video encoding properties and set `encodeAlpha` to `true`.
 
-2. **Voice AI Tuner**
+2. **Voice AI tuner**
 
    This version introduces the voice AI tuner feature, which can enhance the sound quality and tone, similar to a physical sound card. You can enable the voice AI tuner feature by calling the `enableVoiceAITuner` method and passing in the sound effect types supported in the `VOICE_AI_TUNER_TYPE` enum to achieve effects like deep voice, cute voice, husky singing voice, etc.
+   
+3. **1v1 video call scenario**
+
+   This version adds `APPLICATION_SCENARIO_1V1` (1v1 video call) in `VIDEO_APPLICATION_SCENARIO_TYPE`. You can call `setVideoScenario` to set the video application scenario to 1v1 video call, the SDK optimizes performance to achieve low latency and high video quality, enhancing image quality, first frame rendering, latency on mid-to-low-end devices, and smoothness under poor network conditions.
 
 #### Improvements
 
-1. **Adaptive Hardware Decoding Support**
+1. **Adaptive hardware decoding support**
 
    This release introduces adaptive hardware decoding support, enhancing rendering smoothness on low-end devices and effectively reducing system load.
 
-2. **Rendering Performance Enhancement**
+2. **Rendering performance enhancement**
 
    DirectX 11 renderer is now enabled by default on Windows devices, providing high-performance and high-quality graphics rendering capabilities.
 
-3. **Facial Region Beautification**
+3. **Facial region beautification**
 
    To avoid losing details in non-facial areas during heavy skin smoothing, this version improves the skin smoothing algorithm. The SDK now recognizes various parts of the face, applying smoothing to facial skin areas excluding the mouth, eyes, and eyebrows. In addition, the SDK supports smoothing up to two faces simultaneously.
 
-4. **Other Improvements**
+4. **Other improvements**
 
    This version also includes the following improvements:
 
@@ -89,7 +93,7 @@ This version fixed the following issues:
 
 This version is released on 2024 Month x, Day x.
 
-#### New Features
+#### New features
 
 1. **Speech Driven Avatar**
 
@@ -305,7 +309,7 @@ This release has optimized the implementation of some functions, involving renam
    - This release optimizes the design of the [setZones](API/api_ibasespatialaudioengine_setzones.html) method, supporting the ability to set the `zones` parameter to `NULL`, indicating the clearing of all echo cancellation zones.
    - As of this release, it is no longer necessary to unsubscribe from the audio streams of all remote users within the channel before calling the methods in [ILocalSpatialAudioEngine](API/class_ilocalspatialaudioengine.html) class.
 
-4. **Other Improvements**
+4. **Other improvements**
 
    This release also includes the following improvements:
 
@@ -476,7 +480,7 @@ v4.2.3 was released on October xx, 2023.
 
    This release optimizes the performance and encoding efficiency in ultra-high-definition (4K, 60 fps) game sharing scenarios, effectively reducing the system resource usage during screen sharing.
 
-**Other Improvements**
+**Other improvements**
 
 This release includes the following additional improvements:
 
