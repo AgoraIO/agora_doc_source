@@ -40,6 +40,10 @@ This version includes optimizations to some features, including changes to SDK b
 2. **Voice AI tuner**
 
    This version introduces the voice AI tuner feature, which can enhance the sound quality and tone, similar to a physical sound card. You can enable the voice AI tuner feature by calling the `enableVoiceAITuner` method and passing in the sound effect types supported in the `VOICE_AI_TUNER_TYPE` enum to achieve effects like deep voice, cute voice, husky singing voice, etc.
+   
+3. **1v1 video call scenario**
+
+   This version adds `APPLICATION_SCENARIO_1V1` (1v1 video call) in `VIDEO_APPLICATION_SCENARIO_TYPE`. You can call `setVideoScenario` to set the video application scenario to 1v1 video call, the SDK optimizes performance to achieve low latency and high video quality, enhancing image quality, first frame rendering, latency on mid-to-low-end devices, and smoothness under poor network conditions.
 
 #### Improvements
 
