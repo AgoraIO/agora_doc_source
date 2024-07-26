@@ -10,7 +10,7 @@ This version includes optimizations to some features, including changes to SDK b
 
 1. To distinguish context information in different extension callbacks, this version removes the original extension callbacks and adds corresponding callbacks that contain context information (see the table below). You can identify the extension name, the user ID, and the service provider name through `ExtensionContext` in each callback.
 
-   | Original Callback    | Current Callback                |
+   | Original callback    | Current callback                |
    | -------------------- | ------------------------------- |
    | `onExtensionEvent`   | `onExtensionEventWithContext`   |
    | `onExtensionStarted` | `onExtensionStartedWithContext` |
@@ -47,11 +47,11 @@ This version includes optimizations to some features, including changes to SDK b
 
 #### Improvements
 
-1. **Adaptive Hardware Decoding Support**
+1. **Adaptive hardware decoding support**
 
    This release introduces adaptive hardware decoding support, enhancing rendering smoothness on low-end devices and effectively reducing system load.
 
-2. **Rendering Performance Enhancement**
+2. **Rendering performance enhancement**
 
    DirectX 11 renderer is now enabled by default on Windows devices, providing high-performance and high-quality graphics rendering capabilities.
 

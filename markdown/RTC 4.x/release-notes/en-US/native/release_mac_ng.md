@@ -10,7 +10,7 @@ This version includes optimizations to some features, including changes to SDK b
 
 1. To distinguish context information in different extension callbacks, this version removes the original extension callbacks and adds corresponding callbacks that contain context information (see the table below). You can identify the extension name, the user ID, and the service provider name through `AgoraExtensionContext` in each callback.
 
-   | Original Callback  | Current Callback                |
+   | Original callback  | Current callback                |
    | ------------------ | ------------------------------- |
    | `onEvent`   | `onExtensionEventWithContext`   |
    | `onExtensionStarted` | `onExtensionStartedWithContext` |
