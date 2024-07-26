@@ -28,7 +28,7 @@ This version includes optimizations to some features, including changes to SDK b
 
 2. This version removes the `buffer`, `uid`, and `timeStampMs` parameters of the `onMetadataReceived` callback. You can get metadata-related information, including `timeStampMs` (timestamp of the sent data), `uid` (user ID), and `channelId` (channel name) through the newly-added `metadata` parameter.
 
-#### New Features
+#### New features
 
 1. **Lite SDK**
 
@@ -39,7 +39,7 @@ This version includes optimizations to some features, including changes to SDK b
    - For the list of APIs supported by the Lite SDK, see [Lite SDK API List](https://doc.shengwang.cn/api-ref/rtc/android/API/rtc_lite_api).
    - For the limitations and precautions when using the Lite SDK to play media files, please refer to [Which audio file formats are supported by RTC SDK?](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format)
 
-2. **Alpha Transparency Effects**
+2. **Alpha transparency effects**
 
    This version introduces the Alpha transparency effects feature, supporting the transmission and rendering of Alpha channel data in video frames for SDK capture and custom capture scenarios, enabling transparent gift effects, custom backgrounds on the receiver end, etc.:
 
@@ -49,9 +49,13 @@ This version includes optimizations to some features, including changes to SDK b
 
    Additionally, `AdvanceOptions` adds a new member `encodeAlpha`, which is used to set whether to encode and send Alpha information to the remote end. By default, the SDK does not encode and send Alpha information; if you need to encode and send Alpha information to the remote end (for example, when virtual background is enabled), explicitly call `setVideoEncoderConfiguration` to set the video encoding properties and set `encodeAlpha` to `true`.
 
-3. **Voice AI Tuner**
+3. **Voice AI tuner**
 
    This version introduces the voice AI tuner feature, which can enhance the sound quality and tone, similar to a physical sound card. You can enable the voice AI tuner feature by calling the `enableVoiceAITuner` method and passing in the sound effect types supported in the `VOICE_AI_TUNER_TYPE` enum to achieve effects like deep voice, cute voice, husky singing voice, etc.
+
+4. **1v1 video call scenario**
+
+   This version adds `APPLICATION_SCENARIO_1V1` (1v1 video call) in `VideoScenario`. You can call `setVideoScenario` to set the video application scenario to 1v1 video call, the SDK optimizes performance to achieve low latency and high video quality, enhancing image quality, first frame rendering, latency on mid-to-low-end devices, and smoothness under poor network conditions.
 
 #### Improvements
 
@@ -59,11 +63,11 @@ This version includes optimizations to some features, including changes to SDK b
 
    This release introduces adaptive hardware decoding support, enhancing rendering smoothness on low-end devices and effectively reducing system load.
 
-2. **Facial Region Beautification**
+2. **Facial region beautification**
 
    To avoid losing details in non-facial areas during heavy skin smoothing, this version improves the skin smoothing algorithm. The SDK now recognizes various parts of the face, applying smoothing to facial skin areas excluding the mouth, eyes, and eyebrows. In addition, the SDK supports smoothing up to two faces simultaneously.
 
-3. **Other Improvements**
+3. **Other improvements**
 
    This version also includes the following improvements:
 
@@ -71,7 +75,7 @@ This version includes optimizations to some features, including changes to SDK b
      - Deprecates the `option` parameter of type int in `setRemoteSubscribeFallbackOption` [1/2], and adds an overloaded function `setRemoteSubscribeFallbackOption` [2/2] with the `option` parameter of type `StreamFallbackOptions`.
      - Deprecates the `streamType` parameter of type int in `setRemoteVideoStreamType` [1/2], `setRemoteDefaultVideoStreamType` [1/2], and `setRemoteVideoStreamTypeEx` [1/2], and adds overloaded functions `setRemoteVideoStreamType` [2/2], `setRemoteDefaultVideoStreamType` [2/2], and `setRemoteVideoStreamTypeEx` [2/2] with the `streamType` parameter of type `VideoStreamType`.
    - Optimizes transmission strategy: calling `enableInstantMediaRendering` no longer impacts the security of the transmission link.
-   - Deprecates redundant enumerations `CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT` and `CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED`.
+   - Deprecates redundant enumeration values `CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT` and `CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED`.
 
 #### Issues fixed
 
@@ -112,7 +116,7 @@ This version is released on 2024 Month x, Day x.
 
 To ensure parameter naming consistency, this version renames `channelName` to `channelId` and `optionalUid` to `uid` in `joinChannel` [1/2]. You must update your app's code after upgrading to this version to ensure normal project operations.
 
-#### New Features
+#### New features
 
 1. **Speech Driven Avatar**
 
@@ -387,7 +391,7 @@ This release has optimized the implementation of some functions, involving renam
    - [`setColorEnhanceOptions` [2/2]](API/api_irtcengine_setcolorenhanceoptions2.html)
    - [`enableVirtualBackground` [2/2]](API/api_irtcengine_enablevirtualbackground2.html)
 
-5. **Other Improvements**
+5. **Other improvements**
 
    This release also includes the following improvements:
 
@@ -547,7 +551,7 @@ v4.2.3 was released on September xx, 2023.
 
    This release also optimizes the video encoding configuration in screen sharing scenarios. When users customize the `width` and `height` properties of the video, the SDK rounds down the actual encoding resolution while maintaining the aspect ratio of the video and the screen, ensuring that the final encoding resolution does not exceed the user-defined encoding resolution, thereby improving the accuracy of billing for screen sharing streams.
 
-**Other Improvements**
+**Other improvements**
 
 This release includes the following additional improvements:
 

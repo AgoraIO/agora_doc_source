@@ -19,9 +19,9 @@ This version includes optimizations to some features, including changes to SDK b
 
 1. This version renames the `receiveMetadata` callback to `didMetadataReceived` and removes the `data` and `timeStamp` parameters. You can get metadata-related information, including `timeStamp` (timestamp of the sent data), `uid` (user ID), and `channelId` (channel name) through the newly-added `metadata` parameter.
 
-#### New Features
+#### New features
 
-1. **Alpha Transparency Effects**
+1. **Alpha transparency effects**
 
    This version introduces the Alpha transparency effects feature, supporting the transmission and rendering of Alpha channel data in video frames for SDK capture and custom capture scenarios, enabling transparent gift effects, custom backgrounds on the receiver end, etc.:
 
@@ -31,17 +31,22 @@ This version includes optimizations to some features, including changes to SDK b
 
    Additionally, `AgoraAdvancedVideoOptions` adds a new member `encodeAlpha`, which is used to set whether to encode and send Alpha information to the remote end. By default, the SDK does not encode and send Alpha information; if you need to encode and send Alpha information to the remote end (for example, when virtual background is enabled), explicitly call `setVideoEncoderConfiguration` to set the video encoding properties and set `encodeAlpha` to `YES`.
 
-2. **Voice AI Tuner**
+2. **Voice AI tuner**
 
    This version introduces the voice AI tuner feature, which can enhance the sound quality and tone, similar to a physical sound card. You can enable the voice AI tuner feature by calling the `enableVoiceAITuner` method and passing in the sound effect types supported in the `AgoraVoiceAITunerType` enum to achieve effects like deep voice, cute voice, husky singing voice, etc.
 
+3. **1v1 video call scenario**
+
+   This version adds `AgoraApplication1V1Scenario` (1v1 video call) in `AgoraApplicationScenarioType`. You can call `setVideoScenario` to set the video application scenario to 1v1 video call, the SDK optimizes performance to achieve low latency and high video quality, enhancing image quality, first frame rendering, latency on mid-to-low-end devices, and smoothness under poor network conditions.
+
+
 #### Improvements
 
-1. **Facial Region Beautification**
+1. **Facial region beautification**
 
    To avoid losing details in non-facial areas during heavy skin smoothing, this version improves the skin smoothing algorithm. The SDK now recognizes various parts of the face, applying smoothing to facial skin areas excluding the mouth, eyes, and eyebrows. In addition, the SDK supports smoothing up to two faces simultaneously.
 
-2. **Other Improvements**
+2. **Other improvements**
 
    This version also includes the following improvements:
 
@@ -77,7 +82,7 @@ This version fixed the following issues:
 This version is released on 2024 Month x, Day x.
 
 
-#### New Features
+#### New features
 
 1. **Speech Driven Avatar**
 
@@ -306,7 +311,7 @@ This release has optimized the implementation of some functions, involving renam
    - `AgoraAudioLocalReasonNoRecordingDevice`: No recording device is available. Remind your users to check whether the microphone is connected to the device properly in the control plane of the device or if the microphone is working properly.
    - `AgoraAudioLocalReasonNoPlayoutDevice`: No playback device is available. Remind your users to check whether the speaker is connected to the device properly in the control plane of the device or if the speaker is working properly.
 
-5. **Other Improvements**
+5. **Other improvements**
 
    This release also includes the following improvements:
 
@@ -451,7 +456,7 @@ v4.2.3 was released on September xx, 2023.
 
    This version has upgraded the virtual background algorithm, reducing the memory usage of the virtual background feature. Compared to the previous version, the memory consumption of the app during the use of the virtual background feature on low-end devices has been reduced by approximately 4% to 10% (specific values may vary depending on the device model and platform).
 
-**Other Improvements**
+**Other improvements**
 
 This release includes the following additional improvements:
 
