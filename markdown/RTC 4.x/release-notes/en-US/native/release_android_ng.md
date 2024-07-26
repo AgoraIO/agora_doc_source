@@ -53,6 +53,10 @@ This version includes optimizations to some features, including changes to SDK b
 
    This version introduces the voice AI tuner feature, which can enhance the sound quality and tone, similar to a physical sound card. You can enable the voice AI tuner feature by calling the `enableVoiceAITuner` method and passing in the sound effect types supported in the `VOICE_AI_TUNER_TYPE` enum to achieve effects like deep voice, cute voice, husky singing voice, etc.
 
+4. **1v1 video call scenario**
+
+   This version adds `APPLICATION_SCENARIO_1V1` (1v1 video call) in `VideoScenario`. You can call `setVideoScenario` to set the video application scenario to 1v1 video call, the SDK optimizes performance to achieve low latency and high video quality, enhancing image quality, first frame rendering, latency on mid-to-low-end devices, and smoothness under poor network conditions.
+
 #### Improvements
 
 1. **Adaptive Hardware Decoding Support**
@@ -71,7 +75,7 @@ This version includes optimizations to some features, including changes to SDK b
      - Deprecates the `option` parameter of type int in `setRemoteSubscribeFallbackOption` [1/2], and adds an overloaded function `setRemoteSubscribeFallbackOption` [2/2] with the `option` parameter of type `StreamFallbackOptions`.
      - Deprecates the `streamType` parameter of type int in `setRemoteVideoStreamType` [1/2], `setRemoteDefaultVideoStreamType` [1/2], and `setRemoteVideoStreamTypeEx` [1/2], and adds overloaded functions `setRemoteVideoStreamType` [2/2], `setRemoteDefaultVideoStreamType` [2/2], and `setRemoteVideoStreamTypeEx` [2/2] with the `streamType` parameter of type `VideoStreamType`.
    - Optimizes transmission strategy: calling `enableInstantMediaRendering` no longer impacts the security of the transmission link.
-   - Deprecates redundant enumerations `CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT` and `CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED`.
+   - Deprecates redundant enumeration values `CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT` and `CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED`.
 
 #### Issues fixed
 
