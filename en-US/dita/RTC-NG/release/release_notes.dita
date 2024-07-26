@@ -53,7 +53,7 @@
             </body>
         </topic>
         <topic id="newfeature">
-            <title>New Features</title>
+            <title>New features</title>
             <body>
                 <ol>
                     <li props="android ios"><ph><b>Lite SDK</b></ph>
@@ -64,7 +64,7 @@
                         <li>For the list of APIs supported by the Lite SDK, see <xref href="https://doc.shengwang.cn/api-ref/rtc/android/API/rtc_lite_api" props="android">Lite SDK API List</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/ios/API/rtc_lite_api" props="ios">Lite SDK API List</xref>.</li>
                         <li>For the limitations and precautions when using the Lite SDK to play media files, please refer to <xref href="https://doc.shengwang.cn/faq/general-product-inquiry/audio-format">Which audio file formats are supported by RTC SDK?</xref></li>
                         </ul> </li>
-                    <li><ph><b>Alpha Transparency Effects</b></ph>
+                    <li><ph><b>Alpha transparency effects</b></ph>
                         <p>This version introduces the Alpha transparency effects feature, supporting the transmission and rendering of Alpha channel data in video frames for SDK capture and custom capture scenarios, enabling transparent gift effects, custom backgrounds on the receiver end, etc.:</p>
                         <ul>
                         <li><codeph><apiname keyref="VideoFrame"/></codeph> and <codeph><apiname keyref="ExternalVideoFrame"/></codeph> add the <codeph>alphaBuffer</codeph> member: Sets the Alpha channel data.</li>
@@ -73,8 +73,11 @@
                         </ul>
                         <p>Additionally, <codeph><apiname keyref="AdvanceOptions"/></codeph> adds a new member <codeph>encodeAlpha</codeph>, which is used to set whether to encode and send Alpha information to the remote end. By default, the SDK does not encode and send Alpha information; if you need to encode and send Alpha information to the remote end (for example, when virtual background is enabled), explicitly call <codeph><apiname keyref="setVideoEncoderConfiguration"/></codeph> to set the video encoding properties and set <codeph>encodeAlpha</codeph> to <codeph><ph keyref="true"/></codeph>.</p>
                     </li>
-                    <li><ph><b>Voice AI Tuner</b></ph>
+                    <li><ph><b>Voice AI tuner</b></ph>
                         <p>This version introduces the voice AI tuner feature, which can enhance the sound quality and tone, similar to a physical sound card. You can enable the voice AI tuner feature by calling the <codeph><apiname keyref="enableVoiceAITuner"/></codeph> method and passing in the sound effect types supported in the <codeph><apiname keyref="VOICE_AI_TUNER_TYPE"/></codeph> enum to achieve effects like deep voice, cute voice, husky singing voice, etc.</p>
+                    </li>
+                    <li><ph><b>1v1 video call scenario</b></ph>
+                        <p>This version adds <codeph><apiname keyref="APPLICATION_SCENARIO_1V1"/></codeph> (1v1 video call) in <codeph><apiname keyref="VIDEO_APPLICATION_SCENARIO_TYPE"/></codeph>. You can call <codeph><apiname keyref="setVideoScenario"/></codeph> to set the video application scenario to 1v1 video call, the SDK optimizes performance to achieve low latency and high video quality, enhancing image quality, first frame rendering, latency on mid-to-low-end devices, and smoothness under poor network conditions.</p>
                     </li>
                 </ol>
             </body>
@@ -89,23 +92,24 @@
                     <li props="cpp electron unity flutter unreal bp"><ph><b>Rendering Performance Enhancement (Windows)</b></ph>
                         <p>DirectX 11 renderer is now enabled by default on Windows devices, providing high-performance and high-quality graphics rendering capabilities.</p>
                     </li>
-                    <li><ph><b>Facial Region Beautification</b></ph>
+                    <li><ph><b>Facial region beautification</b></ph>
                         <p>To avoid losing details in non-facial areas during heavy skin smoothing, this version improves the skin smoothing algorithm. The SDK now recognizes various parts of the face, applying smoothing to facial skin areas excluding the mouth, eyes, and eyebrows. In addition, the SDK supports smoothing up to two faces simultaneously.</p>
                     </li>
-                    <li><ph><b>Other Improvements</b></ph>
-                        <p>This version also includes the following improvements:
+                    <li><ph><b>Other improvements</b></ph>
+                        <p>This version also includes the following improvements: 
                         <ul>
-                            <li props="android">Optimizes the parameter types of the following APIs. These improvements enhance code readability, reduce potential errors, and facilitate future maintenance.
-                                <ul>
-                                    <li>Deprecates the <codeph>option</codeph> parameter of type int in <codeph><codeph><apiname keyref="setRemoteSubscribeFallbackOption"/></codeph></codeph>, and adds an overloaded function <codeph><codeph><apiname keyref="setRemoteSubscribeFallbackOption2"/></codeph></codeph> with the <codeph>option</codeph> parameter of type <codeph><codeph><apiname keyref="STREAM_FALLBACK_OPTIONS"/></codeph></codeph>.</li>
-                                    <li>Deprecates the <codeph>streamType</codeph> parameter of type int in <codeph><codeph><apiname keyref="setRemoteVideoStreamType"/></codeph></codeph>, <codeph><codeph><apiname keyref="setRemoteDefaultVideoStreamType"/></codeph></codeph>, and <codeph><codeph><apiname keyref="setRemoteVideoStreamTypeEx"/></codeph></codeph>, and adds overloaded functions <codeph><codeph><apiname keyref="setRemoteVideoStreamType2"/></codeph></codeph>, <codeph><codeph><apiname keyref="setRemoteDefaultVideoStreamType2"/></codeph></codeph>, and <codeph><codeph><apiname keyref="setRemoteVideoStreamTypeEx2"/></codeph></codeph> with the <codeph>streamType</codeph> parameter of type <codeph><codeph><apiname keyref="VIDEO_STREAM_TYPE"/></codeph></codeph>.</li></ul></li>
-                            <li>Optimizes transmission strategy: calling <codeph><apiname keyref="enableInstantMediaRendering"/></codeph> no longer impacts the security of the transmission link.</li>
-                            <li props="cpp mac electron unity flutter unreal bp">The <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_DISPLAY_DISCONNECTED"/></codeph> enumerator is added in <codeph><apiname keyref="onLocalVideoStateChanged"/></codeph> callback , indicating that the display used for screen capture has been disconnected. (Windows, macOS)</li>
-                            <li props="mac electron unity flutter unreal bp">Optimizes the video link for window sharing, reducing CPU usage. (macOS)</li>
-                            <li props="cpp unity flutter electron unreal">Improves echo cancellation for screen sharing scenarios.</li>
-                            <li props="cpp framework">Adds the <codeph>channelId</codeph> parameter to <codeph><apiname keyref="Metadata"/></codeph>, which is used to get the channel name from which the metadata is sent.</li>
-                            <li props="apple cpp framework">Deprecates redundant enumeration values <codeph><apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT"/></codeph> and <codeph><apiname keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED"/></codeph> in <codeph><apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REASON"/></codeph>.</li>
-                            <li props="android">Deprecates redundant enumeration values <codeph><apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT"/></codeph> and <codeph><apiname keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED"/></codeph>.</li>
+                        <li props="android">Optimizes the parameter types of the following APIs. These improvements enhance code readability, reduce potential errors, and facilitate future maintenance. 
+                            <ul>
+                            <li>Deprecates the <codeph>option</codeph> parameter of type int in <codeph><codeph><apiname keyref="setRemoteSubscribeFallbackOption"/></codeph></codeph>, and adds an overloaded function <codeph><codeph><apiname keyref="setRemoteSubscribeFallbackOption2"/></codeph></codeph> with the <codeph>option</codeph> parameter of type <codeph><codeph><apiname keyref="STREAM_FALLBACK_OPTIONS"/></codeph></codeph>.</li>
+                            <li>Deprecates the <codeph>streamType</codeph> parameter of type int in <codeph><codeph><apiname keyref="setRemoteVideoStreamType"/></codeph></codeph>, <codeph><codeph><apiname keyref="setRemoteDefaultVideoStreamType"/></codeph></codeph>, and <codeph><codeph><apiname keyref="setRemoteVideoStreamTypeEx"/></codeph></codeph>, and adds overloaded functions <codeph><codeph><apiname keyref="setRemoteVideoStreamType2"/></codeph></codeph>, <codeph><codeph><apiname keyref="setRemoteDefaultVideoStreamType2"/></codeph></codeph>, and <codeph><codeph><apiname keyref="setRemoteVideoStreamTypeEx2"/></codeph></codeph> with the <codeph>streamType</codeph> parameter of type <codeph><codeph><apiname keyref="VIDEO_STREAM_TYPE"/></codeph></codeph>.</li>
+                            </ul></li>
+                        <li>Optimizes transmission strategy: calling <codeph><apiname keyref="enableInstantMediaRendering"/></codeph> no longer impacts the security of the transmission link.</li>
+                        <li props="cpp mac electron unity flutter unreal bp">The <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_DISPLAY_DISCONNECTED"/></codeph> enumerator is added in <codeph><apiname keyref="onLocalVideoStateChanged"/></codeph> callback , indicating that the display used for screen capture has been disconnected. (Windows, macOS)</li>
+                        <li props="mac electron unity flutter unreal bp">Optimizes the video link for window sharing, reducing CPU usage. (macOS)</li>
+                        <li props="cpp unity flutter electron unreal">Improves echo cancellation for screen sharing scenarios.</li>
+                        <li props="cpp framework">Adds the <codeph>channelId</codeph> parameter to <codeph><apiname keyref="Metadata"/></codeph>, which is used to get the channel name from which the metadata is sent.</li>
+                        <li props="apple cpp framework">Deprecates redundant enumeration values <codeph><apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT"/></codeph> and <codeph><apiname keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED"/></codeph> in <codeph><apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REASON"/></codeph>.</li>
+                        <li props="android">Deprecates redundant enumeration values <codeph><apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT"/></codeph> and <codeph><apiname keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED"/></codeph>.</li>
                         </ul></p>
                     </li>
                 </ol>
