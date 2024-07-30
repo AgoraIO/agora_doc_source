@@ -25,12 +25,19 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAudioMixingPosition(int pos);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p>该方法可以设置音频文件的播放位置，这样你可以根据实际情况播放文件，而非从头到尾播放整个文件。</p>
-            <note type="attention">你需要在调用 <apiname keyref="startAudioMixing2" /> 并收到 <apiname keyref="onAudioMixingStateChanged" /><codeph>(<ph keyref="AUDIO_MIXING_STATE_PLAYING" />)</codeph> 回调后调用该方法。</note> </section>
-        <section id="parameters">
-            <title>参数</title>
+        </section>
+            <section id="timing" deliveryTarget="details">
+                <title>调用时机</title>
+                <p>该方法需要在 <xref keyref="startAudioMixing2" /> 之后，并收到 <xref keyref="onAudioMixingStateChanged" /><codeph>(<ph keyref="AUDIO_MIXING_STATE_PLAYING" />)</codeph> 回调后调用。</p>
+            </section>        
+            <section id="restriction" deliveryTarget="details">
+                <title>调用限制</title>
+                <p>无。</p>
+            </section>
+            <section id="parameters" deliveryTarget="details">
+                <title>参数</title>
             <parml>
             <plentry>
                 <pt>pos</pt>
