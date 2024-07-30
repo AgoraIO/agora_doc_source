@@ -69,7 +69,10 @@
                         <li><codeph><apiname keyref="ExternalVideoFrame"/></codeph> 中新增 <codeph>fillAlphaBuffer</codeph>：对于 BGRA 或 RGBA 格式的视频数据，设置是否自动提取 Alpha 通道数据并填入到 <codeph>alphaBuffer</codeph> 中。</li>
                         <li><codeph><apiname keyref="VideoFrame"/></codeph> 和 <codeph><apiname keyref="ExternalVideoFrame"/></codeph> 中新增 <codeph>alphaStitchMode</codeph>：设置 <codeph>alphaBuffer</codeph> 和视频帧拼接的相对位置。</li>
                         </ul>
-                        <p>另外，<codeph><apiname keyref="AdvanceOptions"/></codeph> 中新增成员 <codeph>encodeAlpha</codeph>，用于设置是否将 Alpha 信息编码并发送到远端。SDK 默认不对 Alpha 信息进行编码发送；如果需要对 Alpha 信息编码发送至远端（例如开启了虚拟背景功能），请显式调用 <codeph><apiname keyref="setVideoEncoderConfiguration"/></codeph> 设置视频编码属性，并将 <codeph>encodeAlpha</codeph> 设置为 <codeph><ph keyref="true"/></codeph>。</p>
+                        <p>另外，<codeph><apiname keyref="AdvanceOptions"/></codeph> 中新增成员 <codeph>encodeAlpha</codeph>，用于设置是否将 Alpha 信息编码并发送到远端。SDK 默认不对 Alpha 信息进行编码发送；如果需要对 Alpha 信息编码发送至远端（例如开启了虚拟背景功能），请显式调用 <codeph><apiname keyref="setVideoEncoderConfiguration"/></codeph> 设置视频编码属性，并将 <codeph>encodeAlpha</codeph> 设置为 <codeph><ph keyref="true"/></codeph>。
+                        <note type="note">
+                            <p>如需了解在各场景下实现 Alpha 特效的最佳实践，详见<xref keyref="alpha-effect"/>。</p>
+                        </note></p>
                     </li>
                     <li><ph><b>AI 调音器</b></ph>
                         <p>该版本新增 AI 调音器功能，可以实现类似物理声卡对音质和音色的提升。你可以通过调用 <codeph><apiname keyref="enableVoiceAITuner"/></codeph> 方法并传入 <codeph><apiname keyref="VOICE_AI_TUNER_TYPE"/></codeph> 枚举中支持的音效类型来启用 AI 调音器功能，实现大叔音、萝莉音、烟嗓歌声等声音效果。</p>
@@ -80,6 +83,9 @@
                             <li props="ios">该版本在 <codeph><apiname keyref="IMusicContentCenter"/></codeph> 类下新增 <codeph><apiname keyref="destroyMusicPlayer"/></codeph> 方法，用于销毁音乐播放器并释放相应的资源。</li>
                             <li props="android">该版本废弃了 <codeph><apiname keyref="IMusicPlayer"/></codeph> 类下的 <codeph><apiname keyref="destroy_IMusicPlayer"/></codeph> 方法。如需销毁音乐播放器，请改用<codeph><apiname keyref="IMusicContentCenter"/></codeph> 类下新增 <codeph><apiname keyref="destroyMusicPlayer"/></codeph> 方法。</li>
                         </ul>
+                    </li>
+                    <li><ph><b>1v1 视频通话场景</b></ph>
+                        <p>该版本在 <codeph><apiname keyref="VIDEO_APPLICATION_SCENARIO_TYPE"/></codeph> 类下新增枚举 <codeph><apiname keyref="APPLICATION_SCENARIO_1V1"/></codeph>（1v1 视频通话）。你可以调用 <codeph><apiname keyref="setVideoScenario"/></codeph> 将视频业务场景设置为 1v1 视频通话，针对该场景低延迟、高画质的体验要求，SDK 进行了策略调优，提升了画质、首帧出图、中低端机延迟及弱网流畅度等性能表现。</p>
                     </li>
                 </ol>
             </body>

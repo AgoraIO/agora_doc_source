@@ -28,12 +28,10 @@
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p>如果你想定位播放，请进行如下操作：
-            <ol>
-            <li>调用该方法定位。</li>
-            <li>定位完成后，调用 <xref keyref="play" /> 方法播放。</li>
-            </ol></p>
-        </section>
+            <ul>
+                <li>如果你在播放已经完成后（收到 <xref keyref="onPlayerSourceStateChanged"/> 回调报告播放状态为 <ph keyref="PLAYER_STATE_PLAYBACK_COMPLETED"/> 或 <ph keyref="PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED"/>）再调用 <apiname keyref="seek"/>，方法调用成功后，SDK 会从你指定的位置开始自动播放，此时你会收到 <xref keyref="onPlayerSourceStateChanged"/> 回调报告播放状态为 <ph keyref="PLAYER_STATE_PLAYING"/>。</li>
+                <li>如果你在播放暂停的情况下调用 <apiname keyref="seek"/>，调用成功后 SDK 会定位到你指定位置，如需播放，请调用 <xref keyref="resume"/> 或 <xref keyref="play"/>。</li>
+            </ul>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p>该方法在加入频道前后均可调用。</p>

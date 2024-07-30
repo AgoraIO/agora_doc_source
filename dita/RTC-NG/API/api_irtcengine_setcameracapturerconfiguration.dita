@@ -17,8 +17,8 @@
             <codeblock props="hmos" outputclass="language-arkts">public abstract setCameraCapturerConfiguration(config: CameraCapturerConfiguration): number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setCameraCapturerConfiguration:(AgoraCameraCapturerConfiguration * _Nullable)config;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setCameraCapturerConfiguration(const CameraCapturerConfiguration&amp; config) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
-	int SetCameraCapturerConfiguration(const FCameraCapturerConfiguration&amp; config);</codeblock>
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+        int SetCameraCapturerConfiguration(const FCameraCapturerConfiguration&amp; config);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setCameraCapturerConfiguration(
     config: CameraCapturerConfiguration
   ): number;</codeblock>
@@ -30,22 +30,26 @@
       CameraCapturerConfiguration config);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
-            <note type="attention">
-            <ul>
-            <li props="cpp unreal bp unity flutter">该方法仅适用于 Android 和 iOS。</li>
-            <li>该方法必须在开启本地摄像头采集前调用，如 <xref keyref="startPreview2"/> 和 <xref keyref="joinChannel2"/> 前调用。</li>
-            <li props="android ios cpp unreal bp flutter unity rn">在调整摄像头的焦距配置前，建议先调用 <xref keyref="queryCameraFocalLengthCapability"/> 查询设备支持的焦距能力，再根据查询结果进行配置。</li>
-            <li props="android cpp unreal bp flutter unity rn">由于部分 Android 设备的限制，即使根据 <apiname keyref="queryCameraFocalLengthCapability"/> 的查询结果设置焦距类型，设置结果也可能不生效。</li>
-            </ul></note> </section>
-        <section id="parameters">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>在调整摄像头的焦距配置前，建议先调用 <xref keyref="queryCameraFocalLengthCapability"/> 查询设备支持的焦距能力，再根据查询结果进行配置。</p>
+            <p props="android cpp unreal bp flutter unity rn">由于部分 Android 设备的限制，即使根据 <apiname keyref="queryCameraFocalLengthCapability"/> 的查询结果设置焦距类型，设置结果也可能不生效。</p>
+            <note type="attention" props="cpp unreal bp unity flutter">该方法仅适用于 Android 和 iOS。</note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>该方法必须在开启本地摄像头采集前调用，如 <xref keyref="startPreview2"/> 和 <xref keyref="joinChannel2"/> 前调用。</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-            <plentry props="native unreal bp flutter unity rn cs">
+            <plentry>
                 <pt>config</pt>
                 <pd>摄像头采集配置，详见 <xref keyref="CameraCapturerConfiguration" />。
-                        <note props="cpp flutter unreal bp unity cs">在该方法中，不需要设置 <parmname>deviceId</parmname> 参数。</note></pd>
+                        <note props="ios cpp unreal bp flutter unity rn" type="attention">在该方法中，不需要设置 <parmname>deviceId</parmname> 参数。</note></pd>
             </plentry>
             </parml> </section>
         <section id="return_values">

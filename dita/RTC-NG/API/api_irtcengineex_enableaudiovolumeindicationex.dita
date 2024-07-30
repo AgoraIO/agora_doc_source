@@ -43,11 +43,17 @@
       required RtcConnection connection});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
-            <p>该方法允许 SDK 定期向 App 报告本地发流用户和瞬时音量最高的远端用户（最多 3 位）的音量相关信息。启用该方法后，只要频道内有发流用户，SDK 会在加入频道后按设置的时间间隔触发 <xref keyref="onAudioVolumeIndication"/> 回调。</p>
+        <section id="detailed_desc" conkeyref="enableAudioVolumeIndication/detailed_desc" deliveryTarget="details" otherprops="no-title" />
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>该方法需要在 <xref keyref="joinChannelEx"/> 之后调用。</p>
+        </section>      
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
         </section>
-        <section id="parameters">
+        <section id="related" conkeyref="enableAudioVolumeIndication/related" deliveryTarget="details"/>
+        <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
             <plentry conkeyref="enableAudioVolumeIndication/interval">

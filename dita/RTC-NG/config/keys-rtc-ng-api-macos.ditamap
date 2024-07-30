@@ -1812,6 +1812,38 @@
                 </topicmeta>
             </keydef>
         </topichead>
+        <topichead navtitle="虚拟节拍器">
+            <keydef keys="startRhythmPlayer" href="../API/api_irtcengine_startrhythmplayer.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>startRhythmPlayer</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="stopRhythmPlayer" href="../API/api_irtcengine_stoprhythmplayer.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>stopRhythmPlayer</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="configRhythmPlayer" href="../API/api_irtcengine_configrhythmplayer.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>configRhythmPlayer</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+        </topichead>
+        <topichead navtitle="虚拟节拍器事件">
+            <keydef keys="onRhythmPlayerStateChanged" href="../API/callback_irtcengineeventhandler_onrhythmplayerstatechanged.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>didRhythmPlayerStateChanged</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+        </topichead>
         <topichead navtitle="人声效果">
             <keydef keys="enableVoiceAITuner" href="../API/api_irtcengine_enablevoiceaituner.dita">
                 <topicmeta>
@@ -1907,7 +1939,7 @@
                 </topicmeta>
             </keydef>
         </topichead>
-        <topichead navtitle="空间音效基础方法">
+        <topichead navtitle="空间音频基础方法">
             <keydef keys="muteLocalAudioStream_IBaseSpatialAudioEngine" href="../API/api_ibasespatialaudioengine_mutelocalaudiostream.dita">
                 <topicmeta>
                     <keywords>
@@ -1986,7 +2018,7 @@
                 </topicmeta>
             </keydef>
         </topichead>
-        <topichead navtitle="本地直角坐标空间音效算法">
+        <topichead navtitle="本地直角坐标空间音频算法">
             <keydef keys="clearRemotePositions" href="../API/api_ilocalspatialaudioengine_clearremotepositions.dita">
                 <topicmeta>
                     <keywords>
@@ -2030,7 +2062,7 @@
                 </topicmeta>
             </keydef>
         </topichead>
-        <topichead navtitle="本地球坐标空间音效算法">
+        <topichead navtitle="本地球坐标空间音频算法">
             <keydef keys="enableSpatialAudio" href="../API/api_irtcengine_enablespatialaudio.dita">
                 <topicmeta>
                     <keywords>
@@ -2053,7 +2085,7 @@
                 </topicmeta>
             </keydef>
         </topichead>
-        <topichead navtitle="服务器空间音效算法" props="hide">
+        <topichead navtitle="服务器空间音频算法" props="hide">
             <keydef keys="enableSpatializer" href="../API/api_icloudspatialaudioengine_enablespatializer.dita">
                 <topicmeta>
                     <keywords>
@@ -4154,7 +4186,7 @@
                 </topicmeta>
             </keydef>
         </topichead>
-        <topichead navtitle="服务器空间音效事件" props="hide">
+        <topichead navtitle="服务器空间音频事件" props="hide">
             <keydef keys="onConnectionStateChange" href="../API/callback_icloudspatialaudioeventhandler_onconnectionstatechange.dita">
                 <topicmeta>
                     <keywords>
@@ -4282,6 +4314,13 @@
             <topicmeta>
                 <keywords>
                     <keyword>AdvancedConfigInfo</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="AgoraRhythmPlayerConfig" href="../API/class_agorarhythmplayerconfig.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraRhythmPlayerConfig</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -9896,6 +9935,90 @@
                 </keywords>
             </topicmeta>
         </keydef>
+        <keydef keys="RHYTHM_PLAYER_STATE_TYPE" href="../API/enum_rhythmplayerstatetype.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraRhythmPlayerState</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="RHYTHM_PLAYER_STATE_IDLE">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraRhythmPlayerStateIdle</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="RHYTHM_PLAYER_STATE_OPENING">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraRhythmPlayerStateOpening</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="RHYTHM_PLAYER_STATE_DECODING">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraRhythmPlayerStateDecoding</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="RHYTHM_PLAYER_STATE_PLAYING">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraRhythmPlayerStatePlaying</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="RHYTHM_PLAYER_STATE_FAILED">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraRhythmPlayerStateFailed</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="RHYTHM_PLAYER_REASON" href="../API/enum_rhythmplayerreason.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraRhythmPlayerReason</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="RHYTHM_PLAYER_REASON_OK">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraRhythmPlayerReasonOK</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="RHYTHM_PLAYER_REASON_FAILED">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraRhythmPlayerReasonFailed</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="RHYTHM_PLAYER_REASON_CAN_NOT_OPEN">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraRhythmPlayerReasonCanNotOpen</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="RHYTHM_PLAYER_REASON_CAN_NOT_PLAY">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraRhythmPlayerReasonCanNotPlay</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="RHYTHM_PLAYER_REASON_FILE_OVER_DURATION_LIMIT">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraRhythmPlayerReasonFileOverDurationLimit</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
         <keydef keys="SIMULCAST_STREAM_MODE" href="../API/enum_simulcaststreammode.dita">
             <topicmeta>
                 <keywords>
@@ -10229,6 +10352,13 @@
             <topicmeta>
                 <keywords>
                     <keyword>AgoraApplicationMeetingScenario</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="APPLICATION_SCENARIO_1V1">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraApplication1V1Scenario</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
