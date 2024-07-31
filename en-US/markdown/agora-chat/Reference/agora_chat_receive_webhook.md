@@ -683,7 +683,9 @@ In this callback, `from` indicates *user ID of the leaving member*@easemob and `
 
 ### Remove a member from a chat group or chat room
 
-When the owner or an admin removes a member from a chat group or chat room, the Agora Chat server sends a callback to your app server. The sample code of the `payload` field is as follows:
+When the owner or an admin removes a member from a chat group or chat room or a member leaves the chat room after staying offline for 2 minutes, the Agora Chat server sends a callback to your app server. 
+
+The sample code of the `payload` field is as follows:
 
 ```json
 "payload":

@@ -107,6 +107,9 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 
 ```json
 {
+  "uri":"https://XXXX/XXXX/XXXX/metadata/chatroom",  
+  "timestamp":1716887320215,
+  "action":"put",
   "data":
   {
     "successKeys": ["key1"],
@@ -169,6 +172,9 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 ```json
 {
+  "uri": "https://XXXX/XXXX/XXXX/metadata/chatroom", 
+  "timestamp": 1716891388636, 
+  "action": "post", 
   "data":
   {
     "key1": "value1",
@@ -236,6 +242,10 @@ DELETE -X POST -H 'Content-Type: application/json' -H 'Accept: application/json'
 
 ```json
 {
+  "uri":"https://XXXX/XXXX/XXXX/metadata/chatroom",
+  "status":"ok",
+  "timestamp":1716887320215,
+  "action":"delete",
   "data":
   {
     "successKeys": ["key1"],

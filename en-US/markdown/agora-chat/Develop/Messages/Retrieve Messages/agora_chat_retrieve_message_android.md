@@ -54,6 +54,9 @@ You can set the search direction to retrieve messages in the chronological or re
 
 To ensure data reliability, we recommend retrieving less than 50 historical messages for each method call. To retrieve more than 50 historical messages, call this method multiple times. Once the messages are retrieved, the SDK automatically updates these messages in the local database.
 
+// Add the following paragraph for each platform/framework.
+We recommend that you retrieve 20 messages each time, with a maximum of 50. During paginated query, if the total number of messages that meet the query conditions is greater than the number of `pageSize`, the number of messages of `pageSize` will be returned. If it is less than the number of `pageSize`, the actual number will be returned. When the message query is completed, the number of returned messages is less than the number of `pageSize`.
+
 ```java
 ChatClient.getInstance().chatManager().asyncFetchHistoryMessage(conversationId, conversationType, pageSize, startMsgId, new ValueCallBack<CursorResult<ChatMessage>>() {
             @Override
