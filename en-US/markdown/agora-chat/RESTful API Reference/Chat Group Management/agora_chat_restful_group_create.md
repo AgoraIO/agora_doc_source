@@ -69,10 +69,10 @@ For the descriptions of other path parameters, see [Common Parameters](#param).
 | Parameter | Type | Description | Required |
 | :------------- | :------ | :----------------------------------------------------------- | :------- |
 | `groupname` | String | The group name. It cannot exceed 128 characters. | No |
+| `avatar` | String | The group avatar URL. It cannot exceed 1024 characters. | No |
 | `description` | String | The group description. It cannot exceed 512 characters. | No |
 | `public` | Boolean | Whether the group is a public group. Public groups can be searched and chat users can apply to join a public group. Private groups cannot be searched, and chat users can join a private group only if the group owner or admin invites the user to join the group.<ul><li>`true`: Yes</li><li>`false`: No</li></ul> | No |
-| `scale`           | String | The group scale. The parameter value depends on the setting of `maxusers`. <ul><li>(Default) `normal`: Normal group that has a maximum of 3000 members. </li><li>`large`: Large group that has more than 3000 members. You must set this parameter when you create a large group. Large groups do not support offline push. To create a large group, contact [support@agoro.io](mailto:support@agoro.io).</li></ul> | No |
-| `maxusers` | String | The maximum number of chat group members (including the group owner). The default value is `200` for a normal group and `1000` for a large group. The upper limit varies with your price plans. For details, see [Pricing Plan Details](./agora_chat_plan#group). | No |
+| `maxusers` | String | The maximum number of chat group members (including the group owner). The default value is `200`. If you set this parameter to a value greater than `3000`, the offline push function is not available to such a large group. To enable the offline push function for a large group, contact [support@agoro.io](mailto:support@agoro.io) before creating it. Note that it is impossible to enable the offline push function for a large group that is created. The upper limit varies with your price plans. For details, see [Pricing Plan Details](./agora_chat_plan#group). | No |
 | `allowinvites` | Boolean | Whether a regular group member is allowed to invite other users to join the chat group.<ul><li>`true`: Yes.</li><li>`false`: (Default) No. Only the group owner or admin can invite other users to join the chat group. </li></ul> When creating a group, this parameter is only valid for private groups and not for public groups. That is to say, when creating a public group (`public` is set to `true`), even if `allowinvites` is set to `true`, this setting will be automatically modified to `false`. If you want to allow ordinary members of a public group to add people to the group, you can call the [Modify Group Information](#Modify Group Information) interface to modify the setting of `allowinvites` to `true` after creating the group.| No |
 | `membersonly` | Boolean | Whether the user requesting to join the public group requires approval from the group owner or admin:<ul><li>`true`: Yes.</li><li>`false`: (Default) No.</li></ul> The parameter is valid only for public groups as users can only be invited to join private groups and cannot apply to join them. | No |
 | `invite_need_confirm` | Boolean | Whether the invitee needs to confirm the received group invitation before joining the group:<ul><li>`true`: Yes. </li><li>`false`: No. The invitee automatically joins the chat group after receiving the group invitation.</li></ul> | No|
@@ -101,6 +101,7 @@ If the returned HTTP status code is not 200, the request fails. You can refer to
 ```shell
 curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' -d '{
     "groupname": "testgroup",
+    "avatar": "https://www.XXXX.com/XXX/image",
     "description": "test",
     "public": true,
     "maxusers": 300,
@@ -351,6 +352,7 @@ If the returned HTTP status code is 200, the request succeeds, and the data fiel
 | :------------------- | :------ | :----------------------------------------------------------- |
 | `id` | String | The group ID. The group's unique identifer. |
 | `name` | String | The group name. |
+| `avatar` | String | The group avatar URL. |
 | `description` | String | The group description. |
 | `membersonly` | Boolean | Whether a user requesting to join the group requires the approval from the group owner or admin:<ul><li>`true`: Yes.</li><li>`false`: (Default) No.</li></ul> |
 | `allowinvites` | Boolean | Whether a regular chat group member can invite other users to join the group.<ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> |
@@ -388,6 +390,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
         {
             "id": "XXXX",
             "name": "XXXX",
+            "avatar": "https://www.XXXX.com/XXX/image",
             "description": "XXXX",
             "membersonly": true,
             "allowinvites": false,
@@ -420,7 +423,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 ## Modifying group information
 
-Modifies the chat group information. You can only modify the `groupname`, `desc`, `maxusers`, `membersonly`, `allowinvites`, and `custom` fields. If you pass in fields that cannot be modified or do not exist in the request, an error is reported.
+Modifies the chat group information. You can only modify the `groupname`, `avatar`, `desc`, `maxusers`, `membersonly`, `allowinvites`, and `custom` fields. If you pass in fields that cannot be modified or do not exist in the request, an error is reported.
 
 ### HTTP request
 
@@ -449,6 +452,7 @@ For other parameters and detailed descriptions, see [Common parameters](#param).
 | Parameter | Type | Description | Required |
 | :------------- | :------ | :----------------------------------------------------------- | :------- |
 | `groupname` | String | The group name. It cannot exceed 128 characters. The group name cannot contain "/" or spaces. You can use "+" to represent the space. | Yes |
+| `avatar` | String | The group avatar URL. It cannot exceed 1024 characters. | No |
 | `description` | String | The group description. It cannot exceed 512 characters. The group name cannot contain "/" or spaces. You can use "+" to represent the space. | Yes |
 | `maxusers` | String | The maximum number of chat group members (including the group owner). The default value is 200 and the maximum value is 2000.  The upper limit varies with your price plans. For details, see [Pricing Plan Details](./agora_chat_plan#group). | No |
 | `allowinvites` | Boolean | Whether a regular chat group member can invite other users to join the group.<ul><li>`true`: Yes.</li><li>`false`: No. Only the group owner or admin can invite other users to join the group. </li></ul> | No |
@@ -468,6 +472,7 @@ If the returned HTTP status code is 200, the request succeeds, and the data fiel
 | :------------------- | :------ | :----------------------------------------------------------- |
 | `groupname` | Boolean | Whether the group name is successfully modified:<ul><li>`true`: Yes.</li><li> `false`: No.</li></ul> |
 | `description` | Boolean | Whether the group description is successfully modified:<ul><li>`true`: Yes.</li><li> `false`: No.</li></ul> |
+| `avatar` | Boolean |  Whether the group avatar is successfully modified:<ul><li>`true`: Yes.</li><li> `false`: No.</li></ul> |
 | `membersonly` | Boolean | Whether this field is successfully modified:<ul><li>`true`: Yes</li><li>`false`: No</li></ul>  |
 | `public` | Boolean | Whether the public state of the chat group is successfully modified:<ul><li>`true`: Yes.</li><li>`false`: No.</li></ul>  |
 | `custom` | Boolean | Whether the extension information of the chat group is successfully modified:<ul><li>`true`: Yes.</li><li>`false`: No.</li></ul>|
@@ -511,7 +516,8 @@ curl -X PUT -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
         "custom": true,
         "description": true,
         "maxusers": true,
-        "groupname": true
+        "groupname": true,
+        "avatar": true
     },
     "duration": 0,
     "entities": [],

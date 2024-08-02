@@ -146,7 +146,14 @@ The mapping of field names between Chat and APNs is as follows:
 | `bodyLocArgs`      | `loc-key`    | 
 | `ext`              | `loc-args`  | 
 | `launchImage`      | `launch-image`  | 
-
+| `interruptionLevel`|  `interruption-level`   | 
+| `liveActivityEvent` |  `liveactivity`           | 
+| `timestamp`         |  `timestamp`          | 
+| `dismissalDate`     |   `dismissal-date`     | 
+| `staleDate`         |  `stale-date`     | 
+| `attributesType`    |  `attributes-type`   | 
+| `attributes`        |   `attributes `      | 
+| `contentState`      |  `content-state`     | 
 
 For descriptions of these fields, see APNs official documentation below:
 
