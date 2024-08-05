@@ -56,7 +56,7 @@ Follow the instructions below to implement sending messages:
 
 <div class="alert note"><ul>
 <li>When calling the RESTful API to send a message, you can use the <code>from</code> field to specify the message sender.</li>
-<li>If the data length of the request body exceeds 5 KB, error code 413 will be returned. The maximum data length of the request body and extension fields is 3 KB.</li>
+<li>The maximum data length of the request body and extension fields is 5 KB, or the error 413 will be returned.</li>
 </ul></div>
 
 ### Send a one-to-one message
