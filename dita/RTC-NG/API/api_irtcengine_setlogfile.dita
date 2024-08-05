@@ -25,20 +25,25 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLogFile(String filePath);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="deprecated">
             <dlentry>
                 <dt>弃用：</dt>
-                <dd>此方法已废弃，请改用 <xref keyref="initialize" /> 中的 <codeph>logConfig</codeph> 参数设置日志文件路径 。</dd>
+                <dd>该方法已废弃，请在调用 <xref keyref="initialize"/> 时通过 <parmname props="cpp unreal bp electron unity rn flutter cs">context</parmname><parmname props="android ios mac">config</parmname> 参数设置日志文件路径。</dd>
             </dlentry>
             </dl>
-            <p>设置 SDK 的输出 log 文件。SDK 运行时产生的所有 log 将写入该文件。App 必须保证指定的目录存在而且可写。</p>
-            <note id="note_gnw_y1g_3qb">
-            <p>如需调用本方法，请在调用 <apiname keyref="initialize" /> 方法初始化 <xref keyref="IRtcEngine" /> 对象后立即调用，否则输出日志可能不完整。</p>
-            </note> </section>
-        <section id="parameters">
-            <title>参数</title>
+            <p>设置 SDK 的输出 log 文件。SDK 运行时产生的所有 log 将写入该文件。</p>
+        </section>
+            <section id="timing" deliveryTarget="details">
+                <title>调用时机</title>
+                <p>该方法需要在 <apiname keyref="initialize" /> 后立即调用，否则输出日志可能不完整。</p>
+            </section>        
+            <section id="restriction" deliveryTarget="details">
+                <title>调用限制</title>
+                <p>App 必须保证指定的目录存在而且可写。</p>
+            </section>
+            <section id="parameters" deliveryTarget="details">
+                <title>参数</title>
             <parml>
             <plentry>
                 <pt>filePath</pt>

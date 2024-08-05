@@ -25,23 +25,26 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startLastmileProbeTest(LastmileProbeConfig config);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p>This method starts the last-mile network probe test before joining a channel to get the uplink and downlink last mile network statistics, including the bandwidth, packet loss, jitter, and round-trip time (RTT).</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>Do not call other methods before receiving the <apiname keyref="onLastmileQuality" /> and <apiname keyref="onLastmileProbeResult" /> callbacks. Otherwise, the callbacks may be interrupted.</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="related" deliveryTarget="details">
+            <title>Related callbacks</title>
             <p>Once this method is enabled, the SDK returns the following callbacks:<ul>
                     <li><xref keyref="onLastmileQuality" />: The SDK triggers this callback within two seconds depending on the network conditions. This callback rates the network conditions and is more closely linked to the user experience.</li>
                     <li><xref keyref="onLastmileProbeResult" />: The SDK triggers this callback within 30 seconds depending on the network conditions. This callback returns the real-time statistics of the network conditions and is more objective.</li>
                 </ul>
             </p>
-            <p>This method must be called before joining the channel, and is used to judge and predict whether the current uplink network quality is good enough.</p>
-            <note type="attention">
-                <ul>
-                    <li>Do not call other methods before receiving the <apiname keyref="onLastmileQuality" /> and <apiname keyref="onLastmileProbeResult" />  callbacks. Otherwise, the callbacks may be interrupted.</li>
-                    <li>A host should not call this method after joining a channel (when in a call).</li>
-                </ul>
-            </note>
         </section>
-        <section id="parameters">
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>

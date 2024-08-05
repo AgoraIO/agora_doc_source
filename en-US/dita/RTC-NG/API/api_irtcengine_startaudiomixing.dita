@@ -34,64 +34,39 @@
       int startPos = 0});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <dl outputclass="deprecated" props="native unreal bp">
-            <dlentry>
-                <dt>Deprecated:</dt>
-                <dd>Use <xref keyref="startAudioMixing2" /> instead.</dd>
-            </dlentry>
-            </dl>
-            <p id="audiomixing_detailed">This method mixes the specified local or online audio file with the audio from the microphone, or replaces the microphone's audio with the specified local or remote audio file. A successful method call triggers the <xref keyref="onAudioMixingStateChanged" /> (<apiname keyref="AUDIO_MIXING_STATE_PLAYING" />) callback. When the audio mixing file playback finishes, the SDK triggers the <apiname keyref="onAudioMixingStateChanged" /> (<apiname keyref="AUDIO_MIXING_STATE_STOPPED" />) callback on the local client.</p>
-            <p id="uri" props="android">This method supports playing URI files starting with <codeph>content://</codeph>.</p>
-            <note type="attention" id="audiomixing_note">
-            <ul>
-            <li>You can call this method either before or after joining a channel. If you need to call <apiname keyref="startAudioMixing" /> multiple times, ensure that the time interval between calling this method is more than 500 ms.</li>
-            <li>If the local music file does not exist, the SDK does not support the file format, or the the SDK cannot access the music file URL, the SDK reports 701.</li>
-            <li props="android cpp unreal bp unity flutter rn" id="principle">On Android, there are following considerations:<ul>
-                <li>To use this method, ensure that the Android device is v4.2 or later, and the API version is v16 or later.</li>
-                <li>If you need to play an online music file, Agora does not recommend using the redirected URL address. Some Android devices may fail to open a redirected URL address.</li>
-                <li>If you call this method on an emulator, ensure that the music file is in the <codeph>/sdcard/</codeph> directory and the format is MP3.</li>
-                </ul></li>
-            </ul> </note> </section>
-        <section id="parameters">
+            <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+                <dl outputclass="deprecated" props="native unreal bp">
+                    <dlentry>
+                        <dt>Deprecated:</dt>
+                        <dd>Use <xref keyref="startAudioMixing2" /> instead.</dd>
+                    </dlentry>
+                    </dl>
+                    <p props="cpp apple framework">For the audio file formats supported by this method, see <xref keyref="audio-format">What formats of audio files does the Agora RTC SDK support</xref>. If the local music file does not exist, the SDK does not support the file format, or the the SDK cannot access the music file URL, the SDK reports <ph keyref="AUDIO_MIXING_REASON_CAN_NOT_OPEN"/>.</p>
+                    <p id="uri" props="android hmos">This method supports playing URI files starting with <codeph>content://</codeph>. For the audio file formats supported by this method, see<xref keyref="audio-format"> What formats of audio files does the Agora RTC SDK support</xref>. If the local music file does not exist, the SDK does not support the file format, or the the SDK cannot access the music file URL, the SDK reports <ph keyref="AUDIO_MIXING_REASON_CAN_NOT_OPEN"/>.</p>
+            </section>
+            <section id="timing" deliveryTarget="details" conkeyref="startAudioMixing2/timing">
+            </section>
+            <section id="restriction" deliveryTarget="details" conkeyref="startAudioMixing2/restriction">
+            </section>
+            <section id="related" deliveryTarget="details" conkeyref="startAudioMixing2/related">
+            </section>
+            <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
-            <plentry conkeyref="playEffect2/filepath" props="unity cs">
-                <pt />
-                <pd />
+            <plentry props="native unreal bp unity cs" conkeyref="playEffect3/filepath">
+                <pt/>
+                <pd/>
             </plentry>
-            <plentry props="native unreal bp">
-                <pt>filePath</pt>
-                <pd>
-                    <p conkeyref="playEffect3/filepath" />
-                </pd>
+            <plentry conkeyref="startAudioMixing2/loopback">
+                <pt/>
+                <pd/>
             </plentry>
-            <plentry id="loopback">
-                <pt>loopback</pt>
-                <pd>
-                    <p>Whether to only play music files on the local client:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Only play music files on the local client so that only the local user can hear the music.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Publish music files to remote clients so that both the local user and remote users can hear the music.</li>
-                    </ul></p>
-                </pd>
-            </plentry>
-            <plentry id="cycle">
-                <pt>cycle</pt>
-                <pd>
-                    <p>The number of times the music file plays.<ul>
-                    <li>≥ 0: The number of playback times. For example, 0 means that the SDK does not play the music file while 1 means that the SDK plays once.</li>
-                    <li>-1: Play the audio file in an infinite loop.</li>
-                    </ul></p>
-                </pd>
+            <plentry conkeyref="startAudioMixing2/cycle">
+                <pt/>
+                <pd/>
             </plentry>
             </parml> </section>
-        <section id="return_values">
-            <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-            <ul props="native unreal bp unity rn electron cs">
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
-            </ul> </section>
+        <section id="return_values" conkeyref="startAudioMixing2/return_values">
+            </section>
     </refbody>
 </reference>

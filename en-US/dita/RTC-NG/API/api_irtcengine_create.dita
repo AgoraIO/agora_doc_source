@@ -38,13 +38,13 @@
             <note type="attention">
             <ul id="ul_uy4_mtq_4qb">
             <li>Before calling other APIs, you must call this method to create the <apiname keyref="IRtcEngine"/> object.</li>
-            <li>You can create the <apiname keyref="IRtcEngine"/> instance either by calling this method or by calling <xref keyref="initialize"/>. The difference between <apiname keyref="initialize"/> and this method is that <apiname keyref="initialize"/> supports more configurations when creating the <apiname keyref="IRtcEngine"/> instance, for example, specifying the region for connection and setting the log files.</li>
+            <li props="android cpp apple framework">You can create the <apiname keyref="IRtcEngine"/> instance either by calling this method or by calling <xref keyref="initialize"/>. The difference between <apiname keyref="initialize"/> and this method is that <apiname keyref="initialize"/> supports more configurations when creating the <apiname keyref="IRtcEngine"/> instance, for example, specifying the region for connection and setting the log files.</li>
             <li>The SDK supports creating only one <apiname keyref="IRtcEngine"/> instance for an app.</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry props="android cpp unreal bp">
+            <plentry props="android hmos cpp unreal bp">
                 <pt>context</pt>
                 <pd conkeyref="RtcEngineConfig/context"/>
             </plentry>
@@ -52,17 +52,17 @@
                 <pt>appId</pt>
                 <pd conkeyref="RtcEngineConfig/appid"/>
             </plentry>
-            <plentry props="android ios mac">
-                <pt props="android">handler</pt>
+            <plentry props="android hmos ios mac">
+                <pt props="android hmos">handler</pt>
                 <pt props="ios mac">delegate</pt>
                 <pd id="handler">The event handler for <xref keyref="IRtcEngine"/>. See <xref keyref="IRtcEngineEventHandler"/>.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph props="apple">Returns </ph><ph props="android">Returns/Exceptions</ph></title>
+            <title><ph props="apple">Returns </ph><ph props="android hmos">Returns/Exceptions</ph></title>
             <ul>
             <li>The <apiname keyref="IRtcEngine"/> instance, if the method call succeeds.</li>
-            <li props="android">The method call fails and an exception is thrown, you need to catch the exception and handle it. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            <li props="android hmos">The method call fails and an exception is thrown, you need to catch the exception and handle it. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             <li props="ios mac">An error code, if the method call fails.<ul>
                 <li>-1: A general error occurs (no specified reason).</li>
                 <li>-2: The parameter is invalid.</li>

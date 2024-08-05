@@ -142,8 +142,8 @@ struct FVirtualBackgroundSource
             <plentry>
                 <pt props="android ios mac flutter">backgroundSourceType</pt>
                 <pt props="unity cpp unreal bp electron rn cs">background_source_type</pt>
-                <pd><ph>The custom background. </ph><ph props="ios mac cpp unreal bp unity flutter electron rn cs">See <xref keyref="BACKGROUND_SOURCE_TYPE" />.</ph><ul props="android">
-                    <li><ph keyref="BACKGROUND_NONE" />(0): Process the background as alpha information without replacement, only separating the portrait and the background. After setting this value, you can call <xref keyref="startLocalVideoTranscoder"/> to implement the picture-in-picture effect.</li>
+                <pd><ph>The custom background. </ph><ph props="ios mac cpp unreal bp unity flutter electron rn cs">See <xref keyref="BACKGROUND_SOURCE_TYPE" />.</ph><ul props="android hmos">
+                    <li><ph keyref="BACKGROUND_NONE" />(0): Process the background as alpha data without replacement, only separating the portrait and the background. After setting this value, you can call <xref keyref="startLocalVideoTranscoder"/> to implement the picture-in-picture effect.</li>
                     <li><ph keyref="BACKGROUND_COLOR" />(1): (Default) The background image is a solid color.</li>
                     <li><ph keyref="BACKGROUND_IMG" />(2): The background image is a file in PNG or JPG format.</li>
                     <li><ph keyref="BACKGROUND_BLUR" />(3): The background is a blurred version of the original background.</li>
@@ -165,7 +165,7 @@ struct FVirtualBackgroundSource
             <plentry>
                 <pt props="ios mac android flutter">blurDegree</pt>
                 <pt props="cpp unreal bp unity electron rn cs">blur_degree</pt>
-                <pd><ph>The degree of blurring applied to the custom background image. </ph><ph props="ios mac cpp unreal bp unity electron rn cs">See <xref keyref="BACKGROUND_BLUR_DEGREE" />.</ph><ul props="android">
+                <pd><ph>The degree of blurring applied to the custom background image. </ph><ph props="ios mac cpp unreal bp unity electron rn cs">See <xref keyref="BACKGROUND_BLUR_DEGREE" />.</ph><ul props="android hmos">
                     <li><ph keyref="BLUR_DEGREE_LOW" />(1): The degree of blurring applied to the custom background image is low. The user can almost see the background clearly.</li>
                     <li><ph keyref="BLUR_DEGREE_MEDIUM" />(2): The degree of blurring applied to the custom background image is medium. It is difficult for the user to recognize details in the background.</li>
                     <li><ph keyref="BLUR_DEGREE_HIGH" />(3): The degree of blurring applied to the custom background image is high. The user can barely see any distinguishing features in the background.</li>

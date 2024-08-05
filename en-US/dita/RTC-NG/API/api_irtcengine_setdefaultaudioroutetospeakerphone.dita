@@ -32,10 +32,10 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <note props="cpp android ios unreal bp unity rn flutter">
+            <note props="cpp android hmos ios unreal bp unity rn flutter">
             <ul>
                 <li props="cpp unreal bp unity flutter">This method is for Android and iOS only.</li>
-                <li>Ensure that you call this method before joining a channel. If you need to change the audio route after joining a channel, call <xref keyref="setEnableSpeakerphone"/>.</li>
+                <li>Call this method before joining a channel. If you need to change the audio route after joining a channel, call <xref keyref="setEnableSpeakerphone"/>.</li>
             </ul>
             </note>
             <p>Most mobile phones have two audio routes: an earpiece at the top, and a speakerphone at the bottom. The earpiece plays at a lower volume, and the speakerphone at a higher volume. When setting the default audio route, you determine whether audio playback comes through the earpiece or speakerphone when no external audio device is connected.</p>
@@ -46,7 +46,7 @@
             <li>Video broadcast: Speakerphone.</li>
             </ul></p>
             <p>You can call this method to change the default audio route. After a successful method call, the SDK triggers the <xref keyref="onAudioRoutingChanged"/> callback.</p>
-            <note props="android ios unity rn flutter">
+            <note props="android hmos ios unity rn flutter">
             <p>The system audio route changes when an external audio device, such as a headphone or a Bluetooth audio device, is connected. See <xref keyref="guide-audio-route">Audio Route</xref> for detailed change principles.</p>
             </note> </section>
         <section id="parameters">
@@ -63,7 +63,7 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-            <ul props="android ios cpp unreal bp electron unity rn cs">
+            <ul props="android hmos ios cpp unreal bp electron unity rn cs">
             <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>

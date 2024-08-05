@@ -1,38 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="release_notes">
-    <title>v4.3.2</title>
+    <title>v4.4.0</title>
     <body>
-        <p>该版本于 20xx 年 5 月 x 日发布。</p>
+        <p>该版本于 2024 年 7 月 x 日发布。</p>
     </body>
     <topic id="level2">
         <title/>
-        <topic id="compatibility" props="hide">
+        <topic id="compatibility">
             <title>升级必看</title>
             <body>
+                <p>该版本对部分功能的实现方式进行了优化，包括 SDK 的行为变更、API 的改名或删除，为确保项目的正常运行，你需要在升级到该版本后更新 App 中的代码。
+                    <note type="attention" props="native">自 v4.4.0 起，RTC SDK 提供 API 下架说明，包含各版本废弃及删除的 API 信息。详见 <xref href="https://doc.shengwang.cn/api-ref/rtc/android/API/rtc_api_sunset" props="android">API 下架说明</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/android/API/rtc_api_sunset" props="cpp">API 下架说明</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/ios/API/rtc_api_sunset" props="ios">API 下架说明</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/macos/API/rtc_api_sunset" props="mac">API 下架说明</xref>。</note></p>
                 <ol>
-                    <li><ph><b>升级必看的标题</b></ph>
-                        <ul>
-                        <li><?oxy-placeholder content="用 list 描述"?></li>
-                        <li><?oxy-placeholder content="用 list 描述"?></li>
-                        </ul></li>
-                    <li><ph><b>升级必看的标题</b></ph>
-                        <p><?oxy-placeholder content="用段落描述"?></p>
+                    <li>为区分不同插件回调中的上下文信息，该版本将原有的插件相关回调删除并新增可标识插件上下文信息的对应回调（见下表），你可以通过各回调中的 <codeph><apiname keyref="ExtensionContext"/></codeph> 了解插件的名称、使用该插件的用户 ID、和提供插件的服务商名等信息。
+                        <simpletable frame="all" relcolwidth="1* 1*" id="simpletable_zqj_n1t_xbc">
+                            <sthead>
+                                <stentry>原有回调</stentry>
+                                <stentry>现有回调</stentry>
+                            </sthead>
+                            <strow>
+                                <stentry><codeph props="cpp">onExtensionEvent</codeph><codeph props="apple android">onEvent</codeph></stentry>
+                                <stentry><codeph><apiname keyref="onExtensionEventWithContext"/></codeph></stentry>
+                            </strow>
+                            <strow>
+                                <stentry><codeph props="apple cpp">onExtensionStarted</codeph><codeph props="android">onStarted</codeph></stentry>
+                                <stentry><codeph><apiname keyref="onExtensionStartedWithContext"/></codeph></stentry>
+                            </strow>
+                            <strow>
+                                <stentry><codeph props="apple cpp">onExtensionStopped</codeph><codeph props="android">onStopped</codeph></stentry>
+                                <stentry><codeph><apiname keyref="onExtensionStoppedWithContext"/></codeph></stentry>
+                            </strow>
+                            <strow>
+                                <stentry><codeph props="apple cpp">onExtensionError</codeph><codeph props="android">onError</codeph></stentry>
+                                <stentry><codeph><apiname keyref="onExtensionErrorWithContext"/></codeph></stentry>
+                            </strow>
+                        </simpletable>
                     </li>
+                    <li props="ios">在 v4.4.0 之前，当你的用户角色为观众时，调用 <codeph><apiname keyref="setAudioScenario"/></codeph> 将音频场景设为聊天室场景（<codeph><apiname keyref="AUDIO_SCENARIO_CHATROOM"/></codeph>）会收到申请麦克风权限的弹窗提示。自 v4.4.0 起，SDK 通过 iOS 原生的 API 控制麦克风开关，因此观众角色在聊天室场景下不会再收到申请麦克风权限的弹窗。</li>
+                    <li props="apple">该版本将 <codeph>receiveMetadata</codeph> 回调改名为 <codeph><apiname keyref="onMetadataReceived"/></codeph>，并删除了回调中的 <codeph>data</codeph>、<codeph>timeStamp</codeph> 参数，你可以通过新增的 <codeph>metadata</codeph> 参数来获取 Metadata 的相关信息，包括 <codeph>timeStamp</codeph>（发送数据的时间戳）、<codeph>uid</codeph>（用户 ID）、<codeph>channelId</codeph>（源频道名称）等。</li>
+                    <li props="android">该版本删除了 <codeph><apiname keyref="onMetadataReceived"/></codeph> 回调中的 <codeph>buffer</codeph>、<codeph>uid</codeph>、<codeph>timeStampMs</codeph> 参数，你可以通过新增的 <codeph>metadata</codeph> 参数来获取 Metadata 的相关信息，包括 <codeph>timeStampMs</codeph>（发送数据的时间戳）、<codeph>uid</codeph>（用户 ID）、<codeph>channelId</codeph>（源频道名称）等。</li>
+                    <li props="cpp">该版本修改了 <xref keyref="ExternalVideoFrame"/> 中的以下成员名称：
+                        <ul>
+                        <li><codeph>d3d11_texture_2d</codeph> 更名为 <codeph>d3d11Texture2d</codeph>。</li>
+                        <li><codeph>texture_slice_index</codeph> 更名为 <codeph>textureSliceIndex</codeph>。</li>
+                        <li><codeph>metadata_buffer</codeph> 更名为 <codeph>metadataBuffer</codeph>。</li>
+                        <li><codeph>metadata_size</codeph> 更名为 <codeph>metadataSize</codeph>。</li>
+                        </ul></li>
                 </ol>
             </body>
         </topic>
-        <topic id="newfeature" props="hide">
+        <topic id="newfeature">
             <title>新增特性</title>
             <body>
                 <ol>
-                    <li><ph><b>新增特性名称</b></ph>
+                    <li props="android ios"><ph><b>Lite SDK</b></ph>
+                        <p>自该版本起，声网推出 Lite 版 SDK，该 SDK 中仅包含音视频基础能力、对高阶音视频处理的功能进行部分裁剪，可有效减少集成 SDK 后的 App 体积。</p>
                         <ul>
-                        <li><?oxy-placeholder content="用 list 描述"?></li>
-                        <li><?oxy-placeholder content="用 list 描述"?></li>
+                        <li>Lite SDK 支持手动集成或三方仓库集成，详见<xref keyref="resource"/>和<xref keyref="quick-start"/>。</li>
+                        <li>Lite SDK 包含的动态库信息详见<xref keyref="reduce-app-size"/>。</li>
+                        <li>Lite SDK 支持的 API 清单详见 <xref href="https://doc.shengwang.cn/api-ref/rtc/android/API/rtc_lite_api" props="android">Lite SDK API 列表</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/ios/API/rtc_lite_api" props="ios">Lite SDK API 列表</xref>。</li>
+                        <li>使用 Lite SDK 播放媒体文件时的限制和注意事项详见 <xref href="https://doc.shengwang.cn/faq/general-product-inquiry/audio-format">RTC SDK 支持播放哪些格式的音频文件？</xref></li>
                         </ul></li>
-                    <li><ph><b>新增特性名称</b></ph>
-                        <p><?oxy-placeholder content="用段落描述"?></p>
+                    <li><ph><b>Alpha 透明特效</b></ph>
+                        <p>该版本新增 Alpha 透明特效功能，支持在 SDK 采集和自定义采集视频的场景下，在发送端发布视频帧的 Alpha 通道、在接收端对 Alpha 通道进行渲染处理，实现透明礼物特效、接收端自定义主播背景等：</p>
+                        <ul>
+                        <li><codeph><apiname keyref="VideoFrame"/></codeph> 和 <codeph><apiname keyref="ExternalVideoFrame"/></codeph> 中新增 <codeph>alphaBuffer</codeph>：设置 Alpha 通道数据。</li>
+                        <li><codeph><apiname keyref="ExternalVideoFrame"/></codeph> 中新增 <codeph>fillAlphaBuffer</codeph>：对于 BGRA 或 RGBA 格式的视频数据，设置是否自动提取 Alpha 通道数据并填入到 <codeph>alphaBuffer</codeph> 中。</li>
+                        <li><codeph><apiname keyref="VideoFrame"/></codeph> 和 <codeph><apiname keyref="ExternalVideoFrame"/></codeph> 中新增 <codeph>alphaStitchMode</codeph>：设置 <codeph>alphaBuffer</codeph> 和视频帧拼接的相对位置。</li>
+                        </ul>
+                        <p>另外，<codeph><apiname keyref="AdvanceOptions"/></codeph> 中新增成员 <codeph>encodeAlpha</codeph>，用于设置是否将 Alpha 信息编码并发送到远端。SDK 默认不对 Alpha 信息进行编码发送；如果需要对 Alpha 信息编码发送至远端（例如开启了虚拟背景功能），请显式调用 <codeph><apiname keyref="setVideoEncoderConfiguration"/></codeph> 设置视频编码属性，并将 <codeph>encodeAlpha</codeph> 设置为 <codeph><ph keyref="true"/></codeph>。
+                        <note type="note">
+                            <p>如需了解在各场景下实现 Alpha 特效的最佳实践，详见<xref keyref="alpha-effect"/>。</p>
+                        </note></p>
+                    </li>
+                    <li><ph><b>AI 调音器</b></ph>
+                        <p>该版本新增 AI 调音器功能，可以实现类似物理声卡对音质和音色的提升。你可以通过调用 <codeph><apiname keyref="enableVoiceAITuner"/></codeph> 方法并传入 <codeph><apiname keyref="VOICE_AI_TUNER_TYPE"/></codeph> 枚举中支持的音效类型来启用 AI 调音器功能，实现大叔音、萝莉音、烟嗓歌声等声音效果。</p>
+                    </li>
+                    <li props="ios android"><ph><b>版权音乐优化</b></ph>
+                        <ul>
+                            <li>该版本在 <codeph><apiname keyref="IMusicPlayer"/></codeph> 类下新增 <codeph><apiname keyref="setPlayMode"/></codeph> 方法，用于设置音乐资源的播放模式。在在线 K 歌房等场景下，你可以根据需求启用伴唱、原唱或导唱模式。</li>
+                            <li props="ios">该版本在 <codeph><apiname keyref="IMusicContentCenter"/></codeph> 类下新增 <codeph><apiname keyref="destroyMusicPlayer"/></codeph> 方法，用于销毁音乐播放器并释放相应的资源。</li>
+                            <li props="android">该版本废弃了 <codeph><apiname keyref="IMusicPlayer"/></codeph> 类下的 <codeph><apiname keyref="destroy_IMusicPlayer"/></codeph> 方法。如需销毁音乐播放器，请改用<codeph><apiname keyref="IMusicContentCenter"/></codeph> 类下新增 <codeph><apiname keyref="destroyMusicPlayer"/></codeph> 方法。</li>
+                        </ul>
+                    </li>
+                    <li><ph><b>1v1 视频通话场景</b></ph>
+                        <p>该版本在 <codeph><apiname keyref="VIDEO_APPLICATION_SCENARIO_TYPE"/></codeph> 类下新增枚举 <codeph><apiname keyref="APPLICATION_SCENARIO_1V1"/></codeph>（1v1 视频通话）。你可以调用 <codeph><apiname keyref="setVideoScenario"/></codeph> 将视频业务场景设置为 1v1 视频通话，针对该场景低延迟、高画质的体验要求，SDK 进行了策略调优，提升了画质、首帧出图、中低端机延迟及弱网流畅度等性能表现。</p>
                     </li>
                 </ol>
             </body>
@@ -41,54 +94,43 @@
             <title>改进</title>
             <body>
                 <ol>
-                    <li>提升了 <xref keyref="setRemoteSubscribeFallbackOption"/> 方法的易用性，取消了调用时序要求，即：在加入频道前后，均可调用 <xref keyref="setRemoteSubscribeFallbackOption"/> 动态切换弱网环境下的音视频流回退选项。</li>
-                    <li props="ios android">媒体播放器支持播放带有 Alpha 通道的 MP4 文件。(iOS,Android)</li>
-                    <li props="android">媒体播放器全面支持播放 <codeph>/assets/</codeph> 目录下或以 <codeph>content://</codeph> 开头的音乐资源文件。(Android)</li>
+                    <li props="android cpp framework"><ph><b>自适应硬解支持 (Android, Windows)</b></ph>
+                        <p>该版本新增自适应硬解支持，改进了低端机的渲染流畅性，有效降低系统负载。</p>
+                    </li>
+                    <li props="cpp electron unity flutter unreal bp"><ph><b>渲染能力提升 (Windows)</b></ph>
+                        <p>Windows 设备上默认启用 DirectX 11 渲染器，可提供高性能、高质量的图形渲染能力。</p>
+                    </li>
+                    <li><ph><b>人脸区域美颜</b></ph>
+                        <p>为了避免磨皮美颜程度较高时丢失非脸部区域的细节，该版本改进了磨皮美颜效果的实现算法。磨皮美颜现在会识别人脸的各个部位，应用在除嘴巴、眼睛和眉毛之外的人脸皮肤区域，且支持最多同时对两张人脸磨皮。</p>
+                    </li>
+                    <li><ph><b>其他改进</b></ph>
+                        <p>该版本还进行了如下改进：
+                        <ul>
+                        <li>优化了传输策略，调用 <codeph><apiname keyref="enableInstantMediaRendering"/></codeph> 不再对传输链路的安全性产生影响。</li>
+                        <li props="cpp mac electron unity flutter unreal bp"><codeph><apiname keyref="onLocalVideoStateChanged"/></codeph> 回调中新增 <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_DISPLAY_DISCONNECTED"/></codeph> 枚举，表示进行屏幕采集的显示器已断开连接。(Windows, macOS)</li>
+                        <li props="mac electron unity flutter unreal bp">优化了共享窗口的视频链路，降低了 CPU 占用率。(macOS) </li>
+                        <li props="cpp unity flutter electron unreal">优化了屏幕共享场景下的回声消除。</li>
+                        <li props="cpp framework">该版本在 <codeph><apiname keyref="Metadata"/></codeph> 中新增 <codeph>channelId</codeph> 参数，用于获取发送 Metadata 的源频道名称。</li>
+                        <li props="apple cpp framework">废弃了 <codeph><apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REASON"/></codeph> 中的冗余枚举值 <codeph><apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT"/></codeph>、<codeph><apiname keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED"/></codeph>。</li>
+                        <li props="android">废弃了冗余枚举值 <codeph><apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT"/></codeph>、<codeph><apiname keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED"/></codeph>。</li>
+                        <li props="android">优化了以下 API 的参数类型。此改进有助于提升代码的可读性，减少潜在的错误，并便于后续维护。<ul>
+                            <li>废弃了 <codeph>option</codeph> 参数为 int 类型的 <codeph><apiname keyref="setRemoteSubscribeFallbackOption"/></codeph>，新增了 <codeph>option</codeph> 参数为 <codeph><apiname keyref="STREAM_FALLBACK_OPTIONS"/></codeph> 类型的重载函数 <codeph><apiname keyref="setRemoteSubscribeFallbackOption2"/></codeph>。</li>
+                            <li>废弃了 <codeph>streamType</codeph> 参数为 int 类型的 <codeph><apiname keyref="setRemoteVideoStreamType"/></codeph>、<codeph><apiname keyref="setRemoteDefaultVideoStreamType"/></codeph>、<codeph><apiname keyref="setRemoteVideoStreamTypeEx"/></codeph>，新增了 <codeph>streamType</codeph> 参数为 <codeph><apiname keyref="VIDEO_STREAM_TYPE"/></codeph> 类型的重载函数 <codeph><apiname keyref="setRemoteVideoStreamType2"/></codeph>、<codeph><apiname keyref="setRemoteDefaultVideoStreamType2"/></codeph>、<codeph><apiname keyref="setRemoteVideoStreamTypeEx2"/></codeph>。</li></ul></li>
+                        </ul></p>
+                    </li>
                 </ol>
             </body>
         </topic>
         <topic id="bugfix">
             <title>问题修复</title>
-            <body><p>该版本修复了以下问题：</p>
-                <ul>
-                    <li props="ios flutter unity rn">App 长时间切后台再返回前台时，远端视频画面卡住或花屏。（iOS）</li>
-                    <li props="ios flutter unity rn">部分 iPad 设备上的本地预览画面旋转 90°，不符合预期。（iOS）</li>
-                    <li>音视频互动过程中偶现视频流畅度不佳。</li>
-                    <li>接收端 App 解码后的视频分辨率为奇数时偶现 App 崩溃。</li>
-                    <li props="android flutter unity rn">首次安装 App 或重启系统后，打开 App 并开启屏幕共享时出现崩溃。(Android)</li>
-                    <li props="android flutter unity rn">接听系统电话时加入频道，挂断电话后，本地音频采集失败，远端用户听不到声音。(Android)</li>
-                    <li props="android flutter unity rn">在部分机型（例如：红米 Note8）上进行互动的过程中接听系统来电并挂断后，本地播放媒体文件无声、听远端无声。(Android)</li>
-                    <li>远端用户离开频道时偶现崩溃。</li>
-                    <li props="cpp flutter unity electron">调用 <xref keyref="startScreenCaptureByWindowId"/> 共享 PPT 窗口，当 PPT 播放动画画面时，接收端偶现画面闪烁。(Windows)</li>
-                    <li props="cpp flutter unity electron">在 Windows 7 系统上调用 <xref keyref="startScreenCaptureByWindowId"/> 共享 WPS PPT 窗口，并设置 <xref keyref="ScreenCaptureParameters"/> 的 <codeph>enableHighLight</codeph> 为 <codeph><ph keyref="true"/></codeph> 开启窗口描边，放映该 PPT 后退出放映，之后选择最大化 PPT 窗口，窗口描边没有保留原始窗口大小，不符合预期。(Windows)</li>
-                    <li props="cpp flutter unity electron">调用 <xref keyref="startScreenCaptureByWindowId"/> 共享窗口，并设置 <xref keyref="ScreenCaptureParameters"/> 的 <codeph>windowFocus</codeph> 和 <codeph>enableHighLight</codeph> 为 <codeph><ph keyref="true"/></codeph> 以前置指定窗口并开启窗口描边，如果当前该窗口被其他窗口覆盖，无法前置该窗口，不符合预期。(Windows)</li>
-                    <li props="cpp flutter unity electron">在 Windows 7 设备上共享窗口并对窗口描边时，点击桌面控件导致描边部分闪烁。(Windows)</li>
-                    <li props="android">调用 <xref keyref="queryCameraFocalLengthCapability"/> 返回的 <xref keyref="AgoraFocalLengthInfo"/> 中，<codeph>cameraDirection</codeph> 和 <codeph>focalLengthType</codeph> 的值无法被直接读取。</li>
-                    <li props="ios flutter unity rn">调用 <xref keyref="startAudioMixing"/> 播放音乐文件，音乐文件播放结束后偶现无法触发 <xref keyref="onAudioMixingStateChanged"/>(<ph keyref="AUDIO_MIXING_STATE_STOPPED"/>,<ph keyref="AUDIO_MIXING_REASON_ALL_LOOPS_COMPLETED"/>) 回调报告音乐文件播放完毕。(iOS)</li>
-                    <li props="ios flutter unity rn">调用 <xref keyref="playEffect3"/> 播放时长不足 1 秒的音效文件并设置不循环播放（ <codeph>loopCount</codeph> 为 0 ）时，出现无声。(iOS)</li>
-                    <li props="ios flutter unity rn">使用媒体播放器播放视频，暂停播放后恢复播放，偶现短暂无声。(iOS)</li>
-                </ul>
-            </body>
-        </topic>
-        <topic id="apichange">
-            <title>API 变更</title>
             <body>
-                <p><b>新增</b>
-                    <ul>
-                    <li><codeph><apiname/></codeph></li>
-                    </ul></p>
-                <p><b>修改</b>
-                    <ul>
-                    <li><apiname/></li>
-                    </ul></p>
-                <p><b>废弃</b>
-                    <ul>
-                    <li><apiname/></li>
-                    </ul></p>
-                <p><b>删除</b>
-                    <ul>
-                    <li><apiname/></li>
-                    </ul></p>
+                <p>该版本修复了以下问题：</p>
+                <ul>
+                    <li props="ios rn unity flutter unreal bp">在实时互动过程中，当多个远端同时加入频道时 App 偶现崩溃。(iOS)</li>
+                    <li props="ios rn unity flutter unreal bp">App 切后台一段时间、然后返回前台时，远端视频画面偶现卡住或花屏。(iOS)</li>
+                    <li props="ios rn unity flutter unreal bp">发送端调用 <codeph><apiname keyref="startDirectCdnStreaming"/></codeph> 开始直接向 CDN 推流后，频繁开关或切换网络，偶现接收端黑屏但发送端未收到推流失败回调。(iOS)</li>
+                    <li props="android ios unity flutter rn unreal bp">调用 <codeph><apiname keyref="pushAudioFrame" props="unity flutter rn unreal bp"/><apiname keyref="pushAudioFrame2" props="android ios"/></codeph> 推送外部音频数据，外部音频渲染的采样率如果不是 SDK 推荐的值时，比如 22050 Hz 和 11025 Hz，声音播放失败。</li>
+                </ul>
             </body>
         </topic>
     </topic>

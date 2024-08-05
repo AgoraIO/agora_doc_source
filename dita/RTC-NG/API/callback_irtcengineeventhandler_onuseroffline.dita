@@ -38,14 +38,22 @@
       UserOfflineReasonType reason)? onUserOffline;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <p id="desc">用户离开频道有两个原因：
-            <ul>
-            <li>正常离开：远端用户/主播会发送类似“再见”的消息。接收此消息后，判断用户离开频道。</li>
-            <li>超时掉线：在一定时间内（通信场景为 20 秒，直播场景稍有延时），用户没有收到对方的任何数据包，则判定为对方掉线。在网络较差的情况下，有可能会误报。建议使用云信令 SDK 来做可靠的掉线检测。</li>
-            </ul> </p>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p id="desc">用户离开频道一般有以下两个原因：
+                <ul>
+                <li>正常离开：远端用户或主播会发送类似“再见”的消息然后主动离开频道。</li>
+                <li>超时掉线：在一定时间内（通信场景为 20 秒，直播场景稍有延时），用户没有收到对方的任何数据包，则判定为对方掉线。在网络较差的情况下，有可能会误报。建议使用 RTM SDK 来做可靠的掉线检测。</li>
+                </ul></p>
         </section>
-        <section id="parameters">
+        <section id="timing" deliveryTarget="details">
+            <title>触发时机</title>
+            <p>在音视频互动过程中，当远端用户或主播离开当前频道时会触发该回调。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>使用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title> <ph keyref="callback-section-title" /> </title>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
@@ -59,16 +67,16 @@
             <plentry id="uid">
                 <pt props="native unreal bp">uid</pt>
                 <pt props="unity electron rn flutter cs">remoteUid</pt>
-                <pd>离线用户或主播的用户 ID。</pd>
+                <pd>离线的远端用户或主播的 ID。</pd>
             </plentry>
             <plentry id="reason">
                 <pt>reason</pt>
                 <pd>
-                    <p props="ios mac cpp unreal bp unity flutter electron rn cs">离线原因: <xref keyref="USER_OFFLINE_REASON_TYPE" />。</p>
-                    <p props="android hmos">远端用户（通信场景）或主播（直播场景）下线的原因：
+                    <p props="ios mac cpp unreal bp unity flutter electron rn cs">远端用户（通信场景）或主播（直播场景）离线的原因，详见 <xref keyref="USER_OFFLINE_REASON_TYPE" />。</p>
+                    <p props="android hmos">远端用户（通信场景）或主播（直播场景）离线的原因：
                     <ul>
-                    <li> <ph keyref="USER_OFFLINE_QUIT" />(0)：用户主动离开。此时离开频道的用户会发送一个类似“再见”的消息。收到该消息是，SDK 判定该用户离开频道。</li>
-                    <li> <ph keyref="USER_OFFLINE_DROPPED" />(1)：因过长时间收不到对方数据包，SDK 判定该远端用户超时掉线。注意：在网络连接不稳定时，该判定 可能会有误。建议使用实时消息 SDK 来做可靠的掉线检测。</li>
+                    <li> <ph keyref="USER_OFFLINE_QUIT" />(0)：用户主动离开。此时离开频道的用户会发送一个类似“再见”的消息。</li>
+                    <li> <ph keyref="USER_OFFLINE_DROPPED" />(1)：因过长时间收不到对方数据包，SDK 判定该远端用户超时掉线。注意：在网络连接不稳定时，该判定可能会有误。建议使用 RTM SDK 来做可靠的掉线检测。</li>
                     <li> <ph keyref="USER_OFFLINE_BECOME_AUDIENCE" />(2)：用户的角色从主播切换为观众。</li>
                     </ul> </p>
                 </pd>

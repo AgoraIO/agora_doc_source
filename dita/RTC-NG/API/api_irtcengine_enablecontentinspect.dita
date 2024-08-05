@@ -32,12 +32,18 @@
       {required bool enabled, required ContentInspectConfig config});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p>开启本地截图上传后，SDK 会根据你在 <xref keyref="ContentInspectConfig"/> 中设置的模块类型和频率对本地用户发送的视频进行截图和上传。截图完成后，声网服务器会以 HTTPS 请求的形式，向你的服务器发送回调通知，并将所有截图发送至你指定的第三方云存储。</p>
-            <note>调用该方法前，请确保已<xref keyref="ticket-link"/>开通本地截图上传服务。</note> 
         </section>
-        <section id="parameters">
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>加入频道前后均可调用。</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>调用该方法前，请确保已<xref keyref="ticket-link"/>开通本地截图上传服务。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
             <plentry id="enabled">

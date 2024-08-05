@@ -93,14 +93,17 @@
   static public class AdvanceOptions {
     public ENCODING_PREFERENCE encodingPreference;
     public COMPRESSION_PREFERENCE compressionPreference;
-    public AdvanceOptions(
-        ENCODING_PREFERENCE encodingPreference, COMPRESSION_PREFERENCE compressionPreference) {
+    public boolean encodeAlpha;
+    public AdvanceOptions(ENCODING_PREFERENCE encodingPreference,
+        COMPRESSION_PREFERENCE compressionPreference, boolean encodeAlpha) {
       this.encodingPreference = encodingPreference;
       this.compressionPreference = compressionPreference;
+      this.encodeAlpha = encodeAlpha;
     }
     public AdvanceOptions() {
       this.encodingPreference = ENCODING_PREFERENCE.PREFER_AUTO;
       this.compressionPreference = COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY;
+      this.encodeAlpha = false;
     }
   }
   public enum DEGRADATION_PREFERENCE {
@@ -187,8 +190,8 @@
     this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
     this.mirrorMode = MIRROR_MODE_TYPE.MIRROR_MODE_DISABLED;
     this.advanceOptions = new AdvanceOptions(
-        ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY);
-    this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_H265;
+        ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY, false);
+    this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_NONE;
   }
   public VideoEncoderConfiguration(VideoDimensions dimensions, FRAME_RATE frameRate, int bitrate,
       ORIENTATION_MODE orientationMode) {
@@ -201,8 +204,8 @@
     this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
     this.mirrorMode = MIRROR_MODE_TYPE.MIRROR_MODE_DISABLED;
     this.advanceOptions = new AdvanceOptions(
-        ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY);
-    this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_H265;
+        ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY, false);
+    this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_NONE;
   }
   public VideoEncoderConfiguration(VideoDimensions dimensions, FRAME_RATE frameRate, int bitrate,
       ORIENTATION_MODE orientationMode, MIRROR_MODE_TYPE mirrorMode) {
@@ -215,8 +218,8 @@
     this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
     this.mirrorMode = mirrorMode;
     this.advanceOptions = new AdvanceOptions(
-        ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY);
-    this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_H265;
+        ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY, false);
+    this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_NONE;
   }
   public VideoEncoderConfiguration(
       int width, int height, FRAME_RATE frameRate, int bitrate, ORIENTATION_MODE orientationMode) {
@@ -229,8 +232,8 @@
     this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
     this.mirrorMode = MIRROR_MODE_TYPE.MIRROR_MODE_DISABLED;
     this.advanceOptions = new AdvanceOptions(
-        ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY);
-    this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_H265;
+        ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY, false);
+    this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_NONE;
   }
   public VideoEncoderConfiguration(int width, int height, FRAME_RATE frameRate, int bitrate,
       ORIENTATION_MODE orientationMode, MIRROR_MODE_TYPE mirrorMode) {
@@ -243,8 +246,8 @@
     this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
     this.mirrorMode = mirrorMode;
     this.advanceOptions = new AdvanceOptions(
-        ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY);
-    this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_H265;
+        ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY, false);
+    this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_NONE;
   }
 }</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">export class VideoEncoderConfiguration{
@@ -300,7 +303,7 @@
       orientationMode(m),
       degradationPreference(MAINTAIN_QUALITY),
       mirrorMode(mirror),
-      advanceOptions(PREFER_AUTO, PREFER_LOW_LATENCY) {}
+      advanceOptions(PREFER_AUTO, PREFER_LOW_LATENCY, false) {}
   VideoEncoderConfiguration(int width, int height, int f, int b, ORIENTATION_MODE m, VIDEO_MIRROR_MODE_TYPE mirror = VIDEO_MIRROR_MODE_DISABLED)
     : codecType(VIDEO_CODEC_NONE),
       dimensions(width, height),
@@ -310,7 +313,7 @@
       orientationMode(m),
       degradationPreference(MAINTAIN_QUALITY),
       mirrorMode(mirror),
-      advanceOptions(PREFER_AUTO, PREFER_LOW_LATENCY) {}
+      advanceOptions(PREFER_AUTO, PREFER_LOW_LATENCY, false) {}
   VideoEncoderConfiguration(const VideoEncoderConfiguration&amp; config)
     : codecType(config.codecType),
       dimensions(config.dimensions),
@@ -330,7 +333,7 @@
       orientationMode(ORIENTATION_MODE_ADAPTIVE),
       degradationPreference(MAINTAIN_QUALITY),
       mirrorMode(VIDEO_MIRROR_MODE_DISABLED),
-      advanceOptions(PREFER_AUTO, PREFER_LOW_LATENCY) {}
+      advanceOptions(PREFER_AUTO, PREFER_LOW_LATENCY, false) {}
   VideoEncoderConfiguration&amp; operator=(const VideoEncoderConfiguration&amp; rhs) {
     if (this == &amp;rhs) return *this;
     codecType = rhs.codecType;
@@ -610,13 +613,13 @@ struct FVideoEncoderConfiguration
             </plentry>
             <plentry>
                 <pt>degradationPreference</pt>
-                <pd>Video degradation preference under limited bandwidth. See <xref keyref="DEGRADATION_PREFERENCE"/>.</pd>
+                <pd>Video degradation preference under limited bandwidth. See <xref keyref="DEGRADATION_PREFERENCE"/>.<note type="attention">When this parameter is set to <ph keyref="MAINTAIN_FRAMERATE"/> (1) or <ph keyref="MAINTAIN_BALANCED"/> (2), <parmname>orientationMode</parmname> needs to be set to <ph keyref="ORIENTATION_MODE_ADAPTIVE"/> (0) at the same time, otherwise the setting will not take effect.</note></pd>
             </plentry>
             <plentry>
                 <pt>mirrorMode</pt>
                 <pd>
                     <p props="ios mac cpp framework">Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.</p>
-                    <p props="android">Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees.<ul>
+                    <p props="android hmos">Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees.<ul>
                       <li><ph keyref="VIDEO_MIRROR_MODE_AUTO" />(0): The SDK determines whether to enable the mirror mode. The SDK disables mirror mode by default.</li>
                       <li><ph keyref="VIDEO_MIRROR_MODE_ENABLED" />(1): Enables the mirror mode for remote users.</li>
                       <li><ph keyref="VIDEO_MIRROR_MODE_DISABLED" />(2): Disables the mirror mode for remote users.</li>

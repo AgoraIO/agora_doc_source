@@ -29,15 +29,21 @@
            <codeblock props="flutter" outputclass="language-dart"/> 
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <note type="attention" id="sequence">
-            <p>Before calling this method to push external audio data, perform the following steps:<ol>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>Call this method to push external audio frames through the audio track.</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p id="sequence">Before calling this method to push external audio data, perform the following steps:<ol>
                 <li>Call <xref keyref="createCustomAudioTrack"/> to create a custom audio track and get the audio track ID.</li>
                 <li>Call <xref keyref="joinChannel2"/> to join the channel. In <xref keyref="ChannelMediaOptions"/>, set <parmname>publishCustomAudioTrackId</parmname> to the audio track ID that you want to publish, and set <parmname>publishCustomAudioTrack</parmname> to <codeph><ph keyref="true"/></codeph>.</li>
             </ol></p>
-            </note> </section>
-        <section id="parameters">
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>
@@ -54,22 +60,19 @@
             </plentry>
             <plentry id="samplerate">
                 <pt>sampleRate</pt>
-                <pd>The sample rate (Hz) of the external audio source, which can be set as 8000, 16000, 32000, 44100, or 48000.</pd>
+                <pd>The sample rate (Hz) of the external audio source which can be set as <codeph>8000</codeph>, <codeph>16000</codeph>, <codeph>32000</codeph>, <codeph>44100</codeph>, or <codeph>48000</codeph>.</pd>
             </plentry>
             <plentry id="channels">
                 <pt>channels</pt>
-                <pd>The number of audio channels of the external audio sink:<ul>
-                    <li>1: Mono.</li>
-                    <li>2: Stereo.</li>
-                    </ul></pd>
+                <pd>The number of channels of the external audio source, which can be set as <codeph>1</codeph> (Mono) or <codeph>2</codeph> (Stereo).</pd>
             </plentry>
-            <plentry props="android">
+            <plentry props="android hmos">
                 <pt>bytesPerSample</pt>
                 <pd>The number of bytes per sample. For PCM, this parameter is generally set to 16 bits (2 bytes).</pd>
             </plentry>
             <plentry id="trackid">
                 <pt>trackId</pt>
-                <pd>The audio track ID. Set this parameter to the custom audio track ID returned in <xref keyref="createCustomAudioTrack"/>.</pd>
+                <pd>The audio track ID. Set this parameter to the custom audio track ID returned in <apiname keyref="createCustomAudioTrack"/>.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
