@@ -147,7 +147,7 @@ The mapping of field names between Chat and APNs is as follows:
 | `ext`              | `loc-args`  | 
 | `launchImage`      | `launch-image`  | 
 | `interruptionLevel`|  `interruption-level`   | 
-| `liveActivityEvent` |  `liveactivity`           | 
+| `liveActivityEvent` |  `event`           | 
 | `timestamp`         |  `timestamp`          | 
 | `dismissalDate`     |   `dismissal-date`     | 
 | `staleDate`         |  `stale-date`     | 
