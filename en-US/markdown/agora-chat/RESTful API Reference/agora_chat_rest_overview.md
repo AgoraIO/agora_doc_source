@@ -88,7 +88,6 @@ This group of methods enables you to send text, image, voice, video, pass-throug
 | Uploading files | POST | `/{org_name}/{app_name}/chatfiles` | Uploads voice and image files. |
 | Downloading files | POST | `/{org_name}/{app_name}/chatfiles/{file_uuid}` | Downloads voice and image files. |
 | Retrieving historical messages | GET | `/{org_name}/{app_name}/chatmessages/${time}` | Retrieves chat historical messages |
-| Retrieving the conversation list | GET | `/{org_name}/{app_name}/user/{username}/user_channels` | Retrieves a list of conversations of the specified user.|
 | Modify a text or custom message | PUT | `/{org_name}/{app_name}/messages/rewrite/{msg_id}` | Modifies a text message or custom message. |
 | Recalling a message | POST | `{org_name}/{app_name}/messages/recall` | Recalls a message two minutes after it is sent. |
 | Deleting conversations from the server | DELETE | `/{orgName}/{appName}/users/{userName}/user_channel` | Deletes the conversation from the server. |

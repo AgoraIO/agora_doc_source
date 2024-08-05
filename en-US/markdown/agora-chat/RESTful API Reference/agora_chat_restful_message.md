@@ -56,7 +56,7 @@ Follow the instructions below to implement sending messages:
 
 <div class="alert note"><ul>
 <li>When calling the RESTful API to send a message, you can use the <code>from</code> field to specify the message sender.</li>
-<li>If the data length of the request body exceeds 5 KB, error code 413 will be returned. The maximum data length of the request body and extension fields is 3 KB.</li>
+<li>The maximum data length of the request body and extension fields is 5 KB, or the error 413 will be returned.</li>
 </ul></div>
 
 ### Send a one-to-one message
@@ -1838,7 +1838,7 @@ For the other parameters and detailed descriptions, see [Common parameters](#par
 | `new_msg.msg` | String | The modified message content. **This parameter is valid only for text messages.**   | Yes |
 | `new_msg.customEvent` | String | The event type customized by the user. The value of this parameter should be a regular expression, for example, [a-zA-Z0-9-_/\.]{1,32}. This parameter value can contain up to 32 characters. **This parameter is valid only for custom messages.**  | No  |
 | `new_msg.customExts`  | JSON   | The event attribute customized by the user. The data type is Map<String,String>. You can set a maximum of 16 elements. **This parameter is valid only for custom messages.**  | No |
-| `new_ext` | JSON | The modified message extension information. | No |
+| `new_ext` | JSON | The modified message extension information. This parameter is valid only for custom messages. | No |
 | `is_combine_ext` | Boolean | Whether the modified message extension information is merged with or replaces the original information:<ul><li>(Default)`true`: Merge; </li><li> `false`: Replace.</li></ul> | No |
 
 ### HTTP response
@@ -1885,11 +1885,6 @@ curl -X PUT -i 'https://XXXX/XXXX/XXXX/messages/rewrite/1235807318835202004' \
     "type": "txt",
     "msg": "update message content"
   },
-  "new_ext": { 
-    "key": "value",
-    "old_key": "new_value"
-  },
-  "is_combine_ext": true
 }'
 ```
 
@@ -1968,7 +1963,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | `to`        | String   | Yes   | The user, chat group, or chat room that receives the message to recall. You can specify a user ID, a chat group ID, or a chat room ID.</br>**Note**: If the message to recall no longer exists on the server, only the message on the recipient client is recalled. |
 | `chat_type` | String   | Yes     | The type of the chat where the message to recall is sent. <ul><li>`chat`: An one-on-one chat.</li><li>`groupchat`: A chat group.</li><li>`chatroom`: A chat room.</li></ul> |
 | `from`      | String   | No   | The user who recalls the message. By default, the recaller is the app admin. You can also specify another user as the recaller. |
-| `force`     | bool     | No     | Whether to allow to recall messages beyond the storage time on the server. For details on the message storage duration on the server, see [Message storage duration](https://docs.agora.io/en/agora-chat/reference/limitations#message-storage-duration).<ul><li>`true`: Yes. In this case, you can recall messages within the recall period or those beyond the storage time on the server. For the latter, this API recalls the messages locally saved by the recipient. If the message sending time is between your recall duration and the storage duration on the server, the recall fails. For example, if the recall duration is 2 minutes and the storage time on the server is 7 days, you can recall a message sent within 2 minutes or one that was sent more than 7 days ago; if the message is sent 3 minutes ago, the recall will fail.</li><li>`false`: No. You cannot recall messages beyond the storage time on the server. If you use the default recall time of 2 minutes or a custom duration, the server can only recall the messages sent within the specified time, and those beyond this time cannot be recalled. For example, if you set the recall time to 3 minutes and the message is sent 4 minutes ago, the recall will fail.</li></ul>  |
+| `force`     | bool     | No     | Whether to allow to recall messages beyond the storage time on the server. For details on the message storage duration on the server, see [Message storage duration](https://docs.agora.io/en/agora-chat/reference/limitations#message-storage-duration).<ul><li>`true`: Yes. In this case, you can recall messages within the recall period or those beyond the storage time on the server. For the latter, this API recalls the messages locally saved by the recipient, but the local message on the sender side still exists. If the message sending time is between your recall duration and the storage duration on the server, the recall fails. For example, if the recall duration is 2 minutes and the storage time on the server is 7 days, you can recall a message sent within 2 minutes or one that was sent more than 7 days ago; if the message is sent 3 minutes ago, the recall will fail.</li><li>`false`: No. You cannot recall messages beyond the storage time on the server. If you use the default recall time of 2 minutes or a custom duration, the server can only recall the messages sent within the specified time, and those beyond this time cannot be recalled. For example, if you set the recall time to 3 minutes and the message is sent 4 minutes ago, the recall will fail.</li></ul>  |
 
 ### HTTP response
 

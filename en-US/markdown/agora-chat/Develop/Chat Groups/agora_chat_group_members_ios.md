@@ -62,7 +62,7 @@ Refer to the following sample code to add and remove a user:
 ### Manage chat group ownership and admin
 
 1. Transfer the chat group ownership.  
-The chat group owner can transfer ownership to the specified chat group member. Once ownership is transferred, the original chat group owner becomes a group member. All the other chat group members receive the `groupOwnerDidUpdate` callback.
+The chat group owner can transfer ownership to the specified chat group member. Once ownership is transferred, the original chat group owner becomes a group member. The new owner receives the `groupOwnerDidUpdate` callback.
 
 2. Add chat group admins.  
 The chat group owner can add admins. Once added to the chat group admin list, the newly added admin and the other chat group admins receive the `groupAdminListDidUpdate` callback.

@@ -1,5 +1,10 @@
 After logging in to Agora Chat, users can start adding contacts and chatting with each other. They can also manage these contacts, for example, by adding, retrieving and removing contacts. They can also add the specified user to the block list to stop receiving messages from that user.
 
+// You can add this paragraph for each platform/framework:
+Agora Chat, by default, allows two users to send chat messages to each other as strangers. This means that users can chat without adding each other as a contact. If you only allow chat between contacts, you can contact [support@agora.io](support@agora.io) to enable the friend relationship check switch. After this function is enabled, the SDK will check whether the two users trying to chat are on the contact list of each other. If no, the SDK will report error code 221.
+
+**The preceding paragraph needs to be added for each platform and framework. Here I just use Android as an example.**
+
 This page shows how to use the Agora Chat SDK to implement contact management.
 
 ## Understand the tech

@@ -96,6 +96,14 @@ Each chat room can have up to 100 custom attributes, and the total size of chat 
 - 10 numbers 0 -9; 
 - "_", "-", ".".
 
+## Presence
+
+The presence status of each user can be subscribed by up to 3000 users.
+
+## Contact
+
+Each user can have a block list that can contain a maximum of 500 users.
+
 ## Call limit of server-side
 
 For each App Key, the call frequency limit of all methods is 500 per second. This total limit applies to all pricing plans; however, the call frequency limit of each method varies. For details about each method, see [Chat RESTful API Reference](./agora_chat_restful_overview).
