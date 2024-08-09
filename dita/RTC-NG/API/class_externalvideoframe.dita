@@ -20,7 +20,7 @@
   public static final int BUFFER_TYPE_ARRAY = 2;
   public static final int BUFFER_TYPE_TEXTURE = 3;
   public AgoraVideoFrame() {
-    format = 10; 
+    format = 10;
     timeStamp = 0;
     stride = 0;
     height = 0;
@@ -46,7 +46,7 @@
   public float[] transform;
   public javax.microedition.khronos.egl.EGLContext eglContext10;
   public android.opengl.EGLContext eglContext14;
-  
+
   public byte[] buf;
   public int cropLeft;
   public int cropTop;
@@ -67,20 +67,20 @@
             <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoFrame : NSObject
 @property(assign, nonatomic) NSInteger format;
-@property(assign, nonatomic) CMTime time;  
+@property(assign, nonatomic) CMTime time;
 @property(assign, nonatomic) int stride DEPRECATED_MSG_ATTRIBUTE("use strideInPixels instead");
-@property(assign, nonatomic) int strideInPixels;  
-@property(assign, nonatomic) int height;  
+@property(assign, nonatomic) int strideInPixels;
+@property(assign, nonatomic) int height;
 @property(assign, nonatomic) CVPixelBufferRef _Nullable textureBuf;
 @property(strong, nonatomic) IMAGE_CLASS * _Nullable image;
-@property(strong, nonatomic) NSData *_Nullable dataBuf;  
+@property(strong, nonatomic) NSData *_Nullable dataBuf;
 @property(strong, nonatomic) NSData *_Nullable alphaBuf;
 @property(assign, nonatomic) AgoraAlphaStitchMode alphaStitchMode;
-@property(assign, nonatomic) int cropLeft;  
-@property(assign, nonatomic) int cropTop;  
-@property(assign, nonatomic) int cropRight;  
-@property(assign, nonatomic) int cropBottom;  
-@property(assign, nonatomic) int rotation;  
+@property(assign, nonatomic) int cropLeft;
+@property(assign, nonatomic) int cropTop;
+@property(assign, nonatomic) int cropRight;
+@property(assign, nonatomic) int cropBottom;
+@property(assign, nonatomic) int rotation;
 - (void)fillAlphaData;
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct ExternalVideoFrame {
@@ -174,6 +174,8 @@
         public int textureId;
         public byte[] metadata_buffer;
         public int metadata_size;
+        public bool fillAlphaBuffer;
+        public ALPHA_STITCH_MODE alphaStitchMode;
         public IntPtr d3d11_texture_2d;
         public int texture_slice_index;
     };</codeblock>
@@ -297,7 +299,7 @@ class ExternalVideoFrame {
                     id="windows-format">像素格式。详见 <xref
                     keyref="VIDEO_PIXEL_FORMAT"/>。</pd>
                 <pd props="ios mac" id="oc-format">传入的视频帧的格式，必须指定为下面的某一个值：
-                
+
                     <ul>
                     <li>1: I420。</li>
                     <li>2: BGRA。</li>
@@ -310,7 +312,7 @@ class ExternalVideoFrame {
                     <li>16: I422。</li>
                     </ul> </pd>
                 <pd props="android hmos">视频数据的格式：
-                
+
                     <ul>
                     <li>10：TEXTURE_2D。</li>
                     <li>11：TEXTURE_OES，通常摄像头采集的数据为这种格式。</li>
@@ -335,7 +337,7 @@ class ExternalVideoFrame {
             <plentry>
                 <pt>stride</pt>
                 <pd>传入视频帧的行间距，单位为像素而不是字节。对于 Texture，该值指的是 Texture 的宽度。
-                
+
                     <p props="ios mac">
                     <dl outputclass="deprecated">
                     <dlentry>
@@ -350,7 +352,7 @@ class ExternalVideoFrame {
             <plentry props="ios mac">
                 <pt>strideInPixels</pt>
                 <pd>该帧的行跨度，即相邻两行视频帧之间的像素点数。
-           
+
                     <note type="attention">
                     <ul>
                     <li>该参数单位为像素，不是字节数。</li>
@@ -433,7 +435,7 @@ class ExternalVideoFrame {
               <plentry>
                 <pt props="cpp">fillAlphaBuffer</pt>
                 <pt props="android apple">fillAlphaData</pt>
-                <pd>该参数仅适用于 BGRA 或 RGBA 格式的视频数据。设置是否提取视频帧中的 Alpha 通道数据并自动填入到 <parmname>alphaBuffer</parmname> 中： 
+                <pd>该参数仅适用于 BGRA 或 RGBA 格式的视频数据。设置是否提取视频帧中的 Alpha 通道数据并自动填入到 <parmname>alphaBuffer</parmname> 中：
                   <ul>
                   <li><codeph><ph keyref="true"/></codeph>：提取并填充 Alpha 通道数据。</li>
                   <li><codeph><ph keyref="false"/></codeph>：（默认）不提取填充 Alpha 通道数据。</li>

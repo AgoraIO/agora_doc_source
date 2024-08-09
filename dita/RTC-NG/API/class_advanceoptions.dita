@@ -70,22 +70,26 @@ struct FAdvanceOptions {
   compressionPreference?: CompressionPreference;
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class AdvanceOptions
-              {
-                  public ENCODING_PREFERENCE encodingPreference { set; get; }
-                  public COMPRESSION_PREFERENCE compressionPreference { set; get; }
+    {
+        public ENCODING_PREFERENCE encodingPreference;
+        public COMPRESSION_PREFERENCE compressionPreference;
+        public bool encodeAlpha;
 
-                  public AdvanceOptions()
-                  {
-                      encodingPreference = ENCODING_PREFERENCE.PREFER_AUTO;
-                      compressionPreference = COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY;
-                  }
+        public AdvanceOptions()
+        {
+            this.encodingPreference = ENCODING_PREFERENCE.PREFER_AUTO;
+            this.compressionPreference = COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY;
+            this.encodeAlpha = false;
+        }
 
-                  public AdvanceOptions(ENCODING_PREFERENCE encoding_preference, COMPRESSION_PREFERENCE compression_preference)
-                  {
-                      encodingPreference = encoding_preference;
-                      compressionPreference = compression_preference;
-                  }
-              }</codeblock>
+        public AdvanceOptions(ENCODING_PREFERENCE encoding_preference, COMPRESSION_PREFERENCE compression_preference, bool encode_alpha)
+        {
+            this.encodingPreference = encoding_preference;
+            this.compressionPreference = compression_preference;
+            this.encodeAlpha = encode_alpha;
+        }
+
+    }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class AdvanceOptions {
   encodingPreference?: EncodingPreference;
   compressionPreference?: CompressionPreference;
