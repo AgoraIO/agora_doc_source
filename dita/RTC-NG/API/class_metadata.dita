@@ -57,25 +57,30 @@ struct FAgoraMetadata
 };</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class Metadata
     {
+        public string channelId;
         public uint uid;
         public uint size;
+        public IntPtr buffer;
+        public long timeStampMs;
 
-        public IntPtr buffer
+        public Metadata()
         {
-            set
-            {
-                _buffer = (UInt64)value;
-            }
-            get
-            {
-                return (IntPtr)_buffer;
-            }
+            this.channelId = "";
+            this.uid = 0;
+            this.size = 0;
+            this.buffer = IntPtr.Zero;
+            this.timeStampMs = 0;
         }
 
-        private UInt64 _buffer;
-
-        public long timeStampMs;
-    };</codeblock>
+        public Metadata(string channelId, uint uid, uint size, IntPtr buffer, long timeStampMs)
+        {
+            this.channelId = channelId;
+            this.uid = uid;
+            this.size = size;
+            this.buffer = buffer;
+            this.timeStampMs = timeStampMs;
+        }
+    }</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class Metadata {
 
   uid?: number;
