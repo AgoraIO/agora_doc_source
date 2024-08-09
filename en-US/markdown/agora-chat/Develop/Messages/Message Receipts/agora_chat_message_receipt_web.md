@@ -146,6 +146,7 @@ For a group chat, group members can determine whether to require message read re
 
 | Feature Restriction| Default | Description | Error |
 | :--------- | :----- | :------- | :------- | 
+| Enabling the function   | Disabled   | To use this feature, contact support@agora.io to enable it.   | The error 503 "group ack not open" is returned if you fail to enable this feature before using it.    |
 | Permission  | Group owner and administrators  | By default, only the group owner and administrators can request read receipts when sending a message. <br/>You can contact [support@agora.io](mailto:support@agora.io) to grant the permission to regular group members.| The error "group ack msg permission denied" is returned if regular group members without the permission request read receipts when sending a message.  |
 | Number of days before read receipts cannot be returned after the message is sent | 3 days | The server no longer records the group members that read the message three days after it is sent, nor sends the read receipts. | The error "group ack msg not found" is returned if read receipts are sent three days after the message is sent. | 
 | Chat group size   | 500 members | This feature is available only to groups with up to 500 members. In other words, each message in a group can have up to 500 read receipts.  | If the upper limit is exceeded, no error is returned, but the latest read receipt record will overwrite the earliest one.|
