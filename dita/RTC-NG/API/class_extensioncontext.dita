@@ -43,7 +43,29 @@
 };</codeblock>
             <codeblock props="bp" outputclass="language-cpp"/>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="unity cs" outputclass="language-csharp">public class ExtensionContext
+    {
+        public bool isValid;
+        public uint uid;
+        public string providerName;
+        public string extensionName;
+
+        public ExtensionContext()
+        {
+            this.isValid = false;
+            this.uid = 0;
+            this.providerName = "";
+            this.extensionName = "";
+        }
+
+        public ExtensionContext(bool isValid, uint uid, string providerName, string extensionName)
+        {
+            this.isValid = isValid;
+            this.uid = uid;
+            this.providerName = providerName;
+            this.extensionName = extensionName;
+        }
+    }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
