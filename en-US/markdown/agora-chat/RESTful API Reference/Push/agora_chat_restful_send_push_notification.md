@@ -77,6 +77,8 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 | :---------------- | :----- | :------------------------- |
 | `data`            | Object | The push result. The server determines the push status based on the push result. |
 | `data.pushStatus` | String | The push status: <br/> - `SUCCESS`: The push succeeds.<br/> - `FAIL`: The push fails due to an error that is not caused by the server, like `bad device token`, indicating that the mobile device delivers an incorrect device token to the server and the server does not accept it.<br/> - `ERROR`: The push exception occurs due to a server error, for example, connection timeout or read or write timeout.|
+| `data.data`       | Object | The push result data returned by the push service used by the push notification recipient. |
+| `data.desc`       | String | The description for the push failure.                  |
 
 For other fields and detailed descriptions, see [Common parameters](#param).
 
