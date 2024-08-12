@@ -76,7 +76,7 @@
 @property(assign, nonatomic) BOOL enableAlphaMask;
 @property(assign, nonatomic) AgoraVideoModulePosition position;
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct VideoCanvas {
+            <codeblock props="unreal cpp" outputclass="language-cpp">struct VideoCanvas {
   uid_t uid;
   uid_t subviewUid;
   view_t view;
@@ -129,23 +129,6 @@ struct FVideoCanvas
 	FRectangle cropArea;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
 	EVIDEO_VIEW_SETUP_MODE setupMode = EVIDEO_VIEW_SETUP_MODE::VIDEO_VIEW_SETUP_REPLACE;
-};</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp">struct VideoCanvas {
-    view_t view;
-    uid_t uid;
-    VIDEO_SOURCE_TYPE sourceType;
-    int mediaPlayerId;
-
-  VideoCanvas()
-    : view(NULL), uid(0), sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY) {}
-  
-  VideoCanvas(view_t v, uid_t u)
-    : view(v), uid(u),
-      sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY)
-  
-  VideoCanvas(view_t v, user_id_t)
-    : view(v), uid(0),
-      sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoCanvas {
   view?: any

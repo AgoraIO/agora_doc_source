@@ -141,7 +141,7 @@
 @property(assign, nonatomic) BOOL isAudioFilterable;
 
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct ChannelMediaOptions {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct ChannelMediaOptions {
   Optional&lt;bool&gt; publishCameraTrack;
   Optional&lt;bool&gt; publishSecondaryCameraTrack;
   Optional&lt;bool> publishThirdCameraTrack;
@@ -183,7 +183,8 @@
   Optional&lt;bool&gt; isAudioFilterable;
 
   ChannelMediaOptions() {}
-  ~ChannelMediaOptions() {}</codeblock>
+  ~ChannelMediaOptions() {}
+            }</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FChannelMediaOptions
 {
@@ -270,45 +271,6 @@ struct FChannelMediaOptions
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	AGORAOPTIONAL isAudioFilterable;
 };</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp">struct ChannelMediaOptions {
-  Optional&lt;bool&gt; publishCameraTrack;
-  Optional&lt;bool&gt; publishSecondaryCameraTrack;
-  Optional&lt;bool&gt; publishMicrophoneTrack;
-
-  #if defined(__ANDROID__) || (defined(TARGET_OS_IPHONE) &amp;&amp; TARGET_OS_IPHONE)
-  Optional&lt;bool&gt; publishScreenCaptureVideo;
-  Optional&lt;bool&gt; publishScreenCaptureAudio;
-  #else
-  Optional&lt;bool&gt; publishScreenTrack;
-  Optional&lt;bool&gt; publishSecondaryScreenTrack;
-  #endif
-
-  Optional&lt;bool&gt; publishCustomAudioTrack;
-  Optional&lt;int&gt; publishCustomAudioTrackId;
-  Optional&lt;bool&gt; publishCustomVideoTrack;
-  Optional&lt;bool&gt; publishEncodedVideoTrack;
-  Optional&lt;bool&gt; publishMediaPlayerAudioTrack;
-  Optional&lt;bool&gt; publishMediaPlayerVideoTrack;
-  Optional&lt;bool&gt; publishTranscodedVideoTrack;
-  Optional&lt;bool&gt; autoSubscribeAudio;
-  Optional&lt;bool&gt; autoSubscribeVideo;
-  Optional&lt;bool&gt; enableAudioRecordingOrPlayout;
-  Optional&lt;int&gt; publishMediaPlayerId;
-  Optional&lt;CLIENT_ROLE_TYPE&gt; clientRoleType;
-  Optional&lt;AUDIENCE_LATENCY_LEVEL_TYPE&gt; audienceLatencyLevel;
-  Optional&lt;VIDEO_STREAM_TYPE&gt; defaultVideoStreamType;
-  Optional&lt;CHANNEL_PROFILE_TYPE&gt; channelProfile;
-  Optional&lt;const char*&gt; token;
-  Optional&lt;bool&gt; enableBuiltInMediaEncryption;
-  Optional&lt;bool&gt; publishRhythmPlayerTrack;
-  Optional&lt;bool&gt; isInteractiveAudience;
-
-  Optional&lt;video_track_id_t&gt; customVideoTrackId;
-
-  Optional&lt;bool&gt; isAudioFilterable;
-
-  ChannelMediaOptions() {}
-  ~ChannelMediaOptions() {}</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ChannelMediaOptions {
 
   publishCameraTrack?: boolean;
