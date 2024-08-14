@@ -473,7 +473,7 @@ struct FChannelMediaOptions
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
 class ChannelMediaOptions {
-  const ChannelMediaOptions(
+    const ChannelMediaOptions(
       {this.publishCameraTrack,
       this.publishSecondaryCameraTrack,
       this.publishThirdCameraTrack,
@@ -492,6 +492,8 @@ class ChannelMediaOptions {
       this.publishMediaPlayerAudioTrack,
       this.publishMediaPlayerVideoTrack,
       this.publishTranscodedVideoTrack,
+      this.publishMixedAudioTrack,
+      this.publishLipSyncTrack,
       this.autoSubscribeAudio,
       this.autoSubscribeVideo,
       this.enableAudioRecordingOrPlayout,
@@ -507,114 +509,85 @@ class ChannelMediaOptions {
       this.publishRhythmPlayerTrack,
       this.isInteractiveAudience,
       this.customVideoTrackId,
-      this.isAudioFilterable});
-
-  @JsonKey(name: 'publishCameraTrack')
+      this.isAudioFilterable,
+      this.parameters});
+    @JsonKey(name: &#x27;publishCameraTrack&#x27;)
   final bool? publishCameraTrack;
-
-  @JsonKey(name: 'publishSecondaryCameraTrack')
+    @JsonKey(name: &#x27;publishSecondaryCameraTrack&#x27;)
   final bool? publishSecondaryCameraTrack;
-
-  @JsonKey(name: 'publishThirdCameraTrack')
+    @JsonKey(name: &#x27;publishThirdCameraTrack&#x27;)
   final bool? publishThirdCameraTrack;
-
-  @JsonKey(name: 'publishFourthCameraTrack')
+    @JsonKey(name: &#x27;publishFourthCameraTrack&#x27;)
   final bool? publishFourthCameraTrack;
-
-  @JsonKey(name: 'publishMicrophoneTrack')
+    @JsonKey(name: &#x27;publishMicrophoneTrack&#x27;)
   final bool? publishMicrophoneTrack;
-
-  @JsonKey(name: 'publishScreenCaptureVideo')
+    @JsonKey(name: &#x27;publishScreenCaptureVideo&#x27;)
   final bool? publishScreenCaptureVideo;
-
-  @JsonKey(name: 'publishScreenCaptureAudio')
+    @JsonKey(name: &#x27;publishScreenCaptureAudio&#x27;)
   final bool? publishScreenCaptureAudio;
-
-  @JsonKey(name: 'publishScreenTrack')
+    @JsonKey(name: &#x27;publishScreenTrack&#x27;)
   final bool? publishScreenTrack;
-
-  @JsonKey(name: 'publishSecondaryScreenTrack')
+    @JsonKey(name: &#x27;publishSecondaryScreenTrack&#x27;)
   final bool? publishSecondaryScreenTrack;
-
-  @JsonKey(name: 'publishThirdScreenTrack')
+    @JsonKey(name: &#x27;publishThirdScreenTrack&#x27;)
   final bool? publishThirdScreenTrack;
-
-  @JsonKey(name: 'publishFourthScreenTrack')
+    @JsonKey(name: &#x27;publishFourthScreenTrack&#x27;)
   final bool? publishFourthScreenTrack;
-
-  @JsonKey(name: 'publishCustomAudioTrack')
+    @JsonKey(name: &#x27;publishCustomAudioTrack&#x27;)
   final bool? publishCustomAudioTrack;
-
-  @JsonKey(name: 'publishCustomAudioTrackId')
+    @JsonKey(name: &#x27;publishCustomAudioTrackId&#x27;)
   final int? publishCustomAudioTrackId;
-
-  @JsonKey(name: 'publishCustomVideoTrack')
+    @JsonKey(name: &#x27;publishCustomVideoTrack&#x27;)
   final bool? publishCustomVideoTrack;
-
-  @JsonKey(name: 'publishEncodedVideoTrack')
+    @JsonKey(name: &#x27;publishEncodedVideoTrack&#x27;)
   final bool? publishEncodedVideoTrack;
-
-  @JsonKey(name: 'publishMediaPlayerAudioTrack')
+    @JsonKey(name: &#x27;publishMediaPlayerAudioTrack&#x27;)
   final bool? publishMediaPlayerAudioTrack;
-
-  @JsonKey(name: 'publishMediaPlayerVideoTrack')
+    @JsonKey(name: &#x27;publishMediaPlayerVideoTrack&#x27;)
   final bool? publishMediaPlayerVideoTrack;
-
-  @JsonKey(name: 'publishTranscodedVideoTrack')
+    @JsonKey(name: &#x27;publishTranscodedVideoTrack&#x27;)
   final bool? publishTranscodedVideoTrack;
-
-  @JsonKey(name: 'autoSubscribeAudio')
+    @JsonKey(name: &#x27;publishMixedAudioTrack&#x27;)
+  final bool? publishMixedAudioTrack;
+    @JsonKey(name: &#x27;publishLipSyncTrack&#x27;)
+  final bool? publishLipSyncTrack;
+    @JsonKey(name: &#x27;autoSubscribeAudio&#x27;)
   final bool? autoSubscribeAudio;
-
-  @JsonKey(name: 'autoSubscribeVideo')
+    @JsonKey(name: &#x27;autoSubscribeVideo&#x27;)
   final bool? autoSubscribeVideo;
-
-  @JsonKey(name: 'enableAudioRecordingOrPlayout')
+    @JsonKey(name: &#x27;enableAudioRecordingOrPlayout&#x27;)
   final bool? enableAudioRecordingOrPlayout;
-
-  @JsonKey(name: 'publishMediaPlayerId')
+    @JsonKey(name: &#x27;publishMediaPlayerId&#x27;)
   final int? publishMediaPlayerId;
-
-  @JsonKey(name: 'clientRoleType')
+    @JsonKey(name: &#x27;clientRoleType&#x27;)
   final ClientRoleType? clientRoleType;
-
-  @JsonKey(name: 'audienceLatencyLevel')
+    @JsonKey(name: &#x27;audienceLatencyLevel&#x27;)
   final AudienceLatencyLevelType? audienceLatencyLevel;
-
-  @JsonKey(name: 'defaultVideoStreamType')
+    @JsonKey(name: &#x27;defaultVideoStreamType&#x27;)
   final VideoStreamType? defaultVideoStreamType;
-
-  @JsonKey(name: 'channelProfile')
+    @JsonKey(name: &#x27;channelProfile&#x27;)
   final ChannelProfileType? channelProfile;
-
-  @JsonKey(name: 'audioDelayMs')
+    @JsonKey(name: &#x27;audioDelayMs&#x27;)
   final int? audioDelayMs;
-
-  @JsonKey(name: 'mediaPlayerAudioDelayMs')
+    @JsonKey(name: &#x27;mediaPlayerAudioDelayMs&#x27;)
   final int? mediaPlayerAudioDelayMs;
-
-  @JsonKey(name: 'token')
+        @JsonKey(name: &#x27;token&#x27;)
   final String? token;
-
-  @JsonKey(name: 'enableBuiltInMediaEncryption')
+    @JsonKey(name: &#x27;enableBuiltInMediaEncryption&#x27;)
   final bool? enableBuiltInMediaEncryption;
-
-  @JsonKey(name: 'publishRhythmPlayerTrack')
+    @JsonKey(name: &#x27;publishRhythmPlayerTrack&#x27;)
   final bool? publishRhythmPlayerTrack;
-
-  @JsonKey(name: 'isInteractiveAudience')
+        @JsonKey(name: &#x27;isInteractiveAudience&#x27;)
   final bool? isInteractiveAudience;
-
-  @JsonKey(name: 'customVideoTrackId')
+    @JsonKey(name: &#x27;customVideoTrackId&#x27;)
   final int? customVideoTrackId;
-
-  @JsonKey(name: 'isAudioFilterable')
+    @JsonKey(name: &#x27;isAudioFilterable&#x27;)
   final bool? isAudioFilterable;
-
-  factory ChannelMediaOptions.fromJson(Map&lt;String, dynamic> json) =>
+    @JsonKey(name: &#x27;parameters&#x27;)
+  final String? parameters;
+    factory ChannelMediaOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$ChannelMediaOptionsFromJson(json);
-
-  Map&lt;String, dynamic> toJson() => _$ChannelMediaOptionsToJson(this);
+    Map&lt;String, dynamic&gt; toJson() =&gt; _$ChannelMediaOptionsToJson(this);
 }</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>

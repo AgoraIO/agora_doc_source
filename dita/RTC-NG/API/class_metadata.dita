@@ -101,19 +101,29 @@ struct FAgoraMetadata
 
   timeStampMs?: number;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class Metadata {
-  const Metadata({this.uid, this.size, this.buffer, this.timeStampMs});
+            <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class Metadata {
+  const Metadata(
+      {this.channelId, this.uid, this.size, this.buffer, this.timeStampMs});
+
+  @JsonKey(name: 'channelId')
+  final String? channelId;
 
   @JsonKey(name: 'uid')
   final int? uid;
+
   @JsonKey(name: 'size')
   final int? size;
+
   @JsonKey(name: 'buffer', ignore: true)
   final Uint8List? buffer;
+
   @JsonKey(name: 'timeStampMs')
   final int? timeStampMs;
+
   factory Metadata.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$MetadataFromJson(json);
+
   Map&lt;String, dynamic&gt; toJson() =&gt; _$MetadataToJson(this);
 }</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
