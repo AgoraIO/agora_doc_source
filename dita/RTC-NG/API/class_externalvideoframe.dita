@@ -153,10 +153,13 @@
   eglType?: EglContextType;
   textureId?: number;
   matrix?: number[];
-  metadata_buffer?: Uint8Array;
-  metadata_size?: number;
+  metadataBuffer?: Uint8Array;
+  metadataSize?: number;
+  alphaBuffer?: Uint8Array;
   fillAlphaBuffer?: boolean;
   alphaStitchMode?: AlphaStitchMode;
+  d3d11Texture2d?: any;
+  textureSliceIndex?: number;
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class ExternalVideoFrame
     {
@@ -196,8 +199,9 @@
   eglType?: EglContextType;
   textureId?: number;
   matrix?: number[];
-  metadata_buffer?: Uint8Array;
-  metadata_size?: number;
+  metadataBuffer?: Uint8Array;
+  metadataSize?: number;
+  alphaBuffer?: Uint8Array;
   fillAlphaBuffer?: boolean;
   alphaStitchMode?: AlphaStitchMode;
 }</codeblock>
@@ -439,10 +443,10 @@ class ExternalVideoFrame {
                 <pt props="cpp unreal flutter">metadataSize</pt>
                 <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的大小，默认值为 <codeph>0</codeph>。</pd>
             </plentry>
-            <plentry conkeyref="VideoFrame/d3d" props="cpp unity electron">
-                <pt/>
-                <pd/>
-            </plentry>
+            <plentry props="cpp unreal bp unity electron flutter">
+                <pt>d3d11Texture2d</pt>
+                <pd>该参数仅适用于 Windows Texture 格式的视频数据。表示一个指向 <codeph>ID3D11Texture2D</codeph> 类型对象的指针，该类型对象被视频帧所使用。</pd>
+              </plentry>      
             <plentry id="alphabuffer">
                 <pt props="cpp android">alphaBuffer</pt>
                 <pt props="apple">alphaBuf</pt>
