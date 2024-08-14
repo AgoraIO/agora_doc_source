@@ -504,83 +504,98 @@ struct FVideoFrame {
 
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
-class ExternalVideoFrame {
-    const ExternalVideoFrame(
+class VideoFrame {
+  const VideoFrame(
       {this.type,
-      this.format,
-      this.buffer,
-      this.stride,
+      this.width,
       this.height,
-      this.cropLeft,
-      this.cropTop,
-      this.cropRight,
-      this.cropBottom,
+      this.yStride,
+      this.uStride,
+      this.vStride,
+      this.yBuffer,
+      this.uBuffer,
+      this.vBuffer,
       this.rotation,
-      this.timestamp,
-      this.eglType,
-      this.textureId,
-      this.fenceObject,
-      this.matrix,
+      this.renderTimeMs,
+      this.avsyncType,
       this.metadataBuffer,
       this.metadataSize,
+      this.textureId,
+      this.matrix,
       this.alphaBuffer,
-      this.fillAlphaBuffer,
       this.alphaStitchMode,
-      this.d3d11Texture2d,
-      this.textureSliceIndex,
-      this.hdr10MetadataInfo,
+      this.pixelBuffer,
+      this.metaInfo,
       this.colorSpace});
-    @JsonKey(name: &#x27;type&#x27;)
-  final VideoBufferType? type;
-    @JsonKey(name: &#x27;format&#x27;)
-  final VideoPixelFormat? format;
-    @JsonKey(name: &#x27;buffer&#x27;, ignore: true)
-  final Uint8List? buffer;
-    @JsonKey(name: &#x27;stride&#x27;)
-  final int? stride;
-    @JsonKey(name: &#x27;height&#x27;)
+
+  @JsonKey(name: &#x27;type&#x27;)
+  final VideoPixelFormat? type;
+
+  @JsonKey(name: &#x27;width&#x27;)
+  final int? width;
+
+  @JsonKey(name: &#x27;height&#x27;)
   final int? height;
-    @JsonKey(name: &#x27;cropLeft&#x27;)
-  final int? cropLeft;
-    @JsonKey(name: &#x27;cropTop&#x27;)
-  final int? cropTop;
-    @JsonKey(name: &#x27;cropRight&#x27;)
-  final int? cropRight;
-    @JsonKey(name: &#x27;cropBottom&#x27;)
-  final int? cropBottom;
-    @JsonKey(name: &#x27;rotation&#x27;)
+
+  @JsonKey(name: &#x27;yStride&#x27;)
+  final int? yStride;
+
+  @JsonKey(name: &#x27;uStride&#x27;)
+  final int? uStride;
+
+  @JsonKey(name: &#x27;vStride&#x27;)
+  final int? vStride;
+
+  @JsonKey(name: &#x27;yBuffer&#x27;, ignore: true)
+  final Uint8List? yBuffer;
+
+  @JsonKey(name: &#x27;uBuffer&#x27;, ignore: true)
+  final Uint8List? uBuffer;
+
+  @JsonKey(name: &#x27;vBuffer&#x27;, ignore: true)
+  final Uint8List? vBuffer;
+
+  @JsonKey(name: &#x27;rotation&#x27;)
   final int? rotation;
-    @JsonKey(name: &#x27;timestamp&#x27;)
-  final int? timestamp;
-    @JsonKey(name: &#x27;eglType&#x27;)
-  final EglContextType? eglType;
-    @JsonKey(name: &#x27;textureId&#x27;)
-  final int? textureId;
-    @JsonKey(name: &#x27;fenceObject&#x27;)
-  final int? fenceObject;
-    @JsonKey(name: &#x27;matrix&#x27;)
-  final List&lt;double&gt;? matrix;
-    @JsonKey(name: &#x27;metadataBuffer&#x27;, ignore: true)
+
+  @JsonKey(name: &#x27;renderTimeMs&#x27;)
+  final int? renderTimeMs;
+
+  @JsonKey(name: &#x27;avsync_type&#x27;)
+  final int? avsyncType;
+
+  @JsonKey(name: &#x27;metadata_buffer&#x27;, ignore: true)
   final Uint8List? metadataBuffer;
-    @JsonKey(name: &#x27;metadataSize&#x27;)
+
+  @JsonKey(name: &#x27;metadata_size&#x27;)
   final int? metadataSize;
-    @JsonKey(name: &#x27;alphaBuffer&#x27;, ignore: true)
+
+  @JsonKey(name: &#x27;textureId&#x27;)
+  final int? textureId;
+
+  @JsonKey(name: &#x27;matrix&#x27;)
+  final List&lt;double&gt;? matrix;
+
+  @JsonKey(name: &#x27;alphaBuffer&#x27;, ignore: true)
   final Uint8List? alphaBuffer;
-    @JsonKey(name: &#x27;fillAlphaBuffer&#x27;)
-  final bool? fillAlphaBuffer;
-    @JsonKey(name: &#x27;alphaStitchMode&#x27;)
+
+  @JsonKey(name: &#x27;alphaStitchMode&#x27;)
   final AlphaStitchMode? alphaStitchMode;
-    @JsonKey(name: &#x27;d3d11Texture2d&#x27;, readValue: readIntPtr)
-  final int? d3d11Texture2d;
-    @JsonKey(name: &#x27;textureSliceIndex&#x27;)
-  final int? textureSliceIndex;
-    @JsonKey(name: &#x27;hdr10MetadataInfo&#x27;)
-  final Hdr10MetadataInfo? hdr10MetadataInfo;
-    @JsonKey(name: &#x27;colorSpace&#x27;)
+
+  @JsonKey(name: &#x27;pixelBuffer&#x27;, ignore: true)
+  final Uint8List? pixelBuffer;
+
+  @VideoFrameMetaInfoConverter()
+  @JsonKey(name: &#x27;metaInfo&#x27;)
+  final VideoFrameMetaInfo? metaInfo;
+
+  @JsonKey(name: &#x27;colorSpace&#x27;)
   final ColorSpace? colorSpace;
-    factory ExternalVideoFrame.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
-      _$ExternalVideoFrameFromJson(json);
-    Map&lt;String, dynamic&gt; toJson() =&gt; _$ExternalVideoFrameToJson(this);
+
+  factory VideoFrame.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$VideoFrameFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoFrameToJson(this);
 }</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
