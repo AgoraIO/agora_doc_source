@@ -20,10 +20,10 @@
     (void)context;
   }</codeblock>
          <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnExtensionStopped, FString, provider, FString, extension);</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">  onExtensionStopped?(provider: string, extension: string): void;</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnExtensionStopped(string provider, string extension) { }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">  onExtensionStopped?(provider: string, extension: string): void;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">final void Function(String provider, String extName)? onExtensionStopped;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">onExtensionStoppedWithContext?(context: ExtensionContext): void;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnExtensionStoppedWithContext(ExtensionContext context){ }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onExtensionStoppedWithContext?(context: ExtensionContext): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(ExtensionContext context)? onExtensionStoppedWithContext;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
@@ -33,14 +33,6 @@
             <title>参数</title>
             <parml>
             <plentry conkeyref="onExtensionErrorWithContext/context">
-                <pt />
-                <pd />
-            </plentry>
-            <plentry conkeyref="setExtensionProperty/vendor" props="framework">
-                <pt />
-                <pd />
-            </plentry>
-            <plentry conkeyref="onExtensionEventWithContext/extension" props="framework">
                 <pt />
                 <pd />
             </plentry>

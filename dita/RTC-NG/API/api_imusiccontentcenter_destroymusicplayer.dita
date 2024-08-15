@@ -17,10 +17,10 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (NSInteger)destroyMusicPlayer:(id&lt;AgoraMusicPlayerProtocol>)musicPlayer;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int destroyMusicPlayer(agora_refptr&lt;IMusicPlayer> music_player) = 0;</codeblock>
             <codeblock props="bp" outputclass="language-cpp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity cs" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="electron" outputclass="language-typescript">abstract destroyMusicPlayer(musicPlayer: IMusicPlayer): number;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int DestroyMusicPlayer(IMusicPlayer music_player);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract destroyMusicPlayer(musicPlayer: IMusicPlayer): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; destroyMusicPlayer(MusicPlayer musicPlayer);</codeblock> </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
@@ -44,9 +44,9 @@
             <parml>
             <plentry>
                 <pt props="android">player</pt>
-                <pt props="apple">musicPlayer</pt>
-                <pt props="cpp">music_player</pt>
-                <pd props="apple android"><xref keyref="IMusicPlayer"/> 对象。</pd>
+                <pt props="apple rn electron flutter">musicPlayer</pt>
+                <pt props="cpp unreal unity cs bp">music_player</pt>
+                <pd props="apple android framework"><xref keyref="IMusicPlayer"/> 对象。</pd>
                 <pd props="cpp">指向 <xref keyref="IMusicPlayer"/> 对象的指针。</pd>
             </plentry>
             </parml> </section>

@@ -24,22 +24,19 @@
     (void)value;
   }</codeblock>
          <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnExtensionEvent, FString, provider, FString, extension, FString, key, FString, value);</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">  onExtensionEvent?(
-    provider: string,
-    extension: string,
+            <codeblock props="electron" outputclass="language-typescript">onExtensionEventWithContext?(
+    context: ExtensionContext,
     key: string,
     value: string
   ): void;</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnExtensionEvent(string provider, string extension, string key, string value) { }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">  onExtensionEvent?(
-    provider: string,
-    extension: string,
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnExtensionEventWithContext(ExtensionContext context, string key, string value){}</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onExtensionEventWithContext?(
+    context: ExtensionContext,
     key: string,
     value: string
   ): void;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">final void Function(
-          String provider, String extName, String key, String value)?
-      onExtensionEvent;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(ExtensionContext context, String key, String value)?
+    onExtensionEventWithContext;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
@@ -51,15 +48,6 @@
             <plentry conkeyref="onExtensionErrorWithContext/context">
                 <pt />
                 <pd />
-            </plentry>
-            <plentry conkeyref="setExtensionProperty/vendor" props="framework">
-                <pt />
-                <pd />
-            </plentry>
-            <plentry id="extension">
-                <pt props="unreal bp unity electron rn cs">extension</pt>
-                <pt props="flutter">extName</pt>
-                <pd>插件名称。</pd>
             </plentry>
             <plentry conkeyref="setExtensionProperty/key">
                 <pt />
