@@ -533,8 +533,7 @@ class VideoFrame {
       this.alphaBuffer,
       this.alphaStitchMode,
       this.pixelBuffer,
-      this.metaInfo,
-      this.colorSpace});
+      this.metaInfo});
 
   @JsonKey(name: &#x27;type&#x27;)
   final VideoPixelFormat? type;
@@ -596,9 +595,6 @@ class VideoFrame {
   @VideoFrameMetaInfoConverter()
   @JsonKey(name: &#x27;metaInfo&#x27;)
   final VideoFrameMetaInfo? metaInfo;
-
-  @JsonKey(name: &#x27;colorSpace&#x27;)
-  final ColorSpace? colorSpace;
 
   factory VideoFrame.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$VideoFrameFromJson(json);
