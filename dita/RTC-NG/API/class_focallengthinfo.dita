@@ -35,7 +35,28 @@
   int cameraDirection;
   CAMERA_FOCAL_LENGTH_TYPE focalLengthType;
 };</codeblock>
-            <codeblock props="bp" outputclass="language-cpp"></codeblock>
+            <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FFocalLengthInfo {
+	GENERATED_BODY()
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FFocalLengthInfo&quot;)
+	int cameraDirection = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FFocalLengthInfo&quot;)
+	ECAMERA_FOCAL_LENGTH_TYPE focalLengthType = ECAMERA_FOCAL_LENGTH_TYPE::CAMERA_FOCAL_LENGTH_DEFAULT;
+	FFocalLengthInfo(){}
+	FFocalLengthInfo(const agora::rtc::FocalLengthInfo &amp; AgoraData){
+		cameraDirection = AgoraData.cameraDirection;
+		focalLengthType = static_cast&lt;ECAMERA_FOCAL_LENGTH_TYPE&gt;(AgoraData.focalLengthType);
+	}
+	agora::rtc::FocalLengthInfo CreateAgoraData() const {
+		agora::rtc::FocalLengthInfo AgoraData;
+		AgoraData.cameraDirection = cameraDirection;
+		AgoraData.focalLengthType = static_cast&lt;agora::rtc::CAMERA_FOCAL_LENGTH_TYPE&gt;(focalLengthType);
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::FocalLengthInfo&amp; AgoraData) const {
+	}
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity cs" outputclass="language-csharp">public class FocalLengthInfo
     {

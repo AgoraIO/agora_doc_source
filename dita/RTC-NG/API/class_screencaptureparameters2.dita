@@ -111,15 +111,36 @@
 struct FScreenCaptureParameters2
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureParameters2&quot;)
-	bool captureAudio;
+	bool captureAudio = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureParameters2&quot;)
-	FScreenAudioParameters audioParams;
+	FScreenAudioParameters audioParams = FScreenAudioParameters();
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureParameters2&quot;)
-	bool captureVideo;
+	bool captureVideo = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureParameters2&quot;)
-	FScreenVideoParameters videoParams;
+	FScreenVideoParameters videoParams = FScreenVideoParameters();
+#if defined(__ANDROID__) || (defined(__APPLE__) &amp;&amp; TARGET_OS_IOS)
+	FScreenCaptureParameters2(){}
+	FScreenCaptureParameters2(const agora::rtc::ScreenCaptureParameters2 &amp; AgoraData){
+		captureAudio = AgoraData.captureAudio;
+		audioParams = FScreenAudioParameters(AgoraData.audioParams);
+		captureVideo = AgoraData.captureVideo;
+		videoParams = FScreenVideoParameters(AgoraData.videoParams);
+	}
+	agora::rtc::ScreenCaptureParameters2 CreateAgoraData() const {
+		agora::rtc::ScreenCaptureParameters2 AgoraData;
+		AgoraData.captureAudio = captureAudio;
+		AgoraData.audioParams = audioParams.CreateAgoraData();
+		AgoraData.captureVideo = captureVideo;
+		AgoraData.videoParams = videoParams.CreateAgoraData();
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::ScreenCaptureParameters2&amp; AgoraData) const {
+		audioParams.FreeAgoraData(AgoraData.audioParams);
+		videoParams.FreeAgoraData(AgoraData.videoParams);
+	}
+#endif
 };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class ScreenCaptureParameters2 {
   captureAudio?: boolean;

@@ -20,7 +20,8 @@
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onUplinkNetworkInfoUpdated(const UplinkNetworkInfo&amp; info) {
   (void)info;
 }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnUplinkNetworkInfoUpdated, const FUplinkNetworkInfo&amp;, info);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnUplinkNetworkInfoUpdated(const FUplinkNetworkInfo&amp; info);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onUplinkNetworkInfoUpdated?(info: UplinkNetworkInfo): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnUplinkNetworkInfoUpdated(UplinkNetworkInfo info) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onUplinkNetworkInfoUpdated?(info: UplinkNetworkInfo): void;</codeblock>

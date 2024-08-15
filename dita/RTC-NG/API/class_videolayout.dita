@@ -46,7 +46,61 @@
   uint32_t videoState;
   VideoLayout() : channelId(OPTIONAL_NULLPTR), uid(0), strUid(OPTIONAL_NULLPTR), x(0), y(0), width(0), height(0), videoState(0) {}
 };</codeblock>
-            <codeblock props="bp" outputclass="language-cpp"></codeblock>
+            <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FVideoLayout
+{
+	GENERATED_BODY()
+	
+public:
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FVideoLayout&quot;)
+	FString channelId = &quot;&quot;;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FVideoLayout&quot;)
+	int64 uid = 0;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FVideoLayout&quot;)
+	FString strUid = &quot;&quot;;
+    UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FVideoLayout&quot;)
+	int64 x = 0;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FVideoLayout&quot;)
+	int64 y = 0;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FVideoLayout&quot;)
+	int64 width = 0;
+    UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FVideoLayout&quot;)
+	int64 height = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FVideoLayout&quot;)
+	int64 videoState = 0;
+	FVideoLayout(){}
+	FVideoLayout(const agora::VideoLayout &amp; AgoraData){
+		channelId = UTF8_TO_TCHAR(AgoraData.channelId);
+		uid = AgoraData.uid;
+		strUid = UTF8_TO_TCHAR(AgoraData.strUid);
+		x = AgoraData.x;
+		y = AgoraData.y;
+		width = AgoraData.width;
+		height = AgoraData.height;
+		videoState = AgoraData.videoState;
+	}
+	agora::VideoLayout CreateAgoraData() const {
+		agora::VideoLayout AgoraData;
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.channelId, channelId)
+		AgoraData.uid = uid;
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.strUid, strUid)
+		AgoraData.x = x;
+		AgoraData.y = y;
+		AgoraData.width = width;
+		AgoraData.height = height;
+		AgoraData.videoState = videoState;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::VideoLayout &amp; AgoraData) const {
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.channelId)
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.strUid)
+	}
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity cs" outputclass="language-csharp">public class VideoLayout
                 {

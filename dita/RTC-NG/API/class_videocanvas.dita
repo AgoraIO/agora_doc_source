@@ -110,25 +110,66 @@
 struct FVideoCanvas
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
-	UImage* view;
+	int64 uid = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
+	int64 subviewUid = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
+	UImage* view = nullptr;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
+	int64 backgroundColor = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
 	ERENDER_MODE_TYPE renderMode = ERENDER_MODE_TYPE::RENDER_MODE_HIDDEN;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
 	EVIDEO_MIRROR_MODE_TYPE mirrorMode = EVIDEO_MIRROR_MODE_TYPE::VIDEO_MIRROR_MODE_AUTO;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
-	int64 uid;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
-	bool isScreenView = false;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
-	int64 priv_size;
+	EVIDEO_VIEW_SETUP_MODE setupMode = EVIDEO_VIEW_SETUP_MODE::VIDEO_VIEW_SETUP_REPLACE;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
 	EVIDEO_SOURCE_TYPE sourceType = EVIDEO_SOURCE_TYPE::VIDEO_SOURCE_CAMERA_PRIMARY;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
-	FRectangle cropArea;
+	int mediaPlayerId = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
-	EVIDEO_VIEW_SETUP_MODE setupMode = EVIDEO_VIEW_SETUP_MODE::VIDEO_VIEW_SETUP_REPLACE;
+	FRectangle cropArea;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
+	bool enableAlphaMask = false;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
+	EVIDEO_MODULE_POSITION position = EVIDEO_MODULE_POSITION::POSITION_POST_CAPTURER;
+
+	FVideoCanvas(){}
+	FVideoCanvas(const agora::rtc::VideoCanvas &amp; AgoraData){
+		view = nullptr; 		uid = AgoraData.uid;
+		subviewUid = AgoraData.subviewUid;
+		backgroundColor = AgoraData.backgroundColor;
+		renderMode = static_cast&lt;ERENDER_MODE_TYPE&gt;(AgoraData.renderMode);
+		mirrorMode = static_cast&lt;EVIDEO_MIRROR_MODE_TYPE&gt;(AgoraData.mirrorMode);
+		setupMode = static_cast&lt;EVIDEO_VIEW_SETUP_MODE&gt;(AgoraData.setupMode);
+		sourceType = static_cast&lt;EVIDEO_SOURCE_TYPE&gt;(AgoraData.sourceType);
+		mediaPlayerId = AgoraData.mediaPlayerId;
+		cropArea = FRectangle(AgoraData.cropArea);
+		enableAlphaMask = AgoraData.enableAlphaMask;
+		position = static_cast&lt;EVIDEO_MODULE_POSITION&gt;(AgoraData.position);
+	}
+	agora::rtc::VideoCanvas CreateAgoraData() const {
+		agora::rtc::VideoCanvas AgoraData;
+		AgoraData.view = (agora::view_t) view;
+		AgoraData.uid = uid;
+		AgoraData.subviewUid = subviewUid;
+		AgoraData.backgroundColor = backgroundColor;
+		AgoraData.renderMode = static_cast&lt;agora::media::base::RENDER_MODE_TYPE&gt;(renderMode);
+		AgoraData.mirrorMode = static_cast&lt;agora::rtc::VIDEO_MIRROR_MODE_TYPE&gt;(mirrorMode);
+		AgoraData.setupMode = static_cast&lt;agora::rtc::VIDEO_VIEW_SETUP_MODE&gt;(setupMode);
+		AgoraData.sourceType = static_cast&lt;agora::rtc::VIDEO_SOURCE_TYPE&gt;(sourceType);
+		AgoraData.mediaPlayerId = AgoraData.mediaPlayerId;
+		AgoraData.cropArea = cropArea.CreateAgoraData();
+		AgoraData.enableAlphaMask = enableAlphaMask;
+		AgoraData.position = static_cast&lt;agora::media::base::VIDEO_MODULE_POSITION&gt;(position);
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::VideoCanvas&amp; AgoraData) const {
+		cropArea.FreeAgoraData(AgoraData.cropArea);
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoCanvas {
   view?: any

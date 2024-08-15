@@ -121,37 +121,92 @@
 struct FRemoteAudioStats
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
-	int64 uid;
+	int64 uid = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
-	int quality;
+	int quality = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
-	int networkTransportDelay;
+	int networkTransportDelay = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
-	int jitterBufferDelay;
+	int jitterBufferDelay = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
-	int audioLossRate;
+	int audioLossRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
-	int numChannels;
+	int numChannels = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
-	int receivedSampleRate;
+	int receivedSampleRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
-	int receivedBitrate;
+	int receivedBitrate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
-	int totalFrozenTime;
+	int totalFrozenTime = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
-	int frozenRate;
+	int frozenRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
-	int mosValue;
+	int mosValue = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
-	int totalActiveTime;
+	int64 frozenRateByCustomPlcCount = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
-	int publishDuration;
+	int64 plcCount = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
-	int qoeQuality;
+	int totalActiveTime = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
-	int qualityChangedReason;
+	int publishDuration = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int qoeQuality = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int qualityChangedReason = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int64 rxAudioBytes = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int e2eDelay = 0;
+	FRemoteAudioStats(){}
+	FRemoteAudioStats(const agora::rtc::RemoteAudioStats &amp; AgoraData){
+		uid = AgoraData.uid;
+		quality = AgoraData.quality;
+		networkTransportDelay = AgoraData.networkTransportDelay;
+		jitterBufferDelay = AgoraData.jitterBufferDelay;
+		audioLossRate = AgoraData.audioLossRate;
+		numChannels = AgoraData.numChannels;
+		receivedSampleRate = AgoraData.receivedSampleRate;
+		receivedBitrate = AgoraData.receivedBitrate;
+		totalFrozenTime = AgoraData.totalFrozenTime;
+		frozenRate = AgoraData.frozenRate;
+		mosValue = AgoraData.mosValue;
+		frozenRateByCustomPlcCount = AgoraData.frozenRateByCustomPlcCount;
+		plcCount = AgoraData.plcCount;
+		totalActiveTime = AgoraData.totalActiveTime;
+		publishDuration = AgoraData.publishDuration;
+		qoeQuality = AgoraData.qoeQuality;
+		qualityChangedReason = AgoraData.qualityChangedReason;
+		rxAudioBytes = AgoraData.rxAudioBytes;
+		e2eDelay = AgoraData.e2eDelay;
+	}
+	agora::rtc::RemoteAudioStats CreateAgoraData() const {
+		agora::rtc::RemoteAudioStats AgoraData;
+		AgoraData.uid = uid;
+		AgoraData.quality = quality;
+		AgoraData.networkTransportDelay = networkTransportDelay;
+		AgoraData.jitterBufferDelay = jitterBufferDelay;
+		AgoraData.audioLossRate = audioLossRate;
+		AgoraData.numChannels = numChannels;
+		AgoraData.receivedSampleRate = receivedSampleRate;
+		AgoraData.receivedBitrate = receivedBitrate;
+		AgoraData.totalFrozenTime = totalFrozenTime;
+		AgoraData.frozenRate = frozenRate;
+		AgoraData.mosValue = mosValue;
+		AgoraData.frozenRateByCustomPlcCount = frozenRateByCustomPlcCount;
+		AgoraData.plcCount = plcCount;
+		AgoraData.totalActiveTime = totalActiveTime;
+		AgoraData.publishDuration = publishDuration;
+		AgoraData.qoeQuality = qoeQuality;
+		AgoraData.qualityChangedReason = qualityChangedReason;
+		AgoraData.rxAudioBytes = rxAudioBytes;
+		AgoraData.e2eDelay = e2eDelay;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::RemoteAudioStats &amp; AgoraData) const {
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class RemoteAudioStats {
 

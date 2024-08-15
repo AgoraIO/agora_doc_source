@@ -25,9 +25,22 @@
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FAdvancedConfigInfo {
-
 	GENERATED_BODY()
-	FLogUploadServerInfo logUploadServer;
+public: 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AdvancedConfigInfo&quot;)
+	FLogUploadServerInfo logUploadServer = FLogUploadServerInfo();
+	FAdvancedConfigInfo(){}
+	FAdvancedConfigInfo(const agora::rtc::AdvancedConfigInfo&amp; AgoraData) {
+		logUploadServer = FLogUploadServerInfo(AgoraData.logUploadServer);
+	}
+	agora::rtc::AdvancedConfigInfo CreateAgoraData() const {
+		agora::rtc::AdvancedConfigInfo AgoraData;
+		AgoraData.logUploadServer = logUploadServer.CreateAgoraData();
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::AdvancedConfigInfo&amp; AgoraData) const {
+		logUploadServer.FreeAgoraData(AgoraData.logUploadServer);
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class AdvancedConfigInfo {
   logUploadServer?: LogUploadServerInfo;

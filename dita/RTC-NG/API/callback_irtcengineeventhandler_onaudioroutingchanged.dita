@@ -18,7 +18,8 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didAudioRouteChanged:(AgoraAudioOutputRouting)routing;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onAudioRoutingChanged(int routing) { (void)routing; }
             </codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnAudioRoutingChanged, int, routing);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnAudioRoutingChanged(int routing);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onAudioRoutingChanged?(routing: number): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnAudioRoutingChanged(int routing) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onAudioRoutingChanged?(routing: number): void;</codeblock>

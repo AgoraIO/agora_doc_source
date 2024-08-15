@@ -29,12 +29,25 @@
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FContentInspectModule {
-
 	GENERATED_BODY()
-
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ContentInspectModule&quot;)
 	ECONTENT_INSPECT_TYPE type = ECONTENT_INSPECT_TYPE::CONTENT_INSPECT_INVALID;
-
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ContentInspectModule&quot;)
 	int64 interval = 0;
+	FContentInspectModule(){}
+	FContentInspectModule(const agora::media::ContentInspectModule &amp; AgoraData){
+		type = static_cast&lt;ECONTENT_INSPECT_TYPE&gt;(AgoraData.type);
+		interval = AgoraData.interval;
+	}
+	agora::media::ContentInspectModule CreateAgoraData() const {
+		agora::media::ContentInspectModule AgoraData;
+		AgoraData.type = static_cast&lt;agora::media::CONTENT_INSPECT_TYPE&gt;(type);
+		AgoraData.interval = interval;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::media::ContentInspectModule &amp; AgoraData) const {
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ContentInspectModule {
 

@@ -19,7 +19,8 @@
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onExtensionStartedWithContext(const ExtensionContext &amp;context) {
     (void)context;
   }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnExtensionStarted, FString, provider, FString, extension);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnExtensionStartedWithContext(const FExtensionContext&amp; context);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onExtensionStarted?(provider: string, extension: string): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnExtensionStarted(string provider, string extension) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onExtensionStarted?(provider: string, extension: string): void;</codeblock>

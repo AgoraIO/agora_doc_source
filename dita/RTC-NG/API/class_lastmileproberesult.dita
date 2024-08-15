@@ -17,16 +17,35 @@
                     };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FLastmileProbeResult {
-
 	GENERATED_BODY()
-
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LastmileProbeResult&quot;)
 	ELASTMILE_PROBE_RESULT_STATE state = ELASTMILE_PROBE_RESULT_STATE::LASTMILE_PROBE_RESULT_UNAVAILABLE;
-
-	FLastmileProbeOneWayResult uplinkReport;
-
-	FLastmileProbeOneWayResult downlinkReport;
-
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LastmileProbeResult&quot;)
+	FLastmileProbeOneWayResult uplinkReport = FLastmileProbeOneWayResult();
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LastmileProbeResult&quot;)
+	FLastmileProbeOneWayResult downlinkReport = FLastmileProbeOneWayResult();
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LastmileProbeResult&quot;)
 	int64 rtt = 0;
+	FLastmileProbeResult(){}
+	FLastmileProbeResult(const agora::rtc::LastmileProbeResult &amp; AgoraData){
+		state = static_cast&lt;ELASTMILE_PROBE_RESULT_STATE&gt;(AgoraData.state);
+		uplinkReport = FLastmileProbeOneWayResult(AgoraData.uplinkReport);
+		downlinkReport = FLastmileProbeOneWayResult(AgoraData.downlinkReport);
+		rtt = AgoraData.rtt;
+	}
+	agora::rtc::LastmileProbeResult CreateAgoraData() const {
+		agora::rtc::LastmileProbeResult AgoraData;
+		AgoraData.state = static_cast&lt;agora::rtc::LASTMILE_PROBE_RESULT_STATE&gt;(state);
+		AgoraData.uplinkReport = uplinkReport.CreateAgoraData();
+		AgoraData.downlinkReport = downlinkReport.CreateAgoraData();
+		AgoraData.rtt = rtt;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::LastmileProbeResult &amp; AgoraData) const {
+		uplinkReport.FreeAgoraData(AgoraData.uplinkReport);
+		downlinkReport.FreeAgoraData(AgoraData.downlinkReport);
+	}
 };</codeblock>
             <codeblock props="android" outputclass="language-java">public static class LastmileProbeResult {
 

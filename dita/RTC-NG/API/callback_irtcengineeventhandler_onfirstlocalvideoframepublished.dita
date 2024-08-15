@@ -24,7 +24,8 @@
     (void)source;
     (void)elapsed;
     }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnFirstLocalVideoFramePublished, EVIDEO_SOURCE_TYPE, source, int, elapsed);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnFirstLocalVideoFramePublished(EVIDEO_SOURCE_TYPE source, int elapsed);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onFirstLocalVideoFramePublished?(
     connection: RtcConnection,
     elapsed: number

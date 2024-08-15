@@ -66,17 +66,36 @@
 </codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FScreenVideoParameters {
-
 	GENERATED_BODY()
-
-	FVideoDimensions dimensions;
-
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenVideoParameters&quot;)
+	FVideoDimensions dimensions = FVideoDimensions();
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenVideoParameters&quot;)
 	int frameRate = 15;
-
-	int bitrate;
-
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenVideoParameters&quot;)
+	int bitrate = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenVideoParameters&quot;)
 	EVIDEO_CONTENT_HINT contentHint = EVIDEO_CONTENT_HINT::CONTENT_HINT_MOTION;
-
+#if defined(__ANDROID__) || (defined(__APPLE__) &amp;&amp; TARGET_OS_IOS)
+	FScreenVideoParameters(){}
+	FScreenVideoParameters(const agora::rtc::ScreenVideoParameters &amp; AgoraData){
+		dimensions = FVideoDimensions(AgoraData.dimensions);
+		frameRate = AgoraData.frameRate;
+		bitrate = AgoraData.bitrate;
+		contentHint = static_cast&lt;EVIDEO_CONTENT_HINT&gt;(AgoraData.contentHint);
+	}
+	agora::rtc::ScreenVideoParameters CreateAgoraData() const {
+		agora::rtc::ScreenVideoParameters AgoraData;
+		AgoraData.dimensions = dimensions.CreateAgoraData();
+		AgoraData.frameRate = frameRate;
+		AgoraData.bitrate = bitrate;
+		AgoraData.contentHint = static_cast&lt;agora::rtc::VIDEO_CONTENT_HINT&gt;(contentHint);
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::ScreenVideoParameters&amp; AgoraData) const {
+		dimensions.FreeAgoraData(AgoraData.dimensions);
+	}
+#endif
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ScreenVideoParameters {
   

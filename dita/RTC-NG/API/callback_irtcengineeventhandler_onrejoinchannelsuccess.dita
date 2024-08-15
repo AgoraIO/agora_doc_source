@@ -22,7 +22,8 @@
      (void)uid;
      (void)elapsed;
      }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnRejoinChannelSuccess, FString, channel, int64, uid, int, elapsed);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnRejoinChannelSuccess(const FString&amp; channel, int64 uid, int elapsed);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onRejoinChannelSuccess?(connection: RtcConnection, elapsed: number): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnRejoinChannelSuccess(RtcConnection connection, int elapsed) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onRejoinChannelSuccess?(connection: RtcConnection, elapsed: number): void;</codeblock>

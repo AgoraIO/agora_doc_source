@@ -29,7 +29,8 @@
     (void)elapsed;
   }
                </codeblock>
-               <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnFirstLocalVideoFrame, EVIDEO_SOURCE_TYPE, source, int, width, int, height, int, elapsed);</codeblock>
+               <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnFirstLocalVideoFrame(EVIDEO_SOURCE_TYPE source, int width, int height, int elapsed);</codeblock>
                <codeblock props="electron" outputclass="language-typescript">onFirstLocalVideoFrame?(
     source: VideoSourceType,
     width: number,

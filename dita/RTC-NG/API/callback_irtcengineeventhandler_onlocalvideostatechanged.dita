@@ -23,7 +23,8 @@
     (void)state;
     (void)reason;
   }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnLocalVideoStateChanged, EVIDEO_SOURCE_TYPE, source, ELOCAL_VIDEO_STREAM_STATE, state, ELOCAL_VIDEO_STREAM_ERROR, error);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnLocalVideoStateChanged(EVIDEO_SOURCE_TYPE source, ELOCAL_VIDEO_STREAM_STATE state, ELOCAL_VIDEO_STREAM_REASON reason);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onLocalVideoStateChanged?(
     source: VideoSourceType,
     state: LocalVideoStreamState,
