@@ -224,8 +224,7 @@ class ExternalVideoFrame {
       this.fillAlphaBuffer,
       this.alphaStitchMode,
       this.d3d11Texture2d,
-      this.textureSliceIndex,
-      this.colorSpace});
+      this.textureSliceIndex});
 
   @JsonKey(name: &#x27;type&#x27;)
   final VideoBufferType? type;
@@ -289,9 +288,6 @@ class ExternalVideoFrame {
 
   @JsonKey(name: &#x27;textureSliceIndex&#x27;)
   final int? textureSliceIndex;
-
-  @JsonKey(name: &#x27;colorSpace&#x27;)
-  final ColorSpace? colorSpace;
 
   factory ExternalVideoFrame.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$ExternalVideoFrameFromJson(json);
