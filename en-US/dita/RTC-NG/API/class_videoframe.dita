@@ -135,7 +135,7 @@
       Unspecified(2),
       BT470M(4),
       BT470BG(5),
-      kSMPTE170M(6), 
+      kSMPTE170M(6),
       kSMPTE240M(7),
       kFILM(8),
       kBT2020(9),
@@ -421,6 +421,10 @@ struct FVideoFrame {
 
   matrix?: number[];
 
+  alphaBuffer?: Uint8Array;
+
+  alphaStitchMode?: AlphaStitchMode;
+
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class VideoFrame
     {
@@ -462,7 +466,13 @@ struct FVideoFrame {
 
         public int textureId;
 
+        public IntPtr d3d11Texture2d;
+
         public float[] matrix;
+
+        public byte[] alphaBuffer;
+
+        public ALPHA_STITCH_MODE alphaStitchMode;
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class VideoFrame {
 
@@ -498,6 +508,10 @@ struct FVideoFrame {
 
   matrix?: number[];
 
+  alphaBuffer?: Uint8Array;
+
+  alphaStitchMode?: AlphaStitchMode;
+
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
 class VideoFrame {
@@ -518,63 +532,76 @@ class VideoFrame {
       this.metadataSize,
       this.textureId,
       this.matrix,
-      this.pixelBuffer});
+      this.alphaBuffer,
+      this.alphaStitchMode,
+      this.pixelBuffer,
+      this.metaInfo});
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: &#x27;type&#x27;)
   final VideoPixelFormat? type;
 
-  @JsonKey(name: 'width')
+  @JsonKey(name: &#x27;width&#x27;)
   final int? width;
 
-  @JsonKey(name: 'height')
+  @JsonKey(name: &#x27;height&#x27;)
   final int? height;
 
-  @JsonKey(name: 'yStride')
+  @JsonKey(name: &#x27;yStride&#x27;)
   final int? yStride;
 
-  @JsonKey(name: 'uStride')
+  @JsonKey(name: &#x27;uStride&#x27;)
   final int? uStride;
 
-  @JsonKey(name: 'vStride')
+  @JsonKey(name: &#x27;vStride&#x27;)
   final int? vStride;
 
-  @JsonKey(name: 'yBuffer', ignore: true)
+  @JsonKey(name: &#x27;yBuffer&#x27;, ignore: true)
   final Uint8List? yBuffer;
 
-  @JsonKey(name: 'uBuffer', ignore: true)
+  @JsonKey(name: &#x27;uBuffer&#x27;, ignore: true)
   final Uint8List? uBuffer;
 
-  @JsonKey(name: 'vBuffer', ignore: true)
+  @JsonKey(name: &#x27;vBuffer&#x27;, ignore: true)
   final Uint8List? vBuffer;
 
-  @JsonKey(name: 'rotation')
+  @JsonKey(name: &#x27;rotation&#x27;)
   final int? rotation;
 
-  @JsonKey(name: 'renderTimeMs')
+  @JsonKey(name: &#x27;renderTimeMs&#x27;)
   final int? renderTimeMs;
 
-  @JsonKey(name: 'avsync_type')
+  @JsonKey(name: &#x27;avsync_type&#x27;)
   final int? avsyncType;
 
-  @JsonKey(name: 'metadata_buffer', ignore: true)
+  @JsonKey(name: &#x27;metadata_buffer&#x27;, ignore: true)
   final Uint8List? metadataBuffer;
 
-  @JsonKey(name: 'metadata_size')
+  @JsonKey(name: &#x27;metadata_size&#x27;)
   final int? metadataSize;
 
-  @JsonKey(name: 'textureId')
+  @JsonKey(name: &#x27;textureId&#x27;)
   final int? textureId;
 
-  @JsonKey(name: 'matrix')
-  final List&lt;double>? matrix;
+  @JsonKey(name: &#x27;matrix&#x27;)
+  final List&lt;double&gt;? matrix;
 
-  @JsonKey(name: 'pixelBuffer', ignore: true)
+  @JsonKey(name: &#x27;alphaBuffer&#x27;, ignore: true)
+  final Uint8List? alphaBuffer;
+
+  @JsonKey(name: &#x27;alphaStitchMode&#x27;)
+  final AlphaStitchMode? alphaStitchMode;
+
+  @JsonKey(name: &#x27;pixelBuffer&#x27;, ignore: true)
   final Uint8List? pixelBuffer;
 
-  factory VideoFrame.fromJson(Map&lt;String, dynamic> json) =>
+  @VideoFrameMetaInfoConverter()
+  @JsonKey(name: &#x27;metaInfo&#x27;)
+  final VideoFrameMetaInfo? metaInfo;
+
+  factory VideoFrame.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$VideoFrameFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$VideoFrameToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoFrameToJson(this);
 }</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
