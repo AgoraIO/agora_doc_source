@@ -42,10 +42,71 @@
     ExtensionContext():isValid(false), uid(0), providerName(NULL), extensionName(NULL) {}
 };</codeblock>
             <codeblock props="bp" outputclass="language-cpp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity cs" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="electron" outputclass="language-typescript">export class ExtensionContext {
+
+  isValid?: boolean;
+
+  uid?: number;
+
+  providerName?: string;
+
+  extensionName?: string;
+}</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public class ExtensionContext
+    {
+        public bool isValid;
+        public uint uid;
+        public string providerName;
+        public string extensionName;
+
+        public ExtensionContext()
+        {
+            this.isValid = false;
+            this.uid = 0;
+            this.providerName = "";
+            this.extensionName = "";
+        }
+
+        public ExtensionContext(bool isValid, uint uid, string providerName, string extensionName)
+        {
+            this.isValid = isValid;
+            this.uid = uid;
+            this.providerName = providerName;
+            this.extensionName = extensionName;
+        }
+    }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class ExtensionContext {
+
+  isValid?: boolean;
+
+  uid?: number;
+
+  providerName?: string;
+
+  extensionName?: string;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class ExtensionContext {
+  const ExtensionContext(
+      {this.isValid, this.uid, this.providerName, this.extensionName});
+
+  @JsonKey(name: &#x27;isValid&#x27;)
+  final bool? isValid;
+
+  @JsonKey(name: &#x27;uid&#x27;)
+  final int? uid;
+
+  @JsonKey(name: &#x27;providerName&#x27;)
+  final String? providerName;
+
+  @JsonKey(name: &#x27;extensionName&#x27;)
+  final String? extensionName;
+
+  factory ExtensionContext.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$ExtensionContextFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ExtensionContextToJson(this);
+}</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -71,13 +132,13 @@
                 <pt>uid</pt>
                 <pd>The user ID. 0 represents a local user, while greater than 0 represents a remote user.</pd>
             </plentry>
-            <plentry conkeyref="setExtensionProperty/vendor">
-                <pt />
-                <pd />
+            <plentry>
+                <pt>providerName</pt>
+                <pd>The name of the extension provider.</pd>
             </plentry>
-            <plentry conkeyref="setExtensionProperty/extension">
-                <pt />
-                <pd />
+            <plentry>
+                <pt>extensionName</pt>
+                <pd>The name of the extension.</pd>
             </plentry>
             </parml> </section>
     </refbody>

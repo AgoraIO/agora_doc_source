@@ -30,14 +30,8 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <note props="cpp android hmos ios unreal bp unity rn flutter">
-            <ul>
-                <li props="cpp unreal bp unity flutter">This method is for Android and iOS only.</li>
-                <li>Call this method before joining a channel. If you need to change the audio route after joining a channel, call <xref keyref="setEnableSpeakerphone"/>.</li>
-            </ul>
-            </note>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note type="attention" props="cpp unreal bp unity flutter">This method is for Android and iOS only.</note>
             <p>Most mobile phones have two audio routes: an earpiece at the top, and a speakerphone at the bottom. The earpiece plays at a lower volume, and the speakerphone at a higher volume. When setting the default audio route, you determine whether audio playback comes through the earpiece or speakerphone when no external audio device is connected.</p>
             <p>In different scenarios, the default audio routing of the system is also different. See the following:<ul id="ul_kq3_tpf_3qb">
             <li>Voice call: Earpiece.</li>
@@ -45,11 +39,23 @@
             <li>Video call: Speakerphone.</li>
             <li>Video broadcast: Speakerphone.</li>
             </ul></p>
-            <p>You can call this method to change the default audio route. After a successful method call, the SDK triggers the <xref keyref="onAudioRoutingChanged"/> callback.</p>
+            <p>You can call this method to change the default audio route.</p>
             <note props="android hmos ios unity rn flutter">
-            <p>The system audio route changes when an external audio device, such as a headphone or a Bluetooth audio device, is connected. See <xref keyref="guide-audio-route">Audio Route</xref> for detailed change principles.</p>
+            <p>在调用该方法设置默认音频路由后，系统实际音频路由会随着外接音频设备（有线耳机或蓝牙耳机）的连接发生改变。 See <xref keyref="guide-audio-route"/>.</p>
             </note> </section>
-        <section id="parameters">
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>Call this method before joining a channel. If you need to change the audio route after joining a channel, call <xref keyref="setEnableSpeakerphone"/>.</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="related" deliveryTarget="details">
+            <title>Related callbacks</title>
+            <p>成功改变音频路由后，SDK 会触发 <xref keyref="onAudioRoutingChanged"/> 回调，报告当前的音频路由。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>

@@ -23,18 +23,30 @@
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetEnableSpeakerphone(bool speakerOn);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setEnableSpeakerphone(speakerOn: boolean): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setEnableSpeakerphone(bool speakerOn);</codeblock></p> </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <p>If the default audio route of the SDK  or the setting in <xref keyref="setDefaultAudioRouteToSpeakerphone" /> cannot meet your requirements, you can call <xref keyref="setEnableSpeakerphone" /> to switch the current audio route. After a successful method call, the SDK triggers the <xref keyref="onAudioRoutingChanged" /> callback.</p>
-            <p props="android ios unity rn flutter">For the default audio route in different scenarios, see <xref keyref="guide-audio-route">Audio Route</xref>.</p>
-            <p>This method only sets the audio route in the current channel and does not influence the default audio route. If the user leaves the current channel and joins another channel, the default audio route is used.</p>
-            <note type="attention">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android ios unity rn flutter">For the default audio route in different scenarios, see Audio Route<xref keyref="guide-audio-route"/>.</p>
+            <note type="attention" props="cpp unreal bp unity flutter cs">This method is for Android and iOS only.</note> 
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Applicable scenarios</title>
+            <p>If the default audio route of the SDK  or<xref keyref="setDefaultAudioRouteToSpeakerphone" /> the setting in  cannot meet your requirements, you can call  to switch the current audio route.</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>Call this method after joining a channel.</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
             <ul>
-            <li props="cpp unreal bp unity flutter cs">This method is for Android and iOS only.</li>
-            <li>Call this method after joining a channel.</li>
-            <li>If the user uses an external audio playback device such as a Bluetooth or wired headset, this method does not take effect, and the SDK plays audio through the external device. When the user uses multiple external devices, the SDK plays audio through the last connected device.</li>
-            </ul></note> </section>
-        <section id="parameters">
+                <li>This method only sets the audio route in the current channel and does not influence the default audio route. If the user leaves the current channel and joins another channel, the default audio route is used.</li>
+                <li>If the user uses an external audio playback device such as a Bluetooth or wired headset, this method does not take effect, and the SDK plays audio through the external device. When the user uses multiple external devices, the SDK plays audio through the last connected device.</li>
+            </ul>
+        </section>
+        <section id="related" deliveryTarget="details">
+            <title>Related callbacks</title>
+            <p>成功改变音频路由后，SDK 会触发 <xref keyref="onAudioRoutingChanged" /> 回调，报告当前的音频路由。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>

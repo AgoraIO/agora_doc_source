@@ -6,7 +6,9 @@
         <section>
             <title>Deprecated APIs</title>
             <p>The deprecated APIs are expected to be officially deleted in approximately one year. Agora recommends that you promptly replace them with the recommended APIs to avoid any impact on your online services.</p>
-            <table frame="all" rowsep="1" colsep="1" props="cn">
+            <!--如果预见到表格内的内容会超宽，则在 table 外侧套一个 div，用于限定 section 内的表格宽度-->
+                <div>
+                <table frame="all" rowsep="1" colsep="1" props="cn">
                 <!--由于 table 中的 row 不能分级打 props，所以 cn 和 en 需要分两个表格维护：仅发 cn/en 的 API 只需要在对应表格中增加；cn 和 en 都发的 API 需要在两个表格中都加。-->
                 <tgroup cols="4">
                     <colspec colname="c1" colnum="1" colwidth="1*"/>
@@ -65,9 +67,9 @@
                             <entry>v4.2.0</entry>
                         </row>
                         <row>
-                            <entry><xref keyref="enableDualStreamMode"/></entry>
-                            <entry><ph conkeyref="enableDualStreamMode/shortdesc"/></entry>
-                            <entry><xref keyref="setDualStreamMode"/></entry>
+                            <entry><xref keyref="enableDualStreamMode3"/></entry>
+                            <entry><ph conkeyref="enableDualStreamMode3/shortdesc"/></entry>
+                            <entry><xref keyref="setDualStreamMode2"/></entry>
                             <entry>v4.2.0</entry>
                         </row>
                         <row>
@@ -187,6 +189,8 @@
                     </tbody>
                 </tgroup>
             </table>
+            </div>
+            <div>
             <table frame="all" rowsep="1" colsep="1" props="en">
                 <!--由于 table 中的 row 不能分级打 props，所以 cn 和 en 需要分两个表格维护：仅发 cn/en 的 API 只需要在对应表格中增加；cn 和 en 都发的 API 需要在两个表格中都加。-->
                 <tgroup cols="4">
@@ -240,9 +244,9 @@
                             <entry>v4.2.0</entry>
                         </row>
                         <row>
-                            <entry><xref keyref="enableDualStreamMode"/></entry>
-                            <entry><ph conkeyref="enableDualStreamMode/shortdesc"/></entry>
-                            <entry><xref keyref="setDualStreamMode"/></entry>
+                            <entry><xref keyref="enableDualStreamMode3"/></entry>
+                            <entry><ph conkeyref="enableDualStreamMode3/shortdesc"/></entry>
+                            <entry><xref keyref="setDualStreamMode2"/></entry>
                             <entry>v4.2.0</entry>
                         </row>
                         <row>
@@ -356,10 +360,12 @@
                     </tbody>
                 </tgroup>
             </table>
+            </div>
         </section>
         <section>
             <title>Deleted APIs</title>
-            <p/>
+            <p>API 已在 SDK 中删除。 请使用推荐的替代 API 实现相关功能。</p>
+            <div>
             <table frame="all" rowsep="1" colsep="1">
                 <tgroup cols="4">
                     <colspec colname="c1" colnum="1" colwidth="1*"/>
@@ -375,7 +381,7 @@
                         </row>
                     </thead>
                     <tbody>
-                        <row>
+                        <row props="android apple">
                             <entry><ph props="android">setVideoProfile</ph><ph props="apple">setVideoProfile:profile:swapWidthAndHeight:</ph></entry>
                             <entry>Sets the video encoder configuration.</entry>
                             <entry><xref keyref="setVideoEncoderConfiguration"/></entry>
@@ -464,6 +470,7 @@
                     </tbody>
                 </tgroup>
             </table>
+        </div>
         </section>
     </body>
 </topic>

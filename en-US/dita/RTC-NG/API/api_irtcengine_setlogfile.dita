@@ -25,20 +25,25 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLogFile(String filePath);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="deprecated">
             <dlentry>
                 <dt>Deprecated:</dt>
-                <dd>This method is deprecated. Use the <codeph props="cpp unreal bp ios mac unity cs electron rn flutter">logConfig</codeph><codeph props="android hmos">mLogConfig</codeph> parameter in <xref keyref="RtcEngineConfig" /> to set the log file path.</dd>
+                <dd>该方法已废弃，请在调用 <xref keyref="initialize"/> 时通过 <parmname props="cpp unreal bp electron unity rn flutter cs">context</parmname><parmname props="android ios mac">config</parmname> 参数设置日志文件路径。</dd>
             </dlentry>
             </dl>
-            <p>Specifies an SDK output log file. The log file records all log data for the SDK’s operation. Ensure that the directory for the log file exists and is writable.</p>
-            <note id="note_gnw_y1g_3qb">
-            <p>Ensure that you call <apiname keyref="initialize" /> immediately after calling the <xref keyref="IRtcEngine" /> method, or the output log may not be complete.</p>
-            </note> </section>
-        <section id="parameters">
-            <title>Parameters</title>
+            <p>Specifies an SDK output log file. The log file records all log data for the SDK’s operation.</p>
+        </section>
+            <section id="timing" deliveryTarget="details">
+                <title>Call timing</title>
+                <p>该方法需要在 <apiname keyref="initialize" /> 后立即调用，否则输出日志可能不完整。</p>
+            </section>        
+            <section id="restriction" deliveryTarget="details">
+                <title>Restrictions</title>
+                <p>Ensure that the directory for the log file exists and is writable.</p>
+            </section>
+            <section id="parameters" deliveryTarget="details">
+                <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>filePath</pt>

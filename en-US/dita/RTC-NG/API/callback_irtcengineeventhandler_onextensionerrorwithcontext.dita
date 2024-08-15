@@ -24,22 +24,19 @@
     (void)message;
   }</codeblock>
          <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnExtensionError, FString, provider, FString, extension, int, error, FString, message);</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onExtensionError?(
-    provider: string,
-    extension: string,
+            <codeblock props="electron" outputclass="language-typescript">onExtensionErrorWithContext?(
+    context: ExtensionContext,
     error: number,
     message: string
   ): void;</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnExtensionError(string provider, string extension, int error, string message) { }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">onExtensionError?(
-    provider: string,
-    extension: string,
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnExtensionErrorWithContext(ExtensionContext context, int error, string message){}</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onExtensionErrorWithContext?(
+    context: ExtensionContext,
     error: number,
     message: string
   ): void;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">final void Function(
-          String provider, String extension, int error, String message)?
-      onExtensionError;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(ExtensionContext context, int error, String message)?
+    onExtensionErrorWithContext;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
@@ -49,17 +46,9 @@
             <title>Parameters</title>
             <parml>
             <plentry id="context">
-                <pt props="cpp apple">context</pt>
+                <pt props="cpp apple framework">context</pt>
                 <pt props="android">extContext</pt>
                 <pd>The context information of the extension, see <xref keyref="ExtensionContext"/>.</pd>
-            </plentry>
-            <plentry conkeyref="setExtensionProperty/vendor" props="framework">
-                <pt />
-                <pd />
-            </plentry>
-            <plentry props="framework">
-                <pt>extension</pt>
-                <pd>The name of the extension.</pd>
             </plentry>
             <plentry>
                 <pt>error</pt>

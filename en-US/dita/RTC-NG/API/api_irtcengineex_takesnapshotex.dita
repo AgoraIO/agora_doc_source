@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_takesnapshotex">
     <title><ph keyref="takeSnapshotEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Takes a snapshot of a video stream.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">使用连接 ID 获取视频截图。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -36,18 +36,14 @@
       required String filePath});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <p conkeyref="takeSnapshot/desc1"/>
-            <p conkeyref="takeSnapshot/desc2" props="native unreal bp unity electron flutter cs"/>
-            <p props="rn">The SDK has not taken the snapshot when the method call returns. After a successful method call, the SDK triggers the <xref keyref="onSnapshotTaken" /> callback to report whether the snapshot is successfully taken, as well as the details for that snapshot.</p>
-            <note type="attention">
-            <ul>
-            <li>Call this method after the <xref keyref="joinChannelEx"/> method.</li>
-            <li>When used for local video snapshots, this method takes a snapshot for the video streams specified in <xref keyref="ChannelMediaOptions"/>.</li>
-            <li>If the user's video has been preprocessed, for example, watermarked or beautified, the resulting snapshot includes the pre-processing effect.</li>
-            </ul></note> </section>
-        <section id="parameters">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" conkeyref="takeSnapshot/detailed_desc"/>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>Call this method after <xref keyref="joinChannelEx"/>.</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details"  conkeyref="takeSnapshot/restriction"/>
+        <section id="related" deliveryTarget="details" conkeyref="takeSnapshot/related"/>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry conkeyref="joinChannelEx/connection">
