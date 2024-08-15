@@ -466,6 +466,8 @@ struct FVideoFrame {
 
         public int textureId;
 
+        public IntPtr d3d11Texture2d;
+
         public float[] matrix;
 
         public byte[] alphaBuffer;
@@ -743,17 +745,17 @@ class VideoFrame {
           <pd>单个像素的宽高比，即每个像素宽度与高度的比值。</pd>
         </plentry>
         <plentry id="alphabuffer">
-          <pt props="cpp android">alphaBuffer</pt>
+          <pt props="cpp android framework">alphaBuffer</pt>
           <pt props="apple">alphaBuf</pt>
           <pd>
             <p>采用人像分割算法输出的 Alpha 通道数据。该数据跟视频帧的尺寸一致，每个像素点的取值范围为 [0,255]，其中 0 代表背景；255 代表前景（人像）。</p>
             <p>你可以通过设置该参数，实现将视频背景自渲染为各种效果，例如：透明、纯色、图片、视频等。</p>
-            <note type="attention" props="android apple">在自定义视频渲染场景下，需确保传入的视频帧和 <parmname>alphaBuffer</parmname> 均为 Full Range 类型；其他类型可能导致 Alpha 数据渲染不正常。</note>
+            <note type="attention" props="android framework">在自定义视频渲染场景下，需确保传入的视频帧和 <parmname>alphaBuffer</parmname> 均为 Full Range 类型；其他类型可能导致 Alpha 数据渲染不正常。</note>
           </pd>
         </plentry>
       <plentry id="alphastitchmode">
         <pt>alphaStitchMode</pt>
-        <pd>当视频帧中包含 Alpha 通道数据时，设置 <parmname>alphaBuffer</parmname> 和视频帧的相对位置。<ph props="cpp apple">详见 <xref keyref="ALPHA_STITCH_MODE"/>。</ph>
+        <pd>当视频帧中包含 Alpha 通道数据时，设置 <parmname>alphaBuffer</parmname> 和视频帧的相对位置。<ph props="cpp apple framework">详见 <xref keyref="ALPHA_STITCH_MODE"/>。</ph>
           <ul props="android">
             <li><ph keyref="NO_ALPHA_STITCH"/> (0)：（默认）仅视频帧，即  <parmname>alphaBuffer</parmname> 不和视频帧拼接。</li>
             <li><ph keyref="ALPHA_STITCH_UP"/> (1)：<parmname>alphaBuffer</parmname> 位于视频帧的上方。</li>
