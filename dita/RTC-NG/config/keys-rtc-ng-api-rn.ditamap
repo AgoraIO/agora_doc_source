@@ -1882,6 +1882,13 @@
             </keydef>
         </topichead>
         <topichead navtitle="人声效果">
+            <keydef keys="enableVoiceAITuner" href="../API/api_irtcengine_enablevoiceaituner.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>enableVoiceAITuner</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
             <keydef keys="setLocalVoicePitch" href="../API/api_irtcengine_setlocalvoicepitch.dita">
                 <topicmeta>
                     <keywords>
@@ -1962,7 +1969,7 @@
                 </topicmeta>
             </keydef>
         </topichead>
-                <topichead navtitle="空间音效基础方法">
+                <topichead navtitle="空间音频基础方法">
             <keydef keys="muteLocalAudioStream_IBaseSpatialAudioEngine" href="../API/api_ibasespatialaudioengine_mutelocalaudiostream.dita">
                 <topicmeta>
                     <keywords>
@@ -2048,7 +2055,7 @@
                 </topicmeta>
             </keydef>
         </topichead>
-        <topichead navtitle="本地直角坐标空间音效算法">
+        <topichead navtitle="本地直角坐标空间音频算法">
             <keydef keys="clearRemotePositions" href="../API/api_ilocalspatialaudioengine_clearremotepositions.dita">
                 <topicmeta>
                     <keywords>
@@ -2078,7 +2085,7 @@
                 </topicmeta>
             </keydef>
         </topichead>
-        <topichead navtitle="本地球坐标空间音效算法">
+        <topichead navtitle="本地球坐标空间音频算法">
             <keydef keys="enableSpatialAudio" href="../API/api_irtcengine_enablespatialaudio.dita">
                 <topicmeta>
                     <keywords>
@@ -2636,31 +2643,31 @@
                     </keywords>
                 </topicmeta>
             </keydef>
-            <keydef keys="onExtensionEvent" href="../API/callback_irtcengineeventhandler_onextensionevent.dita">
+            <keydef keys="onExtensionEventWithContext" href="../API/callback_irtcengineeventhandler_onextensioneventwithcontext.dita">
                 <topicmeta>
                     <keywords>
-                        <keyword>onExtensionEvent</keyword>
+                        <keyword>onExtensionEventWithContext</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
-            <keydef keys="onExtensionStarted" href="../API/callback_irtcengineeventhandler_onextensionstarted.dita">
+            <keydef keys="onExtensionStartedWithContext" href="../API/callback_irtcengineeventhandler_onextensionstartedwithcontext.dita">
                 <topicmeta>
                     <keywords>
-                        <keyword>onExtensionStarted</keyword>
+                        <keyword>onExtensionStartedWithContext</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
-            <keydef keys="onExtensionStopped" href="../API/callback_irtcengineeventhandler_onextensionstopped.dita">
+            <keydef keys="onExtensionStoppedWithContext" href="../API/callback_irtcengineeventhandler_onextensionstoppedwithcontext.dita">
                 <topicmeta>
                     <keywords>
-                        <keyword>onExtensionStopped</keyword>
+                        <keyword>onExtensionStoppedWithContext</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
-            <keydef keys="onExtensionError" href="../API/callback_irtcengineeventhandler_onextensionerror.dita">
+            <keydef keys="onExtensionErrorWithContext" href="../API/callback_irtcengineeventhandler_onextensionerrorwithcontext.dita">
                 <topicmeta>
                     <keywords>
-                        <keyword>onExtensionError</keyword>
+                        <keyword>onExtensionErrorWithContext</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
@@ -2746,20 +2753,6 @@
                 <topicmeta>
                     <keywords>
                         <keyword>enableEncryptionEx</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="setEncryptionMode" href="../API/api_irtcengine_setencryptionmode.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>setEncryptionMode</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="setEncryptionSecret" href="../API/api_irtcengine_setencryptionsecret.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>setEncryptionSecret</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
@@ -3141,6 +3134,34 @@
                 </keywords>
             </topicmeta>
         </keydef>
+        <keydef keys="MusicPlayMode" href="../API/enum_musicplaymode.dita" props="cn">
+            <topicmeta>
+                  <keywords>
+                      <keyword>MusicPlayMode</keyword>
+                  </keywords>
+              </topicmeta>
+          </keydef>
+          <keydef keys="kMusicPlayModeOriginal">
+              <topicmeta>
+                  <keywords>
+                      <keyword>kMusicPlayModeOriginal</keyword>
+                  </keywords>
+              </topicmeta>
+          </keydef>
+          <keydef keys="kMusicPlayModeAccompany">
+              <topicmeta>
+                  <keywords>
+                      <keyword>kMusicPlayModeAccompany</keyword>
+                  </keywords>
+              </topicmeta>
+          </keydef>
+          <keydef keys="kMusicPlayModeLeadSing">
+              <topicmeta>
+                  <keywords>
+                      <keyword>kMusicPlayModeLeadSing</keyword>
+                  </keywords>
+              </topicmeta>
+          </keydef>  
             <keydef keys="onLyricResult" href="../API/callback_imusiccontentcentereventhandler_onlyricresult.dita" props="cn">
                 <topicmeta>
                     <keywords>
@@ -3180,6 +3201,20 @@
                 <topicmeta>
                     <keywords>
                         <keyword>openWithSongCode</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="setPlayMode" href="../API/api_imusicplayer_setplaymode.dita" props="cn">
+                <topicmeta>
+                    <keywords>
+                        <keyword>setPlayMode</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="destroyMusicPlayer" href="../API/api_imusiccontentcenter_destroymusicplayer.dita" props="cn">
+                <topicmeta>
+                    <keywords>
+                        <keyword>destroyMusicPlayer</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
@@ -4738,6 +4773,13 @@
                 </keywords>
             </topicmeta>
         </keydef>
+        <keydef keys="ExtensionContext" href="../API/class_extensioncontext.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>ExtensionContext</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
             <keydef keys="ExternalVideoFrame" href="../API/class_externalvideoframe.dita">
                 <topicmeta>
                     <keywords>
@@ -5223,6 +5265,48 @@
         </keydef>
     </topichead>
     <topichead navtitle="Enums">
+        <keydef keys="ALPHA_STITCH_MODE" href="../API/enum_alphastitchmode.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AlphaStitchMode</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="NO_ALPHA_STITCH">
+            <topicmeta>
+                <keywords>
+                    <keyword>NoAlphaStitch</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ALPHA_STITCH_UP">
+            <topicmeta>
+                <keywords>
+                    <keyword>AlphaStitchUp</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ALPHA_STITCH_BELOW">
+            <topicmeta>
+                <keywords>
+                    <keyword>AlphaStitchBelow</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ALPHA_STITCH_LEFT">
+            <topicmeta>
+                <keywords>
+                    <keyword>AlphaStitchLeft</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ALPHA_STITCH_RIGHT">
+            <topicmeta>
+                <keywords>
+                    <keyword>AlphaStitchRight</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
         <keydef keys="AREA_CODE" href="../API/enum_areacode.dita">
             <topicmeta>
                 <keywords>
@@ -10676,6 +10760,13 @@
                 </keywords>
             </topicmeta>
         </keydef>
+        <keydef keys="APPLICATION_SCENARIO_1V1">
+            <topicmeta>
+                <keywords>
+                    <keyword>ApplicationScenario1v1</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
         <keydef keys="VIDEO_BUFFER_TYPE" href="../API/enum_videobuffertype.dita">
             <topicmeta>
                 <keywords>
@@ -11327,510 +11418,6 @@
                 </keywords>
             </topicmeta>
         </keydef>
-        <keydef keys="VIDEO_PROFILE_TYPE" href="../API/enum_videoprofiletype.dita">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileType</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_120P">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape120p</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_120P_3">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape120p3</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_180P">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape180p</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_180P_3">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape180p3</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_180P_4">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape180p4</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_240P">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape240p</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_240P_3">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape240p3</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_240P_4">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape240p4</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_360P">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape360p</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_360P_3">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape360p3</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_360P_4">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape360p4</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_360P_6">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape360p6</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_360P_7">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape360p7</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_360P_8">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape360p8</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_360P_9">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape360p9</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_360P_10">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape360p10</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_360P_11">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape360p11</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_480P">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape480p</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_480P_3">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape480p3</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_480P_4">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape480p4</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_480P_6">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape480p6</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_480P_8">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape480p8</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_480P_9">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape480p9</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_480P_10">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape480p10</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_720P">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape720p</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_720P_3">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape720p3</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_720P_5">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape720p5</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_720P_6">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape720p6</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_1080P">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape1080p</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_1080P_3">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape1080p3</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_1080P_5">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape1080p5</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_1440P">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape1440p</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_1440P_2">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape1440p2</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_4K">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape4k</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_LANDSCAPE_4K_3">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileLandscape4k3</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_120P">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait120p</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_120P_3">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait120p3</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_180P">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait180p</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_180P_3">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait180p3</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_180P_4">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait180p4</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_240P">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait240p</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_240P_3">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait240p3</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_240P_4">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait240p4</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_360P">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait360p</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_360P_3">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait360p3</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_360P_4">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait360p4</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_360P_6">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait360p6</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_360P_7">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait360p7</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_360P_8">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait360p8</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_360P_9">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait360p9</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_360P_10">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait360p10</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_360P_11">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait360p11</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_480P">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait480p</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_480P_3">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait480p3</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_480P_4">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait480p4</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_480P_6">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait480p6</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_480P_8">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait480p8</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_480P_9">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait480p9</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_480P_10">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait480p10</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_720P">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait720p</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_720P_3">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait720p3</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_720P_5">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait720p5</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_720P_6">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait720p6</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_1080P">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait1080p</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_1080P_3">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait1080p3</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_1080P_5">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait1080p5</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_1440P">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait1440p</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_1440P_2">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait1440p2</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_4K">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait4k</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_PORTRAIT_4K_3">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfilePortrait4k3</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="VIDEO_PROFILE_DEFAULT">
-            <topicmeta>
-                <keywords>
-                    <keyword>VideoProfileDefault</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
             <keydef keys="VIDEO_VIEW_SETUP_MODE" href="../API/enum_videoviewsetupmode.dita">
                 <topicmeta>
                     <keywords>
@@ -11912,6 +11499,83 @@
             <topicmeta>
                 <keywords>
                     <keyword>VtErrInternal</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VOICE_AI_TUNER_TYPE" href="../API/enum_voiceaitunertype.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>VoiceAiTunerType</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VOICE_AI_TUNER_MATURE_MALE">
+            <topicmeta>
+                <keywords>
+                    <keyword>VoiceAiTunerMatureMale</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VOICE_AI_TUNER_FRESH_MALE">
+            <topicmeta>
+                <keywords>
+                    <keyword>VoiceAiTunerFreshMale</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VOICE_AI_TUNER_ELEGANT_FEMALE">
+            <topicmeta>
+                <keywords>
+                    <keyword>VoiceAiTunerElegantFemale</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VOICE_AI_TUNER_SWEET_FEMALE">
+            <topicmeta>
+                <keywords>
+                    <keyword>VoiceAiTunerSweetFemale</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VOICE_AI_TUNER_WARM_MALE_SINGING">
+            <topicmeta>
+                <keywords>
+                    <keyword>VoiceAiTunerWarmMaleSinging</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VOICE_AI_TUNER_GENTLE_FEMALE_SINGING">
+            <topicmeta>
+                <keywords>
+                    <keyword>VoiceAiTunerGentleFemaleSinging</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VOICE_AI_TUNER_HUSKY_MALE_SINGING">
+            <topicmeta>
+                <keywords>
+                    <keyword>VoiceAiTunerHuskyMaleSinging</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VOICE_AI_TUNER_WARM_ELEGANT_FEMALE_SINGING">
+            <topicmeta>
+                <keywords>
+                    <keyword>VoiceAiTunerWarmElegantFemaleSinging</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VOICE_AI_TUNER_POWERFUL_MALE_SINGING">
+            <topicmeta>
+                <keywords>
+                    <keyword>VoiceAiTunerPowerfulMaleSinging</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VOICE_AI_TUNER_DREAMY_FEMALE_SINGING">
+            <topicmeta>
+                <keywords>
+                    <keyword>VoiceAiTunerDreamyFemaleSinging</keyword>
                 </keywords>
             </topicmeta>
         </keydef>

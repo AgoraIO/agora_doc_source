@@ -27,16 +27,24 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; seek(int newPos);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
-            <p>成功调用该方法后，你会收到 <xref keyref="onPlayerEvent" /> 回调，报告当前播放器发生的事件，如定位开始、定位成功或定位失败。</p>
-            <p>如果你想定位播放，请进行如下操作：
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <ul>
-            <li>调用该方法定位。</li>
-            <li>定位完成后，调用 <xref keyref="play" /> 方法播放。</li>
-            </ul></p>
+                <li>如果你在播放已经完成后（收到 <xref keyref="onPlayerSourceStateChanged"/> 回调报告播放状态为 <ph keyref="PLAYER_STATE_PLAYBACK_COMPLETED"/> 或 <ph keyref="PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED"/>）再调用 <apiname keyref="seek"/>，方法调用成功后，SDK 会从你指定的位置开始自动播放，此时你会收到 <xref keyref="onPlayerSourceStateChanged"/> 回调报告播放状态为 <ph keyref="PLAYER_STATE_PLAYING"/>。</li>
+                <li>如果你在播放暂停的情况下调用 <apiname keyref="seek"/>，调用成功后 SDK 会定位到你指定位置，如需播放，请调用 <xref keyref="resume"/> 或 <xref keyref="play"/>。</li>
+            </ul></section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>该方法在加入频道前后均可调用。</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
         </section>
-        <section id="parameters">
+        <section id="related" deliveryTarget="details">
+            <title>相关回调</title>
+            <p>成功调用该方法后，你会收到 <xref keyref="onPlayerEvent" /> 回调，报告当前播放器发生的事件，如定位开始、定位成功或定位失败。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
             <plentry>

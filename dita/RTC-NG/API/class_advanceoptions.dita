@@ -68,41 +68,52 @@ struct FAdvanceOptions {
             <codeblock props="electron" outputclass="language-typescript">export class AdvanceOptions {
   encodingPreference?: EncodingPreference;
   compressionPreference?: CompressionPreference;
+  encodeAlpha?: boolean;
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class AdvanceOptions
-              {
-                  public ENCODING_PREFERENCE encodingPreference { set; get; }
-                  public COMPRESSION_PREFERENCE compressionPreference { set; get; }
+    {
+        public ENCODING_PREFERENCE encodingPreference;
+        public COMPRESSION_PREFERENCE compressionPreference;
+        public bool encodeAlpha;
 
-                  public AdvanceOptions()
-                  {
-                      encodingPreference = ENCODING_PREFERENCE.PREFER_AUTO;
-                      compressionPreference = COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY;
-                  }
+        public AdvanceOptions()
+        {
+            this.encodingPreference = ENCODING_PREFERENCE.PREFER_AUTO;
+            this.compressionPreference = COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY;
+            this.encodeAlpha = false;
+        }
 
-                  public AdvanceOptions(ENCODING_PREFERENCE encoding_preference, COMPRESSION_PREFERENCE compression_preference)
-                  {
-                      encodingPreference = encoding_preference;
-                      compressionPreference = compression_preference;
-                  }
-              }</codeblock>
+        public AdvanceOptions(ENCODING_PREFERENCE encoding_preference, COMPRESSION_PREFERENCE compression_preference, bool encode_alpha)
+        {
+            this.encodingPreference = encoding_preference;
+            this.compressionPreference = compression_preference;
+            this.encodeAlpha = encode_alpha;
+        }
+
+    }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class AdvanceOptions {
   encodingPreference?: EncodingPreference;
   compressionPreference?: CompressionPreference;
+  encodeAlpha?: boolean;
 }</codeblock>
-                <codeblock props="flutter" outputclass="language-dart">class AdvanceOptions {
-  const AdvanceOptions({this.encodingPreference, this.compressionPreference});
+                <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class AdvanceOptions {
+  const AdvanceOptions(
+      {this.encodingPreference, this.compressionPreference, this.encodeAlpha});
 
-  @JsonKey(name: 'encodingPreference')
+  @JsonKey(name: &#x27;encodingPreference&#x27;)
   final EncodingPreference? encodingPreference;
 
-  @JsonKey(name: 'compressionPreference')
+  @JsonKey(name: &#x27;compressionPreference&#x27;)
   final CompressionPreference? compressionPreference;
 
-  factory AdvanceOptions.fromJson(Map&lt;String, dynamic> json) =>
+  @JsonKey(name: &#x27;encodeAlpha&#x27;)
+  final bool? encodeAlpha;
+
+  factory AdvanceOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$AdvanceOptionsFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$AdvanceOptionsToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$AdvanceOptionsToJson(this);
 }</codeblock>            
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
@@ -130,8 +141,8 @@ struct FAdvanceOptions {
                     <pt>encodeAlpha</pt>
                     <pd>当视频帧包含 Alpha 通道数据时，设置是否将 Alpha 数据编码并发送至远端：
                         <ul>
-                        <li><codeph><ph keyref="true"/></codeph>：对 Alpha 信息进行编码发送。</li>
-                        <li><codeph><ph keyref="false"/></codeph>：（默认）不对 Alpha 信息进行编码发送。</li>
+                        <li><codeph><ph keyref="true"/></codeph>：对 Alpha 数据进行编码发送。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）不对 Alpha 数据进行编码发送。</li>
                         </ul></pd>
                 </plentry>
             </parml> </section>

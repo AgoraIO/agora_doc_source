@@ -20,10 +20,10 @@
     (void)context;
   }</codeblock>
          <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnExtensionStarted, FString, provider, FString, extension);</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">  onExtensionStarted?(provider: string, extension: string): void;</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnExtensionStarted(string provider, string extension) { }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">  onExtensionStarted?(provider: string, extension: string): void;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">final void Function(String provider, String extName)? onExtensionStarted;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">onExtensionStartedWithContext?(context: ExtensionContext): void;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnExtensionEventWithContext(ExtensionContext context, string key, string value){ }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onExtensionStartedWithContext?(context: ExtensionContext): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(ExtensionContext context)? onExtensionStartedWithContext;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
@@ -35,15 +35,6 @@
             <plentry conkeyref="onExtensionErrorWithContext/context">
                 <pt />
                 <pd />
-            </plentry>
-            <plentry conkeyref="setExtensionProperty/vendor" props="framework">
-                <pt />
-                <pd />
-            </plentry>
-            <plentry props="framework">
-                <pt props="unreal bp unity electron rn cs">extension</pt>
-                <pt props="flutter">extName</pt>
-                <pd>插件名称。</pd>
             </plentry>
             </parml> </section>
     </refbody>
