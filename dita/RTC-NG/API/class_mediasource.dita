@@ -50,9 +50,7 @@
 struct FAgoraMediaSource
 {
 	GENERATED_BODY()
-
 public:
-
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
 	FString url = &quot;&quot;;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
@@ -69,7 +67,7 @@ public:
 	EAgoraOptional isAgoraSource = EAgoraOptional::AGORA_NULL_VALUE;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
 	EAgoraOptional isLiveSource = EAgoraOptional::AGORA_NULL_VALUE;
-
+		
 	FAgoraMediaSource(){}
 	FAgoraMediaSource(const agora::media::base::MediaSource &amp; AgoraData){
 		url = UTF8_TO_TCHAR(AgoraData.url);
@@ -80,8 +78,7 @@ public:
 		enableMultiAudioTrack = AgoraData.enableMultiAudioTrack;
 		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;isAgoraSource,AgoraData.isAgoraSource)
 		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;isLiveSource, AgoraData.isLiveSource)
-	}
-
+			}
 	agora::media::base::MediaSource CreateAgoraData() const {
 		agora::media::base::MediaSource AgoraData;
 		
@@ -93,14 +90,12 @@ public:
 		AgoraData.enableMultiAudioTrack = enableMultiAudioTrack;
 		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.isAgoraSource,isAgoraSource)
 		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.isLiveSource, isLiveSource)
-		return AgoraData;
+				return AgoraData;
 	}
-
 	void FreeAgoraData(agora::media::base::MediaSource&amp; AgoraData) const{
 		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.url)
 		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.uri)
 	}
-
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class MediaSource {
 
