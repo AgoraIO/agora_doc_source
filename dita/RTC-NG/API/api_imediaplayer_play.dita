@@ -25,10 +25,15 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; play();</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
-            <p>调用 <ph keyref="open"/> 或 <ph keyref="seek" /> 后，你可以调用该方法播放媒体文件。</p>
-            <note type="caution">调用 <ph keyref="open"/> 打开媒体文件后，你需要在收到 <xref keyref="onPlayerSourceStateChanged"/> 回调报告状态为 <ph keyref="PLAYER_STATE_OPEN_COMPLETED"/> 后再调用 <apiname keyref="play"/> 来播放。</note>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <ul><li>在调用 <xref keyref="open" /> 或 <xref keyref="openWithMediaSource"/> 打开媒体文件、且收到 <xref keyref="onPlayerSourceStateChanged"/> 回调报告状态为 <ph keyref="PLAYER_STATE_OPEN_COMPLETED"/> 后，调用该方法。</li>
+                 <li>在调用 <xref keyref="seek" /> 后调用该方法。</li></ul>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
         </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>

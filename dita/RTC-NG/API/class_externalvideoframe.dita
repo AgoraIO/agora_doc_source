@@ -20,7 +20,7 @@
   public static final int BUFFER_TYPE_ARRAY = 2;
   public static final int BUFFER_TYPE_TEXTURE = 3;
   public AgoraVideoFrame() {
-    format = 10; 
+    format = 10;
     timeStamp = 0;
     stride = 0;
     height = 0;
@@ -46,7 +46,7 @@
   public float[] transform;
   public javax.microedition.khronos.egl.EGLContext eglContext10;
   public android.opengl.EGLContext eglContext14;
-  
+
   public byte[] buf;
   public int cropLeft;
   public int cropTop;
@@ -67,20 +67,20 @@
             <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoFrame : NSObject
 @property(assign, nonatomic) NSInteger format;
-@property(assign, nonatomic) CMTime time;  
+@property(assign, nonatomic) CMTime time;
 @property(assign, nonatomic) int stride DEPRECATED_MSG_ATTRIBUTE("use strideInPixels instead");
-@property(assign, nonatomic) int strideInPixels;  
-@property(assign, nonatomic) int height;  
+@property(assign, nonatomic) int strideInPixels;
+@property(assign, nonatomic) int height;
 @property(assign, nonatomic) CVPixelBufferRef _Nullable textureBuf;
 @property(strong, nonatomic) IMAGE_CLASS * _Nullable image;
-@property(strong, nonatomic) NSData *_Nullable dataBuf;  
+@property(strong, nonatomic) NSData *_Nullable dataBuf;
 @property(strong, nonatomic) NSData *_Nullable alphaBuf;
 @property(assign, nonatomic) AgoraAlphaStitchMode alphaStitchMode;
-@property(assign, nonatomic) int cropLeft;  
-@property(assign, nonatomic) int cropTop;  
-@property(assign, nonatomic) int cropRight;  
-@property(assign, nonatomic) int cropBottom;  
-@property(assign, nonatomic) int rotation;  
+@property(assign, nonatomic) int cropLeft;
+@property(assign, nonatomic) int cropTop;
+@property(assign, nonatomic) int cropRight;
+@property(assign, nonatomic) int cropBottom;
+@property(assign, nonatomic) int rotation;
 - (void)fillAlphaData;
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct ExternalVideoFrame {
@@ -153,8 +153,13 @@
   eglType?: EglContextType;
   textureId?: number;
   matrix?: number[];
-  metadata_buffer?: Uint8Array;
-  metadata_size?: number;
+  metadataBuffer?: Uint8Array;
+  metadataSize?: number;
+  alphaBuffer?: Uint8Array;
+  fillAlphaBuffer?: boolean;
+  alphaStitchMode?: AlphaStitchMode;
+  d3d11Texture2d?: any;
+  textureSliceIndex?: number;
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class ExternalVideoFrame
     {
@@ -172,8 +177,11 @@
         public byte[] eglContext;
         public EGL_CONTEXT_TYPE eglType;
         public int textureId;
-        public byte[] metadata_buffer;
-        public int metadata_size;
+        public byte[] metadataBuffer;
+        public int metadataSize;
+        public byte[] alphaBuffer;
+        public bool fillAlphaBuffer;
+        public ALPHA_STITCH_MODE alphaStitchMode;
         public IntPtr d3d11_texture_2d;
         public int texture_slice_index;
     };</codeblock>
@@ -192,8 +200,11 @@
   eglType?: EglContextType;
   textureId?: number;
   matrix?: number[];
-  metadata_buffer?: Uint8Array;
-  metadata_size?: number;
+  metadataBuffer?: Uint8Array;
+  metadataSize?: number;
+  alphaBuffer?: Uint8Array;
+  fillAlphaBuffer?: boolean;
+  alphaStitchMode?: AlphaStitchMode;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
 class ExternalVideoFrame {
@@ -215,6 +226,9 @@ class ExternalVideoFrame {
       this.metadataBuffer,
       this.metadataSize,
       this.alphaBuffer,
+      this.fillAlphaBuffer,
+      this.alphaStitchMode,
+      this.d3d11Texture2d,
       this.textureSliceIndex});
 
   @JsonKey(name: &#x27;type&#x27;)
@@ -259,16 +273,25 @@ class ExternalVideoFrame {
   @JsonKey(name: &#x27;matrix&#x27;)
   final List&lt;double&gt;? matrix;
 
-  @JsonKey(name: &#x27;metadata_buffer&#x27;, ignore: true)
+  @JsonKey(name: &#x27;metadataBuffer&#x27;, ignore: true)
   final Uint8List? metadataBuffer;
 
-  @JsonKey(name: &#x27;metadata_size&#x27;)
+  @JsonKey(name: &#x27;metadataSize&#x27;)
   final int? metadataSize;
 
   @JsonKey(name: &#x27;alphaBuffer&#x27;, ignore: true)
   final Uint8List? alphaBuffer;
 
-  @JsonKey(name: &#x27;texture_slice_index&#x27;)
+  @JsonKey(name: &#x27;fillAlphaBuffer&#x27;)
+  final bool? fillAlphaBuffer;
+
+  @JsonKey(name: &#x27;alphaStitchMode&#x27;)
+  final AlphaStitchMode? alphaStitchMode;
+
+  @JsonKey(name: &#x27;d3d11Texture2d&#x27;, readValue: readIntPtr)
+  final int? d3d11Texture2d;
+
+  @JsonKey(name: &#x27;textureSliceIndex&#x27;)
   final int? textureSliceIndex;
 
   factory ExternalVideoFrame.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
@@ -297,7 +320,7 @@ class ExternalVideoFrame {
                     id="windows-format">像素格式。详见 <xref
                     keyref="VIDEO_PIXEL_FORMAT"/>。</pd>
                 <pd props="ios mac" id="oc-format">传入的视频帧的格式，必须指定为下面的某一个值：
-                
+
                     <ul>
                     <li>1: I420。</li>
                     <li>2: BGRA。</li>
@@ -310,7 +333,7 @@ class ExternalVideoFrame {
                     <li>16: I422。</li>
                     </ul> </pd>
                 <pd props="android hmos">视频数据的格式：
-                
+
                     <ul>
                     <li>10：TEXTURE_2D。</li>
                     <li>11：TEXTURE_OES，通常摄像头采集的数据为这种格式。</li>
@@ -335,7 +358,7 @@ class ExternalVideoFrame {
             <plentry>
                 <pt>stride</pt>
                 <pd>传入视频帧的行间距，单位为像素而不是字节。对于 Texture，该值指的是 Texture 的宽度。
-                
+
                     <p props="ios mac">
                     <dl outputclass="deprecated">
                     <dlentry>
@@ -350,7 +373,7 @@ class ExternalVideoFrame {
             <plentry props="ios mac">
                 <pt>strideInPixels</pt>
                 <pd>该帧的行跨度，即相邻两行视频帧之间的像素点数。
-           
+
                     <note type="attention">
                     <ul>
                     <li>该参数单位为像素，不是字节数。</li>
@@ -408,32 +431,30 @@ class ExternalVideoFrame {
                 <pd>该参数仅适用于 Texture 格式的视频数据。为一个输入的 4x4 变换矩阵，典型值为一个单位矩阵。</pd>
             </plentry>
             <plentry props="cpp unreal bp unity electron rn cs flutter">
-                <pt props="bp unity electron rn cs">metadata_buffer</pt>
-                <pt props="cpp unreal flutter">metadataBuffer</pt>
+                <pt>metadataBuffer</pt>
                 <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的数据缓冲区，默认值为 <codeph>NULL</codeph>。</pd>
             </plentry>
             <plentry props="cpp unreal bp unity electron rn cs flutter">
-                <pt props="bp unity electron rn cs">metadata_size</pt>
-                <pt props="cpp unreal flutter">metadataSize</pt>
+                <pt>metadataSize</pt>
                 <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的大小，默认值为 <codeph>0</codeph>。</pd>
             </plentry>
-            <plentry conkeyref="VideoFrame/d3d" props="cpp unity electron">
-                <pt/>
-                <pd/>
-            </plentry>
+            <plentry props="cpp unreal bp unity electron flutter">
+                <pt>d3d11Texture2d</pt>
+                <pd>该参数仅适用于 Windows Texture 格式的视频数据。表示一个指向 <codeph>ID3D11Texture2D</codeph> 类型对象的指针，该类型对象被视频帧所使用。</pd>
+              </plentry>
             <plentry id="alphabuffer">
-                <pt props="cpp android">alphaBuffer</pt>
+                <pt props="cpp android framework">alphaBuffer</pt>
                 <pt props="apple">alphaBuf</pt>
                 <pd>
                   <p>采用人像分割算法输出的 Alpha 通道数据。该数据跟视频帧的尺寸一致，每个像素点的取值范围为 [0,255]，其中 0 代表背景；255 代表前景（人像）。</p>
                   <p>你可以通过设置该参数，实现将视频背景自渲染为各种效果，例如：透明、纯色、图片、视频等。</p>
-                  <note type="attention" props="android">在自定义视频渲染场景下，需确保传入的视频帧和 <parmname>alphaBuffer</parmname> 均为 Full Range 类型；其他类型可能导致 Alpha 数据渲染不正常。</note>
+                  <note type="attention" props="android apple framework">在自定义视频渲染场景下，需确保传入的视频帧和 <parmname>alphaBuffer</parmname> 均为 Full Range 类型；其他类型可能导致 Alpha 数据渲染不正常。</note>
                 </pd>
               </plentry>
               <plentry>
-                <pt props="cpp">fillAlphaBuffer</pt>
+                <pt props="cpp framework">fillAlphaBuffer</pt>
                 <pt props="android apple">fillAlphaData</pt>
-                <pd>该参数仅适用于 BGRA 或 RGBA 格式的视频数据。设置是否提取视频帧中的 Alpha 通道数据并自动填入到 <parmname>alphaBuffer</parmname> 中： 
+                <pd>该参数仅适用于 BGRA 或 RGBA 格式的视频数据。设置是否提取视频帧中的 Alpha 通道数据并自动填入到 <parmname>alphaBuffer</parmname> 中：
                   <ul>
                   <li><codeph><ph keyref="true"/></codeph>：提取并填充 Alpha 通道数据。</li>
                   <li><codeph><ph keyref="false"/></codeph>：（默认）不提取填充 Alpha 通道数据。</li>
