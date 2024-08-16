@@ -31,16 +31,15 @@
         <section id="timing" deliveryTarget="details">
             <title>Call timing</title>
             <p>This method can be called either before or after joining the channel.</p>
+            <p id="recommend">To achieve better vocal effects, it is recommended that you call the following APIs before calling this method:<ul>
+                    <li>Call <xref keyref="setAudioScenario" /> to set the audio scenario to high-quality audio scenario, namely <apiname keyref="AUDIO_SCENARIO_GAME_STREAMING" />(3).</li>
+                    <li>Call <xref keyref="setAudioProfile2" props="native unity cs unreal"/><xref keyref="setAudioProfile" props="electron rn flutter bp"/> to set the <parmname>profile</parmname> parameter to <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY" />(4) or <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO" />(5).</li>
+                </ul>
+            </p>
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>Restrictions</title>
             <ul>
-                <li><p id="recommend">To achieve better vocal effects, it is recommended that you call the following APIs before calling this method:<ul>
-                            <li>Call <xref keyref="setAudioScenario" /> to set the audio scenario to high-quality audio scenario, namely <apiname keyref="AUDIO_SCENARIO_GAME_STREAMING" />(3).</li>
-                            <li>Call <xref keyref="setAudioProfile2" props="native unity cs unreal"/><xref keyref="setAudioProfile" props="electron rn flutter bp"/> to set the <parmname>profile</parmname> parameter to <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY" />(4) or <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO" />(5).</li>
-                        </ul>
-                    </p>
-                </li>
                 <li id="profile-note">Do not set the <parmname>profile</parmname> parameter in <apiname keyref="setAudioProfile2" props="native unity cs unreal"/><apiname keyref="setAudioProfile" props="electron rn flutter bp"/> to <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD" />(1)<ph props="cpp unreal bp rn electron unity flutter cs"> or <apiname keyref="AUDIO_PROFILE_IOT" />(6)</ph>, or the method does not take effect.</li>
                 <li>This method has the best effect on human voice processing, and Agora does not recommend calling this method to process audio data containing music.</li>
                 <li>After calling <apiname keyref="setVoiceBeautifierPreset" />, Agora does not recommend calling the following methods, otherwise the effect set by <apiname keyref="setVoiceBeautifierPreset" /> will be overwritten: <ul>

@@ -22,19 +22,29 @@
             <codeblock props="rn" outputclass="language-typescript">abstract setRouteInCommunicationMode(route: number): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setRouteInCommunicationMode(int route);</codeblock> </p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
             <dlentry props="native">
                 <dt>Since</dt>
                 <dd>v4.2.2</dd>
             </dlentry>
             </dl>
-            <p>This method is used to switch the audio route from Bluetooth headphones to earpiece, wired headphones or speakers in communication audio mode (<xref keyref="communication-audio-mode"/>). After the method is called successfully, the SDK will trigger the <xref keyref="onAudioRoutingChanged"/> callback to report the modified route.</p>
-            <note type="attention" props="android hmos">Using this method and the <xref keyref="setEnableSpeakerphone"/> method at the same time may cause conflicts. Agora recommends that you use the <xref keyref="setRouteInCommunicationMode"/> method alone.</note>
-            <note type="attention" props="cpp unity rn flutter unreal bp"><ul><li>This method is for Android only.</li><li>Using this method and the <xref keyref="setEnableSpeakerphone"/> method at the same time may cause conflicts. Agora recommends that you use the <xref keyref="setRouteInCommunicationMode"/> method alone.</li></ul></note>
+            <p>This method is used to switch the audio route from Bluetooth headphones to earpiece, wired headphones or speakers in communication audio mode (<xref keyref="communication-audio-mode"/>).</p>
+            <note type="attention" props="cpp unity rn flutter unreal bp">This method is for Android only.</note>
         </section>
-        <section id="parameters">
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>This method can be called either before or after joining the channel.</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p props="cpp android hmos unity rn flutter unreal bp">Using this method and the <xref keyref="setEnableSpeakerphone"/> method at the same time may cause conflicts. Agora recommends that you use the <xref keyref="setRouteInCommunicationMode"/> method alone.</p>
+        </section>
+        <section id="related" deliveryTarget="details">
+            <title>Related callbacks</title>
+            <p>After successfully calling this method, the SDK triggers the <xref keyref="onAudioRoutingChanged"/> callback to report the current audio route.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>

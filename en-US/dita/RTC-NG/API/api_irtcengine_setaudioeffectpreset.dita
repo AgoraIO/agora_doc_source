@@ -25,14 +25,18 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAudioEffectPreset(AudioEffectPreset preset);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p>Call this method to set an SDK preset audio effect for the local user who sends an audio stream. This audio effect does not change the gender characteristics of the original voice. After setting an audio effect, all users in the channel can hear the effect.</p>
             <p props="cn"><ph props="native">You can set different audio effects for different scenarios. See <xref keyref="voice-changer-link"/>.</ph></p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>This method can be called either before or after joining the channel.</p>
             <p conkeyref="setVoiceBeautifierPreset/recommend"/>
-            <note type="attention">
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
             <ul>
-            <li>You can call this method either before or after joining a channel.</li>
             <li conkeyref="setVoiceBeautifierPreset/profile-note"/>
             <li>If you call <apiname keyref="setAudioEffectPreset" /> and set enumerators except for <apiname keyref="ROOM_ACOUSTICS_3D_VOICE" /> or <apiname keyref="PITCH_CORRECTION" />, do not call <xref keyref="setAudioEffectParameters" />; otherwise, <apiname keyref="setAudioEffectPreset" /> is overridden.</li>
             <li>After calling <apiname keyref="setAudioEffectPreset" />, Agora does not recommend you to call the following methods, otherwise the effect set by <apiname keyref="setAudioEffectPreset" /> will be overwritten: <ul>
@@ -44,8 +48,9 @@
                 <li><xref keyref="setVoiceConversionPreset" /></li>
                 </ul> </li>
                 <li>This method relies on the voice beautifier dynamic library <codeph><ph keyref="audiobeauty"/></codeph>. If the dynamic library is deleted, the function cannot be enabled normally.</li>
-            </ul> </note> </section>
-        <section id="parameters">
+            </ul>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>

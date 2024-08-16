@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_joinchannelwithuseraccount2">
     <title><ph keyref="joinChannelWithUserAccount2" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Joins the channel with a user account, and configures whether to automatically subscribe to audio or video streams after joining the channel.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Join a channel using a user account and token, and set the media options.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -47,16 +47,24 @@
     required String userAccount,
     ChannelMediaOptions? options});</codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <p id="desc1">This method allows a user to join the channel with the user account. After the user successfully joins the channel, the SDK triggers the following callbacks:<ul>
-            <li>The local client: <xref keyref="onLocalUserRegistered" />, <xref keyref="onJoinChannelSuccess" /> and <xref keyref="onConnectionStateChanged" /> callbacks.</li>
-            <li>The remote client: The <xref keyref="onUserJoined" /> callback, if the user is in the COMMUNICATION profile, and the <xref keyref="onUserInfoUpdated" /> callback if the user is a host in the LIVE_BROADCASTING profile.</li>
-            </ul></p>
-            <p id="desc2">Once a user joins the channel, the user subscribes to the audio and video streams of all the other users in the channel by default, giving rise to usage and billing calculation. To stop subscribing to a specified stream or all remote streams, call the corresponding <apiname>mute</apiname> methods.</p>
-            <p props="android ios mac cpp unreal">Compared to <xref keyref="joinChannelWithUserAccount1" />, this method adds the <parmname>options</parmname> parameter to configure whether to automatically subscribe to all remote audio and video streams in the channel when the user joins the channel. By default, the user subscribes to the audio and video streams of all the other users in the channel, giving rise to usage and billings. To unsubscribe, set the <parmname>options</parmname> parameter or call the <apiname>mute</apiname> methods accordingly.</p>
-            <note id="note" conkeyref="joinChannelWithUserAccount1/note"></note> </section>
-        <section id="parameters">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p id="account">Before calling this method, if you have not called <xref keyref="registerLocalUserAccount"/> to register a user account, when you call this method to join a channel, the SDK automatically creates a user account for you. Calling the <xref keyref="registerLocalUserAccount"/> method to register a user account, and then calling this method to join a channel can shorten the time it takes to enter the channel.</p>
+            <p props="flutter rn electron bp">Once a user joins the channel, the user subscribes to the audio and video streams of all the other users in the channel by default, giving rise to usage and <b>billings</b>. To stop subscribing to a specified stream or all remote streams, call the corresponding <apiname>mute</apiname> methods.</p>
+            <p props="android ios mac cpp unreal cs unity">Compared to <xref keyref="joinChannelWithUserAccount1" />, this method has the <parmname>options</parmname> parameter which is used to set media options, such as whether to publish audio and video streams within a channel. By default, the user subscribes to the audio and video streams of all the other users in the channel, giving rise to usage and <b>billings</b>. To stop subscribing to other streams, set the <parmname>options</parmname> parameter or call the corresponding <apiname>mute</apiname> methods.</p>
+            <note type="attention" id="note">To ensure smooth communication, use the same parameter type to identify the user. For example, if a user joins the channel with a UID, then ensure all the other users use the UID too. The same applies to the user account. If a user joins the channel with the Agora Web SDK, ensure that the ID of the user is set to the same parameter type.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" conkeyref="joinChannel2/timing">
+            </section>
+            <section id="restriction" deliveryTarget="details" conkeyref="joinChannel2/restriction">
+            </section>
+            <section id="related" deliveryTarget="details">
+                <title>Related callbacks</title>
+                <p>After the user successfully joins the channel, the SDK triggers the following callbacks:<ul>
+                    <li>The local client: <xref keyref="onLocalUserRegistered" />, <xref keyref="onJoinChannelSuccess" /> and <xref keyref="onConnectionStateChanged" /> callbacks.</li>
+                    <li>The remote client: The <xref keyref="onUserJoined" /> and <xref keyref="onUserInfoUpdated" /> callbacks if a user joins the channel in the COMMUNICATION profile, or if a host joins the channel in the LIVE_BROADCASTING profile.</li>
+                    </ul></p>
+            </section>
+            <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry conkeyref="joinChannel2/token">

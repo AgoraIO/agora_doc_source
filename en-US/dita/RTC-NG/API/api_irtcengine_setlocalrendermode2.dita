@@ -39,8 +39,9 @@
             <p>After initializing the local video view, you can call this method to update its rendering and mirror modes. It affects only the video view that the local user sees and does not impact the publishing of the local video.</p>
             </section>
             <section id="timing" deliveryTarget="details">
-                <title><ph props="native unreal bp electron rn flutter">Call timing</ph></title>
-                <ul props="native unreal bp electron rn flutter"><li>Ensure that you have called the <xref keyref="setupLocalVideo" /> method to initialize the local video view before calling this method.</li>
+                <title>Call timing</title>
+                <ul>
+                    <li props="native unreal bp electron unity flutter">Ensure that you have called the <xref keyref="setupLocalVideo" /> method to initialize the local video view before calling this method.</li>
                     <li>During a call, you can call this method as many times as necessary to update the display mode of the local video view.</li></ul>
             </section>        
             <section id="restriction" deliveryTarget="details">
@@ -73,13 +74,15 @@
                 <pt props="android hmos cpp unreal bp unity flutter rn electron cs">mirrorMode</pt>
                 <pt props="ios mac">mirror</pt>
                 <pd>
-                    <p props="ios mac cpp unreal bp unity flutter rn electron cs">The mirror mode of the local video view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.<note type="attention" props="unity cs">This parameter is only effective when rendering custom videos. If you want to mirror the video view, set the scaleX of the GameObject attached to the video view as <codeph>-1</codeph> or <codeph>+1</codeph>.</note></p>
+                    <p props="ios mac cpp unreal bp unity flutter rn electron cs">The mirror mode of the local video view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.<note type="attention" props="unreal bp" id="mirror">This parameter does not take effect. To achieve a mirror display effect, configure the mirror settings in Unreal Engine.</note>
+                    <note type="attention" props="unity cs">This parameter is only effective when rendering custom videos. If you want to mirror the video view, set the scaleX of the GameObject attached to the video view as <codeph>-1</codeph> or <codeph>+1</codeph>.</note></p>
                     <p props="android hmos">For the local user:<ul id="videomirrormodetype">
                     <li><ph keyref="VIDEO_MIRROR_MODE_AUTO" />(0): The SDK determines whether to enable the mirror mode. If you use a front camera, the SDK enables the mirror mode by default; if you use a rear camera, the SDK disables the mirror mode by default.</li>
                     <li><ph keyref="VIDEO_MIRROR_MODE_ENABLED" />(1): Enable the mirroring mode of the local view.</li>
                     <li><ph keyref="VIDEO_MIRROR_MODE_DISABLED" />(2): Disable the mirroring mode of the local view.</li>
                     </ul> </p>
-                    <note type="attention">If you use a front camera, the SDK enables the mirror mode by default; if you use a rear camera, the SDK disables the mirror mode by default.</note> </pd>
+                    <note type="attention">If you use a front camera, the SDK enables the mirror mode by default; if you use a rear camera, the SDK disables the mirror mode by default.</note>
+                     </pd>
             </plentry>
             </parml> </section>
         <section id="return_values">

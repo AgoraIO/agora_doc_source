@@ -25,13 +25,18 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; getAudioMixingDuration();</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p>Retrieves the total duration (ms) of the audio.</p>
-            <note type="attention">
-            <p>You need to call this method after calling <xref keyref="startAudioMixing2"/> and receiving the <xref keyref="onAudioMixingStateChanged"/><codeph>(<ph keyref="AUDIO_MIXING_STATE_PLAYING"/>)</codeph> callback.</p>
-            </note> </section>
-        <section id="return_values" props="native unreal bp electron unity rn flutter cs">
+        </section>
+            <section id="timing" deliveryTarget="details">
+                <title>Call timing</title>
+                <p>Call this method after <xref keyref="startAudioMixing2" /> and receiving the <xref keyref="onAudioMixingStateChanged" /><codeph>(<ph keyref="AUDIO_MIXING_STATE_PLAYING" />)</codeph> callback.</p>
+            </section>        
+            <section id="restriction" deliveryTarget="details">
+                <title>Restrictions</title>
+                <p>None.</p>
+            </section>
+            <section id="return_values" props="native unreal bp electron unity rn flutter cs">
             <title>Returns</title>
             <ul>
             <li>≥ 0: The audio mixing duration, if this method call succeeds.</li>
