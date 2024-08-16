@@ -47,28 +47,28 @@
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="native unreal unity cs">相比 <xref keyref="joinChannel1" />，该方法增加了 <parmname>options</parmname> 参数，用于设置媒体选项，如是否在频道内发布音视频流等。 用户加入频道时是否自动订阅频道内所有远端音视频流。 By default, the user subscribes to the audio and video streams of all the other users in the channel, giving rise to usage and <b>billings</b>. To unsubscribe, set <parmname>the options parameter</parmname> or <apiname>call the mute methods</apiname> accordingly.</p>
-            <p props="flutter rn electron bp">该方法可以在加入频道时设置媒体选项，如是否在频道内发布音视频流等。 用户加入频道时是否自动订阅频道内所有远端音视频流。 By default, the user subscribes to the audio and video streams of all the other users in the channel, giving rise to usage and <b>billings</b>. To unsubscribe, set <parmname>the options parameter</parmname> or <apiname>call the mute methods</apiname> accordingly.</p>
+            <p props="native unreal unity cs">Compared to <xref keyref="joinChannel1" />, this method has the <parmname>options</parmname> parameter which is used to set media options, such as whether to publish audio and video streams within a channel, or whether to automatically subscribe to the audio and video streams of all remote users when joining a channel. By default, the user subscribes to the audio and video streams of all the other users in the channel, giving rise to usage and <b>billings</b>. To stop subscribing to other streams, set the <parmname>options</parmname> parameter or call the corresponding <apiname>mute</apiname> methods.</p>
+            <p props="flutter rn electron bp">This method supports setting the media options when joining a channel, such as whether to publish audio and video streams within the channel. or whether to automatically subscribe to the audio and video streams of all remote users when joining a channel. By default, the user subscribes to the audio and video streams of all the other users in the channel, giving rise to usage and <b>billings</b>. To stop subscribing to other streams, set the <parmname>options</parmname> parameter or call the corresponding <apiname>mute</apiname> methods.</p>
             </section>
             <section id="timing" deliveryTarget="details">
                 <title>Call timing</title>
-                <p>Call this method<xref keyref="initialize"/> after .</p>
+                <p>Call this method after <xref keyref="initialize"/>.</p>
             </section>
             <section id="restriction" deliveryTarget="details">
                 <title>Restrictions</title>
                 <ul>
-                    <li>该方法仅支持用户一次加入一个频道。</li>
+                    <li>This method only supports users joining one channel at a time.</li>
                     <li>Users with different App IDs cannot call each other.</li>
-                    <li>Ensure that the app ID you use to generate<xref keyref="initialize" /> the token is the same app ID that you pass in the  method; otherwise, you may fail to join the channel by token.</li>
+                    <li>Before joining a channel, ensure that the app ID you use to generate a token is the same as that you pass in the <xref keyref="initialize" /> method; otherwise, you may fail to join the channel with the token.</li>
                 </ul>
             </section>
             <section id="related" deliveryTarget="details">
                 <title>Related callbacks</title>
                 <p>A successful call of this method triggers the following callbacks:<ul>
                     <li>The local client: The <xref keyref="onJoinChannelSuccess" /> and <xref keyref="onConnectionStateChanged" /> callbacks.</li>
-                    <li>The remote client: <xref keyref="onUserJoined" />, if the user joining the channel is in the Communication profile or is a host in the Live-broadcasting profile.</li>
+                    <li>The remote client: The <xref keyref="onUserJoined" /> callback, if a user joining the channel in the COMMUNICATION profile, or a host joining a channel in the LIVE_BROADCASTING profile.</li>
                     </ul></p>
-                    <p>When the connection between the client and Agora's server is interrupted due to poor network conditions, the SDK tries reconnecting to the server. When the local client successfully rejoins the channel, the SDK triggers the  callback on the local client<xref keyref="onRejoinChannelSuccess" />.</p>
+                    <p>When the connection between the local client and Agora's server is interrupted due to poor network conditions, the SDK tries reconnecting to the server. When the local client successfully rejoins the channel, the SDK triggers the <xref keyref="onRejoinChannelSuccess" /> callback on the local client.</p>
             </section>
             <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
@@ -77,8 +77,8 @@
                 <pt>token</pt>
                 <pd>The token generated on your server for authentication. See <xref keyref="guide-token"/>.<note type="note">
                     <ul>
-                        <li>（推荐）如果你的项目开启了安全模式，即选择 APP ID + Token 为鉴权机制，则该参数为必填。</li>
-                        <li>如果你的项目仅开启调试模式，即选择 APP ID 为鉴权机制，则无需填入 Token 即可加入频道。 成功加入频道 24 小时后会自动退出该频道。</li>
+                        <li>(Recommended) If your project has enabled the security mode (using APP ID and Token for authentication), this parameter is required.</li>
+                        <li>If you have only enabled the testing mode (using APP ID for authentication), this parameter is optional. You will automatically exit the channel 24 hours after successfully joining in.</li>
                         <li>If you need to join different channels at the same time or switch between channels, Agora recommends using a wildcard token so that you don't need to apply for a new token every time joining a channel. See <xref keyref="wildcard-token"/>.</li></ul></note></pd>
             </plentry>
             <plentry id="channelID">
@@ -116,7 +116,7 @@
                 <li>-2: The parameter is invalid. For example, the token is invalid, the <parmname>uid</parmname> parameter is not set to an integer, or the value of a member in <xref keyref="ChannelMediaOptions" /> is invalid. You need to pass in a valid parameter and join the channel again.</li>
                 <li>-3: Fails to initialize the <xref keyref="IRtcEngine" /> object. You need to reinitialize the <apiname keyref="IRtcEngine" /> object.</li>
                 <li>-7: The <apiname keyref="IRtcEngine" /> object has not been initialized. You need to initialize the <apiname keyref="IRtcEngine" /> object before calling this method.</li>
-                <li>-8: The internal state of the <apiname keyref="IRtcEngine" /> object is wrong. The typical cause is that you call this method to join the channel<xref keyref="startEchoTest3" /> without calling<xref keyref="stopEchoTest" />  to stop the test after calling  to start a call loop test. You need to call  before calling this method<apiname keyref="stopEchoTest" />.</li>
+                <li>-8: The internal state of the <apiname keyref="IRtcEngine" /> object is wrong. The typical cause is that after calling <xref keyref="startEchoTest3" /> to start a call loop test, you call this method to join the channel without calling <xref keyref="stopEchoTest" /> to stop the test. You need to call <apiname keyref="stopEchoTest" /> before calling this method.</li>
                 <li>-17: The request to join the channel is rejected. The typical cause is that the user is already in the channel. Agora recommends that you use the <xref keyref="onConnectionStateChanged" /> callback to see whether the user is in the channel. Do not call this method to join the channel unless you receive the <apiname keyref="CONNECTION_STATE_DISCONNECTED" />(1) state.</li>
                 <li>-102: The channel name is invalid. You need to pass in a valid channel name in <parmname>channelId</parmname> to rejoin the channel.</li>
                 <li>-121: The user ID is invalid. You need to pass in a valid user ID in <parmname>uid</parmname> to rejoin the channel.</li>
