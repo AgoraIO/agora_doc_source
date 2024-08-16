@@ -66,28 +66,60 @@ struct FRtcEngineContext
 {
 	GENERATED_BODY()
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
-	FString appId = &quot;&quot;;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
 	EAgoraBPuEventHandlerType EventHandlerCreationType = EAgoraBPuEventHandlerType::EventHandler;
-				UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	FString appId = &quot;&quot;;
+	
+		
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	ECHANNEL_PROFILE_TYPE channelProfile = ECHANNEL_PROFILE_TYPE::CHANNEL_PROFILE_LIVE_BROADCASTING;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
 	FString license = &quot;&quot;;
-														UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
-	bool useExternalEglContext = false;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	EAUDIO_SCENARIO_TYPE audioScenario = EAUDIO_SCENARIO_TYPE::AUDIO_SCENARIO_DEFAULT;
+	
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	FENUMWRAP_AREA_CODE areaCode = EENUMCUSTOM_AREA_CODE::AREA_CODE_GLOB;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	FLogConfig logConfig;
 
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	bool threadPriority_SetValue = false;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	ETHREAD_PRIORITY_TYPE threadPriority = ETHREAD_PRIORITY_TYPE::NORMAL;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	bool useExternalEglContext = false;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	bool domainLimit = false;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	bool autoRegisterAgoraExtensions = true;
+
+	FRtcEngineContext() {}
 	agora::rtc::RtcEngineContext CreateAgoraData() const {
 		agora::rtc::RtcEngineContext AgoraData;
-		char* AppIdCharPtr = new char[appId.Len() + 1];
-		FMemory::Memcpy(AppIdCharPtr, TCHAR_TO_UTF8(*appId), appId.Len());
-		AppIdCharPtr[appId.Len()] = '\0';
-		AgoraData.appId = AppIdCharPtr;
+		
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.appId, this-&gt;appId)
+		
+		AgoraData.channelProfile = (agora::CHANNEL_PROFILE_TYPE)channelProfile;
+		
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.license, this-&gt;license)
+		AgoraData.audioScenario = (agora::rtc::AUDIO_SCENARIO_TYPE)audioScenario;
+		AgoraData.areaCode = areaCode.GetRawValue();
+		AgoraData.logConfig = logConfig.CreateAgoraData();
+		SET_AGORA_OPTIONAL_VAL_ASSIGN_VAL(AgoraData.threadPriority, this-&gt;threadPriority, static_cast&lt;agora::rtc::THREAD_PRIORITY_TYPE&gt;(this-&gt;threadPriority))
+		AgoraData.useExternalEglContext = useExternalEglContext;
+		AgoraData.domainLimit = domainLimit;
+		AgoraData.autoRegisterAgoraExtensions = autoRegisterAgoraExtensions;
+		
 		return AgoraData;
 	}
 
 	void FreeAgoraData(agora::rtc::RtcEngineContext&amp; AgoraData) const {
-		if (AgoraData.appId) {
-			delete[] AgoraData.appId;
-			AgoraData.appId = nullptr;
-		}
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.appId)
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.license)
+		logConfig.FreeAgoraData(AgoraData.logConfig);
 	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class RtcEngineContext {
@@ -200,13 +232,13 @@ class RtcEngineContext {
                 <pt props="android hmos">mAppId</pt>
                 <pd id="appid">声网为 App 开发者签发的 App ID。 使用同一个 App ID 的 App 才能进入同一个频道进行通话或直播。一个 App ID 只能用于创建一个 <apiname keyref="IRtcEngine"/>。如需更换 App ID，必须先调用 <xref keyref="release"/> 销毁当前 <apiname keyref="IRtcEngine"/> 再重新创建。</pd>
             </plentry>
-            <plentry props="android hmos cpp unreal bp unity cs">
-                <pt props="cpp unreal bp unity cs">context</pt>
+            <plentry props="android hmos cpp unreal unity cs">
+                <pt props="cpp unreal unity cs">context</pt>
                 <pt props="android hmos">mContext</pt>
                 <pd id="context">
-                    <ul props="cpp unreal bp unity cs">
+                    <ul props="cpp unreal unity cs">
                     <li>Windows 平台上，context 是视窗句柄。如设值，则表示支持设备热插拔。</li>
-                    <li props="cpp unreal bp unity">Android 平台上，context 是安卓活动上下文。</li>
+                    <li props="cpp unreal unity">Android 平台上，context 是安卓活动上下文。</li>
                     </ul>
                     <p props="android">安卓活动上下文。</p>
                     <p props="hmos">上下文。</p>
