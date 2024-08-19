@@ -20,7 +20,8 @@
      (void)uid;
      (void)userAccount;
      }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnLocalUserRegistered, int64, uid, FString, userAccount);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnLocalUserRegistered(int64 uid, const FString&amp; userAccount);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onLocalUserRegistered?(uid: number, userAccount: string): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnLocalUserRegistered(uint uid, string userAccount) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onLocalUserRegistered?(uid: number, userAccount: string): void;</codeblock>

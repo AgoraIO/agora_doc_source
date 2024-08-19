@@ -65,11 +65,26 @@
 struct FRtcConnection
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcConnection&quot;)
-	FString channelId;
+	FString channelId = &quot;&quot;;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcConnection&quot;)
-	int64 localUid;
+	int64 localUid = 0;
+	FRtcConnection(){}
+	FRtcConnection(const agora::rtc::RtcConnection &amp; AgoraData){
+		channelId = UTF8_TO_TCHAR(AgoraData.channelId);
+		localUid = AgoraData.localUid;
+	}
+	agora::rtc::RtcConnection CreateAgoraData() const {
+		agora::rtc::RtcConnection AgoraData;
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.channelId, this-&gt;channelId)
+		AgoraData.localUid = localUid;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::RtcConnection &amp; AgoraData) const {
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.channelId)
+	}
+	
 };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class RtcConnection {
   

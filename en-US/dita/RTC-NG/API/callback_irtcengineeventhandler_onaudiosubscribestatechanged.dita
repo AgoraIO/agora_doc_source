@@ -33,7 +33,8 @@ elapseSinceLastState:(int)elapseSinceLastState;</codeblock>
      (void)newState;
      (void)elapseSinceLastState;
      }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnAudioSubscribeStateChanged, FString, channel, int64, uid, ESTREAM_SUBSCRIBE_STATE, oldState, ESTREAM_SUBSCRIBE_STATE, newState, int, elapseSinceLastState);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnAudioSubscribeStateChanged(const FString&amp; channel, int64 uid, ESTREAM_SUBSCRIBE_STATE oldState, ESTREAM_SUBSCRIBE_STATE newState, int elapseSinceLastState);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onAudioSubscribeStateChanged?(
     channel: string,
     uid: number,

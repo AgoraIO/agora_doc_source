@@ -26,7 +26,8 @@
      (void)reason;
      (void)elapsed;
      }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnRemoteVideoStateChanged, int64, uid, EREMOTE_VIDEO_STATE, state, EREMOTE_VIDEO_STATE_REASON, reason, int, elapsed);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnRemoteVideoStateChanged(int64 uid, EREMOTE_VIDEO_STATE state, EREMOTE_VIDEO_STATE_REASON reason, int elapsed);</codeblock>
                <codeblock props="electron" outputclass="language-typescript">  onRemoteVideoStateChanged?(
     connection: RtcConnection,
     remoteUid: number,

@@ -24,7 +24,8 @@
   (void)errCode;
 }
 </codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnSnapshotTaken, int64, uid, FString, filePath, int, width, int, height, int, errCode);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnSnapshotTaken(int64 uid, const FString&amp; filePath, int width, int height, int errCode);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onSnapshotTaken?(
     connection: RtcConnection,
     uid: number,

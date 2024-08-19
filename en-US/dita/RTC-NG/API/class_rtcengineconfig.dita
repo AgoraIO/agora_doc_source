@@ -65,29 +65,62 @@
 struct FRtcEngineContext
 {
 	GENERATED_BODY()
-
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
-	FString appId;
+	EAgoraBPuEventHandlerType EventHandlerCreationType = EAgoraBPuEventHandlerType::EventHandler;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
-	UIRtcEngineEventHandler* eventHandler;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
-	int64 context;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
-	FString license;
+	FString appId = &quot;&quot;;
+	
+		
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
 	ECHANNEL_PROFILE_TYPE channelProfile = ECHANNEL_PROFILE_TYPE::CHANNEL_PROFILE_LIVE_BROADCASTING;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	FString license = &quot;&quot;;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
 	EAUDIO_SCENARIO_TYPE audioScenario = EAUDIO_SCENARIO_TYPE::AUDIO_SCENARIO_DEFAULT;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
-	bool threadPriority_SetValue;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
-	ETHREAD_PRIORITY_TYPE threadPriority;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
-	FLogConfig logConfig;
+	
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
 	FENUMWRAP_AREA_CODE areaCode = EENUMCUSTOM_AREA_CODE::AREA_CODE_GLOB;
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
-	bool useExternalEglContext;
+	FLogConfig logConfig;
+
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	bool threadPriority_SetValue = false;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	ETHREAD_PRIORITY_TYPE threadPriority = ETHREAD_PRIORITY_TYPE::NORMAL;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	bool useExternalEglContext = false;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	bool domainLimit = false;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	bool autoRegisterAgoraExtensions = true;
+
+	FRtcEngineContext() {}
+	agora::rtc::RtcEngineContext CreateAgoraData() const {
+		agora::rtc::RtcEngineContext AgoraData;
+		
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.appId, this-&gt;appId)
+		
+		AgoraData.channelProfile = (agora::CHANNEL_PROFILE_TYPE)channelProfile;
+		
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.license, this-&gt;license)
+		AgoraData.audioScenario = (agora::rtc::AUDIO_SCENARIO_TYPE)audioScenario;
+		AgoraData.areaCode = areaCode.GetRawValue();
+		AgoraData.logConfig = logConfig.CreateAgoraData();
+		SET_AGORA_OPTIONAL_VAL_ASSIGN_VAL(AgoraData.threadPriority, this-&gt;threadPriority, static_cast&lt;agora::rtc::THREAD_PRIORITY_TYPE&gt;(this-&gt;threadPriority))
+		AgoraData.useExternalEglContext = useExternalEglContext;
+		AgoraData.domainLimit = domainLimit;
+		AgoraData.autoRegisterAgoraExtensions = autoRegisterAgoraExtensions;
+		
+		return AgoraData;
+	}
+
+	void FreeAgoraData(agora::rtc::RtcEngineContext&amp; AgoraData) const {
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.appId)
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.license)
+		logConfig.FreeAgoraData(AgoraData.logConfig);
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class RtcEngineContext {
 

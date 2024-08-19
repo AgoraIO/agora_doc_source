@@ -29,7 +29,8 @@
      (void)lost;
      (void)rxKBitRate;
      }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnRemoteAudioTransportStats, int64, uid, int, delay, int, lost, int, rxKBitRate);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnRemoteAudioTransportStats(int64 uid, int delay, int lost, int rxKBitRate);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onRemoteAudioTransportStats?(
     connection: RtcConnection,
     remoteUid: number,

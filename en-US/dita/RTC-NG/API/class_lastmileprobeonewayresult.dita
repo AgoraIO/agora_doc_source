@@ -17,13 +17,29 @@
                     };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FLastmileProbeOneWayResult {
-
 	GENERATED_BODY()
-	int64 packetLossRate;
-
-	int64 jitter;
-
-	int64 availableBandwidth;
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LastmileProbeOneWayResult&quot;)
+	int64 packetLossRate = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LastmileProbeOneWayResult&quot;)
+	int64 jitter = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LastmileProbeOneWayResult&quot;)
+	int64 availableBandwidth = 0;
+	FLastmileProbeOneWayResult(){}
+	FLastmileProbeOneWayResult(const agora::rtc::LastmileProbeOneWayResult &amp; AgoraData){
+		packetLossRate = AgoraData.packetLossRate;
+		jitter = AgoraData.jitter;
+		availableBandwidth = AgoraData.availableBandwidth;
+	}
+	agora::rtc::LastmileProbeOneWayResult CreateAgoraData() const {
+		agora::rtc::LastmileProbeOneWayResult AgoraData;
+		AgoraData.packetLossRate = packetLossRate;
+		AgoraData.jitter = jitter;
+		AgoraData.availableBandwidth = availableBandwidth;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::LastmileProbeOneWayResult &amp; AgoraData) const {
+	}
 };</codeblock>
             <codeblock props="android" outputclass="language-java">public static class LastmileProbeOneWayResult {
       public int packetLossRate;

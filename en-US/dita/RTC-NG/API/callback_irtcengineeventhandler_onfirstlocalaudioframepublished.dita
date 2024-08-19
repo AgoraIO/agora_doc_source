@@ -19,7 +19,8 @@
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onFirstLocalAudioFramePublished(int elapsed) {
     (void)elapsed;
     }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnFirstLocalAudioFramePublished, int, elapsed);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnFirstLocalAudioFramePublished(int elapsed);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onFirstLocalAudioFramePublished?(
     connection: RtcConnection,
     elapsed: number

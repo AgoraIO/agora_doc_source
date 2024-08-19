@@ -96,19 +96,41 @@
 struct FAudioRecordingConfiguration
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioRecordingConfiguration&quot;)
-	FString filePath;
+	FString filePath = &quot;&quot;;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioRecordingConfiguration&quot;)
-	bool encode;
+	bool encode = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioRecordingConfiguration&quot;)
-	int sampleRate;
+	int sampleRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioRecordingConfiguration&quot;)
 	EAUDIO_FILE_RECORDING_TYPE fileRecordingType = EAUDIO_FILE_RECORDING_TYPE::AUDIO_FILE_RECORDING_MIXED;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioRecordingConfiguration&quot;)
 	EAUDIO_RECORDING_QUALITY_TYPE quality = EAUDIO_RECORDING_QUALITY_TYPE::AUDIO_RECORDING_QUALITY_LOW;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioRecordingConfiguration&quot;)
-	int recordingChannel;
+	int recordingChannel = 0;
+	FAudioRecordingConfiguration(){}
+	FAudioRecordingConfiguration(const agora::rtc::AudioRecordingConfiguration &amp; AgoraData){
+		filePath = UTF8_TO_TCHAR(AgoraData.filePath);
+		encode = AgoraData.encode;
+		sampleRate = AgoraData.sampleRate;
+		fileRecordingType = static_cast&lt;EAUDIO_FILE_RECORDING_TYPE&gt;(AgoraData.fileRecordingType);
+		quality = static_cast&lt;EAUDIO_RECORDING_QUALITY_TYPE&gt;(AgoraData.quality);
+		recordingChannel = AgoraData.recordingChannel;
+	}
+	agora::rtc::AudioRecordingConfiguration CreateAgoraData() const {
+		agora::rtc::AudioRecordingConfiguration AgoraData;
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.filePath, this-&gt;filePath)
+		AgoraData.encode = encode;
+		AgoraData.sampleRate = sampleRate;
+		AgoraData.fileRecordingType = static_cast&lt;agora::rtc::AUDIO_FILE_RECORDING_TYPE&gt;(fileRecordingType);
+		AgoraData.quality = static_cast&lt;agora::rtc::AUDIO_RECORDING_QUALITY_TYPE&gt;(quality);
+		AgoraData.recordingChannel = recordingChannel;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::AudioRecordingConfiguration&amp; AgoraData) const {
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.filePath)
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class AudioRecordingConfiguration {
 

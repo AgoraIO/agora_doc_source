@@ -34,18 +34,49 @@
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FPlayerUpdatedInfo {
 	GENERATED_BODY()
+public:
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerUpdatedInfo&quot;)
-	bool playerId_SetValue;
+	FString internalPlayerUuid = &quot;&quot;;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerUpdatedInfo&quot;)
-	FString playerId;
+	FString deviceId = &quot;&quot;;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerUpdatedInfo&quot;)
-	bool deviceId_SetValue;
+	int videoHeight = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerUpdatedInfo&quot;)
-	FString deviceId;
+	int videoWidth = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerUpdatedInfo&quot;)
-	bool cacheStatistics_SetValue;
+	int audioSampleRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerUpdatedInfo&quot;)
-	FCacheStatistics cacheStatistics;
+	int audioChannels = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerUpdatedInfo&quot;)
+	int audioBitsPerSample = 0;
+
+	FPlayerUpdatedInfo(){}
+	FPlayerUpdatedInfo(const agora::media::base::PlayerUpdatedInfo&amp; playerUpdatedInfo) {
+		
+		internalPlayerUuid = UTF8_TO_TCHAR(playerUpdatedInfo.internalPlayerUuid);
+		deviceId = UTF8_TO_TCHAR(playerUpdatedInfo.deviceId);
+		videoHeight = playerUpdatedInfo.videoHeight;
+		videoWidth = playerUpdatedInfo.videoWidth;
+		audioSampleRate = playerUpdatedInfo.audioSampleRate;
+		audioChannels = playerUpdatedInfo.audioChannels;
+		audioBitsPerSample = playerUpdatedInfo.audioBitsPerSample;
+	}
+	agora::media::base::PlayerUpdatedInfo CreateAgoraData() const {
+		agora::media::base::PlayerUpdatedInfo AgoraData;
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.internalPlayerUuid,this-&gt;internalPlayerUuid)
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.deviceId,this-&gt;deviceId)
+		AgoraData.videoHeight = videoHeight;
+		AgoraData.videoWidth = videoWidth;
+		AgoraData.audioSampleRate = audioSampleRate;
+		AgoraData.audioChannels = audioChannels;
+		AgoraData.audioBitsPerSample = audioBitsPerSample;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::media::base::PlayerUpdatedInfo &amp; AgoraData) const {
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.internalPlayerUuid)
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.deviceId)
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class PlayerUpdatedInfo {
   

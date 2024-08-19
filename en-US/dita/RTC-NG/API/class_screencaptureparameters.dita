@@ -50,27 +50,53 @@
 struct FScreenCaptureParameters
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureParameters&quot;)
-	FVideoDimensions dimensions;
+	FVideoDimensions dimensions = FVideoDimensions();
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureParameters&quot;)
 	int frameRate = 5;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureParameters&quot;)
-	int bitrate;
+	int bitrate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureParameters&quot;)
 	bool captureMouseCursor = true;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureParameters&quot;)
 	bool windowFocus = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureParameters&quot;)
-	int64 excludeWindowList;
+	int64 excludeWindowList = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureParameters&quot;)
-	int excludeWindowCount;
+	int excludeWindowCount = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureParameters&quot;)
-	int highLightWidth;
+	int highLightWidth = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureParameters&quot;)
-	int highLightColor;
+	int highLightColor = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureParameters&quot;)
 	bool enableHighLight = false;
+	FScreenCaptureParameters(){}
+	FScreenCaptureParameters(const agora::rtc::ScreenCaptureParameters &amp; AgoraData){
+		dimensions = FVideoDimensions(AgoraData.dimensions);
+		frameRate = AgoraData.frameRate;
+		bitrate = AgoraData.bitrate;
+		captureMouseCursor = AgoraData.captureMouseCursor;
+		windowFocus = AgoraData.windowFocus;
+						highLightWidth = AgoraData.highLightWidth;
+		highLightColor = AgoraData.highLightColor;
+		enableHighLight = AgoraData.enableHighLight;
+	}
+	agora::rtc::ScreenCaptureParameters CreateAgoraData() const {
+		agora::rtc::ScreenCaptureParameters AgoraData;
+		AgoraData.dimensions = dimensions.CreateAgoraData();
+		AgoraData.frameRate = frameRate;
+		AgoraData.bitrate = bitrate;
+		AgoraData.captureMouseCursor = captureMouseCursor;
+		AgoraData.windowFocus = windowFocus;
+						AgoraData.highLightWidth = highLightWidth;
+		AgoraData.highLightColor = highLightColor;
+		AgoraData.enableHighLight = enableHighLight;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::ScreenCaptureParameters&amp; AgoraData) const {
+		dimensions.FreeAgoraData(AgoraData.dimensions);
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ScreenCaptureParameters {
   dimensions?: VideoDimensions;

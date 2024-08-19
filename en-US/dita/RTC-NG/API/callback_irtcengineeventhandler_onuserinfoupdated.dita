@@ -20,7 +20,8 @@
      (void)uid;
      (void)info;
      }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnUserInfoUpdated, int64, uid, const FUserInfo&amp;, info);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnUserInfoUpdated(int64 uid, const FUserInfo&amp; info);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onUserInfoUpdated?(uid: number, info: UserInfo): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnUserInfoUpdated(uint uid, UserInfo info)</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onUserInfoUpdated?(uid: number, info: UserInfo): void;</codeblock>
