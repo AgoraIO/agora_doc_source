@@ -41,11 +41,24 @@
 struct FAgoraRhythmPlayerConfig
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AgoraRhythmPlayerConfig&quot;)
 	int beatsPerMeasure = 4;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AgoraRhythmPlayerConfig&quot;)
 	int beatsPerMinute = 60;
+	FAgoraRhythmPlayerConfig(){}
+	FAgoraRhythmPlayerConfig(const agora::rtc::AgoraRhythmPlayerConfig &amp; AgoraData){
+		beatsPerMeasure = AgoraData.beatsPerMeasure;
+		beatsPerMinute = AgoraData.beatsPerMinute;
+	}
+	agora::rtc::AgoraRhythmPlayerConfig CreateAgoraData() const {
+		agora::rtc::AgoraRhythmPlayerConfig AgoraData;
+		AgoraData.beatsPerMeasure = beatsPerMeasure;
+		AgoraData.beatsPerMinute = beatsPerMinute;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::AgoraRhythmPlayerConfig &amp; AgoraData) const {
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class AgoraRhythmPlayerConfig {
   

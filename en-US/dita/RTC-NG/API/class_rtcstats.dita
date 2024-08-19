@@ -167,71 +167,151 @@ struct FRtcStats
 	GENERATED_BODY()
 public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	int64 duration;
+	int64 duration = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	int64 txBytes;
+	int64 txBytes = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	int64 rxBytes;
+	int64 rxBytes = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	int64 txAudioBytes;
+	int64 txAudioBytes = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	int64 txVideoBytes;
+	int64 txVideoBytes = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	int64 rxAudioBytes;
+	int64 rxAudioBytes = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	int64 rxVideoBytes;
+	int64 rxVideoBytes = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	int32 txKBitRate;
+	int32 txKBitRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	int32 rxKBitRate;
+	int32 rxKBitRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	int32 rxAudioKBitRate;
+	int32 rxAudioKBitRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	int32 txAudioKBitRate;
+	int32 txAudioKBitRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	int32 rxVideoKBitRate;
+	int32 rxVideoKBitRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	int32 txVideoKBitRate;
+	int32 txVideoKBitRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	int32 lastmileDelay;
+	int32 lastmileDelay = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	int64 userCount;
+	int64 userCount = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	float cpuAppUsage;
+	FString cpuAppUsage = &quot;0&quot;;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	float cpuTotalUsage;
+	FString cpuTotalUsage = &quot;0&quot;;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	int32 connectTimeMs;
+	int32 gatewayRtt = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	int32 firstAudioPacketDuration;
+	FString memoryAppUsageRatio = &quot;0&quot;;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	int32 firstVideoPacketDuration;
+	FString memoryTotalUsageRatio = &quot;0&quot;;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	int32 firstVideoKeyFramePacketDuration;
+	int32 memoryAppUsageInKbytes = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	int32 packetsBeforeFirstKeyFramePacket;
+	int32 connectTimeMs = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	int32 firstAudioPacketDurationAfterUnmute;
+	int32 firstAudioPacketDuration = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	int32 firstVideoPacketDurationAfterUnmute;
+	int32 firstVideoPacketDuration = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	int32 firstVideoKeyFramePacketDurationAfterUnmute;
+	int32 firstVideoKeyFramePacketDuration = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	int32 firstVideoKeyFrameDecodedDurationAfterUnmute;
+	int32 packetsBeforeFirstKeyFramePacket = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	int32 firstVideoKeyFrameRenderedDurationAfterUnmute;
+	int32 firstAudioPacketDurationAfterUnmute = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	int32 txPacketLossRate;
+	int32 firstVideoPacketDurationAfterUnmute = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	int32 rxPacketLossRate;
+	int32 firstVideoKeyFramePacketDurationAfterUnmute = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	int gatewayRtt;
+	int32 firstVideoKeyFrameDecodedDurationAfterUnmute = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	float memoryAppUsageRatio;
+	int32 firstVideoKeyFrameRenderedDurationAfterUnmute = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	float memoryTotalUsageRatio;
+	int32 txPacketLossRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcStats&quot;)
-	int memoryAppUsageInKbytes;
+	int32 rxPacketLossRate = 0;
+
+	FRtcStats(){}
+	FRtcStats(const agora::rtc::RtcStats &amp; AgoraData){
+		duration = AgoraData.duration;
+		txBytes = AgoraData.txBytes;
+		rxBytes = AgoraData.rxBytes;
+		txAudioBytes = AgoraData.txAudioBytes;
+		txVideoBytes = AgoraData.txVideoBytes;
+		rxAudioBytes = AgoraData.rxAudioBytes;
+		rxVideoBytes = AgoraData.rxVideoBytes;
+		txKBitRate = AgoraData.txKBitRate;
+		rxKBitRate = AgoraData.rxKBitRate;
+		rxAudioKBitRate = AgoraData.rxAudioKBitRate;
+		txAudioKBitRate = AgoraData.txAudioKBitRate;
+		rxVideoKBitRate = AgoraData.rxVideoKBitRate;
+		txVideoKBitRate = AgoraData.txVideoKBitRate;
+		lastmileDelay = AgoraData.lastmileDelay;
+		userCount = AgoraData.userCount;
+		SET_UABT_DOUBLE_TO_FSTRING(this-&gt;cpuAppUsage, AgoraData.cpuAppUsage);
+		SET_UABT_DOUBLE_TO_FSTRING(this-&gt;cpuTotalUsage, AgoraData.cpuTotalUsage);
+		gatewayRtt = AgoraData.gatewayRtt;
+		
+		SET_UABT_DOUBLE_TO_FSTRING(this-&gt;memoryAppUsageRatio, AgoraData.memoryAppUsageRatio);
+		SET_UABT_DOUBLE_TO_FSTRING(this-&gt;memoryTotalUsageRatio, AgoraData.memoryTotalUsageRatio);
+		
+		memoryAppUsageInKbytes = AgoraData.memoryAppUsageInKbytes;
+		connectTimeMs = AgoraData.connectTimeMs;
+		firstAudioPacketDuration = AgoraData.firstAudioPacketDuration;
+		firstVideoPacketDuration = AgoraData.firstVideoPacketDuration;
+		firstVideoKeyFramePacketDuration = AgoraData.firstVideoKeyFramePacketDuration;
+		packetsBeforeFirstKeyFramePacket = AgoraData.packetsBeforeFirstKeyFramePacket;
+		firstAudioPacketDurationAfterUnmute = AgoraData.firstAudioPacketDurationAfterUnmute;
+		firstVideoPacketDurationAfterUnmute = AgoraData.firstVideoPacketDurationAfterUnmute;
+		firstVideoKeyFramePacketDurationAfterUnmute = AgoraData.firstVideoKeyFramePacketDurationAfterUnmute;
+		firstVideoKeyFrameDecodedDurationAfterUnmute = AgoraData.firstVideoKeyFrameDecodedDurationAfterUnmute;
+		firstVideoKeyFrameRenderedDurationAfterUnmute = AgoraData.firstVideoKeyFrameRenderedDurationAfterUnmute;
+		txPacketLossRate = AgoraData.txPacketLossRate;
+		rxPacketLossRate = AgoraData.rxPacketLossRate;
+	}
+
+	agora::rtc::RtcStats CreateAgoraData(){
+	
+		agora::rtc::RtcStats AgoraData;
+		AgoraData.duration = duration;
+		AgoraData.txBytes = txBytes;
+		AgoraData.rxBytes = rxBytes;
+		AgoraData.txAudioBytes = txAudioBytes;
+		AgoraData.txVideoBytes = txVideoBytes;
+		AgoraData.rxAudioBytes = rxAudioBytes;
+		AgoraData.rxVideoBytes = rxVideoBytes;
+		AgoraData.txKBitRate = txKBitRate;
+		AgoraData.rxKBitRate = rxKBitRate;
+		AgoraData.rxAudioKBitRate = rxAudioKBitRate;
+		AgoraData.txAudioKBitRate = txAudioKBitRate;
+		AgoraData.rxVideoKBitRate = rxVideoKBitRate;
+		AgoraData.txVideoKBitRate = txVideoKBitRate;
+		AgoraData.lastmileDelay = lastmileDelay;
+		AgoraData.userCount = userCount;
+		SET_UABT_FSTRING_TO_DOUBLE(AgoraData.cpuAppUsage, this-&gt;cpuAppUsage);
+		SET_UABT_FSTRING_TO_DOUBLE(AgoraData.cpuTotalUsage, this-&gt;cpuTotalUsage);
+		AgoraData.gatewayRtt = gatewayRtt;
+		SET_UABT_FSTRING_TO_DOUBLE(AgoraData.memoryAppUsageRatio, this-&gt;memoryAppUsageRatio);
+		SET_UABT_FSTRING_TO_DOUBLE(AgoraData.memoryTotalUsageRatio, this-&gt;memoryTotalUsageRatio);
+		AgoraData.memoryAppUsageInKbytes = memoryAppUsageInKbytes;
+		AgoraData.connectTimeMs = connectTimeMs;
+		AgoraData.firstAudioPacketDuration = firstAudioPacketDuration;
+		AgoraData.firstVideoPacketDuration = firstVideoPacketDuration;
+		AgoraData.firstVideoKeyFramePacketDuration = firstVideoKeyFramePacketDuration;
+		AgoraData.packetsBeforeFirstKeyFramePacket = packetsBeforeFirstKeyFramePacket;
+		AgoraData.firstAudioPacketDurationAfterUnmute = firstAudioPacketDurationAfterUnmute;
+		AgoraData.firstVideoPacketDurationAfterUnmute = firstVideoPacketDurationAfterUnmute;
+		AgoraData.firstVideoKeyFramePacketDurationAfterUnmute = firstVideoKeyFramePacketDurationAfterUnmute;
+		AgoraData.firstVideoKeyFrameDecodedDurationAfterUnmute = firstVideoKeyFrameDecodedDurationAfterUnmute;
+		AgoraData.firstVideoKeyFrameRenderedDurationAfterUnmute = firstVideoKeyFrameRenderedDurationAfterUnmute;
+		AgoraData.txPacketLossRate = txPacketLossRate;
+		AgoraData.rxPacketLossRate = rxPacketLossRate;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::RtcStats &amp; AgoraData) const {
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class RtcStats {
   

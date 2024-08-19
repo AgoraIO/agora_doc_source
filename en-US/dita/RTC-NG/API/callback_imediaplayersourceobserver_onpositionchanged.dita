@@ -19,7 +19,8 @@
     didChangedToPosition:(NSInteger)positionMs
              atTimestamp:(NSTimeInterval)timestampMs NS_SWIFT_NAME(AgoraMediaPlayer(_:didChangedToPosition:atTimestamp:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onPositionChanged(int64_t positionMs, int64_t timestampMs) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnPositionChanged, int64, position_ms);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnPositionChanged(int64 position_ms, int64 timestampMs);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onPositionChanged?(positionMs: number): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnPositionChanged(Int64 position_ms) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onPositionChanged?(positionMs: number): void;</codeblock>

@@ -20,7 +20,8 @@
   (void)url;
   (void)eventCode;
 }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnRtmpStreamingEvent, FString, url, ERTMP_STREAMING_EVENT, eventCode);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnRtmpStreamingEvent(const FString&amp; url, ERTMP_STREAMING_EVENT eventCode);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onRtmpStreamingEvent?(url: string, eventCode: RtmpStreamingEvent): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnRtmpStreamingEvent(string url, RTMP_STREAMING_EVENT eventCode)</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onRtmpStreamingEvent?(url: string, eventCode: RtmpStreamingEvent): void;</codeblock>

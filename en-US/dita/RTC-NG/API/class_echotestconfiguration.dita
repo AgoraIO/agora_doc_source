@@ -69,19 +69,41 @@ struct EchoTestConfiguration {
 struct FEchoTestConfiguration
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EchoTestConfiguration&quot;)
-	UImage* view;
+	UImage* view = nullptr;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EchoTestConfiguration&quot;)
 	bool enableAudio = true;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EchoTestConfiguration&quot;)
 	bool enableVideo = true;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EchoTestConfiguration&quot;)
-	FString token;
+	FString token = &quot;&quot;;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EchoTestConfiguration&quot;)
-	FString channelId;
+	FString channelId = &quot;&quot;;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EchoTestConfiguration&quot;)
 	int intervalInSeconds = 2;
+	
+	FEchoTestConfiguration() {}
+	FEchoTestConfiguration(const agora::rtc::EchoTestConfiguration&amp; AgoraData) {
+		view = nullptr; 		enableAudio = AgoraData.enableAudio;
+		enableVideo = AgoraData.enableVideo;
+		token = AgoraData.token;
+		channelId = AgoraData.channelId;
+		intervalInSeconds = AgoraData.intervalInSeconds;
+	}
+	agora::rtc::EchoTestConfiguration CreateAgoraData() const{
+		agora::rtc::EchoTestConfiguration AgoraData;
+				AgoraData.enableAudio = enableAudio;
+		AgoraData.enableVideo = enableVideo;
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.token,this-&gt;token)
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.channelId, this-&gt;channelId)
+		AgoraData.intervalInSeconds = intervalInSeconds;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::EchoTestConfiguration&amp; AgoraData) const {
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.token)
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.channelId)
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class EchoTestConfiguration {
 

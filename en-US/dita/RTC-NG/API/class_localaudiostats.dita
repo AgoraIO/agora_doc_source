@@ -62,18 +62,51 @@
 struct FLocalAudioStats
 {
 	GENERATED_BODY()
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAudioStats&quot;)
-	int numChannels;
+	int numChannels = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAudioStats&quot;)
-	int sentSampleRate;
+	int sentSampleRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAudioStats&quot;)
-	int sentBitrate;
+	int sentBitrate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAudioStats&quot;)
-	int internalCodec;
+	int internalCodec = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAudioStats&quot;)
-	int64 txPacketLossRate;
+	int txPacketLossRate = 0; 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAudioStats&quot;)
+	int audioDeviceDelay = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAudioStats&quot;)
-	int audioDeviceDelay;
+	int audioPlayoutDelay = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAudioStats&quot;)
+	int earMonitorDelay = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAudioStats&quot;)
+	int aecEstimatedDelay = 0;
+	FLocalAudioStats(){}
+	FLocalAudioStats(const agora::rtc::LocalAudioStats &amp; AgoraData){
+		numChannels = AgoraData.numChannels;
+		sentSampleRate = AgoraData.sentSampleRate;
+		sentBitrate = AgoraData.sentBitrate;
+		internalCodec = AgoraData.internalCodec;
+		txPacketLossRate = AgoraData.txPacketLossRate;
+		audioDeviceDelay = AgoraData.audioDeviceDelay;
+		audioPlayoutDelay = AgoraData.audioPlayoutDelay;
+		earMonitorDelay = AgoraData.earMonitorDelay;
+		aecEstimatedDelay = AgoraData.aecEstimatedDelay;
+	}
+	agora::rtc::LocalAudioStats CreateAgoraData() const {
+		agora::rtc::LocalAudioStats AgoraData;
+		AgoraData.numChannels = numChannels;
+		AgoraData.sentSampleRate = sentSampleRate;
+		AgoraData.sentBitrate = sentBitrate;
+		AgoraData.internalCodec = internalCodec;
+		AgoraData.txPacketLossRate = txPacketLossRate;
+		AgoraData.audioDeviceDelay = audioDeviceDelay;
+		AgoraData.audioPlayoutDelay = audioPlayoutDelay;
+		AgoraData.earMonitorDelay = earMonitorDelay;
+		AgoraData.aecEstimatedDelay = aecEstimatedDelay;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::LocalAudioStats &amp; AgoraData) const {
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LocalAudioStats {
 

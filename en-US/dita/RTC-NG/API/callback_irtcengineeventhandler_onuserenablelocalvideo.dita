@@ -22,7 +22,8 @@
     (void)uid;
     (void)enabled;
     }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnUserEnableLocalVideo, int64, uid, bool, enabled);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnUserEnableLocalVideo(int64 uid, bool enabled);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onUserEnableLocalVideo?(
     connection: RtcConnection,
     remoteUid: number,
