@@ -60,13 +60,42 @@
 struct FContentInspectConfig
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ContentInspectConfig&quot;)
-	FString extraInfo;
+	FString extraInfo = &quot;&quot;;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ContentInspectConfig&quot;)
+	FString serverConfig;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ContentInspectConfig&quot;)
 	TArray&lt;FContentInspectModule&gt; modules;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ContentInspectConfig&quot;)
-	int moduleCount;
+	int moduleCount = 0;
+	FContentInspectConfig(){}
+	FContentInspectConfig(const agora::media::ContentInspectConfig &amp; AgoraData){
+		extraInfo = UTF8_TO_TCHAR(AgoraData.extraInfo);
+		serverConfig = UTF8_TO_TCHAR(AgoraData.serverConfig);
+		moduleCount = AgoraData.moduleCount;
+		for(int i = 0; i&lt; moduleCount; i++){
+			modules.Add(FContentInspectModule(AgoraData.modules[i]));
+		}
+	}
+	agora::media::ContentInspectConfig CreateAgoraData() const {
+		agora::media::ContentInspectConfig AgoraData;
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.extraInfo,this-&gt;extraInfo)
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.serverConfig, this-&gt;serverConfig)
+		AgoraData.moduleCount = moduleCount;
+		for(int i = 0;i &lt; moduleCount; i++){
+			AgoraData.modules[i] = modules[i].CreateAgoraData();
+		}
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::media::ContentInspectConfig &amp; AgoraData) const {
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.extraInfo)
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.serverConfig)
+		for (int i = 0; i &lt; moduleCount; i++) {
+			FContentInspectModule ReleaseOperator;
+			ReleaseOperator.FreeAgoraData(AgoraData.modules[i]);
+		}
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ContentInspectConfig {
 
@@ -154,7 +183,7 @@ class ContentInspectConfig {
                     <p props="hide">The SDK sends the screenshots and additional information on the video content to the Agora content moderation server. Once the content moderation process is completed, the Agora content moderation server sends the additional information and the content moderation results to your server.</p>
                 </pd>
             </plentry>
-            <plentry props="native rn flutter unity">
+            <plentry props="native rn flutter unreal bp unity">
                 <pt>serverConfig</pt>
                 <pd>(Optional) Server configuration related to uploading video screenshots via extensions from Agora Extensions Marketplace. This parameter only takes effect when <codeph>type</codeph> in <xref keyref="ContentInspectModule"/> is set to <apiname keyref="CONTENT_INSPECT_IMAGE_MODERATION"/>. If you want to use it, contact <xref keyref="ticket-link" />.</pd>
             </plentry>

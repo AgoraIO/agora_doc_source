@@ -23,7 +23,8 @@
     (void)error;
     (void)message;
   }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnExtensionError, FString, provider, FString, extension, int, error, FString, message);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnExtensionErrorWithContext(const FExtensionContext&amp; context, int error, const FString&amp; message);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onExtensionErrorWithContext?(
     context: ExtensionContext,
     error: number,

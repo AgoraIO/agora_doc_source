@@ -54,17 +54,40 @@
 struct FWatermarkOptions
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkOptions&quot;)
-	bool visibleInPreview;
+	bool visibleInPreview = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkOptions&quot;)
-	FRectangle positionInLandscapeMode;
+	FRectangle positionInLandscapeMode = FRectangle();
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkOptions&quot;)
-	FRectangle positionInPortraitMode;
+	FRectangle positionInPortraitMode = FRectangle();
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkOptions&quot;)
-	FWatermarkRatio watermarkRatio;
+	FWatermarkRatio watermarkRatio = FWatermarkRatio();
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkOptions&quot;)
 	EWATERMARK_FIT_MODE mode = EWATERMARK_FIT_MODE::FIT_MODE_COVER_POSITION;
+	FWatermarkOptions(){}
+	FWatermarkOptions(const agora::rtc::WatermarkOptions &amp; AgoraData){
+		visibleInPreview = AgoraData.visibleInPreview;
+		positionInLandscapeMode = FRectangle(AgoraData.positionInLandscapeMode);
+		positionInPortraitMode = FRectangle(AgoraData.positionInPortraitMode);
+		watermarkRatio = FWatermarkRatio(AgoraData.watermarkRatio);
+		mode = static_cast&lt;EWATERMARK_FIT_MODE&gt;(AgoraData.mode);
+	}
+	agora::rtc::WatermarkOptions CreateAgoraData() const {
+		agora::rtc::WatermarkOptions AgoraData;
+		AgoraData.visibleInPreview = visibleInPreview;
+		AgoraData.positionInLandscapeMode = positionInLandscapeMode.CreateAgoraData();
+		AgoraData.positionInPortraitMode = positionInPortraitMode.CreateAgoraData();
+		AgoraData.watermarkRatio = watermarkRatio.CreateAgoraData();
+		AgoraData.mode = static_cast&lt;agora::rtc::WATERMARK_FIT_MODE&gt;(mode);
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::WatermarkOptions &amp; AgoraData) const {
+		positionInLandscapeMode.FreeAgoraData(AgoraData.positionInLandscapeMode);
+		positionInPortraitMode.FreeAgoraData(AgoraData.positionInPortraitMode);
+		watermarkRatio.FreeAgoraData(AgoraData.watermarkRatio);
+	}
+	
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class WatermarkOptions {
   

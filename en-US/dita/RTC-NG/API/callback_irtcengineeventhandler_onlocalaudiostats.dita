@@ -20,7 +20,8 @@
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onLocalAudioStats(const LocalAudioStats&amp; stats) {
     (void)stats;
     }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnLocalAudioStats, const FLocalAudioStats&amp;, stats);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnLocalAudioStats(const FLocalAudioStats&amp; stats);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onLocalAudioStats?(connection: RtcConnection, stats: LocalAudioStats): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnLocalAudioStats(RtcConnection connection, LocalAudioStats stats) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onLocalAudioStats?(connection: RtcConnection, stats: LocalAudioStats): void;</codeblock>

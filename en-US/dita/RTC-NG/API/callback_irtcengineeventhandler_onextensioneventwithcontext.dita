@@ -23,7 +23,8 @@
     (void)key;
     (void)value;
   }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnExtensionEvent, FString, provider, FString, extension, FString, key, FString, value);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnExtensionEventWithContext(const FExtensionContext&amp; context, const FString&amp; key, const FString&amp; value);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onExtensionEventWithContext?(
     context: ExtensionContext,
     key: string,

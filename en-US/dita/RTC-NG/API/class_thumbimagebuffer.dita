@@ -18,16 +18,67 @@
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FThumbImageBuffer {
-
 	GENERATED_BODY()
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ThumbImageBuffer&quot;)
-	TArray&lt;int64&gt; buffer;
+	UImage* Image = nullptr;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ThumbImageBuffer&quot;)
-	int64 length;
+	TArray&lt;uint8&gt; buffer;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ThumbImageBuffer&quot;)
-	int64 width;
+	int64 length = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ThumbImageBuffer&quot;)
-	int64 height;
+	int64 width = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ThumbImageBuffer&quot;)
+	int64 height = 0;
+#if defined(_WIN32) || (defined(__APPLE__) &amp;&amp; TARGET_OS_MAC &amp;&amp; !TARGET_OS_IPHONE)
+	FThumbImageBuffer(){}
+	FThumbImageBuffer(const agora::rtc::ThumbImageBuffer &amp; AgoraData){
+		length = AgoraData.length;
+		buffer.SetNumZeroed(length);
+		for (int i = 0; i &lt; length; i++) {
+			this-&gt;buffer[i] = AgoraData.buffer[i];
+		}
+		width = AgoraData.width;
+		height = AgoraData.height;
+
+		if(Image == nullptr){
+			Image = NewObject&lt;UImage&gt;();
+		}
+		UTexture2D* RenderTexture = UTexture2D::CreateTransient(width, height, PF_R8G8B8A8);
+		if(RenderTexture){
+#if AG_UE5_OR_LATER
+			uint8* RawData = (uint8*)RenderTexture-&gt;GetPlatformData()-&gt;Mips[0].BulkData.Lock(LOCK_READ_WRITE);
+			FMemory::Memcpy(RawData, AgoraData.buffer, width * height * 4);
+			RenderTexture-&gt;GetPlatformData()-&gt;Mips[0].BulkData.Unlock();
+			RenderTexture-&gt;UpdateResource();
+#else
+			uint8* RawData = (uint8*)RenderTexture-&gt;PlatformData-&gt;Mips[0].BulkData.Lock(LOCK_READ_WRITE);
+			FMemory::Memcpy(RawData, AgoraData.buffer, width * height * 4);
+			RenderTexture-&gt;PlatformData-&gt;Mips[0].BulkData.Unlock();
+			RenderTexture-&gt;UpdateResource();
+#endif
+			FSlateBrush RenderBrush;
+			RenderBrush.SetResourceObject(RenderTexture);
+			Image-&gt;SetBrush(RenderBrush);
+		}
+
+	}
+	agora::rtc::ThumbImageBuffer CreateAgoraData() const {
+		agora::rtc::ThumbImageBuffer AgoraData;
+				char* TmpChar = new char[length];
+		for (int i = 0; i &lt; length; i++) {
+			TmpChar[i] = this-&gt;buffer[i];
+		}
+		AgoraData.buffer = TmpChar;
+		AgoraData.length = length;
+		AgoraData.width = width;
+		AgoraData.height = height;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::ThumbImageBuffer &amp; AgoraData) const {
+		SET_UABT_GENERIC_PTR___MEMFREE(AgoraData.buffer)
+	}
+#endif
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ThumbImageBuffer {
 

@@ -41,7 +41,37 @@
     const char *extensionName;
     ExtensionContext():isValid(false), uid(0), providerName(NULL), extensionName(NULL) {}
 };</codeblock>
-            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FExtensionContext {
+	GENERATED_BODY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ExtensionContext&quot;)
+	bool isValid = false;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ExtensionContext&quot;)
+	int64 uid = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ExtensionContext&quot;)
+	FString providerName = &quot;&quot;;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ExtensionContext&quot;)
+	FString extensionName = &quot;&quot;;
+	FExtensionContext(){}
+	FExtensionContext(const agora::rtc::ExtensionContext&amp; AgoraData){
+		isValid = AgoraData.isValid;
+		uid = AgoraData.uid;
+		providerName = UTF8_TO_TCHAR(AgoraData.providerName);
+		extensionName = UTF8_TO_TCHAR(AgoraData.extensionName);
+	}
+	agora::rtc::ExtensionContext CreateAgoraData() const {
+		agora::rtc::ExtensionContext AgoraData;
+		AgoraData.isValid = isValid;
+		AgoraData.uid = uid;
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.providerName, providerName)
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.extensionName, extensionName)
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::ExtensionContext&amp; AgoraData) const {
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.providerName)
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.extensionName)
+	}
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ExtensionContext {
 
   isValid?: boolean;

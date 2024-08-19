@@ -80,21 +80,51 @@
 struct FRtcImage
 {
 	GENERATED_BODY()
-
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcImage&quot;)
-	FString url;
+	FString url = &quot;&quot;;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcImage&quot;)
-	int x;
+	int x = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcImage&quot;)
-	int y;
+	int y = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcImage&quot;)
-	int width;
+	int width = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcImage&quot;)
-	int height;
+	int height = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcImage&quot;)
-	int zOrder;
+	int zOrder = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcImage&quot;)
-	float alpha;
+	float alpha = 0;
+	FRtcImage() {}
+	FRtcImage(const agora::rtc::RtcImage&amp; AgoraData) {
+		url = UTF8_TO_TCHAR(AgoraData.url);
+		x = AgoraData.x;
+		y = AgoraData.y;
+		width = AgoraData.width;
+		height = AgoraData.height;
+		zOrder = AgoraData.zOrder;
+		alpha = AgoraData.alpha;
+	}
+	agora::rtc::RtcImage CreateAgoraData() const {
+		agora::rtc::RtcImage AgoraData;
+		
+		char* URLCharPtr = new char[url.Len() + 1];
+		FMemory::Memcpy(URLCharPtr, TCHAR_TO_UTF8(*url), url.Len());
+		URLCharPtr[url.Len()] = '\0';
+		AgoraData.url = URLCharPtr;
+		AgoraData.x = x;
+		AgoraData.y = y;
+		AgoraData.width = width;
+		AgoraData.height = height;
+		AgoraData.zOrder = zOrder;
+		AgoraData.alpha = alpha;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::RtcImage&amp; AgoraData) const {
+		if (AgoraData.url) {
+			delete[] AgoraData.url;
+			AgoraData.url = nullptr;
+		}
+	}
 };</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class RtcImage
     {

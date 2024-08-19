@@ -66,14 +66,34 @@
 struct FChannelMediaRelayConfiguration
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaRelayConfiguration&quot;)
-	FChannelMediaInfo srcInfo;
-
+	FChannelMediaInfo srcInfo = FChannelMediaInfo();
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaRelayConfiguration&quot;)
 	TArray&lt;FChannelMediaInfo&gt; destInfos;
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaRelayConfiguration&quot;)
-	int destCount;
+	int destCount = 0;
+	FChannelMediaRelayConfiguration(){}
+	FChannelMediaRelayConfiguration(const agora::rtc::ChannelMediaRelayConfiguration &amp; AgoraData){
+		srcInfo = FChannelMediaInfo(*(AgoraData.srcInfo));
+		destCount = AgoraData.destCount;
+		for(int i = 0; i&lt; destCount; i++){
+			destInfos.Add(FChannelMediaInfo(AgoraData.destInfos[i]));
+		}
+	}
+	agora::rtc::ChannelMediaRelayConfiguration CreateAgoraData() const {
+		agora::rtc::ChannelMediaRelayConfiguration AgoraData;
+		
+		SET_UABT_UECUSTOMDATA_TO_AGORA_PTR_1_ENTRY___MEMALLOC(AgoraData.srcInfo,agora::rtc::ChannelMediaInfo, this-&gt;srcInfo)
+		AgoraData.destCount = destCount;
+		SET_UABT_TARRARY_CUSTOMDATA_TO_AGORA_ARRAY___MEMALLOC(AgoraData.destInfos, agora::rtc::ChannelMediaInfo, destCount, this-&gt;destInfos)
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::ChannelMediaRelayConfiguration &amp; AgoraData) const {
+		SET_UABT_UECUSTOMDATA_TO_AGORA_PTR_1_ENTRY___MEMFREE(AgoraData.srcInfo, FChannelMediaInfo)
+		SET_UABT_TARRARY_CUSTOMDATA_TO_AGORA_ARRAY___MEMFREE(AgoraData.destInfos, destCount, FChannelMediaInfo)
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ChannelMediaRelayConfiguration {
   
@@ -175,7 +195,7 @@ struct FChannelMediaRelayConfiguration
                 <pd props="cpp ios mac framework">
                     <p>The information of the target channel <apiname keyref="ChannelMediaInfo"/>. It contains the following members:<ul>
                     <li><parmname>channelName</parmname>: The name of the target channel.</li>
-                    <li><parmname>token</parmname>: The <parmname>token</parmname> for joining the target channel. It is generated with the <parmname>channelName</parmname> and <parmname>uid</parmname> you set in <parmname>destInfos</parmname>.<ul>
+                    <li><parmname>token</parmname>: <parmname>The token</parmname> for joining the target channel. It is generated with the <parmname>channelName</parmname> and <parmname>uid</parmname> you set in <parmname>destInfos</parmname>.<ul>
                         <li>If you have not enabled the App Certificate, set this parameter as the default value <codeph><ph keyref="NULL"/></codeph>, which means the SDK applies the App ID.</li>
                         <li>If you have enabled the App Certificate, you must use the <parmname>token</parmname> generated with the <parmname>channelName</parmname> and <parmname>uid</parmname>.</li>
                         </ul> <note type="attention"><p>If the token of any target channel expires, the whole media relay stops; hence Agora recommends that you specify the same expiration time for the tokens of all the target channels.</p></note></li>

@@ -20,7 +20,8 @@
     (void)state;
     (void)reason;
   }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnLocalAudioStateChanged, ELOCAL_AUDIO_STREAM_STATE, state, ELOCAL_AUDIO_STREAM_ERROR, error);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnLocalAudioStateChanged(ELOCAL_AUDIO_STREAM_STATE state, ELOCAL_AUDIO_STREAM_REASON reason);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onLocalAudioStateChanged?(
     connection: RtcConnection,
     state: LocalAudioStreamState,
@@ -38,7 +39,7 @@
         </section>
         <section id="detailed_desc">
             <p id="desc">When the state of the local audio stream changes (including the state of the audio capture and encoding), the SDK triggers this callback to report the current state. This callback indicates the state of the local audio stream, and allows you to troubleshoot issues when audio exceptions occur.</p>
-            <note id="note" type="attention">When the state is <apiname keyref="LOCAL_AUDIO_STREAM_STATE_FAILED" /> (3), you can view the error information in the <parmname>error</parmname> parameter.</note> </section>
+            <note id="note" type="attention">When the state is  (3), you can view <parmname>the error information</parmname> in the error parameter.<apiname keyref="LOCAL_AUDIO_STREAM_STATE_FAILED" /></note> </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title" /></title>
             <parml>

@@ -38,19 +38,41 @@ __attribute__((visibility("default"))) @interface AgoraScreenCaptureConfiguratio
 struct FScreenCaptureConfiguration
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureConfiguration&quot;)
-	bool isCaptureWindow;
+	bool isCaptureWindow = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureConfiguration&quot;)
-	int displayId;
+	int displayId = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureConfiguration&quot;)
-	FRectangle screenRect;
+	FRectangle screenRect = FRectangle();
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureConfiguration&quot;)
-	int64 windowId;
+	int64 windowId = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureConfiguration&quot;)
-	FScreenCaptureParameters params;
+	FScreenCaptureParameters params = FScreenCaptureParameters();
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureConfiguration&quot;)
-	FRectangle regionRect;
+	FRectangle regionRect = FRectangle();
+	FScreenCaptureConfiguration(){}
+	FScreenCaptureConfiguration(const agora::rtc::ScreenCaptureConfiguration &amp; AgoraData){
+		isCaptureWindow = AgoraData.isCaptureWindow;
+		displayId = AgoraData.displayId;
+		screenRect = FRectangle(AgoraData.screenRect);
+				params = FScreenCaptureParameters(AgoraData.params);
+		regionRect = FRectangle(AgoraData.regionRect);
+	}
+	agora::rtc::ScreenCaptureConfiguration CreateAgoraData() const {
+		agora::rtc::ScreenCaptureConfiguration AgoraData;
+		AgoraData.isCaptureWindow = isCaptureWindow;
+		AgoraData.displayId = displayId;
+		AgoraData.screenRect = screenRect.CreateAgoraData();
+				AgoraData.params = params.CreateAgoraData();
+		AgoraData.regionRect = regionRect.CreateAgoraData();
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::ScreenCaptureConfiguration &amp; AgoraData) const {
+		screenRect.FreeAgoraData(AgoraData.screenRect);
+		params.FreeAgoraData(AgoraData.params);
+		regionRect.FreeAgoraData(AgoraData.regionRect);
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ScreenCaptureConfiguration {
   

@@ -65,29 +65,62 @@
 struct FRtcEngineContext
 {
 	GENERATED_BODY()
-
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
-	FString appId;
+	EAgoraBPuEventHandlerType EventHandlerCreationType = EAgoraBPuEventHandlerType::EventHandler;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
-	UIRtcEngineEventHandler* eventHandler;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
-	int64 context;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
-	FString license;
+	FString appId = &quot;&quot;;
+	
+		
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
 	ECHANNEL_PROFILE_TYPE channelProfile = ECHANNEL_PROFILE_TYPE::CHANNEL_PROFILE_LIVE_BROADCASTING;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	FString license = &quot;&quot;;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
 	EAUDIO_SCENARIO_TYPE audioScenario = EAUDIO_SCENARIO_TYPE::AUDIO_SCENARIO_DEFAULT;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
-	bool threadPriority_SetValue;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
-	ETHREAD_PRIORITY_TYPE threadPriority;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
-	FLogConfig logConfig;
+	
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
 	FENUMWRAP_AREA_CODE areaCode = EENUMCUSTOM_AREA_CODE::AREA_CODE_GLOB;
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
-	bool useExternalEglContext;
+	FLogConfig logConfig;
+
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	bool threadPriority_SetValue = false;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	ETHREAD_PRIORITY_TYPE threadPriority = ETHREAD_PRIORITY_TYPE::NORMAL;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	bool useExternalEglContext = false;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	bool domainLimit = false;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	bool autoRegisterAgoraExtensions = true;
+
+	FRtcEngineContext() {}
+	agora::rtc::RtcEngineContext CreateAgoraData() const {
+		agora::rtc::RtcEngineContext AgoraData;
+		
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.appId, this-&gt;appId)
+		
+		AgoraData.channelProfile = (agora::CHANNEL_PROFILE_TYPE)channelProfile;
+		
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.license, this-&gt;license)
+		AgoraData.audioScenario = (agora::rtc::AUDIO_SCENARIO_TYPE)audioScenario;
+		AgoraData.areaCode = areaCode.GetRawValue();
+		AgoraData.logConfig = logConfig.CreateAgoraData();
+		SET_AGORA_OPTIONAL_VAL_ASSIGN_VAL(AgoraData.threadPriority, this-&gt;threadPriority, static_cast&lt;agora::rtc::THREAD_PRIORITY_TYPE&gt;(this-&gt;threadPriority))
+		AgoraData.useExternalEglContext = useExternalEglContext;
+		AgoraData.domainLimit = domainLimit;
+		AgoraData.autoRegisterAgoraExtensions = autoRegisterAgoraExtensions;
+		
+		return AgoraData;
+	}
+
+	void FreeAgoraData(agora::rtc::RtcEngineContext&amp; AgoraData) const {
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.appId)
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.license)
+		logConfig.FreeAgoraData(AgoraData.logConfig);
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class RtcEngineContext {
 
@@ -199,13 +232,13 @@ class RtcEngineContext {
                 <pt props="android hmos">mAppId</pt>
                 <pd id="appid">The App ID issued by Agora for your project. Only users in apps with the same App ID can join the same channel and communicate with each other. An App ID can only be used to create one <apiname keyref="IRtcEngine"/> instance. To change your App ID, call <xref keyref="release"/> to destroy the current <apiname keyref="IRtcEngine"/> instance, and then create a new one.</pd>
             </plentry>
-            <plentry props="android hmos cpp unreal bp unity cs">
-                <pt props="cpp unreal bp unity cs">context</pt>
+            <plentry props="android hmos cpp unreal unity cs">
+                <pt props="cpp unreal unity cs">context</pt>
                 <pt props="android hmos">mContext</pt>
                 <pd id="context">
-                    <ul props="cpp unreal bp unity cs">
+                    <ul props="cpp unreal unity cs">
                     <li>For Windows, it is the window handle of the app. Once set, this parameter enables you to connect or disconnect the video devices while they are powered.</li>
-                    <li props="cpp unreal bp unity">For Android, it is the context of Android Activity.</li>
+                    <li props="cpp unreal unity">For Android, it is the context of Android Activity.</li>
                     </ul>
                     <p props="android">The context of Android Activity.</p>
                     <p props="hmos">The context.</p>
