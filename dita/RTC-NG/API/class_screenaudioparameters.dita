@@ -42,18 +42,31 @@
 </codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FScreenAudioParameters {
-
 	GENERATED_BODY()
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenAudioParameters&quot;)
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenAudioParameters&quot;)
 	int sampleRate = 16000;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenAudioParameters&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenAudioParameters&quot;)
 	int channels = 2;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenAudioParameters&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenAudioParameters&quot;)
 	int captureSignalVolume = 100;
-
+#if defined(__ANDROID__) || (defined(__APPLE__) &amp;&amp; TARGET_OS_IOS)
+	FScreenAudioParameters(){}
+	FScreenAudioParameters(const agora::rtc::ScreenAudioParameters &amp; AgoraData){
+		sampleRate = AgoraData.sampleRate;
+		channels = AgoraData.channels;
+		captureSignalVolume = AgoraData.captureSignalVolume;
+	}
+	agora::rtc::ScreenAudioParameters CreateAgoraData() const {
+		agora::rtc::ScreenAudioParameters AgoraData;
+		AgoraData.sampleRate = sampleRate;
+		AgoraData.channels = channels;
+		AgoraData.captureSignalVolume = captureSignalVolume;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::ScreenAudioParameters&amp; AgoraData) const {
+	}
+#endif
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ScreenAudioParameters {
   

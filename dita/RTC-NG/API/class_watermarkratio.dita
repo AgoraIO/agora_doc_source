@@ -19,14 +19,29 @@
 </codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FWatermarkRatio {
-
 	GENERATED_BODY()
-
-	float xRatio;
-
-	float yRatio;
-
-	float widthRatio;
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkRatio&quot;)
+	float xRatio = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkRatio&quot;)
+	float yRatio = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkRatio&quot;)
+	float widthRatio = 0;
+	FWatermarkRatio(){}
+	FWatermarkRatio(const agora::rtc::WatermarkRatio &amp; AgoraData){
+		xRatio = AgoraData.xRatio;
+		yRatio = AgoraData.yRatio;
+		widthRatio = AgoraData.widthRatio;
+	}
+	agora::rtc::WatermarkRatio CreateAgoraData() const {
+		agora::rtc::WatermarkRatio AgoraData;
+		AgoraData.xRatio = xRatio;
+		AgoraData.yRatio = yRatio;
+		AgoraData.widthRatio = widthRatio;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::WatermarkRatio &amp; AgoraData) const {
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class WatermarkRatio {
   

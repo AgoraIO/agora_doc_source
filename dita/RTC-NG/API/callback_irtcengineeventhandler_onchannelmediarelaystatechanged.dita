@@ -20,7 +20,8 @@ channelMediaRelayStateDidChange:(AgoraChannelMediaRelayState)state
             error:(AgoraChannelMediaRelayError)error;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onChannelMediaRelayStateChanged(CHANNEL_MEDIA_RELAY_STATE state,CHANNEL_MEDIA_RELAY_ERROR code) {
     }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnChannelMediaRelayStateChanged, int, state, int, code);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnChannelMediaRelayStateChanged(int state, int code);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onChannelMediaRelayStateChanged?(
     state: ChannelMediaRelayState,
     code: ChannelMediaRelayError

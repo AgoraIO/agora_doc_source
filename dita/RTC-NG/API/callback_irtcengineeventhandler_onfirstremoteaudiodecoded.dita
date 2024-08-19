@@ -24,7 +24,8 @@
                 (void)elapsed;
                 }
             </codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnFirstRemoteAudioDecoded, int64, uid, int, elapsed);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnFirstRemoteAudioDecoded(int64 uid, int elapsed);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onFirstRemoteAudioDecoded?(
     connection: RtcConnection,
     uid: number,

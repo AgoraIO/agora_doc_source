@@ -31,11 +31,25 @@
 struct FImageTrackOptions
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ImageTrackOptions&quot;)
-	FString imageUrl;
+	FString imageUrl = &quot;&quot;;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ImageTrackOptions&quot;)
 	int fps = 1;
+	FImageTrackOptions(){}
+	FImageTrackOptions(const agora::rtc::ImageTrackOptions &amp; AgoraData){
+		imageUrl = UTF8_TO_TCHAR(AgoraData.imageUrl);
+		fps = AgoraData.fps;
+	}
+	agora::rtc::ImageTrackOptions CreateAgoraData() const {
+		agora::rtc::ImageTrackOptions AgoraData;
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.imageUrl,this-&gt;imageUrl)
+		AgoraData.fps = fps;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::ImageTrackOptions &amp; AgoraData) const {
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.imageUrl)
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ImageTrackOptions {
 

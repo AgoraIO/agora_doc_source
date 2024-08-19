@@ -21,7 +21,8 @@
      (void)deviceType;
      (void)deviceState;
      }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnVideoDeviceStateChanged, FString, deviceId, int, deviceType, int, deviceState);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnVideoDeviceStateChanged(const FString&amp; deviceId, int deviceType, int deviceState);</codeblock>
                <codeblock props="electron" outputclass="language-typescript">  onVideoDeviceStateChanged?(
     deviceId: string,
     deviceType: MediaDeviceType,

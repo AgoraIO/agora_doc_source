@@ -19,7 +19,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">+ (instancetype _Nonnull)sharedEngineWithConfig:(AgoraRtcEngineConfig * _Nonnull)config
                                        delegate:(id&lt;AgoraRtcEngineDelegate&gt; _Nullable)delegate;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int initialize(const RtcEngineContext&amp; context) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
 	int Initialize(const FRtcEngineContext&amp; context);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract initialize(context: RtcEngineContext): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int Initialize(RtcEngineContext context);</codeblock>
@@ -33,8 +33,8 @@
             </section>
             <section id="timing" deliveryTarget="details">
                 <title>调用时机</title>
-                <p props="cpp unreal flutter rn electron">请确保在调用其他 API 前先调用 <xref keyref="createAgoraRtcEngine"/> 和 <apiname keyref="initialize"/> 创建并初始化 <apiname keyref="IRtcEngine"/>。</p>
-                <p props="android ios mac bp">请确保在调用其他 API 前先调用该方法创建并初始化 <apiname keyref="IRtcEngine"/>。</p>
+                <p props="cpp unreal bp flutter rn electron">请确保在调用其他 API 前先调用 <xref keyref="createAgoraRtcEngine"/> 和 <apiname keyref="initialize"/> 创建并初始化 <apiname keyref="IRtcEngine"/>。</p>
+                <p props="android ios mac">请确保在调用其他 API 前先调用该方法创建并初始化 <apiname keyref="IRtcEngine"/>。</p>
             </section>
             <section id="restriction" deliveryTarget="details">
                 <title>调用限制</title>
