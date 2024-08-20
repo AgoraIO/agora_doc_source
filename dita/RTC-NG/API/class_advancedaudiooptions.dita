@@ -40,10 +40,22 @@
 struct FAdvancedAudioOptions
 {
 	GENERATED_BODY()
+public:
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AdvancedAudioOptions&quot;)
+	bool audioProcessingChannels_SetValue = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AdvancedAudioOptions&quot;)
-	bool audioProcessingChannels_SetValue;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AdvancedAudioOptions&quot;)
-	int audioProcessingChannels;
+	int audioProcessingChannels = 0;
+	FAdvancedAudioOptions(){}
+	FAdvancedAudioOptions(const agora::rtc::AdvancedAudioOptions &amp; AgoraData){
+		SET_UEBP_OPTIONAL_VAL_DIR_ASSIGN(this-&gt;audioProcessingChannels, AgoraData.audioProcessingChannels)
+	}
+	agora::rtc::AdvancedAudioOptions CreateAgoraData() const {
+		agora::rtc::AdvancedAudioOptions AgoraData;
+		SET_AGORA_OPTIONAL_VAL_DIR_ASSIGN(AgoraData.audioProcessingChannels, this-&gt;audioProcessingChannels)
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::AdvancedAudioOptions &amp; AgoraData) const {
+	}
 };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class AdvancedAudioOptions {
   

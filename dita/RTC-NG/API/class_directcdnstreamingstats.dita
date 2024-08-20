@@ -38,18 +38,37 @@
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FDirectCdnStreamingStats {
-
 	GENERATED_BODY()
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|DirectCdnStreamingStats&quot;)
-	int videoWidth;
+	int videoWidth = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|DirectCdnStreamingStats&quot;)
-	int videoHeight;
+	int videoHeight = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|DirectCdnStreamingStats&quot;)
-	int fps;
+	int fps = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|DirectCdnStreamingStats&quot;)
-	int videoBitrate;
+	int videoBitrate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|DirectCdnStreamingStats&quot;)
-	int audioBitrate;
+	int audioBitrate = 0;
+	FDirectCdnStreamingStats(){}
+	FDirectCdnStreamingStats(const agora::rtc::DirectCdnStreamingStats &amp; AgoraData){
+		videoWidth = AgoraData.videoWidth;
+		videoHeight = AgoraData.videoHeight;
+		fps = AgoraData.fps;
+		videoBitrate = AgoraData.videoBitrate;
+		audioBitrate = AgoraData.audioBitrate;
+	}
+	agora::rtc::DirectCdnStreamingStats CreateAgoraData() const {
+		agora::rtc::DirectCdnStreamingStats AgoraData;
+		AgoraData.videoWidth = videoWidth;
+		AgoraData.videoHeight = videoHeight;
+		AgoraData.fps = fps;
+		AgoraData.videoBitrate = videoBitrate;
+		AgoraData.audioBitrate = audioBitrate;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::DirectCdnStreamingStats &amp; AgoraData) const {
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class DirectCdnStreamingStats {
   videoWidth?: number;

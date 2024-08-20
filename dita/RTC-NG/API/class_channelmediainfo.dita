@@ -39,15 +39,31 @@
     };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FChannelMediaInfo {
-
 	GENERATED_BODY()
-
-	FString channelName;
-
-	FString token;
-
-	int64 uid;
-
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|UserInfo&quot;)
+	int64 uid = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|UserInfo&quot;)
+	FString channelName = &quot;&quot;;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|UserInfo&quot;)
+	FString token = &quot;&quot;;
+	FChannelMediaInfo(){}
+	FChannelMediaInfo(const agora::rtc::ChannelMediaInfo &amp; AgoraData){
+		channelName = UTF8_TO_TCHAR(AgoraData.channelName);
+		token = UTF8_TO_TCHAR(AgoraData.token);
+		uid = AgoraData.uid;
+	}
+	agora::rtc::ChannelMediaInfo CreateAgoraData() const {
+		agora::rtc::ChannelMediaInfo AgoraData;
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.channelName,this-&gt;channelName)
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.token,this-&gt;token)
+		AgoraData.uid = uid;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::ChannelMediaInfo &amp; AgoraData) const {
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.channelName)
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.token)
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ChannelMediaInfo {
   

@@ -24,7 +24,8 @@
     (void)state;
     (void)reason;
   }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnRtmpStreamingStateChanged, FString, url, ERTMP_STREAM_PUBLISH_STATE, state, ERTMP_STREAM_PUBLISH_REASON, errCode);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnRtmpStreamingStateChanged(const FString&amp; url, ERTMP_STREAM_PUBLISH_STATE state, ERTMP_STREAM_PUBLISH_REASON reason);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onRtmpStreamingStateChanged?(
     url: string,
     state: RtmpStreamPublishState,

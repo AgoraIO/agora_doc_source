@@ -20,7 +20,8 @@
     (void)state;
     (void)reason;
   }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnLocalAudioStateChanged, ELOCAL_AUDIO_STREAM_STATE, state, ELOCAL_AUDIO_STREAM_ERROR, error);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnLocalAudioStateChanged(ELOCAL_AUDIO_STREAM_STATE state, ELOCAL_AUDIO_STREAM_REASON reason);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onLocalAudioStateChanged?(
     connection: RtcConnection,
     state: LocalAudioStreamState,

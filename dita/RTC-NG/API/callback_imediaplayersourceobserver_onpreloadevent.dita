@@ -21,7 +21,8 @@
 </codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onPreloadEvent(const char* src, media::base::PLAYER_PRELOAD_EVENT event) = 0;
 </codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnPreloadEvent, const FString, src, EPLAYER_PRELOAD_EVENT, event);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnPreloadEvent(const FString&amp; src, EPLAYER_PRELOAD_EVENT event);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onPreloadEvent?(src: string, event: PlayerPreloadEvent): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnPreloadEvent(string src, PLAYER_PRELOAD_EVENT @event) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onPreloadEvent?(src: string, event: PlayerPreloadEvent): void;</codeblock>

@@ -20,7 +20,8 @@
    (void)reason;
    (void)currentRole;
 }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnClientRoleChangeFailed, ECLIENT_ROLE_CHANGE_FAILED_REASON, reason, ECLIENT_ROLE_TYPE, currentRole);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnClientRoleChangeFailed(ECLIENT_ROLE_CHANGE_FAILED_REASON reason, ECLIENT_ROLE_TYPE currentRole);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onClientRoleChangeFailed?(
     connection: RtcConnection,
     reason: ClientRoleChangeFailedReason,

@@ -22,13 +22,26 @@
 } ;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FLiveStreamAdvancedFeature {
-
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveStreamAdvancedFeature&quot;)
-	FString featureName;
+	FString featureName = &quot;&quot;;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveStreamAdvancedFeature&quot;)
-	bool opened;
+	bool opened = false;
+	FLiveStreamAdvancedFeature(){}
+	FLiveStreamAdvancedFeature(const agora::rtc::LiveStreamAdvancedFeature &amp; AgoraData){
+		featureName = UTF8_TO_TCHAR(AgoraData.featureName);
+		opened = AgoraData.opened;
+	}
+	agora::rtc::LiveStreamAdvancedFeature CreateAgoraData() const {
+		agora::rtc::LiveStreamAdvancedFeature AgoraData;
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.featureName, this-&gt;featureName)
+		AgoraData.opened = opened;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::LiveStreamAdvancedFeature&amp; AgoraData) const {
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.featureName)
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LiveStreamAdvancedFeature {
   
