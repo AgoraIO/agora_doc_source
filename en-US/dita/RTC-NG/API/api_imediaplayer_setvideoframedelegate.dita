@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_imediaengine_unregisterfaceinfoobserver">
-    <title><ph keyref="unregisterFaceInfoObserver" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Unregisters a facial information observer.</ph></shortdesc>
+<reference id="api_imediaplayer_setvideoframedelegate">
+    <title><ph keyref="setVideoFrameDelegate"/></title>
+    <shortdesc id="short"><ph id="shortdesc">注册媒体播放器的视频观测器对象。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="unregisterFaceInfoObserver"/>
+                <indexterm keyref="setVideoFrameDelegate"/>
             </keywords>
         </metadata>
     </prolog>
@@ -15,36 +15,30 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java"/>
             <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)setVideoFrameDelegate:(id&lt;AgoraRtcMediaPlayerVideoFrameDelegate> _Nullable)delegate NS_SWIFT_NAME(setVideoFrameDelegate(_:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp"/>
             <codeblock props="bp" outputclass="language-cpp"></codeblock>
-            <codeblock props="electron" outputclass="language-typescript">abstract unregisterFaceInfoObserver(observer: IFaceInfoObserver): number;</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public abstract int UnRegisterFaceInfoObserver();</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">abstract unregisterFaceInfoObserver(observer: IFaceInfoObserver): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">void unregisterFaceInfoObserver(FaceInfoObserver observer);</codeblock> </p>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <dl outputclass="since">
-            <dlentry props="android apple cpp">
-                <dt>Since</dt>
-                <dd>v4.3.1</dd>
-            </dlentry>
-            </dl>
-            <p/>
+            <p>When calling this method to register a video observer, you can register<xref keyref="AgoraRtcMediaPlayerVideoFrameDelegate"/> callbacks in the  class as needed. After you successfully register the video frame observer, the SDK triggers the registered callbacks each time a video frame is received.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
-                <pt>observer</pt>
-                <pd>Facial information observer, see <xref keyref="IFaceInfoObserver"/>.</pd>
+                <pt>delegate</pt>
+                <pd>接口对象实例，详见 <xref keyref="AgoraRtcMediaPlayerVideoFrameDelegate"/>。 Set the value as  <ph keyref="NULL"/>to release the instance.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly.</p>
-            <ul props="native electron unity rn unreal bp">
+            <ul props="native electron unity rn">
                 <li>0: Success.</li>
                 <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
                 </ul> </section>

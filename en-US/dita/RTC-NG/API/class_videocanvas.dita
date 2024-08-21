@@ -287,8 +287,8 @@ class VideoCanvas {
               </plentry>
                 <plentry>
                     <pt>subviewUid</pt>
-                    <pd props="android ios cpp unity rn flutter">The ID of the user who publishes a specific sub-video stream within the mixed video stream.</pd>
-                    <pd props="mac electron">Reserved for future use.<note type="attention" props="cpp unity flutter">This parameter is for Android and iOS only.</note></pd>
+                    <pd props="android ios cpp unreal bp unity rn flutter">The ID of the user who publishes a specific sub-video stream within the mixed video stream.</pd>
+                    <pd props="mac electron">Reserved for future use.<note type="attention" props="cpp unreal bp unity flutter">This parameter is for Android and iOS only.</note></pd>
                 </plentry>
                 <plentry>
                     <pt>view</pt>
@@ -355,18 +355,18 @@ class VideoCanvas {
             <pt>cropArea</pt>
             <pd>(Optional) Display area of the video frame, see <xref keyref="rect-link"/>. <parmname>width</parmname> and <parmname>height</parmname> represent the video pixel width and height of the area. The default value is null (width or height is 0), which means that the actual resolution of the video frame is displayed.</pd>
           </plentry>
-          <plentry props="native flutter unity cs electron rn">
+          <plentry>
               <pt>backgroundColor</pt>
               <pd>The background color of the video canvas in RGBA format. The default value is 0x00000000, which represents completely transparent black.</pd>
           </plentry>
-          <plentry props="native unity electron flutter cs">
+          <plentry props="native unreal bp unity electron flutter cs">
                     <pt>enableAlphaMask</pt>
-                    <pd props="native rn unity electron flutter">(Optional) Whether to enable alpha mask rendering:<ul>
+                    <pd props="native unreal bp rn unity electron flutter">(Optional) Whether to enable alpha mask rendering:<ul>
                         <li><codeph><ph keyref="true"/></codeph>: Enable alpha mask rendering.</li>
                         <li><codeph><ph keyref="false"/></codeph>: (Default) Disable alpha mask rendering.</li>
                         </ul>
                         <p>Alpha mask rendering can create images with transparent effects and extract portraits from videos. When used in combination with other methods, you can implement effects such as portrait-in-picture and watermarking.</p>
-                        <note type="attention" props="cpp mac unity electron flutter">
+                        <note type="attention" props="cpp unreal bp mac unity electron flutter">
                         <ul>
                             <li>The receiver can render alpha channel information only when the sender enables alpha transmission.</li>
                             <li>To enable alpha transmission, <xref keyref="ticket-link"/>.</li>

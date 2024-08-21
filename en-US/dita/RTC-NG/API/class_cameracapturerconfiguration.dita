@@ -381,12 +381,12 @@ class CameraCapturerConfiguration {
       </plentry>
       <plentry props="mac cpp unreal bp unity electron flutter cs">
         <pt>deviceId</pt>
-        <pd>The camera ID. <ph props="cpp unreal bp electron flutter">The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>.</ph><note type="attention" props="cpp unreal bp unity flutter">This parameter is for Windows and macOS only.</note></pd>
+        <pd>The camera ID. <ph props="cpp unreal electron flutter">The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>.</ph><note type="attention" props="cpp unreal bp unity flutter">This parameter is for Windows and macOS only.</note></pd>
       </plentry>
       <plentry>
         <pt>followEncodeDimensionRatio</pt>
         <pd>(Optional) Whether to follow the video aspect ratio set in <xref keyref="setVideoEncoderConfiguration"/>:<ul>
-          <li><codeph><ph keyref="true"/></codeph>: (Default) Follow the set video aspect ratio. The SDK crops the captured video according to the set video aspect ratio and synchronously changes the local preview screen and the video frame in <xref keyref="onCaptureVideoFrame"/> and <xref keyref="onPreEncodeVideoFrame"/>.</li>
+          <li><codeph><ph keyref="true"/></codeph>: (Default) Follow the set video aspect ratio. The SDK crops the captured video according to the set video aspect ratio<ph props="native unreal flutter unity cs electron rn"> and synchronously changes the local preview screen and the video frame in <xref keyref="onCaptureVideoFrame"/> and <xref keyref="onPreEncodeVideoFrame"/></ph>.</li>
           <li><codeph><ph keyref="false"/></codeph>: Do not follow the system default audio playback device. The SDK does not change the aspect ratio of the captured video frame.</li>
           </ul></pd>
       </plentry>
