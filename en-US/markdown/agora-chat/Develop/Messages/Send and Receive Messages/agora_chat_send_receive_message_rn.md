@@ -85,6 +85,7 @@ if (messageType === ChatMessageType.TXT) {
   msg = ChatMessage.createTextMessage(targetId, content, chatType);
 } else if (messageType === ChatMessageType.IMAGE) {
   // For an image message, set the file path, width, height, and display name of the image file.
+  // For the file path, `file://` is unnecessary.
   const filePath = "/data/.../image.jpg";
   const width = 100;
   const height = 100;
@@ -108,6 +109,7 @@ if (messageType === ChatMessageType.TXT) {
   });
 } else if (messageType === ChatMessageType.FILE) {
   // Construct a file message. You need to set the file path and display name of the file.
+  // For the file path, `file://` is unnecessary.
   const filePath = "data/.../foo.zip";
   const displayName = "study_data.zip";
   msg = ChatMessage.createFileMessage(targetId, filePath, chatType, {
@@ -129,6 +131,7 @@ if (messageType === ChatMessageType.TXT) {
   // Construct a video message, which includes the video file and thumbnail of the video. You need to set the file path, width, height, display name, and duration of the video file.
   // You also need to set the path of the thumbnail on the local device.
   // A video message contains two attachment files.
+  // For the video file path and thumbnail path, `file://` is unnecessary.
   const filePath = "data/.../foo.mp4";
   const width = 100;
   const height = 100;
@@ -144,6 +147,7 @@ if (messageType === ChatMessageType.TXT) {
   });
 } else if (messageType === ChatMessageType.VOICE) {
   // Construct a voice message. You need to set the filepath, display name, and duration of the audio file.
+  // For the file path, `file://` is unnecessary.
   const filePath = "data/.../foo.wav";
   const displayName = "bar.mp4";
   const duration = 5;
