@@ -85,7 +85,7 @@ if (messageType === ChatMessageType.TXT) {
   msg = ChatMessage.createTextMessage(targetId, content, chatType);
 } else if (messageType === ChatMessageType.IMAGE) {
   // For an image message, set the file path, width, height, and display name of the image file.
-  // For the file path, `file://` is unnecessary.
+  // For the image file path, `file://` is unnecessary.
   const filePath = "/data/.../image.jpg";
   const width = 100;
   const height = 100;
@@ -147,7 +147,7 @@ if (messageType === ChatMessageType.TXT) {
   });
 } else if (messageType === ChatMessageType.VOICE) {
   // Construct a voice message. You need to set the filepath, display name, and duration of the audio file.
-  // For the file path, `file://` is unnecessary.
+  // For the voice file path, `file://` is unnecessary.
   const filePath = "data/.../foo.wav";
   const displayName = "bar.mp4";
   const duration = 5;
