@@ -51,7 +51,7 @@ This version includes optimizations to some features, including changes to SDK b
    This version also includes the following improvements:
 
    - Optimizes transmission strategy: calling `enableInstantMediaRendering` no longer impacts the security of the transmission link.
-   - The ``enumerator is added in `onLocalVideoStateChanged` callback , indicating that the display used for screen capture has been disconnected. 
+   - The ``enumerator is added in `onLocalVideoStateChanged` callback, indicating that the display used for screen capture has been disconnected. 
    - Optimizes the video link for window sharing, reducing CPU usage. (macOS)
    - Improves echo cancellation for screen sharing scenarios.
    - Adds the `channelId` parameter to `Metadata`, which is used to get the channel name from which the metadata is sent.
