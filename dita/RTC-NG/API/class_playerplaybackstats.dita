@@ -25,7 +25,38 @@
   int audioBitrateInKbps;
   int totalBitrateInKbps;
 };</codeblock>
-            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FPlayerPlaybackStats {
+	
+	GENERATED_BODY()
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FPlayerPlaybackStats&quot;)
+	int videoFps = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FPlayerPlaybackStats&quot;)
+	int videoBitrateInKbps =0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FPlayerPlaybackStats&quot;)
+	int audioBitrateInKbps =0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FPlayerPlaybackStats&quot;)
+	int totalBitrateInKbps =0;
+	FPlayerPlaybackStats(){}
+	FPlayerPlaybackStats(const agora::media::base::PlayerPlaybackStats&amp; AgoraData) {
+		videoFps = AgoraData.videoFps;
+		videoBitrateInKbps = AgoraData.videoBitrateInKbps;
+		audioBitrateInKbps = AgoraData.audioBitrateInKbps;
+		totalBitrateInKbps = AgoraData.totalBitrateInKbps;
+	}
+	agora::media::base::PlayerPlaybackStats CreateAgoraData() const {
+		agora::media::base::PlayerPlaybackStats AgoraData;
+		AgoraData.videoFps = videoFps;
+		AgoraData.videoBitrateInKbps = videoBitrateInKbps;
+		AgoraData.audioBitrateInKbps = audioBitrateInKbps;
+		AgoraData.totalBitrateInKbps = totalBitrateInKbps;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::media::base::PlayerPlaybackStats &amp; AgoraData) const {
+		
+	}
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class PlayerPlaybackStats {
   videoFps?: number;
   videoBitrateInKbps?: number;
@@ -73,7 +104,7 @@ class PlayerPlaybackStats {
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
-            <dlentry props="native">
+            <dlentry props="android apple cpp">
                 <dt>自从</dt>
                 <dd>v4.3.0</dd>
             </dlentry>

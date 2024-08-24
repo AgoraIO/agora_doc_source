@@ -53,16 +53,36 @@ serverPath(path), serverPort(port), serverHttps(https) {}
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FLogUploadServerInfo {
-
 	GENERATED_BODY()
-
-	FString serverDomain;
-
-	FString serverPath;
-
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LogUploadServerInfo&quot;)
+	FString serverDomain = &quot;&quot;;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LogUploadServerInfo&quot;)
+	FString serverPath = &quot;&quot;;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LogUploadServerInfo&quot;)
 	int serverPort = 0;
-
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LogUploadServerInfo&quot;)
 	bool serverHttps = true;
+	FLogUploadServerInfo() {}
+	FLogUploadServerInfo(const agora::rtc::LogUploadServerInfo&amp; AgoraData) {
+		serverDomain = UTF8_TO_TCHAR(AgoraData.serverDomain);
+		serverPath = UTF8_TO_TCHAR(AgoraData.serverPath);
+		serverPort = AgoraData.serverPort;
+		serverHttps = AgoraData.serverHttps;
+	}
+	agora::rtc::LogUploadServerInfo CreateAgoraData() const {
+		agora::rtc::LogUploadServerInfo AgoraData;
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.serverDomain, serverDomain)
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.serverPath, serverPath)
+		
+		AgoraData.serverPort = serverPort;
+		AgoraData.serverHttps = serverHttps;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::LogUploadServerInfo&amp; AgoraData) const {
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.serverDomain)
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.serverPath)
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LogUploadServerInfo {
   serverDomain?: string;
@@ -102,7 +122,7 @@ struct FLogUploadServerInfo {
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
-            <dlentry props="native">
+            <dlentry props="android apple cpp">
                 <dt>自从</dt>
                 <dd>v4.1.0</dd>
             </dlentry>

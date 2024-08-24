@@ -17,8 +17,8 @@
             <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)registerLocalUserAccountWithAppID:(NSString * _Nonnull)appID userAccount:(NSString * _Nonnull)userAccount;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int registerLocalUserAccount(const char* appId, const char* userAccount) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
-	int RegisterLocalUserAccount(FString appId, FString userAccount);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+	int RegisterLocalUserAccount(const FString&amp; appId, const FString&amp; userAccount);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract registerLocalUserAccount(appId: string, userAccount: string): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int RegisterLocalUserAccount(string appId, string userAccount);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract registerLocalUserAccount(appId: string, userAccount: string): number;</codeblock>
@@ -40,7 +40,7 @@
             <note type="attention">
                 <ul>
                 <li>Ensure that the <parmname>userAccount</parmname> is unique in the channel.</li>
-                <li>To ensure smooth communication, use the same parameter type to identify the user. For example, if a user joins the channel with a user ID, then ensure all the other users use the user ID too. The same applies to the user account. If a user joins the channel with the Agora Web SDK, ensure that the ID of the user is set to the same parameter type.</li>
+                <li>To ensure smooth communication, use the same parameter type to identify the user. For example, if a user joins the channel with a UID, then ensure all the other users use the UID too. The same applies to the user account. If a user joins the channel with the Agora Web SDK, ensure that the ID of the user is set to the same parameter type.</li>
                 </ul> </note>
             </section>
             <section id="restriction" deliveryTarget="details">

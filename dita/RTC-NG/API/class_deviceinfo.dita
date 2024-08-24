@@ -25,9 +25,20 @@
 struct FDeviceInfo
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|DeviceInfo&quot;)
-	bool isLowLatencyAudioSupported;
+	bool isLowLatencyAudioSupported = false;
+	FDeviceInfo(){}
+	FDeviceInfo(const agora::rtc::DeviceInfo &amp; AgoraData){
+		isLowLatencyAudioSupported = AgoraData.isLowLatencyAudioSupported;
+	}
+	agora::rtc::DeviceInfo CreateAgoraData() const {
+		agora::rtc::DeviceInfo AgoraData;
+		AgoraData.isLowLatencyAudioSupported = isLowLatencyAudioSupported;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::DeviceInfo&amp; AgoraData) const {
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class DeviceInfo {
 

@@ -18,7 +18,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLogLevel:(AgoraLogLevel)level;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setLogLevel(commons::LOG_LEVEL level) = 0;
 </codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
 	int SetLogLevel(ELOG_LEVEL level);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setLogLevel(level: LogLevel): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetLogLevel(LOG_LEVEL level);</codeblock>
@@ -26,22 +26,21 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLogLevel(LogLevel level);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="deprecated">
             <dlentry>
                 <dt>弃用：</dt>
-                <dd>该方法已经废弃。请改用 <xref keyref="RtcEngineConfig" /> 设置日志输出级别。</dd>
+                <dd>该方法已废弃，请在调用 <xref keyref="initialize"/> 时通过 <parmname props="cpp unreal bp electron unity rn flutter cs">context</parmname><parmname props="android ios mac">config</parmname> 参数设置日志输出级别。</dd>
             </dlentry>
             </dl>
             <p>选择一个级别，你就可以看到该级别的日志信息。</p>
         </section>
-        <section id="parameters">
+        <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
             <plentry>
                 <pt>level</pt>
-                <pd>日志级别: <xref keyref="LOG_LEVEL" />。</pd>
+                <pd>日志级别。详见 <xref keyref="LOG_LEVEL" />。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">

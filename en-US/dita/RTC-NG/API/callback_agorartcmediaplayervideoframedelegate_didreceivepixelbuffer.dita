@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_agorartcmediaplayervideoframedelegate_didreceivepixelbuffer">
+    <title><ph keyref="didReceivePixelBuffer"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the SDK gets the pixel buffer of the video source.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="didReceivePixelBuffer"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol> _Nonnull)playerKit
+       didReceivePixelBuffer:(CVPixelBufferRef _Nonnull)pixelBuffer NS_SWIFT_NAME(AgoraRtcMediaPlayer(_:didReceivePixelBuffer:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp"/>
+            <codeblock props="bp" outputclass="language-cpp"></codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <title>Details</title>
+            <p>When the media player receives the pixel buffer of the video source, this callback is triggered to report the detailed information about the pixel buffer of type CVPixelBufferRef. You can use this information for image processing and analysis, custom rendering, etc.</p>
+        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>playerKit</pt>
+                <pd>The <xref keyref="IMediaPlayer"/> instance.</pd>
+            </plentry>
+            <plentry>
+                <pt>pixelBuffer</pt>
+                <pd>A CVPixelBufferRef object that contains detailed information about the pixel buffer.</pd>
+            </plentry>
+            </parml> </section>
+        </refbody>
+</reference>

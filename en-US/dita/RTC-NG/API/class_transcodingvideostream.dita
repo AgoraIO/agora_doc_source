@@ -104,29 +104,63 @@
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FTranscodingVideoStream {
-
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
-	EMEDIA_SOURCE_TYPE sourceType;
+	EVIDEO_SOURCE_TYPE sourceType = EVIDEO_SOURCE_TYPE::VIDEO_SOURCE_CAMERA_PRIMARY;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
-	int64 remoteUserUid;
+	int64 remoteUserUid = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
-	FString imageUrl;
+	FString imageUrl = &quot;&quot;;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
-	int x;
+	int mediaPlayerId = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
-	int y;
+	int x = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
-	int width;
+	int y = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
-	int height;
+	int width = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
-	int zOrder;
+	int height = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
-	float alpha;
+	int zOrder = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
-	bool mirror;
+	float alpha = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
+	bool mirror = false;
+	FTranscodingVideoStream(){}
+	FTranscodingVideoStream(const agora::rtc::TranscodingVideoStream &amp; AgoraData){
+		sourceType = static_cast&lt;EVIDEO_SOURCE_TYPE&gt;(AgoraData.sourceType);
+		remoteUserUid = AgoraData.remoteUserUid;
+		imageUrl = UTF8_TO_TCHAR(AgoraData.imageUrl);
+		mediaPlayerId = AgoraData.mediaPlayerId;
+		x = AgoraData.x;
+		y = AgoraData.y;
+		width = AgoraData.width;
+		height = AgoraData.height;
+		zOrder = AgoraData.zOrder;
+		alpha = AgoraData.alpha;
+		mirror = AgoraData.mirror;
+	}
+	agora::rtc::TranscodingVideoStream CreateAgoraData() const{
+		
+		agora::rtc::TranscodingVideoStream AgoraData;
+		AgoraData.sourceType = static_cast&lt;agora::rtc::VIDEO_SOURCE_TYPE&gt;(sourceType);
+		AgoraData.remoteUserUid = remoteUserUid;
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.imageUrl,this-&gt;imageUrl)
+		AgoraData.mediaPlayerId = mediaPlayerId;
+		AgoraData.x = x;
+		AgoraData.y = y;
+		AgoraData.width = width;
+		AgoraData.height = height;
+		AgoraData.zOrder = zOrder;
+		AgoraData.alpha = alpha;
+		AgoraData.mirror = mirror;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::TranscodingVideoStream &amp; AgoraData) const{
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.imageUrl)
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class TranscodingVideoStream {
 

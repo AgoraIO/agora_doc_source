@@ -17,8 +17,8 @@
             <codeblock props="hmos" outputclass="language-arkts">public abstract startAudioMixing(filepath: string, loopback: boolean, cycle: number): number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)startAudioMixing:(NSString* _Nonnull)filePath loopback:(BOOL)loopback cycle:(NSInteger)cycle startPos:(NSInteger)startPos;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int startAudioMixing(const char* filePath, bool loopback, int cycle, int startPos) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
-	int StartAudioMixing(FString filePath, bool loopback, int cycle, int startPos = 0);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+	int StartAudioMixing(const FString &amp; filePath, bool loopback, int cycle, int startPos = 0);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract startAudioMixing(
     filePath: string,
     loopback: boolean,
@@ -50,6 +50,7 @@
             <section id="restriction" deliveryTarget="details">
                 <title>Restrictions</title>
                 <ul>
+                    <li>If you call this method to play short sound effect files, you may encounter playback failure. Agora recommends using <xref keyref="playEffect3"/> instead to play such files.</li>
                     <li>If you need to call this method multiple times, ensure that the time interval between calling this method is more than 500 ms.</li>
                     <li props="android cpp unreal bp unity rn flutter" id="principle">On Android, there are following considerations:<ul>
                         <li>To use this method, ensure that the Android device is v4.2 or later, and the API version is v16 or later.</li>

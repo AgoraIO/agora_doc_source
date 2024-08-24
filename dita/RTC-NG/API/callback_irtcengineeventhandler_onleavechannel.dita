@@ -20,7 +20,8 @@
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onLeaveChannel(const RtcStats&amp; stats) {
     (void)stats;
     }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnLeaveChannel, const FRtcStats&amp;, stats);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnLeaveChannel(const FRtcStats&amp; stats);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onLeaveChannel?(connection: RtcConnection, stats: RtcStats): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnLeaveChannel(RtcConnection connection, RtcStats stats) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onLeaveChannel?(connection: RtcConnection, stats: RtcStats): void;</codeblock>

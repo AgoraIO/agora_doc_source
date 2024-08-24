@@ -14,7 +14,8 @@
     (void)uid;
     (void)elapsed;
     }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnUserJoined, int64, uid, int, elapsed);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnUserJoined(int64 uid, int elapsed);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onUserJoined?(
     connection: RtcConnection,
     remoteUid: number,

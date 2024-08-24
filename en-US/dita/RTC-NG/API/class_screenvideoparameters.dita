@@ -66,17 +66,36 @@
 </codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FScreenVideoParameters {
-
 	GENERATED_BODY()
-
-	FVideoDimensions dimensions;
-
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenVideoParameters&quot;)
+	FVideoDimensions dimensions = FVideoDimensions();
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenVideoParameters&quot;)
 	int frameRate = 15;
-
-	int bitrate;
-
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenVideoParameters&quot;)
+	int bitrate = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenVideoParameters&quot;)
 	EVIDEO_CONTENT_HINT contentHint = EVIDEO_CONTENT_HINT::CONTENT_HINT_MOTION;
-
+#if defined(__ANDROID__) || (defined(__APPLE__) &amp;&amp; TARGET_OS_IOS)
+	FScreenVideoParameters(){}
+	FScreenVideoParameters(const agora::rtc::ScreenVideoParameters &amp; AgoraData){
+		dimensions = FVideoDimensions(AgoraData.dimensions);
+		frameRate = AgoraData.frameRate;
+		bitrate = AgoraData.bitrate;
+		contentHint = static_cast&lt;EVIDEO_CONTENT_HINT&gt;(AgoraData.contentHint);
+	}
+	agora::rtc::ScreenVideoParameters CreateAgoraData() const {
+		agora::rtc::ScreenVideoParameters AgoraData;
+		AgoraData.dimensions = dimensions.CreateAgoraData();
+		AgoraData.frameRate = frameRate;
+		AgoraData.bitrate = bitrate;
+		AgoraData.contentHint = static_cast&lt;agora::rtc::VIDEO_CONTENT_HINT&gt;(contentHint);
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::ScreenVideoParameters&amp; AgoraData) const {
+		dimensions.FreeAgoraData(AgoraData.dimensions);
+	}
+#endif
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ScreenVideoParameters {
   
@@ -147,7 +166,7 @@ struct FScreenVideoParameters {
                     </ul>
                     <note>
                     <ul>
-                    <li>The billing for the screen sharing stream is based on the value of <parmname>dimensions</parmname>. When you do not pass in a value, Agora bills you at 1280 × 720; when you pass in a value, Agora bills you at that value. For billing examples, see <xref keyref="bill-example"/>.</li>
+                    <li>The billing for the screen sharing stream is based on the value of <parmname>dimensions</parmname>. When you do not pass in a value, Agora bills you at 1280 × 720; when you pass in a value, Agora bills you at that value.</li>
                     <li>The value of this parameter does not indicate the orientation mode of the output video. For how to set the video orientation, see <xref keyref="ORIENTATION_MODE"/>.</li>
                     <li>Whether the 720p resolution or above can be supported depends on the device. If the device cannot support 720p, the frame rate will be lower than the set value.</li>
                     </ul> </note>
@@ -168,7 +187,7 @@ struct FScreenVideoParameters {
                     </ul>
                     <note>
                     <ul>
-                    <li>The billing for the screen sharing stream is based on the value of dimensions. When you do not pass in a value, Agora bills you at 1280 × 720; when you pass in a value, Agora bills you at that value. For billing examples, see <xref keyref="bill-example"/>.</li>
+                    <li>The billing for the screen sharing stream is based on the value of dimensions. When you do not pass in a value, Agora bills you at 1280 × 720; when you pass in a value, Agora bills you at that value.</li>
                     <li>The value of this parameter does not indicate the orientation mode of the output video. For how to set the video orientation, see <xref keyref="ORIENTATION_MODE"/>.</li>
                     <li>Whether the 720p resolution or above can be supported depends on the device. If the device cannot support 720p, the frame rate will be lower than the set value.</li>
                     </ul> </note>
@@ -189,7 +208,7 @@ struct FScreenVideoParameters {
                     </ul>
                     <note>
                     <ul>
-                    <li>The billing for the screen sharing stream is based on the value of dimensions. When you do not pass in a value, Agora bills you at 1280 × 720; when you pass in a value, Agora bills you at that value. For billing examples, see <xref keyref="bill-example"/>.</li>
+                    <li>The billing for the screen sharing stream is based on the value of dimensions. When you do not pass in a value, Agora bills you at 1280 × 720; when you pass in a value, Agora bills you at that value.</li>
                     <li>The value of this parameter does not indicate the orientation mode of the output video. For how to set the video orientation, see <xref keyref="ORIENTATION_MODE"/>.</li>
                     <li>Whether the 720p resolution or above can be supported depends on the device. If the device cannot support 720p, the frame rate will be lower than the set value.</li>
                     </ul> </note> 

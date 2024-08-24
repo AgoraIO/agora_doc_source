@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_joinchannelwithuseraccountex">
     <title><ph keyref="joinChannelWithUserAccountEx" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Joins the channel with a user account, and configures whether to automatically subscribe to audio or video streams after joining the channel.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Join a channel using a user account and token, and set the media options.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -25,8 +25,8 @@
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int joinChannelWithUserAccountEx(const char* token, const char* channelId,
                                          const char* userAccount, const ChannelMediaOptions&amp; options,
                                          IRtcEngineEventHandler* eventHandler) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
-	int JoinChannelWithUserAccountEx(FString token, FString channelId, FString userAccount, const FChannelMediaOptions&amp; options, UIRtcEngineEventHandler* eventHandler);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+	int JoinChannelWithUserAccountEx(const FString&amp; token, const FString&amp; channelId, const FString&amp; userAccount, const FChannelMediaOptions&amp; options);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract joinChannelWithUserAccountEx(
     token: string,
     channelId: string,
@@ -48,17 +48,17 @@
     required ChannelMediaOptions options});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <p props="native unreal bp flutter" conkeyref="joinChannelWithUserAccount2/desc1" />
-            <p props="rn electron" id="desc1">This method allows a user to join the channel with the user account. After the user successfully joins the channel, the SDK triggers the following callbacks:<ul>
-            <li>The local client: <xref keyref="onLocalUserRegistered" />, <xref keyref="onJoinChannelSuccess" /> and <xref keyref="onConnectionStateChanged" /> callbacks.</li>
-            <li>The remote client: The <xref keyref="onUserJoined" /> callback, if the user is in the COMMUNICATION profile, and the <xref keyref="onUserInfoUpdated" /> callback if the user is a host in the LIVE_BROADCASTING profile.</li>
-            </ul></p>
-            <p props="native unreal bp flutter" conkeyref="joinChannelWithUserAccount2/desc2" />
-            <p props="rn electron" id="desc2">Once a user joins the channel, the user subscribes to the audio and video streams of all the other users in the channel by default, giving rise to usage and billing calculation. To stop subscribing to a specified stream or all remote streams, call the corresponding <apiname>mute</apiname> methods.</p>
-            <note conkeyref="joinChannelWithUserAccount1/note" props="native unreal bp flutter unity cs" />
-            <note type="attention" id="note" props="rn electron">To ensure smooth communication, use the same parameter type to identify the user. For example, if a user joins the channel with a user ID, then ensure all the other users use the user ID too. The same applies to the user account. If a user joins the channel with the Agora Web SDK, ensure that the ID of the user is set to the same parameter type.</note> </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p id="account">Before calling this method, if you have not called <xref keyref="registerLocalUserAccount"/> to register a user account, when you call this method to join a channel, the SDK automatically creates a user account for you. Calling the <xref keyref="registerLocalUserAccount"/> method to register a user account, and then calling this method to join a channel can shorten the time it takes to enter the channel.</p>
+            <p>Once a user joins the channel, the user subscribes to the audio and video streams of all the other users in the channel by default, giving rise to usage and <b>billings</b>. If you want to stop subscribing to the media stream of other users, you can set the <parmname props="cpp android framework">options</parmname><parmname props="apple">mediaOptions</parmname> parameter or call the corresponding <apiname>mute</apiname> method.</p>
+            <note type="attention" id="note">To ensure smooth communication, use the same parameter type to identify the user. For example, if a user joins the channel with a UID, then ensure all the other users use the UID too. The same applies to the user account. If a user joins the channel with the Agora Web SDK, ensure that the ID of the user is set to the same parameter type.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" conkeyref="joinChannel2/timing">
+        </section>
+        <section id="restriction" deliveryTarget="details" conkeyref="joinChannel2/restriction">
+        </section>
+        <section id="related" deliveryTarget="details" conkeyref="joinChannelWithUserAccount2/related">
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
@@ -90,12 +90,7 @@
                 <pd />
             </plentry>
             </parml> </section>
-        <section id="return_values">
-            <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-            <ul props="native unreal bp electron rn">
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
-            </ul> </section>
+        <section id="return_values" conkeyref="joinChannel2/return_values">
+            </section>
     </refbody>
 </reference>

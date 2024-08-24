@@ -24,8 +24,8 @@
     int channel,
     RAW_AUDIO_FRAME_OP_MODE_TYPE mode,
     int samplesPerCall) = 0;</codeblock>
-            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
-        int SetRecordingAudioFrameParameters(int sampleRate, int channel, ERAW_AUDIO_FRAME_OP_MODE_TYPE mode, int samplesPerCall);</codeblock>
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+	int SetRecordingAudioFrameParameters(int sampleRate, int channel, ERAW_AUDIO_FRAME_OP_MODE_TYPE mode, int samplesPerCall);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setRecordingAudioFrameParameters(
     sampleRate: number,
     channel: number,
@@ -47,7 +47,7 @@
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p><ph id="function">The SDK calculates the sampling interval based on the <parmname>samplesPerCall</parmname><parmname></parmname><parmname></parmname>, sampleRate and channel parameters set in this method.<equation-inline>Sample interval (sec) = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>. Ensure that the sample interval ≥ 0.01 (s). </ph><ph>The SDK triggers the <xref keyref="onRecordAudioFrame" /> callback according to the sampling interval.</ph></p>
+            <p><ph id="function">The SDK calculates the sampling interval based on the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname> and <parmname>channel</parmname> parameters set in this method.<equation-inline>Sample interval (sec) = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>. Ensure that the sample interval ≥ 0.01 (s). </ph><ph>The SDK triggers the <xref keyref="onRecordAudioFrame" /> callback according to the sampling interval.</ph></p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>Call timing</title>

@@ -20,7 +20,8 @@
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onTokenPrivilegeWillExpire(const char* token) {
     (void)token;
     }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnTokenPrivilegeWillExpire, FString, token);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnTokenPrivilegeWillExpire(const FString&amp; token);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onTokenPrivilegeWillExpire?(connection: RtcConnection, token: string): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnTokenPrivilegeWillExpire(RtcConnection connection, string token) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onTokenPrivilegeWillExpire?(connection: RtcConnection, token: string): void;</codeblock>

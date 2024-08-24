@@ -73,39 +73,58 @@
 struct FSpatialAudioParams
 {
 	GENERATED_BODY()
-
+public:
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
+	bool speaker_azimuth_SetValue = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
-	bool speaker_azimuth_SetValue;
+	float speaker_azimuth = 0;
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
+	bool speaker_elevation_SetValue = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
-	float speaker_azimuth;
+	float speaker_elevation = 0;
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
+	bool speaker_distance_SetValue = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
-	bool speaker_elevation_SetValue;
+	float speaker_distance = 0;
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
+	bool speaker_orientation_SetValue = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
-	float speaker_elevation;
+	int speaker_orientation = 0;
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
+	EAgoraOptional enable_blur = EAgoraOptional::AGORA_NULL_VALUE;
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
+	EAgoraOptional enable_air_absorb = EAgoraOptional::AGORA_NULL_VALUE;
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
+	bool speaker_attenuation_SetValue = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
-	bool speaker_distance_SetValue;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
-	float speaker_distance;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
-	bool speaker_orientation_SetValue;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
-	int speaker_orientation;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
-	bool enable_blur_SetValue;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
-	bool enable_blur;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
-	bool enable_air_absorb_SetValue;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
-	bool enable_air_absorb;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
-	bool speaker_attenuation_SetValue;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
-	float speaker_attenuation;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
-	bool enable_doppler_SetValue;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
-	bool enable_doppler;
+	float speaker_attenuation = 0;
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SpatialAudioParams&quot;)
+	EAgoraOptional enable_doppler = EAgoraOptional::AGORA_NULL_VALUE;
+	FSpatialAudioParams(){}
+	FSpatialAudioParams(const agora::SpatialAudioParams &amp; AgoraData){
+		SET_UEBP_OPTIONAL_VAL_DIR_ASSIGN(this-&gt;speaker_azimuth,AgoraData.speaker_azimuth)
+		SET_UEBP_OPTIONAL_VAL_DIR_ASSIGN(this-&gt;speaker_elevation,AgoraData.speaker_elevation)
+		SET_UEBP_OPTIONAL_VAL_DIR_ASSIGN(this-&gt;speaker_distance,AgoraData.speaker_distance)
+		SET_UEBP_OPTIONAL_VAL_DIR_ASSIGN(this-&gt;speaker_orientation,AgoraData.speaker_orientation)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;enable_blur,AgoraData.enable_blur)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;enable_air_absorb,AgoraData.enable_air_absorb)
+		SET_UEBP_OPTIONAL_VAL_DIR_ASSIGN(this-&gt;speaker_attenuation,AgoraData.speaker_attenuation)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;enable_doppler,AgoraData.enable_doppler)
+	}
+	agora::SpatialAudioParams CreateAgoraData() const {
+		agora::SpatialAudioParams AgoraData;
+		SET_AGORA_OPTIONAL_VAL_DIR_ASSIGN(AgoraData.speaker_azimuth,this-&gt;speaker_azimuth)
+		SET_AGORA_OPTIONAL_VAL_DIR_ASSIGN(AgoraData.speaker_elevation,this-&gt;speaker_elevation)
+		SET_AGORA_OPTIONAL_VAL_DIR_ASSIGN(AgoraData.speaker_distance,this-&gt;speaker_distance)
+		SET_AGORA_OPTIONAL_VAL_DIR_ASSIGN(AgoraData.speaker_orientation,this-&gt;speaker_orientation)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.enable_blur,this-&gt;enable_blur)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.enable_air_absorb,this-&gt;enable_air_absorb)
+		SET_AGORA_OPTIONAL_VAL_DIR_ASSIGN(AgoraData.speaker_attenuation,this-&gt;speaker_attenuation)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.enable_doppler,this-&gt;enable_doppler)
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::SpatialAudioParams&amp; AgoraData) const {
+	}
 };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class SpatialAudioParams {
   

@@ -18,8 +18,8 @@
             <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec" />
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int registerPlayerSourceObserver(IMediaPlayerSourceObserver* observer) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IMediaPlayer&quot;)
-	int RegisterPlayerSourceObserver(UIMediaPlayerSourceObserver* observer);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintPure, Category = &quot;Agora|IRtcEngine&quot;)
+	UAgoraBPuIMediaPlayerSourceObserver* GetMediaPlayerSourceObserver();</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract registerPlayerSourceObserver(
     observer: IMediaPlayerSourceObserver
   ): number;</codeblock>
@@ -30,21 +30,32 @@
             <codeblock props="flutter" outputclass="language-dart">void registerPlayerSourceObserver(MediaPlayerSourceObserver observer);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="parameters">
-            <title>Parameters</title>
-            <parml>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>This method can be called either before or after joining the channel.</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title><ph props="android hmos cpp unreal rn electron flutter">Parameters</ph></title>
+            <parml props="android hmos cpp unreal rn electron flutter">
             <plentry>
                 <pt props="android hmos">playerObserver</pt>
-                <pt props="cpp unreal bp rn electron flutter">observer</pt>
+                <pt props="cpp unreal rn electron flutter">observer</pt>
                 <pd>The player observer, listening for events during the playback. See <xref keyref="IMediaPlayerSourceObserver" />.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-            <ul props="android cpp unreal bp rn electron">
+            <ul props="android cpp unreal rn electron">
             <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
-            </ul> </section>
+            </ul>
+            <p props="bp">Pointer to the <apiname keyref="IMediaPlayerSourceObserver"/> object.</p>
+             </section>
     </refbody>
 </reference>

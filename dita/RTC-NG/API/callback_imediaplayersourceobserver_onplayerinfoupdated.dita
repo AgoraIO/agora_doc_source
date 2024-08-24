@@ -20,7 +20,8 @@
 </codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onPlayerInfoUpdated(const media::base::PlayerUpdatedInfo&amp; info) = 0;
 </codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnPlayerInfoUpdated, const FPlayerUpdatedInfo&amp;, info);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnPlayerInfoUpdated(const FPlayerUpdatedInfo&amp; info);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onPlayerInfoUpdated?(info: PlayerUpdatedInfo): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnPlayerInfoUpdated(PlayerUpdatedInfo info) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onPlayerInfoUpdated?(info: PlayerUpdatedInfo): void;</codeblock>

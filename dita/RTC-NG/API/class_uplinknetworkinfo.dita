@@ -24,11 +24,21 @@
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FUplinkNetworkInfo {
-
 	GENERATED_BODY()
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FUplinkNetworkInfo&quot;)
-	int video_encoder_target_bitrate_bps;
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|UplinkNetworkInfo&quot;)
+	int video_encoder_target_bitrate_bps = 0;
+	FUplinkNetworkInfo(){}
+	FUplinkNetworkInfo(const agora::rtc::UplinkNetworkInfo &amp; AgoraData){
+		video_encoder_target_bitrate_bps = AgoraData.video_encoder_target_bitrate_bps;
+	}
+	agora::rtc::UplinkNetworkInfo CreateAgoraData() const {
+		agora::rtc::UplinkNetworkInfo AgoraData;
+		AgoraData.video_encoder_target_bitrate_bps = video_encoder_target_bitrate_bps;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::UplinkNetworkInfo &amp; AgoraData) const {
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class UplinkNetworkInfo {
   

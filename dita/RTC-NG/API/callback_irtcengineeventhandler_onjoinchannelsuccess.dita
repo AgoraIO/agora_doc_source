@@ -24,7 +24,8 @@
      (void)uid;
      (void)elapsed;
      }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnJoinChannelSuccess, FString, channel, int64, uid, int, elapsed);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnJoinChannelSuccess(const FString&amp; Channel, int64 Uid, int Elapsed);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onJoinChannelSuccess?(connection: RtcConnection, elapsed: number): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnJoinChannelSuccess(RtcConnection connection, int elapsed) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onJoinChannelSuccess?(connection: RtcConnection, elapsed: number): void;</codeblock>
@@ -37,7 +38,8 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
-            <p props="android cpp cs apple unity unreal">当你调用 <xref keyref="joinChannel1"/>、<xref keyref="joinChannel2"/>、<xref keyref="joinChannelWithUserAccount1"/>、<xref keyref="joinChannelWithUserAccount2"/>、 <xref keyref="joinChannelEx"/> 或 <xref keyref="joinChannelWithUserAccountEx"/> 方法成功加入频道后，SDK 会触发该回调。</p>
+            <p props="android cpp cs apple unreal">当你调用 <xref keyref="joinChannel1"/>、<xref keyref="joinChannel2"/>、<xref keyref="joinChannelWithUserAccount1"/>、<xref keyref="joinChannelWithUserAccount2"/>、 <xref keyref="joinChannelEx"/> 或 <xref keyref="joinChannelWithUserAccountEx"/> 方法成功加入频道后，SDK 会触发该回调。</p>
+            <p props="unity">当你调用 <xref keyref="joinChannel1"/>、<xref keyref="joinChannel2"/>、<xref keyref="joinChannelWithUserAccount1"/>、<xref keyref="joinChannelWithUserAccount2"/>、 <xref keyref="joinChannelEx"/> 方法成功加入频道后，SDK 会触发该回调。</p>
             <p props="bp electron flutter rn">当你调用 <xref keyref="joinChannel2"/>、<xref keyref="joinChannelWithUserAccount2"/>、 <xref keyref="joinChannelEx"/> 或 <xref keyref="joinChannelWithUserAccountEx"/> 方法成功加入频道后，SDK 会触发该回调。</p>
             <p props="hmos">当你调用 <xref keyref="joinChannel1"/>、<xref keyref="joinChannel2"/> 或 <xref keyref="joinChannelEx"/> 方法成功加入频道后，SDK 会触发该回调。</p>
         </section>

@@ -52,17 +52,36 @@
 struct FBeautyOptions
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|BeautyOptions&quot;)
 	ELIGHTENING_CONTRAST_LEVEL lighteningContrastLevel = ELIGHTENING_CONTRAST_LEVEL::LIGHTENING_CONTRAST_NORMAL;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|BeautyOptions&quot;)
-	float lighteningLevel;
+	float lighteningLevel = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|BeautyOptions&quot;)
-	float smoothnessLevel;
+	float smoothnessLevel = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|BeautyOptions&quot;)
-	float rednessLevel;
+	float rednessLevel = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|BeautyOptions&quot;)
-	float sharpnessLevel;
+	float sharpnessLevel = 0;
+	FBeautyOptions(){}
+	FBeautyOptions(const agora::rtc::BeautyOptions &amp; AgoraData){
+		lighteningContrastLevel = static_cast&lt;ELIGHTENING_CONTRAST_LEVEL&gt;(AgoraData.lighteningContrastLevel);
+		lighteningLevel = AgoraData.lighteningLevel;
+		smoothnessLevel = AgoraData.smoothnessLevel;
+		rednessLevel = AgoraData.rednessLevel;
+		sharpnessLevel = AgoraData.sharpnessLevel;
+	}
+	agora::rtc::BeautyOptions CreateAgoraData() const {
+		agora::rtc::BeautyOptions AgoraData;
+		AgoraData.lighteningContrastLevel = static_cast&lt;agora::rtc::BeautyOptions::LIGHTENING_CONTRAST_LEVEL&gt;(lighteningContrastLevel);
+		AgoraData.lighteningLevel = lighteningLevel;
+		AgoraData.smoothnessLevel = smoothnessLevel;
+		AgoraData.rednessLevel = rednessLevel;
+		AgoraData.sharpnessLevel = sharpnessLevel;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::BeautyOptions&amp; AgoraData) const {
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class BeautyOptions {
   

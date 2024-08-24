@@ -5,6 +5,15 @@
 On Android 14 devices (such as OnePlus 11), screen sharing may not be available when `targetSdkVersion` is set to 34. For example, half of the shared screen may be black. To avoid this issue, Agora recommends setting `targetSdkVersion` to 34 or below. However, this may cause the screen sharing process to be interrupted when switching between portrait and landscape mode. In this case, a window will pop up on the device asking if you want to start recording the screen. After confirming, you can resume screen sharing.
 
 
+## v4.4.1
+
+This version was released on Aug x, 2024.
+
+#### Issues fixed
+
+This version fixed the issue where `io.agora.rtc:full-rtc-basic:4.4.0` and `io.agora.rtc:voice-rtc-basic:4.4.0` were not working properly on Maven Central due to an upload error.
+
+
 
 ## v4.4.0
 

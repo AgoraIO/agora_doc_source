@@ -31,23 +31,37 @@
 @property(assign, nonatomic) NSUInteger codecCapMask;
 @property(strong, nonatomic) AgoraVideoCodecCapLevels *_Nonnull codecCapLevels;
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct CodecCapInfo {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct CodecCapInfo {
   VIDEO_CODEC_TYPE codecType;
   int codecCapMask;
   CodecCapLevels codecLevels;
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FCodecCapInfo {
-
 	GENERATED_BODY()
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|CodecCapInfo&quot;)
-	EVIDEO_CODEC_TYPE codecType;
+	EVIDEO_CODEC_TYPE codecType = EVIDEO_CODEC_TYPE::VIDEO_CODEC_NONE;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|CodecCapInfo&quot;)
-	int codecCapMask;
-};</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp">struct CodecCapInfo {
-  VIDEO_CODEC_TYPE codecType;
-  int codecCapMask;
+	int codecCapMask = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|CodecCapInfo&quot;)
+	FCodecCapLevels codecLevels;
+	FCodecCapInfo(){}
+	FCodecCapInfo(const agora::rtc::CodecCapInfo &amp; AgoraData){
+		codecType = static_cast&lt;EVIDEO_CODEC_TYPE&gt;(AgoraData.codecType);
+		codecCapMask = AgoraData.codecCapMask;
+		codecLevels = AgoraData.codecLevels;
+	}
+	agora::rtc::CodecCapInfo CreateAgoraData() const {
+		agora::rtc::CodecCapInfo AgoraData;
+		AgoraData.codecType = static_cast&lt;agora::rtc::VIDEO_CODEC_TYPE&gt;(codecType);
+		AgoraData.codecCapMask = codecCapMask;
+		AgoraData.codecLevels = codecLevels.CreateAgoraData();
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::CodecCapInfo&amp; AgoraData) const {
+		codecLevels.FreeAgoraData(AgoraData.codecLevels);
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class CodecCapInfo {
   codecType?: VideoCodecType;
@@ -88,7 +102,7 @@ class CodecCapInfo {
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
-            <dlentry props="native">
+            <dlentry props="android apple cpp">
                 <dt>自从</dt>
                 <dd>v4.2.0</dd>
             </dlentry>
@@ -123,7 +137,7 @@ class CodecCapInfo {
                     </ul></p>
                 </pd>
             </plentry>
-            <plentry props="native flutter unity cs electron rn">
+            <plentry>
                 <pt>codecLevels</pt>
                 <pd>SDK 支持的编解码能力等级。详见 <xref keyref="CodecCapLevels"/>。</pd>
             </plentry>

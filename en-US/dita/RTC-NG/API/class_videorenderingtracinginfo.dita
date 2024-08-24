@@ -35,23 +35,45 @@
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FVideoRenderingTracingInfo {
-
 	GENERATED_BODY()
-
+public: 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoRenderingTracingInfo&quot;)
-	int elapsedTime;
+	int elapsedTime = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoRenderingTracingInfo&quot;)
-	int start2JoinChannel;
+	int start2JoinChannel = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoRenderingTracingInfo&quot;)
-	int join2JoinSuccess;
+	int join2JoinSuccess = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoRenderingTracingInfo&quot;)
-	int joinSuccess2RemoteJoined;
+	int joinSuccess2RemoteJoined = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoRenderingTracingInfo&quot;)
-	int remoteJoined2SetView;
+	int remoteJoined2SetView = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoRenderingTracingInfo&quot;)
-	int remoteJoined2UnmuteVideo;
+	int remoteJoined2UnmuteVideo = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoRenderingTracingInfo&quot;)
-	int remoteJoined2PacketReceived;
+	int remoteJoined2PacketReceived = 0;
+	FVideoRenderingTracingInfo() {}
+	FVideoRenderingTracingInfo(const agora::rtc::VideoRenderingTracingInfo&amp; AgoraData) {
+		elapsedTime = AgoraData.elapsedTime;
+		start2JoinChannel = AgoraData.start2JoinChannel;
+		join2JoinSuccess = AgoraData.join2JoinSuccess;
+		joinSuccess2RemoteJoined = AgoraData.joinSuccess2RemoteJoined;
+		remoteJoined2SetView = AgoraData.remoteJoined2SetView;
+		remoteJoined2UnmuteVideo = AgoraData.remoteJoined2UnmuteVideo;
+		remoteJoined2PacketReceived = AgoraData.remoteJoined2PacketReceived;
+	}
+	agora::rtc::VideoRenderingTracingInfo CreateAgoraData() const {
+		agora::rtc::VideoRenderingTracingInfo AgoraData;
+		AgoraData.elapsedTime = elapsedTime;
+		AgoraData.start2JoinChannel = start2JoinChannel;
+		AgoraData.join2JoinSuccess = join2JoinSuccess;
+		AgoraData.joinSuccess2RemoteJoined = joinSuccess2RemoteJoined;
+		AgoraData.remoteJoined2SetView = remoteJoined2SetView;
+		AgoraData.remoteJoined2UnmuteVideo = remoteJoined2UnmuteVideo;
+		AgoraData.remoteJoined2PacketReceived = remoteJoined2PacketReceived;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::VideoRenderingTracingInfo&amp; AgoraData) const {
+			}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoRenderingTracingInfo {
   elapsedTime?: number;
@@ -122,7 +144,7 @@ class VideoRenderingTracingInfo {
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
-            <dlentry props="native">
+            <dlentry props="android apple cpp">
                 <dt>Since</dt>
                 <dd>v4.1.1</dd>
             </dlentry>

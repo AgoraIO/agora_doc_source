@@ -32,6 +32,29 @@
 
   CodecCapLevels(): hwDecodingLevel(CODEC_CAPABILITY_LEVEL_UNSPECIFIED), swDecodingLevel(CODEC_CAPABILITY_LEVEL_UNSPECIFIED) {}
 };</codeblock>
+           <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FCodecCapLevels {
+	GENERATED_BODY()
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FCodecCapLevels&quot;)
+	FENUMWRAP_VIDEO_CODEC_CAPABILITY_LEVEL hwDecodingLevel;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FCodecCapLevels&quot;)
+	FENUMWRAP_VIDEO_CODEC_CAPABILITY_LEVEL swDecodingLevel;
+	
+	FCodecCapLevels() {}
+	FCodecCapLevels(const agora::rtc::CodecCapLevels&amp; AgoraData) {
+		hwDecodingLevel = AgoraData.hwDecodingLevel;
+		swDecodingLevel = AgoraData.swDecodingLevel;
+	}
+	agora::rtc::CodecCapLevels CreateAgoraData() const {
+		agora::rtc::CodecCapLevels AgoraData;
+		AgoraData.hwDecodingLevel = hwDecodingLevel.GetRawValue();
+		AgoraData.swDecodingLevel = swDecodingLevel.GetRawValue();
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::CodecCapLevels&amp; AgoraData) const {
+			}
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class CodecCapLevels {
   hwDecodingLevel?: VideoCodecCapabilityLevel;
   swDecodingLevel?: VideoCodecCapabilityLevel;
@@ -69,7 +92,7 @@ class CodecCapLevels {
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
-            <dlentry props="native">
+            <dlentry props="android apple cpp">
                 <dt>自从</dt>
                 <dd>v4.2.2</dd>
             </dlentry>

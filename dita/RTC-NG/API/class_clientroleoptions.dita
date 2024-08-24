@@ -32,9 +32,20 @@
 struct FClientRoleOptions
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ClientRoleOptions&quot;)
 	EAUDIENCE_LATENCY_LEVEL_TYPE audienceLatencyLevel = EAUDIENCE_LATENCY_LEVEL_TYPE::AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY;
+	FClientRoleOptions() {}
+	FClientRoleOptions(const agora::rtc::ClientRoleOptions&amp; AgoraData) {
+		audienceLatencyLevel = static_cast&lt;EAUDIENCE_LATENCY_LEVEL_TYPE&gt;(AgoraData.audienceLatencyLevel);
+	}
+	agora::rtc::ClientRoleOptions CreateAgoraData() const {
+		agora::rtc::ClientRoleOptions AgoraData;
+		AgoraData.audienceLatencyLevel = static_cast&lt;agora::rtc::AUDIENCE_LATENCY_LEVEL_TYPE&gt;(audienceLatencyLevel);
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::ClientRoleOptions&amp; AgoraData) const {
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ClientRoleOptions {
   

@@ -58,12 +58,26 @@
 struct FVideoSubscriptionOptions
 {
 	GENERATED_BODY()
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
-	bool type_SetValue;
+public:
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	bool type_SetValue = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoSubscriptionOptions&quot;)
-	EVIDEO_STREAM_TYPE type;
+	EVIDEO_STREAM_TYPE type = EVIDEO_STREAM_TYPE::VIDEO_STREAM_HIGH;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoSubscriptionOptions&quot;)
-	AGORAOPTIONAL encodedFrameOnly;
+	EAgoraOptional encodedFrameOnly = EAgoraOptional::AGORA_NULL_VALUE;
+	FVideoSubscriptionOptions(){}
+	FVideoSubscriptionOptions(const agora::rtc::VideoSubscriptionOptions &amp; AgoraData){
+		SET_UEBP_OPTIONAL_VAL_ASSIGN_VAL(this-&gt;type,AgoraData.type,static_cast&lt;EVIDEO_STREAM_TYPE&gt;(AgoraData.type.value()))
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;encodedFrameOnly,AgoraData.encodedFrameOnly)
+	}
+	agora::rtc::VideoSubscriptionOptions CreateAgoraData() const {
+		agora::rtc::VideoSubscriptionOptions AgoraData;
+		SET_AGORA_OPTIONAL_VAL_ASSIGN_VAL(AgoraData.type,this-&gt;type,static_cast&lt;agora::rtc::VIDEO_STREAM_TYPE&gt;(this-&gt;type))
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.encodedFrameOnly,this-&gt;encodedFrameOnly)
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::VideoSubscriptionOptions&amp; AgoraData) const {
+	}
 };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class VideoSubscriptionOptions {
   

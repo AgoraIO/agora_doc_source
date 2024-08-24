@@ -352,11 +352,11 @@
 struct FVideoEncoderConfiguration
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
-	EVIDEO_CODEC_TYPE codecType = EVIDEO_CODEC_TYPE::VIDEO_CODEC_GENERIC_H264;
+	EVIDEO_CODEC_TYPE codecType = EVIDEO_CODEC_TYPE::VIDEO_CODEC_NONE;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
-	FVideoDimensions dimensions;
+	FVideoDimensions dimensions = FVideoDimensions();
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
 	int frameRate = 15;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
@@ -370,9 +370,36 @@ struct FVideoEncoderConfiguration
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
 	EVIDEO_MIRROR_MODE_TYPE mirrorMode = EVIDEO_MIRROR_MODE_TYPE::VIDEO_MIRROR_MODE_DISABLED;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
-	ECOMPRESSION_PREFERENCE compressionPreference = ECOMPRESSION_PREFERENCE::PREFER_LOW_LATENCY;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
-	FAdvanceOptions advanceOptions;
+	FAdvanceOptions advanceOptions = FAdvanceOptions();
+	FVideoEncoderConfiguration(){}
+	FVideoEncoderConfiguration(const agora::rtc::VideoEncoderConfiguration &amp; AgoraData){
+		codecType = static_cast&lt;EVIDEO_CODEC_TYPE&gt;(AgoraData.codecType);
+		dimensions = FVideoDimensions(AgoraData.dimensions);
+		frameRate = AgoraData.frameRate;
+		bitrate = AgoraData.bitrate;
+		minBitrate = AgoraData.minBitrate;
+		orientationMode = static_cast&lt;EORIENTATION_MODE&gt;(AgoraData.orientationMode);
+		degradationPreference = static_cast&lt;EDEGRADATION_PREFERENCE&gt;(AgoraData.degradationPreference);
+		mirrorMode = static_cast&lt;EVIDEO_MIRROR_MODE_TYPE&gt;(AgoraData.mirrorMode);
+		advanceOptions = FAdvanceOptions(AgoraData.advanceOptions);
+	}
+	agora::rtc::VideoEncoderConfiguration CreateAgoraData() const {
+		agora::rtc::VideoEncoderConfiguration AgoraData;
+		AgoraData.codecType = static_cast&lt;agora::rtc::VIDEO_CODEC_TYPE&gt;(codecType);
+		AgoraData.dimensions = dimensions.CreateAgoraData();
+		AgoraData.frameRate = frameRate;
+		AgoraData.bitrate = bitrate;
+		AgoraData.minBitrate = minBitrate;
+		AgoraData.orientationMode = static_cast&lt;agora::rtc::ORIENTATION_MODE&gt;(orientationMode);
+		AgoraData.degradationPreference = static_cast&lt;agora::rtc::DEGRADATION_PREFERENCE&gt;(degradationPreference);
+		AgoraData.mirrorMode = static_cast&lt;agora::rtc::VIDEO_MIRROR_MODE_TYPE&gt;(mirrorMode);
+		AgoraData.advanceOptions = advanceOptions.CreateAgoraData();
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::VideoEncoderConfiguration&amp; AgoraData) const {
+		dimensions.FreeAgoraData(AgoraData.dimensions);
+		advanceOptions.FreeAgoraData(AgoraData.advanceOptions);
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoEncoderConfiguration {
   
@@ -619,6 +646,7 @@ struct FVideoEncoderConfiguration
                 <pt>mirrorMode</pt>
                 <pd>
                     <p props="ios mac cpp framework">Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.</p>
+                    <note conkeyref="setLocalRenderMode2/mirror" props="unreal bp"/>
                     <p props="android hmos">Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees.<ul>
                       <li><ph keyref="VIDEO_MIRROR_MODE_AUTO" />(0): The SDK determines whether to enable the mirror mode. The SDK disables mirror mode by default.</li>
                       <li><ph keyref="VIDEO_MIRROR_MODE_ENABLED" />(1): Enables the mirror mode for remote users.</li>

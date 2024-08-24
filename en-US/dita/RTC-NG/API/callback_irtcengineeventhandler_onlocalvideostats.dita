@@ -24,7 +24,8 @@
     (void)source;
     (void)stats;
     }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnLocalVideoStats, EVIDEO_SOURCE_TYPE, source, const FLocalVideoStats&amp;, stats);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnLocalVideoStats(EVIDEO_SOURCE_TYPE source, const FLocalVideoStats&amp; stats);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onLocalVideoStats?(connection: RtcConnection, stats: LocalVideoStats): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnLocalVideoStats(RtcConnection connection, LocalVideoStats stats) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onLocalVideoStats?(connection: RtcConnection, stats: LocalVideoStats): void;</codeblock>

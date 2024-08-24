@@ -21,7 +21,8 @@
                       reason:(AgoraMediaPlayerReason)reason NS_SWIFT_NAME(AgoraRtcMediaPlayer(_:didChangedTo:reason:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onPlayerSourceStateChanged(media::base::MEDIA_PLAYER_STATE state,
                                           media::base::MEDIA_PLAYER_REASON reason) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnPlayerSourceStateChanged, EMEDIA_PLAYER_STATE, state, FENUMWRAP_MEDIA_PLAYER_ERROR, ec);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnPlayerSourceStateChanged(EMEDIA_PLAYER_STATE state, FENUMWRAP_MEDIA_PLAYER_REASON ec);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onPlayerSourceStateChanged?(
     state: MediaPlayerState,
     reason: MediaPlayerReason

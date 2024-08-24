@@ -22,7 +22,8 @@
   (void)currentEvent;
   (void)tracingInfo;
 }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnVideoRenderingTracingResult, int64, uid, EMEDIA_TRACE_EVENT, currentEvent, FVideoRenderingTracingInfo, tracingInfo);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnVideoRenderingTracingResult(int64 uid, EMEDIA_TRACE_EVENT currentEvent, const FVideoRenderingTracingInfo&amp; tracingInfo);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onVideoRenderingTracingResult?(
     connection: RtcConnection,
     uid: number,
@@ -44,7 +45,7 @@
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
-            <dlentry props="native">
+            <dlentry props="android apple cpp">
                 <dt>自从</dt>
                 <dd>v4.1.1</dd>
             </dlentry>

@@ -18,7 +18,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLocalRenderMode:(AgoraVideoRenderMode)mode
                    mirror:(AgoraVideoMirrorMode)mirror;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setLocalRenderMode(media::base::RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
 	int SetLocalRenderMode(ERENDER_MODE_TYPE renderMode, EVIDEO_MIRROR_MODE_TYPE mirrorMode = EVIDEO_MIRROR_MODE_TYPE::VIDEO_MIRROR_MODE_AUTO);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setLocalRenderMode(
     renderMode: RenderModeType,
@@ -39,8 +39,9 @@
             <p>初始化本地用户视图后，你可以调用该方法更新本地用户视图的渲染和镜像模式。该方法只影响本地用户看到的视频画面，不影响本地视频的发布。</p>
             </section>
             <section id="timing" deliveryTarget="details">
-                <title><ph props="native unreal bp electron rn flutter">调用时机</ph></title>
-                <ul props="native unreal bp electron rn flutter"><li>请在调用 <xref keyref="setupLocalVideo" /> 方法初始化本地视图后，调用该方法。</li>
+                <title>调用时机</title>
+                <ul>
+                    <li props="native unreal bp electron unity flutter">请在调用 <xref keyref="setupLocalVideo" /> 方法初始化本地视图后，调用该方法。</li>
                     <li>你可以在通话中多次调用该方法，多次更新本地用户视图的显示模式。</li></ul>
             </section>        
             <section id="restriction" deliveryTarget="details">
@@ -77,6 +78,7 @@
                 <pt props="ios mac">mirror</pt>
                 <pd>
                     <p props="ios mac cpp unreal bp unity flutter rn electron cs">本地视图的镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE" />。
+                    <note type="attention" props="unreal bp" id="mirror">该参数不生效。如需实现镜像显示效果，请在 Unreal Engine 中进行镜像设置。</note>
                     <note type="attention" props="unity cs">该参数仅对 SDK 自渲染生效，如果你想要设置视图镜像，可以将 GameObject 的 scaleX 设为 <codeph>-1</codeph> 或 <codeph>+1</codeph>。</note></p>
                     <p props="android hmos">本地视图的镜像模式。
                     <ul id="videomirrormodetype">
@@ -84,7 +86,8 @@
                     <li><ph keyref="VIDEO_MIRROR_MODE_ENABLED" /> (1)：开启本地视图的镜像模式。</li>
                     <li><ph keyref="VIDEO_MIRROR_MODE_DISABLED" /> (2)：关闭本地视图的镜像模式。</li>
                     </ul> </p>
-                    <note type="attention">如果你使用前置摄像头，默认启动本地用户视图镜像模式；如果你使用后置摄像头，默认关闭本地视图镜像模式。</note> </pd>
+                    <note type="attention">如果你使用前置摄像头，默认启动本地用户视图镜像模式；如果你使用后置摄像头，默认关闭本地视图镜像模式。</note>
+                     </pd>
             </plentry>
             </parml> </section>
         <section id="return_values">

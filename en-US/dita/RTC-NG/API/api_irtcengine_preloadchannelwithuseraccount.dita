@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_preloadchannelwithuseraccount">
     <title><ph keyref="preloadChannelWithUserAccount"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Preload the channel using <parmname>token</parmname>, <parmname props="apple cpp framework">channelId</parmname><parmname props="android hmos">channelName</parmname>, and <parmname>userAccount</parmname>.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Preloads a channel with <parmname>token</parmname>, <parmname props="apple cpp framework">channelId</parmname><parmname props="android hmos">channelName</parmname>, and <parmname>userAccount</parmname>.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,6 +20,8 @@
                    channelId:(NSString * _Nonnull)channelId
                  userAccount:(NSString * _Nonnull)userAccount NS_SWIFT_NAME(preloadChannelWithUserAccount(byToken:channelId:userAccount:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int preloadChannelWithUserAccount(const char* token, const char* channelId, const char* userAccount) = 0;</codeblock>
+           <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+	int PreloadChannelWithUserAccount(const FString&amp; token, const FString&amp; channelId, const FString&amp; userAccount);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract preloadChannelWithUserAccount(
     token: string,
     channelId: string,
@@ -43,9 +45,9 @@
             <p/>
         </section>
         <section id="restriction" deliveryTarget="details">
-            <title>Call Restrictions</title>
+            <title>Restrictions</title>
             <p><ul><li conkeyref="preloadChannel/note1"/>
-        <li>Ensure that the channel name, user account, token, and the values passed when subsequently joining the channel are the same when preloading the channel, otherwise preloading will not be effective.</li>
+        <li>You also need to make sure that the User Account, channel ID and token passed in for preloading are the same as the values passed in when joining the channel, otherwise, this method does not take effect.</li>
         <li conkeyref="preloadChannel/note2"/>
        </ul></p>
         </section>
@@ -67,14 +69,13 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call is successful, there is no return value; if the method call fails, an <xref keyref="AgoraRtcException"/> exception is thrown, which you need to catch and handle. <ph props="cn">See <xref keyref="error-code-link"/> for details and suggested solutions.</ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul>
-            <li props="native unreal bp unity rn electron cs">0: Method call succeeded.</li>
-            <li>&lt; 0: Method call failed. <ph props="cn">See <xref keyref="error-code-link"/> for details and suggested solutions.</ph>
-                <ul>
-                <li>-2: Invalid parameter. For example, the user account is empty. You need to provide a valid parameter and rejoin the channel.</li>
-                <li>-7: The <apiname keyref="IRtcEngine" /> object has not been initialized. You need to successfully initialize the <apiname keyref="IRtcEngine" /> object before calling this method.</li>
-                <li>-102: Invalid channel name. You need to provide a valid channel name and rejoin the channel.</li>
+            <li props="native unreal bp unity rn electron cs">0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul>
+                <li>-2: The parameter is invalid. For example, the User Account is empty. You need to pass in a valid parameter and join the channel again.</li>
+                <li>-7: The <apiname keyref="IRtcEngine" /> object has not been initialized. You need to initialize the <apiname keyref="IRtcEngine" /> object before calling this method.</li>
+                <li>-102: The channel name is invalid. You need to pass in a valid channel name and join the channel again.</li>
                 </ul></li>
             </ul> </section>
         </refbody>

@@ -40,15 +40,32 @@
 struct FRectangle
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|Rectangle&quot;)
-	int x;
+	int x = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|Rectangle&quot;)
-	int y;
+	int y = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|Rectangle&quot;)
-	int width;
+	int width = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|Rectangle&quot;)
-	int height;
+	int height = 0;
+	FRectangle(){}
+	FRectangle(const agora::rtc::Rectangle &amp; AgoraData){
+		x = AgoraData.x;
+		y = AgoraData.y;
+		width = AgoraData.width;
+		height = AgoraData.height;
+	}
+	agora::rtc::Rectangle CreateAgoraData() const {
+		agora::rtc::Rectangle AgoraData;
+		AgoraData.x = x;
+		AgoraData.y = y;
+		AgoraData.width = width;
+		AgoraData.height = height;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::Rectangle&amp; AgoraData) const {
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class Rectangle {
   

@@ -26,7 +26,8 @@
      (void)reason;
      (void)elapsed;
      }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnRemoteAudioStateChanged, int64, uid, EREMOTE_AUDIO_STATE, state, EREMOTE_AUDIO_STATE_REASON, reason, int, elapsed);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnRemoteAudioStateChanged(int64 uid, EREMOTE_AUDIO_STATE state, EREMOTE_AUDIO_STATE_REASON reason, int elapsed);</codeblock>
                <codeblock props="electron" outputclass="language-typescript">  onRemoteAudioStateChanged?(
     connection: RtcConnection,
     remoteUid: number,
