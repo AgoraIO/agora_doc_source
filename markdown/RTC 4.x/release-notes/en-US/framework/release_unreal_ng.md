@@ -19,14 +19,14 @@ This version releases on August xx, 2024.
 
 In this release, the creation and destruction of engine instances use the [`Get`](/api-ref/rtc/unreal-cpp/API/toc_initialize#api_createagorartcengine) and [`Release`](/api-ref/rtc/unreal-cpp/API/toc_initialize#api_irtcengine_release) methods, replacing the previous `createAgoraRtcEngine` and `release` methods. This change simplifies instance management. Details are as follows:
 
-- Creating an engine instance: Call [`Get`](/api-ref/rtc/unreal-cpp/API/toc_initialize#api_createagorartcengine) to return a pointer to `AgoraUERtcEngine`, and you can directly call methods under [`IRtcEngine`](/api-ref/rtc/unreal-cpp/API/rtc_interface_class#class_irtcengine) using this pointer.
+- Creating an engine instance: Call [`Get`](/api-ref/rtc/unreal-cpp/API/toc_initialize#api_createagorartcengine) to create an `IRtcEngine` instance and return a pointer to `AgoraUERtcEngine`, and you can directly call methods under [`IRtcEngine`](/api-ref/rtc/unreal-cpp/API/rtc_interface_class#class_irtcengine) using this pointer.
 
     ```cpp
     // Example of joining a channel using joinChannel
     AgoraUERtcEngine::Get()->joinChannel(TCHAR_TO_UTF8(*Token), TCHAR_TO_UTF8(*ChannelName), 0, ChannelMediaOptions);
     ```
 
-- Destroying an engine instance: Call [`Release`](/api-ref/rtc/unreal-cpp/API/toc_initialize#api_irtcengine_release) to destroy the engine instance and release related resources.
+- Destroying an engine instance: After calling [`Get`](/api-ref/rtc/unreal-cpp/API/toc_initialize#api_createagorartcengine) to create an `IRtcEngine` instance, you must call [`Release`](/api-ref/rtc/unreal-cpp/API/toc_initialize#api_irtcengine_release) to destroy the engine instance and release related resources.
 
     ```cpp
     AgoraUERtcEngine::Release();
