@@ -9,6 +9,7 @@
             <!--如果预见到表格内的内容会超宽，则在 table 外侧套一个 div，用于限定 section 内的表格宽度-->
                 <div>
                 <table frame="all" rowsep="1" colsep="1" props="cn">
+                <!--CN 表格-->
                 <!--由于 table 中的 row 不能分级打 props，所以 cn 和 en 需要分两个表格维护：仅发 cn/en 的 API 只需要在对应表格中增加；cn 和 en 都发的 API 需要在两个表格中都加。-->
                 <tgroup cols="4">
                     <colspec colname="c1" colnum="1" colwidth="1*"/>
@@ -84,12 +85,6 @@
                             <entry>-</entry>
                             <entry>v4.0.0</entry>
                         </row>
-                        <row>
-                            <entry><xref keyref="setLogFileSize"/></entry>
-                            <entry><ph conkeyref="setLogFileSize/shortdesc"/></entry>
-                            <entry>使用 <xref keyref="initialize"/> 中的 <parmname>logConfig</parmname> 参数</entry>
-                            <entry>v4.0.0</entry>
-                        </row>
                         <row props="android apple">
                             <entry><xref keyref="setExternalAudioSource"/></entry>
                             <entry><ph conkeyref="setExternalAudioSource/shortdesc"/></entry>
@@ -127,9 +122,27 @@
                             <entry>v4.0.0</entry>
                         </row>
                         <row>
+                            <entry><xref keyref="setLogFileSize"/></entry>
+                            <entry><ph conkeyref="setLogFileSize/shortdesc"/></entry>
+                            <entry>使用 <xref keyref="initialize"/> 中的 <parmname props="cpp">context</parmname><parmname props="android apple">config</parmname> 参数</entry>
+                            <entry>v4.0.0</entry>
+                        </row>
+                        <row>
                             <entry><xref keyref="setLogFile"/></entry>
                             <entry><ph conkeyref="setLogFile/shortdesc"/></entry>
-                            <entry>使用 <xref keyref="initialize"/> 中的 <parmname>logConfig</parmname> 参数</entry>
+                            <entry>使用 <xref keyref="initialize"/> 中的 <parmname props="cpp">context</parmname><parmname props="android apple">config</parmname> 参数</entry>
+                            <entry>v4.0.0</entry>
+                        </row>
+                        <row>
+                            <entry><xref keyref="setLogLevel"/></entry>
+                            <entry><ph conkeyref="setLogLevel/shortdesc"/></entry>
+                            <entry>使用 <xref keyref="initialize"/> 中的 <parmname props="cpp">context</parmname><parmname props="android apple">config</parmname> 参数</entry>
+                            <entry>v4.0.0</entry>
+                        </row>
+                        <row props="apple">
+                            <entry><xref keyref="setVideoProfile2"/></entry>
+                            <entry><ph conkeyref="setVideoProfile2/shortdesc"/></entry>
+                            <entry><xref keyref="setVideoEncoderConfiguration"/></entry>
                             <entry>v4.0.0</entry>
                         </row>
                         <row>
@@ -186,180 +199,218 @@
                             <entry>-</entry>
                             <entry>v4.0.0</entry>
                         </row>
+                        <row>
+                        </row>
+                            <entry><xref keyref="onRemoteVideoTransportStats"/></entry>
+                            <entry><ph conkeyref="onRemoteVideoTransportStats/shortdesc"/></entry>
+                            <entry><xref keyref="onRemoteVideoStats"/></entry>
+                            <entry>v4.0.0</entry>
+                        </row>
+                        <row>
+                            <entry><xref keyref="onUserEnableLocalVideo"/></entry>
+                            <entry><ph conkeyref="onUserEnableLocalVideo/shortdesc"/></entry>
+                            <entry><xref keyref="onRemoteVideoStateChanged"/></entry>
+                            <entry>v4.0.0</entry>
+                        </row>
                     </tbody>
                 </tgroup>
             </table>
             </div>
             <div>
-            <table frame="all" rowsep="1" colsep="1" props="en">
-                <!--由于 table 中的 row 不能分级打 props，所以 cn 和 en 需要分两个表格维护：仅发 cn/en 的 API 只需要在对应表格中增加；cn 和 en 都发的 API 需要在两个表格中都加。-->
-                <tgroup cols="4">
-                    <colspec colname="c1" colnum="1" colwidth="1*"/>
-                    <colspec colname="c2" colnum="2" colwidth="1*"/>
-                    <colspec colname="c3" colnum="3" colwidth="1*"/>
-                    <colspec colname="c4" colnum="4" colwidth="1*"/>
-                    <thead>
-                        <row>
-                            <entry>API</entry>
-                            <entry>描述</entry>
-                            <entry>替代 API</entry>
-                            <entry>废弃版本</entry>
-                        </row>
-                    </thead>
-                    <tbody>
-                        <row props="android">
-                            <entry><xref keyref="setRemoteSubscribeFallbackOption"/></entry>
-                            <entry><ph conkeyref="setRemoteSubscribeFallbackOption/shortdesc"/></entry>
-                            <entry><xref keyref="setRemoteSubscribeFallbackOption2"/></entry>
-                            <entry>v4.4.0</entry>
-                        </row>
-                        <row props="android">
-                            <entry><xref keyref="setRemoteVideoStreamType"/></entry>
-                            <entry><ph conkeyref="setRemoteVideoStreamType/shortdesc"/></entry>
-                            <entry><xref keyref="setRemoteVideoStreamType2"/></entry>
-                            <entry>v4.4.0</entry>
-                        </row>
-                        <row props="android">
-                            <entry><xref keyref="setRemoteDefaultVideoStreamType"/></entry>
-                            <entry><ph conkeyref="setRemoteDefaultVideoStreamType/shortdesc"/></entry>
-                            <entry><xref keyref="setRemoteDefaultVideoStreamType2"/></entry>
-                            <entry>v4.4.0</entry>
-                        </row>
-                        <row props="android">
-                            <entry><xref keyref="setRemoteVideoStreamTypeEx"/></entry>
-                            <entry><ph conkeyref="setRemoteVideoStreamTypeEx/shortdesc"/></entry>
-                            <entry><xref keyref="setRemoteVideoStreamTypeEx2"/></entry>
-                            <entry>v4.4.0</entry>
-                        </row>
-                        <row props="apple">
-                            <entry><xref keyref="pushExternalAudioFrameSampleBuffer1"/></entry>
-                            <entry><ph conkeyref="pushExternalAudioFrameSampleBuffer1/shortdesc"/></entry>
-                            <entry><xref keyref="pushExternalAudioFrameSampleBuffer2"/></entry>
-                            <entry>v4.3.1</entry>
-                        </row>
-                        <row>
-                            <entry><xref keyref="enableDualStreamMode"/></entry>
-                            <entry><ph conkeyref="enableDualStreamMode/shortdesc"/></entry>
-                            <entry><xref keyref="setDualStreamMode"/></entry>
-                            <entry>v4.2.0</entry>
-                        </row>
-                        <row>
-                            <entry><xref keyref="enableDualStreamMode3"/></entry>
-                            <entry><ph conkeyref="enableDualStreamMode3/shortdesc"/></entry>
-                            <entry><xref keyref="setDualStreamMode2"/></entry>
-                            <entry>v4.2.0</entry>
-                        </row>
-                        <row>
-                            <entry><xref keyref="enableDualStreamModeEx"/></entry>
-                            <entry><ph conkeyref="enableDualStreamModeEx/shortdesc"/></entry>
-                            <entry><xref keyref="setDualStreamModeEx"/></entry>
-                            <entry>v4.2.0</entry>
-                        </row>
-                        <row>
-                            <entry><xref keyref="enableWebSdkInteroperability"/></entry>
-                            <entry><ph conkeyref="enableWebSdkInteroperability/shortdesc"/></entry>
-                            <entry>-</entry>
-                            <entry>v4.0.0</entry>
-                        </row>
-                        <row>
-                            <entry><xref keyref="setLogFileSize"/></entry>
-                            <entry><ph conkeyref="setLogFileSize/shortdesc"/></entry>
-                            <entry>使用 <xref keyref="initialize"/> 中的 <parmname>logConfig</parmname> 参数</entry>
-                            <entry>v4.0.0</entry>
-                        </row>
-                        <row props="android apple">
-                            <entry><xref keyref="setExternalAudioSource"/></entry>
-                            <entry><ph conkeyref="setExternalAudioSource/shortdesc"/></entry>
-                            <entry><xref keyref="createCustomAudioTrack"/></entry>
-                            <entry>v4.0.0</entry>
-                        </row>
-                        <row>
-                            <entry><xref keyref="setExternalAudioSource2"/></entry>
-                            <entry><ph conkeyref="setExternalAudioSource2/shortdesc"/></entry>
-                            <entry><xref keyref="createCustomAudioTrack"/></entry>
-                            <entry>v4.0.0</entry>
-                        </row>
-                        <row>
-                            <entry><xref keyref="createDataStreamEx1"/></entry>
-                            <entry><ph conkeyref="createDataStreamEx1/shortdesc"/></entry>
-                            <entry><xref keyref="createDataStreamEx2"/></entry>
-                            <entry>v4.0.0</entry>
-                        </row>
-                        <row>
-                            <entry><xref keyref="setLocalVideoMirrorMode"/></entry>
-                            <entry><ph conkeyref="setLocalVideoMirrorMode/shortdesc"/></entry>
-                            <entry><xref keyref="setupLocalVideo"/> 或 <xref keyref="setLocalRenderMode2"/></entry>
-                            <entry>v4.0.0</entry>
-                        </row>
-                        <row props="cpp">
-                            <entry><xref keyref="startScreenCaptureByScreenRect"/></entry>
-                            <entry><ph conkeyref="startScreenCaptureByScreenRect/shortdesc"/></entry>
-                            <entry><xref keyref="startScreenCaptureByDisplayId"/></entry>
-                            <entry>v4.0.0</entry>
-                        </row>
-                        <row>
-                            <entry><xref keyref="setLocalRenderMode1"/></entry>
-                            <entry><ph conkeyref="setLocalRenderMode1/shortdesc"/></entry>
-                            <entry><xref keyref="setLocalRenderMode2"/></entry>
-                            <entry>v4.0.0</entry>
-                        </row>
-                        <row>
-                            <entry><xref keyref="setLogFile"/></entry>
-                            <entry><ph conkeyref="setLogFile/shortdesc"/></entry>
-                            <entry>使用 <xref keyref="initialize"/> 中的 <parmname>logConfig</parmname> 参数</entry>
-                            <entry>v4.0.0</entry>
-                        </row>
-                        <row>
-                            <entry><xref keyref="setAudioProfile"/></entry>
-                            <entry><ph conkeyref="setAudioProfile/shortdesc"/></entry>
-                            <entry><xref keyref="setAudioProfile2"/> 或 <xref keyref="setAudioScenario"/></entry>
-                            <entry>v4.0.0</entry>
-                        </row>
-                        <row>
-                            <entry><xref keyref="addVideoWatermark1"/></entry>
-                            <entry><ph conkeyref="addVideoWatermark1/shortdesc"/></entry>
-                            <entry><xref keyref="addVideoWatermark2"/></entry>
-                            <entry>v4.0.0</entry>
-                        </row>
-                        <row props="android">
-                            <entry><xref keyref="getBlue"/></entry>
-                            <entry><ph conkeyref="getBlue/shortdesc"/></entry>
-                            <entry>-</entry>
-                            <entry>v4.0.0</entry>
-                        </row>
-                        <row props="android">
-                            <entry><xref keyref="getGreen"/></entry>
-                            <entry><ph conkeyref="getGreen/shortdesc"/></entry>
-                            <entry>-</entry>
-                            <entry>v4.0.0</entry>
-                        </row>
-                        <row props="android">
-                            <entry><xref keyref="getRed"/></entry>
-                            <entry><ph conkeyref="getRed/shortdesc"/></entry>
-                            <entry>-</entry>
-                            <entry>v4.0.0</entry>
-                        </row>
-                        <row props="android">
-                            <entry><xref keyref="setBlue"/></entry>
-                            <entry><ph conkeyref="setBlue/shortdesc"/></entry>
-                            <entry>-</entry>
-                            <entry>v4.0.0</entry>
-                        </row>
-                        <row props="android">
-                            <entry><xref keyref="setGreen"/></entry>
-                            <entry><ph conkeyref="setGreen/shortdesc"/></entry>
-                            <entry>-</entry>
-                            <entry>v4.0.0</entry>
-                        </row>
-                        <row props="android">
-                            <entry><xref keyref="setRed"/></entry>
-                            <entry><ph conkeyref="setRed/shortdesc"/></entry>
-                            <entry>-</entry>
-                            <entry>v4.0.0</entry>
-                        </row>
-                    </tbody>
-                </tgroup>
-            </table>
+                <table frame="all" rowsep="1" colsep="1" props="en">
+                    <!--EN 表格-->
+                    <!--由于 table 中的 row 不能分级打 props，所以 cn 和 en 需要分两个表格维护：仅发 cn/en 的 API 只需要在对应表格中增加；cn 和 en 都发的 API 需要在两个表格中都加。-->
+                    <tgroup cols="4">
+                        <colspec colname="c1" colnum="1" colwidth="1*"/>
+                        <colspec colname="c2" colnum="2" colwidth="1*"/>
+                        <colspec colname="c3" colnum="3" colwidth="1*"/>
+                        <colspec colname="c4" colnum="4" colwidth="1*"/>
+                        <thead>
+                            <row>
+                                <entry>API</entry>
+                                <entry>描述</entry>
+                                <entry>替代 API</entry>
+                                <entry>废弃版本</entry>
+                            </row>
+                        </thead>
+                        <tbody>
+                            <row props="android">
+                                <entry><xref keyref="setRemoteSubscribeFallbackOption"/></entry>
+                                <entry><ph conkeyref="setRemoteSubscribeFallbackOption/shortdesc"/></entry>
+                                <entry><xref keyref="setRemoteSubscribeFallbackOption2"/></entry>
+                                <entry>v4.4.0</entry>
+                            </row>
+                            <row props="android">
+                                <entry><xref keyref="setRemoteVideoStreamType"/></entry>
+                                <entry><ph conkeyref="setRemoteVideoStreamType/shortdesc"/></entry>
+                                <entry><xref keyref="setRemoteVideoStreamType2"/></entry>
+                                <entry>v4.4.0</entry>
+                            </row>
+                            <row props="android">
+                                <entry><xref keyref="setRemoteDefaultVideoStreamType"/></entry>
+                                <entry><ph conkeyref="setRemoteDefaultVideoStreamType/shortdesc"/></entry>
+                                <entry><xref keyref="setRemoteDefaultVideoStreamType2"/></entry>
+                                <entry>v4.4.0</entry>
+                            </row>
+                            <row props="android">
+                                <entry><xref keyref="setRemoteVideoStreamTypeEx"/></entry>
+                                <entry><ph conkeyref="setRemoteVideoStreamTypeEx/shortdesc"/></entry>
+                                <entry><xref keyref="setRemoteVideoStreamTypeEx2"/></entry>
+                                <entry>v4.4.0</entry>
+                            </row>
+                            <row props="apple">
+                                <entry><xref keyref="pushExternalAudioFrameSampleBuffer1"/></entry>
+                                <entry><ph conkeyref="pushExternalAudioFrameSampleBuffer1/shortdesc"/></entry>
+                                <entry><xref keyref="pushExternalAudioFrameSampleBuffer2"/></entry>
+                                <entry>v4.3.1</entry>
+                            </row>
+                            <row>
+                                <entry><xref keyref="enableDualStreamMode"/></entry>
+                                <entry><ph conkeyref="enableDualStreamMode/shortdesc"/></entry>
+                                <entry><xref keyref="setDualStreamMode"/></entry>
+                                <entry>v4.2.0</entry>
+                            </row>
+                            <row>
+                                <entry><xref keyref="enableDualStreamMode3"/></entry>
+                                <entry><ph conkeyref="enableDualStreamMode3/shortdesc"/></entry>
+                                <entry><xref keyref="setDualStreamMode2"/></entry>
+                                <entry>v4.2.0</entry>
+                            </row>
+                            <row>
+                                <entry><xref keyref="enableDualStreamModeEx"/></entry>
+                                <entry><ph conkeyref="enableDualStreamModeEx/shortdesc"/></entry>
+                                <entry><xref keyref="setDualStreamModeEx"/></entry>
+                                <entry>v4.2.0</entry>
+                            </row>
+                            <row>
+                                <entry><xref keyref="enableWebSdkInteroperability"/></entry>
+                                <entry><ph conkeyref="enableWebSdkInteroperability/shortdesc"/></entry>
+                                <entry>-</entry>
+                                <entry>v4.0.0</entry>
+                            </row>
+                            <row props="android apple">
+                                <entry><xref keyref="setExternalAudioSource"/></entry>
+                                <entry><ph conkeyref="setExternalAudioSource/shortdesc"/></entry>
+                                <entry><xref keyref="createCustomAudioTrack"/></entry>
+                                <entry>v4.0.0</entry>
+                            </row>
+                            <row>
+                                <entry><xref keyref="setExternalAudioSource2"/></entry>
+                                <entry><ph conkeyref="setExternalAudioSource2/shortdesc"/></entry>
+                                <entry><xref keyref="createCustomAudioTrack"/></entry>
+                                <entry>v4.0.0</entry>
+                            </row>
+                            <row>
+                                <entry><xref keyref="createDataStreamEx1"/></entry>
+                                <entry><ph conkeyref="createDataStreamEx1/shortdesc"/></entry>
+                                <entry><xref keyref="createDataStreamEx2"/></entry>
+                                <entry>v4.0.0</entry>
+                            </row>
+                            <row>
+                                <entry><xref keyref="setLocalVideoMirrorMode"/></entry>
+                                <entry><ph conkeyref="setLocalVideoMirrorMode/shortdesc"/></entry>
+                                <entry><xref keyref="setupLocalVideo"/> 或 <xref keyref="setLocalRenderMode2"/></entry>
+                                <entry>v4.0.0</entry>
+                            </row>
+                            <row props="cpp">
+                                <entry><xref keyref="startScreenCaptureByScreenRect"/></entry>
+                                <entry><ph conkeyref="startScreenCaptureByScreenRect/shortdesc"/></entry>
+                                <entry><xref keyref="startScreenCaptureByDisplayId"/></entry>
+                                <entry>v4.0.0</entry>
+                            </row>
+                            <row>
+                                <entry><xref keyref="setLocalRenderMode1"/></entry>
+                                <entry><ph conkeyref="setLocalRenderMode1/shortdesc"/></entry>
+                                <entry><xref keyref="setLocalRenderMode2"/></entry>
+                                <entry>v4.0.0</entry>
+                            </row>
+                            <row>
+                                <entry><xref keyref="setLogFileSize"/></entry>
+                                <entry><ph conkeyref="setLogFileSize/shortdesc"/></entry>
+                                <entry>使用 <xref keyref="initialize"/> 中的 <parmname props="cpp">context</parmname><parmname props="android apple">config</parmname> 参数</entry>
+                                <entry>v4.0.0</entry>
+                            </row>
+                            <row>
+                                <entry><xref keyref="setLogFile"/></entry>
+                                <entry><ph conkeyref="setLogFile/shortdesc"/></entry>
+                                <entry>使用 <xref keyref="initialize"/> 中的 <parmname props="cpp">context</parmname><parmname props="android apple">config</parmname> 参数</entry>
+                                <entry>v4.0.0</entry>
+                            </row>
+                             <row>
+                                <entry><xref keyref="setLogLevel"/></entry>
+                                <entry><ph conkeyref="setLogLevel/shortdesc"/></entry>
+                                <entry>使用 <xref keyref="initialize"/> 中的 <parmname props="cpp">context</parmname><parmname props="android apple">config</parmname> 参数</entry>
+                                <entry>v4.0.0</entry>
+                            </row>
+                            <row props="apple">
+                                <entry><xref keyref="setVideoProfile2"/></entry>
+                                <entry><ph conkeyref="setVideoProfile2/shortdesc"/></entry>
+                                <entry><xref keyref="setVideoEncoderConfiguration"/></entry>
+                                <entry>v4.0.0</entry>
+                            </row>
+                            <row>
+                                <entry><xref keyref="setAudioProfile"/></entry>
+                                <entry><ph conkeyref="setAudioProfile/shortdesc"/></entry>
+                                <entry><xref keyref="setAudioProfile2"/> 或 <xref keyref="setAudioScenario"/></entry>
+                                <entry>v4.0.0</entry>
+                            </row>
+                            <row>
+                                <entry><xref keyref="addVideoWatermark1"/></entry>
+                                <entry><ph conkeyref="addVideoWatermark1/shortdesc"/></entry>
+                                <entry><xref keyref="addVideoWatermark2"/></entry>
+                                <entry>v4.0.0</entry>
+                            </row>
+                            <row props="android">
+                                <entry><xref keyref="getBlue"/></entry>
+                                <entry><ph conkeyref="getBlue/shortdesc"/></entry>
+                                <entry>-</entry>
+                                <entry>v4.0.0</entry>
+                            </row>
+                            <row props="android">
+                                <entry><xref keyref="getGreen"/></entry>
+                                <entry><ph conkeyref="getGreen/shortdesc"/></entry>
+                                <entry>-</entry>
+                                <entry>v4.0.0</entry>
+                            </row>
+                            <row props="android">
+                                <entry><xref keyref="getRed"/></entry>
+                                <entry><ph conkeyref="getRed/shortdesc"/></entry>
+                                <entry>-</entry>
+                                <entry>v4.0.0</entry>
+                            </row>
+                            <row props="android">
+                                <entry><xref keyref="setBlue"/></entry>
+                                <entry><ph conkeyref="setBlue/shortdesc"/></entry>
+                                <entry>-</entry>
+                                <entry>v4.0.0</entry>
+                            </row>
+                            <row props="android">
+                                <entry><xref keyref="setGreen"/></entry>
+                                <entry><ph conkeyref="setGreen/shortdesc"/></entry>
+                                <entry>-</entry>
+                                <entry>v4.0.0</entry>
+                            </row>
+                                <row props="android">
+                                    <entry><xref keyref="setRed"/></entry>
+                                    <entry><ph conkeyref="setRed/shortdesc"/></entry>
+                                    <entry>-</entry>
+                                    <entry>v4.0.0</entry>
+                                </row>
+                                <row>
+                                    <entry><xref keyref="onRemoteVideoTransportStats"/></entry>
+                                    <entry><ph conkeyref="onRemoteVideoTransportStats/shortdesc"/></entry>
+                                    <entry><xref keyref="onRemoteVideoStats"/></entry>
+                                    <entry>v4.0.0</entry>
+                                </row>
+                            <row>
+                                    <entry><xref keyref="onUserEnableLocalVideo"/></entry>
+                                    <entry><ph conkeyref="onUserEnableLocalVideo/shortdesc"/></entry>
+                                    <entry><xref keyref="onRemoteVideoStateChanged"/></entry>
+                                    <entry>v4.0.0</entry>
+                                </row>
+                        </tbody>
+                    </tgroup>
+                </table>    
             </div>
         </section>
         <section>
@@ -465,6 +516,7 @@
                             <entry><xref keyref="onExtensionErrorWithContext"/></entry>
                             <entry>v4.4.0</entry>
                         </row>
+                        
                     </tbody>
                 </tgroup>
             </table>
