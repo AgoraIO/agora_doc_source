@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setlocalvideodatasourceposition">
-    <title><ph keyref="SetLocalVideoDataSourcePosition"/></title>
-    <shortdesc id="short"><ph id="shortdesc"><?oxy-placeholder content="Provide a short description for this API."?></ph></shortdesc>
+    <title><ph keyref="setLocalVideoDataSourcePosition"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置视频帧的观测位置。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="SetLocalVideoDataSourcePosition"/>
+                <indexterm keyref="setLocalVideoDataSourcePosition"/>
             </keywords>
         </metadata>
     </prolog>
@@ -19,41 +19,27 @@
             <codeblock props="cpp unreal" outputclass="language-cpp"/>
             <codeblock props="bp" outputclass="language-cpp"/>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetLocalVideoDataSourcePosition(VIDEO_MODULE_POSITION position);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <dl outputclass="since">
-            <dlentry props="native">
-                <dt>自从</dt>
-                <dd>v</dd>
-            </dlentry>
-            </dl>
-            <p/>
-        </section>
-        <section id="scenario" deliveryTarget="details">
-            <title>适用场景</title>
-            <p/>
-        </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p/>
+            <p>该方法需要在创建第一个 <xref keyref="VideoSurface"/> 视图之前调用。</p>
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p/>
-        </section>
-        <section id="related" deliveryTarget="details">
-            <title>相关回调</title>
-            <p/>
+            <p>该方法仅支持观测通过 <xref keyref="VideoSurface"/> 及其子类渲染的本地视频数据。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
             <plentry>
-                <pt/>
-                <pd/>
+                <pt>position</pt>
+                <pd>视频帧的观测位置，详见 <xref keyref="VIDEO_MODULE_POSITION"/>。
+                <note type="attention">
+                    <ul><li>该方法目前仅支持将观测位置设为 <codeph><ph keyref="POSITION_POST_CAPTURER"/></codeph> 或 <codeph><ph keyref="POSITION_PRE_ENCODER"/></codeph>。</li>
+                    <li>在 <codeph><ph keyref="POSITION_POST_CAPTURER"/></codeph> 处获取的视频帧未经裁剪且帧率较高，<codeph><ph keyref="POSITION_PRE_ENCODER"/></codeph> 位置获取的视频帧经过发送前的裁剪，帧率小于或等于摄像头采集的帧率。</li></ul></note></pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
