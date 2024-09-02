@@ -2,6 +2,12 @@
 
 This version was released on July x, 2024.
 
+## Known issues and limitations
+
+**macOS 15 Sequoia Beta System Issue**
+
+When the app path (including the App name) contains non-English characters (such as Chinese characters), the compiled `Metal shader library` may not contain any methods, causing the app to crash.
+
 #### Compatibility changes
 
 This version includes optimizations to some features, including changes to SDK behavior, API renaming and deletion. To ensure normal operation of the project, update the code in the app after upgrading to this release.
