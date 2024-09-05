@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setlocalvideodatasourceposition">
+    <title><ph keyref="setLocalVideoDataSourcePosition"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置视频帧的观测位置。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setLocalVideoDataSourcePosition"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp unreal" outputclass="language-cpp"/>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetLocalVideoDataSourcePosition(VIDEO_MODULE_POSITION position);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>该方法需要在创建第一个 <xref keyref="VideoSurface"/> 视图之前调用。</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>该方法仅支持观测通过 <xref keyref="VideoSurface"/> 及其子类渲染的本地视频数据。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt>position</pt>
+                <pd>视频帧的观测位置，详见 <xref keyref="VIDEO_MODULE_POSITION"/>。
+                <note type="attention">
+                    <ul><li>该方法目前仅支持将观测位置设为 <codeph><ph keyref="POSITION_POST_CAPTURER"/></codeph> 或 <codeph><ph keyref="POSITION_PRE_ENCODER"/></codeph>。</li>
+                    <li>在 <codeph><ph keyref="POSITION_POST_CAPTURER"/></codeph> 处获取的视频帧未经裁剪且帧率较高，<codeph><ph keyref="POSITION_PRE_ENCODER"/></codeph> 位置获取的视频帧经过发送前的裁剪，帧率小于或等于摄像头采集的帧率。</li></ul></note></pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+            <ul props="native unreal bp electron unity rn cs">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul> </section>
+        </refbody>
+</reference>
