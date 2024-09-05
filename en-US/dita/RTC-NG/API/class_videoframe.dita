@@ -746,7 +746,8 @@ class VideoFrame {
           <pd>
             <p>The alpha channel data output by using portrait segmentation algorithm. This data matches the size of the video frame, with each pixel value ranging from [0,255], where 0 represents the background and 255 represents the foreground (portrait).</p>
             <p>By setting this parameter, you can render the video background into various effects, such as transparent, solid color, image, video, etc.</p>
-            <note type="attention" props="android framework">In custom video rendering scenarios, ensure that both the video frame and <parmname>alphaBuffer</parmname> are of the Full Range type; other types may cause abnormal alpha data rendering.</note>
+            <note type="attention"><ul><li props="android framework">In custom video rendering scenarios, ensure that both the video frame and <parmname>alphaBuffer</parmname> are of the Full Range type; other types may cause abnormal alpha data rendering.</li>
+            <li>请务必确保 <parmname props="cpp android framework">alphaBuffer</parmname><parmname props="apple">alphaBuf</parmname> 跟视频帧的尺寸 (width × height) 完全一致，否则可能会导致 App 崩溃。</li></ul></note>
           </pd>
         </plentry>
       <plentry id="alphastitchmode">
