@@ -750,7 +750,8 @@ class VideoFrame {
           <pd>
             <p>采用人像分割算法输出的 Alpha 通道数据。该数据跟视频帧的尺寸一致，每个像素点的取值范围为 [0,255]，其中 0 代表背景；255 代表前景（人像）。</p>
             <p>你可以通过设置该参数，实现将视频背景自渲染为各种效果，例如：透明、纯色、图片、视频等。</p>
-            <note type="attention" props="android framework">在自定义视频渲染场景下，需确保传入的视频帧和 <parmname>alphaBuffer</parmname> 均为 Full Range 类型；其他类型可能导致 Alpha 数据渲染不正常。</note>
+            <note type="attention" props="android framework"><ul><li>在自定义视频渲染场景下，需确保传入的视频帧和 <parmname>alphaBuffer</parmname> 均为 Full Range 类型；其他类型可能导致 Alpha 数据渲染不正常。</li>
+            <li>请务必确保 <parmname props="cpp android framework">alphaBuffer</parmname><parmname props="apple">alphaBuf</parmname> 跟视频帧的尺寸 (width × height) 完全一致，否则可能会导致 App 崩溃。</li></ul></note>
           </pd>
         </plentry>
       <plentry id="alphastitchmode">
