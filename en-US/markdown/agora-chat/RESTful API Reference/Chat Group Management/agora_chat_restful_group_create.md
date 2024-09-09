@@ -701,7 +701,7 @@ Retrieves all the chat groups that a user joins.
 ### HTTP request
 
 ```http
-GET https://{host}/{org_name}/{app_name}/user/{username}/joined_chatgroups?pagesize={}&pagenum={}
+GET https://{host}/{org_name}/{app_name}/users/{username}/joined_chatgroups?pagesize={}&pagenum={}
 ```
 
 #### Path parameter
