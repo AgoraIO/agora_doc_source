@@ -17,8 +17,8 @@
     String sound1, String sound2, AgoraRhythmPlayerConfig config);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)startRhythmPlayer:(NSString * _Nonnull)sound1 sound2:(NSString * _Nonnull)sound2 config:(AgoraRhythmPlayerConfig *  _Nullable)config;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int startRhythmPlayer(const char* sound1, const char* sound2, const AgoraRhythmPlayerConfig&amp; config) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
-	int StartRhythmPlayer(FString sound1, FString sound2, const FAgoraRhythmPlayerConfig&amp; config);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+	int StartRhythmPlayer(const FString&amp; sound1, const FString&amp; sound2, const FAgoraRhythmPlayerConfig&amp; config);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract startRhythmPlayer(
     sound1: string,
     sound2: string,
@@ -36,18 +36,29 @@
       required AgoraRhythmPlayerConfig config});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <p>In music education, physical education and other scenarios, teachers usually need to use a metronome so that students can practice with the correct beat. The meter is composed of a downbeat and upbeats. The first beat of each measure is called a downbeat, and the rest are called upbeats.</p>
-            <p>In this method, you need to set the file path of the upbeat and downbeat, the number of beats per measure, the beat speed, and whether to send the sound of the metronome to remote users.</p>
-            <p>After successfully calling this method, the SDK triggers the <xref keyref="onRhythmPlayerStateChanged"/> callback locally to report the status of the virtual metronome.</p>
-            <note type="attention" id="rhythm_play">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <ul>
-            <li props="cpp unreal bp unity flutter cs">This method is for Android and iOS only.</li>
-            <li>After enabling the virtual metronome, the SDK plays the specified audio effect file from the beginning, and controls the playback duration of each file according to <parmname>beatsPerMinute </parmname> you set in <xref keyref="AgoraRhythmPlayerConfig"/>. For example, if you set <parmname>beatsPerMinute</parmname> as <codeph>60</codeph>, the SDK plays one beat every second. If the file duration exceeds the beat duration, the SDK only plays the audio within the beat duration.</li>
-            <li>By default, the sound of the virtual metronome is published in the channel. If you do not want the sound to be heard by the remote users, you can set <parmname>publishRhythmPlayerTrack</parmname> in <xref keyref="ChannelMediaOptions"/> as <codeph><ph keyref="false"/></codeph>.</li>
-            </ul></note> </section>
-        <section id="parameters">
+            <li>After enabling the virtual metronome, the SDK plays the specified audio effect file from the beginning, and controls the playback duration of each file according to <parmname>beatsPerMinute</parmname> you set in <xref keyref="AgoraRhythmPlayerConfig"/>. For example, if you set <parmname>beatsPerMinute</parmname> as <codeph>60</codeph>, the SDK plays one beat every second. If the file duration exceeds the beat duration, the SDK only plays the audio within the beat duration.</li>
+            <li>By default, the sound of the virtual metronome is published in the channel. If you want the sound to be heard by the remote users, you can set <parmname>publishRhythmPlayerTrack</parmname> in <xref keyref="ChannelMediaOptions"/> as <codeph><ph keyref="true"/></codeph>.</li>
+            </ul>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Applicable scenarios</title>
+            <p>In music education, physical education and other scenarios, teachers usually need to use a metronome so that students can practice with the correct beat. The meter is composed of a downbeat and upbeats. The first beat of each measure is called a downbeat, and the rest are called upbeats.</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>This method can be called either before or after joining the channel.</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="related" deliveryTarget="details">
+            <title>Related callbacks</title>
+            <p>After successfully calling this method, the SDK triggers the <xref keyref="onRhythmPlayerStateChanged"/> callback locally to report the status of the virtual metronome.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>

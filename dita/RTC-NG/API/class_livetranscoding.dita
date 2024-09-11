@@ -330,7 +330,7 @@
 struct FLiveTranscoding
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
 	int width = 360;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
@@ -354,9 +354,9 @@ struct FLiveTranscoding
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
 	TArray&lt;FTranscodingUser&gt; transcodingUsers;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
-	FString transcodingExtraInfo;
+	FString transcodingExtraInfo = &quot;&quot;;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
-	FString metadata;
+	FString metadata = &quot;&quot;;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
 	TArray &lt;FRtcImage&gt; watermark;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
@@ -366,7 +366,7 @@ struct FLiveTranscoding
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
 	int backgroundImageCount = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
-	TEnumAsByte&lt;EAUDIO_SAMPLE_RATE_TYPE&gt; audioSampleRate = EAUDIO_SAMPLE_RATE_TYPE::AUDIO_SAMPLE_RATE_48000;
+	EAUDIO_SAMPLE_RATE_TYPE audioSampleRate = EAUDIO_SAMPLE_RATE_TYPE::AUDIO_SAMPLE_RATE_48000;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
 	int audioBitrate = 48;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
@@ -377,6 +377,80 @@ struct FLiveTranscoding
 	TArray&lt;FLiveStreamAdvancedFeature&gt; advancedFeatures;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
 	int advancedFeatureCount = 0;
+	FLiveTranscoding(){}
+	FLiveTranscoding(const agora::rtc::LiveTranscoding &amp; AgoraData){
+		width = AgoraData.width;
+		height = AgoraData.height;
+		videoBitrate = AgoraData.videoBitrate;
+		videoFramerate = AgoraData.videoFramerate;
+		lowLatency = AgoraData.lowLatency;
+		videoGop = AgoraData.videoGop;
+		videoCodecProfile = static_cast&lt;EVIDEO_CODEC_PROFILE_TYPE&gt;(AgoraData.videoCodecProfile);
+		backgroundColor = AgoraData.backgroundColor;
+		videoCodecType = static_cast&lt;EVIDEO_CODEC_TYPE_FOR_STREAM&gt;(AgoraData.videoCodecType);
+		userCount = AgoraData.userCount;
+		for(int i = 0; i&lt; userCount; i++){
+			transcodingUsers.Add(FTranscodingUser((AgoraData.transcodingUsers[i])));
+		}
+	
+		transcodingExtraInfo = UTF8_TO_TCHAR(AgoraData.transcodingExtraInfo);
+		metadata = UTF8_TO_TCHAR(AgoraData.metadata);
+		for(unsigned int i =0; i&lt; AgoraData.watermarkCount;i++)
+		{
+			watermark.Add(FRtcImage(AgoraData.watermark[i]));
+		}
+		watermarkCount = AgoraData.watermarkCount;
+		for(unsigned int i =0; i&lt; AgoraData.backgroundImageCount;i++){
+			backgroundImage.Add(FRtcImage(AgoraData.watermark[i]));
+		}
+		backgroundImageCount = AgoraData.backgroundImageCount;
+		audioSampleRate = static_cast&lt;EAUDIO_SAMPLE_RATE_TYPE&gt;(AgoraData.audioSampleRate);
+		audioBitrate = AgoraData.audioBitrate;
+		audioChannels = AgoraData.audioChannels;
+		audioCodecProfile = static_cast&lt;EAUDIO_CODEC_PROFILE_TYPE&gt;(AgoraData.audioCodecProfile);
+		for(unsigned int i = 0; i&lt; AgoraData.advancedFeatureCount; i++){
+			advancedFeatures.Add(FLiveStreamAdvancedFeature(AgoraData.advancedFeatures[i]));
+		}
+		advancedFeatureCount = AgoraData.advancedFeatureCount;
+	}
+	agora::rtc::LiveTranscoding CreateAgoraData() const {
+		agora::rtc::LiveTranscoding AgoraData;
+		AgoraData.width = width;
+		AgoraData.height = height;
+		AgoraData.videoBitrate = videoBitrate;
+		AgoraData.videoFramerate = videoFramerate;
+		AgoraData.lowLatency = lowLatency;
+		AgoraData.videoGop = videoGop;
+		AgoraData.videoCodecProfile = static_cast&lt;agora::rtc::VIDEO_CODEC_PROFILE_TYPE&gt;(videoCodecProfile);
+		AgoraData.backgroundColor = static_cast&lt;unsigned int&gt;(backgroundColor);
+		AgoraData.videoCodecType = static_cast&lt;agora::rtc::VIDEO_CODEC_TYPE_FOR_STREAM&gt;(videoCodecType);
+		
+		AgoraData.userCount = userCount;
+		SET_UABT_TARRARY_CUSTOMDATA_TO_AGORA_ARRAY___MEMALLOC(AgoraData.transcodingUsers, agora::rtc::TranscodingUser, userCount, this-&gt;transcodingUsers)
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.transcodingExtraInfo,this-&gt;transcodingExtraInfo)
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.metadata,this-&gt;metadata)
+		AgoraData.watermarkCount = watermarkCount;
+		SET_UABT_TARRARY_CUSTOMDATA_TO_AGORA_ARRAY___MEMALLOC(AgoraData.watermark, agora::rtc::RtcImage, watermarkCount, this-&gt;watermark)
+		
+		AgoraData.backgroundImageCount = backgroundImageCount;
+		SET_UABT_TARRARY_CUSTOMDATA_TO_AGORA_ARRAY___MEMALLOC(AgoraData.backgroundImage, agora::rtc::RtcImage, backgroundImageCount, this-&gt;backgroundImage)
+		AgoraData.audioSampleRate = static_cast&lt;agora::rtc::AUDIO_SAMPLE_RATE_TYPE&gt;(audioSampleRate);
+		AgoraData.audioBitrate = audioBitrate;
+		AgoraData.audioChannels = audioChannels;
+		AgoraData.advancedFeatureCount = advancedFeatureCount;
+		SET_UABT_TARRARY_CUSTOMDATA_TO_AGORA_ARRAY___MEMALLOC(AgoraData.advancedFeatures,agora::rtc::LiveStreamAdvancedFeature, advancedFeatureCount,this-&gt;advancedFeatures)
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::LiveTranscoding &amp; AgoraData) const{
+		SET_UABT_TARRARY_CUSTOMDATA_TO_AGORA_ARRAY___MEMFREE(AgoraData.transcodingUsers,userCount, FTranscodingUser)
+		
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.transcodingExtraInfo)
+		SET_UABT_TARRARY_CUSTOMDATA_TO_AGORA_ARRAY___MEMFREE(AgoraData.watermark, watermarkCount, FRtcImage)
+		SET_UABT_TARRARY_CUSTOMDATA_TO_AGORA_ARRAY___MEMFREE(AgoraData.backgroundImage, backgroundImageCount, FRtcImage)
+		SET_UABT_TARRARY_CUSTOMDATA_TO_AGORA_ARRAY___MEMFREE(AgoraData.advancedFeatures, advancedFeatureCount, FLiveStreamAdvancedFeature)
+	
+	}
+		
 };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class LiveTranscoding {
 

@@ -35,6 +35,7 @@
             <p props="native unreal bp unity electron rn cs">完成处理后，你可以在该回调中，传入处理后的视频数据将其发送回 SDK。</p>
             <note type="attention">
             <ul>
+                <li props="native unreal bp">如果你需要将处理后的数据发送给 SDK，需要先调用 <xref keyref="getVideoFrameProcessMode"/> 方法，将视频处理模式设置为读写模式（<ph keyref="PROCESS_MODE_READ_WRITE"/>）。</li>
                 <li props="native unreal bp cs">你需要通过 <xref keyref="getObservedFramePosition"/> 设置观测 <apiname keyref="POSITION_PRE_ENCODER"/>(1 &lt;&lt; 2) 后，才能使用该回调获取本地视频编码前的视频数据。</li>
                 <li props="unity">你需要通过 <xref keyref="registerVideoFrameObserver"/> 的 <parmname>position</parmname> 参数设置观测 <apiname keyref="POSITION_PRE_ENCODER"/>(1 &lt;&lt; 2) 后，才能使用该回调获取本地视频编码前的视频数据。</li>
                 <li props="rn electron">建议你通过 C++ API 实现该回调。</li>

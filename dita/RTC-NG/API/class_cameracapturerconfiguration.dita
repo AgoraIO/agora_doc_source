@@ -193,14 +193,67 @@
 struct FCameraCapturerConfiguration
 {
 	GENERATED_BODY()
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|CameraCapturerConfiguration&quot;)
-	ECAMERA_DIRECTION cameraDirection;
+	ECAMERA_DIRECTION cameraDirection = ECAMERA_DIRECTION::CAMERA_FRONT;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|CameraCapturerConfiguration&quot;)
-	FString deviceId;
+	ECAMERA_FOCAL_LENGTH_TYPE cameraFocalLengthType = ECAMERA_FOCAL_LENGTH_TYPE::CAMERA_FOCAL_LENGTH_DEFAULT;
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|CameraCapturerConfiguration&quot;)
+	bool deviceId_SetValue = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|CameraCapturerConfiguration&quot;)
-	FVideoFormat format;
+	FString deviceId = &quot;&quot;;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|CameraCapturerConfiguration&quot;)
-	bool followEncodeDimensionRatio = true;
+	bool cameraId_SetValue = false;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|CameraCapturerConfiguration&quot;)
+	FString cameraId = &quot;&quot;;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|CameraCapturerConfiguration&quot;)
+	FVideoFormat format = FVideoFormat();
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	EAgoraOptional followEncodeDimensionRatio = EAgoraOptional::AGORA_NULL_VALUE;
+
+	FCameraCapturerConfiguration(){}
+	FCameraCapturerConfiguration(const agora::rtc::CameraCapturerConfiguration &amp; AgoraData){
+#if defined(__ANDROID__) || (defined(__APPLE__) &amp;&amp; TARGET_OS_IOS)
+		cameraDirection = static_cast&lt;ECAMERA_DIRECTION&gt;(AgoraData.cameraDirection.value());
+		cameraFocalLengthType = static_cast&lt;ECAMERA_FOCAL_LENGTH_TYPE&gt;(AgoraData.cameraFocalLengthType.value());
+#else
+		SET_UEBP_OPTIONAL_VAL_FString(this-&gt;deviceId, AgoraData.deviceId);
+#endif
+#if defined(__ANDROID__)
+		cameraId = UTF8_TO_TCHAR(AgoraData.cameraId.value());
+#endif
+		format = FVideoFormat(AgoraData.format);
+		SET_UEBP_OPTIONAL_VAL_BOOL(	followEncodeDimensionRatio ,AgoraData.followEncodeDimensionRatio)
+	}
+	agora::rtc::CameraCapturerConfiguration CreateAgoraData() const {
+		agora::rtc::CameraCapturerConfiguration AgoraData;
+#if defined(__ANDROID__) || (defined(__APPLE__) &amp;&amp; TARGET_OS_IOS)
+		AgoraData.cameraDirection = static_cast&lt;agora::rtc::CAMERA_DIRECTION&gt;(cameraDirection);
+		AgoraData.cameraFocalLengthType = static_cast&lt;agora::rtc::CAMERA_FOCAL_LENGTH_TYPE&gt;(cameraFocalLengthType);
+#else
+		SET_AGORA_OPTIONAL_VAL_CHARPTR______MEMOALLOC(AgoraData.deviceId, this-&gt;deviceId)
+#endif
+#if defined(__ANDROID__)
+		SET_AGORA_OPTIONAL_VAL_CHARPTR______MEMOALLOC(
+				AgoraData.cameraId,this-&gt;cameraId)
+			 
+#endif
+		AgoraData.format = format.CreateAgoraData();
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.followEncodeDimensionRatio, this-&gt;followEncodeDimensionRatio)
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::CameraCapturerConfiguration&amp; AgoraData) const {
+		format.FreeAgoraData(AgoraData.format);
+
+#if defined(__ANDROID__) || (defined(__APPLE__) &amp;&amp; TARGET_OS_IOS)
+#else
+		SET_AGORA_OPTIONAL_VAL_CHARPTR______MEMOFREE(AgoraData.deviceId)
+#endif
+#if defined(__ANDROID__)
+			SET_AGORA_OPTIONAL_VAL_CHARPTR______MEMOFREE(AgoraData.cameraId)
+#endif
+	}
 };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class CameraCapturerConfiguration {
   
@@ -333,14 +386,14 @@ class CameraCapturerConfiguration {
       </plentry>
       <plentry props="mac cpp unreal bp unity electron flutter cs">
         <pt>deviceId</pt>
-        <pd>（可选）摄像头的 ID。<ph props="cpp unreal bp electron flutter">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</ph>
+        <pd>（可选）摄像头的 ID。<ph props="cpp unreal electron flutter">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</ph>
           <note type="attention" props="cpp unreal bp unity flutter">该参数仅适用于 Windows 和 macOS。</note></pd>
       </plentry>
       <plentry>
         <pt>followEncodeDimensionRatio</pt>
         <pd>（可选）是否跟随 <xref keyref="setVideoEncoderConfiguration"/> 中设置的视频宽高比：             
           <ul>
-          <li><codeph><ph keyref="true"/></codeph>：(默认) 跟随。<ph props="android cpp apple framework">SDK 会将采集到的视频按照已设置的视频宽高比进行裁剪，会同步改变本地预览画面、<xref keyref="onCaptureVideoFrame"/> 和 <xref keyref="onPreEncodeVideoFrame"/> 中的视频画面。</ph></li>
+          <li><codeph><ph keyref="true"/></codeph>：(默认) 跟随。SDK 会将采集到的视频按照已设置的视频宽高比进行裁剪<ph props="android cpp apple unreal flutter unity cs electron rn">，会同步改变本地预览画面、<xref keyref="onCaptureVideoFrame"/> 和 <xref keyref="onPreEncodeVideoFrame"/> 中的视频画面</ph>。</li>
           <li><codeph><ph keyref="false"/></codeph>：不跟随。SDK不改变采集到的视频帧宽高比。</li>
           </ul></pd>
       </plentry>

@@ -33,15 +33,31 @@
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FLogConfig {
-
 	GENERATED_BODY()
-
+public:
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LogConfig&quot;)
-	FString filePath;
+	FString filePath = &quot;&quot;;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LogConfig&quot;)
-	int64 fileSizeInKB = 1024;
+	int64 fileSizeInKB = 2048;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LogConfig&quot;)
-	TEnumAsByte&lt;ELOG_LEVEL&gt;	level = ELOG_LEVEL::LOG_LEVEL_INFO;
+	ELOG_LEVEL level = ELOG_LEVEL::LOG_LEVEL_INFO;
+	FLogConfig() {}
+	FLogConfig(const agora::commons::LogConfig&amp; AgoraData) {
+		filePath = UTF8_TO_TCHAR(AgoraData.filePath);
+		fileSizeInKB = AgoraData.fileSizeInKB;
+		level = (ELOG_LEVEL)AgoraData.level;
+	}
+	agora::commons::LogConfig CreateAgoraData() const {
+		agora::commons::LogConfig AgoraData;
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.filePath, filePath)
+		AgoraData.fileSizeInKB = UABT::ToUInt32(fileSizeInKB);
+		AgoraData.level = (agora::commons::LOG_LEVEL)level;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::commons::LogConfig&amp; AgoraData) const {
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.filePath)
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LogConfig {
 

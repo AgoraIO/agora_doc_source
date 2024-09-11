@@ -26,8 +26,8 @@
       const char* provider, const char* extension,
       const char* key, char* value, int buf_len, agora::media::MEDIA_SOURCE_TYPE type = agora::media::UNKNOWN_MEDIA_SOURCE) = 0;
 </codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
-	int GetExtensionProperty(FString provider, FString extension, FString key, FString value, int buf_len, EMEDIA_SOURCE_TYPE type = EMEDIA_SOURCE_TYPE::UNKNOWN_MEDIA_SOURCE);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+	int GetExtensionProperty(const FString&amp; provider, const FString&amp; extension,const FExtensionInfo &amp; ExtensionInfo, const FString&amp; key, FString&amp; value);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract getExtensionProperty(
     provider: string,
     extension: string,
@@ -51,11 +51,16 @@
       MediaSourceType type = MediaSourceType.unknownMediaSource});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
-            <p/>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>加入频道前后均可调用。</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
         </section>
-        <section id="parameters">
+        <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
             <plentry id="vendor">

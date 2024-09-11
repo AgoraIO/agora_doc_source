@@ -47,11 +47,24 @@
 struct FSegmentationProperty
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SegmentationProperty&quot;)
 	ESEG_MODEL_TYPE modelType = ESEG_MODEL_TYPE::SEG_MODEL_AI;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SegmentationProperty&quot;)
 	float greenCapacity = 0.5;
+	FSegmentationProperty(){}
+	FSegmentationProperty(const agora::rtc::SegmentationProperty &amp; AgoraData){
+		modelType = static_cast&lt;ESEG_MODEL_TYPE&gt;(AgoraData.modelType);
+		greenCapacity = AgoraData.greenCapacity;
+	}
+	agora::rtc::SegmentationProperty CreateAgoraData() const {
+		agora::rtc::SegmentationProperty AgoraData;
+		AgoraData.modelType = static_cast&lt;agora::rtc::SegmentationProperty::SEG_MODEL_TYPE&gt;(modelType);
+		AgoraData.greenCapacity = greenCapacity;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::SegmentationProperty&amp; AgoraData) const {
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class SegmentationProperty {
 

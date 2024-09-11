@@ -17,7 +17,7 @@
             <codeblock props="hmos" outputclass="language-arkts">public abstract adjustAudioMixingPublishVolume(volume: number): number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)adjustAudioMixingPublishVolume:(NSInteger)volume;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int adjustAudioMixingPublishVolume(int volume) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
 	int AdjustAudioMixingPublishVolume(int volume);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract adjustAudioMixingPublishVolume(volume: number): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int AdjustAudioMixingPublishVolume(int volume);</codeblock>
@@ -25,13 +25,18 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; adjustAudioMixingPublishVolume(int volume);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p>This method adjusts the volume of audio mixing for publishing (sending to other users).</p>
-            <note type="attention">
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
             <p>Call this method after calling <xref keyref="startAudioMixing2" props="native unreal bp flutter unity rn electron" /> and receiving the <apiname keyref="onAudioMixingStateChanged" /><codeph>(<ph keyref="AUDIO_MIXING_STATE_PLAYING" />)</codeph> callback.</p>
-            </note> </section>
-        <section id="parameters">
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>

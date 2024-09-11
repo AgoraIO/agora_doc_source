@@ -20,7 +20,7 @@
   public static final int BUFFER_TYPE_ARRAY = 2;
   public static final int BUFFER_TYPE_TEXTURE = 3;
   public AgoraVideoFrame() {
-    format = 10;
+    format = 10; 
     timeStamp = 0;
     stride = 0;
     height = 0;
@@ -46,7 +46,7 @@
   public float[] transform;
   public javax.microedition.khronos.egl.EGLContext eglContext10;
   public android.opengl.EGLContext eglContext14;
-
+  
   public byte[] buf;
   public int cropLeft;
   public int cropTop;
@@ -182,8 +182,8 @@
         public byte[] alphaBuffer;
         public bool fillAlphaBuffer;
         public ALPHA_STITCH_MODE alphaStitchMode;
-        public IntPtr d3d11_texture_2d;
-        public int texture_slice_index;
+        public IntPtr d3d11Texture2d;
+        public int textureSliceIndex;
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class ExternalVideoFrame {
   type?: VideoBufferType;
@@ -421,30 +421,28 @@ class ExternalVideoFrame {
                 <pd>This parameter only applies to video data in Texture format. Incoming 4 × 4 transformational matrix. The typical value is a unit matrix.</pd>
             </plentry>
             <plentry props="cpp unreal bp unity electron rn cs flutter">
-                <pt props="bp unity electron rn cs">metadata_buffer</pt>
-                <pt props="cpp unreal flutter">metadataBuffer</pt>
+                <pt>metadataBuffer</pt>
                 <pd>This parameter only applies to video data in Texture format. The MetaData buffer. The default value is <codeph>NULL</codeph>.</pd>
             </plentry>
             <plentry props="cpp unreal bp unity electron rn cs flutter">
-                <pt props="bp unity electron rn cs">metadata_size</pt>
-                <pt props="cpp unreal flutter">metadataSize</pt>
+                <pt>metadataSize</pt>
                 <pd>This parameter only applies to video data in Texture format. The MetaData size. The default value is <codeph>0</codeph>.</pd>
             </plentry>
-            <plentry conkeyref="VideoFrame/d3d" props="cpp unity electron">
-                <pt/>
-                <pd/>
-            </plentry>
+            <plentry props="cpp unreal bp unity electron flutter">
+                <pt>d3d11Texture2d</pt>
+                <pd>This parameter only applies to video data in Windows Texture format. It represents a pointer to an object of type<codeph> ID3D11Texture2D</codeph>, which is used by a video frame.</pd>
+              </plentry>
             <plentry id="alphabuffer">
-                <pt props="cpp android">alphaBuffer</pt>
+                <pt props="cpp android framework">alphaBuffer</pt>
                 <pt props="apple">alphaBuf</pt>
                 <pd>
                   <p>The alpha channel data output by using portrait segmentation algorithm. This data matches the size of the video frame, with each pixel value ranging from [0,255], where 0 represents the background and 255 represents the foreground (portrait).</p>
                   <p>By setting this parameter, you can render the video background into various effects, such as transparent, solid color, image, video, etc.</p>
-                  <note type="attention" props="android">In custom video rendering scenarios, ensure that both the video frame and <parmname>alphaBuffer</parmname> are of the Full Range type; other types may cause abnormal alpha data rendering.</note>
+                  <note type="attention" props="android apple framework">In custom video rendering scenarios, ensure that both the video frame and <parmname>alphaBuffer</parmname> are of the Full Range type; other types may cause abnormal alpha data rendering.</note>
                 </pd>
               </plentry>
               <plentry>
-                <pt props="cpp">fillAlphaBuffer</pt>
+                <pt props="cpp framework">fillAlphaBuffer</pt>
                 <pt props="android apple">fillAlphaData</pt>
                 <pd>This parameter only applies to video data in BGRA or RGBA format. Whether to extract the alpha channel data from the video frame and automatically fill it into <parmname>alphaBuffer</parmname>:<ul>
                   <li><codeph><ph keyref="true"/>：Extract and fill the alpha channel data.</codeph></li>
@@ -459,9 +457,8 @@ class ExternalVideoFrame {
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="cpp unity electron flutter">
-                <pt props="unity electron">texture_slice_index</pt>
-                <pt props="cpp flutter">textureSliceIndex</pt>
+            <plentry props="cpp unreal unity electron flutter">
+                <pt>textureSliceIndex</pt>
                 <pd>This parameter only applies to video data in Windows Texture format. It represents an index of an <codeph>ID3D11Texture2D</codeph> texture object used by the video frame in the <codeph>ID3D11Texture2D</codeph> array.</pd>
             </plentry>
             <plentry>

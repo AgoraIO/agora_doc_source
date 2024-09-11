@@ -23,8 +23,8 @@
               joinSuccess:(void(^ _Nullable)(NSString * _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int joinChannel(const char* token, const char* channelId, uid_t uid,
                           const ChannelMediaOptions&amp; options) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
-	int JoinChannel(FString token, FString channelId, int64 uid, const FChannelMediaOptions&amp; options);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+	int JoinChannelWithOptions(const FString&amp; token, const FString&amp; channelId, int64 uid, const FChannelMediaOptions&amp; options);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract joinChannel(
     token: string,
     channelId: string,

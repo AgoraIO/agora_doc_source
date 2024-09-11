@@ -41,13 +41,29 @@
 struct FLeaveChannelOptions
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LeaveChannelOptions&quot;)
-	AGORAOPTIONAL stopAudioMixing;
+	bool stopAudioMixing = true;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LeaveChannelOptions&quot;)
-	AGORAOPTIONAL stopAllEffect;
+	bool stopAllEffect = true;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LeaveChannelOptions&quot;)
-	AGORAOPTIONAL stopMicrophoneRecording;
+	bool stopMicrophoneRecording = true;
+	
+	FLeaveChannelOptions() {}
+	FLeaveChannelOptions(const agora::rtc::LeaveChannelOptions&amp; AgoraData) {
+		this-&gt;stopAudioMixing = AgoraData.stopAudioMixing;
+		this-&gt;stopAllEffect = AgoraData.stopAllEffect;
+		this-&gt;stopMicrophoneRecording = AgoraData.stopMicrophoneRecording;
+	}
+	agora::rtc::LeaveChannelOptions CreateAgoraData() const {
+		agora::rtc::LeaveChannelOptions AgoraData;
+		AgoraData.stopAudioMixing = this-&gt;stopAudioMixing;
+		AgoraData.stopAllEffect = this-&gt;stopAllEffect;
+		AgoraData.stopMicrophoneRecording = this-&gt;stopMicrophoneRecording;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::LeaveChannelOptions&amp; AgoraData) const {
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LeaveChannelOptions {
   

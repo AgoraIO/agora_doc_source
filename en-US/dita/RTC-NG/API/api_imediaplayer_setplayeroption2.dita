@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_setplayeroption2">
     <title><ph keyref="setPlayerOption2"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Set media player options for providing technical previews or special customization features.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets media player options.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -17,6 +17,8 @@
             <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setPlayerOptionString:(NSString *)key value:(NSString *)value NS_SWIFT_NAME(setPlayerOptionString(_:value:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setPlayerOption(const char* key, const char* value) = 0;</codeblock>
+           <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IMediaPlayer&quot;)
+	int SetPlayerOptionWithString(const FString &amp; key, const FString &amp; value);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setPlayerOptionInString(key: string, value: string): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetPlayerOption(string key, string value);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setPlayerOptionInString(key: string, value: string): number;</codeblock>
@@ -24,13 +26,17 @@
     {required String key, required String value});</codeblock> 
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p conkeyref="setPlayerOption/desc1"/>
             <p>The difference between this method and <xref keyref="setPlayerOption"/> is that the <parmname>value</parmname> parameter of this method is of type String, while the <parmname>value</parmname> of <apiname keyref="setPlayerOption"/> is of type String. These two methods cannot be used together.</p>
-            <note type="attention" conkeyref="setPlayerOption/desc2"/></section>
-        <section id="parameters" conkeyref="setPlayerOption/parameters">
-            </section>
+        </section>
+        <section id="scenario" conkeyref="setPlayerOption/scenario" deliveryTarget="details"/>
+        <section id="timing" conkeyref="setPlayerOption/timing" deliveryTarget="details"/>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="parameters" conkeyref="setPlayerOption/parameters" deliveryTarget="details"/>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>

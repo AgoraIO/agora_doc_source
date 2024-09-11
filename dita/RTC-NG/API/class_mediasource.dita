@@ -67,24 +67,53 @@
         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FAgoraMediaSource
 {
-        GENERATED_BODY()
-
-        UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
-        FString url;
-        UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
-        FString uri;
-        UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
-        int startPos;
-        UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
-        bool autoPlay;
-        UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
-        bool enableCache;
-        UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
-        AGORAOPTIONAL isAgoraSource;
-        UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
-        AGORAOPTIONAL isLiveSource;
-        UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
-        UIMediaPlayerCustomDataProvider* provider;
+	GENERATED_BODY()
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
+	FString url = &quot;&quot;;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
+	FString uri = &quot;&quot;;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
+	int64 startPos = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
+	bool autoPlay = false;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
+	bool enableCache = false;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
+	bool enableMultiAudioTrack = false;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
+	EAgoraOptional isAgoraSource = EAgoraOptional::AGORA_NULL_VALUE;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
+	EAgoraOptional isLiveSource = EAgoraOptional::AGORA_NULL_VALUE;
+		
+	FAgoraMediaSource(){}
+	FAgoraMediaSource(const agora::media::base::MediaSource &amp; AgoraData){
+		url = UTF8_TO_TCHAR(AgoraData.url);
+		uri = UTF8_TO_TCHAR(AgoraData.uri);
+		startPos = AgoraData.startPos;
+		autoPlay = AgoraData.autoPlay;
+		enableCache = AgoraData.enableCache;
+		enableMultiAudioTrack = AgoraData.enableMultiAudioTrack;
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;isAgoraSource,AgoraData.isAgoraSource)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;isLiveSource, AgoraData.isLiveSource)
+			}
+	agora::media::base::MediaSource CreateAgoraData() const {
+		agora::media::base::MediaSource AgoraData;
+		
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.url, url)
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.uri, uri)
+		AgoraData.startPos = startPos;
+		AgoraData.autoPlay = autoPlay;
+		AgoraData.enableCache = enableCache;
+		AgoraData.enableMultiAudioTrack = enableMultiAudioTrack;
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.isAgoraSource,isAgoraSource)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.isLiveSource, isLiveSource)
+				return AgoraData;
+	}
+	void FreeAgoraData(agora::media::base::MediaSource&amp; AgoraData) const{
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.url)
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.uri)
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class MediaSource {
 
@@ -258,7 +287,7 @@ struct FAgoraMediaSource
                     <p>仅当打开的媒体资源为直播流时，将 <parmname>isLiveSource</parmname> 设置为 <codeph><ph keyref="true" /></codeph> 后才可加快媒体资源的打开速度。</p>
                     </note> </pd>
             </plentry>
-            <plentry props="android cpp unreal bp unity cs">
+            <plentry props="android cpp unreal unity cs">
                     <pt>provider</pt>
                     <pd>
                         <p>自定义媒体资源文件的回调。详见 <xref keyref="IMediaPlayerCustomDataProvider"/>。</p>

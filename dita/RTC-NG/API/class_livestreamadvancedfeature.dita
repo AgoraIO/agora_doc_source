@@ -22,13 +22,26 @@
 } ;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FLiveStreamAdvancedFeature {
-
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveStreamAdvancedFeature&quot;)
-	FString featureName;
+	FString featureName = &quot;&quot;;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveStreamAdvancedFeature&quot;)
-	bool opened;
+	bool opened = false;
+	FLiveStreamAdvancedFeature(){}
+	FLiveStreamAdvancedFeature(const agora::rtc::LiveStreamAdvancedFeature &amp; AgoraData){
+		featureName = UTF8_TO_TCHAR(AgoraData.featureName);
+		opened = AgoraData.opened;
+	}
+	agora::rtc::LiveStreamAdvancedFeature CreateAgoraData() const {
+		agora::rtc::LiveStreamAdvancedFeature AgoraData;
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.featureName, this-&gt;featureName)
+		AgoraData.opened = opened;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::LiveStreamAdvancedFeature&amp; AgoraData) const {
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.featureName)
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LiveStreamAdvancedFeature {
   
@@ -72,7 +85,7 @@ struct FLiveStreamAdvancedFeature {
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>如需使用转码推流高级功能，请联系 <xref keyref="mailto-link" />。</p>
+            <p>如需使用转码推流高级功能，请<xref keyref="mailto-link"/>。</p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>

@@ -17,8 +17,8 @@
             <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec" />
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int sendStreamMessageEx(int streamId, const char* data, size_t length, const RtcConnection&amp; connection) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
-	int SendStreamMessageEx(int streamId, FString data, const  FRtcConnection&amp; connection);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+	int SendStreamMessageEx(int streamId, const FString&amp; data, const  FRtcConnection&amp; connection);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract sendStreamMessageEx(streamId: number, data: Uint8Array, length: number, connection: RtcConnection): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int SendStreamMessageEx(int streamId, byte[] data, uint length, RtcConnection connection);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract sendStreamMessageEx(
@@ -41,6 +41,7 @@
             <p conkeyref="sendStreamMessage/error"/>
             <note type="attention">
             <ul>
+            <li>Call this method after <xref keyref="joinChannelEx"/>.</li>
             <li>Ensure that you call <apiname keyref="createDataStreamEx2" /> to create a data channel before calling this method.</li>
             <li>This method applies only to the COMMUNICATION profile or to the hosts in the LIVE_BROADCASTING profile. If an audience in the LIVE_BROADCASTING profile calls this method, the audience may be switched to a host.</li>
             </ul></note> </section>

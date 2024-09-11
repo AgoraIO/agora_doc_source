@@ -30,11 +30,25 @@
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FSrcInfo {
 	GENERATED_BODY()
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SrcInfo&quot;)
-	int bitrateInKbps;
+	int bitrateInKbps = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SrcInfo&quot;)
-	FString name;
-
+	FString name = &quot;&quot;;
+	FSrcInfo(){}
+	FSrcInfo(const agora::media::base::SrcInfo&amp; srcInfo) {
+		bitrateInKbps = srcInfo.bitrateInKbps;
+		name = UTF8_TO_TCHAR(srcInfo.name);
+	}
+	agora::media::base::SrcInfo CreateAgoraData() const {
+		agora::media::base::SrcInfo srcInfo;
+		srcInfo.bitrateInKbps = bitrateInKbps;
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(srcInfo.name,name)
+		return srcInfo;
+	}
+	void FreeAgoraData(agora::media::base::SrcInfo&amp; srcInfo) const {
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(srcInfo.name)
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class SrcInfo {
   

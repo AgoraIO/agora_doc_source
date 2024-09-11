@@ -23,7 +23,8 @@
     (void)msg;
   }
 </codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnError, int, err, FString, msg);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnError(int error, const FString&amp; msg);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onError?(err: ErrorCodeType, msg: string): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp"> public virtual void OnError(int err, string msg) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onError?(err: ErrorCodeType, msg: string): void;</codeblock>
@@ -42,15 +43,16 @@
             </plentry>
             <plentry props="apple cpp unreal unity rn flutter electron cs">
                 <pt props="apple">errorCode</pt>
-                <pt props="hmos cpp unreal bp unity rn flutter electron cs">err</pt>
+                <pt props="hmos cpp unreal unity rn flutter electron cs">err</pt>
                 <pd>错误码。详见 <xref keyref="ERROR_CODE_TYPE"/>。</pd>
             </plentry>
             <plentry props="cpp unreal bp electron unity rn flutter cs">
                 <pt>msg</pt>
                 <pd>错误描述。</pd>
             </plentry>
-            <plentry props="android bp">
-                <pt>err</pt>
+            <plentry props="android hmos bp">
+                <pt props="android hmos">err</pt>
+                <pt props="bp">error</pt>
                 <pd>错误码。</pd>
                 <pd>
                     <ul>

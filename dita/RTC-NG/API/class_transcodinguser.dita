@@ -70,26 +70,49 @@
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FTranscodingUser {
-
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingUser&quot;)
-	int64 uid;
+	int64 uid = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingUser&quot;)
-	int x;
+	int x = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingUser&quot;)
-	int y;
+	int y = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingUser&quot;)
-	int width;
+	int width = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingUser&quot;)
-	int height;
+	int height = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingUser&quot;)
-	int zOrder;
+	int zOrder = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingUser&quot;)
 	float alpha = 1.0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingUser&quot;)
-	int audioChannel;
-
+	int audioChannel = 0;
+	FTranscodingUser(){}
+	FTranscodingUser(const agora::rtc::TranscodingUser &amp; AgoraData){
+		uid = AgoraData.uid;
+		x = AgoraData.x;
+		y = AgoraData.y;
+		width = AgoraData.width;
+		height = AgoraData.height;
+		zOrder = AgoraData.zOrder;
+		alpha = AgoraData.alpha;
+		audioChannel = AgoraData.audioChannel;
+	}
+	agora::rtc::TranscodingUser CreateAgoraData() const {
+		agora::rtc::TranscodingUser AgoraData;
+		AgoraData.uid = uid;
+		AgoraData.x = x;
+		AgoraData.y = y;
+		AgoraData.width = width;
+		AgoraData.height = height;
+		AgoraData.zOrder = zOrder;
+		AgoraData.alpha = alpha;
+		AgoraData.audioChannel = audioChannel;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::TranscodingUser&amp; AgoraData) const {
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class TranscodingUser {
   uid?: number

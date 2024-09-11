@@ -90,15 +90,33 @@
 struct FVirtualBackgroundSource
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VirtualBackgroundSource&quot;)
 	EBACKGROUND_SOURCE_TYPE background_source_type = EBACKGROUND_SOURCE_TYPE::BACKGROUND_COLOR;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VirtualBackgroundSource&quot;)
 	int64 color = 0xffffff;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VirtualBackgroundSource&quot;)
-	FString source;
+	FString source = &quot;&quot;;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VirtualBackgroundSource&quot;)
 	EBACKGROUND_BLUR_DEGREE blur_degree = EBACKGROUND_BLUR_DEGREE::BLUR_DEGREE_HIGH;
+	FVirtualBackgroundSource(){}
+	FVirtualBackgroundSource(const agora::rtc::VirtualBackgroundSource &amp; AgoraData){
+		background_source_type = static_cast&lt;EBACKGROUND_SOURCE_TYPE&gt;(AgoraData.background_source_type);
+		color = AgoraData.color;
+		source = AgoraData.source;
+		blur_degree = static_cast&lt;EBACKGROUND_BLUR_DEGREE&gt;(AgoraData.blur_degree);
+	}
+	agora::rtc::VirtualBackgroundSource CreateAgoraData() const {
+		agora::rtc::VirtualBackgroundSource AgoraData;
+		AgoraData.background_source_type = static_cast&lt;agora::rtc::VirtualBackgroundSource::BACKGROUND_SOURCE_TYPE&gt;(background_source_type);
+		AgoraData.color = color;
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.source, this-&gt;source)
+		AgoraData.blur_degree = static_cast&lt;agora::rtc::VirtualBackgroundSource::BACKGROUND_BLUR_DEGREE&gt;(blur_degree);
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::VirtualBackgroundSource&amp; AgoraData) const {
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.source)
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VirtualBackgroundSource {
   

@@ -20,7 +20,8 @@
     (void)uid;
     (void)muted;
     }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnUserMuteAudio, int64, uid, bool, muted);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnUserMuteAudio(int64 uid, bool muted);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onUserMuteAudio?(
     connection: RtcConnection,
     remoteUid: number,

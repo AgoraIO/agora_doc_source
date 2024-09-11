@@ -51,13 +51,46 @@
 struct FEncryptionConfig
 {
 	GENERATED_BODY()
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncryptionConfig&quot;)
+	EENCRYPTION_MODE encryptionMode = EENCRYPTION_MODE::AES_128_GCM;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncryptionConfig&quot;)
+	FString encryptionKey = &quot;&quot;;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncryptionConfig&quot;)
+	FString encryptionKdfSalt = &quot;&quot;;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncryptionConfig&quot;)
+	bool datastreamEncryptionEnabled = false;
+	FEncryptionConfig(){}
+	FEncryptionConfig(const agora::rtc::EncryptionConfig &amp; AgoraData){
+		encryptionMode = static_cast&lt;EENCRYPTION_MODE&gt;(AgoraData.encryptionMode);
+		encryptionKey = UTF8_TO_TCHAR(AgoraData.encryptionKey);
+		char valencryptionKdfSalt[32] = {0};
+		int AgoraCount = 32;
+		for (int i = 0; i &lt; AgoraCount; i++) {
+			encryptionKdfSalt[i] = AgoraData.encryptionKdfSalt[i];
+		}
+		encryptionKdfSalt = valencryptionKdfSalt;
+		datastreamEncryptionEnabled = AgoraData.datastreamEncryptionEnabled;
+	}
+	agora::rtc::EncryptionConfig CreateAgoraData() const {
+		agora::rtc::EncryptionConfig AgoraData;
+		AgoraData.encryptionMode = static_cast&lt;agora::rtc::ENCRYPTION_MODE&gt;(encryptionMode);
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.encryptionKey,this-&gt;encryptionKey)
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncryptionConfig&quot;)
-	ENCRYPTION_MODE encryptionMode = ENCRYPTION_MODE::AES_128_GCM;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncryptionConfig&quot;)
-	FString encryptionKey;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncryptionConfig&quot;)
-	FString encryptionKdfSalt;
+		std::string StdencryptionKdfSalt = TCHAR_TO_UTF8(*encryptionKdfSalt);
+		int AgoraCount = 32;
+		for (int i = 0; i &lt; AgoraCount; i++) {
+			if(i &gt;= StdencryptionKdfSalt.size()){
+				break;
+			}
+			AgoraData.encryptionKdfSalt[i] = StdencryptionKdfSalt[i];
+		}
+		AgoraData.datastreamEncryptionEnabled = datastreamEncryptionEnabled;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::EncryptionConfig &amp; AgoraData) const {
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.encryptionKey)
+	}
 };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class EncryptionConfig {
 

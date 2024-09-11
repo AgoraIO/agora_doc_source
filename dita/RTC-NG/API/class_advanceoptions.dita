@@ -56,14 +56,29 @@
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FAdvanceOptions {
-
 	GENERATED_BODY()
-
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AdvanceOptions&quot;)
 	FENUMWRAP_ENCODING_PREFERENCE encodingPreference = EENUMCUSTOM_ENCODING_PREFERENCE::PREFER_AUTO;
-
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AdvanceOptions&quot;)
-	ECOMPRESSION_PREFERENCE compressionPreference;
+	ECOMPRESSION_PREFERENCE compressionPreference = ECOMPRESSION_PREFERENCE::PREFER_QUALITY;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AdvanceOptions&quot;)
+	bool encodeAlpha = false;
+
+	FAdvanceOptions() {}
+	FAdvanceOptions(const agora::rtc::AdvanceOptions &amp; AgoraData){
+		encodingPreference = AgoraData.encodingPreference;
+		compressionPreference = static_cast&lt;ECOMPRESSION_PREFERENCE&gt;(AgoraData.compressionPreference);
+		encodeAlpha = AgoraData.encodeAlpha;
+	}
+	agora::rtc::AdvanceOptions CreateAgoraData() const{
+		agora::rtc::AdvanceOptions AgoraData;
+		AgoraData.encodingPreference = encodingPreference.GetRawValue();
+		AgoraData.compressionPreference =static_cast&lt;agora::rtc::COMPRESSION_PREFERENCE&gt;(compressionPreference);
+		AgoraData.encodeAlpha = encodeAlpha;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::AdvanceOptions&amp; AgoraData) const {
+			}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class AdvanceOptions {
   encodingPreference?: EncodingPreference;
@@ -119,7 +134,7 @@ class AdvanceOptions {
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
-            <dlentry props="native">
+            <dlentry props="android apple cpp">
                 <dt>自从</dt>
                 <dd>v4.1.0</dd>
             </dlentry>

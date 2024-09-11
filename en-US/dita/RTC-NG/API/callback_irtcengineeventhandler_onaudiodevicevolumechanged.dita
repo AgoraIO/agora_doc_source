@@ -21,7 +21,8 @@
     (void)volume;
     (void)muted;
   }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnAudioDeviceVolumeChanged, FENUMWRAP_MEDIA_DEVICE_TYPE, deviceType, int, volume, bool, muted);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnAudioDeviceVolumeChanged(FENUMWRAP_MEDIA_DEVICE_TYPE deviceType, int volume, bool muted);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onAudioDeviceVolumeChanged?(
     deviceType: MediaDeviceType,
     volume: number,

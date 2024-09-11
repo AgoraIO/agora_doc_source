@@ -55,13 +55,29 @@
 struct FSimulcastStreamConfig
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SimulcastStreamConfig&quot;)
-	FVideoDimensions dimensions;
+	FVideoDimensions dimensions = FVideoDimensions();
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SimulcastStreamConfig&quot;)
-	int bitrate;
+	int kBitrate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SimulcastStreamConfig&quot;)
-	int framerate;
+	int framerate = 0;
+	FSimulcastStreamConfig(){}
+	FSimulcastStreamConfig(const agora::rtc::SimulcastStreamConfig &amp; AgoraData){
+		dimensions = FVideoDimensions(AgoraData.dimensions);
+		kBitrate = AgoraData.kBitrate;
+		framerate = AgoraData.framerate;
+	}
+	agora::rtc::SimulcastStreamConfig CreateAgoraData() const {
+		agora::rtc::SimulcastStreamConfig AgoraData;
+		AgoraData.dimensions = dimensions.CreateAgoraData();
+		AgoraData.kBitrate = kBitrate;
+		AgoraData.framerate = framerate;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::SimulcastStreamConfig&amp; AgoraData) const {
+		dimensions.FreeAgoraData(AgoraData.dimensions);
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class SimulcastStreamConfig {
   dimensions?: VideoDimensions;

@@ -23,7 +23,8 @@
     (void)height;
     (void)rotation;
   }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnVideoSizeChanged, EVIDEO_SOURCE_TYPE, sourceType, int64, uid, int, width, int, height, int, rotation);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnVideoSizeChanged(EVIDEO_SOURCE_TYPE sourceType, int64 uid, int width, int height, int rotation);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onVideoSizeChanged?(
     connection: RtcConnection,
     sourceType: VideoSourceType,

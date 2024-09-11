@@ -26,7 +26,8 @@
     (void)height;
     (void)elapsed;
     }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnFirstRemoteVideoDecoded, int64, uid, int, width, int, height, int, elapsed);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnFirstRemoteVideoDecoded(int64 uid, int width, int height, int elapsed);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onFirstRemoteVideoDecoded?(
     connection: RtcConnection,
     remoteUid: number,

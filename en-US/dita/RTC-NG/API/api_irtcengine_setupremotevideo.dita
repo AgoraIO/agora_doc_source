@@ -17,7 +17,7 @@
             <codeblock props="hmos" outputclass="language-arkts">public abstract setupRemoteVideo(canvas: VideoCanvas): number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setupRemoteVideo:(AgoraRtcVideoCanvas * _Nonnull)remote;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setupRemoteVideo(const VideoCanvas&amp; canvas) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
 	int SetupRemoteVideo(const FVideoCanvas&amp; canvas);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setupRemoteVideo(canvas: VideoCanvas): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetupRemoteVideo(VideoCanvas canvas);</codeblock>
@@ -37,7 +37,7 @@
             <li props="flutter" id="render">In Flutter, you don't need to call this method. Use <xref keyref="AgoraVideoView"/> instead to render local and remote views.</li>
              <li props="unity cs">If you need to implement native window rendering, use this method; if you only need to render video images in your Unity project, use the methods in the <xref keyref="VideoSurface"/> class instead.</li>
             <li props="native unreal bp unity rn flutter cs">To update the rendering or mirror mode of the remote video view during a call, use the <xref keyref="setRemoteRenderMode2"/> method.</li>
-            <li props="android cpp apple framework">If you use the Agora recording function, the recording client joins the channel as a placeholder client, triggering the <xref keyref="onUserJoined"/> callback. Do not bind the placeholder client to the app view because the placeholder client does not send any video streams. If your app does not recognize the placeholder client, bind the remote user to the view when the SDK triggers the <xref keyref="onFirstRemoteVideoDecoded"/> callback.</li>
+            <li props="android cpp apple framework">When using the recording service, the app does not need to bind a view, as it does not send a video stream. If your app does not recognize the recording service, bind the remote user to the view when the SDK triggers the <xref keyref="onFirstRemoteVideoDecoded"/> callback.</li>
             <li props="electron">If you want to stop rendering the view, set <parmname>view</parmname> to <ph keyref="NULL" /> and then call this method again to stop rendering and clear the rendering cache.</li>
             </ul> </note> </section>
         <section id="parameters">

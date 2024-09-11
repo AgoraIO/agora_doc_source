@@ -30,7 +30,8 @@ elapseSinceLastState:(int)elapseSinceLastState;</codeblock>
      (void)newState;
      (void)elapseSinceLastState;
      }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnAudioPublishStateChanged, FString, channel, ESTREAM_PUBLISH_STATE, oldState, ESTREAM_PUBLISH_STATE, newState, int, elapseSinceLastState);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnAudioPublishStateChanged(const FString&amp; channel, ESTREAM_PUBLISH_STATE oldState, ESTREAM_PUBLISH_STATE newState, int elapseSinceLastState);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onAudioPublishStateChanged?(
     channel: string,
     oldState: StreamPublishState,

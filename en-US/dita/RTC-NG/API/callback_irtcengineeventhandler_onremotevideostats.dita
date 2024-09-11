@@ -20,7 +20,8 @@
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onRemoteVideoStats(const RemoteVideoStats&amp; stats) {
     (void)stats;
     }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnRemoteVideoStats, const FRemoteVideoStats&amp;, stats);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnRemoteVideoStats(const FRemoteVideoStats&amp; stats);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onRemoteVideoStats?(connection: RtcConnection, stats: RemoteVideoStats): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnRemoteVideoStats(RtcConnection connection, RemoteVideoStats stats) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onRemoteVideoStats?(connection: RtcConnection, stats: RemoteVideoStats): void;</codeblock>

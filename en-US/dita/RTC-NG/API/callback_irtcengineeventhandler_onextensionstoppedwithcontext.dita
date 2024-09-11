@@ -19,7 +19,8 @@
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onExtensionStoppedWithContext(const ExtensionContext &amp;context) {
     (void)context;
   }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnExtensionStopped, FString, provider, FString, extension);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnExtensionStoppedWithContext(const FExtensionContext&amp; context);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onExtensionStoppedWithContext?(context: ExtensionContext): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnExtensionStoppedWithContext(ExtensionContext context){ }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onExtensionStoppedWithContext?(context: ExtensionContext): void;</codeblock>
@@ -33,14 +34,6 @@
             <title>Parameters</title>
             <parml>
             <plentry conkeyref="onExtensionErrorWithContext/context">
-                <pt />
-                <pd />
-            </plentry>
-            <plentry conkeyref="setExtensionProperty/vendor" props="framework">
-                <pt />
-                <pd />
-            </plentry>
-            <plentry conkeyref="onExtensionEventWithContext/extension" props="framework">
                 <pt />
                 <pd />
             </plentry>

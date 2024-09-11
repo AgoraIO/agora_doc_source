@@ -18,8 +18,8 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (id&lt;AgoraRtcMediaPlayerProtocol&gt;_Nullable)createMediaPlayerWithDelegate:
                     (id&lt;AgoraRtcMediaPlayerDelegate&gt;_Nullable)delegate;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual agora_refptr &lt;IMediaPlayer&gt; createMediaPlayer() = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
-	UIMediaPlayer* CreateMediaPlayer();</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintPure, Category = &quot;Agora|IAgoraMediaPlayer&quot;)
+	static UAgoraBPuMediaPlayer* GetAgoraMediaPlayer();</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract createMediaPlayer(): IMediaPlayer;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract IMediaPlayer CreateMediaPlayer();</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract createMediaPlayer(): IMediaPlayer;</codeblock>
@@ -27,7 +27,7 @@
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p>Before calling any APIs in the <xref keyref="IMediaPlayer"/> class, you need to call this method to create an instance of the media player.</p>
+            <p>Before calling any APIs in the <xref keyref="IMediaPlayer"/> class, you need to call this method to create an instance of the media player. If you need to create multiple instances, you can call this method multiple times.</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>Call timing</title>

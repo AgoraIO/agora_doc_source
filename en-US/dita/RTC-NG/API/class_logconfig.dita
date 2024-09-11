@@ -26,15 +26,31 @@
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FLogConfig {
-
 	GENERATED_BODY()
-
+public:
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LogConfig&quot;)
-	FString filePath;
+	FString filePath = &quot;&quot;;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LogConfig&quot;)
-	int64 fileSizeInKB = 1024;
+	int64 fileSizeInKB = 2048;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LogConfig&quot;)
-	TEnumAsByte&lt;ELOG_LEVEL&gt;	level = ELOG_LEVEL::LOG_LEVEL_INFO;
+	ELOG_LEVEL level = ELOG_LEVEL::LOG_LEVEL_INFO;
+	FLogConfig() {}
+	FLogConfig(const agora::commons::LogConfig&amp; AgoraData) {
+		filePath = UTF8_TO_TCHAR(AgoraData.filePath);
+		fileSizeInKB = AgoraData.fileSizeInKB;
+		level = (ELOG_LEVEL)AgoraData.level;
+	}
+	agora::commons::LogConfig CreateAgoraData() const {
+		agora::commons::LogConfig AgoraData;
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.filePath, filePath)
+		AgoraData.fileSizeInKB = UABT::ToUInt32(fileSizeInKB);
+		AgoraData.level = (agora::commons::LOG_LEVEL)level;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::commons::LogConfig&amp; AgoraData) const {
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.filePath)
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LogConfig {
 
@@ -94,8 +110,8 @@ struct FLogConfig {
                 <pd>
                     <p>The complete path of the log files. Agora recommends using the default log directory. If you need to modify the default directory, ensure that the directory you specify exists and is writable.</p>
                     <p props="cpp unreal bp unity electron rn cs">The default log directory is:<ul>
-                    <li props="cpp unreal bp unity rn flutter">Android：<filepath id="android-path">/storage/emulated/0/Android/data/&lt;packagename>/files/agorasdk.log</filepath>.</li>
-                    <li props="cpp unreal bp unity rn flutter">iOS：<filepath id="ios-path">App Sandbox/Library/caches/agorasdk.log</filepath>.</li>
+                    <li props="cpp unreal bp unity rn flutter">Android: <filepath id="android-path">/storage/emulated/0/Android/data/&lt;packagename>/files/agorasdk.log</filepath>.</li>
+                    <li props="cpp unreal bp unity rn flutter">iOS: <filepath id="ios-path">App Sandbox/Library/caches/agorasdk.log</filepath>.</li>
                     <li props="cpp unreal bp unity electron flutter">macOS:<ul id="mac-path">
                         <li>If Sandbox is enabled:<filepath> App Sandbox/Library/Logs/agorasdk.log</filepath>. For example, <filepath>/Users/&lt;username>/Library/Containers/&lt;AppBundleIdentifier>/Data/Library/Logs/agorasdk.log</filepath>.</li>
                         <li>If Sandbox is disabled: <filepath>~/Library/Logs/agorasdk.log</filepath></li>
@@ -104,7 +120,7 @@ struct FLogConfig {
                     </ul></p>
                     <p props="android hmos">The default path is <filepath>/storage/emulated/0/Android/data/&lt;packagename>/files/agorasdk.log</filepath>.</p>
                     <p props="ios">The default path is <filepath>AppSandbox/Library/caches/agorasdk.log</filepath>.</p>
-                    <p props="mac">The default path is:<ul>
+                    <p props="mac">The default log directory is:<ul>
                     <li>If Sandbox is enabled: <filepath>AppSandbox/Library/Logs/agorasdk.log</filepath>. For example, <filepath>/Users/&lt;username>/Library/Containers/&lt;AppBundleIdentifier>/Data/Library/Logs/agorasdk.log</filepath>.</li>
                     <li>If Sandbox is disabled: <filepath>~/Library/Logs/agorasdk.log</filepath></li>
                     </ul>

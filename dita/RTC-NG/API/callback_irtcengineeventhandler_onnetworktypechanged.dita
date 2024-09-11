@@ -19,7 +19,8 @@
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onNetworkTypeChanged(NETWORK_TYPE type) {
     (void)type;
     }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnNetworkTypeChanged, FENUMWRAP_NETWORK_TYPE, type);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnNetworkTypeChanged(FENUMWRAP_NETWORK_TYPE type);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onNetworkTypeChanged?(connection: RtcConnection, type: NetworkType): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnNetworkTypeChanged(RtcConnection connection, NETWORK_TYPE type) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onNetworkTypeChanged?(connection: RtcConnection, type: NetworkType): void;</codeblock>

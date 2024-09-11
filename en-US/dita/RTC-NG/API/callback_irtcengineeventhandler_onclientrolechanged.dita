@@ -17,7 +17,8 @@ NS_SWIFT_NAME(rtcEngine(_:didClientRoleChanged:newRole:newRoleOptions:));</codeb
     (void)newRole;
     (void)newRoleOptions;
 }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnClientRoleChanged, ECLIENT_ROLE_TYPE, oldRole, ECLIENT_ROLE_TYPE, newRole, FClientRoleOptions, roleoption);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnClientRoleChanged(ECLIENT_ROLE_TYPE oldRole, ECLIENT_ROLE_TYPE newRole, const FClientRoleOptions&amp; newRoleOptions);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onClientRoleChanged?(
     connection: RtcConnection,
     oldRole: ClientRoleType,
@@ -78,7 +79,7 @@ NS_SWIFT_NAME(rtcEngine(_:didClientRoleChanged:newRole:newRoleOptions:));</codeb
                 <pt>newRoleOptions</pt>
                 <pd>
                     <dl outputclass="since">
-                    <dlentry props="native">
+                    <dlentry props="android apple cpp">
                         <dt>Since</dt>
                         <dd>v4.1.0</dd>
                     </dlentry>

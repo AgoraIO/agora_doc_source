@@ -22,7 +22,8 @@
     (void)stream;
     (void)error;
   }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnLocalVideoTranscoderError, const FTranscodingVideoStream&amp;, stream, EVIDEO_TRANSCODER_ERROR, error);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnLocalVideoTranscoderError(const FTranscodingVideoStream&amp; stream, EVIDEO_TRANSCODER_ERROR error);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onLocalVideoTranscoderError?(
     stream: TranscodingVideoStream,
     error: VideoTranscoderError
@@ -39,7 +40,7 @@
         <section id="detailed_desc">
             <title>详情</title>
             <dl outputclass="since">
-            <dlentry props="native">
+            <dlentry props="android apple cpp">
                 <dt>自从</dt>
                 <dd>v4.2.0</dd>
             </dlentry>

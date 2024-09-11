@@ -17,7 +17,8 @@
             <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (NSArray&lt;AgoraFocalLengthInfo *>* __nullable)queryCameraFocalLengthCapability NS_SWIFT_NAME(queryCameraFocalLengthCapability());</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int queryCameraFocalLengthCapability(agora::rtc::FocalLengthInfo* focalLengthInfos, int&amp; size) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp"></codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+	int QueryCameraFocalLengthCapability(const TArray&lt;FFocalLengthInfo&gt; &amp; focalLengthInfos);</codeblock>
             <codeblock props="electron" outputclass="language-typescript"></codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int QueryCameraFocalLengthCapability(ref FocalLengthInfo[] focalLengthInfos, ref int size);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract queryCameraFocalLengthCapability(): {
@@ -30,27 +31,27 @@
         <section id="detailed_desc">
             <title>详情</title>
             <dl outputclass="since">
-            <dlentry props="native">
+            <dlentry props="android apple cpp">
                 <dt>自从</dt>
                 <dd>v4.3.1</dd>
             </dlentry>
             </dl>
             <p>如需开启摄像头广角、超广角拍摄模式，建议你先调用该方法查询设备是否具备相应的焦距能力，再根据查询结果调用 <xref keyref="setCameraCapturerConfiguration"/> 调整摄像头的焦距配置，以达到最佳的摄像头采集效果。</p>
             <note type="attention" props="cpp unreal bp flutter unity">该方法仅适用于 Android 和 iOS。</note> </section>
-        <section id="parameters" props="cpp unity">
+        <section id="parameters" props="cpp unreal bp unity">
             <title>参数</title>
             <parml>
             <plentry>
                 <pt>focalLengthInfos</pt>
-                <pd props="cpp">输入和输出参数。指向 <xref keyref="FocalLengthInfo"/> 对象数组的指针：<ul>
+                <pd props="cpp unreal bp">输入和输出参数。指向 <xref keyref="FocalLengthInfo"/> 对象数组的指针：<ul>
                     <li>输入值：指向一个 <xref keyref="FocalLengthInfo"/> 对象数组，用于存储焦距信息。</li>
                     <li>输出值：方法执行后，输出查询到的焦距信息。</li></ul>
                 </pd>
                 <pd props="unity">输出参数。方法执行后，输出包含摄像头焦距信息的 <xref keyref="FocalLengthInfo"/> 对象数组。</pd>
             </plentry>
-            <plentry>
+            <plentry props="cpp unreal unity">
                 <pt>size</pt>
-                <pd props="cpp">输入和输出参数。焦距信息数量：<ul>
+                <pd props="cpp unreal">输入和输出参数。焦距信息数量：<ul>
                     <li>输入值：指定 <parmname>focalLengthInfos</parmname> 数组可以容纳的最大焦距信息数量。请确保该值不小于 8，即 <parmname>focalLengthInfos</parmname> 至少有空间存储 8 个焦距信息。</li>
                     <li>输出值：方法执行后，输出查询到的焦距信息数量。</li></ul>
                 </pd>
@@ -65,7 +66,7 @@
                 <li><parmname>focalLengthInfos</parmname>：<xref keyref="FocalLengthInfo"/> 对象数组，其中包含摄像头的方向和焦距类型。</li>
                 <li><parmname>size</parmname>：实际查询到的焦距信息数量。</li></ul>
             </p>
-            <ul props="cpp unity">
+            <ul props="cpp unreal bp unity">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
             </ul> </section>

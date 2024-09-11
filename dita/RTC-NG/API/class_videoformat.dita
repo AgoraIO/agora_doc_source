@@ -25,14 +25,29 @@
               }</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FVideoFormat {
-
 	GENERATED_BODY()
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFormat&quot;)
 	int width = 640;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFormat&quot;)
 	int height = 360;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFormat&quot;)
 	int fps = 15;
+	FVideoFormat(){}
+	FVideoFormat(const agora::rtc::VideoFormat &amp; AgoraData){
+		width = AgoraData.width;
+		height = AgoraData.height;
+		fps = AgoraData.fps;
+	}
+	agora::rtc::VideoFormat CreateAgoraData() const {
+		agora::rtc::VideoFormat AgoraData;
+		AgoraData.width = width;
+		AgoraData.height = height;
+		AgoraData.fps = fps;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::VideoFormat&amp; AgoraData) const {
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoFormat {
   

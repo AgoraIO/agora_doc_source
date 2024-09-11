@@ -20,24 +20,34 @@
 </codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int open(const char* url, int64_t startPos) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IMediaPlayer&quot;)
-	int Open(FString url, int64 startPos);</codeblock>
+	int Open(const FString &amp; url, int64 startPos);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract open(url: string, startPos: number): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int Open(string url, Int64 startPos);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract open(url: string, startPos: number): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; open({required String url, required int startPos});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="hide">On the Android platform, if you need to open a file in URI format, use <xref keyref="open2" />.</p>
             <p id="uri" props="android hmos">This method supports playing URI files starting with <codeph>content://</codeph>.</p>
             <p id="format" props="native"><ph props="cn">For supported formats of Agora media player, see <xref keyref="media-player"/>.</ph></p>
             <p props="hide">If you want to choose the CDN route for playing the media resource, you can call the <xref keyref="openWithAgoraCDNSrc" /> method. Agora changes the CDN route through the self-developed scheduling center to improve the viewing user experience. If you do not need to choose the CDN route for playing the media resource, you can call the <xref keyref="open" /> method.</p>
             <note type="attention" id="note">
             <p props="native unreal bp unity electron flutter cs">This method is called asynchronously.</p>
-            <p id="open">If you need to play a media file, make sure you receive the <xref keyref="onPlayerSourceStateChanged" /> callback reporting <apiname keyref="PLAYER_STATE_OPEN_COMPLETED" /> before calling the <xref keyref="play" /> method to play the file.</p>
             </note> </section>
-        <section id="parameters">
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>This method can be called either before or after joining the channel.</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="related" deliveryTarget="details">
+            <title>Related callbacks</title>
+            <p id="open">After calling this method, the SDK triggers the <xref keyref="onPlayerSourceStateChanged" /> callback. After receiving the report of the playback status as <apiname keyref="PLAYER_STATE_OPEN_COMPLETED" />, you can call the <xref keyref="play" /> method to play the media file.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>

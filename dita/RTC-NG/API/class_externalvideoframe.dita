@@ -20,7 +20,7 @@
   public static final int BUFFER_TYPE_ARRAY = 2;
   public static final int BUFFER_TYPE_TEXTURE = 3;
   public AgoraVideoFrame() {
-    format = 10;
+    format = 10; 
     timeStamp = 0;
     stride = 0;
     height = 0;
@@ -46,7 +46,7 @@
   public float[] transform;
   public javax.microedition.khronos.egl.EGLContext eglContext10;
   public android.opengl.EGLContext eglContext14;
-
+  
   public byte[] buf;
   public int cropLeft;
   public int cropTop;
@@ -182,8 +182,8 @@
         public byte[] alphaBuffer;
         public bool fillAlphaBuffer;
         public ALPHA_STITCH_MODE alphaStitchMode;
-        public IntPtr d3d11_texture_2d;
-        public int texture_slice_index;
+        public IntPtr d3d11Texture2d;
+        public int textureSliceIndex;
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class ExternalVideoFrame {
   type?: VideoBufferType;
@@ -469,9 +469,8 @@ class ExternalVideoFrame {
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="cpp unity electron flutter">
-                <pt props="unity electron">texture_slice_index</pt>
-                <pt props="cpp flutter">textureSliceIndex</pt>
+            <plentry props="cpp unreal unity electron flutter">
+                <pt>textureSliceIndex</pt>
                 <pd>该参数仅适用于 Windows Texture 格式的视频数据。表示在 <codeph>ID3D11Texture2D</codeph> 数组中，被视频帧使用的某一个 <codeph>ID3D11Texture2D</codeph> 纹理对象的索引。</pd>
             </plentry>
             <plentry>

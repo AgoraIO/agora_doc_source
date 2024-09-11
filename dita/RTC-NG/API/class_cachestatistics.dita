@@ -39,12 +39,30 @@
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FCacheStatistics {
 	GENERATED_BODY()
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|CacheStatistics&quot;)
-	int64 fileSize;
+	int64 fileSize = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|CacheStatistics&quot;)
-	int64 cacheSize;
+	int64 cacheSize = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|CacheStatistics&quot;)
-	int64 downloadSize;
+	int64 downloadSize = 0;
+	
+	FCacheStatistics(){}
+	FCacheStatistics(const agora::media::base::CacheStatistics&amp; cacheStatistics) {
+		fileSize = cacheStatistics.fileSize;
+		cacheSize = cacheStatistics.cacheSize;
+		downloadSize = cacheStatistics.downloadSize;
+	}
+	agora::media::base::CacheStatistics CreateAgoraData() const {
+		agora::media::base::CacheStatistics cacheStatistics;
+		cacheStatistics.fileSize = fileSize;
+		cacheStatistics.cacheSize = cacheSize;
+		cacheStatistics.downloadSize = downloadSize;
+		return cacheStatistics;
+	}
+	void FreeAgoraData(agora::media::base::CacheStatistics &amp; AgoraData) const {
+		
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class CacheStatistics {
 

@@ -39,11 +39,24 @@
 struct FUserInfo
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|UserInfo&quot;)
-	int64 uid;
+	int64 uid = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|UserInfo&quot;)
-	FString userAccount;
+	FString userAccount = &quot;&quot;;
+	FUserInfo(){}
+	FUserInfo(const agora::rtc::UserInfo &amp; AgoraData){
+		uid = AgoraData.uid;
+		userAccount = UTF8_TO_TCHAR(AgoraData.userAccount);
+	}
+	agora::rtc::UserInfo CreateAgoraData() const {
+		agora::rtc::UserInfo AgoraData;
+		AgoraData.uid = uid;
+		SET_UABT_FSTRING_TO_CHAR_ARRAY(AgoraData.userAccount,this-&gt;userAccount,agora::rtc::MAX_USER_ACCOUNT_LENGTH)
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::UserInfo &amp; AgoraData) const {
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class UserInfo {
   
@@ -79,7 +92,7 @@ struct FUserInfo
             </plentry>
             <plentry>
                 <pt>userAccount</pt>
-                <pd>User account. <ph props="cpp unreal bp rn unity electron flutter cs">The maximum data length is <xref keyref="MAX_USER_ACCOUNT_LENGTH_TYPE" />.</ph></pd>
+                <pd>User account. <ph props="cpp unreal rn unity electron flutter cs">The maximum data length is <xref keyref="MAX_USER_ACCOUNT_LENGTH_TYPE" />.</ph></pd>
             </plentry>
             </parml> </section>
     </refbody>

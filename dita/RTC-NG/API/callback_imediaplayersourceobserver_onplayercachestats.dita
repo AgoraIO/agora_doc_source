@@ -19,7 +19,8 @@
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onPlayerCacheStats(const media::base::CacheStatistics&amp; stats) {
     (void)stats;
   }</codeblock>
-            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnPlayerCacheStats(const FCacheStatistics&amp; stats);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onPlayerCacheStats?(stats: CacheStatistics): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnPlayerCacheStats(CacheStatistics stats)
                 {
@@ -30,7 +31,7 @@
         <section id="detailed_desc">
             <title>详情</title>
             <dl outputclass="since">
-            <dlentry props="native">
+            <dlentry props="android apple cpp">
                 <dt>自从</dt>
                 <dd>v4.3.0</dd>
             </dlentry>

@@ -21,7 +21,8 @@
     (void)state;
     (void)reason;
   }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnRhythmPlayerStateChanged, FENUMWRAP_RHYTHM_PLAYER_STATE_TYPE, state, FENUMWRAP_RHYTHM_PLAYER_ERROR_TYPE, errorCode);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnRhythmPlayerStateChanged(FENUMWRAP_RHYTHM_PLAYER_STATE_TYPE state, FENUMWRAP_RHYTHM_PLAYER_REASON reason);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onRhythmPlayerStateChanged?(
     state: RhythmPlayerStateType,
     reason: RhythmPlayerReason

@@ -101,45 +101,90 @@
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FRemoteVideoStats {
-
 	GENERATED_BODY()
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int64 uid;
+	int64 uid = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int delay;
+	int delay = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int e2eDelay;
+	int e2eDelay = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int width;
+	int width = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int height;
+	int height = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int receivedBitrate;
+	int receivedBitrate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int decoderOutputFrameRate;
+	int decoderOutputFrameRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int rendererOutputFrameRate;
+	int rendererOutputFrameRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int frameLossRate;
+	int frameLossRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int packetLossRate;
+	int packetLossRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	EVIDEO_STREAM_TYPE rxStreamType;
+	EVIDEO_STREAM_TYPE rxStreamType = EVIDEO_STREAM_TYPE::VIDEO_STREAM_HIGH;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int totalFrozenTime;
+	int totalFrozenTime = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int frozenRate;
+	int frozenRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int avSyncTimeMs;
+	int avSyncTimeMs = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int totalActiveTime;
+	int totalActiveTime = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int publishDuration;
+	int publishDuration = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int mosValue;
+	int mosValue = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
+	int64 rxVideoBytes = 0;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int64 rxVideoBytes;
+	FRemoteVideoStats(){}
+	FRemoteVideoStats(const agora::rtc::RemoteVideoStats &amp; AgoraData){
+		uid = AgoraData.uid;
+		delay = AgoraData.delay;
+		e2eDelay = AgoraData.e2eDelay;
+		width = AgoraData.width;
+		height = AgoraData.height;
+		receivedBitrate = AgoraData.receivedBitrate;
+		decoderOutputFrameRate = AgoraData.decoderOutputFrameRate;
+		rendererOutputFrameRate = AgoraData.rendererOutputFrameRate;
+		frameLossRate = AgoraData.frameLossRate;
+		packetLossRate = AgoraData.packetLossRate;
+		rxStreamType = static_cast&lt;EVIDEO_STREAM_TYPE&gt;(AgoraData.rxStreamType);
+		totalFrozenTime = AgoraData.totalFrozenTime;
+		frozenRate = AgoraData.frozenRate;
+		avSyncTimeMs = AgoraData.avSyncTimeMs;
+		totalActiveTime = AgoraData.totalActiveTime;
+		publishDuration = AgoraData.publishDuration;
+		mosValue = AgoraData.mosValue;
+		rxVideoBytes = AgoraData.rxVideoBytes;
+	}
+	agora::rtc::RemoteVideoStats CreateAgoraData() const {
+		agora::rtc::RemoteVideoStats AgoraData;
+		AgoraData.uid = uid;
+		AgoraData.delay = delay;
+		AgoraData.e2eDelay = e2eDelay;
+		AgoraData.width = width;
+		AgoraData.height = height;
+		AgoraData.receivedBitrate = receivedBitrate;
+		AgoraData.decoderOutputFrameRate = decoderOutputFrameRate;
+		AgoraData.rendererOutputFrameRate = rendererOutputFrameRate;
+		AgoraData.frameLossRate = frameLossRate;
+		AgoraData.packetLossRate = packetLossRate;
+		AgoraData.rxStreamType = static_cast&lt;agora::rtc::VIDEO_STREAM_TYPE&gt;(rxStreamType);
+		AgoraData.totalFrozenTime = totalFrozenTime;
+		AgoraData.frozenRate = frozenRate;
+		AgoraData.avSyncTimeMs = avSyncTimeMs;
+		AgoraData.totalActiveTime = totalActiveTime;
+		AgoraData.publishDuration = publishDuration;
+		AgoraData.mosValue = mosValue;
+		AgoraData.rxVideoBytes = rxVideoBytes;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::RemoteVideoStats &amp; AgoraData) const {
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class RemoteVideoStats {
 
