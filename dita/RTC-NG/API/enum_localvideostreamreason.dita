@@ -47,7 +47,7 @@
                     <pd props="ios cpp unreal bp rn unity flutter"><ph>7：</ph><ph props="cpp unreal bp rn flutter unity">（仅适用于 iOS）</ph><ph>当前 App 窗口处于侧拉、分屏、画中画模式，且其他 App 正占用摄像头。请提示用户当 App 窗口处于侧拉、分屏、画中画模式，且其他 App 正占用摄像头时，无法正常进行视频采集。</ph></pd>
                     <pd props="cs">7：预留。</pd>
                 </plentry>
-            <plentry props="android cpp unreal bp unity electron flutter rn cs">
+            <plentry props="android hmos cpp unreal bp unity electron flutter rn cs">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_NOT_FOUND"/></pt>
                 <pd>8：找不到本地视频采集设备。需检查摄像头是否与设备正常连接、摄像头是否正常工作，或者尝试重新加入频道。</pd>
             </plentry>
@@ -131,6 +131,18 @@
                 <plentry props="cpp mac flutter unreal bp unity electron">
                     <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_DISPLAY_DISCONNECTED"/></pt>
                     <pd>30：<ph props="cpp flutter unreal bp unity">（仅适用于 Windows 和 macOS）</ph>进行屏幕采集的显示器已断开连接。</pd>
+                </plentry>
+                <plentry props="hmos">
+                    <pt><ph keyref="SCREEN_CAPTURE_STOPPED_BY_USER"/></pt>
+                    <pd>31：用户已停止屏幕共享。</pd>
+                </plentry>
+                <plentry props="hmos">
+                    <pt><ph keyref="SCREEN_CAPTURE_INTERRUPTED_BY_OTHER"/></pt>
+                    <pd>32：屏幕共享进程已被其他屏幕共享进程打断。</pd>
+                </plentry>
+                <plentry props="hmos">
+                    <pt><ph keyref="SCREEN_CAPTURE_STOPPED_BY_CALL"/></pt>
+                    <pd>33：屏幕共享进程被系统来电打断。</pd>
                 </plentry>
                 <plentry props="cpp unreal bp unity electron flutter cs">
                     <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_SYSTEM_PRESSURE"/></pt>
