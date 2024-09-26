@@ -7,7 +7,7 @@
             <title>已废弃 API</title>
             <p>废弃后的 API 预计会在 1 年左右正式下架。声网建议你尽快使用推荐的 API 进行替换，以免影响线上业务。</p>
             <!--如果预见到表格内的内容会超宽，则在 table 外侧套一个 div，用于限定 section 内的表格宽度-->
-                <div>
+            <div>
                 <table frame="all" rowsep="1" colsep="1" props="cn">
                 <!--CN 表格-->
                 <!--由于 table 中的 row 不能分级打 props，所以 cn 和 en 需要分两个表格维护：仅发 cn/en 的 API 只需要在对应表格中增加；cn 和 en 都发的 API 需要在两个表格中都加。-->
@@ -103,6 +103,18 @@
                             <entry><xref keyref="createDataStreamEx2"/></entry>
                             <entry>v4.0.0</entry>
                         </row>
+                        <row props="android">
+                            <entry><xref keyref="pushVideoFrame"/></entry>
+                            <entry><ph conkeyref="pushVideoFrame/shortdesc"/></entry>
+                            <entry><xref keyref="pushVideoFrame3"/></entry>
+                            <entry>v4.0.0</entry>
+                        </row>
+                        <row props="android">
+                            <entry><xref keyref="pushVideoFrame2"/></entry>
+                            <entry><ph conkeyref="pushVideoFrame2/shortdesc"/></entry>
+                            <entry><xref keyref="pushVideoFrame4"/></entry>
+                            <entry>v4.0.0</entry>
+                        </row>
                         <row>
                             <entry><xref keyref="setLocalVideoMirrorMode"/></entry>
                             <entry><ph conkeyref="setLocalVideoMirrorMode/shortdesc"/></entry>
@@ -127,6 +139,12 @@
                             <entry>使用 <xref keyref="initialize"/> 中的 <parmname props="cpp">context</parmname><parmname props="android apple">config</parmname> 参数</entry>
                             <entry>v4.0.0</entry>
                         </row>
+                            <row>
+                                <entry><xref keyref="setLogFilter"/></entry>
+                                <entry><ph conkeyref="setLogFilter/shortdesc"/></entry>
+                                <entry>使用 <xref keyref="initialize"/> 中的 <parmname props="cpp">context</parmname><parmname props="android apple">config</parmname> 参数</entry>
+                                <entry>v4.0.0</entry>
+                            </row>
                         <row>
                             <entry><xref keyref="setLogFile"/></entry>
                             <entry><ph conkeyref="setLogFile/shortdesc"/></entry>
@@ -151,6 +169,12 @@
                             <entry><xref keyref="setAudioProfile2"/> 或 <xref keyref="setAudioScenario"/></entry>
                             <entry>v4.0.0</entry>
                         </row>
+                            <row>
+                                <entry><xref keyref="startAudioMixing"/></entry>
+                                <entry><ph conkeyref="startAudioMixing/shortdesc"/></entry>
+                                <entry><xref keyref="startAudioMixing2" /></entry>
+                                <entry>v4.0.0</entry>
+                            </row>
                         <row props="android ios cpp">
                             <entry><xref keyref="preload"/></entry>
                             <entry><ph conkeyref="preload/shortdesc"/></entry>
@@ -200,6 +224,48 @@
                             <entry>v4.0.0</entry>
                         </row>
                         <row>
+                            <entry><xref keyref="onAudioMixingFinished"/></entry>
+                            <entry><ph conkeyref="onAudioMixingFinished/shortdesc"/></entry>
+                            <entry><xref keyref="onAudioMixingStateChanged"/></entry>
+                            <entry>v4.0.0</entry>
+                        </row>
+                        <row>
+                            <entry><xref keyref="onAudioQuality"/></entry>
+                            <entry><ph conkeyref="onAudioQuality/shortdesc"/></entry>
+                            <entry><xref keyref="onRemoteAudioStats"/></entry>
+                            <entry>v4.0.0</entry>
+                        </row>
+                         <row>
+                            <entry><xref keyref="onConnectionBanned"/></entry>
+                            <entry><ph conkeyref="onConnectionBanned/shortdesc"/></entry>
+                            <entry><xref keyref="onConnectionStateChanged"/></entry>
+                            <entry>v4.0.0</entry>
+                        </row>
+                         <row>
+                            <entry><xref keyref="onConnectionInterrupted"/></entry>
+                            <entry><ph conkeyref="onConnectionInterrupted/shortdesc"/></entry>
+                            <entry><xref keyref="onConnectionStateChanged"/></entry>
+                            <entry>v4.0.0</entry>
+                        </row>
+                         <row>
+                            <entry><xref keyref="onFirstRemoteAudioFrame"/></entry>
+                            <entry><ph conkeyref="onFirstRemoteAudioFrame/shortdesc"/></entry>
+                            <entry><xref keyref="onRemoteAudioStateChanged"/></entry>
+                            <entry>v4.0.0</entry>
+                        </row>
+                         <row>
+                            <entry><xref keyref="onFirstRemoteAudioDecoded"/></entry>
+                            <entry><ph conkeyref="onFirstRemoteAudioDecoded/shortdesc"/></entry>
+                            <entry><xref keyref="onRemoteAudioStateChanged"/></entry>
+                            <entry>v4.0.0</entry>
+                        </row>
+                         <row>
+                            <entry><xref keyref="onRemoteAudioTransportStats"/></entry>
+                            <entry><ph conkeyref="onRemoteAudioTransportStats/shortdesc"/></entry>
+                            <entry><xref keyref="onRemoteAudioStats"/></entry>
+                            <entry>v4.0.0</entry>
+                        </row>
+                        <row>
                             <entry><xref keyref="onRemoteVideoTransportStats"/></entry>
                             <entry><ph conkeyref="onRemoteVideoTransportStats/shortdesc"/></entry>
                             <entry><xref keyref="onRemoteVideoStats"/></entry>
@@ -209,6 +275,12 @@
                             <entry><xref keyref="onUserEnableLocalVideo"/></entry>
                             <entry><ph conkeyref="onUserEnableLocalVideo/shortdesc"/></entry>
                             <entry><xref keyref="onRemoteVideoStateChanged"/></entry>
+                            <entry>v4.0.0</entry>
+                        </row>
+                        <row>
+                            <entry><xref keyref="onVideoStopped"/></entry>
+                            <entry><ph conkeyref="onVideoStopped/shortdesc"/></entry>
+                            <entry><xref keyref="onLocalVideoStateChanged"/></entry>
                             <entry>v4.0.0</entry>
                         </row>
                     </tbody>
@@ -305,6 +377,18 @@
                                 <entry><xref keyref="createDataStreamEx2"/></entry>
                                 <entry>v4.0.0</entry>
                             </row>
+                            <row props="android">
+                                <entry><xref keyref="pushVideoFrame"/></entry>
+                                <entry><ph conkeyref="pushVideoFrame/shortdesc"/></entry>
+                                <entry><xref keyref="pushVideoFrame3"/></entry>
+                                <entry>v4.0.0</entry>
+                            </row>
+                            <row props="android">
+                                <entry><xref keyref="pushVideoFrame2"/></entry>
+                                <entry><ph conkeyref="pushVideoFrame2/shortdesc"/></entry>
+                                <entry><xref keyref="pushVideoFrame4"/></entry>
+                                <entry>v4.0.0</entry>
+                            </row>
                             <row>
                                 <entry><xref keyref="setLocalVideoMirrorMode"/></entry>
                                 <entry><ph conkeyref="setLocalVideoMirrorMode/shortdesc"/></entry>
@@ -330,6 +414,12 @@
                                 <entry>v4.0.0</entry>
                             </row>
                             <row>
+                                <entry><xref keyref="setLogFilter"/></entry>
+                                <entry><ph conkeyref="setLogFilter/shortdesc"/></entry>
+                                <entry>使用 <xref keyref="initialize"/> 中的 <parmname props="cpp">context</parmname><parmname props="android apple">config</parmname> 参数</entry>
+                                <entry>v4.0.0</entry>
+                            </row>
+                            <row>
                                 <entry><xref keyref="setLogFile"/></entry>
                                 <entry><ph conkeyref="setLogFile/shortdesc"/></entry>
                                 <entry>使用 <xref keyref="initialize"/> 中的 <parmname props="cpp">context</parmname><parmname props="android apple">config</parmname> 参数</entry>
@@ -351,6 +441,18 @@
                                 <entry><xref keyref="setAudioProfile"/></entry>
                                 <entry><ph conkeyref="setAudioProfile/shortdesc"/></entry>
                                 <entry><xref keyref="setAudioProfile2"/> 或 <xref keyref="setAudioScenario"/></entry>
+                                <entry>v4.0.0</entry>
+                            </row>
+                            <row>
+                                <entry><xref keyref="startAudioMixing"/></entry>
+                                <entry><ph conkeyref="startAudioMixing/shortdesc"/></entry>
+                                <entry><xref keyref="startAudioMixing2" /></entry>
+                                <entry>v4.0.0</entry>
+                            </row>
+                            <row props="android ios cpp">
+                                <entry><xref keyref="preload"/></entry>
+                                <entry><ph conkeyref="preload/shortdesc"/></entry>
+                                <entry><xref keyref="preload2"/></entry>
                                 <entry>v4.0.0</entry>
                             </row>
                             <row>
@@ -396,15 +498,63 @@
                                     <entry>v4.0.0</entry>
                                 </row>
                                 <row>
+                                    <entry><xref keyref="onAudioMixingFinished"/></entry>
+                                    <entry><ph conkeyref="onAudioMixingFinished/shortdesc"/></entry>
+                                    <entry><xref keyref="onAudioMixingStateChanged"/></entry>
+                                    <entry>v4.0.0</entry>
+                                </row>
+                                <row>
+                                    <entry><xref keyref="onAudioQuality"/></entry>
+                                    <entry><ph conkeyref="onAudioQuality/shortdesc"/></entry>
+                                    <entry><xref keyref="onRemoteAudioStats"/></entry>
+                                    <entry>v4.0.0</entry>
+                                </row>
+                                 <row>
+                                    <entry><xref keyref="onConnectionBanned"/></entry>
+                                    <entry><ph conkeyref="onConnectionBanned/shortdesc"/></entry>
+                                    <entry><xref keyref="onConnectionStateChanged"/></entry>
+                                    <entry>v4.0.0</entry>
+                                </row>
+                                 <row>
+                                    <entry><xref keyref="onConnectionInterrupted"/></entry>
+                                    <entry><ph conkeyref="onConnectionInterrupted/shortdesc"/></entry>
+                                    <entry><xref keyref="onConnectionStateChanged"/></entry>
+                                    <entry>v4.0.0</entry>
+                                </row>
+                                 <row>
+                                    <entry><xref keyref="onFirstRemoteAudioFrame"/></entry>
+                                    <entry><ph conkeyref="onFirstRemoteAudioFrame/shortdesc"/></entry>
+                                    <entry><xref keyref="onRemoteAudioStateChanged"/></entry>
+                                    <entry>v4.0.0</entry>
+                                </row>
+                                 <row>
+                                    <entry><xref keyref="onFirstRemoteAudioDecoded"/></entry>
+                                    <entry><ph conkeyref="onFirstRemoteAudioDecoded/shortdesc"/></entry>
+                                    <entry><xref keyref="onRemoteAudioStateChanged"/></entry>
+                                    <entry>v4.0.0</entry>
+                                </row>
+                                 <row>
+                                    <entry><xref keyref="onRemoteAudioTransportStats"/></entry>
+                                    <entry><ph conkeyref="onRemoteAudioTransportStats/shortdesc"/></entry>
+                                    <entry><xref keyref="onRemoteAudioStats"/></entry>
+                                    <entry>v4.0.0</entry>
+                                </row>
+                                <row>
                                     <entry><xref keyref="onRemoteVideoTransportStats"/></entry>
                                     <entry><ph conkeyref="onRemoteVideoTransportStats/shortdesc"/></entry>
                                     <entry><xref keyref="onRemoteVideoStats"/></entry>
                                     <entry>v4.0.0</entry>
                                 </row>
-                            <row>
+                                <row>
                                     <entry><xref keyref="onUserEnableLocalVideo"/></entry>
                                     <entry><ph conkeyref="onUserEnableLocalVideo/shortdesc"/></entry>
                                     <entry><xref keyref="onRemoteVideoStateChanged"/></entry>
+                                    <entry>v4.0.0</entry>
+                                </row>
+                                <row>
+                                    <entry><xref keyref="onVideoStopped"/></entry>
+                                    <entry><ph conkeyref="onVideoStopped/shortdesc"/></entry>
+                                    <entry><xref keyref="onLocalVideoStateChanged"/></entry>
                                     <entry>v4.0.0</entry>
                                 </row>
                         </tbody>
