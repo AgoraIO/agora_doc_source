@@ -319,7 +319,9 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 ## Retrieving group details
 
-Retrieves the detailed information of one or more groups. If you specify multiple groups, details of the existing groups are returned. If the specified groups do not exist, "group id doesn't exist" is reported.
+Retrieves the detailed information of one or more groups. You can retrieve details of up to 100 groups, with each group containing at most 10,000 group members (including the group owner). 
+
+If you specify multiple groups, details of the existing groups are returned. If the specified groups do not exist, "group id doesn't exist" is reported.
 
 ### HTTP request
 

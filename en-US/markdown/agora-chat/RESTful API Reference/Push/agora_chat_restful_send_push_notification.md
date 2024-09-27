@@ -98,7 +98,7 @@ curl -X POST 'http://XXXX/XXXX/XXXX/push/sync/test1' \
     "pushMessage": {
         "title": "Agora push",
         "content": "Hello and welcome",
-        "sub_title": "Agora",
+        "sub_title": "Agora"
       }
 }'
 ```
@@ -130,7 +130,7 @@ curl -X POST 'http://XXXX/XXXX/XXXX/push/sync/test1' \
 }
 ```
 
-2. The push fails because the push-related information (like the push token or certificate) is not bound with the device:
+2. When a third-party push service is used, the push fails because the push-related information (like the push token or certificate) is not bound with the device:
 
 ```json
 {
@@ -145,7 +145,7 @@ curl -X POST 'http://XXXX/XXXX/XXXX/push/sync/test1' \
 }
 ```
 
-3. The push fails because the user ID of the push notification recipient does not exist:
+3. When a third-party push service is used, the push fails because the user ID of the push notification recipient does not exist:
 ```json
 {
     "timestamp": 1689154534352,
@@ -269,6 +269,7 @@ For the descriptions of path parameters, see [Common parameters](#param).
 | Parameter           | Type | Description             | Required | 
 | :-------------- | :----- | :------- | :----------- |
 | `targets`     | List    | The targeting label names. You can either pass one label to send the push notification to all users under the label, or pass a maximum of five labels to send the push notification to the intersection of users under these labels.   | Yes     |
+| `startDate` | String | The start date of the push task. The date format is yyyy-MM-dd HH:mm:ss, for example, 2024-01-01 12:00:00.<div class="alert note"><ul><li>1. The scheduled time must be one hour later than the curren time or 30 days from the current time. </li><li>2. By default, the scheduled time is in the time zone where the server resides. If you want to use a time in a different time zone, you must calculate that time according to your time zone.</li></ul></div> | No |
 | `strategy`    | Number | The push strategy: <ul><li>`0`: Use the third-party push service first. If the push attempt fails, use the Agora push service instead.</li><li>`1`: Use Agora push service only. If the target user is online, Agora server sends the push message. If the user is offline, Agora retains the push message for a certain period (depending on the Chat package to which you subscribe) and will send it to the user as soon as he or she gets online. If the user remains offline until the retention period expires, the push message is dropped and the push attempt fails.</li><li>`2`: (Default) Use the third-party push service only. If the target user is offline, whether to retain the push message and how long the message can be retained depend on the setting of the third-party service. If the push attempt fails, the message is discarded.</li><li>`3`: Use the Agora push service first. If the user is online, Agora server sends the notification. If the user is offline, the notification is delivered via a third-party push service. If the offline push attempt fails, the notification is sent via Agora server once the user gets online. </li><li> `4` Only use online push via Agora server. Push notifications are sent only via Agora server for the online user. If the user is offline, the push notifications are discarded.</li></ul> | No  |   
 | `pushMessage` | JSON   | The push message. See [Set push notifications](./agora_chat_restful_config_push_notification) for details. | Yes   | 
 
@@ -348,6 +349,7 @@ For the descriptions of path parameters, see [Common parameters](#param).
 
 | Parameter           | Type | Description             | Required | 
 | :-------------- | :----- | :------- | :----------- |
+| `startDate` | String | The start date of the push task. The date format is yyyy-MM-dd HH:mm:ss, for example, 2024-01-01 12:00:00.<div class="alert note"><ul><li>1. The scheduled time must be one hour later than the curren time or 30 days from the current time. </li><li>2. By default, the scheduled time is in the time zone where the server resides. If you want to use a time in a different time zone, you must calculate that time according to your time zone.</li></ul></div> | No |
 | `strategy`    | Number | The push strategy: <ul><li>`0`: Use the third-party push service first. If the push attempt fails, use the Agora push service instead.</li><li>`1`: Use Agora push service only. If the target user is online, Agora server sends the push message. If the user is offline, Agora retains the push message for a certain period (depending on the Chat package to which you subscribe) and will send it to the user as soon as he or she gets online. If the user remains offline until the retention period expires, the push message is dropped and the push attempt fails.</li><li>`2`: (Default) Use the third-party push service only. If the target user is offline, whether to retain the push message and how long the message can be retained depend on the setting of the third-party service. If the push attempt fails, the message is discarded.</li><li>`3`: Use the Agora push service first. If the user is online, Agora server sends the notification. If the user is offline, the notification is delivered via a third-party push service. If the offline push attempt fails, the notification is sent via Agora server once the user gets online. </li><li> `4` Only use online push via Agora server. Push notifications are sent only via Agora server for the online user. If the user is offline, the push notifications are discarded.</li></ul> | No  |   
 | `pushMessage` | JSON   | The push message. See [Set push notifications](./agora_chat_restful_config_push_notification) for details. | Yes   | 
 

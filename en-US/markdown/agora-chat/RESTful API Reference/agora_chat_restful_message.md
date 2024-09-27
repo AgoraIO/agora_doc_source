@@ -1933,7 +1933,7 @@ curl -X PUT -i 'https://XXXX/XXXX/XXXX/messages/rewrite/1235807318835202004' \
     
 ## Recall a message
 
-Once a message is sent, you can call this API to recall it. This API recalls a message that is saved both locally and on the server, whether it is a historical message, offline message or a roaming message on the server, or a message in the memory or local database of the message sender or recipient.
+Once a message is sent, you can call this API to recall it. This API recalls a message that is saved both locally and on the server, whether it is a historical message, offline message or a roaming message on the server, or a message in the memory or local database of the message sender or recipient. If an attachment message, like an image, voice, video, or file message, is recalled, the attachment of the message is also deleted.
 
 The default time limit for recalling a message is two minutes. To adjust this limit, contact [support@agora.io](mailto:support@agora.io).
 
