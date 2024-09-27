@@ -80,8 +80,6 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 | `data.data`       | Object | The push result data returned by the push service used by the push notification recipient. |
 | `data.desc`       | String | The description for the push failure.                  |
 
-// Add two parameters, `data.data` and `data.desc` in the response body.
-
 For other fields and detailed descriptions, see [Common parameters](#param).
 
 If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
