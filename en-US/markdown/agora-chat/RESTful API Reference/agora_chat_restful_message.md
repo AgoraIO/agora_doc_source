@@ -94,6 +94,7 @@ The request body is a JSON object, which contains the following parameters:
 | `to` | Array | An array of the usernames of the message recipient. For each request, you can send a message to a maximum of 600 users. Within one minute, you can send messages to a maximum of 6,000 users. | Yes |
 | `type` | String | The message type: <ul><li>`txt`: Text message</li><li>`img`: Image message</li><li>`audio`: Audio message</li><li>`video`: Video message</li><li>`file`: File message</li><li>`loc`: Location message</li><li>`cmd`: Command message</li><li>`custom`: Custom message</li></ul> | Yes |
 | `body` | JSON | The message content. For different message types, this parameter contains different fields. For details, see [Body of different message types](#body). | Yes |
+| `roam_ignore_users` | List | No | Which users cannot obtain such message when they pull messages from the server. A maximum of 20 users can be passed in each time. |
 | `sync_device` | Bool | Whether to synchronize the message to the message sender.<ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> | No |
 | `routetype` | String | Whether the message is delivered only when the recipient(s) is/are online: <ul><li>If this parameter is set to `ROUTE_TYPE`, the message is delivered only when the recipient(s) is/are online. In this case, the message is discarded if the recipient is offline.</li><li>If you do not set this parameter, the message is delivered whether the recipients are online or not. If the recipient(s) is/are offline, the message will not be delivered until they get online.</li></ul> | No |
 | `ext`  | JSON  | The extension filed of the message. It cannot be `null`.| No |
@@ -192,7 +193,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
     ```shell
     # Replace {YourToken} with the app token generated on your server         
-    curl -X POST -i 'http://XXXX/XXXX/XXXX/messages/users' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer {YourToken}' -d '{"from": "user1","to": ["user2"],"type": "txt","body": {"msg": "testmessages"},"ext": {"em_ignore_notification": true}}'
+    curl -X POST -i 'http://XXXX/XXXX/XXXX/messages/users' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer {YourToken}' -d '{"from": "user1","to": ["user2"],"type": "txt","body": {"msg": "testmessages"},"roam_ignore_users": [],"ext": {"em_ignore_notification": true}}'
     ```
 
 - Send a text message to the online user while synchronizing the message with the sender
@@ -477,6 +478,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
         "body": {
             "msg": "testmessages"
         },
+        "roam_ignore_users": [],
         "ext": {
            "em_ignore_notification": true
         },
@@ -775,7 +777,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
     ```shell
     # Replace {YourToken} with the app token generated on your server
-    curl -X POST -i 'http://XXXX/XXXX/XXXX/messages/chatrooms' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer {YourToken}' -d '{"from": "user1","to": ["185145305923585"],"type": "txt","body": {"msg": "testmessages"}}'
+    curl -X POST -i 'http://XXXX/XXXX/XXXX/messages/chatrooms' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer {YourToken}' -d '{"from": "user1","to": ["185145305923585"],"type": "txt","body": {"msg": "testmessages"},"roam_ignore_users": []}'
     ```
 
 - Send an image message
@@ -1963,7 +1965,8 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | `to`        | String   | Yes   | The user, chat group, or chat room that receives the message to recall. You can specify a user ID, a chat group ID, or a chat room ID.</br>**Note**: If the message to recall no longer exists on the server, only the message on the recipient client is recalled. |
 | `chat_type` | String   | Yes     | The type of the chat where the message to recall is sent. <ul><li>`chat`: An one-on-one chat.</li><li>`groupchat`: A chat group.</li><li>`chatroom`: A chat room.</li></ul> |
 | `from`      | String   | No   | The user who recalls the message. By default, the recaller is the app admin. You can also specify another user as the recaller. |
-| `force`     | bool     | No     | Whether to allow to recall messages beyond the storage time on the server. For details on the message storage duration on the server, see [Message storage duration](https://docs.agora.io/en/agora-chat/reference/limitations#message-storage-duration).<ul><li>`true`: Yes. In this case, you can recall messages within the recall period or those beyond the storage time on the server. For the latter, this API recalls the messages locally saved by the recipient, but the local message on the sender side still exists. If the message sending time is between your recall duration and the storage duration on the server, the recall fails. For example, if the recall duration is 2 minutes and the storage time on the server is 7 days, you can recall a message sent within 2 minutes or one that was sent more than 7 days ago; if the message is sent 3 minutes ago, the recall will fail.</li><li>`false`: No. You cannot recall messages beyond the storage time on the server. If you use the default recall time of 2 minutes or a custom duration, the server can only recall the messages sent within the specified time, and those beyond this time cannot be recalled. For example, if you set the recall time to 3 minutes and the message is sent 4 minutes ago, the recall will fail.</li></ul>  |
+| `sync_device` | Bool| No | Whether to synchronize the recall of a one-to-one message to all online devices of the message sender. <ul><li>(Default) `true`: Yes</li><li>`false`: No</li></ul><div class="alert note">When `force` is set to `true`, to recall a message that expires, you need to set `from` to the sender of the message.</div> |
+| `force`     | Bool     | No     | Whether to allow to recall messages forcibly: <ul><li>`true`: Yes. In this case, you can recall messages whether they expire. To recall the expired messages, you must set `force` to `true`. </li><li>(Default) `false`: No. In this case, you can only recall messages that still exist on the server within the recall duration.</li></ul>  |
 
 ### HTTP response
 

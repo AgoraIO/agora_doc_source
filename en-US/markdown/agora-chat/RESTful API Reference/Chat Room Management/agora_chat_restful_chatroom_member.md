@@ -199,7 +199,7 @@ Retrieves chat room members with pagination.
 ### HTTP request
 
 ```http
-GET https://{host} /{org_name}/{app_name}/chatrooms/super_admin?pagenum={N}&pagesize={N}
+GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/users?pagenum={N}&pagesize={N}
 ```
 
 #### Path parameter
