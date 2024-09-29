@@ -17,7 +17,25 @@
   boolean enableMultiAudioTrack;
   IMediaPlayerCustomDataProvider provider;
 }</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class MediaPlayerSource
+{
+  
+  public url:string = &quot;&quot;
+  
+  public uri:string = &quot;&quot;
+  
+  public startPos:number = 0
+  
+  public autoPlay:boolean = true ;
+  
+  public enableCache:boolean = false ;
+  
+  public enableMultiAudioTrack:boolean = false ;
+  
+  public isAgoraSource?:Boolean
+  
+  public isLiveSource?:Boolean
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaSource : NSObject
 @property(copy, nonatomic) NSString *_Nullable url;
 @property(copy, nonatomic) NSString *_Nullable uri;
@@ -194,7 +212,7 @@ public:
                 <pt>url</pt>
                 <pd>
                     <p>需要播放的媒体资源的 URL。</p>
-                    <note>
+                    <note props="android cpp apple unreal bp unity cs">
                         <p props="apple" id="url">如果你打开的为普通媒体资源，请向 <parmname>url</parmname> 传值；如果你打开媒体资源为自定义媒体资源，请向 <parmname>playerOnReadCallback</parmname> 及 <parmname>playerOnSeekCallback</parmname> 传值，同时传值会导致方法调用失败。</p>
                         <p props="android cpp unreal bp unity cs">如果你打开的为普通媒体资源，请向 <parmname>url</parmname> 传值；如果你打开媒体资源为自定义媒体资源，请向 <parmname>provider</parmname> 传值，同时传值会导致方法调用失败。</p>
                     </note></pd>
