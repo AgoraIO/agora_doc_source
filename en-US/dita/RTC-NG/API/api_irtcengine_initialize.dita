@@ -15,7 +15,9 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public static synchronized RtcEngine create(RtcEngineConfig config) throws Exception {}
 </codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public static create(config: RtcEngineConfig): RtcEngine {
+    return RtcEngineImpl.createEngineImpl(config);
+  }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">+ (instancetype _Nonnull)sharedEngineWithConfig:(AgoraRtcEngineConfig * _Nonnull)config
                                        delegate:(id&lt;AgoraRtcEngineDelegate&gt; _Nullable)delegate;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int initialize(const RtcEngineContext&amp; context) = 0;</codeblock>
