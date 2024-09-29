@@ -14,7 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">int setAudioDualMonoMode(int mode);</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public abstract setAudioDualMonoMode(mode:Constants.AudioDualMonoMode):number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setAudioDualMonoMode:(AgoraAudioDualMonoMode)mode;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setAudioDualMonoMode(agora::media::base::AUDIO_DUAL_MONO_MODE mode) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IMediaPlayer&quot;)
@@ -38,7 +38,7 @@
             <parml>
             <plentry>
                 <pt>mode</pt>
-                <pd><ph>The channel mode. </ph><ph props="cpp unreal bp mac ios unity flutter rn electron cs">See <xref keyref="AUDIO_DUAL_MONO_MODE" />.</ph><ul props="android hmos">
+                <pd><ph>The channel mode. </ph><ph props="hmos cpp unreal bp mac ios unity flutter rn electron cs">See <xref keyref="AUDIO_DUAL_MONO_MODE" />.</ph><ul props="android">
                     <li><ph keyref="AUDIO_DUAL_MONO_STEREO" />(0): Original mode.</li>
                     <li><ph keyref="AUDIO_DUAL_MONO_L" />(1): Left channel mode. This mode replaces the audio of the right channel with the audio of the left channel, which means the user can only hear the audio of the left channel.</li>
                     <li><ph keyref="AUDIO_DUAL_MONO_R" />(2): Right channel mode. This mode replaces the audio of the left channel with the audio of the right channel, which means the user can only hear the audio of the right channel.</li>

@@ -15,7 +15,7 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setDualStreamModeEx(Constants.SimulcastStreamMode mode,
       SimulcastStreamConfig streamConfig, RtcConnection connection);</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public abstract setDualStreamModeEx(mode:Constants.SimulcastStreamMode,streamConfig:SimulcastStreamConfig,connection:RtcConnection):number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setDualStreamModeEx:(AgoraSimulcastStreamMode)mode
               streamConfig:(AgoraSimulcastStreamConfig*)streamConfig
                 connection:(AgoraRtcConnection* _Nonnull)connection;</codeblock>
@@ -52,7 +52,7 @@
             <p id="desc">The SDK defaults to enabling low-quality video stream adaptive mode (<apiname keyref="AUTO_SIMULCAST_STREAM"/>) on the sender side, which means the sender does not actively send low-quality video stream. The receiving end with the role of the <b>host</b> can initiate a low-quality video stream request by calling <xref keyref="setRemoteVideoStreamTypeEx"/>, and upon receiving the request, the sending end automatically starts sending low-quality stream.<ul>
                 <li>If you want to modify this behavior, you can call this method and set <parmname>mode</parmname> to <apiname keyref="DISABLE_SIMULCAST_STREAM"/> (never send low-quality video streams) or <apiname keyref="ENABLE_SIMULCAST_STREAM"/> (always send low-quality video streams).</li>
                 <li>If you want to restore the default behavior after making changes, you can call this method again with <parmname>mode</parmname> set to <apiname keyref="AUTO_SIMULCAST_STREAM"/>.</li></ul></p>
-            <note id="note">The difference and connection between this method and <xref keyref="enableDualStreamModeEx"/> is as follows:<ul>
+            <note id="note" props="android cpp apple framework">The difference and connection between this method and <xref keyref="enableDualStreamModeEx"/> is as follows:<ul>
                 <li>When calling this method and setting <parmname>mode</parmname> to <ph keyref="DISABLE_SIMULCAST_STREAM"/>, it has the same effect as <apiname keyref="enableDualStreamModeEx"/><codeph>(<ph keyref="false"/>)</codeph>.</li>
                 <li>When calling this method and setting <parmname>mode</parmname> to <ph keyref="ENABLE_SIMULCAST_STREAM"/>, it has the same effect as <apiname keyref="enableDualStreamModeEx"/><codeph>(<ph keyref="true"/>)</codeph>.</li>
                 <li>Both methods can be called before and after joining a channel. If both methods are used, the settings in the method called later takes precedence.</li></ul>
