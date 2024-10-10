@@ -1306,6 +1306,8 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | `Content-Type` | String | The content type. Pass `multipart/form-data` | Yes |
 | `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 | `restrict-access` | Bool | Whether to restrict access to this file.<ul><li>`true`: Restrict access to the file. The user needs to provide a file access key (`share-secret`) to download the file. You can obtain the access key from the response body.</li><li>`false`: The access is not restricted. Users can download the file directly.</li></ul> | No |
+| `thumbnail-height` | Number | The height of the image thumbnail, in pixels. This parameter is valid only if the size of the uploaded image exceeds 10 KB. If you leave this parameter empty, the height is 170 pixels by default. | No     |
+| `thumbnail-width` | Number| The width of the image thumbnail, in pixels. This parameter is valid only if the size of the uploaded image exceeds 10 KB. If you leave this parameter empty, the width is 170 pixels by default. | No    |
 
 #### Request body
 
@@ -1314,8 +1316,6 @@ The request body is in the form-data format and contains the following fields:
 | Field | Type | Description | Required |
 | :---- | :----- | :--------------------------------------------------------------------------------------------- | :------- |
 | `file` | String | The local path of the file to be uploaded. | Yes |
-| `thumbnail-height` | Number | The height of the image thumbnail, in pixels. This parameter is valid only if the size of the uploaded image exceeds 10 KB. If you leave this parameter empty, the height is 170 pixels by default. | No     |
-| `thumbnail-width` | Number| The width of the image thumbnail, in pixels. This parameter is valid only if the size of the uploaded image exceeds 10 KB. If you leave this parameter empty, the width is 170 pixels by default. | No    |
 
 ### HTTP response
 
@@ -1339,7 +1339,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 ```shell
 # Replace {YourAppToken} with the app token generated on your server, and the path of file with the local full path where the file to be uploaded is located
-curl -X POST 'https://XXXX/XXXX/XXXX/chatfiles' -H 'Authorization: Bearer <YourAppToken>' -H 'Content-Type: multipart/form-data; boundary=---WebKitFormBoundary7MA4YWxkTrZu0gW' -H 'restrict-access: true' -F 'file="@/Users/test/9.2/agora/image/IMG_2953.JPG"'
+curl -X POST 'https://XXXX/XXXX/XXXX/chatfiles' -H 'Authorization: Bearer <YourAppToken>' -H 'Content-Type: multipart/form-data; boundary=---WebKitFormBoundary7MA4YWxkTrZu0gW' -H 'restrict-access: true' -H 'thumbnail-height: 180' -H 'thumbnail-width: 180' -F 'file="@/Users/test/9.2/agora/image/IMG_2953.JPG"'
 ```
 
 #### Response example
