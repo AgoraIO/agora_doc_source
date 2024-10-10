@@ -26,7 +26,8 @@
                     (void)length;
                     (void)sentTs;
                   }</codeblock>
-            <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnStreamMessage, int64, userId, int, streamId, FString, data, int64, length, int, sentTs);</codeblock>
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnStreamMessage(int64 uid, int streamId, const FString&amp; data, int length, int64 sentTs);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onStreamMessage?(connection: RtcConnection, remoteUid: number, streamId: number, data: Uint8Array, length: number, sentTs: number): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnStreamMessage(RtcConnection connection, uint remoteUid, int streamId, byte[] data, uint length, UInt64 sentTs) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onStreamMessage?(
@@ -58,7 +59,7 @@
                 <pd />
             </plentry>
             <plentry id="uid">
-                <pt props="android ios mac flutter">uid</pt>
+                <pt props="android hmos ios mac">uid</pt>
                 <pt props="cpp unreal bp">userId</pt>
                 <pt props="unity electron rn flutter cs">remoteUid</pt>
                 <pd>发送消息的用户 ID。</pd>
