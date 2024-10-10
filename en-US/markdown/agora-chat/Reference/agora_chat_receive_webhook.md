@@ -19,7 +19,7 @@ When a user logs in to the Agora Chat app, the Agora Chat server sends a callbac
 
 ```json
 {
-    "callId":"XXXX#XXXXe393c568-5ae5-4a0e-8a2c-008b52b49eed",
+    "callId":"XXXX#XXXX_e393c568-5ae5-4a0e-8a2c-008b52b49eed",
     "reason":"login",
     "security":"XXXXae2eXXXXced298883a0cf06d41b9",
     "os":"ios",
@@ -53,7 +53,7 @@ When a user logs out of the Agora Chat app, the Agora Chat server sends a callba
 
 ```json
 {
-    "callId":"XXXX#XXXX25b54a81-1376-4669-bb3d-178339a8f11b",
+    "callId":"XXXX#XXXX_25b54a81-1376-4669-bb3d-178339a8f11b",
     "reason":"logout",
     "security":"XXXXd77eXXXXf26801627fdaadca987e",
     "os":"ios",
@@ -87,7 +87,7 @@ When a user is forced by the developer to go offline on the device or due to bei
 
 ```json
 {
-    "callId":"XXXX#XXXX260ae3eb-ba31-4f01-9a62-8b3b05f3a16c",
+    "callId":"XXXX#XXXX_260ae3eb-ba31-4f01-9a62-8b3b05f3a16c",
     "reason":"replaced",
     "security":"XXXX00b1XXXX4fe76dbfdc664cbaa76b",
     "os":"ios","ip":"223.71.97.198:52709",
@@ -123,7 +123,7 @@ When a user sends a message in a one-to-one chat, chat group, or chat room of th
 
 ```json
 {
-    "callId":"{appkey}_{uuid}",
+    "callId":"{appkey}_{ID of the sent message}",
     "eventType":"chat_offline",
     "timestamp":1600060847294,
     "chat_type":"groupchat", 
@@ -418,7 +418,7 @@ When a user performs operations on a chat group or chat room in the Agora Chat a
 ```json
 { 
     "chat_type": "muc",
-    "callId": "XXXX#XXXX", 
+    "callId": "{appKey}_{message ID of the operation event of the chat group or chat room}", 
     "security": "XXXX", 
     "payload":{
     // The details of the callback.
@@ -1343,7 +1343,7 @@ When a user sends read receipt for a message in a one-to-one chat, the Agora Cha
 | Field | Data Type | Description |
 | :---------- | :------- | :----------------------------------------------------------- |
 | `chat_type` | String   | The event type. The value is `read_ack`, indicating read receipts.                                   |
-| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{message ID of the read receipt}. |
+| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{message ID of the read receipt}`. |
 | `security` | String | The signature in the callback request used to confirm whether this callback is sent from the Agora Chat server. The signature is the MD5 hash of the `{callId} + {secret} + {timestamp}` string, where the value of `secret` can be found on [Agora Console](https://console.agora.io/).|
 | `payload`   | Object   | The structure of the callback event that contains the following fields:<ul><li>`ext`: The message extension field. </li><li>`ack_message_id`: The message ID of the receipt callback.</li><li>`bodies`: The message body.</li></ul> |
 | `host` | String | The domain name assigned by the Agora Chat service to access RESTful APIs. |

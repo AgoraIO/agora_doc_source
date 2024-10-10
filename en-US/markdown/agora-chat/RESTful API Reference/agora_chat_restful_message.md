@@ -2153,6 +2153,7 @@ POST https://{host}/{orgName}/{appName}/messages/users/import
 | `target` | String | The username of the message recipient. | Yes |
 | `type` | String | The message type: <ul><li>`txt`: Text message</li><li>`img`: Image message</li><li>`audio`: Audio message</li><li>`video`: Video message</li><li>`file`: File message</li><li>`loc`: Location message</li><li>`cmd`: Command message</li><li>`custom`: Custom message</li></ul> | Yes |
 | `body` | JSON | The message content. For different message types, this parameter contains different fields. For details, see [Body of different message types](#body). | Yes |
+| `ext` | JSON | The message extension field that allows you to add custom information in the format of key-value pairs. | No | 
 | `is_ack_read` | Bool | Whether to set the message as read. <ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> | No |
 | `msg_timestamp` | Long | The timestamp for importing the messages, in milliseconds. If you leave this parameter empty, the server automatically sets it as the current time. | No |
 | `need_download` | Bool | Whether to download the attachment and upload it to the server:<ul><li>`true`: Yes. In this case, you need to make sure that the attachment URL is publicly accessible. </li><li>`false`: (Default) No.</li></ul> | No |
@@ -2185,6 +2186,9 @@ If the request fails, refer to [Status codes](./agora_chat_status_code?platform=
         "body": {
             "msg": "import message."
         },
+        "ext": {
+          "key1": "value1"
+        },
         "from": "username1",
         "is_ack_read": true,
         "msg_timestamp": 1656906628428
@@ -2205,6 +2209,9 @@ If the request fails, refer to [Status codes](./agora_chat_status_code?platform=
                 "width": 1080,
                 "height": 1920
             }
+        },
+        "ext": {
+          "key1": "value1"
         },
         "from": "username1",
         "is_ack_read": true,
@@ -2256,6 +2263,7 @@ POST https://{host}/{orgName}/{appName}/messages/chatgroups/import
 | `target` | String | The chat group ID that receives the message. | Yes |
 | `type` | String | The message type: <ul><li>`txt`: Text message</li><li>`img`: Image message</li><li>`audio`: Audio message</li><li>`video`: Video message</li><li>`file`: File message</li><li>`loc`: Location message</li><li>`cmd`: Command message</li><li>`custom`: Custom message</li></ul> | Yes |
 | `body` | JSON | The message content. For different message types, this parameter contains different fields. For details, see [Body of different message types](#body). | Yes |
+| `ext` | JSON | The message extension field that allows you to add custom information in the format of key-value pairs. | No | 
 | `is_ack_read` | Bool | Whether to set the message as read. <ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> | No |
 | `msg_timestamp` | Long | The timestamp for importing the messages, in milliseconds. If you leave this parameter empty, the server automatically sets it as the current time. | No |
 | `need_download` | Bool | Whether to download the attachment and upload it to the server:<ul><li>`true`: Yes. In this case, you need to make sure that the attachment URL is publicly accessible.</li><li>`false`: (Default) No.</li></ul> | No |
@@ -2288,6 +2296,9 @@ If the request fails, refer to [Status codes](./agora_chat_status_code?platform=
         "body": {
             "msg": "import message."
         },
+        "ext": {
+          "key1": "value1"
+        },
         "from": "username1",
         "is_ack_read": true,
         "msg_timestamp": 1656906628428
@@ -2308,6 +2319,9 @@ If the request fails, refer to [Status codes](./agora_chat_status_code?platform=
                 "width": 1080,
                 "height": 1920
             }
+        },
+        "ext": {
+          "key1": "value1"
         },
         "from": "username1",
         "is_ack_read": true,
