@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_player_preloadwithurl">
+    <title><ph keyref="PreloadWithUrl"/></title>
+    <shortdesc id="short"><ph id="shortdesc">预加载 URL 资源。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="PreloadWithUrl"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void preloadWithUrl(String url) throws RteException;</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)preloadWithUrl:(NSString * _Nonnull)url error:(AgoraRteError * _Nullable)error;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">bool PreloadWithUrl(const char* url, Error* err);</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.5.0</dd>
+            </dlentry>
+            </dl>
+            <p>成功预加载后，可以加快通过 <xref keyref="OpenWithUrl"/> 打开 URL 资源的速度。当需要使用这些资源时，可以更加快速地访问，缩短等待加载的过程。//TODO 是缩短加载时间，还是可以立即访问，无需等待？</p>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p>在播放视频或音频之前，提前加载可以减少用户等待时间，提供更流畅的视听体验。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>//TODO</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>该方法目前仅对带 <codeph>rte://</codeph> 前缀的 URL 生效，最多可以预加载 20 个 URL。如果超出限制，新预加载的 URL 将会替换最早的 URL。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt>url</pt>
+                <pd>带 <codeph>rte://</codeph> 前缀的 URL。<p props="hide">各字段的详细说明详见<xref keyref="rte-player"/>。</p></pd>
+            </plentry>
+            <plentry>
+                <pt>err</pt>
+                <pd></pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+            <ul props="native unreal bp electron unity rn cs">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul> </section>
+        </refbody>
+</reference>
