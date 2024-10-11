@@ -31,6 +31,7 @@
             </dlentry>
             </dl>
             <p>成功预加载后，可以加快通过 <xref keyref="OpenWithUrl"/> 打开 URL 资源的速度。当需要使用这些资源时，可以更加快速地访问，缩短等待加载的过程。//TODO 是缩短加载时间，还是可以立即访问，无需等待？</p>
+            <p props="android" conkeyref="SetConfigs_Rte/exception"/>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>适用场景</title>
@@ -47,21 +48,22 @@
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-            <plentry>
+            <plentry id="url">
                 <pt>url</pt>
                 <pd>带 <codeph>rte://</codeph> 前缀的 URL。<p props="hide">各字段的详细说明详见<xref keyref="rte-player"/>。</p></pd>
             </plentry>
-            <plentry>
-                <pt>err</pt>
+            <plentry props="android apple" conkeyref="SetConfigs_Rte/err">
+                <pt></pt>
                 <pd></pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="cpp apple framework">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp electron unity rn cs">
-                <li>0: 方法调用成功。</li>
-                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
-                </ul> </section>
+            <p props="cpp apple unreal bp electron unity rn cs">预加载是否成功：<ul>
+                <li><codeph><ph keyref="true"/></codeph>：预加载成功。</li>
+                <li><codeph><ph keyref="false"/></codeph>：预加载失败。</li>
+                </ul>
+            </p> </section>
         </refbody>
 </reference>
