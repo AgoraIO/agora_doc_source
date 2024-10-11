@@ -3,7 +3,6 @@ After logging in to Agora Chat, users can send the following types of messages t
 - Attachment messages, including image, voice, video, and file messages.
 - Location messages.
 - CMD messages.
-- Extended messages.
 - Custom messages.
 
 In high-concurrency scenarios, you can set a certain message type or messages from a chat room member as high, normal, or low. In this case, low-priority messages are dropped first to reserve resources for the high-priority ones (e.g. gifts and announcements) when the server is overloaded. This ensures that the high-priority messages can be dealt with first when loads of messages are being sent in high concurrency or high frequency. Note that this feature can increase the delivery reliability of high-priority messages, but cannot guarantee the deliveries. Even high-priorities messages can be dropped when the server load goes too high.
@@ -12,7 +11,7 @@ This page shows how to implement sending and receiving these messages using the 
 
 ## Understand the tech
 
-The Agora Chat SDK uses the `ChatMessage` and `ChatMessage` classes to send, receive, and withdraw messages.
+The Agora Chat SDK uses the `ChatManager` and `ChatMessage` classes to send, receive, and withdraw messages.
 
 The process of sending and receiving a message is as follows:
 
@@ -206,7 +205,7 @@ class ChatMessageEvent implements ChatMessageEventListener {
     console.log(`onConversationRead: `, from, to);
   }
 }
-// Listen for the mesage event.
+// Listen for the message event.
 const listener = new ChatMessageEvent();
 ChatClient.getInstance().chatManager.addMessageListener(listener);
 // Remove the specified message listener.

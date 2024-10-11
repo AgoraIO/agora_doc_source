@@ -170,7 +170,7 @@ AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toC
                      								                  body:body
                                                        ext:messageExt];
 message.chatType = AgoraChatTypeChat;
-// Set the chat type as Group chat. You can also set is as chat (one-to-one chat) or chat room.
+// Set the chat type as Group chat. You can also set it as chat (one-to-one chat) or chat room.
 // message.chatType = AgoraChatTypeGroupChat;
 // Sends the message
 [[AgoraChatClient sharedClient].chatManager sendMessage:message 
@@ -212,7 +212,7 @@ AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toC
                      								                  body:body
                                                        ext:messageExt];
 message.chatType = AgoraChatTypeChat;
-// Set the chat type as Group chat. You can also set is as chat (one-to-one chat) or chat room.
+// Set the chat type as Group chat. You can also set it as chat (one-to-one chat) or chat room.
 // message.chatType = AgoraChatTypeGroupChat;
 // Sends the message 
 [[AgoraChatClient sharedClient].chatManager sendMessage:message 
@@ -235,7 +235,7 @@ NSString *remotePath = body.remotePath;
 NSString *thumbnailPath = body.thumbnailRemotePath;
 // Retrieves the path of the video file on the local device.
 NSString *localPath = body.localPath;
-// Retrieves the thumbnail of the video file on the local deivce.
+// Retrieves the thumbnail of the video file on the local device.
 NSString *thumbnailLocalPath = body.thumbnailLocalPath;
 ```
 
@@ -245,7 +245,7 @@ Refer to the following code example to create, send, and receive a file message:
 
 ```objective-c
 // Set fileData as the path of the file on the local device, and fileName the display name of the attachment file.
-AgoraChatFileMessageBody *body = [[AgoraChatFileMessageBody  initWithData:fileData 
+AgoraChatFileMessageBody *body = [AgoraChatFileMessageBody  initWithData:fileData 
                            							            displayName:fileName];
 AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toChatUsername
                                                       from:fromChatUsername 
@@ -253,7 +253,7 @@ AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toC
                      								                  body:body
                                                        ext:messageExt];
 message.chatType = AgoraChatTypeChat;
-// Set the chat type as Group chat. You can also set is as chat (one-to-one chat) or chat room.
+// Set the chat type as Group chat. You can also set it as chat (one-to-one chat) or chat room.
 // message.chatType = AgoraChatTypeGroupChat;
 // Sends the message
 [[AgoraChatClient sharedClient].chatManager sendMessage:message 
@@ -294,7 +294,7 @@ AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toC
                      								                  body:body
                                                        ext:messageExt];
 message.chatType = AgoraChatTypeChat;
-// Set the chat type as Group chat. You can also set is as chat (one-to-one chat) or chat room.
+// Set the chat type as Group chat. You can also set it as chat (one-to-one chat) or chat room.
 // message.chatType = AgoraChatTypeGroupChat;
 // Sends the message
 [[AgoraChatClient sharedClient].chatManager sendMessage:message 
@@ -317,7 +317,7 @@ AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toC
                      								                  body:body
                                                        ext:messageExt];
 message.chatType = AgoraChatTypeChat;
-// Set the chat type as Group chat. You can also set is as chat (one-to-one chat) or chat room.
+// Set the chat type as Group chat. You can also set it as chat (one-to-one chat) or chat room.
 // message.chatType = AgoraChatTypeGroupChat;
 // Sends the message
 [[AgoraChatClient sharedClient].chatManager sendMessage:message 
@@ -325,7 +325,7 @@ message.chatType = AgoraChatTypeChat;
   											                     completion:nil];
 ```
 
-To notify the recipient that a CMD message is received, use a seperate delegate so that users can deal with the message differently.
+To notify the recipient that a CMD message is received, use a separate delegate so that users can deal with the message differently.
 
 ```objective-c
 // Occurs when the CMD message is received.
@@ -338,8 +338,6 @@ To notify the recipient that a CMD message is received, use a seperate delegate 
 ```
 
 ### Send a customized message
-
-Custom messages are self-defined key-value pairs that include the message type and the message content.
 
 The following code example shows how to create and send a customized message:
 

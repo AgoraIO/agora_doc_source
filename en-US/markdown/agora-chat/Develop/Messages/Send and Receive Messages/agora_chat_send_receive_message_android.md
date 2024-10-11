@@ -344,8 +344,6 @@ MessageListener msgListener = new MessageListener()
 
 ### Send a customized message
 
-Custom messages are self-defined key-value pairs that include the message type and the message content.
-
 The following code example shows how to create and send a customized message:
 
 ```java
