@@ -30,34 +30,45 @@
                 <dd>v4.5.0</dd>
             </dlentry>
             </dl>
-            <p>该方法支持在本地将多路音频流合并为一路音频流。例如：本地麦克风采集的音频流、媒体播放器中的音频流、声卡采集的音频流、远端音频流、通过网络获取的远端音频流等。</p>
+            <p>该方法支持在本地将多路音频流合并为一路音频流。例如：将本地麦克风采集的音频流、媒体播放器中的音频流、声卡采集的音频流、远端音频流、通过网络获取的远端音频流等合并为一路音频流，然后将合流后的音频流发布到频道中。</p>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>适用场景</title>
-            <p/>
+            <p>你可以在如下场景中开启该功能：
+                <ul>
+                <li>在语聊房、游戏直播场景下添加背景音乐。</li>
+                <li>为视频在线实时配音。</li>
+                <li>在在线教育场景下播放本地音频课件。</li>
+                <li>结合本地合图功能一起使用，可将合图视频流相关的音频流同步采集和发布。</li>
+                </ul></p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p/>
+            <ul>
+                <li>如果你要对本地采集的音频流进行合流，需要在音频流被采集并且发布后调用该方法。</li>
+                <li>如果你要对远端音频流进行合流，需要在音频流被发布及订阅后调用该方法。</li>
+                <li>调用该方法后，你需要在调用 <xref keyref="joinChannel2"/> 或 <xref keyref="updateChannelMediaOptions"/> 时，将 <xref keyref="ChannelMediaOptions"/> 中的 <parmname>publishMixedAudioTrack</parmname> 设置为 <codeph><ph keyref="true"/></codeph>，则可将合流后的音频流发布到频道中。</li>
+            </ul>
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p/>
+            <p>无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-            <plentry>
-                <pt>config</pt>
-                <pd>本地音频合流的配置。详见 <xref keyref="LocalAudioMixerConfiguration"/>。</pd>
-            </plentry>
+            <plentry id="config">
+                    <pt>config</pt>
+                    <pd>本地音频合流的配置。详见 <xref keyref="LocalAudioMixerConfiguration"/>。</pd>
+                </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
             <ul props="native unreal bp electron unity rn cs">
                 <li>0: 方法调用成功。</li>
-                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
-                </ul> </section>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph><ul>
+                    <li>-7：<apiname keyref="IRtcEngine" /> 对象尚未初始化。你需要在调用该方法前成功初始化 <apiname keyref="IRtcEngine" /> 对象。</li>
+                </ul></li> </ul> </section>
         </refbody>
 </reference>
