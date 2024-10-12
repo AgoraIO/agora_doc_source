@@ -327,7 +327,7 @@ cmdMsg.addBody(cmdBody);
 ChatClient.getInstance().chatManager().sendMessage(cmdMsg);
 ```
 
-To notify the recipient that a CMD message is received, use a separate delegate so that users can deal with the message differently.
+To notify the recipient that a CMD message is received, use a separate listener so that users can deal with the message differently.
 
 ```java
 MessageListener msgListener = new MessageListener() 
