@@ -30,38 +30,36 @@
                 <dd>v4.5.0</dd>
             </dlentry>
             </dl>
-            <p/>
-        </section>
-        <section id="scenario" deliveryTarget="details">
-            <title>适用场景</title>
-            <p/>
+            <p>当你调用 <xref keyref="Play_Player"/> 播放 URL 流后，如果你想暂停播放，可以调用此方法。如果你想要停止播放，请调用 <xref keyref="Stop_Player"/>。</p>
+            <p props="android" conkeyref="SetConfigs_Rte/exception"/>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p/>
+            <p>该方法需要在 <xref keyref="Play_Player"/> 之后调用。</p>
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p/>
+            <p>无。</p>
         </section>
         <section id="related" deliveryTarget="details">
             <title>相关回调</title>
-            <p/>
+            <p>成功调用该方法后会触发 <xref keyref="OnStateChanged"/> 回调，报告播放器状态为 <apiname keyref="kRtePlayerStatePaused"/>。</p>
         </section>
-        <section id="parameters" deliveryTarget="details">
+        <section id="parameters" deliveryTarget="details" props="cpp apple">
             <title>参数</title>
             <parml>
-            <plentry>
+            <plentry conkeyref="SetConfigs_Rte/err">
                 <pt/>
                 <pd/>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="cpp apple framework">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp electron unity rn cs">
-                <li>0: 方法调用成功。</li>
-                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
-                </ul> </section>
+            <p props="cpp apple unreal bp electron unity rn cs">暂停播放是否成功：<ul>
+                <li><codeph><ph keyref="true"/></codeph>：暂停播放成功。</li>
+                <li><codeph><ph keyref="false"/></codeph>：暂停播放失败。</li>
+                </ul>
+            </p> </section>
         </refbody>
 </reference>
