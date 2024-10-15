@@ -16,8 +16,36 @@
             <title>枚举值</title>
             <parml>
                 <plentry>
-                    <pt><?oxy-placeholder content="The name of the enumerator."?></pt>
-                    <pd><?oxy-placeholder content="The description of the enumerator."?></pd>
+                    <pt><ph keyref="kRtePlayerStateIdle"/></pt>
+                    <pd>0：空闲状态。//TODO 播放器会在你打开 URL 之前和结束播放之后会报告该状态码。</pd>
+                </plentry>
+                <plentry>
+                    <pt><ph keyref="kRtePlayerStateOpening"/></pt>
+                    <pd>1：正在打开 URL 资源。当调用 <xref keyref="OpenWithUrl"/> 后会报告该状态码。</pd>
+                </plentry>
+                <plentry>
+                    <pt><ph keyref="kRtePlayerStateOpenCompleted"/></pt>
+                    <pd>2：成功打开 URL 资源。当调用 <xref keyref="OpenWithUrl"/> 成功打开 URL 资源后会报告该状态码。</pd>
+                </plentry>
+                <plentry>
+                    <pt><ph keyref="kRtePlayerStatePlaying"/></pt>
+                    <pd>3：播放中。//TODO 当打开 rte url 时，订阅主播成功回调此状态。观众端调用 open 打开 url 并播放后会回调这个状态吗？</pd>
+                </plentry>
+                <plentry>
+                    <pt><ph keyref="kRtePlayerStatePaused"/></pt>
+                    <pd>4：暂停播放。当成功调用 <xref keyref="Pause_Player"/> 后会报告该状态码。</pd>
+                </plentry>
+                <plentry>
+                    <pt><ph keyref="kRtePlayerStatePlaybackCompleted"/></pt>
+                    <pd>5：播放完成。//TODO 当主播结束推流退出房间后，会报告该状态码。这个状态码是观众端和主播端都会报告吗？</pd>
+                </plentry>
+                <plentry>
+                    <pt><ph keyref="kRtePlayerStateStopped"/></pt>
+                    <pd>6：停止播放。当成功调用 <xref keyref="Stop_Player"/> 后会报告该状态码。</pd>
+                </plentry>
+                <plentry>
+                    <pt><ph keyref="kRtePlayerStateFailed"/></pt>
+                    <pd>7：失败状态。当内部发生错误时会报告该状态码。</pd>
                 </plentry>
             </parml>
         </section></refbody>
