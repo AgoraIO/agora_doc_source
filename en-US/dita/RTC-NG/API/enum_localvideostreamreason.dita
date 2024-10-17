@@ -46,7 +46,7 @@
                     <pd props="ios cpp unreal bp rn unity flutter"><ph>7:</ph><ph props="cpp unreal bp rn flutter unity"> (iOS only) </ph><ph>The current app window is running in Slide Over, Split View, or Picture in Picture mode, and another app is occupying the camera. Prompt the user that the app cannot capture video properly when it is running in Slide Over, Split View, or Picture in Picture mode and another app is occupying the camera.</ph></pd>
                     <pd props="cs">7: Reserved.</pd>
                 </plentry>
-            <plentry props="android cpp unreal bp unity electron flutter rn cs">
+            <plentry props="android hmos cpp unreal bp unity electron flutter rn cs">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_NOT_FOUND"/></pt>
                 <pd>8: Fails to find a local video capture device. Remind the user to check whether the camera is connected to the device properly or the camera is working properly, and then to rejoin the channel.</pd>
             </plentry>
@@ -129,6 +129,18 @@
                 <plentry props="cpp mac flutter unreal bp unity electron">
                     <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_DISPLAY_DISCONNECTED"/></pt>
                     <pd>30: <ph props="cpp flutter unreal bp unity">(Windows and macOS only)</ph>The displayer used for screen capture is disconnected.</pd>
+                </plentry>
+                <plentry props="hmos">
+                    <pt><ph keyref="SCREEN_CAPTURE_STOPPED_BY_USER"/></pt>
+                    <pd>31：用户已停止屏幕共享。</pd>
+                </plentry>
+                <plentry props="hmos">
+                    <pt><ph keyref="SCREEN_CAPTURE_INTERRUPTED_BY_OTHER"/></pt>
+                    <pd>32：屏幕共享进程已被其他屏幕共享进程打断。</pd>
+                </plentry>
+                <plentry props="hmos">
+                    <pt><ph keyref="SCREEN_CAPTURE_STOPPED_BY_CALL"/></pt>
+                    <pd>33：屏幕共享进程被系统来电打断。</pd>
                 </plentry>
                 <plentry props="cpp unreal bp unity electron flutter cs">
                     <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_SYSTEM_PRESSURE"/></pt>

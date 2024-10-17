@@ -35,19 +35,13 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>When a remote user has enabled dual-stream mode, you can call this method to choose the option for subscribing to the video streams sent by the remote user.</p>
-            <p>
-            <ul>
-            <li>If you only register one <xref keyref="IVideoFrameObserver"/> object, the SDK subscribes to the raw video data and encoded video data by default (the effect is equivalent to setting <parmname>encodedFrameOnly</parmname> to <codeph><ph keyref="false"/></codeph>).</li>
-            <li>If you only register one <xref keyref="IVideoEncodedFrameObserver"/> object, the SDK only subscribes to the encoded video data by default (the effect is equivalent to setting <parmname>encodedFrameOnly</parmname> to <codeph><ph keyref="true"/></codeph>).</li>
-            <li>If you register one <apiname keyref="IVideoFrameObserver"/> object and one <apiname keyref="IVideoEncodedFrameObserver"/> object successively, the SDK subscribes to the encoded video data by default (the effect is equivalent to setting <parmname>encodedFrameOnly</parmname> to <codeph><ph keyref="false"/></codeph>).</li>
-            <li>If you call this method first with the <parmname>options</parmname> parameter set, and then register one <apiname keyref="IVideoFrameObserver"/> or <apiname keyref="IVideoEncodedFrameObserver"/> object, you need to call this method again and set the <parmname>options</parmname> parameter as described in the above two items to get the desired results.</li>
-            </ul> </p>
-            <note>Agora recommends the following steps:<ol>
-            <li>Set <parmname>autoSubscribeVideo</parmname> to <codeph><ph keyref="false"/></codeph> when calling <xref keyref="joinChannel2"/> to join a channel.</li>
-            <li>Call this method after receiving the <xref keyref="onUserJoined"/> callback to set the subscription options for the specified remote user's video stream.</li>
-            <li>Call the <xref keyref="muteRemoteVideoStream"/> method to resume subscribing to the video stream of the specified remote user. If you set <parmname>encodedFrameOnly</parmname> to <codeph><ph keyref="true"/></codeph> in the previous step, the SDK triggers the <xref keyref="onEncodedVideoFrameReceived"/> callback locally to report the received encoded video frame information.</li>
-            </ol> </note> </section>
+            <p>When a remote user has enabled dual-stream mode, you can call this method to choose the option for subscribing to the video streams sent by the remote user. SDK 对远端视频流的默认订阅行为取决于注册的视频观测器类型：<ul>
+                <li>如果注册的是 <xref keyref="IVideoFrameObserver"/> 观测器，则默认订阅原始数据和编码后的数据。</li>
+                <li>如果注册的是 <xref keyref="IVideoEncodedFrameObserver"/> 观测器，则默认仅订阅编码后的数据。</li>
+                <li>如果注册了两种观测器，则默认跟随后注册的视频观测器。 举例来说，如果后注册的是 <apiname keyref="IVideoFrameObserver"/> 观测器，则默认订阅原始数据和编码后的数据。</li>
+            </ul>
+            如果你想修改以上默认行为，或者想针对不同 <codeph>uid</codeph> 设置不同的订阅选项，可调用该方法设置。 <ph props="android cpp apple">有关详细的实现步骤，详见<xref keyref="video-processing"/>。</ph></p>
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>

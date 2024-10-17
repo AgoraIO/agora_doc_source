@@ -28,8 +28,10 @@
             <p props="ios mac">If the video has been rotated according to <parmname>rotation</parmname> in <xref keyref="VideoFrame" /> on the capture device, you do not need to call this method to set the video rotation.</p>
             <note type="attention" id="note1">
                 <ul>
-                    <li>This function only applies to the scenarios where the video processing mode is <apiname keyref="PROCESS_MODE_READ_ONLY" />.</li>
-                    <li>This function only supports video data in RGBA and YUV420.</li>
+                    <li props="android cpp unreal bp">在 Android 平台上，该回调支持的视频数据格式有：I420、RGBA 和 Texture。</li>
+                    <li props="cpp unreal bp">在 Windows 平台上，该回调支持的视频数据格式有：I420、RGBA 和 TextureBuffer。</li>
+                    <li props="ios cpp unreal bp">在 iOS 平台上，该回调支持的视频数据格式有：I420、RGBA 和 CVPixelBuffer。</li>
+                    <li props="mac cpp unreal bp">在 macOS 平台上，该回调支持的视频数据格式有：I420 和 RGBA。</li>
                 </ul>
             </note> </section>
         <section id="return_values">
