@@ -7,42 +7,61 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class VideoFrame implements RefCounted {
+  
   public interface Buffer extends RefCounted {
-    @CalledByNative("Buffer") int getWidth();
-    @CalledByNative("Buffer") int getHeight();
-    @CalledByNative("Buffer") I420Buffer toI420();
-    @Override @CalledByNative("Buffer") void release();
-    @Override @CalledByNative("Buffer") void retain();
-    @CalledByNative("Buffer")
+    
+    @CalledByNative(&quot;Buffer&quot;) int getWidth();
+    
+    @CalledByNative(&quot;Buffer&quot;) int getHeight();
+    
+    @CalledByNative(&quot;Buffer&quot;) I420Buffer toI420();
+    
+    @Override @CalledByNative(&quot;Buffer&quot;) void release();
+    
+    @Override @CalledByNative(&quot;Buffer&quot;) void retain();
+    
+    @CalledByNative(&quot;Buffer&quot;)
     Buffer cropAndScale(
         int cropX, int cropY, int cropWidth, int cropHeight, int scaleWidth, int scaleHeight);
-    @CalledByNative("Buffer") @Nullable Buffer mirror(int frameRotation);
-    @CalledByNative("Buffer") @Nullable Buffer rotate(int frameRotation);
-    @CalledByNative("Buffer")
+    
+    @CalledByNative(&quot;Buffer&quot;) @Nullable Buffer mirror(int frameRotation);
+    
+    @CalledByNative(&quot;Buffer&quot;) @Nullable Buffer rotate(int frameRotation);
+    
+    @CalledByNative(&quot;Buffer&quot;)
     @Nullable
     Buffer transform(int cropX, int cropY, int cropWidth, int cropHeight, int scaleWidth,
         int scaleHeight, int frameRotation);
   }
+  
   public interface I420Buffer extends Buffer {
-    @CalledByNative("I420Buffer") ByteBuffer getDataY();
-    @CalledByNative("I420Buffer") ByteBuffer getDataU();
-    @CalledByNative("I420Buffer") ByteBuffer getDataV();
-    @CalledByNative("I420Buffer") int getStrideY();
-    @CalledByNative("I420Buffer") int getStrideU();
-    @CalledByNative("I420Buffer") int getStrideV();
+    
+    @CalledByNative(&quot;I420Buffer&quot;) ByteBuffer getDataY();
+    
+    @CalledByNative(&quot;I420Buffer&quot;) ByteBuffer getDataU();
+    
+    @CalledByNative(&quot;I420Buffer&quot;) ByteBuffer getDataV();
+    @CalledByNative(&quot;I420Buffer&quot;) int getStrideY();
+    @CalledByNative(&quot;I420Buffer&quot;) int getStrideU();
+    @CalledByNative(&quot;I420Buffer&quot;) int getStrideV();
   }
+  
   public interface I422Buffer extends Buffer {
-    @CalledByNative("I422Buffer") ByteBuffer getDataY();
-    @CalledByNative("I422Buffer") ByteBuffer getDataU();
-    @CalledByNative("I422Buffer") ByteBuffer getDataV();
-    @CalledByNative("I422Buffer") int getStrideY();
-    @CalledByNative("I422Buffer") int getStrideU();
-    @CalledByNative("I422Buffer") int getStrideV();
+    @CalledByNative(&quot;I422Buffer&quot;) ByteBuffer getDataY();
+    @CalledByNative(&quot;I422Buffer&quot;) ByteBuffer getDataU();
+    @CalledByNative(&quot;I422Buffer&quot;) ByteBuffer getDataV();
+    @CalledByNative(&quot;I422Buffer&quot;) int getStrideY();
+    @CalledByNative(&quot;I422Buffer&quot;) int getStrideU();
+    @CalledByNative(&quot;I422Buffer&quot;) int getStrideV();
   }
-  public interface RgbaBuffer extends Buffer { @CalledByNative("RgbaBuffer") ByteBuffer getData(); }
+  public interface RgbaBuffer extends Buffer { @CalledByNative(&quot;RgbaBuffer&quot;) ByteBuffer getData(); }
+  
   public interface TextureBuffer extends Buffer {
+    
     enum Type {
+      
       OES(GLES11Ext.GL_TEXTURE_EXTERNAL_OES),
+      
       RGB(GLES20.GL_TEXTURE_2D);
       private final int glTarget;
       private Type(final int glTarget) {
@@ -57,22 +76,26 @@
       EGL_CONTEXT_14;
     }
     Type getType();
-    @CalledByNative("TextureBuffer") int getTextureId();
+    
+    @CalledByNative(&quot;TextureBuffer&quot;) int getTextureId();
+    
     Matrix getTransformMatrix();
-    @CalledByNative("TextureBuffer") EglBase.Context getEglBaseContext();
-    @CalledByNative("TextureBuffer") Object getSourceTexturePool();
-    @CalledByNative("TextureBuffer") long getNativeEglContext();
-    @CalledByNative("TextureBuffer") int getEglContextType();
-    @CalledByNative("TextureBuffer") float[] getTransformMatrixArray();
-    @CalledByNative("TextureBuffer") int getSequence();
-    @CalledByNative("TextureBuffer") boolean is10BitTexture();
+    
+    @CalledByNative(&quot;TextureBuffer&quot;) EglBase.Context getEglBaseContext();
+    @CalledByNative(&quot;TextureBuffer&quot;) Object getSourceTexturePool();
+    @CalledByNative(&quot;TextureBuffer&quot;) long getNativeEglContext();
+    @CalledByNative(&quot;TextureBuffer&quot;) int getEglContextType();
+    @CalledByNative(&quot;TextureBuffer&quot;) float[] getTransformMatrixArray();
+    
+    @CalledByNative(&quot;TextureBuffer&quot;) int getSequence();
+    @CalledByNative(&quot;TextureBuffer&quot;) long getFenceObject();
+    @CalledByNative(&quot;TextureBuffer&quot;) boolean is10BitTexture();
   }
   public interface ColorSpace {
     enum Range {
       Invalid(0),
       Limited(1),
-      Full(2),
-      Derived(3);
+      Full(2);
       private final int range;
       private Range(int range) {
         this.range = range;
@@ -161,32 +184,55 @@
     kBackCamera,
     kUnspecified,
   }
+    public enum AlphaStitchMode {
+    ALPHA_NO_STITCH(0),
+    ALPHA_STITCH_UP(1),
+    ALPHA_STITCH_BELOW(2),
+    ALPHA_STITCH_LEFT(3),
+    ALPHA_STITCH_RIGHT(4);
+    private final int stitchMode;
+    private AlphaStitchMode(int stitchMode) {
+      this.stitchMode = stitchMode;
+    }
+    public int value() {
+      return stitchMode;
+    }
+  }
+  
   private Buffer buffer;
+  
   private int rotation;
+  
   private long timestampNs;
   private ColorSpace colorSpace;
   private SourceType sourceType;
   private float sampleAspectRatio;
+  
+  private AlphaStitchMode alphaStitchMode = AlphaStitchMode.ALPHA_NO_STITCH;
   private VideoFrameMetaInfo metaInfo = new VideoFrameMetaInfo();
+  
   private @Nullable ByteBuffer alphaBuffer;
-  private int alphaStitchMode;
+  private long nativeAlphaBuffer;
+  
   public VideoFrame(Buffer buffer, int rotation, long timestampNs) {
-    this(buffer, rotation, timestampNs, new WrappedNativeColorSpace(), null, 0L, 1.0f, SourceType.kUnspecified.ordinal());
+    this(buffer, rotation, timestampNs, new WrappedNativeColorSpace(), null, 0L, 1.0f,
+        SourceType.kUnspecified.ordinal());
   }
   @CalledByNative
   public VideoFrame(Buffer buffer, int rotation, long timestampNs, ColorSpace colorSpace,
-      ByteBuffer alphaBuffer, float sampleAspectRatio, int sourceType) {
+      ByteBuffer alphaBuffer, long nativeAlphaBuffer, float sampleAspectRatio, int sourceType) {
     if (buffer == null) {
-      throw new IllegalArgumentException("buffer not allowed to be null");
+      throw new IllegalArgumentException(&quot;buffer not allowed to be null&quot;);
     }
     if (rotation % 90 != 0) {
-      throw new IllegalArgumentException("rotation must be a multiple of 90");
+      throw new IllegalArgumentException(&quot;rotation must be a multiple of 90&quot;);
     }
     this.buffer = buffer;
     this.rotation = rotation;
     this.timestampNs = timestampNs;
     this.colorSpace = colorSpace;
     this.alphaBuffer = alphaBuffer;
+    this.nativeAlphaBuffer = nativeAlphaBuffer;
     this.sampleAspectRatio = sampleAspectRatio;
     this.sourceType = SourceType.values()[sourceType];
   }
@@ -197,18 +243,25 @@
   public float getSampleAspectRatio() {
     return sampleAspectRatio;
   }
+  
   @CalledByNative
   public Buffer getBuffer() {
     return buffer;
   }
+  
   @CalledByNative
   public int getRotation() {
     return rotation;
   }
   @CalledByNative
   public int getAlphaStitchMode() {
-    return alphaStitchMode;
+    return alphaStitchMode.value();
   }
+  @CalledByNative
+  public void setAlphaStitchMode(int stitchMode) {
+    alphaStitchMode = AlphaStitchMode.values()[stitchMode];
+  }
+  
   @CalledByNative
   public long getTimestampNs() {
     return timestampNs;
@@ -217,41 +270,93 @@
   public VideoFrameMetaInfo getMetaInfo() {
     return metaInfo;
   }
+  
   public int getRotatedWidth() {
     if (rotation % 180 == 0) {
-      return buffer.getWidth();
+      return (alphaStitchMode == AlphaStitchMode.ALPHA_STITCH_LEFT
+                 || alphaStitchMode == AlphaStitchMode.ALPHA_STITCH_RIGHT)
+          ? buffer.getWidth() / 2
+          : buffer.getWidth();
     }
-    return buffer.getHeight();
+    return (alphaStitchMode == AlphaStitchMode.ALPHA_STITCH_UP
+               || alphaStitchMode == AlphaStitchMode.ALPHA_STITCH_BELOW)
+        ? buffer.getHeight() / 2
+        : buffer.getHeight();
   }
+  
   public int getRotatedHeight() {
     if (rotation % 180 == 0) {
-      return buffer.getHeight();
+      return (alphaStitchMode == AlphaStitchMode.ALPHA_STITCH_UP
+                 || alphaStitchMode == AlphaStitchMode.ALPHA_STITCH_BELOW)
+          ? buffer.getHeight() / 2
+          : buffer.getHeight();
     }
-    return buffer.getWidth();
+    return (alphaStitchMode == AlphaStitchMode.ALPHA_STITCH_LEFT
+               || alphaStitchMode == AlphaStitchMode.ALPHA_STITCH_RIGHT)
+        ? buffer.getWidth() / 2
+        : buffer.getWidth();
   }
+  
   public void replaceBuffer(Buffer buffer, int rotation, long timestampNs) {
     release();
     this.buffer = buffer;
     this.rotation = rotation;
     this.timestampNs = timestampNs;
   }
+  @CalledByNative
   public ColorSpace getColorSpace() {
     return colorSpace;
+  }
+  public void setColorSpace(ColorSpace colorSpace) {
+    this.colorSpace = colorSpace;
+  }
+  @CalledByNative
+  private int getColorSpaceRange() {
+    if (colorSpace == null) {
+      return ColorSpace.Range.Invalid.getRange();
+    }
+    return colorSpace.getRange().getRange();
+  }
+  @CalledByNative
+  private int getColorSpaceMatrix() {
+    if (colorSpace == null) {
+      return ColorSpace.Matrix.Unspecified.getMatrix();
+    }
+    return colorSpace.getMatrix().getMatrix();
+  }
+  @CalledByNative
+  private int getColorSpaceTransfer() {
+    if (colorSpace == null) {
+      return ColorSpace.Transfer.Unspecified.getTransfer();
+    }
+    return colorSpace.getTransfer().getTransfer();
+  }
+  @CalledByNative
+  private int getColorSpacePrimary() {
+    if (colorSpace == null) {
+      return ColorSpace.Primary.Unspecified.getPrimary();
+    }
+    return colorSpace.getPrimary().getPrimary();
   }
   @CalledByNative
   public ByteBuffer getAlphaBuffer() {
     return alphaBuffer;
   }
+  public void retainAlphaBuffer() {
+    JniCommon.nativeAddRef(nativeAlphaBuffer);
+  }
+  public void releaseAlphaBuffer() {
+    JniCommon.nativeReleaseRef(nativeAlphaBuffer);
+  }
   public void fillAlphaData(ByteBuffer buffer) {
     alphaBuffer = buffer;
   }
-  public void setAlphaStitchMode(int mode) {
-    this.alphaStitchMode = mode;
-  }
+  
   @Override
   public void retain() {
     buffer.retain();
   }
+  
   @Override
   @CalledByNative
   public void release() {
@@ -278,7 +383,8 @@
     this.format = format;
   }
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraOutputVideoFrame : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility(&quot;default&quot;))) @interface AgoraOutputVideoFrame : NSObject
+
 @property (nonatomic, assign) NSInteger type;
 @property (nonatomic, assign) int width;
 @property (nonatomic, assign) int height;
@@ -291,12 +397,16 @@
 @property (nonatomic, assign) int rotation;
 @property (nonatomic, assign) int64_t renderTimeMs;
 @property (nonatomic, assign) int avSyncType;
+
 @property(assign, nonatomic) CVPixelBufferRef _Nullable pixelBuffer;
 @property (nonatomic, assign) uint8_t* _Nullable alphaBuffer;
 @property (nonatomic, assign) AgoraAlphaStitchMode alphaStitchMode;
+
 @property(nonatomic, strong) NSDictionary *_Nonnull metaInfo;
+@property(nonatomic, strong) AgoraColorSpace* _Nullable colorSpace;
 @end</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">struct VideoFrame {
+            <codeblock props="cpp unreal" outputclass="language-cpp">
+struct VideoFrame {
   VideoFrame():
   type(VIDEO_PIXEL_DEFAULT),
   width(0),
@@ -316,33 +426,57 @@
   textureId(0),
   d3d11Texture2d(NULL),
   alphaBuffer(NULL),
-  alphaStitchMode(0),
+  alphaStitchMode(NO_ALPHA_STITCH),
   pixelBuffer(NULL),
   metaInfo(NULL){
     memset(matrix, 0, sizeof(matrix));
   }
+  
   VIDEO_PIXEL_FORMAT type;
+  
   int width;
+  
   int height;
+  
   int yStride;
+  
   int uStride;
+  
   int vStride;
+  
   uint8_t* yBuffer;
+  
   uint8_t* uBuffer;
+  
   uint8_t* vBuffer;
+  
   int rotation;
+  
   int64_t renderTimeMs;
+  
   int avsync_type;
+  
   uint8_t* metadata_buffer;
+  
   int metadata_size;
+  
   void* sharedContext;
+  
   int textureId;
+  
   void* d3d11Texture2d;
+  
   float matrix[16];
+  
   uint8_t* alphaBuffer;
-  int alphaStitchMode;
+  
+  ALPHA_STITCH_MODE alphaStitchMode;
+  
   void* pixelBuffer;
+  
   IVideoFrameMetaInfo* metaInfo;
+  
+  ColorSpace colorSpace;
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FVideoFrame {
@@ -608,6 +742,19 @@ class VideoFrame {
         <section id="detailed_desc">
             <p>缓冲区给出的是指向指针的指针，该接口不能修改缓冲区的指针，只能修改缓冲区的内容。</p>
         </section>
+        <section id="sub-method" props="android">
+          <title>方法</title>
+          <parml>
+            <plentry>
+              <pt>getColorSpace</pt>
+              <pd>获取视频帧的色彩空间属性。</pd>
+            </plentry>
+            <plentry>
+              <pt>setColorSpace</pt>
+              <pd>设置视频帧的色彩空间属性。</pd>
+            </plentry>
+        </parml>
+        </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
@@ -727,9 +874,9 @@ class VideoFrame {
           <pt>pixelBuffer</pt>
           <pd>将数据填充到 CVPixelBuffer。</pd>
         </plentry>
-        <plentry props="android hmos">
-          <pt>colorSpace</pt>
-          <pd>表示视频帧的色彩空间。详见 <xref keyref="videocolorspace-link"/>。</pd>
+        <plentry id="colorspace">
+            <pt>colorSpace</pt>
+            <pd>视频帧的色彩空间属性，默认情况下会应用 Full Range 和 BT.709 标准配置。你可以根据自采集、自渲染的业务需求进行自定义设置，详见 <xref keyref="videocolorspace-link"/>。</pd>
         </plentry>
         <plentry props="android hmos">
           <pt>sourceType</pt>
