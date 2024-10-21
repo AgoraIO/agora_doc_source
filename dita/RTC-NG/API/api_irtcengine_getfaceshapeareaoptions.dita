@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_getfaceshapeareaoptions">
     <title><ph keyref="getFaceShapeAreaOptions" /></title>
-    <shortdesc id="short"><ph id="shortdesc">获取美型区域选项。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">获取美型部位选项。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -31,11 +31,11 @@
                 <dd>v4.5.0</dd>
             </dlentry>
             </dl>
-            <p/>
+            <p>调用该方法可以获取美型部位当前设置的参数信息。</p>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>适用场景</title>
-            <p>用户在 App 中打开调整美型区域和力度调整菜单时，可以调用该方法获取并刷新当前美型区域选项的值，从而记住用户上次调整的结果并更新 UI。</p>
+            <p>用户在 App 中打开调整美型部位和力度调整菜单时，可以调用该方法获取并刷新当前美型部位选项的值，从而记住用户上次调整的结果并更新 UI。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -52,10 +52,10 @@
                 <pt props="android ios">shapeArea</pt>
                 <pt props="cpp unreal bp unity flutter rn electron cs">area</pt>
                 <pd>
-                    <p props="cpp ios mac unreal bp unity flutter electron rn cs">美型区域，详见 <xref keyref="FACE_SHAPE_AREA" />。</p>
-                    <p props="android hmos">美型区域：
+                    <p props="cpp ios mac unreal bp unity flutter electron rn cs">美型部位，详见 <xref keyref="FACE_SHAPE_AREA" />。</p>
+                    <p props="android hmos">美型部位：
                         <ul>
-                            <li><ph keyref="FACE_SHAPE_AREA_NONE" /> (-1)：（默认）无效区域，美型效果不生效。</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_NONE" /> (-1)：（默认）无效部位，美型效果不生效。</li>
                             <li><ph keyref="FACE_SHAPE_AREA_HEADSCALE" /> (0)：头部，用于实现小头效果。对应力度调整范围为 [0,100]，值越大头越小，预设值为 100。</li>
                             <li><ph keyref="FACE_SHAPE_AREA_FOREHEAD" /> (1)：额头，调整发际线高度。对应力度调整范围为 [-100,100]，正值为调高，负值为调低，绝对值越大调整效果越强，预设值为 50。</li>
                             <li><ph keyref="FACE_SHAPE_AREA_FACECONTOUR" /> (2)：脸部轮廓，用于实现瘦脸效果。对应力度调整范围为 [0,100]，值越大瘦脸效果越强，预设值为 10。</li>
