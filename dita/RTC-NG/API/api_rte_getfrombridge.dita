@@ -30,7 +30,7 @@
                 <dd>v4.5.0</dd>
             </dlentry>
             </dl>
-            <p>此方法适用于已经初始化了 RTC 引擎的场景，可以省去 RTE 引擎的初始化步骤。//TODO 如果没有初始化 rtc 引擎，是否需要调用 RTE + InitMediaEngine。需要。两种初始化方法，一个是bridge，一个是rte+init。</p>
+            <p>调用该方法后无需再额外初始化 RTE 引擎。如果你未创建并初始化 RTC 引擎，则需调用 <xref keyref="Rte"/> 创建一个 RTE 对象然后再调用 <xref keyref="InitMediaEngine"/> 进行初始化。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -46,7 +46,7 @@
                 <plentry>
                     <pt props="cpp">err</pt>
                     <pt props="apple">error</pt>
-                    <pd>//TODO 原型里面 refer 的是 Error，跟 RteErrorCode 有什么关系吗？指向 <xref keyref="Error"/> 对象的指针，用于接收状态及错误码。</pd>
+                    <pd>指向 <xref keyref="Error"/> 对象的指针，用于接收状态及错误码。</pd>
                 </plentry>
             </parml>
         </section>

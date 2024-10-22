@@ -38,7 +38,7 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p>//TODO</p>
+            <p>该方法需要在 <xref keyref="SetCanvas"/> 之前调用。</p>
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -51,11 +51,12 @@
                 <pt>view</pt>
                 <pd props="cpp">HWND 窗口句柄值。</pd>
                 <pd props="android">SurfaceView 对象。</pd>
-                <pd props="apple">UIView 对象。</pd>
+                <pd props="ios">UIView 对象。</pd>
+                <pd props="mac">NSView 对象。</pd>
             </plentry>
             <plentry id="config">
                 <pt>config</pt>
-                <pd>View 对象的设置，详见 <xref keyref="RteViewConfig"/>。//TODO 目前可传空是什么意思？什么情况下可以传空？</pd>
+                <pd>View 对象的设置，目前请传空。</pd>
             </plentry>
             <plentry props="cpp apple" conkeyref="SetConfigs_Rte/err">
                 <pt></pt>
@@ -70,5 +71,9 @@
                 <li><codeph><ph keyref="false"/></codeph>：添加视图失败。</li>
                 </ul>
             </p> </section>
-        </refbody>
+        <section id="exception" conkeyref="SetAppId/exception" props="android">
+            <title></title>
+            <p></p>
+        </section>
+    </refbody>
 </reference>

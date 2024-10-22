@@ -30,12 +30,11 @@
                 <dd>v4.5.0</dd>
             </dlentry>
             </dl>
-            <p>//TODO</p>
-            <p props="android" conkeyref="SetConfigs_Rte/exception"/>
+            <p/>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p>//rte engine 之后。</p>
+            <p>该方法需要在 <xref keyref="GetConfigs_Player"/> 之后调用。</p>
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -51,6 +50,7 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-        <p>当前设置的视频质量层级，详见 <xref keyref="RteAbrSubscriptionLayer"/>。</p></section>
+        <p props="apple cpp">设置的视频质量层级，详见 <xref keyref="RteAbrSubscriptionLayer"/>。</p>
+        <p props="android">方法调用成功时，返回设置的视频质量层级，详见 <xref keyref="RteAbrSubscriptionLayer"/>。方法调用失败时，SDK 会抛出 <xref keyref="RteException"/> 异常，并返回相应的错误信息。你需要捕获异常并进行处理。</p></section>
         </refbody>
 </reference>

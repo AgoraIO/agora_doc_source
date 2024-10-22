@@ -35,7 +35,7 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p>//TODO设置 app id 必须在初始化之前，其他的选项可以按需随时更新。</p>
+            <p>如果你需要通过该方法设置 App ID，请在 <xref keyref="InitMediaEngine"/> 之前调用。如需更新其他配置，可随时调用该方法。</p>
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -54,15 +54,19 @@
                 <pd>状态或错误信息，详见 <xref keyref="Error"/>。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
-            <title><ph keyref="return-section-title" props="cpp apple framework"/>
-            <ph props="android">异常</ph></title>
+        <section id="return_values" props="cpp apple framework">
+            <title><ph keyref="return-section-title"/>
+            </title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
             <p props="cpp apple unreal bp electron unity rn cs">配置是否成功：<ul>
                 <li><codeph><ph keyref="true"/></codeph>：配置成功。</li>
                 <li><codeph><ph keyref="false"/></codeph>：配置失败。</li>
                 </ul>
             </p>
-        <p props="android" id="exception">调用失败时，SDK 会抛出 <xref keyref="RteException"/> 异常，并返回相应的错误信息。你需要捕获异常并进行处理。</p></section>
-        </refbody>
+        </section>
+        <section id="exception" props="android" conkeyref="SetAppId/exception">
+            <title></title>
+            <p></p>
+        </section>
+    </refbody>
 </reference>

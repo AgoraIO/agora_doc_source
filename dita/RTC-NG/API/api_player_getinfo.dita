@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_player_getinfo">
     <title><ph keyref="GetInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获取播放器播放的媒体流的相关信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">获取播放器播放及媒体流的相关信息。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -30,12 +30,11 @@
                 <dd>v4.5.0</dd>
             </dlentry>
             </dl>
-            <p>你可以通过该方法获取媒体流的相关信息，例如媒体流的数量、音频采样率、视频分辨率宽高等信息。</p>
-            <p props="android" conkeyref="SetConfigs_Rte/exception"/>
+            <p>你可以通过该方法获取播放器及媒体流的相关信息，例如媒体流的数量、音频采样率、视频分辨率宽高等信息。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p>//TODO</p>
+            <p>该方法需要在 <xref keyref="Player_Player"/> 之后调用。</p>
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -46,7 +45,7 @@
             <parml>
             <plentry>
                 <pt>info</pt>
-                <pd>媒体流的相关信息，详见 <xref keyref="RtePlayerInfo"/>。</pd>
+                <pd>播放器及媒体流的相关信息，详见 <xref keyref="RtePlayerInfo"/>。</pd>
             </plentry>
             <plentry props="cpp apple" conkeyref="SetConfigs_Rte/err">
                 <pt></pt>
@@ -56,10 +55,14 @@
         <section id="return_values" props="cpp apple framework">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <p props="cpp apple unreal bp electron unity rn cs">获取媒体流信息是否成功：<ul>
+            <p props="cpp apple unreal bp electron unity rn cs">获取信息是否成功：<ul>
                 <li><codeph><ph keyref="true"/></codeph>：获取信息成功。</li>
                 <li><codeph><ph keyref="false"/></codeph>：获取信息失败。</li>
                 </ul>
             </p> </section>
-        </refbody>
+        <section id="exception" props="android" conkeyref="SetAppId/exception">
+            <title></title>
+            <p></p>
+        </section>
+    </refbody>
 </reference>

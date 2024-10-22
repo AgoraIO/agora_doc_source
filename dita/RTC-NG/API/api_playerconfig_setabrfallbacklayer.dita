@@ -30,20 +30,24 @@
                 <dd>v4.5.0</dd>
             </dlentry>
             </dl>
-            <p>//TODO 应该也需要开启 abr？如果没开，1-6 layer 不能切换。</p>
-            <p props="android" conkeyref="SetConfigs_Rte/exception"/>
+            <p>网络不理想的环境下，实时通信音视频的质量会下降。调用该方法后，SDK 会在网络情况差的时候将视频流的分辨率回退到你指定的视频质量层级。不同的视频质量层级对应不同的分辨率和码率。同时，SDK 会持续监控网络质量，并在网络质量改善时恢复至你所订阅的视频流质量层级。</p>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>适用场景</title>
-            <p>你可以调用该方法来设置网络环境不稳定时，视频流的回退选项。以确保视听体验。你可以根据需求设置回退到不同质量层级的视频流，分别对应不同的视频分辨率和码率。//TODO 分两个场景讨论，普通场景（只能切 audio only 和low），如果有高的要求，开启abr。</p>
+            <p>
+                <ul>
+                    <li>在一般场景下，你可以调用该方法并将回退的质量层级设为 <apiname keyref="kRteAbrFallbackLow"/> 或 <apiname keyref="kRteAbrFallbackAudioOnly"/>，SDK 会在网络情况差的时候将视频流回退为低质量的视频流、或是仅接收音频流。</li>
+                <li><ph>如果对视频流回退的分辨率要求较高，可以联系<xref keyref="ticket-link"/>开通 ABR 功能。开通后，你可以自定义每个层级的分辨率。SDK 会以你指定的最低质量层级分辨率为下限，在此范围内根据网络状况动态调整分辨率。</ph>
+                    <ph props="hide">详细功能实现详见<xref keyref="rte-player"/>。</ph>
+                </li></ul></p>
         </section>
-        <section id="timing" deliveryTarget="details">
+        <section id="timing" deliveryTarget="details" conkeyref="SetAbrSubscriptionLayer/timing">
             <title>调用时机</title>
-            <p>//engine 之后。</p>
-        </section>        
+            <p/>
+        </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p>无。</p>
+            <p>如果没有开通 ABR（自适应码率）功能，调用该方法后只能在源频道选择回退至 <apiname keyref="kRteAbrFallbackLow"/> 或 <apiname keyref="kRteAbrFallbackAudioOnly"/>。开通 ABR 功能后，可以转码频道选择回退到所有质量层级的视频流，并支持自定义不同质量层级的视频流所对应的分辨率。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -52,12 +56,15 @@
                 <pt props="android">fallbackLayer</pt>
                 <pt props="cpp">abr_fallback_layer</pt>
                 <pt props="apple">layer</pt>
-                <pd>视频流回退的质量层级，详见 <xref keyref="RteAbrFallbackLayer"/>。</pd>
+                <pd>视频流回退的质量层级，详见 <xref keyref="RteAbrFallbackLayer"/>。
+
+              </pd>
             </plentry>
             <plentry props="cpp apple" conkeyref="SetConfigs_Rte/err">
                 <pt></pt>
                 <pd></pd>
             </plentry>
             </parml> </section>
+        <section id="exception" props="android" conkeyref="SetAppId/exception"/>
         </refbody>
 </reference>

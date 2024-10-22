@@ -30,12 +30,12 @@
                 <dd>v4.5.0</dd>
             </dlentry>
             </dl>
-            <p>你可以调用该方法来得知当前播放器是否开启了自动播放。</p>
+            <p>你可以调用该方法来得知当前播放器的自动播放设置。</p>
             <p props="android" conkeyref="SetConfigs_Rte/exception"/>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p>//TODO</p>
+            <p>该方法需要在 <xref keyref="GetConfigs_Player"/> 之后调用。</p>
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -49,13 +49,17 @@
                 <pd/>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="cpp apple framework">
+        <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <p props="cpp apple unreal bp electron unity rn cs">获取自动播放设置是否成功：<ul>
+            <p props="native unreal bp electron unity rn cs">获取自动播放设置是否成功：<ul>
                 <li><codeph><ph keyref="true"/></codeph>：获取成功。</li>
                 <li><codeph><ph keyref="false"/></codeph>：获取失败。</li>
                 </ul>
             </p> </section>
-        </refbody>
+        <section props="android" conkeyref="SetAppId/exception">
+            <title></title>
+            <p></p>
+        </section>
+    </refbody>
 </reference>

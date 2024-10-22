@@ -30,16 +30,15 @@
                 <dd>v4.5.0</dd>
             </dlentry>
             </dl>
-            <p>当你调用 <xref keyref="OpenWithUrl"/> 打开成功拉取实时流媒体后，你可以调用此方法进行播放。</p>
-            <p props="android" conkeyref="SetConfigs_Rte/exception"/>
+            <p>如果你关闭了自动播放，当你调用 <xref keyref="OpenWithUrl"/> 打开成功拉取实时流媒体，你可以调用此方法进行播放。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p>//TODO 是否需要收到 player state 为 opencompleted 然后才能调用 play？</p>
+            <p>请在收到 <xref keyref="onStateChanged"/> 会调报告状态为 <apiname keyref="kRtePlayerStateOpenCompleted"/> 后再调用该方法。</p>
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p>该方法目前仅支持播放带 <codeph>rte://</codeph> 前缀的 URL。//TODO</p>
+            <p>该方法目前仅支持播放带 <codeph>rte://</codeph> 前缀的 URL。</p>
         </section>
         <section id="related" deliveryTarget="details">
             <title>相关回调</title>
@@ -61,5 +60,9 @@
                 <li><codeph><ph keyref="false"/></codeph>：播放失败。</li>
                 </ul>
             </p> </section>
-        </refbody>
+        <section id="exception" props="android" conkeyref="SetAppId/exception">
+            <title></title>
+            <p></p>
+        </section>
+    </refbody>
 </reference>

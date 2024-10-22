@@ -13,28 +13,27 @@
             </dl>
         </section>
         <section id="parameters">
-            <title>枚举值//TODO 目前不可用的枚举文档不对外暴露。</title>
+            <title>枚举值</title>
             <parml>
                 <plentry>
                     <pt><ph keyref="kRtePlayerEventFreezeStart"/></pt>
-                    <pd>5：卡顿开始。//TODO 当音视频流出现卡顿时，会报告该事件。用户在什么场景下需要知道卡顿开始和结束的时间？</pd>
+                    <pd>5：音频或视频卡顿开始。</pd>
                 </plentry>
                 <plentry>
                     <pt><ph keyref="kRtePlayerEventFreezeStop"/></pt>
-                    <pd>6：卡顿结束。</pd>
+                    <pd>6：音频或视频卡顿结束。</pd>
                 </plentry>
                 <plentry>
                     <pt><ph keyref="kRtePlayerEventAuthenticationWillExpire"/></pt>
-                    <pd>8：Token 即将过期。在收到此事件后你需要重新生成一个新的 Token 并更新 URL。//TODO</pd>
+                    <pd>8：Token 即将过期。在收到此事件后你需要重新生成一个新的 Token 并通过 <xref keyref="OpenWithUrl"/> 更新 URL。</pd>
                 </plentry>
                 <plentry>
                     <pt><ph keyref="kRtePlayerEventAbrFallbackToAudioOnlyLayer"/></pt>
-                    <pd>9：由于网络问题，音视频流回退为音频流。
-                    <note type="attention">该参数需要开通自适应码率功能并需要设置允许流回退。详情请<xref keyref="ticket-link"/>。</note>//TODO</pd>
+                    <pd>9：由于网络问题，从接收音视频流回退为仅接收音频流。</pd>
                 </plentry>
                 <plentry>
                     <pt><ph keyref="kRtePlayerEventAbrRecoverFromAudioOnlyLayer"/></pt>
-                    <pd>10：网络状态恢复后，从仅接收音频流恢复到接收音视频流。<note type="attention">该参数需要开通自适应码率功能并需要设置允许流回退。详情请<xref keyref="ticket-link"/>。</note></pd>
+                    <pd>10：网络状态恢复后，从仅接收音频流恢复到接收音视频流。</pd>
                 </plentry>
             </parml>
         </section></refbody>
