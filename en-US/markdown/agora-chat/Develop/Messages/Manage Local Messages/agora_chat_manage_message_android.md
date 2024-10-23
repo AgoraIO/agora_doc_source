@@ -131,7 +131,7 @@ List<ChatMessage> messages = conversation.searchMsgFromDB(keywords, timeStamp, m
 
 ### Import messages
 
-Call `importMessages` to import multiple messages to the specified conversation. This applies to scenarios where chat users want to formard messages from another conversation.
+Call `importMessages` to import multiple messages to the specified conversation. 
 
 ```java
 ChatClient.getInstance().chatManager().importMessages(msgs);

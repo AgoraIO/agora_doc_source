@@ -168,7 +168,7 @@ The request body is a JSON object, which contains the following parameters:
 
   | Parameter | Type | Description | Required |
   | --- | --- | --- | --- |
-  | `customEvent` | String | The event type customized by the user. The value of this parameter should be a regular expression, for example, `[a-zA-Z0-9-_/\.]{1,32}`. | No |
+  | `customEvent` | String | The event type customized by the user. The value of this parameter should meet the restrictions placed by a regular expression, for example, `[a-zA-Z0-9-_/\.]{1,32}`. | No |
   | `customExts` | JSON | The event attribute customized by the user. The data type is `Map<String,String>`. You can set a maximum of 16 elements. | No |
 
 #### HTTP response
@@ -1838,7 +1838,7 @@ For the other parameters and detailed descriptions, see [Common parameters](#par
 | `new_msg` | JSON | The modified message. | Yes |
 | `new_msg.type` | String | The type of message to modify: <ul><li>`txt`: The text message;</li><li> `custom`: The custom message.</li></ul> | Yes |
 | `new_msg.msg` | String | The modified message content. **This parameter is valid only for text messages.**   | Yes |
-| `new_msg.customEvent` | String | The event type customized by the user. The value of this parameter should be a regular expression, for example, [a-zA-Z0-9-_/\.]{1,32}. This parameter value can contain up to 32 characters. **This parameter is valid only for custom messages.**  | No  |
+| `new_msg.customEvent` | String | The event type customized by the user. The value of this parameter should meet restrictions placed by a regular expression, for example, [a-zA-Z0-9-_/\.]{1,32}. This parameter value can contain up to 32 characters. **This parameter is valid only for custom messages.**  | No  |
 | `new_msg.customExts`  | JSON   | The event attribute customized by the user. The data type is Map<String,String>. You can set a maximum of 16 elements. **This parameter is valid only for custom messages.**  | No |
 | `new_ext` | JSON | The modified message extension information. This parameter is valid only for custom messages. | No |
 | `is_combine_ext` | Boolean | Whether the modified message extension information is merged with or replaces the original information:<ul><li>(Default)`true`: Merge; </li><li> `false`: Replace.</li></ul> | No |

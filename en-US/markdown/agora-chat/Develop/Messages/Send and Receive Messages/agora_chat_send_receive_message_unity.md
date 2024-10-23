@@ -3,7 +3,6 @@ After logging in to Agora Chat, users can send the following types of messages t
 - Attachment messages, including image, voice, video, and file messages.
 - Location messages.
 - CMD messages.
-- Extended messages.
 - Custom messages.
 
 In high-concurrency scenarios, you can set a certain message type or messages from a chat room member as high, normal, or low. In this case, low-priority messages are dropped first to reserve resources for the high-priority ones (e.g. gifts and announcements) when the server is overloaded. This ensures that the high-priority messages can be dealt with first when loads of messages are being sent in high concurrency or high frequency. Note that this feature can increase the delivery reliability of high-priority messages, but cannot guarantee the deliveries. Even high-priorities messages can be dropped when the server load goes too high.
@@ -18,7 +17,7 @@ The process of sending and receiving a message is as follows:
 
 1. The message sender creates a text, file, or attachment message using the corresponding `Create` method.
 2. The message sender calls `SendMessage` to send the message.
-3. The message recipient calls `AddChatManagerDelegate` to listens for message events and receives the message in the `OnMessageReceived` callback.
+3. The message recipient calls `AddChatManagerDelegate` to listen for message events and receive the message in the `OnMessageReceived` callback.
 
 ## Prerequistes
 
@@ -42,7 +41,7 @@ Message msg = Message.CreateTextSendMessage(conversationId, content);
 // Set `MessageType` in `Message` as `Chat`, `Group`, or `Room` for one-to-one chat, group chat, or room chat.
 msg.MessageType = MessageType.Group;
 
-// Set the priority of chat room messages. The default priority is `Normal`, indicating the normal priority.
+// Set the priority of chat room messages. The default priority is `RoomMessagePriority.Normal`, indicating the normal priority.
 // msg.MessageType = MessageType.Room;
 // msg.SetRoomMessagePriority(RoomMessagePriority.High);
 
@@ -113,7 +112,7 @@ void OnMessagesRecalled(List<Message> messages);
 
 ### Send and receive an attachment message
 
-Voice, image, video, and file messages are issentially attachment messages. This section introduces how to send these types of messages.
+Voice, image, video, and file messages are essentially attachment messages. This section introduces how to send these types of messages.
 
 #### Send and receive a voice message
 
@@ -163,14 +162,14 @@ else {
 
 #### Send and receive an image message
 
-By default, the SDK compresses the image file before sending it. To send the originial file, you can set `original` as `true`.
+By default, the SDK compresses the image file before sending it. To send the original file, you can set `original` as `true`.
 
 Refer to the following code example to create and send an image message:
 
 ```C#
 // Create SendMessage to send the image message.
 // Set `localPath` as the path of the image file on the local device, `displayName` as the display name of the message, `fileSize` as the size of the image file, `width` as the width (in pixels) of the thumbnail, and `height` as the height (in pixels) of the thumbnail. 
-// `orignial` indicates whether to send the original image file. The default value is `false`. By default, the SDK compresses image files the exceeds 100 KB and sends the thumbnail. To send the originial image, set this parameter as `true`.
+// `original` indicates whether to send the original image file. The default value is `false`. By default, the SDK compresses image files that exceeds 100 KB and sends the thumbnail. To send the original image, set this parameter as `true`.
 Message msg = Message.CreateImageSendMessage(toChatUsername,localPath, displayName, fileSize, original, width , height);
 // Set the message type using the `MessageType` attribute in `Message`.
 // You can set `MessageType` as `Chat`, `Group`, or `Room`, which indicates whether to send the message to a peer user, a chat group, or a chat room. 
@@ -244,7 +243,7 @@ If you do not want the SDK to automatically download the video thumbnail, set `O
 To download the actual video file, call `SDKClient.Instance.ChatManager.DownloadAttachment`, and get the path of the video file from the `LocalPath` member in `msg.Body`.
 
 ```C#
-// When the recipent receives a video message, the SDK downloads and then open the video file.
+// When the recipient receives a video message, the SDK downloads and then open the video file.
 SDKClient.Instance.ChatManager.DownloadAttachment("Message ID", new CallBack(
   onSuccess: () => {
     Debug.Log($"Attachment download succeeds.");
@@ -350,7 +349,7 @@ SDKClient.Instance.ChatManager.SendMessage(ref msg, new CallBack(
 ));
 ```
 
-To notify the recipient that a CMD message is received, use a seperate delegate so that users can deal with the message differently.
+To notify the recipient that a CMD message is received, use a separate delegate so that users can deal with the message differently.
 
 ```C#
 // Inherit and instantiate `IChatManagerDelegate`.
@@ -372,8 +371,6 @@ SDKClient.Instance.ChatManager.AddChatManagerDelegate(adelegate);
 ```
 
 ### Send a customized message
-
-Custom messages are self-defined key-value pairs that include the message type and the message content.
 
 The following code example shows how to create and send a customized message:
 

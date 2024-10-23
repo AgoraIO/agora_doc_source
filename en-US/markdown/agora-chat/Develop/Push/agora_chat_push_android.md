@@ -366,6 +366,10 @@ You can call `updatePushNickname` to set the nickname displayed in your push not
 ChatClient.getInstance().pushManager().updatePushNickname("pushNickname");
 ```
 
+// Add the following texts for Android, iOS, Flutter, and React Native.
+
+This nickname indicates the nickname of the message sender that is displayed in the push notification bar of the recipient's client when a message from the user is pushed. The nickname can be different from the nickname in user attributes. However, Agora recommends that you use the same nickname for both. Therefore, if either nickname is updated, the other should be changed at the same time. To update the nickname in user attributes, see <a href="https://docs.agora.io/en/agora-chat/client-api/user-attributes?platform=android#set-user-attributes">Setting user attributes</a>. 
+
 You can also call `updatePushDisplayStyle` to set the display style of push notifications, as shown in the following code sample:<a name="style"></a>
 
 ```java

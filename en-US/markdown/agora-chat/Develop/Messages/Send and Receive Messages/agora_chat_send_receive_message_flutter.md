@@ -3,7 +3,6 @@ After logging in to Agora Chat, users can send the following types of messages t
 - Attachment messages, including image, voice, video, and file messages.
 - Location messages.
 - CMD messages.
-- Extended messages.
 - Custom messages.
 
 In high-concurrency scenarios, you can set a certain message type or messages from a chat room member as high, normal, or low. In this case, low-priority messages are dropped first to reserve resources for the high-priority ones (e.g. gifts and announcements) when the server is overloaded. This ensures that the high-priority messages can be dealt with first when loads of messages are being sent in high concurrency or high frequency. Note that this feature can increase the delivery reliability of high-priority messages, but cannot guarantee the deliveries. Even high-priorities messages can be dropped when the server load goes too high.
@@ -89,7 +88,7 @@ ChatMessage fileMsg = ChatMessage.createFileSendMessage(
     fileSize: fileSize,
 );
 // Creates a location message. You need to set the longitude and latitude information of the location, as well as the name of the location.
-// To send a location message, you need to integrate a third-party map service provider to get the longitude and latitude information of the location. When the recipient receives the location information, the service provider renders the location on the map according to the longitude and latitude information.
+// To send a location message, you need to integrate a third-party map service to get the longitude and latitude information of the location. When the recipient receives the location information, the service renders the location on the map according to the longitude and latitude information.
 double latitude = 114.78;
 double longitude = 39.89;
 String address = "darwin";
@@ -201,7 +200,7 @@ When a voice message is received, the SDK automatically downloads the audio file
 
 For image and video messages, the SDK automatically generates a thumbnail when you create the message. When an image or video message is received, the SDK automatically downloads the thumbnail. To manually download the attachment files, follow the steps:
 
-1. Set `isAutoDownloadThumbnail` as true when initializing the SDK.
+1. Set `isAutoDownloadThumbnail` as `false` when initializing the SDK.
 
 ```dart
 ChatOptions options = ChatOptions(
