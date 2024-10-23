@@ -30,7 +30,7 @@
                 <dd>v4.5.0</dd>
             </dlentry>
             </dl>
-            <p>调用该方法后无需再额外初始化 RTE 引擎。如果你未创建并初始化 RTC 引擎，则需调用 <xref keyref="Rte"/> 创建一个 RTE 对象然后再调用 <xref keyref="InitMediaEngine"/> 进行初始化。</p>
+            <p>调用该方法后无需再额外初始化 RTE 引擎。如果你未创建并初始化 RTC 引擎，则需调用 <xref keyref="Rte_Rte"/> 创建一个 RTE 对象然后再调用 <xref keyref="InitMediaEngine"/> 进行初始化。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -53,10 +53,7 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
-            <ul props="native unreal bp electron unity rn cs">
-                <li>方法调用成功，返回一个 RTE 对象。</li>
-                <li props="apple cpp unreal bp electron unity rn cs">方法调用失败也会返回对象，//TODO 会返回 invalidoperation。你可以根据 <parmname props="cpp">err</parmname><parmname props="apple">error</parmname> 参数中返回的错误码了解详情。</li>
-                <li props="android">方法调用失败，抛出 <xref keyref="RteException"/> 异常，你需要捕获异常并进行处理。</li>
-                </ul> </section>
+            <p props="cpp apple unreal bp electron unity rn cs">一个 RTE 对象。</p></section>
+        <section id="exception" props="android" conkeyref="SetAppId/exception"/>
         </refbody>
 </reference>

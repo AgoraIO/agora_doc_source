@@ -35,7 +35,7 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p>在创建对象和设置appid之后。</p>
+            <p>该方法需要在创建 RTE 对象并设置 App ID 后调用。</p>
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -46,14 +46,11 @@
             <parml>
             <plentry props="cpp apple">
                 <pt>cb</pt>
-                <pd>一个异步回调函数，用于返回引擎初始化结果。并向回调中的 <parmname>err</parmname> 传参。这个参数包含了引擎初始化的结果或错误码信息，详见 <xref keyref="Error"/>。//TODO 改下描述，不是所有情况都会调用这个会调。</pd>
+                <pd>一个异步回调函数，用于返回引擎初始化结果。你可以通过该回调的 <parmname>err</parmname> 参数得知引擎初始化的结果或错误码信息，详见 <xref keyref="Error"/>。</pd>
             </plentry>
             <plentry props="android">
                 <pt>callback</pt>
-                <pd>一个异步回调函数，用于返回引擎初始化结果。根据情况返回下列状态或错误码：//TODO 是否直接链接到 Error 这个类？还是要写出来每个枚举值。
-                <ul><li><ph keyref="OK"/> (0): 初始化成功。</li>
-                <li><ph keyref="DEFAULT"/> (1): 初始化引擎失败。//TODO 错误信息通过 message 得知。这个方法应该也要写文档？</li>
-                <li><ph keyref="DEFAULT"/></li></ul></pd>
+                <pd>一个异步回调函数，用于返回引擎初始化结果。详见 <xref keyref="AsyncCallback"/>。</pd>
             </plentry>
                 <plentry>
                 <pt props="cpp">err</pt>

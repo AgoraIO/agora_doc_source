@@ -23,7 +23,6 @@
 }</codeblock>
             <codeblock props="hmos" outputclass="language-arkts"/>
             <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraRtePlayerInfo : NSObject
-- (instancetype _Nonnull)init;//TODO
 - (int)state; 
 - (long)duration; 
 - (int)streamCount;
@@ -100,12 +99,16 @@
             <plentry>
                 <pt props="cpp">is_audio_muted</pt>
                 <pt props="android apple">isAudioMuted</pt>
-                <pd>音频流是否在本地被静音。//TODO</pd>
+                <pd>本地用户是否订阅了音频流：
+                    <ul><li><codeph><ph keyref="true"/>：订阅了音频流。</codeph></li>
+                <li><codeph><ph keyref="false"/>：未订阅音频流。</codeph></li></ul></pd>
             </plentry>
                 <plentry>
                 <pt props="cpp">is_video_muted</pt>
                 <pt props="android apple">isVideoMuted</pt>
-                <pd>视频流是否在本地被静音。</pd>
+                <pd>本地用户是否订阅了视频流：
+                    <ul><li><codeph><ph keyref="true"/>：订阅了视频流。</codeph></li>
+                <li><codeph><ph keyref="false"/>：未订阅视频流。</codeph></li></ul></pd>
             </plentry>
             <plentry>
                 <pt props="cpp">video_height</pt>
@@ -138,13 +141,5 @@
                 <pd>预留参数。</pd>
             </plentry>
             </parml> </section>
-                <section id="sub-method" props="apple">
-                    <title>方法</title>
-                    <parml>
-                    <plentry>
-                        <pt>init</pt>
-                        <pd>//TODO</pd>
-                    </plentry>
-                    </parml> </section>
                 </refbody>
 </reference>
