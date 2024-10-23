@@ -7,7 +7,7 @@ This page shows how to use the Agora Chat SDK to create and manage a chat group 
 
 ## Understand the tech
 
-The Agora Chat SDK provides the `GroupManager` and `Group` classes for chat group management, which allows you to implement the following features:
+The Agora Chat SDK allows you to implement the following group management features:
 
 - Create and destroy a chat group
 - Join and leave a chat group
