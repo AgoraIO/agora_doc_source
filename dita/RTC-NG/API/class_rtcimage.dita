@@ -109,7 +109,7 @@ struct FRtcImage
 		
 		char* URLCharPtr = new char[url.Len() + 1];
 		FMemory::Memcpy(URLCharPtr, TCHAR_TO_UTF8(*url), url.Len());
-		URLCharPtr[url.Len()] = '&bsol;0';
+		URLCharPtr[url.Len()] = '&#92;0';
 		AgoraData.url = URLCharPtr;
 		AgoraData.x = x;
 		AgoraData.y = y;
