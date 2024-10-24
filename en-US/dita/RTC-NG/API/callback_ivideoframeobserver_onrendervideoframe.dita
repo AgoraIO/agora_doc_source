@@ -39,6 +39,7 @@
             <p>After you successfully register the video frame observer, the SDK triggers this callback each time it receives a video frame. In this callback, you can get the video data sent from the remote end before rendering, and then process it according to the particular scenarios.</p>
             <note type="attention" props="native unreal bp electron rn flutter">
             <ul>
+            <li props="native unreal bp">If you need to send the preprocessed data to the SDK, you need to call <xref keyref="getVideoFrameProcessMode"/> first to set the video processing mode to read and write mode (<ph keyref="PROCESS_MODE_READ_WRITE"/>).</li>
             <li>If the video data type you get is RGBA, the SDK does not support processing the data of the alpha channel.</li>
             <li props="rn electron">It's recommended that you implement this callback through the C++ API.</li>
             <li props="flutter rn electron">Due to framework limitations, this callback does not support sending processed video data back to the SDK.</li>
