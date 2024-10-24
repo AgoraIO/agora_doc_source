@@ -35,12 +35,11 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>When a remote user has enabled dual-stream mode, you can call this method to choose the option for subscribing to the video streams sent by the remote user. SDK 对远端视频流的默认订阅行为取决于注册的视频观测器类型：<ul>
-                <li>如果注册的是 <xref keyref="IVideoFrameObserver"/> 观测器，则默认订阅原始数据和编码后的数据。</li>
-                <li>如果注册的是 <xref keyref="IVideoEncodedFrameObserver"/> 观测器，则默认仅订阅编码后的数据。</li>
-                <li>如果注册了两种观测器，则默认跟随后注册的视频观测器。 举例来说，如果后注册的是 <apiname keyref="IVideoFrameObserver"/> 观测器，则默认订阅原始数据和编码后的数据。</li>
-            </ul>
-            如果你想修改以上默认行为，或者想针对不同 <codeph>uid</codeph> 设置不同的订阅选项，可调用该方法设置。 <ph props="android cpp apple">有关详细的实现步骤，详见<xref keyref="video-processing"/>。</ph></p>
+            <p>When a remote user has enabled dual-stream mode, you can call this method to choose the option for subscribing to the video streams sent by the remote user. The default subscription behavior of the SDK for remote video streams depends on the registered video observer type:<ul>
+                <li>If the <xref keyref="IVideoFrameObserver"/> observer is registered, the default is to subscribe to both raw data and encoded data.</li>
+                <li>If the <xref keyref="IVideoEncodedFrameObserver"/> observer is registered, the default is to subscribe only to the encoded data.</li>
+                <li>If both types of observers are registered, the default follows the last registered video observer. For example, if the last registered observer is the <apiname keyref="IVideoFrameObserver"/> observer, the default is to subscribe to both raw data and encoded data.</li>
+            </ul>If you want to modify the default behavior above, or want to set different subscription options for different <codeph>uids</codeph>, you can call this method to set it. <ph props="android cpp apple">For detailed implementation steps, please refer to <xref keyref="video-processing"/>.</ph></p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
