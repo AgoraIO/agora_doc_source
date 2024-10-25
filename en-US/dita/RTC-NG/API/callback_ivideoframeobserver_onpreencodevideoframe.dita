@@ -35,6 +35,7 @@
             <p props="native unreal bp unity electron rn cs">After processing, you can send the processed video data back to the SDK in this callback.</p>
             <note type="attention">
             <ul>
+                <li props="native unreal bp">If you need to send the preprocessed data to the SDK, you need to call <xref keyref="getVideoFrameProcessMode"/> first to set the video processing mode to read and write mode (<ph keyref="PROCESS_MODE_READ_WRITE"/>).</li>
                 <li props="native unreal bp cs">To get the video data captured from the second screen before encoding, you need to set <apiname keyref="POSITION_PRE_ENCODER"/> (1 &lt;&lt; 2) as a frame position through <xref keyref="getObservedFramePosition"/>.</li>
                 <li props="unity">To get the video data captured from the second screen before encoding, you need to set <apiname keyref="POSITION_PRE_ENCODER"/> (1 &lt;&lt; 2) as a frame <parmname>position</parmname> through the position parameter of the <xref keyref="registerVideoFrameObserver"/> method.</li>
                 <li props="rn electron">It's recommended that you implement this callback through the C++ API.</li>
