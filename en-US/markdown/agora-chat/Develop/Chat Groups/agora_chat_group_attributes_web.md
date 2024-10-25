@@ -7,7 +7,7 @@ This page shows how to use the Agora Chat SDK to manage the attributes of a chat
 
 ## Understand the tech
 
-The Agora Chat SDK provides the `GroupManager` and `Group` classes for chat group management, which allows you to implement the following features:
+The Agora Chat SDK provides the following group attribute management features:
 
 - Modify the chat group name and description
 - Manage chat group announcements
@@ -75,7 +75,7 @@ Refer to the following sample code to manage chat group shared files:
 
 ```javascript
 // All chat group members can call uploadGroupSharedFile to upload group shared files. The file size can be up to 10 MB.
-// Once shared files are uploaded, group members receive the onSharedFileAdded callback.
+// Once shared files are uploaded, group members receive the uploadFile callback.
 let option = {
     groupId: "groupId",
     file: file, // <input type="file"/>Choose the file to upload and share.                         
