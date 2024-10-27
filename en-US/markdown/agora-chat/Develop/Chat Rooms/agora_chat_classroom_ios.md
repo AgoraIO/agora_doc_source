@@ -178,7 +178,12 @@ To monitor the chat room events, you can listen for the callbacks in the `ChatRo
                       oldOwner:(NSString *)aOldOwner {
                         
   }
-
+  
+// Occurs when basic information of the chat room is changed.
+- (void)chatroomSpecificationDidUpdate:(EMChatroom *)aChatroom {
+  
+  } 
+   
 /**
  *  When custom chat room attributes are set or changed, all room members receives this callback.
  *  @param roomId    The chat room ID.

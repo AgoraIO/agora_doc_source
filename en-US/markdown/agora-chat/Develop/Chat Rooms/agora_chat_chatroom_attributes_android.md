@@ -28,7 +28,7 @@ This section introduces how to call the APIs provided by the Agora Chat SDK to i
 ### Manage basic chat room attributes
 
 #### Retrieve basic chat room attributes
-All the chat room members can call `fetchChatRoomFromServer` to retrieve the detailed information of the current chat room, including the subject, announcements, description, member type, and admin list. 
+All the chat room members can call `fetchChatRoomFromServer` to retrieve the detailed information of the current chat room, including the subject, announcement, description, member type, and admin list. 
 
 ```java
 // Fetches basic attributes including ID, name, description, maximum members, owners, roles, and whether all members are muted.
@@ -46,16 +46,16 @@ ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().changeChatRoomSub
 ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().changeChatroomDescription(chatRoomId, newDescription);
 ```
 
-#### Retrieve or change chat room announcements
-All the chat room members can retrieve the chat room announcements. 
+#### Retrieve or change the chat room announcement
+All the chat room members can retrieve the chat room announcement. 
 
-Only the chat room owner and admin can set and update the announcements. Once the announcements are updated, all the chat room members receive the `onAnnouncementChanged` callback.
+Only the chat room owner and admin can set and update the announcement. Once the announcement is updated, all the chat room members receive the `onAnnouncementChanged` callback.
 
 ```java
-// Retrieves the chat room announcements.
+// Retrieves the chat room announcement.
 String announcement = ChatClient.getInstance().chatroomManager().fetchChatRoomAnnouncement(chatRoomId);
 
-// Sets or updates the chat room announcements.
+// Sets or updates the chat room announcement.
 ChatClient.getInstance().chatroomManager().updateChatRoomAnnouncement(chatRoomId, announcement);
 ```
 
@@ -88,7 +88,7 @@ ChatClient.getInstance().chatroomManager().asyncFetchChatRoomAllAttributesFromSe
 
 
 #### Set a custom attribute
-Chat room members can call `asyncSetChatroomAttributes` to set one single custom attribute. Use this method to add new custom attributes or update existing attributes that set by yourself. After you successfully call this method, other members in the chat room receive an `onAttributesUpdate` callback. 
+Chat room members can call `asyncSetChatroomAttributes` to set one single custom or update an existing attribute set by themselves. After you successfully call this method, other members in the chat room receive an `onAttributesUpdate` callback. 
 
 ```java
 // Sets a custom attribute by specifying chat room ID, attribute key, and attribute value. 
@@ -118,7 +118,7 @@ ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(chat
 
 
 #### Set multiple custom attributes
-To set multiple custom attributes, call the `asyncSetChatroomAttributes` method with same name. Use this method to add new custom attributes or update existing attributes that set by yourself. After you successfully call this method, other members in the chat room receive an `onAttributesUpdate` callback. 
+Chat room members can call the `asyncSetChatroomAttributes` method add new custom attributes or update existing attributes set by themselves. After you successfully call this method, other members in the chat room receive an `onAttributesUpdate` callback. 
 
 ```java
 // Sets multiple custom attribute by specifying chat room ID and the key-value maps of the attributes. 
@@ -148,7 +148,7 @@ ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(chat
 
 
 #### Remove a custom attribute
-Chat room members can call `asyncRemoveChatRoomAttributesFromServer` to remove one single custom attribute that is set by themselves. After you successfully call this method, other members in the chat room receive an `onAttributesRemoved` callback. 
+Chat room members can call `asyncRemoveChatRoomAttributeFromServer` to remove one single custom attribute that is set by themselves. After you successfully call this method, other members in the chat room receive an `onAttributesRemoved` callback. 
 
 ```java
 // Removes a custom attribute by specifying chat room ID and attribute key. 
@@ -162,7 +162,7 @@ ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributeFromServe
                 });
 ```
 
-If you want to update custom attributes that set by other members, call `asyncRemoveChatRoomAttributesFromServerForced` instead. After you successfully call this method, other members in the chat room receive an `onAttributesRemoved` callback.
+If you want to update a custom attribute set by another member, call `asyncRemoveChatRoomAttributeFromServerForced` instead. After you successfully call this method, other members in the chat room receive an `onAttributesRemoved` callback.
 
 ```java
 // Removes a custom attribute by specifying chat room ID and attribute key.  

@@ -196,7 +196,7 @@ public interface ChatRoomChangeListener {
 
 
     /**
-     * Occurs when the chat room announcements change.
+     * Occurs when the chat room announcement is changed.
      * @param chatRoomId    The chat room ID
      * @param announcement  The new chat room announcements
      */
