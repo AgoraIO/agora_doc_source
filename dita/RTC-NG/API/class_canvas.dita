@@ -3,4 +3,71 @@
 <reference id="class_canvas">
     <title><ph keyref="Canvas"/></title>
     <shortdesc id="short"><ph id="shortdesc">该类提供设置播放器视频渲染的方法。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class Canvas {
+  public Canvas(Rte rte, CanvasInitialConfig config);
+  public void addView(View view, ViewConfig viewConfig) throws RteException;
+  public void removeView(View view, ViewConfig viewConfig) throws RteException;
+  public void getConfigs(CanvasConfig config) throws RteException;
+  public void setConfigs(CanvasConfig config) throws RteException;
+}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraRteCanvas : NSObject
+- (instancetype _Nonnull)initWithRte:(AgoraRte* _Nonnull)rte initialConfig:(AgoraRteCanvasInitialConfig * _Nullable)config;
+- (BOOL)getConfigs:(AgoraRteCanvasConfig* _Nonnull)config error:(AgoraRteError* _Nullable)error;
+- (BOOL)setConfigs:(AgoraRteCanvasConfig* _Nonnull)config error:(AgoraRteError* _Nullable)error;
+- (BOOL)addView:(AgoraRteView * _Nonnull)view config:(AgoraRteViewConfig* _Nullable)config error:(AgoraRteError* _Nullable)error;
+- (BOOL)removeView:(AgoraRteView * _Nonnull)view config:(AgoraRteViewConfig* _Nullable)config error:(AgoraRteError* _Nullable)error;
+@end</codeblock>
+           <codeblock props="cpp unreal" outputclass="language-cpp">class Canvas {
+ public:
+  Canvas(Rte *rte, CanvasInitialConfig *initial_config);
+  bool GetConfigs(CanvasConfig *config, Error *err);
+  bool SetConfigs(CanvasConfig *config, Error *err);
+  bool AddView(View *view, ViewConfig *config, rte::Error *err)
+  bool RemoveView(View *view, ViewConfig *config, rte::Error *err);
+ 
+};</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.5.0</dd>
+            </dlentry>
+            </dl>
+            <p/>
+        </section>
+                <section id="sub-method">
+                    <title>方法</title>
+                    <parml>
+                    <plentry>
+                        <pt><ph keyref="Canvas_Canvas"/></pt>
+                        <pd>构造一个 Canvas 对象。详见 <xref keyref="Canvas_Canvas"/>。</pd>
+                    </plentry>
+                        <plentry>
+                        <pt><ph keyref="SetConfigs_Canvas"/></pt>
+                        <pd>设置视频的渲染模式。详见 <xref keyref="SetConfigs_Canvas"/>。</pd>
+                    </plentry>
+                        <plentry>
+                        <pt><apiname keyref="GetConfigs_Canvas"/></pt>
+                        <pd>获取当前设置的视频渲染模式。详见 <xref keyref="GetConfigs_Canvas"/>。</pd>
+                    </plentry>
+                        <plentry>
+                        <pt><ph keyref="AddView"/></pt>
+                        <pd>添加一个视图。详见 <xref keyref="AddView"/>。</pd>
+                    </plentry>
+                        <plentry>
+                        <pt><ph keyref="RemoveView"/></pt>
+                        <pd>移除一个视图。详见 <xref keyref="RemoveView"/>。</pd>
+                    </plentry>
+                    </parml> </section>
+                </refbody>
 </reference>
