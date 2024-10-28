@@ -40,13 +40,7 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p>你可以调用该方法开启暗光增强功能并设置暗光增强的效果。</p>
-            <note type="attention" id="req">
-            <p>该方法和 <xref keyref="setExtensionProperty"/> 均可开启视频降噪功能：
-                <ul>
-                    <li>当你使用 SDK 采集视频时，建议使用该方法（该方法只可对 SDK 采集的视频起作用）。</li>
-                    <li>当你使用外部的视频源实现自定义视频采集，或者将外部视频源发送给 SDK 时，建议使用 <apiname keyref="setExtensionProperty"/> 方法。</li>
-                </ul>
-            </p> </note> </section>
+        </section>
         <section id="scenario" deliveryTarget="details">
             <title>适用场景</title>
             <p>暗光增强功能可以在光线亮度偏低（如背光、阴天、暗场景）和亮度不均匀的环境下自适应调整视频画面的亮度值，恢复或凸显图像的细节信息，最终提升视频图像的整体视觉效果。</p>
@@ -86,7 +80,12 @@
             </plentry>
                 <plentry props="cpp unreal bp rn unity electron flutter cs" id="type">
                     <pt>type</pt>
-                    <pd>媒体源类型，详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
+                    <pd>效果应用的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE" />。
+                    <note type="attention">在该方法中，该参数仅支持以下两种设置：
+                    <ul>
+                    <li>默认值为 <apiname keyref="PRIMARY_CAMERA_SOURCE"/>。</li>
+                    <li>如果要使用自定义采集的视频，将该参数设置为 <apiname keyref="CUSTOM_VIDEO_SOURCE"/>。</li>
+                    </ul></note></pd>
                 </plentry>
             </parml> </section>
         <section id="return_values">
