@@ -146,10 +146,10 @@ conn.addEventHandler("eventName", {
         // Occurs when a user joins a chat room.
         case 'memberPresence':
             break;
-        // When custom chat room attributes are set or changed, all room members receives this callback.
+        // Occurs when custom chat room attributes are set or changed.
         case 'updateChatRoomAttributes':
             break;
-        // When custom chat room attributes are removed, all room members receives this callback.
+        // Occurs when custom chat room attributes are removed.
         case 'removeChatRoomAttributes':
             break;
         default:
