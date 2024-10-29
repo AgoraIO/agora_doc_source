@@ -40,7 +40,8 @@ try {
 } on ChatError catch (e) {
 }
 ``` 
-
+// Note: You can replace the `chat room subject` with `chat room name`.
+Please search for `subject` in chat room documents for all platforms and frameworks and replace with `name`.
 #### Change the chat room subject or description
 
 Only the chat room owner and admin can set and update the chat room subject and description.
@@ -65,7 +66,7 @@ try {
 }
 ```
 
-#### Retrieve or change chat room announcements
+#### Retrieve or change chat room announcement
 
 All chat room members can retrieve the chat room announcement. 
 

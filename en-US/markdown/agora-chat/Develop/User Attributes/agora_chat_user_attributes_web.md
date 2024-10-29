@@ -6,7 +6,7 @@ This page shows how to use the Agora Chat SDK to implement managing user attribu
 
 ## Understand the tech
 
-The Agora Chat SDK uses `UserInfoManager` to retrieve, set, and modify user attributes. Followings are the core methods:
+The Agora Chat SDK allows you to retrieve, set, and modify user attributes. Followings are the core methods:
 - `updateUserInfo`: Set or update user attributes.
 - `fetchUserInfoById`: Retrieve the user attributes of the specified user.
 
