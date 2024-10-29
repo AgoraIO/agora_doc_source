@@ -368,16 +368,16 @@
   public yBuffer: ArrayBuffer | null = null;
   public uBuffer: ArrayBuffer | null = null;
   public vBuffer: ArrayBuffer | null = null;
+
   public rotation:number = 0;
   public timestamp:number = 0;
-  public stride:number = 0;
+  public yStride:number = 0;
   public uStride:number = 0;
   public vStride:number = 0;
   public width:number = 0;
   public height:number = 0;
-  public type:VideoBufferType = VideoBufferType.VIDEO_BUFFER_RAW_DATA;
+  public type:VideoBufferType = VideoBufferType.RAW_DATA;
   public format:VideoPixelFormat = VideoPixelFormat.VIDEO_PIXEL_NV21;
-  public faceInfo:Array&lt;FaceDetectionInfo&gt; | undefined = undefined;
   constructor(type:VideoBufferType,format:VideoPixelFormat) {
     this.type = type;
     this.format = format;
@@ -758,46 +758,51 @@ class VideoFrame {
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-        <plentry props="apple cpp unreal bp unity flutter rn electron cs">
-          <pt>type</pt>
-          <pd props="cpp unreal bp unity electron rn flutter cs">像素格式。详见 <xref keyref="VIDEO_PIXEL_FORMAT"/>。</pd>
+              <plentry props="hmos">
+                <pt>type</pt>
+                <pd>视频类型。详见 <xref keyref="VIDEO_BUFFER_TYPE"/>。</pd>
+              </plentry>
+        <plentry props="hmos apple cpp unreal bp unity flutter rn electron cs">
+          <pt props="hmos">format</pt>
+          <pt  props="android cpp apple framework">type</pt>
+          <pd props="hmos cpp unreal bp unity electron rn flutter cs">像素格式。详见 <xref keyref="VIDEO_PIXEL_FORMAT"/>。</pd>
           <pd props="ios mac" conkeyref="ExternalVideoFrame/oc-format"/>
         </plentry>
-        <plentry props="apple cpp unreal bp unity flutter rn electron cs">
+        <plentry props="hmos apple cpp unreal bp unity flutter rn electron cs">
           <pt>width</pt>
           <pd>视频像素宽度。</pd>
         </plentry>
-        <plentry props="apple cpp unreal bp unity flutter rn electron cs">
+        <plentry props="hmos apple cpp unreal bp unity flutter rn electron cs">
           <pt>height</pt>
           <pd>视频像素高度。</pd>
         </plentry>
-        <plentry props="apple cpp unreal bp unity flutter rn electron cs">
+        <plentry props="hmos apple cpp unreal bp unity flutter rn electron cs">
           <pt>yStride</pt>
           <pd>对 YUV 数据，表示 Y 缓冲区的行跨度；对 RGBA 数据，表示总的数据长度。
             <note type="attention">在处理视频数据时，需根据该参数处理每行像素数据之间的偏移量，否则可能导致图像失真。</note>
           </pd>
         </plentry>
-        <plentry props="apple cpp unreal bp unity flutter rn electron cs">
+        <plentry props="hmos apple cpp unreal bp unity flutter rn electron cs">
           <pt>uStride</pt>
           <pd>对 YUV 数据，表示 U 缓冲区的行跨度；对 RGBA 数据，值为 0。
             <note type="attention">在处理视频数据时，需根据该参数处理每行像素数据之间的偏移量，否则可能导致图像失真。</note>
           </pd>
         </plentry>
-        <plentry props="apple cpp unreal bp unity flutter rn electron cs">
+        <plentry props="hmos apple cpp unreal bp unity flutter rn electron cs">
           <pt>vStride</pt>
           <pd>对 YUV 数据，表示 V 缓冲区的行跨度；对 RGBA 数据，值为 0。
            <note type="attention">在处理视频数据时，需根据该参数处理每行像素数据之间的偏移量，否则可能导致图像失真。</note>
           </pd>
         </plentry>
-        <plentry props="apple cpp unreal bp unity flutter rn electron cs">
+        <plentry props="hmos apple cpp unreal bp unity flutter rn electron cs">
           <pt>yBuffer</pt>
           <pd>对 YUV 数据，表示 Y 缓冲区的指针；对 RGBA 数据，表示数据缓冲区。</pd>
         </plentry>
-        <plentry props="apple cpp unreal bp unity flutter rn electron cs">
+        <plentry props="hmos apple cpp unreal bp unity flutter rn electron cs">
           <pt>uBuffer</pt>
           <pd>对 YUV 数据，表示 U 缓冲区的指针；对 RGBA 数据，值为空。</pd>
         </plentry>
-        <plentry props="apple cpp unreal bp unity flutter rn electron cs">
+        <plentry props="hmos apple cpp unreal bp unity flutter rn electron cs">
           <pt>vBuffer</pt>
           <pd>对 YUV 数据，表示 V 缓冲区的指针；对 RGBA 数据，值为空。</pd>
         </plentry>

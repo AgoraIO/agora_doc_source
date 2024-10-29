@@ -84,6 +84,8 @@
   public audioDelayMs?:number;
 
   public mediaPlayerAudioDelayMs?:number;
+  
+  public token?:string;
 
   public enableBuiltInMediaEncryption?:boolean;
 
@@ -731,67 +733,67 @@ class ChannelMediaOptions {
       public Boolean isAudioFilterable;
                 }</codeblock>
                 <codeblock props="hmos" outputclass="language-arkts">export class ChannelMediaOptions {
-
-      public publishCameraTrack?:boolean;
-
-      public publishSecondaryCameraTrack?:boolean;
-
-      public publishMicrophoneTrack?:boolean;
-
-      public publishScreenCaptureVideo?:boolean;
-
-      public publishScreenCaptureAudio?:boolean;
-
-      public publishCustomAudioTrack?:boolean;
-
-      public publishCustomAudioTrackId?:number;
-
-      public publishCustomVideoTrack?:boolean;
-
-      public publishEncodedVideoTrack?:boolean;
-
-      public publishMediaPlayerAudioTrack?:boolean;
-
-      public publishMediaPlayerVideoTrack?:boolean;
-
-      public publishTranscodedVideoTrack?:boolean;
-
-      public publishMixedAudioTrack?:boolean;
-
-      public autoSubscribeAudio?:boolean;
-
-      public autoSubscribeVideo?:boolean;
-
-      public enableAudioRecordingOrPlayout?:boolean;
-
-      public publishMediaPlayerId?:number;
-
-      public clientRoleType?:number;
-
-      public audienceLatencyLevel?:number;
-
-      public defaultVideoStreamType?:number;
-
-      public channelProfile?:number;
-
-      public audioDelayMs?:number;
-
-      public mediaPlayerAudioDelayMs?:number;
-
-      public enableBuiltInMediaEncryption?:boolean;
-
-      public publishRhythmPlayerTrack?:boolean;
-
-      public isInteractiveAudience?:boolean;
-
-      public customVideoTrackId?:number;
-
-      public isAudioFilterable?:boolean;
-
-      public startPreview?:boolean;
-      public constructor() {
-      }
-    }</codeblock>
+  
+  public publishCameraTrack?:boolean;
+  
+  public publishSecondaryCameraTrack?:boolean;
+  
+  public publishMicrophoneTrack?:boolean;
+  
+  public publishScreenCaptureVideo?:boolean;
+  
+  public publishScreenCaptureAudio?:boolean;
+  
+  public publishCustomAudioTrack?:boolean;
+  
+  public publishCustomAudioTrackId?:number;
+  
+  public publishCustomVideoTrack?:boolean;
+  
+  public publishEncodedVideoTrack?:boolean;
+  
+  public publishMediaPlayerAudioTrack?:boolean;
+  
+  public publishMediaPlayerVideoTrack?:boolean;
+  
+  public publishTranscodedVideoTrack?:boolean;
+  
+  public publishMixedAudioTrack?:boolean;
+  
+  public autoSubscribeAudio?:boolean;
+  
+  public autoSubscribeVideo?:boolean;
+  
+  public enableAudioRecordingOrPlayout?:boolean;
+  
+  public publishMediaPlayerId?:number;
+  
+  public clientRoleType?:number;
+  
+  public audienceLatencyLevel?:number;
+  
+  public defaultVideoStreamType?:number;
+  
+  public channelProfile?:number;
+  
+  public audioDelayMs?:number;
+  
+  public mediaPlayerAudioDelayMs?:number;
+      
+  public enableBuiltInMediaEncryption?:boolean;
+  
+  public publishRhythmPlayerTrack?:boolean;
+  
+  public isInteractiveAudience?:boolean;
+  
+  public customVideoTrackId?:number;
+  
+  public isAudioFilterable?:boolean;
+  
+  public startPreview?:boolean;
+  public constructor() {
+  }
+}</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcChannelMediaOptions : NSObject
     @property(assign, nonatomic) BOOL publishCameraTrack;
     @property(assign, nonatomic) BOOL publishSecondaryCameraTrack;
@@ -1494,7 +1496,7 @@ public:
                     <note type="attention" props="cpp unreal bp unity flutter">This is for Windows and macOS only.</note>
                 </pd>
             </plentry>
-            <plentry props="android ios cpp flutter unreal bp unity rn">
+            <plentry props="android hmos ios cpp flutter unreal bp unity rn">
                 <pt>publishScreenCaptureVideo</pt>
                 <pd>
                     <p>Whether to publish the video captured from the screen:<ul>
@@ -1504,7 +1506,7 @@ public:
                     <note type="attention" props="cpp unreal bp unity flutter">This parameter is for Android and iOS only.</note>
                     <note type="note" props="android ios">As of v4.0.0, the parameter name is changed from <parmname>publishScreenTrack</parmname> to <parmname>publishScreenCaptureVideo</parmname>.</note> </pd>
             </plentry>
-            <plentry props="android ios cpp flutter unreal bp unity rn">
+            <plentry props="android hmos ios cpp flutter unreal bp unity rn">
                 <pt>publishScreenCaptureAudio</pt>
                 <pd>
                     <p>Whether to publish the audio captured from the screen:<ul>
@@ -1576,8 +1578,7 @@ public:
             </plentry>
             <plentry props="native unreal flutter unity cs electron rn">
                 <pt>publishCustomAudioTrackId</pt>
-                <pd>The ID of the custom audio source to publish. The default value is 0.<p>If you have set <parmname>sourceNumber</parmname> in <xref keyref="setExternalAudioSource2"/> to a value greater than 1, the SDK creates the corresponding number of custom audio tracks and assigns an ID to each audio track, starting from 0.</p>
-                </pd>
+                <pd>The ID of the custom audio track to be published. The default value is 0. You can obtain the custom audio track ID through the <xref keyref="createCustomAudioTrack"/> method.</pd>
             </plentry>
             <plentry props="native unreal flutter unity cs electron rn">
                 <pt>publishCustomVideoTrack</pt>

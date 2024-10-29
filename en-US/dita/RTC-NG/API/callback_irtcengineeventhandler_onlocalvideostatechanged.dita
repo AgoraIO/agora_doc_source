@@ -15,7 +15,7 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onLocalVideoStateChanged(Constants.VideoSourceType source, int state, int reason) {}
 </codeblock>
-            <codeblock props="hmos" outputclass="language-arkts">onLocalVideoStateChanged?:(source: Constants.VideoSourceType, state:Constants.LocalVideoStreamState,error:Constants.LocalVideoStreamReason) =&gt; void</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">onLocalVideoStateChanged?:(source: Constants.VideoSourceType, state:Constants.LocalVideoStreamState,reason:Constants.LocalVideoStreamReason) =&gt; void</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine localVideoStateChangedOfState:(AgoraVideoLocalState)state reason:(AgoraLocalVideoStreamReason)reason sourceType:(AgoraVideoSourceType)sourceType NS_SWIFT_NAME(rtcEngine(_:localVideoStateChangedOf:reason:sourceType:));
 </codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">  virtual void onLocalVideoStateChanged(VIDEO_SOURCE_TYPE source, LOCAL_VIDEO_STREAM_STATE state, LOCAL_VIDEO_STREAM_REASON reason) {
@@ -69,14 +69,14 @@
             </plentry>
             <plentry id="source">
                 <pt props="apple">sourceType</pt>
-                <pt props="android cpp unreal bp rn electron flutter unity cs">source</pt>
+                <pt props="android hmos cpp unreal bp rn electron flutter unity cs">source</pt>
                 <pd>The type of the video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
             </plentry>
             <plentry>
                 <pt>state</pt>
                 <pd>
-                    <p props="ios mac cpp unreal bp unity electron rn flutter cs">The state of the local video, see <xref keyref="LOCAL_VIDEO_STREAM_STATE"/>.</p>
-                    <p props="android hmos">
+                    <p props="hmos ios mac cpp unreal bp unity electron rn flutter cs">The state of the local video, see <xref keyref="LOCAL_VIDEO_STREAM_STATE"/>.</p>
+                    <p props="android">
                     <ul>
                     <li><ph keyref="LOCAL_VIDEO_STREAM_STATE_STOPPED"/>(0): The local video is in the initial state.</li>
                     <li><ph keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/>(1): The local video capturing device starts successfully.</li>
@@ -88,8 +88,8 @@
             <plentry>
                 <pt>reason</pt>
                 <pd>
-                    <p props="ios mac cpp unreal bp electron rn flutter unity cs">The reasons for changes in local video state. See <xref keyref="LOCAL_VIDEO_STREAM_REASON"/>.</p>
-                    <p props="android hmos">
+                    <p props="hmos ios mac cpp unreal bp electron rn flutter unity cs">The reasons for changes in local video state. See <xref keyref="LOCAL_VIDEO_STREAM_REASON"/>.</p>
+                    <p props="android">
                     <ul>
                     <li><ph keyref="LOCAL_VIDEO_STREAM_REASON_OK"/> (0): The local video is normal.</li>
                     <li><ph keyref="LOCAL_VIDEO_STREAM_REASON_FAILURE"/> (1): No specified reason for the local video failure.</li>
@@ -99,7 +99,7 @@
                     <li><ph keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_NOT_FOUND"/> (8): Fails to find a local video capture device. Remind the user to check whether the camera is connected to the device properly or the camera is working properly, and then to rejoin the channel.</li>
                     <li><ph keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_INTERRUPT"/> (14): Video capture is interrupted. Possible reasons include the following:<ul>
                         <li>The camera is being used by another app. Prompt the user to check if the camera is being used by another app.</li>
-                        <li>The current app has been switched to the background. You can use foreground services to notify the operating system and ensure that the app can still collect video when it switches to the background. <ph props="cn">See <xref keyref="android-background"/>.</ph></li>
+                        <li>The device is locked, or the current app has been switched to the background. You can use foreground services to notify the operating system and ensure that the app can still collect video when it switches to the background. <ph props="cn">See <xref keyref="android-background"/>.</ph></li>
                     </ul></li>
                     <li><ph keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_FATAL_ERROR"/> (15): The video capture device encounters an error. Prompt the user to close and restart the camera to restore functionality. If this operation does not solve the problem, check if the camera has a hardware failure.</li>
                     </ul> </p>

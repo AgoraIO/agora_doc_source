@@ -58,6 +58,7 @@
   public uid:number = 0;
   public renderMode:number = VideoCanvas.RENDER_MODE_HIDDEN;
   public mirrorMode:number = 0;
+  public sourceType:Constants.VideoSourceType = Constants.VideoSourceType.CAMERA_PRIMARY;
   constructor(componentId:string) {
     this.xcomponentId = componentId;
   }
@@ -285,7 +286,7 @@ class VideoCanvas {
                 </pd>
                 <pd props="android ios">When the video source is a mixed video stream ( <apiname keyref="VIDEO_SOURCE_TRANSCODED"/>), this parameter represents the ID of the user who publishes the mixed video stream.</pd>
               </plentry>
-                <plentry>
+                <plentry props="android cpp apple framework">
                     <pt>subviewUid</pt>
                     <pd props="android ios cpp unreal bp unity rn flutter">The ID of the user who publishes a specific sub-video stream within the mixed video stream.</pd>
                     <pd props="mac electron">Reserved for future use.<note type="attention" props="cpp unreal bp unity flutter">This parameter is for Android and iOS only.</note></pd>
@@ -329,7 +330,7 @@ class VideoCanvas {
                 <pt>sourceType</pt>
                 <pd>The type of the video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
             </plentry>
-            <plentry props="native flutter unity cs electron rn bp">
+            <plentry props="android cpp apple  flutter unity cs electron rn bp">
                 <pt>setupMode</pt>
                 <pd props="ios mac cpp flutter unity cs electron rn bp">Setting mode of the view. See <xref keyref="VIDEO_VIEW_SETUP_MODE"/>.</pd>
                 <pd props="android hmos">Setting mode of the view.<ul>
@@ -343,7 +344,7 @@ class VideoCanvas {
                 <pd>The ID of the media player. You can get the Device ID by calling <xref keyref="getMediaPlayerId"/>.</pd>
                 <pd>This parameter is required when <parmname>sourceType</parmname> is <apiname keyref="VIDEO_SOURCE_MEDIA_PLAYER"/>.</pd>
             </plentry>
-            <plentry props="android hmos">
+            <plentry props="android">
               <pt>rect</pt>
               <pd>(Optional) Display area for the video frame. See <xref keyref="rect-link"/>. <parmname>width</parmname> and <parmname>height</parmname> represent the video pixel width and height of the area. The default value is null (width or height is 0), which means that the actual resolution of the video frame is displayed.</pd>
           </plentry>
@@ -355,11 +356,11 @@ class VideoCanvas {
             <pt>cropArea</pt>
             <pd>(Optional) Display area of the video frame, see <xref keyref="rect-link"/>. <parmname>width</parmname> and <parmname>height</parmname> represent the video pixel width and height of the area. The default value is null (width or height is 0), which means that the actual resolution of the video frame is displayed.</pd>
           </plentry>
-          <plentry>
+          <plentry props="android cpp apple framework">
               <pt>backgroundColor</pt>
               <pd>The background color of the video canvas in RGBA format. The default value is 0x00000000, which represents completely transparent black.</pd>
           </plentry>
-          <plentry props="native unreal bp unity electron flutter cs">
+          <plentry props="android cpp apple  unreal bp unity electron flutter cs">
                     <pt>enableAlphaMask</pt>
                     <pd props="native unreal bp rn unity electron flutter">(Optional) Whether to enable alpha mask rendering:<ul>
                         <li><codeph><ph keyref="true"/></codeph>: Enable alpha mask rendering.</li>
@@ -374,7 +375,7 @@ class VideoCanvas {
                         </note> </pd>
                     <pd props="cs">Reserved.</pd>
                 </plentry>
-                <plentry>
+                <plentry props="android cpp apple framework">
                     <pt>position</pt>
                     <pd>The observation position of the video frame in the video link. See <xref keyref="VIDEO_MODULE_POSITION"/>.</pd>
                 </plentry>

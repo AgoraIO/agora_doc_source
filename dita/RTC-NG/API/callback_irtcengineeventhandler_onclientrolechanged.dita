@@ -43,16 +43,17 @@ NS_SWIFT_NAME(rtcEngine(_:didClientRoleChanged:newRole:newRoleOptions:));</codeb
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
-            <p props="native cs unity unreal">在以下任意一种情况时，会触发此回调：<ul>
+            <p props="android cpp apple cs unity unreal">在以下任意一种情况时，会触发此回调：<ul>
                 <li>在<b>加入频道后</b>调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2"/> 设置用户角色或观众端延时级别。</li>
                 <li>在<b>加入频道前</b>调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2"/> 并将用户角色设为 <parmname>AUDIENCE</parmname>。</li></ul></p>
-            <p props="flutter rn electron bp">在以下任意一种情况时，会触发此回调：<ul>
+            <p props="hmos flutter rn electron bp">在以下任意一种情况时，会触发此回调：<ul>
                     <li>在<b>加入频道后</b>调用 <xref keyref="setClientRole2"/> 设置用户角色或观众端延时级别。</li>
                     <li>在<b>加入频道前</b>调用 <xref keyref="setClientRole2"/> 并将用户角色设为 <parmname>AUDIENCE</parmname>。</li></ul></p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p>当你在<b>加入频道前</b>调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2"/> 并将用户角色设为 <parmname>BROADCASTER</parmname> 时，不会触发此回调。</p>
+            <p props="android cpp apple cs unity unreal">当你在<b>加入频道前</b>调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2"/> 并将用户角色设为 <parmname>BROADCASTER</parmname> 时，不会触发此回调。</p>
+            <p props="hmos flutter rn electron bp">当你在<b>加入频道前</b>调用 <xref keyref="setClientRole2"/> 并将用户角色设为 <parmname>BROADCASTER</parmname> 时，不会触发此回调。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title><ph keyref="callback-section-title"/></title>
@@ -67,15 +68,15 @@ NS_SWIFT_NAME(rtcEngine(_:didClientRoleChanged:newRole:newRoleOptions:));</codeb
             </plentry>
             <plentry id="oldRole">
                 <pt>oldRole</pt>
-                <pd>切换前的角色：<ph props="cpp unreal bp ios mac electron unity flutter rn cs"><xref keyref="CLIENT_ROLE_TYPE"/>。</ph>
-                    <ul conkeyref="setClientRole1/clientroletype" props="android hmos">
+                <pd>切换前的角色：<ph props="hmos cpp unreal bp ios mac electron unity flutter rn cs"><xref keyref="CLIENT_ROLE_TYPE"/>。</ph>
+                    <ul conkeyref="setClientRole1/clientroletype" props="android">
                     <li/>
                     </ul> </pd>
             </plentry>
             <plentry id="newRole">
                 <pt>newRole</pt>
-                <pd>切换后的角色：<ph props="cpp unreal bp ios mac electron unity flutter rn cs"><xref keyref="CLIENT_ROLE_TYPE"/>。</ph>
-                    <ul conkeyref="setClientRole1/clientroletype" props="android hmos">
+                <pd>切换后的角色：<ph props="hmos cpp unreal bp ios mac electron unity flutter rn cs"><xref keyref="CLIENT_ROLE_TYPE"/>。</ph>
+                    <ul conkeyref="setClientRole1/clientroletype" props="android">
                     <li/>
                     </ul> </pd>
             </plentry>

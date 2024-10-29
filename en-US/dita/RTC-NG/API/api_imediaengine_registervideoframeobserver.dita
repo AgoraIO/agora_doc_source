@@ -14,7 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int registerVideoFrameObserver(IVideoFrameObserver observer);</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts">public abstract registerVideoFrameObserver(observer:IVideoFrameObserver):number;</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)setVideoFrameDelegate:(id&lt;AgoraVideoFrameDelegate&gt; _Nullable)delegate;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int registerVideoFrameObserver(IVideoFrameObserver* observer) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract registerVideoFrameObserver(observer: IVideoFrameObserver): number;</codeblock>
@@ -26,11 +26,10 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p>If you want to observe raw video frames (such as YUV or RGBA format), Agora recommends that you implement one <xref keyref="IVideoFrameObserver"/> class with this method.</p>
             <p>When calling this method to register a video observer, you can register callbacks in the <apiname keyref="IVideoFrameObserver"/> class as needed. After you successfully register the video frame observer, the SDK triggers the registered callbacks each time a video frame is received.</p>
-            <p conkeyref="registerVideoEncodedFrameObserver/mix"/>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>Applicable scenarios</title>
-            <p>After registering the raw video observer, you can use the obtained raw video data in various video pre-processing scenarios, such as virtual backgrounds and image enhacement by yourself.</p>
+            <p>After registering the raw video observer, you can use the obtained raw video data in various video pre-processing scenarios, such as virtual backgrounds and image enhacement by yourself. <ph props="android cpp apple">For detailed implementation steps, please refer to <xref keyref="video-processing"/>.</ph></p>
             <p props="android ios">Agora provides an open source sample project <xref keyref="beautyapi-link"/> on GitHub for your reference.</p>
         </section>
         <section id="timing" deliveryTarget="details">
