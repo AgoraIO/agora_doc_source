@@ -8,34 +8,31 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class ChannelMediaRelayConfiguration {
   private ChannelMediaInfo srcInfo = null;
-  private Map&lt;String, ChannelMediaInfo> destInfos = null;
-
+  private Map&lt;String, ChannelMediaInfo&gt; destInfos = null;
+  
   public ChannelMediaRelayConfiguration() {
-    destInfos = new HashMap&lt;String, ChannelMediaInfo>();
+    destInfos = new HashMap&lt;String, ChannelMediaInfo&gt;();
     srcInfo = new ChannelMediaInfo(null, null, 0);
   }
-
+  
   public void setSrcChannelInfo(ChannelMediaInfo srcInfo) {
     this.srcInfo = srcInfo;
   }
-
+  
   public void setDestChannelInfo(String channelName, ChannelMediaInfo destInfo) {
     destInfos.put(channelName, destInfo);
   }
-
+  
   public void removeDestChannelInfo(String channelName) {
     destInfos.remove(channelName);
   }
-
   public ChannelMediaInfo getSrcChannelMediaInfo() {
     return srcInfo;
   }
-
-  public Map&lt;String, ChannelMediaInfo> getDestChannelMediaInfos() {
+  public Map&lt;String, ChannelMediaInfo&gt; getDestChannelMediaInfos() {
     return destInfos;
   }
-}
-</codeblock>
+}</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">export class ChannelMediaRelayConfiguration {
   public srcInfo:ChannelMediaInfo = new ChannelMediaInfo(null,null,0);
   public destInfos:Map&lt;string, ChannelMediaInfo&gt; = new Map&lt;string, ChannelMediaInfo&gt;();
@@ -43,25 +40,21 @@
   public setSrcChannelInfo(srcInfo: ChannelMediaInfo) {
   this.srcInfo = srcInfo;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraChannelMediaRelayConfiguration: NSObject
-
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility(&quot;default&quot;))) @interface AgoraChannelMediaRelayConfiguration: NSObject
 @property (strong, nonatomic, readonly) NSDictionary&lt;NSString *, AgoraChannelMediaRelayInfo *&gt; *_Nullable destinationInfos;
 @property (strong, nonatomic) AgoraChannelMediaRelayInfo *_Nonnull sourceInfo;
-
-- (BOOL)setDestinationInfo:(AgoraChannelMediaRelayInfo *_Nonnull)destinationInfo forChannelName:(NSString *_Nonnull)channelName;
-- (BOOL)removeDestinationInfoForChannelName:(NSString *_Nonnull)channelName;
+- (BOOL)setDestinationInfo:(AgoraChannelMediaRelayInfo *_Nonnull)destinationInfo forChannelName:(NSString *_Nonnull)channelName NS_SWIFT_NAME(setDestinationInfo(_:forChannelName:));
+- (BOOL)removeDestinationInfoForChannelName:(NSString *_Nonnull)channelName NS_SWIFT_NAME(removeDestinationInfo(forChannelName:));
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct ChannelMediaRelayConfiguration {
-	ChannelMediaInfo *srcInfo;
-	ChannelMediaInfo *destInfos;
-	int destCount;
-
-	ChannelMediaRelayConfiguration()
-			: srcInfo(nullptr)
-			, destInfos(nullptr)
-			, destCount(0)
-	{}
-    };</codeblock>
+  
+  ChannelMediaInfo* srcInfo;
+  
+  ChannelMediaInfo* destInfos;
+  
+  int destCount;
+  ChannelMediaRelayConfiguration() : srcInfo(OPTIONAL_NULLPTR), destInfos(OPTIONAL_NULLPTR), destCount(0) {}
+};</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FChannelMediaRelayConfiguration
 {
@@ -153,8 +146,9 @@ public:
               <pt>setSrcChannelInfo</pt>
               <pd>设置源频道信息。详见 <xref keyref="setSrcChannelInfo"/>。</pd>
             </plentry>
-            <plentry props="android">
-              <pt>setDestChannelInfo</pt>
+            <plentry props="android apple">
+              <pt props="android">setDestChannelInfo</pt>
+              <pt props="apple">setDestinationInfo</pt>
               <pd>设置目标频道信息。详见 <xref keyref="setDestChannelInfo"/>。</pd>
             </plentry>
             <plentry props="android apple">
@@ -205,7 +199,7 @@ public:
                         <li>如已启用 App Certificate，则务必填入使用 <parmname>channelName</parmname> 和 <parmname>uid</parmname> 生成的 <parmname>token</parmname>。</li>
                         </ul> <note type="attention"><p>由于目标频道中任意频道的 token 过期会导致所有跨频道推流停止，因此建议你将目标频道的 token 设置为相同的过期时长。</p></note></li>
                       <li>
-                        <parmname>uid</parmname>：标识目标频道中的转发媒体流的 UID。取值范围为 0 到（2 <sup>32</sup>-1），请确保与目标频道中的所有 UID 不同。默认值为 0，表示 SDK 随机分配一个 UID。</li>
+                        <parmname>uid</parmname>：标识目标频道中的转发媒体流的 UID。取值范围为 0 到 (2 <sup>32</sup>-1），请确保与目标频道中的所有 UID 不同。默认值为 0，表示 SDK 随机分配一个 UID。</li>
                     </ul> </p>
                 </pd>
             </plentry>
