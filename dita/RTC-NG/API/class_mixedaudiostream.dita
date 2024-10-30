@@ -28,12 +28,12 @@
             <codeblock props="cpp unreal" outputclass="language-cpp">struct MixedAudioStream {
   AUDIO_SOURCE_TYPE sourceType;
   uid_t remoteUserUid;
-  const char* channelName;
+  const char* channelId;
   track_id_t trackId;
   MixedAudioStream(AUDIO_SOURCE_TYPE source)
     : sourceType(source),
       remoteUserUid(0),
-      channelName(NULL),
+      channelId(NULL),
       trackId(-1) {}
   MixedAudioStream(AUDIO_SOURCE_TYPE source, track_id_t track)
     : sourceType(source),
@@ -41,11 +41,11 @@
   MixedAudioStream(AUDIO_SOURCE_TYPE source, uid_t uid, const char* channel)
     : sourceType(source),
       remoteUserUid(uid),
-      channelName(channel) {}
+      channelId(channel) {}
   MixedAudioStream(AUDIO_SOURCE_TYPE source, uid_t uid, const char* channel, track_id_t track)
     : sourceType(source),
       remoteUserUid(uid),
-      channelName(channel),
+      channelId(channel),
       trackId(track) {}
 };</codeblock>
             <codeblock props="bp" outputclass="language-cpp"/>
