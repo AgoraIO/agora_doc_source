@@ -51,7 +51,7 @@ Call `addContact` to add the specified user as a contact:
 
 #### Listen for contact events
 
-Use `ContactListener` to add the following callback events. When a user receives a contact invitation, you can accept or decline the invitation.
+Use `AgoraChatContactManagerDelegate` to add the following callback events. When a user receives a contact invitation, you can accept or decline the invitation.
 
 ```objectivec
 // Adds a contact manager delegate.
