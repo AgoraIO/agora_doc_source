@@ -7,29 +7,17 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class AgoraVideoFrame {
-  
   public static final int FORMAT_NONE = -1;
-  
   public static final int FORMAT_TEXTURE_2D = 10;
-  
   public static final int FORMAT_TEXTURE_OES = 11;
-  
   public static final int FORMAT_I420 = 1;
-  
   public static final int FORMAT_BGRA = 2;
-  
   public static final int FORMAT_NV21 = 3;
-  
   public static final int FORMAT_RGBA = 4;
-  
   public static final int FORMAT_I422 = 16;
-  
   public static final int BUFFER_TYPE_NONE = -1;
-  
   public static final int BUFFER_TYPE_BUFFER = 1;
-  
   public static final int BUFFER_TYPE_ARRAY = 2;
-  
   public static final int BUFFER_TYPE_TEXTURE = 3;
   public AgoraVideoFrame() {
     format = 10;
@@ -51,35 +39,20 @@
   }
   
   public int format;
-  
   public long timeStamp;
-  
   public int stride;
-  
   public int height;
-  
   public int textureID;
-  
   public boolean syncMode;
-  
   public float[] transform;
-  
   public javax.microedition.khronos.egl.EGLContext eglContext10;
-  
   public android.opengl.EGLContext eglContext14;
-    
   public byte[] buf;
-  
   public int cropLeft;
-  
   public int cropTop;
-  
   public int cropRight;
-  
   public int cropBottom;
-  
   public int rotation;
-  
   public int alphaStitchMode;
   @Override
   public String toString() {
@@ -90,7 +63,6 @@
         + &quot;, cropTop=&quot; + cropTop + &quot;, cropRight=&quot; + cropRight + &quot;, cropBottom=&quot; + cropBottom
         + &quot;, rotation=&quot; + rotation + &quot;, alphaStitchMode=&quot; + alphaStitchMode + &#x27;}&#x27;;
   }
-  
 }</codeblock>
             <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">
@@ -146,67 +118,39 @@ struct ExternalVideoFrame {
         textureSliceIndex(0){}
   
   enum EGL_CONTEXT_TYPE {
-    
     EGL_CONTEXT10 = 0,
-    
     EGL_CONTEXT14 = 1,
   };
   
   enum VIDEO_BUFFER_TYPE {
-    
     VIDEO_BUFFER_RAW_DATA = 1,
-    
     VIDEO_BUFFER_ARRAY = 2,
-    
     VIDEO_BUFFER_TEXTURE = 3,
   };
   
   VIDEO_BUFFER_TYPE type;
-  
   VIDEO_PIXEL_FORMAT format;
-  
   void* buffer;
-  
   int stride;
-  
   int height;
-  
   int cropLeft;
-  
   int cropTop;
-  
   int cropRight;
-  
   int cropBottom;
-  
   int rotation;
-  
   long long timestamp;
-  
   void* eglContext;
-  
   EGL_CONTEXT_TYPE eglType;
-  
   int textureId;
-  
   long long fenceObject; 
-  
   float matrix[16];
-  
   uint8_t* metadataBuffer;
-  
   int metadataSize;
-  
   uint8_t* alphaBuffer;
-  
   bool fillAlphaBuffer;
-  
   ALPHA_STITCH_MODE alphaStitchMode;
-  
   void *d3d11Texture2d;
-  
   int textureSliceIndex;
-   
   ColorSpace colorSpace;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ExternalVideoFrame {
