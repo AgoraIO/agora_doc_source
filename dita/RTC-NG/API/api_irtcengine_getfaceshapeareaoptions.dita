@@ -52,10 +52,10 @@
                 <pt props="android ios">shapeArea</pt>
                 <pt props="cpp unreal bp unity flutter rn electron cs">area</pt>
                 <pd>
-                    <p props="cpp ios mac unreal bp unity flutter electron rn cs">美型部位，详见 <xref keyref="FACE_SHAPE_AREA" />。</p>
+                    <p props="cpp ios mac unreal bp unity flutter electron rn cs">美型部位。详见 <xref keyref="FACE_SHAPE_AREA" />。</p>
                     <p props="android hmos">美型部位：
                         <ul>
-                            <li><ph keyref="FACE_SHAPE_AREA_NONE" /> (-1)：（默认）无效部位，美型效果不生效。</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_NONE" /> (-1)：（默认）无效部位，美型不生效。</li>
                             <li><ph keyref="FACE_SHAPE_AREA_HEADSCALE" /> (0)：头部，用于实现小头效果。对应修饰力度范围为 [0,100]，值越大头越小，预设值为 100。</li>
                             <li><ph keyref="FACE_SHAPE_AREA_FOREHEAD" /> (1)：额头，修饰发际线高度。对应修饰力度范围为 [-100,100]，正值为调高，负值为调低，绝对值越大修饰效果越强，预设值为 50。</li>
                             <li><ph keyref="FACE_SHAPE_AREA_FACECONTOUR" /> (2)：脸部轮廓，用于实现瘦脸效果。对应修饰力度范围为 [0,100]，值越大瘦脸效果越强，预设值为 10。</li>
@@ -64,10 +64,10 @@
                             <li><ph keyref="FACE_SHAPE_AREA_CHEEKBONE" /> (5)：颧骨，修饰颧骨宽度。对应修饰力度范围为 [0,100]，值越大颧骨越窄，预设值为 43。</li>
                             <li><ph keyref="FACE_SHAPE_AREA_CHEEK" /> (6)：脸颊，修饰脸颊宽度。对应修饰力度范围为 [0,100]，值越大脸颊越窄，预设值为 50。</li>
                             <li><ph keyref="FACE_SHAPE_AREA_CHIN" /> (7)：下巴，修饰下巴长度。对应修饰力度范围为 [-100,100]，正值为拉长，负值为变短，绝对值越大修饰效果越强，预设值为 -20。</li>
-                            <li><ph keyref="FACE_SHAPE_AREA_EYESCALE" /> (8)：眼睛，用于实现大眼效果。对应修饰力度范围为 [0,100]，值越大，眼睛尺寸越大，预设值为 53，。</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_EYESCALE" /> (8)：眼睛，用于实现大眼效果。对应修饰力度范围为 [0,100]，值越大，眼睛越大，预设值为 53。</li>
                             <li><ph keyref="FACE_SHAPE_AREA_NOSELENGTH" /> (9)：鼻子长度，用于实现长鼻效果。对应修饰力度范围为 [-100,100]，正值为拉长，负值为变短，绝对值越大修饰效果越强，预设值为 -10。</li>
-                            <li><ph keyref="FACE_SHAPE_AREA_NOSEWIDTH" /> (10)：鼻子宽度，用于实现瘦鼻效果。对应修饰力度范围为 [-100,100]，正值为变胖/变宽，负值为变瘦/变窄，绝对值越大修饰效果越强，预设值为 72。</li>
-                            <li><ph keyref="FACE_SHAPE_AREA_MOUTHSCALE" /> (11)：嘴巴，修饰嘴巴尺寸。对应修饰力度范围为 [-100,100]，正值为变大，负值为变小，绝对值越大修饰效果越强，预设值为 20。</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_NOSEWIDTH" /> (10)：鼻子宽度，用于实现瘦鼻效果。对应修饰力度范围为 [-100,100]，正值为变宽，负值为变窄，绝对值越大修饰效果越强，预设值为 72。</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_MOUTHSCALE" /> (11)：嘴巴，修饰嘴巴大小。对应修饰力度范围为 [-100,100]，正值为变大，负值为变小，绝对值越大修饰效果越强，预设值为 20。</li>
                         </ul>
                     </p>
                 </pd>
@@ -84,9 +84,13 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp electron unity rn cs">
-                <li>0: 方法调用成功。</li>
-                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
-                </ul> </section>
+            <ul props="cpp unreal bp electron unity rn cs">
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+            </ul>
+            <ul props="apple android">
+            <li>方法调用成功，返回 <apiname keyref="FaceShapeAreaOptions"/> 对象。</li>
+            <li>方法调用失败，返回 <ph keyref="NULL"/>。</li>
+            </ul> </section>
         </refbody>
 </reference>

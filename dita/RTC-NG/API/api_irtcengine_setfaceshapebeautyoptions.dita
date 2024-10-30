@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setfaceshapebeautyoptions">
     <title><ph keyref="setFaceShapeBeautyOptions" /></title>
-    <shortdesc id="short"><ph id="shortdesc">设置美型效果选项。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">设置美型效果选项并指定媒体源。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -31,9 +31,9 @@
                 <dd>v4.5.0</dd>
             </dlentry>
             </dl>
-            <p>调用该方法可对人脸各部位进行修饰，你可以自定义整体的修饰力度和风格喜好，使用预设的模板一次性实现瘦脸、大眼、瘦鼻等微整形效果，详见<xref keyref="advanced-beauty"/>。</p>
+            <p>调用该方法可对人脸各部位进行修饰，使用预设的参数一次性实现瘦脸、大眼、瘦鼻等微整形效果，支持微调整体的修饰力度，详见<xref keyref="advanced-beauty"/>。</p>
             <p props="android apple">该方法和 <xref keyref="setFaceShapeBeautyOptions2"/> 均可用于设置美型效果选项，区别在于该方法支持指定应用美型效果的媒体源。</p>
-            <note type="danger" id="billing">不同于 <xref keyref="setBeautyEffectOptions"/> 实现的美白、磨皮等基础美颜效果，美型属于高级美颜效果，调用该方法将产生费用，计费方式详见<xref keyref="billing-advanced"/>。</note>
+            <note type="danger" id="billing">美型属于增值服务，计费方式详见<xref keyref="billing-strategy"/>。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -42,7 +42,7 @@
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
                 <ul>
-                    <li props="android">该方法仅适用于 Android 4.4 及以上版本。</li>
+                    <li props="android cpp">该方法仅适用于 Android 4.4 及以上版本。</li>
                     <li>该方法依赖于视频增强动态库 <codeph><ph keyref="clearvision"/></codeph>，如果删除该动态库会导致无法正常开启该功能。</li>
                     <li>该功能对设备性能要求较高，调用该方法时 SDK 会自动对当前设备能力进行检查。</li>
                 </ul>
@@ -53,7 +53,7 @@
             <plentry id="enable">
                 <pt props="android cpp unreal bp unity flutter rn electron cs">enabled</pt>
                 <pt props="ios mac">enable</pt>
-                <pd>是否开启美型功能：
+                <pd>是否开启美型效果：
 
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 开启美型功能。</li>
@@ -62,7 +62,7 @@
             </plentry>
             <plentry id="options">
                 <pt>options</pt>
-                <pd>美型效果选项，详细定义见 <xref keyref="FaceShapeBeautyOptions" />。</pd>
+                <pd>美型风格选项，详见 <xref keyref="FaceShapeBeautyOptions" />。</pd>
             </plentry>
             <plentry conkeyref="setFilterEffectOptions/type">
                 <pt />

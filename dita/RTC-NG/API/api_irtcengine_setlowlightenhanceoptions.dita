@@ -72,9 +72,9 @@
                 <pt>options</pt>
                 <pd>暗光增强选项，用于设置暗光增强的效果。详见 <xref keyref="LowlightEnhanceOptions" />。根据你在 <parmname>options</parmname> 中的设置，需要进行以下操作：
                     <ul>
-                        <li><parmname>level</parmname> 为 <ph keyref="LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY"/>，<parmname>mode</parmname> 为 <ph keyref="LOW_LIGHT_ENHANCE_AUTO"/> 时：需要先调用 <xref keyref="setVideoDenoiserOptions"/> 将 <xref keyref="VideoDenoiserOptions"/> 中的 <parmname>level</parmname> 设为 <ph keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY" />，<parmname>mode</parmname> 设为 <ph keyref="VIDEO_DENOISER_AUTO" />。</li>
-                        <li><parmname>level</parmname> 为 <ph keyref="LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY"/>，<parmname>mode</parmname> 为 <ph keyref="LOW_LIGHT_ENHANCE_MANUAL"/> 时：需要先调用 <apiname keyref="setVideoDenoiserOptions"/> 将 <xref keyref="VideoDenoiserOptions"/> 中的 <parmname>level</parmname> 设为 <ph keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY" />，<parmname>mode</parmname> 设为 <ph keyref="VIDEO_DENOISER_MANUAL" />。</li>
-                        <li>除以上两种情况外的情况：无需调用 <apiname keyref="setVideoDenoiserOptions"/>。</li>
+                        <li><parmname>level</parmname> 和 <parmname>mode</parmname> 均为默认设置时：需要先调用 <xref keyref="setVideoDenoiserOptions"/> 启用视频降噪，其中 <xref keyref="VideoDenoiserOptions"/> 采用默认设置。</li>
+                        <li><parmname>level</parmname> 为默认值，<parmname>mode</parmname> 为 <ph keyref="LOW_LIGHT_ENHANCE_MANUAL"/> 时：需要先调用 <apiname keyref="setVideoDenoiserOptions"/> 启用视频降噪，并将 <xref keyref="VideoDenoiserOptions"/> 中的 <parmname>level</parmname> 设为默认值，<parmname>mode</parmname> 设为 <ph keyref="VIDEO_DENOISER_MANUAL" />。</li>
+                        <li>除以上两种情况外的情况：无需调用 <apiname keyref="setVideoDenoiserOptions"/>。</li>                        
                     </ul>
                 </pd>
             </plentry>
