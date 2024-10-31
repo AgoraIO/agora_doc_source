@@ -12,6 +12,12 @@
     public int streamType = STREAM_TYPE_BOTH;
     public int maxDurationMs = 120000;
     public int recorderInfoUpdateInterval = 0;
+    public int width;
+    public int height;
+    public int fps;
+    public int sample_rate;
+    public int channel_num;
+    public int videoSourceType;
 
     public MediaRecorderConfiguration(String storagePath, int containerFormat, int streamType,
         int maxDurationMs, int recorderInfoUpdateInterval) {
@@ -20,6 +26,28 @@
       this.streamType = streamType;
       this.maxDurationMs = maxDurationMs;
       this.recorderInfoUpdateInterval = recorderInfoUpdateInterval;
+      this.width = 1280;
+      this.height = 720;
+      this.fps = 30;
+      this.sample_rate = 48000;
+      this.channel_num = 1;
+      this.videoSourceType = 0;
+    }
+
+    public MediaRecorderConfiguration(String storagePath, int containerFormat, int streamType,
+        int maxDurationMs, int recorderInfoUpdateInterval, int width, int height, int fps,
+        int sample_rate, int channel_num, int videoSourceType) {
+      this.storagePath = storagePath;
+      this.containerFormat = containerFormat;
+      this.streamType = streamType;
+      this.maxDurationMs = maxDurationMs;
+      this.recorderInfoUpdateInterval = recorderInfoUpdateInterval;
+      this.width = width;
+      this.height = height;
+      this.fps = fps;
+      this.sample_rate = sample_rate;
+      this.channel_num = channel_num;
+      this.videoSourceType = videoSourceType;
     }
   }</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">export class MediaRecorderConfiguration {
@@ -47,17 +75,52 @@
 @property(assign, nonatomic) AgoraMediaRecorderContainerFormat containerFormat;
 @property(assign, nonatomic) AgoraMediaRecorderStreamType streamType;
 @property(assign, nonatomic) NSUInteger maxDurationMs;
-@property(assign, nonatomic) NSUInteger recorderInfoUpdateInterval;</codeblock>
+@property(assign, nonatomic) NSUInteger recorderInfoUpdateInterval;
+@property(assign, nonatomic) NSUInteger width;
+@property(assign, nonatomic) NSUInteger height;
+@property(assign, nonatomic) NSUInteger fps;
+@property(assign, nonatomic) NSUInteger sample_rate;
+@property(assign, nonatomic) NSUInteger channel_num;
+@property(assign, nonatomic) AgoraVideoSourceType videoSourceType;
+@end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct MediaRecorderConfiguration {
   const char* storagePath;
   MediaRecorderContainerFormat containerFormat;
   MediaRecorderStreamType streamType;
   int maxDurationMs;
   int recorderInfoUpdateInterval;
+  int width;
+  int height;
+  int fps;
+  int sample_rate;
+  int channel_num;
+  agora::rtc::VIDEO_SOURCE_TYPE videoSourceType;
 
-  MediaRecorderConfiguration() : storagePath(NULL), containerFormat(FORMAT_MP4), streamType(STREAM_TYPE_BOTH), maxDurationMs(120000), recorderInfoUpdateInterval(0) {}
-  MediaRecorderConfiguration(const char* path, MediaRecorderContainerFormat format, MediaRecorderStreamType type, int duration, int interval) : storagePath(path), containerFormat(format), streamType(type), maxDurationMs(duration), recorderInfoUpdateInterval(interval) {}
-};</codeblock>
+  MediaRecorderConfiguration()
+      : storagePath(NULL),
+        containerFormat(FORMAT_MP4),
+        streamType(STREAM_TYPE_BOTH),
+        maxDurationMs(120000),
+        recorderInfoUpdateInterval(0),
+        width(1280),
+        height(720),
+        fps(30),
+        sample_rate(48000),
+        channel_num(1),
+        videoSourceType(rtc::VIDEO_SOURCE_CAMERA_PRIMARY) {}
+  MediaRecorderConfiguration(const char* path, MediaRecorderContainerFormat format,
+                             MediaRecorderStreamType type, int duration, int interval)
+      : storagePath(path),
+        containerFormat(format),
+        streamType(type),
+        maxDurationMs(duration),
+        recorderInfoUpdateInterval(interval),
+        width(1280),
+        height(720),
+        fps(30),
+        sample_rate(48000),
+        channel_num(1),
+        videoSourceType(rtc::VIDEO_SOURCE_CAMERA_PRIMARY) {}};</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FMediaRecorderConfiguration
 {
@@ -175,6 +238,52 @@ struct FMediaRecorderConfiguration
             <plentry>
                 <pt>recorderInfoUpdateInterval</pt>
                 <pd>录制信息更新间隔，单位为毫秒，取值范围为 [1000,10000]。SDK 会根据该值的设置触发 <xref keyref="onRecorderInfoUpdated" /> 回调，报告更新后的录制信息。</pd>
+            </plentry>
+            <plentry>
+                <pt>width</pt>
+                <pd>录制视频的宽度 (px)，宽 × 高的最大值不应超过 3840 × 2160。
+                    <ph props="cpp apple framework">该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 中的  <parmname>type</parmname>设置为 <ph keyref="PREVIEW" /> 时需要传入。</ph>
+                    <ph props="android">该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 的 <parmname>recorderStreamType</parmname> 为 0 时需要传入。</ph>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>height</pt>
+                <pd>录制视频的高度 (px)，宽 × 高的最大值不超过 3840 × 2160。
+                    <ph props="cpp apple framework">该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 中的  <parmname>type</parmname>设置为 <ph keyref="PREVIEW" /> 时需要传入。</ph>
+                    <ph props="android">该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 的 <parmname>recorderStreamType</parmname> 为 0 时需要传入。</ph>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>fps</pt>
+                <pd>录制视频的帧率，最高值不超过 30，如： 5、10、15、24、30 等。
+                    <ph props="cpp apple framework">该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 中的  <parmname>type</parmname>设置为 <ph keyref="PREVIEW" /> 时需要传入。</ph>
+                    <ph props="android">该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 的 <parmname>recorderStreamType</parmname> 为 0 时需要传入。</ph>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>sample_rate</pt>
+                <pd>录制音频的采样率 (Hz)，可设置为 16000，32000，44100 或 48000。
+                    <ph props="cpp apple framework">该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 中的  <parmname>type</parmname>设置为 <ph keyref="PREVIEW" /> 时需要传入。</ph>
+                    <ph props="android">该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 的 <parmname>recorderStreamType</parmname> 为 0 时需要传入。</ph>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>channel_num</pt>
+                <pd>录制音频的声道数:
+                    <ul>
+                        <li>1: 单声道</li>
+                        <li>2: 双声道</li>
+                    </ul>
+                    <ph props="cpp apple framework">该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 中的  <parmname>type</parmname>设置为 <ph keyref="PREVIEW" /> 时需要传入。</ph>
+                    <ph props="android">该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 的 <parmname>recorderStreamType</parmname> 为 0 时需要传入。</ph>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>videoSourceType</pt>
+                <pd>录制视频源的类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。
+                    <ph props="cpp apple framework">该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 中的  <parmname>type</parmname>设置为 <ph keyref="PREVIEW" /> 时需要传入。</ph>
+                    <ph props="android">该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 的 <parmname>recorderStreamType</parmname> 为 0 时需要传入。</ph>
+                </pd>
             </plentry>
             </parml> </section>
     </refbody>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getfaceshapeareaoptions">
+    <title><ph keyref="getFaceShapeAreaOptions" /></title>
+    <shortdesc id="short"><ph id="shortdesc">获取美型部位选项。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getFaceShapeAreaOptions"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract FaceShapeAreaOptions getFaceShapeAreaOptions(
+      int shapeArea, Constants.MediaSourceType sourceType);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (AgoraFaceShapeAreaOptions * _Nullable)getFaceShapeAreaOptions:(AgoraFaceShapeArea) area sourceType:(AgoraMediaSourceType)sourceType NS_SWIFT_NAME(getFaceShapeAreaOptions(_:sourceType:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int getFaceShapeAreaOptions(agora::rtc::FaceShapeAreaOptions::FACE_SHAPE_AREA shapeArea, FaceShapeAreaOptions&amp; options, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.5.0</dd>
+            </dlentry>
+            </dl>
+            <p>调用该方法可以获取美型部位当前设置的参数信息。</p>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p>用户在 App 中打开美型部位和修饰力度菜单时，你可以调用该方法获取当前的美型部位选项，然后根据结果刷新用户界面中的菜单，并更新 UI。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>请在 <xref keyref="enableVideo" /> 之后调用该方法。</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+            <plentry id="area">
+                <pt props="android ios">shapeArea</pt>
+                <pt props="cpp unreal bp unity flutter rn electron cs">area</pt>
+                <pd>
+                    <p props="cpp ios mac unreal bp unity flutter electron rn cs">美型部位。详见 <xref keyref="FACE_SHAPE_AREA" />。</p>
+                    <p props="android hmos">美型部位：
+                        <ul>
+                            <li><ph keyref="FACE_SHAPE_AREA_NONE" /> (-1)：（默认）无效部位，美型不生效。</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_HEADSCALE" /> (0)：头部，用于实现小头效果。对应修饰力度范围为 [0,100]，值越大头越小，预设值为 100。</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_FOREHEAD" /> (1)：额头，修饰发际线高度。对应修饰力度范围为 [-100,100]，正值为调高，负值为调低，绝对值越大修饰效果越强，预设值为 50。</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_FACECONTOUR" /> (2)：脸部轮廓，用于实现瘦脸效果。对应修饰力度范围为 [0,100]，值越大瘦脸效果越强，预设值为 10。</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_FACELENGTH" /> (3)：脸部长度，用于实现长脸效果。对应修饰力度范围为 [-100,100]，正值为拉长，负值为变短，绝对值越大修饰效果越强，预设值为 0。</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_FACEWIDTH" /> (4)：脸部宽度，用于实现窄脸效果。对应修饰力度范围为 [0,100]，值越大窄脸效果越强，预设值为 10。</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_CHEEKBONE" /> (5)：颧骨，修饰颧骨宽度。对应修饰力度范围为 [0,100]，值越大颧骨越窄，预设值为 43。</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_CHEEK" /> (6)：脸颊，修饰脸颊宽度。对应修饰力度范围为 [0,100]，值越大脸颊越窄，预设值为 50。</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_CHIN" /> (7)：下巴，修饰下巴长度。对应修饰力度范围为 [-100,100]，正值为拉长，负值为变短，绝对值越大修饰效果越强，预设值为 -20。</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_EYESCALE" /> (8)：眼睛，用于实现大眼效果。对应修饰力度范围为 [0,100]，值越大，眼睛越大，预设值为 53。</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_NOSELENGTH" /> (9)：鼻子长度，用于实现长鼻效果。对应修饰力度范围为 [-100,100]，正值为拉长，负值为变短，绝对值越大修饰效果越强，预设值为 -10。</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_NOSEWIDTH" /> (10)：鼻子宽度，用于实现瘦鼻效果。对应修饰力度范围为 [-100,100]，正值为变宽，负值为变窄，绝对值越大修饰效果越强，预设值为 72。</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_MOUTHSCALE" /> (11)：嘴巴，修饰嘴巴大小。对应修饰力度范围为 [-100,100]，正值为变大，负值为变小，绝对值越大修饰效果越强，预设值为 20。</li>
+                        </ul>
+                    </p>
+                </pd>
+            </plentry>
+            <plentry conkeyref="setFaceShapeAreaOptions/options" props="cpp">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="setFilterEffectOptions/type">
+                <pt />
+                <pd />
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+            <ul props="cpp unreal bp electron unity rn cs">
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+            </ul>
+            <ul props="apple android">
+            <li>方法调用成功，返回 <apiname keyref="FaceShapeAreaOptions"/> 对象。</li>
+            <li>方法调用失败，返回 <ph keyref="NULL"/>。</li>
+            </ul> </section>
+        </refbody>
+</reference>
