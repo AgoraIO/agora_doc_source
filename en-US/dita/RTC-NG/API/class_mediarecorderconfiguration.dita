@@ -12,6 +12,12 @@
     public int streamType = STREAM_TYPE_BOTH;
     public int maxDurationMs = 120000;
     public int recorderInfoUpdateInterval = 0;
+    public int width;
+    public int height;
+    public int fps;
+    public int sample_rate;
+    public int channel_num;
+    public int videoSourceType;
 
     public MediaRecorderConfiguration(String storagePath, int containerFormat, int streamType,
         int maxDurationMs, int recorderInfoUpdateInterval) {
@@ -20,6 +26,28 @@
       this.streamType = streamType;
       this.maxDurationMs = maxDurationMs;
       this.recorderInfoUpdateInterval = recorderInfoUpdateInterval;
+      this.width = 1280;
+      this.height = 720;
+      this.fps = 30;
+      this.sample_rate = 48000;
+      this.channel_num = 1;
+      this.videoSourceType = 0;
+    }
+
+    public MediaRecorderConfiguration(String storagePath, int containerFormat, int streamType,
+        int maxDurationMs, int recorderInfoUpdateInterval, int width, int height, int fps,
+        int sample_rate, int channel_num, int videoSourceType) {
+      this.storagePath = storagePath;
+      this.containerFormat = containerFormat;
+      this.streamType = streamType;
+      this.maxDurationMs = maxDurationMs;
+      this.recorderInfoUpdateInterval = recorderInfoUpdateInterval;
+      this.width = width;
+      this.height = height;
+      this.fps = fps;
+      this.sample_rate = sample_rate;
+      this.channel_num = channel_num;
+      this.videoSourceType = videoSourceType;
     }
   }</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">export class MediaRecorderConfiguration {
@@ -47,17 +75,52 @@
 @property(assign, nonatomic) AgoraMediaRecorderContainerFormat containerFormat;
 @property(assign, nonatomic) AgoraMediaRecorderStreamType streamType;
 @property(assign, nonatomic) NSUInteger maxDurationMs;
-@property(assign, nonatomic) NSUInteger recorderInfoUpdateInterval;</codeblock>
+@property(assign, nonatomic) NSUInteger recorderInfoUpdateInterval;
+@property(assign, nonatomic) NSUInteger width;
+@property(assign, nonatomic) NSUInteger height;
+@property(assign, nonatomic) NSUInteger fps;
+@property(assign, nonatomic) NSUInteger sample_rate;
+@property(assign, nonatomic) NSUInteger channel_num;
+@property(assign, nonatomic) AgoraVideoSourceType videoSourceType;
+@end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct MediaRecorderConfiguration {
   const char* storagePath;
   MediaRecorderContainerFormat containerFormat;
   MediaRecorderStreamType streamType;
   int maxDurationMs;
   int recorderInfoUpdateInterval;
+  int width;
+  int height;
+  int fps;
+  int sample_rate;
+  int channel_num;
+  agora::rtc::VIDEO_SOURCE_TYPE videoSourceType;
 
-  MediaRecorderConfiguration() : storagePath(NULL), containerFormat(FORMAT_MP4), streamType(STREAM_TYPE_BOTH), maxDurationMs(120000), recorderInfoUpdateInterval(0) {}
-  MediaRecorderConfiguration(const char* path, MediaRecorderContainerFormat format, MediaRecorderStreamType type, int duration, int interval) : storagePath(path), containerFormat(format), streamType(type), maxDurationMs(duration), recorderInfoUpdateInterval(interval) {}
-};</codeblock>
+  MediaRecorderConfiguration()
+      : storagePath(NULL),
+        containerFormat(FORMAT_MP4),
+        streamType(STREAM_TYPE_BOTH),
+        maxDurationMs(120000),
+        recorderInfoUpdateInterval(0),
+        width(1280),
+        height(720),
+        fps(30),
+        sample_rate(48000),
+        channel_num(1),
+        videoSourceType(rtc::VIDEO_SOURCE_CAMERA_PRIMARY) {}
+  MediaRecorderConfiguration(const char* path, MediaRecorderContainerFormat format,
+                             MediaRecorderStreamType type, int duration, int interval)
+      : storagePath(path),
+        containerFormat(format),
+        streamType(type),
+        maxDurationMs(duration),
+        recorderInfoUpdateInterval(interval),
+        width(1280),
+        height(720),
+        fps(30),
+        sample_rate(48000),
+        channel_num(1),
+        videoSourceType(rtc::VIDEO_SOURCE_CAMERA_PRIMARY) {}};</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FMediaRecorderConfiguration
 {
