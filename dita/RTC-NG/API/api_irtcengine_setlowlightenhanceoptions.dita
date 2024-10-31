@@ -54,6 +54,12 @@
             <ul>
                 <li>该方法依赖于视频增强动态库 <codeph><ph keyref="clearvision"/></codeph>，如果删除该动态库会导致无法正常开启该功能。</li>
                 <li>暗光增强对设备性能有一定要求。开启暗光增强后，如果设备出现严重发烫等问题，建议你将暗光增强等级修改为消耗性能较少的等级或关闭暗光增强功能。</li>
+                <li>如果要实现优先画质 (<ph keyref="LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY"/>) 的暗光增强，需要先调用 <xref keyref="setVideoDenoiserOptions"/> 实现视频降噪，具体对应关系如下：
+                    <ul>
+                        <li>暗光增强为自动模式 (<ph keyref="LOW_LIGHT_ENHANCE_AUTO"/>) 时，视频降噪需设置为优先画质 (<ph keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY" />)、自动模式 (<ph keyref="VIDEO_DENOISER_AUTO" />)。</li>    
+                        <li>暗光增强为手动模式 (<ph keyref="LOW_LIGHT_ENHANCE_MANUAL"/>) 时，视频降噪需设置为优先画质 (<ph keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY" />)、手动模式 (<ph keyref="VIDEO_DENOISER_MANUAL" />)。</li>    
+                    </ul>
+                </li>
             </ul>
         </section>
         <section id="parameters" deliveryTarget="details">
@@ -70,20 +76,14 @@
             </plentry>
             <plentry id="options">
                 <pt>options</pt>
-                <pd>暗光增强选项，用于设置暗光增强的效果。详见 <xref keyref="LowlightEnhanceOptions" />。根据你在 <parmname>options</parmname> 中的设置，需要进行以下操作：
-                    <ul>
-                        <li><parmname>level</parmname> 和 <parmname>mode</parmname> 均为默认设置时：需要先调用 <xref keyref="setVideoDenoiserOptions"/> 启用视频降噪，其中 <xref keyref="VideoDenoiserOptions"/> 采用默认设置。</li>
-                        <li><parmname>level</parmname> 为默认值，<parmname>mode</parmname> 为 <ph keyref="LOW_LIGHT_ENHANCE_MANUAL"/> 时：需要先调用 <apiname keyref="setVideoDenoiserOptions"/> 启用视频降噪，并将 <xref keyref="VideoDenoiserOptions"/> 中的 <parmname>level</parmname> 设为默认值，<parmname>mode</parmname> 设为 <ph keyref="VIDEO_DENOISER_MANUAL" />。</li>
-                        <li>除以上两种情况外的情况：无需调用 <apiname keyref="setVideoDenoiserOptions"/>。</li>                        
-                    </ul>
-                </pd>
+                <pd>暗光增强选项，用于设置暗光增强的效果。详见 <xref keyref="LowlightEnhanceOptions" />。</pd>
             </plentry>
                 <plentry props="cpp unreal bp rn unity electron flutter cs" id="type">
                     <pt>type</pt>
                     <pd>效果应用的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE" />。
                     <note type="attention">在该方法中，该参数仅支持以下两种设置：
                     <ul>
-                    <li>默认值为 <apiname keyref="PRIMARY_CAMERA_SOURCE"/>。</li>
+                    <li>使用摄像头采集本地视频时，请保持默认值 <apiname keyref="PRIMARY_CAMERA_SOURCE"/>。</li>
                     <li>如果要使用自定义采集的视频，将该参数设置为 <apiname keyref="CUSTOM_VIDEO_SOURCE"/>。</li>
                     </ul></note></pd>
                 </plentry>
