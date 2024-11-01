@@ -109,7 +109,7 @@ After receiving `friendRequestDidReceiveFromUser`, call `approveFriendRequestFro
 }];
 ```
 
-Once you accept or decline the contact invitation, the user that sends the invitation receives the `friendRequestDidApprove` or `friendRequestDidDecline` callback
+Once you accept or decline the contact invitation, the user that sends the invitation receives the `friendRequestDidApproveByUser` or `friendRequestDidDeclineByUser` callback.
 
 ```objective-c
 /*
