@@ -116,7 +116,7 @@ WebIM.conn.addUsersToBlocklist({
 To remove the specified user from the block list, call `removeUserFromBlocklist`.
 
 ```javascript
-WebIM.conn.removeUserFromBlockList({
+WebIM.conn.removeUserFromBlocklist({
     name: ["user1", "user2"],
 });
 ```
