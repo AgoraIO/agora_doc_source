@@ -504,7 +504,7 @@ Continue to return a list of information for two users:
 
 ## Deleting a user
 
-This method deletes the specified user. If the deleted user is the admin of a chat group or chat room, the group or chat room managed by that user is also deleted.
+This method deletes the specified user. If the owner of a chat group or chat room is among the users that are deleted, the group or chat room managed by that user is also deleted.
 
 For each App Key, the call frequency limit of this method is 100 per second.
 
@@ -547,7 +547,7 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppT
 ```json
 {
     "action": "delete",
-    "applicationName": "XXXX"
+    "application": "8be024f0-XXXX-XXXX-b697-5d598d5f8402",
     "path": "/users",
     "uri": "https://XXXX/XXXX/XXXX/users",
     "entities": [
@@ -570,9 +570,9 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppT
 
 ## Deleting multiple users
 
-This method deletes multiple users in the app in the chronological order of their creation. For the first request, the API deletes users, starting from the first created one. A maximum of 100 users can be deleted each time. It should be noted that this method specifies the number of users to delete, instead of which users to delete.
+This method deletes multiple users that are created during the app test period before go-live. A maximum of 100 users can be deleted each time. It should be noted that this method specifies the number of users to delete, instead of which users to delete.
 
-If the deleted users include group or chat room admins, the groups and chat rooms managed by those users are also deleted.
+If the owner of a chat group or chat room is among the users that are deleted, the group or chat room managed by that user is also deleted.
 
 For each App Key, the call frequency limit of this method is 30 per second.
 
@@ -591,7 +591,7 @@ For the parameters and detailed descriptions, see [Common parameters ](#param).
 | Parameter | Type | Description | Required |
 | :------- | :----- | :------------------------ | :------- |
 | `limit` | Number | The number of users to delete. The value range is [1,100] with `10` as the default. | No |
-| `cursor` | String | The position where to start deleting users. <br/> No cursor is required for the first request. For each subsequent request, the cursor is obtained from the body of response to the previous request. If the cursor is no longer returned, all users are deleted. | No |
+| `cursor` | String | The position where to start deleting users. <br/> For the first request, no cursor is required and the server deletes users, starting from the one that is first created. For each subsequent request, the cursor is obtained from the body of response to the previous request. If the cursor is no longer returned, all users are deleted. | No |
 
 #### Request header
 
