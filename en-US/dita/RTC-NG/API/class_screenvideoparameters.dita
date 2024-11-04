@@ -46,6 +46,11 @@
     }
   }
 </codeblock>
+                <codeblock props="hmos" outputclass="language-arkts">export class ScreenVideoParameters {
+  public dimensions: VideoDimensions = new VideoDimensions(1280, 720);
+  public frameRate: number = 15;
+  public bitrate: number = 0;
+}</codeblock>
             <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenVideoParameters : NSObject
 
 @property(assign, nonatomic) CGSize dimensions;
@@ -157,7 +162,7 @@ public:
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry props="ios cpp unreal bp electron unity rn flutter cs">
+            <plentry props="hmos ios cpp unreal bp electron unity rn flutter cs">
                 <pt>dimensions</pt>
                 <pd>The video encoding dimension. The default value is 1280 × 720.</pd>
                 <pd>If the aspect ratio of <parmname>dimensions</parmname> is different from that of the screen, the SDK adjusts the video encoding resolution according to the following rules (take the<parmname> dimensions</parmname> of 1280 × 720 as an example):<ul>
@@ -170,7 +175,7 @@ public:
                     <li>The value of this parameter does not indicate the orientation mode of the output video. For how to set the video orientation, see <xref keyref="ORIENTATION_MODE"/>.</li>
                     <li>Whether the 720p resolution or above can be supported depends on the device. If the device cannot support 720p, the frame rate will be lower than the set value.</li>
                     </ul> </note>
-                    <note>When setting the encoding resolution in the scenario of sharing documents (<ph keyref="SCREEN_SCENARIO_DOCUMENT"/>), choose one of the following two methods:<ul>
+                    <note props="android cpp apple framework">When setting the encoding resolution in the scenario of sharing documents (<ph keyref="SCREEN_SCENARIO_DOCUMENT"/>), choose one of the following two methods:<ul>
                       <li>If you require the best image quality, it is recommended to set the encoding resolution to be the same as the capture resolution.</li>
                       <li>If you wish to achieve a relative balance between image quality, bandwidth, and system performance, then:<ul>
                           <li>When the capture resolution is greater than 1920 × 1080, it is recommended that the encoding resolution is not less than 1920 × 1080.</li>
@@ -179,7 +184,7 @@ public:
                       </ul></note>
                     </pd>
             </plentry>
-            <plentry props="android hmos">
+            <plentry props="android">
                 <pt>width</pt>
                 <pd>The width (px) of the video encoding resolution. The default value is 1280. If the aspect ratio of width to height is different from that of the screen, the SDK adjusts the video encoding resolution according to the following rules (take width × height of 1280 × 720 as an example):<ul>
                     <li>When the width and height of the screen are both lower than those of dimensions, the SDK uses the resolution of the screen for video encoding. For example, if the screen is 640 × 360, the SDK uses 640 × 360 for video encoding.</li>
@@ -200,7 +205,7 @@ public:
                       </ul></note>
                     </pd>
             </plentry>
-            <plentry props="android hmos">
+            <plentry props="android">
                 <pt>height</pt>
                 <pd>The height (px) of the video encoding resolution. The default value is 720. If the aspect ratio of width to height is different from that of the screen, the SDK adjusts the video encoding resolution according to the following rules (take width × height of 1280 × 720 as an example):<ul>
                     <li>When the width and height of the screen are both lower than those of dimensions, the SDK uses the resolution of the screen for video encoding. For example, if the screen is 640 × 360, the SDK uses 640 × 360 for video encoding.</li>
@@ -222,15 +227,15 @@ public:
                     </pd>
             </plentry>
             <plentry>
-                <pt props="android hmos">frameRate</pt>
-                <pt props="ios cpp unreal bp electron unity rn flutter cs">frameRate</pt>
+                <pt props="android">frameRate</pt>
+                <pt props="hmos ios cpp unreal bp electron unity rn flutter cs">frameRate</pt>
                 <pd>The video encoding frame rate (fps). The default value is 15.</pd>
             </plentry>
             <plentry>
                 <pt>bitrate</pt>
                 <pd>The video encoding bitrate (Kbps).</pd>
             </plentry>
-            <plentry>
+            <plentry props="android cpp apple framework">
                 <pt>contentHint</pt>
                 <pd><ph>The content hint for screen sharing. </ph><ph props="cpp unreal bp ios">See <xref keyref="VIDEO_CONTENT_HINT"/>.</ph><ul props="android hmos">
                     <li><ph keyref="CONTENT_HINT_NONE"/>(0): (Default) No content hint.</li>

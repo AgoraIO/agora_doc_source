@@ -14,7 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onRtmpStreamingStateChanged(String url, int state, int reason) {}</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts">onRtmpStreamingStateChanged? : (url:string,state:Constants.RtmpStreamPublishState,errCode:Constants.RtmpStreamPublishReason) =&gt; void;</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">onRtmpStreamingStateChanged? : (url:string,state:Constants.RtmpStreamPublishState,reason:Constants.RtmpStreamPublishReason) =&gt; void;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine rtmpStreamingChangedToState:(NSString * _Nonnull)url
                                                                     state:(AgoraRtmpStreamingState)state
                                                                   reason:(AgoraRtmpStreamingReason)reason NS_SWIFT_NAME(rtcEngine(_:rtmpStreamingChangedToState:state:reason:));</codeblock>
@@ -59,8 +59,8 @@
             </plentry>
             <plentry id="state">
                 <pt>state</pt>
-                <pd props="ios mac cpp unreal bp electron unity rn flutter cs">The current state of the Media Push. See <xref keyref="RTMP_STREAM_PUBLISH_STATE"/>.</pd>
-                <pd props="android hmos">The current state of the Media Push:<ul>
+                <pd props="hmos ios mac cpp unreal bp electron unity rn flutter cs">The current state of the Media Push. See <xref keyref="RTMP_STREAM_PUBLISH_STATE"/>.</pd>
+                <pd props="android">The current state of the Media Push:<ul>
                     <li><ph keyref="RTMP_STREAM_PUBLISH_STATE_IDLE"/>(0): The Media Push has not started or has ended.</li>
                     <li><ph keyref="RTMP_STREAM_PUBLISH_STATE_CONNECTING"/>(1): The streaming server and CDN server are being connected.</li>
                     <li><ph keyref="RTMP_STREAM_PUBLISH_STATE_RUNNING"/>(2): The Media Push publishes. The SDK successfully publishes the RTMP or RTMPS streaming and returns this state.</li>
@@ -74,8 +74,8 @@
             </plentry>
             <plentry id="errCode">
                 <pt>reason</pt>
-                <pd props="ios mac cpp unreal bp electron unity rn flutter cs">Reasons for the changes in the Media Push status. See <xref keyref="RTMP_STREAM_PUBLISH_REASON"/>.</pd>
-                <pd props="android hmos">Reasons for the changes in the Media Push status:<ul>
+                <pd props="hmos ios mac cpp unreal bp electron unity rn flutter cs">Reasons for the changes in the Media Push status. See <xref keyref="RTMP_STREAM_PUBLISH_REASON"/>.</pd>
+                <pd props="android">Reasons for the changes in the Media Push status:<ul>
                     <li><ph keyref="RTMP_STREAM_PUBLISH_REASON_OK"/>(0): The Media Push publishes successfully.</li>
                     <li><ph keyref="RTMP_STREAM_PUBLISH_REASON_INVALID_ARGUMENT"/>(1): Invalid argument used. Check the parameter setting.</li>
                     <li><ph keyref="RTMP_STREAM_PUBLISH_REASON_ENCRYPTED_STREAM_NOT_ALLOWED"/>(2): The Media Push is encrypted and cannot be published.</li>
@@ -88,7 +88,7 @@
                     <li><ph keyref="RTMP_STREAM_PUBLISH_REASON_STREAM_NOT_FOUND"/>(9): Agora's server fails to find the media stream of Media Push.</li>
                     <li><ph keyref="RTMP_STREAM_PUBLISH_REASON_FORMAT_NOT_SUPPORTED"/>(10): The format of the media push URL is not supported. Check whether the URL format is correct.</li>
                     <li><ph keyref="RTMP_STREAM_PUBLISH_REASON_NOT_BROADCASTER"/>(11): The user role is not host, so the user cannot use the Media Push function. Check your application code logic.</li>
-                    <li><ph keyref="RTMP_STREAM_PUBLISH_REASON_TRANSCODING_NO_MIX_STREAM"/>(13): The <xref keyref="updateRtmpTranscoding"/> or <xref keyref="setLiveTranscoding"/> method is called to update the transcoding configuration in a scenario where there is Media Push without transcoding. Check your application code logic.</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_REASON_TRANSCODING_NO_MIX_STREAM"/>(13): The <xref keyref="updateRtmpTranscoding"/> method is called to update the transcoding configuration in a scenario where there is Media Push without transcoding. Check your application code logic.</li>
                     <li><ph keyref="RTMP_STREAM_PUBLISH_REASON_NET_DOWN"/>(14): Errors occurred in the host's network.</li>
                     <li><ph keyref="RTMP_STREAM_PUBLISH_REASON_INVALID_PRIVILEGE"/><ph>(16): Your project does not have permission to use Media Push service. </ph><ph props="hide">Refer to <xref keyref="guide-cdn-streaming">Media Push</xref> to enable the Media Push permission.</ph></li>
                     <li><ph keyref="RTMP_STREAM_UNPUBLISH_REASON_OK"/>(100): The Media Push has been stopped normally. After you call <xref keyref="stopRtmpStream"/> to stop the Media Push, the SDK returns this value.</li>

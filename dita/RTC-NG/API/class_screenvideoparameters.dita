@@ -46,6 +46,11 @@
     }
   }
 </codeblock>
+                <codeblock props="hmos" outputclass="language-arkts">export class ScreenVideoParameters {
+  public dimensions: VideoDimensions = new VideoDimensions(1280, 720);
+  public frameRate: number = 15;
+  public bitrate: number = 0;
+}</codeblock>
             <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenVideoParameters : NSObject
 
 @property(assign, nonatomic) CGSize dimensions;
@@ -157,7 +162,7 @@ public:
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry props="ios cpp unreal bp electron unity rn flutter cs">
+            <plentry props="hmos ios cpp unreal bp electron unity rn flutter cs">
                 <pt>dimensions</pt>
                 <pd>视频编码的分辨率。默认值为 1280 × 720。</pd>
                 <pd>如果 <parmname>dimensions</parmname> 宽高比与屏幕像素值的宽高比不一致，SDK 会按照如下规则调节视频编码分辨率，以 <parmname>dimensions</parmname> 是 1280 × 720 为例：
@@ -171,7 +176,7 @@ public:
                     <li>该值不代表最终视频输出的方向。详见 <xref keyref="ORIENTATION_MODE"/> 了解设置视频方向。</li>
                     <li>视频能否达到 720P 的分辨率取决于设备的性能，在性能配备较低的设备上有可能无法实现。如果采用 720P 分辨率而设备性能跟不上，则有可能出现帧率过低的情况。</li>
                     </ul> </note>
-                    <note>在共享文档的场景（<ph keyref="SCREEN_SCENARIO_DOCUMENT"/>）下设置编码分辨率时，选择以下两种方式其中之一。 
+                    <note props="android cpp apple framework">在共享文档的场景（<ph keyref="SCREEN_SCENARIO_DOCUMENT"/>）下设置编码分辨率时，选择以下两种方式其中之一。 
                       <ul>
                       <li>如果你需要最优的画质，建议将编码分辨率设置为与采集分辨率相同。</li>
                       <li>如果你希望在画质、带宽和系统性能之间达到相对平衡，则： 
@@ -182,7 +187,7 @@ public:
                       </ul></note>
                     </pd>
             </plentry>
-            <plentry props="android hmos">
+            <plentry props="android">
                 <pt>width</pt>
                 <pd>视频编码分辨率中的宽 (px)。默认值为 1280。如果 width 和 height 的宽高比与屏幕像素值的宽高比不一致，SDK 会按照如下规则调节视频编码分辨率， 以 width × height 是 1280 × 720 为例：
                     <ul>
@@ -206,7 +211,7 @@ public:
                       </ul></note>
                     </pd>
             </plentry>
-            <plentry props="android hmos">
+            <plentry props="android">
                 <pt>height</pt>
                 <pd>视频编码分辨率中的高 (px)。默认值为 720。如果 width 和 height 的宽高比与屏幕像素值的宽高比不一致，SDK 会按照如下规则调节视频编码分辨率，以 width × height 是 1280 × 720 为例：
                     <ul>
@@ -231,15 +236,15 @@ public:
                     </pd>
             </plentry>
             <plentry>
-                <pt props="android hmos">framerate</pt>
-                <pt props="ios cpp unreal bp electron unity rn flutter cs">frameRate</pt>
+                <pt props="android">framerate</pt>
+                <pt props="hmos ios cpp unreal bp electron unity rn flutter cs">frameRate</pt>
                 <pd>视频编码帧率 (fps)。默认值为 15。</pd>
             </plentry>
             <plentry>
                 <pt>bitrate</pt>
                 <pd>视频编码码率 (Kbps)。</pd>
             </plentry>
-            <plentry>
+            <plentry props="android cpp apple framework">
                 <pt>contentHint</pt>
                 <pd><ph>屏幕共享视频的内容类型。</ph><ph props="cpp unreal bp ios">详见 <xref keyref="VIDEO_CONTENT_HINT"/>。</ph>
                     <ul props="android hmos">

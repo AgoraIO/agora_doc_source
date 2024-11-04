@@ -14,7 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">int setAudioPitch(int pitch);</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public abstract setAudioPitch(pitch:number): number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setAudioPitch:(NSInteger)pitch;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setAudioPitch(int pitch) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IMediaPlayer&quot;)
@@ -31,9 +31,13 @@
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry conkeyref="setAudioMixingPitch/pitch">
+            <plentry conkeyref="setAudioMixingPitch/pitch" props="android cpp apple framework">
                 <pt />
                 <pd />
+            </plentry>
+            <plentry id="pitch" props="hmos">
+                <pt>pitch</pt>
+                <pd>Sets the pitch of the local music file by the chromatic scale. The default value is 0, which means keeping the original pitch. The value ranges from -12 to 12, and the pitch value between consecutive values is a chromatic value. The greater the absolute value of this parameter, the higher or lower the pitch of the local music file.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">

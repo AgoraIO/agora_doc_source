@@ -15,7 +15,7 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onError(int err) {}
 </codeblock>
-            <codeblock props="hmos" outputclass="language-arkts">onError?:(err:number,message:string) =&gt; void</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">onError?:(err:Constants.ErrorCode,message:string) =&gt; void</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didOccurError:(AgoraErrorCode)errorCode;
 </codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onError(int err, const char* msg) {
@@ -41,17 +41,17 @@
                 <pt />
                 <pd />
             </plentry>
-            <plentry props="apple cpp unreal unity rn flutter electron cs">
+            <plentry props="hmos apple cpp unreal unity rn flutter electron cs">
                 <pt props="apple">errorCode</pt>
-                <pt props="cpp unreal unity rn flutter electron cs">err</pt>
+                <pt props="hmos cpp unreal unity rn flutter electron cs">err</pt>
                 <pd>Error code. See <xref keyref="ERROR_CODE_TYPE"/>.</pd>
             </plentry>
             <plentry props="cpp unreal bp electron unity rn flutter cs">
                 <pt>msg</pt>
                 <pd>The error message.</pd>
             </plentry>
-            <plentry props="android hmos bp">
-                <pt props="android hmos">err</pt>
+            <plentry props="android bp">
+                <pt props="android">err</pt>
                 <pt props="bp">error</pt>
                 <pd>Error code.</pd>
                 <pd>
@@ -62,11 +62,11 @@
                         <li><ph keyref="ERR_NOT_READY" />(3): The SDK is not ready. Possible reasons include the following:<ul>
                             <li>The initialization of <xref keyref="IRtcEngine" /> fails. Reinitialize the <apiname keyref="IRtcEngine" />.</li>
                             <li>No user has joined the channel when the method is called. Please check your code logic.</li>
-                            <li>The user has not left the channel when the <xref keyref="rate" /> or <xref keyref="complain" /> method is called. Please check your code logic.</li>
+                            <li props="android cpp apple framework">The user has not left the channel when the <xref keyref="rate" /> or <xref keyref="complain" /> method is called. Please check your code logic.</li>
                             <li>The audio module is disabled. The program is not complete.</li>
                             </ul></li>
                         <li><ph keyref="ERR_NOT_SUPPORTED" />(4): <apiname keyref="IRtcEngine" /> does not support the request. Possible reasons include the following:<ul>
-                            <li props="android hmos">The <xref keyref="setBeautyEffectOptions" /> method is called on devices running versions earlier than Android 5.0. Check the Android version.</li>
+                            <li props="android">The <xref keyref="setBeautyEffectOptions" /> method is called on devices running versions earlier than Android 5.0. Check the Android version.</li>
                             <li>The built-in encryption mode is incorrect, or the SDK fails to load the external encryption library. Check the encryption mode setting, or reload the external encryption library.</li>
                             </ul></li>
                         <li><ph keyref="ERR_REFUSED" />(5): The request is rejected. Possible reasons include the following:<ul>
@@ -81,7 +81,7 @@
                         <li><ph keyref="ERR_TIMEDOUT" />(10): A timeout occurs. Some API calls require the SDK to return the execution result. This error occurs if the SDK takes too long (more than 10 seconds) to return the result.</li>
                         <li><ph keyref="ERR_JOIN_CHANNEL_REJECTED" />(17): The request to join the channel is rejected. Possible reasons include the following:<ul>
                             <li>The user is already in the channel. Agora recommends that you use the <xref keyref="onConnectionStateChanged" /> callback to see whether the user is in the channel. Do not call this method to join the channel unless you receive the <apiname keyref="CONNECTION_STATE_DISCONNECTED" />(1) state.</li>
-                            <li>After calling <xref keyref="startEchoTest3" /> for the call test, the user tries to join the channel without calling <xref keyref="stopEchoTest" /> to end the current test. To join a channel, the call test must be ended by calling <apiname keyref="stopEchoTest" />.</li>
+                            <li props="android cpp apple framework">After calling <xref keyref="startEchoTest3" /> for the call test, the user tries to join the channel without calling <xref keyref="stopEchoTest" /> to end the current test. To join a channel, the call test must be ended by calling <apiname keyref="stopEchoTest" />.</li>
                             </ul></li>
                         <li><ph keyref="ERR_LEAVE_CHANNEL_REJECTED" />(18): Fails to leave the channel. Possible reasons include the following:<ul>
                             <li>The user has left the channel before calling the <xref keyref="leaveChannel2" /> method. Stop calling this method to clear this error.</li>
@@ -104,7 +104,7 @@
                             <li>App Certificate is enabled in Agora Console, but the code still uses App ID for authentication. Once App Certificate is enabled for a project, you must use token-based authentication.</li>
                             <li>The <codeph>uid</codeph> used to generate the token is not the same as the <parmname>uid</parmname> used to join the channel.</li>
                             </ul>
-                            <dl>
+                            <dl outputclass="deprecated">
                             <dlentry>
                                 <dt>Deprecated:</dt>
                                 <dd>This enumerator is deprecated. Use <apiname keyref="CONNECTION_CHANGED_INVALID_TOKEN" />(8) in the <xref keyref="onConnectionStateChanged" /> callback instead.</dd>
