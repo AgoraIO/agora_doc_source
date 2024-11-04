@@ -3,7 +3,7 @@
 <topic id="release_notes">
     <title>v4.5.0</title>
     <body>
-        <p>该版本于 2034 年 11 月 x 日发布。</p>
+        <p>该版本于 2024 年 11 月 x 日发布。</p>
     </body>
     <topic id="level2">
         <title/>
@@ -58,15 +58,16 @@
                         </tgroup>
                         </table></p>
                     </li>
-                    <li props="mac"><ph><b>自动安装虚拟声卡</b></ph>
+                    <li props="mac"><ph><b>自动安装虚拟声卡 (macOS)</b></ph>
                         <p>自该版本起，SDK 支持自动安装虚拟声卡功能，当你第一次调用 <apiname keyref="enableLoopbackRecording"/> 时，SDK 会自动安装内置的声网自研虚拟声卡 AgoraALD。安装成功后，音频路由会自动切换为虚拟声卡，同时使用虚拟声卡进行采集。</p>
                     </li>
                     <li><ph><b>强效视频降噪实现变更</b></ph>
                         <p>该版本调整了强效视频降噪的实现方式，在 <apiname keyref="VIDEO_DENOISER_LEVEL"/> 中删除了 <apiname keyref="VIDEO_DENOISER_LEVEL_STRENGTH"/>，改为调用 <apiname keyref="setVideoDenoiserOptions"/> 启用视频降噪后，调用 <apiname keyref="aasetBeautyEffectOptionsa"/> 方法启用美颜磨皮功能，二者搭配使用以获得更好的视频降噪效果。实现强效降噪时，推荐磨皮参数设置详见 <apiname keyref="setVideoDenoiserOptions。"/></p>
                         <p>此外，受该调整影响，实现画质优先的暗光增强效果时，需要先开启视频降噪并采用特定设置，详见 <apiname keyref="setLowlightEnhanceOptions。"/></p>
                     </li>
-                    <li><ph><b> 摄像头插拔状态变更 (macOS, Windows)</b></ph>
-                        <p><?oxy-placeholder content="用段落描述"?></p>
+                    <li props="mac cpp"><ph><b> 摄像头插拔状态变更 (macOS, Windows)</b></ph>
+                        <p props="cpp">在之前版本中，当摄像头拔出并重新插入时，<apiname keyref="onVideoDeviceStateChanged"/> 回调会将设备状态报告为 <apiname keyref="MEDIA_DEVICE_STATE_ACTIVE"/>(1)（设备正在使用）。该版本起，摄像头重新插入后，设备状态将改为 <apiname keyref="MEDIA_DEVICE_STATE_IDLE"/>(0)（设备就绪）。</p>
+                        <p props="mac">在之前版本中，摄像头拔出并重新插入后不会自动恢复采集。该版本起，摄像头重新插入后将自动恢复采集。</p>
                     </li>
                     <li><ph><b>视频编码偏好变更</b></ph>
                         <p>为提升用户的视频互动体验，该版本优化了视频编码时的默认偏好：
@@ -76,7 +77,7 @@
                         </ul></p>
                     </li>
                     <li><ph><b>16 KB 内存页大小 (Android)</b></ph>
-                        <p><?oxy-placeholder content="用段落描述"?></p>
+                        <p>自 Android 15 起，系统新增了对 16 KB 内存页大小的支持，详见 <xref keyref="page-size"/>。为了保证 App 的稳定性和性能表现，自该版本起，SDK 支持 16 KB 内存页大小，确保可以在使用 4 KB 和 16 KB 内存页大小的设备上无缝运行，提升兼容性并避免崩溃。</p>
                     </li>
                 </ol>
             </body>
@@ -85,14 +86,6 @@
             <title>新增特性</title>
             <body>
                 <ol>
-                    <li><ph><b>高级美颜</b></ph>
-                        <ul>
-                        <li><?oxy-placeholder content="用 list 描述"?></li>
-                        <li><?oxy-placeholder content="用 list 描述"?></li>
-                        </ul></li>
-                    <li><ph><b>秀场直播场景</b></ph>
-                        <p><?oxy-placeholder content="用段落描述"?></p>
-                    </li>
                     <li><ph><b>高级美颜</b></ph>
                         <p><ph>该版本新增以下两种高级美颜功能：</ph>
                             <ul>
@@ -103,12 +96,17 @@
                             <note type="note">目前，高级美颜功能为<b>限时免费</b>，详见<xref keyref="billing-strategy"/>。</note>
                         </p>
                     </li>
+                    <li><ph><b>秀场直播场景</b></ph>
+                        <p>该版本在 <apiname keyref="VideoScenario"/> 类下新增枚举 <apiname keyref="APPLICATION_SCENARIO_LIVESHOW"/>(3)（秀场直播），你可以调用 <apiname keyref="setVideoScenario"/> 将视频业务场景设置为<xref keyref="showroom"/>。针对该场景对首帧出图时间和画质清晰度的高要求，SDK 进行了策略调优，重点提升了首帧出图体验和画质表现，同时增强了在弱网环境和低端设备上的画质和流畅度表现。</p>
+                    </li>
                     <li><ph><b>限制视频渲染帧率</b></ph>
                         <p>该版本新增 <apiname keyref="setLocalRenderTargetFps"/> 和 <apiname keyref="setRemoteRenderTargetFps"/> 方法，支持设置视频在本地和远端渲染时的最大帧率，SDK 进行视频渲染的实际帧率会尽量接近该值。</p>
                         <p>在对视频渲染帧率要求不高的场景（例如：屏幕共享、在线教育）或者远端使用中低端设备的场景下，你可以通过这一组方法限制视频渲染帧率，从而减小 CPU 消耗、提升系统性能。</p>
                     </li>
                     <li><ph><b>URL 拉流播放</b></ph>
-                        <p><?oxy-placeholder content="用段落描述"?></p>
+                        <p><ph>URL 拉流播放功能主要用于直播场景，观众端可以直接通过 OpenWithUrl 打开特定的 URL 来播放实时媒体流，无需加入频道、订阅等步骤，极大简化了观众端观看直播流的 API 调用。</ph>
+                        <ph>在播放的过程中，观众端可以通过 <apiname keyref="SetAbrSubscriptionLayer"/> 设置订阅视频大小流，并可以在大小流之间实现平滑切换。如果对视频体验有更高要求，可以联系<xref keyref="ticket-link"/>开通 ABR（Adaptive Bitrate，自适应码率）功能。启用该功能后，可以自定义不同层级的视频流分辨率，观众可以实现不同分辨率视频流的平滑切换。</ph>
+                        <ph>当网络情况不稳定时，观众端可以调用 <apiname keyref="SetAbrFallbackLayer"/> 来设置订阅的视频流的回退选项。SDK 会以你指定的最低质量层级对应的视频流分辨率为下限，在此范围内根据网络状况动态调整分辨率。</ph><ph props="hide">有关该功能的实现步骤，详见 <xref keyref="rte-player"/>。</ph></p>
                     </li>
                     <li><ph><b>滤镜效果</b></ph>
                         <p><?oxy-placeholder content="用段落描述"?></p>
@@ -127,17 +125,16 @@
                         <p>如果你具备自行申请 <codeph>MediaProjection</codeph> 的开发能力，可通过该功能实现更加灵活的屏幕采集。有关具体实现方法，详见《屏幕共享》。</p>
                     </li>
                     <li><ph><b>EGL 环境上下文 (Android)</b></ph>
-                        <p><?oxy-placeholder content="用段落描述"?></p>
+                        <p>该版本新增了 <apiname keyref="setExternalRemoteEglContext"/> 方法，用于设置远端视频流渲染的 EGL 环境上下文。使用 Texture 格式的视频数据进行远端视频自渲染时，你可以通过该方法替换 SDK 默认的远端 EGL 环境上下文，实现统一的 EGL 上下文管理。</p>
                     </li>
                     <li><ph><b>色彩空间设置</b></ph>
-                        <p><?oxy-placeholder content="用段落描述"?></p>
-                    </li>
-                    <li><ph><b/></ph>
-                        <p><?oxy-placeholder content="用段落描述"?></p>
+                        <p props="android">该版本在 <apiname keyref="VideoFrame"/> 中新增了 <apiname keyref="getColorSpace"/> 和 <apiname keyref="setColorSpace"/>，你可以通过 <apiname keyref="getColorSpace"/> 获取视频帧的色彩空间属性，并通过 <apiname keyref="setColorSpace"/> 对其进行自定义设置。默认情况下，色彩空间采用 Full Range 和 BT.709 标准配置，开发者可以根据自采集或自渲染的需求灵活调整，进一步提升视频处理的定制化能力。</p>
+                        <p props="cpp ios mac">该版本在 <apiname keyref="VideoFrame"/> 和 <apiname keyref="ExternalVideoFrame"/> 中新增了 <parmname>colorSpace</parmname>，你可以通过该参数设置视频帧的色彩空间属性。默认情况下，色彩空间采用 Full Range 和 BT.709 标准配置，你可以根据自采集或自渲染的需求灵活调整，进一步提升视频处理的定制化能力。</p>
                     </li>
                     <li><ph><b>其他</b></ph>
                         <ul>
                         <li props="cpp unity flutter electron unreal"><apiname keyref="onLocalVideoStateChanged"/> 回调新增 <ph keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_DISCONNECTED"/> 枚举，表示当前正在使用的视频采集设备已经断开连接（例如，被拔出）。(Windows)</li>
+                        <li props="cpp mac"><apiname keyref="MEDIA_DEVICE_STATE_TYPE"/> 新增 <apiname keyref="MEDIA_DEVICE_STATE_PLUGGED_IN"/> 枚举，表示设备已插入。</li>
                         </ul> </li>
                 </ol>
             </body>
@@ -155,19 +152,17 @@
                     <li><ph><b>指定视频观测位置截图</b></ph>
                         <p>该版本新增 <apiname keyref="takeSnapshot2"/> 和 <apiname keyref="takeSnapshotEx2"/> 方法，你可以在调用该方法时通过 <parmname>config</parmname> 参数，在指定的视频观测点进行截图，比如：编码前、编码后或渲染前的数据，以实现更加灵活的截图效果。</p>
                     </li>
-                    <li><ph><b/></ph>
-                        <ul>
-                        <li><?oxy-placeholder content="用 list 描述"?></li>
-                        <li><?oxy-placeholder content="用 list 描述"?></li>
-                        </ul></li>
                     <li><ph><b>自定义音频采集改进</b></ph>
-                        <p><?oxy-placeholder content="用段落描述"?></p>
+                        <p>该版本在 <apiname keyref="AudioTrackConfig"/> 中新增了 <codeph>enableAudioProcessing</codeph> 成员参数，用于控制是否对 <codeph>AUDIO_TRACK_DIRECT</codeph> 类型的自定义音频采集轨道启用 3A 音频处理。该参数默认值为 <codeph><ph keyref="false"/></codeph>，即不启用音频处理，用户可以按需开启，此项改动提升了自定义音频处理的灵活性。</p>
                     </li>
                     <li><ph><b>其他改进</b></ph>
                         <ul>
                         <li props="android ios unity flutter rn unreal">通过拼接视频帧和 Alpha 数据实现 Alpha 透明特效的应用场景下，提升了接收端的渲染性能，有效减少卡顿和延迟。（Android, iOS）</li>
                         <li>优化了调用 <apiname keyref="queryDeviceScore"/> 获取设备评分等级的设计逻辑，提升了等级评分结果的准确性。</li>
-                        <li/>
+                        <li props="cpp framework">支持使用 YV 12 格式的虚拟摄像头作为视频采集设备。(Windows)</li>
+                        <li props="ios">频道内调用 <apiname keyref="enableLocalAudio"/> 关闭本地采集后，支持通过手机静音侧键把 App 播放的背景音效设置为静音状态。(iOS)</li>
+                        <li>调用 <apiname keyref="switchSrc"/> 切换不同分辨率的直播流或点播流时，可以实现平滑且无感知的切换效果，并在切换失败时新增自动重试机制。SDK 会在切换失败后自动重试 3 次，如果依旧失败，会通过 <apiname keyref="onPlayerEvent"/> 回调报告 <apiname keyref="PLAYER_EVENT_SWITCH_ERROR"/> 事件，表示媒体资源切换时发生错误。</li>
+                        <li>调用 <apiname keyref="setPlaybackSpeed"/> 设置音频文件的播放速度时，最低支持 0.3 倍速播放。</li>
                         </ul></li>
                 </ol>
             </body>
@@ -185,12 +180,13 @@
                     <li props="android unity flutter rn unreal">在接收端默认订阅视频小流、加入频道时不自动订阅任何视频流的前提下，加入频道后调用 <apiname keyref="muteRemoteVideoStream"/><codeph>(uid,false)</codeph> 恢复接收视频流，但接收到的视频流为视频大流，不符合预期。(Android)</li> 
                     <li props="cpp unity electron flutter unreal">Windows 7 系统下进行音视频互动，偶现找不到系统文件的报错。(Windows)</li>
                     <li>调用 <apiname keyref="followSystemRecordingDevice"/> 或 <apiname keyref="followSystemPlaybackDevice"/> 设置 SDK 使用的音频采集或播放设备不跟随系统默认的音频播放设备，当音频设备被移除时，本地音频状态回调 <apiname keyref="onLocalAudioStateChanged"/> 没有被触发，不符合预期。(Windows)</li>
-                    <li props="apple unity flutter rn unreal">音视频互动过程中，如果发送端设备的系统版本为 iOS 17，偶现接收端听不到来自发送端的声音。（iOS）</li>
+                    <li props="ios unity flutter rn unreal">音视频互动过程中，偶现接收端听发送端没有声音。(iOS)</li>
+                    <li props="apple unity flutter rn unreal">音视频互动过程中，如果发送端设备的系统版本为 iOS 17，偶现接收端听不到来自发送端的声音。(iOS)</li>
                     <li props="apple unity flutter rn unreal">直播场景下，观众端因切换网络导致断开连接，重新连接直播间花费的时间长于预期。(iOS)</li>
                     <li props="apple unity flutter rn unreal">App 启动后使用媒体播放器播放在线媒体资源，播放无声。(iOS)</li>
                     <li props="apple unity flutter rn unreal">音视频互动过程中被系统其他 App 打断后恢复，偶现音频采集无声。(iOS)</li>
                     <li>调用 <apiname keyref="startAudioMixing"/> 后，立即调用 <apiname keyref="pauseAudioMixing"/> 暂停播放音乐文件不生效。</li>
-                    <li></li>
+                    <li props="android unity flutter rn">音视频互动过程中偶现崩溃。(Android)</li>
                     <li/>
                 </ul>
             </body>
