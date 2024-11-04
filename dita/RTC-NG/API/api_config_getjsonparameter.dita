@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_config_getjsonparameter">
+    <title><ph keyref="GetJsonParameter_Config"/></title>
+    <shortdesc id="short"><ph id="shortdesc">获取已设置的 SDK JSON 配置信息。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="GetJsonParameter_Config"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public String getJsonParameter() throws RteException;</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (NSString * _Nullable)jsonParameter:(AgoraRteError * _Nullable)error;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">std::string GetJsonParameter(Error *err = nullptr)</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.5.0</dd>
+            </dlentry>
+            </dl>
+            <p>当你调用 <xref keyref="SetJsonParameter_Config"/> 设置 JSON 配置信息后，你可以调用该方法获取已设置的配置信息。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>该方法需要在 <xref keyref="GetConfigs_Rte"/> 之后调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title><ph props="cpp apple framework">参数</ph></title>
+            <parml props="cpp apple framework">
+            <plentry conkeyref="SetConfigs_Rte/err">
+                <pt/>
+                <pd/>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title" props="cpp apple framework"/>
+            <ph props="android">异常</ph></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+            <ul props="cpp apple unreal bp electron unity rn cs">
+                <li>方法调用成功，返回设置的 JSON 配置信息。</li>
+                <li>方法调用失败，返回空字符串。</li>
+                </ul>
+        <p props="android" conkeyref="SetAppId/exception"/></section>
+        </refbody>
+</reference>

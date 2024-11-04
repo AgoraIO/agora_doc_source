@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_rte_registerobserver">
+    <title><ph keyref="RegisterObserver_Rte"/></title>
+    <shortdesc id="short"><ph id="shortdesc">注册 RTE 事件观测器对象。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="RegisterObserver_Rte"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void registerObserver(Observer observer) throws RteException;</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)registerObserver:(AgoraRteObserver * _Nonnull)observer error:(AgoraRteError * _Nullable)error;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">bool RegisterObserver(Observer *observer, Error *err);</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.5.0</dd>
+            </dlentry>
+            </dl>
+            <p>//TODO rte Observer 回调类文档不暴露的话，只暴露这个接口是否有意义？</p>
+            <p>成功注册观测器对象后，你可以接收 <xref keyref="Observer"/> 类下的回调事件。</p>
+            <p props="android">如果注册失败，SDK 会抛出 <xref keyref="RteException"/> 异常，并返回相应的错误信息。你需要捕获异常并进行处理。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>请在初始化 RTE 引擎后再调用该方法。</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="related" deliveryTarget="details">
+            <title>相关回调</title>
+            <p/>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+            <plentry id="observer">
+                <pt>observer</pt>
+                <pd> RTE 回调事件对象。</pd>
+            </plentry>
+            <plentry props="cpp apple" id="err">
+                <pt props="cpp">err</pt>
+                <pt props="apple">error</pt>
+                <pd>状态或错误信息，详见 <xref keyref="Error"/>。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="cpp apple framework">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+            <p props="cpp apple unreal bp electron unity rn cs">观测器对象是否注册成功：<ul>
+                <li><codeph><ph keyref="true"/></codeph>：注册成功。</li>
+                <li><codeph><ph keyref="false"/></codeph>：注册失败。</li>
+                </ul>
+            </p> </section>
+        </refbody>
+</reference>
