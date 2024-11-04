@@ -92,8 +92,8 @@ To get the contact list, you can call `getContacts`.
 
 ```javascript
 WebIM.conn.getContacts().then( (res) => {
-    console.log(res) // res.data > ['user1', 'user2']
-}
+        console.log(res) // res.data > ['user1', 'user2']
+})
 ```
 
 ### Manage the block list
