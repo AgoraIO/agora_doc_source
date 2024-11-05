@@ -109,7 +109,7 @@
                         <p>当网络情况不稳定时，观众端可以调用 <apiname keyref="SetAbrFallbackLayer"/> 来设置订阅的视频流的回退选项。SDK 会以你指定的最低质量层级对应的视频流分辨率为下限，在此范围内根据网络状况动态调整分辨率。</p><p props="hide">有关该功能的实现步骤，详见 <xref keyref="rte-player"/>。</p>
                     </li>
                     <li><ph><b>滤镜效果</b></ph>
-                        <p><?oxy-placeholder content="用段落描述"?></p>
+                        <p>该版本新增 <apiname keyref="setFilterEffectOptions"/> 方法，你可以在 <parmname>config</parmname> 参数中传入指定格式的立方体贴图文件 (.cube)，从而实现美白、鲜艳、冷色、黑白等自定义滤镜效果。此外，SDK 提供了一个内置的 <codeph>built_in_whiten_filter.cube</codeph> 文件，用于快速实现美白滤镜效果。</p>
                     </li>
                     <li><ph><b>本地音频合流</b></ph>
                         <p>该版本新增本地音频合流功能，你可以调用 <apiname keyref="startLocalAudioMixer"/> 方法，将本地麦克风采集的音频流、媒体播放器中的音频流、声卡采集的音频流、远端音频流等合并为一路音频流，你可以将合并后的音频流发布到频道中。不再需要音频合流时，你可以调用 <apiname keyref="stopLocalAudioMixer"/> 方法停止本地音频合流；在合流过程中，可以调用 <apiname keyref="updateLocalAudioMixerConfiguration"/> 方法更新正在合流的音频流配置。 </p>
