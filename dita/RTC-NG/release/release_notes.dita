@@ -62,7 +62,7 @@
                         <p>自该版本起，SDK 支持自动安装虚拟声卡功能，当你第一次调用 <codeph><apiname keyref="enableLoopbackRecording"/></codeph> 时，SDK 会自动安装内置的声网自研虚拟声卡 AgoraALD。安装成功后，音频路由会自动切换为虚拟声卡，同时使用虚拟声卡进行采集。</p>
                     </li>
                     <li><ph><b>强效视频降噪实现变更</b></ph>
-                        <p>该版本调整了强效视频降噪的实现方式，在 <codeph><apiname keyref="VIDEO_DENOISER_LEVEL"/></codeph> 中删除了 <codeph><apiname keyref="VIDEO_DENOISER_LEVEL_STRENGTH"/></codeph>，改为调用 <codeph><apiname keyref="setVideoDenoiserOptions"/></codeph> 启用视频降噪后，调用 <codeph><apiname keyref="setBeautyEffectOptionsa"/></codeph> 方法启用美颜磨皮功能，二者搭配使用以获得更好的视频降噪效果。实现强效降噪时，推荐磨皮参数设置详见 <codeph><apiname keyref="setVideoDenoiserOptions"/></codeph>。</p>
+                        <p>该版本调整了强效视频降噪的实现方式，在 <codeph><apiname keyref="VIDEO_DENOISER_LEVEL"/></codeph> 中删除了 <codeph><apiname keyref="VIDEO_DENOISER_LEVEL_STRENGTH"/></codeph>，改为调用 <codeph><apiname keyref="setVideoDenoiserOptions"/></codeph> 启用视频降噪后，调用 <codeph><apiname keyref="setBeautyEffectOptions"/></codeph> 方法启用美颜磨皮功能，二者搭配使用以获得更好的视频降噪效果。实现强效降噪时，推荐磨皮参数设置详见 <codeph><apiname keyref="setVideoDenoiserOptions"/></codeph>。</p>
                         <p>此外，受该调整影响，实现画质优先的暗光增强效果时，需要先开启视频降噪并采用特定设置，详见 <codeph><apiname keyref="setLowlightEnhanceOptions"/></codeph>。</p>
                     </li>
                     <li props="mac cpp"><ph><b> 摄像头插拔状态变更 (macOS, Windows)</b></ph>
