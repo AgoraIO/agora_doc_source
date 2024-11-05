@@ -62,8 +62,8 @@
                         <p>自该版本起，SDK 支持自动安装虚拟声卡功能，当你第一次调用 <apiname keyref="enableLoopbackRecording"/> 时，SDK 会自动安装内置的声网自研虚拟声卡 AgoraALD。安装成功后，音频路由会自动切换为虚拟声卡，同时使用虚拟声卡进行采集。</p>
                     </li>
                     <li><ph><b>强效视频降噪实现变更</b></ph>
-                        <p>该版本调整了强效视频降噪的实现方式，在 <apiname keyref="VIDEO_DENOISER_LEVEL"/> 中删除了 <apiname keyref="VIDEO_DENOISER_LEVEL_STRENGTH"/>，改为调用 <apiname keyref="setVideoDenoiserOptions"/> 启用视频降噪后，调用 <apiname keyref="aasetBeautyEffectOptionsa"/> 方法启用美颜磨皮功能，二者搭配使用以获得更好的视频降噪效果。实现强效降噪时，推荐磨皮参数设置详见 <apiname keyref="setVideoDenoiserOptions。"/></p>
-                        <p>此外，受该调整影响，实现画质优先的暗光增强效果时，需要先开启视频降噪并采用特定设置，详见 <apiname keyref="setLowlightEnhanceOptions。"/></p>
+                        <p>该版本调整了强效视频降噪的实现方式，在 <apiname keyref="VIDEO_DENOISER_LEVEL"/> 中删除了 <apiname keyref="VIDEO_DENOISER_LEVEL_STRENGTH"/>，改为调用 <apiname keyref="setVideoDenoiserOptions"/> 启用视频降噪后，调用 <apiname keyref="aasetBeautyEffectOptionsa"/> 方法启用美颜磨皮功能，二者搭配使用以获得更好的视频降噪效果。实现强效降噪时，推荐磨皮参数设置详见 <apiname keyref="setVideoDenoiserOptions"/>。</p>
+                        <p>此外，受该调整影响，实现画质优先的暗光增强效果时，需要先开启视频降噪并采用特定设置，详见 <apiname keyref="setLowlightEnhanceOptions"/>。</p>
                     </li>
                     <li props="mac cpp"><ph><b> 摄像头插拔状态变更 (macOS, Windows)</b></ph>
                         <p props="cpp">在之前版本中，当摄像头拔出并重新插入时，<apiname keyref="onVideoDeviceStateChanged"/> 回调会将设备状态报告为 <apiname keyref="MEDIA_DEVICE_STATE_ACTIVE"/>(1)（设备正在使用）。该版本起，摄像头重新插入后，设备状态将改为 <apiname keyref="MEDIA_DEVICE_STATE_IDLE"/>(0)（设备就绪）。</p>
@@ -76,7 +76,7 @@
                         <li>在 <apiname keyref="DEGRADATION_PREFERENCE"/> 枚举类中新增 <ph keyref="MAINTAIN_AUTO"/> (-1) 枚举，并替代原有的 <ph keyref="MAINTAIN_QUALITY"/> (1) 作为默认值。在该模式下，SDK 会根据你设置的视频场景，自动选择 <ph keyref="MAINTAIN_FRAMERATE"/>、<ph keyref="MAINTAIN_BALANCED"/> 或 <ph keyref="MAINTAIN_RESOLUTION"/>，以获得最优的综合质量体验 (QoE)。</li>
                         </ul></p>
                     </li>
-                    <li><ph><b>16 KB 内存页大小 (Android)</b></ph>
+                    <li props="android"><ph><b>16 KB 内存页大小 (Android)</b></ph>
                         <p>自 Android 15 起，系统新增了对 16 KB 内存页大小的支持，详见 <xref keyref="page-size"/>。为了保证 App 的稳定性和性能表现，自该版本起，SDK 支持 16 KB 内存页大小，确保可以在使用 4 KB 和 16 KB 内存页大小的设备上无缝运行，提升兼容性并避免崩溃。</p>
                     </li>
                 </ol>
@@ -104,12 +104,12 @@
                         <p>在对视频渲染帧率要求不高的场景（例如：屏幕共享、在线教育）或者远端使用中低端设备的场景下，你可以通过这一组方法限制视频渲染帧率，从而减小 CPU 消耗、提升系统性能。</p>
                     </li>
                     <li><ph><b>URL 拉流播放</b></ph>
-                        <p><ph>URL 拉流播放功能主要用于直播场景，观众端可以直接通过 OpenWithUrl 打开特定的 URL 来播放实时媒体流，无需加入频道、订阅等步骤，极大简化了观众端观看直播流的 API 调用。</ph>
-                        <ph>在播放的过程中，观众端可以通过 <apiname keyref="SetAbrSubscriptionLayer"/> 设置订阅视频大小流，并可以在大小流之间实现平滑切换。如果对视频体验有更高要求，可以联系<xref keyref="ticket-link"/>开通 ABR（Adaptive Bitrate，自适应码率）功能。启用该功能后，可以自定义不同层级的视频流分辨率，观众可以实现不同分辨率视频流的平滑切换。</ph>
-                        <ph>当网络情况不稳定时，观众端可以调用 <apiname keyref="SetAbrFallbackLayer"/> 来设置订阅的视频流的回退选项。SDK 会以你指定的最低质量层级对应的视频流分辨率为下限，在此范围内根据网络状况动态调整分辨率。</ph><ph props="hide">有关该功能的实现步骤，详见 <xref keyref="rte-player"/>。</ph></p>
+                        <p>URL 拉流播放功能主要用于直播场景，观众端可以直接通过 OpenWithUrl 打开特定的 URL 来播放实时媒体流，无需加入频道、订阅等步骤，极大简化了观众端观看直播流的 API 调用。</p>
+                        <p>在播放的过程中，观众端可以通过 <apiname keyref="SetAbrSubscriptionLayer"/> 设置订阅视频大小流，并可以在大小流之间实现平滑切换。如果对视频体验有更高要求，可以联系<xref keyref="ticket-link"/>开通 ABR（Adaptive Bitrate，自适应码率）功能。启用该功能后，可以自定义不同层级的视频流分辨率，观众可以实现不同分辨率视频流的平滑切换。</p>
+                        <p>当网络情况不稳定时，观众端可以调用 <apiname keyref="SetAbrFallbackLayer"/> 来设置订阅的视频流的回退选项。SDK 会以你指定的最低质量层级对应的视频流分辨率为下限，在此范围内根据网络状况动态调整分辨率。</p><p props="hide">有关该功能的实现步骤，详见 <xref keyref="rte-player"/>。</p>
                     </li>
                     <li><ph><b>滤镜效果</b></ph>
-                        <p><?oxy-placeholder content="用段落描述"?></p>
+                        <p>该版本新增 <apiname keyref="setFilterEffectOptions"/> 方法，你可以在 <parmname>config</parmname> 参数中传入指定格式的立方体贴图文件 (.cube)，从而实现美白、鲜艳、冷色、黑白等自定义滤镜效果。此外，SDK 提供了一个内置的 <codeph>built_in_whiten_filter.cube</codeph> 文件，用于快速实现美白滤镜效果。</p>
                     </li>
                     <li><ph><b>本地音频合流</b></ph>
                         <p>该版本新增本地音频合流功能，你可以调用 <apiname keyref="startLocalAudioMixer"/> 方法，将本地麦克风采集的音频流、媒体播放器中的音频流、声卡采集的音频流、远端音频流等合并为一路音频流，你可以将合并后的音频流发布到频道中。不再需要音频合流时，你可以调用 <apiname keyref="stopLocalAudioMixer"/> 方法停止本地音频合流；在合流过程中，可以调用 <apiname keyref="updateLocalAudioMixerConfiguration"/> 方法更新正在合流的音频流配置。 </p>
@@ -124,7 +124,7 @@
                         <p>该版本新增 <apiname keyref="setExternalMediaProjection"/> 方法，该方法支持你自行设置外部 <codeph>MediaProjection</codeph>，并取代 SDK 申请的 <codeph>MediaProjection</codeph>。 </p>
                         <p>如果你具备自行申请 <codeph>MediaProjection</codeph> 的开发能力，可通过该功能实现更加灵活的屏幕采集。有关具体实现方法，详见《屏幕共享》。</p>
                     </li>
-                    <li><ph><b>EGL 环境上下文 (Android)</b></ph>
+                    <li props="android"><ph><b>EGL 环境上下文 (Android)</b></ph>
                         <p>该版本新增了 <apiname keyref="setExternalRemoteEglContext"/> 方法，用于设置远端视频流渲染的 EGL 环境上下文。使用 Texture 格式的视频数据进行远端视频自渲染时，你可以通过该方法替换 SDK 默认的远端 EGL 环境上下文，实现统一的 EGL 上下文管理。</p>
                     </li>
                     <li><ph><b>色彩空间设置</b></ph>
@@ -187,7 +187,6 @@
                     <li props="apple unity flutter rn unreal">音视频互动过程中被系统其他 App 打断后恢复，偶现音频采集无声。(iOS)</li>
                     <li>调用 <apiname keyref="startAudioMixing"/> 后，立即调用 <apiname keyref="pauseAudioMixing"/> 暂停播放音乐文件不生效。</li>
                     <li props="android unity flutter rn">音视频互动过程中偶现崩溃。(Android)</li>
-                    <li/>
                 </ul>
             </body>
         </topic>
