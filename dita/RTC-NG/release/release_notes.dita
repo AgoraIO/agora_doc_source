@@ -97,7 +97,7 @@
                         </p>
                     </li>
                     <li><ph><b>秀场直播场景</b></ph>
-                        <p>该版本在 <codeph><apiname keyref="VideoScenario"/></codeph> 类下新增枚举 <codeph><apiname keyref="APPLICATION_SCENARIO_LIVESHOW"/></codeph>(3)（秀场直播），你可以调用 <codeph><apiname keyref="setVideoScenario"/></codeph> 将视频业务场景设置为<xref keyref="showroom"/>。针对该场景对首帧出图时间和画质清晰度的高要求，SDK 进行了策略调优，重点提升了首帧出图体验和画质表现，同时增强了在弱网环境和低端设备上的画质和流畅度表现。</p>
+                        <p>该版本在 <codeph><apiname keyref="VIDEO_APPLICATION_SCENARIO_TYPE"/></codeph> 类下新增枚举 <codeph><apiname keyref="APPLICATION_SCENARIO_LIVESHOW"/></codeph>(3)（秀场直播），你可以调用 <codeph><apiname keyref="setVideoScenario"/></codeph> 将视频业务场景设置为<xref keyref="showroom"/>。针对该场景对首帧出图时间和画质清晰度的高要求，SDK 进行了策略调优，重点提升了首帧出图体验和画质表现，同时增强了在弱网环境和低端设备上的画质和流畅度表现。</p>
                     </li>
                     <li><ph><b>限制视频渲染帧率</b></ph>
                         <p>该版本新增 <codeph><apiname keyref="setLocalRenderTargetFps"/></codeph> 和 <codeph><apiname keyref="setRemoteRenderTargetFps"/></codeph> 方法，支持设置视频在本地和远端渲染时的最大帧率，SDK 进行视频渲染的实际帧率会尽量接近该值。</p>
@@ -179,7 +179,7 @@
                     <li props="android unity flutter rn unreal">音视频互动过程中被系统来电打断后，通过 <codeph><apiname keyref="onAudioVolumeIndication"/></codeph> 回调上报的用户音量错误。(Android)</li>
                     <li props="android unity flutter rn unreal">在接收端默认订阅视频小流、加入频道时不自动订阅任何视频流的前提下，加入频道后调用 <codeph><apiname keyref="muteRemoteVideoStream"/></codeph><codeph>(uid,false)</codeph> 恢复接收视频流，但接收到的视频流为视频大流，不符合预期。(Android)</li> 
                     <li props="cpp unity electron flutter unreal">Windows 7 系统下进行音视频互动，偶现找不到系统文件的报错。(Windows)</li>
-                    <li>调用 <codeph><apiname keyref="followSystemRecordingDevice"/></codeph> 或 <codeph><apiname keyref="followSystemPlaybackDevice"/></codeph> 设置 SDK 使用的音频采集或播放设备不跟随系统默认的音频播放设备，当音频设备被移除时，本地音频状态回调 <codeph><apiname keyref="onLocalAudioStateChanged"/></codeph> 没有被触发，不符合预期。(Windows)</li>
+                    <li props="cpp unity electron flutter unreal">调用 <codeph><apiname keyref="followSystemRecordingDevice"/></codeph> 或 <codeph><apiname keyref="followSystemPlaybackDevice"/></codeph> 设置 SDK 使用的音频采集或播放设备不跟随系统默认的音频播放设备，当音频设备被移除时，本地音频状态回调 <codeph><apiname keyref="onLocalAudioStateChanged"/></codeph> 没有被触发，不符合预期。(Windows)</li>
                     <li props="ios unity flutter rn unreal">音视频互动过程中，偶现接收端听发送端没有声音。(iOS)</li>
                     <li props="apple unity flutter rn unreal">音视频互动过程中，如果发送端设备的系统版本为 iOS 17，偶现接收端听不到来自发送端的声音。(iOS)</li>
                     <li props="apple unity flutter rn unreal">直播场景下，观众端因切换网络导致断开连接，重新连接直播间花费的时间长于预期。(iOS)</li>
