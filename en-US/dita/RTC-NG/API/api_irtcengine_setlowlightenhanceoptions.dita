@@ -38,21 +38,30 @@
       MediaSourceType type = MediaSourceType.primaryCameraSource});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <p>The low-light enhancement feature can adaptively adjust the brightness value of the video captured in situations with low or uneven lighting, such as backlit, cloudy, or dark scenes. It restores or highlights the image details and improves the overall visual effect of the video.</p>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p>You can call this method to enable the color enhancement feature and set the options of the color enhancement effect.</p>
-            <note type="attention" id="req">
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p>The low-light enhancement feature can adaptively adjust the brightness value of the video captured in situations with low or uneven lighting, such as backlit, cloudy, or dark scenes. It restores or highlights the image details and improves the overall visual effect of the video.</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>Call this method after calling <xref keyref="enableVideo"/>.</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
             <ul>
-            <li>Call this method after calling <xref keyref="enableVideo" />.</li>
-            <li>Dark light enhancement has certain requirements for equipment performance. The low-light enhancement feature has certain performance requirements on devices. If your device overheats after you enable low-light enhancement, Agora recommends modifying the low-light enhancement options to a less performance-consuming level or disabling low-light enhancement entirely.</li>
-            <li>Both this method and <xref keyref="setExtensionProperty" /> can turn on low-light enhancement:<ul>
-                <li>When you use the SDK to capture video, Agora recommends this method (this method only works for video captured by the SDK).</li>
-                <li>When you use an external video source to implement custom video capture, or send an external video source to the SDK, Agora recommends using <apiname keyref="setExtensionProperty" />.</li>
-                </ul></li>
-            <li>This method relies on the image enhancement dynamic library <codeph><ph keyref="clearvision"/></codeph>. If the dynamic library is deleted, the function cannot be enabled normally.</li>
-            </ul> </note> </section>
-        <section id="parameters">
+                <li>This method relies on the image enhancement dynamic library <codeph><ph keyref="clearvision"/></codeph>. If the dynamic library is deleted, the function cannot be enabled normally.</li>
+                <li>Dark light enhancement has certain requirements for equipment performance. The low-light enhancement feature has certain performance requirements on devices. If your device overheats after you enable low-light enhancement, Agora recommends modifying the low-light enhancement options to a less performance-consuming level or disabling low-light enhancement entirely.</li>
+                <li>如果要实现优先画质 (<ph keyref="LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY"/>) 的暗光增强，需要先调用 <xref keyref="setVideoDenoiserOptions"/> 实现视频降噪，具体对应关系如下：<ul>
+                        <li>暗光增强为自动模式 (<ph keyref="LOW_LIGHT_ENHANCE_AUTO"/>) 时，视频降噪需设置为优先画质 (<ph keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY" />)、自动模式 (<ph keyref="VIDEO_DENOISER_AUTO" />)。</li>    
+                        <li>暗光增强为手动模式 (<ph keyref="LOW_LIGHT_ENHANCE_MANUAL"/>) 时，视频降噪需设置为优先画质 (<ph keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY" />)、手动模式 (<ph keyref="VIDEO_DENOISER_MANUAL" />)。</li>    
+                    </ul>
+                </li>
+            </ul>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry id="enable">
@@ -69,7 +78,10 @@
             </plentry>
                 <plentry props="cpp unreal bp rn unity electron flutter cs" id="type">
                     <pt>type</pt>
-                    <pd>The type of the video source. See <xref keyref="MEDIA_SOURCE_TYPE"/>.</pd>
+                    <pd>效果应用的媒体源类型。 See <xref keyref="MEDIA_SOURCE_TYPE" />.<note type="attention">在该方法中，该参数仅支持以下两种设置：<ul>
+                    <li>使用摄像头采集本地视频时，请保持默认值 <apiname keyref="PRIMARY_CAMERA_SOURCE"/>。</li>
+                    <li>如果要使用自定义采集的视频，将该参数设置为 <apiname keyref="CUSTOM_VIDEO_SOURCE"/>。</li>
+                    </ul></note></pd>
                 </plentry>
             </parml> </section>
         <section id="return_values">

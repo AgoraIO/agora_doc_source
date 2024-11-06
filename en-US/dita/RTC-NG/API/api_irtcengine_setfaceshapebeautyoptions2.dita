@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setfaceshapebeautyoptions2">
+    <title><ph keyref="setFaceShapeBeautyOptions2" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the image enhancement options.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setFaceShapeBeautyOptions2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setFaceShapeBeautyOptions(boolean enabled, FaceShapeBeautyOptions options);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setFaceShapeBeautyOptions:(BOOL)enable options:(AgoraFaceShapeBeautyOptions* _Nullable)options NS_SWIFT_NAME(setFaceShapeBeautyOptions(_:options:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp"></codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.5.0</dd>
+            </dlentry>
+            </dl>
+            <p>调用该方法可对脸部指定部位进行调整，从而实现瘦脸、大眼、瘦鼻等微整形效果，详见<xref keyref="advanced-beauty"/>。</p>
+            <note conkeyref="setFaceShapeBeautyOptions/billing"/>
+        </section>
+        <section id="timing" deliveryTarget="details"  conkeyref="setFaceShapeBeautyOptions/timing">
+        </section>        
+        <section id="restriction" deliveryTarget="details" conkeyref="setFaceShapeBeautyOptions/restriction">
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>Parameters</title>
+            <parml>
+            <plentry conkeyref="setFaceShapeBeautyOptions/enable">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="setFaceShapeBeautyOptions/options">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="setFilterEffectOptions/type">
+                <pt/>
+                <pd/>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <ul props="native unreal bp electron unity rn cs">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul>
+                        <li>-4: The current device does not support this feature. Possible reasons include:<ul>
+                                <li>The current device capabilities do not meet the requirements for image enhancement. Agora recommends you replace it with a high-performance device.</li>
+                                <li props="android rn unity flutter cs">The current device version is lower than Android 5.0 and does not support this feature. Agora recommends you replace the device or upgrade the operating system.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                </ul> </section>
+        </refbody>
+</reference>

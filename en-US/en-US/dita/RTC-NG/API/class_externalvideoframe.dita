@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_externalvideoframe">
+    <title><ph keyref="ExternalVideoFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc">The external video frame.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class AgoraVideoFrame {
+  public static final int FORMAT_NONE = -1;
+  public static final int FORMAT_TEXTURE_2D = 10;
+  public static final int FORMAT_TEXTURE_OES = 11;
+  public static final int FORMAT_I420 = 1;
+  public static final int FORMAT_BGRA = 2;
+  public static final int FORMAT_NV21 = 3;
+  public static final int FORMAT_RGBA = 4;
+  public static final int FORMAT_I422 = 16;
+  public static final int BUFFER_TYPE_NONE = -1;
+  public static final int BUFFER_TYPE_BUFFER = 1;
+  public static final int BUFFER_TYPE_ARRAY = 2;
+  public static final int BUFFER_TYPE_TEXTURE = 3;
+  public AgoraVideoFrame() {
+    format = 10;
+    timeStamp = 0;
+    stride = 0;
+    height = 0;
+    textureID = 0;
+    syncMode = true;
+    transform = null;
+    eglContext10 = null;
+    eglContext14 = null;
+    buf = null;
+    cropLeft = 0;
+    cropTop = 0;
+    cropRight = 0;
+    cropBottom = 0;
+    rotation = 0;
+    alphaStitchMode = 0;
+  }
+  
+  public int format;
+  public long timeStamp;
+  public int stride;
+  public int height;
+  public int textureID;
+  public boolean syncMode;
+  public float[] transform;
+  public javax.microedition.khronos.egl.EGLContext eglContext10;
+  public android.opengl.EGLContext eglContext14;
+  public byte[] buf;
+  public int cropLeft;
+  public int cropTop;
+  public int cropRight;
+  public int cropBottom;
+  public int rotation;
+  public int alphaStitchMode;
+  @Override
+  public String toString() {
+    return &quot;AgoraVideoFrame{&quot;
+        + &quot;format=&quot; + format + &quot;, timeStamp=&quot; + timeStamp + &quot;, stride=&quot; + stride
+        + &quot;, height=&quot; + height + &quot;, textureID=&quot; + textureID
+        + &quot;, buf.length=&quot; + (buf != null ? buf.length : 0) + &quot;, cropLeft=&quot; + cropLeft
+        + &quot;, cropTop=&quot; + cropTop + &quot;, cropRight=&quot; + cropRight + &quot;, cropBottom=&quot; + cropBottom
+        + &quot;, rotation=&quot; + rotation + &quot;, alphaStitchMode=&quot; + alphaStitchMode + &#x27;}&#x27;;
+  }
+}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">
+__attribute__((visibility(&quot;default&quot;))) @interface AgoraVideoFrame : NSObject
+@property(assign, nonatomic) NSInteger format;
+
+@property(assign, nonatomic) CMTime time;  
+@property(assign, nonatomic) int stride DEPRECATED_MSG_ATTRIBUTE(&quot;use strideInPixels instead&quot;);
+
+@property(assign, nonatomic) int strideInPixels;                                                                                                      
+@property(assign, nonatomic) int height;  
+@property(assign, nonatomic) CVPixelBufferRef _Nullable textureBuf;
+
+@property(strong, nonatomic) IMAGE_CLASS * _Nullable image;
+
+@property(strong, nonatomic) NSData *_Nullable dataBuf;  
+@property(strong, nonatomic) NSData *_Nullable alphaBuf;
+@property(assign, nonatomic) AgoraAlphaStitchMode alphaStitchMode;
+
+@property(assign, nonatomic) int cropLeft;  
+@property(assign, nonatomic) int cropTop;  
+@property(assign, nonatomic) int cropRight;  
+@property(assign, nonatomic) int cropBottom;  
+@property(assign, nonatomic) int rotation;  
+@property(strong, nonatomic) AgoraColorSpace *_Nullable colorSpace;
+
+- (void)fillAlphaData;
+@end</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">
+struct ExternalVideoFrame {
+  ExternalVideoFrame()
+      : type(VIDEO_BUFFER_RAW_DATA),
+        format(VIDEO_PIXEL_DEFAULT),
+        buffer(NULL),
+        stride(0),
+        height(0),
+        cropLeft(0),
+        cropTop(0),
+        cropRight(0),
+        cropBottom(0),
+        rotation(0),
+        timestamp(0),
+        eglContext(NULL),
+        eglType(EGL_CONTEXT10),
+        textureId(0),
+        fenceObject(0),
+        metadataBuffer(NULL),
+        metadataSize(0),
+        alphaBuffer(NULL),
+        fillAlphaBuffer(false),
+        alphaStitchMode(NO_ALPHA_STITCH),
+        d3d11Texture2d(NULL),
+        textureSliceIndex(0){}
+  
+  enum EGL_CONTEXT_TYPE {
+    EGL_CONTEXT10 = 0,
+    EGL_CONTEXT14 = 1,
+  };
+  
+  enum VIDEO_BUFFER_TYPE {
+    VIDEO_BUFFER_RAW_DATA = 1,
+    VIDEO_BUFFER_ARRAY = 2,
+    VIDEO_BUFFER_TEXTURE = 3,
+  };
+  
+  VIDEO_BUFFER_TYPE type;
+  VIDEO_PIXEL_FORMAT format;
+  void* buffer;
+  int stride;
+  int height;
+  int cropLeft;
+  int cropTop;
+  int cropRight;
+  int cropBottom;
+  int rotation;
+  long long timestamp;
+  void* eglContext;
+  EGL_CONTEXT_TYPE eglType;
+  int textureId;
+  long long fenceObject; 
+  float matrix[16];
+  uint8_t* metadataBuffer;
+  int metadataSize;
+  uint8_t* alphaBuffer;
+  bool fillAlphaBuffer;
+  ALPHA_STITCH_MODE alphaStitchMode;
+  void *d3d11Texture2d;
+  int textureSliceIndex;
+  ColorSpace colorSpace;
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export class ExternalVideoFrame {
+  type?: VideoBufferType;
+  format?: VideoPixelFormat;
+  buffer?: Uint8Array;
+  stride?: number;
+  height?: number;
+  cropLeft?: number;
+  cropTop?: number;
+  cropRight?: number;
+  cropBottom?: number;
+  rotation?: number;
+  timestamp?: number;
+  eglType?: EglContextType;
+  textureId?: number;
+  matrix?: number[];
+  metadataBuffer?: Uint8Array;
+  metadataSize?: number;
+  alphaBuffer?: Uint8Array;
+  fillAlphaBuffer?: boolean;
+  alphaStitchMode?: AlphaStitchMode;
+  d3d11Texture2d?: any;
+  textureSliceIndex?: number;
+}</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public class ExternalVideoFrame
+    {
+        public VIDEO_BUFFER_TYPE type;
+        public VIDEO_PIXEL_FORMAT format;
+        public byte[] buffer;
+        public int stride;
+        public int height;
+        public int cropLeft;
+        public int cropTop;
+        public int cropRight;
+        public int cropBottom;
+        public int rotation;
+        public long timestamp;
+        public byte[] eglContext;
+        public EGL_CONTEXT_TYPE eglType;
+        public int textureId;
+        public byte[] metadataBuffer;
+        public int metadataSize;
+        public byte[] alphaBuffer;
+        public bool fillAlphaBuffer;
+        public ALPHA_STITCH_MODE alphaStitchMode;
+        public IntPtr d3d11Texture2d;
+        public int textureSliceIndex;
+    };</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class ExternalVideoFrame {
+  type?: VideoBufferType;
+  format?: VideoPixelFormat;
+  buffer?: Uint8Array;
+  stride?: number;
+  height?: number;
+  cropLeft?: number;
+  cropTop?: number;
+  cropRight?: number;
+  cropBottom?: number;
+  rotation?: number;
+  timestamp?: number;
+  eglType?: EglContextType;
+  textureId?: number;
+  matrix?: number[];
+  metadataBuffer?: Uint8Array;
+  metadataSize?: number;
+  alphaBuffer?: Uint8Array;
+  fillAlphaBuffer?: boolean;
+  alphaStitchMode?: AlphaStitchMode;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class ExternalVideoFrame {
+  const ExternalVideoFrame(
+      {this.type,
+      this.format,
+      this.buffer,
+      this.stride,
+      this.height,
+      this.cropLeft,
+      this.cropTop,
+      this.cropRight,
+      this.cropBottom,
+      this.rotation,
+      this.timestamp,
+      this.eglType,
+      this.textureId,
+      this.matrix,
+      this.metadataBuffer,
+      this.metadataSize,
+      this.alphaBuffer,
+      this.fillAlphaBuffer,
+      this.alphaStitchMode,
+      this.d3d11Texture2d,
+      this.textureSliceIndex});
+
+  @JsonKey(name: &#x27;type&#x27;)
+  final VideoBufferType? type;
+
+  @JsonKey(name: &#x27;format&#x27;)
+  final VideoPixelFormat? format;
+
+  @JsonKey(name: &#x27;buffer&#x27;, ignore: true)
+  final Uint8List? buffer;
+
+  @JsonKey(name: &#x27;stride&#x27;)
+  final int? stride;
+
+  @JsonKey(name: &#x27;height&#x27;)
+  final int? height;
+
+  @JsonKey(name: &#x27;cropLeft&#x27;)
+  final int? cropLeft;
+
+  @JsonKey(name: &#x27;cropTop&#x27;)
+  final int? cropTop;
+
+  @JsonKey(name: &#x27;cropRight&#x27;)
+  final int? cropRight;
+
+  @JsonKey(name: &#x27;cropBottom&#x27;)
+  final int? cropBottom;
+
+  @JsonKey(name: &#x27;rotation&#x27;)
+  final int? rotation;
+
+  @JsonKey(name: &#x27;timestamp&#x27;)
+  final int? timestamp;
+
+  @JsonKey(name: &#x27;eglType&#x27;)
+  final EglContextType? eglType;
+
+  @JsonKey(name: &#x27;textureId&#x27;)
+  final int? textureId;
+
+  @JsonKey(name: &#x27;matrix&#x27;)
+  final List&lt;double&gt;? matrix;
+
+  @JsonKey(name: &#x27;metadataBuffer&#x27;, ignore: true)
+  final Uint8List? metadataBuffer;
+
+  @JsonKey(name: &#x27;metadataSize&#x27;)
+  final int? metadataSize;
+
+  @JsonKey(name: &#x27;alphaBuffer&#x27;, ignore: true)
+  final Uint8List? alphaBuffer;
+
+  @JsonKey(name: &#x27;fillAlphaBuffer&#x27;)
+  final bool? fillAlphaBuffer;
+
+  @JsonKey(name: &#x27;alphaStitchMode&#x27;)
+  final AlphaStitchMode? alphaStitchMode;
+
+  @JsonKey(name: &#x27;d3d11Texture2d&#x27;, readValue: readIntPtr)
+  final int? d3d11Texture2d;
+
+  @JsonKey(name: &#x27;textureSliceIndex&#x27;)
+  final int? textureSliceIndex;
+
+  factory ExternalVideoFrame.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$ExternalVideoFrameFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ExternalVideoFrameToJson(this);
+}</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
+        </section>
+        <section id="detailed_desc">
+        </section>
+        <section id="parameters">
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
+            <parml>
+            <plentry props="cpp unreal bp unity rn electron flutter cs">
+                <pt>type</pt>
+                <pd>
+                    <p>The video type. See <xref keyref="VIDEO_BUFFER_TYPE"/>.</p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>format</pt>
+                <pd props="cpp unreal bp unity rn electron flutter cs"
+                    id="windows-format">The pixel format. See <xref
+                    keyref="VIDEO_PIXEL_FORMAT"/>.</pd>
+                <pd props="ios mac" id="oc-format">The format of the incoming video frame. This parameter must be specified as one of the following values:<ul>
+                    <li>1: I420</li>
+                    <li>2: BGRA</li>
+                    <li>3: NV21</li>
+                    <li>4: RGBA</li>
+                    <li>5: IMC2</li>
+                    <li>7: ARGB</li>
+                    <li>8: NV12</li>
+                    <li>12: iOS texture (CVPixelBufferRef)</li>
+                    <li>16: I422</li>
+                    </ul> </pd>
+                <pd props="android hmos">The format of the video data:<ul>
+                    <li>10: TEXTURE_2D</li>
+                    <li>11: TEXTURE_OES, usually the data captured by the camera is in this format.</li>
+                    <li>1: I420</li>
+                    <li>3: NV21</li>
+                    <li>4: RGBA</li>
+                    <li>16: I422</li>
+                    </ul> </pd>
+            </plentry>
+            <plentry>
+                <pt props="cpp unreal bp unity electron rn flutter cs">buffer</pt>
+                <pt props="android hmos">buf</pt>
+                <pt props="ios mac">dataBuf</pt>
+                <pd props="cpp unreal bp android unity electron rn flutter cs">Video frame buffer.</pd>
+                <pd props="android hmos">This parameter only applies to video data in non-Texture format.</pd>
+                <pd props="ios mac">Raw data buffer. This parameter does not apply to iOS textures.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>textureBuf</pt>
+                <pd>Buffer of iOS texture.</pd>
+            </plentry>
+            <plentry>
+                <pt>stride</pt>
+                <pd>Line spacing of the incoming video frame, which must be in pixels instead of bytes. For textures, it is the width of the texture.<p props="ios mac">
+                    <dl outputclass="deprecated">
+                    <dlentry>
+                        <dt>@Deprecated(</dt>
+                        <dd>Use <parmname>strideInPixels</parmname> instead.</dd>
+                    </dlentry>
+                    </dl>
+                        <note type="attention">When dealing with video data, it is necessary to process the offset between each line of pixel data based on this parameter, otherwise it may result in image distortion.</note>
+                    </p>
+                </pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>strideInPixels</pt>
+                <pd>The line span of the frame, that is, the number of pixels between two adjacent lines of video frames.<note type="attention">
+                    <ul>
+                    <li>The unit of this parameter is pixels, not bytes.</li>
+                    <li>If the video is in Texture format, set this parameter to the width of Texture.</li>
+                    <li>If the video frame format is set to 12, do not use this field.</li>
+                    <li>When dealing with video data, it is necessary to process the offset between each line of pixel data based on this parameter, otherwise it may result in image distortion.</li>
+                    </ul> </note></pd>
+            </plentry>
+            <plentry>
+                <pt>height</pt>
+                <pd>Height of the incoming video frame.</pd>
+            </plentry>
+            <plentry props="android hmos">
+                <pt>textureID</pt>
+                <pd>Texture ID of the frame. This parameter only applies to video data in Texture format.</pd>
+            </plentry>
+            <plentry props="android hmos">
+                <pt>syncMode</pt>
+                <pd>Set whether to enable the synchronization mode. After enabling, the SDK waits while Texture processing. This parameter only applies to video data in Texture format.<ul id="ul_oxx_wmy_4qb">
+                    <li><codeph><ph keyref="true"/></codeph>: Enable sync mode.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Disable sync mode.</li>
+                    </ul></pd>
+            </plentry>
+            <plentry props="android hmos">
+                <pt>transform</pt>
+                <pd>Additional transform of Texture frames. This parameter only applies to video data in Texture format.</pd>
+            </plentry>
+            <plentry props="android hmos">
+                <pt>eglContext11</pt>
+                <pd>EGLContext11. This parameter only applies to video data in Texture format.</pd>
+            </plentry>
+            <plentry props="android hmos">
+                <pt>eglContext14</pt>
+                <pd>EGLContext14. This parameter only applies to video data in Texture format.</pd>
+            </plentry>
+            <plentry props="cpp unreal bp unity rn electron flutter cs">
+                <pt>eglContext</pt>
+                <pd>This parameter only applies to video data in Texture format.<ul id="ul_fsv_shd_krb" props="cpp unreal bp unity rn electron flutter">
+                    <li>When using the OpenGL interface (javax.microedition.khronos.egl.*) defined by Khronos, set eglContext to this field.</li>
+                    <li>When using the OpenGL interface (android.opengl.*) defined by Android, set eglContext to this field.</li>
+                    </ul></pd>
+            </plentry>
+            <plentry props="cpp unreal bp unity electron rn flutter cs">
+                <pt>eglType</pt>
+                <pd>This parameter only applies to video data in Texture format. Texture ID of the video frame.</pd>
+            </plentry>
+            <plentry props="cpp unreal bp unity electron rn flutter cs">
+                <pt>textureId</pt>
+                <pd>This parameter only applies to video data in Texture format. Incoming 4 × 4 transformational matrix. The typical value is a unit matrix.</pd>
+            </plentry>
+            <plentry props="electron rn flutter">
+                <pt>matrix</pt>
+                <pd>This parameter only applies to video data in Texture format. Incoming 4 × 4 transformational matrix. The typical value is a unit matrix.</pd>
+            </plentry>
+            <plentry props="cpp unreal bp unity electron rn cs flutter">
+                <pt>metadataBuffer</pt>
+                <pd>This parameter only applies to video data in Texture format. The MetaData buffer. The default value is <codeph>NULL</codeph>.</pd>
+            </plentry>
+            <plentry props="cpp unreal bp unity electron rn cs flutter">
+                <pt>metadataSize</pt>
+                <pd>This parameter only applies to video data in Texture format. The MetaData size. The default value is <codeph>0</codeph>.</pd>
+            </plentry>
+            <plentry props="cpp unreal bp unity electron flutter">
+                <pt>d3d11Texture2d</pt>
+                <pd>This parameter only applies to video data in Windows Texture format. It represents a pointer to an object of type<codeph> ID3D11Texture2D</codeph>, which is used by a video frame.</pd>
+              </plentry>
+            <plentry id="alphabuffer">
+                <pt props="cpp android framework">alphaBuffer</pt>
+                <pt props="apple">alphaBuf</pt>
+                <pd>
+                  <p>The alpha channel data output by using portrait segmentation algorithm. This data matches the size of the video frame, with each pixel value ranging from [0,255], where 0 represents the background and 255 represents the foreground (portrait).</p>
+                  <p>By setting this parameter, you can render the video background into various effects, such as transparent, solid color, image, video, etc.</p>
+                  <note type="attention" props="android apple framework">In custom video rendering scenarios, ensure that both the video frame and <parmname>alphaBuffer</parmname> are of the Full Range type; other types may cause abnormal alpha data rendering.</note>
+                </pd>
+              </plentry>
+              <plentry>
+                <pt props="cpp framework">fillAlphaBuffer</pt>
+                <pt props="android apple">fillAlphaData</pt>
+                <pd>This parameter only applies to video data in BGRA or RGBA format. Whether to extract the alpha channel data from the video frame and automatically fill it into <parmname>alphaBuffer</parmname>:<ul>
+                  <li><codeph><ph keyref="true"/>：Extract and fill the alpha channel data.</codeph></li>
+                  <li><codeph><ph keyref="false"/></codeph>: (Default) Do not extract and fill the Alpha channel data.</li>
+                  </ul>
+                  <note>For video data in BGRA or RGBA format, you can set the Alpha channel data in either of the following ways:<ul>
+                  <li>Automatically by setting this parameter to <codeph><ph keyref="true"/></codeph>.</li>
+                  <li>Manually through the <parmname>alphaBuffer</parmname> parameter.</li>
+                  </ul></note></pd>
+              </plentry>
+                  <plentry conkeyref="VideoFrame/alphastitchmode">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry props="cpp unreal unity electron flutter">
+                <pt>textureSliceIndex</pt>
+                <pd>This parameter only applies to video data in Windows Texture format. It represents an index of an <codeph>ID3D11Texture2D</codeph> texture object used by the video frame in the <codeph>ID3D11Texture2D</codeph> array.</pd>
+            </plentry>
+            <plentry>
+                <pt>cropLeft</pt>
+                <pd>Raw data related parameter. The number of pixels trimmed from the left. The default value is 0.</pd>
+                <pd props="android hmos">This parameter only applies to video data in non-Texture format.</pd>
+                <pd props="cpp unreal bp unity rn electron flutter cs">This parameter only applies to raw video data.</pd>
+            </plentry>
+            <plentry>
+                <pt>cropTop</pt>
+                <pd>Raw data related parameter. The number of pixels trimmed from the top. The default value is 0.</pd>
+                <pd props="android hmos">This parameter only applies to video data in non-Texture format.</pd>
+                <pd props="cpp unreal bp unity electron rn flutter cs">This parameter only applies to raw video data.</pd>
+            </plentry>
+            <plentry>
+                <pt>cropRight</pt>
+                <pd>Raw data related parameter. The number of pixels trimmed from the right. The default value is 0.</pd>
+                <pd props="android hmos">This parameter only applies to video data in non-Texture format.</pd>
+                <pd props="cpp unreal bp unity electron rn flutter cs">This parameter only applies to raw video data.</pd>
+            </plentry>
+            <plentry>
+                <pt>cropBottom</pt>
+                <pd>Raw data related parameter. The number of pixels trimmed from the bottom. The default value is 0.</pd>
+                <pd props="android hmos">This parameter only applies to video data in non-Texture format.</pd>
+                <pd props="cpp unreal bp unity electron flutter rn cs">This parameter only applies to raw video data.</pd>
+            </plentry>
+            <plentry>
+                <pt>rotation</pt>
+                <pd>Raw data related parameter. The clockwise rotation of the video frame. You can set the rotation angle as 0, 90, 180, or 270. The default value is 0.</pd>
+            </plentry>
+            <plentry props="android cpp unreal bp unity electron flutter rn cs apple">
+                <pt props="android cpp unreal bp unity electron flutter rn cs">timestamp</pt>
+                <pt props="ios mac">time</pt>
+                <pd>Timestamp (ms) of the incoming video frame. An incorrect timestamp results in frame loss or unsynchronized audio and video.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

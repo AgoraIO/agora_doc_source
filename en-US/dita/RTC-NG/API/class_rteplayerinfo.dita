@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_rteplayerinfo">
+    <title><ph keyref="RtePlayerInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc">播放器及媒体流的相关信息。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class PlayerInfo {
+  public int state();
+  public long duration();
+  public int streamCount();
+  public boolean hasAudio();
+  public boolean hasVideo();
+  public boolean isAudioMuted();
+  public boolean isVideoMuted();
+  public int videoHeight();
+  public int videoWidth();
+  public Constants.AbrSubscriptionLayer abrSubscriptionLayer();
+  public int audioSampleRate();
+  public int audioChannels();
+  public int audioBitsPerSample();
+}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraRtePlayerInfo : NSObject
+- (int)state;
+- (long)duration;
+- (int)streamCount;
+- (BOOL)hasAudio;
+- (BOOL)hasVideo;
+- (BOOL)isAudioMuted;
+- (BOOL)isVideoMuted;
+- (int)videoHeight;
+- (int)videoWidth;
+- (AgoraRteAbrSubscriptionLayer)abrSubscriptionLayer;
+- (int)audioSampleRate;
+- (int)audioChannels;
+- (int)audioBitsPerSample;
+@end</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">typedef struct RtePlayerInfo {
+  RtePlayerState state;
+  size_t duration;
+  size_t stream_count;
+  bool has_audio;
+  bool has_video;
+  bool is_audio_muted;
+  bool is_video_muted;
+  int video_height;
+  int video_width;
+  RteAbrSubscriptionLayer abr_subscription_layer;
+  int audio_sample_rate;
+  int audio_channels;
+  int audio_bits_per_sample;
+} RtePlayerInfo;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.5.0</dd>
+            </dlentry>
+            </dl>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry>
+                <pt>state</pt>
+                <pd>The current playback state. See <xref keyref="RtePlayerState"/>.</pd>
+            </plentry>
+            <plentry>
+                <pt>duration</pt>
+                <pd>Reserved for future use.</pd>
+            </plentry>
+            <plentry>
+                <pt props="cpp">stream_count</pt>
+                <pt props="android apple">streamCount</pt>
+                <pd>Reserved for future use.</pd>
+            </plentry>
+            <plentry>
+                <pt props="cpp">has_audio</pt>
+                <pt props="android apple">hasAudio</pt>
+                <pd>URL 媒体流中是否存在音频流：<ul><li><codeph><ph keyref="true"/>：存在音频流。</codeph></li>
+                <li><codeph><ph keyref="false"/>：不存在音频流。</codeph></li></ul></pd>
+            </plentry>
+            <plentry>
+                <pt props="cpp">has_video</pt>
+                <pt props="android apple">hasVideo</pt>
+                <pd>URL 媒体流中是否存在视频流：<ul><li><codeph><ph keyref="true"/>：存在视频流。</codeph></li>
+                <li><codeph><ph keyref="false"/>：不存在视频流。</codeph></li></ul></pd>
+            </plentry>
+            <plentry>
+                <pt props="cpp">is_audio_muted</pt>
+                <pt props="android apple">isAudioMuted</pt>
+                <pd>本地用户是否订阅了音频流：<ul><li><codeph><ph keyref="true"/>：未订阅音频流。</codeph></li>
+                <li><codeph><ph keyref="false"/>：订阅了音频流。</codeph></li></ul></pd>
+            </plentry>
+                <plentry>
+                <pt props="cpp">is_video_muted</pt>
+                <pt props="android apple">isVideoMuted</pt>
+                <pd>本地用户是否订阅了视频流：<ul><li><codeph><ph keyref="true"/>：未订阅视频流。</codeph></li>
+                <li><codeph><ph keyref="false"/>：订阅了视频流。</codeph></li></ul></pd>
+            </plentry>
+            <plentry>
+                <pt props="cpp">video_height</pt>
+                <pt props="android apple">videoHeight</pt>
+                <pd>The height (px) of the video frame.</pd>
+            </plentry>
+            <plentry>
+                <pt props="cpp">video_width</pt>
+                <pt props="android apple">videoWidth</pt>
+                <pd>The width (px) of the video frame.</pd>
+            </plentry>
+            <plentry>
+                <pt props="cpp">abr_subscription_layer</pt>
+                <pt props="android apple">abrSubscriptionLayer</pt>
+                <pd>订阅的视频流的质量级别。 在自适应码率（ABR）视频流中，不同的质量级别对应不同的分辨率和码率，详见 <xref keyref="RteAbrSubscriptionLayer"/>。</pd>
+            </plentry>
+             <plentry>
+                <pt props="cpp">audio_sample_rate</pt>
+                <pt props="android apple">audioSampleRate</pt>
+                <pd>Recording sample rate (Hz).</pd>
+            </plentry>
+            <plentry>
+                <pt props="cpp">audio_channels</pt>
+                <pt props="android apple">audioChannels</pt>
+                <pd>The number of audio channels.</pd>
+            </plentry>
+            <plentry>
+                <pt props="cpp">audio_bits_per_sample</pt>
+                <pt props="android apple">audioBitsPerSample</pt>
+                <pd>Reserved for future use.</pd>
+            </plentry>
+            </parml> </section>
+                </refbody>
+</reference>

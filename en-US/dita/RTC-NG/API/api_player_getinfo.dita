@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_player_getinfo">
+    <title><ph keyref="GetInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc">获取播放器播放及媒体流的相关信息。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="GetInfo"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void getInfo(PlayerInfo info) throws RteException;</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)getInfo:(AgoraRtePlayerInfo * _Nonnull)info error:(AgoraRteError * _Nullable)error;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">bool GetInfo(PlayerInfo *info, Error *err);</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.5.0</dd>
+            </dlentry>
+            </dl>
+            <p>你可以通过该方法获取播放器及媒体流的相关信息，例如音频采样率、视频帧的尺寸等信息。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>Call this method after <xref keyref="Player_Player"/>.</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>info</pt>
+                <pd>播放器及媒体流的相关信息，详见 <xref keyref="RtePlayerInfo"/>。</pd>
+            </plentry>
+            <plentry props="cpp apple" conkeyref="SetConfigs_Rte/err">
+                <pt></pt>
+                <pd></pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="cpp apple framework">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="cpp apple unreal bp electron unity rn cs">获取信息是否成功：<ul>
+                <li><codeph><ph keyref="true"/></codeph>：获取信息成功。</li>
+                <li><codeph><ph keyref="false"/></codeph>：获取信息失败。</li>
+                </ul>
+            </p> </section>
+        <section id="exception" props="android" conkeyref="SetAppId/exception">
+            <title></title>
+            <p></p>
+        </section>
+    </refbody>
+</reference>

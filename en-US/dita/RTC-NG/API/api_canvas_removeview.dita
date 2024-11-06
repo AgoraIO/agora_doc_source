@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_canvas_removeview">
+    <title><ph keyref="RemoveView"/></title>
+    <shortdesc id="short"><ph id="shortdesc">移除渲染视图。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="RemoveView"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void removeView(View view, ViewConfig viewConfig) throws RteException;</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)removeView:(AgoraRteView * _Nonnull)view config:(AgoraRteViewConfig* _Nullable)config error:(AgoraRteError* _Nullable)error;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">bool RemoveView(View *view, ViewConfig *config, rte::Error *err);</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.5.0</dd>
+            </dlentry>
+            </dl>
+            <p>当你调用 <xref keyref="AddView"/> 添加视图后，如果你需要移除渲染视图，可调用此方法。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>Call this method<xref keyref="AddView"/> after .</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>一次只能移除一个视图。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>view</pt>
+                <pd>需要移除的视图对象。</pd>
+            </plentry>
+            <plentry conkeyref="AddView/config">
+                <pt></pt>
+                <pd></pd>
+            </plentry>
+            <plentry props="cpp apple" conkeyref="SetConfigs_Rte/err">
+                <pt></pt>
+                <pd></pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="cpp apple framework">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="cpp apple unreal bp electron unity rn cs">移除视图是否成功：<ul>
+                <li><codeph><ph keyref="true"/></codeph>：移除视图成功。</li>
+                <li><codeph><ph keyref="false"/></codeph>：移除视图失败。</li>
+                </ul>
+            </p> </section>
+        <section id="exception" conkeyref="SetAppId/exception" props="android"/>
+        </refbody>
+</reference>

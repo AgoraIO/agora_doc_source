@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_canvas_addview">
+    <title><ph keyref="AddView"/></title>
+    <shortdesc id="short"><ph id="shortdesc">添加渲染视图。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="AddView"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void addView(View view, ViewConfig viewConfig) throws RteException;</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)addView:(AgoraRteView * _Nonnull)view config:(AgoraRteViewConfig* _Nullable)config error:(AgoraRteError* _Nullable)error;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">bool AddView(View *view, ViewConfig *config, rte::Error *err)</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.5.0</dd>
+            </dlentry>
+            </dl>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Applicable scenarios</title>
+            <p>当你需要使用播放器播放视频，你可以调用该方法将一个视图（view）添加到视频渲染器中，以便显示视频内容。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>Call this method<xref keyref="SetCanvas"/> after .</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>当前仅支持添加一个视图。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>view</pt>
+                <pd props="cpp">HWND 窗口句柄值。</pd>
+                <pd props="android">SurfaceView 对象。</pd>
+                <pd props="ios">UIView 对象。</pd>
+                <pd props="mac">NSView 对象。</pd>
+            </plentry>
+            <plentry id="config">
+                <pt>config</pt>
+                <pd>View 对象的设置，目前请传空。</pd>
+            </plentry>
+            <plentry props="cpp apple" conkeyref="SetConfigs_Rte/err">
+                <pt></pt>
+                <pd></pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="cpp apple framework">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="cpp apple unreal bp electron unity rn cs">添加视图是否成功：<ul>
+                <li><codeph><ph keyref="true"/></codeph>：添加视图成功。</li>
+                <li><codeph><ph keyref="false"/></codeph>：添加视图失败。</li>
+                </ul>
+            </p> </section>
+        <section id="exception" conkeyref="SetAppId/exception" props="android">
+            <title></title>
+            <p></p>
+        </section>
+    </refbody>
+</reference>

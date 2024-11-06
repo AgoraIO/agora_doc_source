@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_player_stop">
+    <title><ph keyref="Stop_Player"/></title>
+    <shortdesc id="short"><ph id="shortdesc">停止播放媒体资源。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="Stop_Player"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void pause() throws RteException;</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)pause:(AgoraRteError * _Nullable)error;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">bool Stop(Error* err);</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.5.0</dd>
+            </dlentry>
+            </dl>
+            <p>当你成功打开 URL 流并调用 <xref keyref="Play_Player"/> 播放后，如果你想停止播放，可以调用此方法。 If you need to stop the playback, call <xref keyref="Pause_Player"/>.</p>
+            <p>如果你调用 <xref keyref="OpenWithUrl"/> 打开 URL 流失败，需要先调用此方法，然后再调用 <apiname keyref="OpenWithUrl"/> 重新打开 URL。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>Call this method after <xref keyref="OpenWithUrl"/>.</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="related" deliveryTarget="details">
+            <title>Related callbacks</title>
+            <p>成功调用该方法后会触发 <xref keyref="onStateChanged"/> 回调，并报告播放器状态为 <apiname keyref="kRtePlayerStateStopped"/>。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title><ph props="cpp apple framework">Parameters</ph></title>
+            <parml props="cpp apple framework">
+            <plentry conkeyref="SetConfigs_Rte/err">
+                <pt/>
+                <pd/>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="cpp apple framework">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="cpp apple unreal bp electron unity rn cs">停止播放是否成功：<ul>
+                <li><codeph><ph keyref="true"/></codeph>：停止播放成功。</li>
+                <li><codeph><ph keyref="false"/></codeph>：停止播放失败。</li>
+                </ul>
+            </p> </section>
+        <section id="exception" props="android" conkeyref="SetAppId/exception">
+            <title></title>
+            <p></p>
+        </section>
+    </refbody>
+</reference>

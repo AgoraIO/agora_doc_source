@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_playerobserver_onplayerinfoupdated">
+    <title><ph keyref="onPlayerInfoUpdated_PlayerObserver"/></title>
+    <shortdesc id="short"><ph id="shortdesc">播放器及媒体流的相关信息发生变化回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPlayerInfoUpdated_PlayerObserver"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onPlayerInfoUpdated(PlayerInfo info){}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onPlayerInfoUpdated:(AgoraRtePlayerInfo * _Nonnull)info;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onPlayerInfoUpdated(const PlayerInfo *info) = 0;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.5.0</dd>
+            </dlentry>
+            </dl>
+            <p>如果你需要获取播放器、媒体流的相关信息，需要先调用 <xref keyref="RegisterObserver_Player"/> 注册播放器观测器的对象。 你也可以直接通过 <xref keyref="GetInfo"/> 方法来获取。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Trigger timing</title>
+            <p>当播放器及媒体流的相关信息发生变化时，SDK 会触发该回调。</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>info</pt>
+                <pd>播放器及媒体流的相关信息，详见 <xref keyref="RtePlayerInfo"/>。</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

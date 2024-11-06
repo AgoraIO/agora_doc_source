@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_mediarecorderconfiguration">
+    <title><ph keyref="MediaRecorderConfiguration" /></title>
+    <shortdesc id="short"><ph id="shortdesc">The recording configuration.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public static class MediaRecorderConfiguration {
+    public String storagePath;
+    public int containerFormat = CONTAINER_MP4;
+    public int streamType = STREAM_TYPE_BOTH;
+    public int maxDurationMs = 120000;
+    public int recorderInfoUpdateInterval = 0;
+    public int width;
+    public int height;
+    public int fps;
+    public int sample_rate;
+    public int channel_num;
+    public int videoSourceType;
+
+    public MediaRecorderConfiguration(String storagePath, int containerFormat, int streamType,
+        int maxDurationMs, int recorderInfoUpdateInterval) {
+      this.storagePath = storagePath;
+      this.containerFormat = containerFormat;
+      this.streamType = streamType;
+      this.maxDurationMs = maxDurationMs;
+      this.recorderInfoUpdateInterval = recorderInfoUpdateInterval;
+      this.width = 1280;
+      this.height = 720;
+      this.fps = 30;
+      this.sample_rate = 48000;
+      this.channel_num = 1;
+      this.videoSourceType = 0;
+    }
+
+    public MediaRecorderConfiguration(String storagePath, int containerFormat, int streamType,
+        int maxDurationMs, int recorderInfoUpdateInterval, int width, int height, int fps,
+        int sample_rate, int channel_num, int videoSourceType) {
+      this.storagePath = storagePath;
+      this.containerFormat = containerFormat;
+      this.streamType = streamType;
+      this.maxDurationMs = maxDurationMs;
+      this.recorderInfoUpdateInterval = recorderInfoUpdateInterval;
+      this.width = width;
+      this.height = height;
+      this.fps = fps;
+      this.sample_rate = sample_rate;
+      this.channel_num = channel_num;
+      this.videoSourceType = videoSourceType;
+    }
+  }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class MediaRecorderConfiguration {
+  
+  public storagePath: string;
+  
+  public containerFormat: number = AgoraMediaRecorder.CONTAINER_MP4;
+  
+  public streamType: number = AgoraMediaRecorder.STREAM_TYPE_BOTH;
+  
+  public maxDurationMs: number = 120000;
+  
+  public recorderInfoUpdateInterval: number = 0;
+  public constructor(storagePath: string, containerFormat: number, streamType: number,
+                     maxDurationMs: number, recorderInfoUpdateInterval: number) {
+    this.storagePath = storagePath;
+    this.containerFormat = containerFormat;
+    this.streamType = streamType;
+    this.maxDurationMs = maxDurationMs;
+    this.recorderInfoUpdateInterval = recorderInfoUpdateInterval;
+  }
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaRecorderConfiguration : NSObject
+@property(copy, nonatomic) NSString* _Nonnull storagePath;
+@property(assign, nonatomic) AgoraMediaRecorderContainerFormat containerFormat;
+@property(assign, nonatomic) AgoraMediaRecorderStreamType streamType;
+@property(assign, nonatomic) NSUInteger maxDurationMs;
+@property(assign, nonatomic) NSUInteger recorderInfoUpdateInterval;
+@property(assign, nonatomic) NSUInteger width;
+@property(assign, nonatomic) NSUInteger height;
+@property(assign, nonatomic) NSUInteger fps;
+@property(assign, nonatomic) NSUInteger sample_rate;
+@property(assign, nonatomic) NSUInteger channel_num;
+@property(assign, nonatomic) AgoraVideoSourceType videoSourceType;
+@end</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct MediaRecorderConfiguration {
+  const char* storagePath;
+  MediaRecorderContainerFormat containerFormat;
+  MediaRecorderStreamType streamType;
+  int maxDurationMs;
+  int recorderInfoUpdateInterval;
+  int width;
+  int height;
+  int fps;
+  int sample_rate;
+  int channel_num;
+  agora::rtc::VIDEO_SOURCE_TYPE videoSourceType;
+
+  MediaRecorderConfiguration()
+      : storagePath(NULL),
+        containerFormat(FORMAT_MP4),
+        streamType(STREAM_TYPE_BOTH),
+        maxDurationMs(120000),
+        recorderInfoUpdateInterval(0),
+        width(1280),
+        height(720),
+        fps(30),
+        sample_rate(48000),
+        channel_num(1),
+        videoSourceType(rtc::VIDEO_SOURCE_CAMERA_PRIMARY) {}
+  MediaRecorderConfiguration(const char* path, MediaRecorderContainerFormat format,
+                             MediaRecorderStreamType type, int duration, int interval)
+      : storagePath(path),
+        containerFormat(format),
+        streamType(type),
+        maxDurationMs(duration),
+        recorderInfoUpdateInterval(interval),
+        width(1280),
+        height(720),
+        fps(30),
+        sample_rate(48000),
+        channel_num(1),
+        videoSourceType(rtc::VIDEO_SOURCE_CAMERA_PRIMARY) {}};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FMediaRecorderConfiguration
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaRecorderConfiguration&quot;)
+	FString storagePath;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaRecorderConfiguration&quot;)
+	EMediaRecorderContainerFormat containerFormat = EMediaRecorderContainerFormat::FORMAT_MP4;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaRecorderConfiguration&quot;)
+	EMediaRecorderStreamType streamType = EMediaRecorderStreamType::STREAM_TYPE_BOTH;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaRecorderConfiguration&quot;)
+	int maxDurationMs;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaRecorderConfiguration&quot;)
+	int recorderInfoUpdateInterval;
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export class MediaRecorderConfiguration {
+
+  storagePath?: string;
+
+  containerFormat?: MediaRecorderContainerFormat;
+
+  streamType?: MediaRecorderStreamType;
+
+  maxDurationMs?: number;
+
+  recorderInfoUpdateInterval?: number;
+}</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public struct MediaRecorderConfiguration {
+        public string storagePath;
+        public MediaRecorderContainerFormat containerFormat;
+        public MediaRecorderStreamType streamType;
+        public int maxDurationMs;
+        public int recorderInfoUpdateInterval;
+    };</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class MediaRecorderConfiguration {
+
+  storagePath?: string;
+
+  containerFormat?: MediaRecorderContainerFormat;
+
+  streamType?: MediaRecorderStreamType;
+
+  maxDurationMs?: number;
+
+  recorderInfoUpdateInterval?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class MediaRecorderConfiguration {
+
+  const MediaRecorderConfiguration(
+      {this.storagePath,
+      this.containerFormat,
+      this.streamType,
+      this.maxDurationMs,
+      this.recorderInfoUpdateInterval});
+
+  @JsonKey(name: 'storagePath')
+  final String? storagePath;
+
+  @JsonKey(name: 'containerFormat')
+  final MediaRecorderContainerFormat? containerFormat;
+
+  @JsonKey(name: 'streamType')
+  final MediaRecorderStreamType? streamType;
+
+  @JsonKey(name: 'maxDurationMs')
+  final int? maxDurationMs;
+
+  @JsonKey(name: 'recorderInfoUpdateInterval')
+  final int? recorderInfoUpdateInterval;
+
+  factory MediaRecorderConfiguration.fromJson(Map&lt;String, dynamic> json) =>
+      _$MediaRecorderConfigurationFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$MediaRecorderConfigurationToJson(this);
+}</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+        </section>
+        <section id="detailed_desc">
+            <p />
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <parml>
+            <plentry>
+                <pt>storagePath</pt>
+                <pd>The absolute path (including the filename extensions) of the recording file. For example:<ul>
+                    <li props="cpp unreal bp unity electron flutter cs">Windows: <codeph>C:\Users\&lt;user_name>\AppData\Local\Agora\&lt;process_name>\example.mp4</codeph></li>
+                    <li props="ios cpp unreal bp unity rn flutter">iOS: <codeph>/App Sandbox/Library/Caches/example.mp4</codeph></li>
+                    <li props="mac cpp unreal bp unity electron flutter">macOS: <codeph>～/Library/Logs/example.mp4</codeph></li>
+                    <li props="android cpp unreal bp unity rn flutter">Android:<codeph> /storage/emulated/0/Android/data/&lt;package name>/files/agorasdk.log</codeph></li>
+                    </ul>
+                    <note type="attention">Ensure that the directory for the log files exists and is writable.</note></pd>
+            </plentry>
+            <plentry>
+                <pt>containerFormat</pt>
+                <pd props="cpp unreal bp ios mac electron rn flutter unity cs">The format of the recording file. See <xref keyref="MediaRecorderContainerFormat" />.</pd>
+                <pd props="android hmos">The format of the recording file. Only <apiname keyref="FORMAT_MP4" /> is supported.</pd>
+            </plentry>
+            <plentry>
+                <pt>streamType</pt>
+                <pd props="ios mac cpp unreal bp rn unity electron flutter cs">The recording content. See <xref keyref="MediaRecorderStreamType"/>.</pd>
+                <pd props="android hmos">The recording content:<ul>
+                    <li><apiname keyref="STREAM_TYPE_AUDIO" />: Only audio.</li>
+                    <li><apiname keyref="STREAM_TYPE_VIDEO" />: Only video.</li>
+                    <li><apiname keyref="STREAM_TYPE_BOTH" />: (Default) Audio and video.</li>
+                </ul></pd>
+            </plentry>
+            <plentry>
+                <pt>maxDurationMs</pt>
+                <pd>The maximum recording duration, in milliseconds. The default value is 120000.</pd>
+            </plentry>
+            <plentry>
+                <pt>recorderInfoUpdateInterval</pt>
+                <pd>The interval (ms) of updating the recording information. The value range is [1000,10000]. Based on the value you set in this parameter, the SDK triggers the <xref keyref="onRecorderInfoUpdated" /> callback to report the updated recording information.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_playerobserver_onmetadata">
+    <title><ph keyref="onMetadata_PlayerObserver"/></title>
+    <shortdesc id="short"><ph id="shortdesc">已获取媒体附属信息回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onMetadata_PlayerObserver"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onMetadata(int type, byte[] data){}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onMetadata:(AgoraRtePlayerMetadataType)type data:(NSData * _Nonnull)data;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onMetadata(PlayerMetadataType type,
+                      const uint8_t *data, size_t length) = 0;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.5.0</dd>
+            </dlentry>
+            </dl>
+            <p>如果你需要获取媒体流的附属信息，需要先调用 <xref keyref="RegisterObserver_Player"/> 注册播放器观测器的对象。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Trigger timing</title>
+            <p>在 SDK 解析播放器所播放的媒体流的附属信息后，会触发该回调报告数据的类型及其具体内容。</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>type</pt>
+                <pd>附属信息类型，详见 <xref keyref="RtePlayerMetadataType"/>。</pd>
+            </plentry>
+            <plentry>
+                <pt>data</pt>
+                <pd>解析的附属信息。</pd>
+            </plentry>
+            <plentry props="cpp">
+                <pt>length</pt>
+                <pd>数据的大小（字节）。</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>
