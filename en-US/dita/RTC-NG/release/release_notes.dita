@@ -22,23 +22,23 @@
             <thead>
                 <row>
                     <entry>API</entry>
-                    <entry>Member/Parameter</entry>
+                    <entry>Members/Parameters</entry>
                     <entry>Change</entry>
                 </row>
             </thead>
             <tbody>
                 <row>
-                    <entry><apiname keyref="startScreenCaptureByDisplayId"/></entry>
+                    <entry><codeph><apiname keyref="startScreenCaptureByDisplayId"/></codeph></entry>
                     <entry><parmname>displayId</parmname></entry>
                     <entry>Changed from uint32_t to int64_t</entry>
                 </row>
                 <row>
-                    <entry><apiname keyref="startScreenCaptureByWindowId"/></entry>
+                    <entry><codeph><apiname keyref="startScreenCaptureByWindowId"/></codeph></entry>
                     <entry><parmname>windowId</parmname></entry>
                     <entry>Changed from view_t to int64_t</entry>
                 </row>
                 <row>
-                    <entry morerows="1"><apiname keyref="ScreenCaptureConfiguration"/></entry>
+                    <entry morerows="1"><codeph><apiname keyref="ScreenCaptureConfiguration"/></codeph></entry>
                     <entry><parmname>displayId</parmname></entry>
                     <entry>Changed from uint32_t to int64_t</entry>
                 </row>
@@ -47,7 +47,7 @@
                     <entry>Changed from view_t to int64_t</entry>
                 </row>
                 <row>
-                    <entry morerows="1"><apiname keyref="ScreenCaptureSourceInfo"/></entry>
+                    <entry morerows="1"><codeph><apiname keyref="ScreenCaptureSourceInfo"/></codeph></entry>
                     <entry><parmname>sourceDisplayId</parmname></entry>
                     <entry>Changed from view_t to int64_t</entry>
                 </row>
@@ -59,25 +59,25 @@
         </tgroup>
     </table></p>
 </li>
-<li props="mac"><ph><b>Automatic Installation of Virtual Sound Card (macOS)</b></ph>
-    <p>Starting from this version, the SDK supports the automatic installation of a virtual sound card. When you call <apiname keyref="enableLoopbackRecording"/> for the first time, the SDK will automatically install the built-in Agora self-developed virtual sound card, AgoraALD. Once the installation is successful, the audio routing will automatically switch to the virtual sound card, and the virtual sound card will be used for audio capture.</p>
+<li props="mac"><ph><b>Automatic installation of virtual sound card (macOS)</b></ph>
+    <p>Starting from this version, the SDK supports the automatic installation of a virtual sound card. When you call <codeph><apiname keyref="enableLoopbackRecording"/></codeph> for the first time, the SDK will automatically install the AgoraALD, a virtual sound card developed by Agora. Once the installation is successful, the audio routing will automatically switch to the virtual sound card, and the virtual sound card will be used for audio capture.</p>
 </li>
-<li><ph><b>Changes in Strong Video Denoising Implementation</b></ph>
-    <p>This version adjusts the implementation of strong video denoising. The <apiname keyref="VIDEO_DENOISER_LEVEL"/> now removes <apiname keyref="VIDEO_DENOISER_LEVEL_STRENGTH"/>. Instead, after enabling video denoising by calling <apiname keyref="setVideoDenoiserOptions"/>, you can call the <apiname keyref="aasetBeautyEffectOptionsa"/> method to enable the beauty skin smoothing feature. Using both together will achieve better video denoising effects. For strong denoising, it is recommended to set the skin smoothing parameters as detailed in <apiname keyref="setVideoDenoiserOptions"/>.</p>
-    <p>Additionally, due to this adjustment, to achieve the best low-light enhancement effect with a focus on image quality, you need to enable video denoising first and use specific settings as detailed in <apiname keyref="setLowlightEnhanceOptions"/>.</p>
+<li><ph><b>Changes in strong video denoising implementation</b></ph>
+    <p>This version adjusts the implementation of strong video denoising. The <codeph><apiname keyref="VIDEO_DENOISER_LEVEL"/></codeph> removes <codeph><apiname keyref="VIDEO_DENOISER_LEVEL_STRENGTH"/></codeph>. Instead, after enabling video denoising by calling <codeph><apiname keyref="setVideoDenoiserOptions"/></codeph>, you can call the <codeph><apiname keyref="setBeautyEffectOptions"/></codeph> method to enable the beauty skin smoothing feature. Using both together will achieve better video denoising effects. For strong denoising, it is recommended to set the skin smoothing parameters as detailed in <codeph><apiname keyref="setVideoDenoiserOptions"/></codeph>.</p>
+    <p>Additionally, due to this adjustment, to achieve the best low-light enhancement effect with a focus on image quality, you need to enable video denoising first and use specific settings as detailed in <codeph><apiname keyref="setLowlightEnhanceOptions"/></codeph>.</p>
 </li>
-<li props="mac cpp"><ph><b>Changes in Camera Plug and Unplug Status (macOS, Windows)</b></ph>
-    <p props="cpp">In previous versions, when the camera was unplugged and replugged, the <apiname keyref="onVideoDeviceStateChanged"/> callback would report the device status as <apiname keyref="MEDIA_DEVICE_STATE_ACTIVE"/>(1) (device in use). Starting from this version, after the camera is replugged, the device status will change to <apiname keyref="MEDIA_DEVICE_STATE_IDLE"/>(0) (device ready).</p>
+<li props="mac cpp"><ph><b>Changes in camera plug and unplug status (macOS, Windows)</b></ph>
+    <p props="cpp">In previous versions, when the camera was unplugged and replugged, the <codeph><apiname keyref="onVideoDeviceStateChanged"/></codeph> callback would report the device status as <apiname keyref="MEDIA_DEVICE_STATE_ACTIVE"/>(1) (device in use). Starting from this version, after the camera is replugged, the device status will change to <codeph><apiname keyref="MEDIA_DEVICE_STATE_IDLE"/></codeph>(0) (device ready).</p>
     <p props="mac">In previous versions, the camera would not automatically resume capture after being unplugged and replugged. Starting from this version, the camera will automatically resume capture after being replugged.</p>
 </li>
-<li><ph><b>Changes in Video Encoding Preferences</b></ph>
+<li><ph><b>Changes in video encoding preferences</b></ph>
     <p>To enhance the user’s video interaction experience, this version optimizes the default preferences for video encoding:
     <ul>
-    <li>In the <apiname keyref="COMPRESSION_PREFERENCE"/> enumeration class, a new <ph keyref="PREFER_COMPRESSION_AUTO"/> (-1) enumeration is added, replacing the original <ph keyref="PREFER_QUALITY"/> (1) as the default value. In this mode, the SDK will automatically choose between <ph keyref="PREFER_LOW_LATENCY"/> or <ph keyref="PREFER_QUALITY"/> based on your video scene settings to achieve the best user experience.</li>
-    <li>In the <apiname keyref="DEGRADATION_PREFERENCE"/> enumeration class, a new <ph keyref="MAINTAIN_AUTO"/> (-1) enumeration is added, replacing the original <ph keyref="MAINTAIN_QUALITY"/> (1) as the default value. In this mode, the SDK will automatically choose between <ph keyref="MAINTAIN_FRAMERATE"/>, <ph keyref="MAINTAIN_BALANCED"/>, or <ph keyref="MAINTAIN_RESOLUTION"/> based on your video scene settings to achieve the optimal overall quality experience (QoE).</li>
+    <li>In the <codeph><apiname keyref="COMPRESSION_PREFERENCE"/></codeph> enumeration class, a new <codeph><ph keyref="PREFER_COMPRESSION_AUTO"/></codeph> (-1) enumeration is added, replacing the original <codeph><ph keyref="PREFER_QUALITY"/></codeph> (1) as the default value. In this mode, the SDK will automatically choose between <codeph><ph keyref="PREFER_LOW_LATENCY"/></codeph> or <codeph><ph keyref="PREFER_QUALITY"/></codeph> based on your video scene settings to achieve the best user experience.</li>
+    <li>In the <codeph><apiname keyref="DEGRADATION_PREFERENCE"/></codeph> enumeration class, a new <codeph><ph keyref="MAINTAIN_AUTO"/></codeph> (-1) enumeration is added, replacing the original <codeph><ph keyref="MAINTAIN_QUALITY"/></codeph> (1) as the default value. In this mode, the SDK will automatically choose between <codeph><ph keyref="MAINTAIN_FRAMERATE"/></codeph>, <codeph><ph keyref="MAINTAIN_BALANCED"/></codeph>, or <codeph><ph keyref="MAINTAIN_RESOLUTION"/></codeph> based on your video scene settings to achieve the optimal overall quality experience (QoE).</li>
     </ul></p>
 </li>
-<li props="android"><ph><b>16 KB Memory Page Size (Android)</b></ph>
+<li props="android"><ph><b>16 KB memory page size (Android)</b></ph>
     <p>Starting from Android 15, the system adds support for 16 KB memory page size, as detailed in <xref keyref="page-size"/>. To ensure the stability and performance of the app, starting from this version, the SDK supports 16 KB memory page size, ensuring seamless operation on devices with both 4 KB and 16 KB memory page sizes, enhancing compatibility and preventing crashes.</p>
 </li>
                 </ol>
@@ -87,36 +87,36 @@
             <title>New features</title>
             <body>
                 <ol>
-<li><ph><b>Advanced Beauty Effects</b></ph>
+<li><ph><b>Advanced beauty effects</b></ph>
     <p><ph>This version introduces the following two advanced beauty features:</ph>
         <ul>
-            <li>Face Shaping: By calling the <apiname keyref="setFaceShapeBeautyOptions"/> method, you can enhance various parts of the face. You can use preset templates to achieve effects such as face slimming, eye enlargement, and nose slimming in one go, and fine-tune the overall enhancement intensity. If the preset face shaping effects do not meet your needs, you can call the <apiname keyref="setFaceShapeAreaOptions"/> method to set face shaping area options and fine-tune each part of the face for more precise face shaping effects.</li>
-            <li>Makeup: By calling the <apiname keyref="setExtensionProperty"/> method with specified parameters, you can achieve makeup effects such as eyeshadow, contact lenses, eyeliner, eyebrows, lip gloss, and blush.</li>
+            <li>Face shaping: By calling the <codeph><apiname keyref="setFaceShapeBeautyOptions"/></codeph> method, you can enhance various parts of the face. You can use preset templates to achieve effects such as face slimming, eye enlargement, and nose slimming in one go, and fine-tune the overall enhancement intensity. If the preset face shaping effects do not meet your needs, you can call the <codeph><apiname keyref="setFaceShapeAreaOptions"/></codeph> method to set face shaping area options and fine-tune each part of the face for more precise face shaping effects.</li>
+            <li>Makeup: By calling the <codeph><apiname keyref="setExtensionProperty"/></codeph> method with specified parameters, you can achieve makeup effects such as eyeshadow, contact lenses, eyeliner, eyebrows, lip gloss, and blush.</li>
         </ul>
         <ph>For implementation steps of face shaping and makeup, see <xref keyref="advanced-beauty"/>.</ph>
         <note type="note">Currently, advanced beauty features are <b>free for a limited time</b>. For details, see <xref keyref="billing-strategy"/>.</note>
     </p>
 </li>
-<li><ph><b>Live Show Scenario</b></ph>
-    <p>This version adds the <apiname keyref="APPLICATION_SCENARIO_LIVESHOW"/>(3) (Live Show) enumeration to the <apiname keyref="VideoScenario"/> class. You can call <apiname keyref="setVideoScenario"/> to set the video business scenario to <xref keyref="showroom"/>. To meet the high requirements for first frame rendering time and image quality in this scenario, the SDK has optimized strategies to significantly improve the first frame rendering experience and image quality, while enhancing the performance in weak network environments and on low-end devices.</p>
+<li><ph><b>Live show scenario</b></ph>
+    <p>This version adds the <codeph><apiname keyref="APPLICATION_SCENARIO_LIVESHOW"/></codeph>(3) (Live Show) enumeration to the <codeph><apiname keyref="VideoScenario"/></codeph> class. You can call <codeph><apiname keyref="setVideoScenario"/></codeph> to set the video business scenario to <xref keyref="showroom"/>. To meet the high requirements for first frame rendering time and image quality in this scenario, the SDK has optimized strategies to significantly improve the first frame rendering experience and image quality, while enhancing the performance in weak network environments and on low-end devices.</p>
 </li>
-<li><ph><b>Limit Video Rendering Frame Rate</b></ph>
-    <p>This version adds the <apiname keyref="setLocalRenderTargetFps"/> and <apiname keyref="setRemoteRenderTargetFps"/> methods, which support setting the maximum frame rate for video rendering locally and remotely. The actual frame rate for video rendering by the SDK will be as close to this value as possible.</p>
+<li><ph><b>Maximum frame rate for video rendering</b></ph>
+    <p>This version adds the <codeph><apiname keyref="setLocalRenderTargetFps"/></codeph> and <codeph><apiname keyref="setRemoteRenderTargetFps"/></codeph> methods, which support setting the maximum frame rate for video rendering locally and remotely. The actual frame rate for video rendering by the SDK will be as close to this value as possible.</p>
     <p>In scenarios where the frame rate requirement for video rendering is not high (e.g., screen sharing, online education) or when the remote end uses mid-to-low-end devices, you can use this set of methods to limit the video rendering frame rate, thereby reducing CPU consumption and improving system performance.</p>
                     </li>
-<li><ph><b>URL Pull Streaming Playback</b></ph>
-    <p>The URL pull streaming playback feature is mainly used in live broadcast scenarios. The audience can directly open a specific URL to play the real-time media stream through OpenWithUrl, without the need to join a channel or subscribe, greatly simplifying the API calls for the audience to watch the live stream.</p>
-    <p>During playback, the audience can set the subscription video stream size through <apiname keyref="SetAbrSubscriptionLayer"/> and achieve smooth switching between different stream sizes. If higher video experience requirements are needed, you can contact <xref keyref="ticket-link"/> to enable the ABR (Adaptive Bitrate) feature. After enabling this feature, you can customize the resolution of different levels of video streams, allowing the audience to achieve smooth switching between different resolution video streams.</p>
-    <p>When the network condition is unstable, the audience can call <apiname keyref="SetAbrFallbackLayer"/> to set the fallback options for the subscribed video stream. The SDK will dynamically adjust the resolution within the specified range based on the network condition, with the lowest quality level video stream resolution as the lower limit.</p><p props="hide">For implementation steps of this feature, see <xref keyref="rte-player"/>.</p>
+<li><ph><b>Watching live streaming through URLs</b></ph>
+    <p>As of this version, audience members can directly open a specific URL to play the real-time media stream through <codeph><apiname keyref="OpenWithUrl"/></codeph>, instead of joining a channel and subscribing to the streams of hosts, which greatly simplifies the API calls for the audience end to watch a live stream.</p>
+    <p>During playback, the audience can set the subscription video stream size through <codeph><apiname keyref="SetAbrSubscriptionLayer"/></codeph> and achieve smooth switching between different stream sizes. If higher video experience requirements are needed, you can contact <xref keyref="ticket-link"/> to enable the ABR (Adaptive Bitrate) feature. After enabling this feature, you can customize the resolution of different levels of video streams, allowing the audience to achieve smooth switching between different resolution video streams.</p>
+    <p>When the network condition is unstable, the audience can call <codeph><apiname keyref="SetAbrFallbackLayer"/></codeph> to set the fallback options for the subscribed video stream. The SDK will dynamically adjust the resolution within the specified range based on the network condition, with the lowest quality level video stream resolution as the lower limit.</p><p props="hide">For implementation steps of this feature, see <xref keyref="rte-player"/>.</p>
 </li>
-                    <li><ph><b>Filter Effects</b></ph>
+<li><ph><b>Filter effects</b></ph>
     <p>This version introduces the <codeph><apiname keyref="setFilterEffectOptions"/></codeph> method. You can pass a cube map file (.cube) in the <parmname>config</parmname> parameter to achieve custom filter effects such as whitening, vivid, cool, black and white, etc. Additionally, the SDK provides a built-in <codeph>built_in_whiten_filter.cube</codeph> file for quickly achieving a whitening filter effect.</p>
 </li>
-<li><ph><b>Local Audio Mixing</b></ph>
-    <p>This version introduces the local audio mixing feature. You can call the <codeph><apiname keyref="startLocalAudioMixer"/></codeph> method to merge the audio streams collected from the local microphone, media player, sound card, and remote audio streams into a single audio stream, which can then be published to the channel. When you no longer need audio mixing, you can call the <codeph><apiname keyref="stopLocalAudioMixer"/></codeph> method to stop local audio mixing. During the mixing process, you can call the <codeph><apiname keyref="updateLocalAudioMixerConfiguration"/></codeph> method to update the configuration of the audio streams being mixed.</p>
+<li><ph><b>Local audio mixing</b></ph>
+    <p>This version introduces the local audio mixing feature. You can call the <codeph><apiname keyref="startLocalAudioMixer"/></codeph> method to mix the audio streams from the local microphone, media player, sound card, and remote audio streams into a single audio stream, which can then be published to the channel. When you no longer need audio mixing, you can call the <codeph><apiname keyref="stopLocalAudioMixer"/></codeph> method to stop local audio mixing. During the mixing process, you can call the <codeph><apiname keyref="updateLocalAudioMixerConfiguration"/></codeph> method to update the configuration of the audio streams being mixed.</p>
     <p>Example use cases for this feature include:
         <ul>
-            <li>Combining with the local video mixing feature to synchronize and publish audio streams related to the mixed video stream.</li>
+            <li>By utilizing the local image stitching feature, the associated audio streams of the stitched video streams can be simultaneously captured and published.</li>
             <li>In live streaming scenarios, users can receive audio streams within the channel, mix multiple audio streams locally, and then forward the mixed audio stream to other channels.</li>
             <li>In educational scenarios, teachers can mix the audio from interactions with students locally and then forward the mixed audio stream to other channels.</li>
         </ul>
@@ -124,12 +124,12 @@
 </li>
 <li props="android unity rn flutter unreal"><ph><b>External MediaProjection (Android)</b></ph>
     <p>This version introduces the <codeph><apiname keyref="setExternalMediaProjection"/></codeph> method, which allows you to set an external <codeph>MediaProjection</codeph> and replace the <codeph>MediaProjection</codeph> applied by the SDK.</p>
-    <p>If you have the capability to apply for <codeph>MediaProjection</codeph> on your own, you can use this feature to achieve more flexible screen capture. For specific implementation methods, see "Screen Sharing".</p>
+    <p>If you have the capability to apply for <codeph>MediaProjection</codeph> on your own, you can use this feature to achieve more flexible screen capture.</p>
 </li>
-<li props="android"><ph><b>EGL Context (Android)</b></ph>
+<li props="android"><ph><b>EGL context (Android)</b></ph>
     <p>This version introduces the <codeph><apiname keyref="setExternalRemoteEglContext"/></codeph> method, which is used to set the EGL context for rendering remote video streams. When using Texture format video data for remote video self-rendering, you can use this method to replace the SDK's default remote EGL context, achieving unified EGL context management.</p>
 </li>
-<li><ph><b>Color Space Settings</b></ph>
+<li><ph><b>Color space settings</b></ph>
     <p props="android">This version adds <codeph><apiname keyref="getColorSpace"/></codeph> and <codeph><apiname keyref="setColorSpace"/></codeph> to <codeph><apiname keyref="VideoFrame"/></codeph>. You can use <codeph><apiname keyref="getColorSpace"/></codeph> to obtain the color space properties of the video frame and use <codeph><apiname keyref="setColorSpace"/></codeph> to customize the settings. By default, the color space uses Full Range and BT.709 standard configuration. Developers can flexibly adjust according to their own capture or rendering needs, further enhancing the customization capabilities of video processing.</p>
     <p props="cpp ios mac">This version adds the <parmname>colorSpace</parmname> parameter to <codeph><apiname keyref="VideoFrame"/></codeph> and <codeph><apiname keyref="ExternalVideoFrame"/></codeph>. You can use this parameter to set the color space properties of the video frame. By default, the color space uses Full Range and BT.709 standard configuration. You can flexibly adjust according to your own capture or rendering needs, further enhancing the customization capabilities of video processing.</p>
 </li>
@@ -146,23 +146,23 @@
             <title>Improvements</title>
             <body>
                 <ol>
-<li><ph><b>Virtual Background Algorithm Optimization</b></ph>
+<li><ph><b>Virtual background algorithm optimization</b></ph>
     <p>This version upgrades the virtual background algorithm, making the segmentation between the portrait and the background more accurate. There is no background exposure, the body contour of the portrait is complete, and the detail recognition of fingers is significantly improved. Additionally, the edges between the portrait and the background are more stable, reducing edge jumping and flickering in continuous video frames.</p>
 </li>
-<li><ph><b>Record Local Preview Video</b></ph>
+<li props="cn"><ph><b>Record local preview video</b></ph>
     <p>This version adds the <parmname>type</parmname> member to <codeph><apiname keyref="RecorderStreamInfo"/></codeph>. When calling <codeph><apiname keyref="createMediaRecorder"/></codeph>, you can specify the type of video stream to be recorded as the local preview video stream through this member. You can set parameters such as height, width, frame rate, and sampling rate of the preview video in <codeph><apiname keyref="MediaRecorderConfiguration"/></codeph>, and then call <codeph><apiname keyref="startRecording"/></codeph> to start recording the local preview video.</p>
 </li>
-<li><ph><b>Snapshot at Specified Video Observation Points</b></ph>
+<li><ph><b>Snapshot at specified video observation points</b></ph>
     <p>This version introduces the <codeph><apiname keyref="takeSnapshot2"/></codeph> and <codeph><apiname keyref="takeSnapshotEx2"/></codeph> methods. You can use the <parmname>config</parmname> parameter when calling these methods to take snapshots at specified video observation points, such as before encoding, after encoding, or before rendering, to achieve more flexible snapshot effects.</p>
 </li>
-<li><ph><b>Custom Audio Capture Improvements</b></ph>
+<li><ph><b>Custom audio capture improvements</b></ph>
     <p>This version adds the <codeph>enableAudioProcessing</codeph> member parameter to <codeph><apiname keyref="AudioTrackConfig"/></codeph>, which is used to control whether to enable 3A audio processing for custom audio capture tracks of the <codeph>AUDIO_TRACK_DIRECT</codeph> type. The default value of this parameter is <codeph><ph keyref="false"/></codeph>, meaning that audio processing is not enabled. Users can enable it as needed, enhancing the flexibility of custom audio processing.</p>
 </li>
 <li><ph><b>Other Improvements</b></ph>
     <ul>
         <li props="android ios unity flutter rn unreal">In scenarios where Alpha transparency effects are achieved by stitching video frames and Alpha data, the rendering performance on the receiving end has been improved, effectively reducing stuttering and latency. (Android, iOS)</li>
-        <li>Optimized the design logic for calling <codeph><apiname keyref="queryDeviceScore"/></codeph> to obtain device score levels, improving the accuracy of the score results.</li>
-        <li props="cpp framework">Support for using virtual cameras in YV12 format as video capture devices. (Windows)</li>
+        <li>Optimizes the logic for calling <codeph><apiname keyref="queryDeviceScore"/></codeph> to obtain device score levels, improving the accuracy of the score results.</li>
+        <li props="cpp framework">Supports using virtual cameras in YV12 format as video capture devices. (Windows)</li>
         <li props="ios">After calling <codeph><apiname keyref="enableLocalAudio"/></codeph> to disable local audio capture within the channel, the mute side button on the phone can be used to mute the background sound effects played by the app. (iOS)</li>
         <li>When calling <codeph><apiname keyref="switchSrc"/></codeph> to switch between live streams or on-demand streams of different resolutions, smooth and seamless switching can be achieved. An automatic retry mechanism has been added in case of switching failures. The SDK will automatically retry 3 times after a failure. If it still fails, the <codeph><apiname keyref="onPlayerEvent"/></codeph> callback will report the <codeph><apiname keyref="PLAYER_EVENT_SWITCH_ERROR"/></codeph> event, indicating an error occurred during media resource switching.</li>
         <li>When calling <codeph><apiname keyref="setPlaybackSpeed"/></codeph> to set the playback speed of an audio file, the minimum supported speed is 0.3x.</li>
@@ -172,7 +172,7 @@
             </body>
         </topic>
 <topic id="bugfix">
-    <title>Bug Fixes</title>
+    <title>Bug fixes</title>
     <body>
         <p>This version fixes the following issues:</p>
         <ul>
