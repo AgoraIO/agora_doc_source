@@ -38,7 +38,7 @@
             <note id="note_v4j_tbx_jqb" type="attention">
             <ul>
             <li props="cpp unreal bp unity flutter">This method applies to the macOS and Windows only.</li>
-            <li props="cpp unreal bp mac unity electron flutter">macOS does not support loopback audio capture of the default sound card. If you need to use this function, use a virtual sound card and pass its name to the <parmname>deviceName</parmname> parameter. Agora recommends using AgoraALD as the virtual sound card for audio capturing.</li>
+            <li props="cpp unreal bp mac unity electron flutter">macOS 系统默认声卡不支持采集功能。 自 v4.5.0 起，SDK 支持自动安装虚拟声卡功能，当你第一次调用该方法时，SDK 会自动安装内置的声网自研虚拟声卡 AgoraALD。 安装成功后，音频路由会自动切换为虚拟声卡，同时使用虚拟声卡进行采集。</li>
             <li>You can call this method either before or after joining a channel.</li>
             <li>If you call the <xref keyref="disableAudio"/> method to disable the audio module, audio capturing will be disabled as well. If you need to enable audio capturing, call the <xref keyref="enableAudio"/> method to enable the audio module and then call the <apiname keyref="enableLoopbackRecording"/> method.</li>
             </ul> </note> </section>
@@ -48,8 +48,8 @@
             <plentry>
                 <pt>enabled</pt>
                 <pd>Sets whether to enable loopback audio capturing.<ul id="ul_qjq_swq_t4b">
-                    <li><codeph><ph keyref="true"/></codeph>: Enable loopback audio capturing.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: (Default) Disable loopback audio capturing.</li>
+                    <li><codeph><ph keyref="true"/></codeph>: 开启声卡采集；系统<b>声音 > 输出</b>界面显示虚拟声卡名称。</li>
+                    <li><codeph><ph keyref="false"/></codeph>:（默认）关闭声卡采集；系统<b>声音 > 输出</b>界面不显示虚拟声卡名称。</li>
                     </ul></pd>
             </plentry>
             <plentry id="device_name">

@@ -7,27 +7,35 @@
     <section id="prototype">
       <p outputclass="codeblock">
       <codeblock props="android" outputclass="language-java">public class AudioTrackConfig {
+  
   public boolean enableLocalPlayback;
- 
- 
+  
+  public boolean enableAudioProcessing;
   public AudioTrackConfig() {
     this.enableLocalPlayback = true;
+    this.enableAudioProcessing = false;
   }
-      }</codeblock>
+  @Override
+  public String toString() {
+    return &quot;AudioTrackConfig{&quot;
+        + &quot;enableLocalPlayback=&quot; + enableLocalPlayback + &quot;enableAudioProcessing&quot;
+        + enableAudioProcessing + &#x27;}&#x27;;
+  }
+}</codeblock>
       <codeblock props="hmos" outputclass="language-arkts">export class AudioTrackConfig {
   
   public enableLocalPlayback: boolean = true;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraAudioTrackConfig) __attribute__((visibility("default"))) @interface AgoraAudioTrackConfig : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraAudioTrackConfig) __attribute__((visibility(&quot;default&quot;))) @interface AgoraAudioTrackConfig : NSObject
 @property (assign, nonatomic) BOOL enableLocalPlayback NS_SWIFT_NAME(enableLocalPlayback);
- 
+@property (assign, nonatomic) BOOL enableAudioProcessing NS_SWIFT_NAME(enableAudioProcessing);
 @end</codeblock>
       <codeblock props="cpp unreal" outputclass="language-cpp">struct AudioTrackConfig {
+  
   bool enableLocalPlayback;
- 
- 
-  AudioTrackConfig()
-    : enableLocalPlayback(true) {}
+  
+  bool enableAudioProcessing;
+  AudioTrackConfig() : enableLocalPlayback(true),enableAudioProcessing(false) {}
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FAudioTrackConfig
@@ -81,6 +89,15 @@ class AudioTrackConfig {
                 <li><codeph><ph keyref="true"/></codeph>: (Default) Enable the local audio-playback device.</li>
                 <li><codeph><ph keyref="false"/></codeph>: Do not enable the local audio-playback device.</li>
             </ul>
+        </pd>
+      </plentry>
+      <plentry>
+        <pt>enableAudioProcessing</pt>
+        <pd>是否启用音频处理模块：<ul>
+                <li><codeph><ph keyref="true"/></codeph>：启用音频处理模块，应用回声消除 (AEC)、降噪 (ANS) 和自动增益控制 (AGC) 效果。</li>
+                <li><codeph><ph keyref="false"/></codeph>：（默认）不启用音频处理模块。</li>
+            </ul>
+            <note type="attention">该参数设置仅对 <ph keyref="AUDIO_TRACK_DIRECT"/> 类型的自定义音频采集轨道生效。</note>
         </pd>
       </plentry>
       </parml> </section>
