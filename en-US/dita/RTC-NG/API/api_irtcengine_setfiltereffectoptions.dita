@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setfiltereffectoptions">
     <title><ph keyref="setFilterEffectOptions"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置滤镜效果选项。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the image enhancement options and specifies the media source.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -31,11 +31,11 @@
                 <dd>v4.5.0</dd>
             </dlentry>
             </dl>
-            <p props="android apple">Both this method and<xref keyref="setBeautyEffectOptions2"/>  set image enhancement options, but this method allows you to specify the media source to which the image enhancement is applied.</p>
+            <p props="android apple">Both this method and <xref keyref="setBeautyEffectOptions2"/> set filter effect options. The difference is that this method allows you to specify the media source to which the filter effect option is applied.</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>Call timing</title>
-            <p>Call<xref keyref="enableVideo" /> this method after calling .</p>
+            <p>Call this method after calling <xref keyref="enableVideo" />.</p>
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>Restrictions</title>
@@ -51,21 +51,21 @@
             <plentry id="enable">
                 <pt props="android cpp unreal bp unity flutter rn electron cs">enabled</pt>
                 <pt props="ios mac">enable</pt>
-                <pd>是否开启滤镜效果：<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: 开启滤镜功能。</li>
-                    <li><codeph><ph keyref="false"/></codeph>: (Default) Disable the image enhancement function.</li>
+                <pd>Whether to enable the filter effect:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Yes.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) No.</li>
                     </ul></pd>
             </plentry>
             <plentry id="options">
                 <pt>options</pt>
-                <pd>滤镜选项，详见 <xref keyref="FilterEffectOptions" />。</pd>
+                <pd>The filter effect opton: <xref keyref="FilterEffectOptions" />.</pd>
             </plentry>
             <plentry id="type">
                 <pt props="cpp unreal bp unity rn electron flutter cs">type</pt>
                 <pt props="android apple">sourceType</pt>
-                <pd>效果应用的媒体源类型。 See <xref keyref="MEDIA_SOURCE_TYPE" />.<note type="attention">In this method, this parameter supports only the following two settings:<ul>
-                    <li>使用摄像头采集本地视频时，请保持默认值 <apiname keyref="PRIMARY_CAMERA_SOURCE"/>。</li>
-                    <li>如果要使用自定义采集的视频，将该参数设置为 <apiname keyref="CUSTOM_VIDEO_SOURCE"/>。</li>
+                <pd>The type of the media source to which the filter effect is applied. See <xref keyref="MEDIA_SOURCE_TYPE" />.<note type="attention">In this method, this parameter supports only the following two settings:<ul>
+                    <li>Use the default value <apiname keyref="PRIMARY_CAMERA_SOURCE"/> if you use camera to capture local video.</li>
+                    <li>Set this parameter to <apiname keyref="CUSTOM_VIDEO_SOURCE"/> if you use custom video source.</li>
                     </ul></note></pd>
             </plentry>
             </parml> </section>
