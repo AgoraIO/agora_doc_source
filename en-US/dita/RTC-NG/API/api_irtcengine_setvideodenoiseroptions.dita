@@ -41,23 +41,23 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p>You can call this method to enable the video noise reduction feature and set the options of the video noise reduction effect.</p>
             <note type="note" id="advanced">如果该方法实现的降噪强度无法满足你的需求，声网推荐你调用 <xref keyref="setBeautyEffectOptions"/> 方法启用美颜磨皮功能，以获得更好的视频降噪效果。 强效降噪效果的 <xref keyref="BeautyOptions"/> 推荐设置如下：<ul>
-                        <li><parmname>lighteningContrastLevel</parmname>：<ph keyref="LIGHTENING_CONTRAST_NORMAL" /></li>
+                        <li><parmname>lighteningContrastLevel</parmname><ph keyref="LIGHTENING_CONTRAST_NORMAL" /></li>
                         <li><parmname>lighteningLevel</parmname>：0.0</li>
-                        <li><parmname>smoothnessLevel</parmname>：0.5</li>
-                        <li><parmname>rednessLevel</parmname>：0.0</li>
+                        <li><parmname>smoothnessLevel(0</parmname>),</li>
+                        <li><parmname>rednessLevel(0</parmname>),</li>
                         <li><parmname>sharpnessLevel</parmname>：0.1</li>
                     </ul></note>
         </section>
         <section id="scenario" deliveryTarget="details">
-            <title>适用场景</title>
+            <title>Applicable scenarios</title>
             <p>Underlit environments and low-end video capture devices can cause video images to contain significant noise, which affects video quality. In real-time interactive scenarios, video noise also consumes bitstream resources and reduces encoding efficiency during encoding.</p>
         </section>
         <section id="timing" deliveryTarget="details">
-            <title>调用时机</title>
+            <title>Call timing</title>
             <p>Call this method after calling <xref keyref="enableVideo"/>.</p>
         </section>        
         <section id="restriction" deliveryTarget="details">
-            <title>调用限制</title>
+            <title>Restrictions</title>
             <ul>
                 <li>This method relies on the image enhancement dynamic library <codeph><ph keyref="clearvision"/></codeph>. If the dynamic library is deleted, the function cannot be enabled normally.</li>
                 <li>Video noise reduction has certain requirements for equipment performance. If your device overheats after you enable video noise reduction, Agora recommends modifying the video noise reduction options to a less performance-consuming level or disabling video noise reduction entirely.</li>
