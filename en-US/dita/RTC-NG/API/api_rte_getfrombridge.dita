@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_rte_getfrombridge">
     <title><ph keyref="GetFromBridge"/></title>
-    <shortdesc id="short"><ph id="shortdesc">从 <ph keyref="IRtcEngine"/> 中桥接出一个 RTE 对象。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Bridges an RTE object from <ph keyref="IRtcEngine"/>.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -30,11 +30,11 @@
                 <dd>v4.5.0</dd>
             </dlentry>
             </dl>
-            <p>调用该方法创建的 RTE 对象，无需再通过 <xref keyref="InitMediaEngine"/> 进行初始化。 如果你之前未创建并初始化 RTC 引擎，可以先调用 <xref keyref="Rte"/> 创建一个 RTE 对象，然后再调用 <xref keyref="InitMediaEngine"/> 进行初始化。</p>
+            <p>The RTE object created by calling this method does not need to be initialized again using <xref keyref="InitMediaEngine"/>. If you have not created and initialized the RTC engine before, you can first call <xref keyref="Rte"/> to create an RTE object, and then call <xref keyref="InitMediaEngine"/> to initialize it.</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>Call timing</title>
-            <p>调用该方法前，请确保已调用 <xref keyref="initialize"/> 初始化 RTC 引擎。</p>
+            <p>Before calling this method, ensure that you have initialized the RTC engine using <xref keyref="initialize"/>.</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>Restrictions</title>
@@ -46,14 +46,14 @@
                 <plentry>
                     <pt props="cpp">err</pt>
                     <pt props="apple">error</pt>
-                    <pd>指向 <xref keyref="Error"/> 对象的指针，用于接收状态及错误码。</pd>
+                    <pd>Pointer to the <xref keyref="Error"/> object, which receives state and error codes.</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly.</p>
-            <p props="cpp apple unreal bp electron unity rn cs">一个 RTE 对象。</p></section>
+            <p props="cpp apple unreal bp electron unity rn cs">An RTE object.</p></section>
         <section id="exception" props="android" conkeyref="SetAppId/exception"/>
         </refbody>
 </reference>
