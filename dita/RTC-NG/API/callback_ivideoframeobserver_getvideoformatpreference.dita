@@ -26,13 +26,13 @@
             return VIDEO_OBSERVER_FRAME_TYPE.FRAME_TYPE_RGBA;
         }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-           <codeblock props="flutter" outputclass="language-dart"/> 
+           <codeblock props="flutter" outputclass="language-dart"/>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>你需要在调用 <xref keyref="registerVideoFrameObserver"/> 方法时注册该回调。成功注册视频数据观测器后，SDK 会在捕捉到每个视频帧时触发该回调，你需要在该回调的返回值中设置期望的视频数据格式。</p>
                     <note>在默认情况下，原始视频像素格式 (<ph keyref="VIDEO_PIXEL_DEFAULT"/>) 存在以下类型：<ul>
-                <li props="android cpp bp unreal">在 Android 平台上，默认的视频帧类型可能为 I420Buffer 或 TextureBuffer。自 v4.2.3 起，TextureBuffer 类型的纹理格式不再包括 OES 格式，仅为 RGB 格式。你需要在处理视频数据时增加对 I420、RGB 纹理格式的适配。视频帧类型固定为 I420Buffer 的情况包括但不限于：<ul>
+                <li props="android cpp bp unreal">在 Android 平台上，默认的视频帧类型可能为 I420Buffer 或 TextureBuffer。视频帧类型固定为 I420Buffer 的情况包括但不限于：<ul>
                     <li>特定机型，例如：LG G5 SE (H848)，Google Pixel 4a，Samsung Galaxy A7 或 Xiaomi Mi Max。</li>
                     <li>已集成视频增强插件并开启视频降噪或暗光增强功能。</li>
                     </ul></li>
