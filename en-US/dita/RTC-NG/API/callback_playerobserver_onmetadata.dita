@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_playerobserver_onmetadata">
     <title><ph keyref="onMetadata_PlayerObserver"/></title>
-    <shortdesc id="short"><ph id="shortdesc">已获取媒体附属信息回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the metadata is received.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -32,11 +32,11 @@
                 <dd>v4.5.0</dd>
             </dlentry>
             </dl>
-            <p>如果你需要获取媒体流的附属信息，需要先调用 <xref keyref="RegisterObserver_Player"/> 注册播放器观测器的对象。</p>
+            <p>To receive the metadata of the media stream, call <xref keyref="RegisterObserver_Player"/> to register a player observer object first.</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>Trigger timing</title>
-            <p>在 SDK 解析播放器所播放的媒体流的附属信息后，会触发该回调报告数据的类型及其具体内容。</p>
+            <p>After the SDK parses the metadata of the media stream being played, it triggers this callback to report the data type and its content.</p>
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>Restrictions</title>
@@ -47,14 +47,14 @@
             <parml>
             <plentry>
                 <pt>type</pt>
-                <pd props="apple cpp">附属信息类型，详见 <xref keyref="RtePlayerMetadataType"/>。</pd>
-                <pd props="android">附属信息类型：<ul>
+                <pd props="apple cpp">The metadata type: <xref keyref="RtePlayerMetadataType"/>.</pd>
+                <pd props="android">The metadata type.<ul>
                     <li>1: The type is SEI.</li>
                 </ul></pd>
             </plentry>
             <plentry>
                 <pt>data</pt>
-                <pd>解析的附属信息。</pd>
+                <pd>The metadata.</pd>
             </plentry>
             <plentry props="cpp">
                 <pt>length</pt>
