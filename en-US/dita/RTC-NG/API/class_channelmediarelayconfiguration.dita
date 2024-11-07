@@ -8,34 +8,31 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class ChannelMediaRelayConfiguration {
   private ChannelMediaInfo srcInfo = null;
-  private Map&lt;String, ChannelMediaInfo> destInfos = null;
-
+  private Map&lt;String, ChannelMediaInfo&gt; destInfos = null;
+  
   public ChannelMediaRelayConfiguration() {
-    destInfos = new HashMap&lt;String, ChannelMediaInfo>();
+    destInfos = new HashMap&lt;String, ChannelMediaInfo&gt;();
     srcInfo = new ChannelMediaInfo(null, null, 0);
   }
-
+  
   public void setSrcChannelInfo(ChannelMediaInfo srcInfo) {
     this.srcInfo = srcInfo;
   }
-
+  
   public void setDestChannelInfo(String channelName, ChannelMediaInfo destInfo) {
     destInfos.put(channelName, destInfo);
   }
-
+  
   public void removeDestChannelInfo(String channelName) {
     destInfos.remove(channelName);
   }
-
   public ChannelMediaInfo getSrcChannelMediaInfo() {
     return srcInfo;
   }
-
-  public Map&lt;String, ChannelMediaInfo> getDestChannelMediaInfos() {
+  public Map&lt;String, ChannelMediaInfo&gt; getDestChannelMediaInfos() {
     return destInfos;
   }
-}
-</codeblock>
+}</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">export class ChannelMediaRelayConfiguration {
   public srcInfo:ChannelMediaInfo = new ChannelMediaInfo(null,null,0);
   public destInfos:Map&lt;string, ChannelMediaInfo&gt; = new Map&lt;string, ChannelMediaInfo&gt;();
@@ -43,25 +40,21 @@
   public setSrcChannelInfo(srcInfo: ChannelMediaInfo) {
   this.srcInfo = srcInfo;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraChannelMediaRelayConfiguration: NSObject
-
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility(&quot;default&quot;))) @interface AgoraChannelMediaRelayConfiguration: NSObject
 @property (strong, nonatomic, readonly) NSDictionary&lt;NSString *, AgoraChannelMediaRelayInfo *&gt; *_Nullable destinationInfos;
 @property (strong, nonatomic) AgoraChannelMediaRelayInfo *_Nonnull sourceInfo;
-
-- (BOOL)setDestinationInfo:(AgoraChannelMediaRelayInfo *_Nonnull)destinationInfo forChannelName:(NSString *_Nonnull)channelName;
-- (BOOL)removeDestinationInfoForChannelName:(NSString *_Nonnull)channelName;
+- (BOOL)setDestinationInfo:(AgoraChannelMediaRelayInfo *_Nonnull)destinationInfo forChannelName:(NSString *_Nonnull)channelName NS_SWIFT_NAME(setDestinationInfo(_:forChannelName:));
+- (BOOL)removeDestinationInfoForChannelName:(NSString *_Nonnull)channelName NS_SWIFT_NAME(removeDestinationInfo(forChannelName:));
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct ChannelMediaRelayConfiguration {
-	ChannelMediaInfo *srcInfo;
-	ChannelMediaInfo *destInfos;
-	int destCount;
-
-	ChannelMediaRelayConfiguration()
-			: srcInfo(nullptr)
-			, destInfos(nullptr)
-			, destCount(0)
-	{}
-    };</codeblock>
+  
+  ChannelMediaInfo* srcInfo;
+  
+  ChannelMediaInfo* destInfos;
+  
+  int destCount;
+  ChannelMediaRelayConfiguration() : srcInfo(OPTIONAL_NULLPTR), destInfos(OPTIONAL_NULLPTR), destCount(0) {}
+};</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FChannelMediaRelayConfiguration
 {
@@ -153,8 +146,9 @@ public:
               <pt>setSrcChannelInfo</pt>
               <pd>Sets the information of the source channel. See <xref keyref="setSrcChannelInfo"/>.</pd>
             </plentry>
-            <plentry props="android">
-              <pt>setDestChannelInfo</pt>
+            <plentry props="android apple">
+              <pt props="android">setDestChannelInfo</pt>
+              <pt props="apple">setDestinationInfo</pt>
               <pd>Sets the information of the target channel. See <xref keyref="setDestChannelInfo"/>.</pd>
             </plentry>
             <plentry props="android apple">

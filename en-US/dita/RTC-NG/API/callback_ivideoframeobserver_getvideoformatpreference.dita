@@ -26,13 +26,13 @@
             return VIDEO_OBSERVER_FRAME_TYPE.FRAME_TYPE_RGBA;
         }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-           <codeblock props="flutter" outputclass="language-dart"/> 
+           <codeblock props="flutter" outputclass="language-dart"/>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>You need to register the callback when calling the <xref keyref="registerVideoFrameObserver"/> method. After you successfully register the video frame observer, the SDK triggers this callback each time it receives a video frame. You need to set your preferred video data in the return value of this callback.</p>
                     <note>The default types of pixel format (<ph keyref="VIDEO_PIXEL_DEFAULT"/>) for the raw video are as follows:<ul>
-                <li props="android cpp bp unreal">On the Android platform, the default video frame type may be I420Buffer or TextureBuffer. As of v4.2.3, the texture formats of TextureBuffer type no longer include OES format, only RGB format is available. You need to add support for I420 and RGB texture formats when processing video data. The cases where the video frame type is fixed as I420Buffer include but are not limited to:<ul>
+                <li props="android cpp bp unreal">On the Android platform, the default video frame type may be I420Buffer or TextureBuffer. The cases where the video frame type is fixed as I420Buffer include but are not limited to:<ul>
                     <li>Specific devices, such as: LG G5 SE (H848), Google Pixel 4a, Samsung Galaxy A7, or Xiaomi Mi Max.</li>
                     <li>Image enhancement extension has been integrated and video noise reduction or low-light enhancement function has been enabled.</li>
                     </ul></li>
