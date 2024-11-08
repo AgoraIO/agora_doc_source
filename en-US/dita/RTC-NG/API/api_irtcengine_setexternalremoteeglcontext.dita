@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setexternalremoteeglcontext">
     <title><ph keyref="setExternalRemoteEglContext"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置远端视频流渲染的 EGL 环境上下文。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Set the EGL context for rendering remote video streams.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -30,13 +30,13 @@
                 <dd>v4.5.0</dd>
             </dlentry>
             </dl>
-            <p>通过设置该方法，开发者可以替换 SDK 内部默认的远端 EGL 环境上下文，便于实现统一的 EGL 上下文管理。</p>
-            <p>引擎销毁时，SDK 会自动释放 EGL 环境上下文。</p>
+            <p>This method can replace the default remote EGL context within the SDK, making it easier to manage the EGL context.</p>
+            <p>When the engine is destroyed, the SDK will automatically release the EGL context.</p>
             <note type="attention" props="cpp unreal bp flutter unity rn">This method is for Android only.</note>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>Applicable scenarios</title>
-            <p>该方法适用于使用 Texture 格式的视频数据进行远端视频自渲染的场景。</p>
+            <p>This method is suitable for using a custom video rendering method instead of the default SDK rendering method to render remote video frames in Texture format.</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>Call timing</title>
@@ -51,7 +51,7 @@
             <parml>
             <plentry>
                 <pt>eglContext</pt>
-                <pd>用于远端视频流渲染的 EGL 环境上下文对象。</pd>
+                <pd>The EGL context for rendering remote video streams.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
