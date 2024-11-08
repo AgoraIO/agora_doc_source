@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setexternalmediaprojection">
     <title><ph keyref="setExternalMediaProjection"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Uses the video streams captured by the <codeph>MediaProjection</codeph>.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Configure <codeph>MediaProjection</codeph> outside of the SDK to capture screen video streams</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -31,14 +31,14 @@
             </dlentry>
             </dl>
              <note type="attention" props="cpp">This method is for Android only.</note> 
-            <p>After successfully calling this method, the external <codeph>MediaProjection</codeph> you set will replace the MediaProjection requested by the SDK to capture the screen video stream.<codeph></codeph></p>
-            <p>当停止屏幕共享或销毁 <xref keyref="IRtcEngine"/> 时，SDK 会自动释放 MediaProjection。</p>
+            <p>After successfully calling this method, the external <codeph>MediaProjection</codeph> you set will replace the <codeph>MediaProjection</codeph> requested by the SDK to capture the screen video stream.</p>
+            <p>When the screen sharing is stopped or <xref keyref="IRtcEngine"/> is destroyed, the SDK will automatically release the MediaProjection.</p>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>Applicable scenarios</title>
-            <p>如果你具备自行申请 <codeph>MediaProjection</codeph> 的开发能力，可以直接使用该 <codeph>MediaProjection</codeph> 取代 SDK 申请的 <codeph>MediaProjection</codeph> 。 以下列出两种使用场景：<ul>
-                <li>在定制系统的设备上，可避免系统弹窗（即需要用户授予屏幕采集权限），直接开始采集屏幕视频流。</li>
-                <li>一个屏幕共享进程中存在一个或多个子进程，避免在子进程中自行创建对象的过程出错而导致采集失败。</li>
+            <p>If you are able to apply for <codeph>MediaProjection</codeph>, you can directly use your <codeph>MediaProjection</codeph> instead of the one applied for by the SDK. The following lists two applicable scenarios:<codeph></codeph><ul>
+                <li>On custom system devices, it can avoid system pop-ups (i.e. requiring user permission to capture the screen) and directly start capturing the screen video stream.</li>
+                <li>In a screen sharing process that involves one or more sub-processes, it can help avoid errors that might occur when creating objects within these sub-processes, which could otherwise lead to failures in screen capturing.</li>
             </ul></p>
         </section>
         <section id="timing" deliveryTarget="details">
@@ -47,14 +47,14 @@
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>Restrictions</title>
-            <p>在调用该方法前，必须先申请 <codeph>MediaProjection</codeph> 权限。</p>
+            <p>Before calling this method, you must first apply for <codeph>MediaProjection</codeph> permission.</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>mediaProjection</pt>
-                <pd>一个 <xref keyref="mediaprojection-link"/> 对象，用于采集屏幕视频流。</pd>
+                <pd>An <xref keyref="mediaprojection-link"/> object used to capture screen video streams.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
