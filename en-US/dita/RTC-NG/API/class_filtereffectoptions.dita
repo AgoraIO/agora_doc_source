@@ -36,7 +36,7 @@
             <plentry>
                 <pt>path</pt>
                 <pd>
-                    <p>3D 立方体贴图文件的本地绝对路径，该文件用于实现自定义滤镜效果。 引用的 .cube 文件必须严格遵循立方体查找表（Cube LUT）规范，否则滤镜效果无法生效。 以下为 .cube 文件的示例：<codeblock outputclass="text">
+                    <p>The absolute path to the local cube map texture file, which customzies the filter effect. The referred .cude file should strictly follow the Cube LUT Format Specification; otherwise, the filter effect does not work. The following is a sample of the .cude file:<codeblock outputclass="text">
 LUT_3D_SIZE 32
 0.0039215689 0 0.0039215682
 0.0086021447 0.0037950677 0
@@ -45,17 +45,16 @@ LUT_3D_SIZE 32
                         </codeblock>
                         <note type="note">
                             <ul>
-                                <li>立方体贴图文件首行的 <codeph>LUT_3D_SIZE</codeph> 标识符表示三维查找表的尺寸，滤镜效果的 LUT 尺寸目前仅支持设为 32。</li>
-                                <li>SDK 提供了一个内置的 <codeph>built_in_whiten_filter.cube</codeph> 文件，传入该文件的绝对路径可实现美白滤镜效果。</li>
+                                <li>The identifier <codeph>LUT_3D_SIZE</codeph> on the first line of the cube map file represents the size of the three-dimensional lookup table. The LUT size for filter effects can only be set to 32.</li>
+                                <li>The SDK provides a built-in <codeph>built_in_whiten_filter.cube</codeph> file. You can pass the absolute path of this file to get the whitening filter effect.</li>
                             </ul>
                         </note>
                     </p>
                 </pd>
             </plentry>
             <plentry>
-                <pt>                    Strength
-                </pt>
-                <pd>滤镜效果强度，取值范围为 [0.0,1.0]，其中 0.0 表示无滤镜效果，默认值为 0.5。 取值越大，滤镜效果越强。</pd>
+                <pt>strength</pt>
+                <pd>The intensity of the filter effect, with a range value of [0.0,1.0], in which 0.0 represents no filter effect. The default value is 0.5. The higher the value, the stronger the filter effect.</pd>
             </plentry>
             </parml> </section>
     </refbody>
