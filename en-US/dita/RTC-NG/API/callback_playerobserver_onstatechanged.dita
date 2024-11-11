@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_playerobserver_onstatechanged">
     <title><ph keyref="onStateChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc">播放器状态发生改变回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the play state changes.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -31,11 +31,11 @@
                 <dd>v4.5.0</dd>
             </dlentry>
             </dl>
-            <p>如果你需要监控播放器状态的变化，需要先调用 <xref keyref="RegisterObserver_Player"/> 注册播放器观测器的对象。</p>
+            <p>To monitor player events, you need to call <xref keyref="RegisterObserver_Player"/> to register a player observer object.</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>Trigger timing</title>
-            <p>当播放器状态发生变化时，SDK 会触发此回调报告当前和变化之前的状态。</p>
+            <p>When the player state changes, the SDK triggers this callback the report the previous and current states.</p>
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>Restrictions</title>
@@ -47,12 +47,12 @@
             <plentry>
                 <pt props="android cpp">old_state</pt>
                 <pt props="apple">oldState</pt>
-                <pd>播放器变化前的状态，详见 <xref keyref="RtePlayerState"/>。</pd>
+                <pd>The previous playback state. See <xref keyref="RtePlayerState"/>.</pd>
             </plentry>
             <plentry>
                 <pt props="android cpp">new_state</pt>
                 <pt props="apple">newState</pt>
-                <pd>The current playback state. See <xref keyref="RtePlayerState"/>. 如果当前状态为 <apiname keyref="kRtePlayerStateFailed"/>，你可以通过 <parmname props="cpp">err</parmname><parmname props="android apple">error</parmname> 参数获取详细错误信息。</pd>
+                <pd>The current playback state. See <xref keyref="RtePlayerState"/>. If the current state is <apiname keyref="kRtePlayerStateFailed"/>, you can get the detailed error information from the <parmname props="cpp">err</parmname><parmname props="android apple">error</parmname> parameter.</pd>
             </plentry>
             <plentry>
                 <pt props="android apple">error</pt>
