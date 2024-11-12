@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_player_preloadwithurl">
     <title><ph keyref="PreloadWithUrl"/></title>
-    <shortdesc id="short"><ph id="shortdesc">预加载 URL 资源。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Preloads a URL resources.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -31,11 +31,11 @@
                 <dd>v4.5.0</dd>
             </dlentry>
             </dl>
-            <p>成功预加载后，可以加快通过 <xref keyref="OpenWithUrl"/> 打开 URL 资源的速度。 当需要使用这些资源时，可以更加快速地访问，缩短等待的过程。</p>
+            <p>After successful preloading, the speed of accessing URL resources can be accelerated when calling <xref keyref="OpenWithUrl"/>. When you need to use these resources, you can access them more quickly and shorten the waiting process.</p>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>Applicable scenarios</title>
-            <p>在打开媒体资源之前，提前加载可以减少用户等待时间，提供更流畅的视听体验。</p>
+            <p>Before opening media resources, preloading can reduce the time for waiting and provide a smoother user experience.</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>Call timing</title>
@@ -43,14 +43,14 @@
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>Restrictions</title>
-            <p>该方法目前仅对带 <codeph>rte://</codeph> 前缀的 URL 生效，最多可以预加载 20 个 URL。 如果超出限制，新预加载的 URL 将会替换最早的 URL。</p>
+            <p>This method currently only takes effect on URLs with the prefix <codeph>rte://</codeph>. A maximum of 20 URLs can be preloaded. If exceeded, the newly preloaded URL will replace the oldest one.</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry id="url">
                 <pt>url</pt>
-                <pd>带 <codeph>rte://</codeph> 前缀的 URL。<p props="hide">各字段的详细说明详见<xref keyref="rte-player"/>。</p></pd>
+                <pd>URLs with the <codeph>rte://</codeph> prefix.<p props="hide">See <xref keyref="rte-player"/> for detailed explanations of each field.</p></pd>
             </plentry>
             <plentry props="cpp apple" conkeyref="SetConfigs_Rte/err">
                 <pt></pt>
@@ -60,9 +60,9 @@
         <section id="return_values" props="cpp apple framework">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-            <p props="cpp apple unreal bp electron unity rn cs">预加载是否成功：<ul>
-                <li><codeph><ph keyref="true"/></codeph>：预加载成功。</li>
-                <li><codeph><ph keyref="false"/></codeph>：预加载失败。</li>
+            <p props="cpp apple unreal bp electron unity rn cs">Whether preloading is successful:<ul>
+                <li><codeph><ph keyref="true"/></codeph>: Preloading succeeds.</li>
+                <li><codeph><ph keyref="false"/></codeph>: Preloading fails.</li>
                 </ul>
             </p> </section>
         <section id="exception" props="android" conkeyref="SetAppId/exception">
