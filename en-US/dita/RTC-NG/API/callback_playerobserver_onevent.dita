@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_playerobserver_onevent">
+    <title><ph keyref="onEvent"/></title>
+    <shortdesc id="short"><ph id="shortdesc">The player event callback.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onEvent"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onEvent(int event){}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onEvent:(AgoraRtePlayerEvent)event;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onEvent(PlayerEvent event) = 0;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.5.0</dd>
+            </dlentry>
+            </dl>
+            <p>To monitor player events, you need to call <xref keyref="RegisterObserver_Player"/> to register a player observer object.</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Trigger timing</title>
+            <p>The SDK triggers this callback when the player event changes.</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>event</pt>
+                <pd>The player event. See <xref keyref="RtePlayerEvent"/>.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

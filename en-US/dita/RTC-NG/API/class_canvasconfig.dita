@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_canvasconfig">
+    <title><ph keyref="CanvasConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc">This class provides methods relevant to video rendering by the player.</ph></shortdesc>
+        <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class CanvasConfig {
+  public void setVideoRenderMode(Constants.VideoRenderMode mode) throws RteException ;
+  public Constants.VideoRenderMode getVideoRenderMode() throws RteException ;
+  public void setVideoMirrorMode(Constants.VideoMirrorMode mode) throws RteException ;
+  public Constants.VideoMirrorMode getVideoMirrorMode() throws RteException ;
+}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraRteCanvasConfig : NSObject
+- (void)setVideoRenderMode:(AgoraRteVideoRenderMode)mode error:(AgoraRteError * _Nullable)error;
+- (AgoraRteVideoRenderMode)videoRenderMode:(AgoraRteError * _Nullable)error;
+- (void)setVideoMirrorMode:(AgoraRteVideoMirrorMode)mode error:(AgoraRteError* _Nullable)error;
+- (AgoraRteVideoMirrorMode)videoMirrorMode:(AgoraRteError * _Nullable)error;
+@end</codeblock>
+           <codeblock props="cpp unreal" outputclass="language-cpp">class CanvasConfig {
+ public:
+ CanvasConfig() {RteCanvasConfigInit(&amp;c_canvas_config, nullptr);}
+ void SetRenderMode(VideoRenderMode mode, Error *err = nullptr);
+ VideoRenderMode GetRenderMode(Error *err = nullptr);
+ void SetMirrorMode(VideoMirrorMode mode, Error *err = nullptr);
+ VideoMirrorMode GetMirrorMode(Error *err = nullptr);
+};
+</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.5.0</dd>
+            </dlentry>
+            </dl>
+            <p/>
+        </section>
+                <section id="sub-method">
+                    <title>Method</title>
+                    <parml>
+                        <plentry>
+                        <pt><ph keyref="SetRenderMode_CanvasConfig"/></pt>
+                        <pd>Sets the vide render mode. See <xref keyref="SetRenderMode_CanvasConfig"/>.</pd>
+                    </plentry>
+                    <plentry>
+                        <pt><ph keyref="GetRenderMode"/></pt>
+                        <pd>Gets the current video rendering mode setting. See <xref keyref="GetRenderMode"/>.</pd>
+                    </plentry>
+                        <plentry>
+                        <pt><ph keyref="SetMirrorMode"/></pt>
+                        <pd>Sets the rendering mode of the video. See <xref keyref="SetMirrorMode"/>.</pd>
+                    </plentry>
+                        <plentry>
+                        <pt><ph keyref="GetMirrorMode"/></pt>
+                        <pd>Get the current video mirror mode setting. See <xref keyref="GetMirrorMode"/>.</pd>
+                    </plentry>
+                    </parml> </section>
+                </refbody>
+</reference>

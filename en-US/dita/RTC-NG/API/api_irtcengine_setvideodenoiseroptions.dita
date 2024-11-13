@@ -38,21 +38,32 @@
       MediaSourceType type = MediaSourceType.primaryCameraSource});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <p>Underlit environments and low-end video capture devices can cause video images to contain significant noise, which affects video quality. In real-time interactive scenarios, video noise also consumes bitstream resources and reduces encoding efficiency during encoding.</p>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p>You can call this method to enable the video noise reduction feature and set the options of the video noise reduction effect.</p>
-            <note type="attention" id="req">
+            <note type="note" id="advanced">If the noise reduction implemented by this method does not meet your needs, Agora recommends that you call the <xref keyref="setBeautyEffectOptions"/> method to enable the beauty and skin smoothing function to achieve better video noise reduction effects. The recommended <xref keyref="BeautyOptions"/> settings for intense noise reduction effect are as follows:<ul>
+                        <li><parmname>lighteningContrastLevel</parmname><ph keyref="LIGHTENING_CONTRAST_NORMAL" /></li>
+                        <li><parmname>lighteningLevel</parmname>: 0.0</li>
+                        <li><parmname>smoothnessLevel</parmname>: 0.5</li>
+                        <li><parmname>rednessLevel</parmname>: 0.0</li>
+                        <li><parmname>sharpnessLevel</parmname>: 0.1</li>
+                    </ul></note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Applicable scenarios</title>
+            <p>dark environments and low-end video capture devices can cause video images to contain significant noise, which affects video quality. In real-time interactive scenarios, video noise also consumes bitstream resources and reduces encoding efficiency during encoding.</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>Call this method after calling <xref keyref="enableVideo"/>.</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
             <ul>
-            <li>Call this method after calling <xref keyref="enableVideo"/>.</li>
-            <li>Video noise reduction has certain requirements for equipment performance. If your device overheats after you enable video noise reduction, Agora recommends modifying the video noise reduction options to a less performance-consuming level or disabling video noise reduction entirely.</li>
-            <li>Both this method and <xref keyref="setExtensionProperty"/> can turn on video noise reduction function:<ul>
-                <li>When you use the SDK to capture video, Agora recommends this method (this method only works for video captured by the SDK).</li>
-                <li>When you use an external video source to implement custom video capture, or send an external video source to the SDK, Agora recommends using <apiname keyref="setExtensionProperty"/>.</li>
-                </ul></li>
-            <li>This method relies on the image enhancement dynamic library <codeph><ph keyref="clearvision"/></codeph>. If the dynamic library is deleted, the function cannot be enabled normally.</li>
-            </ul> </note> </section>
-        <section id="parameters">
+                <li>This method relies on the image enhancement dynamic library <codeph><ph keyref="clearvision"/></codeph>. If the dynamic library is deleted, the function cannot be enabled normally.</li>
+                <li>Video noise reduction has certain requirements for equipment performance. If your device overheats after you enable video noise reduction, Agora recommends modifying the video noise reduction options to a less performance-consuming level or disabling video noise reduction entirely.</li>
+            </ul>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry id="enable">

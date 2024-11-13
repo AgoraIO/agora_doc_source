@@ -52,22 +52,22 @@
             </plentry>
             <plentry props="cpp unreal bp mac unity electron flutter cs">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_DISCONNECTED"/></pt>
-                <pd props="mac cpp unreal bp electron unity flutter"><ph>9:</ph><ph props="cpp unreal bp unity electron flutter"> (macOS only)</ph><ph> The video capture device currently in use is disconnected (such as being unplugged).</ph></pd>
+                <pd props="mac cpp unreal bp electron unity flutter"><ph>9:</ph><ph props="cpp unreal bp unity flutter"> (macOS and Windows only) </ph><ph>The video capture device currently in use is disconnected (such as being unplugged).</ph></pd>
                 <pd props="cs">9: Reserved.</pd>
             </plentry>
             <plentry props="mac cpp unreal bp unity electron flutter cs">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_INVALID_ID"/></pt>
-                <pd><ph>10:</ph><ph props="cpp unreal bp flutter unity electron"> (macOS and Windows only)</ph><ph> The SDK cannot find the video device in the video device list. Check whether the ID of the video device is valid.</ph></pd>
+                <pd><ph>10:</ph><ph props="cpp unreal bp flutter unity"> (macOS and Windows only)</ph><ph> The SDK cannot find the video device in the video device list. Check whether the ID of the video device is valid.</ph></pd>
             </plentry>
             <plentry props="cpp unreal bp mac flutter unity electron cs">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_MINIMIZED"/></pt>
-                <pd props="cpp unreal bp mac flutter unity electron"><ph>11:</ph><ph props="cpp unreal bp flutter unity electron"> (macOS and Windows only)</ph><ph> The shared window is minimized when you call the <xref keyref="startScreenCaptureByWindowId"/> method to share a window. The SDK cannot share a minimized window. Please prompt the user to unminimize the shared window.</ph></pd>
+                <pd props="cpp unreal bp mac flutter unity electron"><ph>11:</ph><ph props="cpp unreal bp flutter unity"> (macOS and Windows only)</ph><ph> The shared window is minimized when you call the <xref keyref="startScreenCaptureByWindowId"/> method to share a window. The SDK cannot share a minimized window. Please prompt the user to unminimize the shared window.</ph></pd>
                 <pd props="cs">11: Reserved.</pd>
             </plentry>
             <plentry props="cpp unreal bp mac flutter unity electron cs">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_CLOSED"/></pt>
                 <pd>
-                    <p><ph>12:</ph><ph props="cpp unreal bp flutter unity electron"> (macOS and Windows only)</ph><ph> The error code indicates that a window shared by the window ID has been closed or a full-screen window shared by the window ID has exited full-screen mode. After exiting full-screen mode, remote users cannot see the shared window. To prevent remote users from seeing a black screen, Agora recommends that you immediately stop screen sharing.</ph></p>
+                    <p><ph>12:</ph><ph props="cpp unreal bp flutter unity"> (macOS and Windows only)</ph><ph> The error code indicates that a window shared by the window ID has been closed or a full-screen window shared by the window ID has exited full-screen mode. After exiting full-screen mode, remote users cannot see the shared window. To prevent remote users from seeing a black screen, Agora recommends that you immediately stop screen sharing.</ph></p>
                     <p>Common scenarios reporting this error code:<ul>
                     <li>The local user closes the shared window.</li>
                     <li>The local user shows some slides in full-screen mode first, and then shares the windows of the slides. After the user exits full-screen mode, the SDK reports this error code.</li>
@@ -96,7 +96,7 @@
             </plentry>
             <plentry props="cpp unreal bp flutter unity electron">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_FAILURE"/></pt>
-                <pd>21: (Windows only) The screen has not captured any data available for window sharing.</pd>
+                <pd>21: (Windows and Android only) The currently captured window has no data.</pd>
             </plentry>
                 <plentry props="cpp unreal bp flutter unity electron">
                     <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_NO_PERMISSION"/></pt>

@@ -38,21 +38,30 @@
       MediaSourceType type = MediaSourceType.primaryCameraSource});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <p>The low-light enhancement feature can adaptively adjust the brightness value of the video captured in situations with low or uneven lighting, such as backlit, cloudy, or dark scenes. It restores or highlights the image details and improves the overall visual effect of the video.</p>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p>You can call this method to enable the color enhancement feature and set the options of the color enhancement effect.</p>
-            <note type="attention" id="req">
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Applicable scenarios</title>
+            <p>The low-light enhancement feature can adaptively adjust the brightness value of the video captured in situations with low or uneven lighting, such as backlit, cloudy, or dark scenes. It restores or highlights the image details and improves the overall visual effect of the video.</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>Call this method after calling <xref keyref="enableVideo"/>.</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
             <ul>
-            <li>Call this method after calling <xref keyref="enableVideo" />.</li>
-            <li>Dark light enhancement has certain requirements for equipment performance. The low-light enhancement feature has certain performance requirements on devices. If your device overheats after you enable low-light enhancement, Agora recommends modifying the low-light enhancement options to a less performance-consuming level or disabling low-light enhancement entirely.</li>
-            <li>Both this method and <xref keyref="setExtensionProperty" /> can turn on low-light enhancement:<ul>
-                <li>When you use the SDK to capture video, Agora recommends this method (this method only works for video captured by the SDK).</li>
-                <li>When you use an external video source to implement custom video capture, or send an external video source to the SDK, Agora recommends using <apiname keyref="setExtensionProperty" />.</li>
-                </ul></li>
-            <li>This method relies on the image enhancement dynamic library <codeph><ph keyref="clearvision"/></codeph>. If the dynamic library is deleted, the function cannot be enabled normally.</li>
-            </ul> </note> </section>
-        <section id="parameters">
+                <li>This method relies on the image enhancement dynamic library <codeph><ph keyref="clearvision"/></codeph>. If the dynamic library is deleted, the function cannot be enabled normally.</li>
+                <li>Dark light enhancement has certain requirements for equipment performance. The low-light enhancement feature has certain performance requirements on devices. If your device overheats after you enable low-light enhancement, Agora recommends modifying the low-light enhancement options to a less performance-consuming level or disabling low-light enhancement entirely.</li>
+                <li>If you want to prioritize image quality (<ph keyref="LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY"/>) when using the low-light enhancement function, you need to first call <xref keyref="setVideoDenoiserOptions"/> to achieve video noise reduction, the specific corresponding relationship is as follows:<ul>
+                        <li>When low light enhancement is set to automatic mode (<ph keyref="LOW_LIGHT_ENHANCE_AUTO"/>), video noise reduction needs to be set to prioritize image quality (<ph keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY" />) and automatic mode (<ph keyref="VIDEO_DENOISER_AUTO" />).</li>    
+                        <li>When low-light enhancement is set to manual mode (<ph keyref="LOW_LIGHT_ENHANCE_MANUAL"/>), video noise reduction needs to be set to prioritize image quality (<ph keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY" />) and manual mode (<ph keyref="VIDEO_DENOISER_MANUAL" />).</li>    
+                    </ul>
+                </li>
+            </ul>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry id="enable">
@@ -69,7 +78,10 @@
             </plentry>
                 <plentry props="cpp unreal bp rn unity electron flutter cs" id="type">
                     <pt>type</pt>
-                    <pd>The type of the video source. See <xref keyref="MEDIA_SOURCE_TYPE"/>.</pd>
+                    <pd>The type of the media source to which the filter effect is applied. See <xref keyref="MEDIA_SOURCE_TYPE" />.<note type="attention">In this method, this parameter supports only the following two settings:<ul>
+                    <li>Use the default value <apiname keyref="PRIMARY_CAMERA_SOURCE"/> if you use camera to capture local video.</li>
+                    <li>Set this parameter to <apiname keyref="CUSTOM_VIDEO_SOURCE"/> if you use custom video source.</li>
+                    </ul></note></pd>
                 </plentry>
             </parml> </section>
         <section id="return_values">

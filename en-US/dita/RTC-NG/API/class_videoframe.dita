@@ -742,6 +742,19 @@ class VideoFrame {
         <section id="detailed_desc">
             <p>Note that the buffer provides a pointer to a pointer. This interface cannot modify the pointer of the buffer, but it can modify the content of the buffer.</p>
         </section>
+        <section id="sub-method" props="android">
+          <title>Method</title>
+          <parml>
+            <plentry>
+              <pt>getColorSpace</pt>
+              <pd>Get the color space properties of the video frame.</pd>
+            </plentry>
+            <plentry>
+              <pt>setColorSpace</pt>
+              <pd>Get the color space properties of the video frame.</pd>
+            </plentry>
+        </parml>
+        </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
@@ -863,9 +876,9 @@ class VideoFrame {
           <pt>pixelBuffer</pt>
           <pd>Fills the data to CVPixelBuffer.</pd>
         </plentry>
-        <plentry props="android hmos">
-          <pt>colorSpace</pt>
-          <pd>The color space of a video frame. See <xref keyref="videocolorspace-link"/>.</pd>
+        <plentry id="colorspace">
+            <pt>colorSpace</pt>
+            <pd>By default, the color space properties of video frames will apply the Full Range and BT.709 standard configurations. You can configure the settings according your needs for custom video capturing and rendering. See <xref keyref="videocolorspace-link"/>.</pd>
         </plentry>
         <plentry props="android hmos">
           <pt>sourceType</pt>
@@ -891,7 +904,7 @@ class VideoFrame {
         </plentry>
       <plentry id="alphastitchmode">
         <pt>alphaStitchMode</pt>
-        <pd>When the video frame contains alpha channel data, it represents the relative position of <parmname>alphaBuffer</parmname> and the video frame. <ph props="cpp apple framework">See <xref keyref="ALPHA_STITCH_MODE"/>.</ph><ul props="android">
+        <pd>When the video frame contains alpha channel data, it represents the relative position of <parmname>alphaBuffer</parmname> and the video frame. <ph props="cpp apple framework">See <xref keyref="ALPHA_STITCH_MODE"/></ph>.<ul props="android">
             <li><ph keyref="NO_ALPHA_STITCH"/>0: (Default) Only video frame, that is, <parmname>alphaBuffer</parmname> is not stitched with the video frame.</li>
             <li><ph keyref="ALPHA_STITCH_UP"/>(1): <parmname>alphaBuffer</parmname> is above the video frame.</li>
             <li><ph keyref="ALPHA_STITCH_BELOW"/>(2): <parmname>alphaBuffer</parmname> is below the video frame.</li>
