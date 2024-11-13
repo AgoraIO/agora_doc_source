@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_player_openwithurl">
     <title><ph keyref="OpenWithUrl"/></title>
-    <shortdesc id="short"><ph id="shortdesc">打开 URL 资源。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Opens a URL.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -30,8 +30,8 @@
                 <dd>v4.5.0</dd>
             </dlentry>
             </dl>
-            <p>该方法支持通过 URL 打开实时流媒体。 如果你想要加快打开 URL 资源的速度，可以在调用该方法前，调用 <xref keyref="PreloadWithUrl"/> 预加载资源。</p>
-            <p>如果资源打开失败，你会收到 <xref keyref="onStateChanged"/> 的回调报告状态为 <ph keyref="kRtePlayerStateFailed"/>。 此时你需要先调用 <xref keyref="Stop_Player"/> 然后再调用 <apiname keyref="OpenWithUrl"/> 重新打开 URL 资源。 如果你设置关闭了自动播放，打开资源后可以调用 <xref keyref="Play_Player"/> 进行播放。</p>
+            <p>This method can open a live stream via URL. If you want to speed up the process of opening a URL, you can call the <xref keyref="PreloadWithUrl"/> method to preload the URL before calling the method.</p>
+            <p>If you fail to open the URL, you will receive the <xref keyref="onStateChanged"/> callback reporting the state as <ph keyref="kRtePlayerStateFailed"/>. At this time, you need to call <xref keyref="Stop_Player"/> first, then call <apiname keyref="OpenWithUrl"/> to reopen the URL. If you have disabled autoplay, you can call <xref keyref="Play_Player"/> to play after opening the URL.</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>Call timing</title>
@@ -39,11 +39,11 @@
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>Restrictions</title>
-            <p>该方法目前仅支持打开以 <codeph>rte://</codeph> 开头的 URL。</p>
+            <p>This method currently only supports playing URLs with the <codeph>rte://</codeph> prefix.</p>
         </section>
         <section id="related" deliveryTarget="details">
                 <title>Related callbacks</title>
-                <p>调用该方法后会触发 <xref keyref="onStateChanged"/> 回调，报告播放器状态为 <apiname keyref="kRtePlayerStateOpening"/>，表示正在打开 URL。 成功打开后，报告播放器状态为 <apiname keyref="kRtePlayerStateOpenCompleted"/>。</p>
+                <p>After calling this method, the SDK triggers the <xref keyref="onStateChanged"/> callback and report the state as <apiname keyref="kRtePlayerStateOpening"/>, which means the player is opening the URL. After successfully opening, the SDK report the player's state as <apiname keyref="kRtePlayerStateOpenCompleted"/>.</p>
             </section>
         <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
@@ -59,11 +59,11 @@
              </plentry>
              <plentry props="cpp apple">
                  <pt>cb</pt>
-                 <pd>一个异步回调函数，用于通知打开 URL 资源的结果。 如果打开过程中出错，你可以通过该回调中的 <parmname>err</parmname> 参数得知具体错误信息。 See .<xref keyref="Error"/></pd>
+                 <pd>An asynchronous callback, used to notify the result of opening a URL. If an error occurs during the opening, you can get specific error information through the <parmname>err</parmname> parameter in this callback. See <xref keyref="Error"/>.</pd>
              </plentry>
              <plentry props="android">
                  <pt>callback</pt>
-                 <pd>一个异步回调函数，用于通知打开 URL 资源的结果。 如果打开过程中出错，你可以通过 <xref keyref="AsyncCallback"/> 下的 <xref keyref="onResult_AsyncCallback"/> 回调得知具体错误信息。</pd>
+                 <pd>An asynchronous callback, used to notify the result of opening a URL. If an error occurs during the opening, you can get specific error information through the <xref keyref="onResult_AsyncCallback"/> callback in the <xref keyref="AsyncCallback"/>.</pd>
              </plentry>
             </parml> </section>
         </refbody>

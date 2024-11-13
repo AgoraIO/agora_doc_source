@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_player_play">
     <title><ph keyref="Play_Player"/></title>
-    <shortdesc id="short"><ph id="shortdesc">播放 URL 资源。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Plays an URL.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -30,19 +30,19 @@
                 <dd>v4.5.0</dd>
             </dlentry>
             </dl>
-            <p>如果你关闭了自动播放，当你调用 <xref keyref="OpenWithUrl"/> 成功打开实时流媒体，你可以调用此方法进行播放。</p>
+            <p>If you have disabled the autoplay, when you successfully open a live stream through a URL by calling <xref keyref="OpenWithUrl"/>, you can call this method to play.</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>Call timing</title>
-            <p>Call this method after you call  and receive the<xref keyref="onStateChanged"/>  callback reporting the state<ph keyref="kRtePlayerStateOpenCompleted"/> .</p>
+            <p>Call this method after you receive the <xref keyref="onStateChanged"/> callback reporting the <ph keyref="kRtePlayerStateOpenCompleted"/> state.</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>Restrictions</title>
-            <p>该方法目前仅支持播放带 <codeph>rte://</codeph> 前缀的 URL。</p>
+            <p>This method currently only supports playing URLs with the <codeph>rte://</codeph> prefix.</p>
         </section>
         <section id="related" deliveryTarget="details">
             <title>Related callbacks</title>
-            <p>成功调用该方法后，会触发 <xref keyref="onStateChanged"/> 回调来报告播放器状态。</p>
+            <p>A successful call of this method triggers the <xref keyref="onStateChanged"/> callback to report the player state.</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title><ph props="cpp apple framework">Parameters</ph></title>
@@ -55,9 +55,9 @@
         <section id="return_values" props="cpp apple framework">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-            <p props="cpp apple unreal bp electron unity rn cs">播放是否成功：<ul>
-                <li><codeph><ph keyref="true"/></codeph>：播放成功。</li>
-                <li><codeph><ph keyref="false"/></codeph>：播放失败。</li>
+            <p props="cpp apple unreal bp electron unity rn cs">Whether the playing is successful:<ul>
+                <li><codeph><ph keyref="true"/></codeph>: The playing succeeds.</li>
+                <li><codeph><ph keyref="false"/></codeph>: The playing fails.</li>
                 </ul>
             </p> </section>
         <section id="exception" props="android" conkeyref="SetAppId/exception">

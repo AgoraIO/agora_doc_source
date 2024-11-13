@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_player_getstats">
     <title><ph keyref="GetStats"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获取播放器当前播放的媒体资源的统计信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Gets statistical information about the current media resource being played.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -30,7 +30,7 @@
                 <dd>v4.5.0</dd>
             </dlentry>
             </dl>
-            <p>该方法用于获取播放器的统计信息，包括解码、渲染帧率、音视频码率等，并通过回调函数异步返回结果。</p>
+            <p>This method is used to obtain statistical information about the player, including decoding, rendering frame rate, audio and video bitrate, etc., and asynchronously returns the results through a callback function.</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>Call timing</title>
@@ -45,13 +45,13 @@
             <parml>
             <plentry props="cpp apple">
                 <pt>cb</pt>
-                <pd>一个异步回调函数，用于通知获取播放器媒体资源统计信息的结果和错误信息。 该函数包含以下参数：<ul>
-                        <li><codeph>stats</codeph>： 播放器当前播放的媒体资源的统计数据，详见 <xref keyref="RtePlayerStats"/>。</li>
-                        <li><codeph>err</codeph>： 参数获取错误信息，详见 <xref keyref="Error"/>。</li></ul></pd>
+                <pd>An asynchronous callback used to notify the result and possible error information of obtaining the statistics. The callback includes the following parameters:<ul>
+                        <li><codeph>stats</codeph>: The information of the media resource currently being played. See <xref keyref="RtePlayerStats"/>.</li>
+                        <li><codeph>err</codeph>: The detailed infromation about errors. See <xref keyref="Error"/>.</li></ul></pd>
             </plentry>
             <plentry props="android">
                 <pt>callback</pt>
-                <pd>回调接口，用于异步接收统计信息和可能的错误信息，详见 <xref keyref="PlayerGetStatsCallback"/> 接口类下的 <xref keyref="onResult_PlayerGetStatsCallback"/> 回调。</pd>
+                <pd>An asynchronous callback used to notify the result and possible error information of obtaining the statistics. See the <xref keyref="onResult_PlayerGetStatsCallback"/> callback in the <xref keyref="PlayerGetStatsCallback"/> class.</pd>
             </plentry>
             </parml> </section>
         </refbody>
