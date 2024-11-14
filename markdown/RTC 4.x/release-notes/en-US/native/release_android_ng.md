@@ -54,7 +54,7 @@ As of this version, audience members can directly open a specific URL to play th
 
 #### 4. Filter effects
 
-This version introduces the `setFilterEffectOptions [1/2]` method. You can pass a cube map file (.cube) in the **config** parameter to achieve custom filter effects such as whitening, vivid, cool, black and white, etc. Additionally, the SDK provides a built-in `built_in_whiten_filter.cube` file for quickly achieving a whitening filter effect.
+This version introduces the `setFilterEffectOptions [1/2]` method. You can pass a cube map file (.cube) in the `config` parameter to achieve custom filter effects such as whitening, vivid, cool, black and white, etc. Additionally, the SDK provides a built-in `built_in_whiten_filter.cube` file for quickly achieving a whitening filter effect.
 
 #### 5. Local audio mixing
 
@@ -88,7 +88,7 @@ This version upgrades the virtual background algorithm, making the segmentation 
 
 #### 2. Snapshot at specified video observation points
 
-This version introduces the `takeSnapshot [2/2]` and `takeSnapshotEx [2/2]` methods. You can use the **config** parameter when calling these methods to take snapshots at specified video observation points, such as before encoding, after encoding, or before rendering, to achieve more flexible snapshot effects.
+This version introduces the `takeSnapshot [2/2]` and `takeSnapshotEx [2/2]` methods. You can use the `config` parameter when calling these methods to take snapshots at specified video observation points, such as before encoding, after encoding, or before rendering, to achieve more flexible snapshot effects.
 
 #### 3. Custom audio capture improvements
 
