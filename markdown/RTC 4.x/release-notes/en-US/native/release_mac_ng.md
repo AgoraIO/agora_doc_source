@@ -35,7 +35,7 @@ As of v4.5.0, both RTC SDK and RTM SDK (v2.2.0 and above) include the `aosl.xcfr
 
 1. **Live show scenario**
 
-   This version adds the `AgoraApplicationLiveShowScenario`(3) (Live Show) enumeration to the `AgoraApplicationScenarioType`. You can call `setVideoScenario:` to set the video business scenario to . To meet the high requirements for first frame rendering time and image quality in this scenario, the SDK has optimized strategies to significantly improve the first frame rendering experience and image quality, while enhancing the performance in weak network environments and on low-end devices.
+   This version adds the `AgoraApplicationLiveShowScenario`(3) (Live Show) enumeration to the `AgoraApplicationScenarioType`. You can call `setVideoScenario:` to set the video business scenario to show room. To meet the high requirements for first frame rendering time and image quality in this scenario, the SDK has optimized strategies to significantly improve the first frame rendering experience and image quality, while enhancing the performance in weak network environments and on low-end devices.
 
 2. **Maximum frame rate for video rendering**
 
@@ -57,7 +57,7 @@ As of v4.5.0, both RTC SDK and RTM SDK (v2.2.0 and above) include the `aosl.xcfr
 
    Example use cases for this feature include:
 
-   - By utilizing the local image stitching feature, the associated audio streams of the stitched video streams can be simultaneously captured and published.
+   - By utilizing the local video mixing feature, the associated audio streams of the mixed video streams can be simultaneously captured and published.
    - In live streaming scenarios, users can receive audio streams within the channel, mix multiple audio streams locally, and then forward the mixed audio stream to other channels.
    - In educational scenarios, teachers can mix the audio from interactions with students locally and then forward the mixed audio stream to other channels.
 
