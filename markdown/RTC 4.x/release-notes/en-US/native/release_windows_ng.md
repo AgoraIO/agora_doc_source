@@ -56,7 +56,7 @@ As of v4.5.0, both RTC SDK and RTM SDK (v2.2.0 and above) include the `aosl.dll`
 
 4. **Filter effects**
 
-   This version introduces the `setFilterEffectOptions` method. You can pass a cube map file (.cube) in the **config** parameter to achieve custom filter effects such as whitening, vivid, cool, black and white, etc. Additionally, the SDK provides a built-in `built_in_whiten_filter.cube` file for quickly achieving a whitening filter effect.
+   This version introduces the `setFilterEffectOptions` method. You can pass a cube map file (.cube) in the `config` parameter to achieve custom filter effects such as whitening, vivid, cool, black and white, etc. Additionally, the SDK provides a built-in `built_in_whiten_filter.cube` file for quickly achieving a whitening filter effect.
 
 5. **Local audio mixing**
 
@@ -85,7 +85,7 @@ As of v4.5.0, both RTC SDK and RTM SDK (v2.2.0 and above) include the `aosl.dll`
 
 2. **Snapshot at specified video observation points**
 
-   This version introduces the `takeSnapshot [2/2]` and `takeSnapshotEx [2/2]` methods. You can use the **config** parameter when calling these methods to take snapshots at specified video observation points, such as before encoding, after encoding, or before rendering, to achieve more flexible snapshot effects.
+   This version introduces the `takeSnapshot [2/2]` and `takeSnapshotEx [2/2]` methods. You can use the `config` parameter when calling these methods to take snapshots at specified video observation points, such as before encoding, after encoding, or before rendering, to achieve more flexible snapshot effects.
 
 3. **Custom audio capture improvements**
 
@@ -102,7 +102,7 @@ As of v4.5.0, both RTC SDK and RTM SDK (v2.2.0 and above) include the `aosl.dll`
 
 This version fixes the following issues:
 
-- When calling `startScreenCaptureByWindowId` to share the screen, the window capture area specified by **regionRect** was inaccurate, resulting in incorrect width and height of the screen sharing window seen by the receiving end.
+- When calling `startScreenCaptureByWindowId` to share the screen, the window capture area specified by `regionRect` was inaccurate, resulting in incorrect width and height of the screen sharing window seen by the receiving end.
 - Occasional errors of not finding system files during audio and video interaction on Windows 7 systems. 
 - When calling `followSystemRecordingDevice` or `followSystemPlaybackDevice` to set the audio capture or playback device used by the SDK to not follow the system default audio playback device, the local audio state callback `onLocalAudioStateChanged` is not triggered when the audio device is removed, which is not as expected. 
 - Calling `startAudioMixing [1/2]` and then immediately calling `pauseAudioMixing` to pause the music file playback does not take effect.
