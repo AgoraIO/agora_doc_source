@@ -11,6 +11,11 @@
             <title>升级必看</title>
             <body>
                 <p>该版本对部分功能的实现方式进行了优化，涉及 SDK 的行为变更、API 的改名或删除，为确保项目的正常运行，你需要在升级到该版本后更新 App 中的代码。</p>
+                <note type="attention" props="native">
+                    <p props="android">自 4.5.0 起，RTC SDK 和 RTM SDK (2.2.0 及以上版本) 都包含 <codeph>libaosl.so</codeph> 库。如果你通过 CDN 手动集成 RTC SDK 且同时集成了 RTM SDK，为避免冲突，请手动删除版本较低的 <codeph>libaosl.so</codeph> 库。4.5.0 RTC SDK <codeph>libaosl.so</codeph> 库版本为 1.2.13。</p>
+                    <p props="apple">自 4.5.0 起，RTC SDK 和 RTM SDK (2.2.0 及以上版本) 都包含 <codeph>aosl.xcframework</codeph> 库。如果你通过 CDN 手动集成 RTC SDK 且同时集成了 RTM SDK，为避免冲突，请手动删除版本较低的 <codeph>aosl.xcframework</codeph> 库。4.5.0 RTC SDK <codeph>aosl.xcframework</codeph> 库版本为 1.2.13。你可以在 <codeph>Info.plist</codeph> 中查看库的版本信息。</p>
+                    <p props="cpp">自 4.5.0 起，RTC SDK 和 RTM SDK (2.2.0 及以上版本) 都包含 <codeph>aosl.dll</codeph> 库。如果你通过 CDN 手动集成 RTC SDK 且同时集成了 RTM SDK，为避免冲突，请手动删除版本较低的 <codeph>aosl.dll</codeph> 库。4.5.0 RTC SDK <codeph>aosl.dll</codeph> 库版本为 1.2.13。你可以通过查看 <codeph>aosl.dll</codeph> 文件的属性来得知库的版本信息。</p>
+                </note>
                 <ol>
                     <li props="cpp"><ph><b>成员参数类型变更</b></ph>
                         <p>为提升各框架对 Native SDK 的适配性，该版本对一些 API 中的成员或参数做了如下修改：<table frame="all" rowsep="1" colsep="1">

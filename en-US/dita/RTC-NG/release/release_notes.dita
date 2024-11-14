@@ -11,6 +11,11 @@
             <title>Compatibility changes</title>
             <body>
                 <p>This version includes optimizations to some features, including changes to SDK behavior, API renaming and deletion. To ensure normal operation of the project, update the code in the app after upgrading to this release.</p>
+<note type="attention" props="native">
+<p props="android">As of v4.5.0, both RTC SDK and RTM SDK (v2.2.0 and above) include the <codeph>libaosl.so</codeph> library. If you manually integrate RTC SDK via CDN and also use RTM SDK, delete the lower version of the <codeph>libaosl.so</codeph> library to avoid conflicts. The <codeph>libaosl.so</codeph> library version in RTC SDK v4.5.0 is 1.2.13.</p>
+<p props="apple">As of v4.5.0, both RTC SDK and RTM SDK (v2.2.0 and above) include the <codeph>aosl.xcframework</codeph> library. If you manually integrate RTC SDK via CDN and also use RTM SDK, delete the lower version of the <codeph>aosl.xcframework</codeph> library to avoid conflicts. The <codeph>aosl.xcframework</codeph> library version in RTC SDK v4.5.0 is 1.2.13. You can check the version in the <codeph>Info.plist</codeph> file.</p>
+<p props="cpp">As of v4.5.0, both RTC SDK and RTM SDK (v2.2.0 and above) include the <codeph>aosl.dll</codeph> library. If you manually integrate RTC SDK via CDN and also use RTM SDK, delete the lower version of the <codeph>aosl.dll</codeph> library to avoid conflicts. The <codeph>aosl.dll</codeph> library version in RTC SDK v4.5.0 is 1.2.13. You can check the version by viewing the <codeph>aosl.dll</codeph> file properties.</p>
+</note>
                 <ol>
 <li props="cpp"><ph><b>Member Parameter Type Changes</b></ph>
     <p>To enhance the adaptability of various frameworks to the Native SDK, this version has made the following modifications to some API members or parameters:
