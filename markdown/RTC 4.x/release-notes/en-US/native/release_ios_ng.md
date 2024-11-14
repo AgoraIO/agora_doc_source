@@ -63,8 +63,6 @@ As of v4.5.0, both RTC SDK and RTM SDK (v2.2.0 and above) include the `aosl.xcfr
 
    This version adds the `colorSpace` parameter to `AgoraOutputVideoFrame` and `AgoraVideoFrame`. You can use this parameter to set the color space properties of the video frame. By default, the color space uses Full Range and BT.709 standard configuration. You can flexibly adjust according to your own capture or rendering needs, further enhancing the customization capabilities of video processing.
 
-7. **Others**
-
 #### Improvements
 
 1. **Virtual background algorithm optimization**
