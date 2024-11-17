@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_player_play">
+    <title><ph keyref="Play_Player"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Plays a URL.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="Play_Player"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void play() throws RteException;</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)play:(AgoraRteError * _Nullable)error;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">bool Play(Error* err);</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.5.0</dd>
+            </dlentry>
+            </dl>
+            <p>If you have disabled autoplay, when you successfully open a live stream through a URL by calling <xref keyref="OpenWithUrl"/>, you can call this method to play the stream.</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>Call this method after you receive the <xref keyref="onStateChanged"/> callback reporting the <ph keyref="kRtePlayerStateOpenCompleted"/> state.</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>This method currently only supports playing URLs with the <codeph>rte://</codeph> prefix.</p>
+        </section>
+        <section id="related" deliveryTarget="details">
+            <title>Related callbacks</title>
+            <p>A successful call of this method triggers the <xref keyref="onStateChanged"/> callback to report the player state.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title><ph props="cpp apple framework">Parameters</ph></title>
+            <parml props="cpp apple framework">
+            <plentry conkeyref="SetConfigs_Rte/err">
+                <pt/>
+                <pd/>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="cpp apple framework">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="cpp apple unreal bp electron unity rn cs">Whether the playing is successful:<ul>
+                <li><codeph><ph keyref="true"/></codeph>: The playing succeeds.</li>
+                <li><codeph><ph keyref="false"/></codeph>: The playing fails.</li>
+                </ul>
+            </p> </section>
+        <section id="exception" props="android" conkeyref="SetAppId/exception">
+            <title></title>
+            <p></p>
+        </section>
+    </refbody>
+</reference>

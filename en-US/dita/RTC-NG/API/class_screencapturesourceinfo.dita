@@ -22,22 +22,23 @@
 @end
 </codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct ScreenCaptureSourceInfo {
-    ScreenCaptureSourceType type;
-    view_t sourceId;
-    const char* sourceName;
-    ThumbImageBuffer thumbImage;
-    ThumbImageBuffer iconImage;
-    const char* processPath;
-    const char* sourceTitle;
-    bool primaryMonitor;
+  ScreenCaptureSourceType type;
+  int64_t sourceId;
+  const char* sourceName;
+  ThumbImageBuffer thumbImage;
+  ThumbImageBuffer iconImage;
+  const char* processPath;
+  const char* sourceTitle;
+  bool primaryMonitor;
+  bool isOccluded;
+  Rectangle position;
 #if defined(_WIN32)
-    Rectangle position;
-    bool minimizeWindow;
-    view_t sourceDisplayId;
-  ScreenCaptureSourceInfo() : type(ScreenCaptureSourceType_Unknown), sourceId(nullptr), sourceName(nullptr),
-                              processPath(nullptr), sourceTitle(nullptr), primaryMonitor(false), isOccluded(false), minimizeWindow(false), sourceDisplayId((view_t)-2) {}
+  bool minimizeWindow;
+  int64_t sourceDisplayId;
+  ScreenCaptureSourceInfo() : type(ScreenCaptureSourceType_Unknown), sourceId(0), sourceName(nullptr),
+                              processPath(nullptr), sourceTitle(nullptr), primaryMonitor(false), isOccluded(false), minimizeWindow(false), sourceDisplayId(-2) {}
 #else
-  ScreenCaptureSourceInfo() : type(ScreenCaptureSourceType_Unknown), sourceId(nullptr), sourceName(nullptr), processPath(nullptr), sourceTitle(nullptr), primaryMonitor(false), isOccluded(false) {}
+  ScreenCaptureSourceInfo() : type(ScreenCaptureSourceType_Unknown), sourceId(0), sourceName(nullptr), processPath(nullptr), sourceTitle(nullptr), primaryMonitor(false), isOccluded(false) {}
 #endif
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
@@ -247,7 +248,7 @@ public:
             </plentry>
             <plentry>
                 <pt>position</pt>
-                <pd><ph>The position of a window relative to the entire screen space (including all shareable screens). </ph><ph props="cpp unreal bp unity electron flutter">See <xref keyref="Rectangle"/>. </ph><ph props="mac">See <xref keyref="rect-link"/>.</ph></pd>
+                <pd><ph>The position of a window relative to the entire screen space (including all shareable screens). </ph><ph props="cpp unreal bp unity electron flutter">See <xref keyref="Rectangle"/></ph>. <ph props="mac">See <xref keyref="rect-link"/></ph>.</pd>
             </plentry>
             <plentry props="cpp unreal bp flutter rn electron">
                 <pt>minimizeWindow</pt>

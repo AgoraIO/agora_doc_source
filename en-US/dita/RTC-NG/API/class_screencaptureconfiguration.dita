@@ -26,9 +26,9 @@ __attribute__((visibility("default"))) @interface AgoraScreenCaptureConfiguratio
 #endif</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct ScreenCaptureConfiguration {
   bool isCaptureWindow;
-  uint32_t displayId;
+  int64_t displayId;
   Rectangle screenRect;
-  view_t windowId;
+  int64_t windowId;
   ScreenCaptureParameters params;
   Rectangle regionRect;
 
@@ -170,7 +170,7 @@ public:
             <plentry>
                 <pt props="mac cpp unreal bp electron rn flutter">params</pt>
                 <pt props="unity cs">parameters</pt>
-                <pd><ph props="cpp unreal bp unity flutter">(For Windows and macOS only) </ph><ph>The screen capture configuration. See <xref keyref="ScreenCaptureParameters" />.</ph></pd>
+                <pd><ph props="cpp unreal bp unity flutter">(For Windows and macOS only) </ph><ph>The screen capture configuration. See <xref keyref="ScreenCaptureParameters" /></ph>.</pd>
             </plentry>
             <plentry>
                 <pt>regionRect</pt>
