@@ -74,7 +74,7 @@ ChatClient.getInstance().chatroomManager().fetchChatRoomBlackList(chatRoomId, ne
 
 ### [Manage the chat room mute list](https://docs.agora.io/en/agora-chat/client-api/chat-room/manage-chatroom-members?platform=android#manage-the-chat-room-mute-list)
 
-To manage the messages in the chat room, the chat room owner and admin can add the specified member to the chat room mute list and remove them from it. Once a chat room member is added to the mute list, this member can no longer send chat room message, not even after being added to the chat room allow list.
+To manage the messages in the chat room, the chat room owner and admin can add the specified member to the chat room mute list and remove them from it. Once a chat room member is added to the mute list, this member can no longer send chat room messages, not even after being added to the chat room allow list.
 
 ```
 // The chat room owner or admin call muteChatRoomMembers to add the specified user to the chat room block list. The muted member and all the other chat room admins or owner receive the onMuteListAdded callback.
@@ -128,7 +128,7 @@ ChatClient.getInstance().chatroomManager().unmuteAllMembers(chatRoomId, new Valu
 
 The chat room owner and admins are added to the chat room allow list by default.
 
-Members in the chat room allow list can send chat room messages even when the chat room owner or admin has muted all the chat room members using `muteAllMembers`. However, if a member is already in the chat room mute list, adding this member to the allow list does not take effect.
+Members in the chat room allow list can send chat room messages even when the chat room owner or admin has muted all the chat room members using `muteAllMembers`. However, if a member is already in the chat room mute list, this member still cannot send messages in the chat room even after being added to the allow list of the chat room.
 
 Messages sent by members in the chat room allow list are of high priority and will be delivered first, but there is no guarantee that they will be delivered. When the load is high, the server discards low-priority messages first. If the load is still high even then, the server discards high-priority messages.
 

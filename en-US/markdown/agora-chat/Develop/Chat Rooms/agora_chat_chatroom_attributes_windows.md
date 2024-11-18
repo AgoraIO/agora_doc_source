@@ -111,11 +111,11 @@ SDKClient.Instance.RoomManager.AddAttributes(roomId, kv, deleteWhenExit, forced,
     onSuccessResult: (Dictionary<string, int> failInfo) => {
         if(failInfo.Count == 0)
         {
-            //AddAttributes success
+            //All custom attributes are successfully set.
         }
         else
         {
-            //AddAttributes partial success
+            //Certain custom attributes fail to be set.
         }
     },
     onError: (code, desc) => {

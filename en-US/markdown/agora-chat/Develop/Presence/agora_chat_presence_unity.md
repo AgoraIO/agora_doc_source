@@ -92,17 +92,23 @@ SDKClient.Instance.PresenceManager.PublishPresence(ext, new CallBack(
 Refer to the following code sample to listen for presence status updates:
 
 ```c#
-PresenceM
-// Adds the presence status listener.anagerDelegate presenceManagerDelegate = new PresenceManagerDelegate();
-SDKClient.Instance.PresenceManager.AddPresenceManagerDelegate(presenceManagerDelegate);
-
 // Occurs when the presence statuses of the subscriptions update.
 public interface IPresenceManagerDelegate
 {
     void OnPresenceUpdated(List<Presence> presences);
 }
-```
 
+// Adds the presence status listener.
+public class PresenceManagerDelegate: IPresenceManagerDelegate
+{
+                public void OnPresenceUpdated(List<Presence> presences)
+    {
+        
+    }
+}
+PresenceManagerDelegate presenceManagerDelegate = new PresenceManagerDelegate();
+SDKClient.Instance.PresenceManager.AddPresenceManagerDelegate(presenceManagerDelegate);
+```
 
 ### Unsubscribe from the presence status of one or more users
 

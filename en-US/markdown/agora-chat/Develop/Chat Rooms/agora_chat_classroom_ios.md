@@ -178,13 +178,18 @@ To monitor the chat room events, you can listen for the callbacks in the `ChatRo
                       oldOwner:(NSString *)aOldOwner {
                         
   }
-
+  
+// Occurs when basic information of the chat room is changed.
+- (void)chatroomSpecificationDidUpdate:(EMChatroom *)aChatroom {
+  
+  } 
+   
 /**
  *  When custom chat room attributes are set or changed, all room members receives this callback.
  *  @param roomId    The chat room ID.
  *  @param attributeMap    The newly set or changed custom attributes.
  */
-- (void)chatroomAttributesDidUpdated:(NSString *_Nonnull)roomId attributeMap:(NSDictionary<NSString *, NSString *> *_Nullable)attributeMap from:(NSString *_Nonnull)fromId;
+- (void)chatroomAttributesDidUpdated:(NSString *_Nonnull)roomId attributeMap:(NSDictionary<NSString *, NSString *> *_Nullable)attributeMap from:(NSString *_Nonnull)fromId {
   }
 
 /**
@@ -192,5 +197,6 @@ To monitor the chat room events, you can listen for the callbacks in the `ChatRo
  *  @param roomId    The chat room ID.
  *  @param attributes    The removed custom attributes.
  */
-- (void)chatroomAttributesDidRemoved:(NSString *_Nonnull)roomId attributes:(NSArray<__kindof NSString *> *_Nullable)attributes from:(NSString *_Nonnull)fromId;
+- (void)chatroomAttributesDidRemoved:(NSString *_Nonnull)roomId attributes:(NSArray<__kindof NSString *> *_Nullable)attributes from:(NSString *_Nonnull)fromId {
+  } 
 ```

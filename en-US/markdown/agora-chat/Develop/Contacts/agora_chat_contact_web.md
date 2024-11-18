@@ -12,9 +12,9 @@ The Agora Chat SDK uses the Contact module to add, remove and manage contacts. C
 - `deleteContact`: Deletes a contact.
 - `getContacts`: Retrieves a list of contacts.
 - `connection.addEventHandler()`: Adds the event handler.
-- `addUsersToBlockList`: Adds the specified user to the block list.
-- `removeUserFromBlockList`: Removes the specified user from the block list.
-- `getBlockList`: Retrieves a list of blocked users from the server.
+- `addUsersToBlocklist`: Adds the specified user to the block list.
+- `removeUserFromBlocklist`: Removes the specified user from the block list.
+- `getBlocklist`: Retrieves a list of blocked users from the server.
 
 ## Prerequisites
 
@@ -92,8 +92,8 @@ To get the contact list, you can call `getContacts`.
 
 ```javascript
 WebIM.conn.getContacts().then( (res) => {
-    console.log(res) // res.data > ['user1', 'user2']
-}
+        console.log(res) // res.data > ['user1', 'user2']
+})
 ```
 
 ### Manage the block list
@@ -102,7 +102,7 @@ You can add any other users to the block list, regardless of whether they are on
 
 #### Add a user to the block list
 
-Call `addUsersToBlockList` to add the specified user to the block list.
+Call `addUsersToBlocklist` to add the specified user to the block list.
 
 ```javascript
 WebIM.conn.addUsersToBlocklist({
@@ -113,10 +113,10 @@ WebIM.conn.addUsersToBlocklist({
 
 #### Remove a user from the block list
 
-To remove the specified user from the block list, call `removeUserFromBlockList`.
+To remove the specified user from the block list, call `removeUserFromBlocklist`.
 
 ```javascript
-WebIM.conn.removeUserFromBlockList({
+WebIM.conn.removeUserFromBlocklist({
     name: ["user1", "user2"],
 });
 ```
