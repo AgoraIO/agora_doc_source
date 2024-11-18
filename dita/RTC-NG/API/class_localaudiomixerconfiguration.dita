@@ -43,13 +43,35 @@
   audioInputStreams?: MixedAudioStream[];
   syncWithLocalMic?: boolean;
 }</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="unity cs" outputclass="language-csharp">public class LocalAudioMixerConfiguration
+{
+    public uint streamCount;
+    public MixedAudioStream[] audioInputStreams;
+    public bool syncWithLocalMic
+}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class LocalAudioMixerConfiguration {
   streamCount?: number;
   audioInputStreams?: MixedAudioStream[];
   syncWithLocalMic?: boolean;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">class LocalAudioMixerConfiguration {
+  const LocalAudioMixerConfiguration(
+      {this.streamCount, this.audioInputStreams, this.syncWithLocalMic});
+
+  @JsonKey(name: 'streamCount')
+  final int? streamCount;
+
+  @JsonKey(name: 'audioInputStreams')
+  final List&lt;MixedAudioStream>? audioInputStreams;
+
+  @JsonKey(name: 'syncWithLocalMic')
+  final bool? syncWithLocalMic;
+
+  factory LocalAudioMixerConfiguration.fromJson(Map&lt;String, dynamic> json) =>
+      _$LocalAudioMixerConfigurationFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$LocalAudioMixerConfigurationToJson(this);
+}</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">

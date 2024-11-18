@@ -55,14 +55,41 @@
   channelId?: string;
   trackId?: number;
 }</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="unity cs" outputclass="language-csharp">public class MixedAudioStream
+{
+    public AUDIO_SOURCE_TYPE sourceType;
+    public uint remoteUserUid;
+    public string channelId;
+    public uint trackId;
+    }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class MixedAudioStream {
   sourceType?: AudioSourceType;
   remoteUserUid?: number;
   channelId?: string;
   trackId?: number;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">class MixedAudioStream {
+
+  const MixedAudioStream(
+      {this.sourceType, this.remoteUserUid, this.channelId, this.trackId});
+
+  @JsonKey(name: 'sourceType')
+  final AudioSourceType? sourceType;
+
+  @JsonKey(name: 'remoteUserUid')
+  final int? remoteUserUid;
+
+  @JsonKey(name: 'channelId')
+  final String? channelId;
+
+  @JsonKey(name: 'trackId')
+  final int? trackId;
+
+  factory MixedAudioStream.fromJson(Map&lt;String, dynamic> json) =>
+      _$MixedAudioStreamFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$MixedAudioStreamToJson(this);
+}</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
