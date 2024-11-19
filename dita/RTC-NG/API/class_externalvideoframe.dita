@@ -200,6 +200,7 @@ struct ExternalVideoFrame {
         public ALPHA_STITCH_MODE alphaStitchMode;
         public IntPtr d3d11Texture2d;
         public int textureSliceIndex;
+        public ColorSpace colorSpace;
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class ExternalVideoFrame {
   type?: VideoBufferType;
@@ -310,6 +311,9 @@ class ExternalVideoFrame {
 
   @JsonKey(name: &#x27;textureSliceIndex&#x27;)
   final int? textureSliceIndex;
+
+  @JsonKey(name: 'colorSpace')
+  final ColorSpace? colorSpace;
 
   factory ExternalVideoFrame.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$ExternalVideoFrameFromJson(json);
