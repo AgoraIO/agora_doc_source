@@ -17,7 +17,8 @@
             <codeblock props="hmos" outputclass="language-arkts"/>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)startLocalAudioMixer:(AgoraLocalAudioMixerConfiguration* _Nonnull)config NS_SWIFT_NAME(startLocalAudioMixer(_:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int startLocalAudioMixer(const LocalAudioMixerConfiguration&amp; config) = 0;</codeblock>
-            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
+	int StartLocalAudioMixer(const FUABT_LocalAudioMixerConfiguration& config);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract startLocalAudioMixer(config: LocalAudioMixerConfiguration): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int StartLocalAudioMixer(LocalAudioMixerConfiguration config);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract startLocalAudioMixer(config: LocalAudioMixerConfiguration): number;</codeblock>
@@ -47,7 +48,7 @@
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p>该方法在加入频道前后均可调用。</p>
-        </section>        
+        </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
             <p>为了保证音频质量，建议参与本地合流的音频流数量不超过 10 个。</p>

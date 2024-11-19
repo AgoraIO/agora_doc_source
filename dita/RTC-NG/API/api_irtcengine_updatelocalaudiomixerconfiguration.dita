@@ -17,7 +17,8 @@
             <codeblock props="hmos" outputclass="language-arkts"/>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)updateLocalAudioMixerConfiguration:(AgoraLocalAudioMixerConfiguration* _Nonnull)config NS_SWIFT_NAME(updateLocalAudioMixerConfiguration(_:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int updateLocalAudioMixerConfiguration(const LocalAudioMixerConfiguration&amp; config) = 0;</codeblock>
-            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
+	int UpdateLocalAudioMixerConfiguration(const FUABT_LocalAudioMixerConfiguration& config);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract updateLocalAudioMixerConfiguration(
     config: LocalAudioMixerConfiguration
   ): number;</codeblock>
@@ -40,7 +41,7 @@
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p>该方法需要在 <apiname keyref="startLocalAudioMixer"/> 之后调用。</p>
-        </section>        
+        </section>
         <section id="restriction" deliveryTarget="details" conkeyref="startLocalAudioMixer/restriction">
             <title>调用限制</title>
         </section>

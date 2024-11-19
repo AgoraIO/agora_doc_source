@@ -48,7 +48,25 @@
       channelId(channel),
       trackId(track) {}
 };</codeblock>
-            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FUABT_MixedAudioStream {
+
+	GENERATED_BODY()
+
+public:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	EUABT_AUDIO_SOURCE_TYPE sourceType = EUABT_AUDIO_SOURCE_TYPE::AUDIO_SOURCE_MICROPHONE;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	int64 remoteUserUid;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	FString channelName;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	int64 trackId;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class MixedAudioStream {
   sourceType?: AudioSourceType;
   remoteUserUid?: number;

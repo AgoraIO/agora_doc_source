@@ -19,11 +19,23 @@
             <codeblock props="cpp unreal" outputclass="language-cpp">struct FilterEffectOptions {
   const char * path;
   float strength;
-  
+
   FilterEffectOptions(const char * lut3dPath, float filterStrength) : path(lut3dPath), strength(filterStrength) {}
   FilterEffectOptions() : path(OPTIONAL_NULLPTR), strength(0.5) {}
 };</codeblock>
-            <codeblock props="bp" outputclass="language-cpp"></codeblock>
+            <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FUABT_FilterEffectOptions {
+	GENERATED_BODY()
+
+public:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	FString path;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	float strength = 0.5;
+};
+            </codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class FilterEffectOptions {
   path?: string;
   strength?: number;

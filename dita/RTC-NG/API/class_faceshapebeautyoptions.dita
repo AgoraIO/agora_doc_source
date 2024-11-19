@@ -23,16 +23,27 @@
     FACE_SHAPE_BEAUTY_STYLE_FEMALE = 0,
     FACE_SHAPE_BEAUTY_STYLE_MALE = 1,
   };
-  
+
   FACE_SHAPE_BEAUTY_STYLE shapeStyle;
-  
+
   int styleIntensity;
-  
+
   FaceShapeBeautyOptions(FACE_SHAPE_BEAUTY_STYLE shapeStyle, int styleIntensity) : shapeStyle(shapeStyle), styleIntensity(styleIntensity) {}
 
   FaceShapeBeautyOptions() : shapeStyle(FACE_SHAPE_BEAUTY_STYLE_FEMALE), styleIntensity(50) {}
 };</codeblock>
-            <codeblock props="bp" outputclass="language-cpp"></codeblock>
+            <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FUABT_FaceShapeBeautyOptions {
+	GENERATED_BODY()
+
+public:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	EUABT_FACE_SHAPE_BEAUTY_STYLE shapeStyle = EUABT_FACE_SHAPE_BEAUTY_STYLE::FACE_SHAPE_BEAUTY_STYLE_FEMALE;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	int styleIntensity = 50;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class FaceShapeBeautyOptions {
   shapeStyle?: FaceShapeBeautyStyle;
   styleIntensity?: number;

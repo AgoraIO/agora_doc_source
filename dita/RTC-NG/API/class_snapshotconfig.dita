@@ -22,6 +22,19 @@
   media::base::VIDEO_MODULE_POSITION position;
   SnapshotConfig() :filePath(NULL), position(media::base::POSITION_PRE_ENCODER) {}
 };</codeblock>
+            <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FUABT_SnapshotConfig {
+
+	GENERATED_BODY()
+
+public:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	FString filePath;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	EUABT_VIDEO_MODULE_POSITION position = EUABT_VIDEO_MODULE_POSITION::POSITION_PRE_ENCODER;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class SnapshotConfig {
   filePath?: string;
   position?: VideoModulePosition;
@@ -49,7 +62,7 @@
       _$SnapshotConfigFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$SnapshotConfigToJson(this);
-}</codeblock>            
+}</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">

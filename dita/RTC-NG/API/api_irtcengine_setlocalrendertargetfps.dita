@@ -18,7 +18,8 @@ targetFps:(int)targetFps;</codeblock>
             <codeblock props="hmos" outputclass="language-arkts"/>
             <codeblock props="ios mac" outputclass="language-objectivec">public abstract int setLocalRenderTargetFps(Constants.VideoSourceType sourceType, int targetFps);</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setLocalRenderTargetFps(VIDEO_SOURCE_TYPE sourceType, int targetFps) = 0;</codeblock>
-            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
+	int SetLocalRenderTargetFps(EUABT_VIDEO_SOURCE_TYPE sourceType, int targetFps);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setLocalRenderTargetFps(
     sourceType: VideoSourceType,
     targetFps: number
@@ -47,7 +48,7 @@ targetFps:(int)targetFps;</codeblock>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p>该方法在加入频道前后均可调用。</p>
-        </section>        
+        </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
             <p>无。</p>

@@ -18,7 +18,8 @@
             <codeblock props="hmos" outputclass="language-arkts"/>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setFaceShapeAreaOptions:(AgoraFaceShapeAreaOptions* _Nullable)options sourceType:(AgoraMediaSourceType)sourceType NS_SWIFT_NAME(setFaceShapeAreaOptions(_:sourceType:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setFaceShapeAreaOptions(const FaceShapeAreaOptions&amp; options, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;</codeblock>
-            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
+	int SetFaceShapeAreaOptions(const FUABT_FaceShapeAreaOptions& options, EUABT_MEDIA_SOURCE_TYPE type = EUABT_MEDIA_SOURCE_TYPE::PRIMARY_CAMERA_SOURCE);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setFaceShapeAreaOptions(
     options: FaceShapeAreaOptions,
     type?: MediaSourceType
@@ -46,7 +47,7 @@
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p>请在 <xref keyref="setFaceShapeBeautyOptions"/><ph props="apple android"> 或 <xref keyref="setFaceShapeBeautyOptions2" /></ph> 之后调用该方法。</p>
-        </section>        
+        </section>
         <section id="restriction" deliveryTarget="details" conkeyref="setFaceShapeBeautyOptions/restriction">
         </section>
         <section id="parameters" deliveryTarget="details">

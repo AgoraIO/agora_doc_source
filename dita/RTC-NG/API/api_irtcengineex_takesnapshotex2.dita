@@ -17,7 +17,8 @@
             <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (NSInteger)takeSnapshotExWithConfig:(AgoraRtcConnection * _Nonnull)connection uid:(NSInteger)uid config:(AgoraSnapshotConfig* _Nonnull)config NS_SWIFT_NAME(takeSnapshotExWithConfig(_:uid:config:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int takeSnapshotEx(const RtcConnection&amp; connection, uid_t uid, const media::SnapshotConfig&amp; config)  = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp"></codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
+	int TakeSnapshotEx(const FUABT_RtcConnection& connection, int64 uid, const FUABT_SnapshotConfig& config);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract takeSnapshotWithConfigEx(
     connection: RtcConnection,
     uid: number,
@@ -39,7 +40,7 @@
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p>该方法需要在 <xref keyref="joinChannelEx"/> 后调用。</p>
-        </section>        
+        </section>
         <section id="restriction" deliveryTarget="details"  conkeyref="takeSnapshot/restriction"/>
         <section id="related" deliveryTarget="details" conkeyref="takeSnapshot/related"/>
         <section id="parameters" deliveryTarget="details">
