@@ -19,8 +19,8 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLowlightEnhanceOptions:(BOOL)enable options:(AgoraLowlightEnhanceOptions* _Nullable)options NS_SWIFT_NAME(setLowlightEnhanceOptions(_:options:));
 </codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setLowlightEnhanceOptions(bool enabled, const LowlightEnhanceOptions&amp; options, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
-	int SetLowlightEnhanceOptions(bool enabled, const FLowlightEnhanceOptions&amp; options, EMEDIA_SOURCE_TYPE type);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
+	int SetLowlightEnhanceOptions(bool enabled, const FUABT_LowlightEnhanceOptions& options, EUABT_MEDIA_SOURCE_TYPE type);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setLowlightEnhanceOptions(
     enabled: boolean,
     options: LowlightEnhanceOptions,
@@ -48,7 +48,7 @@
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p>请在 <xref keyref="enableVideo"/> 后调用该方法。</p>
-        </section>        
+        </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
             <ul>
@@ -56,8 +56,8 @@
                 <li>暗光增强对设备性能有一定要求。开启暗光增强后，如果设备出现严重发烫等问题，建议你将暗光增强等级修改为消耗性能较少的等级或关闭暗光增强功能。</li>
                 <li>如果要实现优先画质 (<ph keyref="LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY"/>) 的暗光增强，需要先调用 <xref keyref="setVideoDenoiserOptions"/> 实现视频降噪，具体对应关系如下：
                     <ul>
-                        <li>暗光增强为自动模式 (<ph keyref="LOW_LIGHT_ENHANCE_AUTO"/>) 时，视频降噪需设置为优先画质 (<ph keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY" />)、自动模式 (<ph keyref="VIDEO_DENOISER_AUTO" />)。</li>    
-                        <li>暗光增强为手动模式 (<ph keyref="LOW_LIGHT_ENHANCE_MANUAL"/>) 时，视频降噪需设置为优先画质 (<ph keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY" />)、手动模式 (<ph keyref="VIDEO_DENOISER_MANUAL" />)。</li>    
+                        <li>暗光增强为自动模式 (<ph keyref="LOW_LIGHT_ENHANCE_AUTO"/>) 时，视频降噪需设置为优先画质 (<ph keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY" />)、自动模式 (<ph keyref="VIDEO_DENOISER_AUTO" />)。</li>
+                        <li>暗光增强为手动模式 (<ph keyref="LOW_LIGHT_ENHANCE_MANUAL"/>) 时，视频降噪需设置为优先画质 (<ph keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY" />)、手动模式 (<ph keyref="VIDEO_DENOISER_MANUAL" />)。</li>
                     </ul>
                 </li>
             </ul>
