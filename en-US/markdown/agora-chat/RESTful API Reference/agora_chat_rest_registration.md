@@ -871,7 +871,6 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Content-Type` | String | `application/json` | Yes |
 | `Accept` | String | `application/json` | Yes |
 | `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
@@ -939,7 +938,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter            | Type   | Description                   | Required |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Content-Type`  | String | `application/json`   | Yes      |
+| `Accept` | String | `application/json` | Yes |
 | `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes      |
 
 ### HTTP response
@@ -1028,7 +1027,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 ```shell
 # Replace {YourAppToken} with the app token generated in your server.
-curl -X POST http://XXXX/XXXX/XXXX/users/batch/status -H 'Authorization: Bearer {YourAppToken}' -H 'Content-Type: application/json' -d '{"usernames":["user1","user2"]}'
+curl -X POST http://XXXX/XXXX/XXXX/users/batch/status -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' -d '{"usernames":["user1","user2"]}'
 ```
 
 #### Response example
@@ -1075,7 +1074,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter            | Type   | Description                   | Required |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Content-Type`  | String | `application/json`  | Yes   |
+| `Accept` | String | The parameter type. Set it as `application/json`. | Yes |
 | `Authorization` | String |  The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes      |
 
 ### HTTP response
@@ -1140,7 +1139,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter            | Type   | Description                   | Required |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Content-Type`  | String | `application/json`    | Yes       |
+| `Accept` | String | The parameter type. Set it as `application/json`. | Yes |
 | `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       |
 
 ### HTTP response
