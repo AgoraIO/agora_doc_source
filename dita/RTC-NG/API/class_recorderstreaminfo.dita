@@ -12,9 +12,9 @@
   public int recorderStreamType;
 }</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">export class RecorderStreamInfo {
-  
+
   public uid: number = 0;
-  
+
   public channelId: string;
   public constructor() {
     this.uid = 0;
@@ -59,6 +59,7 @@ struct FRecorderStreamInfo {
     {
         public string channelId;
         public uint uid;
+        public RecorderStreamType type;
 
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">RecorderStreamInfo {
@@ -75,6 +76,9 @@ class RecorderStreamInfo {
 
   @JsonKey(name: 'uid')
   final int? uid;
+
+  @JsonKey(name: 'type')
+  final RecorderStreamType? type;
 
   factory RecorderStreamInfo.fromJson(Map&lt;String, dynamic> json) =>
       _$RecorderStreamInfoFromJson(json);
@@ -101,7 +105,7 @@ class RecorderStreamInfo {
                  <pt>uid</pt>
                  <pd>需录制的用户 ID。</pd>
              </plentry>
-             <plentry props="cpp apple framework">
+             <plentry props="cpp apple unity rn electron flutter cs unreal">
                  <pt>type</pt>
                  <pd>需录制的视频流类型，详见 <xref keyref="RecorderStreamType"/>。</pd>
              </plentry>
