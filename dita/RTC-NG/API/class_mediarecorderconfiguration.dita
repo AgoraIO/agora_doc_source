@@ -178,7 +178,7 @@ struct FMediaRecorderConfiguration
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
 class MediaRecorderConfiguration {
-  /// @nodoc
+
   const MediaRecorderConfiguration(
       {this.storagePath,
       this.containerFormat,
@@ -294,14 +294,16 @@ class MediaRecorderConfiguration {
                 </pd>
             </plentry>
             <plentry props="cpp apple android unity flutter rn electron cs unreal">
-                <pt>sample_rate</pt>
+                <pt props="cpp apple android unity rn electron cs unreal">sample_rate</pt>
+                <pt props="flutter">sampleRate</pt>
                 <pd>录制音频的采样率 (Hz)，可设置为 16000，32000，44100 或 48000。
                     <ph props="cpp apple unity flutter rn electron cs unreal">该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 中的  <parmname>type</parmname>设置为 <ph keyref="PREVIEW" /> 时需要传入。</ph>
-                    <ph props="android">该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 的 <parmname>recorderStreamType</parmname> 为 0 时需要传入。</ph>
+                    <ph props="android">该参数仅在调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 的 <parmname>recorderStreamType</parmname> 为 0 时需要传入。</ph>
                 </pd>
             </plentry>
             <plentry props="cpp apple android unity flutter rn electron cs unreal">
-                <pt>channel_num</pt>
+                <pt props="cpp apple android unity rn electron cs unreal">channel_num</pt>
+                <pt props="flutter">channelNum</pt>
                 <pd>录制音频的声道数:
                     <ul>
                         <li>1: 单声道</li>
