@@ -51,15 +51,15 @@
     }
   }</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">export class MediaRecorderConfiguration {
-  
+
   public storagePath: string;
-  
+
   public containerFormat: number = AgoraMediaRecorder.CONTAINER_MP4;
-  
+
   public streamType: number = AgoraMediaRecorder.STREAM_TYPE_BOTH;
-  
+
   public maxDurationMs: number = 120000;
-  
+
   public recorderInfoUpdateInterval: number = 0;
   public constructor(storagePath: string, containerFormat: number, streamType: number,
                      maxDurationMs: number, recorderInfoUpdateInterval: number) {
@@ -138,38 +138,59 @@ struct FMediaRecorderConfiguration
 	int recorderInfoUpdateInterval;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class MediaRecorderConfiguration {
-   recorderInfoUpdateInterval?: number;
+  storagePath?: string;
+  containerFormat?: MediaRecorderContainerFormat;
+  streamType?: MediaRecorderStreamType;
+  maxDurationMs?: number;
+  recorderInfoUpdateInterval?: number;
   width?: number;
   height?: number;
   fps?: number;
   sample_rate?: number;
   channel_num?: number;
   videoSourceType?: VideoSourceType;
- }</codeblock>
+}</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public struct MediaRecorderConfiguration {
         public string storagePath;
         public MediaRecorderContainerFormat containerFormat;
         public MediaRecorderStreamType streamType;
         public int maxDurationMs;
         public int recorderInfoUpdateInterval;
+        public int width;
+        public int height;
+        public int fps;
+        public int sample_rate;
+        public int channel_num;
+        public VIDEO_SOURCE_TYPE videoSourceType;
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class MediaRecorderConfiguration {
-   recorderInfoUpdateInterval?: number;
+  storagePath?: string;
+  containerFormat?: MediaRecorderContainerFormat;
+  streamType?: MediaRecorderStreamType;
+  maxDurationMs?: number;
+  recorderInfoUpdateInterval?: number;
   width?: number;
   height?: number;
   fps?: number;
   sample_rate?: number;
   channel_num?: number;
   videoSourceType?: VideoSourceType;
- }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class MediaRecorderConfiguration {
-
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class MediaRecorderConfiguration {
+  /// @nodoc
   const MediaRecorderConfiguration(
       {this.storagePath,
       this.containerFormat,
       this.streamType,
       this.maxDurationMs,
-      this.recorderInfoUpdateInterval});
+      this.recorderInfoUpdateInterval,
+      this.width,
+      this.height,
+      this.fps,
+      this.sampleRate,
+      this.channelNum,
+      this.videoSourceType});
 
   @JsonKey(name: 'storagePath')
   final String? storagePath;
@@ -185,6 +206,24 @@ struct FMediaRecorderConfiguration
 
   @JsonKey(name: 'recorderInfoUpdateInterval')
   final int? recorderInfoUpdateInterval;
+
+  @JsonKey(name: 'width')
+  final int? width;
+
+  @JsonKey(name: 'height')
+  final int? height;
+
+  @JsonKey(name: 'fps')
+  final int? fps;
+
+  @JsonKey(name: 'sample_rate')
+  final int? sampleRate;
+
+  @JsonKey(name: 'channel_num')
+  final int? channelNum;
+
+  @JsonKey(name: 'videoSourceType')
+  final VideoSourceType? videoSourceType;
 
   factory MediaRecorderConfiguration.fromJson(Map&lt;String, dynamic> json) =>
       _$MediaRecorderConfigurationFromJson(json);
@@ -233,49 +272,49 @@ struct FMediaRecorderConfiguration
                 <pt>recorderInfoUpdateInterval</pt>
                 <pd>录制信息更新间隔，单位为毫秒，取值范围为 [1000,10000]。SDK 会根据该值的设置触发 <xref keyref="onRecorderInfoUpdated" /> 回调，报告更新后的录制信息。</pd>
             </plentry>
-            <plentry>
+            <plentry props="cpp apple android unity flutter rn electron cs unreal">
                 <pt>width</pt>
                 <pd>录制视频的宽度 (px)，宽 × 高的最大值不应超过 3840 × 2160。
-                    <ph props="cpp apple framework">该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 中的  <parmname>type</parmname>设置为 <ph keyref="PREVIEW" /> 时需要传入。</ph>
+                    <ph props="cpp apple unity flutter rn electron cs unreal">该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 中的  <parmname>type</parmname>设置为 <ph keyref="PREVIEW" /> 时需要传入。</ph>
                     <ph props="android">该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 的 <parmname>recorderStreamType</parmname> 为 0 时需要传入。</ph>
                 </pd>
             </plentry>
-            <plentry>
+            <plentry props="cpp apple android unity flutter rn electron cs unreal">
                 <pt>height</pt>
                 <pd>录制视频的高度 (px)，宽 × 高的最大值不超过 3840 × 2160。
-                    <ph props="cpp apple framework">该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 中的  <parmname>type</parmname>设置为 <ph keyref="PREVIEW" /> 时需要传入。</ph>
+                    <ph props="cpp apple unity flutter rn electron cs unreal">该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 中的  <parmname>type</parmname>设置为 <ph keyref="PREVIEW" /> 时需要传入。</ph>
                     <ph props="android">该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 的 <parmname>recorderStreamType</parmname> 为 0 时需要传入。</ph>
                 </pd>
             </plentry>
-            <plentry>
+            <plentry props="cpp apple android unity flutter rn electron cs unreal">
                 <pt>fps</pt>
                 <pd>录制视频的帧率，最高值不超过 30，如： 5、10、15、24、30 等。
-                    <ph props="cpp apple framework">该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 中的  <parmname>type</parmname>设置为 <ph keyref="PREVIEW" /> 时需要传入。</ph>
+                    <ph props="cpp apple unity flutter rn electron cs unreal">该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 中的  <parmname>type</parmname>设置为 <ph keyref="PREVIEW" /> 时需要传入。</ph>
                     <ph props="android">该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 的 <parmname>recorderStreamType</parmname> 为 0 时需要传入。</ph>
                 </pd>
             </plentry>
-            <plentry>
+            <plentry props="cpp apple android unity flutter rn electron cs unreal">
                 <pt>sample_rate</pt>
                 <pd>录制音频的采样率 (Hz)，可设置为 16000，32000，44100 或 48000。
-                    <ph props="cpp apple framework">该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 中的  <parmname>type</parmname>设置为 <ph keyref="PREVIEW" /> 时需要传入。</ph>
+                    <ph props="cpp apple unity flutter rn electron cs unreal">该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 中的  <parmname>type</parmname>设置为 <ph keyref="PREVIEW" /> 时需要传入。</ph>
                     <ph props="android">该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 的 <parmname>recorderStreamType</parmname> 为 0 时需要传入。</ph>
                 </pd>
             </plentry>
-            <plentry>
+            <plentry props="cpp apple android unity flutter rn electron cs unreal">
                 <pt>channel_num</pt>
                 <pd>录制音频的声道数:
                     <ul>
                         <li>1: 单声道</li>
                         <li>2: 双声道</li>
                     </ul>
-                    <ph props="cpp apple framework">该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 中的  <parmname>type</parmname>设置为 <ph keyref="PREVIEW" /> 时需要传入。</ph>
+                    <ph props="cpp apple unity flutter rn electron cs unreal">该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 中的  <parmname>type</parmname>设置为 <ph keyref="PREVIEW" /> 时需要传入。</ph>
                     <ph props="android">该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 的 <parmname>recorderStreamType</parmname> 为 0 时需要传入。</ph>
                 </pd>
             </plentry>
-            <plentry>
+            <plentry props="cpp apple android unity flutter rn electron cs unreal">
                 <pt>videoSourceType</pt>
                 <pd>录制视频源的类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。
-                    <ph props="cpp apple framework">该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 中的  <parmname>type</parmname>设置为 <ph keyref="PREVIEW" /> 时需要传入。</ph>
+                    <ph props="cpp apple unity flutter rn electron cs unreal">该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 中的  <parmname>type</parmname>设置为 <ph keyref="PREVIEW" /> 时需要传入。</ph>
                     <ph props="android">该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <apiname keyref="RecorderStreamInfo"/> 的 <parmname>recorderStreamType</parmname> 为 0 时需要传入。</ph>
                 </pd>
             </plentry>
