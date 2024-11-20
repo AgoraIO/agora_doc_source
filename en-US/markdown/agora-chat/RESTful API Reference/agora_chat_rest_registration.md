@@ -754,7 +754,6 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Content-Type` | String | `application/json` | Yes |
 | `Accept` | String | `application/json` | Yes |
 | `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
@@ -774,7 +773,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 ```shell
 # Replace {YourAppToken} with the app token generated in your server.
-curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' 'http://XXXX/XXXX/XXXX/users/user1/deactivate'
+curl -X POST -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' 'http://XXXX/XXXX/XXXX/users/user1/deactivate'
 ```
 
 #### Response example
@@ -819,7 +818,6 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Content-Type` | String | `application/json` | Yes |
 | `Accept` | String | `application/json` | Yes |
 | `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
@@ -838,7 +836,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 ```shell
 # Replace {YourAppToken} with the app token generated in your server.
-curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' 'http://XXXX/XXXX/XXXX/users/user1/activate'
+curl -X POST -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' 'http://XXXX/XXXX/XXXX/users/user1/activate'
 ```
 
 #### Response example
@@ -1001,6 +999,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | Parameter            | Type   | Description                   | Required |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Content-Type`  | String | `application/json`   | Yes       |
+| `Accept` | String | `application/json` | Yes |
 | `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       |
 
 #### Request body
@@ -1052,7 +1051,7 @@ This API does not check whether the specified usernames are valid. If the specif
 
 ## Querying the number of offline messages
 
-This method queries the number of offline messages a user has, and whether or not they have been delivered.
+This method queries the number of offline messages a user has.
 
 For each App Key, the call frequency limit of this method is 100 per second.
 
