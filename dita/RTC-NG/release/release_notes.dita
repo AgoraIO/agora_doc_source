@@ -71,7 +71,7 @@
                         <p>此外，受该调整影响，实现画质优先的暗光增强效果时，需要先开启视频降噪并采用特定设置，详见 <codeph><apiname keyref="setLowlightEnhanceOptions"/></codeph>。</p>
                     </li>
                     <li props="mac cpp electron unity flutter bp unreal"><ph><b> 摄像头插拔状态变更 (macOS, Windows)</b></ph>
-                        <p props="cpp">在之前版本中，当摄像头拔出并重新插入时，<codeph><apiname keyref="onVideoDeviceStateChanged"/></codeph> 回调会将设备状态报告为 <codeph><apiname keyref="MEDIA_DEVICE_STATE_ACTIVE"/></codeph>(1)（设备正在使用）。该版本起，摄像头重新插入后，设备状态将改为 <codeph><apiname keyref="MEDIA_DEVICE_STATE_IDLE"/></codeph>(0)（设备就绪）。</p>
+                        <p props="cpp electron unity flutter bp unreal">在之前版本中，当摄像头拔出并重新插入时，<codeph><apiname keyref="onVideoDeviceStateChanged"/></codeph> 回调会将设备状态报告为 <codeph><apiname keyref="MEDIA_DEVICE_STATE_ACTIVE"/></codeph>(1)（设备正在使用）。该版本起，摄像头重新插入后，设备状态将改为 <codeph><apiname keyref="MEDIA_DEVICE_STATE_IDLE"/></codeph>(0)（设备就绪）。</p>
                         <p props="mac">在之前版本中，摄像头拔出并重新插入后不会自动恢复采集。该版本起，摄像头重新插入后将自动恢复采集。</p>
                     </li>
                     <li><ph><b>视频编码偏好变更</b></ph>
@@ -127,7 +127,7 @@
                     </li>
                     <li props="android unity rn flutter unreal"><ph><b>外部 MediaProjection (Android)</b></ph>
                         <p>该版本新增 <codeph><apiname keyref="setExternalMediaProjection"/></codeph> 方法，该方法支持你自行设置外部 <codeph>MediaProjection</codeph>，并取代 SDK 申请的 <codeph>MediaProjection</codeph>。 </p>
-                        <p>如果你具备自行申请 <codeph>MediaProjection</codeph> 的开发能力，可通过该功能实现更加灵活的屏幕采集。有关具体实现方法，详见《屏幕共享》。</p>
+                        <p>如果你具备自行申请 <codeph>MediaProjection</codeph> 的开发能力，可通过该功能实现更加灵活的屏幕采集。</p>
                     </li>
                     <li props="android unity rn flutter unreal"><ph><b>EGL 环境上下文 (Android)</b></ph>
                         <p>该版本新增了 <codeph><apiname keyref="setExternalRemoteEglContext"/></codeph> 方法，用于设置远端视频流渲染的 EGL 环境上下文。使用 Texture 格式的视频数据进行远端视频自渲染时，你可以通过该方法替换 SDK 默认的远端 EGL 环境上下文，实现统一的 EGL 上下文管理。</p>
