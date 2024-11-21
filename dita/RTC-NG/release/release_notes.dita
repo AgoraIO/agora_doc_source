@@ -108,7 +108,7 @@
                         <p>该版本新增 <codeph><apiname keyref="setLocalRenderTargetFps"/></codeph> 和 <codeph><apiname keyref="setRemoteRenderTargetFps"/></codeph> 方法，支持设置视频在本地和远端渲染时的最大帧率，SDK 进行视频渲染的实际帧率会尽量接近该值。</p>
                         <p>在对视频渲染帧率要求不高的场景（例如：屏幕共享、在线教育）或者远端使用中低端设备的场景下，你可以通过这一组方法限制视频渲染帧率，从而减小 CPU 消耗、提升系统性能。</p>
                     </li>
-                    <li><ph><b>URL 拉流播放</b></ph>
+                    <li props="native"><ph><b>URL 拉流播放</b></ph>
                         <p>URL 拉流播放功能主要用于直播场景，观众端可以直接通过 <codeph><apiname keyref="OpenWithUrl"/></codeph> 打开特定的 URL 来播放实时媒体流，无需加入频道、订阅等步骤，极大简化了观众端观看直播流的 API 调用。</p>
                         <p>在播放的过程中，观众端可以通过 <codeph><apiname keyref="SetAbrSubscriptionLayer"/></codeph> 设置订阅视频大小流，并可以在大小流之间实现平滑切换。如果对视频体验有更高要求，可以联系<xref keyref="ticket-link"/>开通 ABR（Adaptive Bitrate，自适应码率）功能。启用该功能后，可以自定义不同层级的视频流分辨率，观众可以实现不同分辨率视频流的平滑切换。</p>
                         <p>当网络情况不稳定时，观众端可以调用 <codeph><apiname keyref="SetAbrFallbackLayer"/></codeph> 来设置订阅的视频流的回退选项。SDK 会以你指定的最低质量层级对应的视频流分辨率为下限，在此范围内根据网络状况动态调整分辨率。</p><p props="hide">有关该功能的实现步骤，详见 <xref keyref="rte-player"/>。</p>
