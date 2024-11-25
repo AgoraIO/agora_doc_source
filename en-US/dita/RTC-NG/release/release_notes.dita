@@ -85,7 +85,7 @@
     <li>In the <codeph><apiname keyref="DEGRADATION_PREFERENCE"/></codeph> enumeration class, a new <codeph><ph keyref="MAINTAIN_AUTO"/></codeph> (-1) enumeration is added, replacing the original <codeph><ph keyref="MAINTAIN_QUALITY"/></codeph> (1) as the default value. In this mode, the SDK will automatically choose between <codeph><ph keyref="MAINTAIN_FRAMERATE"/></codeph>, <codeph><ph keyref="MAINTAIN_BALANCED"/></codeph>, or <codeph><ph keyref="MAINTAIN_RESOLUTION"/></codeph> based on your video scene settings to achieve the optimal overall quality experience (QoE).</li>
     </ul></p>
 </li>
-<li props="android"><ph><b>16 KB memory page size</b></ph>
+<li props="android"><ph><b>16 KB memory page size (Android)</b></ph>
                         <p>Starting from Android 15, the system adds support for 16 KB memory page size, as detailed in <xref keyref="page-size"/>. To ensure the stability and performance of the app, starting from this version, the SDK supports 16 KB memory page size, ensuring seamless operation on devices with both 4 KB and 16 KB memory page sizes, enhancing compatibility and preventing crashes.</p>
                     </li>
                 </ol>
@@ -128,11 +128,11 @@
         </ul>
     </p>
 </li>
-<li props="android unity rn flutter unreal"><ph><b>External MediaProjection</b></ph>
+<li props="android unity rn flutter unreal"><ph><b>External MediaProjection (Android)</b></ph>
                         <p>This version introduces the <codeph><apiname keyref="setExternalMediaProjection"/></codeph> method, which allows you to set an external <codeph>MediaProjection</codeph> and replace the <codeph>MediaProjection</codeph> applied by the SDK.</p>
                         <p>If you have the capability to apply for <codeph>MediaProjection</codeph> on your own, you can use this feature to achieve more flexible screen capture.</p>
                     </li>
-<li props="android"><ph><b>EGL context</b></ph>
+<li props="android"><ph><b>EGL context (Android)</b></ph>
                         <p>This version introduces the <codeph><apiname keyref="setExternalRemoteEglContext"/></codeph> method, which is used to set the EGL context for rendering remote video streams. When using Texture format video data for remote video self-rendering, you can use this method to replace the SDK's default remote EGL context, achieving unified EGL context management.</p>
                     </li>
 <li><ph><b>Color space settings</b></ph>
@@ -183,11 +183,11 @@
         <p>This version fixes the following issues:</p>
         <ul>
             <li props="cpp unity flutter electron unreal">When calling <codeph><apiname keyref="startScreenCaptureByWindowId"/></codeph> to share the screen, the window capture area specified by <parmname>regionRect</parmname> was inaccurate, resulting in incorrect width and height of the screen sharing window seen by the receiving end. (Windows)</li>
-            <li props="android ios unity flutter rn unreal">When the video source type of the sender is in JPEG format, the frame rate on the receiving end occasionally falls below expectations.</li>
-            <li props="android unity flutter rn unreal">Occasional noise and stuttering when playing music resources from the music content center.</li>
+            <li props="android ios unity flutter rn unreal">When the video source type of the sender is in JPEG format, the frame rate on the receiving end occasionally falls below expectations. (Android, iOS)</li>
+            <li props="android unity flutter rn unreal">Occasional noise and stuttering when playing music resources from the music content center. (Android)</li>
             <li props="cn">Occasional stuttering when playing accompaniment music through <codeph><apiname keyref="IMusicPlayer"/></codeph> without microphone permission in the app. (Android)</li>
-            <li props="android unity flutter rn unreal">During audio and video interaction, after being interrupted by a system call, the user volume reported by the <codeph><apiname keyref="onAudioVolumeIndication"/></codeph> callback was incorrect. </li>
-            <li props="android unity flutter rn unreal">When the receiving end subscribes to the video small stream by default and does not automatically subscribe to any video stream when joining the channel, calling <codeph><apiname keyref="muteRemoteVideoStream"/></codeph><codeph>(uid, false)</codeph> after joining the channel to resume receiving the video stream results in receiving the video large stream, which is not as expected. </li>
+            <li props="android unity flutter rn unreal">During audio and video interaction, after being interrupted by a system call, the user volume reported by the <codeph><apiname keyref="onAudioVolumeIndication"/></codeph> callback was incorrect. (Android)</li>
+            <li props="android unity flutter rn unreal">When the receiving end subscribes to the video small stream by default and does not automatically subscribe to any video stream when joining the channel, calling <codeph><apiname keyref="muteRemoteVideoStream"/></codeph><codeph>(uid, false)</codeph> after joining the channel to resume receiving the video stream results in receiving the video large stream, which is not as expected. (Android)</li>
             <li props="cpp unity electron flutter unreal">Occasional errors of not finding system files during audio and video interaction on Windows 7 systems. (Windows)</li>
             <li props="cpp unity electron flutter unreal">When calling <codeph><apiname keyref="followSystemRecordingDevice"/></codeph> or <codeph><apiname keyref="followSystemPlaybackDevice"/></codeph> to set the audio capture or playback device used by the SDK to not follow the system default audio playback device, the local audio state callback <codeph><apiname keyref="onLocalAudioStateChanged"/></codeph> is not triggered when the audio device is removed, which is not as expected. (Windows)</li>
             <li props="ios unity flutter rn unreal">Occasional instances where the receiving end cannot hear the sender during audio and video interaction. (iOS)</li>
