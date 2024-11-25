@@ -22,10 +22,47 @@
   media::base::VIDEO_MODULE_POSITION position;
   SnapshotConfig() :filePath(NULL), position(media::base::POSITION_PRE_ENCODER) {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity cs" outputclass="language-csharp"></codeblock>
-            <codeblock props="rn" outputclass="language-typescript"></codeblock>
-            <codeblock props="flutter" outputclass="language-dart"></codeblock>            
+            <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FUABT_SnapshotConfig {
+
+	GENERATED_BODY()
+
+public:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	FString filePath;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	EUABT_VIDEO_MODULE_POSITION position = EUABT_VIDEO_MODULE_POSITION::POSITION_PRE_ENCODER;
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export class SnapshotConfig {
+  filePath?: string;
+  position?: VideoModulePosition;
+}</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public class SnapshotConfig
+    {
+        public string filePath;
+
+        public VIDEO_MODULE_POSITION position;
+    }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class SnapshotConfig {
+  filePath?: string;
+  position?: VideoModulePosition;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class SnapshotConfig {
+  const SnapshotConfig({this.filePath, this.position});
+
+  @JsonKey(name: 'filePath')
+  final String? filePath;
+
+  @JsonKey(name: 'position')
+  final VideoModulePosition? position;
+
+  factory SnapshotConfig.fromJson(Map&lt;String, dynamic> json) =>
+      _$SnapshotConfigFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$SnapshotConfigToJson(this);
+}</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">

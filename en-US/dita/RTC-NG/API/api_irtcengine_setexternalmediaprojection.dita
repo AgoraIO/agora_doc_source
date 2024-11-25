@@ -19,9 +19,9 @@
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setExternalMediaProjection(void* mediaProjection) = 0;</codeblock>
             <codeblock props="bp" outputclass="language-cpp"/>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity cs" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetExternalMediaProjection(IntPtr mediaProjection);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract setExternalMediaProjection(mediaProjection: any): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setExternalMediaProjection(int mediaProjection);</codeblock> </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
@@ -30,7 +30,7 @@
                 <dd>v4.5.0</dd>
             </dlentry>
             </dl>
-             <note type="attention" props="cpp">This method is for Android only.</note> 
+             <note type="attention" props="cpp unreal unity rn flutter">This method is for Android only.</note>
             <p>After successfully calling this method, the external <codeph>MediaProjection</codeph> you set will replace the <codeph>MediaProjection</codeph> requested by the SDK to capture the screen video stream.</p>
             <p>When the screen sharing is stopped or <xref keyref="IRtcEngine"/> is destroyed, the SDK will automatically release the MediaProjection.</p>
         </section>
@@ -44,7 +44,7 @@
         <section id="timing" deliveryTarget="details">
             <title>Call timing</title>
             <p>Call this method after <xref keyref="startScreenCapture"/>.</p>
-        </section>        
+        </section>
         <section id="restriction" deliveryTarget="details">
             <title>Restrictions</title>
             <p>Before calling this method, you must first apply for <codeph>MediaProjection</codeph> permission.</p>
