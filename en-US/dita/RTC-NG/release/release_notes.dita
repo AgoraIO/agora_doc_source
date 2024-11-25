@@ -17,8 +17,9 @@
 <p props="cpp">As of v4.5.0, both RTC SDK and RTM SDK (v2.2.0 and above) include the <codeph>aosl.dll</codeph> library. If you manually integrate RTC SDK via CDN and also use RTM SDK, delete the lower version of the <codeph>aosl.dll</codeph> library to avoid conflicts. The <codeph>aosl.dll</codeph> library version in RTC SDK v4.5.0 is 1.2.13. You can check the version by viewing the <codeph>aosl.dll</codeph> file properties.</p>
 </note>
                 <ol>
-<li props="cpp"><ph><b>Member Parameter Type Changes</b></ph>
-    <p>To enhance the adaptability of various frameworks to the Native SDK, this version has made the following modifications to some API members or parameters:
+<li props="cpp unity"><ph><b>Member Parameter Type Changes</b></ph>
+    <p><ph props="cpp">To enhance the adaptability of various frameworks to the Native SDK, this version has made the following modifications to some API members or parameters:</ph>
+    <ph props="unity">This version has made the following modifications to some API members or parameters:</ph>
     <table frame="all" rowsep="1" colsep="1">
         <tgroup cols="3">
             <colspec colname="c1" colnum="1" colwidth="1*"/>
@@ -32,7 +33,7 @@
                 </row>
             </thead>
             <tbody>
-                <row>
+                <row props="cpp">
                     <entry><codeph><apiname keyref="startScreenCaptureByDisplayId"/></codeph></entry>
                     <entry><parmname>displayId</parmname></entry>
                     <entry>Changed from uint32_t to int64_t</entry>
@@ -74,8 +75,8 @@
                         <p>Instead, after enabling video denoising by calling <codeph><apiname keyref="setVideoDenoiserOptions"/></codeph>, you can call the <codeph><apiname keyref="setBeautyEffectOptions"/></codeph> method to enable the beauty skin smoothing feature. Using both together will achieve better video denoising effects. For strong denoising, it is recommended to set the skin smoothing parameters as detailed in <codeph><apiname keyref="setVideoDenoiserOptions"/></codeph>.</p>
                         <p>Additionally, due to this adjustment, to achieve the best low-light enhancement effect with a focus on image quality, you need to enable video denoising first and use specific settings as detailed in <codeph><apiname keyref="setLowlightEnhanceOptions"/></codeph>.</p>
                     </li>
-<li props="mac cpp"><ph><b>Changes in camera plug and unplug status (macOS, Windows)</b></ph>
-    <p props="cpp">In previous versions, when the camera was unplugged and replugged, the <codeph><apiname keyref="onVideoDeviceStateChanged"/></codeph> callback would report the device status as <apiname keyref="MEDIA_DEVICE_STATE_ACTIVE"/>(1) (device in use). Starting from this version, after the camera is replugged, the device status will change to <codeph><apiname keyref="MEDIA_DEVICE_STATE_IDLE"/></codeph>(0) (device ready).</p>
+<li props="mac cpp electron unity flutter bp unreal"><ph><b>Changes in camera plug and unplug status (macOS, Windows)</b></ph>
+    <p props="cpp electron unity flutter bp unreal">In previous versions, when the camera was unplugged and replugged, the <codeph><apiname keyref="onVideoDeviceStateChanged"/></codeph> callback would report the device status as <apiname keyref="MEDIA_DEVICE_STATE_ACTIVE"/>(1) (device in use). Starting from this version, after the camera is replugged, the device status will change to <codeph><apiname keyref="MEDIA_DEVICE_STATE_IDLE"/></codeph>(0) (device ready).</p>
     <p props="mac">In previous versions, the camera would not automatically resume capture after being unplugged and replugged. Starting from this version, the camera will automatically resume capture after being replugged.</p>
 </li>
 <li><ph><b>Changes in video encoding preferences</b></ph>
@@ -112,7 +113,7 @@
     <p>This version adds the <codeph><apiname keyref="setLocalRenderTargetFps"/></codeph> and <codeph><apiname keyref="setRemoteRenderTargetFps"/></codeph> methods, which support setting the maximum frame rate for video rendering locally and remotely. The actual frame rate for video rendering by the SDK will be as close to this value as possible.</p>
     <p>In scenarios where the frame rate requirement for video rendering is not high (e.g., screen sharing, online education) or when the remote end uses mid-to-low-end devices, you can use this set of methods to limit the video rendering frame rate, thereby reducing CPU consumption and improving system performance.</p>
                     </li>
-<li><ph><b>Watching live streaming through URLs</b></ph>
+<li props="native"><ph><b>Watching live streaming through URLs</b></ph>
     <p>As of this version, audience members can directly open a specific URL to play the real-time media stream through <codeph><apiname keyref="OpenWithUrl"/></codeph>, instead of joining a channel and subscribing to the streams of hosts, which greatly simplifies the API calls for the audience end to watch a live stream.</p>
 </li>
 <li><ph><b>Filter effects</b></ph>
@@ -132,7 +133,7 @@
                         <p>This version introduces the <codeph><apiname keyref="setExternalMediaProjection"/></codeph> method, which allows you to set an external <codeph>MediaProjection</codeph> and replace the <codeph>MediaProjection</codeph> applied by the SDK.</p>
                         <p>If you have the capability to apply for <codeph>MediaProjection</codeph> on your own, you can use this feature to achieve more flexible screen capture.</p>
                     </li>
-<li props="android"><ph><b>EGL context (Android)</b></ph>
+<li props="android unity rn flutter unreal"><ph><b>EGL context (Android)</b></ph>
                         <p>This version introduces the <codeph><apiname keyref="setExternalRemoteEglContext"/></codeph> method, which is used to set the EGL context for rendering remote video streams. When using Texture format video data for remote video self-rendering, you can use this method to replace the SDK's default remote EGL context, achieving unified EGL context management.</p>
                     </li>
 <li><ph><b>Color space settings</b></ph>
@@ -140,8 +141,8 @@
 </li>
 <li><ph><b>Others</b></ph>
     <ul>
-        <li props="cpp unity flutter electron unreal"><codeph><apiname keyref="onLocalVideoStateChanged"/></codeph> callback adds the <codeph><ph keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_DISCONNECTED"/></codeph> enumeration, indicating that the currently used video capture device has been disconnected (e.g., unplugged). (Windows)</li>
-        <li props="cpp mac"><codeph><apiname keyref="MEDIA_DEVICE_STATE_TYPE"/></codeph> adds the <codeph><apiname keyref="MEDIA_DEVICE_STATE_PLUGGED_IN"/></codeph> enumeration, indicating that the device has been plugged in.</li>
+        <li props="cpp unity flutter electron unreal bp"><codeph><apiname keyref="onLocalVideoStateChanged"/></codeph> callback adds the <codeph><ph keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_DISCONNECTED"/></codeph> enumeration, indicating that the currently used video capture device has been disconnected (e.g., unplugged). (Windows)</li>
+        <li props="cpp unity flutter unreal bp electron"><codeph><apiname keyref="MEDIA_DEVICE_STATE_TYPE"/></codeph> adds the <codeph><apiname keyref="MEDIA_DEVICE_STATE_PLUGGED_IN"/></codeph> enumeration, indicating that the device has been plugged in. (Windows)</li>
     </ul>
 </li>
                 </ol>
@@ -181,21 +182,21 @@
     <body>
         <p>This version fixes the following issues:</p>
         <ul>
-            <li props="cpp unity flutter electron unreal">When calling <codeph><apiname keyref="startScreenCaptureByWindowId"/></codeph> to share the screen, the window capture area specified by <parmname>regionRect</parmname> was inaccurate, resulting in incorrect width and height of the screen sharing window seen by the receiving end. (Windows)</li>
-            <li props="android ios unity flutter rn unreal">When the video source type of the sender is in JPEG format, the frame rate on the receiving end occasionally falls below expectations. (Android, iOS)</li>
-            <li props="android unity flutter rn unreal">Occasional noise and stuttering when playing music resources from the music content center. (Android)</li>
+            <li props="cpp unity flutter electron unreal bp">When calling <codeph><apiname keyref="startScreenCaptureByWindowId"/></codeph> to share the screen, the window capture area specified by <parmname>regionRect</parmname> was inaccurate, resulting in incorrect width and height of the screen sharing window seen by the receiving end. (Windows)</li>
+            <li props="android ios unity flutter rn unreal bp">When the video source type of the sender is in JPEG format, the frame rate on the receiving end occasionally falls below expectations. (Android, iOS)</li>
+            <li props="cn">Occasional noise and stuttering when playing music resources from the music content center. (Android)</li>
             <li props="cn">Occasional stuttering when playing accompaniment music through <codeph><apiname keyref="IMusicPlayer"/></codeph> without microphone permission in the app. (Android)</li>
-            <li props="android unity flutter rn unreal">During audio and video interaction, after being interrupted by a system call, the user volume reported by the <codeph><apiname keyref="onAudioVolumeIndication"/></codeph> callback was incorrect. (Android)</li>
-            <li props="android unity flutter rn unreal">When the receiving end subscribes to the video small stream by default and does not automatically subscribe to any video stream when joining the channel, calling <codeph><apiname keyref="muteRemoteVideoStream"/></codeph><codeph>(uid, false)</codeph> after joining the channel to resume receiving the video stream results in receiving the video large stream, which is not as expected. (Android)</li>
-            <li props="cpp unity electron flutter unreal">Occasional errors of not finding system files during audio and video interaction on Windows 7 systems. (Windows)</li>
-            <li props="cpp unity electron flutter unreal">When calling <codeph><apiname keyref="followSystemRecordingDevice"/></codeph> or <codeph><apiname keyref="followSystemPlaybackDevice"/></codeph> to set the audio capture or playback device used by the SDK to not follow the system default audio playback device, the local audio state callback <codeph><apiname keyref="onLocalAudioStateChanged"/></codeph> is not triggered when the audio device is removed, which is not as expected. (Windows)</li>
-            <li props="ios unity flutter rn unreal">Occasional instances where the receiving end cannot hear the sender during audio and video interaction. (iOS)</li>
-            <li props="apple unity flutter rn unreal">During audio and video interaction, if the sender's device system version is iOS 17, the receiving end occasionally cannot hear the sender. (iOS)</li>
-            <li props="apple unity flutter rn unreal">In live streaming scenarios, the time taken to reconnect to the live room after the audience end disconnects due to network switching is longer than expected. (iOS)</li>
-            <li props="apple unity flutter rn unreal">No sound when playing online media resources using the media player after the app starts. (iOS)</li>
-            <li props="apple unity flutter rn unreal">Occasional instances of no sound in audio capture after resuming from being interrupted by other system apps during audio and video interaction. (iOS)</li>
+            <li props="android unity flutter rn unreal bp">During audio and video interaction, after being interrupted by a system call, the user volume reported by the <codeph><apiname keyref="onAudioVolumeIndication"/></codeph> callback was incorrect. (Android)</li>
+            <li props="android unity flutter rn unreal bp">When the receiving end subscribes to the video small stream by default and does not automatically subscribe to any video stream when joining the channel, calling <codeph><apiname keyref="muteRemoteVideoStream"/></codeph><codeph>(uid, false)</codeph> after joining the channel to resume receiving the video stream results in receiving the video large stream, which is not as expected. (Android)</li>
+            <li props="cpp unity electron flutter unreal bp">Occasional errors of not finding system files during audio and video interaction on Windows 7 systems. (Windows)</li>
+            <li props="cpp unity electron flutter unreal bp">When calling <codeph><apiname keyref="followSystemRecordingDevice"/></codeph> or <codeph><apiname keyref="followSystemPlaybackDevice"/></codeph> to set the audio capture or playback device used by the SDK to not follow the system default audio playback device, the local audio state callback <codeph><apiname keyref="onLocalAudioStateChanged"/></codeph> is not triggered when the audio device is removed, which is not as expected. (Windows)</li>
+            <li props="ios unity flutter rn unreal bp">Occasional instances where the receiving end cannot hear the sender during audio and video interaction. (iOS)</li>
+            <li props="apple unity flutter rn unreal bp">During audio and video interaction, if the sender's device system version is iOS 17, the receiving end occasionally cannot hear the sender. (iOS)</li>
+            <li props="apple unity flutter rn unreal bp">In live streaming scenarios, the time taken to reconnect to the live room after the audience end disconnects due to network switching is longer than expected. (iOS)</li>
+            <li props="apple unity flutter rn unreal bp">No sound when playing online media resources using the media player after the app starts. (iOS)</li>
+            <li props="apple unity flutter rn unreal bp">Occasional instances of no sound in audio capture after resuming from being interrupted by other system apps during audio and video interaction. (iOS)</li>
             <li>Calling <codeph><apiname keyref="startAudioMixing"/></codeph> and then immediately calling <codeph><apiname keyref="pauseAudioMixing"/></codeph> to pause the music file playback does not take effect.</li>
-            <li props="android unity flutter rn">Occasional crashes during audio and video interaction. </li>
+            <li props="android unity flutter rn bp">Occasional crashes during audio and video interaction. (Android)</li>
         </ul>
     </body>
 </topic>
