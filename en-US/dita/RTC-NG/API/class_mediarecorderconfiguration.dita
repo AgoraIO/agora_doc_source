@@ -51,15 +51,15 @@
     }
   }</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">export class MediaRecorderConfiguration {
-  
+
   public storagePath: string;
-  
+
   public containerFormat: number = AgoraMediaRecorder.CONTAINER_MP4;
-  
+
   public streamType: number = AgoraMediaRecorder.STREAM_TYPE_BOTH;
-  
+
   public maxDurationMs: number = 120000;
-  
+
   public recorderInfoUpdateInterval: number = 0;
   public constructor(storagePath: string, containerFormat: number, streamType: number,
                      maxDurationMs: number, recorderInfoUpdateInterval: number) {
@@ -138,16 +138,17 @@ struct FMediaRecorderConfiguration
 	int recorderInfoUpdateInterval;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class MediaRecorderConfiguration {
-
   storagePath?: string;
-
   containerFormat?: MediaRecorderContainerFormat;
-
   streamType?: MediaRecorderStreamType;
-
   maxDurationMs?: number;
-
   recorderInfoUpdateInterval?: number;
+  width?: number;
+  height?: number;
+  fps?: number;
+  sample_rate?: number;
+  channel_num?: number;
+  videoSourceType?: VideoSourceType;
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public struct MediaRecorderConfiguration {
         public string storagePath;
@@ -155,27 +156,41 @@ struct FMediaRecorderConfiguration
         public MediaRecorderStreamType streamType;
         public int maxDurationMs;
         public int recorderInfoUpdateInterval;
+        public int width;
+        public int height;
+        public int fps;
+        public int sample_rate;
+        public int channel_num;
+        public VIDEO_SOURCE_TYPE videoSourceType;
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class MediaRecorderConfiguration {
-
   storagePath?: string;
-
   containerFormat?: MediaRecorderContainerFormat;
-
   streamType?: MediaRecorderStreamType;
-
   maxDurationMs?: number;
-
   recorderInfoUpdateInterval?: number;
+  width?: number;
+  height?: number;
+  fps?: number;
+  sample_rate?: number;
+  channel_num?: number;
+  videoSourceType?: VideoSourceType;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class MediaRecorderConfiguration {
+            <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class MediaRecorderConfiguration {
 
   const MediaRecorderConfiguration(
       {this.storagePath,
       this.containerFormat,
       this.streamType,
       this.maxDurationMs,
-      this.recorderInfoUpdateInterval});
+      this.recorderInfoUpdateInterval,
+      this.width,
+      this.height,
+      this.fps,
+      this.sampleRate,
+      this.channelNum,
+      this.videoSourceType});
 
   @JsonKey(name: 'storagePath')
   final String? storagePath;
@@ -191,6 +206,24 @@ struct FMediaRecorderConfiguration
 
   @JsonKey(name: 'recorderInfoUpdateInterval')
   final int? recorderInfoUpdateInterval;
+
+  @JsonKey(name: 'width')
+  final int? width;
+
+  @JsonKey(name: 'height')
+  final int? height;
+
+  @JsonKey(name: 'fps')
+  final int? fps;
+
+  @JsonKey(name: 'sample_rate')
+  final int? sampleRate;
+
+  @JsonKey(name: 'channel_num')
+  final int? channelNum;
+
+  @JsonKey(name: 'videoSourceType')
+  final VideoSourceType? videoSourceType;
 
   factory MediaRecorderConfiguration.fromJson(Map&lt;String, dynamic> json) =>
       _$MediaRecorderConfigurationFromJson(json);

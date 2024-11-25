@@ -175,6 +175,7 @@ struct ExternalVideoFrame {
   alphaStitchMode?: AlphaStitchMode;
   d3d11Texture2d?: any;
   textureSliceIndex?: number;
+  colorSpace?: ColorSpace;
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class ExternalVideoFrame
     {
@@ -199,6 +200,7 @@ struct ExternalVideoFrame {
         public ALPHA_STITCH_MODE alphaStitchMode;
         public IntPtr d3d11Texture2d;
         public int textureSliceIndex;
+        public ColorSpace colorSpace;
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class ExternalVideoFrame {
   type?: VideoBufferType;
@@ -220,6 +222,7 @@ struct ExternalVideoFrame {
   alphaBuffer?: Uint8Array;
   fillAlphaBuffer?: boolean;
   alphaStitchMode?: AlphaStitchMode;
+  colorSpace?: ColorSpace;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
 class ExternalVideoFrame {
@@ -244,7 +247,8 @@ class ExternalVideoFrame {
       this.fillAlphaBuffer,
       this.alphaStitchMode,
       this.d3d11Texture2d,
-      this.textureSliceIndex});
+      this.textureSliceIndex,
+      this.colorSpace});
 
   @JsonKey(name: &#x27;type&#x27;)
   final VideoBufferType? type;
@@ -308,6 +312,9 @@ class ExternalVideoFrame {
 
   @JsonKey(name: &#x27;textureSliceIndex&#x27;)
   final int? textureSliceIndex;
+
+  @JsonKey(name: 'colorSpace')
+  final ColorSpace? colorSpace;
 
   factory ExternalVideoFrame.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$ExternalVideoFrameFromJson(json);
