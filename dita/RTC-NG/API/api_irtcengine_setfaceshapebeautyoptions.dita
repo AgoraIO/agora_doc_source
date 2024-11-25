@@ -18,11 +18,23 @@
             <codeblock props="hmos" outputclass="language-arkts"/>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setFaceShapeBeautyOptions:(BOOL)enable options:(AgoraFaceShapeBeautyOptions* _Nullable)options sourceType:(AgoraMediaSourceType)sourceType NS_SWIFT_NAME(setFaceShapeBeautyOptions(_:options:sourceType:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setFaceShapeBeautyOptions(bool enabled, const FaceShapeBeautyOptions&amp; options, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;</codeblock>
-            <codeblock props="bp" outputclass="language-cpp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity cs" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
+	int SetFaceShapeBeautyOptions(bool enabled, const FUABT_FaceShapeBeautyOptions&amp; options, EUABT_MEDIA_SOURCE_TYPE type = EUABT_MEDIA_SOURCE_TYPE::PRIMARY_CAMERA_SOURCE);</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract setFaceShapeBeautyOptions(
+    enabled: boolean,
+    options: FaceShapeBeautyOptions,
+    type?: MediaSourceType
+  ): number;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetFaceShapeBeautyOptions(bool enabled, FaceShapeBeautyOptions options, MEDIA_SOURCE_TYPE type = MEDIA_SOURCE_TYPE.PRIMARY_CAMERA_SOURCE);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract setFaceShapeBeautyOptions(
+    enabled: boolean,
+    options: FaceShapeBeautyOptions,
+    type?: MediaSourceType
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setFaceShapeBeautyOptions(
+      {required bool enabled,
+      required FaceShapeBeautyOptions options,
+      MediaSourceType type = MediaSourceType.primaryCameraSource});</codeblock> </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
@@ -31,18 +43,19 @@
                 <dd>v4.5.0</dd>
             </dlentry>
             </dl>
-            <p>调用该方法可对人脸各部位进行修饰，使用预设的参数一次性实现瘦脸、大眼、瘦鼻等微整形效果，支持微调整体的修饰力度，详见<xref keyref="advanced-beauty"/>。</p>
+            <p>调用该方法可对人脸各部位进行修饰，使用预设的参数一次性实现瘦脸、大眼、瘦鼻等微整形效果，支持微调整体的修饰力度。<ph props="cpp apple android">详见<xref keyref="advanced-beauty"/>。</ph></p>
             <p props="android apple">该方法和 <xref keyref="setFaceShapeBeautyOptions2"/> 均可用于设置美型效果选项，区别在于该方法支持指定应用美型效果的媒体源。</p>
             <note type="danger" id="billing">美型属于增值服务，计费方式详见<xref keyref="billing-strategy"/>。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p>请在 <xref keyref="enableVideo" /> 之后调用该方法。</p>
-        </section>        
+        </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
                 <ul>
-                    <li props="android cpp">该方法仅适用于 Android 4.4 及以上版本。</li>
+                    <li props="android">该方法仅适用于 Android 4.4 及以上版本。</li>
+                    <li props="cpp rn unity flutter unreal bp">在 Android 平台上，该方法仅适用于 Android 4.4 及以上版本。</li>
                     <li>该方法依赖于视频增强动态库 <codeph><ph keyref="clearvision"/></codeph>，如果删除该动态库会导致无法正常开启该功能。</li>
                     <li>该功能对设备性能要求较高，调用该方法时 SDK 会自动对当前设备能力进行检查。</li>
                 </ul>
@@ -79,7 +92,7 @@
                         <li>-4：当前设备不支持该功能，可能的原因有：
                             <ul>
                                 <li>当前设备能力不满足美颜的使用要求，建议更换性能更高的设备。</li>
-                                <li props="android rn unity flutter cs">当前设备版本低于 Android 4.4，不支持该操作，建议更换设备或升级操作系统。</li>
+                                <li props="android rn unity flutter cpp unreal bp">当前设备版本低于 Android 4.4，不支持该操作，建议更换设备或升级操作系统。</li>
                             </ul>
                         </li>
                     </ul>

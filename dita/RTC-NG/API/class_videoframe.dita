@@ -559,6 +559,7 @@ struct FVideoFrame {
 
   alphaStitchMode?: AlphaStitchMode;
 
+  colorSpace?: ColorSpace;
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class VideoFrame
     {
@@ -607,6 +608,10 @@ struct FVideoFrame {
         public byte[] alphaBuffer;
 
         public ALPHA_STITCH_MODE alphaStitchMode;
+
+        public IVideoFrameMetaInfo metaInfo;
+
+        public ColorSpace colorSpace;
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class VideoFrame {
 
@@ -646,6 +651,7 @@ struct FVideoFrame {
 
   alphaStitchMode?: AlphaStitchMode;
 
+  colorSpace?: ColorSpace;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
 class VideoFrame {
@@ -669,7 +675,8 @@ class VideoFrame {
       this.alphaBuffer,
       this.alphaStitchMode,
       this.pixelBuffer,
-      this.metaInfo});
+      this.metaInfo;
+      this.colorSpace});
 
   @JsonKey(name: &#x27;type&#x27;)
   final VideoPixelFormat? type;
@@ -731,6 +738,9 @@ class VideoFrame {
   @VideoFrameMetaInfoConverter()
   @JsonKey(name: &#x27;metaInfo&#x27;)
   final VideoFrameMetaInfo? metaInfo;
+
+  @JsonKey(name: 'colorSpace')
+  final ColorSpace? colorSpace;
 
   factory VideoFrame.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$VideoFrameFromJson(json);
@@ -866,7 +876,7 @@ class VideoFrame {
           <pt>pixelBuffer</pt>
           <pd>将数据填充到 CVPixelBuffer。</pd>
         </plentry>
-        <plentry id="colorspace">
+        <plentry id="colorspace" props="cpp ios mac android unreal unity cs flutter rn electron">
             <pt>colorSpace</pt>
             <pd props="ios mac cpp cs unity flutter electron rn unreal bp">视频帧的色彩空间属性，默认情况下会应用 Full Range 和 BT.709 标准配置。你可以根据自定义采集、自定义渲染的业务需求进行自定义设置，详见 <xref
             keyref="videocolorspace-link"/>。</pd>

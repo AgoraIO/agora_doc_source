@@ -19,9 +19,9 @@
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setExternalMediaProjection(void* mediaProjection) = 0;</codeblock>
             <codeblock props="bp" outputclass="language-cpp"/>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity cs" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetExternalMediaProjection(IntPtr mediaProjection);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract setExternalMediaProjection(mediaProjection: any): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setExternalMediaProjection(int mediaProjection);</codeblock> </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
@@ -30,7 +30,7 @@
                 <dd>v4.5.0</dd>
             </dlentry>
             </dl>
-             <note type="attention" props="cpp">该方法仅适用于 Android。</note> 
+             <note type="attention" props="cpp unreal unity rn flutter">该方法仅适用于 Android。</note>
             <p>成功调用该方法后，你设置的外部 <codeph>MediaProjection</codeph> 会替换掉 SDK 申请的 <codeph>MediaProjection</codeph> 采集屏幕视频流。</p>
             <p>当停止屏幕共享或销毁 <xref keyref="IRtcEngine"/> 时，SDK 会自动释放 MediaProjection。</p>
         </section>
@@ -44,7 +44,7 @@
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p>该方法需要在 <xref keyref="startScreenCapture"/> 之前调用。</p>
-        </section>        
+        </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
             <p>在调用该方法前，必须先申请 <codeph>MediaProjection</codeph> 权限。</p>

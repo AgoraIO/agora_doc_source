@@ -47,31 +47,26 @@ struct FAudioTrackConfig
 };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class AudioTrackConfig {
   enableLocalPlayback?: boolean;
+  enableAudioProcessing?: boolean;
 }</codeblock>
       <codeblock props="unity cs" outputclass="language-csharp">public class AudioTrackConfig
-    {
-        public bool enableLocalPlayback;
-
-        public AudioTrackConfig(bool enableLocalPlayback)
-        {
-            this.enableLocalPlayback = enableLocalPlayback;
-        }
-
-        public AudioTrackConfig()
-        {
-            enableLocalPlayback = true;
-        }
-
-    };</codeblock>
+{
+    public bool enableLocalPlayback;
+    public bool enableAudioProcessing;
+}</codeblock>
       <codeblock props="rn" outputclass="language-typescript">export class AudioTrackConfig {
   enableLocalPlayback?: boolean;
+  enableAudioProcessing?: boolean;
 }</codeblock>
-      <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
-class AudioTrackConfig {
-  const AudioTrackConfig({this.enableLocalPlayback});
+      <codeblock props="flutter" outputclass="language-dart">class AudioTrackConfig {
+  const AudioTrackConfig(
+      {this.enableLocalPlayback, this.enableAudioProcessing});
 
   @JsonKey(name: 'enableLocalPlayback')
   final bool? enableLocalPlayback;
+
+  @JsonKey(name: 'enableAudioProcessing')
+  final bool? enableAudioProcessing;
 
   factory AudioTrackConfig.fromJson(Map&lt;String, dynamic> json) =>
       _$AudioTrackConfigFromJson(json);
@@ -92,7 +87,7 @@ class AudioTrackConfig {
             </ul>
         </pd>
       </plentry>
-      <plentry>
+      <plentry props="cpp apple android unreal unity cs flutter rn electron">
         <pt>enableAudioProcessing</pt>
         <pd>是否启用音频处理模块：
             <ul>
