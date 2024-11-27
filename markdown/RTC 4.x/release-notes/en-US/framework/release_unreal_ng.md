@@ -27,6 +27,10 @@ Additionally, due to this adjustment, to achieve the best low-light enhancement 
 
 In previous versions, when the camera was unplugged and replugged, the `onVideoDeviceStateChanged` callback would report the device status as `MEDIA_DEVICE_STATE_ACTIVE(1)` (device in use). Starting from this version, after the camera is replugged, the device status will change to `MEDIA_DEVICE_STATE_IDLE(0)` (device ready).
 
+**16 KB memory page size (Android)**
+
+Starting from Android 15, the system adds support for 16 KB memory page size, as detailed in [Support 16 KB page sizes](https://developer.android.com/guide/practices/page-sizes). To ensure the stability and performance of the app, starting from this version, the SDK supports 16 KB memory page size, ensuring seamless operation on devices with both 4 KB and 16 KB memory page sizes, enhancing compatibility and preventing crashes.
+
 **Changes in video encoding preferences**
 
 To enhance the user’s video interaction experience, this version optimizes the default preferences for video encoding:

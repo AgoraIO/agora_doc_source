@@ -86,7 +86,7 @@
     <li>In the <codeph><apiname keyref="DEGRADATION_PREFERENCE"/></codeph> enumeration class, a new <codeph><ph keyref="MAINTAIN_AUTO"/></codeph> (-1) enumeration is added, replacing the original <codeph><ph keyref="MAINTAIN_QUALITY"/></codeph> (1) as the default value. In this mode, the SDK will automatically choose between <codeph><ph keyref="MAINTAIN_FRAMERATE"/></codeph>, <codeph><ph keyref="MAINTAIN_BALANCED"/></codeph>, or <codeph><ph keyref="MAINTAIN_RESOLUTION"/></codeph> based on your video scene settings to achieve the optimal overall quality experience (QoE).</li>
     </ul></p>
 </li>
-<li props="android"><ph><b>16 KB memory page size (Android)</b></ph>
+<li props="android unity flutter rn unreal bp"><ph><b>16 KB memory page size (Android)</b></ph>
                         <p>Starting from Android 15, the system adds support for 16 KB memory page size, as detailed in <xref keyref="page-size"/>. To ensure the stability and performance of the app, starting from this version, the SDK supports 16 KB memory page size, ensuring seamless operation on devices with both 4 KB and 16 KB memory page sizes, enhancing compatibility and preventing crashes.</p>
                     </li>
                 </ol>
@@ -119,7 +119,7 @@
 <li><ph><b>Filter effects</b></ph>
     <p>This version introduces the <codeph><apiname keyref="setFilterEffectOptions"/></codeph> method. You can pass a cube map file (.cube) in the <codeph>config</codeph> parameter to achieve custom filter effects such as whitening, vivid, cool, black and white, etc. Additionally, the SDK provides a built-in <codeph>built_in_whiten_filter.cube</codeph> file for quickly achieving a whitening filter effect.</p>
 </li>
-<li><ph><b>Local audio mixing</b></ph>
+<li props="android apple cpp cs unity flutter electron rn unreal"><ph><b>Local audio mixing</b></ph>
     <p>This version introduces the local audio mixing feature. You can call the <codeph><apiname keyref="startLocalAudioMixer"/></codeph> method to mix the audio streams from the local microphone, media player, sound card, and remote audio streams into a single audio stream, which can then be published to the channel. When you no longer need audio mixing, you can call the <codeph><apiname keyref="stopLocalAudioMixer"/></codeph> method to stop local audio mixing. During the mixing process, you can call the <codeph><apiname keyref="updateLocalAudioMixerConfiguration"/></codeph> method to update the configuration of the audio streams being mixed.</p>
     <p>Example use cases for this feature include:
         <ul>
@@ -136,7 +136,7 @@
 <li props="android unity rn flutter unreal"><ph><b>EGL context (Android)</b></ph>
                         <p>This version introduces the <codeph><apiname keyref="setExternalRemoteEglContext"/></codeph> method, which is used to set the EGL context for rendering remote video streams. When using Texture format video data for remote video self-rendering, you can use this method to replace the SDK's default remote EGL context, achieving unified EGL context management.</p>
                     </li>
-<li><ph><b>Color space settings</b></ph>
+<li props="android apple cpp cs unity flutter electron rn unreal"><ph><b>Color space settings</b></ph>
     <p>This version adds the <parmname>colorSpace</parmname> parameter to <codeph><apiname keyref="VideoFrame"/></codeph> and <codeph><apiname keyref="ExternalVideoFrame"/></codeph>. You can use this parameter to set the color space properties of the video frame. By default, the color space uses Full Range and BT.709 standard configuration. You can flexibly adjust according to your own capture or rendering needs, further enhancing the customization capabilities of video processing.</p>
 </li>
 <li><ph><b>Others</b></ph>
@@ -161,15 +161,15 @@
 <li><ph><b>Snapshot at specified video observation points</b></ph>
     <p>This version introduces the <codeph><apiname keyref="takeSnapshot2"/></codeph> and <codeph><apiname keyref="takeSnapshotEx2"/></codeph> methods. You can use the <codeph>config</codeph> parameter when calling these methods to take snapshots at specified video observation points, such as before encoding, after encoding, or before rendering, to achieve more flexible snapshot effects.</p>
 </li>
-<li><ph><b>Custom audio capture improvements</b></ph>
+<li props="android apple cpp cs unity flutter electron rn unreal"><ph><b>Custom audio capture improvements</b></ph>
     <p>This version adds the <codeph>enableAudioProcessing</codeph> member parameter to <codeph><apiname keyref="AudioTrackConfig"/></codeph>, which is used to control whether to enable 3A audio processing for custom audio capture tracks of the <codeph>AUDIO_TRACK_DIRECT</codeph> type. The default value of this parameter is <codeph><ph keyref="false"/></codeph>, meaning that audio processing is not enabled. Users can enable it as needed, enhancing the flexibility of custom audio processing.</p>
 </li>
 <li><ph><b>Other Improvements</b></ph>
     <ul>
-        <li props="android ios unity flutter rn unreal">In scenarios where Alpha transparency effects are achieved by stitching video frames and Alpha data, the rendering performance on the receiving end has been improved, effectively reducing stuttering and latency. (Android, iOS)</li>
+        <li props="android ios unity flutter rn unreal bp">In scenarios where Alpha transparency effects are achieved by stitching video frames and Alpha data, the rendering performance on the receiving end has been improved, effectively reducing stuttering and latency. (Android, iOS)</li>
         <li>Optimizes the logic for calling <codeph><apiname keyref="queryDeviceScore"/></codeph> to obtain device score levels, improving the accuracy of the score results.</li>
         <li props="cpp framework">Supports using virtual cameras in YV12 format as video capture devices. (Windows)</li>
-        <li props="ios">After calling <codeph><apiname keyref="enableLocalAudio"/></codeph> to disable local audio capture within the channel, the mute side button on the phone can be used to mute the background sound effects played by the app. (iOS)</li>
+        <li props="ios unity flutter rn unreal bp">After calling <codeph><apiname keyref="enableLocalAudio"/></codeph> to disable local audio capture within the channel, the mute side button on the phone can be used to mute the background sound effects played by the app. (iOS)</li>
         <li>When calling <codeph><apiname keyref="switchSrc"/></codeph> to switch between live streams or on-demand streams of different resolutions, smooth and seamless switching can be achieved. An automatic retry mechanism has been added in case of switching failures. The SDK will automatically retry 3 times after a failure. If it still fails, the <codeph><apiname keyref="onPlayerEvent"/></codeph> callback will report the <codeph><apiname keyref="PLAYER_EVENT_SWITCH_ERROR"/></codeph> event, indicating an error occurred during media resource switching.</li>
         <li>When calling <codeph><apiname keyref="setPlaybackSpeed"/></codeph> to set the playback speed of an audio file, the minimum supported speed is 0.3x.</li>
     </ul>
