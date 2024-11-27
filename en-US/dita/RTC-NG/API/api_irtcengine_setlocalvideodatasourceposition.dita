@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setlocalvideodatasourceposition">
+    <title><ph keyref="setLocalVideoDataSourcePosition"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the observation position of the local video frame.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setLocalVideoDataSourcePosition"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp unreal" outputclass="language-cpp"/>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetLocalVideoDataSourcePosition(VIDEO_MODULE_POSITION position);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>Call this method after creating a <xref keyref="VideoSurface"/> view.</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>This method only supports observing local video data rendered through <xref keyref="VideoSurface"/> and its subclasses.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>position</pt>
+                <pd>The observation position of the video frame. See <xref keyref="VIDEO_MODULE_POSITION"/>.<note type="attention">
+                    <ul><li>This method currently only supports setting the observation position to <ph keyref="POSITION_POST_CAPTURER"/> or <ph keyref="POSITION_PRE_ENCODER"/>.</li>
+                    <li>The video frames obtained at <ph keyref="POSITION_POST_CAPTURER"/> are not cropped and have a high frame rate, while the video frames obtained at <ph keyref="POSITION_PRE_ENCODER"/> are cropped before being sent, with a frame rate lower than or equal to the frame rate of the camera capture.</li></ul></note></pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <ul props="native unreal bp electron unity rn cs">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+                </ul> </section>
+        </refbody>
+</reference>

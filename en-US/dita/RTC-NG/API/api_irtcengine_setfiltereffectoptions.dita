@@ -18,11 +18,23 @@
             <codeblock props="hmos" outputclass="language-arkts"/>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setFilterEffectOptions:(BOOL)enable options:(AgoraFilterEffectOptions* _Nullable)options sourceType:(AgoraMediaSourceType)sourceType NS_SWIFT_NAME(setFilterEffectOptions(_:options:sourceType:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setFilterEffectOptions(bool enabled, const FilterEffectOptions&amp; options, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;</codeblock>
-            <codeblock props="bp" outputclass="language-cpp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity cs" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
+	int SetFilterEffectOptions(bool enabled, const FUABT_FilterEffectOptions&amp; options, EUABT_MEDIA_SOURCE_TYPE type = EUABT_MEDIA_SOURCE_TYPE::PRIMARY_CAMERA_SOURCE);</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract setFilterEffectOptions(
+    enabled: boolean,
+    options: FilterEffectOptions,
+    type?: MediaSourceType
+  ): number;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetFilterEffectOptions(bool enabled, FilterEffectOptions options, MEDIA_SOURCE_TYPE type = MEDIA_SOURCE_TYPE.PRIMARY_CAMERA_SOURCE);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract setFilterEffectOptions(
+    enabled: boolean,
+    options: FilterEffectOptions,
+    type?: MediaSourceType
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setFilterEffectOptions(
+      {required bool enabled,
+      required FilterEffectOptions options,
+      MediaSourceType type = MediaSourceType.primaryCameraSource});</codeblock> </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
@@ -36,7 +48,7 @@
         <section id="timing" deliveryTarget="details">
             <title>Call timing</title>
             <p>Call this method after calling <xref keyref="enableVideo" />.</p>
-        </section>        
+        </section>
         <section id="restriction" deliveryTarget="details">
             <title>Restrictions</title>
                 <ul>

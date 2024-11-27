@@ -50,32 +50,21 @@
 };
 </codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
-struct FVideoDenoiserOptions
+struct FUABT_VideoDenoiserOptions
 {
 	GENERATED_BODY()
+
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoDenoiserOptions&quot;)
-	EVIDEO_DENOISER_MODE mode = EVIDEO_DENOISER_MODE::VIDEO_DENOISER_AUTO;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoDenoiserOptions&quot;)
-	EVIDEO_DENOISER_LEVEL level = EVIDEO_DENOISER_LEVEL::VIDEO_DENOISER_LEVEL_HIGH_QUALITY;
-	FVideoDenoiserOptions(){}
-	FVideoDenoiserOptions(const agora::rtc::VideoDenoiserOptions &amp; AgoraData){
-		mode = static_cast&lt;EVIDEO_DENOISER_MODE&gt;(AgoraData.mode);
-		level = static_cast&lt;EVIDEO_DENOISER_LEVEL&gt;(AgoraData.level);
-	}
-	agora::rtc::VideoDenoiserOptions CreateAgoraData() const {
-		agora::rtc::VideoDenoiserOptions AgoraData;
-		AgoraData.mode = static_cast&lt;agora::rtc::VideoDenoiserOptions::VIDEO_DENOISER_MODE&gt;(mode);
-		AgoraData.level = static_cast&lt;agora::rtc::VideoDenoiserOptions::VIDEO_DENOISER_LEVEL&gt;(level);
-		return AgoraData;
-	}
-	void FreeAgoraData(agora::rtc::VideoDenoiserOptions&amp; AgoraData) const {
-	}
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	EUABT_VIDEO_DENOISER_MODE mode = EUABT_VIDEO_DENOISER_MODE::VIDEO_DENOISER_AUTO;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	EUABT_VIDEO_DENOISER_LEVEL  level = EUABT_VIDEO_DENOISER_LEVEL ::VIDEO_DENOISER_LEVEL_HIGH_QUALITY;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoDenoiserOptions {
-  
+
   mode?: VideoDenoiserMode;
-  
+
   level?: VideoDenoiserLevel;
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class VideoDenoiserOptions
@@ -96,9 +85,9 @@ public:
         }
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class VideoDenoiserOptions {
-  
+
   mode?: VideoDenoiserMode;
-  
+
   level?: VideoDenoiserLevel;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class VideoDenoiserOptions {
@@ -114,7 +103,7 @@ public:
       _$VideoDenoiserOptionsFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$VideoDenoiserOptionsToJson(this);
-}</codeblock>            
+}</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">
