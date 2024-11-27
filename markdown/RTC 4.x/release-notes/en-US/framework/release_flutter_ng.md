@@ -14,9 +14,9 @@ This version includes optimizations to some features, including changes to SDK b
 
 1. **Changes in strong video denoising implementation**
 
-   This version adjusts the implementation of strong video denoising. 
+   This version adjusts the implementation of strong video denoising.
 
-   The `VideoDenoiserLevel` removes `videoDenoiserLevelStrength`. 
+   The `VideoDenoiserLevel` removes `videoDenoiserLevelStrength`.
 
    Instead, after enabling video denoising by calling `setVideoDenoiserOptions`, you can call the `setBeautyEffectOptions` method to enable the beauty skin smoothing feature. Using both together will achieve better video denoising effects. For strong denoising, it is recommended to set the skin smoothing parameters as detailed in `setVideoDenoiserOptions`.
 
@@ -33,7 +33,11 @@ This version includes optimizations to some features, including changes to SDK b
    - In the `CompressionPreference` enumeration class, a new `preferCompressionAuto` (-1) enumeration is added, replacing the original `preferQuality` (1) as the default value. In this mode, the SDK will automatically choose between `preferLowLatency` or `preferQuality` based on your video scene settings to achieve the best user experience.
    - In the `DegradationPreference` enumeration class, a new `maintainAuto` (-1) enumeration is added, replacing the original `maintainQuality` (1) as the default value. In this mode, the SDK will automatically choose between `maintainFramerate`, `maintainBalanced`, or `maintainResolution` based on your video scene settings to achieve the optimal overall quality experience (QoE).
 
-4. To distinguish context information in different extension callbacks, this version removes the original extension callbacks and adds corresponding callbacks that contain context information (see the table below). You can identify the extension name, the user ID, and the service provider name through `ExtensionContext` in each callback.
+4. **16 KB memory page size**
+
+Starting from Android 15, the system adds support for 16 KB memory page size, as detailed in [Support 16 KB page sizes](https://developer.android.com/guide/practices/page-sizes). To ensure the stability and performance of the app, starting from this version, the SDK supports 16 KB memory page size, ensuring seamless operation on devices with both 4 KB and 16 KB memory page sizes, enhancing compatibility and preventing crashes.
+
+5. To distinguish context information in different extension callbacks, this version removes the original extension callbacks and adds corresponding callbacks that contain context information (see the table below). You can identify the extension name, the user ID, and the service provider name through `ExtensionContext` in each callback.
 
    | Original callback    | Current callback                |
    | -------------------- | ------------------------------- |
@@ -383,9 +387,9 @@ This release has optimized the implementation of some functions, involving renam
    - The `localVideoStreamErrorEncodeFailure` enumeration has been changed to `localVideoStreamReasonCodecNotSupport`.
 
 5. **Log encryption behavior changes**
-   
-   For security and performance reasons, as of this release, the SDK encrypts logs and no longer supports printing plaintext logs via the console. 
-   
+
+   For security and performance reasons, as of this release, the SDK encrypts logs and no longer supports printing plaintext logs via the console.
+
    Refer to the following solutions for different needs:
    - If you need to know the API call status, please check the API logs and print the SDK callback logs yourself.
    - For any other special requirements, please contact [technical support](mailto:support@agora.io) and provide the corresponding encrypted logs.
@@ -820,7 +824,7 @@ This release optimizes the APIs for camera and screen capture function. As of v6
 **2. Video data acquisition**
 
 - The `onCaptureVideoFrame` and `onPreEncodeVideoFrame` callbacks are added with a new parameter called `sourceType`, which is used to indicate the specific video source type.
-- The following callbacks are deleted. Get the video source type through the `sourceType` parameter in the `onPreEncodeVideoFrame` and `onCaptureVideoFrame` callbacks. 
+- The following callbacks are deleted. Get the video source type through the `sourceType` parameter in the `onPreEncodeVideoFrame` and `onCaptureVideoFrame` callbacks.
     - `onSecondaryPreEncodeCameraVideoFrame` (Windows)
     - `onScreenCaptureVideoFrame`
     - `onPreEncodeScreenVideoFrame`

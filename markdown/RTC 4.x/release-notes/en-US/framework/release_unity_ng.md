@@ -24,9 +24,9 @@ This version includes optimizations to some features, including changes to SDK b
 
 2. **Changes in strong video denoising implementation**
 
-   This version adjusts the implementation of strong video denoising. 
+   This version adjusts the implementation of strong video denoising.
 
-   The `VIDEO_DENOISER_LEVEL` removes `VIDEO_DENOISER_LEVEL_STRENGTH`. 
+   The `VIDEO_DENOISER_LEVEL` removes `VIDEO_DENOISER_LEVEL_STRENGTH`.
 
    Instead, after enabling video denoising by calling `SetVideoDenoiserOptions`, you can call the `SetBeautyEffectOptions` method to enable the beauty skin smoothing feature. Using both together will achieve better video denoising effects. For strong denoising, it is recommended to set the skin smoothing parameters as detailed in `SetVideoDenoiserOptions`.
 
@@ -42,6 +42,10 @@ This version includes optimizations to some features, including changes to SDK b
 
    - In the `COMPRESSION_PREFERENCE` enumeration class, a new `PREFER_COMPRESSION_AUTO` (-1) enumeration is added, replacing the original `PREFER_QUALITY` (1) as the default value. In this mode, the SDK will automatically choose between `PREFER_LOW_LATENCY` or `PREFER_QUALITY` based on your video scene settings to achieve the best user experience.
    - In the `DEGRADATION_PREFERENCE` enumeration class, a new `MAINTAIN_AUTO` (-1) enumeration is added, replacing the original `MAINTAIN_QUALITY` (1) as the default value. In this mode, the SDK will automatically choose between `MAINTAIN_FRAMERATE`, `MAINTAIN_BALANCED`, or `MAINTAIN_RESOLUTION` based on your video scene settings to achieve the optimal overall quality experience (QoE).
+
+5. **16 KB memory page size**
+
+   Starting from Android 15, the system adds support for 16 KB memory page size, as detailed in [Support 16 KB page sizes](https://developer.android.com/guide/practices/page-sizes). To ensure the stability and performance of the app, starting from this version, the SDK supports 16 KB memory page size, ensuring seamless operation on devices with both 4 KB and 16 KB memory page sizes, enhancing compatibility and preventing crashes.
 
 #### New features
 
@@ -188,7 +192,7 @@ This version includes optimizations to some features, including changes to SDK b
 
 4. **Other improvements**
 
-   This version also includes the following improvements: 
+   This version also includes the following improvements:
 
    - Optimizes transmission strategy: calling `EnableInstantMediaRendering` no longer impacts the security of the transmission link.
    - The `LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_DISPLAY_DISCONNECTED` enumerator is added in `OnLocalVideoStateChanged` callback, indicating that the display used for screen capture has been disconnected. (Windows, macOS)
