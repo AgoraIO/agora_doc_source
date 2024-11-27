@@ -46,18 +46,38 @@
     FACE_SHAPE_AREA_NOSEWIDTH = 10,
     FACE_SHAPE_AREA_MOUTHSCALE = 11,
   };
-  
+
   FACE_SHAPE_AREA shapeArea;
   int shapeIntensity;
-  
+
   FaceShapeAreaOptions(FACE_SHAPE_AREA shapeArea, int areaIntensity) : shapeArea(shapeArea), shapeIntensity(areaIntensity) {}
 
   FaceShapeAreaOptions() : shapeArea(FACE_SHAPE_AREA_NONE), shapeIntensity(0) {}
 };
 </codeblock>
-            <codeblock props="bp" outputclass="language-cpp"></codeblock>
-            <codeblock props="electron" outputclass="language-typescript"></codeblock>
+            <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FUABT_FaceShapeAreaOptions {
+
+	GENERATED_BODY()
+
+public:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	EUABT_FACE_SHAPE_AREA shapeArea = EUABT_FACE_SHAPE_AREA::FACE_SHAPE_AREA_NONE;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	int shapeIntensity = 0;
+
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export class FaceShapeAreaOptions {
+  shapeArea?: FaceShapeArea;
+  shapeIntensity?: number;
+}</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp"></codeblock>
+            <codeblock props="rn" outputclass="language-cpp">export class FaceShapeAreaOptions {
+  shapeArea?: FaceShapeArea;
+  shapeIntensity?: number;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart"></codeblock>
             </p>
         </section>

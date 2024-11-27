@@ -18,11 +18,20 @@
             <codeblock props="hmos" outputclass="language-arkts"/>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setFaceShapeAreaOptions:(AgoraFaceShapeAreaOptions* _Nullable)options sourceType:(AgoraMediaSourceType)sourceType NS_SWIFT_NAME(setFaceShapeAreaOptions(_:sourceType:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setFaceShapeAreaOptions(const FaceShapeAreaOptions&amp; options, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;</codeblock>
-            <codeblock props="bp" outputclass="language-cpp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity cs" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
+	int SetFaceShapeAreaOptions(const FUABT_FaceShapeAreaOptions&amp; options, EUABT_MEDIA_SOURCE_TYPE type = EUABT_MEDIA_SOURCE_TYPE::PRIMARY_CAMERA_SOURCE);</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract setFaceShapeAreaOptions(
+    options: FaceShapeAreaOptions,
+    type?: MediaSourceType
+  ): number;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetFaceShapeAreaOptions(FaceShapeAreaOptions options, MEDIA_SOURCE_TYPE type = MEDIA_SOURCE_TYPE.PRIMARY_CAMERA_SOURCE);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract setFaceShapeAreaOptions(
+    options: FaceShapeAreaOptions,
+    type?: MediaSourceType
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setFaceShapeAreaOptions(
+      {required FaceShapeAreaOptions options,
+      MediaSourceType type = MediaSourceType.primaryCameraSource});</codeblock> </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
@@ -31,14 +40,14 @@
                 <dd>v4.5.0</dd>
             </dlentry>
             </dl>
-            <p>如果在 <xref keyref="setFaceShapeBeautyOptions"/> 方法中实现的预设美型效果达不到预期，你可以通过该方法设置美型部位选项，对人脸的各个部位单独微调，实现更加精细的美型效果，详见<xref keyref="advanced-beauty"/>。</p>
+            <p>如果在 <xref keyref="setFaceShapeBeautyOptions"/> 方法中实现的预设美型效果达不到预期，你可以通过该方法设置美型部位选项，对人脸的各个部位单独微调，实现更加精细的美型效果。<ph props="cpp apple android">详见<xref keyref="advanced-beauty"/>。</ph></p>
             <p props="android apple">该方法和 <xref keyref="setFaceShapeAreaOptions2"/> 均可用于设置美型部位选项，区别在于该方法支持指定应用美型效果的媒体源。</p>
             <note conkeyref="setFaceShapeBeautyOptions/billing"/>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p>请在 <xref keyref="setFaceShapeBeautyOptions"/><ph props="apple android"> 或 <xref keyref="setFaceShapeBeautyOptions2" /></ph> 之后调用该方法。</p>
-        </section>        
+        </section>
         <section id="restriction" deliveryTarget="details" conkeyref="setFaceShapeBeautyOptions/restriction">
         </section>
         <section id="parameters" deliveryTarget="details">
@@ -63,7 +72,7 @@
                         <li>-4：当前设备不支持该功能，可能的原因有：
                             <ul>
                                 <li>当前设备能力不满足美颜的使用要求，建议更换性能更高的设备。</li>
-                                <li props="android rn unity flutter cs">当前设备版本低于 Android 4.4，不支持该操作，建议更换设备或升级操作系统。</li>
+                                <li props="android rn unity flutter cpp bp unreal">当前设备版本低于 Android 4.4，不支持该操作，建议更换设备或升级操作系统。</li>
                             </ul>
                         </li>
                     </ul>

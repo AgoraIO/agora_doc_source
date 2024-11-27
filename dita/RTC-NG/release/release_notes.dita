@@ -17,8 +17,8 @@
                     <p props="cpp">自 4.5.0 起，RTC SDK 和 RTM SDK (2.2.0 及以上版本) 都包含 <codeph>aosl.dll</codeph> 库。如果你通过 CDN 手动集成 RTC SDK 且同时集成了 RTM SDK，为避免冲突，请手动删除版本较低的 <codeph>aosl.dll</codeph> 库。4.5.0 RTC SDK <codeph>aosl.dll</codeph> 库版本为 1.2.13。你可以通过查看 <codeph>aosl.dll</codeph> 文件的属性来得知库的版本信息。</p>
                 </note>
                 <ol>
-                    <li props="cpp"><ph><b>成员参数类型变更</b></ph>
-                        <p>为提升各框架对 Native SDK 的适配性，该版本对一些 API 中的成员或参数做了如下修改：<table frame="all" rowsep="1" colsep="1">
+                    <li props="cpp unity"><ph><b>成员参数类型变更</b></ph>
+                        <p><ph props="cpp">为提升各框架对 Native SDK 的适配性，</ph>该版本对一些 API 中的成员或参数做了如下修改：<table frame="all" rowsep="1" colsep="1">
                         <tgroup cols="3">
                             <colspec colname="c1" colnum="1" colwidth="1*"/>
                             <colspec colname="c2" colnum="2" colwidth="1*"/>
@@ -31,7 +31,7 @@
                                 </row>
                             </thead>
                             <tbody>
-                                <row>
+                                <row props="cpp">
                                     <entry><codeph><apiname keyref="startScreenCaptureByDisplayId"/></codeph></entry>
                                     <entry><parmname>displayId</parmname></entry>
                                     <entry>由 uint32_t 型变更为 int64_t 型</entry>
@@ -39,25 +39,25 @@
                                 <row>
                                     <entry><codeph><apiname keyref="startScreenCaptureByWindowId"/></codeph></entry>
                                     <entry><parmname>windowId</parmname></entry>
-                                    <entry>由 view_t 型变更为 int64_t 型</entry>
+                                    <entry><ph props="cpp">由 view_t 型变更为 int64_t 型</ph><ph props="unity">由 view_t 型变更为 long 型</ph></entry>
                                 </row>
                                 <row>
                                     <entry morerows="1"><codeph><apiname keyref="ScreenCaptureConfiguration"/></codeph></entry>
                                     <entry><parmname>displayId</parmname></entry>
-                                    <entry>由 uint32_t 型变更为 int64_t 型</entry>
+                                    <entry><ph props="cpp">由 uint32_t 型变更为 int64_t 型</ph><ph props="unity">由 unit 型变更为 long 型</ph></entry>
                                 </row>
                                 <row>
                                     <entry><parmname>windowId</parmname></entry>
-                                    <entry>由 view_t 型变更为 int64_t 型</entry>
+                                    <entry><ph props="cpp">由 view_t 型变更为 int64_t 型</ph><ph props="unity">由 unit 型变更为 long 型</ph></entry>
                                 </row>
                                 <row>
                                     <entry morerows="1"><codeph><apiname keyref="ScreenCaptureSourceInfo"/></codeph></entry>
                                     <entry><parmname>sourceDisplayId</parmname></entry>
-                                    <entry>由 view_t 型变更为 int64_t 型</entry>
+                                    <entry><ph props="cpp">由 view_t 型变更为 int64_t 型</ph><ph props="unity">由 view_t 型变更为 long 型</ph></entry>
                                 </row>
                                 <row>
                                     <entry><parmname>sourceId</parmname></entry>
-                                    <entry>默认值由 <codeph>nullptr</codeph> 变更为 0</entry>
+                                    <entry><ph props="cpp">默认值由 <codeph>nullptr</codeph> 变更为 0</ph><ph props="unity">由 view_t 型变更为 long 型</ph></entry>
                                 </row>
                             </tbody>
                         </tgroup>
@@ -71,8 +71,8 @@
                         <p props="android hmos">该版本调整了强效视频降噪的实现方式，删除了 <codeph><apiname keyref="VIDEO_DENOISER_LEVEL_STRENGTH"/></codeph>，改为调用 <codeph><apiname keyref="setVideoDenoiserOptions"/></codeph> 启用视频降噪后，调用 <codeph><apiname keyref="setBeautyEffectOptions"/></codeph> 方法启用美颜磨皮功能，二者搭配使用以获得更好的视频降噪效果。实现强效降噪时，推荐磨皮参数设置详见 <codeph><apiname keyref="setVideoDenoiserOptions"/></codeph>。</p>
                         <p>此外，受该调整影响，实现画质优先的暗光增强效果时，需要先开启视频降噪并采用特定设置，详见 <codeph><apiname keyref="setLowlightEnhanceOptions"/></codeph>。</p>
                     </li>
-                    <li props="mac cpp"><ph><b> 摄像头插拔状态变更 (macOS, Windows)</b></ph>
-                        <p props="cpp">在之前版本中，当摄像头拔出并重新插入时，<codeph><apiname keyref="onVideoDeviceStateChanged"/></codeph> 回调会将设备状态报告为 <codeph><apiname keyref="MEDIA_DEVICE_STATE_ACTIVE"/></codeph>(1)（设备正在使用）。该版本起，摄像头重新插入后，设备状态将改为 <codeph><apiname keyref="MEDIA_DEVICE_STATE_IDLE"/></codeph>(0)（设备就绪）。</p>
+                    <li props="mac cpp electron unity flutter bp unreal"><ph><b> 摄像头插拔状态变更 (macOS, Windows)</b></ph>
+                        <p props="cpp electron unity flutter bp unreal">在之前版本中，当摄像头拔出并重新插入时，<codeph><apiname keyref="onVideoDeviceStateChanged"/></codeph> 回调会将设备状态报告为 <codeph><apiname keyref="MEDIA_DEVICE_STATE_ACTIVE"/></codeph>(1)（设备正在使用）。该版本起，摄像头重新插入后，设备状态将改为 <codeph><apiname keyref="MEDIA_DEVICE_STATE_IDLE"/></codeph>(0)（设备就绪）。</p>
                         <p props="mac">在之前版本中，摄像头拔出并重新插入后不会自动恢复采集。该版本起，摄像头重新插入后将自动恢复采集。</p>
                     </li>
                     <li><ph><b>视频编码偏好变更</b></ph>
@@ -103,13 +103,13 @@
                         </p>
                     </li>
                     <li><ph><b>秀场直播场景</b></ph>
-                        <p>该版本在 <codeph><apiname keyref="VIDEO_APPLICATION_SCENARIO_TYPE"/></codeph> 类下新增枚举 <codeph><apiname keyref="APPLICATION_SCENARIO_LIVESHOW"/></codeph>(3)（秀场直播），你可以调用 <codeph><apiname keyref="setVideoScenario"/></codeph> 将视频业务场景设置为<xref keyref="showroom"/>。针对该场景对首帧出图时间和画质清晰度的高要求，SDK 进行了策略调优，重点提升了首帧出图体验和画质表现，同时增强了在弱网环境和低端设备上的画质和流畅度表现。</p>
+                        <p>该版本在 <codeph><apiname keyref="VIDEO_APPLICATION_SCENARIO_TYPE"/></codeph> 类下新增枚举 <codeph><apiname keyref="APPLICATION_SCENARIO_LIVESHOW"/></codeph>(3)（秀场直播），你可以调用 <codeph><apiname keyref="setVideoScenario"/></codeph> 将视频业务场景设置为<xref keyref="showroom"/>。针对该场景对首帧出图时间和画质清晰度的高要求，SDK 进行了策略调优，例如，默认开启音视频帧加速渲染来提升首帧出图体验，无需再额外调用 <codeph><apiname keyref="enableInstantMediaRendering"/></codeph>，同时增强了在弱网环境和低端设备上的画质和流畅度表现。</p>
                     </li>
                     <li><ph><b>限制视频渲染帧率</b></ph>
                         <p>该版本新增 <codeph><apiname keyref="setLocalRenderTargetFps"/></codeph> 和 <codeph><apiname keyref="setRemoteRenderTargetFps"/></codeph> 方法，支持设置视频在本地和远端渲染时的最大帧率，SDK 进行视频渲染的实际帧率会尽量接近该值。</p>
                         <p>在对视频渲染帧率要求不高的场景（例如：屏幕共享、在线教育）或者远端使用中低端设备的场景下，你可以通过这一组方法限制视频渲染帧率，从而减小 CPU 消耗、提升系统性能。</p>
                     </li>
-                    <li><ph><b>URL 拉流播放</b></ph>
+                    <li props="native"><ph><b>URL 拉流播放</b></ph>
                         <p>URL 拉流播放功能主要用于直播场景，观众端可以直接通过 <codeph><apiname keyref="OpenWithUrl"/></codeph> 打开特定的 URL 来播放实时媒体流，无需加入频道、订阅等步骤，极大简化了观众端观看直播流的 API 调用。</p>
                         <p>在播放的过程中，观众端可以通过 <codeph><apiname keyref="SetAbrSubscriptionLayer"/></codeph> 设置订阅视频大小流，并可以在大小流之间实现平滑切换。如果对视频体验有更高要求，可以联系<xref keyref="ticket-link"/>开通 ABR（Adaptive Bitrate，自适应码率）功能。启用该功能后，可以自定义不同层级的视频流分辨率，观众可以实现不同分辨率视频流的平滑切换。</p>
                         <p>当网络情况不稳定时，观众端可以调用 <codeph><apiname keyref="SetAbrFallbackLayer"/></codeph> 来设置订阅的视频流的回退选项。SDK 会以你指定的最低质量层级对应的视频流分辨率为下限，在此范围内根据网络状况动态调整分辨率。</p><p props="hide">有关该功能的实现步骤，详见 <xref keyref="rte-player"/>。</p>
@@ -128,9 +128,9 @@
                     </li>
                     <li props="android unity rn flutter unreal"><ph><b>外部 MediaProjection (Android)</b></ph>
                         <p>该版本新增 <codeph><apiname keyref="setExternalMediaProjection"/></codeph> 方法，该方法支持你自行设置外部 <codeph>MediaProjection</codeph>，并取代 SDK 申请的 <codeph>MediaProjection</codeph>。 </p>
-                        <p>如果你具备自行申请 <codeph>MediaProjection</codeph> 的开发能力，可通过该功能实现更加灵活的屏幕采集。有关具体实现方法，详见《屏幕共享》。</p>
+                        <p>如果你具备自行申请 <codeph>MediaProjection</codeph> 的开发能力，可通过该功能实现更加灵活的屏幕采集。</p>
                     </li>
-                    <li props="android"><ph><b>EGL 环境上下文 (Android)</b></ph>
+                    <li props="android unity rn flutter unreal"><ph><b>EGL 环境上下文 (Android)</b></ph>
                         <p>该版本新增了 <codeph><apiname keyref="setExternalRemoteEglContext"/></codeph> 方法，用于设置远端视频流渲染的 EGL 环境上下文。使用 Texture 格式的视频数据进行远端视频自渲染时，你可以通过该方法替换 SDK 默认的远端 EGL 环境上下文，实现统一的 EGL 上下文管理。</p>
                     </li>
                     <li><ph><b>色彩空间设置</b></ph>
@@ -138,8 +138,8 @@
                     </li>
                     <li><ph><b>其他</b></ph>
                         <ul>
-                        <li props="cpp unity flutter electron unreal"><codeph><apiname keyref="onLocalVideoStateChanged"/></codeph> 回调新增 <codeph><ph keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_DISCONNECTED"/></codeph> 枚举，表示当前正在使用的视频采集设备已经断开连接（例如，被拔出）。(Windows)</li>
-                        <li props="cpp"><codeph><apiname keyref="MEDIA_DEVICE_STATE_TYPE"/></codeph> 新增 <codeph><apiname keyref="MEDIA_DEVICE_STATE_PLUGGED_IN"/></codeph> 枚举，表示设备已插入。</li>
+                        <li props="cpp unity flutter electron unreal bp"><codeph><apiname keyref="onLocalVideoStateChanged"/></codeph> 回调新增 <codeph><ph keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_DISCONNECTED"/></codeph> 枚举，表示当前正在使用的视频采集设备已经断开连接（例如，被拔出）。(Windows)</li>
+                        <li props="cpp unity flutter electron unreal bp"><codeph><apiname keyref="MEDIA_DEVICE_STATE_TYPE"/></codeph> 新增 <codeph><apiname keyref="MEDIA_DEVICE_STATE_PLUGGED_IN"/></codeph> 枚举，表示设备已插入。(Windows)</li>
                         </ul> </li>
                 </ol>
             </body>
@@ -177,21 +177,21 @@
             <body>
                 <p>该版本修复了以下问题：</p>
                 <ul>
-                    <li props="cpp unity flutter electron  unreal">调用 <codeph><apiname keyref="startScreenCaptureByWindowId"/></codeph> 共享屏幕时，通过 <parmname>regionRect</parmname> 指定的窗口采集区域不准确，导致接收端看到的屏幕共享窗口宽高错误。（Windows）</li>
-                    <li props="android ios unity flutter rn unreal">当发送端视频源类型为 JPEG 格式时，偶现接收端帧率低于预期。(Android、iOS)</li>
-                    <li props="android unity flutter rn unreal">在播放音乐内容中心的音乐资源时，偶现杂音和卡顿。(Android) </li>
-                    <li props="android unity flutter rn unreal">在 App 没有获取麦克风权限时，通过 <codeph><apiname keyref="IMusicPlayer"/></codeph> 播放伴奏音乐偶现卡顿。(Android)</li>
-                    <li props="android unity flutter rn unreal">音视频互动过程中被系统来电打断后，通过 <codeph><apiname keyref="onAudioVolumeIndication"/></codeph> 回调上报的用户音量错误。(Android)</li>
-                    <li props="android unity flutter rn unreal">在接收端默认订阅视频小流、加入频道时不自动订阅任何视频流的前提下，加入频道后调用 <codeph><apiname keyref="muteRemoteVideoStream"/></codeph><codeph>(uid,false)</codeph> 恢复接收视频流，但接收到的视频流为视频大流，不符合预期。(Android)</li>
-                    <li props="cpp unity electron flutter unreal">Windows 7 系统下进行音视频互动，偶现找不到系统文件的报错。(Windows)</li>
-                    <li props="cpp unity electron flutter unreal">调用 <codeph><apiname keyref="followSystemRecordingDevice"/></codeph> 或 <codeph><apiname keyref="followSystemPlaybackDevice"/></codeph> 设置 SDK 使用的音频采集或播放设备不跟随系统默认的音频播放设备，当音频设备被移除时，本地音频状态回调 <codeph><apiname keyref="onLocalAudioStateChanged"/></codeph> 没有被触发，不符合预期。(Windows)</li>
-                    <li props="ios unity flutter rn unreal">音视频互动过程中，偶现接收端听发送端没有声音。(iOS)</li>
-                    <li props="ios unity flutter rn unreal">音视频互动过程中，如果发送端设备的系统版本为 iOS 17，偶现接收端听不到来自发送端的声音。(iOS)</li>
-                    <li props="ios unity flutter rn unreal">直播场景下，观众端因切换网络导致断开连接，重新连接直播间花费的时间长于预期。(iOS)</li>
-                    <li props="ios unity flutter rn unreal">App 启动后使用媒体播放器播放在线媒体资源，播放无声。(iOS)</li>
-                    <li props="ios unity flutter rn unreal">音视频互动过程中被系统其他 App 打断后恢复，偶现音频采集无声。(iOS)</li>
+                    <li props="cpp unity flutter electron  unreal bp">调用 <codeph><apiname keyref="startScreenCaptureByWindowId"/></codeph> 共享屏幕时，通过 <parmname>regionRect</parmname> 指定的窗口采集区域不准确，导致接收端看到的屏幕共享窗口宽高错误。（Windows）</li>
+                    <li props="android ios unity flutter rn unreal bp">当发送端视频源类型为 JPEG 格式时，偶现接收端帧率低于预期。(Android、iOS)</li>
+                    <li props="android unity flutter rn unreal bp">在播放音乐内容中心的音乐资源时，偶现杂音和卡顿。(Android) </li>
+                    <li props="android unity flutter rn unreal bp">在 App 没有获取麦克风权限时，通过 <codeph><apiname keyref="IMusicPlayer"/></codeph> 播放伴奏音乐偶现卡顿。(Android)</li>
+                    <li props="android unity flutter rn unreal bp">音视频互动过程中被系统来电打断后，通过 <codeph><apiname keyref="onAudioVolumeIndication"/></codeph> 回调上报的用户音量错误。(Android)</li>
+                    <li props="android unity flutter rn unreal bp">在接收端默认订阅视频小流、加入频道时不自动订阅任何视频流的前提下，加入频道后调用 <codeph><apiname keyref="muteRemoteVideoStream"/></codeph><codeph>(uid,false)</codeph> 恢复接收视频流，但接收到的视频流为视频大流，不符合预期。(Android)</li>
+                    <li props="cpp unity electron flutter unreal bp">Windows 7 系统下进行音视频互动，偶现找不到系统文件的报错。(Windows)</li>
+                    <li props="cpp unity electron flutter unreal bp">调用 <codeph><apiname keyref="followSystemRecordingDevice"/></codeph> 或 <codeph><apiname keyref="followSystemPlaybackDevice"/></codeph> 设置 SDK 使用的音频采集或播放设备不跟随系统默认的音频播放设备，当音频设备被移除时，本地音频状态回调 <codeph><apiname keyref="onLocalAudioStateChanged"/></codeph> 没有被触发，不符合预期。(Windows)</li>
+                    <li props="ios unity flutter rn unreal bp">音视频互动过程中，偶现接收端听发送端没有声音。(iOS)</li>
+                    <li props="ios unity flutter rn unreal bp">音视频互动过程中，如果发送端设备的系统版本为 iOS 17，偶现接收端听不到来自发送端的声音。(iOS)</li>
+                    <li props="ios unity flutter rn unreal bp">直播场景下，观众端因切换网络导致断开连接，重新连接直播间花费的时间长于预期。(iOS)</li>
+                    <li props="ios unity flutter rn unreal bp">App 启动后使用媒体播放器播放在线媒体资源，播放无声。(iOS)</li>
+                    <li props="ios unity flutter rn unreal bp">音视频互动过程中被系统其他 App 打断后恢复，偶现音频采集无声。(iOS)</li>
                     <li>调用 <codeph><apiname keyref="startAudioMixing"/></codeph> 后，立即调用 <codeph><apiname keyref="pauseAudioMixing"/></codeph> 暂停播放音乐文件不生效。</li>
-                    <li props="android unity flutter rn">音视频互动过程中偶现崩溃。(Android)</li>
+                    <li props="android unity flutter rn bp">音视频互动过程中偶现崩溃。(Android)</li>
                 </ul>
             </body>
         </topic>

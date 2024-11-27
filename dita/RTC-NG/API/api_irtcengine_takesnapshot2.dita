@@ -17,11 +17,13 @@
             <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac">- (NSInteger)takeSnapshotWithConfig:(NSInteger)uid config:(AgoraSnapshotConfig* _Nonnull)config NS_SWIFT_NAME(takeSnapshotWithConfig(_:config:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int takeSnapshot(uid_t uid, const media::SnapshotConfig&amp; config)  = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp"></codeblock>
-            <codeblock props="electron" outputclass="language-typescript"></codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp"></codeblock>
-            <codeblock props="rn" outputclass="language-typescript"></codeblock>
-            <codeblock props="flutter" outputclass="language-dart"></codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
+	int TakeSnapshotWithConfig(int64 uid, const FUABT_SnapshotConfig&amp; config);</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract takeSnapshotWithConfig(uid: number, config: SnapshotConfig): number;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp"> public abstract int TakeSnapshot(uint uid, SnapshotConfig config);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract takeSnapshotWithConfig(uid: number, config: SnapshotConfig): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> takeSnapshotWithConfig(
+      {required int uid, required SnapshotConfig config});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -30,10 +32,10 @@
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p>该方法需要在加入频道后调用。</p>
-        </section>        
+        </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <ul>            
+            <ul>
                 <li id="desc2" props="native unreal bp unity electron flutter cs">该方法是异步操作，调用返回时 SDK 并没有真正获取截图。</li>
                 <li props="rn">调用该方法返回时 SDK 并没有真正获取截图。</li>
                 <li>该方法用于本地视频截图时，是对 <xref keyref="ChannelMediaOptions"/> 中指定发布的视频流进行截图。</li>
