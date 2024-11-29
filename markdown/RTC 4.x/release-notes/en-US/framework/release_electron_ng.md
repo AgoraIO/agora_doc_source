@@ -1,3 +1,159 @@
+## v4.5.0
+
+This version was released on November x, 2024.
+
+#### Compatibility changes
+
+This version includes optimizations to some features, including changes to SDK behavior, API renaming and deletion. To ensure normal operation of the project, update the code in the app after upgrading to this release.
+
+1. **Changes in strong video denoising implementation**
+
+   This version adjusts the implementation of strong video denoising.
+
+   The `VideoDenoiserLevel` removes `VideoDenoiserLevelStrength`.
+
+   Instead, after enabling video denoising by calling `setVideoDenoiserOptions`, you can call the `setBeautyEffectOptions` method to enable the beauty skin smoothing feature. Using both together will achieve better video denoising effects. For strong denoising, it is recommended to set the skin smoothing parameters as detailed in `setVideoDenoiserOptions`.
+
+   Additionally, due to this adjustment, to achieve the best low-light enhancement effect with a focus on image quality, you need to enable video denoising first and use specific settings as detailed in `setLowlightEnhanceOptions`.
+
+2. **Changes in camera plug and unplug status**
+
+   In previous versions, when the camera was unplugged and replugged, the `onVideoDeviceStateChanged` callback would report the device status as MediaDeviceStateActive(1) (device in use). Starting from this version, after the camera is replugged, the device status will change to `MediaDeviceStateIdle`(0) (device ready).
+
+3. **Changes in video encoding preferences**
+
+   To enhance the user’s video interaction experience, this version optimizes the default preferences for video encoding:
+
+   - In the `CompressionPreference` enumeration class, a new `PreferCompressionAuto` (-1) enumeration is added, replacing the original `PreferQuality` (1) as the default value. In this mode, the SDK will automatically choose between `PreferLowLatency` or `PreferQuality` based on your video scene settings to achieve the best user experience.
+   - In the `DegradationPreference` enumeration class, a new `MaintainAuto` (-1) enumeration is added, replacing the original `MaintainQuality` (1) as the default value. In this mode, the SDK will automatically choose between `MaintainFramerate`, `MaintainBalanced`, or `MaintainResolution` based on your video scene settings to achieve the optimal overall quality experience (QoE).
+
+#### New features
+
+1. **Live show scenario**
+
+   This version adds the `ApplicationScenarioLiveshow`(3) (Live Show) enumeration to the `VideoApplicationScenarioType`. You can call `setVideoScenario` to set the video business scenario to show room. In this scenario, fast video rendering and high image quality are crucial. The SDK implements several performance optimizations, such as enabling accelerated audio and video frame rendering to minimize first-frame latency (no need to call `enableInstantMediaRendering`) to achieve better image quality and bandwidth efficiency.
+
+2. **Maximum frame rate for video rendering**
+
+   This version adds the `setLocalRenderTargetFps` and `setRemoteRenderTargetFps` methods, which support setting the maximum frame rate for video rendering locally and remotely. The actual frame rate for video rendering by the SDK will be as close to this value as possible.
+
+   In scenarios where the frame rate requirement for video rendering is not high (e.g., screen sharing, online education) or when the remote end uses mid-to-low-end devices, you can use this set of methods to limit the video rendering frame rate, thereby reducing CPU consumption and improving system performance.
+
+3. **Filter effects**
+
+   This version introduces the `setFilterEffectOptions` method. You can pass a cube map file (.cube) in the `config` parameter to achieve custom filter effects such as whitening, vivid, cool, black and white, etc. Additionally, the SDK provides a built-in `built_in_whiten_filter.cube` file for quickly achieving a whitening filter effect.
+
+4. **Local audio mixing**
+
+   This version introduces the local audio mixing feature. You can call the `startLocalAudioMixer` method to mix the audio streams from the local microphone, media player, sound card, and remote audio streams into a single audio stream, which can then be published to the channel. When you no longer need audio mixing, you can call the `stopLocalAudioMixer` method to stop local audio mixing. During the mixing process, you can call the `updateLocalAudioMixerConfiguration` method to update the configuration of the audio streams being mixed.
+
+   Example use cases for this feature include:
+
+   - By utilizing the local video mixing feature, the associated audio streams of the mixed video streams can be simultaneously captured and published.
+   - In live streaming scenarios, users can receive audio streams within the channel, mix multiple audio streams locally, and then forward the mixed audio stream to other channels.
+   - In educational scenarios, teachers can mix the audio from interactions with students locally and then forward the mixed audio stream to other channels.
+
+5. **Color space settings**
+
+   This version adds the `colorSpace` parameter to `VideoFrame` and `ExternalVideoFrame`. You can use this parameter to set the color space properties of the video frame. By default, the color space uses Full Range and BT.709 standard configuration. You can flexibly adjust according to your own capture or rendering needs, further enhancing the customization capabilities of video processing.
+
+6. **Others**
+
+   - `onLocalVideoStateChanged` callback adds the `LocalVideoStreamReasonDeviceDisconnected` enumeration, indicating that the currently used video capture device has been disconnected (e.g., unplugged). (Windows)
+   - `MediaDeviceStateType` adds the `MediaDeviceStatePluggedIn` enumeration, indicating that the device has been plugged in. (Windows)
+
+#### Improvements
+
+1. **Virtual background algorithm optimization**
+
+   This version upgrades the virtual background algorithm, making the segmentation between the portrait and the background more accurate. There is no background exposure, the body contour of the portrait is complete, and the detail recognition of fingers is significantly improved. Additionally, the edges between the portrait and the background are more stable, reducing edge jumping and flickering in continuous video frames.
+
+2. **Snapshot at specified video observation points**
+
+   This version introduces the `takeSnapshotWithConfig` and `takeSnapshotWithConfigEx` methods. You can use the `config` parameter when calling these methods to take snapshots at specified video observation points, such as before encoding, after encoding, or before rendering, to achieve more flexible snapshot effects.
+
+3. **Custom audio capture improvements**
+
+   This version adds the `enableAudioProcessing` member parameter to `AudioTrackConfig`, which is used to control whether to enable 3A audio processing for custom audio capture tracks of the `AUDIO_TRACK_DIRECT` type. The default value of this parameter is `false`, meaning that audio processing is not enabled. Users can enable it as needed, enhancing the flexibility of custom audio processing.
+
+4. **Other Improvements**
+
+   - Optimizes the logic for calling `queryDeviceScore` to obtain device score levels, improving the accuracy of the score results.
+   - Supports using virtual cameras in YV12 format as video capture devices. (Windows)
+   - When calling `switchSrc` to switch between live streams or on-demand streams of different resolutions, smooth and seamless switching can be achieved. An automatic retry mechanism has been added in case of switching failures. The SDK will automatically retry 3 times after a failure. If it still fails, the `onPlayerEvent` callback will report the `PlayerEventSwitchError` event, indicating an error occurred during media resource switching.
+   - When calling `setPlaybackSpeed` to set the playback speed of an audio file, the minimum supported speed is 0.3x.
+
+#### Issues fixed
+
+This version fixes the following issues:
+
+- When calling `startScreenCaptureByWindowId` to share the screen, the window capture area specified by `regionRect` was inaccurate, resulting in incorrect width and height of the screen sharing window seen by the receiving end. (Windows)
+- Occasional errors of not finding system files during audio and video interaction on Windows 7 systems. (Windows)
+- When calling `followSystemRecordingDevice` or `followSystemPlaybackDevice` to set the audio capture or playback device used by the SDK to not follow the system default audio playback device, the local audio state callback `onLocalAudioStateChanged` is not triggered when the audio device is removed, which is not as expected. (Windows)
+
+## v4.4.0
+
+This version was released on July x, 2024.
+
+#### Compatibility changes
+
+This version includes optimizations to some features, including changes to SDK behavior, API renaming and deletion. To ensure normal operation of the project, update the code in the app after upgrading to this release.
+
+1. To distinguish context information in different extension callbacks, this version removes the original extension callbacks and adds corresponding callbacks that contain context information (see the table below). You can identify the extension name, the user ID, and the service provider name through `ExtensionContext` in each callback.
+
+   | Original callback  | Current callback |
+   | ------------------ | ---------------- |
+   | `onExtensionEvent` | `onExtensionEventWithContext`   |
+   | `onExtensionStarted` | `onExtensionStartedWithContext` |
+   | `onExtensionStopped` | `onExtensionStoppedWithContext` |
+   | `onExtensionError` | `onExtensionErrorWithContext`   |
+
+2. This version renames the following members in `ExternalVideoFrame`:
+
+   - `d3d11_texture_2d` is renamed to `d3d11Texture2d`.
+   - `texture_slice_index` is renamed to `textureSliceIndex`.
+   - `metadata_buffer` is renamed to `metadataBuffer`.
+   - `metadata_size` is renamed to `metadataSize`.
+
+#### New features
+
+1. **Voice AI tuner**
+
+   This version introduces the voice AI tuner feature, which can enhance the sound quality and tone, similar to a physical sound card. You can enable the voice AI tuner feature by calling the `enableVoiceAITuner` method and passing in the sound effect types supported in the `VoiceAiTunerType`enum to achieve effects like deep voice, cute voice, husky singing voice, etc.
+
+2. **1v1 video call scenario**
+
+   This version adds `ApplicationScenario1v1`(1v1 video call) in `VideoApplicationScenarioType`. You can call `setVideoScenario` to set the video application scenario to 1v1 video call, the SDK optimizes performance to achieve low latency and high video quality, enhancing image quality, first frame rendering, latency on mid-to-low-end devices, and smoothness under poor network conditions.
+
+#### Improvements
+
+1. **Adaptive hardware decoding support (Windows)**
+
+   This release introduces adaptive hardware decoding support, enhancing rendering smoothness on low-end devices and effectively reducing system load.
+
+2. **Rendering performance enhancement (Windows)**
+
+   DirectX 11 renderer is now enabled by default on Windows devices, providing high-performance and high-quality graphics rendering capabilities.
+
+3. **Facial region beautification**
+
+   To avoid losing details in non-facial areas during heavy skin smoothing, this version improves the skin smoothing algorithm. The SDK now recognizes various parts of the face, applying smoothing to facial skin areas excluding the mouth, eyes, and eyebrows. In addition, the SDK supports smoothing up to two faces simultaneously.
+
+4. **Other improvements**
+
+   This version also includes the following improvements:
+
+   - Optimizes transmission strategy: calling `enableInstantMediaRendering` no longer impacts the security of the transmission link.
+   - The `LocalVideoStreamReasonDeviceDisconnected` enumerator is added in `onLocalVideoStateChanged` callback, indicating that the display used for screen capture has been disconnected. 
+   - Optimizes the video link for window sharing, reducing CPU usage. (macOS)
+   - Improves echo cancellation for screen sharing scenarios.
+   - Adds the `channelId` parameter to `Metadata`, which is used to get the channel name from which the metadata is sent.
+   - Deprecates redundant enumeration values `ClientRoleChangeFailedRequestTimeOut` and `ClientRoleChangeFailedConnectionFailed` in `ClientRoleChangeFailedReason`.
+
+#### Issues fixed
+
+This release fixes the issue where the App crashes during audio and video interactions after the user actively denies permission for the App to use audio and video devices. (macOS)
+
 ## v4.3.2
 
 This version was released on May x, 20xx.

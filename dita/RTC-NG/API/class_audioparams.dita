@@ -20,7 +20,12 @@
     this.samplesPerCall = samplesPerCall;
   }
 }</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class AudioParams {
+  public sampleRate: number = 16000;
+  public channel: number = 1;
+  public mode: Constants.RawAudioFrameOpMode = Constants.RawAudioFrameOpMode.READ_ONLY;
+  public samplesPerCall: number = 1024;
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioParams : NSObject
 
 @property (assign, nonatomic) NSInteger sampleRate;
