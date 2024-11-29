@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setfaceshapeareaoptions">
+    <title><ph keyref="setFaceShapeAreaOptions" /></title>
+    <shortdesc id="short"><ph id="shortdesc">设置美型部位选项。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setFaceShapeAreaOptions"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setFaceShapeAreaOptions(FaceShapeAreaOptions options);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setFaceShapeAreaOptions:(AgoraFaceShapeAreaOptions* _Nullable)options sourceType:(AgoraMediaSourceType)sourceType NS_SWIFT_NAME(setFaceShapeAreaOptions(_:sourceType:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setFaceShapeAreaOptions(const FaceShapeAreaOptions&amp; options, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.5.0</dd>
+            </dlentry>
+            </dl>
+            <p>如果在 <xref keyref="setFaceShapeBeautyOptions"/> 方法中实现的预设美型效果达不到预期，你可以通过该方法设置美型部位选项，对人脸的各个部位单独微调，实现更加精细的美型效果。<ph props="cpp apple android">详见<xref keyref="advanced-beauty"/>。</ph></p>
+            <note conkeyref="setFaceShapeBeautyOptions/billing"/>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>请在调用 <xref keyref="setFaceShapeBeautyOptions"/><ph props="apple android"> 或 <xref keyref="setFaceShapeBeautyOptions" /></ph> 之后调用该方法。</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details" conkeyref="setFaceShapeBeautyOptions/restriction">
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+            <plentry conkeyref="setFaceShapeAreaOptions/options">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="setFilterEffectOptions/type">
+                <pt/>
+                <pd/>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+            <ul props="native unreal bp electron unity rn cs">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph>
+                    <ul>
+                        <li>-4：当前设备不支持该功能，可能的原因有：
+                            <ul>
+                                <li>当前设备能力不满足美颜的使用要求，建议更换性能更高的设备。</li>
+                                <li props="android rn unity flutter cs">当前设备版本低于 Android 4.4，不支持该操作，建议更换设备或升级操作系统。</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                </ul> </section>
+        </refbody>
+</reference>
