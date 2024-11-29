@@ -14,7 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int startAudioMixing(String filePath, boolean loopback, int cycle, int startPos);</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts">public abstract startAudioMixing(filepath: string, loopback: boolean, cycle: number, startpos?:number): number;</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public abstract startAudioMixing(filepath: string, loopback: boolean, cycle: number): number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)startAudioMixing:(NSString* _Nonnull)filePath loopback:(BOOL)loopback cycle:(NSInteger)cycle startPos:(NSInteger)startPos;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int startAudioMixing(const char* filePath, bool loopback, int cycle, int startPos) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
@@ -50,7 +50,6 @@
             <section id="restriction" deliveryTarget="details">
                 <title>调用限制</title>
                 <ul>
-                    <li>使用该方法播放时长较短的音效文件可能会导致播放失败。如需播放音效文件，建议使用 <xref keyref="playEffect3"/>。</li>
                     <li>如需多次调用该方法，请确保调用间隔大于 500 ms。</li>
                     <li props="android cpp unreal bp unity rn flutter" id="principle">在 Android 平台上调用该方法时，请注意如下事项：
                         <ul>

@@ -47,7 +47,7 @@
             <p id="desc1">该回调描述每个用户在通话中的 last mile 网络状态，其中 last mile 是指设备到声网边缘服务器的网络状态。</p>
             <p id="desc2">该回调每 2 秒触发一次。如果远端有多个用户，该回调每 2 秒会被触发多次。</p>
             <p>该回调通过频道内的广播包反馈网络质量。过多的广播包可能引发广播风暴。为防止广播风暴导致频道内大量数据传输，该回调默认支持同时反馈最多 4 个远端主播的网络质量。</p>
-            <note type="note"><ph>用户不发流时，<parmname>txQuality</parmname> 为 <codeph props="cpp unreal bp android hmos unity">UNKNOWN</codeph><codeph props="ios mac electron rn flutter">Unknown</codeph>；用户不收流时，<parmname>rxQuality</parmname> 为 <codeph props="cpp unreal bp android hmos unity">UNKNOWN</codeph><codeph props="ios mac electron rn flutter">Unknown</codeph>。</ph></note> </section>
+            <note type="note"><ph>用户不发流时，<parmname>txQuality</parmname> 为 <codeph props="cpp unreal bp android unity">UNKNOWN</codeph><codeph props="ios mac electron rn">Unknown</codeph>；用户不收流时，<parmname>rxQuality</parmname> 为 <codeph props="cpp unreal bp android unity">UNKNOWN</codeph><codeph props="ios mac electron rn">Unknown</codeph>。</ph></note> </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title" /></title>
             <parml>
@@ -68,14 +68,14 @@
             </plentry>
             <plentry id="txQuality">
                 <pt>txQuality</pt>
-                <pd>该用户的上行网络质量，基于发送码率、上行丢包率、平均往返时延和网络抖动计算。 该值代表当前的上行网络质量，帮助判断是否可以支持当前设置的视频编码属性。 假设上行码率是 1000 Kbps，那么支持直播场景下 640 × 480 的分辨率、15 fps 的帧率没有问题，但是支持 1280 × 720 的分辨率就会有困难。<ph props="hmos ios mac cpp unreal unity electron flutter cs">详见 <xref keyref="QUALITY_TYPE" />。</ph>
+                <pd>该用户的上行网络质量，基于发送码率、上行丢包率、平均往返时延和网络抖动计算。 该值代表当前的上行网络质量，帮助判断是否可以支持当前设置的视频编码属性。 假设上行码率是 1000 Kbps，那么支持直播场景下 640 × 480 的分辨率、15 fps 的帧率没有问题，但是支持 1280 × 720 的分辨率就会有困难。 <ph props="ios mac cpp unreal unity electron flutter cs">详见 <xref keyref="QUALITY_TYPE" />。</ph>
                     <ul conkeyref="RemoteAudioStats/qualitytype" props="android bp">
                     <li />
                     </ul> </pd>
             </plentry>
             <plentry id="rxQuality">
                 <pt>rxQuality</pt>
-                <pd>该用户的下行网络质量，基于下行网络的丢包率、平均往返延时和网络抖动计算。<ph props="hmos ios mac cpp unreal unity electron flutter cs">详见 <xref keyref="QUALITY_TYPE" />。</ph>
+                <pd>该用户的下行网络质量，基于下行网络的丢包率、平均往返延时和网络抖动计算。<ph props="ios mac cpp unreal unity electron flutter cs">详见 <xref keyref="QUALITY_TYPE" />。</ph>
                     <ul conkeyref="RemoteAudioStats/qualitytype" props="android bp">
                     <li />
                     </ul></pd>
