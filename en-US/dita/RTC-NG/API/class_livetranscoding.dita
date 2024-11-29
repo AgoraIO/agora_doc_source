@@ -226,39 +226,39 @@
   }
 }</codeblock>
       <codeblock props="hmos" outputclass="language-arkts">export class LiveTranscoding {
-  
+
   public width: number;
-  
+
   public height: number;
-  
+
   public videoBitrate: number;
-  
+
   public videoFramerate: number;
-  
+
   public videoGop: number;
-  
+
   public watermarkList?: Array&lt;AgoraImage&gt;;
-  
+
   public backgroundImageList?: Array&lt;AgoraImage&gt;;
-  
+
   public audioSampleRate: Constants.AudioSampleRateType;
-  
+
   public audioBitrate: number;
-  
+
   public audioChannels: number;
-  
+
   public audioCodecProfile: Constants.AudioCodecProfileType;
-  
+
   public videoCodecProfile: Constants.VideoCodecProfileType;
-  
+
   public videoCodecType: Constants.VideoCodecType;
-  
+
   public userConfigExtraInfo?: string;
-  
+
   public metadata?: string;
-  
+
   public transcodingUsers: Map&lt;number, TranscodingUser&gt;;
-  
+
   public advancedFeatures: Map&lt;string, boolean&gt;;
   constructor() {
     this.width = 360;
@@ -392,7 +392,7 @@ public:
 		for(int i = 0; i&lt; userCount; i++){
 			transcodingUsers.Add(FTranscodingUser((AgoraData.transcodingUsers[i])));
 		}
-	
+
 		transcodingExtraInfo = UTF8_TO_TCHAR(AgoraData.transcodingExtraInfo);
 		metadata = UTF8_TO_TCHAR(AgoraData.metadata);
 		for(unsigned int i =0; i&lt; AgoraData.watermarkCount;i++)
@@ -424,14 +424,14 @@ public:
 		AgoraData.videoCodecProfile = static_cast&lt;agora::rtc::VIDEO_CODEC_PROFILE_TYPE&gt;(videoCodecProfile);
 		AgoraData.backgroundColor = static_cast&lt;unsigned int&gt;(backgroundColor);
 		AgoraData.videoCodecType = static_cast&lt;agora::rtc::VIDEO_CODEC_TYPE_FOR_STREAM&gt;(videoCodecType);
-		
+
 		AgoraData.userCount = userCount;
 		SET_UABT_TARRARY_CUSTOMDATA_TO_AGORA_ARRAY___MEMALLOC(AgoraData.transcodingUsers, agora::rtc::TranscodingUser, userCount, this-&gt;transcodingUsers)
 		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.transcodingExtraInfo,this-&gt;transcodingExtraInfo)
 		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.metadata,this-&gt;metadata)
 		AgoraData.watermarkCount = watermarkCount;
 		SET_UABT_TARRARY_CUSTOMDATA_TO_AGORA_ARRAY___MEMALLOC(AgoraData.watermark, agora::rtc::RtcImage, watermarkCount, this-&gt;watermark)
-		
+
 		AgoraData.backgroundImageCount = backgroundImageCount;
 		SET_UABT_TARRARY_CUSTOMDATA_TO_AGORA_ARRAY___MEMALLOC(AgoraData.backgroundImage, agora::rtc::RtcImage, backgroundImageCount, this-&gt;backgroundImage)
 		AgoraData.audioSampleRate = static_cast&lt;agora::rtc::AUDIO_SAMPLE_RATE_TYPE&gt;(audioSampleRate);
@@ -443,14 +443,14 @@ public:
 	}
 	void FreeAgoraData(agora::rtc::LiveTranscoding &amp; AgoraData) const{
 		SET_UABT_TARRARY_CUSTOMDATA_TO_AGORA_ARRAY___MEMFREE(AgoraData.transcodingUsers,userCount, FTranscodingUser)
-		
+
 		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.transcodingExtraInfo)
 		SET_UABT_TARRARY_CUSTOMDATA_TO_AGORA_ARRAY___MEMFREE(AgoraData.watermark, watermarkCount, FRtcImage)
 		SET_UABT_TARRARY_CUSTOMDATA_TO_AGORA_ARRAY___MEMFREE(AgoraData.backgroundImage, backgroundImageCount, FRtcImage)
 		SET_UABT_TARRARY_CUSTOMDATA_TO_AGORA_ARRAY___MEMFREE(AgoraData.advancedFeatures, advancedFeatureCount, FLiveStreamAdvancedFeature)
-	
+
 	}
-		
+
 };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class LiveTranscoding {
 
@@ -771,7 +771,7 @@ public:
       <plentry>
         <pt>videoBitrate</pt>
         <pd>
-          <p><ph>The encoding bitrate (Kbps) of the video. </ph><ph props="unity cs">See <xref keyref="BITRATE"/></ph>. <ph>This parameter does not need to be set; keeping the default value <apiname keyref="STANDARD_BITRATE"/> is sufficient. The SDK automatically matches the most suitable bitrate based on the video resolution and frame rate you have set. For the correspondence between video resolution and frame rate, see <xref keyref="video-profile-table"/>.</ph></p>
+          <p><ph>The encoding bitrate (Kbps) of the video. </ph><ph props="unity cs">See <xref keyref="BITRATE"/>.</ph><ph>This parameter does not need to be set; keeping the default value <apiname keyref="STANDARD_BITRATE"/> is sufficient. The SDK automatically matches the most suitable bitrate based on the video resolution and frame rate you have set. For the correspondence between video resolution and frame rate, see <xref keyref="video-profile-table"/>.</ph></p>
         </pd>
       </plentry>
       <plentry>

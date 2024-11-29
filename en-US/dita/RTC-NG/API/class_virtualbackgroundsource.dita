@@ -35,29 +35,29 @@
 }
 </codeblock>
             <codeblock props="hmos" outputclass="language-arkts">export class VirtualBackgroundSource {
-  
+
   public static readonly   BACKGROUND_NONE:number = 0;
-  
+
   public static readonly  BACKGROUND_COLOR:number = 1;
-  
+
   public static readonly  BACKGROUND_IMG:number = 2;
-  
+
   public static readonly  BACKGROUND_BLUR:number = 3;
-  
+
   public static readonly BACKGROUND_VIDEO:number = 4;
-  
+
   public static readonly BLUR_DEGREE_LOW:number = 1;
-  
+
   public static readonly BLUR_DEGREE_MEDIUM:number = 2;
-  
+
   public static readonly BLUR_DEGREE_HIGH:number = 3;
-  
+
   public backgroundSourceType:number = VirtualBackgroundSource.BACKGROUND_COLOR;
-  
+
   public color:number = 0xffffff;
-  
+
   public source?:string;
-  
+
   public blurDegree:number = VirtualBackgroundSource.BLUR_DEGREE_HIGH;
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVirtualBackgroundSource : NSObject
@@ -119,13 +119,13 @@ public:
 	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VirtualBackgroundSource {
-  
+
   background_source_type?: BackgroundSourceType;
-  
+
   color?: number;
-  
+
   source?: string;
-  
+
   blur_degree?: BackgroundBlurDegree;
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class VirtualBackgroundSource
@@ -143,13 +143,13 @@ public:
         public BACKGROUND_BLUR_DEGREE blur_degree;
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class VirtualBackgroundSource {
-  
+
   background_source_type?: BackgroundSourceType;
-  
+
   color?: number;
-  
+
   source?: string;
-  
+
   blur_degree?: BackgroundBlurDegree;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class VirtualBackgroundSource {
@@ -167,7 +167,7 @@ public:
   factory VirtualBackgroundSource.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$VirtualBackgroundSourceFromJson(json);
   Map&lt;String, dynamic&gt; toJson() =&gt; _$VirtualBackgroundSourceToJson(this);
-}</codeblock>            
+}</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">
@@ -176,7 +176,7 @@ public:
             <plentry>
                 <pt props="android hmos ios mac flutter">backgroundSourceType</pt>
                 <pt props="unity cpp unreal bp electron rn cs">background_source_type</pt>
-                <pd><ph>The custom background. </ph><ph props="ios mac cpp unreal bp unity flutter electron rn cs">See <xref keyref="BACKGROUND_SOURCE_TYPE" /></ph>.<ul props="android hmos">
+                <pd><ph>The custom background. </ph><ph props="ios mac cpp unreal bp unity flutter electron rn cs">See <xref keyref="BACKGROUND_SOURCE_TYPE" />.</ph><ul props="android hmos">
                     <li><ph keyref="BACKGROUND_NONE" />(0): Process the background as alpha data without replacement, only separating the portrait and the background. After setting this value, you can call <xref keyref="startLocalVideoTranscoder"/> to implement the picture-in-picture effect.</li>
                     <li><ph keyref="BACKGROUND_COLOR" />(1): (Default) The background image is a solid color.</li>
                     <li><ph keyref="BACKGROUND_IMG" />(2): The background image is a file in PNG or JPG format.</li>
@@ -199,7 +199,7 @@ public:
             <plentry>
                 <pt props="ios mac android hmos flutter">blurDegree</pt>
                 <pt props="cpp unreal bp unity electron rn cs">blur_degree</pt>
-                <pd><ph>The degree of blurring applied to the custom background image. </ph><ph props="ios mac cpp unreal bp unity electron rn cs">See <xref keyref="BACKGROUND_BLUR_DEGREE" /></ph>.<ul props="android hmos">
+                <pd><ph>The degree of blurring applied to the custom background image. </ph><ph props="ios mac cpp unreal bp unity electron rn cs">See <xref keyref="BACKGROUND_BLUR_DEGREE" />.</ph><ul props="android hmos">
                     <li><ph keyref="BLUR_DEGREE_LOW" />(1): The degree of blurring applied to the custom background image is low. The user can almost see the background clearly.</li>
                     <li><ph keyref="BLUR_DEGREE_MEDIUM" />(2): The degree of blurring applied to the custom background image is medium. It is difficult for the user to recognize details in the background.</li>
                     <li><ph keyref="BLUR_DEGREE_HIGH" />(3): The degree of blurring applied to the custom background image is high. The user can barely see any distinguishing features in the background.</li>
