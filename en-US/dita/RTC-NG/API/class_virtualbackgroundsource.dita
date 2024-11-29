@@ -36,29 +36,13 @@
 </codeblock>
             <codeblock props="hmos" outputclass="language-arkts">export class VirtualBackgroundSource {
   
-  public static readonly   BACKGROUND_NONE:number = 0;
-  
-  public static readonly  BACKGROUND_COLOR:number = 1;
-  
-  public static readonly  BACKGROUND_IMG:number = 2;
-  
-  public static readonly  BACKGROUND_BLUR:number = 3;
-  
-  public static readonly BACKGROUND_VIDEO:number = 4;
-  
-  public static readonly BLUR_DEGREE_LOW:number = 1;
-  
-  public static readonly BLUR_DEGREE_MEDIUM:number = 2;
-  
-  public static readonly BLUR_DEGREE_HIGH:number = 3;
-  
-  public backgroundSourceType:number = VirtualBackgroundSource.BACKGROUND_COLOR;
+  public backgroundSourceType: Constants.VirtualBackgroundType = Constants.VirtualBackgroundType.COLOR;
   
   public color:number = 0xffffff;
   
-  public source?:string;
+  public source:string | null = null;
   
-  public blurDegree:number = VirtualBackgroundSource.BLUR_DEGREE_HIGH;
+  public blurDegree:Constants.VirtualBackgroundBlurDegree = Constants.VirtualBackgroundBlurDegree.HIGH;
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVirtualBackgroundSource : NSObject
 @property(nonatomic, assign) AgoraVirtualBackgroundSourceType backgroundSourceType NS_SWIFT_NAME(backgroundSourceType);
