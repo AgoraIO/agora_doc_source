@@ -78,7 +78,8 @@
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p>如果你需要播放在线音效文件，声网建议先将在线音效文件缓存到本地设备，调用 <xref keyref="preloadEffect"/> 将缓存的音效文件预加载到内存中，然后再调用此方法播放音效。否则，可能出现因在线音效文件加载超时、加载失败而导致的播放失败和无声的问题。</p>
+            <p props="android cpp apple framework">如果你需要播放在线音效文件，声网建议先将在线音效文件缓存到本地设备，调用 <xref keyref="preloadEffect"/> 将缓存的音效文件预加载到内存中，然后再调用此方法播放音效。否则，可能出现因在线音效文件加载超时、加载失败而导致的播放失败和无声的问题。</p>
+            <p props="hmos">无。</p>
         </section>
         <section id="related" deliveryTarget="details">
             <title>相关回调</title>
@@ -91,7 +92,7 @@
                 <pt>soundId</pt>
                 <pd>音效的 ID。每个音效的 ID 具有唯一性。
 
-                    <note type="attention">如果你已通过 <xref keyref="preloadEffect" /> 将音效加载至内存，请确保该参数与 <apiname keyref="preloadEffect" /> 中设置的 <parmname>soundId</parmname> 相同。</note> </pd>
+                    <note type="attention" props="android cpp apple framework">如果你已通过 <xref keyref="preloadEffect" /> 将音效加载至内存，请确保该参数与 <apiname keyref="preloadEffect" /> 中设置的 <parmname>soundId</parmname> 相同。</note> </pd>
             </plentry>
             <plentry id="filepath">
                 <pt>filePath</pt>
@@ -99,7 +100,8 @@
                         <p props="cpp framework">播放文件的地址，支持在线文件的 URL 地址、播放文件的绝对路径，需精确到文件名及后缀。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV、3GP 等。<ph props="cpp">详见<xref keyref="filePath-link">支持的媒体格式</xref>。</ph></p>
                         <p props="android">播放文件的地址，支持以 <codeph>content://</codeph> 开头的 URI 地址、以 <codeph>/assets/</codeph> 开头的路径、在线文件的 URL 地址、本地文件的绝对路径，需精确到文件名及后缀。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV、3GP。详见<xref keyref="filePath-link">支持的媒体格式</xref>。</p>
                         <p props="apple">播放文件的地址，支持以 <codeph>ipod-library//</codeph> 开头的文件路径、在线文件的 URL 地址、文件的绝对路径，需精确到文件名及后缀。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV、3GP。详见<xref keyref="filePath-link">支持的媒体格式</xref>。</p>
-                        <note type="attention">如果你已通过 <xref keyref="preloadEffect" /> 将音效加载至内存，请确保该参数与 <apiname keyref="preloadEffect" /> 中设置的 <parmname>filePath</parmname> 相同。</note> </pd>
+                        <p props="hmos">播放文件的地址。</p>
+                        <note type="attention" props="android cpp apple framework">如果你已通过 <xref keyref="preloadEffect" /> 将音效加载至内存，请确保该参数与 <apiname keyref="preloadEffect" /> 中设置的 <parmname>filePath</parmname> 相同。</note> </pd>
             </plentry>
             <plentry id="loopcount">
                 <pt>loopCount</pt>

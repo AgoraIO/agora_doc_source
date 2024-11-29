@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_faceshapebeautyoptions">
+    <title> <ph keyref="FaceShapeBeautyOptions" /> </title>
+    <shortdesc id="short"> <ph id="shortdesc">美型风格选项。</ph> </shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class FaceShapeBeautyOptions {
+  public static final int FACE_SHAPE_BEAUTY_STYLE_FEMALE = 0;
+  public static final int FACE_SHAPE_BEAUTY_STYLE_MALE = 1;
+
+  public int shapeStyle;
+  public int styleIntensity;
+}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraFaceShapeBeautyOptions: NSObject
+@property(nonatomic, assign) AgoraFaceShapeStyle shapeStyle;
+@property(nonatomic, assign) int styleIntensity;
+@end</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct FaceShapeBeautyOptions {
+  enum FACE_SHAPE_BEAUTY_STYLE {
+    FACE_SHAPE_BEAUTY_STYLE_FEMALE = 0,
+    FACE_SHAPE_BEAUTY_STYLE_MALE = 1,
+  };
+
+  FACE_SHAPE_BEAUTY_STYLE shapeStyle;
+
+  int styleIntensity;
+
+  FaceShapeBeautyOptions(FACE_SHAPE_BEAUTY_STYLE shapeStyle, int styleIntensity) : shapeStyle(shapeStyle), styleIntensity(styleIntensity) {}
+
+  FaceShapeBeautyOptions() : shapeStyle(FACE_SHAPE_BEAUTY_STYLE_FEMALE), styleIntensity(50) {}
+};</codeblock>
+            <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FUABT_FaceShapeBeautyOptions {
+	GENERATED_BODY()
+
+public:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	EUABT_FACE_SHAPE_BEAUTY_STYLE shapeStyle = EUABT_FACE_SHAPE_BEAUTY_STYLE::FACE_SHAPE_BEAUTY_STYLE_FEMALE;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	int styleIntensity = 50;
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export class FaceShapeBeautyOptions {
+  shapeStyle?: FaceShapeBeautyStyle;
+  styleIntensity?: number;
+}</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public class FaceShapeBeautyOptions
+    {
+        public FACE_SHAPE_BEAUTY_STYLE shapeStyle;
+
+        public int styleIntensity;
+    }</codeblock>
+            <codeblock props="rn" outputclass="language-cpp">export class FaceShapeBeautyOptions {
+  shapeStyle?: FaceShapeBeautyStyle;
+  styleIntensity?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">
+class FaceShapeBeautyOptions {
+
+  const FaceShapeBeautyOptions({this.shapeStyle, this.styleIntensity});
+
+  @JsonKey(name: 'shapeStyle')
+  final FaceShapeBeautyStyle? shapeStyle;
+
+  @JsonKey(name: 'styleIntensity')
+  final int? styleIntensity;
+
+  factory FaceShapeBeautyOptions.fromJson(Map&lt;String, dynamic> json) =>
+      _$FaceShapeBeautyOptionsFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$FaceShapeBeautyOptionsToJson(this);
+}
+</codeblock>
+            </p>
+        </section>
+        <section id="parameters">
+            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" />
+            </title>
+            <parml>
+            <plentry>
+                <pt>shapeStyle</pt>
+                <pd>
+                    <p props="cpp ios mac unreal bp unity flutter electron rn cs">美型风格，详见 <xref keyref="FACE_SHAPE_BEAUTY_STYLE" />。</p>
+                    <p props="android hmos">美型风格：
+                        <ul>
+                            <li><ph keyref="FACE_SHAPE_BEAUTY_STYLE_FEMALE" /> (0)：（默认）女性风格。</li>
+                            <li><ph keyref="FACE_SHAPE_BEAUTY_STYLE_MALE" /> (1)：男性风格。</li>
+                        </ul>
+                    </p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>styleIntensity</pt>
+                <pd>美型风格强度，取值范围为 [0.0,1.0]，其中默认值为 0.0，表示无美型效果。取值越大，修饰部位的改变越明显。</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

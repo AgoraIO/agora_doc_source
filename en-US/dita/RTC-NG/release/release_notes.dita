@@ -1,53 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="release_notes">
-    <title>v4.4.0</title>
+    <title>v4.5.0</title>
     <body>
-        <p>This version was released on July x, 2024.</p>
+        <p>This version was released on November x, 2024.</p>
     </body>
     <topic id="level2">
         <title/>
         <topic id="compatibility">
             <title>Compatibility changes</title>
             <body>
-                <p>This version includes optimizations to some features, including changes to SDK behavior, API renaming and deletion. To ensure normal operation of the project, update the code in the app after upgrading to this release.
-
-                    <note type="attention" props="native">Starting from v4.4.0, the RTC SDK provides an API sunset notice, which includes information about deprecated and removed APIs in each version. See <xref href="https://doc.shengwang.cn/api-ref/rtc/android/API/rtc_api_sunset" props="android">API Sunset Notice</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/android/API/rtc_api_sunset" props="cpp">API Sunset Notice</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/ios/API/rtc_api_sunset" props="ios">API Sunset Notice</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/macos/API/rtc_api_sunset" props="mac">API Sunset Notice</xref>.</note></p>
+                <p>This version includes optimizations to some features, including changes to SDK behavior, API renaming and deletion. To ensure normal operation of the project, update the code in the app after upgrading to this release.</p>
+<note type="attention" props="native">
+<p props="android">As of v4.5.0, both RTC SDK and RTM SDK (v2.2.0 and above) include the <codeph>libaosl.so</codeph> library. If you manually integrate RTC SDK via CDN and also use RTM SDK, delete the lower version of the <codeph>libaosl.so</codeph> library to avoid conflicts. The <codeph>libaosl.so</codeph> library version in RTC SDK v4.5.0 is 1.2.13.</p>
+<p props="apple">As of v4.5.0, both RTC SDK and RTM SDK (v2.2.0 and above) include the <codeph>aosl.xcframework</codeph> library. If you manually integrate RTC SDK via CDN and also use RTM SDK, delete the lower version of the <codeph>aosl.xcframework</codeph> library to avoid conflicts. The <codeph>aosl.xcframework</codeph> library version in RTC SDK v4.5.0 is 1.2.13. You can check the version in the <codeph>Info.plist</codeph> file.</p>
+<p props="cpp">As of v4.5.0, both RTC SDK and RTM SDK (v2.2.0 and above) include the <codeph>aosl.dll</codeph> library. If you manually integrate RTC SDK via CDN and also use RTM SDK, delete the lower version of the <codeph>aosl.dll</codeph> library to avoid conflicts. The <codeph>aosl.dll</codeph> library version in RTC SDK v4.5.0 is 1.2.13. You can check the version by viewing the <codeph>aosl.dll</codeph> file properties.</p>
+</note>
                 <ol>
-                    <li>To distinguish context information in different extension callbacks, this version removes the original extension callbacks and adds corresponding callbacks that contain context information (see the table below). You can identify the extension name, the user ID, and the service provider name through <codeph><apiname keyref="ExtensionContext"/></codeph> in each callback.
-                        <simpletable frame="all" relcolwidth="1* 1*" id="simpletable_zqj_n1t_xbc">
-                            <sthead>
-                                <stentry>Original callback</stentry>
-                                <stentry>Current callback</stentry>
-                            </sthead>
-                            <strow>
-                                <stentry>onExtensionEvent</stentry>
-                                <stentry><codeph><apiname keyref="onExtensionEventWithContext"/></codeph></stentry>
-                            </strow>
-                            <strow>
-                                <stentry>onExtensionStarted</stentry>
-                                <stentry><codeph><apiname keyref="onExtensionStartedWithContext"/></codeph></stentry>
-                            </strow>
-                            <strow>
-                                <stentry>onExtensionStopped</stentry>
-                                <stentry><codeph><apiname keyref="onExtensionStoppedWithContext"/></codeph></stentry>
-                            </strow>
-                            <strow>
-                                <stentry>onExtensionError</stentry>
-                                <stentry><codeph><apiname keyref="onExtensionErrorWithContext"/></codeph></stentry>
-                            </strow>
-                        </simpletable>
+<li props="cpp unity"><ph><b>Member Parameter Type Changes</b></ph>
+    <p><ph props="cpp">To enhance the adaptability of various frameworks to the Native SDK, this version has made the following modifications to some API members or parameters:</ph>
+    <ph props="unity">This version has made the following modifications to some API members or parameters:</ph>
+    <table frame="all" rowsep="1" colsep="1">
+        <tgroup cols="3">
+            <colspec colname="c1" colnum="1" colwidth="1*"/>
+            <colspec colname="c2" colnum="2" colwidth="1*"/>
+            <colspec colname="c3" colnum="3" colwidth="1*"/>
+            <thead>
+                <row>
+                    <entry>API</entry>
+                    <entry>Members/Parameters</entry>
+                    <entry>Change</entry>
+                </row>
+            </thead>
+            <tbody>
+                <row props="cpp">
+                    <entry><codeph><apiname keyref="startScreenCaptureByDisplayId"/></codeph></entry>
+                    <entry><parmname>displayId</parmname></entry>
+                    <entry>Changed from uint32_t to int64_t</entry>
+                </row>
+                <row>
+                    <entry><codeph><apiname keyref="startScreenCaptureByWindowId"/></codeph></entry>
+                    <entry><parmname>windowId</parmname></entry>
+                    <entry>Changed from view_t to int64_t</entry>
+                </row>
+                <row>
+                    <entry morerows="1"><codeph><apiname keyref="ScreenCaptureConfiguration"/></codeph></entry>
+                    <entry><parmname>displayId</parmname></entry>
+                    <entry>Changed from uint32_t to int64_t</entry>
+                </row>
+                <row>
+                    <entry><parmname>windowId</parmname></entry>
+                    <entry>Changed from view_t to int64_t</entry>
+                </row>
+                <row>
+                    <entry morerows="1"><codeph><apiname keyref="ScreenCaptureSourceInfo"/></codeph></entry>
+                    <entry><parmname>sourceDisplayId</parmname></entry>
+                    <entry>Changed from view_t to int64_t</entry>
+                </row>
+                <row>
+                    <entry><parmname>sourceId</parmname></entry>
+                    <entry>Default value changed from <codeph>nullptr</codeph> to 0</entry>
+                </row>
+            </tbody>
+        </tgroup>
+    </table></p>
+</li>
+<li props="mac"><ph><b>Automatic installation of virtual sound card (macOS)</b></ph>
+    <p>Starting from this version, the SDK supports the automatic installation of a virtual sound card. When you call <codeph><apiname keyref="enableLoopbackRecording"/></codeph> for the first time, the SDK will automatically install the AgoraALD, a virtual sound card developed by Agora. Once the installation is successful, the audio routing will automatically switch to the virtual sound card, and the virtual sound card will be used for audio capture.</p>
+</li>
+<li><ph><b>Changes in strong video denoising implementation</b></ph>
+                        <p>This version adjusts the implementation of strong video denoising. </p>
+                        <p props="apple cpp framework">The <codeph><apiname keyref="VIDEO_DENOISER_LEVEL"/></codeph> removes <codeph><apiname keyref="VIDEO_DENOISER_LEVEL_STRENGTH"/></codeph>. </p>
+                        <p props="android">The <codeph><apiname keyref="VIDEO_DENOISER_LEVEL_STRENGTH"/></codeph> enumeration is removed.</p>
+                        <p>Instead, after enabling video denoising by calling <codeph><apiname keyref="setVideoDenoiserOptions"/></codeph>, you can call the <codeph><apiname keyref="setBeautyEffectOptions"/></codeph> method to enable the beauty skin smoothing feature. Using both together will achieve better video denoising effects. For strong denoising, it is recommended to set the skin smoothing parameters as detailed in <codeph><apiname keyref="setVideoDenoiserOptions"/></codeph>.</p>
+                        <p>Additionally, due to this adjustment, to achieve the best low-light enhancement effect with a focus on image quality, you need to enable video denoising first and use specific settings as detailed in <codeph><apiname keyref="setLowlightEnhanceOptions"/></codeph>.</p>
                     </li>
-                    <li props="ios">Before v4.4.0, when a user role was set to audience and called <codeph><apiname keyref="setAudioScenario"/></codeph> to set the audio scenario to chatroom (<codeph><apiname keyref="AUDIO_SCENARIO_CHATROOM"/></codeph>), the user would see a microphone permission request popup. As of v4.4.0, the SDK uses native iOS APIs to control the microphone, so audience members in a chatroom scenario will no longer receive the microphone permission request popup.</li>
-                    <li props="apple">This version renames the <codeph>receiveMetadata</codeph> callback to <codeph><apiname keyref="onMetadataReceived"/></codeph> and removes the <codeph>data</codeph> and <codeph>timeStamp</codeph> parameters. You can get metadata-related information, including <codeph>timeStamp</codeph> (timestamp of the sent data), <codeph>uid</codeph> (user ID), and <codeph>channelId</codeph> (channel name) through the newly-added <codeph>metadata</codeph> parameter.</li>
-                    <li props="android">This version removes the <codeph>buffer</codeph>, <codeph>uid</codeph>, and <codeph>timeStampMs</codeph> parameters of the <codeph><apiname keyref="onMetadataReceived"/></codeph> callback. You can get metadata-related information, including <codeph>timeStampMs</codeph> (timestamp of the sent data), <codeph>uid</codeph> (user ID), and <codeph>channelId</codeph> (channel name) through the newly-added <codeph>metadata</codeph> parameter.</li>
-                    <li props="cpp">This version renames the following members in <xref keyref="ExternalVideoFrame"/>:
-                        <ul>
-                            <li><codeph>d3d11_texture_2d</codeph> is renamed to <codeph>d3d11Texture2d</codeph>.</li>
-                            <li><codeph>texture_slice_index</codeph> is renamed to <codeph>textureSliceIndex</codeph>.</li>
-                            <li><codeph>metadata_buffer</codeph> is renamed to <codeph>metadataBuffer</codeph>.</li>
-                            <li><codeph>metadata_size</codeph> is renamed to <codeph>metadataSize</codeph>.</li>
-                        </ul>
+<li props="mac cpp electron unity flutter bp unreal"><ph><b>Changes in camera plug and unplug status (macOS, Windows)</b></ph>
+    <p props="cpp electron unity flutter bp unreal">In previous versions, when the camera was unplugged and replugged, the <codeph><apiname keyref="onVideoDeviceStateChanged"/></codeph> callback would report the device status as <apiname keyref="MEDIA_DEVICE_STATE_ACTIVE"/>(1) (device in use). Starting from this version, after the camera is replugged, the device status will change to <codeph><apiname keyref="MEDIA_DEVICE_STATE_IDLE"/></codeph>(0) (device ready).</p>
+    <p props="mac">In previous versions, the camera would not automatically resume capture after being unplugged and replugged. Starting from this version, the camera will automatically resume capture after being replugged.</p>
+</li>
+<li><ph><b>Changes in video encoding preferences</b></ph>
+    <p>To enhance the user’s video interaction experience, this version optimizes the default preferences for video encoding:
+    <ul>
+    <li>In the <codeph><apiname keyref="COMPRESSION_PREFERENCE"/></codeph> enumeration class, a new <codeph><ph keyref="PREFER_COMPRESSION_AUTO"/></codeph> (-1) enumeration is added, replacing the original <codeph><ph keyref="PREFER_QUALITY"/></codeph> (1) as the default value. In this mode, the SDK will automatically choose between <codeph><ph keyref="PREFER_LOW_LATENCY"/></codeph> or <codeph><ph keyref="PREFER_QUALITY"/></codeph> based on your video scene settings to achieve the best user experience.</li>
+    <li>In the <codeph><apiname keyref="DEGRADATION_PREFERENCE"/></codeph> enumeration class, a new <codeph><ph keyref="MAINTAIN_AUTO"/></codeph> (-1) enumeration is added, replacing the original <codeph><ph keyref="MAINTAIN_QUALITY"/></codeph> (1) as the default value. In this mode, the SDK will automatically choose between <codeph><ph keyref="MAINTAIN_FRAMERATE"/></codeph>, <codeph><ph keyref="MAINTAIN_BALANCED"/></codeph>, or <codeph><ph keyref="MAINTAIN_RESOLUTION"/></codeph> based on your video scene settings to achieve the optimal overall quality experience (QoE).</li>
+    </ul></p>
+</li>
+<li props="android unity flutter rn unreal bp"><ph><b>16 KB memory page size (Android)</b></ph>
+                        <p>Starting from Android 15, the system adds support for 16 KB memory page size, as detailed in <xref keyref="page-size"/>. To ensure the stability and performance of the app, starting from this version, the SDK supports 16 KB memory page size, ensuring seamless operation on devices with both 4 KB and 16 KB memory page sizes, enhancing compatibility and preventing crashes.</p>
                     </li>
                 </ol>
             </body>
@@ -56,29 +96,55 @@
             <title>New features</title>
             <body>
                 <ol>
-                    <li props="android ios"><ph><b>Lite SDK</b></ph>
-                        <p>Starting from this version, Agora introduces the Lite SDK, which includes only the basic audio and video capabilities and partially cuts advanced  features, effectively reducing the app size after integrating the SDK.</p>
-                        <ul>
-                        <li>Lite SDK supports manual integration or third-party repository integration. For details, see <xref keyref="resource"/> and <xref keyref="quick-start"/>.</li>
-                        <li>For information on dynamic libraries included in the Lite SDK, see <xref keyref="reduce-app-size"/>.</li>
-                        <li>For the list of APIs supported by the Lite SDK, see <xref href="https://doc.shengwang.cn/api-ref/rtc/android/API/rtc_lite_api" props="android">Lite SDK API List</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/ios/API/rtc_lite_api" props="ios">Lite SDK API List</xref>.</li>
-                        <li>For the limitations and precautions when using the Lite SDK to play media files, please refer to <xref href="https://doc.shengwang.cn/faq/general-product-inquiry/audio-format">Which audio file formats are supported by RTC SDK?</xref></li>
-                        </ul> </li>
-                    <li><ph><b>Alpha transparency effects</b></ph>
-                        <p>This version introduces the Alpha transparency effects feature, supporting the transmission and rendering of Alpha channel data in video frames for SDK capture and custom capture scenarios, enabling transparent gift effects, custom backgrounds on the receiver end, etc.:</p>
-                        <ul>
-                        <li><codeph><apiname keyref="VideoFrame"/></codeph> and <codeph><apiname keyref="ExternalVideoFrame"/></codeph> add the <codeph>alphaBuffer</codeph> member: Sets the Alpha channel data.</li>
-                        <li><codeph><apiname keyref="ExternalVideoFrame"/></codeph> adds the <codeph>fillAlphaBuffer</codeph> member: For BGRA or RGBA formatted video data, sets whether to automatically extract the Alpha channel data and fill it into <codeph>alphaBuffer</codeph>.</li>
-                        <li><codeph><apiname keyref="VideoFrame"/></codeph> and <codeph><apiname keyref="ExternalVideoFrame"/></codeph> add the <codeph>alphaStitchMode</codeph> member: Sets the relative position of <codeph>alphaBuffer</codeph> and video frame stitching.</li>
-                        </ul>
-                        <p>Additionally, <codeph><apiname keyref="AdvanceOptions"/></codeph> adds a new member <codeph>encodeAlpha</codeph>, which is used to set whether to encode and send Alpha information to the remote end. By default, the SDK does not encode and send Alpha information; if you need to encode and send Alpha information to the remote end (for example, when virtual background is enabled), explicitly call <codeph><apiname keyref="setVideoEncoderConfiguration"/></codeph> to set the video encoding properties and set <codeph>encodeAlpha</codeph> to <codeph><ph keyref="true"/></codeph>.</p>
+<li props="cn"><ph><b>Advanced beauty effects</b></ph>
+    <p><ph>This version introduces the following two advanced beauty features:</ph>
+        <ul>
+            <li>Face shaping: By calling the <codeph><apiname keyref="setFaceShapeBeautyOptions"/></codeph> method, you can enhance various parts of the face. You can use preset templates to achieve effects such as face slimming, eye enlargement, and nose slimming in one go, and fine-tune the overall enhancement intensity. If the preset face shaping effects do not meet your needs, you can call the <codeph><apiname keyref="setFaceShapeAreaOptions"/></codeph> method to set face shaping area options and fine-tune each part of the face for more precise face shaping effects.</li>
+            <li>Makeup: By calling the <codeph><apiname keyref="setExtensionProperty"/></codeph> method with specified parameters, you can achieve makeup effects such as eyeshadow, contact lenses, eyeliner, eyebrows, lip gloss, and blush.</li>
+        </ul>
+        <ph>For implementation steps of face shaping and makeup, see <xref keyref="advanced-beauty"/>.</ph>
+        <note type="note">Currently, advanced beauty features are <b>free for a limited time</b>. For details, see <xref keyref="billing-strategy"/>.</note>
+    </p>
+</li>
+<li><ph><b>Live show scenario</b></ph>
+    <p>This version adds the <codeph><apiname keyref="APPLICATION_SCENARIO_LIVESHOW"/></codeph>(3) (Live Show) enumeration to the <codeph><apiname keyref="VIDEO_APPLICATION_SCENARIO_TYPE"/></codeph>. You can call <codeph><apiname keyref="setVideoScenario"/></codeph> to set the video business scenario to show room. In this scenario, fast video rendering and high image quality are crucial. The SDK implements several performance optimizations, such as enabling accelerated audio and video frame rendering to minimize first-frame latency (no need to call <codeph><apiname keyref="enableInstantMediaRendering"/></codeph>) to achieve better image quality and bandwidth efficiency.</p>
+</li>
+<li><ph><b>Maximum frame rate for video rendering</b></ph>
+    <p>This version adds the <codeph><apiname keyref="setLocalRenderTargetFps"/></codeph> and <codeph><apiname keyref="setRemoteRenderTargetFps"/></codeph> methods, which support setting the maximum frame rate for video rendering locally and remotely. The actual frame rate for video rendering by the SDK will be as close to this value as possible.</p>
+    <p>In scenarios where the frame rate requirement for video rendering is not high (e.g., screen sharing, online education) or when the remote end uses mid-to-low-end devices, you can use this set of methods to limit the video rendering frame rate, thereby reducing CPU consumption and improving system performance.</p>
                     </li>
-                    <li><ph><b>Voice AI tuner</b></ph>
-                        <p>This version introduces the voice AI tuner feature, which can enhance the sound quality and tone, similar to a physical sound card. You can enable the voice AI tuner feature by calling the <codeph><apiname keyref="enableVoiceAITuner"/></codeph> method and passing in the sound effect types supported in the <codeph><apiname keyref="VOICE_AI_TUNER_TYPE"/></codeph> enum to achieve effects like deep voice, cute voice, husky singing voice, etc.</p>
+<li props="native"><ph><b>Watching live streaming through URLs</b></ph>
+    <p>As of this version, audience members can directly open a specific URL to play the real-time media stream through <codeph><apiname keyref="OpenWithUrl"/></codeph>, instead of joining a channel and subscribing to the streams of hosts, which greatly simplifies the API calls for the audience end to watch a live stream.</p>
+</li>
+<li><ph><b>Filter effects</b></ph>
+    <p>This version introduces the <codeph><apiname keyref="setFilterEffectOptions"/></codeph> method. You can pass a cube map file (.cube) in the <codeph>config</codeph> parameter to achieve custom filter effects such as whitening, vivid, cool, black and white, etc. Additionally, the SDK provides a built-in <codeph>built_in_whiten_filter.cube</codeph> file for quickly achieving a whitening filter effect.</p>
+</li>
+<li props="android apple cpp cs unity flutter electron rn unreal"><ph><b>Local audio mixing</b></ph>
+    <p>This version introduces the local audio mixing feature. You can call the <codeph><apiname keyref="startLocalAudioMixer"/></codeph> method to mix the audio streams from the local microphone, media player, sound card, and remote audio streams into a single audio stream, which can then be published to the channel. When you no longer need audio mixing, you can call the <codeph><apiname keyref="stopLocalAudioMixer"/></codeph> method to stop local audio mixing. During the mixing process, you can call the <codeph><apiname keyref="updateLocalAudioMixerConfiguration"/></codeph> method to update the configuration of the audio streams being mixed.</p>
+    <p>Example use cases for this feature include:
+        <ul>
+            <li>By utilizing the local video mixing feature, the associated audio streams of the mixed video streams can be simultaneously captured and published.</li>
+            <li>In live streaming scenarios, users can receive audio streams within the channel, mix multiple audio streams locally, and then forward the mixed audio stream to other channels.</li>
+            <li>In educational scenarios, teachers can mix the audio from interactions with students locally and then forward the mixed audio stream to other channels.</li>
+        </ul>
+    </p>
+</li>
+<li props="android unity rn flutter unreal"><ph><b>External MediaProjection (Android)</b></ph>
+                        <p>This version introduces the <codeph><apiname keyref="setExternalMediaProjection"/></codeph> method, which allows you to set an external <codeph>MediaProjection</codeph> and replace the <codeph>MediaProjection</codeph> applied by the SDK.</p>
+                        <p>If you have the capability to apply for <codeph>MediaProjection</codeph> on your own, you can use this feature to achieve more flexible screen capture.</p>
                     </li>
-                    <li><ph><b>1v1 video call scenario</b></ph>
-                        <p>This version adds <codeph><apiname keyref="APPLICATION_SCENARIO_1V1"/></codeph> (1v1 video call) in <codeph><apiname keyref="VIDEO_APPLICATION_SCENARIO_TYPE"/></codeph>. You can call <codeph><apiname keyref="setVideoScenario"/></codeph> to set the video application scenario to 1v1 video call, the SDK optimizes performance to achieve low latency and high video quality, enhancing image quality, first frame rendering, latency on mid-to-low-end devices, and smoothness under poor network conditions.</p>
+<li props="android unity rn flutter unreal"><ph><b>EGL context (Android)</b></ph>
+                        <p>This version introduces the <codeph><apiname keyref="setExternalRemoteEglContext"/></codeph> method, which is used to set the EGL context for rendering remote video streams. When using Texture format video data for remote video self-rendering, you can use this method to replace the SDK's default remote EGL context, achieving unified EGL context management.</p>
                     </li>
+<li props="android apple cpp cs unity flutter electron rn unreal"><ph><b>Color space settings</b></ph>
+    <p>This version adds the <parmname>colorSpace</parmname> parameter to <codeph><apiname keyref="VideoFrame"/></codeph> and <codeph><apiname keyref="ExternalVideoFrame"/></codeph>. You can use this parameter to set the color space properties of the video frame. By default, the color space uses Full Range and BT.709 standard configuration. You can flexibly adjust according to your own capture or rendering needs, further enhancing the customization capabilities of video processing.</p>
+</li>
+<li><ph><b>Others</b></ph>
+    <ul>
+        <li props="cpp unity flutter electron unreal bp"><codeph><apiname keyref="onLocalVideoStateChanged"/></codeph> callback adds the <codeph><ph keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_DISCONNECTED"/></codeph> enumeration, indicating that the currently used video capture device has been disconnected (e.g., unplugged). (Windows)</li>
+        <li props="cpp unity flutter unreal bp electron"><codeph><apiname keyref="MEDIA_DEVICE_STATE_TYPE"/></codeph> adds the <codeph><apiname keyref="MEDIA_DEVICE_STATE_PLUGGED_IN"/></codeph> enumeration, indicating that the device has been plugged in. (Windows)</li>
+    </ul>
+</li>
                 </ol>
             </body>
         </topic>
@@ -86,46 +152,54 @@
             <title>Improvements</title>
             <body>
                 <ol>
-                    <li props="android cpp framework"><ph><b>Adaptive hardware decoding support (Android, Windows)</b></ph>
-                        <p>This release introduces adaptive hardware decoding support, enhancing rendering smoothness on low-end devices and effectively reducing system load.</p>
-                    </li>
-                    <li props="cpp electron unity flutter unreal bp"><ph><b>Rendering performance enhancement (Windows)</b></ph>
-                        <p>DirectX 11 renderer is now enabled by default on Windows devices, providing high-performance and high-quality graphics rendering capabilities.</p>
-                    </li>
-                    <li><ph><b>Facial region beautification</b></ph>
-                        <p>To avoid losing details in non-facial areas during heavy skin smoothing, this version improves the skin smoothing algorithm. The SDK now recognizes various parts of the face, applying smoothing to facial skin areas excluding the mouth, eyes, and eyebrows. In addition, the SDK supports smoothing up to two faces simultaneously.</p>
-                    </li>
-                    <li><ph><b>Other improvements</b></ph>
-                        <p>This version also includes the following improvements: 
-                        <ul>
-                        <li props="android">Optimizes the parameter types of the following APIs. These improvements enhance code readability, reduce potential errors, and facilitate future maintenance. 
-                            <ul>
-                            <li>Deprecates the <codeph>option</codeph> parameter of type int in <codeph><codeph><apiname keyref="setRemoteSubscribeFallbackOption"/></codeph></codeph>, and adds an overloaded function <codeph><codeph><apiname keyref="setRemoteSubscribeFallbackOption2"/></codeph></codeph> with the <codeph>option</codeph> parameter of type <codeph><codeph><apiname keyref="STREAM_FALLBACK_OPTIONS"/></codeph></codeph>.</li>
-                            <li>Deprecates the <codeph>streamType</codeph> parameter of type int in <codeph><codeph><apiname keyref="setRemoteVideoStreamType"/></codeph></codeph>, <codeph><codeph><apiname keyref="setRemoteDefaultVideoStreamType"/></codeph></codeph>, and <codeph><codeph><apiname keyref="setRemoteVideoStreamTypeEx"/></codeph></codeph>, and adds overloaded functions <codeph><codeph><apiname keyref="setRemoteVideoStreamType2"/></codeph></codeph>, <codeph><codeph><apiname keyref="setRemoteDefaultVideoStreamType2"/></codeph></codeph>, and <codeph><codeph><apiname keyref="setRemoteVideoStreamTypeEx2"/></codeph></codeph> with the <codeph>streamType</codeph> parameter of type <codeph><codeph><apiname keyref="VIDEO_STREAM_TYPE"/></codeph></codeph>.</li>
-                            </ul></li>
-                        <li>Optimizes transmission strategy: calling <codeph><apiname keyref="enableInstantMediaRendering"/></codeph> no longer impacts the security of the transmission link.</li>
-                        <li props="cpp mac electron unity flutter unreal bp">The <codeph><apiname keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_DISPLAY_DISCONNECTED"/></codeph> enumerator is added in <codeph><apiname keyref="onLocalVideoStateChanged"/></codeph> callback , indicating that the display used for screen capture has been disconnected. (Windows, macOS)</li>
-                        <li props="mac electron unity flutter unreal bp">Optimizes the video link for window sharing, reducing CPU usage. (macOS)</li>
-                        <li props="cpp unity flutter electron unreal">Improves echo cancellation for screen sharing scenarios.</li>
-                        <li props="cpp framework">Adds the <codeph>channelId</codeph> parameter to <codeph><apiname keyref="Metadata"/></codeph>, which is used to get the channel name from which the metadata is sent.</li>
-                        <li props="apple cpp framework">Deprecates redundant enumeration values <codeph><apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT"/></codeph> and <codeph><apiname keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED"/></codeph> in <codeph><apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REASON"/></codeph>.</li>
-                        <li props="android">Deprecates redundant enumeration values <codeph><apiname keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT"/></codeph> and <codeph><apiname keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED"/></codeph>.</li>
-                        </ul></p>
-                    </li>
+<li><ph><b>Virtual background algorithm optimization</b></ph>
+    <p>This version upgrades the virtual background algorithm, making the segmentation between the portrait and the background more accurate. There is no background exposure, the body contour of the portrait is complete, and the detail recognition of fingers is significantly improved. Additionally, the edges between the portrait and the background are more stable, reducing edge jumping and flickering in continuous video frames.</p>
+</li>
+<li props="cn"><ph><b>Record local preview video</b></ph>
+    <p>This version adds the <parmname>type</parmname> member to <codeph><apiname keyref="RecorderStreamInfo"/></codeph>. When calling <codeph><apiname keyref="createMediaRecorder"/></codeph>, you can specify the type of video stream to be recorded as the local preview video stream through this member. You can set parameters such as height, width, frame rate, and sampling rate of the preview video in <codeph><apiname keyref="MediaRecorderConfiguration"/></codeph>, and then call <codeph><apiname keyref="startRecording"/></codeph> to start recording the local preview video.</p>
+</li>
+<li><ph><b>Snapshot at specified video observation points</b></ph>
+    <p>This version introduces the <codeph><apiname keyref="takeSnapshot2"/></codeph> and <codeph><apiname keyref="takeSnapshotEx2"/></codeph> methods. You can use the <codeph>config</codeph> parameter when calling these methods to take snapshots at specified video observation points, such as before encoding, after encoding, or before rendering, to achieve more flexible snapshot effects.</p>
+</li>
+<li props="android apple cpp cs unity flutter electron rn unreal"><ph><b>Custom audio capture improvements</b></ph>
+    <p>This version adds the <codeph>enableAudioProcessing</codeph> member parameter to <codeph><apiname keyref="AudioTrackConfig"/></codeph>, which is used to control whether to enable 3A audio processing for custom audio capture tracks of the <codeph>AUDIO_TRACK_DIRECT</codeph> type. The default value of this parameter is <codeph><ph keyref="false"/></codeph>, meaning that audio processing is not enabled. Users can enable it as needed, enhancing the flexibility of custom audio processing.</p>
+</li>
+<li><ph><b>Other Improvements</b></ph>
+    <ul>
+        <li props="android ios unity flutter rn unreal bp">In scenarios where Alpha transparency effects are achieved by stitching video frames and Alpha data, the rendering performance on the receiving end has been improved, effectively reducing stuttering and latency. (Android, iOS)</li>
+        <li>Optimizes the logic for calling <codeph><apiname keyref="queryDeviceScore"/></codeph> to obtain device score levels, improving the accuracy of the score results.</li>
+        <li props="cpp framework">Supports using virtual cameras in YV12 format as video capture devices. (Windows)</li>
+        <li props="ios unity flutter rn unreal bp">After calling <codeph><apiname keyref="enableLocalAudio"/></codeph> to disable local audio capture within the channel, the mute side button on the phone can be used to mute the background sound effects played by the app. (iOS)</li>
+        <li>When calling <codeph><apiname keyref="switchSrc"/></codeph> to switch between live streams or on-demand streams of different resolutions, smooth and seamless switching can be achieved. An automatic retry mechanism has been added in case of switching failures. The SDK will automatically retry 3 times after a failure. If it still fails, the <codeph><apiname keyref="onPlayerEvent"/></codeph> callback will report the <codeph><apiname keyref="PLAYER_EVENT_SWITCH_ERROR"/></codeph> event, indicating an error occurred during media resource switching.</li>
+        <li>When calling <codeph><apiname keyref="setPlaybackSpeed"/></codeph> to set the playback speed of an audio file, the minimum supported speed is 0.3x.</li>
+    </ul>
+</li>
                 </ol>
             </body>
         </topic>
-        <topic id="bugfix">
-            <title>Issues fixed</title>
-            <body>
-                <p>This release fixed the following issues:</p>
-                <ul>
-                    <li props="ios rn unity flutter unreal bp">Occasional app crashes occurred when multiple remote users joined the channel simultaneously during real-time interaction. (iOS)</li>
-                    <li props="ios rn unity flutter unreal bp">Remote video occasionally froze or displayed corrupted images when the app returned to the foreground after being in the background for a while. (iOS)</li>
-                    <li props="ios rn unity flutter unreal bp">After the sender called <codeph><apiname keyref="startDirectCdnStreaming"/></codeph> to start direct CDN streaming, frequent switching or toggling of the network occasionally resulted in a black screen on the receiver's end without a streaming failure callback on the sender's end. (iOS)</li>
-                    <li props="android ios unity flutter rn unreal bp">Audio playback failed when pushing external audio data using <xref keyref="pushAudioFrame" props="unity flutter rn unreal bp"/><xref keyref="pushAudioFrame2" props="android ios"/> and the sample rate was not set as a recommended value, such as 22050 Hz and 11025 Hz.</li>
-                </ul>
-            </body>
-        </topic>
+<topic id="bugfix">
+    <title>Issues fixed</title>
+    <body>
+        <p>This version fixes the following issues:</p>
+        <ul>
+            <li props="cpp unity flutter electron unreal bp">When calling <codeph><apiname keyref="startScreenCaptureByWindowId"/></codeph> to share the screen, the window capture area specified by <parmname>regionRect</parmname> was inaccurate, resulting in incorrect width and height of the screen sharing window seen by the receiving end. (Windows)</li>
+            <li props="android ios unity flutter rn unreal bp">When the video source type of the sender is in JPEG format, the frame rate on the receiving end occasionally falls below expectations. (Android, iOS)</li>
+            <li props="cn">Occasional noise and stuttering when playing music resources from the music content center. (Android)</li>
+            <li props="cn">Occasional stuttering when playing accompaniment music through <codeph><apiname keyref="IMusicPlayer"/></codeph> without microphone permission in the app. (Android)</li>
+            <li props="android unity flutter rn unreal bp">During audio and video interaction, after being interrupted by a system call, the user volume reported by the <codeph><apiname keyref="onAudioVolumeIndication"/></codeph> callback was incorrect. (Android)</li>
+            <li props="android unity flutter rn unreal bp">When the receiving end subscribes to the video small stream by default and does not automatically subscribe to any video stream when joining the channel, calling <codeph><apiname keyref="muteRemoteVideoStream"/></codeph><codeph>(uid, false)</codeph> after joining the channel to resume receiving the video stream results in receiving the video large stream, which is not as expected. (Android)</li>
+            <li props="cpp unity electron flutter unreal bp">Occasional errors of not finding system files during audio and video interaction on Windows 7 systems. (Windows)</li>
+            <li props="cpp unity electron flutter unreal bp">When calling <codeph><apiname keyref="followSystemRecordingDevice"/></codeph> or <codeph><apiname keyref="followSystemPlaybackDevice"/></codeph> to set the audio capture or playback device used by the SDK to not follow the system default audio playback device, the local audio state callback <codeph><apiname keyref="onLocalAudioStateChanged"/></codeph> is not triggered when the audio device is removed, which is not as expected. (Windows)</li>
+            <li props="ios unity flutter rn unreal bp">Occasional instances where the receiving end cannot hear the sender during audio and video interaction. (iOS)</li>
+            <li props="apple unity flutter rn unreal bp">During audio and video interaction, if the sender's device system version is iOS 17, the receiving end occasionally cannot hear the sender. (iOS)</li>
+            <li props="apple unity flutter rn unreal bp">In live streaming scenarios, the time taken to reconnect to the live room after the audience end disconnects due to network switching is longer than expected. (iOS)</li>
+            <li props="apple unity flutter rn unreal bp">No sound when playing online media resources using the media player after the app starts. (iOS)</li>
+            <li props="apple unity flutter rn unreal bp">Occasional instances of no sound in audio capture after resuming from being interrupted by other system apps during audio and video interaction. (iOS)</li>
+            <li props="android unity flutter rn unreal">Calling <codeph><apiname keyref="startAudioMixing"/></codeph> and then immediately calling <codeph><apiname keyref="pauseAudioMixing"/></codeph> to pause the music file playback does not take effect.</li>
+            <li props="bp">Calling <codeph><apiname keyref="startAudioMixing2"/></codeph> and then immediately calling <codeph><apiname keyref="pauseAudioMixing"/></codeph> to pause the music file playback does not take effect.</li>
+            <li props="android unity flutter rn bp unreal">Occasional crashes during audio and video interaction. (Android)</li>
+        </ul>
+    </body>
+</topic>
     </topic>
 </topic>

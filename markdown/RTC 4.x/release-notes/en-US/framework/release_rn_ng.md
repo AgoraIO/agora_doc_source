@@ -8,6 +8,185 @@ On Android 14 devices (such as OnePlus 11), screen sharing may not be available 
 
 AirPods Pro does not support A2DP protocol in communication audio mode, which may lead to connection failure in that mode.
 
+## v4.5.0
+
+This version was released on November x, 2024.
+
+#### Compatibility changes
+
+This version includes optimizations to some features, including changes to SDK behavior, API renaming and deletion. To ensure normal operation of the project, update the code in the app after upgrading to this release.
+
+1. **Changes in strong video denoising implementation**
+
+   This version adjusts the implementation of strong video denoising.
+
+   The `VideoDenoiserLevel` removes `VideoDenoiserLevelStrength`.
+
+   Instead, after enabling video denoising by calling `setVideoDenoiserOptions`, you can call the `setBeautyEffectOptions` method to enable the beauty skin smoothing feature. Using both together will achieve better video denoising effects. For strong denoising, it is recommended to set the skin smoothing parameters as detailed in `setVideoDenoiserOptions`.
+
+   Additionally, due to this adjustment, to achieve the best low-light enhancement effect with a focus on image quality, you need to enable video denoising first and use specific settings as detailed in `setLowlightEnhanceOptions`.
+
+2. **Changes in video encoding preferences**
+
+   To enhance the user’s video interaction experience, this version optimizes the default preferences for video encoding:
+
+   - In the `CompressionPreference` enumeration class, a new `PreferCompressionAuto` (-1) enumeration is added, replacing the original `PreferQuality` (1) as the default value. In this mode, the SDK will automatically choose between `PreferLowLatency` or `PreferQuality` based on your video scene settings to achieve the best user experience.
+   - In the `DegradationPreference` enumeration class, a new `MaintainAuto` (-1) enumeration is added, replacing the original `MaintainQuality` (1) as the default value. In this mode, the SDK will automatically choose between `MaintainFramerate`, `MaintainBalanced`, or `MaintainResolution` based on your video scene settings to achieve the optimal overall quality experience (QoE).
+
+3. **16 KB memory page size (Android)**
+
+   Starting from Android 15, the system adds support for 16 KB memory page size, as detailed in [Support 16 KB page sizes](https://developer.android.com/guide/practices/page-sizes). To ensure the stability and performance of the app, starting from this version, the SDK supports 16 KB memory page size, ensuring seamless operation on devices with both 4 KB and 16 KB memory page sizes, enhancing compatibility and preventing crashes.
+
+#### New features
+
+1. **Live show scenario**
+
+   This version adds the `ApplicationScenarioLiveshow`(3) (Live Show) enumeration to the `VideoApplicationScenarioType`. You can call `setVideoScenario` to set the video business scenario to show room. In this scenario, fast video rendering and high image quality are crucial. The SDK implements several performance optimizations, such as enabling accelerated audio and video frame rendering to minimize first-frame latency (no need to call `enableInstantMediaRendering`) to achieve better image quality and bandwidth efficiency.
+
+2. **Maximum frame rate for video rendering**
+
+   This version adds the `setLocalRenderTargetFps` and `setRemoteRenderTargetFps` methods, which support setting the maximum frame rate for video rendering locally and remotely. The actual frame rate for video rendering by the SDK will be as close to this value as possible.
+
+   In scenarios where the frame rate requirement for video rendering is not high (e.g., screen sharing, online education) or when the remote end uses mid-to-low-end devices, you can use this set of methods to limit the video rendering frame rate, thereby reducing CPU consumption and improving system performance.
+
+3. **Filter effects**
+
+   This version introduces the `setFilterEffectOptions` method. You can pass a cube map file (.cube) in the `config` parameter to achieve custom filter effects such as whitening, vivid, cool, black and white, etc. Additionally, the SDK provides a built-in `built_in_whiten_filter.cube` file for quickly achieving a whitening filter effect.
+
+4. **Local audio mixing**
+
+   This version introduces the local audio mixing feature. You can call the `startLocalAudioMixer` method to mix the audio streams from the local microphone, media player, sound card, and remote audio streams into a single audio stream, which can then be published to the channel. When you no longer need audio mixing, you can call the `stopLocalAudioMixer` method to stop local audio mixing. During the mixing process, you can call the `updateLocalAudioMixerConfiguration` method to update the configuration of the audio streams being mixed.
+
+   Example use cases for this feature include:
+
+   - By utilizing the local video mixing feature, the associated audio streams of the mixed video streams can be simultaneously captured and published.
+   - In live streaming scenarios, users can receive audio streams within the channel, mix multiple audio streams locally, and then forward the mixed audio stream to other channels.
+   - In educational scenarios, teachers can mix the audio from interactions with students locally and then forward the mixed audio stream to other channels.
+
+5. **External MediaProjection (Android)**
+
+   This version introduces the `setExternalMediaProjection` method, which allows you to set an external `MediaProjection` and replace the `MediaProjection` applied by the SDK.
+
+   If you have the capability to apply for `MediaProjection` on your own, you can use this feature to achieve more flexible screen capture.
+
+6. **EGL context (Android)**
+
+   This version introduces the `setExternalRemoteEglContext` method, which is used to set the EGL context for rendering remote video streams. When using Texture format video data for remote video self-rendering, you can use this method to replace the SDK's default remote EGL context, achieving unified EGL context management.
+
+7. **Color space settings**
+
+   This version adds the **colorSpace** parameter to `VideoFrame` and `ExternalVideoFrame`. You can use this parameter to set the color space properties of the video frame. By default, the color space uses Full Range and BT.709 standard configuration. You can flexibly adjust according to your own capture or rendering needs, further enhancing the customization capabilities of video processing.
+
+8. **Others**
+
+#### Improvements
+
+1. **Virtual background algorithm optimization**
+
+   This version upgrades the virtual background algorithm, making the segmentation between the portrait and the background more accurate. There is no background exposure, the body contour of the portrait is complete, and the detail recognition of fingers is significantly improved. Additionally, the edges between the portrait and the background are more stable, reducing edge jumping and flickering in continuous video frames.
+
+2. **Snapshot at specified video observation points**
+
+   This version introduces the `takeSnapshotWithConfig` and `takeSnapshotWithConfigEx` methods. You can use the `config` parameter when calling these methods to take snapshots at specified video observation points, such as before encoding, after encoding, or before rendering, to achieve more flexible snapshot effects.
+
+3. **Custom audio capture improvements**
+
+   This version adds the `enableAudioProcessing` member parameter to `AudioTrackConfig`, which is used to control whether to enable 3A audio processing for custom audio capture tracks of the `AUDIO_TRACK_DIRECT` type. The default value of this parameter is `false`, meaning that audio processing is not enabled. Users can enable it as needed, enhancing the flexibility of custom audio processing.
+
+4. **Other Improvements**
+
+   - In scenarios where Alpha transparency effects are achieved by stitching video frames and Alpha data, the rendering performance on the receiving end has been improved, effectively reducing stuttering and latency. 
+   - Optimizes the logic for calling `queryDeviceScore` to obtain device score levels, improving the accuracy of the score results.
+   - After calling `enableLocalAudio` to disable local audio capture within the channel, the mute side button on the phone can be used to mute the background sound effects played by the app. (iOS)
+   - When calling `switchSrc` to switch between live streams or on-demand streams of different resolutions, smooth and seamless switching can be achieved. An automatic retry mechanism has been added in case of switching failures. The SDK will automatically retry 3 times after a failure. If it still fails, the `onPlayerEvent` callback will report the `PlayerEventSwitchError` event, indicating an error occurred during media resource switching.
+   - When calling `setPlaybackSpeed` to set the playback speed of an audio file, the minimum supported speed is 0.3x.
+
+#### Issues fixed
+
+This version fixes the following issues:
+
+- When the video source type of the sender is in JPEG format, the frame rate on the receiving end occasionally falls below expectations. 
+- During audio and video interaction, after being interrupted by a system call, the user volume reported by the `onAudioVolumeIndication` callback was incorrect. (Android)
+- When the receiving end subscribes to the video small stream by default and does not automatically subscribe to any video stream when joining the channel, calling `muteRemoteVideoStream(uid, false)` after joining the channel to resume receiving the video stream results in receiving the video large stream, which is not as expected. (Android)
+- Occasional instances where the receiving end cannot hear the sender during audio and video interaction. (iOS)
+- During audio and video interaction, if the sender's device system version is iOS 17, the receiving end occasionally cannot hear the sender. (iOS)
+- In live streaming scenarios, the time taken to reconnect to the live room after the audience end disconnects due to network switching is longer than expected. (iOS)
+- No sound when playing online media resources using the media player after the app starts. (iOS)
+- Occasional instances of no sound in audio capture after resuming from being interrupted by other system apps during audio and video interaction. (iOS)
+- Calling `startAudioMixing` and then immediately calling `pauseAudioMixing` to pause the music file playback does not take effect.
+- Occasional crashes during audio and video interaction. (Android)
+
+## v4.4.0
+
+This version was released on July x, 2024.
+
+#### Compatibility changes
+
+This version includes optimizations to some features, including changes to SDK behavior, API renaming and deletion. To ensure normal operation of the project, update the code in the app after upgrading to this release.
+
+1. To distinguish context information in different extension callbacks, this version removes the original extension callbacks and adds corresponding callbacks that contain context information (see the table below). You can identify the extension name, the user ID, and the service provider name through `ExtensionContext` in each callback.
+
+   | Original callback  | Current callback |
+   | ------------------ | ---------------- |
+   | `onExtensionEvent` | `onExtensionEventWithContext`   |
+   | `onExtensionStarted` | `onExtensionStartedWithContext` |
+   | `onExtensionStopped` | `onExtensionStoppedWithContext` |
+   | `onExtensionError` | `onExtensionErrorWithContext`   |
+
+2. This version renames the following members in `ExternalVideoFrame`:
+
+   - `d3d11_texture_2d` is renamed to `d3d11Texture2d`.
+   - `texture_slice_index` is renamed to `textureSliceIndex`.
+   - `metadata_buffer` is renamed to `metadataBuffer`.
+   - `metadata_size` is renamed to `metadataSize`.
+
+#### New features
+
+1. **Alpha transparency effects**
+
+   This version introduces the Alpha transparency effects feature, supporting the transmission and rendering of Alpha channel data in video frames for SDK capture and custom capture scenarios, enabling transparent gift effects, custom backgrounds on the receiver end, etc.:
+
+   - `VideoFrame` and `ExternalVideoFrame` add the `alphaBuffer` member: Sets the Alpha channel data.
+   - `ExternalVideoFrame` adds the `fillAlphaBuffer` member: For BGRA or RGBA formatted video data, sets whether to automatically extract the Alpha channel data and fill it into `alphaBuffer`.
+   - `VideoFrame` and `ExternalVideoFrame` add the `alphaStitchMode` member: Sets the relative position of `alphaBuffer` and video frame stitching.
+
+   Additionally, `AdvanceOptions` adds a new member `encodeAlpha`, which is used to set whether to encode and send Alpha information to the remote end. By default, the SDK does not encode and send Alpha information; if you need to encode and send Alpha information to the remote end (for example, when virtual background is enabled), explicitly call `setVideoEncoderConfiguration` to set the video encoding properties and set `encodeAlpha` to `true`.
+
+2. **Voice AI tuner**
+
+   This version introduces the voice AI tuner feature, which can enhance the sound quality and tone, similar to a physical sound card. You can enable the voice AI tuner feature by calling the `enableVoiceAITuner` method and passing in the sound effect types supported in the `VoiceAiTunerType`enum to achieve effects like deep voice, cute voice, husky singing voice, etc.
+
+3. **1v1 video call scenario**
+
+   This version adds `ApplicationScenario1v1`(1v1 video call) in `VideoApplicationScenarioType`. You can call `setVideoScenario` to set the video application scenario to 1v1 video call, the SDK optimizes performance to achieve low latency and high video quality, enhancing image quality, first frame rendering, latency on mid-to-low-end devices, and smoothness under poor network conditions.
+
+#### Improvements
+
+1. **Adaptive hardware decoding support (Android)**
+
+   This release introduces adaptive hardware decoding support, enhancing rendering smoothness on low-end devices and effectively reducing system load.
+
+2. **Facial region beautification**
+
+   To avoid losing details in non-facial areas during heavy skin smoothing, this version improves the skin smoothing algorithm. The SDK now recognizes various parts of the face, applying smoothing to facial skin areas excluding the mouth, eyes, and eyebrows. In addition, the SDK supports smoothing up to two faces simultaneously.
+
+3. **Other improvements**
+
+   This version also includes the following improvements:
+
+   - Optimizes transmission strategy: calling `enableInstantMediaRendering` no longer impacts the security of the transmission link.
+   - Adds the `channelId` parameter to `Metadata`, which is used to get the channel name from which the metadata is sent.
+   - Deprecates redundant enumeration values `ClientRoleChangeFailedRequestTimeOut` and `ClientRoleChangeFailedConnectionFailed` in `ClientRoleChangeFailedReason`.
+
+#### Issues fixed
+
+This release fixed the following issues:
+
+- Occasional app crashes occurred when multiple remote users joined the channel simultaneously during real-time interaction. (iOS)
+- Remote video occasionally froze or displayed corrupted images when the app returned to the foreground after being in the background for a while. (iOS)
+- After the sender called `startDirectCdnStreaming` to start direct CDN streaming, frequent switching or toggling of the network occasionally resulted in a black screen on the receiver's end without a streaming failure callback on the sender's end. (iOS)
+- Audio playback failed when pushing external audio data using `pushAudioFrame` and the sample rate was not set as a recommended value, such as 22050 Hz and 11025 Hz.
+
 ## v4.3.2
 
 This version was released on May x, 20xx.

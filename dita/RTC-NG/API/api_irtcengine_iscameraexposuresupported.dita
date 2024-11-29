@@ -14,7 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract boolean isCameraExposureSupported();</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public abstract isCameraExposureSupported(): boolean;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)isCameraExposureSupported NS_SWIFT_NAME(isCameraExposureSupported());</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual bool isCameraExposureSupported() = 0;</codeblock>
            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
@@ -36,7 +36,7 @@
             <note type="attention">
             <ul>
                 <li props="cpp unreal bp flutter unity">该方法仅适用于 Android 和 iOS。</li>
-                <li id="sequence">该方法必须在 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调，返回本地视频状态为 <apiname keyref="LOCAL_VIDEO_STREAM_STATE_ENCODING"/> (2) 之后调用。</li>
+                <li id="sequence">该方法必须在 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调，返回本地视频状态为 <apiname keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/> (1) 之后调用。</li>
                 <li>建议你在调用 <xref keyref="setCameraExposureFactor"/> 调节曝光系数前，先调用该方法查询当前摄像头是否支持曝光调节。</li>
                 <li>当你调用该方法时，查询的是当前正在使用的摄像头是否支持曝光调节，即调用 <xref keyref="setCameraCapturerConfiguration"/> 时指定的摄像头。</li>
             </ul></note>
