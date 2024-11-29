@@ -18,7 +18,7 @@
   public IMediaExtensionObserver mExtensionObserver;
   public LogConfig mLogConfig;
   public String mNativeLibPath;
-  public boolean mDomainLimit;  
+  public boolean mDomainLimit;
 
   public void addExtension(String providerName) {
     mExtensionList.add(providerName);
@@ -26,10 +26,12 @@
 
 }</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">export class RtcEngineConfig{
-  public mContext:Context | null = null;
-  public mAppId:string | null = null;
-  public mEventHandler: IRtcEngineEventHandler | null = null;
-}</codeblock>
+                public mContext:Context;
+                public mAppId:string;
+                public mEventHandler: IRtcEngineEventHandler ;
+                public mLogConfig?:LogConfig;
+                public areaCode: Constants.AreaCode = Constants.AreaCode.GLOB;
+              }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcEngineConfig: NSObject
 
 @property (copy, nonatomic) NSString * _Nullable appId;
@@ -69,19 +71,19 @@ struct FRtcEngineContext
 	EAgoraBPuEventHandlerType EventHandlerCreationType = EAgoraBPuEventHandlerType::EventHandler;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
 	FString appId = &quot;&quot;;
-	
-		
+
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
 	ECHANNEL_PROFILE_TYPE channelProfile = ECHANNEL_PROFILE_TYPE::CHANNEL_PROFILE_LIVE_BROADCASTING;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
 	FString license = &quot;&quot;;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
 	EAUDIO_SCENARIO_TYPE audioScenario = EAUDIO_SCENARIO_TYPE::AUDIO_SCENARIO_DEFAULT;
-	
-	
+
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
 	FENUMWRAP_AREA_CODE areaCode = EENUMCUSTOM_AREA_CODE::AREA_CODE_GLOB;
-	
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
 	FLogConfig logConfig;
 
@@ -99,11 +101,11 @@ struct FRtcEngineContext
 	FRtcEngineContext() {}
 	agora::rtc::RtcEngineContext CreateAgoraData() const {
 		agora::rtc::RtcEngineContext AgoraData;
-		
+
 		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.appId, this-&gt;appId)
-		
+
 		AgoraData.channelProfile = (agora::CHANNEL_PROFILE_TYPE)channelProfile;
-		
+
 		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.license, this-&gt;license)
 		AgoraData.audioScenario = (agora::rtc::AUDIO_SCENARIO_TYPE)audioScenario;
 		AgoraData.areaCode = areaCode.GetRawValue();
@@ -112,7 +114,7 @@ struct FRtcEngineContext
 		AgoraData.useExternalEglContext = useExternalEglContext;
 		AgoraData.domainLimit = domainLimit;
 		AgoraData.autoRegisterAgoraExtensions = autoRegisterAgoraExtensions;
-		
+
 		return AgoraData;
 	}
 
