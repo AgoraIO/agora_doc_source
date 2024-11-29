@@ -49,16 +49,27 @@
 };
 </codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
-struct FUABT_LowlightEnhanceOptions
+struct FLowlightEnhanceOptions
 {
 	GENERATED_BODY()
-
 public:
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	EUABT_LOW_LIGHT_ENHANCE_MODE mode = EUABT_LOW_LIGHT_ENHANCE_MODE::LOW_LIGHT_ENHANCE_AUTO;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	EUABT_LOW_LIGHT_ENHANCE_LEVEL level = EUABT_LOW_LIGHT_ENHANCE_LEVEL::LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LowlightEnhanceOptions&quot;)
+	ELOW_LIGHT_ENHANCE_MODE mode = ELOW_LIGHT_ENHANCE_MODE::LOW_LIGHT_ENHANCE_AUTO;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LowlightEnhanceOptions&quot;)
+	ELOW_LIGHT_ENHANCE_LEVEL level = ELOW_LIGHT_ENHANCE_LEVEL::LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY;
+	FLowlightEnhanceOptions(){}
+	FLowlightEnhanceOptions(const agora::rtc::LowlightEnhanceOptions &amp; AgoraData){
+		mode = static_cast&lt;ELOW_LIGHT_ENHANCE_MODE&gt;(AgoraData.mode);
+		level = static_cast&lt;ELOW_LIGHT_ENHANCE_LEVEL&gt;(AgoraData.level);
+	}
+	agora::rtc::LowlightEnhanceOptions CreateAgoraData() const {
+		agora::rtc::LowlightEnhanceOptions AgoraData;
+		AgoraData.mode = static_cast&lt;agora::rtc::LowlightEnhanceOptions::LOW_LIGHT_ENHANCE_MODE&gt;(mode);
+		AgoraData.level = static_cast&lt;agora::rtc::LowlightEnhanceOptions::LOW_LIGHT_ENHANCE_LEVEL&gt;(level);
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::LowlightEnhanceOptions&amp; AgoraData) const {
+	}
 };</codeblock>
       <codeblock props="unity cs" outputclass="language-csharp">public class LowlightEnhanceOptions
     {
@@ -78,15 +89,15 @@ public:
         }
     };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class LowlightEnhanceOptions {
-
+  
   mode?: LowLightEnhanceMode;
-
+  
   level?: LowLightEnhanceLevel;
 }</codeblock>
       <codeblock props="rn" outputclass="language-typescript">export class LowlightEnhanceOptions {
-
+  
   mode?: LowLightEnhanceMode;
-
+  
   level?: LowLightEnhanceLevel;
 }</codeblock>
       <codeblock props="flutter" outputclass="language-dart">class LowlightEnhanceOptions {
@@ -103,7 +114,7 @@ public:
       _$LowlightEnhanceOptionsFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$LowlightEnhanceOptionsToJson(this);
-}</codeblock>
+}</codeblock>            
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
     </section>
     <section id="parameters">
