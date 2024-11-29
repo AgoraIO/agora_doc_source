@@ -22,23 +22,22 @@
 @end
 </codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct ScreenCaptureSourceInfo {
-  ScreenCaptureSourceType type;
-  int64_t sourceId;
-  const char* sourceName;
-  ThumbImageBuffer thumbImage;
-  ThumbImageBuffer iconImage;
-  const char* processPath;
-  const char* sourceTitle;
-  bool primaryMonitor;
-  bool isOccluded;
-  Rectangle position;
+    ScreenCaptureSourceType type;
+    view_t sourceId;
+    const char* sourceName;
+    ThumbImageBuffer thumbImage;
+    ThumbImageBuffer iconImage;
+    const char* processPath;
+    const char* sourceTitle;
+    bool primaryMonitor;
 #if defined(_WIN32)
-  bool minimizeWindow;
-  int64_t sourceDisplayId;
-  ScreenCaptureSourceInfo() : type(ScreenCaptureSourceType_Unknown), sourceId(0), sourceName(nullptr),
-                              processPath(nullptr), sourceTitle(nullptr), primaryMonitor(false), isOccluded(false), minimizeWindow(false), sourceDisplayId(-2) {}
+    Rectangle position;
+    bool minimizeWindow;
+    view_t sourceDisplayId;
+  ScreenCaptureSourceInfo() : type(ScreenCaptureSourceType_Unknown), sourceId(nullptr), sourceName(nullptr),
+                              processPath(nullptr), sourceTitle(nullptr), primaryMonitor(false), isOccluded(false), minimizeWindow(false), sourceDisplayId((view_t)-2) {}
 #else
-  ScreenCaptureSourceInfo() : type(ScreenCaptureSourceType_Unknown), sourceId(0), sourceName(nullptr), processPath(nullptr), sourceTitle(nullptr), primaryMonitor(false), isOccluded(false) {}
+  ScreenCaptureSourceInfo() : type(ScreenCaptureSourceType_Unknown), sourceId(nullptr), sourceName(nullptr), processPath(nullptr), sourceTitle(nullptr), primaryMonitor(false), isOccluded(false) {}
 #endif
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
@@ -143,7 +142,7 @@ public:
             <codeblock props="unity cs" outputclass="language-csharp">public class ScreenCaptureSourceInfo
     {
         public ScreenCaptureSourceType type;
-        public long sourceId;
+        public view_t sourceId;
         public string sourceName;
         public ThumbImageBuffer thumbImage;
         public ThumbImageBuffer iconImage;
@@ -151,7 +150,7 @@ public:
         public string sourceTitle;
         public bool primaryMonitor;
         public Rectangle position;
-        public long sourceDisplayId;
+        public view_t sourceDisplayId;
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript"></codeblock>
             <codeblock props="flutter" outputclass="language-dart">class ScreenCaptureSourceInfo {
