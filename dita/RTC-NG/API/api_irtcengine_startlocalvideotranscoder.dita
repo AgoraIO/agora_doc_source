@@ -38,15 +38,15 @@
         <p>你可以在远程会议、直播、在线教育等场景下开启本地合图功能，可以让用户更加方便地查看和管理多个视频画面，同时支持人像画中画等功能。</p>
         <p>以下是一个实现人像画中画的典型场景：
                 <ol>
-                <li>调用 <xref keyref="enableVirtualBackground"  props="android cpp apple framework"/><xref keyref="enableVirtualBackground2"  props="hmos"/>，并将自定义背景图设置为 <apiname keyref="BACKGROUND_NONE"/>，即：在摄像头采集的视频中将人像和背景分割。</li>
-                <li>调用 <xref props="cpp unreal bp mac unity cs flutter electron" keyref="startScreenCapture2"/><xref props="ios android hmos rn" keyref="startScreenCapture"/>，开始采集屏幕共享视频流。</li>
+                <li>调用 <xref keyref="enableVirtualBackground"/>，并将自定义背景图设置为 <apiname keyref="BACKGROUND_NONE"/>，即：在摄像头采集的视频中将人像和背景分割。</li>
+                <li>调用 <xref props="cpp unreal bp mac unity cs flutter electron" keyref="startScreenCapture2"/><xref props="ios android rn" keyref="startScreenCapture"/>，开始采集屏幕共享视频流。</li>
                 <li>调用该方法，并将采集人像的视频源设置为参与本地合图的视频源之一，即可在合图后的视频中实现人像画中画。</li>
                 </ol></p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <ul>
-                <li>如果你需要对本地采集的视频流进行合图，需要在 <xref keyref="startCameraCapture"/> 或 <xref props="cpp unreal bp mac unity cs flutter electron" keyref="startScreenCapture2"/><xref props="ios android hmos rn" keyref="startScreenCapture"/> 之后调用该方法。</li> 
+                <li>如果你需要对本地采集的视频流进行合图，需要在 <xref keyref="startCameraCapture"/> 或 <xref props="cpp unreal bp mac unity cs flutter electron" keyref="startScreenCapture2"/><xref props="ios android rn" keyref="startScreenCapture"/> 之后调用该方法。</li> 
                 <li>如果你要将合图后的视频流发布到频道中，需要在调用 <xref keyref="joinChannel2"/> 或 <xref keyref="updateChannelMediaOptions"/> 时，将 <xref keyref="ChannelMediaOptions"/> 中的 <parmname>publishTranscodedVideoTrack</parmname> 设置为 <codeph><ph keyref="true"/></codeph>。</li>
             </ul>
         </section>
@@ -59,7 +59,6 @@
                     <li props="cpp unreal bp mac unity electron flutter">在 macOS 平台上，最多支持 4 路摄像头采集的视频流 + 1 路屏幕共享流合图。</li>
                     <li props="cpp unreal bp unity rn flutter">在 Android 和 iOS 平台上，最多支持 2 路摄像头采集的视频流（需要设备本身支持双摄或支持外接摄像头）+ 1 路屏幕共享合图。</li>
                     <li props="android">在 Android 平台上，最多支持 2 路摄像头采集的视频流（需要设备本身支持双摄或支持外接摄像头）+ 1 路屏幕共享合图。</li>
-                    <li props="hmos">在 HarmonyOS 平台上，最多支持 2 路摄像头采集的视频流（需要设备本身支持双摄或支持外接摄像头）+ 1 路屏幕共享合图。</li>
                     <li props="ios">在 iOS 平台上，最多支持 2 路摄像头采集的视频流（需要设备本身支持双摄或支持外接摄像头）+ 1 路屏幕共享合图。</li></ul></li>
                     <li>在进行合图配置时，需确保采集人像的摄像头视频流在合图中的图层编号大于屏幕共享流的图层编号，否则人像会被屏幕共享覆盖、无法显示在最终合图的视频流中。</li>
             </ul>

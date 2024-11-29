@@ -37,12 +37,8 @@
         </section>
         <section id="detailed_desc">
             <p>成功注册视频数据观测器后，SDK 会在捕捉到每个视频帧时触发该回调。你可以在回调中获取远端发送的渲染前的视频数据，然后根据场景需要，对视频数据进行处理。</p>
-            <p props="android" id="java">该回调默认提供的视频数据格式为 I420Buffer 或 TextureBuffer，TextureBuffer 类型的纹理格式可能为 0ES 格式或者 RGB 格式。如果你需要其他格式的视频数据，可在 <xref keyref="getVideoFormatPreference"/> 回调的返回值中设置预期的数据格式。</p>
-            <p props="apple">该回调默认提供的视频数据格式为 I420 或 CVPixelBufferRef，如果你需要其他格式的视频数据，可在 <xref keyref="getVideoFormatPreference"/> 回调中返回预期的数据格式。</p>
-            <p props="cpp">该回调默认提供的视频数据格式为 YUV420，如果你需要其他格式的视频数据，可在 <xref keyref="getVideoFormatPreference"/> 回调的返回值中设置预期的数据格式。</p>
             <note type="attention" props="native unreal bp electron rn flutter">
             <ul>
-            <li props="native unreal bp">如果你需要将处理后的数据发送给 SDK，需要先调用 <xref keyref="getVideoFrameProcessMode"/> 方法，将视频处理模式设置为读写模式（<ph keyref="PROCESS_MODE_READ_WRITE"/>）。</li>
             <li>如果你获取到的视频数据类型为 RGBA，SDK 不支持对 Alpha 通道的值进行处理。</li>
             <li props="rn electron">建议你通过 C++ API 实现该回调。</li>
             <li props="flutter rn electron">由于框架的限制，该回调不支持将处理后的视频数据发送回 SDK。</li>

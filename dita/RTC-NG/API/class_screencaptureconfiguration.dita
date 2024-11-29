@@ -26,9 +26,9 @@ __attribute__((visibility("default"))) @interface AgoraScreenCaptureConfiguratio
 #endif</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct ScreenCaptureConfiguration {
   bool isCaptureWindow;
-  int64_t displayId;
+  uint32_t displayId;
   Rectangle screenRect;
-  int64_t windowId;
+  view_t windowId;
   ScreenCaptureParameters params;
   Rectangle regionRect;
 
@@ -90,30 +90,18 @@ public:
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class ScreenCaptureConfiguration
     {
-        public bool isCaptureWindow;
-        public long displayId;
-        public Rectangle screenRect;
-        public long windowId;
-
-        public ScreenCaptureParameters @params;
-        public Rectangle regionRect;
-
         public ScreenCaptureConfiguration()
         {
-            this.isCaptureWindow = false;
-            this.displayId = 0;
-            this.windowId = 0;
+            isCaptureWindow = false;
+            displayId = 0;
         }
 
-        public ScreenCaptureConfiguration(bool isCaptureWindow, long displayId, Rectangle screenRect, long windowId, ScreenCaptureParameters @params, Rectangle regionRect)
-        {
-            this.isCaptureWindow = isCaptureWindow;
-            this.displayId = displayId;
-            this.screenRect = screenRect;
-            this.windowId = windowId;
-            this.@params = @params;
-            this.regionRect = regionRect;
-        }
+        public bool isCaptureWindow { set; get; }
+        public uint displayId { set; get; }
+        public Rectangle screenRect { set; get; }
+        public uint windowId { set; get; }
+        public ScreenCaptureParameters parameters { set; get; }
+        public Rectangle regionRect { set; get; }
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class ScreenCaptureConfiguration {
   

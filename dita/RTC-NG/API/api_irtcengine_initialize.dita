@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_initialize">
     <title><ph keyref="initialize"/></title>
-    <shortdesc id="short"><ph props="ios mac android hmos electron">创建并初始化 <xref keyref="IRtcEngine"/>。</ph><ph props="cpp unreal bp flutter unity cs" id="shortdesc">初始化 <apiname keyref="IRtcEngine"/>。</ph></shortdesc>
+    <shortdesc id="short"><ph props="ios mac android electron">创建并初始化 <xref keyref="IRtcEngine"/>。</ph><ph props="cpp unreal bp flutter unity cs" id="shortdesc">初始化 <apiname keyref="IRtcEngine"/>。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,9 +15,7 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public static synchronized RtcEngine create(RtcEngineConfig config) throws Exception {}
 </codeblock>
-            <codeblock props="hmos" outputclass="language-arkts">public static create(config: RtcEngineConfig): RtcEngine {
-    return RtcEngineImpl.createEngineImpl(config);
-  }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">+ (instancetype _Nonnull)sharedEngineWithConfig:(AgoraRtcEngineConfig * _Nonnull)config
                                        delegate:(id&lt;AgoraRtcEngineDelegate&gt; _Nullable)delegate;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int initialize(const RtcEngineContext&amp; context) = 0;</codeblock>
@@ -36,7 +34,7 @@
             <section id="timing" deliveryTarget="details">
                 <title>调用时机</title>
                 <p props="cpp unreal bp flutter rn electron">请确保在调用其他 API 前先调用 <xref keyref="createAgoraRtcEngine"/> 和 <apiname keyref="initialize"/> 创建并初始化 <apiname keyref="IRtcEngine"/>。</p>
-                <p props="android hmos ios mac">请确保在调用其他 API 前先调用该方法创建并初始化 <apiname keyref="IRtcEngine"/>。</p>
+                <p props="android ios mac">请确保在调用其他 API 前先调用该方法创建并初始化 <apiname keyref="IRtcEngine"/>。</p>
             </section>
             <section id="restriction" deliveryTarget="details">
                 <title>调用限制</title>
@@ -47,7 +45,7 @@
             <parml>
             <plentry>
                 <pt props="cpp unreal bp electron unity rn flutter cs">context</pt>
-                <pt props="android hmos ios mac">config</pt>
+                <pt props="android ios mac">config</pt>
                 <pd>
                     <p><xref keyref="IRtcEngine"/> 实例的配置。详见 <xref keyref="RtcEngineConfig"/>。</p>
                 </pd>

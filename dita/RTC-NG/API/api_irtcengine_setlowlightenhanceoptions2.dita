@@ -17,22 +17,21 @@
       boolean enabled, LowLightEnhanceOptions options, Constants.MediaSourceType sourceType);</codeblock>
             <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLowlightEnhanceOptions:(BOOL)enable options:(AgoraLowlightEnhanceOptions* _Nullable)options sourceType:(AgoraMediaSourceType)sourceType NS_SWIFT_NAME(setLowlightEnhanceOptions(_:options:sourceType:));</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setLowlightEnhanceOptions(bool enabled, const LowlightEnhanceOptions&amp; options, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;</codeblock>
-            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
-	int SetLowlightEnhanceOptions(bool enabled, const FUABT_LowlightEnhanceOptions&amp; options, EUABT_MEDIA_SOURCE_TYPE type);</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp"></codeblock>
+            <codeblock props="bp" outputclass="language-cpp"></codeblock>
             <codeblock props="electron" outputclass="language-typescript"></codeblock>
             <codeblock props="unity cs" outputclass="language-csharp"></codeblock>
             <codeblock props="rn" outputclass="language-typescript"></codeblock>
             <codeblock props="flutter" outputclass="language-dart"></codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+        <section id="detailed_desc">
+            <title>详情</title>
+            <p>暗光增强功能可以在光线亮度偏低（如背光、阴天、暗场景）和亮度不均匀的环境下自适应调整视频画面的亮度值，恢复或凸显图像的细节信息，最终提升视频图像的整体视觉效果。</p>
             <p>该方法和 <xref keyref="setLowlightEnhanceOptions"/> 均可用于设置暗光增强功能，区别在于该方法支持在设置暗光增强功能时指定应用暗光增强的媒体源。</p>
+            <note type="attention" conkeyref="setLowlightEnhanceOptions/req"/>
         </section>
-        <section id="scenario" deliveryTarget="details" conkeyref="setVideoDenoiserOptions/scenario"/>
-        <section id="timing" deliveryTarget="details" conkeyref="setVideoDenoiserOptions/timing"/>
-        <section id="restriction" deliveryTarget="details" conkeyref="setVideoDenoiserOptions/restriction"/>
-        <section id="parameters" deliveryTarget="details">
+        <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry conkeyref="setLowlightEnhanceOptions/enable">
@@ -42,6 +41,10 @@
             <plentry conkeyref="setLowlightEnhanceOptions/options">
                 <pt/>
                 <pd/>
+            </plentry>
+            <plentry props="cpp unreal bp rn unity electron flutter cs" id="type">
+                <pt>type</pt>
+                <pd>媒体资源类型，详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
             </plentry>
             <plentry conkeyref="enableVirtualBackground2/sourcetype">
                 <pt/>
