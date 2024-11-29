@@ -37,6 +37,7 @@
     rotation = 0;
     alphaStitchMode = 0;
   }
+  
   public int format;
   public long timeStamp;
   public int stride;
@@ -46,7 +47,6 @@
   public float[] transform;
   public javax.microedition.khronos.egl.EGLContext eglContext10;
   public android.opengl.EGLContext eglContext14;
-
   public byte[] buf;
   public int cropLeft;
   public int cropTop;
@@ -56,34 +56,43 @@
   public int alphaStitchMode;
   @Override
   public String toString() {
-    return "AgoraVideoFrame{"
-        + "format=" + format + ", timeStamp=" + timeStamp + ", stride=" + stride
-        + ", height=" + height + ", textureID=" + textureID
-        + ", buf.length=" + (buf != null ? buf.length : 0) + ", cropLeft=" + cropLeft
-        + ", cropTop=" + cropTop + ", cropRight=" + cropRight + ", cropBottom=" + cropBottom
-        + ", rotation=" + rotation + ", alphaStitchMode=" + alphaStitchMode + '}';
+    return &quot;AgoraVideoFrame{&quot;
+        + &quot;format=&quot; + format + &quot;, timeStamp=&quot; + timeStamp + &quot;, stride=&quot; + stride
+        + &quot;, height=&quot; + height + &quot;, textureID=&quot; + textureID
+        + &quot;, buf.length=&quot; + (buf != null ? buf.length : 0) + &quot;, cropLeft=&quot; + cropLeft
+        + &quot;, cropTop=&quot; + cropTop + &quot;, cropRight=&quot; + cropRight + &quot;, cropBottom=&quot; + cropBottom
+        + &quot;, rotation=&quot; + rotation + &quot;, alphaStitchMode=&quot; + alphaStitchMode + &#x27;}&#x27;;
   }
 }</codeblock>
             <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoFrame : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">
+__attribute__((visibility(&quot;default&quot;))) @interface AgoraVideoFrame : NSObject
 @property(assign, nonatomic) NSInteger format;
-@property(assign, nonatomic) CMTime time;
-@property(assign, nonatomic) int stride DEPRECATED_MSG_ATTRIBUTE("use strideInPixels instead");
-@property(assign, nonatomic) int strideInPixels;
-@property(assign, nonatomic) int height;
+
+@property(assign, nonatomic) CMTime time;  
+@property(assign, nonatomic) int stride DEPRECATED_MSG_ATTRIBUTE(&quot;use strideInPixels instead&quot;);
+
+@property(assign, nonatomic) int strideInPixels;                                                                                                      
+@property(assign, nonatomic) int height;  
 @property(assign, nonatomic) CVPixelBufferRef _Nullable textureBuf;
+
 @property(strong, nonatomic) IMAGE_CLASS * _Nullable image;
-@property(strong, nonatomic) NSData *_Nullable dataBuf;
+
+@property(strong, nonatomic) NSData *_Nullable dataBuf;  
 @property(strong, nonatomic) NSData *_Nullable alphaBuf;
 @property(assign, nonatomic) AgoraAlphaStitchMode alphaStitchMode;
-@property(assign, nonatomic) int cropLeft;
-@property(assign, nonatomic) int cropTop;
-@property(assign, nonatomic) int cropRight;
-@property(assign, nonatomic) int cropBottom;
-@property(assign, nonatomic) int rotation;
+
+@property(assign, nonatomic) int cropLeft;  
+@property(assign, nonatomic) int cropTop;  
+@property(assign, nonatomic) int cropRight;  
+@property(assign, nonatomic) int cropBottom;  
+@property(assign, nonatomic) int rotation;  
+@property(strong, nonatomic) AgoraColorSpace *_Nullable colorSpace;
+
 - (void)fillAlphaData;
 @end</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">struct ExternalVideoFrame {
+            <codeblock props="cpp unreal" outputclass="language-cpp">
+struct ExternalVideoFrame {
   ExternalVideoFrame()
       : type(VIDEO_BUFFER_RAW_DATA),
         format(VIDEO_PIXEL_DEFAULT),
@@ -99,22 +108,26 @@
         eglContext(NULL),
         eglType(EGL_CONTEXT10),
         textureId(0),
+        fenceObject(0),
         metadataBuffer(NULL),
         metadataSize(0),
         alphaBuffer(NULL),
         fillAlphaBuffer(false),
-        alphaStitchMode(0),
+        alphaStitchMode(NO_ALPHA_STITCH),
         d3d11Texture2d(NULL),
         textureSliceIndex(0){}
+  
   enum EGL_CONTEXT_TYPE {
     EGL_CONTEXT10 = 0,
     EGL_CONTEXT14 = 1,
   };
+  
   enum VIDEO_BUFFER_TYPE {
     VIDEO_BUFFER_RAW_DATA = 1,
     VIDEO_BUFFER_ARRAY = 2,
     VIDEO_BUFFER_TEXTURE = 3,
   };
+  
   VIDEO_BUFFER_TYPE type;
   VIDEO_PIXEL_FORMAT format;
   void* buffer;
@@ -126,17 +139,19 @@
   int cropBottom;
   int rotation;
   long long timestamp;
-  void *eglContext;
+  void* eglContext;
   EGL_CONTEXT_TYPE eglType;
   int textureId;
+  long long fenceObject; 
   float matrix[16];
   uint8_t* metadataBuffer;
   int metadataSize;
   uint8_t* alphaBuffer;
   bool fillAlphaBuffer;
-  int alphaStitchMode;
+  ALPHA_STITCH_MODE alphaStitchMode;
   void *d3d11Texture2d;
   int textureSliceIndex;
+  ColorSpace colorSpace;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ExternalVideoFrame {
   type?: VideoBufferType;
@@ -160,6 +175,7 @@
   alphaStitchMode?: AlphaStitchMode;
   d3d11Texture2d?: any;
   textureSliceIndex?: number;
+  colorSpace?: ColorSpace;
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class ExternalVideoFrame
     {
@@ -182,8 +198,9 @@
         public byte[] alphaBuffer;
         public bool fillAlphaBuffer;
         public ALPHA_STITCH_MODE alphaStitchMode;
-        public IntPtr d3d11_texture_2d;
-        public int texture_slice_index;
+        public IntPtr d3d11Texture2d;
+        public int textureSliceIndex;
+        public ColorSpace colorSpace;
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class ExternalVideoFrame {
   type?: VideoBufferType;
@@ -205,6 +222,7 @@
   alphaBuffer?: Uint8Array;
   fillAlphaBuffer?: boolean;
   alphaStitchMode?: AlphaStitchMode;
+  colorSpace?: ColorSpace;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
 class ExternalVideoFrame {
@@ -229,7 +247,8 @@ class ExternalVideoFrame {
       this.fillAlphaBuffer,
       this.alphaStitchMode,
       this.d3d11Texture2d,
-      this.textureSliceIndex});
+      this.textureSliceIndex,
+      this.colorSpace});
 
   @JsonKey(name: &#x27;type&#x27;)
   final VideoBufferType? type;
@@ -293,6 +312,9 @@ class ExternalVideoFrame {
 
   @JsonKey(name: &#x27;textureSliceIndex&#x27;)
   final int? textureSliceIndex;
+
+  @JsonKey(name: 'colorSpace')
+  final ColorSpace? colorSpace;
 
   factory ExternalVideoFrame.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$ExternalVideoFrameFromJson(json);
