@@ -55,6 +55,7 @@ For the descriptions of the other path parameters, see [Common Parameters](#para
 | Parameter | Type | Description | Required |
 |:---------------| :------ | :------- |:------------------|
 | `Content-Type` | String | The content type. Set it to `application/json`.  | Yes |
+| `Accept` | String | The parameter type. Set it as `application/json`. | Yes |
 | `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 #### Request body
@@ -79,10 +80,11 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 #### Request example
 
-```json
+```shell
 curl -X POST 'http://XXXX/XXXX/XXXX/users/c1/presence/android_123423453246/0' \
 -H 'Authorization: Bearer <YourAppToken>' \
 -H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
 -d '{"ext":"123"}'
 ```
 
@@ -118,6 +120,7 @@ For the descriptions of the other path parameters, see [Common Parameters](#para
 | Parameter | Type | Description | Required |
 |:---------------| :------ | :------- |:------------------|
 | `Content-Type` | String | The content type. Set it to `application/json`.  | Yes |
+| `Accept` | String | The parameter type. Set it as `application/json`. | Yes |
 | `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 #### Request body
@@ -136,7 +139,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the data fi
 | :------- |:-------------|:-------------|
 | `result`    | JSON  | Whether the subscription succeeds. If successful, the presence statuses of the users return; otherwise, you can troubleshoot according to the returned reasons. |
 | `uid`       | String     | The unique login account of the user.                |
-| `last_time` | Number     | The Unix timestamp when the user was last online, in seconds.                                           |
+| `last_time` | Number     | The Unix timestamp when the user was last online, in seconds. The server records the time when the subscribed user logs in or out.                                          |
 | `expiry`    | Number     | The Unix timestamp when the subscription expires, in seconds.                                           |
 | `ext`       | String     | The extension information of the presence status.                |
 | `status`    | JSON | The presence statuses on multiple devices of the user.<ul><li>`0`: Offline.</li><li>`1`: Online.</li><li>Other strings: User-defined custom presence status.</li></ul> |
@@ -147,10 +150,11 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 #### Request example
 
-```json
+```shell
 curl -X POST 'http://XXXX/XXXX/XXXX/users/wzy/presence/1000' \
 -H 'Authorization: Bearer <YourAppToken>' \
 -H 'Content-Type: application/json' \
+-H 'Accept: application/json'  \
 -d '{"usernames":["c2","c3"]}'
 ```
 
@@ -188,6 +192,7 @@ For other parameters and descriptions, see [Common Parameters](#param).
 | Parameter | Type | Description | Required |
 |:---------------| :------ | :------- |:------------------|
 | `Content-Type` | String | The content type. Set it to `application/json`.  | Yes |
+| `Accept` | String | The parameter type. Set it as `application/json`. | Yes |
 | `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 #### Request body
@@ -216,10 +221,11 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 #### Request example
 
-```json
+```shell
 curl -X POST 'http://XXXX/XXXX/XXXX/users/wzy/presence' \
 -H 'Authorization: Bearer <YourAppToken>' \
 -H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
 -d '{"usernames":["c2","c3"]}'
 ```
 
@@ -268,6 +274,7 @@ For other parameters and descriptions, see [Common Parameters](#param).
 | Parameter | Type | Description | Required |
 |:---------------| :------ | :------- |:------------------|
 | `Content-Type` | String | The content type. Set it to `application/json`.  | Yes |
+| `Accept` | String | The parameter type. Set it as `application/json`. | Yes |
 | `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 #### Request body
@@ -292,10 +299,11 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 #### Request example
 
-```json
+```shell
 curl -X DELETE 'http://XXXX/XXXX/XXXX/users/wzy/presence' \
 -H 'Authorization: Bearer <YourAppToken>' \
 -H 'Content-Type: application/json' \
+-H 'Accept: application/json' \ 
 -d '["c1"]'
 ```
 
@@ -314,14 +322,14 @@ For each App Key, the call frequency limit of this method is 50 per second.
 ### HTTP request
 
 ```http
-GET https://{host}/{org_name}/{app_name}/users/{uid}/presence/sublist?pageNum=1&pageSize=100
+GET https://{host}/{org_name}/{app_name}/users/{uid}/presence/sublist?pageNum={pagenumber}&pageSize={pagesize}
 ```
 
 #### Path parameter
 
 | Parameter | Type | Description | Required |
 |:---------------| :------ | :------- |:------------------|
-| `uid` | String |  The user for which the subscriptions are retrieved.  | Yes |
+| `uid` | String |  The user for which the subscriptions are retrieved. If the user ID you passed in does not exist or the user does not subscribe to the presence status of any users, an empty list is returned. | Yes |
 
 For other parameters and descriptions, see [Common Parameters](#param).
 
@@ -337,6 +345,7 @@ For other parameters and descriptions, see [Common Parameters](#param).
 | Parameter | Type | Description | Required |
 |:---------------| :------ | :------- |:------------------|
 | `Content-Type` | String | The content type. Set it to `application/json`.  | Yes |
+| `Accept` | String | The parameter type. Set it as `application/json`. | Yes |
 | `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 ### HTTP response
@@ -359,10 +368,11 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 #### Request example
 
-```json
+```shell
 curl -X GET 'http://XXXX/XXXX/XXXX/users/wzy/presence/sublist?pageNum=1&pageSize=100' \
 -H 'Authorization: Bearer <YourAppToken>' \
--H 'Content-Type: application/json' 
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' 
 ```
 
 #### Response example

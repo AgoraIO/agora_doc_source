@@ -91,7 +91,7 @@ The request body is a JSON object, which contains the following parameters:
 | Parameter | Type | Description | Required |
 | --- | --- | --- | --- |
 | `from` | String | The username of the message sender. If you do not set this field, the Chat server takes the `admin` as the sender. If you set it as the empty string "", this request fails.  | No |
-| `to` | Array | An array of the usernames of the message recipient. For each request, you can send a message to a maximum of 600 users. Within one minute, you can send messages to a maximum of 6,000 users. | Yes |
+| `to` | Array | An array of the usernames of the message recipient. For each request, you can send a message to a maximum of 600 users. Within one minute, you can send 6,000 messages. | Yes |
 | `type` | String | The message type: <ul><li>`txt`: Text message</li><li>`img`: Image message</li><li>`audio`: Audio message</li><li>`video`: Video message</li><li>`file`: File message</li><li>`loc`: Location message</li><li>`cmd`: Command message</li><li>`custom`: Custom message</li></ul> | Yes |
 | `body` | JSON | The message content. For different message types, this parameter contains different fields. For details, see [Body of different message types](#body). | Yes |
 | `roam_ignore_users` | List | No | Which users cannot obtain such message when they pull messages from the server. A maximum of 20 users can be passed in each time. |
