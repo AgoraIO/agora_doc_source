@@ -1495,7 +1495,7 @@ GET https://{host}/{org_name}/{app_name}/chatmessages/${time}
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------- |
-| `time` | String | The start time of the historical messages to query. UTC time, using the ISO8601 standard, in the format of `yyyyMMddHH`. <br>For example, if `time` is` 2018112717`, it means to query historical messages from 17:00 on November 27, 2018 to 18:00 on November 27, 2018. | Yes |
+| `time` | String | The start time of the historical messages to query. UTC time in the format of `yyyyMMddHH`. <br>For example, if `time` is` 2018112717`, it means to query historical messages from 17:00 on November 27, 2018 to 18:00 on November 27, 2018. | Yes |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
 
