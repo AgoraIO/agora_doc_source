@@ -142,6 +142,34 @@ do {
 } while (result && result.list < pageSize);
 ```
 
+### Retrieve the chat group list
+
+Users can call `getJoinedGroupsFromServer` to retrieve from the server the list of chat groups that they created and joined. 
+
+```swift
+// It is an asynchronous method.
+AgoraChatClient.shared().groupManager?.getJoinedGroupsFromServer(withPage: 0, pageSize: 20, needMemberCount: true, needRole: true, completion: { groups, err in
+            // group list
+        })
+```
+
+- Users can call `getJoinedGroups` to load the list of created and joined chat groups from the local database. To ensure data accuracy, users need to first obtain from the server the list of chat groups that they created and joined. 
+
+```swift
+// It is a synchronous method.
+let groups = AgoraChatClient.shared().groupManager?.getJoinedGroups()
+```
+
+- Users can call `getPublicGroupsFromServerWithCursor` to retrieve the list of public groups:
+
+```swift
+AgoraChatClient.shared().groupManager?.getPublicGroupsFromServer(withCursor: "", pageSize: 20, completion: { result, err in
+            if let groups = result?.list {
+                // got groups
+            }
+        })
+```
+
 ### Block and unblock a chat group
 
 All chat group members can block and unblock a chat group. Once members block a chat group, they no longer receive messages from this chat group.
