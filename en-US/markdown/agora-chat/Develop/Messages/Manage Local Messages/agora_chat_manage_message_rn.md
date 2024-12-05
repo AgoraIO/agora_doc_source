@@ -63,6 +63,30 @@ ChatClient.getInstance()
   });
 ```
 
+```typescript
+// convId: Specify the conversation ID which is the peer user ID for one-to-one chat, group ID for group chat, and chat room ID for room chat. 
+// convType: Set conversation type which is PeerChat for one-to-one chat, GroupChat for group chat, and RoomChat for room chat。
+// cursor: The starting message ID for query. Pass in `null` or an empty string at the first call to query from the latest message.
+// pageSize The number of messages to retrieve per page. The value range is [1,50], with 10 as the default.
+// option: The message query options.
+// option.from: The message sender.
+// option.msgTypes The message types for query.
+// option.startTs: The start time for query.
+// option.endTs: The end time for query.
+// option.direction: The message direction.
+// option.needSave: Whether to save the messages.
+ChatClient.getInstance()
+  .chatManager.fetchHistoryMessagesByOptions(convId, convType, {
+    cursor: cursor,
+    pageSize: pageSize,
+    options: options as ChatFetchMessageOptions,
+  })
+  .then((res) => {
+    console.log("fetchHistoryMessagesByOptions is success.", res);
+  })
+  .catch();
+```
+
 ### Retrieve the count of unread messages in the specified conversation
 
 Refer to the following code example to retrieve the count of unread messages:

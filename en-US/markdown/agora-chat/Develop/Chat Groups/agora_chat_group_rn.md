@@ -209,12 +209,12 @@ ChatClient.getInstance()
 
 ### Retrieve the chat group list
 
-Users can call `fetchJoinedGroupsFromServer` to retrieve the joined chat group list from the server with pagination, as shown in the following code sample:
+Users can call `fetchJoinedGroupsFromServer` to retrieve from the server the list of chat groups that they created and joined:
 
 ```typescript
-// The maximum number of chat groups to retrieve with pagination.
+// The number of groups to retrieve per page. The value range is [1,20].
 const pageSize = 10;
-// The page number from which to start getting data.
+// The current page number, starting from 0.
 const pageNum = 1;
 ChatClient.getInstance()
   .groupManager.fetchJoinedGroupsFromServer(pageSize, pageNum)
@@ -226,7 +226,7 @@ ChatClient.getInstance()
   });
 ```
 
-Users can call `getJoinedGroups` to retrieve the joined chat group list from the local database. To ensure the accuracy of results, retrieve the joined chat group list from the server first. The code sample is as follows:
+Users can call `getJoinedGroups` to load the list of created and joined chat groups from the local database. To ensure data accuracy, users need to first obtain from the server the list of chat groups that they created and joined. 
 
 ```typescript
 ChatClient.getInstance()

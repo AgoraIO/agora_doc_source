@@ -1,4 +1,4 @@
-User attributes refers to the label information added for the user, including key-value pairs.
+User attributes refers to the user information, including user nickname, avatar, email address, mobile numbers, sex, signature, and birth date. The user attributes are added as key-value pairs.
 
 This page shows how to call Agora Chat RESTful APIs to manage user attributes, including adding, deleting, modifying, and retrieving user attributes.
 
@@ -73,7 +73,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Request body
 
-The request body is in the format of JSON String. The request body contains the following fields:
+The request body is in the format of `www-form-urlencoded`. The request body contains the following fields:
 
 | Field | Type | Description | Required |
 | :------ | :----- | :----- | :------- |
@@ -152,7 +152,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Content-Type` | String | `application/json` | Yes |
+| `Accept` | String | The parameter type. Set it as `application/json`. | Yes |
 | `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 ### HTTP response
@@ -175,7 +175,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 ```shell
 # Replace {YourAppToken} with the app token generated in your server.
-curl -X GET -H 'Authorization: Bearer {YourAppToken}' -H 'Content-Type:  application/json''http://XXXX/XXXX/XXXX/metadata/user/XXXX'
+curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}''http://XXXX/XXXX/XXXX/metadata/user/XXXX'
 ```
 
 #### Response example
@@ -213,6 +213,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | Parameter | Type | Description | Required |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Content-Type` | String | `application/json` | Yes |
+| `Accept` | String | The parameter type. Set it as `application/json`. | Yes |
 | `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 #### Request body
@@ -244,7 +245,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 ```shell
 # Replace {YourAppToken} with the app token generated in your server.
-curl -X POST -H 'Authorization: Bearer {YourAppToken}' -H 'Content-Type:  application/json' -d '{
+curl -X POST -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' -H 'Content-Type:  application/json' -d '{
   "properties": [
     "avatar",
     "ext",
@@ -304,6 +305,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :-------------- | :----- | :--------------------- | :------- |
+| `Accept` | String | The parameter type. Set it as `application/json`. | Yes |
 | `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 ### HTTP response
@@ -325,7 +327,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```shell
-curl -X GET -H 'Authorization: Bearer {YourAppToken}''http://XXXX/XXXX/XXXX/metadata/user/capacity'
+curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}''http://XXXX/XXXX/XXXX/metadata/user/capacity'
 ```
 
 #### Response example
@@ -358,6 +360,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :-------------- | :----- | :--------------------- | :------- |
+| `Accept` | String | The parameter type. Set it as `application/json`. | Yes |
 | `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 ### HTTP response
@@ -379,7 +382,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```shell
-curl -X DELETE -H 'Authorization: Bearer {YourAppToken}' 'http://XXXX/XXXX/XXXX/metadata/user/XXXX'
+curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' 'http://XXXX/XXXX/XXXX/metadata/user/XXXX'
 ```
 
 #### Response example

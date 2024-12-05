@@ -69,6 +69,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | Parameter | Type | Description | Required |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Content-Type` | String | `application/json` | Yes |
+| `Accept` | String | `application/json` | Yes |
 | `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 #### Request body
@@ -320,7 +321,15 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 
 | Field | Type | Description |
 | :------------------ | :----- | :--------------------------------------------------------------------------------------------------------- |
-| `count` | Number | The number of users. |
+| `entities`                             | JSON Array | The response entity.                                                   |
+| - `notification_display_style`         | Number        | Message push method: - `0`: Notification only. The push title is "You have a new message" and the push content is "Please click to view"; - `1`: Notification and message details. The push title is "You have a new message" and the push content is the sender's nickname and the content of the offline message. This parameter, if not set, will not be returned in the response. |
+| - `notification_no_disturbing`         | Boolean    | Whether to enable Do Not Disturb (DND). - `true`: DND is enabled. This parameter, if not set, will not be returned in the response. - `false`: DND is turned off. |
+| - `notification_no_disturbing_start`   | String     | The start time of DND. For example, "8" means DND is turned on at 8:00 every day. This parameter, if not set, will not be returned in the response. |
+| - `notification_no_disturbing_end`     | String     | The end time of DND. For example, "18" means DND is turned off at 18:00 every day. This parameter, if not set, will not be returned in the response. |
+| - `notification_ignore_XXXX` | Boolean       | Whether to block the setting of offline push of group messages. `xxxx` in the parameter, for example  `63112447328257`, represents the group ID. -`true`: Blocked. - `false`: Not blocked. This parameter, if not set, will not be returned in the response. |
+| - `notifier_name`                      | String     | The name of the client push certificate. This parameter, if not set, will not be returned in the response. |
+| - `device_token`                       | String     | The device token. The device token, if not obtained, will not be returned in the response.           |
+| `count`                                | Number       | The user count                                                   |
 
 For other fields and detailed descriptions, see [Common parameters](#param).
 
@@ -397,6 +406,14 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 
 | Parameter | Type | Description |
 | :------------------ | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `entities`                             | JSON Array | The response entity.                                                   |
+| - `notification_display_style`         | Number        | Message push method: - `0`: Notification only. The push title is "You have a new message" and the push content is "Please click to view"; - `1`: Notification and message details. The push title is "You have a new message" and the push content is the sender's nickname and the content of the offline message. This parameter, if not set, will not be returned in the response. |
+| - `notification_no_disturbing`         | Boolean    | Whether to enable Do Not Disturb (DND). - `true`: DND is enabled. This parameter, if not set, will not be returned in the response. - `false`: DND is turned off. |
+| - `notification_no_disturbing_start`   | String     | The start time of DND. For example, "8" means DND is turned on at 8:00 every day. This parameter, if not set, will not be returned in the response. |
+| - `notification_no_disturbing_end`     | String     | The end time of DND. For example, "18" means DND is turned off at 18:00 every day. This parameter, if not set, will not be returned in the response. |
+| - `notification_ignore_XXXX` | Boolean       | Whether to block the setting of offline push of group messages. `xxxx` in the parameter, for example  `63112447328257`, represents the group ID. -`true`: Blocked. - `false`: Not blocked. This parameter, if not set, will not be returned in the response. |
+| - `notifier_name`                      | String     | The name of the client push certificate. This parameter, if not set, will not be returned in the response. |
+| - `device_token`                       | String     | The device token. The device token, if not obtained, will not be returned in the response.           |
 | `cursor` | String | The cursor used for paginating the user lists. <br>You do not need to set `cursor` at the first query. When the request succeeds, you can get the `cursor` from the response body, and pass this `cursor` in the URL of the next query, until there is no longer a `cursor` filed in the response body, which indicates that all the users in the app have been queried. |
 | `count` | Number | The number of users. |
 
@@ -737,7 +754,6 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Content-Type` | String | `application/json` | Yes |
 | `Accept` | String | `application/json` | Yes |
 | `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
@@ -757,7 +773,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 ```shell
 # Replace {YourAppToken} with the app token generated in your server.
-curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' 'http://XXXX/XXXX/XXXX/users/user1/deactivate'
+curl -X POST -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' 'http://XXXX/XXXX/XXXX/users/user1/deactivate'
 ```
 
 #### Response example
@@ -802,7 +818,6 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Content-Type` | String | `application/json` | Yes |
 | `Accept` | String | `application/json` | Yes |
 | `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
@@ -821,7 +836,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 ```shell
 # Replace {YourAppToken} with the app token generated in your server.
-curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' 'http://XXXX/XXXX/XXXX/users/user1/activate'
+curl -X POST -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' 'http://XXXX/XXXX/XXXX/users/user1/activate'
 ```
 
 #### Response example
@@ -854,7 +869,6 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Content-Type` | String | `application/json` | Yes |
 | `Accept` | String | `application/json` | Yes |
 | `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
@@ -922,7 +936,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter            | Type   | Description                   | Required |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Content-Type`  | String | `application/json`   | Yes      |
+| `Accept` | String | `application/json` | Yes |
 | `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes      |
 
 ### HTTP response
@@ -985,6 +999,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | Parameter            | Type   | Description                   | Required |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Content-Type`  | String | `application/json`   | Yes       |
+| `Accept` | String | `application/json` | Yes |
 | `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       |
 
 #### Request body
@@ -1011,7 +1026,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 ```shell
 # Replace {YourAppToken} with the app token generated in your server.
-curl -X POST http://XXXX/XXXX/XXXX/users/batch/status -H 'Authorization: Bearer {YourAppToken}' -H 'Content-Type: application/json' -d '{"usernames":["user1","user2"]}'
+curl -X POST http://XXXX/XXXX/XXXX/users/batch/status -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' -d '{"usernames":["user1","user2"]}'
 ```
 
 #### Response example
@@ -1036,7 +1051,7 @@ This API does not check whether the specified usernames are valid. If the specif
 
 ## Querying the number of offline messages
 
-This method queries the number of offline messages a user has, and whether or not they have been delivered.
+This method queries the number of offline messages a user has.
 
 For each App Key, the call frequency limit of this method is 100 per second.
 
@@ -1058,7 +1073,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter            | Type   | Description                   | Required |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Content-Type`  | String | `application/json`  | Yes   |
+| `Accept` | String | The parameter type. Set it as `application/json`. | Yes |
 | `Authorization` | String |  The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes      |
 
 ### HTTP response
@@ -1123,7 +1138,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter            | Type   | Description                   | Required |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Content-Type`  | String | `application/json`    | Yes       |
+| `Accept` | String | The parameter type. Set it as `application/json`. | Yes |
 | `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       |
 
 ### HTTP response
