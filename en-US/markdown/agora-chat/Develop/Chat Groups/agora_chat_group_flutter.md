@@ -176,7 +176,7 @@ try {
 
 ### Retrieve the chat group list
 
-Users can call `fetchJoinedGroupsFromServer` to retrieve the joined chat group list from the server with pagination, as shown in the following code sample:
+Users can call `fetchJoinedGroupsFromServer` to retrieve from the server the list of chat groups that they created and joined:
 
 ```dart
 try {
@@ -186,7 +186,7 @@ try {
 }
 ```
 
-Users can call `getJoinedGroups` to retrieve the joined chat group list from the local database. To ensure the accuracy of results, retrieve the joined chat group list from the server first. The code sample is as follows:
+Users can call `getJoinedGroups` to load the list of created and joined chat groups from the local database. To ensure data accuracy, users need to first obtain from the server the list of chat groups that they created and joined. 
 
 ```dart
 try {
