@@ -53,7 +53,7 @@ For each App Key, the call frequency limit of this method is 100 per second.
 ### HTTP request
 
 ```http
-POST https://{host}/{orgName}/{appName}/mutes
+POST https://{host}/{org_name}/{app_name}/mutes
 ```
 
 #### Path parameter
@@ -74,6 +74,7 @@ For parameters and the detailed descriptions, see [Commom parameters](#param).
 | Parameter | Type | Description |
 | --- | --- | --- |
 | `Content-Type` | String | The content type. Set is as `application/json`. |
+| `Accept` | String | The parameter type. Set it as `application/json`. | Yes |
 | `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
 
 ### HTTP response
@@ -96,6 +97,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 curl -L -X POST 'https://XXXX/XXXX/XXXX/mutes' \
 -H 'Authorization: Bearer {YourAppToken}' \
 -H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
 --data-raw '{
     "username": "XXXX",
     "chat": 100,
@@ -147,7 +149,8 @@ For other parameters and the detailed descriptions, see [Commom parameters](#par
 | Parameter | Type | Description |
 | --- | --- | --- |
 | `Content-Type` | String | The content type. Set is as `application/json`. |
-| `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
+| `Accept` | String | The parameter type. Set it as `application/json`. | Yes |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 ### HTTP response
 
@@ -158,7 +161,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 | `userid` | String | The user ID whose global-mute settings you want to query. |
 | `chat` | Number | The remaining time that this user is muted in one-to-one chats, in seconds. The maximum value is 2,147,483,647.<ul><li>&gt; 0: The remaining time that this user is muted in one-to-one chats.</li><li>0: This user is unmuted in one-to-one chats.</li><li>-1: This user is permanently muted in one-to-one chats.</li></ul> |
 | `groupchat` | Number | The remaining time that this user is muted in group chats, in seconds. The maximum value is 2,147,483,647.<ul><li>&gt; 0: The remaining time that this user is muted in group chats.</li><li>0: This user is unmuted in group chats.</li><li>-1: This user is permanently muted in group chats.</li></ul> |
-| `chatroom` | Number | The remaining time that this user is muted in group rooms, in seconds. The maximum value is 2,147,483,647.<ul><li>&gt; 0: The remaining time that this user is muted in chat rooms.</li><li>0: This user is unmuted in chat rooms.</li><li>-1: This user is permanently muted in chat rooms.</li></ul> |
+| `chatroom` | Number | The remaining time that this user is muted in chat rooms, in seconds. The maximum value is 2,147,483,647.<ul><li>&gt; 0: The remaining time that this user is muted in chat rooms.</li><li>0: This user is unmuted in chat rooms.</li><li>-1: This user is permanently muted in chat rooms.</li></ul> |
 | `unixtime` | Number | The Unix timestamp of the current operation. |
 
 For other fields and detailed descriptions, see [Common parameters](#param).
@@ -172,7 +175,8 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 ```shell
 curl -L -X GET 'https://XXXX/XXXX/XXXX/mutes/{username}' \
 -H 'Authorization: Bearer {YourAppToken}' \
--H 'Content-Type: application/json'
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
 ```
 
 #### Response example
@@ -206,7 +210,7 @@ For each App Key, the call frequency limit of this method is 100 per second.
 ### HTTP request
 
 ```http
-GET https://{host}/{orgName}/{appName}/mutes
+GET https://{host}/{org_name}/{app_name}/mutes
 ```
 
 #### Path parameter
@@ -218,13 +222,14 @@ For parameters and the detailed descriptions, see [Common parameters](#param).
 | Parameter | Type | Description |
 | --- | --- | --- |
 | `Content-Type` | String | The content type. Set is as `application/json`. |
+| `Accept` | String | The parameter type. Set it as `application/json`. | Yes |
 | `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
 
 #### Query parameter
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `pageNum` | Number | No | The number of pages for querying the globally muted users in the app. |
+| `pageNum` | Number | No | The number of page for querying the globally muted users in the app. |
 | `pageSize` | Number | No | The number of data entries on each page. The value range is [1,50]. |
 
 ### HTTP response
@@ -236,7 +241,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 | `username` | String | The user ID whose global-mute settings you want to query. |
 | `chat` | Number | The remaining time that this user is muted in one-to-one chats, in seconds. The maximum value is 2,147,483,647.<ul><li>&gt; 0: The remaining time that this user is muted in one-to-one chats.</li><li>0: This user is unmuted in one-to-one chats.</li><li>-1: This user is permanently muted in one-to-one chats.</li></ul> |
 | `groupchat` | Number | The remaining time that this user is muted in group chats, in seconds. The maximum value is 2,147,483,647.<ul><li>&gt; 0: The remaining that this user in chat groups.</li><li>0: This user is unmuted in chat groups.</li><li>-1: This user is permanently muted in chat groups.</li></ul> |
-| `chatroom` | Number | The remaining time that this user is muted in group rooms, in seconds. The maximum value is 2,147,483,647.<ul><li>&gt; 0: The remaining duration for muting this user in chat rooms.</li><li>0: This user is unmuted in chat rooms.</li><li>-1: This user is permanently muted in chat rooms.</li></ul> |
+| `chatroom` | Number | The remaining time that this user is muted in chat rooms, in seconds. The maximum value is 2,147,483,647.<ul><li>&gt; 0: The remaining duration for muting this user in chat rooms.</li><li>0: This user is unmuted in chat rooms.</li><li>-1: This user is permanently muted in chat rooms.</li></ul> |
 | `unixtime` | Number | The Unix timestamp of the current operation. |
 
 For other fields and detailed descriptions, see [Common parameters](#param).
@@ -250,7 +255,8 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 ```shell
 curl -L -X GET 'https://XXXX/XXXX/XXXX/mutes?pageNum=1&pageSize=10' \
 -H 'Authorization: Bearer {YourAppToken}' \
--H 'Content-Type: application/json'
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
 ```
 
 #### Response example

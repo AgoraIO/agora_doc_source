@@ -84,6 +84,42 @@ ChatClient.getInstance().groupManager().joinGroup(groupId);
 ChatClient.getInstance().groupManager().leaveGroup(groupId);
 ```
 
+### Retrieve the chat group list
+
+Users can call `getJoinedGroupsFromServer` to retrieve from the server the list of chat groups that they created and joined. 
+
+```java
+// It is an asynchronous method. The synchronous method is getJoinedGroupsFromServer(int, int, boolean, boolean).
+// pageIndex: The current page number, starting from 0.
+// pageSize: The number of groups to retrieve per page. The value range is [1,20].
+List<Group> grouplist = ChatClient.getInstance().groupManager().asyncGetJoinedGroupsFromServer(pageIndex, pageSize, needMemberCount, needRole, new ValueCallBack<List<Group>>() {
+            @Override
+            public void onSuccess(List<Group> value) {
+
+            }
+
+            @Override
+            public void onError(int error, String errorMsg) {
+
+            }
+        });
+```
+
+- Users can call `getAllGroups` to load the list of created and joined chat groups from the local database. To ensure data accuracy, users need to first obtain from the server the list of chat groups that they created and joined. 
+ 
+```java
+List<Group> grouplist = ChatClient.getInstance().groupManager().getAllGroups();
+```
+
+- Users can call `getPublicGroupsFromServer` to retrieve the list of public groups:
+
+```java
+// It is a synchronous method and may block the current thread. The asynchronous method is asyncGetPublicGroupsFromServer(int, String, ValueCallBack).
+CursorResult<GroupInfo> result = ChatClient.getInstance().groupManager().getPublicGroupsFromServer(pageSize, cursor);
+List<GroupInfo> groupsList = result.getData();
+String cursor = result.getCursor();
+```
+
 ### Retrieve the member list of a chat group
 
 - When a group has less than 200 members, you can call the `getGroupFromServer` method to retrieve the group member list that contains the group owner, admins, and regular members. 
