@@ -154,7 +154,6 @@ For other parameters and the detailed descriptions, see [Common parameters](#par
 
 | Parameter | Type | Description | Required |
 | :-------------- | :----- | :---------------------------------- | :------- |
-| `Content-Type` | String | `application/x-www-form-urlencoded` | Yes |
 | `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 ### HTTP response
