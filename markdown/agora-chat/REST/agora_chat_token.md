@@ -7,7 +7,7 @@
 | 应用场景   | Token 权限 | Token 构成           | Token 最长有效期       |
 | :------------ | :----- | :----------------------------------------- | :------- |
 | RESTful API 调用 | App 权限   | <ul><li>你的即时通讯 IM 项目的 App ID。</li><li>你的即时通讯 IM 项目的 App 证书。</li><li>你设置的即时通讯 Token 的有效期。</li></ul> | 24 小时（以 UTC 时区为准） |
-| SDK API 调用     | 用户权限   | <ul><li>你的即时通讯 IM 项目的 App ID。</li><li>你的即时通讯 IM 项目的 App 证书。</li><li> 你的即时通讯 IM 项目的 Token 有效期。</li><li>待鉴权用户的 UUID。</li></ul><div class="alert info">UUID 是通过[用户注册 RESTful API](./agora_chat_restful_registration#注册单个用户) 为每个用户所生成的唯一内部标识。</a>.</div> |  24 小时（以 UTC 时区为准）                          |
+| SDK API 调用     | 用户权限   | <ul><li>你的即时通讯 IM 项目的 App ID。</li><li>你的即时通讯 IM 项目的 App 证书。</li><li> 你的即时通讯 IM 项目的 Token 有效期。</li><li>待鉴权用户的 ID。</li> |  24 小时（以 UTC 时区为准）                          |
 
 ## 体验 Token 生成
 
@@ -480,7 +480,7 @@ return builder.buildUserToken(appid, appcert, chatUserId, expirePeriod);
 
    在下列示例代码中可以看到，就客户端而言，用户权限 Token 和以下代码逻辑有关：
 
-   - 调用 `open`，使用 Token 和用户名登录即时通讯 IM 系统。需使用注册时所输入的用户名获得 UUID。
+   - 调用 `open`，使用 Token 和用户名登录即时通讯 IM 系统。
    - 当 Token 即将过期或已经过期时，从 App Server 重新获取新的 Token 并调用 `renewToken` 更新 Token。即时通讯 IM 建议你定期（例如每小时）生成一个 Token 并调用 `renewToken` 更新 Token，确保 Token 的有效性。
 
    ```js
