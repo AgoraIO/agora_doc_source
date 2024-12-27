@@ -32,27 +32,27 @@
   }
 };</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">export class TranscodingVideoStream {
-  
+
   public remoteUserUid:number;
-  
+
   public  sourceType:Constants.VideoSourceType;
-  
+
   public imageUrl:string;
-  
+
   public mediaPlayerId:number;
-  
+
   public x:number;
-  
+
   public y:number;
-  
+
   public width:number;
-  
+
   public height:number;
-  
+
   public zOrder:number;
-  
+
   public alpha:number;
-  
+
   public mirror:boolean;
   public constructor() {
     this.remoteUserUid = 0;
@@ -143,7 +143,7 @@ public:
 		mirror = AgoraData.mirror;
 	}
 	agora::rtc::TranscodingVideoStream CreateAgoraData() const{
-		
+
 		agora::rtc::TranscodingVideoStream AgoraData;
 		AgoraData.sourceType = static_cast&lt;agora::rtc::VIDEO_SOURCE_TYPE&gt;(sourceType);
 		AgoraData.remoteUserUid = remoteUserUid;
@@ -295,8 +295,16 @@ class TranscodingVideoStream {
             <plentry>
                 <pt>imageUrl</pt>
                 <pd>
-                    <p>图像的 URL。
-                    <note type="attention">请仅在参与本地合图的视频源类型为图片时，使用该参数。</note></p>
+                    <p>本地图片的路径。</p>
+                    <note type="attention">请仅在参与本地合图的视频源类型为图片时，使用该参数。</note>
+                    <p>示例路径：
+                    <ul>
+                        <li props="android unity flutter rn cs">Android: <codeph>/storage/emulated/0/Pictures/image.png</codeph></li>
+                        <li props="ios unity flutter rn cs">iOS: <codeph>/var/mobile/Containers/Data/Application/&lt;APP-UUID>/Documents/image.png</codeph></li>
+                        <li props="mac unity flutter electron cs">macOS: <codeph>~/Pictures/image.png</codeph></li>
+                        <li props="cpp unreal bp unity flutter electron cs">Windows: <codeph>C:\\Users\\{username}\\Pictures\\image.png</codeph></li>
+                        <li props="hmos">HarmonyOS：/data/storage/el2/base/haps/ApiExample/files/1080P.png</li>
+                    </ul></p>
                 </pd>
             </plentry>
             <plentry>
