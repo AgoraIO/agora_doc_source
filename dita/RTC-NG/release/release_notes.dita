@@ -62,8 +62,12 @@
                 <ul>
                     <li>集成 SDK 的 App 设置 <codeph>targetSdkVersion</codeph> 为 34，在 Android 14 系统中运行屏幕共享功能时崩溃。<ph props="cpp unity flutter rn">(Android)</ph></li>
                     <li>多频道集成场景，App 调用 <codeph><apiname keyref="takeSnapshotEx"/></codeph> 使用连接 ID 获取视频截图，截图失败。</li>
-                    <li>使用媒体播放器时，先调用 <codeph><apiname keyref="pause"/></codeph> 暂停播放、调用 <codeph><apiname keyref="stop"/></codeph> 停止播放、再调用 <codeph><apiname keyref="seek"/></codeph> 指定播放位置，最后调用 <codeph><apiname keyref="resume"/></codeph> 恢复播放，文件。</li>
-                    <li>使用媒体播放器时，调用 <codeph><apiname keyref="switchSrc"/></codeph> 切换媒体资源后，<codeph><apiname keyref="getPlaySrc"/></codeph> 方法获取当然正在播放的媒体资源的路径没有变化。</li>
+                    <li>使用媒体播放器时，调用 <codeph><apiname keyref="pause"/></codeph> 暂停播放后，调用 <codeph><apiname keyref="seek"/></codeph> 定位到指定播放位置、然后调用 <codeph><apiname keyref="play"/></codeph> 继续播放，播放时会先从暂停播放的位置继续播放几百毫秒，然后再从新的位置播放。</li>
+                    <li>使用媒体播放器时，调用 <codeph><apiname keyref="switchSrc"/></codeph> 切换媒体资源后，调用 <codeph><apiname keyref="getPlaySrc"/></codeph> 获取当前正在播放的媒体资源的路径没有变化。</li>
+                    <li>用户在音视频互动时中使用蓝牙耳机，偶现调整手机音量后改变的是媒体音量而非蓝牙音量。<ph props="cpp unity flutter rn">(Android)</ph></li>
+                    <li>音视频互动时，偶现接收端观看发送端画面出现黑屏。<ph props="cpp unity flutter rn">(Android)</ph></li>
+                    <li>调用 <codeph><apiname keyref="setCameraExposureFactor"/></codeph> 在设备的某个特定角度设置当前摄像头的曝光系数后，当设备移动到另一个角度时，偶现视频画面变暗。<ph props="cpp unity flutter rn">(Android)</ph></li>
+                    <li></li>
                 </ul>
             </body>
         </topic>
