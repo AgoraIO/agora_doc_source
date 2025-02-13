@@ -399,8 +399,8 @@ When a user recalls a message in a one-to-one chat, chat group, or chat room of 
 | `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{ID of the recall callback event message}`. |
 | `eventType` | String | The message type of the callback. <ul><li>`chat`: Uplink messages. The messages that are about to be sent by the Agora Chat server to end devices.</li><li>`chat_offline`: Offline messages. The messages that are not sent by the Agora Chat server as the end user is offline.</li></ul> |
 | `timestamp` | Long | The Unix timestamp when the Agora Chat server receives the callback event, in milliseconds. |
-| `chat_type` | String | The type of chat. <ul><li>`chat`: One-to-one chats.</li><li>`groupchat`: Chat groups and chat rooms.</li></ul> |
-| `group_id` | String | The ID of the chat group or chat room where the message resides. This field only exists if `chat_type` is set to `groupchat`. |
+| `chat_type` | String | `recall` indicates message recall. |
+| `group_id` | String | The ID of the chat group or chat room where the message resides.  |
 | `from` | String | The sender of the message. |
 | `to`  | String | The recipient of the message. |
 | `recall_id` | String | The ID of the message to recall. |
