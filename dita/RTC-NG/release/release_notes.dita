@@ -10,20 +10,10 @@
         <topic id="compatibility">
             <title>升级必看</title>
             <body>
-                <p>该版本对部分功能的实现方式进行了优化，涉及 SDK 的行为变更、API 的改名或删除，为确保项目的正常运行，你需要在升级到该版本后更新 App 中的代码。</p>
-                <note type="attention" props="native">
-                    <p props="android">自 4.5.0 起，RTC SDK 和 RTM SDK (2.2.0 及以上版本) 都包含 <codeph>libaosl.so</codeph> 库。如果你通过 CDN 手动集成 RTC SDK 且同时集成了 RTM SDK，为避免冲突，请手动删除版本较低的 <codeph>libaosl.so</codeph> 库。4.5.0 RTC SDK <codeph>libaosl.so</codeph> 库版本为 1.2.13。</p>
-                    <p props="apple">自 4.5.0 起，RTC SDK 和 RTM SDK (2.2.0 及以上版本) 都包含 <codeph>aosl.xcframework</codeph> 库。如果你通过 CDN 手动集成 RTC SDK 且同时集成了 RTM SDK，为避免冲突，请手动删除版本较低的 <codeph>aosl.xcframework</codeph> 库。4.5.0 RTC SDK <codeph>aosl.xcframework</codeph> 库版本为 1.2.13。你可以在 <codeph>Info.plist</codeph> 中查看库的版本信息。</p>
-                    <p props="cpp">自 4.5.0 起，RTC SDK 和 RTM SDK (2.2.0 及以上版本) 都包含 <codeph>aosl.dll</codeph> 库。如果你通过 CDN 手动集成 RTC SDK 且同时集成了 RTM SDK，为避免冲突，请手动删除版本较低的 <codeph>aosl.dll</codeph> 库。4.5.0 RTC SDK <codeph>aosl.dll</codeph> 库版本为 1.2.13。你可以通过查看 <codeph>aosl.dll</codeph> 文件的属性来得知库的版本信息。</p>
-                </note>
-                <ol>
-                    <li><ph><b></b></ph>
-                        <p></p>
-                    </li>
-                    <li><ph><b></b></ph>
-                        <p></p>
-                    </li>
-                </ol>
+             <note type="attention" props="native">
+             <ul>自 4.5.0 起，RTC SDK 和 RTM SDK (2.2.0 及以上版本) 都包含 <codeph>libaosl.so</codeph> 库。如果你通过 CDN 手动集成 RTC SDK 且同时集成了 RTM SDK，为避免冲突，请手动删除版本较低的 <codeph>libaosl.so</codeph> 库。</ul>
+             <ul>4.5.1 RTC SDK <codeph>libaosl.so</codeph> 库版本为 //TODO。</ul>
+             </note>
             </body>
         </topic>
         <topic id="newfeature">
@@ -67,7 +57,13 @@
                     <li>用户在音视频互动时中使用蓝牙耳机，偶现调整手机音量后改变的是媒体音量而非蓝牙音量。<ph props="cpp unity flutter rn">(Android)</ph></li>
                     <li>音视频互动时，偶现接收端观看发送端画面出现黑屏。<ph props="cpp unity flutter rn">(Android)</ph></li>
                     <li>调用 <codeph><apiname keyref="setCameraExposureFactor"/></codeph> 在设备的某个特定角度设置当前摄像头的曝光系数后，当设备移动到另一个角度时，偶现视频画面变暗。<ph props="cpp unity flutter rn">(Android)</ph></li>
-                    <li></li>
+                    <li>播放 CDN 直播流时，直播短暂中断然后恢复，偶现播放画面卡住。<ph props="cpp unity flutter rn">(Android)</ph>//TODO</li>
+                    <li>音视频互动时，偶现摄像头打开失败。<ph props="cpp unity flutter rn">(iOS)</ph></li>
+                    <li>调用 <codeph><apiname keyref="pushVideoFrame"/></codeph> 将外部原始视频帧推送到频道中时，如果使用 i420 格式的 CVPixelBuffer，通过自定义视频轨道发布后，偶现接收端观看视频流出现卡顿。<ph props="cpp unity flutter rn">(iOS)</ph></li>
+                    <li>调用 <codeph><apiname keyref="setupLocalVideo"/></codeph> 设置两个视图（view），然后调用 <codeph><apiname keyref="enableFaceDetection"/></codeph> 开启人脸检测，后传入的视图中无法检测到人脸信息。<ph props="cpp unity flutter rn">(iOS)</ph></li>
+                    <li>屏幕共享场景下，接收端用户看到的共享图像出现绿线。<ph props="cpp unity flutter rn">(iOS)</ph></li>
+                    <li>在极速直播场景下，观众通过 <codeph>string</codeph> 型的用户 ID 加入频道观看直播，偶现音频和画面不同步。</li>
+                    <li>在同时使用 AI 降噪、AI 回声消除插件时，偶现插件不生效。</li>
                 </ul>
             </body>
         </topic>
