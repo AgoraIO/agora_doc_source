@@ -1367,7 +1367,7 @@ When a user removes a contact from the block list, the Agora Chat server sends a
 }
 ```
 
-## Read receipts events
+## Read receipt events
 
 ### Send a Read Receipt for a one-to-one chat message
 
