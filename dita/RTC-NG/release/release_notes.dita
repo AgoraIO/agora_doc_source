@@ -11,8 +11,9 @@
             <title>升级必看</title>
             <body>
              <note type="attention" props="native">
-             <ul>自 4.5.0 起，RTC SDK 和 RTM SDK (2.2.0 及以上版本) 都包含 <codeph>libaosl.so</codeph> 库。如果你通过 CDN 手动集成 RTC SDK 且同时集成了 RTM SDK，为避免冲突，请手动删除版本较低的 <codeph>libaosl.so</codeph> 库。</ul>
-             <ul>4.5.1 RTC SDK <codeph>libaosl.so</codeph> 库版本为 //TODO。</ul>
+             <ul>
+             <li>自 4.5.0 起，RTC SDK 和 RTM SDK (2.2.0 及以上版本) 都包含 <codeph>libaosl.so</codeph> 库。如果你通过 CDN 手动集成 RTC SDK 且同时集成了 RTM SDK，为避免冲突，请手动删除版本较低的 <codeph>libaosl.so</codeph> 库。</li>
+             <li>4.5.1 RTC SDK <codeph>libaosl.so</codeph> 库版本为 //TODO</li></ul>
              </note>
             </body>
         </topic>
@@ -51,7 +52,7 @@
                 <p>该版本修复了以下问题：</p>
                 <ul>
                     <li>集成 SDK 的 App 设置 <codeph>targetSdkVersion</codeph> 为 34，在 Android 14 系统中运行屏幕共享功能时崩溃。<ph props="cpp unity flutter rn">(Android)</ph></li>
-                    <li>多频道集成场景，App 调用 <codeph><apiname keyref="takeSnapshotEx"/></codeph> 使用连接 ID 获取视频截图，截图失败。</li>
+                    <li>多频道场景下调用 <codeph><apiname keyref="takeSnapshotEx"/></codeph> 对视频进行截图，截图失败。</li>
                     <li>使用媒体播放器时，调用 <codeph><apiname keyref="pause"/></codeph> 暂停播放后，调用 <codeph><apiname keyref="seek"/></codeph> 定位到指定播放位置、然后调用 <codeph><apiname keyref="play"/></codeph> 继续播放，播放时会先从暂停播放的位置继续播放几百毫秒，然后再从新的位置播放。</li>
                     <li>使用媒体播放器时，调用 <codeph><apiname keyref="switchSrc"/></codeph> 切换媒体资源后，调用 <codeph><apiname keyref="getPlaySrc"/></codeph> 获取当前正在播放的媒体资源的路径没有变化。</li>
                     <li>用户在音视频互动时中使用蓝牙耳机，偶现调整手机音量后改变的是媒体音量而非蓝牙音量。<ph props="cpp unity flutter rn">(Android)</ph></li>
