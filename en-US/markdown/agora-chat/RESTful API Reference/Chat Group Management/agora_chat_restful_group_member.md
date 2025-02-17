@@ -49,7 +49,7 @@ Retrieves the member list of the specified chat group with pagination.
 ### HTTP request
 
 ```shell
-GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/users?pagenum={N}&pagesize={N}
+GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/users?pagenum={N}&pagesize={N}&joined_time={true/false}
 ```
 
 #### Path parameter
@@ -65,6 +65,7 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/users?pagenum={N}
 | :------- | :----- | :------------------------------------------------ | :------- |
 | `pagenum` | Number | The current page number. The query starts from the first page by default. | No |
 | `pagesize` | Number | The number of members to retrieve per page. The value range is [1,1000] and the default value is `1000`.  | No |
+| `joined_time` | Bool | Whether to return the time when the user joined the chat group.<br/> - `true`: Yes <br/> - (Default) `false`: No | No |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
 
@@ -84,7 +85,8 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 | Parameter | Type | Description |
 | :----- | :----- | :--------------------------------------- |
 | `owner` | String | The username of the group owner, for example, `{"owner":"user1"}`. |
-| `member` | String | The username of a group admin or regular group member, for example, `{"member":"user2"}`. |
+| `admin` | String | The username of the group admin, for example, `{"admin":"user1"}`. |
+| `member` | String | The username of a regular group member, for example, `{"member":"user2"}`. |
 | `count` | String | The number of group members retrieved at this call of this API. |
 
 For other fields and descriptions, see [Common parameters](#param).
@@ -96,7 +98,7 @@ If the returned HTTP status code is not 200, the request fails. You can refer to
 #### Request example
 
 ```shell
-curl -X GET -H 'Accept: application/json' 'http://XXXX/XXXX/XXXX/chatgroups/10130212061185/users?pagenum=2&pagesize=2' -H 'Authorization: Bearer <YourAppToken>'
+curl -X GET -H 'Accept: application/json' 'http://XXXX/XXXX/XXXX/chatgroups/10130212061185/users?pagenum=2&pagesize=2&joined_time=true' -H 'Authorization: Bearer <YourAppToken>'
 ```
 
 #### Response example
@@ -106,6 +108,9 @@ curl -X GET -H 'Accept: application/json' 'http://XXXX/XXXX/XXXX/chatgroups/1013
     "action": "get",
     "application": "527cd7e0-XXXX-XXXX-9f59-ef10ecd81ff0",
     "params": {
+        "joined_time": [
+        "true"
+        ],
         "pagesize": [
           "2"
         ],
@@ -117,17 +122,23 @@ curl -X GET -H 'Accept: application/json' 'http://XXXX/XXXX/XXXX/chatgroups/1013
     "entities": [],
     "data": [
     {
-            "owner": "user1"
+          "owner": "user1",
+          "joined_time": 1732524850107
     },
     {
-            "member": "user2"
+          "admin": "user",
+          "joined_time": 173252433307
+    },
+    {
+          "member": "user3",
+          "joined_time": 173252433456
     }
     ],
     "timestamp": 1489074511416,
     "duration": 0,
     "organization": "XXXX",
     "applicationName": "XXXX",
-    "count": 2
+    "count": 3
 }
 ```
 

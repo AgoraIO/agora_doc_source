@@ -71,6 +71,15 @@ ChatClient.getInstance().chatroomManager().leaveChatRoom(chatRoomId);
 
 By default, when you leave a chat room, the SDK removes all the chat room messages on the local device. If you do not want these messages removed, set `setDeleteMessagesAdExitChatRoom` in `ChatOptions` as `false`.
 
+// Please translate the following texts and add them for each platform.
+
+由于网络等原因，聊天室中的成员离线超过 2 分钟会自动退出聊天室。若需调整该时间，需联系 support@agora.io。
+
+以下两类成员即使离线也不会退出聊天室：
+
+- 聊天室白名单中的成员（聊天室所有者和管理员默认加入白名单）。
+- [调用 RESTful API 创建聊天室](https://docs.agora.io/en/agora-chat/restful-api/chatroom-management/manage-chatrooms?platform=ios#creating-a-chat-room)时拉入的用户从未登录过。
+
 
 ### Retrieve the chat room list and attributes
 

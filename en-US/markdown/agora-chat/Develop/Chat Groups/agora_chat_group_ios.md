@@ -66,7 +66,7 @@ Users can request to join a public chat group as follows:
 1. Call `getJoinedGroupsFromServerWithPage` to retrieve the list of the groups that the user is already in from the server. This prevents repetitive join requests.
 2. Call `getJoinedGroups` to retrieve the list of the groups that the user is already in from the local database.
 3. Call `getPublicGroupsFromServerWithCursor` to retrieve the list of public groups by page. Users can obtain the ID of the group that they want to join.
-4. Call `joinPublicGroup` to send a join request to the chat group:
+4. Call `requestToJoinPublicGroup` to send a join request to the chat group:
     - If the type of the chat group is set to `AgoraChatGroupStylePublicOpenJoin`, the request from the user is accepted automatically and the chat group members receive the `userDidJoinGroup` callback.
     - If the type of the chat group is set to `AgoraChatGroupStylePublicJoinNeedApproval`, the chat group owner and chat group admins receive the `joinGroupRequestDidReceive` callback and determine whether to accept the request from the user. Once the join request is approved, the user receives the `joinGroupRequestDidApprove` callback. Otherwise, the user receives the `joinGroupRequestDidDecline` callback.
 
@@ -98,8 +98,15 @@ do {
   cursor = result.cursor;
 } while (result && result.list < pageSize);
 
-// Call joinPublicGroup to send a join request to a chat group.
-[[AgoraChatClient sharedClient].groupManager joinPublicGroup:@"groupID" error:nil];
+// Call requestToJoinPublicGroup to send a join request to a chat group.
+[[AgoraChatClient sharedClient].groupManager requestToJoinPublicGroup:@"groupId" message:nil completion:^(AgoraChatGroup *aGroup1, AgoraChatError *aError) {
+            if (aError == nil) {
+                if (aGroup1.settings.style == AgoraChatGroupStylePublicOpenJoin) {
+                }
+                if (aGroup1.settings.style == AgoraChatGroupStylePublicJoinNeedApproval) {
+                }
+            }
+        }];
 
 // Call leaveGroup to leave a chat group.
 [[AgoraChatClient sharedClient].groupManager leaveGroup:@"groupID" error:nil];
