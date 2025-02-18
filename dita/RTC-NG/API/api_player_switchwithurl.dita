@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_player_switchwithurl">
+    <title><ph keyref="SwitchWithUrl"/></title>
+    <shortdesc id="short"><ph id="shortdesc">切换到新的 URL。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="SwitchWithUrl"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void switchWithUrl(String url, boolean syncPts, AsyncCallback callback)</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)switchWithUrl:(NSString * _Nonnull)url syncPts:(BOOL)syncPts cb:(void (^_Nullable)(AgoraRteError* _Nullable err))cb;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">void SwitchWithUrl(const char* url, bool sync_pts, std::function&amp;lt;void(rte::Error* err)&amp;gt; cb)</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从：</dt>
+                <dd>自 v4.5.1 版本新增。</dd>
+            </dlentry>
+            </dl>
+            <p></p>
+            </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>加入频道前后均可调用。</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>此方法仅在播放器打开非 RTE URL 时有效。当 SDK 返回播放器状态为 <ph keyref="kRtePlayerStateOpenCompleted"/> 时调用此方法。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+            <plentry props="android ios cpp mac">
+                <pt>url</pt>
+                <pd>要切换到的新的 URL。</pd>
+            </plentry>
+            <plentry props="android ios cpp mac">
+                <pt>syncPts</pt>
+                <pd>是否在切换前后同步播放位置（毫秒）：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：同步播放位置。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）不同步播放位置。</li>
+                    </ul></pd>
+            </plentry>
+            <plentry props="cpp mac">
+                <pt>cb</pt>
+                <pd>异步通知切换操作结果的回调。</pd>
+                <pd props="ios">异步通知切换操作结果的回调。
+                    <ul>
+                        <li><ul>
+                            <li><ph keyref="kRteOk"/>: 成功。</li>
+                            <li><ph keyref="kRteErrorDefault"/>: 切换到新 URL 失败。</li>
+                            <li><ph keyref="kRteErrorInvalidArgument"/>: 传入的 URL 为空或格式无效。</li>
+                            <li><ph keyref="kRteErrorInvalidOperation"/>: <ul>
+                                <li>对应的内部 AgoraRtePlayer 对象已被销毁或无效。</li>
+                                <li>打开的 URL 是 RTE URL，不支持切换到新 URL。</li>
+                            </ul></li>
+                            </ul></li>
+                        </ul></pd>
+            </plentry>
+        </parml> </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+            <ul props="native unreal bp electron unity rn cs">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+            </ul>
+        </section>
+        </refbody>
+</reference>
