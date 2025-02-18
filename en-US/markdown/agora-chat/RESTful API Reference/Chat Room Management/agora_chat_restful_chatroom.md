@@ -70,7 +70,7 @@ The request body is a JSON object, which contains the following fields:
 | `description` | String | The chat room description which can contain a maximum of 512 characters. | Yes |
 | `maxusers` | Int | The maximum number of members (including the chat room owner) that can join a chat room. The value range is [1,10,000], with `1000` as the default. To increase the upper limit, contact [support@agora.io](mailto:support@agora.io).  | No |
 | `owner` | String | The username of the chat room creator. | Yes |
-| `members` | JSONArray | The array of user IDs of regular chat room members and administrators, excluding the chat room owner. If you specify this parameter, remember to pass in at least one user ID. The number of user IDs in the array cannot exceed the value of `maxusers`.| No |
+| `members` | JSONArray | The array of user IDs of regular chat room members and administrators, excluding the chat room owner. If you specify this parameter, remember to pass in at least one user ID. The number of user IDs in the array cannot exceed the value of `maxusers`. Note that these users always stay in the chat room if they have never logged in to Chat.| No |
 
 ### HTTP response
 

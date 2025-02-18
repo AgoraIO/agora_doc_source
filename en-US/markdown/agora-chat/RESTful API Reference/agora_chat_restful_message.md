@@ -1305,7 +1305,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | :---------------- | :----- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
 | `Content-Type` | String | The content type. Pass `multipart/form-data`. | Yes |
 | `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
-| `restrict-access` | Bool | Whether to restrict access to this file.<ul><li>`true`: Restrict access to the file. The user needs to provide a file access key (`share-secret`) to download the file. You can obtain the access key from the response body.</li><li>`false`: The access is not restricted. Users can download the file directly.</li></ul> | No |
+| `restrict-access` | Bool | Whether to restrict access to this file.<ul><li>`true`: Restrict access to the file. The user needs to provide a file access key (`share-secret`) to download the file. You can obtain the access key from the response body.</li><li>`false`: The access is not restricted. Users can download the file directly.</li></ul><br/> To restrict the access to uploaded files, contact [support@agora.io](mailto:support@agora.io) to enable this function.  | No |
 | `thumbnail-height` | Number | The height of the image thumbnail, in pixels. This parameter is valid only if the size of the uploaded image exceeds 10 KB. If you leave this parameter empty, the height is 170 pixels by default. | No     |
 | `thumbnail-width` | Number| The width of the image thumbnail, in pixels. This parameter is valid only if the size of the uploaded image exceeds 10 KB. If you leave this parameter empty, the width is 170 pixels by default. | No    |
 
@@ -1483,7 +1483,7 @@ curl -X GET -H 'Accept: application/octet-stream' -H 'Authorization: Bearer {You
 This method retrieves historical messages sent and received by the user. 
 
 - For each request, you can retrieve all the historical messages sent and received within one hour from the specified time.
-- Messages cannot be retrieved in real time. For example, at 9 a.m., you can retrieve messages that are sent or received at 8 a.m.
+- If a large number of messages are sent, it will take a certain amount of time for the server to generate historical message records. You are advised to retrieve these records after 24 hours. If you have higher requirements for timeliness, you can use the [post-delivery callback service](https://docs.agora.io/en/agora-chat/develop/setup-webhooks?platform=flutter#post-delivery-callbacks).
 - The default storage time of historical messages differs by plan version. For details, see [package details](./agora_chat_plan?platform=RESTful).
 
 For each App Key, the call frequency limit of this method is 10 per minute.
@@ -1710,7 +1710,7 @@ The fields of `bodies` for different message types vary:
     | `thumb` | String | The URL address of the video thumbnail. |
     | `thumb_secret` | String | The thumbnail file access key. <br>This field exists if you set the access restriction when calling the [upload-file](#upload) method. |
     | `type` | String | The message type. For video messages, set it as `video`. |
-    | `url` | String | The URL address of the vide o file. You can visit this URL to download video files. |
+    | `url` | String | The URL address of the video file. You can visit this URL to download video files. |
 
     Example:
 
@@ -1832,31 +1832,22 @@ The fields of `bodies` for different message types vary:
 
     For example, the combined message includes a text message, an image message, and a file message.  
 
-    ```json
+```json
     "bodies": 
-    [
-        {
-            "v2:customExts": {
-                "name": "flower",
-                "size": "16",
-                "price": "100"
-            },
-            "customExts": [
-                {
-                    "name": "flower"
-                },
-                {
-                    "size": "16"
-                },
-                {
-                    "price": "100"
-                }
-            ],
-            "customEvent": "gift_1",
-            "type": "custom"
-        }
-    ]
-    ```
+[
+   {
+      "combineLevel": 1,
+      "file_length": 550,
+      "filename": "17289718748990036",
+      "secret": "a_OTmoq6Ee-CygH0PRzcUyFniZDmSsX1ur0j-9RtCj3tK6Gr",
+      "subType": "sub_combine",
+      "summary": ":yyuu\n:[image]\n:[file]\n",
+      "title": "chat history",
+      "url": "https://XXXX/XXXX/XXXX/chatfiles/6bf39390-8aba-11ef-a8ae-6f545c50ca23"
+    }
+]
+
+```
 
  ## Modify a text or custom message
 
@@ -2216,7 +2207,7 @@ POST https://{host}/{orgName}/{appName}/messages/users/import
 | `type` | String | The message type: <ul><li>`txt`: Text message</li><li>`img`: Image message</li><li>`audio`: Audio message</li><li>`video`: Video message</li><li>`file`: File message</li><li>`loc`: Location message</li><li>`cmd`: Command message</li><li>`custom`: Custom message</li></ul> | Yes |
 | `body` | JSON | The message content. For different message types, this parameter contains different fields. For details, see [Body of different message types](#body). | Yes |
 | `ext` | JSON | The message extension field that allows you to add custom information in the format of key-value pairs. | No | 
-| `is_ack_read` | Bool | Whether to set the message as read. <ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> | No |
+| `is_ack_read` | Bool | Whether to set the conversation as read. <ul><li>`true`: Yes.</li><li>`false`: No.</li></ul><br/> After a message is imported, the related conversation will be created. | No |
 | `msg_timestamp` | Long | The timestamp for importing the messages, in milliseconds. If you leave this parameter empty, the server automatically sets it as the current time. | No |
 | `need_download` | Bool | Whether to download the attachment and upload it to the server:<ul><li>`true`: Yes. In this case, you need to make sure that the attachment URL is publicly accessible. </li><li>`false`: (Default) No.</li></ul> | No |
 
@@ -2336,7 +2327,7 @@ POST https://{host}/{orgName}/{appName}/messages/chatgroups/import
 | `type` | String | The message type: <ul><li>`txt`: Text message</li><li>`img`: Image message</li><li>`audio`: Audio message</li><li>`video`: Video message</li><li>`file`: File message</li><li>`loc`: Location message</li><li>`cmd`: Command message</li><li>`custom`: Custom message</li></ul> | Yes |
 | `body` | JSON | The message content. For different message types, this parameter contains different fields. For details, see [Body of different message types](#body). | Yes |
 | `ext` | JSON | The message extension field that allows you to add custom information in the format of key-value pairs. | No | 
-| `is_ack_read` | Bool | Whether to set the message as read. <ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> | No |
+| `is_ack_read` | Bool | Whether to set the conversation as read. <ul><li>`true`: Yes.</li><li>`false`: No.</li></ul><br/> After a message is imported, the related conversation will be created.| No |
 | `msg_timestamp` | Long | The timestamp for importing the messages, in milliseconds. If you leave this parameter empty, the server automatically sets it as the current time. | No |
 | `need_download` | Bool | Whether to download the attachment and upload it to the server:<ul><li>`true`: Yes. In this case, you need to make sure that the attachment URL is publicly accessible.</li><li>`false`: (Default) No.</li></ul> | No |
 

@@ -368,6 +368,57 @@ When a user sends a custom message in a one-to-one chat, chat group, or chat roo
 | `customEvent`| String | The type of the custom event. The type can be 1 to 32 characters and must meet the following regular expression condition: [a-zA-Z0-9-_/.]{1,32}.|
 | `type`       | String   | The type of the message. `custom` indicates a custom message. |
 
+// Please translate the following texts into English.
+
+#### Send a combined message
+
+When a user sends a combined message in a one-to-one chat, chat group, or chat room, the Agora Chat server sends a callback to your app server. The sample code of the `payload` field is as follows. 
+
+例如，下面示例为源消息包括文本、图片和文件消息的合并消息格式：
+
+```json
+  "payload": {
+        "bodies": [
+            {
+                "combineLevel": 1,
+                "file_length": 1059,
+                "filename": "17326799853580001",
+                "msg": "The message context cannot be shown because the current version is too old.",
+                "secret": "CeycYKx0Ee-I3fU0d5v4X9BduteO1RZNVsePAgkDQ9sxoVJM",
+                "subType": "sub_combine",
+                "summary": "wzy1: Where are you？\nwzy1: Where are you？\nwzy1: Where are you？",
+                "title": "Chat history",
+                "type": "txt",
+                "url": "https://XXXX/XXXX/testy/chatfiles/09ec7550-ac74-XXXX-83ce-4719989e3c82"
+            }
+        ],
+        "ext": {
+            "ease_chat_uikit_user_info": {
+                "nickname": "ww"
+            }
+        },
+        "from": "user1",
+        "to": "user2",
+        "type": "chat"
+    }
+```     
+
+| 参数          | 类型   | 描述                                             |
+| :------------ | :----- | :----------------------------------------------- |
+| `combineLevel`  | Int   | 合并消息的嵌套层级数。 |
+| `file_length` | Int | 合并消息附件的大小，单位为字节。               |
+| `filename`        | String | 合并消息的附件名称。     |
+| `msg`        | String | 合并消息的兼容文本。当支持合并消息的 SDK 向不支持合并消息的低版本 SDK 发送消息时，低版本的 SDK 会将该属性解析为文本消息的消息内容。      |
+| `secret`        | String | 合并消息附件的访问密钥。如果[文件上传]([message_download.html#上传文件](https://docs.agora.io/en/agora-chat/restful-api/message-management?platform=flutter#upload-a-file)) 时设置了文件访问限制，则该字段存在。  |
+| `subType`        | String | 消息类型。合并消息为 `sub_combine`。       |
+| `summary`        | String | 合并消息的概要。                |
+| `title`        | String | 合并消息的标题。                |
+| `url`        | String | 合并消息的附件的 URL 地址。你可以访问该 URL 下载该附件。                |
+| `ext`        | String | 合并消息的扩展信息。                |
+| `from`        | String | 合并消息的发送方的用户 ID。                |
+| `to`        | String | 接收方的用户 ID。                |
+| `type`        | String | 会话类型：<br/> - `chat`: 单聊；<br/> - `groupchat`: 群聊；<br/> - `chatroom`: 聊天室。              |
+ 
 ### Recall a message
 
 When a user recalls a message in a one-to-one chat, chat group, or chat room of the Agora Chat app, the Agora Chat server sends a callback to your app server. The sample code is as follows:
@@ -399,8 +450,8 @@ When a user recalls a message in a one-to-one chat, chat group, or chat room of 
 | `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{ID of the recall callback event message}`. |
 | `eventType` | String | The message type of the callback. <ul><li>`chat`: Uplink messages. The messages that are about to be sent by the Agora Chat server to end devices.</li><li>`chat_offline`: Offline messages. The messages that are not sent by the Agora Chat server as the end user is offline.</li></ul> |
 | `timestamp` | Long | The Unix timestamp when the Agora Chat server receives the callback event, in milliseconds. |
-| `chat_type` | String | The type of chat. <ul><li>`chat`: One-to-one chats.</li><li>`groupchat`: Chat groups and chat rooms.</li></ul> |
-| `group_id` | String | The ID of the chat group or chat room where the message resides. This field only exists if `chat_type` is set to `groupchat`. |
+| `chat_type` | String | `recall` indicates message recall. |
+| `group_id` | String | The ID of the chat group or chat room where the message resides.  |
 | `from` | String | The sender of the message. |
 | `to`  | String | The recipient of the message. |
 | `recall_id` | String | The ID of the message to recall. |
@@ -1316,7 +1367,9 @@ When a user removes a contact from the block list, the Agora Chat server sends a
 }
 ```
 
-## Read Receipt event for a one-to-one chat message
+## Read receipt events
+
+### Send a Read Receipt for a one-to-one chat message
 
 When a user sends read receipt for a message in a one-to-one chat, the Agora Chat server sends a callback to your app server. The sample code is as follows:
 
@@ -1353,6 +1406,49 @@ When a user sends read receipt for a message in a one-to-one chat, the Agora Cha
 | `eventType` | String | The message type of the callback. <ul><li>`chat`: Uplink messages. The messages that are about to be sent by the Agora Chat server to end devices.</li><li>`chat_offline`: Offline messages. The messages that are not sent by the Agora Chat server as the end user is offline.</li></ul> |
 | `timestamp` | long     | The Unix timestamp when the Agora Chat server receives the callback event, in milliseconds.               |
 | `msg_id`    | String   | The message ID of the receipt.                                    |
+
+### Send a Read Receipt for a one-to-one conversation
+
+在单聊中，消息接收方成功发送会话已读回执后，Agora 服务器会向你的 App Server 发送回调请求，App Server 可查看会话已读回执相关信息，进行数据同步。
+
+回调请求主要字段含义：
+
+| 字段          | 数据类型 | 含义                                                         |
+| :------------ | :------- | :----------------------------------------------------------- |
+| `callId`    | String   | `callId` 为每个回调请求的唯一标识，格式为 “App Key_回执消息的消息 ID”。 |
+| `eventType` | String   | `chat`：单聊。                                               |
+| `chat_type` | String    |  会话已读回执。           |
+| `security`  | String   | 签名，格式如下: `MD5（callId+secret+timestamp）`。关于 `Secret`，详见 [Agora Console 配置回调规则的描述](https://docs.agora.io/en/agora-chat/develop/setup-webhooks?platform=flutter#configure-callback-rules)。 |
+| `payload`   | object   | 会话已读回执详情。 |
+| `payload.ack_message_id` | String     | 会话中消息的消息 ID。                  |
+| `payload.type` | String | 会话已读回执类型。       |                |
+| `host`      | String   | 服务器名称。                                                 |
+| `appkey`    | String   | 你在 Agora Console 注册的应用唯一标识。                         |
+| `from` | String          | 发送已读回执的用户。|
+| `to` | String    |  接收已读回执的用户。                 |
+| `msg_id` | String      | 已读回执的消息 ID。 |
+| `timestamp` | long     | Agora 服务器收到会话已读回执的 Unix 时间戳，单位为 ms。 |
+
+回调请求示例：
+
+```json
+{
+"callId": "XXXX-XXXX#testy_1252106597610555348",
+"eventType": "chat",  
+"chat_type": "channel_ack", 
+"security": "203e3cXXXX0ebdbd776d8aa9cc057b2d",
+"payload": {
+"ack_message_id": "1252106100258375636", 
+"type": "channel_ack" 
+},
+"host": "XXXX@hsb-XXXX-msync0",
+"appkey": "XXXX-XXXX#testy",
+"from": "wzy",   
+"to": "wzy1",   
+"msg_id": "1252106597610555348",  
+"timestamp": 1709093585046
+}
+```
 
 ## Content moderation result
 
@@ -1398,4 +1494,160 @@ The sample code is as follows:
 | msg      | String | The content of the text message. This parameter is valid only when `messageType` is `txt`. |
 | url      | String | The URL of the attachment message, like a voice, video, or image message. This parameter is valid only when `messageType` is `img`, `audio`, or `video`. |
 | timestamp       | Number | The Unix timestamp when the Chat server receives the callback event, in milliseconds.  |
+
+// Please translate the following texts into English.
+
+### Offline push
+
+回调请求主要字段含义：
+
+| 字段   | 字段是否一定存在 | 类型   | 描述          |
+| :----- | :------- | :---------- | :----------- |
+| `callId`    | String   | `callId` 为每个回调请求的唯一标识，格式为 `App Key_离线消息的消息 ID`。 |
+| `appkey`        | 是               | String | 应用的唯一标识，由 Orgname 和 Appname 组成。      |
+| `channel`       | 否               | String | 推送通道，例如 APNS。该参数关联推送证书平台。   |
+| `chat_type`     | 是               | String | 聊天类型，单聊和群聊分别为 `chat` 和 `groupchat` 。     |
+| `data`          | 否    | Object | 第三方响应结果内容。   | 
+| `device_id`     | 否   | String | 离线推送通知的接收方的设备 ID。   | 
+| `device_token`  | 否     | String | 第三方推送标识。 | 
+| `msg_id`        | 是               | String | 离线消息的消息 ID。  |
+| `notifier_name` |  否               |  String  | 推送证书名称。                   | 
+| `status`   | 是    | String | 推送状态:<br/> - `success`：推送成功;<br/> - `fail`：推送失败（第三方失败或不具备推送条件）；<br/> - `error`：推送异常。 |
+| `step`   | 是   | String | 固定字符串内容 `push`。  |
+| `target`| 是   | String | 离线推送通知的接收方的用户 ID。 |
+| `timestamp`     | 是    | String | 事件发出时间戳。           |
+| `e_message`     | 否               | String | 异常信息。该参数在出现错误时才提供。| 
+| `from`          | 是               | String | 发送方的用户 ID。  |
+| `group_id`      | 否               | String | 群组 ID，消息类型是群聊消息时才出现。 |
+| `payload`       | 是    | Object | 消息负载，携带离线消息负载内容。  |
+
+1. 离线推送成功的回调请求示例：
+
+```json
+{
+    "callId": "XXXX#XXXX_1029XXXX29922197880",
+    "appkey":"XXXX#XXXX",
+    "channel":"APNS",
+    "chat_type":"chat",
+    "data":{
+        "accepted":true,
+        "apnsId":"7d988394-XXXX-XXXX-2b9f-e7a13a92fb96",
+        "pushNotification":{
+            "expiration":1656484422884,
+            "payload":"{\"t\":\"wzy_apns\",\"aps\":{\"badge\":1,\"alert\":{\"body\":\"Please click to view\",\"title\":\"You have a new message\"},\"sound\":\"ring.caf\"},\"e\":{\"em_push_sound\":\"ring.caf\"},\"f\":\"wzy_vivo\",\"m\":\"626473521765161477\"}",
+            "priority":"IMMEDIATE",
+            "token":"XXXX",
+            "topic":"com.XXXX.XXXX.easeim"
+        }
+    },
+    "device_id":"bcf1eb81-XXXX-XXXX-bb9f-284e9943a045",
+    "device_token":"XXXX",
+    "msg_id":"1029XXXX29922197880",
+    "notifier_name":"EaseIM_APNS_Product",
+    "status":"success",
+    "step":"push",
+    "target":"wzy_XXXX",
+    "timestamp":1656398024142
+}
+```
+
+2. 离线推送失败的原因
+
+| 离线推送失败的原因    | 描述          |
+| :------------------- | :----- | 
+| `no push binding`           | 未绑定推送设备。       |
+| `illegal binding`           | 绑定信息不合法(此处指证书名或 `deviceToken` 为空字符串, 一般不存在，不排除历史数据)。 |
+| `no user exist`             | 接收用户不存在。       |  
+| `notifier out of limit`     | 证书推送超限。     | 
+| `notifier disabled`         | 证书未启用（封禁一次后即为未启用）。  |
+| `notifier is ban`           | 证书封禁。        |
+| `no notifier exist`         | 证书不存在。     |
+| `invalid notifier`          | 证书无效。        |
+| `message ignore push`       | 消息忽略推送，指离线扩展字段 `em_ignore_notification=true`。 |
+| `invalid message`           | 无效的消息（协议内容一般不会有这个错误）。                     |
+| `expire message`            | 过期的消息，推送延迟超过一天的消息，不再推送。                 |
+| `user ignore push`          | 主动免打扰。      | 
+| `ignore push device id`     | 忽略用户设备推送（扩展限制接收或不接受推送设备）。    |
+| `invalid VOIP notification` | 无效的 APNs VoIP 类型推送。   | 
+| `get push token fail`       | 获取推送 token 失败。       |
+| `push yet but fail `        | 已经推送，但是返回失败。       |
+
+常见的离线推送失败的回调请求示例如下：
+
+- 未绑定推送设备
+
+```json
+{
+    "chat_type": "chat",
+    "callId": "XXXX#XXXX_1029172947949980024",
+    "security": "79e87c892ec0159ac9175f295d587a51",
+    "appkey": "XXXX#XXXX",
+    "step": "push",
+    "detail": "no push binding",
+    "msg_id": "1029172947949980024",
+    "status": "fail",
+    "target": "test1",
+    "timestamp": 1657187799974
+}
+```
+
+- 离线推送通知的接收用户不存在
+
+```json
+{
+    "chat_type": "chat",
+    "callId": "XXXX#XXXX_1029XXXX29922197880",
+    "security": "c2d1352efc3f0b9bbf7e447c54ccb11d",
+    "appkey": "XXXX#XXXX",
+    "step": "push",
+    "detail": "no user exist",
+    "msg_id": "1029174929922197880",
+    "status": "fail",
+    "target": "test11",
+    "timestamp": 1657188261464
+}
+```
+
+- 证书不存在
+
+```json
+{
+    "chat_type": "chat",
+    "callId": "XXXX#XXXX_1029188050686577016",
+    "security": "baf6ff663587e705efd39d91e995c306",
+    "appkey": "XXXX#XXXX",
+    "step": "push",
+    "detail": "no notifier exist",
+    "notifier_name": "102920687",
+    "msg_id": "1029188050686577016",
+    "status": "fail",
+    "target": "test1",
+    "timestamp": 1657191316366
+}
+```
+
+- 推送证书认证失败
+
+```json
+{
+    "callId": "XXXX#XXXX_1029518239182358904",
+    "data": {
+    "result": 10206,
+    "desc": "incorrect sign"
+    },
+    "device_id": "0f581e52-XXXX-XXXX-8774-f804a49571f5",
+    "channel": "APNS",
+    "target": "Test4",
+    "chat_type": "chat",
+    "security": "afa9bd9d372XXXX5bedde37e275e",
+    "device_token": "160403XXXX055106740XXXX",
+    "appkey": "XXXX#XXXX",
+    "step": "push",
+    "detail": "get push token fail",
+    "notifier_name": "104510674#XXXX30bc2c54a6d078bc69a8b6d7807d",
+    "msg_id": "1029518239182358904",
+    "status": "fail",
+    "timestamp": 1657268194889
+}
+```
 
