@@ -1710,7 +1710,7 @@ The fields of `bodies` for different message types vary:
     | `thumb` | String | The URL address of the video thumbnail. |
     | `thumb_secret` | String | The thumbnail file access key. <br>This field exists if you set the access restriction when calling the [upload-file](#upload) method. |
     | `type` | String | The message type. For video messages, set it as `video`. |
-    | `url` | String | The URL address of the vide o file. You can visit this URL to download video files. |
+    | `url` | String | The URL address of the video file. You can visit this URL to download video files. |
 
     Example:
 
