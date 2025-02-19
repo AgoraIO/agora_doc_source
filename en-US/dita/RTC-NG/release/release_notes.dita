@@ -1,140 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="release_notes">
-    <title>v4.5.0</title>
+    <title>v4.5.1</title>
     <body>
-        <p>v4.3.0 was released on xx xx, 2024.</p>
+        <p>v2.12.8 was released on March 30, 2021.</p>
     </body>
     <topic id="level2">
         <title/>
         <topic id="compatibility">
             <title>Compatibility changes</title>
             <body>
-                <p>This release has optimized the implementation of some functions, involving renaming or deletion of some APIs. To ensure the normal operation of the project, you need to update the code in the app after upgrading to this release.</p>
-                <note type="attention" props="native">
-                    <p props="android">自 4.5.0 起，RTC SDK 和 RTM SDK (2.2.0 及以上版本) 都包含 <codeph>libaosl.so</codeph> 库。 如果你通过 CDN 手动集成 RTC SDK 且同时集成了 RTM SDK，为避免冲突，请手动删除版本较低的 <codeph>libaosl.so</codeph> 库。 4.5.0 RTC SDK <codeph>libaosl.so</codeph> 库版本为 1.2.13。</p>
-                    <p props="apple">自 4.5.0 起，RTC SDK 和 RTM SDK (2.2.0 及以上版本) 都包含 <codeph>aosl.xcframework</codeph> 库。 如果你通过 CDN 手动集成 RTC SDK 且同时集成了 RTM SDK，为避免冲突，请手动删除版本较低的 <codeph>aosl.xcframework</codeph> 库。 4.5.0 RTC SDK <codeph>aosl.xcframework</codeph> 库版本为 1.2.13。 你可以在 <codeph>Info.plist</codeph> 中查看库的版本信息。</p>
-                    <p props="cpp">自 4.5.0 起，RTC SDK 和 RTM SDK (2.2.0 及以上版本) 都包含 <codeph>aosl.dll</codeph> 库。 如果你通过 CDN 手动集成 RTC SDK 且同时集成了 RTM SDK，为避免冲突，请手动删除版本较低的 <codeph>aosl.dll</codeph> 库。 4.5.0 RTC SDK <codeph>aosl.dll</codeph> 库版本为 1.2.13。 你可以通过查看 <codeph>aosl.dll</codeph> 文件的属性来得知库的版本信息。</p>
-                </note>
-                <ol>
-                    <li props="cpp unity"><ph><b>成员参数类型变更</b></ph>
-<p><ph props="cpp">为提升各框架对 Native SDK 的适配性，</ph>该版本对一些 API 中的成员或参数做了如下修改：<table frame="all" rowsep="1" colsep="1">
-                        <tgroup cols="3">
-                            <colspec colname="c1" colnum="1" colwidth="1*"/>
-                            <colspec colname="c2" colnum="2" colwidth="1*"/>
-                            <colspec colname="c3" colnum="3" colwidth="1*"/>
-                            <thead>
-                                <row>
-                                    <entry>API</entry>
-                                    <entry>成员/参数</entry>
-                                    <entry>变更</entry>
-                                </row>
-                            </thead>
-                            <tbody>
-                                <row props="cpp">
-                                    <entry><codeph><apiname keyref="startScreenCaptureByDisplayId"/></codeph></entry>
-                                    <entry><parmname>displayId</parmname></entry>
-                                    <entry>由 uint32_t 型变更为 int64_t 型</entry>
-                                </row>
-                                <row>
-                                    <entry><codeph><apiname keyref="startScreenCaptureByWindowId"/></codeph></entry>
-                                    <entry><parmname>windowId</parmname></entry>
-                                    <entry><ph props="cpp">由 view_t 型变更为 int64_t 型</ph><ph props="unity">由 view_t 型变更为 long 型</ph></entry>
-                                </row>
-                                <row>
-                                    <entry morerows="1"><codeph><apiname keyref="ScreenCaptureConfiguration"/></codeph></entry>
-                                    <entry><parmname>displayId</parmname></entry>
-                                    <entry><ph props="cpp">由 uint32_t 型变更为 int64_t 型</ph><ph props="unity">由 unit 型变更为 long 型</ph></entry>
-                                </row>
-                                <row>
-                                    <entry><parmname>windowId</parmname></entry>
-                                    <entry><ph props="cpp">由 view_t 型变更为 int64_t 型</ph><ph props="unity">由 unit 型变更为 long 型</ph></entry>
-                                </row>
-                                <row>
-                                    <entry morerows="1"><codeph><apiname keyref="ScreenCaptureSourceInfo"/></codeph></entry>
-                                    <entry><parmname>sourceDisplayId</parmname></entry>
-                                    <entry><ph props="cpp">由 view_t 型变更为 int64_t 型</ph><ph props="unity">由 view_t 型变更为 long 型</ph></entry>
-                                </row>
-                                <row>
-                                    <entry><parmname>sourceId</parmname></entry>
-                                    <entry><ph props="cpp">默认值由 <codeph>nullptr</codeph> 变更为 0</ph><ph props="unity">由 view_t 型变更为 long 型</ph></entry>
-                                </row>
-                            </tbody>
-                        </tgroup>
-                        </table></p>
-                    </li>
-                    <li props="mac"><ph><b>自动安装虚拟声卡 (macOS)</b></ph>
-<p>As of v4.5.0, when you call this method for the first time,<codeph><apiname keyref="enableLoopbackRecording"/></codeph> the SDK will automatically install the built-in AgoraALD virtual sound card developed by Agora. After successful installation, the audio routing will automatically switch to the virtual sound card and use it for audio capturing.</p>
-                    </li>
-                    <li><ph><b>强效视频降噪实现变更</b></ph>
-<p props="ios mac cpp cs unity flutter rn electron bp unreal">该版本调整了强效视频降噪的实现方式，在 <codeph><apiname keyref="VIDEO_DENOISER_LEVEL"/></codeph> 中删除了 <codeph><apiname keyref="VIDEO_DENOISER_LEVEL_STRENGTH"/></codeph>，改为调用 <codeph><apiname keyref="setVideoDenoiserOptions"/></codeph> 启用视频降噪后，调用 <codeph><apiname keyref="setBeautyEffectOptions"/></codeph> 方法启用美颜磨皮功能，二者搭配使用以获得更好的视频降噪效果。 实现强效降噪时，推荐磨皮参数设置详见 <codeph><apiname keyref="setVideoDenoiserOptions"/></codeph>。</p>
-                        <p props="android hmos">该版本调整了强效视频降噪的实现方式，删除了 <codeph><apiname keyref="VIDEO_DENOISER_LEVEL_STRENGTH"/></codeph>，改为调用 <codeph><apiname keyref="setVideoDenoiserOptions"/></codeph> 启用视频降噪后，调用 <codeph><apiname keyref="setBeautyEffectOptions"/></codeph> 方法启用美颜磨皮功能，二者搭配使用以获得更好的视频降噪效果。 实现强效降噪时，推荐磨皮参数设置详见 <codeph><apiname keyref="setVideoDenoiserOptions"/></codeph>。</p>
-                        <p>此外，受该调整影响，实现画质优先的暗光增强效果时，需要先开启视频降噪并采用特定设置，详见 <codeph><apiname keyref="setLowlightEnhanceOptions"/></codeph>。</p>
-                    </li>
-                    <li props="mac cpp electron unity flutter bp unreal"><ph><b>摄像头插拔状态变更 (macOS, Windows)</b></ph>
-<p props="cpp electron unity flutter bp unreal">在之前版本中，当摄像头拔出并重新插入时，<codeph><apiname keyref="onVideoDeviceStateChanged"/></codeph> 回调会将设备状态报告为 <codeph><apiname keyref="MEDIA_DEVICE_STATE_ACTIVE"/></codeph>(1)（设备正在使用）。 该版本起，摄像头重新插入后，设备状态将改为 <codeph><apiname keyref="MEDIA_DEVICE_STATE_IDLE"/></codeph>(0)（设备就绪）。</p>
-                        <p props="mac">在之前版本中，摄像头拔出并重新插入后不会自动恢复采集。 该版本起，摄像头重新插入后将自动恢复采集。</p>
-                    </li>
-                    <li><ph><b>视频编码偏好变更</b></ph>
-<p>为提升用户的视频互动体验，该版本优化了视频编码时的默认偏好：<ul>
-                        <li>在 <codeph><apiname keyref="COMPRESSION_PREFERENCE"/></codeph> 枚举类中新增 <codeph><ph keyref="PREFER_COMPRESSION_AUTO"/></codeph> (-1) 枚举，并替代原有的 <codeph><ph keyref="PREFER_QUALITY"/></codeph> (1) 作为默认值。 The SDK will automatically select<codeph>  or<codeph><ph keyref="PREFER_LOW_LATENCY"/>  based on the video scenario you set </codeph><ph keyref="PREFER_QUALITY"/>to achieve the best user experience.</codeph></li>
-                        <li>在 <codeph><apiname keyref="DEGRADATION_PREFERENCE"/></codeph> 枚举类中新增 <codeph><ph keyref="MAINTAIN_AUTO"/></codeph> (-1) 枚举，并替代原有的 <codeph><ph keyref="MAINTAIN_QUALITY"/></codeph> (1) 作为默认值。 The SDK will automatically select <codeph>,<codeph><ph keyref="MAINTAIN_FRAMERATE"/></codeph>  or<codeph><ph keyref="MAINTAIN_BALANCED"/>  based on the video scenario you set,</codeph><ph keyref="MAINTAIN_RESOLUTION"/> in order to achieve the best overall quality of experience (QoE).</codeph></li>
-                        </ul></p>
-                    </li>
-                    <li props="android"><ph><b>16 KB 内存页大小 (Android)</b></ph>
-<p>自 Android 15 起，系统新增了对 16 KB 内存页大小的支持，详见 <xref keyref="page-size"/>。 为了保证 App 的稳定性和性能表现，自该版本起，SDK 支持 16 KB 内存页大小，确保可以在使用 4 KB 和 16 KB 内存页大小的设备上无缝运行，提升兼容性并避免崩溃。</p>
-                    </li>
-                </ol>
+             <note type="attention" props="native">
+             <ul>
+             <li>自 4.5.0 起，RTC SDK 和 RTM SDK (2.2.0 及以上版本) 都包含 <codeph>libaosl.so</codeph> 库。 如果你通过 CDN 手动集成 RTC SDK 且同时集成了 RTM SDK，为避免冲突，请手动删除版本较低的 <codeph>libaosl.so</codeph> 库。</li>
+             <li>4.5.1 RTC SDK <codeph>libaosl.so</codeph> 库版本为 //TODO</li></ul>
+             </note>
             </body>
         </topic>
         <topic id="newfeature">
             <title>New features</title>
             <body>
                 <ol>
-                    <li props="cn"><ph><b>高级美颜</b></ph>
-<p><ph>该版本新增以下两种高级美颜功能：</ph>
-<ul>
-                                <li>美型：调用 <codeph><apiname keyref="setFaceShapeBeautyOptions"/></codeph> 方法，可对人脸各部位进行修饰，你可以使用预设的模板一次性实现瘦脸、大眼、瘦鼻等微整形效果，并微调整体的修饰力度。 如果预设的美型效果不能满足你的需求，你可以调用 <codeph><apiname keyref="setFaceShapeAreaOptions"/></codeph> 方法设置美型部位选项，对人脸的各个部位单独微调，实现更加精细的美型效果。</li>
-                                <li>美妆：调用 <codeph><apiname keyref="setExtensionProperty"/></codeph> 方法，传入指定参数，可实现眼影、美瞳、眼线、美眉、唇彩、腮红等美妆特效。</li>
-                            </ul>
-                            <ph>有关美型和美妆的实现步骤，详见<xref keyref="advanced-beauty"/>。</ph><note type="note">目前，高级美颜功能为<b>限时免费</b>，详见<xref keyref="billing-strategy"/>。</note>
-                        </p>
+                    <li><ph><b>AI 对话场景</b></ph>
+<p>该版本新增了专为与<xref keyref="convoai"/>创建的智能体互动设计的 <codeph><ph keyref="AUDIO_SCENARIO_AI_CLIENT"/></codeph> 音频场景。 该场景根据 AI 智能体生成语音的特点，针对优化了音频传输算法，能够在弱网环境下（例如 80% 丢包率）稳定传输语音数据，确保对话的连续性和可靠性，适应多样化的复杂网络条件。</p>
                     </li>
-                    <li><ph><b>秀场直播场景</b></ph>
-<p>该版本在 <codeph><apiname keyref="VIDEO_APPLICATION_SCENARIO_TYPE"/></codeph> 类下新增枚举 <codeph><apiname keyref="APPLICATION_SCENARIO_LIVESHOW"/></codeph>(3)（秀场直播），你可以调用 <codeph><apiname keyref="setVideoScenario"/></codeph> 将视频业务场景设置为<xref keyref="showroom"/>。 In this scenario, fast video rendering and high image quality are crucial. The SDK implements several performance optimizations, including automatically enabling accelerated audio and video frame rendering to minimize first-frame latency (no need to call ), and B-frame encoding to <codeph><apiname keyref="enableInstantMediaRendering"/>achieve better image </codeph>quality and bandwidth efficiency.</p>
-                    </li>
-                    <li><ph><b>限制视频渲染帧率</b></ph>
-<p>该版本新增 <codeph><apiname keyref="setLocalRenderTargetFps"/></codeph> 和 <codeph><apiname keyref="setRemoteRenderTargetFps"/></codeph> 方法，支持设置视频在本地和远端渲染时的最大帧率，SDK 进行视频渲染的实际帧率会尽量接近该值。</p>
-                        <p>在对视频渲染帧率要求不高的场景（例如：屏幕共享、在线教育）或者远端使用中低端设备的场景下，你可以通过这一组方法限制视频渲染帧率，从而减小 CPU 消耗、提升系统性能。</p>
-                    </li>
-                    <li props="native"><ph><b>URL live streaming playback</b></ph><p>URL 拉流播放功能主要用于直播场景，观众端可以直接通过 <codeph><apiname keyref="OpenWithUrl"/></codeph> 打开特定的 URL 来播放实时媒体流，无需加入频道、订阅等步骤，极大简化了观众端观看直播流的 API 调用。</p>
-                        <p>在播放的过程中，观众端可以通过 <codeph><apiname keyref="SetAbrSubscriptionLayer"/></codeph> 设置订阅视频大小流，并可以在大小流之间实现平滑切换。 如果对视频体验有更高要求，可以联系<xref keyref="ticket-link"/>开通 ABR（Adaptive Bitrate，自适应码率）功能。 启用该功能后，可以自定义不同层级的视频流分辨率，观众可以实现不同分辨率视频流的平滑切换。</p>
-                        <p>当网络情况不稳定时，观众端可以调用 <codeph><apiname keyref="SetAbrFallbackLayer"/></codeph> 来设置订阅的视频流的回退选项。 SDK 会以你指定的最低质量层级对应的视频流分辨率为下限，在此范围内根据网络状况动态调整分辨率。</p><p props="hide">For detailed implementation steps, please refer to <xref keyref="rte-player"/>.</p>
-                    </li>
-                    <li><ph><b>滤镜效果</b></ph>
-<p>该版本新增 <codeph><apiname keyref="setFilterEffectOptions"/></codeph> 方法，你可以在 <codeph>config</codeph> 参数中传入指定格式的立方体贴图文件 (.cube)，从而实现美白、鲜艳、冷色、黑白等自定义滤镜效果。 The SDK provides a <codeph>built-in built_in_whiten_filter.cube file</codeph>. You can pass the absolute path of this file to get the whitening filter effect.</p>
-                    </li>
-                    <li><ph><b>Local audio mixing</b></ph><p>该版本新增本地音频合流功能，你可以调用 <codeph><apiname keyref="startLocalAudioMixer"/></codeph> 方法，将本地麦克风采集的音频流、媒体播放器中的音频流、声卡采集的音频流、远端音频流等合并为一路音频流，你可以将合并后的音频流发布到频道中。 不再需要音频合流时，你可以调用 <codeph><apiname keyref="stopLocalAudioMixer"/></codeph> 方法停止本地音频合流；在合流过程中，可以调用 <codeph><apiname keyref="updateLocalAudioMixerConfiguration"/></codeph> 方法更新正在合流的音频流配置。</p>
-                        <p>该功能的使用场景示例如下：<ul>
-                        <li>By utilizing the local video mixing feature, the associated audio streams of the mixed video streams can be simultaneously captured and published.</li>
-                        <li>In live streaming scenarios, users can receive audio streams within the channel, mix multiple audio streams locally, and then forward the mixed audio stream to other channels.</li>
-                        <li>In online classes, teachers can mix the audio from interactions with students locally and then forward the mixed audio stream to other channels.</li>
-                        </ul></p>
-                    </li>
-                    <li props="android unity rn flutter unreal"><ph><b>外部 MediaProjection (Android)</b></ph>
-<p>该版本新增 <codeph><apiname keyref="setExternalMediaProjection"/></codeph> 方法，该方法支持你自行设置外部 <codeph>MediaProjection</codeph>，并取代 SDK 申请的 <codeph>MediaProjection</codeph>。</p>
-                        <p>如果你具备自行申请 <codeph>MediaProjection</codeph> 的开发能力，可通过该功能实现更加灵活的屏幕采集。</p>
-                    </li>
-                    <li props="android unity rn flutter unreal"><ph><b>EGL 环境上下文 (Android)</b></ph>
-<p>该版本新增了 <codeph><apiname keyref="setExternalRemoteEglContext"/></codeph> 方法，用于设置远端视频流渲染的 EGL 环境上下文。 使用 Texture 格式的视频数据进行远端视频自渲染时，你可以通过该方法替换 SDK 默认的远端 EGL 环境上下文，实现统一的 EGL 上下文管理。</p>
-                    </li>
-                    <li><ph><b>色彩空间设置</b></ph>
-<p>该版本在 <codeph><apiname keyref="VideoFrame"/></codeph> 和 <codeph><apiname keyref="ExternalVideoFrame"/></codeph> 中新增了 <parmname>colorSpace</parmname>，你可以通过该参数设置视频帧的色彩空间属性。 默认情况下，色彩空间采用 Full Range 和 BT.709 标准配置，你可以根据自采集或自渲染的需求灵活调整，进一步提升视频处理的定制化能力。</p>
-                    </li>
-                    <li><ph><b>Others</b></ph><ul>
-                        <li props="cpp unity flutter electron unreal bp"><apiname keyref="onLocalVideoStateChanged"/><codeph>9:<codeph><ph keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_DISCONNECTED"/></codeph> (macOS only) The video capture device currently in use is disconnected (such as being unplugged). (Windows)</codeph></li>
-                        <li props="cpp unity flutter electron unreal bp"><codeph><apiname keyref="MEDIA_DEVICE_STATE_TYPE"/></codeph>新增 <codeph><apiname keyref="MEDIA_DEVICE_STATE_PLUGGED_IN"/></codeph> 枚举，表示设备已插入。 (Windows)</li>
-                        </ul> </li>
                 </ol>
             </body>
         </topic>
@@ -142,24 +31,7 @@
             <title>Improvements</title>
             <body>
                 <ol>
-                    <li><ph><b>Virtual Background Algorithm Upgrade</b></ph><p>该版本升级了虚拟背景的算法，分割人像主体部分与背景时更加准确，背景无露出，人像身体轮廓无缺块，手指细节辨识显著提高。 同时，人像与背景的边缘更加稳定，减少了连续视频帧中人像边缘的跳变和闪烁现象。</p>
-                    </li>
-                    <li props="cn"><ph><b>录制本地预览视频</b></ph>
-<p>该版本在 <codeph><apiname keyref="RecorderStreamInfo"/></codeph> 中新增 <parmname>type</parmname> 成员。 当调用 <codeph><apiname keyref="createMediaRecorder"/></codeph> 时，可通过该成员指定录制的视频流类型为本地预览视频流，并在 <codeph><apiname keyref="MediaRecorderConfiguration"/></codeph> 中设置录制预览视频的高、宽、帧率、采样率等参数，之后调用 <codeph><apiname keyref="startRecording"/></codeph> 即可开始录制本地预览的视频。</p>
-                    </li>
-                    <li><ph><b>指定视频观测位置截图</b></ph>
-<p>该版本新增 <codeph><apiname keyref="takeSnapshot2"/></codeph> 和 <codeph><apiname keyref="takeSnapshotEx2"/></codeph> 方法，你可以在调用该方法时通过 <codeph>config</codeph> 参数，在指定的视频观测点进行截图，比如：编码前、编码后或渲染前的数据，以实现更加灵活的截图效果。</p>
-                    </li>
-                    <li><ph><b>Custom audio source</b></ph><p>该版本在 <codeph><apiname keyref="AudioTrackConfig"/></codeph> 中新增了 <codeph>enableAudioProcessing</codeph> 成员参数，用于控制是否对 <codeph>AUDIO_TRACK_DIRECT</codeph> 类型的自定义音频采集轨道启用 3A 音频处理。 该参数默认值为 <codeph><codeph><ph keyref="false"/></codeph></codeph>，即不启用音频处理，用户可以按需开启，此项改动提升了自定义音频处理的灵活性。</p>
-                    </li>
-                    <li><ph><b>Other Improvements</b></ph><ul>
-                        <li props="android ios unity flutter rn unreal">通过拼接视频帧和 Alpha 数据实现 Alpha 透明特效的应用场景下，提升了接收端的渲染性能，有效减少卡顿和延迟。 (Android, iOS)</li>
-                        <li>优化了调用 <codeph><apiname keyref="queryDeviceScore"/></codeph> 获取设备评分等级的设计逻辑，提升了等级评分结果的准确性。</li>
-                        <li props="cpp framework">支持使用 YV 12 格式的虚拟摄像头作为视频采集设备。 (Windows)</li>
-                        <li props="ios">频道内调用 <codeph><apiname keyref="enableLocalAudio"/></codeph> 关闭本地采集后，支持通过手机静音侧键把 App 播放的背景音效设置为静音状态。 (iOS)</li>
-                        <li>调用 <codeph><apiname keyref="switchSrc"/></codeph> 切换不同分辨率的直播流或点播流时，可以实现平滑且无感知的切换效果，并在切换失败时新增自动重试机制。 SDK 会在切换失败后自动重试 3 次，如果依旧失败，会通过 <codeph><apiname keyref="onPlayerEvent"/></codeph> 回调报告 <codeph><apiname keyref="PLAYER_EVENT_SWITCH_ERROR"/></codeph> 事件，表示媒体资源切换时发生错误。</li>
-                        <li>调用 <codeph><apiname keyref="setPlaybackSpeed"/></codeph> 设置音频文件的播放速度时，最低支持 0.3 倍速播放。</li>
-                        </ul></li>
+                    <li>优化了特定机型上 SDK 初始化的耗时。<ph props="cpp unity flutter rn"> (iOS)</ph></li>
                 </ol>
             </body>
         </topic>
@@ -168,21 +40,19 @@
             <body>
                 <p>This release fixed the following issues:</p>
                 <ul>
-                    <li props="cpp unity flutter electron  unreal bp">调用 <codeph><apiname keyref="startScreenCaptureByWindowId"/></codeph> 共享屏幕时，通过 <parmname>regionRect</parmname> 指定的窗口采集区域不准确，导致接收端看到的屏幕共享窗口宽高错误。 (Windows)</li>
-                    <li props="android ios unity flutter rn unreal bp">当发送端视频源类型为 JPEG 格式时，偶现接收端帧率低于预期。 (Android, iOS)</li>
-                    <li props="android unity flutter rn unreal bp">在播放音乐内容中心的音乐资源时，偶现杂音和卡顿。 (Android)</li>
-                    <li props="android unity flutter rn unreal bp">在 App 没有获取麦克风权限时，通过 <codeph><apiname keyref="IMusicPlayer"/></codeph> 播放伴奏音乐偶现卡顿。 (Android)</li>
-                    <li props="android unity flutter rn unreal bp">音视频互动过程中被系统来电打断后，通过 <codeph><apiname keyref="onAudioVolumeIndication"/></codeph> 回调上报的用户音量错误。 (Android)</li>
-                    <li props="android unity flutter rn unreal bp">在接收端默认订阅视频小流、加入频道时不自动订阅任何视频流的前提下，加入频道后调用 <codeph><apiname keyref="muteRemoteVideoStream"/></codeph><codeph>(uid,false)</codeph> 恢复接收视频流，但接收到的视频流为视频大流，不符合预期。 (Android)</li>
-                    <li props="cpp unity electron flutter unreal bp">Windows 7 系统下进行音视频互动，偶现找不到系统文件的报错。 (Windows)</li>
-                    <li props="cpp unity electron flutter unreal bp">调用 <codeph><apiname keyref="followSystemRecordingDevice"/></codeph> 或 <codeph><apiname keyref="followSystemPlaybackDevice"/></codeph> 设置 SDK 使用的音频采集或播放设备不跟随系统默认的音频播放设备，当音频设备被移除时，本地音频状态回调 <codeph><apiname keyref="onLocalAudioStateChanged"/></codeph> 没有被触发，不符合预期。 (Windows)</li>
-                    <li props="ios unity flutter rn unreal bp">音视频互动过程中，偶现接收端听发送端没有声音。 (iOS)</li>
-                    <li props="ios unity flutter rn unreal bp">音视频互动过程中，如果发送端设备的系统版本为 iOS 17，偶现接收端听不到来自发送端的声音。 (iOS)</li>
-                    <li props="ios unity flutter rn unreal bp">直播场景下，观众端因切换网络导致断开连接，重新连接直播间花费的时间长于预期。 (iOS)</li>
-                    <li props="ios unity flutter rn unreal bp">App 启动后使用媒体播放器播放在线媒体资源，播放无声。 (iOS)</li>
-                    <li props="ios unity flutter rn unreal bp">音视频互动过程中被系统其他 App 打断后恢复，偶现音频采集无声。 (iOS)</li>
-                    <li>调用 <codeph><apiname keyref="startAudioMixing"/></codeph> 后，立即调用 <codeph><apiname keyref="pauseAudioMixing"/></codeph> 暂停播放音乐文件不生效。</li>
-                    <li props="android unity flutter rn bp">音视频互动过程中偶现崩溃。 (Android)</li>
+                    <li>集成 SDK 的 App 设置 <codeph>targetSdkVersion</codeph> 为 34，在 Android 14 系统上首次开启屏幕共享进行授权时出现崩溃。 (Android)<ph props="cpp unity flutter rn"></ph></li>
+                    <li>同时加入两个及以上的频道，连续调用 <codeph><apiname keyref="takeSnapshotEx"/></codeph> 分别对频道中的本地视频流进行截图，在先调用的频道截图会失败。</li>
+                    <li>使用媒体播放器时，调用 <codeph><apiname keyref="pause"/></codeph> 暂停播放后，调用 <codeph><apiname keyref="seek"/></codeph> 定位到指定播放位置、然后调用 <codeph><apiname keyref="play"/></codeph> 继续播放，播放时会先从暂停播放的位置播放，然后再从新的位置播放。</li>
+                    <li>使用媒体播放器时，调用 <codeph><apiname keyref="switchSrc"/></codeph> 切换媒体资源后，调用 <codeph><apiname keyref="getPlaySrc"/></codeph> 获取当前正在播放的媒体资源的路径没有变化。</li>
+                    <li>用户在特定机型上进行音视频互动并使用蓝牙耳机，偶现调整手机音量后改变的是媒体音量而非蓝牙音量。 <ph props="cpp unity flutter rn">(Android)</ph></li>
+                    <li>音视频互动时，偶现接收端观看发送端画面出现黑屏。 <ph props="cpp unity flutter rn">(Android)</ph></li>
+                    <li>在特定机型上，调用 <codeph><apiname keyref="setCameraExposureFactor"/></codeph> 在设备的某个特定角度设置当前摄像头的曝光系数后，当设备移动到另一个角度时，偶现视频画面变暗。 (Android)<ph props="cpp unity flutter rn"></ph></li>
+                    <li>播放 CDN 直播流时，直播流短暂中断后恢复，偶现播放画面长时间卡住。 <ph props="cpp unity flutter rn">(Android)</ph></li>
+                    <li>在推送 i420 格式的视频帧到频道内时，使用 CVPixelBuffer 会导致崩溃。<ph props="cpp unity flutter rn"> (iOS)</ph></li>
+                    <li>调用 <codeph><apiname keyref="setupLocalVideo"/></codeph> 设置两个视图（view），然后调用 <codeph><apiname keyref="enableFaceDetection"/></codeph> 开启人脸检测，后传入的视图中无法检测到人脸信息。<ph props="cpp unity flutter rn"> (iOS)</ph></li>
+                    <li>屏幕共享场景下，接收端用户看到的共享图像出现绿线。<ph props="cpp unity flutter rn"> (iOS)</ph></li>
+                    <li>在极速直播场景下，观众通过 <codeph>string</codeph> 型的用户 ID 加入频道观看直播，偶现音频和画面不同步。</li>
+                    <li>在同时使用 AI 降噪、AI 回声消除插件时，偶现插件不生效。</li>
                 </ul>
             </body>
         </topic>
