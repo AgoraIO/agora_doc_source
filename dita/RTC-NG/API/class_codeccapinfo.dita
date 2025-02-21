@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_codeccapinfo">
     <title><ph keyref="CodecCapInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设备支持的编解码能力信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">SDK 支持的编解码能力信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -25,28 +25,43 @@
     this.codecCapMask = codecCapMask;
   }
 }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoCodecCapInfo : NSObject
 @property(assign, nonatomic) AgoraVideoCodecType codecType;
 @property(assign, nonatomic) NSUInteger codecCapMask;
 @property(strong, nonatomic) AgoraVideoCodecCapLevels *_Nonnull codecCapLevels;
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct CodecCapInfo {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct CodecCapInfo {
   VIDEO_CODEC_TYPE codecType;
   int codecCapMask;
   CodecCapLevels codecLevels;
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FCodecCapInfo {
-
 	GENERATED_BODY()
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|CodecCapInfo&quot;)
-	EVIDEO_CODEC_TYPE codecType;
+	EVIDEO_CODEC_TYPE codecType = EVIDEO_CODEC_TYPE::VIDEO_CODEC_NONE;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|CodecCapInfo&quot;)
-	int codecCapMask;
-};</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp">struct CodecCapInfo {
-  VIDEO_CODEC_TYPE codecType;
-  int codecCapMask;
+	int codecCapMask = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|CodecCapInfo&quot;)
+	FCodecCapLevels codecLevels;
+	FCodecCapInfo(){}
+	FCodecCapInfo(const agora::rtc::CodecCapInfo &amp; AgoraData){
+		codecType = static_cast&lt;EVIDEO_CODEC_TYPE&gt;(AgoraData.codecType);
+		codecCapMask = AgoraData.codecCapMask;
+		codecLevels = AgoraData.codecLevels;
+	}
+	agora::rtc::CodecCapInfo CreateAgoraData() const {
+		agora::rtc::CodecCapInfo AgoraData;
+		AgoraData.codecType = static_cast&lt;agora::rtc::VIDEO_CODEC_TYPE&gt;(codecType);
+		AgoraData.codecCapMask = codecCapMask;
+		AgoraData.codecLevels = codecLevels.CreateAgoraData();
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::CodecCapInfo&amp; AgoraData) const {
+		codecLevels.FreeAgoraData(AgoraData.codecLevels);
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class CodecCapInfo {
   codecType?: VideoCodecType;
@@ -87,7 +102,7 @@ class CodecCapInfo {
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
-            <dlentry props="native">
+            <dlentry props="android apple cpp">
                 <dt>自从</dt>
                 <dd>v4.2.0</dd>
             </dlentry>
@@ -100,7 +115,7 @@ class CodecCapInfo {
             <plentry>
                 <pt>codecType</pt>
                 <pd props="apple cpp unreal bp unity electron rn flutter cs">视频编解码类型。详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</pd>
-                <pd props="android">
+                <pd props="android hmos">
                     <p>视频编解码类型：
                     <ul>
                     <li>1：VP8。</li>
@@ -110,7 +125,7 @@ class CodecCapInfo {
             </plentry>
             <plentry>
                 <pt>codecCapMask</pt>
-                <pd props="apple cpp unreal unity electron rn flutter cs">编解码类型的 bit mask。详见 <xref keyref="CODEC_CAP_MASK"/>。</pd>
+                <pd props="apple cpp unreal unity electron rn flutter cs">SDK 编解码类型的 bit mask。详见 <xref keyref="CODEC_CAP_MASK"/>。</pd>
                 <pd props="android bp">
                     <p>编解码类型的 bit mask：
                     <ul>
@@ -122,9 +137,9 @@ class CodecCapInfo {
                     </ul></p>
                 </pd>
             </plentry>
-            <plentry props="native flutter unity cs electron rn">
+            <plentry>
                 <pt>codecLevels</pt>
-                <pd>编解码能力等级。详见 <xref keyref="CodecCapLevels"/>。</pd>
+                <pd>SDK 支持的编解码能力等级。详见 <xref keyref="CodecCapLevels"/>。</pd>
             </plentry>
             </parml> </section>
     </refbody>

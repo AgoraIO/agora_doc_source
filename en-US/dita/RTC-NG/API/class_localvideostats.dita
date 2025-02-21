@@ -30,6 +30,53 @@
   public int captureBrightnessLevel;
   public int hwEncoderAccelerating;
 }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class LocalVideoStats {
+  
+  public uid:number = 0;
+  public sentBitrate:number = 0;
+  
+  public sentFrameRate:number = 0;
+  
+  public captureFrameRate:number = 0;
+  
+  public captureFrameWidth:number = 0;
+  
+  public captureFrameHeight:number = 0;
+  
+  public regulatedCaptureFrameRate:number = 0;
+  
+  public regulatedCaptureFrameWidth:number = 0;
+  
+  public regulatedCaptureFrameHeight:number = 0;
+  
+  public encoderOutputFrameRate:number = 0;
+  
+  public rendererOutputFrameRate:number = 0;
+  
+  public targetBitrate:number = 0;
+  
+  public targetFrameRate:number = 0;
+  
+  public qualityAdaptIndication:number = 0;
+  
+  public encodedBitrate:number = 0;
+  
+  public encodedFrameWidth:number = 0;
+  
+  public encodedFrameHeight:number = 0;
+  
+  public encodedFrameCount:number = 0;
+  
+  public codecType:number = 0;
+  
+  public txPacketLossRate:number = 0;
+  
+  public captureBrightnessLevel:number = 0;
+  
+  public dualStreamEnabled:boolean = false;
+  
+  public hwEncoderAccelerating:number = 0;
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcLocalVideoStats : NSObject
 @property(assign, nonatomic) NSUInteger sentBitrate;
 @property(assign, nonatomic) NSUInteger sentFrameRate;
@@ -86,51 +133,109 @@
 struct FLocalVideoStats
 {
 	GENERATED_BODY()
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
-	int64 uid;
+	int64 uid = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
-	int sentBitrate;
+	int sentBitrate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
-	int sentFrameRate;
+	int sentFrameRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
-	int captureFrameRate;
+	int captureFrameRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
-	int captureFrameWidth;
+	int captureFrameWidth = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
-	int captureFrameHeight;
+	int captureFrameHeight = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
-	int regulatedCaptureFrameRate;
+	int regulatedCaptureFrameRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
-	int regulatedCaptureFrameWidth;
+	int regulatedCaptureFrameWidth = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
-	int regulatedCaptureFrameHeight;
+	int regulatedCaptureFrameHeight = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
-	int encoderOutputFrameRate;
+	int encoderOutputFrameRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
-	int encodedFrameWidth;
+	int encodedFrameWidth = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
-	int encodedFrameHeight;
+	int encodedFrameHeight = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
-	int rendererOutputFrameRate;
+	int rendererOutputFrameRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
-	int targetBitrate;
+	int targetBitrate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
-	int targetFrameRate;
+	int targetFrameRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
-	EQUALITY_ADAPT_INDICATION qualityAdaptIndication;
-	int encodedBitrate;
+	EQUALITY_ADAPT_INDICATION qualityAdaptIndication = EQUALITY_ADAPT_INDICATION::ADAPT_NONE;
+	int encodedBitrate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
-	int encodedFrameCount;
+	int encodedFrameCount = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
-	EVIDEO_CODEC_TYPE codecType;
+	EVIDEO_CODEC_TYPE codecType = EVIDEO_CODEC_TYPE::VIDEO_CODEC_GENERIC_H264;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
-	int64 txPacketLossRate;
+	int txPacketLossRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
-	FENUMWRAP_CAPTURE_BRIGHTNESS_LEVEL_TYPE  captureBrightnessLevel;
+	FENUMWRAP_CAPTURE_BRIGHTNESS_LEVEL_TYPE  captureBrightnessLevel = EENUMCUSTOM_CAPTURE_BRIGHTNESS_LEVEL_TYPE::CAPTURE_BRIGHTNESS_LEVEL_INVALID;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
-	bool dualStreamEnabled;
+	bool dualStreamEnabled = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
-	int hwEncoderAccelerating;
+	int hwEncoderAccelerating = 0;
+
+	FLocalVideoStats(){}
+	FLocalVideoStats(const agora::rtc::LocalVideoStats &amp; AgoraData){
+		uid = AgoraData.uid;
+		sentBitrate = AgoraData.sentBitrate;
+		sentFrameRate = AgoraData.sentFrameRate;
+		captureFrameRate = AgoraData.captureFrameRate;
+		captureFrameWidth = AgoraData.captureFrameWidth;
+		captureFrameHeight = AgoraData.captureFrameHeight;
+		regulatedCaptureFrameRate = AgoraData.regulatedCaptureFrameRate;
+		regulatedCaptureFrameWidth = AgoraData.regulatedCaptureFrameWidth;
+		regulatedCaptureFrameHeight = AgoraData.regulatedCaptureFrameHeight;
+		encoderOutputFrameRate = AgoraData.encoderOutputFrameRate;
+		encodedFrameWidth = AgoraData.encodedFrameWidth;
+		encodedFrameHeight = AgoraData.encodedFrameHeight;
+		rendererOutputFrameRate = AgoraData.rendererOutputFrameRate;
+		targetBitrate = AgoraData.targetBitrate;
+		targetFrameRate = AgoraData.targetFrameRate;
+		qualityAdaptIndication = static_cast&lt;EQUALITY_ADAPT_INDICATION&gt;(AgoraData.qualityAdaptIndication);
+		encodedBitrate = AgoraData.encodedBitrate;
+		encodedFrameCount = AgoraData.encodedFrameCount;
+		codecType = static_cast&lt;EVIDEO_CODEC_TYPE&gt;(AgoraData.codecType);
+		txPacketLossRate = AgoraData.txPacketLossRate;
+		captureBrightnessLevel = FENUMWRAP_CAPTURE_BRIGHTNESS_LEVEL_TYPE(AgoraData.captureBrightnessLevel);
+		dualStreamEnabled = AgoraData.dualStreamEnabled;
+		hwEncoderAccelerating = AgoraData.hwEncoderAccelerating;
+	}
+	agora::rtc::LocalVideoStats CreateAgoraData() const {
+		agora::rtc::LocalVideoStats AgoraData;
+		AgoraData.uid = uid;
+		AgoraData.sentBitrate = sentBitrate;
+		AgoraData.sentFrameRate = sentFrameRate;
+		AgoraData.captureFrameRate = captureFrameRate;
+		AgoraData.captureFrameWidth = captureFrameWidth;
+		AgoraData.captureFrameHeight = captureFrameHeight;
+		AgoraData.regulatedCaptureFrameRate = regulatedCaptureFrameRate;
+		AgoraData.regulatedCaptureFrameWidth = regulatedCaptureFrameWidth;
+		AgoraData.regulatedCaptureFrameHeight = regulatedCaptureFrameHeight;
+		AgoraData.encoderOutputFrameRate = encoderOutputFrameRate;
+		AgoraData.encodedFrameWidth = encodedFrameWidth;
+		AgoraData.encodedFrameHeight = encodedFrameHeight;
+		AgoraData.rendererOutputFrameRate = rendererOutputFrameRate;
+		AgoraData.targetBitrate = targetBitrate;
+		AgoraData.targetFrameRate = targetFrameRate;
+		AgoraData.qualityAdaptIndication = static_cast&lt;agora::rtc::QUALITY_ADAPT_INDICATION&gt;(qualityAdaptIndication);
+		AgoraData.encodedBitrate = encodedBitrate;
+		AgoraData.encodedFrameCount = encodedFrameCount;
+		AgoraData.codecType = static_cast&lt;agora::rtc::VIDEO_CODEC_TYPE&gt;(codecType);
+		AgoraData.txPacketLossRate = txPacketLossRate;
+		AgoraData.captureBrightnessLevel = captureBrightnessLevel.GetRawValue();
+		AgoraData.dualStreamEnabled = dualStreamEnabled;
+		AgoraData.hwEncoderAccelerating = hwEncoderAccelerating;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::LocalVideoStats &amp; AgoraData) const
+	{
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LocalVideoStats {
   
@@ -412,7 +517,7 @@ struct FLocalVideoStats
             </plentry>
             <plentry>
                 <pt>qualityAdaptIndication</pt>
-                <pd><ph>The quality adaptation of the local video stream in the reported interval (based on the target frame rate and target bitrate). </ph><ph props="cpp unreal bp ios mac unity electron rn flutter cs">See <xref keyref="QUALITY_ADAPT_INDICATION"/>.</ph><p props="android">
+                <pd><ph>The quality adaptation of the local video stream in the reported interval (based on the target frame rate and target bitrate). </ph><ph props="cpp unreal bp ios mac unity electron rn flutter cs">See <xref keyref="QUALITY_ADAPT_INDICATION"/>.</ph><p props="android hmos">
                     <ul>
                     <li><ph keyref="ADAPT_NONE"/>(0): The local video quality stays the same.</li>
                     <li><ph keyref="ADAPT_UP_BANDWIDTH"/>(1): The local video quality improves because the network bandwidth increases.</li>
@@ -440,7 +545,7 @@ struct FLocalVideoStats
             </plentry>
             <plentry>
                 <pt>codecType</pt>
-                <pd>The codec type of the local video. See <xref keyref="VIDEO_CODEC_TYPE"/>.<p props="android">
+                <pd>The codec type of the local video. <ph props="android cpp apple framework" >See <xref keyref="VIDEO_CODEC_TYPE"/>.</ph><p props="android hmos">
                     <ul>
                     <li><ph keyref="VIDEO_CODEC_VP8"/>(1): VP8.</li>
                     <li><ph keyref="VIDEO_CODEC_H264"/>(2): H.264.</li>
@@ -461,7 +566,7 @@ struct FLocalVideoStats
                 <pt>captureBrightnessLevel</pt>
                 <pd>The brightness level of the video image captured by the local camera. See <xref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE"/>.</pd>
             </plentry>
-            <plentry props="android">
+            <plentry props="android hmos">
                 <pt>captureBrightnessLevel</pt>
                 <pd>The brightness level of the video image captured by the local camera.<ul>
                     <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_INVALID"/>(-1): The SDK does not detect the brightness level of the video image. Wait a few seconds to get the brightness level from <parmname>captureBrightnessLevel</parmname> in the next callback.</li>

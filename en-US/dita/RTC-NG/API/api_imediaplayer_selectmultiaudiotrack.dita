@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_Imediaplayer_selectmultiaudiotrack">
+<reference id="api_imediaplayer_selectmultiaudiotrack">
     <title><ph keyref="selectMultiAudioTrack"/></title>
     <shortdesc id="short"><ph id="shortdesc">Selects the audio tracks that you want to play on your local device and publish to the channel respectively.</ph></shortdesc>
     <prolog>
@@ -14,9 +14,11 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">int selectMultiAudioTrack(int playoutTrackIndex, int publishTrackIndex);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public abstract selectMultiAudioTrack(playoutTrackIndex:number, publishTrackIndex: number): number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)selectMultiAudioTrack:(NSInteger)playoutTrackIndex publishTrackIndex:(NSInteger)publishTrackIndex NS_SWIFT_NAME(selectMultiAudioTrack(_:publishTrackIndex:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int selectMultiAudioTrack(int playoutTrackIndex, int publishTrackIndex) = 0;</codeblock>
-            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IMediaPlayer&quot;)
+	int SelectMultiAudioTrack(int playoutTrackIndex, int publishTrackIndex);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract selectMultiAudioTrack(
     playoutTrackIndex: number,
     publishTrackIndex: number
@@ -32,7 +34,7 @@
         <section id="detailed_desc">
             <title>Details</title>
             <dl outputclass="since">
-            <dlentry props="native">
+            <dlentry props="android apple cpp">
                 <dt>Since</dt>
                 <dd>v4.3.0</dd>
             </dlentry>
@@ -58,7 +60,7 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly.</p>
             <ul>
                 <li props="native electron unity rn">0: Success.</li>
                 <li>&lt; 0: Failure.</li>

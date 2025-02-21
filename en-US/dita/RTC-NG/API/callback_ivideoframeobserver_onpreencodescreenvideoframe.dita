@@ -14,12 +14,13 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">boolean onPreEncodeScreenVideoFrame(VideoFrame videoFrame);</codeblock>
-                <codeblock props="ios mac">- (BOOL)onPreEncodeScreenVideoFrame:(AgoraOutputVideoFrame * _Nonnull)videoFrame;</codeblock>
+                <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="ios mac">- (BOOL)onPreEncodeScreenVideoFrame:(AgoraOutputVideoFrame * _Nonnull)videoFrame;</codeblock>
                 <codeblock props="cpp unreal" outputclass="language-cpp">virtual bool onPreEncodeScreenVideoFrame(VideoFrame&amp; videoFrame) = 0;</codeblock>
                 <codeblock props="unity cs" outputclass="language-csharp" />
-                <codeblock props="electron" outputclass="language-typescript">  onPreEncodeScreenVideoFrame?(videoFrame: VideoFrame): boolean;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">  onPreEncodeScreenVideoFrame?(videoFrame: VideoFrame): void;</codeblock>
                 <codeblock props="unity cs" outputclass="language-csharp" />
-                <codeblock props="rn" outputclass="language-typescript">  onPreEncodeScreenVideoFrame?(videoFrame: VideoFrame): boolean;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">  onPreEncodeScreenVideoFrame?(videoFrame: VideoFrame): void;</codeblock>
                 <codeblock props="flutter" outputclass="language-dart">final void Function(VideoFrame videoFrame)? onPreEncodeScreenVideoFrame;</codeblock>
             </p>
         </section>
@@ -34,7 +35,7 @@
                     <li>This callback does not support sending processed RGBA video data back to the SDK.</li>
                 </ul>
             </note>
-            <note type="attention" props="flutter">Due to the limitations of Flutter, this callback does not support sending processed video data back to the SDK.</note>
+            <note type="attention" props="flutter rn electron">Due to framework limitations, this callback does not support sending processed video data back to the SDK.</note>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -45,7 +46,7 @@
                 </plentry>
             </parml>
         </section>
-        <section id="return_values" props="native unreal bp electron unity rn cs">
+        <section id="return_values" props="native unreal bp unity cs">
             <title>Returns</title>
             <p conkeyref="onCaptureVideoFrame/return"/>
         </section>

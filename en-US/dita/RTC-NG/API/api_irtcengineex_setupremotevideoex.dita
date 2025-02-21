@@ -14,10 +14,11 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setupRemoteVideoEx(VideoCanvas remote, RtcConnection connection);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public abstract setupRemoteVideoEx(remote:VideoCanvas, connection:RtcConnection) : number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setupRemoteVideoEx:(AgoraRtcVideoCanvas* _Nonnull)remote
                connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setupRemoteVideoEx(const VideoCanvas&amp; canvas, const RtcConnection&amp; connection) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
 	int SetupRemoteVideoEx(const FVideoCanvas&amp; canvas, const FRtcConnection&amp; connection);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setupRemoteVideoEx(
     canvas: VideoCanvas,
@@ -40,14 +41,17 @@
             <p>To unbind the remote user from the view, set the <parmname>view</parmname> parameter to NULL.</p>
             <p>Once the remote user leaves the channel, the SDK unbinds the remote user.</p>
             <note type="attention">
-            <p>To update the rendering or mirror mode of the remote video view during a call, use the <xref keyref="setRemoteRenderModeEx" /> method.</p>
+            <ul>
+            <li conkeyref="setupRemoteVideo/render" props="flutter"/>
+            <li>To update the rendering or mirror mode of the remote video view during a call, use the <xref keyref="setRemoteRenderModeEx" /> method.</li>
+            </ul>
             </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt props="android ios mac">remote</pt>
-                <pt props="cpp unreal bp unity rn electron flutter cs">canvas</pt>
+                <pt props="hmos cpp unreal bp unity rn electron flutter cs">canvas</pt>
                 <pd>
                     <p>The remote video view settings. See <xref keyref="VideoCanvas" />.</p>
                 </pd>
@@ -59,7 +63,7 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul>
             <li props="native unreal bp electron unity rn cs">0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>

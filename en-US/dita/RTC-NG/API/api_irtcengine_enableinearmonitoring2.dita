@@ -14,9 +14,10 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int enableInEarMonitoring(boolean enabled, int includeAudioFilters);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public abstract enableInEarMonitoring(enabled: boolean, includeAudioFilters?: Constants.EarMontoringFilterType): number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableInEarMonitoring:(BOOL)enabled includeAudioFilters:(AgoraEarMonitoringFilterType)includeAudioFilters;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int enableInEarMonitoring(bool enabled, int includeAudioFilters) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
 	int EnableInEarMonitoring(bool enabled, int includeAudioFilters);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract enableInEarMonitoring(
     enabled: boolean,
@@ -32,18 +33,21 @@
       required EarMonitoringFilterType includeAudioFilters});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <p>This method enables or disables in-ear monitoring.</p>
-            <note type="attention">
-            <ul>
-            <li>Users must use earphones (wired or Bluetooth) to hear the in-ear monitoring effect.</li>
-            <li>You can call this method either before or after joining a channel.</li>
-            </ul></note> </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p id="desc">This method enables or disables in-ear monitoring.</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>This method can be called either before or after joining the channel.</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>Users must use earphones (wired or Bluetooth) to hear the in-ear monitoring effect.</p>
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry>
+            <plentry id="enabled">
                 <pt>enabled</pt>
                 <pd>Enables or disables in-ear monitoring.<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Enables in-ear monitoring.</li>
@@ -52,22 +56,24 @@
             </plentry>
             <plentry>
                 <pt>includeAudioFilters</pt>
-                <pd props="ios mac cpp unreal electron unity rn flutter cs">The audio filter of in-ear monitoring: See <xref keyref="EAR_MONITORING_FILTER_TYPE"/>.</pd>
-                <pd props="android bp">The audio filter of in-ear monitoring:<ul id="ul_nwv_hcy_4qb">
-                    <li><ph keyref="EAR_MONITORING_FILTER_NONE"/>(1 &lt;&lt; 0): Do not add an audio filter to the in-ear monitor.</li>
-                    <li><ph keyref="EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS"/>(1 &lt;&lt; 1): Add an audio filter to the in-ear monitor. If you implement functions such as voice beautifier and audio effect, users can hear the voice after adding these effects.</li>
-                    <li><ph keyref="EAR_MONITORING_FILTER_NOISE_SUPPRESSION"/>(1 &lt;&lt; 2): Enable noise suppression to the in-ear monitor.<p>You can use the bitwise or operator (|) to specify multiple audio filters.<note type="attention">If you set the <parmname>enabled</parmname> parameter to <codeph><ph keyref="false"/></codeph>, you do not need to set the <parmname>includeAudioFilters</parmname> parameter.</note></p>
-                    </li>
-                    </ul></pd>
+                <pd props="hmos ios mac cpp unreal electron unity rn flutter cs">The audio filter types of in-ear monitoring. See <xref keyref="EAR_MONITORING_FILTER_TYPE"/>.</pd>
+                <pd props="android bp">The audio filter types of in-ear monitoring:<ul id="ul_nwv_hcy_4qb">
+                    <li><ph keyref="EAR_MONITORING_FILTER_NONE"/>(1 &lt;&lt; 0): No audio filter added to in-ear monitoring.</li>
+                    <li><ph keyref="EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS"/>(1 &lt;&lt; 1): Add vocal effects audio filter to in-ear monitoring. If you implement functions such as voice beautifier and audio effect, users can hear the voice after adding these effects. This enumerator supports combination using the bitwise OR operator (|).</li>
+                    <li><ph keyref="EAR_MONITORING_FILTER_NOISE_SUPPRESSION"/>(1 &lt;&lt; 2): Add noise suppression audio filter to in-ear monitoring. This enumerator supports combination using the bitwise OR operator (|).</li>
+                    <li><ph keyref="EAR_MONITORING_FILTER_REUSE_POST_PROCESSING_FILTER"/>(1 &lt;&lt;15)： Reuse the audio filter that has been processed on the sending end for in-ear monitoring. This enumerator reduces CPU usage while increasing in-ear monitoring latency, which is suitable for latency-tolerant scenarios requiring low CPU consumption. This enumerator is only supported for standalone use. Once selected, other audio filter configurations will be automatically disabled.</li>                
+                    </ul>
+                    <note type="attention">This parameter only takes effect when <parmname>enabled</parmname> is set as <codeph><ph keyref="true"/></codeph>.</note>
+                    </pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-            <ul id="ul_uns_l2y_hqb">
-            <li props="native unreal bp unity electron rn cs">0: Success.</li>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <ul props="native unreal bp unity electron rn cs">
+            <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul><li>- 8: Make sure the current audio routing is Bluetooth or headset.</li></ul>
             </li>
             </ul> </section>
-    </refbody>
+        </refbody>
 </reference>

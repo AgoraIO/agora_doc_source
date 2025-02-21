@@ -17,6 +17,7 @@
   public float rednessLevel;
   public float sharpnessLevel;
 }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraBeautyOptions : NSObject
 
 @property(nonatomic, assign) AgoraLighteningContrastLevel lighteningContrastLevel;
@@ -51,17 +52,36 @@
 struct FBeautyOptions
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|BeautyOptions&quot;)
 	ELIGHTENING_CONTRAST_LEVEL lighteningContrastLevel = ELIGHTENING_CONTRAST_LEVEL::LIGHTENING_CONTRAST_NORMAL;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|BeautyOptions&quot;)
-	float lighteningLevel;
+	float lighteningLevel = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|BeautyOptions&quot;)
-	float smoothnessLevel;
+	float smoothnessLevel = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|BeautyOptions&quot;)
-	float rednessLevel;
+	float rednessLevel = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|BeautyOptions&quot;)
-	float sharpnessLevel;
+	float sharpnessLevel = 0;
+	FBeautyOptions(){}
+	FBeautyOptions(const agora::rtc::BeautyOptions &amp; AgoraData){
+		lighteningContrastLevel = static_cast&lt;ELIGHTENING_CONTRAST_LEVEL&gt;(AgoraData.lighteningContrastLevel);
+		lighteningLevel = AgoraData.lighteningLevel;
+		smoothnessLevel = AgoraData.smoothnessLevel;
+		rednessLevel = AgoraData.rednessLevel;
+		sharpnessLevel = AgoraData.sharpnessLevel;
+	}
+	agora::rtc::BeautyOptions CreateAgoraData() const {
+		agora::rtc::BeautyOptions AgoraData;
+		AgoraData.lighteningContrastLevel = static_cast&lt;agora::rtc::BeautyOptions::LIGHTENING_CONTRAST_LEVEL&gt;(lighteningContrastLevel);
+		AgoraData.lighteningLevel = lighteningLevel;
+		AgoraData.smoothnessLevel = smoothnessLevel;
+		AgoraData.rednessLevel = rednessLevel;
+		AgoraData.sharpnessLevel = sharpnessLevel;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::BeautyOptions&amp; AgoraData) const {
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class BeautyOptions {
   
@@ -158,7 +178,7 @@ struct FBeautyOptions
                 <pt>lighteningContrastLevel</pt>
                 <pd>
                     <p>对比度，常与 <parmname>lighteningLevel</parmname> 搭配使用。取值越大，明暗对比程度越大。<ph props="ios mac cpp unreal bp unity electron rn flutter cs">详见 <xref keyref="LIGHTENING_CONTRAST_LEVEL" />。</ph>
-                    <ul props="android">
+                    <ul props="android hmos">
                     <li><ph keyref="LIGHTENING_CONTRAST_LOW" /> (0)：低对比度。</li>
                     <li><ph keyref="LIGHTENING_CONTRAST_NORMAL" /> (1)：正常对比度。</li>
                     <li><ph keyref="LIGHTENING_CONTRAST_HIGH" /> (2)：高对比度。</li>
@@ -168,25 +188,25 @@ struct FBeautyOptions
             <plentry>
                 <pt>lighteningLevel</pt>
                 <pd>
-                    <p>美白程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始亮度，默认值为 <ph props="ios">0.7</ph><ph props="android">0.6</ph><ph props="cpp unreal bp unity electron rn flutter cs">0.0</ph>。取值越大，美白程度越大。</p>
+                    <p>美白程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始亮度，默认值为 <ph props="ios">0.7</ph><ph props="android hmos">0.6</ph><ph props="cpp unreal bp unity electron rn flutter cs">0.0</ph>。取值越大，美白程度越大。</p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>smoothnessLevel</pt>
                 <pd>
-                    <p>磨皮程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始磨皮程度，默认值为 <ph props="ios">0.5</ph><ph props="android">0.5</ph><ph props="cpp unreal bp unity electron rn flutter cs">0.0</ph>。取值越大，磨皮程度越大。</p>
+                    <p>磨皮程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始磨皮程度，默认值为 <ph props="ios">0.5</ph><ph props="android hmos">0.5</ph><ph props="cpp unreal bp unity electron rn flutter cs">0.0</ph>。取值越大，磨皮程度越大。</p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>rednessLevel</pt>
                 <pd>
-                    <p>红润度，取值范围为 [0.0,1.0]，其中 0.0 表示原始红润度，默认值为 <ph props="ios">0.1</ph><ph props="android">0.1</ph><ph props="cpp unreal bp unity electron rn flutter cs">0.0</ph>。取值越大，红润程度越大。</p>
+                    <p>红润度，取值范围为 [0.0,1.0]，其中 0.0 表示原始红润度，默认值为 <ph props="ios">0.1</ph><ph props="android hmos">0.1</ph><ph props="cpp unreal bp unity electron rn flutter cs">0.0</ph>。取值越大，红润程度越大。</p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>sharpnessLevel</pt>
                 <pd>
-                    <p>锐化程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始锐度，默认值为 <ph props="ios">0.1</ph><ph props="android">0.3</ph><ph props="cpp unreal bp unity electron rn flutter cs">0.0</ph>。取值越大，锐化程度越大。</p>
+                    <p>锐化程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始锐度，默认值为 <ph props="ios">0.1</ph><ph props="android hmos">0.3</ph><ph props="cpp unreal bp unity electron rn flutter cs">0.0</ph>。取值越大，锐化程度越大。</p>
                 </pd>
             </plentry>
             </parml> </section>

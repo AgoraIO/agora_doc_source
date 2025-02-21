@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_loadextensionprovider">
     <title><ph keyref="loadExtensionProvider"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Adds an extension to the SDK.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Loads an extension.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,10 +14,11 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec"/>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int loadExtensionProvider(const char* path, bool unload_after_use = false) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
-	int LoadExtensionProvider(FString path, bool unload_after_use);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+	int LoadExtensionProvider(const FString&amp; path, bool unload_after_use);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract loadExtensionProvider(
     path: string,
     unloadAfterUse?: boolean
@@ -31,13 +32,21 @@
       {required String path, bool unloadAfterUse = false});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>This method is used to add extensions external to the SDK (such as those from Extensions Marketplace and SDK extensions) to the SDK.</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>Make sure the <xref keyref="IRtcEngine" /> is initialized before you call this method.</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>If you want to load multiple extensions, you need to call this method multiple times.</p>
             <note type="attention" props="cpp unreal bp unity flutter">(For Windows and Android only)</note>
             <note type="attention" props="rn">This method is for Android only.</note>
             <note type="attention" props="electron">This method applies to Windows only.</note>
         </section>
-        <section id="parameters">
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>
@@ -56,7 +65,7 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul props="native unreal bp electron unity rn cs">
             <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>

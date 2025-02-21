@@ -16,6 +16,14 @@
     videoOutputConfiguration = new VideoEncoderConfiguration();
   }
 }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class LocalTranscoderConfiguration {
+  public  transcodingVideoStreams:Array&lt;TranscodingVideoStream&gt;;
+  public  videoOutputConfiguration:VideoEncoderConfiguration;
+  public constructor() {
+    this.transcodingVideoStreams = new Array&lt;TranscodingVideoStream&gt;();
+    this.videoOutputConfiguration = new VideoEncoderConfiguration();
+  }
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLocalTranscoderConfiguration: NSObject
 
 @property(copy, nonatomic) NSArray&lt;AgoraTranscodingVideoStream *> *_Nullable videoInputStreams;
@@ -37,15 +45,36 @@
 struct FLocalTranscoderConfiguration
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalTranscoderConfiguration&quot;)
-	int streamCount;
+	int64 streamCount = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalTranscoderConfiguration&quot;)
-	TArray&lt;FTranscodingVideoStream&gt; VideoInputStreams;
+	TArray&lt;FTranscodingVideoStream&gt; videoInputStreams;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalTranscoderConfiguration&quot;)
-	FVideoEncoderConfiguration videoOutputConfiguration;
+	FVideoEncoderConfiguration videoOutputConfiguration = FVideoEncoderConfiguration();
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalTranscoderConfiguration&quot;)
 	bool syncWithPrimaryCamera = true;
+	FLocalTranscoderConfiguration(){}
+	FLocalTranscoderConfiguration(const agora::rtc::LocalTranscoderConfiguration &amp; AgoraData){
+		streamCount = AgoraData.streamCount;
+		for(int i = 0; i&lt; streamCount; i++){
+			videoInputStreams.Add(FTranscodingVideoStream(AgoraData.videoInputStreams[i]));
+		}
+		videoOutputConfiguration = FVideoEncoderConfiguration(AgoraData.videoOutputConfiguration);
+		syncWithPrimaryCamera = AgoraData.syncWithPrimaryCamera;
+	}
+	agora::rtc::LocalTranscoderConfiguration CreateAgoraData() const {
+		agora::rtc::LocalTranscoderConfiguration AgoraData;
+		AgoraData.streamCount = streamCount;
+		SET_UABT_TARRARY_CUSTOMDATA_TO_AGORA_ARRAY___MEMALLOC(AgoraData.videoInputStreams, agora::rtc::TranscodingVideoStream, streamCount, this-&gt;videoInputStreams)
+		AgoraData.videoOutputConfiguration = videoOutputConfiguration.CreateAgoraData();
+		AgoraData.syncWithPrimaryCamera = syncWithPrimaryCamera;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::LocalTranscoderConfiguration &amp; AgoraData) const {
+		SET_UABT_TARRARY_CUSTOMDATA_TO_AGORA_ARRAY___MEMFREE(AgoraData.videoInputStreams, streamCount, FTranscodingVideoStream)
+		videoOutputConfiguration.FreeAgoraData(AgoraData.videoOutputConfiguration);
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LocalTranscoderConfiguration {
 
@@ -102,7 +131,7 @@ class LocalTranscoderConfiguration {
             </plentry>
             <plentry>
                 <pt props="apple cpp unreal bp unity cs electron rn flutter">videoInputStreams</pt>
-                <pt props="android">transcodingVideoStreams</pt>
+                <pt props="android hmos">transcodingVideoStreams</pt>
                 <pd>The video streams for local video mixing. See <xref keyref="TranscodingVideoStream"/>.</pd>
             </plentry>
             <plentry>

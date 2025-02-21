@@ -22,6 +22,29 @@
     recordingChannel = 1;
   }
 }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class AudioRecordingConfiguration{
+  
+  public filePath:string;
+  
+  public sampleRate:number;
+  
+  public codec:boolean;
+  
+  public fileRecordOption:number;
+  
+  public quality:number;
+  
+  public recordingChannel:number;
+  
+  public constructor(filepath:string) {
+    this.filePath = filepath;
+    this.sampleRate = 32000;
+    this.codec = true;
+    this.fileRecordOption = Constants.AudioRecordingType.MIXED;
+    this.quality = Constants.AudioRecordingQuality.MEDIUM;
+    this.recordingChannel = 1;
+  }
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioRecordingConfiguration: NSObject
 @property (copy, nonatomic) NSString * _Nullable filePath;
 @property (assign, nonatomic) NSUInteger sampleRate;
@@ -73,19 +96,41 @@
 struct FAudioRecordingConfiguration
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioRecordingConfiguration&quot;)
-	FString filePath;
+	FString filePath = &quot;&quot;;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioRecordingConfiguration&quot;)
-	bool encode;
+	bool encode = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioRecordingConfiguration&quot;)
-	int sampleRate;
+	int sampleRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioRecordingConfiguration&quot;)
 	EAUDIO_FILE_RECORDING_TYPE fileRecordingType = EAUDIO_FILE_RECORDING_TYPE::AUDIO_FILE_RECORDING_MIXED;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioRecordingConfiguration&quot;)
 	EAUDIO_RECORDING_QUALITY_TYPE quality = EAUDIO_RECORDING_QUALITY_TYPE::AUDIO_RECORDING_QUALITY_LOW;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioRecordingConfiguration&quot;)
-	int recordingChannel;
+	int recordingChannel = 0;
+	FAudioRecordingConfiguration(){}
+	FAudioRecordingConfiguration(const agora::rtc::AudioRecordingConfiguration &amp; AgoraData){
+		filePath = UTF8_TO_TCHAR(AgoraData.filePath);
+		encode = AgoraData.encode;
+		sampleRate = AgoraData.sampleRate;
+		fileRecordingType = static_cast&lt;EAUDIO_FILE_RECORDING_TYPE&gt;(AgoraData.fileRecordingType);
+		quality = static_cast&lt;EAUDIO_RECORDING_QUALITY_TYPE&gt;(AgoraData.quality);
+		recordingChannel = AgoraData.recordingChannel;
+	}
+	agora::rtc::AudioRecordingConfiguration CreateAgoraData() const {
+		agora::rtc::AudioRecordingConfiguration AgoraData;
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.filePath, this-&gt;filePath)
+		AgoraData.encode = encode;
+		AgoraData.sampleRate = sampleRate;
+		AgoraData.fileRecordingType = static_cast&lt;agora::rtc::AUDIO_FILE_RECORDING_TYPE&gt;(fileRecordingType);
+		AgoraData.quality = static_cast&lt;agora::rtc::AUDIO_RECORDING_QUALITY_TYPE&gt;(quality);
+		AgoraData.recordingChannel = recordingChannel;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::AudioRecordingConfiguration&amp; AgoraData) const {
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.filePath)
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class AudioRecordingConfiguration {
 
@@ -198,9 +243,9 @@ struct FAudioRecordingConfiguration
                     <p>Ensure that the directory for the log files exists and is writable.</p>
                     </note> </pd>
             </plentry>
-            <plentry props="cpp android framework">
+            <plentry props="cpp android hmos framework">
                 <pt props="cpp unreal bp unity electron rn flutter cs">encode</pt>
-                <pt props="android">codec</pt>
+                <pt props="android hmos">codec</pt>
                 <pd>Whether to encode the audio data:<ul id="ul_bnv_mlz_mqb">
                     <li><codeph><ph keyref="true" /></codeph>: Encode audio data in AAC.</li>
                     <li><codeph><ph keyref="false" /></codeph>: (Default) Do not encode audio data, but save the recorded audio data directly.</li>
@@ -223,7 +268,7 @@ struct FAudioRecordingConfiguration
                 <pt props="android ios mac">fileRecordOption</pt>
                 <pd>
                     <p props="ios mac cpp unreal bp unity flutter electron rn cs">The recording content. See <xref keyref="AUDIO_FILE_RECORDING_TYPE" />.</p>
-                    <p props="android">Recording content:<ul>
+                    <p props="android hmos">Recording content:<ul>
                     <li><ph keyref="AUDIO_FILE_RECORDING_MIC" />(1): Only records the audio of the local user.</li>
                     <li><ph keyref="AUDIO_FILE_RECORDING_PLAYBACK" />(2): Only records the audio of all remote users.</li>
                     <li><ph keyref="AUDIO_FILE_RECORDING_MIXED" />(3): (Default) Records the mixed audio of the local and all remote users.</li>
@@ -234,14 +279,14 @@ struct FAudioRecordingConfiguration
                 <pt>quality</pt>
                 <pd>
                     <p props="ios mac cpp unreal bp unity electron rn flutter cs">Recording quality. See <xref keyref="AUDIO_RECORDING_QUALITY_TYPE" />.</p>
-                    <p props="android">Recording quality:<ul>
+                    <p props="android hmos">Recording quality:<ul>
                     <li><ph keyref="AUDIO_RECORDING_QUALITY_LOW" />(0): Low quality. For example, the size of an AAC file with a sample rate of 32,000 Hz and a recording duration of 10 minutes is around 1.2 MB.</li>
                     <li><ph keyref="AUDIO_RECORDING_QUALITY_MEDIUM" />(1): (Default) Medium quality. For example, the size of an AAC file with a sample rate of 32,000 Hz and a recording duration of 10 minutes is around 2 MB.</li>
-                    <li><ph keyref="AUDIO_RECORDING_QUALITY_HIGH" />(2): High quality. For example, the size of an AAC file with a sample rate of 32,000 Hz and a recording duration of 10 minutes is around 3.5 MB.</li>
+                    <li><ph keyref="AUDIO_RECORDING_QUALITY_HIGH" />(2): High quality. For example, the size of an AAC file with a sample rate of 32,000 Hz and a recording duration of 10 minutes is around 3.75 MB.</li>
                         <li><ph keyref="AUDIO_RECORDING_QUALITY_ULTRA_HIGH" />(3): Ultra high quality. The sample rate is 32 kHz, and the file size is around 7.5 MB after 10 minutes of recording.</li>
                     </ul> </p>
                     <note id="note_hrx_mmz_mqb" type="attention">
-                    <p>Note: This parameter applies to AAC files only.</p>
+                    <p>This parameter applies to AAC files only.</p>
                     </note> </pd>
             </plentry>
                 <plentry>

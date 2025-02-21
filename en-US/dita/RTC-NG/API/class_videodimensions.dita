@@ -20,6 +20,14 @@
     this.height = 0;
   }
 }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class VideoDimensions {
+  constructor(w : number, h : number) {
+    this.width = w;
+    this.height = h;
+  }
+  public width:number;
+  public height:number;
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec" />
             <codeblock props="cpp unreal" outputclass="language-cpp">struct VideoDimensions {
   int width;
@@ -32,13 +40,25 @@
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FVideoDimensions {
-
 	GENERATED_BODY()
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LastmileProbeConfig&quot;)
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FVideoDimensions&quot;)
 	int width = 640;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LastmileProbeConfig&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FVideoDimensions&quot;)
 	int height = 480;
+	FVideoDimensions(){}
+	FVideoDimensions(const agora::rtc::VideoDimensions &amp; AgoraData){
+		width = AgoraData.width;
+		height = AgoraData.height;
+	}
+	agora::rtc::VideoDimensions CreateAgoraData() const{
+		agora::rtc::VideoDimensions AgoraData;
+		AgoraData.width = width;
+		AgoraData.height = height;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::VideoDimensions&amp; AgoraData) const {
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoDimensions {
   

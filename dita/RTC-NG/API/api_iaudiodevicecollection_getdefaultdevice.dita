@@ -13,6 +13,7 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="mac" outputclass="language-objectivec">- (AgoraRtcDeviceInfo* _Nullable)getDefaultAudioDevice:(AgoraMediaDeviceType)type;
 </codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int getDefaultDevice(char deviceName[MAX_DEVICE_ID_LENGTH], char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
@@ -31,18 +32,17 @@
             <parml>
                 <plentry props="mac">
                     <pt>type</pt>
-                    <pd>
-                        <p>设备的类型，详见 <xref keyref="MEDIA_DEVICE_TYPE"/>。</p>
+                    <pd>输出参数，设备的类型，详见 <xref keyref="MEDIA_DEVICE_TYPE"/>。
                     </pd>
                 </plentry>
 
-            <plentry props="cpp unreal bp">
+            <plentry props="cpp unreal bp" id="name">
                 <pt>deviceName</pt>
-                <pd>输出参数，系统默认的音频设备名称。最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</pd>
+                <pd>输出参数，系统默认的音频设备名称。<ph props="cpp unreal">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</ph></pd>
             </plentry>
-            <plentry props="cpp unreal bp">
+            <plentry props="cpp unreal bp" id="id">
                     <pt>deviceId</pt>
-                    <pd>输出参数，系统默认的音频设备 ID。最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</pd>
+                    <pd>输出参数，系统默认的音频设备 ID。<ph props="cpp unreal">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</ph></pd>
                 </plentry>
             </parml> </section>
         <section id="return_values">
@@ -53,7 +53,7 @@
             </ul>
             <ul props="mac">
                 <li>调用成功时，返回 <xref keyref="AgoraRtcDeviceInfo"/> 对象，包含默认的音频设备信息。</li>
-                <li>调用失败时，返回 <xref keyref="NULL"/>。</li>
+                <li>调用失败时，返回 <codeph><ph keyref="NULL"/></codeph>。</li>
             </ul> </section>
     </refbody>
 </reference>

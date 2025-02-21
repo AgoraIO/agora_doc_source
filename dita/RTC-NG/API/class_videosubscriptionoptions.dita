@@ -41,10 +41,11 @@
     this.streamType = streamType;
   }
 }</codeblock>
-      <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoSubscriptionOptions: NSObject
+      <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoSubscriptionOptions: NSObject
 
 @property (nonatomic, assign) AgoraVideoStreamType type;
-@property (nonatomic, assign) bool encodedFrameOnly;
+@property (nonatomic, assign) BOOL encodedFrameOnly;
 
 @end</codeblock>
       <codeblock props="cpp unreal" outputclass="language-cpp">struct VideoSubscriptionOptions {
@@ -57,12 +58,26 @@
 struct FVideoSubscriptionOptions
 {
 	GENERATED_BODY()
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
-	bool type_SetValue;
+public:
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	bool type_SetValue = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoSubscriptionOptions&quot;)
-	EVIDEO_STREAM_TYPE type;
+	EVIDEO_STREAM_TYPE type = EVIDEO_STREAM_TYPE::VIDEO_STREAM_HIGH;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoSubscriptionOptions&quot;)
-	AGORAOPTIONAL encodedFrameOnly;
+	EAgoraOptional encodedFrameOnly = EAgoraOptional::AGORA_NULL_VALUE;
+	FVideoSubscriptionOptions(){}
+	FVideoSubscriptionOptions(const agora::rtc::VideoSubscriptionOptions &amp; AgoraData){
+		SET_UEBP_OPTIONAL_VAL_ASSIGN_VAL(this-&gt;type,AgoraData.type,static_cast&lt;EVIDEO_STREAM_TYPE&gt;(AgoraData.type.value()))
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;encodedFrameOnly,AgoraData.encodedFrameOnly)
+	}
+	agora::rtc::VideoSubscriptionOptions CreateAgoraData() const {
+		agora::rtc::VideoSubscriptionOptions AgoraData;
+		SET_AGORA_OPTIONAL_VAL_ASSIGN_VAL(AgoraData.type,this-&gt;type,static_cast&lt;agora::rtc::VIDEO_STREAM_TYPE&gt;(this-&gt;type))
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.encodedFrameOnly,this-&gt;encodedFrameOnly)
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::VideoSubscriptionOptions&amp; AgoraData) const {
+	}
 };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class VideoSubscriptionOptions {
   
@@ -102,15 +117,9 @@ struct FVideoSubscriptionOptions
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
-                <pt props="android">streamType</pt>
+                <pt props="android hmos">streamType</pt>
                 <pt props="ios mac cpp framework">type</pt>
-                <pd props="ios mac cpp framework">订阅的视频流类型，默认值为 <ph keyref="VIDEO_STREAM_HIGH"/>，即订阅视频大流。详见 <xref keyref="VIDEO_STREAM_TYPE"/>。</pd>
-                <pd props="android">订阅的视频流类型：
-                  <ul>
-                    <li><ph keyref="VIDEO_STREAM_HIGH"/> (0): （默认）视频大流，即高分辨率、高码率视频流。</li>
-                    <li><ph keyref="VIDEO_STREAM_LOW"/> (1): 视频小流，即低分辨率、低码率视频流。</li>
-                  </ul>
-                </pd>
+                <pd>订阅的视频流类型，默认值为 <ph keyref="VIDEO_STREAM_HIGH"/>，即订阅视频大流。详见 <xref keyref="VIDEO_STREAM_TYPE"/>。</pd>
             </plentry>
             <plentry>
                 <pt>encodedFrameOnly</pt>

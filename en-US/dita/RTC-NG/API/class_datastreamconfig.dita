@@ -10,6 +10,10 @@
   public boolean syncWithAudio = false;
   public boolean ordered = false;
 }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class DataStreamConfig {
+  public syncWithAudio: boolean = false;
+  public ordered: boolean = false;
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraDataStreamConfig: NSObject
 @property (assign, nonatomic) BOOL ordered;
 @property (assign, nonatomic) BOOL syncWithAudio;
@@ -22,11 +26,24 @@
 struct FDataStreamConfig
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|DataStreamConfig&quot;)
-	bool syncWithAudio;
+	bool syncWithAudio = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|DataStreamConfig&quot;)
-	bool ordered;
+	bool ordered = false;
+	FDataStreamConfig(){}
+	FDataStreamConfig(const agora::rtc::DataStreamConfig &amp; AgoraData){
+		syncWithAudio = AgoraData.syncWithAudio;
+		ordered = AgoraData.ordered;
+	}
+	agora::rtc::DataStreamConfig CreateAgoraData() const {
+		agora::rtc::DataStreamConfig AgoraData;
+		AgoraData.syncWithAudio = syncWithAudio;
+		AgoraData.ordered = ordered;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::DataStreamConfig &amp; AgoraData) const {
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class DataStreamConfig {
   

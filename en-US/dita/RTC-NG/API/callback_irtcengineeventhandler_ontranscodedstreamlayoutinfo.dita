@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onTranscodedStreamLayoutInfo(int uid, VideoLayoutInfo info) {}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didTranscodedStreamLayoutInfoUpdatedWithUserId:(NSUInteger)uid videoLayoutInfo:(AgoraVideoLayoutInfo* _Nonnull)videoLayoutInfo NS_SWIFT_NAME(rtcEngine(_:didTranscodedStreamLayoutInfoUpdatedWithUserId:videoLayoutInfo:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onTranscodedStreamLayoutInfo(uid_t uid, int width, int height, int layoutCount,const VideoLayout* layoutlist) {
     (void)uid;
@@ -22,7 +23,8 @@
     (void)layoutCount;
     (void)layoutlist;
   }</codeblock>
-            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnTranscodedStreamLayoutInfo(int64 uid, int width, int height, int layoutCount, const TArray&lt;FVideoLayout&gt;&amp; layoutlist);</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnTranscodedStreamLayoutInfo(RtcConnection connection, uint uid, int width, int height, int layoutCount, VideoLayout[] layoutlist)</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onTranscodedStreamLayoutInfo?(
@@ -44,7 +46,7 @@
         <section id="detailed_desc">
             <title>Details</title>
             <dl outputclass="since">
-            <dlentry props="native">
+            <dlentry props="android apple cpp">
                 <dt>Since</dt>
                 <dd>v4.3.0</dd>
             </dlentry>
@@ -67,22 +69,22 @@
                 <pt>uid</pt>
                 <pd>User ID who published this mixed video stream.</pd>
             </plentry>
-                <plentry props="cpp">
+                <plentry props="cpp framework">
                     <pt>width</pt>
                     <pd>Width (px) of the mixed video stream.</pd>
                 </plentry>
-                <plentry props="cpp">
+                <plentry props="cpp framework">
                     <pt>height</pt>
                     <pd>Heitht (px) of the mixed video stream.</pd>
                 </plentry>
-                <plentry props="cpp">
+                <plentry props="cpp framework">
                     <pt>layoutCount</pt>
                     <pd>The number of layout information in the mixed video stream.</pd>
                 </plentry>
                 <plentry>
-                    <pt props="android">info</pt>
+                    <pt props="android hmos">info</pt>
                     <pt props="apple">videoLayoutInfo</pt>
-                    <pt props="cpp">layoutlist</pt>
+                    <pt props="cpp framework">layoutlist</pt>
                     <pd>Layout information of a specific sub-video stream within the mixed stream. See <xref keyref="VideoLayout"/>.</pd>
                 </plentry>
             </parml> </section>

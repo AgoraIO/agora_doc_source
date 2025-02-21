@@ -10,6 +10,10 @@
   private float[] audioSpectrumData;
   private int dataLength;
 }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export  class AudioSpectrumInfo {
+  public  uid:number = 0 ;
+  public audioSpectrumData  = new AudioSpectrumData();
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec" />
             <codeblock props="cpp unreal" outputclass="language-cpp">struct AudioSpectrumData {
   const float *audioSpectrumData;
@@ -68,7 +72,7 @@ struct FAudioSpectrumData {
                     <p>音频频谱数据。声网将声音频率分为 256 个频域，通过该参数报告各频域的能量值，每个能量值的取值范围为 [-300,1]，单位为 dBFS。</p>
                 </pd>
             </plentry>
-            <plentry>
+            <plentry props="android cpp apple framework">
                 <pt>dataLength</pt>
                 <pd>音频频谱数据长度为 256。</pd>
             </plentry>

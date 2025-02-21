@@ -15,13 +15,15 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onVideoRenderingTracingResult(int uid,
     Constants.MEDIA_RENDER_TRACE_EVENT currentEvent, VideoRenderingTracingInfo tracingInfo) {}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine videoRenderingTracingResultOfUid:(NSUInteger)uid currentEvent:(AgoraMediaRenderTraceEvent)currentEvent tracingInfo:(AgoraVideoRenderingTracingInfo * _Nonnull)tracingInfo NS_SWIFT_NAME(rtcEngine(_:videoRenderingTracingResultOfUid:currentEvent:tracingInfo:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp"> virtual void onVideoRenderingTracingResult(uid_t uid, MEDIA_TRACE_EVENT currentEvent, VideoRenderingTracingInfo tracingInfo) {
   (void)uid;
   (void)currentEvent;
   (void)tracingInfo;
 }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnVideoRenderingTracingResult, int64, uid, EMEDIA_TRACE_EVENT, currentEvent, FVideoRenderingTracingInfo, tracingInfo);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnVideoRenderingTracingResult(int64 uid, EMEDIA_TRACE_EVENT currentEvent, const FVideoRenderingTracingInfo&amp; tracingInfo);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onVideoRenderingTracingResult?(
     connection: RtcConnection,
     uid: number,
@@ -43,12 +45,12 @@
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
-            <dlentry props="native">
+            <dlentry props="android apple cpp">
                 <dt>Since</dt>
                 <dd>v4.1.1</dd>
             </dlentry>
             </dl>
-            <p>After calling the <xref keyref="startMediaRenderingTracing"/> method or joining the channel, the SDK triggers this callback to report the events of video frame rendering and the indicators during the rendering process. Developers can optimize the indicators to improve the efficiency of the first video frame rendering.</p>
+            <p>After calling the <xref keyref="startMediaRenderingTracing"/> method or joining a channel, the SDK triggers this callback to report the events of video frame rendering and the indicators during the rendering process. Developers can optimize the indicators to improve the efficiency of the first video frame rendering.</p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>

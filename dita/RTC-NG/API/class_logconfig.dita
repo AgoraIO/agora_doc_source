@@ -11,6 +11,14 @@
   public int fileSizeInKB;
   public int level = Constants.LogLevel.getValue(Constants.LogLevel.LOG_LEVEL_INFO);
 }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class LogConfig {
+  
+  public  filePath:string = &#x27;&#x27;;
+  
+  public fileSizeInKB:number = 2048;
+  
+  public  level: Constants.LogLevel = Constants.LogLevel.INFO;
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLogConfig: NSObject
 @property (copy, nonatomic) NSString * _Nullable filePath;
 @property (assign, nonatomic) NSInteger fileSizeInKB;
@@ -25,15 +33,31 @@
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FLogConfig {
-
 	GENERATED_BODY()
-
+public:
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LogConfig&quot;)
-	FString filePath;
+	FString filePath = &quot;&quot;;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LogConfig&quot;)
-	int64 fileSizeInKB = 1024;
+	int64 fileSizeInKB = 2048;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LogConfig&quot;)
-	TEnumAsByte&lt;ELOG_LEVEL&gt;	level = ELOG_LEVEL::LOG_LEVEL_INFO;
+	ELOG_LEVEL level = ELOG_LEVEL::LOG_LEVEL_INFO;
+	FLogConfig() {}
+	FLogConfig(const agora::commons::LogConfig&amp; AgoraData) {
+		filePath = UTF8_TO_TCHAR(AgoraData.filePath);
+		fileSizeInKB = AgoraData.fileSizeInKB;
+		level = (ELOG_LEVEL)AgoraData.level;
+	}
+	agora::commons::LogConfig CreateAgoraData() const {
+		agora::commons::LogConfig AgoraData;
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.filePath, filePath)
+		AgoraData.fileSizeInKB = UABT::ToUInt32(fileSizeInKB);
+		AgoraData.level = (agora::commons::LOG_LEVEL)level;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::commons::LogConfig&amp; AgoraData) const {
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.filePath)
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LogConfig {
 
@@ -91,7 +115,7 @@ struct FLogConfig {
             <plentry>
                 <pt>filePath</pt>
                 <pd>
-                    <p>日志文件的完整路径。请确保你指定的目录存在且可写。你可以通过该参数修改日志文件名。</p>
+                    <p>日志文件的完整路径。声网建议你使用默认的日志路径。如果你需要修改默认的日志路径，请确保你指定的路径存在且可写。</p>
                     <p props="cpp unreal bp unity electron rn cs">默认路径为：
                     <ul>
                     <li props="cpp unreal bp unity rn flutter">Android：<filepath id="android-path">/storage/emulated/0/Android/data/&lt;packagename&gt;/files/agorasdk.log</filepath>。</li>
@@ -103,7 +127,7 @@ struct FLogConfig {
                         </ul></li>
                     <li props="cpp unreal bp unity electron flutter cs">Windows：<filepath>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\agorasdk.log</filepath>。</li>
                     </ul></p>
-                    <p props="android">默认路径为 <filepath>/storage/emulated/0/Android/data/&lt;packagename&gt;/files/agorasdk.log</filepath>。</p>
+                    <p props="android ">默认路径为 <filepath>/storage/emulated/0/Android/data/&lt;packagename&gt;/files/agorasdk.log</filepath>。</p>
                     <p props="ios">默认路径为 <filepath>AppSandbox/Library/caches/agorasdk.log</filepath>。</p>
                     <p props="mac">默认路径为：
 
@@ -111,7 +135,8 @@ struct FLogConfig {
                     <li>开启沙盒: <filepath>AppSandbox/Library/Logs/agorasdk.log</filepath>，例如 <filepath>/Users/&lt;username&gt;/Library/Containers/&lt;AppBundleIdentifier&gt;/Data/Library/Logs/agorasdk.log</filepath>。</li>
                     <li>关闭沙盒: <filepath>～/Library/Logs/agorasdk.log</filepath>
                     </li>
-                    </ul> </p>
+                    </ul>
+                 </p>
                 </pd>
             </plentry>
             <plentry>

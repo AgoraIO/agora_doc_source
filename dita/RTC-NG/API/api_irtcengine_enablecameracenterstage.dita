@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enablecameracenterstage">
+    <title><ph keyref="enableCameraCenterStage"/></title>
+    <shortdesc id="short"><ph id="shortdesc">开启或关闭人像锁定功能。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableCameraCenterStage"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableCameraCenterStage:(BOOL)enabled NS_SWIFT_NAME(enableCameraCenterStage(_:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int enableCameraCenterStage(bool enabled) = 0;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+	int EnableCameraCenterStage(bool enabled);</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract enableCameraCenterStage(enabled: boolean): number;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int EnableCameraCenterStage(bool enabled);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract enableCameraCenterStage(enabled: boolean): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableCameraCenterStage(bool enabled);</codeblock> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="android apple cpp">
+                <dt>自从</dt>
+                <dd>v4.3.1</dd>
+            </dlentry>
+            </dl>
+            <p>人像锁定功能默认关闭，你需要调用该方法开启。如果需要关闭该功能，则需重新调用该方法并将 <parmname>enabled</parmname> 设置为 <codeph><ph keyref="false"/></codeph>。</p>
+            <note type="attention" props="cpp flutter unreal bp unity">该方法仅适用于 iOS 和 macOS。</note>
+            <note type="attention" props="rn">该方法仅适用于 iOS。</note>
+            <note type="attention" props="electron">该方法仅适用于 macOS。</note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p>人像锁定功能可广泛应用于在线会议、秀场、在线教育等场景。主播可以开启该功能，确保无论移动与否，自己始终在画面中心，以便取得良好的展示效果。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>该方法必须在摄像头成功开启后调用，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调，返回本地视频状态为 <apiname keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/> (1) 后。</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>由于该功能对设备性能要求较高，你需要在以下类型或更高性能的设备上使用该功能：<ul>
+                <li>iPad：<ul>
+                    <li>12.9 英寸 iPad Pro（第五代）</li>
+                    <li>11 英寸 iPad Pro（第三代）</li>
+                    <li>iPad（第九代）</li>
+                    <li>iPad mini（第六代）</li>
+                    <li>iPad Air（第五代）</li></ul></li>
+                <li>2020 年 M1 MacBook Pro 13 英寸 + iPhone 11（将 iPhone 作为 MacBook 的外接摄像头使用）</li>
+            </ul></p>
+            <p>声网建议你在开启该功能前，先调用 <xref keyref="isCameraCenterStageSupported"/> 查询当前设备是否支持人像锁定。</p>
+        </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt>enabled</pt>
+                <pd>是否开启人像锁定功能：
+                <ul>
+                    <li><codeph><ph keyref="true"/></codeph>：开启人像锁定。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：关闭人像锁定。</li>
+                    </ul></pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
+            <ul props="native electron unity rn unreal bp">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul> </section>
+        </refbody>
+</reference>

@@ -8,65 +8,85 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class ChannelMediaRelayConfiguration {
   private ChannelMediaInfo srcInfo = null;
-  private Map&lt;String, ChannelMediaInfo> destInfos = null;
-
+  private Map&lt;String, ChannelMediaInfo&gt; destInfos = null;
+  
   public ChannelMediaRelayConfiguration() {
-    destInfos = new HashMap&lt;String, ChannelMediaInfo>();
+    destInfos = new HashMap&lt;String, ChannelMediaInfo&gt;();
     srcInfo = new ChannelMediaInfo(null, null, 0);
   }
-
+  
   public void setSrcChannelInfo(ChannelMediaInfo srcInfo) {
     this.srcInfo = srcInfo;
   }
-
+  
   public void setDestChannelInfo(String channelName, ChannelMediaInfo destInfo) {
     destInfos.put(channelName, destInfo);
   }
-
+  
   public void removeDestChannelInfo(String channelName) {
     destInfos.remove(channelName);
   }
-
   public ChannelMediaInfo getSrcChannelMediaInfo() {
     return srcInfo;
   }
-
-  public Map&lt;String, ChannelMediaInfo> getDestChannelMediaInfos() {
+  public Map&lt;String, ChannelMediaInfo&gt; getDestChannelMediaInfos() {
     return destInfos;
   }
-}
-</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraChannelMediaRelayConfiguration: NSObject
-
+}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class ChannelMediaRelayConfiguration {
+  public srcInfo:ChannelMediaInfo = new ChannelMediaInfo(null,null,0);
+  public destInfos:Map&lt;string, ChannelMediaInfo&gt; = new Map&lt;string, ChannelMediaInfo&gt;();
+  
+  public setSrcChannelInfo(srcInfo: ChannelMediaInfo) {
+  this.srcInfo = srcInfo;
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility(&quot;default&quot;))) @interface AgoraChannelMediaRelayConfiguration: NSObject
 @property (strong, nonatomic, readonly) NSDictionary&lt;NSString *, AgoraChannelMediaRelayInfo *&gt; *_Nullable destinationInfos;
 @property (strong, nonatomic) AgoraChannelMediaRelayInfo *_Nonnull sourceInfo;
-
-- (BOOL)setDestinationInfo:(AgoraChannelMediaRelayInfo *_Nonnull)destinationInfo forChannelName:(NSString *_Nonnull)channelName;
-- (BOOL)removeDestinationInfoForChannelName:(NSString *_Nonnull)channelName;
+- (BOOL)setDestinationInfo:(AgoraChannelMediaRelayInfo *_Nonnull)destinationInfo forChannelName:(NSString *_Nonnull)channelName NS_SWIFT_NAME(setDestinationInfo(_:forChannelName:));
+- (BOOL)removeDestinationInfoForChannelName:(NSString *_Nonnull)channelName NS_SWIFT_NAME(removeDestinationInfo(forChannelName:));
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct ChannelMediaRelayConfiguration {
-	ChannelMediaInfo *srcInfo;
-	ChannelMediaInfo *destInfos;
-	int destCount;
-
-	ChannelMediaRelayConfiguration()
-			: srcInfo(nullptr)
-			, destInfos(nullptr)
-			, destCount(0)
-	{}
-    };</codeblock>
+  
+  ChannelMediaInfo* srcInfo;
+  
+  ChannelMediaInfo* destInfos;
+  
+  int destCount;
+  ChannelMediaRelayConfiguration() : srcInfo(OPTIONAL_NULLPTR), destInfos(OPTIONAL_NULLPTR), destCount(0) {}
+};</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FChannelMediaRelayConfiguration
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaRelayConfiguration&quot;)
-	FChannelMediaInfo srcInfo;
-
+	FChannelMediaInfo srcInfo = FChannelMediaInfo();
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaRelayConfiguration&quot;)
 	TArray&lt;FChannelMediaInfo&gt; destInfos;
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaRelayConfiguration&quot;)
-	int destCount;
+	int destCount = 0;
+	FChannelMediaRelayConfiguration(){}
+	FChannelMediaRelayConfiguration(const agora::rtc::ChannelMediaRelayConfiguration &amp; AgoraData){
+		srcInfo = FChannelMediaInfo(*(AgoraData.srcInfo));
+		destCount = AgoraData.destCount;
+		for(int i = 0; i&lt; destCount; i++){
+			destInfos.Add(FChannelMediaInfo(AgoraData.destInfos[i]));
+		}
+	}
+	agora::rtc::ChannelMediaRelayConfiguration CreateAgoraData() const {
+		agora::rtc::ChannelMediaRelayConfiguration AgoraData;
+		
+		SET_UABT_UECUSTOMDATA_TO_AGORA_PTR_1_ENTRY___MEMALLOC(AgoraData.srcInfo,agora::rtc::ChannelMediaInfo, this-&gt;srcInfo)
+		AgoraData.destCount = destCount;
+		SET_UABT_TARRARY_CUSTOMDATA_TO_AGORA_ARRAY___MEMALLOC(AgoraData.destInfos, agora::rtc::ChannelMediaInfo, destCount, this-&gt;destInfos)
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::ChannelMediaRelayConfiguration &amp; AgoraData) const {
+		SET_UABT_UECUSTOMDATA_TO_AGORA_PTR_1_ENTRY___MEMFREE(AgoraData.srcInfo, FChannelMediaInfo)
+		SET_UABT_TARRARY_CUSTOMDATA_TO_AGORA_ARRAY___MEMFREE(AgoraData.destInfos, destCount, FChannelMediaInfo)
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ChannelMediaRelayConfiguration {
   
@@ -119,36 +139,38 @@ struct FChannelMediaRelayConfiguration
   }</codeblock>            
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section props="android" id="sub-method">
+        <section id="sub-method" props="android hmos apple">
           <title>方法</title>
           <parml>
-            <plentry>
+            <plentry props="android hmos">
               <pt>setSrcChannelInfo</pt>
               <pd>设置源频道信息。详见 <xref keyref="setSrcChannelInfo"/>。</pd>
             </plentry>
-            <plentry>
-              <pt>setDestChannelInfo</pt>
+            <plentry props="android apple">
+              <pt props="android">setDestChannelInfo</pt>
+              <pt props="apple">setDestinationInfo</pt>
               <pd>设置目标频道信息。详见 <xref keyref="setDestChannelInfo"/>。</pd>
             </plentry>
-            <plentry>
-              <pt>removeDestChannelInfo</pt>
+            <plentry props="android apple">
+              <pt props="android">removeDestChannelInfo</pt>
+              <pt props="apple">removeDestinationInfoForChannelName</pt>
               <pd>删除目标频道信息。详见 <xref keyref="removeDestChannelInfo"/>。</pd>
             </plentry>
-            <plentry>
+            <plentry props="android">
               <pt>getSrcChannelMediaInfo</pt>
               <pd>获取源频道信息。详见 <xref keyref="getSrcChannelMediaInfo"/>。</pd>
             </plentry>
-            <plentry>
+            <plentry props="android">
               <pt>getDestChannelMediaInfos</pt>
               <pd>获取目标频道信息。详见 <xref keyref="getDestChannelMediaInfos"/>。</pd>
             </plentry>
-          </parml>
+        </parml>
         </section>
         <section id="parameters" props="ios mac cpp framework">
             <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/> </title>
             <parml>
             <plentry>
-                <pt props="cpp framework">srcInfo</pt>
+                <pt props="hmos cpp framework">srcInfo</pt>
                 <pt props="ios mac">sourceInfo</pt>
                 <pd props="cpp ios mac framework">
                     <p>源频道信息 <xref keyref="ChannelMediaInfo"/>，包含如下成员：                                      
@@ -164,7 +186,7 @@ struct FChannelMediaRelayConfiguration
                 </pd>
             </plentry>
             <plentry>
-                <pt props="cpp framework">destInfos</pt>
+                <pt props="hmos cpp framework">destInfos</pt>
                 <pt props="ios mac">destinationInfos</pt>
                 <pd props="cpp ios mac framework">
                     <p>目标频道信息 <apiname keyref="ChannelMediaInfo"/>，包含如下成员：                                        
@@ -177,21 +199,13 @@ struct FChannelMediaRelayConfiguration
                         <li>如已启用 App Certificate，则务必填入使用 <parmname>channelName</parmname> 和 <parmname>uid</parmname> 生成的 <parmname>token</parmname>。</li>
                         </ul> <note type="attention"><p>由于目标频道中任意频道的 token 过期会导致所有跨频道推流停止，因此建议你将目标频道的 token 设置为相同的过期时长。</p></note></li>
                       <li>
-                        <parmname>uid</parmname>：标识目标频道中的转发媒体流的 UID。取值范围为 0 到（2 <sup>32</sup>-1），请确保与目标频道中的所有 UID 不同。默认值为 0，表示 SDK 随机分配一个 UID。</li>
+                        <parmname>uid</parmname>：标识目标频道中的转发媒体流的 UID。取值范围为 0 到 (2 <sup>32</sup>-1），请确保与目标频道中的所有 UID 不同。默认值为 0，表示 SDK 随机分配一个 UID。</li>
                     </ul> </p>
                 </pd>
             </plentry>
             <plentry props="cpp framework">
                 <pt>destCount</pt>
                 <pd>目标频道数量，默认值为 0，取值范围为 [0,6]。该参数应与你在 <parmname>destInfos</parmname> 中定义的 <apiname keyref="ChannelMediaInfo"/> 数组的数目一致。</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>setDestinationInfo</pt>
-                <pd>设置目标频道信息。详见 <xref keyref="setDestChannelInfo"/>。</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>removeDestinationInfoForChannelName</pt>
-                <pd>移除目标频道信息。详见 <xref keyref="removeDestChannelInfo"/>。</pd>
             </plentry>
             </parml> </section>
     </refbody>

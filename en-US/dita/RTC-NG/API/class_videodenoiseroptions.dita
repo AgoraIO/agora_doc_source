@@ -26,6 +26,7 @@
   }
 }
 </codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoDenoiserOptions : NSObject
 @property(nonatomic, assign) AgoraVideoDenoiserMode mode;
 @property(nonatomic, assign) AgoraVideoDenoiserLevel level;
@@ -49,19 +50,21 @@
 };
 </codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
-struct FVideoDenoiserOptions
+struct FUABT_VideoDenoiserOptions
 {
 	GENERATED_BODY()
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoDenoiserOptions&quot;)
-	EVIDEO_DENOISER_MODE mode = EVIDEO_DENOISER_MODE::VIDEO_DENOISER_AUTO;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoDenoiserOptions&quot;)
-	EVIDEO_DENOISER_LEVEL level = EVIDEO_DENOISER_LEVEL::VIDEO_DENOISER_LEVEL_HIGH_QUALITY;
+public:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	EUABT_VIDEO_DENOISER_MODE mode = EUABT_VIDEO_DENOISER_MODE::VIDEO_DENOISER_AUTO;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	EUABT_VIDEO_DENOISER_LEVEL  level = EUABT_VIDEO_DENOISER_LEVEL ::VIDEO_DENOISER_LEVEL_HIGH_QUALITY;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoDenoiserOptions {
-  
+
   mode?: VideoDenoiserMode;
-  
+
   level?: VideoDenoiserLevel;
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class VideoDenoiserOptions
@@ -82,9 +85,9 @@ struct FVideoDenoiserOptions
         }
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class VideoDenoiserOptions {
-  
+
   mode?: VideoDenoiserMode;
-  
+
   level?: VideoDenoiserLevel;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class VideoDenoiserOptions {
@@ -100,7 +103,7 @@ struct FVideoDenoiserOptions
       _$VideoDenoiserOptionsFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$VideoDenoiserOptionsToJson(this);
-}</codeblock>            
+}</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">
@@ -108,16 +111,15 @@ struct FVideoDenoiserOptions
             <parml>
             <plentry>
                 <pt>level</pt>
-                <pd><ph>Video noise reduction level. </ph><ph props="apple cpp unreal bp">See <xref keyref="VIDEO_DENOISER_LEVEL" />.</ph><ul props="android">
+                <pd><ph>Video noise reduction level. </ph><ph props="apple cpp unreal bp">See <xref keyref="VIDEO_DENOISER_LEVEL" />.</ph><ul props="android hmos">
                     <li><ph keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY" />(0): (Default) Promotes video quality during low-light enhancement. It processes the brightness, details, and noise of the video image. The performance consumption is moderate, the processing speed is moderate, and the overall video quality is optimal.</li>
                     <li><ph keyref="VIDEO_DENOISER_LEVEL_FAST" />(1): Promotes reducing performance consumption during video noise reduction. It prioritizes reducing performance consumption over video noise reduction quality. The performance consumption is lower, and the video noise reduction speed is faster. To avoid a noticeable shadowing effect (shadows trailing behind moving objects) in the processed video, Agora recommends that you use this setting when the camera is fixed.</li>
-                    <li><ph keyref="VIDEO_DENOISER_LEVEL_STRENGTH" />(2): Enhanced video noise reduction. It prioritizes video noise reduction quality over reducing performance consumption. The performance consumption is higher, the video noise reduction speed is slower, and the video noise reduction quality is better. If <parmname keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY" /> is not enough for your video noise reduction needs, you can use this enumerator.</li>
                   </ul>
                 </pd>
             </plentry>
             <plentry>
                 <pt>mode</pt>
-                <pd><ph>Video noise reduction mode. </ph><ph props="apple cpp unreal bp">See <xref keyref="VIDEO_DENOISER_MODE" />.</ph><ul props="android">
+                <pd><ph>Video noise reduction mode. </ph><ph props="apple cpp unreal bp">See <xref keyref="VIDEO_DENOISER_MODE" />.</ph><ul props="android hmos">
                     <li><ph keyref="VIDEO_DENOISER_AUTO" />(0): (Default) Automatic mode. The SDK automatically enables or disables the video noise reduction feature according to the ambient light.</li>
                     <li><ph keyref="VIDEO_DENOISER_MANUAL" />(1): Manual mode. Users need to enable or disable the video noise reduction feature manually.</li>
                   </ul>

@@ -15,6 +15,7 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int joinChannelWithUserAccount(
                     String token, String channelName, String userAccount);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)joinChannelByToken:(NSString * _Nullable)token
                 channelId:(NSString * _Nonnull)channelId
               userAccount:(NSString * _Nonnull)userAccount
@@ -42,16 +43,17 @@
       ChannelMediaOptions? options});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
-            <p>该方法允许本地用户使用 User Account 和 Token 加入频道。成功加入频道后，会触发以下回调：
-            <ul>
-            <li>本地：<xref keyref="onLocalUserRegistered" />、<xref keyref="onJoinChannelSuccess" /> 和 <xref keyref="onConnectionStateChanged" /> 回调。</li>
-            <li>通信场景下的用户和直播场景下的主播加入频道后，远端会依次触发 <xref keyref="onUserJoined" /> 和 <xref keyref="onUserInfoUpdated" /> 回调。</li>
-            </ul></p>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p conkeyref="joinChannelWithUserAccount2/account"></p>
             <p>用户成功加入频道后，默认订阅频道内所有其他用户的音频流和视频流，因此产生用量并影响计费。如果想取消订阅，可以通过调用相应的 <apiname>mute</apiname> 方法实现。</p>
-            <note type="attention" id="note">为保证通信质量，请确保频道内使用同一类型的数据标识用户身份。即同一频道内需要统一使用 UID 或 User Account。如果有用户通过 Web SDK 加入频道，请确保 Web 加入的用户也是同样类型。</note> </section>
-        <section id="parameters">
+            <note type="attention" conkeyref="joinChannelWithUserAccount2/note">
+            </note> </section>
+            <section id="timing" deliveryTarget="details" conkeyref="joinChannel2/timing">
+            </section>
+            <section id="restriction" deliveryTarget="details" conkeyref="joinChannel2/restriction"></section>
+            <section id="related" deliveryTarget="details" conkeyref="joinChannelWithUserAccount2/related">
+            </section>
+            <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
             <plentry conkeyref="joinChannel2/token">
@@ -59,7 +61,7 @@
                 <pd />
             </plentry>
             <plentry>
-                <pt props="android">channelName</pt>
+                <pt props="android hmos">channelName</pt>
                 <pt props="cpp unreal bp ios mac unity rn electron flutter cs">channelId</pt>
                 <pd>
                     <p conkeyref="joinChannel2/channelID_desc" />
@@ -75,18 +77,6 @@
             </plentry>
             </parml>
         </section>
-        <section id="return_values">
-            <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp unity rn electron cs">
-            <li>0: 方法调用成功。</li>
-            <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph>
-                <ul>
-                <li>-2: 参数无效。</li>
-                <li>-3: SDK 初始化失败，请尝试重新初始化 SDK。</li>
-                <li>-5: 调用被拒绝。</li>
-                <li>-17: 加入频道被拒绝。由于 SDK 仅支持用户同一时间加入一个 <xref keyref="IRtcEngine" /> 频道，当已经加入 <xref keyref="IRtcEngine" /> 频道的用户使用有效的频道名再次调用 <xref keyref="IRtcEngine" /> 类中的加入频道方法时，会返回此错误码。</li>
-                </ul></li>
-            </ul> </section>
+        <section id="return_values" conkeyref="joinChannel2/return_values"></section>
     </refbody>
 </reference>

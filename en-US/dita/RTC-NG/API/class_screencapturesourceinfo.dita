@@ -7,6 +7,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenCaptureSourceInfo : NSObject
 @property(assign, nonatomic) AgoraScreenCaptureSourceType type;
 @property(assign, nonatomic) CGWindowID sourceId;
@@ -21,46 +22,99 @@
 @end
 </codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct ScreenCaptureSourceInfo {
-    ScreenCaptureSourceType type;
-    view_t sourceId;
-    const char* sourceName;
-    ThumbImageBuffer thumbImage;
-    ThumbImageBuffer iconImage;
-    const char* processPath;
-    const char* sourceTitle;
-    bool primaryMonitor;
+  ScreenCaptureSourceType type;
+  int64_t sourceId;
+  const char* sourceName;
+  ThumbImageBuffer thumbImage;
+  ThumbImageBuffer iconImage;
+  const char* processPath;
+  const char* sourceTitle;
+  bool primaryMonitor;
+  bool isOccluded;
+  Rectangle position;
 #if defined(_WIN32)
-    Rectangle position;
-    bool minimizeWindow;
-    view_t sourceDisplayId;
-  ScreenCaptureSourceInfo() : type(ScreenCaptureSourceType_Unknown), sourceId(nullptr), sourceName(nullptr),
-                              processPath(nullptr), sourceTitle(nullptr), primaryMonitor(false), isOccluded(false), minimizeWindow(false), sourceDisplayId((view_t)-2) {}
+  bool minimizeWindow;
+  int64_t sourceDisplayId;
+  ScreenCaptureSourceInfo() : type(ScreenCaptureSourceType_Unknown), sourceId(0), sourceName(nullptr),
+                              processPath(nullptr), sourceTitle(nullptr), primaryMonitor(false), isOccluded(false), minimizeWindow(false), sourceDisplayId(-2) {}
 #else
-  ScreenCaptureSourceInfo() : type(ScreenCaptureSourceType_Unknown), sourceId(nullptr), sourceName(nullptr), processPath(nullptr), sourceTitle(nullptr), primaryMonitor(false), isOccluded(false) {}
+  ScreenCaptureSourceInfo() : type(ScreenCaptureSourceType_Unknown), sourceId(0), sourceName(nullptr), processPath(nullptr), sourceTitle(nullptr), primaryMonitor(false), isOccluded(false) {}
 #endif
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FScreenCaptureSourceInfo {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
-	FENUMWRAP_ScreenCaptureSourceType type;
+	FENUMWRAP_ScreenCaptureSourceType type = FENUMWRAP_ScreenCaptureSourceType();
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
-	int64 sourceId;
+	int64 sourceId = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
-	FString sourceName;
+	FString sourceName = &quot;&quot;;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
-	FThumbImageBuffer thumbImage;
+	FThumbImageBuffer thumbImage = FThumbImageBuffer();
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
-	FThumbImageBuffer iconImage;
+	FThumbImageBuffer iconImage = FThumbImageBuffer();
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
-	FString processPath;
+	FString processPath = &quot;&quot;;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
-	FString sourceTitle;
+	FString sourceTitle = &quot;&quot;;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
-	bool primaryMonitor;
+	bool primaryMonitor = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
-	bool isOccluded;
+	bool isOccluded = false;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
+	FRectangle position = FRectangle();
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
+	bool minimizeWindow = false;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
+	int64 sourceDisplayId = 0;
+#if defined(_WIN32) || (defined(__APPLE__) &amp;&amp; TARGET_OS_MAC &amp;&amp; !TARGET_OS_IPHONE)
+	FScreenCaptureSourceInfo(){}
+	FScreenCaptureSourceInfo(const agora::rtc::ScreenCaptureSourceInfo &amp; AgoraData){
+		type = AgoraData.type;
+		sourceId = UABT::FromViewToInt(AgoraData.sourceId);
+		sourceName = UTF8_TO_TCHAR(AgoraData.sourceName);
+		thumbImage = FThumbImageBuffer(AgoraData.thumbImage);
+		iconImage = FThumbImageBuffer(AgoraData.iconImage);
+		processPath = UTF8_TO_TCHAR(AgoraData.processPath);
+		sourceTitle = UTF8_TO_TCHAR(AgoraData.sourceTitle);
+		primaryMonitor = AgoraData.primaryMonitor;
+		isOccluded = AgoraData.isOccluded;
+		position = FRectangle(AgoraData.position);
+#if defined(_WIN32)
+		minimizeWindow = AgoraData.minimizeWindow;
+		sourceDisplayId = UABT::FromViewToInt(AgoraData.sourceDisplayId);
+#endif
+	}
+	agora::rtc::ScreenCaptureSourceInfo CreateAgoraData() const {
+		agora::rtc::ScreenCaptureSourceInfo AgoraData;
+		AgoraData.type = static_cast&lt;agora::rtc::ScreenCaptureSourceType&gt;(type.GetRawValue());
+		AgoraData.sourceId = UABT::ToView(sourceId);
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.sourceName, sourceName)
+		AgoraData.thumbImage = thumbImage.CreateAgoraData();
+		AgoraData.iconImage = iconImage.CreateAgoraData();
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.processPath, processPath)
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.sourceTitle, sourceTitle)
+		AgoraData.primaryMonitor = primaryMonitor;
+		AgoraData.isOccluded = isOccluded;
+		AgoraData.position = position.CreateAgoraData();
+#if defined(_WIN32)
+		AgoraData.minimizeWindow = minimizeWindow;
+		AgoraData.sourceDisplayId = UABT::ToView(sourceDisplayId);
+#endif
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::ScreenCaptureSourceInfo &amp; AgoraData) const {
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.sourceName)
+		thumbImage.FreeAgoraData(AgoraData.thumbImage);
+		thumbImage.FreeAgoraData(AgoraData.iconImage);
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.processPath)
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.sourceTitle)
+		position.FreeAgoraData(AgoraData.position);
+	}
+#endif
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ScreenCaptureSourceInfo {
   
@@ -89,7 +143,7 @@ struct FScreenCaptureSourceInfo {
             <codeblock props="unity cs" outputclass="language-csharp">public class ScreenCaptureSourceInfo
     {
         public ScreenCaptureSourceType type;
-        public view_t sourceId;
+        public long sourceId;
         public string sourceName;
         public ThumbImageBuffer thumbImage;
         public ThumbImageBuffer iconImage;
@@ -97,7 +151,7 @@ struct FScreenCaptureSourceInfo {
         public string sourceTitle;
         public bool primaryMonitor;
         public Rectangle position;
-        public view_t sourceDisplayId;
+        public long sourceDisplayId;
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript"></codeblock>
             <codeblock props="flutter" outputclass="language-dart">class ScreenCaptureSourceInfo {
@@ -194,7 +248,7 @@ struct FScreenCaptureSourceInfo {
             </plentry>
             <plentry>
                 <pt>position</pt>
-                <pd><ph>The position of a window relative to the entire screen space (including all shareable screens). </ph><ph props="cpp unreal bp unity electron flutter">See <xref keyref="Rectangle"/>. </ph><ph props="mac">See <xref keyref="rect-link"/>.</ph></pd>
+                <pd><ph>The position of a window relative to the entire screen space (including all shareable screens). </ph><ph props="cpp unreal bp unity electron flutter">See <xref keyref="Rectangle"/>.</ph><ph props="mac">See <xref keyref="rect-link"/>.</ph></pd>
             </plentry>
             <plentry props="cpp unreal bp flutter rn electron">
                 <pt>minimizeWindow</pt>

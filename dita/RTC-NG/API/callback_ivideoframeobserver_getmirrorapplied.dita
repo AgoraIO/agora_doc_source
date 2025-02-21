@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">boolean getMirrorApplied();</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">getMirrorApplied?: () =&gt; boolean;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)getMirrorApplied;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual bool getMirrorApplied() { return false; }</codeblock>
          <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE(FGetMirrorApplied);</codeblock>
@@ -26,7 +27,10 @@
             <p>如果你希望获取的视频数据为原始视频的镜像，需要在调用 <xref keyref="registerVideoFrameObserver" /> 方法时注册该回调。成功注册视频数据观测器后，SDK 会在捕捉到每个视频帧时触发该回调，你需要在该回调的返回值中设置是否对原始视频数据作镜像处理。</p>
             <note type="attention">
                 <ul>
-                    <li>该功能仅支持 RGBA 和 YUV420 格式的视频数据。</li>
+                    <li props="android cpp unreal bp">在 Android 平台上，该回调支持的视频数据格式有：I420、RGBA 和 Texture。</li>
+                    <li props="cpp unreal bp">在 Windows 平台上，该回调支持的视频数据格式有：I420、RGBA 和 TextureBuffer。</li>
+                    <li props="ios cpp unreal bp">在 iOS 平台上，该回调支持的视频数据格式有：I420、RGBA 和 CVPixelBuffer。</li>
+                    <li props="mac cpp unreal bp">在 macOS 平台上，该回调支持的视频数据格式有：I420 和 RGBA。</li>
                     <li>该方法和 <xref keyref="setVideoEncoderConfiguration"/> 方法均支持设置镜像效果，声网建议你仅选择一种方法进行设置，同时使用两种方法会导致镜像效果叠加从而造成设置镜像失败。</li>
                 </ul>
             </note> </section>

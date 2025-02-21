@@ -86,6 +86,31 @@
     return climaxSegments;
   }
 }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class Music
+{
+  
+  public songCode:bigint = BigInt(0)
+  
+  public name:string = &quot;&quot;
+  
+  public singer:string = &quot;&quot;
+  
+  public poster:string = &quot;&quot;
+  
+  public releaseTime:string = &quot;&quot;
+  
+  public type:number = 0
+  
+  public pitchType:number = 0
+  
+  public durationS:number = 0
+  
+  public lyricTypes?:number[]
+  
+  public mvProperties?:MvProperty[]
+  
+  public climaxSegments?:ClimaxSegment[]
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMusic : NSObject
 @property(nonatomic, assign) NSInteger songCode;
 @property(nonatomic, assign) NSInteger type;
@@ -216,7 +241,7 @@
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
-            <dlentry props="native">
+            <dlentry props="android apple cpp">
                 <dt>自从</dt>
                 <dd>v4.1.0</dd>
             </dlentry>
@@ -249,10 +274,10 @@
                 <pt>type</pt>
                 <pd>音乐资源类型：
                     <ul>
-                    <li>1：左声道伴奏，右声道原唱的单音轨纯音频音源。</li>
-                    <li>2：只有伴唱的单音轨纯音频音源。</li>
-                    <li>3：只有原唱的单音轨纯音频音源。</li>
-                    <li>4：多音轨的纯音频音源。</li>
+                    <li>1：左声道伴奏，右声道原唱的单音轨音源。</li>
+                    <li>2：只有伴唱的单音轨音源。</li>
+                    <li>3：只有原唱的单音轨音源。</li>
+                    <li>4：多音轨音源。</li>
                     </ul></pd>
             </plentry>
             <plentry>
@@ -269,7 +294,7 @@
                 <pd>音乐资源总时长 （秒）。</pd>
             </plentry>
             <plentry>
-                <pt props="android">lyricTypes</pt>
+                <pt props="android hmos">lyricTypes</pt>
                 <pt props="apple cpp framework">lyricList</pt>
                 <pd>支持的歌词类型：
                     <ul>
@@ -278,7 +303,7 @@
                     </ul></pd>
             </plentry>
             <plentry>
-                <pt props="android">climaxSegments</pt>
+                <pt props="android hmos">climaxSegments</pt>
                 <pt props="apple cpp framework">climaxSegmentList</pt>
                 <pd>音乐高潮片段列表，详见 <xref keyref="ClimaxSegment"/>。</pd>
             </plentry>

@@ -24,7 +24,8 @@
     lowlightEnhanceLevel = level;
   }
 }</codeblock>
-      <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLowlightEnhanceOptions : NSObject
+      <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLowlightEnhanceOptions : NSObject
 @property(nonatomic, assign) AgoraLowlightEnhanceMode mode;
 @property(nonatomic, assign) AgoraLowlightEnhanceLevel level;
 @end</codeblock>
@@ -48,13 +49,16 @@
 };
 </codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
-struct FLowlightEnhanceOptions
+struct FUABT_LowlightEnhanceOptions
 {
 	GENERATED_BODY()
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LowlightEnhanceOptions&quot;)
-	ELOW_LIGHT_ENHANCE_MODE mode = ELOW_LIGHT_ENHANCE_MODE::LOW_LIGHT_ENHANCE_AUTO;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LowlightEnhanceOptions&quot;)
-	ELOW_LIGHT_ENHANCE_LEVEL level = ELOW_LIGHT_ENHANCE_LEVEL::LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY;
+
+public:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	EUABT_LOW_LIGHT_ENHANCE_MODE mode = EUABT_LOW_LIGHT_ENHANCE_MODE::LOW_LIGHT_ENHANCE_AUTO;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	EUABT_LOW_LIGHT_ENHANCE_LEVEL level = EUABT_LOW_LIGHT_ENHANCE_LEVEL::LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY;
 };</codeblock>
       <codeblock props="unity cs" outputclass="language-csharp">public class LowlightEnhanceOptions
     {
@@ -74,15 +78,15 @@ struct FLowlightEnhanceOptions
         }
     };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class LowlightEnhanceOptions {
-  
+
   mode?: LowLightEnhanceMode;
-  
+
   level?: LowLightEnhanceLevel;
 }</codeblock>
       <codeblock props="rn" outputclass="language-typescript">export class LowlightEnhanceOptions {
-  
+
   mode?: LowLightEnhanceMode;
-  
+
   level?: LowLightEnhanceLevel;
 }</codeblock>
       <codeblock props="flutter" outputclass="language-dart">class LowlightEnhanceOptions {
@@ -99,7 +103,7 @@ struct FLowlightEnhanceOptions
       _$LowlightEnhanceOptionsFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$LowlightEnhanceOptionsToJson(this);
-}</codeblock>            
+}</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
     </section>
     <section id="parameters">
@@ -109,7 +113,7 @@ struct FLowlightEnhanceOptions
       <plentry>
         <pt>level</pt>
         <pd><ph>暗光增强等级。</ph><ph props="apple cpp unreal bp rn unity electron flutter cs">详见 <xref keyref="LOW_LIGHT_ENHANCE_LEVEL"/>。</ph>
-            <ul props="android">
+            <ul props="android hmos">
             <li><ph keyref="LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY"/>(0):（默认）优先画质的暗光增强，会处理视频图像的亮度、细节、噪声，消耗的性能适中，处理速度适中，综合画质最优。</li>
             <li><ph keyref="LOW_LIGHT_ENHANCE_LEVEL_FAST"/>(1)：优先性能的暗光增强，会处理视频图像的亮度、细节，消耗的性能较少，处理速度较快。</li>
             </ul> </pd>
@@ -117,7 +121,7 @@ struct FLowlightEnhanceOptions
       <plentry>
         <pt>mode</pt>
         <pd><ph>暗光增强模式。</ph><ph props="apple cpp unreal bp rn unity electron flutter cs">详见 <xref keyref="LOW_LIGHT_ENHANCE_MODE"/>。</ph>
-            <ul props="android">
+            <ul props="android hmos">
             <li><ph keyref="LOW_LIGHT_ENHANCE_AUTO"/>(0):（默认）自动模式。SDK 会根据环境光亮度自动开启或关闭暗光增强功能，以适时补光和防止过曝。</li>
             <li><ph keyref="LOW_LIGHT_ENHANCE_MANUAL"/>(1)：手动模式。用户需手动开启或关闭暗光增强功能。 </li>
             </ul> </pd>

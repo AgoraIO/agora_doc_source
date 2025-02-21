@@ -22,6 +22,29 @@
     recordingChannel = 1;
   }
 }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class AudioRecordingConfiguration{
+  
+  public filePath:string;
+  
+  public sampleRate:number;
+  
+  public codec:boolean;
+  
+  public fileRecordOption:number;
+  
+  public quality:number;
+  
+  public recordingChannel:number;
+  
+  public constructor(filepath:string) {
+    this.filePath = filepath;
+    this.sampleRate = 32000;
+    this.codec = true;
+    this.fileRecordOption = Constants.AudioRecordingType.MIXED;
+    this.quality = Constants.AudioRecordingQuality.MEDIUM;
+    this.recordingChannel = 1;
+  }
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioRecordingConfiguration: NSObject
 @property (copy, nonatomic) NSString * _Nullable filePath;
 @property (assign, nonatomic) NSUInteger sampleRate;
@@ -73,19 +96,41 @@
 struct FAudioRecordingConfiguration
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioRecordingConfiguration&quot;)
-	FString filePath;
+	FString filePath = &quot;&quot;;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioRecordingConfiguration&quot;)
-	bool encode;
+	bool encode = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioRecordingConfiguration&quot;)
-	int sampleRate;
+	int sampleRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioRecordingConfiguration&quot;)
 	EAUDIO_FILE_RECORDING_TYPE fileRecordingType = EAUDIO_FILE_RECORDING_TYPE::AUDIO_FILE_RECORDING_MIXED;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioRecordingConfiguration&quot;)
 	EAUDIO_RECORDING_QUALITY_TYPE quality = EAUDIO_RECORDING_QUALITY_TYPE::AUDIO_RECORDING_QUALITY_LOW;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioRecordingConfiguration&quot;)
-	int recordingChannel;
+	int recordingChannel = 0;
+	FAudioRecordingConfiguration(){}
+	FAudioRecordingConfiguration(const agora::rtc::AudioRecordingConfiguration &amp; AgoraData){
+		filePath = UTF8_TO_TCHAR(AgoraData.filePath);
+		encode = AgoraData.encode;
+		sampleRate = AgoraData.sampleRate;
+		fileRecordingType = static_cast&lt;EAUDIO_FILE_RECORDING_TYPE&gt;(AgoraData.fileRecordingType);
+		quality = static_cast&lt;EAUDIO_RECORDING_QUALITY_TYPE&gt;(AgoraData.quality);
+		recordingChannel = AgoraData.recordingChannel;
+	}
+	agora::rtc::AudioRecordingConfiguration CreateAgoraData() const {
+		agora::rtc::AudioRecordingConfiguration AgoraData;
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.filePath, this-&gt;filePath)
+		AgoraData.encode = encode;
+		AgoraData.sampleRate = sampleRate;
+		AgoraData.fileRecordingType = static_cast&lt;agora::rtc::AUDIO_FILE_RECORDING_TYPE&gt;(fileRecordingType);
+		AgoraData.quality = static_cast&lt;agora::rtc::AUDIO_RECORDING_QUALITY_TYPE&gt;(quality);
+		AgoraData.recordingChannel = recordingChannel;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::AudioRecordingConfiguration&amp; AgoraData) const {
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.filePath)
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class AudioRecordingConfiguration {
 
@@ -199,9 +244,9 @@ struct FAudioRecordingConfiguration
                     <p>请确保你指定的路径存在并且可写。</p>
                     </note> </pd>
             </plentry>
-            <plentry props="cpp android framework">
+            <plentry props="cpp android hmos framework">
                 <pt props="cpp unreal bp unity electron rn flutter cs">encode</pt>
-                <pt props="android">codec</pt>
+                <pt props="android hmos">codec</pt>
                 <pd>设置是否编码音频数据：
                     <ul id="ul_bnv_mlz_mqb">
                     <li><codeph><ph keyref="true" /></codeph>: 将音频数据用 AAC 编码。</li>
@@ -226,7 +271,7 @@ struct FAudioRecordingConfiguration
                 <pt props="android ios mac">fileRecordOption</pt>
                 <pd>
                     <p props="ios mac cpp unreal bp unity flutter electron rn cs">录音内容。详见 <xref keyref="AUDIO_FILE_RECORDING_TYPE" />。</p>
-                    <p props="android">录音内容：
+                    <p props="android hmos">录音内容：
                     <ul>
                     <li><ph keyref="AUDIO_FILE_RECORDING_MIC" /> (1)：仅录制本地用户的音频。</li>
                     <li><ph keyref="AUDIO_FILE_RECORDING_PLAYBACK" /> (2)：仅录制所有远端用户的音频。</li>
@@ -238,7 +283,7 @@ struct FAudioRecordingConfiguration
                 <pt>quality</pt>
                 <pd>
                     <p props="ios mac cpp unreal bp unity electron rn flutter cs">录音音质。详见 <xref keyref="AUDIO_RECORDING_QUALITY_TYPE" />。</p>
-                    <p props="android">录音音质：
+                    <p props="android hmos">录音音质：
                     <ul>
                     <li><ph keyref="AUDIO_RECORDING_QUALITY_LOW" /> (0)：低音质。例如，采样率为 32000 Hz，录音时长为 10 分钟的 AAC 文件大小约为 1.2 MB。</li>
                     <li><ph keyref="AUDIO_RECORDING_QUALITY_MEDIUM" /> (1)：（默认）中音质。例如，采样率为 32000 Hz，录音时长为 10 分钟的 AAC 文件大小约为 2 MB。</li>

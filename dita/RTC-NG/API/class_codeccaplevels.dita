@@ -21,6 +21,7 @@
     this.swDecodingLevel = swDecLevel;
   };
 };</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoCodecCapLevels : NSObject
 @property(assign, nonatomic) AgoraVideoCodecCapabilityLevel hwDecodingLevel;
 @property(assign, nonatomic) AgoraVideoCodecCapabilityLevel swDecodingLevel;
@@ -30,6 +31,29 @@
   VIDEO_CODEC_CAPABILITY_LEVEL swDecodingLevel;
 
   CodecCapLevels(): hwDecodingLevel(CODEC_CAPABILITY_LEVEL_UNSPECIFIED), swDecodingLevel(CODEC_CAPABILITY_LEVEL_UNSPECIFIED) {}
+};</codeblock>
+           <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FCodecCapLevels {
+	GENERATED_BODY()
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FCodecCapLevels&quot;)
+	FENUMWRAP_VIDEO_CODEC_CAPABILITY_LEVEL hwDecodingLevel;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FCodecCapLevels&quot;)
+	FENUMWRAP_VIDEO_CODEC_CAPABILITY_LEVEL swDecodingLevel;
+	
+	FCodecCapLevels() {}
+	FCodecCapLevels(const agora::rtc::CodecCapLevels&amp; AgoraData) {
+		hwDecodingLevel = AgoraData.hwDecodingLevel;
+		swDecodingLevel = AgoraData.swDecodingLevel;
+	}
+	agora::rtc::CodecCapLevels CreateAgoraData() const {
+		agora::rtc::CodecCapLevels AgoraData;
+		AgoraData.hwDecodingLevel = hwDecodingLevel.GetRawValue();
+		AgoraData.swDecodingLevel = swDecodingLevel.GetRawValue();
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::CodecCapLevels&amp; AgoraData) const {
+			}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class CodecCapLevels {
   hwDecodingLevel?: VideoCodecCapabilityLevel;
@@ -68,7 +92,7 @@ class CodecCapLevels {
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
-            <dlentry props="native">
+            <dlentry props="android apple cpp">
                 <dt>自从</dt>
                 <dd>v4.2.2</dd>
             </dlentry>
@@ -81,7 +105,7 @@ class CodecCapLevels {
             <plentry>
                 <pt>hwDecodingLevel</pt>
                 <pd>硬件解码能力等级，表示设备能够对不同品质视频进行硬件解码的能力。<ph props="cpp apple framework">详见 <xref keyref="VIDEO_CODEC_CAPABILITY_LEVEL"/>。</ph></pd>
-                <pd props="android" id="codec"><ul>
+                <pd props="android hmos" id="codec"><ul>
                     <li><ph keyref="CODEC_CAPABILITY_LEVEL_UNSPECIFIED"/> (-1)：不支持的视频类型。目前仅支持对 H.264 和 H.265 格式的视频进行查询，如果视频为其他格式，则返回该值。</li>
                     <li><ph keyref="CODEC_CAPABILITY_LEVEL_BASIC_SUPPORT"/> (5)：基本的编解码支持，即：对 1080p、30 fps 以下的视频进行编解码。</li>
                     <li><ph keyref="CODEC_CAPABILITY_LEVEL_1080P30FPS"/> (10)：最高支持对 1080p、30 fps 的视频进行编解码。</li>

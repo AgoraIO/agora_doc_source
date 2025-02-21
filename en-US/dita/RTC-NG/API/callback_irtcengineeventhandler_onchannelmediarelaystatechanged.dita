@@ -14,12 +14,14 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onChannelMediaRelayStateChanged(int state, int code) {}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">onChannelMediaRelayStateChanged?:(state:Constants.ChannelMediaRelayState,code:Constants.ChannelMediaRelayError) =&gt;void;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
 channelMediaRelayStateDidChange:(AgoraChannelMediaRelayState)state
             error:(AgoraChannelMediaRelayError)error;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onChannelMediaRelayStateChanged(CHANNEL_MEDIA_RELAY_STATE state,CHANNEL_MEDIA_RELAY_ERROR code) {
     }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnChannelMediaRelayStateChanged, int, state, int, code);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnChannelMediaRelayStateChanged(int state, int code);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onChannelMediaRelayStateChanged?(
     state: ChannelMediaRelayState,
     code: ChannelMediaRelayError
@@ -47,7 +49,7 @@ channelMediaRelayStateDidChange:(AgoraChannelMediaRelayState)state
             <plentry id="state">
                 <pt>state</pt>
                 <pd>
-                    <p props="ios mac cpp unreal unity flutter electron rn cs">The state code. See <xref keyref="CHANNEL_MEDIA_RELAY_STATE" />.</p>
+                    <p props="hmos ios mac cpp unreal unity flutter electron rn cs">The state code. See <xref keyref="CHANNEL_MEDIA_RELAY_STATE" />.</p>
                     <p props="android bp">The state code:<ul>
                     <li><ph keyref="RELAY_STATE_IDLE" />(0): The SDK is initializing.</li>
                     <li><ph keyref="RELAY_STATE_CONNECTING" />(1): The SDK tries to relay the media stream to the destination channel.</li>
@@ -59,17 +61,17 @@ channelMediaRelayStateDidChange:(AgoraChannelMediaRelayState)state
             <plentry id="code">
                 <pt>code</pt>
                 <pd>
-                    <p props="ios mac cpp unreal unity flutter electron rn cs">The error code of the channel media relay. See <xref keyref="CHANNEL_MEDIA_RELAY_ERROR" />.</p>
+                    <p props="hmos ios mac cpp unreal unity flutter electron rn cs">The error code of the channel media relay. See <xref keyref="CHANNEL_MEDIA_RELAY_ERROR" />.</p>
                     <p props="android bp">The error code of the channel media relay.<ul>
                     <li><ph keyref="RELAY_OK" />(0): Everything is normal.</li>
                     <li><ph keyref="RELAY_ERROR_SERVER_ERROR_RESPONSE" />(1): An error occurs in the server response.</li>
-                    <li><ph keyref="RELAY_ERROR_SERVER_NO_RESPONSE" />(2): No server response. This error may be caused by poor network connections. If this error occurs when initiating a cross-channel media relay, you can try again later; if this error occurs during the cross-channel media relay, you can call <xref keyref="leaveChannel2" /> to leave the channel. This error can also occur if your project has not enabled co-host token authentication. You can <xref keyref="ticket-link" /> to enable the service for cohosting across channels before starting a channel media relay.</li>
+                    <li><ph keyref="RELAY_ERROR_SERVER_NO_RESPONSE" />(2): No server response. This error may be caused by poor network connections. If this error occurs when initiating a channel media relay, you can try again later; if this error occurs during channel media relay, you can call <xref keyref="leaveChannel2" /> to leave the channel. This error can also occur if the channel media relay service is not enabled in the project. You can contact <xref keyref="ticket-link" /> to enable the service.</li>
                     <li><ph keyref="RELAY_ERROR_NO_RESOURCE_AVAILABLE" />(3): The SDK fails to access the service, probably due to limited resources of the server.</li>
                     <li><ph keyref="RELAY_ERROR_FAILED_JOIN_SRC" />4: The server fails to send the relay request.</li>
                     <li><ph keyref="RELAY_ERROR_FAILED_JOIN_DEST" />5: The server fails to accept the relay request.</li>
                     <li><ph keyref="RELAY_ERROR_FAILED_PACKET_RECEIVED_FROM_SRC" />6: The server fails to receive the media stream.</li>
                     <li><ph keyref="RELAY_ERROR_FAILED_PACKET_SENT_TO_DEST" />7: The server fails to send the media stream.</li>
-                    <li><ph keyref="RELAY_ERROR_SERVER_CONNECTION_LOST" />(8): The SDK disconnects from the server due to poor network connections. You can call the <xref keyref="leaveChannel2" /> method to leave the channel.</li>
+                    <li><ph keyref="RELAY_ERROR_SERVER_CONNECTION_LOST" />(8): The SDK disconnects from the server due to poor network connections. You can call <xref keyref="leaveChannel2" /> to leave the channel.</li>
                     <li><ph keyref="RELAY_ERROR_INTERNAL_ERROR" />(9): An internal error occurs in the server.</li>
                     <li><ph keyref="RELAY_ERROR_SRC_TOKEN_EXPIRED" />(10): The token of the source channel has expired.</li>
                     <li><ph keyref="RELAY_ERROR_DEST_TOKEN_EXPIRED" />(11): The token of the destination channel has expired.</li>

@@ -14,11 +14,12 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec"/>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual bool onSecondaryPreEncodeScreenVideoFrame(VideoFrame&amp; videoFrame) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">  onSecondaryPreEncodeScreenVideoFrame?(videoFrame: VideoFrame): boolean;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onSecondaryPreEncodeScreenVideoFrame?(videoFrame: VideoFrame): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript">  onSecondaryPreEncodeScreenVideoFrame?(videoFrame: VideoFrame): boolean;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onSecondaryPreEncodeScreenVideoFrame?(videoFrame: VideoFrame): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(VideoFrame videoFrame)?
       onSecondaryPreEncodeScreenVideoFrame;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
@@ -34,7 +35,7 @@
                     <li>This callback does not support sending processed RGBA video data back to the SDK.</li>
                 </ul>
             </note>
-            <note props="flutter" type="attention">Due to the limitations of Flutter, this callback does not support sending processed video data back to the SDK.</note>
+            <note props="flutter rn electron" type="attention">Due to framework limitations, this callback does not support sending processed video data back to the SDK.</note>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -44,7 +45,7 @@
                 <pd/>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="cpp unreal bp electron rn">
+        <section id="return_values" props="cpp unreal bp">
             <title>Returns</title>
             <p id="return">
             <ul>

@@ -14,11 +14,12 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int complain(String callId, String description);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)complain:(NSString * _Nonnull)callId
     description:(NSString * _Nullable)description;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int complain(const char* callId, const char* description) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
-	int Complain(FString callId, FString description);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+	int Complain(const FString&amp; callId, const FString&amp; description);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract complain(callId: string, description: string): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int Complain(string callId, string description);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract complain(callId: string, description: string): number;</codeblock>
@@ -43,18 +44,13 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul props="native unreal bp electron unity rn cs">
             <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul>
+                <li>-1: A general error occurs (no specified reason).</li>
                 <li>-2: The parameter is invalid.</li>
-                <li>- 3: The SDK is not ready. Possible reasons include the following:<ul>
-                            <li>The initialization of <xref keyref="IRtcEngine" /> fails. Reinitialize the <apiname keyref="IRtcEngine" />.</li>
-                            <li>No user has joined the channel when the method is called. Please check your code logic.</li>
-                            <li>The user has not left the channel when the <xref keyref="rate" /> or <xref keyref="complain" /> method is called. Please check your code logic.</li>
-                            <li>The audio module is disabled. The program is not complete.</li>
-                            </ul></li>
-                </ul></li>
+                <li>-7: The method is called before <xref keyref="IRtcEngine"/> is initialized.</li></ul></li>
             </ul> </section>
     </refbody>
 </reference>

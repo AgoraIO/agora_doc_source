@@ -14,10 +14,11 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setLogLevel(int level);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLogLevel:(AgoraLogLevel)level;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setLogLevel(commons::LOG_LEVEL level) = 0;
 </codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
 	int SetLogLevel(ELOG_LEVEL level);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setLogLevel(level: LogLevel): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetLogLevel(LOG_LEVEL level);</codeblock>
@@ -25,27 +26,26 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLogLevel(LogLevel level);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="deprecated">
             <dlentry>
                 <dt>Deprecated:</dt>
-                <dd>This method is deprecated. Use <xref keyref="RtcEngineConfig" /> instead to set the log output level.</dd>
+                <dd>This method is deprecated. Set the log file level by configuring the <parmname props="cpp unreal bp electron unity rn flutter cs">context</parmname><parmname props="android ios mac">config</parmname> parameter when calling <xref keyref="initialize"/>.</dd>
             </dlentry>
             </dl>
             <p>Choose a level to see the logs preceding that level.</p>
         </section>
-        <section id="parameters">
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>level</pt>
-                <pd>The log level: <xref keyref="LOG_LEVEL" />.</pd>
+                <pd>The log level. See <xref keyref="LOG_LEVEL" />.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul props="native unreal bp electron unity rn cs">
             <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>

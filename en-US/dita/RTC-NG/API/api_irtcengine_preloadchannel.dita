@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_preloadchannel">
     <title><ph keyref="preloadChannel"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Preloads a channel with <parmname>token</parmname>, <parmname props="apple cpp framework">channelId</parmname><parmname props="android">channelName</parmname>, and <parmname props="apple cpp framework">uid</parmname><parmname props="android">optionalUid</parmname>.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Preloads a channel with <parmname>token</parmname>, <parmname props="apple cpp framework">channelId</parmname><parmname props="android hmos">channelName</parmname>, and <parmname props="apple cpp framework">uid</parmname><parmname props="android hmos">optionalUid</parmname>.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,10 +14,13 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int preloadChannel(String token, String channelName, int optionalUid);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)preloadChannelByToken:(NSString * _Nullable)token
                    channelId:(NSString * _Nonnull)channelId
                          uid:(NSUInteger)uid NS_SWIFT_NAME(preloadChannel(byToken:channelId:uid:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp"> virtual int preloadChannel(const char* token, const char* channelId, uid_t uid) = 0;</codeblock>
+           <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+	int PreloadChannel(const FString &amp; token, const FString &amp; channelId, int64 uid);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract preloadChannel(
     token: string,
     channelId: string,
@@ -32,22 +35,29 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> preloadChannel(
       {required String token, required String channelId, required int uid});</codeblock> </p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
-            <dlentry props="native">
+            <dlentry props="android apple cpp">
                 <dt>Since</dt>
                 <dd>v4.2.2</dd>
             </dlentry>
             </dl>
-            <p id="desc1">When audience members need to switch between different channels frequently, calling the method can help shortening the time of joining a channel, thus reducing the time it takes for audience members to hear and see the host. As it may take a while for the SDK to preload a channel, Agora recommends that you call this method as soon as possible after obtaining the channel name and user ID to join a channel.</p>
-        <note><ul><li id="note1">When calling this method, ensure you set the user role as audience and do not set the audio scenario as <apiname keyref="AUDIO_SCENARIO_CHORUS"/>, otherwise, this method does not take effect.</li>
+            <p id="desc1">When audience members need to switch between different channels frequently, calling the method can help shortening the time of joining a channel, thus reducing the time it takes for audience members to hear and see the host.</p>
+            <p id="desc2">If you join a preloaded channel, leave it and want to rejoin the same channel, you do not need to call this method unless the token for preloading the channel expires.</p>
+            <note type="note" id="note3">Failing to preload a channel does not mean that you can't join a channel, nor will it increase the time of joining a channel.</note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>To improve the user experience of preloading channels, Agora recommends that before joining the channel, calling this method as early as possible once confirming the channel name and user information.</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <ul><li id="note1">When calling this method, ensure you set the user role as audience and do not set the audio scenario as <apiname keyref="AUDIO_SCENARIO_CHORUS"/>, otherwise, this method does not take effect.</li>
         <li>You also need to make sure that the channel name, user ID and token passed in for preloading are the same as the values passed in when joinning the channel, otherwise, this method does not take effect.</li>
         <li id="note2">One <xref keyref="IRtcEngine"/> instance supports preloading 20 channels at most. When exceeding this limit, the latest 20 preloaded channels take effect.</li>
-       <li id="note3">Failing to preload a channel does not mean that you can't join a channel, nor will it increase the time of joining a channel.</li></ul></note>
-       <p id="desc2">If you join a preloaded channel, leave it and want to rejoin the same channel, you do not need to call this method unless the token for preloading the channel expires.</p>
+       </ul>
         </section>
-        <section id="parameters">
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry id="token">
@@ -59,12 +69,12 @@
             </plentry>
             <plentry id="channel">
                 <pt props="apple cpp framework">channelId</pt>
-                <pt props="android">channelName</pt>
+                <pt props="android hmos">channelName</pt>
                 <pd><p>The channel name that you want to preload. This parameter signifies the channel in which users engage in real-time audio and video interaction. Under the premise of the same App ID, users who fill in the same channel ID enter the same channel for audio and video interaction. The string length must be less than 64 bytes. Supported characters (89 characters in total):<ul>
                     <li>All lowercase English letters: a to z.</li>
                     <li>All uppercase English letters: A to Z.</li>
                     <li>All numeric characters: 0 to 9.</li>
-                    <li>Space</li>
+                    <li props="hide">Space</li>
                     <li>"!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", ">", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","</li>
                     </ul></p></pd>
             </plentry>
@@ -75,7 +85,7 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul>
             <li props="native unreal bp unity rn electron cs">0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul>

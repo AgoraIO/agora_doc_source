@@ -15,6 +15,7 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">void onPlayerEvent(Constants.MediaPlayerEvent eventCode, long elapsedTime, String message);
 </codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">onPlayerEvent?:(eventCode:Constants.MediaPlayerEvent,elapsedTime:number,message:string) => void</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">(void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol&gt; _Nonnull)playerKit
               didOccurEvent:(AgoraMediaPlayerEvent)eventCode
                 elapsedTime:(NSInteger)elapsedTime
@@ -22,7 +23,8 @@
 </codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onPlayerEvent(media::base::MEDIA_PLAYER_EVENT eventCode, int64_t elapsedTime, const char* message) = 0;
 </codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnPlayerEvent, EMEDIA_PLAYER_EVENT, eventCode, int64, elapsedTime, const FString, message);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnPlayerEvent(EMEDIA_PLAYER_EVENT eventCode, int64 elapsedTime, const FString&amp; message);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onPlayerEvent?(
     eventCode: MediaPlayerEvent,
     elapsedTime: number,
@@ -53,7 +55,7 @@
             </plentry>
             <plentry props="native unreal bp unity flutter electron rn cs">
                 <pt>eventCode</pt>
-                <pd>The player events. See <xref keyref="MEDIA_PLAYER_EVENT" />.</pd>
+                <pd>The player event. See <xref keyref="MEDIA_PLAYER_EVENT" />.</pd>
             </plentry>
             <plentry>
                 <pt>elapsedTime</pt>

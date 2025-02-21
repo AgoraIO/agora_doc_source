@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec"/>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onAudioDeviceStateChanged(const char* deviceId,
      int deviceType,
@@ -22,7 +23,8 @@
      (void)deviceType;
      (void)deviceState;
      }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnAudioDeviceStateChanged, FString, deviceId, int, deviceType, int, deviceState);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnAudioDeviceStateChanged(const FString&amp; deviceId, int deviceType, int deviceState);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onAudioDeviceStateChanged?(
     deviceId: string,
     deviceType: MediaDeviceType,

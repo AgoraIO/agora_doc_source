@@ -15,6 +15,7 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int registerVideoEncodedFrameObserver(IVideoEncodedFrameObserver receiver);
 </codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)setEncodedVideoFrameDelegate:(id&lt;AgoraEncodedVideoFrameDelegate&gt; _Nullable)delegate;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int registerVideoEncodedFrameObserver(IVideoEncodedFrameObserver* observer) = 0;</codeblock>           
             <codeblock props="electron" outputclass="language-typescript">abstract registerVideoEncodedFrameObserver(
@@ -29,30 +30,20 @@
  </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>If you only want to observe encoded video frames (such as h.264 format) without decoding and rendering the video, Agora recommends that you implement one <xref keyref="IVideoEncodedFrameObserver"/> class through this method.</p>
-            <p id="mix">If you want to obtain the original video data of some remote users (referred to as group A) and the encoded video data of other remote users (referred to as group B), you can refer to the following steps:<ol>
-            <li>Call <xref keyref="registerVideoFrameObserver"/> to register the raw video frame observer before joining the channel.</li>
-            <li>Call <xref keyref="registerVideoEncodedFrameObserver"/> to register the encoded video frame observer before joining the channel.</li>
-            <li>After joining the channel, get the user IDs of group B users through <xref keyref="onUserJoined"/>, and then call <xref keyref="setRemoteVideoSubscriptionOptions"/> to set the <parmname>encodedFrameOnly</parmname> of this group of users to <codeph><ph keyref="true"/></codeph>.</li>
-            <li>Call <xref keyref="muteAllRemoteVideoStreams"/><codeph>(<ph keyref="false"/>)</codeph>to start receiving the video streams of all remote users. Then:<ul>
-                <li>The raw video data of group A users can be obtained through the callback in <xref keyref="IVideoFrameObserver"/>, and the SDK renders the data by default.</li>
-                <li>The encoded video data of group B users can be obtained through the callback in <xref keyref="IVideoEncodedFrameObserver"/>.</li>
-                </ul> </li>
-            </ol> </p>
+            <p>If you only want to observe encoded video frames (such as H.264 format) without decoding and rendering the video, Agora recommends that you implement one <xref keyref="IVideoEncodedFrameObserver"/> class through this method. <ph props="android cpp apple">For detailed implementation steps, please refer to <xref keyref="video-processing"/>.</ph></p>
             <note type="attention">
-            <ul>
-            <li>Call this method before joining a channel.</li>
-            </ul></note> </section>
+            <p>Call this method before joining a channel.</p>
+            </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt props="ios mac">delegate</pt>
-                <pt props="android">receiver</pt>
+                <pt props="android hmos">receiver</pt>
                 <pt props="cpp unreal bp electron rn flutter">observer</pt>
                 <pt props="unity cs">videoEncodedImageReceiver</pt>
                 <pd props="android cpp unreal bp unity rn electron flutter cs">The video frame observer object. See <xref keyref="IVideoEncodedFrameObserver"/>.</pd>
-                <pd props="ios mac">The  observer instance. See <xref keyref="IVideoEncodedFrameObserver"/>. Set the value as <ph keyref="NULL"/> to release the instance.</pd>
+                <pd props="ios mac">The observer instance. See <xref keyref="IVideoEncodedFrameObserver"/>. Set the value as <ph keyref="NULL"/> to release the instance.</pd>
             </plentry>
             <plentry props="unity cs">
                 <pt>mode</pt>
@@ -61,7 +52,7 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul props="android cpp unreal bp electron rn unity cs">
             <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>

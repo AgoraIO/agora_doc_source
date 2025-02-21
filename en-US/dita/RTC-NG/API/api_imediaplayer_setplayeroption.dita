@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_setplayeroption">
     <title><ph keyref="setPlayerOption"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Set media player options for providing technical previews or special customization features.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets media player options.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,21 +14,35 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">int setPlayerOption(String key, int value);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public abstract setPlayerOption(key:string, value:number);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setPlayerOption:(NSString *)key value:(NSInteger)value NS_SWIFT_NAME(setPlayerOption(_:value:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setPlayerOption(const char* key, int64_t value) = 0;</codeblock>
+           <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IMediaPlayer&quot;)
+	int SetPlayerOptionWithInt(const FString &amp; key, int value);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setPlayerOptionInInt(key: string, value: number): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetPlayerOption(string key, int value);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setPlayerOptionInInt(key: string, value: number): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setPlayerOptionInInt({required String key, required int value});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <p id="desc1">The media player supports setting options through <parmname>key</parmname> and <parmname>value</parmname>. In general, you don't need to know about the option settings. You can use the default option settings of the media player.</p>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p id="desc1">The media player supports setting options through <parmname>key</parmname> and <parmname>value</parmname>.</p>
             <p>The difference between this method and <xref keyref="setPlayerOption2"/> is that the <parmname>value</parmname> parameter of this method is of type Int, while the <parmname>value</parmname> of <apiname keyref="setPlayerOption2"/> is of type String. These two methods cannot be used together.</p>
-            <note type="attention" id="desc2">Ensure that you call this method before <xref keyref="open"/> or <xref keyref="openWithMediaSource"/>.</note> </section>
-        <section id="parameters">
-            <title>Parameters</title>
+            </section>
+            <section id="scenario" deliveryTarget="details">
+                <title>Applicable scenarios</title>
+                <p>Scenarios that require technical previews or special customization features. In general, you do not need to call this method; you can simply use the default options provided by the media player.</p>
+            </section>
+            <section id="timing" deliveryTarget="details">
+                <title>Call timing</title>
+                <p>Call this method before the <xref keyref="open"/> or <xref keyref="openWithMediaSource"/> method.</p>
+            </section>        
+            <section id="restriction" deliveryTarget="details">
+                <title>Restrictions</title>
+                <p>None.</p>
+            </section>
+            <section id="parameters" deliveryTarget="details">
+                <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>key</pt>
@@ -41,7 +55,7 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul props="native unreal bp electron unity rn cs">
             <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>

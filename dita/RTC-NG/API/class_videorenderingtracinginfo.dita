@@ -15,6 +15,7 @@
   public int remoteJoined2UnmuteVideo;
   public int remoteJoined2PacketReceived;
 };</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraVideoRenderingTracingInfo) __attribute__((visibility("default"))) @interface AgoraVideoRenderingTracingInfo : NSObject
 @property (assign, nonatomic) NSInteger elapsedTime NS_SWIFT_NAME(elapsedTime);
 @property (assign, nonatomic) NSInteger start2JoinChannel NS_SWIFT_NAME(start2JoinChannel);
@@ -34,23 +35,45 @@
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FVideoRenderingTracingInfo {
-
 	GENERATED_BODY()
-
+public: 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoRenderingTracingInfo&quot;)
-	int elapsedTime;
+	int elapsedTime = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoRenderingTracingInfo&quot;)
-	int start2JoinChannel;
+	int start2JoinChannel = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoRenderingTracingInfo&quot;)
-	int join2JoinSuccess;
+	int join2JoinSuccess = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoRenderingTracingInfo&quot;)
-	int joinSuccess2RemoteJoined;
+	int joinSuccess2RemoteJoined = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoRenderingTracingInfo&quot;)
-	int remoteJoined2SetView;
+	int remoteJoined2SetView = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoRenderingTracingInfo&quot;)
-	int remoteJoined2UnmuteVideo;
+	int remoteJoined2UnmuteVideo = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoRenderingTracingInfo&quot;)
-	int remoteJoined2PacketReceived;
+	int remoteJoined2PacketReceived = 0;
+	FVideoRenderingTracingInfo() {}
+	FVideoRenderingTracingInfo(const agora::rtc::VideoRenderingTracingInfo&amp; AgoraData) {
+		elapsedTime = AgoraData.elapsedTime;
+		start2JoinChannel = AgoraData.start2JoinChannel;
+		join2JoinSuccess = AgoraData.join2JoinSuccess;
+		joinSuccess2RemoteJoined = AgoraData.joinSuccess2RemoteJoined;
+		remoteJoined2SetView = AgoraData.remoteJoined2SetView;
+		remoteJoined2UnmuteVideo = AgoraData.remoteJoined2UnmuteVideo;
+		remoteJoined2PacketReceived = AgoraData.remoteJoined2PacketReceived;
+	}
+	agora::rtc::VideoRenderingTracingInfo CreateAgoraData() const {
+		agora::rtc::VideoRenderingTracingInfo AgoraData;
+		AgoraData.elapsedTime = elapsedTime;
+		AgoraData.start2JoinChannel = start2JoinChannel;
+		AgoraData.join2JoinSuccess = join2JoinSuccess;
+		AgoraData.joinSuccess2RemoteJoined = joinSuccess2RemoteJoined;
+		AgoraData.remoteJoined2SetView = remoteJoined2SetView;
+		AgoraData.remoteJoined2UnmuteVideo = remoteJoined2UnmuteVideo;
+		AgoraData.remoteJoined2PacketReceived = remoteJoined2PacketReceived;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::VideoRenderingTracingInfo&amp; AgoraData) const {
+			}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoRenderingTracingInfo {
   elapsedTime?: number;
@@ -121,7 +144,7 @@ class VideoRenderingTracingInfo {
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
-            <dlentry props="native">
+            <dlentry props="android apple cpp">
                 <dt>自从</dt>
                 <dd>v4.1.1</dd>
             </dlentry>
@@ -133,22 +156,22 @@ class VideoRenderingTracingInfo {
             <parml>
             <plentry>
                 <pt>elapsedTime</pt>
-                <pd>从调用 <xref keyref="startMediaRenderingTracing"/> 到触发 <xref keyref="onVideoRenderingTracingResult"/> 回调的时间间隔。单位为毫秒。建议在加入频道前调用 <apiname keyref="startMediaRenderingTracing"/>。</pd>
+                <pd>从调用 <xref keyref="startMediaRenderingTracing"/> 到触发 <xref keyref="onVideoRenderingTracingResult"/> 回调的时间间隔 (ms)。建议在加入频道前调用 <apiname keyref="startMediaRenderingTracing"/>。</pd>
             </plentry>
             <plentry>
                 <pt>start2JoinChannel</pt>
-                <pd>从调用 <apiname keyref="startMediaRenderingTracing"/> 到调用 <xref keyref="joinChannel2"/> 的时间间隔。单位为毫秒。负数表示在调用 <apiname keyref="joinChannel2"/> 后调用 <apiname keyref="startMediaRenderingTracing"/>。</pd>
+                <pd>从调用 <apiname keyref="startMediaRenderingTracing"/> 到调用 <ph props="native unreal unity cs"><apiname keyref="joinChannel1" /> 或 </ph><xref keyref="joinChannel2"/> 的时间间隔 (ms)。负数表示在调用 <apiname keyref="joinChannel2"/> 后调用 <apiname keyref="startMediaRenderingTracing"/>。</pd>
             </plentry>
             <plentry>
                 <pt>join2JoinSuccess</pt>
-                <pd>从调用 <apiname keyref="joinChannel2"/> 到成功加入频道的时间间隔。单位为毫秒。</pd>
+                <pd>从调用 <apiname keyref="joinChannel1"/> 或 <apiname keyref="joinChannel2"/> 到成功加入频道的时间间隔 (ms)。</pd>
             </plentry>
             <plentry>
                 <pt>joinSuccess2RemoteJoined</pt>
                 <pd>
                     <ul>
-                    <li>如果本地用户成功加入频道前调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从本地用户成功加入频道到远端用户加入频道的时间间隔。单位为毫秒。</li>
-                    <li>如果本地用户成功加入频道后调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从调用 <apiname keyref="startMediaRenderingTracing"/> 到远端用户加入频道的时间间隔。单位为毫秒。</li>
+                    <li>如果本地用户成功加入频道前调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从本地用户成功加入频道到远端用户加入频道的时间间隔 (ms)。</li>
+                    <li>如果本地用户成功加入频道后调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从调用 <apiname keyref="startMediaRenderingTracing"/> 到远端用户加入频道的时间间隔 (ms)。</li>
                     </ul>
                     <note type="note">
                         <ul>
@@ -161,8 +184,8 @@ class VideoRenderingTracingInfo {
                 <pt>remoteJoined2SetView</pt>
                 <pd>
                     <ul>
-                    <li>如果本地用户在远端用户加入频道前调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从远端用户加入频道到本地用户设置远端视图的时间间隔。单位为毫秒。</li>
-                    <li>如果本地用户在远端用户加入频道后调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从调用 <apiname keyref="startMediaRenderingTracing"/> 到设置远端视图的时间间隔。单位为毫秒。</li>
+                    <li>如果本地用户在远端用户加入频道前调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从远端用户加入频道到本地用户设置远端视图的时间间隔 (ms)。</li>
+                    <li>如果本地用户在远端用户加入频道后调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从调用 <apiname keyref="startMediaRenderingTracing"/> 到设置远端视图的时间间隔 (ms)。</li>
                     </ul>
                     <note type="note">
                     <ul>
@@ -174,8 +197,8 @@ class VideoRenderingTracingInfo {
                 <pt>remoteJoined2UnmuteVideo</pt>
                 <pd>
                     <ul>
-                    <li>如果本地用户在远端用户加入频道前调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从远端用户加入频道到订阅远端视频流的时间间隔。单位为毫秒。</li>
-                    <li>如果本地用户在远端用户加入频道后调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从调用 <apiname keyref="startMediaRenderingTracing"/> 到订阅远端视频流的时间间隔。单位为毫秒。</li>
+                    <li>如果本地用户在远端用户加入频道前调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从远端用户加入频道到订阅远端视频流的时间间隔 (ms)。</li>
+                    <li>如果本地用户在远端用户加入频道后调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从调用 <apiname keyref="startMediaRenderingTracing"/> 到订阅远端视频流的时间间隔 (ms)。</li>
                     </ul>
                     <note type="note">
                         <ul>
@@ -188,8 +211,8 @@ class VideoRenderingTracingInfo {
                 <pt>remoteJoined2PacketReceived</pt>
                 <pd>
                     <ul>
-                    <li>如果本地用户在远端用户加入频道前调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从远端用户加入频道到本地用户接收到首个远端数据包的时间间隔。单位为毫秒。</li>
-                    <li>如果本地用户在远端用户加入频道后调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从调用 <apiname keyref="startMediaRenderingTracing"/> 到接收到首个远端数据包的时间间隔。单位为毫秒。</li>
+                    <li>如果本地用户在远端用户加入频道前调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从远端用户加入频道到本地用户接收到首个远端数据包的时间间隔 (ms)。</li>
+                    <li>如果本地用户在远端用户加入频道后调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从调用 <apiname keyref="startMediaRenderingTracing"/> 到接收到首个远端数据包的时间间隔 (ms)。</li>
                     </ul>
                     <note type="note">
                         <ul>

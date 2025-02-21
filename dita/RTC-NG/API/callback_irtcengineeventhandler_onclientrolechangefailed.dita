@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onclientrolechangefailed">
     <title><ph keyref="onClientRoleChangeFailed" /></title>
-    <shortdesc id="short"><ph id="shortdesc">直播场景下切换用户角色失败回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">用户角色切换失败回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,12 +14,14 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onClientRoleChangeFailed(int reason, int currentRole) {}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">onClientRoleChangeFailed?: (reason:number, currentRole:Constants.ClientRole) =&gt; void;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didClientRoleChangeFailed:(AgoraClientRoleChangeFailedReason)reason currentRole:(AgoraClientRole)currentRole;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onClientRoleChangeFailed(CLIENT_ROLE_CHANGE_FAILED_REASON reason, CLIENT_ROLE_TYPE currentRole) {
    (void)reason;
    (void)currentRole;
 }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnClientRoleChangeFailed, ECLIENT_ROLE_CHANGE_FAILED_REASON, reason, ECLIENT_ROLE_TYPE, currentRole);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnClientRoleChangeFailed(ECLIENT_ROLE_CHANGE_FAILED_REASON reason, ECLIENT_ROLE_TYPE currentRole);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onClientRoleChangeFailed?(
     connection: RtcConnection,
     reason: ClientRoleChangeFailedReason,
@@ -37,27 +39,46 @@
             ClientRoleType currentRole)? onClientRoleChangeFailed;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
       </section>
-       <section id="detailed_desc">
-            <p>直播场景下，本地用户加入频道后调用 <xref keyref="setClientRole2" /> 切换用户角色失败时，SDK 会触发该回调，报告切换失败的原因和当前的用户角色。</p>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>当用户角色切换失败时，你可以通过此回调得知切换失败的原因和当前的用户角色。</p>
         </section>
-        <section id="parameters">
+            <section id="timing" deliveryTarget="details">
+                <title>触发时机</title>
+                <p props="android cpp apple unity cs unreal">本地用户加入频道后调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2" /> 设置用户角色失败时，SDK 会触发该回调。</p>
+                <p props="hmos flutter rn electron bp">本地用户加入频道后调用 <xref keyref="setClientRole2" /> 设置用户角色失败时，SDK 会触发该回调。</p>
+            </section>
+            <section id="restriction" deliveryTarget="details">
+                <title>使用限制</title>
+                <p>无。</p>
+            </section>
+            <section id="parameters" deliveryTarget="details">
             <title><ph keyref="callback-section-title" /></title>
             <parml>
             <plentry>
                 <pt>reason</pt>
                 <pd props="ios mac cpp unreal bp unity electron rn flutter cs">切换用户角色失败的原因。详见 <xref keyref="CLIENT_ROLE_CHANGE_FAILED_REASON"/>。</pd>
-                <pd props="android">切换用户角色失败的原因。
+                <pd props="android hmos">切换用户角色失败的原因。
                     <ul>
                         <li><ph keyref="CLIENT_ROLE_CHANGE_FAILED_TOO_MANY_BROADCASTERS" />(1): 频道内主播人数达到上限。
                             <note type="note">该枚举仅在开启 128 人功能后报告。主播人数的上限根据开启 128 人功能时实际配置的人数而定。</note></li>
                         <li><ph keyref="CLIENT_ROLE_CHANGE_FAILED_NOT_AUTHORIZED" />(2): 请求被服务端拒绝。建议提示用户重新尝试切换用户角色。</li>
-                        <li><ph keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT" />(3): 请求超时。建议提示用户检查网络连接状况后重新尝试切换用户角色。</li>
-                        <li><ph keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED" />(4): 网络连接断开。可根据 <xref keyref="onConnectionStateChanged" /> 报告的 <parmname>reason</parmname>，排查网络连接失败的具体原因。</li>
+                        <li><ph keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT" />(3): 请求超时。建议提示用户检查网络连接状况后重新尝试切换用户角色。
+                            <dl outputclass="deprecated">
+                                <dlentry>
+                                <dt>废弃：</dt>
+                                <dd>该枚举值自 v4.4.0 起废弃，不建议使用。</dd>
+                                </dlentry></dl></li>
+                        <li><ph keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED" />(4): 网络连接断开。可根据 <xref keyref="onConnectionStateChanged" /> 报告的 <parmname>reason</parmname>，排查网络连接失败的具体原因。
+                            <dl outputclass="deprecated">
+                                <dlentry>
+                                <dt>废弃：</dt>
+                                <dd>该枚举值自 v4.4.0 起废弃，不建议使用。</dd>
+                                </dlentry></dl></li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>currentRole</pt>
-                <pd props="ios mac cpp unreal bp electron unity rn flutter cs">当前用户角色。详见 <xref keyref="CLIENT_ROLE_TYPE"/>。</pd>
+                <pd props="hmos ios mac cpp unreal bp electron unity rn flutter cs">当前用户角色。详见 <xref keyref="CLIENT_ROLE_TYPE"/>。</pd>
                 <pd props="android">当前用户角色。
                     <ul>
                         <li><ph keyref="CLIENT_ROLE_BROADCASTER" />(1): 主播。主播可以发流也可以收流。</li>

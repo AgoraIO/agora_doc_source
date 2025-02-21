@@ -14,10 +14,11 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int muteAllRemoteVideoStreamsEx(boolean muted, RtcConnection connection);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public abstract muteAllRemoteVideoStreamsEx(muted:boolean,connection:RtcConnection):number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)muteAllRemoteVideoStreamsEx:(BOOL)mute
                         connection:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(muteAllRemoteVideoStreamsEx(_:connection:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int muteAllRemoteVideoStreamsEx(bool mute, const RtcConnection&amp; connection) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
 	int MuteAllRemoteVideoStreamsEx(bool mute, const FRtcConnection&amp; connection);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract muteAllRemoteVideoStreamsEx(
     mute: boolean,
@@ -34,7 +35,7 @@
         <section id="detailed_desc">
             <title>Details</title>
             <dl outputclass="since">
-            <dlentry props="native">
+            <dlentry props="android apple cpp">
                 <dt>Since</dt>
                 <dd>v4.1.0</dd>
             </dlentry>
@@ -55,7 +56,7 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul props="native unreal bp unity rn electron cs">
             <li>0: Success.</li>
                 <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>

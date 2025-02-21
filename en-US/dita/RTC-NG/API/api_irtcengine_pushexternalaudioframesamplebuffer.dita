@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_pushexternalaudioframesamplebuffer">
-    <title><ph keyref="pushExternalAudioFrameSampleBuffer1" /></title>
+    <title><ph keyref="pushExternalAudioFrameSampleBuffer1"/></title>
     <shortdesc id="short"><ph id="shortdesc">Pushes external CMSampleBuffer audio frames.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="pushExternalAudioFrameSampleBuffer1" />
+                <indexterm keyref="pushExternalAudioFrameSampleBuffer1"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)pushExternalAudioFrameSampleBuffer:(CMSampleBufferRef _Nonnull)sampleBuffer;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+        </section>
+        <section id="detailed_desc">
+            <title>Details</title>
+            <dl outputclass="deprecated">
+            <dlentry>
+                <dt>Deprecated:</dt>
+                <dd>This method is deprecated as of v4.3.1. Use <xref keyref="pushExternalAudioFrameSampleBuffer2" /> instead.</dd>
+            </dlentry>
+            </dl>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -28,7 +38,7 @@
             <title>Returns</title>
             <ul>
             <li>0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul>
         </section>
     </refbody>

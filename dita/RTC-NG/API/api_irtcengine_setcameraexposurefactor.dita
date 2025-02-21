@@ -14,9 +14,12 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setCameraExposureFactor(int factor);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public abstract setCameraExposureFactor(factor: number): number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">
 - (CGFloat)setCameraExposureFactor:(CGFloat)exposureFactor NS_SWIFT_NAME(setCameraExposureFactor(_:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setCameraExposureFactor(float factor) = 0;</codeblock>
+           <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+	int SetCameraExposureFactor(float factor);</codeblock>
             <codeblock props="electron" outputclass="language-typescript"></codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetCameraExposureFactor(float factor);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setCameraExposureFactor(factor: number): number;</codeblock>
@@ -26,7 +29,7 @@
         <section id="detailed_desc">
             <title>详情</title>
             <dl outputclass="since">
-            <dlentry props="native">
+            <dlentry props="android apple cpp">
                 <dt>自从</dt>
                 <dd>v4.2.2</dd>
             </dlentry>
@@ -48,7 +51,7 @@
                 <pt props="android cpp unreal bp flutter unity rn">factor</pt>
                 <pd>
                     <p>摄像头的曝光系数。默认值为 0，表示使用摄像头的默认曝光量。取值越大，曝光量越大。视频图像过曝时，你可以降低曝光系数；视频图像欠曝且暗部细节丢失时，你可以增加曝光系数。如果你指定的曝光系数超出设备支持的范围，SDK 会自动调节为设备实际支持的范围。</p>
-                    <p props="android">取值范围为 [-20,20]。</p>
+                    <p props="android hmos">取值范围为 [-20,20]。</p>
                     <p props="ios">取值范围为 [-8.0,8.0]。</p>
                     <p props="cpp unreal bp flutter unity rn">在 Android 平台上，取值范围为 [-20.0,20.0]；在 iOS 平台上，取值范围为 [-8.0,8.0]。</p>
                 </pd>

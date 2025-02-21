@@ -14,9 +14,10 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setBeautyEffectOptions(boolean enabled, BeautyOptions options);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setBeautyEffectOptions:(BOOL)enable options:(AgoraBeautyOptions* _Nullable)options;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setBeautyEffectOptions(bool enabled, const BeautyOptions&amp; options, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
 	int SetBeautyEffectOptions(bool enabled, const FBeautyOptions&amp; options, EMEDIA_SOURCE_TYPE type);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setBeautyEffectOptions(
     enabled: boolean,
@@ -35,18 +36,22 @@
     MediaSourceType type = MediaSourceType.primaryCameraSource});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p>Enables or disables image enhancement, and sets the options.</p>
-            <note type="note" id="req">
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>Call this method after calling <xref keyref="enableVideo" /> or <xref keyref="startPreview2" />.</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
                 <ul>
-                    <li>Call this method before calling <xref keyref="enableVideo" /> or <xref keyref="startPreview2" />.</li>
                     <li props="android">This method only applies to Android 5.0 or later.</li>
                     <li>This method relies on the image enhancement dynamic library <codeph><ph keyref="clearvision"/></codeph>. If the dynamic library is deleted, the function cannot be enabled normally.</li>
                     <li>This feature has high requirements on device performance. When calling this method, the SDK automatically checks the capabilities of the current device.</li>
                 </ul>
-            </note> </section>
-        <section id="parameters">
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry id="enable">
@@ -61,14 +66,14 @@
                 <pt>options</pt>
                 <pd>The image enhancement options. See <xref keyref="BeautyOptions" />.</pd>
             </plentry>
-            <plentry props="unity rn electron flutter cs" conkeyref="enableExtension/source">
-                <pt />
-                <pd />
+            <plentry conkeyref="setLowlightEnhanceOptions/type" props="cpp unreal bp rn unity electron flutter cs">
+                <pt/>
+                <pd/>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul props="native unreal bp electron unity rn cs">
             <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul>

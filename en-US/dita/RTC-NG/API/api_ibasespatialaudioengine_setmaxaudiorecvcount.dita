@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setMaxAudioRecvCount(int maxCount);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setMaxAudioRecvCount:(NSUInteger)maxCount;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setMaxAudioRecvCount(int maxCount) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|ILocalSpatialAudioEngine&quot;)
@@ -27,7 +28,7 @@
         <section id="detailed_desc">
             <title>Details</title>
             <p>If the number of receivable streams exceeds the set value, the local user receives the <parmname>maxCount</parmname> streams that are closest to the local user.</p>
-            <note type="note" props="hide"><draft-comment author="LuoDan">因为服务端空间音效不发布，所以不能体现 enterRoom。</draft-comment>You can call this method either before or after <xref keyref="enterRoom" />, with the following differences:<ul>
+            <note type="note" props="hide"><draft-comment author="LuoDan">因为服务端空间音频不发布，所以不能体现 enterRoom。</draft-comment>You can call this method either before or after <xref keyref="enterRoom" />, with the following differences:<ul>
                 <li>If you call this method before <apiname keyref="enterRoom" />, this method takes effect when entering the room.</li>
                 <li>If you call this method after <apiname keyref="enterRoom" />, this method takes effect immediately and changes the current maximum number of received streams of the local user.</li>
                 </ul></note> </section>
@@ -41,7 +42,7 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul props="native unreal bp electron unity rn cs">
             <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>

@@ -13,6 +13,7 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="mac" outputclass="language-objectivec">- (AgoraRtcDeviceInfo* _Nullable)getDefaultAudioDevice:(AgoraMediaDeviceType)type;
 </codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int getDefaultDevice(char deviceName[MAX_DEVICE_ID_LENGTH], char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
@@ -31,18 +32,16 @@
             <parml>
                 <plentry props="mac">
                     <pt>type</pt>
-                    <pd>
-                        <p>The device type. See <xref keyref="MEDIA_DEVICE_TYPE"/>.</p>
-                    </pd>
+                    <pd>Output parameter; the device type, see <xref keyref="MEDIA_DEVICE_TYPE"/>.</pd>
                 </plentry>
 
-            <plentry props="cpp unreal bp">
+            <plentry props="cpp unreal bp" id="name">
                 <pt>deviceName</pt>
-                <pd>Output parameter, the name of the system default audio device. The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>.</pd>
+                <pd>Output parameter; the name of the system's default audio device. <ph props="cpp unreal">The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>.</ph></pd>
             </plentry>
-            <plentry props="cpp unreal bp">
+            <plentry props="cpp unreal bp" id="id">
                     <pt>deviceId</pt>
-                    <pd>Output parameter, the device ID of the the system default audio device. The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>.</pd>
+                    <pd>Output parameter; the device ID of the system default audio device. <ph props="cpp unreal">The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>.</ph></pd>
                 </plentry>
             </parml> </section>
         <section id="return_values">
@@ -53,7 +52,7 @@
             </ul>
             <ul props="mac">
                 <li>Returns the <xref keyref="AgoraRtcDeviceInfo"/> object containing the default audio device information when the call succeeds.</li>
-                <li>Returns <xref keyref="NULL"/> when the call fails.</li>
+                <li>Returns <codeph><ph keyref="NULL"/></codeph> when the call fails.</li>
             </ul> </section>
     </refbody>
 </reference>

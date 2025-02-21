@@ -17,16 +17,35 @@
                     };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FLastmileProbeResult {
-
 	GENERATED_BODY()
-
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LastmileProbeResult&quot;)
 	ELASTMILE_PROBE_RESULT_STATE state = ELASTMILE_PROBE_RESULT_STATE::LASTMILE_PROBE_RESULT_UNAVAILABLE;
-
-	FLastmileProbeOneWayResult uplinkReport;
-
-	FLastmileProbeOneWayResult downlinkReport;
-
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LastmileProbeResult&quot;)
+	FLastmileProbeOneWayResult uplinkReport = FLastmileProbeOneWayResult();
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LastmileProbeResult&quot;)
+	FLastmileProbeOneWayResult downlinkReport = FLastmileProbeOneWayResult();
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LastmileProbeResult&quot;)
 	int64 rtt = 0;
+	FLastmileProbeResult(){}
+	FLastmileProbeResult(const agora::rtc::LastmileProbeResult &amp; AgoraData){
+		state = static_cast&lt;ELASTMILE_PROBE_RESULT_STATE&gt;(AgoraData.state);
+		uplinkReport = FLastmileProbeOneWayResult(AgoraData.uplinkReport);
+		downlinkReport = FLastmileProbeOneWayResult(AgoraData.downlinkReport);
+		rtt = AgoraData.rtt;
+	}
+	agora::rtc::LastmileProbeResult CreateAgoraData() const {
+		agora::rtc::LastmileProbeResult AgoraData;
+		AgoraData.state = static_cast&lt;agora::rtc::LASTMILE_PROBE_RESULT_STATE&gt;(state);
+		AgoraData.uplinkReport = uplinkReport.CreateAgoraData();
+		AgoraData.downlinkReport = downlinkReport.CreateAgoraData();
+		AgoraData.rtt = rtt;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::LastmileProbeResult &amp; AgoraData) const {
+		uplinkReport.FreeAgoraData(AgoraData.uplinkReport);
+		downlinkReport.FreeAgoraData(AgoraData.downlinkReport);
+	}
 };</codeblock>
             <codeblock props="android" outputclass="language-java">public static class LastmileProbeResult {
 
@@ -41,6 +60,16 @@ struct FLastmileProbeResult {
     public LastmileProbeOneWayResult uplinkReport = new LastmileProbeOneWayResult();
     public LastmileProbeOneWayResult downlinkReport = new LastmileProbeOneWayResult();
   }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class LastmileProbeResult {
+  
+  public state:number = 0;
+  
+  public rtt:number = 0;
+  
+  public uplinkReport:LastmileProbeOneWayResult = new LastmileProbeOneWayResult();
+  
+  public downlinkReport:LastmileProbeOneWayResult = new LastmileProbeOneWayResult();
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLastmileProbeResult : NSObject
 
 @property (assign, nonatomic) AgoraLastmileProbeResultState state;
@@ -115,13 +144,13 @@ struct FLastmileProbeResult {
                 <pt>state</pt>
                 <pd>
                     <p props="ios mac cpp unreal bp unity electron rn flutter cs">Last mile 质量探测结果的状态。详见: <xref keyref="LASTMILE_PROBE_RESULT_STATE" /> 。</p>
-                    <p props="android">Last-mile 质量探测结果的状态，有如下几种：
+                    <p props="android hmos">Last mile 质量探测结果的状态，有如下几种：
 
 
                     <ul>
-                    <li><ph keyref="LASTMILE_PROBE_RESULT_COMPLETE" /> (1)：表示本次 Last-mile 质量探测是完整的。</li>
-                    <li><ph keyref="LASTMILE_PROBE_RESULT_INCOMPLETE_NO_BWE" /> (2)：表示本次 Last-mile 质量探测未进行带宽预测，因此结果不完整。一个可能的原因是测试资源暂时受限。</li>
-                    <li><ph keyref="LASTMILE_PROBE_RESULT_UNAVAILABLE" /> (3)：未进行 Last-mile 质量探测。一个可能的原因是网络连接中断。</li>
+                    <li><ph keyref="LASTMILE_PROBE_RESULT_COMPLETE" /> (1)：表示本次 Last mile 质量探测是完整的。</li>
+                    <li><ph keyref="LASTMILE_PROBE_RESULT_INCOMPLETE_NO_BWE" /> (2)：表示本次 Last mile 质量探测未进行带宽预测，因此结果不完整。一个可能的原因是测试资源暂时受限。</li>
+                    <li><ph keyref="LASTMILE_PROBE_RESULT_UNAVAILABLE" /> (3)：未进行 Last mile 质量探测。一个可能的原因是网络连接中断。</li>
                     </ul> </p>
                 </pd>
             </plentry>

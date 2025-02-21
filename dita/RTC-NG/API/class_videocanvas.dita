@@ -16,12 +16,14 @@
   public static final int VIEW_SETUP_MODE_ADD = 1;
   public static final int VIEW_SETUP_MODE_REMOVE = 2;
   public View view;
+  public SurfaceTexture surfaceTexture;
   public int renderMode;
   public int mirrorMode;
   public int setupMode = VIEW_SETUP_MODE_REPLACE;
   public int sourceType;
   public int mediaPlayerId;
   public Rect rect;
+  public boolean enableAlphaMask;
   public int backgroundColor;
   public Constants.VideoModulePosition position =
       Constants.VideoModulePosition.VIDEO_MODULE_POSITION_POST_CAPTURER;
@@ -46,6 +48,21 @@
   }
 }
 </codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class VideoCanvas{
+  public static readonly RENDER_MODE_HIDDEN = 1;
+  public static readonly RENDER_MODE_FIT = 2;
+  public static readonly VIDEO_MIRROR_MODE_ENABLED = 1;
+  public static readonly VIDEO_MIRROR_MODE_DISABLED = 2;
+  
+  public xcomponentId:string = &#x27;&#x27;;
+  public uid:number = 0;
+  public renderMode:number = VideoCanvas.RENDER_MODE_HIDDEN;
+  public mirrorMode:number = 0;
+  public sourceType:Constants.VideoSourceType = Constants.VideoSourceType.CAMERA_PRIMARY;
+  constructor(componentId:string) {
+    this.xcomponentId = componentId;
+  }
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcVideoCanvas : NSObject
 @property(assign, nonatomic) NSUInteger uid;
 @property(assign, nonatomic) NSUInteger subviewUid;
@@ -60,7 +77,7 @@
 @property(assign, nonatomic) BOOL enableAlphaMask;
 @property(assign, nonatomic) AgoraVideoModulePosition position;
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct VideoCanvas {
+            <codeblock props="unreal cpp" outputclass="language-cpp">struct VideoCanvas {
   uid_t uid;
   uid_t subviewUid;
   view_t view;
@@ -94,42 +111,66 @@
 struct FVideoCanvas
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
-	UImage* view;
+	int64 uid = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
+	int64 subviewUid = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
+	UImage* view = nullptr;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
+	int64 backgroundColor = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
 	ERENDER_MODE_TYPE renderMode = ERENDER_MODE_TYPE::RENDER_MODE_HIDDEN;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
 	EVIDEO_MIRROR_MODE_TYPE mirrorMode = EVIDEO_MIRROR_MODE_TYPE::VIDEO_MIRROR_MODE_AUTO;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
-	int64 uid;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
-	bool isScreenView = false;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
-	int64 priv_size;
+	EVIDEO_VIEW_SETUP_MODE setupMode = EVIDEO_VIEW_SETUP_MODE::VIDEO_VIEW_SETUP_REPLACE;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
 	EVIDEO_SOURCE_TYPE sourceType = EVIDEO_SOURCE_TYPE::VIDEO_SOURCE_CAMERA_PRIMARY;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
-	FRectangle cropArea;
+	int mediaPlayerId = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
-	EVIDEO_VIEW_SETUP_MODE setupMode = EVIDEO_VIEW_SETUP_MODE::VIDEO_VIEW_SETUP_REPLACE;
-};</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp">struct VideoCanvas {
-    view_t view;
-    uid_t uid;
-    VIDEO_SOURCE_TYPE sourceType;
-    int mediaPlayerId;
+	FRectangle cropArea;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
+	bool enableAlphaMask = false;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
+	EVIDEO_MODULE_POSITION position = EVIDEO_MODULE_POSITION::POSITION_POST_CAPTURER;
 
-  VideoCanvas()
-    : view(NULL), uid(0), sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY) {}
-  
-  VideoCanvas(view_t v, uid_t u)
-    : view(v), uid(u),
-      sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY)
-  
-  VideoCanvas(view_t v, user_id_t)
-    : view(v), uid(0),
-      sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY) {}
+	FVideoCanvas(){}
+	FVideoCanvas(const agora::rtc::VideoCanvas &amp; AgoraData){
+		view = nullptr; 		uid = AgoraData.uid;
+		subviewUid = AgoraData.subviewUid;
+		backgroundColor = AgoraData.backgroundColor;
+		renderMode = static_cast&lt;ERENDER_MODE_TYPE&gt;(AgoraData.renderMode);
+		mirrorMode = static_cast&lt;EVIDEO_MIRROR_MODE_TYPE&gt;(AgoraData.mirrorMode);
+		setupMode = static_cast&lt;EVIDEO_VIEW_SETUP_MODE&gt;(AgoraData.setupMode);
+		sourceType = static_cast&lt;EVIDEO_SOURCE_TYPE&gt;(AgoraData.sourceType);
+		mediaPlayerId = AgoraData.mediaPlayerId;
+		cropArea = FRectangle(AgoraData.cropArea);
+		enableAlphaMask = AgoraData.enableAlphaMask;
+		position = static_cast&lt;EVIDEO_MODULE_POSITION&gt;(AgoraData.position);
+	}
+	agora::rtc::VideoCanvas CreateAgoraData() const {
+		agora::rtc::VideoCanvas AgoraData;
+		AgoraData.view = (agora::view_t) view;
+		AgoraData.uid = uid;
+		AgoraData.subviewUid = subviewUid;
+		AgoraData.backgroundColor = backgroundColor;
+		AgoraData.renderMode = static_cast&lt;agora::media::base::RENDER_MODE_TYPE&gt;(renderMode);
+		AgoraData.mirrorMode = static_cast&lt;agora::rtc::VIDEO_MIRROR_MODE_TYPE&gt;(mirrorMode);
+		AgoraData.setupMode = static_cast&lt;agora::rtc::VIDEO_VIEW_SETUP_MODE&gt;(setupMode);
+		AgoraData.sourceType = static_cast&lt;agora::rtc::VIDEO_SOURCE_TYPE&gt;(sourceType);
+		AgoraData.mediaPlayerId = AgoraData.mediaPlayerId;
+		AgoraData.cropArea = cropArea.CreateAgoraData();
+		AgoraData.enableAlphaMask = enableAlphaMask;
+		AgoraData.position = static_cast&lt;agora::media::base::VIDEO_MODULE_POSITION&gt;(position);
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::VideoCanvas&amp; AgoraData) const {
+		cropArea.FreeAgoraData(AgoraData.cropArea);
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoCanvas {
   view?: any
@@ -241,65 +282,70 @@ class VideoCanvas {
             <plentry>
                 <pt>uid</pt>
                 <pd>发布视频源的用户 ID。</pd>
-                <pd props="cpp unity rn flutter">对于 Android 和 iOS 平台，当视频源为合图视频流 (<apiname keyref="VIDEO_SOURCE_TRANSCODED"/>) 时，该参数表示发布合图视频流的用户 ID。</pd>
+                <pd props="cpp unity rn flutter">对于 Android 和 iOS 平台，当视频源为合图视频流 (<apiname keyref="VIDEO_SOURCE_TRANSCODED"/>) 时，该参数表示发布合图视频流的用户 ID。
+                      <note type="attention" props="rn">本地用户 <parmname>uid</parmname> 默认为 0。如果你想使用自定义的 <parmname>uid</parmname> 渲染本地视图，你还需要同时传入 <parmname>sourceType</parmname>。</note>
+                </pd>
                 <pd props="android ios">当视频源为合图视频流 (<apiname keyref="VIDEO_SOURCE_TRANSCODED"/>) 时，该参数表示发布合图视频流的用户 ID。</pd>
               </plentry>
-                <plentry>
+                <plentry props="android cpp apple framework">
                     <pt>subviewUid</pt>
-                    <pd props="android ios cpp unity rn flutter">发布某一路合图子视频流的用户 ID。</pd>
+                    <pd props="android ios cpp unreal bp unity rn flutter">发布某一路合图子视频流的用户 ID。</pd>
                     <pd props="mac electron">预留参数。
-                <note type="attention" props="cpp unity flutter">该参数仅适用于 Android 和 iOS 平台。</note></pd>
+                <note type="attention" props="cpp unreal bp unity flutter">该参数仅适用于 Android 和 iOS 平台。</note></pd>
                 </plentry>
                 <plentry>
                     <pt>view</pt>
-                    <pd props="native flutter unity cs electron rn">视频显示窗口。</pd>
+                    <pd props="native flutter unity cs electron rn">视频显示窗口。<ph props="android">必须为一个 <xref keyref="SurfaceView-link"/> 或 <xref keyref="TextureView-link"/> 对象。</ph>
+                      <note type="attention" props="native flutter unity cs rn">在一个 <apiname keyref="VideoCanvas"/> 中，你只能选择 <parmname>view</parmname> 或 <parmname>surfaceTexture</parmname> 其中一个进行设置，如果同时设置，只有 <parmname>view</parmname> 中的设置会生效。</note>
+                    </pd>
                     <pd props="unreal bp">视频图像。你需要定义 UImage 类型的指针，并传入该参数，示例代码如下： 
                         <codeblock props="unreal bp" outputclass="language-cpp">agora::rtc::VideoCanvas videoCanvas;
     UImage* LocalVideo;
     videoCanvas.view = LocalVideo;</codeblock></pd>
                 </plentry>
+                <plentry props="android hmos">
+                    <pt>surfaceTexture</pt>
+                    <pd>提供视频图像的容器，当你使用该成员时，需要自行实现 OPENGL 中的纹理绘制。详见 <xref keyref="SurfaceTexture-link"/>。 
+                      <note type="attention">在一个 <apiname keyref="VideoCanvas"/> 中，你只能选择 <parmname>view</parmname> 或 <parmname>surfaceTexture</parmname> 其中一个进行设置，如果同时设置，只有 <parmname>view</parmname> 中的设置会生效。</note></pd>
+                </plentry>
                 <plentry props="native flutter unity cs electron rn bp">
                     <pt>renderMode</pt>
                     <pd props="ios mac cpp unity electron rn flutter cs bp">视频渲染模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</pd>
-                    <pd props="android"><ul conkeyref="setLocalRenderMode2/rendermodetype"><li/></ul></pd>
+                    <pd props="android hmos"><ul conkeyref="setLocalRenderMode2/rendermodetype"><li/></ul></pd>
                 </plentry>
                 <plentry props="native flutter unity cs electron rn bp">
                     <pt>mirrorMode</pt>
                 <pd>
-                    <p props="ios mac cpp unity electron rn flutter cs bp">视图镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
-                    <p props="android">
-                    <ul conkeyref="setLocalRenderMode2/videomirrormodetype">
-                    <li/>
-                    </ul> </p>
-                    <note type="attention">
-                    <ul>
-                    <li>本地视图镜像模式：如果你使用前置摄像头，默认启动本地视图镜像模式；如果你使用后置摄像头，默认关闭本地视图镜像模式。</li>
-                    <li>远端用户视图镜像模式：默认关闭远端用户的镜像模式。</li>
-                    </ul> </note> </pd>
-            </plentry>
-            <plentry>
-                <pt>uid</pt>
-                <pd>用户 ID。</pd>
+                        <p props="ios mac cpp unity electron rn flutter cs bp">视图镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE" />。</p>
+                        <note conkeyref="setLocalRenderMode2/mirror" props="unreal bp"/>
+                        <p props="android hmos">
+                            <ul conkeyref="setLocalRenderMode2/videomirrormodetype">
+                                <li/>
+                            </ul>
+                        </p>
+                        <note type="attention">
+                            <ul>
+                                <li>本地视图镜像模式：如果你使用前置摄像头，默认启动本地视图镜像模式；如果你使用后置摄像头，默认关闭本地视图镜像模式。</li>
+                                <li>远端用户视图镜像模式：默认关闭远端用户的镜像模式。</li>
+                            </ul>
+                        </note>
+                    </pd>
             </plentry>
             <plentry id="sourcetype">
                 <pt>sourceType</pt>
                 <pd>视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
             </plentry>
-            <plentry props="android ios mac">
-                <pt>sourceId</pt>
-                <pd>视频源 ID。</pd>
-            </plentry>
-            <plentry props="native flutter unity cs electron rn bp">
+            <plentry props="android cpp apple  flutter unity cs electron rn bp">
                 <pt>setupMode</pt>
                 <pd props="ios mac cpp flutter unity cs electron rn bp">视图设置模式。详见 <xref keyref="VIDEO_VIEW_SETUP_MODE"/>。</pd>
-                <pd props="android">视图设置模式：
+                <pd props="android hmos">视图设置模式：
                 <ul>
                     <li><ph keyref="VIDEO_VIEW_SETUP_REPLACE"/> (0): (默认) 替换一个视图。</li>
                     <li><ph keyref="VIDEO_VIEW_SETUP_ADD"/> (1): 增加一个视图。</li>
                     <li><ph keyref="VIDEO_VIEW_SETUP_REMOVE"/> (2): 删除一个视图。</li>
                 </ul></pd>
             </plentry>
-            <plentry props="native unreal flutter unity cs electron rn">
+            <plentry props="android cpp apple unreal flutter unity cs electron rn">
                 <pt>mediaPlayerId</pt>
                 <pd>媒体播放器 ID。可通过 <xref keyref="getMediaPlayerId"/> 获取。</pd>
                 <pd>当 <parmname>sourceType</parmname> 为 <apiname keyref="VIDEO_SOURCE_MEDIA_PLAYER"/> 时，此参数为必填项。</pd>
@@ -316,23 +362,27 @@ class VideoCanvas {
             <pt>cropArea</pt>
             <pd>（可选）视频帧的展示区域，详见 <xref keyref="rect-link"/>。其中，<parmname>width</parmname> 和 <parmname>height</parmname> 表示该区域的视频像素宽度和高度。默认值为空值 (宽或高为 0)，表示展示实际分辨率的视频帧。</pd>
           </plentry>
-          <plentry props="native flutter unity cs electron rn">
+          <plentry props="android cpp apple framework">
               <pt>backgroundColor</pt>
               <pd>视频画布的背景颜色，格式为 RGBA。默认值为 0x00000000，代表完全透明的黑色。</pd>
           </plentry>
-          <plentry props="cpp ios mac unity electron flutter cs">
-              <pt>enableAlphaMask</pt>
-              <pd props="cpp mac unity electron flutter">（可选）接收端是否开启 alpha 遮罩渲染：
-                <ul>
-                  <li><codeph><ph keyref="true"/></codeph>：接收端开启 alpha 遮罩渲染。</li>
-                  <li><codeph><ph keyref="false"/></codeph>：（默认）接收端关闭 alpha 遮罩渲染。</li>
-                </ul>
-              <p>alpha 遮罩渲染可以创建具有透明效果的图像，还可以提取视频中的人像。与其他方法结合使用时，可以实现人像画中画、添加水印等效果。</p>
-              <note type="attention" props="cpp mac unity electron flutter"><ul><li>该属性仅适用于 macOS 平台。</li><li>仅当发送端开启 alpha 传输功能时，接收端才能渲染 alpha 通道的信息。</li><li>如需开启 alpha 传输功能，请<xref keyref="ticket-link"/>。</li></ul></note>
-              </pd>
-              <pd props="cs ios">预留。</pd>
-          </plentry>
-                <plentry>
+          <plentry props="android cpp apple  unreal bp unity electron flutter cs">
+                    <pt>enableAlphaMask</pt>
+                    <pd props="native unreal bp rn unity electron flutter">（可选）是否开启 Alpha 遮罩渲染： 
+                        <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：开启 Alpha 遮罩渲染。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）关闭 Alpha 遮罩渲染。</li>
+                        </ul>
+                        <p>Alpha 遮罩渲染可以创建具有透明效果的图像，还可以提取视频中的人像。与其他方法结合使用时，可以实现人像画中画、添加水印等效果。</p>
+                        <note type="attention" props="cpp unreal bp mac unity electron flutter">
+                        <ul>
+                            <li>仅当发送端开启 Alpha 传输功能时，接收端才能渲染 Alpha 通道的信息。</li>
+                            <li>如需开启 Alpha 传输功能，请<xref keyref="ticket-link"/>。</li>
+                        </ul>
+                        </note> </pd>
+                    <pd props="cs">预留。</pd>
+                </plentry>
+                <plentry props="android cpp apple framework">
                     <pt>position</pt>
                     <pd>视频帧在视频链路中的位置。详见 <xref keyref="VIDEO_MODULE_POSITION"/>。</pd>
                 </plentry>

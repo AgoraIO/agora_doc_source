@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onrtcstats">
     <title> <ph keyref="onRtcStats" /> </title>
-    <shortdesc id="short"><ph id="shortdesc">Reports the statistics of the current call.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Reports the statistics about the current call.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,22 +14,32 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onRtcStats(RtcStats stats) {}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">onRtcStats ? : (stats: RtcStats)  =&gt; void</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
     reportRtcStats:(AgoraChannelStats * _Nonnull)stats;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onRtcStats(const RtcStats&amp; stats) {
     (void)stats;
     }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnRtcStats, const FRtcStats&amp;, stats);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnRtcStats(const FRtcStats&amp; stats);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onRtcStats?(connection: RtcConnection, stats: RtcStats): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnRtcStats(RtcConnection connection, RtcStats stats) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onRtcStats?(connection: RtcConnection, stats: RtcStats): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, RtcStats stats)? onRtcStats;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <p id="desc">The SDK triggers this callback once every two seconds after the user joins the channel.</p>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p/>
         </section>
-        <section id="parameters">
+        <section id="timing" deliveryTarget="details">
+            <title>Trigger timing</title>
+            <p>The SDK triggers this callback once every two seconds after the user joins the channel.</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title> <ph keyref="callback-section-title" /> </title>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">

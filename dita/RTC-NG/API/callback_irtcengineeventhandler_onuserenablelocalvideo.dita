@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onUserEnableLocalVideo(int uid, boolean enabled) {}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
     didLocalVideoEnabled:(BOOL)enabled
     byUid:(NSUInteger)uid</codeblock>
@@ -21,7 +22,8 @@
     (void)uid;
     (void)enabled;
     }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnUserEnableLocalVideo, int64, uid, bool, enabled);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnUserEnableLocalVideo(int64 uid, bool enabled);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onUserEnableLocalVideo?(
     connection: RtcConnection,
     remoteUid: number,
@@ -38,10 +40,10 @@
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="deprecated" props="hide">
+            <dl outputclass="deprecated">
             <dlentry>
                 <dt>弃用：</dt>
-                <dd>请改用 <xref keyref="onRemoteVideoStateChanged" />回调的：
+                <dd>该回调已废弃，请改用 <xref keyref="onRemoteVideoStateChanged" /> 回调的如下枚举：
                     <ul>
                     <li> <apiname keyref="REMOTE_VIDEO_STATE_STOPPED" />(0) 和 <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED" />(5)。</li>
                     <li> <apiname keyref="REMOTE_VIDEO_STATE_DECODING" /> (2) 和 <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED" />(6)。</li>

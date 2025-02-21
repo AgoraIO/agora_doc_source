@@ -14,9 +14,10 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setVideoScenario(Constants.VideoScenario scenarioType);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setVideoScenario:(AgoraApplicationScenarioType)scenarioType NS_SWIFT_NAME(setVideoScenario(_:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setVideoScenario(VIDEO_APPLICATION_SCENARIO_TYPE scenarioType) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
 	int SetVideoScenario(EVIDEO_APPLICATION_SCENARIO_TYPE scenarioType);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setVideoScenario(scenarioType: VideoApplicationScenarioType): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetVideoScenario(VIDEO_APPLICATION_SCENARIO_TYPE scenarioType);</codeblock>
@@ -26,7 +27,7 @@
         <section id="detailed_desc">
             <title>详情</title>
             <dl outputclass="since">
-            <dlentry props="native">
+            <dlentry props="android apple cpp">
                 <dt>自从</dt>
                 <dd>v4.2.0</dd>
             </dlentry>
@@ -40,7 +41,7 @@
             <plentry>
                 <pt>scenarioType</pt>
                 <pd>视频业务场景。详见 <xref keyref="VIDEO_APPLICATION_SCENARIO_TYPE"/>。
-                <p id="meeting">设置为 <apiname keyref="APPLICATION_SCENARIO_MEETING"/> (1) 后，SDK 会启用以下策略：
+                <p id="meeting"><apiname keyref="APPLICATION_SCENARIO_MEETING"/> (1) 适用于会议场景。SDK 会针对该场景启用以下策略：
                     <ul>
                         <li>针对会议场景对小流码率要求较高的情况，自动启用多项抗弱网技术，提升小流的抗弱网能力，确保多路流订阅时接收端的流畅性。</li>
                         <li>实时监测接收端大流的订阅人数，根据订阅人数动态调节大流配置：<ul>
@@ -76,6 +77,8 @@
                         </li>
                     </ul>
                 </p>
+                <p id="1v1"><apiname keyref="APPLICATION_SCENARIO_1V1"/> (2) 适用于<xref keyref="one-to-one-live"/>场景。针对该场景低延迟、高画质的体验要求，SDK 进行了策略调优，提升了画质、首帧出图、中低端机延迟及弱网流畅度等性能表现。</p>
+                <p id="liveshow"><apiname keyref="APPLICATION_SCENARIO_LIVESHOW"/> (3) 适用于<xref keyref="showroom"/>场景。针对该场景对首帧出图时间和画质清晰度的高要求，SDK 进行了策略调优，例如，默认开启音视频帧加速渲染来提升首帧出图体验，无需再额外调用 <xref keyref="enableInstantMediaRendering"/>，同时会默认开启 B 帧来确保较高的图像质量、提高传输效率。此外，也增强了在弱网环境和低端设备上的画质和流畅度表现。</p>
                 </pd>
             </plentry>
             </parml>

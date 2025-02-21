@@ -12,6 +12,15 @@
     public int vad;
     public double voicePitch;
   }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class AudioVolumeInfo {
+  
+  public uid:number = 0;
+  
+  public volume:number = 0;
+  public vad:number = 0;
+  
+  public voicePitch:number = 0;
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcAudioVolumeInfo : NSObject
 @property(assign, nonatomic) NSUInteger uid;
 @property(assign, nonatomic) NSUInteger volume;
@@ -27,16 +36,33 @@
                     };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FAudioVolumeInfo {
-
 	GENERATED_BODY()
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioVolumeInfo&quot;)
-	int64 uid;
+	int64 uid = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioVolumeInfo&quot;)
-	int64 volume;
+	int64 volume = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioVolumeInfo&quot;)
-	int64 vad;
+	int64 vad = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioVolumeInfo&quot;)
-	float voicePitch;
+	float voicePitch = 0;
+	FAudioVolumeInfo(){}
+	FAudioVolumeInfo(const agora::rtc::AudioVolumeInfo &amp; AgoraData){
+		uid = AgoraData.uid;
+		volume = AgoraData.volume;
+		vad = AgoraData.vad;
+		voicePitch = AgoraData.voicePitch;
+	}
+	agora::rtc::AudioVolumeInfo CreateAgoraData() const {
+		agora::rtc::AudioVolumeInfo AgoraData;
+		AgoraData.uid = uid;
+		AgoraData.volume = volume;
+		AgoraData.vad = vad;
+		AgoraData.voicePitch = voicePitch;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::AudioVolumeInfo &amp; AgoraData) const {
+	}
 
 };</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class AudioVolumeInfo

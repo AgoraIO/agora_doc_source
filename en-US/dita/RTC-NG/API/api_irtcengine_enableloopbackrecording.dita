@@ -14,10 +14,11 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableLoopbackRecording:(BOOL)enabled deviceName:(NSString* _Nullable)deviceName NS_SWIFT_NAME(enableLoopbackRecording(_:deviceName:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">  virtual int enableLoopbackRecording(bool enabled, const char* deviceName = NULL) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
-	int EnableLoopbackRecording(bool enabled, FString deviceName);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+	int EnableLoopbackRecording(bool enabled, const FString &amp; deviceName);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract enableLoopbackRecording(
     enabled: boolean,
     deviceName?: string
@@ -37,17 +38,18 @@
             <note id="note_v4j_tbx_jqb" type="attention">
             <ul>
             <li props="cpp unreal bp unity flutter">This method applies to the macOS and Windows only.</li>
-            <li props="cpp unreal bp mac unity electron flutter">macOS does not support loopback audio capture of the default sound card. If you need to use this function, use a virtual sound card and pass its name to the <parmname>deviceName</parmname> parameter. Agora recommends using AgoraALD as the virtual sound card for audio capturing.</li>
+            <li props="mac">The macOS system's default sound card does not support recording functionality. As of v4.5.0, when you call this method for the first time, the SDK will automatically install the built-in AgoraALD virtual sound card developed by Agora. After successful installation, the audio routing will automatically switch to the virtual sound card and use it for audio capturing.</li>
             <li>You can call this method either before or after joining a channel.</li>
+            <li>If you call the <xref keyref="disableAudio"/> method to disable the audio module, audio capturing will be disabled as well. If you need to enable audio capturing, call the <xref keyref="enableAudio"/> method to enable the audio module and then call the <apiname keyref="enableLoopbackRecording"/> method.</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>enabled</pt>
-                <pd>Whether to enable loopback audio capturing.<ul id="ul_qjq_swq_t4b">
-                    <li><codeph><ph keyref="true"/></codeph>: Enable loopback audio capturing.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: (Default) Disable loopback audio capturing.</li>
+                <pd>Sets whether to enable loopback audio capturing.<ul id="ul_qjq_swq_t4b">
+                    <li><codeph><ph keyref="true"/></codeph>: Enable sound card capturing. You can find the name of the virtual sound card in your system's<b>Audio Devices > Output</b>.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Disable sound card capturing. The name of the virtual sound card will not be shown in your system's <b>Audio Devices > Output</b>.</li>
                     </ul></pd>
             </plentry>
             <plentry id="device_name">
@@ -63,7 +65,7 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul props="native unreal bp unity electron rn cs">
             <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>

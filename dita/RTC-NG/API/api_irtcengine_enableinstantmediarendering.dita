@@ -14,35 +14,38 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int enableInstantMediaRendering();</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableInstantMediaRendering NS_SWIFT_NAME(enableInstantMediaRendering());</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int enableInstantMediaRendering() = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
 	int EnableInstantMediaRendering();</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract enableInstantMediaRendering(): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int EnableInstantMediaRendering();</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract enableInstantMediaRendering(): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableInstantMediaRendering();</codeblock> </p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
-            <dlentry props="native">
+            <dlentry props="android apple cpp">
                 <dt>自从</dt>
                 <dd>v4.1.1</dd>
             </dlentry>
             </dl>
-            <p>成功调用该方法后，SDK 会开启加速出图和出声模式，可加快用户加入频道后的首帧出图与出声速度。
-                <note type="attention">
-                <ul>
-                    <li>一旦开启快速渲染功能，只能通过调用 <xref keyref="release"/> 方法销毁 <apiname keyref="IRtcEngine"/> 对象来取消。</li>
-                    <li>在该模式下，SDK 启用声网自定义加密算法来缩短建立传输链路的耗时，安全性相对于标准 DTLS (Datagram Transport Layer Security) 有所降低。如果业务场景对安全标准要求较高，请谨慎调用该方法。</li>
-                </ul>
-                </note></p>
+            <p>成功调用该方法后，SDK 会开启加速出图和出声模式，可加快用户加入频道后的首帧出图与出声速度。</p>
         </section>
-        <section id="scenario">
+        <section id="scenario" deliveryTarget="details">
             <title>适用场景</title>
             <p>声网推荐在直播场景下，对观众开启该模式。</p>
         </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>该方法需要在加入频道前调用。</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>主播端和观众端都需调用该方法开启音视频帧加速渲染才可体验该功能。</p>
+            <p>一旦成功调用该方法，只能通过调用 <xref keyref="release"/> 方法销毁 <apiname keyref="IRtcEngine"/> 对象来取消加速渲染。</p>
+         </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>

@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onFirstRemoteVideoDecoded(int uid, int width, int height, int elapsed) {}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
         firstRemoteVideoDecodedOfUid:(NSUInteger)uid size:(CGSize)size elapsed:(NSInteger)elapsed;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onFirstRemoteVideoDecoded(uid_t uid,
@@ -25,7 +26,8 @@
     (void)height;
     (void)elapsed;
     }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnFirstRemoteVideoDecoded, int64, uid, int, width, int, height, int, elapsed);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnFirstRemoteVideoDecoded(int64 uid, int width, int height, int elapsed);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onFirstRemoteVideoDecoded?(
     connection: RtcConnection,
     remoteUid: number,
@@ -51,7 +53,6 @@
             <li>The remote user stops sending the video stream and re-sends it after 15 seconds. Reasons for such an interruption include:<ul id="ul_ycz_f34_npb">
                 <li>The remote user leaves the channel.</li>
                 <li>The remote user drops offline.</li>
-                <li>The remote user calls <xref keyref="muteLocalVideoStream" /> to stop sending the video stream.</li>
                 <li>The remote user calls <xref keyref="disableVideo" /> to disable video.</li>
                 </ul> </li>
             </ul> </p>
@@ -89,7 +90,7 @@
             </plentry>
             <plentry>
                 <pt>elapsed</pt>
-                <pd>The time elapsed (ms) from the local user calling <apiname keyref="joinChannel2" /> until the SDK triggers this callback.</pd>
+                <pd>The time elapsed (ms) from the local user calling <ph props="native unreal unity cs"><apiname keyref="joinChannel1" /> or </ph><apiname keyref="joinChannel2" /> until the SDK triggers this callback.</pd>
             </plentry>
             </parml> </section>
     </refbody>

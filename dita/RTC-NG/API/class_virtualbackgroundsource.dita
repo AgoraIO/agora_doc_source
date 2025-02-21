@@ -34,6 +34,32 @@
   }
 }
 </codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class VirtualBackgroundSource {
+  
+  public static readonly   BACKGROUND_NONE:number = 0;
+  
+  public static readonly  BACKGROUND_COLOR:number = 1;
+  
+  public static readonly  BACKGROUND_IMG:number = 2;
+  
+  public static readonly  BACKGROUND_BLUR:number = 3;
+  
+  public static readonly BACKGROUND_VIDEO:number = 4;
+  
+  public static readonly BLUR_DEGREE_LOW:number = 1;
+  
+  public static readonly BLUR_DEGREE_MEDIUM:number = 2;
+  
+  public static readonly BLUR_DEGREE_HIGH:number = 3;
+  
+  public backgroundSourceType:number = VirtualBackgroundSource.BACKGROUND_COLOR;
+  
+  public color:number = 0xffffff;
+  
+  public source?:string;
+  
+  public blurDegree:number = VirtualBackgroundSource.BLUR_DEGREE_HIGH;
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVirtualBackgroundSource : NSObject
 @property(nonatomic, assign) AgoraVirtualBackgroundSourceType backgroundSourceType NS_SWIFT_NAME(backgroundSourceType);
 @property(nonatomic, assign) NSUInteger color NS_SWIFT_NAME(color);
@@ -64,15 +90,33 @@
 struct FVirtualBackgroundSource
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VirtualBackgroundSource&quot;)
 	EBACKGROUND_SOURCE_TYPE background_source_type = EBACKGROUND_SOURCE_TYPE::BACKGROUND_COLOR;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VirtualBackgroundSource&quot;)
 	int64 color = 0xffffff;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VirtualBackgroundSource&quot;)
-	FString source;
+	FString source = &quot;&quot;;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VirtualBackgroundSource&quot;)
 	EBACKGROUND_BLUR_DEGREE blur_degree = EBACKGROUND_BLUR_DEGREE::BLUR_DEGREE_HIGH;
+	FVirtualBackgroundSource(){}
+	FVirtualBackgroundSource(const agora::rtc::VirtualBackgroundSource &amp; AgoraData){
+		background_source_type = static_cast&lt;EBACKGROUND_SOURCE_TYPE&gt;(AgoraData.background_source_type);
+		color = AgoraData.color;
+		source = AgoraData.source;
+		blur_degree = static_cast&lt;EBACKGROUND_BLUR_DEGREE&gt;(AgoraData.blur_degree);
+	}
+	agora::rtc::VirtualBackgroundSource CreateAgoraData() const {
+		agora::rtc::VirtualBackgroundSource AgoraData;
+		AgoraData.background_source_type = static_cast&lt;agora::rtc::VirtualBackgroundSource::BACKGROUND_SOURCE_TYPE&gt;(background_source_type);
+		AgoraData.color = color;
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.source, this-&gt;source)
+		AgoraData.blur_degree = static_cast&lt;agora::rtc::VirtualBackgroundSource::BACKGROUND_BLUR_DEGREE&gt;(blur_degree);
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::VirtualBackgroundSource&amp; AgoraData) const {
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.source)
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VirtualBackgroundSource {
   
@@ -130,11 +174,11 @@ struct FVirtualBackgroundSource
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
-                <pt props="android ios mac flutter">backgroundSourceType</pt>
+                <pt props="android hmos ios mac flutter">backgroundSourceType</pt>
                 <pt props="unity cpp unreal bp electron rn cs">background_source_type</pt>
                 <pd><ph>自定义的背景。</ph><ph props="ios mac cpp unreal bp unity flutter electron rn cs">详见 <xref keyref="BACKGROUND_SOURCE_TYPE" />。</ph>
-                    <ul props="android">
-                    <li><ph keyref="BACKGROUND_NONE" />(0)：将背景处理为 alpha 信息，不进行替换，仅分割人像和背景。设置后，你可以调用 <xref keyref="startLocalVideoTranscoder"/>，实现人像画中画的效果。</li>
+                    <ul props="android hmos">
+                    <li><ph keyref="BACKGROUND_NONE" />(0)：将背景处理为 Alpha 数据，不进行替换，仅分割人像和背景。设置后，你可以调用 <xref keyref="startLocalVideoTranscoder"/>，实现人像画中画的效果。</li>
                     <li><ph keyref="BACKGROUND_COLOR" />(1)：（默认）背景为纯色。</li>
                     <li><ph keyref="BACKGROUND_IMG" />(2)：背景为 PNG、JPG 格式的图片。</li>
                     <li><ph keyref="BACKGROUND_BLUR" />(3)：背景为虚化处理后的背景。</li>
@@ -157,10 +201,10 @@ struct FVirtualBackgroundSource
                     <note type="attention">该参数仅在自定义背景图类型为 <ph keyref="BACKGROUND_IMG" /> 或 <ph keyref="BACKGROUND_VIDEO" /> 时生效。</note></pd>
             </plentry>
             <plentry>
-                <pt props="ios mac android flutter">blurDegree</pt>
+                <pt props="ios mac android hmos flutter">blurDegree</pt>
                 <pt props="cpp unreal bp unity electron rn cs">blur_degree</pt>
                 <pd><ph>自定义背景图的模糊程度。</ph><ph props="ios mac cpp unreal bp unity electron rn cs">详见 <xref keyref="BACKGROUND_BLUR_DEGREE" />。</ph>
-                    <ul props="android">
+                    <ul props="android hmos">
                     <li><ph keyref="BLUR_DEGREE_LOW" />(1)：自定义背景图的虚化程度为低。用户差不多能看清背景。</li>
                     <li><ph keyref="BLUR_DEGREE_MEDIUM" />(2)：自定义背景图的虚化程度为中。用户较难看清背景。</li>
                     <li><ph keyref="BLUR_DEGREE_HIGH" />(3)：（默认）自定义背景图的虚化程度为高。用户很难看清背景。</li>

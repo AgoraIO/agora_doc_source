@@ -14,8 +14,11 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec"/>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int getLoopbackDevice(char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
+           <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IAudioDeviceManager&quot;)
+	int GetLoopbackDevice(FString &amp; deviceId);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract getLoopbackDevice(): string;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int GetLoopbackDevice(ref string deviceId);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
@@ -25,7 +28,7 @@
         <section id="detailed_desc">
             <title>详情</title>
             <dl outputclass="since">
-            <dlentry props="native">
+            <dlentry props="android apple cpp">
                 <dt>自从</dt>
                 <dd>v4.0.1</dd>
             </dlentry>
@@ -37,7 +40,7 @@
             <parml>
             <plentry id="deviceid">
                 <pt>deviceId</pt>
-                <pd>输出参数，当前声卡采集设备的 ID。</pd><pd props="cpp unreal bp">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</pd>
+                <pd>输出参数，当前声卡采集设备的 ID。</pd><pd props="cpp unreal">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">

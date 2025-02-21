@@ -14,10 +14,11 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java" />
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec" />
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setRecordingDevice(const char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IAudioDeviceManager&quot;)
-	int SetRecordingDevice(FString deviceId);</codeblock>
+	int SetRecordingDevice(const FString &amp; deviceId);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setRecordingDevice(deviceId: string): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetRecordingDevice(string deviceId);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setRecordingDevice(deviceId: string): number;</codeblock>
@@ -36,7 +37,7 @@
                 <pt>deviceId</pt>
                 <pd>
                     <p>音频采集设备的 Device ID。可通过 <xref keyref="enumerateRecordingDevices" /> 获取。插拔设备不会影响 <parmname>deviceId</parmname>。</p>
-                    <p props="cpp unreal bp electron">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE" />。</p>
+                    <p props="cpp unreal electron">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE" />。</p>
                 </pd>
             </plentry>
             </parml> </section>

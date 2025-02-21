@@ -15,14 +15,15 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int addVideoWatermarkEx(
       String watermarkUrl, WatermarkOptions options, RtcConnection connection);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)addVideoWatermarkEx:(NSURL* _Nonnull)url
     options:(WatermarkOptions* _Nonnull)options
     connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int addVideoWatermarkEx(const char* watermarkUrl,
     const WatermarkOptions&amp; options,
     const RtcConnection&amp; connection) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
-	int AddVideoWatermarkEx(FString watermarkUrl, const FWatermarkOptions&amp; options, const FRtcConnection&amp; connection);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+	int AddVideoWatermarkEx(const FString&amp; watermarkUrl, const FWatermarkOptions&amp; options, const FRtcConnection&amp; connection);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract addVideoWatermarkEx(
     watermarkUrl: string,
     options: WatermarkOptions,
@@ -74,7 +75,7 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul props="native unreal bp unity rn electron cs">
             <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>

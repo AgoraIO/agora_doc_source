@@ -30,6 +30,11 @@
           + captureSignalVolume + ", allowCaptureCurrentApp=" + allowCaptureCurrentApp + '}';
     }
   }</codeblock>
+                <codeblock props="hmos" outputclass="language-arkts">export class ScreenAudioParameters {
+  public sampleRate: number = 16000;
+  public channels: number = 2;
+  public captureSignalVolume : number = 100;
+}</codeblock>
             <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenAudioParameters : NSObject
 @property(assign, nonatomic) NSInteger captureSignalVolume;
 @end
@@ -42,18 +47,31 @@
 </codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FScreenAudioParameters {
-
 	GENERATED_BODY()
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenAudioParameters&quot;)
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenAudioParameters&quot;)
 	int sampleRate = 16000;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenAudioParameters&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenAudioParameters&quot;)
 	int channels = 2;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenAudioParameters&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenAudioParameters&quot;)
 	int captureSignalVolume = 100;
-
+#if defined(__ANDROID__) || (defined(__APPLE__) &amp;&amp; TARGET_OS_IOS)
+	FScreenAudioParameters(){}
+	FScreenAudioParameters(const agora::rtc::ScreenAudioParameters &amp; AgoraData){
+		sampleRate = AgoraData.sampleRate;
+		channels = AgoraData.channels;
+		captureSignalVolume = AgoraData.captureSignalVolume;
+	}
+	agora::rtc::ScreenAudioParameters CreateAgoraData() const {
+		agora::rtc::ScreenAudioParameters AgoraData;
+		AgoraData.sampleRate = sampleRate;
+		AgoraData.channels = channels;
+		AgoraData.captureSignalVolume = captureSignalVolume;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::ScreenAudioParameters&amp; AgoraData) const {
+	}
+#endif
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ScreenAudioParameters {
   
@@ -110,11 +128,11 @@ struct FScreenAudioParameters {
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
-                <plentry props="android cpp unreal bp rn electron unity flutter cs">
+                <plentry props="android hmos cpp unreal bp rn electron unity flutter cs">
                     <pt>sampleRate</pt>
                     <pd>Audio sample rate (Hz). The default value is 16000.</pd>
                 </plentry>
-                <plentry props="android cpp unreal bp rn electron unity flutter cs">
+                <plentry props="android hmos cpp unreal bp rn electron unity flutter cs">
                     <pt>channels</pt>
                     <pd>The number of audio channels. The default value is 2, which means stereo.</pd>
                 </plentry>
@@ -124,12 +142,11 @@ struct FScreenAudioParameters {
             </plentry>
                 <plentry props="android">
                     <pt>allowCaptureCurrentApp</pt>
-                    <pd>是否采集当前 App 中的音频：
-                        <ul>
-                        <li><codeph><ph keyref="true"/></codeph>：（默认）采集当前 App 中的音频。</li>
-                        <li><codeph><ph keyref="false"/></codeph>：不采集当前 App 中的音频。</li>
+                    <pd>Whether to capture audio from the current app:<ul>
+                        <li><codeph><ph keyref="true"/></codeph>: (Default) Caputre audio from the current app.</li>
+                        <li><codeph><ph keyref="false"/></codeph>Do not capture the audio from the current app:</li>
                         </ul>
-                        <note>该成员仅能设置是否采集当前 App 中的音频，并不能控制是否将采集到的 App 音频发布到频道中。 你需要在调用 <xref keyref="joinChannel2"/> 或者 <xref keyref="updateChannelMediaOptions"/> 时通过 <parmname>options</parmname> 参数进行设置。</note></pd>
+                        <note>This parameter can only set whether to capture audio from the current app and cannot control whether the captured app audio is published to the channel. You need to set it through the <parmname>options</parmname> parameter when calling <xref keyref="joinChannel2"/> or <xref keyref="updateChannelMediaOptions"/>.</note></pd>
                 </plentry>
             </parml> </section>
     </refbody>

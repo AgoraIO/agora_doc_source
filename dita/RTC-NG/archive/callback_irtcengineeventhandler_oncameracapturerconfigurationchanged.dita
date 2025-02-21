@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_oncameracapturerconfigurationchanged">
+    <title><ph keyref="onCameraCapturerConfigurationChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc">摄像头焦距类型配置未生效回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onCameraCapturerConfigurationChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">  public void onCameraCapturerConfigurationChanged(
+      int direction, int focalLengthType, int width, int height, int frameRate) {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp unreal" outputclass="language-cpp">  virtual void onCameraCapturerConfigurationChanged(int direction, int focalLengthType, int width, int height, int frameRate) {
+  (void)direction;
+  (void)focalLengthType;
+  (void)width;
+  (void)height;
+  (void)frameRate;
+  }</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"></codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.3.1</dd>
+            </dlentry>
+            </dl>
+            <p>调用 <xref keyref="setCameraCapturerConfiguration"/> 设置摄像头的焦距类型，但配置未生效时，会触发该回调。</p>
+            <note type="attention" props="cpp unreal bp flutter unity rn">该回调仅适用于 Android。</note>
+        </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt>direction</pt>
+                <pd>摄像头方向。详见 <xref keyref="CAMERA_DIRECTION"/>。</pd>
+            </plentry>
+            <plentry>
+                <pt>focalLengthType</pt>
+                <pd>摄像头的焦距类型。详见 <xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/>。</pd>
+            </plentry>
+            <plentry>
+                <pt>width</pt>
+                <pd>摄像头采集的宽度 (px)。</pd>
+            </plentry>
+            <plentry>
+                <pt>height</pt>
+                <pd>摄像头采集的高度 (px)。</pd>
+            </plentry>
+            <plentry>
+                <pt>frameRate</pt>
+                <pd>摄像头采集的帧率 (fps)。</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

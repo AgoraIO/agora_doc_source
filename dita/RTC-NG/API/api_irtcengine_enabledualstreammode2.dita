@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int enableDualStreamMode(Constants.VideoSourceType sourceType, boolean enabled);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableDualStreamMode:(AgoraVideoSourceType)sourceType enabled:(BOOL)enabled;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int enableDualStreamMode(VIDEO_SOURCE_TYPE sourceType, bool enabled) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract enableDualStreamMode(
@@ -47,7 +48,7 @@
             <note type="note" id="seq">
             <ul>
                 <li>该方法适用于发送端发送的所有类型的流，包括且不限于来自摄像头采集的视频流、屏幕共享流、自定义采集的视频流。</li>
-                <li>如果需要在多频道场景下开启视频双流，可以调用 <xref keyref="enableDualStreamModeEx"/> 方法。</li>
+                <li props="android cpp apple framework">如果需要在多频道场景下开启视频双流，可以调用 <xref keyref="enableDualStreamModeEx"/> 方法。</li>
                 <li>该方法可以在加入频道前后调用。</li>
                 </ul></note></section>
         <section id="parameters">

@@ -16,7 +16,8 @@
                <codeblock props="android" outputclass="language-java">public void onFirstLocalVideoFrame(
       Constants.VideoSourceType source, int width, int height, int elapsed) {}
 </codeblock>
-               <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+               <codeblock props="hmos" outputclass="language-arkts">onFirstLocalVideoFrame?:(source:Constants.VideoSourceType,width:number,height:number,elapsed:number) =&gt;void;</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
                      firstLocalVideoFrameWithSize:(CGSize)size
                      elapsed:(NSInteger)elapsed
                      sourceType:(AgoraVideoSourceType)sourceType;
@@ -28,7 +29,8 @@
     (void)elapsed;
   }
                </codeblock>
-               <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnFirstLocalVideoFrame, EVIDEO_SOURCE_TYPE, source, int, width, int, height, int, elapsed);</codeblock>
+               <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnFirstLocalVideoFrame(EVIDEO_SOURCE_TYPE source, int width, int height, int elapsed);</codeblock>
                <codeblock props="electron" outputclass="language-typescript">onFirstLocalVideoFrame?(
     source: VideoSourceType,
     width: number,
@@ -65,17 +67,17 @@
                     <pt>size</pt>
                     <pd>The size of the first local video frame.</pd>
                </plentry>
-               <plentry props="android cpp unreal bp unity cs electron rn flutter">
+               <plentry props="android hmos cpp unreal bp unity cs electron rn flutter">
                     <pt>width</pt>
                     <pd>The width (px) of the first local video frame.</pd>
                </plentry>
-               <plentry props="android cpp unreal bp unity cs electron rn flutter">
+               <plentry props="android hmos cpp unreal bp unity cs electron rn flutter">
                     <pt>height</pt>
                     <pd>The height (px) of the first local video frame.</pd>
                </plentry>
                <plentry>
                     <pt>elapsed</pt>
-                    <pd>Time elapsed (ms) from the local user calling <apiname keyref="joinChannel2" /> until the SDK triggers this callback. If you call <xref keyref="startPreview2" /> before calling <apiname keyref="joinChannel2" />, then this parameter is the time elapsed from calling the <apiname keyref="startPreview2" /> method until the SDK triggers this callback.</pd>
+                    <pd>The time elapsed (ms) from the local user calling <ph props="native unreal unity cs"><xref keyref="joinChannel1" /> or </ph><xref keyref="joinChannel2" /> to join the channel to when the SDK triggers this callback. If <ph props="android cpp unreal apple electron flutter rn unity cs"><xref keyref="startPreview" />/</ph><xref keyref="startPreview2" /> is called before joining the channel, this parameter indicates the time elapsed from calling <ph props="android cpp unreal apple electron flutter rn unity cs"><apiname keyref="startPreview" /> or </ph><apiname keyref="startPreview2"/> to when this event occurred.</pd>
                </plentry>
                </parml> </section>
      </refbody>

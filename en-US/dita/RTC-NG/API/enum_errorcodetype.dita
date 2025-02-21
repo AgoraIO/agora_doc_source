@@ -27,7 +27,7 @@
                 <pd>3: The SDK is not ready. Possible reasons include the following:<ul>
                     <li>The initialization of <xref keyref="IRtcEngine"/> fails. Reinitialize the <apiname keyref="IRtcEngine"/>.</li>
                     <li>No user has joined the channel when the method is called. Check the code logic.</li>
-                    <li>The user has not left the channel when the <xref keyref="rate"/> or <xref keyref="complain"/> method is called. Check the code logic.</li>
+                    <li props="android cpp apple framework">The user has not left the channel when the <xref keyref="rate"/> or <xref keyref="complain"/> method is called. Check the code logic.</li>
                     <li>The audio module is disabled.</li>
                     <li>The program is not complete.</li>
                     </ul></pd>
@@ -70,8 +70,8 @@
             <plentry>
                 <pt><ph keyref="ERR_JOIN_CHANNEL_REJECTED"/></pt>
                 <pd>17: The request to join the channel is rejected. Possible reasons include the following:<ul>
-                    <li>The user is already in the channel. Agora recommends that you use the <xref keyref="onConnectionStateChanged"/> callback to determine whether the user exists in the channel. Do not call this method to join the channel unless you receive the <apiname keyref="CONNECTION_STATE_DISCONNECTED"/>(1) state.</li>
-                    <li>After calling <xref keyref="startEchoTest3"/> for the call test, the user tries to join the channel without calling <xref keyref="stopEchoTest"/> to end the current test. To join a channel, the call test must be ended by calling <apiname keyref="stopEchoTest"/>.</li>
+                    <li>The user is already in the channel. Agora recommends that you use the <xref keyref="onConnectionStateChanged"/> callback to see whether the user is in the channel. Do not call this method to join the channel unless you receive the <apiname keyref="CONNECTION_STATE_DISCONNECTED"/>(1) state.</li>
+                    <li props="android cpp apple framework">After calling <xref keyref="startEchoTest3"/> for the call test, the user tries to join the channel without calling <xref keyref="stopEchoTest"/> to end the current test. To join a channel, the call test must be ended by calling <apiname keyref="stopEchoTest"/>.</li>
                     </ul></pd>
             </plentry>
             <plentry>
@@ -125,7 +125,7 @@
                     <li>App Certificate is enabled in Agora Console, but the code still uses App ID for authentication. Once App Certificate is enabled for a project, you must use token-based authentication.</li>
                     <li>The <codeph>uid</codeph> used to generate the token is not the same as the <parmname>uid</parmname> used to join the channel.</li>
                     </ul>
-                    <dl>
+                    <dl outputclass="deprecated">
                     <dlentry>
                         <dt>Deprecated:</dt>
                         <dd>This enumerator is deprecated. Use <apiname keyref="CONNECTION_CHANGED_INVALID_TOKEN"/>(8) in the <xref keyref="onConnectionStateChanged"/> callback instead.</dd>
@@ -167,13 +167,17 @@
             </plentry>
             <plentry>
                 <pt><ph keyref="ERR_DECRYPTION_FAILED"/></pt>
-                <pd>120: Decryption fails. The user might have entered an incorrect password to join the channel. Check the entered password, or tell the user to try rejoining the channel.</pd>
+                <pd>120: Media streams decryption fails. The user might use an incorrect password to join the channel. Check the entered password, or tell the user to try rejoining the channel.</pd>
             </plentry>
             <plentry props="cpp unreal bp electron rn flutter unity cs">
                 <pt><ph keyref="ERR_INVALID_USER_ID"/></pt>
                 <pd>121: The user ID is invalid.</pd>
             </plentry>
-            <plentry props="cpp unreal bp electron rn flutter unity cs">
+            <plentry>
+                <pt><ph keyref="ERR_DATASTREAM_DECRYPTION_FAILED"/></pt>
+                <pd>122: Data streams decryption fails. The user might use an incorrect password to join the channel. Check the entered password, or tell the user to try rejoining the channel.</pd>
+            </plentry>
+                <plentry props="cpp unreal bp electron rn flutter unity cs">
                 <pt><ph keyref="ERR_CLIENT_IS_BANNED_BY_SERVER"/></pt>
                 <pd>123: The user is banned from the server.</pd>
             </plentry>

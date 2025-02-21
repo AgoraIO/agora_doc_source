@@ -46,6 +46,11 @@
     }
   }
 </codeblock>
+                <codeblock props="hmos" outputclass="language-arkts">export class ScreenVideoParameters {
+  public dimensions: VideoDimensions = new VideoDimensions(1280, 720);
+  public frameRate: number = 15;
+  public bitrate: number = 0;
+}</codeblock>
             <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenVideoParameters : NSObject
 
 @property(assign, nonatomic) CGSize dimensions;
@@ -66,17 +71,36 @@
 </codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FScreenVideoParameters {
-
 	GENERATED_BODY()
-
-	FVideoDimensions dimensions;
-
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenVideoParameters&quot;)
+	FVideoDimensions dimensions = FVideoDimensions();
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenVideoParameters&quot;)
 	int frameRate = 15;
-
-	int bitrate;
-
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenVideoParameters&quot;)
+	int bitrate = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenVideoParameters&quot;)
 	EVIDEO_CONTENT_HINT contentHint = EVIDEO_CONTENT_HINT::CONTENT_HINT_MOTION;
-
+#if defined(__ANDROID__) || (defined(__APPLE__) &amp;&amp; TARGET_OS_IOS)
+	FScreenVideoParameters(){}
+	FScreenVideoParameters(const agora::rtc::ScreenVideoParameters &amp; AgoraData){
+		dimensions = FVideoDimensions(AgoraData.dimensions);
+		frameRate = AgoraData.frameRate;
+		bitrate = AgoraData.bitrate;
+		contentHint = static_cast&lt;EVIDEO_CONTENT_HINT&gt;(AgoraData.contentHint);
+	}
+	agora::rtc::ScreenVideoParameters CreateAgoraData() const {
+		agora::rtc::ScreenVideoParameters AgoraData;
+		AgoraData.dimensions = dimensions.CreateAgoraData();
+		AgoraData.frameRate = frameRate;
+		AgoraData.bitrate = bitrate;
+		AgoraData.contentHint = static_cast&lt;agora::rtc::VIDEO_CONTENT_HINT&gt;(contentHint);
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::ScreenVideoParameters&amp; AgoraData) const {
+		dimensions.FreeAgoraData(AgoraData.dimensions);
+	}
+#endif
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ScreenVideoParameters {
   
@@ -133,12 +157,12 @@ struct FScreenVideoParameters {
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p props="android">Only available for scenarios where <parmname>captureVideo</parmname> is <codeph><ph keyref="true"/></codeph>.</p>
+            <p props="android hmos">Only available for scenarios where <parmname>captureVideo</parmname> is <codeph><ph keyref="true"/></codeph>.</p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry props="ios cpp unreal bp electron unity rn flutter cs">
+            <plentry props="hmos ios cpp unreal bp electron unity rn flutter cs">
                 <pt>dimensions</pt>
                 <pd>The video encoding dimension. The default value is 1280 × 720.</pd>
                 <pd>If the aspect ratio of <parmname>dimensions</parmname> is different from that of the screen, the SDK adjusts the video encoding resolution according to the following rules (take the<parmname> dimensions</parmname> of 1280 × 720 as an example):<ul>
@@ -147,10 +171,18 @@ struct FScreenVideoParameters {
                     </ul>
                     <note>
                     <ul>
-                    <li>The billing for the screen sharing stream is based on the value of <parmname>dimensions</parmname>. When you do not pass in a value, Agora bills you at 1280 × 720; when you pass in a value, Agora bills you at that value. For billing details, see <xref keyref="guide-bill"/>.</li>
+                    <li>The billing for the screen sharing stream is based on the value of <parmname>dimensions</parmname>. When you do not pass in a value, Agora bills you at 1280 × 720; when you pass in a value, Agora bills you at that value.</li>
                     <li>The value of this parameter does not indicate the orientation mode of the output video. For how to set the video orientation, see <xref keyref="ORIENTATION_MODE"/>.</li>
                     <li>Whether the 720p resolution or above can be supported depends on the device. If the device cannot support 720p, the frame rate will be lower than the set value.</li>
-                    </ul> </note></pd>
+                    </ul> </note>
+                    <note props="android cpp apple framework">When setting the encoding resolution in the scenario of sharing documents (<ph keyref="SCREEN_SCENARIO_DOCUMENT"/>), choose one of the following two methods:<ul>
+                      <li>If you require the best image quality, it is recommended to set the encoding resolution to be the same as the capture resolution.</li>
+                      <li>If you wish to achieve a relative balance between image quality, bandwidth, and system performance, then:<ul>
+                          <li>When the capture resolution is greater than 1920 × 1080, it is recommended that the encoding resolution is not less than 1920 × 1080.</li>
+                          <li>When the capture resolution is less than 1920 × 1080, it is recommended that the encoding resolution is not less than 1280 × 720.</li>
+                          </ul></li>
+                      </ul></note>
+                    </pd>
             </plentry>
             <plentry props="android">
                 <pt>width</pt>
@@ -160,10 +192,18 @@ struct FScreenVideoParameters {
                     </ul>
                     <note>
                     <ul>
-                    <li>The billing for the screen sharing stream is based on the value of dimensions. When you do not pass in a value, Agora bills you at 1280 × 720; when you pass in a value, Agora bills you at that value. For billing details, see <xref keyref="guide-bill"/>.</li>
+                    <li>The billing for the screen sharing stream is based on the value of dimensions. When you do not pass in a value, Agora bills you at 1280 × 720; when you pass in a value, Agora bills you at that value.</li>
                     <li>The value of this parameter does not indicate the orientation mode of the output video. For how to set the video orientation, see <xref keyref="ORIENTATION_MODE"/>.</li>
                     <li>Whether the 720p resolution or above can be supported depends on the device. If the device cannot support 720p, the frame rate will be lower than the set value.</li>
-                    </ul> </note></pd>
+                    </ul> </note>
+                    <note>When setting the encoding resolution in the scenario of sharing documents (<ph keyref="SCREEN_SCENARIO_DOCUMENT"/>), choose one of the following two methods:<ul>
+                      <li>If you require the best image quality, it is recommended to set the encoding resolution to be the same as the capture resolution.</li>
+                      <li>If you wish to achieve a relative balance between image quality, bandwidth, and system performance, then:<ul>
+                          <li>When the capture resolution is greater than 1920 × 1080, it is recommended that the encoding resolution is not less than 1920 × 1080.</li>
+                          <li>When the capture resolution is less than 1920 × 1080, it is recommended that the encoding resolution is not less than 1280 × 720.</li>
+                          </ul></li>
+                      </ul></note>
+                    </pd>
             </plentry>
             <plentry props="android">
                 <pt>height</pt>
@@ -173,23 +213,31 @@ struct FScreenVideoParameters {
                     </ul>
                     <note>
                     <ul>
-                    <li>The billing for the screen sharing stream is based on the value of dimensions. When you do not pass in a value, Agora bills you at 1280 × 720; when you pass in a value, Agora bills you at that value. For billing details, see <xref keyref="guide-bill"/>.</li>
+                    <li>The billing for the screen sharing stream is based on the value of dimensions. When you do not pass in a value, Agora bills you at 1280 × 720; when you pass in a value, Agora bills you at that value.</li>
                     <li>The value of this parameter does not indicate the orientation mode of the output video. For how to set the video orientation, see <xref keyref="ORIENTATION_MODE"/>.</li>
                     <li>Whether the 720p resolution or above can be supported depends on the device. If the device cannot support 720p, the frame rate will be lower than the set value.</li>
-                    </ul> </note> </pd>
+                    </ul> </note>
+                    <note>When setting the encoding resolution in the scenario of sharing documents (<ph keyref="SCREEN_SCENARIO_DOCUMENT"/>), choose one of the following two methods:<ul>
+                      <li>If you require the best image quality, it is recommended to set the encoding resolution to be the same as the capture resolution.</li>
+                      <li>If you wish to achieve a relative balance between image quality, bandwidth, and system performance, then:<ul>
+                          <li>When the capture resolution is greater than 1920 × 1080, it is recommended that the encoding resolution is not less than 1920 × 1080.</li>
+                          <li>When the capture resolution is less than 1920 × 1080, it is recommended that the encoding resolution is not less than 1280 × 720.</li>
+                          </ul></li>
+                      </ul></note>
+                    </pd>
             </plentry>
             <plentry>
                 <pt props="android">frameRate</pt>
-                <pt props="ios cpp unreal bp electron unity rn flutter cs">frameRate</pt>
+                <pt props="hmos ios cpp unreal bp electron unity rn flutter cs">frameRate</pt>
                 <pd>The video encoding frame rate (fps). The default value is 15.</pd>
             </plentry>
             <plentry>
                 <pt>bitrate</pt>
                 <pd>The video encoding bitrate (Kbps).</pd>
             </plentry>
-            <plentry>
+            <plentry props="android cpp apple framework">
                 <pt>contentHint</pt>
-                <pd><ph>The content hint for screen sharing. </ph><ph props="cpp unreal bp ios">See <xref keyref="VIDEO_CONTENT_HINT"/>.</ph><ul props="android">
+                <pd><ph>The content hint for screen sharing. </ph><ph props="cpp unreal bp ios">See <xref keyref="VIDEO_CONTENT_HINT"/>.</ph><ul props="android hmos">
                     <li><ph keyref="CONTENT_HINT_NONE"/>(0): (Default) No content hint.</li>
                     <li><ph keyref="CONTENT_HINT_MOTION"/>(1): Motion-intensive content. Choose this option if you prefer smoothness or when you are sharing a video clip, movie, or video game.</li>
                     <li><ph keyref="CONTENT_HINT_DETAILS"/>(2): Motionless content. Choose this option if you prefer sharpness or when you are sharing a picture, PowerPoint slides, or texts.</li>

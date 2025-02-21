@@ -16,12 +16,14 @@
   public static final int VIEW_SETUP_MODE_ADD = 1;
   public static final int VIEW_SETUP_MODE_REMOVE = 2;
   public View view;
+  public SurfaceTexture surfaceTexture;
   public int renderMode;
   public int mirrorMode;
   public int setupMode = VIEW_SETUP_MODE_REPLACE;
   public int sourceType;
   public int mediaPlayerId;
   public Rect rect;
+  public boolean enableAlphaMask;
   public int backgroundColor;
   public Constants.VideoModulePosition position =
       Constants.VideoModulePosition.VIDEO_MODULE_POSITION_POST_CAPTURER;
@@ -46,6 +48,21 @@
   }
 }
 </codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class VideoCanvas{
+  public static readonly RENDER_MODE_HIDDEN = 1;
+  public static readonly RENDER_MODE_FIT = 2;
+  public static readonly VIDEO_MIRROR_MODE_ENABLED = 1;
+  public static readonly VIDEO_MIRROR_MODE_DISABLED = 2;
+  
+  public xcomponentId:string = &#x27;&#x27;;
+  public uid:number = 0;
+  public renderMode:number = VideoCanvas.RENDER_MODE_HIDDEN;
+  public mirrorMode:number = 0;
+  public sourceType:Constants.VideoSourceType = Constants.VideoSourceType.CAMERA_PRIMARY;
+  constructor(componentId:string) {
+    this.xcomponentId = componentId;
+  }
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcVideoCanvas : NSObject
 @property(assign, nonatomic) NSUInteger uid;
 @property(assign, nonatomic) NSUInteger subviewUid;
@@ -60,7 +77,7 @@
 @property(assign, nonatomic) BOOL enableAlphaMask;
 @property(assign, nonatomic) AgoraVideoModulePosition position;
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct VideoCanvas {
+            <codeblock props="unreal cpp" outputclass="language-cpp">struct VideoCanvas {
   uid_t uid;
   uid_t subviewUid;
   view_t view;
@@ -94,42 +111,66 @@
 struct FVideoCanvas
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
-	UImage* view;
+	int64 uid = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
+	int64 subviewUid = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
+	UImage* view = nullptr;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
+	int64 backgroundColor = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
 	ERENDER_MODE_TYPE renderMode = ERENDER_MODE_TYPE::RENDER_MODE_HIDDEN;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
 	EVIDEO_MIRROR_MODE_TYPE mirrorMode = EVIDEO_MIRROR_MODE_TYPE::VIDEO_MIRROR_MODE_AUTO;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
-	int64 uid;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
-	bool isScreenView = false;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
-	int64 priv_size;
+	EVIDEO_VIEW_SETUP_MODE setupMode = EVIDEO_VIEW_SETUP_MODE::VIDEO_VIEW_SETUP_REPLACE;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
 	EVIDEO_SOURCE_TYPE sourceType = EVIDEO_SOURCE_TYPE::VIDEO_SOURCE_CAMERA_PRIMARY;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
-	FRectangle cropArea;
+	int mediaPlayerId = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
-	EVIDEO_VIEW_SETUP_MODE setupMode = EVIDEO_VIEW_SETUP_MODE::VIDEO_VIEW_SETUP_REPLACE;
-};</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp">struct VideoCanvas {
-    view_t view;
-    uid_t uid;
-    VIDEO_SOURCE_TYPE sourceType;
-    int mediaPlayerId;
+	FRectangle cropArea;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
+	bool enableAlphaMask = false;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
+	EVIDEO_MODULE_POSITION position = EVIDEO_MODULE_POSITION::POSITION_POST_CAPTURER;
 
-  VideoCanvas()
-    : view(NULL), uid(0), sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY) {}
-  
-  VideoCanvas(view_t v, uid_t u)
-    : view(v), uid(u),
-      sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY)
-  
-  VideoCanvas(view_t v, user_id_t)
-    : view(v), uid(0),
-      sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY) {}
+	FVideoCanvas(){}
+	FVideoCanvas(const agora::rtc::VideoCanvas &amp; AgoraData){
+		view = nullptr; 		uid = AgoraData.uid;
+		subviewUid = AgoraData.subviewUid;
+		backgroundColor = AgoraData.backgroundColor;
+		renderMode = static_cast&lt;ERENDER_MODE_TYPE&gt;(AgoraData.renderMode);
+		mirrorMode = static_cast&lt;EVIDEO_MIRROR_MODE_TYPE&gt;(AgoraData.mirrorMode);
+		setupMode = static_cast&lt;EVIDEO_VIEW_SETUP_MODE&gt;(AgoraData.setupMode);
+		sourceType = static_cast&lt;EVIDEO_SOURCE_TYPE&gt;(AgoraData.sourceType);
+		mediaPlayerId = AgoraData.mediaPlayerId;
+		cropArea = FRectangle(AgoraData.cropArea);
+		enableAlphaMask = AgoraData.enableAlphaMask;
+		position = static_cast&lt;EVIDEO_MODULE_POSITION&gt;(AgoraData.position);
+	}
+	agora::rtc::VideoCanvas CreateAgoraData() const {
+		agora::rtc::VideoCanvas AgoraData;
+		AgoraData.view = (agora::view_t) view;
+		AgoraData.uid = uid;
+		AgoraData.subviewUid = subviewUid;
+		AgoraData.backgroundColor = backgroundColor;
+		AgoraData.renderMode = static_cast&lt;agora::media::base::RENDER_MODE_TYPE&gt;(renderMode);
+		AgoraData.mirrorMode = static_cast&lt;agora::rtc::VIDEO_MIRROR_MODE_TYPE&gt;(mirrorMode);
+		AgoraData.setupMode = static_cast&lt;agora::rtc::VIDEO_VIEW_SETUP_MODE&gt;(setupMode);
+		AgoraData.sourceType = static_cast&lt;agora::rtc::VIDEO_SOURCE_TYPE&gt;(sourceType);
+		AgoraData.mediaPlayerId = AgoraData.mediaPlayerId;
+		AgoraData.cropArea = cropArea.CreateAgoraData();
+		AgoraData.enableAlphaMask = enableAlphaMask;
+		AgoraData.position = static_cast&lt;agora::media::base::VIDEO_MODULE_POSITION&gt;(position);
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::VideoCanvas&amp; AgoraData) const {
+		cropArea.FreeAgoraData(AgoraData.cropArea);
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoCanvas {
   view?: any
@@ -241,62 +282,64 @@ class VideoCanvas {
             <plentry>
                 <pt>uid</pt>
                 <pd>User ID that publishes the video source.</pd>
-                <pd props="cpp unity rn flutter">For Android and iOS platforms, when the video source is a mixed video stream ( <apiname keyref="VIDEO_SOURCE_TRANSCODED"/>), this parameter represents the ID of the user who publishes the mixed video stream.</pd>
+                <pd props="cpp unity rn flutter">For Android and iOS platforms, when the video source is a mixed video stream ( <apiname keyref="VIDEO_SOURCE_TRANSCODED"/>), this parameter represents the ID of the user who publishes the mixed video stream.<note type="attention" props="rn">The <parmname>uid</parmname> for the local user is 0 by default. If you want to render a local view with a customized <parmname>uid</parmname>, you need to pass in <parmname>sourceType</parmname> at the same time.</note>
+                </pd>
                 <pd props="android ios">When the video source is a mixed video stream ( <apiname keyref="VIDEO_SOURCE_TRANSCODED"/>), this parameter represents the ID of the user who publishes the mixed video stream.</pd>
               </plentry>
-                <plentry>
+                <plentry props="android cpp apple framework">
                     <pt>subviewUid</pt>
-                    <pd props="android ios cpp unity rn flutter">The ID of the user who publishes a specific sub-video stream within the mixed video stream.</pd>
-                    <pd props="mac electron">Reserved for future use.<note type="attention" props="cpp unity flutter">This parameter applies to Android and iOS only.</note></pd>
+                    <pd props="android ios cpp unreal bp unity rn flutter">The ID of the user who publishes a specific sub-video stream within the mixed video stream.</pd>
+                    <pd props="mac electron">Reserved for future use.<note type="attention" props="cpp unreal bp unity flutter">This parameter is for Android and iOS only.</note></pd>
                 </plentry>
                 <plentry>
                     <pt>view</pt>
-                    <pd props="native flutter unity cs electron rn">The video display window.</pd>
+                    <pd props="native flutter unity cs electron rn">The video display window. <ph props="android">It must be one <xref keyref="SurfaceView-link"/> or <xref keyref="TextureView-link"/> object.</ph><note type="attention" props="native flutter unity cs rn">In one <apiname keyref="VideoCanvas"/>, you can only choose to set either <parmname>view</parmname> or <parmname>surfaceTexture</parmname>. If both are set, only the settings in <parmname>view</parmname> take effect.</note>
+                    </pd>
                     <pd props="unreal bp">The video image. You need to define a pointer of UImage type and pass in this parameter. The sample code is as follows:<codeblock props="unreal bp" outputclass="language-cpp">agora::rtc::VideoCanvas videoCanvas;
     UImage* LocalVideo;
     videoCanvas.view = LocalVideo;</codeblock></pd>
                 </plentry>
+                <plentry props="android hmos">
+                    <pt>surfaceTexture</pt>
+                    <pd>A container that provides video images. When you use this member, you need to implement texture drawing in OPENGL yourself. See <xref keyref="SurfaceTexture-link"/>.<note type="attention">In one <apiname keyref="VideoCanvas"/>, you can only choose to set either <parmname>view</parmname> or <parmname>surfaceTexture</parmname>. If both are set, only the settings in <parmname>view</parmname> take effect.</note></pd>
+                </plentry>
                 <plentry props="native flutter unity cs electron rn bp">
                     <pt>renderMode</pt>
                     <pd props="ios mac cpp unity electron rn flutter cs bp">The rendering mode of the video. See <xref keyref="RENDER_MODE_TYPE"/>.</pd>
-                    <pd props="android"><ul conkeyref="setLocalRenderMode2/rendermodetype"><li/></ul></pd>
+                    <pd props="android hmos"><ul conkeyref="setLocalRenderMode2/rendermodetype"><li/></ul></pd>
                 </plentry>
                 <plentry props="native flutter unity cs electron rn bp">
                     <pt>mirrorMode</pt>
                 <pd>
-                    <p props="ios mac cpp unity electron rn flutter cs bp">The mirror mode of the view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.</p>
-                    <p props="android">
-                    <ul conkeyref="setLocalRenderMode2/videomirrormodetype">
-                    <li/>
-                    </ul> </p>
-                    <note type="attention">
-                    <ul>
-                    <li>For the mirror mode of the local video view: If you use a front camera, the SDK enables the mirror mode by default; if you use a rear camera, the SDK disables the mirror mode by default.</li>
-                    <li>For the remote user: The mirror mode is disabled by default.</li>
-                    </ul> </note> </pd>
-            </plentry>
-            <plentry>
-                <pt>uid</pt>
-                <pd>The user ID.</pd>
+                        <p props="ios mac cpp unity electron rn flutter cs bp">The mirror mode of the view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</p>
+                        <note conkeyref="setLocalRenderMode2/mirror" props="unreal bp"/>
+                        <p props="android hmos">
+                            <ul conkeyref="setLocalRenderMode2/videomirrormodetype">
+                                <li/>
+                            </ul>
+                        </p>
+                        <note type="attention">
+                            <ul>
+                                <li>For the mirror mode of the local video view: If you use a front camera, the SDK enables the mirror mode by default; if you use a rear camera, the SDK disables the mirror mode by default.</li>
+                                <li>For the remote user: The mirror mode is disabled by default.</li>
+                            </ul>
+                        </note>
+                    </pd>
             </plentry>
             <plentry id="sourcetype">
                 <pt>sourceType</pt>
                 <pd>The type of the video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
             </plentry>
-            <plentry props="android ios mac">
-                <pt>sourceId</pt>
-                <pd>The ID of the video source.</pd>
-            </plentry>
-            <plentry props="native flutter unity cs electron rn bp">
+            <plentry props="android cpp apple  flutter unity cs electron rn bp">
                 <pt>setupMode</pt>
                 <pd props="ios mac cpp flutter unity cs electron rn bp">Setting mode of the view. See <xref keyref="VIDEO_VIEW_SETUP_MODE"/>.</pd>
-                <pd props="android">Setting mode of the view.<ul>
+                <pd props="android hmos">Setting mode of the view.<ul>
                     <li><ph keyref="VIDEO_VIEW_SETUP_REPLACE"/>(0): (Default) Replaces a view.</li>
                     <li><ph keyref="VIDEO_VIEW_SETUP_ADD"/>(1): Adds a view.</li>
                     <li><ph keyref="VIDEO_VIEW_SETUP_REMOVE"/>(2): Deletes a view.</li>
                 </ul></pd>
             </plentry>
-            <plentry props="native unreal flutter unity cs electron rn">
+            <plentry props="android cpp apple unreal flutter unity cs electron rn">
                 <pt>mediaPlayerId</pt>
                 <pd>The ID of the media player. You can get the Device ID by calling <xref keyref="getMediaPlayerId"/>.</pd>
                 <pd>This parameter is required when <parmname>sourceType</parmname> is <apiname keyref="VIDEO_SOURCE_MEDIA_PLAYER"/>.</pd>
@@ -313,22 +356,26 @@ class VideoCanvas {
             <pt>cropArea</pt>
             <pd>(Optional) Display area of the video frame, see <xref keyref="rect-link"/>. <parmname>width</parmname> and <parmname>height</parmname> represent the video pixel width and height of the area. The default value is null (width or height is 0), which means that the actual resolution of the video frame is displayed.</pd>
           </plentry>
-          <plentry props="native flutter unity cs electron rn">
+          <plentry props="android cpp apple framework">
               <pt>backgroundColor</pt>
               <pd>The background color of the video canvas in RGBA format. The default value is 0x00000000, which represents completely transparent black.</pd>
           </plentry>
-          <plentry props="cpp ios mac unity electron flutter cs">
-              <pt>enableAlphaMask</pt>
-              <pd props="cpp mac unity electron flutter">(Optional) Whether the receiver enables alpha mask rendering:<ul>
-                  <li><codeph><ph keyref="true"/></codeph>: The receiver enables alpha mask rendering.</li>
-                  <li><codeph><ph keyref="false"/></codeph>: (default) The receiver disables alpha mask rendering.</li>
-                </ul>
-              <p>Alpha mask rendering can create images with transparent effects and extract portraits from videos.  When used in combination with other methods, you can implement effects such as portrait-in-picture and watermarking.</p>
-              <note type="attention" props="cpp mac unity electron flutter"><ul><li>This property applies to macOS only.</li><li>The receiver can render alpha channel information only when the sender enables alpha transmission.</li><li>To enable alpha transmission, <xref keyref="ticket-link"/>.</li></ul></note>
-              </pd>
-              <pd props="cs ios">Reserved.</pd>
-          </plentry>
-                <plentry>
+          <plentry props="android cpp apple  unreal bp unity electron flutter cs">
+                    <pt>enableAlphaMask</pt>
+                    <pd props="native unreal bp rn unity electron flutter">(Optional) Whether to enable alpha mask rendering:<ul>
+                        <li><codeph><ph keyref="true"/></codeph>: Enable alpha mask rendering.</li>
+                        <li><codeph><ph keyref="false"/></codeph>: (Default) Disable alpha mask rendering.</li>
+                        </ul>
+                        <p>Alpha mask rendering can create images with transparent effects and extract portraits from videos. When used in combination with other methods, you can implement effects such as portrait-in-picture and watermarking.</p>
+                        <note type="attention" props="cpp unreal bp mac unity electron flutter">
+                        <ul>
+                            <li>The receiver can render alpha channel information only when the sender enables alpha transmission.</li>
+                            <li>To enable alpha transmission, <xref keyref="ticket-link"/>.</li>
+                        </ul>
+                        </note> </pd>
+                    <pd props="cs">Reserved.</pd>
+                </plentry>
+                <plentry props="android cpp apple framework">
                     <pt>position</pt>
                     <pd>The observation position of the video frame in the video link. See <xref keyref="VIDEO_MODULE_POSITION"/>.</pd>
                 </plentry>

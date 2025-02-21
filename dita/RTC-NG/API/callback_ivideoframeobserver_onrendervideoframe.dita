@@ -14,33 +14,40 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">boolean onRenderVideoFrame(String channelId, int uid, VideoFrame videoFrame);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">onRenderVideoFrame?: (channelId: string, uid: number, videoFrame: VideoFrame) =&gt; boolean;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onRenderVideoFrame:(AgoraOutputVideoFrame * _Nonnull)videoFrame
     uid:(NSUInteger)uid
     channelId:(NSString * _Nonnull)channelId;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual bool onRenderVideoFrame(const char* channelId, rtc::uid_t remoteUid, VideoFrame&amp; videoFrame) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnRenderVideoFrame, const FString, channelId, int64, remoteUid, const FVideoFrame&amp;, videoFrame);</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">  onRenderVideoFrame?(
+            <codeblock props="electron" outputclass="language-typescript">onRenderVideoFrame?(
     channelId: string,
     remoteUid: number,
     videoFrame: VideoFrame
-  ): boolean;</codeblock>
+  ): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual bool OnRenderVideoFrame(string channelId, uint remoteUid, VideoFrame videoFrame)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">  onRenderVideoFrame?(
+            <codeblock props="rn" outputclass="language-typescript">onRenderVideoFrame?(
     channelId: string,
     remoteUid: number,
     videoFrame: VideoFrame
-  ): boolean;</codeblock>
+  ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(String channelId, int remoteUid, VideoFrame videoFrame)?
       onRenderVideoFrame;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>成功注册视频数据观测器后，SDK 会在捕捉到每个视频帧时触发该回调。你可以在回调中获取远端发送的渲染前的视频数据，然后根据场景需要，对视频数据进行处理。</p>
+            <p props="android" id="java">该回调默认提供的视频数据格式为 I420Buffer 或 TextureBuffer，TextureBuffer 类型的纹理格式可能为 0ES 格式或者 RGB 格式。如果你需要其他格式的视频数据，可在 <xref keyref="getVideoFormatPreference"/> 回调的返回值中设置预期的数据格式。</p>
+            <p props="apple">该回调默认提供的视频数据格式为 I420 或 CVPixelBufferRef，如果你需要其他格式的视频数据，可在 <xref keyref="getVideoFormatPreference"/> 回调中返回预期的数据格式。</p>
+            <p props="cpp">该回调默认提供的视频数据格式为 YUV420，如果你需要其他格式的视频数据，可在 <xref keyref="getVideoFormatPreference"/> 回调的返回值中设置预期的数据格式。</p>
             <note type="attention" props="native unreal bp electron rn flutter">
             <ul>
-            <li>如果你获取到的视频数据类型为 RGBA，SDK 不支持对 alpha 通道的值进行处理。</li>
-            <li props="flutter">由于 Flutter 框架的限制，该回调不支持将处理后的视频数据发送回 SDK。</li>
-            </ul></note>
+            <li props="native unreal bp">如果你需要将处理后的数据发送给 SDK，需要先调用 <xref keyref="getVideoFrameProcessMode"/> 方法，将视频处理模式设置为读写模式（<ph keyref="PROCESS_MODE_READ_WRITE"/>）。</li>
+            <li>如果你获取到的视频数据类型为 RGBA，SDK 不支持对 Alpha 通道的值进行处理。</li>
+            <li props="rn electron">建议你通过 C++ API 实现该回调。</li>
+            <li props="flutter rn electron">由于框架的限制，该回调不支持将处理后的视频数据发送回 SDK。</li>
+            <li conkeyref="onCaptureVideoFrame/restric1"/>
+        </ul></note>
         <note props="unity cs">Unity 仅支持将 YUV 格式的视频数据发回 SDK。请确保调用 <xref keyref="registerVideoFrameObserver"/> 方法注册原始视频帧观测器时，将 <parmname>mode</parmname> 设置为 <codeph>INTPTR</codeph>。</note> </section>
         <section id="parameters">
             <title>参数</title>
@@ -59,7 +66,7 @@
                 <pd>频道 ID。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unreal bp electron unity rn cs">
+        <section id="return_values" props="native unreal bp unity cs">
             <title>返回值</title>
             <p conkeyref="onCaptureVideoFrame/return"/>
         </section>

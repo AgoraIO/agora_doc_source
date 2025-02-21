@@ -9,23 +9,22 @@
             <parml>
             <plentry>
                 <pt><ph keyref="RENDER_MODE_HIDDEN"/></pt>
-                <pd>1: Hidden mode. Uniformly scale the video until one of its dimension fits the boundary (zoomed to fit). One dimension of the video may have clipped contents.</pd>
+                <pd>1: Hidden mode. The priority is to fill the window. Any excess video that does not match the window size will be cropped.</pd>
             </plentry>
             </parml>
             <parml>
             <plentry>
                 <pt><ph keyref="RENDER_MODE_FIT"/></pt>
-                <pd>2: Fit mode. Uniformly scale the video until one of its dimension fits the boundary (zoomed to fit). Areas that are not filled due to disparity in the aspect ratio are filled with black.</pd>
+                <pd>2: Fit mode. The priority is to ensure that all video content is displayed. Any areas of the window that are not filled due to the mismatch between video size and window size will be filled with black.</pd>
             </plentry>
             </parml>
             <parml>
             <plentry props="cpp unreal bp android flutter unity cs">
                 <pt><ph keyref="RENDER_MODE_ADAPTIVE"/></pt>
-                <pd>
-                    <dl outputclass="deprecated">
+                <pd>3: Adaptive mode.<dl outputclass="deprecated">
                     <dlentry>
                         <dt>Deprecated:</dt>
-                        <dd>3: This mode is deprecated.</dd>
+                        <dd>This enumerator is deprecated and not recommended for use.</dd>
                     </dlentry>
                     </dl>
                 </pd>

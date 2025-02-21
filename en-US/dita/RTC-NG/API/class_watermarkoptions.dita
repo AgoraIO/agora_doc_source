@@ -30,6 +30,7 @@
   public Rectangle positionInPortraitMode = new Rectangle();
 }
 </codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface WatermarkOptions : NSObject
 @property(assign, nonatomic) BOOL visibleInPreview;
 @property(assign, nonatomic) CGRect positionInLandscapeMode;
@@ -53,17 +54,40 @@
 struct FWatermarkOptions
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkOptions&quot;)
-	bool visibleInPreview;
+	bool visibleInPreview = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkOptions&quot;)
-	FRectangle positionInLandscapeMode;
+	FRectangle positionInLandscapeMode = FRectangle();
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkOptions&quot;)
-	FRectangle positionInPortraitMode;
+	FRectangle positionInPortraitMode = FRectangle();
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkOptions&quot;)
-	FWatermarkRatio watermarkRatio;
+	FWatermarkRatio watermarkRatio = FWatermarkRatio();
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkOptions&quot;)
 	EWATERMARK_FIT_MODE mode = EWATERMARK_FIT_MODE::FIT_MODE_COVER_POSITION;
+	FWatermarkOptions(){}
+	FWatermarkOptions(const agora::rtc::WatermarkOptions &amp; AgoraData){
+		visibleInPreview = AgoraData.visibleInPreview;
+		positionInLandscapeMode = FRectangle(AgoraData.positionInLandscapeMode);
+		positionInPortraitMode = FRectangle(AgoraData.positionInPortraitMode);
+		watermarkRatio = FWatermarkRatio(AgoraData.watermarkRatio);
+		mode = static_cast&lt;EWATERMARK_FIT_MODE&gt;(AgoraData.mode);
+	}
+	agora::rtc::WatermarkOptions CreateAgoraData() const {
+		agora::rtc::WatermarkOptions AgoraData;
+		AgoraData.visibleInPreview = visibleInPreview;
+		AgoraData.positionInLandscapeMode = positionInLandscapeMode.CreateAgoraData();
+		AgoraData.positionInPortraitMode = positionInPortraitMode.CreateAgoraData();
+		AgoraData.watermarkRatio = watermarkRatio.CreateAgoraData();
+		AgoraData.mode = static_cast&lt;agora::rtc::WATERMARK_FIT_MODE&gt;(mode);
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::WatermarkOptions &amp; AgoraData) const {
+		positionInLandscapeMode.FreeAgoraData(AgoraData.positionInLandscapeMode);
+		positionInPortraitMode.FreeAgoraData(AgoraData.positionInPortraitMode);
+		watermarkRatio.FreeAgoraData(AgoraData.watermarkRatio);
+	}
+	
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class WatermarkOptions {
   
@@ -154,7 +178,7 @@ class WatermarkOptions {
             <parml>
             <plentry>
                 <pt>visibleInPreview</pt>
-                <pd>Is the watermark visible in the local preview view?<ul>
+                <pd>Whether the watermark is visible in the local preview view:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: (Default) The watermark is visible in the local preview view.</li>
                     <li><codeph><ph keyref="false"/></codeph>: The watermark is not visible in the local preview view.</li>
                     </ul>
@@ -162,7 +186,7 @@ class WatermarkOptions {
             </plentry>
             <plentry>
                 <pt>positionInLandscapeMode</pt>
-                <pd props="android">The area to display the watermark image in landscape mode. See <xref keyref="Rectangle"/>.</pd>
+                <pd props="android hmos">The area to display the watermark image in landscape mode. See <xref keyref="Rectangle"/>.</pd>
                 <pd props="cpp unreal bp unity electron rn flutter cs">When the adaptation mode of the watermark is <ph keyref="FIT_MODE_COVER_POSITION"/>, it is used to set the area of the watermark image in landscape mode. See <xref keyref="Rectangle"/>.</pd>
                 <pd props="ios mac">The area to display the watermark image in landscape mode. This parameter contains the following members:<ul>
                     <li>x: The horizontal position of the watermark relative to the upper left corner.</li>
@@ -173,7 +197,7 @@ class WatermarkOptions {
             </plentry>
             <plentry>
                 <pt>positionInPortraitMode</pt>
-                <pd props="android">The area to display the watermark image in portrait mode. See <xref keyref="Rectangle"/>.</pd>
+                <pd props="android hmos">The area to display the watermark image in portrait mode. See <xref keyref="Rectangle"/>.</pd>
                 <pd props="cpp unreal bp unity electron rn flutter cs">When the adaptation mode of the watermark is <ph keyref="FIT_MODE_COVER_POSITION"/>, it is used to set the area of the watermark image in portrait mode. See <xref keyref="Rectangle"/>.</pd>
                 <pd props="ios mac">The area to display the watermark image in portrait mode. This parameter contains the following members:<ul>
                     <li>x: The horizontal position of the watermark relative to the upper left corner.</li>

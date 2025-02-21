@@ -15,20 +15,21 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">boolean onLocalAudioSpectrum(AudioSpectrumInfo data);
 </codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">onLocalAudioSpectrum?:(data:AudioSpectrumData) =&gt; boolean ;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onLocalAudioSpectrum:(NSArray&lt;NSNumber *&gt; * _Nullable)audioSpectrumData;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual bool onLocalAudioSpectrum(const AudioSpectrumData&amp; data) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnLocalAudioSpectrum, const FAudioSpectrumData&amp;, data);</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onLocalAudioSpectrum?(data: AudioSpectrumData): boolean;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">onLocalAudioSpectrum?(data: AudioSpectrumData): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual bool OnLocalAudioSpectrum(AudioSpectrumData data)
         {
             return true;
         }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">onLocalAudioSpectrum?(data: AudioSpectrumData): boolean;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onLocalAudioSpectrum?(data: AudioSpectrumData): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(AudioSpectrumData data)? onLocalAudioSpectrum;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>成功调用 <xref keyref="registerAudioSpectrumObserver" /> 实现 <xref keyref="IAudioSpectrumObserver" /> 中的 <apiname keyref="onLocalAudioSpectrum" /> 回调并调用 <xref keyref="enableAudioSpectrumMonitor" /> 开启音频频谱监测后，SDK 会按照你设置的时间间隔触发该回调，报告编码后的本地音频数据的频谱。</p>
+            <p>成功调用 <xref keyref="registerAudioSpectrumObserver" /> 实现 <xref keyref="IAudioSpectrumObserver" /> 中的 <apiname keyref="onLocalAudioSpectrum" /> 回调并调用 <xref keyref="enableAudioSpectrumMonitor" /> 开启音频频谱监测后，SDK 会按照你设置的时间间隔触发该回调，报告编码前的本地音频数据的频谱。</p>
         </section>
         <section id="parameters">
             <title>参数</title>
@@ -40,7 +41,7 @@
                 <pd props="ios mac">本地用户的音频频谱数据。声网将声音频率分为 256 个频域，通过该参数报告各频域的能量值，每个能量值的取值范围为 [-300,1]，单位为 dBFS。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unreal bp electron unity rn cs">
+        <section id="return_values" props="native unreal bp unity cs">
             <title>返回值</title>
             <p>是否接收频谱数据：
             <ul>

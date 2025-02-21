@@ -14,9 +14,10 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int muteLocalAudioStream(boolean muted);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public abstract muteLocalAudioStream(muted: boolean): number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)muteLocalAudioStream:(BOOL)mute;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int muteLocalAudioStream(bool mute) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
 	int MuteLocalAudioStream(bool mute);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract muteLocalAudioStream(mute: boolean): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int MuteLocalAudioStream(bool mute);</codeblock>
@@ -24,15 +25,26 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; muteLocalAudioStream(bool mute);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
-            <note type="attention">该方法不影响音频采集状态，因为没有禁用音频采集设备。</note> 
-            <p>成功调用该方法后，远端会触发 <xref keyref="onUserMuteAudio"/> 回调和 <xref keyref="onRemoteAudioStateChanged"/> 回调。</p></section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>该方法用于控制是否发布本地采集的音频流。如果不发布本地采集的音频流，也不会禁用音频采集设备，所以不影响音频的采集状态。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>加入频道前后均可调用。</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="related" deliveryTarget="details">
+            <title>相关回调</title>
+            <p>成功调用该方法后，本地会触发 <xref keyref="onAudioPublishStateChanged"/> 回调；远端会触发 <xref keyref="onUserMuteAudio"/> 回调和 <xref keyref="onRemoteAudioStateChanged"/> 回调。</p>
+        </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry>
-                <pt props="android">muted</pt>
+                <pt props="android hmos">muted</pt>
                 <pt props="ios mac cpp unreal bp unity flutter rn electron cs">mute</pt>
                 <pd id="mute">
                     <p>是否取消发布本地音频流。

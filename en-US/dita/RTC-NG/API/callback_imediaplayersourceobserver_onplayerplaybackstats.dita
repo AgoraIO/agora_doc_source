@@ -14,11 +14,13 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">void onPlayerPlaybackStats(PlayerPlaybackStats stats);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">onPlayerPlaybackStats?:(stats:PlayerPlaybackStats) =&gt; void</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">(void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol> _Nonnull)playerKit playbackStats:(AgoraMediaPlayerPlaybackStats *_Nonnull)info NS_SWIFT_NAME(AgoraRtcMediaPlayer(_:playbackStats:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onPlayerPlaybackStats(const media::base::PlayerPlaybackStats&amp; stats) {
     (void)stats;
   }</codeblock>
-            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnPlayerPlaybackStats(const FPlayerPlaybackStats&amp; stats);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onPlayerPlaybackStats?(stats: PlayerPlaybackStats): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnPlayerPlaybackStats(PlayerPlaybackStats stats)
                 {
@@ -29,7 +31,7 @@
         <section id="detailed_desc">
             <title>Details</title>
             <dl outputclass="since">
-            <dlentry props="native">
+            <dlentry props="android apple cpp">
                 <dt>Since</dt>
                 <dd>v4.3.0</dd>
             </dlentry>
@@ -40,7 +42,7 @@
             <title>Parameters</title>
             <parml>
             <plentry>
-                <pt props="cpp android framework">stats</pt>
+                <pt props="cpp android hmos framework">stats</pt>
                 <pt props="apple">info</pt>
                 <pd>The statistics of the media file. See <xref keyref="PlayerPlaybackStats"/>.</pd>
             </plentry>

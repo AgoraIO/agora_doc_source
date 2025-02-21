@@ -61,13 +61,15 @@
             <topicref keyref="joinChannel1" toc="no" processing-role="resource-only"/>
             <topicref keyref="joinChannel2" toc="no"/>
             <topicref keyref="joinChannelEx" toc="no"/>
+            <topicref keyref="joinChannelWithUserAccount1" toc="no" processing-role="resource-only"/>
             <topicref keyref="joinChannelWithUserAccount2" toc="no"/>
             <topicref keyref="joinChannelWithUserAccountEx" toc="no"/>
             <topicref keyref="leaveChannel" toc="no" processing-role="resource-only"/>
             <topicref keyref="leaveChannel2" toc="no"/>
+            <topicref keyref="leaveChannelEx" toc="no" processing-role="resource-only"/>
             <topicref keyref="leaveChannelEx2" toc="no"/>
             <topicref keyref="preloadChannel" toc="no"/>
-            <topicref keyref="preloadChannel2" toc="no"/>
+            <topicref keyref="preloadChannelWithUserAccount" toc="no"/>
             <topicref keyref="registerLocalUserAccount" toc="no"/>
             <topicref keyref="renewToken" toc="no"/>
             <topicref keyref="setChannelProfile" toc="no"/>
@@ -91,6 +93,10 @@
             <topicref keyref="onUserOffline" toc="no"/>
         </topicref>
         <topicref href="API/toc_publishnsubscribe.dita" chunk="to-content">
+            <topicref keyref="enableDualStreamMode" toc="no" processing-role="resource-only"/>
+            <topicref keyref="enableDualStreamMode2" toc="no" processing-role="resource-only"/>
+            <topicref keyref="enableDualStreamMode3" toc="no"/>
+            <topicref keyref="enableDualStreamModeEx" toc="no"/>
             <topicref keyref="muteAllRemoteAudioStreams" toc="no"/>
             <topicref keyref="muteAllRemoteAudioStreamsEx" toc="no"/>
             <topicref keyref="muteAllRemoteVideoStreams" toc="no"/>
@@ -103,6 +109,12 @@
             <topicref keyref="muteRemoteAudioStreamEx" toc="no"/>
             <topicref keyref="muteRemoteVideoStream" toc="no"/>
             <topicref keyref="muteRemoteVideoStreamEx" toc="no"/>
+            <topicref keyref="setDualStreamMode" toc="no" processing-role="resource-only"/>
+            <topicref keyref="setDualStreamMode2" toc="no"/>
+            <topicref keyref="setDualStreamModeEx" toc="no"/>
+            <topicref keyref="setRemoteDefaultVideoStreamType" toc="no"/>
+            <topicref keyref="setRemoteVideoStreamType" toc="no"/>
+            <topicref keyref="setRemoteVideoStreamTypeEx" toc="no"/>
             <topicref keyref="setRemoteVideoSubscriptionOptions" toc="no"/>
             <topicref keyref="setRemoteVideoSubscriptionOptionsEx" toc="no"/>
             <topicref keyref="setSubscribeAudioAllowlist" toc="no"/>
@@ -151,6 +163,7 @@
             </topicref>
             <topicref href="API/toc_audio_prenpost.dita" chunk="to-content">
                 <topicref href="API/toc_audio_effect.dita" chunk="to-content">
+                    <topicref keyref="enableVoiceAITuner" toc="no"/>
                     <topicref keyref="setAdvancedAudioOptions" toc="no"/>
                     <topicref keyref="setAINSMode" toc="no"/>
                     <topicref keyref="setAudioEffectParameters" toc="no"/>
@@ -187,9 +200,15 @@
                     <topicref keyref="setPlayerAttenuation" toc="no"/>
                     <topicref keyref="setRemoteAudioAttenuation" toc="no"/>
                     <topicref keyref="setRemoteUserSpatialAudioParams" toc="no"/>
+                    <topicref keyref="setSpatialAudioParams" toc="no"/>
                     <topicref keyref="setZones" toc="no"/>
                     <topicref keyref="updatePlayerPositionInfo" toc="no"/>
                     <topicref keyref="enableSpatialAudio" toc="no"/>
+                </topicref>
+                <topicref href="API/toc_audiomixer.dita" chunk="to-content">
+                    <topicref keyref="startLocalAudioMixer" toc="no"/>
+                    <topicref keyref="stopLocalAudioMixer" toc="no"/>
+                    <topicref keyref="updateLocalAudioMixerConfiguration" toc="no"/>
                 </topicref>
             </topicref>
             <topicref href="API/toc_audio_raw.dita" chunk="to-content">
@@ -263,11 +282,13 @@
                 <topicref keyref="onVideoStopped" toc="no"/>
             </topicref>
             <topicref href="API/toc_camera_capture.dita" chunk="to-content">
+                <topicref keyref="setCameraStabilizationMode" toc="no"/>
                 <topicref keyref="startCameraCapture" toc="no"/>
                 <topicref keyref="stopCameraCapture" toc="no"/>
             </topicref>
             <topicref href="API/toc_screencapture.dita" chunk="to-content">
                 <topicref keyref="queryScreenCaptureCapability" toc="no"/>
+                <topicref keyref="setExternalMediaProjection" toc="no"/>
                 <topicref keyref="setScreenCaptureContentHint" toc="no"/>
                 <topicref keyref="setScreenCaptureScenario" toc="no"/>
                 <topicref keyref="startScreenCapture" toc="no"/>
@@ -282,21 +303,43 @@
                     <topicref keyref="enableContentInspect" toc="no"/>
                     <topicref keyref="enableContentInspectEx" toc="no"/>
                     <topicref keyref="takeSnapshot" toc="no"/>
+                    <topicref keyref="takeSnapshot2" toc="no"/>
                     <topicref keyref="takeSnapshotEx" toc="no"/>
+                    <topicref keyref="takeSnapshotEx2" toc="no"/>
                     <topicref keyref="onSnapshotTaken" toc="no"/>
                 </topicref>
                 <topicref href="API/toc_virtualbackground.dita" chunk="to-content">
                     <topicref keyref="enableVirtualBackground" toc="no"/>
                 </topicref>
+                <topicref href="API/toc_local_transcoder.dita" chunk="to-content">
+                    <topicref keyref="startLocalVideoTranscoder" toc="no"/>
+                    <topicref keyref="stopLocalVideoTranscoder" toc="no"/>
+                    <topicref keyref="updateLocalTranscoderConfiguration" toc="no"/>
+                    <topicref keyref="onLocalVideoTranscoderError" toc="no"/>
+                </topicref>
                 <topicref href="API/toc_video_enhance_option.dita" chunk="to-content">
+                    <topicref keyref="getFaceShapeAreaOptions" toc="no" props="cn"/>
+                    <topicref keyref="getFaceShapeBeautyOptions" toc="no" props="cn"/>
                     <topicref keyref="setBeautyEffectOptions" toc="no"/>
                     <topicref keyref="setColorEnhanceOptions" toc="no"/>
+                    <topicref keyref="setFaceShapeAreaOptions" toc="no" props="cn"/>
+                    <topicref keyref="setFaceShapeBeautyOptions" toc="no" props="cn"/>
+                    <topicref keyref="setFilterEffectOptions" toc="no"/>
                     <topicref keyref="setLowlightEnhanceOptions" toc="no"/>
                     <topicref keyref="setVideoDenoiserOptions" toc="no"/>
                 </topicref>
                 <topicref href="API/toc_face_detection.dita" chunk="to-content">
                     <topicref keyref="enableFaceDetection" toc="no"/>
                     <topicref keyref="onFacePositionChanged" toc="no"/>
+                </topicref>
+                <topicref href="API/toc_speech_driven.dita" chunk="to-content" props="en">
+                    <topicref keyref="registerFaceInfoObserver" toc="no"/>
+                    <topicref keyref="unregisterFaceInfoObserver" toc="no"/>
+                    <topicref keyref="onFaceInfo" toc="no"/>
+                </topicref>
+                <topicref href="API/toc_center_stage.dita" chunk="to-content">
+                    <topicref keyref="enableCameraCenterStage" toc="no"/>
+                    <topicref keyref="isCameraCenterStageSupported" toc="no"/>
                 </topicref>
                 <topicref href="API/toc_watermark.dita" chunk="to-content">
                     <topicref keyref="addVideoWatermark2" toc="no"/>
@@ -308,36 +351,18 @@
                     <topicref keyref="enableVideoImageSource" toc="no"/>
                 </topicref>
             </topicref>
-            <topicref href="API/toc_video_codec.dita" chunk="to-content">
-                <topicref href="API/toc_dual_stream.dita" chunk="to-content">
-                    <topicref keyref="enableDualStreamMode" toc="no" processing-role="resource-only"/>
-                    <topicref keyref="enableDualStreamMode2" toc="no" processing-role="resource-only"/>
-                    <topicref keyref="enableDualStreamMode3" toc="no"/>
-                    <topicref keyref="enableDualStreamModeEx" toc="no"/>
-                    <topicref keyref="setDualStreamMode" toc="no" processing-role="resource-only"/>
-                    <topicref keyref="setDualStreamMode2" toc="no"/>
-                    <topicref keyref="setDualStreamModeEx" toc="no"/>
-                    <topicref keyref="setRemoteDefaultVideoStreamType" toc="no"/>
-                    <topicref keyref="setRemoteVideoStreamType" toc="no"/>
-                    <topicref keyref="setRemoteVideoStreamTypeEx" toc="no"/>
-                </topicref>
-                <topicref href="API/toc_local_transcoder.dita" chunk="to-content">
-                    <topicref keyref="startLocalVideoTranscoder" toc="no"/>
-                    <topicref keyref="stopLocalVideoTranscoder" toc="no"/>
-                    <topicref keyref="updateLocalTranscoderConfiguration" toc="no"/>
-                    <topicref keyref="onLocalVideoTranscoderError" toc="no"/>
-                    <topicref keyref="onTranscodedStreamLayoutInfo" toc="no"/>
-                </topicref>
-            </topicref>
             <topicref href="API/toc_video_rendering.dita" chunk="to-content">
                 <topicref keyref="enableInstantMediaRendering" toc="no"/>
                 <topicref keyref="setLocalRenderMode2" toc="no"/>
+                <topicref keyref="setLocalRenderTargetFps" toc="no"/>
                 <topicref keyref="setLocalVideoMirrorMode" toc="no"/>
                 <topicref keyref="setRemoteRenderMode2" toc="no"/>
                 <topicref keyref="setRemoteRenderModeEx" toc="no"/>
+                <topicref keyref="setRemoteRenderTargetFps" toc="no"/>
                 <topicref keyref="setRenderMode" toc="no"/>
                 <topicref keyref="startMediaRenderingTracing" toc="no"/>
                 <topicref keyref="startMediaRenderingTracingEx" toc="no"/>
+                <topicref keyref="onTranscodedStreamLayoutInfo" toc="no"/>
                 <topicref keyref="onVideoRenderingTracingResult" toc="no"/>
             </topicref>
             <topicref href="API/toc_video_raw.dita" chunk="to-content">
@@ -360,6 +385,7 @@
                 <topicref keyref="createCustomVideoTrack" toc="no"/>
                 <topicref keyref="destroyCustomVideoTrack" toc="no"/>
                 <topicref keyref="pushVideoFrame" toc="no"/>
+                <topicref keyref="setExternalRemoteEglContext" toc="no"/>
                 <topicref keyref="setExternalVideoSource" toc="no"/>
             </topicref>
         </topicref>
@@ -380,6 +406,7 @@
                 <topicref keyref="selectMultiAudioTrack" toc="no"/>
                 <topicref keyref="setAudioMixingDualMonoMode" toc="no"/>
                 <topicref keyref="setAudioMixingPitch" toc="no"/>
+                <topicref keyref="setAudioMixingPlaybackSpeed" toc="no"/>
                 <topicref keyref="setAudioMixingPosition" toc="no"/>
                 <topicref keyref="startAudioMixing2" toc="no"/>
                 <topicref keyref="stopAudioMixing" toc="no"/>
@@ -440,7 +467,6 @@
                     <topicref keyref="setPlaybackSpeed" toc="no"/>
                     <topicref keyref="setPlayerOption" toc="no"/>
                     <topicref keyref="setPlayerOption2" toc="no"/>
-                    <topicref keyref="setSpatialAudioParams" toc="no"/>
                     <topicref keyref="setView" toc="no"/>
                 </topicref>
                 <topicref href="API/toc_mediaplayer_control.dita" chunk="to-content">
@@ -484,23 +510,24 @@
                     <topicref keyref="onPositionChanged" toc="no"/>
                     <topicref keyref="onPreloadEvent" toc="no"/>
                 </topicref>
-            </topicref>
-            <topicref href="API/toc_mediaplayer_cache.dita" chunk="to-content">
-                <topicref keyref="getCacheDir" toc="no"/>
-                <topicref keyref="getCacheFileCount" toc="no"/>
-                <topicref keyref="getMaxCacheFileCount" toc="no"/>
-                <topicref keyref="getMaxCacheFileSize" toc="no"/>
-                <topicref keyref="enableAutoRemoveCache" toc="no"/>
-                <topicref keyref="removeAllCaches" toc="no"/>
-                <topicref keyref="removeCacheByUri" toc="no"/>
-                <topicref keyref="removeOldCache" toc="no"/>
-                <topicref keyref="setCacheDir" toc="no"/>
-                <topicref keyref="setMaxCacheFileCount" toc="no"/>
-                <topicref keyref="setMaxCacheFileSize" toc="no"/>
-                <topicref keyref="onPlayerCacheStats" toc="no"/>
+                <topicref href="API/toc_mediaplayer_cache.dita" chunk="to-content">
+                    <topicref keyref="getCacheDir" toc="no"/>
+                    <topicref keyref="getCacheFileCount" toc="no"/>
+                    <topicref keyref="getMaxCacheFileCount" toc="no"/>
+                    <topicref keyref="getMaxCacheFileSize" toc="no"/>
+                    <topicref keyref="enableAutoRemoveCache" toc="no"/>
+                    <topicref keyref="removeAllCaches" toc="no"/>
+                    <topicref keyref="removeCacheByUri" toc="no"/>
+                    <topicref keyref="removeOldCache" toc="no"/>
+                    <topicref keyref="setCacheDir" toc="no"/>
+                    <topicref keyref="setMaxCacheFileCount" toc="no"/>
+                    <topicref keyref="setMaxCacheFileSize" toc="no"/>
+                    <topicref keyref="onPlayerCacheStats" toc="no"/>
+                </topicref>
             </topicref>
             <topicref href="API/toc_drm.dita" chunk="to-content" props="cn">
                 <topicref keyref="createMusicPlayer" toc="no"/>
+                <topicref keyref="destroyMusicPlayer" toc="no"/>
                 <topicref keyref="getCaches" toc="no"/>
                 <topicref keyref="getInternalSongCode" toc="no"/>
                 <topicref keyref="getLyric" toc="no"/>
@@ -517,6 +544,7 @@
                 <topicref keyref="removeCache" toc="no"/>
                 <topicref keyref="renewToken_IMusicContentCenter" toc="no"/>
                 <topicref keyref="searchMusic" toc="no"/>
+                <topicref keyref="setPlayMode" toc="no"/>
                 <topicref keyref="unregisterEventHandler_IMusicContentCenter" toc="no"/>
                 <topicref keyref="open_IMusicPlayer" toc="no"/>
                 <topicref keyref="onLyricResult" toc="no"/>
@@ -546,15 +574,10 @@
                 <topicref keyref="pauseAllChannelMediaRelayEx" toc="no"/>
                 <topicref keyref="resumeAllChannelMediaRelay" toc="no"/>
                 <topicref keyref="resumeAllChannelMediaRelayEx" toc="no"/>
-                <topicref keyref="startChannelMediaRelay" toc="no"/>
-                <topicref keyref="startChannelMediaRelayEx" toc="no"/>
                 <topicref keyref="startOrUpdateChannelMediaRelay" toc="no"/>
                 <topicref keyref="startOrUpdateChannelMediaRelayEx" toc="no"/>
                 <topicref keyref="stopChannelMediaRelay" toc="no"/>
                 <topicref keyref="stopChannelMediaRelayEx" toc="no"/>
-                <topicref keyref="updateChannelMediaRelay" toc="no"/>
-                <topicref keyref="updateChannelMediaRelayEx" toc="no"/>
-                <topicref keyref="onChannelMediaRelayEvent" toc="no"/>
                 <topicref keyref="onChannelMediaRelayStateChanged" toc="no"/>
             </topicref>
             <topicref href="API/toc_media_push.dita" chunk="to-content">
@@ -613,9 +636,10 @@
                 <topicref keyref="setRouteInCommunicationMode" toc="no"/>
                 <topicref keyref="onAudioRoutingChanged" toc="no"/>
             </topicref>
-            <topicref href="API/toc_mobile_camera.dita" chunk="to-content">
+            <topicref href="API/toc_video_device.dita" chunk="to-content">
                 <topicref keyref="enableMultiCamera" toc="no"/>
                 <topicref keyref="getCameraMaxZoomFactor" toc="no"/>
+                <topicref keyref="getVideoDeviceManager" toc="no"/>
                 <topicref keyref="isCameraAutoExposureFaceModeSupported" toc="no"/>
                 <topicref keyref="isCameraAutoFocusFaceModeSupported" toc="no"/>
                 <topicref keyref="isCameraExposurePositionSupported" toc="no"/>
@@ -624,6 +648,7 @@
                 <topicref keyref="isCameraFocusSupported" toc="no"/>
                 <topicref keyref="isCameraTorchSupported" toc="no"/>
                 <topicref keyref="isCameraZoomSupported" toc="no"/>
+                <topicref keyref="queryCameraFocalLengthCapability" toc="no"/>
                 <topicref keyref="setCameraAutoExposureFaceModeEnabled" toc="no"/>
                 <topicref keyref="setCameraAutoFocusFaceModeEnabled" toc="no"/>
                 <topicref keyref="setCameraCapturerConfiguration" toc="no"/>
@@ -638,32 +663,32 @@
                 <topicref keyref="onCameraFocusAreaChanged" toc="no"/>
                 <topicref keyref="onCameraReady" toc="no"/>
             </topicref>
-            <topicref href="API/toc_pc_audio_device_management.dita" chunk="to-content">
+            <topicref href="API/toc_audio_device.dita" chunk="to-content">
                 <topicref keyref="getAudioDeviceInfo" toc="no"/>
                 <topicref keyref="getAudioDeviceManager" toc="no"/>
                 <topicref keyref="startPlaybackDeviceTest" toc="no"/>
                 <topicref keyref="stopPlaybackDeviceTest" toc="no"/>
             </topicref>
-            <topicref href="API/toc_pc_video_device_management.dita" chunk="to-content">
-                <topicref keyref="getVideoDeviceManager" toc="no"/>
-            </topicref>
         </topicref>
         <topicref href="API/toc_extension.dita" chunk="to-content">
             <topicref keyref="enableExtension" toc="no"/>
+            <topicref keyref="registerExtension" toc="no"/>
             <topicref keyref="getExtensionProperty2" toc="no"/>
             <topicref keyref="loadExtensionProvider" toc="no"/>
             <topicref keyref="setExtensionProperty" toc="no"/>
             <topicref keyref="setExtensionProviderProperty" toc="no"/>
-            <topicref keyref="onExtensionError" toc="no"/>
-            <topicref keyref="onExtensionEvent" toc="no"/>
-            <topicref keyref="onExtensionStarted" toc="no"/>
-            <topicref keyref="onExtensionStopped" toc="no"/>
+            <topicref keyref="onExtensionErrorWithContext" toc="no"/>
+            <topicref keyref="onExtensionEventWithContext" toc="no"/>
+            <topicref keyref="onExtensionStartedWithContext" toc="no"/>
+            <topicref keyref="onExtensionStoppedWithContext" toc="no"/>
         </topicref>
         <topicref href="API/toc_network.dita" chunk="to-content">
             <topicref keyref="complain" toc="no"/>
             <topicref keyref="enableEncryption" toc="no"/>
+            <topicref keyref="enableEncryptionEx" toc="no"/>
             <topicref keyref="enableWebSdkInteroperability" toc="no"/>
             <topicref keyref="getCallId" toc="no"/>
+            <topicref keyref="getCallIdEx" toc="no"/>
             <topicref keyref="getConnectionState" toc="no"/>
             <topicref keyref="getConnectionStateEx" toc="no"/>
             <topicref keyref="getCurrentMonotonicTimeInMs" toc="no"/>
@@ -679,8 +704,6 @@
             <topicref keyref="sendCustomReportMessageEx" toc="no"/>
             <topicref keyref="setAVSyncSource" toc="no" props="cn"/>
             <topicref keyref="setCloudProxy" toc="no"/>
-            <topicref keyref="setEncryptionMode" toc="no"/>
-            <topicref keyref="setEncryptionSecret" toc="no"/>
             <topicref keyref="setLocalAccessPoint" toc="no" props="cn"/>
             <topicref keyref="setLogFile" toc="no"/>
             <topicref keyref="setLogFileSize" toc="no"/>
@@ -706,6 +729,6 @@
             <topicref keyref="onRemoteSubscribeFallbackToAudioOnly" toc="no"/>
             <topicref keyref="onUplinkNetworkInfoUpdated" toc="no"/>
         </topicref>
-        <topicref href="API/rtc_api_data_type.dita" chunk="to-content"/>
+        <topicref href="API/rtc_api_data_type.dita"/>
     </topichead>
 </map>

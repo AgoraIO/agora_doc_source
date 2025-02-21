@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onAudioQuality(int uid, int quality, short delay, short lost) {}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)audioQualityBlock:(void (^_Nullable)(NSUInteger uid, AgoraNetworkQuality quality, NSUInteger delay, NSUInteger lost))audioQualityBlock</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onAudioQuality(uid_t uid, int quality, unsigned short delay, unsigned short lost) {
   (void)uid;
@@ -21,7 +22,8 @@
   (void)delay;
   (void)lost;
 }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnAudioQuality, int64, uid, int, quality, int, delay, int, lost);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnAudioQuality(int64 uid, int quality, int delay, int lost);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onAudioQuality?(
     connection: RtcConnection,
     remoteUid: number,

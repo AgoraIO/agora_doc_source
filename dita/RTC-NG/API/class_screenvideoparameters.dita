@@ -46,6 +46,11 @@
     }
   }
 </codeblock>
+                <codeblock props="hmos" outputclass="language-arkts">export class ScreenVideoParameters {
+  public dimensions: VideoDimensions = new VideoDimensions(1280, 720);
+  public frameRate: number = 15;
+  public bitrate: number = 0;
+}</codeblock>
             <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenVideoParameters : NSObject
 
 @property(assign, nonatomic) CGSize dimensions;
@@ -66,17 +71,36 @@
 </codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FScreenVideoParameters {
-
 	GENERATED_BODY()
-
-	FVideoDimensions dimensions;
-
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenVideoParameters&quot;)
+	FVideoDimensions dimensions = FVideoDimensions();
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenVideoParameters&quot;)
 	int frameRate = 15;
-
-	int bitrate;
-
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenVideoParameters&quot;)
+	int bitrate = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenVideoParameters&quot;)
 	EVIDEO_CONTENT_HINT contentHint = EVIDEO_CONTENT_HINT::CONTENT_HINT_MOTION;
-
+#if defined(__ANDROID__) || (defined(__APPLE__) &amp;&amp; TARGET_OS_IOS)
+	FScreenVideoParameters(){}
+	FScreenVideoParameters(const agora::rtc::ScreenVideoParameters &amp; AgoraData){
+		dimensions = FVideoDimensions(AgoraData.dimensions);
+		frameRate = AgoraData.frameRate;
+		bitrate = AgoraData.bitrate;
+		contentHint = static_cast&lt;EVIDEO_CONTENT_HINT&gt;(AgoraData.contentHint);
+	}
+	agora::rtc::ScreenVideoParameters CreateAgoraData() const {
+		agora::rtc::ScreenVideoParameters AgoraData;
+		AgoraData.dimensions = dimensions.CreateAgoraData();
+		AgoraData.frameRate = frameRate;
+		AgoraData.bitrate = bitrate;
+		AgoraData.contentHint = static_cast&lt;agora::rtc::VIDEO_CONTENT_HINT&gt;(contentHint);
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::ScreenVideoParameters&amp; AgoraData) const {
+		dimensions.FreeAgoraData(AgoraData.dimensions);
+	}
+#endif
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ScreenVideoParameters {
   
@@ -133,12 +157,12 @@ struct FScreenVideoParameters {
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p props="android">仅适用于 <parmname>captureVideo</parmname> 为 <codeph><ph keyref="true"/></codeph> 的场景。</p>
+            <p props="android hmos">仅适用于 <parmname>captureVideo</parmname> 为 <codeph><ph keyref="true"/></codeph> 的场景。</p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry props="ios cpp unreal bp electron unity rn flutter cs">
+            <plentry props="hmos ios cpp unreal bp electron unity rn flutter cs">
                 <pt>dimensions</pt>
                 <pd>视频编码的分辨率。默认值为 1280 × 720。</pd>
                 <pd>如果 <parmname>dimensions</parmname> 宽高比与屏幕像素值的宽高比不一致，SDK 会按照如下规则调节视频编码分辨率，以 <parmname>dimensions</parmname> 是 1280 × 720 为例：
@@ -148,10 +172,20 @@ struct FScreenVideoParameters {
                     </ul>
                     <note>
                     <ul>
-                    <li>屏幕共享流的计费以 <parmname>dimensions</parmname> 的值为准：当你未传值时，以 1280 × 720 计费；当你传值时，以你传入的值计费。详细的计费规则请参考<xref keyref="guide-bill"/>。</li>
+                    <li>屏幕共享流的计费以 <parmname>dimensions</parmname> 的值为准：当你未传值时，以 1280 × 720 计费；当你传值时，以你传入的值计费。</li>
                     <li>该值不代表最终视频输出的方向。详见 <xref keyref="ORIENTATION_MODE"/> 了解设置视频方向。</li>
                     <li>视频能否达到 720P 的分辨率取决于设备的性能，在性能配备较低的设备上有可能无法实现。如果采用 720P 分辨率而设备性能跟不上，则有可能出现帧率过低的情况。</li>
-                    </ul> </note></pd>
+                    </ul> </note>
+                    <note props="android cpp apple framework">在共享文档的场景（<ph keyref="SCREEN_SCENARIO_DOCUMENT"/>）下设置编码分辨率时，选择以下两种方式其中之一。 
+                      <ul>
+                      <li>如果你需要最优的画质，建议将编码分辨率设置为与采集分辨率相同。</li>
+                      <li>如果你希望在画质、带宽和系统性能之间达到相对平衡，则： 
+                          <ul>
+                          <li>当采集分辨率大于 1920 × 1080 时，建议编码分辨率不低于 1920 × 1080。</li>
+                          <li>当采集分辨率低于 1920 × 1080 时，建议编码分辨率不低于 1280 × 720。</li>
+                          </ul></li>
+                      </ul></note>
+                    </pd>
             </plentry>
             <plentry props="android">
                 <pt>width</pt>
@@ -162,10 +196,20 @@ struct FScreenVideoParameters {
                     </ul>
                     <note>
                     <ul>
-                    <li>屏幕共享流的计费以 width 和 height 的值为准：当你未传值时，以 1280 × 720 计费；当你传值时，以你传入的值计费。详细的计费规则请参考<xref keyref="guide-bill"/>。</li>
+                    <li>屏幕共享流的计费以 width 和 height 的值为准：当你未传值时，以 1280 × 720 计费；当你传值时，以你传入的值计费。</li>
                     <li>该值不代表最终视频输出的方向。请查阅 <xref keyref="ORIENTATION_MODE"/> 了解设置视频方向。</li>
                     <li>视频能否达到 720P 的分辨率取决于设备的性能，在性能配备较低的设备上有可能无法实现。如果采用 720P 分辨率而设备性能跟不上，则有可能出现帧率过低的情况。</li>
-                    </ul> </note></pd>
+                    </ul> </note>
+                    <note>在共享文档的场景（<ph keyref="SCREEN_SCENARIO_DOCUMENT"/>）下设置编码分辨率时，选择以下两种方式其中之一。 
+                      <ul>
+                      <li>如果你需要最优的画质，建议将编码分辨率设置为与采集分辨率相同。</li>
+                      <li>如果你希望在画质、带宽和系统性能之间达到相对平衡，则： 
+                          <ul>
+                          <li>当采集分辨率大于 1920 × 1080 时，建议编码分辨率不低于 1920 × 1080。</li>
+                          <li>当采集分辨率低于 1920 × 1080 时，建议编码分辨率不低于 1280 × 720。</li>
+                          </ul></li>
+                      </ul></note>
+                    </pd>
             </plentry>
             <plentry props="android">
                 <pt>height</pt>
@@ -176,24 +220,34 @@ struct FScreenVideoParameters {
                     </ul>
                     <note>
                     <ul>
-                    <li>屏幕共享流的计费以 width 和 height 的值为准：当你未传值时，以 1280 × 720 计费；当你传值时，以你传入的值计费。详细的计费规则请参考<xref keyref="guide-bill"/>。</li>
+                    <li>屏幕共享流的计费以 width 和 height 的值为准：当你未传值时，以 1280 × 720 计费；当你传值时，以你传入的值计费。</li>
                     <li>该值不代表最终视频输出的方向。请查阅 <xref keyref="ORIENTATION_MODE"/> 了解设置视频方向。</li>
                     <li>视频能否达到 720P 的分辨率取决于设备的性能，在性能配备较低的设备上有可能无法实现。如果采用 720P 分辨率而设备性能跟不上，则有可能出现帧率过低的情况。</li>
-                    </ul> </note> </pd>
+                    </ul> </note> 
+                    <note>在共享文档的场景（<ph keyref="SCREEN_SCENARIO_DOCUMENT"/>）下设置编码分辨率时，选择以下两种方式其中之一。 
+                      <ul>
+                      <li>如果你需要最优的画质，建议将编码分辨率设置为与采集分辨率相同。</li>
+                      <li>如果你希望在画质、带宽和系统性能之间达到相对平衡，则： 
+                          <ul>
+                          <li>当采集分辨率大于 1920 × 1080 时，建议编码分辨率不低于 1920 × 1080。</li>
+                          <li>当采集分辨率低于 1920 × 1080 时，建议编码分辨率不低于 1280 × 720。</li>
+                          </ul></li>
+                      </ul></note>
+                    </pd>
             </plentry>
             <plentry>
                 <pt props="android">framerate</pt>
-                <pt props="ios cpp unreal bp electron unity rn flutter cs">frameRate</pt>
+                <pt props="hmos ios cpp unreal bp electron unity rn flutter cs">frameRate</pt>
                 <pd>视频编码帧率 (fps)。默认值为 15。</pd>
             </plentry>
             <plentry>
                 <pt>bitrate</pt>
                 <pd>视频编码码率 (Kbps)。</pd>
             </plentry>
-            <plentry>
+            <plentry props="android cpp apple framework">
                 <pt>contentHint</pt>
                 <pd><ph>屏幕共享视频的内容类型。</ph><ph props="cpp unreal bp ios">详见 <xref keyref="VIDEO_CONTENT_HINT"/>。</ph>
-                    <ul props="android">
+                    <ul props="android hmos">
                     <li><ph keyref="CONTENT_HINT_NONE"/>(0)：（默认）无指定的内容类型。</li>
                     <li><ph keyref="CONTENT_HINT_MOTION"/>(1)：内容类型为动画。当共享的内容是视频、电影或视频游戏时，推荐选择该内容类型。</li>
                     <li><ph keyref="CONTENT_HINT_DETAILS"/>(2)：内容类型为细节。当共享的内容是图片或文字时，推荐选择该内容类型。</li>

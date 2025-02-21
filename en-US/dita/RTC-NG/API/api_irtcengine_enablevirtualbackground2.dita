@@ -16,6 +16,7 @@
             <codeblock props="android" outputclass="language-java">public abstract int enableVirtualBackground(boolean enabled,
       VirtualBackgroundSource backgroundSource, SegmentationProperty segproperty,
       Constants.MediaSourceType sourceType);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public abstract enableVirtualBackground(enabled:boolean,backgroundSource:VirtualBackgroundSource,segproperty:SegmentationProperty,sourceType?:Constants.MediaSourceType):number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableVirtualBackground:(BOOL)enable backData:(AgoraVirtualBackgroundSource* _Nullable)backData segData:(AgoraSegmentationProperty* _Nullable)segData sourceType:(AgoraMediaSourceType)sourceType NS_SWIFT_NAME(enableVirtualBackground(_:backData:segData:sourceType:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp"></codeblock>
             <codeblock props="bp" outputclass="language-cpp"></codeblock>
@@ -27,9 +28,9 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>The virtual background feature enables the local user to replace their original background with a static image, dynamic video, blurred background, or portrait-background segmentation to achieve picture-in-picture effect.  Once the virtual background feature is enabled, all users in the channel can see the custom background.</p>
-            <p>Both this method and <xref keyref="enableVirtualBackground"/> enable/disable virtual background, but this method allows you to specify the media source to which the virtual background is applied. </p>
-            <p>Call this method before calling <xref keyref="enableVideo"/> or <xref keyref="startPreview2"/>.</p>
+            <p>The virtual background feature enables the local user to replace their original background with a static image, dynamic video, blurred background, or portrait-background segmentation to achieve picture-in-picture effect. Once the virtual background feature is enabled, all users in the channel can see the custom background.</p>
+            <p props="android apple">Both this method and <xref keyref="enableVirtualBackground"/> enable/disable virtual background, but this method allows you to specify the media source to which the virtual background is applied. </p>
+            <p>Call this method after calling <xref keyref="enableVideo"/> or <xref keyref="startPreview2"/>.</p>
             <note type="attention" conkeyref="enableVirtualBackground/hardware_req"/>
         </section>
         <section id="parameters">
@@ -53,12 +54,15 @@
             </plentry>
             <plentry id="sourcetype">
                 <pt props="android apple">sourceType</pt>
-                <pd>The media source type to which the effect is applied. See <xref keyref="MEDIA_SOURCE_TYPE" />.</pd>
+                <pd>The type of the media source to which the filter effect is applied. See <xref keyref="MEDIA_SOURCE_TYPE" />.<note type="attention">In this method, this parameter supports only the following two settings:<ul>
+                    <li>The default value is <apiname keyref="PRIMARY_CAMERA_SOURCE"/>.</li>
+                    <li>Set this parameter to <apiname keyref="CUSTOM_VIDEO_SOURCE"/> if you use custom video source.</li>
+                    </ul></note></pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul>
             <li props="native unreal bp electron unity rn cs">0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul>

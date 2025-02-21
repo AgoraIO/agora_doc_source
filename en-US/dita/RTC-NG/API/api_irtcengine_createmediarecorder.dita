@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract AgoraMediaRecorder createMediaRecorder(RecorderStreamInfo info);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public abstract createMediaRecorder(info: RecorderStreamInfo): AgoraMediaRecorder;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (AgoraMediaRecorder * _Nullable)createMediaRecorder:(AgoraRecorderStreamInfo * _Nonnull)info NS_SWIFT_NAME(createMediaRecorder(withInfo:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual agora_refptr&lt;IMediaRecorder> createMediaRecorder(const RecorderStreamInfo&amp; info) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
@@ -26,7 +27,7 @@
         <section id="detailed_desc">
             <title>Details</title>
             <dl outputclass="since">
-            <dlentry props="native">
+            <dlentry props="android apple cpp">
                 <dt>Since</dt>
                 <dd>v4.2.0</dd>
             </dlentry>
@@ -46,7 +47,7 @@
             <title>Returns</title>
             <ul>
             <li props="cpp unreal bp apple rn electron unity flutter cs">The <xref keyref="IMediaRecorder"/> object, if the method call succeeds.</li>
-            <li props="android">The <xref keyref="IMediaRecorder"/> instance, if the method call succeeds.</li>
+            <li props="android hmos">The <xref keyref="IMediaRecorder"/> instance, if the method call succeeds.</li>
             <li>An empty pointer, if the method call fails.</li>
             </ul>
         </section>

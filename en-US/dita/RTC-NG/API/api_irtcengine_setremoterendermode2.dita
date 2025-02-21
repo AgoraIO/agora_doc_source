@@ -14,11 +14,12 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setRemoteRenderMode(int userId, int renderMode, int mirrorMode);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public abstract setRemoteRenderMode(uid: number, renderMode: number, mirrorMode: number): number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setRemoteRenderMode:(NSUInteger)uid
                       mode:(AgoraVideoRenderMode)mode
                     mirror:(AgoraVideoMirrorMode)mirror;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setRemoteRenderMode(uid_t userId, RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
 	int SetRemoteRenderMode(int64 uid, ERENDER_MODE_TYPE renderMode, EVIDEO_MIRROR_MODE_TYPE mirrorMode);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setRemoteRenderMode(
     uid: number,
@@ -50,33 +51,34 @@
             <parml>
             <plentry>
                 <pt props="android cpp unreal bp">userId</pt>
-                <pt props="ios mac unity flutter rn electron cs">uid</pt>
+                <pt props="hmos ios mac unity flutter rn electron cs">uid</pt>
                 <pd>The user ID of the remote user.</pd>
             </plentry>
             <plentry>
-                <pt props="android cpp unreal bp unity flutter rn electron cs">renderMode</pt>
+                <pt props="android hmos cpp unreal bp unity flutter rn electron cs">renderMode</pt>
                 <pt props="ios mac">mode</pt>
                 <pd>
                     <p props="ios mac cpp unreal bp unity flutter rn electron cs">The rendering mode of the remote user view. For details, see <xref keyref="RENDER_MODE_TYPE" />.</p>
-                    <p props="android">The rendering mode of the remote user view.<ul conkeyref="setLocalRenderMode2/rendermodetype">
+                    <p props="android hmos">The rendering mode of the remote user view.<ul conkeyref="setLocalRenderMode2/rendermodetype">
                     <li />
                     </ul> </p>
                 </pd>
             </plentry>
             <plentry>
-                <pt props="android cpp unreal bp unity flutter rn electron cs">mirrorMode</pt>
+                <pt props="android hmos cpp unreal bp unity flutter rn electron cs">mirrorMode</pt>
                 <pt props="ios mac">mirror</pt>
                 <pd>
                     <p props="ios mac cpp unreal bp unity flutter rn electron cs">The mirror mode of the remote user view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</p>
-                    <p props="android">The mirror mode of the remote user view.<ul conkeyref="setLocalRenderMode2/videomirrormodetype">
+                    <p props="android hmos">The mirror mode of the remote user view.<ul conkeyref="setLocalRenderMode2/videomirrormodetype">
                     <li />
                     </ul> </p>
+                    <note conkeyref="setLocalRenderMode2/mirror" props="unreal bp"/>
                 </pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul>
             <li props="native unreal bp unity electron rn cs">0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>

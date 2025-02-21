@@ -24,6 +24,44 @@
     public long totalActiveTime;
     public long publishDuration;
   }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class RemoteVideoStats {
+  
+  public uid:number = 0;
+  
+  public delay:number = 0;
+  
+  public e2eDelay:number = 0;
+  
+  public width:number = 0;
+  
+  public height:number = 0;
+  
+  public receivedBitrate:number = 0;
+  
+  public decoderOutputFrameRate:number = 0;
+  
+  public rendererOutputFrameRate:number = 0;
+  
+  public frameLossRate:number = 0;
+  
+  public packetLossRate:number = 0;
+  
+  public rxStreamType:number = 0;
+  
+  public totalFrozenTime:number = 0;
+  
+  public frozenRate:number = 0;
+  
+  public avSyncTimeMs:number = 0;
+  
+  public totalActiveTime:bigint = BigInt(0);
+  
+  public publishDuration:bigint = BigInt(0);
+  
+  public mosValue:number = 0;
+  
+  public rxVideoBytes:number = 0;
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcRemoteVideoStats : NSObject
 @property(assign, nonatomic) NSUInteger uid;
 @property(assign, nonatomic) NSUInteger delay __deprecated;
@@ -63,45 +101,90 @@
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FRemoteVideoStats {
-
 	GENERATED_BODY()
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int64 uid;
+	int64 uid = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int delay;
+	int delay = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int e2eDelay;
+	int e2eDelay = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int width;
+	int width = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int height;
+	int height = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int receivedBitrate;
+	int receivedBitrate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int decoderOutputFrameRate;
+	int decoderOutputFrameRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int rendererOutputFrameRate;
+	int rendererOutputFrameRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int frameLossRate;
+	int frameLossRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int packetLossRate;
+	int packetLossRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	EVIDEO_STREAM_TYPE rxStreamType;
+	EVIDEO_STREAM_TYPE rxStreamType = EVIDEO_STREAM_TYPE::VIDEO_STREAM_HIGH;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int totalFrozenTime;
+	int totalFrozenTime = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int frozenRate;
+	int frozenRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int avSyncTimeMs;
+	int avSyncTimeMs = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int totalActiveTime;
+	int totalActiveTime = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int publishDuration;
+	int publishDuration = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int mosValue;
+	int mosValue = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
+	int64 rxVideoBytes = 0;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteVideoStats&quot;)
-	int64 rxVideoBytes;
+	FRemoteVideoStats(){}
+	FRemoteVideoStats(const agora::rtc::RemoteVideoStats &amp; AgoraData){
+		uid = AgoraData.uid;
+		delay = AgoraData.delay;
+		e2eDelay = AgoraData.e2eDelay;
+		width = AgoraData.width;
+		height = AgoraData.height;
+		receivedBitrate = AgoraData.receivedBitrate;
+		decoderOutputFrameRate = AgoraData.decoderOutputFrameRate;
+		rendererOutputFrameRate = AgoraData.rendererOutputFrameRate;
+		frameLossRate = AgoraData.frameLossRate;
+		packetLossRate = AgoraData.packetLossRate;
+		rxStreamType = static_cast&lt;EVIDEO_STREAM_TYPE&gt;(AgoraData.rxStreamType);
+		totalFrozenTime = AgoraData.totalFrozenTime;
+		frozenRate = AgoraData.frozenRate;
+		avSyncTimeMs = AgoraData.avSyncTimeMs;
+		totalActiveTime = AgoraData.totalActiveTime;
+		publishDuration = AgoraData.publishDuration;
+		mosValue = AgoraData.mosValue;
+		rxVideoBytes = AgoraData.rxVideoBytes;
+	}
+	agora::rtc::RemoteVideoStats CreateAgoraData() const {
+		agora::rtc::RemoteVideoStats AgoraData;
+		AgoraData.uid = uid;
+		AgoraData.delay = delay;
+		AgoraData.e2eDelay = e2eDelay;
+		AgoraData.width = width;
+		AgoraData.height = height;
+		AgoraData.receivedBitrate = receivedBitrate;
+		AgoraData.decoderOutputFrameRate = decoderOutputFrameRate;
+		AgoraData.rendererOutputFrameRate = rendererOutputFrameRate;
+		AgoraData.frameLossRate = frameLossRate;
+		AgoraData.packetLossRate = packetLossRate;
+		AgoraData.rxStreamType = static_cast&lt;agora::rtc::VIDEO_STREAM_TYPE&gt;(rxStreamType);
+		AgoraData.totalFrozenTime = totalFrozenTime;
+		AgoraData.frozenRate = frozenRate;
+		AgoraData.avSyncTimeMs = avSyncTimeMs;
+		AgoraData.totalActiveTime = totalActiveTime;
+		AgoraData.publishDuration = publishDuration;
+		AgoraData.mosValue = mosValue;
+		AgoraData.rxVideoBytes = rxVideoBytes;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::RemoteVideoStats &amp; AgoraData) const {
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class RemoteVideoStats {
 
@@ -331,7 +414,7 @@ class RemoteVideoStats {
             </plentry>
             <plentry>
                 <pt>rxStreamType</pt>
-                <pd><ph>The type of the video stream. </ph><ph props="ios mac cpp unreal bp unity cs rn electron flutter">See <xref keyref="VIDEO_STREAM_TYPE"/>.</ph><p props="android">
+                <pd><ph>The type of the video stream. </ph><ph props="ios mac cpp unreal bp unity cs rn electron flutter">See <xref keyref="VIDEO_STREAM_TYPE"/>.</ph><p props="android hmos">
                     <ul>
                     <li><ph keyref="VIDEO_STREAM_HIGH"/>(0): High-quality stream, that is, a high-resolution and high-bitrate video stream.</li>
                     <li><ph keyref="VIDEO_STREAM_LOW"/>(1): Low-quality stream, that is, a low-resolution and low-bitrate video stream.</li>

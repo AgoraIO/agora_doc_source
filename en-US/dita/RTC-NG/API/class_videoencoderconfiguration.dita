@@ -80,6 +80,7 @@
     }
   }
   public enum COMPRESSION_PREFERENCE {
+    PREFER_COMPRESSION_AUTO(-1),
     PREFER_LOW_LATENCY(0),
     PREFER_QUALITY(1);
     private int value;
@@ -93,17 +94,21 @@
   static public class AdvanceOptions {
     public ENCODING_PREFERENCE encodingPreference;
     public COMPRESSION_PREFERENCE compressionPreference;
-    public AdvanceOptions(
-        ENCODING_PREFERENCE encodingPreference, COMPRESSION_PREFERENCE compressionPreference) {
+    public boolean encodeAlpha;
+    public AdvanceOptions(ENCODING_PREFERENCE encodingPreference,
+        COMPRESSION_PREFERENCE compressionPreference, boolean encodeAlpha) {
       this.encodingPreference = encodingPreference;
       this.compressionPreference = compressionPreference;
+      this.encodeAlpha = encodeAlpha;
     }
     public AdvanceOptions() {
       this.encodingPreference = ENCODING_PREFERENCE.PREFER_AUTO;
-      this.compressionPreference = COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY;
+      this.compressionPreference = COMPRESSION_PREFERENCE.PREFER_COMPRESSION_AUTO;
+      this.encodeAlpha = false;
     }
   }
   public enum DEGRADATION_PREFERENCE {
+    MAINTAIN_AUTO(-1),
     MAINTAIN_QUALITY(0),
     MAINTAIN_FRAMERATE(1),
     MAINTAIN_BALANCED(2),
@@ -150,7 +155,6 @@
     VIDEO_CODEC_H264(2),
     VIDEO_CODEC_H265(3),
     VIDEO_CODEC_GENERIC(6),
-    VIDEO_CODEC_GENERIC_H264(7),
     VIDEO_CODEC_AV1(12),
     VIDEO_CODEC_VP9(13),
     VIDEO_CODEC_GENERIC_JPEG(20);
@@ -184,11 +188,11 @@
     this.bitrate = STANDARD_BITRATE;
     this.minBitrate = DEFAULT_MIN_BITRATE;
     this.orientationMode = ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE;
-    this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
+    this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_AUTO;
     this.mirrorMode = MIRROR_MODE_TYPE.MIRROR_MODE_DISABLED;
     this.advanceOptions = new AdvanceOptions(
-        ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY);
-    this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_H265;
+        ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_COMPRESSION_AUTO, false);
+    this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_NONE;
   }
   public VideoEncoderConfiguration(VideoDimensions dimensions, FRAME_RATE frameRate, int bitrate,
       ORIENTATION_MODE orientationMode) {
@@ -198,11 +202,11 @@
     this.bitrate = bitrate;
     this.minBitrate = DEFAULT_MIN_BITRATE;
     this.orientationMode = orientationMode;
-    this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
+    this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_AUTO;
     this.mirrorMode = MIRROR_MODE_TYPE.MIRROR_MODE_DISABLED;
     this.advanceOptions = new AdvanceOptions(
-        ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY);
-    this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_H265;
+        ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_COMPRESSION_AUTO, false);
+    this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_NONE;
   }
   public VideoEncoderConfiguration(VideoDimensions dimensions, FRAME_RATE frameRate, int bitrate,
       ORIENTATION_MODE orientationMode, MIRROR_MODE_TYPE mirrorMode) {
@@ -212,11 +216,11 @@
     this.bitrate = bitrate;
     this.minBitrate = DEFAULT_MIN_BITRATE;
     this.orientationMode = orientationMode;
-    this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
+    this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_AUTO;
     this.mirrorMode = mirrorMode;
     this.advanceOptions = new AdvanceOptions(
-        ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY);
-    this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_H265;
+        ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_COMPRESSION_AUTO, false);
+    this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_NONE;
   }
   public VideoEncoderConfiguration(
       int width, int height, FRAME_RATE frameRate, int bitrate, ORIENTATION_MODE orientationMode) {
@@ -226,11 +230,11 @@
     this.bitrate = bitrate;
     this.minBitrate = DEFAULT_MIN_BITRATE;
     this.orientationMode = orientationMode;
-    this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
+    this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_AUTO;
     this.mirrorMode = MIRROR_MODE_TYPE.MIRROR_MODE_DISABLED;
     this.advanceOptions = new AdvanceOptions(
-        ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY);
-    this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_H265;
+        ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_COMPRESSION_AUTO, false);
+    this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_NONE;
   }
   public VideoEncoderConfiguration(int width, int height, FRAME_RATE frameRate, int bitrate,
       ORIENTATION_MODE orientationMode, MIRROR_MODE_TYPE mirrorMode) {
@@ -240,12 +244,23 @@
     this.bitrate = bitrate;
     this.minBitrate = DEFAULT_MIN_BITRATE;
     this.orientationMode = orientationMode;
-    this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
+    this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_AUTO;
     this.mirrorMode = mirrorMode;
     this.advanceOptions = new AdvanceOptions(
-        ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY);
-    this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_H265;
+        ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_COMPRESSION_AUTO, false);
+    this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_NONE;
   }
+}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class VideoEncoderConfiguration{
+  public dimensions:VideoDimensions = new VideoDimensions(960,540);
+  public frameRate:number = 15;
+  public bitrate:number = 0;
+  public minBitrate:number = -1;
+  public orientationMode:OrientationMode = OrientationMode.ORIENTATION_MODE_ADAPTIVE;
+  public degradationPrefer:DegradationPreference = DegradationPreference.MAINTAIN_QUALITY;
+  public mirrorMode:MirrorModeType = MirrorModeType.MIRROR_MODE_DISABLED;
+  public advanceOptions:AdvanceOptions = new AdvanceOptions();
+  constructor() {}
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoEncoderConfiguration : NSObject
 @property(assign, nonatomic) CGSize dimensions;
@@ -281,45 +296,45 @@
   VIDEO_MIRROR_MODE_TYPE mirrorMode;
   AdvanceOptions advanceOptions;
   VideoEncoderConfiguration(const VideoDimensions&amp; d, int f, int b, ORIENTATION_MODE m, VIDEO_MIRROR_MODE_TYPE mirror = VIDEO_MIRROR_MODE_DISABLED)
-    : codecType(VIDEO_CODEC_H265),
+    : codecType(VIDEO_CODEC_NONE),
       dimensions(d),
       frameRate(f),
       bitrate(b),
       minBitrate(DEFAULT_MIN_BITRATE),
       orientationMode(m),
-      degradationPreference(MAINTAIN_QUALITY),
+      degradationPreference(MAINTAIN_AUTO),
       mirrorMode(mirror),
-      advanceOptions(PREFER_AUTO, PREFER_LOW_LATENCY) {}
+      advanceOptions(PREFER_AUTO, PREFER_COMPRESSION_AUTO, false) {}
   VideoEncoderConfiguration(int width, int height, int f, int b, ORIENTATION_MODE m, VIDEO_MIRROR_MODE_TYPE mirror = VIDEO_MIRROR_MODE_DISABLED)
-    : codecType(VIDEO_CODEC_H265),
+    : codecType(VIDEO_CODEC_NONE),
       dimensions(width, height),
       frameRate(f),
       bitrate(b),
       minBitrate(DEFAULT_MIN_BITRATE),
       orientationMode(m),
-      degradationPreference(MAINTAIN_QUALITY),
+      degradationPreference(MAINTAIN_AUTO),
       mirrorMode(mirror),
-      advanceOptions(PREFER_AUTO, PREFER_LOW_LATENCY) {}
+      advanceOptions(PREFER_AUTO, PREFER_COMPRESSION_AUTO, false) {}
   VideoEncoderConfiguration(const VideoEncoderConfiguration&amp; config)
-    : codecType(config.codecType),
-      dimensions(config.dimensions),
-      frameRate(config.frameRate),
-      bitrate(config.bitrate),
-      minBitrate(config.minBitrate),
-      orientationMode(config.orientationMode),
-      degradationPreference(config.degradationPreference),
-      mirrorMode(config.mirrorMode),
-      advanceOptions(config.advanceOptions) {}
+      : codecType(config.codecType),
+        dimensions(config.dimensions),
+        frameRate(config.frameRate),
+        bitrate(config.bitrate),
+        minBitrate(config.minBitrate),
+        orientationMode(config.orientationMode),
+        degradationPreference(config.degradationPreference),
+        mirrorMode(config.mirrorMode),
+        advanceOptions(config.advanceOptions) {}
   VideoEncoderConfiguration()
-    : codecType(VIDEO_CODEC_H265),
+    : codecType(VIDEO_CODEC_NONE),
       dimensions(FRAME_WIDTH_960, FRAME_HEIGHT_540),
       frameRate(FRAME_RATE_FPS_15),
       bitrate(STANDARD_BITRATE),
       minBitrate(DEFAULT_MIN_BITRATE),
       orientationMode(ORIENTATION_MODE_ADAPTIVE),
-      degradationPreference(MAINTAIN_QUALITY),
+      degradationPreference(MAINTAIN_AUTO),
       mirrorMode(VIDEO_MIRROR_MODE_DISABLED),
-      advanceOptions(PREFER_AUTO, PREFER_LOW_LATENCY) {}
+      advanceOptions(PREFER_AUTO, PREFER_COMPRESSION_AUTO, false) {}
   VideoEncoderConfiguration&amp; operator=(const VideoEncoderConfiguration&amp; rhs) {
     if (this == &amp;rhs) return *this;
     codecType = rhs.codecType;
@@ -335,131 +350,144 @@
   }
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
-struct FVideoEncoderConfiguration
+struct FUABT_VideoEncoderConfiguration
 {
 	GENERATED_BODY()
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
-	EVIDEO_CODEC_TYPE codecType = EVIDEO_CODEC_TYPE::VIDEO_CODEC_GENERIC_H264;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
-	FVideoDimensions dimensions;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
+public:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	EUABT_VIDEO_CODEC_TYPE codecType = EUABT_VIDEO_CODEC_TYPE::VIDEO_CODEC_NONE;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	FUABT_VideoDimensions dimensions = FUABT_VideoDimensions();
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	int frameRate = 15;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	int bitrate = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	int minBitrate = -1;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
-	EORIENTATION_MODE orientationMode = EORIENTATION_MODE::ORIENTATION_MODE_ADAPTIVE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
-	EDEGRADATION_PREFERENCE degradationPreference = EDEGRADATION_PREFERENCE::MAINTAIN_QUALITY;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
-	EVIDEO_MIRROR_MODE_TYPE mirrorMode = EVIDEO_MIRROR_MODE_TYPE::VIDEO_MIRROR_MODE_DISABLED;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
-	ECOMPRESSION_PREFERENCE compressionPreference = ECOMPRESSION_PREFERENCE::PREFER_LOW_LATENCY;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
-	FAdvanceOptions advanceOptions;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	EUABT_ORIENTATION_MODE orientationMode = EUABT_ORIENTATION_MODE::ORIENTATION_MODE_ADAPTIVE;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	EUABT_DEGRADATION_PREFERENCE degradationPreference = EUABT_DEGRADATION_PREFERENCE::MAINTAIN_QUALITY;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	EUABT_VIDEO_MIRROR_MODE_TYPE mirrorMode = EUABT_VIDEO_MIRROR_MODE_TYPE::VIDEO_MIRROR_MODE_DISABLED;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	FUABT_AdvanceOptions advanceOptions = FUABT_AdvanceOptions();
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoEncoderConfiguration {
-  
+
   codecType?: VideoCodecType;
-  
+
   dimensions?: VideoDimensions;
-  
+
   frameRate?: number;
-  
+
   bitrate?: number;
-  
+
   minBitrate?: number;
-  
+
   orientationMode?: OrientationMode;
-  
+
   degradationPreference?: DegradationPreference;
-  
+
   mirrorMode?: VideoMirrorModeType;
 
   advanceOptions?: AdvanceOptions;
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class VideoEncoderConfiguration
     {
-        public VIDEO_CODEC_TYPE codecType { set; get; }
-        public VideoDimensions dimensions { set; get; }
-        public int frameRate { set; get; }
-        public int bitrate { set; get; }
-        public int minBitrate { set; get; }
-        public ORIENTATION_MODE orientationMode { set; get; }
-        public DEGRADATION_PREFERENCE degradationPreference { set; get; }
-        public VIDEO_MIRROR_MODE_TYPE mirrorMode { set; get; }
-        public AdvanceOptions advanceOptions { set; get; }
+        public VIDEO_CODEC_TYPE codecType;
+        public VideoDimensions dimensions;
+        public int frameRate;
+        public int bitrate;
+        public int minBitrate;
+        public ORIENTATION_MODE orientationMode;
+        public DEGRADATION_PREFERENCE degradationPreference;
+        public VIDEO_MIRROR_MODE_TYPE mirrorMode;
+        public AdvanceOptions advanceOptions;
 
-        public VideoEncoderConfiguration(ref VideoDimensions d, int f, int b, ORIENTATION_MODE m, VIDEO_MIRROR_MODE_TYPE mirror = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_DISABLED)
+        public VideoEncoderConfiguration(VideoDimensions d, int f, int b, ORIENTATION_MODE m, VIDEO_MIRROR_MODE_TYPE mirror = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_DISABLED)
         {
-            codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_H264;
-            dimensions = d;
-            frameRate = f;
-            bitrate = b;
-            minBitrate = (int)BITRATE.DEFAULT_MIN_BITRATE;
-            orientationMode = m;
-            degradationPreference = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
-            mirrorMode = mirror;
-            advanceOptions = new AdvanceOptions(ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY);
+            this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_NONE;
+            this.dimensions = d;
+            this.frameRate = f;
+            this.bitrate = b;
+            this.minBitrate = (int)BITRATE.DEFAULT_MIN_BITRATE;
+            this.orientationMode = m;
+            this.degradationPreference = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
+            this.mirrorMode = mirror;
+            this.advanceOptions = new AdvanceOptions(ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY);
         }
 
         public VideoEncoderConfiguration(int width, int height, int f, int b, ORIENTATION_MODE m, VIDEO_MIRROR_MODE_TYPE mirror = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_DISABLED)
         {
-            codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_H264;
-            dimensions = new VideoDimensions(width, height);
-            frameRate = f;
-            bitrate = b;
-            minBitrate = (int)BITRATE.DEFAULT_MIN_BITRATE;
-            orientationMode = m;
-            degradationPreference = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
-            mirrorMode = mirror;
-            advanceOptions = new AdvanceOptions(ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY);
+            this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_NONE;
+            this.dimensions = new VideoDimensions(width, height);
+            this.frameRate = f;
+            this.bitrate = b;
+            this.minBitrate = (int)BITRATE.DEFAULT_MIN_BITRATE;
+            this.orientationMode = m;
+            this.degradationPreference = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
+            this.mirrorMode = mirror;
+            this.advanceOptions = new AdvanceOptions(ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY);
         }
 
-        public VideoEncoderConfiguration(ref VideoEncoderConfiguration config)
+        public VideoEncoderConfiguration(VideoEncoderConfiguration config)
         {
-            codecType = config.codecType;
-            dimensions = config.dimensions;
-            frameRate = config.frameRate;
-            bitrate = config.bitrate;
-            minBitrate = config.minBitrate;
-            orientationMode = config.orientationMode;
-            degradationPreference = config.degradationPreference;
-            mirrorMode = config.mirrorMode;
-            advanceOptions = new AdvanceOptions(config.advanceOptions.encodingPreference, config.advanceOptions.compressionPreference);
+            this.codecType = config.codecType;
+            this.dimensions = config.dimensions;
+            this.frameRate = config.frameRate;
+            this.bitrate = config.bitrate;
+            this.minBitrate = config.minBitrate;
+            this.orientationMode = config.orientationMode;
+            this.degradationPreference = config.degradationPreference;
+            this.mirrorMode = config.mirrorMode;
+            this.advanceOptions = config.advanceOptions;
         }
 
         public VideoEncoderConfiguration()
         {
-            codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_H264;
-            dimensions = new VideoDimensions((int)FRAME_WIDTH.FRAME_WIDTH_640, (int)FRAME_HEIGHT.FRAME_HEIGHT_360);
-            frameRate = (int)FRAME_RATE.FRAME_RATE_FPS_15;
-            bitrate = (int)BITRATE.STANDARD_BITRATE;
-            minBitrate = (int)BITRATE.DEFAULT_MIN_BITRATE;
-            orientationMode = ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE;
-            degradationPreference = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
-            mirrorMode = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_DISABLED;
-            advanceOptions = new AdvanceOptions(ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY);
+            this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_NONE;
+            this.dimensions = new VideoDimensions((int)FRAME_WIDTH.FRAME_WIDTH_960, (int)FRAME_HEIGHT.FRAME_HEIGHT_540);
+            this.frameRate = (int)FRAME_RATE.FRAME_RATE_FPS_15;
+            this.bitrate = (int)BITRATE.STANDARD_BITRATE;
+            this.minBitrate = (int)BITRATE.DEFAULT_MIN_BITRATE;
+            this.orientationMode = ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE;
+            this.degradationPreference = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
+            this.mirrorMode = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_DISABLED;
+            this.advanceOptions = new AdvanceOptions(ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY);
         }
-    };</codeblock>
+
+        public VideoEncoderConfiguration(VIDEO_CODEC_TYPE codecType, VideoDimensions dimensions, int frameRate, int bitrate, int minBitrate, ORIENTATION_MODE orientationMode, DEGRADATION_PREFERENCE degradationPreference, VIDEO_MIRROR_MODE_TYPE mirrorMode, AdvanceOptions advanceOptions)
+        {
+            this.codecType = codecType;
+            this.dimensions = dimensions;
+            this.frameRate = frameRate;
+            this.bitrate = bitrate;
+            this.minBitrate = minBitrate;
+            this.orientationMode = orientationMode;
+            this.degradationPreference = degradationPreference;
+            this.mirrorMode = mirrorMode;
+            this.advanceOptions = advanceOptions;
+        }
+    }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class VideoEncoderConfiguration {
-  
+
   codecType?: VideoCodecType;
-  
+
   dimensions?: VideoDimensions;
-  
+
   frameRate?: number;
-  
+
   bitrate?: number;
-  
+
   minBitrate?: number;
-  
+
   orientationMode?: OrientationMode;
-  
+
   degradationPreference?: DegradationPreference;
-  
+
   mirrorMode?: VideoMirrorModeType;
 
   advanceOptions?: AdvanceOptions;
@@ -507,7 +535,7 @@ struct FVideoEncoderConfiguration
       _$VideoEncoderConfigurationFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$VideoEncoderConfigurationToJson(this);
-}</codeblock>            
+}</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">
@@ -516,7 +544,7 @@ struct FVideoEncoderConfiguration
             <plentry>
                 <pt>dimensions</pt>
                 <pd>
-                    <p props="cpp unreal bp unity electron rn flutter cs">The dimensions of the encoded video (px). See <xref keyref="VideoDimensions"/>. This parameter measures the video encoding quality in the format of length × width. The default value is 960 × 540. You can set a custom value.</p>
+                    <p props="cpp hmos unreal bp unity electron rn flutter cs">The dimensions of the encoded video (px). See <xref keyref="VideoDimensions"/>. This parameter measures the video encoding quality in the format of length × width. The default value is 960 × 540. You can set a custom value.</p>
                     <p props="android ios mac">Users can set the resolution by themselves, or directly select the desired resolution from the following list:<ul>
                     <li><ph keyref="VD_120x120"/>: The video resolution is 120 × 120.</li>
                     <li><ph keyref="VD_160x120"/>: The video resolution is 160 × 120.</li>
@@ -561,13 +589,13 @@ struct FVideoEncoderConfiguration
                   <li><ph keyref="FRAME_RATE_FPS_24"/>(24): 24 fps.</li>
                   <li><ph keyref="FRAME_RATE_FPS_30"/>(30): 30 fps.</li>
                   <li><ph keyref="FRAME_RATE_FPS_60"/>(60): 60 fps.
-                  <note type="attention">For Windows and macOS only.</note></li>
+                   For Windows and macOS only.</li>
                 </ul></pd>
             </plentry>
             <plentry>
                 <pt>bitrate</pt>
                 <pd>
-                    <p><ph>The encoding bitrate (Kbps) of the video. </ph><ph props="unity cs">See <xref keyref="BITRATE"/>. </ph><ph>This parameter does not need to be set; keeping the default value <apiname keyref="STANDARD_BITRATE"/> is sufficient. The SDK automatically matches the most suitable bitrate based on the video resolution and frame rate you have set. For the correspondence between video resolution, frame rate, and bitrate, please refer to <xref keyref="video-profile-table"/>.</ph></p>
+                    <p><ph>The encoding bitrate (Kbps) of the video. </ph><ph props="unity cs">See <xref keyref="BITRATE"/>.</ph><ph>This parameter does not need to be set; keeping the default value <apiname keyref="STANDARD_BITRATE"/> is sufficient. The SDK automatically matches the most suitable bitrate based on the video resolution and frame rate you have set. For the correspondence between video resolution and frame rate, see <xref keyref="video-profile-table"/>.</ph></p>
                     <ul props="native unreal bp flutter rn electron">
                     <li><ph keyref="STANDARD_BITRATE"/>(0): (Recommended) Standard bitrate mode.</li>
                     <li><ph keyref="COMPATIBLE_BITRATE"/>(-1): Adaptive bitrate mode. In general, Agora suggests that you do not use this value.</li>
@@ -586,13 +614,14 @@ struct FVideoEncoderConfiguration
             </plentry>
             <plentry>
                 <pt>degradationPreference</pt>
-                <pd>Video degradation preference under limited bandwidth. See <xref keyref="DEGRADATION_PREFERENCE"/>.</pd>
+                <pd>Video degradation preference under limited bandwidth. See <xref keyref="DEGRADATION_PREFERENCE"/>.<note type="attention">When this parameter is set to <ph keyref="MAINTAIN_FRAMERATE"/> (1) or <ph keyref="MAINTAIN_BALANCED"/> (2), <parmname>orientationMode</parmname> needs to be set to <ph keyref="ORIENTATION_MODE_ADAPTIVE"/> (0) at the same time, otherwise the setting will not take effect.</note></pd>
             </plentry>
             <plentry>
                 <pt>mirrorMode</pt>
                 <pd>
                     <p props="ios mac cpp framework">Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.</p>
-                    <p props="android">The mirror mode specified in video encoder configurations only affect the view of remote users.<ul>
+                    <note conkeyref="setLocalRenderMode2/mirror" props="unreal bp"/>
+                    <p props="android hmos">Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees.<ul>
                       <li><ph keyref="VIDEO_MIRROR_MODE_AUTO" />(0): The SDK determines whether to enable the mirror mode. The SDK disables mirror mode by default.</li>
                       <li><ph keyref="VIDEO_MIRROR_MODE_ENABLED" />(1): Enables the mirror mode for remote users.</li>
                       <li><ph keyref="VIDEO_MIRROR_MODE_DISABLED" />(2): Disables the mirror mode for remote users.</li>

@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int startPreview();</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public abstract startPreview(sourceType?: Constants.VideoSourceType): number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)startPreview;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int startPreview() = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract startPreviewWithoutSourceType(): number;</codeblock>
@@ -21,19 +22,21 @@
             <codeblock props="rn" outputclass="language-typescript">abstract startPreviewWithoutSourceType(): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> startPreviewWithoutSourceType();</codeblock> </p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
-            <p id="seq">该方法用于启动本地视频预览。调用该方法前，必须：
-            <ul>
-            <li props="android ios mac cpp unreal bp flutter electron">调用 <xref keyref="setupLocalVideo" /> 初始化本地视图。</li>
-            <li>调用 <xref keyref="enableVideo" /> 开启视频模块。</li>
-            </ul></p>
-            <note type="attention">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>该方法用于启动本地视频预览。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="native unreal bp">该方法必须在 <xref keyref="enableVideo" /> 和 <xref keyref="setupLocalVideo" /> 之后调用。</p>
+            <p props="rn unity flutter electron">该方法必须在 <xref keyref="enableVideo" /> 之后调用。</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
             <ul>
             <li>本地预览默认开启镜像功能。</li>
-            <li props="native unreal unity">如果调用 <xref keyref="leaveChannel" /> 退出频道，本地预览依然处于开启状态，如需要关闭本地预览，需要调用 <xref keyref="stopPreview" />。</li>
-            <li props="flutter bp electron rn">如果调用 <xref keyref="leaveChannel2"/> 退出频道，本地预览依然处于开启状态，如需要关闭本地预览，需要调用 <xref keyref="stopPreview2" />。</li>
-            </ul> </note> </section>
+            <li>在离开频道后，本地预览依然处于开启状态。你需要调用 <xref keyref="stopPreview" props="android cpp apple unreal unity"/><xref keyref="stopPreview2" props="hmos flutter bp electron rn"/> 关闭本地预览。</li>
+            </ul> 
+        </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>

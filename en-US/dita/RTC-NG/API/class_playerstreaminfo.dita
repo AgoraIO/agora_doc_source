@@ -23,6 +23,22 @@
 
   public MediaStreamInfo() {}
 }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class MediaStreamInfo
+{
+  public streamIndex:number = 0
+  public mediaStreamType:number = 0
+  public codecName:string = &quot;&quot;
+  public language:string = &quot;&quot;
+  public videoFrameRate:number = 0
+  public videoBitRate:number = 0
+  public videoWidth:number = 0
+  public videoHeight:number = 0
+  public videoRotation:number = 0
+  public audioSampleRate:number = 0
+  public audioChannels:number = 0
+  public audioBytesPerSample:number = 0
+  public duration:bigint = BigInt(0)
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaStreamInfo : NSObject
 
 @property(nonatomic, assign) NSInteger streamIndex;
@@ -70,33 +86,69 @@
 struct FPlayerStreamInfo
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
-	int streamIndex;
+	int streamIndex = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
-	EMEDIA_STREAM_TYPE streamType;
+	EMEDIA_STREAM_TYPE streamType = EMEDIA_STREAM_TYPE::STREAM_TYPE_UNKNOWN;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
-	FString codecName;
+	FString codecName = &quot;&quot;;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
-	FString language;
+	FString language = &quot;&quot;;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
-	int videoFrameRate;
+	int videoFrameRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
-	int videoBitRate;
+	int videoBitRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
-	int videoWidth;
+	int videoWidth = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
-	int videoHeight;
+	int videoHeight = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
-	int videoRotation;
+	int videoRotation = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
-	int audioSampleRate;
+	int audioSampleRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
-	int audioChannels;
+	int audioChannels = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
-	int audioBitsPerSample;
+	int audioBitsPerSample = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
-	int duration;
+	int duration = 0;
+	FPlayerStreamInfo(){}
+	FPlayerStreamInfo(const agora::media::base::PlayerStreamInfo &amp; AgoraData){
+		streamIndex = AgoraData.streamIndex;
+		streamType = (EMEDIA_STREAM_TYPE)AgoraData.streamType;
+		codecName = UTF8_TO_TCHAR(AgoraData.codecName);
+		language = UTF8_TO_TCHAR(AgoraData.language);
+		videoFrameRate = AgoraData.videoFrameRate;
+		videoBitRate = AgoraData.videoBitRate;
+		videoWidth = AgoraData.videoWidth;
+		videoHeight = AgoraData.videoHeight;
+		videoRotation = AgoraData.videoRotation;
+		audioSampleRate = AgoraData.audioSampleRate;
+		audioChannels = AgoraData.audioChannels;
+		audioBitsPerSample = AgoraData.audioBitsPerSample;
+		duration = AgoraData.duration;
+	}
+	agora::media::base::PlayerStreamInfo CreateAgoraData() const {
+		agora::media::base::PlayerStreamInfo AgoraData;
+		AgoraData.streamIndex = streamIndex;
+		AgoraData.streamType = (agora::media::base::MEDIA_STREAM_TYPE)streamType;
+		SET_UABT_FSTRING_TO_CHAR_ARRAY(AgoraData.codecName, codecName,agora::media::base::kMaxCharBufferLength)
+		SET_UABT_FSTRING_TO_CHAR_ARRAY(AgoraData.language, language, agora::media::base::kMaxCharBufferLength)
+		AgoraData.videoFrameRate = videoFrameRate;
+		AgoraData.videoBitRate = videoBitRate;
+		AgoraData.videoWidth = videoWidth;
+		AgoraData.videoHeight = videoHeight;
+		AgoraData.videoRotation = videoRotation;
+		AgoraData.audioSampleRate = audioSampleRate;
+		AgoraData.audioChannels = audioChannels;
+		AgoraData.audioBitsPerSample = audioBitsPerSample;
+		AgoraData.duration = duration;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::media::base::PlayerStreamInfo &amp; AgoraData) const {
+	
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class PlayerStreamInfo {
 
@@ -243,8 +295,8 @@ struct FPlayerStreamInfo
             </plentry>
             <plentry>
                 <pt props="ios mac cpp unreal bp unity electron rn flutter cs">streamType</pt>
-                <pt props="android">mediaStreamType</pt>
-                <pd><ph>The type of the media stream. </ph><ph props="ios mac cpp unreal bp unity electron rn flutter cs">See <xref keyref="MEDIA_STREAM_TYPE" />.</ph><ul props="android">
+                <pt props="android hmos">mediaStreamType</pt>
+                <pd><ph>The type of the media stream. </ph><ph props="ios mac cpp unreal bp unity electron rn flutter cs">See <xref keyref="MEDIA_STREAM_TYPE" />.</ph><ul props="android hmos">
                     <li><ph keyref="STREAM_TYPE_UNKNOWN" />(0): The type is unknown.</li>
                     <li><ph keyref="STREAM_TYPE_VIDEO" />(1): The video stream.</li>
                     <li><ph keyref="STREAM_TYPE_AUDIO" />(2): The audio stream.</li>
@@ -288,9 +340,9 @@ struct FPlayerStreamInfo
                 <pt>audioChannels</pt>
                 <pd>This parameter only takes effect for audio streams, and indicates the audio channel number.</pd>
             </plentry>
-            <plentry props="android cpp unreal bp unity electron rn flutter cs">
+            <plentry props="android hmos cpp unreal bp unity electron rn flutter cs">
                 <pt props="cpp unreal bp unity electron rn flutter cs">audioBitsPerSample</pt>
-                <pt props="android">audioBytesPerSample</pt>
+                <pt props="android hmos">audioBytesPerSample</pt>
                 <pd>This parameter only takes effect for audio streams, and indicates the bit number of each audio sample.</pd>
             </plentry>
             <plentry>

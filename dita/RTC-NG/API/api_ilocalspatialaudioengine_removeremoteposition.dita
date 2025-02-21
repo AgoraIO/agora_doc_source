@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int removeRemotePosition(int uid);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int) removeRemotePosition:(NSUInteger)uid;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int removeRemotePosition(uid_t uid) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|ILocalSpatialAudioEngine&quot;)
@@ -27,7 +28,7 @@
         <section id="detailed_desc">
             <title>详情</title>
             <p>成功调用该方法后，本地用户将听不到指定的远端用户。</p>
-            <p>离开频道后，为避免计算资源的浪费，你也可以调用该方法删除指定远端用户的空间位置信息。</p>
+            <p>离开频道后，为避免计算资源的浪费，你需要调用该方法删除指定远端用户的空间位置信息。否则，该用户的空间位置信息会一直被保存。当远端用户人数大于 <xref keyref="setMaxAudioRecvCount"/> 中设定的可接收音频流数时，会按照相对距离依次自动取消订阅距离最远的用户的音频流。</p>
         </section>
         <section id="parameters">
             <title>参数</title>

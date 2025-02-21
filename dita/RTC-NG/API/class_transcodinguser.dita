@@ -23,6 +23,24 @@
       alpha = 1;
     }
   }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class TranscodingUser {
+  
+  public uid: number = 0;
+  
+  public x: number = 0;
+  
+  public y: number = 0;
+  
+  public width: number = 360;
+  
+  public height: number = 640;
+  
+  public zOrder: number = 0;
+  
+  public alpha: number = 1.0;
+  
+  public audioChannel: number = 0;
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLiveTranscodingUser : NSObject
 
 @property(assign, nonatomic) NSUInteger uid;
@@ -52,26 +70,49 @@
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FTranscodingUser {
-
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingUser&quot;)
-	int64 uid;
+	int64 uid = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingUser&quot;)
-	int x;
+	int x = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingUser&quot;)
-	int y;
+	int y = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingUser&quot;)
-	int width;
+	int width = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingUser&quot;)
-	int height;
+	int height = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingUser&quot;)
-	int zOrder;
+	int zOrder = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingUser&quot;)
 	float alpha = 1.0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingUser&quot;)
-	int audioChannel;
-
+	int audioChannel = 0;
+	FTranscodingUser(){}
+	FTranscodingUser(const agora::rtc::TranscodingUser &amp; AgoraData){
+		uid = AgoraData.uid;
+		x = AgoraData.x;
+		y = AgoraData.y;
+		width = AgoraData.width;
+		height = AgoraData.height;
+		zOrder = AgoraData.zOrder;
+		alpha = AgoraData.alpha;
+		audioChannel = AgoraData.audioChannel;
+	}
+	agora::rtc::TranscodingUser CreateAgoraData() const {
+		agora::rtc::TranscodingUser AgoraData;
+		AgoraData.uid = uid;
+		AgoraData.x = x;
+		AgoraData.y = y;
+		AgoraData.width = width;
+		AgoraData.height = height;
+		AgoraData.zOrder = zOrder;
+		AgoraData.alpha = alpha;
+		AgoraData.audioChannel = audioChannel;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::TranscodingUser&amp; AgoraData) const {
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class TranscodingUser {
   uid?: number
@@ -171,21 +212,21 @@ struct FTranscodingUser {
                     <p>主播的用户 ID。</p>
                 </pd>
             </plentry>
-            <plentry props="android cpp unreal bp unity electron rn flutter cs">
+            <plentry props="android hmos cpp unreal bp unity electron rn flutter cs">
                 <pt>x</pt>
                 <pd>
                     <p>主播视频画面在输出视频画面的 x 坐标 (px)，以输出视频画面的左上角为原点。取值范围为[0,width]，width 为 <xref keyref="LiveTranscoding" /> 中设置的 <codeph>width</codeph>。</p>
                 </pd>
             </plentry>
-            <plentry props="android cpp unreal bp unity electron rn flutter cs">
+            <plentry props="android hmos cpp unreal bp unity electron rn flutter cs">
                 <pt>y</pt>
                 <pd>主播视频画面在输出视频画面的 y 坐标 (px)，以输出视频画面的左上角为原点。取值范围为[0,height]，height 为 <xref keyref="LiveTranscoding" /> 中设置的 <codeph>height</codeph>。</pd>
             </plentry>
-            <plentry props="android cpp unreal bp unity electron rn flutter cs">
+            <plentry props="android hmos cpp unreal bp unity electron rn flutter cs">
                 <pt>width</pt>
                 <pd>主播视频画面的宽 (px)。</pd>
             </plentry>
-            <plentry props="android cpp unreal bp unity electron rn flutter cs">
+            <plentry props="android hmos cpp unreal bp unity electron rn flutter cs">
                 <pt>height</pt>
                 <pd>
                     <p>主播视频画面的高 (px)。</p>

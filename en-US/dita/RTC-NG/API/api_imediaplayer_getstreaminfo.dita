@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">MediaStreamInfo getStreamInfo(int index);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public abstract getStreamInfo(index:number):MediaStreamInfo|undefined;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (AgoraMediaStreamInfo *_Nullable)getStreamByIndex:(int)index;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int getStreamInfo(int64_t index, media::base::PlayerStreamInfo* info) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IMediaPlayer&quot;)
@@ -24,16 +25,22 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;PlayerStreamInfo&gt; getStreamInfo(int index);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-            <note type="attention" id="note">Call this method after calling <xref keyref="getStreamCount" />.</note> </section>
-        <section id="parameters">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>Call this method after calling <xref keyref="getStreamCount" />.</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>index</pt>
                 <pd props="cpp unreal bp unity cs">The index of the media stream. This parameter needs to be less than the <parmname>count</parmname> parameter of <xref keyref="getStreamCount" />.</pd>
-                <pd props="android ios mac rn electron flutter">The index of the media stream. This parameter must be less than the return value of <xref keyref="getStreamCount" />.</pd>
+                <pd props="android hmos ios mac rn electron flutter">The index of the media stream. This parameter must be less than the return value of <xref keyref="getStreamCount" />.</pd>
             </plentry>
             <plentry props="cpp unreal bp unity cs">
                 <pt>info</pt>
@@ -44,7 +51,7 @@
             <title>Returns</title>
             <ul props="android ios mac rn electron flutter">
             <li>If the call succeeds, returns the detailed information of the media stream. See <xref keyref="PlayerStreamInfo" />.</li>
-            <li>If the call fails, returns <codeph><ph keyref="NULL" /></codeph>.</li>
+            <li><codeph><ph keyref="NULL" /></codeph>, if the method call fails.</li>
             </ul>
             <ul props="cpp unreal bp unity cs" id="ul_uns_l2y_hqb">
             <li>0: Success.</li>

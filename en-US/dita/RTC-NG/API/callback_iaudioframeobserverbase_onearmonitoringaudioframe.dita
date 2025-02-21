@@ -17,15 +17,16 @@
     int bytesPerSample, int channels, int samplesPerSec, ByteBuffer buffer, long renderTimeMs,
     int avsync_type);
 </codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">onEarMonitoringAudioFrame?: (type: number, samplesPerChannel: number, bytesPerSample: number, channels: number, samplesPerSec: number, buffer: ArrayBuffer, renderTimeMs: number, avsync_type: number) =&gt; boolean;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onEarMonitoringAudioFrame:(AgoraAudioFrame* _Nonnull)frame;
 </codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual bool onEarMonitoringAudioFrame(AudioFrame&amp; audioFrame) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onEarMonitoringAudioFrame?(audioFrame: AudioFrame): boolean;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">onEarMonitoringAudioFrame?(audioFrame: AudioFrame): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual bool OnEarMonitoringAudioFrame(AudioFrame audioFrame)
         {
             return true;
         }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">onEarMonitoringAudioFrame?(audioFrame: AudioFrame): boolean;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onEarMonitoringAudioFrame?(audioFrame: AudioFrame): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(AudioFrame audioFrame)? onEarMonitoringAudioFrame;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
@@ -37,7 +38,7 @@
             <p props="flutter rn electron">In order to ensure that the obtained in-ear audio data meets the expectations, Agora recommends that you set the in-ear monitoring-ear audio data format as follows: After calling <xref keyref="setEarMonitoringAudioFrameParameters"/> to set the audio data format and <xref keyref="registerAudioFrameObserver"/> to register the audio frame observer object, the SDK calculates the sampling interval according to the parameters set in the methods, and triggers the <apiname keyref="onEarMonitoringAudioFrame"/> callback according to the sampling interval.</p>
             <note type="note" id="attention" props="native unreal bp flutter cs"><ul>
             <li props="native unreal bp cs">The priority of method 1 is higher than that of method 2. If method 1 is used to set the audio data format, the setting of method 2 is invalid.</li>
-            <li props="flutter">Due to the limitations of Flutter, this callback does not support sending processed audio data back to the SDK.</li></ul></note>
+            <li props="flutter rn electron">Due to framework limitations, this callback does not support sending processed audio data back to the SDK.</li></ul></note>
         <p props="unity">In order to ensure that the obtained in-ear audio data meets the expectations, Agora recommends that you set the in-ear monitoring-ear audio data format as follows: After calling <xref keyref="setEarMonitoringAudioFrameParameters"/> to set the audio data format and <xref keyref="registerAudioFrameObserver"/> to register the audio frame observer object, the SDK calculates the sampling interval according to the parameters set in the methods, and triggers the <apiname keyref="onEarMonitoringAudioFrame"/> callback according to the sampling interval.</p>
         </section>
         <section id="parameters">
@@ -49,7 +50,7 @@
                 <pd>The raw audio data. See <xref keyref="AudioFrame"/>.</pd>
             </plentry>
             </parml>
-            <parml props="android">
+            <parml props="android hmos">
             <plentry id="type">
                 <pt>type</pt>
                 <pd>The audio frame type.</pd>
@@ -88,7 +89,7 @@
                 <pd>Reserved for future use.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unreal bp electron rn unity cs">
+        <section id="return_values" props="native unreal bp unity cs">
             <title>Returns</title>
             <p>Without practical meaning.</p>
         </section>

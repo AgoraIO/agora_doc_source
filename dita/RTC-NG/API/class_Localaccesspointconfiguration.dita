@@ -65,6 +65,7 @@
   public int mode = Constants.LOCAL_RPOXY_CONNECTIVITY_FIRST;
   public AdvancedConfigInfo advancedConfig = null;
 }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraLocalAccessPointConfiguration) __attribute__((visibility("default"))) @interface AgoraLocalAccessPointConfiguration : NSObject
 @property(copy, nonatomic) NSArray* _Nullable ipList NS_SWIFT_NAME(ipList);
 @property(copy, nonatomic) NSArray* _Nullable domainList NS_SWIFT_NAME(domainList);
@@ -86,19 +87,58 @@
 struct FLocalAccessPointConfiguration
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAccessPointConfiguration&quot;)
-	FString ipList;
+	TArray&lt;FString&gt; ipList;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAccessPointConfiguration&quot;)
-	int ipListSize;
+	int ipListSize = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAccessPointConfiguration&quot;)
-	FString domainList;
+	TArray&lt;FString&gt; domainList;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAccessPointConfiguration&quot;)
-	int domainListSize;
+	int domainListSize = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAccessPointConfiguration&quot;)
-	FString verifyDomainName;
+	FString verifyDomainName = &quot;&quot;;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAccessPointConfiguration&quot;)
 	ELOCAL_PROXY_MODE mode = ELOCAL_PROXY_MODE::ConnectivityFirst;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAccessPointConfiguration&quot;)
+	FAdvancedConfigInfo advancedConfig;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAccessPointConfiguration&quot;)
+	bool disableAut = false;
+	FLocalAccessPointConfiguration(){}
+	FLocalAccessPointConfiguration(const agora::rtc::LocalAccessPointConfiguration &amp; AgoraData){
+		
+		for(int i = 0; i&lt; AgoraData.ipListSize; i++){
+			ipList.Add(UTF8_TO_TCHAR(AgoraData.ipList[i]));
+		}
+		ipListSize = AgoraData.ipListSize;
+		for (int i = 0; i &lt; AgoraData.domainListSize; i++) {
+			domainList.Add(UTF8_TO_TCHAR(AgoraData.domainList[i]));
+		}
+		domainListSize = AgoraData.domainListSize;
+		verifyDomainName = UTF8_TO_TCHAR(AgoraData.verifyDomainName);
+		mode = static_cast&lt;ELOCAL_PROXY_MODE&gt;(AgoraData.mode);
+		advancedConfig = FAdvancedConfigInfo(AgoraData.advancedConfig);
+		disableAut = AgoraData.disableAut;
+	}
+	agora::rtc::LocalAccessPointConfiguration CreateAgoraData() const {
+		
+		agora::rtc::LocalAccessPointConfiguration AgoraData;
+		SET_UABT_TARRARY_FSTRING_TO_CONST_AGORA_ARRAY___MEMALLOC(AgoraData.ipList, ipListSize, this-&gt;ipList)
+		AgoraData.ipListSize = ipListSize;
+		SET_UABT_TARRARY_FSTRING_TO_CONST_AGORA_ARRAY___MEMALLOC(AgoraData.domainList, domainListSize, this-&gt;domainList)
+			AgoraData.domainListSize = domainListSize;
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.verifyDomainName, this-&gt;verifyDomainName)
+			AgoraData.mode = static_cast&lt;agora::rtc::LOCAL_PROXY_MODE&gt;(mode);
+		AgoraData.advancedConfig = advancedConfig.CreateAgoraData();
+		AgoraData.disableAut = disableAut;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::LocalAccessPointConfiguration &amp; AgoraData) const {
+		SET_UABT_TARRARY_FSTRING_TO_AGORA_ARRAY___MEMFREE(AgoraData.ipList, ipListSize)
+		SET_UABT_TARRARY_FSTRING_TO_AGORA_ARRAY___MEMFREE(AgoraData.domainList, domainListSize)
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.verifyDomainName)
+		advancedConfig.FreeAgoraData(AgoraData.advancedConfig);
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LocalAccessPointConfiguration {
   
@@ -218,7 +258,7 @@ struct FLocalAccessPointConfiguration
                 <pt>mode</pt>
                 <pd>
                     <p props="ios mac cpp unreal bp electron unity rn flutter cs">连接模式。详见 <xref keyref="LOCAL_PROXY_MODE"/>。</p>
-                    <p props="android">连接模式：
+                    <p props="android hmos">连接模式：
                     <ul>
                     <li><ph keyref="ConnectivityFirst"/> (0)：SDK 优先尝试连接指定的声网私有媒体服务器；如果无法连接到指定的声网私有媒体服务器，则连接声网 SD-RTN™。</li>
                     <li><ph keyref="LocalOnly"/> (1)：SDK 只尝试连接指定的声网私有媒体服务器。</li>

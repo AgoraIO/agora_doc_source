@@ -12,6 +12,19 @@
   public String token = null;
   public int uid = 0;
   }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class ChannelMediaInfo {
+  
+  public channelName:string|null;
+  
+  public token:string|null;
+  
+  public uid:number = 0;
+  public constructor(cname:string|null, token: string|null, uid: number) {
+    this.channelName = cname;
+    this.token = token;
+    this.uid = uid;
+  }
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraChannelMediaRelayInfo: NSObject
 
 @property (copy, nonatomic) NSString * _Nullable token;
@@ -26,15 +39,31 @@
     };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FChannelMediaInfo {
-
 	GENERATED_BODY()
-
-	FString channelName;
-
-	FString token;
-
-	int64 uid;
-
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|UserInfo&quot;)
+	int64 uid = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|UserInfo&quot;)
+	FString channelName = &quot;&quot;;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|UserInfo&quot;)
+	FString token = &quot;&quot;;
+	FChannelMediaInfo(){}
+	FChannelMediaInfo(const agora::rtc::ChannelMediaInfo &amp; AgoraData){
+		channelName = UTF8_TO_TCHAR(AgoraData.channelName);
+		token = UTF8_TO_TCHAR(AgoraData.token);
+		uid = AgoraData.uid;
+	}
+	agora::rtc::ChannelMediaInfo CreateAgoraData() const {
+		agora::rtc::ChannelMediaInfo AgoraData;
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.channelName,this-&gt;channelName)
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.token,this-&gt;token)
+		AgoraData.uid = uid;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::ChannelMediaInfo &amp; AgoraData) const {
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.channelName)
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.token)
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ChannelMediaInfo {
   

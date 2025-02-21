@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_takesnapshot">
     <title><ph keyref="takeSnapshot" /></title>
-    <shortdesc id="short"><ph id="shortdesc">获取视频截图。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">对视频截图。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,28 +14,38 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int takeSnapshot(int uid, String filePath);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public abstract takeSnapshot(uid: number, filePath: string): number;</codeblock>
             <codeblock props="ios mac">- (NSInteger)takeSnapshot:(NSInteger)uid filePath:(NSString* _Nonnull)filePath;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int takeSnapshot(uid_t uid, const char* filePath)  = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
-	int TakeSnapshot(int64 uid, FString filePath);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+	int TakeSnapshot(int64 uid, const FString&amp; filePath);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract takeSnapshot(uid: number, filePath: string): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int TakeSnapshot(uint uid, string filePath);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract takeSnapshot(uid: number, filePath: string): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> takeSnapshot({required int uid, required String filePath});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
-            <p id="desc1">该方法用于对指定用户的视频流进行截图，生成一张 JPG 格式的图片，并保存至指定的路径。</p>
-            <p id="desc2" props="native unreal bp unity electron flutter cs">该方法是异步操作，调用返回时 SDK 并没有真正获取截图。成功调用该方法后，SDK 会触发 <xref keyref="onSnapshotTaken" /> 回调报告截图是否成功和获取截图的详情。</p>
-            <p props="rn">调用该方法返回时 SDK 并没有真正获取截图。成功调用该方法后，SDK 会触发 <xref keyref="onSnapshotTaken" /> 回调报告截图是否成功和获取截图的详情。</p>
-            <note type="attention">
-            <ul>
-            <li>该方法需要在加入频道后调用。</li>
-            <li>该方法用于本地视频截图时，是对 <xref keyref="ChannelMediaOptions"/> 中指定发布的视频流进行截图。</li>
-            <li>如果用户的视频经过前处理，例如，添加了水印或美颜，生成的截图会包含前处理效果。</li>
-            </ul></note> </section>
-        <section id="parameters">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>该方法用于对指定用户的视频流进行截图，生成一张 JPG 格式的图片，并保存至指定的路径。</p>
+         </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>该方法需要在加入频道后调用。</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <ul>            
+                <li id="desc2" props="native unreal bp unity electron flutter cs">该方法是异步操作，调用返回时 SDK 并没有真正获取截图。</li>
+                <li props="rn">调用该方法返回时 SDK 并没有真正获取截图。</li>
+                <li>该方法用于本地视频截图时，是对 <xref keyref="ChannelMediaOptions"/> 中指定发布的视频流进行截图。</li>
+                <li>如果用户的视频经过前处理，例如，添加了水印或美颜，生成的截图会包含前处理效果。</li>
+            </ul>
+        </section>
+        <section id="related" deliveryTarget="details">
+            <title>相关回调</title>
+            <p>成功调用该方法后，SDK 会触发 <xref keyref="onSnapshotTaken" /> 回调，报告截图是否成功和获取截图的详情。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
             <plentry id="uid">
@@ -45,13 +55,16 @@
             <plentry id="filepath">
                 <pt>filePath</pt>
                 <pd>
-                    <p>截图的本地保存路径，需精确到文件名及格式， 例如： 
+                    <p>截图的本地保存路径，需精确到文件名及格式，例如： 
                     <ul>
                     <li props="cpp unreal bp unity flutter electron cs">Windows: <codeph>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\example.jpg</codeph></li>
                     <li props="cpp unreal bp ios unity flutter rn">iOS: <codeph>/App Sandbox/Library/Caches/example.jpg</codeph></li>
                     <li props="cpp unreal bp mac unity flutter electron">macOS: <codeph>～/Library/Logs/example.jpg</codeph></li>
                     <li props="cpp unreal bp android unity flutter rn">Android: <codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.jpg</codeph></li>
-                    </ul>请确保目录存在且可写。</p>
+                    <li props="hmos">HarmonyOS: <codeph>/data/app/el2/100/base/PACKAGENAME/haps/ENTRYNAME/files/example.jpg</codeph></li>
+                    </ul>
+                    </p>
+                    <note type="attention">请确保目录存在且可写。</note>
                 </pd>
             </plentry>
             </parml> </section>

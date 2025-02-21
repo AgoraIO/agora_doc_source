@@ -14,14 +14,15 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int rate(String callId, int rating, String description);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)rate:(NSString * _Nonnull)callId
      rating:(NSInteger)rating
 description:(NSString * _Nullable)description;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int rate(const char* callId,
      int rating,
      const char* description) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
-	int Rate(FString callId, int rating, FString description);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+	int Rate(const FString&amp; callId, int rating, const FString&amp; description);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract rate(callId: string, rating: number, description: string): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int Rate(string callId, int rating, string description);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract rate(callId: string, rating: number, description: string): number;</codeblock>
@@ -43,7 +44,7 @@ description:(NSString * _Nullable)description;</codeblock>
             </plentry>
             <plentry>
                 <pt>rating</pt>
-                <pd>给通话的评分，最低 1 分，最高 5 分，如超过这个范围，SDK 会返回 -2(<codeph>ERR_INVALID_ARGUMENT</codeph>) 错误。</pd>
+                <pd>给通话的评分，最低 1 分，最高 5 分。</pd>
             </plentry>
             <plentry>
                 <pt>description</pt>
@@ -57,8 +58,8 @@ description:(NSString * _Nullable)description;</codeblock>
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph>
                 <ul>
-                <li>-2(<codeph>ERR_INVALID_ARGUMENT</codeph>)。</li>
-                <li>-3(<codeph>ERR_NOT_READY</codeph>)。</li>
+                <li>-1: 一般性的错误（未明确归类）。</li>
+                <li>-2: 参数无效。</li>
                 </ul></li>
             </ul> </section>
     </refbody>

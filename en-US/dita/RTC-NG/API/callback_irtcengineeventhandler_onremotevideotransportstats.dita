@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onRemoteVideoTransportStats(int uid, int delay, int lost, int rxKBitRate) {}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
                   videoTransportStatsOfUid:(NSUInteger)uid
                   delay:(NSUInteger)delay
@@ -28,7 +29,8 @@
      (void)lost;
      (void)rxKBitRate;
      }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnRemoteVideoTransportStats, int64, uid, int, delay, int, lost, int, rxKBitRate);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+	void OnRemoteVideoTransportStats(int64 uid, int delay, int lost, int rxKBitRate);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onRemoteVideoTransportStats?(
     connection: RtcConnection,
     remoteUid: number,

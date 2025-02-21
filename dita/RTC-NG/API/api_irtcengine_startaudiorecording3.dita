@@ -14,9 +14,10 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int startAudioRecording(AudioFileRecordingConfig config);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public abstract startAudioRecordingWithConfiguration(config: AudioRecordingConfiguration): number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)startAudioRecordingWithConfig:(AgoraAudioRecordingConfiguration * _Nonnull)config;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int startAudioRecording(const AudioFileRecordingConfig&amp; config) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
 	int StartAudioRecording(const FAudioRecordingConfiguration&amp; config);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract startAudioRecording(config: AudioRecordingConfiguration): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int StartAudioRecording(AudioRecordingConfiguration config);</codeblock>
@@ -24,18 +25,23 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startAudioRecording(AudioRecordingConfiguration config);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
-            <p>SDK 支持通话过程中在客户端进行录音。调用该方法后，你可以录制频道内用户的音频，并得到一个录音文件。录音文件格式可以为:
-
-
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>SDK 支持通话过程中在客户端进行录音。调用该方法后，你可以录制频道内用户的音频，并得到一个录音文件。录音文件仅支持下列格式：
             <ul>
             <li>WAV: 音质保真度较高，文件较大。例如，采样率为 32000 Hz，录音时长为 10 分钟的文件大小约为 73 M。</li>
             <li>AAC: 音质保真度较低，文件较小。例如，采样率为 32000 Hz，录音音质为 <ph keyref="AUDIO_RECORDING_QUALITY_MEDIUM" />，录音时长为 10 分钟的文件大小约为 2 M。</li>
             </ul></p>
             <p>用户离开频道后，录音会自动停止。</p>
-            <note type="attention">该方法需要在加入频道后调用。</note> </section>
-        <section id="parameters">
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>该方法需要在加入频道后调用。</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
             <plentry>

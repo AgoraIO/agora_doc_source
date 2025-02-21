@@ -22,7 +22,48 @@
     public long publishDuration;
     public long qoeQuality;
     public int qualityChangedReason;
+    public int e2eDelay;
   }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class RemoteAudioStats {
+  
+  public uid:number = 0;
+  
+  public quality:number = 0;
+  
+  public networkTransportDelay:number = 0;
+  
+  public jitterBufferDelay:number = 0;
+  
+  public audioLossRate:number = 0;
+  
+  public numChannels:number = 0;
+  
+  public receivedSampleRate:number = 0;
+  
+  public receivedBitrate:number = 0;
+  
+  public totalFrozenTime:number = 0;
+  
+  public frozenRate:number = 0;
+  
+  public mosValue:number = 0;
+  
+  public frozenRateByCustomPlcCount:number = 0;
+  
+  public plcCount:number = 0;
+  
+  public totalActiveTime:bigint = BigInt(0);
+  
+  public publishDuration:bigint = BigInt(0);
+  
+  public qoeQuality:number = 0;
+  
+  public qualityChangedReason:number = 0;
+  
+  public rxAudioBytes:number = 0;
+
+  public e2eDelay:number = 0;
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcRemoteAudioStats : NSObject
 @property(assign, nonatomic) NSUInteger uid;
 @property(assign, nonatomic) NSUInteger quality;
@@ -39,6 +80,7 @@
 @property(assign, nonatomic) NSUInteger mosValue;
 @property(assign, nonatomic) NSInteger qoeQuality;
 @property(assign, nonatomic) AgoraExperiencePoorReason qualityChangedReason;
+@property(assign, nonatomic) NSInteger e2eDelay;
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct RemoteAudioStats
 {
@@ -57,6 +99,7 @@
   int publishDuration;
   int qoeQuality;
   int qualityChangedReason;
+  int e2eDelay;
 
   RemoteAudioStats() :
     uid(0),
@@ -72,76 +115,134 @@
     mosValue(0),
     totalActiveTime(0),
     publishDuration(0),
-    qoeQuality(0) {}
-    qualityChangedReason(0){}
+    qoeQuality(0)
+    qualityChangedReason(0)
+    e2eDelay(0) {}
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FRemoteAudioStats
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
-	int64 uid;
+	int64 uid = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
-	int quality;
+	int quality = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
-	int networkTransportDelay;
+	int networkTransportDelay = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
-	int jitterBufferDelay;
+	int jitterBufferDelay = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
-	int audioLossRate;
+	int audioLossRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
-	int numChannels;
+	int numChannels = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
-	int receivedSampleRate;
+	int receivedSampleRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
-	int receivedBitrate;
+	int receivedBitrate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
-	int totalFrozenTime;
+	int totalFrozenTime = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
-	int frozenRate;
+	int frozenRate = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
-	int mosValue;
+	int mosValue = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
-	int totalActiveTime;
+	int64 frozenRateByCustomPlcCount = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
-	int publishDuration;
+	int64 plcCount = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
-	int qoeQuality;
+	int totalActiveTime = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
-	int qualityChangedReason;
+	int publishDuration = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int qoeQuality = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int qualityChangedReason = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int64 rxAudioBytes = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int e2eDelay = 0;
+	FRemoteAudioStats(){}
+	FRemoteAudioStats(const agora::rtc::RemoteAudioStats &amp; AgoraData){
+		uid = AgoraData.uid;
+		quality = AgoraData.quality;
+		networkTransportDelay = AgoraData.networkTransportDelay;
+		jitterBufferDelay = AgoraData.jitterBufferDelay;
+		audioLossRate = AgoraData.audioLossRate;
+		numChannels = AgoraData.numChannels;
+		receivedSampleRate = AgoraData.receivedSampleRate;
+		receivedBitrate = AgoraData.receivedBitrate;
+		totalFrozenTime = AgoraData.totalFrozenTime;
+		frozenRate = AgoraData.frozenRate;
+		mosValue = AgoraData.mosValue;
+		frozenRateByCustomPlcCount = AgoraData.frozenRateByCustomPlcCount;
+		plcCount = AgoraData.plcCount;
+		totalActiveTime = AgoraData.totalActiveTime;
+		publishDuration = AgoraData.publishDuration;
+		qoeQuality = AgoraData.qoeQuality;
+		qualityChangedReason = AgoraData.qualityChangedReason;
+		rxAudioBytes = AgoraData.rxAudioBytes;
+		e2eDelay = AgoraData.e2eDelay;
+	}
+	agora::rtc::RemoteAudioStats CreateAgoraData() const {
+		agora::rtc::RemoteAudioStats AgoraData;
+		AgoraData.uid = uid;
+		AgoraData.quality = quality;
+		AgoraData.networkTransportDelay = networkTransportDelay;
+		AgoraData.jitterBufferDelay = jitterBufferDelay;
+		AgoraData.audioLossRate = audioLossRate;
+		AgoraData.numChannels = numChannels;
+		AgoraData.receivedSampleRate = receivedSampleRate;
+		AgoraData.receivedBitrate = receivedBitrate;
+		AgoraData.totalFrozenTime = totalFrozenTime;
+		AgoraData.frozenRate = frozenRate;
+		AgoraData.mosValue = mosValue;
+		AgoraData.frozenRateByCustomPlcCount = frozenRateByCustomPlcCount;
+		AgoraData.plcCount = plcCount;
+		AgoraData.totalActiveTime = totalActiveTime;
+		AgoraData.publishDuration = publishDuration;
+		AgoraData.qoeQuality = qoeQuality;
+		AgoraData.qualityChangedReason = qualityChangedReason;
+		AgoraData.rxAudioBytes = rxAudioBytes;
+		AgoraData.e2eDelay = e2eDelay;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::RemoteAudioStats &amp; AgoraData) const {
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class RemoteAudioStats {
-  
+
   uid?: number;
-  
+
   quality?: number;
-  
+
   networkTransportDelay?: number;
-  
+
   jitterBufferDelay?: number;
-  
+
   audioLossRate?: number;
-  
+
   numChannels?: number;
-  
+
   receivedSampleRate?: number;
-  
+
   receivedBitrate?: number;
-  
+
   totalFrozenTime?: number;
-  
+
   frozenRate?: number;
-  
+
   mosValue?: number;
-  
+
   totalActiveTime?: number;
-  
+
   publishDuration?: number;
-  
+
   qoeQuality?: number;
-  
+
   qualityChangedReason?: number;
+
+  e2eDelay?: number;
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class RemoteAudioStats
     {
@@ -162,6 +263,7 @@ struct FRemoteAudioStats
             publishDuration = 0;
             qoeQuality = 0;
             qualityChangedReason = 0;
+            public int e2eDelay;
         }
 
         public RemoteAudioStats(uint uid, int quality, int networkTransportDelay, int jitterBufferDelay,
@@ -202,38 +304,42 @@ struct FRemoteAudioStats
         public int qualityChangedReason { set; get; }
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class RemoteAudioStats {
-  
+
   uid?: number;
-  
+
   quality?: number;
-  
+
   networkTransportDelay?: number;
-  
+
   jitterBufferDelay?: number;
-  
+
   audioLossRate?: number;
-  
+
   numChannels?: number;
-  
+
   receivedSampleRate?: number;
-  
+
   receivedBitrate?: number;
-  
+
   totalFrozenTime?: number;
-  
+
   frozenRate?: number;
-  
+
   mosValue?: number;
-  
+
   totalActiveTime?: number;
-  
+
   publishDuration?: number;
-  
+
   qoeQuality?: number;
-  
+
   qualityChangedReason?: number;
+
+  e2eDelay?: number;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class RemoteAudioStats {
+            <codeblock props="flutter" outputclass="language-dart">
+@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class RemoteAudioStats {
   const RemoteAudioStats(
       {this.uid,
       this.quality,
@@ -249,7 +355,8 @@ struct FRemoteAudioStats
       this.totalActiveTime,
       this.publishDuration,
       this.qoeQuality,
-      this.qualityChangedReason});
+      this.qualityChangedReason,
+      this.e2eDelay});
 
   @JsonKey(name: 'uid')
   final int? uid;
@@ -296,12 +403,14 @@ struct FRemoteAudioStats
   @JsonKey(name: 'qualityChangedReason')
   final int? qualityChangedReason;
 
+  @JsonKey(name: 'e2eDelay')
+  final int? e2eDelay;
+
   factory RemoteAudioStats.fromJson(Map&lt;String, dynamic> json) =>
       _$RemoteAudioStatsFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$RemoteAudioStatsToJson(this);
-}
-</codeblock>
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
@@ -324,6 +433,7 @@ struct FRemoteAudioStats
                     <li><ph keyref="QUALITY_BAD" /> (4)：勉强能沟通但不顺畅。</li>
                     <li><ph keyref="QUALITY_VBAD" /> (5)：网络质量非常差，基本不能沟通。</li>
                     <li><ph keyref="QUALITY_DOWN" /> (6)：网络连接断开，完全无法沟通。</li>
+                    <li><ph keyref="QUALITY_DETECTING" /> (8)：网络质量检测进行中。</li>
                     </ul> </p>
                 </pd>
             </plentry>
@@ -335,9 +445,9 @@ struct FRemoteAudioStats
                 <pt>jitterBufferDelay</pt>
                 <pd>
                     <p>音频接收端到网络抖动缓冲的网络延迟（毫秒）。
-                    
-                    
-                    
+
+
+
                     <note type="attention">当接收端为观众且 <xref keyref="ClientRoleOptions" /> 的 <parmname>audienceLatencyLevel</parmname> 为 1 时，该参数不生效。</note></p>
                 </pd>
             </plentry>
@@ -436,6 +546,10 @@ struct FRemoteAudioStats
                     </strow>
                     </simpletable></p>
                 </pd>
+            </plentry>
+            <plentry>
+                <pt>e2eDelay</pt>
+                <pd>端到端音频延时（毫秒），即自远端用户音频采集起，至本地用户开始播放音频的总时长。</pd>
             </plentry>
             </parml> </section>
     </refbody>

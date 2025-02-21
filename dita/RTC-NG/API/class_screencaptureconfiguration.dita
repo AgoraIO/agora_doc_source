@@ -7,6 +7,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java" />
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">#if (!(TARGET_OS_IPHONE) &amp;&amp; (TARGET_OS_MAC))
 
 __attribute__((visibility("default"))) @interface AgoraScreenCaptureConfiguration: NSObject
@@ -25,9 +26,9 @@ __attribute__((visibility("default"))) @interface AgoraScreenCaptureConfiguratio
 #endif</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct ScreenCaptureConfiguration {
   bool isCaptureWindow;
-  uint32_t displayId;
+  int64_t displayId;
   Rectangle screenRect;
-  view_t windowId;
+  int64_t windowId;
   ScreenCaptureParameters params;
   Rectangle regionRect;
 
@@ -37,19 +38,41 @@ __attribute__((visibility("default"))) @interface AgoraScreenCaptureConfiguratio
 struct FScreenCaptureConfiguration
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureConfiguration&quot;)
-	bool isCaptureWindow;
+	bool isCaptureWindow = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureConfiguration&quot;)
-	int displayId;
+	int displayId = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureConfiguration&quot;)
-	FRectangle screenRect;
+	FRectangle screenRect = FRectangle();
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureConfiguration&quot;)
-	int64 windowId;
+	int64 windowId = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureConfiguration&quot;)
-	FScreenCaptureParameters params;
+	FScreenCaptureParameters params = FScreenCaptureParameters();
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureConfiguration&quot;)
-	FRectangle regionRect;
+	FRectangle regionRect = FRectangle();
+	FScreenCaptureConfiguration(){}
+	FScreenCaptureConfiguration(const agora::rtc::ScreenCaptureConfiguration &amp; AgoraData){
+		isCaptureWindow = AgoraData.isCaptureWindow;
+		displayId = AgoraData.displayId;
+		screenRect = FRectangle(AgoraData.screenRect);
+				params = FScreenCaptureParameters(AgoraData.params);
+		regionRect = FRectangle(AgoraData.regionRect);
+	}
+	agora::rtc::ScreenCaptureConfiguration CreateAgoraData() const {
+		agora::rtc::ScreenCaptureConfiguration AgoraData;
+		AgoraData.isCaptureWindow = isCaptureWindow;
+		AgoraData.displayId = displayId;
+		AgoraData.screenRect = screenRect.CreateAgoraData();
+				AgoraData.params = params.CreateAgoraData();
+		AgoraData.regionRect = regionRect.CreateAgoraData();
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::ScreenCaptureConfiguration &amp; AgoraData) const {
+		screenRect.FreeAgoraData(AgoraData.screenRect);
+		params.FreeAgoraData(AgoraData.params);
+		regionRect.FreeAgoraData(AgoraData.regionRect);
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ScreenCaptureConfiguration {
   
@@ -67,18 +90,30 @@ struct FScreenCaptureConfiguration
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class ScreenCaptureConfiguration
     {
+        public bool isCaptureWindow;
+        public long displayId;
+        public Rectangle screenRect;
+        public long windowId;
+
+        public ScreenCaptureParameters @params;
+        public Rectangle regionRect;
+
         public ScreenCaptureConfiguration()
         {
-            isCaptureWindow = false;
-            displayId = 0;
+            this.isCaptureWindow = false;
+            this.displayId = 0;
+            this.windowId = 0;
         }
 
-        public bool isCaptureWindow { set; get; }
-        public uint displayId { set; get; }
-        public Rectangle screenRect { set; get; }
-        public uint windowId { set; get; }
-        public ScreenCaptureParameters parameters { set; get; }
-        public Rectangle regionRect { set; get; }
+        public ScreenCaptureConfiguration(bool isCaptureWindow, long displayId, Rectangle screenRect, long windowId, ScreenCaptureParameters @params, Rectangle regionRect)
+        {
+            this.isCaptureWindow = isCaptureWindow;
+            this.displayId = displayId;
+            this.screenRect = screenRect;
+            this.windowId = windowId;
+            this.@params = @params;
+            this.regionRect = regionRect;
+        }
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class ScreenCaptureConfiguration {
   

@@ -15,10 +15,11 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setColorEnhanceOptions(boolean enabled, ColorEnhanceOptions options);
 </codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setColorEnhanceOptions:(BOOL)enable options:(AgoraColorEnhanceOptions* _Nullable)options NS_SWIFT_NAME(setColorEnhanceOptions(_:options:));
 </codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setColorEnhanceOptions(bool enabled, const ColorEnhanceOptions&amp; options, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
 	int SetColorEnhanceOptions(bool enabled, const FColorEnhanceOptions&amp; options, EMEDIA_SOURCE_TYPE type);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setColorEnhanceOptions(
     enabled: boolean,
@@ -45,10 +46,6 @@
             <ul>
             <li>Call this method after calling <xref keyref="enableVideo" />.</li>
             <li>The color enhancement feature has certain performance requirements on devices. With color enhancement turned on, Agora recommends that you change the color enhancement level to one that consumes less performance or turn off color enhancement if your device is experiencing severe heat problems.</li>
-            <li>Both this method and <xref keyref="setExtensionProperty" /> can enable color enhancement:<ul>
-                    <li>When you use the SDK to capture video, Agora recommends this method (this method only works for video captured by the SDK).</li>
-                    <li>When you use an external video source to implement custom video capture, or send an external video source to the SDK, Agora recommends using <apiname keyref="setExtensionProperty" />.</li>
-                </ul></li>
             <li>This method relies on the image enhancement dynamic library <codeph><ph keyref="clearvision"/></codeph>. If the dynamic library is deleted, the function cannot be enabled normally.</li>
             </ul> </note> </section>
         <section id="parameters">
@@ -73,7 +70,7 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul props="native unreal bp electron unity rn cs">
             <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>

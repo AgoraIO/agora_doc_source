@@ -16,6 +16,7 @@
             <codeblock props="android" outputclass="language-java">public abstract int enableVirtualBackground(boolean enabled,
       VirtualBackgroundSource backgroundSource, SegmentationProperty segproperty,
       Constants.MediaSourceType sourceType);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public abstract enableVirtualBackground(enabled:boolean,backgroundSource:VirtualBackgroundSource,segproperty:SegmentationProperty,sourceType?:Constants.MediaSourceType):number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableVirtualBackground:(BOOL)enable backData:(AgoraVirtualBackgroundSource* _Nullable)backData segData:(AgoraSegmentationProperty* _Nullable)segData sourceType:(AgoraMediaSourceType)sourceType NS_SWIFT_NAME(enableVirtualBackground(_:backData:segData:sourceType:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp"></codeblock>
             <codeblock props="bp" outputclass="language-cpp"></codeblock>
@@ -28,7 +29,7 @@
         <section id="detailed_desc">
             <title>详情</title>
             <p>虚拟背景功能支持将本地用户原来的背景替换为静态图片、动态视频、将背景虚化，或者将人像与背景分割以实现人像画中画。成功开启虚拟背景功能后，频道内所有用户都能看到自定义的背景。</p>
-            <p>该方法和 <xref keyref="enableVirtualBackground"/> 均可用于开启/关闭虚拟背景，区别在于该方法支持在开启虚拟背景时指定应用虚拟背景的媒体源。</p>
+            <p props="android apple">该方法和 <xref keyref="enableVirtualBackground"/> 均可用于开启/关闭虚拟背景，区别在于该方法支持在开启虚拟背景时指定应用虚拟背景的媒体源。</p>
             <p>请在 <xref keyref="enableVideo"/> 或 <xref keyref="startPreview2"/> 之后调用该方法。</p>
             <note type="attention" conkeyref="enableVirtualBackground/hardware_req"/>
         </section>
@@ -53,7 +54,12 @@
             </plentry>
             <plentry id="sourcetype">
                 <pt props="android apple">sourceType</pt>
-                <pd>应用效果的媒体源。详见 <xref keyref="MEDIA_SOURCE_TYPE" />。</pd>
+                <pd>效果应用的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE" />。
+                    <note type="attention">在该方法中，该参数仅支持以下两种设置：
+                    <ul>
+                    <li>默认值为 <apiname keyref="PRIMARY_CAMERA_SOURCE"/>。</li>
+                    <li>如果要使用自定义采集的视频，将该参数设置为 <apiname keyref="CUSTOM_VIDEO_SOURCE"/>。</li>
+                    </ul></note></pd>
             </plentry>
             </parml> </section>
         <section id="return_values">

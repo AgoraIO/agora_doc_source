@@ -15,13 +15,14 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setRemoteRenderModeEx(
       int uid, int renderMode, int mirrorMode, RtcConnection connection);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public abstract setRemoteRenderModeEx(uid:number,renderMode:number,mirrorMode:number,connection:RtcConnection):number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setRemoteRenderModeEx:(NSUInteger)uid
                         mode:(AgoraVideoRenderMode)mode
                       mirror:(AgoraVideoMirrorMode)mirror
                   connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setRemoteRenderModeEx(uid_t uid, media::base::RENDER_MODE_TYPE renderMode,
        VIDEO_MIRROR_MODE_TYPE mirrorMode, const RtcConnection&amp; connection) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
 	int SetRemoteRenderModeEx(int64 uid, ERENDER_MODE_TYPE renderMode, EVIDEO_MIRROR_MODE_TYPE mirrorMode, const FRtcConnection&amp; connection);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setRemoteRenderModeEx(
     uid: number,
@@ -62,7 +63,7 @@
                 <pt>renderMode</pt>
                 <pd>
                     <p props="ios mac cpp unreal bp unity electron rn flutter cs">The video display mode of the remote user. See <xref keyref="RENDER_MODE_TYPE" />.</p>
-                    <p props="android">The video display mode of the remote user:<ul conkeyref="setLocalRenderMode2/rendermodetype">
+                    <p props="android hmos">The video display mode of the remote user:<ul conkeyref="setLocalRenderMode2/rendermodetype">
                     <li />
                     </ul> </p>
                 </pd>
@@ -71,7 +72,8 @@
                 <pt>mirrorMode</pt>
                 <pd>
                     <p props="ios mac cpp unreal bp unity electron rn flutter cs">The mirror mode of the remote user view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</p>
-                    <p props="android">The mirror mode of the remote user view:<ul conkeyref="setLocalRenderMode2/videomirrormodetype">
+                    <note conkeyref="setLocalRenderMode2/mirror" props="unreal bp"/>
+                    <p props="android hmos">The mirror mode of the remote user view:<ul conkeyref="setLocalRenderMode2/videomirrormodetype">
                     <li />
                     </ul> </p>
                 </pd>
@@ -83,7 +85,7 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul>
             <li props="mac cpp unreal bp unity electron rn">0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>

@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setDefaultMuteAllRemoteAudioStreams(boolean muted);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setDefaultMuteAllRemoteAudioStreams:(BOOL)mute;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setDefaultMuteAllRemoteAudioStreams(bool mute) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setDefaultMuteAllRemoteAudioStreams(mute: boolean): number;</codeblock>
@@ -30,7 +31,7 @@
                 <dd>This method is deprecated, use <xref keyref="muteAllRemoteAudioStreams" /> instead.</dd>
             </dlentry>
             </dl>
-            <p id="sequence">Call this method after joining a channel. After successfully calling this method, the local user stops or resumes subscribing to the audio streams of all subsequent users.</p>
+            <p id="sequence">Call this method after joining a channel. After successfully calling this method, the local user stops or resumes subscribing of all subsequent users.</p>
             <note type="attention">
             <p>If you need to resume subscribing to the audio streams of remote users in the channel after calling this method, do the following:<ul>
             <li>To resume subscribing to the audio stream of a specified user, call <xref keyref="muteRemoteAudioStream" /> (<codeph><ph keyref="false" /></codeph>), and specify the user ID.</li>
@@ -53,7 +54,7 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul props="native unreal bp electron unity rn cs">
             <li>0: Success.</li>
             <li> &lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>

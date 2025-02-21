@@ -31,6 +31,43 @@
     this.mirror = false;
   }
 };</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">export class TranscodingVideoStream {
+
+  public remoteUserUid:number;
+
+  public  sourceType:Constants.VideoSourceType;
+
+  public imageUrl:string;
+
+  public mediaPlayerId:number;
+
+  public x:number;
+
+  public y:number;
+
+  public width:number;
+
+  public height:number;
+
+  public zOrder:number;
+
+  public alpha:number;
+
+  public mirror:boolean;
+  public constructor() {
+    this.remoteUserUid = 0;
+    this.sourceType = Constants.VideoSourceType.CAMERA_PRIMARY;
+    this.imageUrl = &quot;&quot;;
+    this.mediaPlayerId = -1;
+    this.x = 0;
+    this.y = 0;
+    this.width = 0;
+    this.height = 0;
+    this.zOrder = 0;
+    this.alpha = 1.0;
+    this.mirror = false;
+  }
+}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraTranscodingVideoStream: NSObject
 @property (assign, nonatomic) AgoraVideoSourceType sourceType;
 @property (assign, nonatomic) NSUInteger remoteUserUid;
@@ -67,29 +104,63 @@
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FTranscodingVideoStream {
-
 	GENERATED_BODY()
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
+	EVIDEO_SOURCE_TYPE sourceType = EVIDEO_SOURCE_TYPE::VIDEO_SOURCE_CAMERA_PRIMARY;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
+	int64 remoteUserUid = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
+	FString imageUrl = &quot;&quot;;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
+	int mediaPlayerId = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
+	int x = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
+	int y = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
+	int width = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
+	int height = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
+	int zOrder = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
+	float alpha = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
+	bool mirror = false;
+	FTranscodingVideoStream(){}
+	FTranscodingVideoStream(const agora::rtc::TranscodingVideoStream &amp; AgoraData){
+		sourceType = static_cast&lt;EVIDEO_SOURCE_TYPE&gt;(AgoraData.sourceType);
+		remoteUserUid = AgoraData.remoteUserUid;
+		imageUrl = UTF8_TO_TCHAR(AgoraData.imageUrl);
+		mediaPlayerId = AgoraData.mediaPlayerId;
+		x = AgoraData.x;
+		y = AgoraData.y;
+		width = AgoraData.width;
+		height = AgoraData.height;
+		zOrder = AgoraData.zOrder;
+		alpha = AgoraData.alpha;
+		mirror = AgoraData.mirror;
+	}
+	agora::rtc::TranscodingVideoStream CreateAgoraData() const{
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
-	EMEDIA_SOURCE_TYPE sourceType;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
-	int64 remoteUserUid;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
-	FString imageUrl;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
-	int x;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
-	int y;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
-	int width;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
-	int height;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
-	int zOrder;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
-	float alpha;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
-	bool mirror;
+		agora::rtc::TranscodingVideoStream AgoraData;
+		AgoraData.sourceType = static_cast&lt;agora::rtc::VIDEO_SOURCE_TYPE&gt;(sourceType);
+		AgoraData.remoteUserUid = remoteUserUid;
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMALLOC(AgoraData.imageUrl,this-&gt;imageUrl)
+		AgoraData.mediaPlayerId = mediaPlayerId;
+		AgoraData.x = x;
+		AgoraData.y = y;
+		AgoraData.width = width;
+		AgoraData.height = height;
+		AgoraData.zOrder = zOrder;
+		AgoraData.alpha = alpha;
+		AgoraData.mirror = mirror;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::TranscodingVideoStream &amp; AgoraData) const{
+		SET_UABT_FSTRING_TO_CONST_CHAR___MEMFREE(AgoraData.imageUrl)
+	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class TranscodingVideoStream {
 
@@ -224,8 +295,15 @@ class TranscodingVideoStream {
             <plentry>
                 <pt>imageUrl</pt>
                 <pd>
-                    <p>图像的 URL。
-                    <note type="attention">请仅在参与本地合图的视频源类型为图片时，使用该参数。</note></p>
+                    <p>本地图片的路径。</p>
+                    <note type="attention">请仅在参与本地合图的视频源类型为图片时，使用该参数。</note>
+                    <p props="android ios mac cpp framework">示例路径：
+                    <ul>
+                        <li props="android unity flutter rn cs">Android: <codeph>/storage/emulated/0/Pictures/image.png</codeph></li>
+                        <li props="ios unity flutter rn cs">iOS: <codeph>/var/mobile/Containers/Data/Application/&lt;APP-UUID>/Documents/image.png</codeph></li>
+                        <li props="mac unity flutter electron cs">macOS: <codeph>~/Pictures/image.png</codeph></li>
+                        <li props="cpp unreal bp unity flutter electron cs">Windows: <codeph>C:\\Users\\{username}\\Pictures\\image.png</codeph></li>
+                    </ul></p>
                 </pd>
             </plentry>
             <plentry>

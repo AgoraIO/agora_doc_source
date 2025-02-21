@@ -20,6 +20,7 @@
     skinProtectLevel = skinProtect;
   }
 }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraColorEnhanceOptions : NSObject
 @property(nonatomic, assign) float strengthLevel;
 @property(nonatomic, assign) float skinProtectLevel;
@@ -35,11 +36,24 @@
 struct FColorEnhanceOptions
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ColorEnhanceOptions&quot;)
-	float strengthLevel;
+	float strengthLevel = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ColorEnhanceOptions&quot;)
-	float skinProtectLevel;
+	float skinProtectLevel = 0;
+	FColorEnhanceOptions(){}
+	FColorEnhanceOptions(const agora::rtc::ColorEnhanceOptions &amp; AgoraData){
+		strengthLevel = AgoraData.strengthLevel;
+		skinProtectLevel = AgoraData.skinProtectLevel;
+	}
+	agora::rtc::ColorEnhanceOptions CreateAgoraData() const {
+		agora::rtc::ColorEnhanceOptions AgoraData;
+		AgoraData.strengthLevel = strengthLevel;
+		AgoraData.skinProtectLevel = skinProtectLevel;
+		return AgoraData;
+	}
+	void FreeAgoraData(agora::rtc::ColorEnhanceOptions&amp; AgoraData) const {
+	}
 };</codeblock>
             <codeblock props="unity cs" outputclass="language-chsarp">public class ColorEnhanceOptions
     {

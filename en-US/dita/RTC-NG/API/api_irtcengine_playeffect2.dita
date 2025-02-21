@@ -16,6 +16,7 @@
             <codeblock props="android" outputclass="language-java"> public abstract int playEffect(int soundId, String filePath, int loopCount, double pitch,
       double pan, double gain, boolean publish);
 </codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)playEffect:(int)soundId
          filePath:(NSString* _Nonnull)filePath
         loopCount:(NSInteger)loopCount
@@ -36,24 +37,26 @@
             <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
-        <section id="detailed_desc">
-            <title>Details</title>
-        <note conkeyref="playEffect3/note"/>
-        <p id="playEffect-desc">To play multiple audio effect files at the same time, call this method multiple times with different <parmname>soundId</parmname> and <parmname>filePath</parmname>. To achieve the optimal user experience, Agora recommends that do not playing more than three audio files at the same time. After the playback of an audio effect file completes, the SDK triggers the <apiname keyref="onAudioEffectFinished" /> callback.<note type="note">Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See <xref keyref="filePath-link">Supported Audio Formats</xref>.</note></p>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p conkeyref="startAudioMixing2/uri" props="android"></p>
+            <p id="playEffect-desc">To play multiple audio effect files at the same time, call this method multiple times with different <parmname>soundId</parmname> and <parmname>filePath</parmname>. To achieve the optimal user experience, Agora recommends that you do not playing more than three audio files at the same time.</p>
         </section>
-        <section id="parameters">
+        <section id="timing" deliveryTarget="details" conkeyref="playEffect3/timing">
+        </section>
+        <section id="restriction" deliveryTarget="details" conkeyref="playEffect3/restriction">
+        </section>
+        <section id="related" deliveryTarget="details" conkeyref="playEffect3/related">
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
             <plentry id="soundid">
                 <pt>soundId</pt>
                 <pd>The audio effect ID. The ID of each audio effect file is unique.<note type="attention">If you have preloaded an audio effect into memory by calling <xref keyref="preloadEffect" />, ensure that the value of this parameter is the same as that of <parmname>soundId</parmname> in <apiname keyref="preloadEffect" />.</note></pd>
             </plentry>
-            <plentry id="filepath">
-                <pt>filePath</pt>
-                <pd>
-                    <p props="cpp unreal bp">Agora supports URL addresses, absolute paths, or file paths that start with <codeph>/assets/</codeph>. For example, <codeph><ph keyref="filePath-example" /></codeph>.</p>
-                    <p props="android">The absolute path or URL address (including the suffixes of the filename) of the audio effect file. You might encounter permission issues if you use an absolute path to access a local file, so Agora recommends using a URI address instead. For example, <codeph><ph keyref="filePath-example" /></codeph>.</p>
-                    <note type="attention">If you have preloaded an audio effect into memory by calling <xref keyref="preloadEffect" />, ensure that the value of this parameter is the same as that of <parmname>filePath</parmname> in <apiname keyref="preloadEffect" />.</note> </pd>
+            <plentry id="filepath" conkeyref="playEffect3/filepath">
+            <pt/>
+            <pd/>
             </plentry>
             <plentry id="loopcount">
                 <pt>loopCount</pt>
