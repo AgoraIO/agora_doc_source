@@ -1,3 +1,31 @@
+## v4.5.1
+
+v4.5.1 was released on March 3, 2025.
+
+#### Compatibility changes
+
+**Attention:**
+
+- As of v4.5.0, both Video SDK and Signaling SDK (v2.2.0 and above) include the `libaosl.so` library. If you manually integrate Video SDK via CDN and also use Signaling SDK, delete the earlier version of the `libaosl.so` library to avoid conflicts.
+- The `libaosl.so` library version in Video SDK v4.5.1 is xxx.
+
+#### New features
+
+1. **AI conversation scenario**
+
+   This version adds the `AgoraAudioScenarioAiClient` audio scenario specifically designed for interacting with the conversational AI agent created by . This scenario optimizes the audio transmission algorithm based on the characteristics of AI agent voice generation, ensuring stable voice data transmission in weak network environments (for example, 80% packet loss rate), and ensuring the continuity and reliability of the conversation, adapting to a variety of complex network conditions.
+
+
+#### Issues fixed
+
+This release fixed the following issues:
+
+- When joining two or more channels simultaneously, and calling the `takeSnapshotEx:uid:filePath:` method to take screenshots of the local video streams in each channel consecutively, the screenshot of the first channel failed.
+- When using the `pause` method to pause playback, then calling `seekToPosition:` to move to a specified position, and finally calling `play` to continue playback, the Media Player resumed from the position where it was paused, not the new specified position.
+- When using the Media Player, the file path of the media resource returned by the `getPlaySrc` did not change after calling the `switchSrc:syncPts:` method to switch to a new media resource.
+- In the interactive live streaming scenario, after joining a channel to watch live streams using `string` user id, the audience members occasionally saw that the audio was not synchronized with the video.
+- Plugins sometimes did not work when using AI noise suppression and AI echo cancellation plugins at the same time.
+
 ## v4.5.0
 
 This version was released on November x, 2024.
