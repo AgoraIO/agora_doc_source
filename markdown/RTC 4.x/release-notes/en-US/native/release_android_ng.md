@@ -19,12 +19,13 @@ This version adds the `AUDIO_SCENARIO_AI_CLIENT` audio scenario specifically des
 
 This release fixed the following issues:
 
+- Apps that integrated the Agora SDK and set the `targetSdkVersion` to 34 encountered crashes when attempting to enable screen sharing for the first time on an Android 14 system.
 - When joining two or more channels simultaneously, and calling the `takeSnapshotEx [1/2]` method to take screenshots of the local video streams in each channel consecutively, the screenshot of the first channel failed.
 - When using the `pause` method to pause playback, then calling `seek` to move to a specified position, and finally calling `play` to continue playback, the Media Player resumed from the position where it was paused, not the new specified position.
 - When using the Media Player, the file path of the media resource returned by the `getPlaySrc [1/2]` did not change after calling the `switchSrc` method to switch to a new media resource.
 - When using Bluetooth headphones on specific device models for audio and video interactions, adjusting the phone volume would occassionally change the media volume instead of the Bluetooth volume.
 - During audio and video interactions, the local user occasionally experienced a black screen when watching the video streams of remote users.
-- On specific models of device, after calling `setCameraExposureFactor` to set the exposure coefficient of the current camera at a specific angle of the device, the video screen occasionally became dark when the device was moved to another angle. 
+- On specific models of device, after calling `setCameraExposureFactor` to set the exposure coefficient of the current camera at a specific angle of the device, the video screen occasionally became dark when the device was moved to another angle.
 - When playing a CDN live stream, the video occasionally froze for an extended period after recovering from an interruption.
 - In the interactive live streaming scenario, after joining a channel to watch live streams using `string` user id, the audience members occasionally saw that the audio was not synchronized with the video.
 - Plugins sometimes did not work when using AI noise suppression and AI echo cancellation plugins at the same time.

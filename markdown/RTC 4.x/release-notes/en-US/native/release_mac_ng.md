@@ -2,18 +2,16 @@
 
 v4.5.1 was released on March 3, 2025.
 
-#### Compatibility changes
-
 **Attention:**
 
-- As of v4.5.0, both Video SDK and Signaling SDK (v2.2.0 and above) include the `libaosl.so` library. If you manually integrate Video SDK via CDN and also use Signaling SDK, delete the earlier version of the `libaosl.so` library to avoid conflicts.
-- The `libaosl.so` library version in Video SDK v4.5.1 is xxx.
+- As of v4.5.0, both Video SDK and Signaling SDK (v2.2.0 and above) include the `aosl.xcframework` library. If you manually integrate Video SDK via CDN and also use Signaling SDK, delete the earlier version of the `aosl.xcframework` library to avoid conflicts.
+- The `aosl.xcframework` library version in Video SDK v4.5.1 is xxx. You can check the version in the `Info.plist` file.
 
 #### New features
 
 1. **AI conversation scenario**
 
-   This version adds the `AgoraAudioScenarioAiClient` audio scenario specifically designed for interacting with the conversational AI agent created by . This scenario optimizes the audio transmission algorithm based on the characteristics of AI agent voice generation, ensuring stable voice data transmission in weak network environments (for example, 80% packet loss rate), and ensuring the continuity and reliability of the conversation, adapting to a variety of complex network conditions.
+   This version adds the `AgoraAudioScenarioAiClient` audio scenario specifically designed for interacting with the conversational AI agent created by [Conversational AI Engine](https://docs-preview.agora.io/en/conversational-ai/overview/product-overview). This scenario optimizes the audio transmission algorithm based on the characteristics of AI agent voice generation, ensuring stable voice data transmission in weak network environments (for example, 80% packet loss rate), and ensuring the continuity and reliability of the conversation, adapting to a variety of complex network conditions.
 
 
 #### Issues fixed
@@ -94,7 +92,7 @@ As of v4.5.0, both RTC SDK and RTM SDK (v2.2.0 and above) include the `aosl.xcfr
    This version adds the `colorSpace` parameter to `AgoraOutputVideoFrame` and `AgoraVideoFrame`. You can use this parameter to set the color space properties of the video frame. By default, the color space uses Full Range and BT.709 standard configuration. You can flexibly adjust according to your own capture or rendering needs, further enhancing the customization capabilities of video processing.
 
 7. **Others**
-   
+
    - The `rtcEngine:device:type:stateChanged:` callback supports reporting that the device has been plugged in.
 
 #### Improvements
@@ -182,8 +180,8 @@ This version includes optimizations to some features, including changes to SDK b
    This version also includes the following improvements:
 
    - Optimizes transmission strategy: calling `enableInstantMediaRendering` no longer impacts the security of the transmission link.
-   - The `AgoraLocalVideoStreamReasonScreenCaptureDisplayDisconnected` enumerator is added in `localVideoStateChangedOfState` callback , indicating that the display used for screen capture has been disconnected. 
-   - Optimizes the video link for window sharing, reducing CPU usage. 
+   - The `AgoraLocalVideoStreamReasonScreenCaptureDisplayDisconnected` enumerator is added in `localVideoStateChangedOfState` callback , indicating that the display used for screen capture has been disconnected.
+   - Optimizes the video link for window sharing, reducing CPU usage.
    - Deprecates redundant enumeration values `AgoraClientRoleChangeFailedRequestTimeout` and `AgoraClientRoleChangeFailedConnectionFailed` in `AgoraClientRoleChangeFailedReason`.
 
 #### Issues fixed
@@ -281,7 +279,7 @@ This version is released on 2024 Month x, Day x.
    This version also includes the following improvements:
 
    - Optimization of video encoding and decoding strategies in non-screen sharing scenarios to save system performance overhead.
-   - For macOS 14 and above, optimization of [`getScreenCaptureSourcesWithThumbSize`](/api-ref/rtc/macos/API/toc_screencapture#api_irtcengine_getscreencapturesources) behavior. From this version onward, the method automatically filters out widget windows from the list of available window resources. 
+   - For macOS 14 and above, optimization of [`getScreenCaptureSourcesWithThumbSize`](/api-ref/rtc/macos/API/toc_screencapture#api_irtcengine_getscreencapturesources) behavior. From this version onward, the method automatically filters out widget windows from the list of available window resources.
    - Enhanced media player capabilities to handle WebM format videos, including support for rendering alpha channels.
    - In [`AgoraAudioEffectPreset`](/api-ref/rtc/macos/API/enum_audioeffectpreset), a new enumeration `AgoraAudioEffectPresetRoomAcousticsChorus` (chorus effect) is added, enhancing the spatial presence of vocals in chorus scenarios.
    - In [`AgoraRtcRemoteAudioStats`](/api-ref/rtc/macos/API/class_remoteaudiostats), a new `e2eDelay` field is added to report the delay from when the audio is captured on the sending end to when the audio is played on the receiving end.
@@ -381,12 +379,12 @@ This release has optimized the implementation of some functions, involving renam
 
 5. **Log encryption behavior changes**
 
-   For security and performance reasons, as of this release, the SDK encrypts logs and no longer supports printing plaintext logs via the console. 
+   For security and performance reasons, as of this release, the SDK encrypts logs and no longer supports printing plaintext logs via the console.
 
    Refer to the following solutions for different needs:
    - If you need to know the API call status, please check the API logs and print the SDK callback logs yourself.
    - For any other special requirements, please contact [technical support](mailto:support@agora.io) and provide the corresponding encrypted logs.
- 
+
 #### New features
 
 1. **Local preview with multiple views**
