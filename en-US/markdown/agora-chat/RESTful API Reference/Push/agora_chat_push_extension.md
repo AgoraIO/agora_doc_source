@@ -62,8 +62,8 @@ For how to use a targeted push template, see [the usage example](#targeted-push-
 | `em_push_category`           | String           | The push notification category.  |
 | `em_push_mutable_content`    | Boolean          | Whether the push notification is a rich text notification or a common notification: <br/> - `true`: rich text notification <br/> - `false`: common notification |
 | `em_push_sound`              | String           | Custom ringtone, which is a `aiff`, `wav`, or `caf` file in `Library/Sounds/`, for example, `appsound.caf`. |
-| `em_push_badge`              | Integer          | Custom badge.  |
-| `em_push_content_available`              | Integer          | The value `0` indicates background notification. For details, see the [user notification doc on Applet website](https://developer.apple.com/documentation/usernotifications/pushing-background-updates-to-your-app?language=objc). |
+| `em_push_badge`              | Int          | Custom badge.  |
+| `em_push_content_available`              | Int          | The value `0` indicates background notification. For details, see the [user notification doc on Applet website](https://developer.apple.com/documentation/usernotifications/pushing-background-updates-to-your-app?language=objc). |
 
 `em_android_push_ext` contains the following fields:
 
