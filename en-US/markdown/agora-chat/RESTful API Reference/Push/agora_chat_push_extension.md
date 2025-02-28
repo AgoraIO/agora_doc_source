@@ -53,6 +53,7 @@ For how to use a targeted push template, see [the usage example](#targeted-push-
 | `content`             | String | The custom push content.                               |
 | `custom`              | Object | The user-defined extension field. This field matches the `e` field among fields (like `t`, `f`, `m`, and `g`) to be parsed when receiving a push notification. |
 | `group_user_nickname` | String | The nickname of the group to which the sender belongs.    |
+| `type` | String | The VoIP push notification. Note: This field applies only when APNs supports VoIP notifications.   |
 
 `em_apns_ext` contains the following fields for APNs:
 
@@ -62,6 +63,7 @@ For how to use a targeted push template, see [the usage example](#targeted-push-
 | `em_push_mutable_content`    | Boolean          | Whether the push notification is a rich text notification or a common notification: <br/> - `true`: rich text notification <br/> - `false`: common notification |
 | `em_push_sound`              | String           | Custom ringtone, which is a `aiff`, `wav`, or `caf` file in `Library/Sounds/`, for example, `appsound.caf`. |
 | `em_push_badge`              | Integer          | Custom badge.  |
+| `em_push_content_available`              | Integer          | The value `0` indicates background notification. For details, see the [user notification doc on Applet website](https://developer.apple.com/documentation/usernotifications/pushing-background-updates-to-your-app?language=objc). |
 
 `em_android_push_ext` contains the following fields:
 
@@ -118,7 +120,8 @@ For how to use a targeted push template, see [the usage example](#targeted-push-
             "em_push_category": "",
             "em_push_mutable_content": true,
             "em_push_sound": "appsound.mp3",
-            "em_push_badge": 1
+            "em_push_badge": 1,
+            "em_push_content_available": 1
         },
         "em_android_push_ext": {
             "fcm_options": {
@@ -195,7 +198,8 @@ In this case, the push notification for other users can also be configured via p
     },
     "em_push_ext": {
         "title": "group name",
-        "content": "sends a message"
+        "content": "sends a message",
+        "type": "call"
     }
 }
 ```
