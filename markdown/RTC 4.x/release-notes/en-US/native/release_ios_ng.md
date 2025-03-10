@@ -4,6 +4,38 @@
 
 AirPods Pro does not support A2DP protocol in communication audio mode, which may lead to connection failure in that mode.
 
+## v4.5.1
+
+v4.5.1 was released on March 3, 2025.
+
+**Attention:**
+
+- As of v4.5.0, both Video SDK and Signaling SDK (v2.2.0 and above) include the `aosl.xcframework` library. If you manually integrate Video SDK via CDN and also use Signaling SDK, delete the earlier version of the `aosl.xcframework` library to avoid conflicts.
+- The `aosl.xcframework` library version in Video SDK v4.5.1 is xxx. You can check the version in the `Info.plist` file.
+
+#### New features
+
+1. **AI conversation scenario**
+
+   This version adds the `AgoraAudioScenarioAiClient` audio scenario specifically designed for interacting with the conversational AI agent created by [Conversational AI Engine](https://docs.agora.io/en/conversational-ai/overview/product-overview). This scenario optimizes the audio transmission algorithm based on the characteristics of AI agent voice generation, ensuring stable voice data transmission in weak network environments (for example, 80% packet loss rate), and ensuring the continuity and reliability of the conversation, adapting to a variety of complex network conditions.
+
+#### Improvements
+
+This release reduced the time of initializing the SDK on specific device models.
+
+#### Issues fixed
+
+This release fixed the following issues:
+
+- When joining two or more channels simultaneously, and calling the `takeSnapshotEx:uid:filePath:` method to take screenshots of the local video streams in each channel consecutively, the screenshot of the first channel failed.
+- When using the `pause` method to pause playback, then calling `seekToPosition:` to move to a specified position, and finally calling `play` to continue playback, the Media Player resumed from the position where it was paused, not the new specified position.
+- When using the Media Player, the file path of the media resource returned by the `getPlaySrc` did not change after calling the `switchSrc:syncPts:` method to switch to a new media resource.
+- When pushing video frames in i420 format to the channel, using CVPixelBuffer to handle these frames caused a crash.
+- Calling `setupLocalVideo:` to set up two views, then calling `enableFaceDetection:` to start face detection, no face information can be detected in the subsequently passed views.
+- In a screen sharing scenario, the receiving-end user saw a green line on the shared image.
+- In the interactive live streaming scenario, after joining a channel to watch live streams using `string` user id, the audience members occasionally saw that the audio was not synchronized with the video.
+- Plugins sometimes did not work when using AI noise suppression and AI echo cancellation plugins at the same time.
+
 ## v4.5.0
 
 This version was released on November x, 2024.
@@ -91,10 +123,10 @@ This version fixes the following issues:
 
 - When the video source type of the sender is in JPEG format, the frame rate on the receiving end occasionally falls below expectations.
 - Occasional instances where the receiving end cannot hear the sender during audio and video interaction.
-- During audio and video interaction, if the sender's device system version is iOS 17, the receiving end occasionally cannot hear the sender. 
-- In live streaming scenarios, the time taken to reconnect to the live room after the audience end disconnects due to network switching is longer than expected. 
+- During audio and video interaction, if the sender's device system version is iOS 17, the receiving end occasionally cannot hear the sender.
+- In live streaming scenarios, the time taken to reconnect to the live room after the audience end disconnects due to network switching is longer than expected.
 - No sound when playing online media resources using the media player after the app starts.
-- Occasional instances of no sound in audio capture after resuming from being interrupted by other system apps during audio and video interaction. 
+- Occasional instances of no sound in audio capture after resuming from being interrupted by other system apps during audio and video interaction.
 - Calling `startAudioMixing:loopback:cycle:` and then immediately calling `pauseAudioMixing` to pause the music file playback does not take effect.
 
 ## v4.4.0
@@ -166,9 +198,9 @@ This version includes optimizations to some features, including changes to SDK b
 
 This release fixed the following issues:
 
-- Occasional app crashes occurred when multiple remote users joined the channel simultaneously during real-time interaction. 
-- Remote video occasionally froze or displayed corrupted images when the app returned to the foreground after being in the background for a while. 
-- After the sender called `startDirectCdnStreaming` to start direct CDN streaming, frequent switching or toggling of the network occasionally resulted in a black screen on the receiver's end without a streaming failure callback on the sender's end. 
+- Occasional app crashes occurred when multiple remote users joined the channel simultaneously during real-time interaction.
+- Remote video occasionally froze or displayed corrupted images when the app returned to the foreground after being in the background for a while.
+- After the sender called `startDirectCdnStreaming` to start direct CDN streaming, frequent switching or toggling of the network occasionally resulted in a black screen on the receiver's end without a streaming failure callback on the sender's end.
 - Audio playback failed when pushing external audio data using `pushExternalAudioFrameRawData` and the sample rate was not set as a recommended value, such as 22050 Hz and 11025 Hz.
 
 
@@ -186,15 +218,15 @@ This version was released on May x, 20xx.
 
 This version fixed the following issues:
 
-- The remote video froze or became pixelated when the app returned to the foreground after being in the background for a long time. 
-- The local preview image rotated by 90° on some iPad devices, which did not meet expectations. 
+- The remote video froze or became pixelated when the app returned to the foreground after being in the background for a long time.
+- The local preview image rotated by 90° on some iPad devices, which did not meet expectations.
 - Occasional video smoothness issues during audio and video interactions.
 - The app occasionally crashed when the decoded video resolution on the receiving end was an odd number.
 - The app occasionally crashed when remote users left the channel.
-- When playing an audio file using [startAudioMixing [1/2\]](API/api_irtcengine_startaudiomixing.html) and the playing finished, the SDK sometimes failed to trigger the [audioMixingStateChanged](API/callback_irtcengineeventhandler_onaudiomixingstatechanged.html)(AgoraAudioMixingStateTypeStopped, AgoraAudioMixingReasonAllLoopsCompleted) callback which reports that the playing is completed. 
-- When calling the [playEffect [3/3\]](API/api_irtcengine_playeffect3.html) method to play sound effect files shorter than 1 second with `loopCount` set to 0, there was no sound. 
-- When using the Agora media player to play a video and stopping it during playing, sometimes there was no sound for a short time after the playing was resumed. 
-- 
+- When playing an audio file using [startAudioMixing [1/2\]](API/api_irtcengine_startaudiomixing.html) and the playing finished, the SDK sometimes failed to trigger the [audioMixingStateChanged](API/callback_irtcengineeventhandler_onaudiomixingstatechanged.html)(AgoraAudioMixingStateTypeStopped, AgoraAudioMixingReasonAllLoopsCompleted) callback which reports that the playing is completed.
+- When calling the [playEffect [3/3\]](API/api_irtcengine_playeffect3.html) method to play sound effect files shorter than 1 second with `loopCount` set to 0, there was no sound.
+- When using the Agora media player to play a video and stopping it during playing, sometimes there was no sound for a short time after the playing was resumed.
+-
 
 ## v4.3.1
 
@@ -385,12 +417,12 @@ This release has optimized the implementation of some functions, involving renam
 
 6. **Log encryption behavior changes**
 
-   For security and performance reasons, as of this release, the SDK encrypts logs and no longer supports printing plaintext logs via the console. 
+   For security and performance reasons, as of this release, the SDK encrypts logs and no longer supports printing plaintext logs via the console.
 
    Refer to the following solutions for different needs:
    - If you need to know the API call status, please check the API logs and print the SDK callback logs yourself.
    - For any other special requirements, please contact [technical support](mailto:support@agora.io) and provide the corresponding encrypted logs.
-  
+
 #### New features
 
 1. **Custom mixed video layout on receiving end**

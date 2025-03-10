@@ -7,13 +7,13 @@
     </body>
     <topic id="level2">
         <title/>
-        <topic id="compatibility">
+        <topic id="compatibility" props="native">
             <title>升级必看</title>
             <body>
              <note type="attention" props="native">
              <ul>
-             <li>自 4.5.0 起，RTC SDK 和 RTM SDK (2.2.0 及以上版本) 都包含 <codeph>libaosl.so</codeph> 库。如果你通过 CDN 手动集成 RTC SDK 且同时集成了 RTM SDK，为避免冲突，请手动删除版本较低的 <codeph>libaosl.so</codeph> 库。</li>
-             <li>4.5.1 RTC SDK <codeph>libaosl.so</codeph> 库版本为 //TODO</li></ul>
+             <li>自 4.5.0 起，RTC SDK 和 RTM SDK (2.2.0 及以上版本) 都包含 <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> 库。如果你通过 CDN 手动集成 RTC SDK 且同时集成了 RTM SDK，为避免冲突，请手动删除版本较低的 <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> 库。</li>
+             <li>4.5.1 RTC SDK <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> 库版本为 xxx。<ph props="apple">你可以在 <codeph>Info.plist</codeph> 中查看库的版本信息。</ph><ph props="cpp">你可以通过查看 <codeph>libaosl.dll</codeph> 文件的属性来得知库的版本信息。</ph></li></ul>
              </note>
             </body>
         </topic>
@@ -31,7 +31,7 @@
             <title>改进</title>
             <body>
                 <ol>
-                    <li props="ios cpp unity flutter rn">优化了特定机型上 SDK 初始化的耗时。<ph props="cpp unity flutter rn">(iOS)</ph></li>
+                    <li props="ios cpp unity flutter rn unreal bp">优化了特定机型上 SDK 初始化的耗时。<ph props="cpp unity flutter rn">(iOS)</ph></li>
                 </ol>
             </body>
         </topic>
@@ -40,17 +40,17 @@
             <body>
                 <p>该版本修复了以下问题：</p>
                 <ul>
-                    <li props="cpp unity flutter rn android">集成 SDK 的 App 设置 <codeph>targetSdkVersion</codeph> 为 34，在 Android 14 系统上首次开启屏幕共享进行授权时出现崩溃。<ph props="cpp unity flutter rn">(Android)</ph></li>
+                    <li props="cpp unity flutter rn android unreal bp">集成 SDK 的 App 设置 <codeph>targetSdkVersion</codeph> 为 34，在 Android 14 系统上首次开启屏幕共享进行授权时出现崩溃。<ph props="cpp unity flutter rn unreal bp">(Android)</ph></li>
                     <li>同时加入两个及以上的频道，连续调用 <codeph><apiname keyref="takeSnapshotEx"/></codeph> 分别对频道中的本地视频流进行截图，在先调用的频道截图会失败。</li>
                     <li>使用媒体播放器时，调用 <codeph><apiname keyref="pause"/></codeph> 暂停播放后，调用 <codeph><apiname keyref="seek"/></codeph> 定位到指定播放位置、然后调用 <codeph><apiname keyref="play"/></codeph> 继续播放，播放时会先从暂停播放的位置播放，然后再从新的位置播放。</li>
-                    <li>使用媒体播放器时，调用 <codeph><apiname keyref="switchSrc"/></codeph> 切换媒体资源后，调用 <codeph><apiname keyref="getPlaySrc"/></codeph> 获取当前正在播放的媒体资源的路径没有变化。</li>
-                    <li props="cpp unity flutter rn android">用户在特定机型上进行音视频互动并使用蓝牙耳机，偶现调整手机音量后改变的是媒体音量而非蓝牙音量。<ph props="cpp unity flutter rn">(Android)</ph></li>
-                    <li props="cpp unity flutter rn android">音视频互动时，偶现接收端观看发送端画面出现黑屏。<ph props="cpp unity flutter rn">(Android)</ph></li>
-                    <li props="cpp unity flutter rn android">在特定机型上，调用 <codeph><apiname keyref="setCameraExposureFactor"/></codeph> 在设备的某个特定角度设置当前摄像头的曝光系数后，当设备移动到另一个角度时，偶现视频画面变暗。<ph props="cpp unity flutter rn">(Android)</ph></li>
-                    <li props="cpp unity flutter rn android">播放 CDN 直播流时，直播流短暂中断后恢复，偶现播放画面长时间卡住。<ph props="cpp unity flutter rn">(Android)</ph></li>
-                    <li props="ios cpp unity flutter rn">在推送 i420 格式的视频帧到频道内时，使用 CVPixelBuffer 会导致崩溃。<ph props="cpp unity flutter rn">(iOS)</ph></li>
-                    <li props="ios cpp unity flutter rn">调用 <codeph><apiname keyref="setupLocalVideo"/></codeph> 设置两个视图（view），然后调用 <codeph><apiname keyref="enableFaceDetection"/></codeph> 开启人脸检测，后传入的视图中无法检测到人脸信息。<ph props="cpp unity flutter rn">(iOS)</ph></li>
-                    <li props="ios cpp unity flutter rn">屏幕共享场景下，接收端用户看到的共享图像出现绿线。<ph props="cpp unity flutter rn">(iOS)</ph></li>
+                    <li>使用媒体播放器时，调用 <codeph><apiname keyref="switchSrc"/></codeph> 切换媒体资源后，调用 <codeph><apiname keyref="getPlaySrc_IMediaPlayer"/></codeph> 获取当前正在播放的媒体资源的路径没有变化。</li>
+                    <li props="cpp unity flutter rn android unreal bp">用户在特定机型上进行音视频互动并使用蓝牙耳机，偶现调整手机音量后改变的是媒体音量而非蓝牙音量。<ph props="cpp unity flutter rn unreal bp">(Android)</ph></li>
+                    <li props="cpp unity flutter rn android unreal bp">音视频互动时，偶现接收端观看发送端画面出现黑屏。<ph props="cpp unity flutter rn unreal bp">(Android)</ph></li>
+                    <li props="cpp unity flutter rn android unreal bp">在特定机型上，调用 <codeph><apiname keyref="setCameraExposureFactor"/></codeph> 在设备的某个特定角度设置当前摄像头的曝光系数后，当设备移动到另一个角度时，偶现视频画面变暗。<ph props="cpp unity flutter rn unreal bp">(Android)</ph></li>
+                    <li props="cpp unity flutter rn android unreal bp">播放 CDN 直播流时，直播流短暂中断后恢复，偶现播放画面长时间卡住。<ph props="cpp unity flutter rn unreal bp">(Android)</ph></li>
+                    <li props="ios cpp unity flutter rn unreal bp">在推送 i420 格式的视频帧到频道内时，使用 CVPixelBuffer 会导致崩溃。<ph props="cpp unity flutter rn unreal bp">(iOS)</ph></li>
+                    <li props="ios cpp unity flutter rn unreal bp">调用 <codeph><apiname keyref="setupLocalVideo"/></codeph> 设置两个视图（view），然后调用 <codeph><apiname keyref="enableFaceDetection"/></codeph> 开启人脸检测，后传入的视图中无法检测到人脸信息。<ph props="cpp unity flutter rn unreal bp">(iOS)</ph></li>
+                    <li props="ios cpp unity flutter rn unreal bp">屏幕共享场景下，接收端用户看到的共享图像出现绿线。<ph props="cpp unity flutter rn unreal bp">(iOS)</ph></li>
                     <li>在极速直播场景下，观众通过 <codeph>string</codeph> 型的用户 ID 加入频道观看直播，偶现音频和画面不同步。</li>
                     <li>在同时使用 AI 降噪、AI 回声消除插件时，偶现插件不生效。</li>
                 </ul>
