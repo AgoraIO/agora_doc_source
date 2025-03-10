@@ -13,13 +13,6 @@ AudioMixerModuleName=
 
 v4.5.1 was released on March 3, 2025.
 
-#### Compatibility changes
-
-**Attention:**
-
-- Starting from version 4.5.0, both RTC SDK and Signaling (version 2.2.0 and above) include the `libaosl.dll` library. If you manually integrate Video SDK via CDN and also use Signaling SDK, delete the earlier version of the `libaosl.dll` to avoid conflicts.
-- 4.5.1 RTC SDK `libaosl.dll` library version is 1.2.13. You can check the version information of the library in `Info.plist`. You can find out the version information of the library by checking the properties of the `libaosl.dll` file.
-
 #### New features
 
 1. **AI conversation scenario**
