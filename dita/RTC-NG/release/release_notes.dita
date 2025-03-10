@@ -7,7 +7,7 @@
     </body>
     <topic id="level2">
         <title/>
-        <topic id="compatibility">
+        <topic id="compatibility" props="native">
             <title>升级必看</title>
             <body>
              <note type="attention" props="native">
@@ -43,7 +43,7 @@
                     <li props="cpp unity flutter rn android unreal bp">集成 SDK 的 App 设置 <codeph>targetSdkVersion</codeph> 为 34，在 Android 14 系统上首次开启屏幕共享进行授权时出现崩溃。<ph props="cpp unity flutter rn unreal bp">(Android)</ph></li>
                     <li>同时加入两个及以上的频道，连续调用 <codeph><apiname keyref="takeSnapshotEx"/></codeph> 分别对频道中的本地视频流进行截图，在先调用的频道截图会失败。</li>
                     <li>使用媒体播放器时，调用 <codeph><apiname keyref="pause"/></codeph> 暂停播放后，调用 <codeph><apiname keyref="seek"/></codeph> 定位到指定播放位置、然后调用 <codeph><apiname keyref="play"/></codeph> 继续播放，播放时会先从暂停播放的位置播放，然后再从新的位置播放。</li>
-                    <li>使用媒体播放器时，调用 <codeph><apiname keyref="switchSrc"/></codeph> 切换媒体资源后，调用 <codeph><apiname keyref="getPlaySrc"/></codeph> 获取当前正在播放的媒体资源的路径没有变化。</li>
+                    <li>使用媒体播放器时，调用 <codeph><apiname keyref="switchSrc"/></codeph> 切换媒体资源后，调用 <codeph><apiname keyref="getPlaySrc_IMediaPlayer"/></codeph> 获取当前正在播放的媒体资源的路径没有变化。</li>
                     <li props="cpp unity flutter rn android unreal bp">用户在特定机型上进行音视频互动并使用蓝牙耳机，偶现调整手机音量后改变的是媒体音量而非蓝牙音量。<ph props="cpp unity flutter rn unreal bp">(Android)</ph></li>
                     <li props="cpp unity flutter rn android unreal bp">音视频互动时，偶现接收端观看发送端画面出现黑屏。<ph props="cpp unity flutter rn unreal bp">(Android)</ph></li>
                     <li props="cpp unity flutter rn android unreal bp">在特定机型上，调用 <codeph><apiname keyref="setCameraExposureFactor"/></codeph> 在设备的某个特定角度设置当前摄像头的曝光系数后，当设备移动到另一个角度时，偶现视频画面变暗。<ph props="cpp unity flutter rn unreal bp">(Android)</ph></li>
