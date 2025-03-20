@@ -56,11 +56,8 @@
                     <li props="cpp unreal bp android unity flutter rn">Android 6 及以上版本，如果相机被第三方应用占用一段时间后释放，则 SDK 会触发该回调，并报告 <apiname keyref="onLocalVideoStateChanged"/>(<codeph><ph keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/>，<ph keyref="LOCAL_VIDEO_STREAM_REASON_OK"/></codeph>) 回调。</li>
                     <li>摄像头正常启动，但连续 4 秒都没有输出采集的视频。</li></ul></li>
                 <li>当摄像头输出采集的视频帧时，如果 SDK 检测到连续 15 个重复的视频帧，会触发该回调，且 <parmname>state</parmname> 为 <apiname keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/>，<parmname>reason</parmname> 为 <apiname keyref="LOCAL_VIDEO_STREAM_REASON_CAPTURE_FAILURE"/>。
-                <note>帧重复检测仅针对分辨率大于 200 × 200、帧率大于等于 10 fps、码率小于 20 Kbps 的视频帧。</note></li></ul>
-        </section>        
-        <section id="restriction" deliveryTarget="details">
-            <title>使用限制</title>
-            <p>对某些机型而言，当本地视频采集设备正在使用中时，SDK 不会在本地视频状态发生改变时触发该回调，你需要自行做超时判断。</p>
+                <note><ul><li>帧重复检测仅针对分辨率大于 200 × 200、帧率大于等于 10 fps、码率小于 20 Kbps 的视频帧。</li>
+                <li>如果视频采集设备出现卡死，你可以下列方式来判断采集是否无帧：该回调报告 <codeph>state</codeph> 为 <codeph><ph keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/></codeph> 或 <codeph><ph keyref="LOCAL_VIDEO_STREAM_STATE_ENCODING"/></codeph>，且 <xref keyref="onLocalVideoStats"/> 回调的 <codeph>captureFrameRate</codeph> 为 0。</li></ul></note></li></ul>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
