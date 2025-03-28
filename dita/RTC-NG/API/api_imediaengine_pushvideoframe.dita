@@ -39,7 +39,8 @@
             </dlentry>
             </dl>
             <p id="desc1">当你需要在频道中发布自定义采集视频时，可参考以下步骤：<ol>
-            <li>调用 <xref keyref="createCustomVideoTrack"/> 方法创建视频轨道并获得视频轨道 ID。</li>
+            <li>调用 <xref keyref="createCustomVideoTrack"/> 方法创建视频轨道并获得视频轨道 ID。
+            <note type="note">如果你只需推送一路自定义采集的视频流到频道中，可以直接调用 <xref keyref="setExternalVideoSource"/> 方法启用外部视频源，此时 SDK 会自动创建一个 <parmname>videoTrackId</parmname> 为 0 的视频轨道。</note></li>
             <li>调用 <xref keyref="joinChannel2"/> 加入频道时，将 <xref keyref="ChannelMediaOptions"/> 中的 <parmname>customVideoTrackId</parmname> 设置为你想要发布的视频轨道 ID，并将 <parmname>publishCustomVideoTrack</parmname> 设置为 <codeph><ph keyref="true"/></codeph>。</li>
             <li>调用该方法将 <parmname>videoTrackId</parmname> 指定为步骤 2 中指定的视频轨道 ID，即可实现在频道内发布对应的自定义视频源。</li></ol></p>
             <note type="danger" id="desc2">调用该方法后，即使你停止推送外部视频帧到 SDK，自定义采集的视频流仍然会被计入视频时长用量并产生费用，声网建议你根据实际情况采取相应措施避免此类视频计费：<ul>
@@ -63,8 +64,9 @@
             </plentry>
             <plentry id="videotrackid">
                 <pt>videoTrackId</pt>
-                <pd>调用 <apiname keyref="createCustomVideoTrack"/> 方法返回的视频轨道 ID。默认值为 0。</pd>
-            </plentry>    
+                <pd>调用 <apiname keyref="createCustomVideoTrack"/> 方法返回的视频轨道 ID。
+                <note type="note">如果你只需推送一路外部视频流，<parmname>videoTrackId</parmname> 设置为 0 即可。</note></pd>
+            </plentry>
             </parml>
         </section>
         <section id="return_values">
