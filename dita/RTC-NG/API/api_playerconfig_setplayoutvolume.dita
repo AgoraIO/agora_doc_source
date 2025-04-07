@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_playerconfig_setplayoutvolume">
+    <title><ph keyref="SetPlayoutVolume"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置播放音量参数。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="SetPlayoutVolume"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void setPlayoutVolume(int volume) throws RteException</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)setPlayoutVolume:(int32_t)volume error:(AgoraRteError * _Nullable)error;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">void SetPlayoutVolume(int32_t volume, Error *err = nullptr)</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从：</dt>
+                <dd>自 v4.5.1 版本新增。</dd>
+            </dlentry>
+            </dl>
+            <p></p>
+            </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+            <plentry props="android ios cpp">
+                <pt>volume</pt>
+                <pd>要设置的音量值，取值范围为 [0, 400]。</pd>
+            </plentry>
+            <plentry props="cpp">
+                <pt>err</pt>
+                <pd>状态或错误信息，详见 <xref keyref="Error"/>。
+可能的错误码包括：
+                    <ul>
+                        <li><ph keyref="kRteOk"/>：设置成功。</li>
+                        <li><ph keyref="kRteErrorInvalidArgument"/>：音量参数设置为非法值。</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">输出参数，返回错误信息，详见 <xref keyref="Error"/>。
+                    <ul>
+                        <li><ph keyref="kRteOk"/>：设置成功。</li>
+                        <li><ph keyref="kRteErrorInvalidArgument"/>：音量参数非法。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+        </parml> </section>
+        <section id="return_values" props="bp cs electron flutter rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="unreal bp electron unity rn cs">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul>
+    </section>
+        </refbody>
+</reference>
