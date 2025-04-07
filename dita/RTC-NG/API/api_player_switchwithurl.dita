@@ -39,24 +39,28 @@
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-            <plentry props="android ios cpp mac">
+            <plentry>
                 <pt>url</pt>
                 <pd>要切换的新 URL。</pd>
-            </plentry>
-            <plentry props="android ios cpp mac">
+                </plentry>
+            <plentry>
                 <pt>sync_pts</pt>
+                <pt props="ios">syncPts</pt>
+                <pt props="mac">syncPts</pt>
+                <pt props="android">syncPts</pt>
                 <pd>切换后是否同步播放位置（毫秒）：
                     <ul>
                         <li><codeph><ph keyref="true"/></codeph>：同步播放位置。</li>
                         <li><codeph><ph keyref="false"/></codeph>：（默认）不同步播放位置。</li>
                         </ul>
                     </pd>
-            </plentry>
-            <plentry props="android ios cpp mac">
+                </plentry>
+            <plentry>
                 <pt>cb</pt>
+                <pt props="android">callback</pt>
                 <pd>异步通知切换操作结果的回调。你可以通过该回调的 <codeph>err</codeph> 参数得知操作的结果或错误码信息，详见 <xref keyref="Error"/>。</pd>
-            </plentry>
-        </parml> </section>
+                </plentry>
+            </parml> </section>
         <section id="return_values" props="bp cs electron flutter rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
         <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
