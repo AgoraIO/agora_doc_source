@@ -36,16 +36,16 @@
             <title>调用限制</title>
             <p>无。</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="native">
             <title>参数</title>
             <parml>
-            <plentry props="android cpp ios mac">
-                <pt props="android cpp ios mac">new_time</pt>
+            <plentry props="native">
+                <pt props="native">new_time</pt>
                 <pt props="android ios">newTime</pt>
                 <pd>要跳转到的新播放位置。</pd>
                 </plentry>
-            <plentry props="cpp ios mac">
-                <pt props="cpp ios mac">err</pt>
+            <plentry props="apple cpp">
+                <pt props="apple cpp">err</pt>
                 <pt props="ios">error</pt>
                 <pd>输出参数，表示错误码：
                     <ul>
@@ -62,7 +62,7 @@
         <section id="return_values" props="bp cs electron flutter rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
         <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-        <ul props="unreal bp electron unity rn cs">
+        <ul props="bp cs electron rn unity unreal">
                 <li>0: 方法调用成功。</li>
                 <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
                 </ul>
@@ -71,7 +71,7 @@
                         <li><codeph><ph keyref="false"/></codeph>：跳转失败。</li>
                         </ul>
                     </p>
-        <p props="ios mac"><ul>
+        <p props="apple"><ul>
                         <li><codeph><ph keyref="true"/></codeph>：跳转成功。</li>
                         <li><codeph><ph keyref="false"/></codeph>：跳转失败。你可以通过 <xref keyref="Error"/> 参数查看具体错误信息。</li>
                         </ul>

@@ -36,16 +36,16 @@
             <title>调用限制</title>
             <p>无。</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="native">
             <title>参数</title>
             <parml>
-            <plentry props="android cpp ios mac">
-                <pt props="android cpp ios mac">url</pt>
+            <plentry props="native">
+                <pt props="native">url</pt>
                 <pd>要切换的新 URL。</pd>
                 </plentry>
-            <plentry props="android cpp ios mac">
-                <pt props="android cpp ios mac">sync_pts</pt>
-                <pt props="android ios mac">syncPts</pt>
+            <plentry props="native">
+                <pt props="native">sync_pts</pt>
+                <pt props="android apple">syncPts</pt>
                 <pd>切换后是否同步播放位置（毫秒）：
                     <ul>
                         <li><codeph><ph keyref="true"/></codeph>：同步播放位置。</li>
@@ -53,8 +53,8 @@
                         </ul>
                     </pd>
                 </plentry>
-            <plentry props="android cpp ios mac">
-                <pt props="android cpp ios mac">cb</pt>
+            <plentry props="native">
+                <pt props="native">cb</pt>
                 <pt props="android">callback</pt>
                 <pd>异步通知切换操作结果的回调。你可以通过该回调的 <codeph>err</codeph> 参数得知操作的结果或错误码信息，详见 <xref keyref="Error"/>。</pd>
                 </plentry>
@@ -62,7 +62,7 @@
         <section id="return_values" props="bp cs electron flutter rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
         <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-        <ul props="unreal bp electron unity rn cs">
+        <ul props="bp cs electron rn unity unreal">
                 <li>0: 方法调用成功。</li>
                 <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
                 </ul>
