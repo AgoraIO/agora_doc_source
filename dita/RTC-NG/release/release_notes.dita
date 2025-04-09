@@ -1,28 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="release_notes">
-    <title>v4.5.1</title>
+    <title>v4.5.2</title>
     <body>
-        <p>该版本于 2025 年 3 月 3 日发布。</p>
+        <p>该版本于 2025 年 4 月 xx 日发布。</p>
+        <note type="attention" props="native">
+             <ul>
+             <li>自 4.5.0 起，RTC SDK 和 RTM SDK (2.2.0 及以上版本) 都包含 <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> 库。如果你通过 CDN 手动集成 RTC SDK 且同时集成了 RTM SDK，为避免冲突，请手动删除版本较低的 <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> 库。</li>
+             <li>4.5.2 RTC SDK <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> 库版本为 1.2.13。<ph props="apple">你可以在 <codeph>Info.plist</codeph> 中查看库的版本信息。</ph><ph props="cpp">你可以通过查看 <codeph>libaosl.dll</codeph> 文件的属性来得知库的版本信息。</ph></li></ul>
+             </note>
     </body>
     <topic id="level2">
         <title/>
-        <topic id="compatibility" props="native">
+        <topic id="compatibility" props="android cpp">
             <title>升级必看</title>
             <body>
-             <note type="attention" props="native">
-             <ul>
-             <li>自 4.5.0 起，RTC SDK 和 RTM SDK (2.2.0 及以上版本) 都包含 <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> 库。如果你通过 CDN 手动集成 RTC SDK 且同时集成了 RTM SDK，为避免冲突，请手动删除版本较低的 <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> 库。</li>
-             <li>4.5.1 RTC SDK <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> 库版本为 xxx。<ph props="apple">你可以在 <codeph>Info.plist</codeph> 中查看库的版本信息。</ph><ph props="cpp">你可以通过查看 <codeph>libaosl.dll</codeph> 文件的属性来得知库的版本信息。</ph></li></ul>
-             </note>
-            </body>
-        </topic>
-        <topic id="newfeature">
-            <title>新增特性</title>
-            <body>
+                <p>该版本对部分功能的实现方式进行了优化，为确保项目的正常运行，你需要在升级到该版本后更新 App 中的代码。</p>
                 <ol>
-                    <li><ph><b>AI 对话场景</b></ph>
-                        <p>该版本新增了专为与<xref keyref="convoai"/>创建的智能体互动设计的 <codeph><ph keyref="AUDIO_SCENARIO_AI_CLIENT"/></codeph> 音频场景。该场景根据 AI 智能体生成语音的特点，针对优化了音频传输算法，能够在弱网环境下（例如 80% 丢包率）稳定传输语音数据，确保对话的连续性和可靠性，适应多样化的复杂网络条件。</p>
+                    <li><ph><b>成员参数变更为方法</b></ph>
+                        <p>为优化 API 设计，该版本对 <xref keyref="RtePlayerInfo"/> 结构体中的所有成员参数进行封装，变为 <xref keyref="PlayerInfo"/> 类。如果你的 App 中调用了 <xref keyref="RtePlayerInfo"/> 结构体中的成员参数，请更新为 <xref keyref="PlayerInfo"/> 类中对应的方法。</p>
                     </li>
                 </ol>
             </body>
@@ -31,7 +27,9 @@
             <title>改进</title>
             <body>
                 <ol>
-                    <li props="ios cpp unity flutter rn unreal bp">优化了特定机型上 SDK 初始化的耗时。<ph props="cpp unity flutter rn">(iOS)</ph></li>
+                    <li><ph><b>URL 拉流播放</b></ph>
+                        <p>该版本进一步拓展了 URL 拉流播放的功能，支持播放 CDN URL 和本地媒体资源文件，同时可以设置从指定位置开始播放、调节播放速度、设置播放音量、在播放过程中切换播放源等，详见 <xref keyref="rte-player"/>。</p>
+                    </li>
                 </ol>
             </body>
         </topic>
@@ -40,19 +38,30 @@
             <body>
                 <p>该版本修复了以下问题：</p>
                 <ul>
-                    <li props="cpp unity flutter rn android unreal bp">集成 SDK 的 App 设置 <codeph>targetSdkVersion</codeph> 为 34，在 Android 14 系统上首次开启屏幕共享进行授权时出现崩溃。<ph props="cpp unity flutter rn unreal bp">(Android)</ph></li>
-                    <li>同时加入两个及以上的频道，连续调用 <codeph><apiname keyref="takeSnapshotEx"/></codeph> 分别对频道中的本地视频流进行截图，在先调用的频道截图会失败。</li>
-                    <li>使用媒体播放器时，调用 <codeph><apiname keyref="pause"/></codeph> 暂停播放后，调用 <codeph><apiname keyref="seek"/></codeph> 定位到指定播放位置、然后调用 <codeph><apiname keyref="play"/></codeph> 继续播放，播放时会先从暂停播放的位置播放，然后再从新的位置播放。</li>
-                    <li>使用媒体播放器时，调用 <codeph><apiname keyref="switchSrc"/></codeph> 切换媒体资源后，调用 <codeph><apiname keyref="getPlaySrc_IMediaPlayer"/></codeph> 获取当前正在播放的媒体资源的路径没有变化。</li>
-                    <li props="cpp unity flutter rn android unreal bp">用户在特定机型上进行音视频互动并使用蓝牙耳机，偶现调整手机音量后改变的是媒体音量而非蓝牙音量。<ph props="cpp unity flutter rn unreal bp">(Android)</ph></li>
-                    <li props="cpp unity flutter rn android unreal bp">音视频互动时，偶现接收端观看发送端画面出现黑屏。<ph props="cpp unity flutter rn unreal bp">(Android)</ph></li>
-                    <li props="cpp unity flutter rn android unreal bp">在特定机型上，调用 <codeph><apiname keyref="setCameraExposureFactor"/></codeph> 在设备的某个特定角度设置当前摄像头的曝光系数后，当设备移动到另一个角度时，偶现视频画面变暗。<ph props="cpp unity flutter rn unreal bp">(Android)</ph></li>
-                    <li props="cpp unity flutter rn android unreal bp">播放 CDN 直播流时，直播流短暂中断后恢复，偶现播放画面长时间卡住。<ph props="cpp unity flutter rn unreal bp">(Android)</ph></li>
-                    <li props="ios cpp unity flutter rn unreal bp">在推送 i420 格式的视频帧到频道内时，使用 CVPixelBuffer 会导致崩溃。<ph props="cpp unity flutter rn unreal bp">(iOS)</ph></li>
-                    <li props="ios cpp unity flutter rn unreal bp">调用 <codeph><apiname keyref="setupLocalVideo"/></codeph> 设置两个视图（view），然后调用 <codeph><apiname keyref="enableFaceDetection"/></codeph> 开启人脸检测，后传入的视图中无法检测到人脸信息。<ph props="cpp unity flutter rn unreal bp">(iOS)</ph></li>
-                    <li props="ios cpp unity flutter rn unreal bp">屏幕共享场景下，接收端用户看到的共享图像出现绿线。<ph props="cpp unity flutter rn unreal bp">(iOS)</ph></li>
-                    <li>在极速直播场景下，观众通过 <codeph>string</codeph> 型的用户 ID 加入频道观看直播，偶现音频和画面不同步。</li>
-                    <li>在同时使用 AI 降噪、AI 回声消除插件时，偶现插件不生效。</li>
+                    <li>开启导唱功能播放多音轨歌曲时，调用 <codeph><xref keyref="setAudioPitch"/></codeph> 方法调整歌曲音调后出现杂音。</li>
+                    <li>主播端调用 <codeph><xref keyref="createCustomAudioTrack"/></codeph> 创建自定义音频采集轨道并将 <codeph>trackType</codeph> 设为 <codeph>AUDIO_TRACK_DIRECT</codeph>，调用 <codeph><xref keyref="pushAudioFrame2" props="android apple"/></codeph><codeph><xref keyref="pushAudioFrame" props="cpp"/></codeph> 将自采集音频推送到频道内，然后调用 <codeph><xref keyref="playEffect3"/></codeph> 播放音效，频道内的观众听主播的音频有杂音。</li>
+                    <li>集成了 SDK 的 App 在音视频互动过程中偶现主线程阻塞导致的 UI 卡顿。</li>
+                    <li props="android">调用 <codeph><xref keyref="startAudioMixing2"/></codeph> 播放 EAC3 音频编码的 MP4 文件时偶现无声。</li>
+                    <li props="cpp">调用 <codeph><xref keyref="startScreenCapture2"/></codeph> 开启屏幕共享并在 <codeph>config</codeph> 中将 <codeph><xref keyref="ScreenCaptureParameters"/></codeph> 的 <codeph>enableHighLight</codeph> 设为 <codeph><ph keyref="true"/></codeph> 对共享窗口进行描边，将共享窗口置于最上层并最大化后，本地预览的共享画面出现闪烁。</li>
+                    <li props="cpp">调用 <codeph><xref keyref="startScreenCaptureByDisplayId"/></codeph> 共享指定屏幕的视频流，通过 <codeph><xref keyref="ScreenCaptureParameters"/></codeph> 的 <codeph>excludeWindowList</codeph> 来指定屏蔽的窗口，偶现部分窗口屏蔽失败。</li>
+                    <li props="cpp">应用程序共享外接屏幕的视频流，断开外接屏幕连接后偶现应用程序崩溃。</li>
+                    <li props="android">退出频道停止视频渲染后出现渲染内存泄漏。</li>
+                    <li props="android">调用 <codeph><xref keyref="setCameraFocusPositionInPreview"/></codeph> 设置手动对焦位置，摄像头拍摄缩放画面后，设置的对焦位置不准确。</li>
+                    <li props="android">调用 <codeph><xref keyref="setExternalMediaProjection"/></codeph>  设置 SDK 外部的 MediaProjection 采集屏幕视频流，当屏幕变为横屏或竖屏时，发送的视频流宽、高没有随之变化。</li>
+                    <li>调用 <codeph><xref keyref="openWithMediaSource"/></codeph> 并通过 <codeph>source</codeph> 参数将 <codeph>isLiveSource</codeph> 设为 <codeph><ph keyref="true"/></codeph> 并播放纯视频流，播放失败。</li>
+                    <li props="ios">调用 <codeph><xref keyref="enableVirtualBackground"/></codeph> 开启虚拟背景功能，手机横竖屏旋转后，虚拟背景图像变大变模糊。</li>
+                    <li props="android">使用媒体播放器打开实际不存在的本地媒体文件时，播放器状态改变回调 <codeph><xref keyref="onPlayerSourceStateChanged"/></codeph> 不会报告 <codeph>PLAYER_STATE_FAILED</codeph>，不符合预期。</li>
+                    <li>发送端传输多声道编码音频时，接收端偶现杂音。</li>
+                    <li>App 集成媒体播放器场景下，先后两次调用 open 打开不同媒体资源，第二次打开时，媒体播放器信息变化回调 <codeph><xref keyref="onPlayerInfoUpdated"/></codeph> 返回第一次媒体资源的信息，不符合预期。</li>
+                    <li>调用 <codeph><xref keyref="enableAudioVolumeIndication"/></codeph> 启用用户音量提示本地发流用户和远端用户音量相关信息，用户音量提示回调 <codeph><xref keyref="onAudioVolumeIndication"/></codeph> 返回的本地用户音量为 0。</li>
+                    <li props="android">音视频互通过程中偶现 App 卡死。</li>
+                    <li props="android">调用 <codeph><xref keyref="setExtensionProperty"/></codeph> 设置 key 为 "makeup_options" 实现美妆效果失败。</li>
+                    <li props="android">发送端用户在光线较暗的环境中进行音视频互通，部分机型偶现本地预览的图像偏暗。</li>
+                    <li props="windows">使用 21:9 的显示屏（带鱼屏）进行音视频互通和屏幕共享场景下，设置高分辨率，如 3840*2160，屏幕共享画面在本地预览和接收端显示被裁剪。</li>
+                    <li>App 调用 <codeph><xref keyref="enableVideoImageSource"/></codeph> 启用垫片推流功能，偶现发送端推流成功但是 <codeph><xref keyref="onVideoPublishStateChanged"/></codeph> 返回当前的发布状态不是 PUB_STATE_PUBLISHED，不符合预期。</li>
+                    <li>多频道场景下，App 在调用 <codeph><xref keyref="joinChannelEx"/></codeph> 成功前调用 <codeph><xref keyref="setupRemoteVideoEx"/></codeph> 初始化远端用户视图，偶现远端用户视图首帧图像显示延时大。</li>
+                    <li props="ios">App 退出时偶现崩溃。</li>
+                    <li props="android">加入频道失败后，在没有调用 <codeph><xref keyref="leaveChannel"/></codeph> 离开频道的情况下，再次调用 <codeph><xref keyref="joinChannel"/></codeph> 加入频道时偶现崩溃。</li>
                 </ul>
             </body>
         </topic>
