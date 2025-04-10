@@ -30,7 +30,7 @@
                 <dd props="native">自 v4.5.1 版本新增。</dd>
                 </dlentry>
             </dl>
-            <p></p>
+            <p>该方法用于获取当前播放的时间位置，单位为毫秒。</p>
             </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -40,15 +40,25 @@
             <title>参数</title>
             <parml>
             <plentry props="apple cpp">
-                <pt props="cpp">err</pt>
                 <pt props="apple">error</pt>
-                <pd props="apple">输出参数，用于返回跳转失败时的错误信息，详见 <xref keyref="Error"/>。</pd>
-                <pd props="cpp">输出参数，表示错误码：
+                <pt props="cpp">err</pt>
+                <pd props="apple">输出参数，表示错误信息。可能返回以下 AgoraRteErrorCode：
                     <ul>
-                        <li><ph keyref="kRteOk"/>：成功。</li>
+                        <li><ph keyref="kRteOk"/>：调用成功。</li>
+                        <li><ph keyref="kRteErrorInvalidOperation"/>：<ul>
+                            <li>对应的内部 <codeph>AgoraRtePlayer</codeph> 对象已被销毁或无效。</li>
+                            <li>打开的是 RTE URL，不支持调用 <xref keyref="getPlayPosition"/>。详见 <xref keyref="Error"/>。</li>
+                            </ul>
+                        </li>
+                        </ul>
+                    </pd>
+                <pd props="cpp">状态或错误信息，详见 <xref keyref="Error"/>。
+可能的错误码包括：
+                    <ul>
+                        <li><ph keyref="kRteOk"/>：调用成功。</li>
                         <li><ph keyref="kRteErrorInvalidOperation"/>：<ul>
                             <li>对应的内部 <xref keyref="Player_Player"/> 对象已被销毁或无效。</li>
-                            <li>打开的 URL 是 RTE URL，不支持跳转播放位置。详见 <xref keyref="Error"/>。</li>
+                            <li>打开的是 RTE URL，不支持调用 <xref keyref="getPlayPosition"/>。</li>
                             </ul>
                         </li>
                         </ul>
@@ -62,9 +72,8 @@
                 <li>0: 方法调用成功。</li>
                 <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
                 </ul>
-        <p props="cpp">方法调用成功，返回当前的播放位置，单位为毫秒。</p>
-        <p props="apple">方法调用成功，返回当前播放位置，单位为毫秒。</p>
-        <p props="android">方法调用成功时，返回当前的播放位置，单位为毫秒。</p>
+        <p props="apple cpp">方法调用成功，返回当前的播放位置，单位为毫秒。</p>
+        <p props="android">方法调用成功，返回当前播放位置，单位为毫秒。</p>
     </section>
         </refbody>
 </reference>

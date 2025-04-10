@@ -30,11 +30,9 @@
                 <dd props="native">自 v4.5.1 版本新增。</dd>
                 </dlentry>
             </dl>
-            <p></p>
-            <note type="attention" props="cpp">- 该方法仅在播放器打开的 URL 为非灵隼物联网云平台 URL 时有效。
-- 请在 SDK 返回播放器状态为 `kRtePlayerStateOpenCompleted` 时调用该方法。</note>
-            <note type="attention" props="apple">该方法仅在播放器打开的是非互动直播（非 RTE）URL 时有效。请在 SDK 返回播放器状态为 `AgoraRtePlayerStateOpenCompleted` 时调用该方法。</note>
-            <note type="attention" props="android">该方法仅在播放器打开的 URL 为非 RTE URL 时有效。请在 SDK 返回播放器状态为 `PlayerState.OPEN_COMPLETED` 时调用该方法。</note>
+            <p>请在 SDK 返回播放器状态为 <ph keyref="kRtePlayerStateOpenCompleted"/> 时调用该方法。</p>
+            <note type="attention" props="apple cpp">该方法仅在播放器打开的是非 <xref keyref="Rte_Rte"/> URL 时有效。请在 SDK 返回播放器状态为 <ph keyref="kRtePlayerStateOpenCompleted"/> 时调用该方法。</note>
+            <note type="attention" props="android">该方法仅在播放器打开的是非 RTE URL 时有效。</note>
             </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -46,27 +44,20 @@
             <plentry props="native">
                 <pt props="native">url</pt>
                 <pd props="android">要切换的 URL 资源。</pd>
-                <pd props="apple">要切换到的新 URL。</pd>
+                <pd props="apple">要切换的目标 URL。</pd>
                 <pd props="cpp">要切换的新 URL。</pd>
                 </plentry>
             <plentry props="native">
-                <pt props="android apple">syncPts</pt>
-                <pt props="cpp">sync_pts</pt>
-                <pd props="android">是否在切换后同步播放位置（单位为毫秒）：
-                    <ul>
+                <pt props="android cpp">syncPts</pt>
+                <pt props="apple">syncPts</pt>
+                <pd props="android cpp"><ul>
                         <li><codeph><ph keyref="true"/></codeph>：同步播放位置。</li>
-                        <li><codeph><ph keyref="false"/></codeph>：不同步播放位置。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）不同步播放位置。</li>
                         </ul>
                     </pd>
                 <pd props="apple"><ul>
                         <li><codeph><ph keyref="true"/></codeph>：切换后同步播放位置（单位为毫秒）。</li>
-                        <li><codeph><ph keyref="false"/></codeph>：切换后不同步播放位置。</li>
-                        </ul>
-                    </pd>
-                <pd props="cpp">切换后是否同步播放位置（毫秒）：
-                    <ul>
-                        <li><codeph><ph keyref="true"/></codeph>：同步播放位置。</li>
-                        <li><codeph><ph keyref="false"/></codeph>：（默认）不同步播放位置。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）切换后不同步播放位置。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -75,7 +66,20 @@
                 <pt props="apple cpp">cb</pt>
                 <pd props="android">异步回调，用于通知切换操作的结果，详见 <xref keyref="AsyncCallback"/>。</pd>
                 <pd props="apple">异步通知切换操作结果的回调。你可以通过该回调的 <codeph>err</codeph> 参数得知操作的结果或错误码信息，详见 <xref keyref="Error"/>。</pd>
-                <pd props="cpp">异步通知切换操作结果的回调。你可以通过该回调的 <codeph>err</codeph> 参数得知操作的结果或错误码信息，详见 <xref keyref="Error"/>。</pd>
+                <pd props="cpp">异步通知切换操作结果的回调。你可以通过该回调的 <codeph>err</codeph> 参数得知操作的结果或错误码信息，详见 <xref keyref="Error"/>。
+
+<codeph>err</codeph> 的可能取值包括：
+                    <ul>
+                        <li><ph keyref="kRteOk"/>：切换成功。</li>
+                        <li><ph keyref="kRteErrorDefault"/>：切换失败。</li>
+                        <li><ph keyref="kRteErrorInvalidArgument"/>：传入的 URL 为空或格式非法。</li>
+                        <li><ph keyref="kRteErrorInvalidOperation"/>：<ul>
+                            <li>对应的内部 <xref keyref="Player_Player"/> 对象已被销毁或无效。</li>
+                            <li>当前打开的是 <xref keyref="Rte_Rte"/> URL，不支持切换。</li>
+                            </ul>
+                        </li>
+                        </ul>
+                    </pd>
                 </plentry>
             </parml> </section>
         <section id="return_values" props="bp cs electron flutter rn unity unreal">
