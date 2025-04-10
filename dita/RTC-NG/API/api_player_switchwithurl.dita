@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_player_switchwithurl">
+    <title><ph keyref="SwitchWithUrl"/></title>
+    <shortdesc id="short"><ph id="shortdesc">在播放过程中切换至新的 URL。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="SwitchWithUrl"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void switchWithUrl(String url, boolean syncPts, AsyncCallback callback)</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)switchWithUrl:(NSString * _Nonnull)url syncPts:(BOOL)syncPts cb:(void (^_Nullable)(AgoraRteError* _Nullable err))cb;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">void SwitchWithUrl(const char* url, bool sync_pts, std::function&amp;lt;void(rte::Error* err)&amp;gt; cb)</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从：</dt>
+                <dd props="native">自 v4.5.1 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p>请在 SDK 返回播放器状态为 <ph keyref="kRtePlayerStateOpenCompleted"/> 时调用该方法。</p>
+            <note type="attention" props="apple cpp">该方法仅在播放器打开的是非 <xref keyref="Rte_Rte"/> URL 时有效。请在 SDK 返回播放器状态为 <ph keyref="kRtePlayerStateOpenCompleted"/> 时调用该方法。</note>
+            <note type="attention" props="android">该方法仅在播放器打开的是非 RTE URL 时有效。</note>
+            </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="native">
+            <title>参数</title>
+            <parml>
+            <plentry props="native">
+                <pt props="native">url</pt>
+                <pd props="android">要切换的 URL 资源。</pd>
+                <pd props="apple">要切换的目标 URL。</pd>
+                <pd props="cpp">要切换的新 URL。</pd>
+                </plentry>
+            <plentry props="native">
+                <pt props="android cpp">syncPts</pt>
+                <pt props="apple">syncPts</pt>
+                <pd props="android cpp"><ul>
+                        <li><codeph><ph keyref="true"/></codeph>：同步播放位置。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）不同步播放位置。</li>
+                        </ul>
+                    </pd>
+                <pd props="apple"><ul>
+                        <li><codeph><ph keyref="true"/></codeph>：切换后同步播放位置（单位为毫秒）。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）切换后不同步播放位置。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="native">
+                <pt props="android">callback</pt>
+                <pt props="apple cpp">cb</pt>
+                <pd props="android">异步回调，用于通知切换操作的结果，详见 <xref keyref="AsyncCallback"/>。</pd>
+                <pd props="apple">异步通知切换操作结果的回调。你可以通过该回调的 <codeph>err</codeph> 参数得知操作的结果或错误码信息，详见 <xref keyref="Error"/>。</pd>
+                <pd props="cpp">异步通知切换操作结果的回调。你可以通过该回调的 <codeph>err</codeph> 参数得知操作的结果或错误码信息，详见 <xref keyref="Error"/>。
+
+<codeph>err</codeph> 的可能取值包括：
+                    <ul>
+                        <li><ph keyref="kRteOk"/>：切换成功。</li>
+                        <li><ph keyref="kRteErrorDefault"/>：切换失败。</li>
+                        <li><ph keyref="kRteErrorInvalidArgument"/>：传入的 URL 为空或格式非法。</li>
+                        <li><ph keyref="kRteErrorInvalidOperation"/>：<ul>
+                            <li>对应的内部 <xref keyref="Player_Player"/> 对象已被销毁或无效。</li>
+                            <li>当前打开的是 <xref keyref="Rte_Rte"/> URL，不支持切换。</li>
+                            </ul>
+                        </li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml> </section>
+        <section id="return_values" props="bp cs electron flutter rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cs electron rn unity unreal">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul>
+    </section>
+        </refbody>
+</reference>
