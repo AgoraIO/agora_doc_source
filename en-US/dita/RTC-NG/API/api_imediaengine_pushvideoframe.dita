@@ -39,7 +39,7 @@
             </dlentry>
             </dl>
             <p id="desc1">To publish a custom video source, see the following steps:<ol>
-            <li>Call <xref keyref="createCustomVideoTrack"/> to create a video track and get the video track ID.</li>
+            <li>Call <xref keyref="createCustomVideoTrack"/> to create a video track and get the video track ID.<note type="note">如果你只需推送一路自定义采集的视频流到频道中，可以直接调用 <xref keyref="setExternalVideoSource"/> 方法启用外部视频源，此时 SDK 会自动创建一个 <parmname>videoTrackId</parmname> 为 0 的视频轨道。</note></li>
             <li>Call <xref keyref="joinChannel2"/> to join the channel. In <xref keyref="ChannelMediaOptions"/>, set <parmname>customVideoTrackId</parmname> to the video track ID that you want to publish, and set <parmname>publishCustomVideoTrack</parmname> to <codeph><ph keyref="true"/></codeph>.</li>
             <li>Call this method and specify <parmname>videoTrackId</parmname> as the video track ID set in step 2. You can then publish the corresponding custom video source in the channel.</li></ol></p>
             <note type="danger" id="desc2">After calling this method, even if you stop pushing external video frames to the SDK, the custom video stream will still be counted as the video duration usage and incur charges. Agora recommends that you take appropriate measures based on the actual situation to avoid such video billing.<ul>
@@ -63,8 +63,8 @@
             </plentry>
             <plentry id="videotrackid">
                 <pt>videoTrackId</pt>
-                <pd>The video track ID returned by calling the <apiname keyref="createCustomVideoTrack"/> method. The default value is 0.</pd>
-            </plentry>    
+                <pd>The video track ID returned by calling the <apiname keyref="createCustomVideoTrack"/> method.<note type="note">如果你只需推送一路外部视频流，<parmname>videoTrackId</parmname> 设置为 0 即可。</note></pd>
+            </plentry>
             </parml>
         </section>
         <section id="return_values">
