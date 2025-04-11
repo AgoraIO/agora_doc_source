@@ -4,6 +4,37 @@
 
 AirPods Pro does not support A2DP protocol in communication audio mode, which may lead to connection failure in that mode.
 
+## v4.5.2
+
+v4.2.2 was released on April xx, 2025.
+
+**Attention:**
+
+- Starting from version 4.5.0, both RTC SDK and Signaling (version 2.2.0 and above) include the `aosl.xcframework` library. If you manually integrate Video SDK via CDN and also use Signaling SDK, delete the earlier version of the `aosl.xcframework` to avoid conflicts.
+- 4.5.2 RTC SDK `aosl.xcframework` library version is 1.2.13. You can check the version information of the library in `Info.plist`.
+
+#### Improvements
+
+1. **URL live streaming playback**
+
+   This version further expands the functionality of URL streaming playback, supporting playback of CDN URLs and local media resource files. It also allows for starting playback from a specified position, adjusting playback speed, setting playback volume, switching playback sources during playback, and more. See for details.
+
+#### Issues fixed
+
+This release fixed the following issues:
+
+- When playing a multi-track media file, noise can be heard after calling the `setAudioPitch:` method to adjust the audio pitch.
+- The host called the `createCustomAudioTrack:config:` method to create custom audio track and set `trackType` to `AUDIO_TRACK_DIRECT`, called the `pushExternalAudioFrameRawData:samples:sampleRate:channels:trackId:timestamp:` to push custom audio frames into a channel and then called `playEffect:filePath:loopCount:pitch:pan:gain:publish:startPos:` to play audio effects, audience members in the channel would hear noise.
+- Apps integrated with the SDK occasionally encountered UI lag caused by main thread blocking during audio and video interactions.
+- Calling `openWithMediaSource:` and set `isLiveSource` in the `source` parameter to `YES` to play a video stream, the playback failed.
+- Calling `enableVirtualBackground` to enable virtual background function, the virtual background image became larger and blurry when the phone was rotated.
+- When the sender transmits multi-channel encoded audio, the receiver occasionally experienced noise.
+- In scenarios where the App integrates a media player, when the open function is called twice to open different media resources consecutively, the second call to open unexpectedly resulted in the `AgoraRtcMediaPlayer:infoUpdated:` callback returning information for the first media resource.
+- After calling `enableAudioVolumeIndication:smooth:reportVad:` to enable user volume indication, the `rtcEngine:reportAudioVolumeIndicationOfSpeakers:totalVolume:` callback returned a local user volume of 0 for both local streaming users and remote users.
+- During audio and video communication, the App occasionally froze.
+- When the App called `enableVideoImageSource:options:` to enable the video image source feature, the sending side occasionally succeeded in streaming, but `rtcEngine:didVideoPublishStateChange:sourceType:oldState:newState:elapseSinceLastState:` did not return the expected.
+- In multi-channel scenarios, if the App called `setupRemoteVideoEx:connection:` to initialize the remote user's view before successfully calling `joinChannelExByToken:connection:delegate:mediaOptions:joinSuccess:`, the display of the first frame of the remote user's view occasionally experienced significant delay.
+
 ## v4.5.1
 
 v4.5.1 was released on March 3, 2025.
