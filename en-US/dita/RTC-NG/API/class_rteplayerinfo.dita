@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_rteplayerinfo">
+    <title><ph keyref="RtePlayerInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Statistics of the player and media stream.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraRtePlayerInfo : NSObject
+- (int)state;
+- (long)duration;
+- (int)streamCount;
+- (BOOL)hasAudio;
+- (BOOL)hasVideo;
+- (BOOL)isAudioMuted;
+- (BOOL)isVideoMuted;
+- (int)videoHeight;
+- (int)videoWidth;
+- (AgoraRteAbrSubscriptionLayer)abrSubscriptionLayer;
+- (int)audioSampleRate;
+- (int)audioChannels;
+- (int)audioBitsPerSample;
+- (NSString \* _Nullable)currentUrl;
+@end</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp"/>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.5.0</dd>
+            </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" props="apple">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry>
+                <pt>state</pt>
+                <pd>The current player state. See <xref keyref="RtePlayerState"/>.</pd>
+            </plentry>
+            <plentry>
+                <pt>duration</pt>
+                <pd>媒体资源的时长（ms）。</pd>
+            </plentry>
+            <plentry>
+                <pt>streamCount</pt>
+                <pd>媒体流的数量。</pd>
+            </plentry>
+            <plentry>
+                <pt>hasAudio</pt>
+                <pd>Whether there is audio in the URL media stream.<ul><li><codeph><ph keyref="true"/>：包含音频流。</codeph></li>
+                <li><codeph><ph keyref="false"/>：不包含音频流。</codeph></li></ul></pd>
+            </plentry>
+            <plentry>
+                <pt>hasVideo</pt>
+                <pd>Whether there is video in the URL media stream.<ul><li><codeph><ph keyref="true"/>：包含视频流。</codeph></li>
+                <li><codeph><ph keyref="false"/>：不包含视频流。</codeph></li></ul></pd>
+            </plentry>
+            <plentry>
+                <pt>isAudioMuted</pt>
+                <pd>播放器是否停止接受音频流：<ul><li><codeph><ph keyref="true"/>：停止接受音频流。</codeph></li>
+                <li><codeph><ph keyref="false"/>：继续接受音频流。</codeph></li></ul></pd>
+            </plentry>
+                <plentry>
+                <pt>isVideoMuted</pt>
+                <pd>播放器是否停止接受视频流：<ul><li><codeph><ph keyref="true"/>：停止接受视频流。</codeph></li>
+                <li><codeph><ph keyref="false"/>：继续接受视频流。</codeph></li></ul></pd>
+            </plentry>
+            <plentry>
+                <pt>videoHeight</pt>
+                <pd>The height (px) of the video frame.</pd>
+            </plentry>
+            <plentry>
+                <pt>videoWidth</pt>
+                <pd>The width (px) of the video frame.</pd>
+            </plentry>
+            <plentry>
+                <pt>abrSubscriptionLayer</pt>
+                <pd>The quality level of the subscribed video stream: In the ABR (Adaptive Bitrate Streaming) mode, different video quality level corresponds to different video resolutions and bitrates. See <xref keyref="RteAbrSubscriptionLayer"/>.</pd>
+            </plentry>
+             <plentry>
+                <pt>audioSampleRate</pt>
+                <pd>Recording sample rate (Hz).</pd>
+            </plentry>
+            <plentry>
+                <pt>audioChannels</pt>
+                <pd>The number of audio channels.</pd>
+            </plentry>
+            <plentry>
+                <pt>audioBitsPerSample</pt>
+                <pd>The number of bits per audio sample point.</pd>
+            </plentry>
+            <plentry>
+                <pt>currentUrl</pt>
+                <pd>当前正在播放的 URL。</pd>
+            </plentry>
+            </parml> </section>
+            <section id="sub-method" props="android cpp">
+                    <title>Method</title>
+                    <parml>
+                    <plentry>
+                        <pt>state</pt>
+                        <pd>Gets current playback state. See <xref keyref="State"/>.</pd>
+                    </plentry>
+                    <plentry>
+                        <pt>duration</pt>
+                        <pd>获取媒体资源的时长（ms），详见 <xref keyref="Duration"/>。</pd>
+                    </plentry>
+                    <plentry>
+                        <pt>streamCount</pt>
+                        <pd>获取媒体流的数量，详见 <xref keyref="StreamCount"/>。</pd>
+                    </plentry>
+                    <plentry>
+                        <pt>hasAudio</pt>
+                        <pd>获取 URL 媒体流中是否包含音频流，详见 <xref keyref="HasAudio"/>。</pd>
+                    </plentry>
+                    <plentry>
+                        <pt>hasVideo</pt>
+                        <pd>获取 URL 媒体流中是否包含视频流，详见 <xref keyref="HasVideo"/>。</pd>
+                    </plentry>
+                    <plentry>
+                        <pt>isAudioMuted</pt>
+                        <pd>获取播放器是否停止接受音频流，详见 <xref keyref="IsAudioMuted"/>。</pd>
+                    </plentry>
+                    <plentry>
+                        <pt>isVideoMuted</pt>
+                        <pd>获取播放器是否停止接受视频流，详见 <xref keyref="IsVideoMuted"/>。</pd>
+                    </plentry>
+                    <plentry>
+                        <pt>videoHeight</pt>
+                        <pd>获取视频帧的高度（px），详见 <xref keyref="VideoHeight"/>。</pd>
+                    </plentry>
+                    <plentry>
+                        <pt>videoWidth</pt>
+                        <pd>获取视频帧的宽度（px），详见 <xref keyref="VideoWidth"/>。</pd>
+                    </plentry>
+                    <plentry>
+                        <pt>abrSubscriptionLayer</pt>
+                        <pd>获取订阅的视频流的质量级别，详见 <xref keyref="AbrSubscriptionLayer"/>。</pd>
+                    </plentry>
+                    <plentry>
+                        <pt>audioSampleRate</pt>
+                        <pd>获取音频采样率（Hz），详见 <xref keyref="AudioSampleRate"/>。</pd>
+                    </plentry>
+                    <plentry>
+                        <pt>audioChannels</pt>
+                        <pd>获取音频声道数，详见 <xref keyref="AudioChannels"/>。</pd>
+                    </plentry>
+                    <plentry>
+                        <pt>audioBitsPerSample</pt>
+                        <pd>获取每个音频采样点的位数（bit），详见 <xref keyref="AudioBitsPerSample"/>。</pd>
+                    </plentry>
+                    <plentry>
+                        <pt>currentUrl</pt>
+                        <pd>获取当前正在播放的 URL，详见 <xref keyref="CurrentUrl"/>。</pd>
+                    </plentry>
+                    </parml>
+            </section>
+        </refbody>
+</reference>
