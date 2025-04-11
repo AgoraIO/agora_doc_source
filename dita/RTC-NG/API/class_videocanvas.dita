@@ -53,7 +53,7 @@
   public static readonly RENDER_MODE_FIT = 2;
   public static readonly VIDEO_MIRROR_MODE_ENABLED = 1;
   public static readonly VIDEO_MIRROR_MODE_DISABLED = 2;
-  
+
   public xcomponentId:string = &#x27;&#x27;;
   public uid:number = 0;
   public renderMode:number = VideoCanvas.RENDER_MODE_HIDDEN;
@@ -132,7 +132,7 @@ public:
 	int mediaPlayerId = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
 	FRectangle cropArea;
-	
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
 	bool enableAlphaMask = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
@@ -200,7 +200,7 @@ public:
         public int mediaPlayerId;
         public Rectangle cropArea;
         public bool enableAlphaMask;
-        public VIDEO_MODULE_POSITION position; 
+        public VIDEO_MODULE_POSITION position;
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class VideoCanvas {
   view?: any
@@ -298,14 +298,14 @@ class VideoCanvas {
                     <pd props="native flutter unity cs electron rn">视频显示窗口。<ph props="android">必须为一个 <xref keyref="SurfaceView-link"/> 或 <xref keyref="TextureView-link"/> 对象。</ph>
                       <note type="attention" props="native flutter unity cs rn">在一个 <apiname keyref="VideoCanvas"/> 中，你只能选择 <parmname>view</parmname> 或 <parmname>surfaceTexture</parmname> 其中一个进行设置，如果同时设置，只有 <parmname>view</parmname> 中的设置会生效。</note>
                     </pd>
-                    <pd props="unreal bp">视频图像。你需要定义 UImage 类型的指针，并传入该参数，示例代码如下： 
+                    <pd props="unreal bp">视频图像。你需要定义 UImage 类型的指针，并传入该参数，示例代码如下：
                         <codeblock props="unreal bp" outputclass="language-cpp">agora::rtc::VideoCanvas videoCanvas;
     UImage* LocalVideo;
     videoCanvas.view = LocalVideo;</codeblock></pd>
                 </plentry>
                 <plentry props="android hmos">
                     <pt>surfaceTexture</pt>
-                    <pd>提供视频图像的容器，当你使用该成员时，需要自行实现 OPENGL 中的纹理绘制。详见 <xref keyref="SurfaceTexture-link"/>。 
+                    <pd>提供视频图像的容器，当你使用该成员时，需要自行实现 OPENGL 中的纹理绘制。详见 <xref keyref="SurfaceTexture-link"/>。
                       <note type="attention">在一个 <apiname keyref="VideoCanvas"/> 中，你只能选择 <parmname>view</parmname> 或 <parmname>surfaceTexture</parmname> 其中一个进行设置，如果同时设置，只有 <parmname>view</parmname> 中的设置会生效。</note></pd>
                 </plentry>
                 <plentry props="native flutter unity cs electron rn bp">
@@ -342,7 +342,8 @@ class VideoCanvas {
                 <ul>
                     <li><ph keyref="VIDEO_VIEW_SETUP_REPLACE"/> (0): (默认) 替换一个视图。</li>
                     <li><ph keyref="VIDEO_VIEW_SETUP_ADD"/> (1): 增加一个视图。</li>
-                    <li><ph keyref="VIDEO_VIEW_SETUP_REMOVE"/> (2): 删除一个视图。</li>
+                    <li><ph keyref="VIDEO_VIEW_SETUP_REMOVE"/> (2): 删除一个视图。
+                    <note type="attention">当你不再需要使用某个视图时，建议及时设置 <parmname>setupMode</parmname> 为 <ph keyref="VIDEO_VIEW_SETUP_REMOVE"/> 删除视图，否则可能会导致渲染资源泄漏。</note></li>
                 </ul></pd>
             </plentry>
             <plentry props="android cpp apple unreal flutter unity cs electron rn">
@@ -368,7 +369,7 @@ class VideoCanvas {
           </plentry>
           <plentry props="android cpp apple  unreal bp unity electron flutter cs">
                     <pt>enableAlphaMask</pt>
-                    <pd props="native unreal bp rn unity electron flutter">（可选）是否开启 Alpha 遮罩渲染： 
+                    <pd props="native unreal bp rn unity electron flutter">（可选）是否开启 Alpha 遮罩渲染：
                         <ul>
                         <li><codeph><ph keyref="true"/></codeph>：开启 Alpha 遮罩渲染。</li>
                         <li><codeph><ph keyref="false"/></codeph>：（默认）关闭 Alpha 遮罩渲染。</li>
