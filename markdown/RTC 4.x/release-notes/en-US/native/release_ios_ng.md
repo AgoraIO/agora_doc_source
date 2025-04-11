@@ -13,12 +13,6 @@ v4.2.2 was released on April xx, 2025.
 - Starting from version 4.5.0, both RTC SDK and Signaling (version 2.2.0 and above) include the `aosl.xcframework` library. If you manually integrate Video SDK via CDN and also use Signaling SDK, delete the earlier version of the `aosl.xcframework` to avoid conflicts.
 - 4.5.2 RTC SDK `aosl.xcframework` library version is 1.2.13. You can check the version information of the library in `Info.plist`.
 
-#### Improvements
-
-1. **URL live streaming playback**
-
-   This version further expands the functionality of URL streaming playback, supporting playback of CDN URLs and local media resource files. It also allows for starting playback from a specified position, adjusting playback speed, setting playback volume, switching playback sources during playback, and more. See for details.
-
 #### Issues fixed
 
 This release fixed the following issues:
