@@ -106,7 +106,8 @@
                 </plentry>
                 <plentry props="cpp unreal bp flutter unity electron">
                     <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_AUTO_FALLBACK"/></pt>
-                    <pd>24：（仅适用于 Windows）屏幕共享过程中发生意外错误（可能由于窗口阻塞失败），导致性能下降，但屏幕共享过程本身没有受到影响。</pd>
+                    <pd>24：（仅适用于 Windows）屏幕共享过程中发生意外错误（可能由于窗口屏蔽失败），导致屏幕共享策略降级，但屏幕共享过程本身没有受到影响。
+                    <note type="attention">屏幕共享过程中，由于设备本身驱动等问题导致屏蔽指定窗口失败时，SDK 也会报告该事件并自动回退到共享整个屏幕。如果你的应用场景需要屏蔽特定窗口以保护隐私，建议监听此事件并在事件触发时添加额外的隐私保护机制。</note></pd>
                 </plentry>
                 <plentry props="cpp unreal bp flutter unity electron">
                     <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_HIDDEN"/></pt>
