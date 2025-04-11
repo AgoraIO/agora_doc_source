@@ -6,21 +6,7 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public class PlayerInfo {
-  public int state();
-  public long duration();
-  public int streamCount();
-  public boolean hasAudio();
-  public boolean hasVideo();
-  public boolean isAudioMuted();
-  public boolean isVideoMuted();
-  public int videoHeight();
-  public int videoWidth();
-  public Constants.AbrSubscriptionLayer abrSubscriptionLayer();
-  public int audioSampleRate();
-  public int audioChannels();
-  public int audioBitsPerSample();
-}</codeblock>
+            <codeblock props="android" outputclass="language-java"/>
             <codeblock props="hmos" outputclass="language-arkts"/>
             <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraRtePlayerInfo : NSObject
 - (int)state;
@@ -36,22 +22,9 @@
 - (int)audioSampleRate;
 - (int)audioChannels;
 - (int)audioBitsPerSample;
+- (NSString \* _Nullable)currentUrl;
 @end</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">typedef struct RtePlayerInfo {
-  RtePlayerState state;
-  size_t duration;
-  size_t stream_count;
-  bool has_audio;
-  bool has_video;
-  bool is_audio_muted;
-  bool is_video_muted;
-  int video_height;
-  int video_width;
-  RteAbrSubscriptionLayer abr_subscription_layer;
-  int audio_sample_rate;
-  int audio_channels;
-  int audio_bits_per_sample;
-} RtePlayerInfo;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp"/>
             <codeblock props="bp" outputclass="language-cpp"/>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity cs" outputclass="language-csharp"/>
@@ -66,7 +39,7 @@
             </dlentry>
             </dl>
         </section>
-        <section id="parameters">
+        <section id="parameters" props="apple">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
@@ -75,67 +48,121 @@
             </plentry>
             <plentry>
                 <pt>duration</pt>
-                <pd>Reserved for future use.</pd>
+                <pd>媒体资源的时长（ms）。</pd>
             </plentry>
             <plentry>
-                <pt props="cpp">stream_countç</pt>
-                <pt props="android apple">streamCount</pt>
-                <pd>Reserved for future use.</pd>
+                <pt>streamCount</pt>
+                <pd>媒体流的数量。</pd>
             </plentry>
             <plentry>
-                <pt props="cpp">has_audio</pt>
-                <pt props="android apple">hasAudio</pt>
-                <pd>Whether there is audio in the URL media stream.<ul><li><codeph><ph keyref="true"/>: Yes.</codeph></li>
-                <li><codeph><ph keyref="false"/>: No.</codeph></li></ul></pd>
+                <pt>hasAudio</pt>
+                <pd>Whether there is audio in the URL media stream.<ul><li><codeph><ph keyref="true"/>：包含音频流。</codeph></li>
+                <li><codeph><ph keyref="false"/>：不包含音频流。</codeph></li></ul></pd>
             </plentry>
             <plentry>
-                <pt props="cpp">has_video</pt>
-                <pt props="android apple">hasVideo</pt>
-                <pd>Whether there is video in the URL media stream.<ul><li><codeph><ph keyref="true"/>: Yes.</codeph></li>
-                <li><codeph><ph keyref="false"/>: No.</codeph></li></ul></pd>
+                <pt>hasVideo</pt>
+                <pd>Whether there is video in the URL media stream.<ul><li><codeph><ph keyref="true"/>：包含视频流。</codeph></li>
+                <li><codeph><ph keyref="false"/>：不包含视频流。</codeph></li></ul></pd>
             </plentry>
             <plentry>
-                <pt props="cpp">is_audio_muted</pt>
-                <pt props="android apple">isAudioMuted</pt>
-                <pd>Whether the local user has subscribed to the audio stream:<ul><li><codeph><ph keyref="true"/>: No.</codeph></li>
-                <li><codeph><ph keyref="false"/>: Yes.</codeph></li></ul></pd>
+                <pt>isAudioMuted</pt>
+                <pd>播放器是否停止接受音频流：<ul><li><codeph><ph keyref="true"/>：停止接受音频流。</codeph></li>
+                <li><codeph><ph keyref="false"/>：继续接受音频流。</codeph></li></ul></pd>
             </plentry>
                 <plentry>
-                <pt props="cpp">is_video_muted</pt>
-                <pt props="android apple">isVideoMuted</pt>
-                <pd>Whether the local user has subscribed to the video stream:<ul><li><codeph><ph keyref="true"/>: No.</codeph></li>
-                <li><codeph><ph keyref="false"/>: Yes.</codeph></li></ul></pd>
+                <pt>isVideoMuted</pt>
+                <pd>播放器是否停止接受视频流：<ul><li><codeph><ph keyref="true"/>：停止接受视频流。</codeph></li>
+                <li><codeph><ph keyref="false"/>：继续接受视频流。</codeph></li></ul></pd>
             </plentry>
             <plentry>
-                <pt props="cpp">video_height</pt>
-                <pt props="android apple">videoHeight</pt>
+                <pt>videoHeight</pt>
                 <pd>The height (px) of the video frame.</pd>
             </plentry>
             <plentry>
-                <pt props="cpp">video_width</pt>
-                <pt props="android apple">videoWidth</pt>
+                <pt>videoWidth</pt>
                 <pd>The width (px) of the video frame.</pd>
             </plentry>
             <plentry>
-                <pt props="cpp">abr_subscription_layer</pt>
-                <pt props="android apple">abrSubscriptionLayer</pt>
+                <pt>abrSubscriptionLayer</pt>
                 <pd>The quality level of the subscribed video stream: In the ABR (Adaptive Bitrate Streaming) mode, different video quality level corresponds to different video resolutions and bitrates. See <xref keyref="RteAbrSubscriptionLayer"/>.</pd>
             </plentry>
              <plentry>
-                <pt props="cpp">audio_sample_rate</pt>
-                <pt props="android apple">audioSampleRate</pt>
+                <pt>audioSampleRate</pt>
                 <pd>Recording sample rate (Hz).</pd>
             </plentry>
             <plentry>
-                <pt props="cpp">audio_channels</pt>
-                <pt props="android apple">audioChannels</pt>
+                <pt>audioChannels</pt>
                 <pd>The number of audio channels.</pd>
             </plentry>
             <plentry>
-                <pt props="cpp">audio_bits_per_sample</pt>
-                <pt props="android apple">audioBitsPerSample</pt>
-                <pd>Reserved for future use.</pd>
+                <pt>audioBitsPerSample</pt>
+                <pd>The number of bits per audio sample point.</pd>
+            </plentry>
+            <plentry>
+                <pt>currentUrl</pt>
+                <pd>当前正在播放的 URL。</pd>
             </plentry>
             </parml> </section>
-                </refbody>
+            <section id="sub-method" props="android cpp">
+                    <title>Method</title>
+                    <parml>
+                    <plentry>
+                        <pt>state</pt>
+                        <pd>Gets current playback state. See <xref keyref="State"/>.</pd>
+                    </plentry>
+                    <plentry>
+                        <pt>duration</pt>
+                        <pd>获取媒体资源的时长（ms），详见 <xref keyref="Duration"/>。</pd>
+                    </plentry>
+                    <plentry>
+                        <pt>streamCount</pt>
+                        <pd>获取媒体流的数量，详见 <xref keyref="StreamCount"/>。</pd>
+                    </plentry>
+                    <plentry>
+                        <pt>hasAudio</pt>
+                        <pd>获取 URL 媒体流中是否包含音频流，详见 <xref keyref="HasAudio"/>。</pd>
+                    </plentry>
+                    <plentry>
+                        <pt>hasVideo</pt>
+                        <pd>获取 URL 媒体流中是否包含视频流，详见 <xref keyref="HasVideo"/>。</pd>
+                    </plentry>
+                    <plentry>
+                        <pt>isAudioMuted</pt>
+                        <pd>获取播放器是否停止接受音频流，详见 <xref keyref="IsAudioMuted"/>。</pd>
+                    </plentry>
+                    <plentry>
+                        <pt>isVideoMuted</pt>
+                        <pd>获取播放器是否停止接受视频流，详见 <xref keyref="IsVideoMuted"/>。</pd>
+                    </plentry>
+                    <plentry>
+                        <pt>videoHeight</pt>
+                        <pd>获取视频帧的高度（px），详见 <xref keyref="VideoHeight"/>。</pd>
+                    </plentry>
+                    <plentry>
+                        <pt>videoWidth</pt>
+                        <pd>获取视频帧的宽度（px），详见 <xref keyref="VideoWidth"/>。</pd>
+                    </plentry>
+                    <plentry>
+                        <pt>abrSubscriptionLayer</pt>
+                        <pd>获取订阅的视频流的质量级别，详见 <xref keyref="AbrSubscriptionLayer"/>。</pd>
+                    </plentry>
+                    <plentry>
+                        <pt>audioSampleRate</pt>
+                        <pd>获取音频采样率（Hz），详见 <xref keyref="AudioSampleRate"/>。</pd>
+                    </plentry>
+                    <plentry>
+                        <pt>audioChannels</pt>
+                        <pd>获取音频声道数，详见 <xref keyref="AudioChannels"/>。</pd>
+                    </plentry>
+                    <plentry>
+                        <pt>audioBitsPerSample</pt>
+                        <pd>获取每个音频采样点的位数（bit），详见 <xref keyref="AudioBitsPerSample"/>。</pd>
+                    </plentry>
+                    <plentry>
+                        <pt>currentUrl</pt>
+                        <pd>获取当前正在播放的 URL，详见 <xref keyref="CurrentUrl"/>。</pd>
+                    </plentry>
+                    </parml>
+            </section>
+        </refbody>
 </reference>
