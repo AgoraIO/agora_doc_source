@@ -1,27 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="release_notes">
-    <title>v4.5.1</title>
+    <title>v4.5.2</title>
     <body>
-        <p>v4.5.1 was released on March 3, 2025.</p>
+        <p>v4.2.2 was released on April xx, 2025.</p>
+        <note type="attention" props="native">
+             <ul>
+             <li>Starting from version 4.5.0, both RTC SDK and Signaling (version 2.2.0 and above) include the <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> library. If you manually integrate Video SDK via CDN and also use Signaling SDK, delete the earlier version of the <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> to avoid conflicts.</li>
+             <li>4.5.2 RTC SDK <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> library version is 1.2.13. <ph props="apple">You can check the version information of the library in <codeph>Info.plist</codeph>. </ph><ph props="cpp">You can find out the version information of the library by checking the properties of the <codeph>libaosl.dll</codeph> file.</ph></li></ul>
+             </note>
     </body>
     <topic id="level2">
         <title/>
-        <topic id="compatibility" props="native">
+        <topic id="compatibility" props="android cpp">
             <title>Compatibility changes</title>
             <body>
-             <note type="attention" props="native">
-             <ul>
-             <li>Starting from version 4.5.0, both RTC SDK and Signaling (version 2.2.0 and above) include the <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> library. If you manually integrate Video SDK via CDN and also use Signaling SDK, delete the earlier version of the <codeph props="android">libaosl.so</codeph><codeph props="cpp">library</codeph><codeph props="apple">aosl.xcframework</codeph> to avoid conflicts.</li>
-             <li>4.5.1 RTC SDK <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> library version is 1.2.13. <ph props="apple">You can check the version information of the library in <codeph>Info.plist</codeph>. </ph><ph props="cpp">You can find out the version information of the library by checking the properties of the <codeph>libaosl.dll</codeph> file.</ph></li></ul>
-             </note>
-            </body>
-        </topic>
-        <topic id="newfeature">
-            <title>New features</title>
-            <body>
+                <p>This release has optimized the implementation of some functions. To ensure the normal operation of the project, you need to update the code in the app after upgrading to this release.</p>
                 <ol>
-                    <li><ph><b>AI conversation scenario</b></ph><p>This version adds the <codeph><ph keyref="AUDIO_SCENARIO_AI_CLIENT"/></codeph> audio scenario specifically designed for interacting with the conversational AI agent created by <xref keyref="convoai"/>. This scenario optimizes the audio transmission algorithm based on the characteristics of AI agent voice generation, ensuring stable voice data transmission in weak network environments (for example, 80% packet loss rate), and ensuring the continuity and reliability of the conversation, adapting to a variety of complex network conditions.</p>
+                    <li><ph><b>Member parameters changed to methods</b></ph><p>To optimize the API design, the SDK encapsulates all member parameters in the <xref keyref="RtePlayerInfo"/>structure into the <xref keyref="PlayerInfo"/> class. If use the member parameters in the <xref keyref="RtePlayerInfo"/> structure, please update them to the corresponding methods in the <xref keyref="PlayerInfo"/> class.</p>
                     </li>
                 </ol>
             </body>
@@ -30,7 +26,10 @@
             <title>Improvements</title>
             <body>
                 <ol>
-                    <li props="ios cpp unity flutter rn unreal bp">Reduced the time of initializing the SDK on specific device models.<ph props="cpp unity flutter rn"> (iOS)</ph></li>
+                    <li><ph><b>URL live streaming playback</b></ph><p>This version further expands the functionality of URL streaming playback, supporting playback of CDN URLs and local media resource files. It also allows for starting playback from a specified position, adjusting playback speed, setting playback volume, switching playback sources during playback, and more. See <xref keyref="rte-player"/> for details.</p>
+                    </li>
+                    <li props="android"><ph><b>Accessible media player information properties </b></ph><p>Starting from this version, the access modifiers for all attributes in media player-related information <xref keyref="PlayerUpdatedInfo"/> have been changed from private to public. This improvement aims to enhance the accessibility of these classes, allowing external code to access and modify these attributes more easily.</p>
+                    </li>
                 </ol>
             </body>
         </topic>
@@ -39,19 +38,30 @@
             <body>
                 <p>This release fixed the following issues:</p>
                 <ul>
-                    <li props="cpp unity flutter rn android unreal bp">Apps that integrated the Agora SDK and set the <codeph>targetSdkVersion</codeph> to 34 encountered crashes when attempting to enable screen sharing for the first time on an Android 14 system. (Android)<ph props="cpp unity flutter rn unreal bp"></ph></li>
-                    <li>When joining two or more channels simultaneously, and calling the <codeph><apiname keyref="takeSnapshotEx"/></codeph> method to take screenshots of the local video streams in each channel consecutively, the screenshot of the first channel failed.</li>
-                    <li>When using the <codeph><apiname keyref="pause"/></codeph> method to pause playback, then calling <codeph><apiname keyref="seek"/></codeph> to move to a specified position, and finally calling <codeph><apiname keyref="play"/></codeph> to continue playback, the Media Player resumed from the position where it was paused, not the new specified position.</li>
-                    <li>When using the Media Player, the file path of the media resource returned by the <codeph><apiname keyref="getPlaySrc_IMediaPlayer"/></codeph> did not change after calling the <codeph><apiname keyref="switchSrc"/></codeph> method to switch to a new media resource.</li>
-                    <li props="cpp unity flutter rn android unreal bp">When using Bluetooth headphones on specific device models for audio and video interactions, adjusting the phone volume would occassionally change the media volume instead of the Bluetooth volume. <ph props="cpp unity flutter rn unreal bp">(Android)</ph></li>
-                    <li props="cpp unity flutter rn android unreal bp">During audio and video interactions, the local user occasionally experienced a black screen when watching the video streams of remote users. <ph props="cpp unity flutter rn unreal bp">(Android)</ph></li>
-                    <li props="cpp unity flutter rn android unreal bp">On specific models of device, after calling <codeph><apiname keyref="setCameraExposureFactor"/></codeph> to set the exposure coefficient of the current camera at a specific angle of the device, the video screen occasionally became dark when the device was moved to another angle. (Android)<ph props="cpp unity flutter rn unreal bp"></ph></li>
-                    <li props="cpp unity flutter rn android unreal bp">When playing a CDN live stream, the video occasionally froze for an extended period after recovering from an interruption. <ph props="cpp unity flutter rn unreal bp">(Android)</ph></li>
-                    <li props="ios cpp unity flutter rn unreal bp">When pushing video frames in i420 format to the channel, using CVPixelBuffer to handle these frames caused a crash.<ph props="cpp unity flutter rn unreal bp"> (iOS)</ph></li>
-                    <li props="ios cpp unity flutter rn unreal bp">Calling <codeph><apiname keyref="setupLocalVideo"/></codeph> to set up two views, then calling <codeph><apiname keyref="enableFaceDetection"/></codeph> to start face detection, no face information can be detected in the subsequently passed views.<ph props="cpp unity flutter rn unreal bp"> (iOS)</ph></li>
-                    <li props="ios cpp unity flutter rn unreal bp">In a screen sharing scenario, the receiving-end user saw a green line on the shared image.<ph props="cpp unity flutter rn unreal bp"> (iOS)</ph></li>
-                    <li>In the interactive live streaming scenario, after joining a channel to watch live streams using <codeph>string</codeph> user id, the audience members occasionally saw that the audio was not synchronized with the video.</li>
-                    <li>Plugins sometimes did not work when using AI noise suppression and AI echo cancellation plugins at the same time.</li>
+                    <li>When playing a multi-track media file, noise can be heard after calling the <codeph><xref keyref="setAudioPitch"/></codeph> method to adjust the audio pitch.</li>
+                    <li>The host called the <codeph><xref keyref="createCustomAudioTrack"/></codeph> method to create custom audio track and set <codeph>trackType</codeph> to <codeph>AUDIO_TRACK_DIRECT</codeph>, called the <codeph><xref keyref="pushAudioFrame2" props="android apple"/></codeph><codeph><xref keyref="pushAudioFrame" props="cpp"/></codeph> to push custom audio frames into a channel and then called <codeph><xref keyref="playEffect3"/></codeph> to play audio effects, audience members in the channel would hear noise.</li>
+                    <li>Apps integrated with the SDK occasionally encountered UI lag caused by main thread blocking during audio and video interactions.</li>
+                    <li props="android">When playing an MP4 file with EAC3 audio encoding by calling the <codeph><xref keyref="startAudioMixing2"/></codeph> method, sometimes there was no sound.</li>
+                    <li props="cpp">The local preview of the shared screen flickered after calling the <codeph><xref keyref="startScreenCapture2"/></codeph> to start screen sharing and set <codeph>enableHighLight</codeph> in <codeph><xref keyref="ScreenCaptureParameters"/></codeph> to <codeph><ph keyref="true"/></codeph> through the <codeph>config</codeph> parameter to outline the shared window, and then placed the window on the top layer and maximizing it.</li>
+                    <li props="cpp">Calling <codeph><xref keyref="startScreenCaptureByDisplayId"/></codeph> to share the video stream of specified screen and specifying the windows to be blocked through <codeph>excludeWindowList</codeph> in <codeph><xref keyref="ScreenCaptureParameters"/></codeph>, occasionally some windows fail to be blocked.</li>
+                    <li props="cpp">The application occasionally crashed after sharing the video stream of the external screen and disconnecting the external screen connection.</li>
+                    <li props="android">Memory leaks occurred after leaving the channel and stopping video rendering.</li>
+                    <li props="android">After calling <codeph><xref keyref="setCameraFocusPositionInPreview"/></codeph> to set the focus position manually, the focus position was inaccurate when the camera captured a zoomed-in image.</li>
+                    <li props="android">When calling <codeph><xref keyref="setExternalMediaProjection"/></codeph> to configure an external MediaProjection instance (outside the SDK) for screen video stream capture, the transmitted video stream resolution (width/height) did not dynamically adjusted when the screen orientation changed between landscape and portrait modes.</li>
+                    <li>Calling <codeph><xref keyref="openWithMediaSource"/></codeph> and set <codeph>isLiveSource</codeph> in the <codeph>source</codeph> parameter to <codeph><ph keyref="true"/></codeph> to play a video stream, the playback failed.</li>
+                    <li props="ios">Calling <codeph><xref keyref="enableVirtualBackground"/></codeph> to enable virtual background function, the virtual background image became larger and blurry when the phone was rotated.</li>
+                    <li props="android">When attempting to open a non-existent local media file with the media player, the <codeph><xref keyref="onPlayerSourceStateChanged"/></codeph> callback did not report <codeph>PLAYER_STATE_FAILED</codeph> as expected.</li>
+                    <li>When the sender transmits multi-channel encoded audio, the receiver occasionally experienced noise.</li>
+                    <li>In scenarios where the App integrates a media player, when the open function is called twice to open different media resources consecutively, the second call to open unexpectedly resulted in the <codeph><xref keyref="onPlayerInfoUpdated"/></codeph> callback returning information for the first media resource.</li>
+                    <li>After calling <codeph><xref keyref="enableAudioVolumeIndication"/></codeph> to enable user volume indication, the <codeph><xref keyref="onAudioVolumeIndication"/></codeph> callback returned a local user volume of 0 for both local streaming users and remote users.</li>
+                    <li props="android">During audio and video communication, the App occasionally froze.</li>
+                    <li props="android">The operation failed when calling <codeph><xref keyref="setExtensionProperty"/></codeph> with the key set to "makeup_options" to achieve makeup effects.</li>
+                    <li props="android">When the sending user conducted audio and video communication in dim lighting conditions, the preview image appeared darker on some device models.</li>
+                    <li props="windows">In scenarios of audio and video communication and screen sharing using a 21:9 display (ultrawide screen), setting a high resolution such as 3840x2160 resulted in the screen sharing image being cropped in both local preview and on the receiver's display.</li>
+                    <li>When the App called <codeph><xref keyref="enableVideoImageSource"/></codeph> to enable the video image source feature, the sending side occasionally succeeded in streaming, but <codeph><xref keyref="onVideoPublishStateChanged"/></codeph> did not return the expected.</li>
+                    <li>In multi-channel scenarios, if the App called <codeph><xref keyref="setupRemoteVideoEx"/></codeph> to initialize the remote user's view before successfully calling <codeph><xref keyref="joinChannelEx"/></codeph>, the display of the first frame of the remote user's view occasionally experienced significant delay.</li>
+                    <li props="ios">The App occasionally crashed upon exit.</li>
+                    <li props="android">After a failure to join a channel, calling <codeph><xref keyref="joinChannel"/></codeph> again without first calling <codeph><xref keyref="leaveChannel"/></codeph> to exit the channel occasionally led to a crash.</li>
                 </ul>
             </body>
         </topic>
