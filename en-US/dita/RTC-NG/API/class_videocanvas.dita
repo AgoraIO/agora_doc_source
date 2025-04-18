@@ -358,7 +358,9 @@ class VideoCanvas {
           </plentry>
           <plentry props="android cpp apple framework">
               <pt>backgroundColor</pt>
-              <pd>The background color of the video canvas in RGBA format. The default value is 0x00000000, which represents completely transparent black.</pd>
+              <pd>The background color of the video canvas in RGBA format. The default value is 0x00000000, which represents black.<note type="attention" props="android"><ul><li>If you are developing with Kotlin, and encounter a compilation error after setting this parameter to <codeph>0xFFFFFFFF</codeph>, you can use <codeph>(0xFFFFFFFF).toInt()</codeph> or <codeph>android.graphics.Color.parseColor("#FFFFFFFF")</codeph>.</li>
+                <li>Currently, the <codeph>backgroundColor</codeph> parameter does not support the alpha channel when using the RGBA format.</li></ul></note>
+              </pd>
           </plentry>
           <plentry props="android cpp apple  unreal bp unity electron flutter cs">
                     <pt>enableAlphaMask</pt>

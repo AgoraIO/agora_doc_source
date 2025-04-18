@@ -1,3 +1,26 @@
+## v4.5.2
+
+v4.2.2 was released on April xx, 2025.
+
+**Attention:**
+
+- Starting from version 4.5.0, both RTC SDK and Signaling (version 2.2.0 and above) include the `aosl.xcframework` library. If you manually integrate Video SDK via CDN and also use Signaling SDK, delete the earlier version of the `aosl.xcframework` to avoid conflicts.
+- 4.5.2 RTC SDK `aosl.xcframework` library version is 1.2.13. You can check the version information of the library in `Info.plist`.
+
+#### Issues fixed
+
+This release fixed the following issues:
+
+- When playing a multi-track media file, noise can be heard after calling the `setAudioPitch:` method to adjust the audio pitch.
+- The host called the `createCustomAudioTrack:config:` method to create custom audio track and set `trackType` to `AUDIO_TRACK_DIRECT`, called the `pushExternalAudioFrameRawData:samples:sampleRate:channels:trackId:timestamp:` to push custom audio frames into a channel and then called `playEffect:filePath:loopCount:pitch:pan:gain:publish:startPos:` to play audio effects, audience members in the channel would hear noise.
+- Apps integrated with the SDK occasionally encountered UI lag caused by main thread blocking during audio and video interactions.
+- Calling `openWithMediaSource:` and set `isLiveSource` in the `source` parameter to `YES` to play a video stream, the playback failed.
+- When the sender transmits multi-channel encoded audio, the receiver occasionally experienced noise.
+- In scenarios where the App integrates a media player, when the open function is called twice to open different media resources consecutively, the second call to open unexpectedly resulted in the `AgoraRtcMediaPlayer:infoUpdated:` callback returning information for the first media resource.
+- After calling `enableAudioVolumeIndication:smooth:reportVad:` to enable user volume indication, the `rtcEngine:reportAudioVolumeIndicationOfSpeakers:totalVolume:` callback returned a local user volume of 0 for both local streaming users and remote users.
+- When the App called `enableVideoImageSource:options:` to enable the video image source feature, the sending side occasionally succeeded in streaming, but `rtcEngine:didVideoPublishStateChange:sourceType:oldState:newState:elapseSinceLastState:` did not return the expected.
+- In multi-channel scenarios, if the App called `setupRemoteVideoEx:connection:` to initialize the remote user's view before successfully calling `joinChannelExByToken:connection:delegate:mediaOptions:joinSuccess:`, the display of the first frame of the remote user's view occasionally experienced significant delay.
+
 ## v4.5.1
 
 v4.5.1 was released on March 3, 2025.
@@ -298,7 +321,7 @@ This version fixed the following issues:
 
 - [`enableCameraCenterStage`](/api-ref/rtc/macos/API/toc_center_stage#api_irtcengine_enablecameracenterstage)
 - [`isCameraCenterStageSupported`](/api-ref/rtc/macos/API/toc_center_stage#api_irtcengine_iscameracenterstagesupported)
-- The following enumerations in [``AgoraLocalVideoStreamReason``](/api-ref/rtc/macos/API/enum_localvideostreamreason):
+- The following enumerations in [`AgoraLocalVideoStreamReason`](/api-ref/rtc/macos/API/enum_localvideostreamreason):
   - `AgoraLocalVideoStreamReasonScreenCaptureRecoverFromMinimized`
 - [`setFaceInfoDelegate`](/api-ref/rtc/macos/API/toc_speech_driven#api_imediaengine_registerfaceinfoobserver)
 - [`AgoraFaceInfoDelegate`](/api-ref/rtc/macos/API/class_ifaceinfoobserver)
@@ -307,7 +330,7 @@ This version fixed the following issues:
 - [`AgoraMediaSourceType`](/api-ref/rtc/macos/API/enum_mediasourcetype) adds `AgoraMediaSourceTypeSpeechDriven`
 - [`AgoraVideoSourceType`](/api-ref/rtc/macos/API/enum_videosourcetype) adds `AgoraVideoSourceTypeSpeechDriven`
 - [`AgoraEncryptionConfig`](/api-ref/rtc/macos/API/class_encryptionconfig) adds `datastreamEncryptionEnabled`
-- [``AgoraEncryptionErrorType``](/api-ref/rtc/macos/API/enum_encryptionerrortype)  adds the following enumerations:
+- [`AgoraEncryptionErrorType`](/api-ref/rtc/macos/API/enum_encryptionerrortype)  adds the following enumerations:
   - `ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE`
   - `ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE`
 - [`AgoraRtcDeviceInfo`](/api-ref/rtc/macos/API/class_agorartcdeviceinfo) adds `deviceTypeName`
