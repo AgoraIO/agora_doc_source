@@ -30,7 +30,7 @@
                 <dd props="native">自 v4.5.1 版本新增。</dd>
                 </dlentry>
             </dl>
-            <p>你可以通过该方法设置媒体文件的循环播放次数，包括播放一次、两次，或无限循环播放，直到调用 <xref keyref="stop"/> 方法停止播放。</p>
+            <p></p>
             </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -41,35 +41,41 @@
             <parml>
             <plentry props="native">
                 <pt props="native">count</pt>
-                <pd props="android">媒体文件的循环播放次数。
+                <pd props="android">循环播放媒体文件的次数：
                     <ul>
-                        <li>0：播放一次。</li>
-                        <li>1：播放两次。</li>
-                        <li>-1：无限循环播放，直到调用 <xref keyref="stop"/> 方法停止播放。</li>
+                        <li>1：播放一次。</li>
+                        <li>2：播放两次。</li>
+                        <li>-1：无限循环播放，直到调用 <codeph>stop()</codeph> 停止播放。</li>
                         </ul>
                     </pd>
-                <pd props="apple">媒体文件的循环播放次数。
+                <pd props="apple">媒体文件的循环次数：
                     <ul>
-                        <li><codeph>0</codeph>：播放一次。</li>
-                        <li><codeph>1</codeph>：播放两次。</li>
-                        <li><codeph>-1</codeph>：无限循环播放，直到调用 <xref keyref="stop"/> 方法停止播放。</li>
+                        <li><codeph>1</codeph>：播放一次。</li>
+                        <li><codeph>2</codeph>：播放两次。</li>
+                        <li><codeph>-1</codeph>：无限循环播放，直到调用 <xref keyref="stop"/>。</li>
                         </ul>
                     </pd>
                 <pd props="cpp">媒体文件的循环播放次数。
                     <ul>
-                        <li>0：播放一次。</li>
-                        <li>1：播放两次。</li>
-                        <li>-1：无限循环播放，直到调用 <xref keyref="stop"/> 停止播放。</li>
+                        <li><codeph>1</codeph>：播放一次。</li>
+                        <li><codeph>2</codeph>：播放两次。</li>
+                        <li><codeph>-1</codeph>：无限循环播放，直到调用 <xref keyref="stop"/> 停止播放。</li>
                         </ul>
                     </pd>
                 </plentry>
             <plentry props="apple cpp">
                 <pt props="apple">error</pt>
                 <pt props="cpp">err</pt>
-                <pd props="apple">输出参数，返回错误信息。详见 <xref keyref="Error"/>。</pd>
+                <pd props="apple">输出参数，表示错误信息。可能返回以下 <xref keyref="RteErrorCode"/>：
+                    <ul>
+                        <li><ph keyref="kRteOk"/>：调用成功。</li>
+                        <li><ph keyref="kRteErrorInvalidArgument"/>：<codeph>count</codeph> 参数设置为非法值。详见 <xref keyref="Error"/>。</li>
+                        </ul>
+                    </pd>
                 <pd props="cpp">状态或错误信息，详见 <xref keyref="Error"/>。
                     <ul>
-                        <li><ph keyref="kRteOk"/>：成功。</li>
+                        <li><ph keyref="kRteOk"/>：调用成功。</li>
+                        <li><ph keyref="kRteErrorInvalidArgument"/>：<codeph>count</codeph> 参数设置为非法值。</li>
                         </ul>
                     </pd>
                 </plentry>
