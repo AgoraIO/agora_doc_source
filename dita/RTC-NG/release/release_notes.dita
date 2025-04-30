@@ -42,29 +42,29 @@
                 <p>该版本修复了以下问题：</p>
                 <ul>
                     <li>开启导唱功能播放多音轨歌曲时，调用 <codeph><xref keyref="setAudioPitch"/></codeph> 方法调整歌曲音调后出现杂音。</li>
-                    <li>主播端调用 <codeph><xref keyref="createCustomAudioTrack"/></codeph> 创建自定义音频采集轨道并将 <codeph>trackType</codeph> 设为 <codeph>AUDIO_TRACK_DIRECT</codeph>，调用 <codeph><xref keyref="pushAudioFrame2" props="android apple"/></codeph><codeph><xref keyref="pushAudioFrame" props="cpp"/></codeph> 将自采集音频推送到频道内，然后调用 <codeph><xref keyref="playEffect3"/></codeph> 播放音效，频道内的观众听主播的音频有杂音。</li>
+                    <li>主播端调用 <codeph><xref keyref="createCustomAudioTrack"/></codeph> 创建自定义音频采集轨道并将 <codeph>trackType</codeph> 设为 <codeph>AUDIO_TRACK_DIRECT</codeph>，调用 <codeph><xref keyref="pushAudioFrame2" props="android apple"/></codeph><codeph><xref keyref="pushAudioFrame" props="cpp flutter"/></codeph> 将自采集音频推送到频道内，然后调用 <codeph><xref keyref="playEffect3"/></codeph> 播放音效，频道内的观众听主播的音频有杂音。</li>
                     <li>集成了 SDK 的 App 在音视频互动过程中偶现主线程阻塞导致的 UI 卡顿。</li>
-                    <li props="android">调用 <codeph><xref keyref="startAudioMixing2"/></codeph> 播放 EAC3 音频编码的 MP4 文件时偶现无声。</li>
-                    <li props="cpp">调用 <codeph><xref keyref="startScreenCapture2"/></codeph> 开启屏幕共享并在 <codeph>config</codeph> 中将 <codeph><xref keyref="ScreenCaptureParameters"/></codeph> 的 <codeph>enableHighLight</codeph> 设为 <codeph><ph keyref="true"/></codeph> 对共享窗口进行描边，将共享窗口置于最上层并最大化后，本地预览的共享画面出现闪烁。</li>
-                    <li props="cpp">调用 <codeph><xref keyref="startScreenCaptureByDisplayId"/></codeph> 共享指定屏幕的视频流，通过 <codeph><xref keyref="ScreenCaptureParameters"/></codeph> 的 <codeph>excludeWindowList</codeph> 来指定屏蔽的窗口，偶现部分窗口屏蔽失败。</li>
-                    <li props="cpp">应用程序共享外接屏幕的视频流，断开外接屏幕连接后偶现应用程序崩溃。</li>
-                    <li props="android">退出频道停止视频渲染后出现渲染内存泄漏。</li>
-                    <li props="android">调用 <codeph><xref keyref="setCameraFocusPositionInPreview"/></codeph> 设置手动对焦位置，摄像头拍摄缩放画面后，设置的对焦位置不准确。</li>
-                    <li props="android">调用 <codeph><xref keyref="setExternalMediaProjection"/></codeph>  设置 SDK 外部的 MediaProjection 采集屏幕视频流，当屏幕变为横屏或竖屏时，发送的视频流宽、高没有随之变化。</li>
+                    <li props="android flutter">调用 <codeph><xref keyref="startAudioMixing2"/></codeph> 播放 EAC3 音频编码的 MP4 文件时偶现无声。(Android)</li>
+                    <li props="cpp flutter">调用 <codeph><xref keyref="startScreenCapture2"/></codeph> 开启屏幕共享并在 <codeph>config</codeph> 中将 <codeph><xref keyref="ScreenCaptureParameters"/></codeph> 的 <codeph>enableHighLight</codeph> 设为 <codeph><ph keyref="true"/></codeph> 对共享窗口进行描边，将共享窗口置于最上层并最大化后，本地预览的共享画面出现闪烁。(Windows)</li>
+                    <li props="cpp flutter">调用 <codeph><xref keyref="startScreenCaptureByDisplayId"/></codeph> 共享指定屏幕的视频流，通过 <codeph><xref keyref="ScreenCaptureParameters"/></codeph> 的 <codeph>excludeWindowList</codeph> 来指定屏蔽的窗口，偶现部分窗口屏蔽失败。(Windows)</li>
+                    <li props="cpp flutter">应用程序共享外接屏幕的视频流，断开外接屏幕连接后偶现应用程序崩溃。(Windows)</li>
+                    <li props="android flutter">退出频道停止视频渲染后出现渲染内存泄漏。(Android)</li>
+                    <li props="android flutter">调用 <codeph><xref keyref="setCameraFocusPositionInPreview"/></codeph> 设置手动对焦位置，摄像头拍摄缩放画面后，设置的对焦位置不准确。(Android)</li>
+                    <li props="android flutter">调用 <codeph><xref keyref="setExternalMediaProjection"/></codeph>  设置 SDK 外部的 MediaProjection 采集屏幕视频流，当屏幕变为横屏或竖屏时，发送的视频流宽、高没有随之变化。(Android)</li>
                     <li>调用 <codeph><xref keyref="openWithMediaSource"/></codeph> 并通过 <codeph>source</codeph> 参数将 <codeph>isLiveSource</codeph> 设为 <codeph><ph keyref="true"/></codeph> 并播放纯视频流，播放失败。</li>
-                    <li props="ios">调用 <codeph><xref keyref="enableVirtualBackground"/></codeph> 开启虚拟背景功能，手机横竖屏旋转后，虚拟背景图像变大变模糊。</li>
-                    <li props="android">使用媒体播放器打开实际不存在的本地媒体文件时，播放器状态改变回调 <codeph><xref keyref="onPlayerSourceStateChanged"/></codeph> 不会报告 <codeph>PLAYER_STATE_FAILED</codeph>，不符合预期。</li>
+                    <li props="ios flutter">调用 <codeph><xref keyref="enableVirtualBackground"/></codeph> 开启虚拟背景功能，手机横竖屏旋转后，虚拟背景图像变大变模糊。(iOS)</li>
+                    <li props="android flutter">使用媒体播放器打开实际不存在的本地媒体文件时，播放器状态改变回调 <codeph><xref keyref="onPlayerSourceStateChanged"/></codeph> 不会报告 <codeph>PLAYER_STATE_FAILED</codeph>，不符合预期。(Android)</li>
                     <li>发送端传输多声道编码音频时，接收端偶现杂音。</li>
                     <li>App 集成媒体播放器场景下，先后两次调用 open 打开不同媒体资源，第二次打开时，媒体播放器信息变化回调 <codeph><xref keyref="onPlayerInfoUpdated"/></codeph> 返回第一次媒体资源的信息，不符合预期。</li>
                     <li>调用 <codeph><xref keyref="enableAudioVolumeIndication"/></codeph> 启用用户音量提示本地发流用户和远端用户音量相关信息，用户音量提示回调 <codeph><xref keyref="onAudioVolumeIndication"/></codeph> 返回的本地用户音量为 0。</li>
-                    <li props="android">音视频互通过程中偶现 App 卡死。</li>
-                    <li props="android">调用 <codeph><xref keyref="setExtensionProperty"/></codeph> 设置 key 为 "makeup_options" 实现美妆效果失败。</li>
-                    <li props="android">发送端用户在光线较暗的环境中进行音视频互通，部分机型偶现本地预览的图像偏暗。</li>
-                    <li props="cpp">使用 21:9 的显示屏（带鱼屏）进行音视频互通和屏幕共享场景下，设置高分辨率，如 3840*2160，屏幕共享画面在本地预览和接收端显示被裁剪。</li>
+                    <li props="android flutter">音视频互通过程中偶现 App 卡死。(Android)</li>
+                    <li props="android flutter">调用 <codeph><xref keyref="setExtensionProperty"/></codeph> 设置 key 为 "makeup_options" 实现美妆效果失败。(Android)</li>
+                    <li props="android flutter">发送端用户在光线较暗的环境中进行音视频互通，部分机型偶现本地预览的图像偏暗。(Android)</li>
+                    <li props="cpp flutter">使用 21:9 的显示屏（带鱼屏）进行音视频互通和屏幕共享场景下，设置高分辨率，如 3840*2160，屏幕共享画面在本地预览和接收端显示被裁剪。(Windows)</li>
                     <li>App 调用 <codeph><xref keyref="enableVideoImageSource"/></codeph> 启用垫片推流功能，偶现发送端推流成功但是 <codeph><xref keyref="onVideoPublishStateChanged"/></codeph> 返回当前的发布状态不是 PUB_STATE_PUBLISHED，不符合预期。</li>
                     <li>多频道场景下，App 在调用 <codeph><xref keyref="joinChannelEx"/></codeph> 成功前调用 <codeph><xref keyref="setupRemoteVideoEx"/></codeph> 初始化远端用户视图，偶现远端用户视图首帧图像显示延时大。</li>
-                    <li props="ios">App 退出时偶现崩溃。</li>
-                    <li props="android">加入频道失败后，在没有调用 <codeph><xref keyref="leaveChannel"/></codeph> 离开频道的情况下，再次调用 <codeph><xref keyref="joinChannel"/></codeph> 加入频道时偶现崩溃。</li>
+                    <li props="ios flutter">App 退出时偶现崩溃。(iOS)</li>
+                    <li props="android flutter">加入频道失败后，在没有调用 <codeph><xref keyref="leaveChannel"/></codeph> 离开频道的情况下，再次调用 <codeph><xref keyref="joinChannel"/></codeph> 加入频道时偶现崩溃。(Android)</li>
                 </ul>
             </body>
         </topic>

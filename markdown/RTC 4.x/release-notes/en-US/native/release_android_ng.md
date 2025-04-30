@@ -25,7 +25,7 @@ This release fixed the following issues:
 - After calling `setCameraFocusPositionInPreview` to set the focus position manually, the focus position was inaccurate when the camera captured a zoomed-in image.
 - When calling `setExternalMediaProjection` to configure an external MediaProjection instance (outside the SDK) for screen video stream capture, the transmitted video stream resolution (width/height) did not dynamically adjusted when the screen orientation changed between landscape and portrait modes.
 - Calling `openWithMediaSource` and set `isLiveSource` in the `source` parameter to `true` to play a video stream, the playback failed.
-- When attempting to open a non-existent local media file with the media player, the `onPlayerStateChanged` callback did not report `PLAYER_STATE_FAILED` as expected.
+- When attempting to open a non-existent local media file with the media player, the `onPlayerSourceStateChanged` callback did not report `PLAYER_STATE_FAILED` as expected.
 - When the sender transmits multi-channel encoded audio, the receiver occasionally experienced noise.
 - In scenarios where the App integrates a media player, when the open function is called twice to open different media resources consecutively, the second call to open unexpectedly resulted in the `onPlayerInfoUpdated` callback returning information for the first media resource.
 - After calling `enableAudioVolumeIndication` to enable user volume indication, the `onAudioVolumeIndication` callback returned a local user volume of 0 for both local streaming users and remote users.

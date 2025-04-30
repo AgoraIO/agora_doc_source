@@ -4,6 +4,41 @@
 
 AirPods Pro does not support A2DP protocol in communication audio mode, which may lead to connection failure in that mode.
 
+## v6.5.2
+
+v6.5.2 was released on May xx, 2025.
+
+
+#### Issues fixed
+
+This release fixed the following issues:
+
+- When playing a multi-track media file, noise can be heard after calling the `setAudioPitch` method to adjust the audio pitch.
+- The host called the `createCustomAudioTrack` method to create custom audio track and set `trackType` to `AUDIO_TRACK_DIRECT`, called the `pushAudioFrame` to push custom audio frames into a channel and then called `playEffect` to play audio effects, audience members in the channel would hear noise.
+- Apps integrated with the SDK occasionally encountered UI lag caused by main thread blocking during audio and video interactions.
+- The local preview of the shared screen flickered after calling the `startScreenCapture` to start screen sharing and set `enableHighLight` in `ScreenCaptureParameters` to `true` through the `config` parameter to outline the shared window, and then placed the window on the top layer and maximizing it. (Windows)
+- Calling `startScreenCaptureByDisplayId` to share the video stream of specified screen and specifying the windows to be blocked through `excludeWindowList` in `ScreenCaptureParameters`, occasionally some windows fail to be blocked. (Windows)
+- The application occasionally crashed after sharing the video stream of the external screen and disconnecting the external screen connection. (Windows)
+- Calling `openWithMediaSource` and set `isLiveSource` in the `source` parameter to `true` to play a video stream, the playback failed.
+- When the sender transmits multi-channel encoded audio, the receiver occasionally experienced noise.
+- In scenarios where the App integrates a media player, when the open function is called twice to open different media resources consecutively, the second call to open unexpectedly resulted in the `onPlayerInfoUpdated` callback returning information for the first media resource.
+- After calling `enableAudioVolumeIndication` to enable user volume indication, the `onAudioVolumeIndication` callback returned a local user volume of 0 for both local streaming users and remote users.
+- In scenarios of audio and video communication and screen sharing using a 21:9 display (ultrawide screen), setting a high resolution such as 3840x2160 resulted in the screen sharing image being cropped in both local preview and on the receiver's display. (Windows)
+- When the App called `enableVideoImageSource` to enable the video image source feature, the sending side occasionally succeeded in streaming, but `onVideoPublishStateChanged` did not return the expected.
+- In multi-channel scenarios, if the App called `setupRemoteVideoEx` to initialize the remote user's view before successfully calling `joinChannelEx`, the display of the first frame of the remote user's view occasionally experienced significant delay.
+- When playing an MP4 file with EAC3 audio encoding by calling the `startAudioMixing` method, sometimes there was no sound. (Android)
+- Memory leaks occurred after leaving the channel and stopping video rendering. (Android)
+- After calling `setCameraFocusPositionInPreview` to set the focus position manually, the focus position was inaccurate when the camera captured a zoomed-in image. (Android)
+- When calling `setExternalMediaProjection` to configure an external MediaProjection instance (outside the SDK) for screen video stream capture, the transmitted video stream resolution (width/height) did not dynamically adjusted when the screen orientation changed between landscape and portrait modes. (Android)
+- During audio and video communication, the App occasionally froze. (Android, iOS)
+- The operation failed when calling `setExtensionProperty` with the key set to "makeup_options" to achieve makeup effects. (Android)
+- After a failure to join a channel, calling again without first calling `leaveChannel` to exit the channel occasionally led to a crash. (Android)
+- When attempting to open a non-existent local media file with the media player, the `onPlayerSourceStateChanged` callback did not report `PLAYER_STATE_FAILED` as expected. (Android)
+- Calling `enableVirtualBackground` to enable virtual background function, the virtual background image became larger and blurry when the phone was rotated. (iOS)
+
+
+
+
 ## v6.5.1
 
 v6.5.1 was released on March xx, 2025.
