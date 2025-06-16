@@ -61,15 +61,9 @@
         <section id="return_values">
             <title><ph props="apple">Returns </ph><ph props="android hmos">Returns/Exceptions</ph></title>
             <ul>
-            <li>The <apiname keyref="IRtcEngine"/> instance, if the method call succeeds.</li>
+            <li>Returns an initialized <apiname keyref="IRtcEngine"/> object if the method call succeeds.</li>
             <li props="android hmos">The method call fails and an exception is thrown, you need to catch the exception and handle it. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
-            <li props="ios mac">An error code, if the method call fails.<ul>
-                <li>-1: A general error occurs (no specified reason).</li>
-                <li>-2: The parameter is invalid.</li>
-                <li>-7: The SDK is not initialized.</li>
-                <li>-22: The resource request failed. The SDK fails to allocate resources because your app consumes too much system resource or the system resources are insufficient.</li>
-                <li>-101: The App ID is invalid.</li>
-                </ul></li>
+            <li props="ios mac">if the method call fails, returns an <apiname keyref="IRtcEngine"/> object whose internal engine field is <codeph><ph keyref="NULL"/></codeph>. You can get the error code via the <codeph>delegate</codeph>'s <xref keyref="onError"/> callback.</li>
             </ul> </section>
     </refbody>
 </reference>
