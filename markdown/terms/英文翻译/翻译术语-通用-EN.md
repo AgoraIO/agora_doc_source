@@ -313,20 +313,15 @@
 中文：水印源
 英文：watermark source
 
-## 文字
-
-中文：文字
-英文：literal
-
 ## 鸿蒙
 
 中文：鸿蒙
 英文：HMOS
 
-## 更新
+## 更新 Token
 
-中文：更新
-英文：renew
+中文：更新 Token
+英文：renew Token
 
 ## 订阅端
 
