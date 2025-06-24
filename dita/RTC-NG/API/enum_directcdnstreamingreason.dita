@@ -1,36 +1,44 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_directcdnstreamingreason">
-    <title><ph keyref="DIRECT_CDN_STREAMING_REASON"/></title>
-    <shortdesc id="short"><ph id="shortdesc">CDN 推流状态改变的原因。</ph></shortdesc>
+    <title><ph keyref="DirectCdnStreamingReason"/></title>
+    <shortdesc id="short"><ph id="shortdesc">CDN 推流原因码。</ph></shortdesc>
     <refbody>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+                <dlentry props="native">
+                    <dt>自从</dt>
+                    <dd>v</dd>
+                </dlentry>
+            </dl>
+        </section>
         <section id="parameters">
             <title>枚举值</title>
             <parml>
-            <plentry>
-                <pt><ph keyref="DIRECT_CDN_STREAMING_REASON_OK"/></pt>
-                <pd>0：推流状态正常。</pd>
+            <plentry props="android">
+                <pt><ph keyref="OK"/></pt>
+                <pd props="android">（0）：推流成功。</pd>
             </plentry>
-            <plentry>
-                <pt><ph keyref="DIRECT_CDN_STREAMING_REASON_FAILED"/></pt>
-                <pd>1：一般性错误，没有明确原因。你可以尝试重新推流。</pd>
+        <plentry props="android">
+                <pt><ph keyref="FAILED"/></pt>
+                <pd props="android">（1）：推流失败。</pd>
             </plentry>
-            <plentry>
-                <pt><ph keyref="DIRECT_CDN_STREAMING_REASON_AUDIO_PUBLICATION"/></pt>
-                <pd>2：音频推流出错。例如，本地音频采集设备未正常工作、被其他进程占用或没有使用权限。</pd>
+        <plentry props="android">
+                <pt><ph keyref="AUDIO_PUBLICATION"/></pt>
+                <pd props="android">（2）：因音频发布触发推流。</pd>
             </plentry>
-            <plentry>
-                <pt><ph keyref="DIRECT_CDN_STREAMING_REASON_VIDEO_PUBLICATION"/></pt>
-                <pd>3：视频推流出错。例如，本地视频采集设备未正常工作、被其他进程占用或没有使用权限。</pd>
+        <plentry props="android">
+                <pt><ph keyref="VIDEO_PUBLICATION"/></pt>
+                <pd props="android">（3）：因视频发布触发推流。</pd>
             </plentry>
-            <plentry>
-                <pt><ph keyref="DIRECT_CDN_STREAMING_REASON_NET_CONNECT"/></pt>
-                <pd>4：连接 CDN 失败。</pd>
+        <plentry props="android">
+                <pt><ph keyref="NET_CONNECT"/></pt>
+                <pd props="android">（4）：因网络连接触发推流。</pd>
             </plentry>
-            <plentry>
-                <pt><ph keyref="DIRECT_CDN_STREAMING_REASON_BAD_NAME"/></pt>
-                <pd>5：URL 已用于推流。请使用新的 URL。</pd>
+        <plentry props="android">
+                <pt><ph keyref="BAD_NAME"/></pt>
+                <pd props="android">（5）：推流失败，通常由于已存在相同的流名称。</pd>
             </plentry>
-            </parml> </section>
-    </refbody>
+        </parml>
+        </section></refbody>
 </reference>
