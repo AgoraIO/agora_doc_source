@@ -1,40 +1,32 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_directcdnstreamingstate">
-    <title><ph keyref="DirectCdnStreamingState"/></title>
-    <shortdesc id="short"><ph id="shortdesc">CDN 推流状态。</ph></shortdesc>
+    <title><ph keyref="DIRECT_CDN_STREAMING_STATE"/></title>
+    <shortdesc id="short"><ph id="shortdesc">当前 CDN 推流状态。</ph></shortdesc>
     <refbody>
-        <section id="detailed_desc">
-            <dl outputclass="since">
-                <dlentry props="native">
-                    <dt>自从</dt>
-                    <dd>v</dd>
-                </dlentry>
-            </dl>
-        </section>
         <section id="parameters">
             <title>枚举值</title>
             <parml>
-            <plentry props="android">
-                <pt><ph keyref="IDLE"/></pt>
-                <pd props="android">（0）：空闲状态。</pd>
+            <plentry>
+                <pt><ph keyref="DIRECT_CDN_STREAMING_STATE_IDLE"/></pt>
+                <pd>0：初始状态，即推流尚未开始。</pd>
             </plentry>
-            <plentry props="android">
-                <pt><ph keyref="RUNNING"/></pt>
-                <pd props="android">（1）：推流中。</pd>
+            <plentry>
+                <pt><ph keyref="DIRECT_CDN_STREAMING_STATE_RUNNING"/></pt>
+                <pd>1：正在推流中。当你调用 <xref keyref="startDirectCdnStreaming"/> 成功推流时，SDK 会返回该值。</pd>
             </plentry>
-            <plentry props="android">
-                <pt><ph keyref="STOPPED"/></pt>
-                <pd props="android">（2）：推流已停止。</pd>
+            <plentry>
+                <pt><ph keyref="DIRECT_CDN_STREAMING_STATE_STOPPED"/></pt>
+                <pd>2：推流已正常结束。当你调用 <xref keyref="stopDirectCdnStreaming"/> 主动停止推流时，SDK 会返回该值。</pd>
             </plentry>
-            <plentry props="android">
-                <pt><ph keyref="FAILED"/></pt>
-                <pd props="android">（3）：推流失败。</pd>
+            <plentry>
+                <pt><ph keyref="DIRECT_CDN_STREAMING_STATE_FAILED"/></pt>
+                <pd>3：推流失败。你可以通过 <xref keyref="onDirectCdnStreamingStateChanged"/> 回调报告的信息排查问题，然后重新推流。</pd>
             </plentry>
-            <plentry props="android">
-                <pt><ph keyref="RECOVERING"/></pt>
-                <pd props="android">（4）：推流恢复中。</pd>
+            <plentry>
+                <pt><ph keyref="DIRECT_CDN_STREAMING_STATE_RECOVERING"/></pt>
+                <pd>4：尝试重新连接声网服务器和 CDN。最多尝试重连 10 次，如仍未成功恢复连接，则推流状态变为 <ph keyref="DIRECT_CDN_STREAMING_STATE_FAILED"/>。</pd>
             </plentry>
-        </parml>
-        </section></refbody>
+            </parml> </section>
+    </refbody>
 </reference>
