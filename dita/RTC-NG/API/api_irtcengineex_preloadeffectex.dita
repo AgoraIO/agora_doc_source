@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_preloadeffectex">
+    <title><ph keyref="preloadEffectEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc">预加载指定音效到指定频道。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="preloadEffectEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public int preloadEffectEx(RtcConnection connection, int soundId, String filePath);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)preloadEffectEx:(AgoraRtcConnection* _Nonnull)connection soundId:(int)soundId filePath:(NSString* _Nonnull)filePath NS_SWIFT_NAME(preloadEffectEx(_:soundId:filePath:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int preloadEffectEx(const RtcConnection&amp;amp; connection, int soundId, const char* filePath, int startPos = 0) = 0;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从：</dt>
+                <dd props="native">自 v4.6.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p>该方法每次调用仅将一个指定音效预加载到内存中。若需预加载多个音效，请多次调用该方法。
+
+预加载完成后，你可以调用 <xref keyref="playEffect3"/> 播放已预加载的音效，或调用 <xref keyref="playAllEffects"/> 播放所有已预加载的音效。</p>
+            <note type="attention" props="android cpp"><ul>
+                        <li>该方法适用于多频道场景。</li>
+                        <li>为确保通信流畅，请限制音效文件的大小。</li>
+                        <li>声网建议在加入频道前调用该方法。</li>
+                        </ul>
+                    </note>
+            <note type="attention" props="apple"><ul>
+                        <li>该方法适用于多频道场景。</li>
+                        <li>为确保通信顺畅，请限制音效文件的大小。</li>
+                        <li>声网建议你在加入频道前调用该方法。</li>
+                        </ul>
+                    </note>
+            </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p>该方法适用于多频道场景。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="native">
+            <title>参数</title>
+            <parml>
+            <plentry props="native">
+                <pt props="native">connection</pt>
+                <pd props="android">连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                <pd props="apple">连接对象。详见 <xref keyref="RtcConnection"/>。</pd>
+                <pd props="cpp"><xref keyref="RtcConnection"/> 对象。详见 <xref keyref="RtcConnection"/>。</pd>
+            </plentry>
+            <plentry props="native">
+                <pt props="native">soundId</pt>
+                <pd props="native">音效的 ID。</pd>
+            </plentry>
+            <plentry props="native">
+                <pt props="native">filePath</pt>
+                <pd props="native">本地音效文件的绝对路径或在线音效文件的 URL。支持的音频格式包括：mp3、mp4、m4a、aac、3gp、mkv 和 wav。</pd>
+            </plentry>
+            <plentry props="native">
+                <pt props="native">startPos</pt>
+                <pd props="android">音效文件的播放起始位置（单位为毫秒）。</pd>
+                <pd props="apple cpp">音效文件的播放起始位置（毫秒）。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cs electron rn unity unreal">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul>
+        <p props="native"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+    </section>
+        </refbody>
+</reference>

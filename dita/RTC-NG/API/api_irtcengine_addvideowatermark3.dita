@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_addvideowatermark3">
+    <title><ph keyref="addVideoWatermark3"/></title>
+    <shortdesc id="short"><ph id="shortdesc">向本地视频中添加水印图像。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="addVideoWatermark3"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">@Deprecated public abstract int addVideoWatermark(String watermarkUrl, WatermarkOptions options);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)addVideoWatermark:(AgoraImage * _Nonnull)watermark NS_SWIFT_NAME(addVideoWatermark(_:)) __deprecated_msg(&amp;quot;use addVideoWatermarkWithConfig:config instead.&amp;quot;);</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int addVideoWatermark(const WatermarkConfig&amp;amp; configs) = 0;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v</dd>
+            </dlentry>
+            </dl>
+            <p>你可以使用该方法在本地视频流中叠加水印图像，并通过 <ph keyref="WatermarkConfig"/> 配置水印的位置、大小和在预览中的可见性。
+
+该方法在直播场景中向本地视频流添加 PNG 格式的水印图像。频道中的所有观众（包括 CDN 观众）以及采集设备都可以看到并捕捉到该水印图像。
+
+该方法仅支持添加一个水印图像，新添加的图像会替换之前的图像。
+
+水印图像的位置取决于 <xref keyref="setVideoEncoderConfiguration"/> 方法中的设置：
+                    <ul>
+                        <li>如果编码视频的方向模式为 <ph keyref="ORIENTATION_MODE_FIXED_LANDSCAPE"/>，或 <ph keyref="ORIENTATION_MODE_ADAPTIVE"/> 中的横屏模式，则水印使用横屏方向。</li>
+                        <li>如果编码视频的方向模式为 <ph keyref="ORIENTATION_MODE_FIXED_PORTRAIT"/>，或 <ph keyref="ORIENTATION_MODE_ADAPTIVE"/> 中的竖屏模式，则水印使用竖屏方向。</li>
+                        <li>设置水印位置时，区域必须小于 <xref keyref="setVideoEncoderConfiguration"/> 方法中设置的尺寸，否则水印图像会被裁剪。</li>
+                        </ul>
+                    </p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="native">
+            <title>参数</title>
+            <parml>
+            <plentry props="android cpp">
+                <pt props="android">config</pt>
+                <pt props="cpp">configs</pt>
+                <pd props="android cpp">水印配置。详见 <ph keyref="WatermarkConfig"/>。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt props="apple">watermark</pt>
+                <pd props="apple">水印图像。详见 <xref keyref="RtcImage"/>。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt props="apple">url</pt>
+                <pd props="apple">要添加的水印图像的本地文件路径。如果水印图像位于项目文件中，你需要在 Xcode 属性中将图像的 Type 从 PNG image 更改为 Data，否则声网 Native SDK 无法识别该图像。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt props="android">watermarkUrl</pt>
+                <pd props="android">要添加的水印图像的本地文件路径。支持从本地文件路径或 assets 文件路径添加水印图像。如果使用 assets 文件路径，填写该参数时需以 <codeph>/assets/</codeph> 开头。</pd>
+            </plentry>
+            <plentry props="android apple">
+                <pt props="android apple">options</pt>
+                <pd props="android">水印图像的相关设置。详见 <xref keyref="WatermarkOptions"/>。</pd>
+                <pd props="apple">水印图像的选项，详见 <xref keyref="WatermarkOptions"/>。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cs electron rn unity unreal">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul>
+        <p props="native"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+    </section>
+        </refbody>
+</reference>
