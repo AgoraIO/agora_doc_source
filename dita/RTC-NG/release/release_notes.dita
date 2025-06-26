@@ -85,6 +85,11 @@
                     <li><ph><b>视频编解码自适应</b></ph>
                         <p>//TODO</p>
                     </li>
+                    <li><ph><b>异步销毁引擎</b></ph>
+                        <p props="cpp">自该版本起，<codeph><xref keyref="release"/></codeph> 方法新增 <codeph>callback</codeph> 参数，支持以同步或异步方式销毁引擎。异步销毁引擎时，SDK 会触发 <codeph><xref keyref="RtcEngineReleaseCallback"/></codeph> 回调。</p>
+                        <p props="android">该版本新增 <codeph><xref keyref="destory"/></codeph> 方法，用于销毁 RTC 引擎，且支持通过参数配置以同步或异步方式销毁引擎。异步销毁引擎时，SDK 会触发 <codeph><xref keyref="onEngineReleased"/></codeph> 回调。</p>
+                        <p props="apple">该版本新增 <codeph><xref keyref="destory"/></codeph> 方法，用于销毁 RTC 引擎，且支持通过参数配置以同步或异步方式销毁引擎。异步销毁引擎时，SDK 会触发 <codeph>engineReleasedBlock</codeph> 回调块。</p>
+                    </li>
                     <li><ph><b>Token 更新结果回调</b></ph>
                         <p>该版本新增 <codeph><xref keyref="onRenewTokenResult"/></codeph> 回调及 <codeph>RENEW_TOKEN_ERROR_CODE</codeph> 错误码。当调用 <codeph><xref keyref="renewToken"/></codeph> 方法更新 Token 后，SDK 会通过 <codeph><xref keyref="onRenewTokenResult"/></codeph> 回调通知 Token 更新的结果，并通过 <codeph>RENEW_TOKEN_ERROR_CODE</codeph> 返回详细的错误码，开发者可在回调中根据错误码及时处理 Token 更新失败的场景。</p>
                     </li>
