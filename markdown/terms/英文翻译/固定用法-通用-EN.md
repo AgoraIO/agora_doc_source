@@ -73,4 +73,8 @@ input
 
 ## 输出参数
 
-如果某个参数的中文描述是“输出参数，{实际业务描述}”翻译时处理为“An output parameter.{实际业务描述}”
+如果某个参数的中文描述是“输出参数，{实际业务描述}”翻译时处理为“An output parameter.{实际业务描述。Use a complete sentence}”
+
+## @since
+
+在中文描述中，"{该方法/API/struct/}自 vX.Y.Z 新增"，翻译时处理为 “Available since vX.Y.Z.”
