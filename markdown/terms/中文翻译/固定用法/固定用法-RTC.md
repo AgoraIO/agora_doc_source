@@ -187,3 +187,11 @@ RTC（全大写）是产品名称，在描述中出现时无需添加 code font�
 方法调用成功，返回 xxx。
 
 ###
+
+## connection 参数描述
+
+connection 参数的描述按照下列示例来描述：
+
+### 示例
+
+Connection 信息。详见 `{参数类型}`。
