@@ -93,3 +93,8 @@ input
 - "The range is [1,100]"
 - "Values from (0, 200]"
 ```
+
+## 废弃
+
+在中文描述中，“自 vx.x.x 版本废弃，请改用 xxx” 翻译为 "Deprecated since vx.x.x. Use xxx instead."
+“自 vx.x.x 版本废弃” 翻译为 "Deprecated since vx.x.x"
