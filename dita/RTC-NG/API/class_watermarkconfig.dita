@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_watermarkconfig">
+    <title><ph keyref="WatermarkConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc">用于配置水印的相关信息。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class WatermarkConfig {
+  public static final int WATERMARK_TYPE_IMAGE = 0;
+  public static final int WATERMARK_TYPE_BUFFER = 1;
+  public String id;
+  public int type;
+  public WatermarkBuffer buffer = new WatermarkBuffer();
+  public String imageUrl;
+  public WatermarkOptions options = new WatermarkOptions();
+}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility(&amp;quot;default&amp;quot;))) @interface WatermarkConfig : NSObject
+@property(copy, nonatomic) NSString* _Nonnull id;
+@property(assign, nonatomic) WatermarkType type;
+@property(strong, nonatomic) WatermarkBuffer* _Nullable buffer;
+@property(strong, nonatomic) NSURL *_Nullable imageUrl;
+@property(strong, nonatomic) WatermarkOptions* _Nonnull options;
+@end</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct WatermarkConfig {
+  const char* id;
+  WATERMARK_SOURCE_TYPE type;
+  union {
+    WatermarkBuffer buffer;
+    WatermarkTimestamp timestamp;
+    WatermarkLiteral literal;
+    const char* imageUrl;
+  };
+  WatermarkOptions options;
+  WatermarkConfig() : id(NULL), type(IMAGE), imageUrl(NULL) {}
+};</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从：</dt>
+                <dd>自 v4.6.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p></p>
+            </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry props="native">
+                <pt props="native">id</pt>
+                <pd props="android">水印的唯一标识符，通常使用 UUID 生成。</pd>
+                <pd props="apple">水印的唯一标识符。</pd>
+                <pd props="cpp">水印的唯一标识符，建议使用 UUID。</pd>
+            </plentry>
+            <plentry props="native">
+                <pt props="native">type</pt>
+                <pd props="android">水印的类型：
+                    <ul>
+                        <li><codeph>WATERMARK_TYPE_IMAGE</codeph>：图像类型。</li>
+                        <li><codeph>WATERMARK_TYPE_BUFFER</codeph>：Buffer 类型。</li>
+                        </ul>
+                    </pd>
+                <pd props="apple">水印类型，详见 <xref keyref="WATERMARK_SOURCE_TYPE"/>。</pd>
+                <pd props="cpp">水印的类型，详见 <xref keyref="WATERMARK_SOURCE_TYPE"/>。</pd>
+            </plentry>
+            <plentry props="native">
+                <pt props="native">buffer</pt>
+                <pd props="android">包含水印图像数据的缓冲区。详见 <xref keyref="WatermarkBuffer"/>。</pd>
+                <pd props="apple">水印图像的缓冲数据，详见 <xref keyref="WatermarkBuffer"/>。</pd>
+                <pd props="cpp">水印的缓冲区。详见 <xref keyref="WatermarkBuffer"/>。</pd>
+            </plentry>
+            <plentry props="native">
+                <pt props="native">imageUrl</pt>
+                <pd props="android">用于加载水印图像的 URL 地址。</pd>
+                <pd props="apple">水印图像的 URL。</pd>
+                <pd props="cpp">水印图像文件的 URL，默认值为 NULL。</pd>
+            </plentry>
+            <plentry props="native">
+                <pt props="native">options</pt>
+                <pd props="android">定义水印位置和大小的选项。详见 <xref keyref="WatermarkOptions"/>。</pd>
+                <pd props="apple">水印的显示选项，详见 <xref keyref="WatermarkOptions"/>。</pd>
+                <pd props="cpp">水印的选项。详见 <xref keyref="WatermarkOptions"/>。</pd>
+            </plentry>
+            <plentry props="cpp">
+                <pt props="cpp">timestamp</pt>
+                <pd props="cpp">水印的时间戳。详见 <codeph>WatermarkTimestamp</codeph>。</pd>
+            </plentry>
+            <plentry props="cpp">
+                <pt props="cpp">literal</pt>
+                <pd props="cpp">水印的文字。详见 <codeph>WatermarkLiteral</codeph>。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt props="android">WATERMARK_TYPE_IMAGE</pt>
+                <pd props="android">指定水印类型为图像。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt props="android">WATERMARK_TYPE_BUFFER</pt>
+                <pd props="android">指定水印类型为缓冲区。</pd>
+            </plentry>
+            </parml> </section>
+            </refbody>
+</reference>
