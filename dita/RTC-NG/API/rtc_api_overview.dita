@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="rtc_api_overview" xml:lang="zh-CN">
     <title>API 概览</title>
@@ -23,7 +23,11 @@
                     <stentry><xref keyref="initialize"/></stentry>
                     <stentry><ph props="ios mac android">创建并初始化 <apiname keyref="IRtcEngine"/>。</ph><ph props="cpp framework">初始化 <apiname keyref="IRtcEngine"/>。</ph></stentry>
                 </strow>
-                <strow>
+                <strow props="android">
+            <stentry><xref keyref="onEngineReleased"/></stentry>
+            <stentry><ph conkeyref="onEngineReleased/shortdesc"/></stentry>
+        </strow>
+        <strow>
                     <stentry><xref keyref="release"/></stentry>
                     <stentry><ph conkeyref="release/shortdesc"/></stentry>
                 </strow>
@@ -35,7 +39,11 @@
                     <stentry><xref keyref="removeListener"/></stentry>
                     <stentry><ph conkeyref="removeListener/shortdesc"/></stentry>
                 </strow>
-                <strow props="electron rn">
+                <strow props="android cpp">
+            <stentry><xref keyref="RtcEngineReleaseCallback"/></stentry>
+            <stentry><ph conkeyref="RtcEngineReleaseCallback/shortdesc"/></stentry>
+        </strow>
+        <strow props="electron rn">
                     <stentry><xref keyref="removeAllListeners"/></stentry>
                     <stentry><ph conkeyref="removeAllListeners/shortdesc"/></stentry>
                 </strow>
@@ -245,7 +253,11 @@
                     <stentry><xref keyref="setSubscribeAudioBlocklistEx"/></stentry>
                     <stentry><ph conkeyref="setSubscribeAudioBlocklistEx/shortdesc"/></stentry>
                 </strow>
-                <strow props="android cpp apple framework">
+                <strow props="android cpp ios mac">
+            <stentry><xref keyref="setSimulcastConfigEx"/></stentry>
+            <stentry><ph conkeyref="setSimulcastConfigEx/shortdesc"/></stentry>
+        </strow>
+        <strow props="android cpp apple framework">
                     <stentry><xref keyref="setSubscribeAudioAllowlist"/></stentry>
                     <stentry><ph conkeyref="setSubscribeAudioAllowlist/shortdesc"/></stentry>
                 </strow>
@@ -621,7 +633,11 @@
                     <stentry><xref keyref="setRecordingAudioFrameParameters"/></stentry>
                     <stentry><ph conkeyref="setRecordingAudioFrameParameters/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="android cpp ios mac">
+            <stentry><xref keyref="setPlaybackAudioFrameBeforeMixingParameters1"/></stentry>
+            <stentry><ph conkeyref="setPlaybackAudioFrameBeforeMixingParameters1/shortdesc"/></stentry>
+        </strow>
+        <strow>
                     <stentry><xref keyref="setPlaybackAudioFrameParameters"/></stentry>
                     <stentry><ph conkeyref="setPlaybackAudioFrameParameters/shortdesc"/></stentry>
                 </strow>
@@ -1048,7 +1064,19 @@
                     <stentry><xref keyref="enableVirtualBackground2"/></stentry>
                     <stentry><ph conkeyref="enableVirtualBackground2/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="android cpp ios mac">
+            <stentry><xref keyref="setVideoEffectBoolParam"/></stentry>
+            <stentry><ph conkeyref="setVideoEffectBoolParam/shortdesc"/></stentry>
+        </strow>
+        <strow props="android cpp ios mac">
+            <stentry><xref keyref="setVideoEffectFloatParam"/></stentry>
+            <stentry><ph conkeyref="setVideoEffectFloatParam/shortdesc"/></stentry>
+        </strow>
+        <strow props="android cpp ios mac">
+            <stentry><xref keyref="setVideoEffectIntParam"/></stentry>
+            <stentry><ph conkeyref="setVideoEffectIntParam/shortdesc"/></stentry>
+        </strow>
+        <strow>
                     <stentry><xref keyref="startLocalVideoTranscoder"/></stentry>
                     <stentry><ph conkeyref="startLocalVideoTranscoder/shortdesc"/></stentry>
                 </strow>
@@ -1060,7 +1088,11 @@
                     <stentry><xref keyref="updateLocalTranscoderConfiguration"/></stentry>
                     <stentry><ph conkeyref="updateLocalTranscoderConfiguration/shortdesc"/></stentry>
                 </strow>
-                <strow props="android cpp apple framework">
+                <strow props="android">
+            <stentry><xref keyref="zOrder"/></stentry>
+            <stentry><ph conkeyref="zOrder/shortdesc"/></stentry>
+        </strow>
+        <strow props="android cpp apple framework">
                     <stentry><xref keyref="onLocalVideoTranscoderError"/></stentry>
                     <stentry><ph conkeyref="onLocalVideoTranscoderError/shortdesc"/></stentry>
                 </strow>
@@ -1068,7 +1100,15 @@
                     <stentry><xref keyref="enableVideoImageSource"/></stentry>
                     <stentry><ph conkeyref="enableVideoImageSource/shortdesc"/></stentry>
                 </strow>
-                <strow props="android cpp apple framework">
+                <strow props="android cpp ios mac">
+            <stentry><xref keyref="removeVideoEffect"/></stentry>
+            <stentry><ph conkeyref="removeVideoEffect/shortdesc"/></stentry>
+        </strow>
+        <strow props="android cpp ios mac">
+            <stentry><xref keyref="removeVideoWatermarkEx"/></stentry>
+            <stentry><ph conkeyref="removeVideoWatermarkEx/shortdesc"/></stentry>
+        </strow>
+        <strow props="android cpp apple framework">
                     <stentry><xref keyref="setBeautyEffectOptions"/></stentry>
                     <stentry><ph conkeyref="setBeautyEffectOptions/shortdesc"/></stentry>
                 </strow>
@@ -1132,7 +1172,11 @@
                     <stentry props="android apple"><xref keyref="getFaceShapeBeautyOptions2"/></stentry>
                     <stentry props="android apple"><ph conkeyref="getFaceShapeBeautyOptions2/shortdesc"/></stentry>
                 </strow>
-                <strow props="cn">
+                <strow props="android">
+            <stentry><xref keyref="getBuffer"/></stentry>
+            <stentry><ph conkeyref="getBuffer/shortdesc"/></stentry>
+        </strow>
+        <strow props="cn">
                     <stentry><xref keyref="getFaceShapeAreaOptions"/></stentry>
                     <stentry><ph conkeyref="getFaceShapeAreaOptions/shortdesc"/></stentry>
                 </strow>
@@ -1144,7 +1188,11 @@
                     <stentry><xref keyref="enableFaceDetection"/></stentry>
                     <stentry><ph conkeyref="enableFaceDetection/shortdesc"/></stentry>
                 </strow>
-                <strow props="hide">
+                <strow props="android">
+            <stentry><xref keyref="isVisibleInPreview"/></stentry>
+            <stentry><ph conkeyref="isVisibleInPreview/shortdesc"/></stentry>
+        </strow>
+        <strow props="hide">
                     <stentry><xref keyref="onContentInspectResult"/></stentry>
                     <stentry><ph conkeyref="onContentInspectResult/shortdesc"/></stentry>
                 </strow>
@@ -1152,11 +1200,71 @@
                     <stentry><xref keyref="onFacePositionChanged"/></stentry>
                     <stentry><ph conkeyref="onFacePositionChanged/shortdesc"/></stentry>
                 </strow>
-                <strow props="apple cpp framework">
+                <strow props="android">
+            <stentry><xref keyref="getFormat"/></stentry>
+            <stentry><ph conkeyref="getFormat/shortdesc"/></stentry>
+        </strow>
+        <strow props="android">
+            <stentry><xref keyref="getHeight"/></stentry>
+            <stentry><ph conkeyref="getHeight/shortdesc"/></stentry>
+        </strow>
+        <strow props="android">
+            <stentry><xref keyref="getId"/></stentry>
+            <stentry><ph conkeyref="getId/shortdesc"/></stentry>
+        </strow>
+        <strow props="android">
+            <stentry><xref keyref="getImageUrl"/></stentry>
+            <stentry><ph conkeyref="getImageUrl/shortdesc"/></stentry>
+        </strow>
+        <strow props="android">
+            <stentry><xref keyref="getOptions"/></stentry>
+            <stentry><ph conkeyref="getOptions/shortdesc"/></stentry>
+        </strow>
+        <strow props="android">
+            <stentry><xref keyref="getPositionInLandscapeMode"/></stentry>
+            <stentry><ph conkeyref="getPositionInLandscapeMode/shortdesc"/></stentry>
+        </strow>
+        <strow props="android">
+            <stentry><xref keyref="getPositionInPortraitMode"/></stentry>
+            <stentry><ph conkeyref="getPositionInPortraitMode/shortdesc"/></stentry>
+        </strow>
+        <strow props="android">
+            <stentry><xref keyref="getType"/></stentry>
+            <stentry><ph conkeyref="getType/shortdesc"/></stentry>
+        </strow>
+        <strow props="android cpp ios mac">
+            <stentry><xref keyref="getVideoEffectBoolParam"/></stentry>
+            <stentry><ph conkeyref="getVideoEffectBoolParam/shortdesc"/></stentry>
+        </strow>
+        <strow props="android cpp ios mac">
+            <stentry><xref keyref="getVideoEffectFloatParam"/></stentry>
+            <stentry><ph conkeyref="getVideoEffectFloatParam/shortdesc"/></stentry>
+        </strow>
+        <strow props="android cpp ios mac">
+            <stentry><xref keyref="getVideoEffectIntParam"/></stentry>
+            <stentry><ph conkeyref="getVideoEffectIntParam/shortdesc"/></stentry>
+        </strow>
+        <strow props="android">
+            <stentry><xref keyref="getWidth"/></stentry>
+            <stentry><ph conkeyref="getWidth/shortdesc"/></stentry>
+        </strow>
+        <strow props="android">
+            <stentry><xref keyref="getzOrder"/></stentry>
+            <stentry><ph conkeyref="getzOrder/shortdesc"/></stentry>
+        </strow>
+        <strow props="apple cpp framework">
                     <stentry><xref keyref="isCameraCenterStageSupported"/></stentry>
                     <stentry><ph conkeyref="isCameraCenterStageSupported/shortdesc"/><ph props="cpp flutter unreal bp unity">(仅适用于 iOS 和 macOS)</ph><ph props="electron">(仅适用于 macOS)</ph><ph props="rn">(仅适用于 iOS)</ph></stentry>
                 </strow>
-                <strow props="apple cpp framework">
+                <strow props="android cpp ios mac">
+            <stentry><xref keyref="createVideoEffectObject"/></stentry>
+            <stentry><ph conkeyref="createVideoEffectObject/shortdesc"/></stentry>
+        </strow>
+        <strow props="android cpp ios mac">
+            <stentry><xref keyref="destroyVideoEffectObject"/></stentry>
+            <stentry><ph conkeyref="destroyVideoEffectObject/shortdesc"/></stentry>
+        </strow>
+        <strow props="apple cpp framework">
                     <stentry><xref keyref="enableCameraCenterStage"/></stentry>
                     <stentry><ph conkeyref="enableCameraCenterStage/shortdesc"/><ph props="cpp flutter unreal bp unity">(仅适用于 iOS 和 macOS)</ph><ph props="electron">(仅适用于 macOS)</ph><ph props="rn">(仅适用于 iOS)</ph></stentry>
                 </strow>
@@ -1164,7 +1272,11 @@
                     <stentry><xref keyref="onSnapshotTaken"/></stentry>
                     <stentry><ph conkeyref="onSnapshotTaken/shortdesc"/></stentry>
                 </strow>
-                <strow props="android cpp apple unity unreal">
+                <strow props="android cpp ios mac">
+            <stentry><xref keyref="addOrUpdateVideoEffect"/></stentry>
+            <stentry><ph conkeyref="addOrUpdateVideoEffect/shortdesc"/></stentry>
+        </strow>
+        <strow props="android cpp apple unity unreal">
                     <stentry><xref keyref="addVideoWatermark1"/></stentry>
                     <stentry><ph conkeyref="addVideoWatermark1/shortdesc"/></stentry>
                 </strow>
@@ -1184,7 +1296,11 @@
                     <stentry><xref keyref="clearVideoWatermarkEx"/></stentry>
                     <stentry><ph conkeyref="clearVideoWatermarkEx/shortdesc"/></stentry>
                 </strow>
-                <strow props="en">
+                <strow props="android cpp ios mac">
+            <stentry><xref keyref="performVideoEffectAction"/></stentry>
+            <stentry><ph conkeyref="performVideoEffectAction/shortdesc"/></stentry>
+        </strow>
+        <strow props="en">
                     <stentry><xref keyref="registerFaceInfoObserver"/></stentry>
                     <stentry><ph conkeyref="registerFaceInfoObserver/shortdesc"/></stentry>
                 </strow>
@@ -1522,7 +1638,11 @@
                     <stentry><xref keyref="setVolumeOfEffect"/></stentry>
                     <stentry><ph conkeyref="setVolumeOfEffect/shortdesc"/></stentry>
                 </strow>
-                <strow props="android cpp apple framework">
+                <strow props="android cpp ios mac">
+            <stentry><xref keyref="playEffectEx"/></stentry>
+            <stentry><ph conkeyref="playEffectEx/shortdesc"/></stentry>
+        </strow>
+        <strow props="android cpp apple framework">
                     <stentry><xref keyref="preloadEffect"/></stentry>
                     <stentry><ph conkeyref="preloadEffect/shortdesc"/></stentry>
                 </strow>
@@ -1554,7 +1674,11 @@
                     <stentry><xref keyref="resumeEffect"/></stentry>
                     <stentry><ph conkeyref="resumeEffect/shortdesc"/></stentry>
                 </strow>
-                <strow props="android cpp apple framework">
+                <strow props="android cpp ios mac">
+            <stentry><xref keyref="preloadEffectEx"/></stentry>
+            <stentry><ph conkeyref="preloadEffectEx/shortdesc"/></stentry>
+        </strow>
+        <strow props="android cpp apple framework">
                     <stentry><xref keyref="resumeAllEffects"/></stentry>
                     <stentry><ph conkeyref="resumeAllEffects/shortdesc"/></stentry>
                 </strow>
@@ -2467,31 +2591,31 @@
                 <stentry><xref keyref="startPlaybackDeviceTest"/></stentry>
                 <stentry><ph conkeyref="startPlaybackDeviceTest/shortdesc"/></stentry>
             </strow>
-            <strow  props="cpp unreal bp unity flutter electron cs android hmos ios">
+            <strow props="cpp unreal bp unity flutter electron cs android hmos ios">
                 <stentry><xref keyref="stopPlaybackDeviceTest"/></stentry>
                 <stentry><ph conkeyref="stopPlaybackDeviceTest/shortdesc"/></stentry>
             </strow>
-            <strow  props="cpp unreal bp unity flutter electron cs android hmos ios">
+            <strow props="cpp unreal bp unity flutter electron cs android hmos ios">
                 <stentry><xref keyref="startRecordingDeviceTest"/></stentry>
                 <stentry><ph conkeyref="startRecordingDeviceTest/shortdesc"/></stentry>
             </strow>
-            <strow  props="cpp unreal bp unity flutter electron cs android hmos ios">
+            <strow props="cpp unreal bp unity flutter electron cs android hmos ios">
                 <stentry><xref keyref="stopRecordingDeviceTest"/></stentry>
                 <stentry><ph conkeyref="stopRecordingDeviceTest/shortdesc"/></stentry>
             </strow>
-            <strow  props="cpp unreal bp unity flutter electron cs">
+            <strow props="cpp unreal bp unity flutter electron cs">
                 <stentry><xref keyref="enumeratePlaybackDevices"/></stentry>
                 <stentry><ph conkeyref="enumeratePlaybackDevices/shortdesc"/><ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
             </strow>
-            <strow  props="cpp unreal bp unity flutter electron cs">
+            <strow props="cpp unreal bp unity flutter electron cs">
                 <stentry><xref keyref="enumerateRecordingDevices"/></stentry>
                 <stentry><ph conkeyref="enumerateRecordingDevices/shortdesc"/><ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
             </strow>
-            <strow  props="cpp unreal bp unity flutter electron cs">
+            <strow props="cpp unreal bp unity flutter electron cs">
                 <stentry><xref keyref="followSystemPlaybackDevice"/></stentry>
                 <stentry><ph conkeyref="followSystemPlaybackDevice/shortdesc"/><ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
             </strow>
-            <strow  props="cpp unreal bp unity flutter electron cs">
+            <strow props="cpp unreal bp unity flutter electron cs">
                 <stentry><xref keyref="followSystemRecordingDevice"/></stentry>
                 <stentry><ph conkeyref="followSystemRecordingDevice/shortdesc"/><ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
             </strow>
@@ -2515,19 +2639,19 @@
                 <stentry><xref keyref="getRecordingDefaultDevice2"/></stentry>
                 <stentry><ph conkeyref="getRecordingDefaultDevice2/shortdesc"/><ph>（仅适用于 macOS）</ph></stentry>
             </strow>
-            <strow  props="cpp unreal bp unity flutter electron cs">
+            <strow props="cpp unreal bp unity flutter electron cs">
                 <stentry><xref keyref="setPlaybackDevice"/></stentry>
                 <stentry><ph conkeyref="setPlaybackDevice/shortdesc"/><ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
             </strow>
-            <strow  props="cpp unreal bp unity flutter electron cs">
+            <strow props="cpp unreal bp unity flutter electron cs">
                 <stentry><xref keyref="getPlaybackDevice"/></stentry>
                 <stentry><ph conkeyref="getPlaybackDevice/shortdesc"/><ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
             </strow>
-            <strow  props="cpp unreal unity flutter electron cs">
+            <strow props="cpp unreal unity flutter electron cs">
                 <stentry><xref keyref="getPlaybackDeviceInfo"/></stentry>
                 <stentry><ph conkeyref="getPlaybackDeviceInfo/shortdesc"/><ph props="cpp unreal unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
             </strow>
-            <strow  props="cpp unity bp">
+            <strow props="cpp unity bp">
                 <stentry><xref keyref="getPlaybackDeviceInfo2"/></stentry>
                 <stentry><ph conkeyref="getPlaybackDeviceInfo2/shortdesc"/>（仅适用于 macOS）</stentry>
             </strow>
@@ -2551,23 +2675,23 @@
                 <stentry><xref keyref="getPlaybackDeviceVolume"/></stentry>
                 <stentry><ph conkeyref="getPlaybackDeviceVolume/shortdesc"/><ph>（仅适用于 Windows）</ph></stentry>
             </strow>
-            <strow  props="cpp unreal bp unity flutter electron cs">
+            <strow props="cpp unreal bp unity flutter electron cs">
                 <stentry><xref keyref="setRecordingDevice"/></stentry>
                 <stentry><ph conkeyref="setRecordingDevice/shortdesc"/><ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
             </strow>
-            <strow  props="cpp unreal bp unity flutter electron cs">
+            <strow props="cpp unreal bp unity flutter electron cs">
                 <stentry><xref keyref="getRecordingDevice"/></stentry>
                 <stentry><ph conkeyref="getRecordingDevice/shortdesc"/><ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
             </strow>
-            <strow  props="cpp unreal unity flutter electron cs">
+            <strow props="cpp unreal unity flutter electron cs">
                 <stentry><xref keyref="getRecordingDeviceInfo"/></stentry>
                 <stentry><ph conkeyref="getRecordingDeviceInfo/shortdesc"/><ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
             </strow>
-            <strow  props="cpp unity bp">
+            <strow props="cpp unity bp">
                 <stentry><xref keyref="getRecordingDeviceInfo2"/></stentry>
                 <stentry><ph conkeyref="getRecordingDeviceInfo2/shortdesc"/>（仅适用于 macOS）</stentry>
             </strow>
-            <strow  props="cpp unreal bp unity flutter electron cs">
+            <strow props="cpp unreal bp unity flutter electron cs">
                 <stentry><xref keyref="setRecordingDeviceVolume"/></stentry>
                 <stentry><ph conkeyref="setRecordingDeviceVolume/shortdesc"/><ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
             </strow>
@@ -2591,11 +2715,11 @@
                 <stentry><xref keyref="getRecordingDeviceMute"/></stentry>
                 <stentry><ph conkeyref="getRecordingDeviceMute/shortdesc"/><ph>（仅适用于 Windows）</ph></stentry>
             </strow>
-            <strow  props="cpp unreal bp unity flutter electron cs">
+            <strow props="cpp unreal bp unity flutter electron cs">
                 <stentry><xref keyref="startAudioDeviceLoopbackTest"/></stentry>
                 <stentry><ph conkeyref="startAudioDeviceLoopbackTest/shortdesc"/><ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
             </strow>
-            <strow  props="cpp unreal bp unity flutter electron cs">
+            <strow props="cpp unreal bp unity flutter electron cs">
                 <stentry><xref keyref="stopAudioDeviceLoopbackTest"/></stentry>
                 <stentry><ph conkeyref="stopAudioDeviceLoopbackTest/shortdesc"/><ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
             </strow>
@@ -2647,11 +2771,11 @@
                 <stentry><xref keyref="release_IAudioDeviceCollection"/></stentry>
                 <stentry><ph conkeyref="release_IAudioDeviceCollection/shortdesc"/><ph>（仅适用于 Windows 和 macOS）</ph></stentry>
             </strow>
-            <strow  props="cpp unreal bp unity flutter electron cs">
+            <strow props="cpp unreal bp unity flutter electron cs">
                 <stentry><xref keyref="onAudioDeviceStateChanged"/></stentry>
                 <stentry><ph conkeyref="onAudioDeviceStateChanged/shortdesc"/><ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
             </strow>
-            <strow  props="cpp unreal bp unity flutter electron cs">
+            <strow props="cpp unreal bp unity flutter electron cs">
                 <stentry><xref keyref="onAudioDeviceVolumeChanged"/></stentry>
                 <stentry><ph conkeyref="onAudioDeviceVolumeChanged/shortdesc"/><ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph></stentry>
             </strow>
@@ -2724,7 +2848,11 @@
                     <stentry>方法/回调</stentry>
                     <stentry>描述</stentry>
                 </sthead>
-                <strow props="android cpp apple framework">
+                <strow props="android cpp ios mac">
+            <stentry><xref keyref="setSimulcastConfig"/></stentry>
+            <stentry><ph conkeyref="setSimulcastConfig/shortdesc"/></stentry>
+        </strow>
+        <strow props="android cpp apple framework">
                     <stentry><xref keyref="startEchoTest3"/></stentry>
                     <stentry><ph conkeyref="startEchoTest3/shortdesc"/></stentry>
                 </strow>
@@ -2792,7 +2920,15 @@
                     <stentry><xref keyref="rate"/></stentry>
                     <stentry><ph conkeyref="rate/shortdesc"/></stentry>
                 </strow>
-                <strow props="android cpp apple framework">
+                <strow props="android cpp ios mac">
+            <stentry><xref keyref="addVideoWatermark3"/></stentry>
+            <stentry><ph conkeyref="addVideoWatermark3/shortdesc"/></stentry>
+        </strow>
+        <strow props="android cpp ios mac">
+            <stentry><xref keyref="addVideoWatermarkEx1"/></stentry>
+            <stentry><ph conkeyref="addVideoWatermarkEx1/shortdesc"/></stentry>
+        </strow>
+        <strow props="android cpp apple framework">
                     <stentry><xref keyref="complain"/></stentry>
                     <stentry><ph conkeyref="complain/shortdesc"/></stentry>
                 </strow>
@@ -2852,7 +2988,11 @@
                     <stentry><xref keyref="registerPacketObserver"/></stentry>
                     <stentry><ph conkeyref="registerPacketObserver/shortdesc"/></stentry>
                 </strow>
-                <strow props="android cpp apple framework">
+                <strow props="android cpp ios mac">
+            <stentry><xref keyref="removeVideoWatermark"/></stentry>
+            <stentry><ph conkeyref="removeVideoWatermark/shortdesc"/></stentry>
+        </strow>
+        <strow props="android cpp apple framework">
                     <stentry><xref keyref="sendCustomReportMessage"/></stentry>
                     <stentry><ph conkeyref="sendCustomReportMessage/shortdesc"/></stentry>
                 </strow>
@@ -2888,11 +3028,19 @@
                     <stentry><xref keyref="onProxyConnected"/></stentry>
                     <stentry><ph conkeyref="onProxyConnected/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="android cpp ios mac">
+            <stentry><xref keyref="onMultipathStats"/></stentry>
+            <stentry><ph conkeyref="onMultipathStats/shortdesc"/></stentry>
+        </strow>
+        <strow>
                     <stentry><xref keyref="onNetworkQuality"/></stentry>
                     <stentry><ph conkeyref="onNetworkQuality/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="android cpp ios mac">
+            <stentry><xref keyref="onRenewTokenResult"/></stentry>
+            <stentry><ph conkeyref="onRenewTokenResult/shortdesc"/></stentry>
+        </strow>
+        <strow>
                     <stentry><xref keyref="onRtcStats"/></stentry>
                     <stentry><ph conkeyref="onRtcStats/shortdesc"/></stentry>
                 </strow>
