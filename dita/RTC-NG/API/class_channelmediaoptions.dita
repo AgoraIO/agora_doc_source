@@ -37,6 +37,7 @@
   public Boolean isInteractiveAudience;
   public Integer customVideoTrackId;
   public Boolean isAudioFilterable;
+  public String customUserInfo;
             }</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">export class ChannelMediaOptions {
 
@@ -85,7 +86,7 @@
   public audioDelayMs?:number;
 
   public mediaPlayerAudioDelayMs?:number;
-  
+
   public token?:string;
 
   public enableBuiltInMediaEncryption?:boolean;
@@ -119,7 +120,6 @@
 #endif
 @property(assign, nonatomic) BOOL publishCustomAudioTrack;
 @property(assign, nonatomic) NSInteger publishCustomAudioTrackId;
-
 @property(assign, nonatomic) BOOL publishCustomVideoTrack;
 @property(assign, nonatomic) BOOL publishEncodedVideoTrack;
 @property(assign, nonatomic) BOOL publishMediaPlayerAudioTrack;
@@ -136,13 +136,11 @@
 @property(assign, nonatomic) AgoraChannelProfile channelProfile;
 @property(copy, nonatomic) NSString * _Nullable token;
 @property(assign, nonatomic) BOOL enableBuiltInMediaEncryption;
-
 @property(assign, nonatomic) BOOL publishRhythmPlayerTrack;
 @property(assign, nonatomic) BOOL isInteractiveAudience;
-
 @property(assign, nonatomic) NSInteger customVideoTrackId;
-
 @property(assign, nonatomic) BOOL isAudioFilterable;
+@property(copy, nonatomic) NSString * _Nullable customUserInfo;
 
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct ChannelMediaOptions {
@@ -182,10 +180,9 @@
   Optional&lt;bool&gt; enableBuiltInMediaEncryption;
   Optional&lt;bool&gt; publishRhythmPlayerTrack;
   Optional&lt;bool&gt; isInteractiveAudience;
-
   Optional&lt;video_track_id_t&gt; customVideoTrackId;
-
   Optional&lt;bool&gt; isAudioFilterable;
+  Optional&lt;const char*> customUserInfo;
 
   ChannelMediaOptions() {}
   ~ChannelMediaOptions() {}
@@ -586,7 +583,8 @@ class ChannelMediaOptions {
       this.isInteractiveAudience,
       this.customVideoTrackId,
       this.isAudioFilterable,
-      this.parameters});
+      this.parameters,
+      this.customUserInfo});
 
   @JsonKey(name: &#x27;publishCameraTrack&#x27;)
   final bool? publishCameraTrack;
@@ -696,6 +694,9 @@ class ChannelMediaOptions {
   @JsonKey(name: &#x27;parameters&#x27;)
   final String? parameters;
 
+  @JsonKey(name: 'customUserInfo')
+  final String? customUserInfo;
+
   factory ChannelMediaOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$ChannelMediaOptionsFromJson(json);
 
@@ -737,63 +738,63 @@ class ChannelMediaOptions {
       public Boolean isAudioFilterable;
                 }</codeblock>
                 <codeblock props="hmos" outputclass="language-arkts">export class ChannelMediaOptions {
-  
+
   public publishCameraTrack?:boolean;
-  
+
   public publishSecondaryCameraTrack?:boolean;
-  
+
   public publishMicrophoneTrack?:boolean;
-  
+
   public publishScreenCaptureVideo?:boolean;
-  
+
   public publishScreenCaptureAudio?:boolean;
-  
+
   public publishCustomAudioTrack?:boolean;
-  
+
   public publishCustomAudioTrackId?:number;
-  
+
   public publishCustomVideoTrack?:boolean;
-  
+
   public publishEncodedVideoTrack?:boolean;
-  
+
   public publishMediaPlayerAudioTrack?:boolean;
-  
+
   public publishMediaPlayerVideoTrack?:boolean;
-  
+
   public publishTranscodedVideoTrack?:boolean;
-  
+
   public publishMixedAudioTrack?:boolean;
-  
+
   public autoSubscribeAudio?:boolean;
-  
+
   public autoSubscribeVideo?:boolean;
-  
+
   public enableAudioRecordingOrPlayout?:boolean;
-  
+
   public publishMediaPlayerId?:number;
-  
+
   public clientRoleType?:number;
-  
+
   public audienceLatencyLevel?:number;
-  
+
   public defaultVideoStreamType?:number;
-  
+
   public channelProfile?:number;
-  
+
   public audioDelayMs?:number;
-  
+
   public mediaPlayerAudioDelayMs?:number;
-      
+
   public enableBuiltInMediaEncryption?:boolean;
-  
+
   public publishRhythmPlayerTrack?:boolean;
-  
+
   public isInteractiveAudience?:boolean;
-  
+
   public customVideoTrackId?:number;
-  
+
   public isAudioFilterable?:boolean;
-  
+
   public startPreview?:boolean;
   public constructor() {
   }
@@ -1765,6 +1766,15 @@ public:
                     <li><codeph><ph keyref="false"/></codeph>：不参与音强选流。</li>
                     </ul>
                     <note type="attention">如需启用该功能，请<xref keyref="mailto-link"/>。</note></pd>
+            </plentry>
+            <plentry props="native flutter">
+                <pt>customUserInfo</pt>
+                <pd>设置在频道内广播的自定义信息。当你加入频道后，SDK 会自动向频道内的其他用户广播该信息，其他用户可通过 <xref keyref="onUserInfoUpdated"/> 回调获取该信息。
+
+                    <p>信息长度限制：<ph props="cpp flutter">具体限制见 <xref keyref="MAX_CUSTOM_USER_INFO_LENGTH_TYPE"/>。</ph><ph props="android apple flutter">不得超过 1024 字节，如果超出该限制，SDK 会仅保留前 1023 字节的信息内容。</ph></p>
+
+                    <p>如需更新广播的信息内容，你可以调用 <xref keyref="updateChannelMediaOptions"/> 方法，通过 <codeph>options</codeph> 参数设置新的信息。如需停止广播信息，你需要先退出当前频道，然后在重新加入频道时不设置该参数。</p>
+                </pd>
             </plentry>
             </parml> </section>
     </refbody>
