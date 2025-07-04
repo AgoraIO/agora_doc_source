@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setdirectcdnstreamingvideoconfiguration">
     <title><ph keyref="setDirectCdnStreamingVideoConfiguration"/></title>
@@ -14,12 +14,12 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setDirectCdnStreamingVideoConfiguration(VideoEncoderConfiguration config);</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setDirectCdnStreamingVideoConfiguration:(AgoraVideoEncoderConfiguration * _Nonnull)config;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual
             int setDirectCdnStreamingVideoConfiguration(const VideoEncoderConfiguration&amp; config)
             = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	int SetDirectCdnStreamingVideoConfiguration(const FVideoEncoderConfiguration&amp; config);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setDirectCdnStreamingVideoConfiguration(
     config: VideoEncoderConfiguration
@@ -28,12 +28,20 @@
             <codeblock props="rn" outputclass="language-typescript">abstract setDirectCdnStreamingVideoConfiguration(
     config: VideoEncoderConfiguration
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setDirectCdnStreamingVideoConfiguration(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setDirectCdnStreamingVideoConfiguration(
       VideoEncoderConfiguration config);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
+            <dl outputclass="deprecated" props="native">
+                <dlentry outputclass="deprecated">
+                    <dt>Deprecated:</dt>
+                    <dd props="cpp">This API is deprecated since v4.6.0.</dd>
+                    <dd props="apple">This method is deprecated since v4.6.0. Please use alternative solutions.</dd>
+                    <dd props="android">This method is deprecated since v4.6.0.</dd>
+                </dlentry>
+                </dl>
             <p><ph>This method only affects video streams captured by cameras or screens, or from custom video capture sources. </ph><ph>That is, when you set <parmname>publishCameraTrack</parmname> or <parmname>publishCustomVideoTrack</parmname> in <xref keyref="DirectCdnStreamingMediaOptions"/> as <codeph><ph keyref="true"/></codeph> to capture videos, you can call this method to set the video profiles.</ph></p>
             <p>If your local camera does not support the video resolution you set,the SDK automatically adjusts the video resolution to a value that is closest to your settings for capture, encoding or streaming, with the same aspect ratio as the resolution you set. You can get the actual resolution of the video streams through the <xref keyref="onDirectCdnStreamingStats"/> callback.</p>
         </section>
@@ -48,7 +56,7 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-            <ul props="native unreal bp rn unity cs electron">
+            <ul props="bp cs electron native rn unity unreal">
                 <li>0: Success.</li>
                 <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul>

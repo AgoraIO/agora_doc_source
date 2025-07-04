@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_createvideoeffectobject">
+    <title><ph keyref="createVideoEffectObject"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Creates a video effect object.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="createVideoEffectObject"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract IVideoEffectObject createVideoEffectObject(String bundlePath, Constants.MediaSourceType sourceType);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (id&amp;lt;AgoraVideoEffectObject&amp;gt; _Nullable)createVideoEffectObjectWithBundlePath:(NSString * _Nonnull)bundlePath sourceType:(AgoraMediaSourceType)sourceType NS_SWIFT_NAME(createVideoEffectObject(bundlePath:sourceType:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual agora_refptr&amp;lt;IVideoEffectObject&amp;gt; createVideoEffectObject(const char* bundlePath, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since:</dt>
+                <dd props="native">Available since v4.6.0.</dd>
+                </dlentry>
+            </dl>
+            <p>Creates an <codeph>IVideoEffectObject</codeph> video effect object and returns its pointer.</p>
+            <note type="attention" props="android">You must call the <codeph>enableVideo</codeph> method before calling this method. This method applies to Android 4.4 and later.</note>
+            </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>Parameters</title>
+            <parml>
+            <plentry props="native">
+                <pt props="android cpp">bundlePath</pt>
+                <pt props="apple">bundlePath</pt>
+                <pd props="android">The path to the video effect resource package.</pd>
+                <pd props="apple cpp">The path to the video effect bundle.</pd>
+            </plentry>
+            <plentry props="native">
+                <pt props="android">sourceType</pt>
+                <pt props="apple">sourceType</pt>
+                <pt props="cpp">type</pt>
+                <pd props="android">The media source type, such as <codeph>PRIMARY_CAMERA_SOURCE</codeph>. See <codeph>MediaSourceType</codeph>.</pd>
+                <pd props="apple">The media source type, such as <codeph>AgoraMediaSourceTypePrimaryCamera</codeph>. See <codeph>AgoraMediaSourceType</codeph>.</pd>
+                <pd props="cpp">The media source type. See <codeph>MEDIA_SOURCE_TYPE</codeph>.</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+        <ul props="bp cs electron rn unity unreal">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+                </ul>
+        <p props="cpp"><ul>
+                        <li>The <codeph>IVideoEffectObject</codeph> object, if the method call succeeds.</li>
+                        <li>An empty pointer, if the method call fails.</li>
+                        </ul>
+                    </p>
+        <p props="apple"><ul>
+                        <li>The <codeph>AgoraVideoEffectObject</codeph> object, if the method call succeeds.</li>
+                        <li>An empty pointer, if the method call fails.</li>
+                        </ul>
+                    </p>
+        <p props="android"><ul>
+                        <li>The <codeph>IVideoEffectObject</codeph> object, if the method call succeeds.</li>
+                        <li><codeph>null</codeph>, if the method call fails.</li>
+                        </ul>
+                    </p>
+    </section>
+        </refbody>
+</reference>
