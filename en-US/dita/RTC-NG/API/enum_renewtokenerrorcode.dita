@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_renewtokenerrorcode">
+    <title><ph keyref="RENEW_TOKEN_ERROR_CODE"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Represents the error codes returned after calling <codeph>renewToken</codeph>.</ph></shortdesc>
+    <refbody>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+                <dlentry props="native">
+                    <dt>Since:</dt>
+                    <dd>Available since v4.6.0.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters">
+            <title>Enumerator</title>
+            <parml>
+            <plentry props="native">
+                <pt><ph keyref="RENEW_TOKEN_SUCCESS"/></pt>
+                <pd props="native">(0): Token updated successfully.</pd>
+            </plentry>
+        <plentry props="native">
+                <pt><ph keyref="RENEW_TOKEN_FAILURE"/></pt>
+                <pd props="cpp">(1): Token update failed. You are advised to generate a new token and call <codeph>renewToken</codeph> again.</pd>
+            <pd props="android apple">(1): Token update failed. You are advised to generate a new token and retry <codeph>renewToken</codeph>.</pd>
+            </plentry>
+        <plentry props="android cpp">
+                <pt><ph keyref="RENEW_TOKEN_TOKEN_EXPIRED"/></pt>
+                <pd props="cpp">(2): Token update failed because the provided token has expired. You are advised to generate a new token with a longer expiration time and call <codeph>renewToken</codeph> again.</pd>
+            <pd props="android">(2): Token update failed because the provided token has expired. You are advised to generate a new token with a longer expiration time and retry <codeph>renewToken</codeph>.</pd>
+            </plentry>
+        <plentry props="native">
+                <pt><ph keyref="RENEW_TOKEN_INVALID_TOKEN"/></pt>
+                <pd props="cpp">(3): Token update failed because the provided token is invalid. You are advised to check the token generation process, generate a new token, and call <codeph>renewToken</codeph> again.</pd>
+            <pd props="android apple">(3): Token update failed because the provided token is invalid. You are advised to check the token generation process, generate a new token, and retry <codeph>renewToken</codeph>.</pd>
+            </plentry>
+        <plentry props="native">
+                <pt><ph keyref="RENEW_TOKEN_INVALID_CHANNEL_NAME"/></pt>
+                <pd props="cpp">(4): Token update failed because the channel name embedded in the token does not match the current channel. You are advised to check the channel name, generate a new token, and call <codeph>renewToken</codeph> again.</pd>
+            <pd props="android apple">(4): Token update failed because the channel name embedded in the token does not match the current channel. You are advised to check the channel name, generate a new token, and retry <codeph>renewToken</codeph>.</pd>
+            </plentry>
+        <plentry props="native">
+                <pt><ph keyref="RENEW_TOKEN_INCONSISTENT_APPID"/></pt>
+                <pd props="cpp">(5): Token update failed because the App ID embedded in the token does not match the current App ID. You are advised to check the App ID, generate a new token, and call <codeph>renewToken</codeph> again.</pd>
+            <pd props="android apple">(5): Token update failed because the App ID embedded in the token does not match the current App ID. You are advised to check the App ID, generate a new token, and retry <codeph>renewToken</codeph>.</pd>
+            </plentry>
+        <plentry props="native">
+                <pt><ph keyref="RENEW_TOKEN_CANCELED_BY_NEW_REQUEST"/></pt>
+                <pd props="apple cpp">(6): Token update request was canceled due to a new request being initiated.</pd>
+            <pd props="android">(6): Token update was canceled because a new request was initiated, which canceled the previous one.</pd>
+            </plentry>
+        </parml>
+        </section></refbody>
+</reference>
