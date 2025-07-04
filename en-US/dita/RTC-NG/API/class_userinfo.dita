@@ -59,24 +59,25 @@ public:
 	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class UserInfo {
-  
+
   uid?: number;
-  
+
   userAccount?: string;
 }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class UserInfo {
-  
+
   uid?: number;
-  
+
   userAccount?: string;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class UserInfo {
-  const UserInfo({this.uid, this.userAccount});
-
+  const UserInfo({this.uid, this.userAccount, this.customUserInfo});
   @JsonKey(name: 'uid')
   final int? uid;
   @JsonKey(name: 'userAccount')
   final String? userAccount;
+  @JsonKey(name: 'customUserInfo')
+  final String? customUserInfo;
   factory UserInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$UserInfoFromJson(json);
   Map&lt;String, dynamic&gt; toJson() =&gt; _$UserInfoToJson(this);
@@ -93,6 +94,10 @@ public:
             <plentry>
                 <pt>userAccount</pt>
                 <pd>User account. <ph props="cpp unreal rn unity electron flutter cs">The maximum data length is <xref keyref="MAX_USER_ACCOUNT_LENGTH_TYPE" />.</ph></pd>
+            </plentry>
+            <plentry>
+                <pt>customUserInfo</pt>
+                <pd>Information to be broadcast in the channel. The maximum data length is 1024 bytes. If the data length exceeds this limit, the SDK only preserves the first 1023 bytes.</pd>
             </plentry>
             </parml> </section>
     </refbody>

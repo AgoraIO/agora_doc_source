@@ -85,7 +85,7 @@
   public audioDelayMs?:number;
 
   public mediaPlayerAudioDelayMs?:number;
-  
+
   public token?:string;
 
   public enableBuiltInMediaEncryption?:boolean;
@@ -586,7 +586,8 @@ class ChannelMediaOptions {
       this.isInteractiveAudience,
       this.customVideoTrackId,
       this.isAudioFilterable,
-      this.parameters});
+      this.parameters,
+      this.customUserInfo});
 
   @JsonKey(name: &#x27;publishCameraTrack&#x27;)
   final bool? publishCameraTrack;
@@ -696,6 +697,9 @@ class ChannelMediaOptions {
   @JsonKey(name: &#x27;parameters&#x27;)
   final String? parameters;
 
+  @JsonKey(name: &#x27;customUserInfo&#x27;)
+  final String? customUserInfo;
+
   factory ChannelMediaOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$ChannelMediaOptionsFromJson(json);
 
@@ -737,63 +741,63 @@ class ChannelMediaOptions {
       public Boolean isAudioFilterable;
                 }</codeblock>
                 <codeblock props="hmos" outputclass="language-arkts">export class ChannelMediaOptions {
-  
+
   public publishCameraTrack?:boolean;
-  
+
   public publishSecondaryCameraTrack?:boolean;
-  
+
   public publishMicrophoneTrack?:boolean;
-  
+
   public publishScreenCaptureVideo?:boolean;
-  
+
   public publishScreenCaptureAudio?:boolean;
-  
+
   public publishCustomAudioTrack?:boolean;
-  
+
   public publishCustomAudioTrackId?:number;
-  
+
   public publishCustomVideoTrack?:boolean;
-  
+
   public publishEncodedVideoTrack?:boolean;
-  
+
   public publishMediaPlayerAudioTrack?:boolean;
-  
+
   public publishMediaPlayerVideoTrack?:boolean;
-  
+
   public publishTranscodedVideoTrack?:boolean;
-  
+
   public publishMixedAudioTrack?:boolean;
-  
+
   public autoSubscribeAudio?:boolean;
-  
+
   public autoSubscribeVideo?:boolean;
-  
+
   public enableAudioRecordingOrPlayout?:boolean;
-  
+
   public publishMediaPlayerId?:number;
-  
+
   public clientRoleType?:number;
-  
+
   public audienceLatencyLevel?:number;
-  
+
   public defaultVideoStreamType?:number;
-  
+
   public channelProfile?:number;
-  
+
   public audioDelayMs?:number;
-  
+
   public mediaPlayerAudioDelayMs?:number;
-      
+
   public enableBuiltInMediaEncryption?:boolean;
-  
+
   public publishRhythmPlayerTrack?:boolean;
-  
+
   public isInteractiveAudience?:boolean;
-  
+
   public customVideoTrackId?:number;
-  
+
   public isAudioFilterable?:boolean;
-  
+
   public startPreview?:boolean;
   public constructor() {
   }
@@ -886,7 +890,8 @@ class ChannelMediaOptions {
       Optional&lt;bool&gt; isAudioFilterable;
 
       ChannelMediaOptions() {}
-      ~ChannelMediaOptions() {}</codeblock>
+      ~ChannelMediaOptions() {}
+            }</codeblock>
              <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FChannelMediaOptions
 {
@@ -1722,6 +1727,15 @@ public:
                     <li><codeph><ph keyref="false"/></codeph>: The audio stream is not filtered.</li>
                     </ul>
                     <note type="attention">If you need to enable this function, contact <xref keyref="mailto-link"/>.</note></pd>
+            </plentry>
+            <plentry props="flutter">
+                <pt>customUserInfo</pt>
+                <pd>Sets custom information to broadcast in the channel. After joining a channel, the SDK automatically broadcasts this information to other users, who can receive it through the <xref keyref="onUserInfoUpdated"/> callback.
+
+                    <p>Length limit: The maximum length is 1024 bytes. If the length exceeds this limit, the SDK only preserves the first 1023 bytes.</p>
+
+                    <p>To modify the broadcast information, call <xref keyref="updateChannelMediaOptions"/> and set new information through the <codeph>options</codeph> parameter. To stop broadcasting, leave the current channel and rejoin without setting this parameter.</p>
+                </pd>
             </plentry>
             </parml> </section>
     </refbody>
