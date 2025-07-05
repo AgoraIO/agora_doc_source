@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_videolayoutinfo">
+    <title><ph keyref="VideoLayoutInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Detailed layout information of the mixed video stream.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public static class VideoLayoutInfo {
+    public int width;
+    public int height;
+    public int layoutCount;
+    public VideoLayout[] layoutList;
+  }</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoLayoutInfo: NSObject
+@property (assign, nonatomic) NSUInteger width NS_SWIFT_NAME(width);
+@property (assign, nonatomic) NSUInteger height NS_SWIFT_NAME(height);
+@property (assign, nonatomic) NSUInteger layoutCount NS_SWIFT_NAME(layoutCount);
+@property(copy, nonatomic) NSArray&lt;AgoraVideoLayout *> *_Nullable layoutList NS_SWIFT_NAME(layoutList);
+@end</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp"/>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="android apple cpp">
+                <dt>Since</dt>
+                <dd>v4.3.0</dd>
+            </dlentry>
+            </dl>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+                <plentry>
+                    <pt>width</pt>
+                    <pd>Width of the mixed video stream (px).</pd>
+                </plentry>
+                <plentry>
+                    <pt>height</pt>
+                    <pd>Height of the mixed video stream (px).</pd>
+                </plentry>
+                <plentry>
+                    <pt>layoutCount</pt>
+                    <pd>Number of layout entries in the mixed video stream.</pd>
+                </plentry>
+                <plentry>
+                    <pt>layoutList</pt>
+                    <pd>Detailed layout information for a particular mixed video stream. See <xref keyref="VideoLayout"/>.</pd>
+                </plentry>
+            </parml> 
+        </section>
+    </refbody>
+</reference>
