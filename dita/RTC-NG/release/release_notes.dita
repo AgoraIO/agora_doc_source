@@ -7,7 +7,7 @@
         <note type="attention" props="native">
              <ul>
              <li>自 4.5.0 起，RTC SDK 和 RTM SDK (2.2.0 及以上版本) 都包含 <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> 库。如果你通过 CDN 手动集成 RTC SDK 且同时集成了 RTM SDK，为避免冲突，请手动删除版本较低的 <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> 库。</li>
-             <li>4.5.2 RTC SDK <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> 库版本为 TODO。<ph props="apple">你可以在 <codeph>Info.plist</codeph> 中查看库的版本信息。</ph><ph props="cpp">你可以通过查看 <codeph>libaosl.dll</codeph> 文件的属性来得知库的版本信息。</ph></li></ul>
+             <li>4.6.0 RTC SDK <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> 库版本为 TODO。<ph props="apple">你可以在 <codeph>Info.plist</codeph> 中查看库的版本信息。</ph><ph props="cpp">你可以通过查看 <codeph>libaosl.dll</codeph> 文件的属性来得知库的版本信息。</ph></li></ul>
              </note>
     </body>
     <topic id="level2">
@@ -40,6 +40,22 @@
                             <li><codeph><xref keyref="onRhythmPlayerStateChanged"/></codeph></li>
                         </ul>
                     </li>
+                    <li props="en"><ph><b>旁路推流接口废弃</b></ph>
+                        <p>该版本废弃旁路推流功能的相关接口，请改用服务端旁路推流功能。</p>
+                        <ul>
+                            <li><codeph><xref keyref="startRtmpStreamWithoutTranscoding"/></codeph></li>
+                            <li><codeph><xref keyref="startRtmpStreamWithoutTranscodingEx"/></codeph></li>
+                            <li><codeph><xref keyref="startRtmpStreamWithTranscoding"/></codeph></li>
+                            <li><codeph><xref keyref="startRtmpStreamWithTranscodingEx"/></codeph></li>
+                            <li><codeph><xref keyref="stopRtmpStream"/></codeph></li>
+                            <li><codeph><xref keyref="stopRtmpStreamEx"/></codeph></li>
+                            <li><codeph><xref keyref="updateRtmpTranscoding"/></codeph></li>
+                            <li><codeph><xref keyref="updateRtmpTranscodingEx"/></codeph></li>
+                            <li><codeph><xref keyref="onRtmpStreamingEvent"/></codeph></li>
+                            <li><codeph><xref keyref="onRtmpStreamingStateChanged"/></codeph></li>
+                            <li><codeph><xref keyref="onTranscodingUpdated"/></codeph></li>
+                        </ul>
+                    </li>
                     <li><ph><b>水印接口废弃</b></ph>
                         <p>该版本废弃水印功能的相关接口，推荐使用该版本新增的水印接口。</p>
                         <ul>
@@ -56,7 +72,7 @@
                             <li props="apple"><codeph><xref keyref="RemoteVideoStats"/> 中删除 receivedFrameRate</codeph></li>
                         </ul>
                     </li>
-                    <li><ph><b>美妆功能实现更变</b></ph>
+                    <li props="cn"><ph><b>美妆功能实现更变</b></ph>
                         <p>受美颜重构的影响，自 v4.6.0 起，不再支持调用 <codeph><xref keyref="setExtensionProperty"/></codeph> 启用美妆功能，改用 <codeph>STYLE_MAKEUP</codeph> 节点实现。</p>
                     </li>
                 </ol>
@@ -82,8 +98,8 @@
                     <li><ph><b>视频质量评分</b></ph>
                         <p>该版本在 <codeph><xref keyref="RemoteVideoStats"/></codeph> 中新增 <codeph>mosValue</codeph> 成员，报告声网实时视频 MOS（平均主观意见分）评估系统对接收到的远端视频流的质量评分。评分共有 5 个档次，5 分表示视频画质优秀，画面清晰无噪点，1 分表示视频画质极差，画面严重模糊。你可以通过该参数实时观测远端视频流的主观画质表现，便于动态调整视频参数、优化用户体验，或用于质量监控和告警等场景。如需启用该功能，请<xref keyref="ticket-link"/>。</p>
                     </li>
-                    <li><ph><b>视频编解码自适应</b></ph>
-                        <p>//TODO</p>
+                    <li><ph><b>支持添加多个水印</b></ph>
+                        <p>该版本废弃了 <codeph><xref keyref="addVideoWatermark2"/></codeph> 和 <codeph><xref keyref="addVideoWatermarkEx"/></codeph> 方法，新增 <codeph><xref keyref="addVideoWatermark3"/></codeph> 和 <codeph><xref keyref="addVideoWatermarkEx1"/></codeph> 方法，支持通过水印 ID 来给视频添加多个水印，并可对水印进行排序。如果你需要移除指定水印，可调用 <codeph><xref keyref="removeVideoWatermark"/></codeph> 方法。</p>
                     </li>
                     <li><ph><b>异步销毁引擎</b></ph>
                         <p props="cpp">自该版本起，<codeph><xref keyref="release"/></codeph> 方法新增 <codeph>callback</codeph> 参数，支持以同步或异步方式销毁引擎。异步销毁引擎时，SDK 会触发 <codeph><xref keyref="RtcEngineReleaseCallback"/></codeph> 回调。</p>
@@ -120,14 +136,8 @@
                             </ul>
                         </p>
                     </li>
-                    <li><ph><b>水印功能优化</b></ph>
-                        <p></p>
-                    </li>
                     <li><ph><b>视频质量提升</b></ph>
                         <p>该版本对视频算法进行了深度优化，通过实现 PVC（Perception Video Coding） 零拷贝、改进 VPR（Video Playback Rendering）平滑渲染、提升首帧出图速度等方式综合提升了视频通话体验。</p>
-                    </li>
-                    <li><ph><b>视频场景优化</b></ph>
-                        <p></p>
                     </li>
                     <li><ph><b>其他改进</b></ph>
                         <ul>
