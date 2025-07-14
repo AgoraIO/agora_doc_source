@@ -1,23 +1,122 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="release_notes">
-    <title>v4.5.2</title>
+    <title>v4.6.0</title>
     <body>
-        <p>v4.2.2 was released on April xx, 2025.</p>
+        <p>v4.6.0 was released on July xx, 2025.</p>
         <note type="attention" props="native">
              <ul>
-             <li>Starting from version 4.5.0, both RTC SDK and Signaling (version 2.2.0 and above) include the <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> library. If you manually integrate Video SDK via CDN and also use Signaling SDK, delete the earlier version of the <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> to avoid conflicts.</li>
-             <li>4.5.2 RTC SDK <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> library version is 1.2.13. <ph props="apple">You can check the version information of the library in <codeph>Info.plist</codeph>. </ph><ph props="cpp">You can find out the version information of the library by checking the properties of the <codeph>libaosl.dll</codeph> file.</ph></li></ul>
+             <li>Starting from v4.5.0, both the RTC SDK and the RTM SDK (v2.2.0 and later) include the <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> library. If you manually integrate the RTC SDK via CDN while also using the RTM SDK, you must manually delete the older version of the <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> library to avoid conflicts.</li>
+             <li>The version of the <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> library in the v4.6.0 RTC SDK is TODO. <ph props="apple">You can find the library version information in <codeph>Info.plist</codeph>.</ph><ph props="cpp">You can find the library version information by checking the properties of the <codeph>libaosl.dll</codeph> file.</ph></li></ul>
              </note>
     </body>
     <topic id="level2">
         <title/>
-        <topic id="compatibility" props="android cpp">
+        <topic id="compatibility">
             <title>Compatibility changes</title>
             <body>
-                <p>This release has optimized the implementation of some functions. To ensure the normal operation of the project, you need to update the code in the app after upgrading to this release.</p>
+                <p>This version enhances the implementation of certain features, involving SDK behavior changes, API deprecations, and deletions. To ensure your app functions correctly, you need to update your code after upgrading to this version.</p>
+                <p>For details on deprecated and deleted APIs in each version, see the <xref href="https://doc.shengwang.cn/api-ref/rtc/android/API/rtc_api_sunset" props="android">API Sunset Notice</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/android/API/rtc_api_sunset" props="cpp">API Sunset Notice</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/ios/API/rtc_api_sunset" props="ios">API Sunset Notice</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/macos/API/rtc_api_sunset" props="mac">API Sunset Notice</xref>.</p>
                 <ol>
-                    <li><ph><b>Member parameters changed to methods</b></ph><p>To optimize the API design, the SDK encapsulates all member parameters in the <xref keyref="RtePlayerInfo"/>structure into the <xref keyref="PlayerInfo"/> class. If use the member parameters in the <xref keyref="RtePlayerInfo"/> structure, please update them to the corresponding methods in the <xref keyref="PlayerInfo"/> class.</p>
+                    <li><ph><b>Deprecation of direct CDN streaming APIs</b></ph>
+                        <p>This version deprecates the APIs related to direct CDN streaming, which will be removed in a future release. We recommend using <xref keyref="guide-cdn-streaming">Media Push</xref> instead.</p>
+                        <ul>
+                            <li><codeph><xref keyref="setDirectCdnStreamingAudioConfiguration"/></codeph></li>
+                            <li><codeph><xref keyref="setDirectCdnStreamingVideoConfiguration"/></codeph></li>
+                            <li><codeph><xref keyref="startDirectCdnStreaming"/></codeph></li>
+                            <li><codeph><xref keyref="stopDirectCdnStreaming"/></codeph></li>
+                            <li><codeph><xref keyref="updateDirectCdnStreamingMediaOptions"/></codeph></li>
+                            <li><codeph><xref keyref="DirectCdnStreamingMediaOptions"/></codeph></li>
+                            <li><codeph><xref keyref="DirectCdnStreamingStats"/></codeph></li>
+                            <li><codeph><xref keyref="DirectCdnStreamingState"/></codeph></li>
+                            <li><codeph><xref keyref="DirectCdnStreamingReason"/></codeph></li>
+                        </ul>
+                    </li>
+                    <li><ph><b>Deprecation of virtual metronome APIs</b></ph>
+                        <p>This version deprecates the APIs for the virtual metronome feature, which will be removed in a future release.</p>
+                        <ul>
+                            <li><codeph><xref keyref="startRhythmPlayer"/></codeph></li>
+                            <li><codeph><xref keyref="configRhythmPlayer"/></codeph></li>
+                            <li><codeph><xref keyref="onRhythmPlayerStateChanged"/></codeph></li>
+                        </ul>
+                    </li>
+                    <li props="en"><ph><b>Deprecation of RTMP streaming APIs</b></ph>
+                        <p>This version deprecates APIs for RTMP streaming. We recommend using <xref keyref="guide-cdn-streaming">Media Push</xref> instead.</p>
+                        <ul>
+                            <li><codeph><xref keyref="startRtmpStreamWithoutTranscoding"/></codeph></li>
+                            <li><codeph><xref keyref="startRtmpStreamWithoutTranscodingEx"/></codeph></li>
+                            <li><codeph><xref keyref="startRtmpStreamWithTranscoding"/></codeph></li>
+                            <li><codeph><xref keyref="startRtmpStreamWithTranscodingEx"/></codeph></li>
+                            <li><codeph><xref keyref="stopRtmpStream"/></codeph></li>
+                            <li><codeph><xref keyref="stopRtmpStreamEx"/></codeph></li>
+                            <li><codeph><xref keyref="updateRtmpTranscoding"/></codeph></li>
+                            <li><codeph><xref keyref="updateRtmpTranscodingEx"/></codeph></li>
+                            <li><codeph><xref keyref="onRtmpStreamingEvent"/></codeph></li>
+                            <li><codeph><xref keyref="onRtmpStreamingStateChanged"/></codeph></li>
+                            <li><codeph><xref keyref="onTranscodingUpdated"/></codeph></li>
+                        </ul>
+                    </li>
+                    <li><ph><b>Deprecation of watermark APIs</b></ph>
+                        <p>This version deprecates the old watermark APIs. We recommend using the new watermark APIs introduced in this version.</p>
+                        <ul>
+                            <li><codeph><xref keyref="addVideoWatermark2"/></codeph></li>
+                            <li><codeph><xref keyref="addVideoWatermarkEx"/></codeph></li>
+                        </ul>
+                    </li>
+                    <li><ph><b>Deletion of redundant APIs</b></ph>
+                        <p>This version removes the following redundant APIs and parameters:</p>
+                        <ul>
+                            <li><codeph><xref keyref="setLocalPublishFallbackOption"/></codeph></li>
+                            <li><codeph><xref keyref="onLocalPublishFallbackToAudioOnly"/></codeph></li>
+                            <li><codeph><xref keyref="onDownlinkNetworkInfoUpdated"/></codeph></li>
+                            <li props="apple"><codeph>receivedFrameRate</codeph> is removed from <codeph><xref keyref="RemoteVideoStats"/></codeph>.</li>
+                        </ul>
+                    </li>
+                    <li props="cn"><ph><b>Change in makeup feature implementation</b></ph>
+                        <p>Due to the refactoring of the beautification feature, starting from v4.6.0, calling <codeph><xref keyref="setExtensionProperty"/></codeph> to enable the makeup feature is no longer supported. Use the <codeph>STYLE_MAKEUP</codeph> node instead.</p>
+                    </li>
+                </ol>
+            </body>
+        </topic>
+        <topic id="newfeature">
+            <title>New features</title>
+            <body>
+                <ol>
+                    <li><ph><b>Adaptive Video Publishing (Beta)</b></ph>
+                        <p><ph>This version supports sending multiple video streams with different resolutions from the same video source, with support for multi-channel scenarios. You can use <codeph><xref keyref="setSimulcastConfig"/></codeph> to configure video streams of different resolutions (up to four layers: one high-resolution main stream and three lower-resolution streams) and use <codeph><xref keyref="SimulcastConfig"/></codeph> to flexibly control stream publishing by setting options like resolution, bitrate, and whether to enable layered streaming fallback. When layered streaming fallback is enabled, the SDK automatically falls back to a lower-resolution stream in poor network conditions to ensure a smooth viewing experience.</ph>
+                            <ph>Subscribers can choose which video stream to receive based on their needs by calling <codeph><xref keyref="setRemoteVideoStreamType"/></codeph>. This feature is ideal for scenarios with multiple terminals and varying network conditions, such as conferences, large classes, and interactive live streaming, as it significantly improves the viewing experience under poor network conditions.</ph></p>
+                    </li>
+                    <li><ph><b>Multipath network transmission</b></ph>
+                        <p>This version introduces a multipath transmission feature for devices that support multiple network interfaces (such as 5G, Wi-Fi, and LAN). It effectively reduces or eliminates experience degradation caused by poor network conditions, making it suitable for real-time audio and video communication scenarios that demand high transmission stability, such as in-vehicle systems, IoT, trains, and highways. You can enable multipath transmission by setting <codeph>enableMultipath</codeph> in <codeph><xref keyref="ChannelMediaOptions"/></codeph> to <codeph><ph keyref="true"/></codeph>. Two transmission modes are supported (<codeph><xref keyref="MultipathMode"/></codeph>):
+                        <ul>
+                            <li>Dynamic mode: The SDK dynamically selects the optimal path for transmission based on network conditions. This mode is suitable for scenarios sensitive to data consumption but with high experience requirements, such as meetings and educational settings. Additionally, you can specify a preferred network path type (such as Wi-Fi or cellular) using `preferMultipathType`. If not set, all path types have the same default weight.</li>
+                            <li>Duplicate mode: Data is transmitted simultaneously over all available network paths (such as LAN, Wi-Fi, and cellular) to enhance anti-packet loss and stability. This mode eliminates the impact of poor network conditions and is suitable for scenarios that are not sensitive to data consumption but have extreme experience requirements, such as outdoor broadcasting and parallel control.</li>
+                        </ul>
+                        <ph>Uplink and downlink transmission can be configured separately using <codeph>uplinkMultipathMode</codeph> and <codeph>downlinkMultipathMode</codeph> in <codeph><xref keyref="ChannelMediaOptions"/></codeph>. When enabled, the SDK reports real-time transmission statistics for each path through the <codeph><xref keyref="onMultipathStats"/></codeph> callback, including the data consumption of each path, which allows you to monitor and optimize network performance.</ph>
+                    </p>
+                    </li>
+                    <li><ph><b>Video quality scoring</b></ph>
+                        <p>This version adds the <codeph>mosValue</codeph> member to <codeph><xref keyref="RemoteVideoStats"/></codeph>, which reports the quality score of the received remote video stream. The score ranges from 1 to 5, where 5 indicates excellent video quality with a clear image and no artifacts, and 1 indicates extremely poor video quality with severe blurring. You can use this parameter to monitor the subjective quality of remote video streams in real-time, which helps in dynamically adjusting video parameters for quality monitoring and alerting. To enable this feature, please <xref keyref="ticket-link"/>.</p>
+                    </li>
+                    <li><ph><b>Support for adding multiple watermarks</b></ph>
+                        <p>This version deprecates the <codeph><xref keyref="addVideoWatermark2"/></codeph> and <codeph><xref keyref="addVideoWatermarkEx"/></codeph> methods and introduces <codeph><xref keyref="addVideoWatermark3"/></codeph> and <codeph><xref keyref="addVideoWatermarkEx1"/></codeph>. These new methods allow you to add multiple watermarks to a video using a watermark ID and to set their layering order. To remove a specific watermark, you can call the <codeph><xref keyref="removeVideoWatermark"/></codeph> method.</p>
+                    </li>
+                    <li><ph><b>Asynchronous engine destruction</b></ph>
+                        <p props="cpp">Starting from this version, the <codeph><xref keyref="release"/></codeph> method adds a <codeph>callback</codeph> parameter, supporting both synchronous and asynchronous engine destruction. When destroying the engine asynchronously, the SDK triggers the <codeph><xref keyref="RtcEngineReleaseCallback"/></codeph> callback.</p>
+                        <p props="android">This version introduces the <codeph><xref keyref="destory"/></codeph> method to destroy the RTC engine, which can be configured for synchronous or asynchronous destruction via a parameter. When destroying the engine asynchronously, the SDK triggers the <codeph><xref keyref="onEngineReleased"/></codeph> callback.</p>
+                        <p props="apple">This version introduces the <codeph><xref keyref="destory"/></codeph> method to destroy the RTC engine, which can be configured for synchronous or asynchronous destruction via a parameter. When destroying the engine asynchronously, the SDK triggers the <codeph>engineReleasedBlock</codeph> callback block.</p>
+                    </li>
+                    <li><ph><b>Token renewal result callback</b></ph>
+                        <p>This version introduces the <codeph><xref keyref="onRenewTokenResult"/></codeph> callback and the <codeph>RENEW_TOKEN_ERROR_CODE</codeph> error code. After calling the <codeph><xref keyref="renewToken"/></codeph> method to update a Token, the SDK notifies the result of the update through the <codeph><xref keyref="onRenewTokenResult"/></codeph> callback and provides a detailed error code via <codeph>RENEW_TOKEN_ERROR_CODE</codeph>. This allows developers to handle Token renewal failures promptly within the callback.</p>
+                    </li>
+                    <li><ph><b>Other new features</b></ph>
+                        <ul>
+                            <li>Adds the <codeph><xref keyref="setPlaybackAudioFrameBeforeMixingParameters2"/></codeph> method to set the format of the audio frames returned in the <codeph><xref keyref="onPlaybackAudioFrameBeforeMixing"/></codeph> callback, including sample rate, number of channels, and the number of samples per callback. After calling this method, the SDK returns the raw audio data before mixing according to the set parameters.</li>
+                            <li>Adds the <codeph><xref keyref="preloadEffectEx"/></codeph> method to preload a specified audio effect file into a specific channel. It supports both local and online audio files, enabling faster playback later and is suitable for multi-channel scenarios.</li>
+                            <li>Adds the <codeph><xref keyref="playEffectEx"/></codeph> method to play an audio effect file in a specified channel. It supports setting parameters such as loop count, pitch, spatial position, volume, whether to publish to the channel, and the starting playback position to meet diverse audio effect needs.</li>
+                            <li>The local screenshot upload feature now supports setting the video observation position for screenshots via the new <codeph>position</codeph> member in <codeph><xref keyref="ContentInspectModule"/></codeph>. This enables capturing and uploading screenshots from either the raw video data or the video stream before or after effects processing.</li>
+                            <li>To improve the accuracy and stability of portrait segmentation when using a green or blue screen for the virtual background feature, this version adds the <codeph>screenColorType</codeph> member to <codeph><xref keyref="SegmentationProperty"/></codeph>. This member allows specifying the background screen color as green, blue, or auto-detected.</li>
+                        </ul>
                     </li>
                 </ol>
             </body>
@@ -26,42 +125,42 @@
             <title>Improvements</title>
             <body>
                 <ol>
-                    <li><ph><b>URL live streaming playback</b></ph><p>This version further expands the functionality of URL streaming playback, supporting playback of CDN URLs and local media resource files. It also allows for starting playback from a specified position, adjusting playback speed, setting playback volume, switching playback sources during playback, and more. See <xref keyref="rte-player"/> for details.</p>
+                    <li><ph><b>Beautification feature refactoring</b></ph>
+                        <p>This version completely refactors and upgrades the beautification feature. It not only expands the range of beautification functions and improves their effects and performance but also resolves issues such as complex parameter configuration, high integration costs, and the unreliability of network-dependent resources. Key improvements include:
+                            <ul>
+                                <li><b>New beautification functions</b>: Adds new skin-enhancing features like teeth whitening, smile line removal, dark circle removal, and eye brightening. New makeup effects include silkworm shadow and facial highlights. The number of face-shaping functions has increased from 11 to 29.</li>
+                                <li><b>Greatly simplified API</b>: The basic beautification, face shaping, makeup, and filter functions from previous versions are now consolidated into three core nodes: <codeph><ph keyref="BEAUTY"/></codeph>, <codeph><ph keyref="STYLE_MAKEUP"/></codeph>, and <codeph><ph keyref="FILTER"/></codeph>. These are managed uniformly through the <codeph><xref keyref="VideoEffectObject"/></codeph> for lifecycle and parameter settings, reducing the performance overhead from frequent API calls.</li>
+                                <li><b>Out-of-the-box preset templates</b>: Provides multiple preset style templates (e.g., "Natural Beauty," "Preppy Look," "Cool White Filter"), significantly simplifying the integration process without the need to manually adjust dozens of parameters.</li>
+                                <li><b>Dynamic control of beautification parameters</b>: This version adds the ability to fetch beautification parameters in real-time. Developers can dynamically read or modify any granular parameter (such as skin smoothing intensity or lipstick type) using a key-value approach. It also supports quickly enabling style effects with preset templates, saving custom user parameter configurations, and resetting parameters to their default state at any time, greatly enhancing the flexibility and development efficiency of business layer state synchronization.</li>
+                                <li><b>Externalized beautification resources</b>: Through an externalized resource design, all beautification resources (effects, filters, makeup) are packaged into local bundle files, completely eliminating the risk of beautification failures due to network download issues.</li>
+                            </ul>
+                        </p>
                     </li>
-                    <li props="android"><ph><b>Accessible media player information properties </b></ph><p>Starting from this version, the access modifiers for all attributes in media player-related information <xref keyref="PlayerUpdatedInfo"/> have been changed from private to public. This improvement aims to enhance the accessibility of these classes, allowing external code to access and modify these attributes more easily.</p>
+                    <li><ph><b>Other improvements</b></ph>
+                        <ul>
+                            <li props="cpp flutter unity cs electron unreal bp">Optimizes permission requests on Windows 11 24H2 and later versions to avoid unnecessarily acquiring location information. (Windows)</li>
+                            <li>Adds support for g711 and g722 audio codecs when interoperating with the Web SDK, further improving cross-platform audio playback compatibility and clarity.</li>
+                            <li props="android">Optimizes the plugin loading mechanism, enabling automatic loading of the SDK's dynamic library plugins for Android apps developed with C++.</li>
+                            <li>Improves video clarity in screen sharing scenarios involving documents.</li>
+                        </ul>
                     </li>
                 </ol>
             </body>
         </topic>
         <topic id="bugfix">
-            <title>Issues fixed</title>
+            <title>Bug fixes</title>
             <body>
-                <p>This release fixed the following issues:</p>
+                <p>This version fixed the following issues:</p>
                 <ul>
-                    <li>When playing a multi-track media file, noise can be heard after calling the <codeph><xref keyref="setAudioPitch"/></codeph> method to adjust the audio pitch.</li>
-                    <li>The host called the <codeph><xref keyref="createCustomAudioTrack"/></codeph> method to create custom audio track and set <codeph>trackType</codeph> to <codeph>AUDIO_TRACK_DIRECT</codeph>, called the <codeph><xref keyref="pushAudioFrame2" props="android apple"/></codeph><codeph><xref keyref="pushAudioFrame" props="cpp"/></codeph> to push custom audio frames into a channel and then called <codeph><xref keyref="playEffect3"/></codeph> to play audio effects, audience members in the channel would hear noise.</li>
-                    <li>Apps integrated with the SDK occasionally encountered UI lag caused by main thread blocking during audio and video interactions.</li>
-                    <li props="android">When playing an MP4 file with EAC3 audio encoding by calling the <codeph><xref keyref="startAudioMixing2"/></codeph> method, sometimes there was no sound.</li>
-                    <li props="cpp">The local preview of the shared screen flickered after calling the <codeph><xref keyref="startScreenCapture2"/></codeph> to start screen sharing and set <codeph>enableHighLight</codeph> in <codeph><xref keyref="ScreenCaptureParameters"/></codeph> to <codeph><ph keyref="true"/></codeph> through the <codeph>config</codeph> parameter to outline the shared window, and then placed the window on the top layer and maximizing it.</li>
-                    <li props="cpp">Calling <codeph><xref keyref="startScreenCaptureByDisplayId"/></codeph> to share the video stream of specified screen and specifying the windows to be blocked through <codeph>excludeWindowList</codeph> in <codeph><xref keyref="ScreenCaptureParameters"/></codeph>, occasionally some windows fail to be blocked.</li>
-                    <li props="cpp">The application occasionally crashed after sharing the video stream of the external screen and disconnecting the external screen connection.</li>
-                    <li props="android">Memory leaks occurred after leaving the channel and stopping video rendering.</li>
-                    <li props="android">After calling <codeph><xref keyref="setCameraFocusPositionInPreview"/></codeph> to set the focus position manually, the focus position was inaccurate when the camera captured a zoomed-in image.</li>
-                    <li props="android">When calling <codeph><xref keyref="setExternalMediaProjection"/></codeph> to configure an external MediaProjection instance (outside the SDK) for screen video stream capture, the transmitted video stream resolution (width/height) did not dynamically adjusted when the screen orientation changed between landscape and portrait modes.</li>
-                    <li>Calling <codeph><xref keyref="openWithMediaSource"/></codeph> and set <codeph>isLiveSource</codeph> in the <codeph>source</codeph> parameter to <codeph><ph keyref="true"/></codeph> to play a video stream, the playback failed.</li>
-                    <li props="ios">Calling <codeph><xref keyref="enableVirtualBackground"/></codeph> to enable virtual background function, the virtual background image became larger and blurry when the phone was rotated.</li>
-                    <li props="android">When attempting to open a non-existent local media file with the media player, the <codeph><xref keyref="onPlayerSourceStateChanged"/></codeph> callback did not report <codeph>PLAYER_STATE_FAILED</codeph> as expected.</li>
-                    <li>When the sender transmits multi-channel encoded audio, the receiver occasionally experienced noise.</li>
-                    <li>In scenarios where the App integrates a media player, when the open function is called twice to open different media resources consecutively, the second call to open unexpectedly resulted in the <codeph><xref keyref="onPlayerInfoUpdated"/></codeph> callback returning information for the first media resource.</li>
-                    <li>After calling <codeph><xref keyref="enableAudioVolumeIndication"/></codeph> to enable user volume indication, the <codeph><xref keyref="onAudioVolumeIndication"/></codeph> callback returned a local user volume of 0 for both local streaming users and remote users.</li>
-                    <li props="android">During audio and video communication, the App occasionally froze.</li>
-                    <li props="android">The operation failed when calling <codeph><xref keyref="setExtensionProperty"/></codeph> with the key set to "makeup_options" to achieve makeup effects.</li>
-                    <li props="android">When the sending user conducted audio and video communication in dim lighting conditions, the preview image appeared darker on some device models.</li>
-                    <li props="windows">In scenarios of audio and video communication and screen sharing using a 21:9 display (ultrawide screen), setting a high resolution such as 3840x2160 resulted in the screen sharing image being cropped in both local preview and on the receiver's display.</li>
-                    <li>When the App called <codeph><xref keyref="enableVideoImageSource"/></codeph> to enable the video image source feature, the sending side occasionally succeeded in streaming, but <codeph><xref keyref="onVideoPublishStateChanged"/></codeph> did not return the expected.</li>
-                    <li>In multi-channel scenarios, if the App called <codeph><xref keyref="setupRemoteVideoEx"/></codeph> to initialize the remote user's view before successfully calling <codeph><xref keyref="joinChannelEx"/></codeph>, the display of the first frame of the remote user's view occasionally experienced significant delay.</li>
-                    <li props="ios">The App occasionally crashed upon exit.</li>
-                    <li props="android">After a failure to join a channel, calling <codeph><xref keyref="joinChannel"/></codeph> again without first calling <codeph><xref keyref="leaveChannel"/></codeph> to exit the channel occasionally led to a crash.</li>
+                    <li>When playing an online audio effect, calling <codeph><xref keyref="seek"/></codeph> to set a new playback position caused the audio file to restart from the beginning.</li>
+                    <li>Occasional echoes occurred in media volume mode when a broadcaster published a microphone audio stream while simultaneously playing an audio effect with <codeph><xref keyref="playEffect3"/></codeph> and a music file with <codeph><xref keyref="startAudioMixing2"/></codeph>.</li>
+                    <li props="ios android unity cs flutter rn bp">The SDK did not trigger the media metadata observer's callback when <codeph><xref keyref="registerMediaMetadataObserver"/></codeph> was called after <codeph><xref keyref="setExternalVideoSource"/></codeph>. (Android, iOS)</li>
+                    <li props="cpp">The SDK crashed on Windows when handling file paths containing Chinese characters due to an encoding conversion error.</li>
+                    <li props="ios android unity cs flutter rn bp">Occasional crashes occurred. (Android, iOS)</li>
+                    <li>In scenarios where a user joined a channel with <codeph><xref keyref="joinChannelEx"/></codeph>, started a media relay, unpublished, left the channel, rejoined, and then started the relay again, the <codeph><xref keyref="ChannelMediaRelayStateChanged"/></codeph> callback occasionally reported <codeph>state</codeph> as <codeph><ph keyref="RELAY_STATE_FAILURE"/></codeph> and <codeph>code</codeph> as <codeph><ph keyref="RELAY_ERROR_SERVER_ERROR_RESPONSE"/></codeph>.</li>
+                    <li props="android flutter unity cs rn bp">Occasional audio noise occurred when using Bluetooth or wired headphones for audio or video interaction after setting the audio scenario to <codeph><ph keyref="AUDIO_SCENARIO_CHATROOM"/></codeph>. (Android)</li>
+                    <li props="cpp flutter unity cs unreal electron bp">Receivers occasionally heard echoes when the sender shared their screen and audio from certain laptop models with power-saving mode enabled. (Windows)</li>
+                    <li props="cpp flutter unity cs unreal electron bp">In online education scenarios, the teacher's local view of multiple students' video and audio was occasionally out of sync. (Windows)</li>
                 </ul>
             </body>
         </topic>
