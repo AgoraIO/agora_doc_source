@@ -1,8 +1,8 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_release">
     <title><ph keyref="release"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Releases all resources used by the Agora SDK.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Releases the <apiname keyref="IRtcEngine"/> instance.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -13,66 +13,46 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public static synchronized void destroy(@Nullable IRtcEngineReleaseCallback callback)</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"/>
-            <codeblock props="ios mac" outputclass="language-objectivec">+ (void)destroy:(void (^ _Nullable)(void))engineReleasedBlock NS_SWIFT_NAME(destroy(_:));</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">AGORA_CPP_API static void release(RtcEngineReleaseCallback callback = nullptr);</codeblock>
-            <codeblock props="bp" outputclass="language-cpp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity cs" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="android" outputclass="language-java">public static synchronized void destroy() {
+                if (mInstance == null)
+                return;
+                mInstance.doDestroy();
+                mInstance = null;
+                System.gc();
+                }
+            </codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public static destroy(): Promise&lt;void> {
+    return RtcEngineImpl.destroyEngine();
+  };</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">+ (void)destroy;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void release(bool sync = false) = 0;</codeblock>
+            <codeblock props="unreal bp" outputclass="language-cpp">static void Release(bool sync = false);</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract release(sync?: boolean): void;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract void Dispose(bool sync = false);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract release(sync?: boolean): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> release({bool sync = false});</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <dl outputclass="since">
-            <dlentry props="native">
-                <dt>Since:</dt>
-                <dd props="native">Available since v4.6.0.</dd>
-                </dlentry>
-            </dl>
-            <p>This method is intended for applications that occasionally make voice or video calls. It releases resources when not in a call so they can be used for other operations. Once this method is called to destroy the engine instance, other methods in the SDK can no longer be used, and no callbacks will be triggered. To start communication again, call the <codeph>sharedEngineWithAppId</codeph> method to create a new instance.</p>
-            <note type="attention" props="cpp">If you want to create a new <codeph>IRtcEngine</codeph> instance after destroying the current one, make sure to wait until the <codeph>release</codeph> method completes.</note>
-            <note type="attention" props="apple">Do not call this method within any SDK-generated callback, or it may cause a deadlock.</note>
-            </section>
-        <section id="restriction" deliveryTarget="details">
-            <title>Restrictions</title>
-            <p>None.</p>
-        </section>
-        <section id="parameters" deliveryTarget="details">
+        <section id="detailed_desc">
+            <title>Details</title>
+            <p>This method releases all resources used by the Agora SDK. Use this method for apps in which users occasionally make voice or video calls. When users do not make calls, you can free up resources for other operations.</p>
+            <p props="cpp unreal bp unity flutter rn electron cs">After a successful method call, you can no longer use any method or callback in the SDK anymore. If you want to use the real-time communication functions again, you must call <xref keyref="createAgoraRtcEngine"/> and <xref keyref="initialize"/> to create a new <apiname keyref="IRtcEngine"/> instance.</p>
+            <p props="android ios mac">After a successful method call, you can no longer use any method or callback in the SDK anymore. If you want to use the real-time communication functions again, you must call <xref keyref="initialize"/> to create a new <apiname keyref="IRtcEngine"/> instance.</p>
+            <note type="attention"><ul>
+            <li>This method can be called synchronously. You need to wait for the resource of <apiname keyref="IRtcEngine"/> to be released before performing other operations (for example, create a new <apiname keyref="IRtcEngine"/> object). Therefore, Agora recommends calling this method in the child thread to avoid blocking the main thread.</li>
+            <li>Besides, Agora does not recommend you calling <apiname keyref="release"/> in any callback of the SDK. Otherwise, the SDK cannot release the resources until the callbacks return results, which may result in a deadlock.</li></ul></note> </section>
+        <section id="parameters" props="cpp unreal bp unity electron flutter rn cs">
             <title>Parameters</title>
             <parml>
-            <plentry props="android cpp">
-                <pt props="android cpp">callback</pt>
-                <pd props="android">Optional callback instance. Determines whether the method call is synchronous:
+            <plentry>
+                <pt>sync</pt>
+                <pd>
+                    <p>Whether the method is called synchronously:</p>
                     <ul>
-                        <li>Non-null: The method is asynchronous. It returns immediately even if the <codeph>RtcEngine</codeph> object resources are not yet released, and triggers the <codeph>onEngineReleased</codeph> callback after the engine resources are released.</li>
-                        <li>Null: The method is synchronous and returns only after the <codeph>RtcEngine</codeph> object resources are released. Do not call this method within any SDK-generated callback, or it may cause a deadlock. See <codeph>IRtcEngineReleaseCallback</codeph>.</li>
-                        </ul>
-                    </pd>
-                <pd props="cpp">Determines whether the method call is synchronous.
-                    <ul>
-                        <li>Non-null pointer: The method is asynchronous and returns immediately, even if the <codeph>IRtcEngine</codeph> object resources are not yet released. The <codeph>onEngineReleased</codeph> callback is triggered when the engine is released.</li>
-                        <li>Null pointer: The method is synchronous and returns only after the <codeph>IRtcEngine</codeph> object resources are released. Do not call this method within any SDK-generated callback, or it may cause a deadlock.</li>
-                        </ul>
-                    </pd>
-            </plentry>
-            <plentry props="apple">
-                <pt props="apple">engineReleasedBlock</pt>
-                <pd props="apple">The callback block triggered when <codeph>AgoraRtcEngineKit</codeph> is destroyed. This parameter determines whether the method call is synchronous or asynchronous.
-                    <ul>
-                        <li>Non-null: The method is asynchronous. It returns immediately even if the <codeph>AgoraRtcEngineKit</codeph> instance resources are not yet released, and triggers <codeph>engineReleasedBlock</codeph> after the resources are released.</li>
-                        <li>Null: The method is synchronous and returns only after the <codeph>AgoraRtcEngineKit</codeph> instance resources are released.</li>
-                        </ul>
-                    </pd>
+                    <li><codeph><ph keyref="true"/></codeph>: Synchronous call.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Asynchronous call. Currently this method only supports synchronous calls. Do not set this parameter to this value.</li>
+                    </ul> </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="bp cs electron flutter rn unity unreal">
-            <title><ph keyref="return-section-title"/></title>
-        <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-        <ul props="bp cs electron rn unity unreal">
-                <li>0: Success.</li>
-                <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
-                </ul>
-    </section>
-        </refbody>
+    </refbody>
 </reference>

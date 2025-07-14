@@ -1,8 +1,8 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_channelmediaoptions">
     <title> <ph keyref="ChannelMediaOptions"/> </title>
-    <shortdesc id="short"><ph id="shortdesc">Configures media options for the channel.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">The channel media options.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p props="cn" outputclass="codeblock">
@@ -22,7 +22,6 @@
   public Boolean publishMediaPlayerVideoTrack;
   public Boolean publishTranscodedVideoTrack;
   public Boolean publishMixedAudioTrack;
-  public Boolean publishLipSyncTrack;
   public Boolean autoSubscribeAudio;
   public Boolean autoSubscribeVideo;
   public Boolean enableAudioRecordingOrPlayout;
@@ -31,7 +30,6 @@
   public Integer audienceLatencyLevel;
   public Integer defaultVideoStreamType;
   public Integer channelProfile;
-  public Integer audioDelayMs;
   public Integer mediaPlayerAudioDelayMs;
   public String token;
   public Boolean enableBuiltInMediaEncryption;
@@ -39,13 +37,7 @@
   public Boolean isInteractiveAudience;
   public Integer customVideoTrackId;
   public Boolean isAudioFilterable;
-  public Boolean startPreview;
-  public String parameters;
-  public Boolean enableMultipath;
-  public Integer uplinkMultipathMode;
-  public Integer downlinkMultipathMode;
-  public Integer preferMultipathType;
-}</codeblock>
+            }</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">export class ChannelMediaOptions {
 
   public publishCameraTrack?:boolean;
@@ -110,27 +102,30 @@
   public constructor() {
   }
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility(&amp;quot;default&amp;quot;))) @interface AgoraRtcChannelMediaOptions : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcChannelMediaOptions : NSObject
 @property(assign, nonatomic) BOOL publishCameraTrack;
 @property(assign, nonatomic) BOOL publishSecondaryCameraTrack;
 @property(assign, nonatomic) BOOL publishMicrophoneTrack;
+#if TARGET_OS_IPHONE
 @property(assign, nonatomic) BOOL publishScreenCaptureVideo;
 @property(assign, nonatomic) BOOL publishScreenCaptureAudio;
+#elif TARGET_OS_MAC
 @property(assign, nonatomic) BOOL publishThirdCameraTrack;
 @property(assign, nonatomic) BOOL publishFourthCameraTrack;
 @property(assign, nonatomic) BOOL publishScreenTrack;
 @property(assign, nonatomic) BOOL publishSecondaryScreenTrack;
 @property(assign, nonatomic) BOOL publishThirdScreenTrack;
 @property(assign, nonatomic) BOOL publishFourthScreenTrack;
+#endif
 @property(assign, nonatomic) BOOL publishCustomAudioTrack;
 @property(assign, nonatomic) NSInteger publishCustomAudioTrackId;
+
 @property(assign, nonatomic) BOOL publishCustomVideoTrack;
 @property(assign, nonatomic) BOOL publishEncodedVideoTrack;
 @property(assign, nonatomic) BOOL publishMediaPlayerAudioTrack;
 @property(assign, nonatomic) BOOL publishMediaPlayerVideoTrack;
 @property(assign, nonatomic) BOOL publishTranscodedVideoTrack;
 @property(assign, nonatomic) BOOL publishMixedAudioTrack;
-@property(assign, nonatomic) BOOL publishLipSyncTrack;
 @property(assign, nonatomic) BOOL autoSubscribeAudio;
 @property(assign, nonatomic) BOOL autoSubscribeVideo;
 @property(assign, nonatomic) BOOL enableAudioRecordingOrPlayout;
@@ -139,254 +134,250 @@
 @property(assign, nonatomic) AgoraAudienceLatencyLevelType audienceLatencyLevel;
 @property(assign, nonatomic) AgoraVideoStreamType defaultVideoStreamType;
 @property(assign, nonatomic) AgoraChannelProfile channelProfile;
-@property(assign, nonatomic) NSInteger audioDelayMs;
-@property(assign, nonatomic) NSInteger mediaPlayerAudioDelayMs;
 @property(copy, nonatomic) NSString * _Nullable token;
 @property(assign, nonatomic) BOOL enableBuiltInMediaEncryption;
+
 @property(assign, nonatomic) BOOL publishRhythmPlayerTrack;
 @property(assign, nonatomic) BOOL isInteractiveAudience;
+
 @property(assign, nonatomic) NSInteger customVideoTrackId;
+
 @property(assign, nonatomic) BOOL isAudioFilterable;
-@property(copy, nonatomic) NSString * _Nullable parameters;
-@property(assign, nonatomic) BOOL enableMultipath;
-@property(assign, nonatomic) AgoraMultipathMode uplinkMultipathMode;
-@property(assign, nonatomic) AgoraMultipathMode downlinkMultipathMode;
-@property(assign, nonatomic) AgoraMultipathType preferMultipathType;
+
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct ChannelMediaOptions {
-  Optional&amp;lt;bool&amp;gt; publishCameraTrack;
-  Optional&amp;lt;bool&amp;gt; publishSecondaryCameraTrack;
-  Optional&amp;lt;bool&amp;gt; publishThirdCameraTrack;
-  Optional&amp;lt;bool&amp;gt; publishFourthCameraTrack;
-  Optional&amp;lt;bool&amp;gt; publishMicrophoneTrack;
-#if defined(__ANDROID__) || (defined(TARGET_OS_IPHONE) &amp;amp;&amp;amp; TARGET_OS_IPHONE) || defined(__OHOS__)
-  Optional&amp;lt;bool&amp;gt; publishScreenCaptureVideo;
-  Optional&amp;lt;bool&amp;gt; publishScreenCaptureAudio;
-#else
-  Optional&amp;lt;bool&amp;gt; publishScreenTrack;
-  Optional&amp;lt;bool&amp;gt; publishSecondaryScreenTrack;
-  Optional&amp;lt;bool&amp;gt; publishThirdScreenTrack;
-  Optional&amp;lt;bool&amp;gt; publishFourthScreenTrack;
-#endif
-  Optional&amp;lt;bool&amp;gt; publishCustomAudioTrack;
-  Optional&amp;lt;int&amp;gt; publishCustomAudioTrackId;
-  Optional&amp;lt;bool&amp;gt; publishCustomVideoTrack;
-  Optional&amp;lt;bool&amp;gt; publishEncodedVideoTrack;
-  Optional&amp;lt;bool&amp;gt; publishMediaPlayerAudioTrack;
-  Optional&amp;lt;bool&amp;gt; publishMediaPlayerVideoTrack;
-  Optional&amp;lt;bool&amp;gt; publishTranscodedVideoTrack;
-  Optional&amp;lt;bool&amp;gt; publishMixedAudioTrack;
-  Optional&amp;lt;bool&amp;gt; publishLipSyncTrack;
-  Optional&amp;lt;bool&amp;gt; autoSubscribeAudio;
-  Optional&amp;lt;bool&amp;gt; autoSubscribeVideo;
-  Optional&amp;lt;bool&amp;gt; enableAudioRecordingOrPlayout;
-  Optional&amp;lt;int&amp;gt; publishMediaPlayerId;
-  Optional&amp;lt;CLIENT_ROLE_TYPE&amp;gt; clientRoleType;
-  Optional&amp;lt;AUDIENCE_LATENCY_LEVEL_TYPE&amp;gt; audienceLatencyLevel;
-  Optional&amp;lt;VIDEO_STREAM_TYPE&amp;gt; defaultVideoStreamType;
-  Optional&amp;lt;CHANNEL_PROFILE_TYPE&amp;gt; channelProfile;
-  Optional&amp;lt;int&amp;gt; audioDelayMs;
-  Optional&amp;lt;int&amp;gt; mediaPlayerAudioDelayMs;
-  Optional&amp;lt;const char*&amp;gt; token;
-  Optional&amp;lt;bool&amp;gt; enableBuiltInMediaEncryption;
-  Optional&amp;lt;bool&amp;gt; publishRhythmPlayerTrack;
-  Optional&amp;lt;bool&amp;gt; isInteractiveAudience;
-  Optional&amp;lt;video_track_id_t&amp;gt; customVideoTrackId;
-  Optional&amp;lt;bool&amp;gt; isAudioFilterable;
-  Optional&amp;lt;const char*&amp;gt; parameters;
-  Optional&amp;lt;bool&amp;gt; enableMultipath;
-  Optional&amp;lt;MultipathMode&amp;gt; uplinkMultipathMode;
-  Optional&amp;lt;MultipathMode&amp;gt; downlinkMultipathMode;
-  Optional&amp;lt;MultipathType&amp;gt; preferMultipathType;
-};</codeblock>
+  Optional&lt;bool&gt; publishCameraTrack;
+  Optional&lt;bool&gt; publishSecondaryCameraTrack;
+  Optional&lt;bool> publishThirdCameraTrack;
+  Optional&lt;bool> publishFourthCameraTrack;
+  Optional&lt;bool&gt; publishMicrophoneTrack;
+
+  #if defined(__ANDROID__) || (defined(TARGET_OS_IPHONE) &amp;&amp; TARGET_OS_IPHONE)
+  Optional&lt;bool&gt; publishScreenCaptureVideo;
+  Optional&lt;bool&gt; publishScreenCaptureAudio;
+  #else
+  Optional&lt;bool&gt; publishScreenTrack;
+  Optional&lt;bool&gt; publishSecondaryScreenTrack;
+  Optional&lt;bool> publishThirdScreenTrack;
+  Optional&lt;bool> publishFourthScreenTrack;
+  #endif
+
+  Optional&lt;bool&gt; publishCustomAudioTrack;
+  Optional&lt;int&gt; publishCustomAudioTrackId;
+  Optional&lt;bool&gt; publishCustomVideoTrack;
+  Optional&lt;bool&gt; publishEncodedVideoTrack;
+  Optional&lt;bool&gt; publishMediaPlayerAudioTrack;
+  Optional&lt;bool&gt; publishMediaPlayerVideoTrack;
+  Optional&lt;bool&gt; publishTranscodedVideoTrack;
+  Optional&lt;bool&gt; publishMixedAudioTrack;
+  Optional&lt;bool&gt; autoSubscribeAudio;
+  Optional&lt;bool&gt; autoSubscribeVideo;
+  Optional&lt;bool&gt; enableAudioRecordingOrPlayout;
+  Optional&lt;int&gt; publishMediaPlayerId;
+  Optional&lt;CLIENT_ROLE_TYPE&gt; clientRoleType;
+  Optional&lt;AUDIENCE_LATENCY_LEVEL_TYPE&gt; audienceLatencyLevel;
+  Optional&lt;VIDEO_STREAM_TYPE&gt; defaultVideoStreamType;
+  Optional&lt;CHANNEL_PROFILE_TYPE&gt; channelProfile;
+  Optional&lt;const char*&gt; token;
+  Optional&lt;bool&gt; enableBuiltInMediaEncryption;
+  Optional&lt;bool&gt; publishRhythmPlayerTrack;
+  Optional&lt;bool&gt; isInteractiveAudience;
+
+  Optional&lt;video_track_id_t&gt; customVideoTrackId;
+
+  Optional&lt;bool&gt; isAudioFilterable;
+
+  ChannelMediaOptions() {}
+  ~ChannelMediaOptions() {}
+            }</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FChannelMediaOptions
 {
 	GENERATED_BODY()
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishCameraTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishSecondaryCameraTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishThirdCameraTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishFourthCameraTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishMicrophoneTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishScreenCaptureVideo = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishScreenCaptureAudio = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishScreenTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishSecondaryScreenTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishThirdScreenTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishFourthScreenTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishCustomAudioTrack = EAgoraOptional::AGORA_NULL_VALUE;
-		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	bool publishCustomAudioTrackId_SetValue = false;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	int publishCustomAudioTrackId = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishCustomVideoTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishEncodedVideoTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishMediaPlayerAudioTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishMediaPlayerVideoTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishTranscodedVideoTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishMixedAudioTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishLipSyncTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional autoSubscribeAudio = EAgoraOptional::AGORA_TRUE_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional autoSubscribeVideo = EAgoraOptional::AGORA_TRUE_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional enableAudioRecordingOrPlayout = EAgoraOptional::AGORA_NULL_VALUE;
-		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	bool publishMediaPlayerId_SetValue = false;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	int publishMediaPlayerId = 0;
-		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	bool clientRoleType_SetValue = true;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	ECLIENT_ROLE_TYPE clientRoleType = ECLIENT_ROLE_TYPE::CLIENT_ROLE_BROADCASTER;
-		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	bool audienceLatencyLevel_SetValue = false;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAUDIENCE_LATENCY_LEVEL_TYPE audienceLatencyLevel = EAUDIENCE_LATENCY_LEVEL_TYPE::AUDIENCE_LATENCY_LEVEL_LOW_LATENCY;
-		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	bool defaultVideoStreamType_SetValue = false;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EVIDEO_STREAM_TYPE defaultVideoStreamType = EVIDEO_STREAM_TYPE::VIDEO_STREAM_HIGH;
-		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	bool channelProfile_SetValue = true;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	ECHANNEL_PROFILE_TYPE channelProfile = ECHANNEL_PROFILE_TYPE::CHANNEL_PROFILE_LIVE_BROADCASTING;
-		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	bool audioDelayMs_SetValue = false;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	int audioDelayMs = 0;
-		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	bool mediaPlayerAudioDelayMs_SetValue = false;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	int mediaPlayerAudioDelayMs = 0;
-		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	bool token_SetValue = false;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
-	FString token = &amp;quot;&amp;quot;;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	FString token = &quot;&quot;;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional enableBuiltInMediaEncryption = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishRhythmPlayerTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional isInteractiveAudience = EAgoraOptional::AGORA_NULL_VALUE;
-		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	bool customVideoTrackId_SetValue = false;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	int64 customVideoTrackId = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional isAudioFilterable = EAgoraOptional::AGORA_NULL_VALUE;
 
 	FChannelMediaOptions(){}
-	FChannelMediaOptions(const agora::rtc::ChannelMediaOptions &amp;amp; AgoraData){
+	FChannelMediaOptions(const agora::rtc::ChannelMediaOptions &amp; AgoraData){
 
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishCameraTrack, AgoraData.publishCameraTrack)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishSecondaryCameraTrack, AgoraData.publishSecondaryCameraTrack)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishThirdCameraTrack, AgoraData.publishThirdCameraTrack)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishFourthCameraTrack, AgoraData.publishFourthCameraTrack)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishMicrophoneTrack, AgoraData.publishMicrophoneTrack)
-#if defined(__ANDROID__) || (defined(TARGET_OS_IPHONE) &amp;amp;&amp;amp; TARGET_OS_IPHONE)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishScreenCaptureVideo, AgoraData.publishScreenCaptureVideo)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishScreenCaptureAudio, AgoraData.publishScreenCaptureAudio)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishCameraTrack, AgoraData.publishCameraTrack)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishSecondaryCameraTrack, AgoraData.publishSecondaryCameraTrack)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishThirdCameraTrack, AgoraData.publishThirdCameraTrack)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishFourthCameraTrack, AgoraData.publishFourthCameraTrack)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishMicrophoneTrack, AgoraData.publishMicrophoneTrack)
+#if defined(__ANDROID__) || (defined(TARGET_OS_IPHONE) &amp;&amp; TARGET_OS_IPHONE)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishScreenCaptureVideo, AgoraData.publishScreenCaptureVideo)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishScreenCaptureAudio, AgoraData.publishScreenCaptureAudio)
 #else
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishScreenTrack, AgoraData.publishScreenTrack)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishSecondaryScreenTrack, AgoraData.publishSecondaryScreenTrack)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishThirdScreenTrack, AgoraData.publishThirdScreenTrack)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishFourthScreenTrack, AgoraData.publishFourthScreenTrack)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishScreenTrack, AgoraData.publishScreenTrack)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishSecondaryScreenTrack, AgoraData.publishSecondaryScreenTrack)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishThirdScreenTrack, AgoraData.publishThirdScreenTrack)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishFourthScreenTrack, AgoraData.publishFourthScreenTrack)
 #endif
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishCustomAudioTrack, AgoraData.publishCustomAudioTrack)
-		SET_UEBP_OPTIONAL_VAL_DIR_ASSIGN(this-&amp;gt;publishCustomAudioTrackId, AgoraData.publishCustomAudioTrackId)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishCustomVideoTrack, AgoraData.publishCustomVideoTrack)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishEncodedVideoTrack, AgoraData.publishEncodedVideoTrack)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishMediaPlayerAudioTrack, AgoraData.publishMediaPlayerAudioTrack)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishMediaPlayerVideoTrack, AgoraData.publishMediaPlayerVideoTrack)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishTranscodedVideoTrack, AgoraData.publishTranscodedVideoTrack)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishMixedAudioTrack, AgoraData.publishMixedAudioTrack)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishLipSyncTrack, AgoraData.publishLipSyncTrack)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;autoSubscribeAudio, AgoraData.autoSubscribeAudio)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;autoSubscribeVideo, AgoraData.autoSubscribeVideo)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;enableAudioRecordingOrPlayout, AgoraData.enableAudioRecordingOrPlayout)
-		SET_UEBP_OPTIONAL_VAL_DIR_ASSIGN(this-&amp;gt;publishMediaPlayerId, AgoraData.publishMediaPlayerId)
-		SET_UEBP_OPTIONAL_VAL_ASSIGN_VAL(this-&amp;gt;clientRoleType,AgoraData.clientRoleType,static_cast&amp;lt;ECLIENT_ROLE_TYPE&amp;gt;(AgoraData.clientRoleType.value()))
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishCustomAudioTrack, AgoraData.publishCustomAudioTrack)
+		SET_UEBP_OPTIONAL_VAL_DIR_ASSIGN(this-&gt;publishCustomAudioTrackId, AgoraData.publishCustomAudioTrackId)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishCustomVideoTrack, AgoraData.publishCustomVideoTrack)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishEncodedVideoTrack, AgoraData.publishEncodedVideoTrack)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishMediaPlayerAudioTrack, AgoraData.publishMediaPlayerAudioTrack)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishMediaPlayerVideoTrack, AgoraData.publishMediaPlayerVideoTrack)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishTranscodedVideoTrack, AgoraData.publishTranscodedVideoTrack)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishMixedAudioTrack, AgoraData.publishMixedAudioTrack)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishLipSyncTrack, AgoraData.publishLipSyncTrack)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;autoSubscribeAudio, AgoraData.autoSubscribeAudio)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;autoSubscribeVideo, AgoraData.autoSubscribeVideo)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;enableAudioRecordingOrPlayout, AgoraData.enableAudioRecordingOrPlayout)
+		SET_UEBP_OPTIONAL_VAL_DIR_ASSIGN(this-&gt;publishMediaPlayerId, AgoraData.publishMediaPlayerId)
+		SET_UEBP_OPTIONAL_VAL_ASSIGN_VAL(this-&gt;clientRoleType,AgoraData.clientRoleType,static_cast&lt;ECLIENT_ROLE_TYPE&gt;(AgoraData.clientRoleType.value()))
 
-		SET_UEBP_OPTIONAL_VAL_ASSIGN_VAL(this-&amp;gt;audienceLatencyLevel, AgoraData.audienceLatencyLevel, static_cast&amp;lt;EAUDIENCE_LATENCY_LEVEL_TYPE&amp;gt;(AgoraData.audienceLatencyLevel.value()))
-		SET_UEBP_OPTIONAL_VAL_ASSIGN_VAL(this-&amp;gt;defaultVideoStreamType, AgoraData.defaultVideoStreamType, static_cast&amp;lt;EVIDEO_STREAM_TYPE&amp;gt;(AgoraData.defaultVideoStreamType.value()))
-		SET_UEBP_OPTIONAL_VAL_ASSIGN_VAL(this-&amp;gt;channelProfile, AgoraData.channelProfile, static_cast&amp;lt;ECHANNEL_PROFILE_TYPE&amp;gt;(AgoraData.channelProfile.value()))
-		SET_UEBP_OPTIONAL_VAL_DIR_ASSIGN(this-&amp;gt;audioDelayMs, AgoraData.audioDelayMs)
-		SET_UEBP_OPTIONAL_VAL_DIR_ASSIGN(this-&amp;gt;mediaPlayerAudioDelayMs, AgoraData.mediaPlayerAudioDelayMs)
+		SET_UEBP_OPTIONAL_VAL_ASSIGN_VAL(this-&gt;audienceLatencyLevel, AgoraData.audienceLatencyLevel, static_cast&lt;EAUDIENCE_LATENCY_LEVEL_TYPE&gt;(AgoraData.audienceLatencyLevel.value()))
+		SET_UEBP_OPTIONAL_VAL_ASSIGN_VAL(this-&gt;defaultVideoStreamType, AgoraData.defaultVideoStreamType, static_cast&lt;EVIDEO_STREAM_TYPE&gt;(AgoraData.defaultVideoStreamType.value()))
+		SET_UEBP_OPTIONAL_VAL_ASSIGN_VAL(this-&gt;channelProfile, AgoraData.channelProfile, static_cast&lt;ECHANNEL_PROFILE_TYPE&gt;(AgoraData.channelProfile.value()))
+		SET_UEBP_OPTIONAL_VAL_DIR_ASSIGN(this-&gt;audioDelayMs, AgoraData.audioDelayMs)
+		SET_UEBP_OPTIONAL_VAL_DIR_ASSIGN(this-&gt;mediaPlayerAudioDelayMs, AgoraData.mediaPlayerAudioDelayMs)
 
-		SET_UEBP_OPTIONAL_VAL_FString(this-&amp;gt;token,AgoraData.token)
+		SET_UEBP_OPTIONAL_VAL_FString(this-&gt;token,AgoraData.token)
 
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;enableBuiltInMediaEncryption, AgoraData.enableBuiltInMediaEncryption)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishRhythmPlayerTrack, AgoraData.publishRhythmPlayerTrack)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;isInteractiveAudience, AgoraData.isInteractiveAudience)
-		SET_UEBP_OPTIONAL_VAL_DIR_ASSIGN(this-&amp;gt;customVideoTrackId, AgoraData.customVideoTrackId)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;isAudioFilterable, AgoraData.isAudioFilterable)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;enableBuiltInMediaEncryption, AgoraData.enableBuiltInMediaEncryption)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishRhythmPlayerTrack, AgoraData.publishRhythmPlayerTrack)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;isInteractiveAudience, AgoraData.isInteractiveAudience)
+		SET_UEBP_OPTIONAL_VAL_DIR_ASSIGN(this-&gt;customVideoTrackId, AgoraData.customVideoTrackId)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;isAudioFilterable, AgoraData.isAudioFilterable)
 	}
 	agora::rtc::ChannelMediaOptions CreateAgoraData() const{
 		agora::rtc::ChannelMediaOptions AgoraData;
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishCameraTrack, this-&amp;gt;publishCameraTrack)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishSecondaryCameraTrack, this-&amp;gt;publishSecondaryCameraTrack)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishThirdCameraTrack, this-&amp;gt;publishThirdCameraTrack)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishFourthCameraTrack, this-&amp;gt;publishFourthCameraTrack)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishMicrophoneTrack, this-&amp;gt;publishMicrophoneTrack)
-#if defined(__ANDROID__) || (defined(TARGET_OS_IPHONE) &amp;amp;&amp;amp; TARGET_OS_IPHONE)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishScreenCaptureVideo, this-&amp;gt;publishScreenCaptureVideo)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishScreenCaptureAudio, this-&amp;gt;publishScreenCaptureAudio)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishCameraTrack, this-&gt;publishCameraTrack)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishSecondaryCameraTrack, this-&gt;publishSecondaryCameraTrack)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishThirdCameraTrack, this-&gt;publishThirdCameraTrack)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishFourthCameraTrack, this-&gt;publishFourthCameraTrack)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishMicrophoneTrack, this-&gt;publishMicrophoneTrack)
+#if defined(__ANDROID__) || (defined(TARGET_OS_IPHONE) &amp;&amp; TARGET_OS_IPHONE)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishScreenCaptureVideo, this-&gt;publishScreenCaptureVideo)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishScreenCaptureAudio, this-&gt;publishScreenCaptureAudio)
 #else
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishScreenTrack, this-&amp;gt;publishScreenTrack)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishSecondaryScreenTrack, this-&amp;gt;publishSecondaryScreenTrack)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishThirdScreenTrack, this-&amp;gt;publishThirdScreenTrack)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishFourthScreenTrack, this-&amp;gt;publishFourthScreenTrack)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishScreenTrack, this-&gt;publishScreenTrack)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishSecondaryScreenTrack, this-&gt;publishSecondaryScreenTrack)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishThirdScreenTrack, this-&gt;publishThirdScreenTrack)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishFourthScreenTrack, this-&gt;publishFourthScreenTrack)
 #endif
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishCustomAudioTrack, this-&amp;gt;publishCustomAudioTrack)
-		SET_AGORA_OPTIONAL_VAL_DIR_ASSIGN(AgoraData.publishCustomAudioTrackId, this-&amp;gt;publishCustomAudioTrackId)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishCustomVideoTrack, this-&amp;gt;publishCustomVideoTrack)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishEncodedVideoTrack, this-&amp;gt;publishEncodedVideoTrack)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishMediaPlayerAudioTrack, this-&amp;gt;publishMediaPlayerAudioTrack)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishMediaPlayerVideoTrack, this-&amp;gt;publishMediaPlayerVideoTrack)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishTranscodedVideoTrack, this-&amp;gt;publishTranscodedVideoTrack)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishMixedAudioTrack, this-&amp;gt;publishMixedAudioTrack)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishLipSyncTrack, this-&amp;gt;publishLipSyncTrack)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.autoSubscribeAudio, this-&amp;gt;autoSubscribeAudio)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.autoSubscribeVideo, this-&amp;gt;autoSubscribeVideo)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.enableAudioRecordingOrPlayout, this-&amp;gt;enableAudioRecordingOrPlayout)
-		SET_AGORA_OPTIONAL_VAL_DIR_ASSIGN(AgoraData.publishMediaPlayerId, this-&amp;gt;publishMediaPlayerId)
-		SET_AGORA_OPTIONAL_VAL_ASSIGN_VAL(AgoraData.clientRoleType, this-&amp;gt;clientRoleType,static_cast&amp;lt;agora::rtc::CLIENT_ROLE_TYPE&amp;gt;(this-&amp;gt;clientRoleType))
-		SET_AGORA_OPTIONAL_VAL_ASSIGN_VAL(AgoraData.audienceLatencyLevel, this-&amp;gt;audienceLatencyLevel, static_cast&amp;lt;agora::rtc::AUDIENCE_LATENCY_LEVEL_TYPE&amp;gt;(this-&amp;gt;audienceLatencyLevel))
-		SET_AGORA_OPTIONAL_VAL_ASSIGN_VAL(AgoraData.defaultVideoStreamType, this-&amp;gt;defaultVideoStreamType, static_cast&amp;lt;agora::rtc::VIDEO_STREAM_TYPE&amp;gt;(this-&amp;gt;defaultVideoStreamType))
-		SET_AGORA_OPTIONAL_VAL_ASSIGN_VAL(AgoraData.channelProfile, this-&amp;gt;channelProfile, static_cast&amp;lt;agora::CHANNEL_PROFILE_TYPE&amp;gt;(this-&amp;gt;channelProfile))
-		SET_AGORA_OPTIONAL_VAL_DIR_ASSIGN(AgoraData.audioDelayMs, this-&amp;gt;audioDelayMs)
-		SET_AGORA_OPTIONAL_VAL_DIR_ASSIGN(AgoraData.mediaPlayerAudioDelayMs, this-&amp;gt;mediaPlayerAudioDelayMs)
-		SET_AGORA_OPTIONAL_VAL_CHARPTR______MEMOALLOC(AgoraData.token, this-&amp;gt;token)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.enableBuiltInMediaEncryption, this-&amp;gt;enableBuiltInMediaEncryption)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishRhythmPlayerTrack, this-&amp;gt;publishRhythmPlayerTrack)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.isInteractiveAudience, this-&amp;gt;isInteractiveAudience)
-		SET_AGORA_OPTIONAL_VAL_DIR_ASSIGN(AgoraData.customVideoTrackId, this-&amp;gt;customVideoTrackId)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.isAudioFilterable, this-&amp;gt;isAudioFilterable)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishCustomAudioTrack, this-&gt;publishCustomAudioTrack)
+		SET_AGORA_OPTIONAL_VAL_DIR_ASSIGN(AgoraData.publishCustomAudioTrackId, this-&gt;publishCustomAudioTrackId)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishCustomVideoTrack, this-&gt;publishCustomVideoTrack)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishEncodedVideoTrack, this-&gt;publishEncodedVideoTrack)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishMediaPlayerAudioTrack, this-&gt;publishMediaPlayerAudioTrack)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishMediaPlayerVideoTrack, this-&gt;publishMediaPlayerVideoTrack)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishTranscodedVideoTrack, this-&gt;publishTranscodedVideoTrack)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishMixedAudioTrack, this-&gt;publishMixedAudioTrack)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishLipSyncTrack, this-&gt;publishLipSyncTrack)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.autoSubscribeAudio, this-&gt;autoSubscribeAudio)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.autoSubscribeVideo, this-&gt;autoSubscribeVideo)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.enableAudioRecordingOrPlayout, this-&gt;enableAudioRecordingOrPlayout)
+		SET_AGORA_OPTIONAL_VAL_DIR_ASSIGN(AgoraData.publishMediaPlayerId, this-&gt;publishMediaPlayerId)
+		SET_AGORA_OPTIONAL_VAL_ASSIGN_VAL(AgoraData.clientRoleType, this-&gt;clientRoleType,static_cast&lt;agora::rtc::CLIENT_ROLE_TYPE&gt;(this-&gt;clientRoleType))
+		SET_AGORA_OPTIONAL_VAL_ASSIGN_VAL(AgoraData.audienceLatencyLevel, this-&gt;audienceLatencyLevel, static_cast&lt;agora::rtc::AUDIENCE_LATENCY_LEVEL_TYPE&gt;(this-&gt;audienceLatencyLevel))
+		SET_AGORA_OPTIONAL_VAL_ASSIGN_VAL(AgoraData.defaultVideoStreamType, this-&gt;defaultVideoStreamType, static_cast&lt;agora::rtc::VIDEO_STREAM_TYPE&gt;(this-&gt;defaultVideoStreamType))
+		SET_AGORA_OPTIONAL_VAL_ASSIGN_VAL(AgoraData.channelProfile, this-&gt;channelProfile, static_cast&lt;agora::CHANNEL_PROFILE_TYPE&gt;(this-&gt;channelProfile))
+		SET_AGORA_OPTIONAL_VAL_DIR_ASSIGN(AgoraData.audioDelayMs, this-&gt;audioDelayMs)
+		SET_AGORA_OPTIONAL_VAL_DIR_ASSIGN(AgoraData.mediaPlayerAudioDelayMs, this-&gt;mediaPlayerAudioDelayMs)
+		SET_AGORA_OPTIONAL_VAL_CHARPTR______MEMOALLOC(AgoraData.token, this-&gt;token)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.enableBuiltInMediaEncryption, this-&gt;enableBuiltInMediaEncryption)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishRhythmPlayerTrack, this-&gt;publishRhythmPlayerTrack)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.isInteractiveAudience, this-&gt;isInteractiveAudience)
+		SET_AGORA_OPTIONAL_VAL_DIR_ASSIGN(AgoraData.customVideoTrackId, this-&gt;customVideoTrackId)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.isAudioFilterable, this-&gt;isAudioFilterable)
 		return AgoraData;
 	}
-	void FreeAgoraData(agora::rtc::ChannelMediaOptions&amp;amp; AgoraData) const {
+	void FreeAgoraData(agora::rtc::ChannelMediaOptions&amp; AgoraData) const {
 		SET_AGORA_OPTIONAL_VAL_CHARPTR______MEMOFREE(AgoraData.token)
 	}
 };</codeblock>
@@ -456,38 +447,38 @@ public:
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class ChannelMediaOptions : OptionalJsonParse
     {
-        public Optional&amp;lt;bool&amp;gt; publishCameraTrack = new Optional&amp;lt;bool&amp;gt;();
-        public Optional&amp;lt;bool&amp;gt; publishSecondaryCameraTrack = new Optional&amp;lt;bool&amp;gt;();
-        public Optional&amp;lt;bool&amp;gt; publishThirdCameraTrack = new Optional&amp;lt;bool&amp;gt;();
-        public Optional&amp;lt;bool&amp;gt; publishFourthCameraTrack = new Optional&amp;lt;bool&amp;gt;();
-        public Optional&amp;lt;bool&amp;gt; publishMicrophoneTrack = new Optional&amp;lt;bool&amp;gt;();
-        public Optional&amp;lt;bool&amp;gt; publishScreenCaptureVideo = new Optional&amp;lt;bool&amp;gt;();
-        public Optional&amp;lt;bool&amp;gt; publishScreenCaptureAudio = new Optional&amp;lt;bool&amp;gt;();
-        public Optional&amp;lt;bool&amp;gt; publishScreenTrack = new Optional&amp;lt;bool&amp;gt;();
-        public Optional&amp;lt;bool&amp;gt; publishSecondaryScreenTrack = new Optional&amp;lt;bool&amp;gt;();
-        public Optional&amp;lt;bool&amp;gt; publishThirdScreenTrack = new Optional&amp;lt;bool&amp;gt;();
-        public Optional&amp;lt;bool&amp;gt; publishFourthScreenTrack = new Optional&amp;lt;bool&amp;gt;();
-        public Optional&amp;lt;bool&amp;gt; publishCustomAudioTrack = new Optional&amp;lt;bool&amp;gt;();
-        public Optional&amp;lt;int&amp;gt; publishCustomAudioTrackId = new Optional&amp;lt;int&amp;gt;();
-        public Optional&amp;lt;bool&amp;gt; publishCustomVideoTrack = new Optional&amp;lt;bool&amp;gt;();
-        public Optional&amp;lt;bool&amp;gt; publishEncodedVideoTrack = new Optional&amp;lt;bool&amp;gt;();
-        public Optional&amp;lt;bool&amp;gt; publishMediaPlayerAudioTrack = new Optional&amp;lt;bool&amp;gt;();
-        public Optional&amp;lt;bool&amp;gt; publishMediaPlayerVideoTrack = new Optional&amp;lt;bool&amp;gt;();
-        public Optional&amp;lt;bool&amp;gt; publishTranscodedVideoTrack = new Optional&amp;lt;bool&amp;gt;();
-        public Optional&amp;lt;bool&amp;gt; publishLipSyncTrack = new Optional&amp;lt;bool&amp;gt;();
-        public Optional&amp;lt;bool&amp;gt; autoSubscribeAudio = new Optional&amp;lt;bool&amp;gt;();
-        public Optional&amp;lt;bool&amp;gt; autoSubscribeVideo = new Optional&amp;lt;bool&amp;gt;();
-        public Optional&amp;lt;bool&amp;gt; enableAudioRecordingOrPlayout = new Optional&amp;lt;bool&amp;gt;();
-        public Optional&amp;lt;int&amp;gt; publishMediaPlayerId = new Optional&amp;lt;int&amp;gt;();
-        public Optional&amp;lt;CLIENT_ROLE_TYPE&amp;gt; clientRoleType = new Optional&amp;lt;CLIENT_ROLE_TYPE&amp;gt;();
-        public Optional&amp;lt;AUDIENCE_LATENCY_LEVEL_TYPE&amp;gt; audienceLatencyLevel = new Optional&amp;lt;AUDIENCE_LATENCY_LEVEL_TYPE&amp;gt;();
-        public Optional&amp;lt;VIDEO_STREAM_TYPE&amp;gt; defaultVideoStreamType = new Optional&amp;lt;VIDEO_STREAM_TYPE&amp;gt;();
-        public Optional&amp;lt;CHANNEL_PROFILE_TYPE&amp;gt; channelProfile = new Optional&amp;lt;CHANNEL_PROFILE_TYPE&amp;gt;();
-        public Optional&amp;lt;string&amp;gt; token = new Optional&amp;lt;string&amp;gt;();
-        public Optional&amp;lt;bool&amp;gt; publishRhythmPlayerTrack = new Optional&amp;lt;bool&amp;gt;();
-        public Optional&amp;lt;bool&amp;gt; isInteractiveAudience = new Optional&amp;lt;bool&amp;gt;();
-        public Optional&amp;lt;video_track_id_t&amp;gt; customVideoTrackId = new Optional&amp;lt;video_track_id_t&amp;gt;();
-        public Optional&amp;lt;bool&amp;gt; isAudioFilterable = new Optional&amp;lt;bool&amp;gt;();
+        public Optional&lt;bool> publishCameraTrack = new Optional&lt;bool>();
+        public Optional&lt;bool> publishSecondaryCameraTrack = new Optional&lt;bool>();
+        public Optional&lt;bool> publishThirdCameraTrack = new Optional&lt;bool>();
+        public Optional&lt;bool> publishFourthCameraTrack = new Optional&lt;bool>();
+        public Optional&lt;bool> publishMicrophoneTrack = new Optional&lt;bool>();
+        public Optional&lt;bool> publishScreenCaptureVideo = new Optional&lt;bool>();
+        public Optional&lt;bool> publishScreenCaptureAudio = new Optional&lt;bool>();
+        public Optional&lt;bool> publishScreenTrack = new Optional&lt;bool>();
+        public Optional&lt;bool> publishSecondaryScreenTrack = new Optional&lt;bool>();
+        public Optional&lt;bool> publishThirdScreenTrack = new Optional&lt;bool>();
+        public Optional&lt;bool> publishFourthScreenTrack = new Optional&lt;bool>();
+        public Optional&lt;bool> publishCustomAudioTrack = new Optional&lt;bool>();
+        public Optional&lt;int> publishCustomAudioTrackId = new Optional&lt;int>();
+        public Optional&lt;bool> publishCustomVideoTrack = new Optional&lt;bool>();
+        public Optional&lt;bool> publishEncodedVideoTrack = new Optional&lt;bool>();
+        public Optional&lt;bool> publishMediaPlayerAudioTrack = new Optional&lt;bool>();
+        public Optional&lt;bool> publishMediaPlayerVideoTrack = new Optional&lt;bool>();
+        public Optional&lt;bool> publishTranscodedVideoTrack = new Optional&lt;bool>();
+        public Optional&lt;bool> publishLipSyncTrack = new Optional&lt;bool>();
+        public Optional&lt;bool> autoSubscribeAudio = new Optional&lt;bool>();
+        public Optional&lt;bool> autoSubscribeVideo = new Optional&lt;bool>();
+        public Optional&lt;bool> enableAudioRecordingOrPlayout = new Optional&lt;bool>();
+        public Optional&lt;int> publishMediaPlayerId = new Optional&lt;int>();
+        public Optional&lt;CLIENT_ROLE_TYPE> clientRoleType = new Optional&lt;CLIENT_ROLE_TYPE>();
+        public Optional&lt;AUDIENCE_LATENCY_LEVEL_TYPE> audienceLatencyLevel = new Optional&lt;AUDIENCE_LATENCY_LEVEL_TYPE>();
+        public Optional&lt;VIDEO_STREAM_TYPE> defaultVideoStreamType = new Optional&lt;VIDEO_STREAM_TYPE>();
+        public Optional&lt;CHANNEL_PROFILE_TYPE> channelProfile = new Optional&lt;CHANNEL_PROFILE_TYPE>();
+        public Optional&lt;string> token = new Optional&lt;string>();
+        public Optional&lt;bool> publishRhythmPlayerTrack = new Optional&lt;bool>();
+        public Optional&lt;bool> isInteractiveAudience = new Optional&lt;bool>();
+        public Optional&lt;video_track_id_t> customVideoTrackId = new Optional&lt;video_track_id_t>();
+        public Optional&lt;bool> isAudioFilterable = new Optional&lt;bool>();
 
    }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class ChannelMediaOptions {
@@ -597,120 +588,120 @@ class ChannelMediaOptions {
       this.isAudioFilterable,
       this.parameters});
 
-  @JsonKey(name: 'publishCameraTrack')
+  @JsonKey(name: &#x27;publishCameraTrack&#x27;)
   final bool? publishCameraTrack;
 
-  @JsonKey(name: 'publishSecondaryCameraTrack')
+  @JsonKey(name: &#x27;publishSecondaryCameraTrack&#x27;)
   final bool? publishSecondaryCameraTrack;
 
-  @JsonKey(name: 'publishThirdCameraTrack')
+  @JsonKey(name: &#x27;publishThirdCameraTrack&#x27;)
   final bool? publishThirdCameraTrack;
 
-  @JsonKey(name: 'publishFourthCameraTrack')
+  @JsonKey(name: &#x27;publishFourthCameraTrack&#x27;)
   final bool? publishFourthCameraTrack;
 
-  @JsonKey(name: 'publishMicrophoneTrack')
+  @JsonKey(name: &#x27;publishMicrophoneTrack&#x27;)
   final bool? publishMicrophoneTrack;
 
-  @JsonKey(name: 'publishScreenCaptureVideo')
+  @JsonKey(name: &#x27;publishScreenCaptureVideo&#x27;)
   final bool? publishScreenCaptureVideo;
 
-  @JsonKey(name: 'publishScreenCaptureAudio')
+  @JsonKey(name: &#x27;publishScreenCaptureAudio&#x27;)
   final bool? publishScreenCaptureAudio;
 
-  @JsonKey(name: 'publishScreenTrack')
+  @JsonKey(name: &#x27;publishScreenTrack&#x27;)
   final bool? publishScreenTrack;
 
-  @JsonKey(name: 'publishSecondaryScreenTrack')
+  @JsonKey(name: &#x27;publishSecondaryScreenTrack&#x27;)
   final bool? publishSecondaryScreenTrack;
 
-  @JsonKey(name: 'publishThirdScreenTrack')
+  @JsonKey(name: &#x27;publishThirdScreenTrack&#x27;)
   final bool? publishThirdScreenTrack;
 
-  @JsonKey(name: 'publishFourthScreenTrack')
+  @JsonKey(name: &#x27;publishFourthScreenTrack&#x27;)
   final bool? publishFourthScreenTrack;
 
-  @JsonKey(name: 'publishCustomAudioTrack')
+  @JsonKey(name: &#x27;publishCustomAudioTrack&#x27;)
   final bool? publishCustomAudioTrack;
 
-  @JsonKey(name: 'publishCustomAudioTrackId')
+  @JsonKey(name: &#x27;publishCustomAudioTrackId&#x27;)
   final int? publishCustomAudioTrackId;
 
-  @JsonKey(name: 'publishCustomVideoTrack')
+  @JsonKey(name: &#x27;publishCustomVideoTrack&#x27;)
   final bool? publishCustomVideoTrack;
 
-  @JsonKey(name: 'publishEncodedVideoTrack')
+  @JsonKey(name: &#x27;publishEncodedVideoTrack&#x27;)
   final bool? publishEncodedVideoTrack;
 
-  @JsonKey(name: 'publishMediaPlayerAudioTrack')
+  @JsonKey(name: &#x27;publishMediaPlayerAudioTrack&#x27;)
   final bool? publishMediaPlayerAudioTrack;
 
-  @JsonKey(name: 'publishMediaPlayerVideoTrack')
+  @JsonKey(name: &#x27;publishMediaPlayerVideoTrack&#x27;)
   final bool? publishMediaPlayerVideoTrack;
 
-  @JsonKey(name: 'publishTranscodedVideoTrack')
+  @JsonKey(name: &#x27;publishTranscodedVideoTrack&#x27;)
   final bool? publishTranscodedVideoTrack;
 
-  @JsonKey(name: 'publishMixedAudioTrack')
+  @JsonKey(name: &#x27;publishMixedAudioTrack&#x27;)
   final bool? publishMixedAudioTrack;
 
-  @JsonKey(name: 'autoSubscribeAudio')
+  @JsonKey(name: &#x27;autoSubscribeAudio&#x27;)
   final bool? autoSubscribeAudio;
 
-  @JsonKey(name: 'autoSubscribeVideo')
+  @JsonKey(name: &#x27;autoSubscribeVideo&#x27;)
   final bool? autoSubscribeVideo;
 
-  @JsonKey(name: 'enableAudioRecordingOrPlayout')
+  @JsonKey(name: &#x27;enableAudioRecordingOrPlayout&#x27;)
   final bool? enableAudioRecordingOrPlayout;
 
-  @JsonKey(name: 'publishMediaPlayerId')
+  @JsonKey(name: &#x27;publishMediaPlayerId&#x27;)
   final int? publishMediaPlayerId;
 
-  @JsonKey(name: 'clientRoleType')
+  @JsonKey(name: &#x27;clientRoleType&#x27;)
   final ClientRoleType? clientRoleType;
 
-  @JsonKey(name: 'audienceLatencyLevel')
+  @JsonKey(name: &#x27;audienceLatencyLevel&#x27;)
   final AudienceLatencyLevelType? audienceLatencyLevel;
 
-  @JsonKey(name: 'defaultVideoStreamType')
+  @JsonKey(name: &#x27;defaultVideoStreamType&#x27;)
   final VideoStreamType? defaultVideoStreamType;
 
-  @JsonKey(name: 'channelProfile')
+  @JsonKey(name: &#x27;channelProfile&#x27;)
   final ChannelProfileType? channelProfile;
 
-  @JsonKey(name: 'audioDelayMs')
+  @JsonKey(name: &#x27;audioDelayMs&#x27;)
   final int? audioDelayMs;
 
-  @JsonKey(name: 'mediaPlayerAudioDelayMs')
+  @JsonKey(name: &#x27;mediaPlayerAudioDelayMs&#x27;)
   final int? mediaPlayerAudioDelayMs;
 
-  @JsonKey(name: 'token')
+  @JsonKey(name: &#x27;token&#x27;)
   final String? token;
 
-  @JsonKey(name: 'enableBuiltInMediaEncryption')
+  @JsonKey(name: &#x27;enableBuiltInMediaEncryption&#x27;)
   final bool? enableBuiltInMediaEncryption;
 
-  @JsonKey(name: 'publishRhythmPlayerTrack')
+  @JsonKey(name: &#x27;publishRhythmPlayerTrack&#x27;)
   final bool? publishRhythmPlayerTrack;
 
-  @JsonKey(name: 'isInteractiveAudience')
+  @JsonKey(name: &#x27;isInteractiveAudience&#x27;)
   final bool? isInteractiveAudience;
 
-  @JsonKey(name: 'customVideoTrackId')
+  @JsonKey(name: &#x27;customVideoTrackId&#x27;)
   final int? customVideoTrackId;
 
-  @JsonKey(name: 'isAudioFilterable')
+  @JsonKey(name: &#x27;isAudioFilterable&#x27;)
   final bool? isAudioFilterable;
 
-  @JsonKey(name: 'parameters')
+  @JsonKey(name: &#x27;parameters&#x27;)
   final String? parameters;
 
-  factory ChannelMediaOptions.fromJson(Map&amp;lt;String, dynamic&amp;gt; json) =&amp;gt;
+  factory ChannelMediaOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$ChannelMediaOptionsFromJson(json);
 
-  Map&amp;lt;String, dynamic&amp;gt; toJson() =&amp;gt; _$ChannelMediaOptionsToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ChannelMediaOptionsToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"/></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
     <p props="en" outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public class ChannelMediaOptions {
       public Boolean publishCameraTrack;
@@ -807,7 +798,7 @@ class ChannelMediaOptions {
   public constructor() {
   }
 }</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility(&amp;quot;default&amp;quot;))) @interface AgoraRtcChannelMediaOptions : NSObject
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcChannelMediaOptions : NSObject
     @property(assign, nonatomic) BOOL publishCameraTrack;
     @property(assign, nonatomic) BOOL publishSecondaryCameraTrack;
     @property(assign, nonatomic) BOOL publishMicrophoneTrack;
@@ -852,47 +843,47 @@ class ChannelMediaOptions {
 
     @end</codeblock>
                 <codeblock props="cpp" outputclass="language-cpp">struct ChannelMediaOptions {
-      Optional&amp;lt;bool&amp;gt; publishCameraTrack;
-      Optional&amp;lt;bool&amp;gt; publishSecondaryCameraTrack;
-      Optional&amp;lt;bool&amp;gt; publishThirdCameraTrack;
-      Optional&amp;lt;bool&amp;gt; publishFourthCameraTrack;
-      Optional&amp;lt;bool&amp;gt; publishMicrophoneTrack;
+      Optional&lt;bool&gt; publishCameraTrack;
+      Optional&lt;bool&gt; publishSecondaryCameraTrack;
+      Optional&lt;bool> publishThirdCameraTrack;
+      Optional&lt;bool> publishFourthCameraTrack;
+      Optional&lt;bool&gt; publishMicrophoneTrack;
 
-      #if defined(__ANDROID__) || (defined(TARGET_OS_IPHONE) &amp;amp;&amp;amp; TARGET_OS_IPHONE)
-      Optional&amp;lt;bool&amp;gt; publishScreenCaptureVideo;
-      Optional&amp;lt;bool&amp;gt; publishScreenCaptureAudio;
+      #if defined(__ANDROID__) || (defined(TARGET_OS_IPHONE) &amp;&amp; TARGET_OS_IPHONE)
+      Optional&lt;bool&gt; publishScreenCaptureVideo;
+      Optional&lt;bool&gt; publishScreenCaptureAudio;
       #else
-      Optional&amp;lt;bool&amp;gt; publishScreenTrack;
-      Optional&amp;lt;bool&amp;gt; publishSecondaryScreenTrack;
-      Optional&amp;lt;bool&amp;gt; publishThirdScreenTrack;
-      Optional&amp;lt;bool&amp;gt; publishFourthScreenTrack;
+      Optional&lt;bool&gt; publishScreenTrack;
+      Optional&lt;bool&gt; publishSecondaryScreenTrack;
+      Optional&lt;bool> publishThirdScreenTrack;
+      Optional&lt;bool> publishFourthScreenTrack;
       #endif
 
-      Optional&amp;lt;bool&amp;gt; publishCustomAudioTrack;
-      Optional&amp;lt;int&amp;gt; publishCustomAudioTrackId;
-      Optional&amp;lt;bool&amp;gt; publishCustomVideoTrack;
-      Optional&amp;lt;bool&amp;gt; publishEncodedVideoTrack;
-      Optional&amp;lt;bool&amp;gt; publishMediaPlayerAudioTrack;
-      Optional&amp;lt;bool&amp;gt; publishMediaPlayerVideoTrack;
-      Optional&amp;lt;bool&amp;gt; publishTranscodedVideoTrack;
-      Optional&amp;lt;bool&amp;gt; publishMixedAudioTrack;
-      Optional&amp;lt;bool&amp;gt; publishLipSyncTrack;
-      Optional&amp;lt;bool&amp;gt; autoSubscribeAudio;
-      Optional&amp;lt;bool&amp;gt; autoSubscribeVideo;
-      Optional&amp;lt;bool&amp;gt; enableAudioRecordingOrPlayout;
-      Optional&amp;lt;int&amp;gt; publishMediaPlayerId;
-      Optional&amp;lt;CLIENT_ROLE_TYPE&amp;gt; clientRoleType;
-      Optional&amp;lt;AUDIENCE_LATENCY_LEVEL_TYPE&amp;gt; audienceLatencyLevel;
-      Optional&amp;lt;VIDEO_STREAM_TYPE&amp;gt; defaultVideoStreamType;
-      Optional&amp;lt;CHANNEL_PROFILE_TYPE&amp;gt; channelProfile;
-      Optional&amp;lt;const char*&amp;gt; token;
-      Optional&amp;lt;bool&amp;gt; enableBuiltInMediaEncryption;
-      Optional&amp;lt;bool&amp;gt; publishRhythmPlayerTrack;
-      Optional&amp;lt;bool&amp;gt; isInteractiveAudience;
+      Optional&lt;bool&gt; publishCustomAudioTrack;
+      Optional&lt;int&gt; publishCustomAudioTrackId;
+      Optional&lt;bool&gt; publishCustomVideoTrack;
+      Optional&lt;bool&gt; publishEncodedVideoTrack;
+      Optional&lt;bool&gt; publishMediaPlayerAudioTrack;
+      Optional&lt;bool&gt; publishMediaPlayerVideoTrack;
+      Optional&lt;bool&gt; publishTranscodedVideoTrack;
+      Optional&lt;bool&gt; publishMixedAudioTrack;
+      Optional&lt;bool&gt; publishLipSyncTrack;
+      Optional&lt;bool&gt; autoSubscribeAudio;
+      Optional&lt;bool&gt; autoSubscribeVideo;
+      Optional&lt;bool&gt; enableAudioRecordingOrPlayout;
+      Optional&lt;int&gt; publishMediaPlayerId;
+      Optional&lt;CLIENT_ROLE_TYPE&gt; clientRoleType;
+      Optional&lt;AUDIENCE_LATENCY_LEVEL_TYPE&gt; audienceLatencyLevel;
+      Optional&lt;VIDEO_STREAM_TYPE&gt; defaultVideoStreamType;
+      Optional&lt;CHANNEL_PROFILE_TYPE&gt; channelProfile;
+      Optional&lt;const char*&gt; token;
+      Optional&lt;bool&gt; enableBuiltInMediaEncryption;
+      Optional&lt;bool&gt; publishRhythmPlayerTrack;
+      Optional&lt;bool&gt; isInteractiveAudience;
 
-      Optional&amp;lt;video_track_id_t&amp;gt; customVideoTrackId;
+      Optional&lt;video_track_id_t&gt; customVideoTrackId;
 
-      Optional&amp;lt;bool&amp;gt; isAudioFilterable;
+      Optional&lt;bool&gt; isAudioFilterable;
 
       ChannelMediaOptions() {}
       ~ChannelMediaOptions() {}</codeblock>
@@ -901,228 +892,228 @@ struct FChannelMediaOptions
 {
 	GENERATED_BODY()
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishCameraTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishSecondaryCameraTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishThirdCameraTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishFourthCameraTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishMicrophoneTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishScreenCaptureVideo = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishScreenCaptureAudio = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishScreenTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishSecondaryScreenTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishThirdScreenTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishFourthScreenTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishCustomAudioTrack = EAgoraOptional::AGORA_NULL_VALUE;
-		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	bool publishCustomAudioTrackId_SetValue = false;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	int publishCustomAudioTrackId = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishCustomVideoTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishEncodedVideoTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishMediaPlayerAudioTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishMediaPlayerVideoTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishTranscodedVideoTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishMixedAudioTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishLipSyncTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional autoSubscribeAudio = EAgoraOptional::AGORA_TRUE_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional autoSubscribeVideo = EAgoraOptional::AGORA_TRUE_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional enableAudioRecordingOrPlayout = EAgoraOptional::AGORA_NULL_VALUE;
-		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	bool publishMediaPlayerId_SetValue = false;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	int publishMediaPlayerId = 0;
-		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	bool clientRoleType_SetValue = true;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	ECLIENT_ROLE_TYPE clientRoleType = ECLIENT_ROLE_TYPE::CLIENT_ROLE_BROADCASTER;
-		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	bool audienceLatencyLevel_SetValue = false;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAUDIENCE_LATENCY_LEVEL_TYPE audienceLatencyLevel = EAUDIENCE_LATENCY_LEVEL_TYPE::AUDIENCE_LATENCY_LEVEL_LOW_LATENCY;
-		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	bool defaultVideoStreamType_SetValue = false;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EVIDEO_STREAM_TYPE defaultVideoStreamType = EVIDEO_STREAM_TYPE::VIDEO_STREAM_HIGH;
-		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	bool channelProfile_SetValue = true;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	ECHANNEL_PROFILE_TYPE channelProfile = ECHANNEL_PROFILE_TYPE::CHANNEL_PROFILE_LIVE_BROADCASTING;
-		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	bool audioDelayMs_SetValue = false;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	int audioDelayMs = 0;
-		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	bool mediaPlayerAudioDelayMs_SetValue = false;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	int mediaPlayerAudioDelayMs = 0;
-		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	bool token_SetValue = false;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
-	FString token = &amp;quot;&amp;quot;;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	FString token = &quot;&quot;;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional enableBuiltInMediaEncryption = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional publishRhythmPlayerTrack = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional isInteractiveAudience = EAgoraOptional::AGORA_NULL_VALUE;
-		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	bool customVideoTrackId_SetValue = false;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	int64 customVideoTrackId = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &amp;quot;Agora|ChannelMediaOptions&amp;quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
 	EAgoraOptional isAudioFilterable = EAgoraOptional::AGORA_NULL_VALUE;
 
 	FChannelMediaOptions(){}
-	FChannelMediaOptions(const agora::rtc::ChannelMediaOptions &amp;amp; AgoraData){
+	FChannelMediaOptions(const agora::rtc::ChannelMediaOptions &amp; AgoraData){
 
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishCameraTrack, AgoraData.publishCameraTrack)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishSecondaryCameraTrack, AgoraData.publishSecondaryCameraTrack)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishThirdCameraTrack, AgoraData.publishThirdCameraTrack)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishFourthCameraTrack, AgoraData.publishFourthCameraTrack)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishMicrophoneTrack, AgoraData.publishMicrophoneTrack)
-#if defined(__ANDROID__) || (defined(TARGET_OS_IPHONE) &amp;amp;&amp;amp; TARGET_OS_IPHONE)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishScreenCaptureVideo, AgoraData.publishScreenCaptureVideo)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishScreenCaptureAudio, AgoraData.publishScreenCaptureAudio)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishCameraTrack, AgoraData.publishCameraTrack)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishSecondaryCameraTrack, AgoraData.publishSecondaryCameraTrack)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishThirdCameraTrack, AgoraData.publishThirdCameraTrack)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishFourthCameraTrack, AgoraData.publishFourthCameraTrack)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishMicrophoneTrack, AgoraData.publishMicrophoneTrack)
+#if defined(__ANDROID__) || (defined(TARGET_OS_IPHONE) &amp;&amp; TARGET_OS_IPHONE)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishScreenCaptureVideo, AgoraData.publishScreenCaptureVideo)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishScreenCaptureAudio, AgoraData.publishScreenCaptureAudio)
 #else
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishScreenTrack, AgoraData.publishScreenTrack)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishSecondaryScreenTrack, AgoraData.publishSecondaryScreenTrack)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishThirdScreenTrack, AgoraData.publishThirdScreenTrack)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishFourthScreenTrack, AgoraData.publishFourthScreenTrack)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishScreenTrack, AgoraData.publishScreenTrack)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishSecondaryScreenTrack, AgoraData.publishSecondaryScreenTrack)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishThirdScreenTrack, AgoraData.publishThirdScreenTrack)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishFourthScreenTrack, AgoraData.publishFourthScreenTrack)
 #endif
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishCustomAudioTrack, AgoraData.publishCustomAudioTrack)
-		SET_UEBP_OPTIONAL_VAL_DIR_ASSIGN(this-&amp;gt;publishCustomAudioTrackId, AgoraData.publishCustomAudioTrackId)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishCustomVideoTrack, AgoraData.publishCustomVideoTrack)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishEncodedVideoTrack, AgoraData.publishEncodedVideoTrack)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishMediaPlayerAudioTrack, AgoraData.publishMediaPlayerAudioTrack)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishMediaPlayerVideoTrack, AgoraData.publishMediaPlayerVideoTrack)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishTranscodedVideoTrack, AgoraData.publishTranscodedVideoTrack)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishMixedAudioTrack, AgoraData.publishMixedAudioTrack)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishLipSyncTrack, AgoraData.publishLipSyncTrack)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;autoSubscribeAudio, AgoraData.autoSubscribeAudio)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;autoSubscribeVideo, AgoraData.autoSubscribeVideo)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;enableAudioRecordingOrPlayout, AgoraData.enableAudioRecordingOrPlayout)
-		SET_UEBP_OPTIONAL_VAL_DIR_ASSIGN(this-&amp;gt;publishMediaPlayerId, AgoraData.publishMediaPlayerId)
-		SET_UEBP_OPTIONAL_VAL_ASSIGN_VAL(this-&amp;gt;clientRoleType,AgoraData.clientRoleType,static_cast&amp;lt;ECLIENT_ROLE_TYPE&amp;gt;(AgoraData.clientRoleType.value()))
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishCustomAudioTrack, AgoraData.publishCustomAudioTrack)
+		SET_UEBP_OPTIONAL_VAL_DIR_ASSIGN(this-&gt;publishCustomAudioTrackId, AgoraData.publishCustomAudioTrackId)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishCustomVideoTrack, AgoraData.publishCustomVideoTrack)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishEncodedVideoTrack, AgoraData.publishEncodedVideoTrack)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishMediaPlayerAudioTrack, AgoraData.publishMediaPlayerAudioTrack)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishMediaPlayerVideoTrack, AgoraData.publishMediaPlayerVideoTrack)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishTranscodedVideoTrack, AgoraData.publishTranscodedVideoTrack)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishMixedAudioTrack, AgoraData.publishMixedAudioTrack)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishLipSyncTrack, AgoraData.publishLipSyncTrack)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;autoSubscribeAudio, AgoraData.autoSubscribeAudio)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;autoSubscribeVideo, AgoraData.autoSubscribeVideo)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;enableAudioRecordingOrPlayout, AgoraData.enableAudioRecordingOrPlayout)
+		SET_UEBP_OPTIONAL_VAL_DIR_ASSIGN(this-&gt;publishMediaPlayerId, AgoraData.publishMediaPlayerId)
+		SET_UEBP_OPTIONAL_VAL_ASSIGN_VAL(this-&gt;clientRoleType,AgoraData.clientRoleType,static_cast&lt;ECLIENT_ROLE_TYPE&gt;(AgoraData.clientRoleType.value()))
 
-		SET_UEBP_OPTIONAL_VAL_ASSIGN_VAL(this-&amp;gt;audienceLatencyLevel, AgoraData.audienceLatencyLevel, static_cast&amp;lt;EAUDIENCE_LATENCY_LEVEL_TYPE&amp;gt;(AgoraData.audienceLatencyLevel.value()))
-		SET_UEBP_OPTIONAL_VAL_ASSIGN_VAL(this-&amp;gt;defaultVideoStreamType, AgoraData.defaultVideoStreamType, static_cast&amp;lt;EVIDEO_STREAM_TYPE&amp;gt;(AgoraData.defaultVideoStreamType.value()))
-		SET_UEBP_OPTIONAL_VAL_ASSIGN_VAL(this-&amp;gt;channelProfile, AgoraData.channelProfile, static_cast&amp;lt;ECHANNEL_PROFILE_TYPE&amp;gt;(AgoraData.channelProfile.value()))
-		SET_UEBP_OPTIONAL_VAL_DIR_ASSIGN(this-&amp;gt;audioDelayMs, AgoraData.audioDelayMs)
-		SET_UEBP_OPTIONAL_VAL_DIR_ASSIGN(this-&amp;gt;mediaPlayerAudioDelayMs, AgoraData.mediaPlayerAudioDelayMs)
+		SET_UEBP_OPTIONAL_VAL_ASSIGN_VAL(this-&gt;audienceLatencyLevel, AgoraData.audienceLatencyLevel, static_cast&lt;EAUDIENCE_LATENCY_LEVEL_TYPE&gt;(AgoraData.audienceLatencyLevel.value()))
+		SET_UEBP_OPTIONAL_VAL_ASSIGN_VAL(this-&gt;defaultVideoStreamType, AgoraData.defaultVideoStreamType, static_cast&lt;EVIDEO_STREAM_TYPE&gt;(AgoraData.defaultVideoStreamType.value()))
+		SET_UEBP_OPTIONAL_VAL_ASSIGN_VAL(this-&gt;channelProfile, AgoraData.channelProfile, static_cast&lt;ECHANNEL_PROFILE_TYPE&gt;(AgoraData.channelProfile.value()))
+		SET_UEBP_OPTIONAL_VAL_DIR_ASSIGN(this-&gt;audioDelayMs, AgoraData.audioDelayMs)
+		SET_UEBP_OPTIONAL_VAL_DIR_ASSIGN(this-&gt;mediaPlayerAudioDelayMs, AgoraData.mediaPlayerAudioDelayMs)
 
-		SET_UEBP_OPTIONAL_VAL_FString(this-&amp;gt;token,AgoraData.token)
+		SET_UEBP_OPTIONAL_VAL_FString(this-&gt;token,AgoraData.token)
 
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;enableBuiltInMediaEncryption, AgoraData.enableBuiltInMediaEncryption)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;publishRhythmPlayerTrack, AgoraData.publishRhythmPlayerTrack)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;isInteractiveAudience, AgoraData.isInteractiveAudience)
-		SET_UEBP_OPTIONAL_VAL_DIR_ASSIGN(this-&amp;gt;customVideoTrackId, AgoraData.customVideoTrackId)
-		SET_UEBP_OPTIONAL_VAL_BOOL(this-&amp;gt;isAudioFilterable, AgoraData.isAudioFilterable)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;enableBuiltInMediaEncryption, AgoraData.enableBuiltInMediaEncryption)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;publishRhythmPlayerTrack, AgoraData.publishRhythmPlayerTrack)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;isInteractiveAudience, AgoraData.isInteractiveAudience)
+		SET_UEBP_OPTIONAL_VAL_DIR_ASSIGN(this-&gt;customVideoTrackId, AgoraData.customVideoTrackId)
+		SET_UEBP_OPTIONAL_VAL_BOOL(this-&gt;isAudioFilterable, AgoraData.isAudioFilterable)
 	}
 	agora::rtc::ChannelMediaOptions CreateAgoraData() const{
 		agora::rtc::ChannelMediaOptions AgoraData;
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishCameraTrack, this-&amp;gt;publishCameraTrack)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishSecondaryCameraTrack, this-&amp;gt;publishSecondaryCameraTrack)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishThirdCameraTrack, this-&amp;gt;publishThirdCameraTrack)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishFourthCameraTrack, this-&amp;gt;publishFourthCameraTrack)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishMicrophoneTrack, this-&amp;gt;publishMicrophoneTrack)
-#if defined(__ANDROID__) || (defined(TARGET_OS_IPHONE) &amp;amp;&amp;amp; TARGET_OS_IPHONE)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishScreenCaptureVideo, this-&amp;gt;publishScreenCaptureVideo)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishScreenCaptureAudio, this-&amp;gt;publishScreenCaptureAudio)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishCameraTrack, this-&gt;publishCameraTrack)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishSecondaryCameraTrack, this-&gt;publishSecondaryCameraTrack)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishThirdCameraTrack, this-&gt;publishThirdCameraTrack)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishFourthCameraTrack, this-&gt;publishFourthCameraTrack)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishMicrophoneTrack, this-&gt;publishMicrophoneTrack)
+#if defined(__ANDROID__) || (defined(TARGET_OS_IPHONE) &amp;&amp; TARGET_OS_IPHONE)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishScreenCaptureVideo, this-&gt;publishScreenCaptureVideo)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishScreenCaptureAudio, this-&gt;publishScreenCaptureAudio)
 #else
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishScreenTrack, this-&amp;gt;publishScreenTrack)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishSecondaryScreenTrack, this-&amp;gt;publishSecondaryScreenTrack)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishThirdScreenTrack, this-&amp;gt;publishThirdScreenTrack)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishFourthScreenTrack, this-&amp;gt;publishFourthScreenTrack)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishScreenTrack, this-&gt;publishScreenTrack)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishSecondaryScreenTrack, this-&gt;publishSecondaryScreenTrack)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishThirdScreenTrack, this-&gt;publishThirdScreenTrack)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishFourthScreenTrack, this-&gt;publishFourthScreenTrack)
 #endif
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishCustomAudioTrack, this-&amp;gt;publishCustomAudioTrack)
-		SET_AGORA_OPTIONAL_VAL_DIR_ASSIGN(AgoraData.publishCustomAudioTrackId, this-&amp;gt;publishCustomAudioTrackId)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishCustomVideoTrack, this-&amp;gt;publishCustomVideoTrack)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishEncodedVideoTrack, this-&amp;gt;publishEncodedVideoTrack)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishMediaPlayerAudioTrack, this-&amp;gt;publishMediaPlayerAudioTrack)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishMediaPlayerVideoTrack, this-&amp;gt;publishMediaPlayerVideoTrack)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishTranscodedVideoTrack, this-&amp;gt;publishTranscodedVideoTrack)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishMixedAudioTrack, this-&amp;gt;publishMixedAudioTrack)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishLipSyncTrack, this-&amp;gt;publishLipSyncTrack)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.autoSubscribeAudio, this-&amp;gt;autoSubscribeAudio)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.autoSubscribeVideo, this-&amp;gt;autoSubscribeVideo)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.enableAudioRecordingOrPlayout, this-&amp;gt;enableAudioRecordingOrPlayout)
-		SET_AGORA_OPTIONAL_VAL_DIR_ASSIGN(AgoraData.publishMediaPlayerId, this-&amp;gt;publishMediaPlayerId)
-		SET_AGORA_OPTIONAL_VAL_ASSIGN_VAL(AgoraData.clientRoleType, this-&amp;gt;clientRoleType,static_cast&amp;lt;agora::rtc::CLIENT_ROLE_TYPE&amp;gt;(this-&amp;gt;clientRoleType))
-		SET_AGORA_OPTIONAL_VAL_ASSIGN_VAL(AgoraData.audienceLatencyLevel, this-&amp;gt;audienceLatencyLevel, static_cast&amp;lt;agora::rtc::AUDIENCE_LATENCY_LEVEL_TYPE&amp;gt;(this-&amp;gt;audienceLatencyLevel))
-		SET_AGORA_OPTIONAL_VAL_ASSIGN_VAL(AgoraData.defaultVideoStreamType, this-&amp;gt;defaultVideoStreamType, static_cast&amp;lt;agora::rtc::VIDEO_STREAM_TYPE&amp;gt;(this-&amp;gt;defaultVideoStreamType))
-		SET_AGORA_OPTIONAL_VAL_ASSIGN_VAL(AgoraData.channelProfile, this-&amp;gt;channelProfile, static_cast&amp;lt;agora::CHANNEL_PROFILE_TYPE&amp;gt;(this-&amp;gt;channelProfile))
-		SET_AGORA_OPTIONAL_VAL_DIR_ASSIGN(AgoraData.audioDelayMs, this-&amp;gt;audioDelayMs)
-		SET_AGORA_OPTIONAL_VAL_DIR_ASSIGN(AgoraData.mediaPlayerAudioDelayMs, this-&amp;gt;mediaPlayerAudioDelayMs)
-		SET_AGORA_OPTIONAL_VAL_CHARPTR______MEMOALLOC(AgoraData.token, this-&amp;gt;token)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.enableBuiltInMediaEncryption, this-&amp;gt;enableBuiltInMediaEncryption)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishRhythmPlayerTrack, this-&amp;gt;publishRhythmPlayerTrack)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.isInteractiveAudience, this-&amp;gt;isInteractiveAudience)
-		SET_AGORA_OPTIONAL_VAL_DIR_ASSIGN(AgoraData.customVideoTrackId, this-&amp;gt;customVideoTrackId)
-		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.isAudioFilterable, this-&amp;gt;isAudioFilterable)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishCustomAudioTrack, this-&gt;publishCustomAudioTrack)
+		SET_AGORA_OPTIONAL_VAL_DIR_ASSIGN(AgoraData.publishCustomAudioTrackId, this-&gt;publishCustomAudioTrackId)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishCustomVideoTrack, this-&gt;publishCustomVideoTrack)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishEncodedVideoTrack, this-&gt;publishEncodedVideoTrack)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishMediaPlayerAudioTrack, this-&gt;publishMediaPlayerAudioTrack)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishMediaPlayerVideoTrack, this-&gt;publishMediaPlayerVideoTrack)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishTranscodedVideoTrack, this-&gt;publishTranscodedVideoTrack)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishMixedAudioTrack, this-&gt;publishMixedAudioTrack)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishLipSyncTrack, this-&gt;publishLipSyncTrack)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.autoSubscribeAudio, this-&gt;autoSubscribeAudio)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.autoSubscribeVideo, this-&gt;autoSubscribeVideo)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.enableAudioRecordingOrPlayout, this-&gt;enableAudioRecordingOrPlayout)
+		SET_AGORA_OPTIONAL_VAL_DIR_ASSIGN(AgoraData.publishMediaPlayerId, this-&gt;publishMediaPlayerId)
+		SET_AGORA_OPTIONAL_VAL_ASSIGN_VAL(AgoraData.clientRoleType, this-&gt;clientRoleType,static_cast&lt;agora::rtc::CLIENT_ROLE_TYPE&gt;(this-&gt;clientRoleType))
+		SET_AGORA_OPTIONAL_VAL_ASSIGN_VAL(AgoraData.audienceLatencyLevel, this-&gt;audienceLatencyLevel, static_cast&lt;agora::rtc::AUDIENCE_LATENCY_LEVEL_TYPE&gt;(this-&gt;audienceLatencyLevel))
+		SET_AGORA_OPTIONAL_VAL_ASSIGN_VAL(AgoraData.defaultVideoStreamType, this-&gt;defaultVideoStreamType, static_cast&lt;agora::rtc::VIDEO_STREAM_TYPE&gt;(this-&gt;defaultVideoStreamType))
+		SET_AGORA_OPTIONAL_VAL_ASSIGN_VAL(AgoraData.channelProfile, this-&gt;channelProfile, static_cast&lt;agora::CHANNEL_PROFILE_TYPE&gt;(this-&gt;channelProfile))
+		SET_AGORA_OPTIONAL_VAL_DIR_ASSIGN(AgoraData.audioDelayMs, this-&gt;audioDelayMs)
+		SET_AGORA_OPTIONAL_VAL_DIR_ASSIGN(AgoraData.mediaPlayerAudioDelayMs, this-&gt;mediaPlayerAudioDelayMs)
+		SET_AGORA_OPTIONAL_VAL_CHARPTR______MEMOALLOC(AgoraData.token, this-&gt;token)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.enableBuiltInMediaEncryption, this-&gt;enableBuiltInMediaEncryption)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.publishRhythmPlayerTrack, this-&gt;publishRhythmPlayerTrack)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.isInteractiveAudience, this-&gt;isInteractiveAudience)
+		SET_AGORA_OPTIONAL_VAL_DIR_ASSIGN(AgoraData.customVideoTrackId, this-&gt;customVideoTrackId)
+		SET_AGORA_OPTIONAL_VAL_BOOL(AgoraData.isAudioFilterable, this-&gt;isAudioFilterable)
 		return AgoraData;
 	}
-	void FreeAgoraData(agora::rtc::ChannelMediaOptions&amp;amp; AgoraData) const {
+	void FreeAgoraData(agora::rtc::ChannelMediaOptions&amp; AgoraData) const {
 		SET_AGORA_OPTIONAL_VAL_CHARPTR______MEMOFREE(AgoraData.token)
 	}
 };</codeblock>
                 <codeblock props="unreal" outputclass="language-cpp">struct ChannelMediaOptions {
-      Optional&amp;lt;bool&amp;gt; publishCameraTrack;
-      Optional&amp;lt;bool&amp;gt; publishSecondaryCameraTrack;
-      Optional&amp;lt;bool&amp;gt; publishMicrophoneTrack;
+      Optional&lt;bool&gt; publishCameraTrack;
+      Optional&lt;bool&gt; publishSecondaryCameraTrack;
+      Optional&lt;bool&gt; publishMicrophoneTrack;
 
-      #if defined(__ANDROID__) || (defined(TARGET_OS_IPHONE) &amp;amp;&amp;amp; TARGET_OS_IPHONE)
-      Optional&amp;lt;bool&amp;gt; publishScreenCaptureVideo;
-      Optional&amp;lt;bool&amp;gt; publishScreenCaptureAudio;
+      #if defined(__ANDROID__) || (defined(TARGET_OS_IPHONE) &amp;&amp; TARGET_OS_IPHONE)
+      Optional&lt;bool&gt; publishScreenCaptureVideo;
+      Optional&lt;bool&gt; publishScreenCaptureAudio;
       #else
-      Optional&amp;lt;bool&amp;gt; publishScreenTrack;
-      Optional&amp;lt;bool&amp;gt; publishSecondaryScreenTrack;
+      Optional&lt;bool&gt; publishScreenTrack;
+      Optional&lt;bool&gt; publishSecondaryScreenTrack;
       #endif
 
-      Optional&amp;lt;bool&amp;gt; publishCustomAudioTrack;
-      Optional&amp;lt;int&amp;gt; publishCustomAudioTrackId;
-      Optional&amp;lt;bool&amp;gt; publishCustomVideoTrack;
-      Optional&amp;lt;bool&amp;gt; publishEncodedVideoTrack;
-      Optional&amp;lt;bool&amp;gt; publishMediaPlayerAudioTrack;
-      Optional&amp;lt;bool&amp;gt; publishMediaPlayerVideoTrack;
-      Optional&amp;lt;bool&amp;gt; publishTranscodedVideoTrack;
-      Optional&amp;lt;bool&amp;gt; autoSubscribeAudio;
-      Optional&amp;lt;bool&amp;gt; autoSubscribeVideo;
-      Optional&amp;lt;bool&amp;gt; enableAudioRecordingOrPlayout;
-      Optional&amp;lt;int&amp;gt; publishMediaPlayerId;
-      Optional&amp;lt;CLIENT_ROLE_TYPE&amp;gt; clientRoleType;
-      Optional&amp;lt;AUDIENCE_LATENCY_LEVEL_TYPE&amp;gt; audienceLatencyLevel;
-      Optional&amp;lt;VIDEO_STREAM_TYPE&amp;gt; defaultVideoStreamType;
-      Optional&amp;lt;CHANNEL_PROFILE_TYPE&amp;gt; channelProfile;
-      Optional&amp;lt;const char*&amp;gt; token;
-      Optional&amp;lt;bool&amp;gt; enableBuiltInMediaEncryption;
-      Optional&amp;lt;bool&amp;gt; publishRhythmPlayerTrack;
-      Optional&amp;lt;bool&amp;gt; isInteractiveAudience;
+      Optional&lt;bool&gt; publishCustomAudioTrack;
+      Optional&lt;int&gt; publishCustomAudioTrackId;
+      Optional&lt;bool&gt; publishCustomVideoTrack;
+      Optional&lt;bool&gt; publishEncodedVideoTrack;
+      Optional&lt;bool&gt; publishMediaPlayerAudioTrack;
+      Optional&lt;bool&gt; publishMediaPlayerVideoTrack;
+      Optional&lt;bool&gt; publishTranscodedVideoTrack;
+      Optional&lt;bool&gt; autoSubscribeAudio;
+      Optional&lt;bool&gt; autoSubscribeVideo;
+      Optional&lt;bool&gt; enableAudioRecordingOrPlayout;
+      Optional&lt;int&gt; publishMediaPlayerId;
+      Optional&lt;CLIENT_ROLE_TYPE&gt; clientRoleType;
+      Optional&lt;AUDIENCE_LATENCY_LEVEL_TYPE&gt; audienceLatencyLevel;
+      Optional&lt;VIDEO_STREAM_TYPE&gt; defaultVideoStreamType;
+      Optional&lt;CHANNEL_PROFILE_TYPE&gt; channelProfile;
+      Optional&lt;const char*&gt; token;
+      Optional&lt;bool&gt; enableBuiltInMediaEncryption;
+      Optional&lt;bool&gt; publishRhythmPlayerTrack;
+      Optional&lt;bool&gt; isInteractiveAudience;
 
-      Optional&amp;lt;video_track_id_t&amp;gt; customVideoTrackId;
+      Optional&lt;video_track_id_t&gt; customVideoTrackId;
 
-      Optional&amp;lt;bool&amp;gt; isAudioFilterable;
+      Optional&lt;bool&gt; isAudioFilterable;
 
       ChannelMediaOptions() {}
       ~ChannelMediaOptions() {}</codeblock>
@@ -1192,38 +1183,38 @@ public:
     }</codeblock>
                 <codeblock props="unity cs" outputclass="language-csharp">public class ChannelMediaOptions : OptionalJsonParse
         {
-            public Optional&amp;lt;bool&amp;gt; publishCameraTrack = new Optional&amp;lt;bool&amp;gt;();
-            public Optional&amp;lt;bool&amp;gt; publishSecondaryCameraTrack = new Optional&amp;lt;bool&amp;gt;();
-            public Optional&amp;lt;bool&amp;gt; publishThirdCameraTrack = new Optional&amp;lt;bool&amp;gt;();
-            public Optional&amp;lt;bool&amp;gt; publishFourthCameraTrack = new Optional&amp;lt;bool&amp;gt;();
-            public Optional&amp;lt;bool&amp;gt; publishMicrophoneTrack = new Optional&amp;lt;bool&amp;gt;();
-            public Optional&amp;lt;bool&amp;gt; publishScreenCaptureVideo = new Optional&amp;lt;bool&amp;gt;();
-            public Optional&amp;lt;bool&amp;gt; publishScreenCaptureAudio = new Optional&amp;lt;bool&amp;gt;();
-            public Optional&amp;lt;bool&amp;gt; publishScreenTrack = new Optional&amp;lt;bool&amp;gt;();
-            public Optional&amp;lt;bool&amp;gt; publishSecondaryScreenTrack = new Optional&amp;lt;bool&amp;gt;();
-            public Optional&amp;lt;bool&amp;gt; publishThirdScreenTrack = new Optional&amp;lt;bool&amp;gt;();
-            public Optional&amp;lt;bool&amp;gt; publishFourthScreenTrack = new Optional&amp;lt;bool&amp;gt;();
-            public Optional&amp;lt;bool&amp;gt; publishCustomAudioTrack = new Optional&amp;lt;bool&amp;gt;();
-            public Optional&amp;lt;int&amp;gt; publishCustomAudioTrackId = new Optional&amp;lt;int&amp;gt;();
-            public Optional&amp;lt;bool&amp;gt; publishCustomVideoTrack = new Optional&amp;lt;bool&amp;gt;();
-            public Optional&amp;lt;bool&amp;gt; publishEncodedVideoTrack = new Optional&amp;lt;bool&amp;gt;();
-            public Optional&amp;lt;bool&amp;gt; publishMediaPlayerAudioTrack = new Optional&amp;lt;bool&amp;gt;();
-            public Optional&amp;lt;bool&amp;gt; publishMediaPlayerVideoTrack = new Optional&amp;lt;bool&amp;gt;();
-            public Optional&amp;lt;bool&amp;gt; publishTranscodedVideoTrack = new Optional&amp;lt;bool&amp;gt;();
-            public Optional&amp;lt;bool&amp;gt; publishLipSyncTrack = new Optional&amp;lt;bool&amp;gt;();
-            public Optional&amp;lt;bool&amp;gt; autoSubscribeAudio = new Optional&amp;lt;bool&amp;gt;();
-            public Optional&amp;lt;bool&amp;gt; autoSubscribeVideo = new Optional&amp;lt;bool&amp;gt;();
-            public Optional&amp;lt;bool&amp;gt; enableAudioRecordingOrPlayout = new Optional&amp;lt;bool&amp;gt;();
-            public Optional&amp;lt;int&amp;gt; publishMediaPlayerId = new Optional&amp;lt;int&amp;gt;();
-            public Optional&amp;lt;CLIENT_ROLE_TYPE&amp;gt; clientRoleType = new Optional&amp;lt;CLIENT_ROLE_TYPE&amp;gt;();
-            public Optional&amp;lt;AUDIENCE_LATENCY_LEVEL_TYPE&amp;gt; audienceLatencyLevel = new Optional&amp;lt;AUDIENCE_LATENCY_LEVEL_TYPE&amp;gt;();
-            public Optional&amp;lt;VIDEO_STREAM_TYPE&amp;gt; defaultVideoStreamType = new Optional&amp;lt;VIDEO_STREAM_TYPE&amp;gt;();
-            public Optional&amp;lt;CHANNEL_PROFILE_TYPE&amp;gt; channelProfile = new Optional&amp;lt;CHANNEL_PROFILE_TYPE&amp;gt;();
-            public Optional&amp;lt;string&amp;gt; token = new Optional&amp;lt;string&amp;gt;();
-            public Optional&amp;lt;bool&amp;gt; publishRhythmPlayerTrack = new Optional&amp;lt;bool&amp;gt;();
-            public Optional&amp;lt;bool&amp;gt; isInteractiveAudience = new Optional&amp;lt;bool&amp;gt;();
-            public Optional&amp;lt;video_track_id_t&amp;gt; customVideoTrackId = new Optional&amp;lt;video_track_id_t&amp;gt;();
-            public Optional&amp;lt;bool&amp;gt; isAudioFilterable = new Optional&amp;lt;bool&amp;gt;();
+            public Optional&lt;bool> publishCameraTrack = new Optional&lt;bool>();
+            public Optional&lt;bool> publishSecondaryCameraTrack = new Optional&lt;bool>();
+            public Optional&lt;bool> publishThirdCameraTrack = new Optional&lt;bool>();
+            public Optional&lt;bool> publishFourthCameraTrack = new Optional&lt;bool>();
+            public Optional&lt;bool> publishMicrophoneTrack = new Optional&lt;bool>();
+            public Optional&lt;bool> publishScreenCaptureVideo = new Optional&lt;bool>();
+            public Optional&lt;bool> publishScreenCaptureAudio = new Optional&lt;bool>();
+            public Optional&lt;bool> publishScreenTrack = new Optional&lt;bool>();
+            public Optional&lt;bool> publishSecondaryScreenTrack = new Optional&lt;bool>();
+            public Optional&lt;bool> publishThirdScreenTrack = new Optional&lt;bool>();
+            public Optional&lt;bool> publishFourthScreenTrack = new Optional&lt;bool>();
+            public Optional&lt;bool> publishCustomAudioTrack = new Optional&lt;bool>();
+            public Optional&lt;int> publishCustomAudioTrackId = new Optional&lt;int>();
+            public Optional&lt;bool> publishCustomVideoTrack = new Optional&lt;bool>();
+            public Optional&lt;bool> publishEncodedVideoTrack = new Optional&lt;bool>();
+            public Optional&lt;bool> publishMediaPlayerAudioTrack = new Optional&lt;bool>();
+            public Optional&lt;bool> publishMediaPlayerVideoTrack = new Optional&lt;bool>();
+            public Optional&lt;bool> publishTranscodedVideoTrack = new Optional&lt;bool>();
+            public Optional&lt;bool> publishLipSyncTrack = new Optional&lt;bool>();
+            public Optional&lt;bool> autoSubscribeAudio = new Optional&lt;bool>();
+            public Optional&lt;bool> autoSubscribeVideo = new Optional&lt;bool>();
+            public Optional&lt;bool> enableAudioRecordingOrPlayout = new Optional&lt;bool>();
+            public Optional&lt;int> publishMediaPlayerId = new Optional&lt;int>();
+            public Optional&lt;CLIENT_ROLE_TYPE> clientRoleType = new Optional&lt;CLIENT_ROLE_TYPE>();
+            public Optional&lt;AUDIENCE_LATENCY_LEVEL_TYPE> audienceLatencyLevel = new Optional&lt;AUDIENCE_LATENCY_LEVEL_TYPE>();
+            public Optional&lt;VIDEO_STREAM_TYPE> defaultVideoStreamType = new Optional&lt;VIDEO_STREAM_TYPE>();
+            public Optional&lt;CHANNEL_PROFILE_TYPE> channelProfile = new Optional&lt;CHANNEL_PROFILE_TYPE>();
+            public Optional&lt;string> token = new Optional&lt;string>();
+            public Optional&lt;bool> publishRhythmPlayerTrack = new Optional&lt;bool>();
+            public Optional&lt;bool> isInteractiveAudience = new Optional&lt;bool>();
+            public Optional&lt;video_track_id_t> customVideoTrackId = new Optional&lt;video_track_id_t>();
+            public Optional&lt;bool> isAudioFilterable = new Optional&lt;bool>();
 
        }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript">export class ChannelMediaOptions {
@@ -1333,125 +1324,125 @@ public:
           this.isAudioFilterable,
           this.parameters});
 
-      @JsonKey(name: 'publishCameraTrack')
+      @JsonKey(name: &#x27;publishCameraTrack&#x27;)
       final bool? publishCameraTrack;
 
-      @JsonKey(name: 'publishSecondaryCameraTrack')
+      @JsonKey(name: &#x27;publishSecondaryCameraTrack&#x27;)
       final bool? publishSecondaryCameraTrack;
 
-      @JsonKey(name: 'publishThirdCameraTrack')
+      @JsonKey(name: &#x27;publishThirdCameraTrack&#x27;)
       final bool? publishThirdCameraTrack;
 
-      @JsonKey(name: 'publishFourthCameraTrack')
+      @JsonKey(name: &#x27;publishFourthCameraTrack&#x27;)
       final bool? publishFourthCameraTrack;
 
-      @JsonKey(name: 'publishMicrophoneTrack')
+      @JsonKey(name: &#x27;publishMicrophoneTrack&#x27;)
       final bool? publishMicrophoneTrack;
 
-      @JsonKey(name: 'publishScreenCaptureVideo')
+      @JsonKey(name: &#x27;publishScreenCaptureVideo&#x27;)
       final bool? publishScreenCaptureVideo;
 
-      @JsonKey(name: 'publishScreenCaptureAudio')
+      @JsonKey(name: &#x27;publishScreenCaptureAudio&#x27;)
       final bool? publishScreenCaptureAudio;
 
-      @JsonKey(name: 'publishScreenTrack')
+      @JsonKey(name: &#x27;publishScreenTrack&#x27;)
       final bool? publishScreenTrack;
 
-      @JsonKey(name: 'publishSecondaryScreenTrack')
+      @JsonKey(name: &#x27;publishSecondaryScreenTrack&#x27;)
       final bool? publishSecondaryScreenTrack;
 
-      @JsonKey(name: 'publishThirdScreenTrack')
+      @JsonKey(name: &#x27;publishThirdScreenTrack&#x27;)
       final bool? publishThirdScreenTrack;
 
-      @JsonKey(name: 'publishFourthScreenTrack')
+      @JsonKey(name: &#x27;publishFourthScreenTrack&#x27;)
       final bool? publishFourthScreenTrack;
 
-      @JsonKey(name: 'publishCustomAudioTrack')
+      @JsonKey(name: &#x27;publishCustomAudioTrack&#x27;)
       final bool? publishCustomAudioTrack;
 
-      @JsonKey(name: 'publishCustomAudioTrackId')
+      @JsonKey(name: &#x27;publishCustomAudioTrackId&#x27;)
       final int? publishCustomAudioTrackId;
 
-      @JsonKey(name: 'publishCustomVideoTrack')
+      @JsonKey(name: &#x27;publishCustomVideoTrack&#x27;)
       final bool? publishCustomVideoTrack;
 
-      @JsonKey(name: 'publishEncodedVideoTrack')
+      @JsonKey(name: &#x27;publishEncodedVideoTrack&#x27;)
       final bool? publishEncodedVideoTrack;
 
-      @JsonKey(name: 'publishMediaPlayerAudioTrack')
+      @JsonKey(name: &#x27;publishMediaPlayerAudioTrack&#x27;)
       final bool? publishMediaPlayerAudioTrack;
 
-      @JsonKey(name: 'publishMediaPlayerVideoTrack')
+      @JsonKey(name: &#x27;publishMediaPlayerVideoTrack&#x27;)
       final bool? publishMediaPlayerVideoTrack;
 
-      @JsonKey(name: 'publishTranscodedVideoTrack')
+      @JsonKey(name: &#x27;publishTranscodedVideoTrack&#x27;)
       final bool? publishTranscodedVideoTrack;
 
-      @JsonKey(name: 'publishMixedAudioTrack')
+      @JsonKey(name: &#x27;publishMixedAudioTrack&#x27;)
       final bool? publishMixedAudioTrack;
 
-      @JsonKey(name: 'publishLipSyncTrack')
+      @JsonKey(name: &#x27;publishLipSyncTrack&#x27;)
       final bool? publishLipSyncTrack;
 
-      @JsonKey(name: 'autoSubscribeAudio')
+      @JsonKey(name: &#x27;autoSubscribeAudio&#x27;)
       final bool? autoSubscribeAudio;
 
-      @JsonKey(name: 'autoSubscribeVideo')
+      @JsonKey(name: &#x27;autoSubscribeVideo&#x27;)
       final bool? autoSubscribeVideo;
 
-      @JsonKey(name: 'enableAudioRecordingOrPlayout')
+      @JsonKey(name: &#x27;enableAudioRecordingOrPlayout&#x27;)
       final bool? enableAudioRecordingOrPlayout;
 
-      @JsonKey(name: 'publishMediaPlayerId')
+      @JsonKey(name: &#x27;publishMediaPlayerId&#x27;)
       final int? publishMediaPlayerId;
 
-      @JsonKey(name: 'clientRoleType')
+      @JsonKey(name: &#x27;clientRoleType&#x27;)
       final ClientRoleType? clientRoleType;
 
-      @JsonKey(name: 'audienceLatencyLevel')
+      @JsonKey(name: &#x27;audienceLatencyLevel&#x27;)
       final AudienceLatencyLevelType? audienceLatencyLevel;
 
-      @JsonKey(name: 'defaultVideoStreamType')
+      @JsonKey(name: &#x27;defaultVideoStreamType&#x27;)
       final VideoStreamType? defaultVideoStreamType;
 
-      @JsonKey(name: 'channelProfile')
+      @JsonKey(name: &#x27;channelProfile&#x27;)
       final ChannelProfileType? channelProfile;
 
-      @JsonKey(name: 'audioDelayMs')
+      @JsonKey(name: &#x27;audioDelayMs&#x27;)
       final int? audioDelayMs;
 
-      @JsonKey(name: 'mediaPlayerAudioDelayMs')
+      @JsonKey(name: &#x27;mediaPlayerAudioDelayMs&#x27;)
       final int? mediaPlayerAudioDelayMs;
 
-      @JsonKey(name: 'token')
+      @JsonKey(name: &#x27;token&#x27;)
       final String? token;
 
-      @JsonKey(name: 'enableBuiltInMediaEncryption')
+      @JsonKey(name: &#x27;enableBuiltInMediaEncryption&#x27;)
       final bool? enableBuiltInMediaEncryption;
 
-      @JsonKey(name: 'publishRhythmPlayerTrack')
+      @JsonKey(name: &#x27;publishRhythmPlayerTrack&#x27;)
       final bool? publishRhythmPlayerTrack;
 
-      @JsonKey(name: 'isInteractiveAudience')
+      @JsonKey(name: &#x27;isInteractiveAudience&#x27;)
       final bool? isInteractiveAudience;
 
-      @JsonKey(name: 'customVideoTrackId')
+      @JsonKey(name: &#x27;customVideoTrackId&#x27;)
       final int? customVideoTrackId;
 
-      @JsonKey(name: 'isAudioFilterable')
+      @JsonKey(name: &#x27;isAudioFilterable&#x27;)
       final bool? isAudioFilterable;
 
-      @JsonKey(name: 'parameters')
+      @JsonKey(name: &#x27;parameters&#x27;)
       final String? parameters;
 
-      factory ChannelMediaOptions.fromJson(Map&amp;lt;String, dynamic&amp;gt; json) =&amp;gt;
+      factory ChannelMediaOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
           _$ChannelMediaOptionsFromJson(json);
 
-      Map&amp;lt;String, dynamic&amp;gt; toJson() =&amp;gt; _$ChannelMediaOptionsToJson(this);
+      Map&lt;String, dynamic&gt; toJson() =&gt; _$ChannelMediaOptionsToJson(this);
     }</codeblock>
-                <codeblock props="reserve" outputclass="language-cpp"/></p>
+                <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
             </section>
-        <section id="detailed_desc">Agora supports publishing multiple audio streams and one video stream at the same time and in the same <xref keyref="RtcConnection"/>. For example, <parmname>publishMicrophoneTrack</parmname>, <parmname>publishCustomAudioTrack</parmname>, and <parmname>publishMediaPlayerAudioTrack</parmname> can be set as <codeph><ph keyref="true"/></codeph> at the same time, but only one of <parmname>publishCameraTrack</parmname>, <ph props="android bp cpp flutter ios rn unity unreal"><parmname>publishScreenCaptureVideo</parmname>, </ph><ph props="bp cpp electron flutter mac unity unreal"><parmname>publishScreenTrack</parmname>, </ph><parmname>publishCustomVideoTrack</parmname>, or <parmname>publishEncodedVideoTrack</parmname> can be set as <codeph><ph keyref="true"/></codeph>.<note type="attention" id="note">Agora recommends that you set member parameter values yourself according to your business scenario, otherwise the SDK will automatically assign values to member parameters.</note>
+        <section id="detailed_desc">Agora supports publishing multiple audio streams and one video stream at the same time and in the same <xref keyref="RtcConnection"/>. For example, <parmname>publishMicrophoneTrack</parmname>, <parmname>publishCustomAudioTrack</parmname>, and <parmname>publishMediaPlayerAudioTrack</parmname> can be set as <codeph><ph keyref="true"/></codeph> at the same time, but only one of <parmname>publishCameraTrack</parmname>, <ph props="android ios cpp unreal bp flutter unity rn"><parmname>publishScreenCaptureVideo</parmname>, </ph><ph props="mac cpp unreal bp flutter unity electron"><parmname>publishScreenTrack</parmname>, </ph><parmname>publishCustomVideoTrack</parmname>, or <parmname>publishEncodedVideoTrack</parmname> can be set as <codeph><ph keyref="true"/></codeph>.<note type="attention" id="note">Agora recommends that you set member parameter values yourself according to your business scenario, otherwise the SDK will automatically assign values to member parameters.</note>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
@@ -1463,7 +1454,7 @@ public:
                     <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured by the camera.</li>
                     </ul></pd>
             </plentry>
-            <plentry props="apple bp cpp cs electron flutter rn unity unreal">
+            <plentry props="ios mac cpp unreal bp unity cs flutter rn electron">
                 <pt>publishSecondaryCameraTrack</pt>
                 <pd>Whether to publish the video captured by the second camera:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the video captured by the second camera.</li>
@@ -1478,72 +1469,60 @@ public:
                 </ul></pd>
                 <pd>
                     <note type="note">
-                    <ul><li props="electron native rn unity">As of v4.0.0, the parameter name is changed from <parmname>publishAudioTrack</parmname> to <parmname>publishMicrophoneTrack</parmname>.</li>
+                    <ul><li props="native unity rn electron">As of v4.0.0, the parameter name is changed from <parmname>publishAudioTrack</parmname> to <parmname>publishMicrophoneTrack</parmname>.</li>
                     <li props="flutter">As of v6.0.0, the parameter name is changed from <parmname>publishAudioTrack</parmname> to <parmname>publishMicrophoneTrack</parmname>.</li>
                     <li>If you set this parameter as <codeph><ph keyref="false"/></codeph>, SDK turns off microphone capturing.</li>
                         <li>If you want to publish the audio streams captured by your microphone, ensure <parmname>enableAudioRecordingOrPlayout</parmname> is set as <codeph><ph keyref="true"/></codeph>.</li>
                     </ul></note>
                 </pd>
             </plentry>
-            <plentry props="android cpp framework mac">
+            <plentry props="android cpp mac framework">
                 <pt>publishThirdCameraTrack</pt>
                 <pd>Whether to publish the video captured by the third camera:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the video captured by the third camera.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured by the third camera.</li>
                     </ul>
-                    <note type="attention" props="bp cpp flutter unity unreal">This parameter is for Android, Windows and macOS only.</note><note type="attention" props="rn">This parameter is for Android only.</note></pd>
+                    <note type="attention" props="cpp unreal bp unity flutter">This parameter is for Android, Windows and macOS only.</note><note type="attention" props="rn">This parameter is for Android only.</note></pd>
             </plentry>
-            <plentry props="android cpp framework mac">
+            <plentry props="android cpp mac framework">
                 <pt>publishFourthCameraTrack</pt>
                 <pd>Whether to publish the video captured by the fourth camera:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the video captured by the fourth camera.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured by the fourth camera.</li>
                     </ul>
-                    <note type="attention" props="bp cpp flutter unity unreal">This parameter is for Android, Windows and macOS only.</note><note type="attention" props="rn">This parameter is for Android only.</note></pd>
+                    <note type="attention" props="cpp unreal bp unity flutter">This parameter is for Android, Windows and macOS only.</note><note type="attention" props="rn">This parameter is for Android only.</note></pd>
             </plentry>
-            <plentry props="bp cpp cs electron flutter mac unity unreal">
+            <plentry props="mac cpp flutter unreal bp unity cs electron">
                 <pt>publishScreenTrack</pt>
                 <pd>
                     <p>Whether to publish the video captured from the screen:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the video captured from the screen.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured from the screen.</li>
                     </ul></p>
-                    <note type="attention" props="bp cpp flutter unity unreal">This is for Windows and macOS only.</note>
+                    <note type="attention" props="cpp unreal bp unity flutter">This is for Windows and macOS only.</note>
                 </pd>
             </plentry>
-            <plentry props="android bp cpp flutter hmos ios rn unity unreal">
+            <plentry props="android hmos ios cpp flutter unreal bp unity rn">
                 <pt>publishScreenCaptureVideo</pt>
                 <pd>
                     <p>Whether to publish the video captured from the screen:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the video captured from the screen.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured from the screen.</li>
                     </ul></p>
-                    <note type="attention" props="bp cpp flutter unity unreal">This parameter is for Android and iOS only.</note>
+                    <note type="attention" props="cpp unreal bp unity flutter">This parameter is for Android and iOS only.</note>
                     <note type="note" props="android ios">As of v4.0.0, the parameter name is changed from <parmname>publishScreenTrack</parmname> to <parmname>publishScreenCaptureVideo</parmname>.</note> </pd>
             </plentry>
-            <plentry props="bp flutter hmos native rn unity unreal">
-                <pt props="apple cpp">publishScreenCaptureAudio</pt>
+            <plentry props="android hmos ios cpp flutter unreal bp unity rn">
+                <pt>publishScreenCaptureAudio</pt>
                 <pd>
                     <p>Whether to publish the audio captured from the screen:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the audio captured from the screen.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Publish the audio captured from the screen.</li>
                     </ul></p>
-                    <note type="attention" props="bp cpp flutter unity unreal">This parameter is for Android and iOS only.</note>
+                    <note type="attention" props="cpp unreal bp unity flutter">This parameter is for Android and iOS only.</note>
                 </pd>
-                <pd props="apple">Whether to publish the audio track from the screen capturer:
-                    <ul>
-                        <li><codeph>YES</codeph>: Publish the screen capturer's audio.</li>
-                        <li><codeph>NO</codeph>: (Default) Do not publish the screen capturer's audio.</li>
-                        </ul>
-                    </pd>
-                <pd props="cpp">Whether to publish the audio track from the screen capturer:
-                    <ul>
-                        <li><codeph>true</codeph>: Publish the screen capturer's audio.</li>
-                        <li><codeph>false</codeph>: (Default) Do not publish the screen capturer's audio.</li>
-                        </ul>
-                    </pd>
             </plentry>
-            <plentry props="bp cpp cs electron flutter mac rn unity unreal">
+            <plentry props="mac cpp unreal bp unity cs flutter rn electron">
                 <pt>publishSecondaryScreenTrack</pt>
                 <pd>Whether to publish the video captured from the second screen:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the video captured from the second screen.</li>
@@ -1551,27 +1530,27 @@ public:
                     </ul>
                 </pd>
             </plentry>
-            <plentry props="bp cpp cs electron flutter mac unity unreal">
+             <plentry props="mac cpp unreal bp unity cs flutter electron">
                 <pt>publishThirdScreenTrack</pt>
                 <pd>Whether to publish the video captured from the third screen:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the captured video from the third screen.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured from the third screen.</li>
                     </ul>
                     <p>
-                    <note type="attention" props="bp cpp cs flutter unity unreal">This is for Windows and macOS only.</note></p>
+                    <note type="attention" props="cpp unreal bp unity cs flutter">This is for Windows and macOS only.</note></p>
                 </pd>
             </plentry>
-            <plentry props="bp cpp cs electron flutter mac unity unreal">
+            <plentry props="mac cpp unreal bp unity cs flutter electron">
                 <pt>publishFourthScreenTrack</pt>
                 <pd>Whether to publish the video captured from the fourth screen:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the captured video from the fourth screen.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured from the fourth screen.</li>
                     </ul>
                     <p>
-                    <note type="attention" props="bp cpp cs flutter unity unreal">This is for Windows and macOS only.</note></p>
+                    <note type="attention" props="cpp unreal bp unity cs flutter">This is for Windows and macOS only.</note></p>
                 </pd>
             </plentry>
-            <plentry props="bp cpp cs electron flutter rn unity unreal">
+            <plentry props="cpp unreal bp unity cs flutter rn electron">
                 <pt>publishTranscodedVideoTrack</pt>
                 <pd>Whether to publish the local transcoded video:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the local transcoded video.</li>
@@ -1580,34 +1559,34 @@ public:
                     <note type="note" props="native">As of v4.2.0, the parameter name is corrected from <parmname>publishTrancodedVideoTrack</parmname> to <parmname>publishTranscodedVideoTrack</parmname>.</note>
                 </pd>
             </plentry>
-            <plentry>
-                <pt>publishMixedAudioTrack</pt>
-                <pd>Whether to publish the mixed audio track:<ul>
+             <plentry>
+                 <pt>publishMixedAudioTrack</pt>
+                 <pd>Whether to publish the mixed audio track:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the mixed audio track.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Do not publish the mixed audio track.</li>
                     </ul>
                  </pd>
-            </plentry>
-            <plentry props="en">
-                <pt>publishLipSyncTrack</pt>
-                <pd>Whether to publish the video track processed by the speech driven extension:<ul>
+             </plentry>
+             <plentry props="en">
+                 <pt>publishLipSyncTrack</pt>
+                 <pd>Whether to publish the video track processed by the speech driven extension:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the video track processed by the speech driven extension.</li>
                     <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the video track processed by the speech driven extension.</li>
                     </ul>
                  </pd>
-            </plentry>
-            <plentry props="cs electron flutter native rn unity unreal">
+             </plentry>
+            <plentry props="native unreal flutter unity cs electron rn">
                 <pt>publishCustomAudioTrack</pt>
                 <pd>Whether to publish the audio captured from a custom source:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the audio captured from the custom source.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Do not publish the captured audio from a custom source.</li>
                     </ul></pd>
             </plentry>
-            <plentry props="cs electron flutter native rn unity unreal">
+            <plentry props="native unreal flutter unity cs electron rn">
                 <pt>publishCustomAudioTrackId</pt>
                 <pd>The ID of the custom audio track to be published. The default value is 0. You can obtain the custom audio track ID through the <xref keyref="createCustomAudioTrack"/> method.</pd>
             </plentry>
-            <plentry props="cs electron flutter native rn unity unreal">
+            <plentry props="native unreal flutter unity cs electron rn">
                 <pt>publishCustomVideoTrack</pt>
                 <pd>Whether to publish the video captured from a custom source:<ul>
                         <li><codeph><ph keyref="true"/></codeph>: Publish the video captured from the custom source.</li>
@@ -1662,11 +1641,11 @@ public:
                 <pt>publishMediaPlayerId</pt>
                 <pd>The ID of the media player to be published. The default value is 0.</pd>
             </plentry>
-            <plentry props="bp cs native unity unreal">
+            <plentry props="native unreal bp unity cs">
                 <pt>clientRoleType</pt>
                 <pd conkeyref="setClientRole1/clientrole"/>
             </plentry>
-            <plentry props="electron flutter rn">
+            <plentry props="rn electron flutter">
                 <pt>clientRoleType</pt>
                 <pd>The user role. See <xref keyref="CLIENT_ROLE_TYPE"/>.</pd>
             </plentry>
@@ -1732,7 +1711,7 @@ public:
                     <li>This parameter takes effect only when the user role is <apiname keyref="CLIENT_ROLE_AUDIENCE"/>.</li>
                     </ul> </note> </pd>
             </plentry>
-            <plentry id="customvideotrackid" props="cs electron flutter native rn unity unreal">
+            <plentry id="customvideotrackid" props="native unreal flutter unity cs electron rn">
                 <pt>customVideoTrackId</pt>
                 <pd>The video track ID returned by calling the <xref keyref="createCustomVideoTrack"/> method. The default value is 0.</pd>
             </plentry>
@@ -1743,45 +1722,6 @@ public:
                     <li><codeph><ph keyref="false"/></codeph>: The audio stream is not filtered.</li>
                     </ul>
                     <note type="attention">If you need to enable this function, contact <xref keyref="mailto-link"/>.</note></pd>
-            </plentry>
-            <plentry props="native">
-                <pt props="native">enableMultipath</pt>
-                <pd props="android">Whether to enable multipath transmission.
-                    <ul>
-                        <li><codeph>true</codeph>: Enable multipath transmission.</li>
-                        <li><codeph>false</codeph>: Disable multipath transmission.</li>
-                        </ul>
-                    </pd>
-                <pd props="apple">Whether to enable multipath transmission:
-                    <ul>
-                        <li><codeph>YES</codeph>: Enable multipath transmission.</li>
-                        <li><codeph>NO</codeph>: Disable multipath transmission.</li>
-                        </ul>
-                    </pd>
-                <pd props="cpp">Whether to enable multipath transmission:
-                    <ul>
-                        <li><codeph>true</codeph>: Enable multipath transmission.</li>
-                        <li><codeph>false</codeph>: Disable multipath transmission.</li>
-                        </ul>
-                    </pd>
-            </plentry>
-            <plentry props="native">
-                <pt props="native">uplinkMultipathMode</pt>
-                <pd props="android">The mode of uplink multipath transmission.</pd>
-                <pd props="apple">The mode of uplink multipath transmission. See <codeph>AgoraMultipathMode</codeph>.</pd>
-                <pd props="cpp">The mode of uplink multipath transmission. See <codeph>MultipathMode</codeph>.</pd>
-            </plentry>
-            <plentry props="native">
-                <pt props="native">downlinkMultipathMode</pt>
-                <pd props="android">The mode of downlink multipath transmission.</pd>
-                <pd props="apple">The mode of downlink multipath transmission. See <codeph>AgoraMultipathMode</codeph>.</pd>
-                <pd props="cpp">The mode of downlink multipath transmission. See <codeph>MultipathMode</codeph>.</pd>
-            </plentry>
-            <plentry props="native">
-                <pt props="native">preferMultipathType</pt>
-                <pd props="android">The preferred type of multipath transmission.</pd>
-                <pd props="apple">The preferred type of multipath transmission. See <codeph>AgoraMultipathType</codeph>.</pd>
-                <pd props="cpp">The preferred type of multipath transmission. See <codeph>MultipathType</codeph>.</pd>
             </plentry>
             </parml> </section>
     </refbody>

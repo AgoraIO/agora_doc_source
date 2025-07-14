@@ -1,12 +1,12 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setdirectcdnstreamingaudioconfiguration">
-    <title><ph keyref="setDirectCdnStreamingAudioConfiguration"/></title>
+    <title><ph keyref="setDirectCdnStreamingAudioConfiguration" /></title>
     <shortdesc id="short"><ph id="shortdesc">Sets the audio profile of the audio streams directly pushed to the CDN by the host.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setDirectCdnStreamingAudioConfiguration"/>
+                <indexterm keyref="setDirectCdnStreamingAudioConfiguration" />
             </keywords>
         </metadata>
     </prolog>
@@ -14,10 +14,10 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setDirectCdnStreamingAudioConfiguration(int profile);</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setDirectCdnStreamingAudioConfiguration:(AgoraAudioProfile)profile;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setDirectCdnStreamingAudioConfiguration(AUDIO_PROFILE_TYPE profile) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
 	int SetDirectCdnStreamingAudioConfiguration(EAUDIO_PROFILE_TYPE profile);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setDirectCdnStreamingAudioConfiguration(
     profile: AudioProfileType
@@ -28,32 +28,25 @@
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setDirectCdnStreamingAudioConfiguration(
       AudioProfileType profile);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"/></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc" props="bp flutter native rn unreal">
-            <p>When you set the <parmname>publishMicrophoneTrack</parmname> or <parmname>publishCustomAudioTrack</parmname> in the <xref keyref="DirectCdnStreamingMediaOptions"/> as <codeph><ph keyref="true"/></codeph> to capture audios, you can call this method to set the audio profile.</p>
-        <dl outputclass="deprecated" props="native">
-                <dlentry outputclass="deprecated">
-                    <dt>Deprecated:</dt>
-                    <dd props="cpp">This API is deprecated as of v4.6.0.</dd>
-                    <dd props="android apple">This method is deprecated as of v4.6.0.</dd>
-                </dlentry>
-                </dl>
-            </section>
+        <section id="detailed_desc" props="native unreal bp rn flutter">
+            <p>When you set the <parmname>publishMicrophoneTrack</parmname> or <parmname>publishCustomAudioTrack</parmname> in the <xref keyref="DirectCdnStreamingMediaOptions" /> as <codeph><ph keyref="true" /></codeph> to capture audios, you can call this method to set the audio profile.</p>
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>profile</pt>
                 <pd>
-                    <p conkeyref="setAudioProfile/profile"/>
+                    <p conkeyref="setAudioProfile/profile" />
                 </pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-            <ul props="bp cs native rn unity unreal">
+            <ul props="native unreal bp unity rn cs">
             <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>

@@ -1,8 +1,8 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_renewtoken">
     <title><ph keyref="renewToken"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Updates the token.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Renews the token.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,60 +14,51 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int renewToken(String token);</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"/>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)renewToken:(NSString * _Nonnull)token NS_SWIFT_NAME(renewToken(_:));</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">public abstract renewToken(token: string): number;</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)renewToken:(NSString * _Nonnull)token;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int renewToken(const char* token) = 0;</codeblock>
-            <codeblock props="bp" outputclass="language-cpp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity cs" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+	int RenewToken(const FString &amp; token);</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract renewToken(token: string): number;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int RenewToken(string token);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract renewToken(token: string): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; renewToken(String token);</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p>After you enable and use a token, it expires after a certain period of time.
-
-In the following cases, generate a new token on your server and call this method to update it. Otherwise, the SDK disconnects from the server:
-                    <ul>
-                        <li>When the <codeph>onTokenPrivilegeWillExpire</codeph> callback is triggered;</li>
-                        <li>When the <codeph>onRequestToken</codeph> callback is triggered;</li>
-                        <li>When the <codeph>ERR_TOKEN_EXPIRED(-109)</codeph> error is reported. After this method is successfully called, the SDK triggers the <codeph>onRenewTokenResult</codeph> callback to report the result of the token update.</li>
-                        </ul>
-                    </p>
+            <p>You can call this method to pass a new token to the SDK. A token will expire after a certain period of time, at which point the SDK will be unable to establish a connection with the server.</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>In any of the following cases, Agora recommends that you generate a new token on your server and then call this method to renew your token:<ul><li>Receiving the <xref keyref="onTokenPrivilegeWillExpire"/> callback reporting the token is about to expire.</li>
+                 <li>Receiving the <xref keyref="onRequestToken"/> callback reporting the token has expired.</li>
+                <li>Receiving the <xref keyref="onConnectionStateChanged"/> callback reporting <apiname keyref="CONNECTION_CHANGED_TOKEN_EXPIRED"/>(9).</li>
+                </ul></p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>Restrictions</title>
             <p>None.</p>
         </section>
-        <section id="related" deliveryTarget="details">
-            <title>Related callbacks</title>
-            <p>After this method is successfully called, the SDK triggers the <codeph>onRenewTokenResult</codeph> callback to report the result of the token update.
-                    <ul>
-                        <li>When the <codeph>onTokenPrivilegeWillExpire</codeph> callback is triggered;</li>
-                        <li>When the <codeph>onRequestToken</codeph> callback is triggered;</li>
-                        <li>When the <codeph>ERR_TOKEN_EXPIRED(-109)</codeph> error is reported.</li>
-                        </ul>
-                    </p>
-        </section>
         <section id="parameters" deliveryTarget="details">
             <title>Parameters</title>
             <parml>
-            <plentry props="native">
-                <pt props="native">token</pt>
-                <pd props="native">The new token.</pd>
+            <plentry>
+                <pt>token</pt>
+                <pd>The new token.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
+        <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-        <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-        <ul props="bp cs electron rn unity unreal">
-                <li>0: Success.</li>
-                <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
-                </ul>
-        <p props="native"><ul>
-                        <li>0: Success.</li>
-                        <li>&lt; 0: Failure.</li>
-                        </ul>
-                    </p>
-    </section>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <ul props="native unreal bp electron unity rn electron cs">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul>
+                <li>-2: The parameter is invalid. For example, the token is empty.</li>
+                <li>-7: The <apiname keyref="IRtcEngine"/> object has not been initialized. You need to initialize the <apiname keyref="IRtcEngine" /> object before calling this method.</li>
+                <li>110: Invalid token. Ensure the following:<ul>
+                        <li>The user ID specified when generating the token is consistent with the user ID used when joining the channel.</li>
+                        <li>The generated token is the same as the token passed in to join the channel.</li></ul></li>
+                </ul></li>
+            </ul> </section>
         </refbody>
 </reference>
