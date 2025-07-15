@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_renewtokenerrorcode">
+    <title><ph keyref="RENEW_TOKEN_ERROR_CODE"/></title>
+    <shortdesc id="short"><ph id="shortdesc">表示调用 <xref keyref="renewToken_ICloudSpatialAudioEngine"/> 后的错误码。</ph></shortdesc>
+    <refbody>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+                <dlentry props="native">
+                    <dt>自从：</dt>
+                    <dd>自 v4.6.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters">
+            <title>枚举值</title>
+            <parml>
+            <plentry props="native">
+                <pt><ph keyref="RENEW_TOKEN_SUCCESS"/></pt>
+                <pd props="native">（0）：Token 更新成功。</pd>
+            </plentry>
+        <plentry props="native">
+                <pt><ph keyref="RENEW_TOKEN_FAILURE"/></pt>
+                <pd props="cpp">（1）：Token 更新失败。建议用户生成新的 Token 并重新调用 <xref keyref="renewToken_ICloudSpatialAudioEngine"/>。</pd>
+            <pd props="android apple">（1）：Token 更新失败。建议用户生成新的 Token 并重试 <xref keyref="renewToken_ICloudSpatialAudioEngine"/>。</pd>
+            </plentry>
+        <plentry props="android cpp">
+                <pt><ph keyref="RENEW_TOKEN_TOKEN_EXPIRED"/></pt>
+                <pd props="cpp">（2）：Token 更新失败，原因是提供的 Token 已过期。建议用户生成一个过期时间更长的新 Token 并重新调用 <xref keyref="renewToken_ICloudSpatialAudioEngine"/>。</pd>
+            <pd props="android">（2）：Token 更新失败，原因是提供的 Token 已过期。建议用户生成一个过期时间更长的新 Token 并重试 <xref keyref="renewToken_ICloudSpatialAudioEngine"/>。</pd>
+            </plentry>
+        <plentry props="native">
+                <pt><ph keyref="RENEW_TOKEN_INVALID_TOKEN"/></pt>
+                <pd props="cpp">（3）：Token 更新失败，原因是提供的 Token 无效。建议用户检查 Token 的生成流程，生成新的 Token 并重新调用 <xref keyref="renewToken_ICloudSpatialAudioEngine"/>。</pd>
+            <pd props="apple">（3）：Token 更新失败，原因是传入的 Token 无效。建议用户检查 Token 的生成流程，生成新的 Token 并重试 <xref keyref="renewToken_ICloudSpatialAudioEngine"/>。</pd>
+            <pd props="android">（3）：Token 更新失败，原因是提供的 Token 无效。建议用户检查 Token 的生成过程，生成新的 Token 并重试 <xref keyref="renewToken_ICloudSpatialAudioEngine"/>。</pd>
+            </plentry>
+        <plentry props="native">
+                <pt><ph keyref="RENEW_TOKEN_INVALID_CHANNEL_NAME"/></pt>
+                <pd props="cpp">（4）：Token 更新失败，原因是 Token 中的频道名与当前频道不一致。建议用户检查频道名，生成新的 Token 并重新调用 <xref keyref="renewToken_ICloudSpatialAudioEngine"/>。</pd>
+            <pd props="android apple">（4）：Token 更新失败，原因是 Token 中的频道名与当前频道不一致。建议用户检查频道名，生成新的 Token 并重试 <xref keyref="renewToken_ICloudSpatialAudioEngine"/>。</pd>
+            </plentry>
+        <plentry props="native">
+                <pt><ph keyref="RENEW_TOKEN_INCONSISTENT_APPID"/></pt>
+                <pd props="cpp">（5）：Token 更新失败，原因是 Token 中的 App ID 与当前 App ID 不一致。建议用户检查 App ID，生成新的 Token 并重新调用 <xref keyref="renewToken_ICloudSpatialAudioEngine"/>。</pd>
+            <pd props="android apple">（5）：Token 更新失败，原因是 Token 中的 App ID 与当前 App ID 不一致。建议用户检查 App ID，生成新的 Token 并重试 <xref keyref="renewToken_ICloudSpatialAudioEngine"/>。</pd>
+            </plentry>
+        <plentry props="native">
+                <pt><ph keyref="RENEW_TOKEN_CANCELED_BY_NEW_REQUEST"/></pt>
+                <pd props="cpp">（6）：Token 更新请求因发起了新的请求而被取消。</pd>
+            <pd props="apple">（6）：Token 更新请求被取消，原因是发起了新的请求。</pd>
+            <pd props="android">（6）：Token 更新被取消，原因是发起了新的请求，前一个请求被取消。</pd>
+            </plentry>
+        </parml>
+        </section></refbody>
+</reference>
