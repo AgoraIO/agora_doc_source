@@ -8,6 +8,12 @@ AirPods Pro does not support A2DP protocol in communication audio mode, which ma
 
 v6.5.2 was released on May xx, 2025.
 
+#### New features
+
+1. **16 KB memory page size**
+
+Starting from Android 15, the system adds support for 16 KB memory page size, as detailed in [Support 16 KB page sizes](https://developer.android.com/guide/practices/page-sizes). To ensure the stability and performance of the app, starting from this version, the SDK supports 16 KB memory page size, ensuring seamless operation on devices with both 4 KB and 16 KB memory page sizes, enhancing compatibility and preventing crashes.
+
 
 #### Issues fixed
 
@@ -100,18 +106,15 @@ This version includes optimizations to some features, including changes to SDK b
    - In the `CompressionPreference` enumeration class, a new `preferCompressionAuto` (-1) enumeration is added, replacing the original `preferQuality` (1) as the default value. In this mode, the SDK will automatically choose between `preferLowLatency` or `preferQuality` based on your video scene settings to achieve the best user experience.
    - In the `DegradationPreference` enumeration class, a new `maintainAuto` (-1) enumeration is added, replacing the original `maintainQuality` (1) as the default value. In this mode, the SDK will automatically choose between `maintainFramerate`, `maintainBalanced`, or `maintainResolution` based on your video scene settings to achieve the optimal overall quality experience (QoE).
 
-4. **16 KB memory page size**
 
-Starting from Android 15, the system adds support for 16 KB memory page size, as detailed in [Support 16 KB page sizes](https://developer.android.com/guide/practices/page-sizes). To ensure the stability and performance of the app, starting from this version, the SDK supports 16 KB memory page size, ensuring seamless operation on devices with both 4 KB and 16 KB memory page sizes, enhancing compatibility and preventing crashes.
+4. To distinguish context information in different extension callbacks, this version removes the original extension callbacks and adds corresponding callbacks that contain context information (see the table below). You can identify the extension name, the user ID, and the service provider name through `ExtensionContext` in each callback.
 
-5. To distinguish context information in different extension callbacks, this version removes the original extension callbacks and adds corresponding callbacks that contain context information (see the table below). You can identify the extension name, the user ID, and the service provider name through `ExtensionContext` in each callback.
-
-   | Original callback    | Current callback                |
-   | -------------------- | ------------------------------- |
-   | `onExtensionEvent`   | `onExtensionEventWithContext`   |
-   | `onExtensionStarted` | `onExtensionStartedWithContext` |
-   | `onExtensionStopped` | `onExtensionStoppedWithContext` |
-   | `onExtensionError`   | `onExtensionErrorWithContext`   |
+| Original callback    | Current callback                |
+| -------------------- | ------------------------------- |
+| `onExtensionEvent`   | `onExtensionEventWithContext`   |
+| `onExtensionStarted` | `onExtensionStartedWithContext` |
+| `onExtensionStopped` | `onExtensionStoppedWithContext` |
+| `onExtensionError`   | `onExtensionErrorWithContext`   |
 
 #### New features
 
