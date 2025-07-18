@@ -81,7 +81,7 @@ As of v4.5.0, both RTC SDK and RTM SDK (v2.2.0 and above) include the `aosl.xcfr
 
 2. **Changes in video encoding preferences**
 
-   To enhance the user’s video interaction experience, this version optimizes the default preferences for video encoding:
+   To enhance the user's video interaction experience, this version optimizes the default preferences for video encoding:
 
    - In the `AgoraCompressionPreference` enumeration class, a new `AgoraCompressionAuto` (-1) enumeration is added, replacing the original `AgoraCompressionQuality` (1) as the default value. In this mode, the SDK will automatically choose between `AgoraCompressionLowLatency` or `AgoraCompressionQuality` based on your video scene settings to achieve the best user experience.
    - In the `AgoraDegradationPreference` enumeration class, a new `AgoraDegradationMaintainAuto` (-1) enumeration is added, replacing the original `AgoraDegradationMaintainQuality` (1) as the default value. In this mode, the SDK will automatically choose between `AgoraDegradationMaintainFramerate`, `AgoraDegradationBalanced`, or `AgoraDegradationMaintainResolution` based on your video scene settings to achieve the optimal overall quality experience (QoE).
@@ -173,7 +173,7 @@ This version includes optimizations to some features, including changes to SDK b
    | `onExtensionStopped` | `onExtensionStoppedWithContext` |
    | `onExtensionError`   | `onExtensionErrorWithContext`   |
 
-2. Before v4.4.0, when a user role was set to audience and called `setAudioScenario` to set the audio scenario to chatroom (`AgoraAudioScenarioChatRoom`), the user would see a microphone permission request popup. As of v4.4.0, the SDK uses native iOS APIs to control the microphone, so audience members in a chatroom scenario will no longer receive the microphone permission request popup.
+2. Prior to v4.4.0, if a user was set to the audience role and `setAudioScenario` was called with `AgoraAudioScenarioChatRoom`, the system showed the microphone-in-use indicator. As of v4.4.0, the SDK manages the microphone through native iOS APIs, so audience users in a chatroom scenario no longer see this indicator.
 
 3. This version renames the `receiveMetadata` callback to `didMetadataReceived` and removes the `data` and `timeStamp` parameters. You can get metadata-related information, including `timeStamp` (timestamp of the sent data), `uid` (user ID), and `channelId` (channel name) through the newly-added `metadata` parameter.
 
