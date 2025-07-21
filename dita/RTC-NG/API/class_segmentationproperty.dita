@@ -1,32 +1,38 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_segmentationproperty">
-    <title><ph keyref="SegmentationProperty"/></title>
-    <shortdesc id="short"><ph id="shortdesc">分割属性配置。</ph></shortdesc>
+    <title><ph keyref="SegmentationProperty" /></title>
+    <shortdesc id="short"><ph id="shortdesc">背景图像的处理属性。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class SegmentationProperty {
   public static final int SEG_MODEL_AI = 1;
   public static final int SEG_MODEL_GREEN = 2;
+  public static final int SCREEN_COLOR_AUTO = 0;
+  public static final int SCREEN_COLOR_GREEN = 1;
+  public static final int SCREEN_COLOR_BLUE = 2;
   public int modelType;
   public float greenCapacity;
+  public int screenColorType;
   public SegmentationProperty(int modelType, float greenCapacity) {
     this.modelType = modelType;
     this.greenCapacity = greenCapacity;
+    this.screenColorType = SCREEN_COLOR_AUTO;
   }
 
   public SegmentationProperty() {
     this.modelType = SEG_MODEL_AI;
     this.greenCapacity = 0.5f;
+    this.screenColorType = SCREEN_COLOR_AUTO;
   }
 }</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">export class SegmentationProperty {
   public static readonly SEG_MODEL_AI:number = 1;
   public static readonly SEG_MODEL_GREEN:number = 2;
-  
+
   public modelType:number = SegmentationProperty.SEG_MODEL_AI;
-  
+
   public greenCapacity:number = 0.5;
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraSegmentationProperty: NSObject
@@ -100,7 +106,7 @@ public:
       _$SegmentationPropertyFromJson(json);
 
   Map&amp;lt;String, dynamic&amp;gt; toJson() =&amp;gt; _$SegmentationPropertyToJson(this);
-}</codeblock>            
+}</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
@@ -134,8 +140,15 @@ public:
             </plentry>
             <plentry props="native">
                 <pt props="native">screenColorType</pt>
-                <pd props="android cpp">屏幕颜色类型。详见 <xref keyref="SCREEN_COLOR_TYPE"/>。</pd>
+                <pd props="cpp">屏幕颜色类型。详见 <xref keyref="SCREEN_COLOR_TYPE"/>。</pd>
                 <pd props="apple">屏幕颜色类型，详见 <xref keyref="SCREEN_COLOR_TYPE"/>。</pd>
+                <pd props="android">屏幕颜色类型：
+                    <ul>
+                    <li><ph keyref="SCREEN_COLOR_AUTO"/>(0): 自动选择屏幕颜色。</li>
+                    <li><ph keyref="SCREEN_COLOR_GREEN"/>(1): 绿色。</li>
+                    <li><ph keyref="SCREEN_COLOR_BLUE"/>(2): 蓝色。</li>
+                    </ul>
+                </pd>
             </plentry>
             </parml> </section>
     </refbody>
