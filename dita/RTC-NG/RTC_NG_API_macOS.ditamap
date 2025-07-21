@@ -66,6 +66,16 @@
             <topicref keyref="leaveChannel2" toc="no"/>
             <topicref keyref="leaveChannelEx" toc="no"/>
             <topicref keyref="leaveChannelEx2" toc="no"/>
+            <topicref keyref="preloadChannel" toc="no"/>
+            <topicref keyref="preloadChannelWithUserAccount" toc="no"/>
+            <topicref keyref="registerLocalUserAccount" toc="no"/>
+            <topicref keyref="renewToken" toc="no"/>
+            <topicref keyref="setChannelProfile" toc="no"/>
+            <topicref keyref="setClientRole1" toc="no"/>
+            <topicref keyref="setClientRole2" toc="no"/>
+            <topicref keyref="updateChannelMediaOptions" toc="no"/>
+            <topicref keyref="updateChannelMediaOptionsEx" toc="no"/>
+            <topicref keyref="updatePreloadChannelToken" toc="no"/>
             <topicref keyref="onClientRoleChanged" toc="no"/>
             <topicref keyref="onClientRoleChangeFailed" toc="no"/>
             <topicref keyref="onError" toc="no"/>
@@ -80,16 +90,6 @@
             <topicref keyref="onUserInfoUpdated" toc="no"/>
             <topicref keyref="onUserJoined" toc="no"/>
             <topicref keyref="onUserOffline" toc="no"/>
-            <topicref keyref="preloadChannel" toc="no"/>
-            <topicref keyref="preloadChannelWithUserAccount" toc="no"/>
-            <topicref keyref="registerLocalUserAccount" toc="no"/>
-            <topicref keyref="renewToken" toc="no"/>
-            <topicref keyref="setChannelProfile" toc="no"/>
-            <topicref keyref="setClientRole1" toc="no"/>
-            <topicref keyref="setClientRole2" toc="no"/>
-            <topicref keyref="updateChannelMediaOptions" toc="no"/>
-            <topicref keyref="updateChannelMediaOptionsEx" toc="no"/>
-            <topicref keyref="updatePreloadChannelToken" toc="no"/>
         </topicref>
             <topicref href="API/toc_publishnsubscribe.dita" chunk="to-content">
             <topicref keyref="enableDualStreamMode" toc="no"/>
@@ -108,9 +108,6 @@
             <topicref keyref="muteRemoteAudioStreamEx" toc="no"/>
             <topicref keyref="muteRemoteVideoStream" toc="no"/>
             <topicref keyref="muteRemoteVideoStreamEx" toc="no"/>
-            <topicref keyref="onAudioPublishStateChanged" toc="no"/>
-            <topicref keyref="onAudioSubscribeStateChanged" toc="no"/>
-            <topicref keyref="onVideoSubscribeStateChanged" toc="no"/>
             <topicref keyref="setDualStreamMode" toc="no"/>
             <topicref keyref="setDualStreamMode2" toc="no"/>
             <topicref keyref="setDualStreamModeEx" toc="no"/>
@@ -129,6 +126,9 @@
             <topicref keyref="setSubscribeVideoAllowlistEx" toc="no"/>
             <topicref keyref="setSubscribeVideoBlocklist" toc="no"/>
             <topicref keyref="setSubscribeVideoBlocklistEx" toc="no"/>
+            <topicref keyref="onAudioPublishStateChanged" toc="no"/>
+            <topicref keyref="onAudioSubscribeStateChanged" toc="no"/>
+            <topicref keyref="onVideoSubscribeStateChanged" toc="no"/>
         </topicref>
             <topicref href="API/toc_audio.dita" chunk="to-content">
             <topicref href="API/toc_audio_basic.dita" chunk="to-content">
@@ -218,6 +218,12 @@
                 </topicref>
             </topicref>
             <topicref href="API/toc_audio_raw.dita" chunk="to-content">
+                <topicref keyref="registerAudioFrameObserver" toc="no"/>
+                <topicref keyref="setEarMonitoringAudioFrameParameters" toc="no"/>
+                <topicref keyref="setMixedAudioFrameParameters" toc="no"/>
+                <topicref keyref="setPlaybackAudioFrameBeforeMixingParameters" toc="no"/>
+                <topicref keyref="setPlaybackAudioFrameParameters" toc="no"/>
+                <topicref keyref="setRecordingAudioFrameParameters" toc="no"/>
                 <topicref keyref="getEarMonitoringAudioParams" toc="no"/>
             <topicref keyref="getMixedAudioParams" toc="no"/>
             <topicref keyref="getObservedAudioFramePosition" toc="no"/>
@@ -228,13 +234,6 @@
             <topicref keyref="onPlaybackAudioFrame" toc="no"/>
             <topicref keyref="onPlaybackAudioFrameBeforeMixing" toc="no"/>
             <topicref keyref="onRecordAudioFrame" toc="no"/>
-            <topicref keyref="registerAudioFrameObserver" toc="no"/>
-            <topicref keyref="setEarMonitoringAudioFrameParameters" toc="no"/>
-            <topicref keyref="setMixedAudioFrameParameters" toc="no"/>
-            <topicref keyref="setPlaybackAudioFrameBeforeMixingParameters" toc="no"/>
-            <topicref keyref="setPlaybackAudioFrameBeforeMixingParameters1" toc="no"/>
-            <topicref keyref="setPlaybackAudioFrameParameters" toc="no"/>
-            <topicref keyref="setRecordingAudioFrameParameters" toc="no"/>
         </topicref>
                 <topicref href="API/toc_audio_encoded.dita" chunk="to-content">
                 <topicref keyref="onMixedAudioEncodedFrame" toc="no"/>
@@ -460,7 +459,6 @@
             <topicref keyref="getEffectDuration" toc="no"/>
             <topicref keyref="getEffectsVolume" toc="no"/>
             <topicref keyref="getVolumeOfEffect" toc="no"/>
-            <topicref keyref="onAudioEffectFinished" toc="no"/>
             <topicref keyref="pauseAllEffects" toc="no"/>
             <topicref keyref="pauseEffect" toc="no"/>
             <topicref keyref="playEffect1" toc="no"/>
@@ -479,6 +477,7 @@
             <topicref keyref="stopAllEffects" toc="no"/>
             <topicref keyref="stopEffect" toc="no"/>
             <topicref keyref="unloadEffect" toc="no"/>
+                <topicref keyref="onAudioEffectFinished" toc="no"/>
         </topicref>
                 <topicref href="API/toc_rte_player.dita" chunk="to-content" props="cn">
                 <topicref keyref="AddView" toc="no"/>
@@ -760,20 +759,7 @@
             <topicref keyref="getNtpWallTimeInMs" toc="no"/>
             <topicref keyref="getVersion" toc="no"/>
             <topicref keyref="isFeatureAvailableOnDevice" toc="no"/>
-            <topicref keyref="onConnectionBanned" toc="no"/>
-            <topicref keyref="onConnectionInterrupted" toc="no"/>
-            <topicref keyref="onConnectionLost" toc="no"/>
-            <topicref keyref="onConnectionStateChanged" toc="no"/>
-            <topicref keyref="onEncryptionError" toc="no"/>
-            <topicref keyref="onLastmileProbeResult" toc="no"/>
-            <topicref keyref="onLastmileQuality" toc="no"/>
-            <topicref keyref="onMultipathStats" toc="no"/>
-            <topicref keyref="onNetworkQuality" toc="no"/>
-            <topicref keyref="onNetworkTypeChanged" toc="no"/>
-            <topicref keyref="onPermissionError" toc="no"/>
-            <topicref keyref="onProxyConnected" toc="no"/>
             <topicref keyref="onRemoteSubscribeFallbackToAudioOnly" toc="no"/>
-            <topicref keyref="onUplinkNetworkInfoUpdated" toc="no"/>
             <topicref keyref="queryDeviceScore" toc="no"/>
             <topicref keyref="rate" toc="no"/>
             <topicref keyref="sendCustomReportMessage" toc="no"/>
@@ -791,6 +777,18 @@
             <topicref keyref="startLastmileProbeTest" toc="no"/>
             <topicref keyref="stopEchoTest" toc="no"/>
             <topicref keyref="stopLastmileProbeTest" toc="no"/>
+            <topicref keyref="onConnectionBanned" toc="no"/>
+            <topicref keyref="onConnectionInterrupted" toc="no"/>
+            <topicref keyref="onConnectionLost" toc="no"/>
+            <topicref keyref="onConnectionStateChanged" toc="no"/>
+            <topicref keyref="onEncryptionError" toc="no"/>
+            <topicref keyref="onLastmileProbeResult" toc="no"/>
+            <topicref keyref="onLastmileQuality" toc="no"/>
+            <topicref keyref="onNetworkQuality" toc="no"/>
+            <topicref keyref="onNetworkTypeChanged" toc="no"/>
+            <topicref keyref="onPermissionError" toc="no"/>
+            <topicref keyref="onProxyConnected" toc="no"/>
+            <topicref keyref="onUplinkNetworkInfoUpdated" toc="no"/>
         </topicref>
             <topicref href="API/rtc_api_data_type.dita"/>
         <topicref href="API/rtc_api_sunset.dita"/>
