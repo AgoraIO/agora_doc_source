@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_channelmediaoptions">
     <title> <ph keyref="ChannelMediaOptions"/> </title>
-    <shortdesc id="short"> <ph id="shortdesc">配置频道媒体选项。</ph> </shortdesc>
+    <shortdesc id="short"> <ph id="shortdesc">频道媒体设置选项。</ph> </shortdesc>
     <refbody>
         <section id="prototype">
             <p props="cn" outputclass="codeblock">
@@ -22,7 +22,6 @@
   public Boolean publishMediaPlayerVideoTrack;
   public Boolean publishTranscodedVideoTrack;
   public Boolean publishMixedAudioTrack;
-  public Boolean publishLipSyncTrack;
   public Boolean autoSubscribeAudio;
   public Boolean autoSubscribeVideo;
   public Boolean enableAudioRecordingOrPlayout;
@@ -31,7 +30,6 @@
   public Integer audienceLatencyLevel;
   public Integer defaultVideoStreamType;
   public Integer channelProfile;
-  public Integer audioDelayMs;
   public Integer mediaPlayerAudioDelayMs;
   public String token;
   public Boolean enableBuiltInMediaEncryption;
@@ -39,8 +37,6 @@
   public Boolean isInteractiveAudience;
   public Integer customVideoTrackId;
   public Boolean isAudioFilterable;
-  public Boolean startPreview;
-  public String parameters;
   public Boolean enableMultipath;
   public Integer uplinkMultipathMode;
   public Integer downlinkMultipathMode;
@@ -114,23 +110,26 @@
 @property(assign, nonatomic) BOOL publishCameraTrack;
 @property(assign, nonatomic) BOOL publishSecondaryCameraTrack;
 @property(assign, nonatomic) BOOL publishMicrophoneTrack;
+#if TARGET_OS_IPHONE
 @property(assign, nonatomic) BOOL publishScreenCaptureVideo;
 @property(assign, nonatomic) BOOL publishScreenCaptureAudio;
+#elif TARGET_OS_MAC
 @property(assign, nonatomic) BOOL publishThirdCameraTrack;
 @property(assign, nonatomic) BOOL publishFourthCameraTrack;
 @property(assign, nonatomic) BOOL publishScreenTrack;
 @property(assign, nonatomic) BOOL publishSecondaryScreenTrack;
 @property(assign, nonatomic) BOOL publishThirdScreenTrack;
 @property(assign, nonatomic) BOOL publishFourthScreenTrack;
+#endif
 @property(assign, nonatomic) BOOL publishCustomAudioTrack;
 @property(assign, nonatomic) NSInteger publishCustomAudioTrackId;
+
 @property(assign, nonatomic) BOOL publishCustomVideoTrack;
 @property(assign, nonatomic) BOOL publishEncodedVideoTrack;
 @property(assign, nonatomic) BOOL publishMediaPlayerAudioTrack;
 @property(assign, nonatomic) BOOL publishMediaPlayerVideoTrack;
 @property(assign, nonatomic) BOOL publishTranscodedVideoTrack;
 @property(assign, nonatomic) BOOL publishMixedAudioTrack;
-@property(assign, nonatomic) BOOL publishLipSyncTrack;
 @property(assign, nonatomic) BOOL autoSubscribeAudio;
 @property(assign, nonatomic) BOOL autoSubscribeVideo;
 @property(assign, nonatomic) BOOL enableAudioRecordingOrPlayout;
@@ -139,15 +138,13 @@
 @property(assign, nonatomic) AgoraAudienceLatencyLevelType audienceLatencyLevel;
 @property(assign, nonatomic) AgoraVideoStreamType defaultVideoStreamType;
 @property(assign, nonatomic) AgoraChannelProfile channelProfile;
-@property(assign, nonatomic) NSInteger audioDelayMs;
-@property(assign, nonatomic) NSInteger mediaPlayerAudioDelayMs;
 @property(copy, nonatomic) NSString * _Nullable token;
 @property(assign, nonatomic) BOOL enableBuiltInMediaEncryption;
+
 @property(assign, nonatomic) BOOL publishRhythmPlayerTrack;
 @property(assign, nonatomic) BOOL isInteractiveAudience;
 @property(assign, nonatomic) NSInteger customVideoTrackId;
 @property(assign, nonatomic) BOOL isAudioFilterable;
-@property(copy, nonatomic) NSString * _Nullable parameters;
 @property(assign, nonatomic) BOOL enableMultipath;
 @property(assign, nonatomic) AgoraMultipathMode uplinkMultipathMode;
 @property(assign, nonatomic) AgoraMultipathMode downlinkMultipathMode;
@@ -185,15 +182,14 @@
   Optional&amp;lt;AUDIENCE_LATENCY_LEVEL_TYPE&amp;gt; audienceLatencyLevel;
   Optional&amp;lt;VIDEO_STREAM_TYPE&amp;gt; defaultVideoStreamType;
   Optional&amp;lt;CHANNEL_PROFILE_TYPE&amp;gt; channelProfile;
-  Optional&amp;lt;int&amp;gt; audioDelayMs;
-  Optional&amp;lt;int&amp;gt; mediaPlayerAudioDelayMs;
+
   Optional&amp;lt;const char*&amp;gt; token;
   Optional&amp;lt;bool&amp;gt; enableBuiltInMediaEncryption;
   Optional&amp;lt;bool&amp;gt; publishRhythmPlayerTrack;
   Optional&amp;lt;bool&amp;gt; isInteractiveAudience;
   Optional&amp;lt;video_track_id_t&amp;gt; customVideoTrackId;
   Optional&amp;lt;bool&amp;gt; isAudioFilterable;
-  Optional&amp;lt;const char*&amp;gt; parameters;
+
   Optional&amp;lt;bool&amp;gt; enableMultipath;
   Optional&amp;lt;MultipathMode&amp;gt; uplinkMultipathMode;
   Optional&amp;lt;MultipathMode&amp;gt; downlinkMultipathMode;
@@ -1530,7 +1526,7 @@ public:
                     <note type="note" props="android ios">自 v4.0.0 起，该参数名称由 <parmname>publishScreenTrack</parmname> 改为 <parmname>publishScreenCaptureVideo</parmname>。</note> </pd>
             </plentry>
             <plentry props="bp flutter hmos native rn unity unreal">
-                <pt props="apple cpp">publishScreenCaptureAudio</pt>
+                <pt>publishScreenCaptureAudio</pt>
                 <pd>
                     <p>设置是否发布屏幕采集的音频：
                     <ul>
