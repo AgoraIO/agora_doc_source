@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_renewtokenerrorcode">
     <title><ph keyref="RENEW_TOKEN_ERROR_CODE"/></title>
-    <shortdesc id="short"><ph id="shortdesc">表示调用 <xref keyref="renewToken_ICloudSpatialAudioEngine"/> 后的错误码。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">表示调用 <xref keyref="renewToken"/> 后的错误码。</ph></shortdesc>
     <refbody>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -21,27 +21,27 @@
             </plentry>
         <plentry props="native">
                 <pt><ph keyref="RENEW_TOKEN_FAILURE"/></pt>
-                <pd props="cpp">（1）：由于未知的服务器错误，Token 更新失败。建议检查生成 Token 时传入的参数，重新生成 Token 并重试 <xref keyref="renewToken_ICloudSpatialAudioEngine"/>。</pd>
-            <pd props="android apple">（1）：Token 更新失败。建议用户生成新的 Token 并重试 <xref keyref="renewToken_ICloudSpatialAudioEngine"/>。</pd>
+                <pd props="cpp">（1）：由于未知的服务器错误，Token 更新失败。建议检查生成 Token 时传入的参数，重新生成 Token 并重试 <xref keyref="renewToken"/>。</pd>
+            <pd props="android apple">（1）：Token 更新失败。建议用户生成新的 Token 并重试 <xref keyref="renewToken"/>。</pd>
             </plentry>
         <plentry props="android cpp">
                 <pt><ph keyref="RENEW_TOKEN_TOKEN_EXPIRED"/></pt>
-                <pd props="cpp">（2）：Token 更新失败，原因是提供的 Token 已过期。建议用户生成一个过期时间更长的新 Token 并重新调用 <xref keyref="renewToken_ICloudSpatialAudioEngine"/>。</pd>
-            <pd props="android">（2）：Token 更新失败，原因是提供的 Token 已过期。建议用户生成一个过期时间更长的新 Token 并重试 <xref keyref="renewToken_ICloudSpatialAudioEngine"/>。</pd>
+                <pd props="cpp">（2）：Token 更新失败，原因是提供的 Token 已过期。建议用户生成一个过期时间更长的新 Token 并重新调用 <xref keyref="renewToken"/>。</pd>
+            <pd props="android">（2）：Token 更新失败，原因是提供的 Token 已过期。建议用户生成一个过期时间更长的新 Token 并重试 <xref keyref="renewToken"/>。</pd>
             </plentry>
         <plentry props="native">
                 <pt><ph keyref="RENEW_TOKEN_INVALID_TOKEN"/></pt>
-                <pd props="native">（3）：Token 更新失败，原因是提供的 Token 无效。常见原因包括：项目在声网控制台启用了 App 证书但加入频道时未使用 Token；调用 <codeph>joinChannel</codeph> 时指定的 uid 与生成 Token 时传入的 uid 不一致；调用 <codeph>joinChannel</codeph> 时指定的频道名与生成 Token 时传入的频道名不一致。建议检查 Token 的生成流程，生成新的 Token 并重新调用 <xref keyref="renewToken_ICloudSpatialAudioEngine"/>。</pd>
+                <pd props="native">（3）：Token 更新失败，原因是提供的 Token 无效。常见原因包括：项目在声网控制台启用了 App 证书但加入频道时未使用 Token；调用 <xref keyref="joinChannel2"/> 时指定的 uid 与生成 Token 时传入的 uid 不一致；调用 <xref keyref="joinChannel2"/> 时指定的频道名与生成 Token 时传入的频道名不一致。建议检查 Token 的生成流程，生成新的 Token 并重新调用 <xref keyref="renewToken"/>。</pd>
             </plentry>
         <plentry props="native">
                 <pt><ph keyref="RENEW_TOKEN_INVALID_CHANNEL_NAME"/></pt>
-                <pd props="cpp">（4）：Token 更新失败，原因是 Token 中的频道名与当前频道不一致。建议用户检查频道名，生成新的 Token 并重新调用 <xref keyref="renewToken_ICloudSpatialAudioEngine"/>。</pd>
-            <pd props="android apple">（4）：Token 更新失败，原因是 Token 中的频道名与当前频道不一致。建议用户检查频道名，生成新的 Token 并重试 <xref keyref="renewToken_ICloudSpatialAudioEngine"/>。</pd>
+                <pd props="cpp">（4）：Token 更新失败，原因是 Token 中的频道名与当前频道不一致。建议用户检查频道名，生成新的 Token 并重新调用 <xref keyref="renewToken"/>。</pd>
+            <pd props="android apple">（4）：Token 更新失败，原因是 Token 中的频道名与当前频道不一致。建议用户检查频道名，生成新的 Token 并重试 <xref keyref="renewToken"/>。</pd>
             </plentry>
         <plentry props="native">
                 <pt><ph keyref="RENEW_TOKEN_INCONSISTENT_APPID"/></pt>
-                <pd props="cpp">（5）：Token 更新失败，原因是 Token 中的 App ID 与当前 App ID 不一致。建议用户检查 App ID，生成新的 Token 并重新调用 <xref keyref="renewToken_ICloudSpatialAudioEngine"/>。</pd>
-            <pd props="android apple">（5）：Token 更新失败，原因是 Token 中的 App ID 与当前 App ID 不一致。建议用户检查 App ID，生成新的 Token 并重试 <xref keyref="renewToken_ICloudSpatialAudioEngine"/>。</pd>
+                <pd props="cpp">（5）：Token 更新失败，原因是 Token 中的 App ID 与当前 App ID 不一致。建议用户检查 App ID，生成新的 Token 并重新调用 <xref keyref="renewToken"/>。</pd>
+            <pd props="android apple">（5）：Token 更新失败，原因是 Token 中的 App ID 与当前 App ID 不一致。建议用户检查 App ID，生成新的 Token 并重试 <xref keyref="renewToken"/>。</pd>
             </plentry>
         <plentry props="native">
                 <pt><ph keyref="RENEW_TOKEN_CANCELED_BY_NEW_REQUEST"/></pt>
