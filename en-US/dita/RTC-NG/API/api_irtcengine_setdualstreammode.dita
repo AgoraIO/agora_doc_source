@@ -20,7 +20,7 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetDualStreamMode(SIMULCAST_STREAM_MODE mode);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-           <codeblock props="flutter" outputclass="language-dart"/> 
+           <codeblock props="flutter" outputclass="language-dart"/>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
@@ -30,7 +30,7 @@
                 <dd>v4.0.1</dd>
             </dlentry>
             </dl>
-            <p id="desc">The SDK defaults to enabling low-quality video stream adaptive mode (<apiname keyref="AUTO_SIMULCAST_STREAM"/>) on the sender side, which means the sender does not actively send low-quality video stream. The receiving end with the role of the <b>host</b> can initiate a low-quality video stream request by calling <xref keyref="setRemoteVideoStreamType"/>, and upon receiving the request, the sending end automatically starts sending low-quality stream.<ul>
+            <p id="desc">默认情况下，SDK 在发送端启用小流自适应模式 (<apiname keyref="AUTO_SIMULCAST_STREAM"/>)。 该模式下，发送端会根据订阅端用户的下行网络质量，自动决定发送或停止发送小流。 若将 <parmname>mode</parmname> 设置为其他模式或显式配置了小流的宽度、高度、码率、帧率，则此自适应功能会失效。<ul>
                 <li>If you want to modify this behavior, you can call this method and set <parmname>mode</parmname> to <apiname keyref="DISABLE_SIMULCAST_STREAM"/> (never send low-quality video streams) or <apiname keyref="ENABLE_SIMULCAST_STREAM"/> (always send low-quality video streams).</li>
                 <li>If you want to restore the default behavior after making changes, you can call this method again with <parmname>mode</parmname> set to <apiname keyref="AUTO_SIMULCAST_STREAM"/>.</li></ul></p>
             <note id="note" props="android cpp apple framework">The difference and connection between this method and <xref keyref="enableDualStreamMode"/> is as follows:<ul>

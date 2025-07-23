@@ -39,6 +39,7 @@
         </p>
             <note type="attention">
                 <ul>
+                <li>自 v4.6.0 起，SDK 不再自动将 Int UID 映射到注册 User Account 时使用的 String <codeph>userAccount</codeph>。 如果你希望使用注册时的原始 String <codeph>userAccount</codeph> 加入频道，请调用 <xref keyref="joinChannelWithUserAccount2" /> 方法加入频道，不要调用 <xref keyref="joinChannel2"/> 并传入通过该方法获取的 Int UID 加入频道。</li>
                 <li>Ensure that the <parmname>userAccount</parmname> is unique in the channel.</li>
                 <li>To ensure smooth communication, use the same parameter type to identify the user. For example, if a user joins the channel with a UID, then ensure all the other users use the UID too. The same applies to the user account. If a user joins the channel with the Agora Web SDK, ensure that the ID of the user is set to the same parameter type.</li>
                 </ul> </note>
