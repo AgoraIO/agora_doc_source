@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_agorarteabrfallbacklayer">
+    <title><ph keyref="AgoraRteAbrFallbackLayer"/></title>
+    <shortdesc id="short"><ph id="shortdesc">ABR 回退层级设置。</ph></shortdesc>
+    <refbody>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+                <dlentry props="native">
+                    <dt>自从：</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters">
+            <title>枚举值</title>
+            <parml>
+            <plentry>
+                    <pt><?oxy-placeholder content="The name of the enumerator."?></pt>
+                    <pd><?oxy-placeholder content="The description of the enumerator."?></pd>
+                </plentry>
+            <plentry props="android apple">
+                <pt><ph keyref="AgoraRteAbrFallbackDisabled"/></pt>
+                <pd props="apple">（0）：当网络质量较差时，不回退到低分辨率的视频流。可能仍会回退到可伸缩视频编码，但保持高分辨率画质。</pd>
+            <pd props="android">（0）：当网络质量较差时，不回退至低分辨率视频流。可能仍会回退至可伸缩视频编码，但保持高分辨率画质。</pd>
+            </plentry>
+        <plentry props="android apple">
+                <pt><ph keyref="AgoraRteAbrFallbackLow"/></pt>
+                <pd props="apple">（1）：（默认）当网络质量较差时，接收端 SDK 会接收 <codeph>kRteAbrSubscriptionLow</codeph> 层的视频流。</pd>
+            <pd props="android">（1）：（默认）当网络质量较差时，接收端 SDK 会接收 <codeph>AbrSubscriptionLayer.LOW</codeph> 层的视频流。</pd>
+            </plentry>
+        <plentry props="android apple">
+                <pt><ph keyref="AgoraRteAbrFallbackAudioOnly"/></pt>
+                <pd props="apple">（2）：当网络质量较差时，SDK 可能先接收 <codeph>kRteAbrSubscriptionLow</codeph> 层；若该层存在，则回退至 <codeph>kRteAbrSubscriptionLayer1</codeph> 到 <codeph>kRteAbrSubscriptionLayer6</codeph>。若网络差到无法播放视频，则仅接收音频。</pd>
+            <pd props="android">（2）：当网络质量较差时，SDK 可能先接收 <codeph>AbrSubscriptionLayer.LOW</codeph> 层；若存在相关层，则回退至 <codeph>AbrSubscriptionLayer.LAYER1</codeph> 到 <codeph>AbrSubscriptionLayer.LAYER6</codeph>。若网络差到无法播放视频，SDK 仅接收音频。</pd>
+            </plentry>
+        <plentry props="android apple">
+                <pt><ph keyref="AgoraRteAbrFallbackLayer1"/></pt>
+                <pd props="apple">（3）：当接收端 SDK 设置了回退选项，且网络质量变差且相关层存在时，将接收 <codeph>kRteAbrSubscriptionLayer1</codeph> 到 <codeph>kRteAbrSubscriptionLayer6</codeph> 中的某一层。回退下限由设置的回退选项决定。</pd>
+            <pd props="android">（3）：当接收端设置了回退选项时，SDK 会接收 <codeph>kRteAbrSubscriptionLayer1</codeph> 到 <codeph>kRteAbrSubscriptionLayer6</codeph> 中的某一层。回退下限由配置的回退选项决定。</pd>
+            </plentry>
+        <plentry props="android apple">
+                <pt><ph keyref="AgoraRteAbrFallbackLayer2"/></pt>
+                <pd props="apple">（4）：当接收端 SDK 设置了回退选项，且网络质量变差且相关层存在时，将接收 <codeph>kRteAbrSubscriptionLayer1</codeph> 到 <codeph>kRteAbrSubscriptionLayer6</codeph> 中的某一层。回退下限由设置的回退选项决定。</pd>
+            <pd props="android">（4）：当接收端设置了回退选项时，SDK 会接收 <codeph>kRteAbrSubscriptionLayer1</codeph> 到 <codeph>kRteAbrSubscriptionLayer6</codeph> 中的某一层。回退下限由配置的回退选项决定。</pd>
+            </plentry>
+        <plentry props="android apple">
+                <pt><ph keyref="AgoraRteAbrFallbackLayer3"/></pt>
+                <pd props="apple">（5）：当接收端 SDK 设置了回退选项，且网络质量变差且相关层存在时，将接收 <codeph>kRteAbrSubscriptionLayer1</codeph> 到 <codeph>kRteAbrSubscriptionLayer6</codeph> 中的某一层。回退下限由设置的回退选项决定。</pd>
+            <pd props="android">（5）：当接收端设置了回退选项时，SDK 会接收 <codeph>kRteAbrSubscriptionLayer1</codeph> 到 <codeph>kRteAbrSubscriptionLayer6</codeph> 中的某一层。回退下限由配置的回退选项决定。</pd>
+            </plentry>
+        <plentry props="android apple">
+                <pt><ph keyref="AgoraRteAbrFallbackLayer4"/></pt>
+                <pd props="apple">（6）：当接收端 SDK 设置了回退选项，且网络质量变差且相关层存在时，将接收 <codeph>kRteAbrSubscriptionLayer1</codeph> 到 <codeph>kRteAbrSubscriptionLayer6</codeph> 中的某一层。回退下限由设置的回退选项决定。</pd>
+            <pd props="android">（6）：当接收端设置了回退选项时，SDK 会接收 <codeph>kRteAbrSubscriptionLayer1</codeph> 到 <codeph>kRteAbrSubscriptionLayer6</codeph> 中的某一层。回退下限由配置的回退选项决定。</pd>
+            </plentry>
+        <plentry props="android apple">
+                <pt><ph keyref="AgoraRteAbrFallbackLayer5"/></pt>
+                <pd props="apple">（7）：当接收端 SDK 设置了回退选项，且网络质量变差且相关层存在时，将接收 <codeph>kRteAbrSubscriptionLayer1</codeph> 到 <codeph>kRteAbrSubscriptionLayer6</codeph> 中的某一层。回退下限由设置的回退选项决定。</pd>
+            <pd props="android">（7）：当接收端设置了回退选项时，SDK 会接收 <codeph>kRteAbrSubscriptionLayer1</codeph> 到 <codeph>kRteAbrSubscriptionLayer6</codeph> 中的某一层。回退下限由配置的回退选项决定。</pd>
+            </plentry>
+        <plentry props="android apple">
+                <pt><ph keyref="AgoraRteAbrFallbackLayer6"/></pt>
+                <pd props="apple">（8）：当接收端 SDK 设置了回退选项，且网络质量变差且相关层存在时，将接收 <codeph>kRteAbrSubscriptionLayer1</codeph> 到 <codeph>kRteAbrSubscriptionLayer6</codeph> 中的某一层。回退下限由设置的回退选项决定。</pd>
+            <pd props="android">（8）：当接收端设置了回退选项时，SDK 会接收 <codeph>kRteAbrSubscriptionLayer1</codeph> 到 <codeph>kRteAbrSubscriptionLayer6</codeph> 中的某一层。回退下限由配置的回退选项决定。</pd>
+            </plentry>
+        </parml>
+        </section></refbody>
+</reference>

@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_playerconfig_setautoplay">
+    <title><ph keyref="SetAutoPlay"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置是否在成功调用 <xref keyref="OpenWithUrl"/> 后是否自动播放。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="SetAutoPlay"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void setAutoPlay(boolean autoPlay) throws RteException</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)setAutoPlay:(BOOL)autoPlay error:(AgoraRteError * _Nullable)error;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">void SetAutoPlay(bool auto_play, Error *err = nullptr)</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从：</dt>
+                <dd props="native">自 v4.4.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p>设置是否在成功调用 <xref keyref="OpenWithUrl"/> 或 <codeph>openWithUrl:startTime:cb:</codeph> 后自动播放音视频流。如果未设置，默认值为 <codeph><ph keyref="true"/></codeph>（Android）或 <codeph><ph keyref="true"/></codeph>（iOS）。</p>
+            </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+            <plentry props="android cpp ios">
+                <pt props="android ios">autoPlay</pt>
+                <pt props="cpp">auto_play</pt>
+                <pd props="android">是否在成功调用 <xref keyref="OpenWithUrl"/> 后自动开始拉流并播放音视频流。
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：（默认）成功打开后自动开始拉流并播放。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：成功调用 <xref keyref="OpenWithUrl"/> 后，需要主动调用 <xref keyref="play"/> 才能播放音视频流。</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">是否在成功打开后自动开始推流和播放。
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：（默认）在成功打开后自动开始推流和播放。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：在成功调用 <codeph>openWithUrl:startTime:cb:</codeph> 后，你需要主动调用 <codeph>play:</codeph> 才能播放音视频流。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp">是否在成功调用 <xref keyref="OpenWithUrl"/> 后自动开始拉流并播放。
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：（默认）成功打开后自动开始拉流并播放。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：成功调用 <xref keyref="OpenWithUrl"/> 后，需要主动调用 <xref keyref="Play"/> 才能播放音视频流。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            <plentry props="cpp ios">
+                <pt props="ios">error</pt>
+                <pt props="cpp">err</pt>
+                <pd props="ios">状态或错误信息，详见 <xref keyref="Error"/>。</pd>
+                <pd props="cpp">输出参数，状态或错误信息，详见 <xref keyref="Error"/>。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="bp cs electron flutter rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cs electron rn unity unreal">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul>
+    </section>
+        </refbody>
+</reference>

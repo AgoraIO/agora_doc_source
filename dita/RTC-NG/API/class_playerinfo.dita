@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_playerinfo">
+    <title><ph keyref="PlayerInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc">用于获取播放器的相关信息。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class PlayerInfo {
+  @CalledByNative
+  public PlayerInfo() {
+    mNativeHandle = nativeCreatePlayerInfo();
+  }
+
+  @Override
+  protected void finalize() {
+    destroy();
+  }
+
+  @CalledByNative
+  public long getNativeHandle() {
+    return mNativeHandle;
+  }
+
+  private void destroy() {
+    nativeReleasePlayerInfo(mNativeHandle);
+    mNativeHandle = 0;
+  }
+
+  private native long nativeCreatePlayerInfo();
+  private native void nativeReleasePlayerInfo(long handle);
+  private native int nativeState(long handle);
+  private native long nativeDuration(long handle);
+  private native int nativeStreamCount(long handle);
+  private native boolean nativeHasAudio(long handle);
+  private native boolean nativeHasVideo(long handle);
+  private native boolean nativeIsAudioMuted(long handle);
+  private native boolean nativeIsVideoMuted(long handle);
+  private native int nativeVideoHeight(long handle);
+  private native int nativeVideoWidth(long handle);
+  private native int nativeAbrSubscriptionLayer(long handle);
+  private native int nativeAudioSampleRate(long handle);
+  private native int nativeAudioChannels(long handle);
+  private native int nativeAudioBitsPerSample(long handle);
+  private native String nativeCurrentUrl(long handle);
+
+  private long mNativeHandle = 0;
+}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraRtePlayerInfo : NSObject
+@end</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">class PlayerInfo {</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从：</dt>
+                <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p>当播放器信息发生变化时，会通过 <xref keyref="onPlayerInfoUpdated_PlayerObserver"/> 方法通知。你也可以通过 <xref keyref="GetInfo"/> 方法主动获取。</p>
+            </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry props="android cpp">
+                <pt props="cpp">state</pt>
+                <pt props="android">nativeState</pt>
+                <pd props="android cpp">获取播放器状态。</pd>
+            </plentry>
+            <plentry props="android cpp">
+                <pt props="cpp">duration</pt>
+                <pt props="android">nativeDuration</pt>
+                <pd props="android cpp">获取媒体资源的持续时长。</pd>
+            </plentry>
+            <plentry props="android cpp">
+                <pt props="cpp">streamCount</pt>
+                <pt props="android">nativeStreamCount</pt>
+                <pd props="android cpp">获取音视频流的数量。</pd>
+            </plentry>
+            <plentry props="android cpp">
+                <pt props="cpp">hasAudio</pt>
+                <pt props="android">nativeHasAudio</pt>
+                <pd props="android cpp">是否包含音频数据。
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：包含音频数据。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不包含音频数据。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            <plentry props="android cpp">
+                <pt props="cpp">hasVideo</pt>
+                <pt props="android">nativeHasVideo</pt>
+                <pd props="android cpp">是否包含视频数据。
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：包含视频数据。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不包含视频数据。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            <plentry props="android cpp">
+                <pt props="cpp">isAudioMuted</pt>
+                <pt props="android">nativeIsAudioMuted</pt>
+                <pd props="android cpp">音频是否被静音。
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：音频已静音。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：音频未静音。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            <plentry props="android cpp">
+                <pt props="cpp">isVideoMuted</pt>
+                <pt props="android">nativeIsVideoMuted</pt>
+                <pd props="android cpp">视频是否被静音。
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：视频已静音。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：视频未静音。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            <plentry props="android cpp">
+                <pt props="cpp">videoHeight</pt>
+                <pt props="android">nativeVideoHeight</pt>
+                <pd props="android cpp">视频高度，单位为像素。</pd>
+            </plentry>
+            <plentry props="android cpp">
+                <pt props="cpp">videoWidth</pt>
+                <pt props="android">nativeVideoWidth</pt>
+                <pd props="android cpp">视频宽度，单位为像素。</pd>
+            </plentry>
+            <plentry props="android cpp">
+                <pt props="cpp">abrSubscriptionLayer</pt>
+                <pt props="android">nativeAbrSubscriptionLayer</pt>
+                <pd props="android cpp">获取自适应码率订阅的层级。</pd>
+            </plentry>
+            <plentry props="android cpp">
+                <pt props="cpp">audioSampleRate</pt>
+                <pt props="android">nativeAudioSampleRate</pt>
+                <pd props="android cpp">音频采样率，单位为 Hz。</pd>
+            </plentry>
+            <plentry props="android cpp">
+                <pt props="cpp">audioChannels</pt>
+                <pt props="android">nativeAudioChannels</pt>
+                <pd props="android cpp">音频通道数。</pd>
+            </plentry>
+            <plentry props="android cpp">
+                <pt props="cpp">audioBitsPerSample</pt>
+                <pt props="android">nativeAudioBitsPerSample</pt>
+                <pd props="android cpp">每个音频采样的比特数。</pd>
+            </plentry>
+            <plentry props="android cpp">
+                <pt props="cpp">currentUrl</pt>
+                <pt props="android">nativeCurrentUrl</pt>
+                <pd props="android cpp">当前播放的媒体资源地址。</pd>
+            </plentry>
+            </parml> </section>
+            </refbody>
+</reference>

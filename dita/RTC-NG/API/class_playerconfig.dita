@@ -1,0 +1,192 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_playerconfig">
+    <title><ph keyref="PlayerConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc">用于配置播放器参数。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class PlayerConfig {
+  public PlayerConfig() {
+    mNativeHandle = nativeCreatePlayerConfig();
+  }
+
+  @Override
+  protected void finalize() {
+    nativeReleasePlayerConfig(mNativeHandle);
+  }
+
+  public long getNativeHandle() {
+    return mNativeHandle;
+  };
+
+  public void setPlayoutAudioTrackIdx(int idx) throws RteException {
+    nativeSetPlayoutAudioTrackIdx(mNativeHandle, idx);
+  }
+
+  public int getPlayoutAudioTrackIdx() throws RteException {
+    return nativeGetPlayoutAudioTrackIdx(mNativeHandle);
+  }
+
+  public void setPublishAudioTrackIdx(int idx) throws RteException {
+    nativeSetPublishAudioTrackIdx(mNativeHandle, idx);
+  }
+
+  public int getPublishAudioTrackIdx() throws RteException {
+    return nativeGetPublishAudioTrackIdx(mNativeHandle);
+  }
+
+  public void setAudioTrackIdx(int idx) throws RteException {
+    nativeSetAudioTrackIdx(mNativeHandle, idx);
+  }
+
+  public int getAudioTrackIdx() throws RteException {
+    return nativeGetAudioTrackIdx(mNativeHandle);
+  }
+
+  public void setSubtitleTrackIdx(int idx) throws RteException {
+    nativeSetSubtitleTrackIdx(mNativeHandle, idx);
+  }
+
+  public int getSubtitleTrackIdx() throws RteException {
+    return nativeGetSubtitleTrackIdx(mNativeHandle);
+  }
+
+  public void setExternalSubtitleTrackIdx(int idx) throws RteException {
+    nativeSetExternalSubtitleTrackIdx(mNativeHandle, idx);
+  }
+
+  public int getExternalSubtitleTrackIdx() throws RteException {
+    return nativeGetExternalSubtitleTrackIdx(mNativeHandle);
+  }
+
+  public void setAudioPitch(int audioPitch) throws RteException {
+    nativeSetAudioPitch(mNativeHandle, audioPitch);
+  }
+
+  public int getAudioPitch() throws RteException {
+    return nativeGetAudioPitch(mNativeHandle);
+  }
+
+  public void setAudioPlaybackDelay(int delay) throws RteException {
+    nativeSetAudioPlaybackDelay(mNativeHandle, delay);
+  }
+
+  public int getAudioPlaybackDelay() throws RteException {
+    return nativeGetAudioPlaybackDelay(mNativeHandle);
+  }
+
+  public void setAudioDualMonoMode(int mode) throws RteException {
+    nativeSetAudioDualMonoMode(mNativeHandle, mode);
+  }
+
+  public int getAudioDualMonoMode() throws RteException {
+    return nativeGetAudioDualMonoMode(mNativeHandle);
+  }
+
+  public void setPublishVolume(int volume) throws RteException {
+    nativeSetPublishVolume(mNativeHandle, volume);
+  }
+
+  public int getPublishVolume() throws RteException {
+    return nativeGetPublishVolume(mNativeHandle);
+  }
+
+  private native long nativeCreatePlayerConfig();
+  private native void nativeReleasePlayerConfig(long handle);
+  private native void nativeSetAutoPlay(long handle, boolean autoPlay);
+  private native boolean nativeGetAutoPlay(long handle);
+  private native void nativeSetPlaybackSpeed(long handle, int speed);
+  private native int nativeGetPlaybackSpeed(long handle);
+  private native void nativeSetPlayoutAudioTrackIdx(long handle, int idx);
+  private native int nativeGetPlayoutAudioTrackIdx(long handle);
+  private native void nativeSetPublishAudioTrackIdx(long handle, int idx);
+  private native int nativeGetPublishAudioTrackIdx(long handle);
+  private native void nativeSetAudioTrackIdx(long handle, int idx);
+  private native int nativeGetAudioTrackIdx(long handle);
+  private native void nativeSetSubtitleTrackIdx(long handle, int idx);
+  private native int nativeGetSubtitleTrackIdx(long handle);
+  private native void nativeSetExternalSubtitleTrackIdx(long handle, int idx);
+  private native int nativeGetExternalSubtitleTrackIdx(long handle);
+  private native void nativeSetAudioPitch(long handle, int audioPitch);
+  private native int nativeGetAudioPitch(long handle);
+  private native void nativeSetPlayoutVolume(long handle, int volume);
+  private native int nativeGetPlayoutVolume(long handle);
+  private native void nativeSetAudioPlaybackDelay(long handle, int delay);
+  private native int nativeGetAudioPlaybackDelay(long handle);
+  private native void nativeSetAudioDualMonoMode(long handle, int mode);
+  private native int nativeGetAudioDualMonoMode(long handle);
+  private native void nativeSetPublishVolume(long handle, int volume);
+  private native int nativeGetPublishVolume(long handle);
+  private native void nativeSetLoopCount(long handle, int count);
+  private native int nativeGetLoopCount(long handle);
+  private native void nativeSetJsonParameter(long handle, String jsonParameter);
+  private native String nativeGetJsonParameter(long handle);
+  private native void nativeSetAbrSubscriptionLayer(long handle, int subscriptionLayer);
+  private native int nativeGetAbrSubscriptionLayer(long handle);
+  private native void nativeSetAbrFallbackLayer(long handle, int fallbackLayer);
+  private native int nativeGetAbrFallbackLayer(long handle);
+
+  private long mNativeHandle = 0;
+}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraRtePlayerConfig : NSObject
+@end</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">class PlayerConfig {</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从：</dt>
+                <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p>该结构体用于配置 <xref keyref="Player"/> 对象或播放器相关参数。</p>
+            </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry props="android">
+                <pt props="android">setPlayoutAudioTrackIdx / getPlayoutAudioTrackIdx</pt>
+                <pd props="android">设置或获取用于播放的音频轨道索引。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt props="android">setPublishAudioTrackIdx / getPublishAudioTrackIdx</pt>
+                <pd props="android">设置或获取用于发布的音频轨道索引。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt props="android">setAudioTrackIdx / getAudioTrackIdx</pt>
+                <pd props="android">设置或获取音频轨道索引。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt props="android">setSubtitleTrackIdx / getSubtitleTrackIdx</pt>
+                <pd props="android">设置或获取字幕轨道索引。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt props="android">setExternalSubtitleTrackIdx / getExternalSubtitleTrackIdx</pt>
+                <pd props="android">设置或获取外部字幕轨道索引。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt props="android">setAudioPitch / getAudioPitch</pt>
+                <pd props="android">设置或获取音频的变调值。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt props="android">setAudioPlaybackDelay / getAudioPlaybackDelay</pt>
+                <pd props="android">设置或获取音频播放延迟。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt props="android">setAudioDualMonoMode / getAudioDualMonoMode</pt>
+                <pd props="android">设置或获取音频的双单声道模式。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt props="android">setPublishVolume / getPublishVolume</pt>
+                <pd props="android">设置或获取发布的音频音量。</pd>
+            </plentry>
+            </parml> </section>
+            </refbody>
+</reference>

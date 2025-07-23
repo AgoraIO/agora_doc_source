@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_playerconfig_jsonparameter">
+    <title><ph keyref="jsonParameter"/></title>
+    <shortdesc id="short"><ph id="shortdesc">获取当前配置或播放器配置的 JSON 格式的私有参数。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="jsonParameter"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public String getJsonParameter() throws RteException</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (NSString * _Nullable)jsonParameter:(AgoraRteError * _Nullable)error;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp"/>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从：</dt>
+                <dd props="android apple">自 v4.4.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p>该 API 用于获取当前配置或播放器配置的 JSON 格式的私有参数。</p>
+            </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+            <plentry props="ios">
+                <pt props="ios">error</pt>
+                <pd props="ios">状态或错误信息。详见 <xref keyref="Error"/>。
+                    <ul>
+                        <li><codeph>AgoraRteOk</codeph>：调用成功。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cpp cs electron rn unity unreal">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul>
+        <p props="apple"><ul>
+                        <li>方法调用成功时，返回设置的 JSON 格式参数集。</li>
+                        <li>方法调用失败时，返回空字符串。</li>
+                        </ul>
+                    </p>
+        <p props="android"><ul>
+                        <li>方法调用成功时，返回当前配置的播放器私有参数，格式为 JSON 字符串。</li>
+                        <li>方法调用失败，返回空字符串。</li>
+                        </ul>
+                    </p>
+    </section>
+        </refbody>
+</reference>

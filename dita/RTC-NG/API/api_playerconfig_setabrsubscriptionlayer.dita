@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_playerconfig_setabrsubscriptionlayer">
+    <title><ph keyref="SetAbrSubscriptionLayer"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置 ABR 订阅层。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="SetAbrSubscriptionLayer"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void setAbrSubscriptionLayer(Constants.AbrSubscriptionLayer subscriptionLayer) throws RteException</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)setAbrSubscriptionLayer:(AgoraRteAbrSubscriptionLayer)layer error:(AgoraRteError * _Nullable)error;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">void SetAbrSubscriptionLayer(AbrSubscriptionLayer abr_subscription_layer, Error *err = nullptr)</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从：</dt>
+                <dd props="native">自 v4.4.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p>如果未启用 ABR，观众只能在原始频道中切换高、低不同质量层级的视频流。启用后，观众可以在 ABR 频道中切换任意层。</p>
+            </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+            <plentry props="android cpp ios">
+                <pt props="cpp">abr_subscription_layer</pt>
+                <pt props="android">subscriptionLayer</pt>
+                <pt props="ios">layer</pt>
+                <pd props="android">要订阅的层级。详见 <xref keyref="AbrSubscriptionLayer"/>。</pd>
+                <pd props="ios">要订阅的层，详见 <xref keyref="AbrSubscriptionLayer"/>。</pd>
+                <pd props="cpp">要订阅的层，详见 <xref keyref="AbrSubscriptionLayer"/>。</pd>
+            </plentry>
+            <plentry props="cpp ios">
+                <pt props="cpp">err</pt>
+                <pt props="ios">error</pt>
+                <pd props="ios">状态或错误信息，详见 <xref keyref="Error"/>。
+                    <ul>
+                        <li><codeph>AgoraRteOk</codeph>：成功。</li>
+                        <li><codeph>AgoraRteErrorInvalidArgument</codeph>：设置了非法的 <xref keyref="AbrSubscriptionLayer"/> 值。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp">输出参数，状态或错误信息，详见 <xref keyref="Error"/>。
+                    <ul>
+                        <li><codeph>kRteOk</codeph>：调用成功。</li>
+                        <li><codeph>kRteErrorInvalidArgument</codeph>：设置了非法的 <codeph>abr_subscription_layer</codeph> 值。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="bp cs electron flutter rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cs electron rn unity unreal">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul>
+    </section>
+        </refbody>
+</reference>

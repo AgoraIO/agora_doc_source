@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_playerstate">
+    <title><ph keyref="PlayerState"/></title>
+    <shortdesc id="short"><ph id="shortdesc">播放器状态。</ph></shortdesc>
+    <refbody>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+                <dlentry props="native">
+                    <dt>自从：</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters">
+            <title>枚举值</title>
+            <parml>
+            <plentry>
+                    <pt><?oxy-placeholder content="The name of the enumerator."?></pt>
+                    <pd><?oxy-placeholder content="The description of the enumerator."?></pd>
+                </plentry>
+            <plentry props="android apple">
+                <pt><ph keyref="AgoraRtePlayerStateIdle"/></pt>
+                <pd props="android apple">（0）：空闲状态。</pd>
+            </plentry>
+        <plentry props="android apple">
+                <pt><ph keyref="AgoraRtePlayerStateOpening"/></pt>
+                <pd props="apple">（1）：打开中状态。调用 <codeph>openWithUrl:startTime:cb</codeph> 后进入该状态。</pd>
+            <pd props="android">（1）：打开中状态。调用 <xref keyref="OpenWithUrl"/> 后进入该状态。</pd>
+            </plentry>
+        <plentry props="android apple">
+                <pt><ph keyref="AgoraRtePlayerStateOpenCompleted"/></pt>
+                <pd props="apple">（2）：打开完成状态。成功调用 <codeph>openWithUrl:startTime:cb</codeph> 后进入该状态。</pd>
+            <pd props="android">（2）：打开完成状态。成功调用 <xref keyref="OpenWithUrl"/> 后进入该状态。</pd>
+            </plentry>
+        <plentry props="android apple">
+                <pt><ph keyref="AgoraRtePlayerStatePlaying"/></pt>
+                <pd props="apple">（3）：播放中状态。URL 源正在播放时进入该状态。</pd>
+            <pd props="android">（3）：播放中状态。URL 资源开始播放时进入该状态。</pd>
+            </plentry>
+        <plentry props="android apple">
+                <pt><ph keyref="AgoraRtePlayerStatePaused"/></pt>
+                <pd props="android apple">（4）：暂停状态。播放被暂停时进入该状态。</pd>
+            </plentry>
+        <plentry props="android apple">
+                <pt><ph keyref="AgoraRtePlayerStatePlaybackCompleted"/></pt>
+                <pd props="apple">（5）：播放完成状态。URL 源播放完成时进入该状态。</pd>
+            <pd props="android">（5）：播放完成状态。URL 资源播放完成时进入该状态。</pd>
+            </plentry>
+        <plentry props="android apple">
+                <pt><ph keyref="AgoraRtePlayerStateStopped"/></pt>
+                <pd props="apple">（6）：停止状态。调用 <codeph>stop:</codeph> 后进入该状态。</pd>
+            <pd props="android">（6）：停止状态。调用 <xref keyref="stop"/> 后进入该状态。</pd>
+            </plentry>
+        <plentry props="android apple">
+                <pt><ph keyref="AgoraRtePlayerStateFailed"/></pt>
+                <pd props="android apple">（7）：失败状态。发生内部错误时进入该状态。</pd>
+            </plentry>
+        </parml>
+        </section></refbody>
+</reference>

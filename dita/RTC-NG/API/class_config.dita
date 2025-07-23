@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_config">
+    <title><ph keyref="Config"/></title>
+    <shortdesc id="short"><ph id="shortdesc">用于配置 RTE 对象。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class Config {
+  public Config() {
+    mNativeHandle = nativeCreateConfig();
+  }
+
+  @Override
+  protected void finalize() {
+    nativeReleaseConfig(mNativeHandle);
+  }
+
+  public long getNativeHandle() {
+    return mNativeHandle;
+  };
+
+  private native long nativeCreateConfig();
+  private native void nativeReleaseConfig(long handle);
+  private native void nativeSetAppId(long handle, String appId);
+  private native String nativeGetAppId(long handle);
+  private native void nativeSetLogFolder(long handle, String logFolder);
+  private native String nativeGetLogFolder(long handle);
+  private native void nativeSetLogFileSize(long handle, int logFileSize);
+  private native int nativeGetLogFileSize(long handle);
+  private native void nativeSetAreaCode(long handle, int areaCode);
+  private native int nativeGetAreaCode(long handle);
+  private native void nativeSetCloudProxy(long handle, String cloudProxy);
+  private native String nativeGetCloudProxy(long handle);
+  private native void nativeSetJsonParameter(long handle, String jsonParameter);
+  private native String nativeGetJsonParameter(long handle);
+
+  private long mNativeHandle = 0;
+}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraRteConfig : NSObject
+@end</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">class Config {</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从：</dt>
+                <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p>该结构体用于配置 RTE 或 AgoraRte 对象，适用于不同平台。</p>
+            </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            </parml> </section>
+            </refbody>
+</reference>

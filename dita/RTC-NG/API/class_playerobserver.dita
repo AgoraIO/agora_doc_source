@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_playerobserver">
+    <title><ph keyref="PlayerObserver"/></title>
+    <shortdesc id="short"><ph id="shortdesc">用于监听或接收播放器相关事件的回调。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class PlayerObserver {
+  public PlayerObserver() {
+    mNativeHandle = nativeCreatePlayerObserver();
+  }
+
+  @Override
+  protected void finalize() {
+    destroy();
+  }
+
+  public long getNativeHandle() {
+    return mNativeHandle;
+  }
+
+  private void destroy() {
+    nativeReleasePlayerObserver(mNativeHandle);
+    mNativeHandle = 0;
+  }
+
+  private native long nativeCreatePlayerObserver();
+  private native void nativeReleasePlayerObserver(long handle);
+
+  private long mNativeHandle = 0;
+}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraRtePlayerObserver : NSObject
+@end</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">class PlayerObserver {</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从：</dt>
+                <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p>该结构体/类用于监听或接收播放器相关事件的回调。</p>
+            </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry props="android">
+                <pt props="android">destroy</pt>
+                <pd props="android">释放原生播放器观察者对象，并将其句柄重置为 0。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt props="android">getNativeHandle</pt>
+                <pd props="android">获取原生播放器观察者对象的句柄。</pd>
+            </plentry>
+            </parml> </section>
+            </refbody>
+</reference>

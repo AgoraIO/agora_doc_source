@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_canvas_canvas">
+    <title><ph keyref="Canvas"/></title>
+    <shortdesc id="short"><ph id="shortdesc">用于设置视频渲染视图。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="Canvas"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public Canvas(Rte rte, CanvasInitialConfig config)</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (instancetype _Nonnull)initWithRte:(AgoraRte* _Nonnull)rte initialConfig:(AgoraRteCanvasInitialConfig * _Nullable)config;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">Canvas(Rte *rte, CanvasInitialConfig *initial_config = nullptr)</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从：</dt>
+                <dd props="native">自 v4.4.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p></p>
+            </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+            <plentry props="android cpp ios">
+                <pt props="android">rte</pt>
+                <pt props="cpp ios">rte</pt>
+                <pd props="android">用于构造 <xref keyref="Canvas"/> 的对象。详见 <xref keyref="Rte"/>。</pd>
+                <pd props="ios">用于构造画布的 <xref keyref="Rte"/> 对象，详见 <xref keyref="Rte"/>。</pd>
+                <pd props="cpp"><xref keyref="Rte"/> 对象。详见 <xref keyref="Rte"/>。</pd>
+            </plentry>
+            <plentry props="cpp">
+                <pt props="cpp">initial_config</pt>
+                <pd props="cpp"><xref keyref="Canvas"/> 的初始化配置对象。你可以传入 <codeph><ph keyref="NULL"/></codeph>。详见 <codeph>CanvasInitialConfig</codeph>。</pd>
+            </plentry>
+            <plentry props="android ios">
+                <pt props="android ios">config</pt>
+                <pd props="android">初始化配置对象。你可以传入 <codeph><ph keyref="NULL"/></codeph>。详见 <codeph>CanvasInitialConfig</codeph>。</pd>
+                <pd props="ios">画布的初始化配置对象。你可以传入 <codeph><ph keyref="NULL"/></codeph>。详见 <codeph>AgoraRteCanvasInitialConfig</codeph>。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="bp cs electron flutter rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cs electron rn unity unreal">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul>
+    </section>
+        </refbody>
+</reference>

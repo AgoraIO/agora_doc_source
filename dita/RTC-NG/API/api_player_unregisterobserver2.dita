@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_player_unregisterobserver2">
+    <title><ph keyref="UnregisterObserver2"/></title>
+    <shortdesc id="short"><ph id="shortdesc">取消注册播放器观察者。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="UnregisterObserver2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void unregisterObserver(PlayerObserver observer) throws RteException</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)unregisterObserver:(AgoraRtePlayerObserver * _Nullable)observer error:(AgoraRteError * _Nullable)error;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">bool UnregisterObserver(PlayerObserver *observer, Error *err = nullptr)</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从：</dt>
+                <dd props="native">自 v4.4.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p>用于从播放器中移除已注册的观察者对象，停止接收播放器相关的回调事件。</p>
+            </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">observer</pt>
+                <pd props="android">用于接收播放器相关回调的对象，详见 <xref keyref="PlayerObserver"/>。</pd>
+                <pd props="ios">用于接收播放器相关回调的对象。详见 <xref keyref="PlayerObserver"/>。</pd>
+                <pd props="cpp">用于接收播放器相关回调的对象。</pd>
+            </plentry>
+            <plentry props="cpp ios">
+                <pt props="cpp">err</pt>
+                <pt props="ios">error</pt>
+                <pd props="ios">状态或错误信息。详见 <xref keyref="Error"/>。
+可能返回以下错误码，详见 <codeph>AgoraRteErrorCode</codeph>：
+                    <ul>
+                        <li><codeph>AgoraRteOk</codeph>：成功。</li>
+                        <li><codeph>AgoraRteErrorInvalidOperation</codeph>：对应的内部 <xref keyref="Player"/> 对象已被销毁或无效。</li>
+                        <li><codeph>AgoraRteErrorInvalidArgument</codeph>：<codeph>observer</codeph> 对象为 <codeph><ph keyref="NULL"/></codeph>。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp">状态或错误信息，详见 <xref keyref="Error"/>。可能的错误码包括：
+                    <ul>
+                        <li><codeph>kRteOk</codeph>：成功。</li>
+                        <li><codeph>kRteErrorInvalidOperation</codeph>：对应的内部 <xref keyref="Player"/> 对象已被销毁或无效。</li>
+                        <li><codeph>kRteErrorInvalidArgument</codeph>：<codeph>observer</codeph> 对象为空。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="bp cs electron flutter rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cs electron rn unity unreal">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul>
+        <p props="cpp"><ul>
+                        <li><codeph><ph keyref="true"/></codeph>：成功取消注册观察者。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：取消注册观察者失败。</li>
+                        </ul>
+                    </p>
+        <p props="apple"><ul>
+                        <li><codeph><ph keyref="true"/></codeph>：取消注册成功。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：取消注册失败。</li>
+                        </ul>
+                    </p>
+    </section>
+        </refbody>
+</reference>

@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_canvas_addview">
+    <title><ph keyref="AddView"/></title>
+    <shortdesc id="short"><ph id="shortdesc">添加一个渲染视图，目前仅支持一个视图。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="AddView"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void addView(View view, ViewConfig viewConfig) throws RteException</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)addView:(AgoraRteView * _Nonnull)view config:(AgoraRteViewConfig* _Nullable)config error:(AgoraRteError* _Nullable)error;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">bool AddView(View *view, ViewConfig *config, rte::Error *err = nullptr)</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从：</dt>
+                <dd props="native">自 v4.4.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p>你可以通过该方法添加一个渲染视图。目前仅支持添加一个视图。在 iOS 平台上，你可以将 <codeph>UIView</codeph> 对象（在 mac 平台上为 <codeph>NSView</codeph> 对象）赋值给 <codeph>AgoraRteView</codeph> 类型的变量并传入该方法。在 Windows 平台上，可以将一个 <codeph>HWND</codeph> 窗口句柄赋值给 <codeph>View</codeph> 类型的变量并传入该接口。在 Android 平台上，可以将 <codeph>SurfaceView</codeph> 对象赋值给 <codeph>View</codeph> 类型的变量并传入该方法。</p>
+            </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">view</pt>
+                <pd props="android">要添加的视图对象。在 Android 平台上，可以将 <codeph>SurfaceView</codeph> 对象赋值给 <codeph>View</codeph> 类型的变量并传入该方法。</pd>
+                <pd props="ios">输入参数，<codeph>AgoraRteView</codeph> 对象的指针。在 iOS 平台上，你可以将 <codeph>UIView</codeph> 对象（在 mac 平台上为 <codeph>NSView</codeph> 对象）赋值给 <codeph>AgoraRteView</codeph> 类型的变量并传入该方法。</pd>
+                <pd props="cpp">指向 <codeph>View</codeph> 对象的指针。在 Windows 平台上，可以将一个 <codeph>HWND</codeph> 窗口句柄赋值给 <codeph>View</codeph> 类型的变量并传入该接口。</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="cpp ios">config</pt>
+                <pt props="android">viewConfig</pt>
+                <pd props="android">视图相关的配置。详见 <codeph>ViewConfig</codeph>。</pd>
+                <pd props="ios">输入参数，与视图相关的配置。目前可以传入 <codeph><ph keyref="NULL"/></codeph>。详见 <codeph>AgoraRteViewConfig</codeph>。</pd>
+                <pd props="cpp">视图相关配置。可以传入 <codeph><ph keyref="NULL"/></codeph>。详见 <codeph>ViewConfig</codeph>。</pd>
+            </plentry>
+            <plentry props="cpp ios">
+                <pt props="ios">error</pt>
+                <pt props="cpp">err</pt>
+                <pd props="ios">输出参数，用于返回错误信息。可能的错误码包括：
+                    <ul>
+                        <li><codeph>AgoraRteOk</codeph>：成功。</li>
+                        <li><codeph>AgoraRteErrorInvalidOperation</codeph>：对应的内部 <xref keyref="Canvas"/> 对象已被销毁或无效。</li>
+                        <li><codeph>AgoraRteErrorInvalidArgument</codeph>：传入的视图为 <codeph><ph keyref="NULL"/></codeph>。详见 <xref keyref="Error"/>。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp">输出参数，状态或错误信息，详见 <xref keyref="Error"/>。
+                    <ul>
+                        <li><codeph>kRteOk</codeph>：调用成功。</li>
+                        <li><codeph>kRteErrorInvalidOperation</codeph>：内部对应的 <xref keyref="Canvas"/> 对象已被销毁或无效。</li>
+                        <li><codeph>kRteErrorInvalidArgument</codeph>：传入的视图为空。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="bp cs electron flutter rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cs electron rn unity unreal">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul>
+        <p props="cpp"><ul>
+                        <li><codeph><ph keyref="true"/></codeph>：成功添加视图。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：添加视图失败。</li>
+                        </ul>
+                    </p>
+        <p props="apple"><ul>
+                        <li><codeph><ph keyref="true"/></codeph>：添加视图成功。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：添加视图失败。</li>
+                        </ul>
+                    </p>
+    </section>
+        </refbody>
+</reference>
