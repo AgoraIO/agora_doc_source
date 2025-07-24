@@ -13,9 +13,14 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="android" outputclass="language-java">public abstract int playAllEffects(
+                int loopCount, double pitch, double pan, double gain, boolean publish);</codeblock>
             <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)playAllEffectsWithLoopCount:(NSInteger)loopCount
+                pitch:(double)pitch
+                  pan:(double)pan
+                 gain:(NSInteger)gain
+              publish:(BOOL)publish NS_SWIFT_NAME(playAllEffects(withLoopCount:pitch:pan:gain:publish:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int playAllEffects(int loopCount, double pitch, double pan, int gain, bool publish = false) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
 	int PlayAllEffects(int loopCount, float pitch, float pan, int gain, bool publish);</codeblock>
