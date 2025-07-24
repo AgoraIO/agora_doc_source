@@ -75,6 +75,18 @@
                     <li props="cn"><ph><b>美妆功能实现更变</b></ph>
                         <p>受美颜重构的影响，自 v4.6.0 起，不再支持调用 <codeph><xref keyref="setExtensionProperty"/></codeph> 启用美妆功能，改用 <codeph>STYLE_MAKEUP</codeph> 节点实现。</p>
                     </li>
+                    <li><ph><b>Int UID 和 String UID 映射行为变更</b></ph>
+                        <ul>
+                            <li>v4.6.0 之前：如通过 <codeph><xref keyref="registerLocalUserAccount"/></codeph> 使用字符串 UID （如“aa”）注册获取 Int UID（如 123），后续使用该 Int UID 加入频道时，SDK 会自动将其映射为原始注册字符串（"aa"）作为 String UID。</li>
+                            <li>v4.6.0 及之后版本：SDK 不再自动将 Int UID 映射到注册时的原始字符串。如果调用了 <codeph><xref keyref="registerLocalUserAccount"/></codeph> 获取 Int UID，但需要使用原始字符串 UID 加入频道，请直接调用 <codeph><xref keyref="joinChannelWithUserAccount"/></codeph> 通过原始字符串 UID 加入频道。请在升级后检查并调整您的 App 逻辑，以确保用户以预期的身份加入频道。</li>
+                        </ul>
+                    </li>
+                    <li><ph><b>双流模式行为变更</b></ph>
+                        <ul>
+                            <li>v 4.6.0 之前：发送端开启小流自适应模式 (<apiname keyref="AUTO_SIMULCAST_STREAM"/>) 时，不会主动发送小流，仅当主播身份的接收端调用 <xref keyref="setRemoteVideoStreamType"/> 发起小流申请后，发送端收到申请才会开始发送小流。</li>
+                            <li>v4.6.0 及之后版本：发送端开启小流自适应模式 (<apiname keyref="AUTO_SIMULCAST_STREAM"/>) 时，会根据订阅端用户的下行网络质量，自动决定发送或停止发送小流。若将 <parmname>mode</parmname> 设置为其他发送模式或显式配置了小流的宽、高、码率或帧率，则此自适应功能失效。</li>
+                        </ul>
+                    </li>
                 </ol>
             </body>
         </topic>
