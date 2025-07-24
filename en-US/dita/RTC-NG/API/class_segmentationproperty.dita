@@ -9,61 +9,64 @@
             <codeblock props="android" outputclass="language-java">public class SegmentationProperty {
   public static final int SEG_MODEL_AI = 1;
   public static final int SEG_MODEL_GREEN = 2;
+  public static final int SCREEN_COLOR_AUTO = 0;
+  public static final int SCREEN_COLOR_GREEN = 1;
+  public static final int SCREEN_COLOR_BLUE = 2;
   public int modelType;
   public float greenCapacity;
+  public int screenColorType;
   public SegmentationProperty(int modelType, float greenCapacity) {
     this.modelType = modelType;
     this.greenCapacity = greenCapacity;
+    this.screenColorType = SCREEN_COLOR_AUTO;
   }
 
   public SegmentationProperty() {
     this.modelType = SEG_MODEL_AI;
     this.greenCapacity = 0.5f;
+    this.screenColorType = SCREEN_COLOR_AUTO;
   }
 }</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">export class SegmentationProperty {
   public static readonly SEG_MODEL_AI:number = 1;
   public static readonly SEG_MODEL_GREEN:number = 2;
-  
+
   public modelType:number = SegmentationProperty.SEG_MODEL_AI;
-  
+
   public greenCapacity:number = 0.5;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraSegmentationProperty: NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraSegmentationProperty: NSObject
 @property(nonatomic, assign) SegModelType modelType;
 @property(nonatomic, assign) float greenCapacity;
+@property(nonatomic, assign) ScreenColorType screenColorType;
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct SegmentationProperty {
-    enum SEG_MODEL_TYPE {
-    SEG_MODEL_AI = 1,
-    SEG_MODEL_GREEN = 2
-  };
-  SEG_MODEL_TYPE modelType;
-  float greenCapacity;
-  SegmentationProperty() : modelType(SEG_MODEL_AI), greenCapacity(0.5){}
-};
-</codeblock>
+   SEG_MODEL_TYPE modelType;
+   float greenCapacity;
+   SCREEN_COLOR_TYPE screenColorType;
+   SegmentationProperty() : modelType(SEG_MODEL_AI), greenCapacity(0.5), screenColorType(SCREEN_COLOR_AUTO) {}
+};</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FSegmentationProperty
 {
 	GENERATED_BODY()
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SegmentationProperty&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|SegmentationProperty")
 	ESEG_MODEL_TYPE modelType = ESEG_MODEL_TYPE::SEG_MODEL_AI;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SegmentationProperty&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|SegmentationProperty")
 	float greenCapacity = 0.5;
 	FSegmentationProperty(){}
-	FSegmentationProperty(const agora::rtc::SegmentationProperty &amp; AgoraData){
-		modelType = static_cast&lt;ESEG_MODEL_TYPE&gt;(AgoraData.modelType);
+	FSegmentationProperty(const agora::rtc::SegmentationProperty &amp;amp; AgoraData){
+		modelType = static_cast&amp;lt;ESEG_MODEL_TYPE&amp;gt;(AgoraData.modelType);
 		greenCapacity = AgoraData.greenCapacity;
 	}
 	agora::rtc::SegmentationProperty CreateAgoraData() const {
 		agora::rtc::SegmentationProperty AgoraData;
-		AgoraData.modelType = static_cast&lt;agora::rtc::SegmentationProperty::SEG_MODEL_TYPE&gt;(modelType);
+		AgoraData.modelType = static_cast&amp;lt;agora::rtc::SegmentationProperty::SEG_MODEL_TYPE&amp;gt;(modelType);
 		AgoraData.greenCapacity = greenCapacity;
 		return AgoraData;
 	}
-	void FreeAgoraData(agora::rtc::SegmentationProperty&amp; AgoraData) const {
+	void FreeAgoraData(agora::rtc::SegmentationProperty&amp;amp; AgoraData) const {
 	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class SegmentationProperty {
@@ -99,12 +102,12 @@ public:
   @JsonKey(name: 'greenCapacity')
   final double? greenCapacity;
 
-  factory SegmentationProperty.fromJson(Map&lt;String, dynamic> json) =>
+  factory SegmentationProperty.fromJson(Map&amp;lt;String, dynamic&amp;gt; json) =&amp;gt;
       _$SegmentationPropertyFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$SegmentationPropertyToJson(this);
-}</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+  Map&amp;lt;String, dynamic&amp;gt; toJson() =&amp;gt; _$SegmentationPropertyToJson(this);
+}</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
             <p />
