@@ -40,22 +40,6 @@
                             <li><codeph><xref keyref="onRhythmPlayerStateChanged"/></codeph></li>
                         </ul>
                     </li>
-                    <li props="en"><ph><b>Deprecation of RTMP streaming APIs</b></ph>
-                        <p>This version deprecates APIs for RTMP streaming. We recommend using <xref keyref="guide-cdn-streaming">Media Push</xref> instead.</p>
-                        <ul>
-                            <li><codeph><xref keyref="startRtmpStreamWithoutTranscoding"/></codeph></li>
-                            <li><codeph><xref keyref="startRtmpStreamWithoutTranscodingEx"/></codeph></li>
-                            <li><codeph><xref keyref="startRtmpStreamWithTranscoding"/></codeph></li>
-                            <li><codeph><xref keyref="startRtmpStreamWithTranscodingEx"/></codeph></li>
-                            <li><codeph><xref keyref="stopRtmpStream"/></codeph></li>
-                            <li><codeph><xref keyref="stopRtmpStreamEx"/></codeph></li>
-                            <li><codeph><xref keyref="updateRtmpTranscoding"/></codeph></li>
-                            <li><codeph><xref keyref="updateRtmpTranscodingEx"/></codeph></li>
-                            <li><codeph><xref keyref="onRtmpStreamingEvent"/></codeph></li>
-                            <li><codeph><xref keyref="onRtmpStreamingStateChanged"/></codeph></li>
-                            <li><codeph><xref keyref="onTranscodingUpdated"/></codeph></li>
-                        </ul>
-                    </li>
                     <li><ph><b>Deprecation of watermark APIs</b></ph>
                         <p>This version deprecates the old watermark APIs. We recommend using the new watermark APIs introduced in this version.</p>
                         <ul>
@@ -72,8 +56,17 @@
                             <li props="apple"><codeph>receivedFrameRate</codeph> is removed from <codeph><xref keyref="RemoteVideoStats"/></codeph>.</li>
                         </ul>
                     </li>
-                    <li props="cn"><ph><b>Change in makeup feature implementation</b></ph>
-                        <p>Due to the refactoring of the beautification feature, starting from v4.6.0, calling <codeph><xref keyref="setExtensionProperty"/></codeph> to enable the makeup feature is no longer supported. Use the <codeph>STYLE_MAKEUP</codeph> node instead.</p>
+                    <li><ph><b>Changes to Int UID and String UID mapping</b></ph>
+                        <ul>
+                            <li>Before v4.6.0: If you used <codeph><xref keyref="registerLocalUserAccount"/></codeph> to register a string UID (e.g., "aa") and obtain an int UID (e.g., 123), when you later joined a channel using this int UID, the SDK automatically mapped it to the original string UID ("aa").</li>
+                            <li>From v4.6.0: The SDK no longer automatically maps an int UID to the original string UID used for registration. If you have called <codeph><xref keyref="registerLocalUserAccount"/></codeph> to get an int UID but need to join the channel with the original string UID, call <codeph><xref keyref="joinChannelWithUserAccount"/></codeph> directly with the string UID. After upgrading, check and adjust your app logic to ensure users join the channel with the expected identity.</li>
+                        </ul>
+                    </li>
+                    <li><ph><b>Changes to dual-stream mode behavior</b></ph>
+                        <ul>
+                            <li>Before v4.6.0: When the sender enabled adaptive simulcast stream mode (<apiname keyref="AUTO_SIMULCAST_STREAM"/>), they would not proactively send the low-resolution stream. The sender would only start sending the low-resolution stream after a receiver with host priority called <xref keyref="setRemoteVideoStreamType"/> to request it.</li>
+                            <li>From v4.6.0: When the sender enables adaptive simulcast stream mode (<apiname keyref="AUTO_SIMULCAST_STREAM"/>), the SDK automatically determines whether to send or stop sending the low-resolution stream based on the downlink network conditions of the subscribers. This adaptive function is disabled if <parmname>mode</parmname> is set to another sending mode or if the width, height, bitrate, or frame rate of the low-resolution stream is explicitly configured.</li>
+                        </ul>
                     </li>
                 </ol>
             </body>
@@ -109,7 +102,7 @@
                     <li><ph><b>Token renewal result callback</b></ph>
                         <p>This version introduces the <codeph><xref keyref="onRenewTokenResult"/></codeph> callback and the <codeph>RENEW_TOKEN_ERROR_CODE</codeph> error code. After calling the <codeph><xref keyref="renewToken"/></codeph> method to update a Token, the SDK notifies the result of the update through the <codeph><xref keyref="onRenewTokenResult"/></codeph> callback and provides a detailed error code via <codeph>RENEW_TOKEN_ERROR_CODE</codeph>. This allows developers to handle Token renewal failures promptly within the callback.</p>
                     </li>
-                    <li><ph><b>Advanced Beauty</b></ph>
+                    <li><ph><b>Advanced Beauty (Beta)</b></ph>
                         <p>This version introduces a brand-new advanced beauty feature, delivering a powerful yet easy-to-use beautification solution. Key capabilities include:
                             <ul>
                                 <li><b>Precision Beauty Effects:</b>
@@ -117,12 +110,12 @@
                                         <li>Face Shaping: Supports independent fine-tuning of 29 facial areas (e.g., slimming face, enlarging eyes, narrowing nose) or one-click natural effects via presets.</li>
                                         <li>Style Makeup: Offers rich effects including eyeshadow, colored contacts, eyeliner, eyebrow shaping, lipstick, blush, under-eye highlights, and facial contouring.</li>
                                         <li>Skin Enhancement: Includes professional skin optimizations like teeth whitening, nasolabial fold removal, dark circle reduction, and eye brightening.</li>
-                                    </ul>    
+                                    </ul>
                                 </li>
-                                <li><b>Unified & Simple API</b>: Manage all beauty, makeup, and filter functions through three core nodes – <codeph><ph keyref="BEAUTY"/></codeph>, <codeph><ph keyref="STYLE_MAKEUP"/></codeph>, and <codeph><ph keyref="FILTER"/></codeph> – using <codeph><xref keyref="VideoEffectObject"/></codeph> for unified parameter setup and lifecycle control.</li>
+                                <li><b>Unified and Simple API</b>: Manage all beauty, makeup, and filter functions through three core nodes – <codeph><ph keyref="BEAUTY"/></codeph>, <codeph><ph keyref="STYLE_MAKEUP"/></codeph>, and <codeph><ph keyref="FILTER"/></codeph> – using <codeph><xref keyref="VideoEffectObject"/></codeph> for unified parameter setup and lifecycle control.</li>
                                 <li><b>Ready-to-Use Presets</b>: Integrates multiple out-of-the-box style templates (e.g., "Natural Beauty," "Senior Makeup," "Cool White Filter") for instant polished results.</li>
                                 <li><b>Dynamic Parameter Control</b>: Enables real-time reading/modifying of granular parameters (e.g., smoothing strength, lipstick type) via key-value pairs, with support for saving custom configurations and resetting defaults.</li>
-                                <li><b>Local Resource Guarantee</b>: All beauty resources (effects, filters, makeup) are packaged as local bundle files, ensuring stability and reliability.   </li>                         
+                                <li><b>Local Resource Guarantee</b>: All beauty resources (effects, filters, makeup) are packaged as local bundle files, ensuring stability and reliability.   </li>
                             </ul>
                         </p>
                     </li>
