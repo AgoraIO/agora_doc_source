@@ -51,9 +51,9 @@
             </plentry>
             <plentry props="cpp">
                     <pt>callback</pt>
-                    <pd>（可选）用于配置引擎同步或异步销毁方式的回调函数指针，详见 <xref keyref="RtcEngineReleaseCallback"/>。<ul>
-                            <li>非 <codeph>nullptr</codeph>：异步销毁。 该方法会立即返回，此时引擎资源可能尚未完全释放。 引擎销毁完成后会触发 <xref keyref="RtcEngineReleaseCallback"/>。</li>
-                            <li><codeph>nullptr</codeph>：同步销毁。 该方法仅在引擎资源完全释放后才返回。</li>
+                    <pd>(Optional) Callback function pointer for setting the destruction mode of the engine to either synchronous or asynchronous. See <xref keyref="RtcEngineReleaseCallback"/>.<ul>
+                            <li>Non <codeph>nullptr</codeph>: Destroy the engine asynchronously. The method will return immediately, at which point the engine resources may not have been fully released yet. After the engine is destroyed, the SDK triggers <xref keyref="RtcEngineReleaseCallback"/>.</li>
+                            <li><codeph>nullptr</codeph>: Destroy the engine synchronously. This method only returns after the engine resources have been fully released.</li>
                             </ul>
                         </pd>
             </plentry>
