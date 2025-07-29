@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_streamlayerconfig">
+    <title><ph keyref="StreamLayerConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Used to configure the parameters of a specific layer in a multi-layer video stream.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class StreamLayerConfig {
+  public VideoEncoderConfiguration.VideoDimensions dimensions;
+  public int framerate;
+  public boolean enable;
+}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraStreamLayerConfig: NSObject
+@property (assign, nonatomic) CGSize dimensions;
+@property (assign, nonatomic) int framerate;
+@property (assign, nonatomic) BOOL enable;
+@end</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct StreamLayerConfig {
+  VideoDimensions dimensions;
+  int framerate;
+  bool enable;
+  StreamLayerConfig() : dimensions(0, 0), framerate(0), enable(false) {}
+};</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since:</dt>
+                <dd>Added since v4.6.0.</dd>
+                </dlentry>
+            </dl>
+            <p>This structure is used to configure the parameters of a specific layer in a multi-layer video stream, including resolution, frame rate, and whether to enable the video stream of this layer.</p>
+            </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">enable</pt>
+                <pd props="android"><ul>
+                        <li><codeph><ph keyref="true"/></codeph>: Enables the video stream of the current layer.  </li>
+                        <li><codeph><ph keyref="false"/></codeph>: (Default) Disables the video stream of the current layer.</li>
+                        </ul>
+                    </pd>
+                <pd props="ios"><ul>
+                        <li><codeph><ph keyref="true"/></codeph>: Enables the corresponding layer of the multi-layer video stream.  </li>
+                        <li><codeph><ph keyref="false"/></codeph>: (Default) Disables the corresponding layer of the multi-layer video stream.</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp">Whether to enable the corresponding layer of the video stream. The default value is <codeph><ph keyref="false"/></codeph>.
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>: Enables the corresponding layer of the video stream.</li>
+                        <li><codeph><ph keyref="false"/></codeph>: (Default) Does not enable the corresponding layer of the video stream.</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            </parml> </section>
+            </refbody>
+</reference>

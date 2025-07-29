@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onrenewtokenresult">
+    <title><ph keyref="onRenewTokenResult"/></title>
+    <shortdesc id="short"><ph id="shortdesc"><xref keyref="renewToken_ICloudSpatialAudioEngine"/> call result callback.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRenewTokenResult"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onRenewTokenResult(String token, Constants.RenewTokenErrorCode code)</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine renewTokenResult:(NSString *_Nonnull)token code:(AgoraRenewTokenErrorCode)code NS_SWIFT_NAME(rtcEngine(_:renewTokenResult:code:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onRenewTokenResult(const char* token, RENEW_TOKEN_ERROR_CODE code)</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since:</dt>
+                <dd props="android cpp mac">Added since v4.6.0.</dd>
+                <dd props="ios">Added since version v4.6.0.</dd>
+                </dlentry>
+            </dl>
+            <p>This callback is triggered after the user calls <xref keyref="renewToken_ICloudSpatialAudioEngine"/> to renew the Token and is used to notify the application of the update result. You can obtain the result of the <xref keyref="renewToken_ICloudSpatialAudioEngine"/> call through this callback.</p>
+            </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Trigger timing</title>
+            <p>Triggered when the user renews the Token.</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>Restriction</title>
+            <p>None.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>Parameters</title>
+            <parml>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">token</pt>
+                <pd props="android ios">Renewed Token.</pd>
+                <pd props="cpp">Token。</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">code</pt>
+                <pd props="android">Error codes for renewing Token. See <xref keyref="RENEW_TOKEN_ERROR_CODE"/>.</pd>
+                <pd props="ios">The result of renewing the Token. See <xref keyref="RENEW_TOKEN_ERROR_CODE"/>.</pd>
+                <pd props="cpp">Error codes, see <xref keyref="RENEW_TOKEN_ERROR_CODE"/>.</pd>
+            </plentry>
+            <plentry props="cpp">
+                <pt props="cpp">connection</pt>
+                <pd props="cpp"><xref keyref="RtcConnection"/> object. See <xref keyref="RtcConnection"/> for details.</pd>
+            </plentry>
+            <plentry props="ios">
+                <pt props="ios">engine</pt>
+                <pd props="ios"><xref keyref="IRtcEngine"/> object.</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="bp electron flutter rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+        <ul props="bp electron rn unity unreal">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+                </ul>
+    </section>
+    </refbody>
+</reference>
