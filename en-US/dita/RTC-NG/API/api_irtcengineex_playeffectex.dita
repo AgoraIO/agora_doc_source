@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_playeffectex">
+    <title><ph keyref="playEffectEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Plays the specified audio effect to the specified channel.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="playEffectEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public int playEffectEx(RtcConnection connection, int soundId, String filePath, int loopCount, double pitch, double pan, double gain, boolean publish);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)playEffectEx:(AgoraRtcConnection* _Nonnull)connection
+            soundId:(int)soundId
+           filePath:(NSString* _Nonnull)filePath
+          loopCount:(NSInteger)loopCount
+              pitch:(double)pitch
+                pan:(double)pan
+               gain:(NSInteger)gain NS_SWIFT_NAME(playEffectEx(_:soundId:filePath:loopCount:pitch:pan:gain:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int playEffectEx(const RtcConnection&amp;amp; connection, int soundId, const char* filePath, int loopCount, double pitch, double pan, int gain, bool publish = false, int startPos = 0) = 0;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since:</dt>
+                <dd props="native">Available since v4.6.0.</dd>
+                </dlentry>
+            </dl>
+            <p>This method plays only one specified audio effect per call. To play multiple effects simultaneously, call this method multiple times. Agora recommends playing no more than three effects at the same time. The audio effect ID and file path must match those used in the <xref keyref="preloadEffect"/> method.</p>
+            <note type="attention" props="cpp">This method applies to multi-channel scenarios.</note>
+            <note type="attention" props="apple">This method applies to multi-channel scenarios. If you preload the audio effect into memory using the <xref keyref="preloadEffect"/> method, make sure the <codeph>soundId</codeph> matches the value set in <xref keyref="preloadEffect"/>.</note>
+            <note type="attention" props="android">This method applies to multi-channel scenarios. Agora recommends playing no more than three effects at the same time. The <codeph>soundId</codeph> and file path in this method must match those used in <xref keyref="preloadEffect"/>.</note>
+            </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>This method applies to multi-channel scenarios.</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <ul props="bp cs electron native rn unity unreal">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+                </ul> </section>
+        </refbody>
+</reference>

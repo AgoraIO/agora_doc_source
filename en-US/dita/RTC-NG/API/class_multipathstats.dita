@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_multipathstats">
+    <title><ph keyref="MultipathStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Aggregates statistics of each network path in multipath transmission.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public static class MultipathStats {
+  public int lanTxBytes;
+  public int lanRxBytes;
+  public int wifiTxBytes;
+  public int wifiRxBytes;
+  public int mobileTxBytes;
+  public int mobileRxBytes;
+  public int activePathNum;
+  public PathStats[] pathStats;
+}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMultipathStats : NSObject
+@property (assign, nonatomic) NSUInteger lanRxBytes;
+@property (assign, nonatomic) NSUInteger lanTxBytes;
+@property (assign, nonatomic) NSUInteger wifiRxBytes;
+@property (assign, nonatomic) NSUInteger wifiTxBytes;
+@property (assign, nonatomic) NSUInteger mobileRxBytes;
+@property (assign, nonatomic) NSUInteger mobileTxBytes;
+@property (assign, nonatomic) NSUInteger activePathNum;
+@property (copy, nonatomic) NSArray&amp;lt;AgoraPathStats *&amp;gt; *_Nullable pathStats NS_SWIFT_NAME(pathStats);
+@end</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct MultipathStats {
+  uint32_t lanTxBytes;
+  uint32_t lanRxBytes;
+  uint32_t wifiTxBytes;
+  uint32_t wifiRxBytes;
+  uint32_t mobileTxBytes;
+  uint32_t mobileRxBytes;
+  int activePathNum;
+  const PathStats* pathStats;
+  MultipathStats()
+      : lanTxBytes(0),
+        lanRxBytes(0),
+        wifiTxBytes(0),
+        wifiRxBytes(0),
+        mobileTxBytes(0),
+        mobileRxBytes(0),
+        activePathNum(0),
+        pathStats(nullptr) {}
+};</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since:</dt>
+                <dd>Available since v4.6.0.</dd>
+                </dlentry>
+            </dl>
+            <p><xref keyref="MultipathStats"/> represents statistics for multipath transmission, including the number of bytes sent and received through LAN, Wi-Fi, and mobile network paths, the number of currently active paths, and detailed statistics for each path.</p>
+            </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">lanTxBytes</pt>
+                <pd props="android">The total number of bytes sent over LAN.</pd>
+                <pd props="ios">The total number of video bytes sent through the LAN path.</pd>
+                <pd props="cpp">The total number of bytes sent through the LAN path.</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">lanRxBytes</pt>
+                <pd props="android">The total number of bytes received over LAN.</pd>
+                <pd props="ios">The total number of video bytes received through the LAN path.</pd>
+                <pd props="cpp">The total number of bytes received through the LAN path.</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">wifiTxBytes</pt>
+                <pd props="android">The total number of bytes sent over Wi-Fi.</pd>
+                <pd props="ios">The total number of video bytes sent through the Wi-Fi path.</pd>
+                <pd props="cpp">The total number of bytes sent through the Wi-Fi path.</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">wifiRxBytes</pt>
+                <pd props="android">The total number of bytes received over Wi-Fi.</pd>
+                <pd props="ios">The total number of video bytes received through the Wi-Fi path.</pd>
+                <pd props="cpp">The total number of bytes received through the Wi-Fi path.</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">mobileTxBytes</pt>
+                <pd props="android">The total number of bytes sent over mobile data.</pd>
+                <pd props="ios">The total number of video bytes sent through the mobile network path.</pd>
+                <pd props="cpp">The total number of bytes sent through the mobile network path.</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">mobileRxBytes</pt>
+                <pd props="android">The total number of bytes received over mobile data.</pd>
+                <pd props="ios">The total number of video bytes received through the mobile network path.</pd>
+                <pd props="cpp">The total number of bytes received through the mobile network path.</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">activePathNum</pt>
+                <pd props="android">The number of active paths.</pd>
+                <pd props="cpp ios">The number of currently active paths.</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">pathStats</pt>
+                <pd props="android cpp">An array of statistics for each active path. See <xref keyref="PathStats"/>.</pd>
+                <pd props="ios">An array of statistics for each active path. See <xref keyref="PathStats"/>.</pd>
+            </plentry>
+            </parml> </section>
+            </refbody>
+</reference>

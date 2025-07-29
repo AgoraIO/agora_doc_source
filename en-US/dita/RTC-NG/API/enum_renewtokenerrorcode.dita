@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_renewtokenerrorcode">
+    <title><ph keyref="RENEW_TOKEN_ERROR_CODE"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Indicates the error codes for the <xref keyref="renewToken_ICloudSpatialAudioEngine"/> call result.</ph></shortdesc>
+    <refbody>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+                <dlentry props="native">
+                    <dt>Since:</dt>
+                    <dd>Available since v4.6.0.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters">
+            <title>Enumerator</title>
+            <parml>
+            <plentry props="native">
+                <pt><ph keyref="RENEW_TOKEN_SUCCESS"/></pt>
+                <pd props="native">(0): Token renewed successfully.</pd>
+            </plentry>
+        <plentry props="native">
+                <pt><ph keyref="RENEW_TOKEN_FAILURE"/></pt>
+                <pd props="android cpp">(1): Token renewal failed due to an unknown server error. Check the parameters used to generate the token, regenerate the token, and retry <xref keyref="renewToken_ICloudSpatialAudioEngine"/>.</pd>
+            <pd props="apple">(1): Token renewal failed due to an unknown server error. Check the parameters used to generate the token, regenerate the token, and retry calling <xref keyref="renewToken_ICloudSpatialAudioEngine"/>.</pd>
+            </plentry>
+        <plentry props="android cpp">
+                <pt><ph keyref="RENEW_TOKEN_TOKEN_EXPIRED"/></pt>
+                <pd props="android cpp">(2): Token renewal failed because the provided token has expired. Generate a new token with a longer expiration time and retry <xref keyref="renewToken_ICloudSpatialAudioEngine"/>.</pd>
+            </plentry>
+        <plentry props="native">
+                <pt><ph keyref="RENEW_TOKEN_INVALID_TOKEN"/></pt>
+                <pd props="apple cpp">(3): Token renewal failed because the token is invalid. Common causes include:
+                    <ul>
+                        <li>The App Certificate is enabled in the Agora Console, but the channel is joined without using a token. When the App Certificate is enabled, you must use a token to join the channel.</li>
+                        <li>The <ph keyref="uid"/> specified in <codeph>joinChannel</codeph> does not match the <ph keyref="uid"/> used when generating the token.</li>
+                        <li>The channel name specified in <codeph>joinChannel</codeph> does not match the channel name used when generating the token.</li>
+                        </ul>
+                    </pd>
+            <pd props="android">(3): Token renewal failed because the token is invalid. Common causes include: the App Certificate is enabled in the Agora Console but the channel is joined without using a token; the <ph keyref="uid"/> specified in the <codeph>joinChannel</codeph> method does not match the <ph keyref="uid"/> used when generating the token; the channel name specified in the <codeph>joinChannel</codeph> method does not match the channel name used when generating the token.</pd>
+            </plentry>
+        <plentry props="native">
+                <pt><ph keyref="RENEW_TOKEN_INVALID_CHANNEL_NAME"/></pt>
+                <pd props="android cpp">(4): Token renewal failed due to an invalid channel name. Check the channel name, generate a new token, and retry <xref keyref="renewToken_ICloudSpatialAudioEngine"/>.</pd>
+            <pd props="apple">(4): Token renewal failed due to an invalid channel name. Check the channel name, generate a new token, and retry calling <xref keyref="renewToken_ICloudSpatialAudioEngine"/>.</pd>
+            </plentry>
+        <plentry props="native">
+                <pt><ph keyref="RENEW_TOKEN_INCONSISTENT_APPID"/></pt>
+                <pd props="android cpp">(5): Token renewal failed because the App ID in the token does not match the current App ID. Check the App ID, generate a new token, and retry <xref keyref="renewToken_ICloudSpatialAudioEngine"/>.</pd>
+            <pd props="apple">(5): Token renewal failed because the App ID in the token does not match the current App ID. Check the App ID, generate a new token, and retry calling <xref keyref="renewToken_ICloudSpatialAudioEngine"/>.</pd>
+            </plentry>
+        <plentry props="native">
+                <pt><ph keyref="RENEW_TOKEN_CANCELED_BY_NEW_REQUEST"/></pt>
+                <pd props="native">(6): The previous token renewal request was canceled due to a new request being initiated.</pd>
+            </plentry>
+        </parml>
+        </section></refbody>
+</reference>
