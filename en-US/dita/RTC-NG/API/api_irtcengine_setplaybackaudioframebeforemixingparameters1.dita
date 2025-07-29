@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setplaybackaudioframebeforemixingparameters1">
+    <title><ph keyref="setPlaybackAudioFrameBeforeMixingParameters1"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置 <xref keyref="onPlaybackAudioFrameBeforeMixing"/> 回调中音频数据的播放格式。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setPlaybackAudioFrameBeforeMixingParameters1"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setPlaybackAudioFrameBeforeMixingParameters(int sampleRate, int channel, int samplesPerCall);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setPlaybackAudioFrameBeforeMixingParametersWithSampleRate:(NSInteger)sampleRate channel:(NSInteger)channel samplesPerCall:(NSInteger)samplesPerCall NS_SWIFT_NAME(setPlaybackAudioFrameBeforeMixingParametersWithSampleRate(_:channel:samplesPerCall:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setPlaybackAudioFrameBeforeMixingParameters(int sampleRate, int channel, int samplesPerCall) = 0;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>用于设置 <xref keyref="onPlaybackAudioFrameBeforeMixing"/> 回调中返回的音频数据的采样率、声道数和每次回调的采样点数。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>Parameters</title>
+            <parml>
+            <plentry props="native">
+                <pt props="android cpp">sampleRate</pt>
+                <pt props="apple">sampleRate</pt>
+                <pd props="android">设置 <xref keyref="onPlaybackAudioFrameBeforeMixing"/> 回调中返回的采样率（samplesPerSec）。 可设置为以下值：<ul>
+                        <li>8000.</li>
+                        <li>16000</li>
+                        <li>32000.</li>
+                        <li>44100</li>
+                        <li>48000（单位：Hz）。</li>
+                        </ul>
+                    </pd>
+                <pd props="apple">输入参数，在 <xref keyref="onPlaybackAudioFrameBeforeMixing"/> 回调中包含的采样率（Hz）。 你可以设置为 8000、16000、32000、44100 或 48000。</pd>
+                <pd props="cpp"><xref keyref="onPlaybackAudioFrameBeforeMixing"/>回调中返回的音频数据采样率（Hz）。 可设置为 8000、16000、32000、44100 或 48000。</pd>
+            </plentry>
+            <plentry props="native">
+                <pt props="android cpp">channel</pt>
+                <pt props="apple">channel</pt>
+                <pd props="android">设置 <xref keyref="onPlaybackAudioFrameBeforeMixing"/> 回调中返回的音频数据的声道数。 可设置为：<ul>
+                        <li>1: Mono.</li>
+                        <li>2：立体声。</li>
+                        </ul>
+                    </pd>
+                <pd props="apple">输入参数，在 <xref keyref="onPlaybackAudioFrameBeforeMixing"/> 回调中包含的声道数。<ul>
+                        <li>1: Mono.</li>
+                        <li>2：立体声。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp"><xref keyref="onPlaybackAudioFrameBeforeMixing"/>回调中返回的音频数据声道数。 可设置为：<ul>
+                        <li>1: Mono.</li>
+                        <li>2：立体声。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            <plentry props="native">
+                <pt props="android cpp">samplesPerCall</pt>
+                <pt props="apple">samplesPerCall</pt>
+                <pd props="android">设置 <xref keyref="onMixedAudioFrame"/> 回调返回的采样点数。 在 RTMP 推流场景中，建议设置为 1024。</pd>
+                <pd props="apple">输入参数，在 <xref keyref="onPlaybackAudioFrameBeforeMixing"/> 回调中返回的数据中的采样点数。 例如，对于推流场景，通常设置为 1024。</pd>
+                <pd props="cpp"><xref keyref="onPlaybackAudioFrameBeforeMixing"/>回调中每次返回的采样点数。 例如，推流时通常设置为 1024。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+        <ul props="bp cs electron rn unity unreal">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+                </ul>
+        <p props="native"><ul>
+                        <li>0: Success.</li>
+                        <li>&lt; 0: Failure.</li>
+                        </ul>
+                    </p>
+    </section>
+        </refbody>
+</reference>
