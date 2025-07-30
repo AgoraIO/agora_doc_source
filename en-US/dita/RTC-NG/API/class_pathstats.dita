@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_pathstats">
+    <title><ph keyref="PathStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Used to obtain statistics of a specific network path in multipath transmission.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public static class PathStats {
+  public int pathType;
+  public int txKBitRate;
+  public int rxKBitRate;
+  @Override
+  public String toString() {
+    return "PathStats{" +
+        "pathType=" + pathType + ", txKBitRate=" + txKBitRate + ", rxKBitRate=" + rxKBitRate +
+        '}';
+  }
+}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraPathStats : NSObject
+@property (assign, nonatomic) AgoraMultipathType pathType;
+@property (assign, nonatomic) NSUInteger txKBitRate;
+@property (assign, nonatomic) NSUInteger rxKBitRate;
+@end</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct PathStats {
+  MultipathType type;
+  int txKBitRate;
+  int rxKBitRate;
+  PathStats() : type(Unknown), txKBitRate(0), rxKBitRate(0) {}
+  PathStats(MultipathType t, int tx, int rx) : type(t), txKBitRate(tx), rxKBitRate(rx) {}
+};</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since:</dt>
+                <dd>Available since v4.6.0.</dd>
+                </dlentry>
+            </dl>
+            <p>Represents the statistics of a specific path in multipath transmission.</p>
+            </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry props="android cpp ios">
+                <pt props="android ios">pathType</pt>
+                <pt props="cpp">type</pt>
+                <pd props="android">The path type, such as LAN, Wi-Fi, or mobile network.</pd>
+                <pd props="ios">The path type. See <xref keyref="MultipathType"/>.</pd>
+                <pd props="cpp">The type of the path. See <xref keyref="MultipathType"/>.</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">txKBitRate</pt>
+                <pd props="android cpp ios">The transmission bitrate of the path in Kbps.</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">rxKBitRate</pt>
+                <pd props="android cpp ios">The receiving bitrate of the path in Kbps.</pd>
+            </plentry>
+            </parml> </section>
+            </refbody>
+</reference>

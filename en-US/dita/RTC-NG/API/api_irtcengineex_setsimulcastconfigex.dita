@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_setsimulcastconfigex">
+    <title><ph keyref="setSimulcastConfigEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Configures multi-quality video stream settings.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setSimulcastConfigEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setSimulcastConfigEx(SimulcastConfig simulcastConfig, RtcConnection connection);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setSimulcastConfigEx:(AgoraSimulcastConfig*)simulcastConfig
+                 connection:(AgoraRtcConnection* _Nonnull)connection NS_SWIFT_NAME(setDualStreamModeEx(_:connection:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setSimulcastConfigEx(const SimulcastConfig&amp;amp; simulcastConfig, const RtcConnection&amp;amp; connection) = 0;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since:</dt>
+                <dd props="native">Available since v4.6.0.</dd>
+                </dlentry>
+            </dl>
+            <p>This method allows the same UID to simultaneously send multiple video streams of different resolutions. The subscriber can call <xref keyref="setRemoteVideoStreamType"/> to select the desired video stream layer.
+
+This configuration supports up to four layers simultaneously: one main stream (highest resolution) and three additional video streams of different qualities.</p>
+            </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>This method applies to multi-channel scenarios.</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>Parameters</title>
+            <parml>
+            <plentry props="android cpp ios">
+                <pt props="android cpp">simulcastConfig</pt>
+                <pt props="ios">simulcastConfig</pt>
+                <pd props="android cpp">Configuration for multi-quality video streams. It includes seven layers from <ph keyref="STREAM_LAYER_1"/> to <ph keyref="STREAM_LOW"/>, with up to three layers enabled simultaneously. See <xref keyref="SimulcastConfig"/>.</pd>
+                <pd props="ios">Configuration for multi-quality video streams. It includes seven layers from <ph keyref="STREAM_LAYER_1"/> to <ph keyref="STREAM_LOW"/>, with up to three layers enabled simultaneously. See <xref keyref="SimulcastConfig"/>.</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp">connection</pt>
+                <pt props="ios">connection</pt>
+                <pd props="android cpp">Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                <pd props="ios">Connection information. See <xref keyref="RtcConnection"/>.</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+        <ul props="bp cs electron rn unity unreal">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+                </ul>
+        <p props="native"><ul>
+                        <li>0: The method call succeeds.</li>
+                        <li>&lt; 0: The method call fails.</li>
+                        </ul>
+                    </p>
+    </section>
+        </refbody>
+</reference>

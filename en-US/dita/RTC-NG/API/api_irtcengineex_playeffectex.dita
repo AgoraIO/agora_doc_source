@@ -1,0 +1,158 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_playeffectex">
+    <title><ph keyref="playEffectEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Play the specified audio effect in the specified channel.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="playEffectEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public int playEffectEx(RtcConnection connection, int soundId, String filePath, int loopCount, double pitch, double pan, double gain, boolean publish);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)playEffectEx:(AgoraRtcConnection* _Nonnull)connection
+            soundId:(int)soundId
+           filePath:(NSString* _Nonnull)filePath
+          loopCount:(NSInteger)loopCount
+              pitch:(double)pitch
+                pan:(double)pan
+               gain:(NSInteger)gain NS_SWIFT_NAME(playEffectEx(_:soundId:filePath:loopCount:pitch:pan:gain:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int playEffectEx(const RtcConnection&amp;amp; connection, int soundId, const char* filePath, int loopCount, double pitch, double pan, int gain, bool publish = false, int startPos = 0) = 0;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since:</dt>
+                <dd props="native">Available since v4.6.0.</dd>
+                </dlentry>
+            </dl>
+            <p>This method plays only one specified audio effect each time it is called. To play multiple effects simultaneously, call this method multiple times. Agora recommends playing no more than three effects at the same time. The sound effect ID and file path must be the same as those set in the <xref keyref="preloadEffect"/> method.</p>
+            <note type="attention" props="cpp">This method is applicable to multi-channel scenarios.</note>
+            <note type="attention" props="apple">This method is applicable to multi-channel scenarios. If you preload the audio effect into memory using the <xref keyref="preloadEffect"/> method, make sure the <codeph>soundId</codeph> matches the one set in <xref keyref="preloadEffect"/>.</note>
+            <note type="attention" props="android">This method is applicable to multi-channel scenarios. Agora recommends playing no more than three effects at the same time. The sound effect ID and file path in this method must be the same as those in <xref keyref="preloadEffect"/>.</note>
+            </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>This method is applicable to multi-channel scenarios.</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>Parameters</title>
+            <parml>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">connection</pt>
+                <pd props="android">Connection object. See <xref keyref="RtcConnection"/>.</pd>
+                <pd props="ios">Connection object. See <xref keyref="RtcConnection"/>.</pd>
+                <pd props="cpp"><xref keyref="RtcConnection"/> object. See <xref keyref="RtcConnection"/>.</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">soundId</pt>
+                <pd props="android cpp">The ID of the audio effect.</pd>
+                <pd props="ios">The ID of the audio effect. Each effect has a unique ID.</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">filePath</pt>
+                <pd props="android">The absolute path of the local audio effect file or the URL of the online audio effect file. Supported formats include mp3, mp4, m4a, aac, 3gp, mkv, and wav.</pd>
+                <pd props="ios">The absolute path of the local audio effect file (including file extension) or the URL of the online audio effect file, such as <ph keyref="filePath-example"/>. Supported formats include mp3, mp4, m4a, aac, 3gp, mkv, and wav.</pd>
+                <pd props="cpp">The absolute path of the local audio effect file or the URL of the online audio effect file. Supported formats include: mp3, mp4, m4a, aac, 3gp, mkv, and wav.</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">loopCount</pt>
+                <pd props="android cpp">The number of times the audio effect loops:
+                    <ul>
+                        <li><codeph>-1</codeph>: Loops indefinitely until <xref keyref="stopEffect"/> or <xref keyref="stopAllEffects"/> is called.</li>
+                        <li><codeph>0</codeph>: Plays once.</li>
+                        <li><codeph>1</codeph>: Plays twice.</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">Set the number of times the audio effect loops:
+                    <ul>
+                        <li>0: Plays once.</li>
+                        <li>1: Plays twice.</li>
+                        <li>-1: Loops indefinitely until you call the <xref keyref="stopEffect"/> or <xref keyref="stopAllEffects"/> method.</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">pitch</pt>
+                <pd props="android cpp">The pitch of the audio effect. The range is 0.5 to 2.0. The default is 1.0 (original pitch). The smaller the value, the lower the pitch.</pd>
+                <pd props="ios">Set the pitch of the audio effect. The range is 0.5 to 2. The default is 1 (no change). The smaller the value, the lower the pitch.</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">pan</pt>
+                <pd props="android cpp">The spatial position of the audio effect. The range is -1.0 to 1.0:
+                    <ul>
+                        <li><codeph>-1.0</codeph>: Left.</li>
+                        <li><codeph>0.0</codeph>: Center.</li>
+                        <li><codeph>1.0</codeph>: Right.</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">Set the spatial position of the audio effect. The range is -1.0 to 1.0:
+                    <ul>
+                        <li>0.0: Front.</li>
+                        <li>1.0: Right.</li>
+                        <li>-1.0: Left.</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">gain</pt>
+                <pd props="android">The volume of the audio effect. The range is 0.0 to 100.0. The default is 100 (original volume). The smaller the value, the lower the volume.</pd>
+                <pd props="ios">Set the volume of the audio effect. The range is 0 to 100. The default is 100. The smaller the value, the lower the volume.</pd>
+                <pd props="cpp">The volume of the audio effect. The range is 0 to 100. The default is 100 (original volume). The smaller the value, the lower the volume.</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">publish</pt>
+                <pd props="android">Whether to publish the audio effect to the channel:
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>: Publish the audio effect to the channel so that remote users can hear it.</li>
+                        <li><codeph><ph keyref="false"/></codeph>: Do not publish the audio effect to the channel.</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">Whether to publish the specified audio effect to remote users:
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>: Publish the audio effect to the channel so that remote users can hear it.</li>
+                        <li><codeph><ph keyref="false"/></codeph>: Do not publish the audio effect to the channel.</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp">Whether to publish the audio effect to the channel:
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>: Publish the audio effect to the channel so that remote users can hear it.</li>
+                        <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the audio effect to the channel.</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">startPos</pt>
+                <pd props="android cpp">The starting position for playback of the audio effect file, in milliseconds.</pd>
+                <pd props="ios">The starting position for playback of the audio effect file (in milliseconds).</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+        <ul props="bp cs electron rn unity unreal">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+                </ul>
+        <p props="native"><ul>
+                        <li>0: Success.</li>
+                        <li>&lt; 0: Failure.</li>
+                        </ul>
+                    </p>
+    </section>
+        </refbody>
+</reference>
