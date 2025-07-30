@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_agorartcenginekit_destroy1">
+    <title><ph keyref="destroy1"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Destroys the <xref keyref="IRtcEngine"/> instance and releases related resources.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="destroy1"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"> (void)destroy:(void (^ _Nullable)(void))engineReleasedBlock NS_SWIFT_NAME(destroy(_:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp"/>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>Call this method to release the <xref keyref="IRtcEngine"/> instance and its related resources when real-time communication is no longer needed. The released resources can be used for other operations. It is recommended for scenarios where users occasionally make voice or video calls.</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>Parameters</title>
+            <parml>
+            <plentry props="apple">
+                <pt props="apple">engineReleasedBlock</pt>
+                <pd props="apple">The callback triggered when the <xref keyref="IRtcEngine"/> is destroyed, used to configure synchronous or asynchronous destruction:
+                    <ul>
+                        <li>Non-<codeph><ph keyref="NULL"/></codeph>: Asynchronous destruction. The method returns immediately, and the engine resources may not be fully released. The <codeph>engineReleasedBlock</codeph> callback is triggered once the engine is fully destroyed.</li>
+                        <li><codeph><ph keyref="NULL"/></codeph>: Synchronous destruction. The method returns only after the engine resources are fully released.</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="bp cs electron flutter rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+        <ul props="android bp cpp cs electron rn unity unreal">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+                </ul>
+    </section>
+        </refbody>
+</reference>

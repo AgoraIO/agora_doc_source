@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_watermarkconfig">
+    <title><ph keyref="WatermarkConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Used to configure watermark-related information.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class WatermarkConfig {
+  public static final int WATERMARK_TYPE_IMAGE = 0;
+  public static final int WATERMARK_TYPE_BUFFER = 1;
+  public String id;
+  public int type;
+  public WatermarkBuffer buffer = new WatermarkBuffer();
+  public String imageUrl;
+  public WatermarkOptions options = new WatermarkOptions();
+}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface WatermarkConfig : NSObject
+@property(copy, nonatomic) NSString* _Nonnull id;
+@property(assign, nonatomic) WatermarkType type;
+@property(strong, nonatomic) WatermarkBuffer* _Nullable buffer;
+@property(strong, nonatomic) NSURL *_Nullable imageUrl;
+@property(strong, nonatomic) WatermarkOptions* _Nonnull options;
+@end</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct WatermarkConfig {
+  const char* id;
+  WATERMARK_SOURCE_TYPE type;
+  union {
+    WatermarkBuffer buffer;
+    WatermarkTimestamp timestamp;
+    WatermarkLiteral literal;
+    const char* imageUrl;
+  };
+  WatermarkOptions options;
+  WatermarkConfig() : id(NULL), type(IMAGE), imageUrl(NULL) {}
+};</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since:</dt>
+                <dd>Available since v4.6.0.</dd>
+                </dlentry>
+            </dl>
+            <p></p>
+            </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry props="native">
+                <pt props="native">id</pt>
+                <pd props="android">Unique identifier for the watermark, usually generated using UUID.</pd>
+                <pd props="apple">Unique identifier for the watermark.</pd>
+                <pd props="cpp">Unique identifier for the watermark. It is recommended to use a UUID.</pd>
+            </plentry>
+            <plentry props="native">
+                <pt props="native">type</pt>
+                <pd props="android">Type of the watermark:
+                    <ul>
+                        <li><codeph>WATERMARK_TYPE_IMAGE</codeph>: image type.</li>
+                        <li><codeph>WATERMARK_TYPE_BUFFER</codeph>: Buffer type.</li>
+                        </ul>
+                    </pd>
+                <pd props="apple">Type of the watermark. See <xref keyref="WATERMARK_SOURCE_TYPE"/>.</pd>
+                <pd props="cpp">Type of the watermark. See <xref keyref="WATERMARK_SOURCE_TYPE"/>.</pd>
+            </plentry>
+            <plentry props="native">
+                <pt props="native">buffer</pt>
+                <pd props="android">Buffer containing watermark image data. See <xref keyref="WatermarkBuffer"/>.</pd>
+                <pd props="apple">Buffer data of the watermark image. See <xref keyref="WatermarkBuffer"/>.</pd>
+                <pd props="cpp">Buffer of the watermark. See <xref keyref="WatermarkBuffer"/>.</pd>
+            </plentry>
+            <plentry props="native">
+                <pt props="native">imageUrl</pt>
+                <pd props="android">URL address used to load the watermark image.</pd>
+                <pd props="apple">URL of the watermark image.</pd>
+                <pd props="cpp">URL of the watermark image file. Default value is NULL.</pd>
+            </plentry>
+            <plentry props="native">
+                <pt props="native">options</pt>
+                <pd props="android">Options defining the position and size of the watermark. See <xref keyref="WatermarkOptions"/>.</pd>
+                <pd props="apple">Display options for the watermark. See <xref keyref="WatermarkOptions"/>.</pd>
+                <pd props="cpp">Options for the watermark. See <xref keyref="WatermarkOptions"/>.</pd>
+            </plentry>
+            <plentry props="android">
+                <pt props="android">WATERMARK_TYPE_IMAGE</pt>
+                <pd props="android">Specifies the watermark type as image.</pd>
+            </plentry>
+            <plentry props="android">
+                <pt props="android">WATERMARK_TYPE_BUFFER</pt>
+                <pd props="android">Specifies the watermark type as buffer.</pd>
+            </plentry>
+            </parml> </section>
+            </refbody>
+</reference>
