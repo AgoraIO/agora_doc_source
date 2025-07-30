@@ -1773,42 +1773,51 @@ public:
             </plentry>
             <plentry props="native">
                 <pt props="native">enableMultipath</pt>
-                <pd props="android">是否开启多路径传输。
+                <pd props="native">是否开启多路径传输。
                     <ul>
                         <li><codeph><ph keyref="true"/></codeph>：开启多路径传输。</li>
                         <li><codeph><ph keyref="false"/></codeph>：关闭多路径传输。</li>
                         </ul>
-                    </pd>
-                <pd props="apple">是否开启多路径传输：
-                    <ul>
-                        <li><codeph><ph keyref="true"/></codeph>：开启多路径传输。</li>
-                        <li><codeph><ph keyref="false"/></codeph>：关闭多路径传输。</li>
+                    <note type="attention">
+                        权限与系统要求：
+                        <ul>
+                            <li>Android：Android 7.0 或更高版本（API 级别 24 或更高），需要 ACCESS_NETWORK_STATE 和 CHANGE_NETWORK_STATE 权限。</li>
+                            <li>iOS：iOS 12.0 或更高版本。</li>
+                            <li>macOS：10.14 或更高版本。</li>
+                            <li>Windows：Windows Vista 或更高版本。</li>
                         </ul>
-                    </pd>
-                <pd props="cpp">是否启用多路径传输：
-                    <ul>
-                        <li><codeph><ph keyref="true"/></codeph>：启用多路径传输。</li>
-                        <li><codeph><ph keyref="false"/></codeph>：禁用多路径传输。</li>
-                        </ul>
+                    </note>
                     </pd>
             </plentry>
             <plentry props="native">
                 <pt props="native">uplinkMultipathMode</pt>
-                <pd props="android">上行多路径传输的模式。详见 <xref keyref="MultipathMode"/>。</pd>
-                <pd props="apple">上行多路径传输的模式。详见 <xref keyref="MultipathMode"/>。</pd>
-                <pd props="cpp">上行多路径传输的模式。详见 <xref keyref="MultipathMode"/>。</pd>
+                <pd props="native">上行多路径传输的模式。详见 <xref keyref="MultipathMode"/>。
+                <note type="attention">
+                    <ul>
+                        <li>该参数自 v4.6.0 起生效。</li>
+                        <li>使用该参数时需确保 <codeph>enableMultipath</codeph> 设置为 <codeph><ph keyref="true"/></codeph>。</li>
+                    </ul>
+                </note></pd>
             </plentry>
             <plentry props="native">
                 <pt props="native">downlinkMultipathMode</pt>
-                <pd props="android">下行多路径传输的模式。详见 <xref keyref="MultipathMode"/>。</pd>
-                <pd props="apple">下行多路径传输的模式。详见 <xref keyref="MultipathMode"/>。</pd>
-                <pd props="cpp">下行多路径传输的模式。详见 <xref keyref="MultipathMode"/>。</pd>
+                <pd props="native">下行多路径传输的模式。详见 <xref keyref="MultipathMode"/>。
+                    <note type="attention">
+                        <ul>
+                            <li>该参数自 v4.6.0 起生效。</li>
+                            <li>使用该参数时需确保 <codeph>enableMultipath</codeph> 设置为 <codeph><ph keyref="true"/></codeph>。</li>
+                        </ul>
+                    </note></pd>
             </plentry>
             <plentry props="native">
                 <pt props="native">preferMultipathType</pt>
-                <pd props="android">多路径传输的首选类型。详见 <xref keyref="MultipathType"/>。</pd>
-                <pd props="apple">首选的多路径传输类型。详见 <xref keyref="MultipathType"/>。</pd>
-                <pd props="cpp">首选的多路径传输类型。详见 <xref keyref="MultipathType"/>。</pd>
+                <pd props="native">多路径传输的首选类型。详见 <xref keyref="MultipathType"/>。
+                    <note type="attention">
+                        <ul>
+                            <li>该参数自 v4.6.0 起生效。</li>
+                            <li>使用该参数时需确保 <codeph>enableMultipath</codeph> 设置为 <codeph><ph keyref="true"/></codeph>。</li>
+                        </ul>
+                    </note></pd>
             </plentry>
             </parml> </section>
     </refbody>
