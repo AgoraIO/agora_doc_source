@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_playeffectex">
+    <title><ph keyref="playEffectEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc">播放指定音效到指定频道。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="playEffectEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int playEffectEx(RtcConnection connection, int soundId, String filePath,
+      int loopCount, double pitch, double pan, double gain, boolean publish, int startPos);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)playEffectEx:(AgoraRtcConnection* _Nonnull)connection
+          soundId:(int)soundId
+         filePath:(NSString* _Nonnull)filePath
+        loopCount:(NSInteger)loopCount
+            pitch:(double)pitch
+              pan:(double)pan
+             gain:(NSInteger)gain
+          publish:(BOOL)publish
+         startPos:(int)startPos;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int playEffectEx(const RtcConnection&amp; connection, int soundId, const char* filePath, int loopCount, double pitch, double pan, int gain, bool publish = false, int startPos = 0) = 0;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since:</dt>
+                <dd props="native">v.4.6.0.</dd>
+                </dlentry>
+            </dl>
+            <p>你可以调用该方法将指定音效播放给频道内的所有用户。 每次调用该方法只能播放一个音效。 如需同时播放多个音效，请多次调用该方法。 该方法允许你设置是否在频道中发布音效。 要同时播放多个音效文件，请使用不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph> 多次调用该方法。</p>
+            <note type="attention"><ul>
+                        <li>声网建议同时播放的音效不超过三个。</li>
+                        <li>此方法中的音效 ID 和文件路径必须与 <xref keyref="preloadEffect"/> 方法中的一致。</li>
+                        </ul>
+                    </note>
+            </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Applicable scenarios</title>
+            <p>This method can be called in scenarios involving multiple channels.</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>Parameters</title>
+            <parml>
+            <plentry props="native">
+                <pt props="native">connection</pt>
+                <pd props="android">连接的频道信息。 See <xref keyref="RtcConnection"/>.</pd>
+                <pd props="apple">One <xref keyref="RtcConnection"/> object. See .<xref keyref="RtcConnection"/></pd>
+                <pd props="cpp">One <xref keyref="RtcConnection"/> object. See .<xref keyref="RtcConnection"/></pd>
+            </plentry>
+            <plentry props="native">
+                <pt props="native">soundId</pt>
+                <pd props="android cpp">The audio effect ID.</pd>
+                <pd props="apple">The ID of the audio effect. The ID of each audio effect file is unique. 如果通过 <xref keyref="preloadEffect"/> 方法将音效预加载到内存中，确保该参数值与 <xref keyref="preloadEffect"/> 方法中的值一致。</pd>
+            </plentry>
+            <plentry props="native">
+                <pt props="native">filePath</pt>
+                <pd props="android">本地音效文件的绝对路径或在线音效文件的 URL。 Supported audio formats: mp3, mp4, m4a, aac, 3gp, mkv and wav.</pd>
+                <pd props="apple">本地音效文件的绝对路径（包括文件名后缀）或在线音效文件的 URL。 Supported audio formats: mp3, mp4, m4a, aac, 3gp, mkv and wav.</pd>
+                <pd props="cpp">本地音效文件的绝对路径或在线音效文件的 URL。 Supported audio formats: mp3, mp4, m4a, aac, 3gp, mkv and wav.</pd>
+            </plentry>
+            <plentry props="native">
+                <pt props="native">loopCount</pt>
+                <pd props="android">音效的循环播放次数：<ul>
+                        <li><codeph>-1</codeph>：无限循环播放，直到调用 <xref keyref="stopEffect"/> 或 <xref keyref="stopAllEffects"/>。</li>
+                        <li><codeph>0</codeph>：播放一次。</li>
+                        <li><codeph>1</codeph>：播放两次。</li>
+                        </ul>
+                    </pd>
+                <pd props="apple">设置音效的循环次数：<ul>
+                        <li>0：音效播放一次。</li>
+                        <li>1：音效播放两次。</li>
+                        <li>-1：无限循环播放音效，直到你调用 <xref keyref="stopEffect"/> 或 <xref keyref="stopAllEffects"/> 方法。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp">音效的循环播放次数：<ul>
+                        <li><codeph>-1</codeph>：无限循环播放，直到调用 <xref keyref="stopEffect"/> 或 <xref keyref="stopAllEffects"/> 停止播放。</li>
+                        <li><codeph>0</codeph>：播放一次。</li>
+                        <li><codeph>1</codeph>：播放两次。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            <plentry props="native">
+                <pt props="native">pitch</pt>
+                <pd props="android cpp">The pitch of the audio effect. 取值范围为 0.5 到 2.0，默认值为 1.0（原始音调）。 The lower the value, the lower the pitch.</pd>
+                <pd props="apple">设置音效的音调。 取值范围为 0.5 到 2，默认值为 1（不改变音调）。 The lower the value, the lower the pitch.</pd>
+            </plentry>
+            <plentry props="native">
+                <pt props="native">pan</pt>
+                <pd props="android">The spatial position of the audio effect. 取值范围为 -1.0 到 1.0：<ul>
+                        <li><codeph>-1.0</codeph>: The audio effect is heard on the left of the user.</li>
+                        <li><codeph>0.0: The audio effect is heard in front of the user.</codeph></li>
+                        <li><codeph>1.0</codeph>: The audio effect is heard on the right of the user.</li>
+                        </ul>
+                    </pd>
+                <pd props="apple">The spatial position of the audio effect. 取值范围为 -1.0 到 1.0。<ul>
+                        <li>0.0：音效位于正前方。</li>
+                        <li>1.0：音效位于右侧。</li>
+                        <li>-1.0：音效位于左侧。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp">The spatial position of the audio effect. 取值范围为 -1.0 到 1.0：<ul>
+                        <li><codeph>-1.0</codeph>：定位在左侧。</li>
+                        <li><codeph>0.0</codeph>：定位在正前方。</li>
+                        <li><codeph>1.0</codeph>：定位在右侧。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            <plentry props="native">
+                <pt props="native">gain</pt>
+                <pd props="android">The volume of the audio effect. 取值范围为 0.0 到 100.0，默认值为 100（原始音量）。 The smaller the value, the lower the volume.</pd>
+                <pd props="apple">设置音效的音量。 取值范围为 0 到 100（默认）。 值越小，音效音量越低。</pd>
+                <pd props="cpp">The volume of the audio effect. 取值范围为 0 到 100，默认值为 100（原始音量）。 The smaller the value, the lower the volume.</pd>
+            </plentry>
+            <plentry props="native">
+                <pt props="android">publish</pt>
+                <pt props="apple cpp">publish</pt>
+                <pd props="android">是否在频道中发布该音效：<ul>
+                        <li><codeph><ph keyref="true"/></codeph>：在频道中发布音效，远端用户可以听到。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不在频道中发布音效。</li>
+                        </ul>
+                    </pd>
+                <pd props="apple">设置是否在频道中发布指定音效：<ul>
+                        <li><codeph><ph keyref="true"/></codeph>：在频道中发布音效，远端用户可以听到。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不在频道中发布音效。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp">是否在频道中发布该音效：<ul>
+                        <li><codeph><ph keyref="true"/></codeph>：在频道中发布该音效，远端用户可以听到。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）不在频道中发布该音效。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            <plentry props="native">
+                <pt props="native">startPos</pt>
+                <pd props="android cpp">The playback position (ms) of the audio effect file.</pd>
+                <pd props="apple">音效文件的播放起始位置（单位为毫秒）。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+        <ul props="bp cs electron rn unity unreal">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+                </ul>
+        <p props="native"><ul>
+                        <li>0: Success.</li>
+                        <li>&lt; 0: Failure.</li>
+                        </ul>
+                    </p>
+    </section>
+        </refbody>
+</reference>
