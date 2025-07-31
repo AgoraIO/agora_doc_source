@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_watermarkbuffer">
+    <title><ph keyref="WatermarkBuffer"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Configures the format, size, and pixel buffer of the watermark image.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class WatermarkBuffer {
+  public final static int WATERMARK_BUFFER_FORMAT_I420 = 1;
+  public final static int WATERMARK_BUFFER_FORMAT_BGRA = 2;
+  public final static int WATERMARK_BUFFER_FORMAT_NV21 = 3;
+  public final static int WATERMARK_BUFFER_FORMAT_RGBA = 4;
+  public ByteBuffer buffer;
+  public int width;
+  public int height;
+  public int format;
+}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface WatermarkBuffer : NSObject
+@property(assign, nonatomic) int width;
+@property(assign, nonatomic) int height;
+@property(assign, nonatomic) int length;
+@property(strong, nonatomic) NSData* _Nullable buffer;
+@property(assign, nonatomic) WatermarkBufferFormat format;
+@end</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct WatermarkBuffer {
+  int width;
+  int height;
+  int length;
+  media::base::VIDEO_PIXEL_FORMAT format;
+  const uint8_t* buffer;
+  WatermarkBuffer() : buffer(NULL), width(0), height(0), length(0), format(media::base::VIDEO_PIXEL_I420) {}
+};</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since:</dt>
+                <dd>Available since v4.6.0.</dd>
+                </dlentry>
+            </dl>
+            <p>Defines the buffer data structure of the watermark image, including image width, height, format, length, and image data buffer.</p>
+            </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry props="native">
+                <pt props="native">width</pt>
+                <pd props="android">Width of the watermark buffer, in pixels.</pd>
+                <pd props="apple">Width of the watermark image, in pixels.</pd>
+                <pd props="cpp">Width of the watermark buffer, in pixels.</pd>
+            </plentry>
+            <plentry props="native">
+                <pt props="native">height</pt>
+                <pd props="android">Height of the watermark buffer, in pixels.</pd>
+                <pd props="apple">Height of the watermark image, in pixels.</pd>
+                <pd props="cpp">Height of the watermark buffer, in pixels.</pd>
+            </plentry>
+            <plentry props="apple cpp">
+                <pt props="apple cpp">length</pt>
+                <pd props="apple">Length of the buffer, in bytes.</pd>
+                <pd props="cpp">Length of the watermark buffer, in bytes.</pd>
+            </plentry>
+            <plentry props="native">
+                <pt props="native">format</pt>
+                <pd props="android">Format of the watermark image:
+                    <ul>
+                        <li><codeph>WATERMARK_BUFFER_FORMAT_I420</codeph>: I420 format.</li>
+                        <li><codeph>WATERMARK_BUFFER_FORMAT_BGRA</codeph>: BGRA format.</li>
+                        <li><codeph>WATERMARK_BUFFER_FORMAT_NV21</codeph>: NV21 format.</li>
+                        <li><codeph>WATERMARK_BUFFER_FORMAT_RGBA</codeph>: RGBA format.</li>
+                        </ul>
+                    </pd>
+                <pd props="apple">Format of the watermark buffer. See <xref keyref="WatermarkBufferFormat"/>.</pd>
+                <pd props="cpp">Format of the watermark buffer. See <xref keyref="VIDEO_PIXEL_FORMAT"/>. Default is <ph keyref="VIDEO_PIXEL_I420"/>. Currently supported formats include: <ph keyref="VIDEO_PIXEL_I420"/>, <ph keyref="VIDEO_PIXEL_RGBA"/>, <ph keyref="VIDEO_PIXEL_BGRA"/>, and <ph keyref="VIDEO_PIXEL_NV21"/>.</pd>
+            </plentry>
+            <plentry props="native">
+                <pt props="native">buffer</pt>
+                <pd props="android">Stores the watermark image data.</pd>
+                <pd props="apple">Raw image data buffer.</pd>
+                <pd props="cpp">Buffer data of the watermark.</pd>
+            </plentry>
+            </parml> </section>
+            </refbody>
+</reference>

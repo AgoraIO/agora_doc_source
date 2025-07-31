@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_rtcengineex_preloadeffectex2">
+    <title><ph keyref="preloadEffectEx2"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Preloads a specified audio effect to a specified channel.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="preloadEffectEx2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int preloadEffectEx(RtcConnection connection, int soundId, String filePath);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)preloadEffectEx:(AgoraRtcConnection* _Nonnull)connection
+             soundId:(int)soundId
+            filePath:(NSString* _Nonnull)filePath NS_SWIFT_NAME(preloadEffectEx(_:soundId:filePath:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp"/>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since:</dt>
+                <dd props="android apple">Available since v4.6.0.</dd>
+                </dlentry>
+            </dl>
+            <p>Each time you call this method, you can preload only one specified audio effect file into memory. To preload multiple audio effect files, call this method multiple times.
+
+After preloading, you can call <xref keyref="playEffect3"/> to play the preloaded audio effect, or call <xref keyref="playAllEffects"/> to play all preloaded audio effects.</p>
+            <note type="attention" props="apple"><ul>
+                        <li>To ensure smooth communication, limit the size of the audio effect file.</li>
+                        <li>It is recommended that you call this method before joining a channel.</li>
+                        </ul>
+                    </note>
+            <note type="attention" props="android"><ul>
+                        <li>To ensure smooth communication, limit the size of the audio effect file.</li>
+                        <li>It is recommended to call this method before joining a channel.</li>
+                        </ul>
+                    </note>
+            </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>This method applies to multi-channel scenarios.</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>Parameters</title>
+            <parml>
+            <plentry props="android apple">
+                <pt props="android apple">connection</pt>
+                <pd props="android">Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                <pd props="apple">The connection object. See <xref keyref="RtcConnection"/>.</pd>
+            </plentry>
+            <plentry props="android apple">
+                <pt props="android apple">soundId</pt>
+                <pd props="android apple">The ID of the audio effect.</pd>
+            </plentry>
+            <plentry props="android apple">
+                <pt props="android apple">filePath</pt>
+                <pd props="android apple">The absolute path of a local audio effect file or the URL of an online audio effect file. Supported audio formats include: mp3, mp4, m4a, aac, 3gp, mkv, and wav.</pd>
+            </plentry>
+            <plentry props="android apple">
+                <pt props="android apple">startPos</pt>
+                <pd props="android apple">The playback starting position of the audio effect file (in milliseconds).</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+        <ul props="bp cpp cs electron rn unity unreal">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+                </ul>
+        <p props="android apple"><ul>
+                        <li>0: Success.</li>
+                        <li>&lt; 0: Failure.</li>
+                        </ul>
+                    </p>
+    </section>
+        </refbody>
+</reference>
