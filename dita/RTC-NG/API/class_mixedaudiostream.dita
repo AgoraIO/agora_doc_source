@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_mixedaudiostream">
+    <title><ph keyref="MixedAudioStream"/></title>
+    <shortdesc id="short"><ph id="shortdesc">用于配置本地客户端的混音音频流。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public static class MixedAudioStream {
+  public int remoteUserUid;
+  public String channelId;
+  public Constants.AudioSourceType sourceType;
+  public int trackId;
+
+  public MixedAudioStream() {
+    this.sourceType = Constants.AudioSourceType.AUDIO_SOURCE_UNKNOWN;
+    this.remoteUserUid = 0;
+    this.channelId = "";
+    this.trackId = 0;
+  }
+}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMixedAudioStream: NSObject
+@property (assign, nonatomic) AgoraAudioSourceType sourceType;
+@property (assign, nonatomic) NSUInteger remoteUserUid;
+@property (copy, nonatomic) NSString * _Nullable channelId;
+@property (assign, nonatomic) NSUInteger trackId;
+@end</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct MixedAudioStream {
+  AUDIO_SOURCE_TYPE sourceType;
+  uid_t remoteUserUid;
+  const char* channelId;
+  track_id_t trackId;
+
+  MixedAudioStream(AUDIO_SOURCE_TYPE source)
+    : sourceType(source),
+      remoteUserUid(0),
+      channelId(NULL),
+      trackId(-1) {}
+
+  MixedAudioStream(AUDIO_SOURCE_TYPE source, track_id_t track)
+    : sourceType(source),
+      trackId(track) {}
+
+  MixedAudioStream(AUDIO_SOURCE_TYPE source, uid_t uid, const char* channel)
+    : sourceType(source),
+      remoteUserUid(uid),
+      channelId(channel) {}
+
+  MixedAudioStream(AUDIO_SOURCE_TYPE source, uid_t uid, const char* channel, track_id_t track)
+    : sourceType(source),
+      remoteUserUid(uid),
+      channelId(channel),
+      trackId(track) {}
+};</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <p/>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">sourceType</pt>
+                <pd props="android">混音音频的源类型。详见 <codeph>AudioSourceType</codeph>。</pd>
+                <pd props="ios">音频流的来源类型。详见 <codeph>AgoraAudioSourceType</codeph>。</pd>
+                <pd props="cpp">音频源类型。详见 <codeph>AUDIO_SOURCE_TYPE</codeph>。</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">remoteUserUid</pt>
+                <pd props="android">远端用户 ID。仅当混音的音频源类型为 <codeph>AUDIO_SOURCE_REMOTE</codeph> 时使用该参数。</pd>
+                <pd props="ios">当 <codeph>sourceType</codeph> 为远端音频源时，表示远端用户的用户 ID。</pd>
+                <pd props="cpp">远端用户 ID。仅当音频源类型为 <codeph>AUDIO_SOURCE_REMOTE</codeph> 时使用此参数。</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">channelId</pt>
+                <pd props="android">混音音频的源频道 ID。详见 <codeph>AUDIO_SOURCE_TYPE</codeph>。</pd>
+                <pd props="ios">远端用户所在的频道 ID。</pd>
+                <pd props="cpp">远端用户的频道名。仅当音频源类型为 <codeph>AUDIO_SOURCE_REMOTE</codeph> 时使用此参数。</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">trackId</pt>
+                <pd props="android">自定义音轨的音轨 ID。</pd>
+                <pd props="ios">自定义音频轨道的轨道 ID。</pd>
+                <pd props="cpp">本地音轨的 Track ID。仅当音频源类型为 <codeph>AUDIO_SOURCE_REMOTE</codeph> 时使用此参数。</pd>
+            </plentry>
+            </parml> </section>
+            </refbody>
+</reference>

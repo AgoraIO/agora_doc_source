@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setfiltereffectoptions">
+    <title><ph keyref="setFilterEffectOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置滤镜特效选项。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setFilterEffectOptions"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setFilterEffectOptions(bool enabled, const FilterEffectOptions&amp;amp; options, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从：</dt>
+                <dd props="cpp">自 v4.4.1 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p></p>
+            <note type="attention" props="cpp">在调用此方法前，请确保你已将以下动态库集成到项目中：
+                    <ul>
+                        <li>Android：<ph keyref="clearvision"/></li>
+                        <li>iOS/macOS：<ph keyref="clearvision"/></li>
+                        <li>Windows：<ph keyref="clearvision"/> 调用此方法前需先调用 <xref keyref="enableVideo"/> 方法。 你可以在加入频道前或加入频道后调用此方法。 滤镜特效功能对设备有一定的性能要求。如果设备在启用滤镜特效后出现过热情况，声网建议完全关闭该功能。</li>
+                        </ul>
+                    </note>
+            </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+            <plentry props="cpp">
+                <pt props="cpp">enabled</pt>
+                <pd props="cpp">是否启用滤镜特效：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：启用。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）关闭。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            <plentry props="cpp">
+                <pt props="cpp">options</pt>
+                <pd props="cpp">滤镜特效选项。详见 <xref keyref="FilterEffectOptions"/>。</pd>
+            </plentry>
+            <plentry props="cpp">
+                <pt props="cpp">type</pt>
+                <pd props="cpp">媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。默认值为 <ph keyref="PRIMARY_CAMERA_SOURCE"/>。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="android apple bp cs electron rn unity unreal">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul>
+        <p props="cpp"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+    </section>
+        </refbody>
+</reference>

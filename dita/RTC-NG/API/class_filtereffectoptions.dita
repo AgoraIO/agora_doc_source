@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_filtereffectoptions">
+    <title><ph keyref="FilterEffectOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc">用于设置滤镜特效的相关选项。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class FilterEffectOptions {
+  public String path = null;
+  public float strength;
+}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraFilterEffectOptions: NSObject
+@property(nonatomic, copy) NSString* _Nullable path NS_SWIFT_NAME(path);
+@property(nonatomic, assign) float strength;
+@end</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct FilterEffectOptions {
+  const char * path;
+  float strength;
+  FilterEffectOptions(const char * lut3dPath, float filterStrength) : path(lut3dPath), strength(filterStrength) {}
+  FilterEffectOptions() : path(OPTIONAL_NULLPTR), strength(0.5) {}
+};</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从：</dt>
+                <dd>自 v4.4.1 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p>用于设置滤镜特效参数。</p>
+            </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">path</pt>
+                <pd props="android">3D LUT 文件路径。</pd>
+                <pd props="ios">自定义 3D Cube 文件的本地绝对路径，仅支持 Cube 格式。外部指定的 Cube 文件必须严格遵循 Cube LUT 规范，否则滤镜特效将被关闭。SDK 提供了一个名为 "built_in_whiten.cube" 的内置美白滤镜，可通过将路径设置为 "built_in_whiten_filter" 来启用。</pd>
+                <pd props="cpp">自定义 3D Cube 文件的本地绝对路径，仅支持 cube 格式。Cube 文件必须严格遵循 Cube LUT 规范，否则滤镜特效将无法生效。
+
+以下是 Cube 文件格式示例。Cube 文件以 <codeph>LUT_3D_SIZE</codeph> 开头，表示 cube 的尺寸。在滤镜特效中，cube 尺寸限制为 32：
+
+LUT_3D_SIZE 32
+0.0039215689 0 0.0039215682
+0.0086021447 0.0037950677 0
+0.0728652592 0.0039215689 0
+...
+
+SDK 提供了一个名为 <codeph>built_in_whiten.cube</codeph> 的内置美白 cube。要使用该 cube，请将路径设置为 <codeph>built_in_whiten_filter</codeph>。</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">strength</pt>
+                <pd props="android">滤镜特效强度。</pd>
+                <pd props="ios">指定滤镜特效的强度。取值范围为 [0.0, 1.0]，默认值为 0.5。数值越大，滤镜效果越强。</pd>
+                <pd props="cpp">指定滤镜特效的强度。取值范围为 0.0 到 1.0，默认值为 0.5。数值越大，滤镜强度越强。</pd>
+            </plentry>
+            </parml> </section>
+            </refbody>
+</reference>

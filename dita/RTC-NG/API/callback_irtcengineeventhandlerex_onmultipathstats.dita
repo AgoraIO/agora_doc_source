@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandlerex_onmultipathstats">
+    <title><ph keyref="onMultipathStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc">多路径传输统计信息回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onMultipathStats"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onMultipathStats(MultipathStats stats) {}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine multiPathStats:(AgoraMultipathStats * _Nonnull)stats NS_SWIFT_NAME(rtcEngine(_:multiPathStats:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onMultipathStats(const RtcConnection&amp;amp; connection, const MultipathStats&amp;amp; stats)</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从：</dt>
+                <dd props="native">自 v4.6.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p>该回调在你将 <codeph>enableMultipath</codeph> 设置为 <codeph><ph keyref="true"/></codeph> 以启用多路径传输后被触发。</p>
+            </section>
+        <section id="timing" deliveryTarget="details">
+            <title>触发时机</title>
+            <p>在你将 <codeph>enableMultipath</codeph> 设置为 <codeph><ph keyref="true"/></codeph> 以启用多路径传输后触发该回调。</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>使用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+            <plentry props="cpp">
+                <pt props="cpp">connection</pt>
+                <pd props="cpp">连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">stats</pt>
+                <pd props="android cpp">多路径传输统计信息。详见 <xref keyref="MultipathStats"/>。</pd>
+                <pd props="ios">多路径统计信息，详见 <xref keyref="MultipathStats"/>。</pd>
+            </plentry>
+            <plentry props="ios">
+                <pt props="ios">engine</pt>
+                <pd props="ios"><xref keyref="IRtcEngine"/> 对象。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="bp electron flutter rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
+        <ul props="bp electron rn unity unreal">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul>
+    </section>
+    </refbody>
+</reference>

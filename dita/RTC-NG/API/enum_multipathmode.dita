@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_multipathmode">
+    <title><ph keyref="MultipathMode"/></title>
+    <shortdesc id="short"><ph id="shortdesc">指定数据在多条网络路径上的传输方式。</ph></shortdesc>
+    <refbody>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+                <dlentry props="native">
+                    <dt>自从：</dt>
+                    <dd>自 v4.6.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters">
+            <title>枚举值</title>
+            <parml>
+            <plentry>
+                    <pt><?oxy-placeholder content="The name of the enumerator."?></pt>
+                    <pd><?oxy-placeholder content="The description of the enumerator."?></pd>
+                </plentry>
+            <plentry props="native">
+                <pt><ph keyref="Duplicate"/></pt>
+                <pd props="cpp">（0）：冗余发送模式，相同的数据会通过所有可用路径冗余传输。</pd>
+            <pd props="apple">（0）：冗余模式，数据同时通过多个路径发送。</pd>
+            <pd props="android">（0）：冗余发送模式，数据会同时通过多个路径发送，提升传输的冗余性和可靠性。</pd>
+            </plentry>
+        <plentry props="native">
+                <pt><ph keyref="Dynamic"/></pt>
+                <pd props="cpp">动态发送模式，数据仅通过内部算法判断为传输质量最优的路径进行传输。</pd>
+            <pd props="apple">（1）：动态模式，SDK 会动态选择最佳路径进行数据传输。</pd>
+            <pd props="android">（1）：动态发送模式，SDK 会根据当前网络状况动态选择最佳路径进行数据传输，提升传输性能。</pd>
+            </plentry>
+        </parml>
+        </section></refbody>
+</reference>

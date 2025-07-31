@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_faceshapebeautyoptions">
+    <title><ph keyref="FaceShapeBeautyOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc">用于设置不同美型风格的面部调整参数。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class FaceShapeBeautyOptions {
+  public static final int FACE_SHAPE_BEAUTY_STYLE_FEMALE = 0;
+  public static final int FACE_SHAPE_BEAUTY_STYLE_MALE = 1;
+  public static final int FACE_SHAPE_BEAUTY_STYLE_NATURAL = 2;
+  public int shapeStyle;
+  public int styleIntensity;
+  public FaceShapeBeautyOptions() {
+    this.shapeStyle = FACE_SHAPE_BEAUTY_STYLE_FEMALE;
+    this.styleIntensity = 50;
+  }
+}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct FaceShapeBeautyOptions {
+    FACE_SHAPE_BEAUTY_STYLE shapeStyle;
+    int styleIntensity;
+    FaceShapeBeautyOptions(FACE_SHAPE_BEAUTY_STYLE shapeStyle, int styleIntensity) : shapeStyle(shapeStyle), styleIntensity(styleIntensity) {}
+    FaceShapeBeautyOptions() : shapeStyle(FACE_SHAPE_BEAUTY_STYLE_FEMALE), styleIntensity(50) {}
+};</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从：</dt>
+                <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p>该结构体用于配置不同风格的人脸美型参数，包括风格类型和强度。</p>
+            </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry props="android cpp">
+                <pt props="android cpp">shapeStyle</pt>
+                <pd props="android cpp">美型风格类型。</pd>
+            </plentry>
+            <plentry props="android cpp">
+                <pt props="android cpp">styleIntensity</pt>
+                <pd props="android cpp">美型风格强度，范围为 0-100。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt props="android">FACE_SHAPE_BEAUTY_STYLE_NATURAL</pt>
+                <pd props="android">2：（自然）自然脸型风格。</pd>
+            </plentry>
+            </parml> </section>
+            </refbody>
+</reference>

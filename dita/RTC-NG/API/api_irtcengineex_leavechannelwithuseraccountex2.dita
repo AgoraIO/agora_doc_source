@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_leavechannelwithuseraccountex2">
+    <title><ph keyref="leaveChannelWithUserAccountEx2"/></title>
+    <shortdesc id="short"><ph id="shortdesc">离开指定频道。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="leaveChannelWithUserAccountEx2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp unreal" outputclass="language-cpp"/>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>该方法用于用户离开频道，例如挂断或退出通话。该方法为异步调用，返回结果可能早于用户实际离开频道的时间。用户成功离开频道后，SDK 会触发 <xref keyref="onLeaveChannel"/> 回调。你可以根据频道 ID 和用户账号离开频道，并设置离开频道的选项。</p>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p>该方法适用于多频道场景。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="related" deliveryTarget="details">
+            <title>相关回调</title>
+            <p>成功调用该方法后，SDK 会触发 <xref keyref="onLeaveChannel"/> 回调报告用户离开频道的事件。</p>
+        </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+            <ul props="bp cs electron native rn unity unreal">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul> </section>
+        </refbody>
+</reference>
