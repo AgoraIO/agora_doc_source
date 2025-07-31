@@ -39,7 +39,7 @@
                 <dd props="native">v.4.6.0.</dd>
                 </dlentry>
             </dl>
-            <p>你可以调用该方法将指定音效播放给频道内的所有用户。 Each call to this method can only play one sound effect. To play multiple sound effects simultaneously, please call this method multiple times. This method allows you to set whether to publish sound effects in a channel. In order to play multiple sound files simultaneously, simply call the method multiple times with different <codeph>soundId</codeph> and <codeph>filePath</codeph> parameters.</p>
+            <p>You can call this method to play a specified sound effect to all users in the channel. Each call to this method can only play one sound effect. To play multiple sound effects simultaneously, please call this method multiple times. This method allows you to set whether to publish sound effects in a channel. In order to play multiple sound files simultaneously, simply call the method multiple times with different <codeph>soundId</codeph> and <codeph>filePath</codeph> parameters.</p>
             <note type="attention"><ul>
                         <li>Agora recommends not playing more than three sound effects at the same time.</li>
                         <li>The sound effect ID and file path in this method must be consistent with those in the <xref keyref="preloadEffect"/> method.</li>
@@ -71,85 +71,85 @@
             <plentry props="native">
                 <pt props="native">filePath</pt>
                 <pd props="android">The absolute path of the local file or the URL of the online file. Supported audio formats include: mp3, mp4, m4a, aac, 3gp, mkv and wav.</pd>
-                <pd props="apple">本地音效文件的绝对路径（包括文件名后缀）或在线音效文件的 URL。 Supported audio formats include: mp3, mp4, m4a, aac, 3gp, mkv and wav.</pd>
+                <pd props="apple">The absolute path of the local sound effect file (including the file name extension) or the URL of the online sound effect file. Supported audio formats include: mp3, mp4, m4a, aac, 3gp, mkv and wav.</pd>
                 <pd props="cpp">The absolute path of the local file or the URL of the online file. Supported audio formats: mp3, mp4, m4a, aac, 3gp, mkv and wav.</pd>
             </plentry>
             <plentry props="native">
                 <pt props="native">loopCount</pt>
-                <pd props="android">Number of times to loop the sound effect:<ul>
-                        <li><codeph>-1</codeph>：无限循环播放，直到调用 <xref keyref="stopEffect"/> 或 <xref keyref="stopAllEffects"/>。</li>
-                        <li><codeph>0</codeph>：播放一次。</li>
-                        <li><codeph>1</codeph>：播放两次。</li>
+                <pd props="android">Number of times the sound effect to be looped:<ul>
+                        <li><codeph>-1</codeph>: Loop infinitely until calling <xref keyref="stopEffect"/> or <xref keyref="stopAllEffects"/>.</li>
+                        <li><codeph>0</codeph>: Play once.</li>
+                        <li><codeph>1</codeph>: Play twice.</li>
                         </ul>
                     </pd>
-                <pd props="apple">设置音效的循环次数：<ul>
-                        <li>0：音效播放一次。</li>
-                        <li>1：音效播放两次。</li>
-                        <li>-1：无限循环播放音效，直到你调用 <xref keyref="stopEffect"/> 或 <xref keyref="stopAllEffects"/> 方法。</li>
+                <pd props="apple">Set the number of times the sound effect to be looped:<ul>
+                        <li>0: Play once.</li>
+                        <li>1: Play twice.</li>
+                        <li>-1: Loop infinitely until calling <xref keyref="stopEffect"/> or <xref keyref="stopAllEffects"/>.</li>
                         </ul>
                     </pd>
-                <pd props="cpp">Number of times to loop the sound effect:<ul>
-                        <li><codeph>-1</codeph>：无限循环播放，直到调用 <xref keyref="stopEffect"/> 或 <xref keyref="stopAllEffects"/> 停止播放。</li>
-                        <li><codeph>0</codeph>：播放一次。</li>
-                        <li><codeph>1</codeph>：播放两次。</li>
+                <pd props="cpp">Number of times the sound effect to be looped:<ul>
+                        <li><codeph>-1</codeph>: Loop infinitely until calling <xref keyref="stopEffect"/> or <xref keyref="stopAllEffects"/>.</li>
+                        <li><codeph>0</codeph>: Play once.</li>
+                        <li><codeph>1</codeph>: Play twice.</li>
                         </ul>
                     </pd>
             </plentry>
             <plentry props="native">
                 <pt props="native">pitch</pt>
-                <pd props="android cpp">The pitch of the audio effect. 取值范围为 0.5 到 2.0，默认值为 1.0（原始音调）。 The lower the value, the lower the pitch.</pd>
-                <pd props="apple">设置音效的音调。 取值范围为 0.5 到 2，默认值为 1（不改变音调）。 The lower the value, the lower the pitch.</pd>
+                <pd props="android cpp">The pitch of the audio effect. The range is from 0.5 to 2.0, with a default value of 1.0 (original pitch). The lower the value, the lower the pitch.</pd>
+                <pd props="apple">The pitch of the audio effect. The range is from 0.5 to 2.0, with a default value of 1.0 (original pitch). The lower the value, the lower the pitch.</pd>
             </plentry>
             <plentry props="native">
                 <pt props="native">pan</pt>
-                <pd props="android">The spatial position of the audio effect. 取值范围为 -1.0 到 1.0：<ul>
+                <pd props="android">The spatial position of the audio effect. The range of values is from -1.0 to 1.0:<ul>
                         <li><codeph>-1.0</codeph>: The audio effect is heard on the left of the user.</li>
-                        <li><codeph>0.0: The audio effect is heard in front of the user.</codeph></li>
+                        <li><codeph>0.0</codeph>: The audio effect is heard in front of the user.</li>
                         <li><codeph>1.0</codeph>: The audio effect is heard on the right of the user.</li>
                         </ul>
                     </pd>
-                <pd props="apple">The spatial position of the audio effect. 取值范围为 -1.0 到 1.0。<ul>
-                        <li>0.0：音效位于正前方。</li>
-                        <li>1.0：音效位于右侧。</li>
-                        <li>-1.0：音效位于左侧。</li>
+                <pd props="apple">The spatial position of the audio effect. The range of values is from -1.0 to 1.0:<ul>
+                        <li>0.0: The audio effect is heard in front of the user.</li>
+                        <li>1.0: The audio effect is heard on the right of the user.</li>
+                        <li>-1.0: The audio effect is heard on the left of the user.</li>
                         </ul>
                     </pd>
-                <pd props="cpp">The spatial position of the audio effect. 取值范围为 -1.0 到 1.0：<ul>
-                        <li><codeph>-1.0</codeph>：定位在左侧。</li>
-                        <li><codeph>0.0</codeph>：定位在正前方。</li>
-                        <li><codeph>1.0</codeph>：定位在右侧。</li>
+                <pd props="cpp">The spatial position of the audio effect. The range of values is from -1.0 to 1.0:<ul>
+                        <li><codeph>-1.0</codeph>: The audio effect is heard on the left of the user.</li>
+                        <li><codeph>0.0</codeph>: The audio effect is heard in front of the user.</li>
+                        <li><codeph>1.0</codeph>: The audio effect is heard on the right of the user.</li>
                         </ul>
                     </pd>
             </plentry>
             <plentry props="native">
                 <pt props="native">gain</pt>
-                <pd props="android">The volume of the audio effect. 取值范围为 0.0 到 100.0，默认值为 100（原始音量）。 The smaller the value, the lower the volume.</pd>
-                <pd props="apple">设置音效的音量。 取值范围为 0 到 100（默认）。 值越小，音效音量越低。</pd>
-                <pd props="cpp">The volume of the audio effect. 取值范围为 0 到 100，默认值为 100（原始音量）。 The smaller the value, the lower the volume.</pd>
+                <pd props="android">The volume of the audio effect. The value range is from 0.0 to 100.0, with a default value of 100 (original volume). The smaller the value, the lower the volume.</pd>
+                <pd props="apple">The volume of the audio effect. The value range is from 0.0 to 100.0, with a default value of 100 (original volume). The smaller the value, the lower the volume.</pd>
+                <pd props="cpp">The volume of the audio effect. The value range is from 0 to 100, with a default value of 100 (original volume). The smaller the value, the lower the volume.</pd>
             </plentry>
             <plentry props="native">
                 <pt props="android">publish</pt>
                 <pt props="apple cpp">publish</pt>
-                <pd props="android">是否在频道中发布该音效：<ul>
-                        <li><codeph><ph keyref="true"/></codeph>：在频道中发布音效，远端用户可以听到。</li>
-                        <li><codeph><ph keyref="false"/></codeph>：不在频道中发布音效。</li>
+                <pd props="android">Whether to publish the audio effect in the channel:<ul>
+                        <li><codeph><ph keyref="true"/></codeph>: Publish the audio effect in the channel.</li>
+                        <li><codeph><ph keyref="false"/></codeph>: Do not publish the audio effect in the channel.</li>
                         </ul>
                     </pd>
-                <pd props="apple">设置是否在频道中发布指定音效：<ul>
-                        <li><codeph><ph keyref="true"/></codeph>：在频道中发布音效，远端用户可以听到。</li>
-                        <li><codeph><ph keyref="false"/></codeph>：不在频道中发布音效。</li>
+                <pd props="apple">Whether to publish the audio effect in the channel:<ul>
+                        <li><codeph><ph keyref="true"/></codeph>: Publish the audio effect in the channel.</li>
+                        <li><codeph><ph keyref="false"/></codeph>: Do not publish the audio effect in the channel.</li>
                         </ul>
                     </pd>
-                <pd props="cpp">是否在频道中发布该音效：<ul>
-                        <li><codeph><ph keyref="true"/></codeph>：在频道中发布该音效，远端用户可以听到。</li>
-                        <li><codeph><ph keyref="false"/></codeph>：（默认）不在频道中发布该音效。</li>
+                <pd props="cpp">Whether to publish the audio effect in the channel:<ul>
+                        <li><codeph><ph keyref="true"/></codeph>: Publish the audio effect in the channel.</li>
+                        <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the audio effect in the channel.</li>
                         </ul>
                     </pd>
             </plentry>
             <plentry props="native">
                 <pt props="native">startPos</pt>
                 <pd props="android cpp">The playback position (ms) of the audio effect file.</pd>
-                <pd props="apple">音效文件的播放起始位置（单位为毫秒）。</pd>
+                <pd props="apple">The playback position (ms) of the audio effect file.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="bp cs electron flutter native rn unity unreal">
