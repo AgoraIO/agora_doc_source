@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setfaceshapebeautyoptions">
     <title><ph keyref="setFaceShapeBeautyOptions" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the image enhancement options and specifies the media source.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the face shape options and specifies the media source.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -43,9 +43,9 @@
                 <dd>v4.5.0</dd>
             </dlentry>
             </dl>
-            <p>调用该方法可对人脸各部位进行修饰，使用预设的参数一次性实现瘦脸、大眼、瘦鼻等微整形效果，支持微调整体的修饰力度。 <ph props="cpp apple android">See <xref keyref="advanced-beauty"/>.</ph></p>
-            <p props="android apple">该方法和 <xref keyref="setFaceShapeBeautyOptions2"/> 均可用于设置美型效果选项，区别在于该方法支持指定应用美型效果的媒体源。</p>
-            <note type="danger" id="billing">美型属于增值服务，计费方式详见<xref keyref="billing-strategy"/>。</note>
+            <p>Calling this method allows for modifying various parts of the face, achieving slimming, enlarging eyes, slimming nose, and other minor cosmetic effects all at once using preset parameters, supporting fine-tuning the overall modification intensity. <ph props="cpp apple android">See <xref keyref="advanced-beauty"/>.</ph></p>
+            <p props="android apple">Both this methods and <xref keyref="setFaceShapeBeautyOptions2"/> can be used to set beauty effects options, the difference is that this method supports specifying the media source to apply the beauty effects.</p>
+            <note type="danger" id="billing">The beauty filter is a value-added service, please refer to <xref keyref="billing-strategy"/> for billing details.</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>Call timing</title>
@@ -55,7 +55,7 @@
             <title>Restrictions</title>
                 <ul>
                     <li props="android">This method only applies to Android 4.4 or later.</li>
-                    <li props="cpp rn unity flutter unreal bp">在 Android 平台上，该方法仅适用于 Android 4.4 及以上版本。</li>
+                    <li props="cpp rn unity flutter unreal bp">This method only applies to Android 4.4 or later.</li>
                     <li>This method relies on the image enhancement dynamic library <codeph><ph keyref="clearvision"/></codeph>. If the dynamic library is deleted, the function cannot be enabled normally.</li>
                     <li>This feature has high requirements on device performance. When calling this method, the SDK automatically checks the capabilities of the current device.</li>
                 </ul>
@@ -66,14 +66,14 @@
             <plentry id="enable">
                 <pt props="android cpp unreal bp unity flutter rn electron cs">enabled</pt>
                 <pt props="ios mac">enable</pt>
-                <pd>是否开启美型效果：<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Enable the image enhancement function.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: (Default) Disable the image enhancement function.</li>
+                <pd>Whether to enable the face shape effect:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Enable the face shape effect.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) Disable the face shape effect.</li>
                     </ul></pd>
             </plentry>
             <plentry id="options">
                 <pt>options</pt>
-                <pd>Facial enhancement style options<xref keyref="FaceShapeBeautyOptions" />: .</pd>
+                <pd>Face shaping style options, see <xref keyref="FaceShapeBeautyOptions" />.</pd>
             </plentry>
             <plentry conkeyref="setFilterEffectOptions/type">
                 <pt />
