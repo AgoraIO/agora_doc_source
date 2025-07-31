@@ -16,10 +16,10 @@
             <title>Compatibility changes</title>
             <body>
                 <p>This release has optimized the implementation of some functions, involving renaming or deletion of some APIs. To ensure the normal operation of the project, you need to update the code in the app after upgrading to this release.</p>
-                <p>各版本废弃及删除的 API 信息。 详见 <xref href="https://doc.shengwang.cn/api-ref/rtc/android/API/rtc_api_sunset" props="android">API 下架说明</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/android/API/rtc_api_sunset" props="cpp">API 下架说明</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/ios/API/rtc_api_sunset" props="ios">API 下架说明</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/macos/API/rtc_api_sunset" props="mac">API 下架说明</xref>。</p>
+                <p>各版本废弃及删除的 API 信息。 详见 <xref href="https://doc.shengwang.cn/api-ref/rtc/android/API/rtc_api_sunset" props="android">API 下架说明</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/windows/API/rtc_api_sunset" props="cpp">API 下架说明</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/ios/API/rtc_api_sunset" props="ios">API 下架说明</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/macos/API/rtc_api_sunset" props="mac">API 下架说明</xref>。</p>
                 <ol>
                     <li><ph><b>直推 CDN 相关接口废弃</b></ph>
-<p>该版本废弃直推 CDN 功能的相关接口，并会在后续版本中删除，请改用<xref keyref="guide-cdn-streaming">服务端旁路推流</xref>。</p>
+<p>该版本废弃直推 CDN 功能的相关接口，并会在后续版本中删除，请改用<xref keyref="cdn-streaming-restful">服务端旁路推流</xref>。</p>
                         <ul>
                             <li><codeph><xref keyref="setDirectCdnStreamingAudioConfiguration"/></codeph></li>
                             <li><codeph><xref keyref="setDirectCdnStreamingVideoConfiguration"/></codeph></li>
@@ -106,7 +106,7 @@
 <p>该版本新增 <codeph><xref keyref="onRenewTokenResult"/></codeph> 回调及 <codeph>RENEW_TOKEN_ERROR_CODE</codeph> 错误码。 当调用 <codeph><xref keyref="renewToken"/></codeph> 方法更新 Token 后，SDK 会通过 <codeph><xref keyref="onRenewTokenResult"/></codeph> 回调通知 Token 更新的结果，并通过 <codeph>RENEW_TOKEN_ERROR_CODE</codeph> 返回详细的错误码，开发者可在回调中根据错误码及时处理 Token 更新失败的场景。</p>
                     </li>
                     <li><ph><b>Others</b></ph><ul>
-                            <li>新增 <codeph><xref keyref="setPlaybackAudioFrameBeforeMixingParameters2"/></codeph> 方法用于设置 <codeph><xref keyref="onPlaybackAudioFrameBeforeMixing"/></codeph> 回调中返回的音频帧格式，包括采样率、声道数以及每次回调的数据采样点数。 调用此方法后，SDK 会按照设定的参数返回混音前的原始音频数据，便于开发者进行自定义处理或分析。</li>
+                            <li>新增 <codeph><xref keyref="setPlaybackAudioFrameBeforeMixingParameters1"/></codeph> 方法用于设置 <codeph><xref keyref="onPlaybackAudioFrameBeforeMixing"/></codeph> 回调中返回的音频帧格式，包括采样率、声道数以及每次回调的数据采样点数。 调用此方法后，SDK 会按照设定的参数返回混音前的原始音频数据，便于开发者进行自定义处理或分析。</li>
                             <li>新增 <codeph><xref keyref="preloadEffectEx"/></codeph> 方法，用于将指定音效文件预加载到指定频道，支持本地或在线音效文件，便于后续快速播放，适合多频道场景。</li>
                             <li>新增 <codeph><xref keyref="playEffectEx"/></codeph> 方法，用于在指定频道播放音效文件，支持设置循环次数、音调、空间位置、音量、是否发布到频道及播放起始位置等参数，满足丰富的音效播放需求。</li>
                             <li>本地截图上传功能支持通过 <codeph><xref keyref="ContentInspectModule"/></codeph> 中新增的 <codeph>position</codeph> 成员设置截图的视频观测位置，从而实现对原始视频数据或效果处理前后的视频流进行截图并上传。</li>
@@ -123,7 +123,7 @@
                     <li><ph><b>美颜重构</b></ph>
 <p>该版本对美颜功能进行了彻底重构和升级，不进拓展了美颜功能，提升了美颜效果和性能，还解决了美颜参数配置复杂、集成成本高、美颜资源依赖网络易失效等痛点。 主要改进包括：<ul>
                                 <li><b>新增美颜功能</b>：新增白牙、去法令纹、去黑眼圈、亮眼等美肤功能；美妆特效新增卧蚕和面部高光；美型功能从 11 个增加到 29 个。</li>
-                                <li><b>API 大幅简化</b>：将过去版本中的基础美颜、美型、美妆、滤镜功能整合为 <codeph><ph keyref="BEAUTY"/></codeph>、<codeph><ph keyref="STYLE_MAKEUP"/></codeph>、<codeph><ph keyref="FILTER"/></codeph> 三个核心节点 (node)，通过 <codeph><xref keyref="VideoEffectObject"/></codeph> 统一管理生命周期和参数设置，减少频繁 API 调用带来的性能负担。</li>
+                                <li><b>API 大幅简化</b>：将过去版本中的基础美颜、美型、美妆、滤镜功能整合为 <codeph><ph keyref="BEAUTY"/></codeph>、<codeph><ph keyref="STYLE_MAKEUP"/></codeph>、<codeph><ph keyref="FILTER"/></codeph> 三个核心节点 (node)，通过 <codeph><xref keyref="IVideoEffectObject"/></codeph> 统一管理生命周期和参数设置，减少频繁 API 调用带来的性能负担。</li>
                                 <li><b>预设模板开箱即用</b>：提供多套预设风格模板（如“自然美颜”、“学姐妆”、“冷白滤镜”），大幅简化集成流程，无需手动调试数十项参数。</li>
                                 <li><b>美颜参数动态控制</b>：该版本新增实时获取美颜参数的能力，开发者可通过 key-value 方式动态读取或修改任意细粒度参数（如磨皮强度、口红类型）。 同时支持：调用预设模板快速启用风格效果、保存主播自定义参数配置、随时重置参数至默认状态，极大提升了业务层状态同步的灵活性和开发效率。</li>
                                 <li><b>美颜资源外置</b>：该版本通过美颜资源外置化设计，将所有美颜资源（特效、滤镜、妆容）均打包为本地 bundle 文件，彻底消除因网络下载失败导致美颜失效的风险。</li>
@@ -150,7 +150,7 @@
                     <li props="ios android unity cs flutter rn bp">在 <codeph><xref keyref="setExternalVideoSource"/></codeph> 之后调用 <codeph><xref keyref="registerMediaMetadataObserver"/></codeph> 注册媒体 metadata 观测器，SDK 没有触发 metadata 观测器的回调。 (Android, iOS)</li>
                     <li props="cpp">SDK 处理包含中文字符的文件路径时编码转换异常导致崩溃。 (Windows)</li>
                     <li props="ios android unity cs flutter rn bp">偶现的崩溃问题。 (Android, iOS)</li>
-                    <li>调用 <codeph><xref keyref="joinChannelEx"/></codeph> 加入频道，然后调用 <codeph><xref keyref="startOrUpdateChannelMediaRelay"/></codeph> 开始跨频道媒体流转发，下麦、退出频道后重新加入频道开始连麦，偶现 <codeph><xref keyref="ChannelMediaRelayStateChanged"/></codeph> 回调报告 <codeph>state</codeph> 为 <codeph><ph keyref="RELAY_STATE_FAILURE"/></codeph>，<codeph>code</codeph> 为 <codeph><ph keyref="RELAY_ERROR_SERVER_ERROR_RESPONSE"/></codeph>。</li>
+                    <li>调用 <codeph><xref keyref="joinChannelEx"/></codeph> 加入频道，然后调用 <codeph><xref keyref="startOrUpdateChannelMediaRelay"/></codeph> 开始跨频道媒体流转发，下麦、退出频道后重新加入频道开始连麦，偶现 <codeph><xref keyref="onChannelMediaRelayStateChanged"/></codeph> 回调报告 <codeph>state</codeph> 为 <codeph><ph keyref="RELAY_STATE_FAILURE"/></codeph>，<codeph>code</codeph> 为 <codeph><ph keyref="RELAY_ERROR_SERVER_ERROR_RESPONSE"/></codeph>。</li>
                     <li props="android flutter unity cs rn bp">加入频道前调用 <codeph><xref keyref="setAudioScenario"/></codeph> 设置音频场景为 <codeph><ph keyref="AUDIO_SCENARIO_CHATROOM"/></codeph>，加入频道后使用蓝牙耳机或有线耳机进行音视频互通，偶现听到杂音。 (Android)</li>
                     <li props="cpp flutter unity cs unreal electron bp">部分机型的笔记本电脑开启节能模式下，发送端共享屏幕和音频，偶现接收端听到回声。 (Windows)</li>
                     <li props="cpp flutter unity cs unreal electron bp">在线教育场景下，偶现教师端本地看多个学生端音画不同步。 (Windows)</li>
