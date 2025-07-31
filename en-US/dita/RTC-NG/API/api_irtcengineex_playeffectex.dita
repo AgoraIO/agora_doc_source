@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_playeffectex">
     <title><ph keyref="playEffectEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc">播放指定音效到指定频道。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Play a specified sound effect in a channel.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -39,10 +39,10 @@
                 <dd props="native">v.4.6.0.</dd>
                 </dlentry>
             </dl>
-            <p>你可以调用该方法将指定音效播放给频道内的所有用户。 每次调用该方法只能播放一个音效。 如需同时播放多个音效，请多次调用该方法。 该方法允许你设置是否在频道中发布音效。 要同时播放多个音效文件，请使用不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph> 多次调用该方法。</p>
+            <p>你可以调用该方法将指定音效播放给频道内的所有用户。 Each call to this method can only play one sound effect. To play multiple sound effects simultaneously, please call this method multiple times. This method allows you to set whether to publish sound effects in a channel. In order to play multiple sound files simultaneously, simply call the method multiple times with different <codeph>soundId</codeph> and <codeph>filePath</codeph> parameters.</p>
             <note type="attention"><ul>
-                        <li>声网建议同时播放的音效不超过三个。</li>
-                        <li>此方法中的音效 ID 和文件路径必须与 <xref keyref="preloadEffect"/> 方法中的一致。</li>
+                        <li>Agora recommends not playing more than three sound effects at the same time.</li>
+                        <li>The sound effect ID and file path in this method must be consistent with those in the <xref keyref="preloadEffect"/> method.</li>
                         </ul>
                     </note>
             </section>
@@ -59,24 +59,24 @@
             <parml>
             <plentry props="native">
                 <pt props="native">connection</pt>
-                <pd props="android">连接的频道信息。 See <xref keyref="RtcConnection"/>.</pd>
+                <pd props="android">Connection information. See <xref keyref="RtcConnection"/>.</pd>
                 <pd props="apple">One <xref keyref="RtcConnection"/> object. See .<xref keyref="RtcConnection"/></pd>
                 <pd props="cpp">One <xref keyref="RtcConnection"/> object. See .<xref keyref="RtcConnection"/></pd>
             </plentry>
             <plentry props="native">
                 <pt props="native">soundId</pt>
                 <pd props="android cpp">The audio effect ID.</pd>
-                <pd props="apple">The ID of the audio effect. The ID of each audio effect file is unique. 如果通过 <xref keyref="preloadEffect"/> 方法将音效预加载到内存中，确保该参数值与 <xref keyref="preloadEffect"/> 方法中的值一致。</pd>
+                <pd props="apple">The ID of the audio effect. The ID of each audio effect file is unique. If preloading sound effects into memory through the <xref keyref="preloadEffect"/> method, make sure that this parameter value is consistent with the value in the <xref keyref="preloadEffect"/> method.</pd>
             </plentry>
             <plentry props="native">
                 <pt props="native">filePath</pt>
-                <pd props="android">本地音效文件的绝对路径或在线音效文件的 URL。 Supported audio formats: mp3, mp4, m4a, aac, 3gp, mkv and wav.</pd>
-                <pd props="apple">本地音效文件的绝对路径（包括文件名后缀）或在线音效文件的 URL。 Supported audio formats: mp3, mp4, m4a, aac, 3gp, mkv and wav.</pd>
-                <pd props="cpp">本地音效文件的绝对路径或在线音效文件的 URL。 Supported audio formats: mp3, mp4, m4a, aac, 3gp, mkv and wav.</pd>
+                <pd props="android">The absolute path of the local file or the URL of the online file. Supported audio formats include: mp3, mp4, m4a, aac, 3gp, mkv and wav.</pd>
+                <pd props="apple">本地音效文件的绝对路径（包括文件名后缀）或在线音效文件的 URL。 Supported audio formats include: mp3, mp4, m4a, aac, 3gp, mkv and wav.</pd>
+                <pd props="cpp">The absolute path of the local file or the URL of the online file. Supported audio formats: mp3, mp4, m4a, aac, 3gp, mkv and wav.</pd>
             </plentry>
             <plentry props="native">
                 <pt props="native">loopCount</pt>
-                <pd props="android">音效的循环播放次数：<ul>
+                <pd props="android">Number of times to loop the sound effect:<ul>
                         <li><codeph>-1</codeph>：无限循环播放，直到调用 <xref keyref="stopEffect"/> 或 <xref keyref="stopAllEffects"/>。</li>
                         <li><codeph>0</codeph>：播放一次。</li>
                         <li><codeph>1</codeph>：播放两次。</li>
@@ -88,7 +88,7 @@
                         <li>-1：无限循环播放音效，直到你调用 <xref keyref="stopEffect"/> 或 <xref keyref="stopAllEffects"/> 方法。</li>
                         </ul>
                     </pd>
-                <pd props="cpp">音效的循环播放次数：<ul>
+                <pd props="cpp">Number of times to loop the sound effect:<ul>
                         <li><codeph>-1</codeph>：无限循环播放，直到调用 <xref keyref="stopEffect"/> 或 <xref keyref="stopAllEffects"/> 停止播放。</li>
                         <li><codeph>0</codeph>：播放一次。</li>
                         <li><codeph>1</codeph>：播放两次。</li>
