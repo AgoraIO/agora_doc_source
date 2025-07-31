@@ -1,23 +1,117 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="release_notes">
-    <title>v4.5.2</title>
+    <title>v4.6.0</title>
     <body>
         <p>v4.2.2 was released on April xx, 2025.</p>
         <note type="attention" props="native">
              <ul>
              <li>Starting from version 4.5.0, both RTC SDK and Signaling (version 2.2.0 and above) include the <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> library. If you manually integrate Video SDK via CDN and also use Signaling SDK, delete the earlier version of the <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> to avoid conflicts.</li>
-             <li>4.5.2 RTC SDK <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> library version is 1.2.13. <ph props="apple">You can check the version information of the library in <codeph>Info.plist</codeph>. </ph><ph props="cpp">You can find out the version information of the library by checking the properties of the <codeph>libaosl.dll</codeph> file.</ph></li></ul>
+             <li>4.5.1 RTC SDK <codeph props="android"><codeph props="cpp">libaosl.solibaosl.dllaosl.xcframework</codeph><codeph props="apple"></codeph> library version is 1.2.13. <ph props="apple">You can check the version information of the library in <codeph>Info.plist</codeph>. </ph><ph props="cpp">You can find out the version information of the library by checking the properties of the <codeph>libaosl.dll</codeph> file.</ph></codeph></li></ul>
              </note>
     </body>
     <topic id="level2">
         <title/>
-        <topic id="compatibility" props="android cpp">
+        <topic id="compatibility">
             <title>Compatibility changes</title>
             <body>
-                <p>This release has optimized the implementation of some functions. To ensure the normal operation of the project, you need to update the code in the app after upgrading to this release.</p>
+                <p>This release has optimized the implementation of some functions, involving renaming or deletion of some APIs. To ensure the normal operation of the project, you need to update the code in the app after upgrading to this release.</p>
+                <p>各版本废弃及删除的 API 信息。 详见 <xref href="https://doc.shengwang.cn/api-ref/rtc/android/API/rtc_api_sunset" props="android">API 下架说明</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/android/API/rtc_api_sunset" props="cpp">API 下架说明</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/ios/API/rtc_api_sunset" props="ios">API 下架说明</xref><xref href="https://doc.shengwang.cn/api-ref/rtc/macos/API/rtc_api_sunset" props="mac">API 下架说明</xref>。</p>
                 <ol>
-                    <li><ph><b>Member parameters changed to methods</b></ph><p>To optimize the API design, the SDK encapsulates all member parameters in the <xref keyref="RtePlayerInfo"/>structure into the <xref keyref="PlayerInfo"/> class. If use the member parameters in the <xref keyref="RtePlayerInfo"/> structure, please update them to the corresponding methods in the <xref keyref="PlayerInfo"/> class.</p>
+                    <li><ph><b>直推 CDN 相关接口废弃</b></ph>
+<p>该版本废弃直推 CDN 功能的相关接口，并会在后续版本中删除，请改用<xref keyref="guide-cdn-streaming">服务端旁路推流</xref>。</p>
+                        <ul>
+                            <li><codeph><xref keyref="setDirectCdnStreamingAudioConfiguration"/></codeph></li>
+                            <li><codeph><xref keyref="setDirectCdnStreamingVideoConfiguration"/></codeph></li>
+                            <li><codeph><xref keyref="startDirectCdnStreaming"/></codeph></li>
+                            <li><codeph><xref keyref="stopDirectCdnStreaming"/></codeph></li>
+                            <li><codeph><xref keyref="updateDirectCdnStreamingMediaOptions"/></codeph></li>
+                            <li><codeph><xref keyref="DirectCdnStreamingMediaOptions"/></codeph></li>
+                            <li><codeph><xref keyref="DirectCdnStreamingStats"/></codeph></li>
+                            <li><codeph><xref keyref="DIRECT_CDN_STREAMING_STATE"/></codeph></li>
+                            <li><codeph><xref keyref="DIRECT_CDN_STREAMING_REASON"/></codeph></li>
+                        </ul>
+                    </li>
+                    <li><ph><b>虚拟节拍器接口废弃</b></ph>
+<p>该版本废弃虚拟节拍器功能的相关接口，并会在后续版本中删除。</p>
+                        <ul>
+                            <li><codeph><xref keyref="startRhythmPlayer"/></codeph></li>
+                            <li><codeph><xref keyref="configRhythmPlayer"/></codeph></li>
+                            <li><codeph><xref keyref="onRhythmPlayerStateChanged"/></codeph></li>
+                        </ul>
+                    </li>
+                    <li><ph><b>水印接口废弃</b></ph>
+<p>该版本废弃水印功能的相关接口，推荐使用该版本新增的水印接口。</p>
+                        <ul>
+                            <li><codeph><xref keyref="addVideoWatermark2"/></codeph></li>
+                            <li><codeph><xref keyref="addVideoWatermarkEx"/></codeph></li>
+                        </ul>
+                    </li>
+                    <li><ph><b>冗余接口删除</b></ph>
+<p>该版本删除了下列冗余接口及参数：</p>
+                        <ul>
+                            <li><codeph>setLocalPublishFallbackOption</codeph><ph></ph></li>
+                            <li><codeph>onLocalPublishFallbackToAudioOnly</codeph><ph props="cpp android">didLocalPublishFallbackToAudioOnly</ph><ph props="apple"></ph></li>
+                            <li><codeph>onDownlinkNetworkInfoUpdated</codeph><ph props="cpp android">downlinkNetworkInfoUpdate</ph><ph props="apple"></ph></li>
+                            <li><codeph>onWlAccStats</codeph><ph></ph></li>
+                            <li><codeph>enableWirelessAccelerate</codeph><ph></ph></li>
+                            <li props="apple"><codeph><xref keyref="RemoteVideoStats"/>receivedFramerate</codeph></li>
+                        </ul>
+                    </li>
+                    <li props="cn"><ph><b>美妆功能实现更变</b></ph>
+<p>受美颜重构的影响，自 v4.6.0 起，不再支持调用 <codeph><xref keyref="setExtensionProperty"/></codeph> 启用美妆功能，改用 <codeph>STYLE_MAKEUP</codeph> 节点实现。</p>
+                    </li>
+                    <li><ph><b>Int UID 和 String UID 映射行为变更</b></ph>
+<ul>
+                            <li>v4.6.0 之前：如通过 <codeph><xref keyref="registerLocalUserAccount"/></codeph> 使用字符串 UID （如“aa”）注册获取 Int UID（如 123），后续使用该 Int UID 加入频道时，SDK 会自动将其映射为原始注册字符串（"aa"）作为 String UID。</li>
+                            <li>v4.6.0 及之后版本：SDK 不再自动将 Int UID 映射到注册时的原始字符串。 如果调用了 <codeph><xref keyref="registerLocalUserAccount"/></codeph> 获取 Int UID，但需要使用原始字符串 UID 加入频道，请直接调用 <codeph><xref keyref="joinChannelWithUserAccount"/></codeph> 通过原始字符串 UID 加入频道。 请在升级后检查并调整您的 App 逻辑，以确保用户以预期的身份加入频道。</li>
+                        </ul>
+                    </li>
+                    <li><ph><b>双流模式行为变更</b></ph>
+<ul>
+                            <li>v 4.6.0 之前：发送端开启小流自适应模式 (<apiname keyref="AUTO_SIMULCAST_STREAM"/>) 时，不会主动发送小流，仅当主播身份的接收端调用 <xref keyref="setRemoteVideoStreamType"/> 发起小流申请后，发送端收到申请才会开始发送小流。</li>
+                            <li>v4.6.0 及之后版本：发送端开启小流自适应模式 (<apiname keyref="AUTO_SIMULCAST_STREAM"/>) 时，会根据订阅端用户的下行网络质量，自动决定发送或停止发送小流。 If the <parmname>mode</parmname> is set to other options, or if the width, height, bitrate, and frame rate of the low-quality video stream are explicitly configured, this adaptive feature will be disabled.</li>
+                        </ul>
+                    </li>
+                </ol>
+            </body>
+        </topic>
+        <topic id="newfeature">
+            <title>New features</title>
+            <body>
+                <ol>
+                    <li><ph><b>ABR 同源多流</b></ph>
+<p><ph>该版本支持针对同一视频源设置同时发送多路不同分辨率视频流，并支持多频道场景。 你可以通过 <codeph><xref keyref="setSimulcastConfig"/></codeph> 配置不同分辨率的视频流，（最多四层分辨率，一个最高分辨率的主流和三层其他较低分辨率的视频流），并可以通过 <codeph><xref keyref="SimulcastConfig"/></codeph> 设置视频流的分辨率、码率、是否启用分层推流回退等选项来灵活控制流的发布。 启用分层推流回退后，SDK 会在弱网环境下自动回退到低分辨率的视频流，确保流畅的观看体验。</ph>
+                            <ph>订阅端可根据实际需求，通过 <codeph><xref keyref="setRemoteVideoStreamType"/></codeph> 选择想要接收的视频流。 适用于会议场景、大班课、互动直播等多终端、多网络环境，可显著提升弱网下的观看体验。</ph></p>
+                    </li>
+                    <li><ph><b>多路径网络传输</b></ph>
+<p>该版本新增新增多路径传输功能，适用于终端支持多网卡传输(比如 5G， Wi-Fi，LAN)的设备，可以有效降低甚至消除弱网带来的体验回退，适用于弱网环境、对传输稳定性要求高的实时音视频通信场景，如车载、IoT、火车、高速公路等复杂网络环境。 通过在 <codeph><xref keyref="ChannelMediaOptions"/></codeph> 中设置 <codeph>enableMultipath</codeph> 为 <codeph><ph keyref="true"/></codeph>，可开启多路径传输能力。 支持两种传输模式（<codeph><xref keyref="MultipathMode"/></codeph>）：<ul>
+                            <li>Dynamic 模式：SDK 会根据网络状况动态选择最佳路径进行传输，适用于流量敏感，对体验要求比较高的场景，如会议、教育场景。 此外，还可通过 preferMultipathType 指定首选的传输网络路径类型（如优先 Wi-Fi 或移动网络）；如未设置，所有类型路径的权重默认相同。</li>
+                            <li>Duplicate 模式：数据会在所有可用网络路径（如LAN、Wi-Fi、移动网络）上同时传输，提升抗丢包和稳定性，可消除弱网，适用于流量不敏感，对体验有极致要求的场景，如户外采播、平行操控等。</li>
+                        </ul>
+                        <ph>上下行还可分别通过 <codeph><xref keyref="ChannelMediaOptions"/></codeph> 中的 <codeph>uplinkMultipathMode</codeph>、<codeph>downlinkMultipathMode</codeph> 配置。 启用后，SDK 会通过回调 <codeph><xref keyref="onMultipathStats"/></codeph> 实时上报各路径的传输统计信息，包括每一个传输路径的流量消耗，便于开发者监控和优化网络表现。</ph></p>
+                    </li>
+                    <li><ph><b>视频质量评分</b></ph>
+<p>该版本在 <codeph><xref keyref="RemoteVideoStats"/></codeph> 中新增 <codeph>mosValue</codeph> 成员，报告声网实时视频 MOS（平均主观意见分）评估系统对接收到的远端视频流的质量评分。 评分共有 5 个档次，5 分表示视频画质优秀，画面清晰无噪点，1 分表示视频画质极差，画面严重模糊。 你可以通过该参数实时观测远端视频流的主观画质表现，便于动态调整视频参数、优化用户体验，或用于质量监控和告警等场景。 If you need to enable this function, contact <xref keyref="ticket-link"/>.</p>
+                    </li>
+                    <li><ph><b>支持添加多个水印</b></ph>
+<p>该版本废弃了 <codeph><xref keyref="addVideoWatermark2"/></codeph> 和 <codeph><xref keyref="addVideoWatermarkEx"/></codeph> 方法，新增 <codeph><xref keyref="addVideoWatermark3"/></codeph> 和 <codeph><xref keyref="addVideoWatermarkEx1"/></codeph> 方法，支持通过水印 ID 来给视频添加多个水印，并可对水印进行排序。 如果你需要移除指定水印，可调用 <codeph><xref keyref="removeVideoWatermark"/></codeph> 方法。</p>
+                    </li>
+                    <li><ph><b>异步销毁引擎</b></ph>
+<p props="cpp">自该版本起，<codeph><xref keyref="release"/></codeph> 方法新增 <codeph>callback</codeph> 参数，支持以同步或异步方式销毁引擎。 异步销毁引擎时，SDK 会触发 <codeph><xref keyref="RtcEngineReleaseCallback"/></codeph> 回调。</p>
+                        <p props="android">该版本新增 <codeph><xref keyref="destory"/></codeph> 方法，用于销毁 RTC 引擎，且支持通过参数配置以同步或异步方式销毁引擎。 异步销毁引擎时，SDK 会触发 <codeph><xref keyref="onEngineReleased"/></codeph> 回调。</p>
+                        <p props="apple">该版本新增 <codeph><xref keyref="destory"/></codeph> 方法，用于销毁 RTC 引擎，且支持通过参数配置以同步或异步方式销毁引擎。 异步销毁引擎时，SDK 会触发 <codeph>engineReleasedBlock</codeph> 回调块。</p>
+                    </li>
+                    <li><ph><b>Token 更新结果回调</b></ph>
+<p>该版本新增 <codeph><xref keyref="onRenewTokenResult"/></codeph> 回调及 <codeph>RENEW_TOKEN_ERROR_CODE</codeph> 错误码。 当调用 <codeph><xref keyref="renewToken"/></codeph> 方法更新 Token 后，SDK 会通过 <codeph><xref keyref="onRenewTokenResult"/></codeph> 回调通知 Token 更新的结果，并通过 <codeph>RENEW_TOKEN_ERROR_CODE</codeph> 返回详细的错误码，开发者可在回调中根据错误码及时处理 Token 更新失败的场景。</p>
+                    </li>
+                    <li><ph><b>Others</b></ph><ul>
+                            <li>新增 <codeph><xref keyref="setPlaybackAudioFrameBeforeMixingParameters2"/></codeph> 方法用于设置 <codeph><xref keyref="onPlaybackAudioFrameBeforeMixing"/></codeph> 回调中返回的音频帧格式，包括采样率、声道数以及每次回调的数据采样点数。 调用此方法后，SDK 会按照设定的参数返回混音前的原始音频数据，便于开发者进行自定义处理或分析。</li>
+                            <li>新增 <codeph><xref keyref="preloadEffectEx"/></codeph> 方法，用于将指定音效文件预加载到指定频道，支持本地或在线音效文件，便于后续快速播放，适合多频道场景。</li>
+                            <li>新增 <codeph><xref keyref="playEffectEx"/></codeph> 方法，用于在指定频道播放音效文件，支持设置循环次数、音调、空间位置、音量、是否发布到频道及播放起始位置等参数，满足丰富的音效播放需求。</li>
+                            <li>本地截图上传功能支持通过 <codeph><xref keyref="ContentInspectModule"/></codeph> 中新增的 <codeph>position</codeph> 成员设置截图的视频观测位置，从而实现对原始视频数据或效果处理前后的视频流进行截图并上传。</li>
+                            <li>为了提升用户使用绿幕或蓝幕开启虚拟背景功能时，人像分割的准确性和稳定性，该版本在 <codeph><xref keyref="SegmentationProperty"/></codeph> 中新增 <codeph>screenColorType</codeph>  属性，支持指定背景幕布的颜色为绿色、蓝色或自动识别。</li>
+                        </ul>
                     </li>
                 </ol>
             </body>
@@ -26,9 +120,22 @@
             <title>Improvements</title>
             <body>
                 <ol>
-                    <li><ph><b>URL live streaming playback</b></ph><p>This version further expands the functionality of URL streaming playback, supporting playback of CDN URLs and local media resource files. It also allows for starting playback from a specified position, adjusting playback speed, setting playback volume, switching playback sources during playback, and more. See <xref keyref="rte-player"/> for details.</p>
+                    <li><ph><b>美颜重构</b></ph>
+<p>该版本对美颜功能进行了彻底重构和升级，不进拓展了美颜功能，提升了美颜效果和性能，还解决了美颜参数配置复杂、集成成本高、美颜资源依赖网络易失效等痛点。 主要改进包括：<ul>
+                                <li><b>新增美颜功能</b>：新增白牙、去法令纹、去黑眼圈、亮眼等美肤功能；美妆特效新增卧蚕和面部高光；美型功能从 11 个增加到 29 个。</li>
+                                <li><b>API 大幅简化</b>：将过去版本中的基础美颜、美型、美妆、滤镜功能整合为 <codeph><ph keyref="BEAUTY"/></codeph>、<codeph><ph keyref="STYLE_MAKEUP"/></codeph>、<codeph><ph keyref="FILTER"/></codeph> 三个核心节点 (node)，通过 <codeph><xref keyref="VideoEffectObject"/></codeph> 统一管理生命周期和参数设置，减少频繁 API 调用带来的性能负担。</li>
+                                <li><b>预设模板开箱即用</b>：提供多套预设风格模板（如“自然美颜”、“学姐妆”、“冷白滤镜”），大幅简化集成流程，无需手动调试数十项参数。</li>
+                                <li><b>美颜参数动态控制</b>：该版本新增实时获取美颜参数的能力，开发者可通过 key-value 方式动态读取或修改任意细粒度参数（如磨皮强度、口红类型）。 同时支持：调用预设模板快速启用风格效果、保存主播自定义参数配置、随时重置参数至默认状态，极大提升了业务层状态同步的灵活性和开发效率。</li>
+                                <li><b>美颜资源外置</b>：该版本通过美颜资源外置化设计，将所有美颜资源（特效、滤镜、妆容）均打包为本地 bundle 文件，彻底消除因网络下载失败导致美颜失效的风险。</li>
+                            </ul>
+                        </p>
                     </li>
-                    <li props="android"><ph><b>Accessible media player information properties </b></ph><p>Starting from this version, the access modifiers for all attributes in media player-related information <xref keyref="PlayerUpdatedInfo"/> have been changed from private to public. This improvement aims to enhance the accessibility of these classes, allowing external code to access and modify these attributes more easily.</p>
+                    <li><ph><b>Other Improvements</b></ph><ul>
+                            <li props="cpp flutter unity cs electron unreal bp">优化了在 Windows 11 24H2 及后续版本上的权限请求，避免非必要地获取位置信息。 (Windows)</li>
+                            <li>在与 Web 端互通时，新增对 g711 和 g722 音频编解码器的支持，进一步提升了跨平台音频播放的兼容性和清晰度。</li>
+                            <li props="android">优化了插件加载的方式，用 C++ 开发 Android App 支持自动加载 SDK 的动态库插件。</li>
+                            <li>优化了屏幕共享文档场景下的共享视频清晰度。</li>
+                        </ul>
                     </li>
                 </ol>
             </body>
@@ -38,30 +145,15 @@
             <body>
                 <p>This release fixed the following issues:</p>
                 <ul>
-                    <li>When playing a multi-track media file, noise can be heard after calling the <codeph><xref keyref="setAudioPitch"/></codeph> method to adjust the audio pitch.</li>
-                    <li>The host called the <codeph><xref keyref="createCustomAudioTrack"/></codeph> method to create custom audio track and set <codeph>trackType</codeph> to <codeph>AUDIO_TRACK_DIRECT</codeph>, called the <codeph><xref keyref="pushAudioFrame2" props="android apple"/></codeph><codeph><xref keyref="pushAudioFrame" props="cpp flutter"/></codeph> to push custom audio frames into a channel and then called <codeph><xref keyref="playEffect3"/></codeph> to play audio effects, audience members in the channel would hear noise.</li>
-                    <li>Apps integrated with the SDK occasionally encountered UI lag caused by main thread blocking during audio and video interactions.</li>
-                    <li props="android flutter">When playing an MP4 file with EAC3 audio encoding by calling the <codeph><xref keyref="startAudioMixing2"/></codeph> method, sometimes there was no sound. (Android)</li>
-                    <li props="cpp flutter">The local preview of the shared screen flickered after calling the <codeph><xref keyref="startScreenCapture2"/></codeph> to start screen sharing and set <codeph>enableHighLight</codeph> in <codeph><xref keyref="ScreenCaptureParameters"/></codeph> to <codeph><ph keyref="true"/></codeph> through the <codeph>config</codeph> parameter to outline the shared window, and then placed the window on the top layer and maximizing it. (Windows)</li>
-                    <li props="cpp flutter">Calling <codeph><xref keyref="startScreenCaptureByDisplayId"/></codeph> to share the video stream of specified screen and specifying the windows to be blocked through <codeph>excludeWindowList</codeph> in <codeph><xref keyref="ScreenCaptureParameters"/></codeph>, occasionally some windows fail to be blocked. (Windows)</li>
-                    <li props="cpp flutter">The application occasionally crashed after sharing the video stream of the external screen and disconnecting the external screen connection. (Windows)</li>
-                    <li props="android flutter">Memory leaks occurred after leaving the channel and stopping video rendering. (Android)</li>
-                    <li props="android flutter">After calling <codeph><xref keyref="setCameraFocusPositionInPreview"/></codeph> to set the focus position manually, the focus position was inaccurate when the camera captured a zoomed-in image. (Android)</li>
-                    <li props="android flutter">When calling <codeph><xref keyref="setExternalMediaProjection"/></codeph> to configure an external MediaProjection instance (outside the SDK) for screen video stream capture, the transmitted video stream resolution (width/height) did not dynamically adjusted when the screen orientation changed between landscape and portrait modes. (Android)</li>
-                    <li>Calling <codeph><xref keyref="openWithMediaSource"/></codeph> and set <codeph>isLiveSource</codeph> in the <codeph>source</codeph> parameter to <codeph><ph keyref="true"/></codeph> to play a video stream, the playback failed.</li>
-                    <li props="ios flutter">Calling <codeph><xref keyref="enableVirtualBackground"/></codeph> to enable virtual background function, the virtual background image became larger and blurry when the phone was rotated. (iOS)</li>
-                    <li props="android flutter">When attempting to open a non-existent local media file with the media player, the <codeph><xref keyref="onPlayerSourceStateChanged"/></codeph> callback did not report <codeph>PLAYER_STATE_FAILED</codeph> as expected. (Android)</li>
-                    <li>When the sender transmits multi-channel encoded audio, the receiver occasionally experienced noise.</li>
-                    <li>In scenarios where the App integrates a media player, when the open function is called twice to open different media resources consecutively, the second call to open unexpectedly resulted in the <codeph><xref keyref="onPlayerInfoUpdated"/></codeph> callback returning information for the first media resource.</li>
-                    <li>After calling <codeph><xref keyref="enableAudioVolumeIndication"/></codeph> to enable user volume indication, the <codeph><xref keyref="onAudioVolumeIndication"/></codeph> callback returned a local user volume of 0 for both local streaming users and remote users.</li>
-                    <li props="android flutter">During audio and video communication, the App occasionally froze. (Android)</li>
-                    <li props="android flutter">The operation failed when calling <codeph><xref keyref="setExtensionProperty"/></codeph> with the key set to "makeup_options" to achieve makeup effects. (Android)</li>
-                    <li props="android flutter">When the sending user conducted audio and video communication in dim lighting conditions, the preview image appeared darker on some device models. (Android)</li>
-                    <li props="cpp flutter">In scenarios of audio and video communication and screen sharing using a 21:9 display (ultrawide screen), setting a high resolution such as 3840x2160 resulted in the screen sharing image being cropped in both local preview and on the receiver's display. (Windows)</li>
-                    <li>When the App called <codeph><xref keyref="enableVideoImageSource"/></codeph> to enable the video image source feature, the sending side occasionally succeeded in streaming, but <codeph><xref keyref="onVideoPublishStateChanged"/></codeph> did not return the expected.</li>
-                    <li>In multi-channel scenarios, if the App called <codeph><xref keyref="setupRemoteVideoEx"/></codeph> to initialize the remote user's view before successfully calling <codeph><xref keyref="joinChannelEx"/></codeph>, the display of the first frame of the remote user's view occasionally experienced significant delay.</li>
-                    <li props="ios flutter">The App occasionally crashed upon exit. (iOS)</li>
-                    <li props="android flutter">After a failure to join a channel, calling <codeph><xref keyref="joinChannel"/></codeph> again without first calling <codeph><xref keyref="leaveChannel"/></codeph> to exit the channel occasionally led to a crash. (Android)</li>
+                    <li>调用 <codeph><xref keyref="open"/></codeph> 打开在线音效文件后，调用 <codeph><xref keyref="playEffect3"/></codeph> 开始播放，当调用 <codeph><xref keyref="seek"/></codeph> 指定播放位置后，音效文件会从头开始播放。</li>
+                    <li>在媒体音量模式下，主播在频道中发布麦克风采集的音频流，同时调用 <codeph><xref keyref="playEffect3"/></codeph> 播放音效文件、调用 <codeph><xref keyref="startAudioMixing2"/></codeph> 播放音乐文件，偶现回声。</li>
+                    <li props="ios android unity cs flutter rn bp">在 <codeph><xref keyref="setExternalVideoSource"/></codeph> 之后调用 <codeph><xref keyref="registerMediaMetadataObserver"/></codeph> 注册媒体 metadata 观测器，SDK 没有触发 metadata 观测器的回调。 (Android, iOS)</li>
+                    <li props="cpp">SDK 处理包含中文字符的文件路径时编码转换异常导致崩溃。 (Windows)</li>
+                    <li props="ios android unity cs flutter rn bp">偶现的崩溃问题。 (Android, iOS)</li>
+                    <li>调用 <codeph><xref keyref="joinChannelEx"/></codeph> 加入频道，然后调用 <codeph><xref keyref="startOrUpdateChannelMediaRelay"/></codeph> 开始跨频道媒体流转发，下麦、退出频道后重新加入频道开始连麦，偶现 <codeph><xref keyref="ChannelMediaRelayStateChanged"/></codeph> 回调报告 <codeph>state</codeph> 为 <codeph><ph keyref="RELAY_STATE_FAILURE"/></codeph>，<codeph>code</codeph> 为 <codeph><ph keyref="RELAY_ERROR_SERVER_ERROR_RESPONSE"/></codeph>。</li>
+                    <li props="android flutter unity cs rn bp">加入频道前调用 <codeph><xref keyref="setAudioScenario"/></codeph> 设置音频场景为 <codeph><ph keyref="AUDIO_SCENARIO_CHATROOM"/></codeph>，加入频道后使用蓝牙耳机或有线耳机进行音视频互通，偶现听到杂音。 (Android)</li>
+                    <li props="cpp flutter unity cs unreal electron bp">部分机型的笔记本电脑开启节能模式下，发送端共享屏幕和音频，偶现接收端听到回声。 (Windows)</li>
+                    <li props="cpp flutter unity cs unreal electron bp">在线教育场景下，偶现教师端本地看多个学生端音画不同步。 (Windows)</li>
                 </ul>
             </body>
         </topic>
