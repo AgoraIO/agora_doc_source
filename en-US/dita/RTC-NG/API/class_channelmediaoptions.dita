@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_channelmediaoptions">
     <title> <ph keyref="ChannelMediaOptions"/> </title>
@@ -1447,7 +1447,7 @@ public:
     }</codeblock>
                 <codeblock props="reserve" outputclass="language-cpp"/></p>
             </section>
-        <section id="detailed_desc">Agora supports publishing multiple audio streams and one video stream at the same time and in the same <xref keyref="RtcConnection"/>. For example, <parmname>publishMicrophoneTrack</parmname>, <parmname>publishCustomAudioTrack</parmname>, and <parmname>publishMediaPlayerAudioTrack</parmname> can be set as <codeph><ph keyref="true"/></codeph> at the same time, but only one of <parmname>publishCameraTrack</parmname>, <ph props="android ios cpp unreal bp flutter unity rn"><parmname>publishScreenCaptureVideo</parmname>, </ph><ph props="mac cpp unreal bp flutter unity electron"><parmname>publishScreenTrack</parmname>, </ph><parmname>publishCustomVideoTrack</parmname>, or <parmname>publishEncodedVideoTrack</parmname> can be set as <codeph><ph keyref="true"/></codeph>.<note type="attention" id="note">Agora recommends that you set member parameter values yourself according to your business scenario, otherwise the SDK will automatically assign values to member parameters.</note>
+        <section id="detailed_desc">Agora supports publishing multiple audio streams and one video stream at the same time and in the same <xref keyref="RtcConnection"/>. For example, <parmname>publishMicrophoneTrack</parmname>, <parmname>publishCustomAudioTrack</parmname>, and <parmname>publishMediaPlayerAudioTrack</parmname> can be set as <codeph><ph keyref="true"/></codeph> at the same time, but only one of <parmname>publishCameraTrack</parmname>, <ph props="android bp cpp flutter ios rn unity unreal"><parmname>publishScreenCaptureVideo</parmname>, </ph><ph props="bp cpp electron flutter mac unity unreal"><parmname>publishScreenTrack</parmname>, </ph><parmname>publishCustomVideoTrack</parmname>, or <parmname>publishEncodedVideoTrack</parmname> can be set as <codeph><ph keyref="true"/></codeph>.<note type="attention" id="note">Agora recommends that you set member parameter values yourself according to your business scenario, otherwise the SDK will automatically assign values to member parameters.</note>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
@@ -1459,7 +1459,7 @@ public:
                     <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured by the camera.</li>
                     </ul></pd>
             </plentry>
-            <plentry props="ios mac cpp unreal bp unity cs flutter rn electron">
+            <plentry props="apple bp cpp cs electron flutter rn unity unreal">
                 <pt>publishSecondaryCameraTrack</pt>
                 <pd>Whether to publish the video captured by the second camera:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the video captured by the second camera.</li>
@@ -1474,60 +1474,60 @@ public:
                 </ul></pd>
                 <pd>
                     <note type="note">
-                    <ul><li props="native unity rn electron">As of v4.0.0, the parameter name is changed from <parmname>publishAudioTrack</parmname> to <parmname>publishMicrophoneTrack</parmname>.</li>
+                    <ul><li props="electron native rn unity">As of v4.0.0, the parameter name is changed from <parmname>publishAudioTrack</parmname> to <parmname>publishMicrophoneTrack</parmname>.</li>
                     <li props="flutter">As of v6.0.0, the parameter name is changed from <parmname>publishAudioTrack</parmname> to <parmname>publishMicrophoneTrack</parmname>.</li>
                     <li>If you set this parameter as <codeph><ph keyref="false"/></codeph>, SDK turns off microphone capturing.</li>
                         <li>If you want to publish the audio streams captured by your microphone, ensure <parmname>enableAudioRecordingOrPlayout</parmname> is set as <codeph><ph keyref="true"/></codeph>.</li>
                     </ul></note>
                 </pd>
             </plentry>
-            <plentry props="android cpp mac framework">
+            <plentry props="android cpp framework mac">
                 <pt>publishThirdCameraTrack</pt>
                 <pd>Whether to publish the video captured by the third camera:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the video captured by the third camera.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured by the third camera.</li>
                     </ul>
-                    <note type="attention" props="cpp unreal bp unity flutter">This parameter is for Android, Windows and macOS only.</note><note type="attention" props="rn">This parameter is for Android only.</note></pd>
+                    <note type="attention" props="bp cpp flutter unity unreal">This parameter is for Android, Windows and macOS only.</note><note type="attention" props="rn">This parameter is for Android only.</note></pd>
             </plentry>
-            <plentry props="android cpp mac framework">
+            <plentry props="android cpp framework mac">
                 <pt>publishFourthCameraTrack</pt>
                 <pd>Whether to publish the video captured by the fourth camera:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the video captured by the fourth camera.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured by the fourth camera.</li>
                     </ul>
-                    <note type="attention" props="cpp unreal bp unity flutter">This parameter is for Android, Windows and macOS only.</note><note type="attention" props="rn">This parameter is for Android only.</note></pd>
+                    <note type="attention" props="bp cpp flutter unity unreal">This parameter is for Android, Windows and macOS only.</note><note type="attention" props="rn">This parameter is for Android only.</note></pd>
             </plentry>
-            <plentry props="mac cpp flutter unreal bp unity cs electron">
+            <plentry props="bp cpp cs electron flutter mac unity unreal">
                 <pt>publishScreenTrack</pt>
                 <pd>
                     <p>Whether to publish the video captured from the screen:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the video captured from the screen.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured from the screen.</li>
                     </ul></p>
-                    <note type="attention" props="cpp unreal bp unity flutter">This is for Windows and macOS only.</note>
+                    <note type="attention" props="bp cpp flutter unity unreal">This is for Windows and macOS only.</note>
                 </pd>
             </plentry>
-            <plentry props="android hmos ios cpp flutter unreal bp unity rn">
+            <plentry props="android bp cpp flutter hmos ios rn unity unreal">
                 <pt>publishScreenCaptureVideo</pt>
                 <pd>
                     <p>Whether to publish the video captured from the screen:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the video captured from the screen.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured from the screen.</li>
                     </ul></p>
-                    <note type="attention" props="cpp unreal bp unity flutter">This parameter is for Android and iOS only.</note>
+                    <note type="attention" props="bp cpp flutter unity unreal">This parameter is for Android and iOS only.</note>
                     <note type="note" props="android ios">As of v4.0.0, the parameter name is changed from <parmname>publishScreenTrack</parmname> to <parmname>publishScreenCaptureVideo</parmname>.</note> </pd>
             </plentry>
-            <plentry props="android hmos ios cpp flutter unreal bp unity rn">
+            <plentry props="bp flutter hmos native rn unity unreal">
                 <pt>publishScreenCaptureAudio</pt>
                 <pd>
                     <p>Whether to publish the audio captured from the screen:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the audio captured from the screen.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Publish the audio captured from the screen.</li>
                     </ul></p>
-                    <note type="attention" props="cpp unreal bp unity flutter">This parameter is for Android and iOS only.</note>
+                    <note type="attention" props="bp cpp flutter unity unreal">This parameter is for Android and iOS only.</note>
                 </pd>
             </plentry>
-            <plentry props="mac cpp unreal bp unity cs flutter rn electron">
+            <plentry props="bp cpp cs electron flutter mac rn unity unreal">
                 <pt>publishSecondaryScreenTrack</pt>
                 <pd>Whether to publish the video captured from the second screen:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the video captured from the second screen.</li>
@@ -1535,27 +1535,27 @@ public:
                     </ul>
                 </pd>
             </plentry>
-             <plentry props="mac cpp unreal bp unity cs flutter electron">
+            <plentry props="bp cpp cs electron flutter mac unity unreal">
                 <pt>publishThirdScreenTrack</pt>
                 <pd>Whether to publish the video captured from the third screen:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the captured video from the third screen.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured from the third screen.</li>
                     </ul>
                     <p>
-                    <note type="attention" props="cpp unreal bp unity cs flutter">This is for Windows and macOS only.</note></p>
+                    <note type="attention" props="bp cpp cs flutter unity unreal">This is for Windows and macOS only.</note></p>
                 </pd>
             </plentry>
-            <plentry props="mac cpp unreal bp unity cs flutter electron">
+            <plentry props="bp cpp cs electron flutter mac unity unreal">
                 <pt>publishFourthScreenTrack</pt>
                 <pd>Whether to publish the video captured from the fourth screen:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the captured video from the fourth screen.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured from the fourth screen.</li>
                     </ul>
                     <p>
-                    <note type="attention" props="cpp unreal bp unity cs flutter">This is for Windows and macOS only.</note></p>
+                    <note type="attention" props="bp cpp cs flutter unity unreal">This is for Windows and macOS only.</note></p>
                 </pd>
             </plentry>
-            <plentry props="cpp unreal bp unity cs flutter rn electron">
+            <plentry props="bp cpp cs electron flutter rn unity unreal">
                 <pt>publishTranscodedVideoTrack</pt>
                 <pd>Whether to publish the local transcoded video:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the local transcoded video.</li>
@@ -1564,34 +1564,34 @@ public:
                     <note type="note" props="native">As of v4.2.0, the parameter name is corrected from <parmname>publishTrancodedVideoTrack</parmname> to <parmname>publishTranscodedVideoTrack</parmname>.</note>
                 </pd>
             </plentry>
-             <plentry>
-                 <pt>publishMixedAudioTrack</pt>
-                 <pd>Whether to publish the mixed audio track:<ul>
+            <plentry>
+                <pt>publishMixedAudioTrack</pt>
+                <pd>Whether to publish the mixed audio track:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the mixed audio track.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Do not publish the mixed audio track.</li>
                     </ul>
                  </pd>
-             </plentry>
-             <plentry props="en">
-                 <pt>publishLipSyncTrack</pt>
-                 <pd>Whether to publish the video track processed by the speech driven extension:<ul>
+            </plentry>
+            <plentry props="en">
+                <pt>publishLipSyncTrack</pt>
+                <pd>Whether to publish the video track processed by the speech driven extension:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the video track processed by the speech driven extension.</li>
                     <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the video track processed by the speech driven extension.</li>
                     </ul>
                  </pd>
-             </plentry>
-            <plentry props="native unreal flutter unity cs electron rn">
+            </plentry>
+            <plentry props="cs electron flutter native rn unity unreal">
                 <pt>publishCustomAudioTrack</pt>
                 <pd>Whether to publish the audio captured from a custom source:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the audio captured from the custom source.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Do not publish the captured audio from a custom source.</li>
                     </ul></pd>
             </plentry>
-            <plentry props="native unreal flutter unity cs electron rn">
+            <plentry props="cs electron flutter native rn unity unreal">
                 <pt>publishCustomAudioTrackId</pt>
                 <pd>The ID of the custom audio track to be published. The default value is 0. You can obtain the custom audio track ID through the <xref keyref="createCustomAudioTrack"/> method.</pd>
             </plentry>
-            <plentry props="native unreal flutter unity cs electron rn">
+            <plentry props="cs electron flutter native rn unity unreal">
                 <pt>publishCustomVideoTrack</pt>
                 <pd>Whether to publish the video captured from a custom source:<ul>
                         <li><codeph><ph keyref="true"/></codeph>: Publish the video captured from the custom source.</li>
@@ -1646,11 +1646,11 @@ public:
                 <pt>publishMediaPlayerId</pt>
                 <pd>The ID of the media player to be published. The default value is 0.</pd>
             </plentry>
-            <plentry props="native unreal bp unity cs">
+            <plentry props="bp cs native unity unreal">
                 <pt>clientRoleType</pt>
                 <pd conkeyref="setClientRole1/clientrole"/>
             </plentry>
-            <plentry props="rn electron flutter">
+            <plentry props="electron flutter rn">
                 <pt>clientRoleType</pt>
                 <pd>The user role. See <xref keyref="CLIENT_ROLE_TYPE"/>.</pd>
             </plentry>
@@ -1716,7 +1716,7 @@ public:
                     <li>This parameter takes effect only when the user role is <apiname keyref="CLIENT_ROLE_AUDIENCE"/>.</li>
                     </ul> </note> </pd>
             </plentry>
-            <plentry id="customvideotrackid" props="native unreal flutter unity cs electron rn">
+            <plentry id="customvideotrackid" props="cs electron flutter native rn unity unreal">
                 <pt>customVideoTrackId</pt>
                 <pd>The video track ID returned by calling the <xref keyref="createCustomVideoTrack"/> method. The default value is 0.</pd>
             </plentry>
@@ -1727,6 +1727,44 @@ public:
                     <li><codeph><ph keyref="false"/></codeph>: The audio stream is not filtered.</li>
                     </ul>
                     <note type="attention">If you need to enable this function, contact <xref keyref="mailto-link"/>.</note></pd>
+            </plentry>
+            <plentry props="native">
+                <pt props="native">enableMultipath</pt>
+                <pd props="native">Whether to enable multiple transmisssion paths:<ul>
+                        <li><codeph><ph keyref="true"/></codeph>: Enable multiple transmisssion path.</li>
+                        <li><codeph><ph keyref="false"/></codeph>: Dsiable multiple transmisssion path.</li>
+                        </ul>
+                    <note type="attention">
+                        <p>Permissions and system requirements: <ph props="android cpp">Android: Android 7.0 or higher (API level 24 or higher), and the ACCESS_NETWORK_STATE and CHANGE_NETWORK_STATE permissions are required. </ph><ph props="ios cpp">iOS: iOS 12.0 or later. </ph><ph props="macos cpp">macOS: 10.14 or later. </ph><ph props="cpp">Windows: Windows Vista or higher.</ph></p>
+                    </note>
+                    </pd>
+            </plentry>
+            <plentry props="native">
+                <pt props="native">uplinkMultipathMode</pt>
+                <pd props="native">Uplink transmission mode. See <xref keyref="MultipathMode"/>.<note type="attention">
+                    <ul>
+                        <li>Available since v4.6.0.</li>
+                        <li>When using this parameter, make sure that <codeph>enableMultipath</codeph> is set to <codeph><ph keyref="true"/></codeph>.</li>
+                    </ul>
+                </note></pd>
+            </plentry>
+            <plentry props="native">
+                <pt props="native">downlinkMultipathMode</pt>
+                <pd props="native">Downlink transmission mode. See <xref keyref="MultipathMode"/>.<note type="attention">
+                        <ul>
+                            <li>Available since v4.6.0.</li>
+                            <li>When using this parameter, make sure that <codeph>enableMultipath</codeph> is set to <codeph><ph keyref="true"/></codeph>.</li>
+                        </ul>
+                    </note></pd>
+            </plentry>
+            <plentry props="native">
+                <pt props="native">preferMultipathType</pt>
+                <pd props="native">Preferred type of transmission path. See <xref keyref="MultipathType"/>.<note type="attention">
+                        <ul>
+                            <li>Available since v4.6.0.</li>
+                            <li>When using this parameter, make sure that <codeph>enableMultipath</codeph> is set to <codeph><ph keyref="true"/></codeph>.</li>
+                        </ul>
+                    </note></pd>
             </plentry>
             </parml> </section>
     </refbody>

@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_switchagoracdnlinebyindex">
-    <title><ph keyref="switchAgoraCDNLineByIndex" /></title>
+    <title><ph keyref="switchAgoraCDNLineByIndex"/></title>
     <shortdesc id="short"><ph id="shortdesc">Changes the CDN route for playing the media resource.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="switchAgoraCDNLineByIndex" />
+                <indexterm keyref="switchAgoraCDNLineByIndex"/>
             </keywords>
         </metadata>
     </prolog>
@@ -28,10 +28,17 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>After calling <xref keyref="openWithAgoraCDNSrc" /> to open the media resource, you can call this method if you want to change the CDN routes for playing the media resource.<note type="note">
+            <dl outputclass="deprecated" props="native">
+                <dlentry outputclass="deprecated">
+                    <dt>Deprecated:</dt>
+                    <dd props="cpp">Deprecated as of v4.6.0.</dd>
+                    <dd props="android apple">Deprecated as of v4.6.0.</dd>
+                </dlentry>
+                </dl>
+            <p>After calling <xref keyref="openWithAgoraCDNSrc"/> to open the media resource, you can call this method if you want to change the CDN routes for playing the media resource.<note type="note">
             <ul>
-            <li>Call this method after calling <xref keyref="openWithAgoraCDNSrc" />.</li>
-            <li>You can call this method either before or after <xref keyref="play" />. If you call this method before <apiname keyref="play" />, the switch does not take effect immediately. The SDK waits for the playback to complete before switching the CDN line of the media resource.</li>
+            <li>Call this method after calling <xref keyref="openWithAgoraCDNSrc"/>.</li>
+            <li>You can call this method either before or after <xref keyref="play"/>. If you call this method before <apiname keyref="play"/>, the switch does not take effect immediately. The SDK waits for the playback to complete before switching the CDN line of the media resource.</li>
             </ul> </note></p>
         </section>
         <section id="parameters">
@@ -45,7 +52,7 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-            <ul props="native unreal bp electron unity rn cs">
+            <ul props="bp cs electron native rn unity unreal">
             <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>

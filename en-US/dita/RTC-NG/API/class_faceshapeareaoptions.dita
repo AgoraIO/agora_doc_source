@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_faceshapeareaoptions">
+    <title> <ph keyref="FaceShapeAreaOptions" /> </title>
+    <shortdesc id="short"><ph id="shortdesc">Filter effect options.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class FaceShapeAreaOptions {
+  public static final int FACE_SHAPE_AREA_NONE = -1;
+  public static final int FACE_SHAPE_AREA_HEADSCALE = 100;
+  public static final int FACE_SHAPE_AREA_FOREHEAD = 101;
+  public static final int FACE_SHAPE_AREA_FACECONTOUR = 102;
+  public static final int FACE_SHAPE_AREA_FACELENGTH = 103;
+  public static final int FACE_SHAPE_AREA_FACEWIDTH = 104;
+  public static final int FACE_SHAPE_AREA_CHEEKBONE = 105;
+  public static final int FACE_SHAPE_AREA_CHEEK = 106;
+  public static final int FACE_SHAPE_AREA_CHIN = 108;
+  public static final int FACE_SHAPE_AREA_EYESCALE = 200;
+  public static final int FACE_SHAPE_AREA_EYEDISTANCE = 201;
+  public static final int FACE_SHAPE_AREA_EYEPOSITION = 202;
+  public static final int FACE_SHAPE_AREA_LOWEREYELID = 203;
+  public static final int FACE_SHAPE_AREA_EYEPUPILS = 204;
+  public static final int FACE_SHAPE_AREA_EYEINNERCORNER = 205;
+  public static final int FACE_SHAPE_AREA_EYEOUTERCORNER = 206;
+  public static final int FACE_SHAPE_AREA_NOSELENGTH = 300;
+  public static final int FACE_SHAPE_AREA_NOSEWIDTH = 301;
+  public static final int FACE_SHAPE_AREA_NOSEWING = 302;
+  public static final int FACE_SHAPE_AREA_NOSEROOT = 303;
+  public static final int FACE_SHAPE_AREA_NOSEBRIDGE = 304;
+  public static final int FACE_SHAPE_AREA_NOSETIP = 305;
+  public static final int FACE_SHAPE_AREA_NOSEGENERAL = 306;
+  public static final int FACE_SHAPE_AREA_MOUTHSCALE = 400;
+  public static final int FACE_SHAPE_AREA_MOUTHPOSITION = 401;
+  public static final int FACE_SHAPE_AREA_MOUTHSMILE = 402;
+  public static final int FACE_SHAPE_AREA_MOUTHLIP = 403;
+  public static final int FACE_SHAPE_AREA_EYEBROWPOSITION = 500;
+  public static final int FACE_SHAPE_AREA_EYEBROWTHICKNESS = 501;
+
+  public int shapeArea;
+  public int shapeIntensity;
+
+}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraFaceShapeAreaOptions : NSObject
+@property(nonatomic, assign) AgoraFaceShapeArea shapeArea;
+@property(nonatomic, assign) int shapeIntensity;
+@end</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct FaceShapeAreaOptions {
+  enum FACE_SHAPE_AREA {
+    FACE_SHAPE_AREA_NONE = -1,
+    FACE_SHAPE_AREA_HEADSCALE = 100,
+    FACE_SHAPE_AREA_FOREHEAD = 101,
+    FACE_SHAPE_AREA_FACECONTOUR = 102,
+    FACE_SHAPE_AREA_FACELENGTH = 103,
+    FACE_SHAPE_AREA_FACEWIDTH = 104,
+    FACE_SHAPE_AREA_CHEEKBONE = 105,
+    FACE_SHAPE_AREA_CHEEK = 106,
+    FACE_SHAPE_AREA_CHIN = 108,
+    FACE_SHAPE_AREA_MANDIBLE = 107,
+    FACE_SHAPE_AREA_EYESCALE = 200,
+    FACE_SHAPE_AREA_EYEDISTANCE = 201,
+    FACE_SHAPE_AREA_EYEPOSITION = 202,
+    FACE_SHAPE_AREA_LOWEREYELID = 203,
+    FACE_SHAPE_AREA_EYEPUPILS = 204,
+    FACE_SHAPE_AREA_EYEINNERCORNER = 205,
+    FACE_SHAPE_AREA_EYEOUTERCORNER = 206,
+    FACE_SHAPE_AREA_NOSELENGTH = 300,
+    FACE_SHAPE_AREA_NOSEWIDTH = 301,
+    FACE_SHAPE_AREA_NOSEWING = 302,
+    FACE_SHAPE_AREA_NOSEROOT = 303,
+    FACE_SHAPE_AREA_NOSEBRIDGE = 304,
+    FACE_SHAPE_AREA_NOSETIP = 305,
+    FACE_SHAPE_AREA_NOSEGENERAL = 306,
+    FACE_SHAPE_AREA_MOUTHSCALE = 400,
+    FACE_SHAPE_AREA_MOUTHPOSITION = 401,
+    FACE_SHAPE_AREA_MOUTHSMILE = 402,
+    FACE_SHAPE_AREA_MOUTHLIP = 403,
+    FACE_SHAPE_AREA_EYEBROWPOSITION = 500,
+    FACE_SHAPE_AREA_EYEBROWTHICKNESS = 501,
+  };
+
+  FACE_SHAPE_AREA shapeArea;
+  int shapeIntensity;
+
+  FaceShapeAreaOptions(FACE_SHAPE_AREA shapeArea, int areaIntensity) : shapeArea(shapeArea), shapeIntensity(areaIntensity) {}
+
+  FaceShapeAreaOptions() : shapeArea(FACE_SHAPE_AREA_NONE), shapeIntensity(0) {}
+};
+</codeblock>
+            <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FUABT_FaceShapeAreaOptions {
+
+	GENERATED_BODY()
+
+public:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	EUABT_FACE_SHAPE_AREA shapeArea = EUABT_FACE_SHAPE_AREA::FACE_SHAPE_AREA_NONE;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	int shapeIntensity = 0;
+
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export class FaceShapeAreaOptions {
+  shapeArea?: FaceShapeArea;
+  shapeIntensity?: number;
+}</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp"></codeblock>
+            <codeblock props="rn" outputclass="language-cpp">export class FaceShapeAreaOptions {
+  shapeArea?: FaceShapeArea;
+  shapeIntensity?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart"></codeblock>
+            </p>
+        </section>
+        <section id="parameters">
+            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" />
+            </title>
+            <parml>
+            <plentry>
+                <pt>shapeArea</pt>
+                <pd>
+                    <p props="cpp ios mac unreal bp unity flutter electron rn cs">Facial enhancement areas: <xref keyref="FACE_SHAPE_AREA" /></p>
+                    <p props="android hmos">Facial enhancement areas.<ul>
+                            <li><ph keyref="FACE_SHAPE_AREA_NONE" />(-1): (Default) Invalid area, no beauty effect applied.</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_HEADSCALE" />(100): Head, used to achieve a smaller head effect. The adjustment range is [0,100]; the larger the value, the smaller the head becomes, with a preset value of 100.</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_FOREHEAD" />(101): Forehead, used to adjust the hairline height. The adjustment strength ranges from [-100,100], with positive values raising and negative values lowering the hairline. The greater the absolute value, the stronger the effect. The default value is 50.</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_FACECONTOUR" />(102): Face contour, used to achieve a slimmer face effect. The adjustment range is [0,100]; the larger the value, the stronger the slimming effect, with a preset value of 10.</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_FACELENGTH" />(103): Face length, used to achieve a longer face effect. The adjustment range is [-100,100]; positive values elongate the face, while negative values shorten it. The larger the value, the stronger the enhancement effect, with a preset value of 0.</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_FACEWIDTH" />(104): Face width, used to achieve a narrower face effect. The adjustment range is [0,100]; the larger the value, the stronger the narrowing effect, with a preset value of 10.</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_CHEEKBONE" />(105): Cheekbone, used to adjust cheekbone width. The adjustment range is [0,100]; the larger the value, the narrower the cheekbones, with a preset set value of 43.</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_CHEEK" />(106): Cheeks, used to adjust the cheeks width. The adjustment range is [0,100]; the larger the value, the narrower the cheeks, with a preset value of 50.</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_CHIN" />(108): Chin, used to adjust the chin length. The adjustment range is [-100,100]; positive values elongate the chin, while negative values shorten it. The larger the value, the stronger the enhancement effect, with a preset value of -20.</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_EYESCALE" />(200):Eyes, used to achieve a larger eye effect. The adjustment range is [0,100]; the larger the value, the larger the eye size, with a preset value of 50.</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_EYEDISTANCE" />(201): Eye distance adjustment. The range is [-100, 100], with a default value of 0. The greater the absolute value, the more noticeable the adjustment. Negative values indicate the opposite direction.</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_EYEPOSITION" />(202): Eye position adjustment. The range is [-100, 100], with a default value of 0. The greater the absolute value, the more noticeable the adjustment. Negative values indicate the opposite direction.</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_LOWEREYELID" />(203): Lower eyelid adjustment. The range is [0, 100], with a default value of 0. The larger the value, the more noticeable the adjustment.</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_EYEPUPILS" />(204): Pupil size adjustment. The range is [0, 100], with a default value of 0. The larger the value, the more noticeable the adjustment.</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_EYEINNERCORNER" />(205): Inner eye corner adjustment. The range is [0, 100], with a default value of 0. The larger the value, the more noticeable the adjustment.</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_EYEOUTERCORNER" />(206): Outer eye corner adjustment. The range is [0, 100], with a default value of 0. The larger the value, the more noticeable the adjustment.</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_NOSELENGTH" />(300): Nose length, used to achieve a longer nose effect. The adjustment range is [-100,100]; positive values elongate the nose, while negative values shorten it. The larger the value, the stronger the enhancement effect, with a preset value of -10.</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_NOSEWIDTH" />(301): Nose width, used to achieve a slimmer nose effect. The adjustment range is [-100,100]; positive values make the nose wider, while negative values make it narrower. The larger the value, the stronger the enhancement effect, with a preset value of 72.</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_NOSEWING" />(302): Nose wing adjustment. The range is [0, 100], with a default value of 0. The larger the value, the more noticeable the adjustment.</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_NOSEROOT" />(303): Nose root adjustment. The range is [0, 100], with a default value of 0. The larger the value, the more noticeable the adjustment.</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_NOSEBRIDGE" />(304): Nose bridge adjustment. The range is [0, 100], with a default value of 0. The larger the value, the more noticeable the adjustment.</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_NOSETIP" />(305): Nose tip adjustment. The range is [0, 100], with a default value of 0. The larger the value, the more noticeable the adjustment.</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_NOSEGENERAL" />(306): Overall nose adjustment. The range is [0, 100], with a default value of 0. The larger the value, the more noticeable the adjustment.</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_MOUTHSCALE" />(400): Mouth, used to achieve a larger mouth effect. The adjustment strength ranges from [0,100], with larger values resulting in a larger mouth. The default value is 50.</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_MOUTHPOSITION" />(401): Mouth position adjustment. The range is [-100, 100], with a default value of 0. The greater the absolute value, the more noticeable the adjustment. Negative values indicate the opposite direction.</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_MOUTHSMILE" />(402): Mouth smile adjustment. The range is [0, 100], with a default value of 0. The larger the value, the more noticeable the adjustment.</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_MOUTHLIP" />(403): Lip shape adjustment. The range is [0, 100], with a default value of 0. The larger the value, the more noticeable the adjustment.</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_EYEBROWPOSITION" />(500): Eyebrow position adjustment. The range is [-100, 100], with a default value of 0. The greater the absolute value, the more noticeable the adjustment. Negative values indicate the opposite direction.</li>
+                            <li><ph keyref="FACE_SHAPE_AREA_EYEBROWTHICKNESS" />(501): Eyebrow thickness adjustment. The range is [0, 100], with a default value of 0. The larger the value, the more noticeable the adjustment.</li>
+                        </ul>
+                    </p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>shapeIntensity</pt>
+                <pd>The intensity of the enhancement. The definition of enhancement intensity varies according to the different face areas, such as its orientation, range, and preset value.<ph props="android hmos">For details, see descriptions in <parmname>shapeArea</parmname>. </ph><ph props="cpp ios mac unreal bp unity flutter electron rn cs">See <xref keyref="FACE_SHAPE_AREA" /></ph>.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

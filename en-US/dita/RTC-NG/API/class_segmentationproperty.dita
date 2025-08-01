@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_segmentationproperty">
     <title><ph keyref="SegmentationProperty" /></title>
@@ -110,16 +110,16 @@ public:
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
-            <p />
-        </section>
+            <p></p>
+            </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
                 <pt>modelType</pt>
-                <pd><ph>The type of algorithms to user for background processing. </ph><ph props="ios mac cpp unreal bp electron flutter unity rn cs">See <xref keyref="SEG_MODEL_TYPE" />.</ph><ul props="android hmos">
-                    <li><ph keyref="SEG_MODEL_AI" />(1): (Default) Use the algorithm suitable for all scenarios.</li>
-                    <li><ph keyref="SEG_MODEL_GREEN" />(2): Use the algorithm designed specifically for scenarios with a green screen background.</li>
+                <pd><ph>The type of algorithms to user for background processing. </ph><ph props="apple bp cpp cs electron flutter rn unity unreal">See <xref keyref="SEG_MODEL_TYPE"/>.</ph><ul props="android hmos">
+                    <li><ph keyref="SEG_MODEL_AI"/>(1): (Default) Use the algorithm suitable for all scenarios.</li>
+                    <li><ph keyref="SEG_MODEL_GREEN"/>(2): Use the algorithm designed specifically for scenarios with a green screen background.</li>
                     </ul></pd>
             </plentry>
             <plentry props="hide">
@@ -128,13 +128,24 @@ public:
                     <li>0: Disable bilateral filtering.</li>
                     <li>1: (Default) Enable bilateral filtering. This improves the virtual background effect in green screen background scenarios.</li>
                     </ul>
-                    <note type="note">This parameter only takes effect when <parmname>modelType</parmname> is set to <apiname keyref="SEG_MODEL_GREEN" />.</note></pd>
+                    <note type="note">This parameter only takes effect when <parmname>modelType</parmname> is set to <apiname keyref="SEG_MODEL_GREEN"/>.</note></pd>
             </plentry>
             <plentry>
                 <pt>greenCapacity</pt>
                 <pd>
                     <p>The accuracy range for recognizing background colors in the image. The value range is [0,1], and the default value is 0.5. The larger the value, the wider the range of identifiable shades of pure color. When the value of this parameter is too large, the edge of the portrait and the pure color in the portrait range are also detected. Agora recommends that you dynamically adjust the value of this parameter according to the actual effect.</p>
-                    <note type="note">This parameter only takes effect when <parmname>modelType</parmname> is set to <apiname keyref="SEG_MODEL_GREEN" />.</note> </pd>
+                    <note type="note">This parameter only takes effect when <parmname>modelType</parmname> is set to <apiname keyref="SEG_MODEL_GREEN"/>.</note> </pd>
+            </plentry>
+            <plentry props="native">
+                <pt props="native">screenColorType</pt>
+                <pd props="cpp">The screen color. See <xref keyref="SCREEN_COLOR_TYPE"/>.</pd>
+                <pd props="apple">The screen color. See <xref keyref="SCREEN_COLOR_TYPE"/>.</pd>
+                <pd props="android">The screen color:<ul>
+                    <li><ph keyref="SCREEN_COLOR_AUTO"/>(0):  The SDK automatically selects the screen color.</li>
+                    <li><ph keyref="SCREEN_COLOR_GREEN"/>(1): Green.</li>
+                    <li><ph keyref="SCREEN_COLOR_BLUE"/>(2): Blue.</li>
+                    </ul>
+                </pd>
             </plentry>
             </parml> </section>
     </refbody>

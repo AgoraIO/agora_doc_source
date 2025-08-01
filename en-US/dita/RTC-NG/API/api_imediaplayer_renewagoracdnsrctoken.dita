@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_renewagoracdnsrctoken">
-    <title><ph keyref="renewAgoraCDNSrcToken" /></title>
+    <title><ph keyref="renewAgoraCDNSrcToken"/></title>
     <shortdesc id="short"><ph id="shortdesc">Renew the authentication information for the URL of the media resource to be played.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="renewAgoraCDNSrcToken" />
+                <indexterm keyref="renewAgoraCDNSrcToken"/>
             </keywords>
         </metadata>
     </prolog>
@@ -28,10 +28,16 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>When the authentication information expires (exceeds the <parmname>ts</parmname> field), you can call the <xref keyref="openWithAgoraCDNSrc" /> method to reopen the media resource or the <xref keyref="switchAgoraCDNSrc" /> method to switch the media resource, and then pass in the authenticated URL (with the <parmname>ts</parmname> field updated) of the media resource.</p>
-            <p>If your authentication information expires when you call the <xref keyref="switchAgoraCDNLineByIndex" /> to switch the CDN route for playing the media resource, you need to call this method to pass in the updated authentication information to update the authentication information of the media resource URL. After updating the authentication information, you need to call <xref keyref="switchAgoraCDNLineByIndex" /> to complete the route switching.</p>
+            <dl outputclass="deprecated" props="native">
+                <dlentry outputclass="deprecated">
+                    <dt>Deprecated:</dt>
+                    <dd props="native">Deprecated as of v4.6.0.</dd>
+                </dlentry>
+                </dl>
+            <p>When the authentication information expires (exceeds the <parmname>ts</parmname> field), you can call the <xref keyref="openWithAgoraCDNSrc"/> method to reopen the media resource or the <xref keyref="switchAgoraCDNSrc"/> method to switch the media resource, and then pass in the authenticated URL (with the <parmname>ts</parmname> field updated) of the media resource.</p>
+            <p>If your authentication information expires when you call the <xref keyref="switchAgoraCDNLineByIndex"/> to switch the CDN route for playing the media resource, you need to call this method to pass in the updated authentication information to update the authentication information of the media resource URL. After updating the authentication information, you need to call <xref keyref="switchAgoraCDNLineByIndex"/> to complete the route switching.</p>
             <note type="attention">
-            <p>To avoid frequent expiration of authentication information, ensure that you set the <parmname>ts</parmname> field appropriately or <xref keyref="ticket-link" /> according to the scenario requirements.</p>
+            <p>To avoid frequent expiration of authentication information, ensure that you set the <parmname>ts</parmname> field appropriately or <xref keyref="ticket-link"/> according to the scenario requirements.</p>
             </note> </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -48,7 +54,7 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-            <ul props="native unreal bp electron unity rn cs">
+            <ul props="bp cs electron native rn unity unreal">
             <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
