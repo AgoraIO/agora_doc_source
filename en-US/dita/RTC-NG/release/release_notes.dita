@@ -50,9 +50,11 @@
                     <li><ph><b>Deletion of redundant APIs</b></ph>
                         <p>This version removes the following redundant APIs and parameters:</p>
                         <ul>
-                            <li><codeph><xref keyref="setLocalPublishFallbackOption"/></codeph></li>
-                            <li><codeph><ph keyref="onLocalPublishFallbackToAudioOnly"/></codeph></li>
-                            <li><codeph><ph keyref="onDownlinkNetworkInfoUpdated"/></codeph></li>
+                            <li><codeph><ph>setLocalPublishFallbackOption</ph></codeph></li>
+                            <li><codeph><ph props="cpp android">onLocalPublishFallbackToAudioOnly</ph><ph props="apple">didLocalPublishFallbackToAudioOnly</ph></codeph></li>
+                            <li><codeph><ph props="cpp android">onDownlinkNetworkInfoUpdated</ph><ph props="apple">downlinkNetworkInfoUpdate</ph></codeph></li>
+                            <li><codeph><ph>onWlAccStats</ph></codeph></li>
+                            <li><codeph><ph>enableWirelessAccelerate</ph></codeph></li>
                             <li props="apple"><codeph>receivedFrameRate</codeph> is removed from <codeph><xref keyref="RemoteVideoStats"/></codeph>.</li>
                         </ul>
                     </li>
@@ -112,7 +114,7 @@
                                         <li>Skin Enhancement: Includes professional skin optimizations like teeth whitening, nasolabial fold removal, dark circle reduction, and eye brightening.</li>
                                     </ul>
                                 </li>
-                                <li><b>Unified and Simple API</b>: Manage all beauty, makeup, and filter functions through three core nodes – <codeph><ph keyref="BEAUTY"/></codeph>, <codeph><ph keyref="STYLE_MAKEUP"/></codeph>, and <codeph><ph keyref="FILTER"/></codeph> – using <codeph><xref keyref="VideoEffectObject"/></codeph> for unified parameter setup and lifecycle control.</li>
+                                <li><b>Unified and Simple API</b>: Manage all beauty, makeup, and filter functions through three core nodes – <codeph><ph keyref="BEAUTY"/></codeph>, <codeph><ph keyref="STYLE_MAKEUP"/></codeph>, and <codeph><ph keyref="FILTER"/></codeph> – using <codeph><xref keyref="IVideoEffectObject"/></codeph> for unified parameter setup and lifecycle control.</li>
                                 <li><b>Ready-to-Use Presets</b>: Integrates multiple out-of-the-box style templates (e.g., "Natural Beauty," "Senior Makeup," "Cool White Filter") for instant polished results.</li>
                                 <li><b>Dynamic Parameter Control</b>: Enables real-time reading/modifying of granular parameters (e.g., smoothing strength, lipstick type) via key-value pairs, with support for saving custom configurations and resetting defaults.</li>
                                 <li><b>Local Resource Guarantee</b>: All beauty resources (effects, filters, makeup) are packaged as local bundle files, ensuring stability and reliability.   </li>
