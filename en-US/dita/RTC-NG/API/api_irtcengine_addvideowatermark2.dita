@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_addvideowatermark2">
     <title><ph keyref="addVideoWatermark2"/></title>
@@ -34,7 +34,15 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p id="desc1">This method adds a PNG watermark image to the local video in the live streaming. Once the watermark image is added, all the audience in the channel (CDN audience included), and the capturing device can see and capture it. The Agora SDK supports adding only one watermark image onto a local video or CDN live stream. The newly added watermark image replaces the previous one.</p>
+            <dl outputclass="deprecated" props="native">
+                <dlentry outputclass="deprecated">
+                    <dt>Deprecated:</dt>
+                    <dd props="cpp">This method is deprecated as of v4.6.0. Use <xref keyref="addVideoWatermark3"/> instead.</dd>
+                    <dd props="apple">This method is deprecated as of v4.6.0. Use <xref keyref="addVideoWatermark3"/> instead.</dd>
+                    <dd props="android">This method is deprecated as of v4.6.0. Use <xref keyref="addVideoWatermark3"/> instead.</dd>
+                </dlentry>
+                </dl>
+            <p id="desc1">This method adds a PNG watermark image to the local video in the live streaming. Once the watermark image is added, all the audience in the channel (CDN audience included), and the capturing device can see and capture it. The Agora SDK supports adding only one watermark image onto a live video stream. The newly added watermark image replaces the previous one.</p>
             <p>The watermark coordinates are dependent on the settings in the <xref keyref="setVideoEncoderConfiguration"/> method:<ul>
             <li>If the orientation mode of the encoding video (<xref keyref="ORIENTATION_MODE"/>) is fixed landscape mode or the adaptive landscape mode, the watermark uses the landscape orientation.</li>
             <li>If the orientation mode of the encoding video (<apiname keyref="ORIENTATION_MODE"/>) is fixed portrait mode or the adaptive portrait mode, the watermark uses the portrait orientation.</li>
@@ -86,8 +94,8 @@
             <title>Parameters</title>
             <parml>
             <plentry id="url">
-                <pt props="android cpp unreal bp electron unity flutter rn cs">watermarkUrl</pt>
-                <pt props="ios mac">url</pt>
+                <pt props="android bp cpp cs electron flutter rn unity unreal">watermarkUrl</pt>
+                <pt props="apple">url</pt>
                 <pd>The local file path of the watermark image to be added. This method supports adding a watermark image from the local absolute or relative file path.</pd>
             </plentry>
             <plentry id="options">
@@ -98,7 +106,7 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-            <ul props="native unreal bp electron unity rn cs">
+            <ul props="bp cs electron native rn unity unreal">
             <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
