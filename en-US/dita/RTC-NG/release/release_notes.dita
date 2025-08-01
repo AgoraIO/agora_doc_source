@@ -81,7 +81,7 @@
             <body>
                 <ol>
                     <li><ph><b>ABR 同源多流</b></ph>
-<p><ph>该版本支持针对同一视频源设置同时发送多路不同分辨率视频流，并支持多频道场景。 你可以通过 <codeph><xref keyref="setSimulcastConfig"/></codeph> 配置不同分辨率的视频流，（最多四层分辨率，一个最高分辨率的主流和三层其他较低分辨率的视频流），并可以通过 <codeph><xref keyref="SimulcastConfig"/></codeph> 设置视频流的分辨率、码率、是否启用分层推流回退等选项来灵活控制流的发布。 启用分层推流回退后，SDK 会在弱网环境下自动回退到低分辨率的视频流，确保流畅的观看体验。</ph>
+<p><ph>该版本支持针对同一视频源设置同时发送多路不同分辨率视频流，并支持多频道场景。 你可以通过 <codeph><xref keyref="setSimulcastConfig"/></codeph> 配置不同分辨率的视频流，（最多四层分辨率，一个最高分辨率的主流和三层其他较低分辨率的视频流），并可以通过 <codeph><xref keyref="SimulcastConfig"/></codeph> 设置视频流的分辨率、码率、是否在上行网络或设备性能较差时自动关闭多流。 启用分层推流回退后，SDK 会在弱网环境下自动回退到低分辨率的视频流，确保流畅的观看体验。</ph>
                             <ph>订阅端可根据实际需求，通过 <codeph><xref keyref="setRemoteVideoStreamType"/></codeph> 选择想要接收的视频流。 适用于会议场景、大班课、互动直播等多终端、多网络环境，可显著提升弱网下的观看体验。</ph></p>
                     </li>
                     <li><ph><b>多路径网络传输</b></ph>
@@ -99,8 +99,8 @@
                     </li>
                     <li><ph><b>异步销毁引擎</b></ph>
 <p props="cpp">自该版本起，<codeph><xref keyref="release"/></codeph> 方法新增 <codeph>callback</codeph> 参数，支持以同步或异步方式销毁引擎。 异步销毁引擎时，SDK 会触发 <codeph><xref keyref="RtcEngineReleaseCallback"/></codeph> 回调。</p>
-                        <p props="android">该版本新增 <codeph><xref keyref="destory"/></codeph> 方法，用于销毁 RTC 引擎，且支持通过参数配置以同步或异步方式销毁引擎。 异步销毁引擎时，SDK 会触发 <codeph><xref keyref="onEngineReleased"/></codeph> 回调。</p>
-                        <p props="apple">该版本新增 <codeph><xref keyref="destory"/></codeph> 方法，用于销毁 RTC 引擎，且支持通过参数配置以同步或异步方式销毁引擎。 异步销毁引擎时，SDK 会触发 <codeph>engineReleasedBlock</codeph> 回调块。</p>
+                        <p props="android">该版本新增 <codeph><xref keyref="destroy1"/></codeph> 方法，用于销毁 RTC 引擎，且支持通过参数配置以同步或异步方式销毁引擎。 异步销毁引擎时，SDK 会触发 <codeph><xref keyref="onEngineReleased"/></codeph> 回调。</p>
+                        <p props="apple">该版本新增 <codeph><xref keyref="destroy1"/></codeph> 方法，用于销毁 RTC 引擎，且支持通过参数配置以同步或异步方式销毁引擎。 异步销毁引擎时，SDK 会触发 <codeph>engineReleasedBlock</codeph> 回调块。</p>
                     </li>
                     <li><ph><b>Token 更新结果回调</b></ph>
 <p>该版本新增 <codeph><xref keyref="onRenewTokenResult"/></codeph> 回调及 <codeph>RENEW_TOKEN_ERROR_CODE</codeph> 错误码。 当调用 <codeph><xref keyref="renewToken"/></codeph> 方法更新 Token 后，SDK 会通过 <codeph><xref keyref="onRenewTokenResult"/></codeph> 回调通知 Token 更新的结果，并通过 <codeph>RENEW_TOKEN_ERROR_CODE</codeph> 返回详细的错误码，开发者可在回调中根据错误码及时处理 Token 更新失败的场景。</p>
