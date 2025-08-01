@@ -1,3 +1,42 @@
+## v4.5.2
+
+v4.2.2 was released on April xx, 2025.
+
+**Attention:**
+
+- Starting from version 4.5.0, both RTC SDK and Signaling (version 2.2.0 and above) include the `libaosl.so` library. If you manually integrate Video SDK via CDN and also use Signaling SDK, delete the earlier version of the `libaosl.so` to avoid conflicts.
+- 4.5.2 RTC SDK `libaosl.so` library version is 1.2.13.
+
+#### Improvements
+
+1. **Accessible media player information properties**
+
+   Starting from this version, the access modifiers for all attributes in media player-related information [PlayerUpdatedInfo](API/class_playerupdatedinfo.html) have been changed from private to public. This improvement aims to enhance the accessibility of these classes, allowing external code to access and modify these attributes more easily.
+
+#### Issues fixed
+
+This release fixed the following issues:
+
+- When playing a multi-track media file, noise can be heard after calling the `setAudioPitch` method to adjust the audio pitch.
+- The host called the `createCustomAudioTrack` method to create custom audio track and set `trackType` to `AUDIO_TRACK_DIRECT`, called the `pushExternalAudioFrame` to push custom audio frames into a channel and then called `playEffect [2/2]` to play audio effects, audience members in the channel would hear noise.
+- Apps integrated with the SDK occasionally encountered UI lag caused by main thread blocking during audio and video interactions.
+- When playing an MP4 file with EAC3 audio encoding by calling the `startAudioMixing [2/2]` method, sometimes there was no sound.
+- Memory leaks occurred after leaving the channel and stopping video rendering.
+- After calling `setCameraFocusPositionInPreview` to set the focus position manually, the focus position was inaccurate when the camera captured a zoomed-in image.
+- When calling `setExternalMediaProjection` to configure an external MediaProjection instance (outside the SDK) for screen video stream capture, the transmitted video stream resolution (width/height) did not dynamically adjusted when the screen orientation changed between landscape and portrait modes.
+- Calling `openWithMediaSource` and set `isLiveSource` in the `source` parameter to `true` to play a video stream, the playback failed.
+- When attempting to open a non-existent local media file with the media player, the `onPlayerSourceStateChanged` callback did not report `PLAYER_STATE_FAILED` as expected.
+- When the sender transmits multi-channel encoded audio, the receiver occasionally experienced noise.
+- In scenarios where the App integrates a media player, when the open function is called twice to open different media resources consecutively, the second call to open unexpectedly resulted in the `onPlayerInfoUpdated` callback returning information for the first media resource.
+- After calling `enableAudioVolumeIndication` to enable user volume indication, the `onAudioVolumeIndication` callback returned a local user volume of 0 for both local streaming users and remote users.
+- During audio and video communication, the App occasionally froze.
+- The operation failed when calling `setExtensionProperty` with the key set to "makeup_options" to achieve makeup effects.
+- When the sending user conducted audio and video communication in dim lighting conditions, the preview image appeared darker on some device models.
+- In scenarios of audio and video communication and screen sharing using a 21:9 display (ultrawide screen), setting a high resolution such as 3840x2160 resulted in the screen sharing image being cropped in both local preview and on the receiver's display.
+- When the App called `enableVideoImageSource` to enable the video image source feature, the sending side occasionally succeeded in streaming, but `onVideoPublishStateChanged` did not return the expected.
+- In multi-channel scenarios, if the App called `setupRemoteVideoEx` to initialize the remote user's view before successfully calling `joinChannelEx`, the display of the first frame of the remote user's view occasionally experienced significant delay.
+- After a failure to join a channel, calling again without first calling `leaveChannel [1/2]` to exit the channel occasionally led to a crash.
+
 ## v4.5.1
 
 v4.5.1 was released on March 3, 2025.

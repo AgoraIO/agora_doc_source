@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onrenewtokenresult">
+    <title><ph keyref="onRenewTokenResult"/></title>
+    <shortdesc id="short"><ph id="shortdesc"><xref keyref="renewToken"/> 调用结果回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRenewTokenResult"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onRenewTokenResult(String token, Constants.RenewTokenErrorCode code) {}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine renewTokenResult:(NSString *_Nonnull)token code:(AgoraRenewTokenErrorCode)code NS_SWIFT_NAME(rtcEngine(_:renewTokenResult:code:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onRenewTokenResult(const char* token, RENEW_TOKEN_ERROR_CODE code)</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从：</dt>
+                <dd props="native">自 v4.6.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p>该回调在用户调用 <xref keyref="renewToken"/> 方法更新 Token 后触发，用于通知应用调用结果。</p>
+            </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>使用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+            <plentry props="native">
+                <pt props="native">token</pt>
+                <pd props="android">用于鉴权的 Token。</pd>
+                <pd props="apple cpp">Token。</pd>
+            </plentry>
+            <plentry props="native">
+                <pt props="native">code</pt>
+                <pd props="android">错误码，详见 <xref keyref="RENEW_TOKEN_ERROR_CODE"/>。</pd>
+                <pd props="apple">错误码，详见 <xref keyref="RENEW_TOKEN_ERROR_CODE"/>。</pd>
+                <pd props="cpp">错误码，详见 <xref keyref="RENEW_TOKEN_ERROR_CODE"/>。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="bp electron flutter rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
+        <ul props="bp electron rn unity unreal">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul>
+    </section>
+    </refbody>
+</reference>

@@ -4,6 +4,79 @@
 
 AirPods Pro does not support A2DP protocol in communication audio mode, which may lead to connection failure in that mode.
 
+## v6.5.2
+
+v6.5.2 was released on May xx, 2025.
+
+#### New features
+
+1. **16 KB memory page size**
+
+Starting from Android 15, the system adds support for 16 KB memory page size, as detailed in [Support 16 KB page sizes](https://developer.android.com/guide/practices/page-sizes). To ensure the stability and performance of the app, starting from this version, the SDK supports 16 KB memory page size, ensuring seamless operation on devices with both 4 KB and 16 KB memory page sizes, enhancing compatibility and preventing crashes.
+
+
+#### Issues fixed
+
+This release fixed the following issues:
+
+- When playing a multi-track media file, noise can be heard after calling the `setAudioPitch` method to adjust the audio pitch.
+- The host called the `createCustomAudioTrack` method to create custom audio track and set `trackType` to `AUDIO_TRACK_DIRECT`, called the `pushAudioFrame` to push custom audio frames into a channel and then called `playEffect` to play audio effects, audience members in the channel would hear noise.
+- Apps integrated with the SDK occasionally encountered UI lag caused by main thread blocking during audio and video interactions.
+- The local preview of the shared screen flickered after calling the `startScreenCapture` to start screen sharing and set `enableHighLight` in `ScreenCaptureParameters` to `true` through the `config` parameter to outline the shared window, and then placed the window on the top layer and maximizing it. (Windows)
+- Calling `startScreenCaptureByDisplayId` to share the video stream of specified screen and specifying the windows to be blocked through `excludeWindowList` in `ScreenCaptureParameters`, occasionally some windows fail to be blocked. (Windows)
+- The application occasionally crashed after sharing the video stream of the external screen and disconnecting the external screen connection. (Windows)
+- Calling `openWithMediaSource` and set `isLiveSource` in the `source` parameter to `true` to play a video stream, the playback failed.
+- When the sender transmits multi-channel encoded audio, the receiver occasionally experienced noise.
+- In scenarios where the App integrates a media player, when the open function is called twice to open different media resources consecutively, the second call to open unexpectedly resulted in the `onPlayerInfoUpdated` callback returning information for the first media resource.
+- After calling `enableAudioVolumeIndication` to enable user volume indication, the `onAudioVolumeIndication` callback returned a local user volume of 0 for both local streaming users and remote users.
+- In scenarios of audio and video communication and screen sharing using a 21:9 display (ultrawide screen), setting a high resolution such as 3840x2160 resulted in the screen sharing image being cropped in both local preview and on the receiver's display. (Windows)
+- When the App called `enableVideoImageSource` to enable the video image source feature, the sending side occasionally succeeded in streaming, but `onVideoPublishStateChanged` did not return the expected.
+- In multi-channel scenarios, if the App called `setupRemoteVideoEx` to initialize the remote user's view before successfully calling `joinChannelEx`, the display of the first frame of the remote user's view occasionally experienced significant delay.
+- When playing an MP4 file with EAC3 audio encoding by calling the `startAudioMixing` method, sometimes there was no sound. (Android)
+- Memory leaks occurred after leaving the channel and stopping video rendering. (Android)
+- After calling `setCameraFocusPositionInPreview` to set the focus position manually, the focus position was inaccurate when the camera captured a zoomed-in image. (Android)
+- When calling `setExternalMediaProjection` to configure an external MediaProjection instance (outside the SDK) for screen video stream capture, the transmitted video stream resolution (width/height) did not dynamically adjusted when the screen orientation changed between landscape and portrait modes. (Android)
+- During audio and video communication, the App occasionally froze. (Android, iOS)
+- The operation failed when calling `setExtensionProperty` with the key set to "makeup_options" to achieve makeup effects. (Android)
+- After a failure to join a channel, calling again without first calling `leaveChannel` to exit the channel occasionally led to a crash. (Android)
+- When attempting to open a non-existent local media file with the media player, the `onPlayerSourceStateChanged` callback did not report `PLAYER_STATE_FAILED` as expected. (Android)
+- Calling `enableVirtualBackground` to enable virtual background function, the virtual background image became larger and blurry when the phone was rotated. (iOS)
+
+
+
+
+## v6.5.1
+
+v6.5.1 was released on March xx, 2025.
+
+#### New features
+
+1. **AI conversation scenario**
+
+   This version adds the `audioScenarioAiClient` audio scenario specifically designed for interacting with the conversational AI agent created by [Conversational AI Engine](https://docs.agora.io/en/conversational-ai/overview/product-overview). This scenario optimizes the audio transmission algorithm based on the characteristics of AI agent voice generation, ensuring stable voice data transmission in weak network environments (for example, 80% packet loss rate), and ensuring the continuity and reliability of the conversation, adapting to a variety of complex network conditions.
+
+#### Improvements
+
+1. Reduced the time of initializing the SDK on specific device models. (iOS)
+
+#### Issues fixed
+
+This release fixed the following issues:
+
+- Apps that integrated the Agora SDK and set the `targetSdkVersion` to 34 encountered crashes when attempting to enable screen sharing for the first time on an Android 14 system. (Android)
+- When joining two or more channels simultaneously, and calling the `takeSnapshotEx` method to take screenshots of the local video streams in each channel consecutively, the screenshot of the first channel failed.
+- When using the `pause` method to pause playback, then calling `seek` to move to a specified position, and finally calling `play` to continue playback, the Media Player resumed from the position where it was paused, not the new specified position.
+- When using the Media Player, the file path of the media resource returned by the `getPlaySrc` did not change after calling the `switchSrc` method to switch to a new media resource.
+- When using Bluetooth headphones on specific device models for audio and video interactions, adjusting the phone volume would occassionally change the media volume instead of the Bluetooth volume. (Android)
+- During audio and video interactions, the local user occasionally experienced a black screen when watching the video streams of remote users. (Android)
+- On specific models of device, after calling `setCameraExposureFactor` to set the exposure coefficient of the current camera at a specific angle of the device, the video screen occasionally became dark when the device was moved to another angle. (Android)
+- When playing a CDN live stream, the video occasionally froze for an extended period after recovering from an interruption. (Android)
+- When pushing video frames in i420 format to the channel, using CVPixelBuffer to handle these frames caused a crash. (iOS)
+- Calling `setupLocalVideo` to set up two views, then calling `enableFaceDetection` to start face detection, no face information can be detected in the subsequently passed views. (iOS)
+- In a screen sharing scenario, the receiving-end user saw a green line on the shared image. (iOS)
+- In the interactive live streaming scenario, after joining a channel to watch live streams using `string` user id, the audience members occasionally saw that the audio was not synchronized with the video.
+- Plugins sometimes did not work when using AI noise suppression and AI echo cancellation plugins at the same time.
+
 ## v6.5.0
 
 This version was released on November x, 2024.
@@ -33,18 +106,15 @@ This version includes optimizations to some features, including changes to SDK b
    - In the `CompressionPreference` enumeration class, a new `preferCompressionAuto` (-1) enumeration is added, replacing the original `preferQuality` (1) as the default value. In this mode, the SDK will automatically choose between `preferLowLatency` or `preferQuality` based on your video scene settings to achieve the best user experience.
    - In the `DegradationPreference` enumeration class, a new `maintainAuto` (-1) enumeration is added, replacing the original `maintainQuality` (1) as the default value. In this mode, the SDK will automatically choose between `maintainFramerate`, `maintainBalanced`, or `maintainResolution` based on your video scene settings to achieve the optimal overall quality experience (QoE).
 
-4. **16 KB memory page size**
 
-Starting from Android 15, the system adds support for 16 KB memory page size, as detailed in [Support 16 KB page sizes](https://developer.android.com/guide/practices/page-sizes). To ensure the stability and performance of the app, starting from this version, the SDK supports 16 KB memory page size, ensuring seamless operation on devices with both 4 KB and 16 KB memory page sizes, enhancing compatibility and preventing crashes.
+4. To distinguish context information in different extension callbacks, this version removes the original extension callbacks and adds corresponding callbacks that contain context information (see the table below). You can identify the extension name, the user ID, and the service provider name through `ExtensionContext` in each callback.
 
-5. To distinguish context information in different extension callbacks, this version removes the original extension callbacks and adds corresponding callbacks that contain context information (see the table below). You can identify the extension name, the user ID, and the service provider name through `ExtensionContext` in each callback.
-
-   | Original callback    | Current callback                |
-   | -------------------- | ------------------------------- |
-   | `onExtensionEvent`   | `onExtensionEventWithContext`   |
-   | `onExtensionStarted` | `onExtensionStartedWithContext` |
-   | `onExtensionStopped` | `onExtensionStoppedWithContext` |
-   | `onExtensionError`   | `onExtensionErrorWithContext`   |
+| Original callback    | Current callback                |
+| -------------------- | ------------------------------- |
+| `onExtensionEvent`   | `onExtensionEventWithContext`   |
+| `onExtensionStarted` | `onExtensionStartedWithContext` |
+| `onExtensionStopped` | `onExtensionStoppedWithContext` |
+| `onExtensionError`   | `onExtensionErrorWithContext`   |
 
 #### New features
 

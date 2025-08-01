@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_renewtoken">
     <title><ph keyref="renewToken"/></title>
@@ -26,7 +26,7 @@
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p>该方法用于更新 Token。Token 会在一定时间后失效，此时 SDK 将无法和服务器建立连接。</p>
+            <p>该方法用于更新 Token，成功调用该方法后 SDK 会触发 <xref keyref="onRenewTokenResult"/> 回调。Token 会在一定时间后失效，此时 SDK 将无法和服务器建立连接。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -50,9 +50,9 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
             <ul props="native unreal bp electron unity rn electron cs">
-            <li>0: 方法调用成功。</li>
+                <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph>
                 <ul>
                 <li>-2：传入的参数无效。例如，Token 为空。</li>

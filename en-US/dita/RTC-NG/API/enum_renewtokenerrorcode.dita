@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_renewtokenerrorcode">
+    <title><ph keyref="RENEW_TOKEN_ERROR_CODE"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Represents the error codes after calling <xref keyref="renewToken_ICloudSpatialAudioEngine"/>.</ph></shortdesc>
+    <refbody>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+                <dlentry props="native">
+                    <dt>Since:</dt>
+                    <dd>Available since v4.6.0.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters">
+            <title>Enumerator</title>
+            <parml>
+            <plentry props="native">
+                <pt><ph keyref="RENEW_TOKEN_SUCCESS"/></pt>
+                <pd props="native">(0): Token updated successfully.</pd>
+            </plentry>
+        <plentry props="native">
+                <pt><ph keyref="RENEW_TOKEN_FAILURE"/></pt>
+                <pd props="cpp">(1): Token update failed due to an unknown server error. It is recommended to check the parameters used to generate the Token, regenerate the Token, and retry <xref keyref="renewToken_ICloudSpatialAudioEngine"/>.</pd>
+            <pd props="android apple">(1): Token update failed. It is recommended to generate a new Token and retry <xref keyref="renewToken_ICloudSpatialAudioEngine"/>.</pd>
+            </plentry>
+        <plentry props="android cpp">
+                <pt><ph keyref="RENEW_TOKEN_TOKEN_EXPIRED"/></pt>
+                <pd props="android cpp">(2): Token update failed because the provided Token has expired. It is recommended to generate a new Token with a longer expiration time and retry <xref keyref="renewToken_ICloudSpatialAudioEngine"/>.</pd>
+            </plentry>
+        <plentry props="native">
+                <pt><ph keyref="RENEW_TOKEN_INVALID_TOKEN"/></pt>
+                <pd props="native">(3): Token update failed because the provided Token is invalid. Common reasons include: the project has enabled App Certificate in the Agora Console but did not use a Token when joining the channel; the <ph keyref="uid"/> specified in <codeph>joinChannel</codeph> is inconsistent with the <ph keyref="uid"/> used when generating the Token; the channel name specified in <codeph>joinChannel</codeph> is inconsistent with the one used when generating the Token. It is recommended to check the Token generation process, generate a new Token, and retry <xref keyref="renewToken_ICloudSpatialAudioEngine"/>.</pd>
+            </plentry>
+        <plentry props="native">
+                <pt><ph keyref="RENEW_TOKEN_INVALID_CHANNEL_NAME"/></pt>
+                <pd props="native">(4): Token update failed because the channel name in the Token does not match the current channel. It is recommended to check the channel name, generate a new Token, and retry <xref keyref="renewToken_ICloudSpatialAudioEngine"/>.</pd>
+            </plentry>
+        <plentry props="native">
+                <pt><ph keyref="RENEW_TOKEN_INCONSISTENT_APPID"/></pt>
+                <pd props="native">(5): Token update failed because the App ID in the Token does not match the current App ID. It is recommended to check the App ID, generate a new Token, and retry <xref keyref="renewToken_ICloudSpatialAudioEngine"/>.</pd>
+            </plentry>
+        <plentry props="native">
+                <pt><ph keyref="RENEW_TOKEN_CANCELED_BY_NEW_REQUEST"/></pt>
+                <pd props="cpp">(6): The previous Token update request was canceled due to a new request being initiated.</pd>
+            <pd props="apple">(6): The Token update request was canceled because a new request was initiated.</pd>
+            <pd props="android">(6): Token update was canceled because a new request was initiated, and the previous request was canceled.</pd>
+            </plentry>
+        </parml>
+        </section></refbody>
+</reference>

@@ -4,6 +4,31 @@
 
 AirPods Pro does not support A2DP protocol in communication audio mode, which may lead to connection failure in that mode.
 
+## v4.5.2
+
+v4.2.2 was released on April xx, 2025.
+
+**Attention:**
+
+- Starting from version 4.5.0, both RTC SDK and Signaling (version 2.2.0 and above) include the `aosl.xcframework` library. If you manually integrate Video SDK via CDN and also use Signaling SDK, delete the earlier version of the `aosl.xcframework` to avoid conflicts.
+- 4.5.2 RTC SDK `aosl.xcframework` library version is 1.2.13. You can check the version information of the library in `Info.plist`.
+
+#### Issues fixed
+
+This release fixed the following issues:
+
+- When playing a multi-track media file, noise can be heard after calling the `setAudioPitch:` method to adjust the audio pitch.
+- The host called the `createCustomAudioTrack:config:` method to create custom audio track and set `trackType` to `AUDIO_TRACK_DIRECT`, called the `pushExternalAudioFrameRawData:samples:sampleRate:channels:trackId:timestamp:` to push custom audio frames into a channel and then called `playEffect:filePath:loopCount:pitch:pan:gain:publish:startPos:` to play audio effects, audience members in the channel would hear noise.
+- Apps integrated with the SDK occasionally encountered UI lag caused by main thread blocking during audio and video interactions.
+- Calling `openWithMediaSource:` and set `isLiveSource` in the `source` parameter to `YES` to play a video stream, the playback failed.
+- Calling `enableVirtualBackground` to enable virtual background function, the virtual background image became larger and blurry when the phone was rotated.
+- When the sender transmits multi-channel encoded audio, the receiver occasionally experienced noise.
+- In scenarios where the App integrates a media player, when the open function is called twice to open different media resources consecutively, the second call to open unexpectedly resulted in the `AgoraRtcMediaPlayer:infoUpdated:` callback returning information for the first media resource.
+- After calling `enableAudioVolumeIndication:smooth:reportVad:` to enable user volume indication, the `rtcEngine:reportAudioVolumeIndicationOfSpeakers:totalVolume:` callback returned a local user volume of 0 for both local streaming users and remote users.
+- During audio and video communication, the App occasionally froze.
+- When the App called `enableVideoImageSource:options:` to enable the video image source feature, the sending side occasionally succeeded in streaming, but `rtcEngine:didVideoPublishStateChange:sourceType:oldState:newState:elapseSinceLastState:` did not return the expected.
+- In multi-channel scenarios, if the App called `setupRemoteVideoEx:connection:` to initialize the remote user's view before successfully calling `joinChannelExByToken:connection:delegate:mediaOptions:joinSuccess:`, the display of the first frame of the remote user's view occasionally experienced significant delay.
+
 ## v4.5.1
 
 v4.5.1 was released on March 3, 2025.
@@ -56,7 +81,7 @@ As of v4.5.0, both RTC SDK and RTM SDK (v2.2.0 and above) include the `aosl.xcfr
 
 2. **Changes in video encoding preferences**
 
-   To enhance the user’s video interaction experience, this version optimizes the default preferences for video encoding:
+   To enhance the user's video interaction experience, this version optimizes the default preferences for video encoding:
 
    - In the `AgoraCompressionPreference` enumeration class, a new `AgoraCompressionAuto` (-1) enumeration is added, replacing the original `AgoraCompressionQuality` (1) as the default value. In this mode, the SDK will automatically choose between `AgoraCompressionLowLatency` or `AgoraCompressionQuality` based on your video scene settings to achieve the best user experience.
    - In the `AgoraDegradationPreference` enumeration class, a new `AgoraDegradationMaintainAuto` (-1) enumeration is added, replacing the original `AgoraDegradationMaintainQuality` (1) as the default value. In this mode, the SDK will automatically choose between `AgoraDegradationMaintainFramerate`, `AgoraDegradationBalanced`, or `AgoraDegradationMaintainResolution` based on your video scene settings to achieve the optimal overall quality experience (QoE).
@@ -148,7 +173,7 @@ This version includes optimizations to some features, including changes to SDK b
    | `onExtensionStopped` | `onExtensionStoppedWithContext` |
    | `onExtensionError`   | `onExtensionErrorWithContext`   |
 
-2. Before v4.4.0, when a user role was set to audience and called `setAudioScenario` to set the audio scenario to chatroom (`AgoraAudioScenarioChatRoom`), the user would see a microphone permission request popup. As of v4.4.0, the SDK uses native iOS APIs to control the microphone, so audience members in a chatroom scenario will no longer receive the microphone permission request popup.
+2. Prior to v4.4.0, if a user was set to the audience role and `setAudioScenario` was called with `AgoraAudioScenarioChatRoom`, the system showed the microphone-in-use indicator. As of v4.4.0, the SDK manages the microphone through native iOS APIs, so audience users in a chatroom scenario no longer see this indicator.
 
 3. This version renames the `receiveMetadata` callback to `didMetadataReceived` and removes the `data` and `timeStamp` parameters. You can get metadata-related information, including `timeStamp` (timestamp of the sent data), `uid` (user ID), and `channelId` (channel name) through the newly-added `metadata` parameter.
 
