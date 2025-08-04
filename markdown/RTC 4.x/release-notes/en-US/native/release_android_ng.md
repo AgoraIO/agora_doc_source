@@ -5,7 +5,7 @@ v4.6.0 was released on July xx, 2025.
 **Attention:**
 
 - Starting from v4.5.0, both the RTC SDK and the RTM SDK (v2.2.0 and later) include the `libaosl.so` library. If you manually integrate the RTC SDK via CDN while also using the RTM SDK, you must manually delete the older version of the `libaosl.so` library to avoid conflicts.
-- The version of the `libaosl.so` library in the v4.6.0 RTC SDK is //TODO.
+- The version of the `libaosl.so` library in the v4.6.0 RTC SDK is 1.3.0.
 
 #### Compatibility changes
 
@@ -77,7 +77,7 @@ For details on deprecated and deleted APIs in each version, see the [API Sunset 
 
    Uplink and downlink transmission can be configured separately using `uplinkMultipathMode` and `downlinkMultipathMode` in `ChannelMediaOptions`. When enabled, the SDK reports real-time transmission statistics for each path through the `onMultipathStats` callback, including the data consumption of each path, which allows you to monitor and optimize network performance.
 
-3. **Video quality scoring** 
+3. **Video quality scoring**
 
    This version adds the `mosValue` member to `RemoteVideoStats`, which reports the quality score of the received remote video stream. The score ranges from 1 to 5, where 5 indicates excellent video quality with a clear image and no artifacts, and 1 indicates extremely poor video quality with severe blurring. You can use this parameter to monitor the subjective quality of remote video streams in real-time, which helps in dynamically adjusting video parameters for quality monitoring and alerting. To enable this feature, please contact [technical support](mailto:support@agora.io).
 

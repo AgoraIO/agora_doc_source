@@ -5,7 +5,7 @@ v4.6.0 was released on July xx, 2025.
 **Attention:**
 
 - Starting from v4.5.0, both the RTC SDK and the RTM SDK (v2.2.0 and later) include the `aosl.xcframework` library. If you manually integrate the RTC SDK via CDN while also using the RTM SDK, you must manually delete the older version of the `aosl.xcframework` library to avoid conflicts.
-- The version of the `aosl.xcframework` library in the v4.6.0 RTC SDK is TODO. You can find the library version information in `Info.plist`.
+- The version of the `aosl.xcframework` library in the v4.6.0 RTC SDK is 1.3.0. You can find the library version information in `Info.plist`.
 
 #### Compatibility changes
 
@@ -49,6 +49,8 @@ For details on deprecated and deleted APIs in each version, see the [API Sunset 
    - `setLocalPublishFallbackOption:`
    - `rtcEngine:didLocalPublishFallbackToAudioOnly:`
    - `downlinkNetworkInfoUpdate`
+   - `rtcEngine:wlAccStats:averageStats:`
+   - `enableWirelessAccelerate`
    - `receivedFrameRate` is removed from `AgoraRtcRemoteVideoStats`.
 
 5. **Changes to Int UID and String UID mapping**
@@ -65,7 +67,7 @@ For details on deprecated and deleted APIs in each version, see the [API Sunset 
 
 1. **Adaptive Video Publishing (Beta)**
 
-   This version supports sending multiple video streams with different resolutions from the same video source, with support for multi-channel scenarios. You can use `setSimulcastConfig:` to configure video streams of different resolutions (up to four layers: one high-resolution main stream and three lower-resolution streams) and use `AgoraSimulcastConfig` to flexibly control stream publishing by setting options like resolution, bitrate, and whether to enable layered streaming fallback. When layered streaming fallback is enabled, the SDK automatically falls back to a lower-resolution stream in poor network conditions to ensure a smooth viewing experience. Subscribers can choose which video stream to receive based on their needs by calling `setRemoteVideoStream:type:`. This feature is ideal for scenarios with multiple terminals and varying network conditions, such as conferences, large classes, and interactive live streaming, as it significantly improves the viewing experience under poor network conditions.
+   This version supports sending multiple video streams with different resolutions from the same video source, with support for multi-channel scenarios. You can use `setSimulcastConfig:` to configure video streams of different resolutions (up to four layers: one high-resolution main stream and three lower-resolution streams) and use `AgoraSimulcastConfig` to flexibly control stream publishing by setting options like resolution, bitrate, and whether to automatically disable multiple streams when uplink network or device performance is poor. Subscribers can choose which video stream to receive based on their needs by calling `setRemoteVideoStream:type:`. This feature is ideal for scenarios with multiple terminals and varying network conditions, such as conferences, large classes, and interactive live streaming, as it significantly improves the viewing experience under poor network conditions.
 
 2. **Multipath network transmission**
 

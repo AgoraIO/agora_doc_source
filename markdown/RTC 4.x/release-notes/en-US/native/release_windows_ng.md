@@ -5,7 +5,7 @@ v4.6.0 was released on August  xx, 2025.
 **Attention:**
 
 - Starting from version 4.5.0, both RTC SDK and Signaling (version 2.2.0 and above) include the `libaosl.dll` library. If you manually integrate Video SDK via CDN and also use Signaling SDK, delete the earlier version of the `libaosl.dll` to avoid conflicts.
-- 4.6.0 RTC SDK `libaosl.dll` library version is //TODO. You can find out the version information of the library by checking the properties of the `libaosl.dll` file.
+- 4.6.0 RTC SDK `libaosl.dll` library version is 1.3.0. You can find out the version information of the library by checking the properties of the `libaosl.dll` file.
 
 ## Compatibility changes
 
@@ -124,7 +124,7 @@ For details on deprecated and deleted APIs in each version, see the [API Sunset 
 
 This version introduces the following improvements:
 
-- Optimizes permission requests on Windows 11 24H2 and later versions to avoid unnecessarily acquiring location information. 
+- Optimizes permission requests on Windows 11 24H2 and later versions to avoid unnecessarily acquiring location information.
 - Adds support for g711 and g722 audio codecs when interoperating with the Web SDK, further improving cross-platform audio playback compatibility and clarity.
 - Improves video clarity in screen sharing scenarios involving documents.
 
