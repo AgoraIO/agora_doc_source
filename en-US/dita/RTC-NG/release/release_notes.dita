@@ -7,7 +7,7 @@
         <note type="attention" props="native">
              <ul>
              <li>Starting from version 4.5.0, both RTC SDK and Signaling (version 2.2.0 and above) include the <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> library. If you manually integrate Video SDK via CDN and also use Signaling SDK, delete the earlier version of the <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> to avoid conflicts.</li>
-             <li>4.5.1 RTC SDK <codeph props="android"><codeph props="cpp">libaosl.solibaosl.dllaosl.xcframework</codeph><codeph props="apple"></codeph> library version is 1.2.13. <ph props="apple">You can check the version information of the library in <codeph>Info.plist</codeph>. </ph><ph props="cpp">You can find out the version information of the library by checking the properties of the <codeph>libaosl.dll</codeph> file.</ph></codeph></li></ul>
+             <li>4.6.0 RTC SDK <codeph props="android"><codeph props="cpp">libaosl.solibaosl.dllaosl.xcframework</codeph><codeph props="apple"></codeph> library version is 1.3.0. <ph props="apple">You can check the version information of the library in <codeph>Info.plist</codeph>. </ph><ph props="cpp">You can find out the version information of the library by checking the properties of the <codeph>libaosl.dll</codeph> file.</ph></codeph></li></ul>
              </note>
     </body>
     <topic id="level2">
@@ -53,8 +53,12 @@
                             <li><codeph>setLocalPublishFallbackOption</codeph><ph></ph></li>
                             <li><codeph>onLocalPublishFallbackToAudioOnly</codeph><ph props="cpp android">didLocalPublishFallbackToAudioOnly</ph><ph props="apple"></ph></li>
                             <li><codeph>onDownlinkNetworkInfoUpdated</codeph><ph props="cpp android">downlinkNetworkInfoUpdate</ph><ph props="apple"></ph></li>
-                            <li><codeph>onWlAccStats</codeph><ph></ph></li>
+                            <li><codeph><ph props="cpp android">onWlAccStats</ph><ph props="apple">wlAccStats</ph></codeph></li>
+                            <li><codeph><ph props="cpp android">onWlAccMessage</ph><ph props="apple">wlAccMessage</ph></codeph></li>
                             <li><codeph>enableWirelessAccelerate</codeph><ph></ph></li>
+                            <li props="cpp apple"><codeph><ph props="cpp">WLACC_MESSAGE_REASON</ph><ph props="apple">AgoraWlAccReason</ph></codeph></li>
+                            <li props="cpp apple"><codeph><ph props="cpp">WLACC_SUGGEST_ACTION</ph><ph props="apple">AgoraWlAccAction</ph></codeph></li>
+                            <li><codeph><ph props="cpp android">WlAccStats</ph><ph props="apple">AgoraWlAccStats</ph></codeph></li>
                             <li props="apple"><codeph><xref keyref="RemoteVideoStats"/>receivedFramerate</codeph></li>
                         </ul>
                     </li>
