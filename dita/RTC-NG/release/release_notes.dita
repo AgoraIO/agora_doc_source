@@ -7,7 +7,7 @@
         <note type="attention" props="native">
              <ul>
              <li>自 4.5.0 起，RTC SDK 和 RTM SDK (2.2.0 及以上版本) 都包含 <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> 库。如果你通过 CDN 手动集成 RTC SDK 且同时集成了 RTM SDK，为避免冲突，请手动删除版本较低的 <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> 库。</li>
-             <li>4.6.0 RTC SDK <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> 库版本为 TODO。<ph props="apple">你可以在 <codeph>Info.plist</codeph> 中查看库的版本信息。</ph><ph props="cpp">你可以通过查看 <codeph>libaosl.dll</codeph> 文件的属性来得知库的版本信息。</ph></li></ul>
+             <li>4.6.0 RTC SDK <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> 库版本为 1.3.0。<ph props="apple">你可以在 <codeph>Info.plist</codeph> 中查看库的版本信息。</ph><ph props="cpp">你可以通过查看 <codeph>libaosl.dll</codeph> 文件的属性来得知库的版本信息。</ph></li></ul>
              </note>
     </body>
     <topic id="level2">
@@ -53,8 +53,12 @@
                             <li><codeph><ph>setLocalPublishFallbackOption</ph></codeph></li>
                             <li><codeph><ph props="cpp android">onLocalPublishFallbackToAudioOnly</ph><ph props="apple">didLocalPublishFallbackToAudioOnly</ph></codeph></li>
                             <li><codeph><ph props="cpp android">onDownlinkNetworkInfoUpdated</ph><ph props="apple">downlinkNetworkInfoUpdate</ph></codeph></li>
-                            <li><codeph><ph>onWlAccStats</ph></codeph></li>
+                            <li><codeph><ph props="cpp android">onWlAccStats</ph><ph props="apple">wlAccStats</ph></codeph></li>
+                            <li><codeph><ph props="cpp android">onWlAccMessage</ph><ph props="apple">wlAccMessage</ph></codeph></li>
                             <li><codeph><ph>enableWirelessAccelerate</ph></codeph></li>
+                            <li props="cpp apple"><codeph><ph props="cpp">WLACC_MESSAGE_REASON</ph><ph props="apple">AgoraWlAccReason</ph></codeph></li>
+                            <li props="cpp apple"><codeph><ph props="cpp">WLACC_SUGGEST_ACTION</ph><ph props="apple">AgoraWlAccAction</ph></codeph></li>
+                            <li><codeph><ph props="cpp android">WlAccStats</ph><ph props="apple">AgoraWlAccStats</ph></codeph></li>
                             <li props="apple"><codeph><xref keyref="RemoteVideoStats"/> 中删除 receivedFrameRate</codeph></li>
                         </ul>
                     </li>
