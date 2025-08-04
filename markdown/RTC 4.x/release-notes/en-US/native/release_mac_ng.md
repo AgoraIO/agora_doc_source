@@ -49,7 +49,11 @@ For details on deprecated and deleted APIs in each version, see the [API Sunset 
    - `setLocalPublishFallbackOption:`
    - `rtcEngine:didLocalPublishFallbackToAudioOnly:`
    - `downlinkNetworkInfoUpdate`
+   - `wlAccStats`
+   - `AgoraWlAccReason`
+   - `AgoraWlAccAction`
    - `rtcEngine:wlAccStats:averageStats:`
+   - `rtcEngine:wlAccMessage:action:wlAccMsg:`
    - `enableWirelessAccelerate`
    - `receivedFrameRate` is removed from `AgoraRtcRemoteVideoStats`.
 
@@ -207,7 +211,7 @@ As of v4.5.0, both RTC SDK and RTM SDK (v2.2.0 and above) include the `aosl.xcfr
 
 4. **Changes in video encoding preferences**
 
-   To enhance the user’s video interaction experience, this version optimizes the default preferences for video encoding:
+   To enhance the user's video interaction experience, this version optimizes the default preferences for video encoding:
 
    - In the `AgoraCompressionPreference` enumeration class, a new `AgoraCompressionAuto` (-1) enumeration is added, replacing the original `AgoraCompressionQuality` (1) as the default value. In this mode, the SDK will automatically choose between `AgoraCompressionLowLatency` or `AgoraCompressionQuality` based on your video scene settings to achieve the best user experience.
    - In the `AgoraDegradationPreference` enumeration class, a new `AgoraDegradationMaintainAuto` (-1) enumeration is added, replacing the original `AgoraDegradationMaintainQuality` (1) as the default value. In this mode, the SDK will automatically choose between `AgoraDegradationMaintainFramerate`, `AgoraDegradationBalanced`, or `AgoraDegradationMaintainResolution` based on your video scene settings to achieve the optimal overall quality experience (QoE).

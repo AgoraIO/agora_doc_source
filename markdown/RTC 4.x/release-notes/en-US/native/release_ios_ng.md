@@ -55,7 +55,11 @@ For details on deprecated and deleted APIs in each version, see the [API Sunset 
    - `setLocalPublishFallbackOption:`
    - `rtcEngine:didLocalPublishFallbackToAudioOnly:`
    - `downlinkNetworkInfoUpdate`
+   - `wlAccStats`
+   - `AgoraWlAccReason`
+   - `AgoraWlAccAction`
    - `rtcEngine:wlAccStats:averageStats:`
+   - `rtcEngine:wlAccMessage:action:wlAccMsg:`
    - `enableWirelessAccelerate`
    - `receivedFrameRate` is removed from `AgoraRtcRemoteVideoStats`.
 

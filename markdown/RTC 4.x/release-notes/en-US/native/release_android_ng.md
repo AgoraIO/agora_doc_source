@@ -50,6 +50,8 @@ For details on deprecated and deleted APIs in each version, see the [API Sunset 
    - `onLocalPublishFallbackToAudioOnly`
    - `onDownlinkNetworkInfoUpdated`
    - `onWlAccStats`
+   - `WlAccStats`
+   - `onWlAccMessage`
    - `enableWirelessAccelerate`
 
 5. **Changes to Int UID and String UID mapping**
