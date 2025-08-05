@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_faceshapearea">
-    <title><ph keyref="FACE_SHAPE_AREA" /></title>
-    <shortdesc id="short"><ph id="shortdesc">美型部位。</ph></shortdesc>
+    <title><ph keyref="FACE_SHAPE_AREA"/></title>
+    <shortdesc id="short"><ph id="shortdesc">用于设置需要调整的具体美型区域。</ph></shortdesc>
     <refbody>
         <section id="detailed_desc">
             <dl outputclass="since">
                 <dlentry props="native">
-                    <dt>自从</dt>
-                    <dd>v4.5.0</dd>
+                    <dt>自从：</dt>
+                    <dd>自 v4.5.0 版本新增。</dd>
                 </dlentry>
             </dl>
         </section>
@@ -19,54 +19,146 @@
                     <pt><ph keyref="FACE_SHAPE_AREA_NONE"/></pt>
                     <pd>-1: （默认）无效部位，美型效果不生效。</pd>
                 </plentry>
-                <plentry>
-                    <pt><ph keyref="FACE_SHAPE_AREA_HEADSCALE"/></pt>
-                    <pd>0: 头部，用于实现小头效果。对应修饰力度范围为 [0,100]，值越大头越小，预设值为 100。</pd>
-                </plentry>
-                <plentry>
-                    <pt><ph keyref="FACE_SHAPE_AREA_FOREHEAD"/></pt>
-                    <pd>1: 额头，修饰发际线高度。对应修饰力度范围为 [-100,100]，正值为调高发际线（额头更窄），负值为调低发际线（额头更宽），绝对值越大修饰效果越强，预设值为 50。</pd>
-                </plentry>
-                <plentry>
-                    <pt><ph keyref="FACE_SHAPE_AREA_FACECONTOUR"/></pt>
-                    <pd>2: 脸部轮廓，用于实现瘦脸效果。对应修饰力度范围为 [0,100]，值越大瘦脸效果越强，预设值为 10。</pd>
-                </plentry>
-                <plentry>
-                    <pt><ph keyref="FACE_SHAPE_AREA_FACELENGTH"/></pt>
-                    <pd>3: 脸部长度，用于实现长脸效果。对应修饰力度范围为 [-100,100]，正值为拉长，负值为变短，绝对值越大修饰效果越强，预设值为 0。</pd>
-                </plentry>
-                <plentry>
-                    <pt><ph keyref="FACE_SHAPE_AREA_FACEWIDTH"/></pt>
-                    <pd>4: 脸部宽度，用于实现窄脸效果。对应修饰力度范围为 [0,100]，值越大窄脸效果越强，预设值为 10。</pd>
-                </plentry>
-                <plentry>
-                    <pt><ph keyref="FACE_SHAPE_AREA_CHEEKBONE"/></pt>
-                    <pd>5: 颧骨，修饰颧骨宽度。对应修饰力度范围为 [0,100]，值越大颧骨越窄，预设值为 43。</pd>
-                </plentry>
-                <plentry>
-                    <pt><ph keyref="FACE_SHAPE_AREA_CHEEK"/></pt>
-                    <pd>6: 脸颊，修饰脸颊宽度。对应修饰力度范围为 [0,100]，值越大脸颊越窄，预设值为 50。</pd>
-                </plentry>
-                <plentry>
-                    <pt><ph keyref="FACE_SHAPE_AREA_CHIN"/></pt>
-                    <pd>7: 下巴，修饰下巴长度。对应修饰力度范围为 [-100,100]，正值为拉长，负值为变短，绝对值越大修饰效果越强，预设值为 -20。</pd>
-                </plentry>
-                <plentry>
-                    <pt><ph keyref="FACE_SHAPE_AREA_EYESCALE"/></pt>
-                    <pd>8: 眼睛，用于实现大眼效果。对应修饰力度范围为 [0,100]，值越大，眼睛尺寸越大，预设值为 53。</pd>
-                </plentry>
-                <plentry>
-                    <pt><ph keyref="FACE_SHAPE_AREA_NOSELENGTH"/></pt>
-                    <pd>9: 鼻子长度，用于实现长鼻效果。对应修饰力度范围为 [-100,100]，正值为拉长，负值为变短，绝对值越大修饰效果越强，预设值为 -10。</pd>
-                </plentry>
-                <plentry>
-                    <pt><ph keyref="FACE_SHAPE_AREA_NOSEWIDTH"/></pt>
-                    <pd>10: 鼻子宽度，用于实现瘦鼻效果。对应修饰力度范围为 [-100,100]，正值为变胖/变宽，负值为变瘦/变窄，绝对值越大修饰效果越强，预设值为 72。</pd>
-                </plentry>
-                <plentry>
-                    <pt><ph keyref="FACE_SHAPE_AREA_MOUTHSCALE"/></pt>
-                    <pd>11: 嘴巴，修饰嘴巴尺寸。对应修饰力度范围为 [-100,100]，正值为变大，负值为变小，绝对值越大修饰效果越强，预设值为 20。</pd>
-                </plentry>
-            </parml>
+                <plentry props="apple cpp">
+                <pt><ph keyref="FACE_SHAPE_AREA_HEADSCALE"/></pt>
+                <pd props="apple cpp">（100）：头部缩放。取值范围为 [0, 100]，默认值为 50。值越大，缩头效果越明显。</pd>
+            </plentry>
+        <plentry props="apple cpp">
+                <pt><ph keyref="FACE_SHAPE_AREA_FOREHEAD"/></pt>
+                <pd props="cpp">（101）：额头调整。取值范围为 [0, 100]，默认值为 0。值越大，额头调整效果越明显。</pd>
+            <pd props="apple">（101）：额头大小调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</pd>
+            </plentry>
+        <plentry props="apple cpp">
+                <pt><ph keyref="FACE_SHAPE_AREA_FACECONTOUR"/></pt>
+                <pd props="cpp">（102）：脸型轮廓调整。取值范围为 [0, 100]，默认值为 0。值越大，瘦脸轮廓效果越明显。</pd>
+            <pd props="apple">（102）：脸型轮廓瘦脸。取值范围为 [0, 100]，默认值为 0。值越大，瘦脸效果越明显。</pd>
+            </plentry>
+        <plentry props="apple cpp">
+                <pt><ph keyref="FACE_SHAPE_AREA_FACELENGTH"/></pt>
+                <pd props="cpp">（103）：脸长调整。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整效果越明显，负值表示相反方向。</pd>
+            <pd props="apple">（103）：脸部长度调整。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整效果越明显，负值表示相反方向。</pd>
+            </plentry>
+        <plentry props="apple cpp">
+                <pt><ph keyref="FACE_SHAPE_AREA_FACEWIDTH"/></pt>
+                <pd props="cpp">（104）：脸宽调整。取值范围为 [0, 100]，默认值为 0。值越大，瘦脸宽效果越明显。</pd>
+            <pd props="apple">（104）：脸部宽度调整。取值范围为 [0, 100]，默认值为 0。值越大，瘦脸效果越明显。</pd>
+            </plentry>
+        <plentry props="apple cpp">
+                <pt><ph keyref="FACE_SHAPE_AREA_CHEEKBONE"/></pt>
+                <pd props="cpp">（105）：颧骨调整。取值范围为 [0, 100]，默认值为 0。值越大，颧骨调整效果越明显。</pd>
+            <pd props="apple">（105）：颧骨大小调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</pd>
+            </plentry>
+        <plentry props="apple cpp">
+                <pt><ph keyref="FACE_SHAPE_AREA_CHEEK"/></pt>
+                <pd props="cpp">（106）：面颊调整。取值范围为 [0, 100]，默认值为 0。值越大，面颊调整效果越明显。</pd>
+            <pd props="apple">（106）：面颊大小调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</pd>
+            </plentry>
+        <plentry props="apple cpp">
+                <pt><ph keyref="FACE_SHAPE_AREA_MANDIBLE"/></pt>
+                <pd props="cpp">（107）：下颌骨调整。取值范围为 [0, 100]，默认值为 0。值越大，瘦下颌骨效果越明显。<note type="attention" props="cpp">自 v4.6.0 版本新增。</note></pd>
+                <pd props="apple">（107）：下颌骨瘦脸。取值范围为 [0, 100]，默认值为 0。值越大，瘦脸效果越明显。</pd>
+            </plentry>
+        <plentry props="apple cpp">
+                <pt><ph keyref="FACE_SHAPE_AREA_CHIN"/></pt>
+                <pd props="cpp">（108）：下巴调整。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整效果越明显，负值表示相反方向。</pd>
+            <pd props="apple">（108）：下巴长度调整。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整效果越明显，负值表示相反方向。</pd>
+            </plentry>
+        <plentry props="apple cpp">
+                <pt><ph keyref="FACE_SHAPE_AREA_EYESCALE"/></pt>
+                <pd props="cpp">（200）：眼睛缩放。取值范围为 [0, 100]，默认值为 50。值越大，放大眼睛效果越明显。</pd>
+            <pd props="apple">（200）：眼睛大小调整。取值范围为 [0, 100]，默认值为 50。值越大，放大效果越明显。</pd>
+            </plentry>
+        <plentry props="apple cpp">
+                <pt><ph keyref="FACE_SHAPE_AREA_EYEDISTANCE"/></pt>
+                <pd props="apple cpp">（201）：眼距调整。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整效果越明显，负值表示相反方向。<note type="attention" props="cpp">自 v4.6.0 版本新增。</note></pd>
+            </plentry>
+        <plentry props="apple cpp">
+                <pt><ph keyref="FACE_SHAPE_AREA_EYEPOSITION"/></pt>
+                <pd props="cpp">（202）：眼位调整。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整效果越明显，负值表示相反方向。<note type="attention" props="cpp">自 v4.6.0 版本新增。</note></pd>
+            <pd props="apple">（202）：眼睛上下位置调整。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整效果越明显，负值表示相反方向。</pd>
+            </plentry>
+        <plentry props="apple cpp">
+                <pt><ph keyref="FACE_SHAPE_AREA_LOWEREYELID"/></pt>
+                <pd props="cpp">（203）：下眼睑调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。<note type="attention" props="cpp">自 v4.6.0 版本新增。</note></pd>
+            <pd props="apple">（203）：下眼睑位置调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</pd>
+            </plentry>
+        <plentry props="apple cpp">
+                <pt><ph keyref="FACE_SHAPE_AREA_EYEPUPILS"/></pt>
+                <pd props="cpp">（204）：瞳孔调整。取值范围为 [0, 100]，默认值为 0。值越大，放大瞳孔效果越明显。<note type="attention" props="cpp">自 v4.6.0 版本新增。</note></pd>
+            <pd props="apple">（204）：瞳孔大小调整。取值范围为 [0, 100]，默认值为 0。值越大，放大效果越明显。</pd>
+            </plentry>
+        <plentry props="apple cpp">
+                <pt><ph keyref="FACE_SHAPE_AREA_EYEINNERCORNER"/></pt>
+                <pd props="cpp">（205）：眼内角调整。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整效果越明显，负值表示相反方向。<note type="attention" props="cpp">自 v4.6.0 版本新增。</note></pd>
+            <pd props="apple">（205）：内眼角调整。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整效果越明显，负值表示相反方向。</pd>
+            </plentry>
+        <plentry props="apple cpp">
+                <pt><ph keyref="FACE_SHAPE_AREA_EYEOUTERCORNER"/></pt>
+                <pd props="cpp">（206）：眼外角调整。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整效果越明显，负值表示相反方向。<note type="attention" props="cpp">自 v4.6.0 版本新增。</note></pd>
+            <pd props="apple">（206）：外眼角调整。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整效果越明显，负值表示相反方向。</pd>
+            </plentry>
+        <plentry props="apple cpp">
+                <pt><ph keyref="FACE_SHAPE_AREA_NOSELENGTH"/></pt>
+                <pd props="apple cpp">（300）：鼻子长度调整。取值范围为 [-100, 100]，默认值为 0。</pd>
+            </plentry>
+        <plentry props="apple cpp">
+                <pt><ph keyref="FACE_SHAPE_AREA_NOSEWIDTH"/></pt>
+                <pd props="cpp">（301）：鼻子宽度调整。取值范围为 [0, 100]，默认值为 0。值越大，鼻子变窄效果越明显。<note type="attention" props="cpp">自 v4.6.0 版本新增。</note></pd>
+            <pd props="apple">（301）：鼻子宽度调整。取值范围为 [0, 100]，默认值为 0。值越大，变窄效果越明显。</pd>
+            </plentry>
+        <plentry props="apple cpp">
+                <pt><ph keyref="FACE_SHAPE_AREA_NOSEWING"/></pt>
+                <pd props="cpp">（302）：鼻翼调整。取值范围为 [0, 100]，默认值为 10。值越大，调整效果越明显。<note type="attention" props="cpp">自 v4.6.0 版本新增。</note></pd>
+            <pd props="apple">（302）：鼻翼大小调整。取值范围为 [0, 100]，默认值为 10。值越大，调整效果越明显。</pd>
+            </plentry>
+        <plentry props="apple cpp">
+                <pt><ph keyref="FACE_SHAPE_AREA_NOSEROOT"/></pt>
+                <pd props="cpp">（303）：鼻根调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。<note type="attention" props="cpp">自 v4.6.0 版本新增。</note></pd>
+            <pd props="apple">（303）：鼻根大小调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</pd>
+            </plentry>
+        <plentry props="apple cpp">
+                <pt><ph keyref="FACE_SHAPE_AREA_NOSEBRIDGE"/></pt>
+                <pd props="cpp">（304）：鼻梁调整。取值范围为 [0, 100]，默认值为 50。值越大，调整效果越明显。<note type="attention" props="cpp">自 v4.6.0 版本新增。</note></pd>
+            <pd props="apple">（304）：鼻梁大小调整。取值范围为 [0, 100]，默认值为 50。值越大，调整效果越明显。</pd>
+            </plentry>
+        <plentry props="apple cpp">
+                <pt><ph keyref="FACE_SHAPE_AREA_NOSETIP"/></pt>
+                <pd props="cpp">（305）：鼻尖调整。取值范围为 [0, 100]，默认值为 50。值越大，调整效果越明显。<note type="attention" props="cpp">自 v4.6.0 版本新增。</note></pd>
+            <pd props="apple">（305）：鼻尖大小调整。取值范围为 [0, 100]，默认值为 50。值越大，调整效果越明显。</pd>
+            </plentry>
+        <plentry props="apple cpp">
+                <pt><ph keyref="FACE_SHAPE_AREA_NOSEGENERAL"/></pt>
+                <pd props="cpp">（306）：整体鼻型调整。取值范围为 [-100, 100]，默认值为 50。绝对值越大，调整效果越明显，负值表示相反方向。<note type="attention" props="cpp">自 v4.6.0 版本新增。</note></pd>
+            <pd props="apple">（306）：整体鼻子大小调整。取值范围为 [-100, 100]，默认值为 50。绝对值越大，调整效果越明显，负值表示相反方向。</pd>
+            </plentry>
+        <plentry props="apple cpp">
+                <pt><ph keyref="FACE_SHAPE_AREA_MOUTHSCALE"/></pt>
+                <pd props="cpp">（400）：嘴巴缩放。取值范围为 [-100, 100]，默认值为 20。绝对值越大，调整效果越明显，负值表示相反方向。<note type="attention" props="cpp">自 v4.6.0 版本新增。</note></pd>
+            <pd props="apple">（400）：嘴巴大小调整。取值范围为 [-100, 100]，默认值为 20。绝对值越大，调整效果越明显，负值表示相反方向。</pd>
+            </plentry>
+        <plentry props="apple cpp">
+                <pt><ph keyref="FACE_SHAPE_AREA_MOUTHPOSITION"/></pt>
+                <pd props="apple cpp">（401）：嘴巴位置调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。<note type="attention" props="cpp">自 v4.6.0 版本新增。</note></pd>
+            </plentry>
+        <plentry props="apple cpp">
+                <pt><ph keyref="FACE_SHAPE_AREA_MOUTHSMILE"/></pt>
+                <pd props="cpp">（402）：嘴角上扬调整。取值范围为 [0, 100]，默认值为 30。值越大，笑意效果越明显。<note type="attention" props="cpp">自 v4.6.0 版本新增。</note></pd>
+            <pd props="apple">（402）：嘴角上扬程度调整。取值范围为 [0, 100]，默认值为 30。值越大，微笑效果越明显。</pd>
+            </plentry>
+        <plentry props="apple cpp">
+                <pt><ph keyref="FACE_SHAPE_AREA_MOUTHLIP"/></pt>
+                <pd props="cpp">（403）：嘴唇厚度调整。取值范围为 [0, 100]，默认值为 0。值越大，嘴唇变厚效果越明显。<note type="attention" props="cpp">自 v4.6.0 版本新增。</note></pd>
+            <pd props="apple">（403）：嘴唇大小调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</pd>
+            </plentry>
+        <plentry props="apple cpp">
+                <pt><ph keyref="FACE_SHAPE_AREA_EYEBROWPOSITION"/></pt>
+                <pd props="apple cpp">（500）：眉毛位置调整。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整效果越明显，负值表示相反方向。<note type="attention" props="cpp">自 v4.6.0 版本新增。</note></pd>
+            </plentry>
+        <plentry props="apple cpp">
+                <pt><ph keyref="FACE_SHAPE_AREA_EYEBROWTHICKNESS"/></pt>
+                <pd props="cpp">（501）：眉毛粗细调整。取值范围为 [-100, 100]，默认值为 0。值越大，眉毛变粗效果越明显。</pd>
+            <pd props="apple">（501）：眉毛粗细调整。取值范围为 [-100, 100]，默认值为 0。值越大，变粗效果越明显。</pd>
+            </plentry>
+        </parml>
         </section></refbody>
 </reference>
