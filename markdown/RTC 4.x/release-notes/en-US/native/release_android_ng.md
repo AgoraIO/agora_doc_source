@@ -59,10 +59,6 @@ For details on deprecated and deleted APIs in each version, see the [API Sunset 
    - Before v4.6.0: If you used `registerLocalUserAccount` to register a string UID (e.g., "aa") and obtain an int UID (e.g., 123), when you later joined a channel using this int UID, the SDK automatically mapped it to the original string UID ("aa").
    - From v4.6.0: The SDK no longer automatically maps an int UID to the original string UID used for registration. If you have called `registerLocalUserAccount` to get an int UID but need to join the channel with the original string UID, call ``directly with the string UID. After upgrading, check and adjust your app logic to ensure users join the channel with the expected identity.
 
-6. **Changes to dual-stream mode behavior**
-
-   - Before v4.6.0: When the sender enabled adaptive simulcast stream mode (AUTO_SIMULCAST_STREAM), they would not proactively send the low-resolution stream. The sender would only start sending the low-resolution stream after a receiver with host priority called [setRemoteVideoStreamType [1/2]](API/api_irtcengine_setremotevideostreamtype.html) to request it.
-   - From v4.6.0: When the sender enables adaptive simulcast stream mode (AUTO_SIMULCAST_STREAM), the SDK automatically determines whether to send or stop sending the low-resolution stream based on the downlink network conditions of the subscribers. This adaptive function is disabled if **mode** is set to another sending mode or if the width, height, bitrate, or frame rate of the low-resolution stream is explicitly configured.
 
 #### New features
 
