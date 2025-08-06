@@ -90,9 +90,10 @@
                     </li>
                     <li><ph><b>多路径网络传输</b></ph>
 <p>该版本新增新增多路径传输功能，适用于终端支持多网卡传输(比如 5G， Wi-Fi，LAN)的设备，可以有效降低甚至消除弱网带来的体验回退，适用于弱网环境、对传输稳定性要求高的实时音视频通信场景，如车载、IoT、火车、高速公路等复杂网络环境。 通过在 <codeph><xref keyref="ChannelMediaOptions"/></codeph> 中设置 <codeph>enableMultipath</codeph> 为 <codeph><ph keyref="true"/></codeph>，可开启多路径传输能力。 支持两种传输模式（<codeph><xref keyref="MultipathMode"/></codeph>）：<ul>
-                            <li>Dynamic 模式：SDK 会根据网络状况动态选择最佳路径进行传输，适用于流量敏感，对体验要求比较高的场景，如会议、教育场景。 此外，还可通过 preferMultipathType 指定首选的传输网络路径类型（如优先 Wi-Fi 或移动网络）；如未设置，所有类型路径的权重默认相同。</li>
-                            <li>Duplicate 模式：数据会在所有可用网络路径（如LAN、Wi-Fi、移动网络）上同时传输，提升抗丢包和稳定性，可消除弱网，适用于流量不敏感，对体验有极致要求的场景，如户外采播、平行操控等。</li>
+                            <li>冗余发送模式：SDK 会根据网络状况动态选择最佳路径进行传输，适用于流量敏感，对体验要求比较高的场景，如会议、教育场景。 此外，还可通过 preferMultipathType 指定首选的传输网络路径类型（如优先 Wi-Fi 或移动网络）；如未设置，所有类型路径的权重默认相同。</li>
+                            <li>动态发送模式：数据会在所有可用网络路径（如LAN、Wi-Fi、移动网络）上同时传输，提升抗丢包和稳定性，可消除弱网，适用于流量不敏感，对体验有极致要求的场景，如户外采播、平行操控等。</li>
                         </ul>
+                        <note type="attention">冗余发送模式会产生额外费用，如需使用请<xref keyref="ticket-link"/>。</note>
                         <ph>上下行还可分别通过 <codeph><xref keyref="ChannelMediaOptions"/></codeph> 中的 <codeph>uplinkMultipathMode</codeph>、<codeph>downlinkMultipathMode</codeph> 配置。 启用后，SDK 会通过回调 <codeph><xref keyref="onMultipathStats"/></codeph> 实时上报各路径的传输统计信息，包括每一个传输路径的流量消耗，便于开发者监控和优化网络表现。</ph></p>
                     </li>
                     <li><ph><b>视频质量评分</b></ph>
