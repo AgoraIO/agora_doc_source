@@ -77,6 +77,8 @@ For details on deprecated and deleted APIs in each version, see the [API Sunset 
    - Dynamic mode: The SDK dynamically selects the optimal path for transmission based on network conditions. This mode is suitable for scenarios sensitive to data consumption but with high experience requirements, such as meetings and educational settings. Additionally, you can specify a preferred network path type (such as Wi-Fi or cellular) using `preferMultipathType`. If not set, all path types have the same default weight.
    - Duplicate mode: Data is transmitted simultaneously over all available network paths (such as LAN, Wi-Fi, and cellular) to enhance anti-packet loss and stability. This mode eliminates the impact of poor network conditions and is suitable for scenarios that are not sensitive to data consumption but have extreme experience requirements, such as outdoor broadcasting and parallel control.
 
+   > Duplicate transmission mode incurs additional costs. If you need to enable this feature, please contact [technical support](mailto:support@agora.io).
+
    Uplink and downlink transmission can be configured separately using `uplinkMultipathMode` and `downlinkMultipathMode` in `ChannelMediaOptions`. When enabled, the SDK reports real-time transmission statistics for each path through the `onMultipathStats` callback, including the data consumption of each path, which allows you to monitor and optimize network performance.
 
 3. **Video quality scoring**

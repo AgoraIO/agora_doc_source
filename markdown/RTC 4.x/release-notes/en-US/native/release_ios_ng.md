@@ -86,11 +86,13 @@ For details on deprecated and deleted APIs in each version, see the [API Sunset 
    - Dynamic mode: The SDK dynamically selects the optimal path for transmission based on network conditions. This mode is suitable for scenarios sensitive to data consumption but with high experience requirements, such as meetings and educational settings. Additionally, you can specify a preferred network path type (such as Wi-Fi or cellular) using `preferMultipathType`. If not set, all path types have the same default weight.
    - Duplicate mode: Data is transmitted simultaneously over all available network paths (such as LAN, Wi-Fi, and cellular) to enhance anti-packet loss and stability. This mode eliminates the impact of poor network conditions and is suitable for scenarios that are not sensitive to data consumption but have extreme experience requirements, such as outdoor broadcasting and parallel control.
 
+   >  > Duplicate transmission mode incurs additional costs. If you need to enable this feature, please contact [technical support](mailto:support@agora.io).
+
    Uplink and downlink transmission can be configured separately using `uplinkMultipathMode` and `downlinkMultipathMode` in `AgoraRtcChannelMediaOptions`. When enabled, the SDK reports real-time transmission statistics for each path through the `rtcEngine:didMultipathStatsChanged:` callback, including the data consumption of each path, which allows you to monitor and optimize network performance.
 
 3. **Video quality scoring**
 
-   This version adds the `mosValue` member to `AgoraRtcRemoteVideoStats`, which reports the quality score of the received remote video stream. The score ranges from 1 to 5, where 5 indicates excellent video quality with a clear image and no artifacts, and 1 indicates extremely poor video quality with severe blurring. You can use this parameter to monitor the subjective quality of remote video streams in real-time, which helps in dynamically adjusting video parameters for quality monitoring and alerting. To enable this feature, please [technical support](mailto:support@agora.io).
+   This version adds the `mosValue` member to `AgoraRtcRemoteVideoStats`, which reports the quality score of the received remote video stream. The score ranges from 1 to 5, where 5 indicates excellent video quality with a clear image and no artifacts, and 1 indicates extremely poor video quality with severe blurring. You can use this parameter to monitor the subjective quality of remote video streams in real-time, which helps in dynamically adjusting video parameters for quality monitoring and alerting. To enable this feature, please contact [technical support](mailto:support@agora.io).
 
 4. **Support for adding multiple watermarks**
 
