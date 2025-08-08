@@ -22,6 +22,7 @@
         <topicref keyref="IRtcEngine" chunk="to-content">
             <topicref keyref="addVideoWatermark1" toc="no"/>
             <topicref keyref="addVideoWatermark2" toc="no"/>
+            <topicref keyref="addVideoWatermark3" toc="no"/>
             <topicref keyref="adjustAudioMixingPlayoutVolume" toc="no"/>
             <topicref keyref="adjustAudioMixingPublishVolume" toc="no"/>
             <topicref keyref="adjustAudioMixingVolume" toc="no"/>
@@ -37,14 +38,16 @@
             <topicref keyref="create" toc="no" processing-role="resource-only"/>
             <topicref keyref="initialize" toc="no"/>
             <topicref keyref="createAgoraRtcEngine" toc="no"/>
+            <topicref keyref="createCustomVideoTrack" toc="no"/>
             <topicref keyref="createDataStream1" toc="no"/>
             <topicref keyref="createDataStream2" toc="no"/>
             <topicref keyref="createMediaPlayer" toc="no"/>
             <topicref keyref="createMediaRecorder" toc="no"/>
-            <topicref keyref="createCustomVideoTrack" toc="no"/>
+            <topicref keyref="createVideoEffectObject" toc="no"/>
             <topicref keyref="destroyCustomVideoTrack" toc="no"/>
             <topicref keyref="destroyMediaPlayer" toc="no"/>
             <topicref keyref="destroyMediaRecorder" toc="no"/>
+            <topicref keyref="destroyVideoEffectObject" toc="no"/>
             <topicref keyref="disableAudio" toc="no"/>
             <topicref keyref="disableAudioSpectrumMonitor" toc="no"/>
             <topicref keyref="disableVideo" toc="no"/>
@@ -147,6 +150,7 @@
             <topicref keyref="registerMediaMetadataObserver" toc="no"/>
             <topicref keyref="registerPacketObserver" toc="no"/>
             <topicref keyref="release" toc="no"/>
+            <topicref keyref="removeVideoWatermark" toc="no"/>
             <topicref keyref="renewToken" toc="no"/>
             <topicref keyref="resumeAllChannelMediaRelay" toc="no"/>
             <topicref keyref="resumeAllEffects" toc="no"/>
@@ -226,11 +230,11 @@
             <topicref keyref="setParameters" toc="no"/>
             <topicref keyref="setParameters_IAgoraParameter" toc="no"/>
             <topicref keyref="setPlaybackAudioFrameBeforeMixingParameters" toc="no"/>
+            <topicref keyref="setPlaybackAudioFrameBeforeMixingParameters1" toc="no"/>
             <topicref keyref="setPlaybackAudioFrameParameters" toc="no"/>
             <topicref keyref="setRecordingAudioFrameParameters" toc="no"/>
             <topicref keyref="setRemoteDefaultVideoStreamType" toc="no"/>
             <topicref keyref="setRemoteUserSpatialAudioParams" toc="no"/>
-            <topicref keyref="setRemoteRenderModeEx" toc="no"/>
             <topicref keyref="setRemoteRenderMode2" toc="no"/>
             <topicref keyref="setRemoteRenderTargetFps" toc="no"/>
             <topicref keyref="setRemoteSubscribeFallbackOption" toc="no"/>
@@ -241,6 +245,7 @@
             <topicref keyref="setRouteInCommunicationMode" toc="no"/>
             <topicref keyref="setScreenCaptureContentHint" toc="no"/>
             <topicref keyref="setScreenCaptureScenario" toc="no"/>
+            <topicref keyref="setSimulcastConfig" toc="no"/>
             <topicref keyref="setSubscribeAudioBlocklist" toc="no"/>
             <topicref keyref="setSubscribeAudioAllowlist" toc="no"/>
             <topicref keyref="setSubscribeVideoBlocklist" toc="no"/>
@@ -315,6 +320,7 @@
         </topicref>
         <topicref keyref="IRtcEngineEx" chunk="to-content">
             <topicref keyref="addVideoWatermarkEx" toc="no"/>
+            <topicref keyref="addVideoWatermarkEx1" toc="no"/>
             <topicref keyref="adjustUserPlaybackSignalVolumeEx" toc="no"/>
             <topicref keyref="clearVideoWatermarkEx" toc="no"/>
             <topicref keyref="createDataStreamEx1" toc="no"/>
@@ -337,15 +343,20 @@
             <topicref keyref="muteRemoteAudioStreamEx" toc="no"/>
             <topicref keyref="muteRemoteVideoStreamEx" toc="no"/>
             <topicref keyref="pauseAllChannelMediaRelayEx" toc="no"/>
+            <topicref keyref="playEffectEx" toc="no"/>
+            <topicref keyref="preloadEffectEx" toc="no"/>
+            <topicref keyref="removeVideoWatermarkEx" toc="no"/>
             <topicref keyref="resumeAllChannelMediaRelayEx" toc="no"/>
             <topicref keyref="sendAudioMetadataEx" toc="no" props="hide"/>
             <topicref keyref="sendCustomReportMessageEx" toc="no"/>
             <topicref keyref="setDualStreamModeEx" toc="no"/>
+            <topicref keyref="setRemoteRenderModeEx" toc="no"/>
             <topicref keyref="setRemoteUserSpatialAudioParams" toc="no"/>
             <topicref keyref="setRemoteVideoStreamTypeEx" toc="no"/>
             <topicref keyref="setRemoteVideoSubscriptionOptionsEx" toc="no"/>
             <topicref keyref="setRemoteVoice3DPositionEx" toc="no" props="hide"/>
             <topicref keyref="setRemoteVoicePositionEx" toc="no"/>
+            <topicref keyref="setSimulcastConfigEx" toc="no"/>
             <topicref keyref="setSubscribeAudioBlocklistEx" toc="no"/>
             <topicref keyref="setSubscribeAudioAllowlistEx" toc="no"/>
             <topicref keyref="setSubscribeVideoBlocklistEx" toc="no"/>
@@ -427,6 +438,7 @@
             <topicref keyref="onRemoteVideoStateChanged" toc="no"/>
             <topicref keyref="onRemoteVideoStats" toc="no"/>
             <topicref keyref="onRemoteVideoTransportStats" toc="no"/>
+            <topicref keyref="onRenewTokenResult" toc="no"/>
             <topicref keyref="onRequestToken" toc="no"/>
             <topicref keyref="onRhythmPlayerStateChanged" toc="no"/>
             <topicref keyref="onRtcStats" toc="no"/>
@@ -833,6 +845,19 @@
             <topicref keyref="SetJsonParameter_Config" toc="no"/>
             <topicref keyref="UnregisterObserver_Rte" toc="no" props="hide"/>
         </topicref>
+        <topicref keyref="IVideoEffectObject" toc="no">
+            <topicref keyref="addOrUpdateVideoEffect" toc="no"/>
+            <topicref keyref="getVideoEffectBoolParam" toc="no"/>
+            <topicref keyref="getVideoEffectFloatParam" toc="no"/>
+            <topicref keyref="getVideoEffectIntParam" toc="no"/>
+            <topicref keyref="performVideoEffectAction" toc="no"/>
+            <topicref keyref="removeVideoEffect" toc="no"/>
+            <topicref keyref="setVideoEffectBoolParam" toc="no"/>
+            <topicref keyref="setVideoEffectFloatParam" toc="no"/>
+            <topicref keyref="setVideoEffectIntParam" toc="no"/>
+        </topicref>
+        <topicref keyref="RtcEngineReleaseCallback" toc="no"/>
+        
         <topicref href="API/rtc_api_data_type.dita" chunk="to-content"/>
         <topicref href="API/rtc_api_sunset.dita"/>
     </topichead>
