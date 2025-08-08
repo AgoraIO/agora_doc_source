@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_rtcengine_takesnapshot">
+    <title><ph keyref="takeSnapshot"/></title>
+    <shortdesc id="short"><ph id="shortdesc">截取视频流的快照并保存为 JPG 图像。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="takeSnapshot"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int takeSnapshot(int uid, String filePath);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (NSInteger)takeSnapshot:(NSInteger)uid filePath:(NSString* _Nonnull)filePath NS_SWIFT_NAME(takeSnapshot(_:filePath:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp"/>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>该方法从指定用户的视频流中截取一帧图像，生成 JPG 图片，并保存到指定路径。该方法为异步调用，调用返回时 SDK 尚未完成截图。调用成功后，SDK 会触发 <xref keyref="onSnapshotTaken"/>（iOS）或 <xref keyref="onSnapshotTaken"/>（Android）回调，报告截图是否成功以及截图的详细信息。
+
+请在加入频道后调用该方法。
+
+该方法截取的是 <xref keyref="ChannelMediaOptions"/> 中指定的已发布视频流的快照。
+
+如果用户的视频已被预处理，例如添加水印或美颜，截图结果中会包含这些预处理效果。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+            <plentry props="android ios">
+                <pt props="android ios">uid</pt>
+                <pd props="android">用户 ID。如果要截取本地用户的视频，请将 <ph keyref="uid"/> 设置为 0。</pd>
+                <pd props="ios">用户 ID。如果你想截取本地用户的视频，请将 <ph keyref="uid"/> 设置为 0。</pd>
+            </plentry>
+            <plentry props="android ios">
+                <pt props="android ios">filePath</pt>
+                <pd props="android">截图的本地路径（包含文件扩展名）。例如：
+                    <ul>
+                        <li>Windows: <ph keyref="imagePath-example"/></li>
+                        <li>iOS: <codeph>/App Sandbox/Library/Caches/example.jpg</codeph></li>
+                        <li>macOS: <ph keyref="imagePath-example"/></li>
+                        <li>Android: <codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.jpg</codeph> 请确保指定路径存在且可写。</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">截图的本地路径（包含文件扩展名）。例如：
+                    <ul>
+                        <li>Windows: <ph keyref="imagePath-example"/></li>
+                        <li>iOS: <codeph>/App Sandbox/Library/Caches/example.jpg</codeph></li>
+                        <li>macOS: <ph keyref="imagePath-example"/></li>
+                        <li>Android: <codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.jpg</codeph> 请确保你指定的路径存在且可写。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cpp cs electron rn unity unreal">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul>
+        <p props="android apple"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+    </section>
+        </refbody>
+</reference>

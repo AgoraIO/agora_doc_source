@@ -1,69 +1,51 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_watermarkoptions">
     <title><ph keyref="WatermarkOptions"/></title>
-    <shortdesc id="short"><ph id="shortdesc">水印图片的设置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">用于配置水印图像的相关参数。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class WatermarkOptions {
-  public static class Rectangle {
-    public int x = 0;
-    public int y = 0;
-    public int width = 0;
-    public int height = 0;
-    public Rectangle() {
-      x = 0;
-      y = 0;
-      width = 0;
-      height = 0;
-    }
-    public Rectangle(int x_, int y_, int width_, int height_) {
-      x = x_;
-      y = y_;
-      width = width_;
-      height = height_;
-    }
-  };
   public boolean visibleInPreview = true;
-  public Rectangle positionInLandscapeMode = new Rectangle();
-  public Rectangle positionInPortraitMode = new Rectangle();
-}
-</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface WatermarkOptions : NSObject
+  public int zOrder = 0;
+}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface WatermarkOptions : NSObject
 @property(assign, nonatomic) BOOL visibleInPreview;
 @property(assign, nonatomic) CGRect positionInLandscapeMode;
 @property(assign, nonatomic) CGRect positionInPortraitMode;
-@end
-</codeblock>
+@property(assign, nonatomic) int zOrder;
+@end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct WatermarkOptions {
   bool visibleInPreview;
   Rectangle positionInLandscapeMode;
   Rectangle positionInPortraitMode;
   WatermarkRatio watermarkRatio;
   WATERMARK_FIT_MODE mode;
+  int zOrder;
+
   WatermarkOptions()
-    : visibleInPreview(false),
-      positionInLandscapeMode(0, 0, 0, 0),
-      positionInPortraitMode(0, 0, 0, 0),
-      mode(FIT_MODE_COVER_POSITION) {}
-};
-</codeblock>
+      : visibleInPreview(true),
+        positionInLandscapeMode(0, 0, 0, 0),
+        positionInPortraitMode(0, 0, 0, 0),
+        mode(FIT_MODE_COVER_POSITION),
+        zOrder(0) {}
+};</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FWatermarkOptions
 {
 	GENERATED_BODY()
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkOptions&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|WatermarkOptions")
 	bool visibleInPreview;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkOptions&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|WatermarkOptions")
 	FRectangle positionInLandscapeMode;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkOptions&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|WatermarkOptions")
 	FRectangle positionInPortraitMode;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkOptions&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|WatermarkOptions")
 	FWatermarkRatio watermarkRatio;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkOptions&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|WatermarkOptions")
 	EWATERMARK_FIT_MODE mode = EWATERMARK_FIT_MODE::FIT_MODE_COVER_POSITION;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class WatermarkOptions {
@@ -125,31 +107,31 @@ class WatermarkOptions {
       this.watermarkRatio,
       this.mode});
 
-  @JsonKey(name: &#x27;visibleInPreview&#x27;)
+  @JsonKey(name: 'visibleInPreview')
   final bool? visibleInPreview;
 
-  @JsonKey(name: &#x27;positionInLandscapeMode&#x27;)
+  @JsonKey(name: 'positionInLandscapeMode')
   final Rectangle? positionInLandscapeMode;
 
-  @JsonKey(name: &#x27;positionInPortraitMode&#x27;)
+  @JsonKey(name: 'positionInPortraitMode')
   final Rectangle? positionInPortraitMode;
 
-  @JsonKey(name: &#x27;watermarkRatio&#x27;)
+  @JsonKey(name: 'watermarkRatio')
   final WatermarkRatio? watermarkRatio;
 
-  @JsonKey(name: &#x27;mode&#x27;)
+  @JsonKey(name: 'mode')
   final WatermarkFitMode? mode;
 
-  factory WatermarkOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory WatermarkOptions.fromJson(Map&amp;lt;String, dynamic&amp;gt; json) =&amp;gt;
       _$WatermarkOptionsFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$WatermarkOptionsToJson(this);
+  Map&amp;lt;String, dynamic&amp;gt; toJson() =&amp;gt; _$WatermarkOptionsToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
-            <p/>
-        </section>
+            <p>你可以使用该类配置水印图片的位置和大小。</p>
+            </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
@@ -165,8 +147,8 @@ class WatermarkOptions {
             <plentry>
                 <pt>positionInLandscapeMode</pt>
                 <pd props="android hmos">横屏模式下，显示水印图片的区域。详见 <xref keyref="Rectangle"/>。</pd>
-                <pd props="cpp unreal bp unity electron rn flutter cs">水印的适配模式为 <ph keyref="FIT_MODE_COVER_POSITION"/> 时，用于设置横屏模式下水印图片的区域。详见 <xref keyref="Rectangle"/>。</pd>
-                <pd props="ios mac">横屏模式下，显示水印图片的区域。该参数包含以下成员：
+                <pd props="bp cpp cs electron flutter rn unity unreal">水印的适配模式为 <ph keyref="FIT_MODE_COVER_POSITION"/> 时，用于设置横屏模式下水印图片的区域。详见 <xref keyref="Rectangle"/>。</pd>
+                <pd props="apple">横屏模式下，显示水印图片的区域。该参数包含以下成员：
                     <ul>
                     <li>x：水印相对左上角的横向偏移。</li>
                     <li>y：水印相对左上角的纵向偏移。</li>
@@ -177,8 +159,8 @@ class WatermarkOptions {
             <plentry>
                 <pt>positionInPortraitMode</pt>
                 <pd props="android hmos">竖屏模式下，显示水印图片的区域。详见 <xref keyref="Rectangle"/>。</pd>
-                <pd props="cpp unreal bp unity electron rn flutter cs">水印的适配模式为 <ph keyref="FIT_MODE_COVER_POSITION"/> 时，用于设置竖屏模式下水印图片的区域。详见 <xref keyref="Rectangle"/>。</pd>
-                <pd props="ios mac">竖屏模式下，显示水印图片的区域。该参数包含以下成员：
+                <pd props="bp cpp cs electron flutter rn unity unreal">水印的适配模式为 <ph keyref="FIT_MODE_COVER_POSITION"/> 时，用于设置竖屏模式下水印图片的区域。详见 <xref keyref="Rectangle"/>。</pd>
+                <pd props="apple">竖屏模式下，显示水印图片的区域。该参数包含以下成员：
                     <ul>
                     <li>x：水印相对左上角的横向偏移。</li>
                     <li>y：水印相对左上角的纵向偏移。</li>
@@ -186,13 +168,19 @@ class WatermarkOptions {
                     <li>height：水印区域的高 (px)。</li>
                     </ul> </pd>
             </plentry>
-            <plentry props="cpp unreal bp unity electron rn flutter cs">
+            <plentry props="bp cpp cs electron flutter rn unity unreal">
                 <pt>watermarkRatio</pt>
                 <pd>水印的适配模式为 <ph keyref="FIT_MODE_USE_IMAGE_RATIO"/> 时，该参数可设置缩放模式下的水印坐标。详见 <xref keyref="WatermarkRatio"/>。</pd>
             </plentry>
-            <plentry props="cpp unreal bp unity electron rn flutter cs">
+            <plentry props="bp cpp cs electron flutter rn unity unreal">
                 <pt>mode</pt>
                 <pd>水印的适配模式。详见 <xref keyref="WATERMARK_FIT_MODE"/>。</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">zOrder</pt>
+                <pd props="android">水印图像的图层顺序。该属性用于指定水印图像相对于视频中其他叠加层的堆叠顺序。</pd>
+                <pd props="ios">设置水印图像的图层顺序。</pd>
+                <pd props="cpp">水印图像的 Z 轴顺序。默认值为 0。</pd>
             </plentry>
             </parml> </section>
     </refbody>

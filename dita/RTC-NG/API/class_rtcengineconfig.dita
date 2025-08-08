@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_rtcengineconfig">
     <title><ph keyref="RtcEngineConfig"/></title>
-    <shortdesc id="short"><ph id="shortdesc"><apiname keyref="RtcEngineConfig"/> 定义。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">配置声网 <xref keyref="IRtcEngine"/> 实例。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -12,18 +12,15 @@
   public String mAppId;
   public int mAreaCode;
   public int mChannelProfile;
+  public String mLicense;
   public int mAudioScenario;
   public boolean mAutoRegisterAgoraExtensions;
-  public List&lt;String> mExtensionList;
+  public List&amp;lt;String&amp;gt; mExtensionList;
   public IMediaExtensionObserver mExtensionObserver;
   public LogConfig mLogConfig;
+  public Integer mThreadPriority;
   public String mNativeLibPath;
-  public boolean mDomainLimit;  
-
-  public void addExtension(String providerName) {
-    mExtensionList.add(providerName);
-  }
-
+  public boolean mDomainLimit;
 }</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">export class RtcEngineConfig{
   public mContext:Context | null = null;
@@ -39,8 +36,8 @@
 @property (strong, nonatomic) AgoraLogConfig * _Nullable logConfig;
 @property (assign, nonatomic) BOOL domainLimit;
 @property (assign, nonatomic) BOOL autoRegisterAgoraExtensions;
-@property (copy, nonatomic) NSArray&lt;id&lt;AgoraMediaFilterExtensionDelegate&gt;&gt;* _Nullable mediaFilterExtensions;
-@property (weak, nonatomic) id&lt;AgoraMediaFilterEventDelegate&gt; _Nullable eventDelegate;
+@property (copy, nonatomic) NSArray&amp;lt;id&amp;lt;AgoraMediaFilterExtensionDelegate&amp;gt;&amp;gt;* _Nullable mediaFilterExtensions;
+@property (weak, nonatomic) id&amp;lt;AgoraMediaFilterEventDelegate&amp;gt; _Nullable eventDelegate;
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct RtcEngineContext {
   IRtcEngineEventHandler* eventHandler;
@@ -66,27 +63,27 @@ struct FRtcEngineContext
 {
 	GENERATED_BODY()
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|RtcEngineContext")
 	FString appId;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|RtcEngineContext")
 	UIRtcEngineEventHandler* eventHandler;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|RtcEngineContext")
 	int64 context;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|RtcEngineContext")
 	FString license;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|RtcEngineContext")
 	ECHANNEL_PROFILE_TYPE channelProfile = ECHANNEL_PROFILE_TYPE::CHANNEL_PROFILE_LIVE_BROADCASTING;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|RtcEngineContext")
 	EAUDIO_SCENARIO_TYPE audioScenario = EAUDIO_SCENARIO_TYPE::AUDIO_SCENARIO_DEFAULT;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|RtcEngineContext")
 	bool threadPriority_SetValue;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|RtcEngineContext")
 	ETHREAD_PRIORITY_TYPE threadPriority;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|RtcEngineContext")
 	FLogConfig logConfig;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|RtcEngineContext")
 	FENUMWRAP_AREA_CODE areaCode = EENUMCUSTOM_AREA_CODE::AREA_CODE_GLOB;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcEngineContext&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|RtcEngineContext")
 	bool useExternalEglContext;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class RtcEngineContext {
@@ -179,33 +176,33 @@ class RtcEngineContext {
   @JsonKey(name: 'autoRegisterAgoraExtensions')
   final bool? autoRegisterAgoraExtensions;
 
-  factory RtcEngineContext.fromJson(Map&lt;String, dynamic> json) =>
+  factory RtcEngineContext.fromJson(Map&amp;lt;String, dynamic&amp;gt; json) =&amp;gt;
       _$RtcEngineContextFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$RtcEngineContextToJson(this);
+  Map&amp;lt;String, dynamic&amp;gt; toJson() =&amp;gt; _$RtcEngineContextToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry props="cpp unreal bp android hmos unity">
-                <pt props="cpp unreal bp unity">eventHandler</pt>
+            <plentry props="android bp cpp hmos unity unreal">
+                <pt props="bp cpp unity unreal">eventHandler</pt>
                 <pt props="android hmos">mEventHandler</pt>
                 <pd id="eventhandler"><xref keyref="IRtcEngine"/> 的事件句柄，详见 <xref keyref="IRtcEngineEventHandler"/>。</pd>
             </plentry>
             <plentry>
-                <pt props="cpp unreal bp ios mac unity electron rn flutter">appId</pt>
+                <pt props="apple bp cpp electron flutter rn unity unreal">appId</pt>
                 <pt props="android hmos">mAppId</pt>
                 <pd id="appid">声网为 App 开发者签发的 App ID。 使用同一个 App ID 的 App 才能进入同一个频道进行通话或直播。一个 App ID 只能用于创建一个 <apiname keyref="IRtcEngine"/>。如需更换 App ID，必须先调用 <xref keyref="release"/> 销毁当前 <apiname keyref="IRtcEngine"/> 再重新创建。</pd>
             </plentry>
-            <plentry props="android hmos cpp unreal bp unity cs">
-                <pt props="cpp unreal bp unity cs">context</pt>
+            <plentry props="android bp cpp cs hmos unity unreal">
+                <pt props="bp cpp cs unity unreal">context</pt>
                 <pt props="android hmos">mContext</pt>
                 <pd id="context">
-                    <ul props="cpp unreal bp unity cs">
+                    <ul props="bp cpp cs unity unreal">
                     <li>Windows 平台上，context 是视窗句柄。如设值，则表示支持设备热插拔。</li>
-                    <li props="cpp unreal bp unity">Android 平台上，context 是安卓活动上下文。</li>
+                    <li props="bp cpp unity unreal">Android 平台上，context 是安卓活动上下文。</li>
                     </ul>
                     <p props="android">安卓活动上下文。</p>
                     <p props="hmos">上下文。</p>
@@ -226,23 +223,23 @@ class RtcEngineContext {
                     </ul></note> </pd>
             </plentry>
             <plentry>
-                <pt props="cpp unreal bp ios mac unity cs electron rn flutter">channelProfile</pt>
+                <pt props="apple bp cpp cs electron flutter rn unity unreal">channelProfile</pt>
                 <pt props="android hmos">mChannelProfile</pt>
                 <pd conkeyref="setChannelProfile/channelprofiletype"/>
             </plentry>
             <plentry>
-                <pt props="cpp unreal bp ios mac unity cs electron rn flutter">audioScenario</pt>
+                <pt props="apple bp cpp cs electron flutter rn unity unreal">audioScenario</pt>
                 <pt props="android hmos">mAudioScenario</pt>
                 <pd conkeyref="setAudioScenario/scenario-ng"/>
             </plentry>
             <plentry>
-                <pt props="cpp unreal bp ios mac unity cs electron rn flutter">areaCode</pt>
+                <pt props="apple bp cpp cs electron flutter rn unity unreal">areaCode</pt>
                 <pt props="android hmos">mAreaCode</pt>
                 <pd>服务器的访问区域。该功能为高级设置，适用于有访问安全限制的场景。支持的区域详见 <xref keyref="AREA_CODE"/>。区域码支持位操作。</pd>
                 <pd>指定访问区域后，集成了 SDK 的 App 会连接指定区域内的声网服务器。</pd>
             </plentry>
             <plentry>
-                <pt props="cpp unreal bp ios mac unity cs electron rn flutter">logConfig</pt>
+                <pt props="apple bp cpp cs electron flutter rn unity unreal">logConfig</pt>
                 <pt props="android hmos">mLogConfig</pt>
                 <pd>
                     <p>设置 SDK 输出的日志文件。详见 <xref keyref="LogConfig"/>。</p>
@@ -255,18 +252,18 @@ class RtcEngineContext {
                 <pt>mExtensionList</pt>
                 <pd>插件列表。</pd>
             </plentry>
-            <plentry props="android hmos ios mac">
+            <plentry props="android apple hmos">
                 <pt props="android hmos">mExtensionObserver</pt>
-                <pt props="ios mac">eventDelegate</pt>
+                <pt props="apple">eventDelegate</pt>
                 <pd><xref keyref="IMediaExtensionObserver"/> 实例。</pd>
             </plentry>
-            <plentry props="ios mac">
+            <plentry props="apple">
                 <pt>mediaFilterExtensions</pt>
                 <pd><xref keyref="AgoraMediaFilterExtensionDelegate"/> 实例。</pd>
             </plentry>
             <plentry>
                 <pt props="android hmos">mDomainLimit</pt>
-                <pt props="cpp unreal bp ios mac electron unity cs rn flutter">domainLimit</pt>
+                <pt props="apple bp cpp cs electron flutter rn unity unreal">domainLimit</pt>
                 <pd>
                     <p>是否开启域名限制：
                     <ul>
@@ -276,16 +273,20 @@ class RtcEngineContext {
                 </pd>
             </plentry>
             <plentry>
-              <pt props="android hmos">mAutoRegisterAgoraExtensions</pt>
-              <pt props="cpp unreal bp ios mac electron unity cs rn flutter">autoRegisterAgoraExtensions</pt>
-              <pd>
+                <pt props="android hmos">mAutoRegisterAgoraExtensions</pt>
+                <pt props="apple bp cpp cs electron flutter rn unity unreal">autoRegisterAgoraExtensions</pt>
+                <pd>
                   <p>是否在初始化 <xref keyref="IRtcEngine"/> 时自动注册声网插件：
                   <ul>
                   <li><codeph><ph keyref="true"/></codeph>：（默认）初始化 <apiname keyref="IRtcEngine"/> 时自动注册声网插件。</li>
                   <li><codeph><ph keyref="false"/></codeph>：初始化 <apiname keyref="IRtcEngine"/> 时不注册声网插件。你需要调用 <xref keyref="enableExtension"/> 来注册声网插件。</li>
                   </ul></p>
               </pd>
-          </plentry>
+            </plentry>
+            <plentry props="android">
+                <pt props="android">getNativeLibPath</pt>
+                <pd props="android">获取本地 C++ 动态库的路径。如果该值不为空，SDK 使用 <codeph>System.load</codeph> 加载指定路径的库；否则使用 <codeph>System.loadLibrary</codeph> 进行加载。</pd>
+            </plentry>
             </parml> </section>
             <section props="android hmos" id="sub-method">
               <title>方法</title>

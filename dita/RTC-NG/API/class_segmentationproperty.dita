@@ -1,24 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_segmentationproperty">
-    <title><ph keyref="SegmentationProperty" /></title>
-    <shortdesc id="short"><ph id="shortdesc">背景图像的处理属性。</ph></shortdesc>
+    <title><ph keyref="SegmentationProperty"/></title>
+    <shortdesc id="short"><ph id="shortdesc">用于配置虚拟背景算法的属性。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class SegmentationProperty {
   public static final int SEG_MODEL_AI = 1;
   public static final int SEG_MODEL_GREEN = 2;
+  public static final int SCREEN_COLOR_AUTO = 0;
+  public static final int SCREEN_COLOR_GREEN = 1;
+  public static final int SCREEN_COLOR_BLUE = 2;
   public int modelType;
   public float greenCapacity;
+  public int screenColorType;
   public SegmentationProperty(int modelType, float greenCapacity) {
     this.modelType = modelType;
     this.greenCapacity = greenCapacity;
+    this.screenColorType = SCREEN_COLOR_AUTO;
   }
 
   public SegmentationProperty() {
     this.modelType = SEG_MODEL_AI;
     this.greenCapacity = 0.5f;
+    this.screenColorType = SCREEN_COLOR_AUTO;
   }
 }</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">export class SegmentationProperty {
@@ -27,28 +33,25 @@
   
   public greenCapacity:number = 0.5;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraSegmentationProperty: NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraSegmentationProperty: NSObject
 @property(nonatomic, assign) SegModelType modelType;
 @property(nonatomic, assign) float greenCapacity;
+@property(nonatomic, assign) ScreenColorType screenColorType;
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct SegmentationProperty {
-    enum SEG_MODEL_TYPE {
-    SEG_MODEL_AI = 1,
-    SEG_MODEL_GREEN = 2
-  };
   SEG_MODEL_TYPE modelType;
   float greenCapacity;
-  SegmentationProperty() : modelType(SEG_MODEL_AI), greenCapacity(0.5){}
-};
-</codeblock>
+  SCREEN_COLOR_TYPE screenColorType;
+  SegmentationProperty() : modelType(SEG_MODEL_AI), greenCapacity(0.5), screenColorType(SCREEN_COLOR_AUTO) {}
+};</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FSegmentationProperty
 {
 	GENERATED_BODY()
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SegmentationProperty&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|SegmentationProperty")
 	ESEG_MODEL_TYPE modelType = ESEG_MODEL_TYPE::SEG_MODEL_AI;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SegmentationProperty&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|SegmentationProperty")
 	float greenCapacity = 0.5;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class SegmentationProperty {
@@ -84,26 +87,34 @@ struct FSegmentationProperty
   @JsonKey(name: 'greenCapacity')
   final double? greenCapacity;
 
-  factory SegmentationProperty.fromJson(Map&lt;String, dynamic> json) =>
+  factory SegmentationProperty.fromJson(Map&amp;lt;String, dynamic&amp;gt; json) =&amp;gt;
       _$SegmentationPropertyFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$SegmentationPropertyToJson(this);
+  Map&amp;lt;String, dynamic&amp;gt; toJson() =&amp;gt; _$SegmentationPropertyToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
-            <p />
-        </section>
+            <p>该结构体/类用于配置虚拟背景分割算法的相关参数，包括分割模型类型、绿幕颜色容差以及屏幕颜色类型等。</p>
+            </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry>
-                <pt>modelType</pt>
-                <pd><ph>进行背景处理的算法。</ph><ph props="ios mac cpp unreal bp electron flutter unity rn cs">详见 <xref keyref="SEG_MODEL_TYPE" />。</ph>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">modelType</pt>
+                <pd><ph>进行背景处理的算法。</ph><ph props="apple bp cpp cs electron flutter rn unity unreal">详见 <xref keyref="SEG_MODEL_TYPE"/>。</ph>
                     <ul props="android hmos">
-                    <li><ph keyref="SEG_MODEL_AI" />(1): (默认) 适用于所有场景下的背景处理算法。</li>
-                    <li><ph keyref="SEG_MODEL_GREEN" />(2): 仅适用于绿幕背景下的背景处理算法。</li>
+                    <li><ph keyref="SEG_MODEL_AI"/>(1): (默认) 适用于所有场景下的背景处理算法。</li>
+                    <li><ph keyref="SEG_MODEL_GREEN"/>(2): 仅适用于绿幕背景下的背景处理算法。</li>
                     </ul></pd>
+                <pd props="android">分割算法的类型。默认值为 <ph keyref="SEG_MODEL_AI"/>。
+                    <ul>
+                        <li><ph keyref="SEG_MODEL_AI"/>：AI 分割算法。</li>
+                        <li><ph keyref="SEG_MODEL_GREEN"/>：绿幕分割算法。</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">分割算法的类型，详见 <xref keyref="SEG_MODEL_TYPE"/>。默认值为 <codeph>SegModelTypeAi</codeph>。</pd>
+                <pd props="cpp">分割算法的类型，详见 <xref keyref="SEG_MODEL_TYPE"/>。默认值为 <ph keyref="SEG_MODEL_AI"/>。</pd>
             </plentry>
             <plentry props="hide">
                 <pt>preferVelocity</pt>
@@ -112,13 +123,32 @@ struct FSegmentationProperty
                     <li>0: 不开启双边滤波功能。</li>
                     <li>1: (默认)开启双边滤波功能，在绿幕场景下的虚拟背景效果更好。 </li>
                     </ul>
-                    <note type="note">该参数仅在 <parmname>modelType</parmname> 设置为 <apiname keyref="SEG_MODEL_GREEN" /> 时生效。</note></pd>
+                    <note type="note">该参数仅在 <parmname>modelType</parmname> 设置为 <apiname keyref="SEG_MODEL_GREEN"/> 时生效。</note></pd>
             </plentry>
-            <plentry>
-                <pt>greenCapacity</pt>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">greenCapacity</pt>
                 <pd>
                     <p>对画面中背景颜色识别的精度范围。取值范围为 [0,1]，默认值为 0.5。取值越大，代表可识别的纯色范围越大。当该参数取值过大时，人像边缘和人像范围内的纯色也会被识别。建议你根据实际效果动态调整该参数的值。</p>
-                    <note type="note">该参数仅在 <parmname>modelType</parmname> 设置为 <apiname keyref="SEG_MODEL_GREEN" /> 时生效。</note> </pd>
+                    <note type="note">该参数仅在 <parmname>modelType</parmname> 设置为 <apiname keyref="SEG_MODEL_GREEN"/> 时生效。</note> </pd>
+                <pd props="android">绿幕分割的颜色容差。仅当 <codeph>modelType</codeph> 设置为 <ph keyref="SEG_MODEL_GREEN"/> 时该参数生效。该值范围为 0.0f 到 1.0f，默认值为 0.5f。值越大，可识别的屏幕颜色阴影范围越广。设置过大可能会将人像的一部分识别为背景。声网建议你根据分割效果动态调整该值。</pd>
+                <pd props="ios">绿幕分割的颜色容差。该属性仅在 <codeph>modelType</codeph> 设置为 <codeph>SegModelTypeGreen</codeph> 时生效。取值范围为 0.0 到 1.0，默认值为 0.5。值越大，可识别的屏幕颜色范围越广，但设置过高可能会将人像部分识别为背景。声网建议根据分割效果动态调整该值。</pd>
+                <pd props="cpp">绿幕分割的颜色容差。
+
+仅当 <codeph>modelType</codeph> 设置为 <ph keyref="SEG_MODEL_GREEN"/> 时该参数有效。取值范围为 0.0 到 1.0，默认值为 0.5。值越大，可识别的屏幕颜色范围越广。设置过高可能会导致人像部分被识别为背景。建议根据分割效果动态调整该值。</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">screenColorType</pt>
+                <pd props="android">用于绿幕分割的屏幕颜色。默认值为 <ph keyref="SCREEN_COLOR_AUTO"/>。
+                    <ul>
+                        <li><ph keyref="SCREEN_COLOR_AUTO"/>：自动识别屏幕颜色。</li>
+                        <li><ph keyref="SCREEN_COLOR_GREEN"/>：绿色。</li>
+                        <li><ph keyref="SCREEN_COLOR_BLUE"/>：蓝色。 该属性仅在使用绿幕分割时生效。</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">绿幕分割时的屏幕颜色，详见 <xref keyref="SCREEN_COLOR_TYPE"/>。该属性仅适用于绿幕分割。默认值为 <codeph>ScreenColorTypeAuto</codeph>。</pd>
+                <pd props="cpp">用于绿幕分割的屏幕颜色，详见 <xref keyref="SCREEN_COLOR_TYPE"/>。
+
+该参数仅适用于绿幕分割。默认值为 <ph keyref="SCREEN_COLOR_AUTO"/>。</pd>
             </plentry>
             </parml> </section>
     </refbody>

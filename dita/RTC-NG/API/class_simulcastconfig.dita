@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_simulcastconfig">
+    <title><ph keyref="SimulcastConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc">配置多层级视频流。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class SimulcastConfig {
+final public StreamLayerConfig[] configs = new StreamLayerConfig[StreamLayerIndex.STREAM_LAYER_COUNT_MAX.getValue()];
+public boolean publishFallbackEnable;
+public SimulcastConfig() {
+for (int i = 0; i &amp;lt; StreamLayerIndex.STREAM_LAYER_COUNT_MAX.getValue(); i++) {
+configs[i] = new StreamLayerConfig();
+}
+this.publishFallbackEnable = false;
+}
+}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraSimulcastConfig: NSObject
+@property (copy, nonatomic, readonly) NSArray&amp;lt;AgoraStreamLayerConfig*&amp;gt;* _Nonnull configs;
+@property (assign, nonatomic) BOOL publishFallbackEnable;
+@end</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct SimulcastConfig {
+  StreamLayerConfig configs[STREAM_LAYER_COUNT_MAX];
+  bool publish_fallback_enable;
+  SimulcastConfig(): publish_fallback_enable(false) {}
+};</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从：</dt>
+                <dd>自 v4.6.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p></p>
+            </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry props="android cpp ios">
+                <pt props="android">publishFallbackEnable</pt>
+                <pt props="ios">publishFallbackEnable</pt>
+                <pt props="cpp">publish_fallback_enable</pt>
+                <pd props="android">是否开启分层推流回退。
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：开启分层推流回退。当发布端的性能或网络状况较差时，系统会按顺序从 layer1 到 layer6 动态关闭子流。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）关闭分层推流回退。系统会确保即使在网络或设备性能较差的情况下，仍保留主流和最低分辨率的子流，以保障视频的连续性。</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">是否开启分层推流回退：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：开启分层推流回退。当发布端性能或网络较差时，系统会按 layer1 到 layer6 的顺序动态关闭多路视频流。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）关闭分层推流回退。 系统保证即使在网络较差或设备性能受限的情况下，仍会保留主流和最低分辨率的辅流，以维持基本的视频连续性。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp">是否开启分层推流回退。
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：开启分层推流回退。当发布端性能或网络较差时，系统会按 layer1 到 layer6 的顺序动态关闭多路视频流。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）关闭分层推流回退。 系统会在网络状况较差或设备性能受限的情况下，保留主流和最低分辨率的辅流，以保障基本的视频连续性。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp">configs</pt>
+                <pt props="ios">configs</pt>
+                <pd props="ios">多层级视频流的配置信息。详见 <xref keyref="StreamLayerConfig"/>。</pd>
+                <pd props="android cpp">多层级视频流的配置信息。</pd>
+            </plentry>
+            </parml> </section>
+            </refbody>
+</reference>

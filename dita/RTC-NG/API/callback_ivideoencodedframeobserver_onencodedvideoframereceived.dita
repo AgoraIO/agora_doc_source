@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_ivideoencodedframeobserver_onencodedvideoframereceived">
     <title><ph keyref="onEncodedVideoFrameReceived"/></title>
-    <shortdesc id="short"><ph id="shortdesc">报告接收端已收到远端发送的待解码视频帧。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">每次 SDK 接收到编码后的视频帧时触发的回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -13,63 +13,56 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">boolean onEncodedVideoFrameReceived(ByteBuffer buffer, EncodedVideoFrameInfo info);</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onEncodedVideoFrameReceived:(NSData * _Nonnull )videoData length:(size_t)length info:(AgoraEncodedVideoFrameInfo * _Nonnull)videoFrameInfo NS_SWIFT_NAME(onEncodedVideoFrameReceived(_:length:info:));</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual bool onEncodedVideoFrameReceived(rtc::uid_t uid, const uint8_t* imageBuffer, size_t length,
-                                           const rtc::EncodedVideoFrameInfo&amp; videoEncodedFrameInfo) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onEncodedVideoFrameReceived?(
-    uid: number,
-    imageBuffer: Uint8Array,
-    length: number,
-    videoEncodedFrameInfo: EncodedVideoFrameInfo
-  ): void;</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public virtual bool OnEncodedVideoFrameReceived(uint uid, IntPtr imageBufferPtr, UInt64 length, EncodedVideoFrameInfo videoEncodedFrameInfo)
-        {
-            return true;
-        }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">onEncodedVideoFrameReceived?(
-    uid: number,
-    imageBuffer: Uint8Array,
-    length: number,
-    videoEncodedFrameInfo: EncodedVideoFrameInfo
-  ): void;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">final void Function(int uid, Uint8List imageBuffer, int length,
-      EncodedVideoFrameInfo videoEncodedFrameInfo)? onEncodedVideoFrameReceived;</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual bool onEncodedVideoFrameReceived(rtc::uid_t uid, const uint8_t* imageBuffer, size_t length, const rtc::EncodedVideoFrameInfo&amp;amp; videoEncodedFrameInfo) = 0;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
-        <section id="detailed_desc">
-            <p>调用 <xref keyref="setRemoteVideoSubscriptionOptions"/> 方法并将 <parmname>encodedFrameOnly</parmname> 设置为 <codeph><ph keyref="true"/></codeph> 时，SDK 会在本地触发该回调，上报接收到的编码后视频帧信息。</p>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p></p>
         </section>
-        <section id="parameters">
+        <section id="restriction" deliveryTarget="details">
+            <title>使用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-            <plentry props="cpp unreal bp electron unity rn flutter cs">
-                <pt>uid</pt>
-                <pd>远端用户 ID。</pd>
+            <plentry props="cpp">
+                <pt props="cpp">uid</pt>
+                <pd props="cpp">远端用户 ID。</pd>
             </plentry>
-            <plentry>
-                <pt props="ios mac">videoData</pt>
-                <pt props="cpp unreal bp electron rn flutter">imageBuffer</pt>
-                <pt props="unity cs">imageBufferPtr</pt>
-                <pt props="android hmos">buffer</pt>
-                <pd props="cpp unreal bp unity android electron rn flutter cs">视频图像 buffer。</pd>
-                <pd props="ios mac">视频图像数据。</pd>
+            <plentry props="cpp">
+                <pt props="cpp">imageBuffer</pt>
+                <pd props="cpp">视频帧缓冲区的指针。</pd>
             </plentry>
-            <plentry props="cpp unreal bp unity ios mac electron rn flutter cs">
-                <pt>length</pt>
-                <pd>视频图像的数据长度。</pd>
+            <plentry props="cpp">
+                <pt props="cpp">length</pt>
+                <pd props="cpp">视频帧数据的长度。</pd>
             </plentry>
-            <plentry>
-                <pt props="android hmos">info</pt>
-                <pt props="ios mac">videoFrameInfo</pt>
-                <pt props="cpp unreal bp unity electron rn flutter cs">videoEncodedFrameInfo</pt>
-                <pd>编码后的视频帧信息，详见 <xref keyref="EncodedVideoFrameInfo"/>。</pd>
+            <plentry props="cpp">
+                <pt props="cpp">videoEncodedFrameInfo</pt>
+                <pd props="cpp">编码后的视频帧信息，详见 <xref keyref="EncodedVideoFrameInfo"/>。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity unreal bp cs">
-            <title>返回值</title>
-            <p id="return">无实际含义。</p>
-        </section>
+        <section id="return_values" props="bp electron flutter native rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
+        <ul props="android apple bp electron rn unity unreal">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul>
+        <p props="cpp"><ul>
+                        <li><codeph><ph keyref="true"/></codeph>：接收编码后的视频帧。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不接收编码后的视频帧。</li>
+                        </ul>
+                    </p>
+    </section>
     </refbody>
 </reference>

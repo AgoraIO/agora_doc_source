@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_localaudiomixerconfiguration">
+    <title><ph keyref="LocalAudioMixerConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc">用于配置本地客户端混音。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class LocalAudioMixerConfiguration {
+  public ArrayList&amp;lt;MixedAudioStream&amp;gt; audioInputStreams;
+  public boolean syncWithLocalMic;
+  public LocalAudioMixerConfiguration() {
+    audioInputStreams = new ArrayList&amp;lt;MixedAudioStream&amp;gt;();
+    syncWithLocalMic = true;
+  }
+}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLocalAudioMixerConfiguration: NSObject
+@property(copy, nonatomic) NSArray&amp;lt;AgoraMixedAudioStream *&amp;gt; *_Nullable audioInputStreams;
+@property(assign, nonatomic) BOOL syncWithLocalMic;
+@end</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct LocalAudioMixerConfiguration {
+  unsigned int streamCount;
+  MixedAudioStream* audioInputStreams;
+  bool syncWithLocalMic;
+  LocalAudioMixerConfiguration() : streamCount(0), syncWithLocalMic(true) {}
+};</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <p/>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry props="android cpp ios">
+                <pt props="android cpp">audioInputStreams</pt>
+                <pt props="ios">audioInputStreams</pt>
+                <pd props="android">用于本地客户端混音的音频流。详见 <xref keyref="MixedAudioStream"/>。</pd>
+                <pd props="ios">混音轨道中音频流布局的配置。详见 <xref keyref="MixedAudioStream"/>。</pd>
+                <pd props="cpp">要参与混音的音频流来源。详见 <xref keyref="MixedAudioStream"/>。</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">syncWithLocalMic</pt>
+                <pd props="android">是否使用本地麦克风音频帧的时间戳。
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：（默认）使用采集到的音频帧的时间戳作为混音音频帧的时间戳。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不使用采集音频帧的时间戳，而使用构建混音音频帧时的时间戳。</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">是否使用主麦克风采集音频帧的时间戳作为混音音频帧的时间戳。
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：（默认）使用采集音频帧的时间戳作为混音音频帧的时间戳。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不使用采集音频帧的时间戳作为混音音频帧的时间戳，而是使用构造音视频帧时的时间戳。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp">是否使用本地麦克风音频帧的时间戳。
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：（默认）使用采集音频帧的时间戳作为混音音频帧的时间戳。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不使用采集音频帧的时间戳作为混音音频帧的时间戳，而是使用构建混音音频帧时的时间戳。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            <plentry props="cpp">
+                <pt props="cpp">streamCount</pt>
+                <pd props="cpp">用于本地客户端混音的音频流数量。</pd>
+            </plentry>
+            </parml> </section>
+            </refbody>
+</reference>

@@ -1,40 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audiotrackconfig">
-  <title> <ph keyref="AudioTrackConfig" /> </title>
-  <shortdesc id="short"> <ph id="shortdesc">自定义音频轨道的配置选项。</ph> </shortdesc>
+  <title> <ph keyref="AudioTrackConfig"/> </title>
+  <shortdesc id="short"> <ph id="shortdesc">用于配置自定义音频轨道。</ph> </shortdesc>
   <refbody>
     <section id="prototype">
       <p outputclass="codeblock">
       <codeblock props="android" outputclass="language-java">public class AudioTrackConfig {
   public boolean enableLocalPlayback;
- 
- 
-  public AudioTrackConfig() {
-    this.enableLocalPlayback = true;
-  }
-      }</codeblock>
+  public boolean enableAudioProcessing;
+}</codeblock>
       <codeblock props="hmos" outputclass="language-arkts">export class AudioTrackConfig {
   
   public enableLocalPlayback: boolean = true;
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraAudioTrackConfig) __attribute__((visibility("default"))) @interface AgoraAudioTrackConfig : NSObject
 @property (assign, nonatomic) BOOL enableLocalPlayback NS_SWIFT_NAME(enableLocalPlayback);
- 
+@property (assign, nonatomic) BOOL enableAudioProcessing NS_SWIFT_NAME(enableAudioProcessing);
 @end</codeblock>
       <codeblock props="cpp unreal" outputclass="language-cpp">struct AudioTrackConfig {
   bool enableLocalPlayback;
- 
- 
-  AudioTrackConfig()
-    : enableLocalPlayback(true) {}
+  bool enableAudioProcessing;
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FAudioTrackConfig
 {
 	GENERATED_BODY()
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioTrackConfig&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|AudioTrackConfig")
 	bool enableLocalPlayback = true;
 };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class AudioTrackConfig {
@@ -65,25 +58,46 @@ class AudioTrackConfig {
   @JsonKey(name: 'enableLocalPlayback')
   final bool? enableLocalPlayback;
 
-  factory AudioTrackConfig.fromJson(Map&lt;String, dynamic> json) =>
+  factory AudioTrackConfig.fromJson(Map&amp;lt;String, dynamic&amp;gt; json) =&amp;gt;
       _$AudioTrackConfigFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$AudioTrackConfigToJson(this);
+  Map&amp;lt;String, dynamic&amp;gt; toJson() =&amp;gt; _$AudioTrackConfigToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
     </section>
     <section id="parameters">
-      <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+      <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
       <parml>
-      <plentry>
-        <pt>enableLocalPlayback</pt>
-        <pd>是否启用本地音频播放：
+            <plentry>
+                <pt>enableLocalPlayback</pt>
+                <pd>是否启用本地音频播放：
             <ul>
                 <li><codeph><ph keyref="true"/></codeph>：(默认) 启用本地音频播放。</li>
                 <li><codeph><ph keyref="false"/></codeph>：不启用本地音频播放。</li>
             </ul>
         </pd>
-      </plentry>
-      </parml> </section>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">enableAudioProcessing</pt>
+                <pd props="android">是否启用 APM 音频处理：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：启用 APM 模块，<ph keyref="AUDIO_TRACK_DIRECT"/> 会进行回声消除（AEC）、噪声抑制（ANS）和自动增益控制（AGC）处理。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）关闭 APM 处理，<ph keyref="AUDIO_TRACK_DIRECT"/> 默认关闭。</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">是否启用 APM 处理：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：<ph keyref="AUDIO_TRACK_DIRECT"/> 会经过 APM（包括 AEC、ANS 和 AGC）处理。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）<ph keyref="AUDIO_TRACK_DIRECT"/> 不启用 APM。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp">当 <codeph>trackType</codeph> 为 <ph keyref="AUDIO_TRACK_DIRECT"/> 时，是否启用 APM（AEC/ANS/AGC）处理。
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：启用 APM 处理。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）不启用 APM 处理。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            </parml> </section>
   </refbody>
 </reference>

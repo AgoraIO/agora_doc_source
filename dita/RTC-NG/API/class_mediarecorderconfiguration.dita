@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_mediarecorderconfiguration">
-    <title><ph keyref="MediaRecorderConfiguration" /></title>
-    <shortdesc id="short"><ph id="shortdesc">音视频流录制配置。</ph></shortdesc>
+    <title><ph keyref="MediaRecorderConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc">用于配置本地音视频录制参数。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -12,16 +12,13 @@
     public int streamType = STREAM_TYPE_BOTH;
     public int maxDurationMs = 120000;
     public int recorderInfoUpdateInterval = 0;
-
-    public MediaRecorderConfiguration(String storagePath, int containerFormat, int streamType,
-        int maxDurationMs, int recorderInfoUpdateInterval) {
-      this.storagePath = storagePath;
-      this.containerFormat = containerFormat;
-      this.streamType = streamType;
-      this.maxDurationMs = maxDurationMs;
-      this.recorderInfoUpdateInterval = recorderInfoUpdateInterval;
-    }
-  }</codeblock>
+    public int width;
+    public int height;
+    public int fps;
+    public int sample_rate;
+    public int channel_num;
+    public int videoSourceType;
+}</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">export class MediaRecorderConfiguration {
   
   public storagePath: string;
@@ -42,36 +39,71 @@
     this.recorderInfoUpdateInterval = recorderInfoUpdateInterval;
   }
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaRecorderConfiguration : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraMediaRecorderConfiguration : NSObject
 @property(copy, nonatomic) NSString* _Nonnull storagePath;
 @property(assign, nonatomic) AgoraMediaRecorderContainerFormat containerFormat;
 @property(assign, nonatomic) AgoraMediaRecorderStreamType streamType;
 @property(assign, nonatomic) NSUInteger maxDurationMs;
-@property(assign, nonatomic) NSUInteger recorderInfoUpdateInterval;</codeblock>
+@property(assign, nonatomic) NSUInteger recorderInfoUpdateInterval;
+@property(assign, nonatomic) NSUInteger width;
+@property(assign, nonatomic) NSUInteger height;
+@property(assign, nonatomic) NSUInteger fps;
+@property(assign, nonatomic) NSUInteger sample_rate;
+@property(assign, nonatomic) NSUInteger channel_num;
+@property(assign, nonatomic) AgoraVideoSourceType videoSourceType;
+@end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct MediaRecorderConfiguration {
   const char* storagePath;
   MediaRecorderContainerFormat containerFormat;
   MediaRecorderStreamType streamType;
   int maxDurationMs;
   int recorderInfoUpdateInterval;
-
-  MediaRecorderConfiguration() : storagePath(NULL), containerFormat(FORMAT_MP4), streamType(STREAM_TYPE_BOTH), maxDurationMs(120000), recorderInfoUpdateInterval(0) {}
-  MediaRecorderConfiguration(const char* path, MediaRecorderContainerFormat format, MediaRecorderStreamType type, int duration, int interval) : storagePath(path), containerFormat(format), streamType(type), maxDurationMs(duration), recorderInfoUpdateInterval(interval) {}
+  int width;
+  int height;
+  int fps;
+  int sample_rate;
+  int channel_num;
+  agora::rtc::VIDEO_SOURCE_TYPE videoSourceType;
+  MediaRecorderConfiguration()
+      : storagePath(NULL),
+        containerFormat(FORMAT_MP4),
+        streamType(STREAM_TYPE_BOTH),
+        maxDurationMs(120000),
+        recorderInfoUpdateInterval(0),
+        width(1280),
+        height(720),
+        fps(30),
+        sample_rate(48000),
+        channel_num(1),
+        videoSourceType(rtc::VIDEO_SOURCE_CAMERA_PRIMARY) {}
+  MediaRecorderConfiguration(const char* path, MediaRecorderContainerFormat format,
+                             MediaRecorderStreamType type, int duration, int interval)
+      : storagePath(path),
+        containerFormat(format),
+        streamType(type),
+        maxDurationMs(duration),
+        recorderInfoUpdateInterval(interval),
+        width(1280),
+        height(720),
+        fps(30),
+        sample_rate(48000),
+        channel_num(1),
+        videoSourceType(rtc::VIDEO_SOURCE_CAMERA_PRIMARY) {}
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FMediaRecorderConfiguration
 {
 	GENERATED_BODY()
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaRecorderConfiguration&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|MediaRecorderConfiguration")
 	FString storagePath;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaRecorderConfiguration&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|MediaRecorderConfiguration")
 	EMediaRecorderContainerFormat containerFormat = EMediaRecorderContainerFormat::FORMAT_MP4;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaRecorderConfiguration&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|MediaRecorderConfiguration")
 	EMediaRecorderStreamType streamType = EMediaRecorderStreamType::STREAM_TYPE_BOTH;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaRecorderConfiguration&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|MediaRecorderConfiguration")
 	int maxDurationMs;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaRecorderConfiguration&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|MediaRecorderConfiguration")
 	int recorderInfoUpdateInterval;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class MediaRecorderConfiguration {
@@ -129,43 +161,43 @@ struct FMediaRecorderConfiguration
   @JsonKey(name: 'recorderInfoUpdateInterval')
   final int? recorderInfoUpdateInterval;
 
-  factory MediaRecorderConfiguration.fromJson(Map&lt;String, dynamic> json) =>
+  factory MediaRecorderConfiguration.fromJson(Map&amp;lt;String, dynamic&amp;gt; json) =&amp;gt;
       _$MediaRecorderConfigurationFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$MediaRecorderConfigurationToJson(this);
+  Map&amp;lt;String, dynamic&amp;gt; toJson() =&amp;gt; _$MediaRecorderConfigurationToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
-            <p />
-        </section>
+            <p></p>
+            </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
                 <pt>storagePath</pt>
                 <pd>录音文件在本地保存的绝对路径，需精确到文件名及格式。例如：
                     <ul>
-                    <li props="cpp unreal bp unity electron flutter cs">Windows: <codeph>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\example.mp4</codeph></li>
-                    <li props="ios cpp unreal bp unity rn flutter">iOS: <codeph>/App Sandbox/Library/Caches/example.mp4</codeph></li>
-                    <li props="mac cpp unreal bp unity electron flutter">macOS: <codeph>/Library/Logs/example.mp4</codeph></li>
-                    <li props="android cpp unreal bp unity rn flutter">Android: <codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.mp4</codeph></li>
+                    <li props="bp cpp cs electron flutter unity unreal">Windows: <codeph>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\example.mp4</codeph></li>
+                    <li props="bp cpp flutter ios rn unity unreal">iOS: <codeph>/App Sandbox/Library/Caches/example.mp4</codeph></li>
+                    <li props="bp cpp electron flutter mac unity unreal">macOS: <codeph>/Library/Logs/example.mp4</codeph></li>
+                    <li props="android bp cpp flutter rn unity unreal">Android: <codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.mp4</codeph></li>
                     </ul>
                     <note type="attention">请确保你指定的路径存在并且可写。</note></pd>
             </plentry>
             <plentry>
                 <pt>containerFormat</pt>
-                <pd props="cpp unreal bp ios mac electron rn flutter unity cs">录制文件的格式。详见 <xref keyref="MediaRecorderContainerFormat" />。</pd>
-                <pd props="android hmos">录制文件的格式，目前仅支持 <apiname keyref="FORMAT_MP4" />。</pd>
+                <pd props="apple bp cpp cs electron flutter rn unity unreal">录制文件的格式。详见 <xref keyref="MediaRecorderContainerFormat"/>。</pd>
+                <pd props="android hmos">录制文件的格式，目前仅支持 <apiname keyref="FORMAT_MP4"/>。</pd>
             </plentry>
             <plentry>
                 <pt>streamType</pt>
-                <pd props="ios mac cpp unreal bp rn unity electron flutter cs">录制内容。详见 <xref keyref="MediaRecorderStreamType"/>。</pd>
+                <pd props="apple bp cpp cs electron flutter rn unity unreal">录制内容。详见 <xref keyref="MediaRecorderStreamType"/>。</pd>
                 <pd props="android hmos">录制内容：
                 <ul>
-                    <li><apiname keyref="STREAM_TYPE_AUDIO" />：仅音频。</li>
-                    <li><apiname keyref="STREAM_TYPE_VIDEO" />：仅视频。</li>
-                    <li><apiname keyref="STREAM_TYPE_BOTH" />：（默认）音视频。</li>
+                    <li><apiname keyref="STREAM_TYPE_AUDIO"/>：仅音频。</li>
+                    <li><apiname keyref="STREAM_TYPE_VIDEO"/>：仅视频。</li>
+                    <li><apiname keyref="STREAM_TYPE_BOTH"/>：（默认）音视频。</li>
                 </ul></pd>
             </plentry>
             <plentry>
@@ -174,7 +206,41 @@ struct FMediaRecorderConfiguration
             </plentry>
             <plentry>
                 <pt>recorderInfoUpdateInterval</pt>
-                <pd>录制信息更新间隔，单位为毫秒，取值范围为 [1000,10000]。SDK 会根据该值的设置触发 <xref keyref="onRecorderInfoUpdated" /> 回调，报告更新后的录制信息。</pd>
+                <pd>录制信息更新间隔，单位为毫秒，取值范围为 [1000,10000]。SDK 会根据该值的设置触发 <xref keyref="onRecorderInfoUpdated"/> 回调，报告更新后的录制信息。</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">width</pt>
+                <pd props="android">视频画面的宽度。</pd>
+                <pd props="ios">视频宽度。</pd>
+                <pd props="cpp">视频的宽度。</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">height</pt>
+                <pd props="android">视频画面的高度。</pd>
+                <pd props="ios">视频高度。</pd>
+                <pd props="cpp">视频的高度。</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">fps</pt>
+                <pd props="android">视频的帧率（FPS）。</pd>
+                <pd props="ios">视频帧率。</pd>
+                <pd props="cpp">视频的帧率。</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">sample_rate</pt>
+                <pd props="android cpp">音频的采样率。</pd>
+                <pd props="ios">音频采样率。</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">channel_num</pt>
+                <pd props="android cpp">音频的声道数。</pd>
+                <pd props="ios">音频声道数。</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">videoSourceType</pt>
+                <pd props="android">仅用于 out 频道录制器的视频源类型。</pd>
+                <pd props="ios">仅用于外部频道录制的视频源类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                <pd props="cpp">视频源类型，仅用于外部频道录制。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
             </plentry>
             </parml> </section>
     </refbody>

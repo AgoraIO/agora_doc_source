@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_agorartcenginekit_setextensionpropertywithvendor">
+    <title><ph keyref="setExtensionPropertyWithVendor"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置扩展的属性。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setExtensionPropertyWithVendor"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setExtensionPropertyWithVendor:(NSString * _Nonnull)provider
+                            extension:(NSString * _Nonnull)extension
+                                  key:(NSString * _Nonnull)key
+                                value:(NSString * _Nonnull)value
+                            sourceType:(AgoraMediaSourceType)sourceType NS_SWIFT_NAME(setExtensionPropertyWithVendor(_:extension:key:value:sourceType:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp"/>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>用于设置指定扩展的属性值。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+            <plentry props="ios">
+                <pt props="ios">provider</pt>
+                <pd props="ios">扩展提供方的名称，例如 <codeph>agora.io</codeph>。</pd>
+            </plentry>
+            <plentry props="ios">
+                <pt props="ios">extension</pt>
+                <pd props="ios">扩展的名称，例如 <codeph>agora.beauty</codeph>。</pd>
+            </plentry>
+            <plentry props="ios">
+                <pt props="ios">key</pt>
+                <pd props="ios">扩展的键名。</pd>
+            </plentry>
+            <plentry props="ios">
+                <pt props="ios">value</pt>
+                <pd props="ios">扩展键的 JSON 格式的值。</pd>
+            </plentry>
+            <plentry props="ios">
+                <pt props="ios">sourceType</pt>
+                <pd props="ios">扩展的源类型，详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="android bp cpp cs electron rn unity unreal">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul>
+        <p props="apple"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+    </section>
+        </refbody>
+</reference>

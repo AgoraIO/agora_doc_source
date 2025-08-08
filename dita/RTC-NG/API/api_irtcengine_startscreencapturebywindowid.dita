@@ -1,224 +1,73 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startscreencapturebywindowid">
-    <title><ph keyref="startScreenCaptureByWindowId" /></title>
-    <shortdesc id="short"><ph id="shortdesc">开始采集指定窗口的视频流。</ph></shortdesc>
+    <title><ph keyref="startScreenCaptureByWindowId"/></title>
+    <shortdesc id="short"><ph id="shortdesc">通过指定窗口 ID 共享整个窗口或窗口的部分区域。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="startScreenCaptureByWindowId" />
+                <indexterm keyref="startScreenCaptureByWindowId"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="mac" outputclass="language-objectivec">- (int)startScreenCaptureByWindowId:(UInt32)windowId
-                regionRect:(CGRect)regionRect
-                captureParams:(AgoraScreenCaptureParameters *_Nonnull)captureParams;</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int startScreenCaptureByWindowId(view_t windowId,
-                const Rectangle&amp; regionRect,
-                const ScreenCaptureParameters&amp; captureParams) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
-	int StartScreenCaptureByWindowId(int64 windowId, const FRectangle&amp; regionRect, const  FScreenCaptureParameters&amp; captureParams);</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">abstract startScreenCaptureByWindowId(
-    windowId: any,
-    regionRect: Rectangle,
-    captureParams: ScreenCaptureParameters
-  ): number;</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public abstract int StartScreenCaptureByWindowId(view_t windowId, Rectangle regionRect, ScreenCaptureParameters captureParams);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">abstract startScreenCaptureByWindowId(
-    windowId: any,
-    regionRect: Rectangle,
-    captureParams: ScreenCaptureParameters
-  ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startScreenCaptureByWindowId(
-    {required int windowId,
-    required Rectangle regionRect,
-    required ScreenCaptureParameters captureParams});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int startScreenCaptureByWindowId(int64_t windowId, const Rectangle&amp;amp; regionRect, const ScreenCaptureParameters&amp;amp; captureParams) = 0;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p id="desc">共享一个窗口或该窗口的部分区域。用户需要在该方法中指定想要共享的窗口 ID。</p>
-            <note type="attention" id="note">该方法仅适用于 macOS 和 Windows 平台。</note>
-            <p props="cpp unreal bp unity flutter electron cs">该方法支持共享通用 Windows 平台（UWP）应用窗口。声网使用最新版 SDK 对主流的 UWP 应用进行了测试，结果如下：</p>
-            <p props="cpp unreal bp unity flutter electron cs"> <table id="table_lvk_tfs_r4b">
-            <tgroup cols="4">
-                <colspec colnum="1" colname="col1" />
-                <colspec colnum="2" colname="col2" />
-                <colspec colnum="3" colname="col3" />
-                <colspec colnum="4" colname="col4" />
-                <thead>
-                    <row>
-                        <entry><b>系统版本</b></entry>
-                        <entry><b>软件</b></entry>
-                        <entry><b>软件版本</b></entry>
-                        <entry><b>是否支持</b></entry>
-                    </row>
-                </thead>
-                <tbody>
-                    <row>
-                        <entry morerows="7">win10</entry>
-                        <entry>Chrome</entry>
-                        <entry>76.0.3809.100</entry>
-                        <entry>否</entry>
-                    </row>
-                    <row>
-                        <entry>Office Word</entry>
-                        <entry morerows="2">18.1903.1152.0</entry>
-                        <entry>是</entry>
-                    </row>
-                    <row>
-                        <entry>Office Excel</entry>
-                        <entry>否</entry>
-                    </row>
-                    <row>
-                        <entry>Office PPT</entry>
-                        <entry>是</entry>
-                    </row>
-                    <row>
-                        <entry>WPS Word</entry>
-                        <entry morerows="2">11.1.0.9145</entry>
-                        <entry morerows="2">是</entry>
-                    </row>
-                    <row>
-                        <entry>WPS Excel</entry>
-                    </row>
-                    <row>
-                        <entry>WPS PPT</entry>
-                    </row>
-                    <row>
-                        <entry>Media Player（系统自带）</entry>
-                        <entry>全部</entry>
-                        <entry>是</entry>
-                    </row>
-                    <row>
-                        <entry morerows="7">win8</entry>
-                        <entry>Chrome</entry>
-                        <entry>全部</entry>
-                        <entry>是</entry>
-                    </row>
-                    <row>
-                        <entry>Office Word</entry>
-                        <entry morerows="2">全部</entry>
-                        <entry morerows="2">是</entry>
-                    </row>
-                    <row>
-                        <entry>Office Excel</entry>
-                    </row>
-                    <row>
-                        <entry>Office PPT</entry>
-                    </row>
-                    <row>
-                        <entry>WPS Word</entry>
-                        <entry morerows="2">11.1.0.9098</entry>
-                        <entry morerows="2">是</entry>
-                    </row>
-                    <row>
-                        <entry>WPS Excel</entry>
-                    </row>
-                    <row>
-                        <entry>WPS PPT</entry>
-                    </row>
-                    <row>
-                        <entry>Media Player（系统自带）</entry>
-                        <entry>全部</entry>
-                        <entry>是</entry>
-                    </row>
-                    <row>
-                        <entry morerows="7">win7</entry>
-                        <entry>Chrome</entry>
-                        <entry>73.0.3683.103</entry>
-                        <entry>否</entry>
-                    </row>
-                    <row>
-                        <entry>Office Word</entry>
-                        <entry morerows="2">全部</entry>
-                        <entry morerows="2">是</entry>
-                    </row>
-                    <row>
-                        <entry>Office Excel</entry>
-                    </row>
-                    <row>
-                        <entry>Office PPT</entry>
-                    </row>
-                    <row>
-                        <entry>WPS Word</entry>
-                        <entry morerows="1">11.1.0.9098</entry>
-                        <entry morerows="1">否</entry>
-                    </row>
-                    <row>
-                        <entry>WPS Excel</entry>
-                    </row>
-                    <row>
-                        <entry>WPS PPT</entry>
-                        <entry>11.1.0.9098</entry>
-                        <entry>是</entry>
-                    </row>
-                    <row>
-                        <entry>Media Player（系统自带）</entry>
-                        <entry>全部</entry>
-                        <entry>否</entry>
-                    </row>
-                </tbody>
-            </tgroup>
-            </table> </p>
+            <p></p>
         </section>
-        <section id="scenario" deliveryTarget="details">
-            <title>适用场景</title>
-            <p>在屏幕共享场景下，你需要调用该方法开始采集屏幕视频流。有关屏幕共享的实现方法，详见<xref keyref="screen-share"/>。</p>
-        </section>
-        <section id="timing" deliveryTarget="details" >
-            <title>调用时机</title>
-            <p conkeyref="startScreenCaptureByDisplayId/apisequence"/>
-        </section>        
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-                <p props="cpp unreal bp unity cs electron flutter">SDK 的窗口共享功能依赖于 WGC（Windows Graphics Capture）或 GDI（Graphics Device Interface）采集，WGC 在早于 Windows 10 2004 的系统上无法设置关闭鼠标采集，因此，当你在搭载早于 Windows 10 2004 系统的设备上进行窗口共享时，可能出现 <codeph>captureMouseCursor(false)</codeph> 不生效的现象。详见 <xref keyref="ScreenCaptureParameters" />。</p>
-                <p props="mac">无。</p>
+            <p>无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-            <plentry>
-                <pt>windowId</pt>
-                <pd>指定待共享的窗口 ID。</pd>
+            <plentry props="cpp">
+                <pt props="cpp">windowId</pt>
+                <pd props="cpp">要共享的窗口的 ID。关于如何获取该参数，参见高级指南 <codeph>Share Screen</codeph>。</pd>
             </plentry>
-            <plentry props="cpp unreal bp electron unity flutter cs">
-                <pt>regionRect</pt>
-                <pd>（可选）指定待共享区域相对于整个屏幕的位置。如不填，则表示共享整个屏幕。详见 <xref keyref="Rectangle" />。如果设置的共享区域超出了窗口的边界，则只共享窗口内的内容；如果宽或高为 0，则共享整个窗口。</pd>
-            </plentry>
-            <plentry props="mac">
-                <pt>regionRect</pt>
-                <pd>
-                    <p>（可选）待共享区域相对于整个窗口的位置。如不填，则表示共享整个窗口。由如下参数组成：
-
-
-
-
+            <plentry props="cpp">
+                <pt props="cpp">regionRect</pt>
+                <pd props="cpp">（可选）窗口中要共享区域的相对位置。
                     <ul>
-                    <li>x：左上角的横向偏移。</li>
-                    <li>y：左上角的纵向偏移。</li>
-                    <li>width：待共享区域的宽。</li>
-                    <li>height：待共享区域的高。</li>
-                    </ul></p>
-                    <p>如果设置的共享区域超出了窗口的边界，则只共享窗口内的内容；如果宽或高设为 0，则共享整个窗口。</p>
-                </pd>
+                        <li>传入 <codeph><ph keyref="NULL"/></codeph> 表示共享整个窗口。</li>
+                        <li>如果指定区域超出窗口范围，SDK 仅共享窗口内的部分。</li>
+                        <li>如果设置的宽度或高度为 0，SDK 会共享整个窗口。详见 <xref keyref="Rectangle"/>。</li>
+                        </ul>
+                    </pd>
             </plentry>
-            <plentry>
-                <pt>captureParams</pt>
-                <pd>屏幕共享的参数配置。默认的分辨率为 1920 x 1080，即 2073600 像素。该像素值为计费标准。详见 <xref keyref="ScreenCaptureParameters" />。</pd>
+            <plentry props="cpp">
+                <pt props="cpp">captureParams</pt>
+                <pd props="cpp">窗口共享的编码参数。详见 <xref keyref="ScreenCaptureParameters2"/>。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp electron unity rn cs">
-            <li>0: 方法调用成功。</li>
-            <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph>
-            <ul conkeyref="startScreenCaptureByDisplayId/err"><li /></ul></li>
-            </ul> </section>
-    </refbody>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="android apple bp cs electron rn unity unreal">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul>
+        <p props="cpp"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败：<ul>
+                            <li><ph keyref="ERR_INVALID_ARGUMENT"/>（2）：参数无效。</li>
+                            <li><ph keyref="ERR_NOT_INITIALIZED"/>（7）：尚未初始化 <xref keyref="IRtcEngine"/> 即尝试开始屏幕共享。</li>
+                            </ul>
+                        </li>
+                        </ul>
+                    </p>
+    </section>
+        </refbody>
 </reference>

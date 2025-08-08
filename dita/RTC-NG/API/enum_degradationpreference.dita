@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_degradationpreference">
     <title><ph keyref="DEGRADATION_PREFERENCE"/></title>
-    <shortdesc id="short"><ph id="shortdesc">带宽受限时的视频编码降级偏好。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">在带宽受限的情况下，设置视频编码的画质降低偏好。</ph></shortdesc>
     <refbody>
         <section id="parameters">
             <title>枚举值</title>
@@ -26,6 +26,38 @@
             <plentry>
                 <pt><ph keyref="MAINTAIN_RESOLUTION"/></pt>
                 <pd>3: 带宽受限时，视频编码时优先降低视频帧率，维持分辨率保持不变。该降级偏好适用于画质优先的场景。</pd>
+            </plentry>
+            <plentry props="cpp">
+                <pt><ph keyref="MAINTAIN_AUTO"/></pt>
+                <pd props="cpp">（-1）：默认值。SDK 会根据 <xref keyref="setVideoScenario"/> 接口设置、实时网络状态和其他相关数据自动选择画质降低策略。如果通过 <xref keyref="setVideoScenario"/> 接口将视频场景设置为 <codeph>APPLICATION_SCENARIO_LIVESHOW</codeph>，则使用 <ph keyref="MAINTAIN_BALANCED"/>，否则使用 <ph keyref="MAINTAIN_RESOLUTION"/>。当网络状态发生变化时，SDK 也可能在 <ph keyref="MAINTAIN_FRAMERATE"/>、<ph keyref="MAINTAIN_BALANCED"/> 和 <ph keyref="MAINTAIN_RESOLUTION"/> 之间自动切换，以获得最佳的用户体验。推荐使用该选项。</pd>
+            </plentry>
+            <plentry props="ios">
+                <pt><ph keyref="AgoraDegradationMaintainAuto"/></pt>
+                <pd props="ios">（-1）：（默认）SDK 默认使用 MAINTAIN_RESOLUTION。当用户通过 API <xref keyref="setVideoScenario"/> 设置了视频场景，或网络状态发生变化时，SDK 可能会在 MAINTAIN_FRAMERATE、MAINTAIN_BALANCED 和 MAINTAIN_RESOLUTION 之间自动切换，以获得最佳的用户体验。</pd>
+            </plentry>
+            <plentry props="ios">
+                <pt><ph keyref="AgoraDegradationMaintainQuality"/></pt>
+                <pd props="ios">（0）：（已废弃）降低帧率并保持分辨率，以保证视频质量。</pd>
+            </plentry>
+            <plentry props="ios">
+                <pt><ph keyref="AgoraDegradationDisable"/></pt>
+                <pd props="ios">（100）：禁用 VQC（视频质量控制）调整。</pd>
+            </plentry>
+            <plentry props="mac">
+                <pt><ph keyref="AgoraDegradationMaintainAuto"/></pt>
+                <pd props="mac">（-1）：（默认）SDK 默认使用 MAINTAIN_RESOLUTION。当用户通过 API <xref keyref="setVideoScenario"/> 设置了视频场景，或网络状态发生变化时，SDK 可能会在 MAINTAIN_FRAMERATE、MAINTAIN_BALANCED 和 MAINTAIN_RESOLUTION 之间自动切换，以获得最佳的用户体验。</pd>
+            </plentry>
+            <plentry props="mac">
+                <pt><ph keyref="AgoraDegradationMaintainQuality"/></pt>
+                <pd props="mac">（0）：（已废弃）降低帧率并保持分辨率，以保证视频质量。</pd>
+            </plentry>
+            <plentry props="mac">
+                <pt><ph keyref="AgoraDegradationDisable"/></pt>
+                <pd props="mac">（100）：禁用 VQC（视频质量控制）调整。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt><ph keyref="MAINTAIN_AUTO"/></pt>
+                <pd props="android">（-1）：（默认）默认使用 MAINTAIN_RESOLUTION。若通过 API <xref keyref="setVideoScenario"/> 设置了视频场景，或网络状态发生变化，SDK 会在 <ph keyref="MAINTAIN_FRAMERATE"/>、<ph keyref="MAINTAIN_BALANCED"/> 和 <ph keyref="MAINTAIN_RESOLUTION"/> 之间自动切换，以获得最佳的用户体验。</pd>
             </plentry>
             </parml> </section>
     </refbody>

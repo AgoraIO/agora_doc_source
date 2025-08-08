@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_clientroleoptions">
     <title> <ph keyref="ClientRoleOptions"/> </title>
-    <shortdesc id="short"> <ph id="shortdesc">用户角色属性设置。</ph> </shortdesc>
+    <shortdesc id="short"> <ph id="shortdesc">设置互动直播中观众的延迟等级。</ph> </shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -22,18 +22,13 @@
 @property (assign, nonatomic) AgoraAudienceLatencyLevelType audienceLatencyLevel;
 
 @end</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">struct ClientRoleOptions
-{
-  AUDIENCE_LATENCY_LEVEL_TYPE audienceLatencyLevel;
-  ClientRoleOptions()
-    : audienceLatencyLevel(AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY),
-};</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp"></codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FClientRoleOptions
 {
 	GENERATED_BODY()
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ClientRoleOptions&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|ClientRoleOptions")
 	EAUDIENCE_LATENCY_LEVEL_TYPE audienceLatencyLevel = EAUDIENCE_LATENCY_LEVEL_TYPE::AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ClientRoleOptions {
@@ -58,22 +53,23 @@ struct FClientRoleOptions
 
   @JsonKey(name: 'audienceLatencyLevel')
   final AudienceLatencyLevelType? audienceLatencyLevel;
-  factory ClientRoleOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory ClientRoleOptions.fromJson(Map&amp;lt;String, dynamic&amp;gt; json) =&amp;gt;
       _$ClientRoleOptionsFromJson(json);
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$ClientRoleOptionsToJson(this);
+  Map&amp;lt;String, dynamic&amp;gt; toJson() =&amp;gt; _$ClientRoleOptionsToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="parameters">
             <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/> </title>
             <parml>
-            <plentry id="audiencelatencylevel">
-                <pt>audienceLatencyLevel</pt>
-                <pd><ph>观众端延时级别。</ph><ph props="ios mac cpp unreal bp unity electron rn flutter cs">详见 <xref keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/>。</ph>
+            <plentry id="audiencelatencylevel" props="cpp">
+                <pt props="cpp">audienceLatencyLevel</pt>
+                <pd><ph>观众端延时级别。</ph><ph props="apple bp cpp cs electron flutter rn unity unreal">详见 <xref keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/>。</ph>
                     <ul props="android hmos">
                     <li><ph keyref="AUDIENCE_LATENCY_LEVEL_LOW_LATENCY"/>(1): 低延时。</li>
                     <li><ph keyref="AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY"/>(2): （默认）超低延时。</li>
                     </ul></pd>
+                <pd props="cpp">互动直播中观众的延迟等级。详见 <xref keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/>。</pd>
             </plentry>
             </parml> </section>
     </refbody>

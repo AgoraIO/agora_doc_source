@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setsimulcastconfig">
+    <title><ph keyref="setSimulcastConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置多质量层级视频流的配置。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setSimulcastConfig"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setSimulcastConfig(SimulcastConfig simulcastConfig);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setSimulcastConfig:(AgoraSimulcastConfig* _Nonnull)simulcastConfig NS_SWIFT_NAME(setSimulcastConfig(_:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setSimulcastConfig(const SimulcastConfig&amp;amp; simulcastConfig) = 0;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从：</dt>
+                <dd props="native">自 v4.6.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p>该方法允许主播同时发送多路不同分辨率的视频流。该配置支持最多同时启用四个层级：一个主流（最高分辨率）和三个不同质量层级的视频流。
+
+如果已配置多质量层级视频流，订阅端可以通过 <xref keyref="setRemoteVideoStreamType"/> 选择接收对应层级的视频流。</p>
+            </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">simulcastConfig</pt>
+                <pd props="android">多质量层级视频流的配置。该配置包含七个层级，从 <ph keyref="STREAM_LAYER_1"/> 到 <ph keyref="STREAM_LOW"/>，最多可同时启用三个层级。详见 <xref keyref="SimulcastConfig"/>。</pd>
+                <pd props="ios">多质量层级视频流的配置。该配置包含七个层级，从 <ph keyref="STREAM_LAYER_1"/> 到 <ph keyref="STREAM_LOW"/>，最多可同时启用三个层级。详见 <xref keyref="SimulcastConfig"/>。</pd>
+                <pd props="cpp">多分辨率视频流配置。该配置包含七个层级，从 <ph keyref="STREAM_LAYER_1"/> 到 <ph keyref="STREAM_LOW"/>。最多可同时启用三个层级。详见 <xref keyref="SimulcastConfig"/>。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cs electron rn unity unreal">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul>
+        <p props="native"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+    </section>
+        </refbody>
+</reference>

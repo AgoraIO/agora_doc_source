@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_watermarkbuffer">
+    <title><ph keyref="WatermarkBuffer"/></title>
+    <shortdesc id="short"><ph id="shortdesc">用于配置水印图像的格式、尺寸和像素缓冲区。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class WatermarkBuffer {
+  public final static int WATERMARK_BUFFER_FORMAT_I420 = 1;
+  public final static int WATERMARK_BUFFER_FORMAT_BGRA = 2;
+  public final static int WATERMARK_BUFFER_FORMAT_NV21 = 3;
+  public final static int WATERMARK_BUFFER_FORMAT_RGBA = 4;
+  public ByteBuffer buffer;
+  public int width;
+  public int height;
+  public int format;
+}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface WatermarkBuffer : NSObject
+@property(assign, nonatomic) int width;
+@property(assign, nonatomic) int height;
+@property(assign, nonatomic) int length;
+@property(strong, nonatomic) NSData* _Nullable buffer;
+@property(assign, nonatomic) WatermarkBufferFormat format;
+@end</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct WatermarkBuffer {
+  int width;
+  int height;
+  int length;
+  media::base::VIDEO_PIXEL_FORMAT format;
+  const uint8_t* buffer;
+  WatermarkBuffer() : buffer(NULL), width(0), height(0), length(0), format(media::base::VIDEO_PIXEL_I420) {}
+};</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从：</dt>
+                <dd>自 v4.6.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p>该结构体用于配置水印图像的格式、尺寸和像素缓冲区数据。</p>
+            </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">width</pt>
+                <pd props="android">水印缓冲区的宽度，单位为像素。</pd>
+                <pd props="ios">水印图像的宽度，单位为像素。</pd>
+                <pd props="cpp">水印缓冲区的宽度。</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">height</pt>
+                <pd props="android">水印缓冲区的高度，单位为像素。</pd>
+                <pd props="ios">水印图像的高度，单位为像素。</pd>
+                <pd props="cpp">水印缓冲区的高度。</pd>
+            </plentry>
+            <plentry props="cpp ios">
+                <pt props="cpp ios">length</pt>
+                <pd props="ios">缓冲区的长度，单位为字节。</pd>
+                <pd props="cpp">水印缓冲区的长度。</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">format</pt>
+                <pd props="android">水印缓冲区的格式，可设置为以下常量之一：
+                    <ul>
+                        <li><codeph>WATERMARK_BUFFER_FORMAT_I420</codeph>：I420 格式。</li>
+                        <li><codeph>WATERMARK_BUFFER_FORMAT_BGRA</codeph>：BGRA 格式。</li>
+                        <li><codeph>WATERMARK_BUFFER_FORMAT_NV21</codeph>：NV21 格式。</li>
+                        <li><codeph>WATERMARK_BUFFER_FORMAT_RGBA</codeph>：RGBA 格式。</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">水印缓冲区的格式。详见 <xref keyref="WatermarkBufferFormat"/>。</pd>
+                <pd props="cpp">水印缓冲区的格式，详见 <xref keyref="VIDEO_PIXEL_FORMAT"/>。默认值为 <ph keyref="VIDEO_PIXEL_I420"/>。当前支持的格式包括：<ph keyref="VIDEO_PIXEL_I420"/>、<ph keyref="VIDEO_PIXEL_RGBA"/>、<ph keyref="VIDEO_PIXEL_BGRA"/> 和 <ph keyref="VIDEO_PIXEL_NV21"/>。</pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">buffer</pt>
+                <pd props="android">存储水印图像数据的缓冲区。缓冲区必须与指定的格式和尺寸匹配。尺寸应为宽度 * 高度 * 每像素字节数。</pd>
+                <pd props="ios">原始图像数据缓冲区。详见 <codeph>NSData</codeph>。</pd>
+                <pd props="cpp">水印缓冲区的数据。如果异步使用，请将缓冲区复制到不会被释放的内存中。</pd>
+            </plentry>
+            </parml> </section>
+            </refbody>
+</reference>

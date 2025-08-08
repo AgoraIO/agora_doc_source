@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videodenoiseroptions">
-    <title> <ph keyref="VideoDenoiserOptions" /> </title>
-    <shortdesc id="short"> <ph id="shortdesc">视频降噪选项。</ph> </shortdesc>
+    <title> <ph keyref="VideoDenoiserOptions"/> </title>
+    <shortdesc id="short"> <ph id="shortdesc">用于设置视频降噪选项。</ph> </shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -11,22 +11,18 @@
     public static final int VIDEO_DENOISER_MANUAL = 1;
     public static final int VIDEO_DENOISER_LEVEL_HIGH_QUALITY = 0;
     public static final int VIDEO_DENOISER_LEVEL_FAST = 1;
-    public static final int VIDEO_DENOISER_LEVEL_STRENGTH = 2;
     public int denoiserMode;
     public int denoiserLevel;
-
-  public VideoDenoiserOptions() {
-    denoiserMode = VIDEO_DENOISER_AUTO;
-    denoiserLevel = VIDEO_DENOISER_LEVEL_HIGH_QUALITY;
-  }
-
-  public VideoDenoiserOptions(int mode, int level) {
-    denoiserMode = mode;
-    denoiserLevel = level;
-  }
-}
-</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+    public VideoDenoiserOptions() {
+        denoiserMode = VIDEO_DENOISER_AUTO;
+        denoiserLevel = VIDEO_DENOISER_LEVEL_HIGH_QUALITY;
+    }
+    public VideoDenoiserOptions(int mode, int level) {
+        denoiserMode = mode;
+        denoiserLevel = level;
+    }
+}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoDenoiserOptions : NSObject
 @property(nonatomic, assign) AgoraVideoDenoiserMode mode;
 @property(nonatomic, assign) AgoraVideoDenoiserLevel level;
@@ -54,9 +50,9 @@ struct FVideoDenoiserOptions
 {
 	GENERATED_BODY()
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoDenoiserOptions&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|VideoDenoiserOptions")
 	EVIDEO_DENOISER_MODE mode = EVIDEO_DENOISER_MODE::VIDEO_DENOISER_AUTO;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoDenoiserOptions&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|VideoDenoiserOptions")
 	EVIDEO_DENOISER_LEVEL level = EVIDEO_DENOISER_LEVEL::VIDEO_DENOISER_LEVEL_HIGH_QUALITY;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoDenoiserOptions {
@@ -97,34 +93,42 @@ struct FVideoDenoiserOptions
   @JsonKey(name: 'level')
   final VideoDenoiserLevel? level;
 
-  factory VideoDenoiserOptions.fromJson(Map&amp;lt;String, dynamic> json) =>
+  factory VideoDenoiserOptions.fromJson(Map&amp;lt;String, dynamic&gt; json) =&gt;
       _$VideoDenoiserOptionsFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$VideoDenoiserOptionsToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoDenoiserOptionsToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="parameters">
-            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>
+            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/> </title>
             <parml>
             <plentry>
                 <pt>level</pt>
-                <pd><ph>视频降噪等级。</ph><ph props="apple cpp unreal bp">详见 <xref keyref="VIDEO_DENOISER_LEVEL" />。</ph>
+                <pd><ph>视频降噪等级。</ph><ph props="apple bp cpp unreal">详见 <xref keyref="VIDEO_DENOISER_LEVEL"/>。</ph>
                   <ul props="android hmos">
-                    <li><ph keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY" />(0):（默认）优先画质的暗光增强，会处理视频图像的亮度、细节、噪声，消耗的性能适中，处理速度适中，综合画质最优。</li>
-                    <li><ph keyref="VIDEO_DENOISER_LEVEL_FAST" />(1)：优先性能的视频降噪。是在性能消耗和视频降噪效果中侧重于节省性能的等级。性能消耗较少，视频降噪速度较快。为避免处理后的视频有明显的拖影效果，建议你在摄像头固定的情况下使用该设置。</li>
-                    <li><ph keyref="VIDEO_DENOISER_LEVEL_STRENGTH" />(2)：强效的视频降噪。是在性能消耗和视频降噪效果中侧重于视频降噪效果的等级。性能消耗较多，视频降噪速度较慢，视频降噪效果较好。如果 <parmname keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY" /> 不能满足你的视频降噪需求，你可以使用该设置。</li>
+                    <li><ph keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY"/>(0):（默认）优先画质的暗光增强，会处理视频图像的亮度、细节、噪声，消耗的性能适中，处理速度适中，综合画质最优。</li>
+                    <li><ph keyref="VIDEO_DENOISER_LEVEL_FAST"/>(1)：优先性能的视频降噪。是在性能消耗和视频降噪效果中侧重于节省性能的等级。性能消耗较少，视频降噪速度较快。为避免处理后的视频有明显的拖影效果，建议你在摄像头固定的情况下使用该设置。</li>
+                    <li><ph keyref="VIDEO_DENOISER_LEVEL_STRENGTH"/>(2)：强效的视频降噪。是在性能消耗和视频降噪效果中侧重于视频降噪效果的等级。性能消耗较多，视频降噪速度较慢，视频降噪效果较好。如果 <parmname keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY"/> 不能满足你的视频降噪需求，你可以使用该设置。</li>
                   </ul>
                 </pd>
             </plentry>
             <plentry>
                 <pt>mode</pt>
-                <pd><ph>视频降噪模式。</ph><ph props="apple cpp unreal bp">详见 <xref keyref="VIDEO_DENOISER_MODE" />。</ph>
+                <pd><ph>视频降噪模式。</ph><ph props="apple bp cpp unreal">详见 <xref keyref="VIDEO_DENOISER_MODE"/>。</ph>
                   <ul props="android hmos">
-                    <li><ph keyref="VIDEO_DENOISER_AUTO" />(0):（默认）自动模式。SDK 会根据环境光亮度自动开启或关闭视频降噪功能。</li>
-                    <li><ph keyref="VIDEO_DENOISER_MANUAL" />(1)：手动模式。用户需手动开启或关闭视频降噪功能。</li>
+                    <li><ph keyref="VIDEO_DENOISER_AUTO"/>(0):（默认）自动模式。SDK 会根据环境光亮度自动开启或关闭视频降噪功能。</li>
+                    <li><ph keyref="VIDEO_DENOISER_MANUAL"/>(1)：手动模式。用户需手动开启或关闭视频降噪功能。</li>
                   </ul>
                 </pd>
+            </plentry>
+            <plentry props="android">
+                <pt props="android">denoiserMode</pt>
+                <pd props="android">降噪模式。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt props="android">denoiserLevel</pt>
+                <pd props="android">降噪等级。</pd>
             </plentry>
             </parml> </section>
     </refbody>

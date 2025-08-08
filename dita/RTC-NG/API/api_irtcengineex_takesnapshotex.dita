@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_takesnapshotex">
     <title><ph keyref="takeSnapshotEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获取视频截图。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">截取视频流的快照。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,61 +14,75 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int takeSnapshotEx(RtcConnection connection, int uid, String filePath);</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (NSInteger)takeSnapshotEx:(AgoraRtcConnection * _Nonnull)connection uid:(NSInteger)uid filePath:(NSString* _Nonnull)filePath;</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int takeSnapshotEx(const RtcConnection&amp; connection, uid_t uid, const char* filePath)  = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
-	int TakeSnapshotEx(const FRtcConnection&amp; connection, int64 uid, FString filePath);</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">abstract takeSnapshotEx(
-    connection: RtcConnection,
-    uid: number,
-    filePath: string
-  ): number;</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public abstract int TakeSnapshotEx(RtcConnection connection, uint uid, string filePath);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">abstract takeSnapshotEx(
-    connection: RtcConnection,
-    uid: number,
-    filePath: string
-  ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> takeSnapshotEx(
-      {required RtcConnection connection,
-      required int uid,
-      required String filePath});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (NSInteger)takeSnapshotEx:(AgoraRtcConnection * _Nonnull)connection uid:(NSInteger)uid filePath:(NSString* _Nonnull)filePath NS_SWIFT_NAME(takeSnapshotEx(_:uid:filePath:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp"/>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
-            <p conkeyref="takeSnapshot/desc1"/>
-            <p conkeyref="takeSnapshot/desc2" props="native unreal bp unity electron flutter cs"/>
-            <p props="rn">调用该方法返回时 SDK 并没有真正获取截图。成功调用该方法后，SDK 会触发 <xref keyref="onSnapshotTaken" /> 回调报告截图是否成功和获取截图的详情。</p>
-            <note type="attention">
-            <ul>
-            <li>该方法需要在调用 <xref keyref="joinChannelEx"/> 后调用。</li>
-            <li>该方法用于本地视频截图时，是对 <xref keyref="ChannelMediaOptions"/> 中指定发布的视频流进行截图。</li>
-            <li>如果用户的视频经过前处理，例如，添加了水印或美颜，生成的截图会包含前处理效果。</li>
-            </ul></note> </section>
-        <section id="parameters">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p>该方法从指定用户的视频流中截取一帧图像，生成 JPG 图片，并保存到指定路径。该方法为异步调用，调用后 SDK 并不会立即完成快照操作。你可以通过 <xref keyref="onSnapshotTaken"/>（iOS）或 <xref keyref="onSnapshotTaken"/>（Android）回调获取快照是否成功以及相关信息。</p>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p>该方法适用于多频道场景。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="related" deliveryTarget="details">
+            <title>相关回调</title>
+            <p>成功调用该方法后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调，报告快照是否成功截取以及快照的详细信息。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-            <plentry conkeyref="joinChannelEx/connection">
-                <pt/>
-                <pd/>
+            <plentry props="android ios">
+                <pt props="android ios">connection</pt>
+                <pd props="android">连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                <pd props="ios"><xref keyref="RtcConnection"/> 对象。详见 <xref keyref="RtcConnection"/>。</pd>
             </plentry>
-            <plentry conkeyref="takeSnapshot/uid">
-                <pt/>
-                <pd/>
+            <plentry props="android ios">
+                <pt props="android ios">uid</pt>
+                <pd props="android">用户 ID。如果要截取本地用户的视频，请将该参数设为 0。</pd>
+                <pd props="ios">用户 ID。如果你要截取本地用户的视频快照，请将 <ph keyref="uid"/> 设置为 0。</pd>
             </plentry>
-            <plentry conkeyref="takeSnapshot/filepath">
-                <pt/>
-                <pd/>
+            <plentry props="android ios">
+                <pt props="android ios">filePath</pt>
+                <pd props="android">截图的本地路径（包含文件扩展名）。例如：
+                    <ul>
+                        <li>Windows: <ph keyref="imagePath-example"/></li>
+                        <li>iOS: <codeph>/App Sandbox/Library/Caches/example.jpg</codeph></li>
+                        <li>macOS: <ph keyref="imagePath-example"/></li>
+                        <li>Android: <codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.jpg</codeph> 确保指定的路径存在且可写。</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">快照的本地路径（包含文件扩展名）。例如：
+                    <ul>
+                        <li>Windows: <ph keyref="imagePath-example"/></li>
+                        <li>iOS: <codeph>/App Sandbox/Library/Caches/example.jpg</codeph></li>
+                        <li>macOS: <ph keyref="imagePath-example"/></li>
+                        <li>Android: <codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.jpg</codeph> 请确保指定路径存在且可写。</li>
+                        </ul>
+                    </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp electron unity rn cs">
-            <li>0: 方法调用成功。</li>
-            <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
-            </ul> </section>
-    </refbody>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cpp cs electron rn unity unreal">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul>
+        <p props="android apple"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+    </section>
+        </refbody>
 </reference>

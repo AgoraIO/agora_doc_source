@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_cameracapturerconfiguration">
   <title> <ph keyref="CameraCapturerConfiguration"/> </title>
-  <shortdesc id="short"> <ph id="shortdesc">摄像头采集配置。</ph> </shortdesc>
+  <shortdesc id="short"> <ph id="shortdesc">用于设置摄像头采集参数。</ph> </shortdesc>
   <refbody>
     <section id="prototype">
       <p outputclass="codeblock">
@@ -174,32 +174,30 @@
 
 @end</codeblock>
       <codeblock props="cpp unreal" outputclass="language-cpp">struct CameraCapturerConfiguration {
-#if defined(__ANDROID__) || (defined(__APPLE__) &amp;&amp; TARGET_OS_IOS)
-  Optional&lt;CAMERA_DIRECTION> cameraDirection;
-
-  Optional&lt;CAMERA_FOCAL_LENGTH_TYPE> cameraFocalLengthType;
+#if defined(__ANDROID__) || (defined(__APPLE__) &amp;amp;&amp;amp; TARGET_OS_IOS) || defined(__OHOS__)
+Optional&amp;lt;CAMERA_DIRECTION&amp;gt; cameraDirection;
+Optional&amp;lt;CAMERA_FOCAL_LENGTH_TYPE&amp;gt; cameraFocalLengthType;
 #else
-  Optional&lt;const char *> deviceId;
+Optional&amp;lt;const char *&amp;gt; deviceId;
 #endif
-
 #if defined(__ANDROID__)
-  Optional&lt;const char *> cameraId;
+Optional&amp;lt;const char *&amp;gt; cameraId;
 #endif
-  Optional&lt;bool> followEncodeDimensionRatio;
-  VideoFormat format;
-  CameraCapturerConfiguration() : format(VideoFormat(0, 0, 0)) {}
+Optional&amp;lt;bool&amp;gt; followEncodeDimensionRatio;
+VideoFormat format;
+CameraCapturerConfiguration() : format(VideoFormat(0, 0, 0)) {}
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FCameraCapturerConfiguration
 {
 	GENERATED_BODY()
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|CameraCapturerConfiguration&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|CameraCapturerConfiguration")
 	ECAMERA_DIRECTION cameraDirection;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|CameraCapturerConfiguration&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|CameraCapturerConfiguration")
 	FString deviceId;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|CameraCapturerConfiguration&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|CameraCapturerConfiguration")
 	FVideoFormat format;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|CameraCapturerConfiguration&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|CameraCapturerConfiguration")
 	bool followEncodeDimensionRatio = true;
 };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class CameraCapturerConfiguration {
@@ -213,11 +211,11 @@ struct FCameraCapturerConfiguration
 }</codeblock>
       <codeblock props="unity cs" outputclass="language-csharp">public class CameraCapturerConfiguration : IOptionalJsonParse
     {
-        public Optional&lt;CAMERA_DIRECTION> cameraDirection = new Optional&lt;CAMERA_DIRECTION>();
-        public Optional&lt;CAMERA_FOCAL_LENGTH_TYPE> cameraFocalLengthType = new Optional&lt;CAMERA_FOCAL_LENGTH_TYPE>();
-        public Optional&lt;string> deviceId = new Optional&lt;string>();
-        public Optional&lt;string> cameraId = new Optional&lt;string>();
-        public Optional&lt;bool> followEncodeDimensionRatio = new Optional&lt;bool>();
+        public Optional&amp;lt;CAMERA_DIRECTION&amp;gt; cameraDirection = new Optional&amp;lt;CAMERA_DIRECTION&amp;gt;();
+        public Optional&amp;lt;CAMERA_FOCAL_LENGTH_TYPE&amp;gt; cameraFocalLengthType = new Optional&amp;lt;CAMERA_FOCAL_LENGTH_TYPE&amp;gt;();
+        public Optional&amp;lt;string&amp;gt; deviceId = new Optional&amp;lt;string&amp;gt;();
+        public Optional&amp;lt;string&amp;gt; cameraId = new Optional&amp;lt;string&amp;gt;();
+        public Optional&amp;lt;bool&amp;gt; followEncodeDimensionRatio = new Optional&amp;lt;bool&amp;gt;();
         public VideoFormat format;
 
         public CameraCapturerConfiguration()
@@ -225,7 +223,7 @@ struct FCameraCapturerConfiguration
             this.format = new VideoFormat(0, 0, 0);
         }
 
-        public CameraCapturerConfiguration(Optional&lt;CAMERA_DIRECTION> cameraDirection, Optional&lt;CAMERA_FOCAL_LENGTH_TYPE> cameraFocalLengthType, Optional&lt;string> deviceId, Optional&lt;string> cameraId, Optional&lt;bool> followEncodeDimensionRatio, VideoFormat format)
+        public CameraCapturerConfiguration(Optional&amp;lt;CAMERA_DIRECTION&amp;gt; cameraDirection, Optional&amp;lt;CAMERA_FOCAL_LENGTH_TYPE&amp;gt; cameraFocalLengthType, Optional&amp;lt;string&amp;gt; deviceId, Optional&amp;lt;string&amp;gt; cameraId, Optional&amp;lt;bool&amp;gt; followEncodeDimensionRatio, VideoFormat format)
         {
             this.cameraDirection = cameraDirection;
             this.cameraFocalLengthType = cameraFocalLengthType;
@@ -278,72 +276,74 @@ class CameraCapturerConfiguration {
   @JsonKey(name: 'format')
   final VideoFormat? format;
 
-  factory CameraCapturerConfiguration.fromJson(Map&lt;String, dynamic> json) =>
+  factory CameraCapturerConfiguration.fromJson(Map&amp;lt;String, dynamic&amp;gt; json) =&amp;gt;
       _$CameraCapturerConfigurationFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$CameraCapturerConfigurationToJson(this);
+  Map&amp;lt;String, dynamic&amp;gt; toJson() =&amp;gt; _$CameraCapturerConfigurationToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p></section>
+            <codeblock props="reserve" outputclass="language-cpp"/></p></section>
     <section id="parameters">
       <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/>
       </title>
       <parml>
-      <plentry props="android ios cpp unreal bp unity rn flutter cs">
-        <pt>cameraDirection</pt>
-        <pd>（可选）摄像头方向。详见 <xref keyref="CAMERA_DIRECTION"/>。
-          <note type="attention" props="cpp unreal bp unity flutter">该参数仅适用于 Android 和 iOS 平台。</note></pd>
-      </plentry>
-      <plentry props="android cpp unreal bp flutter unity rn">
-        <pt>cameraId</pt>
-        <pd>（可选）摄像头 ID。默认为前置摄像头对应的摄像头 ID。你可以通过 Android 原生系统 API 获取摄像头 ID，详见 <xref keyref="camera1-link"/> 和 <xref keyref="camera2-link"/>。
+            <plentry props="android bp cpp cs flutter ios rn unity unreal">
+                <pt props="android ios">cameraDirection</pt>
+                <pd>（可选）摄像头方向。详见 <xref keyref="CAMERA_DIRECTION"/>。
+          <note type="attention" props="bp cpp flutter unity unreal">该参数仅适用于 Android 和 iOS 平台。</note></pd>
+                <pd props="android ios">摄像头方向设置，详见 <xref keyref="CAMERA_DIRECTION"/>。</pd>
+            </plentry>
+            <plentry props="android bp cpp flutter rn unity unreal">
+                <pt>cameraId</pt>
+                <pd>（可选）摄像头 ID。默认为前置摄像头对应的摄像头 ID。你可以通过 Android 原生系统 API 获取摄像头 ID，详见 <xref keyref="camera1-link"/> 和 <xref keyref="camera2-link"/>。
         <note type="attention"><ul>
-        <li props="cpp unreal bp flutter unity rn">该参数仅适用于 Android。</li>
+        <li props="bp cpp flutter rn unity unreal">该参数仅适用于 Android。</li>
         <li>该参数和 <parmname>cameraDirection</parmname> 均用于指定摄像头，二者为互斥关系，你可以按需选用其中之一，具体区别如下：<ul>
           <li>通过 <parmname>cameraDirection</parmname> 指定摄像头的方式更为简便。你只需指定摄像头的方向（前置或后置），无需指定具体的摄像头 ID，SDK 会通过系统 API 去检索和确定实际的摄像头 ID。</li>
           <li>通过 <parmname>cameraId</parmname> 则可以更精确地指定某个特定的摄像头。对于多摄像头的设备，<parmname>cameraDirection</parmname> 无法识别或访问全部可用摄像头，这种情况建议使用 <parmname>cameraId</parmname> 直接指定你想要的摄像头 ID。</li>
         </ul></li></ul></note>
         </pd>
-      </plentry>
-      <plentry props="android ios cpp unreal bp flutter unity rn">
-        <pt>cameraFocalLengthType</pt>
-        <pd>（可选）摄像头的焦距类型。详见 <xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/>。
+            </plentry>
+            <plentry props="android bp cpp flutter ios rn unity unreal">
+                <pt props="android ios">cameraFocalLengthType</pt>
+                <pd>（可选）摄像头的焦距类型。详见 <xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/>。
         <note type="attention"><ul>
-          <li props="cpp unreal bp flutter unity">该参数仅适用于 Android 和 iOS。</li>
-          <li props="android cpp unreal bp flutter unity rn">如需设置摄像头的焦距类型，仅支持通过 <parmname>cameraDirection</parmname> 指定摄像头，不支持通过 <parmname>cameraId</parmname> 进行指定。</li>
-          <li props="ios cpp unreal bp flutter unity rn">部分 iOS 设备的后置摄像头为多个摄像头组成的融合镜头，如双摄（广角和超广角）或三摄（广角、超广角和长焦），对于这种具备超广角能力的融合镜头，你可以通过以下任意一种方式实现超广角的采集效果：
+          <li props="bp cpp flutter unity unreal">该参数仅适用于 Android 和 iOS。</li>
+          <li props="android bp cpp flutter rn unity unreal">如需设置摄像头的焦距类型，仅支持通过 <parmname>cameraDirection</parmname> 指定摄像头，不支持通过 <parmname>cameraId</parmname> 进行指定。</li>
+          <li props="bp cpp flutter ios rn unity unreal">部分 iOS 设备的后置摄像头为多个摄像头组成的融合镜头，如双摄（广角和超广角）或三摄（广角、超广角和长焦），对于这种具备超广角能力的融合镜头，你可以通过以下任意一种方式实现超广角的采集效果：
             <ul>
               <li>方式一：将该参数设置为 <apiname keyref="CAMERA_FOCAL_LENGTH_ULTRA_WIDE"/> (2)（超广角镜头）。</li>
               <li>方式二：将该参数设置为 <apiname keyref="CAMERA_FOCAL_LENGTH_DEFAULT"/> (0)（标准镜头），然后调用 <xref keyref="setCameraZoomFactor"/> 将相机缩放比例设置为小于 1.0 的数值，最小可以设置为 0.5。</li></ul>
             区别为方式一的超广角大小不可调节，方式二支持自由调节相机的缩放比例。</li>
         </ul></note>
         </pd>
-      </plentry>
-      <plentry props="android hmos cpp framework">
-        <pt props="cpp framework">format</pt>
-        <pt props="android hmos">captureFormat</pt>
-        <pd>（可选）视频帧格式。详见 <xref keyref="VideoFormat"/>。</pd>
-      </plentry>
-      <plentry props="apple">
-        <pt>dimension</pt>
-        <pd>（可选）视频帧的分辨率 (px)。默认值为 960 × 540。</pd>
-      </plentry>
-      <plentry props="apple">
-        <pt>frameRate</pt>
-        <pd>（可选）视频帧的帧率 (fps)。默认值为 15。</pd>
-      </plentry>
-      <plentry props="mac cpp unreal bp unity electron flutter cs">
-        <pt>deviceId</pt>
-        <pd>（可选）摄像头的 ID。<ph props="cpp unreal bp electron flutter">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</ph>
-          <note type="attention" props="cpp unreal bp unity flutter">该参数仅适用于 Windows 和 macOS。</note></pd>
-      </plentry>
-      <plentry>
-        <pt>followEncodeDimensionRatio</pt>
-        <pd>（可选）是否跟随 <xref keyref="setVideoEncoderConfiguration"/> 中设置的视频宽高比：             
+                <pd props="android ios">摄像头焦距类型，详见 <xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/>。</pd>
+            </plentry>
+            <plentry props="android cpp framework hmos">
+                <pt props="cpp framework">format</pt>
+                <pt props="android hmos">captureFormat</pt>
+                <pd>（可选）视频帧格式。详见 <xref keyref="VideoFormat"/>。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt>dimension</pt>
+                <pd>（可选）视频帧的分辨率 (px)。默认值为 960 × 540。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt>frameRate</pt>
+                <pd>（可选）视频帧的帧率 (fps)。默认值为 15。</pd>
+            </plentry>
+            <plentry props="bp cpp cs electron flutter mac unity unreal">
+                <pt>deviceId</pt>
+                <pd>（可选）摄像头的 ID。<ph props="bp cpp electron flutter unreal">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</ph>
+          <note type="attention" props="bp cpp flutter unity unreal">该参数仅适用于 Windows 和 macOS。</note></pd>
+            </plentry>
+            <plentry>
+                <pt>followEncodeDimensionRatio</pt>
+                <pd>（可选）是否跟随 <xref keyref="setVideoEncoderConfiguration"/> 中设置的视频宽高比：             
           <ul>
           <li><codeph><ph keyref="true"/></codeph>：(默认) 跟随。SDK 会将采集到的视频按照已设置的视频宽高比进行裁剪，会同步改变本地预览画面、<xref keyref="onCaptureVideoFrame"/> 和 <xref keyref="onPreEncodeVideoFrame"/> 中的视频画面。</li>
           <li><codeph><ph keyref="false"/></codeph>：不跟随。SDK不改变采集到的视频帧宽高比。</li>
           </ul></pd>
-      </plentry>
-      </parml> </section>
+            </plentry>
+            </parml> </section>
   </refbody>
 </reference>

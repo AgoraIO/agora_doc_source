@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_peerdownlinkinfo">
+    <title><ph keyref="PeerDownlinkInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc">表示远端视频下行链路的相关信息。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct PeerDownlinkInfo {
+const char* userId;
+VIDEO_STREAM_TYPE stream_type;
+REMOTE_VIDEO_DOWNSCALE_LEVEL current_downscale_level;
+int expected_bitrate_bps;
+
+PeerDownlinkInfo()
+    : userId(OPTIONAL_NULLPTR),
+      stream_type(VIDEO_STREAM_HIGH),
+      current_downscale_level(REMOTE_VIDEO_DOWNSCALE_LEVEL_NONE),
+      expected_bitrate_bps(-1) {}
+
+PeerDownlinkInfo(const PeerDownlinkInfo&amp;amp; rhs)
+    : stream_type(rhs.stream_type),
+      current_downscale_level(rhs.current_downscale_level),
+      expected_bitrate_bps(rhs.expected_bitrate_bps) {
+  if (rhs.userId != OPTIONAL_NULLPTR) {
+    const size_t len = std::strlen(rhs.userId);
+    char* buf = new char[len + 1];
+    std::memcpy(buf, rhs.userId, len);
+    buf[len] = '\0';
+    userId = buf;
+  }
+}
+
+PeerDownlinkInfo&amp;amp; operator=(const PeerDownlinkInfo&amp;amp; rhs) {
+  if (this == &amp;amp;rhs) return *this;
+  userId = OPTIONAL_NULLPTR;
+  stream_type = rhs.stream_type;
+  current_downscale_level = rhs.current_downscale_level;
+  expected_bitrate_bps = rhs.expected_bitrate_bps;
+  if (rhs.userId != OPTIONAL_NULLPTR) {
+    const size_t len = std::strlen(rhs.userId);
+    char* buf = new char[len + 1];
+    std::memcpy(buf, rhs.userId, len);
+    buf[len] = '\0';
+    userId = buf;
+  }
+  return *this;
+}
+
+~PeerDownlinkInfo() { delete[] userId; }
+};</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <p/>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry props="cpp">
+                <pt props="cpp">userId</pt>
+                <pd props="cpp">远端用户的用户 ID。</pd>
+            </plentry>
+            <plentry props="cpp">
+                <pt props="cpp">stream_type</pt>
+                <pd props="cpp">视频流类型，默认值为 VIDEO_STREAM_HIGH。</pd>
+            </plentry>
+            <plentry props="cpp">
+                <pt props="cpp">current_downscale_level</pt>
+                <pd props="cpp">当前视频下行的分辨率缩小等级，默认值为 REMOTE_VIDEO_DOWNSCALE_LEVEL_NONE。</pd>
+            </plentry>
+            <plentry props="cpp">
+                <pt props="cpp">expected_bitrate_bps</pt>
+                <pd props="cpp">期望的视频码率，单位为 bps，默认值为 -1。</pd>
+            </plentry>
+            </parml> </section>
+            </refbody>
+</reference>

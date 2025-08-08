@@ -1,13 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_contentinspectconfig">
     <title><ph keyref="ContentInspectConfig"/></title>
-    <shortdesc id="short"><ph id="shortdesc">本地截图上传配置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">用于配置本地截图上传功能。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android">public class ContentInspectConfig {
   public final static int CONTENT_INSPECT_TYPE_INVALID = 0;
+  @Deprecated
+  public final static int CONTENT_INSPECT_TYPE_MODERATION = 1;
   public final static int CONTENT_INSPECT_TYPE_SUPERVISE = 2;
   public final static int CONTENT_INSPECT_TYPE_IMAGE_MODERATION = 3;
   public static final int MAX_CONTENT_INSPECT_MODULE_COUNT = 32;
@@ -16,56 +18,38 @@
   public ContentInspectModule[] modules;
   public int moduleCount;
 
-  public static class ContentInspectModule {
-    public int type;
-    public int interval;
-
-    public ContentInspectModule() {
-      type = CONTENT_INSPECT_TYPE_INVALID;
-      interval = 0;
-    }
-  }
-
   public ContentInspectConfig() {
     modules = new ContentInspectModule[MAX_CONTENT_INSPECT_MODULE_COUNT];
-    for (int i = 0; i &lt; MAX_CONTENT_INSPECT_MODULE_COUNT; i++) {
+    for (int i = 0; i &amp;lt; MAX_CONTENT_INSPECT_MODULE_COUNT; i++) {
       modules[i] = new ContentInspectModule();
     }
     moduleCount = 0;
   }
 }</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
             <codeblock props="ios mac">__attribute__((visibility("default"))) @interface AgoraContentInspectConfig: NSObject
 @property (nonatomic, copy) NSString* _Nullable extraInfo;
 @property (nonatomic, copy) NSString* _Nullable serverConfig;
-@property(copy, nonatomic) NSArray&lt;AgoraContentInspectModule*&gt;* _Nullable modules;
+@property(copy, nonatomic) NSArray&amp;lt;AgoraContentInspectModule*&amp;gt;* _Nullable modules;
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct ContentInspectConfig {
   const char* extraInfo;
   const char* serverConfig;
-
   ContentInspectModule modules[MAX_CONTENT_INSPECT_MODULE_COUNT];
   int moduleCount;
-   ContentInspectConfig&amp; operator=(const ContentInspectConfig&amp; rth)
-	{
-        extraInfo = rth.extraInfo;
-        serverConfig = rth.serverConfig;
-        moduleCount = rth.moduleCount;
-		memcpy(&amp;modules, &amp;rth.modules,  MAX_CONTENT_INSPECT_MODULE_COUNT * sizeof(ContentInspectModule));
-		return *this;
-	}
-  ContentInspectConfig() :extraInfo(NULL), serverConfig(NULL), moduleCount(0){}
+  ContentInspectConfig&amp;amp; operator=(const ContentInspectConfig&amp;amp; rth);
+  ContentInspectConfig();
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FContentInspectConfig
 {
 	GENERATED_BODY()
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ContentInspectConfig&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|ContentInspectConfig")
 	FString extraInfo;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ContentInspectConfig&quot;)
-	TArray&lt;FContentInspectModule&gt; modules;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ContentInspectConfig&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|ContentInspectConfig")
+	TArray&amp;lt;FContentInspectModule&amp;gt; modules;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|ContentInspectConfig")
 	int moduleCount;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ContentInspectConfig {
@@ -108,24 +92,24 @@ class ContentInspectConfig {
   const ContentInspectConfig(
       {this.extraInfo, this.serverConfig, this.modules, this.moduleCount});
 
-  @JsonKey(name: &#x27;extraInfo&#x27;)
+  @JsonKey(name: 'extraInfo')
   final String? extraInfo;
 
-  @JsonKey(name: &#x27;serverConfig&#x27;)
+  @JsonKey(name: 'serverConfig')
   final String? serverConfig;
 
-  @JsonKey(name: &#x27;modules&#x27;)
-  final List&lt;ContentInspectModule&gt;? modules;
+  @JsonKey(name: 'modules')
+  final List&amp;lt;ContentInspectModule&amp;gt;? modules;
 
-  @JsonKey(name: &#x27;moduleCount&#x27;)
+  @JsonKey(name: 'moduleCount')
   final int? moduleCount;
 
-  factory ContentInspectConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory ContentInspectConfig.fromJson(Map&amp;lt;String, dynamic&amp;gt; json) =&amp;gt;
       _$ContentInspectConfigFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$ContentInspectConfigToJson(this);
+  Map&amp;lt;String, dynamic&amp;gt; toJson() =&amp;gt; _$ContentInspectConfigToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="parameters">
             <title>参数</title>
@@ -134,9 +118,10 @@ class ContentInspectConfig {
                 <pt>CONTENT_INSPECT_TYPE_INVALID</pt>
                 <pd>0：（默认）无实际功能。请不要将 <parmname>type</parmname> 设为该值。</pd>
             </plentry>
-            <plentry props="hide">
-                <pt>CONTENT_INSPECT_TYPE_MODERATION</pt>
+            <plentry props="android hide">
+                <pt props="android">CONTENT_INSPECT_TYPE_MODERATION</pt>
                 <pd>1：视频鉴黄。SDK 会对本地用户发送的视频进行截图、鉴黄，并将截图和审核结果上传。</pd>
+                <pd props="android">（已废弃）本地截图上传类型：（1）：内容审核。</pd>
             </plentry>
             <plentry props="android hmos">
                 <pt>CONTENT_INSPECT_TYPE_SUPERVISE</pt>
@@ -146,29 +131,33 @@ class ContentInspectConfig {
                 <pt>CONTENT_INSPECT_TYPE_IMAGE_MODERATION</pt>
                 <pd>3：使用云市场插件截图上传。SDK 会使用云市场视频审核插件对视频流进行截图并上传。</pd>
             </plentry>
-            <plentry>
-                <pt>extraInfo</pt>
+            <plentry props="android cpp">
+                <pt props="android cpp">extraInfo</pt>
                 <pd>
                     <p>附加信息，最大长度为 1024 字节。</p>
                     <p>SDK 会将附加信息和截图一起上传至声网服务器；截图完成后，声网服务器会将附加信息随回调通知一起发送给你的服务器。</p>
                     <p props="hide">SDK 会将附加信息和截图一起上传至声网内容审核服务器；审核完成后，声网内容审核服务器会将附加信息随审核结果一起发送给你的服务器。</p>
                 </pd>
+                <pd props="android cpp">额外信息。</pd>
             </plentry>
-            <plentry props="native rn flutter unity">
-                <pt>serverConfig</pt>
-                <pd>（可选）云市场视频审核相关服务端配置，该参数仅在 <xref keyref="ContentInspectModule"/> 中的 <codeph>type</codeph> 设置为 <apiname keyref="CONTENT_INSPECT_IMAGE_MODERATION"/> 时生效。如需使用，请<xref keyref="ticket-link" />。</pd>
+            <plentry props="android cpp flutter native rn unity">
+                <pt props="android cpp">serverConfig</pt>
+                <pd>（可选）云市场视频审核相关服务端配置，该参数仅在 <xref keyref="ContentInspectModule"/> 中的 <codeph>type</codeph> 设置为 <apiname keyref="CONTENT_INSPECT_IMAGE_MODERATION"/> 时生效。如需使用，请<xref keyref="ticket-link"/>。</pd>
+                <pd props="android cpp">用于图像审核的特定服务器配置。请联系技术支持获取详细信息。</pd>
             </plentry>
-            <plentry>
-                <pt>modules</pt>
+            <plentry props="android cpp">
+                <pt props="android cpp">modules</pt>
                 <pd>
                     <p>功能模块。详见 <xref keyref="ContentInspectModule"/>。</p>
                     <p>最多支持配置 32 个 <apiname keyref="ContentInspectModule"/> 实例，<parmname>MAX_CONTENT_INSPECT_MODULE_COUNT</parmname> 的取值范围为 [1,32] 中的整数。</p>
                     <note type="attention">一个功能模块最多只能配置一个实例。目前仅支持截图上传功能。</note>
                 </pd>
+                <pd props="android cpp">本地截图上传模块。最多支持 32 个模块，截图内容（如发送的视频流截图或图像）最多可用于 32 种功能类型。详见 <xref keyref="ContentInspectModule"/>。</pd>
             </plentry>
-            <plentry>
-                <pt>moduleCount</pt>
+            <plentry props="android cpp">
+                <pt props="android cpp">moduleCount</pt>
                 <pd>功能模块数，即配置的 <apiname keyref="ContentInspectModule"/> 实例的数量，必须与 <parmname>modules</parmname> 中配置的实例个数一致。最大值为 32。</pd>
+                <pd props="android cpp">本地截图上传模块的数量。</pd>
             </plentry>
             </parml> </section>
     </refbody>

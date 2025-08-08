@@ -1,23 +1,49 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_compressionpreference">
     <title><ph keyref="COMPRESSION_PREFERENCE"/></title>
-    <shortdesc id="short"><ph id="shortdesc">视频编码的压缩偏好类型。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">视频压缩偏好设置。</ph></shortdesc>
     <refbody>
         <section id="detailed_desc">
-            <dl outputclass="since">
-            <dlentry props="native">
-                <dt>自从</dt>
-                <dd>v4.1.0</dd>
-            </dlentry>
-            </dl>
-        </section>
+            </section>
         <section id="parameters">
             <title>枚举值</title>
             <parml>
-            <plentry>
+            <plentry props="cpp">
+                <pt><ph keyref="PREFER_COMPRESSION_AUTO"/></pt>
+                <pd props="cpp">（-1）：（默认）SDK 会根据 <xref keyref="setVideoScenario"/> 接口的设置、实时网络状态及其他相关数据自动选择压缩偏好。如果通过 <xref keyref="setVideoScenario"/> 设置的视频场景为 <codeph>APPLICATION_SCENARIO_LIVESHOW</codeph>，则使用 <ph keyref="PREFER_QUALITY"/>，否则使用 <ph keyref="PREFER_LOW_LATENCY"/>。当网络状态发生变化时，SDK 也可能在 <ph keyref="PREFER_QUALITY"/> 和 <ph keyref="PREFER_LOW_LATENCY"/> 之间自动切换，以获得最佳的用户体验。推荐使用此选项。</pd>
+            </plentry>
+            <plentry props="cpp">
                 <pt><ph keyref="PREFER_LOW_LATENCY"/></pt>
-                <pd>0: 低延时偏好。SDK 会对视频帧进行压缩处理，以降低延时。该偏好适用于流畅性优先且允许画质降低的场景。</pd>
+                <pd props="cpp">（0）：偏好低延迟，通常用于低延迟为首要需求的实时通信场景。</pd>
+            </plentry>
+            <plentry props="cpp">
+                <pt><ph keyref="PREFER_QUALITY"/></pt>
+                <pd props="cpp">（1）：偏好画质，牺牲一定的延迟，通常在 30 毫秒到 150 毫秒之间，具体取决于目标帧率。</pd>
+            </plentry>
+            <plentry props="ios">
+                <pt><ph keyref="AgoraCompressionAuto"/></pt>
+                <pd props="ios">（-1）：（默认）SDK 会根据 <xref keyref="setVideoScenario"/> API 的设置、实时网络状态及其他相关数据自动选择压缩偏好。如果通过 <xref keyref="setVideoScenario"/> 设置的视频场景为 <codeph>APPLICATION_SCENARIO_LIVESHOW</codeph>，则使用 <ph keyref="PREFER_QUALITY"/>；否则使用 <ph keyref="PREFER_LOW_LATENCY"/>。当网络状态变化时，SDK 也可能在 <ph keyref="PREFER_QUALITY"/> 和 <ph keyref="PREFER_LOW_LATENCY"/> 之间自动切换，以获得最佳的用户体验。推荐使用此选项。</pd>
+            </plentry>
+            <plentry props="ios">
+                <pt><ph keyref="AgoraCompressionLowLatency"/></pt>
+                <pd props="ios">（0）：优先低延迟，适用于实时通信场景。</pd>
+            </plentry>
+            <plentry props="mac">
+                <pt><ph keyref="AgoraCompressionAuto"/></pt>
+                <pd props="mac">（-1）：（默认）SDK 会根据 <xref keyref="setVideoScenario"/> API 的设置、实时网络状态及其他相关数据自动选择压缩偏好。如果通过 <xref keyref="setVideoScenario"/> 设置的视频场景为 <codeph>APPLICATION_SCENARIO_LIVESHOW</codeph>，则使用 <ph keyref="PREFER_QUALITY"/>；否则使用 <ph keyref="PREFER_LOW_LATENCY"/>。当网络状态变化时，SDK 也可能在 <ph keyref="PREFER_QUALITY"/> 和 <ph keyref="PREFER_LOW_LATENCY"/> 之间自动切换，以获得最佳的用户体验。推荐使用此选项。</pd>
+            </plentry>
+            <plentry props="mac">
+                <pt><ph keyref="AgoraCompressionLowLatency"/></pt>
+                <pd props="mac">（0）：优先低延迟，适用于实时通信场景。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt><ph keyref="PREFER_COMPRESSION_AUTO"/></pt>
+                <pd props="android">（-1）：（默认）SDK 会根据 <xref keyref="setVideoScenario"/> 的设置、实时网络状态及其他相关数据自动选择压缩偏好。如果通过 <xref keyref="setVideoScenario"/> 设置的视频场景为 <codeph>APPLICATION_SCENARIO_LIVESHOW</codeph>，则使用 <ph keyref="PREFER_QUALITY"/>，否则使用 <ph keyref="PREFER_LOW_LATENCY"/>。当网络状态发生变化时，SDK 也可能在 <ph keyref="PREFER_QUALITY"/> 和 <ph keyref="PREFER_LOW_LATENCY"/> 之间自动切换，以获得最佳的用户体验。推荐使用此选项。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt><ph keyref="PREFER_LOW_LATENCY"/></pt>
+                <pd props="android">（0）：优先低延迟，适用于实时通信场景。</pd>
             </plentry>
             </parml>
             <parml>

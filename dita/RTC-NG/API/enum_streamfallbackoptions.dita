@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_streamfallbackoptions">
     <title><ph keyref="STREAM_FALLBACK_OPTIONS"/></title>
-    <shortdesc id="short"><ph id="shortdesc">网络条件较差时，音视频流回退处理的选项。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">设置弱网环境下的视频流回退策略。</ph></shortdesc>
     <refbody>
         <section id="parameters">
             <title>枚举值</title>
@@ -18,6 +18,14 @@
             <plentry>
                 <pt><ph keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/></pt>
                 <pd>2: 网络条件较差时，先尝试只接收视频小流；如果因网络环境太差无法显示视频，则再回退到只接收订阅的音频流。</pd>
+            </plentry>
+            <plentry props="ios">
+                <pt><ph keyref="AgoraStreamFallbackOptionVideoStreamLow"/></pt>
+                <pd props="ios">（1）：在网络较差的情况下，接收端 SDK 会接收低质量层级的视频流（<codeph>agora::rtc::VIDEO_STREAM_LOW</codeph>）。你只能在 <xref keyref="setRemoteSubscribeFallbackOption"/> 中设置该选项。</pd>
+            </plentry>
+            <plentry props="mac">
+                <pt><ph keyref="AgoraStreamFallbackOptionVideoStreamLow"/></pt>
+                <pd props="mac">（1）：在网络较差的情况下，接收端 SDK 会接收低质量层级的视频流（<codeph>agora::rtc::VIDEO_STREAM_LOW</codeph>）。你只能在 <xref keyref="setRemoteSubscribeFallbackOption"/> 中设置该选项。</pd>
             </plentry>
             </parml> </section>
     </refbody>
