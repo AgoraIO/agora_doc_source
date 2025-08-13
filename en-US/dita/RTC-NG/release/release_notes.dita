@@ -54,11 +54,11 @@
                             <li><codeph>onLocalPublishFallbackToAudioOnly</codeph><ph props="cpp android">didLocalPublishFallbackToAudioOnly</ph><ph props="apple"></ph></li>
                             <li><codeph>onDownlinkNetworkInfoUpdated</codeph><ph props="cpp android">downlinkNetworkInfoUpdate</ph><ph props="apple"></ph></li>
                             <li><codeph><ph props="cpp android">onWlAccStats</ph><ph props="apple">wlAccStats</ph></codeph></li>
-                            <li><codeph><ph props="cpp android">onWlAccMessage</ph><ph props="apple">wlAccMessage</ph></codeph></li>
+                            <li><codeph>onWlAccMessage</codeph><ph props="cpp android">wlAccMessage</ph><ph props="apple"></ph></li>
                             <li><codeph>enableWirelessAccelerate</codeph><ph></ph></li>
-                            <li props="cpp apple"><codeph><ph props="cpp">WLACC_MESSAGE_REASON</ph><ph props="apple">AgoraWlAccReason</ph></codeph></li>
-                            <li props="cpp apple"><codeph><ph props="cpp">WLACC_SUGGEST_ACTION</ph><ph props="apple">AgoraWlAccAction</ph></codeph></li>
-                            <li><codeph><ph props="cpp android">WlAccStats</ph><ph props="apple">AgoraWlAccStats</ph></codeph></li>
+                            <li props="cpp apple"><codeph>WLACC_MESSAGE_REASON</codeph><ph props="cpp">AgoraWlAccReason</ph><ph props="apple"></ph></li>
+                            <li props="cpp apple"><codeph>WLACC_SUGGEST_ACTION</codeph><ph props="cpp">AgoraWlAccAction</ph><ph props="apple"></ph></li>
+                            <li><codeph>WlAccStats</codeph><ph props="cpp android">AgoraWlAccStats</ph><ph props="apple"></ph></li>
                             <li props="apple"><codeph><xref keyref="RemoteVideoStats"/>receivedFramerate</codeph></li>
                         </ul>
                     </li>
@@ -78,8 +78,8 @@
             <title>New features</title>
             <body>
                 <ol>
-                    <li><ph><b>ABR 同源多流</b></ph>
-<p><ph>该版本支持针对同一视频源设置同时发送多路不同分辨率视频流，并支持多频道场景。 你可以通过 <codeph><xref keyref="setSimulcastConfig"/></codeph> 配置不同分辨率的视频流，（最多四层分辨率，一个最高分辨率的主流和三层其他较低分辨率的视频流），并可以通过 <codeph><xref keyref="SimulcastConfig"/></codeph> 设置视频流的分辨率、码率、是否在上行网络或设备性能较差时自动关闭多流。 启用分层推流回退后，SDK 会在弱网环境下自动回退到低分辨率的视频流，确保流畅的观看体验。</ph>
+                    <li><ph><b>多路分辨率视频流</b></ph>
+<p><ph>该版本新增多路分辨率视频流（Adaptive Bitrate Video Streaming，简称 ABR）功能，支持对同一视频源设置同时发送多路不同分辨率的视频流，并支持多频道场景。 接收端通过自动/手动订阅目标分辨率的视频流。 你可以通过 <codeph><xref keyref="setSimulcastConfig"/></codeph> 配置不同分辨率的视频流，（最多四层分辨率，一个最高分辨率的主流和三层其他较低分辨率的视频流），并可以通过 <codeph><xref keyref="SimulcastConfig"/></codeph> 设置视频流的分辨率、码率、是否在上行网络或设备性能较差时自动关闭多流。 启用分层推流回退后，SDK 会在弱网环境下自动回退到低分辨率的视频流，确保流畅的观看体验。</ph>
                             <ph>订阅端可根据实际需求，通过 <codeph><xref keyref="setRemoteVideoStreamType"/></codeph> 选择想要接收的视频流。 适用于会议场景、大班课、互动直播等多终端、多网络环境，可显著提升弱网下的观看体验。</ph></p>
                     </li>
                     <li><ph><b>多路径网络传输</b></ph>
