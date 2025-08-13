@@ -69,12 +69,12 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|WatermarkOptions")
 	EWATERMARK_FIT_MODE mode = EWATERMARK_FIT_MODE::FIT_MODE_COVER_POSITION;
 	FWatermarkOptions(){}
-	FWatermarkOptions(const agora::rtc::WatermarkOptions &amp;amp; AgoraData){
+	FWatermarkOptions(const agora::rtc::WatermarkOptions &amp; AgoraData){
 		visibleInPreview = AgoraData.visibleInPreview;
 		positionInLandscapeMode = FRectangle(AgoraData.positionInLandscapeMode);
 		positionInPortraitMode = FRectangle(AgoraData.positionInPortraitMode);
 		watermarkRatio = FWatermarkRatio(AgoraData.watermarkRatio);
-		mode = static_cast&amp;lt;EWATERMARK_FIT_MODE&amp;gt;(AgoraData.mode);
+		mode = static_cast&lt;EWATERMARK_FIT_MODE&gt;(AgoraData.mode);
 	}
 	agora::rtc::WatermarkOptions CreateAgoraData() const {
 		agora::rtc::WatermarkOptions AgoraData;
@@ -82,10 +82,10 @@ public:
 		AgoraData.positionInLandscapeMode = positionInLandscapeMode.CreateAgoraData();
 		AgoraData.positionInPortraitMode = positionInPortraitMode.CreateAgoraData();
 		AgoraData.watermarkRatio = watermarkRatio.CreateAgoraData();
-		AgoraData.mode = static_cast&amp;lt;agora::rtc::WATERMARK_FIT_MODE&amp;gt;(mode);
+		AgoraData.mode = static_cast&lt;agora::rtc::WATERMARK_FIT_MODE&gt;(mode);
 		return AgoraData;
 	}
-	void FreeAgoraData(agora::rtc::WatermarkOptions &amp;amp; AgoraData) const {
+	void FreeAgoraData(agora::rtc::WatermarkOptions &amp; AgoraData) const {
 		positionInLandscapeMode.FreeAgoraData(AgoraData.positionInLandscapeMode);
 		positionInPortraitMode.FreeAgoraData(AgoraData.positionInPortraitMode);
 		watermarkRatio.FreeAgoraData(AgoraData.watermarkRatio);
@@ -166,10 +166,10 @@ class WatermarkOptions {
   @JsonKey(name: 'mode')
   final WatermarkFitMode? mode;
 
-  factory WatermarkOptions.fromJson(Map&amp;lt;String, dynamic&amp;gt; json) =&amp;gt;
+  factory WatermarkOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$WatermarkOptionsFromJson(json);
 
-  Map&amp;lt;String, dynamic&amp;gt; toJson() =&amp;gt; _$WatermarkOptionsToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$WatermarkOptionsToJson(this);
 }</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>

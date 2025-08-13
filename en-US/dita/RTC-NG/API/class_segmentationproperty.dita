@@ -56,17 +56,17 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|SegmentationProperty")
 	float greenCapacity = 0.5;
 	FSegmentationProperty(){}
-	FSegmentationProperty(const agora::rtc::SegmentationProperty &amp;amp; AgoraData){
-		modelType = static_cast&amp;lt;ESEG_MODEL_TYPE&amp;gt;(AgoraData.modelType);
+	FSegmentationProperty(const agora::rtc::SegmentationProperty &amp; AgoraData){
+		modelType = static_cast&lt;ESEG_MODEL_TYPE&gt;(AgoraData.modelType);
 		greenCapacity = AgoraData.greenCapacity;
 	}
 	agora::rtc::SegmentationProperty CreateAgoraData() const {
 		agora::rtc::SegmentationProperty AgoraData;
-		AgoraData.modelType = static_cast&amp;lt;agora::rtc::SegmentationProperty::SEG_MODEL_TYPE&amp;gt;(modelType);
+		AgoraData.modelType = static_cast&lt;agora::rtc::SegmentationProperty::SEG_MODEL_TYPE&gt;(modelType);
 		AgoraData.greenCapacity = greenCapacity;
 		return AgoraData;
 	}
-	void FreeAgoraData(agora::rtc::SegmentationProperty&amp;amp; AgoraData) const {
+	void FreeAgoraData(agora::rtc::SegmentationProperty&amp; AgoraData) const {
 	}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class SegmentationProperty {
@@ -102,10 +102,10 @@ public:
   @JsonKey(name: 'greenCapacity')
   final double? greenCapacity;
 
-  factory SegmentationProperty.fromJson(Map&amp;lt;String, dynamic&amp;gt; json) =&amp;gt;
+  factory SegmentationProperty.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$SegmentationPropertyFromJson(json);
 
-  Map&amp;lt;String, dynamic&amp;gt; toJson() =&amp;gt; _$SegmentationPropertyToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$SegmentationPropertyToJson(this);
 }</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
