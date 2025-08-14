@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_simulcastconfig">
+    <title><ph keyref="SimulcastConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc">配置多层级视频流。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class SimulcastConfig {
+final public StreamLayerConfig[] configs = new StreamLayerConfig[StreamLayerIndex.STREAM_LAYER_COUNT_MAX.getValue()];
+public boolean publishFallbackEnable;
+}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraSimulcastConfig: NSObject
+@property (copy, nonatomic, readonly) NSArray&lt;AgoraStreamLayerConfig*&gt;* _Nonnull configs;
+@property (assign, nonatomic) BOOL publishFallbackEnable;
+@end</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct SimulcastConfig {
+  StreamLayerConfig configs[STREAM_LAYER_COUNT_MAX];
+  bool publish_fallback_enable;
+};</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从：</dt>
+                <dd>自 v4.6.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p></p>
+            </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry props="android cpp ios">
+                <pt props="cpp">publish_fallback_enable</pt>
+                <pt props="android ios">publishFallbackEnable</pt>
+                <pd props="cpp">是否开启分层推流回退。
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：开启分层推流回退。当发布端性能或网络较差时，系统会动态关闭多路视频流，关闭顺序为 layer1 到 layer6。系统会保留主流和最低分辨率的辅流，以维持基本的视频连续性。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）关闭分层推流回退。</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">是否开启分层推流回退：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：开启分层推流回退。当发布端性能或网络较差时，系统会按 layer1 到 layer6 的顺序动态关闭多路视频流。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）关闭分层推流回退。 即使在网络条件较差或设备性能受限的情况下，系统也会保证主流和最低分辨率的辅流持续传输，以维持基本的视频连贯性。</li>
+                        </ul>
+                    </pd>
+                <pd props="android">是否启用分层推流回退。
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：启用分层推流回退。在发布端性能或网络较差的情况下，系统会按 <ph keyref="kRteAbrSubscriptionLayer1"/> 到 <ph keyref="kRteAbrSubscriptionLayer6"/> 的顺序动态关闭多路视频流。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）关闭分层推流回退。 系统会确保即使在网络状况较差或设备计算能力受限的情况下，仍保留主流和最低分辨率的辅流，以维持基本的视频连续性。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            </parml> </section>
+            </refbody>
+</reference>

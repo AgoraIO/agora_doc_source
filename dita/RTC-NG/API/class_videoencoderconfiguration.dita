@@ -1,171 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videoencoderconfiguration">
     <title><ph keyref="VideoEncoderConfiguration"/></title>
-    <shortdesc id="short"><ph id="shortdesc">视频编码器的配置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">设置视频编码参数。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class VideoEncoderConfiguration {
-  static public class VideoDimensions {
-    public int width;
-    public int height;
-    public VideoDimensions(int width, int height) {
-      this.width = width;
-      this.height = height;
-    }
-    public VideoDimensions() {
-      this.width = 0;
-      this.height = 0;
-    }
-  }
-  public final static VideoDimensions VD_120x120 = new VideoDimensions(120, 120);
-  public final static VideoDimensions VD_160x120 = new VideoDimensions(160, 120);
-  public final static VideoDimensions VD_180x180 = new VideoDimensions(180, 180);
-  public final static VideoDimensions VD_240x180 = new VideoDimensions(240, 180);
-  public final static VideoDimensions VD_320x180 = new VideoDimensions(320, 180);
-  public final static VideoDimensions VD_240x240 = new VideoDimensions(240, 240);
-  public final static VideoDimensions VD_320x240 = new VideoDimensions(320, 240);
-  public final static VideoDimensions VD_424x240 = new VideoDimensions(424, 240);
-  public final static VideoDimensions VD_360x360 = new VideoDimensions(360, 360);
-  public final static VideoDimensions VD_480x360 = new VideoDimensions(480, 360);
-  public final static VideoDimensions VD_640x360 = new VideoDimensions(640, 360);
-  public final static VideoDimensions VD_480x480 = new VideoDimensions(480, 480);
-  public final static VideoDimensions VD_640x480 = new VideoDimensions(640, 480);
-  public final static VideoDimensions VD_840x480 = new VideoDimensions(840, 480);
-  public final static VideoDimensions VD_960x540 = new VideoDimensions(960, 540);
-  public final static VideoDimensions VD_960x720 = new VideoDimensions(960, 720);
-  public final static VideoDimensions VD_1280x720 = new VideoDimensions(1280, 720);
-  public final static VideoDimensions VD_1920x1080 = new VideoDimensions(1920, 1080);
-  public final static VideoDimensions VD_2540x1440 = new VideoDimensions(2540, 1440);
-  public final static VideoDimensions VD_3840x2160 = new VideoDimensions(3840, 2160);
-  public enum FRAME_RATE {
-    FRAME_RATE_FPS_1(1),
-    FRAME_RATE_FPS_7(7),
-    FRAME_RATE_FPS_10(10),
-    FRAME_RATE_FPS_15(15),
-    FRAME_RATE_FPS_24(24),
-    FRAME_RATE_FPS_30(30),
-    FRAME_RATE_FPS_60(60);
-    private int value;
-    private FRAME_RATE(int v) {
-      value = v;
-    }
-    public int getValue() {
-      return this.value;
-    }
-  }
-  public enum ORIENTATION_MODE {
-    ORIENTATION_MODE_ADAPTIVE(0),
-    ORIENTATION_MODE_FIXED_LANDSCAPE(1),
-    ORIENTATION_MODE_FIXED_PORTRAIT(2);
-    private int value;
-    private ORIENTATION_MODE(int v) {
-      value = v;
-    }
-    public int getValue() {
-      return this.value;
-    }
-  }
-  public enum ENCODING_PREFERENCE {
-    PREFER_AUTO(-1),
-    PREFER_SOFTWARE(0),
-    PREFER_HARDWARE(1);
-    private int value;
-    private ENCODING_PREFERENCE(int v) {
-      value = v;
-    }
-    public int getValue() {
-      return this.value;
-    }
-  }
-  public enum COMPRESSION_PREFERENCE {
-    PREFER_COMPRESSION_AUTO(-1),
-    PREFER_LOW_LATENCY(0),
-    PREFER_QUALITY(1);
-    private int value;
-    private COMPRESSION_PREFERENCE(int v) {
-      value = v;
-    }
-    public int getValue() {
-      return this.value;
-    }
-  }
-  static public class AdvanceOptions {
-    public ENCODING_PREFERENCE encodingPreference;
-    public COMPRESSION_PREFERENCE compressionPreference;
-    public boolean encodeAlpha;
-    public AdvanceOptions(ENCODING_PREFERENCE encodingPreference,
-        COMPRESSION_PREFERENCE compressionPreference, boolean encodeAlpha) {
-      this.encodingPreference = encodingPreference;
-      this.compressionPreference = compressionPreference;
-      this.encodeAlpha = encodeAlpha;
-    }
-    public AdvanceOptions() {
-      this.encodingPreference = ENCODING_PREFERENCE.PREFER_AUTO;
-      this.compressionPreference = COMPRESSION_PREFERENCE.PREFER_COMPRESSION_AUTO;
-      this.encodeAlpha = false;
-    }
-  }
-  public enum DEGRADATION_PREFERENCE {
-    MAINTAIN_AUTO(-1),
-    MAINTAIN_QUALITY(0),
-    MAINTAIN_FRAMERATE(1),
-    MAINTAIN_BALANCED(2),
-    MAINTAIN_RESOLUTION(3),
-    DISABLED(100);
-    private int value;
-    private DEGRADATION_PREFERENCE(int v) {
-      value = v;
-    }
-    public int getValue() {
-      return this.value;
-    }
-  }
-  public enum CODEC_CAP_MASK {
-    CODEC_CAP_MASK_NONE(0),
-    CODEC_CAP_MASK_HW_DEC(1),
-    CODEC_CAP_MASK_HW_ENC(2),
-    CODEC_CAP_MASK_SW_DEC(4),
-    CODEC_CAP_MASK_SW_ENC(8);
-    private int value;
-    private CODEC_CAP_MASK(int v) {
-      value = v;
-    }
-    public int getValue() {
-      return this.value;
-    }
-  }
-  ;
-  public enum MIRROR_MODE_TYPE {
-    MIRROR_MODE_AUTO(0),
-    MIRROR_MODE_ENABLED(1),
-    MIRROR_MODE_DISABLED(2);
-    private int value;
-    private MIRROR_MODE_TYPE(int v) {
-      value = v;
-    }
-    public int getValue() {
-      return this.value;
-    }
-  }
-  public enum VIDEO_CODEC_TYPE {
-    VIDEO_CODEC_NONE(0),
-    VIDEO_CODEC_VP8(1),
-    VIDEO_CODEC_H264(2),
-    VIDEO_CODEC_H265(3),
-    VIDEO_CODEC_GENERIC(6),
-    VIDEO_CODEC_AV1(12),
-    VIDEO_CODEC_VP9(13),
-    VIDEO_CODEC_GENERIC_JPEG(20);
-    private int value;
-    private VIDEO_CODEC_TYPE(int v) {
-      value = v;
-    }
-    public int getValue() {
-      return this.value;
-    }
-  }
   public static final int STANDARD_BITRATE = 0;
   public static final int COMPATIBLE_BITRATE = -1;
   public static final int DEFAULT_MIN_BITRATE = -1;
@@ -181,75 +22,6 @@
   public MIRROR_MODE_TYPE mirrorMode;
   public AdvanceOptions advanceOptions;
   public VIDEO_CODEC_TYPE codecType;
-  public VideoEncoderConfiguration() {
-    this.dimensions = new VideoDimensions(960, 540);
-    this.frameRate = FRAME_RATE.FRAME_RATE_FPS_15.getValue();
-    this.minFrameRate = DEFAULT_MIN_FRAMERATE;
-    this.bitrate = STANDARD_BITRATE;
-    this.minBitrate = DEFAULT_MIN_BITRATE;
-    this.orientationMode = ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE;
-    this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_AUTO;
-    this.mirrorMode = MIRROR_MODE_TYPE.MIRROR_MODE_DISABLED;
-    this.advanceOptions = new AdvanceOptions(
-        ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_COMPRESSION_AUTO, false);
-    this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_NONE;
-  }
-  public VideoEncoderConfiguration(VideoDimensions dimensions, FRAME_RATE frameRate, int bitrate,
-      ORIENTATION_MODE orientationMode) {
-    this.dimensions = dimensions;
-    this.frameRate = frameRate.getValue();
-    this.minFrameRate = DEFAULT_MIN_FRAMERATE;
-    this.bitrate = bitrate;
-    this.minBitrate = DEFAULT_MIN_BITRATE;
-    this.orientationMode = orientationMode;
-    this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_AUTO;
-    this.mirrorMode = MIRROR_MODE_TYPE.MIRROR_MODE_DISABLED;
-    this.advanceOptions = new AdvanceOptions(
-        ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_COMPRESSION_AUTO, false);
-    this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_NONE;
-  }
-  public VideoEncoderConfiguration(VideoDimensions dimensions, FRAME_RATE frameRate, int bitrate,
-      ORIENTATION_MODE orientationMode, MIRROR_MODE_TYPE mirrorMode) {
-    this.dimensions = dimensions;
-    this.frameRate = frameRate.getValue();
-    this.minFrameRate = DEFAULT_MIN_FRAMERATE;
-    this.bitrate = bitrate;
-    this.minBitrate = DEFAULT_MIN_BITRATE;
-    this.orientationMode = orientationMode;
-    this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_AUTO;
-    this.mirrorMode = mirrorMode;
-    this.advanceOptions = new AdvanceOptions(
-        ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_COMPRESSION_AUTO, false);
-    this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_NONE;
-  }
-  public VideoEncoderConfiguration(
-      int width, int height, FRAME_RATE frameRate, int bitrate, ORIENTATION_MODE orientationMode) {
-    this.dimensions = new VideoDimensions(width, height);
-    this.frameRate = frameRate.getValue();
-    this.minFrameRate = DEFAULT_MIN_FRAMERATE;
-    this.bitrate = bitrate;
-    this.minBitrate = DEFAULT_MIN_BITRATE;
-    this.orientationMode = orientationMode;
-    this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_AUTO;
-    this.mirrorMode = MIRROR_MODE_TYPE.MIRROR_MODE_DISABLED;
-    this.advanceOptions = new AdvanceOptions(
-        ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_COMPRESSION_AUTO, false);
-    this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_NONE;
-  }
-  public VideoEncoderConfiguration(int width, int height, FRAME_RATE frameRate, int bitrate,
-      ORIENTATION_MODE orientationMode, MIRROR_MODE_TYPE mirrorMode) {
-    this.dimensions = new VideoDimensions(width, height);
-    this.frameRate = frameRate.getValue();
-    this.minFrameRate = DEFAULT_MIN_FRAMERATE;
-    this.bitrate = bitrate;
-    this.minBitrate = DEFAULT_MIN_BITRATE;
-    this.orientationMode = orientationMode;
-    this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_AUTO;
-    this.mirrorMode = mirrorMode;
-    this.advanceOptions = new AdvanceOptions(
-        ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_COMPRESSION_AUTO, false);
-    this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_NONE;
-  }
 }</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">export class VideoEncoderConfiguration{
   public dimensions:VideoDimensions = new VideoDimensions(960,540);
@@ -262,7 +34,7 @@
   public advanceOptions:AdvanceOptions = new AdvanceOptions();
   constructor() {}
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoEncoderConfiguration : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraVideoEncoderConfiguration : NSObject
 @property(assign, nonatomic) CGSize dimensions;
 @property(assign, nonatomic) AgoraVideoCodecType codecType;
 @property(assign, nonatomic) AgoraVideoFrameRate frameRate;
@@ -270,85 +42,20 @@
 @property(assign, nonatomic) NSInteger minBitrate;
 @property(assign, nonatomic) AgoraVideoOutputOrientationMode orientationMode;
 @property(assign, nonatomic) AgoraVideoMirrorMode mirrorMode;
-@property (assign, nonatomic) AgoraDegradationPreference degradationPreference;
-
-- (instancetype _Nonnull)initWithSize:(CGSize)size
-                            frameRate:(AgoraVideoFrameRate)frameRate
-                              bitrate:(NSInteger)bitrate
-                      orientationMode:(AgoraVideoOutputOrientationMode)orientationMode
-                           mirrorMode:(AgoraVideoMirrorMode)mirrorMode;
-
-- (instancetype _Nonnull)initWithWidth:(NSInteger)width
-                                height:(NSInteger)height
-                             frameRate:(AgoraVideoFrameRate)frameRate
-                               bitrate:(NSInteger)bitrate
-                       orientationMode:(AgoraVideoOutputOrientationMode)orientationMode
-                            mirrorMode:(AgoraVideoMirrorMode)mirrorMode;
+@property(assign, nonatomic) AgoraDegradationPreference degradationPreference;
+@property(strong, nonatomic) AgoraAdvancedVideoOptions *_Nullable advancedVideoOptions;
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct VideoEncoderConfiguration {
-  VIDEO_CODEC_TYPE codecType;
-  VideoDimensions dimensions;
-  int frameRate;
-  int bitrate;
-  int minBitrate;
-  ORIENTATION_MODE orientationMode;
-  DEGRADATION_PREFERENCE degradationPreference;
-  VIDEO_MIRROR_MODE_TYPE mirrorMode;
-  AdvanceOptions advanceOptions;
-  VideoEncoderConfiguration(const VideoDimensions&amp; d, int f, int b, ORIENTATION_MODE m, VIDEO_MIRROR_MODE_TYPE mirror = VIDEO_MIRROR_MODE_DISABLED)
-    : codecType(VIDEO_CODEC_NONE),
-      dimensions(d),
-      frameRate(f),
-      bitrate(b),
-      minBitrate(DEFAULT_MIN_BITRATE),
-      orientationMode(m),
-      degradationPreference(MAINTAIN_AUTO),
-      mirrorMode(mirror),
-      advanceOptions(PREFER_AUTO, PREFER_COMPRESSION_AUTO, false) {}
-  VideoEncoderConfiguration(int width, int height, int f, int b, ORIENTATION_MODE m, VIDEO_MIRROR_MODE_TYPE mirror = VIDEO_MIRROR_MODE_DISABLED)
-    : codecType(VIDEO_CODEC_NONE),
-      dimensions(width, height),
-      frameRate(f),
-      bitrate(b),
-      minBitrate(DEFAULT_MIN_BITRATE),
-      orientationMode(m),
-      degradationPreference(MAINTAIN_AUTO),
-      mirrorMode(mirror),
-      advanceOptions(PREFER_AUTO, PREFER_COMPRESSION_AUTO, false) {}
-  VideoEncoderConfiguration(const VideoEncoderConfiguration&amp; config)
-      : codecType(config.codecType),
-        dimensions(config.dimensions),
-        frameRate(config.frameRate),
-        bitrate(config.bitrate),
-        minBitrate(config.minBitrate),
-        orientationMode(config.orientationMode),
-        degradationPreference(config.degradationPreference),
-        mirrorMode(config.mirrorMode),
-        advanceOptions(config.advanceOptions) {}
-  VideoEncoderConfiguration()
-    : codecType(VIDEO_CODEC_NONE),
-      dimensions(FRAME_WIDTH_960, FRAME_HEIGHT_540),
-      frameRate(FRAME_RATE_FPS_15),
-      bitrate(STANDARD_BITRATE),
-      minBitrate(DEFAULT_MIN_BITRATE),
-      orientationMode(ORIENTATION_MODE_ADAPTIVE),
-      degradationPreference(MAINTAIN_AUTO),
-      mirrorMode(VIDEO_MIRROR_MODE_DISABLED),
-      advanceOptions(PREFER_AUTO, PREFER_COMPRESSION_AUTO, false) {}
-  VideoEncoderConfiguration&amp; operator=(const VideoEncoderConfiguration&amp; rhs) {
-    if (this == &amp;rhs) return *this;
-    codecType = rhs.codecType;
-    dimensions = rhs.dimensions;
-    frameRate = rhs.frameRate;
-    bitrate = rhs.bitrate;
-    minBitrate = rhs.minBitrate;
-    orientationMode = rhs.orientationMode;
-    degradationPreference = rhs.degradationPreference;
-    mirrorMode = rhs.mirrorMode;
-    advanceOptions = rhs.advanceOptions;
-    return *this;
-  }
-};</codeblock>
+VIDEO_CODEC_TYPE codecType;
+VideoDimensions dimensions;
+int frameRate;
+int bitrate;
+int minBitrate;
+ORIENTATION_MODE orientationMode;
+DEGRADATION_PREFERENCE degradationPreference;
+VIDEO_MIRROR_MODE_TYPE mirrorMode;
+AdvanceOptions advanceOptions;
+}</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FUABT_VideoEncoderConfiguration
 {
@@ -531,12 +238,12 @@ public:
   @JsonKey(name: 'advanceOptions')
   final AdvanceOptions? advanceOptions;
 
-  factory VideoEncoderConfiguration.fromJson(Map&lt;String, dynamic> json) =>
+  factory VideoEncoderConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$VideoEncoderConfigurationFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$VideoEncoderConfigurationToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoEncoderConfigurationToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
@@ -544,8 +251,8 @@ public:
             <plentry>
                 <pt>dimensions</pt>
                 <pd>
-                    <p props="cpp hmos unreal bp unity electron rn flutter cs">视频编码的分辨率 (px)，详见 <xref keyref="VideoDimensions"/>。该参数用于衡量编码质量，以长 × 宽表示，默认值为 960 × 540。用户可以自行设置分辨率。</p>
-                    <p props="android ios mac">用户可以自行设置分辨率，也可以在如下列表中直接选择想要的分辨率：
+                    <p props="bp cpp cs electron flutter hmos rn unity unreal">视频编码的分辨率 (px)，详见 <xref keyref="VideoDimensions"/>。该参数用于衡量编码质量，以长 × 宽表示，默认值为 960 × 540。用户可以自行设置分辨率。</p>
+                    <p props="android apple">用户可以自行设置分辨率，也可以在如下列表中直接选择想要的分辨率：
 
                     <ul>
                     <li><ph keyref="VD_120x120"/>：视频分辨率为 120 × 120。</li>
@@ -582,7 +289,7 @@ public:
             </plentry>
             <plentry>
                 <pt>frameRate</pt>
-                <pd props="native unreal flutter unity cs electron rn">视频编码的帧率(fps)，默认值为 15。详见 <xref keyref="FRAME_RATE"/>。</pd>
+                <pd props="cs electron flutter native rn unity unreal">视频编码的帧率(fps)，默认值为 15。详见 <xref keyref="FRAME_RATE"/>。</pd>
                 <pd props="bp">视频编码的帧率(fps)，默认值为 15。<ul>
                   <li><ph keyref="FRAME_RATE_FPS_1"/>(1): 1 fps。</li>
                   <li><ph keyref="FRAME_RATE_FPS_7"/>(7): 7 fps。</li>
@@ -593,14 +300,42 @@ public:
                   <li><ph keyref="FRAME_RATE_FPS_60"/>(60): 60 fps。该帧率仅适用于 Windows 和 macOS 平台。</li>
                 </ul></pd>
             </plentry>
-            <plentry>
-                <pt>bitrate</pt>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">bitrate</pt>
                 <pd>
-                    <p><ph>视频编码码率，单位为 Kbps。</ph><ph props="unity cs">详见 <xref keyref="BITRATE"/>。</ph><ph>该参数无需设置，保留默认值 <apiname keyref="STANDARD_BITRATE"/> 即可，SDK 会根据你设定的视频分辨率和帧率自动匹配最合适的码率。有关视频分辨率和帧率的对应关系，详见<xref keyref="video-profile-table"/>。</ph></p>
-                    <ul props="native unreal bp flutter rn electron">
+                    <p><ph>视频编码码率，单位为 Kbps。</ph><ph props="cs unity">详见 <xref keyref="BITRATE"/>。</ph><ph>该参数无需设置，保留默认值 <apiname keyref="STANDARD_BITRATE"/> 即可，SDK 会根据你设定的视频分辨率和帧率自动匹配最合适的码率。有关视频分辨率和帧率的对应关系，详见<xref keyref="video-profile-table"/>。</ph></p>
+                    <ul props="bp electron flutter native rn unreal">
                     <li><ph keyref="STANDARD_BITRATE"/> (0): (默认) 标准码率模式。</li>
                     <li><ph keyref="COMPATIBLE_BITRATE"/> (-1): 适配码率模式。一般情况下，声网建议你不要使用该值。</li>
                     </ul> </pd>
+                <pd props="android">视频码率（单位：Kbps）。参考下表设置码率。如果设置值超出范围，SDK 会自动将其调整至合理值。你也可以选择如下选项：
+                    <ul>
+                        <li><ph keyref="STANDARD_BITRATE"/>（0）：推荐使用的标准码率模式。在此模式下，不同频道场景下的码率不同：<ul>
+                            <li>在 Communication 场景中，视频码率等于基础码率。</li>
+                            <li>在 Live Broadcast 场景中，视频码率是基础码率的两倍。</li>
+                            </ul>
+                        </li>
+                        <li><ph keyref="COMPATIBLE_BITRATE"/>（-1）：兼容码率模式。在此模式下，码率不随频道场景变化。如果在直播场景中使用此模式，可能导致帧率低于设置值。 声网针对不同频道场景使用不同的视频编码器实现优化。例如，Communication 场景注重流畅性，Live Broadcast 场景注重画质（即更高码率）。因此，推荐将该参数设置为 <ph keyref="STANDARD_BITRATE"/>。 **最大视频码率表** &lt;table&gt;...（表格省略）&lt;/table&gt;。</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">视频码率。请参考下表设置码率。如果设置的码率超出合理范围，SDK 会自动将其调整到该范围内的值。你也可以选择以下选项之一：
+                    <ul>
+                        <li><ph keyref="STANDARD_BITRATE"/>：在 <xref keyref="setVideoEncoderConfiguration"/> 中设置的标准码率。推荐在直播场景中设置较高的码率以提升视频质量。当选择该选项时，直播场景下码率值会加倍，通信场景下则与 <codeph>AgoraVideoProfile</codeph> 中的值一致。</li>
+                        <li><ph keyref="COMPATIBLE_BITRATE"/>：在 <xref keyref="setVideoEncoderConfiguration"/> 中设置的兼容码率。直播和通信场景下的码率与 <codeph>AgoraVideoProfile</codeph> 中的值一致。 | 分辨率 | 帧率 (fps) | 最大码率 (Kbps) | |--------|------------|-----------------| | 120×120 | 15 | 150 | | 120×160 | 15 | 186 | | 180×180 | 15 | 270 | | 180×240 | 15 | 336 | | 180×320 | 15 | 420 | | 240×240 | 15 | 420 | | 240×320 | 15 | 522 | | 240×424 | 15 | 648 | | 360×360 | 15 | 774 | | 360×360 | 30 | 1162 | | 360×480 | 15 | 966 | | 360×480 | 30 | 1407 | | 360×640 | 15 | 1200 | | 360×640 | 30 | 1696 | | 480×480 | 15 | 1200 | | 480×480 | 30 | 1696 | | 480×640 | 10 | 1164 | | 480×640 | 15 | 1445 | | 480×640 | 30 | 2041 | | 480×848 | 15 | 1735 | | 480×848 | 30 | 2445 | | 540×960 | 15 | 2029 | | 540×960 | 30 | 2852 | | 720×960 | 15 | 2443 | | 720×960 | 30 | 3434 | | 720×1280 | 15 | 2938 | | 720×1280 | 30 | 4113 | | 1080×1920 | 15 | 4914 | | 1080×1920 | 30 | 6819 | | 1080×1920 | 60 | 9380 | | 2560×1440 | 15 | 7040 | | 2560×1440 | 30 | 9700 | | 2560×1440 | 60 | 13230 | | 3840×2160 | 15 | 11550 | | 3840×2160 | 30 | 15726 | | 3840×2160 | 60 | 21133 |。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp">视频的码率（Kbps）。
+
+请参考下方的 **视频最大码率表** 设置码率。如果设置的码率超出合理范围，SDK 会自动将其调整到范围内的值。你也可以选择以下选项：
+                    <ul>
+                        <li><ph keyref="STANDARD_BITRATE"/>：（推荐）标准码率模式。在此模式下，不同频道场景下的码率不同：<ul>
+                            <li>在通信场景中，视频码率等于基础码率。</li>
+                            <li>在极速直播场景中，视频码率是基础码率的两倍。</li>
+                            </ul>
+                        </li>
+                        <li><ph keyref="COMPATIBLE_BITRATE"/>：兼容码率模式。在此模式下，码率在所有频道场景中保持一致。如果在极速直播场景中选择此模式，视频帧率可能低于设置值。 声网针对不同频道场景使用不同的视频编码器，以优化用户体验。例如，通信场景优先保证视频流畅性，而极速直播场景优先保证视频质量（更高的码率）。因此，建议将此参数设置为 <ph keyref="STANDARD_BITRATE"/>。 | 分辨率               | 帧率 (fps) | 最大码率 (Kbps) | |----------------------|------------|------------------| | 120 × 120            | 15         | 150              | | 120 × 160            | 15         | 186              | | 180 × 180            | 15         | 270              | | 180 × 240            | 15         | 336              | | 180 × 320            | 15         | 420              | | 240 × 240            | 15         | 420              | | 240 × 320            | 15         | 522              | | 240 × 424            | 15         | 648              | | 360 × 360            | 15         | 774              | | 360 × 360            | 30         | 1162             | | 360 × 480            | 15         | 966              | | 360 × 480            | 30         | 1407             | | 360 × 640            | 15         | 1200             | | 360 × 640            | 30         | 1696             | | 480 × 480            | 15         | 1200             | | 480 × 480            | 30         | 1696             | | 480 × 640            | 10         | 1164             | | 480 × 640            | 15         | 1445             | | 480 × 640            | 30         | 2041             | | 480 × 848            | 15         | 1735             | | 480 × 848            | 30         | 2445             | | 540 × 960            | 15         | 2029             | | 540 × 960            | 30         | 2852             | | 720 × 960            | 15         | 2443             | | 720 × 960            | 30         | 3434             | | 720 × 1280           | 15         | 2938             | | 720 × 1280           | 30         | 4113             | | 1080 × 1920          | 15         | 4914             | | 1080 × 1920          | 30         | 6819             | | 1080 × 1920          | 60         | 9380             | | 2560 × 1440          | 15         | 7040             | | 2560 × 1440          | 30         | 9700             | | 2560 × 1440          | 60         | 13230            | | 3840 × 2160          | 15         | 11550            | | 3840 × 2160          | 30         | 15726            | | 3840 × 2160          | 60         | 21133            |。</li>
+                        </ul>
+                    </pd>
             </plentry>
             <plentry>
                 <pt>minBitrate</pt>
@@ -621,13 +356,13 @@ public:
             <plentry>
                 <pt>mirrorMode</pt>
                 <pd>
-                    <p props="ios mac cpp framework">发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
-                    <note conkeyref="setLocalRenderMode2/mirror" props="unreal bp"/>
+                    <p props="apple cpp framework">发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
+                    <note conkeyref="setLocalRenderMode2/mirror" props="bp unreal"/>
                     <p props="android hmos">发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。
                       <ul>
-                      <li><ph keyref="VIDEO_MIRROR_MODE_AUTO" /> (0)：SDK 决定镜像模式。默认关闭远端用户的镜像模式。</li>
-                      <li><ph keyref="VIDEO_MIRROR_MODE_ENABLED" /> (1)：开启远端用户的镜像模式。</li>
-                      <li><ph keyref="VIDEO_MIRROR_MODE_DISABLED" /> (2)：关闭远端用户的镜像模式。</li>
+                      <li><ph keyref="VIDEO_MIRROR_MODE_AUTO"/> (0)：SDK 决定镜像模式。默认关闭远端用户的镜像模式。</li>
+                      <li><ph keyref="VIDEO_MIRROR_MODE_ENABLED"/> (1)：开启远端用户的镜像模式。</li>
+                      <li><ph keyref="VIDEO_MIRROR_MODE_DISABLED"/> (2)：关闭远端用户的镜像模式。</li>
                       </ul> </p>
                     <note type="attention">默认关闭镜像模式。</note> </pd>
             </plentry>

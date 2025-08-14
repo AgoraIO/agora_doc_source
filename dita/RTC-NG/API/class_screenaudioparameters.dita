@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_screenaudioparameters">
-    <title><ph keyref="ScreenAudioParameters" /></title>
-    <shortdesc id="short"><ph id="shortdesc">共享屏幕流的音频配置。</ph></shortdesc>
+    <title><ph keyref="ScreenAudioParameters"/></title>
+    <shortdesc id="short"><ph id="shortdesc">用于配置共享屏幕音频流的参数。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -39,21 +39,16 @@
 @property(assign, nonatomic) NSInteger captureSignalVolume;
 @end
 </codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">struct ScreenAudioParameters {
-    int sampleRate = 16000;
-    int channels = 2;
-    int captureSignalVolume = 100;
-};
-</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp"></codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FScreenAudioParameters {
 	GENERATED_BODY()
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenAudioParameters&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|ScreenAudioParameters")
 	int sampleRate = 16000;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenAudioParameters&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|ScreenAudioParameters")
 	int channels = 2;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenAudioParameters&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|ScreenAudioParameters")
 	int captureSignalVolume = 100;
 #if defined(__ANDROID__) || (defined(__APPLE__) &amp;&amp; TARGET_OS_IOS)
 	FScreenAudioParameters(){}
@@ -115,40 +110,43 @@ public:
   @JsonKey(name: 'captureSignalVolume')
   final int? captureSignalVolume;
 
-  factory ScreenAudioParameters.fromJson(Map&lt;String, dynamic> json) =>
+  factory ScreenAudioParameters.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$ScreenAudioParametersFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$ScreenAudioParametersToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ScreenAudioParametersToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
-            <p>仅适用于 <parmname>captureAudio</parmname> 为 <codeph><ph keyref="true" /></codeph> 的场景。</p>
-        </section>
+            <p><parmname>captureAudio</parmname> 为 <codeph><ph keyref="true"/></codeph> 的场景。</p>
+            </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-                <plentry props="android hmos cpp unreal bp rn electron unity flutter cs">
-                    <pt>sampleRate</pt>
-                    <pd>音频采样率 (Hz)。默认值为 16000。</pd>
-                </plentry>
-                <plentry props="android hmos cpp unreal bp rn electron unity flutter cs">
-                    <pt>channels</pt>
-                    <pd>声道数。默认值为 2，表示双声道。</pd>
-                </plentry>
-            <plentry>
-                <pt>captureSignalVolume</pt>
-                <pd>采集的系统音量。取值范围为 [0,100]。默认值为 100。</pd>
+            <plentry props="android bp cpp cs electron flutter hmos rn unity unreal">
+                <pt props="cpp">sampleRate</pt>
+                <pd>音频采样率 (Hz)。默认值为 16000。</pd>
+                <pd props="cpp">音频采样率（Hz）。默认值为 16000。</pd>
             </plentry>
-                <plentry props="android">
-                    <pt>allowCaptureCurrentApp</pt>
-                    <pd>是否采集当前 App 中的音频：
+            <plentry props="android bp cpp cs electron flutter hmos rn unity unreal">
+                <pt props="cpp">channels</pt>
+                <pd>声道数。默认值为 2，表示双声道。</pd>
+                <pd props="cpp">音频声道数。默认值为 2，表示双声道。</pd>
+            </plentry>
+            <plentry props="cpp">
+                <pt props="cpp">captureSignalVolume</pt>
+                <pd>采集的系统音量。取值范围为 [0,100]。默认值为 100。</pd>
+                <pd props="cpp">系统音频采集音量，取值范围为 [0, 100]。默认值为 100。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt>allowCaptureCurrentApp</pt>
+                <pd>是否采集当前 App 中的音频：
                         <ul>
                         <li><codeph><ph keyref="true"/></codeph>：（默认）采集当前 App 中的音频。</li>
                         <li><codeph><ph keyref="false"/></codeph>：不采集当前 App 中的音频。</li>
                         </ul>
                         <note>该成员仅能设置是否采集当前 App 中的音频，并不能控制是否将采集到的 App 音频发布到频道中。你需要在调用 <xref keyref="joinChannel2"/> 或者 <xref keyref="updateChannelMediaOptions"/> 时通过 <parmname>options</parmname> 参数进行设置。</note></pd>
-                </plentry>
+            </plentry>
             </parml> </section>
     </refbody>
 </reference>

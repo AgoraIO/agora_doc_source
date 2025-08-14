@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onremotevideostatechanged">
-     <title> <ph keyref="onRemoteVideoStateChanged" /> </title>
+     <title> <ph keyref="onRemoteVideoStateChanged"/> </title>
      <shortdesc id="short"> <ph id="shortdesc">远端视频状态发生改变回调。</ph> </shortdesc>
      <prolog>
           <metadata>
                <keywords>
-                    <indexterm keyref="onRemoteVideoStateChanged" />
+                    <indexterm keyref="onRemoteVideoStateChanged"/>
                </keywords>
           </metadata>
      </prolog>
@@ -17,16 +17,8 @@
                <codeblock props="hmos" outputclass="language-arkts">onRemoteVideoStateChanged ? : (uid:number, state: Constants.RemoteVideoStreamState, reason: Constants.RemoteVideoStreamReason, elapsed:number) =&gt; void</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
      remoteVideoStateChangedOfUid:(NSUInteger)uid state:(AgoraVideoRemoteState)state reason:(AgoraVideoRemoteReason)reason elapsed:(NSInteger)elapsed;</codeblock>
-               <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onRemoteVideoStateChanged(uid_t uid,
-     REMOTE_VIDEO_STATE state,
-     REMOTE_VIDEO_STATE_REASON reason,
-     int elapsed) {
-     (void)uid;
-     (void)state;
-     (void)reason;
-     (void)elapsed;
-     }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+               <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onRemoteVideoStateChanged(uid_t uid, REMOTE_VIDEO_STATE state, REMOTE_VIDEO_STATE_REASON reason, int elapsed)</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = "Agora|Event")
 	void OnRemoteVideoStateChanged(int64 uid, EREMOTE_VIDEO_STATE state, EREMOTE_VIDEO_STATE_REASON reason, int elapsed);</codeblock>
                <codeblock props="electron" outputclass="language-typescript">  onRemoteVideoStateChanged?(
     connection: RtcConnection,
@@ -49,30 +41,31 @@
       RemoteVideoState state,
       RemoteVideoStateReason reason,
       int elapsed)? onRemoteVideoStateChanged;</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
           </section>
           <section id="detailed_desc">
                <note id="note" type="attention">频道内的用户（通信场景）或主播（直播场景）人数超过 32 人时，该回调可能不准确。</note> </section>
           <section id="parameters">
-               <title> <ph keyref="callback-section-title" /> </title>
+               <title> <ph keyref="callback-section-title"/> </title>
                <parml>
-               <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                    <pt />
-                    <pd />
-               </plentry>
-               <plentry props="rn unity electron flutter cs">
-                         <pt>connection</pt>
-                         <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
-                    </plentry>
-               <plentry id="uid">
-                    <pt props="native unreal bp">uid</pt>
-                    <pt props="rn unity electron flutter cs">remoteUid</pt>
-                    <pd>发生视频状态改变的远端用户 ID。</pd>
-               </plentry>
-               <plentry id="state">
-                    <pt>state</pt>
-                    <pd>
-                         <p props="hmos ios mac cpp unreal bp unity flutter electron rn cs">远端视频流状态，详见 <xref keyref="REMOTE_VIDEO_STATE" />。</p>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="apple">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry props="cs electron flutter rn unity">
+                <pt>connection</pt>
+                <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+            </plentry>
+            <plentry id="uid" props="cpp">
+                <pt props="bp cpp native unreal">uid</pt>
+                <pt props="cs electron flutter rn unity">remoteUid</pt>
+                <pd>发生视频状态改变的远端用户 ID。</pd>
+                <pd props="cpp">远端用户或主播的用户 ID。</pd>
+            </plentry>
+            <plentry id="state" props="cpp">
+                <pt props="cpp">state</pt>
+                <pd>
+                         <p props="apple bp cpp cs electron flutter hmos rn unity unreal">远端视频流状态，详见 <xref keyref="REMOTE_VIDEO_STATE"/>。</p>
                          <p props="android">远端视频流状态：
                          <ul>
                          <li> <ph keyref="REMOTE_VIDEO_STATE_STOPPED"/> (0)：远端视频默认初始状态。在 <apiname keyref="REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED"/> (3)、<apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED"/> (5) 或 <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE"/> (7) 的情况下，会报告该状态。</li>
@@ -82,31 +75,34 @@
                          <li> <ph keyref="REMOTE_VIDEO_STATE_FAILED"/> (4)：远端视频流播放失败。在 <apiname keyref="REMOTE_VIDEO_STATE_REASON_INTERNAL"/> (0) 的情况下，会报告该状态。</li>
                          </ul> </p>
                     </pd>
-               </plentry>
-               <plentry id="reason">
-                    <pt>reason</pt>
-                    <pd>
-                         <p props="hmos ios mac cpp unreal bp unity flutter electron rn cs">远端视频流状态改变的具体原因，详见 <xref keyref="REMOTE_VIDEO_STATE_REASON" />。</p>
+                <pd props="cpp">远端视频状态，详见 <xref keyref="REMOTE_VIDEO_STATE"/>。</pd>
+            </plentry>
+            <plentry id="reason" props="cpp">
+                <pt props="cpp">reason</pt>
+                <pd>
+                         <p props="apple bp cpp cs electron flutter hmos rn unity unreal">远端视频流状态改变的具体原因，详见 <xref keyref="REMOTE_VIDEO_STATE_REASON"/>。</p>
                          <p props="android">远端视频流状态改变的具体原因：
                          <ul>
-                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_INTERNAL" /> (0)：内部原因。</li>
-                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION" /> (1)：网络阻塞。</li>
-                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY" /> (2)：网络恢复正常。</li>
-                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED" /> (3)：本地用户停止接收远端视频流或本地用户禁用视频模块。</li>
-                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED" /> (4)：本地用户恢复接收远端视频流或本地用户启动视频模块。</li>
-                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED" /> (5)：远端用户停止发送视频流或远端用户禁用视频模块。</li>
-                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED" /> (6)：远端用户恢复发送视频流或远端用户启用视频模块。</li>
-                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE" /> (7)：远端用户离开频道。</li>
-                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK" /> (8)：远端视频流已回退为音频流。</li>
-                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY" /> (9)：回退的远端音频流恢复为视频流。</li>
-                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_CODEC_NOT_SUPPORT" /> (13)：本地的视频解码器不支持对收到的远端视频流进行解码。</li>
+                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_INTERNAL"/> (0)：内部原因。</li>
+                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION"/> (1)：网络阻塞。</li>
+                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY"/> (2)：网络恢复正常。</li>
+                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED"/> (3)：本地用户停止接收远端视频流或本地用户禁用视频模块。</li>
+                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED"/> (4)：本地用户恢复接收远端视频流或本地用户启动视频模块。</li>
+                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED"/> (5)：远端用户停止发送视频流或远端用户禁用视频模块。</li>
+                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED"/> (6)：远端用户恢复发送视频流或远端用户启用视频模块。</li>
+                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE"/> (7)：远端用户离开频道。</li>
+                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK"/> (8)：远端视频流已回退为音频流。</li>
+                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY"/> (9)：回退的远端音频流恢复为视频流。</li>
+                         <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_CODEC_NOT_SUPPORT"/> (13)：本地的视频解码器不支持对收到的远端视频流进行解码。</li>
                          </ul> </p>
                     </pd>
-               </plentry>
-               <plentry>
-                    <pt>elapsed</pt>
-                    <pd>从本地用户调用 <apiname keyref="joinChannel2" /> 方法到发生本事件经历的时间，单位为毫秒。</pd>
-               </plentry>
-               </parml> </section>
+                <pd props="cpp">远端视频状态变化的原因，详见 <xref keyref="REMOTE_VIDEO_STATE_REASON"/>。</pd>
+            </plentry>
+            <plentry props="cpp">
+                <pt props="cpp">elapsed</pt>
+                <pd>从本地用户调用 <apiname keyref="joinChannel2"/> 方法到发生本事件经历的时间，单位为毫秒。</pd>
+                <pd props="cpp">从本地客户端调用 <codeph>joinChannel</codeph> 到触发该回调的时间（毫秒）。</pd>
+            </plentry>
+            </parml> </section>
      </refbody>
 </reference>
