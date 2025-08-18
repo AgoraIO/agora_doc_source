@@ -136,8 +136,8 @@ This version fixed the following issues:
 
 - When playing an online audio effect, calling `seekToPosition:` to set a new playback position caused the audio file to restart from the beginning.
 - Occasional echoes occurred in media volume mode when a broadcaster published a microphone audio stream while simultaneously playing an audio effect with `playEffect:filePath:loopCount:pitch:pan:gain:publish:startPos:` and a music file with `startAudioMixing:loopback:cycle:startPos:`.
-- The SDK did not trigger the media metadata observer's callback when `setMediaMetadataDelegate:withType:` was called after `setExternalVideoSource:useTexture:sourceType:`. (Android, iOS)
-- Occasional crashes occurred. (Android, iOS)
+- The SDK did not trigger the media metadata observer's callback when `setMediaMetadataDelegate:withType:` was called after `setExternalVideoSource:useTexture:sourceType:`.
+- Occasional crashes occurred.
 - In scenarios where a user joined a channel with `joinChannelExByToken:connection:delegate:mediaOptions:joinSuccess:`, started a media relay, unpublished, left the channel, rejoined, and then started the relay again, the `rtcEngine:channelMediaRelayStateDidChange:code:` callback occasionally reported `state` as `AgoraChannelMediaRelayStateFailure` and `code` as `AgoraChannelMediaRelayErrorServerErrorResponse`.
 
 ## v4.5.2

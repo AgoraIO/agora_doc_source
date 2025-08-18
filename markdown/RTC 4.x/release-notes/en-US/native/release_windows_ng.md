@@ -39,8 +39,8 @@ For details on deprecated and deleted APIs in each version, see the [API Sunset 
 
    This version deprecates the old watermark APIs. We recommend using the new watermark APIs introduced in this version.
 
-   - `addVideoWatermark2`
-   - `addVideoWatermarkEx`
+   - `addVideoWatermark [2/3]`
+   - `addVideoWatermarkEx [1/2]`
 
 4. **Deletion of redundant APIs**
 
@@ -87,7 +87,7 @@ For details on deprecated and deleted APIs in each version, see the [API Sunset 
 
 4. **Support for adding multiple watermarks**
 
-   This version deprecates the `addVideoWatermark2` and `addVideoWatermarkEx` methods and introduces `addVideoWatermark3` and `addVideoWatermarkEx1`. These new methods allow you to add multiple watermarks to a video using a watermark ID and to set their layering order. To remove a specific watermark, you can call the `removeVideoWatermark` method.
+   This version deprecates the `addVideoWatermark [2/3]` and `addVideoWatermarkEx [1/2]` methods and introduces `addVideoWatermark [3/3]` and `addVideoWatermarkEx [2/2]`. These new methods allow you to add multiple watermarks to a video using a watermark ID and to set their layering order. To remove a specific watermark, you can call the `removeVideoWatermark` method.
 
 5. **Asynchronous engine destruction**
 
@@ -116,7 +116,7 @@ For details on deprecated and deleted APIs in each version, see the [API Sunset 
 
 8. **Other new features**
 
-   - Adds the `setPlaybackAudioFrameBeforeMixingParameters2` method to set the format of the audio frames returned in the `onPlaybackAudioFrameBeforeMixing` callback, including sample rate, number of channels, and the number of samples per callback. After calling this method, the SDK returns the raw audio data before mixing according to the set parameters.
+   - Adds the `setPlaybackAudioFrameBeforeMixingParameters [2/2]` method to set the format of the audio frames returned in the `onPlaybackAudioFrameBeforeMixing` callback, including sample rate, number of channels, and the number of samples per callback. After calling this method, the SDK returns the raw audio data before mixing according to the set parameters.
    - Adds the `preloadEffectEx` method to preload a specified audio effect file into a specific channel. It supports both local and online audio files, enabling faster playback later and is suitable for multi-channel scenarios.
    - Adds the `playEffectEx` method to play an audio effect file in a specified channel. It supports setting parameters such as loop count, pitch, spatial position, volume, whether to publish to the channel, and the starting playback position to meet diverse audio effect needs.
    - The local screenshot upload feature now supports setting the video observation position for screenshots via the new `position` member in `ContentInspectModule`. This enables capturing and uploading screenshots from either the raw video data or the video stream before or after effects processing.
@@ -135,7 +135,7 @@ This version introduces the following improvements:
 This version fixed the following issues:
 
 - When playing an online audio effect, calling `seek` to set a new playback position caused the audio file to restart from the beginning.
-- Occasional echoes occurred in media volume mode when a broadcaster published a microphone audio stream while simultaneously playing an audio effect with `playEffect3` and a music file with `startAudioMixing2`.
+- Occasional echoes occurred in media volume mode when a broadcaster published a microphone audio stream while simultaneously playing an audio effect with `playEffect3` and a music file with `startAudioMixing [2/2]`.
 - The SDK crashed on Windows when handling file paths containing Chinese characters due to an encoding conversion error.
 - In scenarios where a user joined a channel with `joinChannelEx`, started a media relay, unpublished, left the channel, rejoined, and then started the relay again, the `ChannelMediaRelayStateChanged` callback occasionally reported `state` as `RELAY_STATE_FAILURE` and `code` as `RELAY_ERROR_SERVER_ERROR_RESPONSE`.
 - Receivers occasionally heard echoes when the sender shared their screen and audio from certain laptop models with power-saving mode enabled.
