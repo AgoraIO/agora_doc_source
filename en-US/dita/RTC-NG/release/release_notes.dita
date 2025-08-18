@@ -50,9 +50,11 @@
                     <li><ph><b>Deletion of redundant APIs</b></ph>
                         <p>This version removes the following redundant APIs and parameters:</p>
                         <ul>
-                            <li><codeph><xref keyref="setLocalPublishFallbackOption"/></codeph></li>
-                            <li><codeph><ph keyref="onLocalPublishFallbackToAudioOnly"/></codeph></li>
-                            <li><codeph><ph keyref="onDownlinkNetworkInfoUpdated"/></codeph></li>
+                            <li><codeph><ph>setLocalPublishFallbackOption</ph></codeph></li>
+                            <li><codeph><ph props="cpp android">onLocalPublishFallbackToAudioOnly</ph><ph props="apple">didLocalPublishFallbackToAudioOnly</ph></codeph></li>
+                            <li><codeph><ph props="cpp android">onDownlinkNetworkInfoUpdated</ph><ph props="apple">downlinkNetworkInfoUpdate</ph></codeph></li>
+                            <li><codeph><ph>onWlAccStats</ph></codeph></li>
+                            <li><codeph><ph>enableWirelessAccelerate</ph></codeph></li>
                             <li props="apple"><codeph>receivedFrameRate</codeph> is removed from <codeph><xref keyref="RemoteVideoStats"/></codeph>.</li>
                         </ul>
                     </li>
@@ -85,6 +87,7 @@
                             <li>Dynamic mode: The SDK dynamically selects the optimal path for transmission based on network conditions. This mode is suitable for scenarios sensitive to data consumption but with high experience requirements, such as meetings and educational settings. Additionally, you can specify a preferred network path type (such as Wi-Fi or cellular) using `preferMultipathType`. If not set, all path types have the same default weight.</li>
                             <li>Duplicate mode: Data is transmitted simultaneously over all available network paths (such as LAN, Wi-Fi, and cellular) to enhance anti-packet loss and stability. This mode eliminates the impact of poor network conditions and is suitable for scenarios that are not sensitive to data consumption but have extreme experience requirements, such as outdoor broadcasting and parallel control.</li>
                         </ul>
+                        <note type="attention">Duplicate transmission mode incurs additional costs. If you need to enable this feature, please <xref keyref="ticket-link"/>.</note>
                         <ph>Uplink and downlink transmission can be configured separately using <codeph>uplinkMultipathMode</codeph> and <codeph>downlinkMultipathMode</codeph> in <codeph><xref keyref="ChannelMediaOptions"/></codeph>. When enabled, the SDK reports real-time transmission statistics for each path through the <codeph><xref keyref="onMultipathStats"/></codeph> callback, including the data consumption of each path, which allows you to monitor and optimize network performance.</ph>
                     </p>
                     </li>
@@ -96,13 +99,13 @@
                     </li>
                     <li><ph><b>Asynchronous engine destruction</b></ph>
                         <p props="cpp">Starting from this version, the <codeph><xref keyref="release"/></codeph> method adds a <codeph>callback</codeph> parameter, supporting both synchronous and asynchronous engine destruction. When destroying the engine asynchronously, the SDK triggers the <codeph><xref keyref="RtcEngineReleaseCallback"/></codeph> callback.</p>
-                        <p props="android">This version introduces the <codeph><xref keyref="destory"/></codeph> method to destroy the RTC engine, which can be configured for synchronous or asynchronous destruction via a parameter. When destroying the engine asynchronously, the SDK triggers the <codeph><xref keyref="onEngineReleased"/></codeph> callback.</p>
-                        <p props="apple">This version introduces the <codeph><xref keyref="destory"/></codeph> method to destroy the RTC engine, which can be configured for synchronous or asynchronous destruction via a parameter. When destroying the engine asynchronously, the SDK triggers the <codeph>engineReleasedBlock</codeph> callback block.</p>
+                        <p props="android">This version introduces the <codeph><xref keyref="destroy1"/></codeph> method to destroy the RTC engine, which can be configured for synchronous or asynchronous destruction via a parameter. When destroying the engine asynchronously, the SDK triggers the <codeph><xref keyref="onEngineReleased"/></codeph> callback.</p>
+                        <p props="apple">This version introduces the <codeph><xref keyref="destroy1"/></codeph> method to destroy the RTC engine, which can be configured for synchronous or asynchronous destruction via a parameter. When destroying the engine asynchronously, the SDK triggers the <codeph>engineReleasedBlock</codeph> callback block.</p>
                     </li>
                     <li><ph><b>Token renewal result callback</b></ph>
                         <p>This version introduces the <codeph><xref keyref="onRenewTokenResult"/></codeph> callback and the <codeph>RENEW_TOKEN_ERROR_CODE</codeph> error code. After calling the <codeph><xref keyref="renewToken"/></codeph> method to update a Token, the SDK notifies the result of the update through the <codeph><xref keyref="onRenewTokenResult"/></codeph> callback and provides a detailed error code via <codeph>RENEW_TOKEN_ERROR_CODE</codeph>. This allows developers to handle Token renewal failures promptly within the callback.</p>
                     </li>
-                    <li><ph><b>Advanced Beauty (Beta)</b></ph>
+                    <li props="en"><ph><b>Advanced Beauty (Beta)</b></ph>
                         <p>This version introduces a brand-new advanced beauty feature, delivering a powerful yet easy-to-use beautification solution. Key capabilities include:
                             <ul>
                                 <li><b>Precision Beauty Effects:</b>
@@ -112,7 +115,7 @@
                                         <li>Skin Enhancement: Includes professional skin optimizations like teeth whitening, nasolabial fold removal, dark circle reduction, and eye brightening.</li>
                                     </ul>
                                 </li>
-                                <li><b>Unified and Simple API</b>: Manage all beauty, makeup, and filter functions through three core nodes – <codeph><ph keyref="BEAUTY"/></codeph>, <codeph><ph keyref="STYLE_MAKEUP"/></codeph>, and <codeph><ph keyref="FILTER"/></codeph> – using <codeph><xref keyref="VideoEffectObject"/></codeph> for unified parameter setup and lifecycle control.</li>
+                                <li><b>Unified and Simple API</b>: Manage all beauty, makeup, and filter functions through three core nodes – <codeph><ph keyref="BEAUTY"/></codeph>, <codeph><ph keyref="STYLE_MAKEUP"/></codeph>, and <codeph><ph keyref="FILTER"/></codeph> – using <codeph><xref keyref="IVideoEffectObject"/></codeph> for unified parameter setup and lifecycle control.</li>
                                 <li><b>Ready-to-Use Presets</b>: Integrates multiple out-of-the-box style templates (e.g., "Natural Beauty," "Senior Makeup," "Cool White Filter") for instant polished results.</li>
                                 <li><b>Dynamic Parameter Control</b>: Enables real-time reading/modifying of granular parameters (e.g., smoothing strength, lipstick type) via key-value pairs, with support for saving custom configurations and resetting defaults.</li>
                                 <li><b>Local Resource Guarantee</b>: All beauty resources (effects, filters, makeup) are packaged as local bundle files, ensuring stability and reliability.   </li>
@@ -121,7 +124,7 @@
                     </li>
                     <li><ph><b>Other new features</b></ph>
                         <ul>
-                            <li>Adds the <codeph><xref keyref="setPlaybackAudioFrameBeforeMixingParameters2"/></codeph> method to set the format of the audio frames returned in the <codeph><xref keyref="onPlaybackAudioFrameBeforeMixing"/></codeph> callback, including sample rate, number of channels, and the number of samples per callback. After calling this method, the SDK returns the raw audio data before mixing according to the set parameters.</li>
+                            <li>Adds the <codeph><xref keyref="setPlaybackAudioFrameBeforeMixingParameters1"/></codeph> method to set the format of the audio frames returned in the <codeph><xref keyref="onPlaybackAudioFrameBeforeMixing"/></codeph> callback, including sample rate, number of channels, and the number of samples per callback. After calling this method, the SDK returns the raw audio data before mixing according to the set parameters.</li>
                             <li>Adds the <codeph><xref keyref="preloadEffectEx"/></codeph> method to preload a specified audio effect file into a specific channel. It supports both local and online audio files, enabling faster playback later and is suitable for multi-channel scenarios.</li>
                             <li>Adds the <codeph><xref keyref="playEffectEx"/></codeph> method to play an audio effect file in a specified channel. It supports setting parameters such as loop count, pitch, spatial position, volume, whether to publish to the channel, and the starting playback position to meet diverse audio effect needs.</li>
                             <li>The local screenshot upload feature now supports setting the video observation position for screenshots via the new <codeph>position</codeph> member in <codeph><xref keyref="ContentInspectModule"/></codeph>. This enables capturing and uploading screenshots from either the raw video data or the video stream before or after effects processing.</li>

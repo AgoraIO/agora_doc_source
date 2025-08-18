@@ -7,7 +7,7 @@
         <note type="attention" props="native">
              <ul>
              <li>自 4.5.0 起，RTC SDK 和 RTM SDK (2.2.0 及以上版本) 都包含 <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> 库。如果你通过 CDN 手动集成 RTC SDK 且同时集成了 RTM SDK，为避免冲突，请手动删除版本较低的 <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> 库。</li>
-             <li>4.6.0 RTC SDK <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> 库版本为 TODO。<ph props="apple">你可以在 <codeph>Info.plist</codeph> 中查看库的版本信息。</ph><ph props="cpp">你可以通过查看 <codeph>libaosl.dll</codeph> 文件的属性来得知库的版本信息。</ph></li></ul>
+             <li>4.6.0 RTC SDK <codeph props="android">libaosl.so</codeph><codeph props="cpp">libaosl.dll</codeph><codeph props="apple">aosl.xcframework</codeph> 库版本为 1.3.0。<ph props="apple">你可以在 <codeph>Info.plist</codeph> 中查看库的版本信息。</ph><ph props="cpp">你可以通过查看 <codeph>libaosl.dll</codeph> 文件的属性来得知库的版本信息。</ph></li></ul>
              </note>
     </body>
     <topic id="level2">
@@ -53,8 +53,12 @@
                             <li><codeph><ph>setLocalPublishFallbackOption</ph></codeph></li>
                             <li><codeph><ph props="cpp android">onLocalPublishFallbackToAudioOnly</ph><ph props="apple">didLocalPublishFallbackToAudioOnly</ph></codeph></li>
                             <li><codeph><ph props="cpp android">onDownlinkNetworkInfoUpdated</ph><ph props="apple">downlinkNetworkInfoUpdate</ph></codeph></li>
-                            <li><codeph><ph>onWlAccStats</ph></codeph></li>
+                            <li><codeph><ph props="cpp android">onWlAccStats</ph><ph props="apple">wlAccStats</ph></codeph></li>
+                            <li><codeph><ph props="cpp android">onWlAccMessage</ph><ph props="apple">wlAccMessage</ph></codeph></li>
                             <li><codeph><ph>enableWirelessAccelerate</ph></codeph></li>
+                            <li props="cpp apple"><codeph><ph props="cpp">WLACC_MESSAGE_REASON</ph><ph props="apple">AgoraWlAccReason</ph></codeph></li>
+                            <li props="cpp apple"><codeph><ph props="cpp">WLACC_SUGGEST_ACTION</ph><ph props="apple">AgoraWlAccAction</ph></codeph></li>
+                            <li><codeph><ph props="cpp android">WlAccStats</ph><ph props="apple">AgoraWlAccStats</ph></codeph></li>
                             <li props="apple"><codeph><xref keyref="RemoteVideoStats"/> 中删除 receivedFrameRate</codeph></li>
                         </ul>
                     </li>
@@ -67,12 +71,6 @@
                             <li>v4.6.0 及之后版本：SDK 不再自动将 Int UID 映射到注册时的原始字符串。如果调用了 <codeph><xref keyref="registerLocalUserAccount"/></codeph> 获取 Int UID，但需要使用原始字符串 UID 加入频道，请直接调用 <codeph><xref keyref="joinChannelWithUserAccount"/></codeph> 通过原始字符串 UID 加入频道。请在升级后检查并调整您的 App 逻辑，以确保用户以预期的身份加入频道。</li>
                         </ul>
                     </li>
-                    <li><ph><b>双流模式行为变更</b></ph>
-                        <ul>
-                            <li>v 4.6.0 之前：发送端开启小流自适应模式 (<apiname keyref="AUTO_SIMULCAST_STREAM"/>) 时，不会主动发送小流，仅当主播身份的接收端调用 <xref keyref="setRemoteVideoStreamType"/> 发起小流申请后，发送端收到申请才会开始发送小流。</li>
-                            <li>v4.6.0 及之后版本：发送端开启小流自适应模式 (<apiname keyref="AUTO_SIMULCAST_STREAM"/>) 时，会根据订阅端用户的下行网络质量，自动决定发送或停止发送小流。若将 <parmname>mode</parmname> 设置为其他发送模式或显式配置了小流的宽、高、码率或帧率，则此自适应功能失效。</li>
-                        </ul>
-                    </li>
                 </ol>
             </body>
         </topic>
@@ -80,16 +78,17 @@
             <title>新增特性</title>
             <body>
                 <ol>
-                    <li><ph><b>ABR 同源多流</b></ph>
-                        <p><ph>该版本支持针对同一视频源设置同时发送多路不同分辨率视频流，并支持多频道场景。你可以通过 <codeph><xref keyref="setSimulcastConfig"/></codeph> 配置不同分辨率的视频流，（最多四层分辨率，一个最高分辨率的主流和三层其他较低分辨率的视频流），并可以通过 <codeph><xref keyref="SimulcastConfig"/></codeph> 设置视频流的分辨率、码率、是否在上行网络或设备性能较差时自动关闭多流。启用分层推流回退后，SDK 会在弱网环境下自动回退到低分辨率的视频流，确保流畅的观看体验。</ph>
+                    <li><ph><b>多路分辨率视频流</b></ph>
+                        <p><ph>该版本新增多路分辨率视频流（Adaptive Bitrate Video Streaming，简称 ABR）功能，支持对同一视频源设置同时发送多路不同分辨率的视频流，并支持多频道场景。接收端通过自动/手动订阅目标分辨率的视频流。你可以通过 <codeph><xref keyref="setSimulcastConfig"/></codeph> 配置不同分辨率的视频流，（最多四层分辨率，一个最高分辨率的主流和三层其他较低分辨率的视频流），并可以通过 <codeph><xref keyref="SimulcastConfig"/></codeph> 设置视频流的分辨率、码率、是否在上行网络或设备性能较差时自动关闭多流。启用分层推流回退后，SDK 会在弱网环境下自动回退到低分辨率的视频流，确保流畅的观看体验。</ph>
                             <ph>订阅端可根据实际需求，通过 <codeph><xref keyref="setRemoteVideoStreamType"/></codeph> 选择想要接收的视频流。适用于会议场景、大班课、互动直播等多终端、多网络环境，可显著提升弱网下的观看体验。</ph></p>
                     </li>
                     <li><ph><b>多路径网络传输</b></ph>
                         <p>该版本新增新增多路径传输功能，适用于终端支持多网卡传输(比如 5G， Wi-Fi，LAN)的设备，可以有效降低甚至消除弱网带来的体验回退，适用于弱网环境、对传输稳定性要求高的实时音视频通信场景，如车载、IoT、火车、高速公路等复杂网络环境。通过在 <codeph><xref keyref="ChannelMediaOptions"/></codeph> 中设置 <codeph>enableMultipath</codeph> 为 <codeph><ph keyref="true"/></codeph>，可开启多路径传输能力。支持两种传输模式（<codeph><xref keyref="MultipathMode"/></codeph>）：
                         <ul>
-                            <li>Dynamic 模式：SDK 会根据网络状况动态选择最佳路径进行传输，适用于流量敏感，对体验要求比较高的场景，如会议、教育场景。此外，还可通过 preferMultipathType 指定首选的传输网络路径类型（如优先 Wi-Fi 或移动网络）；如未设置，所有类型路径的权重默认相同。</li>
-                            <li>Duplicate 模式：数据会在所有可用网络路径（如LAN、Wi-Fi、移动网络）上同时传输，提升抗丢包和稳定性，可消除弱网，适用于流量不敏感，对体验有极致要求的场景，如户外采播、平行操控等。</li>
+                            <li>冗余发送模式：SDK 会根据网络状况动态选择最佳路径进行传输，适用于流量敏感，对体验要求比较高的场景，如会议、教育场景。此外，还可通过 preferMultipathType 指定首选的传输网络路径类型（如优先 Wi-Fi 或移动网络）；如未设置，所有类型路径的权重默认相同。</li>
+                            <li>动态发送模式：数据会在所有可用网络路径（如LAN、Wi-Fi、移动网络）上同时传输，提升抗丢包和稳定性，可消除弱网，适用于流量不敏感，对体验有极致要求的场景，如户外采播、平行操控等。</li>
                         </ul>
+                        <note type="attention">冗余发送模式会产生额外费用，如需使用请<xref keyref="ticket-link"/>。</note>
                         <ph>上下行还可分别通过 <codeph><xref keyref="ChannelMediaOptions"/></codeph> 中的 <codeph>uplinkMultipathMode</codeph>、<codeph>downlinkMultipathMode</codeph> 配置。启用后，SDK 会通过回调 <codeph><xref keyref="onMultipathStats"/></codeph> 实时上报各路径的传输统计信息，包括每一个传输路径的流量消耗，便于开发者监控和优化网络表现。</ph>
                     </p>
                     </li>
@@ -103,6 +102,9 @@
                         <p props="cpp">自该版本起，<codeph><xref keyref="release"/></codeph> 方法新增 <codeph>callback</codeph> 参数，支持以同步或异步方式销毁引擎。异步销毁引擎时，SDK 会触发 <codeph><xref keyref="RtcEngineReleaseCallback"/></codeph> 回调。</p>
                         <p props="android">该版本新增 <codeph><xref keyref="destroy1"/></codeph> 方法，用于销毁 RTC 引擎，且支持通过参数配置以同步或异步方式销毁引擎。异步销毁引擎时，SDK 会触发 <codeph><xref keyref="onEngineReleased"/></codeph> 回调。</p>
                         <p props="apple">该版本新增 <codeph><xref keyref="destroy1"/></codeph> 方法，用于销毁 RTC 引擎，且支持通过参数配置以同步或异步方式销毁引擎。异步销毁引擎时，SDK 会触发 <codeph>engineReleasedBlock</codeph> 回调块。</p>
+                    </li>
+                    <li><ph><b>美颜功能拓展</b></ph>
+                        <p>新增白牙、去法令纹、去黑眼圈、亮眼等美肤功能；美妆特效新增卧蚕和面部高光；美型功能从 11 个增加到 29 个。</p>
                     </li>
                     <li><ph><b>Token 更新结果回调</b></ph>
                         <p>该版本新增 <codeph><xref keyref="onRenewTokenResult"/></codeph> 回调及 <codeph>RENEW_TOKEN_ERROR_CODE</codeph> 错误码。当调用 <codeph><xref keyref="renewToken"/></codeph> 方法更新 Token 后，SDK 会通过 <codeph><xref keyref="onRenewTokenResult"/></codeph> 回调通知 Token 更新的结果，并通过 <codeph>RENEW_TOKEN_ERROR_CODE</codeph> 返回详细的错误码，开发者可在回调中根据错误码及时处理 Token 更新失败的场景。</p>
@@ -126,7 +128,6 @@
                     <li><ph><b>美颜重构</b></ph>
                         <p>该版本对美颜功能进行了彻底重构和升级，不进拓展了美颜功能，提升了美颜效果和性能，还解决了美颜参数配置复杂、集成成本高、美颜资源依赖网络易失效等痛点。主要改进包括：
                             <ul>
-                                <li><b>新增美颜功能</b>：新增白牙、去法令纹、去黑眼圈、亮眼等美肤功能；美妆特效新增卧蚕和面部高光；美型功能从 11 个增加到 29 个。</li>
                                 <li><b>API 大幅简化</b>：将过去版本中的基础美颜、美型、美妆、滤镜功能整合为 <codeph><ph keyref="BEAUTY"/></codeph>、<codeph><ph keyref="STYLE_MAKEUP"/></codeph>、<codeph><ph keyref="FILTER"/></codeph> 三个核心节点 (node)，通过 <codeph><xref keyref="IVideoEffectObject"/></codeph> 统一管理生命周期和参数设置，减少频繁 API 调用带来的性能负担。</li>
                                 <li><b>预设模板开箱即用</b>：提供多套预设风格模板（如“自然美颜”、“学姐妆”、“冷白滤镜”），大幅简化集成流程，无需手动调试数十项参数。</li>
                                 <li><b>美颜参数动态控制</b>：该版本新增实时获取美颜参数的能力，开发者可通过 key-value 方式动态读取或修改任意细粒度参数（如磨皮强度、口红类型）。同时支持：调用预设模板快速启用风格效果、保存主播自定义参数配置、随时重置参数至默认状态，极大提升了业务层状态同步的灵活性和开发效率。</li>
