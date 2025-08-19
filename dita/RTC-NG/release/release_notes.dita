@@ -71,12 +71,6 @@
                             <li>v4.6.0 及之后版本：SDK 不再自动将 Int UID 映射到注册时的原始字符串。如果调用了 <codeph><xref keyref="registerLocalUserAccount"/></codeph> 获取 Int UID，但需要使用原始字符串 UID 加入频道，请直接调用 <codeph><xref keyref="joinChannelWithUserAccount"/></codeph> 通过原始字符串 UID 加入频道。请在升级后检查并调整您的 App 逻辑，以确保用户以预期的身份加入频道。</li>
                         </ul>
                     </li>
-                    <li><ph><b>双流模式行为变更</b></ph>
-                        <ul>
-                            <li>v 4.6.0 之前：发送端开启小流自适应模式 (<apiname keyref="AUTO_SIMULCAST_STREAM"/>) 时，不会主动发送小流，仅当主播身份的接收端调用 <xref keyref="setRemoteVideoStreamType"/> 发起小流申请后，发送端收到申请才会开始发送小流。</li>
-                            <li>v4.6.0 及之后版本：发送端开启小流自适应模式 (<apiname keyref="AUTO_SIMULCAST_STREAM"/>) 时，会根据订阅端用户的下行网络质量，自动决定发送或停止发送小流。若将 <parmname>mode</parmname> 设置为其他发送模式或显式配置了小流的宽、高、码率或帧率，则此自适应功能失效。</li>
-                        </ul>
-                    </li>
                 </ol>
             </body>
         </topic>
@@ -84,16 +78,17 @@
             <title>新增特性</title>
             <body>
                 <ol>
-                    <li><ph><b>ABR 同源多流</b></ph>
-                        <p><ph>该版本支持针对同一视频源设置同时发送多路不同分辨率视频流，并支持多频道场景。你可以通过 <codeph><xref keyref="setSimulcastConfig"/></codeph> 配置不同分辨率的视频流，（最多四层分辨率，一个最高分辨率的主流和三层其他较低分辨率的视频流），并可以通过 <codeph><xref keyref="SimulcastConfig"/></codeph> 设置视频流的分辨率、码率、是否在上行网络或设备性能较差时自动关闭多流。启用分层推流回退后，SDK 会在弱网环境下自动回退到低分辨率的视频流，确保流畅的观看体验。</ph>
+                    <li><ph><b>多路分辨率视频流</b></ph>
+                        <p><ph>该版本新增多路分辨率视频流（Adaptive Bitrate Video Streaming，简称 ABR）功能，支持对同一视频源设置同时发送多路不同分辨率的视频流，并支持多频道场景。接收端通过自动/手动订阅目标分辨率的视频流。你可以通过 <codeph><xref keyref="setSimulcastConfig"/></codeph> 配置不同分辨率的视频流，（最多四层分辨率，一个最高分辨率的主流和三层其他较低分辨率的视频流），并可以通过 <codeph><xref keyref="SimulcastConfig"/></codeph> 设置视频流的分辨率、码率、是否在上行网络或设备性能较差时自动关闭多流。启用分层推流回退后，SDK 会在弱网环境下自动回退到低分辨率的视频流，确保流畅的观看体验。</ph>
                             <ph>订阅端可根据实际需求，通过 <codeph><xref keyref="setRemoteVideoStreamType"/></codeph> 选择想要接收的视频流。适用于会议场景、大班课、互动直播等多终端、多网络环境，可显著提升弱网下的观看体验。</ph></p>
                     </li>
                     <li><ph><b>多路径网络传输</b></ph>
                         <p>该版本新增新增多路径传输功能，适用于终端支持多网卡传输(比如 5G， Wi-Fi，LAN)的设备，可以有效降低甚至消除弱网带来的体验回退，适用于弱网环境、对传输稳定性要求高的实时音视频通信场景，如车载、IoT、火车、高速公路等复杂网络环境。通过在 <codeph><xref keyref="ChannelMediaOptions"/></codeph> 中设置 <codeph>enableMultipath</codeph> 为 <codeph><ph keyref="true"/></codeph>，可开启多路径传输能力。支持两种传输模式（<codeph><xref keyref="MultipathMode"/></codeph>）：
                         <ul>
-                            <li>Dynamic 模式：SDK 会根据网络状况动态选择最佳路径进行传输，适用于流量敏感，对体验要求比较高的场景，如会议、教育场景。此外，还可通过 preferMultipathType 指定首选的传输网络路径类型（如优先 Wi-Fi 或移动网络）；如未设置，所有类型路径的权重默认相同。</li>
-                            <li>Duplicate 模式：数据会在所有可用网络路径（如LAN、Wi-Fi、移动网络）上同时传输，提升抗丢包和稳定性，可消除弱网，适用于流量不敏感，对体验有极致要求的场景，如户外采播、平行操控等。</li>
+                            <li>冗余发送模式：SDK 会根据网络状况动态选择最佳路径进行传输，适用于流量敏感，对体验要求比较高的场景，如会议、教育场景。此外，还可通过 preferMultipathType 指定首选的传输网络路径类型（如优先 Wi-Fi 或移动网络）；如未设置，所有类型路径的权重默认相同。</li>
+                            <li>动态发送模式：数据会在所有可用网络路径（如LAN、Wi-Fi、移动网络）上同时传输，提升抗丢包和稳定性，可消除弱网，适用于流量不敏感，对体验有极致要求的场景，如户外采播、平行操控等。</li>
                         </ul>
+                        <note type="attention">冗余发送模式会产生额外费用，如需使用请<xref keyref="ticket-link"/>。</note>
                         <ph>上下行还可分别通过 <codeph><xref keyref="ChannelMediaOptions"/></codeph> 中的 <codeph>uplinkMultipathMode</codeph>、<codeph>downlinkMultipathMode</codeph> 配置。启用后，SDK 会通过回调 <codeph><xref keyref="onMultipathStats"/></codeph> 实时上报各路径的传输统计信息，包括每一个传输路径的流量消耗，便于开发者监控和优化网络表现。</ph>
                     </p>
                     </li>

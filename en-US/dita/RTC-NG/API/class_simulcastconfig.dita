@@ -12,7 +12,7 @@
 }</codeblock>
             <codeblock props="hmos" outputclass="language-arkts"/>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraSimulcastConfig: NSObject
-@property (copy, nonatomic, readonly) NSArray&amp;lt;AgoraStreamLayerConfig*&amp;gt;* _Nonnull configs;
+@property (copy, nonatomic, readonly) NSArray&lt;AgoraStreamLayerConfig*&gt;* _Nonnull configs;
 @property (assign, nonatomic) BOOL publishFallbackEnable;
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct SimulcastConfig {
@@ -36,7 +36,7 @@
             <dl outputclass="since">
             <dlentry props="native">
                 <dt>Since:</dt>
-                <dd>Added in v4.6.0.</dd>
+                <dd>v.4.6.0.</dd>
                 </dlentry>
             </dl>
             <p></p>
@@ -44,34 +44,26 @@
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry props="cpp">
-                <pt props="cpp">enable</pt>
-                <pd props="cpp">Whether to enable the corresponding video stream. The default value is <codeph><ph keyref="false"/></codeph>.
-                    <ul>
-                        <li><codeph><ph keyref="true"/></codeph>：Enable the corresponding video stream.</li>
-                        <li><codeph><ph keyref="false"/></codeph>：（Default）Disable the corresponding video stream.</li>
-                        </ul>
-                    </pd>
+            <plentry props="native">
+                <pt>configs</pt>
+                <pd>Configurations for multi-layer streaming: <xref keyref="StreamLayerConfig"/>.</pd>
             </plentry>
             <plentry props="native">
                 <pt props="android apple">publishFallbackEnable</pt>
                 <pt props="cpp">publish_fallback_enable</pt>
-                <pd props="android">Whether to enable fallback publishing.
-                    <ul>
-                        <li><codeph><ph keyref="true"/></codeph>：Enable fallback publishing. When the device performance or network conditions on the publishing end is poor, the SDK will disable video streams of different quality levels, in the order of layer1 to layer6. However, the SDK ensures that even if the network conditions are poor or the device performance is limited, at least the high-quality and lowest resolution video streams are retained to maintain basic video continuity.</li>
-                        <li><codeph><ph keyref="false"/></codeph>：（Default）Disable fallback publishing.</li>
+                <pd props="android">Whether to enable fallback publishing:<ul>
+                        <li><codeph><ph keyref="true"/></codeph>: Enable fallback publishing. When the device performance or network is poor at the publishing end, the SDK will dynamically disable multiple video streams of different quality levels, from layer1 to layer6. At least the video streams of the highest and lowest quality are retained to maintain basic video continuity.</li>
+                        <li><codeph><ph keyref="false"/></codeph>: (Default) Disable fallback publishing.</li>
                         </ul>
                     </pd>
-                <pd props="apple">Whether to enable fallback publishing:
-                    <ul>
-                        <li><codeph><ph keyref="true"/></codeph>：Enable fallback publishing. When the device performance or network conditions on the publishing end is poor, the SDK will disable video streams of different quality levels, in the order of layer1 to layer6. However, the SDK ensures that even if the network conditions are poor or the device performance is limited, at least the high-quality and lowest resolution video streams are retained to maintain basic video continuity.</li>
-                        <li><codeph><ph keyref="false"/></codeph>：（Default）Disable fallback publishing.</li>
+                <pd props="apple">Whether to enable fallback publishing:<ul>
+                        <li><codeph><ph keyref="true"/></codeph>: Enable fallback publishing. When the device performance or network is poor at the publishing end, the SDK will dynamically disable multiple video streams of different quality levels, from layer1 to layer6. At least the video streams of the highest and lowest quality are retained to maintain basic video continuity.</li>
+                        <li><codeph><ph keyref="false"/></codeph>: (Default) Disable fallback publishing.</li>
                         </ul>
                     </pd>
-                <pd props="cpp">Whether to enable fallback publishing:
-                    <ul>
-                        <li><codeph><ph keyref="true"/></codeph>：Enable fallback publishing. When the device performance or network conditions on the publishing end is poor, the SDK will disable video streams of different quality levels, in the order of layer1 to layer6. However, the SDK ensures that even if the network conditions are poor or the device performance is limited, at least the high-quality and lowest resolution video streams are retained to maintain basic video continuity.</li>
-                        <li><codeph><ph keyref="false"/></codeph>：（Default）Disable fallback publishing.</li>
+                <pd props="cpp">Whether to enable fallback publishing:<ul>
+                        <li><codeph><ph keyref="true"/></codeph>: Enable fallback publishing. When the device performance or network is poor at the publishing end, the SDK will dynamically disable multiple video streams of different quality levels, from layer1 to layer6. At least the video streams of the highest and lowest quality are retained to maintain basic video continuity.</li>
+                        <li><codeph><ph keyref="false"/></codeph>: (Default) Disable fallback publishing.</li>
                         </ul>
                     </pd>
             </plentry>
