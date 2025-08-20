@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_release1">
+    <title><ph keyref="release1"/></title>
+    <shortdesc id="short"><ph id="shortdesc">销毁 <xref keyref="IRtcEngine"/> 实例并释放相关资源。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="release1"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public static synchronized void destroy(@Nullable IRtcEngineReleaseCallback callback)</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp unreal" outputclass="language-cpp">AGORA_CPP_API static void release(RtcEngineReleaseCallback callback = nullptr);</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="android">
+                <dt>自从：</dt>
+                <dd props="android cpp">自 v4.6.0 版本新增。</dd>
+            </dlentry>
+            </dl>
+            <p></p>
+            <note type="attention" props="cpp">如果计划在销毁当前 <xref keyref="IRtcEngine"/> 实例后创建新的实例，请确保 <xref keyref="release_IMusicContentCenter"/> 方法执行完成后再创建新实例。不要在任何 SDK 回调中调用此方法，否则可能导致死锁。</note>
+            <note type="attention" props="android">请勿在任何 SDK 回调中调用该方法，否则可能导致死锁。</note>
+            </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+            <plentry props="android cpp">
+                <pt props="android cpp">callback</pt>
+                <pd props="android">用于配置引擎的同步或异步销毁方式。
+                    <ul>
+                        <li>非 <codeph><ph keyref="NULL"/></codeph>：异步销毁。方法会立即返回，此时引擎资源可能尚未完全释放。引擎销毁完成后会触发 <xref keyref="onEngineReleased"/> 回调。  </li>
+                        <li><codeph><ph keyref="NULL"/></codeph>：同步销毁。方法仅在引擎资源完全释放后才返回。详见 <xref keyref="IRtcEngineReleaseCallback"/>。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp">可选的 <xref keyref="RtcEngineReleaseCallback"/> 函数指针，用于配置引擎的同步或异步销毁方式：
+                    <ul>
+                        <li>非 <codeph><ph keyref="NULL"/></codeph>：异步销毁。方法会立即返回，此时引擎资源可能尚未完全释放。引擎销毁完成后会触发 <xref keyref="RtcEngineReleaseCallback"/> 回调。</li>
+                        <li><codeph><ph keyref="NULL"/></codeph>：同步销毁。方法仅在引擎资源完全释放后才返回。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="bp cs electron flutter rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="apple bp cs electron rn unity unreal">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul>
+    </section>
+        </refbody>
+</reference>

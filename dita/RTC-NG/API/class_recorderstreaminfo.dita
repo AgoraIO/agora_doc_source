@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_recorderstreaminfo">
     <title><ph keyref="RecorderStreamInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc">需录制的音视频流的相关信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">包含被录制的媒体流信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -18,10 +18,10 @@
   public channelId: string;
   public constructor() {
     this.uid = 0;
-    this.channelId = &quot;&quot;;
+    this.channelId = "";
   }
   public toString(): string {
-    return &quot;channelId=&quot; + this.channelId;
+    return "channelId=" + this.channelId;
   }
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRecorderStreamInfo: NSObject
@@ -30,23 +30,18 @@
 @property (assign, nonatomic) AgoraRecorderStreamType type;
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct RecorderStreamInfo {
-  const char* channelId;
-  uid_t uid;
-  RecorderStreamType type;
-  RecorderStreamInfo() : channelId(NULL), uid(0), type(RTC) {}
-  RecorderStreamInfo(const char* channelId, uid_t uid)
-      : channelId(channelId), uid(uid), type(RTC) {}
-  RecorderStreamInfo(const char* channelId, uid_t uid, RecorderStreamType)
-      : channelId(channelId), uid(uid), type(RTC) {}
+const char* channelId;
+uid_t uid;
+RecorderStreamType type;
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FRecorderStreamInfo {
 
 	GENERATED_BODY()
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RecorderStreamInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|RecorderStreamInfo")
 	FString channelId;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RecorderStreamInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|RecorderStreamInfo")
 	int64 uid;
 
 };</codeblock>
@@ -80,20 +75,14 @@ class RecorderStreamInfo {
   @JsonKey(name: 'type')
   final RecorderStreamType? type;
 
-  factory RecorderStreamInfo.fromJson(Map&lt;String, dynamic> json) =>
+  factory RecorderStreamInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$RecorderStreamInfoFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$RecorderStreamInfoToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$RecorderStreamInfoToJson(this);
 }</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since">
-            <dlentry props="android apple cpp">
-                <dt>自从</dt>
-                <dd>v4.2.0</dd>
-            </dlentry>
-            </dl>
-        </section>
+            </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
@@ -101,22 +90,23 @@ class RecorderStreamInfo {
                 <pt>channelId</pt>
                 <pd>需录制的频道名称。</pd>
             </plentry>
-             <plentry>
-                 <pt>uid</pt>
-                 <pd>需录制的用户 ID。</pd>
-             </plentry>
-             <plentry props="cpp apple unity rn electron flutter cs unreal">
-                 <pt>type</pt>
-                 <pd>需录制的视频流类型，详见 <xref keyref="RecorderStreamType"/>。</pd>
-             </plentry>
-             <plentry props="android">
-                 <pt>recorderStreamType</pt>
-                 <pd>需要录制的视频流类型：
+            <plentry>
+                <pt>uid</pt>
+                <pd>需录制的用户 ID。</pd>
+            </plentry>
+            <plentry props="apple cpp cs electron flutter rn unity unreal">
+                <pt props="cpp">type</pt>
+                <pd>需录制的视频流类型，详见 <xref keyref="RecorderStreamType"/>。</pd>
+                <pd props="cpp">录制器实例流的类型，详见 <xref keyref="RecorderStreamType"/>。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt>recorderStreamType</pt>
+                <pd>需要录制的视频流类型：
                     <ul>
                     <li>0: 频道内的视频流。</li>
                     <li>1: 加入频道前，在本地预览的视频流。</li>
                     </ul></pd>
-             </plentry>
+            </plentry>
             </parml> </section>
     </refbody>
 </reference>

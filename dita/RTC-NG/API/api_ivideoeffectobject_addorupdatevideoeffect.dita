@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ivideoeffectobject_addorupdatevideoeffect">
+    <title><ph keyref="addOrUpdateVideoEffect"/></title>
+    <shortdesc id="short"><ph id="shortdesc">添加或更新指定的视频特效节点和模板。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="addOrUpdateVideoEffect"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">int addOrUpdateVideoEffect(int nodeId, String templateName);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)addOrUpdateVideoEffectWithNodeId:(NSUInteger)nodeId
+                          templateName:(NSString *)templateName
+NS_SWIFT_NAME(addOrUpdateVideoEffect(nodeId:templateName:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int addOrUpdateVideoEffect(uint32_t nodeId, const char* templateName) = 0;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从：</dt>
+                <dd props="native">自 v4.6.0 版本新增。</dd>
+            </dlentry>
+            </dl>
+            <p></p>
+            <note type="attention" props="cpp">优先级规则：
+                    <ul>
+                        <li><codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph> 节点优先于 <codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph> 参数。</li>
+                        <li>若需使用 <codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph> 参数，需先移除 <codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph> 节点：
+<codeblock outputclass="language-cpp">removeVideoEffect(VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP);
+addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codeblock></li>
+                        </ul>
+                    </note>
+            <note type="attention" props="apple">优先级规则：
+                    <ul>
+                        <li><ph keyref="AgoraVideoEffectNodeStyleMakeup"/> 节点优先于 <ph keyref="AgoraVideoEffectNodeFilter"/> 参数。</li>
+                        <li>若需使用 <ph keyref="AgoraVideoEffectNodeFilter"/> 参数，需先移除 <ph keyref="AgoraVideoEffectNodeStyleMakeup"/> 节点：
+<codeblock outputclass="language-objectivec">[self removeVideoEffectWithNodeId:AgoraVideoEffectNodeStyleMakeup];
+[self addOrUpdateVideoEffectWithNodeId:AgoraVideoEffectNodeFilter templateName:@"template name"];</codeblock></li>
+                        </ul>
+                    </note>
+            <note type="attention" props="android">优先级规则：
+                    <ul>
+                        <li><codeph>VIDEO_EFFECT_NODE_ID.STYLE_MAKEUP</codeph> 节点优先于滤镜参数。</li>
+                        <li>如需应用滤镜参数，需先移除 <ph keyref="AgoraVideoEffectNodeStyleMakeup"/> 节点：
+<codeblock outputclass="language-java">removeVideoEffect(`VIDEO_EFFECT_NODE_ID.STYLE_MAKEUP`);
+addOrUpdateVideoEffect(`VIDEO_EFFECT_NODE_ID.FILTER`, "template name");</codeblock></li>
+                        </ul>
+                    </note>
+            </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">nodeId</pt>
+                <pd props="android">视频特效节点的唯一标识或组合。示例：
+                    <ul>
+                        <li>单个特效：<codeph>VIDEO_EFFECT_NODE_ID.BEAUTY</codeph></li>
+                        <li>组合特效：<codeph>VIDEO_EFFECT_NODE_ID.BEAUTY | VIDEO_EFFECT_NODE_ID.STYLE_MAKEUP</codeph>。</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">视频特效节点的唯一标识符或组合。示例：
+                    <ul>
+                        <li>单个特效：<codeph>VIDEO_EFFECT_NODE_ID::BEAUTY</codeph></li>
+                        <li>组合特效：<codeph>VIDEO_EFFECT_NODE_ID::BEAUTY | VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph>。详见 <xref keyref="VIDEO_EFFECT_NODE_ID"/>。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp">视频特效节点的唯一标识符或组合。详见 <xref keyref="VIDEO_EFFECT_NODE_ID"/>。
+示例：
+                    <ul>
+                        <li>单个特效：<codeph>VIDEO_EFFECT_NODE_ID::BEAUTY</codeph></li>
+                        <li>组合特效：<codeph>VIDEO_EFFECT_NODE_ID::BEAUTY | VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph>。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">templateName</pt>
+                <pd props="android">特效模板名称。如果设置为 <codeph><ph keyref="NULL"/></codeph> 或空字符串，SDK 会从资源包中加载默认参数配置。</pd>
+                <pd props="ios">特效模板名称。如果设置为 <codeph><ph keyref="NULL"/></codeph> 或空字符串，SDK 会自动从资源包中加载默认参数配置。</pd>
+                <pd props="cpp">特效模板名称。如果设置为 <codeph><ph keyref="NULL"/></codeph> 或空字符串，SDK 会从资源包中加载默认配置。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cs electron rn unity unreal">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul>
+        <p props="apple cpp"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+        <p props="android"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。详见 <codeph>AgoraBaseConstants</codeph> 中的错误码。</li>
+                        </ul>
+                    </p>
+    </section>
+        </refbody>
+</reference>

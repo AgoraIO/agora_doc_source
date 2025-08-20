@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_rtcengineex_preloadeffectex2">
+    <title><ph keyref="preloadEffectEx2"/></title>
+    <shortdesc id="short"><ph id="shortdesc">预加载指定音效到指定频道。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="preloadEffectEx2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int preloadEffectEx(RtcConnection connection, int soundId, String filePath);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)preloadEffectEx:(AgoraRtcConnection* _Nonnull)connection
+             soundId:(int)soundId
+            filePath:(NSString* _Nonnull)filePath NS_SWIFT_NAME(preloadEffectEx(_:soundId:filePath:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp"/>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从：</dt>
+                <dd props="native">自 v4.6.0 版本新增。</dd>
+            </dlentry>
+            </dl>
+            <p>该方法每次调用仅将一个指定音效预加载到内存中。若需预加载多个音效，请多次调用该方法。你可以调用 <xref keyref="playEffect3"/> 播放已预加载的音效，或调用 <xref keyref="playAllEffects"/> 播放所有已预加载的音效。</p>
+            <note type="attention" props="apple"><ul>
+                        <li>为确保通信流畅，请限制音效文件的大小。</li>
+                        <li>声网建议你在加入频道前调用该方法。</li>
+                        </ul>
+                    </note>
+            <note type="attention" props="android"><ul>
+                        <li>为确保通信流畅，请限制音效文件的大小。</li>
+                        <li>声网建议在加入频道前调用该方法。</li>
+                        </ul>
+                    </note>
+            </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p>该方法适用于多频道场景。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+            <plentry props="android ios">
+                <pt props="android ios">connection</pt>
+                <pd props="android ios">连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+            <plentry props="android ios">
+                <pt props="android ios">soundId</pt>
+                <pd props="android ios">音效的 ID。</pd>
+            </plentry>
+            <plentry props="android ios">
+                <pt props="android ios">filePath</pt>
+                <pd props="android ios">本地音效文件的绝对路径或在线音效文件的 URL。支持的音频格式包括：mp3、mp4、m4a、aac、3gp、mkv 和 wav。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cpp cs electron rn unity unreal">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul>
+        <p props="android apple"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+    </section>
+        </refbody>
+</reference>
