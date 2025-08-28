@@ -68,6 +68,9 @@ For details on deprecated and deleted APIs in each version, see the [API Sunset 
    - Before v4.6.0: If you used `registerLocalUserAccountWithAppID:userAccount:` to register a string UID (e.g., "aa") and obtain an int UID (e.g., 123), when you later joined a channel using this int UID, the SDK automatically mapped it to the original string UID ("aa").
    - From v4.6.0: The SDK no longer automatically maps an int UID to the original string UID used for registration. If you have called `registerLocalUserAccountWithAppID:userAccount:` to get an int UID but need to join the channel with the original string UID, call `joinChannelByUserAccount:token:channelId:joinSuccess:` directly with the string UID. After upgrading, check and adjust your app logic to ensure users join the channel with the expected identity.
 
+6. **Default log path change**
+
+This release changed the default log path from `AppSandbox/Library/documents/agorasdk.log` to `AppSandbox/Library/caches/agorasdk.log`. If you upgrade the SDK from v4.3.1 or later to v4.6.0, ensure that you use the new path to access the log file.
 
 #### New features
 
