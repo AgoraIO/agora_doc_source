@@ -186,6 +186,27 @@ def main():
 
     logLines(localLogger.info, "output file", json_file)
 
+def preprocess_lists(root):
+    """
+    Preprocess all list elements in the XML to add proper formatting.
+    This ensures lists are properly formatted before text extraction.
+    """
+    for ul in root.findall('.//ul'):
+        list_items = []
+        for li in ul.findall('li'):
+            li_text = ''.join(li.itertext()).strip()
+            if li_text:
+                list_items.append(li_text)
+        
+        if list_items:
+            # Create formatted list text with proper spacing
+            formatted_list = "\n\n".join(list_items)
+            
+            # Replace ul element with formatted text
+            ul.clear()
+            ul.text = "\n\n" + formatted_list
+            ul.tag = "div"  # Change to neutral container
+
 def dita_to_json(working_dir, defined_path, platform_tag, sdk_type, remove_sdk_type, language, rust_topicref_list, hide_id_list):
     for file_name in os.listdir(path.join(working_dir, 'API')):
         if file_name.endswith(
@@ -667,6 +688,8 @@ def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_
     # Parameter description
     # Return value
 
+    preprocess_lists(root)
+    
     # Get API ID
     api_id = root.attrib
     api_id = api_id.get("id")
