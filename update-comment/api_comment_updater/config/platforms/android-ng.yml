@@ -1,0 +1,42 @@
+# Android平台配置文件
+
+platform: "android-ng"
+language: "java"
+
+# HTML解析规则
+html_parsing:
+  api_name_selector: "h2.title.topictitle2 span.ph"
+  signature_selector: "section[id$='__prototype'] pre"
+  parent_class_selector: "nav.related-links .linklist a"
+  
+# 注释模板
+comment_template: |
+  /**
+   * @brief {brief}
+   * {technical_preview}
+   * {preserved_since}
+   * {preserved_deprecated}
+   *
+   * @details {details}
+   *
+   * @note {note}
+   *
+   * {parameters}
+   *
+   * @return {return}
+   * @throws {throws}
+   */
+
+# 代码搜索模式
+search_patterns:
+  signature_patterns:
+    - "^{escaped_signature}$"
+    - "^\\s*{escaped_signature}\\s*\\{{0,1}\\s*$"
+  name_patterns:
+    - "\\b{api_name}\\b"
+
+# 保留信息匹配模式
+preserve_patterns:
+  technical_preview: "@technical\\s+preview"
+  since: "@since\\s+v?[\\d\\.]+"
+  deprecated: "@deprecated\\s+v?[\\d\\.]+.*"
