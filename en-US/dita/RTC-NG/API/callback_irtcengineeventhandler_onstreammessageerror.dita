@@ -21,8 +21,8 @@
             error:(NSInteger)error
             missed:(NSInteger)missed
             cached:(NSInteger)cached;</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onStreamMessageError(uid_t userId, int streamId, int code, int missed, int cached) {
-                (void)userId;
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onStreamMessageError(uid_t uid, int streamId, int code, int missed, int cached) {
+                (void)uid;
                 (void)streamId;
                 (void)code;
                 (void)missed;
@@ -68,8 +68,8 @@
                 <pd>The connection information. See <xref keyref="RtcConnection" />.</pd>
             </plentry>
             <plentry id="uid">
-                <pt props="ios mac android hmos electron">uid</pt>
-                <pt props="cpp unreal bp">userId</pt>
+                <pt props="ios mac android hmos electron cpp unreal">uid</pt>
+                <pt props="bp">userId</pt>
                 <pt props="unity flutter rn electron cs">remoteUid</pt>
                 <pd>The ID of the remote user sending the message.</pd>
             </plentry>

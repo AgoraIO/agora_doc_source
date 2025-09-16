@@ -36,7 +36,7 @@
             <p props="android ios mac">After a successful method call, you can no longer use any method or callback in the SDK anymore. If you want to use the real-time communication functions again, you must call <xref keyref="initialize"/> to create a new <apiname keyref="IRtcEngine"/> instance.</p>
             <note type="attention"><ul>
             <li props="unreal bp unity flutter rn electron cs">This method can be called synchronously. You need to wait for the resource of <apiname keyref="IRtcEngine"/> to be released before performing other operations (for example, create a new <apiname keyref="IRtcEngine"/> object). Therefore, Agora recommends calling this method in the child thread to avoid blocking the main thread.</li>
-            <li>Besides, Agora does not recommend you calling <apiname keyref="release"/> in any callback of the SDK. Otherwise, the SDK cannot release the resources until the callbacks return results, which may result in a deadlock.</li></ul></note> </section>
+            <li>Agora does not recommend you calling <apiname keyref="release"/> in any callback of the SDK. Otherwise, the SDK cannot release the resources until the callbacks return results, which may result in a deadlock.</li></ul></note> </section>
         <section id="parameters" props="cpp unreal bp unity electron flutter rn cs">
             <title>Parameters</title>
             <parml>
