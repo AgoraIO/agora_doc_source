@@ -43,7 +43,7 @@ def unescape_html_entities(text: str) -> str:
 
 def clean_whitespace(text: str) -> str:
     """
-    清理多余的空白字符
+    清理多余的空白字符，但保护表格对齐空格
     
     Args:
         text: 原始文本
@@ -53,7 +53,13 @@ def clean_whitespace(text: str) -> str:
     """
     if not text:
         return text
+    
+    # 检查是否是表格行（包含 | 分隔符）
+    if '|' in text and text.count('|') >= 2:
+        # 这是表格行，保护对齐空格
+        return text.strip()  # 只删除行首行尾空白，保留内部空格
         
+    # 非表格内容，正常清理
     # 移除行首行尾空白
     text = text.strip()
     
@@ -100,6 +106,225 @@ def _smart_add_spaces(element, text: str) -> str:
         result = f"{result} "
     
     return result
+
+
+def _calculate_display_width(text: str) -> int:
+    """
+    计算文本的显示宽度，考虑中文字符和Markdown格式
+    
+    Args:
+        text: 文本内容
+        
+    Returns:
+        int: 显示宽度
+    """
+    if not text:
+        return 0
+    
+    # 移除Markdown格式标记来计算实际显示宽度
+    clean_text = text
+    
+    # 移除粗体标记 **text**
+    clean_text = re.sub(r'\*\*(.*?)\*\*', r'\1', clean_text)
+    
+    # 移除斜体标记 *text*
+    clean_text = re.sub(r'\*(.*?)\*', r'\1', clean_text)
+    
+    # 移除代码标记 `text`
+    clean_text = re.sub(r'`(.*?)`', r'\1', clean_text)
+    
+    # 计算宽度，中文字符按2个宽度计算
+    width = 0
+    for char in clean_text:
+        if ord(char) > 127:  # 非ASCII字符（包括中文）
+            width += 2
+        else:
+            width += 1
+    
+    return width
+
+
+def _pad_cell_content(text: str, target_width: int) -> str:
+    """
+    填充单元格内容到指定宽度
+    
+    Args:
+        text: 原始文本
+        target_width: 目标宽度
+        
+    Returns:
+        str: 填充后的文本
+    """
+    if not text:
+        return " " * target_width
+    
+    # 使用字符长度而不是显示宽度来填充，确保在等宽字体中对齐
+    current_length = len(text)
+    if current_length >= target_width:
+        return text
+    
+    # 左对齐，右侧填充空格
+    padding = target_width - current_length
+    return text + " " * padding
+
+
+def convert_table_to_markdown(table_element) -> str:
+    """
+    将HTML表格转换为Markdown表格格式
+    
+    Args:
+        table_element: BeautifulSoup表格元素
+        
+    Returns:
+        str: Markdown格式的表格
+    """
+    if not table_element:
+        return ""
+    
+    # 提取表格的所有行
+    rows = []
+    
+    # 处理表头（thead）
+    thead = table_element.find('thead')
+    if thead:
+        header_rows = thead.find_all('tr')
+        for tr in header_rows:
+            rows.append(tr)
+    
+    # 处理表体（tbody）
+    tbody = table_element.find('tbody')
+    if tbody:
+        body_rows = tbody.find_all('tr')
+        for tr in body_rows:
+            rows.append(tr)
+    
+    # 如果没有thead/tbody，直接查找所有tr
+    if not rows:
+        rows = table_element.find_all('tr')
+    
+    if not rows:
+        return ""
+    
+    # 解析表格数据，处理rowspan和colspan
+    table_data = []
+    rowspan_tracker = {}  # 跟踪rowspan: {col_index: (content, remaining_rows)}
+    
+    for row_idx, tr in enumerate(rows):
+        row_data = []
+        col_idx = 0
+        
+        # 处理当前行的所有单元格
+        cells = tr.find_all(['th', 'td'])
+        cell_idx = 0
+        
+        while col_idx < 20:  # 防止无限循环，假设最多20列
+            # 检查是否有rowspan占据当前列
+            if col_idx in rowspan_tracker:
+                content, remaining = rowspan_tracker[col_idx]
+                row_data.append(content)
+                remaining -= 1
+                if remaining > 0:
+                    rowspan_tracker[col_idx] = (content, remaining)
+                else:
+                    del rowspan_tracker[col_idx]
+                col_idx += 1
+                continue
+            
+            # 如果没有更多单元格，结束当前行
+            if cell_idx >= len(cells):
+                break
+                
+            cell = cells[cell_idx]
+            cell_idx += 1
+            
+            # 提取单元格内容
+            cell_text = ""
+            for child in cell.children:
+                cell_text += convert_html_to_markdown(child, 0)
+            
+            # 清理单元格内容
+            cell_text = cell_text.strip().replace('\n', ' ').replace('|', '\\|')
+            if not cell_text:
+                cell_text = ""  # 空单元格用空字符串表示
+            
+            # 处理colspan和rowspan
+            colspan = int(cell.get('colspan', 1))
+            rowspan = int(cell.get('rowspan', 1))
+            
+            # 添加当前单元格内容
+            row_data.append(cell_text)
+            col_idx += 1
+            
+            # 处理colspan（额外占据的列）
+            for i in range(1, colspan):
+                row_data.append("")
+                col_idx += 1
+            
+            # 处理rowspan（在后续行中占据相同位置）
+            if rowspan > 1:
+                for i in range(colspan):
+                    # 对于rowspan，后续行显示空内容，保持表格结构清晰
+                    rowspan_tracker[col_idx - colspan + i] = ("", rowspan - 1)
+        
+        table_data.append(row_data)
+    
+    if not table_data:
+        return ""
+    
+    # 确保所有行具有相同的列数
+    max_cols = max(len(row) for row in table_data) if table_data else 0
+    for row in table_data:
+        while len(row) < max_cols:
+            row.append("")
+    
+    # 计算每列的最大宽度（用于对齐）
+    col_widths = [0] * max_cols
+    for row in table_data:
+        for col_idx, cell in enumerate(row):
+            if col_idx < max_cols:
+                # 使用字符长度来计算列宽，确保在等宽字体中正确对齐
+                char_length = len(cell)
+                col_widths[col_idx] = max(col_widths[col_idx], char_length)
+    
+    # 设置最小列宽，确保分隔符美观
+    min_col_width = 3  # 最小宽度，可以调整这个值
+    for i in range(len(col_widths)):
+        col_widths[i] = max(col_widths[i], min_col_width)
+    
+    # 生成对齐的Markdown表格
+    markdown_lines = []
+    
+    # 表头
+    if table_data:
+        header_row = table_data[0]
+        aligned_header = []
+        for col_idx, cell in enumerate(header_row):
+            if col_idx < max_cols:
+                # 左对齐，用空格填充到指定宽度
+                padded_cell = _pad_cell_content(cell, col_widths[col_idx])
+                aligned_header.append(padded_cell)
+        
+        markdown_lines.append("| " + " | ".join(aligned_header) + " |")
+        
+        # 分隔行（也要对齐）
+        separator_parts = []
+        for width in col_widths:
+            separator_parts.append("-" * width)
+        separator = "| " + " | ".join(separator_parts) + " |"
+        markdown_lines.append(separator)
+        
+        # 表体
+        for row in table_data[1:]:
+            aligned_row = []
+            for col_idx, cell in enumerate(row):
+                if col_idx < max_cols:
+                    # 左对齐，用空格填充到指定宽度
+                    padded_cell = _pad_cell_content(cell, col_widths[col_idx])
+                    aligned_row.append(padded_cell)
+            
+            markdown_lines.append("| " + " | ".join(aligned_row) + " |")
+    
+    return "\n".join(markdown_lines) + "\n\n"
 
 
 def convert_html_to_markdown(element, indent_level: int = 0) -> str:
@@ -160,6 +385,9 @@ def convert_html_to_markdown(element, indent_level: int = 0) -> str:
         # 斜体
         inner_text = ''.join(convert_html_to_markdown(child, indent_level) for child in element.children)
         text = f"*{inner_text}*"
+    elif tag_name == 'table':
+        # HTML表格转换为Markdown表格
+        text = convert_table_to_markdown(element)
     elif tag_name == 'br':
         # 换行
         text = "\n"
@@ -274,12 +502,17 @@ def extract_multiline_content(element) -> str:
     for line in lines:
         # 对于多行内容，保留行首缩进，只清理行尾和内部多余空格
         if line.strip():  # 只处理非空行
-            # 保留行首空格（缩进），只清理行尾和压缩内部多余空格
-            leading_spaces = len(line) - len(line.lstrip())
-            content_part = line.lstrip()
-            cleaned_content = clean_whitespace(content_part)
-            cleaned_line = ' ' * leading_spaces + cleaned_content
-            cleaned_lines.append(cleaned_line)
+            # 检查是否是表格行
+            if '|' in line and line.count('|') >= 2:
+                # 表格行，保持原样（只清理行尾）
+                cleaned_lines.append(line.rstrip())
+            else:
+                # 保留行首空格（缩进），只清理行尾和压缩内部多余空格
+                leading_spaces = len(line) - len(line.lstrip())
+                content_part = line.lstrip()
+                cleaned_content = clean_whitespace(content_part)
+                cleaned_line = ' ' * leading_spaces + cleaned_content
+                cleaned_lines.append(cleaned_line)
     
     result = '\n'.join(cleaned_lines)
     return unescape_html_entities(result)
@@ -328,6 +561,11 @@ def _wrap_comment_line(text: str, prefix: str = " * ", max_line_length: int = 10
     """
     if not text:
         return [prefix]
+    
+    # 检查是否是表格行，表格行不进行换行处理
+    if '|' in text and text.count('|') >= 2:
+        # 表格行（包括分隔符行），直接返回不换行
+        return [f"{prefix}{text}"]
     
     # 如果当前行（包含前缀）不超过限制，直接返回
     full_line = f"{prefix}{text}"
