@@ -340,8 +340,8 @@ class CppInjector(BaseInjector):
             if i == start_line and line.endswith("*/"):
                 return start_line
             
-            # 检查各种结束标记
-            if (line == "*/" or line.endswith("**/")):
+            # 检查各种结束标记（优先级最高，直接返回）
+            if (line == "*/" or line.endswith("*/")):
                 # 查看下一行是否为空行，如果是也要移除
                 next_line_idx = i + 1
                 if (next_line_idx < len(lines) and 
@@ -353,7 +353,7 @@ class CppInjector(BaseInjector):
             if i > start_line and not self._is_comment_line(line):
                 # 回到上一行查找结束标记
                 prev_line = lines[i-1].strip() if i > 0 else ""
-                if prev_line == "*/" or prev_line.endswith("**/"):
+                if prev_line == "*/" or prev_line.endswith("*/"):
                     return i - 1
                 # 如果上一行不是结束标记，可能是格式问题，返回上一行
                 return i - 1
