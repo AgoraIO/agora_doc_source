@@ -328,8 +328,8 @@ def extract(ctx, platform, output):
         updater = APICommentUpdater(ctx.obj['config_dir'])
         result = updater.extract_comments(platform, output)
         
-        click.echo(f"✅ 提取完成")
-        click.echo(f"📄 API: {len(result['api'])}")
+        click.echo(f"提取完成")
+        click.echo(f"API: {len(result['api'])}")
         click.echo(f"🏗️  Class: {len(result['class'])}")
         click.echo(f"📊 Enum: {len(result['enum'])}")
         
@@ -362,7 +362,7 @@ def update(ctx, platform):
     try:
         updater = APICommentUpdater(ctx.obj['config_dir'])
         updater.update_comments(platform)
-        click.echo("✅ 更新完成")
+        click.echo("更新完成")
         
     except Exception as e:
         click.echo(f"❌ 更新失败: {e}", err=True)
@@ -393,11 +393,11 @@ def test(platform, json_file, action):
             click.echo("请确保 tests/src/ 目录存在并包含测试文件", err=True)
             sys.exit(1)
         
-        click.echo("🧪 启动测试模式")
-        click.echo(f"📁 配置目录: {test_config_dir}")
-        click.echo(f"📁 测试源码: {test_src_dir}")
-        click.echo(f"🎯 平台: {platform}")
-        click.echo(f"⚡ 操作: {action}")
+        click.echo("启动测试模式")
+        click.echo(f"配置目录: {test_config_dir}")
+        click.echo(f"测试源码: {test_src_dir}")
+        click.echo(f"平台: {platform}")
+        click.echo(f"操作: {action}")
         
         # 创建测试更新器，使用特殊的测试配置管理器
         updater = TestAPICommentUpdater(test_config_dir)
@@ -408,8 +408,8 @@ def test(platform, json_file, action):
             output_file = f"output/{platform}-test.json"
             result = updater.extract_comments(platform, output_file)
             
-            click.echo(f"✅ 提取完成")
-            click.echo(f"📄 API: {len(result['api'])}")
+            click.echo(f"提取完成")
+            click.echo(f"API: {len(result['api'])}")
             click.echo(f"🏗️  Class: {len(result['class'])}")
             click.echo(f"📊 Enum: {len(result['enum'])}")
             click.echo(f"💾 输出文件: {output_file}")
@@ -425,7 +425,7 @@ def test(platform, json_file, action):
                 sys.exit(1)
             
             updater.inject_comments(platform, json_file)
-            click.echo("✅ 注入完成")
+            click.echo("注入完成")
             
         elif action == 'update':
             # 完整流程
@@ -434,18 +434,18 @@ def test(platform, json_file, action):
             
             # 提取
             result = updater.extract_comments(platform, json_file)
-            click.echo(f"✅ 提取完成: API {len(result['api'])}, Class {len(result['class'])}, Enum {len(result['enum'])}")
+            click.echo(f"提取完成: API {len(result['api'])}, Class {len(result['class'])}, Enum {len(result['enum'])}")
             
             # 注入
             updater.inject_comments(platform, json_file)
-            click.echo("✅ 注入完成")
+            click.echo("注入完成")
             
-            click.echo("🎉 测试更新完成")
+            click.echo("测试更新完成")
         
         # 显示测试文件状态
-        click.echo("\n📋 测试文件状态:")
+        click.echo("\n测试文件状态:")
         for test_file in test_src_dir.glob("*.h"):
-            click.echo(f"   📄 {test_file.name}")
+            click.echo(f"   {test_file.name}")
         
     except Exception as e:
         click.echo(f"❌ 测试失败: {e}", err=True)
