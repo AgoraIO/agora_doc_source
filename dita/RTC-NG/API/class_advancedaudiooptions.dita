@@ -33,8 +33,10 @@
 @property(assign, nonatomic) AgoraAudioProcessChannels audioProcessingChannels;
 @end</codeblock>
       <codeblock props="cpp unreal" outputclass="language-cpp">struct AdvancedAudioOptions {
-  AUDIO_PROCESSING_CHANNELS audioProcessingChannels;
-  AdvancedAudioOptions(): audioProcessingChannels(AUDIO_PROCESSING_MONO) {}
+   Optional<int> audioProcessingChannels;
+
+   AdvancedAudioOptions() {}
+  ~AdvancedAudioOptions() {}
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FAdvancedAudioOptions
@@ -87,11 +89,17 @@ public:
       <parml>
       <plentry>
         <pt>audioProcessingChannels</pt>
-        <pd props="native unreal flutter unity cs electron rn">音频前处理的声道数。详见 <xref keyref="AUDIO_PROCESSING_CHANNELS" />。</pd>
+        <pd props="android ios mac unreal flutter unity cs electron rn">音频前处理的声道数。详见 <xref keyref="AUDIO_PROCESSING_CHANNELS" />。</pd>
         <pd props="bp">音频前处理的声道数：<ul>
             <li><ph keyref="AUDIO_PROCESSING_MONO"/>(1)：（默认）单声道。</li>
             <li><ph keyref="AUDIO_PROCESSING_STEREO"/>(2)：双声道。</li></ul>
-          </pd>
+        </pd>
+        <pd props="cpp">音频前处理的声道数:
+            <ul>
+              <li>1: 单声道</li>
+              <li>2: 双声道</li>
+            </ul>
+        </pd>
       </plentry>
       </parml> </section>
   </refbody>
