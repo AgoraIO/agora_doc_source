@@ -381,22 +381,39 @@ class CppInjector(BaseInjector):
         if line.startswith('/**') or line == '*/':
             return True
         
+        # 常见的注释内容模式（如 @param, @return, @brief 等）
+        if line.startswith('@') or line.startswith('-') or line.startswith('+'):
+            return True
+        
+        # 检查是否以注释常见的标记开头（考虑缩进）
+        comment_prefixes = ['*', '//', '/**', '/*', '*/']
+        for prefix in comment_prefixes:
+            if line.lstrip().startswith(prefix):
+                return True
+        
         # 检查是否为明确的代码行（包含代码关键字或符号）
         code_indicators = [
             'class ', 'struct ', 'enum ', 'namespace ',
             'public:', 'private:', 'protected:',
             'virtual ', 'static ', 'const ', 'inline ',
             'typedef ', '#include', '#define', '#if',
-            ');', '};', '{', '}', '=',
+            ');', '};', '{', '}',
             'return ', 'if (', 'for (', 'while (', 'switch ('
         ]
         
+        # 检查是否以明确的代码关键字开头
         for indicator in code_indicators:
-            if indicator in line:
+            if line.startswith(indicator.strip()):
                 return False
         
+        # 检查是否包含明确的代码符号（但要排除注释中常见的符号）
+        if (');' in line or '};' in line or 
+            line.endswith('{') or line.endswith('}') or
+            line.startswith('#')):
+            return False
+        
         # 如果不包含明确的代码指示符，可能是注释的延续行
-        # 特别是像 "stream." 这样的文本片段
+        # 特别是注释中的描述性文本
         return True
     
     def _is_any_single_line_comment(self, line: str) -> bool:

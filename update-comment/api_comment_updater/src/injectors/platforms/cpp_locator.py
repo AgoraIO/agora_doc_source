@@ -378,6 +378,24 @@ class CppLocator(BaseLocator):
             rf"\b\w+\s+{re.escape(attribute_name)}\s*\[[^\]]*\]\s*;",
             # 行尾注释的情况：type name;  // comment
             rf"\b\w+\s+{re.escape(attribute_name)}\s*;\s*//",
+            
+            # ========== 带后置修饰符的模式 ==========
+            # 带 __deprecated 等后置修饰符：type name __deprecated;
+            rf"\b\w+\s+{re.escape(attribute_name)}\s+__\w+\s*;",
+            # 带后置修饰符和默认值：type name __deprecated = value;
+            rf"\b\w+\s+{re.escape(attribute_name)}\s+__\w+\s*=\s*[^;]+;",
+            # 带前置和后置修饰符：const type name __deprecated;
+            rf"\b(?:const\s+|static\s+)?\w+\s+{re.escape(attribute_name)}\s+__\w+\s*;",
+            # 带前置和后置修饰符和默认值：const type name __deprecated = value;
+            rf"\b(?:const\s+|static\s+)?\w+\s+{re.escape(attribute_name)}\s+__\w+\s*=\s*[^;]+;",
+            # 模板类型带后置修饰符：Template<T> name __deprecated;
+            rf"\b\w+<[^>]+>\s+{re.escape(attribute_name)}\s+__\w+\s*;",
+            # 指针类型带后置修饰符：type* name __deprecated;
+            rf"\b\w+\s*\*\s*{re.escape(attribute_name)}\s+__\w+\s*;",
+            # 引用类型带后置修饰符：type& name __deprecated;
+            rf"\b\w+\s*&\s*{re.escape(attribute_name)}\s+__\w+\s*;",
+            # 行尾注释带后置修饰符：type name __deprecated;  // comment
+            rf"\b\w+\s+{re.escape(attribute_name)}\s+__\w+\s*;\s*//",
         ]
         
         for pattern in cpp_patterns:
@@ -674,6 +692,7 @@ class CppLocator(BaseLocator):
         
         brace_level = 0  # 跟踪大括号层级
         in_function_body = False
+        in_data_structure = False  # 跟踪是否在union/struct等数据结构内
         current_access_level = "private"  # 默认访问级别
         
         # 从类定义开始遍历，包含类定义行以正确计算大括号层级
@@ -699,6 +718,12 @@ class CppLocator(BaseLocator):
                 current_access_level = stripped_line.rstrip(':')
                 continue
             
+            # 检查是否进入数据结构（union, struct, enum等）
+            if self._is_data_structure_start(stripped_line):
+                in_data_structure = True
+                logger.debug("进入数据结构在行 {}: {}", i + 1, stripped_line[:50])
+                continue
+            
             # 检查是否进入/退出函数体
             if self._is_function_start(stripped_line):
                 in_function_body = True
@@ -715,9 +740,20 @@ class CppLocator(BaseLocator):
                 logger.debug("退出函数体在行 {}", i + 1)
                 continue
             
-            # 只在非函数体内且在类的直接大括号内搜索属性
-            # brace_level == 1 表示在类的大括号内，但不在嵌套的函数大括号内
-            if not in_function_body and brace_level == 1:
+            # 如果在数据结构内且大括号层级回到1（类级别），说明数据结构结束
+            if in_data_structure and brace_level == 1:
+                in_data_structure = False
+                logger.debug("退出数据结构在行 {}", i + 1)
+                continue
+            
+            # 搜索属性的条件：
+            # 1. 不在函数体内
+            # 2. 在类的直接大括号内 (brace_level == 1)
+            # 3. 或者在数据结构内 (in_data_structure 且 brace_level == 2)
+            should_search = (not in_function_body and 
+                           (brace_level == 1 or (in_data_structure and brace_level == 2)))
+            
+            if should_search:
                 if self._is_attribute_definition_enhanced(stripped_line, attribute_name):
                     logger.debug("找到属性定义在行 {}: {}", i + 1, stripped_line)
                     return i
@@ -734,6 +770,21 @@ class CppLocator(BaseLocator):
         for start in comment_starts:
             if line.startswith(start):
                 return True
+        
+        return False
+    
+    def _is_data_structure_start(self, line: str) -> bool:
+        """检查是否为数据结构开始行（union, struct, enum等）"""
+        # 数据结构关键字
+        data_structure_keywords = ['union {', 'struct {', 'enum {', 'class {']
+        
+        for keyword in data_structure_keywords:
+            if keyword in line:
+                return True
+        
+        # 单独的关键字（可能在下一行有大括号）
+        if line.strip() in ['union', 'struct', 'enum', 'class']:
+            return True
         
         return False
     
