@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "api-comment-updater"
+version = "1.0.0"
+description = "自动从HTML文档提取注释并更新代码仓库的工具"
+authors = [{name = "Agora Doc Team"}]
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+
+dependencies = [
+    "beautifulsoup4==4.12.2",
+    "lxml==4.9.3",
+    "pyyaml==6.0.1",
+    "jsonschema==4.19.0",
+    "click==8.1.7",
+    "rich==13.5.2",
+    "loguru==0.7.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==7.4.2",
+    "black==23.7.0",
+    "flake8==6.0.0",
+]
+
+[project.scripts]
+api-comment-updater = "main:main"
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203", "W503"]

@@ -33,8 +33,10 @@
 @property(assign, nonatomic) AgoraAudioProcessChannels audioProcessingChannels;
 @end</codeblock>
       <codeblock props="cpp unreal" outputclass="language-cpp">struct AdvancedAudioOptions {
-  AUDIO_PROCESSING_CHANNELS audioProcessingChannels;
-  AdvancedAudioOptions(): audioProcessingChannels(AUDIO_PROCESSING_MONO) {}
+   Optional&lt;int&gt; audioProcessingChannels;
+
+   AdvancedAudioOptions() {}
+  ~AdvancedAudioOptions() {}
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FAdvancedAudioOptions
@@ -87,10 +89,16 @@ public:
       <parml>
       <plentry>
         <pt>audioProcessingChannels</pt>
-        <pd props="native unreal flutter unity cs electron rn">The number of channels for audio preprocessing. See <xref keyref="AUDIO_PROCESSING_CHANNELS" />.</pd>
+        <pd props="android ios mac unreal flutter unity cs electron rn">The number of channels for audio preprocessing. See <xref keyref="AUDIO_PROCESSING_CHANNELS" />.</pd>
         <pd props="bp">The number of channels for audio preprocessing.<ul>
             <li><ph keyref="AUDIO_PROCESSING_MONO"/>(1): (Default) Mono.</li>
             <li><ph keyref="AUDIO_PROCESSING_STEREO"/>(2): Stereo.</li></ul>
+          </pd>
+          <pd props="cpp">The number of channels for audio preprocessing:
+            <ul>
+              <li>1: Mono.</li>
+              <li>2: Stereo.</li>
+            </ul>
           </pd>
       </plentry>
       </parml> </section>

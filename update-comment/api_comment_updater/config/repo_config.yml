@@ -1,0 +1,69 @@
+# API注释更新工具主配置文件
+
+# 代码仓库配置
+repo_path: "E:/agoratwrepo/rte_sdk"
+
+# HTML文档路径配置
+html_sources:
+  cpp-ng: "../../en-US/dita/out/cpp-ng/API"
+  android-ng: "../../en-US/dita/out/android-ng/API"
+  ios-ng: "../../en-US/dita/out/ios-ng/API"
+  mac-ng: "../../en-US/dita/out/mac-ng/API"
+
+# 各平台搜索路径配置（分离设计）
+platforms:
+  cpp-ng:
+    include:
+      - "interface/cpp/*/*.h"
+      - "interface/c/rte/rte_base/c/c_player.h"
+    exclude:
+      - "interface/cpp/*/internal/*.h"
+      - "interface/cpp/api2/*"
+      - "interface/cpp/rte/rte_base/rte_cpp_string.h"
+      - "interface/cpp/rtm2/*"
+      - "interface/cpp/sync_client/*"
+  
+  android-ng:
+    include:
+      - "proj.android/src/main/java/io/agora/*/*.java"
+      - "proj.android/src/main/java/io/agora/rtc2/audio/*.java"
+    exclude: 
+      - "proj.android/src/main/java/io/agora/*/internal/*"  # 排除internal目录下的所有.java文件
+      - "proj.android/src/main/java/io/agora/meta/*"  # 排除meta目录及其子目录
+      - "proj.android/src/main/java/io/agora/rtm/*"  # 排除rtm目录及其子目录
+      # - "proj.android/src/main/java/io/agora/rte/*"
+      - "proj.android/src/main/java/io/agora/spatialaudio/*"  # 排除spatialaudio目录及其子目录
+      - "proj.android/src/main/java/io/agora/mediaplayer/gl/*"  # 排除mediaplayer/gl目录及其子目录
+      - "proj.android/src/main/java/io/agora/mediaplayer/AssetsFileReader.java"  # 排除具体文件
+      - "proj.android/src/main/java/io/agora/mediaplayer/ContentFileReader.java"  # 排除具体文件
+      - "proj.android/src/main/java/io/agora/mediaplayer/IPlayerTextureHelper.java"  # 排除具体文件
+      - "proj.android/src/main/java/io/agora/base/TextureBuffer.java"  # 排除具体文件
+      - "proj.android/src/main/java/io/agora/base/JavaI010Buffer.java"  # 排除具体文件
+
+
+  ios-ng:
+    include:
+      - "interface/objc/*.h"
+      - "interface/objc/rte/*"
+    exclude:
+      - "interface/objc/api2/*"
+      - "interface/objc/lang_cn/*"
+      - "interface/objc/AgoraRtmClientKit.h"
+      - "interface/objc/AgoraRtmEnumerates.h"
+      - "interface/objc/AgoraRtmObjects.h"      
+  mac-ng:
+    include:
+      - "interface/objc/*.h"
+      - "interface/objc/rte/*" 
+    exclude:
+      - "interface/objc/api2/*"
+      - "interface/objc/lang_cn/*"
+      - "interface/objc/AgoraRtmClientKit.h"
+      - "interface/objc/AgoraRtmEnumerates.h"
+      - "interface/objc/AgoraRtmObjects.h"
+# 日志配置
+logging:
+  file_level: "debug"
+  console_level: "warning"
+  log_dir: "./logs"
+  max_log_files: 30

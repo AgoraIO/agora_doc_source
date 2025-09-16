@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="rtc_lite_api">
-<title>Lite SDK API List</title>
-<shortdesc id="short"><ph id="shortdesc">This page lists the APIs supported by Lite SDK.</ph></shortdesc>
+<title>Lite SDK API 列表</title>
+<shortdesc id="short"><ph id="shortdesc">本页列出 Lite SDK 支持的 API 列表。</ph></shortdesc>
 <refbody>
-    <section><note type="attention">If you cannot find the API you are looking for on this page, it means the Lite SDK does not support this API, and calling it returns error code -2.</note></section>
+    <section><note type="attention">如果在本页中无法查询到你要使用的 API，则代表 Lite SDK 不支持该 API，调用该 API 时会返回错误码 -2。</note></section>
     <section>
         <title><apiname keyref="IRtcEngine"/></title>
         <ul>
@@ -109,12 +109,14 @@
             <li props="cpp apple framework"><xref keyref="isCameraCenterStageSupported"/></li>
             <li props="android"><xref keyref="isTextureEncodeSupported"/></li>
             <li props="native unreal unity"><xref keyref="joinChannel1"/></li>
-            <li>In <xref keyref="joinChannel2"/>, the following screen capture-related parameter settings are invalid:<ul>
+            <li>在 <xref keyref="joinChannel2"/> 中，以下跟屏幕采集相关的参数设置无效：
+                <ul>
                     <li><parmname>publishScreenCaptureVideo</parmname></li>
                     <li><parmname>publishScreenCaptureAudio</parmname></li>
                 </ul></li>
             <li props="native unreal unity"><xref keyref="joinChannelWithUserAccount1"/></li>
-            <li>In <xref keyref="joinChannelWithUserAccount2"/>, the following screen capture-related parameter settings are invalid:<ul>
+            <li>在 <xref keyref="joinChannelWithUserAccount2"/> 中，以下跟屏幕采集相关的参数设置无效：
+                <ul>
                     <li><parmname>publishScreenCaptureVideo</parmname></li>
                     <li><parmname>publishScreenCaptureAudio</parmname></li>
                 </ul></li>
@@ -162,7 +164,7 @@
             <li><xref keyref="queryDeviceScore"/></li>
             <li props="cpp unreal bp"><xref keyref="queryInterface"/></li>
             <li><xref keyref="rate"/></li>
-            <li>In <xref keyref="registerAudioEncodedFrameObserver"/>, the <parmname>encodingType</parmname> parameter in <parmname>config</parmname> only supports the OPUS format for audio encoding.</li>
+            <li>在 <xref keyref="registerAudioEncodedFrameObserver"/> 中，<parmname>config</parmname> 中的 <parmname>encodingType</parmname> 仅支持 OPUS 编码格式。</li>
             <li props="android apple"><xref keyref="registerAudioFrameObserver"/></li>
             <li props="unity"><xref keyref="registerAudioFrameObserver"/></li>
             <li><xref keyref="registerAudioSpectrumObserver"/></li>
@@ -320,7 +322,8 @@
             <li props="android cpp framework"><xref keyref="unregisterMediaMetadataObserver"/></li>
             <li props="unity"><xref keyref="unregisterVideoFrameObserver_IMediaEngine"/></li>
             <li props="unity cs electron rn flutter"><xref keyref="unregisterVideoEncodedFrameObserver"/></li>
-            <li>In <xref keyref="updateChannelMediaOptions"/>, the following screen capture-related parameter settings are invalid:<ul>
+            <li>在 <xref keyref="updateChannelMediaOptions"/> 中，以下跟屏幕采集相关的参数设置无效：
+                <ul>
                     <li><parmname>publishScreenCaptureVideo</parmname></li>
                     <li><parmname>publishScreenCaptureAudio</parmname></li>
                 </ul></li>
@@ -376,7 +379,8 @@
             <li><xref keyref="startMediaRenderingTracingEx"/></li>
             <li><xref keyref="startOrUpdateChannelMediaRelayEx"/></li>
             <li><xref keyref="stopChannelMediaRelayEx"/></li>
-            <li>In <xref keyref="updateChannelMediaOptionsEx"/>, the following screen capture-related parameter settings are invalid:<ul>
+            <li>在 <xref keyref="updateChannelMediaOptionsEx"/> 中，以下跟屏幕采集相关的参数设置无效：
+                <ul>
                     <li><parmname>publishScreenCaptureVideo</parmname></li>
                     <li><parmname>publishScreenCaptureAudio</parmname></li>
                 </ul></li>
@@ -485,7 +489,7 @@
     </section>
     <section>
         <title><apiname keyref="IMediaPlayer"/></title>
-        <note type="attention">The APIs in this group only support processing audio media files and di not support processing video media files.</note>
+        <note type="attention">媒体播放器中的 API 仅支持处理音频媒体文件、不支持处理视频媒体文件。</note>
         <ul>
             <li><xref keyref="adjustPlayoutVolume"/></li>
             <li><xref keyref="adjustPublishSignalVolume"/></li>
@@ -550,7 +554,7 @@
     </section>
     <section>
         <title><apiname keyref="IVideoFrameObserver"/></title>
-        <note type="attention">In the video data returned by the <xref keyref="onCaptureVideoFrame"/>, <xref keyref="onPreEncodeVideoFrame"/>, and <xref keyref="onRenderVideoFrame"/>callbacks, the <parmname>alphabuffer</parmname> is <codeph><ph keyref="NULL"/></codeph>.</note>
+        <note type="attention">通过 <xref keyref="onCaptureVideoFrame"/>、<xref keyref="onPreEncodeVideoFrame"/> 和 <xref keyref="onRenderVideoFrame"/> 回调返回的视频数据中，<parmname>alphabuffer</parmname> 为 <codeph><ph keyref="NULL"/></codeph>。</note>
         <ul>
             <li props="native unreal bp"><xref keyref="getMirrorApplied"/></li>
             <li props="native unreal bp"><xref keyref="getObservedFramePosition"/></li>
