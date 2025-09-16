@@ -17,7 +17,7 @@
             <codeblock props="hmos" outputclass="language-arkts">public abstract muteRemoteVideoStream(uid: number, muted: boolean): number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)muteRemoteVideoStream:(NSUInteger)uid
                         mute:(BOOL)mute;</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int muteRemoteVideoStream(uid_t userId, bool mute) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int muteRemoteVideoStream(uid_t uid, bool mute) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
 	int MuteRemoteVideoStream(int64 uid, bool mute);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract muteRemoteVideoStream(uid: number, mute: boolean): number;</codeblock>
@@ -44,8 +44,8 @@
             <title>Parameters</title>
             <parml>
             <plentry>
-                <pt props="android cpp unreal bp">userId</pt>
-                <pt props="hmos ios mac unity flutter rn electron cs">uid</pt>
+                <pt props="android bp">userId</pt>
+                <pt props="hmos ios mac unity flutter rn electron cs cpp unreal">uid</pt>
                 <pd id="userId">The user ID of the specified user.</pd>
             </plentry>
             <plentry>
