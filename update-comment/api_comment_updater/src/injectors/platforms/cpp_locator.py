@@ -838,7 +838,7 @@ class CppLocator(BaseLocator):
     # 搜索匹配方法（从原代码迁移）
     def _find_all_signature_matches(self, signature: str, search_files: List[str]) -> List[Tuple[str, int]]:
         """找到所有匹配签名的位置"""
-        matches = []
+        matches_set = set()  # 使用set去重
         clean_signature = self._clean_signature(signature)
         escaped_signature = re.escape(clean_signature)
         
@@ -866,7 +866,7 @@ class CppLocator(BaseLocator):
                         # 清理代码行以便匹配（移除注解等）
                         clean_line = self._clean_code_line_for_matching(line)
                         if compiled_pattern.search(clean_line):
-                            matches.append((file_path, line_num))
+                            matches_set.add((file_path, line_num))
                         
                         # 对于多行方法声明，尝试合并后续行进行匹配
                         if ('(' in line and ')' not in line and 
@@ -881,13 +881,13 @@ class CppLocator(BaseLocator):
                                     if ')' in multi_line:
                                         clean_multi_line = self._clean_code_line_for_matching(multi_line)
                                         if compiled_pattern.search(clean_multi_line):
-                                            matches.append((file_path, line_num))
+                                            matches_set.add((file_path, line_num))
                                         break
             except re.error as e:
                 logger.warning("正则表达式错误: {}", str(e))
                 continue
         
-        return matches
+        return list(matches_set)
     
     def _find_all_keywords_name_matches(self, api_name: str, signature: str, search_files: List[str]) -> List[Tuple[str, int]]:
         """找到所有通过关键字+名称匹配的位置"""
