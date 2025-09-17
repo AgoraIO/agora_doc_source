@@ -266,31 +266,6 @@ class JavaLocator(BaseLocator):
     
     # ==================== 核心辅助方法（参考C++实现） ====================
     
-    def _get_search_files(self) -> List[str]:
-        """获取搜索文件列表"""
-        import os
-        import glob
-        
-        # 从配置中获取代码仓库路径
-        repo_path = self.repo_path
-        if not repo_path:
-            logger.warning("未配置代码仓库路径")
-            return []
-        
-        # 搜索Java文件
-        java_files = []
-        
-        # 递归搜索所有.java文件
-        for root, dirs, files in os.walk(repo_path):
-            # 跳过常见的非源码目录
-            dirs[:] = [d for d in dirs if d not in ['.git', '.svn', 'build', 'target', '.idea', '.vscode']]
-            
-            for file in files:
-                if file.endswith('.java'):
-                    java_files.append(os.path.join(root, file))
-        
-        logger.debug("找到 {} 个Java文件", len(java_files))
-        return java_files
     
     def _extract_clean_api_name(self, api_name: str) -> str:
         """提取纯净API名称（去除重载标识等）"""
@@ -684,9 +659,13 @@ class JavaLocator(BaseLocator):
         Returns:
             bool: 是否为Java枚举值定义
         """
-        # Java枚举值模式：public final static int VALUE_NAME = 0x00000001;
+        # Java枚举值模式
         java_patterns = [
-            # 标准Java枚举值：public final static int VALUE_NAME = value;
+            # 现代Java枚举：VALUE_NAME(value),
+            rf"\b{re.escape(value_name)}\s*\(",
+            # 简单Java枚举：VALUE_NAME,
+            rf"\b{re.escape(value_name)}\s*[,;]",
+            # 常量模式：public final static int VALUE_NAME = 0x00000001;
             rf"\b(?:public\s+|private\s+|protected\s+)?(?:final\s+)?(?:static\s+)?\w+\s+{re.escape(value_name)}\s*=",
             # 简化模式：static int VALUE_NAME = value;
             rf"\bstatic\s+\w+\s+{re.escape(value_name)}\s*=",

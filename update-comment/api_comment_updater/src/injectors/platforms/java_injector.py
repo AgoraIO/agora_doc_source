@@ -97,37 +97,35 @@ class JavaInjector(BaseInjector):
         # 标准化类注释
         normalized_data = self.comment_normalizer.normalize_class_comment(class_data)
         
-        # 分离处理：先处理类注释，再处理属性注释
         success_count = 0
         total_count = 0
         
-        # 1. 注入类描述注释
-        class_comments = [item for item in normalized_data if item.get("type") == "desc"]
-        if class_comments:
-            class_comment_lines = class_comments[0].get("comment", [])
-            if class_comment_lines:
+        # 处理类注释（与C++保持一致的格式）
+        for comment_item in normalized_data.get("comments", []):
+            comment_type = comment_item.get("type")
+            comment_lines = comment_item.get("comment", [])
+            
+            if comment_type == "class_description" and comment_lines:
+                # 注入类描述注释
                 total_count += 1
-                if self._inject_comment_at_location(file_path, line_number, class_comment_lines, f"{class_name} (class)"):
+                if self._inject_comment_at_location(file_path, line_number, comment_lines, f"{class_name} (class)"):
                     success_count += 1
                     logger.info("成功注入类注释: {}", class_name)
-        
-        # 2. 批量注入属性注释
-        attribute_comments = [item for item in normalized_data if item.get("type") == "attribute"]
-        for attr_comment in attribute_comments:
-            attr_name = attr_comment.get("value", "")
-            attr_comment_lines = attr_comment.get("comment", [])
             
-            if attr_name and attr_comment_lines:
-                total_count += 1
-                # 定位属性
-                attr_location = self.code_locator.locate_class_attribute(class_data, attr_name)
-                if attr_location:
-                    attr_file_path, attr_line_number = attr_location
-                    if self._inject_comment_at_location(attr_file_path, attr_line_number, attr_comment_lines, f"{class_name}.{attr_name}"):
-                        success_count += 1
-                        logger.info("成功注入属性注释: {}.{}", class_name, attr_name)
-                else:
-                    logger.warning("未能定位属性: {}.{}", class_name, attr_name)
+            elif comment_type == "attribute" and comment_lines:
+                # 注入属性注释
+                attr_name = comment_item.get("target", "") or comment_item.get("value", "")
+                if attr_name:
+                    total_count += 1
+                    # 定位属性
+                    attr_location = self.code_locator.locate_class_attribute(class_data, attr_name)
+                    if attr_location:
+                        attr_file_path, attr_line_number = attr_location
+                        if self._inject_comment_at_location(attr_file_path, attr_line_number, comment_lines, f"{class_name}.{attr_name}"):
+                            success_count += 1
+                            logger.info("成功注入属性注释: {}.{}", class_name, attr_name)
+                    else:
+                        logger.warning("未能定位属性: {}.{}", class_name, attr_name)
         
         logger.info("类注释注入完成: {} ({}/{})", class_name, success_count, total_count)
         return success_count > 0
@@ -159,33 +157,32 @@ class JavaInjector(BaseInjector):
         success_count = 0
         total_count = 0
         
-        # 1. 注入枚举描述注释
-        enum_comments = [item for item in normalized_data if item.get("type") == "desc"]
-        if enum_comments:
-            enum_comment_lines = enum_comments[0].get("comment", [])
-            if enum_comment_lines:
+        # 处理枚举注释（与C++保持一致的格式）
+        for comment_item in normalized_data.get("comments", []):
+            comment_type = comment_item.get("type")
+            comment_lines = comment_item.get("comment", [])
+            
+            if comment_type == "enum_description" and comment_lines:
+                # 注入枚举描述注释
                 total_count += 1
-                if self._inject_comment_at_location(file_path, line_number, enum_comment_lines, f"{enum_name} (enum)"):
+                if self._inject_comment_at_location(file_path, line_number, comment_lines, f"{enum_name} (enum)"):
                     success_count += 1
                     logger.info("成功注入枚举注释: {}", enum_name)
-        
-        # 2. 批量注入枚举值注释
-        enumerator_comments = [item for item in normalized_data if item.get("type") == "enumerator"]
-        for enum_comment in enumerator_comments:
-            enum_value_name = enum_comment.get("value", "")
-            enum_comment_lines = enum_comment.get("comment", [])
             
-            if enum_value_name and enum_comment_lines:
-                total_count += 1
-                # 定位枚举值
-                value_location = self.code_locator.locate_enum_value(enum_data, enum_value_name)
-                if value_location:
-                    value_file_path, value_line_number = value_location
-                    if self._inject_comment_at_location(value_file_path, value_line_number, enum_comment_lines, f"{enum_name}.{enum_value_name}"):
-                        success_count += 1
-                        logger.info("成功注入枚举值注释: {}.{}", enum_name, enum_value_name)
-                else:
-                    logger.warning("未能定位枚举值: {}.{}", enum_name, enum_value_name)
+            elif comment_type == "enumerator" and comment_lines:
+                # 注入枚举值注释
+                enum_value_name = comment_item.get("target", "") or comment_item.get("value", "")
+                if enum_value_name:
+                    total_count += 1
+                    # 定位枚举值
+                    value_location = self.code_locator.locate_enum_value(enum_data, enum_value_name)
+                    if value_location:
+                        value_file_path, value_line_number = value_location
+                        if self._inject_comment_at_location(value_file_path, value_line_number, comment_lines, f"{enum_name}.{enum_value_name}"):
+                            success_count += 1
+                            logger.info("成功注入枚举值注释: {}.{}", enum_name, enum_value_name)
+                    else:
+                        logger.warning("未能定位枚举值: {}.{}", enum_name, enum_value_name)
         
         logger.info("枚举注释注入完成: {} ({}/{})", enum_name, success_count, total_count)
         return success_count > 0
@@ -436,14 +433,10 @@ class JavaInjector(BaseInjector):
             
             # 写回文件
             new_content = '\n'.join(lines)
-            success = write_file_content(file_path, new_content)
+            write_file_content(file_path, new_content)
             
-            if success:
-                logger.debug("成功注入注释到 {}:{} ({})", file_path, line_number, element_name)
-            else:
-                logger.error("写入文件失败: {}", file_path)
-            
-            return success
+            logger.debug("成功注入注释到 {}:{} ({})", file_path, line_number, element_name)
+            return True
             
         except Exception as e:
             logger.error("注入注释时发生错误 {}:{} - {}", file_path, line_number, str(e))
