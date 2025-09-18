@@ -282,7 +282,7 @@ class JavaLocator(BaseLocator):
         return clean_name
     
     def _find_by_keywords_and_name(self, search_files: List[str], clean_name: str) -> List[Tuple[str, int]]:
-        """策略1: 关键字+纯净API名匹配"""
+        """策略1: 关键字+纯净API名匹配（支持多行方法定义）"""
         candidates = []
         java_keywords = ['public', 'private', 'protected', 'static', 'final', 'abstract']
         
@@ -300,10 +300,15 @@ class JavaLocator(BaseLocator):
                     
                     # 检查是否包含Java关键字和API名称
                     if any(keyword in line for keyword in java_keywords) and clean_name in line:
-                        # 进一步验证是否为方法定义
+                        # 单行方法定义检查
                         if self._looks_like_method_definition(line, clean_name):
                             candidates.append((file_path, i + 1))
                             logger.debug("关键字匹配找到候选: {}:{}", file_path, i + 1)
+                        # 多行方法定义检查：如果包含(但不包含)，检查是否为方法开始
+                        elif ('(' in line and ')' not in line and 
+                              any(indicator in line for indicator in ['int', 'void', 'String', 'boolean', 'public', 'private', 'protected', 'abstract'])):
+                            candidates.append((file_path, i + 1))
+                            logger.debug("关键字匹配找到候选（多行方法）: {}:{}", file_path, i + 1)
                             
             except Exception as e:
                 logger.warning("读取文件失败 {}: {}", file_path, str(e))
@@ -312,7 +317,7 @@ class JavaLocator(BaseLocator):
         return list(set(candidates))  # 去重
     
     def _find_by_full_signature(self, search_files: List[str], signature: str) -> List[Tuple[str, int]]:
-        """策略2: 完整签名匹配"""
+        """策略2: 完整签名匹配（精确单行匹配）"""
         candidates = []
         clean_signature = self._clean_signature(signature)
         
@@ -339,7 +344,7 @@ class JavaLocator(BaseLocator):
         return list(set(candidates))  # 去重
     
     def _find_by_enhanced_signature(self, search_files: List[str], signature: str) -> List[Tuple[str, int]]:
-        """策略3: 增强签名匹配（更宽松的匹配）"""
+        """策略3: 增强签名匹配（更宽松的匹配，支持多行）"""
         candidates = []
         clean_signature = self._clean_signature(signature)
         
@@ -361,11 +366,24 @@ class JavaLocator(BaseLocator):
                 for i, line in enumerate(lines):
                     clean_line = self._clean_code_line_for_matching(line)
                     
-                    # 检查是否包含签名的关键部分
+                    # 单行检查
                     match_count = sum(1 for part in signature_parts if part in clean_line)
                     if match_count >= len(signature_parts) * 0.7:  # 70%匹配度
                         candidates.append((file_path, i + 1))
                         logger.debug("增强签名匹配找到候选: {}:{}", file_path, i + 1)
+                    
+                    # 多行检查：如果当前行包含(但不包含)，尝试合并后续行
+                    elif ('(' in line and ')' not in line and i + 1 < len(lines)):
+                        multi_line = line
+                        for j in range(i + 1, min(i + 5, len(lines))):
+                            multi_line += " " + lines[j].strip()
+                            if ')' in multi_line:
+                                clean_multi_line = self._clean_code_line_for_matching(multi_line)
+                                match_count = sum(1 for part in signature_parts if part in clean_multi_line)
+                                if match_count >= len(signature_parts) * 0.7:
+                                    candidates.append((file_path, i + 1))
+                                    logger.debug("多行增强签名匹配找到候选: {}:{}", file_path, i + 1)
+                                break
                         
             except Exception as e:
                 logger.warning("读取文件失败 {}: {}", file_path, str(e))

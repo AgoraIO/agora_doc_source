@@ -364,6 +364,27 @@ class JavaInjector(BaseInjector):
             if stripped_line.startswith(prefix):
                 return True
         
+        # 检查Javadoc链接格式: {@link ...}
+        if '{@link' in line and '}' in line:
+            return True
+        
+        # 检查Markdown链接格式: [text](url)
+        if '](' in line and ')' in line:
+            return True
+        
+        # 检查可能是注释延续行的其他模式
+        # 如果行中包含常见的注释词汇，可能是没有*前缀的注释行
+        comment_indicators = [
+            'method', 'callback', 'parameter', 'returns', 'triggered',
+            'expires', 'generate', 'server', 'token', 'user', 'account',
+            'channel', 'calling', 'successfully', 'reports'
+        ]
+        
+        # 如果行包含多个注释指示词，很可能是注释内容
+        indicator_count = sum(1 for indicator in comment_indicators if indicator.lower() in line.lower())
+        if indicator_count >= 2:
+            return True
+        
         # 检查是否为明确的Java代码行（包含代码关键字或符号）
         code_indicators = [
             'class ', 'interface ', 'enum ', 'package ',
