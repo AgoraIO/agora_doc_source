@@ -212,6 +212,15 @@ class CppLocator(BaseLocator):
         # 从类定义开始向下搜索属性
         class_start = class_line - 1  # 转为0-based索引
         
+        # 检查是否为typedef格式，如果是则调整搜索范围
+        class_name = class_data.get("name", "")
+        if self._is_typedef_format(lines[class_start], class_name):
+            # typedef格式：当前行是 } ClassName;，需要向上找到 typedef struct { 行
+            typedef_start = self._find_typedef_start_for_class(lines, class_start, class_name)
+            if typedef_start is not None:
+                class_start = typedef_start
+                logger.debug("检测到typedef格式，调整搜索起始位置到: {}", class_start + 1)
+        
         # 找到类的结束位置（匹配大括号）
         class_end = self._find_class_end(lines, class_start)
         if class_end is None:
@@ -253,6 +262,15 @@ class CppLocator(BaseLocator):
             
             # 从枚举定义开始向下搜索枚举值
             enum_start = enum_line - 1  # 转为0-based索引
+            
+            # 检查是否为typedef格式，如果是则调整搜索范围
+            enum_name = enum_data.get("name", "")
+            if self._is_typedef_format(lines[enum_start], enum_name):
+                # typedef格式：当前行是 } EnumName;，需要向上找到 typedef enum { 行
+                typedef_start = self._find_typedef_start_for_enum(lines, enum_start, enum_name)
+                if typedef_start is not None:
+                    enum_start = typedef_start
+                    logger.debug("检测到typedef枚举格式，调整搜索起始位置到: {}", enum_start + 1)
             
             # 找到枚举的结束位置（匹配大括号）
             enum_end = self._find_enum_end(lines, enum_start)
@@ -598,7 +616,9 @@ class CppLocator(BaseLocator):
         # 类定义模式（更精确的模式优先）
         class_patterns = [
             rf"\b(class|struct)\s+{re.escape(class_name)}\s*[{{:]",
-            rf"^\s*(class|struct)\s+{re.escape(class_name)}\b"
+            rf"^\s*(class|struct)\s+{re.escape(class_name)}\b",
+            # 支持 typedef struct/class { ... } ClassName; 格式
+            rf"}}\s*{re.escape(class_name)}\s*;",
         ]
         
         for pattern in class_patterns:
@@ -630,6 +650,8 @@ class CppLocator(BaseLocator):
         enum_patterns = [
             rf"\benum\s+(class\s+)?{re.escape(enum_name)}\s*[{{:]",
             rf"^\s*enum\s+(class\s+)?{re.escape(enum_name)}\b",
+            # 支持 typedef enum { ... } EnumName; 格式
+            rf"}}\s*{re.escape(enum_name)}\s*;",
         ]
         
         for pattern in enum_patterns:
@@ -652,6 +674,63 @@ class CppLocator(BaseLocator):
             except re.error as e:
                 logger.warning("正则表达式错误: {}", str(e))
                 continue
+        
+        return None
+    
+    def _is_typedef_format(self, line: str, class_or_enum_name: str) -> bool:
+        """检查是否为typedef格式（} ClassName; 或 } EnumName;）"""
+        pattern = r"}\s*" + re.escape(class_or_enum_name) + r"\s*;"
+        return bool(re.match(pattern, line.strip()))
+    
+    def _find_typedef_start_for_class(self, lines: List[str], end_line: int, class_name: str) -> Optional[int]:
+        """查找typedef格式类的开始位置（typedef struct { 行）"""
+        # 向上搜索找到开括号，然后继续向上找typedef行
+        found_opening_brace = False
+        for i in range(end_line - 1, -1, -1):
+            line = lines[i].strip()
+            
+            # 如果还没找到开括号，继续搜索
+            if not found_opening_brace:
+                if '{' in line:
+                    found_opening_brace = True
+                    # 如果开括号和typedef在同一行，直接返回
+                    if re.match(r"typedef\s+(struct|class)\s*{", line):
+                        return i
+                continue
+            
+            # 找到开括号后，搜索typedef行
+            if re.match(r"typedef\s+(struct|class)\s*$", line):
+                return i
+            
+            # 如果遇到其他结构定义，停止搜索
+            if re.match(r"(class|struct|enum|namespace)\s+", line):
+                break
+        
+        return None
+    
+    def _find_typedef_start_for_enum(self, lines: List[str], end_line: int, enum_name: str) -> Optional[int]:
+        """查找typedef格式枚举的开始位置（typedef enum { 行）"""
+        # 向上搜索找到开括号，然后继续向上找typedef行
+        found_opening_brace = False
+        for i in range(end_line - 1, -1, -1):
+            line = lines[i].strip()
+            
+            # 如果还没找到开括号，继续搜索
+            if not found_opening_brace:
+                if '{' in line:
+                    found_opening_brace = True
+                    # 如果开括号和typedef在同一行，直接返回
+                    if re.match(r"typedef\s+enum\s*{", line):
+                        return i
+                continue
+            
+            # 找到开括号后，搜索typedef行
+            if re.match(r"typedef\s+enum\s*$", line):
+                return i
+            
+            # 如果遇到其他结构定义，停止搜索
+            if re.match(r"(class|struct|enum|namespace)\s+", line):
+                break
         
         return None
     

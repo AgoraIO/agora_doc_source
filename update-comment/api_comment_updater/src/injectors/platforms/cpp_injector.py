@@ -107,8 +107,12 @@ class CppInjector(BaseInjector):
             comment_lines = comment_item.get("comment", [])
             
             if comment_type == "class_description" and comment_lines:
+                # 检查是否为typedef格式，如果是则调整注入位置
+                typedef_line = self._find_typedef_line_for_class(file_path, line_number, class_name)
+                target_line = typedef_line if typedef_line else line_number
+                
                 success = self._inject_comment_at_location(
-                    file_path, line_number, comment_lines, class_name
+                    file_path, target_line, comment_lines, class_name
                 )
                 if success:
                     class_comment_injected = True
@@ -185,8 +189,12 @@ class CppInjector(BaseInjector):
             comment_lines = comment_item.get("comment", [])
             
             if comment_type == "enum_description" and comment_lines:
+                # 检查是否为typedef格式，如果是则调整注入位置
+                typedef_line = self._find_typedef_line_for_enum(file_path, line_number, enum_name)
+                target_line = typedef_line if typedef_line else line_number
+                
                 success = self._inject_comment_at_location(
-                    file_path, line_number, comment_lines, enum_name
+                    file_path, target_line, comment_lines, enum_name
                 )
                 if success:
                     enum_comment_injected = True
@@ -513,6 +521,100 @@ class CppInjector(BaseInjector):
             logger.error("注入注释失败 {} -> {}:{}: {}", target_name, file_path, line_number, str(e))
             return False
     
+    def _find_typedef_line_for_class(self, file_path: str, class_end_line: int, class_name: str) -> Optional[int]:
+        """
+        查找typedef格式类的typedef行
+        
+        Args:
+            file_path: 文件路径
+            class_end_line: 类结束行（} ClassName; 所在行）
+            class_name: 类名
+            
+        Returns:
+            Optional[int]: typedef行号，如果不是typedef格式返回None
+        """
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                lines = f.readlines()
+            
+            # 检查class_end_line是否匹配 } ClassName; 格式
+            if class_end_line <= len(lines):
+                end_line = lines[class_end_line - 1].strip()
+                pattern = r"}\s*" + re.escape(class_name) + r"\s*;"
+                if not re.match(pattern, end_line):
+                    return None  # 不是typedef格式
+                
+                # 向上搜索typedef行（简化版本：找到开括号后继续向上找typedef）
+                found_opening_brace = False
+                for i in range(class_end_line - 2, -1, -1):  # 从class_end_line-1开始向上搜索
+                    line = lines[i].strip()
+                    
+                    # 如果还没找到开括号，继续搜索
+                    if not found_opening_brace:
+                        if '{' in line:
+                            found_opening_brace = True
+                        continue
+                    
+                    # 找到开括号后，搜索typedef行
+                    if re.match(r"typedef\s+(struct|class)\s*$", line):
+                        return i + 1  # 返回1基索引
+                    
+                    # 如果遇到其他结构定义，停止搜索
+                    if re.match(r"(class|struct|enum|namespace)\s+", line):
+                        break
+            
+            return None
+        except Exception as e:
+            logger.debug("查找typedef行失败: {}", str(e))
+            return None
+    
+    def _find_typedef_line_for_enum(self, file_path: str, enum_end_line: int, enum_name: str) -> Optional[int]:
+        """
+        查找typedef格式枚举的typedef行
+        
+        Args:
+            file_path: 文件路径
+            enum_end_line: 枚举结束行（} EnumName; 所在行）
+            enum_name: 枚举名
+            
+        Returns:
+            Optional[int]: typedef行号，如果不是typedef格式返回None
+        """
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                lines = f.readlines()
+            
+            # 检查enum_end_line是否匹配 } EnumName; 格式
+            if enum_end_line <= len(lines):
+                end_line = lines[enum_end_line - 1].strip()
+                pattern = r"}\s*" + re.escape(enum_name) + r"\s*;"
+                if not re.match(pattern, end_line):
+                    return None  # 不是typedef格式
+                
+                # 向上搜索typedef行（简化版本：找到开括号后继续向上找typedef）
+                found_opening_brace = False
+                for i in range(enum_end_line - 2, -1, -1):  # 从enum_end_line-1开始向上搜索
+                    line = lines[i].strip()
+                    
+                    # 如果还没找到开括号，继续搜索
+                    if not found_opening_brace:
+                        if '{' in line:
+                            found_opening_brace = True
+                        continue
+                    
+                    # 找到开括号后，搜索typedef行
+                    if re.match(r"typedef\s+enum\s*$", line):
+                        return i + 1  # 返回1基索引
+                    
+                    # 如果遇到其他结构定义，停止搜索
+                    if re.match(r"(class|struct|enum|namespace)\s+", line):
+                        break
+            
+            return None
+        except Exception as e:
+            logger.debug("查找typedef行失败: {}", str(e))
+            return None
+
     def _preserve_existing_info(self, existing_content: str, new_comment: List[str]) -> List[str]:
         """
         保留现有代码中的特殊标记
