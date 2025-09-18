@@ -124,6 +124,12 @@ class APICommentUpdater:
         result = formatter.format_extracted_data(result)
         logger.info("注释格式化完成")
         
+        # 应用重载方法名替换
+        from .utils.overload_replacer import OverloadReplacer
+        replacer = OverloadReplacer()
+        result = replacer.replace_overload_references(result)
+        logger.info("重载方法名替换完成")
+        
         # 保存到文件
         if output_file is None:
             ensure_directory_exists("output")
