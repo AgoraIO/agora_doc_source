@@ -364,14 +364,26 @@ class CppLocator(BaseLocator):
             rf"\b(?:const\s+|static\s+)?\w+\s+{re.escape(attribute_name)}\s*;",
             # 带修饰符和默认值：const/static type name = value;
             rf"\b(?:const\s+|static\s+)?\w+\s+{re.escape(attribute_name)}\s*=\s*[^;]+;",
+            # 带修饰符的指针：const/static type* name;
+            rf"\b(?:const\s+|static\s+)?\w+\s*\*\s*{re.escape(attribute_name)}\s*;",
+            # 带修饰符的双指针：const/static type** name;
+            rf"\b(?:const\s+|static\s+)?\w+\s*\*\s*\*\s*{re.escape(attribute_name)}\s*;",
+            # 带修饰符的指针带默认值：const/static type* name = value;
+            rf"\b(?:const\s+|static\s+)?\w+\s*\*\s*{re.escape(attribute_name)}\s*=\s*[^;]+;",
+            # 带修饰符的双指针带默认值：const/static type** name = value;
+            rf"\b(?:const\s+|static\s+)?\w+\s*\*\s*\*\s*{re.escape(attribute_name)}\s*=\s*[^;]+;",
             # 模板类型：Template<T> name;
             rf"\b\w+<[^>]+>\s+{re.escape(attribute_name)}\s*;",
             # 模板类型带默认值：Template<T> name = value;
             rf"\b\w+<[^>]+>\s+{re.escape(attribute_name)}\s*=\s*[^;]+;",
             # 指针类型：type* name; 或 type *name;
             rf"\b\w+\s*\*\s*{re.escape(attribute_name)}\s*;",
+            # 双指针类型：type** name; 或 type **name; 或 type* *name;
+            rf"\b\w+\s*\*\s*\*\s*{re.escape(attribute_name)}\s*;",
             # 指针类型带默认值：type* name = value;
             rf"\b\w+\s*\*\s*{re.escape(attribute_name)}\s*=\s*[^;]+;",
+            # 双指针类型带默认值：type** name = value;
+            rf"\b\w+\s*\*\s*\*\s*{re.escape(attribute_name)}\s*=\s*[^;]+;",
             # 引用类型：type& name;
             rf"\b\w+\s*&\s*{re.escape(attribute_name)}\s*;",
             # 数组类型：type name[size];
@@ -392,6 +404,8 @@ class CppLocator(BaseLocator):
             rf"\b\w+<[^>]+>\s+{re.escape(attribute_name)}\s+__\w+\s*;",
             # 指针类型带后置修饰符：type* name __deprecated;
             rf"\b\w+\s*\*\s*{re.escape(attribute_name)}\s+__\w+\s*;",
+            # 双指针类型带后置修饰符：type** name __deprecated;
+            rf"\b\w+\s*\*\s*\*\s*{re.escape(attribute_name)}\s+__\w+\s*;",
             # 引用类型带后置修饰符：type& name __deprecated;
             rf"\b\w+\s*&\s*{re.escape(attribute_name)}\s+__\w+\s*;",
             # 行尾注释带后置修饰符：type name __deprecated;  // comment
@@ -523,10 +537,10 @@ class CppLocator(BaseLocator):
         keywords_patterns = [
             r"^(virtual\s+\w+)",     # virtual int
             r"^(static\s+\w+)",      # static void
-            r"^(\w+\s+\w+)",         # int/void function
             r"^(struct\s+\w+)",      # struct ClassName
             r"^(class\s+\w+)",       # class ClassName
             r"^(enum\s+\w+)",        # enum EnumName
+            r"^(\w+)\s+\w+\s*\(",    # 函数返回类型: int/void/bool function_name(
         ]
         
         for pattern in keywords_patterns:
@@ -833,9 +847,16 @@ class CppLocator(BaseLocator):
         if line.strip().startswith('//') or line.strip().startswith('*'):
             return False
         
-        # 排除函数调用（通常不包含类型信息）
-        if f"{function_name}(" in line and not any(keyword in line for keyword in ['virtual', 'static', 'int', 'void', 'bool', 'string']):
+        # 排除明显的函数调用（没有返回类型的简单调用）
+        # 检查是否是简单的函数调用（如：functionName(args)）
+        stripped = line.strip()
+        if stripped.startswith(function_name + '('):
             return False
+        
+        # 检查是否包含返回类型（函数定义通常有返回类型在函数名前）
+        parts_before_function = line.split(function_name + '(')[0].strip().split()
+        if len(parts_before_function) == 0:
+            return False  # 没有返回类型
         
         # 包含函数名和括号的可能是定义
         return f"{function_name}(" in line
