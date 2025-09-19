@@ -712,11 +712,34 @@ def build_comment_block(content_dict: Dict[str, Any], max_line_length: int = 100
         comment_lines.extend(detail_lines)
         comment_lines.append(" *")
     
-    # @note
+    # @note (使用新的统一格式)
     if content_dict.get('note'):
-        comment_lines.append(" * @note")
-        note_lines = format_comment_lines(content_dict['note'], " * ", max_line_length)
-        comment_lines.extend(note_lines)
+        note_content = content_dict['note']
+        
+        # 检查note内容是否已经包含@note格式
+        if note_content.startswith('@note '):
+            # 单行格式：@note 内容
+            comment_lines.append(f" * {note_content}")
+        elif note_content.startswith('@note\n'):
+            # 多行格式：@note\n * 内容
+            note_lines = note_content.split('\n')
+            for line in note_lines:
+                if line.strip():
+                    if line.startswith(' * '):
+                        # 已经有正确的缩进格式，直接使用
+                        comment_lines.append(line)
+                    elif line.startswith('* '):
+                        # 缺少空格的格式，补充空格
+                        comment_lines.append(f" {line}")
+                    else:
+                        # 纯内容，添加完整前缀
+                        comment_lines.append(f" * {line}")
+        else:
+            # 兜底：使用旧格式
+            comment_lines.append(" * @note")
+            note_lines = format_comment_lines(note_content, " * ", max_line_length)
+            comment_lines.extend(note_lines)
+        
         comment_lines.append(" *")
     
     # 参数

@@ -155,8 +155,9 @@ class EnumHTMLParser(BaseHTMLParser):
                     import copy
                     dd_copy = copy.copy(dd)
                     
-                    # 提取note内容（简洁格式）
-                    enum_note = self._extract_note_for_enumerator(dd_copy)
+                    # 提取note内容（使用统一格式化逻辑）
+                    from ..utils.note_utils import extract_notes_from_dd
+                    enum_note = extract_notes_from_dd(dd_copy)
                     
                     # 移除note元素后继续处理
                     note_selectors = ['.note.attention', '.note_attention', '.note.note', '.note_note']
@@ -190,9 +191,29 @@ class EnumHTMLParser(BaseHTMLParser):
                             if line.strip():
                                 comment_lines.append(f" * {line}")
                     
-                    # 添加note内容（简洁格式，不换行）
+                    # 添加note内容（使用统一格式化后的内容）
                     if enum_note:
-                        comment_lines.append(f" * @note {enum_note}")
+                        # enum_note已经包含完整的@note格式，直接添加
+                        if enum_note.startswith('@note '):
+                            # 单行格式：@note 内容
+                            comment_lines.append(f" * {enum_note}")
+                        elif enum_note.startswith('@note\n'):
+                            # 多行格式：@note\n * 内容
+                            note_lines = enum_note.split('\n')
+                            for line in note_lines:
+                                if line.strip():
+                                    if line.startswith(' * '):
+                                        # 已经有正确的缩进格式，直接使用
+                                        comment_lines.append(line)
+                                    elif line.startswith('* '):
+                                        # 缺少空格的格式，补充空格
+                                        comment_lines.append(f" {line}")
+                                    else:
+                                        # 纯内容，添加完整前缀
+                                        comment_lines.append(f" * {line}")
+                        else:
+                            # 兜底：直接作为@note内容
+                            comment_lines.append(f" * @note {enum_note}")
                     
                     comment_lines.append(" */")
                     
@@ -233,120 +254,28 @@ class EnumHTMLParser(BaseHTMLParser):
     
     def _extract_notes_for_enum_desc(self) -> str:
         """
-        提取枚举描述的注意事项，类似toc_parser的方式
+        提取枚举描述的注意事项，使用统一的note处理逻辑
         
         Returns:
-            str: 注意事项内容
+            str: 格式化后的note内容
         """
+        from ..utils.note_utils import extract_notes_from_html, format_notes_content
+        
         notes = []
         
         # 提取详细描述中的notes
         detailed_desc_section = self.soup.find('section', id=lambda x: x and '__detailed_desc' in x)
         if detailed_desc_section:
-            # 查找详细描述中的note元素
-            note_selectors = [
-                '.note.attention',
-                '.note_attention', 
-                '.note.note',
-                '.note_note'
-            ]
-            for selector in note_selectors:
-                note_elements = detailed_desc_section.select(selector)
-                for note_elem in note_elements:
-                    from ..utils.text_utils import extract_multiline_content
-                    note_text = extract_multiline_content(note_elem)
-                    if note_text and note_text not in notes:
-                        notes.append(note_text)
+            detailed_notes = extract_notes_from_html(detailed_desc_section)
+            notes.extend(detailed_notes)
         
-        # 提取其他特定区域的notes（排除参数区域）
+        # 提取其他特定区域的notes（排除参数区域和详细描述区域）
         params_section = self.soup.find('section', id=lambda x: x and '__parameters' in x)
+        exclude_sections = [params_section, detailed_desc_section]
         
-        # 在整个文档中查找notes，但排除参数区域
-        note_selectors = [
-            '.note.attention',
-            '.note_attention', 
-            '.note.note',
-            '.note_note'
-        ]
+        other_notes = extract_notes_from_html(self.soup, exclude_sections)
+        notes.extend(other_notes)
         
-        for selector in note_selectors:
-            note_elements = self.soup.select(selector)
-            for note_elem in note_elements:
-                # 检查这个note是否在参数区域内
-                if params_section and params_section.find(lambda tag: tag == note_elem):
-                    continue  # 跳过参数区域内的notes
-                
-                # 检查是否已经在详细描述中处理过
-                if detailed_desc_section and detailed_desc_section.find(lambda tag: tag == note_elem):
-                    continue  # 跳过已处理的notes
-                
-                from ..utils.text_utils import extract_multiline_content
-                note_text = extract_multiline_content(note_elem)
-                if note_text and note_text not in notes:
-                    notes.append(note_text)
-        
-        result = '\n\n'.join(notes)
-        return result
+        # 使用统一的格式化逻辑
+        return format_notes_content(notes)
     
-    def _extract_note_for_enumerator(self, dd_element) -> str:
-        """
-        从dd元素中提取note内容（简洁格式，不保留标题）
-        
-        Args:
-            dd_element: BeautifulSoup dd元素
-            
-        Returns:
-            str: 简洁的note内容
-        """
-        if not dd_element:
-            return ""
-        
-        note_texts = []
-        note_selectors = ['.note.attention', '.note_attention', '.note.note', '.note_note']
-        
-        for selector in note_selectors:
-            note_elements = dd_element.select(selector)
-            for note_elem in note_elements:
-                from ..utils.text_utils import extract_text_content
-                note_text = extract_text_content(note_elem)
-                
-                # 移除note标题（如 "Note:", "Attention:" 等）
-                note_text = self._remove_note_title(note_text)
-                
-                if note_text and note_text not in note_texts:
-                    note_texts.append(note_text)
-        
-        # 合并多个note，用空格分隔（简洁格式）
-        return ' '.join(note_texts)
-    
-    def _remove_note_title(self, text: str) -> str:
-        """
-        移除note标题（如 "Note:", "Attention:" 等）
-        
-        Args:
-            text: 原始note文本
-            
-        Returns:
-            str: 移除标题后的文本
-        """
-        if not text:
-            return text
-        
-        # 常见的note标题模式
-        title_patterns = [
-            r'^Note:\s*',
-            r'^Attention:\s*',
-            r'^Warning:\s*',
-            r'^Caution:\s*',
-            r'^Important:\s*',
-            r'^Tip:\s*',
-            r'^注意：\s*',
-            r'^警告：\s*',
-            r'^提示：\s*'
-        ]
-        
-        import re
-        for pattern in title_patterns:
-            text = re.sub(pattern, '', text, flags=re.IGNORECASE)
-        
-        return text.strip()
