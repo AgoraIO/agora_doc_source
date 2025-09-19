@@ -190,13 +190,35 @@ class TocHTMLParser(BaseHTMLParser):
                     comment_lines.append(f" * {line}")
             comment_lines.append(" *")
         
-        # @note
+        # @note (使用新的统一格式)
         if content.get('note'):
-            comment_lines.append(" * @note")
-            note_text = content['note']
-            for line in note_text.split('\n'):
-                if line.strip():
-                    comment_lines.append(f" * {line}")
+            note_content = content['note']
+            
+            # 检查note内容是否已经包含@note格式
+            if note_content.startswith('@note '):
+                # 单行格式：@note 内容
+                comment_lines.append(f" * {note_content}")
+            elif note_content.startswith('@note\n'):
+                # 多行格式：@note\n * 内容
+                note_lines = note_content.split('\n')
+                for line in note_lines:
+                    if line.strip():
+                        if line.startswith(' * '):
+                            # 已经有正确的缩进格式，直接使用
+                            comment_lines.append(line)
+                        elif line.startswith('* '):
+                            # 缺少空格的格式，补充空格
+                            comment_lines.append(f" {line}")
+                        else:
+                            # 纯内容，添加完整前缀
+                            comment_lines.append(f" * {line}")
+            else:
+                # 兜底：使用旧格式
+                comment_lines.append(" * @note")
+                for line in note_content.split('\n'):
+                    if line.strip():
+                        comment_lines.append(f" * {line}")
+            
             comment_lines.append(" *")
         
         # 参数
@@ -268,65 +290,34 @@ class TocHTMLParser(BaseHTMLParser):
             section: BeautifulSoup section元素
             
         Returns:
-            str: 注意事项内容
+            str: 格式化后的note内容
         """
+        from ..utils.note_utils import extract_notes_from_html, format_notes_content
+        
         notes = []
         
-        # 1. 提取限制信息 (Restrictions) - 移动到@note中
+        # 1. 提取限制信息 (Restrictions)
         restriction_section = section.find('section', id=lambda x: x and '__restriction' in x)
         if restriction_section:
             restriction_text = self._extract_multiline_from_section(restriction_section, "Restrictions")
             if restriction_text and restriction_text.lower() != "none.":
                 notes.append(restriction_text)
         
-        # 2. 提取详细描述中的notes（已经在_extract_detailed_description中被移除，这里不会重复）
+        # 2. 提取详细描述中的notes
         detailed_desc_section = section.find('section', id=lambda x: x and '__detailed_desc' in x)
         if detailed_desc_section:
-            # 查找详细描述中的note元素
-            note_selectors = [
-                '.note.attention',
-                '.note_attention', 
-                '.note.note',
-                '.note_note'
-            ]
-            for selector in note_selectors:
-                note_elements = detailed_desc_section.select(selector)
-                for note_elem in note_elements:
-                    from ..utils.text_utils import extract_multiline_content
-                    note_text = extract_multiline_content(note_elem)
-                    if note_text and note_text not in notes:
-                        notes.append(note_text)
+            detailed_notes = extract_notes_from_html(detailed_desc_section)
+            notes.extend(detailed_notes)
         
-        # 3. 提取其他特定区域的notes（排除参数区域）
-        # 查找除了参数区域之外的其他notes
+        # 3. 提取其他特定区域的notes（排除参数区域和详细描述区域）
         params_section = section.find('section', id=lambda x: x and '__parameters' in x)
+        exclude_sections = [params_section, detailed_desc_section]
         
-        # 在整个section中查找notes，但排除参数区域
-        note_selectors = [
-            '.note.attention',
-            '.note_attention', 
-            '.note.note',
-            '.note_note'
-        ]
+        other_notes = extract_notes_from_html(section, exclude_sections)
+        notes.extend(other_notes)
         
-        for selector in note_selectors:
-            note_elements = section.select(selector)
-            for note_elem in note_elements:
-                # 检查这个note是否在参数区域内
-                if params_section and params_section.find(lambda tag: tag == note_elem):
-                    continue  # 跳过参数区域内的notes
-                
-                # 检查是否已经在详细描述中处理过
-                if detailed_desc_section and detailed_desc_section.find(lambda tag: tag == note_elem):
-                    continue  # 跳过已处理的notes
-                
-                from ..utils.text_utils import extract_multiline_content
-                note_text = extract_multiline_content(note_elem)
-                if note_text and note_text not in notes:
-                    notes.append(note_text)
-        
-        result = '\n\n'.join(notes)
-        return result
+        # 使用统一的格式化逻辑
+        return format_notes_content(notes)
     
     def _extract_text_from_section(self, section, title_to_remove: str = "") -> str:
         """
