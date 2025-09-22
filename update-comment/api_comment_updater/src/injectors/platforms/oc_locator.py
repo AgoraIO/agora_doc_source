@@ -24,9 +24,95 @@ class OcLocator(BaseLocator):
         Returns:
             Tuple[str, int]: (文件路径, 行号)，如果未找到返回None
         """
-        # TODO: 实现Objective-C特定的API定位逻辑
-        # 需要处理OC选择器语法：setClientRole:options:
-        logger.debug("Objective-C API定位 - 待实现")
+        api_name = api_data.get("name", "")
+        api_signature = api_data.get("signature", "")
+        parent_class = api_data.get("parent_class", "")
+        
+        if not api_name:
+            logger.warning("Objective-C API名称为空，跳过定位")
+            return None
+        
+        # 提取纯净API名称（去除重载标识、OC参数等）
+        clean_name = self._extract_clean_api_name(api_name)
+        logger.debug("开始定位Objective-C API: {} (clean_name: {}, parent_class: {})", 
+                    api_name, clean_name, parent_class)
+        
+        # 获取搜索文件列表
+        search_files = self._get_search_files()
+        if not search_files:
+            logger.warning("未找到Objective-C搜索文件")
+            return None
+        
+        logger.debug("Objective-C搜索文件数量: {}", len(search_files))
+        
+        # 存储各步骤的候选结果，用于后续parent_class验证
+        step_candidates = {}
+        
+        # 步骤1: 关键字+纯净API名匹配（命中率最高，性能开销最小）
+        candidates = self._find_all_keywords_name_matches(clean_name, api_signature, search_files)
+        if len(candidates) == 1:
+            logger.info("通过关键字+名称定位到Objective-C API {}: {}:{}", api_name, candidates[0][0], candidates[0][1])
+            return candidates[0]
+        elif len(candidates) > 1:
+            step_candidates[1] = candidates
+            logger.debug("关键字+名称匹配找到 {} 个Objective-C候选位置", len(candidates))
+        
+        # 步骤2: 完整签名匹配
+        if api_signature:
+            candidates = self._find_all_signature_matches(api_signature, search_files)
+            if len(candidates) == 1:
+                logger.info("通过完整签名定位到Objective-C API {}: {}:{}", api_name, candidates[0][0], candidates[0][1])
+                return candidates[0]
+            elif len(candidates) > 1:
+                step_candidates[2] = candidates
+                logger.debug("完整签名匹配找到 {} 个Objective-C候选位置", len(candidates))
+        
+        # 步骤3: 增强签名匹配（性能开销较大，尽量减少调用）
+        if api_signature:
+            candidates = self._find_all_signature_matches_enhanced(api_signature, search_files)
+            if len(candidates) == 1:
+                logger.info("通过增强签名定位到Objective-C API {}: {}:{}", api_name, candidates[0][0], candidates[0][1])
+                return candidates[0]
+            elif len(candidates) > 1:
+                step_candidates[3] = candidates
+                logger.debug("增强签名匹配找到 {} 个Objective-C候选位置", len(candidates))
+        
+        # 步骤4: 纯净名称匹配
+        candidates = self._find_all_name_matches(clean_name, search_files)
+        if len(candidates) == 1:
+            logger.info("通过名称定位到Objective-C API {}: {}:{}", api_name, candidates[0][0], candidates[0][1])
+            return candidates[0]
+        elif len(candidates) > 1:
+            step_candidates[4] = candidates
+            logger.debug("名称匹配找到 {} 个Objective-C候选位置", len(candidates))
+        
+        # 步骤5: parent_class验证（处理多结果情况）
+        if step_candidates and parent_class:
+            # 选择结果数量最少的步骤，数量相同按步骤顺序
+            min_count = min(len(candidates) for candidates in step_candidates.values())
+            selected_step = min(step for step, candidates in step_candidates.items() 
+                              if len(candidates) == min_count)
+            
+            candidates = step_candidates[selected_step]
+            logger.debug("选择步骤 {} 的 {} 个候选位置进行parent_class验证", selected_step, len(candidates))
+            
+            # 验证parent_class
+            for file_path, line_number in candidates:
+                if self._verify_parent_class(file_path, line_number, parent_class):
+                    logger.info("通过parent_class验证定位到Objective-C API {}: {}:{}", api_name, file_path, line_number)
+                    return (file_path, line_number)
+            
+            logger.error("parent_class验证失败，所有候选位置都不属于类 {}", parent_class)
+            return None
+        
+        # 如果没有parent_class信息，返回第一个候选位置
+        if step_candidates:
+            first_step = min(step_candidates.keys())
+            candidates = step_candidates[first_step]
+            logger.info("无parent_class信息，返回第一个候选位置: {}:{}", candidates[0][0], candidates[0][1])
+            return candidates[0]
+        
+        logger.warning("未能定位Objective-C API: {}", api_name)
         return None
     
     def locate_class(self, class_data: Dict[str, Any]) -> Optional[Tuple[str, int]]:
@@ -39,10 +125,69 @@ class OcLocator(BaseLocator):
         Returns:
             Tuple[str, int]: (文件路径, 行号)，如果未找到返回None
         """
-        # TODO: 实现Objective-C特定的类定位逻辑
-        # 需要处理@interface和@implementation
-        logger.debug("Objective-C 类定位 - 待实现")
+        class_name = class_data.get("name", "")
+        logger.debug("开始定位Objective-C类: {}", class_name)
+        
+        search_files = self._get_search_files()
+        if not search_files:
+            logger.warning("未找到Objective-C搜索文件")
+            return None
+        
+        logger.debug("Objective-C搜索文件数量: {}", len(search_files))
+        
+        # 搜索@interface声明
+        for file_path in search_files:
+            try:
+                content = read_file_content(file_path)
+                lines = content.split('\n')
+                
+                for line_num, line in enumerate(lines, 1):
+                    line_clean = self._clean_code_line_for_matching(line)
+                    
+                    # 查找@interface声明
+                    if '@interface' in line_clean and class_name in line_clean:
+                        # 检查是否是完整的类声明
+                        if self._is_class_interface_definition(line_clean, class_name):
+                            logger.info("定位到Objective-C类 {}: {}", class_name, f"{file_path}:{line_num}")
+                            return (file_path, line_num)
+                            
+            except Exception as e:
+                logger.debug("读取文件失败 {}: {}", file_path, str(e))
+                continue
+        
+        logger.warning("未能定位Objective-C类 {}", class_name)
         return None
+    
+    def _is_class_interface_definition(self, line: str, class_name: str) -> bool:
+        """
+        判断是否为Objective-C类接口定义
+        
+        Args:
+            line: 代码行
+            class_name: 类名
+            
+        Returns:
+            bool: 是否为类接口定义
+        """
+        # 检查是否包含@interface和类名
+        if '@interface' not in line or class_name not in line:
+            return False
+        
+        # 检查是否是类声明格式
+        # @interface ClassName : ParentClass
+        # @interface ClassName
+        # @interface ClassName(Category)
+        patterns = [
+            rf'@interface\s+{re.escape(class_name)}\s*:',
+            rf'@interface\s+{re.escape(class_name)}\s*$',
+            rf'@interface\s+{re.escape(class_name)}\s*\(',
+        ]
+        
+        for pattern in patterns:
+            if re.search(pattern, line):
+                return True
+        
+        return False
     
     def locate_enum(self, enum_data: Dict[str, Any]) -> Optional[Tuple[str, int]]:
         """
@@ -54,10 +199,68 @@ class OcLocator(BaseLocator):
         Returns:
             Tuple[str, int]: (文件路径, 行号)，如果未找到返回None
         """
-        # TODO: 实现Objective-C特定的枚举定位逻辑
-        # 需要处理NS_ENUM等OC特有语法
-        logger.debug("Objective-C 枚举定位 - 待实现")
+        enum_name = enum_data.get("name", "")
+        logger.debug("开始定位Objective-C枚举: {}", enum_name)
+        
+        search_files = self._get_search_files()
+        if not search_files:
+            logger.warning("未找到Objective-C搜索文件")
+            return None
+        
+        logger.debug("Objective-C搜索文件数量: {}", len(search_files))
+        
+        # 搜索枚举声明
+        for file_path in search_files:
+            try:
+                content = read_file_content(file_path)
+                lines = content.split('\n')
+                
+                for line_num, line in enumerate(lines, 1):
+                    line_clean = self._clean_code_line_for_matching(line)
+                    
+                    # 查找枚举声明
+                    if self._is_enum_definition(line_clean, enum_name):
+                        logger.info("定位到Objective-C枚举 {}: {}", enum_name, f"{file_path}:{line_num}")
+                        return (file_path, line_num)
+                            
+            except Exception as e:
+                logger.debug("读取文件失败 {}: {}", file_path, str(e))
+                continue
+        
+        logger.warning("未能定位Objective-C枚举 {}", enum_name)
         return None
+    
+    def _is_enum_definition(self, line: str, enum_name: str) -> bool:
+        """
+        判断是否为Objective-C枚举定义
+        
+        Args:
+            line: 代码行
+            enum_name: 枚举名
+            
+        Returns:
+            bool: 是否为枚举定义
+        """
+        # 检查是否包含枚举名
+        if enum_name not in line:
+            return False
+        
+        # 检查是否是枚举声明格式
+        # typedef enum { ... } EnumName;
+        # typedef NS_ENUM(NSInteger, EnumName) { ... };
+        # typedef NS_OPTIONS(NSUInteger, EnumName) { ... };
+        patterns = [
+            rf'typedef\s+enum\s*.*{re.escape(enum_name)}',
+            rf'typedef\s+NS_ENUM\s*\([^)]+,\s*{re.escape(enum_name)}',
+            rf'typedef\s+NS_OPTIONS\s*\([^)]+,\s*{re.escape(enum_name)}',
+            rf'enum\s+{re.escape(enum_name)}\s*{{',
+        ]
+        
+        for pattern in patterns:
+            if re.search(pattern, line):
+                return True
+        
+        return False
     
     def locate_class_attribute(self, class_data: Dict[str, Any], attribute_name: str) -> Optional[Tuple[str, int]]:
         """
@@ -70,10 +273,69 @@ class OcLocator(BaseLocator):
         Returns:
             Tuple[str, int]: (文件路径, 行号)，如果未找到返回None
         """
-        # TODO: 实现Objective-C特定的属性定位逻辑
-        # 需要处理@property等OC特有语法
-        logger.debug("Objective-C 属性定位 - 待实现")
+        class_name = class_data.get("name", "")
+        logger.debug("开始定位Objective-C类属性: {}.{}", class_name, attribute_name)
+        
+        # 先定位类的位置
+        class_location = self.locate_class(class_data)
+        if not class_location:
+            logger.warning("无法定位类 {}，跳过属性定位", class_name)
+            return None
+        
+        file_path, class_line = class_location
+        
+        try:
+            content = read_file_content(file_path)
+            lines = content.split('\n')
+            
+            # 在类定义范围内搜索属性
+            for line_num in range(class_line, len(lines)):
+                line = lines[line_num - 1]
+                line_clean = self._clean_code_line_for_matching(line)
+                
+                # 查找@property声明
+                if self._is_property_definition(line_clean, attribute_name):
+                    logger.info("定位到Objective-C类属性 {}.{}: {}", class_name, attribute_name, f"{file_path}:{line_num}")
+                    return (file_path, line_num)
+                
+                # 如果遇到下一个类定义，停止搜索
+                if line_num > class_line and ('@interface' in line_clean or '@implementation' in line_clean):
+                    break
+                    
+        except Exception as e:
+            logger.debug("读取文件失败 {}: {}", file_path, str(e))
+        
+        logger.warning("未能定位Objective-C类属性 {}.{}", class_name, attribute_name)
         return None
+    
+    def _is_property_definition(self, line: str, property_name: str) -> bool:
+        """
+        判断是否为Objective-C属性定义
+        
+        Args:
+            line: 代码行
+            property_name: 属性名
+            
+        Returns:
+            bool: 是否为属性定义
+        """
+        # 检查是否包含@property和属性名
+        if '@property' not in line or property_name not in line:
+            return False
+        
+        # 检查是否是属性声明格式
+        # @property (nonatomic, strong) Type propertyName;
+        # @property (nonatomic, assign) Type propertyName;
+        patterns = [
+            rf'@property\s*\([^)]*\)\s+[^{{]*{re.escape(property_name)}',
+            rf'@property\s+[^{{]*{re.escape(property_name)}',
+        ]
+        
+        for pattern in patterns:
+            if re.search(pattern, line):
+                return True
+        
+        return False
     
     def locate_enum_value(self, enum_data: Dict[str, Any], value_name: str) -> Optional[Tuple[str, int]]:
         """
@@ -86,9 +348,71 @@ class OcLocator(BaseLocator):
         Returns:
             Tuple[str, int]: (文件路径, 行号)，如果未找到返回None
         """
-        # TODO: 实现Objective-C特定的枚举值定位逻辑
-        logger.debug("Objective-C 枚举值定位 - 待实现")
+        enum_name = enum_data.get("name", "")
+        logger.debug("开始定位Objective-C枚举值: {}.{}", enum_name, value_name)
+        
+        # 先定位枚举的位置
+        enum_location = self.locate_enum(enum_data)
+        if not enum_location:
+            logger.warning("无法定位枚举 {}，跳过枚举值定位", enum_name)
+            return None
+        
+        file_path, enum_line = enum_location
+        
+        try:
+            content = read_file_content(file_path)
+            lines = content.split('\n')
+            
+            # 在枚举定义范围内搜索枚举值
+            for line_num in range(enum_line, len(lines)):
+                line = lines[line_num - 1]
+                line_clean = self._clean_code_line_for_matching(line)
+                
+                # 查找枚举值定义
+                if self._is_enum_value_definition(line_clean, value_name):
+                    logger.info("定位到Objective-C枚举值 {}.{}: {}", enum_name, value_name, f"{file_path}:{line_num}")
+                    return (file_path, line_num)
+                
+                # 如果遇到下一个枚举或类定义，停止搜索
+                if line_num > enum_line and ('typedef' in line_clean or '@interface' in line_clean or '@implementation' in line_clean):
+                    break
+                    
+        except Exception as e:
+            logger.debug("读取文件失败 {}: {}", file_path, str(e))
+        
+        logger.warning("未能定位Objective-C枚举值 {}.{}", enum_name, value_name)
         return None
+    
+    def _is_enum_value_definition(self, line: str, value_name: str) -> bool:
+        """
+        判断是否为Objective-C枚举值定义
+        
+        Args:
+            line: 代码行
+            value_name: 枚举值名
+            
+        Returns:
+            bool: 是否为枚举值定义
+        """
+        # 检查是否包含枚举值名
+        if value_name not in line:
+            return False
+        
+        # 检查是否是枚举值定义格式
+        # EnumValue = 0,
+        # EnumValue,
+        # EnumValue = 1 << 0,
+        patterns = [
+            rf'{re.escape(value_name)}\s*=',
+            rf'{re.escape(value_name)}\s*,',
+            rf'{re.escape(value_name)}\s*$',
+        ]
+        
+        for pattern in patterns:
+            if re.search(pattern, line):
+                return True
+        
+        return False
     
     # ==================== Objective-C特定实现 ====================
     
@@ -142,30 +466,6 @@ class OcLocator(BaseLocator):
         logger.debug("Objective-C 属性识别 - 待实现")
         return False
     
-    def _is_enum_value_definition(self, line: str, value_name: str) -> bool:
-        """
-        Objective-C枚举值定义检测
-        
-        Args:
-            line: 代码行
-            value_name: 枚举值名
-            
-        Returns:
-            bool: 是否为Objective-C枚举值定义
-        """
-        # TODO: 实现Objective-C特定的枚举值识别逻辑
-        # 可以先参考C++的实现
-        oc_patterns = [
-            rf"^\s*{re.escape(value_name)}\s*[,=]",           # 行开始的 VALUE_NAME, 或 VALUE_NAME =
-            rf"^\s*{re.escape(value_name)}\s*$",              # 只有 VALUE_NAME
-        ]
-        
-        for pattern in oc_patterns:
-            if re.search(pattern, line):
-                return True
-        
-        return False
-    
     def _find_nearest_parent_class(self, lines: List[str], api_line_index: int) -> Optional[str]:
         """
         从指定位置向上搜索，找到最近的Objective-C类声明
@@ -181,3 +481,318 @@ class OcLocator(BaseLocator):
         # 需要处理@interface、@implementation等
         logger.debug("Objective-C 父类查找 - 待实现")
         return None
+    
+    # ==================== Objective-C特定的辅助方法 ====================
+    
+    def _extract_clean_api_name(self, api_name: str) -> str:
+        """
+        提取纯净的API名称，去除重载标识和OC参数
+        
+        Args:
+            api_name: 原始API名称
+            
+        Returns:
+            str: 清理后的API名称
+        """
+        # 去除重载标识 [1/2], [2/2] 等
+        clean_name = re.sub(r'\s*\[\d+/\d+\]', '', api_name)
+        
+        # 去除OC参数标识 :param1:param2: 等
+        # 保留方法名部分，去除参数部分
+        if ':' in clean_name:
+            # 对于OC方法，只保留方法名部分
+            clean_name = clean_name.split(':')[0]
+        
+        return clean_name.strip()
+    
+    def _find_all_keywords_name_matches(self, clean_name: str, signature: str, search_files: List[str]) -> List[Tuple[str, int]]:
+        """
+        使用关键字+纯净名称匹配查找所有候选位置
+        
+        Args:
+            clean_name: 纯净API名称
+            signature: API签名
+            search_files: 搜索文件列表
+            
+        Returns:
+            List[Tuple[str, int]]: 候选位置列表
+        """
+        candidates = []
+        
+        # Objective-C方法关键字
+        oc_keywords = [
+            '- (',  # 实例方法
+            '+ (',  # 类方法
+        ]
+        
+        for file_path in search_files:
+            try:
+                content = read_file_content(file_path)
+                lines = content.split('\n')
+                
+                for line_num, line in enumerate(lines, 1):
+                    line_clean = self._clean_code_line_for_matching(line)
+                    
+                    # 检查是否包含关键字和API名称
+                    for keyword in oc_keywords:
+                        if keyword in line_clean and clean_name in line_clean:
+                            # 进一步验证：确保是方法定义而不是调用
+                            if self._is_method_definition(line_clean, clean_name):
+                                candidates.append((file_path, line_num))
+                                break
+                                
+            except Exception as e:
+                logger.debug("读取文件失败 {}: {}", file_path, str(e))
+                continue
+        
+        return candidates
+    
+    def _is_method_definition(self, line: str, method_name: str) -> bool:
+        """
+        判断是否为Objective-C方法定义
+        
+        Args:
+            line: 代码行
+            method_name: 方法名
+            
+        Returns:
+            bool: 是否为方法定义
+        """
+        # 检查是否以方法关键字开头
+        if not (line.strip().startswith('- (') or line.strip().startswith('+ (')):
+            return False
+        
+        # 检查是否包含方法名
+        if method_name not in line:
+            return False
+        
+        # 检查是否包含返回类型和参数
+        # Objective-C方法格式：- (ReturnType)methodName:(ParamType)param1 otherParam:(ParamType)param2
+        if ')' in line and ':' in line:
+            return True
+        
+        return False
+    
+    def _find_all_signature_matches(self, signature: str, search_files: List[str]) -> List[Tuple[str, int]]:
+        """
+        使用完整签名匹配查找所有候选位置
+        
+        Args:
+            signature: API签名
+            search_files: 搜索文件列表
+            
+        Returns:
+            List[Tuple[str, int]]: 候选位置列表
+        """
+        candidates = []
+        clean_signature = self._clean_signature(signature)
+        
+        for file_path in search_files:
+            try:
+                content = read_file_content(file_path)
+                lines = content.split('\n')
+                
+                for line_num, line in enumerate(lines, 1):
+                    line_clean = self._clean_code_line_for_matching(line)
+                    
+                    # 直接匹配清理后的签名
+                    if clean_signature in line_clean:
+                        candidates.append((file_path, line_num))
+                    # 如果直接匹配失败，尝试移除NS_SWIFT_NAME部分后匹配
+                    elif 'NS_SWIFT_NAME' in line_clean:
+                        # 移除NS_SWIFT_NAME部分，保持分号
+                        line_without_swift = re.sub(r'\s+NS_SWIFT_NAME\([^)]+\)', '', line_clean)
+                        # 确保以分号结尾
+                        if not line_without_swift.endswith(';'):
+                            line_without_swift += ';'
+                        if clean_signature in line_without_swift:
+                            candidates.append((file_path, line_num))
+                        
+            except Exception as e:
+                logger.debug("读取文件失败 {}: {}", file_path, str(e))
+                continue
+        
+        return candidates
+    
+    def _find_all_signature_matches_enhanced(self, signature: str, search_files: List[str]) -> List[Tuple[str, int]]:
+        """
+        使用增强签名匹配查找所有候选位置
+        
+        Args:
+            signature: API签名
+            search_files: 搜索文件列表
+            
+        Returns:
+            List[Tuple[str, int]]: 候选位置列表
+        """
+        candidates = []
+        clean_signature = self._clean_signature(signature)
+        
+        # 提取关键组件进行匹配
+        signature_components = self._extract_signature_components(clean_signature)
+        
+        for file_path in search_files:
+            try:
+                content = read_file_content(file_path)
+                lines = content.split('\n')
+                
+                for line_num, line in enumerate(lines, 1):
+                    line_clean = self._clean_code_line_for_matching(line)
+                    
+                    # 检查关键组件匹配
+                    if self._match_signature_components(line_clean, signature_components):
+                        candidates.append((file_path, line_num))
+                        
+            except Exception as e:
+                logger.debug("读取文件失败 {}: {}", file_path, str(e))
+                continue
+        
+        return candidates
+    
+    def _extract_signature_components(self, signature: str) -> List[str]:
+        """
+        提取签名的关键组件
+        
+        Args:
+            signature: 清理后的签名
+            
+        Returns:
+            List[str]: 关键组件列表
+        """
+        components = []
+        
+        # 提取方法名
+        method_match = re.search(r'(\w+):', signature)
+        if method_match:
+            components.append(method_match.group(1))
+        
+        # 提取返回类型
+        return_match = re.search(r'\(([^)]+)\)', signature)
+        if return_match:
+            components.append(return_match.group(1))
+        
+        # 提取参数类型
+        param_matches = re.findall(r':\s*\(([^)]+)\)', signature)
+        components.extend(param_matches)
+        
+        return components
+    
+    def _match_signature_components(self, line: str, components: List[str]) -> bool:
+        """
+        检查行是否匹配签名组件
+        
+        Args:
+            line: 代码行
+            components: 签名组件列表
+            
+        Returns:
+            bool: 是否匹配
+        """
+        if not components:
+            return False
+        
+        # 至少匹配一半的组件
+        match_count = sum(1 for component in components if component in line)
+        return match_count >= len(components) // 2
+    
+    def _find_all_name_matches(self, clean_name: str, search_files: List[str]) -> List[Tuple[str, int]]:
+        """
+        使用纯净名称匹配查找所有候选位置
+        
+        Args:
+            clean_name: 纯净API名称
+            search_files: 搜索文件列表
+            
+        Returns:
+            List[Tuple[str, int]]: 候选位置列表
+        """
+        candidates = []
+        
+        for file_path in search_files:
+            try:
+                content = read_file_content(file_path)
+                lines = content.split('\n')
+                
+                for line_num, line in enumerate(lines, 1):
+                    line_clean = self._clean_code_line_for_matching(line)
+                    
+                    # 检查是否包含方法名
+                    if clean_name in line_clean:
+                        # 进一步验证：确保是方法定义
+                        if self._is_method_definition(line_clean, clean_name):
+                            candidates.append((file_path, line_num))
+                            
+            except Exception as e:
+                logger.debug("读取文件失败 {}: {}", file_path, str(e))
+                continue
+        
+        return candidates
+    
+    def _verify_parent_class(self, file_path: str, line_number: int, parent_class: str) -> bool:
+        """
+        验证API是否属于指定的父类
+        
+        Args:
+            file_path: 文件路径
+            line_number: 行号
+            parent_class: 父类名
+            
+        Returns:
+            bool: 是否属于指定父类
+        """
+        try:
+            content = read_file_content(file_path)
+            lines = content.split('\n')
+            
+            # 从API行向上搜索最近的类声明
+            for i in range(line_number - 1, -1, -1):
+                line = lines[i].strip()
+                
+                # 查找@interface声明
+                if '@interface' in line:
+                    # 处理各种@interface格式：
+                    # @interface ClassName : ParentClass
+                    # @interface ClassName(Category)
+                    # @interface ClassName
+                    class_match = re.search(r'@interface\s+(\w+)', line)
+                    if class_match:
+                        found_class = class_match.group(1)
+                        # 检查是否匹配主类名或Category类名
+                        if found_class == parent_class:
+                            return True
+                        # 检查是否是Category格式：ClassName(Category)
+                        category_match = re.search(r'@interface\s+(\w+)\((\w+)\)', line)
+                        if category_match:
+                            main_class = category_match.group(1)
+                            category_name = category_match.group(2)
+                            # 对于Category，检查主类名或完整名称
+                            if main_class == parent_class or f"{main_class}({category_name})" == parent_class:
+                                return True
+                            # 特殊处理：如果parent_class是ClassNameEx格式，检查是否是ClassName(Ex)
+                            if parent_class.endswith('Ex') and main_class == parent_class[:-2] and category_name == 'Ex':
+                                return True
+                
+                # 查找@protocol声明
+                if '@protocol' in line:
+                    # 处理@protocol格式：
+                    # @protocol ProtocolName <ParentProtocol>
+                    # @protocol ProtocolName
+                    protocol_match = re.search(r'@protocol\s+(\w+)', line)
+                    if protocol_match:
+                        found_protocol = protocol_match.group(1)
+                        if found_protocol == parent_class:
+                            return True
+                
+                # 查找@implementation声明
+                if '@implementation' in line:
+                    # 处理@implementation格式
+                    impl_match = re.search(r'@implementation\s+(\w+)', line)
+                    if impl_match:
+                        found_class = impl_match.group(1)
+                        if found_class == parent_class:
+                            return True
+                        
+        except Exception as e:
+            logger.debug("验证父类失败 {}:{}: {}", file_path, line_number, str(e))
+        
+        return False
