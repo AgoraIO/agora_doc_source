@@ -48,24 +48,24 @@ class OcLocator(BaseLocator):
         # 存储各步骤的候选结果，用于后续parent_class验证
         step_candidates = {}
         
-        # 步骤1: 关键字+纯净API名匹配（命中率最高，性能开销最小）
-        candidates = self._find_all_keywords_name_matches(clean_name, api_signature, search_files)
-        if len(candidates) == 1:
-            logger.info("通过关键字+名称定位到Objective-C API {}: {}:{}", api_name, candidates[0][0], candidates[0][1])
-            return candidates[0]
-        elif len(candidates) > 1:
-            step_candidates[1] = candidates
-            logger.debug("关键字+名称匹配找到 {} 个Objective-C候选位置", len(candidates))
-        
-        # 步骤2: 完整签名匹配
+        # 步骤1: 完整签名匹配（性能开销最小，准确性最高）
         if api_signature:
             candidates = self._find_all_signature_matches(api_signature, search_files)
             if len(candidates) == 1:
                 logger.info("通过完整签名定位到Objective-C API {}: {}:{}", api_name, candidates[0][0], candidates[0][1])
                 return candidates[0]
             elif len(candidates) > 1:
-                step_candidates[2] = candidates
+                step_candidates[1] = candidates
                 logger.debug("完整签名匹配找到 {} 个Objective-C候选位置", len(candidates))
+        
+        # 步骤2: 关键字+纯净API名匹配（命中率较高，性能开销中等）
+        candidates = self._find_all_keywords_name_matches(clean_name, api_signature, search_files)
+        if len(candidates) == 1:
+            logger.info("通过关键字+名称定位到Objective-C API {}: {}:{}", api_name, candidates[0][0], candidates[0][1])
+            return candidates[0]
+        elif len(candidates) > 1:
+            step_candidates[2] = candidates
+            logger.debug("关键字+名称匹配找到 {} 个Objective-C候选位置", len(candidates))
         
         # 步骤3: 增强签名匹配（性能开销较大，尽量减少调用）
         if api_signature:
@@ -86,17 +86,22 @@ class OcLocator(BaseLocator):
             step_candidates[4] = candidates
             logger.debug("名称匹配找到 {} 个Objective-C候选位置", len(candidates))
         
-        # 步骤5: parent_class验证（处理多结果情况）
+        # 步骤5: parent_class验证（处理多结果情况，仅处理有parent_class的情况）
         if step_candidates and parent_class:
-            # 选择结果数量最少的步骤，数量相同按步骤顺序
-            min_count = min(len(candidates) for candidates in step_candidates.values())
-            selected_step = min(step for step, candidates in step_candidates.items() 
-                              if len(candidates) == min_count)
+            # 优先选择增强签名匹配（步骤3），其次选择结果数量最少的步骤
+            if 3 in step_candidates:
+                selected_step = 3
+                candidates = step_candidates[3]
+                logger.debug("优先选择增强签名匹配（步骤3）的 {} 个候选位置进行parent_class验证", len(candidates))
+            else:
+                # 选择结果数量最少的步骤，数量相同按步骤顺序
+                min_count = min(len(candidates) for candidates in step_candidates.values())
+                selected_step = min(step for step, candidates in step_candidates.items() 
+                                  if len(candidates) == min_count)
+                candidates = step_candidates[selected_step]
+                logger.debug("选择步骤 {} 的 {} 个候选位置进行parent_class验证", selected_step, len(candidates))
             
-            candidates = step_candidates[selected_step]
-            logger.debug("选择步骤 {} 的 {} 个候选位置进行parent_class验证", selected_step, len(candidates))
-            
-            # 验证parent_class
+            # 进行parent_class验证
             for file_path, line_number in candidates:
                 if self._verify_parent_class(file_path, line_number, parent_class):
                     logger.info("通过parent_class验证定位到Objective-C API {}: {}:{}", api_name, file_path, line_number)
@@ -104,13 +109,6 @@ class OcLocator(BaseLocator):
             
             logger.error("parent_class验证失败，所有候选位置都不属于类 {}", parent_class)
             return None
-        
-        # 如果没有parent_class信息，返回第一个候选位置
-        if step_candidates:
-            first_step = min(step_candidates.keys())
-            candidates = step_candidates[first_step]
-            logger.info("无parent_class信息，返回第一个候选位置: {}:{}", candidates[0][0], candidates[0][1])
-            return candidates[0]
         
         logger.warning("未能定位Objective-C API: {}", api_name)
         return None
@@ -144,9 +142,9 @@ class OcLocator(BaseLocator):
                 for line_num, line in enumerate(lines, 1):
                     line_clean = self._clean_code_line_for_matching(line)
                     
-                    # 查找@interface声明
-                    if '@interface' in line_clean and class_name in line_clean:
-                        # 检查是否是完整的类声明
+                    # 查找@interface或@protocol声明
+                    if '@interface' in line_clean or '@protocol' in line_clean:
+                        # 检查是否是完整的类声明（包括 Category 格式）
                         if self._is_class_interface_definition(line_clean, class_name):
                             logger.info("定位到Objective-C类 {}: {}", class_name, f"{file_path}:{line_num}")
                             return (file_path, line_num)
@@ -160,7 +158,7 @@ class OcLocator(BaseLocator):
     
     def _is_class_interface_definition(self, line: str, class_name: str) -> bool:
         """
-        判断是否为Objective-C类接口定义
+        判断是否为Objective-C类接口定义（包括@protocol）
         
         Args:
             line: 代码行
@@ -169,22 +167,41 @@ class OcLocator(BaseLocator):
         Returns:
             bool: 是否为类接口定义
         """
-        # 检查是否包含@interface和类名
-        if '@interface' not in line or class_name not in line:
+        # 检查是否包含@interface或@protocol
+        if '@interface' not in line and '@protocol' not in line:
             return False
         
         # 检查是否是类声明格式
         # @interface ClassName : ParentClass
         # @interface ClassName
         # @interface ClassName(Category)
+        # @protocol ClassName <ParentProtocol>
+        # @protocol ClassName (真正的定义，不是前向声明)
         patterns = [
             rf'@interface\s+{re.escape(class_name)}\s*:',
             rf'@interface\s+{re.escape(class_name)}\s*$',
             rf'@interface\s+{re.escape(class_name)}\s*\(',
+            # 匹配协议定义，排除前向声明（以分号结尾的）
+            rf'@protocol\s+{re.escape(class_name)}\s*(?!\s*;)(?:\s*<[^>]*>)?\s*$',
         ]
         
         for pattern in patterns:
             if re.search(pattern, line):
+                return True
+        
+        # 特殊处理 Category 格式：AgoraRtcEngineKitEx -> AgoraRtcEngineKit(Ex)
+        if class_name.endswith('Ex'):
+            main_class = class_name[:-2]  # 移除 'Ex' 后缀
+            category_pattern = rf'@interface\s+{re.escape(main_class)}\s*\(\s*Ex\s*\)'
+            if re.search(category_pattern, line):
+                return True
+        
+        # 特殊处理其他常见的 Category 格式
+        # 例如：ClassNameCategory -> ClassName(Category)
+        if len(class_name) > 8 and class_name.endswith('Category'):
+            main_class = class_name[:-8]  # 移除 'Category' 后缀
+            category_pattern = rf'@interface\s+{re.escape(main_class)}\s*\(\s*Category\s*\)'
+            if re.search(category_pattern, line):
                 return True
         
         return False
@@ -349,7 +366,7 @@ class OcLocator(BaseLocator):
             Tuple[str, int]: (文件路径, 行号)，如果未找到返回None
         """
         enum_name = enum_data.get("name", "")
-        logger.debug("开始定位Objective-C枚举值: {}.{}", enum_name, value_name)
+        logger.debug("开始定位Objective-C枚举值: {} 中的 {}", enum_name, value_name)
         
         # 先定位枚举的位置
         enum_location = self.locate_enum(enum_data)
@@ -402,10 +419,14 @@ class OcLocator(BaseLocator):
         # EnumValue = 0,
         # EnumValue,
         # EnumValue = 1 << 0,
+        # EnumValue __deprecated = 2,
+        # EnumValue __attribute__((deprecated)) = 3,
         patterns = [
             rf'{re.escape(value_name)}\s*=',
             rf'{re.escape(value_name)}\s*,',
             rf'{re.escape(value_name)}\s*$',
+            rf'{re.escape(value_name)}\s+__deprecated\s*=',
+            rf'{re.escape(value_name)}\s+__attribute__\s*\(\s*deprecated\s*\)\s*=',
         ]
         
         for pattern in patterns:
@@ -426,9 +447,7 @@ class OcLocator(BaseLocator):
         Returns:
             str: 清理后的签名
         """
-        # 移除HTML标签
-        clean_sig = re.sub(r'<[^>]+>', '', signature)
-        
+        clean_sig = signature
         # 统一空白字符
         clean_sig = re.sub(r'\s+', ' ', clean_sig)
         
@@ -461,9 +480,81 @@ class OcLocator(BaseLocator):
         Returns:
             bool: 是否为Objective-C属性定义
         """
-        # TODO: 实现Objective-C特定的属性识别逻辑
-        # 需要处理@property、实例变量等
-        logger.debug("Objective-C 属性识别 - 待实现")
+        # 跳过访问修饰符行
+        if line in ['@public', '@private', '@protected', '@package']:
+            return False
+        
+        # 跳过明显的函数定义
+        if '(' in line and ')' in line and ('- (' in line or '+ (' in line):
+            return False
+        
+        # 跳过赋值语句（关键改进）
+        if '=' in line and not line.endswith(';'):
+            return False
+    
+        # 跳过明显的赋值语句模式（但不跳过带类型的属性声明）
+        assignment_patterns = [
+            rf"^\s*{re.escape(attribute_name)}\s*=",  # 行开头直接是 name = （没有类型）
+        ]
+        
+        for pattern in assignment_patterns:
+            if re.search(pattern, line):
+                logger.debug("跳过赋值语句: {}", line)
+                return False
+        
+        # Objective-C属性定义模式
+        oc_patterns = [
+            # @property声明：@property (nonatomic, strong) Type name;
+            rf"@property\s*\([^)]*\)\s+[^{{]*{re.escape(attribute_name)}\s*;",
+            # @property声明（无参数）：@property Type name;
+            rf"@property\s+[^{{]*{re.escape(attribute_name)}\s*;",
+            # 实例变量：Type name;
+            rf"\b\w+\s+{re.escape(attribute_name)}\s*;",
+            # 带默认值的实例变量：Type name = value;
+            rf"\b\w+\s+{re.escape(attribute_name)}\s*=\s*[^;]+;",
+            # 带修饰符：const/static Type name;
+            rf"\b(?:const\s+|static\s+)?\w+\s+{re.escape(attribute_name)}\s*;",
+            # 带修饰符和默认值：const/static Type name = value;
+            rf"\b(?:const\s+|static\s+)?\w+\s+{re.escape(attribute_name)}\s*=\s*[^;]+;",
+            # 指针类型：Type* name;
+            rf"\b\w+\s*\*\s*{re.escape(attribute_name)}\s*;",
+            # 双指针类型：Type** name;
+            rf"\b\w+\s*\*\s*\*\s*{re.escape(attribute_name)}\s*;",
+            # 指针类型带默认值：Type* name = value;
+            rf"\b\w+\s*\*\s*{re.escape(attribute_name)}\s*=\s*[^;]+;",
+            # 双指针类型带默认值：Type** name = value;
+            rf"\b\w+\s*\*\s*\*\s*{re.escape(attribute_name)}\s*=\s*[^;]+;",
+            # 引用类型：Type& name;
+            rf"\b\w+\s*&\s*{re.escape(attribute_name)}\s*;",
+            # 数组类型：Type name[size];
+            rf"\b\w+\s+{re.escape(attribute_name)}\s*\[[^\]]*\]\s*;",
+            # 行尾注释的情况：Type name;  // comment
+            rf"\b\w+\s+{re.escape(attribute_name)}\s*;\s*//",
+            
+            # ========== 带后置修饰符的模式 ==========
+            # 带 __deprecated 等后置修饰符：Type name __deprecated;
+            rf"\b\w+\s+{re.escape(attribute_name)}\s+__\w+\s*;",
+            # 带后置修饰符和默认值：Type name __deprecated = value;
+            rf"\b\w+\s+{re.escape(attribute_name)}\s+__\w+\s*=\s*[^;]+;",
+            # 带前置和后置修饰符：const Type name __deprecated;
+            rf"\b(?:const\s+|static\s+)?\w+\s+{re.escape(attribute_name)}\s+__\w+\s*;",
+            # 带前置和后置修饰符和默认值：const Type name __deprecated = value;
+            rf"\b(?:const\s+|static\s+)?\w+\s+{re.escape(attribute_name)}\s+__\w+\s*=\s*[^;]+;",
+            # 指针类型带后置修饰符：Type* name __deprecated;
+            rf"\b\w+\s*\*\s*{re.escape(attribute_name)}\s+__\w+\s*;",
+            # 双指针类型带后置修饰符：Type** name __deprecated;
+            rf"\b\w+\s*\*\s*\*\s*{re.escape(attribute_name)}\s+__\w+\s*;",
+            # 引用类型带后置修饰符：Type& name __deprecated;
+            rf"\b\w+\s*&\s*{re.escape(attribute_name)}\s+__\w+\s*;",
+            # 行尾注释带后置修饰符：Type name __deprecated;  // comment
+            rf"\b\w+\s+{re.escape(attribute_name)}\s+__\w+\s*;\s*//",
+        ]
+        
+        for pattern in oc_patterns:
+            if re.search(pattern, line):
+                logger.debug("匹配Objective-C属性声明模式: {}", line)
+                return True
+        
         return False
     
     def _find_nearest_parent_class(self, lines: List[str], api_line_index: int) -> Optional[str]:
@@ -477,9 +568,45 @@ class OcLocator(BaseLocator):
         Returns:
             Optional[str]: 找到的类名，如果未找到返回None
         """
-        # TODO: 实现Objective-C特定的类查找逻辑
-        # 需要处理@interface、@implementation等
-        logger.debug("Objective-C 父类查找 - 待实现")
+        # Objective-C类声明模式
+        oc_class_patterns = [
+            r"^\s*@interface\s+(\w+)\s*[:{]",
+            r"^\s*@interface\s+(\w+)\s*$",
+            r"^\s*@implementation\s+(\w+)\s*[:{]",
+            r"^\s*@implementation\s+(\w+)\s*$",
+            r"^\s*@protocol\s+(\w+)\s*[:<{]",
+            r"^\s*@protocol\s+(\w+)\s*$",
+        ]
+        
+        # 编译正则表达式
+        compiled_patterns = []
+        for pattern in oc_class_patterns:
+            try:
+                compiled_patterns.append(re.compile(pattern))
+            except re.error as e:
+                logger.warning("Objective-C类检测正则表达式错误: {}", str(e))
+                continue
+        
+        # 从API位置向上搜索
+        brace_count = 0
+        for i in range(api_line_index, -1, -1):
+            line = lines[i]
+            
+            # 计算大括号层级（向上搜索时反向计算）
+            for char in reversed(line):
+                if char == '}':
+                    brace_count += 1
+                elif char == '{':
+                    brace_count -= 1
+            
+            # 检查是否匹配Objective-C类声明模式
+            for pattern in compiled_patterns:
+                match = pattern.search(line)
+                if match and brace_count <= 0:  # 确保在正确的作用域层级
+                    class_name = match.group(1)
+                    logger.debug("找到Objective-C父类: {} 在行 {}", class_name, i + 1)
+                    return class_name
+        
         return None
     
     # ==================== Objective-C特定的辅助方法 ====================
@@ -530,6 +657,7 @@ class OcLocator(BaseLocator):
                 content = read_file_content(file_path)
                 lines = content.split('\n')
                 
+                # 首先尝试单行匹配
                 for line_num, line in enumerate(lines, 1):
                     line_clean = self._clean_code_line_for_matching(line)
                     
@@ -540,12 +668,23 @@ class OcLocator(BaseLocator):
                             if self._is_method_definition(line_clean, clean_name):
                                 candidates.append((file_path, line_num))
                                 break
+                
+                # 如果单行匹配失败，尝试多行匹配
+                if not candidates:
+                    # 使用通用多行匹配方法，传入关键字匹配函数
+                    def keyword_match_func(signature):
+                        for keyword in oc_keywords:
+                            if keyword in signature and clean_name in signature:
+                                return self._is_method_definition(signature, clean_name)
+                        return False
+                    candidates.extend(self._find_multiline_matches(file_path, lines, keyword_match_func))
                                 
             except Exception as e:
                 logger.debug("读取文件失败 {}: {}", file_path, str(e))
                 continue
         
         return candidates
+    
     
     def _is_method_definition(self, line: str, method_name: str) -> bool:
         """
@@ -592,6 +731,7 @@ class OcLocator(BaseLocator):
                 content = read_file_content(file_path)
                 lines = content.split('\n')
                 
+                # 首先尝试单行匹配
                 for line_num, line in enumerate(lines, 1):
                     line_clean = self._clean_code_line_for_matching(line)
                     
@@ -607,10 +747,49 @@ class OcLocator(BaseLocator):
                             line_without_swift += ';'
                         if clean_signature in line_without_swift:
                             candidates.append((file_path, line_num))
+                
+                # 如果单行匹配失败，尝试多行匹配
+                if not candidates:
+                    # 使用通用多行匹配方法，传入精确匹配函数
+                    def exact_match_func(signature):
+                        return signature == clean_signature
+                    candidates.extend(self._find_multiline_matches(file_path, lines, exact_match_func))
                         
             except Exception as e:
                 logger.debug("读取文件失败 {}: {}", file_path, str(e))
                 continue
+        
+        return candidates
+    
+    def _find_multiline_matches(self, file_path: str, lines: List[str], match_func) -> List[Tuple[str, int]]:
+        """
+        通用的多行方法签名匹配方法
+        
+        Args:
+            file_path: 文件路径
+            lines: 文件行列表
+            match_func: 匹配函数，接受合并后的签名字符串，返回是否匹配
+            
+        Returns:
+            List[Tuple[str, int]]: 候选位置列表
+        """
+        candidates = []
+        
+        # 将多行签名合并为单行进行比较
+        for i in range(len(lines)):
+            # 尝试从当前行开始构建多行签名
+            multiline_signature = ""
+            for j in range(i, min(i + 5, len(lines))):  # 最多检查5行
+                line_clean = self._clean_code_line_for_matching(lines[j])
+                if line_clean.strip():
+                    multiline_signature += " " + line_clean
+                    
+                    # 如果遇到分号，说明方法签名结束
+                    if line_clean.endswith(';'):
+                        multiline_signature = multiline_signature.strip()
+                        if match_func(multiline_signature):
+                            candidates.append((file_path, i + 1))  # 返回第一行的行号
+                        break
         
         return candidates
     
@@ -636,12 +815,20 @@ class OcLocator(BaseLocator):
                 content = read_file_content(file_path)
                 lines = content.split('\n')
                 
+                # 首先尝试单行匹配
                 for line_num, line in enumerate(lines, 1):
                     line_clean = self._clean_code_line_for_matching(line)
                     
                     # 检查关键组件匹配
                     if self._match_signature_components(line_clean, signature_components):
                         candidates.append((file_path, line_num))
+                
+                # 如果单行匹配失败，尝试多行匹配
+                if not candidates:
+                    # 使用通用多行匹配方法，传入组件匹配函数
+                    def component_match_func(signature):
+                        return self._match_signature_components(signature, signature_components)
+                    candidates.extend(self._find_multiline_matches(file_path, lines, component_match_func))
                         
             except Exception as e:
                 logger.debug("读取文件失败 {}: {}", file_path, str(e))
@@ -661,8 +848,10 @@ class OcLocator(BaseLocator):
         """
         components = []
         
-        # 提取方法名
-        method_match = re.search(r'(\w+):', signature)
+        # 提取方法名 - 支持有参数和无参数的方法
+        # 使用更通用的正则表达式：匹配返回类型后的第一个单词
+        # 例如：- (int)pause; 或 - (int)methodName:param
+        method_match = re.search(r'\([^)]+\)\s*(\w+)', signature)
         if method_match:
             components.append(method_match.group(1))
         
@@ -691,9 +880,9 @@ class OcLocator(BaseLocator):
         if not components:
             return False
         
-        # 至少匹配一半的组件
+        # 要求匹配所有组件（更严格的匹配）
         match_count = sum(1 for component in components if component in line)
-        return match_count >= len(components) // 2
+        return match_count == len(components)
     
     def _find_all_name_matches(self, clean_name: str, search_files: List[str]) -> List[Tuple[str, int]]:
         """
@@ -713,6 +902,7 @@ class OcLocator(BaseLocator):
                 content = read_file_content(file_path)
                 lines = content.split('\n')
                 
+                # 首先尝试单行匹配
                 for line_num, line in enumerate(lines, 1):
                     line_clean = self._clean_code_line_for_matching(line)
                     
@@ -721,12 +911,22 @@ class OcLocator(BaseLocator):
                         # 进一步验证：确保是方法定义
                         if self._is_method_definition(line_clean, clean_name):
                             candidates.append((file_path, line_num))
+                
+                # 如果单行匹配失败，尝试多行匹配
+                if not candidates:
+                    # 使用通用多行匹配方法，传入名称匹配函数
+                    def name_match_func(signature):
+                        if clean_name in signature:
+                            return self._is_method_definition(signature, clean_name)
+                        return False
+                    candidates.extend(self._find_multiline_matches(file_path, lines, name_match_func))
                             
             except Exception as e:
                 logger.debug("读取文件失败 {}: {}", file_path, str(e))
                 continue
         
         return candidates
+    
     
     def _verify_parent_class(self, file_path: str, line_number: int, parent_class: str) -> bool:
         """
