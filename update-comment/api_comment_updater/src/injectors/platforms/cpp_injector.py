@@ -68,10 +68,10 @@ class CppInjector(BaseInjector):
         
         if success:
             logger.info("成功注入API注释: {} -> {}:{}", api_name, file_path, line_number)
+            return True
         else:
             logger.error("注入API注释失败: {}", api_name)
-        
-        return success
+            return False
     
     def inject_class_comment(self, class_data: Dict[str, Any]) -> bool:
         """
