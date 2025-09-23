@@ -145,8 +145,10 @@ class JavaLocator(BaseLocator):
         # 使用类名匹配
         candidates = self._find_by_class_name(search_files, class_name)
         if candidates:
+            # 优先选择最佳候选
+            best_candidate = self._select_best_class_candidate(candidates, class_name)
             logger.debug("通过类名找到类: {}", class_name)
-            return candidates[0]
+            return best_candidate
         
         logger.warning("未找到类: {}", class_name)
         return None
@@ -194,7 +196,7 @@ class JavaLocator(BaseLocator):
     
     def locate_class_attribute(self, class_data: Dict[str, Any], attribute_name: str) -> Optional[Tuple[str, int]]:
         """
-        定位类属性在代码中的位置 - Java版本
+        定位类属性在代码中的位置 - Java版本（文件修改安全版本）
         
         Args:
             class_data: 类数据
@@ -211,16 +213,8 @@ class JavaLocator(BaseLocator):
         
         logger.debug("开始定位属性: {}.{}", class_name, attribute_name)
         
-        # 先定位类
-        class_location = self.locate_class(class_data)
-        if not class_location:
-            logger.warning("未找到类 {}，无法定位属性", class_name)
-            return None
-        
-        file_path, class_line = class_location
-        
-        # 在类内搜索属性
-        attribute_location = self._search_attribute_in_class(file_path, class_line, attribute_name)
+        # 重新搜索整个类的属性，不依赖可能过时的类行号
+        attribute_location = self._search_attribute_by_class_name(class_name, attribute_name)
         if attribute_location:
             logger.debug("找到属性: {}.{}", class_name, attribute_name)
             return attribute_location
@@ -478,8 +472,8 @@ class JavaLocator(BaseLocator):
             for i in range(class_line - 1, len(lines)):
                 line = lines[i]
                 
-                # 跟踪大括号层级
-                brace_level += line.count('{') - line.count('}')
+                # 跟踪大括号层级（忽略注释中的大括号）
+                brace_level += self._count_braces_outside_comments(line)
                 
                 if i == class_line - 1:  # 类声明行
                     in_class = True
@@ -514,8 +508,8 @@ class JavaLocator(BaseLocator):
             for i in range(enum_line - 1, len(lines)):
                 line = lines[i]
                 
-                # 跟踪大括号层级
-                brace_level += line.count('{') - line.count('}')
+                # 跟踪大括号层级（忽略注释中的大括号）
+                brace_level += self._count_braces_outside_comments(line)
                 
                 if i == enum_line - 1:  # 枚举声明行
                     in_enum = True
@@ -533,6 +527,70 @@ class JavaLocator(BaseLocator):
         except Exception as e:
             logger.warning("搜索枚举值失败 {}: {}", file_path, str(e))
             return None
+    
+    def _count_braces_outside_comments(self, line: str) -> int:
+        """
+        计算行中大括号的净增量，忽略注释中的大括号
+        
+        Args:
+            line: 代码行
+            
+        Returns:
+            int: 大括号净增量 (左括号数 - 右括号数)
+        """
+        # 简化处理：如果行明显是注释行，则忽略其中的大括号
+        stripped = line.strip()
+        if (stripped.startswith('*') or 
+            stripped.startswith('//') or 
+            stripped.startswith('/*') or
+            stripped.endswith('*/')):
+            # 这是注释行，忽略其中的大括号
+            return 0
+        
+        # 移除行注释 // 
+        if '//' in line:
+            line = line[:line.index('//')]
+        
+        # 简单处理：计算非注释部分的大括号
+        return line.count('{') - line.count('}')
+    
+    def _search_attribute_by_class_name(self, class_name: str, attribute_name: str) -> Optional[Tuple[str, int]]:
+        """
+        通过类名搜索属性，不依赖可能过时的类行号
+        这个方法会重新定位类，然后搜索属性，避免文件修改导致的行号偏移问题
+        
+        Args:
+            class_name: 类名
+            attribute_name: 属性名
+            
+        Returns:
+            Tuple[str, int]: (文件路径, 行号)，如果未找到返回None
+        """
+        search_files = self._get_search_files()
+        
+        for file_path in search_files:
+            try:
+                content = read_file_content(file_path)
+                if not content:
+                    continue
+                
+                lines = content.split('\n')
+                
+                # 重新定位类声明
+                for i, line in enumerate(lines):
+                    if self._looks_like_class_definition(line, class_name):
+                        logger.debug("重新定位类 {} 在 {}:{}", class_name, file_path, i + 1)
+                        
+                        # 在这个类范围内搜索属性
+                        attribute_location = self._search_attribute_in_class(file_path, i + 1, attribute_name)
+                        if attribute_location:
+                            return attribute_location
+                        
+            except Exception as e:
+                logger.warning("搜索属性时读取文件失败 {}: {}", file_path, str(e))
+                continue
+        
+        return None
     
     def _looks_like_method_definition(self, line: str, method_name: str) -> bool:
         """判断行是否像方法定义"""
@@ -559,10 +617,34 @@ class JavaLocator(BaseLocator):
         if not class_name in line:
             return False
         
-        # Java类特征：class/interface关键字
-        class_keywords = ['class', 'interface', 'enum']
-        if any(keyword in line for keyword in class_keywords):
-            return True
+        # 排除注释行
+        if line.startswith('//') or line.startswith('*') or line.startswith('/*'):
+            return False
+        
+        # 排除字符串中的引用
+        if f'"{class_name}"' in line or f"'{class_name}'" in line:
+            return False
+        
+        # 排除注释中的反引号引用
+        if f'`{class_name}`' in line:
+            return False
+        
+        # Java类特征：必须是真正的类声明格式
+        class_patterns = [
+            rf'\bpublic\s+class\s+{re.escape(class_name)}\b',
+            rf'\bprivate\s+class\s+{re.escape(class_name)}\b', 
+            rf'\bprotected\s+class\s+{re.escape(class_name)}\b',
+            rf'\bclass\s+{re.escape(class_name)}\b',
+            rf'\bpublic\s+interface\s+{re.escape(class_name)}\b',
+            rf'\binterface\s+{re.escape(class_name)}\b',
+            rf'\bpublic\s+enum\s+{re.escape(class_name)}\b',
+            rf'\benum\s+{re.escape(class_name)}\b',
+        ]
+        
+        for pattern in class_patterns:
+            if re.search(pattern, line):
+                logger.debug("匹配Java类定义模式: {} -> {}", pattern, line.strip())
+                return True
         
         return False
     
@@ -628,13 +710,25 @@ class JavaLocator(BaseLocator):
         if line in ['public:', 'private:', 'protected:']:
             return False
         
-        # 跳过明显的函数定义
+        # 跳过明显的函数定义（但不跳过属性初始化）
         if '(' in line and ')' in line:
-            return False
+            # 检查是否是属性初始化（包含 = new）
+            if '=' in line and 'new ' in line:
+                # 这可能是属性初始化，不跳过
+                pass
+            else:
+                # 这可能是函数定义，跳过
+                return False
         
-        # 跳过赋值语句（关键改进）
+        # 跳过赋值语句（关键改进），但不跳过属性声明
         if '=' in line and not line.endswith(';'):
-            return False
+            # 检查是否是属性声明的开始（包含访问修饰符和类型）
+            if re.search(r'\b(?:final\s+)?(?:public\s+|private\s+|protected\s+)(?:static\s+|final\s+)*[\w.]+(?:\[\])?\s+\w+\s*=', line):
+                # 这是属性声明，不跳过
+                pass
+            else:
+                # 这是普通赋值语句，跳过
+                return False
         
         # 跳过明显的赋值语句模式（但不跳过带类型的属性声明）
         # 只跳过没有类型前缀的赋值语句
@@ -647,16 +741,24 @@ class JavaLocator(BaseLocator):
                 logger.debug("跳过赋值语句: {}", line)
                 return False
         
-        # Java属性定义模式
+        # Java属性定义模式（增强版：支持数组、泛型、完全限定类名）
+        # 定义Java类型模式：支持基本类型、数组、泛型、完全限定类名
+        # 示例：int, int[], ArrayList<String>, java.util.List<String>, javax.microedition.khronos.egl.EGLContext
+        java_type_pattern = r"(?:[\w.]+(?:<[^>]+>)?(?:\[\])*)"
+        
         java_patterns = [
             # Java访问修饰符：public/private/protected type name;
-            rf"\b(?:public\s+|private\s+|protected\s+)\w+\s+{re.escape(attribute_name)}\s*;",
+            rf"\b(?:public\s+|private\s+|protected\s+){java_type_pattern}\s+{re.escape(attribute_name)}\s*;",
             # Java访问修饰符带默认值：public type name = value;
-            rf"\b(?:public\s+|private\s+|protected\s+)\w+\s+{re.escape(attribute_name)}\s*=\s*[^;]+;",
+            rf"\b(?:public\s+|private\s+|protected\s+){java_type_pattern}\s+{re.escape(attribute_name)}\s*=\s*[^;]+;",
             # Java静态属性：public static type name;
-            rf"\b(?:public\s+|private\s+|protected\s+)?(?:static\s+|final\s+)*\w+\s+{re.escape(attribute_name)}\s*;",
+            rf"\b(?:public\s+|private\s+|protected\s+)?(?:static\s+|final\s+)*{java_type_pattern}\s+{re.escape(attribute_name)}\s*;",
             # Java静态属性带默认值：public static type name = value;
-            rf"\b(?:public\s+|private\s+|protected\s+)?(?:static\s+|final\s+)*\w+\s+{re.escape(attribute_name)}\s*=\s*[^;]+;",
+            rf"\b(?:public\s+|private\s+|protected\s+)?(?:static\s+|final\s+)*{java_type_pattern}\s+{re.escape(attribute_name)}\s*=\s*[^;]+;",
+            # Java final前置属性：final public type name;
+            rf"\b(?:final\s+)?(?:public\s+|private\s+|protected\s+)(?:static\s+|final\s+)*{java_type_pattern}\s+{re.escape(attribute_name)}\s*;",
+            # Java final前置属性带默认值：final public type name = value;
+            rf"\b(?:final\s+)?(?:public\s+|private\s+|protected\s+)(?:static\s+|final\s+)*{java_type_pattern}\s+{re.escape(attribute_name)}\s*=",
         ]
         
         for pattern in java_patterns:
@@ -752,3 +854,66 @@ class JavaLocator(BaseLocator):
                     return class_name
         
         return None
+    
+    def _select_best_class_candidate(self, candidates: List[Tuple[str, int]], class_name: str) -> Tuple[str, int]:
+        """
+        从多个类候选中选择最佳匹配
+        
+        优先级规则：
+        1. 文件名与类名匹配的专用文件 (AudioFrame.java -> AudioFrame)
+        2. 在base/core等核心包中的定义
+        3. 较短的文件路径（更可能是主定义而不是引用）
+        4. 行号较小的定义（通常是主类定义而不是内部类）
+        
+        Args:
+            candidates: 候选列表 [(文件路径, 行号)]
+            class_name: 类名
+            
+        Returns:
+            Tuple[str, int]: 最佳候选 (文件路径, 行号)
+        """
+        if len(candidates) == 1:
+            return candidates[0]
+        
+        logger.debug("为类 {} 选择最佳候选，共 {} 个选项", class_name, len(candidates))
+        for file_path, line_num in candidates:
+            logger.debug("  候选: {}:{}", file_path, line_num)
+        
+        # 评分系统
+        scored_candidates = []
+        
+        for file_path, line_num in candidates:
+            score = 0
+            
+            # 1. 文件名匹配 (+100分)
+            filename = file_path.split('/')[-1].split('\\')[-1]  # 兼容不同路径分隔符
+            if filename == f"{class_name}.java":
+                score += 100
+                logger.debug("  {}:{} 文件名匹配 +100", file_path, line_num)
+            
+            # 2. 核心包路径 (+50分)
+            if any(pkg in file_path.lower() for pkg in ['/base/', '/core/', '/rtc2/']):
+                score += 50
+                logger.debug("  {}:{} 核心包 +50", file_path, line_num)
+            
+            # 3. 避免测试/示例/内部路径 (-30分)
+            if any(bad in file_path.lower() for bad in ['/test/', '/example/', '/sample/', '/demo/']):
+                score -= 30
+                logger.debug("  {}:{} 测试/示例路径 -30", file_path, line_num)
+            
+            # 4. 较短路径 (+20分，路径越短分数越高)
+            path_depth = file_path.count('/') + file_path.count('\\')
+            score += max(0, 20 - path_depth)
+            
+            # 5. 较小行号 (+10分，行号越小分数越高)
+            score += max(0, 100 - line_num) // 10
+            
+            scored_candidates.append((score, file_path, line_num))
+            logger.debug("  {}:{} 总分: {}", file_path, line_num, score)
+        
+        # 按分数排序，选择最高分
+        scored_candidates.sort(key=lambda x: x[0], reverse=True)
+        best_score, best_file, best_line = scored_candidates[0]
+        
+        logger.debug("选择最佳候选: {}:{} (得分: {})", best_file, best_line, best_score)
+        return (best_file, best_line)
