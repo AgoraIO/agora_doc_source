@@ -434,11 +434,16 @@ class JavaInjector(BaseInjector):
                 logger.error("行号超出范围: {} (文件共{}行)", line_number, len(lines))
                 return False
             
-            # 查找并删除现有注释
+            # 查找并删除现有注释，同时保留注释内容用于信息提取
+            existing_comment_content = ""
             existing_comment_start = self._find_existing_comment_start(lines, target_index)
             if existing_comment_start is not None:
                 existing_comment_end = self._find_comment_end(lines, existing_comment_start)
                 if existing_comment_end is not None:
+                    # 提取现有注释内容用于保留@since等信息
+                    existing_comment_lines = lines[existing_comment_start:existing_comment_end + 1]
+                    existing_comment_content = '\n'.join(existing_comment_lines)
+                    
                     # 删除现有注释
                     logger.debug("删除现有注释: 行 {} 到 {}", existing_comment_start + 1, existing_comment_end + 1)
                     del lines[existing_comment_start:existing_comment_end + 1]
@@ -446,10 +451,15 @@ class JavaInjector(BaseInjector):
                     target_index = existing_comment_start
             
             # 保留现有信息并插入新注释
-            preserved_comment = self._preserve_existing_info("", comment_lines)
+            preserved_comment = self._preserve_existing_info(existing_comment_content, comment_lines)
             
-            # 在目标位置插入注释
-            for i, comment_line in enumerate(preserved_comment):
+            # 检测目标行的缩进
+            target_line = lines[target_index] if target_index < len(lines) else ""
+            indent = self._get_line_indent(target_line)
+            
+            # 在目标位置插入注释，应用相同的缩进
+            indented_comment_lines = [indent + comment_line for comment_line in preserved_comment]
+            for i, comment_line in enumerate(indented_comment_lines):
                 lines.insert(target_index + i, comment_line)
             
             # 写回文件
