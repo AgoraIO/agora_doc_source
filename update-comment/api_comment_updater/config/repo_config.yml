@@ -37,8 +37,13 @@ platforms:
     include:
       - "proj.android/src/main/java/io/agora/*/*.java"
       - "proj.android/src/main/java/io/agora/*/*/*.java"
+      - "proj.android/src/main/java/io/agora/rte/*.java"
     exclude: 
       - "proj.android/src/main/java/io/agora/*/internal/*"  # 排除internal目录下的所有.java文件
+      - "!proj.android/src/main/java/io/agora/rtc2/internal/AudioEncodedFrameObserverConfig.java"  # 精确保护这个文件不被排除
+      - "!proj.android/src/main/java/io/agora/rtc2/internal/LastmileProbeConfig.java"  # 精确保护这个文件不被排除
+      - "!proj.android/src/main/java/io/agora/rtc2/internal/EncryptionConfig.java"  # 精确保护这个文件不被排除
+      - "!proj.android/src/main/java/io/agora/rtc2/internal/AudioRecordingConfiguration.java"  # 精确保护这个文件不被排除
       - "proj.android/src/main/java/io/agora/meta/*"  # 排除meta目录及其子目录
       - "proj.android/src/main/java/io/agora/rtm/*"  # 排除rtm目录及其子目录
       # - "proj.android/src/main/java/io/agora/rte/*"

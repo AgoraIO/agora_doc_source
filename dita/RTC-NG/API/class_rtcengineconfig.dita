@@ -41,7 +41,6 @@
 @property (strong, nonatomic) AgoraLogConfig * _Nullable logConfig;
 @property (assign, nonatomic) BOOL domainLimit;
 @property (assign, nonatomic) BOOL autoRegisterAgoraExtensions;
-@property (copy, nonatomic) NSArray&lt;id&lt;AgoraMediaFilterExtensionDelegate&gt;&gt;* _Nullable mediaFilterExtensions;
 @property (weak, nonatomic) id&lt;AgoraMediaFilterEventDelegate&gt; _Nullable eventDelegate;
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct RtcEngineContext {
@@ -294,10 +293,6 @@ class RtcEngineContext {
                 <pt props="android">mExtensionObserver</pt>
                 <pt props="ios mac">eventDelegate</pt>
                 <pd><xref keyref="IMediaExtensionObserver"/> 实例。</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>mediaFilterExtensions</pt>
-                <pd><xref keyref="AgoraMediaFilterExtensionDelegate"/> 实例。</pd>
             </plentry>
             <plentry props="android cpp apple framework">
                 <pt props="android hmos">mDomainLimit</pt>
