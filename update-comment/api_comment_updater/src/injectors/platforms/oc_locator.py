@@ -109,8 +109,6 @@ class OcLocator(BaseLocator):
             
             logger.error("parent_class验证失败，所有候选位置都不属于类 {}", parent_class)
             return None
-        
-        logger.warning("未能定位Objective-C API: {}", api_name)
         return None
     
     def locate_class(self, class_data: Dict[str, Any]) -> Optional[Tuple[str, int]]:
@@ -311,7 +309,7 @@ class OcLocator(BaseLocator):
                 line_clean = self._clean_code_line_for_matching(line)
                 
                 # 查找@property声明
-                if self._is_property_definition(line_clean, attribute_name):
+                if self._is_attribute_definition_enhanced(line_clean, attribute_name):
                     logger.info("定位到Objective-C类属性 {}.{}: {}", class_name, attribute_name, f"{file_path}:{line_num}")
                     return (file_path, line_num)
                 
@@ -325,27 +323,27 @@ class OcLocator(BaseLocator):
         logger.warning("未能定位Objective-C类属性 {}.{}", class_name, attribute_name)
         return None
     
-    def _is_property_definition(self, line: str, property_name: str) -> bool:
+    def _is_attribute_definition_enhanced(self, line: str, attribute_name: str) -> bool:
         """
         判断是否为Objective-C属性定义
         
         Args:
             line: 代码行
-            property_name: 属性名
+            attribute_name: 属性名
             
         Returns:
             bool: 是否为属性定义
         """
         # 检查是否包含@property和属性名
-        if '@property' not in line or property_name not in line:
+        if '@property' not in line or attribute_name not in line:
             return False
         
         # 检查是否是属性声明格式
-        # @property (nonatomic, strong) Type propertyName;
-        # @property (nonatomic, assign) Type propertyName;
+        # @property (nonatomic, strong) Type attributeName;
+        # @property (nonatomic, assign) Type attributeName;
         patterns = [
-            rf'@property\s*\([^)]*\)\s+[^{{]*{re.escape(property_name)}',
-            rf'@property\s+[^{{]*{re.escape(property_name)}',
+            rf'@property\s*\([^)]*\)\s+[^{{]*{re.escape(attribute_name)}',
+            rf'@property\s+[^{{]*{re.escape(attribute_name)}',
         ]
         
         for pattern in patterns:
@@ -366,7 +364,7 @@ class OcLocator(BaseLocator):
             Tuple[str, int]: (文件路径, 行号)，如果未找到返回None
         """
         enum_name = enum_data.get("name", "")
-        logger.debug("开始定位Objective-C枚举值: {} 中的 {}", enum_name, value_name)
+        logger.debug("开始定位Objective-C枚举值: {}.{}", enum_name, value_name)
         
         # 先定位枚举的位置
         enum_location = self.locate_enum(enum_data)
@@ -469,94 +467,6 @@ class OcLocator(BaseLocator):
         # Objective-C暂时不需要特殊清理，直接返回去除首尾空白的行
         return line.strip()
     
-    def _is_attribute_definition_enhanced(self, line: str, attribute_name: str) -> bool:
-        """
-        Objective-C属性定义检测
-        
-        Args:
-            line: 已经strip()的代码行
-            attribute_name: 属性名称
-            
-        Returns:
-            bool: 是否为Objective-C属性定义
-        """
-        # 跳过访问修饰符行
-        if line in ['@public', '@private', '@protected', '@package']:
-            return False
-        
-        # 跳过明显的函数定义
-        if '(' in line and ')' in line and ('- (' in line or '+ (' in line):
-            return False
-        
-        # 跳过赋值语句（关键改进）
-        if '=' in line and not line.endswith(';'):
-            return False
-    
-        # 跳过明显的赋值语句模式（但不跳过带类型的属性声明）
-        assignment_patterns = [
-            rf"^\s*{re.escape(attribute_name)}\s*=",  # 行开头直接是 name = （没有类型）
-        ]
-        
-        for pattern in assignment_patterns:
-            if re.search(pattern, line):
-                logger.debug("跳过赋值语句: {}", line)
-                return False
-        
-        # Objective-C属性定义模式
-        oc_patterns = [
-            # @property声明：@property (nonatomic, strong) Type name;
-            rf"@property\s*\([^)]*\)\s+[^{{]*{re.escape(attribute_name)}\s*;",
-            # @property声明（无参数）：@property Type name;
-            rf"@property\s+[^{{]*{re.escape(attribute_name)}\s*;",
-            # 实例变量：Type name;
-            rf"\b\w+\s+{re.escape(attribute_name)}\s*;",
-            # 带默认值的实例变量：Type name = value;
-            rf"\b\w+\s+{re.escape(attribute_name)}\s*=\s*[^;]+;",
-            # 带修饰符：const/static Type name;
-            rf"\b(?:const\s+|static\s+)?\w+\s+{re.escape(attribute_name)}\s*;",
-            # 带修饰符和默认值：const/static Type name = value;
-            rf"\b(?:const\s+|static\s+)?\w+\s+{re.escape(attribute_name)}\s*=\s*[^;]+;",
-            # 指针类型：Type* name;
-            rf"\b\w+\s*\*\s*{re.escape(attribute_name)}\s*;",
-            # 双指针类型：Type** name;
-            rf"\b\w+\s*\*\s*\*\s*{re.escape(attribute_name)}\s*;",
-            # 指针类型带默认值：Type* name = value;
-            rf"\b\w+\s*\*\s*{re.escape(attribute_name)}\s*=\s*[^;]+;",
-            # 双指针类型带默认值：Type** name = value;
-            rf"\b\w+\s*\*\s*\*\s*{re.escape(attribute_name)}\s*=\s*[^;]+;",
-            # 引用类型：Type& name;
-            rf"\b\w+\s*&\s*{re.escape(attribute_name)}\s*;",
-            # 数组类型：Type name[size];
-            rf"\b\w+\s+{re.escape(attribute_name)}\s*\[[^\]]*\]\s*;",
-            # 行尾注释的情况：Type name;  // comment
-            rf"\b\w+\s+{re.escape(attribute_name)}\s*;\s*//",
-            
-            # ========== 带后置修饰符的模式 ==========
-            # 带 __deprecated 等后置修饰符：Type name __deprecated;
-            rf"\b\w+\s+{re.escape(attribute_name)}\s+__\w+\s*;",
-            # 带后置修饰符和默认值：Type name __deprecated = value;
-            rf"\b\w+\s+{re.escape(attribute_name)}\s+__\w+\s*=\s*[^;]+;",
-            # 带前置和后置修饰符：const Type name __deprecated;
-            rf"\b(?:const\s+|static\s+)?\w+\s+{re.escape(attribute_name)}\s+__\w+\s*;",
-            # 带前置和后置修饰符和默认值：const Type name __deprecated = value;
-            rf"\b(?:const\s+|static\s+)?\w+\s+{re.escape(attribute_name)}\s+__\w+\s*=\s*[^;]+;",
-            # 指针类型带后置修饰符：Type* name __deprecated;
-            rf"\b\w+\s*\*\s*{re.escape(attribute_name)}\s+__\w+\s*;",
-            # 双指针类型带后置修饰符：Type** name __deprecated;
-            rf"\b\w+\s*\*\s*\*\s*{re.escape(attribute_name)}\s+__\w+\s*;",
-            # 引用类型带后置修饰符：Type& name __deprecated;
-            rf"\b\w+\s*&\s*{re.escape(attribute_name)}\s+__\w+\s*;",
-            # 行尾注释带后置修饰符：Type name __deprecated;  // comment
-            rf"\b\w+\s+{re.escape(attribute_name)}\s+__\w+\s*;\s*//",
-        ]
-        
-        for pattern in oc_patterns:
-            if re.search(pattern, line):
-                logger.debug("匹配Objective-C属性声明模式: {}", line)
-                return True
-        
-        return False
-    
     def _find_nearest_parent_class(self, lines: List[str], api_line_index: int) -> Optional[str]:
         """
         从指定位置向上搜索，找到最近的Objective-C类声明
@@ -568,44 +478,41 @@ class OcLocator(BaseLocator):
         Returns:
             Optional[str]: 找到的类名，如果未找到返回None
         """
-        # Objective-C类声明模式
-        oc_class_patterns = [
-            r"^\s*@interface\s+(\w+)\s*[:{]",
-            r"^\s*@interface\s+(\w+)\s*$",
-            r"^\s*@implementation\s+(\w+)\s*[:{]",
-            r"^\s*@implementation\s+(\w+)\s*$",
-            r"^\s*@protocol\s+(\w+)\s*[:<{]",
-            r"^\s*@protocol\s+(\w+)\s*$",
-        ]
-        
-        # 编译正则表达式
-        compiled_patterns = []
-        for pattern in oc_class_patterns:
-            try:
-                compiled_patterns.append(re.compile(pattern))
-            except re.error as e:
-                logger.warning("Objective-C类检测正则表达式错误: {}", str(e))
-                continue
-        
-        # 从API位置向上搜索
-        brace_count = 0
-        for i in range(api_line_index, -1, -1):
-            line = lines[i]
+        # 从API行向上搜索最近的类声明
+        for i in range(api_line_index - 1, -1, -1):
+            line = lines[i].strip()
             
-            # 计算大括号层级（向上搜索时反向计算）
-            for char in reversed(line):
-                if char == '}':
-                    brace_count += 1
-                elif char == '{':
-                    brace_count -= 1
+            # 查找@interface声明
+            if '@interface' in line:
+                # 处理各种@interface格式：
+                # @interface ClassName : ParentClass
+                # @interface ClassName(Category)
+                # @interface ClassName
+                class_match = re.search(r'@interface\s+(\w+)', line)
+                if class_match:
+                    found_class = class_match.group(1)
+                    logger.debug("找到Objective-C父类: {} 在行 {}", found_class, i + 1)
+                    return found_class
             
-            # 检查是否匹配Objective-C类声明模式
-            for pattern in compiled_patterns:
-                match = pattern.search(line)
-                if match and brace_count <= 0:  # 确保在正确的作用域层级
-                    class_name = match.group(1)
-                    logger.debug("找到Objective-C父类: {} 在行 {}", class_name, i + 1)
-                    return class_name
+            # 查找@protocol声明
+            if '@protocol' in line:
+                # 处理@protocol格式：
+                # @protocol ProtocolName <ParentProtocol>
+                # @protocol ProtocolName
+                protocol_match = re.search(r'@protocol\s+(\w+)', line)
+                if protocol_match:
+                    found_protocol = protocol_match.group(1)
+                    logger.debug("找到Objective-C协议: {} 在行 {}", found_protocol, i + 1)
+                    return found_protocol
+            
+            # 查找@implementation声明
+            if '@implementation' in line:
+                # 处理@implementation格式
+                impl_match = re.search(r'@implementation\s+(\w+)', line)
+                if impl_match:
+                    found_class = impl_match.group(1)
+                    logger.debug("找到Objective-C实现类: {} 在行 {}", found_class, i + 1)
+                    return found_class
         
         return None
     
@@ -927,7 +834,6 @@ class OcLocator(BaseLocator):
         
         return candidates
     
-    
     def _verify_parent_class(self, file_path: str, line_number: int, parent_class: str) -> bool:
         """
         验证API是否属于指定的父类
@@ -944,53 +850,31 @@ class OcLocator(BaseLocator):
             content = read_file_content(file_path)
             lines = content.split('\n')
             
-            # 从API行向上搜索最近的类声明
+            # 使用 _find_nearest_parent_class 查找最近的类声明
+            found_class = self._find_nearest_parent_class(lines, line_number)
+            if not found_class:
+                return False
+            
+            # 检查是否匹配主类名
+            if found_class == parent_class:
+                return True
+            
+            # 检查是否是Category格式：ClassName(Category)
+            # 需要重新检查原始行以获取完整的Category信息
             for i in range(line_number - 1, -1, -1):
                 line = lines[i].strip()
-                
-                # 查找@interface声明
                 if '@interface' in line:
-                    # 处理各种@interface格式：
-                    # @interface ClassName : ParentClass
-                    # @interface ClassName(Category)
-                    # @interface ClassName
-                    class_match = re.search(r'@interface\s+(\w+)', line)
-                    if class_match:
-                        found_class = class_match.group(1)
-                        # 检查是否匹配主类名或Category类名
-                        if found_class == parent_class:
+                    category_match = re.search(r'@interface\s+(\w+)\((\w+)\)', line)
+                    if category_match:
+                        main_class = category_match.group(1)
+                        category_name = category_match.group(2)
+                        # 对于Category，检查主类名或完整名称
+                        if main_class == parent_class or f"{main_class}({category_name})" == parent_class:
                             return True
-                        # 检查是否是Category格式：ClassName(Category)
-                        category_match = re.search(r'@interface\s+(\w+)\((\w+)\)', line)
-                        if category_match:
-                            main_class = category_match.group(1)
-                            category_name = category_match.group(2)
-                            # 对于Category，检查主类名或完整名称
-                            if main_class == parent_class or f"{main_class}({category_name})" == parent_class:
-                                return True
-                            # 特殊处理：如果parent_class是ClassNameEx格式，检查是否是ClassName(Ex)
-                            if parent_class.endswith('Ex') and main_class == parent_class[:-2] and category_name == 'Ex':
-                                return True
-                
-                # 查找@protocol声明
-                if '@protocol' in line:
-                    # 处理@protocol格式：
-                    # @protocol ProtocolName <ParentProtocol>
-                    # @protocol ProtocolName
-                    protocol_match = re.search(r'@protocol\s+(\w+)', line)
-                    if protocol_match:
-                        found_protocol = protocol_match.group(1)
-                        if found_protocol == parent_class:
+                        # 特殊处理：如果parent_class是ClassNameEx格式，检查是否是ClassName(Ex)
+                        if parent_class.endswith('Ex') and main_class == parent_class[:-2] and category_name == 'Ex':
                             return True
-                
-                # 查找@implementation声明
-                if '@implementation' in line:
-                    # 处理@implementation格式
-                    impl_match = re.search(r'@implementation\s+(\w+)', line)
-                    if impl_match:
-                        found_class = impl_match.group(1)
-                        if found_class == parent_class:
-                            return True
+                    break  # 找到第一个@interface就停止
                         
         except Exception as e:
             logger.debug("验证父类失败 {}:{}: {}", file_path, line_number, str(e))

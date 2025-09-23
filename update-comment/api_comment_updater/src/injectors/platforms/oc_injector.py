@@ -50,7 +50,7 @@ class OcInjector(BaseInjector):
         # 定位API在代码中的位置
         location = self.code_locator.locate_api(api_data)
         if not location:
-            logger.warning("未能定位Objective-C API {}, 跳过注入", api_name)
+            logger.error("未能定位Objective-C API {}, 跳过注入", api_name)
             return False
         
         file_path, line_number = location
@@ -58,7 +58,7 @@ class OcInjector(BaseInjector):
         # 标准化注释
         new_comment_lines = self.comment_normalizer.normalize_api_comment(api_data)
         if not new_comment_lines:
-            logger.warning("Objective-C API {} 没有有效注释，跳过注入", api_name)
+            logger.error("Objective-C API {} 没有有效注释，跳过注入", api_name)
             return False
         
         # 注入注释
@@ -216,10 +216,10 @@ class OcInjector(BaseInjector):
                                     value_file, value_line, comment_lines, f"{enum_name}.{value_name}"
                                 )
                                 if not value_success:
-                                    logger.error("注入Objective-C枚举值注释失败: {} 中的 {}", enum_name, value_name)
+                                    logger.error("注入Objective-C枚举值注释失败: {}.{}", enum_name, value_name)
                                     success = False
                             else:
-                                logger.warning("未能定位Objective-C枚举值 {} 中的 {}", enum_name, value_name)
+                                logger.warning("未能定位Objective-C枚举值 {}.{}", enum_name, value_name)
                                 success = False
             else:
                 logger.error("重新定位Objective-C枚举失败: {}", enum_name)
