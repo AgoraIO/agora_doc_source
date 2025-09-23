@@ -13,15 +13,21 @@ from loguru import logger
 def find_files_by_patterns(base_path: str, include_patterns: List[str], 
                           exclude_patterns: List[str] = None) -> List[str]:
     """
-    根据包含和排除模式查找文件
+    根据包含和排除模式查找文件，支持精确排除逻辑
     
     Args:
         base_path: 基础搜索路径
         include_patterns: 包含模式列表
-        exclude_patterns: 排除模式列表
+        exclude_patterns: 排除模式列表，支持!前缀表示否定（防止排除）
         
     Returns:
         List[str]: 匹配的文件路径列表
+        
+    Examples:
+        exclude_patterns = [
+            "proj.android/src/main/java/io/agora/*/internal/*",
+            "!proj.android/src/main/java/io/agora/rtc2/internal/AudioEncodedFrameObserverConfig.java"
+        ]
     """
     if exclude_patterns is None:
         exclude_patterns = []
@@ -35,15 +41,44 @@ def find_files_by_patterns(base_path: str, include_patterns: List[str],
         matching_files = glob.glob(str(search_path), recursive=True)
         found_files.update(matching_files)
         
-    # 过滤掉匹配exclude模式的文件
+    # 分离普通排除模式和否定模式
+    normal_exclude_patterns = []
+    negation_patterns = []
+    
+    for pattern in exclude_patterns:
+        if pattern.startswith('!'):
+            # 否定模式：去掉!前缀
+            negation_patterns.append(pattern[1:])
+        else:
+            # 普通排除模式
+            normal_exclude_patterns.append(pattern)
+    
+    logger.debug("普通排除模式: {}", normal_exclude_patterns)
+    logger.debug("否定模式（防止排除): {}", negation_patterns)
+    
+    # 过滤掉匹配exclude模式的文件，但保护否定模式匹配的文件
     filtered_files = []
     for file_path in found_files:
         should_exclude = False
-        for exclude_pattern in exclude_patterns:
-            exclude_path = base_path / exclude_pattern
-            if file_path in glob.glob(str(exclude_path), recursive=True):
-                should_exclude = True
+        is_protected = False
+        
+        # 首先检查是否被否定模式保护
+        for negation_pattern in negation_patterns:
+            negation_path = base_path / negation_pattern
+            if file_path in glob.glob(str(negation_path), recursive=True):
+                is_protected = True
+                logger.debug("文件被否定模式保护: {}", file_path)
                 break
+        
+        # 如果被保护，跳过排除检查
+        if not is_protected:
+            # 检查是否匹配普通排除模式
+            for exclude_pattern in normal_exclude_patterns:
+                exclude_path = base_path / exclude_pattern
+                if file_path in glob.glob(str(exclude_path), recursive=True):
+                    should_exclude = True
+                    logger.debug("文件被排除模式匹配: {} -> {}", file_path, exclude_pattern)
+                    break
         
         if not should_exclude:
             filtered_files.append(file_path)
