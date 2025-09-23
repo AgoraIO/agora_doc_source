@@ -79,7 +79,12 @@ class JavaLocator(BaseLocator):
                 return enhanced_candidates[0]
             elif len(enhanced_candidates) > 1:
                 logger.debug("策略3找到多个候选: {}", len(enhanced_candidates))
-                candidates.extend(enhanced_candidates)
+                # 应用参数数量过滤
+                filtered_candidates = self._filter_by_parameter_count(enhanced_candidates, api_signature)
+                if len(filtered_candidates) == 1:
+                    logger.debug("策略3参数过滤后找到唯一匹配")
+                    return filtered_candidates[0]
+                candidates.extend(filtered_candidates)
         
         # 策略4: 纯净名称匹配
         logger.debug("策略4: 纯净名称匹配")
@@ -100,6 +105,15 @@ class JavaLocator(BaseLocator):
             verified_candidates = self._verify_parent_class(candidates, parent_class)
             if verified_candidates:
                 logger.debug("parent_class验证成功，剩余候选: {}", len(verified_candidates))
+                
+                # 如果还有多个候选，应用参数数量过滤
+                if len(verified_candidates) > 1 and api_signature:
+                    logger.debug("应用参数数量过滤，候选数: {}", len(verified_candidates))
+                    final_candidates = self._filter_by_parameter_count(verified_candidates, api_signature)
+                    if final_candidates:
+                        logger.debug("参数过滤后剩余候选: {}", len(final_candidates))
+                        return final_candidates[0]
+                
                 return verified_candidates[0]  # 返回第一个验证通过的
         
         # 如果有候选但无法验证parent_class，返回第一个
@@ -188,8 +202,10 @@ class JavaLocator(BaseLocator):
         # 使用枚举名匹配（Java中枚举通常是interface或class）
         candidates = self._find_by_class_name(search_files, enum_name)
         if candidates:
+            # 优先选择enum定义而不是class定义
+            best_candidate = self._select_best_enum_candidate(candidates, enum_name)
             logger.debug("通过名称找到枚举: {}", enum_name)
-            return candidates[0]
+            return best_candidate
         
         logger.warning("未找到枚举: {}", enum_name)
         return None
@@ -266,10 +282,16 @@ class JavaLocator(BaseLocator):
         if not api_name:
             return ""
         
-        # 去除重载标识，如 "method_1", "method_2"
-        clean_name = re.sub(r'_\d+$', '', api_name)
+        clean_name = api_name.strip()
         
-        # 去除其他可能的后缀
+        # 1. 去除C++/Java重载标识 [数字/数字]
+        overload_pattern = r'\s*\[(\d+)/(\d+)\]\s*$'
+        clean_name = re.sub(overload_pattern, '', clean_name)
+        
+        # 2. 去除传统重载标识，如 "method_1", "method_2"
+        clean_name = re.sub(r'_\d+$', '', clean_name)
+        
+        # 3. 去除其他可能的后缀
         clean_name = clean_name.split('(')[0]  # 去除参数部分
         clean_name = clean_name.strip()
         
@@ -384,6 +406,94 @@ class JavaLocator(BaseLocator):
                 continue
         
         return list(set(candidates))  # 去重
+    
+    def _filter_by_parameter_count(self, candidates: List[Tuple[str, int]], expected_signature: str) -> List[Tuple[str, int]]:
+        """根据参数数量过滤候选"""
+        if not candidates or not expected_signature:
+            return candidates
+        
+        # 从期望签名中提取参数数量
+        expected_params = self._count_parameters_in_signature(expected_signature)
+        if expected_params is None:
+            return candidates  # 无法确定参数数量，返回所有候选
+        
+        filtered_candidates = []
+        for file_path, line_num in candidates:
+            try:
+                content = read_file_content(file_path)
+                if not content:
+                    continue
+                
+                lines = content.split('\n')
+                if line_num - 1 >= len(lines):
+                    continue
+                
+                # 获取方法签名（可能跨行）
+                method_signature = self._extract_method_signature_at_line(lines, line_num - 1)
+                if method_signature:
+                    actual_params = self._count_parameters_in_signature(method_signature)
+                    if actual_params == expected_params:
+                        filtered_candidates.append((file_path, line_num))
+                        logger.debug("参数数量匹配: {}:{} ({} 参数)", file_path, line_num, actual_params)
+                    else:
+                        logger.debug("参数数量不匹配: {}:{} (期望{}，实际{})", file_path, line_num, expected_params, actual_params)
+                        
+            except Exception as e:
+                logger.warning("参数数量检查失败 {}:{}: {}", file_path, line_num, str(e))
+                continue
+        
+        return filtered_candidates if filtered_candidates else candidates  # 如果过滤后为空，返回原候选
+    
+    def _count_parameters_in_signature(self, signature: str) -> int:
+        """计算签名中的参数数量"""
+        if not signature:
+            return None
+        
+        # 查找参数列表
+        paren_start = signature.find('(')
+        paren_end = signature.rfind(')')
+        
+        if paren_start == -1 or paren_end == -1 or paren_start >= paren_end:
+            return None
+        
+        params_str = signature[paren_start + 1:paren_end].strip()
+        if not params_str:
+            return 0  # 无参数
+        
+        # 简单的参数计数（按逗号分割，但需要考虑泛型）
+        param_count = 0
+        paren_level = 0
+        angle_level = 0
+        
+        for char in params_str:
+            if char == '<':
+                angle_level += 1
+            elif char == '>':
+                angle_level -= 1
+            elif char == '(':
+                paren_level += 1
+            elif char == ')':
+                paren_level -= 1
+            elif char == ',' and paren_level == 0 and angle_level == 0:
+                param_count += 1
+        
+        return param_count + 1 if param_count > 0 or params_str else 0
+    
+    def _extract_method_signature_at_line(self, lines: List[str], line_index: int) -> str:
+        """提取指定行开始的方法签名（可能跨行）"""
+        if line_index >= len(lines):
+            return ""
+        
+        signature = lines[line_index].strip()
+        
+        # 如果包含(但不包含)，继续收集后续行
+        if '(' in signature and ')' not in signature:
+            for i in range(line_index + 1, min(line_index + 10, len(lines))):
+                signature += " " + lines[i].strip()
+                if ')' in signature:
+                    break
+        
+        return signature
     
     def _find_by_clean_name(self, search_files: List[str], clean_name: str) -> List[Tuple[str, int]]:
         """策略4: 纯净名称匹配"""
@@ -695,6 +805,45 @@ class JavaLocator(BaseLocator):
         
         return clean_line
     
+    def _is_getter_method(self, line: str, attribute_name: str) -> bool:
+        """
+        检查是否是getter方法（无参数方法，方法名匹配属性名）
+        
+        Args:
+            line: 代码行
+            attribute_name: 属性名称
+            
+        Returns:
+            bool: 是否为getter方法
+        """
+        # getter方法特征：
+        # 1. 包含访问修饰符（public/private/protected）
+        # 2. 有返回类型
+        # 3. 方法名与属性名完全匹配
+        # 4. 无参数 ()
+        # 5. 可能有大括号 {
+        
+        # 基本格式检查
+        if not ('public' in line or 'private' in line or 'protected' in line):
+            return False
+        
+        if attribute_name not in line:
+            return False
+        
+        # 检查是否是无参数方法
+        if not ('()' in line or '( )' in line):
+            return False
+        
+        # 构建getter方法的正则模式
+        # 匹配: [修饰符] [返回类型] [属性名]()
+        getter_pattern = rf"\b(?:public\s+|private\s+|protected\s+)(?:static\s+)?[\w.]+(?:<[^>]+>)?\s+{re.escape(attribute_name)}\s*\(\s*\)"
+        
+        if re.search(getter_pattern, line):
+            logger.debug("识别为getter方法: {}", line)
+            return True
+        
+        return False
+    
     def _is_attribute_definition_enhanced(self, line: str, attribute_name: str) -> bool:
         """
         Java属性定义检测
@@ -710,11 +859,15 @@ class JavaLocator(BaseLocator):
         if line in ['public:', 'private:', 'protected:']:
             return False
         
-        # 跳过明显的函数定义（但不跳过属性初始化）
+        # 跳过明显的函数定义（但不跳过属性初始化和getter方法）
         if '(' in line and ')' in line:
             # 检查是否是属性初始化（包含 = new）
             if '=' in line and 'new ' in line:
                 # 这可能是属性初始化，不跳过
+                pass
+            # 检查是否是getter方法（无参数方法，方法名匹配属性名）
+            elif self._is_getter_method(line, attribute_name):
+                # 这是getter方法，当作属性处理
                 pass
             else:
                 # 这可能是函数定义，跳过
@@ -765,6 +918,11 @@ class JavaLocator(BaseLocator):
             if re.search(pattern, line):
                 logger.debug("匹配Java属性声明模式: {}", line)
                 return True
+        
+        # 最后检查：如果是getter方法，也认为是属性定义
+        if self._is_getter_method(line, attribute_name):
+            logger.debug("匹配getter方法模式: {}", line)
+            return True
         
         return False
     
@@ -916,4 +1074,79 @@ class JavaLocator(BaseLocator):
         best_score, best_file, best_line = scored_candidates[0]
         
         logger.debug("选择最佳候选: {}:{} (得分: {})", best_file, best_line, best_score)
+        return (best_file, best_line)
+    
+    def _select_best_enum_candidate(self, candidates: List[Tuple[str, int]], enum_name: str) -> Tuple[str, int]:
+        """
+        从多个枚举候选中选择最佳的
+        
+        优先级规则:
+        1. 优先选择 enum 定义而不是 class 定义 (+100分)
+        2. 优先选择文件名匹配的候选 (+50分)
+        3. 优先选择更小的行号 (更早定义，+行号差值分)
+        
+        Args:
+            candidates: 候选列表 [(文件路径, 行号), ...]
+            enum_name: 枚举名称
+            
+        Returns:
+            Tuple[str, int]: 最佳候选的 (文件路径, 行号)
+        """
+        if len(candidates) == 1:
+            return candidates[0]
+        
+        logger.debug("为枚举 {} 选择最佳候选，共 {} 个选项", enum_name, len(candidates))
+        for file_path, line_num in candidates:
+            logger.debug("  候选: {}:{}", file_path, line_num)
+        
+        scored_candidates = []
+        
+        for file_path, line_num in candidates:
+            score = 0
+            
+            try:
+                content = read_file_content(file_path)
+                if not content:
+                    continue
+                
+                lines = content.split('\n')
+                if line_num - 1 >= len(lines):
+                    continue
+                
+                line = lines[line_num - 1].strip()
+                
+                # 规则1: 优先选择enum定义
+                if f'public enum {enum_name}' in line:
+                    score += 100
+                    logger.debug("  {}:{} enum定义 +100", file_path, line_num)
+                elif f'public class {enum_name}' in line:
+                    score += 0  # class定义不加分
+                    logger.debug("  {}:{} class定义 +0", file_path, line_num)
+                
+                # 规则2: 文件名匹配
+                file_name = file_path.split('/')[-1].split('\\')[-1].lower()
+                if enum_name.lower() in file_name:
+                    score += 50
+                    logger.debug("  {}:{} 文件名匹配 +50", file_path, line_num)
+                
+                # 规则3: 更小的行号 (更早定义)
+                line_bonus = max(0, 100 - line_num) // 10
+                score += line_bonus
+                logger.debug("  {}:{} 行号优势 +{}", file_path, line_num, line_bonus)
+                
+                scored_candidates.append((score, file_path, line_num))
+                logger.debug("  {}:{} 总分: {}", file_path, line_num, score)
+                
+            except Exception as e:
+                logger.warning("评估枚举候选失败 {}:{}: {}", file_path, line_num, str(e))
+                continue
+        
+        if not scored_candidates:
+            return candidates[0]
+        
+        # 按分数降序排序，选择最高分的候选
+        scored_candidates.sort(key=lambda x: x[0], reverse=True)
+        best_score, best_file, best_line = scored_candidates[0]
+        
+        logger.debug("选择最佳枚举候选: {}:{} (得分: {})", best_file, best_line, best_score)
         return (best_file, best_line)
