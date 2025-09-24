@@ -50,25 +50,25 @@ class JavaLocator(BaseLocator):
             logger.warning("未找到搜索文件")
             return None
         
-        # 策略1: 关键字+纯净API名匹配（高精度）
-        logger.debug("策略1: 关键字+纯净API名匹配")
-        keyword_candidates = self._find_by_keywords_and_name(search_files, clean_name)
-        if len(keyword_candidates) == 1:
-            logger.debug("策略1成功，找到唯一匹配")
-            return keyword_candidates[0]
-        elif len(keyword_candidates) > 1:
-            logger.debug("策略1找到多个候选: {}", len(keyword_candidates))
-        
-        # 策略2: 完整签名匹配
+        # 策略1: 完整签名匹配（最高精度）
         signature_candidates = []
         if api_signature:
-            logger.debug("策略2: 完整签名匹配")
+            logger.debug("策略1: 完整签名匹配")
             signature_candidates = self._find_by_full_signature(search_files, api_signature)
             if len(signature_candidates) == 1:
-                logger.debug("策略2成功，找到唯一匹配")
+                logger.debug("策略1成功，找到唯一匹配")
                 return signature_candidates[0]
             elif len(signature_candidates) > 1:
-                logger.debug("策略2找到多个候选: {}", len(signature_candidates))
+                logger.debug("策略1找到多个候选: {}", len(signature_candidates))
+        
+        # 策略2: 关键字+纯净API名匹配（高精度）
+        logger.debug("策略2: 关键字+纯净API名匹配")
+        keyword_candidates = self._find_by_keywords_and_name(search_files, clean_name)
+        if len(keyword_candidates) == 1:
+            logger.debug("策略2成功，找到唯一匹配")
+            return keyword_candidates[0]
+        elif len(keyword_candidates) > 1:
+            logger.debug("策略2找到多个候选: {}", len(keyword_candidates))
         
         # 策略3: 增强签名匹配
         enhanced_candidates = []
@@ -98,8 +98,8 @@ class JavaLocator(BaseLocator):
         
         # 策略5: 从结果最少的策略中选择候选进行parent_class验证
         strategy_results = [
-            (1, keyword_candidates, "策略1"),
-            (2, signature_candidates, "策略2"), 
+            (1, signature_candidates, "策略1"),
+            (2, keyword_candidates, "策略2"), 
             (3, enhanced_candidates, "策略3"),
             (4, name_candidates, "策略4")
         ]
@@ -349,13 +349,21 @@ class JavaLocator(BaseLocator):
         return list(set(candidates))  # 去重
     
     def _find_by_full_signature(self, search_files: List[str], signature: str) -> List[Tuple[str, int]]:
-        """策略2: 完整签名匹配（精确原始签名匹配）"""
+        """策略1: 完整签名匹配（精确原始签名匹配，支持多行签名）"""
         candidates = []
         
         if not signature:
             return candidates
         
-        # 策略2使用原始签名进行精确匹配，保持最高的区分度
+        # 处理多行签名：如果signature包含\n，提取首行进行匹配
+        search_signature = signature
+        is_multiline = '\n' in signature
+        if is_multiline:
+            first_line = signature.split('\n')[0].strip()
+            search_signature = first_line
+            logger.debug("检测到多行签名，使用首行进行匹配: {}", first_line)
+        
+        # 策略1使用原始签名进行精确匹配，保持最高的区分度
         for file_path in search_files:
             try:
                 content = read_file_content(file_path)
@@ -364,12 +372,15 @@ class JavaLocator(BaseLocator):
                 
                 lines = content.split('\n')
                 for i, line in enumerate(lines):
-                    # 策略2进行完全原始匹配，只清理首尾空白
+                    # 策略1进行完全原始匹配，只清理首尾空白
                     clean_line = line.strip()
                     # 直接使用原始签名匹配，不进行任何内容清理
-                    if signature in clean_line:
+                    if search_signature in clean_line:
                         candidates.append((file_path, i + 1))
-                        logger.debug("原始签名匹配找到候选: {}:{}", file_path, i + 1)
+                        if is_multiline:
+                            logger.debug("多行签名首行匹配找到候选: {}:{}", file_path, i + 1)
+                        else:
+                            logger.debug("原始签名匹配找到候选: {}:{}", file_path, i + 1)
                         
             except Exception as e:
                 logger.warning("读取文件失败 {}: {}", file_path, str(e))
@@ -379,16 +390,16 @@ class JavaLocator(BaseLocator):
     
     def _find_by_enhanced_signature(self, search_files: List[str], signature: str) -> List[Tuple[str, int]]:
         """策略3: 增强签名匹配（清理注解后的宽松匹配，支持多行）"""
-        candidates = []
+        candidates_with_score = []
         clean_signature = self._clean_signature(signature)
         
         if not clean_signature:
-            return candidates
+            return []
         
         # 提取关键部分进行匹配
         signature_parts = clean_signature.split()
         if len(signature_parts) < 2:
-            return candidates
+            return []
         
         for file_path in search_files:
             try:
@@ -400,11 +411,12 @@ class JavaLocator(BaseLocator):
                 for i, line in enumerate(lines):
                     clean_line = self._clean_code_line_for_matching(line)
                     
-                    # 单行检查
+                    # 单行检查 - 提高匹配精确度
                     match_count = sum(1 for part in signature_parts if part in clean_line)
-                    if match_count >= len(signature_parts) * 0.7:  # 70%匹配度
-                        candidates.append((file_path, i + 1))
-                        logger.debug("增强签名匹配找到候选: {}:{}", file_path, i + 1)
+                    match_ratio = match_count / len(signature_parts)
+                    if match_ratio >= 0.9:  # 提高到90%匹配度，更精确
+                        candidates_with_score.append((file_path, i + 1, match_ratio))
+                        logger.debug("增强签名匹配找到候选: {}:{} (匹配度: {:.1%})", file_path, i + 1, match_ratio)
                     
                     # 多行检查：如果当前行包含(但不包含)，尝试合并后续行
                     elif ('(' in line and ')' not in line and i + 1 < len(lines)):
@@ -414,16 +426,34 @@ class JavaLocator(BaseLocator):
                             if ')' in multi_line:
                                 clean_multi_line = self._clean_code_line_for_matching(multi_line)
                                 match_count = sum(1 for part in signature_parts if part in clean_multi_line)
-                                if match_count >= len(signature_parts) * 0.7:
-                                    candidates.append((file_path, i + 1))
-                                    logger.debug("多行增强签名匹配找到候选: {}:{}", file_path, i + 1)
+                                match_ratio = match_count / len(signature_parts)
+                                if match_ratio >= 0.9:  # 提高到90%匹配度，更精确
+                                    candidates_with_score.append((file_path, i + 1, match_ratio))
+                                    logger.debug("多行增强签名匹配找到候选: {}:{} (匹配度: {:.1%})", file_path, i + 1, match_ratio)
                                 break
                         
             except Exception as e:
                 logger.warning("读取文件失败 {}: {}", file_path, str(e))
                 continue
         
-        return list(set(candidates))  # 去重
+        # 去重（保留匹配度最高的）
+        unique_candidates = {}
+        for file_path, line_num, score in candidates_with_score:
+            key = (file_path, line_num)
+            if key not in unique_candidates or unique_candidates[key][2] < score:
+                unique_candidates[key] = (file_path, line_num, score)
+        
+        candidates_with_score = list(unique_candidates.values())
+        
+        # 检查是否有100%匹配的唯一候选 - 这是新的优化逻辑
+        if len(candidates_with_score) > 1:
+            perfect_matches = [(fp, ln) for fp, ln, score in candidates_with_score if score == 1.0]
+            if len(perfect_matches) == 1:
+                logger.debug("策略3找到100%匹配的唯一候选，优先采纳: {}:{}", perfect_matches[0][0], perfect_matches[0][1])
+                return [perfect_matches[0]]  # 返回唯一的100%匹配候选
+        
+        # 返回所有候选（去掉匹配度信息）
+        return [(fp, ln) for fp, ln, score in candidates_with_score]
     
     def _filter_by_parameter_count(self, candidates: List[Tuple[str, int]], expected_signature: str) -> List[Tuple[str, int]]:
         """根据参数数量过滤候选"""
