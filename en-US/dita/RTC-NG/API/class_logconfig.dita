@@ -116,8 +116,9 @@ public:
                 <pt>filePath</pt>
                 <pd>
                     <p>The complete path of the log files. Agora recommends using the default log directory. If you need to modify the default directory, ensure that the directory you specify exists and is writable.</p>
-                    <p props="cpp unreal bp unity electron rn cs">The default log directory is:<ul>
+                    <p props="cpp unreal bp unity electron rn cs hmos">The default log directory is:<ul>
                     <li props="cpp unreal bp unity rn flutter">Android: <filepath id="android-path">/storage/emulated/0/Android/data/&lt;packagename>/files/agorasdk.log</filepath>.</li>
+                    <li props="hmos">HarmonyOS：<parmname>{context}.filesDir</parmname>，其中 <parmname>{context}</parmname> 是你在 <xref keyref="RtcEngineConfig"/> 下 <parmname>mContext</parmname> 字段中设置的值。</li>
                     <li props="cpp unreal bp unity rn flutter">iOS: <filepath id="ios-path">App Sandbox/Library/caches/agorasdk.log</filepath>.</li>
                     <li props="cpp unreal bp unity electron flutter">macOS:<ul id="mac-path">
                         <li>If Sandbox is enabled:<filepath> App Sandbox/Library/Logs/agorasdk.log</filepath>. For example, <filepath>/Users/&lt;username>/Library/Containers/&lt;AppBundleIdentifier>/Data/Library/Logs/agorasdk.log</filepath>.</li>
