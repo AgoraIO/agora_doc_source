@@ -144,13 +144,13 @@ class OcInjector(BaseInjector):
                                     logger.error("注入Objective-C属性注释失败: {}.{}", class_name, attribute_name)
                                     success = False
                             else:
-                                logger.warning("未能定位Objective-C类属性 {}.{}", class_name, attribute_name)
+                                logger.error("未能定位Objective-C类属性 {}.{}", class_name, attribute_name)
                                 success = False
         
         if success:
             logger.info("成功批量注入Objective-C类注释: {}", class_name)
         else:
-            logger.error("批量注入Objective-C类注释失败: {}", class_name)
+            logger.warning("批量注入Objective-C类注释失败: {}", class_name)
         
         return success
     
@@ -170,7 +170,7 @@ class OcInjector(BaseInjector):
         # 定位枚举在代码中的位置
         location = self.code_locator.locate_enum(enum_data)
         if not location:
-            logger.warning("未能定位Objective-C枚举 {}, 跳过注入", enum_name)
+            logger.error("未能定位Objective-C枚举 {}, 跳过注入", enum_name)
             return False
         
         file_path, line_number = location
@@ -219,7 +219,7 @@ class OcInjector(BaseInjector):
                                     logger.error("注入Objective-C枚举值注释失败: {}.{}", enum_name, value_name)
                                     success = False
                             else:
-                                logger.warning("未能定位Objective-C枚举值 {}.{}", enum_name, value_name)
+                                logger.error("未能定位Objective-C枚举值 {}.{}", enum_name, value_name)
                                 success = False
             else:
                 logger.error("重新定位Objective-C枚举失败: {}", enum_name)
@@ -228,7 +228,7 @@ class OcInjector(BaseInjector):
         if success:
             logger.info("成功批量注入Objective-C枚举注释: {}", enum_name)
         else:
-            logger.error("批量注入Objective-C枚举注释失败: {}", enum_name)
+            logger.warning("批量注入Objective-C枚举注释失败: {}", enum_name)
         
         return success
     

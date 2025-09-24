@@ -107,7 +107,7 @@ class OcLocator(BaseLocator):
                     logger.info("通过parent_class验证定位到Objective-C API {}: {}:{}", api_name, file_path, line_number)
                     return (file_path, line_number)
             
-            logger.error("parent_class验证失败，所有候选位置都不属于类 {}", parent_class)
+            logger.warning("parent_class验证失败，所有候选位置都不属于类 {}", parent_class)
             return None
         return None
     
@@ -319,8 +319,6 @@ class OcLocator(BaseLocator):
                     
         except Exception as e:
             logger.debug("读取文件失败 {}: {}", file_path, str(e))
-        
-        logger.warning("未能定位Objective-C类属性 {}.{}", class_name, attribute_name)
         return None
     
     def _is_attribute_definition_enhanced(self, line: str, attribute_name: str) -> bool:
@@ -394,8 +392,6 @@ class OcLocator(BaseLocator):
                     
         except Exception as e:
             logger.debug("读取文件失败 {}: {}", file_path, str(e))
-        
-        logger.warning("未能定位Objective-C枚举值 {}.{}", enum_name, value_name)
         return None
     
     def _is_enum_value_definition(self, line: str, value_name: str) -> bool:
