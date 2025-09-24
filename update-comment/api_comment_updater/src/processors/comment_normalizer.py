@@ -211,12 +211,82 @@ class CommentNormalizer:
         preserve_patterns = self.platform_config.get("preserve_patterns", {})
         
         for pattern_name, pattern in preserve_patterns.items():
-            match = re.search(pattern, comment_text, re.IGNORECASE)
-            if match:
-                preserved[pattern_name] = match.group(0)
-                logger.debug("保留信息: {} = {}", pattern_name, preserved[pattern_name])
+            if pattern_name == "deprecated":
+                # 对deprecated进行特殊处理，支持多行描述
+                preserved_content = self._extract_deprecated_content(comment_text)
+                if preserved_content:
+                    preserved[pattern_name] = preserved_content
+                    logger.debug("保留信息: {} = {}", pattern_name, preserved[pattern_name])
+            elif pattern_name == "technical_preview":
+                # technical_preview只保留标签本身，不保留后续内容
+                match = re.search(pattern, comment_text, re.IGNORECASE)
+                if match:
+                    preserved[pattern_name] = "@technical preview"
+                    logger.debug("保留信息: {} = {}", pattern_name, preserved[pattern_name])
+            else:
+                # since等其他模式继续使用原逻辑
+                match = re.search(pattern, comment_text, re.IGNORECASE)
+                if match:
+                    preserved[pattern_name] = match.group(0)
+                    logger.debug("保留信息: {} = {}", pattern_name, preserved[pattern_name])
         
         return preserved
+    
+    def _extract_deprecated_content(self, comment_text: str) -> str:
+        """
+        提取完整的@deprecated内容，包括多行描述
+        
+        Args:
+            comment_text: 注释文本
+            
+        Returns:
+            str: 完整的deprecated内容，如果没有则返回空字符串
+        """
+        import re
+        
+        lines = comment_text.split('\n')
+        deprecated_content = []
+        in_deprecated_block = False
+        empty_line_count = 0
+        
+        for line in lines:
+            stripped = line.strip()
+            
+            # 移除注释前缀
+            if stripped.startswith('*'):
+                stripped = stripped[1:].strip()
+            elif stripped.startswith('//'):
+                stripped = stripped[2:].strip()
+            
+            # 检查是否是@deprecated的开始
+            if re.match(r'@deprecated\b', stripped, re.IGNORECASE):
+                in_deprecated_block = True
+                empty_line_count = 0
+                deprecated_content.append(stripped)
+                continue
+            
+            # 如果在deprecated块中
+            if in_deprecated_block:
+                # 检查是否遇到其他@标签（结束deprecated块）
+                if re.match(r'@\w+', stripped):
+                    break
+                
+                # 如果是空行
+                if not stripped:
+                    empty_line_count += 1
+                    # 如果连续遇到空行，则认为deprecated块结束
+                    if empty_line_count >= 1:
+                        break
+                    continue
+                else:
+                    # 重置空行计数
+                    empty_line_count = 0
+                    deprecated_content.append(stripped)
+        
+        if deprecated_content:
+            return '\n'.join(deprecated_content)
+        
+        return ""
     
     def _merge_preserved_info(self, comment_lines: List[str], preserved_info: Dict[str, str]) -> List[str]:
         """
@@ -242,7 +312,12 @@ class CommentNormalizer:
             if line.strip().startswith("* @brief") and not preserved_inserted:
                 result.append(" *")
                 for info_type, info_text in preserved_info.items():
-                    result.append(f" * {info_text}")
+                    # 处理多行内容
+                    if '\n' in info_text:
+                        for info_line in info_text.split('\n'):
+                            result.append(f" * {info_line}")
+                    else:
+                        result.append(f" * {info_text}")
                 preserved_inserted = True
         
         # 如果没有@brief行（如enum注释），在注释结束前插入保留信息
@@ -250,7 +325,13 @@ class CommentNormalizer:
             # 在最后的 */ 前插入保留信息
             insert_pos = len(result) - 1  # */ 的位置
             for info_type, info_text in preserved_info.items():
-                result.insert(insert_pos, f" * {info_text}")
-                insert_pos += 1
+                # 处理多行内容
+                if '\n' in info_text:
+                    for info_line in info_text.split('\n'):
+                        result.insert(insert_pos, f" * {info_line}")
+                        insert_pos += 1
+                else:
+                    result.insert(insert_pos, f" * {info_text}")
+                    insert_pos += 1
         
         return result
