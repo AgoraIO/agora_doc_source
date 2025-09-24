@@ -52,14 +52,15 @@ class JavaLocator(BaseLocator):
         
         # 策略1: 关键字+纯净API名匹配（高精度）
         logger.debug("策略1: 关键字+纯净API名匹配")
-        candidates = self._find_by_keywords_and_name(search_files, clean_name)
-        if len(candidates) == 1:
+        keyword_candidates = self._find_by_keywords_and_name(search_files, clean_name)
+        if len(keyword_candidates) == 1:
             logger.debug("策略1成功，找到唯一匹配")
-            return candidates[0]
-        elif len(candidates) > 1:
-            logger.debug("策略1找到多个候选: {}", len(candidates))
+            return keyword_candidates[0]
+        elif len(keyword_candidates) > 1:
+            logger.debug("策略1找到多个候选: {}", len(keyword_candidates))
         
         # 策略2: 完整签名匹配
+        signature_candidates = []
         if api_signature:
             logger.debug("策略2: 完整签名匹配")
             signature_candidates = self._find_by_full_signature(search_files, api_signature)
@@ -68,9 +69,9 @@ class JavaLocator(BaseLocator):
                 return signature_candidates[0]
             elif len(signature_candidates) > 1:
                 logger.debug("策略2找到多个候选: {}", len(signature_candidates))
-                candidates.extend(signature_candidates)
         
         # 策略3: 增强签名匹配
+        enhanced_candidates = []
         if api_signature:
             logger.debug("策略3: 增强签名匹配")
             enhanced_candidates = self._find_by_enhanced_signature(search_files, api_signature)
@@ -84,7 +85,7 @@ class JavaLocator(BaseLocator):
                 if len(filtered_candidates) == 1:
                     logger.debug("策略3参数过滤后找到唯一匹配")
                     return filtered_candidates[0]
-                candidates.extend(filtered_candidates)
+                enhanced_candidates = filtered_candidates
         
         # 策略4: 纯净名称匹配
         logger.debug("策略4: 纯净名称匹配")
@@ -94,15 +95,35 @@ class JavaLocator(BaseLocator):
             return name_candidates[0]
         elif len(name_candidates) > 1:
             logger.debug("策略4找到多个候选: {}", len(name_candidates))
-            candidates.extend(name_candidates)
         
-        # 去重
-        candidates = list(set(candidates))
+        # 策略5: 从结果最少的策略中选择候选进行parent_class验证
+        strategy_results = [
+            (1, keyword_candidates, "策略1"),
+            (2, signature_candidates, "策略2"), 
+            (3, enhanced_candidates, "策略3"),
+            (4, name_candidates, "策略4")
+        ]
         
-        # 策略5: parent_class验证（处理多结果情况）
-        if len(candidates) > 1 and parent_class:
-            logger.debug("策略5: parent_class验证，候选数: {}", len(candidates))
-            verified_candidates = self._verify_parent_class(candidates, parent_class)
+        # 过滤掉空结果，按候选数量和策略优先级排序
+        valid_strategies = [(num, candidates, name) for num, candidates, name in strategy_results if len(candidates) > 1]
+        if not valid_strategies:
+            # 如果没有多候选策略，尝试合并所有候选
+            all_candidates = []
+            for _, candidates, _ in strategy_results:
+                all_candidates.extend(candidates)
+            if all_candidates:
+                return list(set(all_candidates))[0]  # 去重后返回第一个
+            logger.warning("所有策略都未找到API: {}", api_name)
+            return None
+        
+        # 按候选数量升序，策略编号升序排序（优先选择结果最少且优先级最高的）
+        valid_strategies.sort(key=lambda x: (len(x[1]), x[0]))
+        best_strategy_num, best_candidates, best_strategy_name = valid_strategies[0]
+        
+        logger.debug("策略5: 选择{}的{}个候选进行parent_class验证", best_strategy_name, len(best_candidates))
+        
+        if parent_class:
+            verified_candidates = self._verify_parent_class(best_candidates, parent_class)
             if verified_candidates:
                 logger.debug("parent_class验证成功，剩余候选: {}", len(verified_candidates))
                 
@@ -116,13 +137,8 @@ class JavaLocator(BaseLocator):
                 
                 return verified_candidates[0]  # 返回第一个验证通过的
         
-        # 如果有候选但无法验证parent_class，返回第一个
-        if candidates:
-            logger.debug("返回第一个候选（无parent_class验证）")
-            return candidates[0]
-        
-        logger.warning("所有策略都未找到API: {}", api_name)
-        return None
+        # 如果无法验证parent_class，返回最佳策略的第一个候选
+        return best_candidates[0]
     
     def locate_class(self, class_data: Dict[str, Any]) -> Optional[Tuple[str, int]]:
         """
@@ -333,13 +349,13 @@ class JavaLocator(BaseLocator):
         return list(set(candidates))  # 去重
     
     def _find_by_full_signature(self, search_files: List[str], signature: str) -> List[Tuple[str, int]]:
-        """策略2: 完整签名匹配（精确单行匹配）"""
+        """策略2: 完整签名匹配（精确原始签名匹配）"""
         candidates = []
-        clean_signature = self._clean_signature(signature)
         
-        if not clean_signature:
+        if not signature:
             return candidates
         
+        # 策略2使用原始签名进行精确匹配，保持最高的区分度
         for file_path in search_files:
             try:
                 content = read_file_content(file_path)
@@ -348,10 +364,12 @@ class JavaLocator(BaseLocator):
                 
                 lines = content.split('\n')
                 for i, line in enumerate(lines):
-                    clean_line = self._clean_code_line_for_matching(line)
-                    if clean_signature in clean_line:
+                    # 策略2进行完全原始匹配，只清理首尾空白
+                    clean_line = line.strip()
+                    # 直接使用原始签名匹配，不进行任何内容清理
+                    if signature in clean_line:
                         candidates.append((file_path, i + 1))
-                        logger.debug("签名匹配找到候选: {}:{}", file_path, i + 1)
+                        logger.debug("原始签名匹配找到候选: {}:{}", file_path, i + 1)
                         
             except Exception as e:
                 logger.warning("读取文件失败 {}: {}", file_path, str(e))
@@ -360,7 +378,7 @@ class JavaLocator(BaseLocator):
         return list(set(candidates))  # 去重
     
     def _find_by_enhanced_signature(self, search_files: List[str], signature: str) -> List[Tuple[str, int]]:
-        """策略3: 增强签名匹配（更宽松的匹配，支持多行）"""
+        """策略3: 增强签名匹配（清理注解后的宽松匹配，支持多行）"""
         candidates = []
         clean_signature = self._clean_signature(signature)
         
@@ -710,6 +728,23 @@ class JavaLocator(BaseLocator):
         if not method_name in line:
             return False
         
+        # 排除注释行（与_looks_like_class_definition保持一致）
+        if line.startswith('//') or line.startswith('*') or line.startswith('/*'):
+            return False
+        
+        # 排除字符串中的引用（防止误匹配字符串常量中的方法名）
+        # 检查方法名是否出现在引号内
+        import re
+        # 匹配包含方法名的引号内容
+        quoted_patterns = [
+            rf'"[^"]*{method_name}[^"]*"',  # "...method_name..."
+            rf"'[^']*{method_name}[^']*'",  # '...method_name...'
+            rf'`[^`]*{method_name}[^`]*`',  # `...method_name...`
+        ]
+        for pattern in quoted_patterns:
+            if re.search(pattern, line):
+                return False
+        
         # Java方法特征：包含括号，可能包含访问修饰符
         if '(' in line and ')' in line:
             # 检查是否包含Java访问修饰符或返回类型
@@ -970,14 +1005,14 @@ class JavaLocator(BaseLocator):
         """
         # Java类声明模式
         java_class_patterns = [
-            # public interface ClassName {
-            r"^\s*(?:public\s+|private\s+|protected\s+)?interface\s+([\w<>]+)\s*\{",
+            # public interface ClassName extends ParentInterface {
+            r"^\s*(?:public\s+|private\s+|protected\s+)?interface\s+([\w<>]+)(?:\s+extends\s+[\w<>,\s]+)?\s*\{",
             # public abstract class ClassName extends ParentClass {
             r"^\s*(?:public\s+|private\s+|protected\s+)?(?:abstract\s+)?class\s+([\w<>]+)(?:\s+extends\s+[\w<>]+)?\s*\{",
             # public static class ClassName {
             r"^\s*(?:public\s+|private\s+|protected\s+)?(?:static\s+)?class\s+([\w<>]+)\s*\{",
-            # 简化模式：interface ClassName {
-            r"^\s*interface\s+([\w<>]+)\s*\{",
+            # 简化模式：interface ClassName extends ParentInterface {
+            r"^\s*interface\s+([\w<>]+)(?:\s+extends\s+[\w<>,\s]+)?\s*\{",
             # 简化模式：class ClassName extends ParentClass {
             r"^\s*class\s+([\w<>]+)(?:\s+extends\s+[\w<>]+)?\s*\{",
         ]
@@ -991,8 +1026,10 @@ class JavaLocator(BaseLocator):
                 logger.warning("Java类检测正则表达式错误: {}", str(e))
                 continue
         
-        # 从API位置向上搜索
+        # 从API位置向上搜索，找到直接包含的类/接口
         brace_count = 0
+        found_classes = []  # 存储找到的所有类，按层级排序
+        
         for i in range(api_line_index, -1, -1):
             line = lines[i]
             
@@ -1006,10 +1043,18 @@ class JavaLocator(BaseLocator):
             # 检查是否匹配Java类声明模式
             for pattern in compiled_patterns:
                 match = pattern.search(line)
-                if match and brace_count <= 0:  # 确保在正确的作用域层级
+                if match:
                     class_name = match.group(1)
-                    logger.debug("找到Java父类: {} 在行 {}", class_name, i + 1)
-                    return class_name
+                    found_classes.append((class_name, brace_count, i + 1))
+                    logger.debug("找到Java父类: {} 在行 {} (层级: {})", class_name, i + 1, brace_count)
+        
+        # 选择最直接包含API的类
+        if found_classes:
+            # 首先按brace_count升序排序（选择最内层），然后按行号降序排序（选择最近的）
+            found_classes.sort(key=lambda x: (x[1], -x[2]))
+            best_class = found_classes[0]
+            logger.debug("选择最直接父类: {} (层级: {}, 行号: {})", best_class[0], best_class[1], best_class[2])
+            return best_class[0]
         
         return None
     
