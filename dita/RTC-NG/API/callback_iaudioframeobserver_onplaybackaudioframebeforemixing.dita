@@ -13,9 +13,9 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract boolean onPlaybackAudioFrameBeforeMixing(int userId, int type,
-                int samplesPerChannel, int bytesPerSample, int channels, int samplesPerSec, ByteBuffer buffer,
-                long renderTimeMs, int avsync_type);</codeblock>
+            <codeblock props="android" outputclass="language-java">public abstract boolean onPlaybackAudioFrameBeforeMixing(String channelId, int uid, int type,
+      int samplesPerChannel, int bytesPerSample, int channels, int samplesPerSec, ByteBuffer buffer,
+      long renderTimeMs, int avsync_type, int rtpTimestamp, long presentationMs);</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">onPlaybackAudioFrameBeforeMixing?: (channelId: string, userId: number, type: number, samplesPerChannel: number, bytesPerSample: number, channels: number, samplesPerSec: number, buffer: ArrayBuffer, renderTimeMs: number, avsync_type: number) =&gt; boolean;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onPlaybackAudioFrameBeforeMixing:(AgoraAudioFrame* _Nonnull)frame channelId:(NSString * _Nonnull)channelId uid:(NSUInteger)uid  NS_SWIFT_NAME(onPlaybackAudioFrame(beforeMixing:channelId:uid:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual bool onPlaybackAudioFrameBeforeMixing(const char* channelId, rtc::uid_t uid, AudioFrame&amp; audioFrame) = 0;</codeblock>
@@ -51,8 +51,8 @@
                 <pd>频道 ID。</pd>
             </plentry>
             <plentry>
-                <pt props="cpp unreal bp ios mac unity electron rn flutter cs">uid</pt>
-                <pt props="android hmos">userId</pt>
+                <pt props="cpp unreal bp ios mac unity electron rn flutter cs android">uid</pt>
+                <pt props="hmos">userId</pt>
                 <pd>订阅的远端用户的 ID。</pd>
             </plentry>
             <plentry props="cpp unreal bp unity ios mac electron rn flutter cs">
