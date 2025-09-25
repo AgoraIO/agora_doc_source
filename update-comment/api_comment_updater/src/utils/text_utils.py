@@ -324,7 +324,7 @@ def convert_table_to_markdown(table_element) -> str:
             
             markdown_lines.append("| " + " | ".join(aligned_row) + " |")
     
-    return "\n".join(markdown_lines) + "\n\n"
+    return "\n" + "\n".join(markdown_lines)
 
 
 def convert_html_to_markdown(element, indent_level: int = 0) -> str:
@@ -394,7 +394,18 @@ def convert_html_to_markdown(element, indent_level: int = 0) -> str:
     elif tag_name == 'p':
         # 段落
         inner_text = ''.join(convert_html_to_markdown(child, indent_level) for child in element.children)
-        text = f"{inner_text.strip()}\n\n"
+        # 如果段落内容包含表格，确保表格前有换行
+        if '\n|' in inner_text:
+            # 段落中包含表格，确保表格前有适当分隔
+            parts = inner_text.split('\n|', 1)
+            if len(parts) == 2:
+                text_part = parts[0].strip()
+                table_part = '|' + parts[1]
+                text = f"{text_part}\n{table_part}\n\n"
+            else:
+                text = f"{inner_text.strip()}\n\n"
+        else:
+            text = f"{inner_text.strip()}\n\n"
     elif tag_name == 'div' and 'ul' in str(element):
         # 包含ul的div，需要特殊处理确保列表前有换行
         inner_text = ""
