@@ -150,11 +150,72 @@ class TocHTMLParser(BaseHTMLParser):
         # 提取返回值信息（使用多行版本保留列表结构）
         return_section = section.find('section', id=lambda x: x and '__return_values' in x)
         if return_section:
-            return_text = self._extract_multiline_from_section(return_section, "Returns")
+            # 不移除"Returns"，因为它可能是描述内容的一部分
+            return_text = self._extract_multiline_from_section(return_section, "")
             if return_text:
                 content["return"] = return_text
         
+        # 提取异常信息（Java特有）
+        throws_info = self._extract_throws_info(section)
+        if throws_info:
+            content["throws"] = throws_info
+        
         return content
+    
+    def _extract_throws_info(self, section) -> str:
+        """
+        提取异常信息（Java特有）
+        
+        Args:
+            section: BeautifulSoup section元素
+            
+        Returns:
+            str: 格式化的异常信息，格式为 "ExceptionName {description}"
+        """
+        # 查找异常section
+        exception_section = section.find('section', id=lambda x: x and '__exception' in x)
+        if not exception_section:
+            return ""
+        
+        # 提取异常描述文本
+        exception_desc = self._extract_multiline_from_section(exception_section, "异常")
+        if not exception_desc:
+            return ""
+        
+        # 从异常描述中提取异常名称
+        # 查找 <span class="keyword">ExceptionName</span> 模式
+        exception_name = ""
+        keyword_span = exception_section.find('span', class_='keyword')
+        if keyword_span:
+            exception_name = keyword_span.get_text().strip()
+        
+        # 如果没有找到异常名称，尝试从API签名中提取
+        if not exception_name:
+            # 获取当前API的签名
+            signature_section = section.find('section', id=lambda x: x and '__prototype' in x)
+            if signature_section:
+                signature_text = signature_section.get_text()
+                # 使用正则表达式提取 throws 后的异常名称
+                import re
+                throws_match = re.search(r'throws\s+(\w+)', signature_text)
+                if throws_match:
+                    exception_name = throws_match.group(1)
+        
+        # 构建throws信息
+        if exception_name:
+            # 清理描述文本，移除异常名称的重复提及
+            clean_desc = exception_desc
+            # 移除开头的"调用该方法失败时，SDK 会抛出 ExceptionName 异常"这样的模板文本
+            import re
+            pattern = rf"调用该方法失败时，SDK\s*会抛出\s*{re.escape(exception_name)}\s*异常[，。]*\s*"
+            clean_desc = re.sub(pattern, "", clean_desc).strip()
+            
+            if clean_desc:
+                return f"{exception_name} {clean_desc}"
+            else:
+                return exception_name
+        
+        return ""
     
     def _build_api_comment_lines(self, content: Dict[str, Any]) -> List[str]:
         """
@@ -251,6 +312,11 @@ class TocHTMLParser(BaseHTMLParser):
                 if line.strip():
                     comment_lines.append(f" * {line}")
         
+        # @throws (Java特有)
+        if content.get('throws'):
+            throws_text = content['throws']
+            comment_lines.append(f" * @throws {throws_text}")
+        
         comment_lines.append(" */")
         return comment_lines
     
@@ -300,7 +366,8 @@ class TocHTMLParser(BaseHTMLParser):
         restriction_section = section.find('section', id=lambda x: x and '__restriction' in x)
         if restriction_section:
             restriction_text = self._extract_multiline_from_section(restriction_section, "Restrictions")
-            if restriction_text and restriction_text.lower() != "none.":
+            # 同时过滤英文"none."和中文"无。"
+            if restriction_text and restriction_text.lower() != "none." and restriction_text != "无。":
                 notes.append(restriction_text)
         
         # 2. 提取详细描述中的notes
