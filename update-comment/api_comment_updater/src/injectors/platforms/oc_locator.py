@@ -433,7 +433,7 @@ class OcLocator(BaseLocator):
     
     def _clean_signature(self, signature: str) -> str:
         """
-        清理Objective-C签名，移除HTML标签和多余空白
+        清理Objective-C签名，移除HTML标签、多余空白和NS_SWIFT_NAME
         
         Args:
             signature: 原始Objective-C签名
@@ -444,15 +444,18 @@ class OcLocator(BaseLocator):
         clean_sig = signature
         # 统一空白字符
         clean_sig = re.sub(r'\s+', ' ', clean_sig)
-        
         # 移除首尾空白
         clean_sig = clean_sig.strip()
-        
+        # 移除NS_SWIFT_NAME部分，保持分号
+        # 使用更精确的正则表达式处理嵌套括号
+        clean_sig = re.sub(r'\s+NS_SWIFT_NAME\([^()]*(?:\([^()]*\)[^()]*)*\)', '', clean_sig)
+        # 移除deprecated标记
+        clean_sig = re.sub(r'\s+__deprecated_msg\([^)]*\)', '', clean_sig)
         return clean_sig
     
     def _clean_code_line_for_matching(self, line: str) -> str:
         """
-        清理Objective-C代码行
+        清理Objective-C代码行，移除多余空白、NS_SWIFT_NAME和deprecated标记
         
         Args:
             line: 原始Objective-C代码行
@@ -460,8 +463,15 @@ class OcLocator(BaseLocator):
         Returns:
             str: 清理后的代码行
         """
-        # Objective-C暂时不需要特殊清理，直接返回去除首尾空白的行
-        return line.strip()
+        clean_line = line.strip()
+        # 统一空白字符
+        clean_line = re.sub(r'\s+', ' ', clean_line)
+        # 移除NS_SWIFT_NAME部分，保持分号
+        # 使用更精确的正则表达式处理嵌套括号
+        clean_line = re.sub(r'\s+NS_SWIFT_NAME\([^()]*(?:\([^()]*\)[^()]*)*\)', '', clean_line)
+        # 移除deprecated标记
+        clean_line = re.sub(r'\s+__deprecated_msg\([^)]*\)', '', clean_line)
+        return clean_line
     
     def _find_nearest_parent_class(self, lines: List[str], api_line_index: int) -> Optional[str]:
         """
