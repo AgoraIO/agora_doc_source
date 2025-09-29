@@ -313,6 +313,11 @@ class OcLocator(BaseLocator):
                     logger.info("定位到Objective-C类属性 {}.{}: {}", class_name, attribute_name, f"{file_path}:{line_num}")
                     return (file_path, line_num)
                 
+                # 查找getter方法
+                if self._is_getter_method_definition(line_clean, attribute_name):
+                    logger.info("定位到Objective-C类属性getter {}.{}: {}", class_name, attribute_name, f"{file_path}:{line_num}")
+                    return (file_path, line_num)
+                
                 # 如果遇到下一个类定义，停止搜索
                 if line_num > class_line and ('@interface' in line_clean or '@implementation' in line_clean):
                     break
@@ -342,6 +347,41 @@ class OcLocator(BaseLocator):
         patterns = [
             rf'@property\s*\([^)]*\)\s+[^{{]*{re.escape(attribute_name)}',
             rf'@property\s+[^{{]*{re.escape(attribute_name)}',
+        ]
+        
+        for pattern in patterns:
+            if re.search(pattern, line):
+                return True
+        
+        return False
+    
+    def _is_getter_method_definition(self, line: str, attribute_name: str) -> bool:
+        """
+        判断是否为Objective-C属性getter方法定义
+        
+        Args:
+            line: 代码行
+            attribute_name: 属性名
+            
+        Returns:
+            bool: 是否为getter方法定义
+        """
+        # 检查是否以实例方法关键字开头
+        if not line.strip().startswith('- ('):
+            return False
+        
+        # 检查是否包含属性名
+        if attribute_name not in line:
+            return False
+        
+        # 检查是否是getter方法格式
+        # - (ReturnType)attributeName;
+        # - (ReturnType)attributeName:(ParamType)param;
+        patterns = [
+            # 无参数的getter方法
+            rf'-\s*\([^)]+\)\s*{re.escape(attribute_name)}\s*;',
+            # 有参数的getter方法（如indexed accessor）
+            rf'-\s*\([^)]+\)\s*{re.escape(attribute_name)}\s*:\s*\([^)]+\)',
         ]
         
         for pattern in patterns:

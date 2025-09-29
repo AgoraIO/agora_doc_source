@@ -44,6 +44,9 @@ class CodeLocator:
         elif self.platform in ["ios-ng", "oc-ng"]:
             from .platforms.oc_locator import OcLocator
             return OcLocator(repo_config, platform_config)
+        elif self.platform in ["mac-ng", "oc-ng"]:
+            from .platforms.oc_locator import OcLocator
+            return OcLocator(repo_config, platform_config)
         else:
             raise ValueError(f"Unsupported platform: {self.platform}")
     

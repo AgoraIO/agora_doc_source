@@ -44,6 +44,9 @@ class CommentInjector:
         elif self.platform in ["ios-ng", "oc-ng"]:
             from .platforms.oc_injector import OcInjector
             return OcInjector(repo_config, platform_config)
+        elif self.platform in ["mac-ng", "oc-ng"]:
+            from .platforms.oc_injector import OcInjector
+            return OcInjector(repo_config, platform_config)
         else:
             raise ValueError(f"Unsupported platform: {self.platform}")
     
