@@ -116,9 +116,10 @@ public:
                 <pt>filePath</pt>
                 <pd>
                     <p>日志文件的完整路径。声网建议你使用默认的日志路径。如果你需要修改默认的日志路径，请确保你指定的路径存在且可写。</p>
-                    <p props="cpp unreal bp unity electron rn cs">默认路径为：
+                    <p props="cpp unreal bp unity electron rn cs hmos">默认路径为：
                     <ul>
                     <li props="cpp unreal bp unity rn flutter">Android：<filepath id="android-path">/storage/emulated/0/Android/data/&lt;packagename&gt;/files/agorasdk.log</filepath>。</li>
+                    <li props="hmos">HarmonyOS：<parmname>{context}.filesDir</parmname>，其中 <parmname>{context}</parmname> 是你在 <xref keyref="RtcEngineConfig"/> 下 <parmname>mContext</parmname> 字段中设置的值。</li>
                     <li props="cpp unreal bp unity rn flutter">iOS：<filepath id="ios-path">App Sandbox/Library/caches/agorasdk.log</filepath>。</li>
                     <li props="cpp unreal bp unity electron flutter">macOS：
                         <ul id="mac-path">
