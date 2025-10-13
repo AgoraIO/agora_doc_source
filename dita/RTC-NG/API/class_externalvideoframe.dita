@@ -464,8 +464,8 @@ class ExternalVideoFrame {
                 <pt>d3d11Texture2d</pt>
                 <pd>该参数仅适用于 Windows Texture 格式的视频数据。表示一个指向 <codeph>ID3D11Texture2D</codeph> 类型对象的指针，该类型对象被视频帧所使用。</pd>
               </plentry>
-            <plentry id="alphabuffer">
-                <pt props="cpp android framework">alphaBuffer</pt>
+            <plentry id="alphabuffer" props="cpp android framework">
+                <pt props="cpp framework">alphaBuffer</pt>
                 <pt props="apple">alphaBuf</pt>
                 <pd>
                   <p>采用人像分割算法输出的 Alpha 通道数据。该数据跟视频帧的尺寸一致，每个像素点的取值范围为 [0,255]，其中 0 代表背景；255 代表前景（人像）。</p>
@@ -473,9 +473,9 @@ class ExternalVideoFrame {
                   <note type="attention" props="android apple framework">在自定义视频渲染场景下，需确保传入的视频帧和 <parmname>alphaBuffer</parmname> 均为 Full Range 类型；其他类型可能导致 Alpha 数据渲染不正常。</note>
                 </pd>
               </plentry>
-              <plentry>
+              <plentry props="cpp apple framework">
                 <pt props="cpp framework">fillAlphaBuffer</pt>
-                <pt props="android apple">fillAlphaData</pt>
+                <pt props="apple">fillAlphaData</pt>
                 <pd>该参数仅适用于 BGRA 或 RGBA 格式的视频数据。设置是否提取视频帧中的 Alpha 通道数据并自动填入到 <parmname>alphaBuffer</parmname> 中：
                   <ul>
                   <li><codeph><ph keyref="true"/></codeph>：提取并填充 Alpha 通道数据。</li>
@@ -524,8 +524,9 @@ class ExternalVideoFrame {
                 <pd>原始数据相关字段。指定是否对传入的视频组做顺时针旋转操作，可选值为 0， 90， 180， 270。默认为 0。</pd>
             </plentry>
             <plentry props="android cpp unreal bp unity electron flutter rn cs apple">
-                <pt props="android cpp unreal bp unity electron flutter rn cs">timestamp</pt>
+                <pt props="cpp unreal bp unity electron flutter rn cs">timestamp</pt>
                 <pt props="ios mac">time</pt>
+                <pt props="android">timeStamp</pt>
                 <pd>传入的视频帧的时间戳，以毫秒为单位。不正确的时间戳会导致丢帧或者音视频不同步。</pd>
             </plentry>
             <plentry conkeyref="VideoFrame/colorspace" props="cpp apple unreal unity cs flutter rn electron">

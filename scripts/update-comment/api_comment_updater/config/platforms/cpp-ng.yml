@@ -1,0 +1,57 @@
+# C++平台配置文件
+
+platform: "cpp-ng"
+language: "cpp"
+
+# HTML解析规则
+html_parsing:
+  api_name_selector: "h2.title.topictitle2 span.ph"
+  signature_selector: "section[id$='__prototype'] pre"
+  parent_class_selector: "nav.related-links .linklist a"
+  
+# 注释模板（不包含since/deprecated，这些从现有代码保留）
+comment_template: |
+  /**
+   * @brief {brief}
+   * {technical_preview}
+   * {preserved_since}
+   * {preserved_deprecated}
+   *
+   * @details {details}
+   *
+   * @note {note}
+   *
+   * {parameters}
+   *
+   * @return {return}
+   */
+
+# 代码搜索模式
+search_patterns:
+  signature_patterns:
+    - "^{escaped_signature}$"
+    - "^\\s*{escaped_signature}\\s*;?\\s*$"
+  name_patterns:
+    - "\\b{api_name}\\b"
+
+# 类检测规则（用于parent_class验证）
+class_detection:
+  # 类声明关键字
+  class_keywords:
+    - "class"
+    - "struct"
+    - "interface"
+  # 类作用域标记
+  scope_markers:
+    start: "{"
+    end: "}"
+  # 类声明匹配模式
+  class_patterns:
+    - "^\\s*(class|struct|interface)\\s+([\\w:]+)\\s*[:{]"
+    - "^\\s*(class|struct|interface)\\s+([\\w:]+)\\s*$"
+
+# 保留信息匹配模式
+preserve_patterns:
+  technical_preview: "@technical\\s+preview"
+  since: "@since\\s+v?[\\d\\.]+"
+  deprecated: "@deprecated.*"

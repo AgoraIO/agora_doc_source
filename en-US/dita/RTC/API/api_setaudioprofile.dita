@@ -57,7 +57,8 @@
                     <li><ph keyref="AUDIO_SCENARIO_CHATROOM" /> (5): Chatroom scenario, where users need to frequently switch the user role or mute and unmute the microphone.</li>
                     <li><ph keyref="AUDIO_SCENARIO_HIGH_DEFINITION" /> (6): High-quality audio scenario, where users mainly play music.</li>
                     <li><ph keyref="AUDIO_SCENARIO_CHORUS" /> (7): Real-time chorus scenario, where users have good network conditions and require extremely low latency.
-                        <note conkeyref="AUDIO_SCENARIO_TYPE/chorus" /></li>
+                        <note type="attention" props="android" id="chorus">Before using this enumeration, you need to call <xref keyref="getAudioDeviceInfo"/> to see whether the audio device supports ultra-low-latency capture and playback. To experience ultra-low latency, you need to ensure that your audio device supports ultra-low latency (<parmname>isLowLatencyAudioSupported</parmname> = <codeph><ph keyref="true"/></codeph>).</note>
+                    </li>
                     </ul></pd>
                 <pd props="rtc"><ph>The audio scenario. </ph><ph props="ios mac cpp electron cs flutter">See <xref keyref="AUDIO_SCENARIO_TYPE" />. </ph><ph>Under different audio scenarios, the device uses different volume types.</ph>
                     <ul props="android">
