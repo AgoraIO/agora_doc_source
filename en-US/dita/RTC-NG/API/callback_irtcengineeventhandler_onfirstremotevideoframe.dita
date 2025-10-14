@@ -17,8 +17,8 @@
                <codeblock props="hmos" outputclass="language-arkts">onFirstRemoteVideoFrame?:(uid:number,width:number,height:number,elapsed:number) =&gt;void;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
          firstRemoteVideoFrameOfUid:(NSUInteger)uid size:(CGSize)size elapsed:(NSInteger)elapsed;</codeblock>
-               <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onFirstRemoteVideoFrame(uid_t userId, int width, int height, int elapsed) {
-                    (void)userId;
+               <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onFirstRemoteVideoFrame(uid_t uid, int width, int height, int elapsed) {
+                    (void)uid;
                     (void)width;
                     (void)height;
                     (void)elapsed;
@@ -55,9 +55,9 @@
                     <pd />
                </plentry>
                <plentry>
-                    <pt props="ios mac android hmos flutter">uid</pt>
+                    <pt props="cpp unreal ios mac android hmos flutter">uid</pt>
                     <pt props="electron rn flutter unity cs">remoteUid</pt>
-                    <pt props="cpp unreal bp">userId</pt>
+                    <pt props="bp">userId</pt>
                     <pd>The user ID of the remote user sending the video stream.</pd>
                </plentry>
                <plentry props="ios mac">

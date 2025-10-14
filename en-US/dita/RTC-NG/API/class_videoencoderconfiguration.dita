@@ -271,6 +271,7 @@
 @property(assign, nonatomic) AgoraVideoOutputOrientationMode orientationMode;
 @property(assign, nonatomic) AgoraVideoMirrorMode mirrorMode;
 @property (assign, nonatomic) AgoraDegradationPreference degradationPreference;
+@property (strong, nonatomic) AgoraAdvancedVideoOptions *_Nullable advancedVideoOptions;
 
 - (instancetype _Nonnull)initWithSize:(CGSize)size
                             frameRate:(AgoraVideoFrameRate)frameRate
@@ -613,7 +614,8 @@ public:
                 <pd>The orientation mode of the encoded video. See <xref keyref="ORIENTATION_MODE"/>.</pd>
             </plentry>
             <plentry>
-                <pt>degradationPreference</pt>
+                <pt props="cpp apple unity rn electron flutter cs bp unreal">degradationPreference</pt>
+                <pt props="android hmos">degradationPrefer</pt>
                 <pd>Video degradation preference under limited bandwidth. See <xref keyref="DEGRADATION_PREFERENCE"/>.<note type="attention">When this parameter is set to <ph keyref="MAINTAIN_FRAMERATE"/> (1) or <ph keyref="MAINTAIN_BALANCED"/> (2), <parmname>orientationMode</parmname> needs to be set to <ph keyref="ORIENTATION_MODE_ADAPTIVE"/> (0) at the same time, otherwise the setting will not take effect.</note></pd>
             </plentry>
             <plentry>
@@ -629,7 +631,8 @@ public:
                     <note type="attention">By default, the video is not mirrored.</note> </pd>
             </plentry>
             <plentry>
-                <pt>advanceOptions</pt>
+                <pt props="android hmos cpp cs unity electron flutter rn bp unreal">advanceOptions</pt>
+                <pt props="ios mac">advancedVideoOptions</pt>
                 <pd>Advanced options for video encoding. See <xref keyref="AdvanceOptions"/>.</pd>
             </plentry>
             </parml> </section>
