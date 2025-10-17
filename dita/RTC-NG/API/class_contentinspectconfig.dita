@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_contentinspectconfig">
     <title><ph keyref="ContentInspectConfig"/></title>
-    <shortdesc id="short"><ph id="shortdesc">本地截图上传配置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">视频截图上传配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -45,7 +45,7 @@
   
   public moduleCount:number = 0;
 }</codeblock>
-            <codeblock props="ios mac">__attribute__((visibility("default"))) @interface AgoraContentInspectConfig: NSObject
+            <codeblock props="ios mac">@interface AgoraContentInspectConfig: NSObject
 @property (nonatomic, copy) NSString* _Nullable extraInfo;
 @property (nonatomic, copy) NSString* _Nullable serverConfig;
 @property(copy, nonatomic) NSArray&lt;AgoraContentInspectModule*&gt;* _Nullable modules;
@@ -71,13 +71,13 @@ struct FContentInspectConfig
 {
 	GENERATED_BODY()
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ContentInspectConfig&quot;)
-	FString extraInfo = &quot;&quot;;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ContentInspectConfig&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|ContentInspectConfig")
+	FString extraInfo = "";
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|ContentInspectConfig")
 	FString serverConfig;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ContentInspectConfig&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|ContentInspectConfig")
 	TArray&lt;FContentInspectModule&gt; modules;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ContentInspectConfig&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|ContentInspectConfig")
 	int moduleCount = 0;
 	FContentInspectConfig(){}
 	FContentInspectConfig(const agora::media::ContentInspectConfig &amp; AgoraData){
@@ -147,16 +147,16 @@ class ContentInspectConfig {
   const ContentInspectConfig(
       {this.extraInfo, this.serverConfig, this.modules, this.moduleCount});
 
-  @JsonKey(name: &#x27;extraInfo&#x27;)
+  @JsonKey(name: 'extraInfo')
   final String? extraInfo;
 
-  @JsonKey(name: &#x27;serverConfig&#x27;)
+  @JsonKey(name: 'serverConfig')
   final String? serverConfig;
 
-  @JsonKey(name: &#x27;modules&#x27;)
+  @JsonKey(name: 'modules')
   final List&lt;ContentInspectModule&gt;? modules;
 
-  @JsonKey(name: &#x27;moduleCount&#x27;)
+  @JsonKey(name: 'moduleCount')
   final int? moduleCount;
 
   factory ContentInspectConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
@@ -164,7 +164,7 @@ class ContentInspectConfig {
 
   Map&lt;String, dynamic&gt; toJson() =&gt; _$ContentInspectConfigToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="parameters">
             <title>参数</title>
@@ -185,28 +185,31 @@ class ContentInspectConfig {
                 <pt>CONTENT_INSPECT_TYPE_IMAGE_MODERATION</pt>
                 <pd>3：使用云市场插件截图上传。SDK 会使用云市场视频审核插件对视频流进行截图并上传。</pd>
             </plentry>
-            <plentry>
-                <pt>extraInfo</pt>
+            <plentry props="ios">
+                <pt props="ios">extraInfo</pt>
                 <pd>
                     <p>附加信息，最大长度为 1024 字节。</p>
                     <p>SDK 会将附加信息和截图一起上传至声网服务器；截图完成后，声网服务器会将附加信息随回调通知一起发送给你的服务器。</p>
                     <p props="hide">SDK 会将附加信息和截图一起上传至声网内容审核服务器；审核完成后，声网内容审核服务器会将附加信息随审核结果一起发送给你的服务器。</p>
                 </pd>
+                <pd props="ios">视频内容的附加信息（最大长度为 1024 字节）。SDK 会将视频截图和附加信息发送到声网服务器。视频截图和上传流程完成后，声网服务器会将附加信息和回调通知发送到你的服务器。</pd>
             </plentry>
-            <plentry props="native rn flutter unreal bp unity">
-                <pt>serverConfig</pt>
-                <pd>（可选）云市场视频审核相关服务端配置，该参数仅在 <xref keyref="ContentInspectModule"/> 中的 <codeph>type</codeph> 设置为 <apiname keyref="CONTENT_INSPECT_IMAGE_MODERATION"/> 时生效。如需使用，请<xref keyref="ticket-link" />。</pd>
-            </plentry>
-            <plentry>
-                <pt>modules</pt>
+            <plentry props="bp flutter ios native rn unity unreal">
+                <pt props="ios">serverConfig</pt>
+                <pd>（可选）云市场视频审核相关服务端配置，该参数仅在 <xref keyref="ContentInspectModule"/> 中的 <codeph>type</codeph> 设置为 <apiname keyref="CONTENT_INSPECT_IMAGE_MODERATION"/> 时生效。如需使用，请<xref keyref="ticket-link"/>。</pd>
+                <pd props="ios">（可选）通过声网 Extensions Marketplace 上传视频截图的服务器配置。仅当 <codeph>type</codeph> 设置为 <ph keyref="AgoraContentInspectTypeImageModeration"/> 时该参数才生效。如需使用，请联系技术支持。</pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">modules</pt>
                 <pd>
                     <p>功能模块。详见 <xref keyref="ContentInspectModule"/>。</p>
                     <p>最多支持配置 32 个 <apiname keyref="ContentInspectModule"/> 实例，<parmname>MAX_CONTENT_INSPECT_MODULE_COUNT</parmname> 的取值范围为 [1,32] 中的整数。</p>
                     <note type="attention">一个功能模块最多只能配置一个实例。目前仅支持截图上传功能。</note>
                 </pd>
-            </plentry>
+                <pd props="ios">功能模块。最多可配置 32 个 <xref keyref="ContentInspectModule"/> 实例，<codeph>MAX_CONTENT_INSPECT_MODULE_COUNT</codeph> 的取值范围为 [1, 32] 的整数。详见 <xref keyref="ContentInspectModule"/>。每个功能模块最多只能配置一个实例。目前仅支持视频截图上传功能。</pd>
+                </plentry>
             <plentry>
-                <pt props="android hmos cpp unreal cs unity electron rn flutter bp">moduleCount</pt>
+                <pt props="android bp cpp cs electron flutter hmos rn unity unreal">moduleCount</pt>
                 <pd>功能模块数，即配置的 <apiname keyref="ContentInspectModule"/> 实例的数量，必须与 <parmname>modules</parmname> 中配置的实例个数一致。最大值为 32。</pd>
             </plentry>
             </parml> </section>

@@ -1,29 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onvideosizechanged">
-    <title> <ph keyref="onVideoSizeChanged" /> </title>
-    <shortdesc id="short"> <ph id="shortdesc">本地或远端视频大小和旋转信息发生改变回调。</ph> </shortdesc>
+    <title> <ph keyref="onVideoSizeChanged"/> </title>
+    <shortdesc id="short"> <ph id="shortdesc">指定用户的视频尺寸或旋转信息发生变化时触发的回调。</ph> </shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onVideoSizeChanged" />
+                <indexterm keyref="onVideoSizeChanged"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public void onVideoSizeChanged(
-      Constants.VideoSourceType source, int uid, int width, int height, int rotation) {}</codeblock>
+            <codeblock props="android" outputclass="language-java">public void onVideoSizeChanged(Constants.VideoSourceType source, int uid, int width, int height, int rotation)</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">onVideoSizeChanged?:(source:Constants.VideoSourceType, uid:number, width:number, height:number, rotation:number) =&gt; void</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine videoSizeChangedOfSourceType:(AgoraVideoSourceType)sourceType uid:(NSString * _Nonnull)uid size:(CGSize)size rotation:(NSInteger)rotation NS_SWIFT_NAME(rtcEngine(_:videoSizeChangedOf:uid:size:rotation:));</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onVideoSizeChanged(VIDEO_SOURCE_TYPE sourceType, uid_t uid, int width, int height, int rotation) {
-    (void)uid;
-    (void)width;
-    (void)height;
-    (void)rotation;
-  }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine videoSizeChangedOfSourceType:(AgoraVideoSourceType)sourceType uid:(NSUInteger)uid size:(CGSize)size rotation:(NSInteger)rotation NS_SWIFT_NAME(rtcEngine(_:videoSizeChangedOf:uid:size:rotation:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onVideoSizeChanged(VIDEO_SOURCE_TYPE sourceType, uid_t uid, int width, int height, int rotation)</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = "Agora|Event")
 	void OnVideoSizeChanged(EVIDEO_SOURCE_TYPE sourceType, int64 uid, int width, int height, int rotation);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onVideoSizeChanged?(
     connection: RtcConnection,
@@ -44,47 +38,69 @@
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, VideoSourceType sourceType,
       int uid, int width, int height, int rotation)? onVideoSizeChanged;</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="parameters">
-            <title> <ph keyref="callback-section-title" /> </title>
+            <title> <ph keyref="callback-section-title"/> </title>
             <parml>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt />
-                <pd />
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="apple">
+                <pt/>
+                <pd/>
             </plentry>
-            <plentry props="unity flutter rn electron cs">
+            <plentry props="cs electron flutter rn unity">
                 <pt>connection</pt>
-                <pd>Connection 信息。详见 <xref keyref="RtcConnection" />。 </pd>
+                <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。 </pd>
             </plentry>
             <plentry>
-                <pt props="apple cpp unreal bp electron unity rn flutter cs">sourceType</pt>
+                <pt>sourceType</pt>
                 <pt props="android hmos">source</pt>
-                <pd>视频源的类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。 </pd>
+                <pd props="bp cs electron flutter mac rn unity unreal">视频源的类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。 </pd>
+                <pd props="android">视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                <pd props="cpp ios">视频源类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
                 </plentry>
             <plentry id="uid">
                 <pt>uid</pt>
-                <pd>图像尺寸和旋转信息发生变化的用户 ID（本地用户的 <parmname>uid</parmname> 为 0。此时视频为本地用户的视频预览）。</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>size</pt>
-                <pd>视频流的尺寸。</pd>
-            </plentry>
-            <plentry id="width" props="android hmos cpp unreal bp unity flutter electron rn cs">
-                <pt>width</pt>
-                <pd>视频流的宽度（像素）。</pd>
-            </plentry>
-            <plentry id="height" props="android hmos cpp unreal bp unity flutter electron rn cs">
-                <pt>height</pt>
-                <pd>视频流的高度（像素）。</pd>
-            </plentry>
+                <pd props="bp cs electron flutter mac rn unity unreal">图像尺寸和旋转信息发生变化的用户 ID（本地用户的 <parmname>uid</parmname> 为 0。此时视频为本地用户的视频预览）。</pd>
+            <pd props="android cpp">发生视频尺寸或旋转变化的用户 ID。0 表示本地用户（即本地用户的视频预览）。</pd>
+                <pd props="ios">发生视频尺寸或旋转变化的用户 ID。
+                    <ul>
+                        <li>0：表示本地用户（即本地用户的视频预览）。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="apple">
+                <pt props="apple">size</pt>
+                <pd props="android bp cpp cs electron flutter mac rn unity unreal">视频流的尺寸。</pd>
+            <pd props="ios">视频的尺寸（宽度和高度）。</pd>
+                </plentry>
+            <plentry id="width" props="android bp cpp cs electron flutter hmos rn unity unreal">
+                <pt props="android bp cpp cs electron flutter hmos rn unity unreal">width</pt>
+                <pd props="android apple bp cs electron flutter rn unity unreal">视频流的宽度（像素）。</pd>
+            <pd props="cpp">视频流的宽度（单位为像素）。</pd>
+                </plentry>
+            <plentry id="height" props="android bp cpp cs electron flutter hmos rn unity unreal">
+                <pt props="android bp cpp cs electron flutter hmos rn unity unreal">height</pt>
+                <pd props="android apple bp cs electron flutter rn unity unreal">视频流的高度（像素）。</pd>
+            <pd props="cpp">视频流的高度（单位为像素）。</pd>
+                </plentry>
             <plentry id="rotation">
                 <pt>rotation</pt>
-                <pd>旋转信息，取值范围 [0,360)。
-                    <note type="note" props="cpp unity flutter rn unreal bp">在 iOS 平台上，该参数值始终为 0。</note>
+                <pd props="bp cs electron flutter mac rn unity unreal">旋转信息，取值范围 [0,360)。
+                    <note type="note" props="bp cpp flutter rn unity unreal">在 iOS 平台上，该参数值始终为 0。</note>
                     <note type="note" props="ios">该参数值始终为 0。</note>
                 </pd>
+            <pd props="android">视频的旋转信息，取值范围为 [0, 360)。</pd>
+                <pd props="ios">视频的旋转信息，取值范围为 [0, 360)。在 iOS 上，该参数值始终为 0。</pd>
+                <pd props="cpp">视频的旋转信息，取值范围为 [0, 360)。<codeph>rotation</codeph> 参数在 iOS 平台上始终为 0。</pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">engine</pt>
+                <pd props="ios">你使用的 <xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+        <plentry props="ios">
+                <pt props="ios">size</pt>
+                <pd props="ios">视频的尺寸（宽度和高度）。</pd>
             </plentry>
-            </parml> </section>
+        </parml> </section>
     </refbody>
 </reference>

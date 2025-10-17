@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onstreammessage">
-    <title> <ph keyref="onStreamMessage" /> </title>
-    <shortdesc id="short"> <ph id="shortdesc">接收到对方数据流消息的回调。</ph> </shortdesc>
+    <title> <ph keyref="onStreamMessage"/> </title>
+    <shortdesc id="short"> <ph id="shortdesc">远端用户发送数据流时触发的回调。</ph> </shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onStreamMessage" />
+                <indexterm keyref="onStreamMessage"/>
             </keywords>
         </metadata>
     </prolog>
@@ -15,18 +15,9 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onStreamMessage(int uid, int streamId, byte[] data) {}</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">onStreamMessage?:(uid:number, streamId:number,data:Uint8Array) =&gt; void;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
-                receiveStreamMessageFromUid:(NSUInteger)uid
-                streamId:(NSInteger)streamId
-                data:(NSData * _Nonnull)data;</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onStreamMessage(uid_t uid, int streamId, const char* data, size_t length, uint64_t sentTs) {
-                    (void)uid;
-                    (void)streamId;
-                    (void)data;
-                    (void)length;
-                    (void)sentTs;
-                  }</codeblock>
-            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine receiveStreamMessageFromUid:(NSUInteger)uid streamId:(NSInteger)streamId data:(NSData * _Nonnull)data NS_SWIFT_NAME(rtcEngine(_:receiveStreamMessageFromUid:streamId:data:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onStreamMessage(uid_t uid, int streamId, const char* data, size_t length, uint64_t sentTs)</codeblock>
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = "Agora|Event")
 	void OnStreamMessage(int64 uid, int streamId, const FString&amp; data, int length, int64 sentTs);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onStreamMessage?(
     connection: RtcConnection,
@@ -47,47 +38,64 @@
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, int streamId,
       Uint8List data, int length, int sentTs)? onStreamMessage;</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
-        <note conkeyref="createDataStream2/note" props="android apple cpp unity flutter"/>
-            <p>
-                该回调表示本地用户收到了远端用户调用 <xref keyref="sendStreamMessage" /> 方法发送的流消息。
+        <note conkeyref="createDataStream2/note" props="android apple cpp flutter unity"/>
+            <p>当本地用户收到远端用户通过 <xref keyref="sendStreamMessage"/> 发送的数据流时，会触发该回调。<xref keyref="sendStreamMessage"/> 发送的数据流时，会触发该回调。<xref keyref="sendStreamMessage"/> 方法发送的流消息。
             </p>
+            <note type="attention" props="cpp">如果你需要一个更全面的解决方案，以实现低延迟、高并发和可扩展的实时消息传递和状态同步，建议使用 <codeph>Signaling</codeph>。</note>
+            <note type="attention" props="apple">如果你需要一个更全面的解决方案来实现低延迟、高并发和可扩展的实时消息传递与状态同步，建议使用 <codeph>Signaling</codeph>。</note>
+            <note type="attention" props="android">如果你需要一个更全面的低延迟、高并发和可扩展的实时消息和状态同步解决方案，建议使用 <codeph>Signaling</codeph>。</note>
+            </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>当本地用户收到远端用户通过 <xref keyref="sendStreamMessage"/> 方法发送的数据流时触发。</p>
         </section>
         <section id="parameters">
-            <title> <ph keyref="callback-section-title" /> </title>
+            <title> <ph keyref="callback-section-title"/> </title>
             <parml>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt />
-                <pd />
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="apple">
+                <pt/>
+                <pd/>
             </plentry>
-            <plentry props="unity electron rn flutter cs" conkeyref="joinChannelEx/connection">
-                <pt />
-                <pd />
+            <plentry props="cs electron flutter rn unity" conkeyref="joinChannelEx/connection">
+                <pt/>
+                <pd/>
             </plentry>
             <plentry id="uid">
-                <pt props="android hmos ios mac cpp unreal">uid</pt>
+                <pt>uid</pt>
                 <pt props="bp">userId</pt>
-                <pt props="unity electron rn flutter cs">remoteUid</pt>
-                <pd>发送消息的用户 ID。</pd>
-            </plentry>
+                <pt props="cs electron flutter rn unity">remoteUid</pt>
+                <pd props="bp cs electron flutter mac rn unity unreal">发送消息的用户 ID。</pd>
+            <pd props="android cpp ios">发送该消息的远端用户 ID。</pd>
+                </plentry>
             <plentry id="streamId">
                 <pt>streamId</pt>
-                <pd>接收到的消息的 Stream ID。</pd>
-            </plentry>
+                <pd props="bp cs electron flutter mac rn unity unreal">接收到的消息的 Stream ID。</pd>
+            <pd props="android cpp">接收到的数据流 ID。</pd>
+                <pd props="ios">接收到的消息的数据流 ID。</pd>
+                </plentry>
             <plentry id="data">
                 <pt>data</pt>
-                <pd>接收到的数据。</pd>
-            </plentry>
-            <plentry id="length" props="cpp unreal bp unity electron rn flutter cs">
-                <pt>length</pt>
-                <pd>数据长度，单位为字节。</pd>
-            </plentry>
-            <plentry props="cpp unreal bp unity electron rn flutter cs">
-                <pt>sentTs</pt>
-                <pd>数据流发出的时间。</pd>
-            </plentry>
-            </parml> </section>
+                <pd props="android bp cs electron flutter mac rn unity unreal">接收到的数据。</pd>
+            <pd props="ios">你接收到的数据，详见 <codeph>NSData</codeph>。</pd>
+                <pd props="cpp">接收到的数据内容。</pd>
+                </plentry>
+            <plentry id="length" props="bp cpp cs electron flutter rn unity unreal">
+                <pt props="bp cpp cs electron flutter rn unity unreal">length</pt>
+                <pd props="android apple bp cs electron flutter rn unity unreal">数据长度，单位为字节。</pd>
+            <pd props="cpp">接收到的数据长度（字节）。</pd>
+                </plentry>
+            <plentry props="bp cpp cs electron flutter rn unity unreal">
+                <pt props="bp cpp cs electron flutter rn unity unreal">sentTs</pt>
+                <pd props="android apple bp cs electron flutter rn unity unreal">数据流发出的时间。</pd>
+            <pd props="cpp">发送该数据流的时间戳。</pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">engine</pt>
+                <pd props="ios"><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+        </parml> </section>
     </refbody>
 </reference>

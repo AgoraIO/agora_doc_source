@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_rtcimage">
-    <title><ph keyref="RtcImage" /></title>
-    <shortdesc id="short"><ph id="shortdesc">图像属性。</ph></shortdesc>
+    <title><ph keyref="RtcImage"/></title>
+    <shortdesc id="short"><ph id="shortdesc">用于设置直播视频中水印和背景图像属性的类。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -60,12 +60,12 @@
     this.alpha = 1.0;
   }
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraImage : NSObject
-            @property(strong, nonatomic) NSURL *_Nonnull url;
-            @property(assign, nonatomic) CGRect rect;
-            @property (assign, nonatomic) NSInteger zOrder;
-            @property(assign, nonatomic) double alpha;
-            @end</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraImage : NSObject
+@property(strong, nonatomic) NSURL *_Nonnull url;
+@property(assign, nonatomic) CGRect rect;
+@property (assign, nonatomic) NSInteger zOrder;
+@property(assign, nonatomic) double alpha;
+@end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">typedef struct RtcImage {
             const char* url;
             int x;
@@ -80,19 +80,19 @@
 struct FRtcImage
 {
 	GENERATED_BODY()
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcImage&quot;)
-	FString url = &quot;&quot;;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcImage&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|RtcImage")
+	FString url = "";
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|RtcImage")
 	int x = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcImage&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|RtcImage")
 	int y = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcImage&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|RtcImage")
 	int width = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcImage&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|RtcImage")
 	int height = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcImage&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|RtcImage")
 	int zOrder = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcImage&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|RtcImage")
 	float alpha = 0;
 	FRtcImage() {}
 	FRtcImage(const agora::rtc::RtcImage&amp; AgoraData) {
@@ -109,7 +109,7 @@ struct FRtcImage
 		
 		char* URLCharPtr = new char[url.Len() + 1];
 		FMemory::Memcpy(URLCharPtr, TCHAR_TO_UTF8(*url), url.Len());
-		URLCharPtr[url.Len()] = '&#92;0';
+		URLCharPtr[url.Len()] = '\0';
 		AgoraData.url = URLCharPtr;
 		AgoraData.x = x;
 		AgoraData.y = y;
@@ -217,51 +217,66 @@ struct FRtcImage
       _$RtcImageFromJson(json);
   Map&lt;String, dynamic&gt; toJson() =&gt; _$RtcImageToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
-            <p>用于设置直播视频的水印和背景图片的属性。</p>
-        </section>
+            <p></p>
+            </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry>
-                <pt>url</pt>
+            <plentry props="ios">
+                <pt props="ios">url</pt>
                 <pd>直播视频上图片的 HTTP/HTTPS 地址。字符长度不得超过 1024 字节。</pd>
-            </plentry>
-            <plentry props="android hmos cpp unreal bp unity electron rn flutter cs">
+                <pd props="ios">直播视频中图像的 HTTP 或 HTTPS URL 地址。该参数的最大长度为 1024 字节。详见 <codeph>NSURL</codeph>。</pd>
+                </plentry>
+            <plentry props="android bp cpp cs electron flutter hmos rn unity unreal">
                 <pt>x</pt>
                 <pd>图片在视频画面上的 x 坐标 (px)，以输出视频画面的左上角为原点。</pd>
             </plentry>
-            <plentry props="android hmos cpp unreal bp unity electron rn flutter cs">
+            <plentry props="android bp cpp cs electron flutter hmos rn unity unreal">
                 <pt>y</pt>
                 <pd>图片在视频画面上的 y 坐标 (px)，以输出视频画面的左上角为原点。</pd>
             </plentry>
-            <plentry props="android hmos cpp unreal bp unity electron rn flutter cs">
+            <plentry props="android bp cpp cs electron flutter hmos rn unity unreal">
                 <pt>width</pt>
                 <pd>图片在视频画面上的宽度 (px)。</pd>
             </plentry>
-            <plentry props="android hmos cpp unreal bp unity electron rn flutter cs">
+            <plentry props="android bp cpp cs electron flutter hmos rn unity unreal">
                 <pt>height</pt>
                 <pd>图片在视频画面上的高度 (px)。</pd>
             </plentry>
-            <plentry props="ios mac">
-                <pt>rect</pt>
+            <plentry props="apple ios">
+                <pt props="ios">rect</pt>
                 <pd>图片在视频画面上的位置和大小，类型为 CGRect。</pd>
-            </plentry>
-            <plentry>
-                <pt>zOrder</pt>
+                <pd props="ios">图像在视频帧中的位置和尺寸。数据类型为 <codeph>CGRect</codeph>。</pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">zOrder</pt>
                 <pd>水印或背景图的图层编号。使用水印数组添加单张或多张水印时，必须向 <parmname>zOrder</parmname> 传值，取值范围为 [1,255]，否则 SDK 会报错。其余情况，<parmname>zOrder</parmname> 可选传值，取值范围为 [0,255]，0 为默认值。0 代表图层的最下层，255 代表图层的最上层。</pd>
-            </plentry>
-            <plentry>
-                <pt>alpha</pt>
+                <pd props="ios">水印或背景图像的图层索引。
+                    <ul>
+                        <li>当使用水印数组添加一个或多个水印时，必须传入范围为 [1, 255] 的 <codeph>zOrder</codeph> 值，否则 SDK 会报错。</li>
+                        <li>在其他情况下，<codeph>zOrder</codeph> 为可选参数，取值范围为 [0, 255]，默认值为 0。</li>
+                        <li>0 表示底层，255 表示顶层。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">alpha</pt>
                 <pd>水印或背景图片的透明度。取值范围为 [0.0,1.0]：
                     
                     <ul>
                     <li>0.0: 完全透明。</li>
                     <li>1.0:（默认）完全不透明。</li>
                     </ul></pd>
-            </plentry>
+                <pd props="ios">水印或背景图像的透明度。取值范围为 [0.0, 1.0]：
+                    <ul>
+                        <li>0.0：完全透明。</li>
+                        <li>1.0：（默认）不透明。</li>
+                        </ul>
+                    </pd>
+                </plentry>
             </parml> </section>
     </refbody>
 </reference>

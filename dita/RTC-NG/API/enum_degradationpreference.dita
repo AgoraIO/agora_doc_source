@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_degradationpreference">
     <title><ph keyref="DEGRADATION_PREFERENCE"/></title>
-    <shortdesc id="short"><ph id="shortdesc">带宽受限时的视频编码降级偏好。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">带宽受限时的视频编码降级偏好设置。</ph></shortdesc>
     <refbody>
         <section id="parameters">
             <title>枚举值</title>
@@ -34,6 +34,27 @@
             <plentry>
                 <pt><ph keyref="MAINTAIN_RESOLUTION"/></pt>
                 <pd>3: 带宽受限时，视频编码时优先降低视频帧率，维持分辨率保持不变。该降级偏好适用于画质优先的场景。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraDegradationMaintainAuto"/></pt>
+                <pd props="apple">（-1）：（默认）自动模式。SDK 会根据设置的视频场景，在 <ph keyref="AgoraDegradationMaintainFramerate"/>、<ph keyref="AgoraDegradationBalanced"/> 和 <ph keyref="AgoraDegradationMaintainResolution"/> 之间自动选择，以实现最佳的整体体验质量（QoE）。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraDegradationMaintainQuality"/></pt>
+                <pd props="apple">（0）：在带宽受限的视频编码过程中，优先降低视频帧率，同时保持视频分辨率。适用于对视频画质要求较高的场景。
+@deprecated</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraDegradationMaintainFramerate"/></pt>
+                <pd props="apple">（1）：在带宽受限的视频编码过程中，优先降低视频分辨率，同时保持视频帧率。适用于对视频流畅性要求较高且可接受画质降低的场景。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraDegradationBalanced"/></pt>
+                <pd props="apple">（2）：在带宽受限的视频编码过程中，同时降低视频帧率和分辨率。相比 <ph keyref="AgoraDegradationMaintainQuality"/> 和 <ph keyref="AgoraDegradationMaintainFramerate"/>，该模式的降级程度更小，适用于对视频流畅性和画质均有要求的场景。<note type="attention" props="apple">发送端的视频分辨率可能会发生变化，接收端需做好处理。详见 <xref keyref="onVideoSizeChanged"/>。</note></pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraDegradationMaintainResolution"/></pt>
+                <pd props="apple">（3）：在带宽受限的视频编码过程中，优先降低视频帧率，同时保持视频分辨率。适用于对视频画质要求较高的场景。</pd>
             </plentry>
             </parml> </section>
     </refbody>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_watermarkoptions">
     <title><ph keyref="WatermarkOptions"/></title>
-    <shortdesc id="short"><ph id="shortdesc">配置水印图像。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">水印图像配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -31,12 +31,12 @@
   public int zOrder = 0;
 }
 </codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface WatermarkOptions : NSObject
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface WatermarkOptions : NSObject
 @property(assign, nonatomic) BOOL visibleInPreview;
 @property(assign, nonatomic) CGRect positionInLandscapeMode;
 @property(assign, nonatomic) CGRect positionInPortraitMode;
-@property(assign, nonatomic) int zOrder;
+@property(assign, nonatomic)  int zOrder;
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct WatermarkOptions {
   bool visibleInPreview;
@@ -174,22 +174,28 @@ class WatermarkOptions {
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
-            <p>用于设置要添加的水印图像的相关配置项。</p>
+            <p></p>
             </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry>
-                <pt>visibleInPreview</pt>
+            <plentry props="ios">
+                <pt props="ios">visibleInPreview</pt>
                 <pd>水印是否在本地预览视图中可见：
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: （默认）水印在本地预览视图中可见。</li>
                     <li><codeph><ph keyref="false"/></codeph>: 水印在本地预览视图中不可见。</li>
                     </ul>
                 </pd>
-            </plentry>
-            <plentry>
-                <pt>positionInLandscapeMode</pt>
+                <pd props="ios">水印图像是否在本地预览视图中可见：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：（默认）水印图像在本地预览视图中可见。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：水印图像在本地预览视图中不可见。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">positionInLandscapeMode</pt>
                 <pd props="android hmos">横屏模式下，显示水印图片的区域。详见 <xref keyref="Rectangle"/>。</pd>
                 <pd props="bp cpp cs electron flutter rn unity unreal">水印的适配模式为 <ph keyref="FIT_MODE_COVER_POSITION"/> 时，用于设置横屏模式下水印图片的区域。详见 <xref keyref="Rectangle"/>。</pd>
                 <pd props="apple">横屏模式下，显示水印图片的区域。该参数包含以下成员：
@@ -199,9 +205,17 @@ class WatermarkOptions {
                     <li>width：水印区域的宽 (px)。</li>
                     <li>height：水印区域的高 (px)。</li>
                     </ul> </pd>
-            </plentry>
-            <plentry>
-                <pt>positionInPortraitMode</pt>
+                <pd props="ios">横屏模式下显示水印图像的区域。该参数包含以下成员：
+                    <ul>
+                        <li><codeph>x</codeph>：水印相对于左上角的水平位置。</li>
+                        <li><codeph>y</codeph>：水印相对于左上角的垂直位置。</li>
+                        <li><codeph>width</codeph>：水印区域的宽度（像素）。</li>
+                        <li><codeph>height</codeph>：水印区域的高度（像素）。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">positionInPortraitMode</pt>
                 <pd props="android hmos">竖屏模式下，显示水印图片的区域。详见 <xref keyref="Rectangle"/>。</pd>
                 <pd props="bp cpp cs electron flutter rn unity unreal">水印的适配模式为 <ph keyref="FIT_MODE_COVER_POSITION"/> 时，用于设置竖屏模式下水印图片的区域。详见 <xref keyref="Rectangle"/>。</pd>
                 <pd props="apple">竖屏模式下，显示水印图片的区域。该参数包含以下成员：
@@ -211,7 +225,15 @@ class WatermarkOptions {
                     <li>width：水印区域的宽 (px)。</li>
                     <li>height：水印区域的高 (px)。</li>
                     </ul> </pd>
-            </plentry>
+                <pd props="ios">竖屏模式下显示水印图像的区域。该参数包含以下成员：
+                    <ul>
+                        <li><codeph>x</codeph>：水印相对于左上角的水平位置。</li>
+                        <li><codeph>y</codeph>：水印相对于左上角的垂直位置。</li>
+                        <li><codeph>width</codeph>：水印区域的宽度（像素）。</li>
+                        <li><codeph>height</codeph>：水印区域的高度（像素）。</li>
+                        </ul>
+                    </pd>
+                </plentry>
             <plentry props="bp cpp cs electron flutter rn unity unreal">
                 <pt>watermarkRatio</pt>
                 <pd>水印的适配模式为 <ph keyref="FIT_MODE_USE_IMAGE_RATIO"/> 时，该参数可设置缩放模式下的水印坐标。详见 <xref keyref="WatermarkRatio"/>。</pd>
@@ -220,10 +242,10 @@ class WatermarkOptions {
                 <pt>mode</pt>
                 <pd>水印的适配模式。详见 <xref keyref="WATERMARK_FIT_MODE"/>。</pd>
             </plentry>
-            <plentry props="native">
-                <pt props="native">zOrder</pt>
+            <plentry props="ios native">
+                <pt props="ios native">zOrder</pt>
                 <pd props="cpp">水印图像的 Z 轴顺序。默认值为 0。</pd>
-                <pd props="android apple">水印图像的图层顺序。默认值为 0。</pd>
+                <pd props="android apple ios">水印图像的图层顺序。默认值为 0。</pd>
             </plentry>
             </parml> </section>
     </refbody>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onaudiomixingpositionchanged">
     <title><ph keyref="onAudioMixingPositionChanged"/></title>
@@ -17,7 +17,7 @@
             <codeblock props="hmos" outputclass="language-arkts">onAudioMixingPositionChanged?:(position:bigint) =&gt; void</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit *_Nonnull)engine audioMixingPositionChanged:(NSInteger)position NS_SWIFT_NAME(rtcEngine(_:audioMixingPositionChanged:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onAudioMixingPositionChanged(int64_t position) {}</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = "Agora|Event")
 	void OnAudioMixingPositionChanged(int64 position);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onAudioMixingPositionChanged?(position: number): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnAudioMixingPositionChanged(long position) { }</codeblock>
@@ -26,32 +26,37 @@
         </section>
         <section id="detailed_desc">
             <title>详情</title>
-            <dl outputclass="since">
-            <dlentry props="android apple cpp">
-                <dt>自从</dt>
-                <dd>v4.2.0</dd>
-            </dlentry>
-            </dl>
-            <p>当你调用 <xref keyref="startAudioMixing2"/> 方法播放音乐文件后，SDK 会每隔一秒触发一次该回调，报告音乐文件当前的播放进度。</p>
-        </section>
+            <p>调用 <codeph>startAudioMixing</codeph> 播放音乐文件后，SDK 每两秒触发一次该回调，报告音乐文件的播放进度。<xref keyref="startAudioMixing2"/> 方法播放音乐文件后，SDK 会每隔一秒触发一次该回调，报告音乐文件当前的播放进度。</p>
+            </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt />
-                <pd />
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="apple">
+                <pt/>
+                <pd/>
             </plentry>
             <plentry>
                 <pt>position</pt>
-                <pd>音乐文件当前的播放进度，单位为 ms。</pd>
-            </plentry>
-            </parml> </section>
-        <section id="return_values">
+                <pd props="bp cs electron flutter mac rn unity unreal">音乐文件当前的播放进度，单位为 ms。</pd>
+            <pd props="android cpp ios">播放进度，单位为毫秒。</pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">engine</pt>
+                <pd props="ios"><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+        </parml> </section>
+        <section id="return_values" props="bp cs electron flutter rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp unity cs rn electron">
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cs electron rn unity unreal">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
-            </ul> </section>
+            </ul>
+        <p props="android cpp"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+    </section>
     </refbody>
 </reference>

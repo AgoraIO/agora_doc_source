@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_transcodingvideostream">
     <title><ph keyref="TranscodingVideoStream"/></title>
-    <shortdesc id="short"><ph id="shortdesc">参与本地合图的视频流。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">用于本地合图的视频流配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -57,7 +57,7 @@
   public constructor() {
     this.remoteUserUid = 0;
     this.sourceType = Constants.VideoSourceType.CAMERA_PRIMARY;
-    this.imageUrl = &quot;&quot;;
+    this.imageUrl = "";
     this.mediaPlayerId = -1;
     this.x = 0;
     this.y = 0;
@@ -68,9 +68,9 @@
     this.mirror = false;
   }
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraTranscodingVideoStream: NSObject
-@property (assign, nonatomic) AgoraVideoSourceType sourceType;
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraTranscodingVideoStream: NSObject
 @property (assign, nonatomic) NSUInteger remoteUserUid;
+@property (assign, nonatomic) AgoraVideoSourceType sourceType;
 @property (copy, nonatomic) NSString * _Nullable imageUrl;
 @property(assign, nonatomic) NSUInteger mediaPlayerId;
 @property (assign, nonatomic) CGRect rect;
@@ -106,27 +106,27 @@
 struct FTranscodingVideoStream {
 	GENERATED_BODY()
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|TranscodingVideoStream")
 	EVIDEO_SOURCE_TYPE sourceType = EVIDEO_SOURCE_TYPE::VIDEO_SOURCE_CAMERA_PRIMARY;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|TranscodingVideoStream")
 	int64 remoteUserUid = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
-	FString imageUrl = &quot;&quot;;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|TranscodingVideoStream")
+	FString imageUrl = "";
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|TranscodingVideoStream")
 	int mediaPlayerId = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|TranscodingVideoStream")
 	int x = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|TranscodingVideoStream")
 	int y = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|TranscodingVideoStream")
 	int width = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|TranscodingVideoStream")
 	int height = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|TranscodingVideoStream")
 	int zOrder = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|TranscodingVideoStream")
 	float alpha = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|TranscodingVideoStream")
 	bool mirror = false;
 	FTranscodingVideoStream(){}
 	FTranscodingVideoStream(const agora::rtc::TranscodingVideoStream &amp; AgoraData){
@@ -273,84 +273,112 @@ class TranscodingVideoStream {
   @JsonKey(name: 'mirror')
   final bool? mirror;
 
-  factory TranscodingVideoStream.fromJson(Map&lt;String, dynamic> json) =>
+  factory TranscodingVideoStream.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$TranscodingVideoStreamFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$TranscodingVideoStreamToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$TranscodingVideoStreamToJson(this);
 }</codeblock> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry>
-                <pt>sourceType</pt>
+            <plentry props="ios">
+                <pt props="ios">sourceType</pt>
                 <pd>参与本地合图的视频源类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
-            </plentry>
-            <plentry>
-                <pt>remoteUserUid</pt>
+                <pd props="ios">用于本地合图的视频源类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">remoteUserUid</pt>
                 <pd>
                     <p>远端用户 ID。</p>
-                    <note type="attention">请仅在参与本地合图的视频源类型为 <apiname keyref="VIDEO_SOURCE_REMOTE" /> 时，使用该参数。</note></pd>
-            </plentry>
-            <plentry>
-                <pt>imageUrl</pt>
+                    <note type="attention">请仅在参与本地合图的视频源类型为 <apiname keyref="VIDEO_SOURCE_REMOTE"/> 时，使用该参数。</note></pd>
+                <pd props="ios">远端用户的用户 ID。仅当视频源类型为 <ph keyref="AgoraVideoSourceTypeRemote"/> 且用于本地合图时使用该参数。</pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">imageUrl</pt>
                 <pd>
                     <p>本地图片的路径。</p>
                     <note type="attention">请仅在参与本地合图的视频源类型为图片时，使用该参数。</note>
-                    <p props="android ios mac cpp framework">示例路径：
+                    <p props="framework native">示例路径：
                     <ul>
-                        <li props="android unity flutter rn cs">Android: <codeph>/storage/emulated/0/Pictures/image.png</codeph></li>
-                        <li props="ios unity flutter rn cs">iOS: <codeph>/var/mobile/Containers/Data/Application/&lt;APP-UUID>/Documents/image.png</codeph></li>
-                        <li props="mac unity flutter electron cs">macOS: <codeph>~/Pictures/image.png</codeph></li>
-                        <li props="cpp unreal bp unity flutter electron cs">Windows: <codeph>C:\\Users\\{username}\\Pictures\\image.png</codeph></li>
+                        <li props="android cs flutter rn unity">Android: <codeph>/storage/emulated/0/Pictures/image.png</codeph></li>
+                        <li props="cs flutter ios rn unity">iOS: <codeph>/var/mobile/Containers/Data/Application/&lt;APP-UUID&gt;/Documents/image.png</codeph></li>
+                        <li props="cs electron flutter mac unity">macOS: <codeph>~/Pictures/image.png</codeph></li>
+                        <li props="bp cpp cs electron flutter unity unreal">Windows: <codeph>C:\\Users\\{username}\\Pictures\\image.png</codeph></li>
                     </ul></p>
                 </pd>
-            </plentry>
-            <plentry>
-                <pt>mediaPlayerId</pt>
+                <pd props="ios">本地图像的文件路径。
+                    <ul>
+                        <li>iOS 示例：<codeph>/var/mobile/Containers/Data/Application/&lt;APP-UUID&gt;/Documents/image.png</codeph></li>
+                        <li>macOS 示例：<codeph>~/Pictures/image.png</codeph> 仅当视频源类型为图像且用于本地合图时使用该参数。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">mediaPlayerId</pt>
                 <pd>（可选）媒体播放器 ID。当你将 <parmname>sourceType</parmname> 设置为 <apiname keyref="VIDEO_SOURCE_MEDIA_PLAYER"/> 时，需要设置该参数。</pd>
-            </plentry>
-            <plentry props="cpp unreal bp android unity cs electron rn flutter">
+                <pd props="ios">媒体播放器 ID。仅当你将 <codeph>sourceType</codeph> 设置为 <ph keyref="AgoraVideoSourceTypeMediaPlayer"/> 时使用该参数。</pd>
+                </plentry>
+            <plentry props="android bp cpp cs electron flutter rn unity unreal">
                 <pt>x</pt>
                 <pd>参与本地合图的视频的左上角相对于合图画布左上角（原点）的横向位移。</pd>
             </plentry>
-            <plentry props="cpp unreal bp android unity cs electron rn flutter">
+            <plentry props="android bp cpp cs electron flutter rn unity unreal">
                 <pt>y</pt>
                 <pd>参与本地合图的视频的左上角相对于合图画布左上角（原点）的纵向位移。</pd>
             </plentry>
-            <plentry props="cpp unreal bp android unity cs electron rn flutter">
+            <plentry props="android bp cpp cs electron flutter rn unity unreal">
                 <pt>width</pt>
                 <pd>参与本地合图的视频的宽度 (px)。</pd>
             </plentry>
-            <plentry props="cpp unreal bp android unity cs electron rn flutter">
+            <plentry props="android bp cpp cs electron flutter rn unity unreal">
                 <pt>height</pt>
                 <pd>参与本地合图的视频的高度 (px)。</pd>
             </plentry>
-            <plentry props="ios mac">
-                <pt>rect</pt>
+            <plentry props="apple ios">
+                <pt props="ios">rect</pt>
                 <pd>参与本地合图的视频的左上角相对于合图画布左上角（原点）的位置和视频大小，类型为 CGRect。</pd>
+                <pd props="ios">用于本地合图的视频相对于画布左上角的相对位置和尺寸。</pd>
             </plentry>
-            <plentry>
-                <pt>zOrder</pt>
+            <plentry props="ios">
+                <pt props="ios">zOrder</pt>
                 <pd>参与本地合图的视频所属的图层的编号。取值范围为 [0,100]。
                     <ul>
                     <li>0:（默认值）图层在最下层。</li>
                     <li>100: 图层在最上层。</li>
                     </ul></pd>
-            </plentry>
-            <plentry>
-                <pt>alpha</pt>
+                <pd props="ios">本地合图中视频所属图层的编号，取值范围为 [0, 100]。
+                    <ul>
+                        <li>0：（默认）图层位于最底层。</li>
+                        <li>100：图层位于最顶层。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">alpha</pt>
                 <pd>参与本地合图的视频的透明度。取值范围为 [0.0,1.0]。 0.0 表示透明度为完全透明，1.0 表示透明度为完全不透明。</pd>
-            </plentry>
-            <plentry>
-                <pt>mirror</pt>
+                <pd props="ios">本地合图中视频的透明度。取值范围为 [0.0, 1.0]。
+                    <ul>
+                        <li>0.0 表示完全透明。</li>
+                        <li>1.0 表示完全不透明。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">mirror</pt>
                 <pd>是否对参与本地合图的的视频进行镜像：
                     <ul>
-                    <li><codeph><ph keyref="true" /></codeph>: 将参与本地合图的视频进行镜像。</li>
-                    <li><codeph><ph keyref="false" /></codeph>: （默认值）不将参与本地合图的视频进行镜像。</li>
+                    <li><codeph><ph keyref="true"/></codeph>: 将参与本地合图的视频进行镜像。</li>
+                    <li><codeph><ph keyref="false"/></codeph>: （默认值）不将参与本地合图的视频进行镜像。</li>
                     </ul>
                     <note type="attention">该参数仅对视频源类型为摄像头的视频生效。</note></pd>
-            </plentry>
+                <pd props="ios">是否对本地合图中的视频进行镜像处理。
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：镜像视频。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）不镜像视频。 该参数仅对视频源类型为摄像头时生效。</li>
+                        </ul>
+                    </pd>
+                </plentry>
             </parml> </section>
     </refbody>
 </reference>

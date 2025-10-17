@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ivideoeffectobject_addorupdatevideoeffect">
     <title><ph keyref="addOrUpdateVideoEffect"/></title>
-    <shortdesc id="short"><ph id="shortdesc">添加或更新指定节点 ID 和模板的视频特效。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">为指定的节点 ID 和模板添加或更新视频特效。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -26,10 +26,10 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
-            <dlentry props="native">
+            <dlentry props="cpp">
                 <dt>自从：</dt>
-                <dd props="native">自 v4.6.0 版本新增。</dd>
-                </dlentry>
+                <dd props="cpp">自 v4.6.0 版本新增。</dd>
+            </dlentry>
             </dl>
             <p></p>
             <note type="attention" props="cpp">优先级规则：
@@ -56,6 +56,14 @@ addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codebloc
 addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codeblock></li>
                         </ul>
                     </note>
+            <note type="attention" props="cpp">优先级规则：
+                    <ul>
+                        <li><codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph> 节点优先于 <codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph> 参数。</li>
+                        <li>若要应用 <codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph> 参数，必须先移除 <codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph> 节点：
+<codeblock outputclass="language-cpp">removeVideoEffect(VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP);
+addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codeblock></li>
+                        </ul>
+                    </note>
             </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -65,8 +73,7 @@ addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codebloc
             <title>参数</title>
             <parml>
             <plentry props="native">
-                <pt props="android cpp">nodeId</pt>
-                <pt props="apple">nodeId</pt>
+                <pt props="android apple cpp">nodeId</pt>
                 <pd props="android">视频特效节点的唯一标识符或组合。详见 <xref keyref="VIDEO_EFFECT_NODE_ID"/>。</pd>
                 <pd props="apple">视频特效节点的唯一标识符或组合。示例：
                     <ul>
@@ -83,30 +90,38 @@ addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codebloc
                     </pd>
             </plentry>
             <plentry props="native">
-                <pt props="android cpp">templateName</pt>
-                <pt props="apple">templateName</pt>
+                <pt props="android apple cpp">templateName</pt>
                 <pd props="android">特效模板名称。如果设置为 null 或空字符串，SDK 会从资源包中加载默认参数配置。</pd>
                 <pd props="apple">特效模板的名称。如果设置为 null 或空字符串，SDK 会自动从资源包中加载默认参数配置。</pd>
                 <pd props="cpp">特效模板名称。如果设置为 null 或空字符串，SDK 会从资源包中加载默认配置。</pd>
             </plentry>
-            </parml> </section>
-        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
+            <plentry props="cpp">
+                <pt props="cpp">nodeId</pt>
+                <pd props="cpp">视频特效节点的唯一标识符或其组合。详见 <xref keyref="VIDEO_EFFECT_NODE_ID"/>。
+示例：
+                    <ul>
+                        <li>单个特效：<codeph>VIDEO_EFFECT_NODE_ID::BEAUTY</codeph></li>
+                        <li>组合特效：<codeph>VIDEO_EFFECT_NODE_ID::BEAUTY | VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph></li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="cpp">
+                <pt props="cpp">templateName</pt>
+                <pd props="cpp">特效模板名称。如果设置为 <codeph><ph keyref="NULL"/></codeph> 或空字符串，SDK 会从资源包中加载默认配置。</pd>
+                </plentry>
+        </parml> </section>
+        <section id="return_values" props="bp cs electron flutter rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
         <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
         <ul props="bp cs electron rn unity unreal">
                 <li>0: 方法调用成功。</li>
                 <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
                 </ul>
-        <p props="apple cpp"><ul>
+        <p props="android apple cpp"><ul>
                         <li>0：方法调用成功。</li>
                         <li>&lt; 0：方法调用失败。</li>
                         </ul>
                     </p>
-        <p props="android"><ul>
-                        <li>0：方法调用成功。</li>
-                        <li>&lt; 0：方法调用失败。</li>
-                        </ul>
-                    </p>
-    </section>
+        </section>
         </refbody>
 </reference>

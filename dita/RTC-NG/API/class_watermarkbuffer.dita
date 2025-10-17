@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_watermarkbuffer">
     <title><ph keyref="WatermarkBuffer"/></title>
-    <shortdesc id="short"><ph id="shortdesc">用于配置水印图像的格式、尺寸和像素缓冲区。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">配置水印图像的格式、尺寸和像素缓冲区。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -17,10 +17,10 @@
   public int format;
 }</codeblock>
             <codeblock props="hmos" outputclass="language-arkts"/>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface WatermarkBuffer : NSObject
-@property(assign, nonatomic) int width;
-@property(assign, nonatomic) int height;
-@property(assign, nonatomic) int length;
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface WatermarkBuffer : NSObject
+@property(assign, nonatomic)  int width;
+@property(assign, nonatomic)  int height;
+@property(assign, nonatomic)  int length;
 @property(strong, nonatomic) NSData* _Nullable buffer;
 @property(assign, nonatomic) WatermarkBufferFormat format;
 @end</codeblock>
@@ -45,30 +45,30 @@
                 <dd>自 v4.6.0 版本新增。</dd>
                 </dlentry>
             </dl>
-            <p>用于定义水印图像的缓冲数据结构，包含图像的宽高、格式、长度以及图像数据缓冲区。</p>
+            <p>包括图像的宽度、高度、格式、长度和图像数据缓冲区。</p>
             </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry props="native">
-                <pt props="native">width</pt>
+            <plentry props="ios native">
+                <pt props="ios native">width</pt>
                 <pd props="android">水印缓冲区的宽度，单位为像素。</pd>
-                <pd props="apple">水印图像的宽度，单位为像素。</pd>
+                <pd props="apple ios">水印图像的宽度，单位为像素。</pd>
                 <pd props="cpp">水印缓冲区的宽度。</pd>
             </plentry>
-            <plentry props="native">
-                <pt props="native">height</pt>
+            <plentry props="ios native">
+                <pt props="ios native">height</pt>
                 <pd props="android">水印缓冲区的高度，单位为像素。</pd>
-                <pd props="apple">水印图像的高度，单位为像素。</pd>
+                <pd props="apple ios">水印图像的高度，单位为像素。</pd>
                 <pd props="cpp">水印缓冲区的高度。</pd>
             </plentry>
-            <plentry props="apple cpp">
-                <pt props="apple cpp">length</pt>
-                <pd props="apple">缓冲区的长度，单位为字节。</pd>
+            <plentry props="apple cpp ios">
+                <pt props="apple cpp ios">length</pt>
+                <pd props="apple ios">缓冲区的长度，单位为字节。</pd>
                 <pd props="cpp">水印缓冲区的长度。</pd>
             </plentry>
-            <plentry props="native">
-                <pt props="native">format</pt>
+            <plentry props="ios native">
+                <pt props="ios native">format</pt>
                 <pd props="android">水印图像的格式：
                     <ul>
                         <li><codeph>WATERMARK_BUFFER_FORMAT_I420</codeph>：I420 格式。</li>
@@ -78,14 +78,16 @@
                         </ul>
                     </pd>
                 <pd props="apple">水印缓冲区的格式。详见 <xref keyref="WatermarkBufferFormat"/>。</pd>
-                <pd props="cpp">水印缓冲区的格式，详见 <xref keyref="VIDEO_PIXEL_FORMAT"/>。默认值为 <ph keyref="VIDEO_PIXEL_I420"/>。当前支持的格式包括：<ph keyref="VIDEO_PIXEL_I420"/>、<ph keyref="VIDEO_PIXEL_RGBA"/>、<ph keyref="VIDEO_PIXEL_BGRA"/> 和 <ph keyref="VIDEO_PIXEL_NV21"/>。</pd>
-            </plentry>
-            <plentry props="native">
-                <pt props="native">buffer</pt>
+                <pd props="cpp">水印缓冲区的格式，详见 <xref keyref="VIDEO_PIXEL_FORMAT"/>。默认值为 <ph keyref="VIDEO_PIXEL_I420"/>。当前支持的格式包括：<ph keyref="VIDEO_PIXEL_RGBA"/>、<ph keyref="VIDEO_PIXEL_BGRA"/> 和 <ph keyref="VIDEO_PIXEL_NV21"/>。</pd>
+                <pd props="ios">水印缓冲区的格式，详见 <xref keyref="WatermarkBufferFormat"/>。</pd>
+                </plentry>
+            <plentry props="ios native">
+                <pt props="ios native">buffer</pt>
                 <pd props="android">保存水印图像数据的缓冲区。缓冲区必须与指定的格式和尺寸一致。尺寸应为 width * height * bytesPerPixel。</pd>
                 <pd props="apple">原始图像数据缓冲区。</pd>
                 <pd props="cpp">水印的缓冲区数据。</pd>
-            </plentry>
+                <pd props="ios">原始图像数据缓冲区。详见 <codeph>NSData</codeph>。</pd>
+                </plentry>
             </parml> </section>
             </refbody>
 </reference>

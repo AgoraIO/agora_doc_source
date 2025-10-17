@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setremotevideosubscriptionoptions">
     <title><ph keyref="setRemoteVideoSubscriptionOptions"/></title>
@@ -14,11 +14,11 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setRemoteVideoSubscriptionOptions(int uid, VideoSubscriptionOptions options);</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setRemoteVideoSubscriptionOptions:(NSUInteger)uid
                                  options:(AgoraVideoSubscriptionOptions* _Nonnull)options NS_SWIFT_NAME(setRemoteVideoSubscriptionOptions(_:options:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setRemoteVideoSubscriptionOptions(uid_t uid, const VideoSubscriptionOptions &amp;options) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	int SetRemoteVideoSubscriptionOptions(int64 uid, const FVideoSubscriptionOptions&amp; options);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setRemoteVideoSubscriptionOptions(
     uid: number,
@@ -29,38 +29,53 @@
     uid: number,
     options: VideoSubscriptionOptions
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setRemoteVideoSubscriptionOptions(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRemoteVideoSubscriptionOptions(
       {required int uid, required VideoSubscriptionOptions options});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
             <title>详情</title>
-            <p>当远端发送双流时，可调用此方法来设置远端视频流的订阅选项。SDK 对远端视频流的默认订阅行为取决于注册的视频观测器类型：<ul>
+            <p>当远端用户开启双流模式时，你可以调用该方法设置是否订阅该用户发送的视频流。SDK 默认的订阅行为取决于注册的视频观察器类型：
+                    <ul>
                 <li>如果注册的是 <xref keyref="IVideoFrameObserver"/> 观测器，则默认订阅原始数据和编码后的数据。</li>
                 <li>如果注册的是 <xref keyref="IVideoEncodedFrameObserver"/> 观测器，则默认仅订阅编码后的数据。</li>
                 <li>如果注册了两种观测器，则默认跟随后注册的视频观测器。举例来说，如果后注册的是 <apiname keyref="IVideoFrameObserver"/> 观测器，则默认订阅原始数据和编码后的数据。</li>
             </ul>
-            如果你想修改以上默认行为，或者想针对不同 <codeph>uid</codeph> 设置不同的订阅选项，可调用该方法设置。</p>
-            <p props="cn"><ph props="android cpp apple">有关详细的实现步骤，详见<xref keyref="video-processing"/>。</ph></p>
+            如果你想修改以上默认行为，或者想针对不同 <codeph>uid</codeph> 设置不同的订阅选项，可调用该方法设置。<ul>
+                        <li>如果注册了 <xref keyref="IVideoFrameObserver"/> 观察器，默认订阅原始数据和编码数据；</li>
+                        <li>如果注册了 <xref keyref="IVideoEncodedFrameObserver"/> 观察器，默认仅订阅编码数据；</li>
+                        <li>如果同时注册了上述两种观察器，默认行为以最后注册的观察器为准。例如，如果最后注册的是 <xref keyref="IVideoFrameObserver"/>，则默认订阅原始数据和编码数据。 如果你希望修改默认行为，或为不同的用户 ID 设置不同的订阅选项，可以调用该方法进行设置。</li>
+                        </ul>
+                    </p>
+            <p props="cn"><ph props="android apple cpp">有关详细的实现步骤，详见<xref keyref="video-processing"/>。</ph></p>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry id="uid">
                 <pt>uid</pt>
-                <pd>远端用户 ID。</pd>
-            </plentry>
+                <pd props="bp cs electron flutter mac rn unity unreal">远端用户 ID。</pd>
+            <pd props="android cpp ios">远端用户的用户 ID。</pd>
+                </plentry>
             <plentry id="op">
                 <pt>options</pt>
-                <pd>视频流的订阅设置，详见 <xref keyref="VideoSubscriptionOptions"/>。</pd>
-            </plentry>
-            </parml> </section>
-        <section id="return_values">
+                <pd props="bp cs electron flutter mac rn unity unreal">视频流的订阅设置，详见 <xref keyref="VideoSubscriptionOptions"/>。</pd>
+            <pd props="android ios">视频订阅选项，详见 <xref keyref="VideoSubscriptionOptions"/>。</pd>
+                <pd props="cpp">视频订阅选项。详见 <xref keyref="VideoSubscriptionOptions"/>。</pd>
+                </plentry>
+        </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp electron unity rn cs">
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cs electron rn unity unreal">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
-            </ul> </section>
+            </ul>
+        <p props="native"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+    </section>
     </refbody>
 </reference>

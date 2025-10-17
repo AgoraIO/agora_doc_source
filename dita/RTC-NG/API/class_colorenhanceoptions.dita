@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_colorenhanceoptions">
-    <title> <ph keyref="ColorEnhanceOptions" /> </title>
-    <shortdesc id="short"> <ph id="shortdesc">色彩增强选项。</ph> </shortdesc>
+    <title> <ph keyref="ColorEnhanceOptions"/> </title>
+    <shortdesc id="short"> <ph id="shortdesc">颜色增强选项。</ph> </shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -20,12 +20,11 @@
     skinProtectLevel = skinProtect;
   }
 }</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraColorEnhanceOptions : NSObject
 @property(nonatomic, assign) float strengthLevel;
 @property(nonatomic, assign) float skinProtectLevel;
-@end
-</codeblock>
+@end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct ColorEnhanceOptions {
     float strengthLevel;
     float skinProtectLevel;
@@ -37,9 +36,9 @@ struct FColorEnhanceOptions
 {
 	GENERATED_BODY()
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ColorEnhanceOptions&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|ColorEnhanceOptions")
 	float strengthLevel = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ColorEnhanceOptions&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|ColorEnhanceOptions")
 	float skinProtectLevel = 0;
 	FColorEnhanceOptions(){}
 	FColorEnhanceOptions(const agora::rtc::ColorEnhanceOptions &amp; AgoraData){
@@ -90,26 +89,38 @@ public:
   final double? strengthLevel;
   @JsonKey(name: 'skinProtectLevel')
   final double? skinProtectLevel;
-  factory ColorEnhanceOptions.fromJson(Map&lt;String, dynamic> json) =>
+  factory ColorEnhanceOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$ColorEnhanceOptionsFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$ColorEnhanceOptionsToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ColorEnhanceOptionsToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="parameters">
-            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>
+            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/> </title>
             <parml>
-            <plentry>
-                <pt>strengthLevel</pt>
+            <plentry props="ios">
+                <pt props="ios">strengthLevel</pt>
                 <pd>色彩增强程度。取值范围为 [0.0,1.0]。<codeph>0.0</codeph> 表示不对视频进行色彩增强。取值越大，色彩增强的程度越大。默认值为 <codeph>0.5</codeph>。</pd>
-            </plentry>
-            <plentry>
-                <pt>skinProtectLevel</pt>
+                <pd props="ios">颜色增强强度等级。取值范围为 [0.0, 1.0]。
+                    <ul>
+                        <li><codeph>0.0</codeph>：表示不对视频进行颜色增强。</li>
+                        <li>数值越大，颜色增强效果越明显。 默认值为 <codeph>0.5</codeph>。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">skinProtectLevel</pt>
                 <pd><p>肤色保护程度。取值范围为 [0.0,1.0]。<codeph>0.0</codeph> 表示不对肤色进行保护。取值越大，肤色保护的程度越大。默认值为 <codeph>1.0</codeph>。</p>
                     <p><ul><li>当色彩增强程度较大时，人像肤色会明显失真，你需要设置肤色保护程度；</li><li>肤色保护程度较大时，色彩增强效果会略微降低。</li></ul>
                       因此，为获取最佳的色彩增强效果，建议你动态调节 <parmname>strengthLevel</parmname> 和 <parmname>skinProtectLevel</parmname> 以实现最合适的效果。</p> </pd>
-            </plentry>
+                <pd props="ios">肤色保护等级。取值范围为 [0.0, 1.0]。
+                    <ul>
+                        <li><codeph>0.0</codeph>：表示不启用肤色保护。</li>
+                        <li>数值越大，肤色保护效果越强。 默认值为 <codeph>1.0</codeph>。 当颜色增强等级较高时，人像肤色可能会出现明显失真，因此需要设置肤色保护等级。 当肤色保护等级较高时，颜色增强效果可能会略有降低。 为获得最佳的颜色增强效果，声网建议你根据实际情况调整 <codeph>strengthLevel</codeph> 和 <codeph>skinProtectLevel</codeph> 的值。</li>
+                        </ul>
+                    </pd>
+                </plentry>
             </parml> </section>
     </refbody>
 </reference>

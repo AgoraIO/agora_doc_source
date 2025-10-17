@@ -1,26 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_audioprocessingchannels">
     <title><ph keyref="AUDIO_PROCESSING_CHANNELS"/></title>
-    <shortdesc id="short"><ph id="shortdesc">音频前处理的声道数。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">设置音频预处理的声道数。</ph></shortdesc>
     <refbody>
         <section id="detailed_desc">
-            <p>在演唱会等需要增强真实感的场景中，本地用户可能需要采集立体声并发送立体声信号给远端用户。
-          例如，在演唱会的舞台上，主唱、吉他手、鼓手分别站在不同的位置，现场设备采集到了三者的立体声，并把立体声信号发送给远端用户，远端用户可以像亲临舞台一样听到来自不同方向的歌声、吉他声和鼓声。</p>
+            <p>在需要增强真实感的场景中，例如音乐会，本地用户可能需要采集立体声并将其发送给远端用户。例如，歌手、吉他手和鼓手站在舞台的不同位置，音频采集设备采集他们的立体声音频并将其发送给远端用户。远端用户可以从不同方向听到歌曲、吉他和鼓声，就像置身于音乐厅中一样。你可以通过设置双声道处理来实现立体声。声网推荐以下设置：
+1. 预处理：调用 <xref keyref="setAdvancedAudioOptions"/>，并在 <xref keyref="AdvancedAudioOptions"/> 中将 <codeph>audioProcessingChannels</codeph> 设置为 <ph keyref="AgoraAudioProcessChannelstereo"/>（2）；
+2. 后处理：调用 <xref keyref="setAudioProfile2"/>，并将 <codeph>profile</codeph> 设置为 <ph keyref="AgoraAudioProfileMusicStandardStereo"/>（3）或 <ph keyref="AgoraAudioProfileMusicHighQualityStereo"/>（5）。<xref keyref="setAdvancedAudioOptions"/>，并在 <xref keyref="AdvancedAudioOptions"/> 中将 <codeph>audioProcessingChannels</codeph> 设置为 <xref keyref="setAudioProfile2"/>，并将 <codeph>profile</codeph> 设置为 </p>
             <p>通过该类，你可以设置双声道处理，实现立体声。建议按如下步骤设置：
 
 
             <ol>
             <li>前处理：调用 <xref keyref="setAdvancedAudioOptions"/> 并在 <xref keyref="AdvancedAudioOptions"/> 中设置 <parmname>audioProcessingChannels</parmname> 为 <apiname keyref="AUDIO_PROCESSING_STEREO"/> (2)。</li>
-            <li>后处理：调用 <xref keyref="setAudioProfile2" props="native unreal bp flutter unity"/> <xref keyref="setAudioProfile" props="rn electron"/> 并将 <parmname>profile</parmname> 设为 <apiname keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO"/> (3) 或 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/> (5)。</li>
+            <li>后处理：调用 <xref keyref="setAudioProfile2" props="bp flutter native unity unreal"/> <xref keyref="setAudioProfile" props="electron rn"/> 并将 <parmname>profile</parmname> 设为 <apiname keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO"/> (3) 或 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/> (5)。</li>
             </ol></p>
             <note type="attention">
             <ul>
             <li>
                 <p>立体声设置仅在媒体音量下生效。</p>
-                <p props="cn">如需了解媒体音量和通话音量的区别，<ph props="android ios cpp unreal bp flutter unity rn">详见<xref keyref="volume-type"/>。</ph></p>
+                <p props="cn">如需了解媒体音量和通话音量的区别，<ph props="android bp cpp flutter ios rn unity unreal">详见<xref keyref="volume-type"/>。</ph></p>
             </li>
-            <li props="cpp unreal bp ios rn unity flutter">在 iOS 上，实现立体声 iOS 系统版本为 14.0 及以上。最低设备要求如下：
+            <li props="bp cpp flutter ios rn unity unreal">在 iOS 上，实现立体声 iOS 系统版本为 14.0 及以上。最低设备要求如下：
 
 
                 <ul>
@@ -45,6 +46,14 @@
             <plentry>
                 <pt><ph keyref="AUDIO_PROCESSING_STEREO"/></pt>
                 <pd>2: 双声道。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraAudioProcessChannelsMono"/></pt>
+                <pd props="apple">（1）：（默认）单声道。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraAudioProcessChannelstereo"/></pt>
+                <pd props="apple">（2）：立体声。</pd>
             </plentry>
             </parml> </section>
     </refbody>

@@ -1,62 +1,82 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_updatescreencapture">
-    <title><ph keyref="updateScreenCapture" /></title>
-    <shortdesc id="short"><ph id="shortdesc">更新屏幕采集的参数配置。</ph></shortdesc>
+    <title><ph keyref="updateScreenCapture"/></title>
+    <shortdesc id="short"><ph id="shortdesc">更新屏幕采集参数。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="updateScreenCapture" />
+                <indexterm keyref="updateScreenCapture"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="android" outputclass="language-java"/>
             <codeblock props="ios" outputclass="language-objectivec">- (int)updateScreenCapture:(AgoraScreenCaptureParameters2* _Nonnull)parameters NS_SWIFT_NAME(updateScreenCapture(_:));</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int updateScreenCapture(const ScreenCaptureParameters2&amp; captureParams) = 0;
-</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int updateScreenCapture(const ScreenCaptureParameters2&amp; captureParams) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	int UpdateScreenCapture(const FScreenCaptureParameters2&amp; captureParams);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract updateScreenCapture(captureParams: ScreenCaptureParameters2): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int UpdateScreenCapture(ScreenCaptureParameters2 captureParams);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract updateScreenCapture(captureParams: ScreenCaptureParameters2): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; updateScreenCapture(ScreenCaptureParameters2 captureParams);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
             <title>详情</title>
-            <p>如果在开启屏幕共享时未采集系统音频、然后想要更新参数配置、发布系统音频，可参考以下步骤：
-                <ol>
+            <p>如果在启用屏幕共享时未采集系统音频，之后你希望更新参数配置并发布系统音频，可以参考以下步骤：
+1. 调用该方法，并将 <codeph>captureAudio</codeph> 设置为 <codeph><ph keyref="true"/></codeph>。
+2. 调用 <xref keyref="updateChannelMediaOptions"/>，并将 <codeph>publishScreenCaptureAudio</codeph> 设置为 <codeph><ph keyref="true"/></codeph>，以发布通过屏幕采集的音频。<codeph>captureAudio</codeph> 设置为 <codeph><ph keyref="true"/></codeph>。
+2. 调用 <xref keyref="updateChannelMediaOptions"/>，并将 <codeph>publishScreenCaptureAudio</codeph> 设置为 <codeph><ph keyref="true"/></codeph>，以发布通过屏幕采集的音频。<ol>
                 <li>调用该方法并设置 <parmname>captureAudio</parmname> 为 <codeph><ph keyref="true"/></codeph>。</li>
                 <li>调用 <xref keyref="updateChannelMediaOptions"/> 设置 <parmname>publishScreenCaptureAudio</parmname> 为 <codeph><ph keyref="true"/></codeph>，即可发布屏幕采集的音频。</li>
                 </ol></p>
             <note type="attention">
                 <ul>
-                    <li props="cpp unreal bp rn unity flutter cs">该方法仅适用于 Android 和 iOS 平台。</li>
-                    <li props="cpp unreal bp rn unity flutter ios cs">在 iOS 平台上，屏幕共享仅适用于 iOS 12.0 及以上。</li>
+                    <li props="bp cpp cs flutter rn unity unreal">该方法仅适用于 Android 和 iOS 平台。</li>
+                    <li props="bp cpp cs flutter ios rn unity unreal">在 iOS 平台上，屏幕共享仅适用于 iOS 12.0 及以上。</li>
                 </ul>
             </note>
-        </section>
+        <note type="attention" props="cpp"><ul>
+                        <li>该方法仅适用于 Android 和 iOS 平台。</li>
+                        <li>在 iOS 平台上，屏幕共享仅支持 iOS 12.0 及以上版本。</li>
+                        </ul>
+                    </note>
+            </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry>
                 <pt props="ios">parameters</pt>
-                <pt props="cpp unreal bp electron unity rn flutter cs">captureParams</pt>
-                <pd>屏幕共享的编码参数配置。详见 <xref keyref="ScreenCaptureParameters2" />。</pd>
+                <pt props="bp cpp cs electron flutter rn unity unreal">captureParams</pt>
+                <pd>屏幕共享的编码参数配置。详见 <xref keyref="ScreenCaptureParameters2"/>。</pd>
             </plentry>
-            </parml> </section>
-        <section id="return_values">
+            <plentry props="cpp">
+                <pt props="cpp">captureParams</pt>
+                <pd props="cpp">屏幕共享的编码参数。详见 <xref keyref="ScreenCaptureParameters2"/>。</pd>
+                </plentry>
+        </parml> </section>
+        <section id="return_values" props="bp cs electron flutter rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="ios cpp unreal bp electron unity rn cs">
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cs electron ios rn unity unreal">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。 
                     <ul conkeyref="startScreenCaptureByDisplayId/err">
                     <li/>
                     </ul> </li>
-            </ul> </section>
+            </ul>
+        <p props="cpp"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。<ul>
+                            <li>-2：参数无效。</li>
+                            <li>-8：屏幕共享状态无效。可能是因为你已共享了其他屏幕或窗口。请调用 <xref keyref="stopScreenCapture"/> 停止当前共享后重新开始。</li>
+                            </ul>
+                        </li>
+                        </ul>
+                    </p>
+    </section>
     </refbody>
 </reference>

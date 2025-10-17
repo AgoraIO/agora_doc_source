@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_logfiltertype">
     <title><ph keyref="LOG_FILTER_TYPE"/></title>
-    <shortdesc id="short"><ph id="shortdesc">日志过滤等级。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">设置 SDK 的输出日志级别。</ph></shortdesc>
     <refbody>
         <section id="parameters">
             <title>枚举值</title>
@@ -30,6 +30,30 @@
             <plentry>
                 <pt><ph keyref="LOG_FILTER_CRITICAL"/></pt>
                 <pd>0x0008: 输出 <apiname keyref="LOG_FILTER_CRITICAL"/> 级别的日志信息。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraLogFilterOff"/></pt>
+                <pd props="apple">（0）：不输出任何日志信息。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraLogFilterDebug"/></pt>
+                <pd props="apple">（0x080f）：输出所有日志信息。若需获取最完整的日志文件，建议将日志过滤级别设置为该值。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraLogFilterInfo"/></pt>
+                <pd props="apple">（0x000f）：输出 <ph keyref="AgoraLogFilterCritical"/>、<ph keyref="AgoraLogFilterError"/>、<ph keyref="AgoraLogFilterWarning"/> 和 <ph keyref="AgoraLogFilterInfo"/> 级别的日志信息。推荐将日志过滤级别设置为该值。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraLogFilterWarning"/></pt>
+                <pd props="apple">（0x000e）：输出 <ph keyref="AgoraLogFilterCritical"/>、<ph keyref="AgoraLogFilterError"/> 和 <ph keyref="AgoraLogFilterWarning"/> 级别的日志信息。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraLogFilterError"/></pt>
+                <pd props="apple">（0x000c）：输出 <ph keyref="AgoraLogFilterCritical"/> 和 <ph keyref="AgoraLogFilterError"/> 级别的日志信息。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraLogFilterCritical"/></pt>
+                <pd props="apple">（0x0008）：输出 <ph keyref="AgoraLogFilterCritical"/> 级别的日志信息。</pd>
             </plentry>
             </parml> </section>
     </refbody>

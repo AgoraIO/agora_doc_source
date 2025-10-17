@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enablelocalvideo">
-    <title><ph keyref="enableLocalVideo" /></title>
-    <shortdesc id="short"><ph id="shortdesc">开关本地视频采集。</ph></shortdesc>
+    <title><ph keyref="enableLocalVideo"/></title>
+    <shortdesc id="short"><ph id="shortdesc">启用或关闭本地视频采集。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="enableLocalVideo" />
+                <indexterm keyref="enableLocalVideo"/>
             </keywords>
         </metadata>
     </prolog>
@@ -15,46 +15,85 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int enableLocalVideo(boolean enabled);</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">public abstract enableLocalVideo(enabled: boolean): number;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableLocalVideo:(BOOL)enabled;</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableLocalVideo:(BOOL)enabled NS_SWIFT_NAME(enableLocalVideo(_:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int enableLocalVideo(bool enabled) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	int EnableLocalVideo(bool enabled);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract enableLocalVideo(enabled: boolean): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int EnableLocalVideo(bool enabled);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract enableLocalVideo(enabled: boolean): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableLocalVideo(bool enabled);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
             <title>详情</title>
-            <p id="desc1">该方法禁用或重新启用本地视频采集，不影响接收远端视频。</p>
-            <p>调用 <xref keyref="enableVideo" /> 后，本地视频采集即默认开启。</p>
-            <p>如果你在频道内调用 <xref keyref="enableLocalVideo" />(<codeph><ph keyref="false" /></codeph>) 关闭本地视频采集，也会同时停止在频道内发布视频流。如果想要重新开启，则可调用 <apiname keyref="enableLocalVideo" />(<codeph><ph keyref="true" /></codeph>)，然后调用 <xref keyref="updateChannelMediaOptions"/> 并设置 <parmname>options</parmname> 参数，将本地采集的视频流发布到频道中。</p>
-            <p>成功禁用或启用本地视频采集后，远端会触发 <xref keyref="onRemoteVideoStateChanged" /> 回调。</p>
+            <p id="desc1">调用 <xref keyref="enableVideo"/> 后，本地视频采集默认开启。你可以通过该方法启用或关闭本地视频采集，不影响接收远端视频流。如果在频道内调用 <codeph>enableLocalVideo(false)</codeph> 关闭本地视频采集，同时会停止在频道内发布视频流。若需重新开启视频采集，可调用 <codeph>enableLocalVideo(true)</codeph>，然后调用 <xref keyref="updateChannelMediaOptions"/> 设置 <codeph>options</codeph> 参数以在频道内发布本地采集的视频流。<xref keyref="enableVideo"/> 后，本地视频采集默认开启。你可以通过该方法启用或关闭本地视频采集，不影响接收远端视频流。如果在频道内调用 <codeph>enableLocalVideo(false)</codeph> 关闭本地视频采集，同时会停止在频道内发布视频流。若需重新开启视频采集，可调用 <codeph>enableLocalVideo(true)</codeph>，然后调用 <xref keyref="updateChannelMediaOptions"/> 设置 <codeph>options</codeph> 参数以在频道内发布本地采集的视频流。</p>
+            <p>调用 <xref keyref="enableVideo"/> 后，本地视频采集即默认开启。</p>
+            <p>如果你在频道内调用 <xref keyref="enableLocalVideo"/>(<codeph><ph keyref="false"/></codeph>) 关闭本地视频采集，也会同时停止在频道内发布视频流。如果想要重新开启，则可调用 <apiname keyref="enableLocalVideo"/>(<codeph><ph keyref="true"/></codeph>)，然后调用 <xref keyref="updateChannelMediaOptions"/> 并设置 <parmname>options</parmname> 参数，将本地采集的视频流发布到频道中。</p>
+            <p>成功禁用或启用本地视频采集后，远端会触发 <xref keyref="onRemoteVideoStateChanged"/> 回调。</p>
             <note type="attention">
             <ul>
             <li>该方法在加入频道前后均可调用，但加入频道前调用的设置，在加入频道后才会生效。</li>
             <li>该方法设置内部引擎为启用状态，在离开频道后仍然有效。</li>
-            </ul> </note> </section>
+            </ul> </note> <note type="attention" props="cpp"><ul>
+                        <li>可以在加入频道前或后调用该方法。但如果在加入频道前调用，设置将在加入频道后生效。</li>
+                        <li>该方法会启用内部引擎，离开频道后依然有效。</li>
+                        </ul>
+                    </note>
+            <note type="attention" props="apple"><ul>
+                        <li>你可以在加入频道前或加入频道后调用该方法。但如果在加入频道前调用，设置将在加入频道后生效。</li>
+                        <li>该方法会启用内部引擎，并在离开频道后依然有效。</li>
+                        </ul>
+                    </note>
+            <note type="attention" props="android"><ul>
+                        <li>可以在加入频道前或加入频道后调用该方法。但如果在加入频道前调用，设置将在加入频道后生效。</li>
+                        <li>该方法会启用内部引擎，离开频道后依然有效。</li>
+                        </ul>
+                    </note>
+            </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry>
                 <pt>enabled</pt>
-                <pd>
+                <pd props="bp cs electron flutter mac rn unity unreal">
                     <p>是否开启本地视频采集。</p>
                     <ul>
-                    <li><codeph><ph keyref="true" /></codeph>:（默认）开启本地视频采集。</li>
-                    <li><codeph><ph keyref="false" /></codeph>: 关闭本地视频采集。关闭后，远端用户会接收不到本地用户的视频流；但本地用户依然可以接收远端用户的视频流。设置为 <codeph><ph keyref="false" /></codeph> 时，该方法不需要本地有摄像头。</li>
+                    <li><codeph><ph keyref="true"/></codeph>:（默认）开启本地视频采集。</li>
+                    <li><codeph><ph keyref="false"/></codeph>: 关闭本地视频采集。关闭后，远端用户会接收不到本地用户的视频流；但本地用户依然可以接收远端用户的视频流。设置为 <codeph><ph keyref="false"/></codeph> 时，该方法不需要本地有摄像头。</li>
                     </ul> </pd>
-            </plentry>
-            </parml> </section>
-        <section id="return_values">
+            <pd props="android">是否启用本地视频采集：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：（默认）启用本地视频采集。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：禁用本地视频采集。禁用后，远端用户无法接收到本地用户的视频流，但本地用户仍可接收远端用户的视频流。设置为 <codeph><ph keyref="false"/></codeph> 时，无需本地摄像头。</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">是否启用本地视频采集：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：（默认）启用本地视频采集。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：禁用本地视频采集。禁用后，远端用户无法接收到你的本地视频流，但你仍可接收远端用户的视频流。设置为 <codeph><ph keyref="false"/></codeph> 时，无需本地摄像头。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp">是否启用本地视频采集：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：（默认）启用本地视频采集。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：关闭本地视频采集。关闭后，远端用户无法接收到本地用户的视频流，但本地用户仍可接收远端用户的视频流。设置为 <codeph><ph keyref="false"/></codeph> 时，无需本地摄像头。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+        </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp electron unity rn cs">
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cs electron rn unity unreal">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
-            </ul> </section>
+            </ul>
+        <p props="native"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+    </section>
     </refbody>
 </reference>

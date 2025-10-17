@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_audioscenariotype">
     <title><ph keyref="AUDIO_SCENARIO_TYPE"/></title>
-    <shortdesc id="short"><ph id="shortdesc">音频场景。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">音频场景类型。</ph></shortdesc>
     <refbody>
         <section id="parameters">
    <title>枚举值</title>
@@ -32,10 +32,34 @@
            <pt><ph keyref="AUDIO_SCENARIO_AI_CLIENT"/></pt>
            <pd>10: AI 对话场景，仅适用于与<xref keyref="convoai"/>创建的智能体互动的场景。</pd>
        </plentry>
-       <plentry props="cpp unreal bp unity flutter rn electron cs">
+       <plentry props="bp cpp cs electron flutter rn unity unreal">
                     <pt><ph keyref="AUDIO_SCENARIO_NUM"/></pt>
                     <pd>枚举的数量。</pd>
                 </plentry>
-   </parml>
+   <plentry props="apple">
+                <pt><ph keyref="AgoraAudioScenarioDefault"/></pt>
+                <pd props="apple">（0）：（默认）自动匹配场景，SDK 会根据用户角色和音频路由选择合适的音频质量。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraAudioScenarioGameStreaming"/></pt>
+                <pd props="apple">（3）：高质量音频场景，适用于以播放音乐为主的场景，例如乐器教学。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraAudioScenarioChatRoom"/></pt>
+                <pd props="apple">（5）：聊天室场景，适用于用户频繁切换角色或频繁静音/取消静音麦克风的场景，例如在线教育。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraAudioScenarioChorus"/></pt>
+                <pd props="apple">（7）：实时合唱场景，适用于网络状况良好且对超低延迟有要求的场景。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraAudioScenarioMeeting"/></pt>
+                <pd props="apple">（8）：会议场景，主要用于传输人声。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraAudioScenarioAiClient"/></pt>
+                <pd props="apple">（10）：AI 对话场景，仅适用于用户与由 <codeph>Conversational AI Engine</codeph> 创建的对话式智能体进行交互的场景。</pd>
+            </plentry>
+            </parml>
         </section></refbody>
 </reference>

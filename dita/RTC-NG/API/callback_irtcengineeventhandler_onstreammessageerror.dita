@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onstreammessageerror">
-    <title> <ph keyref="onStreamMessageError" /> </title>
-    <shortdesc id="short"> <ph id="shortdesc">接收对方数据流消息发生错误的回调。</ph> </shortdesc>
+    <title> <ph keyref="onStreamMessageError"/> </title>
+    <shortdesc id="short"> <ph id="shortdesc">本地用户未收到远端用户发送的数据流消息时触发的回调。</ph> </shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onStreamMessageError" />
+                <indexterm keyref="onStreamMessageError"/>
             </keywords>
         </metadata>
     </prolog>
@@ -15,21 +15,9 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onStreamMessageError(int uid, int streamId, int error, int missed, int cached) {}</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">onStreamMessageError? : (uid:number,streamId:number,error:number,missed:number,cached:number) =&gt; void;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
-            didOccurStreamMessageErrorFromUid:(NSUInteger)uid
-            streamId:(NSInteger)streamId
-            error:(NSInteger)error
-            missed:(NSInteger)missed
-            cached:(NSInteger)cached;</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onStreamMessageError(uid_t uid, int streamId, int code, int missed, int cached) {
-                (void)uid;
-                (void)streamId;
-                (void)code;
-                (void)missed;
-                (void)cached;
-              }
-            </codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didOccurStreamMessageErrorFromUid:(NSUInteger)uid streamId:(NSInteger)streamId error:(NSInteger)error missed:(NSInteger)missed cached:(NSInteger)cached NS_SWIFT_NAME(rtcEngine(_:didOccurStreamMessageErrorFromUid:streamId:error:missed:cached:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onStreamMessageError(uid_t uid, int streamId, int code, int missed, int cached)</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = "Agora|Event")
 	void OnStreamMessageError(int64 uid, int streamId, int code, int missed, int cached);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onStreamMessageError?(
     connection: RtcConnection,
@@ -50,47 +38,67 @@
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, int streamId,
       ErrorCodeType code, int missed, int cached)? onStreamMessageError;</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
-        <note conkeyref="createDataStream2/note" props="android apple cpp unity flutter"/>
-            <p>
-                该回调表示本地用户未收到远端用户调用 <xref keyref="sendStreamMessage" /> 方法发送的流消息。</p>
+        <note conkeyref="createDataStream2/note" props="android apple cpp flutter unity"/>
+            <p>该回调在本地用户未能接收到远端用户通过 <xref keyref="sendStreamMessage"/> 发送的流消息时触发，通常由于网络异常或带宽不足等原因导致消息丢失。你可以通过该回调获取丢失消息的数量和缓存消息的数量，以便进行相应的处理。<xref keyref="sendStreamMessage"/> 发送的流消息时触发，通常由于网络异常或带宽不足等原因导致消息丢失。你可以通过该回调获取丢失消息的数量和缓存消息的数量，以便进行相应的处理。<xref keyref="sendStreamMessage"/> 方法发送的流消息。</p>
+            <note type="attention" props="native">如果你需要一个更全面的低延迟、高并发和可扩展的实时消息和状态同步解决方案，建议使用 <codeph>Signaling</codeph>。</note>
+            </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>当本地用户未能接收到远端用户通过 <xref keyref="sendStreamMessage"/> 方法发送的流消息时触发。</p>
         </section>
         <section id="parameters">
-            <title> <ph keyref="callback-section-title" /> </title>
+            <title> <ph keyref="callback-section-title"/> </title>
             <parml>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt />
-                <pd />
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="apple">
+                <pt/>
+                <pd/>
             </plentry>
-            <plentry props="unity flutter rn electron cs">
+            <plentry props="cs electron flutter rn unity">
                 <pt>connection</pt>
-                <pd>Connection 信息。详见 <xref keyref="RtcConnection" />。 </pd>
+                <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。 </pd>
             </plentry>
             <plentry id="uid">
-                <pt props="ios mac android hmos electron cpp unreal">uid</pt>
+                <pt>uid</pt>
                 <pt props="bp">userId</pt>
-                <pt props="unity flutter rn electron cs">remoteUid</pt>
-                <pd>发送消息的用户 ID。</pd>
-            </plentry>
+                <pt props="cs electron flutter rn unity">remoteUid</pt>
+                <pd props="bp cs electron flutter mac rn unity unreal">发送消息的用户 ID。</pd>
+            <pd props="android cpp ios">发送消息的远端用户 ID。</pd>
+                </plentry>
             <plentry id="streamId">
                 <pt>streamId</pt>
-                <pd>接收到的消息的 Stream ID。</pd>
-            </plentry>
+                <pd props="bp cs electron flutter mac rn unity unreal">接收到的消息的 Stream ID。</pd>
+            <pd props="android">数据流的 ID。</pd>
+                <pd props="ios">接收消息的数据流 ID。</pd>
+                <pd props="cpp">接收消息对应的数据流 ID。</pd>
+                </plentry>
             <plentry id="code">
-                <pt props="cpp framework">code</pt>
-                <pt props="android hmos ios mac">error</pt>
-                <pd>错误码。详见 <xref keyref="ERROR_CODE_TYPE" props="flutter electron rn"/><xref keyref="error-code-link" props="native unreal bp unity"/>。</pd>
-            </plentry>
+                <pt>code</pt>
+                <pt props="android apple hmos">error</pt>
+                <pd props="android apple bp cs electron flutter rn unity unreal">错误码。详见 <xref keyref="ERROR_CODE_TYPE" props="electron flutter rn"/><xref keyref="error-code-link" props="bp native unity unreal"/>。</pd>
+            <pd props="cpp">错误码。</pd>
+                </plentry>
             <plentry id="missed">
                 <pt>missed</pt>
-                <pd>丢失的消息数量。</pd>
+                <pd props="android bp cpp cs electron flutter ios native rn unity unreal">丢失的消息数量。</pd>
             </plentry>
             <plentry id="cached">
                 <pt>cached</pt>
-                <pd>数据流中断时，后面缓存的消息数量。</pd>
-            </plentry>
-            </parml> </section>
+                <pd props="bp cs electron flutter mac rn unity unreal">数据流中断时，后面缓存的消息数量。</pd>
+            <pd props="android ios">数据流中断时接收到的缓存消息数量。</pd>
+                <pd props="cpp">数据流中断期间接收到的缓存消息数量。</pd>
+                </plentry>
+            <plentry props="android ios">
+                <pt props="android ios">error</pt>
+                <pd props="android">错误码。</pd>
+                <pd props="ios">错误码，详见 <xref keyref="ERROR_CODE_TYPE"/>。</pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">engine</pt>
+                <pd props="ios"><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+        </parml> </section>
     </refbody>
 </reference>

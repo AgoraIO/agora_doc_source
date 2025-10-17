@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_channelmediainfo">
     <title> <ph keyref="ChannelMediaInfo"/> </title>
@@ -25,12 +25,10 @@
     this.uid = uid;
   }
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraChannelMediaRelayInfo: NSObject
-
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraChannelMediaRelayInfo: NSObject
 @property (copy, nonatomic) NSString * _Nullable token;
 @property (copy, nonatomic) NSString * _Nullable channelName;
 @property (assign, nonatomic) NSUInteger uid;
-- (instancetype _Nonnull)initWithToken:(NSString *_Nullable)token;
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct ChannelMediaInfo {
 	const char* channelName;
@@ -41,12 +39,12 @@
 struct FChannelMediaInfo {
 	GENERATED_BODY()
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|UserInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|UserInfo")
 	int64 uid = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|UserInfo&quot;)
-	FString channelName = &quot;&quot;;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|UserInfo&quot;)
-	FString token = &quot;&quot;;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|UserInfo")
+	FString channelName = "";
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|UserInfo")
+	FString token = "";
 	FChannelMediaInfo(){}
 	FChannelMediaInfo(const agora::rtc::ChannelMediaInfo &amp; AgoraData){
 		channelName = UTF8_TO_TCHAR(AgoraData.channelName);
@@ -110,22 +108,23 @@ public:
       _$ChannelMediaInfoFromJson(json);
   Map&lt;String, dynamic&gt; toJson() =&gt; _$ChannelMediaInfoToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="parameters">
             <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/> </title>
             <parml>
-            <plentry>
-                <pt>channelName</pt>
-                <pd>频道名。</pd>
+            <plentry props="ios">
+                <pt props="ios">channelName</pt>
+                <pd props="ios">频道名。</pd>
             </plentry>
-            <plentry>
-                <pt>token</pt>
+            <plentry props="ios">
+                <pt props="ios">token</pt>
                 <pd>能加入频道的 Token。</pd>
+                <pd props="ios">用于用户加入频道的临时 Token。</pd>
             </plentry>
-            <plentry>
-                <pt>uid</pt>
-                <pd>用户 ID。</pd>
+            <plentry props="ios">
+                <pt props="ios">uid</pt>
+                <pd props="ios">用户 ID。</pd>
             </plentry>
             </parml> </section>
     </refbody>

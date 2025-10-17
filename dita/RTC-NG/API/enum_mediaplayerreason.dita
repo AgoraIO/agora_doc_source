@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="enum_mediaplayereason">
+<reference id="enum_mediaplayerreason">
     <title><ph keyref="MEDIA_PLAYER_REASON"/></title>
-    <shortdesc id="short"><ph id="shortdesc">播放器状态改变的原因。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">媒体播放器状态变更的原因。</ph></shortdesc>
     <refbody>
         <section id="parameters">
             <title>枚举值</title>
@@ -67,7 +67,7 @@
                 <pt><ph keyref="PLAYER_REASON_NOT_SUPPORTED"/></pt>
                 <pd>-14: SDK 不支持的接口调用。</pd>
             </plentry>
-            <plentry props="android ios rn unity flutter cs">
+            <plentry props="android cs flutter ios rn unity">
                 <pt><ph keyref="PLAYER_REASON_TOKEN_EXPIRED"/></pt>
                 <pd><ph>-15: 媒体资源网络路径的鉴权信息已过期。</ph><ph props="hide">请参考 <xref keyref="renewAgoraCDNSrcToken"/> 更新鉴权信息。</ph></pd>
             </plentry>
@@ -78,6 +78,47 @@
             <plentry>
                 <pt><ph keyref="PLAYER_REASON_UNKNOWN"/></pt>
                 <pd>-17：未知错误。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraMediaPlayerReasonUnknown"/></pt>
+                <pd props="apple">（-17）：未知错误。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraMediaPlayerReasonInvalidConnectState"/></pt>
+                <pd props="apple">（-11）：播放器与声网服务器之间的连接无效。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraMediaPlayerReasonNoSource"/></pt>
+                <pd props="ios">（-3）：无资源。</pd>
+                <pd props="mac">（-4）：媒体资源无效。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraMediaPlayerReasonUnknowStreamType"/></pt>
+                <pd props="apple">（-5）：媒体流类型未知。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraMediaPlayerReasonObjNotInitialized"/></pt>
+                <pd props="apple">（-6）：对象未初始化。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraMediaPlayerReasonNotSupported"/></pt>
+                <pd props="apple">（-14）：SDK 不支持调用的方法。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraMediaPlayerReasonVideoRenderFailed"/></pt>
+                <pd props="apple">（-8）：渲染器无效。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraMediaPlayerReasonUrlNotFound"/></pt>
+                <pd props="apple">（-10）：找不到媒体资源的 URL。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraMediaPlayerReasonSrcBufferUnderflow"/></pt>
+                <pd props="apple">（-12）：播放缓冲区不足。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraMediaPlayerReasonTokenExpired"/></pt>
+                <pd props="apple">（-15）：媒体资源的鉴权信息已过期。</pd>
             </plentry>
             </parml> </section>
     </refbody>

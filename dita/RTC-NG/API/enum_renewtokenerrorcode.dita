@@ -2,13 +2,13 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_renewtokenerrorcode">
     <title><ph keyref="RENEW_TOKEN_ERROR_CODE"/></title>
-    <shortdesc id="short"><ph id="shortdesc">表示调用 <xref keyref="renewToken"/> 后的错误码。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">调用 <xref keyref="renewToken_IMusicContentCenter"/> 后的错误码。</ph></shortdesc>
     <refbody>
         <section id="detailed_desc">
             <dl outputclass="since">
                 <dlentry props="native">
                     <dt>自从：</dt>
-                    <dd>自 v4.6.0 版本新增。</dd>
+                    <dd>自 4.6.0 版本新增。</dd>
                 </dlentry>
             </dl>
         </section>
@@ -49,6 +49,34 @@
             <pd props="apple">（6）：Token 更新请求被取消，原因是发起了新的请求。</pd>
             <pd props="android">（6）：Token 更新被取消，原因是发起了新的请求，前一个请求被取消。</pd>
             </plentry>
-        </parml>
+        <plentry props="android apple">
+                <pt><ph keyref="AgoraRenewTokenSuccess"/></pt>
+                <pd props="android apple">（0）：Token 更新成功。</pd>
+            </plentry>
+            <plentry props="android apple">
+                <pt><ph keyref="AgoraRenewTokenFailure"/></pt>
+                <pd props="apple">（1）：Token 更新失败。建议重新生成 Token 并重试 <xref keyref="renewToken"/>。</pd>
+                <pd props="android">（1）：Token 更新失败。建议重新生成 Token 并重试 <xref keyref="renewToken_IMusicContentCenter"/>。</pd>
+            </plentry>
+            <plentry props="android apple">
+                <pt><ph keyref="AgoraRenewTokenInvalidChannelName"/></pt>
+                <pd props="apple">（4）：Token 更新失败，原因是 Token 中的频道名与当前频道不一致。建议检查频道名，重新生成 Token 并重试 <xref keyref="renewToken"/>。</pd>
+                <pd props="android">（4）：Token 更新失败，原因是 Token 中的频道名与当前频道不一致。建议检查频道名，重新生成 Token 并重试 <xref keyref="renewToken_IMusicContentCenter"/>。</pd>
+            </plentry>
+            <plentry props="android apple">
+                <pt><ph keyref="AgoraRenewTokenInconsistentAppId"/></pt>
+                <pd props="apple">（5）：Token 更新失败，原因是 Token 中的 App ID 与当前 App ID 不一致。建议检查 App ID，重新生成 Token 并重试 <xref keyref="renewToken"/>。</pd>
+                <pd props="android">（5）：Token 更新失败，原因是 Token 中的 App ID 与当前 App ID 不一致。建议检查 App ID，重新生成 Token 并重试 <xref keyref="renewToken_IMusicContentCenter"/>。</pd>
+            </plentry>
+            <plentry props="android apple">
+                <pt><ph keyref="AgoraRenewTokenCanceledByNewRequest"/></pt>
+                <pd props="apple">（6）：Token 更新请求已取消，因为发起了新的请求。</pd>
+                <pd props="android">（6）：Token 更新被取消，原因是发起了新的请求，前一个请求被取消。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt><ph keyref="RENEW_TOKEN_TOKEN_EXPIRED"/></pt>
+                <pd props="android">（2）：Token 更新失败，原因是传入的 Token 已过期。建议生成一个过期时间更长的新 Token 并重试 <xref keyref="renewToken_IMusicContentCenter"/>。</pd>
+            </plentry>
+            </parml>
         </section></refbody>
 </reference>

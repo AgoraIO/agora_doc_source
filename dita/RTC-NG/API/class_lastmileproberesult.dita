@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_lastmileproberesult">
-    <title><ph keyref="LastmileProbeResult" /></title>
-    <shortdesc id="short"><ph id="shortdesc">上下行 Last mile 网络质量探测结果。</ph></shortdesc>
+    <title><ph keyref="LastmileProbeResult"/></title>
+    <shortdesc id="short"><ph id="shortdesc">提供上行和下行 Last-mile 网络测试的结果。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -19,13 +19,13 @@
 struct FLastmileProbeResult {
 	GENERATED_BODY()
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LastmileProbeResult&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|LastmileProbeResult")
 	ELASTMILE_PROBE_RESULT_STATE state = ELASTMILE_PROBE_RESULT_STATE::LASTMILE_PROBE_RESULT_UNAVAILABLE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LastmileProbeResult&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|LastmileProbeResult")
 	FLastmileProbeOneWayResult uplinkReport = FLastmileProbeOneWayResult();
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LastmileProbeResult&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|LastmileProbeResult")
 	FLastmileProbeOneWayResult downlinkReport = FLastmileProbeOneWayResult();
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LastmileProbeResult&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|LastmileProbeResult")
 	int64 rtt = 0;
 	FLastmileProbeResult(){}
 	FLastmileProbeResult(const agora::rtc::LastmileProbeResult &amp; AgoraData){
@@ -48,18 +48,16 @@ public:
 	}
 };</codeblock>
             <codeblock props="android" outputclass="language-java">public static class LastmileProbeResult {
-
     public static class LastmileProbeOneWayResult {
-      public int packetLossRate;
-      public int jitter;
-      public int availableBandwidth;
+        public int packetLossRate;
+        public int jitter;
+        public int availableBandwidth;
     }
-
     public short state;
     public int rtt;
     public LastmileProbeOneWayResult uplinkReport = new LastmileProbeOneWayResult();
     public LastmileProbeOneWayResult downlinkReport = new LastmileProbeOneWayResult();
-  }</codeblock>
+}</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">export class LastmileProbeResult {
   
   public state:number = 0;
@@ -70,8 +68,7 @@ public:
   
   public downlinkReport:LastmileProbeOneWayResult = new LastmileProbeOneWayResult();
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLastmileProbeResult : NSObject
-
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraLastmileProbeResult : NSObject
 @property (assign, nonatomic) AgoraLastmileProbeResultState state;
 @property (assign, nonatomic) NSUInteger rtt;
 @property (strong, nonatomic) AgoraLastmileProbeOneWayResult *_Nonnull uplinkReport;
@@ -138,33 +135,47 @@ public:
             </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry>
-                <pt>state</pt>
+            <plentry props="android ios">
+                <pt props="android ios">state</pt>
                 <pd>
-                    <p props="ios mac cpp unreal bp unity electron rn flutter cs">Last mile 质量探测结果的状态。详见: <xref keyref="LASTMILE_PROBE_RESULT_STATE" /> 。</p>
+                    <p props="apple bp cpp cs electron flutter rn unity unreal">Last mile 质量探测结果的状态。详见: <xref keyref="LASTMILE_PROBE_RESULT_STATE"/> 。</p>
                     <p props="android hmos">Last mile 质量探测结果的状态，有如下几种：
 
 
                     <ul>
-                    <li><ph keyref="LASTMILE_PROBE_RESULT_COMPLETE" /> (1)：表示本次 Last mile 质量探测是完整的。</li>
-                    <li><ph keyref="LASTMILE_PROBE_RESULT_INCOMPLETE_NO_BWE" /> (2)：表示本次 Last mile 质量探测未进行带宽预测，因此结果不完整。一个可能的原因是测试资源暂时受限。</li>
-                    <li><ph keyref="LASTMILE_PROBE_RESULT_UNAVAILABLE" /> (3)：未进行 Last mile 质量探测。一个可能的原因是网络连接中断。</li>
+                    <li><ph keyref="LASTMILE_PROBE_RESULT_COMPLETE"/> (1)：表示本次 Last mile 质量探测是完整的。</li>
+                    <li><ph keyref="LASTMILE_PROBE_RESULT_INCOMPLETE_NO_BWE"/> (2)：表示本次 Last mile 质量探测未进行带宽预测，因此结果不完整。一个可能的原因是测试资源暂时受限。</li>
+                    <li><ph keyref="LASTMILE_PROBE_RESULT_UNAVAILABLE"/> (3)：未进行 Last mile 质量探测。一个可能的原因是网络连接中断。</li>
                     </ul> </p>
                 </pd>
-            </plentry>
-            <plentry>
-                <pt>uplinkReport</pt>
-                <pd>上行网络质量报告。详见 <xref keyref="LastmileProbeOneWayResult" />。</pd>
-            </plentry>
-            <plentry>
-                <pt>downlinkReport</pt>
-                <pd>下行网络质量报告。详见 <xref keyref="LastmileProbeOneWayResult" />。</pd>
-            </plentry>
-            <plentry>
-                <pt>rtt</pt>
+                <pd props="android"><codeph>Last-mile</codeph> 网络测试的状态，包括：
+                    <ul>
+                        <li><ph keyref="LASTMILE_PROBE_RESULT_COMPLETE"/>（1）：<codeph>Last-mile</codeph> 网络探测测试已完成。</li>
+                        <li><ph keyref="LASTMILE_PROBE_RESULT_INCOMPLETE_NO_BWE"/>（2）：<codeph>Last-mile</codeph> 网络探测测试未完成，且未进行带宽预测。可能原因是测试资源暂时受限。</li>
+                        <li><ph keyref="LASTMILE_PROBE_RESULT_UNAVAILABLE"/>（3）：未进行 <codeph>Last-mile</codeph> 网络探测测试，可能因为网络状况较差。</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">最后一公里网络测试的状态。详见 <xref keyref="LASTMILE_PROBE_RESULT_STATE"/>。</pd>
+                </plentry>
+            <plentry props="android ios">
+                <pt props="android ios">uplinkReport</pt>
+                <pd>上行网络质量报告。详见 <xref keyref="LastmileProbeOneWayResult"/>。</pd>
+                <pd props="android">上行 <codeph>Last-mile</codeph> 网络测试结果。详见 <xref keyref="LastmileProbeOneWayResult"/>。</pd>
+                <pd props="ios">上行最后一公里网络测试结果。详见 <xref keyref="LastmileProbeOneWayResult"/>。</pd>
+                </plentry>
+            <plentry props="android ios">
+                <pt props="android ios">downlinkReport</pt>
+                <pd>下行网络质量报告。详见 <xref keyref="LastmileProbeOneWayResult"/>。</pd>
+                <pd props="android">下行 <codeph>Last-mile</codeph> 网络测试结果。详见 <xref keyref="LastmileProbeOneWayResult"/>。</pd>
+                <pd props="ios">下行最后一公里网络测试结果。详见 <xref keyref="LastmileProbeOneWayResult"/>。</pd>
+                </plentry>
+            <plentry props="android ios">
+                <pt props="android ios">rtt</pt>
                 <pd>往返时延 (ms)。</pd>
+                <pd props="android">往返时延，单位为毫秒。</pd>
+                <pd props="ios">往返时延（毫秒）。</pd>
             </plentry>
             </parml> </section>
     </refbody>

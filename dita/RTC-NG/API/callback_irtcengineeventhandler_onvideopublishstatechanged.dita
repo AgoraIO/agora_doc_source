@@ -1,37 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onvideopublishstatechanged">
-    <title> <ph keyref="onVideoPublishStateChanged" /> </title>
-    <shortdesc id="short"> <ph id="shortdesc">视频发布状态改变回调。</ph> </shortdesc>
+    <title> <ph keyref="onVideoPublishStateChanged"/> </title>
+    <shortdesc id="short"> <ph id="shortdesc">视频发布状态发生变化回调。</ph> </shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onVideoPublishStateChanged" />
+                <indexterm keyref="onVideoPublishStateChanged"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public void onVideoPublishStateChanged(Constants.VideoSourceType source, String channel,
-      int oldState, int newState, int elapseSinceLastState) {}
-</codeblock>
+            <codeblock props="android" outputclass="language-java">public void onVideoPublishStateChanged(Constants.VideoSourceType source, String channel, int oldState, int newState, int elapseSinceLastState)</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">onVideoPublishStateChanged?:(source:Constants.VideoSourceType, channel:string, oldState:Constants.StreamPublishState, newState:Constants.StreamPublishState, elapseSinceLastState:number) =&gt; void;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit *_Nonnull)engine didVideoPublishStateChange:(NSString * _Nonnull)channelId
-         sourceType:(AgoraVideoSourceType)sourceType
-           oldState:(AgoraStreamPublishState)oldState
-           newState:(AgoraStreamPublishState)newState
-elapseSinceLastState:(int)elapseSinceLastState;
-</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onVideoPublishStateChanged(VIDEO_SOURCE_TYPE source, const char* channel, STREAM_PUBLISH_STATE oldState, STREAM_PUBLISH_STATE newState, int elapseSinceLastState) {
-    (void)source;
-    (void)channel;
-    (void)oldState;
-    (void)newState;
-    (void)elapseSinceLastState;
-  }
-</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+          sourceType:(AgoraVideoSourceType)sourceType
+            oldState:(AgoraStreamPublishState)oldState
+            newState:(AgoraStreamPublishState)newState
+ elapseSinceLastState:(int)elapseSinceLastState NS_SWIFT_NAME(rtcEngine(_:didVideoPublishStateChange:sourceType:oldState:newState:elapseSinceLastState:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onVideoPublishStateChanged(VIDEO_SOURCE_TYPE source, const char* channel, STREAM_PUBLISH_STATE oldState, STREAM_PUBLISH_STATE newState, int elapseSinceLastState)</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = "Agora|Event")
 	void OnVideoPublishStateChanged(EVIDEO_SOURCE_TYPE source, const FString&amp; channel, ESTREAM_PUBLISH_STATE oldState, ESTREAM_PUBLISH_STATE newState, int elapseSinceLastState);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onVideoPublishStateChanged?(
     source: VideoSourceType,
@@ -54,39 +44,55 @@ elapseSinceLastState:(int)elapseSinceLastState;
       StreamPublishState oldState,
       StreamPublishState newState,
       int elapseSinceLastState)? onVideoPublishStateChanged;</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
         </section>
         <section id="parameters">
-            <title> <ph keyref="callback-section-title" /> </title>
+            <title> <ph keyref="callback-section-title"/> </title>
             <parml>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt />
-                <pd />
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="apple">
+                <pt/>
+                <pd/>
             </plentry>
             <plentry>
-                <pt props="android cpp unreal bp unity flutter electron rn cs">channel</pt>
-                <pt props="ios mac">channelId</pt>
-                <pd>频道名。</pd>
+                <pt>channel</pt>
+                <pt props="apple">channelId</pt>
+                <pd props="android bp cpp cs electron flutter ios native rn unity unreal">频道名。</pd>
             </plentry>
             <plentry id="source">
                     <pt props="apple">sourceType</pt>
-                    <pt props="android cpp unreal bp unity electron rn flutter cs">source</pt>
-                    <pd>视频源的类型。详见 <xref keyref="VIDEO_SOURCE_TYPE" />。</pd>
+                    <pt props="android bp cpp cs electron flutter rn unity unreal">source</pt>
+                    <pd>视频源的类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
                 </plentry>
                 <plentry>
                 <pt>oldState</pt>
-                <pd>之前的发布状态，详见 <xref keyref="STREAM_PUBLISH_STATE" />。</pd>
-            </plentry>
+                <pd props="bp cs electron flutter mac rn unity unreal">之前的发布状态，详见 <xref keyref="STREAM_PUBLISH_STATE"/>。</pd>
+            <pd props="android">之前的视频发布状态。详见 <xref keyref="STREAM_PUBLISH_STATE"/>。</pd>
+                <pd props="cpp ios">之前的视频发布状态，详见 <xref keyref="STREAM_PUBLISH_STATE"/>。</pd>
+                </plentry>
             <plentry>
                 <pt>newState</pt>
-                <pd>当前的发布状态，详见 <apiname keyref="STREAM_PUBLISH_STATE" />。</pd>
-            </plentry>
+                <pd props="bp cs electron flutter mac rn unity unreal">当前的发布状态，详见 <apiname keyref="STREAM_PUBLISH_STATE"/>。</pd>
+            <pd props="android">当前的视频发布状态。详见 <xref keyref="STREAM_PUBLISH_STATE"/>。</pd>
+                <pd props="cpp ios">当前的视频发布状态，详见 <xref keyref="STREAM_PUBLISH_STATE"/>。</pd>
+                </plentry>
             <plentry>
                 <pt>elapseSinceLastState</pt>
-                <pd>两次状态变化时间间隔（毫秒）。</pd>
-            </plentry>
-            </parml> </section>
+                <pd props="bp cs electron flutter mac rn unity unreal">两次状态变化时间间隔（毫秒）。</pd>
+            <pd props="android">从前一个状态变为当前状态所经历的时间（毫秒）。</pd>
+                <pd props="ios">从前一个状态到当前状态所经历的时间（毫秒）。</pd>
+                <pd props="cpp">从上一个状态变更到当前状态所经历的时间（毫秒）。</pd>
+                </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">source</pt>
+                <pd props="android">视频源类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                <pd props="cpp ios">视频源类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">engine</pt>
+                <pd props="ios"><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+        </parml> </section>
     </refbody>
 </reference>

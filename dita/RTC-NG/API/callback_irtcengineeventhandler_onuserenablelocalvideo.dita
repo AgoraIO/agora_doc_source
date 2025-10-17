@@ -1,83 +1,83 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onuserenablelocalvideo">
-    <title> <ph keyref="onUserEnableLocalVideo" /> </title>
-    <shortdesc id="short"> <ph id="shortdesc">远端用户开/关本地视频采集回调。</ph> </shortdesc>
+    <title><ph keyref="onUserEnableLocalVideo"/></title>
+    <shortdesc id="short"><ph id="shortdesc">远端用户启用或关闭本地视频采集功能回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onUserEnableLocalVideo" />
+                <indexterm keyref="onUserEnableLocalVideo"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public void onUserEnableLocalVideo(int uid, boolean enabled) {}</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
-    didLocalVideoEnabled:(BOOL)enabled
-    byUid:(NSUInteger)uid</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onUserEnableLocalVideo(uid_t uid, bool enabled) {
-    (void)uid;
-    (void)enabled;
-    }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
-	void OnUserEnableLocalVideo(int64 uid, bool enabled);</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">  onUserEnableLocalVideo?(
-    connection: RtcConnection,
-    remoteUid: number,
-    enabled: boolean
-  ): void;</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnUserEnableLocalVideo(RtcConnection connection, uint remoteUid, bool enabled) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">  onUserEnableLocalVideo?(
-    connection: RtcConnection,
-    remoteUid: number,
-    enabled: boolean
-  ): void;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, bool enabled)?
-      onUserEnableLocalVideo;</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="android" outputclass="language-java">public void onUserEnableLocalVideo(int uid, boolean enabled)</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didLocalVideoEnabled:(BOOL)enabled byUid:(NSUInteger)uid NS_SWIFT_NAME(rtcEngine(_:didLocalVideoEnabled:byUid:)) __deprecated_msg("use rtcEngine:remoteVideoStateChangedOfUid:state:reason: instead.");</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onUserEnableLocalVideo(uid_t uid, bool enabled) __deprecated</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
-        <section id="detailed_desc">
-            <dl outputclass="deprecated">
-            <dlentry>
-                <dt>弃用：</dt>
-                <dd>该回调已废弃，请改用 <xref keyref="onRemoteVideoStateChanged" /> 回调的如下枚举：
-                    <ul>
-                    <li> <apiname keyref="REMOTE_VIDEO_STATE_STOPPED" />(0) 和 <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED" />(5)。</li>
-                    <li> <apiname keyref="REMOTE_VIDEO_STATE_DECODING" /> (2) 和 <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED" />(6)。</li>
-                    </ul> </dd>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v</dd>
             </dlentry>
             </dl>
-            <p id="desc">该回调是由远端用户调用 <xref keyref="enableLocalVideo" /> 方法开启或关闭视频采集触发的。</p>
+            <p/>
         </section>
-        <section id="parameters">
-            <title> <ph keyref="callback-section-title" /> </title>
+        <section id="restriction" deliveryTarget="details">
+            <title>使用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
             <parml>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt />
-                <pd />
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">uid</pt>
+                <pd props="android cpp">远端用户的用户 ID。</pd>
+                <pd props="ios">远端用户 ID。</pd>
             </plentry>
-            <plentry props="unity electron rn flutter cs" conkeyref="joinChannelEx/connection">
-                <pt />
-                <pd />
-            </plentry>
-            <plentry>
-                <pt props="native unreal bp">uid</pt>
-                <pt props="unity electron rn flutter cs">remoteUid</pt>
-                <pd>用户 ID，提示是哪个用户的视频流。</pd>
-            </plentry>
-            <plentry>
-                <pt>enabled</pt>
-                <pd>
-                    <p>远端用户是否启用视频采集：
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">enabled</pt>
+                <pd props="android">指定的远端用户是否启用本地视频采集功能：
                     <ul>
-                    <li> <codeph><ph keyref="true" /></codeph>: 该用户已启用视频功能。启用后，其他用户可以接收到该用户的视频流。</li>
-                    <li> <codeph><ph keyref="false" /></codeph>: 该用户已关闭视频功能。关闭后，该用户仍然可以接收其他用户的视频流，但其他用户接收不到该用户的视频流。</li>
-                    </ul> </p>
-                </pd>
+                        <li><codeph><ph keyref="true"/></codeph>：启用视频模块，频道内其他用户可以看到该远端用户的视频。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：关闭视频模块，频道内其他用户将无法接收该远端用户的视频流，但该远端用户仍可接收其他用户的视频流。</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">指定的远端用户是否启用本地视频采集功能：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：启用了视频模块，频道内其他用户可以看到该远端用户的视频。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：关闭了视频模块，频道内其他用户无法再接收到该远端用户的视频流，但该远端用户仍可接收其他用户的视频流。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp">指定的远端用户是否启用本地视频采集功能：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：启用视频模块，频道内其他用户可以看到该远端用户的视频。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：关闭视频模块，频道内其他用户无法接收该远端用户的视频流，但该远端用户仍可接收其他用户的视频流。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            <plentry props="ios">
+                <pt props="ios">engine</pt>
+                <pd props="ios">引擎实例。详见 <xref keyref="IRtcEngine"/>。</pd>
             </plentry>
             </parml> </section>
+        <section id="return_values" props="bp electron flutter rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
+        <ul props="bp electron rn unity unreal">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul>
+    </section>
     </refbody>
 </reference>

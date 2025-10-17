@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_screencaptureparameters2">
   <title><ph keyref="ScreenCaptureParameters2"/></title>
-  <shortdesc id="short"><ph id="shortdesc">屏幕共享的参数配置。</ph></shortdesc>
+  <shortdesc id="short"><ph id="shortdesc">屏幕共享配置。</ph></shortdesc>
   <refbody>
     <section id="prototype">
       <p outputclass="codeblock">
@@ -119,13 +119,13 @@ struct FScreenCaptureParameters2
 {
 	GENERATED_BODY()
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureParameters2&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|ScreenCaptureParameters2")
 	bool captureAudio = false;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureParameters2&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|ScreenCaptureParameters2")
 	FScreenAudioParameters audioParams = FScreenAudioParameters();
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureParameters2&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|ScreenCaptureParameters2")
 	bool captureVideo = false;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureParameters2&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|ScreenCaptureParameters2")
 	FScreenVideoParameters videoParams = FScreenVideoParameters();
 #if defined(__ANDROID__) || (defined(__APPLE__) &amp;&amp; TARGET_OS_IOS)
 	FScreenCaptureParameters2(){}
@@ -197,50 +197,64 @@ public:
   @JsonKey(name: 'videoParams')
   final ScreenVideoParameters? videoParams;
 
-  factory ScreenCaptureParameters2.fromJson(Map&lt;String, dynamic> json) =>
+  factory ScreenCaptureParameters2.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$ScreenCaptureParameters2FromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$ScreenCaptureParameters2ToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ScreenCaptureParameters2ToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
     </section>
     <section id="detailed_desc">
-      <p/>
-    </section>
+      <p></p>
+            </section>
     <section id="parameters">
       <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
       <parml>
-      <plentry>
-        <pt>captureAudio</pt>
-        <pd>屏幕共享时是否采集系统音频： 
+            <plentry props="ios">
+                <pt props="ios">captureAudio</pt>
+                <pd>屏幕共享时是否采集系统音频： 
             <ul>
             <li><codeph><ph keyref="true"/></codeph>: 采集系统音频。</li>
             <li><codeph><ph keyref="false"/></codeph>: （默认）不采集系统音频。</li>
             </ul>
             <note><ul>
-              <li props="android cpp unreal bp rn unity flutter">受系统限制，采集系统音频仅适用于 Android API 级别为 29 及以上，即 Android 10 及以上。</li>
-              <li>为提高屏幕共享时采集系统音频的成功率，请确保你已调用 <xref keyref="setAudioScenario"/> 方法并设置音频场景为 <codeph><ph keyref="AUDIO_SCENARIO_GAME_STREAMING"></ph></codeph>。</li></ul></note></pd>
-      </plentry>
-      <plentry props="hmos ios cpp unreal bp rn unity electron flutter cs">
-          <pt>audioParams</pt>
-          <pd>共享屏幕流的音频配置。详见 <xref keyref="ScreenAudioParameters"/>。 
+              <li props="android bp cpp flutter rn unity unreal">受系统限制，采集系统音频仅适用于 Android API 级别为 29 及以上，即 Android 10 及以上。</li>
+              <li>为提高屏幕共享时采集系统音频的成功率，请确保你已调用 <xref keyref="setAudioScenario"/> 方法并设置音频场景为 <codeph><ph keyref="AUDIO_SCENARIO_GAME_STREAMING"/></codeph>。</li></ul></note></pd>
+                <pd props="ios">是否在屏幕共享时采集系统音频：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：采集系统音频。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）不采集系统音频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="bp cpp cs electron flutter hmos ios rn unity unreal">
+                <pt props="ios">audioParams</pt>
+                <pd>共享屏幕流的音频配置。详见 <xref keyref="ScreenAudioParameters"/>。 
             <note type="attention">该参数仅在 <parmname>captureAudio</parmname> 为 <codeph><ph keyref="true"/></codeph> 时生效。</note></pd>
-        </plentry>
-      <plentry>
-        <pt>captureVideo</pt>
-        <pd>屏幕共享时是否采集屏幕： 
+                <pd props="ios">共享屏幕音频流的音频配置。详见 <xref keyref="ScreenAudioParameters"/>。</pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">captureVideo</pt>
+                <pd>屏幕共享时是否采集屏幕： 
             <ul>
             <li><codeph><ph keyref="true"/></codeph>:（默认）采集屏幕。</li>
             <li><codeph><ph keyref="false"/></codeph>: 不采集屏幕。</li>
             </ul>
-            <note props="android cpp unreal bp rn unity flutter">受系统限制，采集屏幕仅适用于 Android API 级别为 21 及以上，即 Android 5 及以上。</note></pd>
-      </plentry>
-      <plentry props="hmos ios cpp unreal bp rn unity electron flutter cs">
-          <pt>videoParams</pt>
-          <pd>共享屏幕流的视频编码配置。详见 <xref keyref="ScreenVideoParameters"/>。 
+            <note props="android bp cpp flutter rn unity unreal">受系统限制，采集屏幕仅适用于 Android API 级别为 21 及以上，即 Android 5 及以上。</note></pd>
+                <pd props="ios">是否在屏幕共享时采集屏幕画面：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：（默认）采集屏幕画面。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不采集屏幕画面。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="bp cpp cs electron flutter hmos ios rn unity unreal">
+                <pt props="ios">videoParams</pt>
+                <pd>共享屏幕流的视频编码配置。详见 <xref keyref="ScreenVideoParameters"/>。 
             <note type="attention">该参数仅在 <parmname>captureVideo</parmname> 为 <codeph><ph keyref="true"/></codeph> 时生效。</note></pd>
-        </plentry>
-      </parml> </section>
+                <pd props="ios">共享屏幕视频流的视频配置。详见 <xref keyref="ScreenVideoParameters"/>。</pd>
+                </plentry>
+            </parml> </section>
       <section id="sub-class" props="android hmos">
         <title>类</title>
         <parml>

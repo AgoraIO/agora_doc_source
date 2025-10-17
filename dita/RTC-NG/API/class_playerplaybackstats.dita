@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_playerplaybackstats">
     <title><ph keyref="PlayerPlaybackStats"/></title>
-    <shortdesc id="short"><ph id="shortdesc">当前播放的媒体资源的相关信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">正在播放的媒体文件的统计信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -23,7 +23,7 @@
   
   public totalBitrateInKbps:number = 0
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaPlayerPlaybackStats : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraMediaPlayerPlaybackStats : NSObject
 @property(assign, nonatomic) NSInteger videoFps;
 @property(assign, nonatomic) NSInteger videoBitrateInKbps;
 @property(assign, nonatomic) NSInteger audioBitrateInKbps;
@@ -40,13 +40,13 @@ struct FPlayerPlaybackStats {
 	
 	GENERATED_BODY()
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FPlayerPlaybackStats&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|FPlayerPlaybackStats")
 	int videoFps = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FPlayerPlaybackStats&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|FPlayerPlaybackStats")
 	int videoBitrateInKbps =0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FPlayerPlaybackStats&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|FPlayerPlaybackStats")
 	int audioBitrateInKbps =0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FPlayerPlaybackStats&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|FPlayerPlaybackStats")
 	int totalBitrateInKbps =0;
 	FPlayerPlaybackStats(){}
 	FPlayerPlaybackStats(const agora::media::base::PlayerPlaybackStats&amp; AgoraData) {
@@ -94,16 +94,16 @@ class PlayerPlaybackStats {
       this.audioBitrateInKbps,
       this.totalBitrateInKbps});
 
-  @JsonKey(name: &#x27;videoFps&#x27;)
+  @JsonKey(name: 'videoFps')
   final int? videoFps;
 
-  @JsonKey(name: &#x27;videoBitrateInKbps&#x27;)
+  @JsonKey(name: 'videoBitrateInKbps')
   final int? videoBitrateInKbps;
 
-  @JsonKey(name: &#x27;audioBitrateInKbps&#x27;)
+  @JsonKey(name: 'audioBitrateInKbps')
   final int? audioBitrateInKbps;
 
-  @JsonKey(name: &#x27;totalBitrateInKbps&#x27;)
+  @JsonKey(name: 'totalBitrateInKbps')
   final int? totalBitrateInKbps;
 
   factory PlayerPlaybackStats.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
@@ -113,31 +113,29 @@ class PlayerPlaybackStats {
 }</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since">
-            <dlentry props="android apple cpp">
-                <dt>自从</dt>
-                <dd>v4.3.0</dd>
-            </dlentry>
-            </dl>
-        </section>
+            </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry>
-                <pt>videoFps</pt>
+            <plentry props="ios">
+                <pt props="ios">videoFps</pt>
                 <pd>视频帧率，单位为 fps。</pd>
+                <pd props="ios">视频帧率（fps）。</pd>
             </plentry>
-            <plentry>
-                <pt>videoBitrateInKbps</pt>
+            <plentry props="ios">
+                <pt props="ios">videoBitrateInKbps</pt>
                 <pd>视频码率，单位为 kbps。</pd>
+                <pd props="ios">视频码率（kbps）。</pd>
             </plentry>
-            <plentry>
-                <pt>audioBitrateInKbps</pt>
+            <plentry props="ios">
+                <pt props="ios">audioBitrateInKbps</pt>
                 <pd>音频码率，单位为 kbps。</pd>
+                <pd props="ios">音频码率（kbps）。</pd>
             </plentry>
-            <plentry>
-                <pt>totalBitrateInKbps</pt>
+            <plentry props="ios">
+                <pt props="ios">totalBitrateInKbps</pt>
                 <pd>媒体流的总码率，单位为 kbps。</pd>
+                <pd props="ios">媒体流的总码率（kbps）。</pd>
             </plentry>
             </parml> </section>
                 </refbody>

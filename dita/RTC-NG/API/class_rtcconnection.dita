@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_rtcconnection">
-  <title><ph keyref="RtcConnection" /></title>
-  <shortdesc id="short"><ph id="shortdesc">包含连接信息的类。</ph></shortdesc>
+  <title><ph keyref="RtcConnection"/></title>
+  <shortdesc id="short"><ph id="shortdesc">包含连接信息。</ph></shortdesc>
   <refbody>
     <section id="prototype">
       <p outputclass="codeblock">
@@ -42,16 +42,15 @@
   }</codeblock>
       <codeblock props="hmos" outputclass="language-arkts">export class RtcConnection {
   public localUid:number = 0;
-  public channelId:string = &quot;&quot;;
+  public channelId:string = "";
   constructor(channelId:string,uid:number) {
     this.channelId = channelId;
     this.localUid = uid;
   }
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcConnection: NSObject &lt;NSCopying&gt;
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraRtcConnection: NSObject &lt;NSCopying&gt;
 @property (nonatomic, copy) NSString *_Nonnull channelId;
 @property (nonatomic, assign) NSUInteger localUid;
-
 @end</codeblock>
       <codeblock props="cpp unreal" outputclass="language-cpp">struct RtcConnection {
   const char* channelId;
@@ -66,9 +65,9 @@ struct FRtcConnection
 {
 	GENERATED_BODY()
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcConnection&quot;)
-	FString channelId = &quot;&quot;;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcConnection&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|RtcConnection")
+	FString channelId = "";
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|RtcConnection")
 	int64 localUid = 0;
 	FRtcConnection(){}
 	FRtcConnection(const agora::rtc::RtcConnection &amp; AgoraData){
@@ -128,16 +127,16 @@ public:
       </p>
     </section>
     <section id="parameters">
-      <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+      <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
       <parml>
-      <plentry>
-        <pt>channelId</pt>
-        <pd>频道名。</pd>
-      </plentry>
-      <plentry>
-        <pt>localUid</pt>
-        <pd>本地用户 ID。</pd>
-      </plentry>
-      </parml> </section>
+            <plentry props="ios">
+                <pt props="ios">channelId</pt>
+                <pd props="ios">频道名。</pd>
+            </plentry>
+            <plentry props="ios">
+                <pt props="ios">localUid</pt>
+                <pd props="ios">本地用户 ID。</pd>
+            </plentry>
+            </parml> </section>
   </refbody>
 </reference>

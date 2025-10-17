@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startpreview">
-    <title><ph keyref="startPreview" /></title>
-    <shortdesc id="short"><ph id="shortdesc">开启视频预览。</ph></shortdesc>
+    <title><ph keyref="startPreview"/></title>
+    <shortdesc id="short"><ph id="shortdesc">启用本地视频预览。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="startPreview" />
+                <indexterm keyref="startPreview"/>
             </keywords>
         </metadata>
     </prolog>
@@ -15,34 +15,45 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int startPreview();</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">public abstract startPreview(sourceType?: Constants.VideoSourceType): number;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)startPreview;</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)startPreview NS_SWIFT_NAME(startPreview());</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int startPreview() = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract startPreviewWithoutSourceType(): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int StartPreview();</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract startPreviewWithoutSourceType(): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> startPreviewWithoutSourceType();</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startPreviewWithoutSourceType();</codeblock> </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p>该方法用于启动本地视频预览。</p>
-        </section>
+            <p></p>
+            <note type="attention" props="apple"><ul>
+                        <li>本地预览默认启用镜像模式。</li>
+                        <li>离开频道后，本地预览仍然保持开启状态。你需要调用 <xref keyref="stopPreview"/> 方法关闭本地预览。</li>
+                        </ul>
+                    </note>
+            </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="native unreal bp">该方法必须在 <xref keyref="enableVideo" /> 和 <xref keyref="setupLocalVideo" /> 之后调用。</p>
-            <p props="rn unity flutter electron">该方法必须在 <xref keyref="enableVideo" /> 之后调用。</p>
+            <p>此方法必须在调用 <xref keyref="enableVideo"/> 和 <xref keyref="setupLocalVideo"/> 之后调用。</p>
+        <p props="electron flutter rn unity">该方法必须在 <xref keyref="enableVideo"/> 之后调用。</p>
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
             <ul>
             <li>本地预览默认开启镜像功能。</li>
-            <li>在离开频道后，本地预览依然处于开启状态。你需要调用 <xref keyref="stopPreview" props="android cpp apple unreal unity"/><xref keyref="stopPreview2" props="hmos flutter bp electron rn"/> 关闭本地预览。</li>
+            <li>在离开频道后，本地预览依然处于开启状态。你需要调用 <xref keyref="stopPreview" props="android apple cpp unity unreal"/><xref keyref="stopPreview2" props="bp electron flutter hmos rn"/> 关闭本地预览。</li>
             </ul> 
         </section>
-        <section id="return_values">
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp unity rn electron cs">
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="android bp cpp cs electron rn unity unreal">
             <li>0：方法调用成功。</li>
             <li>&lt; 0：方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
-            </ul> </section>
+            </ul>
+        <p props="apple"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+        </section>
     </refbody>
 </reference>

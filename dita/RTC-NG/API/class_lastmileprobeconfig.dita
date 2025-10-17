@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_lastmileprobeconfig">
-    <title><ph keyref="LastmileProbeConfig" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Last mile 网络探测配置。</ph></shortdesc>
+    <title><ph keyref="LastmileProbeConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc">配置最后一公里网络测试。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -26,7 +26,7 @@
   constructor() {
   }
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLastmileProbeConfig : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraLastmileProbeConfig : NSObject
 @property (assign, nonatomic) BOOL probeUplink;
 @property (assign, nonatomic) BOOL probeDownlink;
 @property (assign, nonatomic) NSUInteger expectedUplinkBitrate;
@@ -43,13 +43,13 @@ struct FLastmileProbeConfig
 {
 	GENERATED_BODY()
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LastmileProbeConfig&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|LastmileProbeConfig")
 	bool probeUplink = false;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LastmileProbeConfig&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|LastmileProbeConfig")
 	bool probeDownlink = false;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LastmileProbeConfig&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|LastmileProbeConfig")
 	int expectedUplinkBitrate = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LastmileProbeConfig&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|LastmileProbeConfig")
 	int expectedDownlinkBitrate = 0;
 	FLastmileProbeConfig(){}
 	FLastmileProbeConfig(const agora::rtc::LastmileProbeConfig &amp; AgoraData){
@@ -127,38 +127,52 @@ public:
       _$LastmileProbeConfigFromJson(json);
   Map&lt;String, dynamic&gt; toJson() =&gt; _$LastmileProbeConfigToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry>
-                <pt>probeUplink</pt>
+            <plentry props="ios">
+                <pt props="ios">probeUplink</pt>
                 <pd>
                     <p>是否探测上行网络。有些用户，如直播频道中的普通观众，不需要进行网络探测:
                     <ul>
-                    <li><codeph><ph keyref="true" /></codeph>: 探测上行网络。</li>
-                    <li><codeph><ph keyref="false" /></codeph>: 不探测上行网络。</li>
+                    <li><codeph><ph keyref="true"/></codeph>: 探测上行网络。</li>
+                    <li><codeph><ph keyref="false"/></codeph>: 不探测上行网络。</li>
                     </ul> </p>
                 </pd>
-            </plentry>
-            <plentry>
-                <pt>probeDownlink</pt>
+                <pd props="ios">是否测试上行网络。例如，在频道场景为 <codeph>LIVE_BROADCASTING</codeph> 时，观众角色的用户无需进行此测试：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：测试上行网络。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不测试上行网络。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">probeDownlink</pt>
                 <pd>
                     <p>是否探测下行网络：
                     <ul>
-                    <li><codeph><ph keyref="true" /></codeph>: 探测下行网络。</li>
-                    <li><codeph><ph keyref="false" /></codeph>: 不探测下行网络。</li>
+                    <li><codeph><ph keyref="true"/></codeph>: 探测下行网络。</li>
+                    <li><codeph><ph keyref="false"/></codeph>: 不探测下行网络。</li>
                     </ul> </p>
                 </pd>
-            </plentry>
-            <plentry>
-                <pt>expectedUplinkBitrate</pt>
-                <pd>用户期望的最高发送码率，单位为 bps，范围为 [100000,5000000]。建议参考 <xref keyref="setVideoEncoderConfiguration" /> 中的码率值设置该参数的值。</pd>
-            </plentry>
-            <plentry>
-                <pt>expectedDownlinkBitrate</pt>
+                <pd props="ios">是否测试下行网络：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：测试下行网络。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不测试下行网络。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">expectedUplinkBitrate</pt>
+                <pd>用户期望的最高发送码率，单位为 bps，范围为 [100000,5000000]。建议参考 <xref keyref="setVideoEncoderConfiguration"/> 中的码率值设置该参数的值。</pd>
+                <pd props="ios">本地用户期望的最大上行码率（bps）。取值范围为 [100000, 5000000]。建议参考 <xref keyref="setVideoEncoderConfiguration"/> 设置该值。</pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">expectedDownlinkBitrate</pt>
                 <pd>用户期望的最高接收码率，单位为 bps，范围为 [100000,5000000]。</pd>
+                <pd props="ios">本地用户期望的最大下行码率（bps）。取值范围为 [100000, 5000000]。</pd>
             </plentry>
             </parml> </section>
     </refbody>

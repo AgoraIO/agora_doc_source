@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videolayout">
     <title><ph keyref="VideoLayout"/></title>
-    <shortdesc id="short"><ph id="shortdesc">某一路合图子视频流的布局信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">设置合流中某个子视频流的布局信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -15,24 +15,13 @@
     public int y;
     public int width;
     public int height;
-    @Override
-    public String toString() {
-      return "VideoLayout{"
-          + "channelId='" + channelId + '\'' + ", uid=" + uid + ", strUid='" + strUid + '\''
-          + ", videoState=" + videoState + ", x=" + x + ", y=" + y + ", width=" + width
-          + ", height=" + height + '}';
-    }
   }</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoLayout: NSObject
-@property(copy, nonatomic) NSString* _Nonnull channelId NS_SWIFT_NAME(channelId);
-@property (assign, nonatomic) NSUInteger uid NS_SWIFT_NAME(uid);
-@property(copy, nonatomic) NSString* _Nullable strUid NS_SWIFT_NAME(strUid);
-@property (assign, nonatomic) NSUInteger videoState NS_SWIFT_NAME(videoState);
-@property (assign, nonatomic) NSUInteger x NS_SWIFT_NAME(x);
-@property (assign, nonatomic) NSUInteger y NS_SWIFT_NAME(y);
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraVideoLayoutInfo: NSObject
 @property (assign, nonatomic) NSUInteger width NS_SWIFT_NAME(width);
 @property (assign, nonatomic) NSUInteger height NS_SWIFT_NAME(height);
+@property (assign, nonatomic) NSUInteger layoutCount NS_SWIFT_NAME(layoutCount);
+@property(copy, nonatomic) NSArray&lt;AgoraVideoLayout *&gt; *_Nullable layoutList NS_SWIFT_NAME(layoutList);
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct VideoLayout
 {
@@ -53,25 +42,25 @@ struct FVideoLayout
 	
 public:
 	
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FVideoLayout&quot;)
-	FString channelId = &quot;&quot;;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|FVideoLayout")
+	FString channelId = "";
 	
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FVideoLayout&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|FVideoLayout")
 	int64 uid = 0;
 	
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FVideoLayout&quot;)
-	FString strUid = &quot;&quot;;
-    UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FVideoLayout&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|FVideoLayout")
+	FString strUid = "";
+    UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|FVideoLayout")
 	int64 x = 0;
 	
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FVideoLayout&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|FVideoLayout")
 	int64 y = 0;
 	
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FVideoLayout&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|FVideoLayout")
 	int64 width = 0;
-    UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FVideoLayout&quot;)
+    UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|FVideoLayout")
 	int64 height = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FVideoLayout&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|FVideoLayout")
 	int64 videoState = 0;
 	FVideoLayout(){}
 	FVideoLayout(const agora::VideoLayout &amp; AgoraData){
@@ -134,21 +123,21 @@ class VideoLayout {
       this.width,
       this.height,
       this.videoState});
-  @JsonKey(name: &#x27;channelId&#x27;)
+  @JsonKey(name: 'channelId')
   final String? channelId;
-  @JsonKey(name: &#x27;uid&#x27;)
+  @JsonKey(name: 'uid')
   final int? uid;
-  @JsonKey(name: &#x27;strUid&#x27;)
+  @JsonKey(name: 'strUid')
   final String? strUid;
-  @JsonKey(name: &#x27;x&#x27;)
+  @JsonKey(name: 'x')
   final int? x;
-  @JsonKey(name: &#x27;y&#x27;)
+  @JsonKey(name: 'y')
   final int? y;
-  @JsonKey(name: &#x27;width&#x27;)
+  @JsonKey(name: 'width')
   final int? width;
-  @JsonKey(name: &#x27;height&#x27;)
+  @JsonKey(name: 'height')
   final int? height;
-  @JsonKey(name: &#x27;videoState&#x27;)
+  @JsonKey(name: 'videoState')
   final int? videoState;
   factory VideoLayout.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$VideoLayoutFromJson(json);
@@ -156,53 +145,71 @@ class VideoLayout {
 }</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since">
-            <dlentry props="android apple cpp">
-                <dt>自从</dt>
-                <dd>v4.3.0</dd>
-            </dlentry>
-            </dl>
-            <p/>
-        </section>
+            <p></p>
+            </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry>
-                <pt>channelId</pt>
+            <plentry props="android">
+                <pt props="android">channelId</pt>
                 <pd>合图子视频流所属的频道名。</pd>
+                <pd props="android">该子视频流所属的频道名。</pd>
             </plentry>
-                <plentry>
-                    <pt>uid</pt>
-                    <pd>发布该合图子视频流的用户 ID。</pd>
-                </plentry>
-                <plentry>
-                    <pt>strUid</pt>
-                    <pd>预留参数。</pd>
-                </plentry>
-                <plentry>
-                    <pt>x</pt>
-                    <pd>合图子视频在合图画布上的 x 坐标 (px)。即合图子视频的左上角相对于合图画布左上角（原点）的横向位移。</pd>
-                </plentry>
-                <plentry>
-                    <pt>y</pt>
-                    <pd>合图子视频在合图画布上的 y 坐标 (px)。即合图子视频的左上角相对于合图画布左上角（原点）的纵向位移。</pd>
-                </plentry>
-                <plentry id="width">
-                    <pt>width</pt>
-                    <pd>合图子视频流的宽度 (px)。</pd>
-                </plentry>
-                <plentry id="height">
-                    <pt>height</pt>
-                    <pd>合图子视频流的高度 (px)</pd>
-                </plentry>
-                <plentry>
-                    <pt>videoState</pt>
-                    <pd>合图子视频流在合图画布上的状态。
+            <plentry props="android">
+                <pt props="android">uid</pt>
+                <pd>发布该合图子视频流的用户 ID。</pd>
+                <pd props="android">发布该子视频流的用户 ID。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt props="android">strUid</pt>
+                <pd>预留参数。</pd>
+                <pd props="android">预留参数，供未来使用。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt props="android">x</pt>
+                <pd>合图子视频在合图画布上的 x 坐标 (px)。即合图子视频的左上角相对于合图画布左上角（原点）的横向位移。</pd>
+                <pd props="android">子视频流在视频合流画布上的 X 坐标（像素）。表示视频左上角相对于画布原点（画布左上角）的横向偏移量。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt props="android">y</pt>
+                <pd>合图子视频在合图画布上的 y 坐标 (px)。即合图子视频的左上角相对于合图画布左上角（原点）的纵向位移。</pd>
+                <pd props="android">子视频流在视频合流画布上的 Y 坐标（像素）。表示视频左上角相对于画布原点（画布左上角）的纵向偏移量。</pd>
+            </plentry>
+            <plentry id="width" props="android ios">
+                <pt props="android ios">width</pt>
+                <pd>合图子视频流的宽度 (px)。</pd>
+                <pd props="android">子视频流的宽度（像素）。</pd>
+                <pd props="ios">混合视频流的宽度（单位为像素）。</pd>
+            </plentry>
+            <plentry id="height" props="android ios">
+                <pt props="android ios">height</pt>
+                <pd>合图子视频流的高度 (px)</pd>
+                <pd props="android">子视频流的高度（像素）。</pd>
+                <pd props="ios">混合视频流的高度（单位为像素）。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt props="android">videoState</pt>
+                <pd>合图子视频流在合图画布上的状态。
                         <ul>
                         <li>0：正常。该视频流已被渲染到合图画布。</li>
                         <li>1：占位图。该视频流无视频画面，在合图画布中显示为占位符。</li>
                         <li>2：黑色图片。该视频流被黑色图片替代。</li>
                         </ul></pd>
+                <pd props="android">子视频流在视频合流画布上的状态：
+                    <ul>
+                        <li>0：正常，子视频流已被渲染到画布上。</li>
+                        <li>1：占位图像，子视频流无视频帧，在画布上显示为占位图。</li>
+                        <li>2：黑色图像，子视频流被黑色图像替代。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">layoutCount</pt>
+                <pd props="ios">混合视频流中布局信息的数量。</pd>
+            </plentry>
+            <plentry props="ios">
+                <pt props="ios">layoutList</pt>
+                <pd props="ios">混合视频流的详细布局信息。详见 <xref keyref="VideoLayout"/>。</pd>
                 </plentry>
             </parml> </section>
                 </refbody>

@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_ontranscodingupdated">
-    <title><ph keyref="onTranscodingUpdated" /></title>
-    <shortdesc id="short"><ph id="shortdesc">旁路推流转码设置已被更新回调。</ph></shortdesc>
+    <title><ph keyref="onTranscodingUpdated"/></title>
+    <shortdesc id="short"><ph id="shortdesc">发布端云端转码设置更新时触发的回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onTranscodingUpdated" />
+                <indexterm keyref="onTranscodingUpdated"/>
             </keywords>
         </metadata>
     </prolog>
@@ -15,26 +15,33 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onTranscodingUpdated() {}</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">onTranscodingUpdated? : () =&gt;void;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngineTranscodingUpdated:(AgoraRtcEngineKit * _Nonnull)engine;</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onTranscodingUpdated()</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngineTranscodingUpdated:(AgoraRtcEngineKit * _Nonnull)engine NS_SWIFT_NAME(rtcEngineTranscodingUpdated(_:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onTranscodingUpdated() {}</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = "Agora|Event")
 	void OnTranscodingUpdated();</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onTranscodingUpdated?(): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnTranscodingUpdated()</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onTranscodingUpdated?(): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function()? onTranscodingUpdated;</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
-            <p><xref keyref="startRtmpStreamWithTranscoding"/> 方法中的直播参数 <xref keyref="LiveTranscoding"/> 更新时，<apiname keyref="onTranscodingUpdated" /> 回调会被触发并向主播报告更新信息。</p>
-            <note type="attention" id="note">首次调用 <apiname keyref="startRtmpStreamWithTranscoding"/> 方法设置转码参数 <apiname keyref="LiveTranscoding" /> 时，不会触发此回调。</note> </section>
-        <section id="parameters" props="ios mac">
-            <title><ph keyref="callback-section-title" /></title>
+            <p>当调用 <xref keyref="startRtmpStreamWithTranscoding"/> 方法后，<xref keyref="LiveTranscoding"/> 类发生更新时，SDK 会触发该回调以报告更新信息。<xref keyref="startRtmpStreamWithTranscoding"/> 方法后，<xref keyref="LiveTranscoding"/> 类发生更新时，SDK 会触发该回调以报告更新信息。<xref keyref="startRtmpStreamWithTranscoding"/> 方法中的直播参数 <xref keyref="LiveTranscoding"/> 更新时，<apiname keyref="onTranscodingUpdated"/> 回调会被触发并向主播报告更新信息。</p>
+            <note type="attention" id="note">首次调用 <apiname keyref="startRtmpStreamWithTranscoding"/> 方法设置转码参数 <apiname keyref="LiveTranscoding"/> 时，不会触发此回调。</note> <note type="attention" props="cpp">如果你首次调用 <xref keyref="startRtmpStreamWithTranscoding"/> 方法设置 <xref keyref="LiveTranscoding"/> 类，SDK 不会触发此回调。</note>
+            <note type="attention" props="apple">如果你首次调用 <xref keyref="startRtmpStreamWithTranscoding"/> 方法设置 <xref keyref="LiveTranscoding"/> 配置，SDK 不会触发该回调。</note>
+            <note type="attention" props="android">如果你首次调用 <xref keyref="startRtmpStreamWithTranscoding"/> 设置 <xref keyref="LiveTranscoding"/>，SDK 不会触发该回调。</note>
+            </section>
+        <section id="parameters" props="apple">
+            <title><ph keyref="callback-section-title"/></title>
             <parml>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt />
-                <pd />
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="apple">
+                <pt/>
+                <pd/>
             </plentry>
-            </parml> </section>
+            <plentry props="ios">
+                <pt props="ios">engine</pt>
+                <pd props="ios"><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+        </parml> </section>
     </refbody>
 </reference>

@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setcamerazoomfactor">
-    <title><ph keyref="setCameraZoomFactor" /></title>
-    <shortdesc id="short"><ph id="shortdesc">设置摄像头放大比例。</ph></shortdesc>
+    <title><ph keyref="setCameraZoomFactor"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置摄像头缩放因子。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setCameraZoomFactor" />
+                <indexterm keyref="setCameraZoomFactor"/>
             </keywords>
         </metadata>
     </prolog>
@@ -15,41 +15,61 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setCameraZoomFactor(float factor);</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">public abstract setCameraZoomFactor(factor: number): number;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (CGFloat)setCameraZoomFactor:(CGFloat)zoomFactor;</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setCameraZoomFactor(float factor) = 0;
-</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+            <codeblock props="ios mac" outputclass="language-objectivec">- (CGFloat)setCameraZoomFactor:(CGFloat)zoomFactor NS_SWIFT_NAME(setCameraZoomFactor(_:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setCameraZoomFactor(float factor) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	int SetCameraZoomFactor(float factor);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setCameraZoomFactor(factor: number): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetCameraZoomFactor(float factor);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setCameraZoomFactor(factor: number): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setCameraZoomFactor(double factor);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
             <title>详情</title>
-            <p props="ios cpp unreal bp flutter unity rn">部分 iOS 设备的后置摄像头为多个摄像头组成的融合镜头，如双摄（广角和超广角）或三摄（广角、超广角和长焦），对于这种具备超广角能力的融合镜头，你可以调用 <xref keyref="setCameraCapturerConfiguration"/> 将 <parmname>cameraFocalLengthType</parmname> 设置为 <apiname keyref="CAMERA_FOCAL_LENGTH_DEFAULT"/> (0)（标准镜头），然后调用该方法将摄像头缩放比例设置为小于 1.0 的数值，从而实现超广角的拍摄效果。</p>
+            <p props="bp cpp flutter ios rn unity unreal">对于配备多镜头后置摄像头的 iOS 设备，例如配备广角和超广角双摄像头，或广角、超广角和长焦三摄像头的设备，你可以先调用 <xref keyref="setCameraCapturerConfiguration"/> 方法，将 <codeph>cameraFocalLengthType</codeph> 设置为 <ph keyref="CAMERA_FOCAL_LENGTH_DEFAULT"/>（0）（标准镜头），然后将摄像头缩放因子设置为小于 1.0 的值，以实现超广角视角的视频采集。
+                    <xref keyref="setCameraCapturerConfiguration"/> 方法，将 <codeph>cameraFocalLengthType</codeph> 设置为 <xref keyref="setCameraCapturerConfiguration"/> 将 <parmname>cameraFocalLengthType</parmname> 设置为 <apiname keyref="CAMERA_FOCAL_LENGTH_DEFAULT"/> (0)（标准镜头），然后调用该方法将摄像头缩放比例设置为小于 1.0 的数值，从而实现超广角的拍摄效果。<ul>
+                        <li>该方法仅适用于 Android 和 iOS 平台。</li>
+                        <li>你必须在调用 <xref keyref="enableVideo"/> 之后再调用该方法。设置将在摄像头成功开启后生效，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <ph keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/>（1）之后。</li>
+                        </ul>
+                    </p>
             <note type="attention">
             <ul>
-            <li props="cpp unreal bp unity flutter cs">该方法仅适用于 Android 和 iOS。</li>
-            <li conkeyref="setCameraExposureFactor/sequence" />
-            </ul></note> </section>
+            <li props="bp cpp cs flutter unity unreal">该方法仅适用于 Android 和 iOS。</li>
+            <li conkeyref="setCameraExposureFactor/sequence"/>
+            </ul></note> <note type="attention" props="apple">你必须在调用 <xref keyref="enableVideo"/> 方法之后再调用此方法。设置结果将在摄像头成功开启后生效，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <ph keyref="AgoraVideoLocalStateCapturing"/>（1）之后。</note>
+            <note type="attention" props="android">你必须在调用 <xref keyref="enableVideo"/> 方法之后再调用此方法。该设置在摄像头成功开启后生效，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <ph keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/>（1）之后。</note>
+            </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry>
-                <pt props="android hmos cpp framework">factor</pt>
-                <pt props="ios mac">zoomFactor</pt>
-                <pd props="apple cpp framework">摄像头放大比例。对不支持超广角的设备，取值范围从 1.0 到最大放大比例；对支持超广角的设备，取值范围从 0.5 到最大放大比例。你可以通过 <xref keyref="getCameraMaxZoomFactor"/> 方法获取设备支持的最大放大比例。</pd>
-                <pd props="android hmos">摄像头放大比例。你可以通过 <xref keyref="getCameraMaxZoomFactor"/> 方法获取设备支持的最大放大比例。</pd>
-            </plentry>
-            </parml> </section>
-        <section id="return_values">
+                <pt>factor</pt>
+                <pt props="apple">zoomFactor</pt>
+                <pd props="apple framework">摄像头放大比例。对不支持超广角的设备，取值范围从 1.0 到最大放大比例；对支持超广角的设备，取值范围从 0.5 到最大放大比例。你可以通过 <xref keyref="getCameraMaxZoomFactor"/> 方法获取设备支持的最大放大比例。</pd>
+                <pd props="hmos">摄像头放大比例。你可以通过 <xref keyref="getCameraMaxZoomFactor"/> 方法获取设备支持的最大放大比例。</pd>
+            <pd props="android">摄像头缩放倍数。你可以通过调用 <xref keyref="getCameraMaxZoomFactor"/> 方法获取设备支持的最大缩放倍数。</pd>
+                <pd props="ios">摄像头缩放因子。对于不支持超广角的设备，该值范围为 1.0 到设备支持的最大缩放因子；对于支持超广角的设备，该值范围为 0.5 到设备支持的最大缩放因子。你可以通过调用 <xref keyref="getCameraMaxZoomFactor"/> 方法获取设备支持的最大缩放因子。</pd>
+                <pd props="cpp">摄像头缩放因子。对于不支持超广角的设备，该值范围为 1.0 到设备支持的最大缩放因子；对于支持超广角的设备，该值范围为 0.5 到设备支持的最大缩放因子。你可以调用 <xref keyref="getCameraMaxZoomFactor"/> 方法获取设备支持的最大缩放因子。</pd>
+                </plentry>
+        </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul>
-            <li props="native unreal bp unity rn electron cs">方法调用成功: 返回设置的 <parmname>factor</parmname> 值。</li>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul>
+            <li props="bp cs electron rn unity unreal">方法调用成功: 返回设置的 <parmname>factor</parmname> 值。</li>
             <li>方法调用失败: 返回值 &lt; 0。</li>
-            </ul> </section>
+            </ul>
+        <p props="apple"><ul>
+                        <li>方法调用成功，返回摄像头缩放因子值。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+        <p props="android cpp"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+        </section>
     </refbody>
 </reference>

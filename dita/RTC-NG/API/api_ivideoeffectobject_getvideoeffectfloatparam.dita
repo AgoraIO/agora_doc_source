@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ivideoeffectobject_getvideoeffectfloatparam">
     <title><ph keyref="getVideoEffectFloatParam"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获取视频特效中的 float 类型参数。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">检索视频特效中指定参数的 <codeph>float</codeph> 类型值。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -25,12 +25,12 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
-            <dlentry props="native">
+            <dlentry props="cpp">
                 <dt>自从：</dt>
-                <dd props="native">自 v4.6.0 版本新增。</dd>
-                </dlentry>
+                <dd props="cpp">自 v4.6.0 版本新增。</dd>
+            </dlentry>
             </dl>
-            <p>用于获取视频特效中指定选项和键名对应的 float 类型参数值。</p>
+            <p>用于获取视频特效中指定 <codeph>option</codeph> 和 <codeph>key</codeph> 对应的 <codeph>float</codeph> 类型参数值。<codeph>option</codeph> 和 <codeph>key</codeph> 对应的 <codeph>float</codeph> 类型参数值。</p>
             </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -40,29 +40,27 @@
             <title>参数</title>
             <parml>
             <plentry props="native">
-                <pt props="android cpp">option</pt>
-                <pt props="apple">option</pt>
+                <pt props="android apple cpp">option</pt>
                 <pd props="android">参数类别的标识符。</pd>
                 <pd props="apple">参数选项的类别。</pd>
                 <pd props="cpp">参数所属的选项类别。</pd>
             </plentry>
-            <plentry props="native">
+            <plentry props="cpp native">
                 <pt props="native">key</pt>
                 <pd props="native">参数的键名。</pd>
             </plentry>
+            <plentry props="cpp">
+                <pt props="cpp">option</pt>
+                <pd props="cpp">参数所选选项的类别。</pd>
+                </plentry>
             </parml> </section>
-        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
+        <section id="return_values" props="bp cs electron flutter rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
         <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
         <ul props="bp cs electron rn unity unreal">
                 <li>0: 方法调用成功。</li>
                 <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
                 </ul>
-        <p props="cpp"><ul>
-                        <li>参数存在时，返回对应的 <codeph>float</codeph> 类型值。</li>
-                        <li>参数不存在或发生错误时，返回 0.0f。</li>
-                        </ul>
-                    </p>
         <p props="apple"><ul>
                         <li>参数存在时，返回对应的浮点型参数值。</li>
                         <li>参数不存在或发生错误时，返回 0.0f。</li>
@@ -71,6 +69,11 @@
         <p props="android"><ul>
                         <li>方法调用成功，返回当前参数值。</li>
                         <li>方法调用失败，返回 0.0f。</li>
+                        </ul>
+                    </p>
+        <p props="cpp"><ul>
+                        <li>如果参数存在，返回对应的 <codeph>float</codeph> 值。</li>
+                        <li>如果参数不存在或发生错误，返回 0.0f。</li>
                         </ul>
                     </p>
     </section>

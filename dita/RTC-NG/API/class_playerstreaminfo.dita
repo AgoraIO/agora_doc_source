@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_playerstreaminfo">
-    <title><ph keyref="PlayerStreamInfo" /></title>
-    <shortdesc id="short"><ph id="shortdesc">播放器媒体流的所有信息。</ph></shortdesc>
+    <title><ph keyref="PlayerStreamInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc">媒体流的详细信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -27,8 +27,8 @@
 {
   public streamIndex:number = 0
   public mediaStreamType:number = 0
-  public codecName:string = &quot;&quot;
-  public language:string = &quot;&quot;
+  public codecName:string = ""
+  public language:string = ""
   public videoFrameRate:number = 0
   public videoBitRate:number = 0
   public videoWidth:number = 0
@@ -39,8 +39,7 @@
   public audioBytesPerSample:number = 0
   public duration:bigint = BigInt(0)
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaStreamInfo : NSObject
-
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraRtcMediaStreamInfo : NSObject
 @property(nonatomic, assign) NSInteger streamIndex;
 @property(nonatomic, assign) AgoraMediaStreamType streamType;
 @property(nonatomic, copy) NSString *_Nonnull codecName;
@@ -53,7 +52,6 @@
 @property(nonatomic, assign) NSInteger audioChannels;
 @property(nonatomic, assign) NSInteger duration;
 @property(nonatomic, assign) NSInteger rotation;
-
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct PlayerStreamInfo {
   int streamIndex;
@@ -87,31 +85,31 @@ struct FPlayerStreamInfo
 {
 	GENERATED_BODY()
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|PlayerStreamInfo")
 	int streamIndex = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|PlayerStreamInfo")
 	EMEDIA_STREAM_TYPE streamType = EMEDIA_STREAM_TYPE::STREAM_TYPE_UNKNOWN;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
-	FString codecName = &quot;&quot;;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
-	FString language = &quot;&quot;;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|PlayerStreamInfo")
+	FString codecName = "";
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|PlayerStreamInfo")
+	FString language = "";
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|PlayerStreamInfo")
 	int videoFrameRate = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|PlayerStreamInfo")
 	int videoBitRate = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|PlayerStreamInfo")
 	int videoWidth = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|PlayerStreamInfo")
 	int videoHeight = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|PlayerStreamInfo")
 	int videoRotation = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|PlayerStreamInfo")
 	int audioSampleRate = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|PlayerStreamInfo")
 	int audioChannels = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|PlayerStreamInfo")
 	int audioBitsPerSample = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|PlayerStreamInfo")
 	int duration = 0;
 	FPlayerStreamInfo(){}
 	FPlayerStreamInfo(const agora::media::base::PlayerStreamInfo &amp; AgoraData){
@@ -287,68 +285,80 @@ public:
             </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry>
-                <pt>streamIndex</pt>
+            <plentry props="ios">
+                <pt props="ios">streamIndex</pt>
                 <pd>媒体流的索引值。</pd>
+                <pd props="ios">媒体流的索引。</pd>
             </plentry>
-            <plentry>
-                <pt props="ios mac cpp unreal bp unity electron rn flutter cs">streamType</pt>
+            <plentry props="ios">
+                <pt props="apple bp cpp cs electron flutter ios rn unity unreal">streamType</pt>
                 <pt props="android hmos">mediaStreamType</pt>
-                <pd><ph>此条媒体流的类型。</ph><ph props="ios mac cpp unreal bp unity electron rn flutter cs">详见 <xref keyref="MEDIA_STREAM_TYPE" />。</ph>
+                <pd><ph>此条媒体流的类型。</ph><ph props="apple bp cpp cs electron flutter rn unity unreal">详见 <xref keyref="MEDIA_STREAM_TYPE"/>。</ph>
                     <ul props="android hmos">
-                    <li><ph keyref="STREAM_TYPE_UNKNOWN" /> (0): 未知类型。</li>
-                    <li><ph keyref="STREAM_TYPE_VIDEO" /> (1): 视频流。</li>
-                    <li><ph keyref="STREAM_TYPE_AUDIO" /> (2): 音频流。</li>
-                    <li><ph keyref="STREAM_TYPE_SUBTITLE" /> (3): 字幕流。</li>
+                    <li><ph keyref="STREAM_TYPE_UNKNOWN"/> (0): 未知类型。</li>
+                    <li><ph keyref="STREAM_TYPE_VIDEO"/> (1): 视频流。</li>
+                    <li><ph keyref="STREAM_TYPE_AUDIO"/> (2): 音频流。</li>
+                    <li><ph keyref="STREAM_TYPE_SUBTITLE"/> (3): 字幕流。</li>
                     </ul> </pd>
-            </plentry>
-            <plentry>
-                <pt>codecName</pt>
+                <pd props="ios">媒体流的类型。详见 <xref keyref="MEDIA_STREAM_TYPE"/>。</pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">codecName</pt>
                 <pd>此条媒体流的编码规格。</pd>
+                <pd props="ios">媒体流使用的编解码器名称。</pd>
             </plentry>
-            <plentry>
-                <pt>language</pt>
+            <plentry props="ios">
+                <pt props="ios">language</pt>
                 <pd>此条媒体流的语言。</pd>
+                <pd props="ios">媒体流的语言信息。</pd>
             </plentry>
-            <plentry>
-                <pt>videoFrameRate</pt>
+            <plentry props="ios">
+                <pt props="ios">videoFrameRate</pt>
                 <pd>该参数仅对视频流生效，表示视频帧率 (fps)。</pd>
+                <pd props="ios">仅对视频流生效，表示视频的帧率（fps）。</pd>
             </plentry>
-            <plentry>
-                <pt>videoBitRate</pt>
+            <plentry props="ios">
+                <pt props="ios">videoBitRate</pt>
                 <pd>该参数仅对视频流生效，表示视频码率 (bps)。</pd>
+                <pd props="ios">仅对视频流生效，表示视频的码率（bps）。</pd>
             </plentry>
-            <plentry>
-                <pt>videoWidth</pt>
+            <plentry props="ios">
+                <pt props="ios">videoWidth</pt>
                 <pd>该参数仅对视频流生效，表示视频宽度 (px)。</pd>
+                <pd props="ios">仅对视频流生效，表示视频的宽度（像素）。</pd>
             </plentry>
-            <plentry>
-                <pt>videoHeight</pt>
+            <plentry props="ios">
+                <pt props="ios">videoHeight</pt>
                 <pd>该参数仅对视频流生效，表示视频高度 (px)。</pd>
+                <pd props="ios">仅对视频流生效，表示视频的高度（像素）。</pd>
             </plentry>
-            <plentry>
-                <pt props="android unity cpp unreal bp electron rn flutter cs">videoRotation</pt>
-                <pt props="ios mac">rotation</pt>
+            <plentry props="ios">
+                <pt props="android bp cpp cs electron flutter rn unity unreal">videoRotation</pt>
+                <pt props="apple ios">rotation</pt>
                 <pd>该参数仅对视频流生效，表示旋转角度。</pd>
+                <pd props="ios">仅对视频流生效，表示视频的旋转角度。</pd>
             </plentry>
-            <plentry>
-                <pt>audioSampleRate</pt>
+            <plentry props="ios">
+                <pt props="ios">audioSampleRate</pt>
                 <pd>该参数仅对音频流生效，表示音频采样率 (Hz)。</pd>
+                <pd props="ios">仅对音频流生效，表示音频的采样率（Hz）。</pd>
             </plentry>
-            <plentry>
-                <pt>audioChannels</pt>
+            <plentry props="ios">
+                <pt props="ios">audioChannels</pt>
                 <pd>该参数仅对音频流生效，表示声道数。</pd>
+                <pd props="ios">仅对音频流生效，表示音频的声道数。</pd>
             </plentry>
-            <plentry props="android hmos cpp unreal bp unity electron rn flutter cs">
-                <pt props="cpp unreal bp unity electron rn flutter cs">audioBitsPerSample</pt>
+            <plentry props="android bp cpp cs electron flutter hmos rn unity unreal">
+                <pt props="bp cpp cs electron flutter rn unity unreal">audioBitsPerSample</pt>
                 <pt props="android hmos">audioBytesPerSample</pt>
                 <pd>该参数仅对音频流生效，表示每个音频采样点的位数 (bit)。</pd>
             </plentry>
-            <plentry>
-                <pt>duration</pt>
+            <plentry props="ios">
+                <pt props="ios">duration</pt>
                 <pd>媒体流的时长（毫秒）。</pd>
+                <pd props="ios">媒体流的总时长（毫秒）。</pd>
             </plentry>
             </parml> </section>
     </refbody>

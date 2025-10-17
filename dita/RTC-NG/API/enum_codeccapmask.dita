@@ -1,17 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_codeccapmask">
     <title><ph keyref="CODEC_CAP_MASK"/></title>
-    <shortdesc id="short"><ph id="shortdesc">编解码类型 bit mask。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">编解码类型的位掩码。</ph></shortdesc>
     <refbody>
         <section id="detailed_desc">
-            <dl outputclass="since">
-            <dlentry props="android apple cpp">
-                <dt>自从</dt>
-                <dd>v4.2.0</dd>
-            </dlentry>
-            </dl>
-        </section>
+            </section>
         <section id="parameters">
             <title>枚举值</title>
             <parml>
@@ -35,6 +29,19 @@
                     <pt><ph keyref="CODEC_CAP_MASK_SW_ENC"/></pt>
                     <pd>(1 &lt;&lt; 3)：支持软件编码。</pd>
                 </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraCodecMaskNone"/></pt>
+                <pd props="apple">（0）：设备不支持编码或解码。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraCodecMaskSwEnc"/></pt>
+                <pd props="apple">（1 &lt;&lt; 3）：设备支持软件编码。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraCodecMaskSwDec"/></pt>
+                <pd props="ios">（1 &lt;&lt; 2）：设备支持软件解码。</pd>
+                <pd props="mac">（1 &lt;&lt; 0）：设备支持硬件解码。</pd>
+            </plentry>
             </parml> </section>
     </refbody>
 </reference>

@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_audiotracktype">
     <title><ph keyref="AUDIO_TRACK_TYPE"/></title>
-    <shortdesc id="short"><ph id="shortdesc">自定义音频采集轨道的类型。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">音频轨道类型。</ph></shortdesc>
     <refbody>
         <section id="parameters">
             <title>枚举值</title>
@@ -16,6 +16,16 @@
                 <pd>
                 <p>1：非混流的音频轨道。会替代麦克风采集，且不支持与其他音频流混音。与可混流的音频轨道相比，延迟更低。</p>
                 <note type="attention">如指定 <apiname keyref="AUDIO_TRACK_DIRECT"/>，则必须在调用 <xref keyref="joinChannel2"/> 加入频道时，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishMicrophoneTrack</codeph> 设为 <codeph><ph keyref="false"/></codeph>，否则加入频道失败并返回错误码 -2.</note></pd>
+            </plentry>
+            <plentry props="android apple">
+                <pt><ph keyref="AgoraAudioTrackTypeMixable"/></pt>
+                <pd props="apple">（0）：可混音音频轨道。支持与其他音频流（如麦克风采集的音频流）混音，并在混音后本地播放或发布到频道。该类型的音频轨道延迟高于直通音频轨道。</pd>
+                <pd props="android">（0）：可混音音频轨道。该类型音频轨道支持与其他音频流（如麦克风采集的音频流）混音，并在混音后进行本地播放或发布到频道。其延迟高于直通音频轨道。</pd>
+            </plentry>
+            <plentry props="android apple">
+                <pt><ph keyref="AgoraAudioTrackTypeDirect"/></pt>
+                <pd props="apple">（1）：直通音频轨道。替代麦克风采集的音频流，不支持与其他音频流混音。该类型的音频轨道延迟低于可混音音频轨道。<note type="attention" props="apple">如果该参数设置为 <ph keyref="AgoraAudioTrackTypeDirect"/>，你必须在调用 <xref keyref="joinChannel2"/> 加入频道时，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishMicrophoneTrack</codeph> 设置为 <codeph><ph keyref="false"/></codeph>，否则加入频道会失败并返回错误码 -2。</note></pd>
+                <pd props="android">（1）：直通音频轨道。该类型音频轨道会替代麦克风采集的音频流，且不支持与其他音频流混音。其延迟低于可混音音频轨道。<note type="attention" props="android">如果该参数设置为 <ph keyref="AUDIO_TRACK_DIRECT"/>，则在调用 <codeph>joinChannel(String token, String channelId, int uid, ChannelMediaOptions options)</codeph> 加入频道时，必须在 <xref keyref="ChannelMediaOptions"/> 中将 <codeph>publishMicrophoneTrack</codeph> 设置为 <codeph><ph keyref="false"/></codeph>，否则加入频道会失败并返回错误码 -2。</note></pd>
             </plentry>
             </parml> </section>
     </refbody>

@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audioparams">
     <title><ph keyref="AudioParams"/></title>
-    <shortdesc id="short"><ph id="shortdesc">音频数据格式。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">音频数据格式设置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -26,16 +26,11 @@
   public mode: Constants.RawAudioFrameOpMode = Constants.RawAudioFrameOpMode.READ_ONLY;
   public samplesPerCall: number = 1024;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioParams : NSObject
-
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraAudioParams : NSObject
 @property (assign, nonatomic) NSInteger sampleRate;
-
 @property (assign, nonatomic) NSInteger channel;
-
 @property (assign, nonatomic) AgoraAudioRawFrameOperationMode mode;
-
 @property (assign, nonatomic) NSInteger samplesPerCall;
-
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct AudioParams {
   int sample_rate;
@@ -104,21 +99,29 @@
   @JsonKey(name: 'samples_per_call')
   final int? samplesPerCall;
 
-  factory AudioParams.fromJson(Map&lt;String, dynamic> json) =>
+  factory AudioParams.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$AudioParamsFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$AudioParamsToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$AudioParamsToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
-            <p props="native unreal bp unity cs">你可以在以下 API 中传入 <apiname keyref="AudioParams"/> 对象，用于设置对应回调报告的音频数据格式：
+            <p props="bp cs native unity unreal">你可以在以下 API 中传入 <xref keyref="AudioParams"/> 对象，以设置对应回调的音频数据格式：
+                    <xref keyref="AudioParams"/> 对象，以设置对应回调的音频数据格式：
+                    <apiname keyref="AudioParams"/> 对象，用于设置对应回调报告的音频数据格式：
             <ul>
-            <li><xref keyref="getRecordAudioParams" props="native unreal bp"/><xref keyref="setRecordingAudioFrameParameters" props="unity"/>：设置 <xref keyref="onRecordAudioFrame"/> 回调的数据格式。</li>
-            <li><xref keyref="getPlaybackAudioParams" props="native unreal bp"/><xref keyref="setPlaybackAudioFrameParameters" props="unity"/>：设置 <xref keyref="onPlaybackAudioFrame"/> 回调的数据格式。</li>
-            <li><xref keyref="getMixedAudioParams" props="native unreal bp"/><xref keyref="setMixedAudioFrameParameters" props="unity"/>：设置 <xref keyref="onMixedAudioFrame"/> 回调的数据格式。</li>
-            <li><xref keyref="getEarMonitoringAudioParams" props="native unreal bp"/><xref keyref="setEarMonitoringAudioFrameParameters" props="unity"/>：设置 <xref keyref="onEarMonitoringAudioFrame"/> 回调的数据格式。</li>    
-            </ul></p>
+            <li><xref keyref="getRecordAudioParams" props="bp native unreal"/><xref keyref="setRecordingAudioFrameParameters" props="unity"/>：设置 <xref keyref="onRecordAudioFrame"/> 回调的数据格式。</li>
+            <li><xref keyref="getPlaybackAudioParams" props="bp native unreal"/><xref keyref="setPlaybackAudioFrameParameters" props="unity"/>：设置 <xref keyref="onPlaybackAudioFrame"/> 回调的数据格式。</li>
+            <li><xref keyref="getMixedAudioParams" props="bp native unreal"/><xref keyref="setMixedAudioFrameParameters" props="unity"/>：设置 <xref keyref="onMixedAudioFrame"/> 回调的数据格式。</li>
+            <li><xref keyref="getEarMonitoringAudioParams" props="bp native unreal"/><xref keyref="setEarMonitoringAudioFrameParameters" props="unity"/>：设置 <xref keyref="onEarMonitoringAudioFrame"/> 回调的数据格式。</li>    
+            </ul><ul>
+                        <li><xref keyref="getRecordAudioParams"/>：设置 <xref keyref="onRecordAudioFrame"/> 回调的音频数据格式。</li>
+                        <li><xref keyref="getPlaybackAudioParams"/>：设置 <xref keyref="onPlaybackAudioFrame"/> 回调的音频数据格式。</li>
+                        <li><xref keyref="getMixedAudioParams"/>：设置 <xref keyref="onMixedAudioFrame"/> 回调的音频数据格式。</li>
+                        <li><xref keyref="getEarMonitoringAudioParams"/>：设置 <xref keyref="onEarMonitoringAudioFrame"/> 回调的音频数据格式。</li>
+                        </ul>
+                    </p>
             <p props="electron rn">SDK 会根据 <apiname keyref="AudioParams"/> 设置以下回调中的音频数据格式：
             <ul>
             <li><xref keyref="onRecordAudioFrame"/> </li>
@@ -134,9 +137,9 @@
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry>
-                <pt props="android ios mac flutter">sampleRate</pt>
-                <pt props="cpp unreal bp unity electron rn cs">sample_rate</pt>
+            <plentry props="ios">
+                <pt props="android apple flutter ios">sampleRate</pt>
+                <pt props="bp cpp cs electron rn unity unreal">sample_rate</pt>
                 <pd>数据的采样率，单位为 Hz，取值如下：
                     
                     <ul>
@@ -146,29 +149,46 @@
                     <li>44100</li>
                     <li>48000</li>
                     </ul></pd>
-            </plentry>
-            <plentry>
-                <pt props="android ios mac">channel</pt>
-                <pt props="cpp unreal bp unity electron rn flutter cs">channels</pt>
+                <pd props="ios">音频采样率（Hz），可设置为以下值之一：
+                    <ul>
+                        <li>8000。</li>
+                        <li>（默认）16000。</li>
+                        <li>32000。</li>
+                        <li>44100。</li>
+                        <li>48000。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="android apple ios">channel</pt>
+                <pt props="bp cpp cs electron flutter rn unity unreal">channels</pt>
                 <pd>数据的声道数，取值如下：                
                     <ul>
                     <li>1：单声道（默认值）</li>
                     <li>2：双声道</li>
                     </ul></pd>
-            </plentry>
-            <plentry>
-                <pt>mode</pt>
-                <pd props="ios mac cpp unreal bp unity electron rn flutter cs">数据的使用模式。详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</pd>
+                <pd props="ios">音频声道数，可设置为以下值之一：
+                    <ul>
+                        <li>1：（默认）单声道。</li>
+                        <li>2：立体声。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">mode</pt>
+                <pd props="apple bp cpp cs electron flutter rn unity unreal">数据的使用模式。详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</pd>
                 <pd props="android hmos">数据的使用模式，取值如下：
                     <ul>
-                    <li><ph keyref="RAW_AUDIO_FRAME_OP_MODE_READ_ONLY"/>(0): 只读模式，<ph props="cpp unreal bp">用户仅从 <xref keyref="AudioFrame"/> 获取原始数据，不作任何修改。</ph>例如: 若用户通过 SDK 采集数据，自己进行旁路推流，则可以选择该模式。</li>
-                    <li><ph keyref="RAW_AUDIO_FRAME_OP_MODE_READ_WRITE"/>(2): 读写模式, <ph props="cpp unreal bp">用户从 <xref keyref="AudioFrame"/> 获取并修改数据，并返回给 SDK 进行编码传输。</ph><ph props="electron">用户修改 SDK 返回的原始视频，并返回给 SDK 进行编码传输。</ph>例如: 若用户自己有音效处理模块，且想要根据实际需要对数据进行前处理(例如变声)，则可以选择该模式。</li>
+                    <li><ph keyref="RAW_AUDIO_FRAME_OP_MODE_READ_ONLY"/>(0): 只读模式，<ph props="bp cpp unreal">用户仅从 <xref keyref="AudioFrame"/> 获取原始数据，不作任何修改。</ph>例如: 若用户通过 SDK 采集数据，自己进行旁路推流，则可以选择该模式。</li>
+                    <li><ph keyref="RAW_AUDIO_FRAME_OP_MODE_READ_WRITE"/>(2): 读写模式, <ph props="bp cpp unreal">用户从 <xref keyref="AudioFrame"/> 获取并修改数据，并返回给 SDK 进行编码传输。</ph><ph props="electron">用户修改 SDK 返回的原始视频，并返回给 SDK 进行编码传输。</ph>例如: 若用户自己有音效处理模块，且想要根据实际需要对数据进行前处理(例如变声)，则可以选择该模式。</li>
                     </ul> </pd>
-            </plentry>
-            <plentry>
-                <pt props="android ios mac flutter">samplesPerCall</pt>
-                <pt props="cpp unreal bp unity electron rn cs">samples_per_call</pt>
+                <pd props="ios">音频数据的使用模式。详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="android apple flutter ios">samplesPerCall</pt>
+                <pt props="bp cpp cs electron rn unity unreal">samples_per_call</pt>
                 <pd>数据的采样点数，如旁路推流应用中通常为 1024。</pd>
+                <pd props="ios">每次回调的采样点数，例如媒体推流时设置为 1024。</pd>
             </plentry>
             </parml> </section>
     </refbody>

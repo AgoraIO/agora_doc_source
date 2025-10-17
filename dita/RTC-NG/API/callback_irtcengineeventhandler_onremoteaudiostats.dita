@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onremoteaudiostats">
-    <title><ph keyref="onRemoteAudioStats" /></title>
-    <shortdesc id="short"><ph id="shortdesc">通话中远端音频流的统计信息回调。</ph></shortdesc>
+    <title><ph keyref="onRemoteAudioStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc">远端音频流传输层统计信息回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onRemoteAudioStats" />
+                <indexterm keyref="onRemoteAudioStats"/>
             </keywords>
         </metadata>
     </prolog>
@@ -14,39 +14,43 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onRemoteAudioStats(RemoteAudioStats stats) {}</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts">onRemoteAudioStats?:(stats:RemoteAudioStats) =&gt; void;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
-    remoteAudioStats:(AgoraRtcRemoteAudioStats * _Nonnull)stats;</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onRemoteAudioStats(const RemoteAudioStats&amp; stats) {
-    (void)stats;
-    }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
-	void OnRemoteAudioStats(const FRemoteAudioStats&amp; stats);</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">  onRemoteAudioStats?(connection: RtcConnection, stats: RemoteAudioStats): void;</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnRemoteAudioStats(RtcConnection connection, RemoteAudioStats stats) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">  onRemoteAudioStats?(connection: RtcConnection, stats: RemoteAudioStats): void;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, RemoteAudioStats stats)?
-      onRemoteAudioStats;</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine remoteAudioStats:(AgoraRtcRemoteAudioStats * _Nonnull)stats NS_SWIFT_NAME(rtcEngine(_:remoteAudioStats:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onRemoteAudioStats(const RemoteAudioStats&amp; stats)</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
-        <section id="detailed_desc">
-            <p id="desc">该回调针对每个发送音频流的远端用户/主播每 2 秒触发一次。如果远端有多个用户/主播发送音频流，该回调每 2 秒会被触发多次。</p>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p/>
         </section>
-        <section id="parameters">
-            <title><ph keyref="callback-section-title" /></title>
+        <section id="restriction" deliveryTarget="details">
+            <title>使用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
             <parml>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt />
-                <pd />
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">stats</pt>
+                <pd props="android ios">接收的远端音频流的统计信息。详见 <xref keyref="RemoteAudioStats"/>。</pd>
+                <pd props="cpp">远端音频流的统计信息。详见 <xref keyref="RemoteAudioStats"/>。</pd>
             </plentry>
-            <plentry props="unity electron rn flutter cs">
-                <pt>connection</pt>
-                <pd>Connection 信息。详见 <xref keyref="RtcConnection" />。</pd>
-            </plentry>
-            <plentry id="stats">
-                <pt>stats</pt>
-                <pd>接收到的远端音频统计数据，详见 <xref keyref="RemoteAudioStats" />。</pd>
+            <plentry props="ios">
+                <pt props="ios">engine</pt>
+                <pd props="ios">引擎对象，详见 <xref keyref="IRtcEngine"/>。</pd>
             </plentry>
             </parml> </section>
+        <section id="return_values" props="bp electron flutter rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
+        <ul props="bp electron rn unity unreal">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul>
+    </section>
     </refbody>
 </reference>

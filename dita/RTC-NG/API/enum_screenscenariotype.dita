@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_screenscenariotype">
     <title><ph keyref="SCREEN_SCENARIO_TYPE"/></title>
-    <shortdesc id="short"><ph id="shortdesc">屏幕共享的场景。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">屏幕共享场景类型。</ph></shortdesc>
     <refbody>
         <section id="parameters">
             <title>枚举值</title>
@@ -19,9 +19,22 @@
                 <pt><ph keyref="SCREEN_SCENARIO_VIDEO"/></pt>
                 <pd>3: 视频。该场景下，优先保障共享的流畅性。如果你共享电影、视频直播，可以设置该场景。</pd>
             </plentry>
-            <plentry props="cpp apple framework">
+            <plentry props="apple cpp framework">
                 <pt><ph keyref="SCREEN_SCENARIO_RDC"/></pt>
                 <pd>4: 远程控制。该场景下，优先保障共享的画质，并降低了接收端看到共享视频的延时。如果你共享被远程控制的设备桌面，可以设置该场景。</pd>
+            </plentry>
+            <plentry props="android apple">
+                <pt><ph keyref="AgoraScreenScenarioRDC"/></pt>
+                <pd props="apple">（4）：远程控制场景。优先保证屏幕共享的视频质量，并降低接收端的延迟。适用于共享被远程控制的设备桌面。</pd>
+                <pd props="android">（3）：视频场景。优先保证屏幕共享的流畅性。适用于共享电影或直播视频的场景。</pd>
+            </plentry>
+            <plentry props="ios">
+                <pt><ph keyref="AgoraScreenScenarioGaming"/></pt>
+                <pd props="ios">（2）：游戏场景。优先保证屏幕共享的流畅性。适用于共享游戏画面。</pd>
+            </plentry>
+            <plentry props="ios">
+                <pt><ph keyref="AgoraScreenScenarioVideo"/></pt>
+                <pd props="ios">（3）：视频场景。优先保证屏幕共享的流畅性。适用于共享电影或直播视频。</pd>
             </plentry>
             </parml> </section>
     </refbody>

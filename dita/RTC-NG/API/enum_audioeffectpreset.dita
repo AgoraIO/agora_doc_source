@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_audioeffectpreset">
     <title><ph keyref="AUDIO_EFFECT_PRESET"/></title>
-    <shortdesc id="short"><ph id="shortdesc">预设的音效选项。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">预设音效效果。</ph></shortdesc>
     <refbody>
         <section id="detailed_desc">为获取更好的音效，建议在使用预设音效前，调用 <xref keyref="setAudioProfile"/> 并按照如下推荐设置 <parmname>profile</parmname> 参数。 <table frame="all" rowsep="1" colsep="1">
             <tgroup cols="2" align="left">
@@ -133,6 +133,34 @@
             <plentry>
                 <pt><ph keyref="PITCH_CORRECTION"/></pt>
                 <pd>电音，即 SDK 以主音音高为 C 的自然大调为基础修正音频的实际音高。设置该音效后，你还可以调用 <xref keyref="setAudioEffectParameters"/> 调整修音的基础调式和主音音高。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraAudioEffectPresetOff"/></pt>
+                <pd props="apple">（0x00000000）：关闭音效，使用原始人声。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraAudioEffectPresetRoomAcousticsChorus"/></pt>
+                <pd props="apple">（0x02010D00）：合唱音效，适用于合唱场景，增强人声的层次感和空间感。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraAudioEffectPresetRoomAcous3DVoice"/></pt>
+                <pd props="apple">（0x02010800）：3D 人声效果，使声音围绕用户移动，默认周期为 10 秒。设置该效果后，可调用 <xref keyref="setAudioEffectParameters"/> 修改移动周期。<note type="attention" props="apple">如果启用 3D 人声效果，用户需使用立体声播放设备以获得预期效果。</note></pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraAudioEffectPresetRoomAcousVirtualSurroundSound"/></pt>
+                <pd props="apple">（0x02010900）：虚拟环绕声效果，SDK 基于立体声通道生成模拟环绕声场，营造环绕声体验。<note type="attention" props="apple">如果启用虚拟环绕声，用户需使用立体声播放设备以获得预期音效。</note></pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraAudioEffectPresetVoiceChangerEffectHulk"/></pt>
+                <pd props="apple">（0x02020700）：绿巨人的声音。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraAudioEffectPresetStyleTransformationPopular"/></pt>
+                <pd props="apple">（0x02030200）：流行音乐风格下的典型人声效果。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraAudioEffectPresetPitchCorrection"/></pt>
+                <pd props="apple">（0x02040100）：音高修正效果，基于自然 C 大调音高修正用户音高。设置该效果后，可调用 <xref keyref="setAudioEffectParameters"/> 调整调音的基本模式和主音音高。</pd>
             </plentry>
             </parml> </section>
     </refbody>

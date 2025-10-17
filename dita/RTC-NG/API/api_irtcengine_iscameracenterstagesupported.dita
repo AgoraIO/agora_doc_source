@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_iscameracenterstagesupported">
     <title><ph keyref="isCameraCenterStageSupported"/></title>
-    <shortdesc id="short"><ph id="shortdesc">查询摄像头是否支持人像锁定。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">检查当前摄像头是否支持人像居中功能。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,31 +14,26 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)isCameraCenterStageSupported NS_SWIFT_NAME(isCameraCenterStageSupported());</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual bool isCameraCenterStageSupported() = 0;</codeblock>
-            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	bool IsCameraCenterStageSupported();</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract isCameraCenterStageSupported(): boolean;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract bool IsCameraCenterStageSupported();</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract isCameraCenterStageSupported(): boolean;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;bool> isCameraCenterStageSupported();</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;bool&gt; isCameraCenterStageSupported();</codeblock> </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <dl outputclass="since">
-            <dlentry props="android apple cpp">
-                <dt>自从</dt>
-                <dd>v4.3.1</dd>
-            </dlentry>
-            </dl>
-            <note type="attention" props="cpp flutter unreal bp unity">该方法仅适用于 iOS 和 macOS。</note>
+            <note type="attention" props="bp cpp flutter unity unreal">该方法仅适用于 iOS 和 macOS。</note>
             <note type="attention" props="rn">该方法仅适用于 iOS。</note>
             <note type="attention" props="electron">该方法仅适用于 macOS。</note>
-            <p>在调用 <xref keyref="enableCameraCenterStage"/> 开启人像锁定功能前，建议你先调用该方法查询当前设备是否支持人像锁定。</p>
-        </section>
+            <p>在调用 <xref keyref="enableCameraCenterStage"/> 启用人像居中功能前，建议先调用该方法检查当前设备是否支持该功能。必须在成功启用摄像头之后调用该方法，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <ph keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/>（1）之后。<xref keyref="enableCameraCenterStage"/> 开启人像锁定功能前，建议你先调用该方法查询当前设备是否支持人像锁定。</p>
+            <note type="attention" props="cpp">该方法仅适用于 iOS 和 macOS 平台。</note>
+            </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p>该方法必须在摄像头成功开启后调用，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调，返回本地视频状态为 <apiname keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/> (1) 后。</p>
+            <p>必须在成功启用摄像头之后调用，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <ph keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/>（1）之后。</p>
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -46,9 +41,15 @@
         </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <ul>
+        <ul>
             <li><codeph><ph keyref="true"/></codeph>: 当前摄像头支持人像锁定。</li>
             <li><codeph><ph keyref="false"/></codeph>: 当前摄像头不支持人像锁定。</li>
-            </ul>  </section>
+            </ul>
+        <p props="apple cpp"><ul>
+                        <li><codeph><ph keyref="true"/></codeph>：当前摄像头支持人像居中功能。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：当前摄像头不支持人像居中功能。</li>
+                        </ul>
+                    </p>
+        </section>
         </refbody>
 </reference>

@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_imetadataobserver_onreadytosendmetadata">
     <title><ph keyref="onReadyToSendMetadata"/></title>
-    <shortdesc id="short"><ph id="shortdesc">发送端已准备好发送 metadata。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">当 SDK 准备好发送元数据时触发的回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -13,57 +13,48 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract byte[] onReadyToSendMetadata(long timeStampMs, int sourceType);</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts">onReadyToSendMetadata?:(timeStampMs:bigint,sourceType:Constants.VideoSourceType) =&gt;ArrayBuffer;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (NSData * _Nullable)readyToSendMetadataAtTimestamp:(NSTimeInterval)timestamp
-                    sourceType:(AgoraVideoSourceType)sourceType;</codeblock>
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual bool onReadyToSendMetadata(Metadata &amp;metadata, VIDEO_SOURCE_TYPE source_type) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnReadyToSendMetadata, const FAgoraMetadata&amp;, metadata, EVIDEO_SOURCE_TYPE, source_type);</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="cs" outputclass="language-csharp"/>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity cs" outputclass="language-csharp">public virtual bool OnReadyToSendMetadata(ref Metadata metadata, VIDEO_SOURCE_TYPE source_type)
-        {
-            return false;
-        }</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
-           <codeblock props="flutter" outputclass="language-dart"/> 
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
-        <section id="detailed_desc">
-            <p>当 SDK 准备好发送 metadata 时，会触发该回调。</p>
-            <p props="hide">收到该回调后，你可以调用 <xref keyref="sendMetaData"/> 发送媒体附属信息。</p>
-            <note props="android ios mac cpp unreal bp" type="attention">请确保在该方法中传入的 metadata 大小不超过 <xref keyref="getMaxMetadataSize"/> 中设定的值。</note> </section>
-        <section id="parameters">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p/>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>使用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-            <plentry props="android hmos ios mac">
-                <pt props="android hmos">timeStampMs</pt>
-                <pt props="ios mac">timestamp</pt>
-                <pd>时间戳。</pd>
+            <plentry props="cpp">
+                <pt props="cpp">metadata</pt>
+                <pd props="cpp">用户希望发送的元数据。详见 <xref keyref="Metadata"/>。</pd>
             </plentry>
-            <plentry>
-                <pt props="android ios mac">sourceType</pt>
-                <pt props="cpp unreal bp unity cs">source_Type</pt>
-                <pd>视频数据类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
-            </plentry>
-            <plentry props="cpp unreal bp unity cs">
-                <pt>metadata</pt>
-                <pd>用户想要发送的 metadata。详见 <xref keyref="Metadata"/>。</pd>
+            <plentry props="cpp">
+                <pt props="cpp">source_type</pt>
+                <pd props="cpp">视频数据类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
-            <title>返回值</title>
-            <ul props="cpp unreal bp unity cs">
-            <li><codeph><ph keyref="true"/></codeph>: 发送</li>
-            <li><codeph><ph keyref="false"/></codeph>: 不发送</li>
-            </ul>
-            <p props="ios mac">指定想要发送的 metadata ，格式为 NSData，由如下字段组成：
-            <ul>
-            <li><codeph>uid</codeph>：发送该 metadata 的远端用户的 ID。</li>
-            <li><codeph>size</codeph>：metadata 的大小。</li>
-            <li><codeph>buffer</codeph>：metadata 数据。</li>
-            <li><codeph>timeStampMs</codeph>：metadata 发送时的 NTP 时间戳（ms）。</li>
-            </ul> </p>
-            <p props="android hmos">指定想要发送的 metadata，格式为 byte[]。请确保在该返回值中进行传参。</p>
-        </section>
+        <section id="return_values" props="bp electron flutter native rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
+        <ul props="android apple bp electron rn unity unreal">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul>
+        <p props="cpp"><ul>
+                        <li><codeph><ph keyref="true"/></codeph>：发送该视频帧。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不发送该视频帧。</li>
+                        </ul>
+                    </p>
+    </section>
     </refbody>
 </reference>
