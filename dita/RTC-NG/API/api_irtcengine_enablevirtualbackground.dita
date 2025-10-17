@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enablevirtualbackground">
     <title><ph keyref="enableVirtualBackground"/></title>
-    <shortdesc id="short"><ph id="shortdesc">开启/关闭虚拟背景。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">开启或关闭虚拟背景功能。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -16,11 +16,10 @@
             <codeblock props="android" outputclass="language-java">public abstract int enableVirtualBackground(
       boolean enabled, VirtualBackgroundSource backgroundSource, SegmentationProperty segproperty);
 </codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableVirtualBackground:(BOOL)enable backData:(AgoraVirtualBackgroundSource* _Nullable)backData segData:(AgoraSegmentationProperty* _Nullable)segData NS_SWIFT_NAME(enableVirtualBackground(_:backData:segData:));</codeblock>
-            <codeblock props="cpp unreal">virtual int enableVirtualBackground(bool enabled, VirtualBackgroundSource backgroundSource, SegmentationProperty segproperty, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;
-</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+            <codeblock props="cpp unreal">virtual int enableVirtualBackground(bool enabled, VirtualBackgroundSource backgroundSource, SegmentationProperty segproperty, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	int EnableVirtualBackground(bool enabled, FVirtualBackgroundSource backgroundSource, FSegmentationProperty segproperty, EMEDIA_SOURCE_TYPE type);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract enableVirtualBackground(
     enabled: boolean,
@@ -35,29 +34,35 @@
     segproperty: SegmentationProperty,
     type?: MediaSourceType
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableVirtualBackground(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableVirtualBackground(
       {required bool enabled,
       required VirtualBackgroundSource backgroundSource,
       required SegmentationProperty segproperty,
       MediaSourceType type = MediaSourceType.primaryCameraSource});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从：</dt>
+                <dd props="native">自 v3.7.200 版本新增。</dd>
+            </dlentry>
+            </dl>
             <title>详情</title>
-            <p>虚拟背景功能支持将本地用户原来的背景替换为静态图片、动态视频、将背景虚化，或者将人像与背景分割以实现人像画中画。成功开启虚拟背景功能后，频道内所有用户都能看到自定义的背景。</p>
+            <p>虚拟背景功能支持本地用户将原始背景替换为静态图片、动态视频、模糊背景或人像背景分割，以实现画中画效果。启用虚拟背景功能后，频道内的所有用户都可以看到自定义背景。请在调用 <xref keyref="enableVideo"/> 或 <xref keyref="startPreview"/> 后调用此方法。<xref keyref="enableVideo"/> 或 <xref keyref="startPreview"/> 后调用此方法。</p>
             <p>请在 <xref keyref="enableVideo"/> 或 <xref keyref="startPreview2"/> 之后调用该方法。</p>
             <note type="attention" id="hardware_req">
             <ul>
             <li>使用视频作为虚拟背景会导致内存占用持续增加，可能会导致 App 出现闪退等问题，因此在使用时请尽量降低视频的分辨率和帧率。</li>
             <li>该功能对设备性能要求较高，调用该方法时 SDK 会自动对当前设备能力进行检查。建议你在搭载如下芯片的设备上使用：
                 <ul>
-                <li props="android unity cpp unreal bp rn flutter cs">骁龙 700 系列 750G 及以上</li>
-                <li props="android unity cpp unreal bp rn flutter cs">骁龙 800 系列 835 及以上</li>
-                <li props="android unity cpp unreal bp rn flutter cs">天玑 700 系列 720 及以上</li>
-                <li props="android unity cpp unreal bp rn flutter cs">麒麟 800 系列 810 及以上</li>
-                <li props="android unity cpp unreal bp rn flutter cs">麒麟 900 系列 980 及以上</li>
-                <li props="mac cpp unreal bp unity electron cs">CPU 为 i5 及更好的设备</li>
-                <li props="ios cpp unreal bp unity rn flutter cs">搭载 A9 及以上芯片的如下设备：
+                <li props="android bp cpp cs flutter rn unity unreal">骁龙 700 系列 750G 及以上</li>
+                <li props="android bp cpp cs flutter rn unity unreal">骁龙 800 系列 835 及以上</li>
+                <li props="android bp cpp cs flutter rn unity unreal">天玑 700 系列 720 及以上</li>
+                <li props="android bp cpp cs flutter rn unity unreal">麒麟 800 系列 810 及以上</li>
+                <li props="android bp cpp cs flutter rn unity unreal">麒麟 900 系列 980 及以上</li>
+                <li props="bp cpp cs electron mac unity unreal">CPU 为 i5 及更好的设备</li>
+                <li props="bp cpp cs flutter ios rn unity unreal">搭载 A9 及以上芯片的如下设备：
                     <ul>
                     <li>iPhone 6S 及以上</li>
                     <li>iPad Air 第三代及以上</li>
@@ -72,43 +77,133 @@
                 <li>摄像画面中，物件较少，用户的人像为半身人像且基本无遮挡，背景色较单一且与用户着装颜色不同。</li>
                 </ul></li>
             <li>该方法依赖于虚拟背景动态库 <codeph><ph keyref="segmentation"/></codeph>，如果删除该动态库会导致无法正常开启该功能。</li>
-            </ul></note> </section>
+            </ul></note> <note type="attention" props="cpp"><ul>
+                        <li>使用视频作为虚拟背景会导致内存持续增长，可能引发应用崩溃。因此，建议在使用视频作为背景时降低其分辨率和帧率。</li>
+                        <li>此功能对设备性能要求较高。调用此方法时，SDK 会自动检测当前设备的性能。声网建议在以下处理器设备上使用虚拟背景功能：<ul>
+                            <li>Snapdragon 700 系列 750G 及以上。</li>
+                            <li>Snapdragon 800 系列 835 及以上。</li>
+                            <li>Dimensity 700 系列 720 及以上。</li>
+                            <li>Kirin 800 系列 810 及以上。</li>
+                            <li>Kirin 900 系列 980 及以上。</li>
+                            <li>配备 i5 及以上 CPU 的设备。</li>
+                            <li>配备 A9 及以上芯片的设备，包括：<ul>
+                            <li>iPhone 6S 及以上。</li>
+                                <li>iPad Air 第三代及以上。</li>
+                                <li>iPad 第五代及以上。</li>
+                                <li>iPad Pro 第一代及以上。</li>
+                                <li>iPad mini 第五代及以上。</li>
+                                </ul>
+                        </li>
+                            </ul>
+                        </li>
+                        <li>声网建议在以下场景中使用此功能：<ul>
+                            <li>使用高清摄像头设备，且环境光线均匀。</li>
+                            <li>拍摄画面中物体较少，人像为半身像且无遮挡。确保背景为纯色，且与用户服装颜色不同。</li>
+                            </ul>
+                        </li>
+                        <li>此方法依赖虚拟背景动态库 <ph keyref="segmentation"/>。如果该动态库被删除，则无法正常启用该功能。</li>
+                        </ul>
+                    </note>
+            <note type="attention" props="apple"><ul>
+                        <li>使用视频作为虚拟背景会导致内存持续增长，可能引发应用崩溃。建议降低视频的分辨率和帧率。</li>
+                        <li>此功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的性能。声网建议你在以下设备上使用该功能：<ul>
+                            <li>iOS：配备 A9 芯片及以上的设备，包括：<ul>
+                            <li>iPhone 6S 及以上机型。</li>
+                                <li>iPad Air 第三代及以上机型。</li>
+                                <li>iPad 第五代及以上机型。</li>
+                                <li>iPad Pro 第一代及以上机型。</li>
+                                <li>iPad mini 第五代及以上机型。</li>
+                                </ul>
+                        </li>
+                            <li>macOS：配备 i5 及以上 CPU 的设备。</li>
+                            </ul>
+                        </li>
+                        <li>声网建议你在以下场景中使用该功能：<ul>
+                            <li>使用高清摄像头设备，且环境光线均匀。</li>
+                            <li>拍摄画面中物体较少，人物为半身像且无遮挡。</li>
+                            <li>背景为纯色，且与人物服装颜色有明显区别。</li>
+                            </ul>
+                        </li>
+                        <li>此方法依赖虚拟背景动态库 <ph keyref="segmentation"/>（iOS）或 </li>
+                        </ul>
+                    </note>
+            </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry id="enable">
-                <pt props="cpp unreal bp android unity flutter rn electron cs">enabled</pt>
-                <pt props="ios mac">enable</pt>
-                <pd>是否开启虚拟背景：
+                <pt>enabled</pt>
+                <pt props="apple">enable</pt>
+                <pd props="android bp cs electron flutter mac rn unity unreal">是否开启虚拟背景：
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 开启虚拟背景。</li>
                     <li><codeph><ph keyref="false"/></codeph>: 关闭虚拟背景。</li>
                     </ul></pd>
-            </plentry>
+            <pd props="cpp">是否启用虚拟背景功能：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：启用虚拟背景。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：关闭虚拟背景。</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">是否启用虚拟背景：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：启用虚拟背景。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：关闭虚拟背景。</li>
+                        </ul>
+                    </pd>
+                </plentry>
             <plentry id="source">
-                <pt props="cpp unreal bp android unity flutter rn electron cs">backgroundSource</pt>
-                <pt props="mac ios">backData</pt>
-                <pd>自定义的背景。详见 <xref keyref="VirtualBackgroundSource"/>。为将自定义背景图的分辨率与 SDK 的视频采集分辨率适配，SDK 会在保证自定义背景图不变形的前提下，对自定义背景图进行缩放和裁剪。</pd>
-            </plentry>
+                <pt>backgroundSource</pt>
+                <pt props="apple">backData</pt>
+                <pd props="android bp cs electron flutter mac rn unity unreal">自定义的背景。详见 <xref keyref="VirtualBackgroundSource"/>。为将自定义背景图的分辨率与 SDK 的视频采集分辨率适配，SDK 会在保证自定义背景图不变形的前提下，对自定义背景图进行缩放和裁剪。</pd>
+            <pd props="cpp">自定义背景。为了使自定义背景图像的分辨率适配 SDK 采集的视频分辨率，SDK 会对图像进行缩放和裁剪，同时确保图像内容不失真。详见 <xref keyref="VirtualBackgroundSource"/>。</pd>
+                <pd props="ios">自定义背景。为适配自定义背景图像与 SDK 采集视频的分辨率，SDK 会对自定义背景图像进行缩放和裁剪，确保图像内容不失真。详见 <xref keyref="VirtualBackgroundSource"/>。</pd>
+                </plentry>
             <plentry id="seg">
-                <pt props="android cpp unreal bp unity electron rn flutter cs">segproperty</pt>
-                <pt props="ios mac">segData</pt>
-                <pd>背景图像的处理属性。详见 <xref keyref="SegmentationProperty"/>。</pd>
+                <pt>segproperty</pt>
+                <pt props="apple">segData</pt>
+                <pd props="bp cpp cs electron flutter ios native rn unity unreal">背景图像的处理属性。详见 <xref keyref="SegmentationProperty"/>。</pd>
             </plentry>
-            <plentry conkeyref="setLowlightEnhanceOptions/type" props="cpp unreal bp rn unity electron flutter cs">
+            <plentry conkeyref="setLowlightEnhanceOptions/type" props="bp cpp cs electron flutter rn unity unreal">
                 <pt/>
                 <pd/>
             </plentry>
-            </parml> </section>
-        <section id="return_values">
+            <plentry props="cpp">
+                <pt props="cpp">type</pt>
+                <pd props="cpp">应用滤镜效果的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。
+                    <ul>
+                        <li>如果使用摄像头采集本地视频，使用默认值 <ph keyref="PRIMARY_CAMERA_SOURCE"/>。</li>
+                        <li>如果使用自定义视频源，设置为 <ph keyref="CUSTOM_VIDEO_SOURCE"/>。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+        </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp electron unity rn cs">
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="android bp cs electron rn unity unreal">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph>
                 <ul>
                 <li>-4：设备能力不满足虚拟背景的使用要求，建议更换性能更高的设备。</li>
                 </ul></li>
-            </ul> </section>
+            </ul>
+        <p props="apple"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。<ul>
+                            <li>-4：设备性能不满足虚拟背景功能的要求。声网建议你在性能更高的设备上尝试。</li>
+                            </ul>
+                        </li>
+                        </ul>
+                    </p>
+        <p props="cpp"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。<ul>
+                            <li>-4：设备性能不满足虚拟背景功能的要求。声网建议在性能更高的设备上尝试此功能。</li>
+                            </ul>
+                        </li>
+                        </ul>
+                    </p>
+        </section>
     </refbody>
 </reference>

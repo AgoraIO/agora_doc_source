@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_imagetrackoptions">
-    <title><ph keyref="ImageTrackOptions" /></title>
-    <shortdesc id="short"><ph id="shortdesc">垫片图片的设置选项。</ph></shortdesc>
+    <title><ph keyref="ImageTrackOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc">用于配置图像相关的参数。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -18,23 +18,25 @@
     this.fps = fps;
   }
 }</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraImageTrackOptions : NSObject
 @property(copy, nonatomic) NSString *_Nullable imageUrl;
-@property(assign, nonatomic) int fps;</codeblock>
+@property(assign, nonatomic) int fps;
+@property(assign, nonatomic) AgoraVideoMirrorMode mirrorMode;
+@end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct ImageTrackOptions {
   const char* imageUrl;
   int fps;
-  ImageTrackOptions() : imageUrl(NULL), fps(1) {}
+  VIDEO_MIRROR_MODE_TYPE mirrorMode;
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FImageTrackOptions
 {
 	GENERATED_BODY()
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ImageTrackOptions&quot;)
-	FString imageUrl = &quot;&quot;;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ImageTrackOptions&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|ImageTrackOptions")
+	FString imageUrl = "";
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|ImageTrackOptions")
 	int fps = 1;
 	FImageTrackOptions(){}
 	FImageTrackOptions(const agora::rtc::ImageTrackOptions &amp; AgoraData){
@@ -83,26 +85,34 @@ public:
   @JsonKey(name: 'fps')
   final int? fps;
 
-  factory ImageTrackOptions.fromJson(Map&lt;String, dynamic> json) =>
+  factory ImageTrackOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$ImageTrackOptionsFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$ImageTrackOptionsToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ImageTrackOptionsToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry>
-                <pt>imageUrl</pt>
+            <plentry props="cpp ios">
+                <pt props="cpp ios">imageUrl</pt>
                 <pd>垫片图片的 URL，目前支持 JPEG、JPG、PNG、GIF 格式的图片。支持从本地绝对路径或相对路径添加垫片图片。
-                  <note props="cpp unreal bp android rn unity flutter">在 Android 平台上，不支持从 <codeph>/assets/</codeph> 中添加垫片图片。</note>
+                  <note props="android bp cpp flutter rn unity unreal">在 Android 平台上，不支持从 <codeph>/assets/</codeph> 中添加垫片图片。</note>
                 </pd>
-            </plentry>
-                <plentry>
-                    <pt>fps</pt>
-                    <pd>视频帧率，取值范围为 [1,30]。默认值为 1。</pd>
+                <pd props="cpp">图像的 URL。支持的图像格式包括 JPEG、JPG、PNG 和 GIF。支持从本地的绝对路径或相对路径添加图像。在 Android 平台上，不支持从 <codeph>/assets/</codeph> 添加图像。</pd>
+                <pd props="ios">图像的 URL。支持的图像格式包括 JPEG、JPG、PNG 和 GIF。支持通过本地的绝对路径或相对路径添加图像。</pd>
                 </plentry>
+            <plentry props="cpp ios">
+                <pt props="cpp ios">fps</pt>
+                <pd>视频帧率，取值范围为 [1,30]。默认值为 1。</pd>
+                <pd props="cpp">发布的视频流的帧率，取值范围为 [1, 30]，默认值为 1。</pd>
+                <pd props="ios">发布的视频流的帧率。取值范围为 [1, 30]，默认值为 1。</pd>
+            </plentry>
+            <plentry props="cpp ios">
+                <pt props="cpp ios">mirrorMode</pt>
+                <pd props="cpp ios">视频镜像模式。</pd>
+            </plentry>
             </parml> </section>
     </refbody>
 </reference>

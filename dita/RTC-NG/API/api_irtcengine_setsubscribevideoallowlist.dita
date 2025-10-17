@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setsubscribevideoallowlist">
     <title><ph keyref="setSubscribeVideoAllowlist"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置视频订阅白名单。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">设置视频流订阅的允许列表。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,10 +14,10 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setSubscribeVideoAllowlist(int[] uidList);</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setSubscribeVideoAllowlist:(NSArray &lt;NSNumber *&gt; *_Nonnull)allowlist;</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setSubscribeVideoAllowlist:(NSArray &lt;NSNumber *&gt; *_Nonnull)allowlist NS_SWIFT_NAME(setSubscribeVideoAllowlist(_:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setSubscribeVideoAllowlist(uid_t* uidList, int uidNumber) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	int SetSubscribeVideoAllowlist(TArray&lt;int64&gt; uidList, int uidNumber);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setSubscribeVideoAllowlist(
     uidList: number[],
@@ -28,43 +28,70 @@
     uidList: number[],
     uidNumber: number
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setSubscribeVideoAllowlist(
-      {required List&lt;int> uidList, required int uidNumber});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setSubscribeVideoAllowlist(
+      {required List&lt;int&gt; uidList, required int uidNumber});</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
             <title>详情</title>
-            <p>你可以调用该方法指定想要订阅的视频流。</p>
+            <p></p>
             <note>
             <ul>
             <li conkeyref="setSubscribeAudioBlocklist/order"/>
             <li>视频订阅白名单不受 <xref keyref="muteRemoteVideoStream"/>、<xref keyref="muteAllRemoteVideoStreams"/> 以及 <xref keyref="ChannelMediaOptions"/> 中的 <parmname>autoSubscribeVideo</parmname> 的影响。</li>
             <li conkeyref="setSubscribeAudioAllowlist/effect"/>
             <li conkeyref="setSubscribeAudioBlocklist/priority"/>
-            </ul> </note> </section>
+            </ul> </note> <note type="attention" props="cpp"><ul>
+                        <li>你可以在加入频道前或后调用此方法。</li>
+                        <li>允许列表不受 <xref keyref="muteRemoteVideoStream"/>、<xref keyref="muteAllRemoteVideoStreams"/> 和 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>autoSubscribeAudio</codeph> 设置影响。</li>
+                        <li>一旦设置了订阅的允许列表，即使离开当前频道并重新加入，该设置仍然有效。</li>
+                        <li>如果某个用户同时出现在允许列表和阻止列表中，仅阻止列表生效。</li>
+                        </ul>
+                    </note>
+            <note type="attention" props="apple"><ul>
+                        <li>你可以在加入频道前或加入频道后调用此方法。</li>
+                        <li>白名单不受 <xref keyref="muteRemoteVideoStream"/>、<xref keyref="muteAllRemoteVideoStreams"/> 和 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
+                        <li>一旦设置了订阅白名单，即使你离开当前频道并重新加入，该设置仍然有效。</li>
+                        <li>如果某个用户同时被添加到白名单和黑名单中，则仅黑名单生效。</li>
+                        </ul>
+                    </note>
+            <note type="attention" props="android"><xref keyref="setSubscribeVideoAllowlist"/> 方法可在加入频道前或加入频道后调用。该方法设置的视频流订阅允许列表不受 <xref keyref="muteRemoteVideoStream"/>、<xref keyref="muteAllRemoteVideoStreams"/> 和 <xref keyref="ChannelMediaOptions"/> 中 <codeph>autoSubscribeAudio</codeph> 设置的影响。一旦设置了允许列表，即使离开当前频道并重新加入，该设置仍然有效。如果某个用户同时被添加到允许列表和阻止列表中，则仅阻止列表生效。</note>
+            </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry id="list">
-                <pt props="android cpp unreal bp electron unity rn flutter cs">uidList</pt>
+                <pt>uidList</pt>
                 <pt props="apple">allowlist</pt>
-                <pd>
+                <pd props="bp cs electron flutter mac rn unity unreal">
                     <p>视频订阅白名单的用户 ID 列表。</p>
                     <p>如果你想指定仅订阅某一发流用户的视频流，将该用户的 ID 加入此列表中。如果你想要将某一用户从订阅白名单中移除，需要重新调用 <xref keyref="setSubscribeVideoAllowlist"/> 方法更新音频订阅白名单的用户 ID 列表，使其不包含你想移除的用户的 <parmname>uid</parmname>。</p>
                 </pd>
-            </plentry>
-            <plentry props="cpp unreal bp electron unity rn flutter cs" conkeyref="setSubscribeAudioAllowlist/uidnumber">
+            <pd props="android">你希望订阅其视频流的用户 ID 列表。如果希望将某个用户的视频流添加到订阅中，请将该用户的用户 ID 添加到该列表中。如果希望将某个用户从允许列表中移除，需要调用 <xref keyref="setSubscribeVideoAllowlist"/> 方法更新该列表，仅保留你希望订阅的用户 ID。</pd>
+                <pd props="ios">你希望订阅其视频的远端用户 ID 列表。如果你希望指定某个用户的视频流进行订阅，请将该用户的 ID 添加到此列表中。如果你希望将某个用户从白名单中移除，需要调用 <xref keyref="setSubscribeVideoAllowlist"/> 方法更新用户 ID 列表；这意味着你只需在新的用户 ID 列表中添加你希望订阅的用户的 ID。</pd>
+                <pd props="cpp">你希望订阅其视频的用户 ID 列表。若希望订阅某个用户的视频流，请将该用户的用户 ID 添加到该列表中。若希望将某个用户从允许列表中移除，需要调用 <xref keyref="setSubscribeVideoAllowlist"/> 方法更新该列表，仅保留希望订阅的用户 ID。</pd>
+                </plentry>
+            <plentry props="bp cpp cs electron flutter rn unity unreal" conkeyref="setSubscribeAudioAllowlist/uidnumber">
                 <pt/>
                 <pd/>
             </plentry>
-            </parml> </section>
-        <section id="return_values">
+            <plentry props="cpp">
+                <pt props="cpp">uidNumber</pt>
+                <pd props="cpp">用户 ID 列表中的用户数量。</pd>
+                </plentry>
+        </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp electron unity rn cs">
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cs electron rn unity unreal">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
             </ul>
-        </section>
+        <p props="native"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+    </section>
     </refbody>
 </reference>

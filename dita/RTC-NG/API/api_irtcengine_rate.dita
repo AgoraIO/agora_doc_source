@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_rate">
-    <title><ph keyref="rate" /></title>
-    <shortdesc id="short"><ph id="shortdesc">给通话评分。</ph></shortdesc>
+    <title><ph keyref="rate"/></title>
+    <shortdesc id="short"><ph id="shortdesc">允许用户在通话结束后对通话进行评分。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="rate" />
+                <indexterm keyref="rate"/>
             </keywords>
         </metadata>
     </prolog>
@@ -14,14 +14,12 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int rate(String callId, int rating, String description);</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)rate:(NSString * _Nonnull)callId
      rating:(NSInteger)rating
-description:(NSString * _Nullable)description;</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int rate(const char* callId,
-     int rating,
-     const char* description) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+ description:(NSString * _Nullable)description NS_SWIFT_NAME(rate(_:rating:description:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int rate(const char* callId, int rating, const char* description) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	int Rate(const FString&amp; callId, int rating, const FString&amp; description);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract rate(callId: string, rating: number, description: string): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int Rate(string callId, int rating, string description);</codeblock>
@@ -30,37 +28,61 @@ description:(NSString * _Nullable)description;</codeblock>
     {required String callId,
     required int rating,
     required String description});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
             <title>详情</title>
-            <note type="attention">该方法需要在用户离开频道后调用。</note> </section>
+            <note type="attention">该方法需要在用户离开频道后调用。</note> <note type="attention" props="apple cpp">请确保在离开频道后调用此方法。</note>
+            <note type="attention" props="android">请确保在离开频道后调用该方法。</note>
+            </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry>
                 <pt>callId</pt>
-                <pd>通话 ID。你可以通过调用 <xref keyref="getCallId" /> 获取该参数。</pd>
-            </plentry>
+                <pd props="bp cs electron flutter mac rn unity unreal">通话 ID。你可以通过调用 <xref keyref="getCallId"/> 获取该参数。</pd>
+            <pd props="android cpp ios">当前通话的 ID。你可以通过调用 <xref keyref="getCallId"/> 获取该 ID。</pd>
+                </plentry>
             <plentry>
                 <pt>rating</pt>
-                <pd>给通话的评分，最低 1 分，最高 5 分。</pd>
-            </plentry>
+                <pd props="bp cs electron flutter mac rn unity unreal">给通话的评分，最低 1 分，最高 5 分。</pd>
+            <pd props="android cpp ios">通话评分，取值范围为 1（最低分）到 5（最高分）。</pd>
+                </plentry>
             <plentry>
                 <pt>description</pt>
-                <pd><ph props="native unreal bp unity cs">（非必选项）</ph><ph>给通话的描述。长度应小于 800 字节。</ph></pd>
-            </plentry>
-            </parml> </section>
-        <section id="return_values">
+                <pd props="bp cs electron flutter mac rn unity unreal"><ph props="bp cs native unity unreal">（非必选项）</ph><ph>给通话的描述。长度应小于 800 字节。</ph></pd>
+            <pd props="android cpp ios">（可选）对通话的描述。字符串长度应小于 800 字节。</pd>
+                </plentry>
+        </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp electron unity rn cs">
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cs electron rn unity unreal">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph>
                 <ul>
                 <li>-1: 一般性的错误（未明确归类）。</li>
                 <li>-2: 参数无效。</li>
                 </ul></li>
-            </ul> </section>
+            </ul>
+        <p props="apple cpp"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。<ul>
+                            <li>-1：发生通用错误（无具体原因）。</li>
+                            <li>-2：参数无效。</li>
+                            </ul>
+                        </li>
+                        </ul>
+                    </p>
+        <p props="android"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。<ul>
+                            <li>-1：发生通用错误。</li>
+                            <li>-2：参数无效。</li>
+                            </ul>
+                        </li>
+                        </ul>
+                    </p>
+    </section>
     </refbody>
 </reference>

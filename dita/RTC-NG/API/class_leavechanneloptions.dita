@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_leavechanneloptions">
-    <title><ph keyref="LeaveChannelOptions" /></title>
-    <shortdesc id="short"><ph id="shortdesc">离开频道的选项。</ph></shortdesc>
+    <title><ph keyref="LeaveChannelOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置离开频道时的操作选项。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -24,29 +24,26 @@
     this.stopMicrophoneRecording = true;
   }
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLeaveChannelOptions : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraLeaveChannelOptions : NSObject
 @property(nonatomic, assign) BOOL stopAudioMixing;
 @property(nonatomic, assign) BOOL stopAllEffect;
 @property(nonatomic, assign) BOOL stopMicrophoneRecording;
-
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct LeaveChannelOptions {
   bool stopAudioMixing;
   bool stopAllEffect;
   bool stopMicrophoneRecording;
-  LeaveChannelOptions() : stopAudioMixing(true), stopAllEffect(true), stopMicrophoneRecording(true) {}
-};
-</codeblock>
+};</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FLeaveChannelOptions
 {
 	GENERATED_BODY()
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LeaveChannelOptions&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|LeaveChannelOptions")
 	bool stopAudioMixing = true;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LeaveChannelOptions&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|LeaveChannelOptions")
 	bool stopAllEffect = true;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LeaveChannelOptions&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|LeaveChannelOptions")
 	bool stopMicrophoneRecording = true;
 	
 	FLeaveChannelOptions() {}
@@ -108,35 +105,74 @@ public:
       _$LeaveChannelOptionsFromJson(json);
   Map&lt;String, dynamic&gt; toJson() =&gt; _$LeaveChannelOptionsToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry>
-                <pt>stopAudioMixing</pt>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">stopAudioMixing</pt>
                 <pd>离开频道时，是否停止播放音乐文件及混音：
                     <ul id="ul_ttv_f2n_3qb">
-                    <li><codeph><ph keyref="true" /></codeph>：（默认）停止播放音乐文件及混音。</li>
-                    <li><codeph><ph keyref="false" /></codeph>： 不停止播放音乐文件及混音。</li>
+                    <li><codeph><ph keyref="true"/></codeph>：（默认）停止播放音乐文件及混音。</li>
+                    <li><codeph><ph keyref="false"/></codeph>： 不停止播放音乐文件及混音。</li>
                     </ul> </pd>
-            </plentry>
-            <plentry>
-                <pt>stopAllEffect</pt>
+                <pd props="android">是否在用户离开频道时停止播放和混音音乐文件。
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：（默认）停止播放和混音音乐文件。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不停止播放和混音音乐文件。</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">用户离开频道时是否停止播放和混音音乐文件。
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：（默认）停止播放和混音音乐文件。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不停止播放和混音音乐文件。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp">用户离开频道时是否停止播放和混音音乐文件。</pd>
+                </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">stopAllEffect</pt>
                 <pd>离开频道时，是否停止播放音效：
                     <ul id="ul_tgl_m2n_3qb">
-                    <li><codeph><ph keyref="true" /></codeph>：（默认）停止播放音效。</li>
-                    <li><codeph><ph keyref="false" /></codeph>： 不停止播放音效。</li>
+                    <li><codeph><ph keyref="true"/></codeph>：（默认）停止播放音效。</li>
+                    <li><codeph><ph keyref="false"/></codeph>： 不停止播放音效。</li>
                     </ul></pd>
-            </plentry>
-            <plentry>
-                <pt>stopMicrophoneRecording</pt>
+                <pd props="android">是否在用户离开频道时停止播放所有音效。
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：（默认）停止播放所有音效。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不停止播放任何音效。</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">用户离开频道时是否停止播放所有音效。
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：（默认）停止播放所有音效。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不停止播放任何音效。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp">用户离开频道时是否停止播放所有音效。</pd>
+                </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">stopMicrophoneRecording</pt>
                 <pd>离开频道时，是否停止麦克风采集：                    
                     <ul id="ul_dy1_s2n_3qb">
-                    <li><codeph><ph keyref="true" /></codeph>：（默认）停止麦克风采集。</li>
-                    <li><codeph><ph keyref="false" /></codeph>： 不停止麦克风采集。</li>
+                    <li><codeph><ph keyref="true"/></codeph>：（默认）停止麦克风采集。</li>
+                    <li><codeph><ph keyref="false"/></codeph>： 不停止麦克风采集。</li>
                     </ul></pd>
-            </plentry>
+                <pd props="android">是否在用户离开频道时停止麦克风录制。
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：（默认）停止麦克风录制。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不停止麦克风录制。</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">用户离开频道时是否停止麦克风录制。
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：（默认）停止麦克风录制。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不停止麦克风录制。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp">用户离开频道时是否停止麦克风录制。</pd>
+                </plentry>
             </parml> </section>
     </refbody>
 </reference>

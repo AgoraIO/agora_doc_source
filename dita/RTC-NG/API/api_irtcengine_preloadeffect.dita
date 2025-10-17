@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_preloadeffect">
-    <title><ph keyref="preloadEffect" /></title>
-    <shortdesc id="short"><ph id="shortdesc">将音效文件加载至内存。</ph></shortdesc>
+    <title><ph keyref="preloadEffect"/></title>
+    <shortdesc id="short"><ph id="shortdesc">将指定的音效文件预加载到内存中。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="preloadEffect" />
+                <indexterm keyref="preloadEffect"/>
             </keywords>
         </metadata>
     </prolog>
@@ -14,12 +14,11 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int preloadEffect(int soundId, String filePath);</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)preloadEffect:(int)soundId
-            filePath:(NSString* _Nonnull)filePath;
-</codeblock>
+             filePath:(NSString* _Nonnull)filePath NS_SWIFT_NAME(preloadEffect(_:filePath:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int preloadEffect(int soundId, const char* filePath, int startPos = 0) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	int PreloadEffect(int soundId, const FString &amp; filePath, int startPos);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract preloadEffect(
     soundId: number,
@@ -34,12 +33,19 @@
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; preloadEffect(
     {required int soundId, required String filePath, int startPos = 0});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p>为保证通信畅通，请注意控制预加载音效文件的大小。</p>
+            <p>确保所有预加载文件的总大小不超过限制。关于该方法支持的音频文件格式，详见 <codeph>What formats of audio files does the Agora RTC SDK support</codeph>。
+                    <codeph>What formats of audio files does the Agora RTC SDK support</codeph>。
+                    <ul>
+                        <li>如果在调用 <xref keyref="playEffect3"/> 之前调用了 <xref keyref="preloadEffect"/>，则 <xref keyref="playEffect3"/> 执行后不会关闭该文件资源。下次调用 <xref keyref="playEffect3"/> 时会从头开始播放。</li>
+                        <li>如果在调用 <xref keyref="playEffect3"/> 之前未调用 <xref keyref="preloadEffect"/>，则 <xref keyref="playEffect3"/> 执行后会销毁该资源。下次调用 <xref keyref="playEffect3"/> 时会尝试重新打开文件并从头播放。</li>
+                        </ul>
+                    </p>
             <p id="audioFormats">该方法支持的预加载音频文件的格式见 <xref keyref="audio-format">RTC SDK 支持播放哪些格式的音频文件</xref>。</p>
-        </section>
+        <note type="attention" props="apple">声网建议你在加入频道前调用该方法。</note>
+            </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p>声网建议在加入频道前调用该方法。</p>
@@ -53,30 +59,48 @@
             <parml>
             <plentry>
                 <pt>soundId</pt>
-                <pd id="soundId">音效的 ID。每个音效的 ID 具有唯一性。</pd>
-            </plentry>
+                <pd id="soundId" props="android bp cs electron flutter mac rn unity unreal">音效的 ID。每个音效的 ID 具有唯一性。</pd>
+            <pd props="cpp ios">音效 ID。每个音效文件的 ID 必须唯一。</pd>
+                </plentry>
             <plentry id="filePath">
                 <pt>filePath</pt>
-                <pd>文件路径：
+                <pd props="android bp cs electron flutter mac rn unity unreal">文件路径：
                     <ul>
-                    <li props="android flutter unity cpp unreal bp rn">Android: 文件路径，需精确到文件名及后缀。支持在线文件的 URL 地址，本地文件的 URI 地址、绝对路径或以 <codeph>/assets/</codeph> 开头的路径。通过绝对路径访问本地文件可能会遇到权限问题，建议使用 URI 地址访问本地文件。例如 <codeph>content://com.android.providers.media.documents/document/audio%3A14441</codeph>。</li>
-                    <li props="cpp unreal bp flutter unity electron cs">Windows: 音频文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如 <codeph>C:\music\audio.mp4</codeph>。</li>
-                    <li props="cpp unreal ios mac flutter unity">iOS 或 macOS: 音频文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如 <codeph>/var/mobile/Containers/Data/audio.mp4</codeph>。</li>
+                    <li props="android bp cpp flutter rn unity unreal">Android: 文件路径，需精确到文件名及后缀。支持在线文件的 URL 地址，本地文件的 URI 地址、绝对路径或以 <codeph>/assets/</codeph> 开头的路径。通过绝对路径访问本地文件可能会遇到权限问题，建议使用 URI 地址访问本地文件。例如 <codeph>content://com.android.providers.media.documents/document/audio%3A14441</codeph>。</li>
+                    <li props="bp cpp cs electron flutter unity unreal">Windows: 音频文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如 <codeph>C:\music\audio.mp4</codeph>。</li>
+                    <li props="apple cpp flutter unity unreal">iOS 或 macOS: 音频文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如 <codeph>/var/mobile/Containers/Data/audio.mp4</codeph>。</li>
                     <li props="rn">iOS : 音频文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如 <codeph>/var/mobile/Containers/Data/audio.mp4</codeph>。</li>
                     <li props="electron">macOS: 音频文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如 <codeph>/var/mobile/Containers/Data/audio.mp4</codeph>。</li>
                     </ul></pd>
-            </plentry>
-            <plentry props="unity rn electron flutter cs cpp unreal">
-                <pt>startPos</pt>
-                <pd>音效文件加载的起始位置，单位为毫秒。</pd>
-            </plentry>
-            </parml> </section>
-        <section id="return_values">
+            <pd props="ios">文件路径：
+                    <ul>
+                        <li>iOS 或 macOS：音效文件的绝对路径或 URL 地址（包括文件名后缀）。例如：<ph keyref="filePath-example"/>。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp">文件路径：
+                    <ul>
+                        <li>Windows：音效文件的绝对路径或 URL 地址（包括文件名后缀），例如：<ph keyref="filePath-example"/>。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="cpp cs electron flutter rn unity unreal">
+                <pt props="cpp cs electron flutter rn unity unreal">startPos</pt>
+                <pd props="android apple bp cs electron flutter rn unity unreal">音效文件加载的起始位置，单位为毫秒。</pd>
+            <pd props="cpp">音效文件的播放起始位置（单位为毫秒）。</pd>
+                </plentry>
+        </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp electron unity rn cs">
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="android bp cs electron rn unity unreal">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
-            </ul> </section>
+            </ul>
+        <p props="apple cpp"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+        </section>
     </refbody>
 </reference>

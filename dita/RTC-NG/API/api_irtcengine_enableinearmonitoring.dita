@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enableinearmonitoring">
     <title><ph keyref="enableInEarMonitoring"/></title>
-    <shortdesc id="short"><ph id="shortdesc">开启耳返功能。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">启用或关闭耳返功能。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,24 +14,19 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int enableInEarMonitoring(boolean enabled);</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableInEarMonitoring:(BOOL)enabled;</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableInEarMonitoring:(BOOL)enabled NS_SWIFT_NAME(enable(inEarMonitoring:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp"/>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity cs" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
            <codeblock props="flutter" outputclass="language-dart"/> 
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <dl outputclass="since"  props="mac">
-                <dlentry>
-                    <dt>自从</dt>
-                    <dd>v4.0.1</dd>
-                </dlentry>
-            </dl>
-            <p conkeyref="enableInEarMonitoring2/desc"/>
-        </section>
+            <p conkeyref="enableInEarMonitoring2/desc">该方法用于启用或关闭耳返功能。你可以在加入频道前或加入频道后调用该方法。</p>
+            <note type="attention" props="apple">你必须使用有线或蓝牙耳机才能听到耳返效果。</note>
+            </section>
         <section id="timing" deliveryTarget="details" conkeyref="enableInEarMonitoring2/timing"/>
         <section id="restriction" deliveryTarget="details" conkeyref="enableInEarMonitoring2/restriction"/>
         <section id="parameters" deliveryTarget="details">
@@ -41,13 +36,33 @@
                 <pt/>
                 <pd/>
             </plentry>
-            </parml> </section>
+            <plentry props="ios">
+                <pt props="ios">enabled</pt>
+                <pd props="ios">是否启用耳返功能。
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：启用耳返功能。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）关闭耳返功能。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+        </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <ul>
+        <ul>
                 <li>0: 方法调用成功。</li>
                 <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph>
-                <ul><li>- 8: 请确保当前的音频路由为蓝牙或耳机。</li></ul></li></ul>
-            </section>
+                <ul><li><ul>
+                        <li>8: 请确保当前的音频路由为蓝牙或耳机。</li>
+                        </ul>
+                    </li></ul></li></ul>
+        <p props="apple"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。<ul>
+                            <li>-8：请确保当前音频路由为蓝牙或耳机。</li>
+                            </ul>
+                        </li>
+                        </ul>
+                    </p>
+        </section>
         </refbody>
 </reference>

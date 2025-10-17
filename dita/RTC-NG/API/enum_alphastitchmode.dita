@@ -1,17 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_alphastitchmode">
     <title><ph keyref="ALPHA_STITCH_MODE"/></title>
-    <shortdesc id="short"><ph id="shortdesc"><parmname>alphaBuffer</parmname> 和视频帧的相对位置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc"><codeph>alphaBuffer</codeph> 与视频帧之间的相对位置。</ph></shortdesc>
     <refbody>
         <section id="detailed_desc">
-            <dl outputclass="since">
-                <dlentry props="android apple cpp">
-                    <dt>自从</dt>
-                    <dd>v4.4.0</dd>
-                </dlentry>
-            </dl>
-        </section>
+            </section>
         <section id="parameters">
             <title>枚举值</title>
             <parml>
@@ -35,6 +29,26 @@
                     <pt><ph keyref="ALPHA_STITCH_RIGHT"/></pt>
                     <pd>4：<parmname>alphaBuffer</parmname> 位于视频帧的右侧。</pd>
                 </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraNoAlphaStitch"/></pt>
+                <pd props="apple">（0）：（默认）仅包含视频帧，即 <codeph>alphaBuffer</codeph> 未与视频帧拼接。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraAlphaStitchUp"/></pt>
+                <pd props="apple">（1）：<codeph>alphaBuffer</codeph> 位于视频帧上方。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraAlphaStitchBelow"/></pt>
+                <pd props="apple">（2）：<codeph>alphaBuffer</codeph> 位于视频帧下方。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraAlphaStitchLeft"/></pt>
+                <pd props="apple">（3）：<codeph>alphaBuffer</codeph> 位于视频帧左侧。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraAlphaStitchRight"/></pt>
+                <pd props="apple">（4）：<codeph>alphaBuffer</codeph> 位于视频帧右侧。</pd>
+            </plentry>
             </parml>
         </section></refbody>
 </reference>

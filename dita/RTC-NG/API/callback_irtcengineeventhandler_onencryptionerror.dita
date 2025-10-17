@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onencryptionerror">
-    <title><ph keyref="onEncryptionError" /></title>
-    <shortdesc id="short"><ph id="shortdesc">内置加密出错回调。</ph></shortdesc>
+    <title><ph keyref="onEncryptionError"/></title>
+    <shortdesc id="short"><ph id="shortdesc">报告内置加密错误的回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onEncryptionError" />
+                <indexterm keyref="onEncryptionError"/>
             </keywords>
         </metadata>
     </prolog>
@@ -15,13 +15,9 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onEncryptionError(int errorType) {}</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">onEncryptionError?:(errorType:Constants.EncryptionError) =&gt; void;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
-                    didOccurEncryptionError:(AgoraEncryptionErrorType)errorType;</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onEncryptionError(ENCRYPTION_ERROR_TYPE errorType) {
-  (void)errorType;
-}
-</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didOccurEncryptionError:(AgoraEncryptionErrorType)errorType NS_SWIFT_NAME(rtcEngine(_:didOccur:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onEncryptionError(ENCRYPTION_ERROR_TYPE errorType)</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = "Agora|Event")
 	void OnEncryptionError(EENCRYPTION_ERROR_TYPE errorType);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onEncryptionError?(
     connection: RtcConnection,
@@ -34,29 +30,39 @@
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, EncryptionErrorType errorType)?
       onEncryptionError;</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
-            <p>调用 <xref keyref="enableEncryption" /> 开启加密后， 如果发流端、收流端出现加解密出错，SDK 会触发该回调。</p>
-        </section>
+            <p>当通过调用 <xref keyref="enableEncryption"/> 启用加密功能后，如果在发送端或接收端的加密或解密过程中发生错误，SDK 会触发该回调。<xref keyref="enableEncryption"/> 启用加密功能后，如果在发送端或接收端的加密或解密过程中发生错误，SDK 会触发该回调。<xref keyref="enableEncryption"/> 开启加密后， 如果发流端、收流端出现加解密出错，SDK 会触发该回调。</p>
+            </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt />
-                <pd />
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="apple">
+                <pt/>
+                <pd/>
             </plentry>
-            <plentry props="unity electron rn flutter cs">
+            <plentry props="cs electron flutter rn unity">
                 <pt>connection</pt>
-                <pd>Connection 信息。详见 <xref keyref="RtcConnection" />。</pd>
+                <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
             </plentry>
-            <plentry props="hmos ios mac cpp unreal bp unity electron rn flutter cs">
-                <pt>errorType</pt>
-                <pd>错误类型，详见 <xref keyref="ENCRYPTION_ERROR_TYPE" />。</pd>
-            </plentry>
-            <plentry props="android">
-                <pt>errorType</pt>
-                <pd>错误类型。
+            <plentry props="bp cs electron flutter hmos native rn unity unreal">
+                <pt props="bp cs electron flutter hmos native rn unity unreal">errorType</pt>
+                <pd props="bp cs electron flutter mac rn unity unreal">错误类型，详见 <xref keyref="ENCRYPTION_ERROR_TYPE"/>。</pd>
+            <pd props="android">错误类型：
+                    <ul>
+                        <li><ph keyref="ENCRYPTION_ERROR_INTERNAL_FAILURE"/> (0)：内部错误。</li>
+                        <li><ph keyref="ENCRYPTION_ERROR_DECRYPTION_FAILURE"/> (1)：媒体流解密失败。请确保接收端和发送端使用相同的加密模式和密钥。</li>
+                        <li><ph keyref="ENCRYPTION_ERROR_ENCRYPTION_FAILURE"/> (2)：媒体流加密失败。</li>
+                        <li><ph keyref="ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE"/> (3)：数据流解密失败。请确保接收端和发送端使用相同的加密模式和密钥。</li>
+                        <li><ph keyref="ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE"/> (4)：数据流加密失败。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp ios">错误类型的详细信息，详见 <xref keyref="ENCRYPTION_ERROR_TYPE"/>。</pd>
+                </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">errorType</pt>
+                <pd props="bp cs electron flutter mac rn unity unreal">错误类型。
                 <ul>
                     <li><ph keyref="ENCRYPTION_ERROR_INTERNAL_FAILURE"/> (0): 内部原因。</li>
                     <li><ph keyref="ENCRYPTION_ERROR_DECRYPTION_FAILURE"/> (1): 媒体流解密错误。请确保接收端和发送端使用的加密模式或密钥一致。</li>
@@ -64,7 +70,21 @@
                     <li><ph keyref="ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE"/> (3): 数据流解密错误。请确保接收端和发送端使用的加密模式或密钥一致。</li>
                     <li><ph keyref="ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE"/> (4): 数据流加密错误。</li>
                 </ul></pd>
-            </plentry>
-            </parml> </section>
+            <pd props="android">错误类型：
+                    <ul>
+                        <li><ph keyref="ENCRYPTION_ERROR_INTERNAL_FAILURE"/> (0)：内部错误。</li>
+                        <li><ph keyref="ENCRYPTION_ERROR_DECRYPTION_FAILURE"/> (1)：媒体流解密失败。请确保接收端和发送端使用相同的加密模式和密钥。</li>
+                        <li><ph keyref="ENCRYPTION_ERROR_ENCRYPTION_FAILURE"/> (2)：媒体流加密失败。</li>
+                        <li><ph keyref="ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE"/> (3)：数据流解密失败。请确保接收端和发送端使用相同的加密模式和密钥。</li>
+                        <li><ph keyref="ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE"/> (4)：数据流加密失败。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp ios">错误类型的详细信息，详见 <xref keyref="ENCRYPTION_ERROR_TYPE"/>。</pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">engine</pt>
+                <pd props="ios"><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+        </parml> </section>
     </refbody>
 </reference>

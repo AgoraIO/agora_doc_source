@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onaudiodevicevolumechanged">
     <title><ph keyref="onAudioDeviceVolumeChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc">音频设备或 App 的音量发生改变回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">音频设备或 App 音量变化回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,56 +14,51 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
             <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onAudioDeviceVolumeChanged(MEDIA_DEVICE_TYPE deviceType, int volume, bool muted) {
-    (void)deviceType;
-    (void)volume;
-    (void)muted;
-  }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
-	void OnAudioDeviceVolumeChanged(FENUMWRAP_MEDIA_DEVICE_TYPE deviceType, int volume, bool muted);</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">  onAudioDeviceVolumeChanged?(
-    deviceType: MediaDeviceType,
-    volume: number,
-    muted: boolean
-  ): void;</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnAudioDeviceVolumeChanged(MEDIA_DEVICE_TYPE deviceType, int volume, bool muted)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">  onAudioDeviceVolumeChanged?(
-    deviceType: MediaDeviceType,
-    volume: number,
-    muted: boolean
-  ): void;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">final void Function(MediaDeviceType deviceType, int volume, bool muted)?
-      onAudioDeviceVolumeChanged;</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onAudioDeviceVolumeChanged(MEDIA_DEVICE_TYPE deviceType, int volume, bool muted)</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
-        <section id="detailed_desc">
-            <p>当音频播放、采集设备或 App 的音量发生改变时，会触发该回调。</p>
-            <note props="cpp unreal bp unity flutter">该回调仅适用于 Windows 和 macOS。</note>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p/>
         </section>
-        <section id="parameters">
-            <title><ph keyref="callback-section-title"/></title>
+        <section id="restriction" deliveryTarget="details">
+            <title>使用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
             <parml>
-            <plentry>
-                <pt>deviceType</pt>
-                <pd>设备类型定义。详见 <xref keyref="MEDIA_DEVICE_TYPE"/>。</pd>
+            <plentry props="cpp">
+                <pt props="cpp">deviceType</pt>
+                <pd props="cpp">设备类型，详见 <xref keyref="MEDIA_DEVICE_TYPE"/>。</pd>
             </plentry>
-            <plentry>
-                <pt>volume</pt>
-                <pd>音量。范围为 [0,255]。</pd>
+            <plentry props="cpp">
+                <pt props="cpp">volume</pt>
+                <pd props="cpp">音量值，范围为 [0, 255]。</pd>
             </plentry>
-            <plentry>
-                <pt>muted</pt>
-                <pd>
-                    <p>音频设备是否为静音状态：
-                    
+            <plentry props="cpp">
+                <pt props="cpp">muted</pt>
+                <pd props="cpp">音频设备是否静音：
                     <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: 音频设备已静音。</li>
-                    <li><codeph><ph keyref="false"/></codeph>: 音频设备未被静音。</li>
-                    </ul></p>
-                </pd>
+                        <li><codeph><ph keyref="true"/></codeph>：音频设备已静音。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：音频设备未静音。</li>
+                        </ul>
+                    </pd>
             </plentry>
             </parml> </section>
+        <section id="return_values" props="bp electron flutter rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
+        <ul props="android apple bp electron rn unity unreal">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul>
+    </section>
     </refbody>
 </reference>

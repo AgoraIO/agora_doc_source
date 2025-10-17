@@ -1,27 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onremotesubscribefallbacktoaudioonly">
-    <title> <ph keyref="onRemoteSubscribeFallbackToAudioOnly" /> </title>
-    <shortdesc id="short"> <ph id="shortdesc">订阅流已回退为音频流或恢复为音视频流回调。</ph> </shortdesc>
+    <title> <ph keyref="onRemoteSubscribeFallbackToAudioOnly"/> </title>
+    <shortdesc id="short"> <ph id="shortdesc">远端媒体流因网络变化降级为纯音频或恢复为视频时触发的回调。</ph> </shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onRemoteSubscribeFallbackToAudioOnly" />
+                <indexterm keyref="onRemoteSubscribeFallbackToAudioOnly"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public void onRemoteSubscribeFallbackToAudioOnly(int uid, boolean isFallbackOrRecover) {}</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
-    didRemoteSubscribeFallbackToAudioOnly:(BOOL)isFallbackOrRecover byUid:(NSUInteger)uid;</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onRemoteSubscribeFallbackToAudioOnly(uid_t uid, bool isFallbackOrRecover) {
-    (void)uid;
-    (void)isFallbackOrRecover;
-    }</codeblock>
-           <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+            <codeblock props="android" outputclass="language-java">public void onRemoteSubscribeFallbackToAudioOnly(int uid, boolean isFallbackOrRecover)</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didRemoteSubscribeFallbackToAudioOnly:(BOOL)isFallbackOrRecover byUid:(NSUInteger)uid NS_SWIFT_NAME(rtcEngine(_:didRemoteSubscribeFallbackToAudioOnly:byUid:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onRemoteSubscribeFallbackToAudioOnly(uid_t uid, bool isFallbackOrRecover)</codeblock>
+           <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = "Agora|Event")
 	void OnRemoteSubscribeFallbackToAudioOnly(int64 uid, bool isFallbackOrRecover);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onRemoteSubscribeFallbackToAudioOnly?(
     uid: number,
@@ -34,35 +30,66 @@
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">  final void Function(int uid, bool isFallbackOrRecover)?
       onRemoteSubscribeFallbackToAudioOnly;</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
-            <p>当你调用了 <xref keyref="setRemoteSubscribeFallbackOption"/> 并将 <parmname>option</parmname> 设置为 <apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/> 后，该回调会在下列情况时被触发：
+            <p>如果你调用了 <xref keyref="setRemoteSubscribeFallbackOption"/> 并将 <codeph>option</codeph> 设置为 <ph keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/>，当以下任一情况发生时，SDK 会触发该回调：
+                    <xref keyref="setRemoteSubscribeFallbackOption"/> 并将 <codeph>option</codeph> 设置为 <xref keyref="setRemoteSubscribeFallbackOption"/> 并将 <parmname>option</parmname> 设置为 <apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/> 后，该回调会在下列情况时被触发：
                 <ul>
                     <li>下行网络环境较差，订阅的音视频流回退为音频流</li>
                     <li>下行网络环境改善，订阅音频流恢复为音视频流</li>
-                </ul></p>
+                </ul><ul>
+                        <li>下行网络条件较差，已订阅的视频流被降级为纯音频流；</li>
+                        <li>下行网络条件改善，已订阅的媒体流恢复为视频流。</li>
+                        </ul>
+                    </p>
             <note type="attention">订阅流因弱网环境而回退为视频小流时，你可以通过 <xref keyref="onRemoteVideoStats"/> 回调来监控远端视频大小流的切换。</note>
+        <note type="attention" props="cpp">当远端媒体流因网络较差切换为低质量视频流时，你可以通过 <xref keyref="onRemoteVideoStats"/> 回调监控高质量与低质量视频流之间的切换。</note>
+            <note type="attention" props="android apple">当远端媒体流因网络较弱切换为低质量视频流时，你可以通过 <xref keyref="onRemoteVideoStats"/> 回调监控高质量与低质量视频流之间的切换。</note>
+            </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>当远端媒体流因网络不佳降级为纯音频流，或在网络改善后恢复为视频流时触发。</p>
         </section>
         <section id="parameters">
-            <title> <ph keyref="callback-section-title" /> </title>
+            <title> <ph keyref="callback-section-title"/> </title>
             <parml>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt />
-                <pd />
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="apple">
+                <pt/>
+                <pd/>
             </plentry>
             <plentry id="uid">
                 <pt>uid</pt>
-                <pd>远端用户的用户 ID。</pd>
-            </plentry>
+                <pd props="bp cs electron flutter mac rn unity unreal">远端用户的用户 ID。</pd>
+            <pd props="android cpp ios">远端用户 ID。</pd>
+                </plentry>
             <plentry id="isFallbackOrRecover">
                 <pt>isFallbackOrRecover</pt>
-                <pd>
+                <pd props="bp cs electron flutter mac rn unity unreal">
                     <ul>
-                    <li><codeph><ph keyref="true" /></codeph>: 由于网络环境不理想，订阅流已回退为音频流。</li>
-                    <li><codeph><ph keyref="false" /></codeph>: 由于网络环境改善，订阅流已恢复为音视频流。</li>
+                    <li><codeph><ph keyref="true"/></codeph>: 由于网络环境不理想，订阅流已回退为音频流。</li>
+                    <li><codeph><ph keyref="false"/></codeph>: 由于网络环境改善，订阅流已恢复为音视频流。</li>
                     </ul> </pd>
-            </plentry>
-            </parml> </section>
+            <pd props="android"><ul>
+                        <li><codeph><ph keyref="true"/></codeph>：已订阅的媒体流因网络不佳降级为纯音频流。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：网络状况改善后，已订阅的媒体流恢复为视频流。</li>
+                        </ul>
+                    </pd>
+                <pd props="ios"><ul>
+                        <li><codeph><ph keyref="true"/></codeph>：订阅的媒体流因网络不佳降级为纯音频流。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：订阅的媒体流在网络改善后恢复为视频流。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp"><ul>
+                        <li><codeph><ph keyref="true"/></codeph>：由于网络条件差，已订阅的媒体流降级为纯音频流。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：网络条件改善后，已订阅的媒体流恢复为视频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">engine</pt>
+                <pd props="ios">声网引擎实例。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+        </parml> </section>
     </refbody>
 </reference>

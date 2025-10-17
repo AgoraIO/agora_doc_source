@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_virtualbackgroundsource">
-    <title><ph keyref="VirtualBackgroundSource" /></title>
-    <shortdesc id="short"><ph id="shortdesc">自定义的背景。</ph></shortdesc>
+    <title><ph keyref="VirtualBackgroundSource"/></title>
+    <shortdesc id="short"><ph id="shortdesc">自定义背景。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -60,13 +60,12 @@
   
   public blurDegree:number = VirtualBackgroundSource.BLUR_DEGREE_HIGH;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVirtualBackgroundSource : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraVirtualBackgroundSource : NSObject
 @property(nonatomic, assign) AgoraVirtualBackgroundSourceType backgroundSourceType NS_SWIFT_NAME(backgroundSourceType);
 @property(nonatomic, assign) NSUInteger color NS_SWIFT_NAME(color);
 @property(nonatomic, copy) NSString* _Nullable source NS_SWIFT_NAME(source);
 @property(nonatomic, assign) AgoraBlurDegree blurDegree;
-@end
-</codeblock>
+@end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct VirtualBackgroundSource {
     enum BACKGROUND_SOURCE_TYPE {
     BACKGROUND_NONE = 0,
@@ -91,13 +90,13 @@ struct FVirtualBackgroundSource
 {
 	GENERATED_BODY()
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VirtualBackgroundSource&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|VirtualBackgroundSource")
 	EBACKGROUND_SOURCE_TYPE background_source_type = EBACKGROUND_SOURCE_TYPE::BACKGROUND_COLOR;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VirtualBackgroundSource&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|VirtualBackgroundSource")
 	int64 color = 0xffffff;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VirtualBackgroundSource&quot;)
-	FString source = &quot;&quot;;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VirtualBackgroundSource&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|VirtualBackgroundSource")
+	FString source = "";
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|VirtualBackgroundSource")
 	EBACKGROUND_BLUR_DEGREE blur_degree = EBACKGROUND_BLUR_DEGREE::BLUR_DEGREE_HIGH;
 	FVirtualBackgroundSource(){}
 	FVirtualBackgroundSource(const agora::rtc::VirtualBackgroundSource &amp; AgoraData){
@@ -168,49 +167,57 @@ public:
       _$VirtualBackgroundSourceFromJson(json);
   Map&lt;String, dynamic&gt; toJson() =&gt; _$VirtualBackgroundSourceToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
-                <pt props="android hmos ios mac flutter">backgroundSourceType</pt>
-                <pt props="unity cpp unreal bp electron rn cs">background_source_type</pt>
-                <pd><ph>自定义的背景。</ph><ph props="ios mac cpp unreal bp unity flutter electron rn cs">详见 <xref keyref="BACKGROUND_SOURCE_TYPE" />。</ph>
+                <pt props="android apple flutter hmos">backgroundSourceType</pt>
+                <pt props="bp cpp cs electron rn unity unreal">background_source_type</pt>
+                <pd><ph>自定义的背景。</ph><ph props="apple bp cpp cs electron flutter rn unity unreal">详见 <xref keyref="BACKGROUND_SOURCE_TYPE"/>。</ph>
                     <ul props="android hmos">
-                    <li><ph keyref="BACKGROUND_NONE" />(0)：将背景处理为 Alpha 数据，不进行替换，仅分割人像和背景。设置后，你可以调用 <xref keyref="startLocalVideoTranscoder"/>，实现人像画中画的效果。</li>
-                    <li><ph keyref="BACKGROUND_COLOR" />(1)：（默认）背景为纯色。</li>
-                    <li><ph keyref="BACKGROUND_IMG" />(2)：背景为 PNG、JPG 格式的图片。</li>
-                    <li><ph keyref="BACKGROUND_BLUR" />(3)：背景为虚化处理后的背景。</li>
-                    <li><ph keyref="BACKGROUND_VIDEO" />(4)：背景为 MP4、AVI、MKV、FLV 等格式的本地视频。</li>
+                    <li><ph keyref="BACKGROUND_NONE"/>(0)：将背景处理为 Alpha 数据，不进行替换，仅分割人像和背景。设置后，你可以调用 <xref keyref="startLocalVideoTranscoder"/>，实现人像画中画的效果。</li>
+                    <li><ph keyref="BACKGROUND_COLOR"/>(1)：（默认）背景为纯色。</li>
+                    <li><ph keyref="BACKGROUND_IMG"/>(2)：背景为 PNG、JPG 格式的图片。</li>
+                    <li><ph keyref="BACKGROUND_BLUR"/>(3)：背景为虚化处理后的背景。</li>
+                    <li><ph keyref="BACKGROUND_VIDEO"/>(4)：背景为 MP4、AVI、MKV、FLV 等格式的本地视频。</li>
                     </ul></pd>
             </plentry>
-            <plentry>
-                <pt>color</pt>
+            <plentry props="ios">
+                <pt props="ios">color</pt>
                 <pd>自定义的背景图颜色。格式为 RGB 定义下的十六进制整数，不带 # 号，如 0xFFB6C1 表示浅粉色。 默认值为 0xFFFFFF，表示白色。 取值范围为 [0x000000，0xffffff]。如果取值非法，SDK 会用白色背景图替换原背景图。
                     <note type="attention">该参数仅在自定义背景为以下类型时生效，具体效果如下：
                     <ul>
-                        <li><ph keyref="BACKGROUND_COLOR" />：背景图为该参数传入颜色的纯色图片。</li>
-                        <li><ph keyref="BACKGROUND_IMG" />：如果 <parmname>source</parmname> 中的图片使用了透明背景，则会使用该参数传入的颜色填充透明背景。</li>
+                        <li><ph keyref="BACKGROUND_COLOR"/>：背景图为该参数传入颜色的纯色图片。</li>
+                        <li><ph keyref="BACKGROUND_IMG"/>：如果 <parmname>source</parmname> 中的图片使用了透明背景，则会使用该参数传入的颜色填充透明背景。</li>
                     </ul>
                     </note></pd>
-            </plentry>
-            <plentry>
-                <pt>source</pt>
+                <pd props="ios">自定义背景图像的颜色。颜色格式为 RGB 十六进制整数，不带 # 符号，例如 0xFFB6C1 表示浅粉色。默认值为 0xFFFFFF，表示白色。取值范围为 [0x000000, 0xFFFFFF]。如果设置的值无效，SDK 会将原始背景图像替换为白色背景图像。该属性仅适用于以下类型的自定义背景：
+                    <ul>
+                        <li><ph keyref="AgoraVirtualBackgroundColor"/>：背景图像为传入颜色的纯色图像。</li>
+                        <li><ph keyref="AgoraVirtualBackgroundImg"/>：如果 <codeph>source</codeph> 中的图像具有透明背景，则透明部分将使用该属性指定的颜色填充。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">source</pt>
                 <pd>自定义背景的本地绝对路径。支持 PNG、JPG、MP4、 AVI、 MKV 和 FLV 格式。如果路径无效，SDK 会使用原背景图或 <parmname>color</parmname> 指定的纯色背景。
-                    <note type="attention">该参数仅在自定义背景图类型为 <ph keyref="BACKGROUND_IMG" /> 或 <ph keyref="BACKGROUND_VIDEO" /> 时生效。</note></pd>
-            </plentry>
-            <plentry>
-                <pt props="ios mac android hmos flutter">blurDegree</pt>
-                <pt props="cpp unreal bp unity electron rn cs">blur_degree</pt>
-                <pd><ph>自定义背景图的模糊程度。</ph><ph props="ios mac cpp unreal bp unity electron rn cs">详见 <xref keyref="BACKGROUND_BLUR_DEGREE" />。</ph>
+                    <note type="attention">该参数仅在自定义背景图类型为 <ph keyref="BACKGROUND_IMG"/> 或 <ph keyref="BACKGROUND_VIDEO"/> 时生效。</note></pd>
+                <pd props="ios">自定义背景图像的本地绝对路径。支持 PNG、JPG、MP4、AVI、MKV 和 FLV 格式。如果路径无效，SDK 会使用原始背景图像或由 <codeph>color</codeph> 指定的纯色图像。该属性仅在自定义背景类型为 <ph keyref="AgoraVirtualBackgroundImg"/> 或 <ph keyref="AgoraVirtualBackgroundVideo"/> 时生效。</pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="android apple flutter hmos ios">blurDegree</pt>
+                <pt props="bp cpp cs electron rn unity unreal">blur_degree</pt>
+                <pd><ph>自定义背景图的模糊程度。</ph><ph props="apple bp cpp cs electron rn unity unreal">详见 <xref keyref="BACKGROUND_BLUR_DEGREE"/>。</ph>
                     <ul props="android hmos">
-                    <li><ph keyref="BLUR_DEGREE_LOW" />(1)：自定义背景图的虚化程度为低。用户差不多能看清背景。</li>
-                    <li><ph keyref="BLUR_DEGREE_MEDIUM" />(2)：自定义背景图的虚化程度为中。用户较难看清背景。</li>
-                    <li><ph keyref="BLUR_DEGREE_HIGH" />(3)：（默认）自定义背景图的虚化程度为高。用户很难看清背景。</li>
+                    <li><ph keyref="BLUR_DEGREE_LOW"/>(1)：自定义背景图的虚化程度为低。用户差不多能看清背景。</li>
+                    <li><ph keyref="BLUR_DEGREE_MEDIUM"/>(2)：自定义背景图的虚化程度为中。用户较难看清背景。</li>
+                    <li><ph keyref="BLUR_DEGREE_HIGH"/>(3)：（默认）自定义背景图的虚化程度为高。用户很难看清背景。</li>
                     </ul>
-                    <note type="attention">该参数仅在自定义背景图类型为 <ph keyref="BACKGROUND_BLUR" /> 时生效。</note></pd>
-            </plentry>
+                    <note type="attention">该参数仅在自定义背景图类型为 <ph keyref="BACKGROUND_BLUR"/> 时生效。</note></pd>
+                <pd props="ios">应用于自定义背景图像的模糊程度，详见 <xref keyref="BACKGROUND_BLUR_DEGREE"/>。该属性仅在自定义背景类型为 <ph keyref="AgoraVirtualBackgroundBlur"/> 时生效。</pd>
+                </plentry>
             </parml> </section>
     </refbody>
 </reference>

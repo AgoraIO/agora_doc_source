@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_adjustuserplaybacksignalvolume">
-    <title><ph keyref="adjustUserPlaybackSignalVolume" /></title>
-    <shortdesc id="short"><ph id="shortdesc">调节本地播放的指定远端用户信号音量。</ph></shortdesc>
+    <title><ph keyref="adjustUserPlaybackSignalVolume"/></title>
+    <shortdesc id="short"><ph id="shortdesc">调节指定远端用户的播放信号音量。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="adjustUserPlaybackSignalVolume" />
+                <indexterm keyref="adjustUserPlaybackSignalVolume"/>
             </keywords>
         </metadata>
     </prolog>
@@ -15,23 +15,24 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int adjustUserPlaybackSignalVolume(int uid, int volume);</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">public abstract adjustUserPlaybackSignalVolume(uid:number,volume:number):number;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)adjustUserPlaybackSignalVolume:(NSUInteger)uid volume:(int)volume;</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int adjustUserPlaybackSignalVolume(unsigned int uid, int volume) = 0;</codeblock>
-            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)adjustUserPlaybackSignalVolume:(NSUInteger)uid volume:(int)volume NS_SWIFT_NAME(adjustUserPlaybackSignalVolume(_:volume:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int adjustUserPlaybackSignalVolume(uid_t uid, int volume) = 0;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	int AdjustUserPlaybackSignalVolume(int64 uid, int volume);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract adjustUserPlaybackSignalVolume(uid: number, volume: number): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int AdjustUserPlaybackSignalVolume(uint uid, int volume);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract adjustUserPlaybackSignalVolume(uid: number, volume: number): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; adjustUserPlaybackSignalVolume(
     {required int uid, required int volume});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p id="desc">你可以在通话中调用该方法调节指定远端用户在本地播放的音量。如需调节多个用户在本地播放的音量，则需多次调用该方法。</p>
-        </section>
+            <p id="desc">你可以调用该方法调节指定远端用户的播放音量。若需调节多个远端用户的播放音量，请分别多次调用该方法，每次针对一个远端用户。</p>
+            <note type="attention" props="apple">请在加入频道后调用此方法。此处的播放音量指的是指定远端用户的混音音量。</note>
+            </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p>该方法需要在加入频道后调用。</p>
+            <p>请在加入频道后调用该方法。</p>
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -42,19 +43,43 @@
             <parml>
             <plentry id="uid">
                 <pt>uid</pt>
-                <pd>远端用户 ID。</pd>
-            </plentry>
+                <pd props="bp cs electron flutter mac rn unity unreal">远端用户 ID。</pd>
+            <pd props="android cpp ios">远端用户的用户 ID。</pd>
+                </plentry>
             <plentry conkeyref="adjustRecordingSignalVolume/volume">
-                <pt />
-                <pd />
+                <pt/>
+                <pd/>
             </plentry>
-            </parml> </section>
-        <section id="return_values">
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">volume</pt>
+                <pd props="android cpp">用户的音量，取值范围为 [0, 400]：
+                    <ul>
+                        <li>0：静音。</li>
+                        <li>100：（默认）原始音量。</li>
+                        <li>400：原始音量的四倍（将音频信号放大四倍）。</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">指定远端用户的播放音量。取值范围为 [0, 400]：
+                    <ul>
+                        <li>0：静音。</li>
+                        <li>100：（默认）原始音量。</li>
+                        <li>400：原始音量的四倍（将音频信号放大四倍）。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+        </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp electron unity rn cs">
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cs electron rn unity unreal">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
-            </ul> </section>
+            </ul>
+        <p props="native"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+    </section>
         </refbody>
 </reference>

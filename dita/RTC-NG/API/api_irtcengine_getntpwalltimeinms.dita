@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_getntpwalltimeinms">
     <title><ph keyref="getNtpWallTimeInMs"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获取当前的 NTP (网络时间协议) 时间。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">获取当前的 NTP（网络时间协议）时间。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,30 +14,25 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract long getNtpWallTimeInMs();</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
             <codeblock props="ios mac" outputclass="language-objectivec">- (uint64_t)getNtpWallTimeInMs;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual uint64_t getNtpWallTimeInMs() = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	FString GetNtpWallTimeInMs();</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract getNtpWallTimeInMs(): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract UInt64 GetNtpWallTimeInMs();</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract getNtpWallTimeInMs(): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;int> getNtpWallTimeInMs();</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; getNtpWallTimeInMs();</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
             <title>详情</title>
-            <dl outputclass="since">
-            <dlentry props="android apple cpp">
-                <dt>自从</dt>
-                <dd>v4.2.0</dd>
-            </dlentry>
-            </dl>
-            <p>在实时合唱的场景中，特别是在各个接收端由于网络原因导致下行链路不一致的情况下，你可以调用该方法来获取当前的 NTP 时间作为基准时间，以对齐多个接收端的歌词和音乐，实现合唱同步。</p>
-        </section>
-        <section id="return_values">
+            <p>在实时合唱场景中，多个接收端可能因网络问题导致下行链路不一致。你可以调用该方法获取当前的 NTP 时间作为参考时间，从而对齐多个接收端的歌词和音乐，实现合唱同步。</p>
+            </section>
+        <section id="return_values" props="native">
             <title>返回值</title>
-            <p>当前 NTP 时间的 Unix 时间戳 (毫秒)。</p>
-        </section>
+        <p>当前 NTP 时间的 Unix 时间戳 (毫秒)。</p>
+        <p props="native">方法调用成功，返回当前 NTP 时间的 Unix 时间戳（毫秒）。</p>
+    </section>
     </refbody>
 </reference>

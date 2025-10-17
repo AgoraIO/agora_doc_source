@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setinearmonitoringvolume">
-    <title><ph keyref="setInEarMonitoringVolume" /></title>
+    <title><ph keyref="setInEarMonitoringVolume"/></title>
     <shortdesc id="short"><ph id="shortdesc">设置耳返音量。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setInEarMonitoringVolume" />
+                <indexterm keyref="setInEarMonitoringVolume"/>
             </keywords>
         </metadata>
     </prolog>
@@ -15,22 +15,22 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setInEarMonitoringVolume(int volume);</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">public abstract setInEarMonitoringVolume(volume: number): number;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setInEarMonitoringVolume:(NSInteger)volume;</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setInEarMonitoringVolume:(NSInteger)volume NS_SWIFT_NAME(setInEarMonitoringVolume(_:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setInEarMonitoringVolume(int volume) = 0;</codeblock>
-            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	int SetInEarMonitoringVolume(int volume);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setInEarMonitoringVolume(volume: number): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetInEarMonitoringVolume(int volume);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setInEarMonitoringVolume(volume: number): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setInEarMonitoringVolume(int volume);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p/>
-        </section>
+            <p></p>
+            </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p>加入频道前后均可调用。</p>
+            <p>该方法可以在加入频道前或加入频道后调用。</p>
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -40,19 +40,38 @@
             <title>参数</title>
             <parml>
             <plentry conkeyref="adjustRecordingSignalVolume/volume">
-                <pt />
-                <pd />
+                <pt/>
+                <pd/>
             </plentry>
-            </parml> </section>
-        <section id="return_values">
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">volume</pt>
+                <pd props="android cpp ios">用户的音量，取值范围为 [0, 400]。
+                    <ul>
+                        <li>0：静音。</li>
+                        <li>100：（默认）原始音量。</li>
+                        <li>400：原始音量的四倍（将音频信号放大四倍）。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+        </parml> </section>
+        <section id="return_values" props="bp cs flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp unity rn cs">
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cs rn unity unreal">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph>
                 <ul>
-                <li>-2: 参数设置无效，例如耳返音量超出取值范围 (&lt; 0 或 > 400)。</li>
+                <li>-2: 参数设置无效，例如耳返音量超出取值范围 (&lt; 0 或 &gt; 400)。</li>
                 </ul></li>
-            </ul> </section>
+            </ul>
+        <p props="native"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。<ul>
+                            <li>-2：参数设置无效，例如耳返音量超出有效范围（小于 0 或大于 400）。</li>
+                            </ul>
+                        </li>
+                        </ul>
+                    </p>
+    </section>
         </refbody>
 </reference>

@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_voicebeautifierpreset">
     <title><ph keyref="VOICE_BEAUTIFIER_PRESET"/></title>
-    <shortdesc id="short"><ph id="shortdesc">预设的美声效果选项。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">SDK 预设的声动语聊美声效果选项。</ph></shortdesc>
     <refbody>
         <section id="parameters">
    <title>枚举值</title>
@@ -80,6 +80,26 @@
                <li>如果用户的音频采集设备可以高度还原音频细节，建议你不要开启超高音质，否则 SDK 会过度还原音频细节，达不到预期效果。</li>
            </ul></pd>
        </plentry>
-   </parml>
+   <plentry props="apple">
+                <pt><ph keyref="AgoraVoiceBeautifierPresetSingingBeautifier"/></pt>
+                <pd props="apple">（0x01020100）：歌唱美声效果。<note type="attention" props="apple">调用 <xref keyref="setVoiceBeautifierPreset"/>（AgoraVoiceBeautifierPresetSingingBeautifier）时，可美化男性音色并添加类似在小房间中歌唱的混响效果。声网建议用于处理男性音色，否则可能会出现声音失真。调用 <xref keyref="setVoiceBeautifierParameters"/>（AgoraVoiceBeautifierPresetSingingBeautifier, param1, param2）时，可美化男性或女性音色并添加混响效果。</note></pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraVoiceBeautifierPresetChatBeautifierVitality"/></pt>
+                <pd props="apple">（0x01010300）：充满活力的声音。<note type="attention" props="apple">声网建议用于处理女性音色，否则可能会出现声音失真。</note></pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraVoiceBeautifierTimbreTransformationResounding"/></pt>
+                <pd props="apple">（0x01030700）：洪亮的声音。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraVoiceBeautifierTimbreTransformatRinging"/></pt>
+                <pd props="apple">（0x01030800）：清脆的声音。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraVoiceBeautifierUltraHighQuality"/></pt>
+                <pd props="apple">（0x01040100）：超高音质的声音，使音频更清晰并还原更多细节。<note type="attention" props="apple">为获得更好的音效质量，声网建议在调用 <xref keyref="setVoiceBeautifierPreset"/> 前，将 <xref keyref="setAudioProfile2"/> 的 <codeph>profile</codeph> 设置为 <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/>（4）或 <ph keyref="AgoraAudioProfileMusicHighQualityStereo"/>（5），并将 <codeph>scenario</codeph> 设置为 <ph keyref="AgoraAudioScenarioGameStreaming"/>（3）。如果您的音频采集设备已能高度还原音频细节，声网建议不要启用超高音质，否则 SDK 可能会过度还原音频细节，导致无法听到预期的声音效果。</note></pd>
+            </plentry>
+            </parml>
         </section></refbody>
 </reference>

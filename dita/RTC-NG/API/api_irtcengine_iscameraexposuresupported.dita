@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_iscameraexposuresupported">
-    <title><ph keyref="isCameraExposureSupported" /></title>
-    <shortdesc id="short"><ph id="shortdesc">查询当前摄像头是否支持曝光调节。</ph></shortdesc>
+    <title><ph keyref="isCameraExposureSupported"/></title>
+    <shortdesc id="short"><ph id="shortdesc">查询当前摄像头是否支持调节曝光值。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="isCameraExposureSupported" />
+                <indexterm keyref="isCameraExposureSupported"/>
             </keywords>
         </metadata>
     </prolog>
@@ -17,36 +17,65 @@
             <codeblock props="hmos" outputclass="language-arkts">public abstract isCameraExposureSupported(): boolean;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)isCameraExposureSupported NS_SWIFT_NAME(isCameraExposureSupported());</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual bool isCameraExposureSupported() = 0;</codeblock>
-           <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+           <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	bool IsCameraExposureSupported();</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"></codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract bool IsCameraExposureSupported();</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract isCameraExposureSupported(): boolean;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;bool> isCameraExposureSupported();</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;bool&gt; isCameraExposureSupported();</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section> 
         <section id="detailed_desc">
             <title>详情</title>
             <dl outputclass="since">
-            <dlentry props="android apple cpp">
-                <dt>自从</dt>
-                <dd>v4.2.2</dd>
+            <dlentry props="native">
+                <dt>自从：</dt>
+                <dd props="native">自 v4.2.2 版本新增。</dd>
             </dlentry>
             </dl>
             <note type="attention">
             <ul>
-                <li props="cpp unreal bp flutter unity">该方法仅适用于 Android 和 iOS。</li>
+                <li props="bp cpp flutter unity unreal">该方法仅适用于 Android 和 iOS。</li>
                 <li id="sequence">该方法必须在 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调，返回本地视频状态为 <apiname keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/> (1) 之后调用。</li>
                 <li>建议你在调用 <xref keyref="setCameraExposureFactor"/> 调节曝光系数前，先调用该方法查询当前摄像头是否支持曝光调节。</li>
                 <li>当你调用该方法时，查询的是当前正在使用的摄像头是否支持曝光调节，即调用 <xref keyref="setCameraCapturerConfiguration"/> 时指定的摄像头。</li>
             </ul></note>
-        </section>
-        <section id="return_values">
+        <note type="attention" props="cpp"><ul>
+                        <li>该方法仅适用于 Android 和 iOS 平台。</li>
+                        <li>必须在 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <ph keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/>（1）后调用该方法。</li>
+                        <li>在调用 <xref keyref="setCameraExposureFactor"/> 之前，建议先调用该方法查询当前摄像头是否支持调节曝光值。</li>
+                        <li>该方法会调节当前活跃摄像头的曝光值，即调用 <xref keyref="setCameraCapturerConfiguration"/> 时指定的摄像头。</li>
+                        </ul>
+                    </note>
+            <note type="attention" props="apple"><xref keyref="isCameraExposureSupported"/> 方法必须在 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <ph keyref="AgoraVideoLocalStateCapturing"/>（1）后调用。调用 <xref keyref="setCameraExposureFactor"/> 之前，建议先调用该方法查询当前摄像头是否支持调节曝光值。该方法用于调节当前活跃摄像头的曝光值，即调用 <xref keyref="setCameraCapturerConfiguration"/> 时指定的摄像头。</note>
+            <note type="attention" props="android"><ul>
+                        <li>你必须在 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <ph keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/>（1）后调用该方法。</li>
+                        <li>在调用 <xref keyref="setCameraExposureFactor"/> 之前，建议先调用该方法查询当前摄像头是否支持调节曝光值。</li>
+                        <li>该方法会查询当前激活摄像头的曝光调节能力，即调用 <xref keyref="setCameraCapturerConfiguration"/> 时指定的摄像头。</li>
+                        </ul>
+                    </note>
+            </section>
+        <section id="return_values" props="native">
             <title>返回值</title>
-            <ul>
+        <ul>
             <li><codeph><ph keyref="true"/></codeph>：方法调用成功。</li>
             <li><codeph><ph keyref="false"/></codeph>：方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
             </ul>
-        </section>
+        <p props="apple"><ul>
+                        <li><codeph><ph keyref="true"/></codeph>：查询成功，当前摄像头支持调节曝光值。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：查询失败，当前摄像头不支持调节曝光值。</li>
+                        </ul>
+                    </p>
+        <p props="cpp"><ul>
+                        <li><codeph><ph keyref="true"/></codeph>：查询成功，当前摄像头支持调节曝光值。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：查询失败，当前摄像头不支持调节曝光值或设备未初始化。</li>
+                        </ul>
+                    </p>
+        <p props="android"><ul>
+                        <li><codeph><ph keyref="true"/></codeph>：当前摄像头支持调节曝光值。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：当前摄像头不支持调节曝光值。</li>
+                        </ul>
+                    </p>
+    </section>
     </refbody>
 </reference>

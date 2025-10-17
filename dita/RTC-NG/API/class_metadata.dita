@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_metadata">
-    <title><ph keyref="Metadata" /></title>
-    <shortdesc id="short"><ph id="shortdesc">媒体附属信息。</ph></shortdesc>
+    <title><ph keyref="Metadata"/></title>
+    <shortdesc id="short"><ph id="shortdesc">媒体元数据。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" >public class AgoraMetadata {
+            <codeblock props="android" outputclass="language-java">public class AgoraMetadata {
   public String channelId;
   public int uid;
   public byte[] data;
@@ -27,8 +27,8 @@
     this.timeStampMs = timeStampMs;
   }
 }</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraMetadata) __attribute__((visibility("default"))) @interface AgoraMetadata : NSObject
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraMetadata : NSObject
 @property (copy, nonatomic) NSString* _Nonnull channelId NS_SWIFT_NAME(channelId);
 @property (assign, nonatomic) NSInteger uid NS_SWIFT_NAME(uid);
 @property (strong, nonatomic) NSData* _Nonnull data NS_SWIFT_NAME(data);
@@ -46,13 +46,13 @@
 struct FAgoraMetadata
 {
         GENERATED_BODY()
-        UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AgoraMetadata&quot;)
+        UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|AgoraMetadata")
         int64 uid;
-        UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AgoraMetadata&quot;)
+        UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|AgoraMetadata")
         int64 size;
-        UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AgoraMetadata&quot;)
+        UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|AgoraMetadata")
         TArray&lt;int64&gt; buffer;
-        UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AgoraMetadata&quot;)
+        UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|AgoraMetadata")
         int64 timeStampMs;
 };</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class Metadata
@@ -120,44 +120,52 @@ class Metadata {
 
   Map&lt;String, dynamic&gt; toJson() =&gt; _$MetadataToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry>
-                <pt>channelId</pt>
+            <plentry props="ios">
+                <pt props="ios">channelId</pt>
                 <pd>频道名称。</pd>
+                <pd props="ios">频道名。</pd>
             </plentry>
-                <plentry>
-                <pt>uid</pt>
+            <plentry props="ios">
+                <pt props="ios">uid</pt>
                 <pd>
                     <p>用户 ID。
 
                     <ul id="ul_c1t_3wg_s4b">
-                    <li>对于接收者：发送该 <apiname keyref="Metadata" /> 的远端用户的 ID。</li>
+                    <li>对于接收者：发送该 <apiname keyref="Metadata"/> 的远端用户的 ID。</li>
                     <li>对于发送者：请忽略。</li>
                     </ul></p>
                 </pd>
-            </plentry>
+                <pd props="ios">用户 ID。
+                    <ul>
+                        <li>对于接收方：发送该 <xref keyref="Metadata"/> 的远端用户 ID。</li>
+                        <li>对于发送方：可忽略。</li>
+                        </ul>
+                    </pd>
+                </plentry>
             <plentry props="cpp framework">
                 <pt>size</pt>
-                <pd>接收到的或发送的 <apiname keyref="Metadata" /> 的缓存大小。</pd>
+                <pd>接收到的或发送的 <apiname keyref="Metadata"/> 的缓存大小。</pd>
             </plentry>
-            <plentry props="cpp framework android">
+            <plentry props="android cpp framework">
                 <pt props="cpp framework">buffer</pt>
                 <pt props="android">data</pt>
-                <pd>接收到的 <apiname keyref="Metadata" /> 的缓存地址。</pd>
+                <pd>接收到的 <apiname keyref="Metadata"/> 的缓存地址。</pd>
             </plentry>
             <plentry props="apple">
                 <pt>data</pt>
                 <pd>接收的数据。</pd>
             </plentry>
-                <plentry>
-                <pt props="cpp framework android">timeStampMs</pt>
-                <pt props="apple">timestamp</pt>
+            <plentry props="ios">
+                <pt props="android cpp framework">timeStampMs</pt>
+                <pt props="apple ios">timestamp</pt>
                 <pd>发送 <apiname keyref="Metadata"/> 的时间戳，单位为毫秒。</pd>
-            </plentry>
+                <pd props="ios">发送该 <xref keyref="Metadata"/> 时的时间戳（毫秒）。</pd>
+                </plentry>
             </parml> </section>
     </refbody>
 </reference>

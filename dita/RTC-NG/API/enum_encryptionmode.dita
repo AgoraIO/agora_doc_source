@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_encryptionmode">
     <title><ph keyref="ENCRYPTION_MODE"/></title>
     <shortdesc id="short"><ph id="shortdesc">内置加密模式。</ph></shortdesc>
     <refbody>
         <section id="detailed_desc">
-            <p>建议使用 <ph keyref="AES_128_GCM2"/> 或 <ph keyref="AES_256_GCM2"/> 加密模式。这两种模式支持使用盐，安全性更高。</p>
-        </section>
+            <p>声网推荐使用 <ph keyref="AgoraEncryptionModeAES128GCM"/> 或 <ph keyref="AgoraEncryptionModeAES256GCM"/> 加密模式。这两种模式支持设置用于加密的盐值（<codeph>encryptionKdfSalt</codeph>），以提升安全性。<codeph>encryptionKdfSalt</codeph>），以提升安全性。<ph keyref="AES_128_GCM2"/> 或 <ph keyref="AES_256_GCM2"/> 加密模式。这两种模式支持使用盐，安全性更高。</p>
+            </section>
         <section id="parameters">
             <title>枚举值</title>
             <parml>
@@ -45,6 +45,14 @@
             <plentry>
                 <pt><ph keyref="MODE_END"/></pt>
                 <pd>枚举值边界。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraEncryptionModeAES256GCM2"/></pt>
+                <pd props="apple">（8）：256 位 AES 加密，GCM 模式。此模式需设置用于加密的盐值（<codeph>encryptionKdfSalt</codeph>）。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraEncryptionModeEnd"/></pt>
+                <pd props="apple">枚举结束标志。</pd>
             </plentry>
             </parml> </section>
     </refbody>

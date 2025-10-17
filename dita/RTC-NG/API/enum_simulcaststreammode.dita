@@ -1,17 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_simulcaststreammode">
     <title><ph keyref="SIMULCAST_STREAM_MODE"/></title>
-    <shortdesc id="short"><ph id="shortdesc">发送视频流的模式。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">设置视频流的发送模式。</ph></shortdesc>
     <refbody>
         <section id="detailed_desc">
-            <dl outputclass="since">
-                <dlentry props="android apple cpp">
-                    <dt>自从</dt>
-                    <dd>v4.0.1</dd>
-                </dlentry>
-            </dl>
-        </section>
+            </section>
         <section id="parameters">
             <title>枚举值</title>
             <parml>
@@ -27,6 +21,18 @@
                     <pt><ph keyref="ENABLE_SIMULCAST_STREAM"/></pt>
                     <pd>1：始终发送小流。</pd>
                 </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraAutoSimulcastStream"/></pt>
+                <pd props="apple">（-1）：默认不发送低质量视频流，直到接收端发出订阅请求后，自动开始发送低质量视频流。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraDisableSimulcastStream"/></pt>
+                <pd props="apple">（0）：从不发送低质量视频流。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraEnableSimulcastStream"/></pt>
+                <pd props="apple">（1）：始终发送低质量视频流。</pd>
+            </plentry>
             </parml>
         </section></refbody>
 </reference>

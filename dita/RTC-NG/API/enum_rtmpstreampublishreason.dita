@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_rtmpstreampublishreason">
      <title><ph keyref="RTMP_STREAM_PUBLISH_REASON"/></title>
-     <shortdesc id="short"><ph id="shortdesc">推流状态改变的原因。</ph></shortdesc>
+     <shortdesc id="short"><ph id="shortdesc">RTMP 或 RTMPS 推流状态变更的原因。</ph></shortdesc>
      <refbody>
           <section id="parameters">
                <title>枚举值</title>
@@ -71,6 +71,50 @@
                     <pt><ph keyref="RTMP_STREAM_UNPUBLISH_REASON_OK"/> </pt>
                     <pd>100：推流已正常结束。当你结束推流后，SDK 会返回该值。</pd>
                </plentry>
-               </parml></section>
+               <plentry props="apple">
+                <pt><ph keyref="AgoraRtmpStreamingReasonInvalidPrivilege"/></pt>
+                <pd props="apple">（16）：项目无权限使用推流服务。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraRtmpStreamingReasonStreamNotFound"/></pt>
+                <pd props="apple">（9）：声网服务器未找到 RTMP 或 RTMPS 推流。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraRtmpStreamingReasonConnectionTimeout"/></pt>
+                <pd props="apple">（3）：RTMP 或 RTMPS 推流连接超时。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraRtmpStreamingReasonRtmpServerError"/></pt>
+                <pd props="apple">（5）：CDN 服务器发生错误。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraRtmpStreamingReasonTooOften"/></pt>
+                <pd props="apple">（6）：RTMP 或 RTMPS 推流过于频繁。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraRtmpStreamingReasonReachLimit"/></pt>
+                <pd props="apple">（7）：主播发布的 URL 超过 10 个。请删除不必要的 URL 后再添加新 URL。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraRtmpStreamingReasonNotBroadcaster"/></pt>
+                <pd props="apple">（11）：当前用户角色不是主播，无法使用 CDN 推流功能。请检查应用代码逻辑。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraRtmpStreamingReasonFormatNotSupported"/></pt>
+                <pd props="apple">（10）：RTMP 或 RTMPS 推流地址格式不受支持。请检查地址格式是否正确。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraRtmpStreamingReasonTranscodingNoMixStream"/></pt>
+                <pd props="apple">（13）：在无转码推流场景中调用了 <xref keyref="updateRtmpTranscoding"/> 方法更新转码配置。请检查应用代码逻辑。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraRtmpStreamingReasonNetDown"/></pt>
+                <pd props="apple">（14）：主播端网络发生错误。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraRtmpStreamingReasonUnpublishOK"/></pt>
+                <pd props="apple">（100）：推流已正常停止。停止媒体推流后，SDK 返回该值。</pd>
+            </plentry>
+            </parml></section>
      </refbody>
 </reference>

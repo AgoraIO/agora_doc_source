@@ -1,24 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setcameradeviceorientation">
-    <title><ph keyref="setCameraDeviceOrientation" /></title>
-    <shortdesc id="short"><ph id="shortdesc">设置采集视频的旋转角度。</ph></shortdesc>
+    <title><ph keyref="setCameraDeviceOrientation"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置视频采集画面的旋转角度。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setCameraDeviceOrientation" />
+                <indexterm keyref="setCameraDeviceOrientation"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec" />
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setCameraDeviceOrientation(VIDEO_SOURCE_TYPE type, VIDEO_ORIENTATION orientation) = 0;
-</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setCameraDeviceOrientation(VIDEO_SOURCE_TYPE type, VIDEO_ORIENTATION orientation) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	int SetCameraDeviceOrientation(EVIDEO_SOURCE_TYPE type, FENUMWRAP_VIDEO_ORIENTATION orientation);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setCameraDeviceOrientation(
     type: VideoSourceType,
@@ -31,36 +30,50 @@
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setCameraDeviceOrientation(
     {required VideoSourceType type, required VideoOrientation orientation});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section> 
         <section id="detailed_desc">
             <title>详情</title>
             <note type="attention"><ul>
-            <li props="cpp unreal bp electron unity flutter">该方法仅适用于 Windows。</li>
-            <li>该方法必须在 <xref keyref="enableVideo"/> 后调用，设置结果在摄像头成功开启后生效，即 SDK 触发 <xref keyref="onLocalVideoStateChanged" /> 回调返回本地视频状态为 <apiname keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/> (1) 后。</li>
+            <li props="bp cpp electron flutter unity unreal">该方法仅适用于 Windows。</li>
+            <li>该方法必须在 <xref keyref="enableVideo"/> 后调用，设置结果在摄像头成功开启后生效，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调返回本地视频状态为 <apiname keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/> (1) 后。</li>
             <li>当视频采集设备不带重力感应功能时，你可以调用该方法手动调整采集到的视频画面的旋转角度。</li>
             </ul></note>
-        </section>
+        <note type="attention" props="cpp">该方法仅适用于 Windows 平台。
+你必须在调用 <xref keyref="enableVideo"/> 后再调用该方法。设置结果在成功打开摄像头后生效，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <ph keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/>（1）后生效。
+当视频采集设备不具备重力感应功能时，你可以调用该方法手动调整采集画面的旋转角度。</note>
+            </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry>
                 <pt>type</pt>
-                <pd>视频源类型，详见 <xref keyref="VIDEO_SOURCE_TYPE" />。</pd>
-            </plentry>
-            </parml>
+                <pd props="android apple bp cs electron flutter rn unity unreal">视频源类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+            <pd props="cpp">视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+            <plentry props="cpp">
+                <pt props="cpp">orientation</pt>
+                <pd props="cpp">顺时针旋转的角度，详见 <xref keyref="VIDEO_ORIENTATION"/>。</pd>
+                </plentry>
+        </parml>
             <parml id="parml_ejw_j4f_3qb">
             <plentry>
                 <pt>orientation</pt>
-                <pd>顺时针旋转角度，详见 <xref keyref="VIDEO_ORIENTATION" />。</pd>
+                <pd>顺时针旋转角度，详见 <xref keyref="VIDEO_ORIENTATION"/>。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="bp cs electron flutter rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="cpp unreal bp unity rn electron cs">
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cs electron rn unity unreal">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
-            </ul> </section>
+            </ul>
+        <p props="cpp"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+    </section>
     </refbody>
 </reference>

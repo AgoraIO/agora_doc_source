@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_lastmileprobeonewayresult">
-    <title><ph keyref="LastmileProbeOneWayResult" /></title>
-    <shortdesc id="short"><ph id="shortdesc">上行或下行 Last mile 网络质量探测结果。</ph></shortdesc>
+    <title><ph keyref="LastmileProbeOneWayResult"/></title>
+    <shortdesc id="short"><ph id="shortdesc">上行或下行方向的 Last mile 网络探测结果。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -19,11 +19,11 @@
 struct FLastmileProbeOneWayResult {
 	GENERATED_BODY()
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LastmileProbeOneWayResult&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|LastmileProbeOneWayResult")
 	int64 packetLossRate = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LastmileProbeOneWayResult&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|LastmileProbeOneWayResult")
 	int64 jitter = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LastmileProbeOneWayResult&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|LastmileProbeOneWayResult")
 	int64 availableBandwidth = 0;
 	FLastmileProbeOneWayResult(){}
 	FLastmileProbeOneWayResult(const agora::rtc::LastmileProbeOneWayResult &amp; AgoraData){
@@ -42,10 +42,10 @@ public:
 	}
 };</codeblock>
             <codeblock props="android" outputclass="language-java">public static class LastmileProbeOneWayResult {
-      public int packetLossRate;
-      public int jitter;
-      public int availableBandwidth;
-    }</codeblock>
+  public int packetLossRate;
+  public int jitter;
+  public int availableBandwidth;
+}</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">export class LastmileProbeOneWayResult {
   
   public packetLossRate:number = 0;
@@ -54,7 +54,7 @@ public:
   
   public availableBandwidth:number = 0;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLastmileProbeOneWayResult : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraLastmileProbeOneWayResult : NSObject
 @property (assign, nonatomic) NSUInteger packetLossRate;
 @property (assign, nonatomic) NSUInteger jitter;
 @property (assign, nonatomic) NSUInteger availableBandwidth;
@@ -110,19 +110,21 @@ public:
             </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry>
-                <pt>packetLossRate</pt>
-                <pd>丢包率。</pd>
+            <plentry props="android ios">
+                <pt props="android ios">packetLossRate</pt>
+                <pd props="android ios">丢包率。</pd>
             </plentry>
-            <plentry>
-                <pt>jitter</pt>
+            <plentry props="android ios">
+                <pt props="android ios">jitter</pt>
                 <pd>网络抖动 (ms)。</pd>
+                <pd props="android ios">网络抖动。</pd>
             </plentry>
-            <plentry>
-                <pt>availableBandwidth</pt>
+            <plentry props="android ios">
+                <pt props="android ios">availableBandwidth</pt>
                 <pd>可用网络带宽预估 (bps)。</pd>
+                <pd props="android ios">可用带宽，单位为 Kbps。</pd>
             </plentry>
             </parml> </section>
     </refbody>

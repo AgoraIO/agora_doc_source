@@ -1,49 +1,58 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_destroymediaplayer">
-    <title><ph keyref="destroyMediaPlayer" /></title>
-    <shortdesc id="short"><ph id="shortdesc">销毁媒体播放器。</ph></shortdesc>
+    <title><ph keyref="destroyMediaPlayer"/></title>
+    <shortdesc id="short"><ph id="shortdesc">销毁 <xref keyref="IMediaPlayer"/> 实例。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="destroyMediaPlayer" />
+                <indexterm keyref="destroyMediaPlayer"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">int destroy();
-                </codeblock>
+            <codeblock props="android" outputclass="language-java">public static synchronized void destroy()</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">public abstract destroy():number;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)destroyMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol&gt;_Nullable)mediaPlayer;
-                </codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)destroyMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol&gt;_Nullable)mediaPlayer NS_SWIFT_NAME(destroyMediaPlayer(_:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int destroyMediaPlayer(agora_refptr&lt;IMediaPlayer&gt; media_player) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IAgoraMediaPlayer&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IAgoraMediaPlayer")
 void Release();</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract destroyMediaPlayer(mediaPlayer: IMediaPlayer): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int DestroyMediaPlayer(IMediaPlayer mediaPlayer);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract destroyMediaPlayer(mediaPlayer: IMediaPlayer): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; destroyMediaPlayer(MediaPlayer mediaPlayer);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
-        <section id="parameters" props="ios mac cpp unreal unity rn electron cs">
+        <section id="parameters" props="apple cpp cs electron rn unity unreal">
             <title>参数</title>
             <parml>
-            <plentry props="ios mac cpp unreal unity rn electron flutter cs">
-                <pt props="ios mac unity flutter rn electron cs">mediaPlayer</pt>
+            <plentry props="apple cpp cs electron flutter rn unity unreal">
+                <pt props="apple cs electron flutter rn unity">mediaPlayer</pt>
                 <pt props="cpp unreal">media_player</pt>
                 <pd>
-                    <p><xref keyref="IMediaPlayer" /> 对象。</p>
+                    <p><xref keyref="IMediaPlayer"/> 对象。</p>
                 </pd>
             </plentry>
-            </parml> </section>
-        <section id="return_values" props="native unreal flutter unity cs electron rn">
+            <plentry props="cpp ios">
+                <pt props="cpp ios">media_player</pt>
+                <pd props="ios">待销毁的媒体播放器实例，类型为 <xref keyref="IMediaPlayer"/>。详见 <xref keyref="IMediaPlayer"/>。</pd>
+                <pd props="cpp"><xref keyref="IMediaPlayer"/> 对象。详见 <xref keyref="IMediaPlayer"/>。</pd>
+                </plentry>
+        </parml> </section>
+        <section id="return_values" props="cs electron flutter rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul id="ul_iyv_sty_hqb">
-            <li props="native unreal electron rn unity cs">≥ 0: 方法调用成功，返回媒体播放器 ID</li>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul id="ul_iyv_sty_hqb">
+            <li props="cs electron rn unity unreal">≥ 0: 方法调用成功，返回媒体播放器 ID</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
-            </ul></section>
+            </ul>
+        <p props="apple cpp"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+        </section>
     </refbody>
 </reference>

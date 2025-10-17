@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_encodedaudioframeinfo">
-    <title><ph keyref="EncodedAudioFrameInfo" /></title>
-    <shortdesc id="short"><ph id="shortdesc">编码后音频的信息。</ph></shortdesc>
+    <title><ph keyref="EncodedAudioFrameInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc">编码后的音频信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraEncodedAudioFrameInfo: NSObject
- @property (assign, nonatomic) NSInteger samplesPerChannel;
- @property (assign, nonatomic) NSInteger channels;
- @property (assign, nonatomic) NSInteger samplesPerSec;
- @property (assign, nonatomic) AgoraAudioCodecType codecType;
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraEncodedAudioFrameInfo: NSObject
+@property (assign, nonatomic) NSInteger samplesPerChannel;
+@property (assign, nonatomic) NSInteger channels;
+@property (assign, nonatomic) NSInteger samplesPerSec;
+@property (assign, nonatomic) AgoraAudioCodecType codecType;
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct EncodedAudioFrameInfo {
   EncodedAudioFrameInfo()
@@ -35,17 +35,17 @@
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FEncodedAudioFrameInfo {
 	GENERATED_BODY()
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncodedAudioFrameInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|EncodedAudioFrameInfo")
 	EAUDIO_CODEC_TYPE codec;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncodedAudioFrameInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|EncodedAudioFrameInfo")
 	int sampleRateHz;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncodedAudioFrameInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|EncodedAudioFrameInfo")
 	int samplesPerChannel;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncodedAudioFrameInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|EncodedAudioFrameInfo")
 	int numberOfChannels;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncodedAudioFrameInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|EncodedAudioFrameInfo")
 	FEncodedAudioFrameAdvancedSettings advancedSettings;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncodedAudioFrameInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|EncodedAudioFrameInfo")
 	int64 captureTimeMs;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class EncodedAudioFrameInfo {
@@ -136,42 +136,45 @@ struct FEncodedAudioFrameInfo {
   @JsonKey(name: 'captureTimeMs')
   final int? captureTimeMs;
 
-  factory EncodedAudioFrameInfo.fromJson(Map&lt;String, dynamic> json) =>
+  factory EncodedAudioFrameInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$EncodedAudioFrameInfoFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$EncodedAudioFrameInfoToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$EncodedAudioFrameInfoToJson(this);
 }</codeblock>
             </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry>
-                <pt props="cpp unreal bp unity electron rn flutter cs">codec</pt>
-                <pt props="ios mac">codecType</pt>
-                <pd>音频编码规格: <xref keyref="AUDIO_CODEC_TYPE" />。</pd>
-            </plentry>
-            <plentry>
-                <pt props="cpp unreal bp unity electron rn flutter cs">sampleRateHz</pt>
-                <pt props="ios mac">samplesPerSec</pt>
+            <plentry props="ios">
+                <pt props="bp cpp cs electron flutter rn unity unreal">codec</pt>
+                <pt props="apple ios">codecType</pt>
+                <pd>音频编码规格: <xref keyref="AUDIO_CODEC_TYPE"/>。</pd>
+                <pd props="ios">音频编解码器类型，详见 <xref keyref="AUDIO_CODEC_TYPE"/>。</pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="bp cpp cs electron flutter rn unity unreal">sampleRateHz</pt>
+                <pt props="apple ios">samplesPerSec</pt>
                 <pd>音频采样率 (Hz)。</pd>
+                <pd props="ios">音频采样率（Hz）。</pd>
             </plentry>
-            <plentry>
-                <pt>samplesPerChannel</pt>
-                <pd>每个声道的音频采样数。</pd>
+            <plentry props="ios">
+                <pt props="ios">samplesPerChannel</pt>
+                <pd props="ios">每个声道的音频采样数。</pd>
             </plentry>
-            <plentry>
-                <pt props="cpp unreal bp unity electron rn flutter cs">numberOfChannels</pt>
-                <pt props="ios mac">channels</pt>
+            <plentry props="ios">
+                <pt props="bp cpp cs electron flutter rn unity unreal">numberOfChannels</pt>
+                <pt props="apple ios">channels</pt>
                 <pd>声道数。</pd>
+                <pd props="ios">音频声道数。</pd>
             </plentry>
-            <plentry props="cpp unreal bp unity electron rn flutter cs">
+            <plentry props="bp cpp cs electron flutter rn unity unreal">
                 <pt>advancedSettings</pt>
                 <pd>该功能暂不支持。</pd>
             </plentry>
-            <plentry props="electron unity rn flutter cs">
-                    <pt>captureTimeMs</pt>
-                    <pd>采集外部编码视频帧的 Unix 时间戳 (ms)。</pd>
+            <plentry props="cs electron flutter rn unity">
+                <pt>captureTimeMs</pt>
+                <pd>采集外部编码视频帧的 Unix 时间戳 (ms)。</pd>
             </plentry>
             </parml> </section>
     </refbody>

@@ -1,22 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_snapshotconfig">
-    <title><ph keyref="SnapshotConfig" /></title>
-    <shortdesc id="short"><ph id="shortdesc">视频截图设置。</ph></shortdesc>
+    <title><ph keyref="SnapshotConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc">配置快照参数。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" >public class SnapshotConfig {
+            <codeblock props="android" outputclass="language-java">public class SnapshotConfig {
   public String filePath = null;
-  public Constants.VideoModulePosition position =
-      Constants.VideoModulePosition.VIDEO_MODULE_POSITION_PRE_ENCODER;
+  public Constants.VideoModulePosition position = Constants.VideoModulePosition.VIDEO_MODULE_POSITION_PRE_ENCODER;
 }</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec" >__attribute__((visibility("default"))) @interface AgoraSnapshotConfig: NSObject
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraSnapshotConfig: NSObject
 @property (copy, nonatomic) NSString * _Nullable filePath;
 @property(assign, nonatomic) AgoraVideoModulePosition position;
 @end</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp" >struct SnapshotConfig {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct SnapshotConfig {
   const char* filePath;
 
   media::base::VIDEO_MODULE_POSITION position;
@@ -58,24 +57,31 @@ public:
   @JsonKey(name: 'position')
   final VideoModulePosition? position;
 
-  factory SnapshotConfig.fromJson(Map&lt;String, dynamic> json) =>
+  factory SnapshotConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$SnapshotConfigFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$SnapshotConfigToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$SnapshotConfigToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry conkeyref="takeSnapshot/filepath">
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry>
-                <pt>position</pt>
+            <plentry props="android ios">
+                <pt props="android ios">position</pt>
                 <pd>截图的视频帧在视频链路中的位置。详见 <xref keyref="VIDEO_MODULE_POSITION"/>。</pd>
-            </plentry>
+                <pd props="android">快照视频帧在视频管线中的位置，详见 <xref keyref="VIDEO_MODULE_POSITION"/>。</pd>
+                <pd props="ios">截图视频帧在视频处理流程中的位置，详见 <xref keyref="VIDEO_MODULE_POSITION"/>。</pd>
+                </plentry>
+            <plentry props="android ios">
+                <pt props="android ios">filePath</pt>
+                <pd props="android">截图保存的本地路径（包括文件扩展名）。例如：Android：<codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.jpg</codeph>。请确保指定的路径存在且具有可写权限。</pd>
+                <pd props="ios">截图的本地路径（包含文件扩展名）。例如：iOS 平台为 <codeph>/App Sandbox/Library/Caches/example.jpg</codeph>。请确保指定的路径存在且可写。</pd>
+                </plentry>
             </parml> </section>
     </refbody>
 </reference>

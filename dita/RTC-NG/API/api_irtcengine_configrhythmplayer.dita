@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_configrhythmplayer">
     <title><ph keyref="configRhythmPlayer"/></title>
@@ -14,16 +14,16 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int configRhythmPlayer(AgoraRhythmPlayerConfig config);</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)configRhythmPlayer:(AgoraRhythmPlayerConfig * _Nullable)config;</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)configRhythmPlayer:(AgoraRhythmPlayerConfig * _Nullable)config NS_SWIFT_NAME(configRhythmPlayer(_:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int configRhythmPlayer(const AgoraRhythmPlayerConfig&amp; config) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	int ConfigRhythmPlayer(const FAgoraRhythmPlayerConfig&amp; config);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract configRhythmPlayer(config: AgoraRhythmPlayerConfig): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int ConfigRhythmPlayer(AgoraRhythmPlayerConfig config);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract configRhythmPlayer(config: AgoraRhythmPlayerConfig): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> configRhythmPlayer(AgoraRhythmPlayerConfig config);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; configRhythmPlayer(AgoraRhythmPlayerConfig config);</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <ul>
@@ -34,7 +34,7 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p>加入频道前后均可调用。</p>
+            <p>该方法可以在加入频道前或后调用。</p>
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -42,22 +42,31 @@
         </section>
         <section id="related" deliveryTarget="details">
             <title>相关回调</title>
-            <p>成功调用该方法后，SDK 会在本地触发 <xref keyref="onRhythmPlayerStateChanged"/> 回调，报告虚拟节拍器的状态。</p>
+            <p>成功调用该方法后，SDK 会在本地触发 <xref keyref="onRhythmPlayerStateChanged"/> 回调报告虚拟节拍器的状态。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
             <plentry>
                 <pt>config</pt>
-                <pd>节拍器配置。详见 <xref keyref="AgoraRhythmPlayerConfig"/>。</pd>
-            </plentry>
-            </parml> </section>
-        <section id="return_values">
+                <pd props="bp cs electron flutter mac rn unity unreal">节拍器配置。详见 <xref keyref="AgoraRhythmPlayerConfig"/>。</pd>
+            <pd props="android">节拍器配置，详见 <xref keyref="AgoraRhythmPlayerConfig"/>。</pd>
+                <pd props="ios">节拍器的配置。详见 <xref keyref="AgoraRhythmPlayerConfig"/>。</pd>
+                <pd props="cpp">节拍器的配置参数。详见 <xref keyref="AgoraRhythmPlayerConfig"/>。</pd>
+                </plentry>
+        </parml> </section>
+        <section id="return_values" props="bp cs flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp unity rn cs">
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cs rn unity unreal">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
-            </ul> </section>
+            </ul>
+        <p props="native"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+    </section>
     </refbody>
 </reference>

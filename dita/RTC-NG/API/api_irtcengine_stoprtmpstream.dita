@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_stoprtmpstream">
-    <title> <ph keyref="stopRtmpStream"/> </title>
-    <shortdesc id="short"> <ph id="shortdesc">结束旁路推流。</ph> </shortdesc>
+    <title><ph keyref="stopRtmpStream"/></title>
+    <shortdesc id="short"><ph id="shortdesc">停止向指定 CDN 地址推送媒体流。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -13,38 +13,48 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int stopRtmpStream(String url);</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts">public abstract stopRtmpStream(url: string): number;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)stopRtmpStream:(NSString* _Nonnull)url;</codeblock>
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)stopRtmpStream:(NSString* _Nonnull)url NS_SWIFT_NAME(stopRtmpStream(_:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int stopRtmpStream(const char* url) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
-	int StopRtmpStream(const FString&amp; url);</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">abstract stopRtmpStream(url: string): number;</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public abstract int StopRtmpStream(string url);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">abstract stopRtmpStream(url: string): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; stopRtmpStream(String url);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"/></p>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
-        <section id="detailed_desc">
-            <title>详情</title>
-            <p>声网推荐你使用更加完善的服务端推流功能，详见<xref keyref="cdn-streaming-restful">实现服务端旁路推流</xref>。</p>
-            <p>调用该方法，你可以结束指定的旁路推流地址上的直播。该方法每次只能结束一个推流地址上的直播，如果你需要结束多个推流地址的直播，则需多次调用该方法。</p>
-            <p>调用该方法后，SDK 会在本地触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调，报告推流的状态。</p>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p/>
         </section>
-        <section id="parameters">
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="related" deliveryTarget="details">
+            <title>相关回调</title>
+            <p>成功调用该方法后，SDK 会触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调报告推流状态。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-            <plentry conkeyref="startRtmpStreamWithTranscoding/url">
-                <pt/>
-                <pd/>
+            <plentry props="cpp ios">
+                <pt props="cpp ios">url</pt>
+                <pd props="cpp">旁路推流地址，格式为 RTMP 或 RTMPS。字符串长度不能超过 1024 字节，不支持中文等特殊字符。</pd>
+                <pd props="ios">旁路推流地址，格式为 RTMP 或 RTMPS。该字符串长度不能超过 1024 字节，不支持中文等特殊字符。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp electron unity rn cs">
-            <li>0: 方法调用成功。</li>
-            <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
-            </ul> </section>
-    </refbody>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="android bp cs electron rn unity unreal">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul>
+        <p props="apple cpp"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+    </section>
+        </refbody>
 </reference>

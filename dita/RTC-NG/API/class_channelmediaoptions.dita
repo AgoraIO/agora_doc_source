@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_channelmediaoptions">
     <title> <ph keyref="ChannelMediaOptions"/> </title>
-    <shortdesc id="short"> <ph id="shortdesc">频道媒体设置选项。</ph> </shortdesc>
+    <shortdesc id="short"> <ph id="shortdesc">设置频道的媒体选项。</ph> </shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -22,6 +22,7 @@
   public Boolean publishMediaPlayerVideoTrack;
   public Boolean publishTranscodedVideoTrack;
   public Boolean publishMixedAudioTrack;
+  public Boolean publishLipSyncTrack;
   public Boolean autoSubscribeAudio;
   public Boolean autoSubscribeVideo;
   public Boolean enableAudioRecordingOrPlayout;
@@ -30,6 +31,7 @@
   public Integer audienceLatencyLevel;
   public Integer defaultVideoStreamType;
   public Integer channelProfile;
+  public Integer audioDelayMs;
   public Integer mediaPlayerAudioDelayMs;
   public String token;
   public Boolean enableBuiltInMediaEncryption;
@@ -37,6 +39,8 @@
   public Boolean isInteractiveAudience;
   public Integer customVideoTrackId;
   public Boolean isAudioFilterable;
+  public Boolean startPreview;
+  public String parameters;
   public Boolean enableMultipath;
   public Integer uplinkMultipathMode;
   public Integer downlinkMultipathMode;
@@ -106,30 +110,27 @@
   public constructor() {
   }
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcChannelMediaOptions : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraRtcChannelMediaOptions : NSObject
 @property(assign, nonatomic) BOOL publishCameraTrack;
 @property(assign, nonatomic) BOOL publishSecondaryCameraTrack;
 @property(assign, nonatomic) BOOL publishMicrophoneTrack;
-#if TARGET_OS_IPHONE
 @property(assign, nonatomic) BOOL publishScreenCaptureVideo;
 @property(assign, nonatomic) BOOL publishScreenCaptureAudio;
-#elif TARGET_OS_MAC
 @property(assign, nonatomic) BOOL publishThirdCameraTrack;
 @property(assign, nonatomic) BOOL publishFourthCameraTrack;
 @property(assign, nonatomic) BOOL publishScreenTrack;
 @property(assign, nonatomic) BOOL publishSecondaryScreenTrack;
 @property(assign, nonatomic) BOOL publishThirdScreenTrack;
 @property(assign, nonatomic) BOOL publishFourthScreenTrack;
-#endif
 @property(assign, nonatomic) BOOL publishCustomAudioTrack;
 @property(assign, nonatomic) NSInteger publishCustomAudioTrackId;
-
 @property(assign, nonatomic) BOOL publishCustomVideoTrack;
 @property(assign, nonatomic) BOOL publishEncodedVideoTrack;
 @property(assign, nonatomic) BOOL publishMediaPlayerAudioTrack;
 @property(assign, nonatomic) BOOL publishMediaPlayerVideoTrack;
 @property(assign, nonatomic) BOOL publishTranscodedVideoTrack;
 @property(assign, nonatomic) BOOL publishMixedAudioTrack;
+@property(assign, nonatomic) BOOL publishLipSyncTrack;
 @property(assign, nonatomic) BOOL autoSubscribeAudio;
 @property(assign, nonatomic) BOOL autoSubscribeVideo;
 @property(assign, nonatomic) BOOL enableAudioRecordingOrPlayout;
@@ -138,62 +139,62 @@
 @property(assign, nonatomic) AgoraAudienceLatencyLevelType audienceLatencyLevel;
 @property(assign, nonatomic) AgoraVideoStreamType defaultVideoStreamType;
 @property(assign, nonatomic) AgoraChannelProfile channelProfile;
+@property(assign, nonatomic) NSInteger audioDelayMs;
+@property(assign, nonatomic) NSInteger mediaPlayerAudioDelayMs;
 @property(copy, nonatomic) NSString * _Nullable token;
 @property(assign, nonatomic) BOOL enableBuiltInMediaEncryption;
-
 @property(assign, nonatomic) BOOL publishRhythmPlayerTrack;
 @property(assign, nonatomic) BOOL isInteractiveAudience;
 @property(assign, nonatomic) NSInteger customVideoTrackId;
 @property(assign, nonatomic) BOOL isAudioFilterable;
+@property(copy, nonatomic) NSString * _Nullable parameters;
 @property(assign, nonatomic) BOOL enableMultipath;
 @property(assign, nonatomic) AgoraMultipathMode uplinkMultipathMode;
 @property(assign, nonatomic) AgoraMultipathMode downlinkMultipathMode;
 @property(assign, nonatomic) AgoraMultipathType preferMultipathType;
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct ChannelMediaOptions {
-  Optional&lt;bool&gt; publishCameraTrack;
-  Optional&lt;bool&gt; publishSecondaryCameraTrack;
-  Optional&lt;bool&gt; publishThirdCameraTrack;
-  Optional&lt;bool&gt; publishFourthCameraTrack;
-  Optional&lt;bool&gt; publishMicrophoneTrack;
-#if defined(__ANDROID__) || (defined(TARGET_OS_IPHONE) &amp;amp; TARGET_OS_IPHONE) || defined(__OHOS__)
-  Optional&lt;bool&gt; publishScreenCaptureVideo;
-  Optional&lt;bool&gt; publishScreenCaptureAudio;
-#else
-  Optional&lt;bool&gt; publishScreenTrack;
-  Optional&lt;bool&gt; publishSecondaryScreenTrack;
-  Optional&lt;bool&gt; publishThirdScreenTrack;
-  Optional&lt;bool&gt; publishFourthScreenTrack;
-#endif
-  Optional&lt;bool&gt; publishCustomAudioTrack;
-  Optional&lt;int&gt; publishCustomAudioTrackId;
-  Optional&lt;bool&gt; publishCustomVideoTrack;
-  Optional&lt;bool&gt; publishEncodedVideoTrack;
-  Optional&lt;bool&gt; publishMediaPlayerAudioTrack;
-  Optional&lt;bool&gt; publishMediaPlayerVideoTrack;
-  Optional&lt;bool&gt; publishTranscodedVideoTrack;
-  Optional&lt;bool&gt; publishMixedAudioTrack;
-  Optional&lt;bool&gt; publishLipSyncTrack;
-  Optional&lt;bool&gt; autoSubscribeAudio;
-  Optional&lt;bool&gt; autoSubscribeVideo;
-  Optional&lt;bool&gt; enableAudioRecordingOrPlayout;
-  Optional&lt;int&gt; publishMediaPlayerId;
-  Optional&lt;CLIENT_ROLE_TYPE&gt; clientRoleType;
-  Optional&lt;AUDIENCE_LATENCY_LEVEL_TYPE&gt; audienceLatencyLevel;
-  Optional&lt;VIDEO_STREAM_TYPE&gt; defaultVideoStreamType;
-  Optional&lt;CHANNEL_PROFILE_TYPE&gt; channelProfile;
-
-  Optional&lt;const char*&gt; token;
-  Optional&lt;bool&gt; enableBuiltInMediaEncryption;
-  Optional&lt;bool&gt; publishRhythmPlayerTrack;
-  Optional&lt;bool&gt; isInteractiveAudience;
-  Optional&lt;video_track_id_t&gt; customVideoTrackId;
-  Optional&lt;bool&gt; isAudioFilterable;
-
-  Optional&lt;bool&gt; enableMultipath;
-  Optional&lt;MultipathMode&gt; uplinkMultipathMode;
-  Optional&lt;MultipathMode&gt; downlinkMultipathMode;
-  Optional&lt;MultipathType&gt; preferMultipathType;
+Optional&lt;bool&gt; publishCameraTrack;
+Optional&lt;bool&gt; publishSecondaryCameraTrack;
+Optional&lt;bool&gt; publishThirdCameraTrack;
+Optional&lt;bool&gt; publishFourthCameraTrack;
+Optional&lt;bool&gt; publishMicrophoneTrack;
+Optional&lt;bool&gt; publishScreenCaptureVideo;
+Optional&lt;bool&gt; publishScreenCaptureAudio;
+Optional&lt;bool&gt; publishScreenTrack;
+Optional&lt;bool&gt; publishSecondaryScreenTrack;
+Optional&lt;bool&gt; publishThirdScreenTrack;
+Optional&lt;bool&gt; publishFourthScreenTrack;
+Optional&lt;bool&gt; publishCustomAudioTrack;
+Optional&lt;int&gt; publishCustomAudioTrackId;
+Optional&lt;bool&gt; publishCustomVideoTrack;
+Optional&lt;bool&gt; publishEncodedVideoTrack;
+Optional&lt;bool&gt; publishMediaPlayerAudioTrack;
+Optional&lt;bool&gt; publishMediaPlayerVideoTrack;
+Optional&lt;bool&gt; publishTranscodedVideoTrack;
+Optional&lt;bool&gt; publishMixedAudioTrack;
+Optional&lt;bool&gt; publishLipSyncTrack;
+Optional&lt;bool&gt; autoSubscribeAudio;
+Optional&lt;bool&gt; autoSubscribeVideo;
+Optional&lt;bool&gt; enableAudioRecordingOrPlayout;
+Optional&lt;int&gt; publishMediaPlayerId;
+Optional&lt;CLIENT_ROLE_TYPE&gt; clientRoleType;
+Optional&lt;AUDIENCE_LATENCY_LEVEL_TYPE&gt; audienceLatencyLevel;
+Optional&lt;VIDEO_STREAM_TYPE&gt; defaultVideoStreamType;
+Optional&lt;CHANNEL_PROFILE_TYPE&gt; channelProfile;
+Optional&lt;int&gt; audioDelayMs;
+Optional&lt;int&gt; mediaPlayerAudioDelayMs;
+Optional&lt;const char*&gt; token;
+Optional&lt;bool&gt; enableBuiltInMediaEncryption;
+Optional&lt;bool&gt; publishRhythmPlayerTrack;
+Optional&lt;bool&gt; isInteractiveAudience;
+Optional&lt;video_track_id_t&gt; customVideoTrackId;
+Optional&lt;bool&gt; isAudioFilterable;
+Optional&lt;const char*&gt; parameters;
+Optional&lt;bool&gt; enableMultipath;
+Optional&lt;MultipathMode&gt; uplinkMultipathMode;
+Optional&lt;MultipathMode&gt; downlinkMultipathMode;
+Optional&lt;MultipathType&gt; preferMultipathType;
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FChannelMediaOptions
@@ -714,24 +715,42 @@ class ChannelMediaOptions {
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry>
-                <pt>publishCameraTrack</pt>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">publishCameraTrack</pt>
                 <pd>设置是否发布摄像头采集的视频：
                     <ul id="ul_vx5_np5_3qb">
                     <li><codeph><ph keyref="true"/></codeph>：发布摄像头采集的视频。</li>
                     <li><codeph><ph keyref="false"/></codeph>：不发布摄像头采集的视频。</li>
                     </ul></pd>
-            </plentry>
-            <plentry props="apple bp cpp cs electron flutter rn unity unreal">
-                <pt>publishSecondaryCameraTrack</pt>
+                <pd props="android ios">是否发布由摄像头采集的视频：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：发布摄像头采集的视频。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不发布摄像头采集的视频。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp">是否发布摄像头采集的视频：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：发布摄像头采集的视频。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不发布摄像头采集的视频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="android apple bp cpp cs electron flutter ios rn unity unreal">
+                <pt props="android cpp ios">publishSecondaryCameraTrack</pt>
                 <pd>设置是否发布第二个摄像头采集的视频：
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：发布第二个摄像头采集的视频。</li>
                     <li><codeph><ph keyref="false"/></codeph>：不发布第二个摄像头采集的视频。</li>
                     </ul></pd>
-            </plentry>
-            <plentry>
-                <pt>publishMicrophoneTrack</pt>
+                <pd props="android cpp ios">是否发布第二路摄像头采集的视频：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：发布第二路摄像头采集的视频。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不发布第二路摄像头采集的视频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">publishMicrophoneTrack</pt>
                 <pd>设置是否发布麦克风采集到的音频：
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：发布麦克风采集到的音频。</li>
@@ -745,27 +764,57 @@ class ChannelMediaOptions {
                         <li>如果你想要发布麦克风采集到的音频流，请确保 <parmname>enableAudioRecordingOrPlayout</parmname> 设为 <codeph><ph keyref="true"/></codeph>。</li>
                     </ul></note>
                 </pd>
-            </plentry>
-            <plentry props="android cpp framework mac">
-                <pt>publishThirdCameraTrack</pt>
+                <pd props="android cpp ios">是否发布麦克风采集的音频：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：发布麦克风采集的音频。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不发布麦克风采集的音频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="android cpp framework ios native">
+                <pt props="android cpp ios">publishThirdCameraTrack</pt>
                 <pd>设置是否发布第三个摄像头采集的视频：
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：发布第三个摄像头采集的视频。</li>
                     <li><codeph><ph keyref="false"/></codeph>：不发布第三个摄像头采集的视频。</li>
                     </ul>
                     <note type="attention" props="bp cpp flutter unity unreal">该参数仅适用于 Android、Windows 和 macOS 平台。</note><note type="attention" props="rn">该参数仅适用于 Android 平台。</note></pd>
-            </plentry>
-            <plentry props="android cpp framework mac">
-                <pt>publishFourthCameraTrack</pt>
+                <pd props="android ios">是否发布由第三路摄像头采集的视频：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：发布第三路摄像头采集的视频。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不发布第三路摄像头采集的视频。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp">是否发布第三路摄像头采集的视频：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：发布第三路摄像头采集的视频。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不发布第三路摄像头采集的视频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="android cpp framework ios native">
+                <pt props="android cpp ios">publishFourthCameraTrack</pt>
                 <pd>设置是否发布第四个摄像头采集的视频：
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：发布第四个摄像头采集的视频。</li>
                     <li><codeph><ph keyref="false"/></codeph>：不发布第四个摄像头采集的视频。</li>
                     </ul>
                     <note type="attention" props="bp cpp flutter unity unreal">该参数仅适用于 Android、Windows 和 macOS 平台。</note><note type="attention" props="rn">该参数仅适用于 Android 平台。</note></pd>
-            </plentry>
-            <plentry props="bp cpp cs electron flutter mac unity unreal">
-                <pt>publishScreenTrack</pt>
+                <pd props="android ios">是否发布由第四路摄像头采集的视频：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：发布第四路摄像头采集的视频。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不发布第四路摄像头采集的视频。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp">是否发布第四路摄像头采集的视频：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：发布第四路摄像头采集的视频。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不发布第四路摄像头采集的视频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="apple bp cpp cs electron flutter ios unity unreal">
+                <pt props="cpp ios">publishScreenTrack</pt>
                 <pd>
                     <p>设置是否发布屏幕采集的视频：
                     <ul>
@@ -774,9 +823,15 @@ class ChannelMediaOptions {
                     </ul></p>
                     <note type="attention" props="bp cpp flutter unity unreal">该参数仅适用于 Windows 和 macOS 平台。</note>
                 </pd>
-            </plentry>
+                <pd props="cpp ios">是否发布屏幕采集的视频：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：发布屏幕采集的视频。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不发布屏幕采集的视频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
             <plentry props="android bp cpp flutter hmos ios rn unity unreal">
-                <pt>publishScreenCaptureVideo</pt>
+                <pt props="android ios">publishScreenCaptureVideo</pt>
                 <pd>
                     <p>设置是否发布屏幕采集的视频：
                     <ul>
@@ -785,9 +840,15 @@ class ChannelMediaOptions {
                     </ul></p>
                     <note type="attention" props="bp cpp flutter unity unreal">该参数仅适用于 Android 和 iOS 平台。</note>
                     <note type="note" props="android ios">自 v4.0.0 起，该参数名称由 <parmname>publishScreenTrack</parmname> 改为 <parmname>publishScreenCaptureVideo</parmname>。</note> </pd>
-            </plentry>
-            <plentry props="bp flutter hmos native rn unity unreal">
-                <pt>publishScreenCaptureAudio</pt>
+                <pd props="android ios">是否发布屏幕采集的视频：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：发布屏幕采集的视频。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不发布屏幕采集的视频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="android bp flutter hmos ios native rn unity unreal">
+                <pt props="android ios">publishScreenCaptureAudio</pt>
                 <pd>
                     <p>设置是否发布屏幕采集的音频：
                     <ul>
@@ -796,9 +857,15 @@ class ChannelMediaOptions {
                     </ul></p>
                     <note type="attention" props="bp cpp flutter unity unreal">该参数仅适用于 Android 和 iOS 平台。</note>
                 </pd>
-            </plentry>
-            <plentry props="bp cpp cs electron flutter mac rn unity unreal">
-                <pt>publishSecondaryScreenTrack</pt>
+                <pd props="android ios">是否发布屏幕采集的音频：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：发布屏幕采集的音频。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不发布屏幕采集的音频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="apple bp cpp cs electron flutter ios rn unity unreal">
+                <pt props="cpp ios">publishSecondaryScreenTrack</pt>
                 <pd>设置是否发布第二个屏幕采集的视频：
 
                     <ul>
@@ -806,9 +873,15 @@ class ChannelMediaOptions {
                     <li><codeph><ph keyref="false"/></codeph>：不发布第二个屏幕采集到的视频。</li>
                     </ul>
                 </pd>
-            </plentry>
-            <plentry props="bp cpp cs electron flutter mac unity unreal">
-                <pt>publishThirdScreenTrack</pt>
+                <pd props="cpp ios">是否发布第二路屏幕采集的视频：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：发布第二路屏幕采集的视频。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不发布第二路屏幕采集的视频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="apple bp cpp cs electron flutter ios unity unreal">
+                <pt props="cpp ios">publishThirdScreenTrack</pt>
                 <pd>设置是否发布第三个屏幕采集的视频：
 
                     <ul>
@@ -818,9 +891,15 @@ class ChannelMediaOptions {
                     <p>
                     <note type="attention" props="bp cpp cs flutter unity unreal">该参数仅适用于 Windows 和 macOS 平台。</note></p>
                 </pd>
-            </plentry>
-            <plentry props="bp cpp cs electron flutter mac unity unreal">
-                <pt>publishFourthScreenTrack</pt>
+                <pd props="cpp ios">是否发布第三路屏幕采集的视频：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：发布第三路屏幕采集的视频。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不发布第三路屏幕采集的视频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="apple bp cpp cs electron flutter ios unity unreal">
+                <pt props="cpp ios">publishFourthScreenTrack</pt>
                 <pd>设置是否发布第四个屏幕采集的视频：
 
                     <ul>
@@ -830,7 +909,13 @@ class ChannelMediaOptions {
                     <p>
                     <note type="attention" props="bp cpp cs flutter unity unreal">该参数仅适用于 Windows 和 macOS 平台。</note></p>
                 </pd>
-            </plentry>
+                <pd props="cpp ios">是否发布第四路屏幕采集的视频：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：发布第四路屏幕采集的视频。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不发布第四路屏幕采集的视频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
             <plentry props="bp cpp cs electron flutter rn unity unreal">
                 <pt>publishTranscodedVideoTrack</pt>
                 <pd>设置是否发布本地的转码视频：
@@ -1042,8 +1127,8 @@ class ChannelMediaOptions {
                     <note type="attention">
                         <p>权限与系统要求：
                             <ph props="android cpp">Android：Android 7.0 或更高版本（API 级别 24 或更高），需要 ACCESS_NETWORK_STATE 和 CHANGE_NETWORK_STATE 权限。</ph>
-                            <ph props="ios cpp">iOS：iOS 12.0 或更高版本。</ph>
-                            <ph props="mac cpp">macOS：10.14 或更高版本。</ph>
+                            <ph props="cpp ios">iOS：iOS 12.0 或更高版本。</ph>
+                            <ph props="cpp mac">macOS：10.14 或更高版本。</ph>
                             <ph props="cpp">Windows：Windows Vista 或更高版本。</ph>
                         </p>
                     </note>

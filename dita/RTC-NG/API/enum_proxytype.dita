@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_proxytype">
     <title><ph keyref="PROXY_TYPE"/></title>
-    <shortdesc id="short"><ph id="shortdesc">代理类型。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">云代理类型。</ph></shortdesc>
     <refbody>
         <section id="parameters">
             <title>枚举值</title>
@@ -26,6 +26,31 @@
             <plentry>
                 <pt><ph keyref="TCP_PROXY_AUTO_FALLBACK_TYPE"/></pt>
                 <pd>4: 自动模式。在该模式下，SDK 优先连接 SD-RTN™，如果连接失败，自动切换为 TLS 443。</pd>
+            </plentry>
+            <plentry props="apple cpp">
+                <pt><ph keyref="NONE_PROXY_TYPE"/></pt>
+                <pd props="cpp">（0）：预留，暂不使用。</pd>
+                <pd props="apple">（0）：预留值。</pd>
+            </plentry>
+            <plentry props="apple cpp">
+                <pt><ph keyref="UDP_PROXY_TYPE"/></pt>
+                <pd props="cpp">（1）：UDP 协议云代理，强制使用 UDP 云代理模式。该模式下，SDK 始终通过 UDP 传输数据。</pd>
+                <pd props="apple">（1）：UDP 协议云代理，强制使用 UDP 云代理模式。在该模式下，SDK 始终通过 UDP 传输数据。</pd>
+            </plentry>
+            <plentry props="apple cpp">
+                <pt><ph keyref="TCP_PROXY_TYPE"/></pt>
+                <pd props="cpp">（2）：TCP（加密）协议云代理，强制使用 TCP 云代理模式。该模式下，SDK 始终通过 TCP/TLS 443 传输数据。</pd>
+                <pd props="apple">（2）：TCP（加密）协议云代理，强制使用 TCP 云代理模式。在该模式下，SDK 始终通过 TCP/TLS 443 传输数据。</pd>
+            </plentry>
+            <plentry props="apple cpp">
+                <pt><ph keyref="LOCAL_PROXY_TYPE"/></pt>
+                <pd props="cpp">（3）：预留，暂不使用。</pd>
+                <pd props="apple">（3）：预留值。</pd>
+            </plentry>
+            <plentry props="apple cpp">
+                <pt><ph keyref="TCP_PROXY_AUTO_FALLBACK_TYPE"/></pt>
+                <pd props="cpp">（4）：自动模式。该模式下，SDK 会优先尝试直接连接 SD-RTN™，若连接失败则自动切换为 TCP/TLS 443。</pd>
+                <pd props="apple">（4）：自动模式。SDK 会尝试直接连接 SD-RTN™，若连接失败则自动切换至 TCP/TLS 443。</pd>
             </plentry>
             </parml> </section>
     </refbody>

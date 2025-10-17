@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audioframe">
-    <title><ph keyref="AudioFrame" /></title>
+    <title><ph keyref="AudioFrame"/></title>
     <shortdesc id="short"><ph id="shortdesc">原始音频数据。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -62,23 +62,17 @@
         + ", timestamp=" + timestamp + '}';
   }
 }</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">
-__attribute__((visibility("default"))) @interface AgoraAudioFrame : NSObject
-
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioFrame : NSObject
 @property(assign, nonatomic) NSInteger samplesPerChannel;
-
 @property(assign, nonatomic) NSInteger bytesPerSample;
-
 @property(assign, nonatomic) NSInteger channels;
-
 @property(assign, nonatomic) NSInteger samplesPerSec;
-
 @property(assign, nonatomic) void* _Nullable buffer;
-
 @property(assign, nonatomic) int64_t renderTimeMs;
-
+@property(assign, nonatomic) int64_t presentationMs;
 @property(assign, nonatomic) NSInteger avSyncType;
+@property(assign, nonatomic) uint32_t rtpTimestamp;
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">  struct AudioFrame {
     AUDIO_FRAME_TYPE type;
@@ -104,21 +98,21 @@ __attribute__((visibility("default"))) @interface AgoraAudioFrame : NSObject
 struct FAudioFrame {
 
 	GENERATED_BODY()
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioFrame&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|AudioFrame")
 	EAUDIO_FRAME_TYPE type;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioFrame&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|AudioFrame")
 	int samplesPerChannel;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioFrame&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|AudioFrame")
 	EBYTES_PER_SAMPLE bytesPerSample;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioFrame&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|AudioFrame")
 	int channels;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioFrame&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|AudioFrame")
 	int samplesPerSec;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioFrame&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|AudioFrame")
 	int64 buffer;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioFrame&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|AudioFrame")
 	int64 renderTimeMs;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioFrame&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|AudioFrame")
 	int avsync_type;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class AudioFrame {
@@ -187,27 +181,29 @@ struct FAudioFrame {
       this.buffer,
       this.renderTimeMs,
       this.avsyncType});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="parameters">
-            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>
+            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/> </title>
             <parml>
-            <plentry props="cpp unreal bp unity rn electron flutter cs">
+            <plentry props="bp cpp cs electron flutter rn unity unreal">
                 <pt>type</pt>
                 <pd>
-                    <p>音频帧类型，详见 <xref keyref="AUDIO_FRAME_TYPE" />。</p>
+                    <p>音频帧类型，详见 <xref keyref="AUDIO_FRAME_TYPE"/>。</p>
                 </pd>
             </plentry>
-            <plentry>
-                <pt>samplesPerChannel</pt>
+            <plentry props="ios">
+                <pt props="ios">samplesPerChannel</pt>
                 <pd>每个声道的采样点数。</pd>
+                <pd props="ios">音频帧中每个声道的采样点数。</pd>
             </plentry>
-            <plentry>
-                <pt>bytesPerSample</pt>
+            <plentry props="ios">
+                <pt props="ios">bytesPerSample</pt>
                 <pd>每个采样点的字节数。对于 PCM 来说，一般使用 16 bit，即两个字节。</pd>
+                <pd props="ios">每个采样点的字节数。对于 PCM，此参数通常设置为 16 位（2 字节）。</pd>
             </plentry>
             <plentry>
-                <pt><ph props="cpp unreal bp ios mac unity electron rn flutter cs">channels</ph><ph props="android hmos">channelNums</ph></pt>
+                <pt><ph props="apple bp cpp cs electron flutter rn unity unreal">channels</ph><ph props="android hmos">channelNums</ph></pt>
                 <pd>
                     <p>声道数量(如果是立体声，数据是交叉的)。
                         <ul id="ul_zxz_2wt_r4b">
@@ -216,34 +212,58 @@ struct FAudioFrame {
                     </ul> </p>
                 </pd>
             </plentry>
-            <plentry>
-                <pt props="cpp unreal bp ios mac unity electron rn flutter cs">samplesPerSec</pt>
+            <plentry props="ios">
+                <pt props="apple bp cpp cs electron flutter ios rn unity unreal">samplesPerSec</pt>
                 <pt props="android hmos">sampleRataHz</pt>
                 <pd>每声道每秒的采样点数。</pd>
+                <pd props="ios">音频帧中每个声道的采样率。</pd>
             </plentry>
-            <plentry>
-                <pt props="android cpp unreal bp ios mac electron rn flutter">buffer</pt>
-                <pt props="unity cs">RawBuffer</pt>
+            <plentry props="ios">
+                <pt props="bp electron flutter ios native rn unreal">buffer</pt>
+                <pt props="cs unity">RawBuffer</pt>
                 <pd>
                     <p>声音数据缓存区（如果是立体声，数据是交叉存储的）。</p>
                     <p>缓存区数据大小 <codeph>buffer</codeph> = <codeph>samples</codeph> × <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>。</p>
                 </pd>
-            </plentry>
-            <plentry props="cpp unreal bp unity ios mac rn electron flutter cs">
-                <pt>renderTimeMs</pt>
+                <pd props="ios">音频帧的数据缓冲区。当使用立体声通道时，数据缓冲区为交错排列。缓冲区大小计算方式为：<codeph>samplesPerChannel</codeph> × <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>。</pd>
+                </plentry>
+            <plentry props="apple bp cpp cs electron flutter ios rn unity unreal">
+                <pt props="ios">renderTimeMs</pt>
                 <pd>
                     <p>外部音频帧的渲染时间戳。</p>
                     <p>你可以使用该时间戳还原音频帧顺序；在有视频的场景中（包含使用外部视频源的场景），该参数可以用于实现音视频同步。</p>
                 </pd>
+                <pd props="ios">外部音频帧的时间戳（毫秒）。可用于还原采集音频帧的顺序，并在视频场景中同步音频和视频帧，包括使用外部视频源的场景。</pd>
             </plentry>
-            <plentry props="ios mac cpp unreal bp unity flutter electron rn cs">
-                <pt> <ph props="flutter">avsyncType</ph> <ph props="ios mac">avSyncType</ph> <ph props="cpp unreal bp unity electron rn cs">avsync_type</ph> </pt>
+            <plentry props="apple bp cpp cs electron flutter rn unity unreal">
+                <pt> <ph props="flutter">avsyncType</ph> <ph props="apple">avSyncType</ph> <ph props="bp cpp cs electron rn unity unreal">avsync_type</ph> </pt>
                 <pd>保留参数。</pd>
             </plentry>
             <plentry props="android hmos">
                 <pt>timestamp</pt>
                 <pd>音频帧的时间戳。</pd>
             </plentry>
+            <plentry props="ios">
+                <pt props="ios">channels</pt>
+                <pd props="ios">音频声道数（如果为立体声，数据为交错排列）。
+                    <ul>
+                        <li>1：单声道。</li>
+                        <li>2：立体声。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">presentationMs</pt>
+                <pd props="ios"/>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">avSyncType</pt>
+                <pd props="ios">预留参数，供未来使用。</pd>
+            </plentry>
+            <plentry props="ios">
+                <pt props="ios">rtpTimestamp</pt>
+                <pd props="ios"/>
+                </plentry>
             </parml> </section>
     </refbody>
 </reference>

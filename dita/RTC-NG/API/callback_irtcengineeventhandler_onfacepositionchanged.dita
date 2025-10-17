@@ -1,33 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onfacepositionchanged">
-    <title><ph keyref="onFacePositionChanged" /></title>
-    <shortdesc id="short"><ph id="shortdesc">报告本地人脸检测结果。</ph></shortdesc>
+    <title><ph keyref="onFacePositionChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc">报告本地用户的人脸检测结果。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onFacePositionChanged" />
+                <indexterm keyref="onFacePositionChanged"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public void onFacePositionChanged(
-                int imageWidth, int imageHeight, AgoraFacePositionInfo[] faceRectArr) {}</codeblock>
+            <codeblock props="android" outputclass="language-java">public void onFacePositionChanged(int imageWidth, int imageHeight, AgoraFacePositionInfo[] faceRectArr)</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">onFacePositionChanged?:(
-  imageWidth:number, imageHeight:number, faceRectArr:Array&lt;AgoraFacePositionInfo>) => void;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine facePositionDidChangeWidth:(int)width previewHeight:(int)height faces:(NSArray&lt;AgoraFacePositionInfo*&gt;* _Nullable)faces NS_SWIFT_NAME(rtcEngine(_:facePositionDidChangeWidth:previewHeight:faces:));</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onFacePositionChanged(int imageWidth, int imageHeight,
-                const Rectangle* vecRectangle, const int* vecDistance,
-                int numFaces) {
-                (void) imageWidth;
-                (void) imageHeight;
-                (void) vecRectangle;
-                (void) vecDistance;
-                (void) numFaces;
-                }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+  imageWidth:number, imageHeight:number, faceRectArr:Array&lt;AgoraFacePositionInfo&gt;) =&gt; void;</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine facePositionDidChangeWidth:(int)width previewHeight:(int)height faces:(NSArray&lt;AgoraFacePositionInfo*&gt;* _Nullable)faces  NS_SWIFT_NAME(rtcEngine(_:facePositionDidChangeWidth:previewHeight:faces:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onFacePositionChanged(int imageWidth, int imageHeight, const Rectangle* vecRectangle, const int* vecDistance, int numFaces)</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = "Agora|Event")
 	void OnFacePositionChanged(int imageWidth, int imageHeight, const TArray&lt;FRectangle&gt;&amp; vecRectangle, const TArray&lt;int&gt;&amp; vecDistance, int numFaces);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onFacePositionChanged?(
     imageWidth: number,
@@ -46,50 +37,85 @@
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(int imageWidth, int imageHeight, Rectangle vecRectangle,
       int vecDistance, int numFaces)? onFacePositionChanged;</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
-            <p>调用 <xref keyref="enableFaceDetection" /><codeph>(<ph keyref="true" />)</codeph> 开启本地人脸检测后，你可以通过该回调实时获取以下人脸检测的信息：
+            <dl outputclass="since">
+            <dlentry props="apple">
+                <dt>自从：</dt>
+                <dd props="native">自 v3.0.1 版本新增。</dd>
+            </dlentry>
+            </dl>
+            <p>调用 <xref keyref="enableFaceDetection"/> 启用人脸检测后，你可以实时获取以下本地用户信息：
+                    <xref keyref="enableFaceDetection"/> 启用人脸检测后，你可以实时获取以下本地用户信息：
+                    <xref keyref="enableFaceDetection"/><codeph>(<ph keyref="true"/>)</codeph> 开启本地人脸检测后，你可以通过该回调实时获取以下人脸检测的信息：
 
 
             <ul>
             <li>摄像头采集的画面大小</li>
             <li>人脸在 view 中的位置</li>
             <li>人脸距设备屏幕的距离</li>
-            </ul> </p>
+            </ul> <ul>
+                        <li>本地视频的宽度和高度。</li>
+                        <li>人脸在本地视图中的位置。</li>
+                        <li>人脸与屏幕之间的距离。 该距离值是基于本地视频尺寸和人脸位置的拟合计算结果。</li>
+                        </ul>
+                    </p>
             <p>其中，人脸距设备屏幕的距离由 SDK 通过摄像头采集的画面大小和人脸在 view 中的位置拟合计算得出。</p>
             <note type="attention">
             <ul>
-            <li props="cpp unreal bp unity flutter cs">该回调仅适用于 Android 和 iOS 平台。</li>
+            <li props="bp cpp cs flutter unity unreal">该回调仅适用于 Android 和 iOS 平台。</li>
             <li>当检测到摄像头前的人脸消失时，该回调会立刻触发；在无人脸的状态下，该回调触发频率会降低，以节省设备耗能。</li>
             <li>当人脸距离设备屏幕过近时，SDK 不会触发该回调。</li>
-            <li props="cpp unreal bp android flutter">Android 平台上，人脸距设备屏幕的距离（<parmname>distance</parmname>）值有一定误差，请不要用它进行精确计算。</li>
-            </ul> </note> </section>
+            <li props="android bp cpp flutter unreal">Android 平台上，人脸距设备屏幕的距离（<parmname>distance</parmname>）值有一定误差，请不要用它进行精确计算。</li>
+            </ul> </note> <note type="attention" props="cpp"><ul>
+                        <li>该回调仅适用于 Android 和 iOS 平台。</li>
+                        <li>当检测到摄像头前的人脸消失时，会立即触发该回调。在无人脸状态下，为降低本地设备功耗，回调的触发频率会降低。</li>
+                        <li>当人脸靠近屏幕时，SDK 会停止触发该回调。</li>
+                        <li>在 Android 平台中，该回调中的 <codeph>distance</codeph> 值可能与实际距离存在偏差，因此不建议用于精确计算。</li>
+                        </ul>
+                    </note>
+            <note type="attention" props="apple"><ul>
+                        <li>当检测到摄像头前的人脸消失时，会立即触发该回调。当未检测到人脸时，为降低本地设备的功耗，回调触发频率会降低。</li>
+                        <li>当人脸靠近屏幕时，SDK 会停止触发该回调。</li>
+                        </ul>
+                    </note>
+            <note type="attention" props="android"><ul>
+                        <li>当检测到摄像头前的人脸消失时，会立即触发该回调。当未检测到人脸时，为降低本地设备的功耗，该回调的触发频率会降低。</li>
+                        <li>当人脸靠近屏幕时，SDK 会停止触发该回调。</li>
+                        <li>在 Android 平台中，该回调中上报的距离值可能与实际距离略有偏差。因此，声网不建议将其用于精确计算。</li>
+                        </ul>
+                    </note>
+            </section>
         <section id="parameters">
-            <title><ph keyref="callback-section-title" /></title>
+            <title><ph keyref="callback-section-title"/></title>
             <parml>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt />
-                <pd />
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="apple">
+                <pt/>
+                <pd/>
             </plentry>
             <plentry>
-                <pt props="android hmos cpp unreal bp unity electron rn flutter cs">imageWidth</pt>
-                <pt props="ios mac">width</pt>
-                <pd>摄像头采集画面的宽度 (px)。</pd>
-            </plentry>
+                <pt>imageWidth</pt>
+                <pt props="apple">width</pt>
+                <pd props="bp cs electron flutter mac rn unity unreal">摄像头采集画面的宽度 (px)。</pd>
+            <pd props="android ios">本地摄像头采集的视频图像的宽度（像素）。</pd>
+                <pd props="cpp">本地摄像头采集的视频图像宽度（像素）。</pd>
+                </plentry>
             <plentry>
-                <pt props="android hmos cpp unreal bp unity flutter rn electron cs">imageHeight</pt>
-                <pt props="ios mac">height</pt>
-                <pd>摄像头采集画面的高度 (px)。</pd>
-            </plentry>
-            <plentry props="android hmos ios mac">
+                <pt>imageHeight</pt>
+                <pt props="apple">height</pt>
+                <pd props="bp cs electron flutter mac rn unity unreal">摄像头采集画面的高度 (px)。</pd>
+            <pd props="android ios">本地摄像头采集的视频图像的高度（像素）。</pd>
+                <pd props="cpp">本地摄像头采集的视频图像高度（像素）。</pd>
+                </plentry>
+            <plentry props="android apple hmos">
                 <pt props="android hmos">faceRectArr</pt>
-                <pt props="ios mac">faces</pt>
-                <pd>检测到的人脸信息，详见 <xref keyref="AgoraFacePositionInfo" />。检测到几张人脸，就会报告几个 <apiname keyref="AgoraFacePositionInfo" /> 数组。数组长度可以为 0，表示没有检测到摄像头前出现人脸。</pd>
+                <pt props="apple">faces</pt>
+                <pd>检测到的人脸信息，详见 <xref keyref="AgoraFacePositionInfo"/>。检测到几张人脸，就会报告几个 <apiname keyref="AgoraFacePositionInfo"/> 数组。数组长度可以为 0，表示没有检测到摄像头前出现人脸。</pd>
             </plentry>
-            <plentry props="cpp unreal bp unity flutter rn electron cs">
+            <plentry props="bp cpp cs electron flutter rn unity unreal">
                 <pt>vecRectangle</pt>
-                <pd props="cpp unreal bp">
+                <pd props="bp cpp unreal">
                     <p>是一个长度为 <parmname>numFaces</parmname> 的数组，表示检测到的人脸信息：
 
                     <ul>
@@ -99,17 +125,39 @@
                     <li><codeph>height</codeph>：人脸在 view 中的高度 (px)。</li>
                     </ul> </p>
                 </pd>
-                <pd props="unity flutter rn electron cs">检测到的人脸信息。详见 <xref keyref="Rectangle" />。</pd>
+                <pd props="cs electron flutter rn unity">检测到的人脸信息。详见 <xref keyref="Rectangle"/>。</pd>
             </plentry>
-            <plentry props="cpp unreal bp unity flutter rn electron cs">
+            <plentry props="bp cpp cs electron flutter rn unity unreal">
                 <pt>vecDistance</pt>
-                <pd props="cpp unreal bp">是一个长度为 <parmname>numFaces</parmname> 的数组，表示人脸和设备屏幕之间的距离 (cm)。</pd>
-                <pd props="unity flutter rn electron cs">人脸和设备屏幕之间的距离 (cm)。</pd>
+                <pd props="bp cpp unreal">是一个长度为 <parmname>numFaces</parmname> 的数组，表示人脸和设备屏幕之间的距离 (cm)。</pd>
+                <pd props="cs electron flutter rn unity">人脸和设备屏幕之间的距离 (cm)。</pd>
             </plentry>
-            <plentry props="cpp unreal bp unity flutter rn electron cs">
-                <pt>numFaces</pt>
-                <pd>检测的人脸数量。如果为 0，则表示没有检测到人脸。</pd>
-            </plentry>
-            </parml> </section>
+            <plentry props="bp cpp cs electron flutter rn unity unreal">
+                <pt props="bp cpp cs electron flutter rn unity unreal">numFaces</pt>
+                <pd props="android apple bp cs electron flutter rn unity unreal">检测的人脸数量。如果为 0，则表示没有检测到人脸。</pd>
+            <pd props="cpp">检测到的人脸数量。如果该值为 0，表示未检测到人脸。</pd>
+                </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">faces</pt>
+                <pd props="android">检测到的人脸信息。该数组的长度取决于检测到的人脸数量，可能为 0，表示摄像头前未检测到人脸。详见 <xref keyref="AgoraFacePositionInfo"/>。</pd>
+                <pd props="ios">检测到的人脸信息，详见 <xref keyref="AgoraFacePositionInfo"/>。该回调中返回的 <xref keyref="AgoraFacePositionInfo"/> 数组数量取决于检测到的人脸数量。数组长度为 0 表示摄像头前未检测到人脸。</pd>
+                <pd props="cpp">一个长度为 <codeph>numFaces</codeph> 的数组，表示检测到的人脸信息。详见 <xref keyref="Rectangle"/>：
+                    <ul>
+                        <li><codeph>x</codeph>：人脸在本地视图中的 x 坐标（像素），以视图左上角为原点，表示人脸相对于原点的水平位置。</li>
+                        <li><codeph>y</codeph>：人脸在本地视图中的 y 坐标（像素），以视图左上角为原点，表示人脸相对于原点的垂直位置。</li>
+                        <li><codeph>width</codeph>：人脸在采集视图中的宽度（像素）。</li>
+                        <li><codeph>height</codeph>：人脸在采集视图中的高度（像素）。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="cpp">
+                <pt props="cpp">faceDistances</pt>
+                <pd props="cpp">一个长度为 <codeph>numFaces</codeph> 的数组，表示每张人脸与设备屏幕之间的距离（厘米）。</pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">engine</pt>
+                <pd props="ios">引擎对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+        </parml> </section>
     </refbody>
 </reference>

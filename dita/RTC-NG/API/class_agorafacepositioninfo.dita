@@ -1,17 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_agorafacepositioninfo">
     <title> <ph keyref="AgoraFacePositionInfo"/> </title>
-    <shortdesc id="short"> <ph id="shortdesc">检测到的人脸信息。</ph> </shortdesc>
+    <shortdesc id="short"> <ph id="shortdesc">本地视频中检测到的人脸信息。</ph> </shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public static class AgoraFacePositionInfo {
-  public int x;
-  public int y;
-  public int width;
-  public int height;
-  public int distance;
+    public int x;
+    public int y;
+    public int width;
+    public int height;
+    public int distance;
 }</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">export class AgoraFacePositionInfo {
   
@@ -37,40 +37,50 @@
             <codeblock props="unity cs" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
            <codeblock props="flutter" outputclass="language-dart"/> 
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry>
-                <pt>x</pt>
+            <plentry props="android ios">
+                <pt props="android ios">x</pt>
                 <pd>
                     <p>人脸在画面中的 x 坐标 (px)。以摄像头采集画面的左上角为原点，x 坐标为人脸左上角相对于原点的横向位移。</p>
                 </pd>
-            </plentry>
-            <plentry>
-                <pt>y</pt>
+                <pd props="android">人脸在本地视频中的 x 坐标（单位:px）。以视频画面左上角为坐标原点，<codeph>x</codeph> 表示人脸左上角相对于原点的横向位移，同时也代表水印位置的左上角横坐标。</pd>
+                <pd props="ios">本地视频中人脸的 x 坐标（像素）。表示相对于原点的水平位置，原点为采集视频的左上角，<codeph>x</codeph> 坐标为人脸左上角的位置。</pd>
+                </plentry>
+            <plentry props="android ios">
+                <pt props="android ios">y</pt>
                 <pd>
                     <p>人脸在画面中的 y 坐标 (px)。以摄像头采集画面的左上角为原点，y 坐标为人脸左上角相对原点的纵向位移。</p>
                 </pd>
-            </plentry>
-            <plentry>
-                <pt>width</pt>
+                <pd props="android">人脸在本地视频中的 y 坐标（单位:px）。以视频画面左上角为坐标原点，<codeph>y</codeph> 表示人脸左上角相对于原点的纵向位移。</pd>
+                <pd props="ios">本地视频中人脸的 y 坐标（像素）。以采集视频的左上角为原点，<codeph>y</codeph> 坐标表示人脸左上角相对于原点的垂直位移。</pd>
+                </plentry>
+            <plentry props="android ios">
+                <pt props="android ios">width</pt>
                 <pd>
                     <p>人脸在画面中的宽度 (px)。</p>
                 </pd>
+                <pd props="android">人脸在本地视频中的宽度（单位:px）。</pd>
+                <pd props="ios">采集视频中人脸的宽度（像素）。</pd>
             </plentry>
-            <plentry>
-                <pt>height</pt>
+            <plentry props="android ios">
+                <pt props="android ios">height</pt>
                 <pd>
                     <p>人脸在画面中的高度 (px)。</p>
                 </pd>
+                <pd props="android">人脸在本地视频中的高度（单位:px）。</pd>
+                <pd props="ios">采集视频中人脸的高度（像素）。</pd>
             </plentry>
-            <plentry>
-                <pt>distance</pt>
+            <plentry props="android ios">
+                <pt props="android ios">distance</pt>
                 <pd>
                     <p>人脸距设备屏幕的距离 (cm)。</p>
                 </pd>
+                <pd props="android">人脸与设备屏幕之间的距离（单位:cm）。</pd>
+                <pd props="ios">人脸与设备屏幕之间的距离（厘米）。</pd>
             </plentry>
             </parml> </section>
     </refbody>

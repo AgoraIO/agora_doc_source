@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_localaudiostreamreason">
      <title> <ph keyref="LOCAL_AUDIO_STREAM_REASON"/> </title>
-     <shortdesc id="short"> <ph id="shortdesc">本地音频状态改变原因。</ph> </shortdesc>
+     <shortdesc id="short"> <ph id="shortdesc">本地音频状态变化的原因。</ph> </shortdesc>
      <refbody>
           <section id="parameters">
                <title>枚举值</title>
@@ -25,9 +25,9 @@
                               </dlentry>
                               </dl></pd>
                </plentry>
-               <plentry props="android ios cpp unreal bp unity rn flutter cs">
+               <plentry props="android bp cpp cs flutter ios rn unity unreal">
                     <pt> <ph keyref="LOCAL_AUDIO_STREAM_REASON_DEVICE_BUSY"/> </pt>
-                    <pd props="android ios cpp unreal bp unity rn flutter">3：<ph props="cpp unreal bp unity flutter">（仅适用于 Android 和 iOS）</ph>本地音频采集设备已经在使用中。请提示用户检查麦克风是否被其他应用占用。麦克风空闲约 5 秒后本地音频采集会自动恢复，你也可以在麦克风空闲后尝试重新加入频道。</pd>
+                    <pd props="android bp cpp flutter ios rn unity unreal">3：<ph props="bp cpp flutter unity unreal">（仅适用于 Android 和 iOS）</ph>本地音频采集设备已经在使用中。请提示用户检查麦克风是否被其他应用占用。麦克风空闲约 5 秒后本地音频采集会自动恢复，你也可以在麦克风空闲后尝试重新加入频道。</pd>
                     <pd props="cs">3：预留。</pd>
                </plentry>
                <plentry>
@@ -38,27 +38,43 @@
                     <pt> <ph keyref="LOCAL_AUDIO_STREAM_REASON_ENCODE_FAILURE"/> </pt>
                     <pd>5：本地音频编码失败。</pd>
                </plentry>
-               <plentry props="cpp mac unreal bp unity flutter electron cs">
+               <plentry props="bp cpp cs electron flutter mac unity unreal">
                     <pt><ph keyref="LOCAL_AUDIO_STREAM_REASON_NO_RECORDING_DEVICE"/></pt>
-                    <pd>6：<ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph>无本地音频采集设备。请提示用户在设备的控制面板中检查麦克风是否与设备连接正常，检查麦克风是否正常工作。</pd>
+                    <pd>6：<ph props="bp cpp flutter unity unreal">（仅适用于 Windows 和 macOS）</ph>无本地音频采集设备。请提示用户在设备的控制面板中检查麦克风是否与设备连接正常，检查麦克风是否正常工作。</pd>
                </plentry>
-               <plentry props="cpp mac unreal bp unity flutter electron cs">
+               <plentry props="bp cpp cs electron flutter mac unity unreal">
                     <pt><ph keyref="LOCAL_AUDIO_STREAM_REASON_NO_PLAYOUT_DEVICE"/></pt>
-                    <pd>7：<ph props="cpp unreal bp unity flutter">（仅适用于 Windows 和 macOS）</ph>无本地音频播放设备。请提示用户在设备的控制面板中检查扬声器是否与设备连接正常，检查扬声器是否正常工作。</pd>
+                    <pd>7：<ph props="bp cpp flutter unity unreal">（仅适用于 Windows 和 macOS）</ph>无本地音频播放设备。请提示用户在设备的控制面板中检查扬声器是否与设备连接正常，检查扬声器是否正常工作。</pd>
                </plentry>
-                    <plentry props="cpp ios unreal bp ios unity flutter rn cs">
+                    <plentry props="bp cpp cs flutter ios rn unity unreal">
                     <pt><ph keyref="LOCAL_AUDIO_STREAM_REASON_INTERRUPTED"/> </pt>
-                    <pd props="cpp unreal bp ios unity rn flutter">8:<ph props="cpp unreal bp unity flutter">（仅适用于 Android 和 iOS）</ph>本地音频采集被系统来电、智能助手、闹钟中断。如需恢复本地音频采集，请用户中止电话、智能助手、闹钟。</pd>
+                    <pd props="bp cpp flutter ios rn unity unreal">8:<ph props="bp cpp flutter unity unreal">（仅适用于 Android 和 iOS）</ph>本地音频采集被系统来电、智能助手、闹钟中断。如需恢复本地音频采集，请用户中止电话、智能助手、闹钟。</pd>
                     <pd props="cs">预留。</pd>
                </plentry>
-               <plentry props="cpp unreal bp unity flutter electron cs">
+               <plentry props="bp cpp cs electron flutter unity unreal">
                     <pt><ph keyref="LOCAL_AUDIO_STREAM_REASON_RECORD_INVALID_ID"/></pt>
                     <pd>9：（仅适用于 Windows）本地音频采集设备的 ID 无效。请提示用户检查音频采集设备 ID。</pd>
                </plentry>
-               <plentry props="cpp unreal bp unity flutter electron cs">
+               <plentry props="bp cpp cs electron flutter unity unreal">
                     <pt><ph keyref="LOCAL_AUDIO_STREAM_REASON_PLAYOUT_INVALID_ID"/></pt>
                     <pd>10：（仅适用于 Windows）本地音频播放设备的 ID 无效。请提示用户检查音频播放设备 ID。</pd>
                </plentry>
-               </parml> </section>
+               <plentry props="apple">
+                <pt><ph keyref="AgoraAudioLocalReasonRecordFailure"/></pt>
+                <pd props="apple">（4）：本地音频采集失败。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraAudioLocalReasonNoPlayoutDevice"/></pt>
+                <pd props="apple">（7）：（仅适用于 macOS 平台）无本地音频播放设备。请提示用户在设备控制面板中检查扬声器是否正确连接或工作正常。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraAudioLocalReasonDeviceBusy"/></pt>
+                <pd props="apple">（3）：（仅适用于 iOS 平台）本地音频采集设备被占用。请提示用户检查是否有其他应用占用麦克风。麦克风空闲约五秒后音频采集会自动恢复，也可在麦克风空闲后尝试重新加入频道。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraAudioLocalReasonInterrupted"/></pt>
+                <pd props="apple">（8）：（仅适用于 iOS 平台）本地音频采集被系统电话、智能助手或闹钟中断。如需继续采集，请提示用户结束相关操作。</pd>
+            </plentry>
+            </parml> </section>
      </refbody>
 </reference>

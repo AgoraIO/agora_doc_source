@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_querycodeccapability">
     <title><ph keyref="queryCodecCapability"/></title>
-    <shortdesc id="short"><ph id="shortdesc">查询 SDK 支持的视频编解码能力。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">查询 SDK 支持的视频编解码器能力。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,65 +14,73 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract CodecCapInfo[] queryCodecCapability();</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (NSArray &lt;AgoraVideoCodecCapInfo *> *_Nullable)queryCodecCapability;</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int queryCodecCapability(CodecCapInfo* codecInfo, int&amp; size) = 0;
-</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (NSArray &lt;AgoraVideoCodecCapInfo *&gt; *_Nullable)queryCodecCapability;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int queryCodecCapability(CodecCapInfo* codecInfo, int&amp; size) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	int QueryCodecCapability(TArray&lt;FCodecCapInfo&gt; &amp; codecInfo, int QuerySize = 10);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract queryCodecCapability(): { codecInfo: CodecCapInfo[]; size: number };</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int QueryCodecCapability(ref CodecCapInfo[] codecInfo, ref int size);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract queryCodecCapability(): { codecInfo: CodecCapInfo[]; size: number };</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;List&lt;CodecCapInfo>> queryCodecCapability(int size);</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;List&lt;CodecCapInfo&gt;&gt; queryCodecCapability(int size);</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <title>详情</title>
-            <dl outputclass="since">
-            <dlentry props="android apple cpp">
-                <dt>自从</dt>
-                <dd>v4.2.0</dd>
-            </dlentry>
-            </dl>
-            <p/>
-        </section>
-        <section id="parameters" props="cpp unreal bp unity cs flutter">
+            <p></p>
+            </section>
+        <section id="parameters" props="bp cpp cs flutter unity unreal">
             <title>参数</title>
             <parml>
-            <plentry props="cpp unreal bp unity cs">
-                <pt>codecInfo</pt>
-                <pd>
+            <plentry props="bp cpp cs unity unreal">
+                <pt props="bp cpp cs unity unreal">codecInfo</pt>
+                <pd props="android apple bp cs electron flutter rn unity unreal">
                         <p>输入和输出参数，表示 SDK 的视频编码能力数组。详见 <xref keyref="CodecCapInfo"/>。</p>
                         <ul>
                             <li>输入值：用户执行该方法时定义的 <apiname keyref="CodecCapInfo"/>，表示待查询的视频编解码能力。</li>
                             <li>输出值：方法执行完毕后输出的 <apiname keyref="CodecCapInfo"/>，表示 SDK 实际支持的视频编解码能力。</li>
                         </ul>
                     </pd>
-            </plentry>
-            <plentry props="cpp unreal bp unity electron rn flutter cs">
-                <pt>size</pt>
-                <pd props="cpp unreal bp unity cs">输入和输出参数，表示 <apiname keyref="CodecCapInfo"/> 数组的大小。
+            <pd props="cpp">输入和输出参数，表示 SDK 支持的视频编解码器能力数组。你在调用该方法时传入一个 <xref keyref="CodecCapInfo"/>，表示要查询的视频编解码器能力。方法执行完毕后返回的 <xref keyref="CodecCapInfo"/> 表示 SDK 实际支持的视频编解码器能力。详见 <xref keyref="CodecCapInfo"/>。</pd>
+                </plentry>
+            <plentry props="bp cpp cs electron flutter rn unity unreal">
+                <pt props="bp cpp cs electron flutter rn unity unreal">size</pt>
+                <pd props="bp cs unity unreal">输入和输出参数，表示 <apiname keyref="CodecCapInfo"/> 数组的大小。
                         <ul>
                         <li>输入值：用户执行该方法时定义的 <apiname keyref="CodecCapInfo"/> 的大小。</li>
                         <li>输出值：方法执行完毕后输出的 <apiname keyref="CodecCapInfo"/> 的大小。</li>
                         </ul> </pd>
                 <pd props="flutter"><apiname keyref="CodecCapInfo"/> 的大小。</pd>
-            </plentry>
-            </parml> </section>
-        <section id="return_values">
+            <pd props="cpp">输入和输出参数，表示 <codeph>codecInfo</codeph> 数组的大小。你在调用该方法时传入 <codeph>codecInfo</codeph> 的大小，方法执行完毕后返回实际支持的 <codeph>codecInfo</codeph> 数组大小。</pd>
+                </plentry>
+        </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title>返回值</title>
-            <ul props="electron rn">
+        <ul props="electron rn">
             <li>如果调用成功，则返回一个包含以下属性的对象：<ul>
                 <li><codeph>codecInfo</codeph>：<xref keyref="CodecCapInfo"/> 数组，表示 SDK 的视频编码能力。</li>
                 <li><codeph>size</codeph>：<apiname keyref="CodecCapInfo"/> 数组的大小。</li></ul></li>
             <li>如果调用超时，请修改调用逻辑，不要在主线程中调用该方法。</li>
             </ul>
-            <ul props="cpp unreal bp unity cs">
+        <ul props="bp cs unity unreal">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
             </ul>
-            <ul props="android apple flutter">
+        <ul props="apple flutter">
             <li>如果调用成功，则返回 <xref keyref="CodecCapInfo"/> 数组，表示 SDK 的视频编码能力。</li>
             <li>如果调用超时，请修改调用逻辑，不要在主线程中调用该方法。</li>
-            </ul> </section>
+            </ul>
+        <p props="apple"><ul>
+                        <li>方法调用成功时，返回一个 <xref keyref="CodecCapInfo"/> 数组，表示设备的视频编码能力。详见 <xref keyref="CodecCapInfo"/>。</li>
+                        <li>如果调用超时，请修改调用逻辑，避免在主线程中调用该方法。</li>
+                        </ul>
+                    </p>
+        <p props="cpp"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+        <p props="android">方法调用成功，返回一个 <xref keyref="CodecCapInfo"/> 数组，表示设备的视频编解码能力。
+如果调用超时，请修改调用逻辑，避免在主线程中调用该方法。</p>
+    </section>
     </refbody>
 </reference>

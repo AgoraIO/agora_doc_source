@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_srcinfo">
-    <title><ph keyref="SrcInfo" /></title>
-    <shortdesc id="short"><ph id="shortdesc">媒体资源播放时的视频码率相关信息。</ph></shortdesc>
+    <title><ph keyref="SrcInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc">正在播放的媒体资源的视频码率信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -17,9 +17,9 @@
   
   public bitrateInKbps:number = 0
   
-  public name:string = &quot;&quot;
+  public name:string = ""
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaPlayerSrcInfo : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraMediaPlayerSrcInfo : NSObject
 @property(assign, nonatomic) int bitrateInKbps;
 @property(copy, nonatomic) NSString *_Nullable name;
 @end</codeblock>
@@ -31,10 +31,10 @@
 struct FSrcInfo {
 	GENERATED_BODY()
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SrcInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|SrcInfo")
 	int bitrateInKbps = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SrcInfo&quot;)
-	FString name = &quot;&quot;;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|SrcInfo")
+	FString name = "";
 	FSrcInfo(){}
 	FSrcInfo(const agora::media::base::SrcInfo&amp; srcInfo) {
 		bitrateInKbps = srcInfo.bitrateInKbps;
@@ -78,18 +78,20 @@ public:
       _$SrcInfoFromJson(json);
   Map&lt;String, dynamic&gt; toJson() =&gt; _$SrcInfoToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry>
-                <pt>bitrateInKbps</pt>
+            <plentry props="ios">
+                <pt props="ios">bitrateInKbps</pt>
                 <pd>媒体资源播放时的视频码率（Kbps）。</pd>
+                <pd props="ios">正在播放的媒体资源的视频码率，单位为 Kbps。</pd>
             </plentry>
-            <plentry>
-                <pt>name</pt>
+            <plentry props="ios">
+                <pt props="ios">name</pt>
                 <pd>媒体资源的名字。</pd>
+                <pd props="ios">媒体资源的名称。</pd>
             </plentry>
             </parml> </section>
     </refbody>

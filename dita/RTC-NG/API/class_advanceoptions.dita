@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_advanceoptions">
     <title><ph keyref="AdvanceOptions"/></title>
@@ -28,7 +28,7 @@
   constructor() {
   }
 }</codeblock>
-              <codeblock props="ios mac" outputclass="language-objectivec">  __attribute__((visibility("default"))) @interface AgoraAdvancedVideoOptions : NSObject
+              <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraAdvancedVideoOptions : NSObject
 @property(assign, nonatomic) AgoraEncodingPreference encodingPreference;
 @property(assign, nonatomic) AgoraCompressionPreference compressionPreference;
 @property(assign, nonatomic) BOOL encodeAlpha;
@@ -57,11 +57,11 @@
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FAdvanceOptions {
 	GENERATED_BODY()
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AdvanceOptions&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|AdvanceOptions")
 	FENUMWRAP_ENCODING_PREFERENCE encodingPreference = EENUMCUSTOM_ENCODING_PREFERENCE::PREFER_AUTO;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AdvanceOptions&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|AdvanceOptions")
 	ECOMPRESSION_PREFERENCE compressionPreference = ECOMPRESSION_PREFERENCE::PREFER_QUALITY;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AdvanceOptions&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|AdvanceOptions")
 	bool encodeAlpha = false;
 
 	FAdvanceOptions() {}
@@ -116,13 +116,13 @@ class AdvanceOptions {
   const AdvanceOptions(
       {this.encodingPreference, this.compressionPreference, this.encodeAlpha});
 
-  @JsonKey(name: &#x27;encodingPreference&#x27;)
+  @JsonKey(name: 'encodingPreference')
   final EncodingPreference? encodingPreference;
 
-  @JsonKey(name: &#x27;compressionPreference&#x27;)
+  @JsonKey(name: 'compressionPreference')
   final CompressionPreference? compressionPreference;
 
-  @JsonKey(name: &#x27;encodeAlpha&#x27;)
+  @JsonKey(name: 'encodeAlpha')
   final bool? encodeAlpha;
 
   factory AdvanceOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
@@ -130,35 +130,37 @@ class AdvanceOptions {
 
   Map&lt;String, dynamic&gt; toJson() =&gt; _$AdvanceOptionsToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since">
-            <dlentry props="android apple cpp">
-                <dt>自从</dt>
-                <dd>v4.1.0</dd>
-            </dlentry>
-            </dl>
-            <p/>
-        </section>
+            <p></p>
+            </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry>
-                <pt>encodingPreference</pt>
+            <plentry props="ios">
+                <pt props="ios">encodingPreference</pt>
                 <pd>视频编码器偏好。详见 <xref keyref="ENCODING_PREFERENCE"/>。</pd>
-            </plentry>
-            <plentry>
-                <pt>compressionPreference</pt>
+                <pd props="ios">视频编码器的偏好设置。详见 <xref keyref="ENCODING_PREFERENCE"/>。</pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">compressionPreference</pt>
                 <pd>视频编码的压缩偏好。详见 <xref keyref="COMPRESSION_PREFERENCE"/>。</pd>
-            </plentry>
-                <plentry>
-                    <pt>encodeAlpha</pt>
-                    <pd>当视频帧包含 Alpha 通道数据时，设置是否将 Alpha 数据编码并发送至远端：
+                <pd props="ios">视频编码的压缩偏好设置。详见 <xref keyref="COMPRESSION_PREFERENCE"/>。</pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">encodeAlpha</pt>
+                <pd>当视频帧包含 Alpha 通道数据时，设置是否将 Alpha 数据编码并发送至远端：
                         <ul>
                         <li><codeph><ph keyref="true"/></codeph>：对 Alpha 数据进行编码发送。</li>
                         <li><codeph><ph keyref="false"/></codeph>：（默认）不对 Alpha 数据进行编码发送。</li>
                         </ul></pd>
+                <pd props="ios">是否对视频帧中存在的 Alpha 数据进行编码并发送到远端：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：编码并发送 Alpha 数据。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）不编码也不发送 Alpha 数据。</li>
+                        </ul>
+                    </pd>
                 </plentry>
             </parml> </section>
     </refbody>

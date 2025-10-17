@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_contentinspecttype">
     <title><ph keyref="CONTENT_INSPECT_TYPE"/></title>
-    <shortdesc id="short">视频内容审核模块的类型。<ph id="shortdesc"/></shortdesc>
+    <shortdesc id="short">视频内容审核模块的类型。<ph id="shortdesc">视频内容审核模块类型。</ph></shortdesc>
     <refbody>
         <section id="parameters">
             <title>枚举值</title>
@@ -19,9 +19,21 @@
                 <pt><ph keyref="CONTENT_INSPECT_SUPERVISION"/></pt>
                 <pd>2：使用声网自研插件截图上传。SDK 会对视频流进行截图并上传。</pd>
             </plentry>
-            <plentry props="native flutter unreal bp unity electron rn">
+            <plentry props="bp electron flutter native rn unity unreal">
                 <pt><ph keyref="CONTENT_INSPECT_IMAGE_MODERATION"/></pt>
                 <pd>3：使用云市场插件截图上传。SDK 会使用云市场视频审核插件对视频流进行截图并上传。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraContentInspectTypeInvalid"/></pt>
+                <pd props="apple">（0）：（默认）该模块无实际功能。请勿将 <codeph>type</codeph> 设置为该值。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraContentInspectTypeSupervise"/></pt>
+                <pd props="apple">（2）：通过声网自研扩展进行视频截图上传。SDK 会对频道中的视频流进行截图并上传。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraContentInspectTypeImageModeration"/></pt>
+                <pd props="apple">（3）：通过声网扩展市场中的扩展进行视频截图上传。SDK 使用来自声网扩展市场的视频审核扩展对频道中的视频流进行截图并上传。</pd>
             </plentry>
             </parml> </section>
     </refbody>

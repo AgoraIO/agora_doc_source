@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_complain">
     <title><ph keyref="complain"/></title>
-    <shortdesc id="short"><ph id="shortdesc">投诉通话质量。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">允许用户在通话结束后投诉通话质量。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,44 +14,69 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int complain(String callId, String description);</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)complain:(NSString * _Nonnull)callId
-    description:(NSString * _Nullable)description;</codeblock>
+    description:(NSString * _Nullable)description NS_SWIFT_NAME(complain(_:description:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int complain(const char* callId, const char* description) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	int Complain(const FString&amp; callId, const FString&amp; description);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract complain(callId: string, description: string): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int Complain(string callId, string description);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract complain(callId: string, description: string): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; complain({required String callId, required String description});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
             <title>详情</title>
-            <p>该方法允许用户就通话质量进行投诉。需要在离开频道后调用。</p>
-        </section>
+            <p>请在用户离开频道后调用该方法。</p>
+            </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry>
                 <pt>callId</pt>
-                <pd>通话 ID。你可以通过调用 <xref keyref="getCallId"/> 获取该参数。</pd>
-            </plentry>
+                <pd props="bp cs electron flutter mac rn unity unreal">通话 ID。你可以通过调用 <xref keyref="getCallId"/> 获取该参数。</pd>
+            <pd props="android">当前通话的 Call ID。你可以通过调用 <xref keyref="getCallId"/> 获取该值。</pd>
+                <pd props="ios">当前通话的通话 ID。你可以通过调用 <xref keyref="getCallId"/> 方法获取该 ID。</pd>
+                <pd props="cpp">当前通话的通话 ID。你可以通过调用 <xref keyref="getCallId"/> 获取该 ID。</pd>
+                </plentry>
             <plentry>
                 <pt>description</pt>
-                <pd><ph props="native unreal bp unity cs">（非必选项）</ph><ph>通话的描述。长度应小于 800 字节。</ph></pd>
-            </plentry>
-            </parml> </section>
-        <section id="return_values">
+                <pd props="bp cs electron flutter mac rn unity unreal"><ph props="bp cs native unity unreal">（非必选项）</ph><ph>通话的描述。长度应小于 800 字节。</ph></pd>
+            <pd props="android cpp ios">（可选）对通话的描述。字符串长度应小于 800 字节。</pd>
+                </plentry>
+        </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp electron unity rn cs">
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cs electron rn unity unreal">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph>
                 <ul>
                 <li>-1: 一般性的错误（未明确归类）。</li>
                 <li>-2: 参数无效。</li>
                 <li>-7: <xref keyref="IRtcEngine"/> 尚未初始化就调用方法。</li></ul></li>
-            </ul> </section>
+            </ul>
+        <p props="android apple"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。<ul>
+                            <li>-1：发生通用错误（无明确原因）。</li>
+                            <li>-2：参数无效。</li>
+                            <li>-7：在初始化 <xref keyref="IRtcEngine"/> 之前调用该方法。</li>
+                            </ul>
+                        </li>
+                        </ul>
+                    </p>
+        <p props="cpp"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。<ul>
+                            <li>-1：发生通用错误（无明确原因）。</li>
+                            <li>-2：参数无效。</li>
+                            <li>-7：在 <xref keyref="IRtcEngine"/> 初始化前调用该方法。</li>
+                            </ul>
+                        </li>
+                        </ul>
+                    </p>
+        </section>
     </refbody>
 </reference>

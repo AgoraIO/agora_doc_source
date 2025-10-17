@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_playerupdatedinfo">
-    <title><ph keyref="PlayerUpdatedInfo" /></title>
-    <shortdesc id="short"><ph id="shortdesc">媒体播放器相关信息。</ph></shortdesc>
+    <title><ph keyref="PlayerUpdatedInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc">媒体播放器的信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -17,9 +17,9 @@
             <codeblock props="hmos" outputclass="language-arkts">export class PlayerUpdatedInfo
 {
 
-  public internalPlayerUuid:string = &quot;&quot;
+  public internalPlayerUuid:string = ""
 
-  public deviceId:string = &quot;&quot;
+  public deviceId:string = ""
 
   public videoHeight:number = 0
 
@@ -31,7 +31,8 @@
 
   public audioBitsPerSample:number = 0
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaPlayerUpdatedInfo : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraMediaPlayerUpdatedInfo : NSObject
+@property(copy, nonatomic) NSString *_Nullable internalPlayerUuid;
 @property(copy, nonatomic) NSString *_Nullable deviceId;
 @property(assign, nonatomic) NSInteger videoHeight;
 @property(assign, nonatomic) NSInteger videoWidth;
@@ -52,19 +53,19 @@ struct FPlayerUpdatedInfo {
 	GENERATED_BODY()
 public:
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerUpdatedInfo&quot;)
-	FString internalPlayerUuid = &quot;&quot;;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerUpdatedInfo&quot;)
-	FString deviceId = &quot;&quot;;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerUpdatedInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|PlayerUpdatedInfo")
+	FString internalPlayerUuid = "";
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|PlayerUpdatedInfo")
+	FString deviceId = "";
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|PlayerUpdatedInfo")
 	int videoHeight = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerUpdatedInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|PlayerUpdatedInfo")
 	int videoWidth = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerUpdatedInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|PlayerUpdatedInfo")
 	int audioSampleRate = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerUpdatedInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|PlayerUpdatedInfo")
 	int audioChannels = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerUpdatedInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|PlayerUpdatedInfo")
 	int audioBitsPerSample = 0;
 
 	FPlayerUpdatedInfo(){}
@@ -129,35 +130,41 @@ public:
       _$PlayerUpdatedInfoFromJson(json);
   Map&lt;String, dynamic&gt; toJson() =&gt; _$PlayerUpdatedInfoToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry>
-                <pt>deviceId</pt>
+            <plentry props="ios">
+                <pt props="ios">deviceId</pt>
                 <pd>设备 ID，标识一个设备。</pd>
+                <pd props="ios">设备的 ID。</pd>
             </plentry>
-            <plentry>
-                <pt>videoHeight</pt>
+            <plentry props="ios">
+                <pt props="ios">videoHeight</pt>
                 <pd>视频高度 (pixel)。</pd>
+                <pd props="ios">视频的高度（单位为像素）。</pd>
             </plentry>
-            <plentry>
-                <pt>videoWidth</pt>
+            <plentry props="ios">
+                <pt props="ios">videoWidth</pt>
                 <pd>视频宽度 (pixel)。</pd>
+                <pd props="ios">视频的宽度（单位为像素）。</pd>
             </plentry>
-             <plentry>
-                 <pt>audioSampleRate</pt>
-                 <pd>音频采样率 (Hz)。</pd>
-             </plentry>
-              <plentry>
-                  <pt>audioChannels</pt>
-                  <pd>声道数。</pd>
-              </plentry>
-               <plentry>
-                   <pt>audioBitsPerSample</pt>
-                   <pd>每个音频采样点的位数 (bit)。</pd>
-               </plentry>
+            <plentry props="ios">
+                <pt props="ios">audioSampleRate</pt>
+                <pd>音频采样率 (Hz)。</pd>
+                <pd props="ios">音频采样率（单位为 Hz）。</pd>
+            </plentry>
+            <plentry props="ios">
+                <pt props="ios">audioChannels</pt>
+                <pd>声道数。</pd>
+                <pd props="ios">音频的声道数。</pd>
+            </plentry>
+            <plentry props="ios">
+                <pt props="ios">audioBitsPerSample</pt>
+                <pd>每个音频采样点的位数 (bit)。</pd>
+                <pd props="ios">每个音频采样点的位数。</pd>
+            </plentry>
             </parml> </section>
     </refbody>
 </reference>

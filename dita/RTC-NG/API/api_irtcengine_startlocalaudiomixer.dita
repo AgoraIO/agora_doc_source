@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startlocalaudiomixer">
     <title><ph keyref="startLocalAudioMixer"/></title>
-    <shortdesc id="short"><ph id="shortdesc">开启本地音频合流。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">开启本地音频混音。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -22,20 +22,24 @@
             <codeblock props="electron" outputclass="language-typescript">abstract startLocalAudioMixer(config: LocalAudioMixerConfiguration): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int StartLocalAudioMixer(LocalAudioMixerConfiguration config);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract startLocalAudioMixer(config: LocalAudioMixerConfiguration): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> startLocalAudioMixer(LocalAudioMixerConfiguration config);</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startLocalAudioMixer(LocalAudioMixerConfiguration config);</codeblock> </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <dl outputclass="since">
-            <dlentry props="native">
-                <dt>自从</dt>
-                <dd>v4.5.0</dd>
-            </dlentry>
-            </dl>
-            <p>该方法支持在本地将多路音频流合并为一路音频流。例如：将本地麦克风采集的音频流、媒体播放器中的音频流、声卡采集的音频流、远端音频流等合并为一路音频流，然后将合流后的音频流发布到频道中。<ul>
+            <p>该方法支持在本地将多个音频流合并为一个音频流。例如，可以将本地麦克风采集的音频流、媒体播放器的音频流、声卡的音频流以及远端用户的音频流合并为一个音频流，并将该合并后的音频流发布到频道中。
+                    <ul>
                 <li>如果你要对本地采集的音频流进行合流，可以将 <xref keyref="ChannelMediaOptions"/> 中的 publishMixedAudioTrack 设置为 <codeph><ph keyref="true"/></codeph>，则可将合流后的音频流发布到频道中。</li>
                 <li>如果你要对远端音频流进行合流，需确保远端音频流已在频道内发布并且已被订阅。</li>
-            </ul></p>
-        </section>
+            </ul><ul>
+                        <li>如果你希望混合本地采集的音频流，可以在 <xref keyref="ChannelMediaOptions"/> 中将 <codeph>publishMixedAudioTrack</codeph> 设置为 <codeph><ph keyref="true"/></codeph>，然后将混合后的音频流发布到频道中。</li>
+                        <li>如果你希望混合远端音频流，请确保远端音频流已在频道中发布，并且你已订阅需要混音的音频流。 适用场景：</li>
+                        <li>使用本地视频合流功能时，可以同时采集并发布合流视频流所关联的音频流。</li>
+                        <li>在极速直播场景中，用户可以接收频道内的音频流，在本地混合多个音频流后，将混合后的音频流转发到其他频道。</li>
+                        <li>在在线课堂中，老师可以将与学生互动的音频在本地混合后转发到其他频道。</li>
+                        </ul>
+                    </p>
+            <note type="attention" props="cpp">为确保音频质量，建议混音的音频流数量不超过 10 路。</note>
+            <note type="attention" props="android">为保证音频质量，建议混音的音频流数量不超过 10 路。</note>
+            </section>
         <section id="scenario" deliveryTarget="details">
             <title>适用场景</title>
             <p>你可以在如下场景中开启该功能：
@@ -47,27 +51,38 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p>该方法在加入频道前后均可调用。</p>
+            <p>你可以在加入频道前或后调用该方法。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p>为了保证音频质量，建议参与本地合流的音频流数量不超过 10 个。</p>
+            <p>无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
             <plentry id="config">
                     <pt>config</pt>
-                    <pd>本地音频合流的配置。详见 <xref keyref="LocalAudioMixerConfiguration"/>。</pd>
+                    <pd props="apple bp cs electron flutter rn unity unreal">本地音频合流的配置。详见 <xref keyref="LocalAudioMixerConfiguration"/>。</pd>
+                <pd props="android">本地音频混音的配置。详见 <xref keyref="LocalAudioMixerConfiguration"/>。</pd>
+                <pd props="cpp">本地音频混音配置。详见 <xref keyref="LocalAudioMixerConfiguration"/>。</pd>
                 </plentry>
-            </parml> </section>
-        <section id="return_values">
+        </parml> </section>
+        <section id="return_values" props="bp cs electron flutter rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp electron unity rn cs">
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="apple bp cs electron rn unity unreal">
                 <li>0: 方法调用成功。</li>
                 <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph><ul>
-                    <li>-7：<apiname keyref="IRtcEngine" /> 对象尚未初始化。你需要在调用该方法前成功初始化 <apiname keyref="IRtcEngine" /> 对象。</li>
-                </ul></li> </ul> </section>
+                    <li>-7：<apiname keyref="IRtcEngine"/> 对象尚未初始化。你需要在调用该方法前成功初始化 <apiname keyref="IRtcEngine"/> 对象。</li>
+                </ul></li> </ul>
+        <p props="android cpp"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。<ul>
+                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。请在调用该方法前先初始化 <xref keyref="IRtcEngine"/> 对象。</li>
+                            </ul>
+                        </li>
+                        </ul>
+                    </p>
+        </section>
         </refbody>
 </reference>

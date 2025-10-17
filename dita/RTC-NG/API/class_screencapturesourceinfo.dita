@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_screencapturesourceinfo">
     <title><ph keyref="ScreenCaptureSourceInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc">可共享窗口或屏幕的信息。<ph props="cpp unreal bp">在 <xref keyref="IScreenCaptureSourceList"/> 中返回。</ph></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">提供可共享的窗口或屏幕的信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenCaptureSourceInfo : NSObject
 @property(assign, nonatomic) AgoraScreenCaptureSourceType type;
 @property(assign, nonatomic) CGWindowID sourceId;
@@ -22,53 +22,50 @@
 @end
 </codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct ScreenCaptureSourceInfo {
-  ScreenCaptureSourceType type;
-  int64_t sourceId;
-  const char* sourceName;
-  ThumbImageBuffer thumbImage;
-  ThumbImageBuffer iconImage;
-  const char* processPath;
-  const char* sourceTitle;
-  bool primaryMonitor;
-  bool isOccluded;
-  Rectangle position;
+ScreenCaptureSourceType type;
+int64_t sourceId;
+const char* sourceName;
+ThumbImageBuffer thumbImage;
+ThumbImageBuffer iconImage;
+const char* processPath;
+const char* sourceTitle;
+bool primaryMonitor;
+bool isOccluded;
+Rectangle position;
 #if defined(_WIN32)
-  bool minimizeWindow;
-  int64_t sourceDisplayId;
-  ScreenCaptureSourceInfo() : type(ScreenCaptureSourceType_Unknown), sourceId(0), sourceName(nullptr),
-                              processPath(nullptr), sourceTitle(nullptr), primaryMonitor(false), isOccluded(false), minimizeWindow(false), sourceDisplayId(-2) {}
+bool minimizeWindow;
+int64_t sourceDisplayId;
 #else
-  ScreenCaptureSourceInfo() : type(ScreenCaptureSourceType_Unknown), sourceId(0), sourceName(nullptr), processPath(nullptr), sourceTitle(nullptr), primaryMonitor(false), isOccluded(false) {}
 #endif
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FScreenCaptureSourceInfo {
 	GENERATED_BODY()
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|FScreenCaptureSourceInfo")
 	FENUMWRAP_ScreenCaptureSourceType type = FENUMWRAP_ScreenCaptureSourceType();
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|FScreenCaptureSourceInfo")
 	int64 sourceId = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
-	FString sourceName = &quot;&quot;;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|FScreenCaptureSourceInfo")
+	FString sourceName = "";
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|FScreenCaptureSourceInfo")
 	FThumbImageBuffer thumbImage = FThumbImageBuffer();
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|FScreenCaptureSourceInfo")
 	FThumbImageBuffer iconImage = FThumbImageBuffer();
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
-	FString processPath = &quot;&quot;;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
-	FString sourceTitle = &quot;&quot;;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|FScreenCaptureSourceInfo")
+	FString processPath = "";
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|FScreenCaptureSourceInfo")
+	FString sourceTitle = "";
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|FScreenCaptureSourceInfo")
 	bool primaryMonitor = false;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|FScreenCaptureSourceInfo")
 	bool isOccluded = false;
 	
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|FScreenCaptureSourceInfo")
 	FRectangle position = FRectangle();
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|FScreenCaptureSourceInfo")
 	bool minimizeWindow = false;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|FScreenCaptureSourceInfo")
 	int64 sourceDisplayId = 0;
 #if defined(_WIN32) || (defined(__APPLE__) &amp;&amp; TARGET_OS_MAC &amp;&amp; !TARGET_OS_IPHONE)
 	FScreenCaptureSourceInfo(){}
@@ -153,7 +150,7 @@ public:
         public Rectangle position;
         public long sourceDisplayId;
     };</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"></codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">class ScreenCaptureSourceInfo {
   const ScreenCaptureSourceInfo(
       {this.type,
@@ -201,69 +198,94 @@ public:
   @JsonKey(name: 'sourceDisplayId')
   final int? sourceDisplayId;
 
-  factory ScreenCaptureSourceInfo.fromJson(Map&lt;String, dynamic> json) =>
+  factory ScreenCaptureSourceInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$ScreenCaptureSourceInfoFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$ScreenCaptureSourceInfoToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ScreenCaptureSourceInfoToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry>
-                <pt>type</pt>
+            <plentry props="cpp">
+                <pt props="cpp">type</pt>
                 <pd>共享目标的类型。详见 <xref keyref="ScreenCaptureSourceType"/>。</pd>
-            </plentry>
-            <plentry>
-                <pt>sourceId</pt>
+                <pd props="cpp">共享目标的类型，详见 <xref keyref="ScreenCaptureSourceType"/>。</pd>
+                </plentry>
+            <plentry props="cpp">
+                <pt props="cpp">sourceId</pt>
                 <pd>对于窗口，表示窗口 ID（Window ID）；对于屏幕，表示屏幕 ID（Display ID）。</pd>
+                <pd props="cpp">共享目标的唯一标识符。</pd>
             </plentry>
-            <plentry>
-                <pt>sourceName</pt>
+            <plentry props="cpp">
+                <pt props="cpp">sourceName</pt>
                 <pd>窗口或屏幕的名称。UTF-8 编码。</pd>
+                <pd props="cpp">共享目标的名称。</pd>
             </plentry>
-            <plentry>
-                <pt>thumbImage</pt>
-                <pd><ph>缩略图的图像内容。</ph><ph>详见 <xref keyref="ThumbImageBuffer" props="cpp unreal bp electron unity rn flutter"/><xref keyref="nsimage-link" props="mac"/>。</ph></pd>
-            </plentry>
-            <plentry>
-                <pt>iconImage</pt>
-                <pd><ph>图标的图像内容。</ph><ph>详见 <xref keyref="ThumbImageBuffer" props="cpp unreal bp electron unity rn flutter"/><xref keyref="nsimage-link" props="mac"/>。</ph></pd>
-            </plentry>
-            <plentry>
-                <pt>processPath</pt>
+            <plentry props="cpp">
+                <pt props="cpp">thumbImage</pt>
+                <pd><ph>缩略图的图像内容。</ph><ph>详见 <xref keyref="ThumbImageBuffer" props="bp cpp electron flutter rn unity unreal"/><xref keyref="nsimage-link" props="mac"/>。</ph></pd>
+                <pd props="cpp">缩略图的图像内容，详见 <xref keyref="ThumbImageBuffer"/>。</pd>
+                </plentry>
+            <plentry props="cpp">
+                <pt props="cpp">iconImage</pt>
+                <pd><ph>图标的图像内容。</ph><ph>详见 <xref keyref="ThumbImageBuffer" props="bp cpp electron flutter rn unity unreal"/><xref keyref="nsimage-link" props="mac"/>。</ph></pd>
+                <pd props="cpp">图标的图像内容，详见 <xref keyref="ThumbImageBuffer"/>。</pd>
+                </plentry>
+            <plentry props="cpp">
+                <pt props="cpp">processPath</pt>
                 <pd>窗口所属的进程。UTF-8 编码。</pd>
+                <pd props="cpp">共享窗口所属进程的路径。</pd>
             </plentry>
-            <plentry>
-                <pt>sourceTitle</pt>
+            <plentry props="cpp">
+                <pt props="cpp">sourceTitle</pt>
                 <pd>窗口标题。UTF-8 编码。</pd>
+                <pd props="cpp">共享窗口的标题。</pd>
             </plentry>
-            <plentry>
-                <pt>primaryMonitor</pt>
+            <plentry props="cpp">
+                <pt props="cpp">primaryMonitor</pt>
                 <pd>屏幕是否为主显示屏： 
                         
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 屏幕为主显示屏。</li>
                     <li><codeph><ph keyref="false"/></codeph>: 屏幕不是主显示屏。</li>
                     </ul></pd>
-            </plentry>
-            <plentry>
-                <pt>position</pt>
-                <pd><ph>窗口相对于整个屏幕空间（包含所有可共享屏幕）的位置。</ph><ph props="cpp unreal bp unity electron flutter">详见 <xref keyref="Rectangle"/>。</ph><ph props="mac">详见 <xref keyref="rect-link"/>。</ph></pd>
-            </plentry>
-            <plentry props="cpp unreal bp flutter rn electron">
-                <pt>minimizeWindow</pt>
+                <pd props="cpp">是否为主显示器：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：该屏幕是主显示器。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：该屏幕不是主显示器。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="cpp">
+                <pt props="cpp">position</pt>
+                <pd><ph>窗口相对于整个屏幕空间（包含所有可共享屏幕）的位置。</ph><ph props="bp cpp electron flutter unity unreal">详见 <xref keyref="Rectangle"/>。</ph><ph props="mac">详见 <xref keyref="rect-link"/>。</ph></pd>
+                <pd props="cpp">窗口相对于整个屏幕空间（包括所有可共享屏幕）的位置信息，详见 <xref keyref="Rectangle"/>。</pd>
+                </plentry>
+            <plentry props="bp cpp electron flutter rn unreal">
+                <pt props="cpp">minimizeWindow</pt>
                 <pd>(仅适用于 Windows)  窗口是否已最小化：
                         
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 窗口已最小化。</li>
                     <li><codeph><ph keyref="false"/></codeph>: 窗口未最小化。</li>
                     </ul></pd>
-            </plentry>
-            <plentry props="cpp unreal bp unity cs electron flutter">
-                <pt>sourceDisplayId</pt>
+                <pd props="cpp">（仅适用于 Windows）窗口是否最小化：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：窗口已最小化。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：窗口未最小化。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            <plentry props="bp cpp cs electron flutter unity unreal">
+                <pt props="cpp">sourceDisplayId</pt>
                 <pd>(仅适用于 Windows) 窗口所在的屏幕 ID。如果窗口为跨屏幕显示，则表示与该窗口相交面积最大的屏幕 ID。如果窗口位于可见屏幕之外，则该成员的值为 -2。</pd>
+                <pd props="cpp">（仅适用于 Windows）窗口所在的屏幕 ID。如果窗口跨多个屏幕显示，该参数表示窗口与其交集面积最大的屏幕的 ID。如果窗口位于不可见屏幕区域，则该值为 -2。</pd>
+            </plentry>
+            <plentry props="cpp">
+                <pt props="cpp">isOccluded</pt>
+                <pd props="cpp">共享窗口是否被遮挡。</pd>
             </plentry>
             </parml> </section>
     </refbody>

@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_streamfallbackoptions">
     <title><ph keyref="STREAM_FALLBACK_OPTIONS"/></title>
-    <shortdesc id="short"><ph id="shortdesc">网络条件较差时，音视频流回退处理的选项。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">在网络条件较差时的音视频流回退处理选项。</ph></shortdesc>
     <refbody>
         <section id="parameters">
             <title>枚举值</title>
@@ -18,6 +18,21 @@
             <plentry>
                 <pt><ph keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/></pt>
                 <pd>2: 网络条件较差时，先尝试只接收视频小流；如果因网络环境太差无法显示视频，则再回退到只接收订阅的音频流。</pd>
+            </plentry>
+            <plentry props="native">
+                <pt><ph keyref="STREAM_FALLBACK_OPTION_DISABLED"/></pt>
+                <pd props="android cpp">（0）：不进行音视频流的回退处理，无法保证音视频流的质量。</pd>
+                <pd props="apple">（0）：不进行音视频流的回退处理，音视频质量无法保证。</pd>
+            </plentry>
+            <plentry props="native">
+                <pt><ph keyref="STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW"/></pt>
+                <pd props="native">（1）：仅接收低质量（低分辨率、低码率）的视频流。</pd>
+            </plentry>
+            <plentry props="native">
+                <pt><ph keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/></pt>
+                <pd props="cpp">（2）：当网络条件较差时，优先接收低质量视频流；若网络极差导致无法显示视频，则回退为仅接收音频流。</pd>
+                <pd props="apple">（2）：当网络较差时，优先接收低质量视频流；若网络极差导致无法显示视频，则回退为仅接收音频流。</pd>
+                <pd props="android">（2）：当网络条件较差时，优先接收低质量视频流；若网络极差无法显示视频，则回退为仅接收音频流。</pd>
             </plentry>
             </parml> </section>
     </refbody>

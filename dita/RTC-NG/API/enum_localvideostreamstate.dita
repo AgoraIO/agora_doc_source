@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_localvideostreamstate">
     <title><ph keyref="LOCAL_VIDEO_STREAM_STATE"/></title>
-    <shortdesc id="short"><ph id="shortdesc">本地视频状态。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">本地视频状态类型。</ph></shortdesc>
     <refbody>
         <section id="parameters">
             <title>枚举值</title>
@@ -13,7 +13,7 @@
             </plentry>
             <plentry>
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/></pt>
-                <pd>1: 本地视频采集设备启动成功。<ph props="android cpp unreal bp unity cs">调用 <xref keyref="startScreenCaptureByWindowId"/> 方法共享窗口且共享窗口为最大化时，也会报告该状态。</ph></pd>
+                <pd>1: 本地视频采集设备启动成功。<ph props="android bp cpp cs unity unreal">调用 <xref keyref="startScreenCaptureByWindowId"/> 方法共享窗口且共享窗口为最大化时，也会报告该状态。</ph></pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_STATE_ENCODING"/></pt>
@@ -22,6 +22,10 @@
             <plentry>
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_STATE_FAILED"/></pt>
                 <pd>3: 本地视频启动失败。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraVideoLocalStateFailed"/></pt>
+                <pd props="apple">（3）：本地视频启动失败。</pd>
             </plentry>
             </parml> </section>
     </refbody>
