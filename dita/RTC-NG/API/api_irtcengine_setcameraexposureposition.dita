@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setcameraexposureposition">
-    <title><ph keyref="setCameraExposurePosition" /></title>
-    <shortdesc id="short"><ph id="shortdesc">设置手动曝光位置。</ph></shortdesc>
+    <title><ph keyref="setCameraExposurePosition"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置摄像头的曝光位置。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setCameraExposurePosition" />
+                <indexterm keyref="setCameraExposurePosition"/>
             </keywords>
         </metadata>
     </prolog>
@@ -15,10 +15,9 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setCameraExposurePosition(float positionXinView, float positionYinView);</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">public abstract setCameraExposurePosition(positionXinView: number, positionYinView: number): number;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)setCameraExposurePosition:(CGPoint)positionInView;</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setCameraExposurePosition(float positionXinView, float positionYinView) = 0;
-</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)setCameraExposurePosition:(CGPoint)positionInView NS_SWIFT_NAME(setCameraExposurePosition(_:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setCameraExposurePosition(float positionXinView, float positionYinView) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	int SetCameraExposurePosition(float positionXinView, float positionYinView);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setCameraExposurePosition(
     positionXinView: number,
@@ -31,38 +30,60 @@
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setCameraExposurePosition(
     {required double positionXinView, required double positionYinView});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="android cpp">
+                <dt>自从：</dt>
+                <dd props="native">自 v2.3.2 版本新增。</dd>
+            </dlentry>
+            </dl>
             <title>详情</title>
             <note type="attention">
-            <ul><li props="cpp unreal bp unity flutter cs">该方法仅适用于 Android 和 iOS。</li>
-            <li conkeyref="setCameraExposureFactor/sequence" />
-            <li>成功调用该方法后，本地会触发 <xref keyref="onCameraExposureAreaChanged" /> 回调。</li></ul>
+            <ul><li props="bp cpp cs flutter unity unreal">该方法仅适用于 Android 和 iOS。</li>
+            <li conkeyref="setCameraExposureFactor/sequence"/>
+            <li>成功调用该方法后，本地会触发 <xref keyref="onCameraExposureAreaChanged"/> 回调。</li></ul>
             </note>
-       </section>
+       <note type="attention" props="cpp">该方法仅适用于 Android 和 iOS 平台。你必须在调用 <xref keyref="enableVideo"/> 后再调用该方法。设置将在摄像头成功开启后生效，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <ph keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/>（1）后。调用该方法成功后，SDK 会触发 <xref keyref="onCameraExposureAreaChanged"/> 回调。</note>
+            <note type="attention" props="apple">你必须在调用 <xref keyref="enableVideo"/> 方法之后再调用本方法。设置结果会在摄像头成功开启后生效，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <ph keyref="AgoraVideoLocalStateCapturing"/>（1）时。成功调用该方法后，SDK 会触发 <xref keyref="onCameraExposureAreaChanged"/> 回调。</note>
+            <note type="attention" props="android"><ul>
+                        <li>你必须在调用 <xref keyref="enableVideo"/> 之后再调用该方法。设置结果会在摄像头成功开启后生效，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <ph keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/>（1）时。</li>
+                        <li>成功调用该方法后，SDK 会触发 <xref keyref="onCameraExposureAreaChanged"/> 回调。</li>
+                        </ul>
+                    </note>
+            </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry props="cpp unreal bp android hmos flutter unity rn cs">
-                <pt>positionXinView</pt>
-                <pd>触摸点相对于视图的横坐标。</pd>
-            </plentry>
-            <plentry props="cpp unreal bp android hmos flutter unity rn cs">
-                <pt>positionYinView</pt>
-                <pd>触摸点相对于视图的纵坐标。</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>positionInView</pt>
-                <pd>触摸点相对于视图的横坐标和纵坐标。</pd>
-            </plentry>
-            </parml> </section>
-        <section id="return_values">
+            <plentry props="android bp cpp cs flutter hmos rn unity unreal">
+                <pt props="android bp cpp cs flutter hmos rn unity unreal">positionXinView</pt>
+                <pd props="apple bp cs electron flutter rn unity unreal">触摸点相对于视图的横坐标。</pd>
+            <pd props="android cpp">视图中触摸点的水平坐标。</pd>
+                </plentry>
+            <plentry props="android bp cpp cs flutter hmos rn unity unreal">
+                <pt props="android bp cpp cs flutter hmos rn unity unreal">positionYinView</pt>
+                <pd props="apple bp cs electron flutter rn unity unreal">触摸点相对于视图的纵坐标。</pd>
+            <pd props="android cpp">视图中触摸点的垂直坐标。</pd>
+                </plentry>
+            <plentry props="apple">
+                <pt props="apple">positionInView</pt>
+                <pd props="android bp cpp cs electron flutter mac rn unity unreal">触摸点相对于视图的横坐标和纵坐标。</pd>
+            <pd props="ios">视图中触摸点的水平和垂直坐标。</pd>
+                </plentry>
+        </parml> </section>
+        <section id="return_values" props="bp cs flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp unity rn cs">
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cs rn unity unreal">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
-            </ul> </section>
+            </ul>
+        <p props="native"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+    </section>
     </refbody>
 </reference>

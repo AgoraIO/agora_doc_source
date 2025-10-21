@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_externalvideoframe">
     <title><ph keyref="ExternalVideoFrame"/></title>
@@ -56,40 +56,32 @@
   public int alphaStitchMode;
   @Override
   public String toString() {
-    return &quot;AgoraVideoFrame{&quot;
-        + &quot;format=&quot; + format + &quot;, timeStamp=&quot; + timeStamp + &quot;, stride=&quot; + stride
-        + &quot;, height=&quot; + height + &quot;, textureID=&quot; + textureID
-        + &quot;, buf.length=&quot; + (buf != null ? buf.length : 0) + &quot;, cropLeft=&quot; + cropLeft
-        + &quot;, cropTop=&quot; + cropTop + &quot;, cropRight=&quot; + cropRight + &quot;, cropBottom=&quot; + cropBottom
-        + &quot;, rotation=&quot; + rotation + &quot;, alphaStitchMode=&quot; + alphaStitchMode + &#x27;}&#x27;;
+    return "AgoraVideoFrame{"
+        + "format=" + format + ", timeStamp=" + timeStamp + ", stride=" + stride
+        + ", height=" + height + ", textureID=" + textureID
+        + ", buf.length=" + (buf != null ? buf.length : 0) + ", cropLeft=" + cropLeft
+        + ", cropTop=" + cropTop + ", cropRight=" + cropRight + ", cropBottom=" + cropBottom
+        + ", rotation=" + rotation + ", alphaStitchMode=" + alphaStitchMode + '}';
   }
 }</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">
-__attribute__((visibility(&quot;default&quot;))) @interface AgoraVideoFrame : NSObject
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraVideoFrame : NSObject
 @property(assign, nonatomic) NSInteger format;
-
-@property(assign, nonatomic) CMTime time;  
-@property(assign, nonatomic) int stride DEPRECATED_MSG_ATTRIBUTE(&quot;use strideInPixels instead&quot;);
-
-@property(assign, nonatomic) int strideInPixels;                                                                                                      
-@property(assign, nonatomic) int height;  
+@property(assign, nonatomic) CMTime time;
+@property(assign, nonatomic) int stride DEPRECATED_MSG_ATTRIBUTE("use strideInPixels instead");
+@property(assign, nonatomic) int strideInPixels;
+@property(assign, nonatomic) int height;
 @property(assign, nonatomic) CVPixelBufferRef _Nullable textureBuf;
-
 @property(strong, nonatomic) IMAGE_CLASS * _Nullable image;
-
-@property(strong, nonatomic) NSData *_Nullable dataBuf;  
+@property(strong, nonatomic) NSData *_Nullable dataBuf;
 @property(strong, nonatomic) NSData *_Nullable alphaBuf;
 @property(assign, nonatomic) AgoraAlphaStitchMode alphaStitchMode;
-
-@property(assign, nonatomic) int cropLeft;  
-@property(assign, nonatomic) int cropTop;  
-@property(assign, nonatomic) int cropRight;  
-@property(assign, nonatomic) int cropBottom;  
-@property(assign, nonatomic) int rotation;  
+@property(assign, nonatomic) int cropLeft;
+@property(assign, nonatomic) int cropTop;
+@property(assign, nonatomic) int cropRight;
+@property(assign, nonatomic) int cropBottom;
+@property(assign, nonatomic) int rotation;
 @property(strong, nonatomic) AgoraColorSpace *_Nullable colorSpace;
-
-- (void)fillAlphaData;
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">
 struct ExternalVideoFrame {
@@ -250,67 +242,67 @@ class ExternalVideoFrame {
       this.textureSliceIndex,
       this.colorSpace});
 
-  @JsonKey(name: &#x27;type&#x27;)
+  @JsonKey(name: 'type')
   final VideoBufferType? type;
 
-  @JsonKey(name: &#x27;format&#x27;)
+  @JsonKey(name: 'format')
   final VideoPixelFormat? format;
 
-  @JsonKey(name: &#x27;buffer&#x27;, ignore: true)
+  @JsonKey(name: 'buffer', ignore: true)
   final Uint8List? buffer;
 
-  @JsonKey(name: &#x27;stride&#x27;)
+  @JsonKey(name: 'stride')
   final int? stride;
 
-  @JsonKey(name: &#x27;height&#x27;)
+  @JsonKey(name: 'height')
   final int? height;
 
-  @JsonKey(name: &#x27;cropLeft&#x27;)
+  @JsonKey(name: 'cropLeft')
   final int? cropLeft;
 
-  @JsonKey(name: &#x27;cropTop&#x27;)
+  @JsonKey(name: 'cropTop')
   final int? cropTop;
 
-  @JsonKey(name: &#x27;cropRight&#x27;)
+  @JsonKey(name: 'cropRight')
   final int? cropRight;
 
-  @JsonKey(name: &#x27;cropBottom&#x27;)
+  @JsonKey(name: 'cropBottom')
   final int? cropBottom;
 
-  @JsonKey(name: &#x27;rotation&#x27;)
+  @JsonKey(name: 'rotation')
   final int? rotation;
 
-  @JsonKey(name: &#x27;timestamp&#x27;)
+  @JsonKey(name: 'timestamp')
   final int? timestamp;
 
-  @JsonKey(name: &#x27;eglType&#x27;)
+  @JsonKey(name: 'eglType')
   final EglContextType? eglType;
 
-  @JsonKey(name: &#x27;textureId&#x27;)
+  @JsonKey(name: 'textureId')
   final int? textureId;
 
-  @JsonKey(name: &#x27;matrix&#x27;)
+  @JsonKey(name: 'matrix')
   final List&lt;double&gt;? matrix;
 
-  @JsonKey(name: &#x27;metadataBuffer&#x27;, ignore: true)
+  @JsonKey(name: 'metadataBuffer', ignore: true)
   final Uint8List? metadataBuffer;
 
-  @JsonKey(name: &#x27;metadataSize&#x27;)
+  @JsonKey(name: 'metadataSize')
   final int? metadataSize;
 
-  @JsonKey(name: &#x27;alphaBuffer&#x27;, ignore: true)
+  @JsonKey(name: 'alphaBuffer', ignore: true)
   final Uint8List? alphaBuffer;
 
-  @JsonKey(name: &#x27;fillAlphaBuffer&#x27;)
+  @JsonKey(name: 'fillAlphaBuffer')
   final bool? fillAlphaBuffer;
 
-  @JsonKey(name: &#x27;alphaStitchMode&#x27;)
+  @JsonKey(name: 'alphaStitchMode')
   final AlphaStitchMode? alphaStitchMode;
 
-  @JsonKey(name: &#x27;d3d11Texture2d&#x27;, readValue: readIntPtr)
+  @JsonKey(name: 'd3d11Texture2d', readValue: readIntPtr)
   final int? d3d11Texture2d;
 
-  @JsonKey(name: &#x27;textureSliceIndex&#x27;)
+  @JsonKey(name: 'textureSliceIndex')
   final int? textureSliceIndex;
 
   @JsonKey(name: 'colorSpace')
@@ -326,22 +318,18 @@ class ExternalVideoFrame {
         <section id="detailed_desc">
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry props="cpp unreal bp unity rn electron flutter cs">
+            <plentry props="bp cpp cs electron flutter rn unity unreal">
                 <pt>type</pt>
                 <pd>
                     <p>视频类型。详见 <xref keyref="VIDEO_BUFFER_TYPE"/>。</p>
                 </pd>
             </plentry>
-            <plentry>
-                <pt>format</pt>
-                <pd props="cpp unreal bp unity rn electron flutter cs"
-                    id="windows-format">像素格式。详见 <xref
-                    keyref="VIDEO_PIXEL_FORMAT"/>。</pd>
-                <pd props="ios mac" id="oc-format">传入的视频帧的格式，必须指定为下面的某一个值：
+            <plentry props="ios">
+                <pt props="ios">format</pt>
+                <pd props="bp cpp cs electron flutter rn unity unreal" id="windows-format">像素格式。详见 <xref keyref="VIDEO_PIXEL_FORMAT"/>。</pd>
+                <pd props="apple" id="oc-format">传入的视频帧的格式，必须指定为下面的某一个值：
 
                     <ul>
                     <li>1: I420。</li>
@@ -364,24 +352,27 @@ class ExternalVideoFrame {
                     <li>4：RGBA。</li>
                     <li>16：I422。</li>
                     </ul> </pd>
+                <pd props="ios">输入视频帧的格式。该参数必须指定为以下值之一：1：I420；2：BGRA；3：NV21；4：RGBA；5：IMC2；7：ARGB；8：NV12；12：iOS 纹理（<codeph>CVPixelBufferRef</codeph>）；16：I422。</pd>
             </plentry>
-            <plentry>
-                <pt props="cpp unreal bp unity electron rn flutter cs">buffer</pt>
+            <plentry props="ios">
+                <pt props="bp cpp cs electron flutter rn unity unreal">buffer</pt>
                 <pt props="android hmos">buf</pt>
-                <pt props="ios mac">dataBuf</pt>
-                <pd props="cpp unreal bp android unity electron rn flutter cs">视频缓冲区。</pd>
+                <pt props="apple">dataBuf</pt>
+                <pd props="android bp cpp cs electron flutter rn unity unreal">视频缓冲区。</pd>
                 <pd props="android hmos">该参数仅适用于非 Texture 格式的视频数据。</pd>
-                <pd props="ios mac">原始数据缓冲区，该参数不用于 iOS 纹理。</pd>
+                <pd props="apple">原始数据缓冲区，该参数不用于 iOS 纹理。</pd>
+                <pd props="ios">原始数据缓冲区。该参数不适用于 iOS 纹理。</pd>
             </plentry>
-            <plentry props="ios mac">
-                <pt>textureBuf</pt>
+            <plentry props="apple">
+                <pt props="ios">textureBuf</pt>
                 <pd>iOS 纹理的 Buffer。</pd>
+                <pd props="ios">iOS 纹理的缓冲区。</pd>
             </plentry>
-            <plentry>
-                <pt>stride</pt>
+            <plentry props="ios">
+                <pt props="ios">stride</pt>
                 <pd>传入视频帧的行间距，单位为像素而不是字节。对于 Texture，该值指的是 Texture 的宽度。
 
-                    <p props="ios mac">
+                    <p props="apple">
                     <dl outputclass="deprecated">
                     <dlentry>
                         <dt>弃用：</dt>
@@ -391,9 +382,10 @@ class ExternalVideoFrame {
                         <note type="attention">在处理视频数据时，需根据该参数处理每行像素数据之间的偏移量，否则可能导致图像失真。</note>
                     </p>
                 </pd>
+                <pd props="ios">帧的行跨度，即相邻两行视频帧之间的像素数。此参数的单位为像素，而非字节。如果视频为纹理格式，请将此参数设置为纹理的宽度。如果视频帧格式为 12，请勿使用此字段。处理视频数据时，需要根据此参数处理每行像素数据之间的偏移，否则可能导致图像失真。</pd>
             </plentry>
-            <plentry props="ios mac">
-                <pt>strideInPixels</pt>
+            <plentry props="apple">
+                <pt props="ios">strideInPixels</pt>
                 <pd>该帧的行跨度，即相邻两行视频帧之间的像素点数。
 
                     <note type="attention">
@@ -403,10 +395,12 @@ class ExternalVideoFrame {
                     <li>如果视频帧格式设为 12，则不使用该字段。</li>
                     <li>在处理视频数据时，需根据该参数处理每行像素数据之间的偏移量，否则可能导致图像失真。</li>
                     </ul> </note></pd>
+                <pd props="ios">输入视频帧的行跨度，单位为像素。对于纹理格式，该值为纹理的宽度。</pd>
             </plentry>
-            <plentry>
-                <pt>height</pt>
+            <plentry props="ios">
+                <pt props="ios">height</pt>
                 <pd>传入视频帧的高度。</pd>
+                <pd props="ios">输入视频帧的高度。</pd>
             </plentry>
             <plentry props="android hmos">
                 <pt>textureID</pt>
@@ -432,48 +426,49 @@ class ExternalVideoFrame {
                 <pt>eglContext14</pt>
                 <pd>EGLContext14。该参数仅适用于 Texture 格式的视频数据。</pd>
             </plentry>
-            <plentry props="cpp unreal bp unity rn electron flutter cs">
+            <plentry props="bp cpp cs electron flutter rn unity unreal">
                 <pt>eglContext</pt>
                 <pd>该参数仅适用于 Texture 格式的视频数据。
-                    <ul id="ul_fsv_shd_krb" props="cpp unreal bp unity rn electron flutter">
+                    <ul id="ul_fsv_shd_krb" props="bp cpp electron flutter rn unity unreal">
                     <li>当使用 Khronos 定义的 OpenGL 接口 (javax.microedition.khronos.egl.*) 时，需要将 eglContext 设置给这个字段。</li>
                     <li>当使用 Android 定义的 OpenGL 接口 (android.opengl.*) 时，需要将 eglContext 设置给这个字段。</li>
                     </ul></pd>
             </plentry>
-            <plentry props="cpp unreal bp unity electron rn flutter cs">
+            <plentry props="bp cpp cs electron flutter rn unity unreal">
                 <pt>eglType</pt>
                 <pd>该参数仅适用于 Texture 格式的视频数据。指该视频帧的 Texture ID。</pd>
             </plentry>
-            <plentry props="cpp unreal bp unity electron rn flutter cs">
+            <plentry props="bp cpp cs electron flutter rn unity unreal">
                 <pt>textureId</pt>
                 <pd>该参数仅适用于 Texture 格式的视频数据。为一个输入的 4x4 变换矩阵，典型值为一个单位矩阵。</pd>
             </plentry>
-            <plentry props="electron rn flutter">
+            <plentry props="electron flutter rn">
                 <pt>matrix</pt>
                 <pd>该参数仅适用于 Texture 格式的视频数据。为一个输入的 4x4 变换矩阵，典型值为一个单位矩阵。</pd>
             </plentry>
-            <plentry props="cpp unreal bp unity electron rn cs flutter">
+            <plentry props="bp cpp cs electron flutter rn unity unreal">
                 <pt>metadataBuffer</pt>
                 <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的数据缓冲区，默认值为 <codeph>NULL</codeph>。</pd>
             </plentry>
-            <plentry props="cpp unreal bp unity electron rn cs flutter">
+            <plentry props="bp cpp cs electron flutter rn unity unreal">
                 <pt>metadataSize</pt>
                 <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的大小，默认值为 <codeph>0</codeph>。</pd>
             </plentry>
-            <plentry props="cpp unreal bp unity electron flutter">
+            <plentry props="bp cpp electron flutter unity unreal">
                 <pt>d3d11Texture2d</pt>
                 <pd>该参数仅适用于 Windows Texture 格式的视频数据。表示一个指向 <codeph>ID3D11Texture2D</codeph> 类型对象的指针，该类型对象被视频帧所使用。</pd>
-              </plentry>
-            <plentry id="alphabuffer" props="cpp android framework">
+            </plentry>
+            <plentry id="alphabuffer" props="android cpp framework ios">
                 <pt props="cpp framework">alphaBuffer</pt>
-                <pt props="apple">alphaBuf</pt>
+                <pt props="apple ios">alphaBuf</pt>
                 <pd>
                   <p>采用人像分割算法输出的 Alpha 通道数据。该数据跟视频帧的尺寸一致，每个像素点的取值范围为 [0,255]，其中 0 代表背景；255 代表前景（人像）。</p>
                   <p>你可以通过设置该参数，实现将视频背景自渲染为各种效果，例如：透明、纯色、图片、视频等。</p>
                   <note type="attention" props="android apple framework">在自定义视频渲染场景下，需确保传入的视频帧和 <parmname>alphaBuffer</parmname> 均为 Full Range 类型；其他类型可能导致 Alpha 数据渲染不正常。</note>
                 </pd>
-              </plentry>
-              <plentry props="cpp apple framework">
+                <pd props="ios">当前帧的 Alpha 通道数据，尺寸与视频帧一致。每个像素的取值范围为 [0, 255]，其中 0 表示背景，255 表示前景。默认值为 <codeph><ph keyref="NULL"/></codeph>。</pd>
+            </plentry>
+            <plentry props="apple cpp framework">
                 <pt props="cpp framework">fillAlphaBuffer</pt>
                 <pt props="apple">fillAlphaData</pt>
                 <pd>该参数仅适用于 BGRA 或 RGBA 格式的视频数据。设置是否提取视频帧中的 Alpha 通道数据并自动填入到 <parmname>alphaBuffer</parmname> 中：
@@ -486,52 +481,70 @@ class ExternalVideoFrame {
                   <li>通过将该参数设置为 <codeph><ph keyref="true"/></codeph> 自动填写。</li>
                   <li>通过 <parmname>alphaBuffer</parmname> 参数设置。</li>
                   </ul></note></pd>
-              </plentry>
-                  <plentry conkeyref="VideoFrame/alphastitchmode">
+            </plentry>
+            <plentry conkeyref="VideoFrame/alphastitchmode">
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="cpp unreal unity electron flutter">
+            <plentry props="cpp electron flutter unity unreal">
                 <pt>textureSliceIndex</pt>
                 <pd>该参数仅适用于 Windows Texture 格式的视频数据。表示在 <codeph>ID3D11Texture2D</codeph> 数组中，被视频帧使用的某一个 <codeph>ID3D11Texture2D</codeph> 纹理对象的索引。</pd>
             </plentry>
-            <plentry>
-                <pt>cropLeft</pt>
+            <plentry props="ios">
+                <pt props="ios">cropLeft</pt>
                 <pd>原始数据相关字段。指定左边裁剪掉的像素数量。默认为 0。</pd>
                 <pd props="android hmos">该参数仅适用于非 Texture 格式的视频数据。</pd>
-                <pd props="cpp unreal bp unity rn electron flutter cs">该参数仅适用于原始视频数据。</pd>
+                <pd props="bp cpp cs electron flutter rn unity unreal">该参数仅适用于原始视频数据。</pd>
+                <pd props="ios">从左侧裁剪的像素数。默认值为 0。</pd>
             </plentry>
-            <plentry>
-                <pt>cropTop</pt>
+            <plentry props="ios">
+                <pt props="ios">cropTop</pt>
                 <pd>原始数据相关字段。指定顶边裁剪掉的像素数量。默认为 0。</pd>
                 <pd props="android hmos">该参数仅适用于非 Texture 格式的视频数据。</pd>
-                <pd props="cpp unreal bp unity electron rn flutter cs">该参数仅适用于原始视频数据。</pd>
+                <pd props="bp cpp cs electron flutter rn unity unreal">该参数仅适用于原始视频数据。</pd>
+                <pd props="ios">从顶部裁剪的像素数。默认值为 0。</pd>
             </plentry>
-            <plentry>
-                <pt>cropRight</pt>
+            <plentry props="ios">
+                <pt props="ios">cropRight</pt>
                 <pd>原始数据相关字段。指定右边裁剪掉的像素数量。默认为 0。</pd>
                 <pd props="android hmos">该参数仅适用于非 Texture 格式的视频数据。</pd>
-                <pd props="cpp unreal bp unity electron rn flutter cs">该参数仅适用于原始视频数据。</pd>
+                <pd props="bp cpp cs electron flutter rn unity unreal">该参数仅适用于原始视频数据。</pd>
+                <pd props="ios">从右侧裁剪的像素数。默认值为 0。</pd>
             </plentry>
-            <plentry>
-                <pt>cropBottom</pt>
+            <plentry props="ios">
+                <pt props="ios">cropBottom</pt>
                 <pd>原始数据相关字段。指定底边裁剪掉的像素数量。默认为 0。</pd>
                 <pd props="android hmos">该参数仅适用于非 Texture 格式的视频数据。</pd>
-                <pd props="cpp unreal bp unity electron flutter rn cs">该参数仅适用于原始视频数据。</pd>
+                <pd props="bp cpp cs electron flutter rn unity unreal">该参数仅适用于原始视频数据。</pd>
+                <pd props="ios">从底部裁剪的像素数。默认值为 0。</pd>
             </plentry>
-            <plentry>
-                <pt>rotation</pt>
+            <plentry props="ios">
+                <pt props="ios">rotation</pt>
                 <pd>原始数据相关字段。指定是否对传入的视频组做顺时针旋转操作，可选值为 0， 90， 180， 270。默认为 0。</pd>
+                <pd props="ios">视频帧的顺时针旋转角度。可设置为 0、90、180 或 270。默认值为 0。</pd>
             </plentry>
-            <plentry props="android cpp unreal bp unity electron flutter rn cs apple">
-                <pt props="cpp unreal bp unity electron flutter rn cs">timestamp</pt>
-                <pt props="ios mac">time</pt>
+            <plentry props="android apple bp cpp cs electron flutter ios rn unity unreal">
+                <pt props="bp cpp cs electron flutter rn unity unreal">timestamp</pt>
+                <pt props="apple">time</pt>
                 <pt props="android">timeStamp</pt>
                 <pd>传入的视频帧的时间戳，以毫秒为单位。不正确的时间戳会导致丢帧或者音视频不同步。</pd>
+                <pd props="ios">输入视频帧的时间戳（单位为毫秒）。时间戳设置不正确会导致帧丢失或音视频不同步。</pd>
             </plentry>
-            <plentry conkeyref="VideoFrame/colorspace" props="cpp apple unreal unity cs flutter rn electron">
+            <plentry conkeyref="VideoFrame/colorspace" props="apple cpp cs electron flutter rn unity unreal">
                 <pt/>
                 <pd/>
+            </plentry>
+            <plentry props="ios">
+                <pt props="ios">image</pt>
+                <pd props="ios"></pd>
+            </plentry>
+            <plentry props="ios">
+                <pt props="ios">alphaStitchMode</pt>
+                <pd props="ios">当视频帧包含 Alpha 通道数据时，表示 <codeph>alphaBuf</codeph> 与视频帧的相对位置。详见 <xref keyref="ALPHA_STITCH_MODE"/>。</pd>
+            </plentry>
+            <plentry props="ios">
+                <pt props="ios">colorSpace</pt>
+                <pd props="ios">视频帧的色彩空间属性，默认采用全范围和 BT.709 标准配置。详见 <codeph>AgoraColorSpace</codeph>。</pd>
             </plentry>
             </parml> </section>
     </refbody>

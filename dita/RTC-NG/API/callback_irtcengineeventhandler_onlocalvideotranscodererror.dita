@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onlocalvideotranscodererror">
     <title><ph keyref="onLocalVideoTranscoderError"/></title>
-    <shortdesc id="short"><ph id="shortdesc">本地合图发生错误回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">本地视频合图过程中发生错误回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -13,16 +13,12 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public void onLocalVideoTranscoderError(
-      LocalTranscoderConfiguration.TranscodingVideoStream stream, int error) {}</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts">onLocalVideoTranscoderError?:(stream:TranscodingVideoStream,  error:Constants.VideoTranscoderError) => void;</codeblock>
+            <codeblock props="android" outputclass="language-java">public void onLocalVideoTranscoderError(LocalTranscoderConfiguration.TranscodingVideoStream stream, int error)</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts">onLocalVideoTranscoderError?:(stream:TranscodingVideoStream,  error:Constants.VideoTranscoderError) =&gt; void;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didLocalVideoTranscoderErrorWithStream:(AgoraTranscodingVideoStream * _Nonnull )stream
         errorCode:(AgoraVideoTranscoderError)errorCode NS_SWIFT_NAME(rtcEngine(_:didLocalVideoTranscoderErrorWithStream:errorCode:));</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onLocalVideoTranscoderError(const TranscodingVideoStream&amp; stream, VIDEO_TRANSCODER_ERROR error){
-    (void)stream;
-    (void)error;
-  }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onLocalVideoTranscoderError(const TranscodingVideoStream&amp; stream, VIDEO_TRANSCODER_ERROR error)</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = "Agora|Event")
 	void OnLocalVideoTranscoderError(const FTranscodingVideoStream&amp; stream, EVIDEO_TRANSCODER_ERROR error);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onLocalVideoTranscoderError?(
     stream: TranscodingVideoStream,
@@ -39,12 +35,6 @@
         </section>
         <section id="detailed_desc">
             <title>详情</title>
-            <dl outputclass="since">
-            <dlentry props="android apple cpp">
-                <dt>自从</dt>
-                <dd>v4.2.0</dd>
-            </dlentry>
-            </dl>
             <p>当你调用 <xref keyref="startLocalVideoTranscoder"/> 或 <xref keyref="updateLocalTranscoderConfiguration"/> 失败时，SDK 会触发该回调，报告合图失败的原因。</p>
         </section>
         <section id="parameters">
@@ -52,23 +42,17 @@
             <parml>
             <plentry>
                 <pt>stream</pt>
-                <pd>合图失败的视频流。详见 <xref keyref="TranscodingVideoStream"/>。</pd>
-            </plentry>
+                <pd props="bp cs electron flutter mac rn unity unreal">合图失败的视频流。详见 <xref keyref="TranscodingVideoStream"/>。</pd>
+            <pd props="android cpp ios">在视频合图过程中无法被合图的视频流。详见 <xref keyref="TranscodingVideoStream"/>。</pd>
+                </plentry>
             <plentry>
-                <pt props="android hmos cpp framework">error</pt>
+                <pt>error</pt>
                 <pt props="apple">errorCode</pt>
-                <pd>本地合图出错原因。<ph props="hmos apple cpp framework">详见 <xref keyref="VIDEO_TRANSCODER_ERROR"/>。</ph></pd>
-                <pd props="android">本地合图出错原因：
-                    <ul>
-                        <li>1：指定的视频源未开始进行视频采集，你需要为其创建视频轨道并开始视频采集。</li>
-                        <li>2：视频源类型无效，你需要重新指定支持的视频源类型。</li>
-                        <li>3：图片路径无效，你需要重新指定正确的图片路径。</li>
-                        <li>4：图片格式无效，需确保图片格式为 PNG、JPEG 或 GIF 中的一种。</li>
-                        <li>5：合图后的视频编码分辨率无效。</li>
-                        <li>20：内部未知错误。</li>
-                    </ul>
-                </pd>
-            </plentry>
-            </parml> </section>
+                <pd props="bp cs electron flutter mac rn unity unreal">本地合图出错原因。<ph props="apple cpp framework hmos">详见 <xref keyref="VIDEO_TRANSCODER_ERROR"/>。</ph></pd>
+                <pd props="android">本地视频合图错误的原因。</pd>
+                <pd props="ios">本地视频合图失败的原因。详见 <xref keyref="VIDEO_TRANSCODER_ERROR"/>。</pd>
+                <pd props="cpp">本地视频合图错误的原因。详见 <xref keyref="VIDEO_TRANSCODER_ERROR"/>。</pd>
+                </plentry>
+        </parml> </section>
     </refbody>
 </reference>

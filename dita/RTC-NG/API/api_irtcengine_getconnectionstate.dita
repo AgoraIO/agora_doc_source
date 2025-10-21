@@ -1,42 +1,56 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_getconnectionstate">
-    <title> <ph keyref="getConnectionState" /> </title>
-    <shortdesc id="short"> <ph id="shortdesc">获取当前网络连接状态。</ph> </shortdesc>
+    <title><ph keyref="getConnectionState"/></title>
+    <shortdesc id="short"><ph id="shortdesc">获取 SDK 当前连接状态。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="getConnectionState" />
+                <indexterm keyref="getConnectionState"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract RtcConnection.CONNECTION_STATE_TYPE getConnectionState();</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (AgoraConnectionState)getConnectionState;</codeblock>
+            <codeblock props="android" outputclass="language-java">public abstract int getConnectionState();</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (AgoraConnectionState)getConnectionState NS_SWIFT_NAME(getConnectionState());</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual CONNECTION_STATE_TYPE getConnectionState() = 0;</codeblock>
-            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
-	ECONNECTION_STATE_TYPE GetConnectionState();</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">abstract getConnectionState(): ConnectionStateType;</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public abstract CONNECTION_STATE_TYPE GetConnectionState();</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">abstract getConnectionState(): ConnectionStateType;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;ConnectionStateType&gt; getConnectionState();</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p/>
+        </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p>加入频道前后均可调用。</p>
+            <p>该方法可以在加入频道前或加入频道后调用。</p>
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
             <p>无。</p>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p conkeyref="onConnectionStateChanged/connectionstate" />
-            </section>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cs electron rn unity unreal">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul>
+        <p props="cpp">方法调用成功，返回当前连接状态，详见 <xref keyref="CONNECTION_STATE_TYPE"/>。</p>
+        <p props="apple">方法调用成功，返回当前的连接状态，详见 <xref keyref="CONNECTION_STATE_TYPE"/>。</p>
+        <p props="android"><ul>
+                        <li><codeph>CONNECTION_STATE_DISCONNECTED(1)</codeph>：SDK 与声网边缘服务器断开连接。</li>
+                        <li><codeph>CONNECTION_STATE_CONNECTING(2)</codeph>：SDK 正在连接声网边缘服务器。</li>
+                        <li><codeph>CONNECTION_STATE_CONNECTED(3)</codeph>：SDK 已加入频道并与声网边缘服务器连接。你可以在频道中发布或订阅媒体流。</li>
+                        <li><codeph>CONNECTION_STATE_RECONNECTING(4)</codeph>：由于网络原因，SDK 与已加入的频道断开连接，正在尝试重新加入。</li>
+                        <li><codeph>CONNECTION_STATE_FAILED(5)</codeph>：SDK 加入频道失败。</li>
+                        </ul>
+                    </p>
+    </section>
         </refbody>
 </reference>

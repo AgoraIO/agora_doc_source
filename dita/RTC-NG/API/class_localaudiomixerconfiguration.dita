@@ -1,16 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_localaudiomixerconfiguration">
     <title><ph keyref="LocalAudioMixerConfiguration"/></title>
-    <shortdesc id="short"><ph id="shortdesc">本地音频合流配置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">本地音频混音配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class LocalAudioMixerConfiguration {
-  public ArrayList&lt;MixedAudioStream> audioInputStreams;
+  public ArrayList&lt;MixedAudioStream&gt; audioInputStreams;
   public boolean syncWithLocalMic;
   public LocalAudioMixerConfiguration() {
-    audioInputStreams = new ArrayList&lt;MixedAudioStream>();
+    audioInputStreams = new ArrayList&lt;MixedAudioStream&gt;();
     syncWithLocalMic = true;
   }
   public static class MixedAudioStream {
@@ -27,8 +27,8 @@
   };
 }</codeblock>
             <codeblock props="hmos" outputclass="language-arkts"/>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLocalAudioMixerConfiguration: NSObject
-@property(copy, nonatomic) NSArray&lt;AgoraMixedAudioStream *> *_Nullable audioInputStreams;
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraLocalAudioMixerConfiguration: NSObject
+@property(copy, nonatomic) NSArray&lt;AgoraMixedAudioStream *&gt; *_Nullable audioInputStreams;
 @property(assign, nonatomic) BOOL syncWithLocalMic;
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct LocalAudioMixerConfiguration {
@@ -45,7 +45,7 @@ struct FUABT_LocalAudioMixerConfiguration {
 public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	TArray&lt;FUABT_MixedAudioStream> sourceStreams;
+	TArray&lt;FUABT_MixedAudioStream&gt; sourceStreams;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	bool syncWithLocalMic;
@@ -74,45 +74,46 @@ public:
   final int? streamCount;
 
   @JsonKey(name: 'audioInputStreams')
-  final List&lt;MixedAudioStream>? audioInputStreams;
+  final List&lt;MixedAudioStream&gt;? audioInputStreams;
 
   @JsonKey(name: 'syncWithLocalMic')
   final bool? syncWithLocalMic;
 
-  factory LocalAudioMixerConfiguration.fromJson(Map&lt;String, dynamic> json) =>
+  factory LocalAudioMixerConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$LocalAudioMixerConfigurationFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$LocalAudioMixerConfigurationToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$LocalAudioMixerConfigurationToJson(this);
 }</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since">
-            <dlentry props="native">
-                <dt>自从</dt>
-                <dd>v4.5.0</dd>
-            </dlentry>
-            </dl>
             <p/>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry props="cpp unreal electron unity cs rn flutter">
-                    <pt>streamCount</pt>
-                    <pd>在本地进行合流的音频流数量。</pd>
-                </plentry>
-                <plentry>
-                    <pt>audioInputStreams</pt>
-                    <pd>在本地进行合流的音频源。详见 <xref keyref="MixedAudioStream"/>。</pd>
-                </plentry>
-                <plentry>
-                    <pt>syncWithLocalMic</pt>
-                    <pd>合流后的音频流是否使用本地麦克风采集的音频帧时间戳：
+            <plentry props="cpp cs electron flutter rn unity unreal">
+                <pt>streamCount</pt>
+                <pd>在本地进行合流的音频流数量。</pd>
+            </plentry>
+            <plentry props="ios">
+                <pt props="ios">audioInputStreams</pt>
+                <pd>在本地进行合流的音频源。详见 <xref keyref="MixedAudioStream"/>。</pd>
+                <pd props="ios">本地混音的音频流来源。详见 <xref keyref="MixedAudioStream"/>。</pd>
+            </plentry>
+            <plentry props="ios">
+                <pt props="ios">syncWithLocalMic</pt>
+                <pd>合流后的音频流是否使用本地麦克风采集的音频帧时间戳：
                         <ul>
                         <li><codeph><ph keyref="true"/></codeph>：（默认）使用本地麦克风采集的音频帧时间戳。如果要所有本地采集的音频流保持同步，你可以将参数设置为该值。</li>
                         <li><codeph><ph keyref="false"/></codeph>：不使用本地麦克风采集的音频帧时间戳，SDK 会采用合流的音频帧被构建时的时间戳。</li>
                         </ul></pd>
-                </plentry>
+                <pd props="ios">混音音频流是否使用本地麦克风采集的音频帧的时间戳。
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：（默认）使用本地麦克风采集的音频帧时间戳。适用于希望本地采集的所有音频流保持同步的场景。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：使用音频帧混音时的时间戳。</li>
+                        </ul>
+                    </pd>
+            </plentry>
             </parml> </section>
                 </refbody>
 </reference>

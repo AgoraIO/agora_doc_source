@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ivideoeffectobject_getvideoeffectboolparam">
     <title><ph keyref="getVideoEffectBoolParam"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获取视频特效中的布尔参数。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">获取视频特效中的布尔类型参数。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -25,10 +25,10 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
-            <dlentry props="native">
+            <dlentry props="cpp">
                 <dt>自从：</dt>
-                <dd props="native">自 v4.6.0 版本新增。</dd>
-                </dlentry>
+                <dd props="cpp">自 v4.6.0 版本新增。</dd>
+            </dlentry>
             </dl>
             <p></p>
             </section>
@@ -50,29 +50,27 @@
                 <pd props="android cpp">参数的键名。</pd>
                 <pd props="apple">参数的键值。</pd>
             </plentry>
-            </parml> </section>
-        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
+            <plentry props="cpp">
+                <pt props="cpp">option</pt>
+                <pd props="cpp">参数所属于的选项类别。</pd>
+            </plentry>
+            <plentry props="cpp">
+                <pt props="cpp">key</pt>
+                <pd props="cpp">参数的键名。</pd>
+            </plentry>
+        </parml> </section>
+        <section id="return_values" props="bp cs electron flutter rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
         <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
         <ul props="bp cs electron rn unity unreal">
                 <li>0: 方法调用成功。</li>
                 <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
                 </ul>
-        <p props="cpp"><ul>
+        <p props="android apple cpp"><ul>
                         <li><codeph><ph keyref="true"/></codeph>：参数已启用。</li>
                         <li><codeph><ph keyref="false"/></codeph>：参数未启用或不存在。</li>
                         </ul>
                     </p>
-        <p props="apple"><ul>
-                        <li><codeph><ph keyref="true"/></codeph>：参数已启用。</li>
-                        <li><codeph><ph keyref="false"/></codeph>：参数未启用或不存在。</li>
-                        </ul>
-                    </p>
-        <p props="android"><ul>
-                        <li><codeph><ph keyref="true"/></codeph>：参数已启用。</li>
-                        <li><codeph><ph keyref="false"/></codeph>：参数未启用或不存在。</li>
-                        </ul>
-                    </p>
-    </section>
+        </section>
         </refbody>
 </reference>

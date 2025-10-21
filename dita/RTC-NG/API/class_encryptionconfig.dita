@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_encryptionconfig">
-  <title><ph keyref="EncryptionConfig" /></title>
-  <shortdesc id="short"><ph id="shortdesc">配置内置加密模式和密钥。</ph></shortdesc>
+  <title><ph keyref="EncryptionConfig"/></title>
+  <shortdesc id="short"><ph id="shortdesc">内置加密配置。</ph></shortdesc>
   <refbody>
     <section id="prototype">
       <p outputclass="codeblock">
@@ -21,18 +21,17 @@
 }</codeblock>
       <codeblock props="hmos" outputclass="language-arkts">export class EncryptionConfig {
   encryptionMode : EncryptionMode = EncryptionMode.AES_128_GCM2;
-  encryptionKey : string = &quot;&quot;;
+  encryptionKey : string = "";
   encryptionKdfSalt : ArrayBuffer = new ArrayBuffer(32);
   public EncryptionConfig() {
   }
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraEncryptionConfig: NSObject
-
- @property (assign, nonatomic) AgoraEncryptionMode encryptionMode;
- @property (copy, nonatomic) NSString * _Nullable encryptionKey;
- @property (strong, nonatomic) NSData * _Nullable encryptionKdfSalt;
- @property (assign, nonatomic) BOOL  datastreamEncryptionEnabled;
- @end</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraEncryptionConfig: NSObject
+@property (assign, nonatomic) AgoraEncryptionMode encryptionMode;
+@property (copy, nonatomic) NSString * _Nullable encryptionKey;
+@property (strong, nonatomic) NSData * _Nullable encryptionKdfSalt;
+@property (assign, nonatomic) BOOL  datastreamEncryptionEnabled;
+@end</codeblock>
       <codeblock props="cpp unreal" outputclass="language-cpp">struct EncryptionConfig {
   ENCRYPTION_MODE encryptionMode;
   const char* encryptionKey;
@@ -52,13 +51,13 @@ struct FEncryptionConfig
 {
 	GENERATED_BODY()
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncryptionConfig&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|EncryptionConfig")
 	EENCRYPTION_MODE encryptionMode = EENCRYPTION_MODE::AES_128_GCM;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncryptionConfig&quot;)
-	FString encryptionKey = &quot;&quot;;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncryptionConfig&quot;)
-	FString encryptionKdfSalt = &quot;&quot;;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncryptionConfig&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|EncryptionConfig")
+	FString encryptionKey = "";
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|EncryptionConfig")
+	FString encryptionKdfSalt = "";
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|EncryptionConfig")
 	bool datastreamEncryptionEnabled = false;
 	FEncryptionConfig(){}
 	FEncryptionConfig(const agora::rtc::EncryptionConfig &amp; AgoraData){
@@ -139,45 +138,54 @@ class EncryptionConfig {
   @JsonKey(name: 'datastreamEncryptionEnabled')
   final bool? datastreamEncryptionEnabled;
 
-  factory EncryptionConfig.fromJson(Map&lt;String, dynamic> json) =>
+  factory EncryptionConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$EncryptionConfigFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$EncryptionConfigToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$EncryptionConfigToJson(this);
 }</codeblock>
       </p>
     </section>
     <section id="parameters">
-      <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+      <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
       <parml>
-      <plentry>
-        <pt>encryptionMode</pt>
-        <pd>
-          <p>内置加密模式。详见 <xref keyref="ENCRYPTION_MODE" />。建议使用 <codeph><ph keyref="AES_128_GCM2" /></codeph> 或 <codeph><ph keyref="AES_256_GCM2" /></codeph> 加密模式。这两种模式支持使用盐，安全性更高。</p>
+            <plentry props="ios">
+                <pt props="ios">encryptionMode</pt>
+                <pd>
+          <p>内置加密模式。详见 <xref keyref="ENCRYPTION_MODE"/>。建议使用 <codeph><ph keyref="AES_128_GCM2"/></codeph> 或 <codeph><ph keyref="AES_256_GCM2"/></codeph> 加密模式。这两种模式支持使用盐，安全性更高。</p>
         </pd>
-      </plentry>
-      <plentry>
-        <pt>encryptionKey</pt>
-        <pd>
+                <pd props="ios">内置加密模式。详见 <xref keyref="ENCRYPTION_MODE"/>。声网建议使用 <ph keyref="AgoraEncryptionModeAES128GCM"/> 或 <ph keyref="AgoraEncryptionModeAES256GCM"/> 加密模式。这两种模式支持使用加密盐值以提升安全性。</pd>
+            </plentry>
+            <plentry props="ios">
+                <pt props="ios">encryptionKey</pt>
+                <pd>
           <p>内置加密密钥，字符串类型，长度无限制。建议使用 32 字节的密钥。</p>
-          <note type="attention">如果未指定该参数或将该参数设置为 <codeph><ph keyref="NULL" /></codeph>，则无法启用内置加密，且 SDK 会返回错误码 <codeph>-2</codeph>。</note> </pd>
-      </plentry>
-      <plentry>
-        <pt>encryptionKdfSalt</pt>
-        <pd>
+          <note type="attention">如果未指定该参数或将该参数设置为 <codeph><ph keyref="NULL"/></codeph>，则无法启用内置加密，且 SDK 会返回错误码 <codeph>-2</codeph>。</note> </pd>
+                <pd props="ios">字符串类型的加密密钥，长度不受限制。声网建议使用 32 字节的密钥。</pd>
+            </plentry>
+            <plentry props="ios">
+                <pt props="ios">encryptionKdfSalt</pt>
+                <pd>
           <p>盐，长度为 32 字节。建议你在服务端使用 OpenSSL 生成盐。</p>
           <p props="native"><ph props="cn">如需在 App 中添加声网内置媒体流加密，详见<xref keyref="channel-encryption"/>。</ph></p>
-          <note type="attention">只有在 <codeph><ph keyref="AES_128_GCM2" /></codeph> 或 <codeph><ph keyref="AES_256_GCM2" /></codeph> 加密模式下，该参数才生效。此时，需确保填入该参数的值不全为 <codeph>0</codeph>。</note>
+          <note type="attention">只有在 <codeph><ph keyref="AES_128_GCM2"/></codeph> 或 <codeph><ph keyref="AES_256_GCM2"/></codeph> 加密模式下，该参数才生效。此时，需确保填入该参数的值不全为 <codeph>0</codeph>。</note>
         </pd>
-      </plentry>
-      <plentry props="android cpp apple framework">
-        <pt>datastreamEncryptionEnabled</pt>
-        <pd><ph>是否开启数据流加密：</ph>
+                <pd props="ios">用于加密的盐值，长度为 32 字节。声网建议你在服务器端使用 OpenSSL 生成该盐值。详见 <codeph>Media Stream Encryption</codeph>。详见 <codeph>NSData</codeph>。</pd>
+            </plentry>
+            <plentry props="android apple cpp framework ios">
+                <pt props="ios">datastreamEncryptionEnabled</pt>
+                <pd><ph>是否开启数据流加密：</ph>
           <ul>
             <li><codeph><ph keyref="true"/></codeph>：开启数据流加密。</li>
             <li><codeph><ph keyref="false"/></codeph>：（默认）关闭数据流加密。</li>
           </ul>
         </pd>
-      </plentry>
-      </parml> </section>
+                <pd props="ios">是否启用数据流加密：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：启用数据流加密。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）不启用数据流加密。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            </parml> </section>
   </refbody>
 </reference>

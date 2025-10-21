@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_agoravideoencoderconfiguration_initwithwidth">
     <title><ph keyref="initWithWidth"/></title>
-    <shortdesc id="short"><ph id="shortdesc">指定视频宽和高并初始化一个 <xref keyref="VideoEncoderConfiguration"/> 对象。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">指定视频宽高并初始化 <xref keyref="VideoEncoderConfiguration"/> 对象。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,56 +14,63 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
             <codeblock props="ios mac" outputclass="language-objectivec">- (instancetype _Nonnull)initWithWidth:(NSInteger)width
-                                height:(NSInteger)height
-                             frameRate:(AgoraVideoFrameRate)frameRate
-                               bitrate:(NSInteger)bitrate
-                       orientationMode:(AgoraVideoOutputOrientationMode)orientationMode
-                            mirrorMode:(AgoraVideoMirrorMode)mirrorMode;</codeblock>
+                                 height:(NSInteger)height
+                              frameRate:(AgoraVideoFrameRate)frameRate
+                                bitrate:(NSInteger)bitrate
+                        orientationMode:(AgoraVideoOutputOrientationMode)orientationMode
+                             mirrorMode:(AgoraVideoMirrorMode)mirrorMode NS_SWIFT_NAME(init(width:height:frameRate:bitrate:orientationMode:mirrorMode:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp"/>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity cs" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry>
                 <pt>width</pt>
-                <pd>视频宽度。</pd>
-            </plentry>
+                <pd props="android bp cpp cs electron flutter mac rn unity unreal">视频宽度。</pd>
+            <pd props="ios">视频的宽度。</pd>
+                </plentry>
             <plentry>
                 <pt>height</pt>
-                <pd>视频高度。</pd>
-            </plentry>
+                <pd props="android bp cpp cs electron flutter mac rn unity unreal">视频高度。</pd>
+            <pd props="ios">视频的高度。</pd>
+                </plentry>
             <plentry>
                 <pt>frameRate</pt>
-                <pd>视频帧率。详见 <xref keyref="FRAME_RATE"/>。</pd>
-            </plentry>
+                <pd props="android bp cpp cs electron flutter mac rn unity unreal">视频帧率。详见 <xref keyref="FRAME_RATE"/>。</pd>
+            <pd props="ios">视频帧率，详见 <xref keyref="FRAME_RATE"/>。</pd>
+                </plentry>
             <plentry>
                 <pt>bitrate</pt>
-                <pd>视频码率。</pd>
-            </plentry>
+                <pd props="android bp cpp cs electron flutter mac rn unity unreal">视频码率。</pd>
+            <pd props="ios">编码视频的码率。</pd>
+                </plentry>
             <plentry>
                 <pt>orientationMode</pt>
-                <pd>视频方向。详见 <xref keyref="ORIENTATION_MODE"/>。</pd>
-            </plentry>
+                <pd props="android bp cpp cs electron flutter mac rn unity unreal">视频方向。详见 <xref keyref="ORIENTATION_MODE"/>。</pd>
+            <pd props="ios">编码视频的方向，详见 <xref keyref="ORIENTATION_MODE"/>。</pd>
+                </plentry>
             <plentry>
                 <pt>mirrorMode</pt>
-                <pd>发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。
+                <pd props="android bp cpp cs electron flutter mac rn unity unreal">发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。
                     <p props="android hmos">
                         <ul conkeyref="setLocalRenderMode2/videomirrormodetype">
                         <li/>
                         </ul> </p>
                 </pd>
-            </plentry>
-            </parml> </section>
+            <pd props="ios">设置本地视频流的镜像模式，仅影响远端用户看到的视频，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</pd>
+                </plentry>
+        </parml> </section>
         <section id="return_values">
             <title>返回值</title>
-            <p>初始化的 <apiname keyref="VideoEncoderConfiguration"/> 对象。</p>
-        </section>
+        <p>初始化的 <apiname keyref="VideoEncoderConfiguration"/> 对象。</p>
+        <p props="apple">方法调用成功，返回 <xref keyref="VideoEncoderConfiguration"/> 对象。</p>
+    </section>
     </refbody>
 </reference>

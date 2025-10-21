@@ -1,90 +1,87 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onaudioquality">
-    <title><ph keyref="onAudioQuality" /></title>
-    <shortdesc id="short"><ph id="shortdesc">远端声音质量回调。</ph></shortdesc>
+    <title><ph keyref="onAudioQuality"/></title>
+    <shortdesc id="short"><ph id="shortdesc">报告每个远端用户发送的音频流的统计信息。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onAudioQuality" />
+                <indexterm keyref="onAudioQuality"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public void onAudioQuality(int uid, int quality, short delay, short lost) {}</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)audioQualityBlock:(void (^_Nullable)(NSUInteger uid, AgoraNetworkQuality quality, NSUInteger delay, NSUInteger lost))audioQualityBlock</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onAudioQuality(uid_t uid, int quality, unsigned short delay, unsigned short lost) {
-  (void)uid;
-  (void)quality;
-  (void)delay;
-  (void)lost;
-}</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
-	void OnAudioQuality(int64 uid, int quality, int delay, int lost);</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">  onAudioQuality?(
-    connection: RtcConnection,
-    remoteUid: number,
-    quality: QualityType,
-    delay: number,
-    lost: number
-  ): void;</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnAudioQuality(RtcConnection connection, uint remoteUid, int quality, UInt16 delay, UInt16 lost) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">  onAudioQuality?(
-    connection: RtcConnection,
-    remoteUid: number,
-    quality: QualityType,
-    delay: number,
-    lost: number
-  ): void;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid,
-      QualityType quality, int delay, int lost)? onAudioQuality;</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="android" outputclass="language-java">public void onAudioQuality(int uid, int quality, short delay, short lost)</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onAudioQuality(uid_t uid, int quality, unsigned short delay, unsigned short lost) __deprecated</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
-        <section id="detailed_desc">
-            <p>
-            <dl outputclass="deprecated">
-            <dlentry>
-                <dt>弃用：</dt>
-                <dd>请改用 <xref keyref="onRemoteAudioStats" />。</dd>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v</dd>
             </dlentry>
             </dl>
-            </p>
-            <p>该回调描述远端用户在通话中的音频质量，针对每个远端用户/主播每 2 秒触发一次。如果远端同时存在多个用户/主播，该回调每 2 秒会被触发多次。</p>
+            <p/>
         </section>
-        <section id="parameters">
-            <title><ph keyref="callback-section-title" /></title>
+        <section id="timing" deliveryTarget="details">
+            <title>触发时机</title>
+            <p>SDK 每两秒触发一次该回调。</p>
+        </section>        
+        <section id="restriction" deliveryTarget="details">
+            <title>使用限制</title>
+            <p>无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
             <parml>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt />
-                <pd />
+            <plentry props="android cpp">
+                <pt props="android cpp">uid</pt>
+                <pd props="android">发送音频流的远端用户 ID。</pd>
+                <pd props="cpp">发送音频流的远端用户的用户 ID。</pd>
             </plentry>
-            <plentry props="unity flutter electron rn cs">
-                <pt>connection</pt>
-                <pd>Connection 信息。详见 <xref keyref="RtcConnection" />。</pd>
+            <plentry props="android cpp">
+                <pt props="android cpp">quality</pt>
+                <pd props="android">用户的音频质量：
+                    <ul>
+                        <li><ph keyref="QUALITY_UNKNOWN"/> (0)：音频质量未知。</li>
+                        <li><ph keyref="QUALITY_EXCELLENT"/> (1)：音频质量极好。</li>
+                        <li><ph keyref="QUALITY_GOOD"/> (2)：网络质量很好，但码率可能略低于极好。</li>
+                        <li><ph keyref="QUALITY_POOR"/> (3)：用户感觉通话有些受影响。</li>
+                        <li><ph keyref="QUALITY_BAD"/> (4)：用户无法流畅地进行通信。</li>
+                        <li><ph keyref="QUALITY_VBAD"/> (5)：音频质量极差，几乎无法进行通信。</li>
+                        <li><ph keyref="QUALITY_DOWN"/> (6)：网络连接中断，完全无法通信。</li>
+                        <li><ph keyref="QUALITY_DETECTING"/> (8)：正在进行 Last-mile 探测。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp">该用户的音频质量，详见 <xref keyref="QUALITY_TYPE"/>。</pd>
             </plentry>
-            <plentry>
-                <pt props="native unreal bp">uid</pt>
-                <pt props="unity flutter electron rn cs"><ph>remoteUid</ph></pt>
-                <pd>用户 ID，指定是谁发的音频流。</pd>
+            <plentry props="android cpp">
+                <pt props="android cpp">delay</pt>
+                <pd props="android">从发送端到接收端的网络延迟（毫秒），包括音频采样预处理、网络传输和网络抖动缓冲所造成的延迟。</pd>
+                <pd props="cpp">从发送端到接收端的网络延迟（毫秒），包括音频采样预处理、网络传输和网络抖动缓冲造成的延迟。</pd>
             </plentry>
-            <plentry>
-                <pt>quality</pt>
-                <pd>语音质量。<ph props="ios mac cpp unreal unity flutter electron rn cs">详见 <xref keyref="QUALITY_TYPE" />。</ph>
-                    <ul conkeyref="RemoteAudioStats/qualitytype" props="android bp">
-                    <li />
-                    </ul> </pd>
-            </plentry>
-            <plentry>
-                <pt>delay</pt>
-                <pd>音频包从发送端到接收端的延迟（毫秒），包括声音采样前处理、网络传输、网络抖动缓冲引起的延迟。</pd>
-            </plentry>
-            <plentry>
-                <pt>lost</pt>
-                <pd>音频包从发送端到接收端的丢包率 (%)。</pd>
+            <plentry props="android cpp">
+                <pt props="android cpp">lost</pt>
+                <pd props="android cpp">从远端用户发送到接收端的音频数据包的丢包率（%）。</pd>
             </plentry>
             </parml> </section>
+        <section id="return_values" props="bp electron flutter rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
+        <ul props="apple bp electron rn unity unreal">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+                </ul>
+    </section>
     </refbody>
 </reference>

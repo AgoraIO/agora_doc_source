@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onrequesttoken">
-    <title> <ph keyref="onRequestToken" /> </title>
-    <shortdesc id="short"> <ph id="shortdesc">Token 已过期回调。</ph> </shortdesc>
+    <title> <ph keyref="onRequestToken"/> </title>
+    <shortdesc id="short"> <ph id="shortdesc">当 Token 过期时触发的回调。</ph> </shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onRequestToken" />
+                <indexterm keyref="onRequestToken"/>
             </keywords>
         </metadata>
     </prolog>
@@ -14,24 +14,33 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onRequestToken() {}</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts">onRequestToken?:() => void;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngineRequestToken:(AgoraRtcEngineKit * _Nonnull)engine;</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onRequestToken()</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+            <codeblock props="hmos" outputclass="language-arkts">onRequestToken?:() =&gt; void;</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngineRequestToken:(AgoraRtcEngineKit * _Nonnull)engine NS_SWIFT_NAME(rtcEngineRequestToken(_:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onRequestToken() {}</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = "Agora|Event")
 	void OnRequestToken();</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onRequestToken?(connection: RtcConnection): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnRequestToken(RtcConnection connection) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onRequestToken?(connection: RtcConnection): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection)? onRequestToken;</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p id="desc1">在音视频互动过程中，如果 Token 失效，SDK 会触发该回调报告 Token 已过期。</p>
+            <p id="desc1">当 Token 过期时，SDK 会触发该回调。收到该回调后，你需要在你的 Token 服务器上生成新的 Token，并通过以下方式之一更新 Token：
+                    <ul>
+                        <li>单频道场景：<ul>
+                            <li>调用 <xref keyref="renewToken_IMusicContentCenter"/> 传入新的 Token。</li>
+                            <li>调用 <codeph>leaveChannel</codeph> 离开当前频道后，再调用 <codeph>joinChannel</codeph> 加入频道并传入新的 Token。</li>
+                            </ul>
+                        </li>
+                        <li>多频道场景：调用 <xref keyref="updateChannelMediaOptionsEx"/> 传入新的 Token。</li>
+                        </ul>
+                    </p>
             <p id="renew">当收到该回调时，你需要重新在服务端生成新的 Token，然后通过下列任意一种方式来更新 Token：
                 <ul>
                    <li>单频道场景：<ul>
                             <li>调用 <xref keyref="renewToken"/> 来传入新的 Token。</li>
-                            <li>调用 <xref keyref="leaveChannel2"/> 离开当前频道，然后在调用 <xref keyref="joinChannel2" /> 时传入新的 Token 重新加入频道。</li>
+                            <li>调用 <xref keyref="leaveChannel2"/> 离开当前频道，然后在调用 <xref keyref="joinChannel2"/> 时传入新的 Token 重新加入频道。</li>
                         </ul></li>
                    <li>多频道场景：调用 <xref keyref="updateChannelMediaOptionsEx"/> 传入新的 Token。</li>
                    </ul></p>
@@ -40,17 +49,25 @@
             <title>使用限制</title>
             <p>无。</p>
         </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>当 Token 过期时触发。</p>
+        </section>
         <section id="parameters" deliveryTarget="details">
-            <title> <ph keyref="callback-section-title" props="apple unity electron rn flutter cs"/> </title>
-            <parml props="apple unity electron rn flutter cs">
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt />
-                <pd />
+            <title> <ph keyref="callback-section-title" props="apple cs electron flutter rn unity"/> </title>
+            <parml props="apple cs electron flutter rn unity">
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="apple">
+                <pt/>
+                <pd/>
             </plentry>
-            <plentry props="unity electron rn flutter cs" conkeyref="joinChannelEx/connection">
-                <pt />
-                <pd />
+            <plentry props="cs electron flutter rn unity" conkeyref="joinChannelEx/connection">
+                <pt/>
+                <pd/>
             </plentry>
-            </parml> </section>
+            <plentry props="ios">
+                <pt props="ios">engine</pt>
+                <pd props="ios"><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+            </plentry>
+        </parml> </section>
     </refbody>
 </reference>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onmultipathstats">
     <title><ph keyref="onMultipathStats"/></title>
-    <shortdesc id="short"><ph id="shortdesc">多路径传输统计信息的回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">多路径传输统计数据回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -26,15 +26,15 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
-            <dlentry props="native">
+            <dlentry props="android">
                 <dt>自从：</dt>
-                <dd props="native">自 v4.6.0 版本新增。</dd>
-                </dlentry>
+                <dd props="android">自 v4.6.0 版本新增。</dd>
+            </dlentry>
             </dl>
             </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
-            <p>在你将 <codeph>enableMultipath</codeph> 设置为 <codeph><ph keyref="true"/></codeph> 启用多路径传输后触发该回调。</p>
+            <p>该回调在你将 <codeph>enableMultipath</codeph> 设置为 <codeph><ph keyref="true"/></codeph> 以启用多路径传输后被触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
@@ -44,12 +44,15 @@
             <title>参数</title>
             <parml>
             <plentry props="native">
-                <pt props="android cpp">stats</pt>
-                <pt props="apple">stats</pt>
+                <pt props="android apple cpp">stats</pt>
                 <pd props="android cpp">多路径传输统计信息。详见 <xref keyref="MultipathStats"/>。</pd>
                 <pd props="apple">多路径传输统计数据，详见 <xref keyref="MultipathStats"/>。</pd>
             </plentry>
-            </parml> </section>
+            <plentry props="android">
+                <pt props="android">stats</pt>
+                <pd props="android">多路径传输统计数据。详见 <xref keyref="MultipathStats"/>。</pd>
+            </plentry>
+        </parml> </section>
         <section id="return_values" props="bp electron flutter rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
         <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>

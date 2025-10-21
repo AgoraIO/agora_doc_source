@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_audioprofiletype">
     <title><ph keyref="AUDIO_PROFILE_TYPE"/></title>
-    <shortdesc id="short"><ph id="shortdesc">音频编码属性。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">音频配置文件。</ph></shortdesc>
     <refbody>
         <section id="parameters">
             <title>枚举值</title>
@@ -16,10 +16,10 @@
 
                     <ul id="default-profile">
                     <li>直播场景下：48 kHz 采样率，音乐编码，单声道，编码码率最大值为 64 Kbps。</li>
-                    <li>通信场景下：<ph props="android ios mac rn">32 kHz 采样率，语音编码，单声道，编码码率最大值为 18 Kbps。</ph>
-                        <ul props="cpp unreal bp unity electron flutter cs">
+                    <li>通信场景下：<ph props="android apple rn">32 kHz 采样率，语音编码，单声道，编码码率最大值为 18 Kbps。</ph>
+                        <ul props="bp cpp cs electron flutter unity unreal">
                         <li>Windows 平台：16 kHz 采样率，语音编码，单声道，编码码率最大值为 16 Kbps。</li>
-                        <li><ph props="cpp unreal bp unity flutter">Android、macOS、iOS 平台：</ph><ph props="electron">macOS 平台：</ph>32 kHz 采样率，语音编码，单声道，编码码率最大值为 18 Kbps。</li>
+                        <li><ph props="bp cpp flutter unity unreal">Android、macOS、iOS 平台：</ph><ph props="electron">macOS 平台：</ph>32 kHz 采样率，语音编码，单声道，编码码率最大值为 18 Kbps。</li>
                         </ul> </li>
                     </ul> </p>
                 </pd>
@@ -37,7 +37,7 @@
             <plentry id="3">
                 <pt><ph keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO"/></pt>
                 <pd><ph>3: 指定 48 kHz 采样率，音乐编码，双声道，编码码率最大值为 80 Kbps。</ph>
-                    <p props="cpp unreal bp android ios unity rn electron flutter">如需实现立体声，你还需要调用 <xref keyref="setAdvancedAudioOptions"/> 并在 <apiname keyref="AdvancedAudioOptions"/> 中设置 <parmname>audioProcessingChannels</parmname> 为 <apiname keyref="AUDIO_PROCESSING_STEREO"/>。</p>
+                    <p props="android bp cpp electron flutter ios rn unity unreal">如需实现立体声，你还需要调用 <xref keyref="setAdvancedAudioOptions"/> 并在 <apiname keyref="AdvancedAudioOptions"/> 中设置 <parmname>audioProcessingChannels</parmname> 为 <apiname keyref="AUDIO_PROCESSING_STEREO"/>。</p>
                 </pd>
             </plentry>
             <plentry id="4">
@@ -47,18 +47,45 @@
             <plentry id="5">
                 <pt><ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/></pt>
                 <pd><ph>5: 指定 48 kHz 采样率，音乐编码，双声道，编码码率最大值为 128 Kbps。</ph>
-                    <p props="cpp unreal bp android ios unity flutter rn electron">如需实现立体声，你还需要调用 <xref keyref="setAdvancedAudioOptions"/> 并在 <apiname keyref="AdvancedAudioOptions"/> 中设置 <parmname>audioProcessingChannels</parmname> 为 <apiname keyref="AUDIO_PROCESSING_STEREO"/>。</p>
+                    <p props="android bp cpp electron flutter ios rn unity unreal">如需实现立体声，你还需要调用 <xref keyref="setAdvancedAudioOptions"/> 并在 <apiname keyref="AdvancedAudioOptions"/> 中设置 <parmname>audioProcessingChannels</parmname> 为 <apiname keyref="AUDIO_PROCESSING_STEREO"/>。</p>
                 </pd>
             </plentry>
-            <plentry id="6" props="cpp unreal bp unity ios mac rn electron flutter cs">
+            <plentry id="6" props="apple bp cpp cs electron flutter rn unity unreal">
                 <pt><ph keyref="AUDIO_PROFILE_IOT"/></pt>
                 <pd>
                     <p>6: 指定 16 kHz 采样率，语音编码，单声道，应用回声消除算法 AEC。</p>
                 </pd>
             </plentry>
             <plentry>
-                <pt props="cpp unreal bp unity electron rn flutter cs"><ph keyref="AUDIO_PROFILE_NUM"/></pt>
+                <pt props="bp cpp cs electron flutter rn unity unreal"><ph keyref="AUDIO_PROFILE_NUM"/></pt>
                 <pd>枚举值边界。</pd>
+            </plentry>
+            <plentry props="android apple">
+                <pt><ph keyref="AgoraAudioProfileDefault"/></pt>
+                <pd props="android apple">（0）：默认音频配置文件。
+                    <ul>
+                        <li>互动直播场景：采样率为 48 kHz，音乐编码，单声道，码率最高为 64 Kbps。</li>
+                        <li>通信场景：采样率为 32 kHz，音频编码，单声道，码率最高为 18 Kbps。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            <plentry props="android apple">
+                <pt><ph keyref="AgoraAudioProfileSpeechStandard"/></pt>
+                <pd props="android apple">（1）：采样率为 32 kHz，音频编码，单声道，码率最高为 18 Kbps。</pd>
+            </plentry>
+            <plentry props="android apple">
+                <pt><ph keyref="AgoraAudioProfileMusicStandardStereo"/></pt>
+                <pd props="apple">（3）：采样率为 48 kHz，音乐编码，立体声，码率最高为 80 Kbps。在 iOS 上实现立体声音频时，还需调用 <xref keyref="setAdvancedAudioOptions"/>，并在 <xref keyref="AdvancedAudioOptions"/> 中将 <codeph>audioProcessingChannels</codeph> 设置为 <ph keyref="AgoraAudioProcessChannelstereo"/>。</pd>
+                <pd props="android">（3）：采样率为 48 kHz，音乐编码，立体声，码率最高为 80 Kbps。要启用立体声音频，还需调用 <xref keyref="setAdvancedAudioOptions"/>，并在 <xref keyref="AdvancedAudioOptions"/> 中将 <codeph>audioProcessingChannels</codeph> 设置为 <ph keyref="AUDIO_PROCESSING_STEREO"/>。</pd>
+            </plentry>
+            <plentry props="android apple">
+                <pt><ph keyref="AgoraAudioProfileMusicHighQualityStereo"/></pt>
+                <pd props="apple">（5）：采样率为 48 kHz，音乐编码，立体声，码率最高为 128 Kbps。在 iOS 上实现立体声音频时，还需调用 <xref keyref="setAdvancedAudioOptions"/>，并在 <xref keyref="AdvancedAudioOptions"/> 中将 <codeph>audioProcessingChannels</codeph> 设置为 <ph keyref="AgoraAudioProcessChannelstereo"/>。</pd>
+                <pd props="android">（5）：采样率为 48 kHz，音乐编码，立体声，码率最高为 128 Kbps。要启用立体声音频，还需调用 <xref keyref="setAdvancedAudioOptions"/>，并在 <xref keyref="AdvancedAudioOptions"/> 中将 <codeph>audioProcessingChannels</codeph> 设置为 <ph keyref="AUDIO_PROCESSING_STEREO"/>。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraAudioProfileIot"/></pt>
+                <pd props="apple">（6）：采样率为 16 kHz，音频编码，单声道，并启用回声消除（AEC）。</pd>
             </plentry>
             </parml> </section>
     </refbody>

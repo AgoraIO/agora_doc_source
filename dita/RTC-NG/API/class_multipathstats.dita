@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_multipathstats">
     <title><ph keyref="MultipathStats"/></title>
-    <shortdesc id="short"><ph id="shortdesc">汇总多路径传输中各网络路径的统计信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">汇总多路径传输中各网络路径的统计数据。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -15,9 +15,9 @@
     public int mobileRxBytes;
     public int activePathNum;
     public PathStats[] pathStats;
-  }</codeblock>
+}</codeblock>
             <codeblock props="hmos" outputclass="language-arkts"/>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMultipathStats : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraMultipathStats : NSObject
 @property (assign, nonatomic) NSUInteger lanRxBytes;
 @property (assign, nonatomic) NSUInteger lanTxBytes;
 @property (assign, nonatomic) NSUInteger wifiRxBytes;
@@ -64,47 +64,56 @@
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry props="native">
-                <pt props="native">lanTxBytes</pt>
+            <plentry props="android ios native">
+                <pt props="android ios native">lanTxBytes</pt>
                 <pd props="android">通过 LAN 发送的总字节数。</pd>
                 <pd props="apple cpp">通过 LAN 路径发送的字节数。</pd>
+                <pd props="android">通过 LAN 发送的字节总数。</pd>
+                <pd props="ios">通过 LAN 路径发送的总字节数。</pd>
             </plentry>
-            <plentry props="native">
-                <pt props="native">lanRxBytes</pt>
+            <plentry props="android ios native">
+                <pt props="android ios native">lanRxBytes</pt>
                 <pd props="android">通过 LAN 接收的总字节数。</pd>
-                <pd props="apple cpp">通过 LAN 路径接收的总字节数。</pd>
+                <pd props="apple cpp ios">通过 LAN 路径接收的总字节数。</pd>
+                <pd props="android">通过 LAN 接收的字节总数。</pd>
             </plentry>
-            <plentry props="native">
-                <pt props="native">wifiTxBytes</pt>
+            <plentry props="android ios native">
+                <pt props="android ios native">wifiTxBytes</pt>
                 <pd props="android">通过 Wi-Fi 发送的总字节数。</pd>
-                <pd props="apple cpp">通过 Wi-Fi 路径发送的总字节数。</pd>
+                <pd props="apple cpp ios">通过 Wi-Fi 路径发送的总字节数。</pd>
+                <pd props="android">通过 Wi-Fi 发送的字节总数。</pd>
             </plentry>
-            <plentry props="native">
-                <pt props="native">wifiRxBytes</pt>
+            <plentry props="android ios native">
+                <pt props="android ios native">wifiRxBytes</pt>
                 <pd props="android">通过 Wi-Fi 接收的总字节数。</pd>
-                <pd props="apple cpp">通过 Wi-Fi 路径接收的总字节数。</pd>
+                <pd props="apple cpp ios">通过 Wi-Fi 路径接收的总字节数。</pd>
+                <pd props="android">通过 Wi-Fi 接收的字节总数。</pd>
             </plentry>
-            <plentry props="native">
-                <pt props="native">mobileTxBytes</pt>
+            <plentry props="android ios native">
+                <pt props="android ios native">mobileTxBytes</pt>
                 <pd props="android">通过移动网络发送的总字节数。</pd>
-                <pd props="apple cpp">通过移动网络路径发送的总字节数。</pd>
+                <pd props="apple cpp ios">通过移动网络路径发送的总字节数。</pd>
+                <pd props="android">通过移动网络发送的字节总数。</pd>
             </plentry>
-            <plentry props="native">
-                <pt props="native">mobileRxBytes</pt>
+            <plentry props="android ios native">
+                <pt props="android ios native">mobileRxBytes</pt>
                 <pd props="android">通过移动网络接收的总字节数。</pd>
-                <pd props="apple cpp">通过移动网络路径接收的总字节数。</pd>
+                <pd props="apple cpp ios">通过移动网络路径接收的总字节数。</pd>
+                <pd props="android">通过移动网络接收的字节总数。</pd>
             </plentry>
-            <plentry props="native">
-                <pt props="native">activePathNum</pt>
-                <pd props="android">当前活跃的传输路径数量。</pd>
+            <plentry props="android ios native">
+                <pt props="android ios native">activePathNum</pt>
+                <pd props="android ios">当前活跃的传输路径数量。</pd>
                 <pd props="apple">当前活跃的传输路径的数量。</pd>
                 <pd props="cpp">活跃的传输路径数量。</pd>
             </plentry>
-            <plentry props="native">
-                <pt props="native">pathStats</pt>
+            <plentry props="android ios native">
+                <pt props="android ios native">pathStats</pt>
                 <pd props="android">每一个活跃的传输路径的统计信息数组。详见 <xref keyref="PathStats"/>。</pd>
                 <pd props="apple">每一条活跃的传输路径统计信息。详见 <xref keyref="PathStats"/>。</pd>
                 <pd props="cpp">每个活跃传输路径的统计信息数组。详见 <xref keyref="PathStats"/>。</pd>
+                <pd props="android">每条活跃传输路径的统计信息数组。详见 <xref keyref="PathStats"/>。</pd>
+                <pd props="ios">每条活跃传输路径的统计信息，详见 <xref keyref="PathStats"/>。</pd>
             </plentry>
             </parml> </section>
             </refbody>

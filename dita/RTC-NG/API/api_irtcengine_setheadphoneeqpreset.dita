@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setheadphoneeqpreset">
     <title><ph keyref="setHeadphoneEQPreset"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置预设的耳机均衡效果。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">设置预设的耳机均衡器效果。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,25 +14,19 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setHeadphoneEQPreset(int preset);</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setHeadphoneEQPreset:(AgoraHeadphoneEQPreset)preset;</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setHeadphoneEQPreset:(AgoraHeadphoneEQPreset)preset NS_SWIFT_NAME(setHeadphoneEQPreset(_:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setHeadphoneEQPreset(HEADPHONE_EQUALIZER_PRESET preset) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	int SetHeadphoneEQPreset(FENUMWRAP_HEADPHONE_EQUALIZER_PRESET preset);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setHeadphoneEQPreset(preset: HeadphoneEqualizerPreset): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetHeadphoneEQPreset(HEADPHONE_EQUALIZER_PRESET preset);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setHeadphoneEQPreset(preset: HeadphoneEqualizerPreset): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setHeadphoneEQPreset(HeadphoneEqualizerPreset preset);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setHeadphoneEQPreset(HeadphoneEqualizerPreset preset);</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
             <title>详情</title>
-            <dl outputclass="since">
-            <dlentry props="android apple cpp">
-                <dt>自从</dt>
-                <dd>v4.0.1</dd>
-            </dlentry>
-            </dl>
             <p>该方法主要应用于空间音频场景下，你可以选择预设的耳机均衡器收听音频，以达到预期的音频体验。</p>
             <note type="note">如果你使用的耳机已经具备良好的均衡效果，调用该方法时可能不会获得明显的体验提升效果，甚至可能导致体验下降。</note> </section>
         <section id="parameters">
@@ -40,25 +34,48 @@
             <parml>
             <plentry>
                 <pt>preset</pt>
-                <pd props="cpp ios mac unity electron rn flutter cs unreal bp">预设的耳机均衡效果。详见 <xref keyref="HEADPHONE_EQUALIZER_PRESET"/>。</pd>
-                <pd props="android hmos">预设的耳机均衡效果：
+                <pd props="bp cs electron flutter mac rn unity unreal">预设的耳机均衡效果。详见 <xref keyref="HEADPHONE_EQUALIZER_PRESET"/>。</pd>
+                <pd props="hmos">预设的耳机均衡效果：
                     <ul>
                     <li><ph keyref="HEADPHONE_EQUALIZER_OFF"/>: 关闭耳机均衡器，收听原始音频。</li>
                     <li><ph keyref="HEADPHONE_EQUALIZER_OVEREAR"/>: 使用头戴式耳机的均衡器。</li>
                     <li><ph keyref="HEADPHONE_EQUALIZER_INEAR"/>: 使用入耳式耳机的均衡器。</li>
                     </ul>
                 </pd>
-            </plentry>
-            </parml> </section>
-        <section id="return_values">
+            <pd props="android">预设的耳机均衡器效果：
+                    <ul>
+                        <li><ph keyref="HEADPHONE_EQUALIZER_OFF"/>：关闭耳机均衡器，听到原始音频。</li>
+                        <li><ph keyref="HEADPHONE_EQUALIZER_OVEREAR"/>：为头戴式耳机使用均衡器。</li>
+                        <li><ph keyref="HEADPHONE_EQUALIZER_INEAR"/>：为入耳式耳机使用均衡器。</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">预设的耳机均衡器效果。详见 <xref keyref="HEADPHONE_EQUALIZER_PRESET"/>。</pd>
+                <pd props="cpp">预设的耳机均衡器效果，详见 <xref keyref="HEADPHONE_EQUALIZER_PRESET"/>。</pd>
+                </plentry>
+        </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp unity rn electron cs">
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cs electron rn unity unreal">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败
                 <ul>
                 <li>-1：一般性的错误（未明确归类）。</li>
                 </ul></li>
-            </ul> </section>
+            </ul>
+        <p props="android cpp"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。<ul>
+                            <li>-1：发生通用错误（无明确原因）。</li>
+                            </ul>
+                        </li>
+                        </ul>
+                    </p>
+        <p props="apple"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+    </section>
     </refbody>
 </reference>

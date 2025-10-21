@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audiovolumeinfo">
-    <title><ph keyref="AudioVolumeInfo" /></title>
-    <shortdesc id="short"><ph id="shortdesc">用户音量信息。</ph></shortdesc>
+    <title><ph keyref="AudioVolumeInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc">用户音量相关信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -11,7 +11,7 @@
     public int volume;
     public int vad;
     public double voicePitch;
-  }</codeblock>
+}</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">export class AudioVolumeInfo {
   
   public uid:number = 0;
@@ -21,7 +21,7 @@
   
   public voicePitch:number = 0;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcAudioVolumeInfo : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraRtcAudioVolumeInfo : NSObject
 @property(assign, nonatomic) NSUInteger uid;
 @property(assign, nonatomic) NSUInteger volume;
 @property(assign, nonatomic) NSUInteger vad;
@@ -38,13 +38,13 @@
 struct FAudioVolumeInfo {
 	GENERATED_BODY()
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioVolumeInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|AudioVolumeInfo")
 	int64 uid = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioVolumeInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|AudioVolumeInfo")
 	int64 volume = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioVolumeInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|AudioVolumeInfo")
 	int64 vad = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioVolumeInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|AudioVolumeInfo")
 	float voicePitch = 0;
 	FAudioVolumeInfo(){}
 	FAudioVolumeInfo(const agora::rtc::AudioVolumeInfo &amp; AgoraData){
@@ -124,13 +124,13 @@ public:
         _$AudioVolumeInfoFromJson(json);
     Map&lt;String, dynamic&gt; toJson() =&gt; _$AudioVolumeInfoToJson(this);
   }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry>
-                <pt>uid</pt>
+            <plentry props="android ios">
+                <pt props="android ios">uid</pt>
                 <pd>
                     <p>用户 ID。
 
@@ -140,13 +140,16 @@ public:
                     <li>在远端用户的回调中，<parmname>uid</parmname> 为瞬时音量最高的远端用户（最多 3 位）的 ID。</li>
                     </ul></p>
                 </pd>
+                <pd props="android ios">用户 ID。 - 在本地用户的回调中，<ph keyref="uid"/> 为 0。 - 在远端用户的回调中，</pd>
             </plentry>
-            <plentry>
-                <pt>volume</pt>
-                <pd><ph>用户的音量，取值范围为 [0,255]。如果用户将自己静音（将 <xref keyref="muteLocalAudioStream"/> 设为 <codeph><ph keyref="true"/></codeph>），但开启了音频采集，<parmname>volume</parmname> 的值表示本地采集信号的音量。</ph><ph props="native unreal bp">如果用户调用了 <xref keyref="startAudioMixing2" />，则 <parmname>volume</parmname> 为用户混音后的音量。</ph></pd>
+            <plentry props="android ios">
+                <pt props="android ios">volume</pt>
+                <pd><ph>用户的音量，取值范围为 [0,255]。如果用户将自己静音（将 <xref keyref="muteLocalAudioStream"/> 设为 <codeph><ph keyref="true"/></codeph>），但开启了音频采集，<parmname>volume</parmname> 的值表示本地采集信号的音量。</ph><ph props="bp native unreal">如果用户调用了 <xref keyref="startAudioMixing2"/>，则 <parmname>volume</parmname> 为用户混音后的音量。</ph></pd>
+                <pd props="android">用户的音量，取值范围为 0（最低）到 255（最高）。 - 如果本地用户开启音频采集并调用 <xref keyref="muteLocalAudioStream_IBaseSpatialAudioEngine"/> 关闭音频发送时，<codeph>volume</codeph> 表示本地采集音频信号的音量值。 - 如果调用了 <codeph>startAudioMixing</codeph>，则该值表示混音后的音量值。</pd>
+                <pd props="ios">用户的音量，取值范围为 0（最低）到 255（最高）。如果本地用户开启了音频采集并调用 <xref keyref="muteLocalAudioStream_IBaseSpatialAudioEngine"/> 设置为 <codeph><ph keyref="true"/></codeph> 以静音，则 <codeph>volume</codeph> 表示本地采集的音频信号的音量。如果用户调用了 <codeph>startAudioMixing</codeph>，则 <codeph>volume</codeph> 表示混音后的音量。</pd>
             </plentry>
-            <plentry>
-                <pt>vad</pt>
+            <plentry props="android ios">
+                <pt props="android ios">vad</pt>
                 <pd>
                     <p>本地用户的人声状态。
 
@@ -158,16 +161,20 @@ public:
                     <note type="attention">
                     <ul>
                     <li><parmname>vad</parmname> 无法报告远端用户的人声状态。对于远端用户，<parmname>vad</parmname> 的值始终为 1。</li>
-                    <li>如需使用此参数，请在调用 <xref keyref="enableAudioVolumeIndication" /> 时设置 <parmname>reportVad</parmname> 为 <codeph><ph keyref="true" /></codeph>。</li>
+                    <li>如需使用此参数，请在调用 <xref keyref="enableAudioVolumeIndication"/> 时设置 <parmname>reportVad</parmname> 为 <codeph><ph keyref="true"/></codeph>。</li>
                     </ul> </note> </pd>
+                <pd props="android">本地用户的语音活跃状态。 - 0：本地用户未说话。 - 1：本地用户正在说话。 - <codeph>vad</codeph> 参数不用于报告远端用户的语音状态，在远端用户的回调中该值始终为 1。 - 使用该参数需要在调用 <xref keyref="enableAudioVolumeIndication"/> 时将 <codeph>reportVad</codeph> 设置为 <codeph><ph keyref="true"/></codeph>。</pd>
+                <pd props="ios">本地用户的语音活动状态。 - 0：本地用户未说话。 - 1：本地用户正在说话。 - <codeph>vad</codeph> 参数不会报告远端用户的语音活动状态。在远端用户的回调中，<codeph>vad</codeph> 的值始终为 1。 - 若要使用该参数，调用 <xref keyref="enableAudioVolumeIndication"/> 时必须将 <codeph>reportVad</codeph> 设置为 <codeph><ph keyref="true"/></codeph>。</pd>
             </plentry>
-            <plentry>
-                <pt>voicePitch</pt>
+            <plentry props="android ios">
+                <pt props="android ios">voicePitch</pt>
                 <pd>
                     <p>本地用户的人声音调（Hz）。取值范围为 [0.0,4000.0]。
                </p>
                     <note type="attention"><parmname>voicePitch</parmname> 无法报告远端用户的人声音调。对于远端用户，<parmname>voicePitch</parmname> 的值始终为 0.0。</note>
                 </pd>
+                <pd props="android">本地用户的语音音高，取值范围为 0.0 到 4000.0。 <codeph>voicePitch</codeph> 参数不会返回远端用户的语音音高，在远端用户回调中该值恒为 0.0。</pd>
+                <pd props="ios">本地用户的语音音高，取值范围为 0.0 到 4000.0。 <codeph>voicePitch</codeph> 参数不会报告远端用户的语音音高。在远端用户的回调中，<codeph>voicePitch</codeph> 的值始终为 0.0。</pd>
             </plentry>
             </parml> </section>
     </refbody>

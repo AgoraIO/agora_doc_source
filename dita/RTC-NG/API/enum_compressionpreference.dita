@@ -1,17 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_compressionpreference">
     <title><ph keyref="COMPRESSION_PREFERENCE"/></title>
-    <shortdesc id="short"><ph id="shortdesc">视频编码的压缩偏好类型。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">视频编码的压缩偏好设置。</ph></shortdesc>
     <refbody>
         <section id="detailed_desc">
-            <dl outputclass="since">
-            <dlentry props="android apple cpp">
-                <dt>自从</dt>
-                <dd>v4.1.0</dd>
-            </dlentry>
-            </dl>
-        </section>
+            </section>
         <section id="parameters">
             <title>枚举值</title>
             <parml>
@@ -26,6 +20,18 @@
             <plentry>
                 <pt><ph keyref="PREFER_QUALITY"/></pt>
                 <pd>1：高质量偏好。SDK 会对视频帧进行压缩处理，同时保持视频质量。该偏好适用于画质优先的场景。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraCompressionAuto"/></pt>
+                <pd props="apple">（-1）：（默认）自动模式。SDK 会根据设置的视频场景自动选择 <ph keyref="AgoraCompressionLowLatency"/> 或 <ph keyref="AgoraCompressionQuality"/>，以实现最佳的用户体验。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraCompressionLowLatency"/></pt>
+                <pd props="apple">（0）：低延迟优先。SDK 会压缩视频帧以降低延迟，适用于对流畅性要求较高且可接受画质降低的场景。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraCompressionQuality"/></pt>
+                <pd props="apple">（1）：高画质优先。SDK 会在保持视频质量的同时压缩视频帧，适用于对画质要求较高的场景。</pd>
             </plentry>
             </parml> </section>
     </refbody>

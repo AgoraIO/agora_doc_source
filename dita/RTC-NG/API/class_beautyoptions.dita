@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_beautyoptions">
-    <title> <ph keyref="BeautyOptions" /> </title>
-    <shortdesc id="short"> <ph id="shortdesc">美颜选项。</ph> </shortdesc>
+    <title> <ph keyref="BeautyOptions"/> </title>
+    <shortdesc id="short"> <ph id="shortdesc">图像增强选项设置。</ph> </shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -10,16 +10,14 @@
   public static final int LIGHTENING_CONTRAST_LOW = 0;
   public static final int LIGHTENING_CONTRAST_NORMAL = 1;
   public static final int LIGHTENING_CONTRAST_HIGH = 2;
-
   public int lighteningContrastLevel;
   public float lighteningLevel;
   public float smoothnessLevel;
   public float rednessLevel;
   public float sharpnessLevel;
 }</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraBeautyOptions : NSObject
-
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraBeautyOptions : NSObject
 @property(nonatomic, assign) AgoraLighteningContrastLevel lighteningContrastLevel;
 @property(nonatomic, assign) float lighteningLevel;
 @property(nonatomic, assign) float smoothnessLevel;
@@ -53,15 +51,15 @@ struct FBeautyOptions
 {
 	GENERATED_BODY()
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|BeautyOptions&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|BeautyOptions")
 	ELIGHTENING_CONTRAST_LEVEL lighteningContrastLevel = ELIGHTENING_CONTRAST_LEVEL::LIGHTENING_CONTRAST_NORMAL;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|BeautyOptions&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|BeautyOptions")
 	float lighteningLevel = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|BeautyOptions&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|BeautyOptions")
 	float smoothnessLevel = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|BeautyOptions&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|BeautyOptions")
 	float rednessLevel = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|BeautyOptions&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|BeautyOptions")
 	float sharpnessLevel = 0;
 	FBeautyOptions(){}
 	FBeautyOptions(const agora::rtc::BeautyOptions &amp; AgoraData){
@@ -171,43 +169,59 @@ public:
             </p>
         </section>
         <section id="parameters">
-            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" />
+            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/>
             </title>
             <parml>
-            <plentry>
-                <pt>lighteningContrastLevel</pt>
+            <plentry props="android ios">
+                <pt props="android ios">lighteningContrastLevel</pt>
                 <pd>
-                    <p>对比度，常与 <parmname>lighteningLevel</parmname> 搭配使用。取值越大，明暗对比程度越大。<ph props="ios mac cpp unreal bp unity electron rn flutter cs">详见 <xref keyref="LIGHTENING_CONTRAST_LEVEL" />。</ph>
+                    <p>对比度，常与 <parmname>lighteningLevel</parmname> 搭配使用。取值越大，明暗对比程度越大。<ph props="apple bp cpp cs electron flutter rn unity unreal">详见 <xref keyref="LIGHTENING_CONTRAST_LEVEL"/>。</ph>
                     <ul props="android hmos">
-                    <li><ph keyref="LIGHTENING_CONTRAST_LOW" /> (0)：低对比度。</li>
-                    <li><ph keyref="LIGHTENING_CONTRAST_NORMAL" /> (1)：正常对比度。</li>
-                    <li><ph keyref="LIGHTENING_CONTRAST_HIGH" /> (2)：高对比度。</li>
+                    <li><ph keyref="LIGHTENING_CONTRAST_LOW"/> (0)：低对比度。</li>
+                    <li><ph keyref="LIGHTENING_CONTRAST_NORMAL"/> (1)：正常对比度。</li>
+                    <li><ph keyref="LIGHTENING_CONTRAST_HIGH"/> (2)：高对比度。</li>
                     </ul></p>
                 </pd>
+                <pd props="android">对比度等级，用于配合 <codeph>lighteningLevel</codeph> 参数使用。值越大，图像中明暗差异越明显。
+                    <ul>
+                        <li><codeph>LIGHTENING_CONTRAST_LOW (0)</codeph>：低对比度等级。</li>
+                        <li><codeph>LIGHTENING_CONTRAST_NORMAL (1)</codeph>：标准对比度等级。</li>
+                        <li><codeph>LIGHTENING_CONTRAST_HIGH (2)</codeph>：高对比度等级。</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">对比度等级，与 <codeph>lighteningLevel</codeph> 参数配合使用。值越大，明暗对比越强。详见 <xref keyref="LIGHTENING_CONTRAST_LEVEL"/>。</pd>
             </plentry>
-            <plentry>
-                <pt>lighteningLevel</pt>
+            <plentry props="android ios">
+                <pt props="android ios">lighteningLevel</pt>
                 <pd>
-                    <p>美白程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始亮度，默认值为 <ph props="ios">0.7</ph><ph props="android hmos">0.6</ph><ph props="cpp unreal bp unity electron rn flutter cs">0.0</ph>。取值越大，美白程度越大。</p>
+                    <p>美白程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始亮度，默认值为 <ph props="ios">0.7</ph><ph props="android hmos">0.6</ph><ph props="bp cpp cs electron flutter rn unity unreal">0.0</ph>。取值越大，美白程度越大。</p>
                 </pd>
+                <pd props="android">美白等级，取值范围为 [0.0, 1.0]。0.0 表示使用原始亮度，默认值为 0.6。值越大，美白程度越明显。</pd>
+                <pd props="ios">美白等级。取值范围为 [0.0, 1.0]，其中 0.0 表示原始亮度，默认值为 0.7。值越大，美白程度越高。</pd>
             </plentry>
-            <plentry>
-                <pt>smoothnessLevel</pt>
+            <plentry props="android ios">
+                <pt props="android ios">smoothnessLevel</pt>
                 <pd>
-                    <p>磨皮程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始磨皮程度，默认值为 <ph props="ios">0.5</ph><ph props="android hmos">0.5</ph><ph props="cpp unreal bp unity electron rn flutter cs">0.0</ph>。取值越大，磨皮程度越大。</p>
+                    <p>磨皮程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始磨皮程度，默认值为 <ph props="android hmos ios">0.5</ph><ph props="bp cpp cs electron flutter rn unity unreal">0.0</ph>。取值越大，磨皮程度越大。</p>
                 </pd>
+                <pd props="android">磨皮等级，取值范围为 [0.0, 1.0]。0.0 表示使用原始磨皮效果，默认值为 0.5。值越大，磨皮程度越明显。</pd>
+                <pd props="ios">磨皮等级。取值范围为 [0.0, 1.0]，其中 0.0 表示原始平滑度，默认值为 0.5。值越大，磨皮效果越明显。</pd>
             </plentry>
-            <plentry>
-                <pt>rednessLevel</pt>
+            <plentry props="android ios">
+                <pt props="android ios">rednessLevel</pt>
                 <pd>
-                    <p>红润度，取值范围为 [0.0,1.0]，其中 0.0 表示原始红润度，默认值为 <ph props="ios">0.1</ph><ph props="android hmos">0.1</ph><ph props="cpp unreal bp unity electron rn flutter cs">0.0</ph>。取值越大，红润程度越大。</p>
+                    <p>红润度，取值范围为 [0.0,1.0]，其中 0.0 表示原始红润度，默认值为 <ph props="android hmos ios">0.1</ph><ph props="bp cpp cs electron flutter rn unity unreal">0.0</ph>。取值越大，红润程度越大。</p>
                 </pd>
+                <pd props="android">红润等级，取值范围为 [0.0, 1.0]。0.0 表示使用原始红润值，默认值为 0.1。值越大，红润程度越高。</pd>
+                <pd props="ios">红润等级。取值范围为 [0.0, 1.0]，其中 0.0 表示原始红润度，默认值为 0.1。值越大，红润程度越高。</pd>
             </plentry>
-            <plentry>
-                <pt>sharpnessLevel</pt>
+            <plentry props="android ios">
+                <pt props="android ios">sharpnessLevel</pt>
                 <pd>
-                    <p>锐化程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始锐度，默认值为 <ph props="ios">0.1</ph><ph props="android hmos">0.3</ph><ph props="cpp unreal bp unity electron rn flutter cs">0.0</ph>。取值越大，锐化程度越大。</p>
+                    <p>锐化程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始锐度，默认值为 <ph props="ios">0.1</ph><ph props="android hmos">0.3</ph><ph props="bp cpp cs electron flutter rn unity unreal">0.0</ph>。取值越大，锐化程度越大。</p>
                 </pd>
+                <pd props="android">锐化等级，取值范围为 [0.0, 1.0]。0.0 表示使用原始锐化程度，默认值为 0.3。值越大，画面越清晰。</pd>
+                <pd props="ios">锐化等级。取值范围为 [0.0, 1.0]，其中 0.0 表示原始锐度，默认值为 0.1。值越大，图像越清晰。</pd>
             </plentry>
             </parml> </section>
     </refbody>

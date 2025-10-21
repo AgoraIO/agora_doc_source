@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ivideoeffectobject_removevideoeffect">
     <title><ph keyref="removeVideoEffect"/></title>
-    <shortdesc id="short"><ph id="shortdesc">移除指定节点 ID 的视频特效。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">移除指定节点 ID 的视频特效节点。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -25,10 +25,10 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
-            <dlentry props="native">
+            <dlentry props="cpp">
                 <dt>自从：</dt>
-                <dd props="native">自 v4.6.0 版本新增。</dd>
-                </dlentry>
+                <dd props="cpp">自 v4.6.0 版本新增。</dd>
+            </dlentry>
             </dl>
             <p></p>
             </section>
@@ -40,13 +40,15 @@
             <title>参数</title>
             <parml>
             <plentry props="native">
-                <pt props="android cpp">nodeId</pt>
-                <pt props="apple">nodeId</pt>
+                <pt props="android apple cpp">nodeId</pt>
                 <pd props="android">要移除的视频特效节点的唯一标识符。</pd>
-                <pd props="apple">要移除的视频特效节点的唯一标识符，详见 <xref keyref="VIDEO_EFFECT_NODE_ID"/>。</pd>
-                <pd props="cpp">要移除的视频特效节点的唯一标识符，详见 <xref keyref="VIDEO_EFFECT_NODE_ID"/>。</pd>
+                <pd props="apple cpp">要移除的视频特效节点的唯一标识符，详见 <xref keyref="VIDEO_EFFECT_NODE_ID"/>。</pd>
+                </plentry>
+            <plentry props="cpp">
+                <pt props="cpp">nodeId</pt>
+                <pd props="cpp">要移除的视频特效节点的唯一标识符。详见 <xref keyref="VIDEO_EFFECT_NODE_ID"/>。</pd>
             </plentry>
-            </parml> </section>
+        </parml> </section>
         <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
         <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
@@ -59,6 +61,6 @@
                         <li>&lt; 0：方法调用失败。</li>
                         </ul>
                     </p>
-    </section>
+        </section>
         </refbody>
 </reference>

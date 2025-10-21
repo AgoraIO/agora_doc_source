@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setenablespeakerphone">
-    <title><ph keyref="setEnableSpeakerphone" /></title>
-    <shortdesc id="short"><ph id="shortdesc">开启或关闭扬声器播放。</ph></shortdesc>
+    <title><ph keyref="setEnableSpeakerphone"/></title>
+    <shortdesc id="short"><ph id="shortdesc">启用或关闭音频路由至扬声器。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setEnableSpeakerphone" />
+                <indexterm keyref="setEnableSpeakerphone"/>
             </keywords>
         </metadata>
     </prolog>
@@ -14,26 +14,39 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setEnableSpeakerphone(boolean enabled);</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
             <codeblock props="ios" outputclass="language-objectivec">- (int)setEnableSpeakerphone:(BOOL)enableSpeaker;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setEnableSpeakerphone(bool speakerOn) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	int SetEnableSpeakerphone(bool speakerOn);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setEnableSpeakerphone(speakerOn: boolean): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetEnableSpeakerphone(bool speakerOn);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setEnableSpeakerphone(speakerOn: boolean): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setEnableSpeakerphone(bool speakerOn);</codeblock></p> </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="android ios unity rn flutter">不同场景下 SDK 默认的音频路由见<xref keyref="guide-audio-route"/>。</p>
-            <note type="attention" props="cpp unreal bp unity flutter cs">该方法仅适用于 Android 和 iOS 平台。</note> 
-        </section>
+            <p props="android flutter ios rn unity">如果 SDK 的默认音频路由或通过 <xref keyref="setDefaultAudioRouteToSpeakerphone"/> 设置的路由不符合你的需求，你可以调用该方法切换当前频道内的音频路由。<xref keyref="guide-audio-route"/>。</p>
+            <note type="attention" props="bp cpp cs flutter unity unreal">该方法仅适用于 Android 和 iOS 平台。</note> 
+        <note type="attention" props="cpp"><ul>
+                        <li>该方法仅设置当前频道内的音频路由，不影响默认音频路由。如果用户离开当前频道并加入另一个频道，将使用默认音频路由。</li>
+                        <li>如果用户使用了外部音频播放设备（如蓝牙或有线耳机），该方法不生效，SDK 会通过外部设备播放音频。当用户连接多个外部设备时，SDK 会通过最后连接的设备播放音频。</li>
+                        <li>该方法仅适用于 Android 和 iOS 平台。</li>
+                        </ul>
+                    </note>
+            <note type="attention" props="apple">该方法仅设置当前频道中的音频路由，不影响默认音频路由。如果你离开当前频道并加入另一个频道，将使用默认音频路由。
+如果你使用了蓝牙或有线耳机等外部音频播放设备，该方法不生效，SDK 会通过外部设备播放音频。当你连接多个外部设备时，SDK 会通过最后连接的设备播放音频。</note>
+            <note type="attention" props="android"><ul>
+                        <li>该方法仅设置当前频道中的音频路由，不影响默认音频路由。用户离开当前频道并加入其他频道时，将使用默认音频路由。</li>
+                        <li>如果用户使用了蓝牙或有线耳机等外部音频播放设备，该方法不生效，SDK 会通过外部设备播放音频。当用户连接多个外部设备时，SDK 会通过最后连接的设备播放音频。</li>
+                        </ul>
+                    </note>
+            </section>
         <section id="scenario" deliveryTarget="details">
             <title>适用场景</title>
-            <p>如果 SDK 默认的音频路由或 <xref keyref="setDefaultAudioRouteToSpeakerphone" /> 的设置无法满足你的需求，你可以调用该方法切换当前的音频路由。</p>
+            <p>如果 SDK 默认的音频路由或 <xref keyref="setDefaultAudioRouteToSpeakerphone"/> 的设置无法满足你的需求，你可以调用该方法切换当前的音频路由。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p>该方法需要在加入频道后调用。</p>
+            <p>加入频道后调用该方法。</p>
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -44,31 +57,46 @@
         </section>
         <section id="related" deliveryTarget="details">
             <title>相关回调</title>
-            <p>成功改变音频路由后，SDK 会触发 <xref keyref="onAudioRoutingChanged" /> 回调，报告当前的音频路由。</p>
+            <p>成功调用该方法后，SDK 会触发 <xref keyref="onAudioRoutingChanged"/> 回调报告当前的音频路由。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
             <plentry>
                 <pt props="android hmos">enabled</pt>
-                <pt props="ios mac">enableSpeaker</pt>
-                <pt props="cpp unreal bp unity flutter rn electron cs">speakerOn</pt>
+                <pt props="apple">enableSpeaker</pt>
+                <pt props="bp cpp cs electron flutter rn unity unreal">speakerOn</pt>
                 <pd>
                     <p>设置是否开启扬声器播放：
                     
                     <ul>
-                    <li><codeph><ph keyref="true" /></codeph>: 开启。音频路由为扬声器。</li>
-                    <li><codeph><ph keyref="false" /></codeph>: 关闭。音频路由为听筒。</li>
+                    <li><codeph><ph keyref="true"/></codeph>: 开启。音频路由为扬声器。</li>
+                    <li><codeph><ph keyref="false"/></codeph>: 关闭。音频路由为听筒。</li>
                     </ul></p>
                 </pd>
             </plentry>
-            </parml> </section>
-        <section id="return_values">
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">enableSpeakerphone</pt>
+                <pd props="android cpp ios">设置是否启用扬声器或听筒：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：启用设备状态监测，音频路由为扬声器。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：关闭设备状态监测，音频路由为听筒。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+        </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp unity rn electron cs">
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cs electron rn unity unreal">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
-            </ul> </section>
+            </ul>
+        <p props="native"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+    </section>
     </refbody>
 </reference>

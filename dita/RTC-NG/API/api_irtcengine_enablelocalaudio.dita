@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enablelocalaudio">
-    <title><ph keyref="enableLocalAudio" /></title>
-    <shortdesc id="short"><ph id="shortdesc">开启或关闭本地音频采集。</ph></shortdesc>
+    <title><ph keyref="enableLocalAudio"/></title>
+    <shortdesc id="short"><ph id="shortdesc">启用或关闭本地音频采集功能。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="enableLocalAudio" />
+                <indexterm keyref="enableLocalAudio"/>
             </keywords>
         </metadata>
     </prolog>
@@ -15,31 +15,39 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int enableLocalAudio(boolean enabled);</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">public abstract enableLocalAudio(enabled: boolean): number;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableLocalAudio:(BOOL)enabled;</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableLocalAudio:(BOOL)enabled NS_SWIFT_NAME(enableLocalAudio(_:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int enableLocalAudio(bool enabled) = 0;</codeblock>
-            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	int EnableLocalAudio(bool enabled);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract enableLocalAudio(enabled: boolean): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int EnableLocalAudio(bool enabled);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract enableLocalAudio(enabled: boolean): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableLocalAudio(bool enabled);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p>当用户加入频道时，音频功能默认是开启的。该方法可以关闭或重新开启本地音频功能，即停止或重新开始本地音频采集。</p>
-            <p>该方法与 <xref keyref="muteLocalAudioStream" /> 的区别在于：
+            <p>你可以通过该方法关闭或重新启用本地音频功能，从而停止或重新开始本地音频采集。
+
+该方法与 <xref keyref="muteLocalAudioStream_IBaseSpatialAudioEngine"/> 的区别如下：
+                    <ul>
+                        <li><xref keyref="enableLocalAudio"/>：关闭或重新启用本地音频采集和处理。如果通过该方法关闭或重新启用本地音频采集，远端音频播放可能会出现短暂中断。</li>
+                        <li><xref keyref="muteLocalAudioStream_IBaseSpatialAudioEngine"/>：控制是否发送本地音频流，不影响音频采集状态。 适用场景：该方法不影响接收远端音频流。将 <xref keyref="enableLocalAudio"/> 设为 <codeph><ph keyref="false"/></codeph> 适用于只接收远端音频流而不发送本地音频的场景。 调用时机：你可以在加入频道前或加入频道后调用该方法。在加入频道前调用仅设置设备状态，加入频道后立即生效。</li>
+                        </ul>
+                    </p>
+            <p>该方法与 <xref keyref="muteLocalAudioStream"/> 的区别在于：
                 <ul>
-                <li><apiname keyref="enableLocalAudio" />: 开启或关闭本地音频采集及处理。使用 <apiname keyref="enableLocalAudio" /> 关闭或开启本地采集后，本地听远端播放会有短暂中断。</li>
-                <li><apiname keyref="muteLocalAudioStream" />: 停止或继续发送本地音频流，不影响音频的采集状态。</li>
+                <li><apiname keyref="enableLocalAudio"/>: 开启或关闭本地音频采集及处理。使用 <apiname keyref="enableLocalAudio"/> 关闭或开启本地采集后，本地听远端播放会有短暂中断。</li>
+                <li><apiname keyref="muteLocalAudioStream"/>: 停止或继续发送本地音频流，不影响音频的采集状态。</li>
                 </ul></p>
-        </section>
+        <note type="attention" props="apple">成功调用该方法后，SDK 会触发 <xref keyref="onLocalAudioStateChanged"/> 回调，报告 <ph keyref="LOCAL_AUDIO_STREAM_STATE_STOPPED"/>（0）或 <ph keyref="AgoraAudioLocalStateRecording"/>（1）状态。</note>
+            </section>
         <section id="scenario" deliveryTarget="details">
             <title>适用场景</title>
-            <p>该方法不影响远端音频流的接收和播放。<apiname keyref="enableLocalAudio" /><codeph>(<ph keyref="false" />)</codeph> 适用于只接收远端音频而不发送本地采集音频的场景。</p>
+            <p>该方法不影响远端音频流的接收和播放。<apiname keyref="enableLocalAudio"/><codeph>(<ph keyref="false"/>)</codeph> 适用于只接收远端音频而不发送本地采集音频的场景。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p>该方法在加入频道前后均可调用。在加入频道前调用只能设置设备状态，在加入频道后才会立即生效。</p>
+            <p>你可以在加入频道前或加入频道后调用此方法。在加入频道前调用仅设置设备状态，加入频道后立即生效。</p>
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -47,27 +55,40 @@
         </section>
         <section id="related" deliveryTarget="details">
             <title>相关回调</title>
-            <p>音频功能关闭或重新开启后，会收到 <xref keyref="onLocalAudioStateChanged" /> 回调，并报告 <apiname keyref="LOCAL_AUDIO_STREAM_STATE_STOPPED" />(0) 或 <apiname keyref="LOCAL_AUDIO_STREAM_STATE_RECORDING" />(1)。</p>
+            <p>成功调用该方法后，SDK 会触发 <xref keyref="onLocalAudioStateChanged"/> 回调，报告 <ph keyref="LOCAL_AUDIO_STREAM_STATE_STOPPED"/>（0）或 <ph keyref="LOCAL_AUDIO_STREAM_STATE_RECORDING"/>（1）。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
             <plentry>
                 <pt>enabled</pt>
-                <pd>
+                <pd props="bp cs electron flutter mac rn unity unreal">
                     <ul>
-                    <li><codeph><ph keyref="true" /></codeph>: 重新开启本地音频功能，即开启本地音频采集（默认）；</li>
-                    <li><codeph><ph keyref="false" /></codeph>: 关闭本地音频功能，即停止本地音频采集。</li>
+                    <li><codeph><ph keyref="true"/></codeph>: 重新开启本地音频功能，即开启本地音频采集（默认）；</li>
+                    <li><codeph><ph keyref="false"/></codeph>: 关闭本地音频功能，即停止本地音频采集。</li>
                     </ul>
                 </pd>
-            </plentry>
-            </parml> </section>
-        <section id="return_values">
+            <pd props="android cpp ios"><ul>
+                        <li><codeph><ph keyref="true"/></codeph>：（默认）重新开启本地音频功能，即启动本地音频采集设备（例如麦克风）。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：关闭本地音频功能，即停止本地音频采集。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+        </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp electron unity rn cs">
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cs electron rn unity unreal">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
-            </ul> </section>
+            </ul>
+        <p props="android cpp"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+        <p props="apple">0：方法调用成功。
+&lt; 0：方法调用失败。</p>
+    </section>
         </refbody>
 </reference>

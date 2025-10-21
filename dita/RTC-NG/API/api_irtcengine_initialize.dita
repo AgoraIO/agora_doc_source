@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_initialize">
     <title><ph keyref="initialize"/></title>
-    <shortdesc id="short"><ph props="ios mac android hmos electron">创建并初始化 <xref keyref="IRtcEngine"/>。</ph><ph props="cpp unreal bp flutter unity cs" id="shortdesc">初始化 <apiname keyref="IRtcEngine"/>。</ph></shortdesc>
+    <shortdesc id="short"><ph props="android apple electron hmos">初始化 <xref keyref="IRtcEngine"/> 实例。</ph><ph props="bp cpp cs flutter unity unreal" id="shortdesc">初始化 <apiname keyref="IRtcEngine"/>。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -19,9 +19,9 @@
     return RtcEngineImpl.createEngineImpl(config);
   }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">+ (instancetype _Nonnull)sharedEngineWithConfig:(AgoraRtcEngineConfig * _Nonnull)config
-                                       delegate:(id&lt;AgoraRtcEngineDelegate&gt; _Nullable)delegate;</codeblock>
+                                       delegate:(id&lt;AgoraRtcEngineDelegate&gt; _Nullable)delegate NS_SWIFT_NAME(sharedEngine(with:delegate:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int initialize(const RtcEngineContext&amp; context) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	int Initialize(const FRtcEngineContext&amp; context);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract initialize(context: RtcEngineContext): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int Initialize(RtcEngineContext context);</codeblock>
@@ -30,45 +30,52 @@
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
             <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-                <p props="android ios mac">该方法和 <xref keyref="create"/> 均能创建 <apiname keyref="IRtcEngine"/> 实例。该方法与 <apiname keyref="create"/> 的区别在于，该方法支持在创建 <apiname keyref="IRtcEngine"/> 实例时进行更多配置，如指定访问区域、设置日志文件等。</p>
-                <note type="attention"><apiname keyref="IRtcEngine"/> 类的所有接口函数，如无特殊说明，都是异步调用，对接口的调用建议在同一个线程进行。</note>
+                <p props="android apple">你必须在调用其他 API 之前调用该方法。该方法用于初始化 <xref keyref="IRtcEngine"/> 实例。<xref keyref="create"/> 均能创建 <apiname keyref="IRtcEngine"/> 实例。该方法与 <apiname keyref="create"/> 的区别在于，该方法支持在创建 <apiname keyref="IRtcEngine"/> 实例时进行更多配置，如指定访问区域、设置日志文件等。</p>
+            <note type="attention"><apiname keyref="IRtcEngine"/> 类的所有接口函数，如无特殊说明，都是异步调用，对接口的调用建议在同一个线程进行。</note>
+            <note type="attention" props="cpp">SDK 仅支持为一个 App 创建一个 <xref keyref="IRtcEngine"/> 实例。<xref keyref="IRtcEngine"/> 提供的所有方法均为异步执行。声网建议在同一线程中调用这些方法。</note>
+            <note type="attention" props="apple">SDK 当前仅支持为一个 App 创建一个 <xref keyref="IRtcEngine"/> 实例。<xref keyref="IRtcEngine"/> 提供的所有方法均为异步执行。声网建议你在同一线程中调用这些方法。</note>
             </section>
             <section id="timing" deliveryTarget="details">
                 <title>调用时机</title>
-                <p props="cpp unreal bp flutter rn electron">请确保在调用其他 API 前先调用 <xref keyref="createAgoraRtcEngine"/> 和 <apiname keyref="initialize"/> 创建并初始化 <apiname keyref="IRtcEngine"/>。</p>
-                <p props="android hmos ios mac">请确保在调用其他 API 前先调用该方法创建并初始化 <apiname keyref="IRtcEngine"/>。</p>
+                <p>在调用其他 API 之前。</p>
+        <p props="android apple hmos">请确保在调用其他 API 前先调用该方法创建并初始化 <apiname keyref="IRtcEngine"/>。</p>
             </section>
             <section id="restriction" deliveryTarget="details">
                 <title>调用限制</title>
-                <p>SDK 只支持每个 App 创建一个 <apiname keyref="IRtcEngine"/> 实例。</p>
-            </section>
+                <p>无。</p>
+        </section>
             <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
             <plentry>
-                <pt props="cpp unreal bp electron unity rn flutter cs">context</pt>
-                <pt props="android hmos ios mac">config</pt>
-                <pd>
+                <pt>context</pt>
+                <pt props="android apple hmos">config</pt>
+                <pd props="android apple bp cs electron flutter rn unity unreal">
                     <p><xref keyref="IRtcEngine"/> 实例的配置。详见 <xref keyref="RtcEngineConfig"/>。</p>
                 </pd>
+            <pd props="cpp"><xref keyref="IRtcEngine"/> 实例的配置。详见 <xref keyref="RtcEngineConfig"/>。</pd>
+                </plentry>
+            <plentry props="apple">
+                <pt props="apple">delegate</pt>
+                <pd conkeyref="create/handler" props="android bp cpp cs electron flutter mac rn unity unreal"/>
+            <pd props="ios"><xref keyref="IRtcEngine"/> 的事件回调处理器，详见 <xref keyref="IRtcEngineEventHandler"/>。</pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">config</pt>
+                <pd props="ios">用于配置 <xref keyref="IRtcEngine"/> 实例的参数，详见 <xref keyref="RtcEngineConfig"/>。</pd>
             </plentry>
-            <plentry props="ios mac">
-                <pt>delegate</pt>
-                <pd conkeyref="create/handler"/>
-            </plentry>
-            </parml> </section>
-        <section id="return_values">
+        </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title>
-            <ph keyref="return-section-title" props="apple cpp framework"/>
+            <ph keyref="return-section-title" props="apple framework"/>
             <ph props="android hmos">返回/异常</ph>
             </title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul>
             <li props="android apple">方法调用成功，返回一个成功初始化的 <apiname keyref="IRtcEngine"/> 对象。</li>
-            <li props="cpp unreal bp unity rn electron cs">0: 方法调用成功。</li>
+            <li props="bp cs electron rn unity unreal">0: 方法调用成功。</li>
             <li props="android hmos">方法调用失败，抛出异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
-            <li props="ios mac">方法调用失败，返回一个 <apiname keyref="IRtcEngine"/> 对象，但其内部的 engine 为 <codeph><ph keyref="NULL"/></codeph>，并通过 <codeph>delegate</codeph> 的 <xref keyref="onError"/> 回调返回具体的错误码。</li>
-            <li props="cpp framework">&lt; 0：方法调用失败。
+            <li props="framework">&lt; 0：方法调用失败。
                 <ul>
                 <li>-1: 一般性的错误（未明确归类）。</li>
                 <li>-2: 设置了无效的参数。</li>
@@ -76,6 +83,20 @@
                 <li>-22: 资源申请失败。当 App 占用资源过多，或系统资源耗尽时，SDK 分配资源失败，会返回该错误。</li>
                 <li>-101: App ID 无效。</li>
                 </ul></li>
-            </ul></section>
+            </ul>
+        <p props="cpp"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。<ul>
+                            <li>-1：发生通用错误（无明确原因）。</li>
+                            <li>-2：参数无效。</li>
+                            <li>-7：SDK 未初始化。</li>
+                            <li>-22：资源请求失败。由于你的 App 占用过多系统资源或系统资源不足，SDK 无法分配资源。</li>
+                            <li>-101：<codeph>App ID</codeph> 无效。</li>
+                            </ul>
+                        </li>
+                        </ul>
+                    </p>
+        <p props="apple">方法调用成功时，返回初始化后的 <xref keyref="IRtcEngine"/> 对象。方法调用失败时，返回一个内部 engine 字段为 <codeph><ph keyref="NULL"/></codeph> 的 <xref keyref="IRtcEngine"/> 对象。你可以通过 <xref keyref="delegate"/> 的 <xref keyref="onError"/> 回调获取错误码。</p>
+    </section>
     </refbody>
 </reference>

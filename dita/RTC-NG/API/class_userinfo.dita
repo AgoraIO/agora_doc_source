@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_userinfo">
-    <title><ph keyref="UserInfo" /></title>
-    <shortdesc id="short"><ph id="shortdesc">用户的信息。</ph></shortdesc>
+    <title><ph keyref="UserInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc">用户信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -22,17 +22,17 @@
         public uint uid;
         public string userAccount;
     }</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraUserInfo: NSObject
- @property(assign, nonatomic) NSUInteger uid;
- @property (copy, nonatomic) NSString * _Nullable userAccount;
- @end</codeblock>
+@property(assign, nonatomic) NSUInteger uid;
+@property (copy, nonatomic) NSString * _Nullable userAccount;
+@end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct UserInfo {
                     uid_t uid;
                     char userAccount[MAX_USER_ACCOUNT_LENGTH];
                     UserInfo()
                     : uid(0) {
-                    userAccount[0] = '&#x5C;0';
+                    userAccount[0] = '\0';
                     }
                     };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
@@ -40,10 +40,10 @@ struct FUserInfo
 {
 	GENERATED_BODY()
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|UserInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|UserInfo")
 	int64 uid = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|UserInfo&quot;)
-	FString userAccount = &quot;&quot;;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|UserInfo")
+	FString userAccount = "";
 	FUserInfo(){}
 	FUserInfo(const agora::rtc::UserInfo &amp; AgoraData){
 		uid = AgoraData.uid;
@@ -81,18 +81,19 @@ public:
       _$UserInfoFromJson(json);
   Map&lt;String, dynamic&gt; toJson() =&gt; _$UserInfoToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry>
-                <pt>uid</pt>
-                <pd>用户 ID。</pd>
+            <plentry props="ios">
+                <pt props="ios">uid</pt>
+                <pd props="ios">用户 ID。</pd>
             </plentry>
-            <plentry>
-                <pt>userAccount</pt>
-                <pd>用户 Account。<ph props="cpp unreal rn unity electron flutter cs">长度限制为<xref keyref="MAX_USER_ACCOUNT_LENGTH_TYPE" />。</ph></pd>
+            <plentry props="ios">
+                <pt props="ios">userAccount</pt>
+                <pd>用户 Account。<ph props="cpp cs electron flutter rn unity unreal">长度限制为<xref keyref="MAX_USER_ACCOUNT_LENGTH_TYPE"/>。</ph></pd>
+                <pd props="ios">用户账号。</pd>
             </plentry>
             </parml> </section>
     </refbody>

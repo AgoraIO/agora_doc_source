@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_pathstats">
     <title><ph keyref="PathStats"/></title>
-    <shortdesc id="short"><ph id="shortdesc">用于描述多路径传输中某一特定网络路径的统计信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">特定网络路径的统计信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -12,7 +12,7 @@
     public int rxKBitRate;
 }</codeblock>
             <codeblock props="hmos" outputclass="language-arkts"/>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraPathStats : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraPathStats : NSObject
 @property (assign, nonatomic) AgoraMultipathType pathType;
 @property (assign, nonatomic) NSUInteger txKBitRate;
 @property (assign, nonatomic) NSUInteger rxKBitRate;
@@ -34,7 +34,7 @@
             <dl outputclass="since">
             <dlentry props="native">
                 <dt>自从：</dt>
-                <dd props="native">自 v4.6.0 版本新增。</dd>
+                <dd>自 v4.6.0 版本新增。</dd>
                 </dlentry>
             </dl>
             <p></p>
@@ -42,9 +42,8 @@
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry props="native">
-                <pt props="android">pathType</pt>
-                <pt props="apple">pathType</pt>
+            <plentry props="android ios native">
+                <pt props="android apple ios">pathType</pt>
                 <pt props="cpp">type</pt>
                 <pd props="android">路径类型，例如：
                     <ul>
@@ -55,15 +54,24 @@
                     </pd>
                 <pd props="apple">路径类型。详见 <xref keyref="MultipathType"/>。</pd>
                 <pd props="cpp">路径的类型。详见 <xref keyref="MultipathType"/>。</pd>
+                <pd props="android">网络路径的类型：
+                    <ul>
+                        <li>LAN：局域网。</li>
+                        <li>WiFi：无线局域网。</li>
+                        <li>Mobile：移动网络。</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">网络路径的类型。详见 <xref keyref="MultipathType"/>。</pd>
             </plentry>
-            <plentry props="native">
-                <pt props="native">txKBitRate</pt>
+            <plentry props="android ios native">
+                <pt props="android ios native">txKBitRate</pt>
                 <pd props="android">该路径的发送码率，单位为 Kbps。</pd>
                 <pd props="apple cpp">路径的传输码率，单位为 Kbps。</pd>
+                <pd props="android ios">该路径的传输码率，单位为 Kbps。</pd>
             </plentry>
-            <plentry props="native">
-                <pt props="native">rxKBitRate</pt>
-                <pd props="android">该路径的接收码率，单位为 Kbps。</pd>
+            <plentry props="android ios native">
+                <pt props="android ios native">rxKBitRate</pt>
+                <pd props="android ios">该路径的接收码率，单位为 Kbps。</pd>
                 <pd props="apple cpp">路径的接收码率，单位为 Kbps。</pd>
             </plentry>
             </parml> </section>

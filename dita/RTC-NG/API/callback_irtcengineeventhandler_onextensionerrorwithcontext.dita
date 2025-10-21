@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onextensionerrorwithcontext">
-    <title><ph keyref="onExtensionErrorWithContext" /></title>
-    <shortdesc id="short"><ph id="shortdesc">插件出错回调。</ph></shortdesc>
+    <title><ph keyref="onExtensionErrorWithContext"/></title>
+    <shortdesc id="short"><ph id="shortdesc">扩展运行异常时触发的回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onExtensionErrorWithContext" />
+                <indexterm keyref="onExtensionErrorWithContext"/>
             </keywords>
         </metadata>
     </prolog>
@@ -18,12 +18,8 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)onExtensionErrorWithContext:(AgoraExtensionContext * _Nonnull)context
                    error:(int)error
                  message:(NSString * __nullable)message NS_SWIFT_NAME(onExtensionErrorWithContext(_:error:message:));</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onExtensionErrorWithContext(const ExtensionContext &amp;context, int error, const char* message) {
-    (void)context;
-    (void)error;
-    (void)message;
-  }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onExtensionErrorWithContext(const ExtensionContext &amp;context, int error, const char* message)</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = "Agora|Event")
 	void OnExtensionErrorWithContext(const FExtensionContext&amp; context, int error, const FString&amp; message);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onExtensionErrorWithContext?(
     context: ExtensionContext,
@@ -38,27 +34,34 @@
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(ExtensionContext context, int error, String message)?
     onExtensionErrorWithContext;</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
-            <p>启用插件失败或者插件运行出错时，插件会触发该回调并报告错误码和错误原因。</p>
+            <p>当扩展启用失败或运行过程中发生错误时触发该回调。你可以通过该回调获取扩展上下文、错误码以及错误信息，以便进行排查或提示用户。</p>
+            </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>当扩展启用失败或运行时发生错误时触发。</p>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry id="context">
-                <pt props="cpp apple framework">context</pt>
+                <pt>context</pt>
                 <pt props="android">extContext</pt>
-                <pd>插件上下文信息，详见 <xref keyref="ExtensionContext"/>。</pd>
-            </plentry>
+                <pd props="android apple bp cs electron flutter rn unity unreal">插件上下文信息，详见 <xref keyref="ExtensionContext"/>。</pd>
+            <pd props="cpp">扩展的上下文信息。详见 <xref keyref="ExtensionContext"/>。</pd>
+                </plentry>
             <plentry>
                 <pt>error</pt>
-                <pd>错误码。详见插件服务商提供的插件文档。</pd>
-            </plentry>
+                <pd props="android apple bp cs electron flutter rn unity unreal">错误码。详见插件服务商提供的插件文档。</pd>
+            <pd props="cpp">错误码。具体含义请参考扩展提供方的文档。</pd>
+                </plentry>
             <plentry>
                 <pt>message</pt>
-                <pd>错误原因。详见插件服务商提供的插件文档。</pd>
-            </plentry>
-            </parml> </section>
+                <pd props="android apple bp cs electron flutter rn unity unreal">错误原因。详见插件服务商提供的插件文档。</pd>
+            <pd props="cpp">错误原因。具体内容请参考扩展提供方的文档。</pd>
+                </plentry>
+        </parml> </section>
     </refbody>
 </reference>

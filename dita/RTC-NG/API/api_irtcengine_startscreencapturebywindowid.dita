@@ -1,27 +1,25 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startscreencapturebywindowid">
-    <title><ph keyref="startScreenCaptureByWindowId" /></title>
-    <shortdesc id="short"><ph id="shortdesc">开始采集指定窗口的视频流。</ph></shortdesc>
+    <title><ph keyref="startScreenCaptureByWindowId"/></title>
+    <shortdesc id="short"><ph id="shortdesc">通过指定窗口 ID 采集整个或部分窗口的内容。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="startScreenCaptureByWindowId" />
+                <indexterm keyref="startScreenCaptureByWindowId"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="hmos" outputclass="language-arkts"/>
             <codeblock props="mac" outputclass="language-objectivec">- (int)startScreenCaptureByWindowId:(UInt32)windowId
                 regionRect:(CGRect)regionRect
                 captureParams:(AgoraScreenCaptureParameters *_Nonnull)captureParams;</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int startScreenCaptureByWindowId(int64_t windowId,
-                const Rectangle&amp; regionRect,
-                const ScreenCaptureParameters&amp; captureParams) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int startScreenCaptureByWindowId(int64_t windowId, const Rectangle&amp; regionRect, const ScreenCaptureParameters&amp; captureParams) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	int StartScreenCaptureByWindowId(int64 windowId, const FRectangle&amp; regionRect, const  FScreenCaptureParameters&amp; captureParams);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract startScreenCaptureByWindowId(
     windowId: any,
@@ -38,18 +36,44 @@
     {required int windowId,
     required Rectangle regionRect,
     required ScreenCaptureParameters captureParams});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p id="desc">共享一个窗口或该窗口的部分区域。用户需要在该方法中指定想要共享的窗口 ID。</p>
+            <p id="desc">该方法支持 UWP（通用 Windows 平台）应用的窗口共享。声网使用最新的 SDK 对主流 UWP 应用进行了测试，详情如下：
+| 系统版本 | 软件 | 兼容版本 | 是否支持 |
+| -------- | ---- | -------- | -------- |
+| win10 | Chrome | 76.0.3809.100 | 否 |
+| | Office Word | 18.1903.1152.0 | 是 |
+| | Office Excel | | 否 |
+| | Office PPT | | 是 |
+| | WPS Word | 11.1.0.9145 | 是 |
+| | WPS Excel | |  |
+| | WPS PPT | |  |
+| | 系统自带的 Media Player | 所有版本 | 是 |
+| win8 | Chrome | 所有版本 | 是 |
+| | Office Word | 所有版本 | 是 |
+| | Office Excel | |  |
+| | Office PPT | |  |
+| | WPS Word | 11.1.0.9098 | 是 |
+| | WPS Excel | |  |
+| | WPS PPT | |  |
+| | 系统自带的 Media Player | 所有版本 | 是 |
+| win7 | Chrome | 73.0.3683.103 | 否 |
+| | Office Word | 所有版本 | 是 |
+| | Office Excel | |  |
+| | Office PPT | |  |
+| | WPS Word | 11.1.0.9098 | 否 |
+| | WPS Excel | |  |
+| | WPS PPT | 11.1.0.9098 | 是 |
+| | 系统自带的 Media Player | 所有版本 | 否 |</p>
             <note type="attention" id="note">该方法仅适用于 macOS 和 Windows 平台。</note>
-            <p props="cpp unreal bp unity flutter electron cs">该方法支持共享通用 Windows 平台（UWP）应用窗口。声网使用最新版 SDK 对主流的 UWP 应用进行了测试，结果如下：</p>
-            <p props="cpp unreal bp unity flutter electron cs"> <table id="table_lvk_tfs_r4b">
+            <p props="bp cpp cs electron flutter unity unreal">该方法支持共享通用 Windows 平台（UWP）应用窗口。声网使用最新版 SDK 对主流的 UWP 应用进行了测试，结果如下：</p>
+            <p props="bp cpp cs electron flutter unity unreal"> <table id="table_lvk_tfs_r4b">
             <tgroup cols="4">
-                <colspec colnum="1" colname="col1" />
-                <colspec colnum="2" colname="col2" />
-                <colspec colnum="3" colname="col3" />
-                <colspec colnum="4" colname="col4" />
+                <colspec colnum="1" colname="col1"/>
+                <colspec colnum="2" colname="col2"/>
+                <colspec colnum="3" colname="col3"/>
+                <colspec colnum="4" colname="col4"/>
                 <thead>
                     <row>
                         <entry><b>系统版本</b></entry>
@@ -165,18 +189,24 @@
                 </tbody>
             </tgroup>
             </table> </p>
-        </section>
+        <note type="attention" props="cpp">声网 SDK 的窗口共享功能依赖于 WGC（Windows 图形采集）或 GDI（图形设备接口）采集方式。在 Windows 10 2004 之前的系统中，WGC 无法设置为禁用鼠标采集。因此，在系统版本低于 Windows 10 2004 的设备上开始窗口共享时，<codeph>captureMouseCursor(false)</codeph> 可能无法生效。详见 <xref keyref="ScreenCaptureParameters2"/>。
+该方法仅适用于 macOS 和 Windows 平台。</note>
+            </section>
         <section id="scenario" deliveryTarget="details">
             <title>适用场景</title>
             <p>在屏幕共享场景下，你需要调用该方法开始采集屏幕视频流。<ph props="cn">有关屏幕共享的实现方法，详见<xref keyref="screen-share"/>。</ph></p>
         </section>
-        <section id="timing" deliveryTarget="details" >
+        <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p conkeyref="startScreenCaptureByDisplayId/apisequence"/>
+            <p>你可以在加入频道前或加入频道后调用该方法，具体如下：
+                    <ul>
+                        <li>在加入频道前调用该方法，然后调用 <codeph>joinChannel</codeph> 加入频道，并将 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 设置为 <codeph><ph keyref="true"/></codeph> 以开始屏幕共享。</li>
+                        <li>在加入频道后调用该方法，然后调用 <xref keyref="updateChannelMediaOptions"/> 并将 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 设置为 <codeph><ph keyref="true"/></codeph> 以开始屏幕共享。</li>
+                        </ul>
+                    </p>
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-                <p props="cpp unreal bp unity cs electron flutter">SDK 的窗口共享功能依赖于 WGC（Windows Graphics Capture）或 GDI（Graphics Device Interface）采集，WGC 在早于 Windows 10 2004 的系统上无法设置关闭鼠标采集，因此，当你在搭载早于 Windows 10 2004 系统的设备上进行窗口共享时，可能出现 <codeph>captureMouseCursor(false)</codeph> 不生效的现象。详见 <xref keyref="ScreenCaptureParameters" />。</p>
                 <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
@@ -184,12 +214,14 @@
             <parml>
             <plentry>
                 <pt>windowId</pt>
-                <pd>指定待共享的窗口 ID。</pd>
-            </plentry>
-            <plentry props="cpp unreal bp electron unity flutter cs">
-                <pt>regionRect</pt>
-                <pd>（可选）指定待共享区域相对于整个屏幕的位置。如不填，则表示共享整个屏幕。详见 <xref keyref="Rectangle" />。如果设置的共享区域超出了窗口的边界，则只共享窗口内的内容；如果宽或高为 0，则共享整个窗口。</pd>
-            </plentry>
+                <pd props="android apple bp cs electron flutter rn unity unreal">指定待共享的窗口 ID。</pd>
+            <pd props="cpp">要共享的窗口的 ID。</pd>
+                </plentry>
+            <plentry props="bp cpp cs electron flutter unity unreal">
+                <pt props="bp cpp cs electron flutter unity unreal">regionRect</pt>
+                <pd props="android apple bp cs electron flutter rn unity unreal">（可选）指定待共享区域相对于整个屏幕的位置。如不填，则表示共享整个屏幕。详见 <xref keyref="Rectangle"/>。如果设置的共享区域超出了窗口的边界，则只共享窗口内的内容；如果宽或高为 0，则共享整个窗口。</pd>
+            <pd props="cpp">（可选）设置相对于屏幕的区域位置。如果未设置该参数，SDK 会共享整个屏幕。如果指定的区域超出窗口范围，SDK 仅共享窗口内的区域；如果设置的宽或高为 0，SDK 会共享整个窗口。详见 <xref keyref="Rectangle"/>。</pd>
+                </plentry>
             <plentry props="mac">
                 <pt>regionRect</pt>
                 <pd>
@@ -209,16 +241,27 @@
             </plentry>
             <plentry>
                 <pt>captureParams</pt>
-                <pd>屏幕共享的参数配置。默认的分辨率为 1920 x 1080，即 2073600 像素。该像素值为计费标准。详见 <xref keyref="ScreenCaptureParameters" />。</pd>
-            </plentry>
-            </parml> </section>
-        <section id="return_values">
+                <pd props="android apple bp cs electron flutter rn unity unreal">屏幕共享的参数配置。默认的分辨率为 1920 x 1080，即 2073600 像素。该像素值为计费标准。详见 <xref keyref="ScreenCaptureParameters"/>。</pd>
+            <pd props="cpp">屏幕共享配置。默认视频分辨率为 1920 × 1080，即 2,073,600 像素。声网会根据该参数的值计算费用。详见 <xref keyref="ScreenCaptureParameters2"/>。</pd>
+                </plentry>
+        </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp electron unity rn cs">
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="android apple bp cs electron rn unity unreal">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph>
-            <ul conkeyref="startScreenCaptureByDisplayId/err"><li /></ul></li>
-            </ul> </section>
+            <ul conkeyref="startScreenCaptureByDisplayId/err"><li/></ul></li>
+            </ul>
+        <p props="cpp"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。<ul>
+                            <li>-2：参数无效。</li>
+                            <li>-8：屏幕共享状态无效。可能是因为你已共享了其他屏幕或窗口。请尝试调用 <xref keyref="stopScreenCapture"/> 停止当前共享后重新开始共享。</li>
+                            </ul>
+                        </li>
+                        </ul>
+                    </p>
+    </section>
     </refbody>
 </reference>

@@ -1,17 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_videocodectype">
     <title><ph keyref="VIDEO_CODEC_TYPE"/></title>
-    <shortdesc id="short"><ph id="shortdesc">视频编码格式。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">视频编解码器类型。</ph></shortdesc>
     <refbody>
         <section id="parameters">
             <title>枚举值</title>
             <parml>
-            <plentry props="android cpp apple framework">
+            <plentry props="android apple cpp framework">
                 <pt><ph keyref="VIDEO_CODEC_NONE"/></pt>
                 <pd>0：（默认）不指定编解码格式。SDK 会根据当前视频流的分辨率、设备性能自动匹配适合的编解码格式。</pd>
             </plentry>
-            <plentry props="android cpp apple framework">
+            <plentry props="android apple cpp framework">
                 <pt><ph keyref="VIDEO_CODEC_VP8"/></pt>
                 <pd>1：标准 VP8。</pd>
             </plentry>
@@ -23,7 +23,7 @@
                 <pt><ph keyref="VIDEO_CODEC_H265"/></pt>
                 <pd>3：标准 H.265。</pd>
             </plentry>
-            <plentry props="android cpp apple framework">
+            <plentry props="android apple cpp framework">
                 <pt><ph keyref="VIDEO_CODEC_GENERIC"/></pt>
                 <pd>6：Generic。本类型主要用于传输视频裸数据(比如用户已加密的视频帧)，该类型视频帧以回调的形式返回给用户，需要用户自行解码与渲染。</pd>
             </plentry>
@@ -31,13 +31,21 @@
                 <pt><ph keyref="VIDEO_CODEC_AV1"/></pt>
                 <pd>12：AV1。</pd>
             </plentry>
-            <plentry props="android cpp apple framework">
+            <plentry props="android apple cpp framework">
                 <pt><ph keyref="VIDEO_CODEC_GENERIC_JPEG"/></pt>
                 <pd>20：Generic JPEG。本类型所需的算力较小，可用于算力有限的 IoT 设备。</pd>
             </plentry>
             <plentry props="hide">
                 <pt><ph keyref="VIDEO_CODEC_VP9"/></pt>
                 <pd>标准 VP9。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraVideoCodecTypeGenericJpeg"/></pt>
+                <pd props="apple">（20）：通用 JPEG 类型。该类型计算资源消耗最少，适用于 IoT 设备。</pd>
+            </plentry>
+            <plentry props="mac">
+                <pt><ph keyref="AgoraVideoCodecTypeH265"/></pt>
+                <pd props="mac">（3）：标准 H.265 编解码器格式。</pd>
             </plentry>
             </parml> </section>
     </refbody>

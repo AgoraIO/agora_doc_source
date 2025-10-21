@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_useraudiospectruminfo">
-    <title><ph keyref="UserAudioSpectrumInfo" /></title>
+    <title><ph keyref="UserAudioSpectrumInfo"/></title>
     <shortdesc id="short"><ph id="shortdesc">远端用户的音频频谱信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -12,11 +12,9 @@
 
 }</codeblock>
             <codeblock props="hmos" outputclass="language-arkts"/>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioSpectrumInfo : NSObject
-
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraAudioSpectrumInfo : NSObject
 @property(nonatomic, assign) NSInteger uid;
 @property(nonatomic, strong) NSArray&lt;NSNumber *&gt; * _Nullable audioSpectrumData;
-
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct UserAudioSpectrumInfo  {
   agora::rtc::uid_t uid;
@@ -30,9 +28,9 @@
 struct FUserAudioSpectrumInfo {
 
 	GENERATED_BODY()
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|UserAudioSpectrumInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|UserAudioSpectrumInfo")
 	int64 uid;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|UserAudioSpectrumInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|UserAudioSpectrumInfo")
 	FAudioSpectrumData spectrumData;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class UserAudioSpectrumInfo {
@@ -63,22 +61,23 @@ struct FUserAudioSpectrumInfo {
       _$UserAudioSpectrumInfoFromJson(json);
   Map&lt;String, dynamic&gt; toJson() =&gt; _$UserAudioSpectrumInfoToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry>
-                <pt>uid</pt>
-                <pd>远端用户 ID。</pd>
+            <plentry props="ios">
+                <pt props="ios">uid</pt>
+                <pd props="ios">远端用户 ID。</pd>
             </plentry>
-            <plentry>
+            <plentry props="ios">
                 <pt props="android hmos">audioSpectrumInfo</pt>
-                <pt props="ios mac">audioSpectrumData</pt>
-                <pt props="cpp unreal bp unity electron flutter cs">spectrumData</pt>
+                <pt props="apple">audioSpectrumData</pt>
+                <pt props="bp cpp cs electron flutter unity unreal">spectrumData</pt>
                 <pd>
-                    <p>远端用户的音频频谱数据。<ph props="android hmos cpp unreal bp unity electron flutter cs">详见 <xref keyref="AudioSpectrumData" />。</ph></p>
+                    <p>远端用户的音频频谱数据。<ph props="android bp cpp cs electron flutter hmos unity unreal">详见 <xref keyref="AudioSpectrumData"/>。</ph></p>
                 </pd>
+                <pd props="ios">远端用户的音频频谱信息。详见 <codeph>NSArray</codeph>。</pd>
             </plentry>
             </parml> </section>
     </refbody>

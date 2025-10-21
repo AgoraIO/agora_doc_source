@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enablevideoimagesource">
-    <title><ph keyref="enableVideoImageSource" /></title>
-    <shortdesc id="short"><ph id="shortdesc">设置是否开启垫片推流功能。</ph></shortdesc>
+    <title><ph keyref="enableVideoImageSource"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置是否在发布视频流时使用图像替代当前视频画面。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="enableVideoImageSource" />
+                <indexterm keyref="enableVideoImageSource"/>
             </keywords>
         </metadata>
     </prolog>
@@ -14,11 +14,11 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int enableVideoImageSource(boolean enabled, ImageTrackOptions options);</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int) enableVideoImageSource:(BOOL)enable
-                       options:(AgoraImageTrackOptions *_Nullable)options;</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableVideoImageSource:(BOOL)enable
+                       options:(AgoraImageTrackOptions *_Nullable)options NS_SWIFT_NAME(enableVideoImageSource(_:options:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int enableVideoImageSource(bool enable, const ImageTrackOptions&amp; options) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	int EnableVideoImageSource(bool enable, const FImageTrackOptions&amp; options);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract enableVideoImageSource(
     enable: boolean,
@@ -29,17 +29,17 @@
     enable: boolean,
     options: ImageTrackOptions
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableVideoImageSource(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableVideoImageSource(
       {required bool enable, required ImageTrackOptions options});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p>在发布视频流时，你可以调用该方法使用自定义图片来替代当前发布的视频流画面进行推流。</p>
-            <p>开启该功能后，你可以通过 <xref keyref="ImageTrackOptions" /> 参数自定义垫片图片；在你关闭垫片功能之后，远端用户看到的依旧是当前你发布的视频流画面。</p>
+            <p>你可以在发布视频流时调用该方法，用自定义图像替代当前的视频画面。启用该功能后，可通过 <xref keyref="ImageTrackOptions"/> 参数选择用于替代的视频图像。关闭该功能后，远端用户将看到你发布的视频画面。</p>
+            <p>开启该功能后，你可以通过 <xref keyref="ImageTrackOptions"/> 参数自定义垫片图片；在你关闭垫片功能之后，远端用户看到的依旧是当前你发布的视频流画面。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p>建议在加入频道后调用该方法。</p>
+            <p>请在加入频道后调用该方法。</p>
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -49,25 +49,50 @@
             <title>参数</title>
             <parml>
             <plentry>
-                <pt props="apple cpp unreal cs unity electron rn flutter bp">enable</pt>
+                <pt>enable</pt>
                 <pt props="android">enabled</pt>
-                <pd>是否开启垫片推流：
+                <pd props="bp cs electron flutter mac rn unity unreal">是否开启垫片推流：
                 <ul>
-                    <li><codeph><ph keyref="true" /></codeph>：开启垫片推流。</li>
-                    <li><codeph><ph keyref="false" /></codeph>：（默认）关闭垫片推流。</li>
+                    <li><codeph><ph keyref="true"/></codeph>：开启垫片推流。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：（默认）关闭垫片推流。</li>
                 </ul></pd>
-            </plentry>
+            <pd props="android">是否用自定义图像替代当前的视频画面：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：用自定义图像替代当前的视频画面。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）不替代当前的视频画面。</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">是否用自定义图片替代当前的视频画面：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：用自定义图片替代当前的视频画面。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）不替代当前的视频画面。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp">是否使用自定义图像替代当前的视频画面：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：使用自定义图像替代当前的视频画面。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）不替代当前的视频画面。</li>
+                        </ul>
+                    </pd>
+                </plentry>
                 <plentry>
                     <pt>options</pt>
-                    <pd>垫片图片设置，详见 <xref keyref="ImageTrackOptions" />。</pd>
+                    <pd props="bp cs electron flutter mac rn unity unreal">垫片图片设置，详见 <xref keyref="ImageTrackOptions"/>。</pd>
+                <pd props="android cpp">图像配置，详见 <xref keyref="ImageTrackOptions"/>。</pd>
+                <pd props="ios">图片配置，详见 <xref keyref="ImageTrackOptions"/>。</pd>
                 </plentry>
-            </parml> </section>
-        <section id="return_values">
+        </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul>
-            <li props="native unreal bp electron unity rn cs">0：方法调用成功。</li>
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul>
+            <li props="bp cs electron rn unity unreal">0：方法调用成功。</li>
             <li>&lt; 0：方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li></ul>
-        </section>
+        <p props="native"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+    </section>
     </refbody>
 </reference>

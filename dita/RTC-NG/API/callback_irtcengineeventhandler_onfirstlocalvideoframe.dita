@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onfirstlocalvideoframe">
-     <title> <ph keyref="onFirstLocalVideoFrame" /> </title>
-     <shortdesc id="short"> <ph id="shortdesc">已显示本地视频首帧回调。</ph> </shortdesc>
+     <title> <ph keyref="onFirstLocalVideoFrame"/> </title>
+     <shortdesc id="short"> <ph id="shortdesc">本地视频首帧在本地视图中显示时触发的回调。</ph> </shortdesc>
      <prolog>
           <metadata>
                <keywords>
-                    <indexterm keyref="onFirstLocalVideoFrame" />
+                    <indexterm keyref="onFirstLocalVideoFrame"/>
                </keywords>
           </metadata>
      </prolog>
@@ -17,19 +17,9 @@
       Constants.VideoSourceType source, int width, int height, int elapsed) {}
 </codeblock>
                <codeblock props="hmos" outputclass="language-arkts">onFirstLocalVideoFrame?:(source:Constants.VideoSourceType,width:number,height:number,elapsed:number) =&gt;void;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
-                     firstLocalVideoFrameWithSize:(CGSize)size
-                     elapsed:(NSInteger)elapsed
-                     sourceType:(AgoraVideoSourceType)sourceType;
-</codeblock>
-               <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onFirstLocalVideoFrame(VIDEO_SOURCE_TYPE source, int width, int height, int elapsed) {
-    (void)source;
-    (void)width;
-    (void)height;
-    (void)elapsed;
-  }
-               </codeblock>
-               <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine firstLocalVideoFrameWithSize:(CGSize)size elapsed:(NSInteger)elapsed sourceType:(AgoraVideoSourceType)sourceType NS_SWIFT_NAME(rtcEngine(_:firstLocalVideoFrameWith:elapsed:sourceType:));</codeblock>
+               <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onFirstLocalVideoFrame(VIDEO_SOURCE_TYPE source, int width, int height, int elapsed)</codeblock>
+               <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = "Agora|Event")
 	void OnFirstLocalVideoFrame(EVIDEO_SOURCE_TYPE source, int width, int height, int elapsed);</codeblock>
                <codeblock props="electron" outputclass="language-typescript">onFirstLocalVideoFrame?(
     source: VideoSourceType,
@@ -47,38 +37,56 @@
                <codeblock props="flutter" outputclass="language-dart">final void Function(
           VideoSourceType source, int width, int height, int elapsed)?
       onFirstLocalVideoFrame;</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
           </section>
           <section id="detailed_desc">
-               <p id="desc">本地视频首帧显示在本地视图上时，SDK 会触发此回调。</p>
-          </section>
-          <section id="parameters">
-               <title><ph keyref="callback-section-title" /></title>
+               <p id="desc"></p>
+            </section>
+          <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>当本地视频首帧在本地视图中显示时触发。</p>
+        </section>
+        <section id="parameters">
+               <title><ph keyref="callback-section-title"/></title>
                <parml>
-               <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                    <pt />
-                    <pd />
+               <plentry conkeyref="onJoinChannelSuccess/engine" props="apple">
+                    <pt/>
+                    <pd/>
                </plentry>
                 <plentry conkeyref="onLocalVideoStateChanged/source">
-                    <pt />
-                    <pd />
+                    <pt/>
+                    <pd/>
                 </plentry>
-                    <plentry props="ios mac">
-                    <pt>size</pt>
-                    <pd>本地渲染视频的尺寸。</pd>
-               </plentry>
-               <plentry props="android hmos cpp unreal bp unity cs electron rn flutter">
-                    <pt>width</pt>
-                    <pd>本地渲染视频的宽 (px) 。</pd>
-               </plentry>
-               <plentry props="android hmos cpp unreal bp unity cs electron rn flutter">
-                    <pt>height</pt>
-                    <pd>本地渲染视频的高 (px)。</pd>
-               </plentry>
+                    <plentry props="apple">
+                    <pt props="apple">size</pt>
+                    <pd props="android bp cpp cs electron flutter mac rn unity unreal">本地渲染视频的尺寸。</pd>
+               <pd props="ios">首帧本地视频画面的尺寸（宽和高）。</pd>
+                </plentry>
+               <plentry props="android bp cpp cs electron flutter hmos rn unity unreal">
+                    <pt props="android bp cpp cs electron flutter hmos rn unity unreal">width</pt>
+                    <pd props="android apple bp cs electron flutter rn unity unreal">本地渲染视频的宽 (px) 。</pd>
+               <pd props="cpp">本地视频首帧的宽度（像素）。</pd>
+                </plentry>
+               <plentry props="android bp cpp cs electron flutter hmos rn unity unreal">
+                    <pt props="android bp cpp cs electron flutter hmos rn unity unreal">height</pt>
+                    <pd props="android apple bp cs electron flutter rn unity unreal">本地渲染视频的高 (px)。</pd>
+               <pd props="cpp">本地视频首帧的高度（像素）。</pd>
+                </plentry>
                <plentry>
                     <pt>elapsed</pt>
-                    <pd>从调用 <ph props="native unreal unity cs"><xref keyref="joinChannel1" /> 或 </ph><xref keyref="joinChannel2" /> 加入频道时到发生此事件过去的时间（毫秒）。如果在加入频道前调用了 <ph props="android cpp unreal apple electron flutter rn unity cs"><xref keyref="startPreview" />/</ph><xref keyref="startPreview2" />，则该参数表示从调用 <ph props="android cpp unreal apple electron flutter rn unity cs"><apiname keyref="startPreview" /> 或 </ph><apiname keyref="startPreview2"/> 开启本地视频预览到发生此事件过去的时间。</pd>
-               </plentry>
-               </parml> </section>
+                    <pd props="android bp cs electron flutter mac rn unity unreal">从调用 <ph props="cs native unity unreal"><xref keyref="joinChannel1"/> 或 </ph><xref keyref="joinChannel2"/> 加入频道时到发生此事件过去的时间（毫秒）。如果在加入频道前调用了 <ph props="android apple cpp cs electron flutter rn unity unreal"><xref keyref="startPreview"/>/</ph><xref keyref="startPreview2"/>，则该参数表示从调用 <ph props="android apple cpp cs electron flutter rn unity unreal"><apiname keyref="startPreview"/> 或 </ph><apiname keyref="startPreview2"/> 开启本地视频预览到发生此事件过去的时间。</pd>
+               <pd props="ios">从调用 <codeph>joinChannelByToken</codeph> 加入频道到 SDK 触发该回调的时间间隔（毫秒）。如果在加入频道前调用了 <xref keyref="startPreview"/>，该参数表示从调用 <xref keyref="startPreview"/> 到触发该事件的时间间隔。</pd>
+                <pd props="cpp">从本地用户调用 <codeph>joinChannel</codeph> 加入频道到 SDK 触发该回调的时间（毫秒）。如果在加入频道前调用了 <xref keyref="startPreview"/>，该参数表示从调用 <xref keyref="startPreview"/> 到该事件发生的时间。</pd>
+                </plentry>
+               <plentry props="cpp ios">
+                <pt props="cpp ios">source</pt>
+                <pd props="ios">视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                <pd props="cpp">视频源的类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+            </plentry>
+            <plentry props="ios">
+                <pt props="ios">engine</pt>
+                <pd props="ios">你使用的 <xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+            </plentry>
+        </parml> </section>
      </refbody>
 </reference>

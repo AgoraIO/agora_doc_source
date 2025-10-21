@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onrenewtokenresult">
     <title><ph keyref="onRenewTokenResult"/></title>
-    <shortdesc id="short"><ph id="shortdesc"><xref keyref="renewToken"/> 调用结果回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc"><xref keyref="renewToken_IMusicContentCenter"/> 调用结果回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -29,9 +29,9 @@
             <dlentry props="native">
                 <dt>自从：</dt>
                 <dd props="native">自 v4.6.0 版本新增。</dd>
-                </dlentry>
+            </dlentry>
             </dl>
-            <p>该回调在用户调用 <xref keyref="renewToken"/> 方法更新 Token 后触发，用于通知应用调用结果。</p>
+            <p>该回调在用户调用 <xref keyref="renewToken_IMusicContentCenter"/> 方法更新 Token 后触发，用于通知调用结果。<xref keyref="renewToken"/> 方法更新 Token 后触发，用于通知应用调用结果。</p>
             </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
@@ -45,13 +45,21 @@
                 <pd props="android">用于鉴权的 Token。</pd>
                 <pd props="apple cpp">Token。</pd>
             </plentry>
-            <plentry props="native">
+            <plentry props="android cpp ios native">
                 <pt props="native">code</pt>
-                <pd props="android">错误码，详见 <xref keyref="RENEW_TOKEN_ERROR_CODE"/>。</pd>
-                <pd props="apple">错误码，详见 <xref keyref="RENEW_TOKEN_ERROR_CODE"/>。</pd>
-                <pd props="cpp">错误码，详见 <xref keyref="RENEW_TOKEN_ERROR_CODE"/>。</pd>
+                <pd props="android apple cpp">错误码，详见 <xref keyref="RENEW_TOKEN_ERROR_CODE"/>。</pd>
+                </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">token</pt>
+                <pd props="android">用于鉴权的 Token。</pd>
+                <pd props="ios">更新后的 Token。</pd>
+                <pd props="cpp">Token。</pd>
             </plentry>
-            </parml> </section>
+            <plentry props="ios">
+                <pt props="ios">engine</pt>
+                <pd props="ios"><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+            </plentry>
+        </parml> </section>
         <section id="return_values" props="bp electron flutter rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
         <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>

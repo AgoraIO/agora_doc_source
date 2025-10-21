@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_recorderreasoncode">
     <title><ph keyref="RecorderReasonCode"/></title>
-    <shortdesc id="short"><ph id="shortdesc">录制状态出错的原因。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">状态变更原因码。</ph></shortdesc>
     <refbody>
         <section id="parameters">
             <title>枚举值</title>
@@ -26,6 +26,22 @@
             <plentry>
                 <pt><ph keyref="RECORDER_REASON_CONFIG_CHANGED"/></pt>
                 <pd>4: 录制配置改变。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraMediaRecorderReasonCodeNoStream"/></pt>
+                <pd props="apple">（2）：未检测到音视频流，或录制过程中音视频流中断超过 5 秒。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraMediaRecorderReasonCodeWriteFailed"/></pt>
+                <pd props="apple">（1）：无法将录制数据写入文件。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraMediaRecorderReasonCodeOverMaxDuration"/></pt>
+                <pd props="apple">（3）：录制时长超过上限。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraMediaRecorderReasonCodeConfigChange"/></pt>
+                <pd props="apple">（4）：录制配置发生变更。</pd>
             </plentry>
             </parml> </section>
     </refbody>

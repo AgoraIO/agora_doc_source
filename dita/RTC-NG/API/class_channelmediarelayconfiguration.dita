@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_channelmediarelayconfiguration">
     <title> <ph keyref="ChannelMediaRelayConfiguration"/> </title>
@@ -40,11 +40,9 @@
   public setSrcChannelInfo(srcInfo: ChannelMediaInfo) {
   this.srcInfo = srcInfo;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility(&quot;default&quot;))) @interface AgoraChannelMediaRelayConfiguration: NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraChannelMediaRelayConfiguration: NSObject
 @property (strong, nonatomic, readonly) NSDictionary&lt;NSString *, AgoraChannelMediaRelayInfo *&gt; *_Nullable destinationInfos;
 @property (strong, nonatomic) AgoraChannelMediaRelayInfo *_Nonnull sourceInfo;
-- (BOOL)setDestinationInfo:(AgoraChannelMediaRelayInfo *_Nonnull)destinationInfo forChannelName:(NSString *_Nonnull)channelName NS_SWIFT_NAME(setDestinationInfo(_:forChannelName:));
-- (BOOL)removeDestinationInfoForChannelName:(NSString *_Nonnull)channelName NS_SWIFT_NAME(removeDestinationInfo(forChannelName:));
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct ChannelMediaRelayConfiguration {
   
@@ -60,12 +58,12 @@ struct FChannelMediaRelayConfiguration
 {
 	GENERATED_BODY()
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaRelayConfiguration&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|ChannelMediaRelayConfiguration")
 	FChannelMediaInfo srcInfo = FChannelMediaInfo();
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaRelayConfiguration&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|ChannelMediaRelayConfiguration")
 	TArray&lt;FChannelMediaInfo&gt; destInfos;
 	
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaRelayConfiguration&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|ChannelMediaRelayConfiguration")
 	int destCount = 0;
 	FChannelMediaRelayConfiguration(){}
 	FChannelMediaRelayConfiguration(const agora::rtc::ChannelMediaRelayConfiguration &amp; AgoraData){
@@ -137,9 +135,9 @@ public:
         _$ChannelMediaRelayConfigurationFromJson(json);
     Map&lt;String, dynamic&gt; toJson() =&gt; _$ChannelMediaRelayConfigurationToJson(this);
   }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
-        <section id="sub-method" props="android hmos apple">
+        <section id="sub-method" props="android apple hmos">
           <title>方法</title>
           <parml>
             <plentry props="android hmos">
@@ -166,13 +164,13 @@ public:
             </plentry>
         </parml>
         </section>
-        <section id="parameters" props="ios mac cpp framework">
+        <section id="parameters" props="apple cpp framework">
             <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/> </title>
             <parml>
-            <plentry>
-                <pt props="hmos cpp framework">srcInfo</pt>
-                <pt props="ios mac">sourceInfo</pt>
-                <pd props="cpp ios mac framework">
+            <plentry props="ios">
+                <pt props="cpp framework hmos">srcInfo</pt>
+                <pt props="apple">sourceInfo</pt>
+                <pd props="apple cpp framework">
                     <p>源频道信息 <xref keyref="ChannelMediaInfo"/>，包含如下成员：                                      
                     <ul>
                     <li><parmname>channelName</parmname>：源频道名。默认值为 <codeph><ph keyref="NULL"/></codeph>，表示 SDK 填充当前的频道名。</li>
@@ -184,11 +182,22 @@ public:
                       <li><parmname>uid</parmname>：标识源频道中的转发媒体流的 UID。默认值为 0，请勿修改。</li>
                     </ul> </p>
                 </pd>
+                <pd props="ios">源频道的 <xref keyref="ChannelMediaInfo"/> 信息。包含以下成员：
+                    <ul>
+                        <li><codeph>channelName</codeph>：源频道的名称。默认值为 <codeph><ph keyref="NULL"/></codeph>，表示 SDK 使用当前频道名称。</li>
+                        <li><codeph>token</codeph>：加入源频道的 Token，由你在 <xref keyref="SrcInfo"/> 中设置的 <codeph>channelName</codeph> 和 <ph keyref="uid"/> 生成。<ul>
+                            <li>如果你未启用 App 证书，请将该参数设置为默认值 <codeph><ph keyref="NULL"/></codeph>，表示 SDK 使用 App ID。</li>
+                            <li>如果你已启用 App 证书，必须使用由 <codeph>channelName</codeph> 和 <ph keyref="uid"/> 生成的 Token，且 </li>
+                            </ul>
+                        </li>
+                        <li><ph keyref="uid"/>：用于标识源频道中转发流的唯一用户 ID。声网建议保持默认值 0 不变。 详见 <xref keyref="ChannelMediaInfo"/>。</li>
+                        </ul>
+                    </pd>
             </plentry>
-            <plentry>
-                <pt props="hmos cpp framework">destInfos</pt>
-                <pt props="ios mac">destinationInfos</pt>
-                <pd props="cpp ios mac framework">
+            <plentry props="ios">
+                <pt props="cpp framework hmos">destInfos</pt>
+                <pt props="apple">destinationInfos</pt>
+                <pd props="apple cpp framework">
                     <p>目标频道信息 <apiname keyref="ChannelMediaInfo"/>，包含如下成员：                                        
                     <ul>
                     <li> <parmname>channelName</parmname> ：目标频道的频道名。</li>
@@ -202,6 +211,17 @@ public:
                         <parmname>uid</parmname>：标识目标频道中的转发媒体流的 UID。取值范围为 0 到 (2 <sup>32</sup>-1），请确保与目标频道中的所有 UID 不同。默认值为 0，表示 SDK 随机分配一个 UID。</li>
                     </ul> </p>
                 </pd>
+                <pd props="ios">目标频道的 <xref keyref="ChannelMediaInfo"/> 信息。包含以下成员：
+                    <ul>
+                        <li><codeph>channelName</codeph>：目标频道的名称。</li>
+                        <li><codeph>token</codeph>：加入目标频道的 Token，由你在 <codeph>destInfos</codeph> 中设置的 <codeph>channelName</codeph> 和 <ph keyref="uid"/> 生成。<ul>
+                            <li>如果你未启用 App 证书，请将该参数设置为默认值 <codeph><ph keyref="NULL"/></codeph>，表示 SDK 使用 App ID。</li>
+                            <li>如果你已启用 App 证书，必须使用由 <codeph>channelName</codeph> 和 <ph keyref="uid"/> 生成的 Token。</li>
+                            </ul>
+                        </li>
+                        <li><ph keyref="uid"/>：用于标识目标频道中转发流的唯一用户 ID，取值范围为 0 到 (2&lt;sup&gt;32&lt;/sup&gt;-1)。为避免用户 ID 冲突，该 ID 必须与目标频道中其他用户 ID 不同。默认值为 0，表示 SDK 自动生成随机 UID。 详见 <xref keyref="ChannelMediaInfo"/>。 如果任一目标频道的 Token 过期，整个跨频道媒体流转发将停止。因此，声网建议你为所有目标频道设置相同的 Token 过期时间。</li>
+                        </ul>
+                    </pd>
             </plentry>
             <plentry props="cpp framework">
                 <pt>destCount</pt>

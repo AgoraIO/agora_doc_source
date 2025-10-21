@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setlowlightenhanceoptions">
-    <title> <ph keyref="setLowlightEnhanceOptions" /> </title>
+    <title> <ph keyref="setLowlightEnhanceOptions"/> </title>
     <shortdesc id="short"> <ph id="shortdesc">设置暗光增强功能。</ph> </shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setLowlightEnhanceOptions" />
+                <indexterm keyref="setLowlightEnhanceOptions"/>
             </keywords>
         </metadata>
     </prolog>
@@ -15,9 +15,8 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setLowlightEnhanceOptions(boolean enabled, LowLightEnhanceOptions options);
 </codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLowlightEnhanceOptions:(BOOL)enable options:(AgoraLowlightEnhanceOptions* _Nullable)options NS_SWIFT_NAME(setLowlightEnhanceOptions(_:options:));
-</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLowlightEnhanceOptions:(BOOL)enable options:(AgoraLowlightEnhanceOptions* _Nullable)options  NS_SWIFT_NAME(setLowlightEnhanceOptions(_:options:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setLowlightEnhanceOptions(bool enabled, const LowlightEnhanceOptions&amp; options, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	int SetLowlightEnhanceOptions(bool enabled, const FUABT_LowlightEnhanceOptions&amp; options, EUABT_MEDIA_SOURCE_TYPE type);</codeblock>
@@ -32,22 +31,52 @@
     options: LowlightEnhanceOptions,
     type?: MediaSourceType
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setLowlightEnhanceOptions(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLowlightEnhanceOptions(
       {required bool enabled,
       required LowlightEnhanceOptions options,
       MediaSourceType type = MediaSourceType.primaryCameraSource});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p>你可以调用该方法开启暗光增强功能并设置暗光增强的效果。</p>
-        </section>
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从：</dt>
+                <dd props="native">自 v4.0.0 版本新增。</dd>
+            </dlentry>
+            </dl>
+            <p>你可以调用该方法启用暗光增强功能，并设置暗光增强效果的选项。
+
+适用场景：暗光增强功能可在逆光、多云或黑暗等低光或光线不均的场景下，自适应调整视频亮度，恢复或突出图像细节，提升整体视觉效果。
+
+调用时机：请在调用 <xref keyref="enableVideo"/> 后调用该方法。</p>
+            <note type="attention" props="cpp"><ul>
+                        <li>该方法依赖图像增强动态库 <ph keyref="clearvision"/>。如果该动态库被删除，将无法正常启用该功能。</li>
+                        <li>暗光增强功能对设备性能有一定要求。如果启用该功能后设备出现过热，声网建议将暗光增强选项设置为较低的性能消耗等级，或关闭该功能。</li>
+                        <li>如果你希望在使用暗光增强功能时优先保证画质（<ph keyref="LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY"/>），需要先调用 <xref keyref="setVideoDenoiserOptions"/> 实现视频降噪，具体对应关系如下：<ul>
+                            <li>当暗光增强设置为自动模式（<ph keyref="LOW_LIGHT_ENHANCE_AUTO"/>）时，视频降噪需设置为优先保证画质（<ph keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY"/>）和自动模式（<ph keyref="VIDEO_DENOISER_AUTO"/>）。</li>
+                            <li>当暗光增强设置为手动模式（<ph keyref="LOW_LIGHT_ENHANCE_MANUAL"/>）时，视频降噪需设置为优先保证画质（<ph keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY"/>）和手动模式（<ph keyref="VIDEO_DENOISER_MANUAL"/>）。</li>
+                            </ul>
+                        </li>
+                        </ul>
+                    </note>
+            <note type="attention" props="apple"><ul>
+                        <li>本方法依赖图像增强动态库 <ph keyref="clearvision"/>（iOS）或 </li>
+                        <li>暗光增强对设备性能有一定要求。如果启用暗光增强后设备出现过热，声网建议你将暗光增强选项设置为较低的性能消耗等级，或关闭暗光增强功能。</li>
+                        <li>如果你希望在使用暗光增强功能时优先保证画质（<ph keyref="AgoraLowlightEnhanceLevelQuality"/>），需要先调用 <xref keyref="setVideoDenoiserOptions"/> 实现视频降噪，具体对应关系如下：<ul>
+                            <li>当暗光增强设置为自动模式（<ph keyref="AgoraLowlightEnhanceModeAuto"/>）时，视频降噪需设置为优先保证画质（<ph keyref="AgoraVideoDenoiserLevelHighQuality"/>）和自动模式（<ph keyref="AgoraVideoDenoiserModeAuto"/>）。</li>
+                            <li>当暗光增强设置为手动模式（<ph keyref="AgoraLowlightEnhanceModeManual"/>）时，视频降噪需设置为优先保证画质（<ph keyref="AgoraVideoDenoiserLevelHighQuality"/>）和手动模式（<ph keyref="VIDEO_DENOISER_MANUAL"/>）。</li>
+                            </ul>
+                        </li>
+                        </ul>
+                    </note>
+            </section>
         <section id="scenario" deliveryTarget="details">
             <title>适用场景</title>
             <p>暗光增强功能可以在光线亮度偏低（如背光、阴天、暗场景）和亮度不均匀的环境下自适应调整视频画面的亮度值，恢复或凸显图像的细节信息，最终提升视频图像的整体视觉效果。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p>请在 <xref keyref="enableVideo"/> 后调用该方法。</p>
+            <p>请在调用 <xref keyref="enableVideo"/> 后调用该方法。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -56,8 +85,8 @@
                 <li>暗光增强对设备性能有一定要求。开启暗光增强后，如果设备出现严重发烫等问题，建议你将暗光增强等级修改为消耗性能较少的等级或关闭暗光增强功能。</li>
                 <li>如果要实现优先画质 (<ph keyref="LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY"/>) 的暗光增强，需要先调用 <xref keyref="setVideoDenoiserOptions"/> 实现视频降噪，具体对应关系如下：
                     <ul>
-                        <li>暗光增强为自动模式 (<ph keyref="LOW_LIGHT_ENHANCE_AUTO"/>) 时，视频降噪需设置为优先画质 (<ph keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY" />)、自动模式 (<ph keyref="VIDEO_DENOISER_AUTO" />)。</li>
-                        <li>暗光增强为手动模式 (<ph keyref="LOW_LIGHT_ENHANCE_MANUAL"/>) 时，视频降噪需设置为优先画质 (<ph keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY" />)、手动模式 (<ph keyref="VIDEO_DENOISER_MANUAL" />)。</li>
+                        <li>暗光增强为自动模式 (<ph keyref="LOW_LIGHT_ENHANCE_AUTO"/>) 时，视频降噪需设置为优先画质 (<ph keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY"/>)、自动模式 (<ph keyref="VIDEO_DENOISER_AUTO"/>)。</li>
+                        <li>暗光增强为手动模式 (<ph keyref="LOW_LIGHT_ENHANCE_MANUAL"/>) 时，视频降噪需设置为优先画质 (<ph keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY"/>)、手动模式 (<ph keyref="VIDEO_DENOISER_MANUAL"/>)。</li>
                     </ul>
                 </li>
             </ul>
@@ -66,34 +95,60 @@
             <title>参数</title>
             <parml>
             <plentry id="enable">
-                <pt props="android cpp unreal bp electron unity rn flutter cs">enabled</pt>
-                <pt props="ios mac">enable</pt>
-                <pd>是否开启暗光增强功能：
+                <pt>enabled</pt>
+                <pt props="apple">enable</pt>
+                <pd props="android bp cs electron flutter mac rn unity unreal">是否开启暗光增强功能：
                     <ul>
-                    <li><codeph><ph keyref="true" /></codeph>: 开启暗光增强功能。</li>
-                    <li><codeph><ph keyref="false" /></codeph>:（默认）关闭暗光增强功能。</li>
+                    <li><codeph><ph keyref="true"/></codeph>: 开启暗光增强功能。</li>
+                    <li><codeph><ph keyref="false"/></codeph>:（默认）关闭暗光增强功能。</li>
                     </ul></pd>
-            </plentry>
+            <pd props="ios">是否开启暗光增强功能：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：开启暗光增强功能。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）关闭暗光增强功能。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp">是否启用暗光增强功能：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：启用暗光增强。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）关闭暗光增强。</li>
+                        </ul>
+                    </pd>
+                </plentry>
             <plentry id="options">
                 <pt>options</pt>
-                <pd>暗光增强选项，用于设置暗光增强的效果。详见 <xref keyref="LowlightEnhanceOptions" />。</pd>
-            </plentry>
-                <plentry props="cpp unreal bp rn unity electron flutter cs" id="type">
-                    <pt>type</pt>
-                    <pd>效果应用的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE" />。
+                <pd props="android bp cs electron flutter mac rn unity unreal">暗光增强选项，用于设置暗光增强的效果。详见 <xref keyref="LowlightEnhanceOptions"/>。</pd>
+            <pd props="ios">暗光增强功能的选项。详见 <xref keyref="LowlightEnhanceOptions"/>。</pd>
+                <pd props="cpp">暗光增强选项，详见 <xref keyref="LowlightEnhanceOptions"/>。</pd>
+                </plentry>
+                <plentry props="bp cpp cs electron flutter rn unity unreal" id="type">
+                    <pt props="bp cpp cs electron flutter rn unity unreal">type</pt>
+                    <pd props="android apple bp cs electron flutter rn unity unreal">效果应用的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。
                     <note type="attention">在该方法中，该参数仅支持以下两种设置：
                     <ul>
                     <li>使用摄像头采集本地视频时，请保持默认值 <apiname keyref="PRIMARY_CAMERA_SOURCE"/>。</li>
                     <li>如果要使用自定义采集的视频，将该参数设置为 <apiname keyref="CUSTOM_VIDEO_SOURCE"/>。</li>
                     </ul></note></pd>
+                <pd props="cpp">要应用滤镜效果的媒体源类型，详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。该参数仅支持以下两种设置：
+                    <ul>
+                        <li>如果使用摄像头采集本地视频，使用默认值 <ph keyref="PRIMARY_CAMERA_SOURCE"/>。</li>
+                        <li>如果使用自定义视频源，请将该参数设置为 <ph keyref="CUSTOM_VIDEO_SOURCE"/>。</li>
+                        </ul>
+                    </pd>
                 </plentry>
-            </parml> </section>
-        <section id="return_values">
+        </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp electron unity rn cs">
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="android bp cs electron rn unity unreal">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
-            </ul> </section>
+            </ul>
+        <p props="apple cpp"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+    </section>
     </refbody>
 </reference>
