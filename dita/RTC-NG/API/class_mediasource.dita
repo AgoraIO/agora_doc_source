@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_mediasource">
     <title><ph keyref="MediaSource"/></title>
-    <shortdesc id="short"><ph id="shortdesc">需播放的媒体文件的相关信息及播放设置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">包含待播放媒体文件及播放场景配置的相关信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -20,9 +20,9 @@
             <codeblock props="hmos" outputclass="language-arkts">export class MediaPlayerSource
 {
   
-  public url:string = &quot;&quot;
+  public url:string = ""
   
-  public uri:string = &quot;&quot;
+  public uri:string = ""
   
   public startPos:number = 0
   
@@ -36,18 +36,17 @@
   
   public isLiveSource?:Boolean
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaSource : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraMediaSource : NSObject
 @property(copy, nonatomic) NSString *_Nullable url;
 @property(copy, nonatomic) NSString *_Nullable uri;
 @property(assign, nonatomic) NSUInteger startPos;
+@property(assign, nonatomic) BOOL autoPlay;
 @property(assign, nonatomic) BOOL enableCache;
 @property(assign, nonatomic) BOOL enableMultiAudioTrack;
-@property(assign, nonatomic) BOOL autoPlay;
 @property(assign, nonatomic) BOOL isAgoraSource;
 @property(assign, nonatomic) BOOL isLiveSource;
 @property(copy, nonatomic) AgoraRtcMediaPlayerCustomSourceOnReadCallback _Nonnull playerOnReadCallback;
 @property(copy, nonatomic) AgoraRtcMediaPlayerCustomSourceOnSeekCallback _Nonnull playerOnSeekCallback;
-@end
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct MediaSource {
   const char* url;
@@ -69,21 +68,21 @@ struct FAgoraMediaSource
 {
 	GENERATED_BODY()
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
-	FString url = &quot;&quot;;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
-	FString uri = &quot;&quot;;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|MediaSource")
+	FString url = "";
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|MediaSource")
+	FString uri = "";
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|MediaSource")
 	int64 startPos = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|MediaSource")
 	bool autoPlay = false;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|MediaSource")
 	bool enableCache = false;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|MediaSource")
 	bool enableMultiAudioTrack = false;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|MediaSource")
 	EAgoraOptional isAgoraSource = EAgoraOptional::AGORA_NULL_VALUE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|MediaSource")
 	EAgoraOptional isLiveSource = EAgoraOptional::AGORA_NULL_VALUE;
 		
 	FAgoraMediaSource(){}
@@ -199,118 +198,153 @@ public:
   @JsonKey(name: 'isLiveSource')
   final bool? isLiveSource;
 
-  factory MediaSource.fromJson(Map&lt;String, dynamic> json) =>
+  factory MediaSource.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$MediaSourceFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$MediaSourceToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$MediaSourceToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p></section>
+            <codeblock props="reserve" outputclass="language-cpp"/></p></section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry>
-                <pt>url</pt>
+            <plentry props="ios">
+                <pt props="ios">url</pt>
                 <pd>
                     <p>需要播放的媒体资源的 URL。</p>
-                    <note props="android cpp apple unreal bp unity cs">
+                    <note props="android apple bp cpp cs unity unreal">
                         <p props="apple" id="url">如果你打开的为普通媒体资源，请向 <parmname>url</parmname> 传值；如果你打开媒体资源为自定义媒体资源，请向 <parmname>playerOnReadCallback</parmname> 及 <parmname>playerOnSeekCallback</parmname> 传值，同时传值会导致方法调用失败。</p>
-                        <p props="android cpp unreal bp unity cs">如果你打开的为普通媒体资源，请向 <parmname>url</parmname> 传值；如果你打开媒体资源为自定义媒体资源，请向 <parmname>provider</parmname> 传值，同时传值会导致方法调用失败。</p>
+                        <p props="android bp cpp cs unity unreal">如果你打开的为普通媒体资源，请向 <parmname>url</parmname> 传值；如果你打开媒体资源为自定义媒体资源，请向 <parmname>provider</parmname> 传值，同时传值会导致方法调用失败。</p>
                     </note></pd>
+                <pd props="ios">待播放媒体文件的 URL。</pd>
             </plentry>
-            <plentry>
-                <pt>uri</pt>
+            <plentry props="ios">
+                <pt props="ios">uri</pt>
                 <pd>媒体文件的 URI（Uniform Resource Identifier），可用于标识媒体文件。</pd>
+                <pd props="ios">媒体文件的 URI（统一资源标识符）。</pd>
             </plentry>
-            <plentry>
-                <pt>startPos</pt>
+            <plentry props="ios">
+                <pt props="ios">startPos</pt>
                 <pd>设置起始播放位置 (毫秒)，默认值为 0。</pd>
+                <pd props="ios">播放的起始位置（单位为毫秒）。默认值为 0。</pd>
             </plentry>
-            <plentry>
-                <pt>autoPlay</pt>
+            <plentry props="ios">
+                <pt props="ios">autoPlay</pt>
                 <pd>打开媒体文件后，是否开启自动播放：
 
                     <ul>
-                    <li><codeph><ph keyref="true" /></codeph>：（默认）开启自动播放。</li>
-                    <li><codeph><ph keyref="false" /></codeph>：关闭自动播放。</li>
+                    <li><codeph><ph keyref="true"/></codeph>：（默认）开启自动播放。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：关闭自动播放。</li>
                     </ul>
                     <note>
-                    <p>如果你设置关闭自动播放，打开媒体文件后，请调用 <xref keyref="play" /> 方法来播放媒体文件。</p>
+                    <p>如果你设置关闭自动播放，打开媒体文件后，请调用 <xref keyref="play"/> 方法来播放媒体文件。</p>
                     </note></pd>
+                <pd props="ios">是否在打开媒体文件后自动播放：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：（默认）是。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：否。</li>
+                        </ul>
+                    </pd>
             </plentry>
-            <plentry>
-                <pt>enableCache</pt>
+            <plentry props="ios">
+                <pt props="ios">enableCache</pt>
                 <pd>此次播放是否开启实时缓存功能：
 
                     <ul>
-                    <li><codeph><ph keyref="true" /></codeph>：开启实时缓存。</li>
-                    <li><codeph><ph keyref="false" /></codeph>：（默认）关闭实时缓存。</li>
+                    <li><codeph><ph keyref="true"/></codeph>：开启实时缓存。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：（默认）关闭实时缓存。</li>
                     </ul>
                     <note>
                     <ul>
                     <li>SDK 目前仅支持缓存点播流，但不支持缓存通过 HLS 协议传输的点播流。</li>
                     <li>缓存前，请向 <parmname>uri</parmname> 传值，否则播放器会以媒体文件的 <parmname>url</parmname> 作为缓存索引。</li>
-                    <li>开启实时缓存后，播放器会预先缓存当前正在播放的媒体文件的部分数据到本地，当你下次播放该文件时播放器会直接从缓存中加载数据，可节省网络流量。当前缓存的媒体文件的相关统计数据会在媒体文件开始播放后每秒更新一次，详见 <xref keyref="CacheStatistics" />。</li>
+                    <li>开启实时缓存后，播放器会预先缓存当前正在播放的媒体文件的部分数据到本地，当你下次播放该文件时播放器会直接从缓存中加载数据，可节省网络流量。当前缓存的媒体文件的相关统计数据会在媒体文件开始播放后每秒更新一次，详见 <xref keyref="CacheStatistics"/>。</li>
                     </ul> </note></pd>
+                <pd props="ios">是否在播放媒体文件时启用缓存：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：启用缓存。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）不启用缓存。</li>
+                        </ul>
+                    </pd>
             </plentry>
-            <plentry>
-                <pt>enableMultiAudioTrack</pt>
+            <plentry props="ios">
+                <pt props="ios">enableMultiAudioTrack</pt>
                 <pd>此次播放是否允许选择不同音轨：
                     <ul>
-                        <li><codeph><ph keyref="true" /></codeph>：允许选择不同音轨。</li>
-                        <li><codeph><ph keyref="false" /></codeph>：（默认）不允许选择不同音轨。</li>
+                        <li><codeph><ph keyref="true"/></codeph>：允许选择不同音轨。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）不允许选择不同音轨。</li>
                     </ul>
-                    <p>如果你在本地播放和发布音频至远端时，需要设置不同的音轨，你需要将该参数设为 <codeph><ph keyref="true" /></codeph>，然后再调用 <xref keyref="selectMultiAudioTrack"/> 方法来设置音轨。</p>
+                    <p>如果你在本地播放和发布音频至远端时，需要设置不同的音轨，你需要将该参数设为 <codeph><ph keyref="true"/></codeph>，然后再调用 <xref keyref="selectMultiAudioTrack"/> 方法来设置音轨。</p>
                 </pd>
+                <pd props="ios">是否允许在播放该媒体文件时选择不同的音轨：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：允许选择不同音轨。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）不允许选择不同音轨。</li>
+                        </ul>
+                    </pd>
             </plentry>
-                <plentry>
-                <pt>isAgoraSource</pt>
+            <plentry props="ios">
+                <pt props="ios">isAgoraSource</pt>
                 <pd>打开的媒体资源是否为通过声网融合 CDN 分发的直播或点播流：
                     <ul>
-                    <li><codeph><ph keyref="true" /></codeph>：打开的媒体资源是声网融合 CDN 分发的直播或点播流。</li>
-                    <li><codeph><ph keyref="false" /></codeph>：（默认）打开的媒体资源不是声网融合 CDN 分发的直播或点播流。</li>
+                    <li><codeph><ph keyref="true"/></codeph>：打开的媒体资源是声网融合 CDN 分发的直播或点播流。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：（默认）打开的媒体资源不是声网融合 CDN 分发的直播或点播流。</li>
                     </ul>
                     <note>
-                    <p>如果你需要打开的媒体资源为声网融合 CDN 分发的直播流或点播流，请向 <parmname>url</parmname> 传入直播或点播流的 URL 并将 <parmname>isAgoraSource</parmname> 设置为 <codeph><ph keyref="true" /></codeph>，否则无需设置 <parmname>isAgoraSource</parmname>。</p>
+                    <p>如果你需要打开的媒体资源为声网融合 CDN 分发的直播流或点播流，请向 <parmname>url</parmname> 传入直播或点播流的 URL 并将 <parmname>isAgoraSource</parmname> 设置为 <codeph><ph keyref="true"/></codeph>，否则无需设置 <parmname>isAgoraSource</parmname>。</p>
                     </note></pd>
+                <pd props="ios">待打开的媒体资源是否为通过媒体广播服务分发的直播或点播视频：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：是。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）否。</li>
+                        </ul>
+                    </pd>
             </plentry>
-            <plentry>
-                <pt>isLiveSource</pt>
+            <plentry props="ios">
+                <pt props="ios">isLiveSource</pt>
                 <pd>打开的媒体资源是否为直播流：
 
 
                     <ul>
-                    <li><codeph><ph keyref="true" /></codeph>：直播流。</li>
-                    <li><codeph><ph keyref="false" /></codeph>：（默认）非直播流。</li>
+                    <li><codeph><ph keyref="true"/></codeph>：直播流。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：（默认）非直播流。</li>
                     </ul>
-                    <p>如果你打开的媒体资源为直播流，建议你将该参数设置为 <codeph><ph keyref="true" /></codeph>，可加快打开直播流的速度。</p>
+                    <p>如果你打开的媒体资源为直播流，建议你将该参数设置为 <codeph><ph keyref="true"/></codeph>，可加快打开直播流的速度。</p>
                     <note>
-                    <p>仅当打开的媒体资源为直播流时，将 <parmname>isLiveSource</parmname> 设置为 <codeph><ph keyref="true" /></codeph> 后才可加快媒体资源的打开速度。</p>
+                    <p>仅当打开的媒体资源为直播流时，将 <parmname>isLiveSource</parmname> 设置为 <codeph><ph keyref="true"/></codeph> 后才可加快媒体资源的打开速度。</p>
                     </note> </pd>
+                <pd props="ios">待打开的媒体资源是否为直播流：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：是。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）否。</li>
+                        </ul>
+                    </pd>
             </plentry>
-            <plentry props="android cpp unreal unity cs">
-                    <pt>provider</pt>
-                    <pd>
+            <plentry props="android cpp cs unity unreal">
+                <pt>provider</pt>
+                <pd>
                         <p>自定义媒体资源文件的回调。详见 <xref keyref="IMediaPlayerCustomDataProvider"/>。</p>
                         <note>
                             <p>如果你打开媒体资源为自定义媒体资源，请仅向 <parmname>provider</parmname> 传值，如果你打开的为普通媒体资源，请向 <parmname>url</parmname> 传值。同时向 <parmname>url</parmname> 和 <parmname>provider</parmname> 传值会导致方法调用会失败。</p>
                         </note>
                     </pd>
-                </plentry>
-            <plentry props="apple">
-                <pt>playerOnReadCallback</pt>
+            </plentry>
+            <plentry props="apple ios">
+                <pt props="ios">playerOnReadCallback</pt>
                 <pd>
                     <p>读取媒体资源数据回调。详见 <xref keyref="onReadData"/>。</p>
                     <note id="note">
                     <p conkeyref="MediaSource/url"/>
                     </note></pd>
+                <pd props="ios">当 SDK 读取媒体资源数据时触发。详见 <xref keyref="onReadData"/>。</pd>
             </plentry>
-            <plentry props="apple">
-                <pt>playerOnSeekCallback</pt>
+            <plentry props="apple ios">
+                <pt props="ios">playerOnSeekCallback</pt>
                 <pd>
                     <p>定位媒体资源数据回调。详见 <xref keyref="onSeek"/>。</p>
                     <note conkeyref="MediaSource/note">
-                    <p />
+                    <p/>
                     </note></pd>
+                <pd props="ios">当 SDK 定位媒体资源数据时触发。详见 <xref keyref="onSeek"/>。</pd>
             </plentry>
             </parml> </section>
     </refbody>

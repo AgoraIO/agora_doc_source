@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_registerlocaluseraccount">
-    <title><ph keyref="registerLocalUserAccount" /></title>
-    <shortdesc id="short"><ph id="shortdesc">注册本地用户 User Account。</ph></shortdesc>
+    <title><ph keyref="registerLocalUserAccount"/></title>
+    <shortdesc id="short"><ph id="shortdesc">注册一个用户账号。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="registerLocalUserAccount" />
+                <indexterm keyref="registerLocalUserAccount"/>
             </keywords>
         </metadata>
     </prolog>
@@ -14,57 +14,72 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int registerLocalUserAccount(String appId, String userAccount);</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)registerLocalUserAccount:(NSString* _Nonnull)userAccount appId:(NSString* _Nonnull)appId  NS_SWIFT_NAME(registerLocalUserAccount(_:appId:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int registerLocalUserAccount(const char* appId, const char* userAccount) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	int RegisterLocalUserAccount(const FString&amp; appId, const FString&amp; userAccount);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract registerLocalUserAccount(appId: string, userAccount: string): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int RegisterLocalUserAccount(string appId, string userAccount);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract registerLocalUserAccount(appId: string, userAccount: string): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; registerLocalUserAccount(
     {required String appId, required String userAccount});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
             <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p>该方法为本地用户注册一个 User Account。注册成功后，该 User Account 即可标识该本地用户的身份，用户可以使用它加入频道。</p>
+            <p>注册成功后，用户账号可用于在加入频道时标识本地用户。该方法为可选项。如果你希望使用用户账号加入频道，可以选择以下任一方式：
+                    <ul>
+                        <li>先调用 <xref keyref="registerLocalUserAccount"/> 方法注册用户账号，再调用 <codeph>joinChannelWithUserAccount</codeph> 方法加入频道，这样可以缩短进入频道的时间。</li>
+                        <li>直接调用 <codeph>joinChannelWithUserAccount</codeph> 方法加入频道。 从 v4.6.0 起，SDK 不再自动将 <ph keyref="uid"/> 类型的用户 ID 映射为注册用户账号时使用的字符串类型 <codeph>userAccount</codeph>。如果你希望使用注册时的原始字符串类型 <codeph>userAccount</codeph> 加入频道，请调用 <codeph>joinChannelWithUserAccount</codeph> 方法，而不是调用 <codeph>joinChannel</codeph> 并传入通过该方法获取的用户 ID。</li>
+                        <li>确保 <codeph>userAccount</codeph> 在频道中是唯一的。</li>
+                        <li>为确保通信顺畅，请使用相同的参数类型标识用户。例如，如果某用户使用用户 ID 加入频道，则其他用户也应使用用户 ID。用户账号同理。如果用户使用声网 Web SDK 加入频道，请确保该用户的 ID 设置为相同的参数类型。</li>
+                        </ul>
+                    </p>
             <p>该方法为可选。如果你希望用户使用 User Account 加入频道，可参考下列任意一种方式实现：
-            <ul props="electron flutter rn bp">
-            <li>先调用 <apiname keyref="registerLocalUserAccount" /> 方法注册 Account，再调用 <xref keyref="joinChannelWithUserAccount2"/> 方法加入频道，可以缩短进入频道的时间。</li>
-            <li>直接调用 <apiname keyref="joinChannelWithUserAccount2" /> 方法加入频道。</li>
+            <ul props="bp electron flutter rn">
+            <li>先调用 <apiname keyref="registerLocalUserAccount"/> 方法注册 Account，再调用 <xref keyref="joinChannelWithUserAccount2"/> 方法加入频道，可以缩短进入频道的时间。</li>
+            <li>直接调用 <apiname keyref="joinChannelWithUserAccount2"/> 方法加入频道。</li>
             </ul>
-            <ul props="native unity cs unreal">
-                <li>先调用 <apiname keyref="registerLocalUserAccount" /> 方法注册 Account，再调用 <xref keyref="joinChannelWithUserAccount1"/> 或 <xref keyref="joinChannelWithUserAccount2"/> 方法加入频道，可以缩短进入频道的时间。</li>
-                <li>直接调用 <xref keyref="joinChannelWithUserAccount1"/> 或 <apiname keyref="joinChannelWithUserAccount2" /> 方法加入频道。</li>
+            <ul props="cs native unity unreal">
+                <li>先调用 <apiname keyref="registerLocalUserAccount"/> 方法注册 Account，再调用 <xref keyref="joinChannelWithUserAccount1"/> 或 <xref keyref="joinChannelWithUserAccount2"/> 方法加入频道，可以缩短进入频道的时间。</li>
+                <li>直接调用 <xref keyref="joinChannelWithUserAccount1"/> 或 <apiname keyref="joinChannelWithUserAccount2"/> 方法加入频道。</li>
             </ul>
         </p>
             <note type="attention">
                 <ul>
-                <li>自 v4.6.0 起，SDK 不再自动将 Int UID 映射到注册 User Account 时使用的 String <codeph>userAccount</codeph>。如果你希望使用注册时的原始 String <codeph>userAccount</codeph> 加入频道，请调用 <xref keyref="joinChannelWithUserAccount2" /> 方法加入频道，不要调用 <xref keyref="joinChannel2"/> 并传入通过该方法获取的 Int UID 加入频道。</li>
+                <li>自 v4.6.0 起，SDK 不再自动将 Int UID 映射到注册 User Account 时使用的 String <codeph>userAccount</codeph>。如果你希望使用注册时的原始 String <codeph>userAccount</codeph> 加入频道，请调用 <xref keyref="joinChannelWithUserAccount2"/> 方法加入频道，不要调用 <xref keyref="joinChannel2"/> 并传入通过该方法获取的 Int UID 加入频道。</li>
                 <li>请确保在该方法中设置的 <parmname>userAccount</parmname> 在频道中的唯一性。</li>
                 <li>为保证通信质量，请确保频道内使用同一类型的数据标识用户身份。即同一频道内需要统一使用 UID 或 User Account。如果有用户通过 Web SDK 加入频道，请确保 Web 加入的用户也是同样类型。</li>
                 </ul> </note>
+            <note type="attention" props="android"><ul>
+                        <li>从 v4.6.0 起，SDK 不再自动将 <codeph>int</codeph> 类型的用户 ID 映射为注册用户账号时使用的 <codeph>String</codeph> 类型 <codeph>userAccount</codeph>。如果你希望使用注册时的原始 <codeph>String</codeph> 类型 <codeph>userAccount</codeph> 加入频道，请调用 <codeph>joinChannelWithUserAccount</codeph> 方法，而不是调用 <codeph>joinChannel</codeph> 并传入通过该方法获取的 <codeph>int</codeph> 类型用户 ID。</li>
+                        <li>确保 <codeph>userAccount</codeph> 在频道内唯一。</li>
+                        <li>为确保通信顺畅，请使用相同的参数类型标识用户。例如，如果某用户使用用户 ID 加入频道，则其他用户也应使用用户 ID。用户账号亦同。如果用户使用声网 Web SDK 加入频道，请确保该用户的 ID 使用相同的参数类型。</li>
+                        </ul>
+                    </note>
             </section>
             <section id="restriction" deliveryTarget="details">
                 <title>调用限制</title>
                 <p>无。</p>
-            </section>
+        </section>
             <section id="related" deliveryTarget="details">
                 <title>相关回调</title>
-                <p>成功调用该方法后，本地会触发 <xref keyref="onLocalUserRegistered" /> 回调，告知本地用户的 UID 和 User Account。</p>
-            </section>
+                <p>成功调用该方法后，SDK 会触发 <xref keyref="onLocalUserRegistered"/> 回调报告本地用户的用户 ID 和用户账号。</p>
+        </section>
             <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
             <plentry>
-                <pt props="android cpp unreal bp unity flutter electron rn cs">appId</pt>
-                <pt props="ios mac">appID</pt>
-                <pd>你的项目在控制台注册的 App ID。</pd>
-            </plentry>
+                <pt>appId</pt>
+                <pt props="apple">appID</pt>
+                <pd props="apple bp cs electron flutter rn unity unreal">你的项目在控制台注册的 App ID。</pd>
+            <pd props="android">你在声网控制台上项目的 App ID。</pd>
+                <pd props="cpp">你在声网控制台项目中的 App ID。</pd>
+                </plentry>
             <plentry>
                 <pt>userAccount</pt>
-                <pd>
-                    <p>用户 User Account。该参数用于标识实时音视频互动频道中的用户。你需要自行设置和管理用户的 User Account，并确保同一频道中每个用户的 User Account 是唯一的。该参数为必填，最大不超过 255 字节，不可填 <ph keyref="NULL" />。以下为支持的字符集范围（共 89 个字符）：
+                <pd props="apple bp cs electron flutter rn unity unreal">
+                    <p>用户 User Account。该参数用于标识实时音视频互动频道中的用户。你需要自行设置和管理用户的 User Account，并确保同一频道中每个用户的 User Account 是唯一的。该参数为必填，最大不超过 255 字节，不可填 <codeph><ph keyref="NULL"/></codeph>。以下为支持的字符集范围（共 89 个字符）：
 
                     <ul>
                     <li>26 个小写英文字母 a-z</li>
@@ -74,14 +89,38 @@
                     <li>"!"、"#"、"$"、"%"、"&amp;"、"("、")"、"+"、"-"、":"、";"、"&lt;"、"="、"."、"&gt;"、"?"、"@"、"["、"]"、"^"、"_"、"{"、"}"、"|"、"~"、","</li>
                     </ul></p>
                 </pd>
-            </plentry>
-            </parml> </section>
-        <section id="return_values">
+            <pd props="android">用户账号。你需要自行设置并管理用户账号，并确保同一频道内的每个用户账号唯一。该参数的最大长度为 255 字节，不能为空。支持的字符包括（共 89 个）：
+                    <ul>
+                        <li>26 个小写英文字母：a 到 z。</li>
+                        <li>26 个大写英文字母：A 到 Z。</li>
+                        <li>所有数字字符：0 到 9。</li>
+                        <li>空格。</li>
+                        <li>特殊字符："!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", "&gt;", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp">用户账号。该参数用于在频道中标识用户以进行实时音视频互动。你需要自行设置和管理用户账号，并确保同一频道中每个用户账号唯一。该参数的最大长度为 255 字节，不能为空。支持的字符如下（共 89 个）：
+                    <ul>
+                        <li>26 个小写英文字母：a 到 z。</li>
+                        <li>26 个大写英文字母：A 到 Z。</li>
+                        <li>所有数字字符：0 到 9。</li>
+                        <li>空格</li>
+                        <li>"!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", "&gt;", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","</li>
+                        </ul>
+                    </pd>
+                </plentry>
+        </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp electron unity rn cs">
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="apple bp cs electron rn unity unreal">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
-            </ul> </section>
+            </ul>
+        <p props="android cpp"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+    </section>
     </refbody>
 </reference>

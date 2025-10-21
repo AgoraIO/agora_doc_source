@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_cloudproxytype">
     <title><ph keyref="CLOUD_PROXY_TYPE"/></title>
@@ -18,6 +18,21 @@
             <plentry>
                 <pt><ph keyref="TCP_PROXY"/></pt>
                 <pd>2：TCP（加密）协议的云代理，即 Force TCP 云代理模式。在该模式下，SDK 始终通过 TLS 443 传输数据。</pd>
+            </plentry>
+            <plentry props="apple cpp">
+                <pt><ph keyref="NONE_PROXY"/></pt>
+                <pd props="cpp">（0）：（默认）自动模式。SDK 默认启用该模式。在此模式下，SDK 会尝试直接连接至 SD-RTN™，若连接失败，则自动切换至 TCP/TLS 443。</pd>
+                <pd props="apple">（0）：自动模式。（默认）SDK 启用该模式。在此模式下，SDK 会尝试直接连接至 SD-RTN™，若连接失败，则自动切换至 TCP/TLS 443。</pd>
+            </plentry>
+            <plentry props="apple cpp">
+                <pt><ph keyref="UDP_PROXY"/></pt>
+                <pd props="cpp">（1）：UDP 协议云代理模式。即强制使用 UDP 云代理模式，SDK 始终通过 UDP 传输数据。</pd>
+                <pd props="apple">（1）：UDP 协议云代理，即强制使用 UDP 云代理模式。在此模式下，SDK 始终通过 UDP 传输数据。</pd>
+            </plentry>
+            <plentry props="apple cpp">
+                <pt><ph keyref="TCP_PROXY"/></pt>
+                <pd props="cpp">（2）：TCP（加密）协议云代理模式。即强制使用 TCP 云代理模式，SDK 始终通过 TCP/TLS 443 传输数据。</pd>
+                <pd props="apple">（2）：TCP（加密）协议云代理，即强制使用 TCP 云代理模式。在此模式下，SDK 始终通过 TCP/TLS 443 传输数据。</pd>
             </plentry>
             </parml></section>
     </refbody>

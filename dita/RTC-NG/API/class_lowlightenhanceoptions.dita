@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_lowlightenhanceoptions">
-  <title> <ph keyref="LowlightEnhanceOptions" /> </title>
-  <shortdesc id="short"> <ph id="shortdesc">暗光增强选项。</ph> </shortdesc>
+  <title> <ph keyref="LowlightEnhanceOptions"/> </title>
+  <shortdesc id="short"> <ph id="shortdesc">低光增强选项。</ph> </shortdesc>
   <refbody>
     <section id="prototype">
       <p outputclass="codeblock">
@@ -24,8 +24,8 @@
     lowlightEnhanceLevel = level;
   }
 }</codeblock>
-      <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLowlightEnhanceOptions : NSObject
+      <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraLowlightEnhanceOptions : NSObject
 @property(nonatomic, assign) AgoraLowlightEnhanceMode mode;
 @property(nonatomic, assign) AgoraLowlightEnhanceLevel level;
 @end</codeblock>
@@ -99,35 +99,37 @@ public:
   @JsonKey(name: 'level')
   final LowLightEnhanceLevel? level;
 
-  factory LowlightEnhanceOptions.fromJson(Map&lt;String, dynamic> json) =>
+  factory LowlightEnhanceOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$LowlightEnhanceOptionsFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$LowlightEnhanceOptionsToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$LowlightEnhanceOptionsToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
     </section>
     <section id="parameters">
-      <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" />
+      <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/>
       </title>
       <parml>
-      <plentry>
-        <pt props="cpp apple unity rn electron flutter cs bp unreal">level</pt>
-        <pt props="hmos android">lowlightEnhanceLevel</pt>
-        <pd><ph>暗光增强等级。</ph><ph props="apple cpp unreal bp rn unity electron flutter cs">详见 <xref keyref="LOW_LIGHT_ENHANCE_LEVEL"/>。</ph>
+            <plentry props="ios">
+                <pt props="apple bp cpp cs electron flutter ios rn unity unreal">level</pt>
+                <pt props="android hmos">lowlightEnhanceLevel</pt>
+                <pd><ph>暗光增强等级。</ph><ph props="apple bp cpp cs electron flutter rn unity unreal">详见 <xref keyref="LOW_LIGHT_ENHANCE_LEVEL"/>。</ph>
             <ul props="android hmos">
             <li><ph keyref="LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY"/>(0):（默认）优先画质的暗光增强，会处理视频图像的亮度、细节、噪声，消耗的性能适中，处理速度适中，综合画质最优。</li>
             <li><ph keyref="LOW_LIGHT_ENHANCE_LEVEL_FAST"/>(1)：优先性能的暗光增强，会处理视频图像的亮度、细节，消耗的性能较少，处理速度较快。</li>
             </ul> </pd>
-      </plentry>
-      <plentry>
-        <pt props="cpp apple unity rn electron flutter cs bp unreal">mode</pt>
-        <pt props="hmos android">lowlightEnhanceMode</pt>
-        <pd><ph>暗光增强模式。</ph><ph props="apple cpp unreal bp rn unity electron flutter cs">详见 <xref keyref="LOW_LIGHT_ENHANCE_MODE"/>。</ph>
+                <pd props="ios">低光增强等级。详见 <xref keyref="LOW_LIGHT_ENHANCE_LEVEL"/>。</pd>
+            </plentry>
+            <plentry props="ios">
+                <pt props="apple bp cpp cs electron flutter ios rn unity unreal">mode</pt>
+                <pt props="android hmos">lowlightEnhanceMode</pt>
+                <pd><ph>暗光增强模式。</ph><ph props="apple bp cpp cs electron flutter rn unity unreal">详见 <xref keyref="LOW_LIGHT_ENHANCE_MODE"/>。</ph>
             <ul props="android hmos">
             <li><ph keyref="LOW_LIGHT_ENHANCE_AUTO"/>(0):（默认）自动模式。SDK 会根据环境光亮度自动开启或关闭暗光增强功能，以适时补光和防止过曝。</li>
             <li><ph keyref="LOW_LIGHT_ENHANCE_MANUAL"/>(1)：手动模式。用户需手动开启或关闭暗光增强功能。 </li>
             </ul> </pd>
-      </plentry>
-      </parml> </section>
+                <pd props="ios">低光增强模式。详见 <xref keyref="LOW_LIGHT_ENHANCE_MODE"/>。</pd>
+            </plentry>
+            </parml> </section>
   </refbody>
 </reference>

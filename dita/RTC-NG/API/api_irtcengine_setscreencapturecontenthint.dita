@@ -1,52 +1,62 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setscreencapturecontenthint">
-    <title><ph keyref="setScreenCaptureContentHint" /></title>
-    <shortdesc id="short"><ph id="shortdesc">设置屏幕共享内容类型。</ph></shortdesc>
+    <title><ph keyref="setScreenCaptureContentHint"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置屏幕共享的内容提示。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setScreenCaptureContentHint" />
+                <indexterm keyref="setScreenCaptureContentHint"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec" />
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setScreenCaptureContentHint(VIDEO_CONTENT_HINT contentHint) = 0;
-            </codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setScreenCaptureContentHint(VIDEO_CONTENT_HINT contentHint) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	int SetScreenCaptureContentHint(EVIDEO_CONTENT_HINT contentHint);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setScreenCaptureContentHint(contentHint: VideoContentHint): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetScreenCaptureContentHint(VIDEO_CONTENT_HINT contentHint);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setScreenCaptureContentHint(contentHint: VideoContentHint): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setScreenCaptureContentHint(VideoContentHint contentHint);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
             <title>详情</title>
-   <p id="desc">SDK 会根据不同的内容类型，使用不同的算法对共享效果进行优化。如果不调用该方法，SDK 会将屏幕共享的内容默认为 <ph keyref="CONTENT_HINT_NONE" />，即无指定的内容类型。</p>
-   <note type="attention" id="note">该方法在开始屏幕共享前后都能调用。</note>
-        </section>
+   <p id="desc">该方法用于设置屏幕共享的内容提示，以便 SDK 针对不同类型的内容应用不同的优化算法。如果你不调用该方法，默认内容提示为 <ph keyref="CONTENT_HINT_NONE"/>。</p>
+            <note type="attention" id="note">该方法在开始屏幕共享前后都能调用。</note>
+        <note type="attention" props="cpp">你可以在开始或停止屏幕共享前后调用此方法。</note>
+            </section>
         <section id="parameters"><title>参数</title>
    <parml>
        <plentry>
   <pt>contentHint</pt>
-  <pd>屏幕共享的内容类型。详见 <xref keyref="VIDEO_CONTENT_HINT" />。</pd>
-       </plentry>
-   </parml>
+  <pd props="android apple bp cs electron flutter rn unity unreal">屏幕共享的内容类型。详见 <xref keyref="VIDEO_CONTENT_HINT"/>。</pd>
+       <pd props="cpp">屏幕共享的内容提示，详见 <xref keyref="VIDEO_CONTENT_HINT"/>。</pd>
+                </plentry>
+        </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
    <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-    <ul props="native unreal bp electron unity rn cs">
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="android apple bp cs electron rn unity unreal">
        <li>0: 方法调用成功。</li>
        <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph>
-        <ul conkeyref="startScreenCaptureByDisplayId/err"><li /></ul>
+        <ul conkeyref="startScreenCaptureByDisplayId/err"><li/></ul>
        </li>
    </ul>
-        </section></refbody>
+        <p props="cpp"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。<ul>
+                            <li>-2：参数无效。</li>
+                            <li>-8：屏幕共享状态无效，可能是因为你已共享了其他屏幕或窗口。请尝试调用 <xref keyref="stopScreenCapture"/> 停止当前共享，然后重新开始共享。</li>
+                            </ul>
+                        </li>
+                        </ul>
+                    </p>
+    </section></refbody>
 </reference>

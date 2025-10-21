@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_simulcastconfig">
     <title><ph keyref="SimulcastConfig"/></title>
-    <shortdesc id="short"><ph id="shortdesc">配置多质量层级的视频流。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">配置不同质量层级的视频流。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -11,7 +11,7 @@
   public boolean publishFallbackEnable;
 }</codeblock>
             <codeblock props="hmos" outputclass="language-arkts"/>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraSimulcastConfig: NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraSimulcastConfig: NSObject
 @property (copy, nonatomic, readonly) NSArray&lt;AgoraStreamLayerConfig*&gt;* _Nonnull configs;
 @property (assign, nonatomic) BOOL publishFallbackEnable;
 @end</codeblock>
@@ -44,12 +44,13 @@
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry props="native">
-                <pt>configs</pt>
+            <plentry props="ios native">
+                <pt props="ios">configs</pt>
                 <pd>分层推流配置项，详见 <xref keyref="StreamLayerConfig"/>。</pd>
+                <pd props="ios">多质量层级视频流的配置。详见 <codeph>AgoraStreamLayerConfig</codeph>。</pd>
             </plentry>
-            <plentry props="native">
-                <pt props="android apple">publishFallbackEnable</pt>
+            <plentry props="ios native">
+                <pt props="android apple ios">publishFallbackEnable</pt>
                 <pt props="cpp">publish_fallback_enable</pt>
                 <pd props="android">是否开启分层推流回退。
                     <ul>
@@ -67,6 +68,12 @@
                     <ul>
                         <li><codeph><ph keyref="true"/></codeph>：启用分层推流回退。当发布端性能或网络较差时，系统会动态关闭多个视频流，关闭顺序为 layer1 到 layer6。系统会在网络条件较差或设备性能受限时，保留大流和最低分辨率的视频流，以维持基本的视频连贯性。</li>
                         <li><codeph><ph keyref="false"/></codeph>：（默认）禁用分层推流回退。</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">是否启用分层推流回退：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：启用分层推流回退。当发布端设备性能或网络较差时，SDK 会动态关闭多个不同质量层级的视频流，从 layer1 到 layer6。系统会保留最高质量和最低质量的视频流，以维持基本的视频连贯性。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）关闭分层推流回退。</li>
                         </ul>
                     </pd>
             </plentry>

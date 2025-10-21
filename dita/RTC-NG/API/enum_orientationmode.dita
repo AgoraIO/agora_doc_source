@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_orientationmode">
     <title><ph keyref="ORIENTATION_MODE"/></title>
-    <shortdesc id="short"><ph id="shortdesc">视频编码的方向模式。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">视频输出方向模式。</ph></shortdesc>
     <refbody>
         <section id="parameters">
             <title>枚举值</title>
@@ -23,6 +23,19 @@
             <plentry>
                 <pt><ph keyref="ORIENTATION_MODE_FIXED_PORTRAIT"/></pt>
                 <pd>2: 该模式下 SDK 固定输出人像（竖屏）模式的视频，如果采集到的视频是横屏模式，则视频编码器会对其进行裁剪。该模式适用于当接收端无法调整视频方向时，如使用旁路推流场景下。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraVideoOutputOrientationModeAdaptative"/></pt>
+                <pd props="apple">（0）：（默认）输出视频始终与采集视频方向一致。接收端根据视频编码器传递的旋转信息进行调整。适用于接收端可调整视频方向的场景。
+                    <ul>
+                        <li>如果采集的视频为横屏模式，输出视频为横屏模式。</li>
+                        <li>如果采集的视频为竖屏模式，输出视频为竖屏模式。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraVideoOutputOrientationModeFixedPortrait"/></pt>
+                <pd props="apple">（2）：输出视频始终为竖屏模式。如果采集的视频为横屏模式，视频编码器会对其进行裁剪以适配输出。适用于接收端无法处理旋转信息的场景，例如 CDN 直播推流。</pd>
             </plentry>
             </parml> </section>
     </refbody>

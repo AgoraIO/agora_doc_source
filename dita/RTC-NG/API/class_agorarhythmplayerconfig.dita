@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_agorarhythmplayerconfig">
-    <title> <ph keyref="AgoraRhythmPlayerConfig" /> </title>
-    <shortdesc id="short"> <ph id="shortdesc">虚拟节拍器配置。</ph> </shortdesc>
+    <title> <ph keyref="AgoraRhythmPlayerConfig"/> </title>
+    <shortdesc id="short"> <ph id="shortdesc">节拍器配置。</ph> </shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -25,11 +25,10 @@
     return beatsPerMinute;
   }
 }</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRhythmPlayerConfig: NSObject
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraRhythmPlayerConfig: NSObject
 @property (assign, nonatomic) int beatsPerMeasure;
 @property (assign, nonatomic) int beatsPerMinute;
-
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct AgoraRhythmPlayerConfig {
   int beatsPerMeasure;
@@ -42,9 +41,9 @@ struct FAgoraRhythmPlayerConfig
 {
 	GENERATED_BODY()
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AgoraRhythmPlayerConfig&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|AgoraRhythmPlayerConfig")
 	int beatsPerMeasure = 4;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AgoraRhythmPlayerConfig&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|AgoraRhythmPlayerConfig")
 	int beatsPerMinute = 60;
 	FAgoraRhythmPlayerConfig(){}
 	FAgoraRhythmPlayerConfig(const agora::rtc::AgoraRhythmPlayerConfig &amp; AgoraData){
@@ -93,18 +92,20 @@ public:
       _$AgoraRhythmPlayerConfigFromJson(json);
   Map&lt;String, dynamic&gt; toJson() =&gt; _$AgoraRhythmPlayerConfigToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="parameters">
-            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>
+            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/> </title>
             <parml>
-            <plentry>
-                <pt>beatsPerMeasure</pt>
+            <plentry props="ios">
+                <pt props="ios">beatsPerMeasure</pt>
                 <pd>每小节的拍数，取值范围为 [1,9]。默认值为 4，即每小节包含 1 个强拍和 3 个弱拍。</pd>
+                <pd props="ios">每小节的节拍数，范围为 1 到 9。默认值为 4，表示每小节包含一个强拍和三个弱拍。</pd>
             </plentry>
-            <plentry>
-                <pt>beatsPerMinute</pt>
+            <plentry props="ios">
+                <pt props="ios">beatsPerMinute</pt>
                 <pd>节拍速度（拍/分钟），取值范围为 [60,360]。默认值为 60，即 1 分钟有 60 拍。</pd>
+                <pd props="ios">节拍速度（节拍数/分钟），范围为 60 到 360。默认值为 60，表示节拍器每分钟播放 60 个节拍。</pd>
             </plentry>
             </parml> </section>
     </refbody>

@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_qualitytype">
      <title><ph keyref="QUALITY_TYPE"/></title>
-     <shortdesc id="short"><ph id="shortdesc">网络质量。</ph></shortdesc>
+     <shortdesc id="short"><ph id="shortdesc">网络质量类型。</ph></shortdesc>
      <refbody>
           <section id="parameters">
                <title>枚举值</title>
@@ -39,10 +39,38 @@
                     <pt><ph keyref="QUALITY_UNSUPPORTED"/></pt>
                     <pd>7: 暂时无法检测网络质量（未使用）。</pd>
                </plentry>
-               <plentry props="android cpp apple framework">
+               <plentry props="android apple cpp framework">
                     <pt><ph keyref="QUALITY_DETECTING"/></pt>
                     <pd>8: 网络质量检测进行中。</pd>
                </plentry>
-               </parml> </section>
+               <plentry props="apple">
+                <pt><ph keyref="AgoraNetworkQualityUnknown"/></pt>
+                <pd props="apple">（0）：网络质量未知。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraNetworkQualityExcellent"/></pt>
+                <pd props="apple">（1）：网络质量极佳。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraNetworkQualityGood"/></pt>
+                <pd props="apple">（2）：网络质量较好，但码率可能略低于极佳。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraNetworkQualityPoor"/></pt>
+                <pd props="apple">（3）：通话质量略有下降，用户可感知。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraNetworkQualityVBad"/></pt>
+                <pd props="apple">（5）：网络质量极差，几乎无法通话。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraNetworkQualityDown"/></pt>
+                <pd props="apple">（6）：网络连接已断开，无法通话。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraNetworkQualityDetecting"/></pt>
+                <pd props="apple">（8）：正在进行 last-mile 网络探测。</pd>
+            </plentry>
+            </parml> </section>
      </refbody>
 </reference>

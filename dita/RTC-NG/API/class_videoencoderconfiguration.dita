@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videoencoderconfiguration">
     <title><ph keyref="VideoEncoderConfiguration"/></title>
-    <shortdesc id="short"><ph id="shortdesc">视频编码器的配置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">视频编码器配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -262,7 +262,7 @@
   public advanceOptions:AdvanceOptions = new AdvanceOptions();
   constructor() {}
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoEncoderConfiguration : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraVideoEncoderConfiguration : NSObject
 @property(assign, nonatomic) CGSize dimensions;
 @property(assign, nonatomic) AgoraVideoCodecType codecType;
 @property(assign, nonatomic) AgoraVideoFrameRate frameRate;
@@ -272,19 +272,6 @@
 @property(assign, nonatomic) AgoraVideoMirrorMode mirrorMode;
 @property (assign, nonatomic) AgoraDegradationPreference degradationPreference;
 @property (strong, nonatomic) AgoraAdvancedVideoOptions *_Nullable advancedVideoOptions;
-
-- (instancetype _Nonnull)initWithSize:(CGSize)size
-                            frameRate:(AgoraVideoFrameRate)frameRate
-                              bitrate:(NSInteger)bitrate
-                      orientationMode:(AgoraVideoOutputOrientationMode)orientationMode
-                           mirrorMode:(AgoraVideoMirrorMode)mirrorMode;
-
-- (instancetype _Nonnull)initWithWidth:(NSInteger)width
-                                height:(NSInteger)height
-                             frameRate:(AgoraVideoFrameRate)frameRate
-                               bitrate:(NSInteger)bitrate
-                       orientationMode:(AgoraVideoOutputOrientationMode)orientationMode
-                            mirrorMode:(AgoraVideoMirrorMode)mirrorMode;
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct VideoEncoderConfiguration {
   VIDEO_CODEC_TYPE codecType;
@@ -532,21 +519,21 @@ public:
   @JsonKey(name: 'advanceOptions')
   final AdvanceOptions? advanceOptions;
 
-  factory VideoEncoderConfiguration.fromJson(Map&lt;String, dynamic> json) =>
+  factory VideoEncoderConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$VideoEncoderConfigurationFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$VideoEncoderConfigurationToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoEncoderConfigurationToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry>
-                <pt>dimensions</pt>
+            <plentry props="ios">
+                <pt props="ios">dimensions</pt>
                 <pd>
-                    <p props="cpp hmos unreal bp unity electron rn flutter cs">视频编码的分辨率 (px)，详见 <xref keyref="VideoDimensions"/>。该参数用于衡量编码质量，以长 × 宽表示，默认值为 960 × 540。用户可以自行设置分辨率。</p>
-                    <p props="android ios mac">用户可以自行设置分辨率，也可以在如下列表中直接选择想要的分辨率：
+                    <p props="bp cpp cs electron flutter hmos rn unity unreal">视频编码的分辨率 (px)，详见 <xref keyref="VideoDimensions"/>。该参数用于衡量编码质量，以长 × 宽表示，默认值为 960 × 540。用户可以自行设置分辨率。</p>
+                    <p props="android apple">用户可以自行设置分辨率，也可以在如下列表中直接选择想要的分辨率：
 
                     <ul>
                     <li><ph keyref="VD_120x120"/>：视频分辨率为 120 × 120。</li>
@@ -576,14 +563,41 @@ public:
                     <li props="android apple">默认值为 960 × 540。</li>
                     </ul> </note> </p>
                 </pd>
+                <pd props="ios">你可以自行设置分辨率，或从以下列表中选择：
+                    <ul>
+                        <li><ph keyref="VD_120x120"/>：视频分辨率为 120 × 120。</li>
+                        <li><ph keyref="VD_160x120"/>：视频分辨率为 160 × 120。</li>
+                        <li><ph keyref="VD_180x180"/>：视频分辨率为 180 × 180。</li>
+                        <li><ph keyref="VD_240x180"/>：视频分辨率为 240 × 180。</li>
+                        <li><ph keyref="VD_320x180"/>：视频分辨率为 320 × 180。</li>
+                        <li><ph keyref="VD_240x240"/>：视频分辨率为 240 × 240。</li>
+                        <li><ph keyref="VD_320x240"/>：视频分辨率为 320 × 240。</li>
+                        <li><ph keyref="VD_424x240"/>：视频分辨率为 424 × 240。</li>
+                        <li><ph keyref="VD_360x360"/>：视频分辨率为 360 × 360。</li>
+                        <li><ph keyref="VD_480x360"/>：视频分辨率为 480 × 360。</li>
+                        <li><ph keyref="VD_640x360"/>：视频分辨率为 640 × 360。</li>
+                        <li><ph keyref="VD_480x480"/>：视频分辨率为 480 × 480。</li>
+                        <li><ph keyref="VD_640x480"/>：视频分辨率为 640 × 480。</li>
+                        <li><ph keyref="VD_840x480"/>：视频分辨率为 840 × 480。</li>
+                        <li><ph keyref="VD_960x540"/>：视频分辨率为 960 × 540。</li>
+                        <li><ph keyref="VD_960x720"/>：视频分辨率为 960 × 720。</li>
+                        <li><ph keyref="VD_1280x720"/>：视频分辨率为 1280 × 720。</li>
+                        <li><ph keyref="VD_1920x1080"/>：视频分辨率为 1920 × 1080。</li>
+                        <li><ph keyref="VD_2540x1440"/>：视频分辨率为 2540 × 1440。</li>
+                        <li><ph keyref="VD_3840x2160"/>：视频分辨率为 3840 × 2160。</li>
+                        <li>是否支持 720p 或更高分辨率取决于设备性能。如果设备不支持 720p，帧率将低于设置值。</li>
+                        <li>默认值为 960 × 540。</li>
+                        </ul>
+                    </pd>
             </plentry>
-            <plentry>
-                <pt>codecType</pt>
+            <plentry props="ios">
+                <pt props="ios">codecType</pt>
                 <pd>视频编码类型，详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</pd>
+                <pd props="ios">本地视频流的编码格式。详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</pd>
             </plentry>
-            <plentry>
-                <pt>frameRate</pt>
-                <pd props="native unreal flutter unity cs electron rn">视频编码的帧率(fps)，默认值为 15。详见 <xref keyref="FRAME_RATE"/>。</pd>
+            <plentry props="ios">
+                <pt props="ios">frameRate</pt>
+                <pd props="cs electron flutter native rn unity unreal">视频编码的帧率(fps)，默认值为 15。详见 <xref keyref="FRAME_RATE"/>。</pd>
                 <pd props="bp">视频编码的帧率(fps)，默认值为 15。<ul>
                   <li><ph keyref="FRAME_RATE_FPS_1"/>(1): 1 fps。</li>
                   <li><ph keyref="FRAME_RATE_FPS_7"/>(7): 7 fps。</li>
@@ -593,51 +607,64 @@ public:
                   <li><ph keyref="FRAME_RATE_FPS_30"/>(30): 30 fps。</li>
                   <li><ph keyref="FRAME_RATE_FPS_60"/>(60): 60 fps。该帧率仅适用于 Windows 和 macOS 平台。</li>
                 </ul></pd>
+                <pd props="ios">编码视频帧的帧率（fps）。默认值为 15。详见 <xref keyref="FRAME_RATE"/>。</pd>
             </plentry>
-            <plentry>
-                <pt>bitrate</pt>
+            <plentry props="ios">
+                <pt props="ios">bitrate</pt>
                 <pd>
-                    <p><ph>视频编码码率，单位为 Kbps。</ph><ph props="unity cs">详见 <xref keyref="BITRATE"/>。</ph><ph>该参数无需设置，保留默认值 <apiname keyref="STANDARD_BITRATE"/> 即可，SDK 会根据你设定的视频分辨率和帧率自动匹配最合适的码率。有关视频分辨率和帧率的对应关系，详见<xref keyref="video-profile-table"/>。</ph></p>
-                    <ul props="native unreal bp flutter rn electron">
+                    <p><ph>视频编码码率，单位为 Kbps。</ph><ph props="cs unity">详见 <xref keyref="BITRATE"/>。</ph><ph>该参数无需设置，保留默认值 <apiname keyref="STANDARD_BITRATE"/> 即可，SDK 会根据你设定的视频分辨率和帧率自动匹配最合适的码率。有关视频分辨率和帧率的对应关系，详见<xref keyref="video-profile-table"/>。</ph></p>
+                    <ul props="bp electron flutter native rn unreal">
                     <li><ph keyref="STANDARD_BITRATE"/> (0): (默认) 标准码率模式。</li>
                     <li><ph keyref="COMPATIBLE_BITRATE"/> (-1): 适配码率模式。一般情况下，声网建议你不要使用该值。</li>
                     </ul> </pd>
+                <pd props="ios">视频的编码码率（Kbps）。该参数无需设置，保持默认值 <ph keyref="STANDARD_BITRATE"/> 即可。SDK 会根据设置的视频分辨率和帧率自动匹配最合适的码率。
+                    <ul>
+                        <li><ph keyref="STANDARD_BITRATE"/> (0)：（推荐）标准码率模式。</li>
+                        <li><ph keyref="COMPATIBLE_BITRATE"/> (-1)：自适应码率模式。一般不建议使用该值。</li>
+                        </ul>
+                    </pd>
             </plentry>
-            <plentry>
-                <pt>minBitrate</pt>
+            <plentry props="ios">
+                <pt props="ios">minBitrate</pt>
                 <pd>
                     <p>最低编码码率，单位为 Kbps。</p>
                     <p>SDK 会根据网络状况自动调整视频编码码率。将参数设为高于默认值可强制视频编码器输出高质量图片，但在网络状况不佳情况下可能导致网络丢包并影响视频播放的流畅度造成卡顿。因此如非对画质有特殊需求，声网建议不要修改该参数的值。</p>
                     <note type="attention">该参数仅适用于直播场景。</note> </pd>
+                <pd props="ios">视频的最小编码码率（Kbps）。SDK 会根据网络状况自动调整编码码率。设置大于默认值的值会强制视频编码器输出高质量图像，但可能导致更多的丢包并牺牲视频传输的流畅性。该参数仅适用于互动直播场景。</pd>
             </plentry>
-            <plentry>
-                <pt>orientationMode</pt>
+            <plentry props="ios">
+                <pt props="ios">orientationMode</pt>
                 <pd>视频编码的方向模式，详见 <xref keyref="ORIENTATION_MODE"/>。</pd>
+                <pd props="ios">编码视频的方向模式。详见 <xref keyref="ORIENTATION_MODE"/>。</pd>
             </plentry>
-            <plentry>
-                <pt props="cpp apple unity rn electron flutter cs bp unreal">degradationPreference</pt>
+            <plentry props="ios">
+                <pt props="apple bp cpp cs electron flutter ios rn unity unreal">degradationPreference</pt>
                 <pt props="android hmos">degradationPrefer</pt>
                 <pd>带宽受限时，视频编码降级偏好。详见 <xref keyref="DEGRADATION_PREFERENCE"/>。
                   <note type="attention">当该参数设置为 <ph keyref="MAINTAIN_FRAMERATE"/> (1) 或者 <ph keyref="MAINTAIN_BALANCED"/> (2) 时，需要同时将 <parmname>orientationMode</parmname> 设置为 <ph keyref="ORIENTATION_MODE_ADAPTIVE"/> (0)，否则设置不生效。</note></pd>
+                <pd props="ios">在带宽受限的情况下的视频编码降级偏好。详见 <xref keyref="DEGRADATION_PREFERENCE"/>。
+当该参数设置为 <ph keyref="AgoraDegradationMaintainFramerate"/> (1) 或 <ph keyref="AgoraDegradationBalanced"/> (2) 时，<codeph>orientationMode</codeph> 需同时设置为 <ph keyref="AgoraVideoOutputOrientationModeAdaptative"/> (0)，否则该设置不生效。</pd>
             </plentry>
-            <plentry>
-                <pt>mirrorMode</pt>
+            <plentry props="ios">
+                <pt props="ios">mirrorMode</pt>
                 <pd>
-                    <p props="ios mac cpp framework">发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
-                    <note conkeyref="setLocalRenderMode2/mirror" props="unreal bp"/>
+                    <p props="apple cpp framework">发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
+                    <note conkeyref="setLocalRenderMode2/mirror" props="bp unreal"/>
                     <p props="android hmos">发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。
                       <ul>
-                      <li><ph keyref="VIDEO_MIRROR_MODE_AUTO" /> (0)：SDK 决定镜像模式。默认关闭远端用户的镜像模式。</li>
-                      <li><ph keyref="VIDEO_MIRROR_MODE_ENABLED" /> (1)：开启远端用户的镜像模式。</li>
-                      <li><ph keyref="VIDEO_MIRROR_MODE_DISABLED" /> (2)：关闭远端用户的镜像模式。</li>
+                      <li><ph keyref="VIDEO_MIRROR_MODE_AUTO"/> (0)：SDK 决定镜像模式。默认关闭远端用户的镜像模式。</li>
+                      <li><ph keyref="VIDEO_MIRROR_MODE_ENABLED"/> (1)：开启远端用户的镜像模式。</li>
+                      <li><ph keyref="VIDEO_MIRROR_MODE_DISABLED"/> (2)：关闭远端用户的镜像模式。</li>
                       </ul> </p>
                     <note type="attention">默认关闭镜像模式。</note> </pd>
+                <pd props="ios">设置本地视频流的镜像模式。该设置仅影响远端用户看到的视频。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。
+默认情况下，视频不镜像。</pd>
             </plentry>
-            <plentry>
-                <pt props="android hmoc cpp unreal cs unity electron flutter rn bp">advanceOptions</pt>
-                <pt props="ios mac">advancedVideoOptions</pt>
-                <pd>视频编码的高级选项。详见 <xref keyref="AdvanceOptions"/>。</pd>
-            </plentry>
+            <plentry props="ios">
+                <pt props="android bp cpp cs electron flutter hmoc rn unity unreal">advanceOptions</pt>
+                <pt props="apple">advancedVideoOptions</pt>
+                <pd props="ios">视频编码的高级选项。详见 <xref keyref="AdvanceOptions"/>。</pd>
+                </plentry>
             </parml> </section>
         <section props="apple" id="sub-method">
           <title>方法</title>

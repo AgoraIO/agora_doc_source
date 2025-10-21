@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startrtmpstreamwithtranscoding">
     <title> <ph keyref="startRtmpStreamWithTranscoding"/> </title>
-    <shortdesc id="short"> <ph id="shortdesc">开始旁路推流并设置转码属性。</ph> </shortdesc>
+    <shortdesc id="short"> <ph id="shortdesc">开启媒体推流并设置转码配置。</ph> </shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,9 +15,9 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int startRtmpStreamWithTranscoding(String url, LiveTranscoding transcoding);</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">public abstract startRtmpStreamWithTranscoding(url: string, transcoding: LiveTranscoding): number;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)startRtmpStreamWithTranscoding:(NSString* _Nonnull)url transcoding:(AgoraLiveTranscoding* _Nullable)transcoding;</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)startRtmpStreamWithTranscoding:(NSString* _Nonnull)url transcoding:(AgoraLiveTranscoding* _Nullable)transcoding NS_SWIFT_NAME(startRtmpStream(withTranscoding:transcoding:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int startRtmpStreamWithTranscoding(const char* url, const LiveTranscoding&amp; transcoding) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	int StartRtmpStreamWithTranscoding(const FString&amp; url, const FLiveTranscoding&amp; transcoding);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract startRtmpStreamWithTranscoding(
     url: string,
@@ -34,7 +34,7 @@
         </section>
         <section id="detailed_desc">
             <title>详情</title>
-            <p>声网推荐你使用更加完善的服务端推流功能，详见<xref keyref="cdn-streaming-restful">实现服务端旁路推流</xref>。</p>
+            <p>你可以调用该方法将音视频流推送到指定的 CDN 地址，并设置转码配置。该方法每次只能推送到一个 CDN 地址。如果需要推送到多个地址，请多次调用该方法。默认情况下，一个声网项目最多支持 200 个并发的媒体流推送任务。如需更高配额，请联系技术支持。<xref keyref="cdn-streaming-restful">实现服务端旁路推流</xref>。</p>
             <p>调用该方法，你可以向指定的旁路推流地址推送直播音视频流并设置转码属性。该方法每次只能向一个地址推送媒体流，如果你需要向多个地址转码推流，则需多次调用该方法。</p>
             <p>一次推流代表一个推流任务，最大并发任务数默认为 200，表示你在一个声网项目下最多同时运行 200 个推流任务，如需更高配额，请<xref keyref="ticket-link"/>。</p>
             <p>调用该方法后，SDK 会在本地触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调，报告推流的状态。</p>
@@ -43,25 +43,44 @@
             <li>请在加入频道后调用该方法。</li>
             <li>只有直播场景下的主播才能调用该方法。</li>
             <li>调用该方法推流失败后，如果你想要重新推流，那么请你务必先调用 <xref keyref="stopRtmpStream"/>，再调用该方法重推，否则 SDK 会返回与上次推流失败时一样的错误码。</li>
-            </ul> </note> </section>
+            </ul> </note> <note type="attention" props="cpp"><ul>
+                        <li>请在加入频道后调用该方法。</li>
+                        <li>仅在直播场景中，主播角色可以调用该方法。</li>
+                        <li>如果推流失败后需要重试，请先调用 <xref keyref="stopRtmpStream"/> 停止推流，再调用该方法重新推流；否则，SDK 会返回与上次失败相同的错误码。</li>
+                        </ul>
+                    </note>
+            <note type="attention" props="apple"><ul>
+                        <li>请在加入频道后调用该方法。</li>
+                        <li>只有在 <codeph>LIVE_BROADCASTING</codeph> 频道场景中的主播角色可以调用该方法。</li>
+                        <li>如果推流失败后需要重试，请先调用 <xref keyref="stopRtmpStream"/> 停止推流，再调用该方法重新推流；否则，SDK 会返回与上次失败相同的错误码。</li>
+                        </ul>
+                    </note>
+            </section>
+        <section id="related" deliveryTarget="details">
+            <title>相关回调</title>
+            <p>成功调用该方法后，SDK 会触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调报告推流状态。</p>
+        </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry id="url">
                 <pt>url</pt>
-                <pd>旁路推流地址。格式为 RTMP 或 RTMPS。字符长度不能超过 1024 字节。不支持中文字符等特殊字符。</pd>
-            </plentry>
+                <pd props="android bp cs electron flutter mac rn unity unreal">旁路推流地址。格式为 RTMP 或 RTMPS。字符长度不能超过 1024 字节。不支持中文字符等特殊字符。</pd>
+            <pd props="cpp">媒体推流地址，格式为 RTMP 或 RTMPS。字符串长度不能超过 1024 字节。不支持中文等特殊字符。</pd>
+                <pd props="ios">媒体推流地址。格式为 RTMP 或 RTMPS。字符串长度不能超过 1024 字节。不支持中文等特殊字符。</pd>
+                </plentry>
             <plentry id="transcoding">
                 <pt>transcoding</pt>
-                <pd>
+                <pd props="android bp cs electron flutter mac rn unity unreal">
                     <p>旁路推流的转码属性，详见 <xref keyref="LiveTranscoding"/>。</p>
                 </pd>
-            </plentry>
-            </parml> </section>
-        <section id="return_values">
+            <pd props="cpp ios">媒体推流的转码配置，详见 <xref keyref="LiveTranscoding"/>。</pd>
+                </plentry>
+        </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp unity electron rn cs">
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="android bp cs electron rn unity unreal">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph>
                 <ul>
@@ -69,6 +88,25 @@
                 <li>-7：调用该方法前，未初始化 SDK。</li>
                 <li>-19：该旁路推流 URL 已在使用中，请使用其他旁路推流 URL。</li>
                 </ul> </li>
-            </ul> </section>
+            </ul>
+        <p props="cpp"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。<ul>
+                            <li>-2：URL 或转码配置不合法。请检查 URL 和转码配置。</li>
+                            <li>-7：调用该方法前未初始化 SDK。</li>
+                            <li>-19：媒体推流地址已被使用。请更换地址。</li>
+                            </ul>
+                        </li>
+                        </ul>
+                    </p>
+        <p props="apple">0：方法调用成功。
+&lt; 0：方法调用失败。
+                    <ul>
+                        <li>-2：URL 或转码配置不合法；请检查 <codeph>url</codeph> 和 <codeph>transcoding</codeph> 参数。</li>
+                        <li>-7：调用该方法前未初始化 SDK。</li>
+                        <li>-19：媒体推流地址已被使用；请更换地址。</li>
+                        </ul>
+                    </p>
+    </section>
     </refbody>
 </reference>

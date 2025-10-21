@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onvideorenderingtracingresult">
     <title><ph keyref="onVideoRenderingTracingResult"/></title>
@@ -13,16 +13,11 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public void onVideoRenderingTracingResult(int uid,
-    Constants.MEDIA_RENDER_TRACE_EVENT currentEvent, VideoRenderingTracingInfo tracingInfo) {}</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine videoRenderingTracingResultOfUid:(NSUInteger)uid currentEvent:(AgoraMediaRenderTraceEvent)currentEvent tracingInfo:(AgoraVideoRenderingTracingInfo * _Nonnull)tracingInfo NS_SWIFT_NAME(rtcEngine(_:videoRenderingTracingResultOfUid:currentEvent:tracingInfo:));</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp"> virtual void onVideoRenderingTracingResult(uid_t uid, MEDIA_TRACE_EVENT currentEvent, VideoRenderingTracingInfo tracingInfo) {
-  (void)uid;
-  (void)currentEvent;
-  (void)tracingInfo;
-}</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+            <codeblock props="android" outputclass="language-java">public void onVideoRenderingTracingResult(int uid, Constants.MEDIA_TRACE_EVENT currentEvent, VideoRenderingTracingInfo tracingInfo)</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine videoRenderingTracingResultOfUid:(NSUInteger)uid currentEvent:(AgoraMediaTraceEvent)currentEvent tracingInfo:(AgoraVideoRenderingTracingInfo * _Nonnull)tracingInfo NS_SWIFT_NAME(rtcEngine(_:videoRenderingTracingResultOfUid:currentEvent:tracingInfo:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onVideoRenderingTracingResult(uid_t uid, MEDIA_TRACE_EVENT currentEvent, VideoRenderingTracingInfo tracingInfo)</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = "Agora|Event")
 	void OnVideoRenderingTracingResult(int64 uid, EMEDIA_TRACE_EVENT currentEvent, const FVideoRenderingTracingInfo&amp; tracingInfo);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onVideoRenderingTracingResult?(
     connection: RtcConnection,
@@ -44,33 +39,35 @@
       VideoRenderingTracingInfo tracingInfo)? onVideoRenderingTracingResult;</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since">
-            <dlentry props="android apple cpp">
-                <dt>自从</dt>
-                <dd>v4.1.1</dd>
-            </dlentry>
-            </dl>
             <p>调用 <xref keyref="startMediaRenderingTracing"/> 方法或加入频道后，SDK 会触发该回调，报告视频帧渲染的事件和渲染过程中的指标。开发者可以针对指标进行专项优化，以提高出图效率。</p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
             <parml>
             <plentry conkeyref="joinChannelEx/connection" props="framework">
-                <pt />
-                <pd />
+                <pt/>
+                <pd/>
             </plentry>        
             <plentry>
                 <pt>uid</pt>
-                <pd>用户 ID。</pd>
+                <pd props="bp cs electron flutter native rn unity unreal">用户 ID。</pd>
             </plentry>
             <plentry>
                 <pt>currentEvent</pt>
-                <pd>当前视频帧渲染事件。详见 <xref keyref="MEDIA_TRACE_EVENT"/>。</pd>
-            </plentry>
+                <pd props="bp cs electron flutter mac rn unity unreal">当前视频帧渲染事件。详见 <xref keyref="MEDIA_TRACE_EVENT"/>。</pd>
+            <pd props="android ios">当前的视频帧渲染事件。详见 <xref keyref="MEDIA_TRACE_EVENT"/>。</pd>
+                <pd props="cpp">当前视频帧渲染事件，详见 <xref keyref="MEDIA_TRACE_EVENT"/>。</pd>
+                </plentry>
             <plentry>
                 <pt>tracingInfo</pt>
-                <pd>视频帧渲染过程中的指标。开发者需要尽可能降低指标值，以提高出图效率。详见 <xref keyref="VideoRenderingTracingInfo"/>。</pd>
+                <pd props="bp cs electron flutter mac rn unity unreal">视频帧渲染过程中的指标。开发者需要尽可能降低指标值，以提高出图效率。详见 <xref keyref="VideoRenderingTracingInfo"/>。</pd>
+            <pd props="android">视频帧渲染过程中的各项指标。详见 <xref keyref="VideoRenderingTracingInfo"/>。</pd>
+                <pd props="cpp ios">视频帧渲染过程中的各项指标。你需要尽可能降低这些指标的数值，以提升首帧视频渲染的效率。详见 <xref keyref="VideoRenderingTracingInfo"/>。</pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">engine</pt>
+                <pd props="ios"><xref keyref="IRtcEngine"/> 实例。详见 <xref keyref="IRtcEngine"/>。</pd>
             </plentry>
-            </parml> </section>
+        </parml> </section>
     </refbody>
 </reference>

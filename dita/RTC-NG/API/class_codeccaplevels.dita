@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_codeccaplevels">
     <title><ph keyref="CodecCapLevels"/></title>
@@ -21,8 +21,8 @@
     this.swDecodingLevel = swDecLevel;
   };
 };</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoCodecCapLevels : NSObject
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraVideoCodecCapLevels : NSObject
 @property(assign, nonatomic) AgoraVideoCodecCapabilityLevel hwDecodingLevel;
 @property(assign, nonatomic) AgoraVideoCodecCapabilityLevel swDecodingLevel;
 @end</codeblock>
@@ -36,9 +36,9 @@
 struct FCodecCapLevels {
 	GENERATED_BODY()
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FCodecCapLevels&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|FCodecCapLevels")
 	FENUMWRAP_VIDEO_CODEC_CAPABILITY_LEVEL hwDecodingLevel;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FCodecCapLevels&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|FCodecCapLevels")
 	FENUMWRAP_VIDEO_CODEC_CAPABILITY_LEVEL swDecodingLevel;
 	
 	FCodecCapLevels() {}
@@ -84,39 +84,35 @@ class CodecCapLevels {
   @JsonKey(name: 'swDecodingLevel')
   final VideoCodecCapabilityLevel? swDecodingLevel;
 
-  factory CodecCapLevels.fromJson(Map&lt;String, dynamic> json) =>
+  factory CodecCapLevels.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$CodecCapLevelsFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$CodecCapLevelsToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$CodecCapLevelsToJson(this);
 }</codeblock></p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since">
-            <dlentry props="android apple cpp">
-                <dt>自从</dt>
-                <dd>v4.2.2</dd>
-            </dlentry>
-            </dl>
             <p/>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry>
-                <pt>hwDecodingLevel</pt>
-                <pd>硬件解码能力等级，表示设备能够对不同品质视频进行硬件解码的能力。<ph props="cpp apple framework">详见 <xref keyref="VIDEO_CODEC_CAPABILITY_LEVEL"/>。</ph></pd>
+            <plentry props="ios">
+                <pt props="ios">hwDecodingLevel</pt>
+                <pd>硬件解码能力等级，表示设备能够对不同品质视频进行硬件解码的能力。<ph props="apple cpp framework">详见 <xref keyref="VIDEO_CODEC_CAPABILITY_LEVEL"/>。</ph></pd>
                 <pd props="android hmos" id="codec"><ul>
                     <li><ph keyref="CODEC_CAPABILITY_LEVEL_UNSPECIFIED"/> (-1)：不支持的视频类型。目前仅支持对 H.264 和 H.265 格式的视频进行查询，如果视频为其他格式，则返回该值。</li>
                     <li><ph keyref="CODEC_CAPABILITY_LEVEL_BASIC_SUPPORT"/> (5)：基本的编解码支持，即：对 1080p、30 fps 以下的视频进行编解码。</li>
                     <li><ph keyref="CODEC_CAPABILITY_LEVEL_1080P30FPS"/> (10)：最高支持对 1080p、30 fps 的视频进行编解码。</li>
                     <li><ph keyref="CODEC_CAPABILITY_LEVEL_1080P60FPS"/> (20)：最高支持对 1080p、60 fps 的视频进行编解码。</li>
                     <li><ph keyref="CODEC_CAPABILITY_LEVEL_4K60FPS"/> (30)：最高支持对 4K、30 fps 的视频进行编解码。</li></ul></pd>
+                <pd props="ios">硬件解码能力等级，表示设备对不同质量视频进行硬件解码的能力。详见 <xref keyref="VIDEO_CODEC_CAPABILITY_LEVEL"/>。</pd>
             </plentry>
-                <plentry>
-                    <pt>swDecodingLevel</pt>
-                    <pd>软件解码能力等级，表示设备能够对不同品质视频进行软件解码的能力。<ph props="cpp apple framework">详见 <xref keyref="VIDEO_CODEC_CAPABILITY_LEVEL"/>。</ph></pd>
-                    <pd conkeyref="CodecCapLevels/codec" props="android"/>
-                </plentry>
+            <plentry props="ios">
+                <pt props="ios">swDecodingLevel</pt>
+                <pd>软件解码能力等级，表示设备能够对不同品质视频进行软件解码的能力。<ph props="apple cpp framework">详见 <xref keyref="VIDEO_CODEC_CAPABILITY_LEVEL"/>。</ph></pd>
+                <pd conkeyref="CodecCapLevels/codec" props="android"/>
+                <pd props="ios">软件解码能力等级，表示设备对不同质量视频进行软件解码的能力。详见 <xref keyref="VIDEO_CODEC_CAPABILITY_LEVEL"/>。</pd>
+            </plentry>
             </parml> </section>
     </refbody>
 </reference>

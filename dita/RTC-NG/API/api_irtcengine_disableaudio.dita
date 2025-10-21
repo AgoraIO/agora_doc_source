@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_disableaudio">
-    <title><ph keyref="disableAudio" /></title>
-    <shortdesc id="short"><ph id="shortdesc">关闭音频模块。</ph></shortdesc>
+    <title><ph keyref="disableAudio"/></title>
+    <shortdesc id="short"><ph id="shortdesc">禁用音频模块。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="disableAudio" />
+                <indexterm keyref="disableAudio"/>
             </keywords>
         </metadata>
     </prolog>
@@ -15,41 +15,65 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int disableAudio();</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">public abstract disableAudio(): number;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)disableAudio;</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)disableAudio NS_SWIFT_NAME(disableAudio());</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int disableAudio() = 0;</codeblock>
-            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	int DisableAudio();</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract disableAudio(): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int DisableAudio();</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract disableAudio(): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; disableAudio();</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p>音频模块默认开启，你可以调用该方法关闭音频模块。</p>
-        </section>
+            <p></p>
+            <note type="attention" props="cpp">该方法会重置内部引擎，生效需要一定时间。声网建议使用以下 API 分别控制音频模块：
+                    <ul>
+                        <li><xref keyref="enableLocalAudio"/>：是否启用麦克风以创建本地音频流。</li>
+                        <li><xref keyref="enableLoopbackRecording"/>：是否启用回声采集。</li>
+                        <li><xref keyref="muteLocalAudioStream_IBaseSpatialAudioEngine"/>：是否发布本地音频流。</li>
+                        <li><xref keyref="muteRemoteAudioStream"/>：是否订阅并播放远端音频流。</li>
+                        <li><xref keyref="muteAllRemoteAudioStreams_IBaseSpatialAudioEngine"/>：是否订阅并播放所有远端音频流。</li>
+                        </ul>
+                    </note>
+            <note type="attention" props="apple">该方法会重置内部引擎，生效需要一定时间。声网建议使用以下 API 分别控制音频模块：
+                    <ul>
+                        <li><xref keyref="enableLocalAudio"/>：是否启用麦克风以创建本地音频流。</li>
+                        <li><xref keyref="enableLoopbackRecording"/>：是否启用回采音频采集，仅适用于 macOS。</li>
+                        <li><xref keyref="muteLocalAudioStream_IBaseSpatialAudioEngine"/>：是否发布本地音频流。</li>
+                        <li><xref keyref="muteRemoteAudioStream_IBaseSpatialAudioEngine"/>：是否订阅并播放远端音频流。</li>
+                        <li><xref keyref="muteAllRemoteAudioStreams_IBaseSpatialAudioEngine"/>：是否订阅并播放所有远端音频流。</li>
+                        </ul>
+                    </note>
+            <note type="attention" props="android">该方法会重置内部引擎，生效需要一定时间。声网建议使用以下 API 分别控制音频模块：
+                    <ul>
+                        <li><xref keyref="enableLocalAudio"/>：是否启用麦克风以创建本地音频流。</li>
+                        <li><xref keyref="muteLocalAudioStream_IBaseSpatialAudioEngine"/>：是否发布本地音频流。</li>
+                        <li><xref keyref="muteRemoteAudioStream"/>：是否订阅并播放远端音频流。</li>
+                        <li><xref keyref="muteAllRemoteAudioStreams_IBaseSpatialAudioEngine"/>：是否订阅并播放所有远端音频流。</li>
+                        </ul>
+                    </note>
+            </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p>加入频道前后均可调用。离开频道后仍然有效。</p>
+            <p>该方法可以在加入频道前或加入频道后调用，离开频道后依然有效。</p>
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p>该方法重置整个引擎，响应时间较慢，因此声网建议使用如下方法来控制音频模块：
-                <ul>
-                <li><xref keyref="enableLocalAudio"/>：是否启动麦克风采集并创建本地音频流。</li>
-                <li props="mac cpp unity flutter electron unreal bp cs"><xref keyref="enableLoopbackRecording"/>：是否开启声卡采集。</li>
-                <li><xref keyref="muteLocalAudioStream" />：是否发布本地音频流。</li>
-                <li><xref keyref="muteRemoteAudioStream" />：是否接收并播放远端音频流。</li>
-                <li><xref keyref="muteAllRemoteAudioStreams" />：是否接收并播放所有远端音频流。</li>
-                </ul>
-            </p>
+            <p>无。</p>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp electron unity rn cs">
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cs electron rn unity unreal">
                 <li>0: 方法调用成功。</li>
                 <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
-            </ul> </section>
+            </ul>
+        <p props="native"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+    </section>
         </refbody>
 </reference>

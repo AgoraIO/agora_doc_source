@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_sendstreammessage">
-    <title><ph keyref="sendStreamMessage" /></title>
-    <shortdesc id="short"><ph id="shortdesc">发送数据流。</ph></shortdesc>
+    <title><ph keyref="sendStreamMessage"/></title>
+    <shortdesc id="short"><ph id="shortdesc">发送数据流消息。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="sendStreamMessage" />
+                <indexterm keyref="sendStreamMessage"/>
             </keywords>
         </metadata>
     </prolog>
@@ -16,11 +16,9 @@
             <codeblock props="android" outputclass="language-java">public abstract int sendStreamMessage(int streamId, byte[] message);</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">public abstract sendStreamMessage(streamId: number, message: ArrayBuffer): number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)sendStreamMessage:(NSInteger)streamId
-                    data:(NSData * _Nonnull)data;</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int sendStreamMessage(int streamId,
-     const char* data,
-     size_t length) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+                     data:(NSData * _Nonnull)data NS_SWIFT_NAME(sendStreamMessage(_:data:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int sendStreamMessage(int streamId, const char* data, size_t length) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	int SendStreamMessage(int streamId, const FString&amp; data);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract sendStreamMessage(streamId: number, data: Uint8Array, length: number): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int SendStreamMessage(int streamId, byte[] data, uint length);</codeblock>
@@ -31,46 +29,83 @@
 ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; sendStreamMessage(
     {required int streamId, required Uint8List data, required int length});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
             <title>详情</title>
-            <note conkeyref="createDataStream2/note" props="android apple cpp unity flutter"/>
-            <p>调用 <xref keyref="createDataStream2" /> 后，你可以调用该方法向频道内所有用户发送数据流消息。</p>
+            <note conkeyref="createDataStream2/note" props="android apple cpp flutter unity"/>
+            <p>调用 <codeph>createDataStream</codeph> 后，你可以调用该方法向频道内的所有用户发送数据流消息。<xref keyref="createDataStream2"/> 后，你可以调用该方法向频道内所有用户发送数据流消息。</p>
             <p id="limit">SDK 对该方法的实现进行了如下限制：
             <ul>
             <li>频道内每个客户端最多可以同时拥有 5 个数据通道，所有数据通道共用的总发包码率限制为 30 KB/s。</li>
             <li>每个数据通道每秒最多能发送 60 个包，每个包最大为 1 KB。</li>
             </ul></p>
-            <p id="error">成功调用该方法后，远端会触发 <xref keyref="onStreamMessage" /> 回调，远端用户可以在该回调中获取接收到的流消息；若调用失败，远端会触发 <xref keyref="onStreamMessageError" /> 回调。</p>
+            <p id="error">成功调用该方法后，远端会触发 <xref keyref="onStreamMessage"/> 回调，远端用户可以在该回调中获取接收到的流消息；若调用失败，远端会触发 <xref keyref="onStreamMessageError"/> 回调。</p>
             <note type="attention">
             <ul>
-            <li>该方法需要在加入频道后、且调用 <xref keyref="createDataStream2" /> 创建数据通道之后调用。</li>
+            <li>该方法需要在加入频道后、且调用 <xref keyref="createDataStream2"/> 创建数据通道之后调用。</li>
             <li>该方法仅适用于主播用户。</li>
-            </ul></note> </section>
+            </ul></note> <note type="attention" props="cpp">如果你需要一个更全面的低延迟、高并发、可扩展的实时消息和状态同步解决方案，建议使用 <codeph>Signaling</codeph>。
+                    <ul>
+                        <li>该方法需在调用 <codeph>createDataStream</codeph> 并加入频道后调用。</li>
+                        <li>该方法仅适用于主播角色。</li>
+                        </ul>
+                    </note>
+            <note type="attention" props="apple">如果你需要一个更全面的解决方案来实现低延迟、高并发和可扩展的实时消息传递与状态同步，建议使用 <codeph>Signaling</codeph>。
+                    <ul>
+                        <li>该方法需在调用 <xref keyref="createDataStream2"/> 并加入频道后使用。</li>
+                        <li>该方法仅适用于主播角色。</li>
+                        </ul>
+                    </note>
+            <note type="attention" props="android">如果你需要更全面的低延迟、高并发和可扩展的实时消息和状态同步解决方案，建议使用 <codeph>Signaling</codeph>。
+                    <ul>
+                        <li>该方法需在调用 <codeph>createDataStream</codeph> 并加入频道后调用。</li>
+                        <li>该方法仅适用于主播角色。</li>
+                        </ul>
+                    </note>
+            </section>
+        <section id="related" deliveryTarget="details">
+            <title>相关回调</title>
+            <p>成功调用该方法后，远端客户端会触发 <xref keyref="onStreamMessage"/> 回调，从中获取数据流消息。调用失败时，远端客户端会触发 <xref keyref="onStreamMessageError"/> 回调。</p>
+        </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry>
                 <pt>streamId</pt>
-                <pd>数据流 ID。可以通过 <apiname keyref="createDataStream2" /> 获取。</pd>
-            </plentry>
+                <pd props="bp cs electron flutter mac rn unity unreal">数据流 ID。可以通过 <apiname keyref="createDataStream2"/> 获取。</pd>
+            <pd props="android">数据流 ID。你可以通过调用 <codeph>createDataStream</codeph> 获取该 ID。</pd>
+                <pd props="ios">数据流 ID。你可以通过调用 <xref keyref="createDataStream2"/> 获取该 ID。</pd>
+                <pd props="cpp">数据流 ID，通过调用 <codeph>createDataStream</codeph> 获取。</pd>
+                </plentry>
             <plentry>
-                <pt props="android hmos">message</pt>
-                <pt props="electron cpp unreal bp ios mac unity flutter rn cs">data</pt>
-                <pd>待发送的数据。</pd>
-            </plentry>
-            <plentry props="cpp unreal bp unity flutter rn electron cs">
-                <pt>length</pt>
-                <pd>数据长度。</pd>
-            </plentry>
-            </parml> </section>
-        <section id="return_values">
+                <pt>message</pt>
+                <pt props="apple bp cpp cs electron flutter rn unity unreal">data</pt>
+                <pd props="apple bp cpp cs electron flutter rn unity unreal">待发送的数据。</pd>
+            <pd props="android">要发送的消息内容。</pd>
+                </plentry>
+            <plentry props="bp cpp cs electron flutter rn unity unreal">
+                <pt props="bp cpp cs electron flutter rn unity unreal">length</pt>
+                <pd props="android apple bp cs electron flutter rn unity unreal">数据长度。</pd>
+            <pd props="cpp">消息内容的长度。</pd>
+                </plentry>
+            <plentry props="cpp ios">
+                <pt props="cpp ios">data</pt>
+                <pd props="cpp ios">要发送的消息内容。</pd>
+                </plentry>
+        </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp unity electron rn cs">
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cs electron rn unity unreal">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
-            </ul> </section>
+            </ul>
+        <p props="native"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+    </section>
     </refbody>
 </reference>

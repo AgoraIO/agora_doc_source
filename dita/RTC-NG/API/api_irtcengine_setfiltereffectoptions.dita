@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setfiltereffectoptions">
     <title><ph keyref="setFilterEffectOptions"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置滤镜效果选项并指定媒体源。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">设置滤镜特效选项，并指定应用的媒体源类型。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -31,7 +31,7 @@
     options: FilterEffectOptions,
     type?: MediaSourceType
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setFilterEffectOptions(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setFilterEffectOptions(
       {required bool enabled,
       required FilterEffectOptions options,
       MediaSourceType type = MediaSourceType.primaryCameraSource});</codeblock> </p>
@@ -39,15 +39,18 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
             <dlentry props="native">
-                <dt>自从</dt>
-                <dd>v4.5.0</dd>
+                <dt>自从：</dt>
+                <dd props="native">自 v4.4.1 版本新增。</dd>
             </dlentry>
             </dl>
-            <p props="android apple">该方法和 <xref keyref="setBeautyEffectOptions2"/> 均可用于设置滤镜效果选项，区别在于该方法支持在设置滤镜效果选项时指定应用滤镜的媒体源。</p>
-        </section>
+            <p props="android apple"><xref keyref="setBeautyEffectOptions2"/> 均可用于设置滤镜效果选项，区别在于该方法支持在设置滤镜效果选项时指定应用滤镜的媒体源。</p>
+            <note type="attention" props="cpp">该方法依赖图像增强动态库 <ph keyref="clearvision"/>。如果该动态库被删除，则无法正常启用该功能。
+该功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的性能能力。</note>
+            <note type="attention" props="apple">该方法依赖图像增强动态库 <ph keyref="clearvision"/>（iOS）或 </note>
+            </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p>请在 <xref keyref="enableVideo" /> 之后调用该方法。</p>
+            <p>在调用 <xref keyref="enableVideo"/> 方法之后调用该方法。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -61,36 +64,61 @@
             <title>参数</title>
             <parml>
             <plentry id="enable">
-                <pt props="android cpp unreal bp unity flutter rn electron cs">enabled</pt>
-                <pt props="ios mac">enable</pt>
-                <pd>是否开启滤镜效果：
+                <pt>enabled</pt>
+                <pt props="apple">enable</pt>
+                <pd props="android bp cs electron flutter mac rn unity unreal">是否开启滤镜效果：
 
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 开启滤镜功能。</li>
                     <li><codeph><ph keyref="false"/></codeph>:（默认）关闭滤镜功能。</li>
                     </ul></pd>
-            </plentry>
+            <pd props="cpp ios">是否启用滤镜特效：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：启用。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）不启用。</li>
+                        </ul>
+                    </pd>
+                </plentry>
             <plentry id="options">
                 <pt>options</pt>
-                <pd>滤镜选项，详见 <xref keyref="FilterEffectOptions" />。</pd>
-            </plentry>
+                <pd props="android bp cs electron flutter mac rn unity unreal">滤镜选项，详见 <xref keyref="FilterEffectOptions"/>。</pd>
+            <pd props="cpp ios">滤镜特效选项。详见 <xref keyref="FilterEffectOptions"/>。</pd>
+                </plentry>
             <plentry id="type">
-                <pt props="cpp unreal bp unity rn electron flutter cs">type</pt>
+                <pt>type</pt>
                 <pt props="android apple">sourceType</pt>
-                <pd>效果应用的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE" />。
+                <pd props="android bp cs electron flutter mac rn unity unreal">效果应用的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。
                     <note type="attention">在该方法中，该参数仅支持以下两种设置：
                     <ul>
                     <li>使用摄像头采集本地视频时，请保持默认值 <apiname keyref="PRIMARY_CAMERA_SOURCE"/>。</li>
                     <li>如果要使用自定义采集的视频，将该参数设置为 <apiname keyref="CUSTOM_VIDEO_SOURCE"/>。</li>
                     </ul></note></pd>
-            </plentry>
-            </parml> </section>
-        <section id="return_values">
+            <pd props="cpp">应用滤镜特效的视频源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。
+                    <ul>
+                        <li>如果使用摄像头采集本地视频，使用默认值 <ph keyref="PRIMARY_CAMERA_SOURCE"/>。</li>
+                        <li>如果使用自定义视频源，设置为 <ph keyref="CUSTOM_VIDEO_SOURCE"/>。</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">滤镜特效应用的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。
+                    <ul>
+                        <li>如果使用摄像头采集本地视频，使用默认值 <ph keyref="AgoraMediaSourceTypePrimaryCamera"/>。</li>
+                        <li>如果使用自定义视频源，设置为 <ph keyref="AgoraMediaSourceTypeCustomVideo"/>。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+        </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp electron unity rn cs">
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="android bp cs electron rn unity unreal">
                 <li>0: 方法调用成功。</li>
                 <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
-                </ul> </section>
+                </ul>
+        <p props="apple cpp"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+    </section>
         </refbody>
 </reference>

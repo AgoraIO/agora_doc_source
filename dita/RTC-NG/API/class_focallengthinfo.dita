@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_focallengthinfo">
     <title><ph keyref="FocalLengthInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc">摄像头支持的焦距信息，包含摄像头的方向以及焦距类型。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">摄像头支持的焦距信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -26,8 +26,8 @@
         '}';
   }
 }</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraFocalLengthInfo : NSObject
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraFocalLengthInfo : NSObject
 @property(assign, nonatomic) int cameraDirection;
 @property(assign, nonatomic) AgoraFocalLength focalLengthType;
 @end</codeblock>
@@ -39,9 +39,9 @@
 struct FFocalLengthInfo {
 	GENERATED_BODY()
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FFocalLengthInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|FFocalLengthInfo")
 	int cameraDirection = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FFocalLengthInfo&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|FFocalLengthInfo")
 	ECAMERA_FOCAL_LENGTH_TYPE focalLengthType = ECAMERA_FOCAL_LENGTH_TYPE::CAMERA_FOCAL_LENGTH_DEFAULT;
 	FFocalLengthInfo(){}
 	FFocalLengthInfo(const agora::rtc::FocalLengthInfo &amp; AgoraData){
@@ -89,32 +89,28 @@ class FocalLengthInfo {
   @JsonKey(name: 'focalLengthType')
   final CameraFocalLengthType? focalLengthType;
 
-  factory FocalLengthInfo.fromJson(Map&lt;String, dynamic> json) =>
+  factory FocalLengthInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$FocalLengthInfoFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$FocalLengthInfoToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$FocalLengthInfoToJson(this);
 }</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since">
-            <dlentry props="android apple cpp">
-                <dt>自从</dt>
-                <dd>v4.3.1</dd>
-            </dlentry>
-            </dl>
-            <note type="attention" props="cpp unreal bp flutter unity">仅适用于 Android 和 iOS。</note>
+            <note type="attention" props="bp cpp flutter unity unreal">仅适用于 Android 和 iOS。</note>
             <p/>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry>
-                <pt>cameraDirection</pt>
+            <plentry props="ios">
+                <pt props="ios">cameraDirection</pt>
                 <pd>摄像头方向。详见 <xref keyref="CAMERA_DIRECTION"/>。</pd>
+                <pd props="ios">摄像头方向，详见 <xref keyref="CAMERA_DIRECTION"/>。</pd>
             </plentry>
-            <plentry>
-                <pt>focalLengthType</pt>
+            <plentry props="ios">
+                <pt props="ios">focalLengthType</pt>
                 <pd>焦距类型。详见 <xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/>。</pd>
+                <pd props="ios">焦距类型，详见 <xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/>。</pd>
             </plentry>
             </parml> </section>
     </refbody>

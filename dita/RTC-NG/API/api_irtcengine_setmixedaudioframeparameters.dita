@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setmixedaudioframeparameters">
-    <title><ph keyref="setMixedAudioFrameParameters" /></title>
-    <shortdesc id="short"><ph id="shortdesc">设置采集和播放音频混音后的原始音频数据格式。</ph></shortdesc>
+    <title><ph keyref="setMixedAudioFrameParameters"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置混音后用于音频采集和播放的原始音频数据格式。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setMixedAudioFrameParameters" />
+                <indexterm keyref="setMixedAudioFrameParameters"/>
             </keywords>
         </metadata>
     </prolog>
@@ -17,9 +17,9 @@
             <codeblock props="hmos" outputclass="language-arkts">public abstract setMixedAudioFrameParameters(sampleRate: number, channel: number, samplesPerCall: number): number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setMixedAudioFrameParametersWithSampleRate:(NSInteger)sampleRate
                                           channel:(NSInteger)channel
-                                   samplesPerCall:(NSInteger)samplesPerCall;</codeblock>
+                                   samplesPerCall:(NSInteger)samplesPerCall NS_SWIFT_NAME(setMixedAudioFrameParametersWithSampleRate(_:channel:samplesPerCall:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setMixedAudioFrameParameters(int sampleRate, int channel, int samplesPerCall) = 0;</codeblock>
-            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	int SetMixedAudioFrameParameters(int sampleRate, int channel, int samplesPerCall);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setMixedAudioFrameParameters(
     sampleRate: number,
@@ -36,14 +36,14 @@
     {required int sampleRate,
     required int channel,
     required int samplesPerCall});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p><ph conkeyref="setRecordingAudioFrameParameters/function"/><ph>SDK 会根据该采样间隔触发 <xref keyref="onMixedAudioFrame" /> 回调。</ph></p>
-        </section>
+            <p>SDK 会根据 <codeph>samplesPerCall</codeph>、<codeph>sampleRate</codeph> 和 <codeph>channel</codeph> 参数计算采样间隔。采样间隔（单位：秒） = <codeph>samplesPerCall / (sampleRate × channel)</codeph>。请确保采样间隔 ≥ 0.01 秒。SDK 会根据采样间隔触发 <xref keyref="onMixedAudioFrame"/> 回调。<ph conkeyref="setRecordingAudioFrameParameters/function"/><ph>SDK 会根据该采样间隔触发 <xref keyref="onMixedAudioFrame"/> 回调。</ph></p>
+            </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p>该方法需要在加入频道前调用。</p>
+            <p>请在加入频道前调用此方法。</p>
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -64,13 +64,59 @@
                 <pt/>
                 <pd/>
             </plentry>
-            </parml> </section>
-        <section id="return_values">
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">sampleRate</pt>
+                <pd props="android">回调中返回的采样率，单位为 Hz。可设置为：
+                    <ul>
+                        <li>8000。</li>
+                        <li>16000。</li>
+                        <li>32000。</li>
+                        <li>44100。</li>
+                        <li>48000。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp ios">回调中返回的采样率，单位为 Hz。可设置为 8000、16000、32000、44100 或 48000。</pd>
+                </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">channel</pt>
+                <pd props="android">音频声道数，可设置为：
+                    <ul>
+                        <li>1：单声道。</li>
+                        <li>2：立体声。</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">音频通道数，可设置为 1 或 2。
+                    <ul>
+                        <li>1：单声道。</li>
+                        <li>2：立体声。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp">音频通道数，可设置为：
+                    <ul>
+                        <li>1：单声道。</li>
+                        <li>2：立体声。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">samplesPerCall</pt>
+                <pd props="android">每次回调返回的数据采样点数量，例如媒体推流场景中为 1024。</pd>
+                <pd props="ios">每次回调的数据采样点数。例如，媒体推流时通常设置为 1024。</pd>
+                <pd props="cpp">每次回调返回的数据采样点数量。例如，媒体推流时通常设置为 1024。</pd>
+            </plentry>
+        </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp unity electron rn cs">
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cs electron rn unity unreal">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
-            </ul> </section>
+            </ul>
+        <p props="native"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+    </section>
         </refbody>
 </reference>

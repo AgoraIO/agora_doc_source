@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onfirstremotevideoframe">
-     <title> <ph keyref="onFirstRemoteVideoFrame" /> </title>
-     <shortdesc id="short"><ph id="shortdesc">渲染器已接收首帧远端视频回调。</ph></shortdesc>
+     <title> <ph keyref="onFirstRemoteVideoFrame"/> </title>
+     <shortdesc id="short"><ph id="shortdesc">远端视频首帧显示时触发的回调。</ph></shortdesc>
      <prolog>
           <metadata>
                <keywords>
-                    <indexterm keyref="onFirstRemoteVideoFrame" />
+                    <indexterm keyref="onFirstRemoteVideoFrame"/>
                </keywords>
           </metadata>
      </prolog>
@@ -15,15 +15,9 @@
                <p outputclass="codeblock">
                <codeblock props="android" outputclass="language-java">public void onFirstRemoteVideoFrame(int uid, int width, int height, int elapsed) {}</codeblock>
                <codeblock props="hmos" outputclass="language-arkts">onFirstRemoteVideoFrame?:(uid:number,width:number,height:number,elapsed:number) =&gt;void;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
-         firstRemoteVideoFrameOfUid:(NSUInteger)uid size:(CGSize)size elapsed:(NSInteger)elapsed;</codeblock>
-               <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onFirstRemoteVideoFrame(uid_t uid, int width, int height, int elapsed) {
-                    (void)uid;
-                    (void)width;
-                    (void)height;
-                    (void)elapsed;
-                    }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine firstRemoteVideoFrameOfUid:(NSUInteger)uid size:(CGSize)size elapsed:(NSInteger)elapsed NS_SWIFT_NAME(rtcEngine(_:firstRemoteVideoFrameOfUid:size:elapsed:));</codeblock>
+               <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onFirstRemoteVideoFrame(uid_t uid, int width, int height, int elapsed)</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = "Agora|Event")
 	void OnFirstRemoteVideoFrame(int64 uid, int width, int height, int elapsed);</codeblock>
                <codeblock props="electron" outputclass="language-typescript">  onFirstRemoteVideoFrame?(
     connection: RtcConnection,
@@ -42,44 +36,61 @@
   ): void;</codeblock>
                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, int width,
       int height, int elapsed)? onFirstRemoteVideoFrame;</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
           </section>
           <section id="detailed_desc">
                <note type="attention">该回调只在 SDK 渲染时才会触发；如果用户采用自定义视频渲染则不会触发，客户需要通过 SDK 以外的方法自行实现。</note>
-           </section>   
-          <section id="parameters">
-               <title><ph keyref="callback-section-title" /></title>
+           <note type="attention" props="cpp">该回调仅在视频帧由 SDK 渲染时触发。如果你使用自定义视频渲染，则不会触发该回调。你需要使用 SDK 外的方法自行实现此功能。</note>
+            <note type="attention" props="apple">该回调仅在视频帧由 SDK 渲染时触发。如果你使用自定义视频渲染，则不会触发该回调。你需要使用 SDK 之外的方法自行实现。</note>
+            </section>   
+          <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>当渲染器接收到远端视频的第一帧时触发。</p>
+        </section>
+        <section id="parameters">
+               <title><ph keyref="callback-section-title"/></title>
                <parml>
-               <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                    <pt />
-                    <pd />
+               <plentry conkeyref="onJoinChannelSuccess/engine" props="apple">
+                    <pt/>
+                    <pd/>
                </plentry>
                <plentry>
-                    <pt props="cpp unreal ios mac android hmos flutter">uid</pt>
-                    <pt props="electron rn flutter unity cs">remoteUid</pt>
+                    <pt>uid</pt>
+                    <pt props="cs electron flutter rn unity">remoteUid</pt>
                     <pt props="bp">userId</pt>
-                    <pd>用户 ID，指定是哪个用户的视频流。</pd>
-               </plentry>
-               <plentry props="ios mac">
-                    <pt>size</pt>
-                    <pd>视频流尺寸。</pd>
-               </plentry>
-               <plentry props="unity electron rn flutter cs">
+                    <pd props="android bp cs electron flutter mac rn unity unreal">用户 ID，指定是哪个用户的视频流。</pd>
+               <pd props="ios">发送视频流的远端用户的用户 ID。</pd>
+                <pd props="cpp">发送视频流的远端用户 ID。</pd>
+                </plentry>
+               <plentry props="apple">
+                    <pt props="apple">size</pt>
+                    <pd props="android bp cpp cs electron flutter mac rn unity unreal">视频流尺寸。</pd>
+               <pd props="ios">视频的尺寸。</pd>
+                </plentry>
+               <plentry props="cs electron flutter rn unity">
                     <pt>connection</pt>
-                    <pd>Connection 信息。详见 <xref keyref="RtcConnection" />。</pd>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
                </plentry>
-               <plentry props="android hmos cpp unreal bp unity electron rn flutter cs">
-                    <pt>width</pt>
-                    <pd>视频流宽（px）。</pd>
-               </plentry>
-               <plentry props="android hmos cpp unreal bp unity electron rn flutter cs">
-                    <pt>height</pt>
-                    <pd>视频流高（px）。</pd>
-               </plentry>
+               <plentry props="android bp cpp cs electron flutter hmos rn unity unreal">
+                    <pt props="android bp cpp cs electron flutter hmos rn unity unreal">width</pt>
+                    <pd props="android apple bp cs electron flutter rn unity unreal">视频流宽（px）。</pd>
+               <pd props="cpp">视频流的宽度，单位为像素。</pd>
+                </plentry>
+               <plentry props="android bp cpp cs electron flutter hmos rn unity unreal">
+                    <pt props="android bp cpp cs electron flutter hmos rn unity unreal">height</pt>
+                    <pd props="android apple bp cs electron flutter rn unity unreal">视频流高（px）。</pd>
+               <pd props="cpp">视频流的高度，单位为像素。</pd>
+                </plentry>
                <plentry>
                     <pt>elapsed</pt>
-                    <pd> 从本地调用 <ph props="native unreal unity cs"><apiname keyref="joinChannel1" /> 或 </ph><apiname keyref="joinChannel2" /> 到发生此事件过去的时间（毫秒）。</pd>
-               </plentry>
-               </parml> </section>
+                    <pd props="android bp cs electron flutter mac rn unity unreal"> 从本地调用 <ph props="cs native unity unreal"><apiname keyref="joinChannel1"/> 或 </ph><apiname keyref="joinChannel2"/> 到发生此事件过去的时间（毫秒）。</pd>
+               <pd props="ios">从你调用 <codeph>joinChannelByToken</codeph> 加入频道到 SDK 触发该回调的时间（毫秒）。</pd>
+                <pd props="cpp">从本地用户调用 <codeph>joinChannel</codeph> 加入频道到 SDK 触发该回调的时间，单位为毫秒。</pd>
+                </plentry>
+               <plentry props="ios">
+                <pt props="ios">engine</pt>
+                <pd props="ios">引擎实例对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+            </plentry>
+        </parml> </section>
      </refbody>
 </reference>

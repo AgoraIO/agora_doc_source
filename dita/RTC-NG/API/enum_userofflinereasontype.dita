@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_userofflinereasontype">
     <title><ph keyref="USER_OFFLINE_REASON_TYPE"/></title>
-    <shortdesc id="short"><ph id="shortdesc">用户离线原因。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">用户离线的原因。</ph></shortdesc>
     <refbody>
         <section id="parameters">
             <title>枚举值</title>
@@ -20,6 +20,14 @@
             <plentry>
                 <pt><ph keyref="USER_OFFLINE_BECOME_AUDIENCE"/></pt>
                 <pd>2: 用户身份从主播切换为观众。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraUserOfflineReasonDropped"/></pt>
+                <pd props="apple">（1）：在一定时间内未收到任何数据包，SDK 超时导致用户掉线。<note type="attention" props="apple">如果用户退出通话的消息因信道不稳定未传递给 SDK，SDK 会认为用户掉线。</note></pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraUserOfflineReasonBecomeAudience"/></pt>
+                <pd props="apple">（2）：用户将客户端角色从主播切换为观众。</pd>
             </plentry>
             </parml> </section>
     </refbody>

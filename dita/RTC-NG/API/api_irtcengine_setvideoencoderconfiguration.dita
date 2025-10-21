@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setvideoencoderconfiguration">
     <title><ph keyref="setVideoEncoderConfiguration"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置视频编码属性。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">设置本地视频的编码配置。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,9 +15,9 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setVideoEncoderConfiguration(VideoEncoderConfiguration config);</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">public abstract setVideoEncoderConfiguration(configuration: VideoEncoderConfiguration): number;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setVideoEncoderConfiguration:(AgoraVideoEncoderConfiguration * _Nonnull)config;</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setVideoEncoderConfiguration:(AgoraVideoEncoderConfiguration * _Nonnull)config NS_SWIFT_NAME(setVideoEncoderConfiguration(_:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setVideoEncoderConfiguration(const VideoEncoderConfiguration&amp; config) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	int SetVideoEncoderConfiguration(const FVideoEncoderConfiguration&amp; config);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setVideoEncoderConfiguration(
     config: VideoEncoderConfiguration
@@ -30,18 +30,33 @@
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p id="desc">设置本地视频的编码属性。每一种视频编码属性对应一系列视频相关参数设置，包含分辨率、帧率和码率。</p>
-        </section>
+            <p id="desc">每个配置文件对应一组视频参数，包括分辨率、帧率和码率。调用时机：你可以在加入频道前或加入频道后调用该方法。如果在加入频道后不需要重新设置视频编码属性，声网建议你在调用 <xref keyref="enableVideo"/> 之前调用该方法，以减少首帧视频渲染时间。</p>
+            <note type="attention" props="cpp"><ul>
+                        <li>此方法和 <xref keyref="getMirrorApplied"/> 方法都支持设置镜像效果。声网建议你只使用其中一种方式进行设置，同时使用两种方式会导致镜像效果叠加，从而使镜像设置失效。</li>
+                        <li>此方法中指定的 <xref keyref="Config"/> 是在理想网络条件下的最大值。如果由于网络条件不稳定，视频引擎无法使用指定的 <xref keyref="Config"/> 渲染视频，则会依次尝试列表中较低的参数，直到找到可用的配置。</li>
+                        </ul>
+                    </note>
+            <note type="attention" props="apple"><ul>
+                        <li>此方法和 <xref keyref="getMirrorApplied"/> 方法都支持设置镜像效果。声网建议你只使用其中一种方法进行设置。若同时使用两种方法，镜像效果会叠加，导致设置失败。</li>
+                        <li>此方法中指定的 <xref keyref="Config"/> 是在理想网络条件下的最大值。如果由于网络条件不佳，视频引擎无法按照指定的 <xref keyref="Config"/> 渲染视频，则会依次尝试配置列表中的其他参数，直到找到可用的配置。</li>
+                        </ul>
+                    </note>
+            <note type="attention" props="android"><ul>
+                        <li>此方法和 <xref keyref="getMirrorApplied"/> 方法都支持设置镜像效果。声网建议只使用其中一个方法进行设置，同时使用两个方法会导致镜像效果叠加，镜像设置失效。</li>
+                        <li>此方法中指定的 <xref keyref="Config"/> 是在理想网络条件下的最大值。如果由于网络条件不佳，视频引擎无法使用指定的 <xref keyref="Config"/> 渲染视频，则会依次尝试列表中较低的参数，直到找到可用的配置。</li>
+                        </ul>
+                    </note>
+            </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="native unreal bp electron unity flutter cs">该方法在加入频道前后都能调用。如果用户在加入频道后不需要重新设置视频编码属性，则建议在 <xref keyref="enableVideo"/> 前调用该方法，可以加快首帧出图的时间。</p>
+            <p props="bp cs electron flutter native unity unreal">该方法在加入频道前后都能调用。如果用户在加入频道后不需要重新设置视频编码属性，则建议在 <xref keyref="enableVideo"/> 前调用该方法，可以加快首帧出图的时间。</p>
             <p props="rn">该方法只能在加入频道前调用。建议在 <xref keyref="enableVideo"/> 前调用该方法，可以加快首帧出图的时间。</p>
        
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
             <ul>
-                <li props="android cpp apple unreal">该方法和 <xref keyref="getMirrorApplied"/> 方法均支持设置镜像效果，声网建议你仅选择一种方法进行设置，同时使用两种方法会导致镜像效果叠加从而造成设置镜像失败。</li>
+                <li props="android apple cpp unreal">该方法和 <xref keyref="getMirrorApplied"/> 方法均支持设置镜像效果，声网建议你仅选择一种方法进行设置，同时使用两种方法会导致镜像效果叠加从而造成设置镜像失败。</li>
                 <li>该方法的 <parmname>config</parmname> 参数设置是在理想网络状态下能达到的最大值。如果网络状态不好，视频引擎便不能使用该 <parmname>config</parmname> 渲染本地视频，它会自动降低到一个合适的视频参数设置。</li>
             </ul>
         </section>
@@ -50,15 +65,23 @@
             <parml>
             <plentry id="config">
                 <pt>config</pt>
-                <pd>视频编码参数配置。详见 <xref keyref="VideoEncoderConfiguration"/>。</pd>
-            </plentry>
-            </parml> </section>
-        <section id="return_values">
+                <pd props="bp cs electron flutter mac rn unity unreal">视频编码参数配置。详见 <xref keyref="VideoEncoderConfiguration"/>。</pd>
+            <pd props="android cpp">视频编码配置。详见 <xref keyref="VideoEncoderConfiguration"/>。</pd>
+                <pd props="ios">视频编码配置，详见 <xref keyref="VideoEncoderConfiguration"/>。</pd>
+                </plentry>
+        </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp electron unity rn cs">
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cs electron rn unity unreal">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
-            </ul> </section>
+            </ul>
+        <p props="native"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+    </section>
     </refbody>
 </reference>

@@ -1,69 +1,80 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onrejoinchannelsuccess">
-    <title><ph keyref="onRejoinChannelSuccess" /></title>
-    <shortdesc id="short"><ph id="shortdesc">成功重新加入频道回调。</ph></shortdesc>
+    <title><ph keyref="onRejoinChannelSuccess"/></title>
+    <shortdesc id="short"><ph id="shortdesc">用户重新加入频道成功时回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onRejoinChannelSuccess" />
+                <indexterm keyref="onRejoinChannelSuccess"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public void onRejoinChannelSuccess(String channel, int uid, int elapsed) {}</codeblock>
+            <codeblock props="android" outputclass="language-java">public void onRejoinChannelSuccess(String channel, int uid, int elapsed)</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">onRejoinChannelSuccess?:(channel:string, uid:number, elapsed:number) =&gt; void;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
-    didRejoinChannel:(NSString * _Nonnull)channel withUid:(NSUInteger)uid elapsed:(NSInteger) elapsed;</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onRejoinChannelSuccess(const char* channel, uid_t uid, int elapsed) {
-     (void)channel;
-     (void)uid;
-     (void)elapsed;
-     }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didRejoinChannel:(NSString * _Nonnull)channel withUid:(NSUInteger)uid elapsed:(NSInteger)elapsed NS_SWIFT_NAME(rtcEngine(_:didRejoinChannel:withUid:elapsed:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onRejoinChannelSuccess(const char* channel, uid_t uid, int elapsed)</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = "Agora|Event")
 	void OnRejoinChannelSuccess(const FString&amp; channel, int64 uid, int elapsed);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onRejoinChannelSuccess?(connection: RtcConnection, elapsed: number): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnRejoinChannelSuccess(RtcConnection connection, int elapsed) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onRejoinChannelSuccess?(connection: RtcConnection, elapsed: number): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int elapsed)?
       onRejoinChannelSuccess;</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
-            <p id="desc">有时候由于网络原因，客户端可能会和服务器失去连接，SDK 会进行自动重连，自动重连成功后触发此回调方法。</p>
+            <p>当用户因网络问题与服务器失去连接后，SDK 会自动尝试重连，并在重新连接成功时触发该回调。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
             <p>无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
-            <title><ph keyref="callback-section-title" /></title>
+            <title><ph keyref="callback-section-title"/></title>
             <parml>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt />
-                <pd />
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="apple">
+                <pt/>
+                <pd/>
             </plentry>
-            <plentry props="native unreal bp">
+            <plentry props="bp native unreal">
                 <pt>channel</pt>
                 <pd>频道名。</pd>
             </plentry>
-            <plentry id="uid" props="native unreal bp electron">
+            <plentry id="uid" props="bp electron native unreal">
                 <pt>uid</pt>
                 <pd>重新加入频道的用户 ID。</pd>
             </plentry>
-            <plentry props="unity electron rn cs">
+            <plentry props="cs electron rn unity">
                 <pt>connection</pt>
-                <pd>Connection 信息。详见 <xref keyref="RtcConnection" />。</pd>
+                <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
             </plentry>
             <plentry id="elapsed">
                 <pt>elapsed</pt>
-                <pd>从调用 <xref keyref="joinChannel2" /> 方法到触发该回调的时间间隔（毫秒）。</pd>
+                <pd props="bp cs electron flutter mac rn unity unreal">从调用 <xref keyref="joinChannel2"/> 方法到触发该回调的时间间隔（毫秒）。</pd>
+            <pd props="android">从本地用户调用 <codeph>joinChannel</codeph> 到 SDK 触发该回调的时间间隔（毫秒）。</pd>
+                <pd props="ios">从调用 <xref keyref="joinChannel2"/> 到 SDK 触发该回调的时间间隔（毫秒）。</pd>
+                <pd props="cpp">从本地用户调用 <codeph>joinChannel</codeph> 方法到 SDK 触发该回调的时间间隔，单位为毫秒。</pd>
+                </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">channel</pt>
+                <pd props="android cpp">频道名。</pd>
+                <pd props="ios">频道名称。</pd>
+                </plentry>
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">uid</pt>
+                <pd props="android cpp ios">重新加入频道的用户 ID。</pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">engine</pt>
+                <pd props="ios"><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
             </plentry>
-            </parml> </section>
+        </parml> </section>
     </refbody>
 </reference>

@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_connectionstatetype">
     <title><ph keyref="CONNECTION_STATE_TYPE"/></title>
-    <shortdesc id="short"><ph id="shortdesc">网络连接状态。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">SDK 的连接状态。</ph></shortdesc>
     <refbody>
         <section id="parameters">
             <title>枚举值</title>
@@ -50,12 +50,57 @@
             <plentry>
                 <pt><ph keyref="CONNECTION_STATE_FAILED"/></pt>
                 <pd>
-                    <p>5: 网络连接失败。该状态表示 SDK 已不再尝试重新加入频道，需要调用 <xref keyref="leaveChannel" props="android cpp apple unreal bp unity"/> <xref keyref="leaveChannel2" props="hmos rn electron flutter"/> 离开频道。
+                    <p>5: 网络连接失败。该状态表示 SDK 已不再尝试重新加入频道，需要调用 <xref keyref="leaveChannel" props="android apple bp cpp unity unreal"/> <xref keyref="leaveChannel2" props="electron flutter hmos rn"/> 离开频道。
                     <ul>
                     <li>如果用户还想重新加入频道，则需要再次调用 <apiname keyref="joinChannel2"/>。</li>
                     <li>如果 SDK 因服务器端使用 RESTful API 禁止加入频道，则 App 会收到 <xref keyref="onConnectionStateChanged"/>。</li>
                     </ul></p>
                 </pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraConnectionStateDisconnected"/></pt>
+                <pd props="apple">（1）：SDK 与声网边缘服务器断开连接。该状态表示 SDK 处于以下阶段之一：
+                    <ul>
+                        <li>调用 <xref keyref="joinChannel2"/> 方法之前的初始状态。</li>
+                        <li>调用 <xref keyref="leaveChannel"/> 方法后。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraConnectionStateConnecting"/></pt>
+                <pd props="apple">（2）：SDK 正在连接声网边缘服务器。该状态表示调用 <xref keyref="joinChannel2"/> 方法后，SDK 正在与指定频道建立连接。
+                    <ul>
+                        <li>如果成功加入频道，SDK 会触发 <codeph>connectionChangedToState:reason:</codeph> 回调，并将连接状态切换为 <ph keyref="AgoraConnectionStateConnected"/>。</li>
+                        <li>连接建立后，SDK 会初始化媒体，并在准备就绪时触发 <codeph>didJoinChannel:withUid:elapsed:</codeph> 回调。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraConnectionStateConnected"/></pt>
+                <pd props="apple">（3）：SDK 已连接到声网边缘服务器。该状态还表示用户已加入频道，并可以在频道中发布或订阅媒体流。
+                    <ul>
+                        <li>如果因网络中断或切换导致频道连接丢失，SDK 会自动尝试重连，并触发 <codeph>connectionChangedToState:reason:</codeph> 回调，通知当前网络状态变为 <ph keyref="AgoraConnectionStateReconnecting"/>。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraConnectionStateReconnecting"/></pt>
+                <pd props="apple">（4）：SDK 正在持续重连至声网边缘服务器。该状态表示 SDK 在因网络问题从已加入的频道断开后，持续尝试重新加入频道。
+                    <ul>
+                        <li>如果在 10 秒内无法重新加入频道，SDK 会触发 <codeph>connectionDidLost:</codeph> 回调，保持在 <ph keyref="AgoraConnectionStateReconnecting"/> 状态，并继续尝试重连。</li>
+                        <li>如果在断开连接 20 分钟后仍未成功重连，SDK 会触发 <codeph>connectionChangedToState:reason:</codeph> 回调，切换至 <ph keyref="AgoraConnectionStateFailed"/> 状态，并停止重连。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraConnectionStateFailed"/></pt>
+                <pd props="apple">（5）：SDK 无法连接到声网边缘服务器或加入频道。该状态表示 SDK 停止尝试重连。
+                    <ul>
+                        <li>你必须调用 <xref keyref="leaveChannel"/> 离开频道。</li>
+                        <li>可调用 <xref keyref="joinChannel2"/> 重新加入频道。</li>
+                        <li>如果 SDK 被声网边缘服务器通过 RESTful API 禁止加入频道，SDK 会触发 <codeph>connectionChangedToState:reason:</codeph> 回调。</li>
+                        </ul>
+                    </pd>
             </plentry>
             </parml> </section>
     </refbody>

@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_getuserinfobyuid">
-    <title><ph keyref="getUserInfoByUid" /></title>
-    <shortdesc id="short"><ph id="shortdesc">通过 UID 获取用户信息。</ph></shortdesc>
+    <title><ph keyref="getUserInfoByUid"/></title>
+    <shortdesc id="short"><ph id="shortdesc">通过传入用户 ID 获取用户信息。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="getUserInfoByUid" />
+                <indexterm keyref="getUserInfoByUid"/>
             </keywords>
         </metadata>
     </prolog>
@@ -14,23 +14,23 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int getUserInfoByUid(int uid, UserInfo userInfo);</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
             <codeblock props="ios mac" outputclass="language-objectivec">- (AgoraUserInfo* _Nullable)getUserInfoByUid:(NSUInteger)uid withError:(AgoraErrorCode* _Nullable)error NS_SWIFT_NAME(getUserInfo(byUid:withError:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int getUserInfoByUid(uid_t uid, rtc::UserInfo* userInfo) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	int GetUserInfoByUid(int64 uid, FUserInfo&amp; userInfo);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract getUserInfoByUid(uid: number): UserInfo;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int GetUserInfoByUid(uint uid, ref UserInfo userInfo);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract getUserInfoByUid(uid: number): UserInfo;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;UserInfo&gt; getUserInfoByUid(int uid);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p id="getUserInfo_desc">远端用户加入频道后，SDK 会获取到该远端用户的 UID 和 User Account，然后缓存一个包含了远端用户 UID 和 User Account 的映射表，并在本地触发 <xref keyref="onUserInfoUpdated"/> 回调。收到回调后，调用该方法传入 UID 来获取包含了指定用户 User Account 的 <xref keyref="UserInfo" /> 对象。</p>
-        </section>
+            <p id="getUserInfo_desc">当远端用户加入频道后，SDK 会获取该远端用户的用户 ID 和用户账号，并将其缓存在一个映射表中，然后在本地客户端触发 <xref keyref="onUserInfoUpdated"/> 回调。收到该回调后，你可以调用该方法并传入用户 ID，从 <xref keyref="UserInfo"/> 对象中获取指定用户的用户账号。<xref keyref="onUserInfoUpdated"/> 回调。收到回调后，调用该方法传入 UID 来获取包含了指定用户 User Account 的 <xref keyref="UserInfo"/> 对象。</p>
+            </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p>在收到 <xref keyref="onUserInfoUpdated"/> 回调后调用。</p>
+            <p>在收到 <xref keyref="onUserInfoUpdated"/> 回调后调用该方法。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -38,46 +38,59 @@
         </section>
         <section id="related" deliveryTarget="details">
             <title>相关回调</title>
-            <p><xref keyref="onUserInfoUpdated"/></p>
+            <p>成功调用该方法后，SDK 会触发 <xref keyref="onUserInfoUpdated"/> 回调报告用户信息更新。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
             <plentry>
                 <pt>uid</pt>
-                <pd>用户 ID。</pd>
-            </plentry>
-            <plentry props="cpp unreal bp unity android cs" id="userInfo">
-                <pt>userInfo</pt>
-                <pd>输入和输出参数。标识用户的 <xref keyref="UserInfo" /> 对象：
+                <pd props="bp cs electron flutter mac rn unity unreal">用户 ID。</pd>
+            <pd props="android"><ph keyref="uid"/> 参数，表示用户 ID。</pd>
+                <pd props="ios">用户的 ID。请确保设置该参数。</pd>
+                <pd props="cpp"><ph keyref="uid"/>，表示用户 ID。</pd>
+                </plentry>
+            <plentry props="android bp cpp cs unity unreal" id="userInfo">
+                <pt props="android bp cpp cs unity unreal">userInfo</pt>
+                <pd props="apple bp cs electron flutter rn unity unreal">输入和输出参数。标识用户的 <xref keyref="UserInfo"/> 对象：
                     <ul>
                     <li>输入值：一个 <apiname keyref="UserInfo"/> 对象。</li>
-                    <li>输出值：一个包含了用户 User Account 和 UID 的 <apiname keyref="UserInfo" /> 对象。</li>
+                    <li>输出值：一个包含了用户 User Account 和 UID 的 <apiname keyref="UserInfo"/> 对象。</li>
                     </ul>
                 </pd>
-            </plentry>
+            <pd props="android">输入输出参数，表示用户信息的 <xref keyref="UserInfo"/> 对象。详见 <xref keyref="UserInfo"/>。</pd>
+                <pd props="cpp">输入和输出参数，表示用户信息的 <xref keyref="UserInfo"/> 对象。详见 <xref keyref="UserInfo"/>。</pd>
+                </plentry>
             <plentry id="channelId" props="bp">
                 <pt>channelId</pt>
-                <pd><p conkeyref="joinChannel2/channelID_desc" /></pd>
+                <pd><p conkeyref="joinChannel2/channelID_desc"/></pd>
             </plentry>
             <plentry id="localUserAccount" props="bp">
                 <pt>localUserAccount</pt>
                 <pd>本地用户的 User Account。</pd>
             </plentry>
-            <plentry props="ios mac" id="error">
-                <pt>error</pt>
-                <pd>错误码。</pd>
-            </plentry>
-            </parml> </section>
-        <section id="return_values">
+            <plentry props="apple" id="error">
+                <pt props="apple">error</pt>
+                <pd props="android bp cpp cs electron flutter mac rn unity unreal">错误码。</pd>
+            <pd props="ios">指向 <xref keyref="ERROR_CODE_TYPE"/> 的指针。可以设置为 <codeph><ph keyref="NULL"/></codeph>。详见 <xref keyref="ERROR_CODE_TYPE"/>。</pd>
+                </plentry>
+        </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title>返回值</title>
-            <ul props="ios mac flutter electron rn">
-            <li>方法调用成功，返回 <xref keyref="UserInfo" /> 对象。</li>
-            <li>方法调用失败，则返回 <ph keyref="NULL" />。</li>
+        <ul props="electron flutter rn">
+            <li>方法调用成功，返回 <xref keyref="UserInfo"/> 对象。</li>
+            <li>方法调用失败，则返回 <codeph><ph keyref="NULL"/></codeph>。</li>
             </ul>
-            <ul props="cpp unreal bp unity android cs">
+        <ul props="bp cs unity unreal">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
-            </ul> </section>
+            </ul>
+        <p props="android cpp"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+        <p props="apple">方法调用成功时，返回一个 <xref keyref="UserInfo"/> 对象。方法调用失败时，返回 <codeph><ph keyref="NULL"/></codeph>。</p>
+    </section>
     </refbody>
 </reference>

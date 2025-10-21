@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videolayoutinfo">
     <title><ph keyref="VideoLayoutInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc">合图视频流的详细布局信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">混合视频流的布局配置信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -11,13 +11,13 @@
     public int height;
     public int layoutCount;
     public VideoLayout[] layoutList;
-  }</codeblock>
+}</codeblock>
             <codeblock props="hmos" outputclass="language-arkts"/>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoLayoutInfo: NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraVideoLayoutInfo: NSObject
 @property (assign, nonatomic) NSUInteger width NS_SWIFT_NAME(width);
 @property (assign, nonatomic) NSUInteger height NS_SWIFT_NAME(height);
 @property (assign, nonatomic) NSUInteger layoutCount NS_SWIFT_NAME(layoutCount);
-@property(copy, nonatomic) NSArray&lt;AgoraVideoLayout *> *_Nullable layoutList NS_SWIFT_NAME(layoutList);
+@property(copy, nonatomic) NSArray&lt;AgoraVideoLayout *&gt; *_Nullable layoutList NS_SWIFT_NAME(layoutList);
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp"/>
             <codeblock props="bp" outputclass="language-cpp"/>
@@ -27,32 +27,30 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since">
-            <dlentry props="android apple cpp">
-                <dt>自从</dt>
-                <dd>v4.3.0</dd>
-            </dlentry>
-            </dl>
-        </section>
+            </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry>
-                    <pt>width</pt>
-                    <pd>合图视频流的宽度 (px)。</pd>
-                </plentry>
-                <plentry>
-                    <pt>height</pt>
-                    <pd>合图视频流的高度 (px)。</pd>
-                </plentry>
-            <plentry>
-                    <pt>layoutCount</pt>
-                    <pd>合图视频流中布局信息的数量。</pd>
-                </plentry>
-                <plentry>
-                    <pt>layoutList</pt>
-                    <pd>某一路合图视频流的详细布局信息。详见 <xref keyref="VideoLayout"/>。</pd>
-                </plentry>
+            <plentry props="android">
+                <pt props="android">width</pt>
+                <pd>合图视频流的宽度 (px)。</pd>
+                <pd props="android">混合视频流的宽度（单位:px）。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt props="android">height</pt>
+                <pd>合图视频流的高度 (px)。</pd>
+                <pd props="android">混合视频流的高度（单位:px）。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt props="android">layoutCount</pt>
+                <pd>合图视频流中布局信息的数量。</pd>
+                <pd props="android">混合视频流中布局信息的数量。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt props="android">layoutList</pt>
+                <pd>某一路合图视频流的详细布局信息。详见 <xref keyref="VideoLayout"/>。</pd>
+                <pd props="android">混合视频流的布局详细信息，详见 <xref keyref="VideoLayout"/>。</pd>
+            </plentry>
             </parml> </section>
                 </refbody>
 </reference>

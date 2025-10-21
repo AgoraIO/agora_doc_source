@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onleavechannel">
-    <title><ph keyref="onLeaveChannel" /></title>
-    <shortdesc id="short"><ph id="shortdesc">离开频道回调。</ph></shortdesc>
+    <title><ph keyref="onLeaveChannel"/></title>
+    <shortdesc id="short"><ph id="shortdesc"><xref keyref="onLeaveChannel"/> 回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onLeaveChannel" />
+                <indexterm keyref="onLeaveChannel"/>
             </keywords>
         </metadata>
     </prolog>
@@ -15,46 +15,51 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onLeaveChannel(RtcStats stats) {}</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">onLeaveChannel?:(stats: RtcStats ) =&gt; void;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
-    didLeaveChannelWithStats:(AgoraChannelStats * _Nonnull)stats;</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onLeaveChannel(const RtcStats&amp; stats) {
-    (void)stats;
-    }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didLeaveChannelWithStats:(AgoraChannelStats * _Nonnull)stats NS_SWIFT_NAME(rtcEngine(_:didLeaveChannelWith:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onLeaveChannel(const RtcStats&amp; stats) { (void)stats; }</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = "Agora|Event")
 	void OnLeaveChannel(const FRtcStats&amp; stats);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onLeaveChannel?(connection: RtcConnection, stats: RtcStats): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnLeaveChannel(RtcConnection connection, RtcStats stats) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onLeaveChannel?(connection: RtcConnection, stats: RtcStats): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, RtcStats stats)? onLeaveChannel;</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p>你可以通过该回调获取此次通话的总通话时长、SDK 收发数据的流量等信息。</p>
-        </section>
+            <p>你可以获取通话的总时长以及 SDK 的收发数据流量等信息。
+
+触发时机：当你调用 <codeph>leaveChannel</codeph>、<codeph>leaveChannel(const LeaveChannelOptions&amp; options)</codeph>、<codeph>leaveChannelEx(const RtcConnection&amp; connection)</codeph> 或 <codeph>leaveChannelEx(const RtcConnection&amp; connection, const LeaveChannelOptions&amp; options)</codeph> 离开频道后，SDK 会触发该回调。</p>
+            </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
-            <p props="android cpp apple unity cs unreal">当你成功调用 <xref keyref="leaveChannel"/>、<xref keyref="leaveChannel2"/>、<xref keyref="leaveChannelEx"/> 或 <xref keyref="leaveChannelEx2"/> 离开频道后，SDK 会触发该回调。</p>
-            <p props="hmos flutter rn electron bp">当你成功调用 <xref keyref="leaveChannel2"/> 或 <xref keyref="leaveChannelEx2"/> 离开频道后，SDK 会触发该回调。</p>
+            <p props="android apple cpp cs unity unreal">当你成功调用 <xref keyref="leaveChannel"/>、<xref keyref="leaveChannel2"/>、<xref keyref="leaveChannelEx"/> 或 <xref keyref="leaveChannelEx2"/> 离开频道后，SDK 会触发该回调。</p>
+            <p props="bp electron flutter hmos rn">当你成功调用 <xref keyref="leaveChannel2"/> 或 <xref keyref="leaveChannelEx2"/> 离开频道后，SDK 会触发该回调。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
             <p>无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
-            <title><ph keyref="callback-section-title" /></title>
+            <title><ph keyref="callback-section-title"/></title>
             <parml>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt />
-                <pd />
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="apple">
+                <pt/>
+                <pd/>
             </plentry>
-            <plentry props="unity flutter electron rn cs">
+            <plentry props="cs electron flutter rn unity">
                 <pt>connection</pt>
-                <pd>Connection 信息。详见 <xref keyref="RtcConnection" />。</pd>
+                <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
             </plentry>
             <plentry id="stats">
                 <pt>stats</pt>
-                <pd>通话的统计数据，详见 <xref keyref="RtcStats" />。</pd>
+                <pd props="bp cs electron flutter mac rn unity unreal">通话的统计数据，详见 <xref keyref="RtcStats"/>。</pd>
+            <pd props="android">通话统计信息，详见 <xref keyref="RtcStats"/>。</pd>
+                <pd props="cpp ios">通话统计信息。详见 <xref keyref="RtcStats"/>。</pd>
+                </plentry>
+            <plentry props="ios">
+                <pt props="ios">engine</pt>
+                <pd props="ios">引擎实例。详见 <xref keyref="IRtcEngine"/>。</pd>
             </plentry>
-            </parml> </section>
+        </parml> </section>
     </refbody>
 </reference>

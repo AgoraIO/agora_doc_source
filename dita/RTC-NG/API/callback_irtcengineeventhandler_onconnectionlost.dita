@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onconnectionlost">
-    <title><ph keyref="onConnectionLost" /></title>
-    <shortdesc id="short"><ph id="shortdesc">网络连接中断，且 SDK 无法在 10 秒内连接服务器回调。</ph></shortdesc>
+    <title><ph keyref="onConnectionLost"/></title>
+    <shortdesc id="short"><ph id="shortdesc">连接中断后 10 秒内无法重新连接到声网边缘服务器时触发的回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onConnectionLost" />
+                <indexterm keyref="onConnectionLost"/>
             </keywords>
         </metadata>
     </prolog>
@@ -15,30 +15,38 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onConnectionLost() {}</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">onConnectionLost?:() =&gt; void;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngineConnectionDidLost:(AgoraRtcEngineKit * _Nonnull)engine;</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onConnectionLost()</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngineConnectionDidLost:(AgoraRtcEngineKit * _Nonnull)engine NS_SWIFT_NAME(rtcEngineConnectionDidLost(_:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onConnectionLost() {}</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = "Agora|Event")
 	void OnConnectionLost();</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onConnectionLost?(connection: RtcConnection): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnConnectionLost(RtcConnection connection) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onConnectionLost?(connection: RtcConnection): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection)? onConnectionLost;</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
-            <p>SDK 在调用 <apiname keyref="joinChannel2" /> 后，无论是否加入成功，只要 10 秒和服务器无法连接就会触发该回调。如果 SDK 在断开连接后，20 分钟内还是没能重新加入频道，SDK 会停止尝试重连。</p>
+            <p>该回调在调用 <codeph>joinChannel</codeph> 方法后，若在 10 秒内无法连接到声网边缘服务器时触发，无论是否已加入频道。如果在与声网边缘服务器断开连接后 20 分钟内仍未重新加入频道，SDK 将停止尝试重连。<apiname keyref="joinChannel2"/> 后，无论是否加入成功，只要 10 秒和服务器无法连接就会触发该回调。如果 SDK 在断开连接后，20 分钟内还是没能重新加入频道，SDK 会停止尝试重连。</p>
+            </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p>当 SDK 在连接中断后 10 秒内无法重新连接到声网边缘服务器时触发。</p>
         </section>
-        <section id="parameters" props="ios mac unity electron rn flutter cs">
-            <title><ph keyref="callback-section-title" /></title>
+        <section id="parameters" props="apple cs electron flutter rn unity">
+            <title><ph keyref="callback-section-title"/></title>
             <parml>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt />
-                <pd />
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="apple">
+                <pt/>
+                <pd/>
             </plentry>
-            <plentry props="unity electron rn flutter cs">
+            <plentry props="cs electron flutter rn unity">
                 <pt>connection</pt>
-                <pd>Connection 信息。详见 <xref keyref="RtcConnection" />。</pd>
+                <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
             </plentry>
-            </parml> </section>
+            <plentry props="ios">
+                <pt props="ios">engine</pt>
+                <pd props="ios"><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+            </plentry>
+        </parml> </section>
     </refbody>
 </reference>

@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enableaudiovolumeindication">
-    <title><ph keyref="enableAudioVolumeIndication" /></title>
-    <shortdesc id="short"><ph id="shortdesc">启用用户音量提示。</ph></shortdesc>
+    <title><ph keyref="enableAudioVolumeIndication"/></title>
+    <shortdesc id="short"><ph id="shortdesc">启用音量提示功能。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="enableAudioVolumeIndication" />
+                <indexterm keyref="enableAudioVolumeIndication"/>
             </keywords>
         </metadata>
     </prolog>
@@ -16,10 +16,10 @@
             <codeblock props="android" outputclass="language-java">public abstract int enableAudioVolumeIndication(int interval, int smooth, boolean reportVad);</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">public abstract enableAudioVolumeIndication(interval: number, smooth: number, reportVad: boolean): number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableAudioVolumeIndication:(NSInteger)interval
-                            smooth:(NSInteger)smooth
-                            reportVad:(BOOL)reportVad;</codeblock>
+                             smooth:(NSInteger)smooth
+                          reportVad:(BOOL)reportVad NS_SWIFT_NAME(enableAudioVolumeIndication(_:smooth:reportVad:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int enableAudioVolumeIndication(int interval, int smooth, bool reportVad) = 0;</codeblock>
-            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	int EnableAudioVolumeIndication(int interval, int smooth, bool reportVad);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract enableAudioVolumeIndication(
     interval: number,
@@ -34,14 +34,15 @@
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableAudioVolumeIndication(
     {required int interval, required int smooth, required bool reportVad});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p>该方法允许 SDK 定期向 App 报告本地发流用户和瞬时音量最高的远端用户（最多 3 位）的音量相关信息。</p>
-        </section>
+            <p></p>
+            <note type="attention" props="apple">成功调用该方法后，SDK 会根据设置的时间间隔触发 <xref keyref="onAudioVolumeIndication"/> 回调，并在频道中有用户发布音频流时上报音量信息。</note>
+            </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p>加入频道前后均可调用。</p>
+            <p>该方法可以在加入频道前或后调用。</p>
         </section>        
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -49,38 +50,82 @@
         </section>
         <section id="related" deliveryTarget="details">
             <title>相关回调</title>
-            <p>成功调用该方法、且频道内存在发流用户时，SDK 会按设置的时间间隔触发 <xref keyref="onAudioVolumeIndication" /> 回调。</p>
+            <p>成功调用该方法后，SDK 会根据设置的时间间隔触发 <xref keyref="onAudioVolumeIndication"/> 回调，并在频道中有用户发布音频流时报告音量信息。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
             <plentry id="interval">
                 <pt>interval</pt>
-                <pd>指定音量提示的时间间隔：
+                <pd props="bp cs electron flutter mac rn unity unreal">指定音量提示的时间间隔：
                     <ul>
                     <li>≤ 0: 禁用音量提示功能。</li>
                     <li>&gt; 0: 返回音量提示的间隔，单位为毫秒。建议设置到大于 100 毫秒，不得小于 10 毫秒，否则会收不到 <apiname keyref="onAudioVolumeIndication"/> 回调。</li>
                     </ul></pd>
-            </plentry>
+            <pd props="android">设置两次音量信息上报之间的时间间隔（毫秒）：
+                    <ul>
+                        <li>≤ 0：关闭音量信息上报。</li>
+                        <li>&gt; 0：两次音量信息上报之间的时间间隔（单位为毫秒）。确保该参数值大于 10，否则无法收到 <xref keyref="onAudioVolumeIndication"/> 回调。声网建议设置为大于 100。</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">设置两次音量提示之间的时间间隔（毫秒）：
+                    <ul>
+                        <li>≤ 0：关闭音量提示功能。</li>
+                        <li>&gt; 0：两次音量提示之间的时间间隔（单位为毫秒）。该值必须大于 10，否则无法收到 <xref keyref="onAudioVolumeIndication"/> 回调。声网建议设置为大于 100 的值。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp">设置两次音量提示之间的时间间隔（毫秒）：
+                    <ul>
+                        <li>≤ 0：关闭音量提示。</li>
+                        <li>&gt; 0：两次音量提示之间的时间间隔（毫秒）。确保该参数值大于 10，否则无法收到 <xref keyref="onAudioVolumeIndication"/> 回调。声网建议将该值设置为大于 100。</li>
+                        </ul>
+                    </pd>
+                </plentry>
             <plentry id="smooth">
                 <pt>smooth</pt>
-                <pd>平滑系数，指定音量提示的灵敏度。取值范围为 [0,10]，建议值为 3。数字越大，波动越灵敏；数字越小，波动越平滑。</pd>
-            </plentry>
+                <pd props="bp cs electron flutter mac rn unity unreal">平滑系数，指定音量提示的灵敏度。取值范围为 [0,10]，建议值为 3。数字越大，波动越灵敏；数字越小，波动越平滑。</pd>
+            <pd props="android">设置音量信息的平滑系数，用于控制音量指示器的灵敏度。取值范围为 [0, 10]，推荐值为 3。数值越大，指示器越灵敏。</pd>
+                <pd props="ios">设置音量提示的灵敏度平滑系数。取值范围为 [0, 10]，推荐值为 3。值越大，音量提示越灵敏。</pd>
+                <pd props="cpp">设置音量提示的灵敏度的平滑系数。取值范围为 [0, 10]，推荐值为 3。数值越大，提示越灵敏。</pd>
+                </plentry>
             <plentry id="vad">
                 <pt>reportVad</pt>
-                <pd>
+                <pd props="bp cs electron flutter mac rn unity unreal">
                     <ul>
-                    <li><codeph><ph keyref="true" /></codeph>：开启本地人声检测功能。开启后，<apiname keyref="onAudioVolumeIndication" /> 回调的 <parmname>vad</parmname> 参数会报告是否在本地检测到人声。</li>
-                    <li><codeph><ph keyref="false" /></codeph>：（默认）关闭本地人声检测功能。除引擎自动进行本地人声检测的场景外，<apiname keyref="onAudioVolumeIndication" /> 回调的 <parmname>vad</parmname> 参数不会报告是否在本地检测到人声。</li>
+                    <li><codeph><ph keyref="true"/></codeph>：开启本地人声检测功能。开启后，<apiname keyref="onAudioVolumeIndication"/> 回调的 <parmname>vad</parmname> 参数会报告是否在本地检测到人声。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：（默认）关闭本地人声检测功能。除引擎自动进行本地人声检测的场景外，<apiname keyref="onAudioVolumeIndication"/> 回调的 <parmname>vad</parmname> 参数不会报告是否在本地检测到人声。</li>
                     </ul> </pd>
-            </plentry>
-            </parml> </section>
-        <section id="return_values">
+            <pd props="android"><ul>
+                        <li><codeph><ph keyref="true"/></codeph>：启用本地用户的语音活动检测功能。启用后，<xref keyref="onAudioVolumeIndication"/> 回调中的 <codeph>vad</codeph> 参数会报告本地用户的语音活动状态。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）关闭本地用户的语音活动检测功能。关闭后，<xref keyref="onAudioVolumeIndication"/> 回调中的 <codeph>vad</codeph> 参数不会报告本地用户的语音活动状态，除非引擎自动检测到本地用户的语音活动。</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">是否启用本地用户的语音活动检测（Voice Activity Detection）：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：启用本地用户的语音活动检测。启用后，<xref keyref="onAudioVolumeIndication"/> 回调中的 <codeph>vad</codeph> 参数会报告本地用户的语音活动状态。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）关闭本地用户的语音活动检测。关闭后，除非引擎自动检测本地用户的语音活动，否则 <codeph>vad</codeph> 参数不会报告本地用户的语音活动状态。</li>
+                        </ul>
+                    </pd>
+                <pd props="cpp">是否启用本地用户的语音活动检测功能：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：启用语音活动检测功能。启用后，<xref keyref="onAudioVolumeIndication"/> 回调中的 <codeph>vad</codeph> 参数会报告本地用户的语音活动状态。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）关闭语音活动检测功能。关闭后，<xref keyref="onAudioVolumeIndication"/> 回调中的 <codeph>vad</codeph> 参数不会报告本地用户的语音活动状态，除非引擎自动检测到本地用户的语音活动。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+        </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul props="native unreal bp electron unity rn cs">
+        <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
+        <ul props="bp cs electron rn unity unreal">
             <li>0：方法调用成功。</li>
             <li>&lt; 0：方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
-            </ul> </section>
+            </ul>
+        <p props="native"><ul>
+                        <li>0：方法调用成功。</li>
+                        <li>&lt; 0：方法调用失败。</li>
+                        </ul>
+                    </p>
+    </section>
         </refbody>
 </reference>

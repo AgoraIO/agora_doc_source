@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_geterrordescription">
-    <title><ph keyref="getErrorDescription" /></title>
-    <shortdesc id="short"><ph id="shortdesc">获取警告或错误描述。</ph></shortdesc>
+    <title><ph keyref="getErrorDescription"/></title>
+    <shortdesc id="short"><ph id="shortdesc">获取警告或错误码对应的描述信息。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="getErrorDescription" />
+                <indexterm keyref="getErrorDescription"/>
             </keywords>
         </metadata>
     </prolog>
@@ -17,28 +17,40 @@
             <codeblock props="hmos" outputclass="language-arkts">public static getErrorDescription(error: number): string {
   return RtcEngineImpl.getErrorDescriptionInternal(error);
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">+ (NSString* _Nonnull)getErrorDescription: (NSInteger)error;</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">+ (NSString* _Nonnull)getErrorDescription:(NSInteger)error NS_SWIFT_NAME(getErrorDescription(_:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual const char* getErrorDescription(int code) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IRtcEngine")
 	FString GetErrorDescription(int code);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract getErrorDescription(code: number): string;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract string GetErrorDescription(int code);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract getErrorDescription(code: number): string;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;String&gt; getErrorDescription(int code);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry>
-                <pt props="cpp unreal bp unity flutter electron rn cs">code</pt>
-                <pt props="android hmos ios mac">error</pt>
+                <pt props="bp cpp cs electron flutter rn unity unreal">code</pt>
+                <pt props="android apple hmos">error</pt>
                 <pd>SDK 报告的错误码。</pd>
             </plentry>
-            </parml> </section>
-        <section id="return_values">
+            <plentry props="android cpp ios">
+                <pt props="android cpp ios">error</pt>
+                <pd props="android cpp ios">声网 SDK 报告的错误码。</pd>
+                </plentry>
+        </parml> </section>
+        <section id="return_values" props="native">
             <title>返回值</title>
-            <p>具体的错误描述。</p>
-        </section>
+        <p>具体的错误描述。</p>
+        <p props="cpp"><ul>
+                        <li>方法调用成功时，返回错误码对应的描述信息。</li>
+                        <li>方法调用失败，返回空字符串。</li>
+                        </ul>
+                    </p>
+        <p props="apple">方法调用成功，返回具体的错误描述信息。</p>
+        <p props="android">方法调用成功时，返回错误码对应的描述信息。
+方法调用失败，返回空字符串。</p>
+    </section>
     </refbody>
 </reference>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setsimulcastconfig">
     <title><ph keyref="setSimulcastConfig"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置多质量层级视频流配置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">设置不同质量层级的视频流配置。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -25,14 +25,12 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
-            <dlentry props="native">
+            <dlentry props="android cpp">
                 <dt>自从：</dt>
-                <dd props="native">自 v4.6.0 版本新增。</dd>
-                </dlentry>
+                <dd props="android cpp">自 v4.6.0 版本新增。</dd>
+            </dlentry>
             </dl>
-            <p>你可以调用该方法针对同一个视频源设置多路不同分辨率的视频流。
-
-配置多质量层级视频流后，订阅端可以调用 <xref keyref="setRemoteVideoStreamType"/> 选择接收对应层级的视频流。
+            <p>你可以调用该方法为同一个视频源设置不同分辨率的视频流。订阅端可以调用 <xref keyref="setRemoteVideoStreamType"/> 选择接收的视频流层级。主播最多可以发布四路不同质量层级的视频流：一路主流（最高分辨率）和三路附加流。<xref keyref="setRemoteVideoStreamType"/> 选择接收对应层级的视频流。
 
 该方法支持主播同时发送最多四个层级的视频流：一个主流（最高分辨率）和三个额外的不同质量层级的视频流。</p>
             </section>
@@ -44,13 +42,17 @@
             <title>参数</title>
             <parml>
             <plentry props="native">
-                <pt props="android cpp">simulcastConfig</pt>
-                <pt props="apple">simulcastConfig</pt>
+                <pt props="android apple cpp">simulcastConfig</pt>
                 <pd props="android">不同质量层级的视频流配置。详见 <xref keyref="SimulcastConfig"/>。</pd>
                 <pd props="apple">多质量层级视频流的配置。该配置包含七个层级，从 <ph keyref="STREAM_LAYER_1"/> 到 <ph keyref="STREAM_LOW"/>，最多可同时启用三个层级。详见 <xref keyref="SimulcastConfig"/>。</pd>
                 <pd props="cpp">多质量层级视频流配置，包含从 <ph keyref="STREAM_LAYER_1"/> 到 <ph keyref="STREAM_LOW"/> 的七个层级，最多可同时启用三个层级。详见 <xref keyref="SimulcastConfig"/>。</pd>
             </plentry>
-            </parml> </section>
+            <plentry props="android cpp">
+                <pt props="android cpp">simulcastConfig</pt>
+                <pd props="android">不同质量层级的视频流配置。详见 <codeph>SimulcastConfig</codeph>。</pd>
+                <pd props="cpp">视频流分层配置，包含从 <ph keyref="STREAM_LAYER_1"/> 到 <ph keyref="STREAM_LOW"/> 的七个层级，最多可同时启用三个层级。详见 <codeph>SimulcastConfig</codeph>。</pd>
+            </plentry>
+        </parml> </section>
         <section id="return_values" props="bp cs electron flutter native rn unity unreal">
             <title><ph keyref="return-section-title"/></title>
         <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
@@ -63,6 +65,6 @@
                         <li>&lt; 0：方法调用失败。</li>
                         </ul>
                     </p>
-    </section>
+        </section>
         </refbody>
 </reference>

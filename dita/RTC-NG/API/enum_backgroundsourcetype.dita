@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_backgroundsourcetype">
     <title><ph keyref="BACKGROUND_SOURCE_TYPE"/></title>
-    <shortdesc id="short"><ph id="shortdesc">自定义的背景。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">自定义背景类型。</ph></shortdesc>
     <refbody>
         <section id="parameters">
             <title>枚举值</title>
             <parml>
-            <plentry props="native unity flutter">
+            <plentry props="flutter native unity">
                 <pt><ph keyref="BACKGROUND_NONE"/></pt>
                 <pd>0: 将背景处理为 Alpha 数据，不作替换，仅分割人像和背景。设置后，你可以调用 <xref keyref="startLocalVideoTranscoder"/>，实现人像画中画的效果。</pd>
             </plentry>
@@ -26,6 +26,26 @@
             <plentry>
                 <pt><ph keyref="BACKGROUND_VIDEO"/></pt>
                 <pd>4: 背景为 MP4、AVI、MKV、FLV 等格式的本地视频。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraVirtualBackgroundNone"/></pt>
+                <pd props="apple">（0）：将背景处理为透明数据而不替换，仅分离人物与背景。设置该值后，可调用 <xref keyref="startLocalVideoTranscoder"/> 实现画中画效果。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraVirtualBackgroundColor"/></pt>
+                <pd props="apple">（1）：（默认）背景为纯色图像。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraVirtualBackgroundImg"/></pt>
+                <pd props="apple">（2）：背景为 PNG 或 JPG 格式的图像。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraVirtualBackgroundBlur"/></pt>
+                <pd props="apple">（3）：背景为原始背景的模糊版本。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraVirtualBackgroundVideo"/></pt>
+                <pd props="apple">（4）：背景为本地视频，支持 MP4、AVI、MKV、FLV 等格式。</pd>
             </plentry>
             </parml> </section>
     </refbody>

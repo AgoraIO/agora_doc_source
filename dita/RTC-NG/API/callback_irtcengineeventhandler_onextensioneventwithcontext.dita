@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onextensioneventwithcontext">
-    <title><ph keyref="onExtensionEventWithContext" /></title>
-    <shortdesc id="short"><ph id="shortdesc">插件事件回调。</ph></shortdesc>
+    <title><ph keyref="onExtensionEventWithContext"/></title>
+    <shortdesc id="short"><ph id="shortdesc">扩展运行期间的事件回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onExtensionEventWithContext" />
+                <indexterm keyref="onExtensionEventWithContext"/>
             </keywords>
         </metadata>
     </prolog>
@@ -14,16 +14,12 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">default void onEventWithContext(ExtensionContext extContext, String key, String value){};</codeblock>
-            <codeblock props="hmos" outputclass="language-arkts"></codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)onEventWithContext:(AgoraExtensionContext * _Nonnull)context
             key:(NSString * __nullable)key
           value:(NSString * __nullable)value NS_SWIFT_NAME(onEventWithContext(_:key:value:));</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onExtensionEventWithContext(const ExtensionContext &amp;context, const char* key, const char* value) {
-    (void)context;
-    (void)key;
-    (void)value;
-  }</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = &quot;Agora|Event&quot;)
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onExtensionEventWithContext(const ExtensionContext &amp;context, const char* key, const char* value)</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintNativeEvent, Category = "Agora|Event")
 	void OnExtensionEventWithContext(const FExtensionContext&amp; context, const FString&amp; key, const FString&amp; value);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onExtensionEventWithContext?(
     context: ExtensionContext,
@@ -38,26 +34,38 @@
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(ExtensionContext context, String key, String value)?
     onExtensionEventWithContext;</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
-            <p>为监听插件事件，你需要注册该回调。</p>
-        </section>
+            <p>你需要注册该回调以监听扩展运行期间的事件。</p>
+            </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry conkeyref="onExtensionErrorWithContext/context">
-                <pt />
-                <pd />
+                <pt/>
+                <pd/>
             </plentry>
             <plentry conkeyref="setExtensionProperty/key">
-                <pt />
-                <pd />
+                <pt/>
+                <pd/>
             </plentry>
             <plentry conkeyref="setExtensionProperty/value">
-                <pt />
-                <pd />
+                <pt/>
+                <pd/>
             </plentry>
-            </parml> </section>
+            <plentry props="cpp">
+                <pt props="cpp">context</pt>
+                <pd props="cpp">扩展的上下文信息。详见 <xref keyref="ExtensionContext"/>。</pd>
+            </plentry>
+            <plentry props="cpp">
+                <pt props="cpp">key</pt>
+                <pd props="cpp">扩展事件的键。</pd>
+            </plentry>
+            <plentry props="cpp">
+                <pt props="cpp">value</pt>
+                <pd props="cpp">扩展事件键对应的值。</pd>
+            </plentry>
+        </parml> </section>
     </refbody>
 </reference>

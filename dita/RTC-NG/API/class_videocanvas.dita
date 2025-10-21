@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videocanvas">
     <title><ph keyref="VideoCanvas"/></title>
@@ -54,7 +54,7 @@
   public static readonly VIDEO_MIRROR_MODE_ENABLED = 1;
   public static readonly VIDEO_MIRROR_MODE_DISABLED = 2;
 
-  public xcomponentId:string = &#x27;&#x27;;
+  public xcomponentId:string = '';
   public uid:number = 0;
   public renderMode:number = VideoCanvas.RENDER_MODE_HIDDEN;
   public mirrorMode:number = 0;
@@ -63,7 +63,7 @@
     this.xcomponentId = componentId;
   }
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcVideoCanvas : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraRtcVideoCanvas : NSObject
 @property(assign, nonatomic) NSUInteger uid;
 @property(assign, nonatomic) NSUInteger subviewUid;
 @property(strong, nonatomic) VIEW_CLASS *_Nullable view;
@@ -112,30 +112,30 @@ struct FVideoCanvas
 {
 	GENERATED_BODY()
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|VideoCanvas")
 	int64 uid = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|VideoCanvas")
 	int64 subviewUid = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|VideoCanvas")
 	UImage* view = nullptr;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|VideoCanvas")
 	int64 backgroundColor = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|VideoCanvas")
 	ERENDER_MODE_TYPE renderMode = ERENDER_MODE_TYPE::RENDER_MODE_HIDDEN;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|VideoCanvas")
 	EVIDEO_MIRROR_MODE_TYPE mirrorMode = EVIDEO_MIRROR_MODE_TYPE::VIDEO_MIRROR_MODE_AUTO;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|VideoCanvas")
 	EVIDEO_VIEW_SETUP_MODE setupMode = EVIDEO_VIEW_SETUP_MODE::VIDEO_VIEW_SETUP_REPLACE;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|VideoCanvas")
 	EVIDEO_SOURCE_TYPE sourceType = EVIDEO_SOURCE_TYPE::VIDEO_SOURCE_CAMERA_PRIMARY;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|VideoCanvas")
 	int mediaPlayerId = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|VideoCanvas")
 	FRectangle cropArea;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|VideoCanvas")
 	bool enableAlphaMask = false;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoCanvas&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|VideoCanvas")
 	EVIDEO_MODULE_POSITION position = EVIDEO_MODULE_POSITION::POSITION_POST_CAPTURER;
 
 	FVideoCanvas(){}
@@ -232,40 +232,40 @@ class VideoCanvas {
       this.enableAlphaMask,
       this.position});
 
-  @JsonKey(name: &#x27;uid&#x27;)
+  @JsonKey(name: 'uid')
   final int? uid;
 
-  @JsonKey(name: &#x27;subviewUid&#x27;)
+  @JsonKey(name: 'subviewUid')
   final int? subviewUid;
 
-  @JsonKey(name: &#x27;view&#x27;)
+  @JsonKey(name: 'view')
   final int? view;
 
-  @JsonKey(name: &#x27;backgroundColor&#x27;)
+  @JsonKey(name: 'backgroundColor')
   final int? backgroundColor;
 
-  @JsonKey(name: &#x27;renderMode&#x27;)
+  @JsonKey(name: 'renderMode')
   final RenderModeType? renderMode;
 
-  @JsonKey(name: &#x27;mirrorMode&#x27;)
+  @JsonKey(name: 'mirrorMode')
   final VideoMirrorModeType? mirrorMode;
 
-  @JsonKey(name: &#x27;setupMode&#x27;)
+  @JsonKey(name: 'setupMode')
   final VideoViewSetupMode? setupMode;
 
-  @JsonKey(name: &#x27;sourceType&#x27;)
+  @JsonKey(name: 'sourceType')
   final VideoSourceType? sourceType;
 
-  @JsonKey(name: &#x27;mediaPlayerId&#x27;)
+  @JsonKey(name: 'mediaPlayerId')
   final int? mediaPlayerId;
 
-  @JsonKey(name: &#x27;cropArea&#x27;)
+  @JsonKey(name: 'cropArea')
   final Rectangle? cropArea;
 
-  @JsonKey(name: &#x27;enableAlphaMask&#x27;)
+  @JsonKey(name: 'enableAlphaMask')
   final bool? enableAlphaMask;
 
-  @JsonKey(name: &#x27;position&#x27;)
+  @JsonKey(name: 'position')
   final VideoModulePosition? position;
 
   factory VideoCanvas.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
@@ -273,51 +273,53 @@ class VideoCanvas {
 
   Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoCanvasToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc"> </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry>
-                <pt>uid</pt>
-                <pd>发布视频源的用户 ID。</pd>
-                <pd props="cpp unity rn flutter">对于 Android 和 iOS 平台，当视频源为合图视频流 (<apiname keyref="VIDEO_SOURCE_TRANSCODED"/>) 时，该参数表示发布合图视频流的用户 ID。
+            <plentry props="ios">
+                <pt props="ios">uid</pt>
+                <pd props="ios">发布视频源的用户 ID。</pd>
+                <pd props="cpp flutter rn unity">对于 Android 和 iOS 平台，当视频源为合图视频流 (<apiname keyref="VIDEO_SOURCE_TRANSCODED"/>) 时，该参数表示发布合图视频流的用户 ID。
                       <note type="attention" props="rn">本地用户 <parmname>uid</parmname> 默认为 0。如果你想使用自定义的 <parmname>uid</parmname> 渲染本地视图，你还需要同时传入 <parmname>sourceType</parmname>。</note>
                 </pd>
                 <pd props="android ios">当视频源为合图视频流 (<apiname keyref="VIDEO_SOURCE_TRANSCODED"/>) 时，该参数表示发布合图视频流的用户 ID。</pd>
-              </plentry>
-                <plentry props="android cpp apple framework">
-                    <pt>subviewUid</pt>
-                    <pd props="android ios cpp unreal bp unity rn flutter">发布某一路合图子视频流的用户 ID。</pd>
-                    <pd props="mac electron">预留参数。
-                <note type="attention" props="cpp unreal bp unity flutter">该参数仅适用于 Android 和 iOS 平台。</note></pd>
-                </plentry>
-                <plentry>
-                    <pt>view</pt>
-                    <pd props="native flutter unity cs electron rn">视频显示窗口。<ph props="android">必须为一个 <xref keyref="SurfaceView-link"/> 或 <xref keyref="TextureView-link"/> 对象。</ph>
-                      <note type="attention" props="native flutter unity cs rn">在一个 <apiname keyref="VideoCanvas"/> 中，你只能选择 <parmname>view</parmname> 或 <parmname>surfaceTexture</parmname> 其中一个进行设置，如果同时设置，只有 <parmname>view</parmname> 中的设置会生效。</note>
+            </plentry>
+            <plentry props="android apple cpp framework ios">
+                <pt props="ios">subviewUid</pt>
+                <pd props="android bp cpp flutter ios rn unity unreal">发布某一路合图子视频流的用户 ID。</pd>
+                <pd props="electron mac">预留参数。
+                <note type="attention" props="bp cpp flutter unity unreal">该参数仅适用于 Android 和 iOS 平台。</note></pd>
+                <pd props="ios">视频显示窗口。</pd>
+            </plentry>
+            <plentry props="ios">
+                <pt props="ios">view</pt>
+                <pd props="cs electron flutter ios native rn unity">视频显示窗口。<ph props="android">必须为一个 <xref keyref="SurfaceView-link"/> 或 <xref keyref="TextureView-link"/> 对象。</ph>
+                      <note type="attention" props="cs flutter native rn unity">在一个 <apiname keyref="VideoCanvas"/> 中，你只能选择 <parmname>view</parmname> 或 <parmname>surfaceTexture</parmname> 其中一个进行设置，如果同时设置，只有 <parmname>view</parmname> 中的设置会生效。</note>
                     </pd>
-                    <pd props="unreal bp">视频图像。你需要定义 UImage 类型的指针，并传入该参数，示例代码如下：
-                        <codeblock props="unreal bp" outputclass="language-cpp">agora::rtc::VideoCanvas videoCanvas;
+                <pd props="bp unreal">视频图像。你需要定义 UImage 类型的指针，并传入该参数，示例代码如下：
+                        <codeblock props="bp unreal" outputclass="language-cpp">agora::rtc::VideoCanvas videoCanvas;
     UImage* LocalVideo;
     videoCanvas.view = LocalVideo;</codeblock></pd>
-                </plentry>
-                <plentry props="android hmos">
-                    <pt>surfaceTexture</pt>
-                    <pd>提供视频图像的容器，当你使用该成员时，需要自行实现 OPENGL 中的纹理绘制。详见 <xref keyref="SurfaceTexture-link"/>。
+            </plentry>
+            <plentry props="android hmos">
+                <pt>surfaceTexture</pt>
+                <pd>提供视频图像的容器，当你使用该成员时，需要自行实现 OPENGL 中的纹理绘制。详见 <xref keyref="SurfaceTexture-link"/>。
                       <note type="attention">在一个 <apiname keyref="VideoCanvas"/> 中，你只能选择 <parmname>view</parmname> 或 <parmname>surfaceTexture</parmname> 其中一个进行设置，如果同时设置，只有 <parmname>view</parmname> 中的设置会生效。</note></pd>
-                </plentry>
-                <plentry props="native flutter unity cs electron rn bp">
-                    <pt>renderMode</pt>
-                    <pd props="ios mac cpp unity electron rn flutter cs bp">视频渲染模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</pd>
-                    <pd props="android hmos"><ul conkeyref="setLocalRenderMode2/rendermodetype"><li/></ul></pd>
-                </plentry>
-                <plentry props="native flutter unity cs electron rn bp">
-                    <pt>mirrorMode</pt>
+            </plentry>
+            <plentry props="bp cs electron flutter ios native rn unity">
+                <pt props="ios">renderMode</pt>
+                <pd props="apple bp cpp cs electron flutter rn unity">视频渲染模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</pd>
+                <pd props="android hmos"><ul conkeyref="setLocalRenderMode2/rendermodetype"><li/></ul></pd>
+                <pd props="ios">视频的渲染模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</pd>
+            </plentry>
+            <plentry props="bp cs electron flutter ios native rn unity">
+                <pt props="ios">mirrorMode</pt>
                 <pd>
-                        <p props="ios mac cpp unity electron rn flutter cs bp">视图镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE" />。</p>
-                        <note conkeyref="setLocalRenderMode2/mirror" props="unreal bp"/>
+                        <p props="apple bp cpp cs electron flutter rn unity">视图镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
+                        <note conkeyref="setLocalRenderMode2/mirror" props="bp unreal"/>
                         <p props="android hmos">
                             <ul conkeyref="setLocalRenderMode2/videomirrormodetype">
                                 <li/>
@@ -330,14 +332,15 @@ class VideoCanvas {
                             </ul>
                         </note>
                     </pd>
+                <pd props="ios">视图的镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</pd>
             </plentry>
-            <plentry id="sourcetype">
-                <pt>sourceType</pt>
-                <pd>视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
-            </plentry>
-            <plentry props="android cpp apple  flutter unity cs electron rn bp">
-                <pt>setupMode</pt>
-                <pd props="ios mac cpp flutter unity cs electron rn bp">视图设置模式。详见 <xref keyref="VIDEO_VIEW_SETUP_MODE"/>。</pd>
+            <plentry id="sourcetype" props="ios">
+                <pt props="ios">sourceType</pt>
+                <pd props="ios">视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+            <plentry props="android apple bp cpp cs electron flutter ios rn unity">
+                <pt props="ios">setupMode</pt>
+                <pd props="apple bp cpp cs electron flutter rn unity">视图设置模式。详见 <xref keyref="VIDEO_VIEW_SETUP_MODE"/>。</pd>
                 <pd props="android hmos">视图设置模式：
                 <ul>
                     <li><ph keyref="VIDEO_VIEW_SETUP_REPLACE"/> (0): (默认) 替换一个视图。</li>
@@ -345,51 +348,62 @@ class VideoCanvas {
                     <li><ph keyref="VIDEO_VIEW_SETUP_REMOVE"/> (2): 删除一个视图。
                     <note type="attention">当你不再需要使用某个视图时，建议及时设置 <parmname>setupMode</parmname> 为 <ph keyref="VIDEO_VIEW_SETUP_REMOVE"/> 删除视图，否则可能会导致渲染资源泄漏。</note></li>
                 </ul></pd>
+                <pd props="ios">视图的设置模式，详见 <xref keyref="VIDEO_VIEW_SETUP_MODE"/>。</pd>
             </plentry>
-            <plentry props="android cpp apple unreal flutter unity cs electron rn">
-                <pt>mediaPlayerId</pt>
+            <plentry props="android apple cpp cs electron flutter ios rn unity unreal">
+                <pt props="ios">mediaPlayerId</pt>
                 <pd>媒体播放器 ID。可通过 <xref keyref="getMediaPlayerId"/> 获取。</pd>
                 <pd>当 <parmname>sourceType</parmname> 为 <apiname keyref="VIDEO_SOURCE_MEDIA_PLAYER"/> 时，此参数为必填项。</pd>
+                <pd props="ios">媒体播放器的 ID。可通过调用 <xref keyref="getMediaPlayerId"/> 获取设备 ID。</pd>
             </plentry>
             <plentry props="android">
-              <pt>rect</pt>
-              <pd>（可选）视频帧的展示区域。详见 <xref keyref="rect-link"/>。其中，<parmname>width</parmname> 和 <parmname>height</parmname> 表示该区域的视频像素宽度和高度。默认值为空值 (宽或高为 0)，表示展示实际分辨率的视频帧。</pd>
-          </plentry>
-          <plentry props="cpp flutter unity cs electron rn bp">
-                <pt>cropArea</pt>
+                <pt>rect</pt>
+                <pd>（可选）视频帧的展示区域。详见 <xref keyref="rect-link"/>。其中，<parmname>width</parmname> 和 <parmname>height</parmname> 表示该区域的视频像素宽度和高度。默认值为空值 (宽或高为 0)，表示展示实际分辨率的视频帧。</pd>
+            </plentry>
+            <plentry props="bp cpp cs electron flutter ios rn unity">
+                <pt props="ios">cropArea</pt>
                 <pd>（可选）视频帧的展示区域，详见 <xref keyref="Rectangle"/>。其中，<parmname>width</parmname> 和 <parmname>height</parmname> 表示该区域的视频像素宽度和高度。默认值为空值 (宽或高为 0)，表示展示实际分辨率的视频帧。</pd>
-          </plentry>
-          <plentry props="apple">
-            <pt>cropArea</pt>
-            <pd>（可选）视频帧的展示区域，详见 <xref keyref="rect-link"/>。其中，<parmname>width</parmname> 和 <parmname>height</parmname> 表示该区域的视频像素宽度和高度。默认值为空值 (宽或高为 0)，表示展示实际分辨率的视频帧。</pd>
-          </plentry>
-          <plentry props="android cpp apple framework">
-              <pt>backgroundColor</pt>
-              <pd>视频画布的背景颜色，格式为 RGBA。默认值为 0x00000000，代表黑色。
+                <pd props="ios">（可选）视频帧的显示区域。<codeph>width</codeph> 和 <codeph>height</codeph> 表示该区域的视频像素宽度和高度。默认值为 <codeph><ph keyref="NULL"/></codeph>（宽或高为 0），表示显示视频帧的实际分辨率。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt>cropArea</pt>
+                <pd>（可选）视频帧的展示区域，详见 <xref keyref="rect-link"/>。其中，<parmname>width</parmname> 和 <parmname>height</parmname> 表示该区域的视频像素宽度和高度。默认值为空值 (宽或高为 0)，表示展示实际分辨率的视频帧。</pd>
+            </plentry>
+            <plentry props="android apple cpp framework ios">
+                <pt props="ios">backgroundColor</pt>
+                <pd>视频画布的背景颜色，格式为 RGBA。默认值为 0x00000000，代表黑色。
                 <note type="attention" props="android"><ul><li>如果你使用 Kotlin 开发，设置 <codeph>0xFFFFFFFF</codeph> 如果编译报错，请使用 <codeph>(0xFFFFFFFF).toInt()</codeph> 转换，或使用 <codeph>android.graphics.Color.parseColor("#FFFFFFFF")</codeph>。</li>
                 <li>目前 <codeph>backgroundColor</codeph> 属性中的 RGBA 格式暂不支持设置 Alpha 通道的值。</li></ul></note>
               </pd>
-          </plentry>
-          <plentry props="android cpp apple  unreal bp unity electron flutter cs">
-                    <pt>enableAlphaMask</pt>
-                    <pd props="native unreal bp rn unity electron flutter">（可选）是否开启 Alpha 遮罩渲染：
+                <pd props="ios">视频画布的背景颜色，使用 RGBA 格式。默认值为 0x00000000，表示黑色。</pd>
+            </plentry>
+            <plentry props="android apple bp cpp cs electron flutter ios unity unreal">
+                <pt props="ios">enableAlphaMask</pt>
+                <pd props="bp electron flutter native rn unity unreal">（可选）是否开启 Alpha 遮罩渲染：
                         <ul>
                         <li><codeph><ph keyref="true"/></codeph>：开启 Alpha 遮罩渲染。</li>
                         <li><codeph><ph keyref="false"/></codeph>：（默认）关闭 Alpha 遮罩渲染。</li>
                         </ul>
                         <p>Alpha 遮罩渲染可以创建具有透明效果的图像，还可以提取视频中的人像。与其他方法结合使用时，可以实现人像画中画、添加水印等效果。</p>
-                        <note type="attention" props="cpp unreal bp mac unity electron flutter">
+                        <note type="attention" props="bp cpp electron flutter mac unity unreal">
                         <ul>
                             <li>仅当发送端开启 Alpha 传输功能时，接收端才能渲染 Alpha 通道的信息。</li>
                             <li>如需开启 Alpha 传输功能，请<xref keyref="ticket-link"/>。</li>
                         </ul>
                         </note> </pd>
-                    <pd props="cs">预留。</pd>
-                </plentry>
-                <plentry props="android cpp apple framework">
-                    <pt>position</pt>
-                    <pd>视频帧在视频链路中的位置。详见 <xref keyref="VIDEO_MODULE_POSITION"/>。</pd>
-                </plentry>
+                <pd props="cs">预留。</pd>
+                <pd props="ios">是否启用 Alpha Mask 渲染：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：启用 Alpha Mask 渲染。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）不启用 Alpha Mask 渲染。 Alpha Mask 渲染可创建透明效果图像并从视频中提取人像。结合其他方法可实现画中画、人像抠图、水印等效果。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            <plentry props="android apple cpp framework ios">
+                <pt props="ios">position</pt>
+                <pd>视频帧在视频链路中的位置。详见 <xref keyref="VIDEO_MODULE_POSITION"/>。</pd>
+                <pd props="ios">视频帧在视频链路中的观测位置，详见 <xref keyref="VIDEO_MODULE_POSITION"/>。</pd>
+            </plentry>
             </parml> </section>
     </refbody>
 </reference>

@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_advancedaudiooptions">
-  <title> <ph keyref="AdvancedAudioOptions" /> </title>
-  <shortdesc id="short"> <ph id="shortdesc">音频的高级选项。</ph> </shortdesc>
+  <title> <ph keyref="AdvancedAudioOptions"/> </title>
+  <shortdesc id="short"> <ph id="shortdesc">配置高级音频选项。</ph> </shortdesc>
   <refbody>
     <section id="prototype">
       <p outputclass="codeblock">
@@ -28,24 +28,21 @@
     audioProcessingChannels = AudioProcessingChannelsEnum.AGORA_AUDIO_MONO_PROCESSING;
   }
 }</codeblock>
-      <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAdvancedAudioOptions: NSObject
+      <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraAdvancedAudioOptions: NSObject
 @property(assign, nonatomic) AgoraAudioProcessChannels audioProcessingChannels;
 @end</codeblock>
       <codeblock props="cpp unreal" outputclass="language-cpp">struct AdvancedAudioOptions {
-   Optional&lt;int&gt; audioProcessingChannels;
-
-   AdvancedAudioOptions() {}
-  ~AdvancedAudioOptions() {}
+    Optional&lt;int&gt; audioProcessingChannels;
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FAdvancedAudioOptions
 {
 	GENERATED_BODY()
 public:
-		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AdvancedAudioOptions&quot;)
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|AdvancedAudioOptions")
 	bool audioProcessingChannels_SetValue = false;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AdvancedAudioOptions&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|AdvancedAudioOptions")
 	int audioProcessingChannels = 0;
 	FAdvancedAudioOptions(){}
 	FAdvancedAudioOptions(const agora::rtc::AdvancedAudioOptions &amp; AgoraData){
@@ -81,26 +78,33 @@ public:
       _$AdvancedAudioOptionsFromJson(json);
   Map&lt;String, dynamic&gt; toJson() =&gt; _$AdvancedAudioOptionsToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
     </section>
     <section id="parameters">
-      <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" />
+      <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/>
       </title>
       <parml>
-      <plentry>
-        <pt>audioProcessingChannels</pt>
-        <pd props="android ios mac unreal flutter unity cs electron rn">音频前处理的声道数。详见 <xref keyref="AUDIO_PROCESSING_CHANNELS" />。</pd>
-        <pd props="bp">音频前处理的声道数：<ul>
+            <plentry props="cpp ios">
+                <pt props="cpp ios">audioProcessingChannels</pt>
+                <pd props="android apple cs electron flutter rn unity unreal">音频前处理的声道数。详见 <xref keyref="AUDIO_PROCESSING_CHANNELS"/>。</pd>
+                <pd props="bp">音频前处理的声道数：<ul>
             <li><ph keyref="AUDIO_PROCESSING_MONO"/>(1)：（默认）单声道。</li>
             <li><ph keyref="AUDIO_PROCESSING_STEREO"/>(2)：双声道。</li></ul>
         </pd>
-        <pd props="cpp">音频前处理的声道数:
+                <pd props="cpp">音频前处理的声道数:
             <ul>
               <li>1: 单声道</li>
               <li>2: 双声道</li>
             </ul>
         </pd>
-      </plentry>
-      </parml> </section>
+                <pd props="cpp">用于音频预处理的声道数：
+                    <ul>
+                        <li>1：单声道。</li>
+                        <li>2：立体声。</li>
+                        </ul>
+                    </pd>
+                <pd props="ios">用于音频预处理的通道数。详见 <xref keyref="AUDIO_PROCESSING_CHANNELS"/>。</pd>
+            </plentry>
+            </parml> </section>
   </refbody>
 </reference>

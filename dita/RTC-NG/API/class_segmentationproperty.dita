@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_segmentationproperty">
-    <title><ph keyref="SegmentationProperty" /></title>
-    <shortdesc id="short"><ph id="shortdesc">背景图像的处理属性。</ph></shortdesc>
+    <title><ph keyref="SegmentationProperty"/></title>
+    <shortdesc id="short"><ph id="shortdesc">背景图像处理属性。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -115,13 +115,14 @@ public:
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry>
-                <pt>modelType</pt>
+            <plentry props="ios">
+                <pt props="ios">modelType</pt>
                 <pd><ph>进行背景处理的算法。</ph><ph props="apple bp cpp cs electron flutter rn unity unreal">详见 <xref keyref="SEG_MODEL_TYPE"/>。</ph>
                     <ul props="android hmos">
                     <li><ph keyref="SEG_MODEL_AI"/>(1): (默认) 适用于所有场景下的背景处理算法。</li>
                     <li><ph keyref="SEG_MODEL_GREEN"/>(2): 仅适用于绿幕背景下的背景处理算法。</li>
                     </ul></pd>
+                <pd props="ios">用于背景处理的算法类型。详见 <xref keyref="SEG_MODEL_TYPE"/>。</pd>
             </plentry>
             <plentry props="hide">
                 <pt>preferVelocity</pt>
@@ -132,14 +133,15 @@ public:
                     </ul>
                     <note type="note">该参数仅在 <parmname>modelType</parmname> 设置为 <apiname keyref="SEG_MODEL_GREEN"/> 时生效。</note></pd>
             </plentry>
-            <plentry>
-                <pt>greenCapacity</pt>
+            <plentry props="ios">
+                <pt props="ios">greenCapacity</pt>
                 <pd>
                     <p>对画面中背景颜色识别的精度范围。取值范围为 [0,1]，默认值为 0.5。取值越大，代表可识别的纯色范围越大。当该参数取值过大时，人像边缘和人像范围内的纯色也会被识别。建议你根据实际效果动态调整该参数的值。</p>
                     <note type="note">该参数仅在 <parmname>modelType</parmname> 设置为 <apiname keyref="SEG_MODEL_GREEN"/> 时生效。</note> </pd>
+                <pd props="ios">图像中背景颜色识别的精度范围。取值范围为 [0,1]，默认值为 0.5。值越大，可识别的纯色范围越广。当该值过大时，人物边缘及人物区域中的纯色也可能被识别为背景。声网建议根据实际效果动态调整该参数的值。仅当 <codeph>modelType</codeph> 设置为 <ph keyref="SEG_MODEL_GREEN"/> 时，该参数才生效。</pd>
             </plentry>
-            <plentry props="native">
-                <pt props="native">screenColorType</pt>
+            <plentry props="ios native">
+                <pt props="ios native">screenColorType</pt>
                 <pd props="cpp">屏幕颜色类型。详见 <xref keyref="SCREEN_COLOR_TYPE"/>。</pd>
                 <pd props="apple">屏幕颜色类型，详见 <xref keyref="SCREEN_COLOR_TYPE"/>。</pd>
                 <pd props="android">屏幕颜色类型：
@@ -149,6 +151,7 @@ public:
                     <li><ph keyref="SCREEN_COLOR_BLUE"/>(2): 蓝色。</li>
                     </ul>
                 </pd>
+                <pd props="ios">屏幕颜色。详见 <xref keyref="SCREEN_COLOR_TYPE"/>。</pd>
             </plentry>
             </parml> </section>
     </refbody>

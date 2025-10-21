@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_experiencepoorreason">
     <title><ph keyref="EXPERIENCE_POOR_REASON"/></title>
-    <shortdesc id="short"><ph id="shortdesc">接收远端音频时，本地用户主观体验质量较差的原因。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">本地用户接收远端音频流时音频体验差的原因。</ph></shortdesc>
     <refbody>
         <section id="parameters">
             <title>枚举值</title>
@@ -26,6 +26,22 @@
             <plentry>
                 <pt><ph keyref="WIFI_BLUETOOTH_COEXIST"/></pt>
                 <pd>8: 本地用户同时开启 Wi-Fi 和蓝牙，二者信号互相干扰，导致音频传输质量下降。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraExperiencePoorReasonNone"/></pt>
+                <pd props="apple">（0）：无明显原因，表示本地用户的音频体验良好。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraExperiencePoorReasonLocalNetworkQualityPoor"/></pt>
+                <pd props="apple">（2）：本地用户的网络质量较差，影响音频体验。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraExperiencePoorReasonWirelessSignalPoor"/></pt>
+                <pd props="apple">（4）：本地用户的 Wi-Fi 或蜂窝网络信号较弱，影响音频体验。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraExperiencePoorReasonWifiBluetoothCoexist"/></pt>
+                <pd props="apple">（8）：本地用户同时启用 Wi-Fi 和蓝牙，信号相互干扰，影响音频传输质量。</pd>
             </plentry>
             </parml> </section>
     </refbody>

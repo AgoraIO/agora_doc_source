@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_transcodinguser">
-    <title><ph keyref="TranscodingUser" /></title>
-    <shortdesc id="short"><ph id="shortdesc">参与转码合流的每个主播的设置。</ph></shortdesc>
+    <title><ph keyref="TranscodingUser"/></title>
+    <shortdesc id="short"><ph id="shortdesc">每位主播的转码配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -41,8 +41,7 @@
   
   public audioChannel: number = 0;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLiveTranscodingUser : NSObject
-
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraLiveTranscodingUser : NSObject
 @property(assign, nonatomic) NSUInteger uid;
 @property(assign, nonatomic) CGRect rect;
 @property(assign, nonatomic) NSInteger zOrder;
@@ -72,21 +71,21 @@
 struct FTranscodingUser {
 	GENERATED_BODY()
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingUser&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|TranscodingUser")
 	int64 uid = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingUser&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|TranscodingUser")
 	int x = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingUser&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|TranscodingUser")
 	int y = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingUser&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|TranscodingUser")
 	int width = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingUser&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|TranscodingUser")
 	int height = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingUser&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|TranscodingUser")
 	int zOrder = 0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingUser&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|TranscodingUser")
 	float alpha = 1.0;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingUser&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|TranscodingUser")
 	int audioChannel = 0;
 	FTranscodingUser(){}
 	FTranscodingUser(const agora::rtc::TranscodingUser &amp; AgoraData){
@@ -201,43 +200,45 @@ public:
       _$TranscodingUserFromJson(json);
   Map&lt;String, dynamic&gt; toJson() =&gt; _$TranscodingUserToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry>
-                <pt>uid</pt>
+            <plentry props="ios">
+                <pt props="ios">uid</pt>
                 <pd>
                     <p>主播的用户 ID。</p>
                 </pd>
+                <pd props="ios">主播的用户 ID。</pd>
             </plentry>
-            <plentry props="android hmos cpp unreal bp unity electron rn flutter cs">
+            <plentry props="android bp cpp cs electron flutter hmos rn unity unreal">
                 <pt>x</pt>
                 <pd>
-                    <p>主播视频画面在输出视频画面的 x 坐标 (px)，以输出视频画面的左上角为原点。取值范围为[0,width]，width 为 <xref keyref="LiveTranscoding" /> 中设置的 <codeph>width</codeph>。</p>
+                    <p>主播视频画面在输出视频画面的 x 坐标 (px)，以输出视频画面的左上角为原点。取值范围为[0,width]，width 为 <xref keyref="LiveTranscoding"/> 中设置的 <codeph>width</codeph>。</p>
                 </pd>
             </plentry>
-            <plentry props="android hmos cpp unreal bp unity electron rn flutter cs">
+            <plentry props="android bp cpp cs electron flutter hmos rn unity unreal">
                 <pt>y</pt>
-                <pd>主播视频画面在输出视频画面的 y 坐标 (px)，以输出视频画面的左上角为原点。取值范围为[0,height]，height 为 <xref keyref="LiveTranscoding" /> 中设置的 <codeph>height</codeph>。</pd>
+                <pd>主播视频画面在输出视频画面的 y 坐标 (px)，以输出视频画面的左上角为原点。取值范围为[0,height]，height 为 <xref keyref="LiveTranscoding"/> 中设置的 <codeph>height</codeph>。</pd>
             </plentry>
-            <plentry props="android hmos cpp unreal bp unity electron rn flutter cs">
+            <plentry props="android bp cpp cs electron flutter hmos rn unity unreal">
                 <pt>width</pt>
                 <pd>主播视频画面的宽 (px)。</pd>
             </plentry>
-            <plentry props="android hmos cpp unreal bp unity electron rn flutter cs">
+            <plentry props="android bp cpp cs electron flutter hmos rn unity unreal">
                 <pt>height</pt>
                 <pd>
                     <p>主播视频画面的高 (px)。</p>
                 </pd>
             </plentry>
-            <plentry props="ios mac">
-                <pt>rect</pt>
+            <plentry props="apple">
+                <pt props="ios">rect</pt>
                 <pd>主播视频画面在输出视频画面的位置和大小，类型为 CGRect。</pd>
+                <pd props="ios">主播视频在输出画面中的位置和大小。</pd>
             </plentry>
-            <plentry>
-                <pt>zOrder</pt>
+            <plentry props="ios">
+                <pt props="ios">zOrder</pt>
                 <pd>
                     <p>主播视频画面的图层编号。取值范围为 [0,100]。
 
@@ -252,12 +253,20 @@ public:
                     </ul> </p>
                     <note type="attention">
                     <ul>
-                    <li>如果取值小于 0 或大于 100，会返回错误 <apiname keyref="ERR_INVALID_ARGUMENT" />。</li>
+                    <li>如果取值小于 0 或大于 100，会返回错误 <apiname keyref="ERR_INVALID_ARGUMENT"/>。</li>
                     <li>支持将 zOrder 设置为 0。</li>
                     </ul> </note> </pd>
+                <pd props="ios">主播视频的图层索引号。取值范围为 [0, 100]。
+                    <ul>
+                        <li>0：（默认）主播视频处于底层。</li>
+                        <li>100：主播视频处于顶层。</li>
+                        <li>如果取值小于 0 或大于 100，会返回 <ph keyref="ERR_INVALID_ARGUMENT"/> 错误码。</li>
+                        <li>支持将 <codeph>zOrder</codeph> 设置为 0。</li>
+                        </ul>
+                    </pd>
             </plentry>
-            <plentry>
-                <pt>alpha</pt>
+            <plentry props="ios">
+                <pt props="ios">alpha</pt>
                 <pd>
                     <p>主播视频画面的透明度。取值范围为 [0.0,1.0]。
 
@@ -271,9 +280,15 @@ public:
                     <li>1.0:（默认）完全不透明。</li>
                     </ul> </p>
                 </pd>
+                <pd props="ios">主播视频的透明度。取值范围为 [0.0, 1.0]。
+                    <ul>
+                        <li>0.0：完全透明。</li>
+                        <li>1.0：（默认）不透明。</li>
+                        </ul>
+                    </pd>
             </plentry>
-            <plentry>
-                <pt>audioChannel</pt>
+            <plentry props="ios">
+                <pt props="ios">audioChannel</pt>
                 <pd>
                     <p>主播音频在输出音频中占用的声道。默认值为 0，取值范围为 [0,5]：
 
@@ -293,6 +308,18 @@ public:
                     </ul>
                     <note type="attention">取值不为 <codeph>0</codeph> 时，需要使用特殊的播放器。</note></p>
                 </pd>
+                <pd props="ios">主播音频在输出音频中使用的音频声道。默认值为 0，取值范围为 [0, 5]。
+                    <ul>
+                        <li>0：（推荐）默认设置，最多支持双声道，具体取决于主播的上行音频。</li>
+                        <li>1：主播音频使用 FL 声道。如果主播上行使用多声道，声网服务器会先混合为单声道。</li>
+                        <li>2：主播音频使用 FC 声道。如果主播上行使用多声道，声网服务器会先混合为单声道。</li>
+                        <li>3：主播音频使用 FR 声道。如果主播上行使用多声道，声网服务器会先混合为单声道。</li>
+                        <li>4：主播音频使用 BL 声道。如果主播上行使用多声道，声网服务器会先混合为单声道。</li>
+                        <li>5：主播音频使用 BR 声道。如果主播上行使用多声道，声网服务器会先混合为单声道。</li>
+                        <li>0xFF 或大于 5 的值：主播音频会被静音，声网服务器会移除主播音频。</li>
+                        <li>如果该值不为 0，需要使用特殊播放器。</li>
+                        </ul>
+                    </pd>
             </plentry>
             </parml> </section>
     </refbody>

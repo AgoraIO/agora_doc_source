@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audiotrackconfig">
-  <title> <ph keyref="AudioTrackConfig" /> </title>
-  <shortdesc id="short"> <ph id="shortdesc">自定义音频轨道的配置选项。</ph> </shortdesc>
+  <title> <ph keyref="AudioTrackConfig"/> </title>
+  <shortdesc id="short"> <ph id="shortdesc">自定义音频轨道的配置。</ph> </shortdesc>
   <refbody>
     <section id="prototype">
       <p outputclass="codeblock">
@@ -17,16 +17,16 @@
   }
   @Override
   public String toString() {
-    return &quot;AudioTrackConfig{&quot;
-        + &quot;enableLocalPlayback=&quot; + enableLocalPlayback + &quot;enableAudioProcessing&quot;
-        + enableAudioProcessing + &#x27;}&#x27;;
+    return "AudioTrackConfig{"
+        + "enableLocalPlayback=" + enableLocalPlayback + "enableAudioProcessing"
+        + enableAudioProcessing + '}';
   }
 }</codeblock>
       <codeblock props="hmos" outputclass="language-arkts">export class AudioTrackConfig {
   
   public enableLocalPlayback: boolean = true;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraAudioTrackConfig) __attribute__((visibility(&quot;default&quot;))) @interface AgoraAudioTrackConfig : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraAudioTrackConfig : NSObject
 @property (assign, nonatomic) BOOL enableLocalPlayback NS_SWIFT_NAME(enableLocalPlayback);
 @property (assign, nonatomic) BOOL enableAudioProcessing NS_SWIFT_NAME(enableAudioProcessing);
 @end</codeblock>
@@ -42,7 +42,7 @@ struct FAudioTrackConfig
 {
 	GENERATED_BODY()
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioTrackConfig&quot;)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Agora|AudioTrackConfig")
 	bool enableLocalPlayback = true;
 };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class AudioTrackConfig {
@@ -68,35 +68,47 @@ struct FAudioTrackConfig
   @JsonKey(name: 'enableAudioProcessing')
   final bool? enableAudioProcessing;
 
-  factory AudioTrackConfig.fromJson(Map&lt;String, dynamic> json) =>
+  factory AudioTrackConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$AudioTrackConfigFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$AudioTrackConfigToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$AudioTrackConfigToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
     </section>
     <section id="parameters">
-      <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+      <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
       <parml>
-      <plentry>
-        <pt>enableLocalPlayback</pt>
-        <pd>是否启用本地音频播放：
+            <plentry props="ios">
+                <pt props="ios">enableLocalPlayback</pt>
+                <pd>是否启用本地音频播放：
             <ul>
                 <li><codeph><ph keyref="true"/></codeph>：(默认) 启用本地音频播放。</li>
                 <li><codeph><ph keyref="false"/></codeph>：不启用本地音频播放。</li>
             </ul>
         </pd>
-      </plentry>
-      <plentry props="cpp apple android unreal unity cs flutter rn electron">
-        <pt>enableAudioProcessing</pt>
-        <pd>是否启用音频处理模块：
+                <pd props="ios">是否启用本地音频播放设备：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：（默认）启用本地音频播放设备。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不启用本地音频播放设备。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            <plentry props="android apple cpp cs electron flutter ios rn unity unreal">
+                <pt props="ios">enableAudioProcessing</pt>
+                <pd>是否启用音频处理模块：
             <ul>
                 <li><codeph><ph keyref="true"/></codeph>：启用音频处理模块，应用回声消除 (AEC)、降噪 (ANS) 和自动增益控制 (AGC) 效果。</li>
                 <li><codeph><ph keyref="false"/></codeph>：（默认）不启用音频处理模块。</li>
             </ul>
             <note type="attention">该参数设置仅对 <ph keyref="AUDIO_TRACK_DIRECT"/> 类型的自定义音频采集轨道生效。</note>
         </pd>
-      </plentry>
-      </parml> </section>
+                <pd props="ios">是否启用音频处理模块：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：启用音频处理模块，应用回声消除（AEC）、噪声抑制（ANS）和自动增益控制（AGC）效果。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）不启用音频处理模块。 该参数仅在自定义音频采集中使用 <ph keyref="AgoraAudioTrackTypeDirect"/> 时生效。</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            </parml> </section>
   </refbody>
 </reference>

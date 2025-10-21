@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_audiomixingreasontype">
     <title><ph keyref="AUDIO_MIXING_REASON_TYPE"/></title>
-    <shortdesc id="short"><ph id="shortdesc">音乐文件播放状态改变的原因。在 <xref keyref="onAudioMixingStateChanged"/> 回调中报告。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">音乐文件播放状态变化的原因。</ph></shortdesc>
     <refbody>
         <section id="parameters">
             <title>枚举值</title>
@@ -50,6 +50,35 @@
             <plentry props="hide">
                 <pt><ph keyref="AUDIO_MIXING_REASON_RESUMED_BY_USER"/></pt>
                 <pd>726: 成功调用 <xref keyref="resumeAudioMixing"/> 恢复播放音乐文件。</pd>
+            </plentry>
+            <plentry props="apple cpp">
+                <pt><ph keyref="AUDIO_MIXING_REASON_CAN_NOT_OPEN"/></pt>
+                <pd props="apple cpp">（701）：SDK 无法打开音乐文件。例如，本地音乐文件不存在、SDK 不支持该文件格式，或无法访问音乐文件的 URL。</pd>
+            </plentry>
+            <plentry props="apple cpp">
+                <pt><ph keyref="AUDIO_MIXING_REASON_TOO_FREQUENT_CALL"/></pt>
+                <pd props="apple cpp">（702）：SDK 打开音乐文件过于频繁。如果需要多次调用 <codeph>startAudioMixing</codeph>，请确保调用间隔大于 500 毫秒。</pd>
+            </plentry>
+            <plentry props="apple cpp">
+                <pt><ph keyref="AUDIO_MIXING_REASON_INTERRUPTED_EOF"/></pt>
+                <pd props="apple cpp">（703）：音乐文件播放被中断。</pd>
+            </plentry>
+            <plentry props="apple cpp">
+                <pt><ph keyref="AUDIO_MIXING_REASON_ONE_LOOP_COMPLETED"/></pt>
+                <pd props="apple cpp">（721）：音乐文件完成一次循环播放。</pd>
+            </plentry>
+            <plentry props="apple cpp">
+                <pt><ph keyref="AUDIO_MIXING_REASON_ALL_LOOPS_COMPLETED"/></pt>
+                <pd props="apple cpp">（723）：音乐文件完成所有循环播放。</pd>
+            </plentry>
+            <plentry props="apple cpp">
+                <pt><ph keyref="AUDIO_MIXING_REASON_STOPPED_BY_USER"/></pt>
+                <pd props="cpp">（724）：调用 <xref keyref="stopAudioMixing"/> 成功，停止播放音乐文件。</pd>
+                <pd props="apple">（724）：成功调用 <xref keyref="stopAudioMixing"/> 停止播放音乐文件。</pd>
+            </plentry>
+            <plentry props="apple cpp">
+                <pt><ph keyref="AUDIO_MIXING_REASON_OK"/></pt>
+                <pd props="apple cpp">（0）：SDK 成功打开音乐文件。</pd>
             </plentry>
             </parml> </section>
     </refbody>

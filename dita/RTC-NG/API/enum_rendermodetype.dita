@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_rendermodetype">
     <title><ph keyref="RENDER_MODE_TYPE"/></title>
@@ -11,6 +11,14 @@
                 <pt><ph keyref="RENDER_MODE_HIDDEN"/></pt>
                 <pd>1: 视频尺寸等比缩放。优先保证视窗被填满。因视频尺寸与显示视窗尺寸不一致而多出的视频将被截掉。</pd>
             </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraVideoRenderModeHidden"/></pt>
+                <pd props="apple">（1）：隐藏模式。优先填满窗口，超出窗口尺寸的视频部分将被裁剪。</pd>
+            </plentry>
+            <plentry props="apple">
+                <pt><ph keyref="AgoraVideoRenderModeFit"/></pt>
+                <pd props="apple">（2）：适应模式。优先完整显示视频内容，未填满窗口的区域以黑色填充。</pd>
+            </plentry>
             </parml>
             <parml>
             <plentry>
@@ -19,7 +27,7 @@
             </plentry>
             </parml>
             <parml>
-            <plentry props="cpp unreal bp android flutter unity cs">
+            <plentry props="android bp cpp cs flutter unity unreal">
                 <pt><ph keyref="RENDER_MODE_ADAPTIVE"/></pt>
                 <pd>3：匹配模式。
                     <dl outputclass="deprecated">
