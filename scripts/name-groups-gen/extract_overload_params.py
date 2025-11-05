@@ -78,7 +78,13 @@ class OverloadParameterExtractor:
         # Group keys by their base names
         for key in api_data.keys():
             # Extract base name (remove trailing digits)
-            base_name = re.sub(r'\d+$', '', key)
+            # Handle two patterns:
+            # 1. methodName1, methodName2 -> methodName
+            # 2. methodName2_ClassName -> methodName_ClassName
+            base_name = re.sub(r'\d+$', '', key)  # Pattern 1: digits at end
+            if base_name == key:
+                # No digits at end, try pattern 2: digits before underscore
+                base_name = re.sub(r'\d+(_)', r'\1', key)
             
             if base_name not in overload_groups:
                 overload_groups[base_name] = []
@@ -265,19 +271,23 @@ class OverloadParameterExtractor:
         props_list = [p.strip() for p in props.split()]
         applicable_platforms = []
         
-        # Handle special props shortcuts
+        # Handle special props shortcuts first
         if 'native' in props_list:
             # native means all platforms: android, cpp, ios, mac
             applicable_platforms.extend(['android', 'windows', 'ios', 'macos'])
-        elif 'apple' in props_list:
-            # apple means iOS and macOS platforms: ios, mac
-            applicable_platforms.extend(['ios', 'macos'])
         else:
-            # Normal props processing
+            # Handle apple shortcut (can coexist with other props)
+            if 'apple' in props_list:
+                # apple means iOS and macOS platforms: ios, mac
+                applicable_platforms.extend(['ios', 'macos'])
+            
+            # Normal props processing (check all other props)
             for platform, platform_props in self.platform_props.items():
                 # Check if any of the platform's props are in the props list
                 if any(prop in props_list for prop in platform_props):
-                    applicable_platforms.append(platform)
+                    # Avoid adding duplicates from apple shortcut
+                    if platform not in applicable_platforms:
+                        applicable_platforms.append(platform)
         
         # Remove duplicates while preserving order
         seen = set()
@@ -314,6 +324,14 @@ class OverloadParameterExtractor:
             logger.debug(f"No parameters section found in {dita_path}")
             return {}
         
+        # Check if the parameters section itself has props
+        section_props = parameters_section.get('props', '')
+        section_platforms = None
+        if section_props:
+            # If the section has props, only these platforms should have parameters
+            section_platforms = self.parse_props_to_platforms(section_props)
+            logger.debug(f"Parameters section has props='{section_props}', applicable platforms: {section_platforms}")
+        
         # Initialize platform parameter lists
         platform_params = {platform: [] for platform in self.platform_mapping.keys()}
         
@@ -325,6 +343,10 @@ class OverloadParameterExtractor:
                 for param in params:
                     param_name = param['name']
                     param_platforms = param['platforms']
+                    
+                    # If section has props, intersect with param platforms
+                    if section_platforms:
+                        param_platforms = [p for p in param_platforms if p in section_platforms]
                     
                     # Add parameter to applicable platforms
                     for platform in param_platforms:

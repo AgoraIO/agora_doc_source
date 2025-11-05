@@ -399,6 +399,7 @@
             "isOverload": true,
             "params": {
                 "windows": ["configs"],
+                "android": ["config"],
                 "ios": ["config"],
                 "macos": ["config"]
             },
@@ -466,7 +467,7 @@
             "macos": "playEffectEx:soundId:filePath:loopCount:pitch:pan:gain:publish:startPos:",
             "isOverload": true,
             "params": {
-                "windows": ["connection", "soundId", "filePath", "loopCount", "pitch", "pan", "gain", "startPos"],
+                "windows": ["connection", "soundId", "filePath", "loopCount", "pitch", "pan", "gain", "publish", "startPos"],
                 "android": ["connection", "soundId", "filePath", "loopCount", "pitch", "pan", "gain", "publish", "startPos"],
                 "ios": ["connection", "soundId", "filePath", "loopCount", "pitch", "pan", "gain", "publish", "startPos"],
                 "macos": ["connection", "soundId", "filePath", "loopCount", "pitch", "pan", "gain", "publish", "startPos"]
@@ -727,12 +728,26 @@
         "registerAudioFrameObserver1_IMediaPlayer": {
             "windows": "registerAudioFrameObserver [1/2]",
             "parent_class": "IMediaPlayer",
+            "isOverload": true,
+            "params": {
+                "windows": ["observer"],
+                "android": ["observer"],
+                "ios": ["observer"],
+                "macos": ["observer"]
+            },
             "toc": "toc_mediaplayer_observer"
         },
         "registerAudioFrameObserver2_IMediaPlayer": {
             "windows": "registerAudioFrameObserver [2/2]",
             "android": "registerAudioFrameObserver",
             "parent_class": "IMediaPlayer",
+            "isOverload": true,
+            "params": {
+                "windows": ["observer", "mode"],
+                "android": ["audioFrameObserver", "mode"],
+                "ios": ["mode"],
+                "macos": ["mode"]
+            },
             "toc": "toc_mediaplayer_observer"
         },
         "registerPlayerSourceObserver": {
@@ -1941,7 +1956,7 @@
             "isOverload": true,
             "params": {
                 "windows": ["enabled", "options", "type"],
-                "android": ["enabled", "options"],
+                "android": ["enabled", "options", "sourceType"],
                 "ios": ["enable", "options", "sourceType"],
                 "macos": ["enable", "options", "sourceType"]
             },
@@ -3672,7 +3687,7 @@
             "isOverload": true,
             "params": {
                 "windows": ["provider", "extension", "key", "value", "type", "buf_len"],
-                "android": ["provider", "extension", "key"],
+                "android": ["provider", "extension", "key", "sourceType"],
                 "ios": ["provider", "extension", "key", "sourceType"],
                 "macos": ["provider", "extension", "key", "sourceType"]
             },
@@ -4067,22 +4082,45 @@
         "getDevice_IAudioDeviceCollection": {
             "windows": "getDevice [1/2]",
             "parent_class": "IAudioDeviceCollection",
+            "isOverload": true,
+            "params": {
+                "windows": ["index", "deviceName", "deviceId"]
+            },
             "toc": "toc_audio_device"
         },
         "getDevice2_IAudioDeviceCollection": {
             "windows": "getDevice [2/2]",
             "parent_class": "IAudioDeviceCollection",
+            "isOverload": true,
+            "params": {
+                "windows": ["index", "deviceId", "deviceName", "deviceTypeName"],
+                "android": ["index", "deviceId", "deviceName", "deviceTypeName"],
+                "ios": ["index", "deviceId", "deviceName", "deviceTypeName"],
+                "macos": ["index", "deviceId", "deviceName", "deviceTypeName"]
+            },
             "toc": "toc_audio_device"
         },
         "getDefaultDevice_IAudioDeviceCollection": {
             "windows": "getDefaultDevice [1/2]",
             "macos": "getDefaultAudioDevice:",
             "parent_class": "IAudioDeviceCollection",
+            "isOverload": true,
+            "params": {
+                "windows": ["deviceName", "deviceId"],
+                "macos": ["type"]
+            },
             "toc": "toc_audio_device"
         },
         "getDefaultDevice2_IAudioDeviceCollection": {
             "windows": "getDefaultDevice [2/2]",
             "parent_class": "IAudioDeviceCollection",
+            "isOverload": true,
+            "params": {
+                "windows": ["deviceName", "deviceTypeName", "deviceId"],
+                "android": ["deviceTypeName"],
+                "ios": ["deviceTypeName"],
+                "macos": ["deviceTypeName"]
+            },
             "toc": "toc_audio_device"
         },
         "setDevice_IAudioDeviceCollection": {
@@ -4203,10 +4241,7 @@
             "windows": "getPlaybackDeviceInfo [1/2]",
             "isOverload": true,
             "params": {
-                "windows": ["deviceId", "deviceName"],
-                "android": ["deviceId", "deviceName"],
-                "ios": ["deviceId", "deviceName"],
-                "macos": ["deviceId", "deviceName"]
+                "windows": ["deviceId", "deviceName"]
             },
             "parent_class": "IAudioDeviceManager",
             "toc": "toc_audio_device"
@@ -4232,10 +4267,7 @@
             "windows": "getRecordingDeviceInfo [1/2]",
             "isOverload": true,
             "params": {
-                "windows": ["deviceId", "deviceName"],
-                "android": ["deviceId", "deviceName"],
-                "ios": ["deviceId", "deviceName"],
-                "macos": ["deviceId", "deviceName"]
+                "windows": ["deviceId", "deviceName"]
             },
             "parent_class": "IAudioDeviceManager",
             "toc": "toc_audio_device"
@@ -4510,6 +4542,13 @@
             "android": "open [1/2]",
             "ios": "openMediaWithSongCode:startPos:",
             "parent_class": "IMusicPlayer",
+            "isOverload": true,
+            "params": {
+                "windows": ["songCode", "startPos"],
+                "android": ["songCode", "startPos"],
+                "ios": ["songCode", "startPos"],
+                "macos": ["songCode", "startPos"]
+            },
             "toc": "toc_drm"
         },
         "preload": {
@@ -4614,7 +4653,7 @@
             "ios": "getMusicCollectionWithMusicChartId:page:pageSize:jsonOption:",
             "isOverload": true,
             "params": {
-                "windows": ["requestId", "musicChartId", "page", "pageSize"],
+                "windows": ["requestId", "musicChartId", "page", "pageSize", "jsonOption"],
                 "android": ["requestId", "musicChartId", "page", "pageSize"],
                 "ios": ["requestId", "musicChartId", "page", "pageSize", "jsonOption"],
                 "macos": ["requestId", "musicChartId", "page", "pageSize", "jsonOption"]
@@ -4628,7 +4667,7 @@
             "ios": "searchMusicWithKeyWord:page:pageSize:jsonOption:",
             "isOverload": true,
             "params": {
-                "windows": ["keyword", "page", "pageSize", "requestId"],
+                "windows": ["keyword", "page", "pageSize", "jsonOption", "requestId"],
                 "android": ["keyword", "page", "pageSize", "requestId"],
                 "ios": ["keyword", "page", "pageSize", "jsonOption", "requestId"],
                 "macos": ["keyword", "page", "pageSize", "jsonOption", "requestId"]
@@ -5896,6 +5935,7 @@
             "macos": "preloadEffectEx",
             "isOverload": true,
             "params": {
+                "android": ["connection", "soundId", "filePath"],
                 "ios": ["connection", "soundId", "filePath"],
                 "macos": ["connection", "soundId", "filePath"]
             },
@@ -5908,6 +5948,7 @@
             "macos": "playEffectEx:soundId:filePath:loopCount:pitch:pan:gain:publish:",
             "isOverload": true,
             "params": {
+                "android": ["connection", "soundId", "filePath", "loopCount", "pitch", "pan", "gain", "publish"],
                 "ios": ["connection", "soundId", "filePath", "loopCount", "pitch", "pan", "gain", "publish"],
                 "macos": ["connection", "soundId", "filePath", "loopCount", "pitch", "pan", "gain", "publish"]
             },
@@ -6003,7 +6044,7 @@
             "isOverload": true,
             "params": {
                 "windows": ["enabled", "options", "type"],
-                "android": ["enabled", "options"],
+                "android": ["enabled", "options", "sourceType"],
                 "ios": ["enable", "options", "sourceType"],
                 "macos": ["enable", "options", "sourceType"]
             },
@@ -6017,7 +6058,7 @@
             "isOverload": true,
             "params": {
                 "windows": ["enabled", "backgroundSource", "segproperty"],
-                "android": ["enabled", "backgroundSource", "segproperty"],
+                "android": ["enabled", "backgroundSource", "segproperty", "sourceType"],
                 "ios": ["enable", "backData", "segData", "sourceType"],
                 "macos": ["enable", "backData", "segData", "sourceType"]
             },
@@ -6031,7 +6072,7 @@
             "isOverload": true,
             "params": {
                 "windows": ["enabled", "options"],
-                "android": ["enabled", "options"],
+                "android": ["enabled", "options", "sourceType"],
                 "ios": ["enable", "options", "sourceType"],
                 "macos": ["enable", "options", "sourceType"]
             },
@@ -6045,7 +6086,7 @@
             "isOverload": true,
             "params": {
                 "windows": ["enabled", "options"],
-                "android": ["enabled", "options"],
+                "android": ["enabled", "options", "sourceType"],
                 "ios": ["enable", "options", "sourceType"],
                 "macos": ["enable", "options", "sourceType"]
             },
@@ -6059,7 +6100,7 @@
             "isOverload": true,
             "params": {
                 "windows": ["enabled", "options", "type"],
-                "android": ["enabled", "options"],
+                "android": ["enabled", "options", "sourceType"],
                 "ios": ["enable", "options", "sourceType"],
                 "macos": ["enable", "options", "sourceType"]
             },
@@ -6456,22 +6497,32 @@
         "open2_IMusicPlayer": {
             "android": "open [2/2]",
             "parent_class": "IMusicPlayer",
+            "isOverload": true,
+            "params": {
+                "windows": ["url", "startPos"],
+                "android": ["url", "startPos"],
+                "ios": ["url", "startPos"],
+                "macos": ["url", "startPos"]
+            },
             "toc": "toc_drm"
         },
         "stop_IMusicPlayer": {
             "android": "stop [2/2]",
             "parent_class": "IMusicPlayer",
+            "isOverload": true,
             "toc": "toc_drm"
         },
         "destroy_IMusicContentCenter": {
             "android": "destroy [2/2]",
             "ios": "destroy",
             "parent_class": "IMusicContentCenter",
+            "isOverload": true,
             "toc": "toc_drm"
         },
         "destroy_IMusicPlayer": {
             "android": "destroy [1/2]",
             "parent_class": "IMusicPlayer",
+            "isOverload": true,
             "toc": "toc_drm"
         },
         "getMusicCollectionByMusicChartId2": {
@@ -6531,7 +6582,7 @@
             "isOverload": true,
             "params": {
                 "windows": ["startPos"],
-                "android": ["startPos"],
+                "android": ["connection", "soundId", "filePath", "loopCount", "pitch", "pan", "gain", "startPos"],
                 "ios": ["connection", "soundId", "filePath", "loopCount", "pitch", "pan", "gain", "startPos"],
                 "macos": ["connection", "soundId", "filePath", "loopCount", "pitch", "pan", "gain", "startPos"]
             },
@@ -6543,6 +6594,7 @@
             "macos": "playEffectEx:soundId:filePath:loopCount:pitch:pan:gain:",
             "isOverload": true,
             "params": {
+                "android": ["connection", "soundId", "filePath", "loopCount", "pitch", "pan", "gain"],
                 "ios": ["connection", "soundId", "filePath", "loopCount", "pitch", "pan", "gain"],
                 "macos": ["connection", "soundId", "filePath", "loopCount", "pitch", "pan", "gain"]
             },
