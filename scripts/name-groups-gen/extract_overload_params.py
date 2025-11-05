@@ -98,7 +98,7 @@ class OverloadParameterExtractor:
     
     def load_keysmap_href_mappings(self) -> None:
         """Load href mappings from all keysmap files."""
-        config_dir = "dita/RTC-NG/config"
+        config_dir = "../../dita/RTC-NG/config"
         
         for platform, file_suffix in self.platform_mapping.items():
             file_path = os.path.join(config_dir, f"keys-rtc-ng-api-{file_suffix}.ditamap")
@@ -139,7 +139,7 @@ class OverloadParameterExtractor:
         if dita_path in self.dita_cache:
             return self.dita_cache[dita_path]
         
-        full_path = os.path.join("dita/RTC-NG", dita_path.lstrip('../'))
+        full_path = os.path.join("../../dita/RTC-NG", dita_path.lstrip('../'))
         
         try:
             tree = ET.parse(full_path)
@@ -222,16 +222,24 @@ class OverloadParameterExtractor:
         
         params = []
         
+        # Check if plentry itself has props (higher priority)
+        plentry_props = plentry.get('props', '')
+        
         # Extract pt elements
         for pt in plentry.iter():
             if pt.tag.endswith('pt') and pt.text and pt.text.strip():
                 param_name = pt.text.strip()
                 
                 # Get platform information from props
-                props = pt.get('props', '')
-                if props:
-                    # Parse props to get platforms
-                    platforms = self.parse_props_to_platforms(props)
+                # Priority: pt props > plentry props > no props (all platforms)
+                pt_props = pt.get('props', '')
+                
+                if pt_props:
+                    # pt has its own props, use it
+                    platforms = self.parse_props_to_platforms(pt_props)
+                elif plentry_props:
+                    # plentry has props, use it
+                    platforms = self.parse_props_to_platforms(plentry_props)
                 else:
                     # No props means all platforms
                     platforms = list(self.platform_mapping.keys())
