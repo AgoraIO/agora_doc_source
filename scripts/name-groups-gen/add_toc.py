@@ -9,6 +9,7 @@
 
 import os
 import json
+import re
 import xml.etree.ElementTree as ET
 from typing import Dict, List, Optional, Tuple
 import logging
@@ -276,15 +277,51 @@ class TocExtractor:
     
     def save_updated_json(self, data: Dict, output_file: str) -> None:
         """
-        保存更新后的 JSON 数据到文件。
+        保存更新后的 JSON 数据到文件，并对 params 数组进行自定义格式化。
         
         Args:
             data: 更新后的 JSON 数据
             output_file: 输出文件路径
         """
         try:
+            # 首先使用默认格式保存
             with open(output_file, 'w', encoding='utf-8') as f:
                 json.dump(data, f, indent=4, ensure_ascii=False)
+            
+            # 读取文件内容并重新格式化 params 数组为单行
+            with open(output_file, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            # 使用正则表达式将 params 数组格式化为单行
+            import re
+            
+            # 匹配跨多行的 params 对象值
+            params_pattern = r'"([^"]+)": \[\s*\n(\s*"[^"]*",?\s*\n)*\s*\]'
+            
+            def format_params_array(match):
+                # 提取匹配的文本
+                matched_text = match.group(0)
+                platform_name = match.group(1)
+                
+                # 使用正则表达式提取所有参数名
+                param_names = re.findall(r'"([^"]*)"', matched_text)
+                # 从参数名列表中移除平台名
+                param_names = [name for name in param_names if name != platform_name]
+                
+                # 格式化为单行数组
+                if param_names:
+                    formatted_params = '["' + '", "'.join(param_names) + '"]'
+                else:
+                    formatted_params = '[]'
+                
+                return f'"{platform_name}": {formatted_params}'
+            
+            # 应用格式化
+            content = re.sub(params_pattern, format_params_array, content)
+            
+            # 将格式化后的内容写回文件
+            with open(output_file, 'w', encoding='utf-8') as f:
+                f.write(content)
             
             logger.info(f"成功保存更新后的 JSON 到 {output_file}")
             
