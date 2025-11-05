@@ -1544,7 +1544,12 @@
             "ios": "startPreview:",
             "macos": "startPreview:",
             "isOverload": true,
-            "params": {},
+            "params": {
+                "windows": ["sourceType"],
+                "android": ["sourceType"],
+                "ios": ["sourceType"],
+                "macos": ["sourceType"]
+            },
             "parent_class": "IRtcEngine"
         },
         "stopPreview": {
@@ -1562,7 +1567,12 @@
             "ios": "stopPreview:",
             "macos": "stopPreview:",
             "isOverload": true,
-            "params": {},
+            "params": {
+                "windows": ["sourceType"],
+                "android": ["sourceType"],
+                "ios": ["sourceType"],
+                "macos": ["sourceType"]
+            },
             "parent_class": "IRtcEngine"
         },
         "enableLocalVideo": {
@@ -3403,10 +3413,10 @@
             "macos": "startAudioRecording:quality:",
             "isOverload": true,
             "params": {
-                "windows": ["quality"],
-                "android": ["quality"],
-                "ios": ["quality"],
-                "macos": ["quality"]
+                "windows": ["filePath", "quality"],
+                "android": ["filePath", "quality"],
+                "ios": ["filePath", "quality"],
+                "macos": ["filePath", "quality"]
             },
             "parent_class": "IRtcEngine"
         },
@@ -3414,10 +3424,10 @@
             "windows": "startAudioRecording [2/3]",
             "isOverload": true,
             "params": {
-                "windows": ["sampleRate", "quality"],
-                "android": ["sampleRate", "quality"],
-                "ios": ["sampleRate", "quality"],
-                "macos": ["sampleRate", "quality"]
+                "windows": ["filePath", "sampleRate", "quality"],
+                "android": ["filePath", "sampleRate", "quality"],
+                "ios": ["filePath", "sampleRate", "quality"],
+                "macos": ["filePath", "sampleRate", "quality"]
             },
             "parent_class": "IRtcEngine"
         },
@@ -4050,10 +4060,10 @@
             "ios": "getMusicCollectionWithMusicChartId:page:pageSize:jsonOption:",
             "isOverload": true,
             "params": {
-                "windows": ["musicChartId", "page", "pageSize"],
-                "android": ["musicChartId", "page", "pageSize"],
-                "ios": ["musicChartId", "page", "pageSize", "jsonOption"],
-                "macos": ["musicChartId", "page", "pageSize", "jsonOption"]
+                "windows": ["requestId", "musicChartId", "page", "pageSize"],
+                "android": ["requestId", "musicChartId", "page", "pageSize"],
+                "ios": ["requestId", "musicChartId", "page", "pageSize", "jsonOption"],
+                "macos": ["requestId", "musicChartId", "page", "pageSize", "jsonOption"]
             },
             "parent_class": "IMusicContentCenter"
         },
@@ -4063,10 +4073,10 @@
             "ios": "searchMusicWithKeyWord:page:pageSize:jsonOption:",
             "isOverload": true,
             "params": {
-                "windows": ["keyword", "page", "pageSize"],
-                "android": ["keyword", "page", "pageSize"],
-                "ios": ["keyword", "page", "pageSize", "jsonOption"],
-                "macos": ["keyword", "page", "pageSize", "jsonOption"]
+                "windows": ["keyword", "page", "pageSize", "requestId"],
+                "android": ["keyword", "page", "pageSize", "requestId"],
+                "ios": ["keyword", "page", "pageSize", "jsonOption", "requestId"],
+                "macos": ["keyword", "page", "pageSize", "jsonOption", "requestId"]
             },
             "parent_class": "IMusicContentCenter"
         },
