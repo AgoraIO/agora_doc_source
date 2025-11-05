@@ -116,7 +116,8 @@ class OverloadParameterExtractor:
                         keys = keydef.get('keys')
                         href = keydef.get('href')
                         
-                        if keys and href and href.startswith('../API/api_'):
+                        # Load both API files (api_*) and class files (class_*)
+                        if keys and href and (href.startswith('../API/api_')  or href.startswith('../API/class_') or href.startswith('../API/callback_')):
                             # Store the href for this key
                             if keys not in self.href_cache:
                                 self.href_cache[keys] = href
