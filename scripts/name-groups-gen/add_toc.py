@@ -340,7 +340,7 @@ class TocExtractor:
         except Exception as e:
             logger.error(f"保存 JSON 文件到 {output_file} 时出错: {e}")
     
-    def run(self, input_file: str = "name_groups.json", output_file: str = "name_groups_with_toc.json") -> None:
+    def run(self, input_file: str = "name_groups_step1.json", output_file: str = "name_groups_step2.json") -> None:
         """
         运行完整的 toc 提取流程。
         
