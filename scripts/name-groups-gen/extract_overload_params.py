@@ -157,12 +157,13 @@ class OverloadParameterExtractor:
             logger.error(f"Error parsing DITA file {full_path}: {e}")
             return None
     
-    def resolve_conkeyref(self, conkeyref: str, visited_refs: Set[str] = None) -> List[Dict]:
+    def resolve_conkeyref(self, conkeyref: str, referrer_props: str = '', visited_refs: Set[str] = None) -> List[Dict]:
         """
         Resolve conkeyref references to get parameter information.
         
         Args:
             conkeyref: The conkeyref attribute value (e.g., "joinChannel2/token")
+            referrer_props: The props attribute from the referrer plentry (if any)
             visited_refs: Set to track visited references to prevent infinite loops
             
         Returns:
@@ -203,7 +204,25 @@ class OverloadParameterExtractor:
                     if (plentry.tag.endswith('plentry') and 
                         plentry.get('id') == param_id):
                         
-                        return self.extract_params_from_plentry(plentry, visited_refs)
+                        # Extract params from the referenced plentry
+                        params = self.extract_params_from_plentry(plentry, visited_refs)
+                        
+                        # If the referrer has props, we need to filter the platforms
+                        if referrer_props:
+                            referrer_platforms = self.parse_props_to_platforms(referrer_props)
+                            # Filter each parameter's platforms
+                            filtered_params = []
+                            for param in params:
+                                # Intersect with referrer platforms
+                                filtered_platforms = [p for p in param['platforms'] if p in referrer_platforms]
+                                if filtered_platforms:
+                                    filtered_params.append({
+                                        'name': param['name'],
+                                        'platforms': filtered_platforms
+                                    })
+                            return filtered_params
+                        
+                        return params
         
         logger.warning(f"Referenced parameter not found: {conkeyref}")
         return []
@@ -225,12 +244,16 @@ class OverloadParameterExtractor:
         # Check if this plentry has a conkeyref
         conkeyref = plentry.get('conkeyref')
         if conkeyref:
-            return self.resolve_conkeyref(conkeyref, visited_refs)
+            # Pass the plentry's props to resolve_conkeyref
+            plentry_props = plentry.get('props', '')
+            return self.resolve_conkeyref(conkeyref, plentry_props, visited_refs)
         
-        params = []
-        
-        # Check if plentry itself has props (higher priority)
+        # Check if plentry itself has props
         plentry_props = plentry.get('props', '')
+        
+        # Dictionary to store parameter names by platform
+        # This handles cases where different platforms use different parameter names
+        platform_param_names = {}
         
         # Extract pt elements
         for pt in plentry.iter():
@@ -251,10 +274,28 @@ class OverloadParameterExtractor:
                     # No props means all platforms
                     platforms = list(self.platform_mapping.keys())
                 
-                params.append({
-                    'name': param_name,
-                    'platforms': platforms
-                })
+                # Store the parameter name for each platform
+                for platform in platforms:
+                    if platform not in platform_param_names:
+                        platform_param_names[platform] = []
+                    platform_param_names[platform].append(param_name)
+        
+        # Convert to the expected format
+        # Group by parameter name and collect platforms
+        param_dict = {}
+        for platform, param_names in platform_param_names.items():
+            for param_name in param_names:
+                if param_name not in param_dict:
+                    param_dict[param_name] = []
+                param_dict[param_name].append(platform)
+        
+        # Convert to list format
+        params = []
+        for param_name, platforms in param_dict.items():
+            params.append({
+                'name': param_name,
+                'platforms': platforms
+            })
         
         return params
     
@@ -378,7 +419,7 @@ class OverloadParameterExtractor:
             logger.warning("No 'api' section found in JSON data")
             return data
         
-        # Get all overloaded keys
+        # Get all overloaded keys (from identified groups)
         all_overloaded_keys = set()
         for keys in overloaded_methods.values():
             all_overloaded_keys.update(keys)
@@ -386,7 +427,13 @@ class OverloadParameterExtractor:
         updated_apis = {}
         
         for key, platforms_data in data['api'].items():
-            if key in all_overloaded_keys:
+            # Check if this is an overloaded method:
+            # 1. It's in the identified overloaded groups, OR
+            # 2. It already has isOverload=true in the original data
+            is_overloaded = (key in all_overloaded_keys or 
+                           (isinstance(platforms_data, dict) and platforms_data.get('isOverload')))
+            
+            if is_overloaded:
                 # This is an overloaded method, add isOverload and params
                 logger.debug(f"Processing overloaded method: {key}")
                 
@@ -486,7 +533,7 @@ class OverloadParameterExtractor:
         except Exception as e:
             logger.error(f"Error saving updated JSON to {output_file}: {e}")
     
-    def run(self, input_file: str = "name_groups.json", output_file: str = "name_groups_overload.json") -> None:
+    def run(self, input_file: str = "name_groups_step2.json", output_file: str = "name_groups_final.json") -> None:
         """
         Run the complete overload parameter extraction process.
         
