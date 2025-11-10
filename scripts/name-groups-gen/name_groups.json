@@ -6,12 +6,18 @@
             "toc": "toc_initialize"
         },
         "create": {
-            "windows": "create",
             "android": "create [1/2]",
             "ios": "sharedEngineWithAppId:delegate:",
             "macos": "sharedEngineWithAppId:delegate:",
             "parent_class": "IRtcEngine",
-            "toc": "toc_initialize"
+            "toc": "toc_initialize",
+            "isOverload": true,
+            "params": {
+                "windows": ["context", "appId"],
+                "android": ["context", "appId", "handler"],
+                "ios": ["appId", "delegate"],
+                "macos": ["appId", "delegate"]
+            }
         },
         "initialize": {
             "windows": "initialize",
@@ -19,7 +25,14 @@
             "ios": "sharedEngineWithConfig:delegate:",
             "macos": "sharedEngineWithConfig:delegate:",
             "parent_class": "IRtcEngine",
-            "toc": "toc_initialize"
+            "toc": "toc_initialize",
+            "isOverload": true,
+            "params": {
+                "windows": ["context"],
+                "android": ["config"],
+                "ios": ["config", "delegate"],
+                "macos": ["config", "delegate"]
+            }
         },
         "release": {
             "windows": "release",
@@ -619,7 +632,9 @@
             "ios": "getPlaySrc",
             "macos": "getPlaySrc",
             "parent_class": "IMediaPlayer",
-            "toc": "toc_mediaplayer_info"
+            "toc": "toc_mediaplayer_info",
+            "isOverload": true,
+            "params": {}
         },
         "getPublishSignalVolume": {
             "windows": "getPublishSignalVolume",
@@ -788,7 +803,14 @@
             "ios": "selectAudioTrack:",
             "macos": "selectAudioTrack:",
             "parent_class": "IRtcEngine",
-            "toc": "toc_audio_mixing"
+            "toc": "toc_audio_mixing",
+            "isOverload": true,
+            "params": {
+                "windows": ["index"],
+                "android": ["audioIndex"],
+                "ios": ["index"],
+                "macos": ["index"]
+            }
         },
         "selectAudioTrack_IMediaPlayer": {
             "windows": "selectAudioTrack [2/2]",
@@ -796,7 +818,14 @@
             "ios": "selectAudioTrack:",
             "macos": "selectAudioTrack:",
             "parent_class": "IMediaPlayer",
-            "toc": "toc_mediaplayer_playnrender"
+            "toc": "toc_mediaplayer_playnrender",
+            "isOverload": true,
+            "params": {
+                "windows": ["index"],
+                "android": ["index"],
+                "ios": ["index"],
+                "macos": ["index"]
+            }
         },
         "selectMultiAudioTrack": {
             "windows": "selectMultiAudioTrack",
@@ -909,7 +938,9 @@
             "ios": "stop",
             "macos": "stop",
             "parent_class": "IMediaPlayer",
-            "toc": "toc_mediaplayer_control"
+            "toc": "toc_mediaplayer_control",
+            "isOverload": true,
+            "params": {}
         },
         "unregisterAudioFrameObserver_IMediaPlayer": {
             "windows": "unregisterAudioFrameObserver",
@@ -1125,7 +1156,14 @@
             "ios": "setConfigs:error:",
             "macos": "setConfigs:error:",
             "parent_class": "Rte",
-            "toc": "toc_rte_player"
+            "toc": "toc_rte_player",
+            "isOverload": true,
+            "params": {
+                "windows": ["config", "err"],
+                "android": ["config"],
+                "ios": ["config", "error"],
+                "macos": ["config", "error"]
+            }
         },
         "SetConfigs_Player": {
             "windows": "SetConfigs [2/3]",
@@ -1133,7 +1171,14 @@
             "ios": "setConfigs:error:",
             "macos": "setConfigs:error:",
             "parent_class": "Player",
-            "toc": "toc_rte_player"
+            "toc": "toc_rte_player",
+            "isOverload": true,
+            "params": {
+                "windows": ["config", "err"],
+                "android": ["config"],
+                "ios": ["config", "error"],
+                "macos": ["config", "error"]
+            }
         },
         "SetConfigs_Canvas": {
             "windows": "SetConfigs [3/3]",
@@ -1141,7 +1186,14 @@
             "ios": "setConfigs:error:",
             "macos": "setConfigs:error:",
             "parent_class": "Canvas",
-            "toc": "toc_rte_player"
+            "toc": "toc_rte_player",
+            "isOverload": true,
+            "params": {
+                "windows": ["config", "err"],
+                "android": ["config"],
+                "ios": ["config", "error"],
+                "macos": ["config", "error"]
+            }
         },
         "SetMirrorMode": {
             "windows": "SetMirrorMode",
@@ -1165,7 +1217,14 @@
             "ios": "getConfigs:error:",
             "macos": "getConfigs:error:",
             "parent_class": "Rte",
-            "toc": "toc_rte_player"
+            "toc": "toc_rte_player",
+            "isOverload": true,
+            "params": {
+                "windows": ["config", "err"],
+                "android": ["config"],
+                "ios": ["config", "error"],
+                "macos": ["config", "error"]
+            }
         },
         "GetConfigs_Player": {
             "windows": "GetConfigs [2/3]",
@@ -1173,7 +1232,14 @@
             "ios": "getConfigs:error:",
             "macos": "getConfigs:error:",
             "parent_class": "Player",
-            "toc": "toc_rte_player"
+            "toc": "toc_rte_player",
+            "isOverload": true,
+            "params": {
+                "windows": ["config", "err"],
+                "android": ["config"],
+                "ios": ["config", "error"],
+                "macos": ["config", "error"]
+            }
         },
         "GetConfigs_Canvas": {
             "windows": "GetConfigs [3/3]",
@@ -1181,7 +1247,14 @@
             "ios": "getConfigs:error:",
             "macos": "getConfigs:error:",
             "parent_class": "Canvas",
-            "toc": "toc_rte_player"
+            "toc": "toc_rte_player",
+            "isOverload": true,
+            "params": {
+                "windows": ["config", "err"],
+                "android": ["config"],
+                "ios": ["config", "error"],
+                "macos": ["config", "error"]
+            }
         },
         "GetInfo": {
             "windows": "GetInfo",
@@ -1449,7 +1522,14 @@
             "ios": "onMetadata:data:",
             "macos": "onMetadata:data:",
             "parent_class": "PlayerObserver",
-            "toc": "toc_rte_player"
+            "toc": "toc_rte_player",
+            "isOverload": true,
+            "params": {
+                "windows": ["type", "data", "length"],
+                "android": ["type", "data"],
+                "ios": ["type", "data"],
+                "macos": ["type", "data"]
+            }
         },
         "onPlayerInfoUpdated_PlayerObserver": {
             "windows": "onPlayerInfoUpdated [2/2]",
@@ -1457,7 +1537,14 @@
             "ios": "onPlayerInfoUpdated:",
             "macos": "onPlayerInfoUpdated:",
             "parent_class": "PlayerObserver",
-            "toc": "toc_rte_player"
+            "toc": "toc_rte_player",
+            "isOverload": true,
+            "params": {
+                "windows": ["info"],
+                "android": ["info"],
+                "ios": ["info"],
+                "macos": ["info"]
+            }
         },
         "onResolutionChanged": {
             "windows": "onResolutionChanged",
@@ -2412,8 +2499,6 @@
         },
         "startScreenCaptureByDisplayId": {
             "windows": "startScreenCaptureByDisplayId",
-            "android": "startScreenCaptureByDisplayId",
-            "ios": "startScreenCaptureByDisplayId:regionRect:captureParams:",
             "macos": "startScreenCaptureByDisplayId:regionRect:captureParams:",
             "parent_class": "IRtcEngine",
             "toc": "toc_screencapture"
@@ -4567,7 +4652,7 @@
             "ios": "preloadWithSongCode:",
             "isOverload": true,
             "params": {
-                "windows": ["requestId", "songCode"],
+                "windows": ["songCode", "requestId"],
                 "android": ["songCode"],
                 "ios": ["songCode"],
                 "macos": ["songCode"]
@@ -4688,12 +4773,16 @@
         "getCount_MusicChartCollection": {
             "windows": "getCount [1/2]",
             "parent_class": "MusicChartCollection",
-            "toc": "toc_drm"
+            "toc": "toc_drm",
+            "isOverload": true,
+            "params": {}
         },
         "getCount_MusicCollection": {
             "windows": "getCount [2/2]",
             "parent_class": "MusicCollection",
-            "toc": "toc_drm"
+            "toc": "toc_drm",
+            "isOverload": true,
+            "params": {}
         },
         "getTotal_MusicCollection": {
             "windows": "getTotal",
@@ -4884,7 +4973,14 @@
         "setParameters_IAgoraParameter": {
             "windows": "setParameters [2/2]",
             "parent_class": "IAgoraParameter",
-            "toc": "toc_network"
+            "toc": "toc_network",
+            "isOverload": true,
+            "params": {
+                "windows": ["parameters"],
+                "android": ["parameters"],
+                "ios": ["parameters"],
+                "macos": ["parameters"]
+            }
         },
         "setParameters": {
             "windows": "setParameters [1/2]",
@@ -4892,7 +4988,14 @@
             "ios": "setParameters:",
             "macos": "setParameters:",
             "parent_class": "IRtcEngine",
-            "toc": "toc_network"
+            "toc": "toc_network",
+            "isOverload": true,
+            "params": {
+                "windows": ["parameters"],
+                "android": ["parameters"],
+                "ios": ["options"],
+                "macos": ["options"]
+            }
         },
         "sendCustomReportMessage": {
             "windows": "sendCustomReportMessage",
@@ -5377,7 +5480,14 @@
             "ios": "AgoraRtcMediaPlayer:didReceiveData:length:",
             "macos": "AgoraRtcMediaPlayer:didReceiveData:length:",
             "parent_class": "IMediaPlayerSourceObserver",
-            "toc": "toc_mediaplayer_observer"
+            "toc": "toc_mediaplayer_observer",
+            "isOverload": true,
+            "params": {
+                "windows": ["data", "length"],
+                "android": ["type", "data"],
+                "ios": ["playerKit", "data", "length"],
+                "macos": ["playerKit", "data", "length"]
+            }
         },
         "onPlayerCacheStats": {
             "windows": "onPlayerCacheStats",
@@ -5465,7 +5575,14 @@
             "ios": "AgoraRtcMediaPlayer:infoUpdated:",
             "macos": "AgoraRtcMediaPlayer:infoUpdated:",
             "parent_class": "IMediaPlayerSourceObserver",
-            "toc": "toc_mediaplayer_observer"
+            "toc": "toc_mediaplayer_observer",
+            "isOverload": true,
+            "params": {
+                "windows": ["info"],
+                "android": ["info"],
+                "ios": ["playerKit", "info"],
+                "macos": ["playerKit", "info"]
+            }
         },
         "onDirectCdnStreamingStateChanged": {
             "windows": "onDirectCdnStreamingStateChanged",
@@ -6032,7 +6149,9 @@
         "getPlaySrc": {
             "android": "getPlaySrc [2/2]",
             "parent_class": "IMusicPlayer",
-            "toc": "toc_drm"
+            "toc": "toc_drm",
+            "isOverload": true,
+            "params": {}
         },
         "errorCode_RteException": {
             "android": "errorCode",
@@ -6862,95 +6981,6 @@
                 "macos": ["enable", "options", "sourceType"]
             }
         },
-        "addEventHandler": {
-            "windows": "addEventHandler",
-            "android": "addEventHandler",
-            "parent_class": "ICloudSpatialAudioEngine"
-        },
-        "enableSpatializer": {
-            "windows": "enableSpatializer",
-            "android": "enableSpatializer",
-            "ios": "enableSpatializer",
-            "macos": "enableSpatializer",
-            "parent_class": "ICloudSpatialAudioEngine"
-        },
-        "enterRoom": {
-            "windows": "enterRoom",
-            "android": "enterRoom",
-            "ios": "enterRoomByToken",
-            "macos": "enterRoomByToken",
-            "parent_class": "ICloudSpatialAudioEngine"
-        },
-        "exitRoom": {
-            "windows": "exitRoom",
-            "android": "exitRoom",
-            "ios": "exitRoom",
-            "macos": "exitRoom",
-            "parent_class": "ICloudSpatialAudioEngine"
-        },
-        "getTeammates": {
-            "windows": "getTeammates",
-            "android": "getTeammates",
-            "ios": "getTeammates",
-            "macos": "getTeammates",
-            "parent_class": "ICloudSpatialAudioEngine"
-        },
-        "initialize_ICloudSpatialAudioEngine": {
-            "windows": "initialize",
-            "android": "initialize",
-            "ios": "sharedCloudSpatialAudioWithConfig",
-            "macos": "sharedCloudSpatialAudioWithConfig",
-            "parent_class": "ICloudSpatialAudioEngine"
-        },
-        "release_ICloudSpatialAudioEngine": {
-            "windows": "release",
-            "android": "destroy",
-            "ios": "destroy",
-            "macos": "destroy",
-            "parent_class": "ICloudSpatialAudioEngine"
-        },
-        "removeEventHandler": {
-            "windows": "removeEventHandler",
-            "android": "removeEventHandler",
-            "parent_class": "ICloudSpatialAudioEngine"
-        },
-        "setAudioRangeMode": {
-            "windows": "setAudioRangeMode",
-            "android": "setAudioRangeMode",
-            "ios": "setAudioRangeMode",
-            "macos": "setAudioRangeMode",
-            "parent_class": "ICloudSpatialAudioEngine"
-        },
-        "setTeamId": {
-            "windows": "setTeamId",
-            "android": "setTeamId",
-            "ios": "setTeamId",
-            "macos": "setTeamId",
-            "parent_class": "ICloudSpatialAudioEngine"
-        },
-        "setLiveTranscoding": {
-            "windows": "setLiveTranscoding",
-            "android": "setLiveTranscoding",
-            "ios": "setLiveTranscoding:",
-            "macos": "setLiveTranscoding:",
-            "parent_class": "IRtcEngine",
-            "toc": "toc_media_push"
-        },
-        "enableDualStreamMode2": {
-            "windows": "enableDualStreamMode2",
-            "android": "enableDualStreamMode2",
-            "ios": "enableDualStreamMode:enabled:",
-            "macos": "enableDualStreamMode:enabled:",
-            "parent_class": "IRtcEngine",
-            "toc": "toc_publishnsubscribe",
-            "isOverload": true,
-            "params": {
-                "windows": ["sourceType", "enabled"],
-                "android": ["sourceType", "enabled"],
-                "ios": ["sourceType", "enabled"],
-                "macos": ["sourceType", "enabled"]
-            }
-        },
         "setAVSyncSource": {
             "windows": "setAVSyncSource",
             "android": "setAVSyncSource",
@@ -6966,34 +6996,6 @@
             "macos": "setLocalAccessPoint:",
             "parent_class": "IRtcEngine",
             "toc": "toc_network"
-        },
-        "onConnectionStateChange": {
-            "windows": "onConnectionStateChange",
-            "android": "onConnectionStateChange",
-            "ios": "connectionDidChangedToState",
-            "macos": "connectionDidChangedToState",
-            "parent_class": "ICloudSpatialAudioEventHandler"
-        },
-        "onTeammateJoined": {
-            "windows": "onTeammateJoined",
-            "android": "onTeammateJoined",
-            "ios": "teammateJoined",
-            "macos": "teammateJoined",
-            "parent_class": "ICloudSpatialAudioEventHandler"
-        },
-        "onTeammateLeft": {
-            "windows": "onTeammateLeft",
-            "android": "onTeammateLeft",
-            "ios": "teammateLeft",
-            "macos": "teammateLeft",
-            "parent_class": "ICloudSpatialAudioEventHandler"
-        },
-        "onTokenWillExpire": {
-            "windows": "onTokenWillExpire",
-            "android": "onTokenWillExpire",
-            "ios": "csaEngineTokenWillExpire",
-            "macos": "csaEngineTokenWillExpire",
-            "parent_class": "ICloudSpatialAudioEventHandler"
         },
         "getFaceShapeAreaOptions2": {
             "android": "getFaceShapeAreaOptions [2/2]",
@@ -7045,10 +7047,6 @@
                 "ios": ["enable", "options"],
                 "macos": ["enable", "options"]
             }
-        },
-        "create_ICloudSpatialAudioEngine": {
-            "android": "create",
-            "parent_class": "ICloudSpatialAudioEngine"
         }
     },
     "struct": {

@@ -6,12 +6,18 @@
             "toc": "toc_initialize"
         },
         "create": {
-            "windows": "create",
             "android": "create [1/2]",
             "ios": "sharedEngineWithAppId:delegate:",
             "macos": "sharedEngineWithAppId:delegate:",
             "parent_class": "IRtcEngine",
-            "toc": "toc_initialize"
+            "toc": "toc_initialize",
+            "isOverload": true,
+            "params": {
+                "windows": ["context", "appId"],
+                "android": ["context", "appId", "handler"],
+                "ios": ["appId", "delegate"],
+                "macos": ["appId", "delegate"]
+            }
         },
         "initialize": {
             "windows": "initialize",
@@ -19,7 +25,14 @@
             "ios": "sharedEngineWithConfig:delegate:",
             "macos": "sharedEngineWithConfig:delegate:",
             "parent_class": "IRtcEngine",
-            "toc": "toc_initialize"
+            "toc": "toc_initialize",
+            "isOverload": true,
+            "params": {
+                "windows": ["context"],
+                "android": ["config"],
+                "ios": ["config", "delegate"],
+                "macos": ["config", "delegate"]
+            }
         },
         "release": {
             "windows": "release",
@@ -619,7 +632,9 @@
             "ios": "getPlaySrc",
             "macos": "getPlaySrc",
             "parent_class": "IMediaPlayer",
-            "toc": "toc_mediaplayer_info"
+            "toc": "toc_mediaplayer_info",
+            "isOverload": true,
+            "params": {}
         },
         "getPublishSignalVolume": {
             "windows": "getPublishSignalVolume",
@@ -788,7 +803,14 @@
             "ios": "selectAudioTrack:",
             "macos": "selectAudioTrack:",
             "parent_class": "IRtcEngine",
-            "toc": "toc_audio_mixing"
+            "toc": "toc_audio_mixing",
+            "isOverload": true,
+            "params": {
+                "windows": ["index"],
+                "android": ["audioIndex"],
+                "ios": ["index"],
+                "macos": ["index"]
+            }
         },
         "selectAudioTrack_IMediaPlayer": {
             "windows": "selectAudioTrack [2/2]",
@@ -796,7 +818,14 @@
             "ios": "selectAudioTrack:",
             "macos": "selectAudioTrack:",
             "parent_class": "IMediaPlayer",
-            "toc": "toc_mediaplayer_playnrender"
+            "toc": "toc_mediaplayer_playnrender",
+            "isOverload": true,
+            "params": {
+                "windows": ["index"],
+                "android": ["index"],
+                "ios": ["index"],
+                "macos": ["index"]
+            }
         },
         "selectMultiAudioTrack": {
             "windows": "selectMultiAudioTrack",
@@ -909,7 +938,9 @@
             "ios": "stop",
             "macos": "stop",
             "parent_class": "IMediaPlayer",
-            "toc": "toc_mediaplayer_control"
+            "toc": "toc_mediaplayer_control",
+            "isOverload": true,
+            "params": {}
         },
         "unregisterAudioFrameObserver_IMediaPlayer": {
             "windows": "unregisterAudioFrameObserver",
@@ -1125,7 +1156,14 @@
             "ios": "setConfigs:error:",
             "macos": "setConfigs:error:",
             "parent_class": "Rte",
-            "toc": "toc_rte_player"
+            "toc": "toc_rte_player",
+            "isOverload": true,
+            "params": {
+                "windows": ["config", "err"],
+                "android": ["config"],
+                "ios": ["config", "error"],
+                "macos": ["config", "error"]
+            }
         },
         "SetConfigs_Player": {
             "windows": "SetConfigs [2/3]",
@@ -1133,7 +1171,14 @@
             "ios": "setConfigs:error:",
             "macos": "setConfigs:error:",
             "parent_class": "Player",
-            "toc": "toc_rte_player"
+            "toc": "toc_rte_player",
+            "isOverload": true,
+            "params": {
+                "windows": ["config", "err"],
+                "android": ["config"],
+                "ios": ["config", "error"],
+                "macos": ["config", "error"]
+            }
         },
         "SetConfigs_Canvas": {
             "windows": "SetConfigs [3/3]",
@@ -1141,7 +1186,14 @@
             "ios": "setConfigs:error:",
             "macos": "setConfigs:error:",
             "parent_class": "Canvas",
-            "toc": "toc_rte_player"
+            "toc": "toc_rte_player",
+            "isOverload": true,
+            "params": {
+                "windows": ["config", "err"],
+                "android": ["config"],
+                "ios": ["config", "error"],
+                "macos": ["config", "error"]
+            }
         },
         "SetMirrorMode": {
             "windows": "SetMirrorMode",
@@ -1165,7 +1217,14 @@
             "ios": "getConfigs:error:",
             "macos": "getConfigs:error:",
             "parent_class": "Rte",
-            "toc": "toc_rte_player"
+            "toc": "toc_rte_player",
+            "isOverload": true,
+            "params": {
+                "windows": ["config", "err"],
+                "android": ["config"],
+                "ios": ["config", "error"],
+                "macos": ["config", "error"]
+            }
         },
         "GetConfigs_Player": {
             "windows": "GetConfigs [2/3]",
@@ -1173,7 +1232,14 @@
             "ios": "getConfigs:error:",
             "macos": "getConfigs:error:",
             "parent_class": "Player",
-            "toc": "toc_rte_player"
+            "toc": "toc_rte_player",
+            "isOverload": true,
+            "params": {
+                "windows": ["config", "err"],
+                "android": ["config"],
+                "ios": ["config", "error"],
+                "macos": ["config", "error"]
+            }
         },
         "GetConfigs_Canvas": {
             "windows": "GetConfigs [3/3]",
@@ -1181,7 +1247,14 @@
             "ios": "getConfigs:error:",
             "macos": "getConfigs:error:",
             "parent_class": "Canvas",
-            "toc": "toc_rte_player"
+            "toc": "toc_rte_player",
+            "isOverload": true,
+            "params": {
+                "windows": ["config", "err"],
+                "android": ["config"],
+                "ios": ["config", "error"],
+                "macos": ["config", "error"]
+            }
         },
         "GetInfo": {
             "windows": "GetInfo",
@@ -1449,7 +1522,14 @@
             "ios": "onMetadata:data:",
             "macos": "onMetadata:data:",
             "parent_class": "PlayerObserver",
-            "toc": "toc_rte_player"
+            "toc": "toc_rte_player",
+            "isOverload": true,
+            "params": {
+                "windows": ["type", "data", "length"],
+                "android": ["type", "data"],
+                "ios": ["type", "data"],
+                "macos": ["type", "data"]
+            }
         },
         "onPlayerInfoUpdated_PlayerObserver": {
             "windows": "onPlayerInfoUpdated [2/2]",
@@ -1457,7 +1537,14 @@
             "ios": "onPlayerInfoUpdated:",
             "macos": "onPlayerInfoUpdated:",
             "parent_class": "PlayerObserver",
-            "toc": "toc_rte_player"
+            "toc": "toc_rte_player",
+            "isOverload": true,
+            "params": {
+                "windows": ["info"],
+                "android": ["info"],
+                "ios": ["info"],
+                "macos": ["info"]
+            }
         },
         "onResolutionChanged": {
             "windows": "onResolutionChanged",
@@ -2412,8 +2499,6 @@
         },
         "startScreenCaptureByDisplayId": {
             "windows": "startScreenCaptureByDisplayId",
-            "android": "startScreenCaptureByDisplayId",
-            "ios": "startScreenCaptureByDisplayId:regionRect:captureParams:",
             "macos": "startScreenCaptureByDisplayId:regionRect:captureParams:",
             "parent_class": "IRtcEngine",
             "toc": "toc_screencapture"
@@ -4688,12 +4773,16 @@
         "getCount_MusicChartCollection": {
             "windows": "getCount [1/2]",
             "parent_class": "MusicChartCollection",
-            "toc": "toc_drm"
+            "toc": "toc_drm",
+            "isOverload": true,
+            "params": {}
         },
         "getCount_MusicCollection": {
             "windows": "getCount [2/2]",
             "parent_class": "MusicCollection",
-            "toc": "toc_drm"
+            "toc": "toc_drm",
+            "isOverload": true,
+            "params": {}
         },
         "getTotal_MusicCollection": {
             "windows": "getTotal",
@@ -4884,7 +4973,14 @@
         "setParameters_IAgoraParameter": {
             "windows": "setParameters [2/2]",
             "parent_class": "IAgoraParameter",
-            "toc": "toc_network"
+            "toc": "toc_network",
+            "isOverload": true,
+            "params": {
+                "windows": ["parameters"],
+                "android": ["parameters"],
+                "ios": ["parameters"],
+                "macos": ["parameters"]
+            }
         },
         "setParameters": {
             "windows": "setParameters [1/2]",
@@ -4892,7 +4988,14 @@
             "ios": "setParameters:",
             "macos": "setParameters:",
             "parent_class": "IRtcEngine",
-            "toc": "toc_network"
+            "toc": "toc_network",
+            "isOverload": true,
+            "params": {
+                "windows": ["parameters"],
+                "android": ["parameters"],
+                "ios": ["options"],
+                "macos": ["options"]
+            }
         },
         "sendCustomReportMessage": {
             "windows": "sendCustomReportMessage",
@@ -5377,7 +5480,14 @@
             "ios": "AgoraRtcMediaPlayer:didReceiveData:length:",
             "macos": "AgoraRtcMediaPlayer:didReceiveData:length:",
             "parent_class": "IMediaPlayerSourceObserver",
-            "toc": "toc_mediaplayer_observer"
+            "toc": "toc_mediaplayer_observer",
+            "isOverload": true,
+            "params": {
+                "windows": ["data", "length"],
+                "android": ["type", "data"],
+                "ios": ["playerKit", "data", "length"],
+                "macos": ["playerKit", "data", "length"]
+            }
         },
         "onPlayerCacheStats": {
             "windows": "onPlayerCacheStats",
@@ -5465,7 +5575,14 @@
             "ios": "AgoraRtcMediaPlayer:infoUpdated:",
             "macos": "AgoraRtcMediaPlayer:infoUpdated:",
             "parent_class": "IMediaPlayerSourceObserver",
-            "toc": "toc_mediaplayer_observer"
+            "toc": "toc_mediaplayer_observer",
+            "isOverload": true,
+            "params": {
+                "windows": ["info"],
+                "android": ["info"],
+                "ios": ["playerKit", "info"],
+                "macos": ["playerKit", "info"]
+            }
         },
         "onDirectCdnStreamingStateChanged": {
             "windows": "onDirectCdnStreamingStateChanged",
@@ -6032,7 +6149,9 @@
         "getPlaySrc": {
             "android": "getPlaySrc [2/2]",
             "parent_class": "IMusicPlayer",
-            "toc": "toc_drm"
+            "toc": "toc_drm",
+            "isOverload": true,
+            "params": {}
         },
         "errorCode_RteException": {
             "android": "errorCode",
@@ -6769,6 +6888,165 @@
             "macos": "rtcEngine:device:type:stateChanged:",
             "parent_class": "IRtcEngine",
             "toc": "toc_common_device"
+        },
+        "SetAbrFallbackLayer": {
+            "windows": "SetAbrFallbackLayer",
+            "android": "setAbrFallbackLayer",
+            "ios": "setAbrFallbackLayer:error:",
+            "macos": "setAbrFallbackLayer:error:",
+            "parent_class": "PlayerConfig",
+            "toc": "toc_rte_player"
+        },
+        "SetAbrSubscriptionLayer": {
+            "windows": "SetAbrSubscriptionLayer",
+            "android": "setAbrSubscriptionLayer",
+            "ios": "setAbrSubscriptionLayer:error:",
+            "macos": "setAbrSubscriptionLayer:error:",
+            "parent_class": "PlayerConfig",
+            "toc": "toc_rte_player"
+        },
+        "GetAbrFallbackLayer": {
+            "windows": "GetAbrFallbackLayer",
+            "android": "getAbrFallbackLayer",
+            "ios": "abrFallbackLayer:",
+            "macos": "abrFallbackLayer:",
+            "parent_class": "PlayerConfig",
+            "toc": "toc_rte_player"
+        },
+        "GetAbrSubscriptionLayer": {
+            "windows": "GetAbrSubscriptionLayer",
+            "android": "getAbrSubscriptionLayer",
+            "ios": "abrSubscriptionLayer:",
+            "macos": "abrSubscriptionLayer:",
+            "parent_class": "PlayerConfig",
+            "toc": "toc_rte_player"
+        },
+        "getFaceShapeAreaOptions": {
+            "windows": "getFaceShapeAreaOptions",
+            "android": "getFaceShapeAreaOptions [1/2]",
+            "ios": "getFaceShapeAreaOptions:sourceType:",
+            "macos": "getFaceShapeAreaOptions:sourceType:",
+            "isOverload": true,
+            "parent_class": "IRtcEngine",
+            "toc": "toc_video_enhance_option",
+            "params": {
+                "windows": ["shapeArea", "options", "type"],
+                "android": ["shapeArea", "sourceType"],
+                "ios": ["area", "sourceType"],
+                "macos": ["area", "sourceType"]
+            }
+        },
+        "getFaceShapeBeautyOptions": {
+            "windows": "getFaceShapeBeautyOptions",
+            "android": "getFaceShapeBeautyOptions [1/2]",
+            "ios": "getFaceShapeBeautyOptions:",
+            "macos": "getFaceShapeBeautyOptions:",
+            "isOverload": true,
+            "parent_class": "IRtcEngine",
+            "toc": "toc_video_enhance_option",
+            "params": {
+                "windows": ["options", "type"],
+                "android": ["sourceType"],
+                "ios": ["sourceType"],
+                "macos": ["sourceType"]
+            }
+        },
+        "setFaceShapeAreaOptions": {
+            "windows": "setFaceShapeAreaOptions",
+            "android": "setFaceShapeAreaOptions [1/2]",
+            "ios": "setFaceShapeAreaOptions:",
+            "macos": "setFaceShapeAreaOptions:",
+            "isOverload": true,
+            "parent_class": "IRtcEngine",
+            "toc": "toc_video_enhance_option",
+            "params": {
+                "windows": ["options", "type"],
+                "android": ["options", "sourceType"],
+                "ios": ["options", "sourceType"],
+                "macos": ["options", "sourceType"]
+            }
+        },
+        "setFaceShapeBeautyOptions": {
+            "windows": "setFaceShapeBeautyOptions",
+            "android": "setFaceShapeBeautyOptions [1/2]",
+            "ios": "setFaceShapeBeautyOptions:options:",
+            "macos": "setFaceShapeBeautyOptions:options:",
+            "isOverload": true,
+            "parent_class": "IRtcEngine",
+            "toc": "toc_video_enhance_option",
+            "params": {
+                "windows": ["enabled", "options", "type"],
+                "android": ["enabled", "options", "sourceType"],
+                "ios": ["enable", "options", "sourceType"],
+                "macos": ["enable", "options", "sourceType"]
+            }
+        },
+        "setAVSyncSource": {
+            "windows": "setAVSyncSource",
+            "android": "setAVSyncSource",
+            "ios": "setAVSyncSource:uid:",
+            "macos": "setAVSyncSource:uid:",
+            "parent_class": "IRtcEngine",
+            "toc": "toc_network"
+        },
+        "setLocalAccessPoint": {
+            "windows": "setLocalAccessPoint",
+            "android": "setLocalAccessPoint",
+            "ios": "setLocalAccessPoint:",
+            "macos": "setLocalAccessPoint:",
+            "parent_class": "IRtcEngine",
+            "toc": "toc_network"
+        },
+        "getFaceShapeAreaOptions2": {
+            "android": "getFaceShapeAreaOptions [2/2]",
+            "ios": "getFaceShapeAreaOptions:",
+            "macos": "getFaceShapeAreaOptions:",
+            "isOverload": true,
+            "parent_class": "IRtcEngine",
+            "toc": "toc_video_enhance_option",
+            "params": {
+                "windows": ["shapeArea"],
+                "android": ["shapeArea"],
+                "ios": ["area"],
+                "macos": ["area"]
+            }
+        },
+        "getFaceShapeBeautyOptions2": {
+            "android": "getFaceShapeBeautyOptions [2/2]",
+            "ios": "getFaceShapeBeautyOptions",
+            "macos": "getFaceShapeBeautyOptions",
+            "isOverload": true,
+            "parent_class": "IRtcEngine",
+            "toc": "toc_video_enhance_option",
+            "params": {}
+        },
+        "setFaceShapeAreaOptions2": {
+            "android": "setFaceShapeAreaOptions [2/2]",
+            "ios": "setFaceShapeAreaOptions:sourceType:",
+            "macos": "setFaceShapeAreaOptions:sourceType:",
+            "isOverload": true,
+            "parent_class": "IRtcEngine",
+            "toc": "toc_video_enhance_option",
+            "params": {
+                "windows": ["options"],
+                "android": ["options"],
+                "ios": ["options"],
+                "macos": ["options"]
+            }
+        },
+        "setFaceShapeBeautyOptions2": {
+            "android": "setFaceShapeBeautyOptions [2/2]",
+            "ios": "setFaceShapeBeautyOptions:options:sourceType:",
+            "macos": "setFaceShapeBeautyOptions:options:sourceType:",
+            "isOverload": true,
+            "parent_class": "IRtcEngine",
+            "toc": "toc_video_enhance_option",
+            "params": {
+                "windows": ["enabled", "options"],
+                "android": ["enabled", "options"],
+                "ios": ["enable", "options"],
+                "macos": ["enable", "options"]
+            }
         }
     },
     "struct": {
@@ -7524,6 +7802,172 @@
         },
         "AgoraRtcDeviceInfo": {
             "macos": "AgoraRtcDeviceInfo"
+        },
+        "IMediaRecorder": {
+            "windows": "IMediaRecorder",
+            "android": "AgoraMediaRecorder",
+            "ios": "AgoraMediaRecorder",
+            "macos": "AgoraMediaRecorder"
+        },
+        "IMediaRecorderObserver": {
+            "windows": "IMediaRecorderObserver",
+            "android": "IMediaRecorderCallback",
+            "ios": "AgoraMediaRecorderDelegate",
+            "macos": "AgoraMediaRecorderDelegate"
+        },
+        "IMusicContentCenterEventHandler": {
+            "windows": "IMusicContentCenterEventHandler",
+            "android": "IMusicContentCenterEventHandler",
+            "ios": "AgoraMusicContentCenterEventDelegate"
+        },
+        "IMusicPlayer": {
+            "windows": "IMusicPlayer",
+            "android": "IAgoraMusicPlayer",
+            "ios": "AgoraMusicPlayerProtocol"
+        },
+        "IMusicContentCenter": {
+            "windows": "IMusicContentCenter",
+            "android": "IAgoraMusicContentCenter",
+            "ios": "AgoraMusicContentCenter"
+        },
+        "Canvas": {
+            "windows": "Canvas",
+            "android": "Canvas",
+            "ios": "AgoraRteCanvas",
+            "macos": "AgoraRteCanvas"
+        },
+        "Rte": {
+            "windows": "Rte",
+            "android": "Rte",
+            "ios": "AgoraRte",
+            "macos": "AgoraRte"
+        },
+        "Player": {
+            "windows": "Player",
+            "android": "Player",
+            "ios": "AgoraRtePlayerConfig",
+            "macos": "AgoraRtePlayerConfig"
+        },
+        "PlayerConfig": {
+            "windows": "PlayerConfig",
+            "android": "PlayerConfig",
+            "ios": "AgoraRtePlayerConfig",
+            "macos": "AgoraRtePlayerConfig"
+        },
+        "PlayerObserver": {
+            "windows": "PlayerObserver",
+            "android": "PlayerObserver",
+            "ios": "AgoraRtePlayerObserver",
+            "macos": "AgoraRtePlayerObserver"
+        },
+        "CanvasConfig": {
+            "windows": "CanvasConfig",
+            "android": "CanvasConfig",
+            "ios": "AgoraRteCanvasConfig",
+            "macos": "AgoraRteCanvasConfig"
+        },
+        "Config": {
+            "windows": "Config",
+            "android": "Config",
+            "ios": "AgoraRteConfig",
+            "macos": "AgoraRteConfig"
+        },
+        "Error": {
+            "windows": "Error",
+            "android": "Error",
+            "ios": "AgoraRteError",
+            "macos": "AgoraRteError"
+        },
+        "FaceShapeAreaOptions": {
+            "windows": "FaceShapeAreaOptions",
+            "android": "FaceShapeAreaOptions",
+            "ios": "AgoraFaceShapeAreaOptions",
+            "macos": "AgoraFaceShapeAreaOptions"
+        },
+        "FaceShapeBeautyOptions": {
+            "windows": "FaceShapeBeautyOptions",
+            "android": "FaceShapeBeautyOptions",
+            "ios": "AgoraFaceShapeBeautyOptions",
+            "macos": "AgoraFaceShapeBeautyOptions"
+        },
+        "LocalAccessPointConfiguration": {
+            "windows": "LocalAccessPointConfiguration",
+            "android": "LocalAccessPointConfiguration",
+            "ios": "AgoraLocalAccessPointConfiguration",
+            "macos": "AgoraLocalAccessPointConfiguration"
+        },
+        "LogUploadServerInfo": {
+            "windows": "LogUploadServerInfo",
+            "android": "LogUploadServerInfo",
+            "ios": "LogUploadServerInfo",
+            "macos": "LogUploadServerInfo"
+        },
+        "MediaRecorderConfiguration": {
+            "windows": "MediaRecorderConfiguration",
+            "android": "MediaRecorderConfiguration",
+            "ios": "AgoraMediaRecorderConfiguration",
+            "macos": "AgoraMediaRecorderConfiguration"
+        },
+        "Music": {
+            "windows": "Music",
+            "android": "Music",
+            "ios": "AgoraMusic"
+        },
+        "MusicCacheInfo": {
+            "windows": "MusicCacheInfo",
+            "android": "MusicCacheInfo",
+            "ios": "AgoraMusicCacheInfo"
+        },
+        "MusicChartInfo": {
+            "windows": "MusicChartInfo",
+            "android": "MusicChartInfo",
+            "ios": "AgoraMusicChartInfo"
+        },
+        "MusicCollection": {
+            "windows": "MusicCollection",
+            "android": "MusicCollection",
+            "ios": "AgoraMusicCollection"
+        },
+        "MusicChartCollection": {
+            "windows": "MusicChartCollection"
+        },
+        "MusicContentCenterConfiguration": {
+            "windows": "MusicContentCenterConfiguration",
+            "android": "MusicContentCenterConfiguration",
+            "ios": "AgoraMusicContentCenterConfig"
+        },
+        "RecorderInfo": {
+            "windows": "RecorderInfo",
+            "android": "RecorderInfo",
+            "ios": "AgoraMediaRecorderInfo",
+            "macos": "AgoraMediaRecorderInfo"
+        },
+        "RtePlayerInfo": {
+            "windows": "PlayerInfo",
+            "android": "PlayerInfo",
+            "ios": "AgoraRtePlayerInfo",
+            "macos": "AgoraRtePlayerInfo"
+        },
+        "RtePlayerStats": {
+            "windows": "RtePlayerStats",
+            "android": "PlayerStats",
+            "ios": "AgoraRtePlayerStats",
+            "macos": "AgoraRtePlayerStats"
+        },
+        "AdvancedConfigInfo": {
+            "windows": "AdvancedConfigInfo",
+            "android": "AdvancedConfigInfo",
+            "ios": "AdvancedConfigInfo",
+            "macos": "AdvancedConfigInfo"
+        },
+        "AsyncCallback": {
+            "android": "AsyncCallback"
+        },
+        "PlayerGetStatsCallback": {
+            "android": "PlayerGetStatsCallback"
+        },
+        "RteException": {
+            "android": "RteException"
         }
     },
     "enum": {
@@ -14551,6 +14995,91 @@
         },
         "RAW_AUDIO_FRAME_OP_MODE_WRITE_ONLY": {
             "macos": "AgoraAudioRawFrameOperationModeWriteOnly"
+        },
+        "FACE_SHAPE_AREA": {
+            "windows": "FACE_SHAPE_AREA",
+            "ios": "AgoraFaceShapeArea",
+            "macos": "AgoraFaceShapeArea"
+        },
+        "FACE_SHAPE_BEAUTY_STYLE": {
+            "windows": "FACE_SHAPE_BEAUTY_STYLE",
+            "ios": "AgoraFaceShapeStyle",
+            "macos": "AgoraFaceShapeStyle"
+        },
+        "MediaRecorderContainerFormat": {
+            "windows": "MediaRecorderContainerFormat",
+            "ios": "AgoraMediaRecorderContainerFormat",
+            "macos": "AgoraMediaRecorderContainerFormat"
+        },
+        "LOCAL_PROXY_MODE": {
+            "windows": "LOCAL_PROXY_MODE",
+            "ios": "AgoraLocalProxyMode",
+            "macos": "AgoraLocalProxyMode"
+        },
+        "MUSIC_CACHE_STATUS_TYPE": {
+            "windows": "MUSIC_CACHE_STATUS_TYPE",
+            "android": "MusicCacheStatusType",
+            "ios": "AgoraMusicCacheStatusType"
+        },
+        "MusicContentCenterStateReason": {
+            "windows": "MusicContentCenterStateReason",
+            "android": "MusicContentCenterStateReason",
+            "ios": "AgoraMusicContentCenterStateReason"
+        },
+        "MusicPlayMode": {
+            "windows": "MusicPlayMode",
+            "android": "MusicPlayMode",
+            "ios": "AgoraMusicPlayMode"
+        },
+        "RteVideoMirrorMode": {
+            "windows": "RteVideoMirrorMode",
+            "android": "VideoMirrorMode",
+            "ios": "AgoraRteVideoMirrorMode",
+            "macos": "AgoraRteVideoMirrorMode"
+        },
+        "RteAbrFallbackLayer": {
+            "windows": "RteAbrFallbackLayer",
+            "android": "AbrFallbackLayer",
+            "ios": "AgoraRteAbrFallbackLayer",
+            "macos": "AgoraRteAbrFallbackLayer"
+        },
+        "RteAbrSubscriptionLayer": {
+            "windows": "RteAbrSubscriptionLayer",
+            "android": "AbrSubscriptionLayer",
+            "ios": "AgoraRteAbrSubscriptionLayer",
+            "macos": "AgoraRteAbrSubscriptionLayer"
+        },
+        "RteVideoRenderMode": {
+            "windows": "RteVideoRenderMode",
+            "android": "VideoRenderMode",
+            "ios": "AgoraRteVideoRenderMode",
+            "macos": "AgoraRteVideoRenderMode"
+        },
+        "RtePlayerMetadataType": {
+            "windows": "RtePlayerMetadataType",
+            "ios": "AgoraRtePlayerMetadataType",
+            "macos": "AgoraRtePlayerMetadataType"
+        },
+        "RecorderStreamType": {
+            "windows": "RecorderStreamType",
+            "ios": "AgoraRecorderStreamType",
+            "macos": "AgoraRecorderStreamType"
+        },
+        "RtePlayerEvent": {
+            "windows": "RtePlayerEvent",
+            "android": "PlayerEvent",
+            "ios": "AgoraRtePlayerEvent",
+            "macos": "AgoraRtePlayerEvent"
+        },
+        "RtePlayerState": {
+            "windows": "RtePlayerState",
+            "android": "PlayerState",
+            "ios": "AgoraRtePlayerState",
+            "macos": "AgoraRtePlayerState"
+        },
+        "VIDEO_FRAME_POSITION": {
+            "ios": "AgoraVideoFramePosition",
+            "macos": "AgoraVideoFramePosition"
         }
     }
 }
