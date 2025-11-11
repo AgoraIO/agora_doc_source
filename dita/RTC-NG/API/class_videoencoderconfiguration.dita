@@ -271,6 +271,7 @@
 @property(assign, nonatomic) AgoraVideoOutputOrientationMode orientationMode;
 @property(assign, nonatomic) AgoraVideoMirrorMode mirrorMode;
 @property (assign, nonatomic) AgoraDegradationPreference degradationPreference;
+@property (strong, nonatomic) AgoraAdvancedVideoOptions *_Nullable advancedVideoOptions;
 
 - (instancetype _Nonnull)initWithSize:(CGSize)size
                             frameRate:(AgoraVideoFrameRate)frameRate
@@ -614,7 +615,8 @@ public:
                 <pd>视频编码的方向模式，详见 <xref keyref="ORIENTATION_MODE"/>。</pd>
             </plentry>
             <plentry>
-                <pt>degradationPreference</pt>
+                <pt props="cpp apple unity rn electron flutter cs bp unreal">degradationPreference</pt>
+                <pt props="android hmos">degradationPrefer</pt>
                 <pd>带宽受限时，视频编码降级偏好。详见 <xref keyref="DEGRADATION_PREFERENCE"/>。
                   <note type="attention">当该参数设置为 <ph keyref="MAINTAIN_FRAMERATE"/> (1) 或者 <ph keyref="MAINTAIN_BALANCED"/> (2) 时，需要同时将 <parmname>orientationMode</parmname> 设置为 <ph keyref="ORIENTATION_MODE_ADAPTIVE"/> (0)，否则设置不生效。</note></pd>
             </plentry>
@@ -632,7 +634,8 @@ public:
                     <note type="attention">默认关闭镜像模式。</note> </pd>
             </plentry>
             <plentry>
-                <pt>advanceOptions</pt>
+                <pt props="android hmoc cpp unreal cs unity electron flutter rn bp">advanceOptions</pt>
+                <pt props="ios mac">advancedVideoOptions</pt>
                 <pd>视频编码的高级选项。详见 <xref keyref="AdvanceOptions"/>。</pd>
             </plentry>
             </parml> </section>

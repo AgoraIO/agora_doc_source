@@ -19,8 +19,8 @@
                 receiveStreamMessageFromUid:(NSUInteger)uid
                 streamId:(NSInteger)streamId
                 data:(NSData * _Nonnull)data;</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onStreamMessage(uid_t userId, int streamId, const char* data, size_t length, uint64_t sentTs) {
-                    (void)userId;
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onStreamMessage(uid_t uid, int streamId, const char* data, size_t length, uint64_t sentTs) {
+                    (void)uid;
                     (void)streamId;
                     (void)data;
                     (void)length;
@@ -67,8 +67,8 @@
                 <pd />
             </plentry>
             <plentry id="uid">
-                <pt props="android hmos ios mac">uid</pt>
-                <pt props="cpp unreal bp">userId</pt>
+                <pt props="android hmos ios mac cpp unreal">uid</pt>
+                <pt props="bp">userId</pt>
                 <pt props="unity electron rn flutter cs">remoteUid</pt>
                 <pd>发送消息的用户 ID。</pd>
             </plentry>

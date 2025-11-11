@@ -47,7 +47,7 @@
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>适用场景</title>
-            <p>在屏幕共享场景下，你需要调用该方法开始采集屏幕视频流。有关屏幕共享的实现方法，详见<xref keyref="screen-share"/>。</p>
+            <p>在屏幕共享场景下，你需要调用该方法开始采集屏幕视频流。<ph props="cn">有关屏幕共享的实现方法，详见<xref keyref="screen-share"/>。</ph></p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -70,9 +70,11 @@
                     <note type="note" props="cpp unreal bp unity flutter electron">对于 Windows 平台，如果你需要同时共享两个屏幕（主屏 + 副屏），可以在调用该方法时，将 <parmname>displayId</parmname> 设置为 <codeph>-1</codeph>。</note>
                 </pd>
             </plentry>
-            <plentry props="cpp unreal bp unity flutter electron cs">
+            <plentry props="mac cpp unreal bp unity flutter electron cs">
                 <pt>regionRect</pt>
-                <pd><ph>（可选）指定待共享区域相对于整个屏幕的位置。如需共享整个屏幕，则填 <codeph>nil</codeph>。</ph><ph props="cpp unreal bp unity flutter cs">详见 <xref keyref="Rectangle" />。</ph><ph props="mac">由如下参数组成：</ph>
+                <pd><ph>（可选）指定待共享区域相对于整个屏幕的位置。如需共享整个屏幕，则填 <codeph>nil</codeph>。</ph>
+                    <ph props="cpp unreal bp unity flutter cs">详见 <xref keyref="Rectangle" />。</ph>
+                    <ph props="mac">由如下参数组成：</ph>
                     <ul props="mac">
                     <li>x：左上角的横向偏移。</li>
                     <li>y：左上角的纵向偏移。</li>

@@ -15,8 +15,8 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int getUserInfoByUid(int uid, UserInfo userInfo);</codeblock>
             <codeblock props="hmos" outputclass="language-arkts"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (AgoraUserInfo* _Nullable)getUserInfoByUid:(NSUInteger)uid withError:(AgoraErrorCode* _Nullable)error;</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int getUserInfoByUid(uid_t uid, rtc::UserInfo* userInfo, const char* channelId = NULL, const char* localUserAccount = NULL) = 0;</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (AgoraUserInfo* _Nullable)getUserInfoByUid:(NSUInteger)uid withError:(AgoraErrorCode* _Nullable)error NS_SWIFT_NAME(getUserInfo(byUid:withError:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int getUserInfoByUid(uid_t uid, rtc::UserInfo* userInfo) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
 	int GetUserInfoByUid(int64 uid, FUserInfo&amp; userInfo);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract getUserInfoByUid(uid: number): UserInfo;</codeblock>
@@ -26,7 +26,7 @@
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p id="getUserInfo_desc">After a remote user joins the channel, the SDK gets the UID and user account of the remote user, caches them in a mapping table object, and triggers the <xref keyref="onUserInfoUpdated"/> callback on the local client. After receiving the callback, you can call this method and passi in the UID.to get the user account of the specified user from the <xref keyref="UserInfo" /> object.</p>
+            <p id="getUserInfo_desc">After a remote user joins the channel, the SDK gets the UID and user account of the remote user, caches them in a mapping table object, and triggers the <xref keyref="onUserInfoUpdated"/> callback on the local client. After receiving the callback, you can call this method and pass in the UID to get the user account of the specified user from the <xref keyref="UserInfo" /> object.</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>Call timing</title>
@@ -55,11 +55,11 @@
                     </ul>
                 </pd>
             </plentry>
-            <plentry id="channelId" props="cpp unreal bp">
+            <plentry id="channelId" props="bp">
                 <pt>channelId</pt>
                 <pd><p conkeyref="joinChannel2/channelID_desc" /></pd>
             </plentry>
-            <plentry id="localUserAccount" props="cpp unreal bp">
+            <plentry id="localUserAccount" props="bp">
                 <pt>localUserAccount</pt>
                 <pd>The user account of the local user.</pd>
             </plentry>

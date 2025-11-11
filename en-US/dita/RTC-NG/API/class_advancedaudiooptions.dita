@@ -7,25 +7,25 @@
     <section id="prototype">
       <p outputclass="codeblock">
       <codeblock props="android" outputclass="language-java">public class AdvancedAudioOptions {
-  public enum AgoraAudioProcessChannels {
+  public enum AudioProcessingChannelsEnum {
     AGORA_AUDIO_MONO_PROCESSING(1),
     AGORA_AUDIO_STEREO_PROCESSING(2);
     private int value;
-    private AgoraAudioProcessChannels(int v) {
+    private AudioProcessingChannelsEnum(int v) {
       value = v;
     }
     public int getValue() {
       return this.value;
     }
   }
-  public AgoraAudioProcessChannels audioProcessingChannels;
+  public AudioProcessingChannelsEnum audioProcessingChannels;
 
-  public AdvancedAudioOptions(AgoraAudioProcessChannels channels) {
+  public AdvancedAudioOptions(AudioProcessingChannelsEnum channels) {
     audioProcessingChannels = channels;
   }
 
   public AdvancedAudioOptions() {
-    audioProcessingChannels = AgoraAudioProcessChannels.AGORA_AUDIO_MONO_PROCESSING;
+    audioProcessingChannels = AudioProcessingChannelsEnum.AGORA_AUDIO_MONO_PROCESSING;
   }
 }</codeblock>
       <codeblock props="hmos" outputclass="language-arkts"></codeblock>
@@ -33,8 +33,10 @@
 @property(assign, nonatomic) AgoraAudioProcessChannels audioProcessingChannels;
 @end</codeblock>
       <codeblock props="cpp unreal" outputclass="language-cpp">struct AdvancedAudioOptions {
-  AUDIO_PROCESSING_CHANNELS audioProcessingChannels;
-  AdvancedAudioOptions(): audioProcessingChannels(AUDIO_PROCESSING_MONO) {}
+   Optional&lt;int&gt; audioProcessingChannels;
+
+   AdvancedAudioOptions() {}
+  ~AdvancedAudioOptions() {}
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FAdvancedAudioOptions
@@ -87,10 +89,16 @@ public:
       <parml>
       <plentry>
         <pt>audioProcessingChannels</pt>
-        <pd props="native unreal flutter unity cs electron rn">The number of channels for audio preprocessing. See <xref keyref="AUDIO_PROCESSING_CHANNELS" />.</pd>
+        <pd props="android ios mac unreal flutter unity cs electron rn">The number of channels for audio preprocessing. See <xref keyref="AUDIO_PROCESSING_CHANNELS" />.</pd>
         <pd props="bp">The number of channels for audio preprocessing.<ul>
             <li><ph keyref="AUDIO_PROCESSING_MONO"/>(1): (Default) Mono.</li>
             <li><ph keyref="AUDIO_PROCESSING_STEREO"/>(2): Stereo.</li></ul>
+          </pd>
+          <pd props="cpp">The number of channels for audio preprocessing:
+            <ul>
+              <li>1: Mono.</li>
+              <li>2: Stereo.</li>
+            </ul>
           </pd>
       </plentry>
       </parml> </section>
