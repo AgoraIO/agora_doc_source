@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setfaceshapebeautyoptions">
+    <title>
+        <ph keyref="setFaceShapeBeautyOptions"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">设置美型选项并指定媒体源。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setFaceShapeBeautyOptions"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setFaceShapeBeautyOptions(bool enabled, const FaceShapeBeautyOptions&amp; options, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)setFaceShapeBeautyOptions:(BOOL)enable options:(AgoraFaceShapeBeautyOptions* _Nullable)options NS_SWIFT_NAME(setFaceShapeBeautyOptions(_:options:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)setFaceShapeBeautyOptions:(BOOL)enable options:(AgoraFaceShapeBeautyOptions* _Nullable)options NS_SWIFT_NAME(setFaceShapeBeautyOptions(_:options:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">调用该方法可以通过预设参数一次性调整多个面部部位，实现瘦脸、放大眼睛、瘦鼻等轻度美颜效果，并支持整体调节美型强度。</p>
+            <p props="ios mac">调用该方法可以调整面部的特定部位，实现瘦脸、放大眼睛和瘦鼻等美型效果。</p>
+            <note props="cpp">该方法仅适用于 Android 4.4 或更高版本。
+该方法依赖图像增强动态库 <codeph>libagora_clear_vision_extension.dll</codeph>。如果该动态库被删除，将无法正常启用该功能。
+该功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的能力。</note>
+            <note props="ios">
+                <ul>
+                    <li>此方法依赖图像增强动态库 <xref keyref="clearvision"/>（iOS）或 <codeph>AgoraClearVisionExtension.framework</codeph>（macOS）。如果删除该动态库，则无法正常启用此功能。</li>
+                    <li>此功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的能力。</li>
+                </ul>
+            </note>
+            <note props="mac">
+                <ul>
+                    <li>此方法依赖图像增强动态库 <codeph>AgoraClearVisionExtension.xcframework</codeph>（iOS）或 <codeph>AgoraClearVisionExtension.framework</codeph>（macOS）。如果删除该动态库，则无法正常启用此功能。</li>
+                    <li>此功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的能力。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="cpp">在调用 <codeph>enableVideo</codeph> 方法之后调用该方法。</p>
+            <p props="ios">在调用 <xref keyref="enableVideo"/> 方法之后调用。</p>
+            <p props="mac">在调用 <codeph>enableVideo</codeph> 方法之后调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>enabled</pt>
+                    <pd>是否启用美型特效：
+                        <ul>
+                            <li>
+                                <codeph>true</codeph>：启用美型特效。</li>
+                            <li>
+                                <codeph>false</codeph>：（默认）关闭美型特效。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>options</pt>
+                    <pd>美型风格选项，详见 <codeph>FaceShapeBeautyOptions</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>type</pt>
+                    <pd>要应用滤镜特效的媒体源类型，详见 <codeph>MEDIA_SOURCE_TYPE</codeph>。
+该参数仅支持以下两种设置：
+                        <ul>
+                            <li>如果使用摄像头采集本地视频，使用默认值 <codeph>PRIMARY_CAMERA_SOURCE</codeph>。</li>
+                            <li>如果使用自定义视频源，将该参数设置为 <codeph>CUSTOM_VIDEO_SOURCE</codeph>。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>enable</pt>
+                    <pd>是否启用美型效果：
+                        <ul>
+                            <li>
+                                <xref keyref="true"/>：启用美型效果。</li>
+                            <li>
+                                <xref keyref="false"/>：（默认）关闭美型效果。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>options</pt>
+                    <pd>美型风格选项，详见 <xref keyref="FaceShapeBeautyOptions"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>enable</pt>
+                    <pd>是否启用美型效果：
+                        <ul>
+                            <li>
+                                <codeph>YES</codeph>：启用美型效果。</li>
+                            <li>
+                                <codeph>NO</codeph>：（默认）关闭美型效果。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>options</pt>
+                    <pd>美型风格选项，详见 <codeph>AgoraFaceShapeBeautyOptions</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                    <li>-4：当前设备不支持该功能。可能原因包括：</li>
+                    <li>当前设备能力不满足图像增强要求。声网建议更换为高性能设备。</li>
+                    <li>当前设备版本低于 Android 4.4，不支持该功能。声网建议更换设备或升级操作系统。</li>
+                </ul>
+            </p>
+            <p props="ios mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                    <li>-4：当前设备不支持此功能。可能的原因包括：</li>
+                    <li>当前设备的图像增强能力不满足要求。声网建议你更换为高性能设备。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

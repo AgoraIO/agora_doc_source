@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_config">
+    <title>
+        <ph keyref="Config"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">用于配置 `RTE` 对象。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">class Config {
+ public:
+    RteConfigSetAppId(&amp;c_rte_config, str.get_underlying_impl(), err != nullptr ? err-&gt;get_underlying_impl() : nullptr);
+    RteConfigSetLogFolder(&amp;c_rte_config, str.get_underlying_impl(), err != nullptr ? err-&gt;get_underlying_impl() : nullptr);
+    RteConfigSetCloudProxy(&amp;c_rte_config, str.get_underlying_impl(), err != nullptr ? err-&gt;get_underlying_impl() : nullptr);
+    RteConfigSetJsonParameter(&amp;c_rte_config, str.get_underlying_impl(), err != nullptr ? err-&gt;get_underlying_impl() : nullptr);
+
+ private:
+  ::RteConfig* get_underlying_impl() { return &amp;c_rte_config; }
+
+ private:
+  friend class Rte;
+  ::RteConfig c_rte_config;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class Config {
+  private long mNativeHandle = 0;
+}</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRteConfig : NSObject
+@end</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRteConfig : NSObject
+@end</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="android cpp ios mac">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>RteConfigSetAppId</pt>
+                    <pd>设置 <codeph>App ID</codeph>，用于标识应用。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>RteConfigSetLogFolder</pt>
+                    <pd>设置日志文件的存储目录。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>RteConfigSetCloudProxy</pt>
+                    <pd>设置云代理地址。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>RteConfigSetJsonParameter</pt>
+                    <pd>设置 JSON 格式的自定义参数。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mNativeHandle</pt>
+                    <pd>原生层句柄，用于与底层 <xref keyref="Rte"/> 实现进行交互。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

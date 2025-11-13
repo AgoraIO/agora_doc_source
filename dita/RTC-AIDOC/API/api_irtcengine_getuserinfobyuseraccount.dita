@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getuserinfobyuseraccount">
+    <title>
+        <ph keyref="getUserInfoByUserAccount"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">通过传入用户账号获取远端用户信息。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getUserInfoByUserAccount"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getUserInfoByUserAccount(const char* userAccount, rtc::UserInfo* userInfo) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int getUserInfoByUserAccountEx(String userAccount, UserInfo userInfo, RtcConnection connection);</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (AgoraUserInfo* _Nullable)getUserInfoByUserAccount:(NSString* _Nonnull)userAccount withError:(AgoraErrorCode* _Nullable)error NS_SWIFT_NAME(getUserInfo(byUserAccount:withError:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (AgoraUserInfo* _Nullable)getUserInfoByUserAccount:(NSString* _Nonnull)userAccount withError:(AgoraErrorCode* _Nullable)error NS_SWIFT_NAME(getUserInfo(byUserAccount:withError:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">远端用户加入频道后，SDK 会获取该远端用户的用户 ID 和用户账号，并将其缓存在映射表中，同时在本地客户端触发 <codeph>onUserInfoUpdated</codeph> 回调。收到该回调后，你可以调用该方法并传入用户账号，从 <codeph>UserInfo</codeph> 对象中获取该远端用户的用户 ID。</p>
+            <p props="android">当远端用户加入频道后，SDK 会获取该远端用户的用户 ID 和用户账号，并将其缓存在映射表中，同时在本地客户端触发 <xref keyref="onUserInfoUpdated"/> 回调。收到该回调后，你可以调用 <xref keyref="getUserInfoByUserAccountEx"/> 方法并传入用户账号，从 <xref keyref="UserInfo"/> 对象中获取指定用户的信息。</p>
+            <p props="ios">远端用户加入频道后，SDK 会获取该远端用户的用户 ID 和用户账号，并将其缓存在映射表对象中，然后在本地客户端触发 <xref keyref="onUserInfoUpdated"/> 回调。你可以在收到该回调后调用 <xref keyref="getUserInfoByUserAccount"/> 方法，并传入用户账号，从 <xref keyref="UserInfo"/> 对象中获取远端用户的用户 ID，详见 <xref keyref="UserInfo"/>。</p>
+            <p props="mac">远端用户加入频道后，SDK 会获取该远端用户的用户 ID 和用户账号，并将其缓存在映射表对象中，然后在本地客户端触发 <codeph>rtcEngine:didUserInfoUpdatedWithUserId:userInfo:</codeph> 回调。你可以在收到该回调后调用 <codeph>getUserInfoByUserAccount:withError:</codeph> 方法，并传入用户账号，从 <codeph>AgoraUserInfo</codeph> 对象中获取远端用户的用户 ID，详见 <codeph>AgoraUserInfo</codeph>。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="cpp">在收到 <codeph>onUserInfoUpdated</codeph> 回调后调用该方法。</p>
+            <p props="ios">该方法应在收到 <xref keyref="onUserInfoUpdated"/> 回调后调用。</p>
+            <p props="mac">该方法应在收到 <codeph>rtcEngine:didUserInfoUpdatedWithUserId:userInfo:</codeph> 回调后调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="android cpp ios mac">
+                    <pt>userAccount</pt>
+                    <pd>用户账号。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>userInfo</pt>
+                    <pd>输出参数，表示用户信息。详见 <codeph>UserInfo</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>userInfo</pt>
+                    <pd>输入和输出参数，用于标识用户信息。详见 <xref keyref="UserInfo"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>error</pt>
+                    <pd>错误码，详见 <xref keyref="ERROR_CODE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>error</pt>
+                    <pd>错误码，详见 <codeph>AgoraErrorCode</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="android cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">方法调用成功，返回 <xref keyref="UserInfo"/> 对象，详见 <xref keyref="UserInfo"/>。方法调用失败，返回 <xref keyref="NULL"/>。</p>
+            <p props="mac">方法调用成功，返回 <codeph>AgoraUserInfo</codeph> 对象，详见 <codeph>AgoraUserInfo</codeph>。方法调用失败，返回 <codeph>nil</codeph>。</p>
+        </section>
+    </refbody>
+</reference>

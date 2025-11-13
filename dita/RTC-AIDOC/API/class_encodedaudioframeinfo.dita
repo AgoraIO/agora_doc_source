@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_encodedaudioframeinfo">
+    <title>
+        <ph keyref="EncodedAudioFrameInfo"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">编码后音频帧的信息。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct EncodedAudioFrameInfo {
+  AUDIO_CODEC_TYPE codec;
+  int sampleRateHz;
+  int samplesPerChannel;
+  int numberOfChannels;
+  EncodedAudioFrameAdvancedSettings advancedSettings;
+  int64_t captureTimeMs;
+};</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraEncodedAudioFrameInfo: NSObject
+@property (assign, nonatomic) NSInteger samplesPerChannel;
+@property (assign, nonatomic) NSInteger channels;
+@property (assign, nonatomic) NSInteger samplesPerSec;
+@property (assign, nonatomic) AgoraAudioCodecType codecType;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>codec</pt>
+                    <pd>音频编解码器类型。详见 <codeph>AUDIO_CODEC_TYPE</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>sampleRateHz</pt>
+                    <pd>音频采样率，单位为 Hz。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>samplesPerChannel</pt>
+                    <pd>每个声道的音频采样点数量。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>numberOfChannels</pt>
+                    <pd>音频的声道数。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>advancedSettings</pt>
+                    <pd>高级设置，当前暂不支持。详见 <codeph>EncodedAudioFrameAdvancedSettings</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>captureTimeMs</pt>
+                    <pd>采集音频帧的时间戳，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>samplesPerChannel</pt>
+                    <pd>每个声道的音频采样数。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>channels</pt>
+                    <pd>音频声道数。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>samplesPerSec</pt>
+                    <pd>音频采样率（Hz）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>codecType</pt>
+                    <pd>音频编解码器类型。详见 <xref keyref="AUDIO_CODEC_TYPE"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

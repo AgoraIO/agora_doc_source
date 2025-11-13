@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onerror">
+    <title>
+        <ph keyref="onError"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">`onError` 回调。报告 SDK 运行时发生的错误。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onError"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onError(int err, const char* msg)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onError(int err)</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didOccurError:(AgoraErrorCode)errorCode NS_SWIFT_NAME(rtcEngine(_:didOccurError:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didOccurError:(AgoraErrorCode)errorCode NS_SWIFT_NAME(rtcEngine(_:didOccurError:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">该回调表示 SDK 运行过程中发生了网络或媒体相关的错误。在大多数情况下，SDK 无法自动修复该问题并继续运行，需要你在应用层进行处理或提示用户。</p>
+            <p props="android">该回调表示 <codeph>SDK</codeph> 运行期间发生了网络或媒体相关的错误。在大多数情况下，<codeph>SDK</codeph> 无法自动修复该问题并继续运行，需要你在应用层进行处理或通知用户。</p>
+            <p props="ios mac">该回调在 SDK 运行过程中发生错误时触发。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>触发时机</title>
+            <p props="android">该回调在 <codeph>SDK</codeph> 运行期间发生错误时被触发。</p>
+            <p props="ios mac">该回调在 SDK 运行过程中发生错误时触发。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>使用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>err</pt>
+                    <pd>错误码。详见 <codeph>ERROR_CODE_TYPE</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>msg</pt>
+                    <pd>错误信息。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>err</pt>
+                    <pd>错误码。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>engine</pt>
+                    <pd>
+                        <xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>errorCode</pt>
+                    <pd>错误码。详见 <xref keyref="ERROR_CODE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd>
+                        <codeph>AgoraRtcEngineKit</codeph> 对象。详见 <codeph>AgoraRtcEngineKit</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>errorCode</pt>
+                    <pd>错误码。详见 <codeph>AgoraErrorCode</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

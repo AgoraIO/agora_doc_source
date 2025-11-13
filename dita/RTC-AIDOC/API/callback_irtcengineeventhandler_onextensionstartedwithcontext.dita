@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onextensionstartedwithcontext">
+    <title>
+        <ph keyref="onExtensionStartedWithContext"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">`onExtensionStartedWithContext` 回调。当扩展启用成功时触发。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onExtensionStartedWithContext"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onExtensionStartedWithContext(const ExtensionContext &amp;context)</codeblock>
+                <codeblock props="android" outputclass="language-java">default void onStartedWithContext(ExtensionContext extContext)</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (void)onExtensionStartedWithContext:(AgoraExtensionContext * _Nonnull)context NS_SWIFT_NAME(onExtensionStartedWithContext(_:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (void)onExtensionStartedWithContext:(AgoraExtensionContext * _Nonnull)context NS_SWIFT_NAME(onExtensionStartedWithContext(_:));</codeblock>
+            </p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>触发时机</title>
+            <p props="android ios mac">该回调在扩展成功启用后被触发。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>使用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>context</pt>
+                    <pd>扩展的上下文信息。详见 <codeph>ExtensionContext</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>extContext</pt>
+                    <pd>扩展的上下文信息。详见 <xref keyref="ExtensionContext"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>context</pt>
+                    <pd>扩展的上下文信息。详见 <xref keyref="ExtensionContext"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>context</pt>
+                    <pd>扩展的上下文信息。详见 <codeph>AgoraExtensionContext</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

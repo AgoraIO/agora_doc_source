@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_error_message">
+    <title>
+        <ph keyref="Message"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">获取详细错误信息。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="Message"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">const char *Message() const</codeblock>
+                <codeblock props="android" outputclass="language-java">public String message()</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (NSString * _Nullable)message;</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (NSString * _Nullable)message;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="android cpp ios mac">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p props="ios mac">当 API 调用失败时，你可以调用该方法获取错误信息，以帮助排查问题。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="cpp">当 API 调用失败时，你可以调用该方法获取错误信息，以帮助排查问题。</p>
+            <p props="android ios mac">当 API 调用失败时，可以调用该方法获取错误信息，以帮助排查问题。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="android cpp">
+                <ul>
+                    <li>方法调用成功时，返回错误信息字符串。</li>
+                    <li>方法调用失败，返回空字符串。</li>
+                </ul>
+            </p>
+            <p props="ios mac">
+                <ul>
+                    <li>方法调用成功时，返回错误信息字符串。</li>
+                    <li>方法调用失败时，返回空字符串。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

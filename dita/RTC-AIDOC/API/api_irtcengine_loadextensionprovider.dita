@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_loadextensionprovider">
+    <title>
+        <ph keyref="loadExtensionProvider"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">加载扩展。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="loadExtensionProvider"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int loadExtensionProvider(const char* path, bool unload_after_use = false) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">该方法用于将 SDK 外部的扩展（例如来自云市场或 SDK 扩展）加载到 SDK 中。</p>
+            <note props="cpp">如果你需要加载多个扩展，需要多次调用该方法。仅适用于 Windows 和 Android 平台。</note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="cpp">请确保在调用该方法前已初始化 <codeph>IRtcEngine</codeph>。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="cpp">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>path</pt>
+                    <pd>扩展库的路径和名称。例如：<codeph>/library/libagora_segmentation_extension.dll</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>unload_after_use</pt>
+                    <pd>是否在不再使用当前扩展时卸载该扩展：
+                        <ul>
+                            <li>
+                                <codeph>true</codeph>：当 <codeph>IRtcEngine</codeph> 被销毁时卸载该扩展。</li>
+                            <li>
+                                <codeph>false</codeph>：（推荐）直到进程终止前都不卸载该扩展。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

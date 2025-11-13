@@ -1,0 +1,222 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_transcodingvideostream">
+    <title>
+        <ph keyref="TranscodingVideoStream"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">用于设置本地合成画面的视频流。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct TranscodingVideoStream {
+  VIDEO_SOURCE_TYPE sourceType;
+  uid_t remoteUserUid;
+  const char* imageUrl;
+  int mediaPlayerId;
+  int x;
+  int y;
+  int width;
+  int height;
+  int zOrder;
+  double alpha;
+  bool mirror;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public static class TranscodingVideoStream {
+    public int remoteUserUid;
+    public Constants.VideoSourceType sourceType;
+    public String imageUrl;
+    public int mediaPlayerId;
+    public int x;
+    public int y;
+    public int width;
+    public int height;
+    public int zOrder;
+    public double alpha;
+    public boolean mirror;
+  }</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraTranscodingVideoStream: NSObject
+@property (assign, nonatomic) NSUInteger remoteUserUid;
+@property (assign, nonatomic) AgoraVideoSourceType sourceType;
+@property (copy, nonatomic) NSString * _Nullable imageUrl;
+@property(assign, nonatomic) NSUInteger mediaPlayerId;
+@property (assign, nonatomic) CGRect rect;
+@property (assign, nonatomic) NSInteger zOrder;
+@property(assign, nonatomic) double alpha;
+@property(assign, nonatomic) BOOL mirror;
+@end</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraTranscodingVideoStream: NSObject
+@property (assign, nonatomic) NSUInteger remoteUserUid;
+@property (assign, nonatomic) AgoraVideoSourceType sourceType;
+@property (copy, nonatomic) NSString * _Nullable imageUrl;
+@property(assign, nonatomic) NSUInteger mediaPlayerId;
+@property (assign, nonatomic) CGRect rect;
+@property (assign, nonatomic) NSInteger zOrder;
+@property(assign, nonatomic) double alpha;
+@property(assign, nonatomic) BOOL mirror;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">用于配置本地合图中各个视频流的位置、尺寸、图层等信息。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>sourceType</pt>
+                    <pd>视频源类型。详见 <codeph>VIDEO_SOURCE_TYPE</codeph>。</pd>
+                </plentry>
+                <plentry props="android cpp">
+                    <pt>remoteUserUid</pt>
+                    <pd>远端用户 ID。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>imageUrl</pt>
+                    <pd>本地图像的文件路径，例如：Windows: C:\Users\{username}\Pictures\image.png。</pd>
+                </plentry>
+                <plentry props="android cpp ios mac">
+                    <pt>mediaPlayerId</pt>
+                    <pd>媒体播放器 ID。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>x</pt>
+                    <pd>视频左上角相对于画布原点（画布左上角）的横向偏移。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>y</pt>
+                    <pd>视频左上角相对于画布原点（画布左上角）的纵向偏移。</pd>
+                </plentry>
+                <plentry props="android cpp">
+                    <pt>width</pt>
+                    <pd>视频在画布上的宽度（像素）。</pd>
+                </plentry>
+                <plentry props="android cpp">
+                    <pt>height</pt>
+                    <pd>视频在画布上的高度（像素）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>zOrder</pt>
+                    <pd>视频图层的层级，取值范围为 [0, 100]。
+                        <ul>
+                            <li>0：（默认）图层位于最底层。</li>
+                            <li>100：图层位于最顶层。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android cpp">
+                    <pt>alpha</pt>
+                    <pd>视频的透明度，取值范围为 [0.0, 1.0]。
+                        <ul>
+                            <li>0.0：完全透明。</li>
+                            <li>1.0：完全不透明。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>mirror</pt>
+                    <pd>是否对视频进行镜像处理。
+                        <ul>
+                            <li>
+                                <codeph>true</codeph>：镜像视频。</li>
+                            <li>
+                                <codeph>false</codeph>：（默认）不镜像视频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sourceType</pt>
+                    <pd>视频源类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>imageUrl</pt>
+                    <pd>本地图片的文件路径，例如：Android: <codeph>/storage/emulated/0/Pictures/image.png</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>x</pt>
+                    <pd>视频左上角相对画布原点（左上角）的横向偏移。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>y</pt>
+                    <pd>视频左上角相对画布原点（左上角）的纵向偏移。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>zOrder</pt>
+                    <pd>视频所属的图层编号，取值范围为 [0, 100]。
+                        <ul>
+                            <li>0：（默认）图层位于底部。</li>
+                            <li>100：图层位于顶部。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mirror</pt>
+                    <pd>是否对视频进行镜像处理。
+                        <ul>
+                            <li>
+                                <xref keyref="true"/>：镜像视频。</li>
+                            <li>
+                                <xref keyref="false"/>：（默认）不镜像。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>remoteUserUid</pt>
+                    <pd>远端用户的用户 ID。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>sourceType</pt>
+                    <pd>本地合图的视频源类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>imageUrl</pt>
+                    <pd>本地图像的文件路径。例如：iOS：<codeph>/var/mobile/Containers/Data/Application/&lt;APP-UUID&gt;/Documents/image.png</codeph>，macOS：<codeph>~/Pictures/image.png</codeph>。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>rect</pt>
+                    <pd>本地合图中视频相对于画布原点（左上角）的位置和大小。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>zOrder</pt>
+                    <pd>本地合图中视频所属图层的层级，取值范围为 [0, 100]。
+                        <ul>
+                            <li>0：（默认）图层位于底部。</li>
+                            <li>100：图层位于顶部。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>alpha</pt>
+                    <pd>本地合图中视频的透明度，取值范围为 [0.0, 1.0]。0.0 表示完全透明，1.0 表示不透明。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>mirror</pt>
+                    <pd>是否镜像本地合图中的视频。
+                        <ul>
+                            <li>
+                                <xref keyref="true"/>：镜像视频。</li>
+                            <li>
+                                <xref keyref="false"/>：（默认）不镜像视频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>sourceType</pt>
+                    <pd>本地合图的视频源类型。详见 <codeph>AgoraVideoSourceType</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>mirror</pt>
+                    <pd>是否镜像本地合图中的视频。
+                        <ul>
+                            <li>
+                                <codeph>YES</codeph>：镜像视频。</li>
+                            <li>
+                                <codeph>NO</codeph>：（默认）不镜像视频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

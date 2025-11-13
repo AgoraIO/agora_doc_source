@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_extensioncontext">
+    <title>
+        <ph keyref="ExtensionContext"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">扩展的上下文信息。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct ExtensionContext {
+    bool isValid;
+    uid_t uid;
+    const char *providerName;
+    const char *extensionName;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class ExtensionContext {
+  public boolean isValid;
+  public int uid;
+  public String providerName;
+  public String extensionName;
+}</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">@interface AgoraExtensionContext : NSObject
+@property (assign, nonatomic) BOOL isValid;
+@property (assign, nonatomic) NSUInteger uid;
+@property (copy, nonatomic) NSString * _Nullable providerName;
+@property (copy, nonatomic) NSString * _Nullable extensionName;
+@end</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">@interface AgoraExtensionContext : NSObject
+@property (assign, nonatomic) BOOL isValid;
+@property (assign, nonatomic) NSUInteger uid;
+@property (copy, nonatomic) NSString * _Nullable providerName;
+@property (copy, nonatomic) NSString * _Nullable extensionName;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>isValid</pt>
+                    <pd>
+                        <codeph>uid</codeph> 是否有效：
+                        <ul>
+                            <li>
+                                <codeph>true</codeph>：<codeph>uid</codeph> 有效。</li>
+                            <li>
+                                <codeph>false</codeph>：<codeph>uid</codeph> 无效。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android cpp ios mac">
+                    <pt>uid</pt>
+                    <pd>用户 ID。0 表示本地用户，大于 0 表示远端用户。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>providerName</pt>
+                    <pd>扩展提供方名称。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>extensionName</pt>
+                    <pd>扩展名称。</pd>
+                </plentry>
+                <plentry props="android ios">
+                    <pt>isValid</pt>
+                    <pd>
+                        <codeph>uid</codeph> 是否有效：
+                        <ul>
+                            <li>
+                                <xref keyref="true"/>：<codeph>uid</codeph> 有效。</li>
+                            <li>
+                                <xref keyref="false"/>：<codeph>uid</codeph> 无效。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android ios mac">
+                    <pt>providerName</pt>
+                    <pd>扩展提供方的名称。</pd>
+                </plentry>
+                <plentry props="android ios mac">
+                    <pt>extensionName</pt>
+                    <pd>扩展的名称。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>isValid</pt>
+                    <pd>
+                        <codeph>uid</codeph> 是否有效：
+                        <ul>
+                            <li>
+                                <codeph>YES</codeph>：<codeph>uid</codeph> 有效。</li>
+                            <li>
+                                <codeph>NO</codeph>：<codeph>uid</codeph> 无效。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

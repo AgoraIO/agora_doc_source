@@ -3,9 +3,71 @@
 <reference id="class_playerplaybackstats">
     <title>
         <ph keyref="PlayerPlaybackStats"/>
-    </title>
+  </title>
     <shortdesc id="short">
-        <ph id="shortdesc">获取当前播放媒体文件的播放统计信息。</ph>
-    </shortdesc>
-    <refbody/>
+        <ph id="shortdesc">用于获取当前播放媒体文件的播放信息。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct PlayerPlaybackStats {
+  int videoFps;
+  int videoBitrateInKbps;
+  int audioBitrateInKbps;
+  int totalBitrateInKbps;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class PlayerPlaybackStats {
+  private long videoFps;
+  private long videoBitrateInKbps;
+  private long audioBitrateInKbps;
+  private long totalBitrateInKbps;
+}</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaPlayerPlaybackStats : NSObject
+@property(assign, nonatomic) NSInteger videoFps;
+@property(assign, nonatomic) NSInteger videoBitrateInKbps;
+@property(assign, nonatomic) NSInteger audioBitrateInKbps;
+@property(assign, nonatomic) NSInteger totalBitrateInKbps;
+@end</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaPlayerPlaybackStats : NSObject
+@property(assign, nonatomic) NSInteger videoFps;
+@property(assign, nonatomic) NSInteger videoBitrateInKbps;
+@property(assign, nonatomic) NSInteger audioBitrateInKbps;
+@property(assign, nonatomic) NSInteger totalBitrateInKbps;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>属性</title>
+            <parml>
+                <plentry props="android cpp">
+                    <pt>videoFps</pt>
+                    <pd>视频的帧率（fps）。</pd>
+                </plentry>
+                <plentry props="android cpp">
+                    <pt>videoBitrateInKbps</pt>
+                    <pd>视频的码率（kbps）。</pd>
+                </plentry>
+                <plentry props="android cpp">
+                    <pt>audioBitrateInKbps</pt>
+                    <pd>音频的码率（kbps）。</pd>
+                </plentry>
+                <plentry props="android cpp ios mac">
+                    <pt>totalBitrateInKbps</pt>
+                    <pd>媒体流的总码率（kbps）。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>videoFps</pt>
+                    <pd>视频帧率（fps）。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>videoBitrateInKbps</pt>
+                    <pd>视频码率（kbps）。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>audioBitrateInKbps</pt>
+                    <pd>音频码率（kbps）。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
 </reference>

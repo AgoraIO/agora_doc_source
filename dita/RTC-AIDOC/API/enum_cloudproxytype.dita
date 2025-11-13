@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_cloudproxytype">
+    <title>
+        <ph keyref="CLOUD_PROXY_TYPE"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">云代理类型。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>自从</dt>
+                    <dd>自 v3.3.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>枚举值</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>NONE_PROXY</pt>
+                    <pd>（0）：（默认）自动模式。在此模式下，SDK 会尝试直接连接 SD-RTN™，如果连接失败，则自动切换为 TCP/TLS 443。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>UDP_PROXY</pt>
+                    <pd>（1）：UDP 协议云代理模式。在此模式下，SDK 始终通过 UDP 传输数据。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>TCP_PROXY</pt>
+                    <pd>（2）：TCP（加密）协议云代理模式。在此模式下，SDK 始终通过 TCP/TLS 443 传输数据。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraNoneProxy</pt>
+                    <pd>（0）：（默认）自动模式。在该模式下，SDK 会尝试直接连接 SD-RTN™，若连接失败，则自动切换为 TCP/TLS 443。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraUdpProxy</pt>
+                    <pd>（1）：UDP 协议云代理模式。SDK 始终通过 UDP 传输数据。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraTcpProxy</pt>
+                    <pd>（2）：TCP（加密）协议云代理模式。SDK 始终通过 TCP/TLS 443 传输数据。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_videodenoiseroptions">
+    <title>
+        <ph keyref="VideoDenoiserOptions"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">用于配置视频降噪选项。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct VideoDenoiserOptions {
+  VIDEO_DENOISER_MODE mode;
+  VIDEO_DENOISER_LEVEL level;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class VideoDenoiserOptions {
+  public static final int VIDEO_DENOISER_AUTO = 0;
+  public static final int VIDEO_DENOISER_MANUAL = 1;
+  public static final int VIDEO_DENOISER_LEVEL_HIGH_QUALITY = 0;
+  public static final int VIDEO_DENOISER_LEVEL_FAST = 1;
+  public int denoiserMode;
+  public int denoiserLevel;
+}</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoDenoiserOptions : NSObject
+@property(nonatomic, assign) AgoraVideoDenoiserMode mode;
+@property(nonatomic, assign) AgoraVideoDenoiserLevel level;
+@end</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoDenoiserOptions : NSObject
+@property(nonatomic, assign) AgoraVideoDenoiserMode mode;
+@property(nonatomic, assign) AgoraVideoDenoiserLevel level;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>自从</dt>
+                    <dd>自 v4.0.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>自从</dt>
+                    <dd>自 v3.6.2 版本新增。</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>mode</pt>
+                    <pd>视频降噪模式。详见 <codeph>VIDEO_DENOISER_MODE</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>level</pt>
+                    <pd>视频降噪等级。详见 <codeph>VIDEO_DENOISER_LEVEL</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>VIDEO_DENOISER_AUTO</pt>
+                    <pd>
+                        <codeph>0</codeph>：（默认）自动模式。SDK 会根据环境光线自动启用或关闭视频降噪功能。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>VIDEO_DENOISER_MANUAL</pt>
+                    <pd>
+                        <codeph>1</codeph>：手动模式。你需手动启用或关闭视频降噪功能。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>VIDEO_DENOISER_LEVEL_HIGH_QUALITY</pt>
+                    <pd>
+                        <codeph>0</codeph>：（默认）提升视频质量的降噪模式。该模式在性能消耗与降噪质量之间取得平衡，性能消耗适中，降噪速度适中，整体视频质量最佳。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>VIDEO_DENOISER_LEVEL_FAST</pt>
+                    <pd>
+                        <codeph>1</codeph>：提升性能效率的降噪模式。该模式优先考虑降低性能消耗而非降噪质量，性能消耗较低，降噪速度较快。为避免处理后的视频出现拖影效果（移动物体后方的残影），声网推荐在摄像头固定的情况下使用该设置。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>denoiserMode</pt>
+                    <pd>视频降噪模式。
+                        <ul>
+                            <li>
+                                <codeph>VIDEO_DENOISER_AUTO</codeph>（0）：（默认）自动模式。SDK 会根据环境光线自动启用或关闭视频降噪功能。</li>
+                            <li>
+                                <codeph>VIDEO_DENOISER_MANUAL</codeph>（1）：手动模式。你需手动启用或关闭视频降噪功能。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>denoiserLevel</pt>
+                    <pd>视频降噪等级。
+                        <ul>
+                            <li>
+                                <codeph>VIDEO_DENOISER_LEVEL_HIGH_QUALITY</codeph>（0）：（默认）在弱光增强过程中提升视频质量。会处理视频图像的亮度、细节和噪声，性能消耗适中，处理速度适中，整体视频质量最佳。</li>
+                            <li>
+                                <codeph>VIDEO_DENOISER_LEVEL_FAST</codeph>（1）：提升性能效率的降噪模式。该模式优先考虑降低性能消耗而非降噪质量，性能消耗较低，降噪速度较快。为避免处理后的视频出现拖影效果（移动物体后方的残影），声网推荐在摄像头固定的情况下使用该设置。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>mode</pt>
+                    <pd>视频降噪模式，详见 <xref keyref="VIDEO_DENOISER_MODE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>level</pt>
+                    <pd>视频降噪等级，详见 <xref keyref="VIDEO_DENOISER_LEVEL"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>mode</pt>
+                    <pd>视频降噪模式，详见 <codeph>AgoraVideoDenoiserMode</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>level</pt>
+                    <pd>视频降噪等级，详见 <codeph>AgoraVideoDenoiserLevel</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

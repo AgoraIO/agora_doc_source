@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enableloopbackrecording">
+    <title>
+        <ph keyref="enableLoopbackRecording"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">启用声卡回采功能。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableLoopbackRecording"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int enableLoopbackRecording(bool enabled, const char* deviceName = NULL) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="cpp">
+                <ul>
+                    <li>该方法仅适用于 macOS 和 Windows 平台。</li>
+                    <li>你可以在加入频道前或加入频道后调用该方法。</li>
+                    <li>如果你调用 <codeph>disableAudio</codeph> 方法禁用了音频模块，音频采集也会被禁用。若需启用音频采集，请先调用 <codeph>enableAudio</codeph> 方法启用音频模块，再调用 <codeph>enableLoopbackRecording</codeph> 方法。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="cpp">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>enabled</pt>
+                    <pd>是否启用声卡回采功能：
+                        <ul>
+                            <li>
+                                <codeph>true</codeph>：启用声卡回采。你可以在系统的 Audio Devices &gt; Output 中查看虚拟声卡名称。</li>
+                            <li>
+                                <codeph>false</codeph>：禁用声卡回采。系统的 Audio Devices &gt; Output 中不会显示虚拟声卡名称。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>deviceName</pt>
+                    <pd>
+                        <ul>
+                            <li>macOS：虚拟声卡的设备名称。默认值为 <codeph>NULL</codeph>，表示使用 <codeph>AgoraALD</codeph> 进行声卡回采。</li>
+                            <li>Windows：声卡的设备名称。默认值为 <codeph>NULL</codeph>，表示 SDK 使用设备默认声卡进行声卡回采。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enablecameracenterstage">
+    <title>
+        <ph keyref="enableCameraCenterStage"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">启用或关闭人像锁定功能。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableCameraCenterStage"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int enableCameraCenterStage(bool enabled) = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)enableCameraCenterStage:(BOOL)enabled NS_SWIFT_NAME(enableCameraCenterStage(_:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">默认情况下，人像锁定功能处于关闭状态。你需要调用该方法开启该功能；如需关闭，再次调用该方法并将 <codeph>enabled</codeph> 设置为 <codeph>false</codeph>。</p>
+            <p props="ios">默认情况下，人像锁定功能处于关闭状态。你需要调用此方法来开启该功能。如果需要关闭此功能，需要再次调用此方法并将 <codeph>enabled</codeph> 设置为 <xref keyref="false"/>。</p>
+            <note props="cpp">由于该功能对设备性能要求较高，你需要在以下设备或性能更高的设备上使用：
+                <ul>
+                    <li>iPad：</li>
+                    <li>12.9 英寸 iPad Pro（第 5 代）</li>
+                    <li>11 英寸 iPad Pro（第 3 代）</li>
+                    <li>iPad（第 9 代）</li>
+                    <li>iPad mini（第 6 代）</li>
+                    <li>iPad Air（第 5 代）</li>
+                    <li>2020 款 M1 芯片的 13 英寸 MacBook Pro + iPhone 11（将 iPhone 用作 MacBook 的外部摄像头）
+声网建议你在启用该功能前调用 <codeph>isCameraCenterStageSupported</codeph> 方法检查当前设备是否支持人像锁定功能。
+该方法仅适用于 iOS 和 macOS 平台。</li>
+                </ul>
+            </note>
+            <note props="ios">由于该功能对设备性能要求较高，你需要在以下类型的设备或性能更高的设备上使用：
+                <ul>
+                    <li>iPad：</li>
+                    <li>12.9 英寸 iPad Pro（第 5 代）。</li>
+                    <li>11 英寸 iPad Pro（第 3 代）。</li>
+                    <li>iPad（第 9 代）。</li>
+                    <li>iPad mini（第 6 代）。</li>
+                    <li>iPad Air（第 5 代）。</li>
+                    <li>2020 款 M1 芯片的 13 英寸 MacBook Pro + iPhone 11（将 iPhone 用作 MacBook 的外部摄像头）。
+声网建议你在启用该功能前调用 <xref keyref="isCameraCenterStageSupported"/> 方法检查当前设备是否支持人像锁定功能。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="cpp">必须在成功开启摄像头之后调用，即 SDK 触发 <codeph>onLocalVideoStateChanged</codeph> 回调并返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>（1）之后。</p>
+            <p props="ios">必须在成功开启摄像头之后调用此方法，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>AgoraVideoLocalStateCapturing</codeph>（1）之后。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="cpp ios">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>enabled</pt>
+                    <pd>是否启用人像锁定功能：
+                        <ul>
+                            <li>
+                                <codeph>true</codeph>：启用人像锁定功能。</li>
+                            <li>
+                                <codeph>false</codeph>：关闭人像锁定功能。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>enabled</pt>
+                    <pd>是否启用人像锁定功能：
+                        <ul>
+                            <li>
+                                <xref keyref="true"/>：启用人像锁定功能。</li>
+                            <li>
+                                <xref keyref="false"/>：关闭人像锁定功能。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="cpp ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

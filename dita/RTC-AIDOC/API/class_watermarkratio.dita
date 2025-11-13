@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_watermarkratio">
+    <title>
+        <ph keyref="WatermarkRatio"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">用于设置水印在屏幕上的位置和大小比例。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct WatermarkRatio {
+  float xRatio;
+  float yRatio;
+  float widthRatio;
+};</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">
+                <ul>
+                    <li>
+                        <codeph>xRatio</codeph> 和 <codeph>yRatio</codeph> 表示水印左上角的坐标，决定水印左上角相对于屏幕左上角的水平和垂直距离。</li>
+                    <li>
+                        <codeph>widthRatio</codeph> 表示水印的宽度，SDK 会根据该值按比例计算水印的高度，以保持图像不失真。</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>xRatio</pt>
+                    <pd>水印左上角的 x 坐标。表示相对于屏幕左上角的水平位置，取值范围为 [0.0, 1.0]。默认值为 0。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>yRatio</pt>
+                    <pd>水印左上角的 y 坐标。表示相对于屏幕左上角的垂直位置，取值范围为 [0.0, 1.0]。默认值为 0。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>widthRatio</pt>
+                    <pd>水印的宽度。SDK 会根据该值按比例计算水印的高度，以保持图像不失真。取值范围为 [0, 1]。默认值为 0，表示不显示水印。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

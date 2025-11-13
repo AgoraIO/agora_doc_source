@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_getuserinfobyuseraccountex">
+    <title>
+        <ph keyref="getUserInfoByUserAccountEx"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">通过传入用户账号获取用户信息。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getUserInfoByUserAccountEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="ios" outputclass="language-objectivec">- (AgoraUserInfo* _Nullable)getUserInfoByUserAccountEx:(NSString* _Nonnull)userAccount
+                                            connection:(AgoraRtcConnection * _Nonnull)connection
+                                             withError:(AgoraErrorCode* _Nullable)error NS_SWIFT_NAME(getUserInfo(byUserAccountEx:connection:withError:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int getUserInfoByUserAccountEx(String userAccount, UserInfo userInfo, RtcConnection connection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="ios">远端用户加入频道后，SDK 会获取该远端用户的用户 ID 和用户账号，并将其缓存在映射表对象中，然后在本地客户端触发 <xref keyref="onUserInfoUpdated"/> 回调。收到该回调后，你可以调用该方法并传入用户账号，从 <xref keyref="UserInfo"/> 对象中获取指定用户的信息。</p>
+            <p props="android">当远端用户加入频道后，SDK 会获取该远端用户的用户 ID 和用户账号，并将其缓存在映射表中，同时在本地客户端触发 <xref keyref="onUserInfoUpdated"/> 回调。收到该回调后，你可以调用 <xref keyref="getUserInfoByUserAccountEx"/> 方法并传入用户账号，从 <xref keyref="UserInfo"/> 对象中获取指定用户的信息。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="android ios">加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android ios">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="android ios">
+                    <pt>userAccount</pt>
+                    <pd>用户账号。</pd>
+                </plentry>
+                <plentry props="android ios">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>error</pt>
+                    <pd>错误码。详见 <xref keyref="ERROR_CODE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>userInfo</pt>
+                    <pd>输入和输出参数，用于标识用户信息。详见 <xref keyref="UserInfo"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="ios">方法调用成功，返回指定用户的 <xref keyref="UserInfo"/> 对象。</p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

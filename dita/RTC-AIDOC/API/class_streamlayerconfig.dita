@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_streamlayerconfig">
+    <title>
+        <ph keyref="StreamLayerConfig"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">用于配置多质量层级视频流中某一层的视频参数。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct StreamLayerConfig {
+  VideoDimensions dimensions;
+  int framerate;
+  bool enable;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class StreamLayerConfig {
+    public VideoEncoderConfiguration.VideoDimensions dimensions;
+    public int framerate;
+    public boolean enable;
+  }</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraStreamLayerConfig: NSObject
+@property (assign, nonatomic) CGSize dimensions;
+@property (assign, nonatomic) int framerate;
+@property (assign, nonatomic) BOOL enable;
+@end</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraStreamLayerConfig: NSObject
+@property (assign, nonatomic) CGSize dimensions;
+@property (assign, nonatomic) int framerate;
+@property (assign, nonatomic) BOOL enable;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="android ios mac">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p props="android">用于设置某一层的视频分辨率和帧率，并控制该层是否启用。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>dimensions</pt>
+                    <pd>视频帧尺寸。默认值为 0。详见 <codeph>VideoDimensions</codeph>。</pd>
+                </plentry>
+                <plentry props="android cpp ios mac">
+                    <pt>framerate</pt>
+                    <pd>本地视频采集的帧率（fps）。默认值为 0。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>enable</pt>
+                    <pd>是否启用对应层级的视频流。默认值为 
+                        <ul>
+                            <li>
+                                <codeph>true</codeph>：启用对应层级的视频流。</li>
+                            <li>
+                                <codeph>false</codeph>：（默认）关闭对应层级的视频流。</li>
+                        </ul><codeph><ph keyref="false"/></codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>dimensions</pt>
+                    <pd>视频帧尺寸。详见 <xref keyref="VideoDimensions"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enable</pt>
+                    <pd>是否启用当前层的视频流。
+                        <ul>
+                            <li>
+                                <xref keyref="true"/>：启用当前层的视频流。</li>
+                            <li>
+                                <xref keyref="false"/>：（默认）不启用当前层的视频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>dimensions</pt>
+                    <pd>视频帧尺寸。默认值为 0。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>enable</pt>
+                    <pd>是否启用对应层级的视频流。
+                        <ul>
+                            <li>
+                                <xref keyref="true"/>：启用对应层级的视频流。</li>
+                            <li>
+                                <xref keyref="false"/>：（默认）不启用对应层级的视频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>enable</pt>
+                    <pd>是否启用对应层级的视频流。
+                        <ul>
+                            <li>
+                                <codeph>YES</codeph>：启用对应层级的视频流。</li>
+                            <li>
+                                <codeph>NO</codeph>：（默认）不启用对应层级的视频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

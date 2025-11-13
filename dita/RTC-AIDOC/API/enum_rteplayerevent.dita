@@ -1,0 +1,281 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_rteplayerevent">
+    <title>
+        <ph keyref="RtePlayerEvent"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">播放器事件类型。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="android cpp ios mac">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>枚举值</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>kRtePlayerEventSeekBegin</pt>
+                    <pd>（0）：开始跳转到指定位置播放。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>kRtePlayerEventSeekComplete</pt>
+                    <pd>（1）：跳转到指定位置完成。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>kRtePlayerEventSeekError</pt>
+                    <pd>（2）：跳转到指定位置时发生错误。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>kRtePlayerEventBufferLow</pt>
+                    <pd>（3）：当前缓冲区不足，无法支持播放。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>kRtePlayerEventBufferRecover</pt>
+                    <pd>（4）：当前缓冲区已恢复至可播放状态。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>kRtePlayerEventFreezeStart</pt>
+                    <pd>（5）：检测到音视频卡顿。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>kRtePlayerEventFreezeStop</pt>
+                    <pd>（6）：音视频卡顿结束。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>kRtePlayerEventOneLoopPlaybackCompleted</pt>
+                    <pd>（7）：完成一次循环播放。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>kRtePlayerEventAuthenticationWillExpire</pt>
+                    <pd>（8）：Token 即将过期。你需要重新生成新的 Token，并通过 <codeph>OpenWithUrl</codeph> 更新 URL。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>kRtePlayerEventAbrFallbackToAudioOnlyLayer</pt>
+                    <pd>（9）：由于网络问题，从接收音视频降级为仅接收音频。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>kRtePlayerEventAbrRecoverFromAudioOnlyLayer</pt>
+                    <pd>（10）：网络恢复后，从仅接收音频恢复为接收音视频。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>kRtePlayerEventSwitchBegin</pt>
+                    <pd>（11）：开始切换到新 URL。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>kRtePlayerEventSwitchComplete</pt>
+                    <pd>（12）：切换到新 URL 完成。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>kRtePlayerEventSwitchError</pt>
+                    <pd>（13）：切换到新 URL 时发生错误。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>kRtePlayerEventFirstDisplayed</pt>
+                    <pd>（14）：首帧视频已显示。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>kRtePlayerEventReachCacheFileMaxCount</pt>
+                    <pd>（15）：达到缓存文件数量上限。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>kRtePlayerEventReachCacheFileMaxSize</pt>
+                    <pd>（16）：达到缓存文件大小上限。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>kRtePlayerEventTryOpenStart</pt>
+                    <pd>（17）：开始尝试打开新 URL。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>kRtePlayerEventTryOpenSucceed</pt>
+                    <pd>（18）：成功打开新 URL。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>kRtePlayerEventTryOpenFailed</pt>
+                    <pd>（19）：打开新 URL 失败。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>kRtePlayerEventAudioTrackChanged</pt>
+                    <pd>（20）：当前音轨已变更。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>SEEK_BEGIN</pt>
+                    <pd>（0）：开始跳转到指定播放位置。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>SEEK_COMPLETE</pt>
+                    <pd>（1）：跳转到指定播放位置完成。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>SEEK_ERROR</pt>
+                    <pd>（2）：跳转到指定播放位置时发生错误。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>BUFFER_LOW</pt>
+                    <pd>（3）：当前缓冲数据不足，无法支持播放。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>BUFFER_RECOVER</pt>
+                    <pd>（4）：当前缓冲数据刚好足以支持播放。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>FREEZE_START</pt>
+                    <pd>（5）：音频或视频发生卡顿。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>FREEZE_STOP</pt>
+                    <pd>（6）：音频或视频卡顿结束。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>ONE_LOOP_PLAYBACK_COMPLETED</pt>
+                    <pd>（7）：单次循环播放完成。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>AUTHENTICATION_WILL_EXPIRE</pt>
+                    <pd>（8）：Token 即将过期。收到该事件后，需要重新生成新的 Token，并通过 <xref keyref="OpenWithUrl"/> 更新 URL。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>ABR_FALLBACK_TO_AUDIO_ONLY_LAYER</pt>
+                    <pd>（9）：由于网络问题，从接收音视频流降级为仅接收远端音频流。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>ABR_RECOVER_FROM_AUDIO_ONLY_LAYER</pt>
+                    <pd>（10）：网络恢复后，从仅接收远端音频流恢复为接收音视频流。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>SWITCH_BEGIN</pt>
+                    <pd>（11）：开始切换到新 URL。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>SWITCH_COMPLETE</pt>
+                    <pd>（12）：切换到新 URL 完成。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>SWITCH_ERROR</pt>
+                    <pd>（13）：切换到新 URL 时发生错误。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>FIRST_DISPLAYED</pt>
+                    <pd>（14）：首帧视频已显示。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>REACH_CACHE_FILE_MAX_COUNT</pt>
+                    <pd>（15）：缓存文件数量达到上限。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>REACH_CACHE_FILE_MAX_SIZE</pt>
+                    <pd>（16）：缓存文件大小达到上限。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>TRY_OPEN_START</pt>
+                    <pd>（17）：开始尝试打开新 URL。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>TRY_OPEN_SUCCEED</pt>
+                    <pd>（18）：成功打开新 URL。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>TRY_OPEN_FAILED</pt>
+                    <pd>（19）：打开新 URL 失败。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>AUDIO_TRACK_CHANGED</pt>
+                    <pd>（20）：当前音轨发生变化。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRtePlayerEventSeekBegin</pt>
+                    <pd>（0）：开始跳转到指定位置播放。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRtePlayerEventSeekComplete</pt>
+                    <pd>（1）：跳转到指定位置完成。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRtePlayerEventSeekError</pt>
+                    <pd>（2）：跳转到指定位置时发生错误。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRtePlayerEventBufferLow</pt>
+                    <pd>（3）：当前缓冲数据不足，无法继续播放。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRtePlayerEventBufferRecover</pt>
+                    <pd>（4）：当前缓冲数据已恢复，可继续播放。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRtePlayerEventFreezeStart</pt>
+                    <pd>（5）：音频或视频发生卡顿。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRtePlayerEventFreezeStop</pt>
+                    <pd>（6）：音频或视频卡顿结束。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRtePlayerEventOneLoopPlaybackCompleted</pt>
+                    <pd>（7）：完成一次循环播放。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraRtePlayerEventAuthenticationWillExpire</pt>
+                    <pd>（8）：Token 即将过期。收到该事件后需生成新的 Token，并通过 <xref keyref="OpenWithUrl"/> 更新 URL。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRtePlayerEventAbrFallbackToAudioOnlyLayer</pt>
+                    <pd>（9）：因网络问题，从接收音视频流降级为仅接收远端音频流。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRtePlayerEventAbrRecoverFromAudioOnlyLayer</pt>
+                    <pd>（10）：网络恢复后，从仅接收远端音频流恢复为接收音视频流。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRtePlayerEventSwitchBegin</pt>
+                    <pd>（11）：开始切换到新 URL。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRtePlayerEventSwitchComplete</pt>
+                    <pd>（12）：切换到新 URL 完成。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRtePlayerEventSwitchError</pt>
+                    <pd>（13）：切换到新 URL 时发生错误。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRtePlayerEventFirstDisplayed</pt>
+                    <pd>（14）：首帧视频已显示。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRtePlayerEventReachCacheFileMaxCount</pt>
+                    <pd>（15）：缓存文件数量达到上限。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRtePlayerEventReachCacheFileMaxSize</pt>
+                    <pd>（16）：缓存文件大小达到上限。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRtePlayerEventTryOpenStart</pt>
+                    <pd>（17）：开始尝试打开新 URL。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRtePlayerEventTryOpenSucceed</pt>
+                    <pd>（18）：成功打开新 URL。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRtePlayerEventTryOpenFailed</pt>
+                    <pd>（19）：打开新 URL 失败。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRtePlayerEventAudioTrackChanged</pt>
+                    <pd>（20）：当前音轨已切换。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraRtePlayerEventAuthenticationWillExpire</pt>
+                    <pd>（8）：Token 即将过期。收到该事件后需生成新的 Token，并通过 <codeph>openWithUrl:startTime:cb:</codeph> 更新 URL。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

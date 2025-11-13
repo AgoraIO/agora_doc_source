@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setscreencapturecontenthint">
+    <title>
+        <ph keyref="setScreenCaptureContentHint"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">设置屏幕共享的内容提示。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setScreenCaptureContentHint"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setScreenCaptureContentHint(VIDEO_CONTENT_HINT contentHint) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">该方法用于设置屏幕共享的内容类型提示，以便 SDK 针对不同类型的内容应用相应的优化算法。如果你未调用该方法，默认内容提示为 <codeph>CONTENT_HINT_NONE</codeph>。</p>
+            <note props="cpp">你可以在开始或停止屏幕共享之前或之后调用此方法。</note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="cpp">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>contentHint</pt>
+                    <pd>屏幕共享的内容提示，详见 <codeph>VIDEO_CONTENT_HINT</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                    <li>-2：参数无效。</li>
+                    <li>-8：屏幕共享状态无效，可能是因为你已共享了其他屏幕或窗口。请调用 <codeph>stopScreenCapture</codeph> 停止当前共享后重新开始。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

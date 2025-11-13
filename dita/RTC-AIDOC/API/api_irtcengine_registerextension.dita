@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_registerextension">
+    <title>
+        <ph keyref="registerExtension"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">注册一个扩展。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="registerExtension"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int registerExtension(const char* provider, const char* extension, agora::media::MEDIA_SOURCE_TYPE type = agora::media::UNKNOWN_MEDIA_SOURCE) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int registerExtension(String provider, String extension, Constants.MediaSourceType sourceType);</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)registerExtensionWithVendor:(NSString * _Nonnull)provider
+                         extension:(NSString * _Nonnull)extension
+                        sourceType:(AgoraMediaSourceType)sourceType NS_SWIFT_NAME(registerExtension(withVendor:extension:sourceType:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)registerExtensionWithVendor:(NSString * _Nonnull)provider
+                         extension:(NSString * _Nonnull)extension
+                        sourceType:(AgoraMediaSourceType)sourceType NS_SWIFT_NAME(registerExtension(withVendor:extension:sourceType:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">对于 SDK 外部的扩展（例如来自云市场和 SDK 扩展），你需要在调用该方法前先加载它们。对于 SDK 内部的扩展（即包含在完整 SDK 包中的扩展），在初始化 <codeph>IRtcEngine</codeph> 后会自动加载并注册。</p>
+            <p props="android">
+                <ul>
+                    <li>对于 SDK 外部的扩展（例如来自云市场和 SDK 扩展），你需要在调用 <xref keyref="registerExtension"/> 之前先通过 <codeph>addExtension</codeph> 加载它们。</li>
+                    <li>对于 SDK 内部的扩展（即包含在完整 SDK 包中的扩展），在初始化 <xref keyref="IRtcEngine"/> 后会自动加载并注册。</li>
+                </ul>
+            </p>
+            <p props="ios">对于 SDK 外部的扩展（例如来自 Extensions Marketplace 和 SDK Extensions 的扩展），你需要在调用此方法前加载它们。对于 SDK 内部的扩展（即包含在完整 SDK 包中的扩展），在初始化 <xref keyref="IRtcEngine"/> 后会自动加载并注册。</p>
+            <p props="mac">对于 SDK 外部的扩展（例如来自 Extensions Marketplace 和 SDK Extensions 的扩展），你需要在调用此方法前加载它们。对于 SDK 内部的扩展（即包含在完整 SDK 包中的扩展），在初始化 <codeph>AgoraRtcEngineKit</codeph> 后会自动加载并注册。</p>
+            <note props="cpp">
+                <ul>
+                    <li>如果你想注册多个扩展，需要多次调用此方法。</li>
+                    <li>SDK 中不同扩展的数据处理顺序由注册顺序决定，即先注册的扩展会优先处理数据。</li>
+                </ul>
+            </note>
+            <note props="android ios mac">
+                <ul>
+                    <li>如果你想注册多个扩展，需要多次调用此方法。</li>
+                    <li>SDK 中不同扩展的数据处理顺序由注册顺序决定。即先注册的扩展会先处理数据。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="cpp">声网建议你在初始化 <codeph>IRtcEngine</codeph> 后、加入频道前调用此方法。
+                <ul>
+                    <li>对于视频扩展（如图像增强扩展），你需要在调用 <codeph>enableVideo</codeph> 或 <codeph>enableLocalVideo</codeph> 启用视频模块后再调用此方法。</li>
+                    <li>在调用此方法前，你需要先调用 <codeph>loadExtensionProvider</codeph> 加载扩展。</li>
+                </ul>
+            </p>
+            <p props="android">声网建议你在初始化 <xref keyref="IRtcEngine"/> 后、加入频道前调用此方法。
+                <ul>
+                    <li>对于视频扩展（如图像增强扩展），你需要在调用 <xref keyref="enableVideo"/> 或 <xref keyref="enableLocalVideo"/> 启用视频模块后再调用此方法。</li>
+                    <li>在调用此方法之前，你需要先调用 <codeph>addExtension</codeph> 加载扩展。</li>
+                </ul>
+            </p>
+            <p props="ios">声网建议你在初始化 <xref keyref="IRtcEngine"/> 后、加入频道前调用此方法。
+                <ul>
+                    <li>对于视频扩展（如图像增强扩展），你需要在调用 <xref keyref="enableVideo"/> 或 <xref keyref="enableLocalVideo"/> 启用视频模块后调用此方法。</li>
+                    <li>在调用此方法之前，你需要将扩展动态库（.xcframework）链接到 Xcode 项目中以加载扩展。</li>
+                </ul>
+            </p>
+            <p props="mac">声网建议你在初始化 <codeph>AgoraRtcEngineKit</codeph> 后、加入频道前调用此方法。
+                <ul>
+                    <li>对于视频扩展（如图像增强扩展），你需要在调用 <codeph>enableVideo</codeph> 或 <codeph>enableLocalVideo:</codeph> 启用视频模块后调用此方法。</li>
+                    <li>在调用此方法之前，你需要将扩展动态库（.xcframework）链接到 Xcode 项目中以加载扩展。</li>
+                </ul>
+            </p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="android cpp ios mac">
+                    <pt>provider</pt>
+                    <pd>扩展提供方的名称。</pd>
+                </plentry>
+                <plentry props="android cpp ios mac">
+                    <pt>extension</pt>
+                    <pd>扩展的名称。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>type</pt>
+                    <pd>扩展的数据源类型，详见 <codeph>MEDIA_SOURCE_TYPE</codeph>。</pd>
+                </plentry>
+                <plentry props="android ios">
+                    <pt>sourceType</pt>
+                    <pd>扩展的数据源类型，详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>sourceType</pt>
+                    <pd>扩展的数据源类型，详见 <codeph>AgoraMediaSourceType</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="cpp ios mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                    <li>-3：扩展库未加载。声网建议你检查动态库的存储位置或名称。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                    <li>-3：扩展库未加载。建议你检查动态库的存储位置或名称。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

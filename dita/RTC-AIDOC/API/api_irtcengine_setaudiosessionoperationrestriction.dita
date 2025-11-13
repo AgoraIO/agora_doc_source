@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setaudiosessionoperationrestriction">
+    <title>
+        <ph keyref="setAudioSessionOperationRestriction"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">设置 SDK 对音频会话的操作权限。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setAudioSessionOperationRestriction"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setAudioSessionOperationRestriction(AUDIO_SESSION_OPERATION_RESTRICTION restriction) = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (void)setAudioSessionOperationRestriction:(AgoraAudioSessionOperationRestriction)restriction NS_SWIFT_NAME(setAudioSessionOperationRestriction(_:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">如果你只希望由 App 配置音频会话，可以通过该方法限制 SDK 的操作权限。你可以在加入频道前或加入频道后调用该方法。调用该方法后，限制将在 SDK 需要更改音频会话时生效。</p>
+            <p props="ios">默认情况下，SDK 和 App 都可以配置音频会话。如果你只需要使用 App 来配置音频会话，可以通过该方法限制 SDK 对音频会话的操作权限。你可以在加入频道前或后调用该方法。一旦调用该方法限制 SDK 的操作权限，该限制会在 SDK 需要更改音频会话时生效。</p>
+            <note props="cpp">
+                <ul>
+                    <li>此方法仅适用于 iOS。</li>
+                    <li>此方法不会限制 App 对音频会话的操作权限。</li>
+                </ul>
+            </note>
+            <note props="ios">该方法不会限制 App 对音频会话的操作权限。</note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="cpp ios">加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="cpp ios">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>restriction</pt>
+                    <pd>SDK 对音频会话的操作权限。该参数为位掩码格式，每一位对应一个权限。详见 <codeph>AUDIO_SESSION_OPERATION_RESTRICTION</codeph>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>restriction</pt>
+                    <pd>SDK 对音频会话的操作权限。该参数为位掩码格式，每一位对应一个权限。详见 <xref keyref="AUDIO_SESSION_OPERATION_RESTRICTION"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

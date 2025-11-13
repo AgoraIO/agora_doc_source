@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setcameracapturerconfiguration">
+    <title>
+        <ph keyref="setCameraCapturerConfiguration"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">设置摄像头采集配置。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setCameraCapturerConfiguration"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setCameraCapturerConfiguration(const CameraCapturerConfiguration&amp; config) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setCameraCapturerConfiguration(CameraCapturerConfiguration config);</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)setCameraCapturerConfiguration:(AgoraCameraCapturerConfiguration * _Nullable)config NS_SWIFT_NAME(setCameraCapturerConfiguration(_:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)setCameraCapturerConfiguration:(AgoraCameraCapturerConfiguration * _Nullable)config NS_SWIFT_NAME(setCameraCapturerConfiguration(_:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">在启用本地摄像头采集之前调用该方法，例如调用 <codeph>startPreview</codeph> 或 <codeph>joinChannel</codeph> 之前。</p>
+            <p props="android">该方法需要在启用本地视频采集前调用，例如调用 <codeph>startPreview</codeph> 或 <codeph>joinChannel</codeph> 之前。</p>
+            <p props="ios mac">在启用本地摄像头采集前调用此方法，例如在调用 <codeph>startPreview:</codeph> 和 <codeph>joinChannelByToken</codeph> 之前。</p>
+            <note props="cpp">如需调整摄像头焦距配置，建议先调用 <codeph>queryCameraFocalLengthCapability</codeph> 查询设备的焦距能力，并根据查询结果进行配置。由于部分 Android 设备的限制，即使根据 <codeph>queryCameraFocalLengthCapability</codeph> 返回的结果设置了焦距类型，设置也可能不会生效。</note>
+            <note props="android">如需调整摄像头焦距配置，建议先调用 <xref keyref="queryCameraFocalLengthCapability"/> 查询设备的焦距能力，并根据查询结果进行设置。由于部分 Android 设备的限制，即使根据 <xref keyref="queryCameraFocalLengthCapability"/> 返回的结果设置了焦距类型，设置也可能不生效。</note>
+            <note props="ios">如需调整摄像头焦距配置，建议先调用 <xref keyref="queryCameraFocalLengthCapability"/> 查询设备的焦距能力，并根据查询结果进行配置。</note>
+            <note props="mac">如需调整摄像头焦距配置，建议先调用 <codeph>queryCameraFocalLengthCapability</codeph> 查询设备的焦距能力，并根据查询结果进行配置。</note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="cpp">在启用本地摄像头采集之前调用，例如调用 <codeph>startPreview</codeph> 或 <codeph>joinChannel</codeph> 之前。</p>
+            <p props="android">该方法需要在启用本地视频采集前调用，例如调用 <codeph>startPreview</codeph> 或 <codeph>joinChannel</codeph> 之前。</p>
+            <p props="ios mac">在启用本地摄像头采集前调用，例如在调用 <codeph>startPreview:</codeph> 和 <codeph>joinChannelByToken</codeph> 之前。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>config</pt>
+                    <pd>摄像头采集配置。详见 <codeph>CameraCapturerConfiguration</codeph>。</pd>
+                </plentry>
+                <plentry props="android ios">
+                    <pt>config</pt>
+                    <pd>摄像头采集配置。详见 <xref keyref="CameraCapturerConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>config</pt>
+                    <pd>摄像头采集配置。详见 <codeph>AgoraCameraCapturerConfiguration</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="android cpp ios mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

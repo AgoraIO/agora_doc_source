@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_lowlightenhanceoptions">
+    <title>
+        <ph keyref="LowlightEnhanceOptions"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">用于配置低光增强选项。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct LowlightEnhanceOptions {
+  LOW_LIGHT_ENHANCE_MODE mode;
+  LOW_LIGHT_ENHANCE_LEVEL level;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class LowLightEnhanceOptions {
+  public static final int LOW_LIGHT_ENHANCE_AUTO = 0;
+  public static final int LOW_LIGHT_ENHANCE_MANUAL = 1;
+  public static final int LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY = 0;
+  public static final int LOW_LIGHT_ENHANCE_LEVEL_FAST = 1;
+  public int lowlightEnhanceMode;
+  public int lowlightEnhanceLevel;
+}</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLowlightEnhanceOptions : NSObject
+@property(nonatomic, assign) AgoraLowlightEnhanceMode mode;
+@property(nonatomic, assign) AgoraLowlightEnhanceLevel level;
+@end</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLowlightEnhanceOptions : NSObject
+@property(nonatomic, assign) AgoraLowlightEnhanceMode mode;
+@property(nonatomic, assign) AgoraLowlightEnhanceLevel level;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="android">
+                    <dt>自从</dt>
+                    <dd>自 v3.6.2 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p props="ios mac">用于设置低光增强的模式和强度等级。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>mode</pt>
+                    <pd>低光增强模式。详见 <codeph>LOW_LIGHT_ENHANCE_MODE</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>level</pt>
+                    <pd>低光增强等级。详见 <codeph>LOW_LIGHT_ENHANCE_LEVEL</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>LOW_LIGHT_ENHANCE_AUTO</pt>
+                    <pd>
+                        <codeph>0</codeph>：（默认）自动模式。SDK 会根据环境光线自动启用或关闭弱光增强功能，以补偿亮度或防止过曝。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>LOW_LIGHT_ENHANCE_MANUAL</pt>
+                    <pd>
+                        <codeph>1</codeph>：手动模式。你需要手动启用或关闭弱光增强功能。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY</pt>
+                    <pd>
+                        <codeph>0</codeph>：（默认）优先保证弱光增强期间的视频质量。处理图像的亮度、细节和噪声，性能开销适中，处理速度适中，整体画质最佳。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>LOW_LIGHT_ENHANCE_LEVEL_FAST</pt>
+                    <pd>
+                        <codeph>1</codeph>：优先保证弱光增强期间的性能。处理图像的亮度和细节，处理速度更快。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>lowlightEnhanceMode</pt>
+                    <pd>弱光增强的工作模式。
+                        <ul>
+                            <li>
+                                <codeph>LOW_LIGHT_ENHANCE_AUTO (0)</codeph>：（默认）自动模式。SDK 会根据环境光线自动启用或关闭弱光增强功能，以补偿亮度或防止过曝。</li>
+                            <li>
+                                <codeph>LOW_LIGHT_ENHANCE_MANUAL (1)</codeph>：手动模式。你需要手动启用或关闭弱光增强功能。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>lowlightEnhanceLevel</pt>
+                    <pd>弱光增强的强度等级。
+                        <ul>
+                            <li>
+                                <codeph>LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY (0)</codeph>：（默认）优先保证弱光增强期间的视频质量。处理亮度、细节及噪声，性能开销适中，处理速度适中，整体画质最佳。</li>
+                            <li>
+                                <codeph>LOW_LIGHT_ENHANCE_LEVEL_FAST (1)</codeph>：优先保证弱光增强期间的性能。处理亮度和细节，处理速度更快。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>mode</pt>
+                    <pd>低光增强模式，详见 <xref keyref="LOW_LIGHT_ENHANCE_MODE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>level</pt>
+                    <pd>低光增强等级，详见 <xref keyref="LOW_LIGHT_ENHANCE_LEVEL"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>mode</pt>
+                    <pd>低光增强模式，详见 <codeph>AgoraLowlightEnhanceMode</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>level</pt>
+                    <pd>低光增强等级，详见 <codeph>AgoraLowlightEnhanceLevel</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

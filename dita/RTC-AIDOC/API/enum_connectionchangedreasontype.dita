@@ -1,0 +1,209 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_connectionchangedreasontype">
+    <title>
+        <ph keyref="CONNECTION_CHANGED_REASON_TYPE"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">连接状态变化的原因。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details">
+            <title>枚举值</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_CONNECTING</pt>
+                    <pd>（0）：SDK 正在连接声网边缘服务器。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_JOIN_SUCCESS</pt>
+                    <pd>（1）：SDK 成功加入频道。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_INTERRUPTED</pt>
+                    <pd>（2）：SDK 与声网边缘服务器的连接中断。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_BANNED_BY_SERVER</pt>
+                    <pd>（3）：SDK 与声网边缘服务器的连接被服务器禁止。例如，用户被踢出频道时会返回该状态。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_JOIN_FAILED</pt>
+                    <pd>（4）：SDK 加入频道失败。若超过 20 分钟仍未成功加入，将返回该状态码并停止重连。你需要提示用户尝试切换网络并重新加入频道。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_LEAVE_CHANNEL</pt>
+                    <pd>（5）：SDK 已离开频道。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_INVALID_APP_ID</pt>
+                    <pd>（6）：无效的 App ID。请使用有效的 App ID 重新加入频道，并确保该 ID 与声网控制台中生成的一致。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_INVALID_CHANNEL_NAME</pt>
+                    <pd>（7）：无效的频道名。请使用有效的频道名重新加入频道。频道名为最多 64 字节的字符串，支持的字符共 89 个，包括：小写字母 a-z、大写字母 A-Z、数字 0-9，以及以下符号：! # $ % &amp; ( ) + - : ; &lt; = . &gt; ? @ [ ] ^ _ { } | ~ ,</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_INVALID_TOKEN</pt>
+                    <pd>（8）：无效的 Token。可能原因包括：项目在声网控制台启用了 App Certificate，但加入频道时未传入 Token；调用 <codeph>joinChannel</codeph> 加入频道时指定的 uid 与生成 Token 时使用的 uid 不一致；生成的 Token 与用于加入频道的 Token 不一致。请确保：启用 App Certificate 的项目加入频道时必须传入 Token；生成 Token 时指定的用户 ID 与加入频道时使用的用户 ID 一致；生成的 Token 与传入的 Token 一致。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_TOKEN_EXPIRED</pt>
+                    <pd>（9）：当前使用的 Token 已过期。你需要在服务器上生成新的 Token，并使用新 Token 重新加入频道。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_REJECTED_BY_SERVER</pt>
+                    <pd>（10）：连接被服务器拒绝。可能原因包括：用户已在频道中仍调用 <codeph>joinChannel</codeph> 方法加入频道，请停止调用该方法以清除错误；用户在进行通话测试时尝试加入频道，需在测试结束后再加入频道。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_SETTING_PROXY_SERVER</pt>
+                    <pd>（11）：由于 SDK 设置了代理服务器，连接状态变为重连中。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_RENEW_TOKEN</pt>
+                    <pd>（12）：由于更新 Token，连接状态发生变化。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED</pt>
+                    <pd>（13）：客户端 IP 地址发生变化。若多次收到该状态码，请提示用户切换网络并重新加入频道。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_KEEP_ALIVE_TIMEOUT</pt>
+                    <pd>（14）：SDK 与声网边缘服务器之间的连接保活超时，SDK 会自动尝试重连。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_REJOIN_SUCCESS</pt>
+                    <pd>（15）：用户已成功重新加入频道。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_LOST</pt>
+                    <pd>（16）：SDK 与服务器之间的连接已丢失。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_ECHO_TEST</pt>
+                    <pd>（17）：由于回声测试，连接状态发生变化。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED_BY_USER</pt>
+                    <pd>（18）：本地 IP 地址被用户更改。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_SAME_UID_LOGIN</pt>
+                    <pd>（19）：用户在不同设备上以相同 UID 加入同一频道。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_TOO_MANY_BROADCASTERS</pt>
+                    <pd>（20）：频道中的主播数量已达上限。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_LICENSE_VALIDATION_FAILURE</pt>
+                    <pd>（21）：由于许可证验证失败，连接失败。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_CERTIFICATION_VERYFY_FAILURE</pt>
+                    <pd>（22）：由于证书验证失败，连接失败。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_STREAM_CHANNEL_NOT_AVAILABLE</pt>
+                    <pd>（23）：由于未授予流通道权限，连接失败。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_INCONSISTENT_APPID</pt>
+                    <pd>（24）：由于加入频道时使用了不一致的 App ID，连接失败。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraConnectionChangedReasonConnecting</pt>
+                    <pd>（0）：SDK 正在连接声网边缘服务器。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraConnectionChangedReasonJoinSuccess</pt>
+                    <pd>（1）：SDK 成功加入频道。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraConnectionChangedReasonInterrupted</pt>
+                    <pd>（2）：SDK 与声网边缘服务器的连接中断。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraConnectionChangedReasonBannedByServer</pt>
+                    <pd>（3）：SDK 与声网边缘服务器的连接被服务器禁止。例如，用户被踢出频道时会返回该状态。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraConnectionChangedReasonJoinFailed</pt>
+                    <pd>（4）：SDK 加入频道失败。若超过 20 分钟仍未加入成功，将返回该状态并停止重连。请提示用户切换网络后重新加入频道。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraConnectionChangedReasonLeaveChannel</pt>
+                    <pd>（5）：SDK 已离开频道。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraConnectionChangedReasonInvalidAppId</pt>
+                    <pd>（6）：App ID 无效。请使用有效的 App ID 重新加入频道，并确保该 App ID 与声网控制台中生成的一致。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraConnectionChangedReasonInvalidChannelName</pt>
+                    <pd>（7）：频道名无效。请使用有效的频道名重新加入频道。频道名为不超过 64 字节的字符串，支持的字符共 89 个，包括：小写字母 a-z、大写字母 A-Z、数字 0-9，以及以下符号：!、#、$、% 、&amp;、(、)、+、-、:、;、&lt;、=、.、&gt;、?、@、[、]、^、_、{、}、|、~、,。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraConnectionChangedReasonInvalidToken</pt>
+                    <pd>（8）：Token 无效。可能原因包括：项目在声网控制台启用了 App Certificate，但加入频道时未传入 Token；调用 <codeph>joinChannelByToken:channelId:uid:mediaOptions:joinSuccess:</codeph> 时指定的 uid 与生成 Token 时使用的 uid 不一致；生成的 Token 与用于加入频道的 Token 不一致。请确保：启用 App Certificate 的项目加入频道时必须传入 Token；生成 Token 时指定的用户 ID 与加入频道时使用的用户 ID 一致；生成的 Token 与用于加入频道的 Token 一致。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraConnectionChangedReasonTokenExpired</pt>
+                    <pd>（9）：当前使用的 Token 已过期。请在服务器上生成新的 Token，并使用该 Token 重新加入频道。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraConnectionChangedReasonRejectedByServer</pt>
+                    <pd>（10）：连接被服务器拒绝。可能原因包括：用户已在频道中，但仍调用 <codeph>joinChannelByToken:channelId:uid:mediaOptions:joinSuccess:</codeph> 加入频道；或用户正在进行通话测试时尝试加入频道。请停止调用该方法或在通话测试结束后再加入频道。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraConnectionChangedReasonSettingProxyServer</pt>
+                    <pd>（11）：由于 SDK 设置了代理服务器，连接状态变为重连中。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraConnectionChangedReasonRenewToken</pt>
+                    <pd>（12）：由于更新 Token，连接状态发生变化。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraConnectionChangedReasonClientIpAddressChanged</pt>
+                    <pd>（13）：客户端 IP 地址发生变化。若多次收到该状态码，请提示用户切换网络并重新加入频道。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraConnectionChangedReasonKeepAliveTimeout</pt>
+                    <pd>（14）：SDK 与声网边缘服务器之间的连接保活超时，SDK 会自动尝试重连。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraConnectionChangedReasonRejoinSuccess</pt>
+                    <pd>（15）：用户已成功重新加入频道。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraConnectionChangedReasonLost</pt>
+                    <pd>（16）：SDK 与服务器之间的连接已丢失。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraConnectionChangedReasonEchoTest</pt>
+                    <pd>（17）：由于回声测试，连接状态发生变化。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraConnectionChangedClientIpAddressChangedByUser</pt>
+                    <pd>（18）：本地 IP 地址被用户更改。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraConnectionChangedSameUidLogin</pt>
+                    <pd>（19）：用户在不同设备上以相同 UID 加入同一频道。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraConnectionChangedTooManyBroadcasters</pt>
+                    <pd>（20）：频道中的主播数量已达上限。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraConnectionChangedLicenseValidationFailure</pt>
+                    <pd>（21）：由于许可证验证失败，连接失败。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraConnectionChangedCertificationVerifyFailure</pt>
+                    <pd>（22）：由于证书验证失败，连接失败。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

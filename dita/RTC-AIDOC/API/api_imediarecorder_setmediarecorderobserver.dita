@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediarecorder_setmediarecorderobserver">
+    <title>
+        <ph keyref="setMediaRecorderObserver"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">注册 `IMediaRecorderObserver` 观察器。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setMediaRecorderObserver"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setMediaRecorderObserver(media::IMediaRecorderObserver* callback) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public int setMediaRecorderObserver(IMediaRecorderCallback callback)</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)setMediaRecorderDelegate:(id&lt;AgoraMediaRecorderDelegate&gt; _Nullable)delegate;</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)setMediaRecorderDelegate:(id&lt;AgoraMediaRecorderDelegate&gt; _Nullable)delegate;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="android cpp ios mac">
+                    <dt>自从</dt>
+                    <dd>自 v4.0.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">该方法用于设置音视频录制的回调，使应用在录制过程中能够接收录制状态和信息通知。
+在调用该方法前，请确保：
+                <ul>
+                    <li>已创建并初始化 <codeph>IRtcEngine</codeph> 对象。</li>
+                    <li>已使用 <codeph>createMediaRecorder</codeph> 创建媒体录制器对象。</li>
+                </ul>
+            </p>
+            <p props="android">该方法用于设置音视频录制的回调，以便在录制过程中获取录制状态和相关信息。</p>
+            <p props="ios">该方法用于设置音视频录制的回调，使你在录制过程中能够获取音视频流的录制状态和相关信息。
+
+在调用该方法前，请确保已创建并初始化 <xref keyref="IRtcEngine"/> 对象，并使用 <xref keyref="createMediaRecorder"/> 创建录制器实例。</p>
+            <p props="mac">该方法用于设置音视频录制的回调，使你在录制过程中能够获取音视频流的录制状态和相关信息。
+
+在调用该方法前，请确保已创建并初始化 <codeph>AgoraRtcEngineKit</codeph> 对象，并使用 <codeph>createMediaRecorder:</codeph> 创建录制器实例。</p>
+            <note props="android">在调用该方法前，请确保：
+                <ul>
+                    <li>已创建并初始化 <xref keyref="IRtcEngine"/> 实例。</li>
+                    <li>已通过 <xref keyref="createMediaRecorder"/> 创建音视频录制器实例。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>callback</pt>
+                    <pd>音视频流录制的回调。详见 <codeph>IMediaRecorderObserver</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>callback</pt>
+                    <pd>音视频流录制的回调。详见 <xref keyref="IMediaRecorderObserver"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>delegate</pt>
+                    <pd>音视频流录制的回调。详见 <xref keyref="IMediaRecorderObserver"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>delegate</pt>
+                    <pd>音视频流录制的回调。详见 <codeph>AgoraMediaRecorderDelegate</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="cpp ios mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">0：方法调用成功。
+&lt; 0：方法调用失败。详见 <codeph>Error Codes</codeph>。</p>
+        </section>
+    </refbody>
+</reference>

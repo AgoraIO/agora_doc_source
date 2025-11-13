@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setcameraautoexposurefacemodeenabled">
+    <title>
+        <ph keyref="setCameraAutoExposureFaceModeEnabled"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">设置是否启用自动曝光功能。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setCameraAutoExposureFaceModeEnabled"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setCameraAutoExposureFaceModeEnabled(bool enabled) = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (BOOL)setCameraAutoExposureFaceModeEnabled:(BOOL)enable NS_SWIFT_NAME(setCameraAutoExposureFaceModeEnabled(_:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="cpp">该方法仅适用于 iOS 平台。你必须在调用 <codeph>enableVideo</codeph> 方法之后再调用本方法。设置将在成功开启摄像头后生效，即 SDK 触发 <codeph>onLocalVideoStateChanged</codeph> 回调并返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>（1）后。</note>
+            <note props="ios">你必须在调用 <xref keyref="enableVideo"/> 方法之后再调用此方法。设置结果将在摄像头成功开启后生效，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>AgoraVideoLocalStateCapturing</codeph>（1）之后。</note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="cpp ios">加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="cpp ios">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>enabled</pt>
+                    <pd>是否启用自动曝光：
+                        <ul>
+                            <li>
+                                <codeph>true</codeph>：启用自动曝光。</li>
+                            <li>
+                                <codeph>false</codeph>：关闭自动曝光。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>enable</pt>
+                    <pd>是否启用自动曝光：
+                        <ul>
+                            <li>
+                                <xref keyref="true"/>：启用自动曝光。</li>
+                            <li>
+                                <xref keyref="false"/>：关闭自动曝光。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>
+                        <xref keyref="true"/>：设置成功。</li>
+                    <li>
+                        <xref keyref="false"/>：设置失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

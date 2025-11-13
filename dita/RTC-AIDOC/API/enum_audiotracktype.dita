@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_audiotracktype">
+    <title>
+        <ph keyref="AUDIO_TRACK_TYPE"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">音频轨道类型。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details">
+            <title>枚举值</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>AUDIO_TRACK_INVALID</pt>
+                    <pd>（-1）：无效音频轨道。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>AUDIO_TRACK_MIXABLE</pt>
+                    <pd>（0）：可混音音频轨道。支持与其他音频流（如麦克风采集的音频流）混音，并在混音后本地播放或发布到频道。该类型的音频轨道延迟高于直通音频轨道。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>AUDIO_TRACK_DIRECT</pt>
+                    <pd>（1）：直通音频轨道。替代麦克风采集的音频流，且不支持与其他音频流混音。该类型的音频轨道延迟低于可混音音频轨道。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>AUDIO_TRACK_MIXABLE</pt>
+                    <pd>（0）：可混音音频轨道。支持与其他音频流（如通过麦克风采集的音频流）混音，并在混音后本地播放或发布到频道。延迟高于直通音频轨道。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>AUDIO_TRACK_DIRECT</pt>
+                    <pd>（1）：直通音频轨道。替代通过麦克风采集的音频流，且不支持与其他音频流混音。延迟低于可混音音频轨道。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraAudioTrackTypeMixable</pt>
+                    <pd>（0）：可混音音频轨道。该类型音频轨道支持与其他音频流（如麦克风采集的音频流）混音，并在混音后本地播放或发布到频道。其延迟高于直通音频轨道。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraAudioTrackTypeDirect</pt>
+                    <pd>（1）：直通音频轨道。该类型音频轨道将替代麦克风采集的音频流，不支持与其他音频流混音。其延迟低于可混音音频轨道。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

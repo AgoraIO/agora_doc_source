@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicemanager_setplaybackdevice">
+    <title>
+        <ph keyref="setPlaybackDevice"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">设置音频播放设备。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setPlaybackDevice"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setPlaybackDevice(const char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">你可以调用此方法更改当前使用的音频路由，但不会更改默认音频路由。例如，若默认音频路由为扬声器 1，在加入频道前调用此方法将音频路由设置为扬声器 2 并开始设备测试，SDK 会在扬声器 2 上进行设备测试。设备测试完成并加入频道后，SDK 仍会使用默认音频路由扬声器 1。</p>
+            <note props="cpp">该方法仅适用于 Windows 和 macOS 平台。</note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="cpp">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>deviceId</pt>
+                    <pd>指定音频播放设备的 ID。你可以通过调用 <codeph>enumeratePlaybackDevices</codeph> 获取设备 ID。连接或断开音频设备不会改变 <codeph>deviceId</codeph> 的值。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

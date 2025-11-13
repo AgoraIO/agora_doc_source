@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_registerfaceinfoobserver">
+    <title>
+        <ph keyref="registerFaceInfoObserver"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">注册或取消注册面部信息观察器。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="registerFaceInfoObserver"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="ios" outputclass="language-objectivec">- (BOOL)setFaceInfoDelegate:(id&lt;AgoraFaceInfoDelegate&gt; _Nullable)delegate NS_SWIFT_NAME(setFaceInfoDelegate(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int registerFaceInfoObserver(IFaceInfoObserver receiver);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="ios">你可以调用此方法注册 <xref keyref="onFaceInfo"/> 回调，以接收由声网语音驱动扩展处理的面部信息。你可以根据需要在 <xref keyref="IFaceInfoObserver"/> 中注册回调。成功注册面部信息观察者后，SDK 会在捕获由语音驱动扩展转换的面部信息时触发你所注册的回调。
+
+适用场景：由声网语音驱动扩展处理的面部信息是符合 ARKit 标准的 BS（Blend Shape）数据。你可以使用第三方 3D 渲染引擎进一步处理这些 BS 数据，例如驱动虚拟形象做出与语音对应的嘴部动作。</p>
+            <p props="android">你可以调用此方法注册 <xref keyref="onFaceInfo"/> 回调，以接收由声网语音驱动扩展处理的面部信息。由语音驱动扩展处理的面部信息是符合 ARKit 标准的 BS（Blend Shape）数据。你可以使用第三方 3D 渲染引擎进一步处理这些 BS 数据，例如驱动虚拟形象做出与语音对应的嘴部动作。</p>
+            <note props="ios">
+                <ul>
+                    <li>请在加入频道前调用此方法。</li>
+                    <li>在调用此方法前，你需要通过调用 <xref keyref="enableExtension"/> 方法确保语音驱动扩展已启用。</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>请在加入频道前调用此方法。</li>
+                    <li>在调用此方法前，请确保已通过调用 <xref keyref="enableExtension"/> 启用语音驱动扩展。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="android ios">加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android ios">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="ios">
+                    <pt>delegate</pt>
+                    <pd>面部信息观察者。如果需要取消注册面部信息观察者，传入 <xref keyref="NULL"/>。详见 <xref keyref="IFaceInfoObserver"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>receiver</pt>
+                    <pd>面部信息观察者。传入 <xref keyref="NULL"/> 可取消注册。详见 <xref keyref="IFaceInfoObserver"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="ios">
+                <ul>
+                    <li>
+                        <xref keyref="true"/>：方法调用成功。</li>
+                    <li>
+                        <xref keyref="false"/>：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

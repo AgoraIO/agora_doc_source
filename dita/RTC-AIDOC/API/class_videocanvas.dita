@@ -1,0 +1,327 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_videocanvas">
+    <title>
+        <ph keyref="VideoCanvas"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">用于配置视频画布的属性。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct VideoCanvas {
+  uid_t uid;
+  uid_t subviewUid;
+  view_t view;
+  uint32_t backgroundColor;
+  media::base::RENDER_MODE_TYPE renderMode;
+  VIDEO_MIRROR_MODE_TYPE mirrorMode;
+  VIDEO_VIEW_SETUP_MODE setupMode;
+  VIDEO_SOURCE_TYPE sourceType;
+  int mediaPlayerId;
+  Rectangle cropArea;
+  bool enableAlphaMask;
+  media::base::VIDEO_MODULE_POSITION position;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class VideoCanvas {
+  public int uid;
+  public int subviewUid;
+  public static final int RENDER_MODE_HIDDEN = 1;
+  public static final int RENDER_MODE_FIT = 2;
+  public static final int RENDER_MODE_ADAPTIVE = 3;
+  public static final int VIEW_SETUP_MODE_REPLACE = 0;
+  public static final int VIEW_SETUP_MODE_ADD = 1;
+  public static final int VIEW_SETUP_MODE_REMOVE = 2;
+  public View view;
+  public SurfaceTexture surfaceTexture;
+  public int renderMode;
+  public int mirrorMode;
+  public int setupMode = VIEW_SETUP_MODE_REPLACE;
+  public int sourceType;
+  public int mediaPlayerId;
+  public Rect rect;
+  public boolean enableAlphaMask;
+  public int backgroundColor;
+  public Constants.VideoModulePosition position = Constants.VideoModulePosition.VIDEO_MODULE_POSITION_POST_CAPTURER;
+}</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcVideoCanvas : NSObject
+@property(assign, nonatomic) NSUInteger uid;
+@property(assign, nonatomic) NSUInteger subviewUid;
+@property(strong, nonatomic) VIEW_CLASS *_Nullable view;
+@property(assign, nonatomic) AgoraVideoRenderMode renderMode;
+@property(assign, nonatomic) AgoraVideoMirrorMode mirrorMode;
+@property(assign, nonatomic) AgoraVideoViewSetupMode setupMode;
+@property(nonatomic, assign) AgoraVideoSourceType sourceType;
+@property(nonatomic, assign) int mediaPlayerId;
+@property(assign, nonatomic) CGRect cropArea;
+@property(assign, nonatomic) UInt32 backgroundColor;
+@property(assign, nonatomic) BOOL enableAlphaMask;
+@property(assign, nonatomic) AgoraVideoModulePosition position;
+@end</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcVideoCanvas : NSObject
+@property(assign, nonatomic) NSUInteger uid;
+@property(assign, nonatomic) NSUInteger subviewUid;
+@property(strong, nonatomic) VIEW_CLASS *_Nullable view;
+@property(assign, nonatomic) AgoraVideoRenderMode renderMode;
+@property(assign, nonatomic) AgoraVideoMirrorMode mirrorMode;
+@property(assign, nonatomic) AgoraVideoViewSetupMode setupMode;
+@property(nonatomic, assign) AgoraVideoSourceType sourceType;
+@property(nonatomic, assign) int mediaPlayerId;
+@property(assign, nonatomic) CGRect cropArea;
+@property(assign, nonatomic) UInt32 backgroundColor;
+@property(assign, nonatomic) BOOL enableAlphaMask;
+@property(assign, nonatomic) AgoraVideoModulePosition position;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>属性</title>
+            <parml>
+                <plentry props="android cpp ios mac">
+                    <pt>uid</pt>
+                    <pd>发布视频源的用户 ID。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>subviewUid</pt>
+                    <pd>在视频合流中发布特定子视频流的用户 ID。</pd>
+                </plentry>
+                <plentry props="cpp ios mac">
+                    <pt>view</pt>
+                    <pd>视频显示窗口。</pd>
+                </plentry>
+                <plentry props="cpp ios mac">
+                    <pt>backgroundColor</pt>
+                    <pd>视频画布的背景颜色，使用 RGBA 格式。默认值为 0x00000000，表示黑色。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>renderMode</pt>
+                    <pd>视频的渲染模式。详见 <codeph>RENDER_MODE_TYPE</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>mirrorMode</pt>
+                    <pd>视图的镜像模式。详见 <codeph>VIDEO_MIRROR_MODE_TYPE</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>setupMode</pt>
+                    <pd>视图的设置模式。详见 <codeph>VIDEO_VIEW_SETUP_MODE</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>sourceType</pt>
+                    <pd>视频源的类型。详见 <codeph>VIDEO_SOURCE_TYPE</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp mac">
+                    <pt>mediaPlayerId</pt>
+                    <pd>媒体播放器的 ID。可通过调用 <codeph>getMediaPlayerId</codeph> 获取设备 ID。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>cropArea</pt>
+                    <pd>视频帧的显示区域。<codeph>width</codeph> 和 <codeph>height</codeph> 表示该区域的视频像素宽度和高度。默认值为 <codeph>NULL</codeph>（即 <codeph>width</codeph> 或 <codeph>height</codeph> 为 0），表示显示视频帧的实际分辨率。详见 <codeph>Rectangle</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>enableAlphaMask</pt>
+                    <pd>是否启用 Alpha 蒙版渲染：
+                        <ul>
+                            <li>
+                                <codeph>true</codeph>：启用 Alpha 蒙版渲染。</li>
+                            <li>
+                                <codeph>false</codeph>：（默认）关闭 Alpha 蒙版渲染。
+Alpha 蒙版渲染可创建具有透明效果的图像，并从视频中提取人像。结合其他方法使用时，可实现画中画、人像水印等效果。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>position</pt>
+                    <pd>视频帧在视频链路中的观测位置。详见 <codeph>VIDEO_MODULE_POSITION</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>subviewUid</pt>
+                    <pd>在合流视频流中，发布特定子视频流的用户 ID。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>RENDER_MODE_HIDDEN</pt>
+                    <pd>隐藏模式：按比例缩放视频，直到视窗被填满（可能会裁剪视频的一部分）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>RENDER_MODE_FIT</pt>
+                    <pd>适应模式：按比例缩放视频，直到某一维度匹配视窗边界，未填满区域用黑色填充。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>RENDER_MODE_ADAPTIVE</pt>
+                    <pd>自适应模式。该模式已废弃，声网不推荐使用。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>VIEW_SETUP_MODE_REPLACE</pt>
+                    <pd>设置视图模式为替换模式，默认值。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>VIEW_SETUP_MODE_ADD</pt>
+                    <pd>设置视图模式为新增视图。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>VIEW_SETUP_MODE_REMOVE</pt>
+                    <pd>设置视图模式为移除视图。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>view</pt>
+                    <pd>用于显示视频的视图窗口，必须为 <codeph>SurfaceView</codeph> 或 <codeph>TextureView</codeph> 类型。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>surfaceTexture</pt>
+                    <pd>提供视频图像的容器。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>renderMode</pt>
+                    <pd>渲染模式：
+                        <ul>
+                            <li>
+                                <codeph>RENDER_MODE_HIDDEN</codeph> (1)：隐藏模式。</li>
+                            <li>
+                                <codeph>RENDER_MODE_FIT</codeph> (2)：适应模式。</li>
+                            <li>
+                                <codeph>RENDER_MODE_ADAPTIVE</codeph> (3)：自适应模式（已废弃，声网不推荐使用）。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mirrorMode</pt>
+                    <pd>镜像模式：
+                        <ul>
+                            <li>
+                                <codeph>VIDEO_MIRROR_MODE_AUTO</codeph> (0)：SDK 自动判断是否开启镜像模式。</li>
+                            <li>
+                                <codeph>VIDEO_MIRROR_MODE_ENABLED</codeph> (1)：开启本地视图镜像模式。</li>
+                            <li>
+                                <codeph>VIDEO_MIRROR_MODE_DISABLED</codeph> (2)：关闭本地视图镜像模式。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>setupMode</pt>
+                    <pd>视图设置模式：
+                        <ul>
+                            <li>
+                                <codeph>VIEW_SETUP_MODE_REPLACE</codeph> (0)：替换视图，默认值。</li>
+                            <li>
+                                <codeph>VIEW_SETUP_MODE_ADD</codeph> (1)：新增视图。</li>
+                            <li>
+                                <codeph>VIEW_SETUP_MODE_REMOVE</codeph> (2)：删除视图。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sourceType</pt>
+                    <pd>视频源类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mediaPlayerId</pt>
+                    <pd>媒体播放器的 ID。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rect</pt>
+                    <pd>视频帧的显示区域。<codeph>width</codeph> 和 <codeph>height</codeph> 表示该区域的视频像素宽高。默认值为 <xref keyref="NULL"/>（宽或高为 0），表示显示视频帧的实际分辨率。详见 <codeph>Rect</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enableAlphaMask</pt>
+                    <pd>是否启用 Alpha 遮罩渲染：
+                        <ul>
+                            <li>
+                                <xref keyref="true"/>：启用。</li>
+                            <li>
+                                <xref keyref="false"/>：不启用。
+该功能可实现透明图像效果，从视频中提取人像，结合其他功能可实现画中画、水印等效果。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>backgroundColor</pt>
+                    <pd>视频画布的背景颜色，RGBA 格式。默认值为 0x00000000，表示黑色。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>position</pt>
+                    <pd>视频帧在视频链路中的观察位置。详见 <xref keyref="VIDEO_MODULE_POSITION"/>。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>subviewUid</pt>
+                    <pd>视频显示窗口的用户 ID。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>renderMode</pt>
+                    <pd>视频的渲染模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>mirrorMode</pt>
+                    <pd>视图的镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>setupMode</pt>
+                    <pd>视图的设置模式，详见 <xref keyref="VIDEO_VIEW_SETUP_MODE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>sourceType</pt>
+                    <pd>视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>mediaPlayerId</pt>
+                    <pd>媒体播放器的 ID。可通过调用 <xref keyref="getMediaPlayerId"/> 获取设备 ID。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>cropArea</pt>
+                    <pd>（可选）视频帧的显示区域。<codeph>width</codeph> 和 <codeph>height</codeph> 表示该区域的视频像素宽度和高度。默认值为 <xref keyref="NULL"/>（即宽或高为 0），表示显示视频帧的实际分辨率。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>enableAlphaMask</pt>
+                    <pd>是否启用 Alpha 蒙版渲染：
+                        <ul>
+                            <li>
+                                <xref keyref="true"/>：启用 Alpha 蒙版渲染。</li>
+                            <li>
+                                <xref keyref="false"/>：（默认）不启用 Alpha 蒙版渲染。
+Alpha 蒙版渲染可创建具有透明效果的图像，并从视频中提取人像。结合其他方法使用时，可实现画中画、人像水印等效果。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>position</pt>
+                    <pd>视频帧在视频链路中的观测位置，详见 <xref keyref="VIDEO_MODULE_POSITION"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>renderMode</pt>
+                    <pd>视频的渲染模式，详见 <codeph>AgoraVideoRenderMode</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>mirrorMode</pt>
+                    <pd>视图的镜像模式，详见 <codeph>AgoraVideoMirrorMode</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>setupMode</pt>
+                    <pd>视图的设置模式，详见 <codeph>AgoraVideoViewSetupMode</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>sourceType</pt>
+                    <pd>视频源的类型，详见 <codeph>AgoraVideoSourceType</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>cropArea</pt>
+                    <pd>（可选）视频帧的显示区域。<codeph>width</codeph> 和 <codeph>height</codeph> 表示该区域的视频像素宽度和高度。默认值为 <codeph>nil</codeph>（即宽或高为 0），表示显示视频帧的实际分辨率。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>enableAlphaMask</pt>
+                    <pd>是否启用 Alpha 蒙版渲染：
+                        <ul>
+                            <li>
+                                <codeph>YES</codeph>：启用 Alpha 蒙版渲染。</li>
+                            <li>
+                                <codeph>NO</codeph>：（默认）不启用 Alpha 蒙版渲染。
+Alpha 蒙版渲染可创建具有透明效果的图像，并从视频中提取人像。结合其他方法使用时，可实现画中画、人像水印等效果。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>position</pt>
+                    <pd>视频帧在视频链路中的观测位置，详见 <codeph>AgoraVideoModulePosition</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

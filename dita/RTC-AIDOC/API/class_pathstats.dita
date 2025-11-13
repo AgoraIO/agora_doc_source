@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_pathstats">
+    <title>
+        <ph keyref="PathStats"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">用于获取特定网络路径的统计数据。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct PathStats {
+  MultipathType type;
+  int txKBitRate;
+  int rxKBitRate;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public static class PathStats {
+  public int pathType;
+  public int txKBitRate;
+  public int rxKBitRate;
+}</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraPathStats : NSObject
+@property (assign, nonatomic) AgoraMultipathType pathType;
+@property (assign, nonatomic) NSUInteger txKBitRate;
+@property (assign, nonatomic) NSUInteger rxKBitRate;
+@end</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraPathStats : NSObject
+@property (assign, nonatomic) AgoraMultipathType pathType;
+@property (assign, nonatomic) NSUInteger txKBitRate;
+@property (assign, nonatomic) NSUInteger rxKBitRate;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="android cpp ios mac">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>type</pt>
+                    <pd>网络路径的类型。详见 <codeph>MultipathType</codeph>。</pd>
+                </plentry>
+                <plentry props="android cpp ios mac">
+                    <pt>txKBitRate</pt>
+                    <pd>该路径的传输码率，单位为 Kbps。</pd>
+                </plentry>
+                <plentry props="android cpp ios mac">
+                    <pt>rxKBitRate</pt>
+                    <pd>该路径的接收码率，单位为 Kbps。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>pathType</pt>
+                    <pd>网络路径的类型：
+                        <ul>
+                            <li>LAN：局域网。</li>
+                            <li>WiFi：无线局域网。</li>
+                            <li>Mobile：移动网络。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>pathType</pt>
+                    <pd>网络路径的类型，详见 <xref keyref="MultipathType"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>pathType</pt>
+                    <pd>网络路径的类型，详见 <codeph>AgoraMultipathType</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

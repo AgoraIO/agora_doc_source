@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_multipathmode">
+    <title>
+        <ph keyref="MultipathMode"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">多路径数据传输的模式。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="android cpp ios mac">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>枚举值</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>Duplicate</pt>
+                    <pd>（0）：冗余发送模式，相同的数据会通过所有可用路径进行冗余传输。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>Dynamic</pt>
+                    <pd>（1）：动态发送模式，SDK 会根据当前网络状况动态选择最优路径进行数据传输，以提升传输性能。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>MULTIPATH_MODE_DUPLICATE</pt>
+                    <pd>（0）：冗余发送模式，数据同时通过多条路径发送，提升传输的冗余性和可靠性。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>MULTIPATH_MODE_DYNAMIC</pt>
+                    <pd>（1）：动态发送模式，SDK 会根据当前网络状况动态选择最优路径进行数据传输，提升传输性能。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraMultipathModeDuplicate</pt>
+                    <pd>（0）：冗余发送模式，数据同时通过多个路径发送。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraMultipathModeDynamic</pt>
+                    <pd>（1）：动态发送模式，SDK 动态选择最优路径进行数据传输，以提升传输性能。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

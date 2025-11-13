@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_updatescreencaptureparameters">
+    <title>
+        <ph keyref="updateScreenCaptureParameters"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">更新屏幕采集参数。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="updateScreenCaptureParameters"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int updateScreenCaptureParameters(const ScreenCaptureParameters&amp; captureParams) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int updateScreenCaptureParameters(ScreenCaptureParameters screenCaptureParameters);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="android">
+                    <dt>自从</dt>
+                    <dd>自 v3.7.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <note props="cpp">该方法仅适用于 Windows 和 macOS 平台。请在开始屏幕共享或窗口共享后调用该方法。</note>
+            <note props="android">请在开始屏幕共享或窗口共享后调用此方法。</note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="android cpp">加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>captureParams</pt>
+                    <pd>屏幕共享的编码参数。屏幕共享流的视频属性仅需通过该参数设置，与 <codeph>setVideoEncoderConfiguration</codeph> 无关。详见 <codeph>ScreenCaptureParameters</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>screenCaptureParameters</pt>
+                    <pd>屏幕共享的编码参数。详见 <xref keyref="ScreenCaptureParameters2"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                    <li>-2：参数无效。</li>
+                    <li>-8：屏幕共享状态无效。可能是因为你已共享了其他屏幕或窗口。请尝试调用 <codeph>stopScreenCapture</codeph> 停止当前共享，然后重新开始共享屏幕。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                    <li>-2：参数无效。</li>
+                    <li>-8：屏幕共享状态无效。可能是因为你已共享了其他屏幕或窗口。请尝试调用 <codeph>stopScreenCapture</codeph> 停止当前共享后重新开始共享。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

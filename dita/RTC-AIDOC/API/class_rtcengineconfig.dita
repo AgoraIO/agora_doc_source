@@ -1,0 +1,375 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_rtcengineconfig">
+    <title>
+        <ph keyref="RtcEngineConfig"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">配置 `RtcEngine` 实例的参数。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct RtcEngineContext {
+  IRtcEngineEventHandler* eventHandler;
+  const char* appId;
+  void* context;
+  CHANNEL_PROFILE_TYPE channelProfile;
+  const char* license;
+  AUDIO_SCENARIO_TYPE audioScenario;
+  unsigned int areaCode;
+  commons::LogConfig logConfig;
+  Optional&lt;THREAD_PRIORITY_TYPE&gt; threadPriority;
+  bool useExternalEglContext;
+  bool domainLimit;
+  bool autoRegisterAgoraExtensions;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class RtcEngineConfig {
+  public IRtcEngineEventHandler mEventHandler;
+  public Context mContext;
+  public String mAppId;
+  public int mAreaCode;
+  public int mChannelProfile;
+  public String mLicense;
+  public int mAudioScenario;
+  public boolean mAutoRegisterAgoraExtensions;
+  public List&lt;String&gt; mExtensionList;
+  public IMediaExtensionObserver mExtensionObserver;
+  public LogConfig mLogConfig;
+  public Integer mThreadPriority;
+  public String mNativeLibPath;
+  public boolean mDomainLimit;
+}</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcEngineConfig: NSObject
+@property (copy, nonatomic) NSString * _Nullable appId;
+@property (assign, nonatomic) AgoraChannelProfile channelProfile;
+@property (copy, nonatomic) NSString * _Nullable license;
+@property (assign, nonatomic) AgoraAudioScenario audioScenario;
+@property (assign, nonatomic) AgoraAreaCodeType areaCode;
+@property (strong, nonatomic) AgoraLogConfig * _Nullable logConfig;
+@property (assign, nonatomic) AgoraThreadPriorityType threadPriority;
+@property (weak, nonatomic) id&lt;AgoraMediaFilterEventDelegate&gt; _Nullable eventDelegate;
+@property (assign, nonatomic) BOOL domainLimit;
+@property (assign, nonatomic) BOOL autoRegisterAgoraExtensions;
+@end</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcEngineConfig: NSObject
+@property (copy, nonatomic) NSString * _Nullable appId;
+@property (assign, nonatomic) AgoraChannelProfile channelProfile;
+@property (copy, nonatomic) NSString * _Nullable license;
+@property (assign, nonatomic) AgoraAudioScenario audioScenario;
+@property (assign, nonatomic) AgoraAreaCodeType areaCode;
+@property (strong, nonatomic) AgoraLogConfig * _Nullable logConfig;
+@property (assign, nonatomic) AgoraThreadPriorityType threadPriority;
+@property (weak, nonatomic) id&lt;AgoraMediaFilterEventDelegate&gt; _Nullable eventDelegate;
+@property (assign, nonatomic) BOOL domainLimit;
+@property (assign, nonatomic) BOOL autoRegisterAgoraExtensions;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>eventHandler</pt>
+                    <pd>用于 <codeph>IRtcEngine</codeph> 的事件处理器。详见 <codeph>IRtcEngineEventHandler</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>appId</pt>
+                    <pd>由声网为你的项目签发的 App ID。只有在相同 App ID 下的用户才能加入同一个频道并互相通信。一个 App ID 只能用于创建一个 <codeph>IRtcEngine</codeph> 实例。若需更换 App ID，需调用 <codeph>release</codeph> 销毁当前的 <codeph>IRtcEngine</codeph> 实例，然后创建一个新的实例。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>context</pt>
+                    <pd>在 Windows 平台，该参数为应用窗口句柄。设置后可在设备通电状态下连接或断开视频设备。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>channelProfile</pt>
+                    <pd>频道场景类型。详见 <codeph>CHANNEL_PROFILE_TYPE</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>license</pt>
+                    <pd>用于连接频道时验证的 License，根据 License 收费。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>audioScenario</pt>
+                    <pd>音频场景类型，不同场景下设备使用不同的音量类型。详见 <codeph>AUDIO_SCENARIO_TYPE</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>areaCode</pt>
+                    <pd>连接区域。该高级功能适用于有区域限制的场景，支持的区域详见 <codeph>AREA_CODE</codeph>。区域码支持按位操作。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>logConfig</pt>
+                    <pd>日志配置。详见 <codeph>LogConfig</codeph>。
+默认情况下，SDK 会生成五个 SDK 日志文件和五个 API 调用日志文件，规则如下：
+                        <ul>
+                            <li>SDK 日志文件包括：<codeph>agorasdk.log</codeph>、<codeph>agorasdk.1.log</codeph>、<codeph>agorasdk.2.log</codeph>、<codeph>agorasdk.3.log</codeph> 和 <codeph>agorasdk.4.log</codeph>。</li>
+                            <li>API 调用日志文件包括：<codeph>agoraapi.log</codeph>、<codeph>agoraapi.1.log</codeph>、<codeph>agoraapi.2.log</codeph>、<codeph>agoraapi.3.log</codeph> 和 <codeph>agoraapi.4.log</codeph>。</li>
+                            <li>每个日志文件的默认大小为 2048 KB，编码为 UTF-8。</li>
+                            <li>SDK 会将最新日志写入 <codeph>agorasdk.log</codeph> 或 <codeph>agoraapi.log</codeph>。</li>
+                            <li>当 <codeph>agorasdk.log</codeph> 写满时，SDK 会按以下顺序处理日志文件：</li>
+                        </ul>
+                        <ol>
+                            <li>删除 <codeph>agorasdk.4.log</codeph>（如存在）；</li>
+                            <li>将 <codeph>agorasdk.3.log</codeph> 重命名为 <codeph>agorasdk.4.log</codeph>；</li>
+                            <li>将 <codeph>agorasdk.2.log</codeph> 重命名为 <codeph>agorasdk.3.log</codeph>；</li>
+                            <li>将 <codeph>agorasdk.1.log</codeph> 重命名为 <codeph>agorasdk.2.log</codeph>；</li>
+                            <li>创建新的 <codeph>agorasdk.log</codeph> 文件。</li>
+                        </ol>
+                        <ul>
+                            <li>
+                                <codeph>agoraapi.log</codeph> 的覆盖规则与 <codeph>agorasdk.log</codeph> 相同。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>threadPriority</pt>
+                    <pd>SDK 通用线程的线程优先级。详见 <codeph>THREAD_PRIORITY_TYPE</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>useExternalEglContext</pt>
+                    <pd>是否使用当前线程中的 EGL 上下文作为 SDK 的根 EGL 上下文，该上下文会被所有与 EGL 相关的模块共享，例如摄像头采集、视频渲染等。
+                        <ul>
+                            <li>
+                                <codeph>true</codeph>：使用当前线程中的 EGL 上下文。</li>
+                            <li>
+                                <codeph>false</codeph>：（默认）不使用当前线程中的 EGL 上下文。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>domainLimit</pt>
+                    <pd>是否启用域名限制：
+                        <ul>
+                            <li>
+                                <codeph>true</codeph>：启用域名限制。适用于 IoT 设备使用物联网卡接入网络的场景。SDK 仅连接已上报给运营商的域名或 IP 白名单中的服务器。</li>
+                            <li>
+                                <codeph>false</codeph>：（默认）不启用域名限制。适用于大多数常见场景。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>autoRegisterAgoraExtensions</pt>
+                    <pd>是否在初始化 <codeph>IRtcEngine</codeph> 时自动注册声网插件：
+                        <ul>
+                            <li>
+                                <codeph>true</codeph>：（默认）自动注册插件。</li>
+                            <li>
+                                <codeph>false</codeph>：不自动注册插件。你需要调用 <codeph>enableExtension</codeph> 手动注册插件。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mEventHandler</pt>
+                    <pd>事件回调处理器。详见 <xref keyref="IRtcEngineEventHandler"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mContext</pt>
+                    <pd>Android Activity 的上下文对象。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mAppId</pt>
+                    <pd>由声网为项目颁发的 App ID。只有使用相同 App ID 的用户才能加入同一频道进行音视频通话。一个 App ID 只能用于创建一个 <xref keyref="IRtcEngine"/> 实例。更换 App ID 时需调用 <xref keyref="release_ILocalSpatialAudioEngine"/> 销毁原实例后再创建新实例。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mAreaCode</pt>
+                    <pd>连接区域，适用于有区域限制的场景。支持按位或运算组合多个区域码。详见 <xref keyref="AreaCode"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mChannelProfile</pt>
+                    <pd>频道场景类型：
+                        <ul>
+                            <li>
+                                <codeph>CHANNEL_PROFILE_COMMUNICATION</codeph> (0)：通信场景。声网建议使用直播场景以获得更佳的音视频体验。</li>
+                            <li>
+                                <codeph>CHANNEL_PROFILE_LIVE_BROADCASTING</codeph> (1)：（默认）直播场景。</li>
+                            <li>
+                                <codeph>CHANNEL_PROFILE_GAME</codeph> (2)：游戏场景。自 v4.x.x 版本废弃，请改用 <codeph>CHANNEL_PROFILE_LIVE_BROADCASTING</codeph>。</li>
+                            <li>
+                                <codeph>CHANNEL_PROFILE_CLOUD_GAMING</codeph> (3)：互动场景，针对低延迟优化，适用于用户频繁互动的场景。自 v4.x.x 版本废弃，请改用 <codeph>CHANNEL_PROFILE_LIVE_BROADCASTING</codeph>。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mLicense</pt>
+                    <pd>用于频道连接验证的许可证，按许可证计费。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mAudioScenario</pt>
+                    <pd>音频场景类型，不同场景下设备使用的音量类型不同：
+                        <ul>
+                            <li>
+                                <codeph>AUDIO_SCENARIO_DEFAULT</codeph> (0)：（默认）自动场景，SDK 会根据用户角色和音频路由选择合适的音质。</li>
+                            <li>
+                                <codeph>AUDIO_SCENARIO_GAME_STREAMING</codeph> (3)：高音质场景，适用于播放音乐。</li>
+                            <li>
+                                <codeph>AUDIO_SCENARIO_CHATROOM</codeph> (5)：语聊场景，适用于频繁切换角色或控制麦克风静音的场景。</li>
+                            <li>
+                                <codeph>AUDIO_SCENARIO_CHORUS</codeph> (7)：实时合唱场景，适用于网络良好且对超低延迟有较高要求的用户。</li>
+                            <li>
+                                <codeph>AUDIO_SCENARIO_MEETING</codeph> (8)：会议场景，主要传输人声。</li>
+                            <li>
+                                <codeph>AUDIO_SCENARIO_AI_CLIENT</codeph> (10)：AI 对话场景，仅适用于与通过 <codeph>Conversational AI Engine</codeph> 创建的智能体交互的场景。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mAutoRegisterAgoraExtensions</pt>
+                    <pd>是否在初始化 <xref keyref="IRtcEngine"/> 时自动注册声网插件：
+                        <ul>
+                            <li>
+                                <xref keyref="true"/>：（默认）自动注册插件。</li>
+                            <li>
+                                <xref keyref="false"/>：不自动注册插件，需调用 <xref keyref="enableExtension"/> 手动注册。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mExtensionList</pt>
+                    <pd>插件库名称列表。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mExtensionObserver</pt>
+                    <pd>
+                        <codeph>IMediaExtensionObserver</codeph> 实例。详见 <codeph>IMediaExtensionObserver</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mLogConfig</pt>
+                    <pd>日志配置。详见 <xref keyref="LogConfig"/>。
+默认情况下，SDK 会生成 5 个 SDK 日志文件和 5 个 API 日志文件：
+                        <ul>
+                            <li>SDK 日志文件包括：<codeph>agorasdk.log</codeph>、<codeph>agorasdk.1.log</codeph>、<codeph>agorasdk.2.log</codeph>、<codeph>agorasdk.3.log</codeph>、<codeph>agorasdk.4.log</codeph></li>
+                            <li>API 日志文件包括：<codeph>agoraapi.log</codeph>、<codeph>agoraapi.1.log</codeph>、<codeph>agoraapi.2.log</codeph>、<codeph>agoraapi.3.log</codeph>、<codeph>agoraapi.4.log</codeph></li>
+                            <li>每个日志文件默认大小为 2048 KB，采用 UTF-8 编码。</li>
+                            <li>SDK 会将最新日志写入 <codeph>agorasdk.log</codeph> 或 <codeph>agoraapi.log</codeph>。</li>
+                            <li>当 <codeph>agorasdk.log</codeph> 写满时，SDK 会依次删除旧文件并重命名，生成新的日志文件。</li>
+                            <li>
+                                <codeph>agoraapi.log</codeph> 遵循相同的覆盖规则。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mThreadPriority</pt>
+                    <pd>线程优先级类型。详见 <codeph>ThreadPriorityType</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mNativeLibPath</pt>
+                    <pd>
+                        <codeph>.so</codeph> 文件的存储目录。该目录必须是 App 的有效私有目录，可通过 <codeph>Context.getDir</codeph> 获取。
+                        <ul>
+                            <li>设置该参数后，SDK 会从指定目录加载 <codeph>.so</codeph> 文件，实现动态加载以减小包体积。</li>
+                            <li>若不设置或设为 <xref keyref="NULL"/>，SDK 会从默认编译路径加载 <codeph>.so</codeph> 文件，包体积会增大。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mDomainLimit</pt>
+                    <pd>是否启用域名限制：
+                        <ul>
+                            <li>
+                                <xref keyref="true"/>：启用域名限制，适用于物联网设备使用 IoT 卡接入的场景。SDK 仅连接运营商白名单中报备的域名或 IP。</li>
+                            <li>
+                                <xref keyref="false"/>：（默认）不启用域名限制，适用于大多数通用场景。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>appId</pt>
+                    <pd>由声网为你的项目签发的 App ID。只有使用相同 App ID 的用户才能加入同一个频道并互相通信。一个 App ID 只能用于创建一个 <xref keyref="IRtcEngine"/> 实例。如需更换 App ID，需先调用 <xref keyref="release_ILocalSpatialAudioEngine"/> 销毁当前实例，再创建新的实例。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>channelProfile</pt>
+                    <pd>频道场景，详见 <xref keyref="CHANNEL_PROFILE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>license</pt>
+                    <pd>用于连接频道时验证的 License。根据 License 收费。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>audioScenario</pt>
+                    <pd>音频场景。在不同音频场景下，设备使用不同的音量类型。详见 <xref keyref="AUDIO_SCENARIO_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>areaCode</pt>
+                    <pd>连接区域。该高级功能适用于有区域限制的场景。支持的区域详见 <xref keyref="AREA_CODE"/>。区域码支持按位操作。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>logConfig</pt>
+                    <pd>日志配置。默认情况下，SDK 会生成五个 SDK 日志文件和五个 API 调用日志文件，文件大小为 2,048 KB，采用 UTF-8 编码。日志轮转规则详见注释。详见 <xref keyref="LogConfig"/>。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>threadPriority</pt>
+                    <pd>SDK 通用线程的线程优先级。详见 <codeph>AgoraThreadPriorityType</codeph>。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>eventDelegate</pt>
+                    <pd>
+                        <codeph>AgoraMediaFilterEventDelegate</codeph> 实例。详见 <codeph>AgoraMediaFilterEventDelegate</codeph>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>domainLimit</pt>
+                    <pd>是否启用域名限制：
+                        <ul>
+                            <li>
+                                <xref keyref="true"/>：启用域名限制。适用于物联网设备使用物联网卡接入网络的场景。SDK 仅连接已向运营商报备的域名或 IP 白名单中的服务器。</li>
+                            <li>
+                                <xref keyref="false"/>：（默认）不启用域名限制。适用于大多数常见场景。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>autoRegisterAgoraExtensions</pt>
+                    <pd>初始化 <xref keyref="IRtcEngine"/> 时是否自动注册声网扩展：
+                        <ul>
+                            <li>
+                                <xref keyref="true"/>：（默认）自动注册。</li>
+                            <li>
+                                <xref keyref="false"/>：不自动注册。需调用 <xref keyref="enableExtension"/> 手动注册。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>appId</pt>
+                    <pd>由声网为你的项目签发的 App ID。只有使用相同 App ID 的用户才能加入同一个频道并互相通信。一个 App ID 只能用于创建一个 <codeph>AgoraRtcEngineKit</codeph> 实例。如需更换 App ID，需先调用 <codeph>destroy</codeph> 销毁当前实例，再创建新的实例。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>channelProfile</pt>
+                    <pd>频道场景，详见 <codeph>AgoraChannelProfile</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>audioScenario</pt>
+                    <pd>音频场景。在不同音频场景下，设备使用不同的音量类型。详见 <codeph>AgoraAudioScenario</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>areaCode</pt>
+                    <pd>连接区域。该高级功能适用于有区域限制的场景。支持的区域详见 <codeph>AgoraAreaCodeType</codeph>。区域码支持按位操作。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>logConfig</pt>
+                    <pd>日志配置。默认情况下，SDK 会生成五个 SDK 日志文件和五个 API 调用日志文件，文件大小为 2,048 KB，采用 UTF-8 编码。日志轮转规则详见注释。详见 <codeph>AgoraLogConfig</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>domainLimit</pt>
+                    <pd>是否启用域名限制：
+                        <ul>
+                            <li>
+                                <codeph>YES</codeph>：启用域名限制。适用于物联网设备使用物联网卡接入网络的场景。SDK 仅连接已向运营商报备的域名或 IP 白名单中的服务器。</li>
+                            <li>
+                                <codeph>NO</codeph>：（默认）不启用域名限制。适用于大多数常见场景。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>autoRegisterAgoraExtensions</pt>
+                    <pd>初始化 <codeph>AgoraRtcEngineKit</codeph> 时是否自动注册声网扩展：
+                        <ul>
+                            <li>
+                                <codeph>YES</codeph>：（默认）自动注册。</li>
+                            <li>
+                                <codeph>NO</codeph>：不自动注册。需调用 <codeph>enableExtensionWithVendor:extension:enabled:sourceType:</codeph> 手动注册。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

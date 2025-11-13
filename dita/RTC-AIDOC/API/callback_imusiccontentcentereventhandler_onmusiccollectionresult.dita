@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imusiccontentcentereventhandler_onmusiccollectionresult">
+    <title>
+        <ph keyref="onMusicCollectionResult"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">获取音乐资源列表的回调。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onMusicCollectionResult"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onMusicCollectionResult(const char* requestId, agora_refptr&lt;MusicCollection&gt; result, MusicContentCenterStateReason reason) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">void onMusicCollectionResult(String requestId, int page, int pageSize, int total, Music[] list, int reason)</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (void)onMusicCollectionResult:(NSString *)requestId result:(AgoraMusicCollection *)result reason:(AgoraMusicContentCenterStateReason)reason;</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (void)onMusicCollectionResult:(NSString *)requestId result:(AgoraMusicCollection *)result reason:(AgoraMusicContentCenterStateReason)reason;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">调用 <codeph>getMusicCollectionWithMusicChartId</codeph> 获取某个榜单的音乐资源列表，或调用 <codeph>searchMusic</codeph> 搜索音乐资源时，SDK 会触发该回调，返回音乐资源列表的详细信息。</p>
+            <p props="android">该回调在调用 <codeph>getMusicCollectionByMusicChartId</codeph> 或 <codeph>searchMusic</codeph> 方法后被触发。</p>
+            <p props="ios">当你调用 <codeph>getMusicCollectionWithMusicChartId:page:pageSize:jsonOption:</codeph> 或 <xref keyref="searchMusic"/> 方法获取指定榜单或搜索音乐内容时，SDK 会触发该回调，返回音乐内容列表的详细信息。</p>
+            <p props="mac">当你调用 <codeph>getMusicCollectionWithMusicChartId:page:pageSize:jsonOption:</codeph> 或 <codeph>searchMusicWithKeyWord:page:pageSize:jsonOption:</codeph> 方法获取指定榜单或搜索音乐内容时，SDK 会触发该回调，返回音乐内容列表的详细信息。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>触发时机</title>
+            <p props="cpp">调用 <codeph>getMusicCollectionWithMusicChartId</codeph> 或 <codeph>searchMusic</codeph> 后触发。</p>
+            <p props="android">该回调在调用 <codeph>getMusicCollectionByMusicChartId</codeph> 或 <codeph>searchMusic</codeph> 方法后被触发。</p>
+            <p props="ios">该回调在你调用 <codeph>getMusicCollectionWithMusicChartId:page:pageSize:jsonOption:</codeph> 或 <xref keyref="searchMusic"/> 后被触发。</p>
+            <p props="mac">该回调在你调用 <codeph>getMusicCollectionWithMusicChartId:page:pageSize:jsonOption:</codeph> 或 <codeph>searchMusicWithKeyWord:page:pageSize:jsonOption:</codeph> 后被触发。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>使用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="android cpp">
+                    <pt>requestId</pt>
+                    <pd>请求 ID，用于标识此次请求的唯一标识符。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>result</pt>
+                    <pd>音乐资源列表的详细信息。详见 <codeph>MusicCollection</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>reason</pt>
+                    <pd>请求状态码。详见 <codeph>MusicContentCenterStateReason</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>page</pt>
+                    <pd>当前页码，默认从 1 开始。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>pageSize</pt>
+                    <pd>每页最多显示的音乐资源数量，最大为 50。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>total</pt>
+                    <pd>音乐资源列表中的总资源数。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>list</pt>
+                    <pd>音乐资源列表的详细信息，详见 <xref keyref="Music"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>reason</pt>
+                    <pd>来自音乐内容中心的请求状态码：
+                        <ul>
+                            <li>
+                                <codeph>MUSIC_CONTENT_CENTER_STATE_REASON_OK (0)</codeph>：请求成功。</li>
+                            <li>
+                                <codeph>MUSIC_CONTENT_CENTER_STATE_REASON_ERROR (1)</codeph>：通用错误，无具体归因。</li>
+                            <li>
+                                <codeph>MUSIC_CONTENT_CENTER_STATE_REASON_GATEWAY (2)</codeph>：网关错误。可能原因包括：</li>
+                            <li>当前临时 Token 已过期。请重新生成临时 Token。</li>
+                            <li>提供的临时 Token 无效。请确保使用的是 RTM Token。</li>
+                            <li>网络错误。请检查网络连接。</li>
+                            <li>
+                                <codeph>MUSIC_CONTENT_CENTER_STATE_REASON_PERMISSION_AND_RESOURCE (3)</codeph>：权限错误或未找到音乐资源。请确保项目已启用声网音乐内容中心访问权限。如有问题请联系技术支持。</li>
+                            <li>
+                                <codeph>MUSIC_CONTENT_CENTER_STATE_REASON_INTERNAL_DATA_PARSE (4)</codeph>：内部数据解析错误。请联系技术支持。</li>
+                            <li>
+                                <codeph>MUSIC_CONTENT_CENTER_STATE_REASON_MUSIC_LOADING (5)</codeph>：加载音乐资源时发生错误。请联系技术支持。</li>
+                            <li>
+                                <codeph>MUSIC_CONTENT_CENTER_STATE_REASON_MUSIC_DECRYPTION (6)</codeph>：解密音乐资源时发生错误。请联系技术支持。</li>
+                            <li>
+                                <codeph>MUSIC_CONTENT_CENTER_STATE_REASON_HTTP_INTERNAL (7)</codeph>：内部 HTTP 错误。请稍后重试。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>requestId</pt>
+                    <pd>请求 ID。此请求的唯一标识符。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>result</pt>
+                    <pd>音乐内容列表的详细信息。详见 <xref keyref="MusicCollection"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>reason</pt>
+                    <pd>请求状态码。详见 <xref keyref="MusicContentCenterStateReason"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>result</pt>
+                    <pd>音乐内容列表的详细信息。详见 <codeph>AgoraMusicCollection</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>reason</pt>
+                    <pd>请求状态码。详见 <codeph>AgoraMusicContentCenterStateReason</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

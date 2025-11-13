@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ilocalspatialaudioengine_updateremoteposition">
+    <title>
+        <ph keyref="updateRemotePosition"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">更新指定远端用户的空间位置。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="updateRemotePosition"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int updateRemotePosition(uid_t uid, const RemoteVoicePositionInfo &amp;posInfo) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int updateRemotePosition(int uid, RemoteVoicePositionInfo posInfo);</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)updateRemotePosition:(NSUInteger)uid positionInfo:(AgoraRemoteVoicePositionInfo*)posInfo NS_SWIFT_NAME(updateRemotePosition(_:positionInfo:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)updateRemotePosition:(NSUInteger)uid positionInfo:(AgoraRemoteVoicePositionInfo*)posInfo NS_SWIFT_NAME(updateRemotePosition(_:positionInfo:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">调用该方法后，SDK 会根据本地用户与远端用户之间的相对位置计算空间音效参数。</p>
+            <p props="ios mac">成功调用该方法后，SDK 会根据本地用户与远端用户之间的相对位置计算空间音效参数。</p>
+            <note props="cpp">请在调用 <codeph>joinChannel</codeph> 方法后调用该方法。</note>
+            <note props="android">请在调用 <codeph>joinChannel</codeph> 方法后再调用此方法。</note>
+            <note props="ios mac">请在调用 <codeph>joinChannelByToken</codeph> 方法后再调用此方法。</note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>用户 ID。该值必须与用户加入频道时传入的用户 ID 相同。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>posInfo</pt>
+                    <pd>远端用户的空间位置。详见 <codeph>RemoteVoicePositionInfo</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>用户 ID，必须与该用户加入频道时传入的用户 ID 相同。</pd>
+                </plentry>
+                <plentry props="android ios">
+                    <pt>posInfo</pt>
+                    <pd>远端用户的空间位置。详见 <xref keyref="RemoteVoicePositionInfo"/>。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>uid</pt>
+                    <pd>远端用户 ID。该参数必须与用户加入频道时传入的用户 ID 相同。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>posInfo</pt>
+                    <pd>远端用户的空间位置。详见 <codeph>AgoraRemoteVoicePositionInfo</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="android cpp ios mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

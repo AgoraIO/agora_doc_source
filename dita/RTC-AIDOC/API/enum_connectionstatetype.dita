@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_connectionstatetype">
+    <title>
+        <ph keyref="CONNECTION_STATE_TYPE"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">连接状态。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details">
+            <title>枚举值</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>CONNECTION_STATE_DISCONNECTED</pt>
+                    <pd>（1）：SDK 与声网边缘服务器断开连接。该状态表示 SDK 处于以下阶段之一：调用 <codeph>joinChannel(const char* token, const char* channelId, uid_t uid, const ChannelMediaOptions&amp; options)</codeph> 方法前的初始状态，或调用 <codeph>leaveChannel()</codeph> 方法后。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_STATE_CONNECTING</pt>
+                    <pd>（2）：SDK 正在连接声网边缘服务器。该状态表示调用 <codeph>joinChannel(const char* token, const char* channelId, uid_t uid, const ChannelMediaOptions&amp; options)</codeph> 方法后，SDK 正在与指定频道建立连接。连接成功后，SDK 会触发 <codeph>onConnectionStateChanged</codeph> 回调，并将状态切换为 <codeph>CONNECTION_STATE_CONNECTED</codeph>。连接建立后，SDK 会初始化媒体，并在准备就绪时触发 <codeph>onJoinChannelSuccess</codeph> 回调。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_STATE_CONNECTED</pt>
+                    <pd>（3）：SDK 已连接到声网边缘服务器。该状态表示用户已加入频道，并可在频道中发布或订阅媒体流。若因网络中断或切换导致连接丢失，SDK 会自动尝试重连，并触发 <codeph>onConnectionStateChanged</codeph> 回调，状态变为 <codeph>CONNECTION_STATE_RECONNECTING</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_STATE_RECONNECTING</pt>
+                    <pd>（4）：SDK 正在持续重连声网边缘服务器。该状态表示 SDK 因网络问题与频道断开连接后，正在尝试重新加入频道：
+                        <ul>
+                            <li>若在 10 秒内未能重新加入频道，SDK 会触发 <codeph>onConnectionLost</codeph> 回调，保持在 <codeph>CONNECTION_STATE_RECONNECTING</codeph> 状态，并继续尝试重连。</li>
+                            <li>若在断开连接 20 分钟后仍未能重新加入频道，SDK 会触发 <codeph>onConnectionStateChanged</codeph> 回调，切换为 <codeph>CONNECTION_STATE_FAILED</codeph> 状态，并停止重连。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_STATE_FAILED</pt>
+                    <pd>（5）：SDK 无法连接到声网边缘服务器或加入频道。该状态表示 SDK 停止尝试重连。你必须调用 <codeph>leaveChannel()</codeph> 离开频道。可调用 <codeph>joinChannel(const char* token, const char* channelId, uid_t uid, const ChannelMediaOptions&amp; options)</codeph> 方法重新加入频道。如果 SDK 被声网边缘服务器通过 RESTful API 禁止加入频道，会触发 <codeph>onConnectionStateChanged</codeph> 回调。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraConnectionStateDisconnected</pt>
+                    <pd>（1）：SDK 与声网边缘服务器断开连接。该状态表示 SDK 处于以下阶段之一：调用 <codeph>joinChannelByToken:channelId:uid:mediaOptions:joinSuccess:</codeph> 方法前的初始状态，或调用 <codeph>leaveChannel:</codeph> 方法后。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraConnectionStateConnecting</pt>
+                    <pd>（2）：SDK 正在连接声网边缘服务器。该状态表示调用 <codeph>joinChannelByToken:channelId:uid:mediaOptions:joinSuccess:</codeph> 方法后，SDK 正在与指定频道建立连接。连接成功后，SDK 会触发 <codeph>connectionChangedToState:reason:</codeph> 回调，并将状态切换为 <codeph>AgoraConnectionStateConnected</codeph>。连接建立后，SDK 会初始化媒体，并在准备就绪时触发 <codeph>didJoinChannel:withUid:elapsed:</codeph> 回调。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraConnectionStateConnected</pt>
+                    <pd>（3）：SDK 已连接到声网边缘服务器。该状态还表示用户已加入频道，并可在频道中发布或订阅媒体流。如果因网络中断或切换导致连接丢失，SDK 会自动尝试重连，并触发 <codeph>connectionChangedToState:reason:</codeph> 回调，通知当前状态变为 <codeph>AgoraConnectionStateReconnecting</codeph>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraConnectionStateReconnecting</pt>
+                    <pd>（4）：SDK 正在持续重连声网边缘服务器。该状态表示 SDK 因网络问题与频道断开连接后，正在尝试重新加入频道：
+                        <ul>
+                            <li>若在 10 秒内未能重新加入频道，SDK 会触发 <xref keyref="onConnectionLost"/> 回调，保持在该状态并继续重连。</li>
+                            <li>若在断开连接 20 分钟后仍未成功重连，SDK 会触发 <codeph>connectionChangedToState:reason:</codeph> 回调，切换至 <codeph>AgoraConnectionStateFailed</codeph> 状态，并停止重连。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraConnectionStateFailed</pt>
+                    <pd>（5）：SDK 无法连接到声网边缘服务器或加入频道。该状态表示 SDK 停止尝试重连。你必须调用 <codeph>leaveChannel:</codeph> 离开频道。可调用 <codeph>joinChannelByToken:channelId:uid:mediaOptions:joinSuccess:</codeph> 重新加入频道。如果 SDK 被声网边缘服务器通过 RESTful API 禁止加入频道，会触发 <codeph>connectionChangedToState:reason:</codeph> 回调。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

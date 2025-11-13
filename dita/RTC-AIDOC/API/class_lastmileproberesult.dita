@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_lastmileproberesult">
+    <title>
+        <ph keyref="LastmileProbeResult"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">表示上下行最后一公里网络探测的结果。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct LastmileProbeResult {
+  LASTMILE_PROBE_RESULT_STATE state;
+  LastmileProbeOneWayResult uplinkReport;
+  LastmileProbeOneWayResult downlinkReport;
+  unsigned int rtt;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public static class LastmileProbeResult {
+  public static class LastmileProbeOneWayResult {
+    public int packetLossRate;
+    public int jitter;
+    public int availableBandwidth;
+  }
+  public short state;
+  public int rtt;
+  public LastmileProbeOneWayResult uplinkReport = new LastmileProbeOneWayResult();
+  public LastmileProbeOneWayResult downlinkReport = new LastmileProbeOneWayResult();
+}</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLastmileProbeResult : NSObject
+@property (assign, nonatomic) AgoraLastmileProbeResultState state;
+@property (assign, nonatomic) NSUInteger rtt;
+@property (strong, nonatomic) AgoraLastmileProbeOneWayResult *_Nonnull uplinkReport;
+@property (strong, nonatomic) AgoraLastmileProbeOneWayResult *_Nonnull downlinkReport;
+@end</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLastmileProbeResult : NSObject
+@property (assign, nonatomic) AgoraLastmileProbeResultState state;
+@property (assign, nonatomic) NSUInteger rtt;
+@property (strong, nonatomic) AgoraLastmileProbeOneWayResult *_Nonnull uplinkReport;
+@property (strong, nonatomic) AgoraLastmileProbeOneWayResult *_Nonnull downlinkReport;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>state</pt>
+                    <pd>最后一公里网络探测的状态。详见 <codeph>LASTMILE_PROBE_RESULT_STATE</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>uplinkReport</pt>
+                    <pd>上行最后一公里网络探测的结果。详见 <codeph>LastmileProbeOneWayResult</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>downlinkReport</pt>
+                    <pd>下行最后一公里网络探测的结果。详见 <codeph>LastmileProbeOneWayResult</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>rtt</pt>
+                    <pd>往返时延（毫秒）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>state</pt>
+                    <pd>最后一公里网络探测的状态，包括：
+                        <ul>
+                            <li>
+                                <codeph>LASTMILE_PROBE_RESULT_COMPLETE</codeph> (1)：探测完成。</li>
+                            <li>
+                                <codeph>LASTMILE_PROBE_RESULT_INCOMPLETE_NO_BWE</codeph> (2)：探测未完成，因未进行带宽预测，可能是测试资源暂时受限。</li>
+                            <li>
+                                <codeph>LASTMILE_PROBE_RESULT_UNAVAILABLE</codeph> (3)：未进行探测，可能由于网络状况较差。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android ios mac">
+                    <pt>rtt</pt>
+                    <pd>往返时延，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uplinkReport</pt>
+                    <pd>上行最后一公里网络探测结果，详见 <xref keyref="LastmileProbeOneWayResult"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>downlinkReport</pt>
+                    <pd>下行最后一公里网络探测结果，详见 <xref keyref="LastmileProbeOneWayResult"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>state</pt>
+                    <pd>最后一公里网络测试的状态，详见 <xref keyref="LASTMILE_PROBE_RESULT_STATE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>uplinkReport</pt>
+                    <pd>上行最后一公里网络测试的结果，详见 <xref keyref="LastmileProbeOneWayResult"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>downlinkReport</pt>
+                    <pd>下行最后一公里网络测试的结果，详见 <xref keyref="LastmileProbeOneWayResult"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>state</pt>
+                    <pd>最后一公里网络测试的状态，详见 <codeph>AgoraLastmileProbeResultState</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uplinkReport</pt>
+                    <pd>上行最后一公里网络测试的结果，详见 <codeph>AgoraLastmileProbeOneWayResult</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>downlinkReport</pt>
+                    <pd>下行最后一公里网络测试的结果，详见 <codeph>AgoraLastmileProbeOneWayResult</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

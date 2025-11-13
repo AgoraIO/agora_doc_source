@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_registeraudioencodedframeobserver">
+    <title>
+        <ph keyref="registerAudioEncodedFrameObserver"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">注册编码音频数据的观察器。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="registerAudioEncodedFrameObserver"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int registerAudioEncodedFrameObserver(const AudioEncodedFrameObserverConfig&amp; config,  IAudioEncodedFrameObserver *observer) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int registerAudioEncodedFrameObserver(AudioEncodedFrameObserverConfig config, IAudioEncodedFrameObserver observer);</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)setAudioEncodedFrameDelegate:(id&lt;AgoraAudioEncodedFrameDelegate&gt; _Nullable)delegate config:(AgoraAudioEncodedFrameDelegateConfig * _Nonnull)config NS_SWIFT_NAME(setAudioEncodedFrameDelegate(_:config:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)setAudioEncodedFrameDelegate:(id&lt;AgoraAudioEncodedFrameDelegate&gt; _Nullable)delegate config:(AgoraAudioEncodedFrameDelegateConfig * _Nonnull)config NS_SWIFT_NAME(setAudioEncodedFrameDelegate(_:config:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="cpp">你需要在加入频道后调用该方法。你可以调用该方法或 <codeph>startAudioRecording</codeph> 来设置音频文件的录制类型和质量，但声网不建议同时使用这两个方法。只有后调用的方法会生效。</note>
+            <note props="android">调用该方法需在加入频道后进行。你可以调用此方法或 <codeph>startAudioRecording</codeph> 来设置音频文件的录制类型和质量，但不建议同时使用这两个方法。只有后调用的方法会生效。</note>
+            <note props="ios mac">该方法需在加入频道后调用。你可以调用该方法或 <codeph>startAudioRecordingWithConfig:</codeph> 来设置音频文件的录制类型和质量，但声网不建议同时使用这两个方法。只有后调用的方法会生效。</note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>config</pt>
+                    <pd>编码音频的观察器配置。详见 <codeph>AudioEncodedFrameObserverConfig</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>observer</pt>
+                    <pd>编码音频数据的观察器。详见 <codeph>IAudioEncodedFrameObserver</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>config</pt>
+                    <pd>编码音频的观察器配置。详见 <xref keyref="AudioEncodedFrameObserverConfig"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>observer</pt>
+                    <pd>编码音频数据的观察器。详见 <xref keyref="IAudioEncodedFrameObserver"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>delegate</pt>
+                    <pd>编码音频数据的观察者。详见 <xref keyref="IAudioEncodedFrameObserver"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>config</pt>
+                    <pd>编码音频数据的观察者配置。详见 <xref keyref="AudioEncodedFrameObserverConfig"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>delegate</pt>
+                    <pd>编码音频数据的观察者。详见 <codeph>AgoraAudioEncodedFrameDelegate</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>config</pt>
+                    <pd>编码音频数据的观察者配置。详见 <codeph>AgoraAudioEncodedFrameDelegateConfig</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="android cpp ios mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

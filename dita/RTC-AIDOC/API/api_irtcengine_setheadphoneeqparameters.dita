@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setheadphoneeqparameters">
+    <title>
+        <ph keyref="setHeadphoneEQParameters"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">设置耳机均衡器的低频和高频参数。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setHeadphoneEQParameters"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setHeadphoneEQParameters(int lowGain, int highGain) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setHeadphoneEQParameters(int lowGain, int highGain);</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)setHeadphoneEQParameters:(int)lowGain highGain:(int)highGain NS_SWIFT_NAME(setHeadphoneEQParameters(_:highGain:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)setHeadphoneEQParameters:(int)lowGain highGain:(int)highGain NS_SWIFT_NAME(setHeadphoneEQParameters(_:highGain:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">在空间音效场景中，如果调用 <codeph>setHeadphoneEQPreset</codeph> 后未达到预期的耳机均衡效果，可以通过调用该方法进一步调整。</p>
+            <p props="android">如果调用 <xref keyref="setHeadphoneEQPreset"/> 后未达到预期效果，可以调用 <xref keyref="setHeadphoneEQParameters"/> 进一步调整耳机均衡器的低频和高频参数。</p>
+            <p props="ios">如果你调用 <xref keyref="setHeadphoneEQPreset"/> 方法后未达到预设的耳机均衡效果，可以通过调用该方法进一步调整耳机均衡效果。</p>
+            <p props="mac">如果你调用 <codeph>setHeadphoneEQPreset:</codeph> 方法后未达到预设的耳机均衡效果，可以通过调用该方法进一步调整耳机均衡效果。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>lowGain</pt>
+                    <pd>耳机均衡器的低频参数，取值范围为 [-10, 10]。值越大，声音越浑厚。</pd>
+                </plentry>
+                <plentry props="android cpp">
+                    <pt>highGain</pt>
+                    <pd>耳机均衡器的高频参数，取值范围为 [-10, 10]。值越大，声音越清晰。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>lowGain</pt>
+                    <pd>耳机均衡器的低频参数，取值范围为 [-10, 10]。值越大，声音越深沉。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>lowGain</pt>
+                    <pd>耳机均衡器的低频参数。取值范围为 [-10, 10]。值越大，声音越浑厚。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>highGain</pt>
+                    <pd>耳机均衡器的高频参数。取值范围为 [-10, 10]。值越大，声音越清晰。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                    <li>-1：发生通用错误（无具体原因）。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                    <li>-1：发生通用错误。</li>
+                </ul>
+            </p>
+            <p props="ios mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                    <li>-1：发生通用错误（无明确原因）。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

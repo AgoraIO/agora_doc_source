@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_channelmediarelaystate">
+    <title>
+        <ph keyref="CHANNEL_MEDIA_RELAY_STATE"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">跨频道媒体流转发状态码。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details">
+            <title>枚举值</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>RELAY_STATE_IDLE</pt>
+                    <pd>（0）：初始状态。调用 <codeph>stopChannelMediaRelay</codeph> 成功停止跨频道媒体流转发后，<codeph>onChannelMediaRelayStateChanged</codeph> 回调返回该状态。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>RELAY_STATE_CONNECTING</pt>
+                    <pd>（1）：SDK 正在尝试将媒体流转发至目标频道。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>RELAY_STATE_RUNNING</pt>
+                    <pd>（2）：SDK 已成功将媒体流转发至目标频道。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>RELAY_STATE_FAILURE</pt>
+                    <pd>（3）：发生错误。详见 <codeph>onChannelMediaRelayStateChanged</codeph> 回调中的 <codeph>code</codeph>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraChannelMediaRelayStateIdle</pt>
+                    <pd>（0）：初始状态。调用 <xref keyref="stopChannelMediaRelay"/> 成功停止跨频道媒体流转发后，<codeph>channelMediaRelayStateDidChange</codeph> 回调会返回该状态。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraChannelMediaRelayStateConnecting</pt>
+                    <pd>（1）：SDK 正在尝试将媒体流转发至目标频道。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraChannelMediaRelayStateRunning</pt>
+                    <pd>（2）：SDK 已成功将媒体流转发至目标频道。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraChannelMediaRelayStateFailure</pt>
+                    <pd>（3）：发生错误。详见 <codeph>channelMediaRelayStateDidChange</codeph> 回调中的 <xref keyref="Code"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

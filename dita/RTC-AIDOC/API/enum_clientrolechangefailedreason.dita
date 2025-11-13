@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_clientrolechangefailedreason">
+    <title>
+        <ph keyref="CLIENT_ROLE_CHANGE_FAILED_REASON"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">用户角色切换失败的原因。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details">
+            <title>枚举值</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>CLIENT_ROLE_CHANGE_FAILED_TOO_MANY_BROADCASTERS</pt>
+                    <pd>（1）：频道中的主播数量超过限制。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CLIENT_ROLE_CHANGE_FAILED_NOT_AUTHORIZED</pt>
+                    <pd>（2）：请求被声网服务器拒绝。建议提示用户重试切换角色。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT</pt>
+                    <pd>（3）：请求超时。建议提示用户检查网络连接并重试切换角色。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED</pt>
+                    <pd>（4）：客户端实例与声网边缘服务器断开连接。你可以通过 onConnectionStateChanged 回调中的 reason 排查失败原因。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraClientRoleChangeFailedTooManyBroadcasters</pt>
+                    <pd>（1）：频道中的主播数量超过限制。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraClientRoleChangeFailedNotAuthorized</pt>
+                    <pd>（2）：请求被声网服务器拒绝。建议提示用户重试切换角色。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraClientRoleChangeFailedRequestTimeout</pt>
+                    <pd>（3）：请求超时。建议提示用户检查网络连接并重试切换角色。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraClientRoleChangeFailedConnectionFailed</pt>
+                    <pd>（4）：SDK 与声网边缘服务器断开连接。你可以通过 <codeph>connectionChangedToState:reason:</codeph> 中的 <codeph>reason</codeph> 排查失败原因。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

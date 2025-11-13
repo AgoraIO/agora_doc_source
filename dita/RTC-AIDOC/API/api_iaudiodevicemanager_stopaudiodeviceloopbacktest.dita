@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicemanager_stopaudiodeviceloopbacktest">
+    <title>
+        <ph keyref="stopAudioDeviceLoopbackTest"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">停止音频设备回环测试。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="stopAudioDeviceLoopbackTest"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int stopAudioDeviceLoopbackTest() = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="cpp">
+                <codeph>stopAudioDeviceLoopbackTest</codeph> 方法仅适用于 Windows 和 macOS 平台。你可以在加入频道前或加入频道后调用该方法。该方法仅在主播角色调用时生效。调用 <codeph>startAudioDeviceLoopbackTest</codeph> 方法开始回环测试后，请确保调用该方法停止回环测试。</note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="cpp">无。</p>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

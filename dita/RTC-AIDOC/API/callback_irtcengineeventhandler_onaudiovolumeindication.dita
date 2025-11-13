@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onaudiovolumeindication">
+    <title>
+        <ph keyref="onAudioVolumeIndication"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">`onAudioVolumeIndication` 回调。播放器音量变化时触发。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onAudioVolumeIndication"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioVolumeIndication(const RtcConnection&amp; connection, const AudioVolumeInfo* speakers, unsigned int speakerNumber, int totalVolume)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onAudioVolumeIndication(AudioVolumeInfo[] speakers, int totalVolume)</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine reportAudioVolumeIndicationOfSpeakers:(NSArray&lt;AgoraRtcAudioVolumeInfo *&gt; * _Nonnull)speakers totalVolume:(NSInteger)totalVolume NS_SWIFT_NAME(rtcEngine(_:reportAudioVolumeIndicationOfSpeakers:totalVolume:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine reportAudioVolumeIndicationOfSpeakers:(NSArray&lt;AgoraRtcAudioVolumeInfo *&gt; * _Nonnull)speakers totalVolume:(NSInteger)totalVolume NS_SWIFT_NAME(rtcEngine(_:reportAudioVolumeIndicationOfSpeakers:totalVolume:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p props="android">该回调每 200 毫秒触发一次。</p>
+            <p props="ios mac">你可以通过调用 <codeph>enableAudioVolumeIndication</codeph> 方法开启该回调。开启后，当用户在频道中发送音频流时，SDK 会根据 <codeph>enableAudioVolumeIndication</codeph> 中设置的时间间隔触发该回调。SDK 会同时触发两个独立的回调，分别报告发送音频流的本地用户和瞬时音量最高的最多三位远端用户的音量信息。</p>
+            <note props="ios mac">收到该回调后，如需更新 UI 界面，请确保将执行线程切换到 UI 线程。开启该回调后，即使本地用户调用 <codeph>muteLocalAudioStream</codeph> 方法进行静音，SDK 仍会继续报告本地用户的音量信息。如果频道中音量排名前三的远端用户停止发布音频流超过 20 秒，回调中将不再包含该用户的信息；如果所有远端用户都停止发布音频流超过 20 秒，SDK 将不再触发远端用户的音量回调。</note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>触发时机</title>
+            <p props="cpp">当播放器的音量发生变化时，SDK 会触发该回调。</p>
+            <p props="android">该回调每 200 毫秒触发一次，用于报告媒体播放器的当前音量。</p>
+            <p props="ios mac">该回调在启用音量提示并有用户发送音频流时被触发。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>使用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>connection</pt>
+                    <pd>
+                        <codeph>RtcConnection</codeph> 对象。详见 <codeph>RtcConnection</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>speakers</pt>
+                    <pd>用户的音量信息。当该数组为空时，表示频道中没有远端用户或没有用户发送音频流。详见 <codeph>AudioVolumeInfo</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>speakerNumber</pt>
+                    <pd>说话者的总人数。
+                        <ul>
+                            <li>在本地用户的回调中，当本地用户发送音频流时，该值为 1。</li>
+                            <li>在远端用户的回调中，该值范围为 [0, 3]。当发送音频流的远端用户数量大于或等于 3 时，该值为 3。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>totalVolume</pt>
+                    <pd>说话者的音量，取值范围为 0（最低）到 255（最高）。
+                        <ul>
+                            <li>在本地用户的回调中，该值表示本地用户的音量。</li>
+                            <li>在远端用户的回调中，该值表示瞬时音量最高的最多三位远端用户的音量总和。如果调用了 <codeph>startAudioMixing</codeph>，该值为混音后的音量。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>speakers</pt>
+                    <pd>用户的音量信息。当该数组为空时，表示频道中没有远端用户或远端用户未发送音频流。详见 <xref keyref="AudioVolumeInfo"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>totalVolume</pt>
+                    <pd>说话者的音量，取值范围为 [0, 255]。
+                        <ul>
+                            <li>对于本地用户的回调，<codeph>totalVolume</codeph> 是发送音频流的本地用户的音量。</li>
+                            <li>对于远端用户的回调，<codeph>totalVolume</codeph> 是瞬时音量最高的最多三位远端用户的音量总和。</li>
+                            <li>如果调用了 <codeph>startAudioMixing</codeph>，则 <codeph>totalVolume</codeph> 是混音后的音量。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>engine</pt>
+                    <pd>
+                        <xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>speakers</pt>
+                    <pd>用户的音量信息。详见 <xref keyref="AudioVolumeInfo"/>。当该数组为空时，表示频道中没有远端用户或远端用户未发送音频流。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>totalVolume</pt>
+                    <pd>扬声器的音量，取值范围为 [0, 255]。
+                        <ul>
+                            <li>对于本地用户的回调，<codeph>totalVolume</codeph> 是发送音频流的本地用户的音量。</li>
+                            <li>对于远端用户的回调，<codeph>totalVolume</codeph> 是瞬时音量最高的最多三位远端用户的音量总和。如果你调用了 <codeph>startAudioMixing</codeph>，则 <codeph>totalVolume</codeph> 是混音后的音量。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd>
+                        <codeph>AgoraRtcEngineKit</codeph> 对象。详见 <codeph>AgoraRtcEngineKit</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>speakers</pt>
+                    <pd>用户的音量信息。详见 <codeph>AgoraRtcAudioVolumeInfo</codeph>。当该数组为空时，表示频道中没有远端用户或远端用户未发送音频流。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

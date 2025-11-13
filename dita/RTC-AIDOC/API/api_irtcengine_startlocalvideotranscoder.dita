@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startlocalvideotranscoder">
+    <title>
+        <ph keyref="startLocalVideoTranscoder"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">开始本地视频混流。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startLocalVideoTranscoder"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int startLocalVideoTranscoder(const LocalTranscoderConfiguration&amp; config) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int startLocalVideoTranscoder(LocalTranscoderConfiguration config);</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)startLocalVideoTranscoder:(AgoraLocalTranscoderConfiguration* _Nonnull)config NS_SWIFT_NAME(startLocalVideoTranscoder(_:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)startLocalVideoTranscoder:(AgoraLocalTranscoderConfiguration* _Nonnull)config NS_SWIFT_NAME(startLocalVideoTranscoder(_:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">调用该方法后，可以在本地将多个视频流合并为一个视频流，例如摄像头采集的视频流、屏幕共享、媒体播放器、远端视频、视频文件、图片等，并将混流后的视频流发布到频道中。适用场景包括远程会议、直播、在线教育等，便于用户查看和管理多个视频内容，并支持画中画等效果。
+以下是实现画中画效果的典型用例：
+                <ol>
+                    <li>调用 <codeph>enableVirtualBackground</codeph>，并将自定义背景图设置为 <codeph>BACKGROUND_NONE</codeph>，实现摄像头采集视频中人像与背景的分离。</li>
+                    <li>调用 <codeph>startScreenCapture</codeph> 开始采集屏幕共享视频流。</li>
+                    <li>调用 <codeph>startLocalVideoTranscoder</codeph>，并将采集人像的视频源设置为参与本地视频混流的视频源之一，即可在混流视频中实现人像画中画效果。</li>
+                </ol>
+            </p>
+            <p props="android">调用该方法后，你可以在本地将多个视频流合并为一个视频流。例如，可以将摄像头采集的视频流、屏幕共享、媒体播放器、远端视频、视频文件、图片等视频流合并为一个视频流，并将该混流视频发布到频道中。
+适用场景：适用于远程会议、直播、在线教育等场景，便于用户查看和管理多个视频内容，并支持画中画等功能。
+以下是实现画中画效果的典型用例：
+                <ol>
+                    <li>调用 <codeph>enableVirtualBackground</codeph>，并将自定义背景图设置为 <codeph>BACKGROUND_NONE</codeph>，实现摄像头采集视频中人像与背景的分离。</li>
+                    <li>调用 <codeph>startScreenCapture</codeph> 开始采集屏幕共享视频流。</li>
+                    <li>调用 <xref keyref="startLocalVideoTranscoder"/>，并将采集人像的视频源设置为参与本地视频混流的视频源之一，即可在混流视频中实现人像画中画效果。</li>
+                </ol>
+            </p>
+            <p props="ios">调用该方法后，你可以在本地将多个视频流合并为一个视频流。例如，可以将摄像头采集的视频流、屏幕共享、媒体播放器、远端视频、视频文件、图片等合并为一个视频流，并将该合图后的视频流发布到频道中。
+适用场景：你可以在远程会议、直播、在线教育等场景中启用本地合图功能，方便查看和管理多个视频，并支持画中画等效果。
+以下是实现画中画效果的典型用例：
+                <ol>
+                    <li>调用 <codeph>enableVirtualBackground:</codeph>，并将自定义背景图设置为 <codeph>AgoraVirtualBackgroundNone</codeph>，即将摄像头采集的视频中的人像与背景分离。</li>
+                    <li>调用 <codeph>startScreenCapture:</codeph>（iOS）或 <codeph>startScreenCapture:</codeph>（macOS）开始采集屏幕共享视频流。</li>
+                    <li>调用 <xref keyref="startLocalVideoTranscoder"/>，并将采集人像的视频源设置为参与本地合图的视频源之一，即可在合图视频中实现人像画中画效果。</li>
+                </ol>
+            </p>
+            <p props="mac">调用该方法后，你可以在本地将多个视频流合并为一个视频流。例如，可以将摄像头采集的视频流、屏幕共享、媒体播放器、远端视频、视频文件、图片等合并为一个视频流，并将该合图后的视频流发布到频道中。
+适用场景：你可以在远程会议、直播、在线教育等场景中启用本地合图功能，方便查看和管理多个视频，并支持画中画等效果。
+以下是实现画中画效果的典型用例：
+                <ol>
+                    <li>调用 <codeph>enableVirtualBackground:</codeph>，并将自定义背景图设置为 <codeph>AgoraVirtualBackgroundNone</codeph>，即将摄像头采集的视频中的人像与背景分离。</li>
+                    <li>调用 <codeph>startScreenCapture:</codeph>（iOS）或 <codeph>startScreenCapture:</codeph>（macOS）开始采集屏幕共享视频流。</li>
+                    <li>调用 <codeph>startLocalVideoTranscoder:</codeph>，并将采集人像的视频源设置为参与本地合图的视频源之一，即可在合图视频中实现人像画中画效果。</li>
+                </ol>
+            </p>
+            <note props="ios mac">
+                <ul>
+                    <li>本地合图功能对 CPU 资源要求较高，建议在高性能设备上使用。</li>
+                    <li>若需合成本地采集的视频流，SDK 支持以下采集组合：</li>
+                    <li>iOS：最多支持 2 路摄像头采集的视频流（设备需支持双摄或外接摄像头）+ 1 路屏幕共享流。</li>
+                    <li>macOS：最多支持 4 路摄像头采集的视频流 + 1 路屏幕共享流。</li>
+                    <li>配置本地合图时，需确保采集人像的视频流的图层编号大于屏幕共享流的图层编号，否则人像会被屏幕共享遮挡，无法在最终合图视频中显示。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="cpp">如果需要混合本地采集的视频流，应在调用 <codeph>startCameraCapture</codeph> 或 <codeph>startScreenCapture</codeph> 之后调用 <codeph>startLocalVideoTranscoder</codeph>。
+如果希望将混流后的视频流发布到频道中，在调用 <codeph>joinChannel</codeph> 或 <codeph>updateChannelMediaOptions</codeph> 时，需要在 <codeph>ChannelMediaOptions</codeph> 中将 <codeph>publishTranscodedVideoTrack</codeph> 设置为 <codeph>true</codeph>。</p>
+            <p props="android">如果需要混合本地采集的视频流，应在调用 <xref keyref="startCameraCapture"/> 或 <codeph>startScreenCapture</codeph> 后调用 <xref keyref="startLocalVideoTranscoder"/>。
+如果希望将混流后的视频流发布到频道中，需在调用 <codeph>joinChannel</codeph> 或 <xref keyref="updateChannelMediaOptions"/> 时，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishTranscodedVideoTrack</codeph> 设置为 <xref keyref="true"/>。</p>
+            <p props="ios">如果需要合成本地采集的视频流，需在调用 <codeph>startCameraCapture:</codeph> 或 <codeph>startScreenCapture:</codeph>（iOS）/<codeph>startScreenCapture:</codeph>（macOS）之后调用本方法。如果希望将合图后的视频流发布到频道中，需在调用 <codeph>joinChannelByToken:</codeph> 或 <xref keyref="updateChannelMediaOptions"/> 时，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishTranscodedVideoTrack</codeph> 设置为 <xref keyref="true"/>。</p>
+            <p props="mac">如果需要合成本地采集的视频流，需在调用 <codeph>startCameraCapture:</codeph> 或 <codeph>startScreenCapture:</codeph>（iOS）/<codeph>startScreenCapture:</codeph>（macOS）之后调用本方法。如果希望将合图后的视频流发布到频道中，需在调用 <codeph>joinChannelByToken:</codeph> 或 <codeph>updateChannelWithMediaOptions:</codeph> 时，将 <codeph>AgoraRtcChannelMediaOptions</codeph> 中的 <codeph>publishTranscodedVideoTrack</codeph> 设置为 <codeph>YES</codeph>。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="related" deliveryTarget="details">
+            <title>相关回调</title>
+            <p props="cpp">调用该方法失败时，SDK 会触发 <codeph>onLocalVideoTranscoderError</codeph> 回调报告失败原因。</p>
+            <p props="android ios">调用该方法失败时，SDK 会触发 <xref keyref="onLocalVideoTranscoderError"/> 回调报告失败原因。</p>
+            <p props="mac">调用该方法失败时，SDK 会触发 <codeph>rtcEngine:didLocalVideoTranscoderErrorWithStream:errorCode:</codeph> 回调报告失败原因。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>config</pt>
+                    <pd>本地视频混流的配置。
+                        <ul>
+                            <li>每路参与本地视频混流的视频流的最大分辨率为 4096 × 2160，超过该限制将无法进行视频混流。</li>
+                            <li>混流后的视频流最大分辨率为 4096 × 2160。
+详见 <codeph>LocalTranscoderConfiguration</codeph>。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>config</pt>
+                    <pd>本地视频混流的配置。详见 <xref keyref="LocalTranscoderConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>config</pt>
+                    <pd>本地合图的配置。每路参与本地合图的视频流的最大分辨率为 4096 × 2160，超过该限制将无法生效。合图后的视频流最大分辨率为 4096 × 2160。详见 <xref keyref="LocalTranscoderConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>config</pt>
+                    <pd>本地合图的配置。每路参与本地合图的视频流的最大分辨率为 4096 × 2160，超过该限制将无法生效。合图后的视频流最大分辨率为 4096 × 2160。详见 <codeph>AgoraLocalTranscoderConfiguration</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="android cpp ios mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

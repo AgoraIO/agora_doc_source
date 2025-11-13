@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_createvideoeffectobject">
+    <title>
+        <ph keyref="createVideoEffectObject"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">创建一个 `IVideoEffectObject` 视频特效对象。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="createVideoEffectObject"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual agora_refptr&lt;IVideoEffectObject&gt; createVideoEffectObject(const char* bundlePath, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract IVideoEffectObject createVideoEffectObject(String bundlePath, Constants.MediaSourceType sourceType);</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (id&lt;AgoraVideoEffectObject&gt; _Nullable)createVideoEffectObjectWithBundlePath:(NSString * _Nonnull)bundlePath
+                                                                   sourceType:(AgoraMediaSourceType)sourceType
+    NS_SWIFT_NAME(createVideoEffectObject(bundlePath:sourceType:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (id&lt;AgoraVideoEffectObject&gt; _Nullable)createVideoEffectObjectWithBundlePath:(NSString * _Nonnull)bundlePath
+                                                                   sourceType:(AgoraMediaSourceType)sourceType
+    NS_SWIFT_NAME(createVideoEffectObject(bundlePath:sourceType:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="android cpp ios mac">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p props="ios">返回一个 <xref keyref="IVideoEffectObject"/> 视频特效对象的指针。</p>
+            <p props="mac">返回一个 <codeph>AgoraVideoEffectObject</codeph> 视频特效对象的指针。</p>
+            <note props="android">你必须先调用 <xref keyref="enableVideo"/> 方法再调用此方法。该方法适用于 Android 4.4 及以上版本。</note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="android cpp">
+                    <pt>bundlePath</pt>
+                    <pd>视频特效资源包的路径。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>type</pt>
+                    <pd>媒体源类型，详见 <codeph>MEDIA_SOURCE_TYPE</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sourceType</pt>
+                    <pd>媒体源类型，例如 <codeph>PRIMARY_CAMERA_SOURCE</codeph>。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>bundlePath</pt>
+                    <pd>视频特效 bundle 的路径。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>sourceType</pt>
+                    <pd>媒体源类型，例如 <codeph>AgoraMediaSourceTypePrimaryCamera</codeph>。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>sourceType</pt>
+                    <pd>媒体源类型，例如 <codeph>AgoraMediaSourceTypePrimaryCamera</codeph>。详见 <codeph>AgoraMediaSourceType</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>方法调用成功，返回 <codeph>IVideoEffectObject</codeph> 对象指针，详见 <codeph>IVideoEffectObject</codeph>。</li>
+                    <li>方法调用失败，返回 <codeph>NULL</codeph>。</li>
+                </ul>
+            </p>
+            <p props="android">方法调用成功，返回 <xref keyref="IVideoEffectObject"/> 对象。
+方法调用失败，返回 <xref keyref="NULL"/>。</p>
+            <p props="ios">
+                <ul>
+                    <li>方法调用成功，返回 <xref keyref="IVideoEffectObject"/> 对象，详见 <xref keyref="IVideoEffectObject"/>。</li>
+                    <li>方法调用失败，返回 <xref keyref="NULL"/>。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>方法调用成功，返回 <codeph>AgoraVideoEffectObject</codeph> 对象，详见 <codeph>AgoraVideoEffectObject</codeph>。</li>
+                    <li>方法调用失败，返回 <codeph>nil</codeph>。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>
