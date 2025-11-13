@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudioframeobserverbase_getobservedaudioframeposition_iaudioframeobserverbase">
+    <title>
+    <ph keyref="getObservedAudioFramePosition_IAudioFrameObserverBase"/>
+  </title>
+    <shortdesc id="short">
+    <ph id="shortdesc">设置音频数据观察位置。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getObservedAudioFramePosition_IAudioFrameObserverBase"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getObservedAudioFramePosition() = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">成功注册音频数据观察器后，SDK 会在每个特定的音频帧处理节点调用该回调，以判断是否触发以下回调：
+                <ul>
+                    <li><xref keyref="onRecordAudioFrame_IAudioFrameObserverBase"/></li>
+                    <li><xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/></li>
+                    <li><xref keyref="onPlaybackAudioFrameBeforeMixing_IAudioFrameObserverBase"/></li>
+                    <li><xref keyref="onMixedAudioFrame_IAudioFrameObserverBase"/></li>
+                    <li><xref keyref="onEarMonitoringAudioFrame_IAudioFrameObserverBase"/>
+你可以根据实际场景，通过修改 <xref keyref="getObservedAudioFramePosition_IAudioFrameObserverBase"/> 的返回值设置需要观察的一个或多个位置。
+如果需要同时观察多个位置，需使用按位或运算符（|）。为节省系统资源，建议只设置必要的观察位置。</li>
+                </ul>
+            </p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="cpp">无。</p>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="cpp">一个位掩码，用于设置观察位置，具体取值如下：
+                <ul>
+                    <li><codeph>AUDIO_FRAME_POSITION_PLAYBACK</codeph>（0x0001）：可观察所有远端用户混音后的播放音频。对应回调为 <xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/>。</li>
+                    <li><codeph>AUDIO_FRAME_POSITION_RECORD</codeph>（0x0002）：可观察本地用户采集的音频。对应回调为 <xref keyref="onRecordAudioFrame_IAudioFrameObserverBase"/>。</li>
+                    <li><codeph>AUDIO_FRAME_POSITION_MIXED</codeph>（0x0004）：可观察本地用户与所有远端用户混音后的播放音频。对应回调为 <xref keyref="onMixedAudioFrame_IAudioFrameObserverBase"/>。</li>
+                    <li><codeph>AUDIO_FRAME_POSITION_BEFORE_MIXING</codeph>（0x0008）：可观察单个远端用户混音前的音频。对应回调为 <xref keyref="onPlaybackAudioFrameBeforeMixing_IAudioFrameObserverBase"/>。</li>
+                    <li><codeph>AUDIO_FRAME_POSITION_EAR_MONITORING</codeph>（0x0010）：可观察本地用户的耳返音频。对应回调为 <xref keyref="onEarMonitoringAudioFrame_IAudioFrameObserverBase"/>。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

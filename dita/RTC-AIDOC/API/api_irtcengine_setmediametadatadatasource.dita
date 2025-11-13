@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setmediametadatadatasource">
+    <title>
+    <ph keyref="setMediaMetadataDataSource"/>
+  </title>
+    <shortdesc id="short">
+    <ph id="shortdesc">设置元数据的数据源。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setMediaMetadataDataSource"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="ios" outputclass="language-objectivec">- (BOOL)setMediaMetadataDataSource:(id&lt;AgoraMediaMetadataDataSource&gt; _Nullable)metadataDataSource withType:(AgoraMetadataType)type NS_SWIFT_NAME(setMediaMetadataDataSource(_:with:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="ios">你需要在该方法中实现 <xref keyref="AgoraMediaMetadataDataSource"/> 协议，并指定元数据的数据格式。成功调用该方法后，SDK 会触发 <xref keyref="getMaxMetadataSize"/> 回调。你可以结合 <xref keyref="registerMediaMetadataObserver"/> 方法，在视频流中添加同步的元数据，实现更丰富的直播互动，例如发送购物链接、数字优惠券和在线问答。</p>
+            <note props="ios">该方法需要在加入频道前调用。</note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="ios">加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="ios">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="ios">
+                    <pt>metadataDataSource</pt>
+                    <pd>元数据的数据源，需实现 <xref keyref="AgoraMediaMetadataDataSource"/> 协议。详见 <xref keyref="AgoraMediaMetadataDataSource"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>type</pt>
+                    <pd>元数据的类型，详见 <xref keyref="METADATA_TYPE"/>。SDK 当前仅支持 <codeph>AgoraMetadataTypeVideo</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="ios">
+                <ul>
+                    <li><xref keyref="true"/>：方法调用成功。</li>
+                    <li><xref keyref="false"/>：方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_pushaudioframe2">
+    <title>
+    <ph keyref="pushAudioFrame2"/>
+  </title>
+    <shortdesc id="short">
+    <ph id="shortdesc">将外部音频数据推送到 App。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="pushAudioFrame2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="ios" outputclass="language-objectivec">- (int)pushExternalAudioFrameRawData:(void* _Nonnull)data
+                             samples:(NSInteger)samples
+                          sampleRate:(NSInteger)sampleRate
+                            channels:(NSInteger)channels
+                            trackId:(NSInteger)trackId
+                           timestamp:(NSTimeInterval)timestamp NS_SWIFT_NAME(pushExternalAudioFrameRawData(_:samples:sampleRate:channels:trackId:timestamp:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int pushExternalAudioFrame(ByteBuffer data, long timestamp, int sampleRate, int channels, Constants.BytesPerSample bytesPerSample, int trackId);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="android">
+                    <dt/>
+                    <dd>自 vX.X.X 版本废弃，请改用 `pushExternalAudioFrame(byte[] data, long timestamp, int sampleRate, int channels, BytesPerSample bytesPerSample, int trackId)`。</dd>
+                </dlentry>
+            </dl>
+            <p props="ios">你可以调用该方法通过音频轨道向 SDK 推送外部音频帧。
+调用该方法前，请先完成以下操作：
+                <ol>
+                    <li>调用 <codeph>createCustomAudioTrack</codeph> 创建自定义音频轨道，并获取音频轨道 ID。</li>
+                    <li>调用 <codeph>joinChannelByToken</codeph> 加入频道。在 <xref keyref="ChannelMediaOptions"/> 中，将 <codeph>publishCustomAudioTrackId</codeph> 设置为要发布的音频轨道 ID，并将 <codeph>publishCustomAudioTrack</codeph> 设置为 <xref keyref="true"/>。</li>
+                </ol>
+            </p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="android ios">加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android ios">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="ios">
+                    <pt>data</pt>
+                    <pd>外部音频数据。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>samples</pt>
+                    <pd>采样点数量。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>sampleRate</pt>
+                    <pd>外部音频源的采样率（Hz），可设置为 8000、16000、32000、44100 或 48000。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>channels</pt>
+                    <pd>外部音频源的声道数，可设置为 1（单声道）或 2（立体声）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>trackId</pt>
+                    <pd>音频轨道 ID，需设置为调用 <codeph>createCustomAudioTrack</codeph> 返回的自定义音频轨道 ID。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>timestamp</pt>
+                    <pd>外部音频帧的时间戳（毫秒）。该参数为必填项，可用于还原采集音频帧的顺序，或在涉及视频的场景中（包括使用自定义视频源的场景）实现音视频同步。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>data</pt>
+                    <pd>音频缓冲区数据。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>timestamp</pt>
+                    <pd>音频数据的时间戳。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sampleRate</pt>
+                    <pd>采样率，单位为 Hz。可设置为以下值之一：
+                        <ul>
+                            <li>8000</li>
+                            <li>16000</li>
+                            <li>32000</li>
+                            <li>44100</li>
+                            <li>48000。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>channels</pt>
+                    <pd>音频声道数：
+                        <ul>
+                            <li>1：单声道。</li>
+                            <li>2：立体声。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>bytesPerSample</pt>
+                    <pd>每个采样点的字节数。详见 <codeph>BytesPerSample</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>trackId</pt>
+                    <pd>音频轨道 ID。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="android ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

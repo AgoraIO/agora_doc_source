@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imusiccontentcentereventhandler_onpreloadevent_imusiccontentcentereventhandler">
+    <title>
+    <ph keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/>
+  </title>
+    <shortdesc id="short">
+    <ph id="shortdesc">预加载音乐资源相关事件的回调。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onPreLoadEvent(const char* requestId, int64_t songCode, int percent, const char* lyricUrl, PreloadState state, MusicContentCenterStateReason reason) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">void onPreLoadEvent(String requestId, long songCode, int percent, String lyricUrl, int state, int reason)</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (void)onPreLoadEvent:(NSString*)requestId songCode:(NSInteger)songCode percent:(NSInteger)percent lyricUrl:(NSString * _Nullable)lyricUrl state:(AgoraMusicContentCenterPreloadState)state reason:(AgoraMusicContentCenterStateReason)reason;</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (void)onPreLoadEvent:(NSString*)requestId songCode:(NSInteger)songCode percent:(NSInteger)percent lyricUrl:(NSString * _Nullable)lyricUrl state:(AgoraMusicContentCenterPreloadState)state reason:(AgoraMusicContentCenterStateReason)reason;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">调用 <codeph>preload</codeph> 预加载音乐资源后，SDK 会触发该回调。</p>
+            <p props="android">调用 <codeph>preload</codeph> 方法预加载音乐资源后，SDK 会触发该回调。</p>
+            <p props="ios mac">调用 <xref keyref="preload"/> 或 <xref keyref="preload2"/> 方法预加载音乐资源后，SDK 会触发该回调。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>触发时机</title>
+            <p props="android">该回调在调用 <codeph>preload</codeph> 方法后被触发。</p>
+            <p props="ios mac">该回调在调用 <xref keyref="preload"/> 或 <xref keyref="preload2"/> 方法预加载音乐资源后被触发。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>使用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>requestId</pt>
+                    <pd>请求 ID，用于标识该次请求的唯一标识符。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>songCode</pt>
+                    <pd>音乐资源的 ID，用于标识某个音乐项。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>percent</pt>
+                    <pd>音乐资源当前的加载进度，范围为 [0, 100]。</pd>
+                </plentry>
+                <plentry props="android cpp ios mac">
+                    <pt>lyricUrl</pt>
+                    <pd>歌词的下载地址。</pd>
+                </plentry>
+                <plentry props="cpp ios">
+                    <pt>state</pt>
+                    <pd>音乐资源当前的加载状态，详见 <xref keyref="PreloadState"/>。</pd>
+                </plentry>
+                <plentry props="cpp ios">
+                    <pt>reason</pt>
+                    <pd>来自音乐内容中心的请求状态码，详见 <xref keyref="MusicContentCenterStateReason"/>。</pd>
+                </plentry>
+                <plentry props="android ios mac">
+                    <pt>requestId</pt>
+                    <pd>请求 ID，用于唯一标识该请求。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>songCode</pt>
+                    <pd>音乐资源的 ID，用于标识一个音乐资源。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>percent</pt>
+                    <pd>音乐资源的当前加载进度，取值范围为 [0, 100]。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>state</pt>
+                    <pd>音乐资源的当前加载状态：
+                        <ul>
+                            <li>0：加载完成。</li>
+                            <li>1：加载失败。</li>
+                            <li>2：加载中。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>reason</pt>
+                    <pd>来自 Music Content Center 的请求状态码：
+                        <ul>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_OK</codeph> (0)：请求成功。</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_ERROR</codeph> (1)：通用错误，无具体归因。</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_GATEWAY</codeph> (2)：网关错误。可能原因包括：</li>
+                            <li>当前临时 Token 已过期，请重新生成 Token。</li>
+                            <li>提供的 Token 无效，请确保使用的是 Token。</li>
+                            <li>网络错误，请检查网络连接。</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_PERMISSION_AND_RESOURCE</codeph> (3)：权限错误或音乐资源不存在。请确保项目已启用 Music Content Center 访问权限。如有问题请联系技术支持。</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_INTERNAL_DATA_PARSE</codeph> (4)：内部数据解析错误。请联系技术支持。</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_MUSIC_LOADING</codeph> (5)：加载音乐资源时发生错误。请联系技术支持。</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_MUSIC_DECRYPTION</codeph> (6)：解密音乐资源时发生错误。请联系技术支持。</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_HTTP_INTERNAL</codeph> (7)：HTTP 内部错误。请稍后重试。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>songCode</pt>
+                    <pd>音乐资源的编号，用于标识特定的音乐资源。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>percent</pt>
+                    <pd>音乐资源当前的加载进度，取值范围为 [0, 100]。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>state</pt>
+                    <pd>音乐资源当前的加载状态，详见 <codeph>AgoraMusicContentCenterPreloadState</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>reason</pt>
+                    <pd>来自音乐内容中心的请求状态码，详见 <codeph>AgoraMusicContentCenterStateReason</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

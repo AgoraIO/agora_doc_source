@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_agorartcmediaplayercustomsourceonseekcallback">
+    <title>
+    <ph keyref="AgoraRtcMediaPlayerCustomSourceOnSeekCallback"/>
+  </title>
+    <shortdesc id="short">
+    <ph id="shortdesc">当 SDK 定位媒体资源数据时触发的回调。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="AgoraRtcMediaPlayerCustomSourceOnSeekCallback"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="ios" outputclass="language-objectivec">typedef long long(^AgoraRtcMediaPlayerCustomSourceOnSeekCallback)(id&lt;AgoraRtcMediaPlayerProtocol&gt; _Nonnull playerKit, long long offset, int whence);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="ios">当你调用 <xref keyref="openWithMediaSource"/> 或 <xref keyref="open"/> 方法打开自定义媒体资源时，SDK 会触发该回调以请求媒体资源中指定位置的数据。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="ios">该回调在 SDK 定位媒体资源数据时被触发。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="ios">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="ios">
+                    <pt>playerKit</pt>
+                    <pd>媒体播放器协议，详见 <xref keyref="IMediaPlayer"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>offset</pt>
+                    <pd>输入参数，目标位置相对于起始点的偏移量，单位为字节。该值可以为正或负。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>whence</pt>
+                    <pd>输入参数，起始点。你可以设置为以下值之一：
+                        <ul>
+                            <li>0：起始点为数据开头，定位后的实际数据偏移量为 <codeph>offset</codeph>。</li>
+                            <li>1：起始点为当前位置，定位后的实际数据偏移量为当前位置加 <codeph>offset</codeph>。</li>
+                            <li>2：起始点为数据末尾，定位后的实际数据偏移量为整个数据长度加 <codeph>offset</codeph>。</li>
+                            <li>65536：不执行定位操作，返回文件大小。声网建议在播放 MP3、WAV 等纯音频文件时使用该参数值。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="ios">
+                <ul>
+                    <li>当 <codeph>whence</codeph> 为 <codeph>65536</codeph> 时，返回媒体文件大小。</li>
+                    <li>当 <codeph>whence</codeph> 为 <codeph>0</codeph>、<codeph>1</codeph> 或 <codeph>2</codeph> 时，返回定位后的实际数据偏移量。</li>
+                    <li><codeph>-1</codeph>：定位失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

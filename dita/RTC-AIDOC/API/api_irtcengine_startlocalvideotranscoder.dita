@@ -37,7 +37,7 @@
 以下是实现画中画效果的典型用例：
                 <ol>
                     <li>调用 <codeph>enableVirtualBackground</codeph>，并将自定义背景图设置为 <codeph>BACKGROUND_NONE</codeph>，实现摄像头采集视频中人像与背景的分离。</li>
-                    <li>调用 <codeph>startScreenCapture</codeph> 开始采集屏幕共享视频流。</li>
+                    <li>调用 <xref keyref="startScreenCapture"/> 开始采集屏幕共享视频流。</li>
                     <li>调用 <xref keyref="startLocalVideoTranscoder"/>，并将采集人像的视频源设置为参与本地视频混流的视频源之一，即可在混流视频中实现人像画中画效果。</li>
                 </ol>
             </p>
@@ -46,7 +46,7 @@
 以下是实现画中画效果的典型用例：
                 <ol>
                     <li>调用 <codeph>enableVirtualBackground:</codeph>，并将自定义背景图设置为 <codeph>AgoraVirtualBackgroundNone</codeph>，即将摄像头采集的视频中的人像与背景分离。</li>
-                    <li>调用 <codeph>startScreenCapture:</codeph>（iOS）或 <codeph>startScreenCapture:</codeph>（macOS）开始采集屏幕共享视频流。</li>
+                    <li>调用 <xref keyref="startScreenCapture"/>（iOS）或 <xref keyref="startScreenCapture"/>（macOS）开始采集屏幕共享视频流。</li>
                     <li>调用 <xref keyref="startLocalVideoTranscoder"/>，并将采集人像的视频源设置为参与本地合图的视频源之一，即可在合图视频中实现人像画中画效果。</li>
                 </ol>
             </p>
@@ -64,9 +64,9 @@
             <title>调用时机</title>
             <p props="cpp">如果需要混合本地采集的视频流，应在调用 <xref keyref="startCameraCapture"/> 或 <codeph>startScreenCapture</codeph> 之后调用 <xref keyref="startLocalVideoTranscoder"/>。
 如果希望将混流后的视频流发布到频道中，在调用 <codeph>joinChannel</codeph> 或 <xref keyref="updateChannelMediaOptions"/> 时，需要在 <xref keyref="ChannelMediaOptions"/> 中将 <codeph>publishTranscodedVideoTrack</codeph> 设置为 <xref keyref="true"/>。</p>
-            <p props="android">如果需要混合本地采集的视频流，应在调用 <xref keyref="startCameraCapture"/> 或 <codeph>startScreenCapture</codeph> 后调用 <xref keyref="startLocalVideoTranscoder"/>。
+            <p props="android">如果需要混合本地采集的视频流，应在调用 <xref keyref="startCameraCapture"/> 或 <xref keyref="startScreenCapture"/> 后调用 <xref keyref="startLocalVideoTranscoder"/>。
 如果希望将混流后的视频流发布到频道中，需在调用 <codeph>joinChannel</codeph> 或 <xref keyref="updateChannelMediaOptions"/> 时，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishTranscodedVideoTrack</codeph> 设置为 <xref keyref="true"/>。</p>
-            <p props="ios mac">如果需要合成本地采集的视频流，需在调用 <codeph>startCameraCapture:</codeph> 或 <codeph>startScreenCapture:</codeph>（iOS）/<codeph>startScreenCapture:</codeph>（macOS）之后调用本方法。如果希望将合图后的视频流发布到频道中，需在调用 <codeph>joinChannelByToken:</codeph> 或 <xref keyref="updateChannelMediaOptions"/> 时，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishTranscodedVideoTrack</codeph> 设置为 <xref keyref="true"/>。</p>
+            <p props="ios mac">如果需要合成本地采集的视频流，需在调用 <codeph>startCameraCapture:</codeph> 或 <xref keyref="startScreenCapture"/>（iOS）/<xref keyref="startScreenCapture"/>（macOS）之后调用本方法。如果希望将合图后的视频流发布到频道中，需在调用 <codeph>joinChannelByToken:</codeph> 或 <xref keyref="updateChannelMediaOptions"/> 时，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishTranscodedVideoTrack</codeph> 设置为 <xref keyref="true"/>。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>

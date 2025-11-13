@@ -5,7 +5,7 @@
     <ph keyref="onRecordAudioFrame"/>
   </title>
     <shortdesc id="short">
-    <ph id="shortdesc">采集到音频帧时触发的回调。</ph>
+    <ph id="shortdesc">获取采集到的音频帧回调。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -30,8 +30,8 @@
             </p>
             <p props="android">你可以通过以下两种方式之一设置音频数据格式：
                 <ul>
-                    <li>方法一：调用 <xref keyref="setRecordingAudioFrameParameters"/> 设置音频数据格式，并调用 <xref keyref="registerAudioFrameObserver"/> 注册音频帧观察者对象后，SDK 会根据方法中设置的参数计算采样间隔，并按照采样间隔触发该回调。</li>
-                    <li>方法二：调用 <xref keyref="registerAudioFrameObserver"/> 注册音频帧观察者对象后，在 <xref keyref="getObservedAudioFramePosition"/> 回调的返回值中设置音频数据格式。SDK 会根据 <xref keyref="getRecordAudioParams"/> 回调的返回值计算采样间隔，并按照采样间隔触发该回调。</li>
+                    <li>方法一：调用 <xref keyref="setRecordingAudioFrameParameters"/> 设置音频数据格式，并调用 <xref keyref="registerAudioFrameObserver2_IMediaPlayer"/> 注册音频帧观察者对象后，SDK 会根据方法中设置的参数计算采样间隔，并按照采样间隔触发该回调。</li>
+                    <li>方法二：调用 <xref keyref="registerAudioFrameObserver2_IMediaPlayer"/> 注册音频帧观察者对象后，在 <xref keyref="getObservedAudioFramePosition"/> 回调的返回值中设置音频数据格式。SDK 会根据 <xref keyref="getRecordAudioParams"/> 回调的返回值计算采样间隔，并按照采样间隔触发该回调。</li>
                 </ul>
             </p>
             <note props="ios"><xref keyref="setRecordingAudioFrameParameters"/> 的设置优先级高于 <xref keyref="getObservedAudioFramePosition"/> 和 <xref keyref="getRecordAudioParams"/> 的设置。如果使用方法一设置音频数据格式，则方法二的设置无效。</note>

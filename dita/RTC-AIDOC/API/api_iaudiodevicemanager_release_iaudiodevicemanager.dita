@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicemanager_release_iaudiodevicemanager">
+    <title>
+    <ph keyref="release_IAudioDeviceManager"/>
+  </title>
+    <shortdesc id="short">
+    <ph id="shortdesc">释放 `Music Content Center` 占用的所有资源。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="release_IAudioDeviceManager"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">AGORA_CPP_API static void release(RtcEngineReleaseCallback callback = nullptr);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">你必须在调用 <xref keyref="release_IVideoDeviceManager"/> 方法之前调用该方法。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="cpp">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>callback</pt>
+                    <pd>（可选）用于设置引擎销毁模式为同步或异步的回调函数指针。
+                        <ul>
+                            <li>非 <codeph>nullptr</codeph>：异步销毁引擎。该方法会立即返回，此时引擎资源可能尚未完全释放。引擎销毁后，SDK 会触发 <xref keyref="RtcEngineReleaseCallback"/>。</li>
+                            <li><codeph>nullptr</codeph>：同步销毁引擎。该方法仅在引擎资源完全释放后才返回。详见 <xref keyref="RtcEngineReleaseCallback"/>。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

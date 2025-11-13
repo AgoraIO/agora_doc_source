@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_setplayeroption">
+    <title>
+    <ph keyref="setPlayerOption"/>
+  </title>
+    <shortdesc id="short">
+    <ph id="shortdesc">设置媒体播放器选项。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setPlayerOption"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setPlayerOption(const char* key, int value) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">int setPlayerOption(String key, int value);</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)setPlayerOption:(NSString *)key value:(NSInteger)value NS_SWIFT_NAME(setPlayerOption(_:value:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)setPlayerOption:(NSString *)key value:(NSInteger)value NS_SWIFT_NAME(setPlayerOption(_:value:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">该方法用于通过 <codeph>key</codeph> 和 <codeph>value</codeph> 设置媒体播放器的选项。与 <codeph>setPlayerOption(const char* key, const char* value)</codeph> 不同，此方法的 <codeph>value</codeph> 参数类型为 <codeph>int</codeph>，而后者为 <codeph>const char*</codeph>。这两个方法不能同时使用。一般情况下无需调用此方法，可直接使用媒体播放器提供的默认选项。</p>
+            <p props="android">该方法用于通过 <codeph>key</codeph> 和 <codeph>value</codeph> 设置媒体播放器的选项。与 <xref keyref="setPlayerOption2"/> 不同，本方法的 <codeph>value</codeph> 参数类型为 <codeph>int</codeph>，而 <xref keyref="setPlayerOption2"/> 的 <codeph>value</codeph> 参数类型为 <codeph>String</codeph>。这两个方法不能同时使用。一般情况下无需调用此方法，直接使用媒体播放器提供的默认选项即可。</p>
+            <p props="ios mac">你可以通过 <codeph>key</codeph> 和 <codeph>value</codeph> 设置媒体播放器的选项。该方法与 <xref keyref="setPlayerOption2"/> 的区别在于，本方法的 <codeph>value</codeph> 参数类型为 <codeph>NSInteger</codeph>，而 <xref keyref="setPlayerOption2"/> 的 <codeph>value</codeph> 参数类型为 <codeph>NSString</codeph>。这两个方法不能同时使用。一般情况下，你无需调用此方法，直接使用媒体播放器提供的默认选项即可。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="cpp">请在调用 <xref keyref="open_IMusicPlayer"/> 或 <xref keyref="openWithMediaSource"/> 方法之前调用此方法。</p>
+            <p props="android">请在调用 <codeph>open</codeph> 或 <xref keyref="openWithMediaSource"/> 方法之前调用。</p>
+            <p props="ios mac">在调用 <xref keyref="open"/> 或 <xref keyref="openWithMediaSource"/> 方法之前调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="android cpp ios mac">
+                    <pt>key</pt>
+                    <pd>选项的键。</pd>
+                </plentry>
+                <plentry props="android cpp ios mac">
+                    <pt>value</pt>
+                    <pd>选项的值。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="android cpp ios mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

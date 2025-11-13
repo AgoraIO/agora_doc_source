@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getextensionproperty2">
+    <title>
+    <ph keyref="getExtensionProperty2"/>
+  </title>
+    <shortdesc id="short">
+    <ph id="shortdesc">获取扩展属性。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getExtensionProperty2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getExtensionProperty(const char* provider, const char* extension, const char* key, char* value, int buf_len, agora::media::MEDIA_SOURCE_TYPE type = agora::media::UNKNOWN_MEDIA_SOURCE) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract String getExtensionProperty(String provider, String extension, String key, Constants.MediaSourceType sourceType);</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (NSString * _Nullable)getExtensionPropertyWithVendor:(NSString * _Nonnull)provider
+                                             extension:(NSString * _Nonnull)extension
+                                                   key:(NSString * _Nonnull)key
+                                            sourceType:(AgoraMediaSourceType)sourceType NS_SWIFT_NAME(getExtensionProperty(withVendor:extension:key:sourceType:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (NSString * _Nullable)getExtensionPropertyWithVendor:(NSString * _Nonnull)provider
+                                             extension:(NSString * _Nonnull)extension
+                                                   key:(NSString * _Nonnull)key
+                                            sourceType:(AgoraMediaSourceType)sourceType NS_SWIFT_NAME(getExtensionProperty(withVendor:extension:key:sourceType:));</codeblock>
+            </p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="android">该方法可以在加入频道前或加入频道后调用。</p>
+            <p props="ios mac">该方法可以在加入频道前或后调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>provider</pt>
+                    <pd>输出参数，表示扩展组件提供方的名称。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>extension</pt>
+                    <pd>输出参数，表示扩展组件的名称。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>key</pt>
+                    <pd>输出参数，表示扩展组件的键名。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>value</pt>
+                    <pd>输出参数，表示扩展组件键名对应的键值。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>buf_len</pt>
+                    <pd>扩展属性的 JSON 字符串的最大长度，单位为字节，最大值为 512。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>type</pt>
+                    <pd>扩展组件的来源类型，详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>provider</pt>
+                    <pd>扩展组件提供方的名称。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>extension</pt>
+                    <pd>扩展组件的名称。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>key</pt>
+                    <pd>扩展组件的键值。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sourceType</pt>
+                    <pd>扩展组件的来源类型，详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>provider</pt>
+                    <pd>扩展提供方的名称。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>extension</pt>
+                    <pd>扩展的名称。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>key</pt>
+                    <pd>扩展的键值。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>sourceType</pt>
+                    <pd>扩展的来源类型，详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>方法调用成功时，返回扩展组件的信息。</li>
+                    <li>方法调用失败，返回空字符串。</li>
+                </ul>
+            </p>
+            <p props="ios mac">
+                <ul>
+                    <li>方法调用成功时，返回扩展信息。</li>
+                    <li>方法调用失败时，返回空字符串。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

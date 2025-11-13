@@ -27,7 +27,7 @@
             <p props="cpp">收到该回调后，你需要在你的 Token 服务器上生成新的 Token，并通过以下方式之一进行更新：
                 <ul>
                     <li>单频道场景：</li>
-                    <li>调用 <xref keyref="renewToken"/> 传入新 Token。</li>
+                    <li>调用 <xref keyref="renewToken_IMusicContentCenter"/> 传入新 Token。</li>
                     <li>调用 <codeph>leaveChannel</codeph> 离开当前频道后，再调用 <codeph>joinChannel</codeph> 加入频道时传入新 Token。</li>
                     <li>多频道场景：调用 <xref keyref="updateChannelMediaOptionsEx"/> 传入新 Token。</li>
                 </ul>
@@ -35,7 +35,7 @@
             <p props="android">该回调在 Token 过期时被触发。收到该回调后，你需要在 Token 服务器上生成新的 Token，并通过以下方式之一更新 Token：
                 <ul>
                     <li>单频道场景：</li>
-                    <li>调用 <xref keyref="renewToken"/> 更新 Token。</li>
+                    <li>调用 <xref keyref="renewToken_IMusicContentCenter"/> 更新 Token。</li>
                     <li>调用 <codeph>leaveChannel</codeph> 离开当前频道，然后在调用 <codeph>joinChannel</codeph> 加入频道时传入新的 Token。</li>
                     <li>多频道场景：调用 <xref keyref="updateChannelMediaOptionsEx"/> 传入新的 Token。</li>
                 </ul>
@@ -43,8 +43,8 @@
             <p props="ios mac">当 Token 过期时，SDK 会触发该回调。收到该回调后，你需要在你的 Token 服务器上生成一个新的 Token，并可以通过以下方式之一更新 Token：
                 <ul>
                     <li>单频道场景：</li>
-                    <li>调用 <xref keyref="renewToken"/> 传入新的 Token。</li>
-                    <li>调用 <codeph>leaveChannel:leaveChannelBlock:</codeph> 离开当前频道，然后在调用 <codeph>joinChannelByToken:channelId:uid:mediaOptions:joinSuccess:</codeph> 加入频道时传入新的 Token。</li>
+                    <li>调用 <xref keyref="renewToken_IMusicContentCenter"/> 传入新的 Token。</li>
+                    <li>调用 <xref keyref="leaveChannel2"/> 离开当前频道，然后在调用 <xref keyref="joinChannel2"/> 加入频道时传入新的 Token。</li>
                     <li>多频道场景：调用 <xref keyref="updateChannelMediaOptionsEx"/> 传入新的 Token。</li>
                 </ul>
             </p>

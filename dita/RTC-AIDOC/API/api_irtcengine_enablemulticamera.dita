@@ -45,7 +45,7 @@
             <p props="ios">声网建议你在已有摄像头用于视频采集的场景中，按照以下步骤使用多摄像头进行视频采集和发布：
                 <ol>
                     <li>调用该方法启用多摄像头采集模式。</li>
-                    <li>调用 <codeph>startPreview:</codeph> 启动本地视频预览。</li>
+                    <li>调用 <xref keyref="startPreview2"/> 启动本地视频预览。</li>
                     <li>调用 <xref keyref="startCameraCapture"/>，并设置 <codeph>sourceType</codeph> 以使用第二个摄像头进行视频采集。</li>
                     <li>调用 <xref keyref="joinChannelEx"/>，并将 <codeph>publishSecondaryCameraTrack</codeph> 设置为 <xref keyref="true"/>，以在频道中发布第二个摄像头采集的视频流。
 如果你想关闭多摄像头采集模式，请按以下步骤操作：</li>
@@ -67,10 +67,10 @@
                     <li>如果在调用 <codeph>startPreview</codeph> 之后启用，SDK 会先停止当前摄像头采集，然后启用主摄像头和第二个摄像头。本地视频预览会短暂变黑，随后自动恢复。</li>
                 </ul>
             </note>
-            <note props="ios">你可以在调用 <codeph>startPreview:</codeph> 之前或之后调用该方法启用多摄像头采集：
+            <note props="ios">你可以在调用 <xref keyref="startPreview2"/> 之前或之后调用该方法启用多摄像头采集：
                 <ul>
-                    <li>如果在 <codeph>startPreview:</codeph> 之前启用，本地视频预览会同时显示两个摄像头采集的画面。</li>
-                    <li>如果在 <codeph>startPreview:</codeph> 之后启用，SDK 会先停止当前摄像头采集，然后启用主摄像头和第二个摄像头。本地视频预览会短暂变黑，然后自动恢复正常。</li>
+                    <li>如果在 <xref keyref="startPreview2"/> 之前启用，本地视频预览会同时显示两个摄像头采集的画面。</li>
+                    <li>如果在 <xref keyref="startPreview2"/> 之后启用，SDK 会先停止当前摄像头采集，然后启用主摄像头和第二个摄像头。本地视频预览会短暂变黑，然后自动恢复正常。</li>
                 </ul>
             </note>
         </section>

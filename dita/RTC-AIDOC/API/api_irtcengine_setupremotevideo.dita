@@ -31,7 +31,13 @@
 若要解绑远端用户与视图的绑定关系，请将 <codeph>view</codeph> 参数设置为 <xref keyref="NULL"/>。一旦远端用户离开频道，SDK 会自动解绑该用户。
 
 在移动端进行合流视频自定义布局的场景中，你可以调用该方法，并为合流视频流中的每个子视频流设置独立的 <codeph>view</codeph> 进行渲染。</p>
-            <note props="android cpp ios mac">
+            <note props="android cpp">
+                <ul>
+                    <li>若需在通话过程中更新远端视频视图的渲染模式或镜像模式，请使用 <xref keyref="setRemoteRenderMode2"/> 方法。</li>
+                    <li>使用录制服务时，应用无需绑定视图，因为录制服务不会发送视频流。如果你的应用无法识别录制服务，请在 SDK 触发 <xref keyref="onFirstRemoteVideoDecoded"/> 回调时将远端用户绑定到视图。</li>
+                </ul>
+            </note>
+            <note props="ios mac">
                 <ul>
                     <li>若需在通话过程中更新远端视频视图的渲染模式或镜像模式，请使用 <codeph>setRemoteRenderMode</codeph> 方法。</li>
                     <li>使用录制服务时，应用无需绑定视图，因为录制服务不会发送视频流。如果你的应用无法识别录制服务，请在 SDK 触发 <xref keyref="onFirstRemoteVideoDecoded"/> 回调时将远端用户绑定到视图。</li>

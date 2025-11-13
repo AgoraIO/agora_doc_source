@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_agorartcmediaplayercustomsourceonreadcallback">
+    <title>
+    <ph keyref="AgoraRtcMediaPlayerCustomSourceOnReadCallback"/>
+  </title>
+    <shortdesc id="short">
+    <ph id="shortdesc">当 SDK 读取媒体资源数据时触发的回调。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="AgoraRtcMediaPlayerCustomSourceOnReadCallback"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="ios" outputclass="language-objectivec">typedef int(^AgoraRtcMediaPlayerCustomSourceOnReadCallback)(id&lt;AgoraRtcMediaPlayerProtocol&gt; _Nonnull playerKit, unsigned char * _Nullable buffer, int bufferSize);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="ios">调用 <xref keyref="openWithMediaSource"/> 方法打开媒体资源时，SDK 会触发该回调，并请求你传入媒体资源数据的缓冲区。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="ios">当 SDK 读取媒体资源数据时触发。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="ios">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="ios">
+                    <pt>playerKit</pt>
+                    <pd>媒体播放器实例，详见 <xref keyref="IMediaPlayer"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>buffer</pt>
+                    <pd>输入参数。数据缓冲区（字节）。你需要将 SDK 请求的 <codeph>bufferSize</codeph> 大小的数据写入该缓冲区。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>bufferSize</pt>
+                    <pd>数据缓冲区的长度（字节）。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="ios">
+                <ul>
+                    <li>如果数据读取成功，返回实际读取的数据长度（字节）。</li>
+                    <li>如果读取失败，返回 0。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

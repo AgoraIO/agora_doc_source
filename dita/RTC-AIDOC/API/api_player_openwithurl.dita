@@ -30,12 +30,12 @@
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
             </dl>
-            <p props="cpp">该方法支持通过 URL 打开实时流媒体资源。如果你希望加快 URL 的打开速度，可以在调用该方法前调用 <xref keyref="PreloadWithUrl"/> 预加载资源。如果资源打开失败，你将收到 <xref keyref="onStateChanged"/> 回调，状态为 <codeph>kRtePlayerStateFailed</codeph>。此时，你需要先调用 <xref keyref="stop"/>，然后再次调用 <xref keyref="OpenWithUrl"/> 重新打开 URL 资源。如果你已关闭自动播放功能，可以在资源打开后调用 <xref keyref="play"/> 开始播放。</p>
+            <p props="cpp">该方法支持通过 URL 打开实时流媒体资源。如果你希望加快 URL 的打开速度，可以在调用该方法前调用 <xref keyref="PreloadWithUrl"/> 预加载资源。如果资源打开失败，你将收到 <xref keyref="onStateChanged"/> 回调，状态为 <codeph>kRtePlayerStateFailed</codeph>。此时，你需要先调用 <xref keyref="Stop_Player"/>，然后再次调用 <xref keyref="OpenWithUrl"/> 重新打开 URL 资源。如果你已关闭自动播放功能，可以在资源打开后调用 <xref keyref="Play_Player"/> 开始播放。</p>
             <p props="android">该方法支持通过 URL 打开实时流媒体资源。如果你希望加快打开 URL 的速度，可以在调用 <xref keyref="PreloadWithUrl"/> 预加载资源。
 
 调用该方法后，会触发 <xref keyref="onStateChanged"/> 回调，播放器状态为 <codeph>OPENING</codeph>，表示正在打开 URL。打开成功后，播放器状态变为 <codeph>OPEN_COMPLETED</codeph>。
 
-如果资源打开失败，你会收到 <xref keyref="onStateChanged"/> 回调，播放器状态为 <codeph>FAILED</codeph>。此时需要先调用 <codeph>stop</codeph>，然后再次调用 <xref keyref="OpenWithUrl"/> 重新打开资源。如果你关闭了自动播放功能，可以在资源打开后调用 <xref keyref="play"/> 开始播放。</p>
+如果资源打开失败，你会收到 <xref keyref="onStateChanged"/> 回调，播放器状态为 <codeph>FAILED</codeph>。此时需要先调用 <xref keyref="Stop_Player"/>，然后再次调用 <xref keyref="OpenWithUrl"/> 重新打开资源。如果你关闭了自动播放功能，可以在资源打开后调用 <xref keyref="play"/> 开始播放。</p>
             <p props="ios mac">该方法支持通过 URL 打开实时流媒体资源。若希望加快打开 URL 资源的速度，可以在调用该方法前先调用 <xref keyref="PreloadWithUrl"/> 预加载资源。</p>
             <note props="android cpp">该方法目前仅支持以 <codeph>rte://</codeph> 开头的 URL、CDN 推流 URL 和本地媒体文件。</note>
             <note props="ios mac">该方法目前仅支持打开以 <codeph>rte://</codeph> 开头的 URL、CDN 推流 URL 和本地媒体文件。</note>
@@ -43,7 +43,7 @@
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p props="android cpp">该方法必须在 <xref keyref="Player"/> 初始化后调用。</p>
-            <p props="ios mac">该方法必须在调用 <codeph>initWithRte:initialConfig:</codeph> 之后调用。</p>
+            <p props="ios mac">该方法必须在调用 <xref keyref="Player_Player"/> 之后调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -52,7 +52,7 @@
         <section id="related" deliveryTarget="details">
             <title>相关回调</title>
             <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onStateChanged"/> 回调报告播放器状态为 <codeph>kRtePlayerStateOpening</codeph>，表示正在打开 URL。打开成功后，播放器状态将报告为 <codeph>kRtePlayerStateOpenCompleted</codeph>。</p>
-            <p props="ios mac">成功调用该方法后，SDK 会触发 <xref keyref="onStateChanged"/> 回调报告播放器连接状态为 <codeph>AgoraRtePlayerStateOpening</codeph>，表示正在打开 URL。打开成功后，播放器连接状态会报告为 <codeph>AgoraRtePlayerStateOpenCompleted</codeph>。如果资源打开失败，会收到 <xref keyref="onStateChanged"/> 回调，报告连接状态为 <codeph>AgoraRtePlayerStateFailed</codeph>。此时需先调用 <codeph>pause:</codeph>，再调用 <xref keyref="OpenWithUrl"/> 重新打开 URL 资源。如果已关闭自动播放，可在资源打开后调用 <codeph>play:</codeph> 开始播放。</p>
+            <p props="ios mac">成功调用该方法后，SDK 会触发 <xref keyref="onStateChanged"/> 回调报告播放器连接状态为 <codeph>AgoraRtePlayerStateOpening</codeph>，表示正在打开 URL。打开成功后，播放器连接状态会报告为 <codeph>AgoraRtePlayerStateOpenCompleted</codeph>。如果资源打开失败，会收到 <xref keyref="onStateChanged"/> 回调，报告连接状态为 <codeph>AgoraRtePlayerStateFailed</codeph>。此时需先调用 <xref keyref="Stop_Player"/>，再调用 <xref keyref="OpenWithUrl"/> 重新打开 URL 资源。如果已关闭自动播放，可在资源打开后调用 <xref keyref="Play_Player"/> 开始播放。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -79,7 +79,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>callback</pt>
-                    <pd>用于异步通知打开 URL 资源结果的回调函数。你可以通过该回调的 <codeph>onResult</codeph> 方法获取具体错误信息，详见 <codeph>AsyncCallback</codeph>。</pd>
+                    <pd>用于异步通知打开 URL 资源结果的回调函数。你可以通过该回调的 <xref keyref="onResult_PlayerGetStatsCallback"/> 方法获取具体错误信息，详见 <codeph>AsyncCallback</codeph>。</pd>
                 </plentry>
                 <plentry props="ios mac">
                     <pt>url</pt>

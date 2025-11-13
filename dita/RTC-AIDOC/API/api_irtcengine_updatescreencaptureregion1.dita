@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_updatescreencaptureregion1">
+    <title>
+    <ph keyref="updateScreenCaptureRegion1"/>
+  </title>
+    <shortdesc id="short">
+    <ph id="shortdesc">更新屏幕共享区域。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="updateScreenCaptureRegion1"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int updateScreenCaptureRegion(const Rectangle&amp; regionRect) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="cpp">请在开始屏幕共享或窗口共享后调用此方法。</note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="cpp">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>regionRect</pt>
+                    <pd>屏幕共享区域相对于屏幕或窗口的位置。
+                        <ul>
+                            <li>如果不设置该参数，SDK 会共享整个屏幕或窗口。</li>
+                            <li>如果设置的区域超出屏幕或窗口范围，SDK 仅共享其中的有效区域。</li>
+                            <li>如果设置的宽度或高度为 0，SDK 会共享整个屏幕或窗口。
+详见 <xref keyref="Rectangle"/>。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                    <li>-2：参数无效。</li>
+                    <li>-8：屏幕共享状态无效。可能是因为你已共享了其他屏幕或窗口。请尝试调用 <codeph>stopScreenCapture</codeph> 停止当前共享，然后重新开始共享屏幕。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

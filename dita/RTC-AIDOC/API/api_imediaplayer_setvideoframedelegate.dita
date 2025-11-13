@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_setvideoframedelegate">
+    <title>
+    <ph keyref="setVideoFrameDelegate"/>
+  </title>
+    <shortdesc id="short">
+    <ph id="shortdesc">注册原始视频帧观察者对象。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setVideoFrameDelegate"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="ios" outputclass="language-objectivec">- (BOOL)setVideoFrameDelegate:(id&lt;AgoraRtcMediaPlayerVideoFrameDelegate&gt; _Nullable)delegate NS_SWIFT_NAME(setVideoFrameDelegate(_:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="ios">如果你希望观察原始视频帧（例如 YUV 或 RGBA 格式），声网建议你通过此方法实现一个 <xref keyref="IVideoFrameObserver"/> 类。当你调用此方法注册视频观察者时，可以根据需要在 <xref keyref="IVideoFrameObserver"/> 类中注册回调。注册成功后，SDK 每次接收到视频帧时都会触发已注册的回调。
+
+你可以在各种视频预处理场景中使用获取到的原始视频数据，例如虚拟背景和图像增强。声网在 GitHub 上提供了一个开源的 iOS 示例项目 <codeph>BeautyAPI</codeph> 供你参考。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="ios">该方法需要在加入频道前调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="ios">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="ios">
+                    <pt>delegate</pt>
+                    <pd>代理实例。设置为 <xref keyref="NULL"/> 可释放该实例。详见 <codeph>AgoraRtcMediaPlayerVideoFrameDelegate</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="ios">
+                <ul>
+                    <li><xref keyref="true"/>：注册原始视频帧观察者成功。</li>
+                    <li><xref keyref="false"/>：注册原始视频帧观察者失败。</li>
+                    <li><codeph>&lt; 0</codeph>：方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_livetranscoding_getadvancedfeatures">
+    <title>
+    <ph keyref="getAdvancedFeatures"/>
+  </title>
+    <shortdesc id="short">
+    <ph id="shortdesc">检查是否启用了带转码的 RTMP 或 RTMPS 推流的高级功能。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getAdvancedFeatures"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="ios" outputclass="language-objectivec">- (NSArray&lt;AgoraLiveStreamAdvancedFeature*&gt;* _Nullable)getAdvancedFeatures NS_SWIFT_NAME(getAdvancedFeatures());</codeblock>
+                <codeblock props="android" outputclass="language-java">public Map&lt;String, Boolean&gt; getAdvancedFeatures()</codeblock>
+            </p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="android ios">加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android ios">无。</p>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="ios">
+                <ul>
+                    <li>方法调用成功，返回包含每个高级功能名称及其启用状态的 <xref keyref="LiveStreamAdvancedFeature"/> 对象数组，详见 <xref keyref="LiveStreamAdvancedFeature"/>。</li>
+                    <li>方法调用失败，返回 <xref keyref="NULL"/>。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>方法调用成功，返回每个高级功能的名称及其启用状态的 <codeph>Map</codeph>。</li>
+                    <li>方法调用失败，返回空的 <codeph>Map</codeph>。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

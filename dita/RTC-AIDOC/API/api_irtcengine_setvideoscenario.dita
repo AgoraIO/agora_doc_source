@@ -117,11 +117,11 @@
                             <li>码率：1600 Kbps。</li>
                             <li>SDK 实时监控低画质视频流的订阅人数，并根据订阅人数动态启用或禁用该流。</li>
                             <li>若无人订阅低画质视频流，SDK 会自动禁用该流以节省上行带宽。</li>
-                            <li>若有人订阅低画质视频流，SDK 会启用该流，并将其重置为最近一次调用 <codeph>setDualStreamMode:streamConfig:</codeph> 所设置的配置。如果你未设置过配置，则使用以下默认值：</li>
+                            <li>若有人订阅低画质视频流，SDK 会启用该流，并将其重置为最近一次调用 <xref keyref="setDualStreamMode2"/> 所设置的配置。如果你未设置过配置，则使用以下默认值：</li>
                             <li>分辨率：480 × 272。</li>
                             <li>帧率：15 fps。</li>
                             <li>码率：500 Kbps。</li>
-                            <li>注意：如果你调用了 <codeph>setDualStreamMode:streamConfig:</codeph> 并设置为永不发送低画质视频流（<codeph>AgoraDisableSimulcastStream</codeph>），则会议场景下低画质流的动态调整将不生效。</li>
+                            <li>注意：如果你调用了 <xref keyref="setDualStreamMode2"/> 并设置为永不发送低画质视频流（<codeph>AgoraDisableSimulcastStream</codeph>），则会议场景下低画质流的动态调整将不生效。</li>
                             <li><codeph>AgoraApplication1V1Scenario</codeph>（2）：适用于一对一直播场景。为满足该场景下低延迟和高画质的需求，SDK 会优化策略，提升视频质量、首帧渲染速度、中低端设备的延迟表现，以及弱网环境下的流畅度。
   注意：该枚举值仅适用于主播对主播的场景。</li>
                             <li><codeph>AgoraApplicationLiveShowScenario</codeph>（3）：适用于秀场场景。在该场景中，快速的视频渲染和高画质至关重要。SDK 会进行多项性能优化，包括自动启用音视频帧加速渲染以最小化首帧延迟（无需调用 <xref keyref="enableInstantMediaRendering"/>），以及启用 B 帧编码以提升图像质量和带宽效率。即使在网络较差或低端设备上，SDK 也能提供增强的视频质量和流畅的播放体验。</li>
