@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_livestreamadvancedfeature">
+    <title>
+        <ph keyref="LiveStreamAdvancedFeature"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">配置带转码 RTMP 或 RTMPS 推流的高级功能。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct LiveStreamAdvancedFeature {
+  const char* featureName;
+  bool opened;
+};</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLiveStreamAdvancedFeature : NSObject
+@property(copy, nonatomic) NSString* _Nullable featureName;
+@property(assign, nonatomic) BOOL opened;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">如需启用带转码推流的高级功能，请联系 support@agora.io。</p>
+            <p props="ios">如果你希望启用带转码推流的高级功能，请联系 support@agora.io。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>featureName</pt>
+                    <pd>功能名称，包括 LBHQ（低码率高画质）和 VEO（优化的视频编码器）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>opened</pt>
+                    <pd>是否启用带转码推流的高级功能：
+                        <ul>
+                            <li>
+                                <codeph>true</codeph>：启用高级功能。</li>
+                            <li>
+                                <codeph>false</codeph>：（默认）不启用高级功能。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>featureName</pt>
+                    <pd>功能名称，包括 LBHQ（低码率高画质）和 VEO（视频编码器优化）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>opened</pt>
+                    <pd>是否启用带转码推流的高级功能：
+                        <ul>
+                            <li>
+                                <xref keyref="true"/>：启用高级功能。</li>
+                            <li>
+                                <xref keyref="false"/>：（默认）不启用高级功能。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

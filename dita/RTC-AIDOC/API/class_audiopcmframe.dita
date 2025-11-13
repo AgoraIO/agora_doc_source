@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_audiopcmframe">
+    <title>
+        <ph keyref="AudioPcmFrame"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">用于描述 PCM 格式音频帧的相关参数。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct AudioPcmFrame {
+  OPTIONAL_ENUM_SIZE_T{
+    kMaxDataSizeSamples = 3840,
+    kMaxDataSizeBytes = kMaxDataSizeSamples * sizeof(int16_t),
+  };
+  int64_t capture_timestamp;
+  size_t samples_per_channel_;
+  int sample_rate_hz_;
+  size_t num_channels_;
+  int audio_track_number_;
+  rtc::BYTES_PER_SAMPLE bytes_per_sample;
+  int16_t data_[kMaxDataSizeSamples];
+  bool is_stereo_;
+};</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>capture_timestamp</pt>
+                    <pd>音频帧的时间戳（单位：毫秒）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>samples_per_channel_</pt>
+                    <pd>每个声道的采样点数量。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>sample_rate_hz_</pt>
+                    <pd>音频采样率（单位：Hz）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>num_channels_</pt>
+                    <pd>音频的声道数。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>audio_track_number_</pt>
+                    <pd>音频轨道编号。例如，当启用 <codeph>enableMultiAudioTrack</codeph> 时，音频帧将包含音频轨道编号，例如 0 或 1。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>bytes_per_sample</pt>
+                    <pd>每个采样点的字节数。详见 <codeph>rtc::BYTES_PER_SAMPLE</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>data_</pt>
+                    <pd>音频帧的原始数据。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>is_stereo_</pt>
+                    <pd>是否为真实立体声数据：
+                        <ul>
+                            <li>
+                                <codeph>true</codeph>：<codeph>data_</codeph> 中为真实的立体声数据。</li>
+                            <li>
+                                <codeph>false</codeph>：<codeph>data_</codeph> 中不是立体声数据。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

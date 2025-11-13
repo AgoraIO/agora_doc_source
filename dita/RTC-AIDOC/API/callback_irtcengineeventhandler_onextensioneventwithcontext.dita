@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onextensioneventwithcontext">
+    <title>
+        <ph keyref="onExtensionEventWithContext"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">扩展事件回调。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onExtensionEventWithContext"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onExtensionEventWithContext(const ExtensionContext &amp;context, const char* key, const char* value)</codeblock>
+                <codeblock props="android" outputclass="language-java">default void onEventWithContext(ExtensionContext extContext, String key, String value)</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (void)onEventWithContext:(AgoraExtensionContext * _Nonnull)context
+            key:(NSString * _Nullable)key
+          value:(NSString * _Nullable)value NS_SWIFT_NAME(onEventWithContext(_:key:value:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (void)onEventWithContext:(AgoraExtensionContext * _Nonnull)context
+            key:(NSString * _Nullable)key
+          value:(NSString * _Nullable)value NS_SWIFT_NAME(onEventWithContext(_:key:value:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">在扩展运行期间监听事件时，你需要注册该回调。</p>
+            <p props="android">你需要注册该回调，用于在扩展运行期间监听事件。</p>
+            <p props="ios mac">你需要注册该回调以在扩展运行期间监听事件。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>使用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>context</pt>
+                    <pd>扩展的上下文信息。详见 <codeph>ExtensionContext</codeph>。</pd>
+                </plentry>
+                <plentry props="android cpp ios mac">
+                    <pt>key</pt>
+                    <pd>扩展事件的键。</pd>
+                </plentry>
+                <plentry props="android cpp ios mac">
+                    <pt>value</pt>
+                    <pd>扩展事件键对应的值。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>extContext</pt>
+                    <pd>扩展的上下文信息，详见 <xref keyref="ExtensionContext"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>context</pt>
+                    <pd>扩展的上下文信息，详见 <xref keyref="ExtensionContext"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>context</pt>
+                    <pd>扩展的上下文信息，详见 <codeph>AgoraExtensionContext</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

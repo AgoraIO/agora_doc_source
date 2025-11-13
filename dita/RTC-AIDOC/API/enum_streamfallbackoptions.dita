@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_streamfallbackoptions">
+    <title>
+        <ph keyref="STREAM_FALLBACK_OPTIONS"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">网络较差时的音视频流回退处理选项。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details">
+            <title>枚举值</title>
+            <parml>
+                <plentry props="android cpp">
+                    <pt>STREAM_FALLBACK_OPTION_DISABLED</pt>
+                    <pd>（0）：不进行音视频流回退处理，无法保证音视频质量。</pd>
+                </plentry>
+                <plentry props="android cpp">
+                    <pt>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW</pt>
+                    <pd>（1）：仅接收低质量（低分辨率、低码率）的视频流。</pd>
+                </plentry>
+                <plentry props="android cpp">
+                    <pt>STREAM_FALLBACK_OPTION_AUDIO_ONLY</pt>
+                    <pd>（2）：当网络较差时，优先接收低质量视频流；若网络极差导致无法显示视频，则回退为仅接收音频流。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_1</pt>
+                    <pd>（3）：当网络较差时，若接收端调用了 <codeph>setRemoteSubscribeFallbackOption</codeph> 且存在对应的多层级视频流，则接收 <codeph>VIDEO_STREAM_LAYER_1</codeph> 层的视频流。回退下限由 <codeph>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_X</codeph> 决定。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_2</pt>
+                    <pd>（4）：当网络较差时，若接收端调用了 <codeph>setRemoteSubscribeFallbackOption</codeph> 且存在对应的多层级视频流，则接收 <codeph>VIDEO_STREAM_LAYER_2</codeph> 层的视频流。回退下限由 <codeph>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_X</codeph> 决定。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_3</pt>
+                    <pd>（5）：当网络较差时，若接收端调用了 <codeph>setRemoteSubscribeFallbackOption</codeph> 且存在对应的多层级视频流，则接收 <codeph>VIDEO_STREAM_LAYER_3</codeph> 层的视频流。回退下限由 <codeph>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_X</codeph> 决定。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_4</pt>
+                    <pd>（6）：当网络较差时，若接收端调用了 <codeph>setRemoteSubscribeFallbackOption</codeph> 且存在对应的多层级视频流，则接收 <codeph>VIDEO_STREAM_LAYER_4</codeph> 层的视频流。回退下限由 <codeph>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_X</codeph> 决定。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_5</pt>
+                    <pd>（7）：当网络较差时，若接收端调用了 <codeph>setRemoteSubscribeFallbackOption</codeph> 且存在对应的多层级视频流，则接收 <codeph>VIDEO_STREAM_LAYER_5</codeph> 层的视频流。回退下限由 <codeph>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_X</codeph> 决定。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_6</pt>
+                    <pd>（8）：当网络较差时，若接收端调用了 <codeph>setRemoteSubscribeFallbackOption</codeph> 且存在对应的多层级视频流，则接收 <codeph>VIDEO_STREAM_LAYER_6</codeph> 层的视频流。回退下限由 <codeph>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_X</codeph> 决定。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_1</pt>
+                    <pd>（3）：当网络较差且存在多质量层级视频流时，接收来自 <codeph>VIDEO_STREAM_LAYER_1</codeph> 的视频流。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_2</pt>
+                    <pd>（4）：当网络较差且存在多质量层级视频流时，接收来自 <codeph>VIDEO_STREAM_LAYER_2</codeph> 的视频流。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_3</pt>
+                    <pd>（5）：当网络较差且存在多质量层级视频流时，接收来自 <codeph>VIDEO_STREAM_LAYER_3</codeph> 的视频流。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_4</pt>
+                    <pd>（6）：当网络较差且存在多质量层级视频流时，接收来自 <codeph>VIDEO_STREAM_LAYER_4</codeph> 的视频流。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_5</pt>
+                    <pd>（7）：当网络较差且存在多质量层级视频流时，接收来自 <codeph>VIDEO_STREAM_LAYER_5</codeph> 的视频流。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_6</pt>
+                    <pd>（8）：当网络较差且存在多质量层级视频流时，接收来自 <codeph>VIDEO_STREAM_LAYER_6</codeph> 的视频流。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraStreamFallbackOptionDisabled</pt>
+                    <pd>（0）：不进行音视频流回退处理，无法保证音视频质量。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraStreamFallbackOptionVideoStreamLow</pt>
+                    <pd>（1）：仅接收低质量（低分辨率、低码率）的视频流。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraStreamFallbackOptionAudioOnly</pt>
+                    <pd>（2）：当网络较差时，优先接收低质量视频流；若网络极差导致无法显示视频，则回退为仅接收音频流。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraStreamFallbackOptionVideoStreamLayer1</pt>
+                    <pd>（3）：当网络较差且相关层存在时，按顺序接收来自 agora::rtc::VIDEO_STREAM_LAYER_1 的多质量层级视频流。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraStreamFallbackOptionVideoStreamLayer2</pt>
+                    <pd>（4）：当网络较差且相关层存在时，按顺序接收来自 agora::rtc::VIDEO_STREAM_LAYER_2 的多质量层级视频流。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraStreamFallbackOptionVideoStreamLayer3</pt>
+                    <pd>（5）：当网络较差且相关层存在时，按顺序接收来自 agora::rtc::VIDEO_STREAM_LAYER_3 的多质量层级视频流。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraStreamFallbackOptionVideoStreamLayer4</pt>
+                    <pd>（6）：当网络较差且相关层存在时，按顺序接收来自 agora::rtc::VIDEO_STREAM_LAYER_4 的多质量层级视频流。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraStreamFallbackOptionVideoStreamLayer5</pt>
+                    <pd>（7）：当网络较差且相关层存在时，按顺序接收来自 agora::rtc::VIDEO_STREAM_LAYER_5 的多质量层级视频流。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraStreamFallbackOptionVideoStreamLayer6</pt>
+                    <pd>（8）：当网络较差且相关层存在时，按顺序接收来自 agora::rtc::VIDEO_STREAM_LAYER_6 的多质量层级视频流。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

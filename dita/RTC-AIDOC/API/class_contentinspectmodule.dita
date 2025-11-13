@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_contentinspectmodule">
+    <title>
+        <ph keyref="ContentInspectModule"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">用于设置视频截图上传的频率。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct ContentInspectModule {
+  CONTENT_INSPECT_TYPE type;
+  unsigned int interval;
+  base::VIDEO_MODULE_POSITION position;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public static class ContentInspectModule {
+    public int type;
+    public int interval;
+    public Constants.VideoModulePosition position;
+  }</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">@interface AgoraContentInspectModule: NSObject
+@property (assign, nonatomic) AgoraContentInspectType type;
+@property (assign, nonatomic) NSInteger interval;
+@property (assign, nonatomic) AgoraVideoModulePosition position;
+@end</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">@interface AgoraContentInspectModule: NSObject
+@property (assign, nonatomic) AgoraContentInspectType type;
+@property (assign, nonatomic) NSInteger interval;
+@property (assign, nonatomic) AgoraVideoModulePosition position;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">
+                <xref keyref="ContentInspectModule"/> 用于配置本地截图上传模块的功能类型和视频观察器的位置。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>type</pt>
+                    <pd>功能模块的类型。详见 <codeph>CONTENT_INSPECT_TYPE</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>interval</pt>
+                    <pd>视频截图上传的频率，单位为秒。该值必须大于 0。默认值为 0，表示 SDK 不进行截图。声网建议设置为 10 秒，可根据业务需求进行调整。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>position</pt>
+                    <pd>视频观察器的位置。详见 <codeph>VIDEO_MODULE_POSITION</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>type</pt>
+                    <pd>功能模块的类型：
+                        <ul>
+                            <li>
+                                <codeph>CONTENT_INSPECT_TYPE_INVALID</codeph> (0)：（默认）该模块无实际功能。请勿设置为此值。</li>
+                            <li>
+                                <codeph>CONTENT_INSPECT_TYPE_SUPERVISE</codeph> (2)：通过声网自研扩展进行视频截图上传，SDK 将对频道中的视频流进行截图并上传。</li>
+                            <li>
+                                <codeph>CONTENT_INSPECT_TYPE_IMAGE_MODERATION</codeph> (3)：通过声网扩展市场中的扩展进行视频截图上传，SDK 使用声网扩展市场中的视频审核扩展对频道中的视频流进行截图并上传。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>interval</pt>
+                    <pd>视频截图和上传的时间间隔（单位为秒）。取值应大于 0。默认值为 0，表示 SDK 不进行截图。声网建议设为 10，亦可根据业务需求进行调整。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>position</pt>
+                    <pd>视频观察器的位置，详见 <xref keyref="VIDEO_MODULE_POSITION"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>type</pt>
+                    <pd>功能模块的类型，详见 <xref keyref="CONTENT_INSPECT_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>interval</pt>
+                    <pd>视频截图和上传的频率（单位为秒）。该值必须大于 0。默认值为 0，表示 SDK 不进行截图。建议设置为 10 秒，可根据业务需求进行调整。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>position</pt>
+                    <pd>视频观察者的位置，详见 <xref keyref="VIDEO_MODULE_POSITION"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>type</pt>
+                    <pd>功能模块的类型，详见 <codeph>AgoraContentInspectType</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>position</pt>
+                    <pd>视频观察者的位置，详见 <codeph>AgoraVideoModulePosition</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

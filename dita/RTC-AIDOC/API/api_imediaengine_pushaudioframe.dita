@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaengine_pushaudioframe">
+    <title>
+        <ph keyref="pushAudioFrame"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">推送外部音频帧。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="pushAudioFrame"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int pushAudioFrame(IAudioFrameObserverBase::AudioFrame* frame, rtc::track_id_t trackId = 0) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="cpp">在调用该方法推送外部音频数据前，请先完成以下操作：
+                <ol>
+                    <li>调用 <codeph>createCustomAudioTrack</codeph> 创建自定义音频轨道并获取音频轨道 ID。</li>
+                    <li>调用 <codeph>joinChannel</codeph> 加入频道。在 <codeph>ChannelMediaOptions</codeph> 中，将 <codeph>publishCustomAudioTrackId</codeph> 设置为你希望发布的音频轨道 ID，并将 <codeph>publishCustomAudioTrack</codeph> 设置为 <codeph>true</codeph>。</li>
+                </ol>
+            </p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="cpp">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>frame</pt>
+                    <pd>外部音频帧。详见 <codeph>AudioFrame</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>trackId</pt>
+                    <pd>音频轨道 ID。如果你希望发布自定义音频源，请将该参数设置为对应的自定义音频轨道 ID。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

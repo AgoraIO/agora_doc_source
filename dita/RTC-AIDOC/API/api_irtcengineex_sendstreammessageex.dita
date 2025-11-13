@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_sendstreammessageex">
+    <title>
+        <ph keyref="sendStreamMessageEx"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">发送数据流消息。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="sendStreamMessageEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int sendStreamMessageEx(int streamId, const char* data, size_t length, const RtcConnection&amp; connection) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int sendStreamMessageEx(int streamId, byte[] message, RtcConnection connection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">调用 <codeph>createDataStreamEx</codeph> 创建数据通道后，可以调用该方法向频道内所有用户发送数据流消息。SDK 对该方法有限制：
+                <ul>
+                    <li>每个客户端在频道中最多可同时拥有 5 个数据通道，所有数据通道共享的总包比特率上限为 30 KB/s；</li>
+                    <li>每个数据通道每秒最多可发送 60 个数据包，每个数据包最大为 1 KB。</li>
+                </ul>
+            </p>
+            <p props="android">你可以调用该方法向频道内的所有用户发送数据流消息。SDK 对该方法有限制：
+                <ul>
+                    <li>每个频道内的客户端实例最多可同时拥有 5 个数据通道，所有数据通道共享的总包速率上限为 30 KB/s；</li>
+                    <li>每个数据通道每秒最多可发送 60 个数据包，每个数据包最大为 1 KB。</li>
+                </ul>
+            </p>
+            <note props="cpp">
+                <ul>
+                    <li>如果你需要一个更全面的低延迟、高并发、可扩展的实时消息和状态同步解决方案，建议使用 <codeph>Signaling</codeph>。</li>
+                    <li>请在调用 <codeph>joinChannelEx</codeph> 后再调用此方法。</li>
+                    <li>请确保在调用此方法前已通过 <codeph>createDataStreamEx</codeph> 创建数据通道。</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>如果你需要更全面的低延迟、高并发、可扩展的实时消息和状态同步方案，建议使用 <codeph>Signaling</codeph>。</li>
+                    <li>请在调用 <xref keyref="joinChannelEx"/> 后调用该方法。</li>
+                    <li>请确保在调用该方法前已通过 <codeph>createDataStreamEx</codeph> 创建数据通道。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="android cpp">加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp">无。</p>
+        </section>
+        <section id="related" deliveryTarget="details">
+            <title>相关回调</title>
+            <p props="android">成功调用该方法后，远端会触发 <xref keyref="onStreamMessage"/> 回调接收数据流消息；调用失败时，远端会触发 <xref keyref="onStreamMessageError"/> 回调。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>streamId</pt>
+                    <pd>数据流 ID。通过调用 <codeph>createDataStreamEx</codeph> 获取该 ID。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>data</pt>
+                    <pd>要发送的消息内容。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>length</pt>
+                    <pd>数据长度，单位为字节。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <codeph>RtcConnection</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>streamId</pt>
+                    <pd>数据流 ID。你可以通过调用 <codeph>createDataStreamEx</codeph> 获取该 ID。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>message</pt>
+                    <pd>要发送的消息内容。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="android cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

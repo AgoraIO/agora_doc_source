@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setinearmonitoringvolume">
+    <title>
+        <ph keyref="setInEarMonitoringVolume"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">设置耳返音量。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setInEarMonitoringVolume"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setInEarMonitoringVolume(int volume) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setInEarMonitoringVolume(int volume);</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)setInEarMonitoringVolume:(NSInteger)volume NS_SWIFT_NAME(setInEarMonitoringVolume(_:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)setInEarMonitoringVolume:(NSInteger)volume NS_SWIFT_NAME(setInEarMonitoringVolume(_:));</codeblock>
+            </p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="android cpp ios mac">该方法可以在加入频道前或加入频道后调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>volume</pt>
+                    <pd>用户的音量，取值范围为 [0, 400]。
+                        <ul>
+                            <li>0：静音。</li>
+                            <li>100：（默认）原始音量。</li>
+                            <li>400：原始音量的四倍（将音频信号放大四倍）。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>volume</pt>
+                    <pd>用户的音量，取值范围为 [0, 400]。0 表示静音，100（默认）表示原始音量，400 表示原始音量的四倍（将音频信号放大四倍）。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>volume</pt>
+                    <pd>用户的音量。取值范围为 [0,400]。
+                        <ul>
+                            <li>0：静音。</li>
+                            <li>100：（默认）原始音量。</li>
+                            <li>400：原始音量的四倍（将音频信号放大四倍）。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="android cpp ios mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                    <li>-2：参数设置不合法，例如耳返音量超出有效范围（小于 0 或大于 400）。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_localaudiostreamreason">
+    <title>
+        <ph keyref="LOCAL_AUDIO_STREAM_REASON"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">本地音频状态变化的原因。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details">
+            <title>枚举值</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>LOCAL_AUDIO_STREAM_REASON_OK</pt>
+                    <pd>（0）：本地音频状态正常。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>LOCAL_AUDIO_STREAM_REASON_FAILURE</pt>
+                    <pd>（1）：本地音频异常，原因不明确。建议用户尝试重新加入频道。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>LOCAL_AUDIO_STREAM_REASON_DEVICE_NO_PERMISSION</pt>
+                    <pd>（2）：无权限使用本地音频采集设备。建议用户授予麦克风权限。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>LOCAL_AUDIO_STREAM_REASON_DEVICE_BUSY</pt>
+                    <pd>（3）：仅适用于 Android 和 iOS 平台，本地音频采集设备被占用。建议用户检查是否有其他应用占用麦克风。麦克风空闲约五秒后音频采集会自动恢复，也可在麦克风空闲后重新加入频道。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>LOCAL_AUDIO_STREAM_REASON_RECORD_FAILURE</pt>
+                    <pd>（4）：本地音频采集失败。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>LOCAL_AUDIO_STREAM_REASON_ENCODE_FAILURE</pt>
+                    <pd>（5）：本地音频编码失败。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>LOCAL_AUDIO_STREAM_REASON_NO_RECORDING_DEVICE</pt>
+                    <pd>（6）：仅适用于 Windows 和 macOS 平台，未检测到本地音频采集设备。建议用户在设备控制面板中检查麦克风是否正确连接或工作正常。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>LOCAL_AUDIO_STREAM_REASON_NO_PLAYOUT_DEVICE</pt>
+                    <pd>（7）：仅适用于 Windows 和 macOS 平台，未检测到本地音频播放设备。建议用户在设备控制面板中检查扬声器是否正确连接或工作正常。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>LOCAL_AUDIO_STREAM_REASON_INTERRUPTED</pt>
+                    <pd>（8）：仅适用于 Android 和 iOS 平台，本地音频采集被系统电话、智能助手或闹钟中断。如需继续采集音频，建议用户结束相关任务。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>LOCAL_AUDIO_STREAM_REASON_RECORD_INVALID_ID</pt>
+                    <pd>（9）：仅适用于 Windows 平台，本地音频采集设备的 ID 无效。建议用户检查音频采集设备 ID 是否正确。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>LOCAL_AUDIO_STREAM_REASON_PLAYOUT_INVALID_ID</pt>
+                    <pd>（10）：仅适用于 Windows 平台，本地音频播放设备的 ID 无效。建议用户检查音频播放设备 ID 是否正确。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraAudioLocalReasonOK</pt>
+                    <pd>（0）：本地音频状态正常。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraAudioLocalReasonFailure</pt>
+                    <pd>（1）：本地音频异常，原因不明确。请提示用户尝试重新加入频道。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraAudioLocalReasonDeviceNoPermission</pt>
+                    <pd>（2）：无权限使用本地音频采集设备。请提示用户授予麦克风权限。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraAudioLocalReasonDeviceBusy</pt>
+                    <pd>（3）：（仅适用于 iOS 平台）本地音频采集设备被占用。请提示用户检查是否有其他应用占用了麦克风。麦克风空闲约五秒后音频采集会自动恢复，或可在麦克风空闲后重新加入频道。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraAudioLocalReasonRecordFailure</pt>
+                    <pd>（4）：本地音频采集失败。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraAudioLocalReasonEncodeFailure</pt>
+                    <pd>（5）：本地音频编码失败。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraAudioLocalReasonNoRecordingDevice</pt>
+                    <pd>（6）：（仅适用于 macOS 平台）无本地音频采集设备。请提示用户在系统设置中检查麦克风是否正确连接或工作正常。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraAudioLocalReasonNoPlayoutDevice</pt>
+                    <pd>（7）：（仅适用于 macOS 平台）无本地音频播放设备。请提示用户在系统设置中检查扬声器是否正确连接或工作正常。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraAudioLocalReasonInterrupted</pt>
+                    <pd>（8）：（仅适用于 iOS 平台）本地音频采集被系统电话、智能助手或闹钟中断。如需继续采集，请提示用户结束相关任务。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

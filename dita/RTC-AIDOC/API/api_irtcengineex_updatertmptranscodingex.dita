@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_updatertmptranscodingex">
+    <title>
+        <ph keyref="updateRtmpTranscodingEx"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">更新旁路推流的转码配置。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="updateRtmpTranscodingEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int updateRtmpTranscodingEx(const LiveTranscoding&amp; transcoding, const RtcConnection&amp; connection) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int updateRtmpTranscodingEx(LiveTranscoding transcoding, RtcConnection connection);</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)updateRtmpTranscodingEx:(AgoraLiveTranscoding* _Nullable)transcoding
+                    connection:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(updateRtmpTranscodingEx(_:connection:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)updateRtmpTranscodingEx:(AgoraLiveTranscoding* _Nullable)transcoding
+                    connection:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(updateRtmpTranscodingEx(_:connection:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">声网建议你使用服务端的旁路推流功能，详见 <codeph>使用 RESTful API</codeph>。开始使用转码功能将媒体流推送到 CDN 后，你可以根据实际场景动态更新转码配置。更新配置后，SDK 会触发 <codeph>onTranscodingUpdated</codeph> 回调。</p>
+            <p props="android">开始使用转码功能将媒体流推送到 CDN 后，你可以根据场景动态更新转码配置。更新配置后，SDK 会触发 <xref keyref="onTranscodingUpdated"/> 回调。声网建议你使用服务端的旁路推流功能，详见 <codeph>Use RESTful API</codeph>。</p>
+            <p props="ios mac">你可以在开启带转码的 CDN 推流后，根据场景动态更新转码配置。</p>
+            <note props="ios mac">声网建议你使用服务端的旁路推流功能。详见 <codeph>RESTful API</codeph>。</note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>transcoding</pt>
+                    <pd>旁路推流的转码配置。详见 <codeph>LiveTranscoding</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <codeph>RtcConnection</codeph>。</pd>
+                </plentry>
+                <plentry props="android ios">
+                    <pt>transcoding</pt>
+                    <pd>旁路推流的转码配置。详见 <xref keyref="LiveTranscoding"/>。</pd>
+                </plentry>
+                <plentry props="android ios">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>transcoding</pt>
+                    <pd>旁路推流的转码配置。详见 <codeph>AgoraLiveTranscoding</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <codeph>AgoraRtcConnection</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="android cpp ios mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

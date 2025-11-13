@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startscreencapturebyscreenrect">
+    <title>
+        <ph keyref="startScreenCaptureByScreenRect"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">通过指定屏幕区域采集整个屏幕或部分屏幕。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startScreenCaptureByScreenRect"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int startScreenCaptureByScreenRect(const Rectangle&amp; screenRect, const Rectangle&amp; regionRect, const ScreenCaptureParameters&amp; captureParams) __deprecated = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="cpp">
+                    <dt/>
+                    <dd>自 v4.5.0 版本废弃，请改用 `startScreenCaptureByDisplayId`。</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">你可以通过该方法共享整个屏幕或部分屏幕，需要指定要共享的屏幕区域。你可以在加入频道前或加入频道后调用该方法：
+                <ul>
+                    <li>加入频道前调用该方法，然后调用 <codeph>joinChannel</codeph> 加入频道，并将 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 设置为 <codeph>true</codeph>，以开始屏幕共享。</li>
+                    <li>加入频道后调用该方法，然后调用 <codeph>updateChannelMediaOptions</codeph>，并将 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 设置为 <codeph>true</codeph>，以开始屏幕共享。</li>
+                </ul>
+            </p>
+            <note props="cpp">该方法仅适用于 Windows 平台。</note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="cpp">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>screenRect</pt>
+                    <pd>屏幕相对于虚拟屏幕的位置。详见 <codeph>Rectangle</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>regionRect</pt>
+                    <pd>（可选）区域相对于屏幕的位置。详见 <codeph>Rectangle</codeph>。如果未设置该参数，SDK 会共享整个屏幕。如果指定的区域超出屏幕范围，SDK 仅共享屏幕内的部分；如果设置的宽或高为 0，SDK 会共享整个屏幕。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>captureParams</pt>
+                    <pd>屏幕共享的编码参数。默认视频分辨率为 1920 × 1080（即 2,073,600 像素）。声网会根据该参数的值计算费用。详见 <codeph>ScreenCaptureParameters</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                    <li>-2：参数无效。</li>
+                    <li>-8：屏幕共享状态无效。可能是因为你已共享了其他屏幕或窗口。请调用 <codeph>stopScreenCapture</codeph> 停止当前共享后重新开始。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

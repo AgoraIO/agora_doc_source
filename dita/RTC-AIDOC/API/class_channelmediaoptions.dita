@@ -1,0 +1,308 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_channelmediaoptions">
+    <title>
+        <ph keyref="ChannelMediaOptions"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">用于设置频道媒体选项。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct ChannelMediaOptions {
+  Optional&lt;bool&gt; publishCameraTrack;
+  Optional&lt;bool&gt; publishSecondaryCameraTrack;
+  Optional&lt;bool&gt; publishThirdCameraTrack;
+  Optional&lt;bool&gt; publishFourthCameraTrack;
+  Optional&lt;bool&gt; publishMicrophoneTrack;
+#if defined(__ANDROID__) || (defined(TARGET_OS_IPHONE) &amp;&amp; TARGET_OS_IPHONE) || defined(__OHOS__)
+  Optional&lt;bool&gt; publishScreenCaptureVideo;
+  Optional&lt;bool&gt; publishScreenCaptureAudio;
+#else
+  Optional&lt;bool&gt; publishScreenTrack;
+  Optional&lt;bool&gt; publishSecondaryScreenTrack;
+  Optional&lt;bool&gt; publishThirdScreenTrack;
+  Optional&lt;bool&gt; publishFourthScreenTrack;
+#endif
+  Optional&lt;bool&gt; publishCustomAudioTrack;
+  Optional&lt;int&gt; publishCustomAudioTrackId;
+  Optional&lt;bool&gt; publishCustomVideoTrack;
+  Optional&lt;bool&gt; publishEncodedVideoTrack;
+  Optional&lt;bool&gt; publishMediaPlayerAudioTrack;
+  Optional&lt;bool&gt; publishMediaPlayerVideoTrack;
+  Optional&lt;bool&gt; publishTranscodedVideoTrack;
+  Optional&lt;bool&gt; publishMixedAudioTrack;
+  Optional&lt;bool&gt; publishLipSyncTrack;
+  Optional&lt;bool&gt; autoSubscribeAudio;
+  Optional&lt;bool&gt; autoSubscribeVideo;
+  Optional&lt;bool&gt; enableAudioRecordingOrPlayout;
+  Optional&lt;int&gt; publishMediaPlayerId;
+  Optional&lt;CLIENT_ROLE_TYPE&gt; clientRoleType;
+  Optional&lt;AUDIENCE_LATENCY_LEVEL_TYPE&gt; audienceLatencyLevel;
+  Optional&lt;VIDEO_STREAM_TYPE&gt; defaultVideoStreamType;
+  Optional&lt;CHANNEL_PROFILE_TYPE&gt; channelProfile;
+  Optional&lt;int&gt; audioDelayMs;
+  Optional&lt;int&gt; mediaPlayerAudioDelayMs;
+  Optional&lt;const char*&gt; token;
+  Optional&lt;bool&gt; enableBuiltInMediaEncryption;
+  Optional&lt;bool&gt; publishRhythmPlayerTrack;
+  Optional&lt;bool&gt; isInteractiveAudience;
+  Optional&lt;video_track_id_t&gt; customVideoTrackId;
+  Optional&lt;bool&gt; isAudioFilterable;
+  Optional&lt;const char*&gt; parameters;
+  Optional&lt;bool&gt; enableMultipath;
+  Optional&lt;MultipathMode&gt; uplinkMultipathMode;
+  Optional&lt;MultipathMode&gt; downlinkMultipathMode;
+  Optional&lt;MultipathType&gt; preferMultipathType;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class ChannelMediaOptions {
+  public Boolean publishCameraTrack;
+  public Boolean publishSecondaryCameraTrack;
+  public Boolean publishThirdCameraTrack;
+  public Boolean publishFourthCameraTrack;
+  public Boolean publishMicrophoneTrack;
+  public Boolean publishScreenCaptureVideo;
+  public Boolean publishScreenCaptureAudio;
+  public Boolean publishCustomAudioTrack;
+  public Integer publishCustomAudioTrackId;
+  public Boolean publishCustomVideoTrack;
+  public Boolean publishEncodedVideoTrack;
+  public Boolean publishMediaPlayerAudioTrack;
+  public Boolean publishMediaPlayerVideoTrack;
+  public Boolean publishTranscodedVideoTrack;
+  public Boolean publishMixedAudioTrack;
+  public Boolean publishLipSyncTrack;
+  public Boolean autoSubscribeAudio;
+  public Boolean autoSubscribeVideo;
+  public Boolean enableAudioRecordingOrPlayout;
+  public Integer publishMediaPlayerId;
+  public Integer clientRoleType;
+  public Integer audienceLatencyLevel;
+  public Integer defaultVideoStreamType;
+  public Integer channelProfile;
+  public Integer audioDelayMs;
+  public Integer mediaPlayerAudioDelayMs;
+  public String token;
+  public Boolean enableBuiltInMediaEncryption;
+  public Boolean publishRhythmPlayerTrack;
+  public Boolean isInteractiveAudience;
+  public Integer customVideoTrackId;
+  public Boolean isAudioFilterable;
+  public Boolean startPreview;
+  public String parameters;
+  public Boolean enableMultipath;
+  public Integer uplinkMultipathMode;
+  public Integer downlinkMultipathMode;
+  public Integer preferMultipathType;
+}</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">@interface AgoraRtcChannelMediaOptions : NSObject
+@property(assign, nonatomic) BOOL publishCameraTrack;
+@property(assign, nonatomic) BOOL publishSecondaryCameraTrack;
+@property(assign, nonatomic) BOOL publishMicrophoneTrack;
+@property(assign, nonatomic) BOOL publishScreenCaptureVideo;
+@property(assign, nonatomic) BOOL publishScreenCaptureAudio;
+@property(assign, nonatomic) BOOL publishThirdCameraTrack;
+@property(assign, nonatomic) BOOL publishFourthCameraTrack;
+@property(assign, nonatomic) BOOL publishScreenTrack;
+@property(assign, nonatomic) BOOL publishSecondaryScreenTrack;
+@property(assign, nonatomic) BOOL publishThirdScreenTrack;
+@property(assign, nonatomic) BOOL publishFourthScreenTrack;
+@property(assign, nonatomic) BOOL publishCustomAudioTrack;
+@property(assign, nonatomic) NSInteger publishCustomAudioTrackId;
+@property(assign, nonatomic) BOOL publishCustomVideoTrack;
+@property(assign, nonatomic) BOOL publishEncodedVideoTrack;
+@property(assign, nonatomic) BOOL publishMediaPlayerAudioTrack;
+@property(assign, nonatomic) BOOL publishMediaPlayerVideoTrack;
+@property(assign, nonatomic) BOOL publishTranscodedVideoTrack;
+@property(assign, nonatomic) BOOL publishMixedAudioTrack;
+@property(assign, nonatomic) BOOL publishLipSyncTrack;
+@property(assign, nonatomic) BOOL autoSubscribeAudio;
+@property(assign, nonatomic) BOOL autoSubscribeVideo;
+@property(assign, nonatomic) BOOL enableAudioRecordingOrPlayout;
+@property(assign, nonatomic) NSInteger publishMediaPlayerId;
+@property(assign, nonatomic) AgoraClientRole clientRoleType;
+@property(assign, nonatomic) AgoraAudienceLatencyLevelType audienceLatencyLevel;
+@property(assign, nonatomic) AgoraVideoStreamType defaultVideoStreamType;
+@property(assign, nonatomic) AgoraChannelProfile channelProfile;
+@property(assign, nonatomic) NSInteger audioDelayMs;
+@property(assign, nonatomic) NSInteger mediaPlayerAudioDelayMs;
+@property(copy, nonatomic) NSString * _Nullable token;
+@property(assign, nonatomic) BOOL enableBuiltInMediaEncryption;
+@property(assign, nonatomic) BOOL publishRhythmPlayerTrack;
+@property(assign, nonatomic) BOOL isInteractiveAudience;
+@property(assign, nonatomic) NSInteger customVideoTrackId;
+@property(assign, nonatomic) BOOL isAudioFilterable;
+@property(copy, nonatomic) NSString * _Nullable parameters;
+@property(assign, nonatomic) BOOL enableMultipath;
+@property(assign, nonatomic) AgoraMultipathMode uplinkMultipathMode;
+@property(assign, nonatomic) AgoraMultipathMode downlinkMultipathMode;
+@property(assign, nonatomic) AgoraMultipathType preferMultipathType;
+@end</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">@interface AgoraRtcChannelMediaOptions : NSObject
+@property(assign, nonatomic) BOOL publishCameraTrack;
+@property(assign, nonatomic) BOOL publishSecondaryCameraTrack;
+@property(assign, nonatomic) BOOL publishMicrophoneTrack;
+@property(assign, nonatomic) BOOL publishScreenCaptureVideo;
+@property(assign, nonatomic) BOOL publishScreenCaptureAudio;
+@property(assign, nonatomic) BOOL publishThirdCameraTrack;
+@property(assign, nonatomic) BOOL publishFourthCameraTrack;
+@property(assign, nonatomic) BOOL publishScreenTrack;
+@property(assign, nonatomic) BOOL publishSecondaryScreenTrack;
+@property(assign, nonatomic) BOOL publishThirdScreenTrack;
+@property(assign, nonatomic) BOOL publishFourthScreenTrack;
+@property(assign, nonatomic) BOOL publishCustomAudioTrack;
+@property(assign, nonatomic) NSInteger publishCustomAudioTrackId;
+@property(assign, nonatomic) BOOL publishCustomVideoTrack;
+@property(assign, nonatomic) BOOL publishEncodedVideoTrack;
+@property(assign, nonatomic) BOOL publishMediaPlayerAudioTrack;
+@property(assign, nonatomic) BOOL publishMediaPlayerVideoTrack;
+@property(assign, nonatomic) BOOL publishTranscodedVideoTrack;
+@property(assign, nonatomic) BOOL publishMixedAudioTrack;
+@property(assign, nonatomic) BOOL publishLipSyncTrack;
+@property(assign, nonatomic) BOOL autoSubscribeAudio;
+@property(assign, nonatomic) BOOL autoSubscribeVideo;
+@property(assign, nonatomic) BOOL enableAudioRecordingOrPlayout;
+@property(assign, nonatomic) NSInteger publishMediaPlayerId;
+@property(assign, nonatomic) AgoraClientRole clientRoleType;
+@property(assign, nonatomic) AgoraAudienceLatencyLevelType audienceLatencyLevel;
+@property(assign, nonatomic) AgoraVideoStreamType defaultVideoStreamType;
+@property(assign, nonatomic) AgoraChannelProfile channelProfile;
+@property(assign, nonatomic) NSInteger audioDelayMs;
+@property(assign, nonatomic) NSInteger mediaPlayerAudioDelayMs;
+@property(copy, nonatomic) NSString * _Nullable token;
+@property(assign, nonatomic) BOOL enableBuiltInMediaEncryption;
+@property(assign, nonatomic) BOOL publishRhythmPlayerTrack;
+@property(assign, nonatomic) BOOL isInteractiveAudience;
+@property(assign, nonatomic) NSInteger customVideoTrackId;
+@property(assign, nonatomic) BOOL isAudioFilterable;
+@property(copy, nonatomic) NSString * _Nullable parameters;
+@property(assign, nonatomic) BOOL enableMultipath;
+@property(assign, nonatomic) AgoraMultipathMode uplinkMultipathMode;
+@property(assign, nonatomic) AgoraMultipathMode downlinkMultipathMode;
+@property(assign, nonatomic) AgoraMultipathType preferMultipathType;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">支持在同一个 <codeph>RtcConnection</codeph> 中同时发布多个音频流和一个视频流。例如，可以同时将 <codeph>publishMicrophoneTrack</codeph>、<codeph>publishCustomAudioTrack</codeph> 和 <codeph>publishMediaPlayerAudioTrack</codeph> 设置为 <codeph>true</codeph>，但 <codeph>publishCameraTrack</codeph>、<codeph>publishScreenCaptureVideo</codeph>、<codeph>publishScreenTrack</codeph>、<codeph>publishCustomVideoTrack</codeph> 或 <codeph>publishEncodedVideoTrack</codeph> 中只能有一个设置为 <codeph>true</codeph>。</p>
+            <p props="android">支持在同一个 <xref keyref="RtcConnection"/> 中同时发布多个音频流和一个视频流。例如，可以同时启用 <codeph>publishMicrophoneTrack</codeph>、<codeph>publishCustomAudioTrack</codeph> 和 <codeph>publishMediaPlayerAudioTrack</codeph>，但 <codeph>publishCameraTrack</codeph>、<codeph>publishScreenCaptureVideo</codeph>、<codeph>publishCustomVideoTrack</codeph> 和 <codeph>publishEncodedVideoTrack</codeph> 中只能有一个设置为 <xref keyref="true"/>。</p>
+            <p props="ios">支持在同一个 <xref keyref="RtcConnection"/> 中同时发布多个音频流和一个视频流。例如，你可以同时将 <codeph>publishMicrophoneTrack</codeph>、<codeph>publishCustomAudioTrack</codeph> 和 <codeph>publishMediaPlayerAudioTrack</codeph> 设置为 <xref keyref="true"/>，但 <codeph>publishCameraTrack</codeph>、<codeph>publishScreenCaptureVideo</codeph>（iOS）/<codeph>publishScreenTrack</codeph>（macOS）、<codeph>publishCustomVideoTrack</codeph> 和 <codeph>publishEncodedVideoTrack</codeph> 中只能有一个设置为 <xref keyref="true"/>。</p>
+            <p props="mac">支持在同一个 <codeph>AgoraRtcConnection</codeph> 中同时发布多个音频流和一个视频流。例如，你可以同时将 <codeph>publishMicrophoneTrack</codeph>、<codeph>publishCustomAudioTrack</codeph> 和 <codeph>publishMediaPlayerAudioTrack</codeph> 设置为 <codeph>YES</codeph>，但 <codeph>publishCameraTrack</codeph>、<codeph>publishScreenCaptureVideo</codeph>（iOS）/<codeph>publishScreenTrack</codeph>（macOS）、<codeph>publishCustomVideoTrack</codeph> 和 <codeph>publishEncodedVideoTrack</codeph> 中只能有一个设置为 <codeph>YES</codeph>。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>publishCameraTrack</pt>
+                    <pd>是否发布摄像头采集的视频：
+                        <ul>
+                            <li>
+                                <codeph>true</codeph>：发布摄像头采集的视频。</li>
+                            <li>
+                                <codeph>false</codeph>：不发布摄像头采集的视频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>publishSecondaryCameraTrack</pt>
+                    <pd>是否发布第二路摄像头采集的视频：
+                        <ul>
+                            <li>
+                                <codeph>true</codeph>：发布第二路摄像头采集的视频。</li>
+                            <li>
+                                <codeph>false</codeph>：不发布第二路摄像头采集的视频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>publishThirdCameraTrack</pt>
+                    <pd>是否发布第三路摄像头采集的视频：
+                        <ul>
+                            <li>
+                                <codeph>true</codeph>：发布第三路摄像头采集的视频。</li>
+                            <li>
+                                <codeph>false</codeph>：不发布第三路摄像头采集的视频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>publishFourthCameraTrack</pt>
+                    <pd>是否发布第四路摄像头采集的视频：
+                        <ul>
+                            <li>
+                                <codeph>true</codeph>：发布第四路摄像头采集的视频。</li>
+                            <li>
+                                <codeph>false</codeph>：不发布第四路摄像头采集的视频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>parameters</pt>
+                    <pd>通过配置 JSON 选项以启用技术预览功能或特殊定制。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enableMultipath</pt>
+                    <pd>是否启用多传输路径：
+                        <ul>
+                            <li>
+                                <xref keyref="true"/>：启用多传输路径。</li>
+                            <li>
+                                <xref keyref="false"/>：禁用多传输路径。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android ios">
+                    <pt>uplinkMultipathMode</pt>
+                    <pd>上行传输模式。详见 <xref keyref="MultipathMode"/>。</pd>
+                </plentry>
+                <plentry props="android ios">
+                    <pt>downlinkMultipathMode</pt>
+                    <pd>下行传输模式。详见 <xref keyref="MultipathMode"/>。</pd>
+                </plentry>
+                <plentry props="android ios">
+                    <pt>preferMultipathType</pt>
+                    <pd>首选的传输路径类型。详见 <xref keyref="MultipathType"/>。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>parameters</pt>
+                    <pd>通过配置 JSON 选项为 SDK 提供技术预览功能或特殊定制功能。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>enableMultipath</pt>
+                    <pd>是否启用多路径传输：
+                        <ul>
+                            <li>
+                                <xref keyref="true"/>：启用多路径传输。</li>
+                            <li>
+                                <xref keyref="false"/>：禁用多路径传输。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>enableMultipath</pt>
+                    <pd>是否启用多路径传输：
+                        <ul>
+                            <li>
+                                <codeph>YES</codeph>：启用多路径传输。</li>
+                            <li>
+                                <codeph>NO</codeph>：禁用多路径传输。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uplinkMultipathMode</pt>
+                    <pd>上行传输模式。详见 <codeph>AgoraMultipathMode</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>downlinkMultipathMode</pt>
+                    <pd>下行传输模式。详见 <codeph>AgoraMultipathMode</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>preferMultipathType</pt>
+                    <pd>首选的传输路径类型。详见 <codeph>AgoraMultipathType</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

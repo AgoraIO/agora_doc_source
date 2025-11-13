@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_resumeallchannelmediarelay">
+    <title>
+        <ph keyref="resumeAllChannelMediaRelay"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">恢复向所有目标频道的跨频道媒体流转发。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="resumeAllChannelMediaRelay"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int resumeAllChannelMediaRelay() = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int resumeAllChannelMediaRelay();</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)resumeAllChannelMediaRelay NS_SWIFT_NAME(resumeAllChannelMediaRelay());</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)resumeAllChannelMediaRelay NS_SWIFT_NAME(resumeAllChannelMediaRelay());</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">调用 <xref keyref="pauseAllChannelMediaRelay"/> 后，你可以调用该方法恢复媒体流的转发。</p>
+            <p props="ios">调用 <xref keyref="pauseAllChannelMediaRelay"/> 方法后，可以调用此方法恢复向所有目标频道转发媒体流。</p>
+            <p props="mac">调用 <codeph>pauseAllChannelMediaRelay</codeph> 方法后，可以调用此方法恢复向所有目标频道转发媒体流。</p>
+            <note props="cpp">请在调用 <codeph>pauseAllChannelMediaRelay</codeph> 方法后再调用该方法。</note>
+            <note props="android">请在调用 <xref keyref="pauseAllChannelMediaRelay"/> 后再调用该方法。</note>
+            <note props="ios">请在调用 <xref keyref="pauseAllChannelMediaRelay"/> 方法后调用此方法。</note>
+            <note props="mac">请在调用 <codeph>pauseAllChannelMediaRelay</codeph> 方法后调用此方法。</note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="android cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                    <li>-5：调用被拒绝，当前没有已暂停的跨频道媒体流转发。</li>
+                </ul>
+            </p>
+            <p props="ios mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                    <li>-5：方法调用被拒绝，当前没有已暂停的跨频道媒体流转发。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

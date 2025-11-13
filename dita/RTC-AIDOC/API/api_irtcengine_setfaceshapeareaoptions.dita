@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setfaceshapeareaoptions">
+    <title>
+        <ph keyref="setFaceShapeAreaOptions"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">设置面部区域的图像增强选项，并指定媒体源。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setFaceShapeAreaOptions"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setFaceShapeAreaOptions(const FaceShapeAreaOptions&amp; options, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)setFaceShapeAreaOptions:(AgoraFaceShapeAreaOptions* _Nullable)options NS_SWIFT_NAME(setFaceShapeAreaOptions(_:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)setFaceShapeAreaOptions:(AgoraFaceShapeAreaOptions* _Nullable)options NS_SWIFT_NAME(setFaceShapeAreaOptions(_:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">如果通过 <codeph>setFaceShapeBeautyOptions</codeph> 方法实现的预设美颜效果无法满足预期，你可以调用该方法设置美颜区域选项，单独微调面部的每个部分，从而实现更精细的美颜效果。</p>
+            <p props="ios mac">如果通过 <codeph>setFaceShapeBeautyOptions:</codeph> 方法设置的预设美型特效无法满足预期，可以使用此方法设置美颜区域选项，单独微调面部的每个部分，实现更精细的美颜效果。</p>
+            <note props="cpp">
+                <ul>
+                    <li>该方法仅适用于 Android 4.4 或更高版本。</li>
+                    <li>该方法依赖图像增强动态库 <codeph>libagora_clear_vision_extension.dll</codeph>。如果该动态库被删除，将无法启用该功能。</li>
+                    <li>该功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的能力。</li>
+                </ul>
+            </note>
+            <note props="ios">
+                <ul>
+                    <li>此方法依赖图像增强动态库 <xref keyref="clearvision"/>（iOS）或 <codeph>AgoraClearVisionExtension.framework</codeph>（macOS）。如果删除该动态库，功能将无法正常启用。</li>
+                    <li>此功能对设备性能要求较高。调用此方法时，SDK 会自动检测当前设备的能力。</li>
+                </ul>
+            </note>
+            <note props="mac">
+                <ul>
+                    <li>此方法依赖图像增强动态库 <codeph>AgoraClearVisionExtension.xcframework</codeph>（iOS）或 <codeph>AgoraClearVisionExtension.framework</codeph>（macOS）。如果删除该动态库，功能将无法正常启用。</li>
+                    <li>此功能对设备性能要求较高。调用此方法时，SDK 会自动检测当前设备的能力。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="cpp">在调用 <codeph>setFaceShapeBeautyOptions</codeph> 方法之后调用该方法。</p>
+            <p props="ios mac">在调用 <codeph>setFaceShapeBeautyOptions:</codeph> 方法之后调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>options</pt>
+                    <pd>面部增强区域配置。详见 <codeph>FaceShapeAreaOptions</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>type</pt>
+                    <pd>应用滤镜效果的媒体源类型。详见 <codeph>MEDIA_SOURCE_TYPE</codeph>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>options</pt>
+                    <pd>面部增强区域。详见 <xref keyref="FaceShapeAreaOptions"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>options</pt>
+                    <pd>面部增强区域。详见 <codeph>AgoraFaceShapeAreaOptions</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                    <li>-4：当前设备不支持该功能。可能原因包括：</li>
+                    <li>当前设备能力不满足图像增强的要求。声网建议你更换为高性能设备。</li>
+                    <li>当前设备版本低于 Android 4.4，不支持该功能。声网建议你更换设备或升级操作系统。</li>
+                </ul>
+            </p>
+            <p props="ios mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                    <li>-4：当前设备不支持此功能。可能的原因包括：</li>
+                    <li>当前设备的能力不满足图像增强的要求。声网建议你更换为高性能设备。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

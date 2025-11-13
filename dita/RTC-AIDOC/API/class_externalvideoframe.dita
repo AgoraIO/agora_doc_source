@@ -1,0 +1,387 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_externalvideoframe">
+    <title>
+        <ph keyref="ExternalVideoFrame"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">表示外部视频帧。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct ExternalVideoFrame {
+  VIDEO_BUFFER_TYPE type;
+  VIDEO_PIXEL_FORMAT format;
+  void* buffer;
+  int stride;
+  int height;
+  int cropLeft;
+  int cropTop;
+  int cropRight;
+  int cropBottom;
+  int rotation;
+  long long timestamp;
+  void* eglContext;
+  EGL_CONTEXT_TYPE eglType;
+  int textureId;
+  long long fenceObject;
+  float matrix[16];
+  uint8_t* metadataBuffer;
+  int metadataSize;
+  uint8_t* alphaBuffer;
+  bool fillAlphaBuffer;
+  ALPHA_STITCH_MODE alphaStitchMode;
+  void *d3d11Texture2d;
+  int textureSliceIndex;
+  Hdr10MetadataInfo hdr10MetadataInfo;
+  ColorSpace colorSpace;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class AgoraVideoFrame {
+  public static final int FORMAT_NONE = -1;
+  public static final int FORMAT_TEXTURE_2D = 10;
+  public static final int FORMAT_TEXTURE_OES = 11;
+  public static final int FORMAT_I420 = 1;
+  public static final int FORMAT_BGRA = 2;
+  public static final int FORMAT_NV21 = 3;
+  public static final int FORMAT_RGBA = 4;
+  public static final int FORMAT_I422 = 16;
+  public static final int BUFFER_TYPE_NONE = -1;
+  public static final int BUFFER_TYPE_BUFFER = 1;
+  public static final int BUFFER_TYPE_ARRAY = 2;
+  public static final int BUFFER_TYPE_TEXTURE = 3;
+  public int format;
+  public long timeStamp;
+  public int stride;
+  public int height;
+  public int textureID;
+  public boolean syncMode;
+  public float[] transform;
+  public javax.microedition.khronos.egl.EGLContext eglContext10;
+  public android.opengl.EGLContext eglContext14;
+  public byte[] buf;
+  public int cropLeft;
+  public int cropTop;
+  public int cropRight;
+  public int cropBottom;
+  public int rotation;
+  public AlphaStitchMode alphaStitchMode;
+}</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoFrame : NSObject
+@property(assign, nonatomic) NSInteger format;
+@property(assign, nonatomic) CMTime time;
+@property(assign, nonatomic) int stride DEPRECATED_MSG_ATTRIBUTE("use strideInPixels instead");
+@property(assign, nonatomic) int strideInPixels;
+@property(assign, nonatomic) int height;
+@property(assign, nonatomic) CVPixelBufferRef _Nullable textureBuf;
+@property(strong, nonatomic) IMAGE_CLASS * _Nullable image;
+@property(strong, nonatomic) NSData *_Nullable dataBuf;
+@property(strong, nonatomic) NSData *_Nullable alphaBuf;
+@property(assign, nonatomic) AgoraAlphaStitchMode alphaStitchMode;
+@property(assign, nonatomic) int cropLeft;
+@property(assign, nonatomic) int cropTop;
+@property(assign, nonatomic) int cropRight;
+@property(assign, nonatomic) int cropBottom;
+@property(assign, nonatomic) int rotation;
+@property(strong, nonatomic) AgoraColorSpace *_Nullable colorSpace;
+@end</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoFrame : NSObject
+@property(assign, nonatomic) NSInteger format;
+@property(assign, nonatomic) CMTime time;
+@property(assign, nonatomic) int stride DEPRECATED_MSG_ATTRIBUTE("use strideInPixels instead");
+@property(assign, nonatomic) int strideInPixels;
+@property(assign, nonatomic) int height;
+@property(assign, nonatomic) CVPixelBufferRef _Nullable textureBuf;
+@property(strong, nonatomic) IMAGE_CLASS * _Nullable image;
+@property(strong, nonatomic) NSData *_Nullable dataBuf;
+@property(strong, nonatomic) NSData *_Nullable alphaBuf;
+@property(assign, nonatomic) AgoraAlphaStitchMode alphaStitchMode;
+@property(assign, nonatomic) int cropLeft;
+@property(assign, nonatomic) int cropTop;
+@property(assign, nonatomic) int cropRight;
+@property(assign, nonatomic) int cropBottom;
+@property(assign, nonatomic) int rotation;
+@property(strong, nonatomic) AgoraColorSpace *_Nullable colorSpace;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>type</pt>
+                    <pd>视频类型。详见 <codeph>VIDEO_BUFFER_TYPE</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>format</pt>
+                    <pd>像素格式。详见 <codeph>VIDEO_PIXEL_FORMAT</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>buffer</pt>
+                    <pd>视频帧缓冲区。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>stride</pt>
+                    <pd>输入视频帧的行间距，单位为像素而非字节。对于纹理数据，该值为纹理的宽度。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>height</pt>
+                    <pd>输入视频帧的高度。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>cropLeft</pt>
+                    <pd>从左侧裁剪的像素数。默认值为 0。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>cropTop</pt>
+                    <pd>从顶部裁剪的像素数。默认值为 0。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>cropRight</pt>
+                    <pd>从右侧裁剪的像素数。默认值为 0。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>cropBottom</pt>
+                    <pd>从底部裁剪的像素数。默认值为 0。</pd>
+                </plentry>
+                <plentry props="cpp ios mac">
+                    <pt>rotation</pt>
+                    <pd>视频帧的顺时针旋转角度。可设置为 0、90、180 或 270。默认值为 0。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>timestamp</pt>
+                    <pd>输入视频帧的时间戳（毫秒）。时间戳错误会导致帧丢失或音视频不同步。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>eglContext</pt>
+                    <pd>仅适用于 Texture 格式的视频数据。
+                        <ul>
+                            <li>使用 Khronos 定义的 OpenGL 接口（javax.microedition.khronos.egl.*）时，将该字段设置为 <codeph>eglContext</codeph>。</li>
+                            <li>使用 Android 定义的 OpenGL 接口（android.opengl.*）时，也将该字段设置为 <codeph>eglContext</codeph>。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>eglType</pt>
+                    <pd>仅适用于 Texture 格式的视频数据。纹理上下文类型。详见 <codeph>EGL_CONTEXT_TYPE</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>textureId</pt>
+                    <pd>仅适用于 Texture 格式的视频数据。视频帧的纹理 ID。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>fenceObject</pt>
+                    <pd>仅适用于 Texture 格式的视频数据。与 <codeph>textureId</codeph> 参数相关的 fence 对象，表示纹理数据的同步状态。默认值为 0。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>matrix</pt>
+                    <pd>仅适用于 Texture 格式的视频数据。输入的 4×4 变换矩阵。典型值为单位矩阵。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>metadataBuffer</pt>
+                    <pd>仅适用于 Texture 格式的视频数据。MetaData 缓冲区。默认值为 <codeph>NULL</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>metadataSize</pt>
+                    <pd>仅适用于 Texture 格式的视频数据。MetaData 大小。默认值为 0。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>alphaBuffer</pt>
+                    <pd>输出参数，通过人像分割算法输出的 Alpha 通道数据。该数据与视频帧大小一致，每个像素值范围为 [0, 255]，其中 0 表示背景，255 表示前景（人像）。通过设置该参数，可以将视频背景渲染为透明、纯色、图像、视频等多种效果。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>fillAlphaBuffer</pt>
+                    <pd>仅适用于 BGRA 或 RGBA 格式的视频数据。是否从视频帧中提取 Alpha 通道数据并自动填充到 <codeph>alphaBuffer</codeph>：
+                        <ul>
+                            <li>
+                                <codeph>true</codeph>：提取并填充 Alpha 通道数据。</li>
+                            <li>
+                                <codeph>false</codeph>：不提取和填充 Alpha 通道数据。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>alphaStitchMode</pt>
+                    <pd>当视频帧包含 Alpha 通道数据时，表示 <codeph>alphaBuffer</codeph> 与视频帧的相对位置。详见 <codeph>ALPHA_STITCH_MODE</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>d3d11Texture2d</pt>
+                    <pd>仅适用于 Windows Texture 格式的视频数据。指向 <codeph>ID3D11Texture2D</codeph> 类型对象的指针，该对象由视频帧使用。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>textureSliceIndex</pt>
+                    <pd>仅适用于 Windows Texture 格式的视频数据。表示视频帧在 <codeph>ID3D11Texture2D</codeph> 数组中使用的纹理对象的索引。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>hdr10MetadataInfo</pt>
+                    <pd>HDR 视频数据的元数据信息。详见 <codeph>Hdr10MetadataInfo</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>colorSpace</pt>
+                    <pd>视频帧的色彩空间属性，默认采用 Full Range 和 BT.709 标准配置。详见 <codeph>ColorSpace</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>format</pt>
+                    <pd>视频数据的格式：
+                        <ul>
+                            <li>10：<codeph>TEXTURE_2D</codeph>。</li>
+                            <li>11：<codeph>TEXTURE_OES</codeph>，通常为摄像头采集的数据格式。</li>
+                            <li>1：<codeph>I420</codeph>。</li>
+                            <li>3：<codeph>NV21</codeph>。</li>
+                            <li>4：<codeph>RGBA</codeph>。</li>
+                            <li>16：<codeph>I422</codeph>。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>timeStamp</pt>
+                    <pd>视频帧的时间戳，单位为毫秒。设置错误可能导致视频帧丢失或音视频不同步。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>stride</pt>
+                    <pd>视频帧的行跨度，单位为像素。对于纹理类型的视频数据，该字段表示纹理的宽度。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>height</pt>
+                    <pd>视频帧的高度。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>textureID</pt>
+                    <pd>纹理 ID，仅适用于纹理格式的视频数据。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>syncMode</pt>
+                    <pd>是否启用同步模式，仅适用于纹理格式的视频数据：
+                        <ul>
+                            <li>
+                                <xref keyref="true"/>：启用同步模式，SDK 会等待纹理处理完成。</li>
+                            <li>
+                                <xref keyref="false"/>：关闭同步模式。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>transform</pt>
+                    <pd>纹理帧的附加变换参数，仅适用于纹理格式的视频数据。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>eglContext10</pt>
+                    <pd>EGLContext10，仅适用于纹理格式的视频数据。详见 <codeph>EGLContext</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>eglContext14</pt>
+                    <pd>EGLContext14，仅适用于纹理格式的视频数据。详见 <codeph>EGLContext</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>buf</pt>
+                    <pd>视频帧的数据缓冲区。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>cropLeft</pt>
+                    <pd>左侧裁剪的像素数，默认值为 0。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>cropTop</pt>
+                    <pd>顶部裁剪的像素数，默认值为 0。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>cropRight</pt>
+                    <pd>右侧裁剪的像素数，默认值为 0。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>cropBottom</pt>
+                    <pd>底部裁剪的像素数，默认值为 0。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rotation</pt>
+                    <pd>顺时针旋转角度，可设置为 0、90、180 或 270，默认值为 0。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>alphaStitchMode</pt>
+                    <pd>视频帧包含 Alpha 通道数据时，表示 <codeph>alphaBuffer</codeph> 与视频帧的相对位置，详见 <codeph>AlphaStitchMode</codeph>：
+                        <ul>
+                            <li>
+                                <codeph>ALPHA_NO_STITCH (0)</codeph>：默认，仅包含视频帧，<codeph>alphaBuffer</codeph> 未拼接。</li>
+                            <li>
+                                <codeph>ALPHA_STITCH_UP (1)</codeph>：<codeph>alphaBuffer</codeph> 在视频帧上方。</li>
+                            <li>
+                                <codeph>ALPHA_STITCH_BELOW (2)</codeph>：<codeph>alphaBuffer</codeph> 在视频帧下方。</li>
+                            <li>
+                                <codeph>ALPHA_STITCH_LEFT (3)</codeph>：<codeph>alphaBuffer</codeph> 在视频帧左侧。</li>
+                            <li>
+                                <codeph>ALPHA_STITCH_RIGHT (4)</codeph>：<codeph>alphaBuffer</codeph> 在视频帧右侧。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>format</pt>
+                    <pd>输入视频帧的格式。该参数必须指定为以下值之一：1：I420；2：BGRA；3：NV21；4：RGBA；5：IMC2；7：ARGB；8：NV12；12：iOS 纹理（<codeph>CVPixelBufferRef</codeph>）；16：I422。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>time</pt>
+                    <pd>输入视频帧的时间戳（毫秒）。时间戳错误会导致帧丢失或音视频不同步。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>stride</pt>
+                    <pd>帧的行跨度，即相邻两行视频帧之间的像素数。单位为像素，而非字节。处理视频数据时，需根据此参数处理每行像素数据之间的偏移，否则可能导致图像失真。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>strideInPixels</pt>
+                    <pd>输入视频帧的行间距，单位为像素而非字节。对于纹理格式，该值为纹理的宽度。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>height</pt>
+                    <pd>输入视频帧的高度（像素行数）。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>textureBuf</pt>
+                    <pd>iOS 纹理的缓冲区。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>image</pt>
+                    <pd>静态图像（iPhone 上为 <codeph>UIImage</codeph>，macOS 上为 <codeph>NSImage</codeph>）。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>dataBuf</pt>
+                    <pd>原始数据缓冲区。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>alphaBuf</pt>
+                    <pd>当前帧的 Alpha 通道，与视频帧的尺寸一致。每个像素的取值范围为 [0, 255]，其中 0 表示背景，255 表示前景。默认值为 <xref keyref="NULL"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>alphaStitchMode</pt>
+                    <pd>Alpha 通道拼接模式，表示 <codeph>alphaBuf</codeph> 与视频帧的相对位置。详见 <xref keyref="ALPHA_STITCH_MODE"/>。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>cropLeft</pt>
+                    <pd>左侧裁剪的像素数。默认值为 0。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>cropTop</pt>
+                    <pd>顶部裁剪的像素数。默认值为 0。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>cropRight</pt>
+                    <pd>右侧裁剪的像素数。默认值为 0。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>cropBottom</pt>
+                    <pd>底部裁剪的像素数。默认值为 0。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>colorSpace</pt>
+                    <pd>视频帧的色彩空间配置。默认采用 Full Range 和 BT.709 标准。详见 <codeph>AgoraColorSpace</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>alphaBuf</pt>
+                    <pd>当前帧的 Alpha 通道，与视频帧的尺寸一致。每个像素的取值范围为 [0, 255]，其中 0 表示背景，255 表示前景。默认值为 <codeph>nil</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>alphaStitchMode</pt>
+                    <pd>Alpha 通道拼接模式，表示 <codeph>alphaBuf</codeph> 与视频帧的相对位置。详见 <codeph>AgoraAlphaStitchMode</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

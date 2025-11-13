@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enableinstantmediarendering">
+    <title>
+        <ph keyref="enableInstantMediaRendering"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">启用音视频帧的极速渲染。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableInstantMediaRendering"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int enableInstantMediaRendering() = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int enableInstantMediaRendering();</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)enableInstantMediaRendering NS_SWIFT_NAME(enableInstantMediaRendering());</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)enableInstantMediaRendering NS_SWIFT_NAME(enableInstantMediaRendering());</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="android cpp ios mac">
+                    <dt>自从</dt>
+                    <dd>自 v4.1.1 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">调用该方法后，SDK 会启用极速帧渲染模式，从而加快用户加入频道后首帧的渲染速度。</p>
+            <p props="android">成功调用该方法后，SDK 会启用即时帧渲染模式，从而加快用户加入频道后首帧的渲染速度。</p>
+            <p props="ios mac">调用该方法后，SDK 会启用极速帧渲染模式，从而加快你加入频道后首帧的渲染速度。</p>
+            <note props="cpp">主播和观众都需要调用该方法，才能体验音视频帧的极速渲染。如需关闭该模式，只能通过调用 <codeph>release</codeph> 销毁 <codeph>IRtcEngine</codeph> 对象。</note>
+            <note props="android">主播和观众都需要调用该方法，才能体验音视频帧的即时渲染效果。一旦成功调用该方法，只能通过调用 <xref keyref="release_ILocalSpatialAudioEngine"/> 方法销毁 <xref keyref="IRtcEngine"/> 对象来取消即时渲染。</note>
+            <note props="ios">主播和观众都需调用该方法，才能体验音视频帧的极速渲染。若需取消极速渲染，需调用 <xref keyref="release_ILocalSpatialAudioEngine"/> 方法销毁 <xref keyref="IRtcEngine"/> 对象。</note>
+            <note props="mac">主播和观众都需调用该方法，才能体验音视频帧的极速渲染。若需取消极速渲染，需调用 <codeph>destroy</codeph> 方法销毁 <codeph>AgoraRtcEngineKit</codeph> 对象。</note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="android cpp">该方法需要在加入频道前调用。</p>
+            <p props="ios mac">请在加入频道前调用该方法。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                    <li>-7：在 <codeph>IRtcEngine</codeph> 初始化之前调用了该方法。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                    <li>-7：在 <xref keyref="IRtcEngine"/> 初始化之前调用该方法。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                    <li>-7：在 <xref keyref="IRtcEngine"/> 初始化前调用该方法。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                    <li>-7：在 <codeph>AgoraRtcEngineKit</codeph> 初始化前调用该方法。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

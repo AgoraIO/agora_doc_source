@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_playerconfig_setabrsubscriptionlayer">
+    <title>
+        <ph keyref="SetAbrSubscriptionLayer"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">设置订阅媒体流的视频质量层级。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="SetAbrSubscriptionLayer"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">void SetAbrSubscriptionLayer(AbrSubscriptionLayer abr_subscription_layer, Error *err = nullptr)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void setAbrSubscriptionLayer(Constants.AbrSubscriptionLayer subscriptionLayer) throws RteException</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (void)setAbrSubscriptionLayer:(AgoraRteAbrSubscriptionLayer)layer error:(AgoraRteError * _Nullable)error;</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (void)setAbrSubscriptionLayer:(AgoraRteAbrSubscriptionLayer)layer error:(AgoraRteError * _Nullable)error;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="android cpp ios mac">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">你可以根据实际网络状况在不同的视频流质量层之间切换，每个层级对应不同的分辨率。默认情况下，调用该方法后，观众只能在 <codeph>kRteAbrSubscriptionHigh</codeph> 和 <codeph>kRteAbrSubscriptionLow</codeph> 两个视频质量层之间切换。如果你对分辨率切换有更高要求，可以联系技术支持开启 ABR（自适应码率）功能。开启后，你可以自定义每个视频质量层的分辨率，观众可根据需要在所有视频质量层之间切换。详细实现方式详见 <codeph>Audience-side URL streaming</codeph>。</p>
+            <p props="android">你可以根据实际网络状况，在不同分辨率的视频质量等级之间切换所订阅的视频流。默认情况下，调用该方法后，观众只能在 <codeph>HIGH</codeph> 和 <codeph>LOW</codeph> 两个视频质量等级之间切换。如果你需要更高级的视频分辨率切换控制，可以联系技术支持开启 ABR（Adaptive Bitrate，自适应码率）功能。开启后，你可以为每个视频质量等级自定义分辨率，使观众可以根据需要在多质量层级视频流的所有等级之间切换。详见 <codeph>Viewer-side URL Media Pull</codeph>。
+
+适用场景：在网络环境不稳定的情况下，观众可以根据实际网络状况选择合适的视频质量等级，以确保流畅的观看体验。</p>
+            <p props="ios mac">你可以根据实际的网络状况，在多质量层级视频流中切换不同的视频质量层级，每个层级对应不同的分辨率。默认情况下，调用该方法后，观众只能在高、低两个视频流之间切换，即 <codeph>AgoraRteAbrSubscriptionHigh</codeph> 和 <codeph>AgoraRteAbrSubscriptionLow</codeph>。如果你需要更高级的分辨率切换功能，可以联系技术支持开启 ABR（自适应码率）功能。开启后，你可以自定义每个视频质量层级的分辨率，观众可以根据需要在所有可用的视频质量层级之间切换。适用场景：在网络不稳定的环境下，观众可以根据当前网络状况选择合适的视频质量等级，以保证流畅的观看体验。</p>
+            <note props="cpp">如果在调用该方法时未开启 ABR 功能，则订阅的视频质量层只能为 <codeph>kRteAbrSubscriptionHigh</codeph> 或 <codeph>kRteAbrSubscriptionLow</codeph>。</note>
+            <note props="ios mac">如果在调用该方法时未开启 ABR 功能，订阅的视频质量层级只能设置为 <codeph>AgoraRteAbrSubscriptionHigh</codeph> 或 <codeph>AgoraRteAbrSubscriptionLow</codeph>。</note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="cpp">该方法必须在调用 <codeph>SetConfigs</codeph> 之前调用。</p>
+            <p props="android">必须在调用 <codeph>setConfigs</codeph> 之前调用该方法。</p>
+            <p props="ios mac">你必须在调用 <codeph>setConfigs:error:</codeph> 之前调用该方法。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>abr_subscription_layer</pt>
+                    <pd>要订阅的视频质量层，详见 <codeph>RteAbrSubscriptionLayer</codeph>。当自定义 <codeph>kRteAbrSubscriptionLayer1</codeph> 到 <codeph>kRteAbrSubscriptionLayer6</codeph> 的分辨率时，可参考下表或根据实际需求设置：
+                        <ul>
+                            <li>
+                                <simpletable>
+                                    <sthead>
+                                        <stentry>视频质量层</stentry>
+                                        <stentry>分辨率</stentry>
+                                    </sthead>
+                                    <strow>
+                                        <stentry>
+                                            <codeph>kRteAbrSubscriptionLayer1</codeph></stentry>
+                                        <stentry>2160p (4K)</stentry>
+                                    </strow>
+                                    <strow>
+                                        <stentry>
+                                            <codeph>kRteAbrSubscriptionLayer2</codeph></stentry>
+                                        <stentry>1440p (2K)</stentry>
+                                    </strow>
+                                    <strow>
+                                        <stentry>
+                                            <codeph>kRteAbrSubscriptionLayer3</codeph></stentry>
+                                        <stentry>1080p (HD)</stentry>
+                                    </strow>
+                                    <strow>
+                                        <stentry>
+                                            <codeph>kRteAbrSubscriptionLayer4</codeph></stentry>
+                                        <stentry>720p (HD)</stentry>
+                                    </strow>
+                                    <strow>
+                                        <stentry>
+                                            <codeph>kRteAbrSubscriptionLayer5</codeph></stentry>
+                                        <stentry>540p (SD)</stentry>
+                                    </strow>
+                                    <strow>
+                                        <stentry>
+                                            <codeph>kRteAbrSubscriptionLayer6</codeph></stentry>
+                                        <stentry>480p (SD)</stentry>
+                                    </strow>
+                                </simpletable>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>err</pt>
+                    <pd>输出参数，状态或错误信息，详见 <codeph>Error</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>subscriptionLayer</pt>
+                    <pd>要订阅的视频质量等级，详见 <xref keyref="RteAbrSubscriptionLayer"/>。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>layer</pt>
+                    <pd>
+                        <simpletable>
+                            <sthead>
+                                <stentry>视频质量层级</stentry>
+                                <stentry>分辨率</stentry>
+                            </sthead>
+                            <strow>
+                                <stentry>
+                                    <codeph>AgoraRteAbrSubscriptionLayer1</codeph></stentry>
+                                <stentry>2160p (4K)</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>
+                                    <codeph>AgoraRteAbrSubscriptionLayer2</codeph></stentry>
+                                <stentry>1440p (2K)</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>
+                                    <codeph>AgoraRteAbrSubscriptionLayer3</codeph></stentry>
+                                <stentry>1080p (HD)</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>
+                                    <codeph>AgoraRteAbrSubscriptionLayer4</codeph></stentry>
+                                <stentry>720p (HD)</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>
+                                    <codeph>AgoraRteAbrSubscriptionLayer5</codeph></stentry>
+                                <stentry>540p (SD)</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>
+                                    <codeph>AgoraRteAbrSubscriptionLayer6</codeph></stentry>
+                                <stentry>480p (SD)</stentry>
+                            </strow>
+                        </simpletable>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>error</pt>
+                    <pd>状态或错误信息。详见 <xref keyref="Error"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>error</pt>
+                    <pd>状态或错误信息。详见 <codeph>AgoraRteError</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

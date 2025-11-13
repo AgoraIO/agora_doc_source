@@ -1,0 +1,158 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_spatialaudiozone">
+    <title>
+        <ph keyref="SpatialAudioZone"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">用于配置隔音区域。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct SpatialAudioZone {
+  int zoneSetId;
+  float position[3];
+  float forward[3];
+  float right[3];
+  float up[3];
+  float forwardLength;
+  float rightLength;
+  float upLength;
+  float audioAttenuation;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class SpatialAudioZone {
+  public int zoneSetId;
+  public float[] position;
+  public float[] forward;
+  public float[] right;
+  public float[] up;
+  public float forwardLength;
+  public float rightLength;
+  public float upLength;
+  public float audioAttenuation;
+}</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraSpatialAudioZone : NSObject
+@property(assign, nonatomic) NSInteger zoneSetId;
+@property(nonatomic) simd_float3 position;
+@property(nonatomic) simd_float3 forward;
+@property(nonatomic) simd_float3 right;
+@property(nonatomic) simd_float3 up;
+@property(assign, nonatomic) float forwardLength;
+@property(assign, nonatomic) float rightLength;
+@property(assign, nonatomic) float upLength;
+@property(assign, nonatomic) float audioAttenuation;
+@end</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraSpatialAudioZone : NSObject
+@property(assign, nonatomic) NSInteger zoneSetId;
+@property(nonatomic) simd_float3 position;
+@property(nonatomic) simd_float3 forward;
+@property(nonatomic) simd_float3 right;
+@property(nonatomic) simd_float3 up;
+@property(assign, nonatomic) float forwardLength;
+@property(assign, nonatomic) float rightLength;
+@property(assign, nonatomic) float upLength;
+@property(assign, nonatomic) float audioAttenuation;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>属性</title>
+            <parml>
+                <plentry props="android cpp ios mac">
+                    <pt>zoneSetId</pt>
+                    <pd>隔音区域的 ID。</pd>
+                </plentry>
+                <plentry props="cpp ios mac">
+                    <pt>position</pt>
+                    <pd>隔音区域的空间中心点。该参数为长度为 3 的数组，三个值依次表示前、右、上的坐标。</pd>
+                </plentry>
+                <plentry props="cpp ios mac">
+                    <pt>forward</pt>
+                    <pd>从 <codeph>position</codeph> 开始的前向单位向量。该参数为长度为 3 的数组，三个值依次表示前、右、上的坐标。</pd>
+                </plentry>
+                <plentry props="cpp ios mac">
+                    <pt>right</pt>
+                    <pd>从 <codeph>position</codeph> 开始的右向单位向量。该参数为长度为 3 的数组，三个值依次表示前、右、上的坐标。</pd>
+                </plentry>
+                <plentry props="cpp ios mac">
+                    <pt>up</pt>
+                    <pd>从 <codeph>position</codeph> 开始的上向单位向量。该参数为长度为 3 的数组，三个值依次表示前、右、上的坐标。</pd>
+                </plentry>
+                <plentry props="cpp ios mac">
+                    <pt>forwardLength</pt>
+                    <pd>将整个隔音区域视为一个立方体，该参数表示前向边的长度，单位为游戏引擎的单位长度。</pd>
+                </plentry>
+                <plentry props="cpp ios mac">
+                    <pt>rightLength</pt>
+                    <pd>将整个隔音区域视为一个立方体，该参数表示右向边的长度，单位为游戏引擎的单位长度。</pd>
+                </plentry>
+                <plentry props="cpp ios mac">
+                    <pt>upLength</pt>
+                    <pd>将整个隔音区域视为一个立方体，该参数表示上向边的长度，单位为游戏引擎的单位长度。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>audioAttenuation</pt>
+                    <pd>当隔音区域内的用户与外部用户通信时的声音衰减系数。取值范围为 [0, 1]。具体取值说明如下：
+                        <ul>
+                            <li>0：广播模式，音量和音色不随距离衰减，本地用户听到的音量和音色不随距离变化；</li>
+                            <li>(0, 0.5)：弱衰减模式，即音量和音色在传播过程中仅有轻微衰减，声音传播距离大于真实环境；</li>
+                            <li>0.5：模拟真实环境中的音量衰减效果，等效于未设置 <codeph>audioAttenuation</codeph> 参数；</li>
+                            <li>(0.5, 1]：强衰减模式（默认值为 1），即音量和音色在传播过程中快速衰减。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>position</pt>
+                    <pd>隔音区域的空间中心点。该参数为一个长度为 3 的数组，三个值依次表示前、右、上方向上的坐标。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>forward</pt>
+                    <pd>从 <codeph>position</codeph> 出发的前向单位向量。该参数为一个长度为 3 的数组，三个值依次表示前、右、上方向上的坐标。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>right</pt>
+                    <pd>从 <codeph>position</codeph> 出发的右向单位向量。该参数为一个长度为 3 的数组，三个值依次表示前、右、上方向上的坐标。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>up</pt>
+                    <pd>从 <codeph>position</codeph> 出发的上向单位向量。该参数为一个长度为 3 的数组，三个值依次表示前、右、上方向上的坐标。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>forwardLength</pt>
+                    <pd>将整个隔音区域视为一个立方体，该参数表示沿前向的边长，单位为游戏引擎的单位长度。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rightLength</pt>
+                    <pd>将整个隔音区域视为一个立方体，该参数表示沿右向的边长，单位为游戏引擎的单位长度。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>upLength</pt>
+                    <pd>将整个隔音区域视为一个立方体，该参数表示沿上向的边长，单位为游戏引擎的单位长度。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>audioAttenuation</pt>
+                    <pd>当隔音区域内用户与外部用户通信时的声音衰减系数。取值范围为 [0, 1]。具体取值说明如下：
+                        <ul>
+                            <li>0：广播模式，音量和音色不随距离衰减，近距离和远距离听感一致。</li>
+                            <li>(0, 0.5)：弱衰减模式，即声音在传播过程中音量和音色仅略微衰减，可传播距离远于现实环境。</li>
+                            <li>0.5：（默认值）模拟真实环境中的音量衰减。</li>
+                            <li>(0.5, 1]：强衰减模式，即音量和音色在传播过程中迅速衰减。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>audioAttenuation</pt>
+                    <pd>当隔音区域内的用户与外部用户通信时的声音衰减系数。取值范围为 [0, 1]，具体如下：
+                        <ul>
+                            <li>0：广播模式，音量和音色不随距离衰减，本地用户听到的音量和音色始终不变。</li>
+                            <li>(0, 0.5)：弱衰减模式，音量和音色在传播过程中仅有轻微衰减，声音传播距离大于真实环境。</li>
+                            <li>0.5：（默认）模拟真实环境中的音量衰减效果，等效于未设置 <codeph>audioAttenuation</codeph> 参数。</li>
+                            <li>(0.5, 1]：强衰减模式，音量和音色在传播过程中快速衰减。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

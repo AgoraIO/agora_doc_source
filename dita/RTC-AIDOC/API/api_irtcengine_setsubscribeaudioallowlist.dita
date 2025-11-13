@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setsubscribeaudioallowlist">
+    <title>
+        <ph keyref="setSubscribeAudioAllowlist"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">设置音频流订阅的白名单。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setSubscribeAudioAllowlist"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setSubscribeAudioAllowlist(uid_t* uidList, int uidNumber) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setSubscribeAudioAllowlist(int[] uidList);</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)setSubscribeAudioAllowlist:(NSArray &lt;NSNumber *&gt; *_Nonnull)allowlist NS_SWIFT_NAME(setSubscribeAudioAllowlist(_:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)setSubscribeAudioAllowlist:(NSArray &lt;NSNumber *&gt; *_Nonnull)allowlist NS_SWIFT_NAME(setSubscribeAudioAllowlist(_:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="ios mac">你可以调用此方法来指定希望订阅的用户的音频流。</p>
+            <note props="cpp">
+                <ul>
+                    <li>你可以在加入频道前或加入频道后调用此方法。</li>
+                    <li>白名单不受 <codeph>ChannelMediaOptions</codeph> 中 <codeph>muteRemoteAudioStream</codeph>、<codeph>muteAllRemoteAudioStreams</codeph> 和 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
+                    <li>一旦设置了订阅白名单，即使你离开当前频道并重新加入频道，该设置仍然有效。</li>
+                    <li>如果某个用户同时被加入白名单和黑名单，则仅黑名单生效。</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>你可以在加入频道前或加入频道后调用此方法。</li>
+                    <li>白名单不受 <xref keyref="ChannelMediaOptions"/> 中 <xref keyref="muteRemoteAudioStream"/>、<xref keyref="muteAllRemoteAudioStreams"/> 和 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
+                    <li>一旦设置了订阅白名单，即使你离开当前频道并重新加入频道，该设置仍然有效。</li>
+                    <li>如果某个用户同时被添加到白名单和黑名单中，则仅黑名单生效。</li>
+                </ul>
+            </note>
+            <note props="ios">
+                <ul>
+                    <li>你可以在加入频道之前或之后调用此方法。</li>
+                    <li>白名单不受 <xref keyref="muteRemoteAudioStream"/>、<xref keyref="muteAllRemoteAudioStreams"/> 和 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
+                    <li>一旦设置了订阅白名单，即使你离开当前频道并重新加入频道，该设置仍然有效。</li>
+                    <li>如果某个用户同时被添加到白名单和黑名单中，则仅黑名单生效。</li>
+                </ul>
+            </note>
+            <note props="mac">
+                <ul>
+                    <li>你可以在加入频道之前或之后调用此方法。</li>
+                    <li>白名单不受 <codeph>muteRemoteAudioStream:mute:</codeph>、<codeph>muteAllRemoteAudioStreams:</codeph> 和 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
+                    <li>一旦设置了订阅白名单，即使你离开当前频道并重新加入频道，该设置仍然有效。</li>
+                    <li>如果某个用户同时被添加到白名单和黑名单中，则仅黑名单生效。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>uidList</pt>
+                    <pd>你希望订阅的用户 ID 列表。如果你想订阅某个用户的音频流，请将该用户的用户 ID 添加到该列表中。如果你想将某个用户从白名单中移除，需要调用 <codeph>setSubscribeAudioAllowlist</codeph> 方法更新该列表，即仅保留你希望订阅的用户 ID。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>uidNumber</pt>
+                    <pd>用户 ID 列表中的用户数量。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uidList</pt>
+                    <pd>希望订阅音频流的用户 ID 列表。
+                        <ul>
+                            <li>如果希望订阅某个用户的音频流，请将该用户的 ID 添加到该列表中。</li>
+                            <li>如果希望将某个用户从白名单中移除，需要调用 <xref keyref="setSubscribeAudioAllowlist"/> 方法更新用户 ID 列表，即仅在新的列表中保留希望继续订阅的用户 ID。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>allowlist</pt>
+                    <pd>希望订阅的用户的用户 ID 列表。如果希望订阅某个用户的音频流，请将该用户的 ID 添加到该列表中。如果希望将某个用户从白名单中移除，需要调用 <xref keyref="setSubscribeAudioAllowlist"/> 方法更新用户 ID 列表；也就是说，只需在新的用户 ID 列表中添加希望订阅的用户的 <codeph>uid</codeph>。详见 <codeph>NSArray</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>allowlist</pt>
+                    <pd>希望订阅的用户的用户 ID 列表。如果希望订阅某个用户的音频流，请将该用户的 ID 添加到该列表中。如果希望将某个用户从白名单中移除，需要调用 <codeph>setSubscribeAudioAllowlist:</codeph> 方法更新用户 ID 列表；也就是说，只需在新的用户 ID 列表中添加希望订阅的用户的 <codeph>uid</codeph>。详见 <codeph>NSArray</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="android cpp ios mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

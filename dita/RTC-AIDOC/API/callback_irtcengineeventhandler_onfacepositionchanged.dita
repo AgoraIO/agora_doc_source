@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onfacepositionchanged">
+    <title>
+        <ph keyref="onFacePositionChanged"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">上报本地用户的人脸检测结果。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onFacePositionChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onFacePositionChanged(int imageWidth, int imageHeight, const Rectangle* vecRectangle, const int* vecDistance, int numFaces)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onFacePositionChanged(int imageWidth, int imageHeight, AgoraFacePositionInfo[] faceRectArr)</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine facePositionDidChangeWidth:(int)width previewHeight:(int)height faces:(NSArray&lt;AgoraFacePositionInfo*&gt;* _Nullable)faces  NS_SWIFT_NAME(rtcEngine(_:facePositionDidChangeWidth:previewHeight:faces:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine facePositionDidChangeWidth:(int)width previewHeight:(int)height faces:(NSArray&lt;AgoraFacePositionInfo*&gt;* _Nullable)faces  NS_SWIFT_NAME(rtcEngine(_:facePositionDidChangeWidth:previewHeight:faces:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="ios mac">
+                    <dt>自从</dt>
+                    <dd>自 v3.0.1 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">调用 <codeph>enableFaceDetection</codeph> 启用人脸检测后，你可以实时获取以下本地用户的信息：
+                <ul>
+                    <li>本地视频的宽度和高度。</li>
+                    <li>人脸在本地视图中的位置。</li>
+                    <li>人脸与屏幕之间的距离。
+该距离值基于本地视频尺寸和人脸位置的拟合计算得出。</li>
+                </ul>
+            </p>
+            <p props="android">调用 <codeph>enableFaceDetection(true)</codeph> 启用人脸检测功能后，你可以实时获取以下信息：
+                <ul>
+                    <li>本地视频的宽度和高度。</li>
+                    <li>人脸在本地视图中的位置。</li>
+                    <li>人脸与屏幕之间的距离。该距离值基于本地视频尺寸和人脸位置的拟合计算得出。</li>
+                </ul>
+            </p>
+            <p props="ios">调用 <xref keyref="enableFaceDetection"/> 传入 <xref keyref="true"/> 启用人脸检测后，你可以实时获取本地用户的以下信息：
+                <ul>
+                    <li>本地视频的宽度和高度。</li>
+                    <li>人脸在本地视图中的位置。</li>
+                    <li>人脸与屏幕之间的距离。
+该距离值是基于本地视频尺寸和人脸位置的拟合计算结果。</li>
+                </ul>
+            </p>
+            <p props="mac">调用 <codeph>enableFaceDetection:</codeph> 传入 <codeph>YES</codeph> 启用人脸检测后，你可以实时获取本地用户的以下信息：
+                <ul>
+                    <li>本地视频的宽度和高度。</li>
+                    <li>人脸在本地视图中的位置。</li>
+                    <li>人脸与屏幕之间的距离。
+该距离值是基于本地视频尺寸和人脸位置的拟合计算结果。</li>
+                </ul>
+            </p>
+            <note props="cpp">
+                <ul>
+                    <li>该回调仅适用于 Android 和 iOS 平台。</li>
+                    <li>当检测到摄像头前的人脸消失时，会立即触发该回调。当未检测到人脸时，为降低本地设备功耗，该回调的触发频率会降低。</li>
+                    <li>当人脸靠近屏幕时，SDK 会停止触发该回调。</li>
+                    <li>在 Android 平台，该回调中上报的距离值可能与实际距离存在偏差，因此声网不建议将其用于精确计算。</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>当检测到摄像头前的人脸消失时，会立即触发该回调。当未检测到人脸时，为降低本地设备的功耗，该回调的触发频率会降低。</li>
+                    <li>当人脸靠近屏幕时，SDK 会停止触发该回调。</li>
+                    <li>在 Android 平台，该回调中上报的距离值可能与实际距离略有偏差，因此不建议用于精确计算。</li>
+                </ul>
+            </note>
+            <note props="ios mac">
+                <ul>
+                    <li>当检测到摄像头前的人脸消失时，会立即触发该回调。当未检测到人脸时，为降低本地设备的功耗，该回调的触发频率会降低。</li>
+                    <li>当人脸靠近屏幕时，SDK 会停止触发该回调。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>触发时机</title>
+            <p props="cpp">当检测到人脸位置变化时触发。</p>
+            <p props="ios mac">该回调在检测到人脸位置或数量发生变化时被触发。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>使用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>imageWidth</pt>
+                    <pd>本地摄像头采集的视频图像的宽度（像素）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>imageHeight</pt>
+                    <pd>本地摄像头采集的视频图像的高度（像素）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>vecRectangle</pt>
+                    <pd>长度为 <codeph>numFaces</codeph> 的数组，表示检测到的人脸信息：
+                        <ul>
+                            <li>
+                                <codeph>x</codeph>：人脸在本地视图中的 x 坐标（像素），以视图左上角为原点，表示人脸相对于原点的水平位置。</li>
+                            <li>
+                                <codeph>y</codeph>：人脸在本地视图中的 y 坐标（像素），以视图左上角为原点，表示人脸相对于原点的垂直位置。</li>
+                            <li>
+                                <codeph>width</codeph>：人脸在捕获视图中的宽度（像素）。</li>
+                            <li>
+                                <codeph>height</codeph>：人脸在捕获视图中的高度（像素）。详见 <codeph>Rectangle</codeph>。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>vecDistance</pt>
+                    <pd>长度为 <codeph>numFaces</codeph> 的数组，表示每张人脸与设备屏幕之间的距离（厘米）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>numFaces</pt>
+                    <pd>检测到的人脸数量。若为 0，表示未检测到人脸。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>imageWidth</pt>
+                    <pd>本地摄像头采集的视频图像的宽度（单位为像素）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>imageHeight</pt>
+                    <pd>本地摄像头采集的视频图像的高度（单位为像素）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>faceRectArr</pt>
+                    <pd>检测到的人脸信息。该数组的长度取决于检测到的人脸数量，可能为 0，表示摄像头前未检测到人脸。详见 <xref keyref="AgoraFacePositionInfo"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>engine</pt>
+                    <pd>
+                        <xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>width</pt>
+                    <pd>本地摄像头采集的视频图像的宽度（像素）。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>height</pt>
+                    <pd>本地摄像头采集的视频图像的高度（像素）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>faces</pt>
+                    <pd>检测到的人脸信息，详见 <xref keyref="AgoraFacePositionInfo"/>。该回调中返回的 <xref keyref="AgoraFacePositionInfo"/> 数组数量取决于检测到的人脸数量。数组长度可能为 0，表示摄像头前未检测到人脸。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd>
+                        <codeph>AgoraRtcEngineKit</codeph> 对象。详见 <codeph>AgoraRtcEngineKit</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>faces</pt>
+                    <pd>检测到的人脸信息，详见 <codeph>AgoraFacePositionInfo</codeph>。该回调中返回的 <codeph>AgoraFacePositionInfo</codeph> 数组数量取决于检测到的人脸数量。数组长度可能为 0，表示摄像头前未检测到人脸。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

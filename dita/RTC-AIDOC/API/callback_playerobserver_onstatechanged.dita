@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_playerobserver_onstatechanged">
+    <title>
+        <ph keyref="onStateChanged"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">播放器状态发生变化时触发的回调。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onStateChanged(STREAMING_SRC_STATE state, STREAMING_SRC_ERR err_code) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onStateChanged(int old_state, int new_state, Error error)</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (void)onStateChanged:(AgoraRtePlayerState)oldState newState:(AgoraRtePlayerState)newState error:(AgoraRteError * _Nullable)error;</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (void)onStateChanged:(AgoraRtePlayerState)oldState newState:(AgoraRtePlayerState)newState error:(AgoraRteError * _Nullable)error;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="android cpp ios mac">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">如果你需要监听播放器状态的变化，必须先调用 <codeph>RegisterObserver</codeph> 注册播放器观察者对象。</p>
+            <p props="android">如果你需要监听播放器状态的变化，必须先调用 <codeph>registerObserver</codeph> 注册播放器观察者对象。</p>
+            <p props="ios mac">如果你需要监听播放器状态的变化，必须先调用 <codeph>registerObserver:error:</codeph> 方法注册播放器观察者对象。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>触发时机</title>
+            <p props="cpp">当播放器状态发生变化时，SDK 会触发该回调以报告当前状态和之前的状态。</p>
+            <p props="android">该回调在播放器状态发生变化时被触发。</p>
+            <p props="ios mac">该回调在播放器状态发生变化时被触发，用于报告当前状态和之前的状态。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>使用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>state</pt>
+                    <pd>变更后的播放状态，详见 <codeph>STREAMING_SRC_STATE</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>err_code</pt>
+                    <pd>错误码，详见 <codeph>STREAMING_SRC_ERR</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>old_state</pt>
+                    <pd>变更前的播放器状态。详见 <xref keyref="RtePlayerState"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>new_state</pt>
+                    <pd>当前的播放器状态。详见 <xref keyref="RtePlayerState"/>。如果当前状态为 <codeph>FAILED</codeph>，你可以通过 <xref keyref="Error"/> 参数获取详细的错误信息。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>error</pt>
+                    <pd>状态或错误信息。详见 <xref keyref="Error"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>oldState</pt>
+                    <pd>变更前的播放器状态，详见 <xref keyref="RtePlayerState"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>newState</pt>
+                    <pd>当前的播放器状态，详见 <xref keyref="RtePlayerState"/>。如果当前状态为 <codeph>AgoraRtePlayerStateFailed</codeph>，你可以通过 <codeph>error</codeph> 参数获取详细的错误信息。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>error</pt>
+                    <pd>状态或错误信息，详见 <xref keyref="Error"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>oldState</pt>
+                    <pd>变更前的播放器状态，详见 <codeph>AgoraRtePlayerState</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>newState</pt>
+                    <pd>当前的播放器状态，详见 <codeph>AgoraRtePlayerState</codeph>。如果当前状态为 <codeph>AgoraRtePlayerStateFailed</codeph>，你可以通过 <codeph>error</codeph> 参数获取详细的错误信息。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>error</pt>
+                    <pd>状态或错误信息，详见 <codeph>AgoraRteError</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

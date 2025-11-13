@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setexternalremoteeglcontext">
+    <title>
+        <ph keyref="setExternalRemoteEglContext"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">设置用于渲染远端视频流的 `EGL` 上下文。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setExternalRemoteEglContext"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setExternalRemoteEglContext(void* eglContext) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setExternalRemoteEglContext(Object eglContext);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">该方法用于替换 SDK 默认的远端 <codeph>EGL</codeph> 上下文，便于你自行管理 <codeph>EGL</codeph> 上下文。当引擎被销毁时，SDK 会自动释放该上下文。</p>
+            <p props="android">该方法用于替换 SDK 默认的远端 EGL 上下文，便于你自行管理 EGL 上下文。当引擎销毁时，SDK 会自动释放该上下文。该方法适用于使用自定义渲染方式（如 Texture 格式）替代 SDK 默认渲染方式渲染远端视频帧的场景。</p>
+            <note props="cpp">该方法仅适用于 Android 平台。</note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="android cpp">请在加入频道前调用该方法。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>eglContext</pt>
+                    <pd>用于渲染远端视频流的 <codeph>EGL</codeph> 上下文。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>eglContext</pt>
+                    <pd>用于渲染远端视频流的 EGL 上下文。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="android cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

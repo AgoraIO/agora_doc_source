@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_audioframe">
+    <title>
+        <ph keyref="AudioFrame"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">用于描述原始音频帧数据。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct AudioFrame {
+AUDIO_FRAME_TYPE type;
+int samplesPerChannel;
+agora::rtc::BYTES_PER_SAMPLE bytesPerSample;
+int channels;
+int samplesPerSec;
+void* buffer;
+int64_t renderTimeMs;
+int avsync_type;
+int64_t presentationMs;
+int audioTrackNumber;
+uint32_t rtpTimestamp;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class AudioFrame {
+  public ByteBuffer buffer;
+  public int sampleRataHz;
+  public int bytesPerSample;
+  public int channelNums;
+  public int samplesPerChannel;
+  public long timestamp;
+}</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioFrame : NSObject
+@property(assign, nonatomic) NSInteger samplesPerChannel;
+@property(assign, nonatomic) NSInteger bytesPerSample;
+@property(assign, nonatomic) NSInteger channels;
+@property(assign, nonatomic) NSInteger samplesPerSec;
+@property(assign, nonatomic) void* _Nullable buffer;
+@property(assign, nonatomic) int64_t renderTimeMs;
+@property(assign, nonatomic) int64_t presentationMs;
+@property(assign, nonatomic) NSInteger avSyncType;
+@property(assign, nonatomic) uint32_t rtpTimestamp;
+@end</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioFrame : NSObject
+@property(assign, nonatomic) NSInteger samplesPerChannel;
+@property(assign, nonatomic) NSInteger bytesPerSample;
+@property(assign, nonatomic) NSInteger channels;
+@property(assign, nonatomic) NSInteger samplesPerSec;
+@property(assign, nonatomic) void* _Nullable buffer;
+@property(assign, nonatomic) int64_t renderTimeMs;
+@property(assign, nonatomic) int64_t presentationMs;
+@property(assign, nonatomic) NSInteger avSyncType;
+@property(assign, nonatomic) uint32_t rtpTimestamp;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>type</pt>
+                    <pd>音频帧的类型。详见 <codeph>AUDIO_FRAME_TYPE</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>samplesPerChannel</pt>
+                    <pd>每个声道中的采样点数量。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>bytesPerSample</pt>
+                    <pd>每个采样点的字节数。对于 PCM，通常为 16 位（2 字节）。详见 <codeph>BYTES_PER_SAMPLE</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>channels</pt>
+                    <pd>音频通道数（立体声时为交错格式）。
+                        <ul>
+                            <li>1：单声道。</li>
+                            <li>2：立体声。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>samplesPerSec</pt>
+                    <pd>每个声道的采样率（每秒采样数）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>buffer</pt>
+                    <pd>输出参数，表示音频帧的数据缓冲区。当使用立体声通道时，数据为交错格式。缓冲区大小计算方式为：samples × channels × bytesPerSample。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>renderTimeMs</pt>
+                    <pd>外部音频帧的时间戳（毫秒）。你可以使用该时间戳恢复采集顺序，并在视频场景中与视频帧同步，包括使用自定义视频源的场景。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>avsync_type</pt>
+                    <pd>保留参数，供未来使用。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>presentationMs</pt>
+                    <pd>该音频帧的 PTS 时间戳，用于指示帧的原始 PTS 时间，并通过该时间戳与视频帧同步。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>audioTrackNumber</pt>
+                    <pd>音频轨道编号。</pd>
+                </plentry>
+                <plentry props="cpp ios mac">
+                    <pt>rtpTimestamp</pt>
+                    <pd>音频帧中第一个采样点的 RTP 时间戳。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>buffer</pt>
+                    <pd>音频帧的数据缓冲区。当音频帧使用立体声通道时，数据缓冲区为交叉存储。缓冲区大小计算方式为：<codeph>buffer</codeph> = <codeph>samples</codeph> × <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sampleRataHz</pt>
+                    <pd>音频帧中每个声道的采样率（单位为 Hz）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>bytesPerSample</pt>
+                    <pd>每个采样的字节数。对于 PCM 数据，通常为 16 位（2 字节）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>channelNums</pt>
+                    <pd>音频通道数（立体声时为交叉存储）。
+                        <ul>
+                            <li>1：单声道。</li>
+                            <li>2：立体声。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>samplesPerChannel</pt>
+                    <pd>音频帧中每个声道的采样数。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>timestamp</pt>
+                    <pd>音频帧的时间戳（单位：毫秒）。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>samplesPerChannel</pt>
+                    <pd>音频帧中每个声道的采样点数。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>bytesPerSample</pt>
+                    <pd>每个采样点的字节数。对于 PCM，此参数通常设置为 16 位（2 字节）。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>channels</pt>
+                    <pd>音频声道数（如果为立体声，则数据交错排列）。
+                        <ul>
+                            <li>1：单声道。</li>
+                            <li>2：立体声。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>samplesPerSec</pt>
+                    <pd>音频帧中每个声道的采样率。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>buffer</pt>
+                    <pd>音频帧的数据缓冲区。当音频帧使用立体声道时，数据缓冲区为交错格式。缓冲区大小为：<codeph>buffer</codeph> = <codeph>samples</codeph> × <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>renderTimeMs</pt>
+                    <pd>外部音频帧的时间戳（毫秒）。你可以使用该时间戳恢复采集音频帧的顺序，并在视频场景中同步音频和视频帧，包括使用自定义视频源的场景。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>avSyncType</pt>
+                    <pd>预留参数，供未来使用。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

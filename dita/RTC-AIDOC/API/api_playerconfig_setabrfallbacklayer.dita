@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_playerconfig_setabrfallbacklayer">
+    <title>
+        <ph keyref="SetAbrFallbackLayer"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">设置已订阅视频流的回退质量层。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="SetAbrFallbackLayer"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">void SetAbrFallbackLayer(AbrFallbackLayer abr_fallback_layer, Error *err = nullptr)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void setAbrFallbackLayer(Constants.AbrFallbackLayer fallbackLayer) throws RteException</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (void)setAbrFallbackLayer:(AgoraRteAbrFallbackLayer)layer error:(AgoraRteError * _Nullable)error;</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (void)setAbrFallbackLayer:(AgoraRteAbrFallbackLayer)layer error:(AgoraRteError * _Nullable)error;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="android cpp ios mac">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">在网络状况较差时，SDK 会将视频流的分辨率降级为指定的回退质量层，以保证音视频的流畅性。不同的质量层对应不同的分辨率和码率。网络恢复后，SDK 会自动将视频恢复为订阅的质量层。
+默认情况下，仅支持回退到 <codeph>kRteAbrFallbackLow</codeph> 或 <codeph>kRteAbrFallbackAudioOnly</codeph>。如需更灵活的视频体验，可联系技术支持开启 ABR 功能，启用后可回退到任意质量层，并自定义每一层的分辨率。
+适用场景：
+                <ul>
+                    <li>一般场景下，可设置回退质量层为 <codeph>kRteAbrFallbackLow</codeph> 或 <codeph>kRteAbrFallbackAudioOnly</codeph>，在网络较差时回退到低质量视频或仅接收音频。</li>
+                    <li>若对回退视频的分辨率有更高要求，可联系技术支持开启 ABR 功能，启用后可自定义每一层的分辨率。SDK 会以你设置的最低质量层为下限，根据网络状况动态调整分辨率。</li>
+                </ul>
+            </p>
+            <p props="android">调用该方法后，当网络变差时，SDK 会将视频流的分辨率降级到指定的质量层级。每个视频质量层级对应特定的分辨率和码率。SDK 会持续监测网络状况，在网络改善时将已订阅的远端视频流恢复到原始质量层级。
+默认情况下，只能设置回退到 <codeph>LOW</codeph> 或 <codeph>AUDIO_ONLY</codeph>。如需更高的视频质量层级，可联系技术支持开启 ABR 功能。开启后，可回退到多质量层级视频流的任意层级，并自定义每个层级的分辨率。
+适用场景：
+                <ul>
+                    <li>一般视频场景中，可调用该方法并将回退质量层级设置为 <codeph>LOW</codeph> 或 <codeph>AUDIO_ONLY</codeph>，当网络较差时，SDK 会将视频流降级为低质量流或仅接收音频流。</li>
+                    <li>如对回退视频流的分辨率有更高要求，可联系技术支持开启 ABR 功能。开启后，可自定义每个层级的分辨率，SDK 会根据网络状况，在你指定的最低分辨率层级起始的范围内动态调整分辨率。详见 <codeph>Audience-side URL streaming</codeph>。</li>
+                </ul>
+            </p>
+            <p props="ios mac">在网络条件较差时，实时音视频通信的质量可能会下降。调用该方法后，SDK 会在网络变差时将远端视频流的分辨率回退到指定的视频质量层级。每个视频质量层级对应特定的分辨率和码率。SDK 会持续监测网络质量，在网络改善时恢复到原始订阅的视频质量层级。
+默认情况下，调用该方法后只能选择回退到 <codeph>AgoraRteAbrFallbackLow</codeph> 或 <codeph>AgoraRteAbrFallbackAudioOnly</codeph>。如果你对视频体验有更高要求，可以联系技术支持开启 ABR 功能。开启后，可以回退到所有视频质量层级，并自定义每个层级的分辨率。
+适用场景：
+                <ul>
+                    <li>在常规场景中，可以调用该方法并将回退层级设置为 <codeph>AgoraRteAbrFallbackLow</codeph> 或 <codeph>AgoraRteAbrFallbackAudioOnly</codeph>。当网络较差时，SDK 会将远端视频流回退为低质量视频流或仅音频。</li>
+                    <li>如果对远端视频流的回退分辨率有更高要求，可以联系技术支持开启 ABR 功能。开启后，可以自定义每个层级的分辨率。SDK 会以你指定的最低质量层级的分辨率为下限，并根据网络状况在该范围内动态调整分辨率。详细实现方式可参考 Viewer-side URL Streaming。</li>
+                </ul>
+            </p>
+            <note props="android">如果在调用该方法时未开启 ABR 功能，视频流的回退质量层级只能设置为 <codeph>LOW</codeph> 或 <codeph>AUDIO_ONLY</codeph>。</note>
+            <note props="ios mac">如果未开启 ABR 功能，远端视频流的回退质量层级只能设置为 <codeph>AgoraRteAbrFallbackLow</codeph> 或 <codeph>AgoraRteAbrFallbackAudioOnly</codeph>。</note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="cpp">必须在调用 <codeph>SetConfigs</codeph> 之前调用此方法。</p>
+            <p props="android">必须在调用 <codeph>setConfigs</codeph> 之前调用该方法。</p>
+            <p props="ios mac">必须在调用 <codeph>setConfigs:error:</codeph> 之前调用该方法。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>abr_fallback_layer</pt>
+                    <pd>
+                        <simpletable>
+                            <sthead>
+                                <stentry>视频质量层</stentry>
+                                <stentry>分辨率</stentry>
+                            </sthead>
+                            <strow>
+                                <stentry>
+                                    <codeph>kRteAbrSubscriptionLayer1</codeph></stentry>
+                                <stentry>2160p (4K)</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>
+                                    <codeph>kRteAbrSubscriptionLayer2</codeph></stentry>
+                                <stentry>1440p (2K)</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>
+                                    <codeph>kRteAbrSubscriptionLayer3</codeph></stentry>
+                                <stentry>1080p (HD)</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>
+                                    <codeph>kRteAbrSubscriptionLayer4</codeph></stentry>
+                                <stentry>720p (HD)</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>
+                                    <codeph>kRteAbrSubscriptionLayer5</codeph></stentry>
+                                <stentry>540p (SD)</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>
+                                    <codeph>kRteAbrSubscriptionLayer6</codeph></stentry>
+                                <stentry>480p (SD)</stentry>
+                            </strow>
+                        </simpletable>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>err</pt>
+                    <pd>输出参数，状态或错误信息。详见 <codeph>Error</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>fallbackLayer</pt>
+                    <pd>视频流的回退质量层级。详见 <xref keyref="RteAbrFallbackLayer"/>。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>layer</pt>
+                    <pd>
+                        <simpletable>
+                            <sthead>
+                                <stentry>视频质量层级</stentry>
+                                <stentry>分辨率</stentry>
+                            </sthead>
+                            <strow>
+                                <stentry>
+                                    <codeph>AgoraRteAbrSubscriptionLayer1</codeph></stentry>
+                                <stentry>2160p (4K)</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>
+                                    <codeph>AgoraRteAbrSubscriptionLayer2</codeph></stentry>
+                                <stentry>1440p (2K)</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>
+                                    <codeph>AgoraRteAbrSubscriptionLayer3</codeph></stentry>
+                                <stentry>1080p (HD)</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>
+                                    <codeph>AgoraRteAbrSubscriptionLayer4</codeph></stentry>
+                                <stentry>720p (HD)</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>
+                                    <codeph>AgoraRteAbrSubscriptionLayer5</codeph></stentry>
+                                <stentry>540p (SD)</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>
+                                    <codeph>AgoraRteAbrSubscriptionLayer6</codeph></stentry>
+                                <stentry>480p (SD)</stentry>
+                            </strow>
+                        </simpletable>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>error</pt>
+                    <pd>状态或错误信息。详见 <xref keyref="Error"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>error</pt>
+                    <pd>状态或错误信息。详见 <codeph>AgoraRteError</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

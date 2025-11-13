@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_rtcimage">
+    <title>
+        <ph keyref="RtcImage"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">用于设置水印和背景图像属性。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">typedef struct RtcImage {
+  const char* url;
+  int x;
+  int y;
+  int width;
+  int height;
+  int zOrder;
+  double alpha;
+} RtcImage;</codeblock>
+                <codeblock props="android" outputclass="language-java">public class AgoraImage {
+  public String url;
+  public int x;
+  public int y;
+  public int width;
+  public int height;
+  public int zOrder;
+  public double alpha;
+}</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraImage : NSObject
+@property(strong, nonatomic) NSURL *_Nonnull url;
+@property(assign, nonatomic) CGRect rect;
+@property (assign, nonatomic) NSInteger zOrder;
+@property(assign, nonatomic) double alpha;
+@end</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraImage : NSObject
+@property(strong, nonatomic) NSURL *_Nonnull url;
+@property(assign, nonatomic) CGRect rect;
+@property (assign, nonatomic) NSInteger zOrder;
+@property(assign, nonatomic) double alpha;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">用于设置实时视频中水印图像和背景图像的属性。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>url</pt>
+                    <pd>图像的 HTTP/HTTPS URL 地址，最大长度为 1024 字节。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>x</pt>
+                    <pd>图像在视频帧中的 x 坐标（以视频帧左上角为原点，单位为像素）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>y</pt>
+                    <pd>图像在视频帧中的 y 坐标（以视频帧左上角为原点，单位为像素）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>width</pt>
+                    <pd>图像在视频帧中的宽度（单位为像素）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>height</pt>
+                    <pd>图像在视频帧中的高度（单位为像素）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>zOrder</pt>
+                    <pd>图像的图层索引。
+                        <ul>
+                            <li>当使用水印数组添加一个或多个水印时，必须设置为 [1, 255] 范围内的值，否则 SDK 会报错。</li>
+                            <li>其他情况下为可选，取值范围为 [0, 255]，默认值为 0。</li>
+                            <li>0 表示底层，255 表示顶层。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android cpp">
+                    <pt>alpha</pt>
+                    <pd>图像的透明度，取值范围为 [0.0, 1.0]：
+                        <ul>
+                            <li>0.0：完全透明。</li>
+                            <li>1.0：（默认）不透明。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>url</pt>
+                    <pd>实时视频中图像的 HTTP 或 HTTPS 地址。该参数的最大长度为 1024 字节。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>x</pt>
+                    <pd>图像在视频画面中的 x 坐标（以视频画面左上角为原点，单位为像素 px）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>y</pt>
+                    <pd>图像在视频画面中的 y 坐标（以视频画面左上角为原点，单位为像素 px）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>width</pt>
+                    <pd>图像在视频画面中的宽度（单位为像素 px）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>height</pt>
+                    <pd>图像在视频画面中的高度（单位为像素 px）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>zOrder</pt>
+                    <pd>图像的图层索引。
+                        <ul>
+                            <li>当使用水印数组添加一个或多个水印时，必须传入 [1, 255] 范围内的值，否则 SDK 会报错。</li>
+                            <li>在其他情况下，可选传入 [0, 255] 范围内的值，默认值为 0。</li>
+                            <li>0 表示最底层，255 表示最顶层。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>url</pt>
+                    <pd>直播视频中图像的 HTTP 或 HTTPS URL 地址。最大长度为 1024 字节。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>rect</pt>
+                    <pd>图像在视频帧中的位置和尺寸。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>zOrder</pt>
+                    <pd>水印或背景图像的图层索引。
+                        <ul>
+                            <li>当使用水印数组添加一个或多个水印时，必须设置为 [1, 255] 范围内的值，否则 SDK 会报错。</li>
+                            <li>其他情况下为可选，取值范围为 [0, 255]，默认值为 0。</li>
+                            <li>0 表示底层，255 表示顶层。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>alpha</pt>
+                    <pd>水印或背景图像的透明度。取值范围为 [0.0, 1.0]：
+                        <ul>
+                            <li>0.0：完全透明。</li>
+                            <li>1.0：（默认）不透明。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

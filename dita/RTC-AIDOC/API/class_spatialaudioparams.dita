@@ -1,0 +1,314 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_spatialaudioparams">
+    <title>
+        <ph keyref="SpatialAudioParams"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">配置空间音频参数。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct SpatialAudioParams {
+  Optional&lt;double&gt; speaker_azimuth;
+  Optional&lt;double&gt; speaker_elevation;
+  Optional&lt;double&gt; speaker_distance;
+  Optional&lt;int&gt; speaker_orientation;
+  Optional&lt;bool&gt; enable_blur;
+  Optional&lt;bool&gt; enable_air_absorb;
+  Optional&lt;double&gt; speaker_attenuation;
+  Optional&lt;bool&gt; enable_doppler;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class SpatialAudioParams {
+  public Double speaker_azimuth;
+  public Double speaker_elevation;
+  public Double speaker_distance;
+  public Integer speaker_orientation;
+  public Boolean enable_blur;
+  public Boolean enable_air_absorb;
+  public Double speaker_attenuation;
+  public Boolean enable_doppler;
+}</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraSpatialAudioParams : NSObject
+@property(assign, nonatomic) double speaker_azimuth;
+@property(assign, nonatomic) double speaker_elevation;
+@property(assign, nonatomic) double speaker_distance;
+@property(assign, nonatomic) NSInteger speaker_orientation;
+@property(assign, nonatomic) BOOL enable_blur;
+@property(assign, nonatomic) BOOL enable_air_absorb;
+@property(assign, nonatomic) double speaker_attenuation;
+@property(assign, nonatomic) BOOL enable_doppler;
+@end</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraSpatialAudioParams : NSObject
+@property(assign, nonatomic) double speaker_azimuth;
+@property(assign, nonatomic) double speaker_elevation;
+@property(assign, nonatomic) double speaker_distance;
+@property(assign, nonatomic) NSInteger speaker_orientation;
+@property(assign, nonatomic) BOOL enable_blur;
+@property(assign, nonatomic) BOOL enable_air_absorb;
+@property(assign, nonatomic) double speaker_attenuation;
+@property(assign, nonatomic) BOOL enable_doppler;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="ios mac">用于设置远端用户或媒体播放器相对于本地用户的空间音频参数。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>speaker_azimuth</pt>
+                    <pd>远端用户或媒体播放器相对于本地用户的方位角，单位为度，取值范围为 [0, 360]。
+                        <ul>
+                            <li>0：（默认）正前方。</li>
+                            <li>90：正左方。</li>
+                            <li>180：正后方。</li>
+                            <li>270：正右方。</li>
+                            <li>360：正前方。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>speaker_elevation</pt>
+                    <pd>远端用户或媒体播放器相对于本地用户的仰角，单位为度，取值范围为 [-90, 90]。
+                        <ul>
+                            <li>0：（默认）水平面无旋转。</li>
+                            <li>-90：水平面向下旋转 90 度。</li>
+                            <li>90：水平面向上旋转 90 度。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android cpp ios mac">
+                    <pt>speaker_distance</pt>
+                    <pd>远端用户或媒体播放器相对于本地用户的距离，单位为米，取值范围为 [1, 50]。默认值为 1 米。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>speaker_orientation</pt>
+                    <pd>远端用户或媒体播放器相对于本地用户的朝向角，单位为度，取值范围为 [0, 180]。
+                        <ul>
+                            <li>0：（默认）声源与听者朝向一致。</li>
+                            <li>180：声源与听者相对而立。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>enable_blur</pt>
+                    <pd>是否开启音频模糊处理：
+                        <ul>
+                            <li>
+                                <codeph>true</codeph>：开启音频模糊。</li>
+                            <li>
+                                <codeph>false</codeph>：（默认）关闭音频模糊。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>enable_air_absorb</pt>
+                    <pd>是否开启空气吸收效果，用于模拟声音在空气中传播时的衰减特性。在一定传播距离下，高频声音衰减较快，低频声音衰减较慢。
+                        <ul>
+                            <li>
+                                <codeph>true</codeph>：（默认）开启空气吸收。请确保 <codeph>speaker_attenuation</codeph> 的值不为 <codeph>0</codeph>，否则该设置不生效。</li>
+                            <li>
+                                <codeph>false</codeph>：关闭空气吸收。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>speaker_attenuation</pt>
+                    <pd>远端用户或媒体播放器的声音衰减系数，取值范围为 [0, 1]。
+                        <ul>
+                            <li>0：广播模式，音量和音色不随距离衰减，本地用户听到的音量和音色不变。</li>
+                            <li>(0, 0.5)：弱衰减模式，音量和音色在传播过程中轻微衰减，声音传播距离比真实环境更远。需同时开启 <codeph>enable_air_absorb</codeph>。</li>
+                            <li>0.5：（默认）模拟真实环境中的音量衰减效果，等效于未设置 <codeph>speaker_attenuation</codeph>。</li>
+                            <li>(0.5, 1]：强衰减模式，音量和音色在传播过程中快速衰减。需同时开启 <codeph>enable_air_absorb</codeph>。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>enable_doppler</pt>
+                    <pd>是否开启多普勒效应：当声源与接收者之间存在相对位移时，接收者听到的音调会发生变化。
+                        <ul>
+                            <li>
+                                <codeph>true</codeph>：开启多普勒效应。</li>
+                            <li>
+                                <codeph>false</codeph>：（默认）关闭多普勒效应。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android ios mac">
+                    <pt>speaker_azimuth</pt>
+                    <pd>远端用户或媒体播放器相对于本地用户的方位角，单位为度，取值范围为 [0, 360]。具体取值如下：
+                        <ul>
+                            <li>0：（默认）表示正前方。</li>
+                            <li>90：表示正左方。</li>
+                            <li>180：表示正后方。</li>
+                            <li>270：表示正右方。</li>
+                            <li>360：表示正前方。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>speaker_elevation</pt>
+                    <pd>远端用户或媒体播放器相对于本地用户的仰角，单位为度，取值范围为 [-90, 90]。具体取值如下：
+                        <ul>
+                            <li>0：（默认）表示水平平面不旋转。</li>
+                            <li>-90：表示向下旋转 90 度。</li>
+                            <li>90：表示向上旋转 90 度。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>speaker_orientation</pt>
+                    <pd>远端用户或媒体播放器相对于本地用户的朝向角度，单位为度，取值范围为 [0, 180]。具体取值如下：
+                        <ul>
+                            <li>0：（默认）表示声源和听众朝向相同。</li>
+                            <li>180：表示声源和听众面对面。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enable_blur</pt>
+                    <pd>是否开启音频模糊处理：
+                        <ul>
+                            <li>
+                                <xref keyref="true"/>：开启音频模糊处理。</li>
+                            <li>
+                                <xref keyref="false"/>：（默认）关闭音频模糊处理。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enable_air_absorb</pt>
+                    <pd>是否开启空气吸收。开启后模拟声波在空气中传播时的衰减效果，高频声音衰减更快，低频声音衰减较慢。
+                        <ul>
+                            <li>
+                                <xref keyref="true"/>：（默认）开启空气吸收。</li>
+                            <li>
+                                <xref keyref="false"/>：关闭空气吸收。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>speaker_attenuation</pt>
+                    <pd>远端用户或媒体播放器的声音衰减系数，取值范围为 [0, 1]。
+                        <ul>
+                            <li>0：广播模式，音量和音质不随距离衰减，本地用户听到的声音不因距离变化。</li>
+                            <li>(0, 0.5)：弱衰减模式，音量和音质随传播仅弱衰减，可以传播得更远。</li>
+                            <li>0.5：（默认）模拟现实环境中的音量衰减，效果等同未设置该参数。</li>
+                            <li>(0.5, 1]：强衰减模式，音量和音质随传播快速衰减。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enable_doppler</pt>
+                    <pd>是否开启多普勒效应。当声源与接收器之间存在相对位移时，接收器所听到的音调会发生变化。
+                        <ul>
+                            <li>
+                                <xref keyref="true"/>：开启多普勒效应。</li>
+                            <li>
+                                <xref keyref="false"/>：（默认）关闭多普勒效应。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>speaker_elevation</pt>
+                    <pd>远端用户或媒体播放器相对于本地用户的仰角，单位为度，取值范围为 [-90, 90]。具体取值如下：
+                        <ul>
+                            <li>0：（默认）表示水平面无旋转。</li>
+                            <li>-90：表示水平面向下旋转 90 度。</li>
+                            <li>90：表示水平面向上旋转 90 度。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>speaker_orientation</pt>
+                    <pd>远端用户或媒体播放器相对于本地用户的朝向角，单位为度，取值范围为 [0, 180]。具体取值如下：
+                        <ul>
+                            <li>0：（默认）表示声源与听者朝向一致。</li>
+                            <li>180：表示声源与听者相对而立。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>enable_blur</pt>
+                    <pd>是否开启音频模糊效果：
+                        <ul>
+                            <li>
+                                <xref keyref="true"/>：开启音频模糊。</li>
+                            <li>
+                                <xref keyref="false"/>：（默认）关闭音频模糊。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>enable_air_absorb</pt>
+                    <pd>是否开启空气吸收效果，即模拟声音在空气中传播时的衰减效果。在一定传播距离下，高频声音衰减较快，低频声音衰减较慢：
+                        <ul>
+                            <li>
+                                <xref keyref="true"/>：（默认）开启空气吸收。</li>
+                            <li>
+                                <xref keyref="false"/>：关闭空气吸收。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>speaker_attenuation</pt>
+                    <pd>远端用户或媒体播放器的声音衰减系数，取值范围为 [0, 1]。具体取值如下：
+                        <ul>
+                            <li>0：广播模式，音量和音色不随距离衰减。</li>
+                            <li>(0, 0.5)：弱衰减模式，音量和音色在传播过程中仅有轻微衰减，声音传播距离比真实环境更远。</li>
+                            <li>0.5：（默认）模拟真实环境中的音量衰减，等效于未设置 <codeph>speaker_attenuation</codeph> 参数。</li>
+                            <li>(0.5, 1]：强衰减模式，音量和音色在传播过程中快速衰减。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>enable_doppler</pt>
+                    <pd>是否开启多普勒效应：当声源与接收者之间存在相对位移时，接收者听到的音调会发生变化。
+                        <ul>
+                            <li>
+                                <xref keyref="true"/>：开启多普勒效应。</li>
+                            <li>
+                                <xref keyref="false"/>：（默认）关闭多普勒效应。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>enable_blur</pt>
+                    <pd>是否开启音频模糊效果：
+                        <ul>
+                            <li>
+                                <codeph>YES</codeph>：开启音频模糊。</li>
+                            <li>
+                                <codeph>NO</codeph>：（默认）关闭音频模糊。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>enable_air_absorb</pt>
+                    <pd>是否开启空气吸收效果，即模拟声音在空气中传播时的衰减效果。在一定传播距离下，高频声音衰减较快，低频声音衰减较慢：
+                        <ul>
+                            <li>
+                                <codeph>YES</codeph>：（默认）开启空气吸收。</li>
+                            <li>
+                                <codeph>NO</codeph>：关闭空气吸收。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>enable_doppler</pt>
+                    <pd>是否开启多普勒效应：当声源与接收者之间存在相对位移时，接收者听到的音调会发生变化。
+                        <ul>
+                            <li>
+                                <codeph>YES</codeph>：开启多普勒效应。</li>
+                            <li>
+                                <codeph>NO</codeph>：（默认）关闭多普勒效应。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

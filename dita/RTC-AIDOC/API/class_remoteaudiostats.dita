@@ -1,0 +1,379 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_remoteaudiostats">
+    <title>
+        <ph keyref="RemoteAudioStats"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">用于描述远端用户的音频统计信息。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct RemoteAudioStats
+{
+  uid_t uid;
+  int quality;
+  int networkTransportDelay;
+  int jitterBufferDelay;
+  int audioLossRate;
+  int numChannels;
+  int receivedSampleRate;
+  int receivedBitrate;
+  int totalFrozenTime;
+  int frozenRate;
+  int mosValue;
+  uint32_t frozenRateByCustomPlcCount;
+  uint32_t plcCount;
+  uint32_t frozenCntByCustom;
+  uint32_t frozenTimeByCustom;
+  int totalActiveTime;
+  int publishDuration;
+  int qoeQuality;
+  int qualityChangedReason;
+  unsigned int rxAudioBytes;
+  int e2eDelay;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public static class RemoteAudioStats {
+    public int uid;
+    public int quality;
+    public int networkTransportDelay;
+    public int jitterBufferDelay;
+    public int audioLossRate;
+    public int numChannels;
+    public int receivedSampleRate;
+    public int receivedBitrate;
+    public int totalFrozenTime;
+    public int frozenRate;
+    public int mosValue;
+    public int frozenRateByCustomPlcCount;
+    public int plcCount;
+    public int frozenCntByCustom;
+    public int frozenTimeByCustom;
+    public long totalActiveTime;
+    public long publishDuration;
+    public int qoeQuality;
+    public int qualityChangedReason;
+    public int rxAudioBytes;
+    public int e2eDelay;
+  }</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcRemoteAudioStats : NSObject
+@property(assign, nonatomic) NSUInteger uid;
+@property(assign, nonatomic) NSUInteger quality;
+@property(assign, nonatomic) NSUInteger networkTransportDelay;
+@property(assign, nonatomic) NSUInteger jitterBufferDelay;
+@property(assign, nonatomic) NSUInteger audioLossRate;
+@property(assign, nonatomic) NSUInteger numChannels;
+@property(assign, nonatomic) NSUInteger receivedSampleRate;
+@property(assign, nonatomic) NSUInteger receivedBitrate;
+@property(assign, nonatomic) NSUInteger totalFrozenTime;
+@property(assign, nonatomic) NSUInteger totalActiveTime;
+@property(assign, nonatomic) NSInteger publishDuration;
+@property(assign, nonatomic) NSUInteger frozenRate;
+@property(assign, nonatomic) NSUInteger mosValue;
+@property(assign, nonatomic) NSUInteger frozenRateByCustomPlcCount;
+@property(assign, nonatomic) NSUInteger plcCount;
+@property(assign, nonatomic) NSUInteger frozenCntByCustom;
+@property(assign, nonatomic) NSUInteger frozenTimeByCustom;
+@property(assign, nonatomic) AgoraExperienceQuality qoeQuality;
+@property(assign, nonatomic) AgoraExperiencePoorReason qualityChangedReason;
+@property(assign, nonatomic) NSUInteger rxAudioBytes;
+@property(assign, nonatomic) NSInteger e2eDelay;
+@end</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcRemoteAudioStats : NSObject
+@property(assign, nonatomic) NSUInteger uid;
+@property(assign, nonatomic) NSUInteger quality;
+@property(assign, nonatomic) NSUInteger networkTransportDelay;
+@property(assign, nonatomic) NSUInteger jitterBufferDelay;
+@property(assign, nonatomic) NSUInteger audioLossRate;
+@property(assign, nonatomic) NSUInteger numChannels;
+@property(assign, nonatomic) NSUInteger receivedSampleRate;
+@property(assign, nonatomic) NSUInteger receivedBitrate;
+@property(assign, nonatomic) NSUInteger totalFrozenTime;
+@property(assign, nonatomic) NSUInteger totalActiveTime;
+@property(assign, nonatomic) NSInteger publishDuration;
+@property(assign, nonatomic) NSUInteger frozenRate;
+@property(assign, nonatomic) NSUInteger mosValue;
+@property(assign, nonatomic) NSUInteger frozenRateByCustomPlcCount;
+@property(assign, nonatomic) NSUInteger plcCount;
+@property(assign, nonatomic) NSUInteger frozenCntByCustom;
+@property(assign, nonatomic) NSUInteger frozenTimeByCustom;
+@property(assign, nonatomic) AgoraExperienceQuality qoeQuality;
+@property(assign, nonatomic) AgoraExperiencePoorReason qualityChangedReason;
+@property(assign, nonatomic) NSUInteger rxAudioBytes;
+@property(assign, nonatomic) NSInteger e2eDelay;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">用于汇报远端用户加入频道后的音频统计信息。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>属性</title>
+            <parml>
+                <plentry props="android cpp ios mac">
+                    <pt>uid</pt>
+                    <pd>远端用户的用户 ID。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>quality</pt>
+                    <pd>音频流质量。详见 <codeph>QUALITY_TYPE</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>networkTransportDelay</pt>
+                    <pd>从发送端到接收端的网络传输延迟（毫秒）。</pd>
+                </plentry>
+                <plentry props="cpp ios mac">
+                    <pt>jitterBufferDelay</pt>
+                    <pd>从音频接收端到抖动缓冲区的网络延迟（毫秒）。</pd>
+                </plentry>
+                <plentry props="cpp ios mac">
+                    <pt>audioLossRate</pt>
+                    <pd>在统计周期内远端音频流的丢帧率（%）。</pd>
+                </plentry>
+                <plentry props="cpp ios mac">
+                    <pt>numChannels</pt>
+                    <pd>音频通道数。</pd>
+                </plentry>
+                <plentry props="cpp ios mac">
+                    <pt>receivedSampleRate</pt>
+                    <pd>在统计周期内接收到的音频流的采样率。</pd>
+                </plentry>
+                <plentry props="cpp ios mac">
+                    <pt>receivedBitrate</pt>
+                    <pd>在统计周期内接收到的音频流的平均码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>totalFrozenTime</pt>
+                    <pd>远端用户加入频道后音频流的总卡顿时长（毫秒）。当音频帧丢失率达到 4% 时视为音频卡顿。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>frozenRate</pt>
+                    <pd>远端音频流的总卡顿时长占音频可用总时长的百分比（%）。当远端用户加入频道后既未停止发送音频流，也未关闭音频模块时，音频被视为可用。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>mosValue</pt>
+                    <pd>在统计周期内远端音频流的质量。该质量由声网实时音频 MOS（主观意见评分）测量方法确定。返回值范围为 [0, 500]，除以 100 后为 MOS 分数，范围为 0 到 5，分数越高表示音频质量越好。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>frozenRateByCustomPlcCount</pt>
+                    <pd>当丢包隐藏（PLC）连续发生 N 次时，认为发生了一次卡顿；卡顿次数 = (n_plc - n) / m。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>plcCount</pt>
+                    <pd>音频丢包隐藏（PLC）发生的次数。</pd>
+                </plentry>
+                <plentry props="android cpp ios mac">
+                    <pt>frozenCntByCustom</pt>
+                    <pd>远端音频流发生卡顿的次数。</pd>
+                </plentry>
+                <plentry props="android cpp ios mac">
+                    <pt>frozenTimeByCustom</pt>
+                    <pd>远端音频流处于卡顿状态的总时长（毫秒）。</pd>
+                </plentry>
+                <plentry props="cpp ios mac">
+                    <pt>totalActiveTime</pt>
+                    <pd>从音频通话开始到远端用户回调之间的总活跃时长（毫秒）。活跃时长指远端用户未处于静音状态的总时长。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>publishDuration</pt>
+                    <pd>远端音频流的总持续时长（毫秒）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>qoeQuality</pt>
+                    <pd>本地用户接收远端音频流时的体验质量（QoE）。详见 <codeph>EXPERIENCE_QUALITY_TYPE</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>qualityChangedReason</pt>
+                    <pd>本地用户接收远端音频流时体验质量较差的原因。详见 <codeph>EXPERIENCE_POOR_REASON</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>rxAudioBytes</pt>
+                    <pd>接收到的音频字节总数（字节），包括 FEC 字节，表示为聚合值。</pd>
+                </plentry>
+                <plentry props="cpp ios mac">
+                    <pt>e2eDelay</pt>
+                    <pd>端到端音频延迟（毫秒），指从远端用户采集音频到本地用户播放音频的时间。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>quality</pt>
+                    <pd>远端用户发送音频流的质量。
+                        <ul>
+                            <li>
+                                <codeph>0</codeph>：未知质量。</li>
+                            <li>
+                                <codeph>1</codeph>：音质极佳。</li>
+                            <li>
+                                <codeph>2</codeph>：网络质量看起来极好，但码率略低于极佳。</li>
+                            <li>
+                                <codeph>3</codeph>：通信略受影响。</li>
+                            <li>
+                                <codeph>4</codeph>：无法流畅通信。</li>
+                            <li>
+                                <codeph>5</codeph>：通信困难。</li>
+                            <li>
+                                <codeph>6</codeph>：网络连接已中断，无法通信。</li>
+                            <li>
+                                <codeph>8</codeph>：正在进行最后一公里网络探测。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>networkTransportDelay</pt>
+                    <pd>从发送端到接收端的网络传输延时（毫秒）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>jitterBufferDelay</pt>
+                    <pd>从音频接收端到抖动缓冲区的网络延时（毫秒）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>audioLossRate</pt>
+                    <pd>汇报周期内远端音频流的音频帧丢包率（%）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>numChannels</pt>
+                    <pd>音频声道数。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>receivedSampleRate</pt>
+                    <pd>汇报周期内接收音频流的采样率。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>receivedBitrate</pt>
+                    <pd>汇报周期内接收音频流的平均码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>totalFrozenTime</pt>
+                    <pd>远端用户加入频道后音频卡顿的总时长（毫秒）。在通话过程中，当音频帧丢包率达到 4% 时视为卡顿。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>frozenRate</pt>
+                    <pd>音频可用时段内音频卡顿的总时间占比（%）。当远端用户加入频道后未停止发送音频流，且未关闭音频模块时，视为音频可用。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mosValue</pt>
+                    <pd>汇报周期内远端音频流的质量，基于声网实时音频 MOS（Mean Opinion Score）评估方法。
+取值范围为 [0, 500]，除以 100 后为 MOS 得分，范围为 0 到 5，数值越大音质越好。
+MOS 分数与主观听感的对应关系如下：
+                        <ul>
+                            <li>大于 4：音质优秀，清晰流畅。</li>
+                            <li>3.5 到 4：音质良好，有轻微感知损伤但清晰。</li>
+                            <li>3 到 3.5：尚可，音频偶尔卡顿，需要注意聆听。</li>
+                            <li>2.5 到 3：较差，音频断断续续，理解困难。</li>
+                            <li>2 到 2.5：很差，偶发杂音和连续掉帧，通信困难。</li>
+                            <li>小于 2：极差，持续杂音，大量掉帧，通信基本无法实现。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>frozenRateByCustomPlcCount</pt>
+                    <pd>当连续出现 N 次音频丢包隐藏（PLC）时，视为一次卡顿。卡顿次数 = (n_plc - n) / m。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>plcCount</pt>
+                    <pd>音频丢包隐藏（PLC）的次数。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>totalActiveTime</pt>
+                    <pd>从开始通话到远端用户回调期间的总活跃时长（毫秒）。活跃时长指远端用户非静音状态的累计时间。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>publishDuration</pt>
+                    <pd>该远端音频流的总持续时长（毫秒）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>qoeQuality</pt>
+                    <pd>本地用户接收远端音频流时的服务质量（QoE）。
+                        <ul>
+                            <li>
+                                <codeph>0</codeph>：本地用户体验良好。</li>
+                            <li>
+                                <codeph>1</codeph>：本地用户体验较差。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>qualityChangedReason</pt>
+                    <pd>本地用户接收远端音频流体验较差的原因。
+                        <ul>
+                            <li>
+                                <codeph>0</codeph>：无，表示本地用户体验良好。</li>
+                            <li>
+                                <codeph>1</codeph>：远端用户网络质量差。</li>
+                            <li>
+                                <codeph>2</codeph>：本地用户网络质量差。</li>
+                            <li>
+                                <codeph>4</codeph>：本地 Wi-Fi 或蜂窝网络信号差。</li>
+                            <li>
+                                <codeph>8</codeph>：本地用户同时开启 Wi-Fi 和蓝牙，导致信号互相干扰，影响音频传输质量。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rxAudioBytes</pt>
+                    <pd>网络处理前已接收的总音频字节数（字节），为累计值。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>e2eDelay</pt>
+                    <pd>端到端音频延迟（毫秒），即从远端用户采集音频到本地用户播放音频的时间。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>quality</pt>
+                    <pd>远端用户发送的音频流质量。详见 <xref keyref="QUALITY_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>networkTransportDelay</pt>
+                    <pd>从发送端到接收端的网络延迟（毫秒）。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>totalFrozenTime</pt>
+                    <pd>远端用户加入频道后远端音频流的总卡顿时长（毫秒）。在通话过程中，当音频帧丢失率达到 4% 时视为音频卡顿。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>publishDuration</pt>
+                    <pd>远端音频流的总时长（毫秒）。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>frozenRate</pt>
+                    <pd>远端音频可用时段内的总卡顿时间占比（%）。当远端用户加入频道后未停止发送音频流或未禁用音频模块时，音频被视为可用。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>mosValue</pt>
+                    <pd>在统计周期内远端音频流的质量。该值由声网实时音频 MOS（主观意见评分）算法计算，取值范围为 [0, 500]，除以 100 后为 MOS 分数，范围为 0 到 5，分数越高表示音频质量越好。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>frozenRateByCustomPlcCount</pt>
+                    <pd>当丢包隐藏（PLC）连续发生 N 次时，认为发生一次卡顿；卡顿次数 = (n_plc - n) / m。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>plcCount</pt>
+                    <pd>音频丢包隐藏的次数。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>qoeQuality</pt>
+                    <pd>本地用户接收远端音频流时的体验质量。详见 <xref keyref="EXPERIENCE_QUALITY_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>qualityChangedReason</pt>
+                    <pd>本地用户接收远端音频流时体验质量差的原因。详见 <xref keyref="EXPERIENCE_POOR_REASON"/>。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>rxAudioBytes</pt>
+                    <pd>网络抗丢包机制前接收到的音频字节总数（字节），为累计值。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>quality</pt>
+                    <pd>远端用户发送的音频流质量。详见 <codeph>AgoraNetworkQuality</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>qoeQuality</pt>
+                    <pd>本地用户接收远端音频流时的体验质量。详见 <codeph>AgoraExperienceQuality</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>qualityChangedReason</pt>
+                    <pd>本地用户接收远端音频流时体验质量差的原因。详见 <codeph>AgoraExperiencePoorReason</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

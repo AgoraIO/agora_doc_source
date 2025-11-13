@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_config_setappid">
+    <title>
+        <ph keyref="SetAppId"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">设置声网 App ID。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="SetAppId"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">void SetAppId(const char *app_id, Error *err = nullptr)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void setAppId(String appId) throws RteException</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (void)setAppId:(NSString * _Nullable)appId error:(AgoraRteError * _Nullable)error;</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (void)setAppId:(NSString * _Nullable)appId error:(AgoraRteError * _Nullable)error;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="android cpp ios mac">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="cpp">该方法必须在调用 <codeph>InitMediaEngine</codeph> 之前调用。</p>
+            <p props="android ios">你必须在调用 <xref keyref="InitMediaEngine"/> 之前调用此方法。</p>
+            <p props="mac">你必须在调用 <codeph>initMediaEngine:error:</codeph> 之前调用此方法。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>app_id</pt>
+                    <pd>你的项目的声网 App ID，可从声网控制台获取。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>err</pt>
+                    <pd>输出参数，状态或错误信息。详见 <codeph>Error</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>appId</pt>
+                    <pd>声网 App ID，可从控制台获取。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>appId</pt>
+                    <pd>项目的声网 App ID，可从控制台获取。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>error</pt>
+                    <pd>状态或错误信息，详见 <xref keyref="Error"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>error</pt>
+                    <pd>状态或错误信息，详见 <codeph>AgoraRteError</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="android">调用失败时，SDK 会抛出异常，并返回相应的错误信息。你需要捕获异常并进行处理。</p>
+        </section>
+    </refbody>
+</reference>

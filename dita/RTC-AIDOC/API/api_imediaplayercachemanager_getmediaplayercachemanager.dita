@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayercachemanager_getmediaplayercachemanager">
+    <title>
+        <ph keyref="getMediaPlayerCacheManager"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">获取一个 `IMediaPlayerCacheManager` 实例。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getMediaPlayerCacheManager"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">AGORA_API agora::rtc::IMediaPlayerCacheManager* AGORA_CALL getMediaPlayerCacheManager();</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract IMediaPlayerCacheManager getMediaPlayerCacheManager();</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (id&lt;AgoraRtcMediaPlayerCacheManagerProtocol&gt; _Nullable)createMediaPlayerCacheManager NS_SWIFT_NAME(createMediaPlayerCacheManager());</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (id&lt;AgoraRtcMediaPlayerCacheManagerProtocol&gt; _Nullable)createMediaPlayerCacheManager NS_SWIFT_NAME(createMediaPlayerCacheManager());</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">在调用 <codeph>IMediaPlayerCacheManager</codeph> 中的任何 API 前，你需要调用该方法获取媒体播放器的缓存管理器实例。</p>
+            <p props="android">在调用 <xref keyref="IMediaPlayerCacheManager"/> 中的任何 API 之前，你需要调用 <xref keyref="getMediaPlayerCacheManager"/> 获取媒体播放器的缓存管理器实例。</p>
+            <p props="ios">在调用 <xref keyref="IMediaPlayerCacheManager"/> 中的任何 API 之前，你需要调用此方法以获取媒体播放器的缓存管理器实例。</p>
+            <p props="mac">在调用 <codeph>AgoraRtcMediaPlayerCacheManagerProtocol</codeph> 中的任何 API 之前，你需要调用此方法以获取媒体播放器的缓存管理器实例。</p>
+            <note props="cpp">
+                <codeph>IMediaPlayerCacheManager</codeph> 采用单例模式，因此多次调用该方法会返回同一个实例。</note>
+            <note props="android">
+                <xref keyref="IMediaPlayerCacheManager"/> 采用单例模式，因此多次调用 <xref keyref="getMediaPlayerCacheManager"/> 会返回同一个实例。</note>
+            <note props="ios">
+                <xref keyref="getMediaPlayerCacheManager"/> 返回的缓存管理器为单例模式。因此，多次调用此方法会返回相同的实例。</note>
+            <note props="mac">
+                <codeph>createMediaPlayerCacheManager</codeph> 返回的缓存管理器为单例模式。因此，多次调用此方法会返回相同的实例。</note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="cpp">调用时序：请确保在调用该方法前已初始化 <codeph>IRtcEngine</codeph>。</p>
+            <p props="android">确保在调用 <xref keyref="getMediaPlayerCacheManager"/> 前已初始化 <xref keyref="IRtcEngine"/>。</p>
+            <p props="ios">确保在调用此方法之前已初始化 <xref keyref="IRtcEngine"/>。</p>
+            <p props="mac">确保在调用此方法之前已初始化 <codeph>AgoraRtcEngineKit</codeph>。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>方法调用成功，返回 <codeph>IMediaPlayerCacheManager</codeph> 实例，详见 <codeph>IMediaPlayerCacheManager</codeph>。</li>
+                    <li>方法调用失败，返回 <codeph>NULL</codeph>。</li>
+                </ul>
+            </p>
+            <p props="android">方法调用成功，返回 <xref keyref="IMediaPlayerCacheManager"/> 实例。</p>
+            <p props="ios">方法调用成功，返回 <xref keyref="IMediaPlayerCacheManager"/> 对象。</p>
+            <p props="mac">方法调用成功，返回 <codeph>AgoraRtcMediaPlayerCacheManagerProtocol</codeph> 对象。</p>
+        </section>
+    </refbody>
+</reference>

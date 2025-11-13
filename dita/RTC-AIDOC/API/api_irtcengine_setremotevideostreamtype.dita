@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setremotevideostreamtype">
+    <title>
+        <ph keyref="setRemoteVideoStreamType"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">设置要订阅的视频流类型。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setRemoteVideoStreamType"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setRemoteVideoStreamType(uid_t uid, VIDEO_STREAM_TYPE streamType) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setRemoteVideoStreamType(int uid, Constants.VideoStreamType streamType);</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)setRemoteVideoStream:(NSUInteger)uid
+                       type:(AgoraVideoStreamType)streamType NS_SWIFT_NAME(setRemoteVideoStream(_:type:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)setRemoteVideoStream:(NSUInteger)uid
+                       type:(AgoraVideoStreamType)streamType NS_SWIFT_NAME(setRemoteVideoStream(_:type:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">根据发送端的默认行为以及调用 <codeph>setDualStreamMode</codeph> 的具体设置，接收端调用该方法的场景如下：
+                <ul>
+                    <li>默认情况下，SDK 在发送端启用低质量视频流自适应模式（<codeph>AUTO_SIMULCAST_STREAM</codeph>），即仅发送高质量视频流。此时，只有角色为主播的接收端可以调用该方法请求发送低质量视频流。一旦发送端收到请求并开始发送低质量视频流，频道内所有用户都可以调用该方法切换为订阅低质量视频流。</li>
+                    <li>如果发送端调用 <codeph>setDualStreamMode</codeph> 并将 <codeph>mode</codeph> 设置为 <codeph>DISABLE_SIMULCAST_STREAM</codeph>（从不发送低质量视频流），则调用该方法无效。</li>
+                    <li>如果发送端调用 <codeph>setDualStreamMode</codeph> 并将 <codeph>mode</codeph> 设置为 <codeph>ENABLE_SIMULCAST_STREAM</codeph>（始终发送低质量视频流），则无论接收端是主播还是观众，都可以调用该方法切换为订阅低质量视频流。
+SDK 会根据视频窗口的大小动态调整对应视频流的尺寸，以节省带宽和计算资源。低质量视频流的默认宽高比与高质量视频流相同，系统会根据当前高质量视频流的宽高比自动分配低质量视频流的分辨率、帧率和码率。</li>
+                </ul>
+            </p>
+            <p props="android">根据发送端的默认行为以及调用 <codeph>setDualStreamMode</codeph> 时的具体设置，接收端调用该方法的场景如下：
+                <ul>
+                    <li>SDK 默认在发送端开启低质量视频流自适应模式（<codeph>AUTO_SIMULCAST_STREAM</codeph>），即仅发送高质量视频流。只有角色为主播的接收端可以调用该方法发起低质量视频流请求。发送端收到请求后会自动开始发送低质量视频流。此时，频道内所有用户都可以调用该方法切换为订阅低质量视频流模式。</li>
+                    <li>如果发送端调用 <codeph>setDualStreamMode</codeph> 并将 <codeph>mode</codeph> 设置为 <codeph>DISABLE_SIMULCAST_STREAM</codeph>（从不发送低质量视频流），则调用该方法无效。</li>
+                    <li>如果发送端调用 <codeph>setDualStreamMode</codeph> 并将 <codeph>mode</codeph> 设置为 <codeph>ENABLE_SIMULCAST_STREAM</codeph>（始终发送低质量视频流），则主播和观众角色的接收端都可以调用该方法切换为订阅低质量视频流模式。
+SDK 会根据视频窗口的大小动态调整对应视频流的尺寸，以节省带宽和计算资源。低质量视频流的默认宽高比与高质量视频流一致。系统会根据当前高质量视频流的宽高比自动分配低质量视频流的分辨率、帧率和码率。</li>
+                </ul>
+            </p>
+            <p props="ios mac">根据发送端的默认行为以及调用 <codeph>setDualStreamMode:streamConfig:</codeph> 时的具体设置，你调用此方法的场景如下：
+                <ul>
+                    <li>SDK 默认在发送端启用低质量视频流自适应模式（<codeph>AgoraAutoSimulcastStream</codeph>），即仅发送高质量视频流。此时，只有角色为主播的接收端可以调用此方法发起低质量视频流请求。发送端收到请求后会自动开始发送低质量视频流，频道内所有用户都可以调用此方法切换为订阅低质量视频流模式。</li>
+                    <li>如果发送端调用 <codeph>setDualStreamMode:streamConfig:</codeph> 并将 <codeph>mode</codeph> 设置为 <codeph>AgoraDisableSimulcastStream</codeph>（从不发送低质量视频流），则调用此方法无效。</li>
+                    <li>如果发送端调用 <codeph>setDualStreamMode:streamConfig:</codeph> 并将 <codeph>mode</codeph> 设置为 <codeph>AgoraEnableSimulcastStream</codeph>（始终发送低质量视频流），则主播和观众角色的接收端都可以调用此方法切换为订阅低质量视频流模式。
+SDK 会根据视频窗口的大小动态调整对应视频流的尺寸，以节省带宽和计算资源。低质量视频流的默认宽高比与高质量视频流相同。系统会根据当前高质量视频流的宽高比，自动分配低质量视频流的分辨率、帧率和码率。</li>
+                </ul>
+            </p>
+            <note props="android">
+                <ul>
+                    <li>可以在加入频道前或加入频道后调用该方法。</li>
+                    <li>如果同时调用该方法和 <codeph>setRemoteDefaultVideoStreamType</codeph>，则以该方法的设置为准。</li>
+                </ul>
+            </note>
+            <note props="ios">
+                <ul>
+                    <li>你可以在加入频道前或加入频道后调用此方法。</li>
+                    <li>如果你同时调用此方法和 <xref keyref="setRemoteDefaultVideoStreamType"/>，以 <xref keyref="setRemoteVideoStreamType"/> 的设置为准。</li>
+                </ul>
+            </note>
+            <note props="mac">
+                <ul>
+                    <li>你可以在加入频道前或加入频道后调用此方法。</li>
+                    <li>如果你同时调用此方法和 <codeph>setRemoteDefaultVideoStreamType:</codeph>，以 <codeph>setRemoteVideoStream:type:</codeph> 的设置为准。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="android cpp">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>streamType</pt>
+                    <pd>视频流类型，详见 <codeph>VIDEO_STREAM_TYPE</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>streamType</pt>
+                    <pd>视频流类型。详见 <xref keyref="VIDEO_STREAM_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>uid</pt>
+                    <pd>远端用户 ID。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>streamType</pt>
+                    <pd>视频流类型，详见 <xref keyref="VIDEO_STREAM_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>streamType</pt>
+                    <pd>视频流类型，详见 <codeph>AgoraVideoStreamType</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="android cpp ios mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

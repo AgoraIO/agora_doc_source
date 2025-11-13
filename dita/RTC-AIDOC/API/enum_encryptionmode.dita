@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_encryptionmode">
+    <title>
+        <ph keyref="ENCRYPTION_MODE"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">内置加密模式。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">声网推荐使用 <codeph>AES_128_GCM2</codeph> 或 <codeph>AES_256_GCM2</codeph> 加密模式。这两种模式支持使用 salt，以提高安全性。</p>
+            <p props="android">声网推荐使用 <codeph>AES_128_GCM2</codeph> 或 <codeph>AES_256_GCM2</codeph> 加密模式。这两种模式支持设置 salt（<codeph>encryptionKdfSalt</codeph>），可提供更高的安全性。</p>
+            <p props="ios mac">声网推荐使用 <codeph>AgoraEncryptionModeAES128GCM2</codeph> 或 <codeph>AgoraEncryptionModeAES256GCM2</codeph> 加密模式。这两种模式支持使用 salt，以提高安全性。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>枚举值</title>
+            <parml>
+                <plentry props="android cpp">
+                    <pt>AES_128_XTS</pt>
+                    <pd>（1）：128 位 AES 加密，XTS 模式。</pd>
+                </plentry>
+                <plentry props="android cpp">
+                    <pt>AES_128_ECB</pt>
+                    <pd>（2）：128 位 AES 加密，ECB 模式。</pd>
+                </plentry>
+                <plentry props="android cpp">
+                    <pt>AES_256_XTS</pt>
+                    <pd>（3）：256 位 AES 加密，XTS 模式。</pd>
+                </plentry>
+                <plentry props="android cpp">
+                    <pt>SM4_128_ECB</pt>
+                    <pd>（4）：128 位 SM4 加密，ECB 模式。</pd>
+                </plentry>
+                <plentry props="android cpp">
+                    <pt>AES_128_GCM</pt>
+                    <pd>（5）：128 位 AES 加密，GCM 模式。</pd>
+                </plentry>
+                <plentry props="android cpp">
+                    <pt>AES_256_GCM</pt>
+                    <pd>（6）：256 位 AES 加密，GCM 模式。</pd>
+                </plentry>
+                <plentry props="android cpp">
+                    <pt>AES_128_GCM2</pt>
+                    <pd>（7）：（默认）128 位 AES 加密，GCM 模式。该模式需设置 salt（<codeph>encryptionKdfSalt</codeph>）。</pd>
+                </plentry>
+                <plentry props="android cpp">
+                    <pt>AES_256_GCM2</pt>
+                    <pd>（8）：256 位 AES 加密，GCM 模式。该模式需设置 salt（<codeph>encryptionKdfSalt</codeph>）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>MODE_END</pt>
+                    <pd>（9）：枚举结束标志。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>MODE_END</pt>
+                    <pd>（9）：枚举边界值。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraEncryptionModeAES128XTS</pt>
+                    <pd>（1）：128 位 AES 加密，XTS 模式。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraEncryptionModeAES128ECB</pt>
+                    <pd>（2）：128 位 AES 加密，ECB 模式。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraEncryptionModeAES256XTS</pt>
+                    <pd>（3）：256 位 AES 加密，XTS 模式。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraEncryptionModeSM4128ECB</pt>
+                    <pd>（4）：128 位 SM4 加密，ECB 模式。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraEncryptionModeAES128GCM</pt>
+                    <pd>（5）：128 位 AES 加密，GCM 模式。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraEncryptionModeAES256GCM</pt>
+                    <pd>（6）：256 位 AES 加密，GCM 模式。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraEncryptionModeAES128GCM2</pt>
+                    <pd>（7）：（默认）128 位 AES 加密，GCM 模式。该模式需设置 salt（<codeph>encryptionKdfSalt</codeph>）。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraEncryptionModeAES256GCM2</pt>
+                    <pd>（8）：256 位 AES 加密，GCM 模式。该模式需设置 salt（<codeph>encryptionKdfSalt</codeph>）。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraEncryptionModeEnd</pt>
+                    <pd>（9）：枚举结束标志。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

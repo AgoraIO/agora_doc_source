@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_sendcustomreportmessage">
+    <title>
+        <ph keyref="sendCustomReportMessage"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">上报自定义消息。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="sendCustomReportMessage"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int sendCustomReportMessage(const char* id, const char* category, const char* event, const char* label, int value) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int sendCustomReportMessage(String id, String category, String event, String label, int value);</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)sendCustomReportMessage:(NSString * _Nullable)messageId
+                      category:(NSString * _Nullable)category
+                         event:(NSString * _Nullable)event
+                         label:(NSString * _Nullable)label
+                         value:(NSInteger)value NS_SWIFT_NAME(sendCustomReportMessage(_:category:event:label:value:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)sendCustomReportMessage:(NSString * _Nullable)messageId
+                      category:(NSString * _Nullable)category
+                         event:(NSString * _Nullable)event
+                         label:(NSString * _Nullable)label
+                         value:(NSInteger)value NS_SWIFT_NAME(sendCustomReportMessage(_:category:event:label:value:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android cpp">该功能目前处于测试阶段，提供免费试用。在测试版本中，最多支持在 6 秒内上报 10 条消息，每条消息不超过 256 字节，每个字符串不超过 100 字节。如需试用该功能，请联系 support@agora.io，并与我们讨论自定义消息的格式。</p>
+            <p props="ios mac">声网支持你上报和分析自定义消息。该功能目前处于测试阶段，提供免费试用。在测试版本中，最多支持在 6 秒内上报 10 条消息，每条消息不超过 256 字节，每个字符串不超过 100 字节。如需试用该功能，请联系 support@agora.io，并与我们讨论自定义消息的格式。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>id</pt>
+                    <pd>消息的唯一标识。</pd>
+                </plentry>
+                <plentry props="cpp ios mac">
+                    <pt>category</pt>
+                    <pd>消息的分类。</pd>
+                </plentry>
+                <plentry props="cpp ios mac">
+                    <pt>event</pt>
+                    <pd>消息的事件名称。</pd>
+                </plentry>
+                <plentry props="cpp ios mac">
+                    <pt>label</pt>
+                    <pd>消息的标签。</pd>
+                </plentry>
+                <plentry props="cpp ios mac">
+                    <pt>value</pt>
+                    <pd>消息的数值。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>id</pt>
+                    <pd>自定义消息的 ID。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>category</pt>
+                    <pd>自定义消息的类别。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>event</pt>
+                    <pd>自定义消息的事件名称。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>label</pt>
+                    <pd>自定义消息的标签。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>value</pt>
+                    <pd>自定义消息的数值。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>messageId</pt>
+                    <pd>消息 ID。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="android cpp ios mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

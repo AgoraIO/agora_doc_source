@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ibasespatialaudioengine_setzones">
+    <title>
+        <ph keyref="setZones"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">设置隔音区域。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setZones"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="ios" outputclass="language-objectivec">- (int)setZones:(NSArray&lt;AgoraSpatialAudioZone*&gt; * _Nullable)zones NS_SWIFT_NAME(setZones(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setZones(SpatialAudioZone[] zones);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="ios">在虚拟互动场景中，你可以使用此方法设置隔音区域和声音衰减系数。
+                <ul>
+                    <li>当声源（可以是用户或媒体播放器）和接收者分别处于隔音区域的内外部时，声音的衰减效果由 <xref keyref="SpatialAudioZone"/> 中的声音衰减系数决定。</li>
+                    <li>如果用户或媒体播放器处于同一个隔音区域内，则不受 <xref keyref="SpatialAudioZone"/> 的影响，声音衰减效果由 <xref keyref="setPlayerAttenuation"/> 或 <codeph>setRemoteAudioAttenuation:userId:forceSet:</codeph> 中的 <codeph>attenuation</codeph> 参数决定。如果你未调用上述方法，SDK 默认的声音衰减系数为 0.5，用于模拟真实环境中的声音衰减。</li>
+                    <li>如果声源和接收者分别处于两个不同的隔音区域内，接收者将无法听到声源的声音。</li>
+                </ul>
+            </p>
+            <p props="android">在虚拟互动场景中，你可以使用该方法设置隔音区域及声音衰减系数。当声源（可以是用户或媒体播放器）和接收者分别处于隔音区域的内外时，可以体验到类似真实环境中声音遇到建筑隔断时的衰减效果：
+                <ul>
+                    <li>当声源和接收者分别处于隔音区域的内外时，声音的衰减效果由 <xref keyref="SpatialAudioZone"/> 中的声音衰减系数决定。</li>
+                    <li>如果用户或媒体播放器处于同一个隔音区域内，则声音衰减效果由 <xref keyref="setPlayerAttenuation"/> 或 <xref keyref="setRemoteAudioAttenuation"/> 中的 <codeph>attenuation</codeph> 参数决定。如果你未调用 <xref keyref="setPlayerAttenuation"/> 或 <xref keyref="setRemoteAudioAttenuation"/>，SDK 默认的声音衰减系数为 0.5，用于模拟真实环境中的声音衰减。</li>
+                    <li>如果声源和接收者分别处于两个不同的隔音区域，接收者将无法听到声源。</li>
+                </ul>
+            </p>
+            <note props="android ios">如果多次调用该方法，以最后一次设置的隔音区域为准。</note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="android ios">加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android ios">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="android ios">
+                    <pt>zones</pt>
+                    <pd>隔音区域设置。当该参数设置为 <xref keyref="NULL"/> 时，表示清除所有隔音区域。详见 <xref keyref="SpatialAudioZone"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="android ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

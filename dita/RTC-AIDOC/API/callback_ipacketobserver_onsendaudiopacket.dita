@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_ipacketobserver_onsendaudiopacket">
+    <title>
+        <ph keyref="onSendAudioPacket"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">本地用户发送音频包时触发的回调。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onSendAudioPacket"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual bool onSendAudioPacket(Packet&amp; packet) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>使用限制</title>
+            <p props="cpp">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>packet</pt>
+                    <pd>发送的音频包。详见 <codeph>Packet</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="cpp">
+                <codeph>true</codeph>：音频包发送成功。
+<codeph>false</codeph>：音频包被丢弃。</p>
+        </section>
+    </refbody>
+</reference>

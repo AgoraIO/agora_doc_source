@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_screencaptureconfiguration">
+    <title>
+        <ph keyref="ScreenCaptureConfiguration"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">用于设置屏幕采集的相关参数。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct ScreenCaptureConfiguration {
+  bool isCaptureWindow;
+  int64_t displayId;
+  Rectangle screenRect;
+  int64_t windowId;
+  ScreenCaptureParameters params;
+  Rectangle regionRect;
+};</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>isCaptureWindow</pt>
+                    <pd>是否采集屏幕上的窗口：
+                        <ul>
+                            <li>
+                                <codeph>true</codeph>：采集窗口。</li>
+                            <li>
+                                <codeph>false</codeph>：（默认）采集整个屏幕，而非窗口。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>displayId</pt>
+                    <pd>屏幕的显示 ID。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>screenRect</pt>
+                    <pd>共享屏幕相对于虚拟屏幕的位置。详见 <codeph>Rectangle</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>windowId</pt>
+                    <pd>窗口 ID。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>params</pt>
+                    <pd>屏幕采集配置。详见 <codeph>ScreenCaptureParameters</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>regionRect</pt>
+                    <pd>共享区域相对于整个屏幕的位置。详见 <codeph>Rectangle</codeph>。如果未设置该参数，SDK 会共享整个屏幕。如果设置的区域超出屏幕边界，仅共享屏幕内的部分。如果在 <codeph>Rectangle</codeph> 中设置的宽度或高度为 0，则共享整个屏幕。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

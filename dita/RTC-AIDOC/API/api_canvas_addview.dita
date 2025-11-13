@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_canvas_addview">
+    <title>
+        <ph keyref="AddView"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">添加一个渲染视图。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="AddView"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">bool AddView(View *view, ViewConfig *config, rte::Error *err = nullptr)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void addView(View view, ViewConfig viewConfig) throws RteException</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (BOOL)addView:(AgoraRteView * _Nonnull)view config:(AgoraRteViewConfig* _Nullable)config error:(AgoraRteError* _Nullable)error;</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (BOOL)addView:(AgoraRteView * _Nonnull)view config:(AgoraRteViewConfig* _Nullable)config error:(AgoraRteError* _Nullable)error;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="android cpp ios mac">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">调用该方法可向视频渲染器添加一个视图，用于显示视频内容。该方法适用于使用播放器播放视频的场景。此方法必须在调用 <codeph>SetCanvas</codeph> 之前调用。</p>
+            <p props="android">调用该方法可将一个视图添加到视频渲染器中，以显示视频内容。</p>
+            <p props="ios mac">你可以调用该方法将视图添加到视频渲染器中，以显示视频内容。</p>
+            <note props="android cpp ios mac">当前仅支持一个视图。</note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="cpp">此方法必须在调用 <codeph>SetCanvas</codeph> 之前调用。</p>
+            <p props="android">必须在调用 <xref keyref="SetCanvas"/> 之前调用该方法。</p>
+            <p props="ios">你必须在调用 <xref keyref="SetCanvas"/> 之前调用此方法。</p>
+            <p props="mac">你必须在调用 <codeph>setCanvas:error:</codeph> 之前调用此方法。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>view</pt>
+                    <pd>窗口句柄。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>config</pt>
+                    <pd>
+                        <codeph>View</codeph> 对象的设置，目前传入 <codeph>NULL</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>err</pt>
+                    <pd>输出参数，状态或错误信息，详见 <codeph>Error</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>view</pt>
+                    <pd>
+                        <codeph>SurfaceView</codeph> 对象。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>viewConfig</pt>
+                    <pd>
+                        <codeph>View</codeph> 对象的设置。详见 <codeph>ViewConfig</codeph>。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>view</pt>
+                    <pd>视图对象的指针。
+                        <ul>
+                            <li>iOS：一个 <codeph>UIView</codeph> 对象。</li>
+                            <li>macOS：一个 <codeph>NSView</codeph> 对象。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>config</pt>
+                    <pd>视图对象的配置。当前请传入 <xref keyref="NULL"/>。详见 <codeph>AgoraRteViewConfig</codeph>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>error</pt>
+                    <pd>状态或错误信息，详见 <xref keyref="Error"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>config</pt>
+                    <pd>视图对象的配置。当前请传入 <codeph>nil</codeph>。详见 <codeph>AgoraRteViewConfig</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>error</pt>
+                    <pd>状态或错误信息，详见 <codeph>AgoraRteError</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>
+                        <codeph>true</codeph>：视图添加成功。</li>
+                    <li>
+                        <codeph>false</codeph>：添加视图失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>
+                        <xref keyref="true"/>：添加视图成功。</li>
+                    <li>
+                        <xref keyref="false"/>：添加视图失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>
+                        <codeph>YES</codeph>：添加视图成功。</li>
+                    <li>
+                        <codeph>NO</codeph>：添加视图失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

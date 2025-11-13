@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_lastmileprobeonewayresult">
+    <title>
+        <ph keyref="LastmileProbeOneWayResult"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">获取上行或下行最后一公里网络质量测试结果。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct LastmileProbeOneWayResult {
+  unsigned int packetLossRate;
+  unsigned int jitter;
+  unsigned int availableBandwidth;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public static class LastmileProbeOneWayResult {
+  public int packetLossRate;
+  public int jitter;
+  public int availableBandwidth;
+}</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLastmileProbeOneWayResult : NSObject
+@property (assign, nonatomic) NSUInteger packetLossRate;
+@property (assign, nonatomic) NSUInteger jitter;
+@property (assign, nonatomic) NSUInteger availableBandwidth;
+@end</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLastmileProbeOneWayResult : NSObject
+@property (assign, nonatomic) NSUInteger packetLossRate;
+@property (assign, nonatomic) NSUInteger jitter;
+@property (assign, nonatomic) NSUInteger availableBandwidth;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>属性</title>
+            <parml>
+                <plentry props="android cpp ios mac">
+                    <pt>packetLossRate</pt>
+                    <pd>丢包率（%）。</pd>
+                </plentry>
+                <plentry props="android cpp ios mac">
+                    <pt>jitter</pt>
+                    <pd>网络抖动（毫秒）。</pd>
+                </plentry>
+                <plentry props="cpp ios mac">
+                    <pt>availableBandwidth</pt>
+                    <pd>估算的可用带宽（bps）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>availableBandwidth</pt>
+                    <pd>预估的可用带宽（bps）。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

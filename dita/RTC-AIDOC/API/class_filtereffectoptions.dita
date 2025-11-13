@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_filtereffectoptions">
+    <title>
+        <ph keyref="FilterEffectOptions"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">用于配置滤镜特效参数。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct FilterEffectOptions {
+  const char * path;
+  float strength;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class FilterEffectOptions {
+  public String path = null;
+  public float strength;
+}</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraFilterEffectOptions: NSObject
+@property(nonatomic, copy) NSString* _Nullable path NS_SWIFT_NAME(path);
+@property(nonatomic, assign) float strength;
+@end</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraFilterEffectOptions: NSObject
+@property(nonatomic, copy) NSString* _Nullable path NS_SWIFT_NAME(path);
+@property(nonatomic, assign) float strength;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.1 版本新增。</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>path</pt>
+                    <pd>本地立方体贴图纹理文件的绝对路径，用于自定义滤镜特效。指定的 .cube 文件必须严格遵循 Cube LUT 格式规范，否则滤镜选项无效。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>strength</pt>
+                    <pd>滤镜特效的强度，取值范围为 [0.0, 1.0]。0.0 表示无滤镜效果，默认值为 0.5。数值越大，滤镜效果越强。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>path</pt>
+                    <pd>本地立方体贴图纹理文件的绝对路径，可用于自定义滤镜特效。指定的 .cube 文件需严格遵循 Cube LUT 格式规范，否则滤镜参数不生效。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>strength</pt>
+                    <pd>滤镜特效的强度，取值范围为 [0.0, 1.0]。0.0 表示无滤镜效果，默认值为 0.5。值越大，滤镜效果越强。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>path</pt>
+                    <pd>本地立方体贴图纹理文件的绝对路径，可用于自定义滤镜特效。指定的 <codeph>.cube</codeph> 文件必须严格遵循 Cube LUT 格式规范，否则滤镜选项无效。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>strength</pt>
+                    <pd>滤镜特效的强度，取值范围为 [0.0, 1.0]。0.0 表示无滤镜效果，默认值为 0.5，数值越大，滤镜效果越强。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

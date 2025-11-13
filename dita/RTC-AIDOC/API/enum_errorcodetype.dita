@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_errorcodetype">
+    <title>
+        <ph keyref="ERROR_CODE_TYPE"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">错误码。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details">
+            <title>枚举值</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>ERR_OK</pt>
+                    <pd>（0）：无错误。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_FAILED</pt>
+                    <pd>（1）：通用错误，原因未分类。请重试该方法。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_INVALID_ARGUMENT</pt>
+                    <pd>（2）：参数无效。例如，频道名包含非法字符。请重新设置参数。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_NOT_READY</pt>
+                    <pd>（3）：SDK 未就绪。可能原因包括：<codeph>IRtcEngine</codeph> 初始化失败；调用方法时尚未加入频道；调用 <codeph>rate</codeph> 或 <codeph>complain</codeph> 时用户尚未离开频道；音频模块被禁用；程序不完整。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_NOT_SUPPORTED</pt>
+                    <pd>（4）：<codeph>IRtcEngine</codeph> 不支持该请求。可能原因包括：内置加密模式设置错误，或 SDK 加载外部加密库失败。请检查加密模式设置或重新加载外部加密库。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_REFUSED</pt>
+                    <pd>（5）：请求被拒绝。可能原因包括：<codeph>IRtcEngine</codeph> 初始化失败；加入频道时频道名为空；调用 <codeph>joinChannelEx</codeph> 加入多个频道时频道名已被使用。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_BUFFER_TOO_SMALL</pt>
+                    <pd>（6）：缓冲区大小不足，无法存储返回数据。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_NOT_INITIALIZED</pt>
+                    <pd>（7）：在 <codeph>IRtcEngine</codeph> 初始化前调用了方法。请确保在调用该方法前已初始化 <codeph>IRtcEngine</codeph> 对象。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_INVALID_STATE</pt>
+                    <pd>（8）：状态无效。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_NO_PERMISSION</pt>
+                    <pd>（9）：无访问权限。请检查应用是否已获取音视频设备权限。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_TIMEDOUT</pt>
+                    <pd>（10）：请求超时。部分 API 调用需要 SDK 返回执行结果，若超过 10 秒未返回，则触发该错误。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_CANCELED</pt>
+                    <pd>（11）：请求被取消。该错误仅用于内部，不通过任何方法或回调返回给应用。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_TOO_OFTEN</pt>
+                    <pd>（12）：方法调用过于频繁。该错误仅用于内部，不通过任何方法或回调返回给应用。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_BIND_SOCKET</pt>
+                    <pd>（13）：SDK 绑定网络 socket 失败。该错误仅用于内部，不通过任何方法或回调返回给应用。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_NET_DOWN</pt>
+                    <pd>（14）：网络不可用。该错误仅用于内部，不通过任何方法或回调返回给应用。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_JOIN_CHANNEL_REJECTED</pt>
+                    <pd>（17）：加入频道请求被拒绝。可能原因包括：用户已在频道中；调用 <codeph>startEchoTest</codeph> 后未调用 <codeph>stopEchoTest</codeph> 就尝试加入频道。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_LEAVE_CHANNEL_REJECTED</pt>
+                    <pd>（18）：离开频道失败。可能原因包括：调用 <codeph>leaveChannel</codeph> 前用户已离开频道；在加入频道前调用了 <codeph>leaveChannel</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_ALREADY_IN_USE</pt>
+                    <pd>（19）：资源已被使用。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_ABORTED</pt>
+                    <pd>（20）：请求被 SDK 放弃，可能由于请求发送过于频繁。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_INIT_NET_ENGINE</pt>
+                    <pd>（21）：<codeph>IRtcEngine</codeph> 初始化失败并崩溃，可能由于特定 Windows 防火墙设置导致。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_RESOURCE_LIMITED</pt>
+                    <pd>（22）：SDK 分配资源失败，可能由于应用使用了过多系统资源或系统资源不足。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_FUNC_IS_PROHIBITED</pt>
+                    <pd>（23）：该功能被禁止。请在控制台中启用，或联系声网技术支持。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeNoError</pt>
+                    <pd>（0）：无错误。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeFailed</pt>
+                    <pd>（1）：通用错误，原因未分类。请重试调用该方法。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeInvalidArgument</pt>
+                    <pd>（2）：参数无效。例如，频道名包含非法字符。请重新设置参数。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeNotReady</pt>
+                    <pd>（3）：SDK 尚未就绪。可能的原因包括：<xref keyref="IRtcEngine"/> 初始化失败；调用方法时无用户加入频道；调用 <xref keyref="rate"/> 或 <xref keyref="complain"/> 方法时用户尚未离开频道；音频模块被禁用；程序不完整。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeNotSupported</pt>
+                    <pd>（4）：<xref keyref="IRtcEngine"/> 不支持该请求。可能的原因包括：内置加密模式设置错误，或 SDK 加载外部加密库失败。请检查加密模式设置或重新加载外部加密库。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeRefused</pt>
+                    <pd>（5）：请求被拒绝。可能的原因包括：<xref keyref="IRtcEngine"/> 初始化失败；加入频道时频道名为空字符串 <codeph>""</codeph>；调用 <xref keyref="joinChannelEx"/> 方法加入多个频道时，指定的频道名已被使用。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeBufferTooSmall</pt>
+                    <pd>（6）：缓冲区大小不足，无法存储返回数据。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeNotInitialized</pt>
+                    <pd>（7）：在 <xref keyref="IRtcEngine"/> 初始化前调用了方法。请确保在调用该方法前已初始化 <xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeInvalidState</pt>
+                    <pd>（8）：状态无效。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeNoPermission</pt>
+                    <pd>（9）：无访问权限。请检查应用是否已获得音视频设备的访问权限。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeTimedOut</pt>
+                    <pd>（10）：超时错误。部分 API 调用需要 SDK 返回执行结果，若超过 10 秒未返回，则触发该错误。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

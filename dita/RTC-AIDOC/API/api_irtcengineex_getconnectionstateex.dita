@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_getconnectionstateex">
+    <title>
+        <ph keyref="getConnectionStateEx"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">获取 SDK 当前的连接状态。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getConnectionStateEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual CONNECTION_STATE_TYPE getConnectionStateEx(const RtcConnection&amp; connection) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int getConnectionStateEx(RtcConnection connection);</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (AgoraConnectionState)getConnectionStateEx:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(getConnectionStateEx(_:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (AgoraConnectionState)getConnectionStateEx:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(getConnectionStateEx(_:));</codeblock>
+            </p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="cpp">该方法可以在加入频道前或加入频道后调用。</p>
+            <p props="android">该方法可在加入频道前或加入频道后调用。</p>
+            <p props="ios mac">该方法可以在加入频道前或后调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <codeph>RtcConnection</codeph>。</pd>
+                </plentry>
+                <plentry props="android ios">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <codeph>AgoraRtcConnection</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="cpp">当前的连接状态。详见 <codeph>CONNECTION_STATE_TYPE</codeph>。</p>
+            <p props="android">方法调用成功，返回当前连接状态，详见 <codeph>ConnectionStateType</codeph>。</p>
+            <p props="ios">当前的连接状态。详见 <xref keyref="CONNECTION_STATE_TYPE"/>。</p>
+            <p props="mac">当前的连接状态。详见 <codeph>AgoraConnectionState</codeph>。</p>
+        </section>
+    </refbody>
+</reference>

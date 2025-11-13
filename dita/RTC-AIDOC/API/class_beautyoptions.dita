@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_beautyoptions">
+    <title>
+        <ph keyref="BeautyOptions"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">图像增强设置参数。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct BeautyOptions {
+  LIGHTENING_CONTRAST_LEVEL lighteningContrastLevel;
+  float lighteningLevel;
+  float smoothnessLevel;
+  float rednessLevel;
+  float sharpnessLevel;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class BeautyOptions {
+  public static final int LIGHTENING_CONTRAST_LOW = 0;
+  public static final int LIGHTENING_CONTRAST_NORMAL = 1;
+  public static final int LIGHTENING_CONTRAST_HIGH = 2;
+  public int lighteningContrastLevel;
+  public float lighteningLevel;
+  public float smoothnessLevel;
+  public float rednessLevel;
+  public float sharpnessLevel;
+}</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraBeautyOptions : NSObject
+@property(nonatomic, assign) AgoraLighteningContrastLevel lighteningContrastLevel;
+@property(nonatomic, assign) float lighteningLevel;
+@property(nonatomic, assign) float smoothnessLevel;
+@property(nonatomic, assign) float rednessLevel;
+@property(nonatomic, assign) float sharpnessLevel;
+@end</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraBeautyOptions : NSObject
+@property(nonatomic, assign) AgoraLighteningContrastLevel lighteningContrastLevel;
+@property(nonatomic, assign) float lighteningLevel;
+@property(nonatomic, assign) float smoothnessLevel;
+@property(nonatomic, assign) float rednessLevel;
+@property(nonatomic, assign) float sharpnessLevel;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>lighteningContrastLevel</pt>
+                    <pd>对比度等级，与 <codeph>lighteningLevel</codeph> 参数配合使用。值越大，明暗对比越强。详见 <codeph>LIGHTENING_CONTRAST_LEVEL</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>lighteningLevel</pt>
+                    <pd>美白等级，取值范围为 [0.0, 1.0]。0.0 表示原始亮度，默认值为 0.0。值越大，美白程度越高。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>smoothnessLevel</pt>
+                    <pd>磨皮等级，取值范围为 [0.0, 1.0]。0.0 表示原始平滑度，默认值为 0.0。值越大，磨皮程度越高。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>rednessLevel</pt>
+                    <pd>红润等级，取值范围为 [0.0, 1.0]。0.0 表示原始红润度，默认值为 0.0。值越大，红润程度越高。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>sharpnessLevel</pt>
+                    <pd>锐化等级，取值范围为 [0.0, 1.0]。0.0 表示原始锐度，默认值为 0.0。值越大，锐化程度越高。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>LIGHTENING_CONTRAST_LOW</pt>
+                    <pd>（0）：用于亮肤的低对比度。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>LIGHTENING_CONTRAST_NORMAL</pt>
+                    <pd>（1）：用于亮肤的标准对比度。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>LIGHTENING_CONTRAST_HIGH</pt>
+                    <pd>（2）：用于亮肤的高对比度。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>lighteningContrastLevel</pt>
+                    <pd>与 <codeph>lighteningLevel</codeph> 参数配合使用，用于设置亮度对比度等级。值越大，明暗对比度越高。可选取值如下：
+                        <ul>
+                            <li>
+                                <codeph>LIGHTENING_CONTRAST_LOW</codeph>（0）：低对比度。</li>
+                            <li>
+                                <codeph>LIGHTENING_CONTRAST_NORMAL</codeph>（1）：标准对比度。</li>
+                            <li>
+                                <codeph>LIGHTENING_CONTRAST_HIGH</codeph>（2）：高对比度。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>lighteningLevel</pt>
+                    <pd>亮肤等级，取值范围为 [0.0, 1.0]，其中 0.0 表示原始亮度。默认值为 0.6。数值越大，亮肤效果越明显。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>smoothnessLevel</pt>
+                    <pd>磨皮等级，取值范围为 [0.0, 1.0]，其中 0.0 表示原始光滑度。默认值为 0.5。数值越大，磨皮效果越强。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rednessLevel</pt>
+                    <pd>红润等级，取值范围为 [0.0, 1.0]，其中 0.0 表示原始红润程度。默认值为 0.1。数值越大，红润效果越明显。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sharpnessLevel</pt>
+                    <pd>锐化等级，取值范围为 [0.0, 1.0]，其中 0.0 表示原始锐度。默认值为 0.3。数值越大，图像越清晰。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>lighteningContrastLevel</pt>
+                    <pd>对比度等级，与 <codeph>lighteningLevel</codeph> 参数配合使用。值越大，明暗对比越强。详见 <xref keyref="LIGHTENING_CONTRAST_LEVEL"/>。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>lighteningLevel</pt>
+                    <pd>美白等级，取值范围为 [0.0, 1.0]。0.0 表示原始亮度，默认值为 0.7。值越大，美白程度越高。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>smoothnessLevel</pt>
+                    <pd>磨皮等级，取值范围为 [0.0, 1.0]。0.0 表示原始平滑度，默认值为 0.5。值越大，磨皮程度越高。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>rednessLevel</pt>
+                    <pd>红润等级，取值范围为 [0.0, 1.0]。0.0 表示原始红润度，默认值为 0.1。值越大，红润程度越高。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>sharpnessLevel</pt>
+                    <pd>锐化等级，取值范围为 [0.0, 1.0]。0.0 表示原始锐度，默认值为 0.1。值越大，锐化程度越高。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>lighteningContrastLevel</pt>
+                    <pd>对比度等级，与 <codeph>lighteningLevel</codeph> 参数配合使用。值越大，明暗对比越强。详见 <codeph>AgoraLighteningContrastLevel</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

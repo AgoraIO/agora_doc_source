@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setremoterendertargetfps">
+    <title>
+        <ph keyref="setRemoteRenderTargetFps"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">设置远端视频渲染的最大帧率。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setRemoteRenderTargetFps"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setRemoteRenderTargetFps(int targetFps) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setRemoteRenderTargetFps(int targetFps);</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)setRemoteRenderTargetFps:(int)targetFps;</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)setRemoteRenderTargetFps:(int)targetFps;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp ios mac">在视频渲染帧率要求不高的场景（例如屏幕共享、在线教育）或远端用户使用中低端设备的情况下，你可以调用该方法设置远端客户端的视频渲染最大帧率。SDK 会尽可能将实际渲染帧率控制在该值附近，从而降低 CPU 消耗并提升系统性能。</p>
+            <p props="android">在对视频渲染帧率要求不高的场景（如屏幕共享、在线教育）或远端用户使用中低端设备时，可以调用该方法设置远端客户端的视频渲染最大帧率。SDK 会尽可能将实际渲染帧率控制在该值附近，从而降低 CPU 消耗并提升系统性能。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="android cpp ios mac">你可以在加入频道前或加入频道后调用该方法。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>targetFps</pt>
+                    <pd>远端视频的渲染最大帧率（fps）。支持的取值包括：1、7、10、15、24、30、60。
+                        <ul>
+                            <li>请将该参数设置为低于实际视频帧率的值，否则设置不会生效。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>targetFps</pt>
+                    <pd>目标渲染帧率（fps）。支持的取值包括：1、7、10、15、24、30、60。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>targetFps</pt>
+                    <pd>本地视频的采集帧率（fps）。支持的取值包括：1、7、10、15、24、30、60。将该参数设置为低于实际视频帧率的值，否则设置不生效。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="android cpp ios mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

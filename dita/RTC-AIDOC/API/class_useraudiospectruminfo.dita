@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_useraudiospectruminfo">
+    <title>
+        <ph keyref="UserAudioSpectrumInfo"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">用于获取远端用户的音频频谱信息。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct UserAudioSpectrumInfo {
+  agora::rtc::uid_t uid;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class UserAudioSpectrumInfo {
+  private int uid;
+  private AudioSpectrumInfo audioSpectrumInfo;
+}</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioSpectrumInfo : NSObject
+@property(nonatomic, assign) NSInteger uid;
+@property(nonatomic, strong) NSArray&lt;NSNumber *&gt; * _Nullable audioSpectrumData;
+@end</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioSpectrumInfo : NSObject
+@property(nonatomic, assign) NSInteger uid;
+@property(nonatomic, strong) NSArray&lt;NSNumber *&gt; * _Nullable audioSpectrumData;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>远端用户 ID。</pd>
+                </plentry>
+                <plentry props="android ios mac">
+                    <pt>uid</pt>
+                    <pd>远端用户的用户 ID。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>audioSpectrumInfo</pt>
+                    <pd>远端用户的音频频谱信息。详见 <xref keyref="AudioSpectrumData"/>。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>audioSpectrumData</pt>
+                    <pd>远端用户的音频频谱信息。详见 <codeph>NSArray</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

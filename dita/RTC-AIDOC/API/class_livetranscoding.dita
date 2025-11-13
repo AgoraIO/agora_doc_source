@@ -1,0 +1,460 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_livetranscoding">
+    <title>
+        <ph keyref="LiveTranscoding"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">用于配置媒体推流的转码参数。</ph>
+  </shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct LiveTranscoding {
+  int width;
+  int height;
+  int videoBitrate;
+  int videoFramerate;
+  bool lowLatency;
+  int videoGop;
+  VIDEO_CODEC_PROFILE_TYPE videoCodecProfile;
+  unsigned int backgroundColor;
+  VIDEO_CODEC_TYPE_FOR_STREAM videoCodecType;
+  unsigned int userCount;
+  TranscodingUser* transcodingUsers;
+  const char* transcodingExtraInfo;
+  const char* metadata;
+  RtcImage* watermark;
+  unsigned int watermarkCount;
+  RtcImage* backgroundImage;
+  unsigned int backgroundImageCount;
+  AUDIO_SAMPLE_RATE_TYPE audioSampleRate;
+  int audioBitrate;
+  int audioChannels;
+  AUDIO_CODEC_PROFILE_TYPE audioCodecProfile;
+  LiveStreamAdvancedFeature* advancedFeatures;
+  unsigned int advancedFeatureCount;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class LiveTranscoding {
+  public int width;
+  public int height;
+  public int videoBitrate;
+  public int videoFramerate;
+  @Deprecated public boolean lowLatency;
+  public int videoGop;
+  private ArrayList&lt;AgoraImage&gt; watermarkList;
+  private ArrayList&lt;AgoraImage&gt; backgroundImageList;
+  public AudioSampleRateType audioSampleRate;
+  public int audioBitrate;
+  public int audioChannels;
+  public AudioCodecProfileType audioCodecProfile;
+  public VideoCodecProfileType videoCodecProfile;
+  public VideoCodecType videoCodecType;
+  @Deprecated public int userCount;
+  @Deprecated public int backgroundColor;
+  public String userConfigExtraInfo;
+  @Deprecated public String metadata;
+  private Map&lt;Integer, TranscodingUser&gt; transcodingUsers;
+  private Map&lt;String, Boolean&gt; advancedFeatures;
+}</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLiveTranscoding : NSObject
+@property(copy, nonatomic) NSArray&lt;AgoraLiveTranscodingUser*&gt;* _Nullable transcodingUsers;
+@property(assign, nonatomic) CGSize size;
+@property(assign, nonatomic) NSInteger videoBitrate;
+@property(assign, nonatomic) NSInteger videoFramerate;
+@property(assign, nonatomic) BOOL lowLatency;
+@property(assign, nonatomic) NSInteger videoGop;
+@property(assign, nonatomic) AgoraVideoCodecProfileType videoCodecProfile;
+@property(assign, nonatomic) AgoraVideoCodecTypeForStream videoCodecType;
+@property(copy, nonatomic) NSString* _Nullable transcodingExtraInfo;
+@property(copy, nonatomic) NSArray&lt;AgoraImage*&gt;* _Nullable watermarkArray;
+@property(copy, nonatomic) NSArray&lt;AgoraImage*&gt;* _Nullable backgroundImageArray;
+@property(strong, nonatomic) COLOR_CLASS* _Nullable backgroundColor;
+@property(assign, nonatomic) AgoraAudioSampleRateType audioSampleRate;
+@property(assign, nonatomic) NSInteger audioBitrate;
+@property(assign, nonatomic) NSInteger audioChannels;
+@property(assign, nonatomic) AgoraAudioCodecProfileType audioCodecProfile;
+@end</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLiveTranscoding : NSObject
+@property(copy, nonatomic) NSArray&lt;AgoraLiveTranscodingUser*&gt;* _Nullable transcodingUsers;
+@property(assign, nonatomic) CGSize size;
+@property(assign, nonatomic) NSInteger videoBitrate;
+@property(assign, nonatomic) NSInteger videoFramerate;
+@property(assign, nonatomic) BOOL lowLatency;
+@property(assign, nonatomic) NSInteger videoGop;
+@property(assign, nonatomic) AgoraVideoCodecProfileType videoCodecProfile;
+@property(assign, nonatomic) AgoraVideoCodecTypeForStream videoCodecType;
+@property(copy, nonatomic) NSString* _Nullable transcodingExtraInfo;
+@property(copy, nonatomic) NSArray&lt;AgoraImage*&gt;* _Nullable watermarkArray;
+@property(copy, nonatomic) NSArray&lt;AgoraImage*&gt;* _Nullable backgroundImageArray;
+@property(strong, nonatomic) COLOR_CLASS* _Nullable backgroundColor;
+@property(assign, nonatomic) AgoraAudioSampleRateType audioSampleRate;
+@property(assign, nonatomic) NSInteger audioBitrate;
+@property(assign, nonatomic) NSInteger audioChannels;
+@property(assign, nonatomic) AgoraAudioCodecProfileType audioCodecProfile;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>width</pt>
+                    <pd>视频宽度，单位为像素。默认值为 360。
+                        <ul>
+                            <li>当向 CDN 推送视频流时，<codeph>width</codeph> 的取值范围为 [64,1920]。如果小于 64，声网服务器会自动调整为 64；如果大于 1920，会自动调整为 1920。</li>
+                            <li>当向 CDN 推送音频流时，请将 <codeph>width</codeph> 和 <codeph>height</codeph> 设置为 0。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>height</pt>
+                    <pd>视频高度，单位为像素。默认值为 640。
+                        <ul>
+                            <li>当向 CDN 推送视频流时，<codeph>height</codeph> 的取值范围为 [64,1080]。如果小于 64，声网服务器会自动调整为 64；如果大于 1080，会自动调整为 1080。</li>
+                            <li>当向 CDN 推送音频流时，请将 <codeph>width</codeph> 和 <codeph>height</codeph> 设置为 0。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>videoBitrate</pt>
+                    <pd>视频编码码率（Kbps）。无需设置该参数，保持默认值 <codeph>STANDARD_BITRATE</codeph> 即可。SDK 会根据设置的视频分辨率和帧率自动匹配最合适的码率。有关视频分辨率与帧率的对应关系，详见 <codeph>Video profile</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>videoFramerate</pt>
+                    <pd>媒体推流输出视频流的帧率（fps）。默认值为 15，取值范围为 (0,30]。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>lowLatency</pt>
+                    <pd>已废弃。
+延迟模式：
+                        <ul>
+                            <li>
+                                <codeph>true</codeph>：低延迟但画质不保证。</li>
+                            <li>
+                                <codeph>false</codeph>：（默认）高延迟但画质有保证。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>videoGop</pt>
+                    <pd>媒体推流视频帧的 GOP（图像组）帧率，单位为 fps。默认值为 30。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>videoCodecProfile</pt>
+                    <pd>媒体推流的视频编码器配置文件类型。可设置为 66、77 或 100（默认）。详见 <codeph>VIDEO_CODEC_PROFILE_TYPE</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>backgroundColor</pt>
+                    <pd>背景颜色的 RGB 十六进制值，仅值，不包含前缀 #。例如，0xFFB6C1 表示浅粉色。默认值为 0x000000（黑色）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>videoCodecType</pt>
+                    <pd>媒体推流使用的视频编码器类型。详见 <codeph>VIDEO_CODEC_TYPE_FOR_STREAM</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>userCount</pt>
+                    <pd>媒体推流中的用户数量。取值范围为 [0,17]。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>transcodingUsers</pt>
+                    <pd>媒体推流中的用户布局配置。最多支持添加 17 个转码用户。详见 <codeph>TranscodingUser</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>transcodingExtraInfo</pt>
+                    <pd>保留参数。用于向 CDN 客户端发送 H.264/H.265 视频流 SEI 中的用户自定义信息。最大长度为 4096 字节。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>metadata</pt>
+                    <pd>已废弃。不推荐使用。发送给 CDN 客户端的元数据。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>watermark</pt>
+                    <pd>直播视频中的水印。图片格式需为 PNG。你可以添加一个水印，或使用数组添加多个水印。该参数与 <codeph>watermarkCount</codeph> 配合使用。详见 <codeph>RtcImage</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>watermarkCount</pt>
+                    <pd>直播视频中的水印数量。水印和背景图像的总数范围为 0 到 10。该参数与 <codeph>watermark</codeph> 配合使用。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>backgroundImage</pt>
+                    <pd>直播视频中的背景图像。图片格式需为 PNG。你可以添加一个背景图像，或使用数组添加多个背景图像。该参数与 <codeph>backgroundImageCount</codeph> 配合使用。详见 <codeph>RtcImage</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>backgroundImageCount</pt>
+                    <pd>直播视频中的背景图像数量。水印和背景图像的总数范围为 0 到 10。该参数与 <codeph>backgroundImage</codeph> 配合使用。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>audioSampleRate</pt>
+                    <pd>输出媒体流的音频采样率（Hz）。详见 <codeph>AUDIO_SAMPLE_RATE_TYPE</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp ios mac">
+                    <pt>audioBitrate</pt>
+                    <pd>媒体推流的音频输出码率（Kbps）。默认值为 48，最大值为 128。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>audioChannels</pt>
+                    <pd>媒体推流的音频声道数。
+                        <ul>
+                            <li>1：（默认）单声道。</li>
+                            <li>2：立体声。</li>
+                            <li>3：三声道。</li>
+                            <li>4：四声道。</li>
+                            <li>5：五声道。
+声网推荐选择 1 或 2。如果选择 3、4 或 5，需要特殊播放器支持。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>audioCodecProfile</pt>
+                    <pd>媒体推流的音频编码器配置文件类型。详见 <codeph>AUDIO_CODEC_PROFILE_TYPE</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>advancedFeatures</pt>
+                    <pd>带转码的媒体推流的高级功能。详见 <codeph>LiveStreamAdvancedFeature</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>advancedFeatureCount</pt>
+                    <pd>启用的高级功能数量。默认值为 0。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>width</pt>
+                    <pd>视频宽度，单位为像素，默认值为 360。
+                        <ul>
+                            <li>当推送视频流至 CDN 时，<codeph>width</codeph> 的取值范围为 [64,1920]。若该值小于 64，声网服务器会自动调整为 64；若该值大于 1920，则自动调整为 1920。</li>
+                            <li>当推送音频流至 CDN 时，请将 <codeph>width</codeph> 和 <codeph>height</codeph> 设置为 0。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>height</pt>
+                    <pd>视频高度，单位为像素，默认值为 640。
+                        <ul>
+                            <li>当推送视频流至 CDN 时，<codeph>height</codeph> 的取值范围为 [64,1080]。若该值小于 64，声网服务器会自动调整为 64；若该值大于 1080，则自动调整为 1080。</li>
+                            <li>当推送音频流至 CDN 时，请将 <codeph>width</codeph> 和 <codeph>height</codeph> 设置为 0。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>videoBitrate</pt>
+                    <pd>视频编码码率（Kbps）。无需设置该参数，仅保留默认值 <xref keyref="STANDARD_BITRATE"/> 即可。SDK 会根据已设置的视频分辨率和帧率自动匹配最合适的码率。关于视频分辨率与帧率的对应关系，详见 <codeph>Video profile</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>videoFramerate</pt>
+                    <pd>媒体推流设置的视频输出帧率（fps），默认值为 15。该值的取值范围为 (0,30]。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>lowLatency</pt>
+                    <pd>延迟模式：
+                        <ul>
+                            <li>
+                                <xref keyref="true"/>：低延迟模式，但无法保证画质。</li>
+                            <li>
+                                <xref keyref="false"/>：默认值，高延迟但可保证画质。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>videoGop</pt>
+                    <pd>媒体推流中视频帧的 GOP（图像组）设置，单位为帧，默认值为 30。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>watermarkList</pt>
+                    <pd>水印列表。详见 <xref keyref="RtcImage"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>backgroundImageList</pt>
+                    <pd>背景图列表。详见 <xref keyref="RtcImage"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>audioSampleRate</pt>
+                    <pd>媒体输出流的音频采样率（Hz）。详见 <xref keyref="AUDIO_SAMPLE_RATE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>audioBitrate</pt>
+                    <pd>音频输出流的编码码率，单位为 Kbps，默认值为 48，最大值为 128。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>audioChannels</pt>
+                    <pd>媒体推流使用的音频声道数。声网建议选择 1（单声道）或 2（立体声）。若选择 3、4 或 5，则需要特定播放器支持。
+                        <ul>
+                            <li>1：默认值，单声道。</li>
+                            <li>2：立体声。</li>
+                            <li>3：三声道。</li>
+                            <li>4：四声道。</li>
+                            <li>5：五声道。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>audioCodecProfile</pt>
+                    <pd>媒体推流使用的音频编码器配置类型。详见 <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>videoCodecProfile</pt>
+                    <pd>媒体推流使用的视频编码器配置类型。可设置为 66、77 或默认值 100。详见 <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>videoCodecType</pt>
+                    <pd>媒体推流使用的视频编码器类型。详见 <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>userCount</pt>
+                    <pd>媒体推流中用户数量，取值范围为 [0,17]。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>userConfigExtraInfo</pt>
+                    <pd>保留字段。用于将用户自定义的信息以 SEI 的形式随 H.264/H.265 视频流发送至 CDN 侧播放端，最大字节长度为 4096。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>metadata</pt>
+                    <pd>发送至 CDN 客户端的元数据内容。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>transcodingUsers</pt>
+                    <pd>管理媒体推流中的用户画面布局配置。声网最多支持 17 位用户进行转码推流。详见 <xref keyref="TranscodingUser"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>advancedFeatures</pt>
+                    <pd>高级特性配置项：
+                        <ul>
+                            <li>"lbhq"：低码率高画质。</li>
+                            <li>"veo"：视频编码器最优化。
+值为 <xref keyref="true"/> 或 <xref keyref="false"/>，表示是否启用该特性。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>transcodingUsers</pt>
+                    <pd>媒体推流中的用户布局配置。最多支持添加 17 个转码用户。详见 <xref keyref="TranscodingUser"/>。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>size</pt>
+                    <pd>视频的尺寸（单位为像素）。
+                        <ul>
+                            <li>推送视频流到 CDN 时：</li>
+                            <li>宽度范围为 [64,1920]，小于 64 会被自动调整为 64，大于 1920 会被自动调整为 1920。</li>
+                            <li>高度范围为 [64,1080]，小于 64 会被自动调整为 64，大于 1080 会被自动调整为 1080。</li>
+                            <li>推送音频流到 CDN 时，请将宽度和高度设置为 0。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>videoBitrate</pt>
+                    <pd>视频的编码码率（Kbps）。无需设置该参数，保持默认值 <xref keyref="STANDARD_BITRATE"/> 即可。SDK 会根据你设置的视频分辨率和帧率自动匹配最合适的码率。分辨率与帧率的对应关系详见 <codeph>Video profile</codeph>。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>videoFramerate</pt>
+                    <pd>媒体推流的视频输出帧率（fps）。默认值为 15，取值范围为 (0,30]。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>lowLatency</pt>
+                    <pd>延迟模式：
+                        <ul>
+                            <li>
+                                <xref keyref="true"/>：低延迟但画质无法保证。</li>
+                            <li>
+                                <xref keyref="false"/>：（默认）高延迟但画质有保障。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>videoGop</pt>
+                    <pd>媒体推流的视频帧的 GOP（图像组）帧率，单位为 fps。默认值为 30。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>videoCodecProfile</pt>
+                    <pd>媒体推流的视频编解码器配置文件类型。可设置为 66、77 或 100（默认）。详见 <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>videoCodecType</pt>
+                    <pd>媒体推流的视频编解码器类型。详见 <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/>。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>transcodingExtraInfo</pt>
+                    <pd>保留字段。用于通过 SEI 将用户自定义的额外信息发送到 CDN 直播客户端，适用于 H.264/H.265 视频流。最大长度为 4096 字节。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>watermarkArray</pt>
+                    <pd>直播视频中的水印数组。你可以使用该属性添加一个或多个 PNG 格式的水印。直播视频中的水印和背景图总数必须在 0 到 10 之间。详见 <xref keyref="RtcImage"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>backgroundImageArray</pt>
+                    <pd>直播视频中的背景图数组。你可以使用该属性添加一个或多个 PNG 格式的背景图。直播视频中的水印和背景图总数必须在 0 到 10 之间。详见 <xref keyref="RtcImage"/>。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>backgroundColor</pt>
+                    <pd>媒体推流的背景颜色。颜色格式为 RGB 十六进制整数，不带 # 符号，例如浅粉色为 0xFFB6C1，默认值为 0x000000（黑色）。COLOR_CLASS 是通用类型名：
+                        <ul>
+                            <li>iOS：UIColor</li>
+                            <li>macOS：NSColor</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>audioSampleRate</pt>
+                    <pd>输出媒体流的音频采样率（Hz）。详见 <xref keyref="AUDIO_SAMPLE_RATE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>audioChannels</pt>
+                    <pd>媒体推流的音频声道数。推荐设置为 1（单声道）或 2（立体声）。如设置为 3、4 或 5，则需使用支持的播放器。
+                        <ul>
+                            <li>1：（默认）单声道。</li>
+                            <li>2：立体声。</li>
+                            <li>3：三声道。</li>
+                            <li>4：四声道。</li>
+                            <li>5：五声道。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>audioCodecProfile</pt>
+                    <pd>媒体推流的音频编解码器配置文件类型。详见 <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>transcodingUsers</pt>
+                    <pd>媒体推流中的用户布局配置。最多支持添加 17 个转码用户。详见 <codeph>AgoraLiveTranscodingUser</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>videoBitrate</pt>
+                    <pd>视频的编码码率（Kbps）。无需设置该参数，保持默认值 <codeph>AgoraVideoBitrateStandard</codeph> 即可。SDK 会根据你设置的视频分辨率和帧率自动匹配最合适的码率。分辨率与帧率的对应关系详见 <codeph>Video profile</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>lowLatency</pt>
+                    <pd>延迟模式：
+                        <ul>
+                            <li>
+                                <codeph>YES</codeph>：低延迟但画质无法保证。</li>
+                            <li>
+                                <codeph>NO</codeph>：（默认）高延迟但画质有保障。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>videoCodecProfile</pt>
+                    <pd>媒体推流的视频编解码器配置文件类型。可设置为 66、77 或 100（默认）。详见 <codeph>AgoraVideoCodecProfileType</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>videoCodecType</pt>
+                    <pd>媒体推流的视频编解码器类型。详见 <codeph>AgoraVideoCodecTypeForStream</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>watermarkArray</pt>
+                    <pd>直播视频中的水印数组。你可以使用该属性添加一个或多个 PNG 格式的水印。直播视频中的水印和背景图总数必须在 0 到 10 之间。详见 <codeph>AgoraImage</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>backgroundImageArray</pt>
+                    <pd>直播视频中的背景图数组。你可以使用该属性添加一个或多个 PNG 格式的背景图。直播视频中的水印和背景图总数必须在 0 到 10 之间。详见 <codeph>AgoraImage</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>audioSampleRate</pt>
+                    <pd>输出媒体流的音频采样率（Hz）。详见 <codeph>AgoraAudioSampleRateType</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>audioCodecProfile</pt>
+                    <pd>媒体推流的音频编解码器配置文件类型。详见 <codeph>AgoraAudioCodecProfileType</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

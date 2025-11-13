@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicemanager_setloopbackdevice">
+    <title>
+        <ph keyref="setLoopbackDevice"/>
+  </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">设置 SDK 的环回设备。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setLoopbackDevice"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setLoopbackDevice(const char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">SDK 默认使用当前播放设备作为环回设备。如果你希望指定其他音频设备作为环回设备，可以调用该方法，并将 <codeph>deviceId</codeph> 设置为目标设备。你可以通过该方法更改当前使用的音频路由，但不会更改默认音频路由。例如，若默认音频路由为麦克风，在加入频道前调用该方法将音频路由设置为声卡并开始设备测试，SDK 会在声卡上进行测试。测试完成并加入频道后，SDK 仍使用麦克风进行音频采集。</p>
+            <note props="cpp">该方法仅适用于 Windows 和 macOS 平台。
+以下是该方法适用的典型场景：
+使用 App A 通过蓝牙耳机播放音乐，同时使用 App B 进行视频通话并通过扬声器播放：
+                <ul>
+                    <li>如果将环回设备设置为蓝牙耳机，SDK 会将 App A 播放的音乐发布到远端。</li>
+                    <li>如果将环回设备设置为扬声器，SDK 不会将 App A 播放的音乐发布到远端。</li>
+                    <li>如果先将环回设备设置为蓝牙耳机，之后改用有线耳机播放 App A 的音乐，则需要再次调用该方法，将环回设备设置为有线耳机，SDK 才会继续将音乐发布到远端。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="cpp">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>deviceId</pt>
+                    <pd>指定 SDK 的环回设备。你可以通过调用 <codeph>enumeratePlaybackDevices</codeph> 获取设备 ID。最大长度为 <codeph>MAX_DEVICE_ID_LENGTH_TYPE</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>
