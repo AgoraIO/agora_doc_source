@@ -50,11 +50,11 @@ SDK 会根据视频窗口的大小动态调整对应视频流的尺寸，以节�
 SDK 会根据视频窗口的大小动态调整对应视频流的尺寸，以节省带宽和计算资源。低质量视频流的默认宽高比与高质量视频流一致。系统会根据当前高质量视频流的宽高比，自动分配低质量视频流的分辨率、帧率和码率。</li>
                 </ul>
             </p>
-            <p props="ios mac">根据发送端的默认行为以及调用 <codeph>setDualStreamMode:streamConfig:</codeph> 时的具体设置，你调用此方法的场景如下：
+            <p props="ios mac">根据发送端的默认行为以及调用 <xref keyref="setDualStreamMode2"/> 时的具体设置，你调用此方法的场景如下：
                 <ul>
                     <li>SDK 默认在发送端启用低质量视频流自适应模式（<codeph>AgoraAutoSimulcastStream</codeph>），即仅发送高质量视频流。此时，只有角色为主播的接收端可以调用此方法发起低质量视频流请求。一旦发送端收到请求，会自动开始发送低质量视频流。此时，频道内所有用户都可以调用此方法切换为低质量视频流订阅模式。</li>
-                    <li>如果发送端调用 <codeph>setDualStreamMode:streamConfig:</codeph> 并将 <codeph>mode</codeph> 设置为 <codeph>AgoraDisableSimulcastStream</codeph>（从不发送低质量视频流），则调用此方法无效。</li>
-                    <li>如果发送端调用 <codeph>setDualStreamMode:streamConfig:</codeph> 并将 <codeph>mode</codeph> 设置为 <codeph>AgoraEnableSimulcastStream</codeph>（始终发送低质量视频流），则无论你是主播还是观众，都可以调用此方法切换为低质量视频流订阅模式。
+                    <li>如果发送端调用 <xref keyref="setDualStreamMode2"/> 并将 <codeph>mode</codeph> 设置为 <codeph>AgoraDisableSimulcastStream</codeph>（从不发送低质量视频流），则调用此方法无效。</li>
+                    <li>如果发送端调用 <xref keyref="setDualStreamMode2"/> 并将 <codeph>mode</codeph> 设置为 <codeph>AgoraEnableSimulcastStream</codeph>（始终发送低质量视频流），则无论你是主播还是观众，都可以调用此方法切换为低质量视频流订阅模式。
 SDK 会根据视频窗口的大小动态调整对应视频流的尺寸，以节省带宽和计算资源。低质量视频流的默认宽高比与高质量视频流相同。系统会根据当前高质量视频流的宽高比，自动分配低质量视频流的分辨率、帧率和码率。</li>
                 </ul>
             </p>

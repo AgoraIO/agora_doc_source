@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_config_setjsonparameter_config">
+    <title>
+    <ph keyref="SetJsonParameter_Config"/>
+  </title>
+    <shortdesc id="short">
+    <ph id="shortdesc">使用 JSON 配置 SDK 的技术预览或自定义功能。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="SetJsonParameter_Config"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">void SetJsonParameter(const char *json_parameter, Error *err = nullptr)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void setJsonParameter(String jsonParameter) throws RteException</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (void)setJsonParameter:(NSString * _Nonnull)jsonParameter error:(AgoraRteError * _Nullable)error;</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (void)setJsonParameter:(NSString * _Nullable)jsonParameter error:(AgoraRteError * _Nullable)error;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="android cpp ios mac">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">当你需要设置私有参数或启用自定义功能时，调用该方法。必须在调用 <codeph>SetConfigs</codeph> 之前调用该方法。</p>
+            <p props="android">你可以根据实际需要设置播放器的私有参数，具体设置可参考声网 SA 的建议。</p>
+            <p props="ios mac">当你需要设置私有参数或使用定制功能时，可以调用此方法。</p>
+            <note props="ios mac">你必须在调用 <xref keyref="SetConfigs_Rte"/> 之前调用此方法。</note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="cpp">必须在调用 <codeph>SetConfigs</codeph> 之前调用该方法。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>json_parameter</pt>
+                    <pd>JSON 格式的字符串。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>err</pt>
+                    <pd>输出参数，状态或错误信息，详见 <xref keyref="Error"/>。
+                        <ul>
+                            <li><codeph>kRteOk</codeph>：方法调用成功。</li>
+                            <li><codeph>kRteErrorInvalidArgument</codeph>：<codeph>json_parameter</codeph> 参数为空。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>jsonParameter</pt>
+                    <pd>以 JSON 字符串格式传入的参数。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>jsonParameter</pt>
+                    <pd>JSON 格式的字符串。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>error</pt>
+                    <pd>输出参数，状态或错误信息，详见 <xref keyref="Error"/>。
+                        <ul>
+                            <li><codeph>AgoraRteOk</codeph>：成功。</li>
+                            <li><codeph>AgoraRteErrorInvalidArgument</codeph>：表示 <codeph>jsonParameter</codeph> 参数为空。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>jsonParameter</pt>
+                    <pd>以 JSON 字符串形式传入的参数。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>error</pt>
+                    <pd>状态或错误信息，详见 <xref keyref="Error"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

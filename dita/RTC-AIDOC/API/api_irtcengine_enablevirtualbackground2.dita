@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enablevirtualbackground2">
+    <title>
+    <ph keyref="enableVirtualBackground2"/>
+  </title>
+    <shortdesc id="short">
+    <ph id="shortdesc">启用虚拟背景并指定媒体源，或关闭虚拟背景。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableVirtualBackground2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="ios" outputclass="language-objectivec">- (int)enableVirtualBackground:(BOOL)enable backData:(AgoraVirtualBackgroundSource* _Nullable)backData segData:(AgoraSegmentationProperty* _Nullable)segData sourceType:(AgoraMediaSourceType)sourceType NS_SWIFT_NAME(enableVirtualBackground(_:backData:segData:sourceType:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int enableVirtualBackground(boolean enabled, VirtualBackgroundSource backgroundSource, SegmentationProperty segproperty, Constants.MediaSourceType sourceType);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="ios">
+                    <dt>自从</dt>
+                    <dd>自 v3.7.200 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p props="ios">虚拟背景功能支持你将原始背景替换为静态图片、动态视频、模糊背景或人像背景分割，以实现画中画效果。启用该功能后，频道内的所有用户都可以看到自定义背景。该方法与 <xref keyref="enableVirtualBackground"/> 方法均可用于启用或关闭虚拟背景，但该方法允许你指定应用虚拟背景的媒体源类型。请在调用 <xref keyref="enableVideo"/> 或 <xref keyref="startPreview2"/> 方法后调用本方法。</p>
+            <p props="android">该方法用于启用或关闭虚拟背景功能。你可以将原始背景替换为静态图片、动态视频、模糊背景或人像背景分割，以实现画中画效果。启用后，频道内所有用户都可以看到自定义背景。
+
+该方法与 <codeph>enableVirtualBackground</codeph> 功能相同，但本方法允许你指定应用虚拟背景的媒体源类型。请在调用 <xref keyref="enableVideo"/> 或 <codeph>startPreview</codeph> 后调用本方法。</p>
+            <note props="ios">
+                <ul>
+                    <li>使用视频作为虚拟背景会导致内存持续增长，可能引发应用崩溃等问题。因此，建议降低视频的分辨率和帧率。</li>
+                    <li>该功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的性能。声网建议你在以下设备上使用该功能：</li>
+                    <li>iOS：配备 A9 芯片及以上的设备，包括：</li>
+                    <li>iPhone 6S 及以上机型。</li>
+                    <li>iPad Air 第三代及以上机型。</li>
+                    <li>iPad 第五代及以上机型。</li>
+                    <li>iPad Pro 第一代及以上机型。</li>
+                    <li>iPad mini 第五代及以上机型。</li>
+                    <li>macOS：配备 i5 及以上处理器的设备。</li>
+                    <li>声网建议你在以下场景中使用该功能：</li>
+                    <li>使用高清摄像头，且环境光线均匀。</li>
+                    <li>拍摄画面中物体较少，人像为半身像且无遮挡。</li>
+                    <li>背景颜色应为纯色，且与用户服装颜色有明显区别。</li>
+                    <li>本方法依赖虚拟背景动态库 <xref keyref="segmentation"/>（iOS）或 <codeph>AgoraVideoSegmentationExtension.framework</codeph>（macOS）。若该动态库被删除，则无法正常启用该功能。</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>使用视频作为虚拟背景会导致内存持续增长，可能引发应用崩溃。建议降低视频的分辨率和帧率。</li>
+                    <li>此功能对设备性能要求较高。调用本方法时，SDK 会自动检测当前设备的能力。声网建议在以下处理器设备上使用该功能：</li>
+                    <li>Snapdragon 700 系列 750G 及以上版本。</li>
+                    <li>Snapdragon 800 系列 835 及以上版本。</li>
+                    <li>Dimensity 700 系列 720 及以上版本。</li>
+                    <li>Kirin 800 系列 810 及以上版本。</li>
+                    <li>Kirin 900 系列 980 及以上版本。</li>
+                    <li>声网建议在以下场景中使用该功能：</li>
+                    <li>使用高清摄像头设备，且环境光线均匀。</li>
+                    <li>拍摄画面中物体较少，人像为半身像且无遮挡。</li>
+                    <li>背景为纯色，且与用户服装颜色有明显区别。</li>
+                    <li>本方法依赖虚拟背景动态库 <xref keyref="segmentation"/>。若该动态库被删除，则无法正常启用该功能。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="android ios">加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android ios">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="ios">
+                    <pt>enable</pt>
+                    <pd>是否启用虚拟背景：
+                        <ul>
+                            <li><xref keyref="true"/>：启用虚拟背景。</li>
+                            <li><xref keyref="false"/>：关闭虚拟背景。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>backData</pt>
+                    <pd>自定义背景。SDK 会对背景图像进行缩放和裁剪，以适配采集视频的分辨率，并确保图像内容不被拉伸变形。详见 <xref keyref="VirtualBackgroundSource"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>segData</pt>
+                    <pd>背景图像的处理属性。详见 <xref keyref="SegmentationProperty"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>sourceType</pt>
+                    <pd>应用滤镜效果的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。
+                        <ul>
+                            <li>默认值为 <codeph>AgoraMediaSourceTypePrimaryCamera</codeph>。</li>
+                            <li>若使用自定义视频源，请设置为 <codeph>AgoraMediaSourceTypeCustomVideo</codeph>。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enabled</pt>
+                    <pd>是否启用虚拟背景：
+                        <ul>
+                            <li><xref keyref="true"/>：启用虚拟背景。</li>
+                            <li><xref keyref="false"/>：关闭虚拟背景。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>backgroundSource</pt>
+                    <pd>自定义背景。SDK 会对自定义背景图像进行缩放和裁剪，以适配采集的视频分辨率，并确保图像内容不失真。详见 <xref keyref="VirtualBackgroundSource"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>segproperty</pt>
+                    <pd>背景图像的处理属性。详见 <xref keyref="SegmentationProperty"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sourceType</pt>
+                    <pd>应用滤镜效果的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                    <li>-4：设备性能不满足虚拟背景功能的要求。声网建议你在性能更高的设备上尝试。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                    <li>-4：设备能力不满足虚拟背景功能的要求。声网建议在性能更高的设备上尝试使用该功能。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

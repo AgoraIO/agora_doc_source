@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setfaceshapebeautyoptions2">
+    <title>
+    <ph keyref="setFaceShapeBeautyOptions2"/>
+  </title>
+    <shortdesc id="short">
+    <ph id="shortdesc">设置美型选项并指定媒体源。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setFaceShapeBeautyOptions2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="ios" outputclass="language-objectivec">- (int)setFaceShapeBeautyOptions:(BOOL)enable options:(AgoraFaceShapeBeautyOptions* _Nullable)options sourceType:(AgoraMediaSourceType)sourceType NS_SWIFT_NAME(setFaceShapeBeautyOptions(_:options:sourceType:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="ios">调用该方法可以通过预设参数一次性修改面部多个部位，实现瘦脸、放大眼睛、瘦鼻等轻度美型效果，并支持整体调整美型强度。该方法支持指定应用美颜特效的媒体源。</p>
+            <note props="ios">
+                <ul>
+                    <li>该方法依赖图像增强动态库 <xref keyref="clearvision"/>（iOS）或 <codeph>AgoraClearVisionExtension.framework</codeph>（macOS）。如果删除该动态库，功能将无法正常启用。</li>
+                    <li>该功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的能力。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="ios">在调用 <xref keyref="enableVideo"/> 后调用该方法。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android ios">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="ios">
+                    <pt>enable</pt>
+                    <pd>是否开启美型特效：
+                        <ul>
+                            <li><xref keyref="true"/>：开启美型特效。</li>
+                            <li><xref keyref="false"/>：（默认）关闭美型特效。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>options</pt>
+                    <pd>美型风格选项，详见 <xref keyref="FaceShapeBeautyOptions"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>sourceType</pt>
+                    <pd>要应用滤镜特效的媒体源类型，详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。
+                        <ul>
+                            <li>如果使用摄像头采集本地视频，使用默认值 <codeph>AgoraMediaSourceTypePrimaryCamera</codeph>。</li>
+                            <li>如果使用自定义视频源，设置为 <codeph>AgoraMediaSourceTypeCustomVideo</codeph>。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                    <li>-4：当前设备不支持该功能。可能原因包括：</li>
+                    <li>当前设备能力不满足图像增强要求。声网建议你更换为高性能设备。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

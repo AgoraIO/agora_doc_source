@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_addvideowatermark1">
+    <title>
+    <ph keyref="addVideoWatermark1"/>
+  </title>
+    <shortdesc id="short">
+    <ph id="shortdesc">向本地视频流添加水印图像。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="addVideoWatermark1"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int addVideoWatermark(const RtcImage&amp; watermark) __deprecated = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int addVideoWatermark(AgoraImage watermark)</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)addVideoWatermark:(AgoraImage * _Nonnull)watermark NS_SWIFT_NAME(addVideoWatermark(_:)) __deprecated_msg("use addVideoWatermarkWithConfig:config instead.");</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)addVideoWatermark:(AgoraImage * _Nonnull)watermark NS_SWIFT_NAME(addVideoWatermark(_:)) __deprecated_msg("use addVideoWatermarkWithConfig:config instead.");</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="cpp">
+                    <dt/>
+                    <dd>自 v4.5.0 版本废弃。</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt/>
+                    <dd>自 v2.9.1 版本废弃，请改用 `addVideoWatermark`。</dd>
+                </dlentry>
+                <dlentry props="ios mac">
+                    <dt/>
+                    <dd>自 v4.5.0 版本废弃，请改用 `addVideoWatermarkWithConfig:`。</dd>
+                </dlentry>
+            </dl>
+            <p props="android">该方法在直播场景中向本地视频流添加 PNG 格式的水印图像。添加水印图像后，频道内的所有用户（包括 CDN 观众）以及视频采集设备都可以看到并采集该水印图像。如果你只想向 CDN 推流添加水印，请使用 <xref keyref="startRtmpStreamWithTranscoding"/>。</p>
+            <p props="ios mac">该方法在直播场景中向本地视频流添加 PNG 格式的水印图像。添加水印图像后，频道内的所有用户（包括 CDN 观众）以及视频采集设备都可以看到并采集该图像。如果你只想向 CDN 推流添加水印，请参见 <codeph>startRtmpStreamWithTranscoding:</codeph> 方法。</p>
+            <note props="cpp">
+                <ul>
+                    <li>本地视频和 CDN 推流中 URL 的含义不同：在本地视频流中，URL 指的是水印图像文件在本地的绝对路径；在 CDN 推流中，URL 指的是水印图像在 CDN 推流中的地址。</li>
+                    <li>水印图像的源文件必须为 PNG 格式。如果 PNG 文件的宽高与该方法中的设置不一致，SDK 会裁剪该文件以符合设置。</li>
+                    <li>声网 SDK 仅支持在本地视频或 CDN 推流中添加一张水印图像。新添加的水印图像会替换之前的图像。</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>本地视频和 CDN 推流中 URL 的含义不同：在本地视频流中，URL 指的是添加的水印图像文件在本地视频流中的绝对路径；在 CDN 推流中，URL 指的是添加的水印图像在 CDN 推流中的 URL 地址。</li>
+                    <li>水印图像的源文件必须为 PNG 格式。如果 PNG 文件的宽高与该方法中的设置不一致，SDK 会对 PNG 文件进行裁剪以符合设置。</li>
+                    <li>SDK 仅支持在本地视频或 CDN 推流中添加一张水印图像。新添加的水印图像会替换之前的图像。</li>
+                </ul>
+            </note>
+            <note props="ios mac">
+                <ul>
+                    <li>本地视频和 CDN 推流中 URL 的含义不同：在本地视频流中，URL 指的是添加的水印图像文件在本地视频流中的绝对路径；在 CDN 推流中，URL 指的是添加的水印图像在 CDN 推流中的 URL 地址。</li>
+                    <li>水印图像的源文件必须为 PNG 格式。如果 PNG 文件的宽高与该方法中的设置不一致，SDK 会裁剪该文件以符合设置。</li>
+                    <li>SDK 仅支持在本地视频或 CDN 推流中添加一个水印图像。新添加的水印图像会替换之前的图像。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>watermark</pt>
+                    <pd>水印图像。详见 <xref keyref="RtcImage"/>。</pd>
+                </plentry>
+                <plentry props="android ios mac">
+                    <pt>watermark</pt>
+                    <pd>要添加到本地直播中的水印图像。详见 <xref keyref="RtcImage"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="android cpp ios mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_stopscreencapture">
+    <title>
+    <ph keyref="stopScreenCapture"/>
+  </title>
+    <shortdesc id="short">
+    <ph id="shortdesc">停止屏幕采集。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="stopScreenCapture"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int stopScreenCapture() = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int stopScreenCapture();</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)stopScreenCapture NS_SWIFT_NAME(stopScreenCapture());</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)stopScreenCapture NS_SWIFT_NAME(stopScreenCapture());</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="android">
+                    <dt>自从</dt>
+                    <dd>自 v3.7.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">如果你通过调用 <codeph>startScreenCapture</codeph>、<xref keyref="startScreenCaptureByWindowId"/> 或 <xref keyref="startScreenCaptureByDisplayId"/> 开始屏幕采集，则需要调用该方法停止屏幕采集。</p>
+            <p props="android">如果你通过调用 <xref keyref="startScreenCapture"/> 开始了屏幕采集，则需要调用 <xref keyref="stopScreenCapture"/> 停止屏幕采集。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="cpp">你可以在加入频道前或加入频道后调用该方法。</p>
+            <p props="android ios mac">你可以在加入频道前或后调用此方法。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="android cpp ios mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

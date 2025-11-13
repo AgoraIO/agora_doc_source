@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_rte_rte_rte">
+    <title>
+    <ph keyref="Rte_Rte"/>
+  </title>
+    <shortdesc id="short">
+    <ph id="shortdesc">构造一个 `Rte` 对象。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="Rte_Rte"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">Rte(Rte &amp;&amp;other)</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (instancetype _Nonnull)initWithInitialConfig:(AgoraRteInitialConfig * _Nullable)config;</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (instancetype _Nonnull)initWithInitialConfig:(AgoraRteInitialConfig * _Nullable)config;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp ios mac">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p props="ios mac"><codeph>RTE</codeph> 对象用于组织和管理 <codeph>RTE</codeph> 的内部资源。你必须在调用 <xref keyref="InitMediaEngine"/> 方法之前调用此方法。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="cpp">该方法必须在调用 <xref keyref="InitMediaEngine"/> 之前调用。</p>
+            <p props="ios mac">你必须在调用 <xref keyref="InitMediaEngine"/> 方法之前调用此方法。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android cpp ios mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>other</pt>
+                    <pd>用于移动构造的 <xref keyref="Rte"/> 对象，详见 <xref keyref="Rte"/>。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>config</pt>
+                    <pd>初始化设置。你可以传入 <xref keyref="NULL"/>。详见 <codeph>AgoraRteInitialConfig</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="ios mac">方法调用成功，返回 <codeph>RTE</codeph> 对象。方法调用失败，返回 <xref keyref="NULL"/>。</p>
+        </section>
+    </refbody>
+</reference>

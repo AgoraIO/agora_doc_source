@@ -38,11 +38,11 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraConnectionStateDisconnected</pt>
-                    <pd>（1）：SDK 与声网边缘服务器断开连接。该状态表示 SDK 处于以下阶段之一：调用 <codeph>joinChannelByToken:channelId:uid:mediaOptions:joinSuccess:</codeph> 方法前的初始状态，或调用 <codeph>leaveChannel:</codeph> 方法后。</pd>
+                    <pd>（1）：SDK 与声网边缘服务器断开连接。该状态表示 SDK 处于以下阶段之一：调用 <xref keyref="joinChannel2"/> 方法前的初始状态，或调用 <xref keyref="leaveChannel"/> 方法后。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraConnectionStateConnecting</pt>
-                    <pd>（2）：SDK 正在连接声网边缘服务器。该状态表示调用 <codeph>joinChannelByToken:channelId:uid:mediaOptions:joinSuccess:</codeph> 方法后，SDK 正在与指定频道建立连接。连接成功后，SDK 会触发 <codeph>connectionChangedToState:reason:</codeph> 回调，并将状态切换为 <codeph>AgoraConnectionStateConnected</codeph>。连接建立后，SDK 会初始化媒体，并在准备就绪时触发 <codeph>didJoinChannel:withUid:elapsed:</codeph> 回调。</pd>
+                    <pd>（2）：SDK 正在连接声网边缘服务器。该状态表示调用 <xref keyref="joinChannel2"/> 方法后，SDK 正在与指定频道建立连接。连接成功后，SDK 会触发 <codeph>connectionChangedToState:reason:</codeph> 回调，并将状态切换为 <codeph>AgoraConnectionStateConnected</codeph>。连接建立后，SDK 会初始化媒体，并在准备就绪时触发 <codeph>didJoinChannel:withUid:elapsed:</codeph> 回调。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraConnectionStateConnected</pt>
@@ -59,7 +59,7 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraConnectionStateFailed</pt>
-                    <pd>（5）：SDK 无法连接到声网边缘服务器或加入频道。该状态表示 SDK 停止尝试重连。你必须调用 <codeph>leaveChannel:</codeph> 离开频道。可调用 <codeph>joinChannelByToken:channelId:uid:mediaOptions:joinSuccess:</codeph> 重新加入频道。如果 SDK 被声网边缘服务器通过 RESTful API 禁止加入频道，会触发 <codeph>connectionChangedToState:reason:</codeph> 回调。</pd>
+                    <pd>（5）：SDK 无法连接到声网边缘服务器或加入频道。该状态表示 SDK 停止尝试重连。你必须调用 <xref keyref="leaveChannel"/> 离开频道。可调用 <xref keyref="joinChannel2"/> 重新加入频道。如果 SDK 被声网边缘服务器通过 RESTful API 禁止加入频道，会触发 <codeph>connectionChangedToState:reason:</codeph> 回调。</pd>
                 </plentry>
             </parml>
         </section>

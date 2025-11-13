@@ -30,13 +30,13 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">该方法用于设置 <codeph>onEarMonitoringAudioFrame</codeph> 回调中报告的耳返音频数据格式。</p>
+            <p props="cpp">该方法用于设置 <xref keyref="onEarMonitoringAudioFrame_IAudioFrameObserverBase"/> 回调中报告的耳返音频数据格式。</p>
             <p props="android ios">该方法用于设置 <xref keyref="onEarMonitoringAudioFrame"/> 回调中报告的耳返音频数据格式。</p>
             <p props="mac">该方法用于设置 <codeph>onEarMonitoringAudioFrame:</codeph> 回调中报告的耳返音频数据格式。</p>
             <note props="cpp">
                 <ul>
-                    <li>在调用该方法前，需先调用 <codeph>enableInEarMonitoring</codeph>，并将 <codeph>includeAudioFilters</codeph> 设置为 <codeph>EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS</codeph> 或 <codeph>EAR_MONITORING_FILTER_NOISE_SUPPRESSION</codeph>。</li>
-                    <li>SDK 会根据该方法中设置的 <codeph>samplesPerCall</codeph>、<codeph>sampleRate</codeph> 和 <codeph>channel</codeph> 参数计算采样间隔。采样间隔（秒）= <codeph>samplesPerCall</codeph> /（<codeph>sampleRate</codeph> × <codeph>channel</codeph>）。请确保采样间隔 ≥ 0.01 秒。SDK 会根据采样间隔触发 <codeph>onEarMonitoringAudioFrame</codeph> 回调。</li>
+                    <li>在调用该方法前，需先调用 <xref keyref="enableInEarMonitoring2"/>，并将 <codeph>includeAudioFilters</codeph> 设置为 <codeph>EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS</codeph> 或 <codeph>EAR_MONITORING_FILTER_NOISE_SUPPRESSION</codeph>。</li>
+                    <li>SDK 会根据该方法中设置的 <codeph>samplesPerCall</codeph>、<codeph>sampleRate</codeph> 和 <codeph>channel</codeph> 参数计算采样间隔。采样间隔（秒）= <codeph>samplesPerCall</codeph> /（<codeph>sampleRate</codeph> × <codeph>channel</codeph>）。请确保采样间隔 ≥ 0.01 秒。SDK 会根据采样间隔触发 <xref keyref="onEarMonitoringAudioFrame_IAudioFrameObserverBase"/> 回调。</li>
                 </ul>
             </note>
             <note props="android">
@@ -71,11 +71,11 @@
             <parml>
                 <plentry props="cpp">
                     <pt>sampleRate</pt>
-                    <pd><codeph>onEarMonitoringAudioFrame</codeph> 回调中报告的音频采样率。可设置为 8000、16000、32000、44100 或 48000 Hz。</pd>
+                    <pd><xref keyref="onEarMonitoringAudioFrame_IAudioFrameObserverBase"/> 回调中报告的音频采样率。可设置为 8000、16000、32000、44100 或 48000 Hz。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>channel</pt>
-                    <pd><codeph>onEarMonitoringAudioFrame</codeph> 回调中报告的音频通道数。
+                    <pd><xref keyref="onEarMonitoringAudioFrame_IAudioFrameObserverBase"/> 回调中报告的音频通道数。
                         <ul>
                             <li>1：单声道。</li>
                             <li>2：立体声。</li>
@@ -88,7 +88,7 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>samplesPerCall</pt>
-                    <pd><codeph>onEarMonitoringAudioFrame</codeph> 回调中每次报告的采样点数量，例如媒体推流时为 1024。</pd>
+                    <pd><xref keyref="onEarMonitoringAudioFrame_IAudioFrameObserverBase"/> 回调中每次报告的采样点数量，例如媒体推流时为 1024。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>sampleRate</pt>

@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setlowlightenhanceoptions2">
+    <title>
+    <ph keyref="setLowlightEnhanceOptions2"/>
+  </title>
+    <shortdesc id="short">
+    <ph id="shortdesc">设置低光增强选项，并指定应用该选项的视频媒体源。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setLowlightEnhanceOptions2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="ios" outputclass="language-objectivec">- (int)setLowlightEnhanceOptions:(BOOL)enable options:(AgoraLowlightEnhanceOptions* _Nullable)options sourceType:(AgoraMediaSourceType)sourceType NS_SWIFT_NAME(setLowlightEnhanceOptions(_:options:sourceType:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setLowlightEnhanceOptions(boolean enabled, LowLightEnhanceOptions options, Constants.MediaSourceType sourceType);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="ios">
+                    <dt>自从</dt>
+                    <dd>自 v4.0.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>自从</dt>
+                    <dd>自 v3.6.2 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p props="ios">该方法与 <xref keyref="setLowlightEnhanceOptions"/> 方法都用于设置低光增强选项，但该方法允许你指定应用低光增强选项的媒体源类型。
+适用场景：在黑暗环境中或使用低端视频采集设备时，视频图像可能会出现明显噪点，影响视频质量。在实时互动场景中，视频噪点还会占用码流资源，降低编码效率。</p>
+            <p props="android">该方法用于设置低光增强选项，并允许你指定应用该选项的视频媒体源。
+适用场景：在光线较暗的环境中，或使用低端视频采集设备时，视频图像可能会出现明显噪点，影响视频质量。在实时互动场景中，视频噪点还会占用码流资源，降低编码效率。
+调用时机：请在调用 <xref keyref="enableVideo"/> 方法后调用本方法。</p>
+            <note props="ios">
+                <ul>
+                    <li>该方法依赖图像增强动态库 <xref keyref="clearvision"/>（iOS）或 <codeph>AgoraClearVisionExtension.framework</codeph>（macOS）。如果删除该动态库，该功能将无法正常启用。</li>
+                    <li>视频降噪对设备性能有一定要求。如果你在启用视频降噪后设备出现过热，声网建议你将视频降噪选项调整为较低的性能消耗等级，或完全关闭视频降噪功能。</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>该方法依赖图像增强动态库 <xref keyref="clearvision"/>。如果该动态库被删除，则无法正常启用该功能。</li>
+                    <li>视频降噪对设备性能有一定要求。如果启用视频降噪后设备出现过热，声网建议将视频降噪选项调整为较低的性能消耗等级，或完全关闭视频降噪功能。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="ios">请在调用 <xref keyref="enableVideo"/> 方法之后调用本方法。</p>
+            <p props="android">请在调用 <xref keyref="enableVideo"/> 方法后调用本方法。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="android ios">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="ios">
+                    <pt>enable</pt>
+                    <pd>是否启用低光增强：
+                        <ul>
+                            <li><xref keyref="true"/>：启用低光增强。</li>
+                            <li><xref keyref="false"/>：（默认）关闭低光增强。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>options</pt>
+                    <pd>低光增强选项，详见 <xref keyref="LowlightEnhanceOptions"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>sourceType</pt>
+                    <pd>应用滤镜效果的媒体源类型，详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。
+注意：在该方法中，该参数仅支持以下两种设置：
+                        <ul>
+                            <li>默认值为 <codeph>AgoraMediaSourceTypePrimaryCamera</codeph>。</li>
+                            <li>如果你使用自定义视频源，请将该参数设置为 <codeph>AgoraMediaSourceTypeCustomVideo</codeph>。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enabled</pt>
+                    <pd>是否启用低光增强：
+                        <ul>
+                            <li><xref keyref="true"/>：启用低光增强。</li>
+                            <li><xref keyref="false"/>：（默认）关闭低光增强。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>options</pt>
+                    <pd>低光增强选项。详见 <xref keyref="LowlightEnhanceOptions"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sourceType</pt>
+                    <pd>应用低光增强效果的视频媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="android ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>
