@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enablecustomaudiolocalplayback">
     <title>
-        <ph keyref="enableCustomAudioLocalPlayback"/>
+    <ph keyref="enableCustomAudioLocalPlayback"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">设置是否启用外部音频源的本地播放。</ph>
+    <ph id="shortdesc">设置是否启用外部音频源的本地播放。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -24,10 +24,9 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">调用该方法可开启外部音频源的本地播放。如需停止播放，可再次调用该方法并将 <codeph>enabled</codeph> 设置为 <codeph>false</codeph>。你可以调用 <codeph>adjustCustomAudioPlayoutVolume</codeph> 方法调整自定义音频轨道的本地播放音量。</p>
+            <p props="cpp">调用该方法可开启外部音频源的本地播放。如需停止播放，可再次调用该方法并将 <codeph>enabled</codeph> 设置为 <xref keyref="false"/>。你可以调用 <xref keyref="adjustCustomAudioPlayoutVolume"/> 方法调整自定义音频轨道的本地播放音量。</p>
             <p props="android">你可以调用 <xref keyref="adjustCustomAudioPlayoutVolume"/> 方法调整自定义音频轨道的本地播放音量。</p>
-            <p props="ios">调用该方法启用外部音频源的本地播放后，如需停止本地播放，可再次调用该方法并将 <codeph>enabled</codeph> 设置为 <xref keyref="false"/>。你可以调用 <xref keyref="adjustCustomAudioPlayoutVolume"/> 方法调整自定义音频轨道的本地播放音量。</p>
-            <p props="mac">调用该方法启用外部音频源的本地播放后，如需停止本地播放，可再次调用该方法并将 <codeph>enabled</codeph> 设置为 <codeph>NO</codeph>。你可以调用 <codeph>adjustCustomAudioPlayoutVolume:volume:</codeph> 方法调整自定义音频轨道的本地播放音量。</p>
+            <p props="ios mac">调用该方法启用外部音频源的本地播放后，如需停止本地播放，可再次调用该方法并将 <codeph>enabled</codeph> 设置为 <xref keyref="false"/>。你可以调用 <xref keyref="adjustCustomAudioPlayoutVolume"/> 方法调整自定义音频轨道的本地播放音量。</p>
             <note props="cpp">请确保在调用该方法前，已通过 <codeph>createCustomAudioTrack</codeph> 创建自定义音频轨道。</note>
             <note props="android">请确保在调用该方法前已调用 <xref keyref="createCustomAudioTrack"/> 方法创建自定义音频轨道。</note>
             <note props="ios">请确保在调用该方法前已通过 <xref keyref="createCustomAudioTrack"/> 方法创建自定义音频轨道。</note>
@@ -52,10 +51,8 @@
                     <pt>enabled</pt>
                     <pd>是否启用外部音频轨道的本地播放：
                         <ul>
-                            <li>
-                                <codeph>true</codeph>：启用本地播放。</li>
-                            <li>
-                                <codeph>false</codeph>：不启用本地播放。</li>
+                            <li><xref keyref="true"/>：启用本地播放。</li>
+                            <li><xref keyref="false"/>：不启用本地播放。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -63,14 +60,12 @@
                     <pt>trackId</pt>
                     <pd>音频轨道 ID，设置为 <xref keyref="createCustomAudioTrack"/> 返回的自定义音频轨道 ID。</pd>
                 </plentry>
-                <plentry props="android ios">
+                <plentry props="android ios mac">
                     <pt>enabled</pt>
                     <pd>是否播放外部音频源：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：播放外部音频源。</li>
-                            <li>
-                                <xref keyref="false"/>：（默认）不播放外部音频源。</li>
+                            <li><xref keyref="true"/>：播放外部音频源。</li>
+                            <li><xref keyref="false"/>：（默认）不播放外部音频源。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -81,17 +76,6 @@
                 <plentry props="mac">
                     <pt>trackId</pt>
                     <pd>音频轨道 ID。该参数需设置为 <codeph>createCustomAudioTrack:config:</codeph> 方法返回的自定义音频轨道 ID。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>enabled</pt>
-                    <pd>是否播放外部音频源：
-                        <ul>
-                            <li>
-                                <codeph>YES</codeph>：播放外部音频源。</li>
-                            <li>
-                                <codeph>NO</codeph>：（默认）不播放外部音频源。</li>
-                        </ul>
-                    </pd>
                 </plentry>
             </parml>
         </section>

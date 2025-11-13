@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_updatechannelmediaoptionsex">
     <title>
-        <ph keyref="updateChannelMediaOptionsEx"/>
+    <ph keyref="updateChannelMediaOptionsEx"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">在加入频道后更新频道媒体选项。</ph>
+    <ph id="shortdesc">在加入频道后更新频道媒体选项。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -39,33 +39,17 @@
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="cpp">
-                    <pt>options</pt>
-                    <pd>频道媒体选项。详见 <codeph>ChannelMediaOptions</codeph>。</pd>
-                </plentry>
-                <plentry props="cpp">
-                    <pt>connection</pt>
-                    <pd>连接信息。详见 <codeph>RtcConnection</codeph>。</pd>
-                </plentry>
-                <plentry props="android">
+                <plentry props="android cpp">
                     <pt>options</pt>
                     <pd>频道媒体选项。详见 <xref keyref="ChannelMediaOptions"/>。</pd>
                 </plentry>
-                <plentry props="android ios">
+                <plentry props="android cpp ios mac">
                     <pt>connection</pt>
                     <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>mediaOptions</pt>
                     <pd>频道媒体选项。详见 <xref keyref="ChannelMediaOptions"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>mediaOptions</pt>
-                    <pd>频道媒体选项。详见 <codeph>AgoraRtcChannelMediaOptions</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>connection</pt>
-                    <pd>连接信息。详见 <codeph>AgoraRtcConnection</codeph>。</pd>
                 </plentry>
             </parml>
         </section>
@@ -75,9 +59,9 @@
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>
-                    <li>-2：<codeph>ChannelMediaOptions</codeph> 中的成员值无效，例如 <codeph>token</codeph> 或用户 ID 无效。你需要填写有效的参数。</li>
-                    <li>-7：<codeph>IRtcEngine</codeph> 对象尚未初始化。你需要先初始化 <codeph>IRtcEngine</codeph> 对象再调用该方法。</li>
-                    <li>-8：<codeph>IRtcEngine</codeph> 对象的内部状态错误，可能的原因是用户未加入频道。声网建议你通过 <codeph>onConnectionStateChanged</codeph> 回调判断用户是否在频道中。如果你收到 <codeph>CONNECTION_STATE_DISCONNECTED</codeph>（1）或 <codeph>CONNECTION_STATE_FAILED</codeph>（5）状态，说明用户不在频道中。你需要先调用 <codeph>joinChannel</codeph> 加入频道，再调用该方法。</li>
+                    <li>-2：<xref keyref="ChannelMediaOptions"/> 中的成员值无效，例如 <codeph>token</codeph> 或用户 ID 无效。你需要填写有效的参数。</li>
+                    <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要先初始化 <xref keyref="IRtcEngine"/> 对象再调用该方法。</li>
+                    <li>-8：<xref keyref="IRtcEngine"/> 对象的内部状态错误，可能的原因是用户未加入频道。声网建议你通过 <xref keyref="onConnectionStateChanged"/> 回调判断用户是否在频道中。如果你收到 <codeph>CONNECTION_STATE_DISCONNECTED</codeph>（1）或 <codeph>CONNECTION_STATE_FAILED</codeph>（5）状态，说明用户不在频道中。你需要先调用 <codeph>joinChannel</codeph> 加入频道，再调用该方法。</li>
                 </ul>
             </p>
             <p props="android">
@@ -89,22 +73,13 @@
                     <li>-8：<xref keyref="IRtcEngine"/> 对象的内部状态错误，可能的原因是用户不在频道中。</li>
                 </ul>
             </p>
-            <p props="ios">
+            <p props="ios mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>
                     <li>-2：<xref keyref="ChannelMediaOptions"/> 中的成员值无效，例如 <codeph>token</codeph> 或用户 ID 无效。你需要填写有效的参数。</li>
                     <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要先初始化 <xref keyref="IRtcEngine"/> 对象再调用该方法。</li>
                     <li>-8：<xref keyref="IRtcEngine"/> 对象的内部状态错误，可能的原因是你尚未加入频道。声网建议你通过 <xref keyref="onConnectionStateChanged"/> 回调判断是否已加入频道。如果你收到 <codeph>AgoraConnectionStateDisconnected</codeph>（1）或 <codeph>AgoraConnectionStateFailed</codeph>（5）状态，说明你尚未加入频道。你需要先调用 <codeph>joinChannelByToken:channelId:uid:mediaOptions:joinSuccess:</codeph> 加入频道，再调用该方法。</li>
-                </ul>
-            </p>
-            <p props="mac">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
-                    <li>-2：<codeph>AgoraRtcChannelMediaOptions</codeph> 中的成员值无效，例如 <codeph>token</codeph> 或用户 ID 无效。你需要填写有效的参数。</li>
-                    <li>-7：<codeph>AgoraRtcEngineKit</codeph> 对象尚未初始化。你需要先初始化 <codeph>AgoraRtcEngineKit</codeph> 对象再调用该方法。</li>
-                    <li>-8：<codeph>AgoraRtcEngineKit</codeph> 对象的内部状态错误，可能的原因是你尚未加入频道。声网建议你通过 <codeph>rtcEngine:connectionChangedToState:reason:</codeph> 回调判断是否已加入频道。如果你收到 <codeph>AgoraConnectionStateDisconnected</codeph>（1）或 <codeph>AgoraConnectionStateFailed</codeph>（5）状态，说明你尚未加入频道。你需要先调用 <codeph>joinChannelByToken:channelId:uid:mediaOptions:joinSuccess:</codeph> 加入频道，再调用该方法。</li>
                 </ul>
             </p>
         </section>

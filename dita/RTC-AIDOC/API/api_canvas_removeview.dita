@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_canvas_removeview">
     <title>
-        <ph keyref="RemoveView"/>
+    <ph keyref="RemoveView"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">移除一个渲染视图。</ph>
+    <ph id="shortdesc">移除一个渲染视图。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -30,16 +30,13 @@
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
             </dl>
-            <p props="ios">调用 <xref keyref="AddView"/> 方法添加视图后，可以调用该方法移除渲染视图。</p>
-            <p props="mac">调用 <codeph>addView:config:error:</codeph> 方法添加视图后，可以调用该方法移除渲染视图。</p>
+            <p props="ios mac">调用 <xref keyref="AddView"/> 方法添加视图后，可以调用该方法移除渲染视图。</p>
             <note props="android cpp ios mac">每次只能移除一个视图。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="cpp">该方法必须在调用 <codeph>AddView</codeph> 之后调用。</p>
-            <p props="android">该方法必须在调用 <xref keyref="AddView"/> 之后调用。</p>
-            <p props="ios">必须在调用 <xref keyref="AddView"/> 方法之后调用。</p>
-            <p props="mac">必须在调用 <codeph>addView:config:error:</codeph> 方法之后调用。</p>
+            <p props="android cpp">该方法必须在调用 <xref keyref="AddView"/> 之后调用。</p>
+            <p props="ios mac">必须在调用 <xref keyref="AddView"/> 方法之后调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -54,11 +51,11 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>config</pt>
-                    <pd>视图配置。目前传入 <codeph>NULL</codeph>。详见 <codeph>ViewConfig</codeph>。</pd>
+                    <pd>视图配置。目前传入 <xref keyref="NULL"/>。详见 <codeph>ViewConfig</codeph>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>err</pt>
-                    <pd>输出参数，状态或错误信息。详见 <codeph>Error</codeph>。</pd>
+                    <pd>输出参数，状态或错误信息。详见 <xref keyref="Error"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>view</pt>
@@ -72,48 +69,22 @@
                     <pt>view</pt>
                     <pd>要移除的视图对象，详见 <codeph>AgoraRteView</codeph>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>config</pt>
                     <pd>视图对象的配置。目前传入 <xref keyref="NULL"/>。详见 <codeph>AgoraRteViewConfig</codeph>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>error</pt>
                     <pd>状态或错误信息，详见 <xref keyref="Error"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>config</pt>
-                    <pd>视图对象的配置。目前传入 <codeph>nil</codeph>。详见 <codeph>AgoraRteViewConfig</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>error</pt>
-                    <pd>状态或错误信息，详见 <codeph>AgoraRteError</codeph>。</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="cpp">
+            <p props="cpp ios mac">
                 <ul>
-                    <li>
-                        <codeph>true</codeph>：视图移除成功。</li>
-                    <li>
-                        <codeph>false</codeph>：视图移除失败。</li>
-                </ul>
-            </p>
-            <p props="ios">
-                <ul>
-                    <li>
-                        <xref keyref="true"/>：视图移除成功。</li>
-                    <li>
-                        <xref keyref="false"/>：视图移除失败。</li>
-                </ul>
-            </p>
-            <p props="mac">
-                <ul>
-                    <li>
-                        <codeph>YES</codeph>：视图移除成功。</li>
-                    <li>
-                        <codeph>NO</codeph>：视图移除失败。</li>
+                    <li><xref keyref="true"/>：视图移除成功。</li>
+                    <li><xref keyref="false"/>：视图移除失败。</li>
                 </ul>
             </p>
         </section>

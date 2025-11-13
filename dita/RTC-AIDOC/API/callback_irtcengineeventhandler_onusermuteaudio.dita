@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onusermuteaudio">
     <title>
-        <ph keyref="onUserMuteAudio"/>
+    <ph keyref="onUserMuteAudio"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">远端用户或主播停止或恢复发送音频流回调。</ph>
+    <ph id="shortdesc">远端用户或主播停止或恢复发送音频流回调。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -24,10 +24,9 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">当远端用户调用 <codeph>muteLocalAudioStream</codeph> 停止或恢复发送音频流时，SDK 会触发该回调。</p>
+            <p props="cpp">当远端用户调用 <xref keyref="muteLocalAudioStream"/> 停止或恢复发送音频流时，SDK 会触发该回调。</p>
             <p props="android">该回调在远端用户调用 <xref keyref="muteLocalAudioStream"/> 方法时触发。</p>
-            <p props="ios">当远端用户调用 <xref keyref="muteLocalAudioStream"/> 方法停止或恢复发送音频流时，SDK 会触发该回调。</p>
-            <p props="mac">当远端用户调用 <codeph>muteLocalAudioStream:</codeph> 方法停止或恢复发送音频流时，SDK 会触发该回调。</p>
+            <p props="ios mac">当远端用户调用 <xref keyref="muteLocalAudioStream"/> 方法停止或恢复发送音频流时，SDK 会触发该回调。</p>
             <note props="cpp">当通信场景中的用户数量或直播场景中的主播数量超过 32 时，该回调可能无法正常工作。</note>
             <note props="android">当频道中用户（在通信场景下）或主播（在直播场景下）数量超过 32 时，该回调可能无法正常工作。</note>
             <note props="ios mac">当频道中的用户（在通信频道场景中）或主播（在极速直播频道场景中）数量超过 32 时，该回调可能无法正常工作。</note>
@@ -46,8 +45,7 @@
             <parml>
                 <plentry props="cpp">
                     <pt>connection</pt>
-                    <pd>
-                        <codeph>RtcConnection</codeph> 对象。详见 <codeph>RtcConnection</codeph>。</pd>
+                    <pd><xref keyref="RtcConnection"/> 对象。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>remoteUid</pt>
@@ -57,10 +55,8 @@
                     <pt>muted</pt>
                     <pd>远端用户的音频流是否被静音：
                         <ul>
-                            <li>
-                                <codeph>true</codeph>：已静音。</li>
-                            <li>
-                                <codeph>false</codeph>：未静音。</li>
+                            <li><xref keyref="true"/>：已静音。</li>
+                            <li><xref keyref="false"/>：未静音。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -72,42 +68,21 @@
                     <pt>muted</pt>
                     <pd>远端用户的音频流是否被静音：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：音频流被静音。</li>
-                            <li>
-                                <xref keyref="false"/>：音频流未被静音。</li>
+                            <li><xref keyref="true"/>：音频流被静音。</li>
+                            <li><xref keyref="false"/>：音频流未被静音。</li>
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>engine</pt>
-                    <pd>
-                        <xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+                    <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>muted</pt>
                     <pd>远端用户的音频流是否被静音：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：用户的音频流被静音。</li>
-                            <li>
-                                <xref keyref="false"/>：用户的音频流未被静音。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>engine</pt>
-                    <pd>
-                        <codeph>AgoraRtcEngineKit</codeph> 对象。详见 <codeph>AgoraRtcEngineKit</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>muted</pt>
-                    <pd>远端用户的音频流是否被静音：
-                        <ul>
-                            <li>
-                                <codeph>YES</codeph>：用户的音频流被静音。</li>
-                            <li>
-                                <codeph>NO</codeph>：用户的音频流未被静音。</li>
+                            <li><xref keyref="true"/>：用户的音频流被静音。</li>
+                            <li><xref keyref="false"/>：用户的音频流未被静音。</li>
                         </ul>
                     </pd>
                 </plentry>

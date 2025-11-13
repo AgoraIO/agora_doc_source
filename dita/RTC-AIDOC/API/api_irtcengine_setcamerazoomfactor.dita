@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setcamerazoomfactor">
     <title>
-        <ph keyref="setCameraZoomFactor"/>
+    <ph keyref="setCameraZoomFactor"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">设置摄像头的变焦倍数。</ph>
+    <ph id="shortdesc">设置摄像头的变焦倍数。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -24,12 +24,10 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">对于配备多镜头后置摄像头的 iOS 设备，例如双摄（广角和超广角）或三摄（广角、超广角和长焦）设备，你可以先调用 <codeph>setCameraCapturerConfiguration</codeph> 方法，将 <codeph>cameraFocalLengthType</codeph> 设置为 <codeph>CAMERA_FOCAL_LENGTH_DEFAULT</codeph>（0）（标准镜头），然后将变焦倍数设置为小于 1.0 的值，从而实现超广角视角的视频采集。</p>
-            <p props="ios">你可以调用 <xref keyref="setCameraCapturerConfiguration"/> 方法，将 <codeph>cameraFocalLengthType</codeph> 设置为 <codeph>AgoraFocalLengthDefault</codeph>（0），然后将摄像头缩放因子设置为小于 1.0 的值，以实现超广角视角的视频采集。该方法适用于配备多镜头后置摄像头的 iOS 设备，例如配有广角、超广角和长焦镜头的设备。</p>
-            <p props="mac">你可以调用 <codeph>setCameraCapturerConfiguration:</codeph> 方法，将 <codeph>cameraFocalLengthType</codeph> 设置为 <codeph>AgoraFocalLengthDefault</codeph>（0），然后将摄像头缩放因子设置为小于 1.0 的值，以实现超广角视角的视频采集。该方法适用于配备多镜头后置摄像头的 iOS 设备，例如配有广角、超广角和长焦镜头的设备。</p>
+            <p props="cpp">对于配备多镜头后置摄像头的 iOS 设备，例如双摄（广角和超广角）或三摄（广角、超广角和长焦）设备，你可以先调用 <xref keyref="setCameraCapturerConfiguration"/> 方法，将 <codeph>cameraFocalLengthType</codeph> 设置为 <codeph>CAMERA_FOCAL_LENGTH_DEFAULT</codeph>（0）（标准镜头），然后将变焦倍数设置为小于 1.0 的值，从而实现超广角视角的视频采集。</p>
+            <p props="ios mac">你可以调用 <xref keyref="setCameraCapturerConfiguration"/> 方法，将 <codeph>cameraFocalLengthType</codeph> 设置为 <codeph>AgoraFocalLengthDefault</codeph>（0），然后将摄像头缩放因子设置为小于 1.0 的值，以实现超广角视角的视频采集。该方法适用于配备多镜头后置摄像头的 iOS 设备，例如配有广角、超广角和长焦镜头的设备。</p>
             <note props="android">你必须在调用 <xref keyref="enableVideo"/> 之后再调用此方法。该设置在摄像头成功开启后生效，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>（1）之后。</note>
-            <note props="ios">你必须在调用 <xref keyref="enableVideo"/> 之后再调用此方法。设置结果将在摄像头成功开启后生效，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>AgoraVideoLocalStateCapturing</codeph>（1）之后。</note>
-            <note props="mac">你必须在调用 <codeph>enableVideo</codeph> 之后再调用此方法。设置结果将在摄像头成功开启后生效，即 SDK 触发 <codeph>rtcEngine:localVideoStateChangedOfState:reason:sourceType:</codeph> 回调并返回本地视频状态为 <codeph>AgoraVideoLocalStateCapturing</codeph>（1）之后。</note>
+            <note props="ios mac">你必须在调用 <xref keyref="enableVideo"/> 之后再调用此方法。设置结果将在摄像头成功开启后生效，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>AgoraVideoLocalStateCapturing</codeph>（1）之后。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -44,19 +42,15 @@
             <parml>
                 <plentry props="cpp">
                     <pt>factor</pt>
-                    <pd>摄像头变焦倍数。对于不支持超广角的设备，该值范围为 1.0 到设备支持的最大变焦倍数；对于支持超广角的设备，该值范围为 0.5 到设备支持的最大变焦倍数。你可以通过调用 <codeph>getCameraMaxZoomFactor</codeph> 方法获取设备支持的最大变焦倍数。</pd>
+                    <pd>摄像头变焦倍数。对于不支持超广角的设备，该值范围为 1.0 到设备支持的最大变焦倍数；对于支持超广角的设备，该值范围为 0.5 到设备支持的最大变焦倍数。你可以通过调用 <xref keyref="getCameraMaxZoomFactor"/> 方法获取设备支持的最大变焦倍数。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>factor</pt>
                     <pd>摄像头缩放因子。你可以通过调用 <xref keyref="getCameraMaxZoomFactor"/> 获取设备支持的最大缩放因子。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>zoomFactor</pt>
                     <pd>摄像头缩放因子。对于不支持超广角的设备，该值范围为 1.0 到最大缩放因子；对于支持超广角的设备，该值范围为 0.5 到最大缩放因子。你可以通过调用 <xref keyref="getCameraMaxZoomFactor"/> 方法获取设备支持的最大缩放因子。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>zoomFactor</pt>
-                    <pd>摄像头缩放因子。对于不支持超广角的设备，该值范围为 1.0 到最大缩放因子；对于支持超广角的设备，该值范围为 0.5 到最大缩放因子。你可以通过调用 <codeph>cameraMaxZoomFactor</codeph> 方法获取设备支持的最大缩放因子。</pd>
                 </plentry>
             </parml>
         </section>

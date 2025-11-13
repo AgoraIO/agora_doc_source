@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_segmentationproperty">
     <title>
-        <ph keyref="SegmentationProperty"/>
+    <ph keyref="SegmentationProperty"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">用于设置背景图像处理的相关属性。</ph>
+    <ph id="shortdesc">用于设置背景图像处理的相关属性。</ph>
   </shortdesc>
     <refbody>
         <section id="prototype">
@@ -40,17 +40,17 @@
         <section id="parameters" deliveryTarget="details">
             <title>属性</title>
             <parml>
-                <plentry props="cpp">
+                <plentry props="cpp ios">
                     <pt>modelType</pt>
-                    <pd>用于背景处理的算法类型。详见 <codeph>SEG_MODEL_TYPE</codeph>。</pd>
+                    <pd>用于背景处理的算法类型。详见 <xref keyref="SEG_MODEL_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>greenCapacity</pt>
                     <pd>识别图像中背景颜色的精度范围。取值范围为 [0,1]，默认值为 0.5。值越大，可识别的纯色色调范围越广。当该参数值过大时，人物边缘和人物区域内的纯色也可能被检测到。声网建议根据实际效果动态调整该参数的值。</pd>
                 </plentry>
-                <plentry props="cpp">
+                <plentry props="cpp ios">
                     <pt>screenColorType</pt>
-                    <pd>屏幕颜色类型。详见 <codeph>SCREEN_COLOR_TYPE</codeph>。</pd>
+                    <pd>屏幕颜色类型。详见 <xref keyref="SCREEN_COLOR_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>SEG_MODEL_AI</pt>
@@ -76,10 +76,8 @@
                     <pt>modelType</pt>
                     <pd>用于背景处理的算法类型。
                         <ul>
-                            <li>
-                                <codeph>SEG_MODEL_AI</codeph>（1）：（默认）使用适用于所有场景的算法。</li>
-                            <li>
-                                <codeph>SEG_MODEL_GREEN</codeph>（2）：使用专为绿幕背景场景设计的算法。</li>
+                            <li><codeph>SEG_MODEL_AI</codeph>（1）：（默认）使用适用于所有场景的算法。</li>
+                            <li><codeph>SEG_MODEL_GREEN</codeph>（2）：使用专为绿幕背景场景设计的算法。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -91,26 +89,15 @@
                     <pt>screenColorType</pt>
                     <pd>屏幕颜色类型：
                         <ul>
-                            <li>
-                                <codeph>SCREEN_COLOR_AUTO</codeph>（0）：SDK 自动选择屏幕颜色。</li>
-                            <li>
-                                <codeph>SCREEN_COLOR_GREEN</codeph>（1）：绿色。</li>
-                            <li>
-                                <codeph>SCREEN_COLOR_BLUE</codeph>（2）：蓝色。</li>
+                            <li><codeph>SCREEN_COLOR_AUTO</codeph>（0）：SDK 自动选择屏幕颜色。</li>
+                            <li><codeph>SCREEN_COLOR_GREEN</codeph>（1）：绿色。</li>
+                            <li><codeph>SCREEN_COLOR_BLUE</codeph>（2）：蓝色。</li>
                         </ul>
                     </pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>modelType</pt>
-                    <pd>用于背景处理的算法类型。详见 <xref keyref="SEG_MODEL_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="ios mac">
                     <pt>greenCapacity</pt>
                     <pd>识别图像中背景纯色的精度范围。取值范围为 [0,1]，默认值为 0.5。值越大，可识别的纯色色阶范围越广。当该值过大时，可能会将人物边缘或人物区域内的纯色误识别为背景。声网建议你根据实际效果动态调整该参数的值。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>screenColorType</pt>
-                    <pd>屏幕颜色类型。详见 <xref keyref="SCREEN_COLOR_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>modelType</pt>

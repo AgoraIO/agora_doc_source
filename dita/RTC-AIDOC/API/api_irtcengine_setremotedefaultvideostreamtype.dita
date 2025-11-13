@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setremotedefaultvideostreamtype">
     <title>
-        <ph keyref="setRemoteDefaultVideoStreamType"/>
+    <ph keyref="setRemoteDefaultVideoStreamType"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">设置默认订阅的视频流类型。</ph>
+    <ph id="shortdesc">设置默认订阅的视频流类型。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -55,10 +55,9 @@ SDK 会根据视频窗口的大小动态调整对应视频流的尺寸，以节�
 SDK 会根据视频窗口的大小动态调整对应视频流的尺寸，以节省带宽和计算资源。低质量视频流的默认宽高比与高质量视频流一致。系统会根据当前高质量视频流的宽高比，自动分配低质量视频流的分辨率、帧率和码率。</li>
                 </ul>
             </p>
-            <note props="cpp">如果同时调用此方法和 <codeph>setRemoteVideoStreamType</codeph>，则以 <codeph>setRemoteVideoStreamType</codeph> 的设置为准。</note>
+            <note props="cpp">如果同时调用此方法和 <xref keyref="setRemoteVideoStreamType"/>，则以 <xref keyref="setRemoteVideoStreamType"/> 的设置为准。</note>
             <note props="android">如果同时调用该方法和 <codeph>setRemoteVideoStreamType</codeph>，则以 <codeph>setRemoteVideoStreamType</codeph> 的设置为准。</note>
-            <note props="ios">如果你同时调用此方法和 <xref keyref="setRemoteVideoStreamType"/>，则以 <xref keyref="setRemoteVideoStreamType"/> 的设置为准。</note>
-            <note props="mac">如果你同时调用此方法和 <codeph>setRemoteVideoStream:type:</codeph>，则以 <codeph>setRemoteVideoStream:type:</codeph> 的设置为准。</note>
+            <note props="ios mac">如果你同时调用此方法和 <xref keyref="setRemoteVideoStreamType"/>，则以 <xref keyref="setRemoteVideoStreamType"/> 的设置为准。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -73,28 +72,18 @@ SDK 会根据视频窗口的大小动态调整对应视频流的尺寸，以节�
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="cpp">
+                <plentry props="cpp ios mac">
                     <pt>streamType</pt>
-                    <pd>默认订阅的视频流类型，详见 <codeph>VIDEO_STREAM_TYPE</codeph>。</pd>
+                    <pd>默认订阅的视频流类型，详见 <xref keyref="VIDEO_STREAM_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>streamType</pt>
                     <pd>默认订阅的视频流类型：
                         <ul>
-                            <li>
-                                <codeph>VIDEO_STREAM_HIGH</codeph>（0）：高质量视频流，即高分辨率和高码率的视频流。</li>
-                            <li>
-                                <codeph>VIDEO_STREAM_LOW</codeph>（1）：低质量视频流，即低分辨率和低码率的视频流。</li>
+                            <li><codeph>VIDEO_STREAM_HIGH</codeph>（0）：高质量视频流，即高分辨率和高码率的视频流。</li>
+                            <li><codeph>VIDEO_STREAM_LOW</codeph>（1）：低质量视频流，即低分辨率和低码率的视频流。</li>
                         </ul>
                     </pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>streamType</pt>
-                    <pd>默认订阅的视频流类型，详见 <xref keyref="VIDEO_STREAM_TYPE"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>streamType</pt>
-                    <pd>默认订阅的视频流类型，详见 <codeph>AgoraVideoStreamType</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

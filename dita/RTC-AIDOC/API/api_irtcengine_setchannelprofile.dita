@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setchannelprofile">
     <title>
-        <ph keyref="setChannelProfile"/>
+    <ph keyref="setChannelProfile"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">设置频道场景。</ph>
+    <ph id="shortdesc">设置频道场景。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -27,18 +27,12 @@
             <p props="cpp">SDK 会根据不同的频道场景采用不同的优化策略。例如，在极速直播场景中，SDK 会优先保证视频质量。初始化 SDK 后，默认频道场景为极速直播。</p>
             <p props="android">SDK 会根据不同的频道场景采用不同的优化策略，例如在极速直播场景中优先保证视频质量。初始化 SDK 后，默认频道场景为极速直播。</p>
             <p props="ios mac">你可以调用该方法设置频道场景。SDK 会针对不同的频道场景采用不同的优化策略。例如，在极速直播场景中，SDK 会优先保证视频质量。初始化 SDK 后，默认频道场景为极速直播。</p>
-            <note props="cpp">为保证实时通信质量，声网建议频道内所有用户使用相同的频道场景。在不同的频道场景中，SDK 的默认音频路由也不同。详见 <codeph>setDefaultAudioRouteToSpeakerphone</codeph>。</note>
+            <note props="cpp">为保证实时通信质量，声网建议频道内所有用户使用相同的频道场景。在不同的频道场景中，SDK 的默认音频路由也不同。详见 <xref keyref="setDefaultAudioRouteToSpeakerphone"/>。</note>
             <note props="android">为确保实时通信质量，建议频道内所有用户使用相同的频道场景。不同频道场景下，SDK 的默认音频路由也不同，详见 <xref keyref="setDefaultAudioRouteToSpeakerphone"/>。</note>
-            <note props="ios">
+            <note props="ios mac">
                 <ul>
                     <li>为保证实时通信质量，声网建议频道内所有用户使用相同的频道场景。</li>
                     <li>在 iOS 平台，不同频道场景下 SDK 的默认音频路由不同，详见 <xref keyref="setDefaultAudioRouteToSpeakerphone"/>。</li>
-                </ul>
-            </note>
-            <note props="mac">
-                <ul>
-                    <li>为保证实时通信质量，声网建议频道内所有用户使用相同的频道场景。</li>
-                    <li>在 iOS 平台，不同频道场景下 SDK 的默认音频路由不同，详见 <codeph>setDefaultAudioRouteToSpeakerphone:</codeph>。</li>
                 </ul>
             </note>
         </section>
@@ -55,28 +49,20 @@
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="cpp">
+                <plentry props="cpp ios">
                     <pt>profile</pt>
-                    <pd>频道场景。详见 <codeph>CHANNEL_PROFILE_TYPE</codeph>。</pd>
+                    <pd>频道场景。详见 <xref keyref="CHANNEL_PROFILE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>profile</pt>
                     <pd>频道场景：
                         <ul>
-                            <li>
-                                <codeph>CHANNEL_PROFILE_COMMUNICATION</codeph>（0）：通信场景。建议使用 <codeph>CHANNEL_PROFILE_LIVE_BROADCASTING</codeph> 以获得更好的音视频体验。</li>
-                            <li>
-                                <codeph>CHANNEL_PROFILE_LIVE_BROADCASTING</codeph>（1）：（默认）极速直播场景。</li>
-                            <li>
-                                <codeph>CHANNEL_PROFILE_GAME</codeph>（2）：游戏场景。已废弃，请使用 <codeph>CHANNEL_PROFILE_LIVE_BROADCASTING</codeph>。</li>
-                            <li>
-                                <codeph>CHANNEL_PROFILE_CLOUD_GAMING</codeph>（3）：互动场景。该场景对延迟进行了优化，适用于用户之间需要频繁互动的场景。已废弃，请使用 <codeph>CHANNEL_PROFILE_LIVE_BROADCASTING</codeph>。</li>
+                            <li><codeph>CHANNEL_PROFILE_COMMUNICATION</codeph>（0）：通信场景。建议使用 <codeph>CHANNEL_PROFILE_LIVE_BROADCASTING</codeph> 以获得更好的音视频体验。</li>
+                            <li><codeph>CHANNEL_PROFILE_LIVE_BROADCASTING</codeph>（1）：（默认）极速直播场景。</li>
+                            <li><codeph>CHANNEL_PROFILE_GAME</codeph>（2）：游戏场景。已废弃，请使用 <codeph>CHANNEL_PROFILE_LIVE_BROADCASTING</codeph>。</li>
+                            <li><codeph>CHANNEL_PROFILE_CLOUD_GAMING</codeph>（3）：互动场景。该场景对延迟进行了优化，适用于用户之间需要频繁互动的场景。已废弃，请使用 <codeph>CHANNEL_PROFILE_LIVE_BROADCASTING</codeph>。</li>
                         </ul>
                     </pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>profile</pt>
-                    <pd>频道场景。详见 <xref keyref="CHANNEL_PROFILE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>profile</pt>

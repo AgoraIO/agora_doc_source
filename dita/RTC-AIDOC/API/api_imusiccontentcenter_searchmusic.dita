@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imusiccontentcenter_searchmusic">
     <title>
-        <ph keyref="searchMusic"/>
+    <ph keyref="searchMusic"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">搜索音乐资源。</ph>
+    <ph id="shortdesc">搜索音乐资源。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -24,8 +24,7 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="ios">调用该方法后，SDK 会触发 <xref keyref="onMusicCollectionResult"/> 回调，返回检索到的音乐资源列表。</p>
-            <p props="mac">调用该方法后，SDK 会触发 <codeph>onMusicCollectionResult:result:reason:</codeph> 回调，返回检索到的音乐资源列表。</p>
+            <p props="ios mac">调用该方法后，SDK 会触发 <xref keyref="onMusicCollectionResult"/> 回调，返回检索到的音乐资源列表。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -37,7 +36,7 @@
         </section>
         <section id="related" deliveryTarget="details">
             <title>相关回调</title>
-            <p props="cpp">成功调用该方法后，SDK 会触发 <codeph>onMusicCollectionResult</codeph> 回调报告检索到的音乐资源列表。</p>
+            <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onMusicCollectionResult"/> 回调报告检索到的音乐资源列表。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -60,20 +59,14 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>jsonOption</pt>
-                    <pd>扩展 JSON 字段，默认为 <codeph>NULL</codeph>。你可以使用该字段筛选所需的音乐资源。目前支持以下筛选项：
+                    <pd>扩展 JSON 字段，默认为 <xref keyref="NULL"/>。你可以使用该字段筛选所需的音乐资源。目前支持以下筛选项：
                         <ul>
-                            <li>
-                                <codeph>pitchType</codeph>：是否支持评分：</li>
-                            <li>
-                                <codeph>1</codeph>：可评分音乐。</li>
-                            <li>
-                                <codeph>2</codeph>：不可评分音乐。</li>
-                            <li>
-                                <codeph>needHighPart</codeph>：是否需要合唱片段：</li>
-                            <li>
-                                <codeph>true</codeph>：需要合唱片段。</li>
-                            <li>
-                                <codeph>false</codeph>：不需要合唱片段。
+                            <li><codeph>pitchType</codeph>：是否支持评分：</li>
+                            <li><codeph>1</codeph>：可评分音乐。</li>
+                            <li><codeph>2</codeph>：不可评分音乐。</li>
+                            <li><codeph>needHighPart</codeph>：是否需要合唱片段：</li>
+                            <li><xref keyref="true"/>：需要合唱片段。</li>
+                            <li><xref keyref="false"/>：不需要合唱片段。
 示例：<codeph>{"pitchType":1}</codeph>，<codeph>{"needHighPart":true}</codeph>。</li>
                         </ul>
                     </pd>
@@ -98,44 +91,17 @@
                     <pt>pageSize</pt>
                     <pd>每页显示的最大音乐资源数量，最大值为 50。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>jsonOption</pt>
                     <pd>可选的扩展 JSON 字段，默认为 <xref keyref="NULL"/>。你可以使用该字段筛选所需的音乐资源。目前支持以下筛选条件：
                         <ul>
-                            <li>
-                                <codeph>pitchType</codeph>：音乐资源是否支持评分。</li>
-                            <li>
-                                <codeph>1</codeph>：可评分的音乐资源。</li>
-                            <li>
-                                <codeph>2</codeph>：不可评分的音乐资源。
+                            <li><codeph>pitchType</codeph>：音乐资源是否支持评分。</li>
+                            <li><codeph>1</codeph>：可评分的音乐资源。</li>
+                            <li><codeph>2</codeph>：不可评分的音乐资源。
   示例：<codeph>{"pitchType":1}</codeph>。</li>
-                            <li>
-                                <codeph>needHighPart</codeph>：是否需要合唱片段资源。</li>
-                            <li>
-                                <xref keyref="true"/>：需要合唱片段资源。</li>
-                            <li>
-                                <xref keyref="false"/>：不需要合唱片段资源。
-  示例：<codeph>{"needHighPart":true}</codeph>。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>jsonOption</pt>
-                    <pd>可选的扩展 JSON 字段，默认为 <codeph>nil</codeph>。你可以使用该字段筛选所需的音乐资源。目前支持以下筛选条件：
-                        <ul>
-                            <li>
-                                <codeph>pitchType</codeph>：音乐资源是否支持评分。</li>
-                            <li>
-                                <codeph>1</codeph>：可评分的音乐资源。</li>
-                            <li>
-                                <codeph>2</codeph>：不可评分的音乐资源。
-  示例：<codeph>{"pitchType":1}</codeph>。</li>
-                            <li>
-                                <codeph>needHighPart</codeph>：是否需要合唱片段资源。</li>
-                            <li>
-                                <codeph>YES</codeph>：需要合唱片段资源。</li>
-                            <li>
-                                <codeph>NO</codeph>：不需要合唱片段资源。
+                            <li><codeph>needHighPart</codeph>：是否需要合唱片段资源。</li>
+                            <li><xref keyref="true"/>：需要合唱片段资源。</li>
+                            <li><xref keyref="false"/>：不需要合唱片段资源。
   示例：<codeph>{"needHighPart":true}</codeph>。</li>
                         </ul>
                     </pd>

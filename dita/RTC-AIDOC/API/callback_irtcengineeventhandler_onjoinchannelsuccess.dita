@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onjoinchannelsuccess">
     <title>
-        <ph keyref="onJoinChannelSuccess"/>
+    <ph keyref="onJoinChannelSuccess"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">本地用户成功加入频道回调。</ph>
+    <ph id="shortdesc">本地用户成功加入频道回调。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -28,7 +28,7 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
-            <p props="cpp">当你调用 <codeph>joinChannel</codeph>、<codeph>joinChannelWithUserAccount</codeph>、<codeph>joinChannelEx</codeph> 或 <codeph>joinChannelWithUserAccountEx</codeph> 加入频道时，SDK 会触发该回调。</p>
+            <p props="cpp">当你调用 <codeph>joinChannel</codeph>、<codeph>joinChannelWithUserAccount</codeph>、<xref keyref="joinChannelEx"/> 或 <xref keyref="joinChannelWithUserAccountEx"/> 加入频道时，SDK 会触发该回调。</p>
             <p props="android">该回调在你调用 <codeph>joinChannel</codeph>、<codeph>joinChannelWithUserAccount</codeph>、<xref keyref="joinChannelEx"/> 或 <xref keyref="joinChannelWithUserAccountEx"/> 加入频道时被触发。</p>
             <p props="ios mac">该回调在调用 <codeph>joinChannelByToken</codeph>、<codeph>joinChannelExByToken</codeph> 等方法加入频道时被触发。</p>
         </section>
@@ -41,7 +41,7 @@
             <parml>
                 <plentry props="cpp">
                     <pt>connection</pt>
-                    <pd>连接信息。详见 <codeph>RtcConnection</codeph>。</pd>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>elapsed</pt>
@@ -59,10 +59,9 @@
                     <pt>elapsed</pt>
                     <pd>从本地用户调用 <codeph>joinChannel</codeph> 加入频道到 SDK 触发该回调的时间间隔，单位为毫秒。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>engine</pt>
-                    <pd>
-                        <xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+                    <pd><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
                 <plentry props="ios mac">
                     <pt>uid</pt>
@@ -71,11 +70,6 @@
                 <plentry props="ios mac">
                     <pt>elapsed</pt>
                     <pd>从调用 <codeph>joinChannelByToken</codeph> 方法到 SDK 触发该回调的时间间隔（毫秒）。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>engine</pt>
-                    <pd>
-                        <codeph>AgoraRtcEngineKit</codeph> 对象，详见 <codeph>AgoraRtcEngineKit</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

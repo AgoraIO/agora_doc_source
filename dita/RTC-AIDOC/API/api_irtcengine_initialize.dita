@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_initialize">
     <title>
-        <ph keyref="initialize"/>
+    <ph keyref="initialize"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">初始化 `ILocalSpatialAudioEngine`。</ph>
+    <ph id="shortdesc">初始化 `ILocalSpatialAudioEngine`。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -26,20 +26,15 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">在调用 <codeph>ILocalSpatialAudioEngine</codeph> 的其他方法前，你必须先调用 <codeph>queryInterface</codeph> 获取接口实例，并通过该方法初始化 <codeph>ILocalSpatialAudioEngine</codeph>。每个 App 仅支持创建一个 <codeph>ILocalSpatialAudioEngine</codeph> 实例。</p>
+            <p props="cpp">在调用 <xref keyref="ILocalSpatialAudioEngine"/> 的其他方法前，你必须先调用 <xref keyref="queryInterface"/> 获取接口实例，并通过该方法初始化 <xref keyref="ILocalSpatialAudioEngine"/>。每个 App 仅支持创建一个 <xref keyref="ILocalSpatialAudioEngine"/> 实例。</p>
             <p props="android">你可以通过调用此方法或 <codeph>create</codeph> 方法来创建 <xref keyref="IRtcEngine"/> 实例。与后者相比，此方法支持更多配置选项，例如指定连接区域和设置日志文件。</p>
-            <p props="ios">你可以通过调用此方法或调用 <codeph>sharedEngineWithAppId:delegate:</codeph> 来创建 <xref keyref="IRtcEngine"/> 实例。与 <codeph>sharedEngineWithAppId:delegate:</codeph> 不同，此方法在创建 <xref keyref="IRtcEngine"/> 实例时支持更多配置，例如指定连接区域和设置日志文件。</p>
-            <p props="mac">你可以通过调用此方法或调用 <codeph>sharedEngineWithAppId:delegate:</codeph> 来创建 <codeph>AgoraRtcEngineKit</codeph> 实例。与 <codeph>sharedEngineWithAppId:delegate:</codeph> 不同，此方法在创建 <codeph>AgoraRtcEngineKit</codeph> 实例时支持更多配置，例如指定连接区域和设置日志文件。</p>
+            <p props="ios mac">你可以通过调用此方法或调用 <codeph>sharedEngineWithAppId:delegate:</codeph> 来创建 <xref keyref="IRtcEngine"/> 实例。与 <codeph>sharedEngineWithAppId:delegate:</codeph> 不同，此方法在创建 <xref keyref="IRtcEngine"/> 实例时支持更多配置，例如指定连接区域和设置日志文件。</p>
             <note props="android">每个 App 仅支持创建一个 <xref keyref="IRtcEngine"/> 实例。<xref keyref="IRtcEngine"/> 类中的所有方法均为异步执行，声网建议在同一线程中调用这些方法。</note>
-            <note props="ios">
-                <xref keyref="IRtcEngine"/> 每个 App 仅支持创建一个实例。<xref keyref="IRtcEngine"/> 提供的所有方法均为异步执行。声网建议你在同一线程中调用这些方法。</note>
-            <note props="mac">
-                <codeph>AgoraRtcEngineKit</codeph> 每个 App 仅支持创建一个实例。<codeph>AgoraRtcEngineKit</codeph> 提供的所有方法均为异步执行。声网建议你在同一线程中调用这些方法。</note>
+            <note props="ios mac"><xref keyref="IRtcEngine"/> 每个 App 仅支持创建一个实例。<xref keyref="IRtcEngine"/> 提供的所有方法均为异步执行。声网建议你在同一线程中调用这些方法。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android ios">在调用其他 API 之前，必须先调用此方法创建 <xref keyref="IRtcEngine"/> 对象。</p>
-            <p props="mac">在调用其他 API 之前，必须先调用此方法创建 <codeph>AgoraRtcEngineKit</codeph> 对象。</p>
+            <p props="android ios mac">在调用其他 API 之前，必须先调用此方法创建 <xref keyref="IRtcEngine"/> 对象。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -50,26 +45,15 @@
             <parml>
                 <plentry props="cpp">
                     <pt>context</pt>
-                    <pd>
-                        <codeph>IRtcEngine</codeph> 实例的配置参数。详见 <codeph>RtcEngineContext</codeph>。</pd>
+                    <pd><xref keyref="IRtcEngine"/> 实例的配置参数。详见 <xref keyref="RtcEngineConfig"/>。</pd>
                 </plentry>
-                <plentry props="android ios">
+                <plentry props="android ios mac">
                     <pt>config</pt>
                     <pd>用于配置 <xref keyref="IRtcEngine"/> 实例的参数。详见 <xref keyref="RtcEngineConfig"/>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>delegate</pt>
-                    <pd>
-                        <xref keyref="IRtcEngine"/> 的事件回调处理器。详见 <xref keyref="IRtcEngineEventHandler"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>config</pt>
-                    <pd>用于配置 <codeph>AgoraRtcEngineKit</codeph> 实例的参数。详见 <codeph>AgoraRtcEngineConfig</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>delegate</pt>
-                    <pd>
-                        <codeph>AgoraRtcEngineKit</codeph> 的事件回调处理器。详见 <codeph>AgoraRtcEngineDelegate</codeph>。</pd>
+                    <pd><xref keyref="IRtcEngine"/> 的事件回调处理器。详见 <xref keyref="IRtcEngineEventHandler"/>。</pd>
                 </plentry>
             </parml>
         </section>
@@ -83,16 +67,10 @@
             </p>
             <p props="android">方法调用成功，返回初始化后的 <xref keyref="IRtcEngine"/> 对象。
 方法调用失败，SDK 会抛出异常，并返回相应的错误信息。你需要捕获异常并进行处理。</p>
-            <p props="ios">
+            <p props="ios mac">
                 <ul>
                     <li>方法调用成功时，返回初始化后的 <xref keyref="IRtcEngine"/> 对象。</li>
                     <li>方法调用失败时，返回一个其内部引擎字段为 <xref keyref="NULL"/> 的 <xref keyref="IRtcEngine"/> 对象。你可以通过 <codeph>delegate</codeph> 的 <xref keyref="onError"/> 回调获取错误码。</li>
-                </ul>
-            </p>
-            <p props="mac">
-                <ul>
-                    <li>方法调用成功时，返回初始化后的 <codeph>AgoraRtcEngineKit</codeph> 对象。</li>
-                    <li>方法调用失败时，返回一个其内部引擎字段为 <codeph>nil</codeph> 的 <codeph>AgoraRtcEngineKit</codeph> 对象。你可以通过 <codeph>delegate</codeph> 的 <codeph>rtcEngine:didOccurError:</codeph> 回调获取错误码。</li>
                 </ul>
             </p>
         </section>

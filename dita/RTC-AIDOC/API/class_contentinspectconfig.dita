@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_contentinspectconfig">
     <title>
-        <ph keyref="ContentInspectConfig"/>
+    <ph keyref="ContentInspectConfig"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">配置视频截图和上传功能。</ph>
+    <ph id="shortdesc">配置视频截图和上传功能。</ph>
   </shortdesc>
     <refbody>
         <section id="prototype">
@@ -59,15 +59,15 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>serverConfig</pt>
-                    <pd>（可选）通过声网 Extensions Marketplace 上传视频截图的服务器配置。仅当 <codeph>ContentInspectModule</codeph> 中的 <codeph>type</codeph> 设置为 <codeph>CONTENT_INSPECT_IMAGE_MODERATION</codeph> 时该参数才生效。如需使用，请联系技术支持。</pd>
+                    <pd>（可选）通过声网 Extensions Marketplace 上传视频截图的服务器配置。仅当 <xref keyref="ContentInspectModule"/> 中的 <codeph>type</codeph> 设置为 <codeph>CONTENT_INSPECT_IMAGE_MODERATION</codeph> 时该参数才生效。如需使用，请联系技术支持。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>modules</pt>
-                    <pd>功能模块。最多可配置 32 个 <codeph>ContentInspectModule</codeph> 实例。详见 <codeph>ContentInspectModule</codeph>。</pd>
+                    <pd>功能模块。最多可配置 32 个 <xref keyref="ContentInspectModule"/> 实例。详见 <xref keyref="ContentInspectModule"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>moduleCount</pt>
-                    <pd>功能模块的数量，即配置的 <codeph>ContentInspectModule</codeph> 实例数量，必须与 <codeph>modules</codeph> 中配置的实例数量一致。最大数量为 32。</pd>
+                    <pd>功能模块的数量，即配置的 <xref keyref="ContentInspectModule"/> 实例数量，必须与 <codeph>modules</codeph> 中配置的实例数量一致。最大数量为 32。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>CONTENT_INSPECT_TYPE_INVALID</pt>
@@ -109,21 +109,13 @@
                     <pt>extraInfo</pt>
                     <pd>视频内容的附加信息（最大长度为 1024 字节）。SDK 会将截图和视频内容的附加信息上传至声网服务器。上传完成后，声网服务器会将附加信息和回调通知发送至你的服务器。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>serverConfig</pt>
                     <pd>通过声网 Extensions Marketplace 上传视频截图的扩展相关的服务器配置。仅当 <xref keyref="ContentInspectModule"/> 中的 <codeph>type</codeph> 设置为 <codeph>AgoraContentInspectTypeImageModeration</codeph> 时该参数才生效。如需使用该功能，请联系技术支持。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>modules</pt>
                     <pd>功能模块。最多可配置 32 个 <xref keyref="ContentInspectModule"/> 实例，<codeph>MAX_CONTENT_INSPECT_MODULE_COUNT</codeph> 的取值范围为 [1, 32] 的整数。详见 <xref keyref="ContentInspectModule"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>serverConfig</pt>
-                    <pd>通过声网 Extensions Marketplace 上传视频截图的扩展相关的服务器配置。仅当 <codeph>AgoraContentInspectModule</codeph> 中的 <codeph>type</codeph> 设置为 <codeph>AgoraContentInspectTypeImageModeration</codeph> 时该参数才生效。如需使用该功能，请联系技术支持。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>modules</pt>
-                    <pd>功能模块。最多可配置 32 个 <codeph>AgoraContentInspectModule</codeph> 实例，<codeph>MAX_CONTENT_INSPECT_MODULE_COUNT</codeph> 的取值范围为 [1, 32] 的整数。详见 <codeph>AgoraContentInspectModule</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

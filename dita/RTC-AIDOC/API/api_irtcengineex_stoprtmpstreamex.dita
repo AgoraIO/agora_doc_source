@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_stoprtmpstreamex">
     <title>
-        <ph keyref="stopRtmpStreamEx"/>
+    <ph keyref="stopRtmpStreamEx"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">停止向指定 CDN 地址推送媒体流。</ph>
+    <ph id="shortdesc">停止向指定 CDN 地址推送媒体流。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -42,9 +42,7 @@
         </section>
         <section id="related" deliveryTarget="details">
             <title>相关回调</title>
-            <p props="cpp">成功调用该方法后，SDK 会触发 <codeph>onRtmpStreamingStateChanged</codeph> 回调报告推流状态。</p>
-            <p props="ios">成功调用该方法后，SDK 会触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调报告推流状态。</p>
-            <p props="mac">成功调用该方法后，SDK 会触发 <codeph>rtcEngine:rtmpStreamingChangedToState:state:reason:</codeph> 回调报告推流状态。</p>
+            <p props="cpp ios mac">成功调用该方法后，SDK 会触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调报告推流状态。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -53,25 +51,17 @@
                     <pt>url</pt>
                     <pd>旁路推流地址，格式为 RTMP 或 RTMPS。字符长度不能超过 1024 字节，不支持中文等特殊字符。</pd>
                 </plentry>
-                <plentry props="cpp">
+                <plentry props="android cpp ios mac">
                     <pt>connection</pt>
-                    <pd>连接信息。详见 <codeph>RtcConnection</codeph>。</pd>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>url</pt>
                     <pd>旁路推流地址，格式为 RTMP 或 RTMPS，字符长度不能超过 1024 字节。不支持中文等特殊字符。</pd>
                 </plentry>
-                <plentry props="android ios">
-                    <pt>connection</pt>
-                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
-                </plentry>
                 <plentry props="ios mac">
                     <pt>url</pt>
                     <pd>旁路推流地址。格式为 RTMP 或 RTMPS。字符长度不能超过 1024 字节。不支持中文等特殊字符。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>connection</pt>
-                    <pd>连接信息。详见 <codeph>AgoraRtcConnection</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

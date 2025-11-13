@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_simulcastconfig">
     <title>
-        <ph keyref="SimulcastConfig"/>
+    <ph keyref="SimulcastConfig"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">用于配置不同质量层级的视频流。</ph>
+    <ph id="shortdesc">用于配置不同质量层级的视频流。</ph>
   </shortdesc>
     <refbody>
         <section id="prototype">
@@ -39,59 +39,34 @@
         <section id="parameters" deliveryTarget="details">
             <title>属性</title>
             <parml>
-                <plentry props="cpp">
+                <plentry props="android cpp ios mac">
                     <pt>configs</pt>
-                    <pd>多质量层级视频流的配置。详见 <codeph>StreamLayerConfig</codeph>。</pd>
+                    <pd>多质量层级视频流的配置。详见 <xref keyref="StreamLayerConfig"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>publish_fallback_enable</pt>
                     <pd>是否开启分层推流回退：
                         <ul>
-                            <li>
-                                <codeph>true</codeph>：开启分层推流回退。当发布端设备性能或网络较差时，SDK 会动态关闭从 layer1 到 layer6 的多个不同质量层级的视频流，至少保留最高和最低质量的视频流，以维持基本的视频连续性。</li>
-                            <li>
-                                <codeph>false</codeph>：（默认）关闭分层推流回退。</li>
+                            <li><xref keyref="true"/>：开启分层推流回退。当发布端设备性能或网络较差时，SDK 会动态关闭从 layer1 到 layer6 的多个不同质量层级的视频流，至少保留最高和最低质量的视频流，以维持基本的视频连续性。</li>
+                            <li><xref keyref="false"/>：（默认）关闭分层推流回退。</li>
                         </ul>
                     </pd>
-                </plentry>
-                <plentry props="android ios">
-                    <pt>configs</pt>
-                    <pd>多质量层级视频流的配置。详见 <xref keyref="StreamLayerConfig"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>publishFallbackEnable</pt>
                     <pd>是否开启分层推流回退机制：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：开启回退机制。当推流端设备性能或网络状况不佳时，SDK 会动态禁用从 layer1 到 layer6 的多路不同质量层级的视频流，至少保留最高和最低质量的视频流，以维持基本的视频连贯性。</li>
-                            <li>
-                                <xref keyref="false"/>：（默认）关闭回退机制。</li>
+                            <li><xref keyref="true"/>：开启回退机制。当推流端设备性能或网络状况不佳时，SDK 会动态禁用从 layer1 到 layer6 的多路不同质量层级的视频流，至少保留最高和最低质量的视频流，以维持基本的视频连贯性。</li>
+                            <li><xref keyref="false"/>：（默认）关闭回退机制。</li>
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>publishFallbackEnable</pt>
                     <pd>是否启用分层推流回退：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：启用分层推流回退。当发布端设备性能或网络较差时，SDK 会动态关闭从 layer1 到 layer6 的多个不同质量层级的视频流，至少保留最高和最低质量的视频流，以维持基本的视频连续性。</li>
-                            <li>
-                                <xref keyref="false"/>：（默认）关闭分层推流回退。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>configs</pt>
-                    <pd>多质量层级视频流的配置。详见 <codeph>AgoraStreamLayerConfig</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>publishFallbackEnable</pt>
-                    <pd>是否启用分层推流回退：
-                        <ul>
-                            <li>
-                                <codeph>YES</codeph>：启用分层推流回退。当发布端设备性能或网络较差时，SDK 会动态关闭从 layer1 到 layer6 的多个不同质量层级的视频流，至少保留最高和最低质量的视频流，以维持基本的视频连续性。</li>
-                            <li>
-                                <codeph>NO</codeph>：（默认）关闭分层推流回退。</li>
+                            <li><xref keyref="true"/>：启用分层推流回退。当发布端设备性能或网络较差时，SDK 会动态关闭从 layer1 到 layer6 的多个不同质量层级的视频流，至少保留最高和最低质量的视频流，以维持基本的视频连续性。</li>
+                            <li><xref keyref="false"/>：（默认）关闭分层推流回退。</li>
                         </ul>
                     </pd>
                 </plentry>

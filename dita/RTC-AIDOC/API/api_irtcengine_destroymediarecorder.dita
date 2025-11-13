@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_destroymediarecorder">
     <title>
-        <ph keyref="destroyMediaRecorder"/>
+    <ph keyref="destroyMediaRecorder"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">销毁音视频录制器对象。</ph>
+    <ph id="shortdesc">销毁音视频录制器对象。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -24,10 +24,9 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">当你不再需要录制音频和视频流时，可以调用此方法销毁对应的录制器实例。调用此方法前，请确保已调用 <codeph>stopRecording</codeph> 停止录制。</p>
+            <p props="cpp">当你不再需要录制音频和视频流时，可以调用此方法销毁对应的录制器实例。调用此方法前，请确保已调用 <xref keyref="stopRecording"/> 停止录制。</p>
             <p props="android">如果当前正在录制，请先调用 <xref keyref="stopRecording"/> 停止录制，再调用 <xref keyref="destroyMediaRecorder"/> 销毁录制器实例。</p>
-            <p props="ios">当你不再需要录制音视频流时，可以调用此方法销毁对应的音视频录制器实例。如果录制正在进行中，请先调用 <xref keyref="stopRecording"/> 停止录制，然后再调用此方法销毁录制器实例。</p>
-            <p props="mac">当你不再需要录制音视频流时，可以调用此方法销毁对应的音视频录制器实例。如果录制正在进行中，请先调用 <codeph>stopRecording</codeph> 停止录制，然后再调用此方法销毁录制器实例。</p>
+            <p props="ios mac">当你不再需要录制音视频流时，可以调用此方法销毁对应的音视频录制器实例。如果录制正在进行中，请先调用 <xref keyref="stopRecording"/> 停止录制，然后再调用此方法销毁录制器实例。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -40,21 +39,13 @@
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="cpp">
-                    <pt>mediaRecorder</pt>
-                    <pd>要销毁的录制器实例。详见 <codeph>IMediaRecorder</codeph>。</pd>
-                </plentry>
-                <plentry props="android">
+                <plentry props="android cpp">
                     <pt>mediaRecorder</pt>
                     <pd>要销毁的录制器实例。详见 <xref keyref="IMediaRecorder"/>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>mediaRecorder</pt>
                     <pd>要销毁的 <xref keyref="IMediaRecorder"/> 实例。详见 <xref keyref="IMediaRecorder"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>mediaRecorder</pt>
-                    <pd>要销毁的 <codeph>AgoraMediaRecorder</codeph> 实例。详见 <codeph>AgoraMediaRecorder</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

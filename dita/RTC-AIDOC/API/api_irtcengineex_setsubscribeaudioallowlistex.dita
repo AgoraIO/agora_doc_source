@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_setsubscribeaudioallowlistex">
     <title>
-        <ph keyref="setSubscribeAudioAllowlistEx"/>
+    <ph keyref="setSubscribeAudioAllowlistEx"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">设置音频流订阅白名单。</ph>
+    <ph id="shortdesc">设置音频流订阅白名单。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -28,7 +28,7 @@
             <note props="cpp">
                 <ul>
                     <li>你可以在加入频道前或加入频道后调用此方法。</li>
-                    <li>该白名单不受 <codeph>ChannelMediaOptions</codeph> 中 <codeph>muteRemoteAudioStream</codeph>、<codeph>muteAllRemoteAudioStreams</codeph> 和 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
+                    <li>该白名单不受 <xref keyref="ChannelMediaOptions"/> 中 <xref keyref="muteRemoteAudioStream"/>、<xref keyref="muteAllRemoteAudioStreams"/> 和 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
                     <li>一旦设置了订阅白名单，即使你离开当前频道并重新加入，该设置仍然有效。</li>
                     <li>如果某个用户同时被加入白名单和黑名单，则仅黑名单生效。</li>
                 </ul>
@@ -63,31 +63,23 @@
             <parml>
                 <plentry props="cpp">
                     <pt>uidList</pt>
-                    <pd>你希望订阅的用户 ID 列表。如果你想订阅某个用户的音频流，请将该用户的 ID 添加到该列表中。如果你想将某个用户从白名单中移除，需要调用 <codeph>setSubscribeAudioAllowlist</codeph> 方法更新用户 ID 列表；也就是说，你只需在新的用户 ID 列表中添加你希望订阅的用户的用户 ID。</pd>
+                    <pd>你希望订阅的用户 ID 列表。如果你想订阅某个用户的音频流，请将该用户的 ID 添加到该列表中。如果你想将某个用户从白名单中移除，需要调用 <xref keyref="setSubscribeAudioAllowlist"/> 方法更新用户 ID 列表；也就是说，你只需在新的用户 ID 列表中添加你希望订阅的用户的用户 ID。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>uidNumber</pt>
                     <pd>用户 ID 列表中的用户数量。</pd>
                 </plentry>
-                <plentry props="cpp">
+                <plentry props="android cpp ios mac">
                     <pt>connection</pt>
-                    <pd>连接信息。详见 <codeph>RtcConnection</codeph>。</pd>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>uidList</pt>
                     <pd>希望订阅的用户的用户 ID 列表。如果你希望将某个用户从白名单中移除，需要调用 <xref keyref="setSubscribeAudioAllowlist"/> 方法更新用户 ID 列表；也就是说，你只需在新的用户 ID 列表中添加你希望订阅的用户的用户 ID。</pd>
                 </plentry>
-                <plentry props="android ios">
-                    <pt>connection</pt>
-                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
-                </plentry>
                 <plentry props="ios mac">
                     <pt>allowlist</pt>
                     <pd>你想要订阅的用户的用户 ID 列表。如果你想指定某个用户的音频流进行订阅，请将该用户的 ID 添加到此列表中。如果你想将某个用户从白名单中移除，你需要调用 <codeph>setSubscribeAudioAllowlist</codeph> 方法来更新用户 ID 列表；这意味着你只需在新的用户 ID 列表中添加你想要订阅的用户的 <codeph>uid</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>connection</pt>
-                    <pd>连接信息。详见 <codeph>AgoraRtcConnection</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

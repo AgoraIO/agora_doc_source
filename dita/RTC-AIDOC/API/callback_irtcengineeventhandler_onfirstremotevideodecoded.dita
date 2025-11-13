@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onfirstremotevideodecoded">
     <title>
-        <ph keyref="onFirstRemoteVideoDecoded"/>
+    <ph keyref="onFirstRemoteVideoDecoded"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">首帧远端视频解码完成回调。</ph>
+    <ph id="shortdesc">首帧远端视频解码完成回调。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -50,17 +50,11 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
-            <p props="cpp">当远端用户加入频道并发送视频流，或在停止发送视频流 15 秒后重新发送时触发。中断的原因包括：远端用户离开频道、远端用户掉线、远端用户调用 <codeph>disableVideo</codeph> 关闭视频。</p>
-            <p props="ios">该回调在以下场景中被触发：
+            <p props="cpp">当远端用户加入频道并发送视频流，或在停止发送视频流 15 秒后重新发送时触发。中断的原因包括：远端用户离开频道、远端用户掉线、远端用户调用 <xref keyref="disableVideo"/> 关闭视频。</p>
+            <p props="ios mac">该回调在以下场景中被触发：
                 <ul>
                     <li>远端用户加入频道并发送视频流。</li>
                     <li>远端用户停止发送视频流 15 秒后重新发送。中断的原因包括：远端用户离开频道、掉线，或调用 <xref keyref="disableVideo"/> 关闭视频。</li>
-                </ul>
-            </p>
-            <p props="mac">该回调在以下场景中被触发：
-                <ul>
-                    <li>远端用户加入频道并发送视频流。</li>
-                    <li>远端用户停止发送视频流 15 秒后重新发送。中断的原因包括：远端用户离开频道、掉线，或调用 <codeph>disableVideo</codeph> 关闭视频。</li>
                 </ul>
             </p>
         </section>
@@ -73,7 +67,7 @@
             <parml>
                 <plentry props="cpp">
                     <pt>connection</pt>
-                    <pd>连接信息。详见 <codeph>RtcConnection</codeph>。</pd>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>remoteUid</pt>
@@ -107,10 +101,9 @@
                     <pt>elapsed</pt>
                     <pd>从本地用户调用 <codeph>joinChannel</codeph> 加入频道到触发该回调的时间（单位为毫秒）。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>engine</pt>
-                    <pd>
-                        <xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+                    <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
                 <plentry props="ios mac">
                     <pt>size</pt>
@@ -119,11 +112,6 @@
                 <plentry props="ios mac">
                     <pt>elapsed</pt>
                     <pd>从调用 <codeph>joinChannelByToken</codeph> 方法到触发该回调的时间（毫秒）。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>engine</pt>
-                    <pd>
-                        <codeph>AgoraRtcEngineKit</codeph> 对象。详见 <codeph>AgoraRtcEngineKit</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

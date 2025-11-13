@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setfiltereffectoptions">
     <title>
-        <ph keyref="setFilterEffectOptions"/>
+    <ph keyref="setFilterEffectOptions"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">设置滤镜特效选项并指定媒体源。</ph>
+    <ph id="shortdesc">设置滤镜特效选项并指定媒体源。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -31,7 +31,7 @@
                 </dlentry>
             </dl>
             <p props="ios mac">该方法与 <codeph>setBeautyEffectOptions:options:sourceType:</codeph> 方法都用于设置滤镜特效参数。不同之处在于，该方法允许你指定滤镜特效应用的媒体源。</p>
-            <note props="cpp">该方法依赖图像增强动态库 <codeph>libagora_clear_vision_extension.dll</codeph>。如果该动态库被删除，则无法正常启用此功能。
+            <note props="cpp">该方法依赖图像增强动态库 <xref keyref="clearvision"/>。如果该动态库被删除，则无法正常启用此功能。
 该功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的性能能力。</note>
             <note props="android">
                 <ul>
@@ -48,17 +48,16 @@
             </note>
             <note props="mac">
                 <ul>
-                    <li>该方法依赖图像增强动态库 <codeph>AgoraClearVisionExtension.xcframework</codeph>（iOS）或 <codeph>AgoraClearVisionExtension.framework</codeph>（macOS）。如果删除该动态库，该功能将无法正常启用。</li>
+                    <li>该方法依赖图像增强动态库 <codeph>AgoraClearVisionExtension.xcframework</codeph>（iOS）或 <xref keyref="clearvision"/>（macOS）。如果删除该动态库，该功能将无法正常启用。</li>
                     <li>该功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的性能能力。</li>
                 </ul>
             </note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="cpp">在调用 <codeph>enableVideo</codeph> 方法之后调用本方法。</p>
+            <p props="cpp">在调用 <xref keyref="enableVideo"/> 方法之后调用本方法。</p>
             <p props="android">在调用 <xref keyref="enableVideo"/> 之后调用该方法。</p>
-            <p props="ios">在调用 <xref keyref="enableVideo"/> 后调用该方法。</p>
-            <p props="mac">在调用 <codeph>enableVideo</codeph> 后调用该方法。</p>
+            <p props="ios mac">在调用 <xref keyref="enableVideo"/> 后调用该方法。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -67,38 +66,25 @@
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="cpp">
+                <plentry props="android cpp">
                     <pt>enabled</pt>
                     <pd>是否启用滤镜特效：
                         <ul>
-                            <li>
-                                <codeph>true</codeph>：启用。</li>
-                            <li>
-                                <codeph>false</codeph>：（默认）不启用。</li>
+                            <li><xref keyref="true"/>：启用。</li>
+                            <li><xref keyref="false"/>：（默认）不启用。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>options</pt>
-                    <pd>滤镜特效选项。详见 <codeph>FilterEffectOptions</codeph>。</pd>
+                    <pd>滤镜特效选项。详见 <xref keyref="FilterEffectOptions"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>type</pt>
-                    <pd>应用滤镜特效的媒体源类型。详见 <codeph>MEDIA_SOURCE_TYPE</codeph>。
+                    <pd>应用滤镜特效的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。
                         <ul>
                             <li>如果使用摄像头采集本地视频，使用默认值 <codeph>PRIMARY_CAMERA_SOURCE</codeph>。</li>
                             <li>如果使用自定义视频源，设置为 <codeph>CUSTOM_VIDEO_SOURCE</codeph>。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>enabled</pt>
-                    <pd>是否启用滤镜特效：
-                        <ul>
-                            <li>
-                                <xref keyref="true"/>：启用。</li>
-                            <li>
-                                <xref keyref="false"/>：（默认）不启用。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -110,48 +96,22 @@
                     <pt>sourceType</pt>
                     <pd>滤镜特效应用的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>enable</pt>
                     <pd>是否启用滤镜特效：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：启用。</li>
-                            <li>
-                                <xref keyref="false"/>：（默认）不启用。</li>
+                            <li><xref keyref="true"/>：启用。</li>
+                            <li><xref keyref="false"/>：（默认）不启用。</li>
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>options</pt>
                     <pd>滤镜特效参数，详见 <xref keyref="FilterEffectOptions"/>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>sourceType</pt>
                     <pd>滤镜特效应用的媒体源类型，详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。
-                        <ul>
-                            <li>如果使用摄像头采集本地视频，使用默认值 <codeph>AgoraMediaSourceTypePrimaryCamera</codeph>。</li>
-                            <li>如果使用自定义视频源，设置为 <codeph>AgoraMediaSourceTypeCustomVideo</codeph>。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>enable</pt>
-                    <pd>是否启用滤镜特效：
-                        <ul>
-                            <li>
-                                <codeph>YES</codeph>：启用。</li>
-                            <li>
-                                <codeph>NO</codeph>：（默认）不启用。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>options</pt>
-                    <pd>滤镜特效参数，详见 <codeph>AgoraFilterEffectOptions</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>sourceType</pt>
-                    <pd>滤镜特效应用的媒体源类型，详见 <codeph>AgoraMediaSourceType</codeph>。
                         <ul>
                             <li>如果使用摄像头采集本地视频，使用默认值 <codeph>AgoraMediaSourceTypePrimaryCamera</codeph>。</li>
                             <li>如果使用自定义视频源，设置为 <codeph>AgoraMediaSourceTypeCustomVideo</codeph>。</li>

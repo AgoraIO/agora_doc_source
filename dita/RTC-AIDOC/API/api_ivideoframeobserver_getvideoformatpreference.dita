@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ivideoframeobserver_getvideoformatpreference">
     <title>
-        <ph keyref="getVideoFormatPreference"/>
+    <ph keyref="getVideoFormatPreference"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">设置 SDK 输出的原始视频数据格式。</ph>
+    <ph id="shortdesc">设置 SDK 输出的原始视频数据格式。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -31,14 +31,13 @@
             <note props="cpp">原始视频的默认像素格式（<codeph>VIDEO_PIXEL_DEFAULT</codeph>）如下：
                 <ul>
                     <li>在 Windows 平台，默认的视频帧类型为 <codeph>YUV420</codeph>。</li>
-                    <li>在 Android 平台，默认的视频帧类型可能为 <codeph>I420Buffer</codeph> 或 <codeph>TextureBuffer</codeph>。<codeph>TextureBuffer</codeph> 类型的纹理格式可能为 OES 或 RGB。如果你调用 <codeph>getVideoFormatPreference</codeph> 返回的视频帧类型为 <codeph>VIDEO_PIXEL_DEFAULT</codeph>，则在处理视频数据时需要适配 <codeph>I420Buffer</codeph> 或 <codeph>TextureBuffer</codeph>。视频帧类型固定为 <codeph>I420Buffer</codeph> 的情况包括但不限于：</li>
+                    <li>在 Android 平台，默认的视频帧类型可能为 <codeph>I420Buffer</codeph> 或 <codeph>TextureBuffer</codeph>。<codeph>TextureBuffer</codeph> 类型的纹理格式可能为 OES 或 RGB。如果你调用 <xref keyref="getVideoFormatPreference"/> 返回的视频帧类型为 <codeph>VIDEO_PIXEL_DEFAULT</codeph>，则在处理视频数据时需要适配 <codeph>I420Buffer</codeph> 或 <codeph>TextureBuffer</codeph>。视频帧类型固定为 <codeph>I420Buffer</codeph> 的情况包括但不限于：</li>
                     <li>特定设备，例如：LG G5 SE（H848）、Google Pixel 4a、Samsung Galaxy A7 或小米 Max。</li>
                     <li>集成了图像增强扩展并启用了视频降噪或弱光增强功能。</li>
                     <li>在 iOS 和 macOS 平台，默认的视频帧类型可能为 <codeph>I420</codeph> 或 <codeph>CVPixelBufferRef</codeph>。</li>
                 </ul>
             </note>
-            <note props="android">
-                <codeph>VIDEO_PIXEL_DEFAULT</codeph> 表示原始视频的默认像素格式类型，具体如下：
+            <note props="android"><codeph>VIDEO_PIXEL_DEFAULT</codeph> 表示原始视频的默认像素格式类型，具体如下：
                 <ul>
                     <li>在 Android 平台上，默认的视频帧类型可能为 <codeph>I420Buffer</codeph> 或 <codeph>TextureBuffer</codeph>。<codeph>TextureBuffer</codeph> 类型的纹理格式可能为 OES 或 RGB。如果 <xref keyref="getVideoFormatPreference"/> 返回的视频帧类型为 <codeph>VIDEO_PIXEL_DEFAULT</codeph>，则在处理视频数据时需要适配 <codeph>I420Buffer</codeph> 或 <codeph>TextureBuffer</codeph>。
   视频帧类型固定为 <codeph>I420Buffer</codeph> 的情况包括但不限于：</li>
@@ -62,17 +61,13 @@
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="cpp">设置 SDK 输出的原始数据格式，详见 <codeph>VIDEO_PIXEL_FORMAT</codeph>。</p>
+            <p props="cpp">设置 SDK 输出的原始数据格式，详见 <xref keyref="VIDEO_PIXEL_FORMAT"/>。</p>
             <p props="android">方法调用成功，返回 SDK 输出的原始数据格式：
                 <ul>
-                    <li>
-                        <codeph>VIDEO_PIXEL_DEFAULT</codeph>（0）：原始视频格式，需适配 <codeph>I420Buffer</codeph> 或 <codeph>TextureBuffer</codeph>。</li>
-                    <li>
-                        <codeph>VIDEO_PIXEL_I420</codeph>（1）：I420 格式。</li>
-                    <li>
-                        <codeph>VIDEO_PIXEL_RGBA</codeph>（4）：RGBA 格式。</li>
-                    <li>
-                        <codeph>VIDEO_PIXEL_I422</codeph>（16）：I422 格式。</li>
+                    <li><codeph>VIDEO_PIXEL_DEFAULT</codeph>（0）：原始视频格式，需适配 <codeph>I420Buffer</codeph> 或 <codeph>TextureBuffer</codeph>。</li>
+                    <li><codeph>VIDEO_PIXEL_I420</codeph>（1）：I420 格式。</li>
+                    <li><codeph>VIDEO_PIXEL_RGBA</codeph>（4）：RGBA 格式。</li>
+                    <li><codeph>VIDEO_PIXEL_I422</codeph>（16）：I422 格式。</li>
                 </ul>
             </p>
             <p props="ios">方法调用成功时，返回原始视频数据的格式，详见 <xref keyref="VIDEO_PIXEL_FORMAT"/>。</p>

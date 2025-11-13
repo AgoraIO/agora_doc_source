@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_openwithmediasource">
     <title>
-        <ph keyref="openWithMediaSource"/>
+    <ph keyref="openWithMediaSource"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">打开媒体文件并配置播放场景。</ph>
+    <ph id="shortdesc">打开媒体文件并配置播放场景。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -26,13 +26,9 @@
             <p props="cpp">该方法支持打开来自不同来源的媒体文件，包括自定义媒体源，并允许你配置播放场景。</p>
             <p props="android">该方法支持打开不同类型的媒体文件，包括以 <codeph>content://</codeph> 开头的 URI 文件和 <codeph>assets</codeph> 文件夹中的媒体文件，并设置播放选项。</p>
             <p props="ios mac">该方法支持打开不同类型的媒体文件，包括以 <codeph>ipod-library://</codeph> 开头的文件，并设置播放选项。</p>
-            <note props="cpp">
-                <codeph>openWithMediaSource</codeph> 为异步调用。如果你需要播放媒体文件，请确保在调用 <codeph>play</codeph> 方法前，已收到 <codeph>onPlayerSourceStateChanged</codeph> 回调并报告 <codeph>PLAYER_STATE_OPEN_COMPLETED</codeph>。</note>
+            <note props="cpp"><xref keyref="openWithMediaSource"/> 为异步调用。如果你需要播放媒体文件，请确保在调用 <xref keyref="play"/> 方法前，已收到 <xref keyref="onPlayerSourceStateChanged"/> 回调并报告 <codeph>PLAYER_STATE_OPEN_COMPLETED</codeph>。</note>
             <note props="android">该方法为异步调用。如果需要播放媒体文件，请确保在调用 <xref keyref="play"/> 方法之前，已收到 <xref keyref="onPlayerSourceStateChanged"/> 回调并报告 <codeph>OPEN_COMPLETED</codeph>。</note>
-            <note props="ios">
-                <xref keyref="openWithMediaSource"/> 为异步调用。如果你需要播放媒体文件，请确保在调用 <xref keyref="play"/> 方法播放文件之前，已收到 <xref keyref="onPlayerSourceStateChanged"/> 回调并报告 <codeph>AgoraMediaPlayerStateOpenCompleted</codeph>。</note>
-            <note props="mac">
-                <codeph>openWithMediaSource:</codeph> 为异步调用。如果你需要播放媒体文件，请确保在调用 <codeph>play</codeph> 方法播放文件之前，已收到 <codeph>AgoraRtcMediaPlayer:didChangedToState:reason:</codeph> 回调并报告 <codeph>AgoraMediaPlayerStateOpenCompleted</codeph>。</note>
+            <note props="ios mac"><xref keyref="openWithMediaSource"/> 为异步调用。如果你需要播放媒体文件，请确保在调用 <xref keyref="play"/> 方法播放文件之前，已收到 <xref keyref="onPlayerSourceStateChanged"/> 回调并报告 <codeph>AgoraMediaPlayerStateOpenCompleted</codeph>。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -46,21 +42,13 @@
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="cpp">
+                <plentry props="cpp ios mac">
                     <pt>source</pt>
-                    <pd>媒体资源。详见 <codeph>MediaSource</codeph>。</pd>
+                    <pd>媒体资源。详见 <xref keyref="MediaSource"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>source</pt>
                     <pd>媒体资源，详见 <xref keyref="MediaSource"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>source</pt>
-                    <pd>媒体资源。详见 <xref keyref="MediaSource"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>source</pt>
-                    <pd>媒体资源。详见 <codeph>AgoraMediaSource</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

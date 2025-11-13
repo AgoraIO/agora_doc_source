@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startdirectcdnstreaming">
     <title>
-        <ph keyref="startDirectCdnStreaming"/>
+    <ph keyref="startDirectCdnStreaming"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">开始将媒体流直接推送到 CDN。</ph>
+    <ph id="shortdesc">开始将媒体流直接推送到 CDN。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -36,15 +36,15 @@
             </dl>
             <p props="cpp">声网不支持将媒体流重复推送到同一个 URL。
 **媒体选项**
-声网不支持同时将 <codeph>publishCameraTrack</codeph> 和 <codeph>publishCustomVideoTrack</codeph> 设置为 <codeph>true</codeph>，或将 <codeph>publishMicrophoneTrack</codeph> 和 <codeph>publishCustomAudioTrack</codeph> 设置为 <codeph>true</codeph>。
-在选择媒体设置选项（<codeph>DirectCdnStreamingMediaOptions</codeph>）时，可参考以下示例：
+声网不支持同时将 <codeph>publishCameraTrack</codeph> 和 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/>，或将 <codeph>publishMicrophoneTrack</codeph> 和 <codeph>publishCustomAudioTrack</codeph> 设置为 <xref keyref="true"/>。
+在选择媒体设置选项（<xref keyref="DirectCdnStreamingMediaOptions"/>）时，可参考以下示例：
 如果你希望从自定义源推送主播采集的音视频流，媒体设置应如下：
                 <ul>
-                    <li>将 <codeph>publishCustomAudioTrack</codeph> 设置为 <codeph>true</codeph>，并调用 <codeph>pushAudioFrame</codeph> 方法；</li>
-                    <li>将 <codeph>publishCustomVideoTrack</codeph> 设置为 <codeph>true</codeph>，并调用 <codeph>pushVideoFrame</codeph> 方法；</li>
-                    <li>将 <codeph>publishCameraTrack</codeph> 设置为 <codeph>false</codeph>（默认）；</li>
-                    <li>将 <codeph>publishMicrophoneTrack</codeph> 设置为 <codeph>false</codeph>（默认）。
-自 v4.2.0 起，声网 SDK 支持纯音频直播。你可以在 <codeph>DirectCdnStreamingMediaOptions</codeph> 中将 <codeph>publishCustomAudioTrack</codeph> 或 <codeph>publishMicrophoneTrack</codeph> 设置为 <codeph>true</codeph>，并调用 <codeph>pushAudioFrame</codeph> 推送音频流。</li>
+                    <li>将 <codeph>publishCustomAudioTrack</codeph> 设置为 <xref keyref="true"/>，并调用 <xref keyref="pushAudioFrame"/> 方法；</li>
+                    <li>将 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/>，并调用 <codeph>pushVideoFrame</codeph> 方法；</li>
+                    <li>将 <codeph>publishCameraTrack</codeph> 设置为 <xref keyref="false"/>（默认）；</li>
+                    <li>将 <codeph>publishMicrophoneTrack</codeph> 设置为 <xref keyref="false"/>（默认）。
+自 v4.2.0 起，声网 SDK 支持纯音频直播。你可以在 <xref keyref="DirectCdnStreamingMediaOptions"/> 中将 <codeph>publishCustomAudioTrack</codeph> 或 <codeph>publishMicrophoneTrack</codeph> 设置为 <xref keyref="true"/>，并调用 <xref keyref="pushAudioFrame"/> 推送音频流。</li>
                 </ul>
             </p>
             <p props="android">**媒体选项**
@@ -73,15 +73,15 @@
                 </ul>
             </p>
             <p props="mac">声网不支持将媒体流重复推送到同一个 URL。
-声网不支持同时将 <codeph>publishCameraTrack</codeph> 和 <codeph>publishCustomVideoTrack</codeph> 设置为 <codeph>YES</codeph>，或将 <codeph>publishMicrophoneTrack</codeph> 和 <codeph>publishCustomAudioTrack</codeph> 设置为 <codeph>YES</codeph>。
-在选择媒体设置选项（<codeph>AgoraDirectCdnStreamingMediaOptions</codeph>）时，可以参考以下示例：
+声网不支持同时将 <codeph>publishCameraTrack</codeph> 和 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/>，或将 <codeph>publishMicrophoneTrack</codeph> 和 <codeph>publishCustomAudioTrack</codeph> 设置为 <xref keyref="true"/>。
+在选择媒体设置选项（<xref keyref="DirectCdnStreamingMediaOptions"/>）时，可以参考以下示例：
 如果你希望从自定义源推送主播采集的音视频流，媒体设置选项应如下设置：
                 <ul>
-                    <li>将 <codeph>publishCustomAudioTrack</codeph> 设置为 <codeph>YES</codeph>，并调用 <codeph>pushExternalAudioFrameSampleBuffer:sampleRate:channels:trackId:</codeph> 或 <codeph>pushExternalAudioFrameRawData:samples:sampleRate:channels:trackId:timestamp:</codeph> 方法；</li>
-                    <li>将 <codeph>publishCustomVideoTrack</codeph> 设置为 <codeph>YES</codeph>，并调用 <codeph>pushExternalVideoFrame:videoTrackId:</codeph> 方法；</li>
-                    <li>将 <codeph>publishCameraTrack</codeph> 设置为 <codeph>NO</codeph>（默认值）；</li>
-                    <li>将 <codeph>publishMicrophoneTrack</codeph> 设置为 <codeph>NO</codeph>（默认值）。
-你也可以通过将 <codeph>publishCustomAudioTrack</codeph> 或 <codeph>publishMicrophoneTrack</codeph> 设置为 <codeph>YES</codeph>，并调用 <codeph>pushExternalAudioFrameSampleBuffer:sampleRate:channels:trackId:</codeph> 或 <codeph>pushExternalAudioFrameRawData:samples:sampleRate:channels:trackId:timestamp:</codeph> 方法实现纯音频直播。</li>
+                    <li>将 <codeph>publishCustomAudioTrack</codeph> 设置为 <xref keyref="true"/>，并调用 <codeph>pushExternalAudioFrameSampleBuffer:sampleRate:channels:trackId:</codeph> 或 <codeph>pushExternalAudioFrameRawData:samples:sampleRate:channels:trackId:timestamp:</codeph> 方法；</li>
+                    <li>将 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/>，并调用 <codeph>pushExternalVideoFrame:videoTrackId:</codeph> 方法；</li>
+                    <li>将 <codeph>publishCameraTrack</codeph> 设置为 <xref keyref="false"/>（默认值）；</li>
+                    <li>将 <codeph>publishMicrophoneTrack</codeph> 设置为 <xref keyref="false"/>（默认值）。
+你也可以通过将 <codeph>publishCustomAudioTrack</codeph> 或 <codeph>publishMicrophoneTrack</codeph> 设置为 <xref keyref="true"/>，并调用 <codeph>pushExternalAudioFrameSampleBuffer:sampleRate:channels:trackId:</codeph> 或 <codeph>pushExternalAudioFrameRawData:samples:sampleRate:channels:trackId:timestamp:</codeph> 方法实现纯音频直播。</li>
                 </ul>
             </p>
             <note props="android cpp ios mac">声网仅支持将一路音视频流或一路音频流推送到 CDN。</note>
@@ -99,7 +99,7 @@
             <parml>
                 <plentry props="cpp">
                     <pt>eventHandler</pt>
-                    <pd>事件回调接口，详见 <codeph>IDirectCdnStreamingEventHandler</codeph>。</pd>
+                    <pd>事件回调接口，详见 <xref keyref="IDirectCdnStreamingEventHandler"/>。</pd>
                 </plentry>
                 <plentry props="android cpp">
                     <pt>publishUrl</pt>
@@ -107,7 +107,7 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>options</pt>
-                    <pd>主播的媒体设置选项，详见 <codeph>DirectCdnStreamingMediaOptions</codeph>。</pd>
+                    <pd>主播的媒体设置选项，详见 <xref keyref="DirectCdnStreamingMediaOptions"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>eventHandler</pt>
@@ -117,7 +117,7 @@
                     <pt>options</pt>
                     <pd>主播的媒体设置选项。详见 <xref keyref="DirectCdnStreamingMediaOptions"/>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>delegate</pt>
                     <pd>事件回调接口，详见 <xref keyref="IDirectCdnStreamingEventHandler"/>。</pd>
                 </plentry>
@@ -125,17 +125,9 @@
                     <pt>publishUrl</pt>
                     <pd>CDN 直播推流地址。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>mediaOptions</pt>
                     <pd>主播的媒体设置选项，详见 <xref keyref="DirectCdnStreamingMediaOptions"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>delegate</pt>
-                    <pd>事件回调接口，详见 <codeph>AgoraDirectCdnStreamingEventDelegate</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>mediaOptions</pt>
-                    <pd>主播的媒体设置选项，详见 <codeph>AgoraDirectCdnStreamingMediaOptions</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onremoteaudiostatechanged">
     <title>
-        <ph keyref="onRemoteAudioStateChanged"/>
+    <ph keyref="onRemoteAudioStateChanged"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">远端音频状态发生变化回调。</ph>
+    <ph id="shortdesc">远端音频状态发生变化回调。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -44,8 +44,7 @@
             <parml>
                 <plentry props="cpp">
                     <pt>connection</pt>
-                    <pd>
-                        <codeph>RtcConnection</codeph> 对象。详见 <codeph>RtcConnection</codeph>。</pd>
+                    <pd><xref keyref="RtcConnection"/> 对象。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>remoteUid</pt>
@@ -53,11 +52,11 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>state</pt>
-                    <pd>远端音频状态。详见 <codeph>REMOTE_AUDIO_STATE</codeph>。</pd>
+                    <pd>远端音频状态。详见 <xref keyref="REMOTE_AUDIO_STATE"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>reason</pt>
-                    <pd>远端音频状态变化的原因。详见 <codeph>REMOTE_AUDIO_STATE_REASON</codeph>。</pd>
+                    <pd>远端音频状态变化的原因。详见 <xref keyref="REMOTE_AUDIO_STATE_REASON"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>elapsed</pt>
@@ -71,16 +70,11 @@
                     <pt>state</pt>
                     <pd>远端音频状态：
                         <ul>
-                            <li>
-                                <codeph>REMOTE_AUDIO_STATE_STOPPED</codeph>（0）：远端音频处于初始状态。SDK 在 <codeph>REMOTE_AUDIO_REASON_LOCAL_MUTED</codeph>、<codeph>REMOTE_AUDIO_REASON_REMOTE_MUTED</codeph> 或 <codeph>REMOTE_AUDIO_REASON_REMOTE_OFFLINE</codeph> 的情况下报告该状态。</li>
-                            <li>
-                                <codeph>REMOTE_AUDIO_STATE_STARTING</codeph>（1）：已接收到第一包远端音频数据。</li>
-                            <li>
-                                <codeph>REMOTE_AUDIO_STATE_DECODING</codeph>（2）：远端音频流解码并正常播放。SDK 在 <codeph>REMOTE_AUDIO_REASON_NETWORK_RECOVERY</codeph>、<codeph>REMOTE_AUDIO_REASON_LOCAL_UNMUTED</codeph> 或 <codeph>REMOTE_AUDIO_REASON_REMOTE_UNMUTED</codeph> 的情况下报告该状态。</li>
-                            <li>
-                                <codeph>REMOTE_AUDIO_STATE_FROZEN</codeph>（3）：远端音频卡顿。SDK 在 <codeph>REMOTE_AUDIO_REASON_NETWORK_CONGESTION</codeph> 的情况下报告该状态。</li>
-                            <li>
-                                <codeph>REMOTE_AUDIO_STATE_FAILED</codeph>（4）：远端音频启动失败。SDK 在 <codeph>REMOTE_AUDIO_REASON_INTERNAL</codeph> 的情况下报告该状态。</li>
+                            <li><codeph>REMOTE_AUDIO_STATE_STOPPED</codeph>（0）：远端音频处于初始状态。SDK 在 <codeph>REMOTE_AUDIO_REASON_LOCAL_MUTED</codeph>、<codeph>REMOTE_AUDIO_REASON_REMOTE_MUTED</codeph> 或 <codeph>REMOTE_AUDIO_REASON_REMOTE_OFFLINE</codeph> 的情况下报告该状态。</li>
+                            <li><codeph>REMOTE_AUDIO_STATE_STARTING</codeph>（1）：已接收到第一包远端音频数据。</li>
+                            <li><codeph>REMOTE_AUDIO_STATE_DECODING</codeph>（2）：远端音频流解码并正常播放。SDK 在 <codeph>REMOTE_AUDIO_REASON_NETWORK_RECOVERY</codeph>、<codeph>REMOTE_AUDIO_REASON_LOCAL_UNMUTED</codeph> 或 <codeph>REMOTE_AUDIO_REASON_REMOTE_UNMUTED</codeph> 的情况下报告该状态。</li>
+                            <li><codeph>REMOTE_AUDIO_STATE_FROZEN</codeph>（3）：远端音频卡顿。SDK 在 <codeph>REMOTE_AUDIO_REASON_NETWORK_CONGESTION</codeph> 的情况下报告该状态。</li>
+                            <li><codeph>REMOTE_AUDIO_STATE_FAILED</codeph>（4）：远端音频启动失败。SDK 在 <codeph>REMOTE_AUDIO_REASON_INTERNAL</codeph> 的情况下报告该状态。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -88,22 +82,14 @@
                     <pt>reason</pt>
                     <pd>远端音频状态变化的原因：
                         <ul>
-                            <li>
-                                <codeph>REMOTE_AUDIO_REASON_INTERNAL</codeph>（0）：SDK 音频状态改变时报告该原因。</li>
-                            <li>
-                                <codeph>REMOTE_AUDIO_REASON_NETWORK_CONGESTION</codeph>（1）：网络拥塞。</li>
-                            <li>
-                                <codeph>REMOTE_AUDIO_REASON_NETWORK_RECOVERY</codeph>（2）：网络恢复。</li>
-                            <li>
-                                <codeph>REMOTE_AUDIO_REASON_LOCAL_MUTED</codeph>（3）：本地用户停止接收远端音频流或关闭音频模块。</li>
-                            <li>
-                                <codeph>REMOTE_AUDIO_REASON_LOCAL_UNMUTED</codeph>（4）：本地用户恢复接收远端音频流或开启音频模块。</li>
-                            <li>
-                                <codeph>REMOTE_AUDIO_REASON_REMOTE_MUTED</codeph>（5）：远端用户停止发送音频流或关闭音频模块。</li>
-                            <li>
-                                <codeph>REMOTE_AUDIO_REASON_REMOTE_UNMUTED</codeph>（6）：远端用户恢复发送音频流或开启音频模块。</li>
-                            <li>
-                                <codeph>REMOTE_AUDIO_REASON_REMOTE_OFFLINE</codeph>（7）：远端用户离开频道。</li>
+                            <li><codeph>REMOTE_AUDIO_REASON_INTERNAL</codeph>（0）：SDK 音频状态改变时报告该原因。</li>
+                            <li><codeph>REMOTE_AUDIO_REASON_NETWORK_CONGESTION</codeph>（1）：网络拥塞。</li>
+                            <li><codeph>REMOTE_AUDIO_REASON_NETWORK_RECOVERY</codeph>（2）：网络恢复。</li>
+                            <li><codeph>REMOTE_AUDIO_REASON_LOCAL_MUTED</codeph>（3）：本地用户停止接收远端音频流或关闭音频模块。</li>
+                            <li><codeph>REMOTE_AUDIO_REASON_LOCAL_UNMUTED</codeph>（4）：本地用户恢复接收远端音频流或开启音频模块。</li>
+                            <li><codeph>REMOTE_AUDIO_REASON_REMOTE_MUTED</codeph>（5）：远端用户停止发送音频流或关闭音频模块。</li>
+                            <li><codeph>REMOTE_AUDIO_REASON_REMOTE_UNMUTED</codeph>（6）：远端用户恢复发送音频流或开启音频模块。</li>
+                            <li><codeph>REMOTE_AUDIO_REASON_REMOTE_OFFLINE</codeph>（7）：远端用户离开频道。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -111,10 +97,9 @@
                     <pt>elapsed</pt>
                     <pd>从本地用户调用 <codeph>joinChannel</codeph> 方法到 SDK 触发该回调的时间（毫秒）。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>engine</pt>
-                    <pd>
-                        <xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+                    <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>state</pt>
@@ -127,11 +112,6 @@
                 <plentry props="ios mac">
                     <pt>elapsed</pt>
                     <pd>从调用 <codeph>joinChannelByToken</codeph> 方法到 SDK 触发该回调的时间（毫秒）。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>engine</pt>
-                    <pd>
-                        <codeph>AgoraRtcEngineKit</codeph> 对象。详见 <codeph>AgoraRtcEngineKit</codeph>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>state</pt>

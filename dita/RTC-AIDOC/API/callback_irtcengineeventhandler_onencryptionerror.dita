@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onencryptionerror">
     <title>
-        <ph keyref="onEncryptionError"/>
+    <ph keyref="onEncryptionError"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">报告内置加密错误的回调。</ph>
+    <ph id="shortdesc">报告内置加密错误的回调。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -24,10 +24,9 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">调用 <codeph>enableEncryption</codeph> 启用加密功能后，如果在发送端或接收端的加密或解密过程中发生错误，SDK 会触发该回调。</p>
+            <p props="cpp">调用 <xref keyref="enableEncryption"/> 启用加密功能后，如果在发送端或接收端的加密或解密过程中发生错误，SDK 会触发该回调。</p>
             <p props="android">如果在调用 <xref keyref="enableEncryption"/> 启用加密功能后，发送端或接收端在加密或解密过程中发生错误，SDK 会触发该回调。</p>
-            <p props="ios">当你调用 <xref keyref="enableEncryption"/> 启用加密功能后，如果在发送端或接收端的加密或解密过程中发生错误，SDK 会触发该回调。</p>
-            <p props="mac">当你调用 <codeph>enableEncryption:encryptionConfig:</codeph> 启用加密功能后，如果在发送端或接收端的加密或解密过程中发生错误，SDK 会触发该回调。</p>
+            <p props="ios mac">当你调用 <xref keyref="enableEncryption"/> 启用加密功能后，如果在发送端或接收端的加密或解密过程中发生错误，SDK 会触发该回调。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
@@ -42,40 +41,31 @@
             <parml>
                 <plentry props="cpp">
                     <pt>connection</pt>
-                    <pd>连接信息。详见 <codeph>RtcConnection</codeph>。</pd>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>errorType</pt>
-                    <pd>错误类型。详见 <codeph>ENCRYPTION_ERROR_TYPE</codeph>。</pd>
+                    <pd>错误类型。详见 <xref keyref="ENCRYPTION_ERROR_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>errorType</pt>
                     <pd>错误类型：
                         <ul>
-                            <li>
-                                <codeph>ENCRYPTION_ERROR_INTERNAL_FAILURE</codeph>（0）：内部原因。</li>
-                            <li>
-                                <codeph>ENCRYPTION_ERROR_DECRYPTION_FAILURE</codeph>（1）：媒体流解密错误。请确保接收端和发送端使用相同的加密模式和密钥。</li>
-                            <li>
-                                <codeph>ENCRYPTION_ERROR_ENCRYPTION_FAILURE</codeph>（2）：媒体流加密错误。</li>
-                            <li>
-                                <codeph>ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE</codeph>（3）：数据流解密错误。请确保接收端和发送端使用相同的加密模式和密钥。</li>
-                            <li>
-                                <codeph>ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE</codeph>（4）：数据流加密错误。</li>
+                            <li><codeph>ENCRYPTION_ERROR_INTERNAL_FAILURE</codeph>（0）：内部原因。</li>
+                            <li><codeph>ENCRYPTION_ERROR_DECRYPTION_FAILURE</codeph>（1）：媒体流解密错误。请确保接收端和发送端使用相同的加密模式和密钥。</li>
+                            <li><codeph>ENCRYPTION_ERROR_ENCRYPTION_FAILURE</codeph>（2）：媒体流加密错误。</li>
+                            <li><codeph>ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE</codeph>（3）：数据流解密错误。请确保接收端和发送端使用相同的加密模式和密钥。</li>
+                            <li><codeph>ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE</codeph>（4）：数据流加密错误。</li>
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>engine</pt>
                     <pd>引擎对象。详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>errorType</pt>
                     <pd>错误类型的详细信息。详见 <xref keyref="ENCRYPTION_ERROR_TYPE"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>engine</pt>
-                    <pd>引擎对象。详见 <codeph>AgoraRtcEngineKit</codeph>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>errorType</pt>

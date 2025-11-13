@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enablespatialaudio">
     <title>
-        <ph keyref="enableSpatialAudio"/>
+    <ph keyref="enableSpatialAudio"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">启用或关闭空间音效。</ph>
+    <ph id="shortdesc">启用或关闭空间音效。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -24,14 +24,13 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">启用空间音效后，你可以调用 <codeph>setRemoteUserSpatialAudioParams</codeph> 设置远端用户的空间音效参数。</p>
+            <p props="cpp">启用空间音效后，你可以调用 <xref keyref="setRemoteUserSpatialAudioParams"/> 设置远端用户的空间音效参数。</p>
             <p props="android">你可以调用 <xref keyref="setRemoteUserSpatialAudioParams"/> 设置远端用户的空间音效参数。</p>
-            <p props="ios">你可以在加入频道前或加入频道后调用该方法。启用空间音效后，可以调用 <xref keyref="setRemoteUserSpatialAudioParams"/> 设置远端用户的空间音效参数。</p>
-            <p props="mac">你可以在加入频道前或加入频道后调用该方法。启用空间音效后，可以调用 <codeph>setRemoteUserSpatialAudioParams:params:</codeph> 设置远端用户的空间音效参数。</p>
+            <p props="ios mac">你可以在加入频道前或加入频道后调用该方法。启用空间音效后，可以调用 <xref keyref="setRemoteUserSpatialAudioParams"/> 设置远端用户的空间音效参数。</p>
             <note props="cpp">
                 <ul>
                     <li>你可以在加入频道前或加入频道后调用此方法。</li>
-                    <li>此方法依赖空间音效动态库 <codeph>libagora_spatial_audio_extension.dll</codeph>。如果该动态库被删除，该功能将无法正常启用。</li>
+                    <li>此方法依赖空间音效动态库 <xref keyref="spatialaudio"/>。如果该动态库被删除，该功能将无法正常启用。</li>
                 </ul>
             </note>
             <note props="android">
@@ -47,7 +46,7 @@
             </note>
             <note props="mac">
                 <ul>
-                    <li>该方法依赖空间音效动态库 <codeph>AgoraSpatialAudioExtension.xcframework</codeph>（iOS）或 <codeph>AgoraSpatialAudioExtension.framework</codeph>（macOS）。如果该动态库被删除，该功能将无法正常启用。</li>
+                    <li>该方法依赖空间音效动态库 <codeph>AgoraSpatialAudioExtension.xcframework</codeph>（iOS）或 <xref keyref="spatialaudio"/>（macOS）。如果该动态库被删除，该功能将无法正常启用。</li>
                 </ul>
             </note>
         </section>
@@ -62,36 +61,12 @@
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="cpp">
+                <plentry props="android cpp ios mac">
                     <pt>enabled</pt>
                     <pd>是否启用空间音效：
                         <ul>
-                            <li>
-                                <codeph>true</codeph>：启用空间音效。</li>
-                            <li>
-                                <codeph>false</codeph>：关闭空间音效。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="android ios">
-                    <pt>enabled</pt>
-                    <pd>是否启用空间音效：
-                        <ul>
-                            <li>
-                                <xref keyref="true"/>：启用空间音效。</li>
-                            <li>
-                                <xref keyref="false"/>：关闭空间音效。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>enabled</pt>
-                    <pd>是否启用空间音效：
-                        <ul>
-                            <li>
-                                <codeph>YES</codeph>：启用空间音效。</li>
-                            <li>
-                                <codeph>NO</codeph>：关闭空间音效。</li>
+                            <li><xref keyref="true"/>：启用空间音效。</li>
+                            <li><xref keyref="false"/>：关闭空间音效。</li>
                         </ul>
                     </pd>
                 </plentry>

@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_rteplayerstate">
     <title>
-        <ph keyref="RtePlayerState"/>
+    <ph keyref="RtePlayerState"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">播放器状态。</ph>
+    <ph id="shortdesc">播放器状态。</ph>
   </shortdesc>
     <refbody>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -25,11 +25,11 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>kRtePlayerStateOpening</pt>
-                    <pd>（1）：正在打开 URL 资源。调用 <codeph>OpenWithUrl</codeph> 后进入该状态。</pd>
+                    <pd>（1）：正在打开 URL 资源。调用 <xref keyref="OpenWithUrl"/> 后进入该状态。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>kRtePlayerStateOpenCompleted</pt>
-                    <pd>（2）：URL 资源打开成功。<codeph>OpenWithUrl</codeph> 成功打开资源后进入该状态。</pd>
+                    <pd>（2）：URL 资源打开成功。<xref keyref="OpenWithUrl"/> 成功打开资源后进入该状态。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>kRtePlayerStatePlaying</pt>
@@ -37,7 +37,7 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>kRtePlayerStatePaused</pt>
-                    <pd>（4）：播放已暂停。成功调用 <codeph>Pause</codeph> 后进入该状态。</pd>
+                    <pd>（4）：播放已暂停。成功调用 <xref keyref="pause"/> 后进入该状态。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>kRtePlayerStatePlaybackCompleted</pt>
@@ -45,11 +45,11 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>kRtePlayerStateStopped</pt>
-                    <pd>（6）：播放已停止。成功调用 <codeph>Stop</codeph> 后进入该状态。</pd>
+                    <pd>（6）：播放已停止。成功调用 <xref keyref="stop"/> 后进入该状态。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>kRtePlayerStateFailed</pt>
-                    <pd>（7）：失败状态。发生内部错误时进入该状态。收到该状态后，请先调用 <codeph>Stop</codeph>，再调用 <codeph>OpenWithUrl</codeph> 重新打开资源。</pd>
+                    <pd>（7）：失败状态。发生内部错误时进入该状态。收到该状态后，请先调用 <xref keyref="stop"/>，再调用 <xref keyref="OpenWithUrl"/> 重新打开资源。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>IDLE</pt>
@@ -87,11 +87,11 @@
                     <pt>AgoraRtePlayerStateIdle</pt>
                     <pd>（0）：空闲状态。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>AgoraRtePlayerStateOpening</pt>
                     <pd>（1）：正在打开 URL 资源。调用 <xref keyref="OpenWithUrl"/> 后触发该状态。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>AgoraRtePlayerStateOpenCompleted</pt>
                     <pd>（2）：成功打开 URL 资源。调用 <xref keyref="OpenWithUrl"/> 成功后触发该状态。</pd>
                 </plentry>
@@ -111,21 +111,9 @@
                     <pt>AgoraRtePlayerStateStopped</pt>
                     <pd>（6）：播放已停止。成功调用 <codeph>pause:</codeph> 后触发该状态。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>AgoraRtePlayerStateFailed</pt>
                     <pd>（7）：播放失败。发生内部错误时触发该状态。收到该状态后需先调用 <codeph>pause:</codeph>，再调用 <xref keyref="OpenWithUrl"/> 重新打开资源。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>AgoraRtePlayerStateOpening</pt>
-                    <pd>（1）：正在打开 URL 资源。调用 <codeph>openWithUrl:startTime:cb:</codeph> 后触发该状态。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>AgoraRtePlayerStateOpenCompleted</pt>
-                    <pd>（2）：成功打开 URL 资源。调用 <codeph>openWithUrl:startTime:cb:</codeph> 成功后触发该状态。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>AgoraRtePlayerStateFailed</pt>
-                    <pd>（7）：播放失败。发生内部错误时触发该状态。收到该状态后需先调用 <codeph>pause:</codeph>，再调用 <codeph>openWithUrl:startTime:cb:</codeph> 重新打开资源。</pd>
                 </plentry>
             </parml>
         </section>

@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_createcustomvideotrack">
     <title>
-        <ph keyref="createCustomVideoTrack"/>
+    <ph keyref="createCustomVideoTrack"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">创建一个自定义视频轨道。</ph>
+    <ph id="shortdesc">创建一个自定义视频轨道。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -27,24 +27,17 @@
             <p props="cpp">要发布自定义视频源，请按照以下步骤操作：
                 <ol>
                     <li>调用该方法创建一个视频轨道，并获取视频轨道 ID。</li>
-                    <li>调用 <codeph>joinChannel</codeph> 加入频道。在 <codeph>ChannelMediaOptions</codeph> 中，将 <codeph>customVideoTrackId</codeph> 设置为你要发布的视频轨道 ID，并将 <codeph>publishCustomVideoTrack</codeph> 设置为 <codeph>true</codeph>。</li>
+                    <li>调用 <codeph>joinChannel</codeph> 加入频道。在 <xref keyref="ChannelMediaOptions"/> 中，将 <codeph>customVideoTrackId</codeph> 设置为你要发布的视频轨道 ID，并将 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/>。</li>
                     <li>调用 <codeph>pushVideoFrame</codeph>，并将 <codeph>videoTrackId</codeph> 设置为第 2 步中设置的视频轨道 ID，即可在频道中发布对应的自定义视频源。</li>
                 </ol>
             </p>
             <p props="android">调用该方法创建一个视频轨道，并获取视频轨道 ID。该方法需要在加入频道前调用。
 加入频道时，在 <xref keyref="ChannelMediaOptions"/> 中将 <codeph>customVideoTrackId</codeph> 设置为要发布的视频轨道 ID，并将 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/>。
 加入频道后，调用 <codeph>pushExternalVideoFrameById</codeph>，并将 <codeph>videoTrackId</codeph> 设置为前面创建的视频轨道 ID，即可在频道中发布对应的自定义视频源。</p>
-            <p props="ios">要发布自定义视频源，请按照以下步骤操作：
+            <p props="ios mac">要发布自定义视频源，请按照以下步骤操作：
                 <ol>
                     <li>调用该方法创建一个视频轨道，并获取视频轨道 ID。</li>
                     <li>调用 <codeph>joinChannelByToken</codeph> 加入频道。在 <xref keyref="ChannelMediaOptions"/> 中，将 <codeph>customVideoTrackId</codeph> 设置为你想要发布的视频轨道 ID，并将 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/>。</li>
-                    <li>调用 <codeph>pushExternalVideoFrame</codeph>，并将 <codeph>videoTrackId</codeph> 设置为第 2 步中设置的视频轨道 ID，即可在频道中发布对应的自定义视频源。</li>
-                </ol>
-            </p>
-            <p props="mac">要发布自定义视频源，请按照以下步骤操作：
-                <ol>
-                    <li>调用该方法创建一个视频轨道，并获取视频轨道 ID。</li>
-                    <li>调用 <codeph>joinChannelByToken</codeph> 加入频道。在 <codeph>AgoraRtcChannelMediaOptions</codeph> 中，将 <codeph>customVideoTrackId</codeph> 设置为你想要发布的视频轨道 ID，并将 <codeph>publishCustomVideoTrack</codeph> 设置为 <codeph>YES</codeph>。</li>
                     <li>调用 <codeph>pushExternalVideoFrame</codeph>，并将 <codeph>videoTrackId</codeph> 设置为第 2 步中设置的视频轨道 ID，即可在频道中发布对应的自定义视频源。</li>
                 </ol>
             </p>

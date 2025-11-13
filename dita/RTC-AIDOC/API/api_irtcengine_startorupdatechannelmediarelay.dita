@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startorupdatechannelmediarelay">
     <title>
-        <ph keyref="startOrUpdateChannelMediaRelay"/>
+    <ph keyref="startOrUpdateChannelMediaRelay"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">开始或更新跨频道媒体流转发。</ph>
+    <ph id="shortdesc">开始或更新跨频道媒体流转发。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -31,15 +31,8 @@
                 </dlentry>
             </dl>
             <p props="android cpp">首次成功调用该方法会开始将媒体流从源频道转发到目标频道。若需将媒体流转发到其他频道，或退出当前的某个媒体流转发，可再次调用该方法以更新目标频道。该功能最多支持将媒体流转发到六个目标频道。</p>
-            <p props="ios">首次成功调用该方法会开始将媒体流从源频道转发到目标频道。若需将媒体流转发到其他频道，或退出当前的某个媒体流转发，可再次调用该方法更新目标频道。该功能最多支持将媒体流转发到六个目标频道。
+            <p props="ios mac">首次成功调用该方法会开始将媒体流从源频道转发到目标频道。若需将媒体流转发到其他频道，或退出当前的某个媒体流转发，可再次调用该方法更新目标频道。该功能最多支持将媒体流转发到六个目标频道。
 调用该方法成功后，SDK 会触发 <xref keyref="onChannelMediaRelayStateChanged"/> 回调，报告媒体流转发的状态。
-                <ul>
-                    <li>若该回调返回 <codeph>AgoraChannelMediaRelayStateRunning</codeph>（2）和 <codeph>AgoraChannelMediaRelayErrorNone</codeph>（0），表示媒体流转发已成功启动。</li>
-                    <li>若该回调返回 <codeph>AgoraChannelMediaRelayStateFailure</codeph>（3），表示媒体流转发过程中发生异常。</li>
-                </ul>
-            </p>
-            <p props="mac">首次成功调用该方法会开始将媒体流从源频道转发到目标频道。若需将媒体流转发到其他频道，或退出当前的某个媒体流转发，可再次调用该方法更新目标频道。该功能最多支持将媒体流转发到六个目标频道。
-调用该方法成功后，SDK 会触发 <codeph>rtcEngine:channelMediaRelayStateDidChange:error:</codeph> 回调，报告媒体流转发的状态。
                 <ul>
                     <li>若该回调返回 <codeph>AgoraChannelMediaRelayStateRunning</codeph>（2）和 <codeph>AgoraChannelMediaRelayErrorNone</codeph>（0），表示媒体流转发已成功启动。</li>
                     <li>若该回调返回 <codeph>AgoraChannelMediaRelayStateFailure</codeph>（3），表示媒体流转发过程中发生异常。</li>
@@ -84,19 +77,15 @@
             <parml>
                 <plentry props="cpp">
                     <pt>configuration</pt>
-                    <pd>媒体流转发的配置。详见 <codeph>ChannelMediaRelayConfiguration</codeph>。</pd>
+                    <pd>媒体流转发的配置。详见 <xref keyref="ChannelMediaRelayConfiguration"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>channelMediaRelayConfiguration</pt>
                     <pd>媒体流转发的配置。详见 <xref keyref="ChannelMediaRelayConfiguration"/>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>config</pt>
                     <pd>媒体流转发的配置。详见 <xref keyref="ChannelMediaRelayConfiguration"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>config</pt>
-                    <pd>媒体流转发的配置。详见 <codeph>AgoraChannelMediaRelayConfiguration</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

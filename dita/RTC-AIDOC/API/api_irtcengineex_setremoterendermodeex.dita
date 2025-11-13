@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_setremoterendermodeex">
     <title>
-        <ph keyref="setRemoteRenderModeEx"/>
+    <ph keyref="setRemoteRenderModeEx"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">设置指定远端用户的视频显示模式。</ph>
+    <ph id="shortdesc">设置指定远端用户的视频显示模式。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -30,24 +30,18 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">调用 <codeph>setupRemoteVideo</codeph> 初始化远端用户的视频视图后，可以调用该方法更新其渲染模式和镜像模式。该方法仅影响本地用户看到的视频视图。</p>
+            <p props="cpp">调用 <xref keyref="setupRemoteVideo"/> 初始化远端用户的视频视图后，可以调用该方法更新其渲染模式和镜像模式。该方法仅影响本地用户看到的视频视图。</p>
             <p props="android">请在调用 <xref keyref="setupRemoteVideo"/> 方法初始化远端视图后再调用此方法。通话过程中，你可以多次调用此方法以更新远端用户视频视图的显示模式。</p>
             <p props="ios mac">你可以调用该方法更新远端用户的视频渲染模式和镜像模式。该方法仅影响你本地看到的远端用户视频视图。</p>
             <note props="cpp">
                 <ul>
-                    <li>请在调用 <codeph>setupRemoteVideo</codeph> 初始化远端视图后调用此方法。</li>
+                    <li>请在调用 <xref keyref="setupRemoteVideo"/> 初始化远端视图后调用此方法。</li>
                     <li>通话过程中，可以多次调用此方法更新远端用户视频视图的显示模式。</li>
                 </ul>
             </note>
-            <note props="ios">
+            <note props="ios mac">
                 <ul>
                     <li>请在调用 <xref keyref="setupRemoteVideo"/> 方法初始化远端视图后调用该方法。</li>
-                    <li>通话过程中，你可以根据需要多次调用该方法更新远端用户视频视图的显示模式。</li>
-                </ul>
-            </note>
-            <note props="mac">
-                <ul>
-                    <li>请在调用 <codeph>setupRemoteVideo:</codeph> 方法初始化远端视图后调用该方法。</li>
                     <li>通话过程中，你可以根据需要多次调用该方法更新远端用户视频视图的显示模式。</li>
                 </ul>
             </note>
@@ -69,15 +63,15 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>renderMode</pt>
-                    <pd>视频显示模式，详见 <codeph>RENDER_MODE_TYPE</codeph>。</pd>
+                    <pd>视频显示模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>mirrorMode</pt>
-                    <pd>镜像模式，详见 <codeph>VIDEO_MIRROR_MODE_TYPE</codeph>。</pd>
+                    <pd>镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>connection</pt>
-                    <pd>连接信息，详见 <codeph>RtcConnection</codeph>。</pd>
+                    <pd>连接信息，详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>uid</pt>
@@ -87,12 +81,9 @@
                     <pt>renderMode</pt>
                     <pd>远端用户的视频显示模式：
                         <ul>
-                            <li>
-                                <codeph>RENDER_MODE_HIDDEN</codeph> (1)：隐藏模式。按比例缩放视频，直到填满视图边界（可能被裁剪）。视频的一部分内容可能被截断。</li>
-                            <li>
-                                <codeph>RENDER_MODE_FIT</codeph> (2)：适应模式。按比例缩放视频，直到某一维度适配视图边界。由于宽高比不一致而未填满的区域将以黑色填充。</li>
-                            <li>
-                                <codeph>RENDER_MODE_ADAPTIVE</codeph> (3)：自适应模式（已废弃，不推荐使用）。</li>
+                            <li><codeph>RENDER_MODE_HIDDEN</codeph> (1)：隐藏模式。按比例缩放视频，直到填满视图边界（可能被裁剪）。视频的一部分内容可能被截断。</li>
+                            <li><codeph>RENDER_MODE_FIT</codeph> (2)：适应模式。按比例缩放视频，直到某一维度适配视图边界。由于宽高比不一致而未填满的区域将以黑色填充。</li>
+                            <li><codeph>RENDER_MODE_ADAPTIVE</codeph> (3)：自适应模式（已废弃，不推荐使用）。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -100,16 +91,13 @@
                     <pt>mirrorMode</pt>
                     <pd>远端用户视图的镜像模式：
                         <ul>
-                            <li>
-                                <codeph>VIDEO_MIRROR_MODE_AUTO</codeph> (0)：SDK 自动决定是否启用镜像模式。使用前置摄像头时默认启用镜像模式；使用后置摄像头时默认关闭镜像模式。</li>
-                            <li>
-                                <codeph>VIDEO_MIRROR_MODE_ENABLED</codeph> (1)：启用本地视图的镜像模式。</li>
-                            <li>
-                                <codeph>VIDEO_MIRROR_MODE_DISABLED</codeph> (2)：关闭本地视图的镜像模式。</li>
+                            <li><codeph>VIDEO_MIRROR_MODE_AUTO</codeph> (0)：SDK 自动决定是否启用镜像模式。使用前置摄像头时默认启用镜像模式；使用后置摄像头时默认关闭镜像模式。</li>
+                            <li><codeph>VIDEO_MIRROR_MODE_ENABLED</codeph> (1)：启用本地视图的镜像模式。</li>
+                            <li><codeph>VIDEO_MIRROR_MODE_DISABLED</codeph> (2)：关闭本地视图的镜像模式。</li>
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="android ios">
+                <plentry props="android ios mac">
                     <pt>connection</pt>
                     <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
@@ -128,10 +116,6 @@
                 <plentry props="mac">
                     <pt>mirror</pt>
                     <pd>远端用户视图的镜像模式，详见 <codeph>AgoraVideoMirrorMode</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>connection</pt>
-                    <pd>连接信息。详见 <codeph>AgoraRtcConnection</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

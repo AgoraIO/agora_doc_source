@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_imediarecorderobserver_onrecorderinfoupdated">
     <title>
-        <ph keyref="onRecorderInfoUpdated"/>
+    <ph keyref="onRecorderInfoUpdated"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">录制信息更新的回调。</ph>
+    <ph id="shortdesc">录制信息更新的回调。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -30,10 +30,9 @@
                     <dd>自 v4.0.0 版本新增。</dd>
                 </dlentry>
             </dl>
-            <p props="cpp">成功注册该回调并开始音视频流录制后，SDK 会根据 <codeph>MediaRecorderConfiguration</codeph> 中设置的 <codeph>recorderInfoUpdateInterval</codeph> 的值定期触发该回调，报告当前录制文件的名称、时长和大小。</p>
+            <p props="cpp">成功注册该回调并开始音视频流录制后，SDK 会根据 <xref keyref="MediaRecorderConfiguration"/> 中设置的 <codeph>recorderInfoUpdateInterval</codeph> 的值定期触发该回调，报告当前录制文件的名称、时长和大小。</p>
             <p props="android">在你成功注册该回调并开始音视频流录制后，SDK 会根据你在 <xref keyref="MediaRecorderConfiguration"/> 中设置的 <codeph>recorderInfoUpdateInterval</codeph> 的值定期触发该回调，报告当前录制文件的名称、时长和大小。</p>
-            <p props="ios">在你成功注册该回调并开始音视频流录制后，SDK 会根据你在 <xref keyref="MediaRecorderConfiguration"/> 中设置的 <codeph>recorderInfoUpdateInterval</codeph> 的值，周期性地触发该回调，报告当前录制文件的名称、时长和大小。</p>
-            <p props="mac">在你成功注册该回调并开始音视频流录制后，SDK 会根据你在 <codeph>AgoraMediaRecorderConfiguration</codeph> 中设置的 <codeph>recorderInfoUpdateInterval</codeph> 的值，周期性地触发该回调，报告当前录制文件的名称、时长和大小。</p>
+            <p props="ios mac">在你成功注册该回调并开始音视频流录制后，SDK 会根据你在 <xref keyref="MediaRecorderConfiguration"/> 中设置的 <codeph>recorderInfoUpdateInterval</codeph> 的值，周期性地触发该回调，报告当前录制文件的名称、时长和大小。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
@@ -58,25 +57,15 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>info</pt>
-                    <pd>录制文件信息。详见 <codeph>RecorderInfo</codeph>。</pd>
+                    <pd>录制文件信息。详见 <xref keyref="RecorderInfo"/>。</pd>
                 </plentry>
-                <plentry props="android ios">
+                <plentry props="android ios mac">
                     <pt>info</pt>
                     <pd>录制文件信息，详见 <xref keyref="RecorderInfo"/>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>recorder</pt>
-                    <pd>
-                        <xref keyref="IMediaRecorder"/> 实例。详见 <xref keyref="IMediaRecorder"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>recorder</pt>
-                    <pd>
-                        <codeph>AgoraMediaRecorder</codeph> 实例。详见 <codeph>AgoraMediaRecorder</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>info</pt>
-                    <pd>录制文件信息，详见 <codeph>AgoraMediaRecorderInfo</codeph>。</pd>
+                    <pd><xref keyref="IMediaRecorder"/> 实例。详见 <xref keyref="IMediaRecorder"/>。</pd>
                 </plentry>
             </parml>
         </section>

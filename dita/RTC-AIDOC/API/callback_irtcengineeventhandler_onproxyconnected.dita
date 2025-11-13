@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onproxyconnected">
     <title>
-        <ph keyref="onProxyConnected"/>
+    <ph keyref="onProxyConnected"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">代理连接状态回调。</ph>
+    <ph id="shortdesc">代理连接状态回调。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -24,17 +24,14 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">
-                <codeph>onProxyConnected</codeph> 回调用于监听 SDK 连接代理的状态。当用户调用 <codeph>setCloudProxy</codeph> 并成功加入频道后，SDK 会触发该回调，报告用户 ID、连接的代理类型，以及从调用 <codeph>joinChannel</codeph> 到触发该回调所经历的时间（毫秒）。</p>
+            <p props="cpp"><xref keyref="onProxyConnected"/> 回调用于监听 SDK 连接代理的状态。当用户调用 <xref keyref="setCloudProxy"/> 并成功加入频道后，SDK 会触发该回调，报告用户 ID、连接的代理类型，以及从调用 <codeph>joinChannel</codeph> 到触发该回调所经历的时间（毫秒）。</p>
             <p props="android">当用户调用 <xref keyref="setCloudProxy"/> 并成功加入频道后，SDK 会触发该回调，报告用户 ID、连接的代理类型，以及从调用 <codeph>joinChannel</codeph> 到触发该回调所经历的时间（毫秒）。</p>
-            <p props="ios">你可以使用该回调监听 SDK 的代理连接状态。例如，当你调用 <xref keyref="setCloudProxy"/> 并成功加入频道后，SDK 会触发该回调，上报用户 ID、连接的代理类型，以及从调用 <codeph>joinChannelByToken</codeph> 到触发该回调所经历的时间（毫秒）。</p>
-            <p props="mac">你可以使用该回调监听 SDK 的代理连接状态。例如，当你调用 <codeph>setCloudProxy:</codeph> 并成功加入频道后，SDK 会触发该回调，上报用户 ID、连接的代理类型，以及从调用 <codeph>joinChannelByToken</codeph> 到触发该回调所经历的时间（毫秒）。</p>
+            <p props="ios mac">你可以使用该回调监听 SDK 的代理连接状态。例如，当你调用 <xref keyref="setCloudProxy"/> 并成功加入频道后，SDK 会触发该回调，上报用户 ID、连接的代理类型，以及从调用 <codeph>joinChannelByToken</codeph> 到触发该回调所经历的时间（毫秒）。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
             <p props="android">该回调在用户调用 <xref keyref="setCloudProxy"/> 并成功加入频道后被触发。</p>
-            <p props="ios">该回调在你调用 <xref keyref="setCloudProxy"/> 并成功加入频道后被触发。</p>
-            <p props="mac">该回调在你调用 <codeph>setCloudProxy:</codeph> 并成功加入频道后被触发。</p>
+            <p props="ios mac">该回调在你调用 <xref keyref="setCloudProxy"/> 并成功加入频道后被触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
@@ -51,9 +48,9 @@
                     <pt>uid</pt>
                     <pd>用户 ID。</pd>
                 </plentry>
-                <plentry props="cpp">
+                <plentry props="cpp ios">
                     <pt>proxyType</pt>
-                    <pd>连接的代理类型，详见 <codeph>PROXY_TYPE</codeph>。</pd>
+                    <pd>连接的代理类型，详见 <xref keyref="PROXY_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="cpp ios mac">
                     <pt>localProxyIp</pt>
@@ -67,16 +64,11 @@
                     <pt>proxyType</pt>
                     <pd>连接的代理类型：
                         <ul>
-                            <li>
-                                <codeph>PROXY_TYPE_NONE_PROXY</codeph>（0）：预留参数。</li>
-                            <li>
-                                <codeph>PROXY_TYPE_UDP_CLOUD_PROXY</codeph>（1）：UDP 协议的云代理，即强制 UDP 云代理模式。在该模式下，SDK 始终通过 UDP 传输数据。</li>
-                            <li>
-                                <codeph>PROXY_TYPE_TCP_CLOUD_PROXY</codeph>（2）：TCP（加密）协议的云代理，即强制 TCP 云代理模式。在该模式下，SDK 始终通过 TCP/TLS 443 传输数据。</li>
-                            <li>
-                                <codeph>PROXY_TYPE_LOCAL_PROXY</codeph>（3）：预留参数。</li>
-                            <li>
-                                <codeph>PROXY_TYPE_TCP_AUTO_FALLBACK</codeph>（4）：自动模式。在该模式下，SDK 会尝试直接连接 SD-RTN™，如果失败则自动切换到 TCP/TLS 443。</li>
+                            <li><codeph>PROXY_TYPE_NONE_PROXY</codeph>（0）：预留参数。</li>
+                            <li><codeph>PROXY_TYPE_UDP_CLOUD_PROXY</codeph>（1）：UDP 协议的云代理，即强制 UDP 云代理模式。在该模式下，SDK 始终通过 UDP 传输数据。</li>
+                            <li><codeph>PROXY_TYPE_TCP_CLOUD_PROXY</codeph>（2）：TCP（加密）协议的云代理，即强制 TCP 云代理模式。在该模式下，SDK 始终通过 TCP/TLS 443 传输数据。</li>
+                            <li><codeph>PROXY_TYPE_LOCAL_PROXY</codeph>（3）：预留参数。</li>
+                            <li><codeph>PROXY_TYPE_TCP_AUTO_FALLBACK</codeph>（4）：自动模式。在该模式下，SDK 会尝试直接连接 SD-RTN™，如果失败则自动切换到 TCP/TLS 443。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -88,27 +80,17 @@
                     <pt>elapsed</pt>
                     <pd>从调用 <codeph>joinChannel</codeph> 到触发该回调所经历的时间（毫秒）。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>engine</pt>
-                    <pd>
-                        <xref keyref="IRtcEngine"/> 对象。</pd>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
                 </plentry>
                 <plentry props="ios mac">
                     <pt>channel</pt>
                     <pd>频道名称。</pd>
                 </plentry>
-                <plentry props="ios">
-                    <pt>proxyType</pt>
-                    <pd>连接的代理类型，详见 <xref keyref="PROXY_TYPE"/>。</pd>
-                </plentry>
                 <plentry props="ios mac">
                     <pt>elapsed</pt>
                     <pd>从调用 <codeph>joinChannelByToken</codeph> 到触发该回调所经历的时间（毫秒）。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>engine</pt>
-                    <pd>
-                        <codeph>AgoraRtcEngineKit</codeph> 对象。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>proxyType</pt>

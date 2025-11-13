@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_player_mutevideo">
     <title>
-        <ph keyref="MuteVideo"/>
+    <ph keyref="MuteVideo"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">接收或停止接收视频流。</ph>
+    <ph id="shortdesc">接收或停止接收视频流。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -30,16 +30,14 @@
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
             </dl>
-            <p props="ios">你必须在调用 <xref keyref="OpenWithUrl"/> 方法之后调用该方法。</p>
-            <p props="mac">你必须在调用 <codeph>openWithUrl:startTime:cb:</codeph> 方法之后调用该方法。</p>
+            <p props="ios mac">你必须在调用 <xref keyref="OpenWithUrl"/> 方法之后调用该方法。</p>
             <note props="ios mac">成功调用该方法后，SDK 会触发 <codeph>onPlayerInfoUpdated:</codeph> 回调，报告最新的播放器和媒体流信息。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="cpp">该方法必须在调用 <codeph>OpenWithUrl</codeph> 之后调用。</p>
+            <p props="cpp">该方法必须在调用 <xref keyref="OpenWithUrl"/> 之后调用。</p>
             <p props="android">你必须在调用 <xref keyref="OpenWithUrl"/> 之后调用该方法。</p>
-            <p props="ios">你必须在调用 <xref keyref="OpenWithUrl"/> 方法之后调用该方法。</p>
-            <p props="mac">你必须在调用 <codeph>openWithUrl:startTime:cb:</codeph> 方法之后调用该方法。</p>
+            <p props="ios mac">你必须在调用 <xref keyref="OpenWithUrl"/> 方法之后调用该方法。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -56,67 +54,37 @@
                     <pt>mute</pt>
                     <pd>是否接收视频流：
                         <ul>
-                            <li>
-                                <codeph>true</codeph>：不接收视频流。</li>
-                            <li>
-                                <codeph>false</codeph>：接收视频流。</li>
+                            <li><xref keyref="true"/>：不接收视频流。</li>
+                            <li><xref keyref="false"/>：接收视频流。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>err</pt>
-                    <pd>输出参数，状态或错误信息，详见 <codeph>Error</codeph>。</pd>
+                    <pd>输出参数，状态或错误信息，详见 <xref keyref="Error"/>。</pd>
                 </plentry>
-                <plentry props="android ios">
+                <plentry props="android ios mac">
                     <pt>mute</pt>
                     <pd>是否接收远端视频流：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：不接收远端视频流。</li>
-                            <li>
-                                <xref keyref="false"/>：接收远端视频流。</li>
+                            <li><xref keyref="true"/>：不接收远端视频流。</li>
+                            <li><xref keyref="false"/>：接收远端视频流。</li>
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>error</pt>
                     <pd>状态或错误信息，详见 <xref keyref="Error"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>mute</pt>
-                    <pd>是否接收远端视频流：
-                        <ul>
-                            <li>
-                                <codeph>YES</codeph>：不接收远端视频流。</li>
-                            <li>
-                                <codeph>NO</codeph>：接收远端视频流。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>error</pt>
-                    <pd>状态或错误信息，详见 <codeph>AgoraRteError</codeph>。</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="cpp">
-                <codeph>true</codeph> 表示操作成功，<codeph>false</codeph> 表示操作失败。</p>
-            <p props="ios">
+            <p props="cpp"><xref keyref="true"/> 表示操作成功，<xref keyref="false"/> 表示操作失败。</p>
+            <p props="ios mac">
                 <ul>
-                    <li>
-                        <xref keyref="true"/>：操作成功。</li>
-                    <li>
-                        <xref keyref="false"/>：操作失败。</li>
-                </ul>
-            </p>
-            <p props="mac">
-                <ul>
-                    <li>
-                        <codeph>YES</codeph>：操作成功。</li>
-                    <li>
-                        <codeph>NO</codeph>：操作失败。</li>
+                    <li><xref keyref="true"/>：操作成功。</li>
+                    <li><xref keyref="false"/>：操作失败。</li>
                 </ul>
             </p>
         </section>

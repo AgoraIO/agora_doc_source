@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setdirectcdnstreamingaudioconfiguration">
     <title>
-        <ph keyref="setDirectCdnStreamingAudioConfiguration"/>
+    <ph keyref="setDirectCdnStreamingAudioConfiguration"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">设置主播直推 CDN 音频流的音频配置。</ph>
+    <ph id="shortdesc">设置主播直推 CDN 音频流的音频配置。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -30,9 +30,7 @@
                     <dd>自 v4.6.0 版本废弃。</dd>
                 </dlentry>
             </dl>
-            <p props="cpp">当你在 <codeph>DirectCdnStreamingMediaOptions</codeph> 中将 <codeph>publishMicrophoneTrack</codeph> 或 <codeph>publishCustomAudioTrack</codeph> 设置为 <codeph>true</codeph> 时，可以调用该方法设置音频配置。</p>
-            <p props="android ios">当你在 <xref keyref="DirectCdnStreamingMediaOptions"/> 中将 <codeph>publishMicrophoneTrack</codeph> 或 <codeph>publishCustomAudioTrack</codeph> 设置为 <xref keyref="true"/> 时，可以调用该方法设置音频配置。</p>
-            <p props="mac">当你在 <codeph>AgoraDirectCdnStreamingMediaOptions</codeph> 中将 <codeph>publishMicrophoneTrack</codeph> 或 <codeph>publishCustomAudioTrack</codeph> 设置为 <codeph>YES</codeph> 时，可以调用该方法设置音频配置。</p>
+            <p props="android cpp ios mac">当你在 <xref keyref="DirectCdnStreamingMediaOptions"/> 中将 <codeph>publishMicrophoneTrack</codeph> 或 <codeph>publishCustomAudioTrack</codeph> 设置为 <xref keyref="true"/> 时，可以调用该方法设置音频配置。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -45,38 +43,24 @@
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="cpp">
+                <plentry props="cpp ios mac">
                     <pt>profile</pt>
-                    <pd>音频配置，包括采样率、码率、编码模式和声道数。详见 <codeph>AUDIO_PROFILE_TYPE</codeph>。</pd>
+                    <pd>音频配置，包括采样率、码率、编码模式和声道数。详见 <xref keyref="AUDIO_PROFILE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>profile</pt>
                     <pd>音频配置，包括采样率、码率、编码模式和声道数：
                         <ul>
-                            <li>
-                                <codeph>DEFAULT</codeph> (0)：默认配置。</li>
+                            <li><codeph>DEFAULT</codeph> (0)：默认配置。</li>
                             <li>互动直播场景：采样率为 48 kHz，音乐编码，单声道，码率最高为 64 Kbps。</li>
                             <li>通信场景：采样率为 32 kHz，语音编码，单声道，码率最高为 18 Kbps。</li>
-                            <li>
-                                <codeph>SPEECH_STANDARD</codeph> (1)：采样率为 32 kHz，语音编码，单声道，码率最高为 18 Kbps。</li>
-                            <li>
-                                <codeph>MUSIC_STANDARD</codeph> (2)：采样率为 48 kHz，音乐编码，单声道，码率最高为 64 Kbps。</li>
-                            <li>
-                                <codeph>MUSIC_STANDARD_STEREO</codeph> (3)：采样率为 48 kHz，音乐编码，立体声，码率最高为 80 Kbps。</li>
-                            <li>
-                                <codeph>MUSIC_HIGH_QUALITY</codeph> (4)：采样率为 48 kHz，音乐编码，单声道，码率最高为 96 Kbps。</li>
-                            <li>
-                                <codeph>MUSIC_HIGH_QUALITY_STEREO</codeph> (5)：采样率为 48 kHz，音乐编码，立体声，码率最高为 128 Kbps。</li>
+                            <li><codeph>SPEECH_STANDARD</codeph> (1)：采样率为 32 kHz，语音编码，单声道，码率最高为 18 Kbps。</li>
+                            <li><codeph>MUSIC_STANDARD</codeph> (2)：采样率为 48 kHz，音乐编码，单声道，码率最高为 64 Kbps。</li>
+                            <li><codeph>MUSIC_STANDARD_STEREO</codeph> (3)：采样率为 48 kHz，音乐编码，立体声，码率最高为 80 Kbps。</li>
+                            <li><codeph>MUSIC_HIGH_QUALITY</codeph> (4)：采样率为 48 kHz，音乐编码，单声道，码率最高为 96 Kbps。</li>
+                            <li><codeph>MUSIC_HIGH_QUALITY_STEREO</codeph> (5)：采样率为 48 kHz，音乐编码，立体声，码率最高为 128 Kbps。</li>
                         </ul>
                     </pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>profile</pt>
-                    <pd>音频配置，包括采样率、码率、编码模式和声道数。详见 <xref keyref="AUDIO_PROFILE_TYPE"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>profile</pt>
-                    <pd>音频配置，包括采样率、码率、编码模式和声道数。详见 <codeph>AgoraAudioProfile</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

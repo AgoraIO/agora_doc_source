@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_setsubscribeaudioblocklistex">
     <title>
-        <ph keyref="setSubscribeAudioBlocklistEx"/>
+    <ph keyref="setSubscribeAudioBlocklistEx"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">设置不订阅的音频流用户黑名单。</ph>
+    <ph id="shortdesc">设置不订阅的音频流用户黑名单。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -28,7 +28,7 @@
             <note props="cpp">
                 <ul>
                     <li>你可以在加入频道前或加入频道后调用此方法。</li>
-                    <li>黑名单设置不受 <codeph>ChannelMediaOptions</codeph> 中 <codeph>muteRemoteAudioStream</codeph>、<codeph>muteAllRemoteAudioStreams</codeph> 和 <codeph>autoSubscribeAudio</codeph> 的影响。</li>
+                    <li>黑名单设置不受 <xref keyref="ChannelMediaOptions"/> 中 <xref keyref="muteRemoteAudioStream"/>、<xref keyref="muteAllRemoteAudioStreams"/> 和 <codeph>autoSubscribeAudio</codeph> 的影响。</li>
                     <li>一旦设置了订阅黑名单，即使离开当前频道并重新加入频道，该设置仍然有效。</li>
                     <li>如果某个用户同时被加入白名单和黑名单，则仅黑名单生效。</li>
                 </ul>
@@ -41,18 +41,10 @@
                     <li>如果某个用户同时被加入白名单和黑名单，仅黑名单生效。</li>
                 </ul>
             </note>
-            <note props="ios">
+            <note props="ios mac">
                 <ul>
                     <li>你可以在加入频道前或加入频道后调用此方法。</li>
                     <li>黑名单不受 <xref keyref="muteRemoteAudioStream"/>、<xref keyref="muteAllRemoteAudioStreams"/> 和 <codeph>autoSubscribeAudio</codeph> 设置影响。</li>
-                    <li>一旦设置了订阅黑名单，即使你离开当前频道并重新加入，该设置仍然有效。</li>
-                    <li>如果某个用户同时被加入白名单和黑名单，则仅黑名单生效。</li>
-                </ul>
-            </note>
-            <note props="mac">
-                <ul>
-                    <li>你可以在加入频道前或加入频道后调用此方法。</li>
-                    <li>黑名单不受 <codeph>muteRemoteAudioStream:mute:</codeph>、<codeph>muteAllRemoteAudioStreams:</codeph> 和 <codeph>autoSubscribeAudio</codeph> 设置影响。</li>
                     <li>一旦设置了订阅黑名单，即使你离开当前频道并重新加入，该设置仍然有效。</li>
                     <li>如果某个用户同时被加入白名单和黑名单，则仅黑名单生效。</li>
                 </ul>
@@ -69,37 +61,21 @@
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="cpp">
+                <plentry props="android cpp">
                     <pt>uidList</pt>
-                    <pd>不希望订阅其音频流的用户 ID 列表。如果你希望将某个用户从黑名单中移除，需要调用 <codeph>setSubscribeAudioBlocklist</codeph> 方法更新用户 ID 列表。</pd>
+                    <pd>不希望订阅其音频流的用户 ID 列表。如果你希望将某个用户从黑名单中移除，需要调用 <xref keyref="setSubscribeAudioBlocklist"/> 方法更新用户 ID 列表。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>uidNumber</pt>
                     <pd>用户 ID 列表中的用户数量。</pd>
                 </plentry>
-                <plentry props="cpp">
-                    <pt>connection</pt>
-                    <pd>连接信息。详见 <codeph>RtcConnection</codeph>。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>uidList</pt>
-                    <pd>不希望订阅其音频流的用户 ID 列表。如果你希望将某个用户从黑名单中移除，需要调用 <xref keyref="setSubscribeAudioBlocklist"/> 方法更新用户 ID 列表。</pd>
-                </plentry>
-                <plentry props="android ios">
+                <plentry props="android cpp ios mac">
                     <pt>connection</pt>
                     <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>blocklist</pt>
                     <pd>不希望订阅其音频流的用户 ID 列表。如果你希望指定不订阅某个用户的音频流，请将该用户的 ID 添加到此列表中。如果你希望将某个用户从黑名单中移除，需要调用 <xref keyref="setSubscribeAudioBlocklist"/> 方法更新用户 ID 列表；这意味着你只需在新的用户 ID 列表中添加不希望订阅的用户的用户 ID。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>blocklist</pt>
-                    <pd>不希望订阅其音频流的用户 ID 列表。如果你希望指定不订阅某个用户的音频流，请将该用户的 ID 添加到此列表中。如果你希望将某个用户从黑名单中移除，需要调用 <codeph>setSubscribeAudioBlocklist:</codeph> 方法更新用户 ID 列表；这意味着你只需在新的用户 ID 列表中添加不希望订阅的用户的用户 ID。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>connection</pt>
-                    <pd>连接信息。详见 <codeph>AgoraRtcConnection</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

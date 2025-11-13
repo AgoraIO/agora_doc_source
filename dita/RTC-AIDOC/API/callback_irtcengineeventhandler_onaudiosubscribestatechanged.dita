@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onaudiosubscribestatechanged">
     <title>
-        <ph keyref="onAudioSubscribeStateChanged"/>
+    <ph keyref="onAudioSubscribeStateChanged"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">音频订阅状态发生变化回调。</ph>
+    <ph id="shortdesc">音频订阅状态发生变化回调。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -55,13 +55,13 @@ elapseSinceLastState:(int)elapseSinceLastState NS_SWIFT_NAME(rtcEngine(_:didAudi
                     <pt>uid</pt>
                     <pd>远端用户 ID。</pd>
                 </plentry>
-                <plentry props="cpp">
+                <plentry props="cpp ios">
                     <pt>oldState</pt>
-                    <pd>之前的订阅状态，详见 <codeph>STREAM_SUBSCRIBE_STATE</codeph>。</pd>
+                    <pd>之前的订阅状态，详见 <xref keyref="STREAM_SUBSCRIBE_STATE"/>。</pd>
                 </plentry>
-                <plentry props="cpp">
+                <plentry props="cpp ios">
                     <pt>newState</pt>
-                    <pd>当前的订阅状态，详见 <codeph>STREAM_SUBSCRIBE_STATE</codeph>。</pd>
+                    <pd>当前的订阅状态，详见 <xref keyref="STREAM_SUBSCRIBE_STATE"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>elapseSinceLastState</pt>
@@ -71,10 +71,8 @@ elapseSinceLastState:(int)elapseSinceLastState NS_SWIFT_NAME(rtcEngine(_:didAudi
                     <pt>oldState</pt>
                     <pd>之前的订阅状态：
                         <ul>
-                            <li>
-                                <codeph>SUB_STATE_IDLE</codeph> (0)：加入频道后的初始订阅状态。</li>
-                            <li>
-                                <codeph>SUB_STATE_NO_SUBSCRIBED</codeph> (1)：订阅远端流失败。可能原因包括：</li>
+                            <li><codeph>SUB_STATE_IDLE</codeph> (0)：加入频道后的初始订阅状态。</li>
+                            <li><codeph>SUB_STATE_NO_SUBSCRIBED</codeph> (1)：订阅远端流失败。可能原因包括：</li>
                             <li>远端用户：</li>
                             <li>调用 <codeph>muteLocalAudioStream(true)</codeph> 停止发送本地音频流。</li>
                             <li>调用 <xref keyref="disableAudio"/> 禁用本地音频模块。</li>
@@ -83,10 +81,8 @@ elapseSinceLastState:(int)elapseSinceLastState NS_SWIFT_NAME(rtcEngine(_:didAudi
                             <li>本地用户：</li>
                             <li>在调用 <codeph>joinChannel</codeph> 或 <xref keyref="updateChannelMediaOptions"/> 时将 <codeph>autoSubscribeAudio</codeph> 设为 <xref keyref="false"/>，表示不自动订阅任何音频流。</li>
                             <li>调用 <xref keyref="muteRemoteAudioStream"/> 或 <xref keyref="muteAllRemoteAudioStreams"/> 并将 <codeph>muted</codeph> 设为 <xref keyref="true"/>，表示停止接收远端音频流。</li>
-                            <li>
-                                <codeph>SUB_STATE_SUBSCRIBING</codeph> (2)：正在订阅中。</li>
-                            <li>
-                                <codeph>SUB_STATE_SUBSCRIBED</codeph> (3)：已接收到远端流，订阅成功。</li>
+                            <li><codeph>SUB_STATE_SUBSCRIBING</codeph> (2)：正在订阅中。</li>
+                            <li><codeph>SUB_STATE_SUBSCRIBED</codeph> (3)：已接收到远端流，订阅成功。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -94,10 +90,8 @@ elapseSinceLastState:(int)elapseSinceLastState NS_SWIFT_NAME(rtcEngine(_:didAudi
                     <pt>newState</pt>
                     <pd>当前的订阅状态：
                         <ul>
-                            <li>
-                                <codeph>SUB_STATE_IDLE</codeph> (0)：加入频道后的初始订阅状态。</li>
-                            <li>
-                                <codeph>SUB_STATE_NO_SUBSCRIBED</codeph> (1)：订阅远端流失败。可能原因包括：</li>
+                            <li><codeph>SUB_STATE_IDLE</codeph> (0)：加入频道后的初始订阅状态。</li>
+                            <li><codeph>SUB_STATE_NO_SUBSCRIBED</codeph> (1)：订阅远端流失败。可能原因包括：</li>
                             <li>远端用户：</li>
                             <li>调用 <codeph>muteLocalAudioStream(true)</codeph> 停止发送本地音频流。</li>
                             <li>调用 <xref keyref="disableAudio"/> 禁用本地音频模块。</li>
@@ -106,10 +100,8 @@ elapseSinceLastState:(int)elapseSinceLastState NS_SWIFT_NAME(rtcEngine(_:didAudi
                             <li>本地用户：</li>
                             <li>在调用 <codeph>joinChannel</codeph> 或 <xref keyref="updateChannelMediaOptions"/> 时将 <codeph>autoSubscribeAudio</codeph> 设为 <xref keyref="false"/>，表示不自动订阅任何音频流。</li>
                             <li>调用 <xref keyref="muteRemoteAudioStream"/> 或 <xref keyref="muteAllRemoteAudioStreams"/> 并将 <codeph>muted</codeph> 设为 <xref keyref="true"/>，表示停止接收远端音频流。</li>
-                            <li>
-                                <codeph>SUB_STATE_SUBSCRIBING</codeph> (2)：正在订阅中。</li>
-                            <li>
-                                <codeph>SUB_STATE_SUBSCRIBED</codeph> (3)：已接收到远端流，订阅成功。</li>
+                            <li><codeph>SUB_STATE_SUBSCRIBING</codeph> (2)：正在订阅中。</li>
+                            <li><codeph>SUB_STATE_SUBSCRIBED</codeph> (3)：已接收到远端流，订阅成功。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -117,31 +109,17 @@ elapseSinceLastState:(int)elapseSinceLastState NS_SWIFT_NAME(rtcEngine(_:didAudi
                     <pt>elapseSinceLastState</pt>
                     <pd>从上一个状态到当前状态所经过的时间（毫秒）。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>engine</pt>
-                    <pd>
-                        <xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+                    <pd><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
                 <plentry props="ios mac">
                     <pt>channelId</pt>
                     <pd>频道名。</pd>
                 </plentry>
-                <plentry props="ios">
-                    <pt>oldState</pt>
-                    <pd>之前的订阅状态，详见 <xref keyref="STREAM_SUBSCRIBE_STATE"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>newState</pt>
-                    <pd>当前的订阅状态，详见 <xref keyref="STREAM_SUBSCRIBE_STATE"/>。</pd>
-                </plentry>
                 <plentry props="ios mac">
                     <pt>elapseSinceLastState</pt>
                     <pd>从上一个状态到当前状态经过的时间（毫秒）。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>engine</pt>
-                    <pd>
-                        <codeph>AgoraRtcEngineKit</codeph> 对象，详见 <codeph>AgoraRtcEngineKit</codeph>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>oldState</pt>

@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_imetadataobserver_onreadytosendmetadata">
     <title>
-        <ph keyref="onReadyToSendMetadata"/>
+    <ph keyref="onReadyToSendMetadata"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">当 SDK 准备好发送元数据时触发的回调。</ph>
+    <ph id="shortdesc">当 SDK 准备好发送元数据时触发的回调。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -25,9 +25,7 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="ios mac">该回调在 SDK 准备好发送元数据时触发。</p>
-            <note props="cpp">请确保元数据的大小不超过 <codeph>getMaxMetadataSize</codeph> 回调中设置的值。</note>
-            <note props="android ios">请确保元数据的大小不超过 <xref keyref="getMaxMetadataSize"/> 回调中设置的值。</note>
-            <note props="mac">请确保元数据的大小不超过 <codeph>metadataMaxSize</codeph> 回调中设置的值。</note>
+            <note props="android cpp ios mac">请确保元数据的大小不超过 <xref keyref="getMaxMetadataSize"/> 回调中设置的值。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
@@ -43,11 +41,11 @@
             <parml>
                 <plentry props="cpp">
                     <pt>metadata</pt>
-                    <pd>用户希望发送的元数据。详见 <codeph>Metadata</codeph>。</pd>
+                    <pd>用户希望发送的元数据。详见 <xref keyref="Metadata"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>source_type</pt>
-                    <pd>视频数据类型。详见 <codeph>VIDEO_SOURCE_TYPE</codeph>。</pd>
+                    <pd>视频数据类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>timeStampMs</pt>
@@ -61,13 +59,9 @@
                     <pt>timestamp</pt>
                     <pd>时间戳。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>sourceType</pt>
                     <pd>视频数据类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>sourceType</pt>
-                    <pd>视频数据类型，详见 <codeph>AgoraVideoSourceType</codeph>。</pd>
                 </plentry>
             </parml>
         </section>
@@ -75,23 +69,17 @@
             <title>返回值</title>
             <p props="cpp">
                 <ul>
-                    <li>
-                        <codeph>true</codeph>：发送该视频帧。</li>
-                    <li>
-                        <codeph>false</codeph>：不发送该视频帧。</li>
+                    <li><xref keyref="true"/>：发送该视频帧。</li>
+                    <li><xref keyref="false"/>：不发送该视频帧。</li>
                 </ul>
             </p>
             <p props="android">方法调用成功时，返回希望发送的元数据，格式为字节数组。</p>
             <p props="ios mac">你希望发送的元数据，格式为 <codeph>NSData</codeph>，包含以下参数：
                 <ul>
-                    <li>
-                        <codeph>uid</codeph>：发送元数据的远端用户 ID。</li>
-                    <li>
-                        <codeph>size</codeph>：元数据的大小。</li>
-                    <li>
-                        <codeph>buffer</codeph>：元数据内容。</li>
-                    <li>
-                        <codeph>timeStampMs</codeph>：发送元数据时的 NTP 时间戳（毫秒）。</li>
+                    <li><codeph>uid</codeph>：发送元数据的远端用户 ID。</li>
+                    <li><codeph>size</codeph>：元数据的大小。</li>
+                    <li><codeph>buffer</codeph>：元数据内容。</li>
+                    <li><codeph>timeStampMs</codeph>：发送元数据时的 NTP 时间戳（毫秒）。</li>
                 </ul>
             </p>
         </section>

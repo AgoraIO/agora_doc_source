@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_seek">
     <title>
-        <ph keyref="seek"/>
+    <ph keyref="seek"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">跳转到新的播放位置。</ph>
+    <ph id="shortdesc">跳转到新的播放位置。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -26,23 +26,17 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">
                 <ul>
-                    <li>如果在播放完成后调用该方法（即收到 <codeph>onPlayerSourceStateChanged</codeph> 回调并报告播放状态为 <codeph>PLAYER_STATE_PLAYBACK_COMPLETED</codeph> 或 <codeph>PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED</codeph>），SDK 会从指定位置开始播放媒体文件，并触发 <codeph>onPlayerSourceStateChanged</codeph> 回调，报告播放状态为 <codeph>PLAYER_STATE_PLAYING</codeph>。</li>
-                    <li>如果在播放暂停时调用该方法，调用成功后，SDK 会跳转到指定位置。要恢复播放，请调用 <codeph>resume</codeph> 或 <codeph>play</codeph> 方法。</li>
-                    <li>成功调用该方法后，会触发 <codeph>onPlayerEvent</codeph> 回调，报告跳转播放位置的结果。</li>
+                    <li>如果在播放完成后调用该方法（即收到 <xref keyref="onPlayerSourceStateChanged"/> 回调并报告播放状态为 <codeph>PLAYER_STATE_PLAYBACK_COMPLETED</codeph> 或 <codeph>PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED</codeph>），SDK 会从指定位置开始播放媒体文件，并触发 <xref keyref="onPlayerSourceStateChanged"/> 回调，报告播放状态为 <codeph>PLAYER_STATE_PLAYING</codeph>。</li>
+                    <li>如果在播放暂停时调用该方法，调用成功后，SDK 会跳转到指定位置。要恢复播放，请调用 <xref keyref="resume"/> 或 <xref keyref="play"/> 方法。</li>
+                    <li>成功调用该方法后，会触发 <xref keyref="onPlayerEvent"/> 回调，报告跳转播放位置的结果。</li>
                 </ul>
             </p>
             <p props="android">如果在播放完成后调用该方法（即收到回调 <xref keyref="onPlayerSourceStateChanged"/>，播放状态为 <codeph>PLAYER_STATE_PLAYBACK_COMPLETED</codeph> 或 <codeph>PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED</codeph>），SDK 会从指定位置开始播放媒体文件，并触发回调 <xref keyref="onPlayerSourceStateChanged"/>，播放状态为 <codeph>PLAYER_STATE_PLAYING</codeph>。
 如果在播放暂停时调用该方法，调用成功后，SDK 会跳转到指定位置。要恢复播放，请调用 <xref keyref="resume"/> 或 <xref keyref="play"/>。</p>
-            <p props="ios">
+            <p props="ios mac">
                 <ul>
                     <li>如果你在播放完成后调用该方法（收到回调 <codeph>didChangedToState:reason:</codeph>，播放状态为 <codeph>AgoraMediaPlayerStatePlayBackCompleted</codeph> 或 <codeph>AgoraMediaPlayerStatePlayBackAllLoopsCompleted</codeph>），SDK 会从指定位置开始播放媒体文件。此时，你会收到回调 <codeph>didChangedToState:reason:</codeph>，播放状态为 <codeph>AgoraMediaPlayerStatePlaying</codeph>。</li>
                     <li>如果你在播放暂停时调用该方法，调用成功后，SDK 会跳转到指定位置。要恢复播放，请调用 <xref keyref="resume"/> 或 <xref keyref="play"/> 方法。</li>
-                </ul>
-            </p>
-            <p props="mac">
-                <ul>
-                    <li>如果你在播放完成后调用该方法（收到回调 <codeph>didChangedToState:reason:</codeph>，播放状态为 <codeph>AgoraMediaPlayerStatePlayBackCompleted</codeph> 或 <codeph>AgoraMediaPlayerStatePlayBackAllLoopsCompleted</codeph>），SDK 会从指定位置开始播放媒体文件。此时，你会收到回调 <codeph>didChangedToState:reason:</codeph>，播放状态为 <codeph>AgoraMediaPlayerStatePlaying</codeph>。</li>
-                    <li>如果你在播放暂停时调用该方法，调用成功后，SDK 会跳转到指定位置。要恢复播放，请调用 <codeph>resume</codeph> 或 <codeph>play</codeph> 方法。</li>
                 </ul>
             </p>
         </section>

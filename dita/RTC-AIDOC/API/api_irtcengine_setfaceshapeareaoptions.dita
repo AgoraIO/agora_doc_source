@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setfaceshapeareaoptions">
     <title>
-        <ph keyref="setFaceShapeAreaOptions"/>
+    <ph keyref="setFaceShapeAreaOptions"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">设置面部区域的图像增强选项，并指定媒体源。</ph>
+    <ph id="shortdesc">设置面部区域的图像增强选项，并指定媒体源。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -23,12 +23,12 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">如果通过 <codeph>setFaceShapeBeautyOptions</codeph> 方法实现的预设美颜效果无法满足预期，你可以调用该方法设置美颜区域选项，单独微调面部的每个部分，从而实现更精细的美颜效果。</p>
+            <p props="cpp">如果通过 <xref keyref="setFaceShapeBeautyOptions"/> 方法实现的预设美颜效果无法满足预期，你可以调用该方法设置美颜区域选项，单独微调面部的每个部分，从而实现更精细的美颜效果。</p>
             <p props="ios mac">如果通过 <codeph>setFaceShapeBeautyOptions:</codeph> 方法设置的预设美型特效无法满足预期，可以使用此方法设置美颜区域选项，单独微调面部的每个部分，实现更精细的美颜效果。</p>
             <note props="cpp">
                 <ul>
                     <li>该方法仅适用于 Android 4.4 或更高版本。</li>
-                    <li>该方法依赖图像增强动态库 <codeph>libagora_clear_vision_extension.dll</codeph>。如果该动态库被删除，将无法启用该功能。</li>
+                    <li>该方法依赖图像增强动态库 <xref keyref="clearvision"/>。如果该动态库被删除，将无法启用该功能。</li>
                     <li>该功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的能力。</li>
                 </ul>
             </note>
@@ -40,14 +40,14 @@
             </note>
             <note props="mac">
                 <ul>
-                    <li>此方法依赖图像增强动态库 <codeph>AgoraClearVisionExtension.xcframework</codeph>（iOS）或 <codeph>AgoraClearVisionExtension.framework</codeph>（macOS）。如果删除该动态库，功能将无法正常启用。</li>
+                    <li>此方法依赖图像增强动态库 <codeph>AgoraClearVisionExtension.xcframework</codeph>（iOS）或 <xref keyref="clearvision"/>（macOS）。如果删除该动态库，功能将无法正常启用。</li>
                     <li>此功能对设备性能要求较高。调用此方法时，SDK 会自动检测当前设备的能力。</li>
                 </ul>
             </note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="cpp">在调用 <codeph>setFaceShapeBeautyOptions</codeph> 方法之后调用该方法。</p>
+            <p props="cpp">在调用 <xref keyref="setFaceShapeBeautyOptions"/> 方法之后调用该方法。</p>
             <p props="ios mac">在调用 <codeph>setFaceShapeBeautyOptions:</codeph> 方法之后调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
@@ -59,19 +59,15 @@
             <parml>
                 <plentry props="cpp">
                     <pt>options</pt>
-                    <pd>面部增强区域配置。详见 <codeph>FaceShapeAreaOptions</codeph>。</pd>
+                    <pd>面部增强区域配置。详见 <xref keyref="FaceShapeAreaOptions"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>type</pt>
-                    <pd>应用滤镜效果的媒体源类型。详见 <codeph>MEDIA_SOURCE_TYPE</codeph>。</pd>
+                    <pd>应用滤镜效果的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>options</pt>
                     <pd>面部增强区域。详见 <xref keyref="FaceShapeAreaOptions"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>options</pt>
-                    <pd>面部增强区域。详见 <codeph>AgoraFaceShapeAreaOptions</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

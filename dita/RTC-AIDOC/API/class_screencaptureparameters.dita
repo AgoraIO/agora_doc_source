@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_screencaptureparameters">
     <title>
-        <ph keyref="ScreenCaptureParameters"/>
+    <ph keyref="ScreenCaptureParameters"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">用于配置屏幕共享的参数。</ph>
+    <ph id="shortdesc">用于配置屏幕共享的参数。</ph>
   </shortdesc>
     <refbody>
         <section id="prototype">
@@ -70,7 +70,7 @@
                         <ul>
                             <li>如果屏幕尺寸小于 <codeph>dimensions</codeph>，例如 1000 × 1000 像素，SDK 使用屏幕尺寸（即 1000 × 1000 像素）进行编码。</li>
                             <li>如果屏幕尺寸大于 <codeph>dimensions</codeph>，例如 2000 × 1500 像素，SDK 会在保持屏幕宽高比（4:3）的前提下，使用不超过 <codeph>dimensions</codeph> 的最大值进行编码，即 1440 × 1080。
-详见 <codeph>VideoDimensions</codeph>。</li>
+详见 <xref keyref="VideoDimensions"/>。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -86,27 +86,23 @@
                     <pt>captureMouseCursor</pt>
                     <pd>是否在屏幕共享中捕获鼠标：
                         <ul>
-                            <li>
-                                <codeph>true</codeph>：（默认）捕获鼠标。</li>
-                            <li>
-                                <codeph>false</codeph>：不捕获鼠标。</li>
+                            <li><xref keyref="true"/>：（默认）捕获鼠标。</li>
+                            <li><xref keyref="false"/>：不捕获鼠标。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>windowFocus</pt>
-                    <pd>调用 <codeph>startScreenCaptureByWindowId</codeph> 方法共享窗口时，是否将该窗口置于前台：
+                    <pd>调用 <xref keyref="startScreenCaptureByWindowId"/> 方法共享窗口时，是否将该窗口置于前台：
                         <ul>
-                            <li>
-                                <codeph>true</codeph>：将窗口置于前台。</li>
-                            <li>
-                                <codeph>false</codeph>：（默认）不将窗口置于前台。</li>
+                            <li><xref keyref="true"/>：将窗口置于前台。</li>
+                            <li><xref keyref="false"/>：（默认）不将窗口置于前台。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>excludeWindowList</pt>
-                    <pd>要屏蔽的窗口 ID 列表。调用 <codeph>startScreenCaptureByDisplayId</codeph> 开始屏幕共享时，可使用该参数屏蔽指定窗口。调用 <codeph>updateScreenCaptureParameters</codeph> 更新屏幕共享配置时，也可使用该参数动态屏蔽指定窗口。</pd>
+                    <pd>要屏蔽的窗口 ID 列表。调用 <xref keyref="startScreenCaptureByDisplayId"/> 开始屏幕共享时，可使用该参数屏蔽指定窗口。调用 <xref keyref="updateScreenCaptureParameters"/> 更新屏幕共享配置时，也可使用该参数动态屏蔽指定窗口。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>excludeWindowCount</pt>
@@ -129,10 +125,8 @@
                     <pt>enableHighLight</pt>
                     <pd>（仅适用于 macOS 和 Windows）是否在共享的窗口或屏幕周围显示边框：
                         <ul>
-                            <li>
-                                <codeph>true</codeph>：显示边框。</li>
-                            <li>
-                                <codeph>false</codeph>：（默认）不显示边框。</li>
+                            <li><xref keyref="true"/>：显示边框。</li>
+                            <li><xref keyref="false"/>：（默认）不显示边框。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -140,10 +134,8 @@
                     <pt>captureAudio</pt>
                     <pd>设置是否在屏幕共享过程中采集系统音频：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：采集系统音频。</li>
-                            <li>
-                                <xref keyref="false"/>：（默认）不采集系统音频。</li>
+                            <li><xref keyref="true"/>：采集系统音频。</li>
+                            <li><xref keyref="false"/>：（默认）不采集系统音频。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -155,10 +147,8 @@
                     <pt>captureVideo</pt>
                     <pd>设置在屏幕共享过程中是否采集屏幕内容：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：（默认）采集屏幕。</li>
-                            <li>
-                                <xref keyref="false"/>：不采集屏幕。</li>
+                            <li><xref keyref="true"/>：（默认）采集屏幕。</li>
+                            <li><xref keyref="false"/>：不采集屏幕。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -183,25 +173,21 @@
                     <pt>bitrate</pt>
                     <pd>共享区域的码率（Kbps）。默认值为 0，表示 SDK 会根据当前屏幕的分辨率计算码率。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>captureMouseCursor</pt>
                     <pd>是否在屏幕共享中采集鼠标：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：（默认）采集鼠标。</li>
-                            <li>
-                                <xref keyref="false"/>：不采集鼠标。</li>
+                            <li><xref keyref="true"/>：（默认）采集鼠标。</li>
+                            <li><xref keyref="false"/>：不采集鼠标。</li>
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>windowFocus</pt>
                     <pd>调用 <codeph>startScreenCaptureByWindowId</codeph> 方法共享窗口时，是否将该窗口置顶：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：将窗口置顶。</li>
-                            <li>
-                                <xref keyref="false"/>：（默认）不置顶。</li>
+                            <li><xref keyref="true"/>：将窗口置顶。</li>
+                            <li><xref keyref="false"/>：（默认）不置顶。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -209,14 +195,12 @@
                     <pt>excludeWindowList</pt>
                     <pd>要屏蔽的窗口 ID 列表。调用 <codeph>startScreenCaptureByDisplayId</codeph> 开始屏幕共享时，可使用该参数屏蔽指定窗口。调用 <codeph>updateScreenCaptureParameters</codeph> 更新屏幕共享配置时，也可动态屏蔽指定窗口。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>highLighted</pt>
                     <pd>是否在共享的窗口或屏幕周围添加边框：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：添加边框。</li>
-                            <li>
-                                <xref keyref="false"/>：（默认）不添加边框。</li>
+                            <li><xref keyref="true"/>：添加边框。</li>
+                            <li><xref keyref="false"/>：（默认）不添加边框。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -227,39 +211,6 @@
                 <plentry props="ios mac">
                     <pt>highLightWidth</pt>
                     <pd>边框宽度（像素）。默认值为 5，取值范围为 (0, 50]。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>captureMouseCursor</pt>
-                    <pd>是否在屏幕共享中采集鼠标：
-                        <ul>
-                            <li>
-                                <codeph>YES</codeph>：（默认）采集鼠标。</li>
-                            <li>
-                                <codeph>NO</codeph>：不采集鼠标。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>windowFocus</pt>
-                    <pd>调用 <codeph>startScreenCaptureByWindowId</codeph> 方法共享窗口时，是否将该窗口置顶：
-                        <ul>
-                            <li>
-                                <codeph>YES</codeph>：将窗口置顶。</li>
-                            <li>
-                                <codeph>NO</codeph>：（默认）不置顶。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>highLighted</pt>
-                    <pd>是否在共享的窗口或屏幕周围添加边框：
-                        <ul>
-                            <li>
-                                <codeph>YES</codeph>：添加边框。</li>
-                            <li>
-                                <codeph>NO</codeph>：（默认）不添加边框。</li>
-                        </ul>
-                    </pd>
                 </plentry>
             </parml>
         </section>

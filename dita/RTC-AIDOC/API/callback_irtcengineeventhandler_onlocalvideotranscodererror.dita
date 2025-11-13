@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onlocalvideotranscodererror">
     <title>
-        <ph keyref="onLocalVideoTranscoderError"/>
+    <ph keyref="onLocalVideoTranscoderError"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">本地视频合图过程中发生错误的回调。</ph>
+    <ph id="shortdesc">本地视频合图过程中发生错误的回调。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -26,10 +26,9 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">当调用 <codeph>startLocalVideoTranscoder</codeph> 或 <codeph>updateLocalTranscoderConfiguration</codeph> 失败时，SDK 会触发该回调报告失败原因。</p>
+            <p props="cpp">当调用 <xref keyref="startLocalVideoTranscoder"/> 或 <xref keyref="updateLocalTranscoderConfiguration"/> 失败时，SDK 会触发该回调报告失败原因。</p>
             <p props="android">当你调用 <xref keyref="startLocalVideoTranscoder"/> 或 <xref keyref="updateLocalTranscoderConfiguration"/> 失败时，SDK 会触发该回调并报告失败原因。</p>
-            <p props="ios">当你调用 <xref keyref="startLocalVideoTranscoder"/> 或 <xref keyref="updateLocalTranscoderConfiguration"/> 失败时，SDK 会触发该回调报告失败原因。</p>
-            <p props="mac">当你调用 <codeph>startLocalVideoTranscoder:</codeph> 或 <codeph>updateLocalTranscoderConfiguration:</codeph> 失败时，SDK 会触发该回调报告失败原因。</p>
+            <p props="ios mac">当你调用 <xref keyref="startLocalVideoTranscoder"/> 或 <xref keyref="updateLocalTranscoderConfiguration"/> 失败时，SDK 会触发该回调报告失败原因。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
@@ -42,17 +41,13 @@
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="cpp">
+                <plentry props="android cpp ios mac">
                     <pt>stream</pt>
-                    <pd>在视频合图过程中无法被合图的视频流。详见 <codeph>TranscodingVideoStream</codeph>。</pd>
+                    <pd>在视频合图过程中无法被合图的视频流。详见 <xref keyref="TranscodingVideoStream"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>error</pt>
-                    <pd>本地视频合图失败的原因。详见 <codeph>VIDEO_TRANSCODER_ERROR</codeph>。</pd>
-                </plentry>
-                <plentry props="android ios">
-                    <pt>stream</pt>
-                    <pd>在视频合图过程中无法被合图的视频流。详见 <xref keyref="TranscodingVideoStream"/>。</pd>
+                    <pd>本地视频合图失败的原因。详见 <xref keyref="VIDEO_TRANSCODER_ERROR"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>error</pt>
@@ -61,10 +56,6 @@
                 <plentry props="ios">
                     <pt>errorCode</pt>
                     <pd>本地合图错误的原因。详见 <xref keyref="VIDEO_TRANSCODER_ERROR"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>stream</pt>
-                    <pd>在视频合图过程中无法被合图的视频流。详见 <codeph>AgoraTranscodingVideoStream</codeph>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>errorCode</pt>

@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_directcdnstreamingstate">
     <title>
-        <ph keyref="DIRECT_CDN_STREAMING_STATE"/>
+    <ph keyref="DIRECT_CDN_STREAMING_STATE"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">当前 CDN 推流状态。</ph>
+    <ph id="shortdesc">当前 CDN 推流状态。</ph>
   </shortdesc>
     <refbody>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -25,15 +25,15 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>DIRECT_CDN_STREAMING_STATE_RUNNING</pt>
-                    <pd>（1）：正在向 CDN 推流。调用 <codeph>startDirectCdnStreaming</codeph> 方法时，SDK 返回该值。</pd>
+                    <pd>（1）：正在向 CDN 推流。调用 <xref keyref="startDirectCdnStreaming"/> 方法时，SDK 返回该值。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>DIRECT_CDN_STREAMING_STATE_STOPPED</pt>
-                    <pd>（2）：已停止向 CDN 推流。调用 <codeph>stopDirectCdnStreaming</codeph> 方法时，SDK 返回该值。</pd>
+                    <pd>（2）：已停止向 CDN 推流。调用 <xref keyref="stopDirectCdnStreaming"/> 方法时，SDK 返回该值。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>DIRECT_CDN_STREAMING_STATE_FAILED</pt>
-                    <pd>（3）：向 CDN 推流失败。你可以通过 <codeph>onDirectCdnStreamingStateChanged</codeph> 回调获取的错误信息排查问题后重新推流。</pd>
+                    <pd>（3）：向 CDN 推流失败。你可以通过 <xref keyref="onDirectCdnStreamingStateChanged"/> 回调获取的错误信息排查问题后重新推流。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>DIRECT_CDN_STREAMING_STATE_RECOVERING</pt>
@@ -63,33 +63,21 @@
                     <pt>AgoraDirectCdnStreamingStateIdle</pt>
                     <pd>（0）：推流开始前的初始状态。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>AgoraDirectCdnStreamingStateRunning</pt>
                     <pd>（1）：正在向 CDN 推流。调用 <xref keyref="startDirectCdnStreaming"/> 方法后，SDK 返回该值。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>AgoraDirectCdnStreamingStateStopped</pt>
                     <pd>（2）：已停止向 CDN 推流。调用 <xref keyref="stopDirectCdnStreaming"/> 方法后，SDK 返回该值。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>AgoraDirectCdnStreamingStateFailed</pt>
                     <pd>（3）：推流失败。可通过 <xref keyref="onDirectCdnStreamingStateChanged"/> 回调获取失败信息并重新推流。</pd>
                 </plentry>
                 <plentry props="ios mac">
                     <pt>AgoraDirectCdnStreamingStateRecovering</pt>
                     <pd>（4）：正在尝试将声网服务器重新连接到 CDN。SDK 最多重连 10 次，若仍未恢复，状态将变为 <codeph>AgoraDirectCdnStreamingStateFailed</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>AgoraDirectCdnStreamingStateRunning</pt>
-                    <pd>（1）：正在向 CDN 推流。调用 <codeph>startDirectCdnStreaming:publishUrl:mediaOptions:</codeph> 方法后，SDK 返回该值。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>AgoraDirectCdnStreamingStateStopped</pt>
-                    <pd>（2）：已停止向 CDN 推流。调用 <codeph>stopDirectCdnStreaming</codeph> 方法后，SDK 返回该值。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>AgoraDirectCdnStreamingStateFailed</pt>
-                    <pd>（3）：推流失败。可通过 <codeph>onDirectCdnStreamingStateChanged:reason:message:</codeph> 回调获取失败信息并重新推流。</pd>
                 </plentry>
             </parml>
         </section>

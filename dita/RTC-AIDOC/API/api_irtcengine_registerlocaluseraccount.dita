@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_registerlocaluseraccount">
     <title>
-        <ph keyref="registerLocalUserAccount"/>
+    <ph keyref="registerLocalUserAccount"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">注册用户账号。</ph>
+    <ph id="shortdesc">注册用户账号。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -26,7 +26,7 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">该方法用于注册用户账号。注册成功后，用户账号可用于在加入频道时标识本地用户身份。你可以选择以下任一方式使用用户账号加入频道：
                 <ul>
-                    <li>先调用 <codeph>registerLocalUserAccount</codeph> 注册用户账号，再调用 <codeph>joinChannelWithUserAccount</codeph> 加入频道，可缩短进入频道的时间。</li>
+                    <li>先调用 <xref keyref="registerLocalUserAccount"/> 注册用户账号，再调用 <codeph>joinChannelWithUserAccount</codeph> 加入频道，可缩短进入频道的时间。</li>
                     <li>直接调用 <codeph>joinChannelWithUserAccount</codeph> 加入频道。
 从 v4.6.0 版本开始，SDK 不再自动将 <codeph>int</codeph> 类型的用户 ID 映射为注册用户账号时使用的 <codeph>string</codeph> 类型 <codeph>userAccount</codeph>。如果你希望使用注册时的原始 <codeph>string</codeph> 类型 <codeph>userAccount</codeph> 加入频道，请调用 <codeph>joinChannelWithUserAccount</codeph>，而不是调用 <codeph>joinChannel</codeph> 并传入通过该方法获取的 <codeph>int</codeph> 类型用户 ID。
 确保 <codeph>userAccount</codeph> 在频道内唯一。
@@ -39,18 +39,9 @@
                     <li>直接调用 <codeph>joinChannelWithUserAccount</codeph> 方法加入频道。</li>
                 </ul>
             </p>
-            <p props="ios">注册成功后，用户账号可用于标识本地用户身份，并可用于加入频道。该方法为可选项。如果你希望使用用户账号加入频道，可以选择以下任一方式：
+            <p props="ios mac">注册成功后，用户账号可用于标识本地用户身份，并可用于加入频道。该方法为可选项。如果你希望使用用户账号加入频道，可以选择以下任一方式：
                 <ul>
                     <li>调用 <xref keyref="registerLocalUserAccount"/> 方法注册用户账号，然后调用 <codeph>joinChannelByToken:channelId:userAccount:joinSuccess:</codeph> 或 <codeph>joinChannelByToken:channelId:userAccount:mediaOptions:joinSuccess:</codeph> 方法加入频道，可缩短进入频道所需的时间。</li>
-                    <li>直接调用 <codeph>joinChannelByToken:channelId:userAccount:joinSuccess:</codeph> 或 <codeph>joinChannelByToken:channelId:userAccount:mediaOptions:joinSuccess:</codeph> 方法加入频道。
-从 v4.6.0 版本开始，SDK 不再自动将 <codeph>NSInteger</codeph> 类型的用户 ID 映射为注册用户账号时使用的 <codeph>NSString</codeph> 类型 <codeph>userAccount</codeph>。如果你希望使用注册时的原始 <codeph>userAccount</codeph> 加入频道，请调用 <codeph>joinChannelByToken:channelId:userAccount:mediaOptions:joinSuccess:</codeph> 方法，而不是调用 <codeph>joinChannelByToken:channelId:uid:mediaOptions:joinSuccess:</codeph> 并传入通过该方法获取的 <codeph>NSInteger</codeph> 用户 ID。
-确保 <codeph>userAccount</codeph> 在频道内唯一。
-为确保通信顺畅，建议使用相同的参数类型标识用户。例如，如果某用户使用用户 ID 加入频道，则其他用户也应使用用户 ID；同理，如果使用用户账号加入频道，则其他用户也应使用用户账号。如果用户使用声网 Web SDK 加入频道，确保其 ID 设置为相同的参数类型。</li>
-                </ul>
-            </p>
-            <p props="mac">注册成功后，用户账号可用于标识本地用户身份，并可用于加入频道。该方法为可选项。如果你希望使用用户账号加入频道，可以选择以下任一方式：
-                <ul>
-                    <li>调用 <codeph>registerLocalUserAccount:appId:</codeph> 方法注册用户账号，然后调用 <codeph>joinChannelByToken:channelId:userAccount:joinSuccess:</codeph> 或 <codeph>joinChannelByToken:channelId:userAccount:mediaOptions:joinSuccess:</codeph> 方法加入频道，可缩短进入频道所需的时间。</li>
                     <li>直接调用 <codeph>joinChannelByToken:channelId:userAccount:joinSuccess:</codeph> 或 <codeph>joinChannelByToken:channelId:userAccount:mediaOptions:joinSuccess:</codeph> 方法加入频道。
 从 v4.6.0 版本开始，SDK 不再自动将 <codeph>NSInteger</codeph> 类型的用户 ID 映射为注册用户账号时使用的 <codeph>NSString</codeph> 类型 <codeph>userAccount</codeph>。如果你希望使用注册时的原始 <codeph>userAccount</codeph> 加入频道，请调用 <codeph>joinChannelByToken:channelId:userAccount:mediaOptions:joinSuccess:</codeph> 方法，而不是调用 <codeph>joinChannelByToken:channelId:uid:mediaOptions:joinSuccess:</codeph> 并传入通过该方法获取的 <codeph>NSInteger</codeph> 用户 ID。
 确保 <codeph>userAccount</codeph> 在频道内唯一。
@@ -68,10 +59,8 @@
         </section>
         <section id="related" deliveryTarget="details">
             <title>相关回调</title>
-            <p props="cpp">成功调用该方法后，SDK 会触发 <codeph>onLocalUserRegistered</codeph> 回调，报告本地用户的用户 ID 和用户账号。</p>
-            <p props="android">成功调用该方法后，SDK 会触发 <xref keyref="onLocalUserRegistered"/> 回调，报告本地用户的用户 ID 和用户账号。</p>
-            <p props="ios">成功调用该方法后，SDK 会触发 <xref keyref="onLocalUserRegistered"/> 回调报告本地用户的用户 ID 和用户账号。</p>
-            <p props="mac">成功调用该方法后，SDK 会触发 <codeph>rtcEngine:didLocalUserRegisteredWithUserId:userAccount:</codeph> 回调报告本地用户的用户 ID 和用户账号。</p>
+            <p props="android cpp">成功调用该方法后，SDK 会触发 <xref keyref="onLocalUserRegistered"/> 回调，报告本地用户的用户 ID 和用户账号。</p>
+            <p props="ios mac">成功调用该方法后，SDK 会触发 <xref keyref="onLocalUserRegistered"/> 回调报告本地用户的用户 ID 和用户账号。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -104,7 +93,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>userAccount</pt>
                     <pd>用户账号。该参数用于在频道中标识用户身份，实现实时音视频互动。你需要自行设置并管理用户账号，并确保同一频道内的每个用户账号唯一。该参数的最大长度为 255 字节。请确保设置该参数，且不能为 <xref keyref="NULL"/>。支持的字符共 89 个，包括：
                         <ul>
@@ -119,18 +108,6 @@
                 <plentry props="ios mac">
                     <pt>appId</pt>
                     <pd>你在声网控制台项目中的 App ID。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>userAccount</pt>
-                    <pd>用户账号。该参数用于在频道中标识用户身份，实现实时音视频互动。你需要自行设置并管理用户账号，并确保同一频道内的每个用户账号唯一。该参数的最大长度为 255 字节。请确保设置该参数，且不能为 <codeph>nil</codeph>。支持的字符共 89 个，包括：
-                        <ul>
-                            <li>26 个小写英文字母：a 到 z。</li>
-                            <li>26 个大写英文字母：A 到 Z。</li>
-                            <li>所有数字字符：0 到 9。</li>
-                            <li>空格</li>
-                            <li>"!"、"#"、"$"、"%"、"&amp;"、"("、")"、"+"、"-"、":"、";"、"&lt;"、"="、"."、"&gt;"、"?"、"@"、"["、"]"、"^"、"_"、"{"、"}"、"|"、"~"、","</li>
-                        </ul>
-                    </pd>
                 </plentry>
             </parml>
         </section>

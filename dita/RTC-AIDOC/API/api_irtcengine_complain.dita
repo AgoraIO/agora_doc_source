@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_complain">
     <title>
-        <ph keyref="complain"/>
+    <ph keyref="complain"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">允许用户在通话结束后投诉通话质量。</ph>
+    <ph id="shortdesc">允许用户在通话结束后投诉通话质量。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -42,7 +42,7 @@
             <parml>
                 <plentry props="cpp">
                     <pt>callId</pt>
-                    <pd>当前通话的通话 ID。你可以通过调用 <codeph>getCallId</codeph> 获取。</pd>
+                    <pd>当前通话的通话 ID。你可以通过调用 <xref keyref="getCallId"/> 获取。</pd>
                 </plentry>
                 <plentry props="android cpp ios mac">
                     <pt>description</pt>
@@ -52,28 +52,15 @@
                     <pt>callId</pt>
                     <pd>当前通话的 Call ID。你可以通过调用 <xref keyref="getCallId"/> 获取。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>callId</pt>
                     <pd>当前通话的 ID。你可以通过调用 <xref keyref="getCallId"/> 获取该 ID。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>callId</pt>
-                    <pd>当前通话的 ID。你可以通过调用 <codeph>getCallId</codeph> 获取该 ID。</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="cpp">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
-                    <li>-1：发生通用错误（无明确原因）。</li>
-                    <li>-2：参数无效。</li>
-                    <li>-7：在 <codeph>IRtcEngine</codeph> 初始化之前调用该方法。</li>
-                </ul>
-            </p>
-            <p props="android">
+            <p props="android cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>
@@ -82,22 +69,13 @@
                     <li>-7：在 <xref keyref="IRtcEngine"/> 初始化之前调用该方法。</li>
                 </ul>
             </p>
-            <p props="ios">
+            <p props="ios mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>
                     <li>-1：发生通用错误（无明确原因）。</li>
                     <li>-2：参数无效。</li>
                     <li>-7：在初始化 <xref keyref="IRtcEngine"/> 之前调用该方法。</li>
-                </ul>
-            </p>
-            <p props="mac">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
-                    <li>-1：发生通用错误（无明确原因）。</li>
-                    <li>-2：参数无效。</li>
-                    <li>-7：在初始化 <codeph>AgoraRtcEngineKit</codeph> 之前调用该方法。</li>
                 </ul>
             </p>
         </section>

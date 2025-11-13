@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_localaccesspointconfiguration">
     <title>
-        <ph keyref="LocalAccessPointConfiguration"/>
+    <ph keyref="LocalAccessPointConfiguration"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">用于配置本地接入点。</ph>
+    <ph id="shortdesc">用于配置本地接入点。</ph>
   </shortdesc>
     <refbody>
         <section id="prototype">
@@ -71,20 +71,18 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>mode</pt>
-                    <pd>连接模式，详见 <codeph>LOCAL_PROXY_MODE</codeph>。</pd>
+                    <pd>连接模式，详见 <xref keyref="LOCAL_PROXY_MODE"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>advancedConfig</pt>
-                    <pd>本地接入点的高级配置选项。详见 <codeph>AdvancedConfigInfo</codeph>。</pd>
+                    <pd>本地接入点的高级配置选项。详见 <xref keyref="AdvancedConfigInfo"/>。</pd>
                 </plentry>
-                <plentry props="cpp">
+                <plentry props="android cpp ios mac">
                     <pt>disableAut</pt>
                     <pd>是否禁用 vos-aut：
                         <ul>
-                            <li>
-                                <codeph>true</codeph>：（默认）禁用 vos-aut。</li>
-                            <li>
-                                <codeph>false</codeph>：不禁用 vos-aut。</li>
+                            <li><xref keyref="true"/>：（默认）禁用 vos-aut。</li>
+                            <li><xref keyref="false"/>：不禁用 vos-aut。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -104,25 +102,12 @@
                     <pt>mode</pt>
                     <pd>连接模式：
                         <ul>
-                            <li>
-                                <codeph>LOCAL_RPOXY_CONNECTIVITY_FIRST</codeph>（0）：SDK 优先尝试连接指定的声网私有媒体服务器；如果连接失败，则连接声网 SD-RTN™。</li>
-                            <li>
-                                <codeph>LOCAL_RPOXY_LOCAL_ONLY</codeph>（1）：SDK 只连接指定的声网私有媒体服务器。</li>
+                            <li><codeph>LOCAL_RPOXY_CONNECTIVITY_FIRST</codeph>（0）：SDK 优先尝试连接指定的声网私有媒体服务器；如果连接失败，则连接声网 SD-RTN™。</li>
+                            <li><codeph>LOCAL_RPOXY_LOCAL_ONLY</codeph>（1）：SDK 只连接指定的声网私有媒体服务器。</li>
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="android ios">
-                    <pt>disableAut</pt>
-                    <pd>是否禁用 vos-aut：
-                        <ul>
-                            <li>
-                                <xref keyref="true"/>：（默认）禁用 vos-aut。</li>
-                            <li>
-                                <xref keyref="false"/>：不禁用 vos-aut。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="android ios">
+                <plentry props="android ios mac">
                     <pt>advancedConfig</pt>
                     <pd>本地接入点的高级配置项。详见 <xref keyref="AdvancedConfigInfo"/>。</pd>
                 </plentry>
@@ -134,7 +119,7 @@
                     <pt>domainList</pt>
                     <pd>本地接入点的域名列表。SDK 会根据你提供的域名解析本地接入点的 IP 地址，解析超时时间为 10 秒。你必须至少指定 <codeph>ipList</codeph> 或 <codeph>domainList</codeph> 中的一个。如果同时指定了 IP 地址和域名，SDK 会合并并去重解析出的 IP 地址和你提供的 IP 地址，然后随机连接一个 IP 地址以实现负载均衡。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>verifyDomainName</pt>
                     <pd>内网证书验证域名。如果该值为 <xref keyref="NULL"/>，SDK 使用默认的证书验证域名 <codeph>secure-edge.local</codeph>。</pd>
                 </plentry>
@@ -143,27 +128,8 @@
                     <pd>连接模式。详见 <xref keyref="LOCAL_PROXY_MODE"/>。</pd>
                 </plentry>
                 <plentry props="mac">
-                    <pt>verifyDomainName</pt>
-                    <pd>内网证书验证域名。如果该值为 <codeph>nil</codeph>，SDK 使用默认的证书验证域名 <codeph>secure-edge.local</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
                     <pt>mode</pt>
                     <pd>连接模式。详见 <codeph>AgoraLocalProxyMode</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>advancedConfig</pt>
-                    <pd>本地接入点的高级配置项。详见 <codeph>AdvancedConfigInfo</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>disableAut</pt>
-                    <pd>是否禁用 vos-aut：
-                        <ul>
-                            <li>
-                                <codeph>YES</codeph>：（默认）禁用 vos-aut。</li>
-                            <li>
-                                <codeph>NO</codeph>：不禁用 vos-aut。</li>
-                        </ul>
-                    </pd>
                 </plentry>
             </parml>
         </section>

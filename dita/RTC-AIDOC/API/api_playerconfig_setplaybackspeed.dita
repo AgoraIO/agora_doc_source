@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_playerconfig_setplaybackspeed">
     <title>
-        <ph keyref="SetPlaybackSpeed"/>
+    <ph keyref="SetPlaybackSpeed"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">设置播放速度参数。</ph>
+    <ph id="shortdesc">设置播放速度参数。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -31,9 +31,7 @@
                 </dlentry>
             </dl>
             <p props="android">调用该方法前，需要先调用 <codeph>open</codeph> 方法。</p>
-            <note props="cpp">你可以在调用 <codeph>OpenWithUrl</codeph> 方法之后调用此方法。</note>
-            <note props="ios">你可以在调用 <xref keyref="OpenWithUrl"/> 方法之后调用此方法。</note>
-            <note props="mac">你可以在调用 <codeph>openWithUrl:startTime:cb:</codeph> 方法之后调用此方法。</note>
+            <note props="cpp ios mac">你可以在调用 <xref keyref="OpenWithUrl"/> 方法之后调用此方法。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -52,12 +50,10 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>err</pt>
-                    <pd>状态或错误信息，详见 <codeph>Error</codeph>。
+                    <pd>状态或错误信息，详见 <xref keyref="Error"/>。
                         <ul>
-                            <li>
-                                <codeph>kRteOk</codeph>：调用成功。</li>
-                            <li>
-                                <codeph>kRteErrorInvalidArgument</codeph>：<codeph>speed</codeph> 参数设置为无效值。</li>
+                            <li><codeph>kRteOk</codeph>：调用成功。</li>
+                            <li><codeph>kRteErrorInvalidArgument</codeph>：<codeph>speed</codeph> 参数设置为无效值。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -65,13 +61,9 @@
                     <pt>speed</pt>
                     <pd>播放速度，取值范围为 [50, 400]。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>error</pt>
                     <pd>用于返回错误信息的输出参数。详见 <xref keyref="Error"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>error</pt>
-                    <pd>用于返回错误信息的输出参数。详见 <codeph>AgoraRteError</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

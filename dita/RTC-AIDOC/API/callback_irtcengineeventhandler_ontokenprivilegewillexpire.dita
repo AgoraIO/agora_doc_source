@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_ontokenprivilegewillexpire">
     <title>
-        <ph keyref="onTokenPrivilegeWillExpire"/>
+    <ph keyref="onTokenPrivilegeWillExpire"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">Token 即将在 30 秒后过期时触发的回调。</ph>
+    <ph id="shortdesc">Token 即将在 30 秒后过期时触发的回调。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -27,9 +27,9 @@
             <p props="cpp">当收到该回调时，你需要在 Token 服务器上生成一个新的 Token，并通过以下方式之一更新 Token：
                 <ul>
                     <li>单频道场景：</li>
-                    <li>调用 <codeph>renewToken</codeph> 传入新的 Token。</li>
+                    <li>调用 <xref keyref="renewToken"/> 传入新的 Token。</li>
                     <li>调用 <codeph>leaveChannel</codeph> 离开当前频道，然后在调用 <codeph>joinChannel</codeph> 加入频道时传入新的 Token。</li>
-                    <li>多频道场景：调用 <codeph>updateChannelMediaOptionsEx</codeph> 传入新的 Token。
+                    <li>多频道场景：调用 <xref keyref="updateChannelMediaOptionsEx"/> 传入新的 Token。
 SDK 会在 Token 过期前 30 秒触发该回调，提醒你更新 Token。</li>
                 </ul>
             </p>
@@ -41,21 +41,12 @@ SDK 会在 Token 过期前 30 秒触发该回调，提醒你更新 Token。</li>
                     <li>多频道场景：调用 <xref keyref="updateChannelMediaOptionsEx"/> 传入新的 Token。</li>
                 </ul>
             </p>
-            <p props="ios">收到该回调时，你需要在你的 Token 服务器上生成一个新的 Token，并可以通过以下方式之一更新 Token：
+            <p props="ios mac">收到该回调时，你需要在你的 Token 服务器上生成一个新的 Token，并可以通过以下方式之一更新 Token：
                 <ul>
                     <li>单频道场景：</li>
                     <li>调用 <xref keyref="renewToken"/> 传入新的 Token。</li>
                     <li>调用 <codeph>leaveChannel:leaveChannelBlock:</codeph> 离开当前频道，然后在调用 <codeph>joinChannelByToken:channelId:uid:mediaOptions:joinSuccess:</codeph> 加入频道时传入新的 Token。</li>
                     <li>多频道场景：调用 <xref keyref="updateChannelMediaOptionsEx"/> 传入新的 Token。
-SDK 会在 Token 过期前 30 秒触发该回调，提醒应用更新 Token。</li>
-                </ul>
-            </p>
-            <p props="mac">收到该回调时，你需要在你的 Token 服务器上生成一个新的 Token，并可以通过以下方式之一更新 Token：
-                <ul>
-                    <li>单频道场景：</li>
-                    <li>调用 <codeph>renewToken:</codeph> 传入新的 Token。</li>
-                    <li>调用 <codeph>leaveChannel:leaveChannelBlock:</codeph> 离开当前频道，然后在调用 <codeph>joinChannelByToken:channelId:uid:mediaOptions:joinSuccess:</codeph> 加入频道时传入新的 Token。</li>
-                    <li>多频道场景：调用 <codeph>updateChannelExWithMediaOptions:connection:</codeph> 传入新的 Token。
 SDK 会在 Token 过期前 30 秒触发该回调，提醒应用更新 Token。</li>
                 </ul>
             </p>
@@ -75,8 +66,7 @@ SDK 会在 Token 过期前 30 秒触发该回调，提醒应用更新 Token。</
             <parml>
                 <plentry props="cpp">
                     <pt>connection</pt>
-                    <pd>
-                        <codeph>RtcConnection</codeph> 对象。详见 <codeph>RtcConnection</codeph>。</pd>
+                    <pd><xref keyref="RtcConnection"/> 对象。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>token</pt>
@@ -86,15 +76,9 @@ SDK 会在 Token 过期前 30 秒触发该回调，提醒应用更新 Token。</
                     <pt>token</pt>
                     <pd>即将过期的 Token。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>engine</pt>
-                    <pd>
-                        <xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>engine</pt>
-                    <pd>
-                        <codeph>AgoraRtcEngineKit</codeph> 对象，详见 <codeph>AgoraRtcEngineKit</codeph>。</pd>
+                    <pd><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
             </parml>
         </section>

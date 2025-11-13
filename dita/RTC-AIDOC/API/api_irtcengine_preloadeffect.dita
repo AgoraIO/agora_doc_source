@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_preloadeffect">
     <title>
-        <ph keyref="preloadEffect"/>
+    <ph keyref="preloadEffect"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">将指定的音效文件预加载到内存中。</ph>
+    <ph id="shortdesc">将指定的音效文件预加载到内存中。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -31,8 +31,8 @@
             <p props="ios mac">确保所有预加载文件的总大小不超过限制。关于该方法支持的音频文件格式，详见 <codeph>What formats of audio files does the Agora RTC SDK support</codeph>。</p>
             <note props="cpp">
                 <ul>
-                    <li>如果在调用 <codeph>playEffect</codeph> 之前调用 <codeph>preloadEffect</codeph>，<codeph>playEffect</codeph> 执行后不会关闭文件资源。下次调用 <codeph>playEffect</codeph> 时会直接从头开始播放。</li>
-                    <li>如果在调用 <codeph>playEffect</codeph> 之前未调用 <codeph>preloadEffect</codeph>，<codeph>playEffect</codeph> 执行后会销毁资源。下次调用 <codeph>playEffect</codeph> 时会尝试重新打开文件并从头开始播放。</li>
+                    <li>如果在调用 <codeph>playEffect</codeph> 之前调用 <xref keyref="preloadEffect"/>，<codeph>playEffect</codeph> 执行后不会关闭文件资源。下次调用 <codeph>playEffect</codeph> 时会直接从头开始播放。</li>
+                    <li>如果在调用 <codeph>playEffect</codeph> 之前未调用 <xref keyref="preloadEffect"/>，<codeph>playEffect</codeph> 执行后会销毁资源。下次调用 <codeph>playEffect</codeph> 时会尝试重新打开文件并从头开始播放。</li>
                 </ul>
             </note>
         </section>
@@ -58,7 +58,7 @@
                     <pd>文件路径：
                         <ul>
                             <li>Android：文件路径需精确到文件名和后缀名。支持 URL 地址、绝对路径或以 <codeph>/assets/</codeph> 开头的路径。使用绝对路径访问本地文件可能会遇到权限问题，建议使用 URI 地址，例如：<codeph>content://com.android.providers.media.documents/document/audio%3A14441</codeph>。</li>
-                            <li>Windows：音效文件的绝对路径或 URL 地址（包括文件名后缀），例如：<codeph>C:\music\audio.mp4</codeph>。</li>
+                            <li>Windows：音效文件的绝对路径或 URL 地址（包括文件名后缀），例如：<xref keyref="filePath-example"/>。</li>
                             <li>iOS 或 macOS：音效文件的绝对路径或 URL 地址（包括文件名后缀），例如：<codeph>/var/mobile/Containers/Data/audio.mp4</codeph>。</li>
                         </ul>
                     </pd>
@@ -83,19 +83,11 @@
                     <pt>soundId</pt>
                     <pd>音效 ID。每个音效文件的 ID 都是唯一的。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>filePath</pt>
                     <pd>文件路径：
                         <ul>
                             <li>iOS 或 macOS：音效文件的绝对路径或 URL 地址（包括文件名后缀）。例如：<xref keyref="filePath-example"/>。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>filePath</pt>
-                    <pd>文件路径：
-                        <ul>
-                            <li>iOS 或 macOS：音效文件的绝对路径或 URL 地址（包括文件名后缀）。例如：<codeph>/var/mobile/Containers/Data/audio.mp4</codeph>。</li>
                         </ul>
                     </pd>
                 </plentry>

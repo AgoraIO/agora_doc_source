@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_localvideostats">
     <title>
-        <ph keyref="LocalVideoStats"/>
+    <ph keyref="LocalVideoStats"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">用于统计本地视频流的相关统计信息。</ph>
+    <ph id="shortdesc">用于统计本地视频流的相关统计信息。</ph>
   </shortdesc>
     <refbody>
         <section id="prototype">
@@ -182,7 +182,7 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>qualityAdaptIndication</pt>
-                    <pd>本地视频流在上报时间间隔内的质量自适应情况（基于目标帧率和目标码率）。详见 <codeph>QUALITY_ADAPT_INDICATION</codeph>。</pd>
+                    <pd>本地视频流在上报时间间隔内的质量自适应情况（基于目标帧率和目标码率）。详见 <xref keyref="QUALITY_ADAPT_INDICATION"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>encodedBitrate</pt>
@@ -194,24 +194,22 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>codecType</pt>
-                    <pd>本地视频的编解码器类型。详见 <codeph>VIDEO_CODEC_TYPE</codeph>。</pd>
+                    <pd>本地视频的编解码器类型。详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>txPacketLossRate</pt>
                     <pd>在应用抗丢包策略前，从本地客户端到声网服务器的视频丢包率（%）。</pd>
                 </plentry>
-                <plentry props="cpp">
+                <plentry props="cpp ios">
                     <pt>captureBrightnessLevel</pt>
-                    <pd>本地摄像头采集的视频图像的亮度等级。详见 <codeph>CAPTURE_BRIGHTNESS_LEVEL_TYPE</codeph>。</pd>
+                    <pd>本地摄像头采集的视频图像的亮度等级。详见 <xref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>dualStreamEnabled</pt>
                     <pd>是否启用了双流模式。
                         <ul>
-                            <li>
-                                <codeph>true</codeph>：启用双流模式。</li>
-                            <li>
-                                <codeph>false</codeph>：未启用双流模式。</li>
+                            <li><xref keyref="true"/>：启用双流模式。</li>
+                            <li><xref keyref="false"/>：未启用双流模式。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -226,7 +224,7 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>simulcastDimensions</pt>
-                    <pd>不同质量层级的视频流的编码帧尺寸。详见 <codeph>VideoDimensions</codeph>。</pd>
+                    <pd>不同质量层级的视频流的编码帧尺寸。详见 <xref keyref="VideoDimensions"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>encodedFrameDepth</pt>
@@ -277,12 +275,9 @@
                     <pt>qualityAdaptIndication</pt>
                     <pd>本地视频流在统计周期内的画质自适应状态：
                         <ul>
-                            <li>
-                                <codeph>ADAPT_NONE</codeph> (0)：本地视频质量维持不变。</li>
-                            <li>
-                                <codeph>ADAPT_UP_BANDWIDTH</codeph> (1)：由于网络带宽增加，本地视频质量上升。</li>
-                            <li>
-                                <codeph>ADAPT_DOWN_BANDWIDTH</codeph> (2)：由于网络带宽下降，本地视频质量下降。</li>
+                            <li><codeph>ADAPT_NONE</codeph> (0)：本地视频质量维持不变。</li>
+                            <li><codeph>ADAPT_UP_BANDWIDTH</codeph> (1)：由于网络带宽增加，本地视频质量上升。</li>
+                            <li><codeph>ADAPT_DOWN_BANDWIDTH</codeph> (2)：由于网络带宽下降，本地视频质量下降。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -298,12 +293,9 @@
                     <pt>codecType</pt>
                     <pd>本地视频使用的编码器类型。可选值如下，详见 <xref keyref="VIDEO_CODEC_TYPE"/>：
                         <ul>
-                            <li>
-                                <codeph>VIDEO_CODEC_VP8</codeph> (1)：VP8。</li>
-                            <li>
-                                <codeph>VIDEO_CODEC_H264</codeph> (2)：H.264。</li>
-                            <li>
-                                <codeph>VIDEO_CODEC_H265</codeph> (3)：H.265（默认）。</li>
+                            <li><codeph>VIDEO_CODEC_VP8</codeph> (1)：VP8。</li>
+                            <li><codeph>VIDEO_CODEC_H264</codeph> (2)：H.264。</li>
+                            <li><codeph>VIDEO_CODEC_H265</codeph> (3)：H.265（默认）。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -315,14 +307,10 @@
                     <pt>captureBrightnessLevel</pt>
                     <pd>本地摄像头采集的视频画面的亮度等级：
                         <ul>
-                            <li>
-                                <codeph>CAPTURE_BRIGHTNESS_LEVEL_INVALID</codeph> (-1)：SDK 未检测到画面亮度。</li>
-                            <li>
-                                <codeph>CAPTURE_BRIGHTNESS_LEVEL_NORMAL</codeph> (0)：画面亮度正常。</li>
-                            <li>
-                                <codeph>CAPTURE_BRIGHTNESS_LEVEL_BRIGHT</codeph> (1)：画面亮度过亮。</li>
-                            <li>
-                                <codeph>CAPTURE_BRIGHTNESS_LEVEL_DARK</codeph> (2)：画面亮度过暗。</li>
+                            <li><codeph>CAPTURE_BRIGHTNESS_LEVEL_INVALID</codeph> (-1)：SDK 未检测到画面亮度。</li>
+                            <li><codeph>CAPTURE_BRIGHTNESS_LEVEL_NORMAL</codeph> (0)：画面亮度正常。</li>
+                            <li><codeph>CAPTURE_BRIGHTNESS_LEVEL_BRIGHT</codeph> (1)：画面亮度过亮。</li>
+                            <li><codeph>CAPTURE_BRIGHTNESS_LEVEL_DARK</codeph> (2)：画面亮度过暗。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -330,10 +318,8 @@
                     <pt>dualStreamEnabled</pt>
                     <pd>是否启用了双流功能：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：启用双流功能。</li>
-                            <li>
-                                <xref keyref="false"/>：未启用双流功能。</li>
+                            <li><xref keyref="true"/>：启用双流功能。</li>
+                            <li><xref keyref="false"/>：未启用双流功能。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -366,7 +352,7 @@
                     <pt>encodedFrameCount</pt>
                     <pd>发送的视频帧总数。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>codecType</pt>
                     <pd>本地视频的编码格式。详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</pd>
                 </plentry>
@@ -374,10 +360,8 @@
                     <pt>encodedFrameDepth</pt>
                     <pd>本地视频的编码帧深度：
                         <ul>
-                            <li>
-                                <codeph>AgoraVideoEncodedFrameOfSDR = 8</codeph></li>
-                            <li>
-                                <codeph>AgoraVideoEncodedFrameOfHDR = 10</codeph></li>
+                            <li><codeph>AgoraVideoEncodedFrameOfSDR = 8</codeph></li>
+                            <li><codeph>AgoraVideoEncodedFrameOfHDR = 10</codeph></li>
                         </ul>
                     </pd>
                 </plentry>
@@ -389,18 +373,12 @@
                     <pt>txPacketLossRate</pt>
                     <pd>从本地客户端到声网服务器的视频丢包率（%），该值为应用抗丢包策略前的统计值。</pd>
                 </plentry>
-                <plentry props="ios">
-                    <pt>captureBrightnessLevel</pt>
-                    <pd>本地摄像头采集的视频图像的亮度等级。详见 <xref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE"/>。</pd>
-                </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>dualStreamEnabled</pt>
                     <pd>是否启用了双流模式：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：启用双流模式。</li>
-                            <li>
-                                <xref keyref="false"/>：未启用双流模式。</li>
+                            <li><xref keyref="true"/>：启用双流模式。</li>
+                            <li><xref keyref="false"/>：未启用双流模式。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -409,27 +387,12 @@
                     <pd>本地视频流在统计周期内的质量自适应情况（基于目标帧率和目标码率）。详见 <codeph>AgoraVideoQualityAdaptIndication</codeph>。</pd>
                 </plentry>
                 <plentry props="mac">
-                    <pt>codecType</pt>
-                    <pd>本地视频的编码格式。详见 <codeph>AgoraVideoCodecType</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
                     <pt>hwEncoderAccelerating</pt>
                     <pd>本地视频编码加速类型。详见 <codeph>AgoraVideoHwEncoderAccelerating</codeph>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>captureBrightnessLevel</pt>
                     <pd>本地摄像头采集的视频图像的亮度等级。详见 <codeph>AgoraCaptureBrightnessLevelType</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>dualStreamEnabled</pt>
-                    <pd>是否启用了双流模式：
-                        <ul>
-                            <li>
-                                <codeph>YES</codeph>：启用双流模式。</li>
-                            <li>
-                                <codeph>NO</codeph>：未启用双流模式。</li>
-                        </ul>
-                    </pd>
                 </plentry>
             </parml>
         </section>

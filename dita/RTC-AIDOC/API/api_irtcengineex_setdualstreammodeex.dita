@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_setdualstreammodeex">
     <title>
-        <ph keyref="setDualStreamModeEx"/>
+    <ph keyref="setDualStreamModeEx"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">设置发送端的多质量层级视频流模式。</ph>
+    <ph id="shortdesc">设置发送端的多质量层级视频流模式。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -28,7 +28,7 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">SDK 默认在发送端开启低质量视频流自适应模式（<codeph>AUTO_SIMULCAST_STREAM</codeph>），即发送端不会主动发送低质量视频流。角色为主播的接收端可以通过调用 <codeph>setRemoteVideoStreamTypeEx</codeph> 发起低质量视频流请求，发送端在收到请求后会自动开始发送低质量视频流。
+            <p props="cpp">SDK 默认在发送端开启低质量视频流自适应模式（<codeph>AUTO_SIMULCAST_STREAM</codeph>），即发送端不会主动发送低质量视频流。角色为主播的接收端可以通过调用 <xref keyref="setRemoteVideoStreamTypeEx"/> 发起低质量视频流请求，发送端在收到请求后会自动开始发送低质量视频流。
 
 如果你希望修改此行为，可以调用此方法并将 <codeph>mode</codeph> 设置为 <codeph>DISABLE_SIMULCAST_STREAM</codeph>（从不发送低质量视频流）或 <codeph>ENABLE_SIMULCAST_STREAM</codeph>（始终发送低质量视频流）。
 
@@ -39,19 +39,13 @@
                     <li>如果你希望恢复默认行为，可以再次调用此方法并将 <codeph>mode</codeph> 设置为 <codeph>AUTO_SIMULCAST_STREAM</codeph>。</li>
                 </ul>
             </p>
-            <p props="ios">SDK 默认在发送端开启低质量视频流的自适应模式（<codeph>AgoraAutoSimulcastStream</codeph>），即发送端不会主动发送低质量视频流。角色为主播的接收端可以通过调用 <xref keyref="setRemoteVideoStreamTypeEx"/> 方法发起低质量视频流请求，发送端在收到请求后会自动开始发送低质量视频流。
+            <p props="ios mac">SDK 默认在发送端开启低质量视频流的自适应模式（<codeph>AgoraAutoSimulcastStream</codeph>），即发送端不会主动发送低质量视频流。角色为主播的接收端可以通过调用 <xref keyref="setRemoteVideoStreamTypeEx"/> 方法发起低质量视频流请求，发送端在收到请求后会自动开始发送低质量视频流。
                 <ul>
                     <li>如果你希望修改此行为，可以调用本方法并将 <codeph>mode</codeph> 设置为 <codeph>AgoraDisableSimulcastStream</codeph>（从不发送低质量视频流）或 <codeph>AgoraEnableSimulcastStream</codeph>（始终发送低质量视频流）。</li>
                     <li>如果你希望在修改后恢复默认行为，可以再次调用本方法并将 <codeph>mode</codeph> 设置为 <codeph>AgoraAutoSimulcastStream</codeph>。</li>
                 </ul>
             </p>
-            <p props="mac">SDK 默认在发送端开启低质量视频流的自适应模式（<codeph>AgoraAutoSimulcastStream</codeph>），即发送端不会主动发送低质量视频流。角色为主播的接收端可以通过调用 <codeph>setRemoteVideoStreamEx:type:connection:</codeph> 方法发起低质量视频流请求，发送端在收到请求后会自动开始发送低质量视频流。
-                <ul>
-                    <li>如果你希望修改此行为，可以调用本方法并将 <codeph>mode</codeph> 设置为 <codeph>AgoraDisableSimulcastStream</codeph>（从不发送低质量视频流）或 <codeph>AgoraEnableSimulcastStream</codeph>（始终发送低质量视频流）。</li>
-                    <li>如果你希望在修改后恢复默认行为，可以再次调用本方法并将 <codeph>mode</codeph> 设置为 <codeph>AgoraAutoSimulcastStream</codeph>。</li>
-                </ul>
-            </p>
-            <note props="cpp">该方法与 <codeph>enableDualStreamModeEx</codeph> 的区别如下：
+            <note props="cpp">该方法与 <xref keyref="enableDualStreamModeEx"/> 的区别如下：
                 <ul>
                     <li>当调用该方法并将 <codeph>mode</codeph> 设置为 <codeph>DISABLE_SIMULCAST_STREAM</codeph> 时，效果等同于调用 <codeph>enableDualStreamModeEx(false)</codeph>。</li>
                     <li>当调用该方法并将 <codeph>mode</codeph> 设置为 <codeph>ENABLE_SIMULCAST_STREAM</codeph> 时，效果等同于调用 <codeph>enableDualStreamModeEx(true)</codeph>。</li>
@@ -65,17 +59,10 @@
                     <li>两个方法都可以在加入频道前或后调用。如果两个方法都被调用，则以后调用的方法设置优先生效。</li>
                 </ul>
             </note>
-            <note props="ios">该方法与 <xref keyref="enableDualStreamModeEx"/> 的区别如下：
+            <note props="ios mac">该方法与 <xref keyref="enableDualStreamModeEx"/> 的区别如下：
                 <ul>
                     <li>当调用本方法并将 <codeph>mode</codeph> 设置为 <codeph>AgoraDisableSimulcastStream</codeph> 时，效果等同于调用 <xref keyref="enableDualStreamModeEx"/>（NO）。</li>
                     <li>当调用本方法并将 <codeph>mode</codeph> 设置为 <codeph>AgoraEnableSimulcastStream</codeph> 时，效果等同于调用 <xref keyref="enableDualStreamModeEx"/>（YES）。</li>
-                    <li>两个方法都可以在加入频道前后调用。如果两个方法都被调用，则以后调用的方法设置优先生效。</li>
-                </ul>
-            </note>
-            <note props="mac">该方法与 <codeph>enableDualStreamModeEx:streamConfig:connection:</codeph> 的区别如下：
-                <ul>
-                    <li>当调用本方法并将 <codeph>mode</codeph> 设置为 <codeph>AgoraDisableSimulcastStream</codeph> 时，效果等同于调用 <codeph>enableDualStreamModeEx:streamConfig:connection:</codeph>（NO）。</li>
-                    <li>当调用本方法并将 <codeph>mode</codeph> 设置为 <codeph>AgoraEnableSimulcastStream</codeph> 时，效果等同于调用 <codeph>enableDualStreamModeEx:streamConfig:connection:</codeph>（YES）。</li>
                     <li>两个方法都可以在加入频道前后调用。如果两个方法都被调用，则以后调用的方法设置优先生效。</li>
                 </ul>
             </note>
@@ -91,45 +78,21 @@
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="cpp">
+                <plentry props="cpp ios mac">
                     <pt>mode</pt>
-                    <pd>视频流的发送模式，详见 <codeph>SIMULCAST_STREAM_MODE</codeph>。</pd>
+                    <pd>视频流的发送模式，详见 <xref keyref="SIMULCAST_STREAM_MODE"/>。</pd>
                 </plentry>
-                <plentry props="cpp">
+                <plentry props="android cpp ios mac">
                     <pt>streamConfig</pt>
-                    <pd>低质量视频流的配置。详见 <codeph>SimulcastStreamConfig</codeph>。</pd>
+                    <pd>低质量视频流的配置。详见 <xref keyref="SimulcastStreamConfig"/>。</pd>
                 </plentry>
-                <plentry props="cpp">
+                <plentry props="android cpp ios mac">
                     <pt>connection</pt>
-                    <pd>连接信息。详见 <codeph>RtcConnection</codeph>。</pd>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>mode</pt>
                     <pd>视频流的发送模式。详见 <xref keyref="SIMULCAST_STREAM_MODE"/>。</pd>
-                </plentry>
-                <plentry props="android ios">
-                    <pt>streamConfig</pt>
-                    <pd>低质量视频流的配置。详见 <xref keyref="SimulcastStreamConfig"/>。</pd>
-                </plentry>
-                <plentry props="android ios">
-                    <pt>connection</pt>
-                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>mode</pt>
-                    <pd>视频流的发送模式，详见 <xref keyref="SIMULCAST_STREAM_MODE"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>mode</pt>
-                    <pd>视频流的发送模式，详见 <codeph>AgoraSimulcastStreamMode</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>streamConfig</pt>
-                    <pd>低质量视频流的配置。详见 <codeph>AgoraSimulcastStreamConfig</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>connection</pt>
-                    <pd>连接信息。详见 <codeph>AgoraRtcConnection</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

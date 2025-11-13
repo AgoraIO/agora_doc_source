@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enableinstantmediarendering">
     <title>
-        <ph keyref="enableInstantMediaRendering"/>
+    <ph keyref="enableInstantMediaRendering"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">启用音视频帧的极速渲染。</ph>
+    <ph id="shortdesc">启用音视频帧的极速渲染。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -33,10 +33,10 @@
             <p props="cpp">调用该方法后，SDK 会启用极速帧渲染模式，从而加快用户加入频道后首帧的渲染速度。</p>
             <p props="android">成功调用该方法后，SDK 会启用即时帧渲染模式，从而加快用户加入频道后首帧的渲染速度。</p>
             <p props="ios mac">调用该方法后，SDK 会启用极速帧渲染模式，从而加快你加入频道后首帧的渲染速度。</p>
-            <note props="cpp">主播和观众都需要调用该方法，才能体验音视频帧的极速渲染。如需关闭该模式，只能通过调用 <codeph>release</codeph> 销毁 <codeph>IRtcEngine</codeph> 对象。</note>
+            <note props="cpp">主播和观众都需要调用该方法，才能体验音视频帧的极速渲染。如需关闭该模式，只能通过调用 <xref keyref="release"/> 销毁 <xref keyref="IRtcEngine"/> 对象。</note>
             <note props="android">主播和观众都需要调用该方法，才能体验音视频帧的即时渲染效果。一旦成功调用该方法，只能通过调用 <xref keyref="release_ILocalSpatialAudioEngine"/> 方法销毁 <xref keyref="IRtcEngine"/> 对象来取消即时渲染。</note>
             <note props="ios">主播和观众都需调用该方法，才能体验音视频帧的极速渲染。若需取消极速渲染，需调用 <xref keyref="release_ILocalSpatialAudioEngine"/> 方法销毁 <xref keyref="IRtcEngine"/> 对象。</note>
-            <note props="mac">主播和观众都需调用该方法，才能体验音视频帧的极速渲染。若需取消极速渲染，需调用 <codeph>destroy</codeph> 方法销毁 <codeph>AgoraRtcEngineKit</codeph> 对象。</note>
+            <note props="mac">主播和观众都需调用该方法，才能体验音视频帧的极速渲染。若需取消极速渲染，需调用 <xref keyref="release"/> 方法销毁 <xref keyref="IRtcEngine"/> 对象。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -53,7 +53,7 @@
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>
-                    <li>-7：在 <codeph>IRtcEngine</codeph> 初始化之前调用了该方法。</li>
+                    <li>-7：在 <xref keyref="IRtcEngine"/> 初始化之前调用了该方法。</li>
                 </ul>
             </p>
             <p props="android">
@@ -63,18 +63,11 @@
                     <li>-7：在 <xref keyref="IRtcEngine"/> 初始化之前调用该方法。</li>
                 </ul>
             </p>
-            <p props="ios">
+            <p props="ios mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>
                     <li>-7：在 <xref keyref="IRtcEngine"/> 初始化前调用该方法。</li>
-                </ul>
-            </p>
-            <p props="mac">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
-                    <li>-7：在 <codeph>AgoraRtcEngineKit</codeph> 初始化前调用该方法。</li>
                 </ul>
             </p>
         </section>

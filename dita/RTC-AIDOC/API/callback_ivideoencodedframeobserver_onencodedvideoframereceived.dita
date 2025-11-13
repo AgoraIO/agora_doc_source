@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_ivideoencodedframeobserver_onencodedvideoframereceived">
     <title>
-        <ph keyref="onEncodedVideoFrameReceived"/>
+    <ph keyref="onEncodedVideoFrameReceived"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">报告接收端已接收到远端发送的待解码视频帧。</ph>
+    <ph id="shortdesc">报告接收端已接收到远端发送的待解码视频帧。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -30,15 +30,12 @@
                     <dd>自 v4.6.0 版本新增。</dd>
                 </dlentry>
             </dl>
-            <p props="cpp">如果你调用了 <codeph>setRemoteVideoSubscriptionOptions</codeph> 方法并将 <codeph>encodedFrameOnly</codeph> 设置为 <codeph>true</codeph>，SDK 会在本地触发该回调，报告接收到的编码视频帧信息。</p>
-            <p props="android">如果你调用了 <xref keyref="setRemoteVideoSubscriptionOptions"/> 方法并将 <codeph>encodedFrameOnly</codeph> 设置为 <xref keyref="true"/>，SDK 会在本地触发该回调，报告接收到的编码视频帧信息。</p>
-            <p props="ios">如果你调用了 <codeph>setRemoteVideoSubscriptionOptions</codeph> 方法，并将 <codeph>encodedFrameOnly</codeph> 设置为 <xref keyref="true"/>，SDK 会在本地触发该回调，用于上报接收到的编码视频帧信息。</p>
-            <p props="mac">如果你调用了 <codeph>setRemoteVideoSubscriptionOptions</codeph> 方法，并将 <codeph>encodedFrameOnly</codeph> 设置为 <codeph>YES</codeph>，SDK 会在本地触发该回调，用于上报接收到的编码视频帧信息。</p>
+            <p props="android cpp">如果你调用了 <xref keyref="setRemoteVideoSubscriptionOptions"/> 方法并将 <codeph>encodedFrameOnly</codeph> 设置为 <xref keyref="true"/>，SDK 会在本地触发该回调，报告接收到的编码视频帧信息。</p>
+            <p props="ios mac">如果你调用了 <codeph>setRemoteVideoSubscriptionOptions</codeph> 方法，并将 <codeph>encodedFrameOnly</codeph> 设置为 <xref keyref="true"/>，SDK 会在本地触发该回调，用于上报接收到的编码视频帧信息。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
-            <p props="ios">该回调在你设置 <codeph>encodedFrameOnly</codeph> 为 <xref keyref="true"/> 后，接收到远端编码视频帧时被触发。</p>
-            <p props="mac">该回调在你设置 <codeph>encodedFrameOnly</codeph> 为 <codeph>YES</codeph> 后，接收到远端编码视频帧时被触发。</p>
+            <p props="ios mac">该回调在你设置 <codeph>encodedFrameOnly</codeph> 为 <xref keyref="true"/> 后，接收到远端编码视频帧时被触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
@@ -65,7 +62,7 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>videoEncodedFrameInfo</pt>
-                    <pd>编码视频帧的信息。详见 <codeph>EncodedVideoFrameInfo</codeph>。</pd>
+                    <pd>编码视频帧的信息。详见 <xref keyref="EncodedVideoFrameInfo"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>remoteUid</pt>
@@ -83,40 +80,18 @@
                     <pt>videoData</pt>
                     <pd>编码后的视频图像数据。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>videoFrameInfo</pt>
                     <pd>编码视频帧的信息，详见 <xref keyref="EncodedVideoFrameInfo"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>videoFrameInfo</pt>
-                    <pd>编码视频帧的信息，详见 <codeph>AgoraEncodedVideoFrameInfo</codeph>。</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="cpp">
+            <p props="android cpp ios mac">
                 <ul>
-                    <li>
-                        <codeph>true</codeph>：回调处理成功。</li>
-                    <li>
-                        <codeph>false</codeph>：回调处理失败。</li>
-                </ul>
-            </p>
-            <p props="android ios">
-                <ul>
-                    <li>
-                        <xref keyref="true"/>：回调处理成功。</li>
-                    <li>
-                        <xref keyref="false"/>：回调处理失败。</li>
-                </ul>
-            </p>
-            <p props="mac">
-                <ul>
-                    <li>
-                        <codeph>YES</codeph>：回调处理成功。</li>
-                    <li>
-                        <codeph>NO</codeph>：回调处理失败。</li>
+                    <li><xref keyref="true"/>：回调处理成功。</li>
+                    <li><xref keyref="false"/>：回调处理失败。</li>
                 </ul>
             </p>
         </section>

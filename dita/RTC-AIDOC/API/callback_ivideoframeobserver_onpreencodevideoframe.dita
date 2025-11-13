@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_ivideoframeobserver_onpreencodevideoframe">
     <title>
-        <ph keyref="onPreEncodeVideoFrame"/>
+    <ph keyref="onPreEncodeVideoFrame"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">每次 SDK 在编码前接收到视频帧时触发的回调。</ph>
+    <ph id="shortdesc">每次 SDK 在编码前接收到视频帧时触发的回调。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -29,10 +29,10 @@
             <p props="ios mac">在你成功注册视频帧观察器后，SDK 每次接收到视频帧时都会触发该回调。在该回调中，你可以获取编码前的视频数据，并根据具体场景对其进行处理。处理完成后，你可以将处理后的视频数据返回给 SDK。</p>
             <note props="cpp">
                 <ul>
-                    <li>如果你需要将预处理后的视频数据发送回 SDK，需要先调用 <codeph>getVideoFrameProcessMode</codeph> 将视频处理模式设置为读写模式（<codeph>PROCESS_MODE_READ_WRITE</codeph>）。</li>
-                    <li>如果你需要获取从第二路屏幕采集的编码前视频数据，需要通过 <codeph>getObservedFramePosition</codeph> 设置帧位置为 <codeph>POSITION_PRE_ENCODER</codeph>（1 &lt;&lt; 2）。</li>
+                    <li>如果你需要将预处理后的视频数据发送回 SDK，需要先调用 <xref keyref="getVideoFrameProcessMode"/> 将视频处理模式设置为读写模式（<codeph>PROCESS_MODE_READ_WRITE</codeph>）。</li>
+                    <li>如果你需要获取从第二路屏幕采集的编码前视频数据，需要通过 <xref keyref="getObservedFramePosition"/> 设置帧位置为 <codeph>POSITION_PRE_ENCODER</codeph>（1 &lt;&lt; 2）。</li>
                     <li>该回调返回的视频数据已经过预处理，包括裁剪、旋转和图像增强。</li>
-                    <li>建议确保 <codeph>videoFrame</codeph> 中修改后的参数与视频帧缓冲区中的实际视频帧一致，否则可能导致本地预览或远端显示出现旋转异常、图像拉伸等问题。</li>
+                    <li>建议确保 <xref keyref="VideoFrame"/> 中修改后的参数与视频帧缓冲区中的实际视频帧一致，否则可能导致本地预览或远端显示出现旋转异常、图像拉伸等问题。</li>
                 </ul>
             </note>
             <note props="android">
@@ -43,18 +43,10 @@
                     <li>建议确保 <codeph>videoFrame</codeph> 中修改后的参数与视频帧缓冲区中视频帧的实际情况一致，否则可能导致本地预览和远端视频显示出现异常旋转、图像拉伸等问题。</li>
                 </ul>
             </note>
-            <note props="ios">
+            <note props="ios mac">
                 <ul>
                     <li>如果你需要将预处理后的视频数据发送回 SDK，你需要先调用 <xref keyref="getVideoFrameProcessMode"/> 将视频处理模式设置为读写模式（<codeph>AgoraVideoFrameProcessModeReadWrite</codeph>）。</li>
                     <li>如果你需要获取从第二屏幕采集的编码前的视频数据，你需要通过 <xref keyref="getObservedFramePosition"/> 设置帧位置为 <codeph>AgoraVideoModulePositionPreEncoder</codeph>（1 &lt;&lt; 2）。</li>
-                    <li>该回调获取的视频数据已被预处理，包括裁剪、旋转和图像增强。</li>
-                    <li>建议你确保 <codeph>videoFrame</codeph> 中修改后的参数与视频帧缓冲区中视频帧的实际情况一致。否则，可能会导致本地预览和远端视频显示出现意外的旋转、变形等问题。</li>
-                </ul>
-            </note>
-            <note props="mac">
-                <ul>
-                    <li>如果你需要将预处理后的视频数据发送回 SDK，你需要先调用 <codeph>getVideoFrameProcessMode</codeph> 将视频处理模式设置为读写模式（<codeph>AgoraVideoFrameProcessModeReadWrite</codeph>）。</li>
-                    <li>如果你需要获取从第二屏幕采集的编码前的视频数据，你需要通过 <codeph>getObservedFramePosition</codeph> 设置帧位置为 <codeph>AgoraVideoModulePositionPreEncoder</codeph>（1 &lt;&lt; 2）。</li>
                     <li>该回调获取的视频数据已被预处理，包括裁剪、旋转和图像增强。</li>
                     <li>建议你确保 <codeph>videoFrame</codeph> 中修改后的参数与视频帧缓冲区中视频帧的实际情况一致。否则，可能会导致本地预览和远端视频显示出现意外的旋转、变形等问题。</li>
                 </ul>
@@ -75,11 +67,11 @@
             <parml>
                 <plentry props="cpp">
                     <pt>sourceType</pt>
-                    <pd>视频源类型，详见 <codeph>VIDEO_SOURCE_TYPE</codeph>。</pd>
+                    <pd>视频源类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>videoFrame</pt>
-                    <pd>输出参数，视频帧。详见 <codeph>VideoFrame</codeph>。</pd>
+                    <pd>输出参数，视频帧。详见 <xref keyref="VideoFrame"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>sourceType</pt>
@@ -97,7 +89,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>sourceType</pt>
                     <pd>视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
                 </plentry>
@@ -109,68 +101,28 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="mac">
-                    <pt>sourceType</pt>
-                    <pd>视频源的类型，详见 <codeph>AgoraVideoSourceType</codeph>。</pd>
-                </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="cpp">
+            <p props="android cpp">
                 <ul>
                     <li>当视频处理模式为 <codeph>PROCESS_MODE_READ_ONLY</codeph> 时：</li>
-                    <li>
-                        <codeph>true</codeph>：保留以供后续使用。</li>
-                    <li>
-                        <codeph>false</codeph>：保留以供后续使用。</li>
+                    <li><xref keyref="true"/>：保留以供后续使用。</li>
+                    <li><xref keyref="false"/>：保留以供后续使用。</li>
                     <li>当视频处理模式为 <codeph>PROCESS_MODE_READ_WRITE</codeph> 时：</li>
-                    <li>
-                        <codeph>true</codeph>：设置 SDK 接收该视频帧。</li>
-                    <li>
-                        <codeph>false</codeph>：设置 SDK 丢弃该视频帧。</li>
+                    <li><xref keyref="true"/>：设置 SDK 接收该视频帧。</li>
+                    <li><xref keyref="false"/>：设置 SDK 丢弃该视频帧。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>当视频处理模式为 <codeph>PROCESS_MODE_READ_ONLY</codeph> 时：</li>
-                    <li>
-                        <xref keyref="true"/>：保留以供后续使用。</li>
-                    <li>
-                        <xref keyref="false"/>：保留以供后续使用。</li>
-                    <li>当视频处理模式为 <codeph>PROCESS_MODE_READ_WRITE</codeph> 时：</li>
-                    <li>
-                        <xref keyref="true"/>：设置 SDK 接收该视频帧。</li>
-                    <li>
-                        <xref keyref="false"/>：设置 SDK 丢弃该视频帧。</li>
-                </ul>
-            </p>
-            <p props="ios">
+            <p props="ios mac">
                 <ul>
                     <li>当视频处理模式为 <codeph>AgoraVideoFrameProcessModeReadOnly</codeph> 时：</li>
-                    <li>
-                        <xref keyref="true"/>：保留以供将来使用。</li>
-                    <li>
-                        <xref keyref="false"/>：保留以供将来使用。</li>
+                    <li><xref keyref="true"/>：保留以供将来使用。</li>
+                    <li><xref keyref="false"/>：保留以供将来使用。</li>
                     <li>当视频处理模式为 <codeph>AgoraVideoFrameProcessModeReadWrite</codeph> 时：</li>
-                    <li>
-                        <xref keyref="true"/>：设置 SDK 接收该视频帧。</li>
-                    <li>
-                        <xref keyref="false"/>：设置 SDK 丢弃该视频帧。</li>
-                </ul>
-            </p>
-            <p props="mac">
-                <ul>
-                    <li>当视频处理模式为 <codeph>AgoraVideoFrameProcessModeReadOnly</codeph> 时：</li>
-                    <li>
-                        <codeph>YES</codeph>：保留以供将来使用。</li>
-                    <li>
-                        <codeph>NO</codeph>：保留以供将来使用。</li>
-                    <li>当视频处理模式为 <codeph>AgoraVideoFrameProcessModeReadWrite</codeph> 时：</li>
-                    <li>
-                        <codeph>YES</codeph>：设置 SDK 接收该视频帧。</li>
-                    <li>
-                        <codeph>NO</codeph>：设置 SDK 丢弃该视频帧。</li>
+                    <li><xref keyref="true"/>：设置 SDK 接收该视频帧。</li>
+                    <li><xref keyref="false"/>：设置 SDK 丢弃该视频帧。</li>
                 </ul>
             </p>
         </section>

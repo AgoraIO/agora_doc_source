@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_player_setcanvas">
     <title>
-        <ph keyref="SetCanvas"/>
+    <ph keyref="SetCanvas"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">设置用于显示视频的视图窗口。</ph>
+    <ph id="shortdesc">设置用于显示视频的视图窗口。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -35,8 +35,7 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="cpp">该方法必须在调用 <codeph>Player</codeph> 之后执行。</p>
-            <p props="android">该方法必须在调用 <xref keyref="Player"/> 之后执行。</p>
+            <p props="android cpp">该方法必须在调用 <xref keyref="Player"/> 之后执行。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -45,33 +44,21 @@
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="cpp">
-                    <pt>canvas</pt>
-                    <pd>用于渲染视频帧的对象，详见 <codeph>Canvas</codeph>。</pd>
-                </plentry>
-                <plentry props="cpp">
-                    <pt>err</pt>
-                    <pd>输出参数，状态或错误信息，详见 <codeph>Error</codeph>。</pd>
-                </plentry>
-                <plentry props="android">
+                <plentry props="android cpp">
                     <pt>canvas</pt>
                     <pd>用于渲染视频帧的对象，详见 <xref keyref="Canvas"/>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="cpp">
+                    <pt>err</pt>
+                    <pd>输出参数，状态或错误信息，详见 <xref keyref="Error"/>。</pd>
+                </plentry>
+                <plentry props="ios mac">
                     <pt>canvas</pt>
                     <pd>用于渲染视频帧的视图窗口。详见 <xref keyref="Canvas"/>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>error</pt>
                     <pd>状态或错误信息。详见 <xref keyref="Error"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>canvas</pt>
-                    <pd>用于渲染视频帧的视图窗口。详见 <codeph>AgoraRteCanvas</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>error</pt>
-                    <pd>状态或错误信息。详见 <codeph>AgoraRteError</codeph>。</pd>
                 </plentry>
             </parml>
         </section>
@@ -79,27 +66,15 @@
             <title>返回值</title>
             <p props="cpp">
                 <ul>
-                    <li>
-                        <codeph>true</codeph>：设置成功。</li>
-                    <li>
-                        <codeph>false</codeph>：设置失败。你可以通过 <codeph>err</codeph> 参数获取错误码以了解详细信息。</li>
+                    <li><xref keyref="true"/>：设置成功。</li>
+                    <li><xref keyref="false"/>：设置失败。你可以通过 <codeph>err</codeph> 参数获取错误码以了解详细信息。</li>
                 </ul>
             </p>
             <p props="android">调用失败时，SDK 会抛出异常，并返回相应的错误信息。你需要捕获异常并进行处理。</p>
-            <p props="ios">
+            <p props="ios mac">
                 <ul>
-                    <li>
-                        <xref keyref="true"/>：设置成功。</li>
-                    <li>
-                        <xref keyref="false"/>：设置失败。你可以通过 <codeph>error</codeph> 参数返回的错误码获取详细信息。</li>
-                </ul>
-            </p>
-            <p props="mac">
-                <ul>
-                    <li>
-                        <codeph>YES</codeph>：设置成功。</li>
-                    <li>
-                        <codeph>NO</codeph>：设置失败。你可以通过 <codeph>error</codeph> 参数返回的错误码获取详细信息。</li>
+                    <li><xref keyref="true"/>：设置成功。</li>
+                    <li><xref keyref="false"/>：设置失败。你可以通过 <codeph>error</codeph> 参数返回的错误码获取详细信息。</li>
                 </ul>
             </p>
         </section>

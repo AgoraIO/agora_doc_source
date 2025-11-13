@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_rtcengineconfig">
     <title>
-        <ph keyref="RtcEngineConfig"/>
+    <ph keyref="RtcEngineConfig"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">配置 `RtcEngine` 实例的参数。</ph>
+    <ph id="shortdesc">配置 `RtcEngine` 实例的参数。</ph>
   </shortdesc>
     <refbody>
         <section id="prototype">
@@ -71,11 +71,11 @@
             <parml>
                 <plentry props="cpp">
                     <pt>eventHandler</pt>
-                    <pd>用于 <codeph>IRtcEngine</codeph> 的事件处理器。详见 <codeph>IRtcEngineEventHandler</codeph>。</pd>
+                    <pd>用于 <xref keyref="IRtcEngine"/> 的事件处理器。详见 <xref keyref="IRtcEngineEventHandler"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>appId</pt>
-                    <pd>由声网为你的项目签发的 App ID。只有在相同 App ID 下的用户才能加入同一个频道并互相通信。一个 App ID 只能用于创建一个 <codeph>IRtcEngine</codeph> 实例。若需更换 App ID，需调用 <codeph>release</codeph> 销毁当前的 <codeph>IRtcEngine</codeph> 实例，然后创建一个新的实例。</pd>
+                    <pd>由声网为你的项目签发的 App ID。只有在相同 App ID 下的用户才能加入同一个频道并互相通信。一个 App ID 只能用于创建一个 <xref keyref="IRtcEngine"/> 实例。若需更换 App ID，需调用 <xref keyref="release"/> 销毁当前的 <xref keyref="IRtcEngine"/> 实例，然后创建一个新的实例。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>context</pt>
@@ -83,7 +83,7 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>channelProfile</pt>
-                    <pd>频道场景类型。详见 <codeph>CHANNEL_PROFILE_TYPE</codeph>。</pd>
+                    <pd>频道场景类型。详见 <xref keyref="CHANNEL_PROFILE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>license</pt>
@@ -91,15 +91,15 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>audioScenario</pt>
-                    <pd>音频场景类型，不同场景下设备使用不同的音量类型。详见 <codeph>AUDIO_SCENARIO_TYPE</codeph>。</pd>
+                    <pd>音频场景类型，不同场景下设备使用不同的音量类型。详见 <xref keyref="AUDIO_SCENARIO_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>areaCode</pt>
-                    <pd>连接区域。该高级功能适用于有区域限制的场景，支持的区域详见 <codeph>AREA_CODE</codeph>。区域码支持按位操作。</pd>
+                    <pd>连接区域。该高级功能适用于有区域限制的场景，支持的区域详见 <xref keyref="AREA_CODE"/>。区域码支持按位操作。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>logConfig</pt>
-                    <pd>日志配置。详见 <codeph>LogConfig</codeph>。
+                    <pd>日志配置。详见 <xref keyref="LogConfig"/>。
 默认情况下，SDK 会生成五个 SDK 日志文件和五个 API 调用日志文件，规则如下：
                         <ul>
                             <li>SDK 日志文件包括：<codeph>agorasdk.log</codeph>、<codeph>agorasdk.1.log</codeph>、<codeph>agorasdk.2.log</codeph>、<codeph>agorasdk.3.log</codeph> 和 <codeph>agorasdk.4.log</codeph>。</li>
@@ -116,8 +116,7 @@
                             <li>创建新的 <codeph>agorasdk.log</codeph> 文件。</li>
                         </ol>
                         <ul>
-                            <li>
-                                <codeph>agoraapi.log</codeph> 的覆盖规则与 <codeph>agorasdk.log</codeph> 相同。</li>
+                            <li><codeph>agoraapi.log</codeph> 的覆盖规则与 <codeph>agorasdk.log</codeph> 相同。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -129,10 +128,8 @@
                     <pt>useExternalEglContext</pt>
                     <pd>是否使用当前线程中的 EGL 上下文作为 SDK 的根 EGL 上下文，该上下文会被所有与 EGL 相关的模块共享，例如摄像头采集、视频渲染等。
                         <ul>
-                            <li>
-                                <codeph>true</codeph>：使用当前线程中的 EGL 上下文。</li>
-                            <li>
-                                <codeph>false</codeph>：（默认）不使用当前线程中的 EGL 上下文。</li>
+                            <li><xref keyref="true"/>：使用当前线程中的 EGL 上下文。</li>
+                            <li><xref keyref="false"/>：（默认）不使用当前线程中的 EGL 上下文。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -140,21 +137,17 @@
                     <pt>domainLimit</pt>
                     <pd>是否启用域名限制：
                         <ul>
-                            <li>
-                                <codeph>true</codeph>：启用域名限制。适用于 IoT 设备使用物联网卡接入网络的场景。SDK 仅连接已上报给运营商的域名或 IP 白名单中的服务器。</li>
-                            <li>
-                                <codeph>false</codeph>：（默认）不启用域名限制。适用于大多数常见场景。</li>
+                            <li><xref keyref="true"/>：启用域名限制。适用于 IoT 设备使用物联网卡接入网络的场景。SDK 仅连接已上报给运营商的域名或 IP 白名单中的服务器。</li>
+                            <li><xref keyref="false"/>：（默认）不启用域名限制。适用于大多数常见场景。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>autoRegisterAgoraExtensions</pt>
-                    <pd>是否在初始化 <codeph>IRtcEngine</codeph> 时自动注册声网插件：
+                    <pd>是否在初始化 <xref keyref="IRtcEngine"/> 时自动注册声网插件：
                         <ul>
-                            <li>
-                                <codeph>true</codeph>：（默认）自动注册插件。</li>
-                            <li>
-                                <codeph>false</codeph>：不自动注册插件。你需要调用 <codeph>enableExtension</codeph> 手动注册插件。</li>
+                            <li><xref keyref="true"/>：（默认）自动注册插件。</li>
+                            <li><xref keyref="false"/>：不自动注册插件。你需要调用 <xref keyref="enableExtension"/> 手动注册插件。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -178,14 +171,10 @@
                     <pt>mChannelProfile</pt>
                     <pd>频道场景类型：
                         <ul>
-                            <li>
-                                <codeph>CHANNEL_PROFILE_COMMUNICATION</codeph> (0)：通信场景。声网建议使用直播场景以获得更佳的音视频体验。</li>
-                            <li>
-                                <codeph>CHANNEL_PROFILE_LIVE_BROADCASTING</codeph> (1)：（默认）直播场景。</li>
-                            <li>
-                                <codeph>CHANNEL_PROFILE_GAME</codeph> (2)：游戏场景。自 v4.x.x 版本废弃，请改用 <codeph>CHANNEL_PROFILE_LIVE_BROADCASTING</codeph>。</li>
-                            <li>
-                                <codeph>CHANNEL_PROFILE_CLOUD_GAMING</codeph> (3)：互动场景，针对低延迟优化，适用于用户频繁互动的场景。自 v4.x.x 版本废弃，请改用 <codeph>CHANNEL_PROFILE_LIVE_BROADCASTING</codeph>。</li>
+                            <li><codeph>CHANNEL_PROFILE_COMMUNICATION</codeph> (0)：通信场景。声网建议使用直播场景以获得更佳的音视频体验。</li>
+                            <li><codeph>CHANNEL_PROFILE_LIVE_BROADCASTING</codeph> (1)：（默认）直播场景。</li>
+                            <li><codeph>CHANNEL_PROFILE_GAME</codeph> (2)：游戏场景。自 v4.x.x 版本废弃，请改用 <codeph>CHANNEL_PROFILE_LIVE_BROADCASTING</codeph>。</li>
+                            <li><codeph>CHANNEL_PROFILE_CLOUD_GAMING</codeph> (3)：互动场景，针对低延迟优化，适用于用户频繁互动的场景。自 v4.x.x 版本废弃，请改用 <codeph>CHANNEL_PROFILE_LIVE_BROADCASTING</codeph>。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -197,18 +186,12 @@
                     <pt>mAudioScenario</pt>
                     <pd>音频场景类型，不同场景下设备使用的音量类型不同：
                         <ul>
-                            <li>
-                                <codeph>AUDIO_SCENARIO_DEFAULT</codeph> (0)：（默认）自动场景，SDK 会根据用户角色和音频路由选择合适的音质。</li>
-                            <li>
-                                <codeph>AUDIO_SCENARIO_GAME_STREAMING</codeph> (3)：高音质场景，适用于播放音乐。</li>
-                            <li>
-                                <codeph>AUDIO_SCENARIO_CHATROOM</codeph> (5)：语聊场景，适用于频繁切换角色或控制麦克风静音的场景。</li>
-                            <li>
-                                <codeph>AUDIO_SCENARIO_CHORUS</codeph> (7)：实时合唱场景，适用于网络良好且对超低延迟有较高要求的用户。</li>
-                            <li>
-                                <codeph>AUDIO_SCENARIO_MEETING</codeph> (8)：会议场景，主要传输人声。</li>
-                            <li>
-                                <codeph>AUDIO_SCENARIO_AI_CLIENT</codeph> (10)：AI 对话场景，仅适用于与通过 <codeph>Conversational AI Engine</codeph> 创建的智能体交互的场景。</li>
+                            <li><codeph>AUDIO_SCENARIO_DEFAULT</codeph> (0)：（默认）自动场景，SDK 会根据用户角色和音频路由选择合适的音质。</li>
+                            <li><codeph>AUDIO_SCENARIO_GAME_STREAMING</codeph> (3)：高音质场景，适用于播放音乐。</li>
+                            <li><codeph>AUDIO_SCENARIO_CHATROOM</codeph> (5)：语聊场景，适用于频繁切换角色或控制麦克风静音的场景。</li>
+                            <li><codeph>AUDIO_SCENARIO_CHORUS</codeph> (7)：实时合唱场景，适用于网络良好且对超低延迟有较高要求的用户。</li>
+                            <li><codeph>AUDIO_SCENARIO_MEETING</codeph> (8)：会议场景，主要传输人声。</li>
+                            <li><codeph>AUDIO_SCENARIO_AI_CLIENT</codeph> (10)：AI 对话场景，仅适用于与通过 <codeph>Conversational AI Engine</codeph> 创建的智能体交互的场景。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -216,10 +199,8 @@
                     <pt>mAutoRegisterAgoraExtensions</pt>
                     <pd>是否在初始化 <xref keyref="IRtcEngine"/> 时自动注册声网插件：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：（默认）自动注册插件。</li>
-                            <li>
-                                <xref keyref="false"/>：不自动注册插件，需调用 <xref keyref="enableExtension"/> 手动注册。</li>
+                            <li><xref keyref="true"/>：（默认）自动注册插件。</li>
+                            <li><xref keyref="false"/>：不自动注册插件，需调用 <xref keyref="enableExtension"/> 手动注册。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -229,8 +210,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>mExtensionObserver</pt>
-                    <pd>
-                        <codeph>IMediaExtensionObserver</codeph> 实例。详见 <codeph>IMediaExtensionObserver</codeph>。</pd>
+                    <pd><codeph>IMediaExtensionObserver</codeph> 实例。详见 <codeph>IMediaExtensionObserver</codeph>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>mLogConfig</pt>
@@ -242,8 +222,7 @@
                             <li>每个日志文件默认大小为 2048 KB，采用 UTF-8 编码。</li>
                             <li>SDK 会将最新日志写入 <codeph>agorasdk.log</codeph> 或 <codeph>agoraapi.log</codeph>。</li>
                             <li>当 <codeph>agorasdk.log</codeph> 写满时，SDK 会依次删除旧文件并重命名，生成新的日志文件。</li>
-                            <li>
-                                <codeph>agoraapi.log</codeph> 遵循相同的覆盖规则。</li>
+                            <li><codeph>agoraapi.log</codeph> 遵循相同的覆盖规则。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -253,8 +232,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>mNativeLibPath</pt>
-                    <pd>
-                        <codeph>.so</codeph> 文件的存储目录。该目录必须是 App 的有效私有目录，可通过 <codeph>Context.getDir</codeph> 获取。
+                    <pd><codeph>.so</codeph> 文件的存储目录。该目录必须是 App 的有效私有目录，可通过 <codeph>Context.getDir</codeph> 获取。
                         <ul>
                             <li>设置该参数后，SDK 会从指定目录加载 <codeph>.so</codeph> 文件，实现动态加载以减小包体积。</li>
                             <li>若不设置或设为 <xref keyref="NULL"/>，SDK 会从默认编译路径加载 <codeph>.so</codeph> 文件，包体积会增大。</li>
@@ -265,10 +243,8 @@
                     <pt>mDomainLimit</pt>
                     <pd>是否启用域名限制：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：启用域名限制，适用于物联网设备使用 IoT 卡接入的场景。SDK 仅连接运营商白名单中报备的域名或 IP。</li>
-                            <li>
-                                <xref keyref="false"/>：（默认）不启用域名限制，适用于大多数通用场景。</li>
+                            <li><xref keyref="true"/>：启用域名限制，适用于物联网设备使用 IoT 卡接入的场景。SDK 仅连接运营商白名单中报备的域名或 IP。</li>
+                            <li><xref keyref="false"/>：（默认）不启用域名限制，适用于大多数通用场景。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -292,7 +268,7 @@
                     <pt>areaCode</pt>
                     <pd>连接区域。该高级功能适用于有区域限制的场景。支持的区域详见 <xref keyref="AREA_CODE"/>。区域码支持按位操作。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>logConfig</pt>
                     <pd>日志配置。默认情况下，SDK 会生成五个 SDK 日志文件和五个 API 调用日志文件，文件大小为 2,048 KB，采用 UTF-8 编码。日志轮转规则详见注释。详见 <xref keyref="LogConfig"/>。</pd>
                 </plentry>
@@ -302,34 +278,29 @@
                 </plentry>
                 <plentry props="ios mac">
                     <pt>eventDelegate</pt>
-                    <pd>
-                        <codeph>AgoraMediaFilterEventDelegate</codeph> 实例。详见 <codeph>AgoraMediaFilterEventDelegate</codeph>。</pd>
+                    <pd><codeph>AgoraMediaFilterEventDelegate</codeph> 实例。详见 <codeph>AgoraMediaFilterEventDelegate</codeph>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>domainLimit</pt>
                     <pd>是否启用域名限制：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：启用域名限制。适用于物联网设备使用物联网卡接入网络的场景。SDK 仅连接已向运营商报备的域名或 IP 白名单中的服务器。</li>
-                            <li>
-                                <xref keyref="false"/>：（默认）不启用域名限制。适用于大多数常见场景。</li>
+                            <li><xref keyref="true"/>：启用域名限制。适用于物联网设备使用物联网卡接入网络的场景。SDK 仅连接已向运营商报备的域名或 IP 白名单中的服务器。</li>
+                            <li><xref keyref="false"/>：（默认）不启用域名限制。适用于大多数常见场景。</li>
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>autoRegisterAgoraExtensions</pt>
                     <pd>初始化 <xref keyref="IRtcEngine"/> 时是否自动注册声网扩展：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：（默认）自动注册。</li>
-                            <li>
-                                <xref keyref="false"/>：不自动注册。需调用 <xref keyref="enableExtension"/> 手动注册。</li>
+                            <li><xref keyref="true"/>：（默认）自动注册。</li>
+                            <li><xref keyref="false"/>：不自动注册。需调用 <xref keyref="enableExtension"/> 手动注册。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>appId</pt>
-                    <pd>由声网为你的项目签发的 App ID。只有使用相同 App ID 的用户才能加入同一个频道并互相通信。一个 App ID 只能用于创建一个 <codeph>AgoraRtcEngineKit</codeph> 实例。如需更换 App ID，需先调用 <codeph>destroy</codeph> 销毁当前实例，再创建新的实例。</pd>
+                    <pd>由声网为你的项目签发的 App ID。只有使用相同 App ID 的用户才能加入同一个频道并互相通信。一个 App ID 只能用于创建一个 <xref keyref="IRtcEngine"/> 实例。如需更换 App ID，需先调用 <xref keyref="release"/> 销毁当前实例，再创建新的实例。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>channelProfile</pt>
@@ -342,32 +313,6 @@
                 <plentry props="mac">
                     <pt>areaCode</pt>
                     <pd>连接区域。该高级功能适用于有区域限制的场景。支持的区域详见 <codeph>AgoraAreaCodeType</codeph>。区域码支持按位操作。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>logConfig</pt>
-                    <pd>日志配置。默认情况下，SDK 会生成五个 SDK 日志文件和五个 API 调用日志文件，文件大小为 2,048 KB，采用 UTF-8 编码。日志轮转规则详见注释。详见 <codeph>AgoraLogConfig</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>domainLimit</pt>
-                    <pd>是否启用域名限制：
-                        <ul>
-                            <li>
-                                <codeph>YES</codeph>：启用域名限制。适用于物联网设备使用物联网卡接入网络的场景。SDK 仅连接已向运营商报备的域名或 IP 白名单中的服务器。</li>
-                            <li>
-                                <codeph>NO</codeph>：（默认）不启用域名限制。适用于大多数常见场景。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>autoRegisterAgoraExtensions</pt>
-                    <pd>初始化 <codeph>AgoraRtcEngineKit</codeph> 时是否自动注册声网扩展：
-                        <ul>
-                            <li>
-                                <codeph>YES</codeph>：（默认）自动注册。</li>
-                            <li>
-                                <codeph>NO</codeph>：不自动注册。需调用 <codeph>enableExtensionWithVendor:extension:enabled:sourceType:</codeph> 手动注册。</li>
-                        </ul>
-                    </pd>
                 </plentry>
             </parml>
         </section>

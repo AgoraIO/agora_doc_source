@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imusiccontentcenter_destroymusicplayer">
     <title>
-        <ph keyref="destroyMusicPlayer"/>
+    <ph keyref="destroyMusicPlayer"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">销毁音乐播放器对象。</ph>
+    <ph id="shortdesc">销毁音乐播放器对象。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -24,17 +24,16 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">当你不再需要使用音乐播放器时，可以调用此方法销毁该对象。如果销毁后需要再次使用音乐播放器，请调用 <codeph>createMusicPlayer</codeph> 重新创建。</p>
+            <p props="cpp">当你不再需要使用音乐播放器时，可以调用此方法销毁该对象。如果销毁后需要再次使用音乐播放器，请调用 <xref keyref="createMusicPlayer"/> 重新创建。</p>
             <p props="android">如果在销毁后需要再次使用音乐播放器，必须调用 <xref keyref="createMusicPlayer"/> 方法重新创建。</p>
-            <p props="ios">当你不再需要使用音乐播放器时，可以调用此方法销毁音乐播放器对象。如果在销毁后需要再次使用音乐播放器，必须调用 <xref keyref="createMusicPlayer"/> 方法重新创建一个新的音乐播放器对象。</p>
-            <p props="mac">当你不再需要使用音乐播放器时，可以调用此方法销毁音乐播放器对象。如果在销毁后需要再次使用音乐播放器，必须调用 <codeph>createMusicPlayerWithDelegate:</codeph> 方法重新创建一个新的音乐播放器对象。</p>
+            <p props="ios mac">当你不再需要使用音乐播放器时，可以调用此方法销毁音乐播放器对象。如果在销毁后需要再次使用音乐播放器，必须调用 <xref keyref="createMusicPlayer"/> 方法重新创建一个新的音乐播放器对象。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="cpp">该方法可以在加入频道前或加入频道后调用，但必须在调用 <codeph>release</codeph> 方法之前调用。</p>
+            <p props="cpp">该方法可以在加入频道前或加入频道后调用，但必须在调用 <xref keyref="release"/> 方法之前调用。</p>
             <p props="android">你可以在加入频道前或加入频道后调用此方法，但必须确保在调用 <xref keyref="release_ILocalSpatialAudioEngine"/> 方法之前调用此方法。</p>
             <p props="ios">你可以在加入频道前或后调用此方法，但必须确保在调用 <xref keyref="release_ILocalSpatialAudioEngine"/> 方法之前调用。</p>
-            <p props="mac">你可以在加入频道前或后调用此方法，但必须确保在调用 <codeph>destroy</codeph> 方法之前调用。</p>
+            <p props="mac">你可以在加入频道前或后调用此方法，但必须确保在调用 <xref keyref="release"/> 方法之前调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -45,19 +44,15 @@
             <parml>
                 <plentry props="cpp">
                     <pt>music_player</pt>
-                    <pd>音乐播放器对象。详见 <codeph>IMusicPlayer</codeph>。</pd>
+                    <pd>音乐播放器对象。详见 <xref keyref="IMusicPlayer"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>player</pt>
                     <pd>音乐播放器对象。详见 <xref keyref="IMusicPlayer"/>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>musicPlayer</pt>
                     <pd>音乐播放器对象。详见 <xref keyref="IMusicPlayer"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>musicPlayer</pt>
-                    <pd>音乐播放器对象。详见 <codeph>AgoraMusicPlayerProtocol</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

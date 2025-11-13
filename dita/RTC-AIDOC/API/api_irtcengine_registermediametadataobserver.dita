@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_registermediametadataobserver">
     <title>
-        <ph keyref="registerMediaMetadataObserver"/>
+    <ph keyref="registerMediaMetadataObserver"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">注册元数据观察器。</ph>
+    <ph id="shortdesc">注册元数据观察器。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -24,10 +24,9 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">你需要实现 <codeph>IMetadataObserver</codeph> 类，并在该方法中指定元数据类型。该方法支持在视频流中添加同步元数据，用于实现更丰富的互动直播场景，例如发送购物链接、数字优惠券和在线问答。成功调用该方法后，SDK 会触发 <codeph>getMaxMetadataSize</codeph> 回调。</p>
+            <p props="cpp">你需要实现 <xref keyref="IMetadataObserver"/> 类，并在该方法中指定元数据类型。该方法支持在视频流中添加同步元数据，用于实现更丰富的互动直播场景，例如发送购物链接、数字优惠券和在线问答。成功调用该方法后，SDK 会触发 <xref keyref="getMaxMetadataSize"/> 回调。</p>
             <p props="android">你需要实现 <xref keyref="IMetadataObserver"/> 类，并在该方法中指定元数据类型。该方法支持你在视频流中添加同步元数据，以实现更丰富的互动直播场景，例如发送购物链接、数字优惠券和在线问答。成功调用该方法后，SDK 会触发 <xref keyref="getMaxMetadataSize"/> 回调。</p>
-            <p props="ios">你需要实现 <xref keyref="IMetadataObserver"/> 协议，并在该方法中指定元数据类型。该方法使你能够在视频流中添加同步的元数据，以实现更丰富的直播互动场景，例如发送购物链接、数字优惠券和在线问答。</p>
-            <p props="mac">你需要实现 <codeph>AgoraMediaMetadataDelegate</codeph> 协议，并在该方法中指定元数据类型。该方法使你能够在视频流中添加同步的元数据，以实现更丰富的直播互动场景，例如发送购物链接、数字优惠券和在线问答。</p>
+            <p props="ios mac">你需要实现 <xref keyref="IMetadataObserver"/> 协议，并在该方法中指定元数据类型。该方法使你能够在视频流中添加同步的元数据，以实现更丰富的直播互动场景，例如发送购物链接、数字优惠券和在线问答。</p>
             <note props="android cpp">请在调用 <codeph>joinChannel</codeph> 之前调用此方法。</note>
             <note props="ios mac">请在调用 <codeph>joinChannelByToken</codeph> 之前调用该方法。</note>
         </section>
@@ -44,11 +43,11 @@
             <parml>
                 <plentry props="cpp">
                     <pt>observer</pt>
-                    <pd>元数据观察器。详见 <codeph>IMetadataObserver</codeph>。</pd>
+                    <pd>元数据观察器。详见 <xref keyref="IMetadataObserver"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>type</pt>
-                    <pd>元数据类型。详见 <codeph>METADATA_TYPE</codeph>。SDK 当前仅支持 <codeph>VIDEO_METADATA</codeph>。</pd>
+                    <pd>元数据类型。详见 <xref keyref="METADATA_TYPE"/>。SDK 当前仅支持 <codeph>VIDEO_METADATA</codeph>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>observer</pt>
@@ -58,22 +57,17 @@
                     <pt>type</pt>
                     <pd>元数据类型。当前 SDK 仅支持以下类型：
                         <ul>
-                            <li>
-                                <codeph>VIDEO_METADATA</codeph>：视频元数据。</li>
+                            <li><codeph>VIDEO_METADATA</codeph>：视频元数据。</li>
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>metadataDelegate</pt>
                     <pd>元数据观察者，详见 <xref keyref="IMetadataObserver"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>type</pt>
                     <pd>元数据类型，详见 <xref keyref="METADATA_TYPE"/>。当前 SDK 仅支持 <codeph>AgoraMetadataTypeVideo</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>metadataDelegate</pt>
-                    <pd>元数据观察者，详见 <codeph>AgoraMediaMetadataDelegate</codeph>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>type</pt>
@@ -89,20 +83,10 @@
                     <li>&lt; 0：方法调用失败。</li>
                 </ul>
             </p>
-            <p props="ios">
+            <p props="ios mac">
                 <ul>
-                    <li>
-                        <xref keyref="true"/>：方法调用成功。</li>
-                    <li>
-                        <xref keyref="false"/>：方法调用失败。</li>
-                </ul>
-            </p>
-            <p props="mac">
-                <ul>
-                    <li>
-                        <codeph>YES</codeph>：方法调用成功。</li>
-                    <li>
-                        <codeph>NO</codeph>：方法调用失败。</li>
+                    <li><xref keyref="true"/>：方法调用成功。</li>
+                    <li><xref keyref="false"/>：方法调用失败。</li>
                 </ul>
             </p>
         </section>

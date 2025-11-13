@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startscreencapturebywindowid">
     <title>
-        <ph keyref="startScreenCaptureByWindowId"/>
+    <ph keyref="startScreenCaptureByWindowId"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">通过指定窗口 ID 采集整个或部分窗口。</ph>
+    <ph id="shortdesc">通过指定窗口 ID 采集整个或部分窗口。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -175,16 +175,15 @@
                     </strow>
                 </simpletable>
             </p>
-            <note props="cpp">
-                <codeph>startScreenCaptureByWindowId</codeph> 依赖于 WGC（Windows 图形采集）或 GDI（图形设备接口）进行窗口共享。在 Windows 10 2004 之前的系统中，WGC 无法禁用鼠标采集。因此，在系统版本低于 Windows 10 2004 的设备上调用 <codeph>captureMouseCursor(false)</codeph> 可能无效。详见 <codeph>ScreenCaptureParameters</codeph>。
+            <note props="cpp"><xref keyref="startScreenCaptureByWindowId"/> 依赖于 WGC（Windows 图形采集）或 GDI（图形设备接口）进行窗口共享。在 Windows 10 2004 之前的系统中，WGC 无法禁用鼠标采集。因此，在系统版本低于 Windows 10 2004 的设备上调用 <codeph>captureMouseCursor(false)</codeph> 可能无效。详见 <xref keyref="ScreenCaptureParameters"/>。
 该方法仅适用于 macOS 和 Windows 平台。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p props="cpp">你可以在加入频道前或加入频道后调用该方法，具体如下：
                 <ul>
-                    <li>在加入频道前调用该方法，然后调用 <codeph>joinChannel</codeph> 加入频道，并将 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 设置为 <codeph>true</codeph> 以开始屏幕共享。</li>
-                    <li>在加入频道后调用该方法，然后调用 <codeph>updateChannelMediaOptions</codeph> 并将 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 设置为 <codeph>true</codeph> 以开始屏幕共享。</li>
+                    <li>在加入频道前调用该方法，然后调用 <codeph>joinChannel</codeph> 加入频道，并将 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 设置为 <xref keyref="true"/> 以开始屏幕共享。</li>
+                    <li>在加入频道后调用该方法，然后调用 <xref keyref="updateChannelMediaOptions"/> 并将 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 设置为 <xref keyref="true"/> 以开始屏幕共享。</li>
                 </ul>
             </p>
         </section>
@@ -206,13 +205,13 @@
                             <li>如果未设置该参数，SDK 共享整个屏幕。</li>
                             <li>如果指定区域超出窗口范围，SDK 仅共享窗口内的区域。</li>
                             <li>如果设置的宽或高为 0，SDK 共享整个窗口。
-详见 <codeph>Rectangle</codeph>。</li>
+详见 <xref keyref="Rectangle"/>。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>captureParams</pt>
-                    <pd>屏幕共享配置。默认视频分辨率为 1920 × 1080，即 2,073,600 像素。声网使用该参数的值计算费用。详见 <codeph>ScreenCaptureParameters</codeph>。</pd>
+                    <pd>屏幕共享配置。默认视频分辨率为 1920 × 1080，即 2,073,600 像素。声网使用该参数的值计算费用。详见 <xref keyref="ScreenCaptureParameters"/>。</pd>
                 </plentry>
             </parml>
         </section>

@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setcameraexposurefactor">
     <title>
-        <ph keyref="setCameraExposureFactor"/>
+    <ph keyref="setCameraExposureFactor"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">设置摄像头曝光值。</ph>
+    <ph id="shortdesc">设置摄像头曝光值。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -36,9 +36,9 @@
             <note props="cpp">
                 <ul>
                     <li>该方法仅适用于 Android 和 iOS 平台。</li>
-                    <li>你必须在调用 <codeph>enableVideo</codeph> 后再调用该方法。设置将在摄像头成功开启后生效，即 SDK 触发 <codeph>onLocalVideoStateChanged</codeph> 回调并返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>（1）后生效。</li>
-                    <li>在调用该方法前，建议先调用 <codeph>isCameraExposureSupported</codeph> 检查当前摄像头是否支持调整曝光值。</li>
-                    <li>该方法调整的是当前激活摄像头的曝光值，即调用 <codeph>setCameraCapturerConfiguration</codeph> 时指定的摄像头。</li>
+                    <li>你必须在调用 <xref keyref="enableVideo"/> 后再调用该方法。设置将在摄像头成功开启后生效，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>（1）后生效。</li>
+                    <li>在调用该方法前，建议先调用 <xref keyref="isCameraExposureSupported"/> 检查当前摄像头是否支持调整曝光值。</li>
+                    <li>该方法调整的是当前激活摄像头的曝光值，即调用 <xref keyref="setCameraCapturerConfiguration"/> 时指定的摄像头。</li>
                 </ul>
             </note>
             <note props="android">
@@ -48,18 +48,11 @@
                     <li>该方法调整的是当前激活摄像头的曝光值，即调用 <xref keyref="setCameraCapturerConfiguration"/> 时指定的摄像头。</li>
                 </ul>
             </note>
-            <note props="ios">
+            <note props="ios mac">
                 <ul>
                     <li>你必须在调用 <xref keyref="enableVideo"/> 方法之后再调用此方法。设置结果在摄像头成功开启后生效，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>AgoraVideoLocalStateCapturing</codeph>（1）后。</li>
                     <li>在调用此方法前，建议你调用 <xref keyref="isCameraExposureSupported"/> 方法检查当前摄像头是否支持调整曝光值。</li>
                     <li>该方法调整的是当前正在使用的摄像头的曝光值，即调用 <xref keyref="setCameraCapturerConfiguration"/> 方法时指定的摄像头。</li>
-                </ul>
-            </note>
-            <note props="mac">
-                <ul>
-                    <li>你必须在调用 <codeph>enableVideo</codeph> 方法之后再调用此方法。设置结果在摄像头成功开启后生效，即 SDK 触发 <codeph>rtcEngine:localVideoStateChangedOfState:reason:sourceType:</codeph> 回调并返回本地视频状态为 <codeph>AgoraVideoLocalStateCapturing</codeph>（1）后。</li>
-                    <li>在调用此方法前，建议你调用 <codeph>isCameraExposureSupported</codeph> 方法检查当前摄像头是否支持调整曝光值。</li>
-                    <li>该方法调整的是当前正在使用的摄像头的曝光值，即调用 <codeph>setCameraCapturerConfiguration:</codeph> 方法时指定的摄像头。</li>
                 </ul>
             </note>
         </section>

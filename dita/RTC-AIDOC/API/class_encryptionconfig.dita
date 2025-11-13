@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_encryptionconfig">
     <title>
-        <ph keyref="EncryptionConfig"/>
+    <ph keyref="EncryptionConfig"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">用于配置内置加密参数。</ph>
+    <ph id="shortdesc">用于配置内置加密参数。</ph>
   </shortdesc>
     <refbody>
         <section id="prototype">
@@ -45,7 +45,7 @@
             <parml>
                 <plentry props="cpp">
                     <pt>encryptionMode</pt>
-                    <pd>内置加密模式，详见 <codeph>ENCRYPTION_MODE</codeph>。声网建议使用 <codeph>AES_128_GCM2</codeph> 或 <codeph>AES_256_GCM2</codeph> 模式，这两种模式支持使用加密盐以提升安全性。</pd>
+                    <pd>内置加密模式，详见 <xref keyref="ENCRYPTION_MODE"/>。声网建议使用 <codeph>AES_128_GCM2</codeph> 或 <codeph>AES_256_GCM2</codeph> 模式，这两种模式支持使用加密盐以提升安全性。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>encryptionKey</pt>
@@ -59,10 +59,8 @@
                     <pt>datastreamEncryptionEnabled</pt>
                     <pd>是否启用数据流加密：
                         <ul>
-                            <li>
-                                <codeph>true</codeph>：启用数据流加密。</li>
-                            <li>
-                                <codeph>false</codeph>：（默认）禁用数据流加密。</li>
+                            <li><xref keyref="true"/>：启用数据流加密。</li>
+                            <li><xref keyref="false"/>：（默认）禁用数据流加密。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -78,18 +76,16 @@
                     <pt>encryptionKdfSalt</pt>
                     <pd>用于加密的盐值，长度为 32 字节。声网建议在服务器端使用 OpenSSL 生成该盐值。详见 Media Stream Encryption。</pd>
                 </plentry>
-                <plentry props="android ios">
+                <plentry props="android ios mac">
                     <pt>datastreamEncryptionEnabled</pt>
                     <pd>是否启用数据流加密：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：启用数据流加密。</li>
-                            <li>
-                                <xref keyref="false"/>：（默认）不启用数据流加密。</li>
+                            <li><xref keyref="true"/>：启用数据流加密。</li>
+                            <li><xref keyref="false"/>：（默认）不启用数据流加密。</li>
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>encryptionMode</pt>
                     <pd>内置加密模式，详见 <xref keyref="ENCRYPTION_MODE"/>。声网推荐使用 <codeph>AgoraEncryptionModeAES128GCM2</codeph> 或 <codeph>AgoraEncryptionModeAES256GCM2</codeph> 加密模式。</pd>
                 </plentry>
@@ -100,21 +96,6 @@
                 <plentry props="ios mac">
                     <pt>encryptionKdfSalt</pt>
                     <pd>用于加密的盐值，长度为 32 字节。声网推荐在服务器端使用 OpenSSL 生成该盐值。详见 <codeph>Media Stream Encryption</codeph>。详见 <codeph>NSData</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>encryptionMode</pt>
-                    <pd>内置加密模式，详见 <codeph>AgoraEncryptionMode</codeph>。声网推荐使用 <codeph>AgoraEncryptionModeAES128GCM2</codeph> 或 <codeph>AgoraEncryptionModeAES256GCM2</codeph> 加密模式。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>datastreamEncryptionEnabled</pt>
-                    <pd>是否启用数据流加密：
-                        <ul>
-                            <li>
-                                <codeph>YES</codeph>：启用数据流加密。</li>
-                            <li>
-                                <codeph>NO</codeph>：（默认）不启用数据流加密。</li>
-                        </ul>
-                    </pd>
                 </plentry>
             </parml>
         </section>

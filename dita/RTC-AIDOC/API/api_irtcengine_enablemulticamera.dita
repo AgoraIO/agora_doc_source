@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enablemulticamera">
     <title>
-        <ph keyref="enableMultiCamera"/>
+    <ph keyref="enableMultiCamera"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">启用或关闭多摄像头采集功能。</ph>
+    <ph id="shortdesc">启用或关闭多摄像头采集功能。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -26,11 +26,11 @@
                 <ol>
                     <li>调用该方法启用多摄像头采集。</li>
                     <li>调用 <codeph>startPreview</codeph> 启动本地视频预览。</li>
-                    <li>调用 <codeph>startCameraCapture</codeph>，并设置 <codeph>sourceType</codeph>，以使用第二个摄像头开始采集。</li>
-                    <li>调用 <codeph>joinChannelEx</codeph>，并将 <codeph>publishSecondaryCameraTrack</codeph> 设置为 <codeph>true</codeph>，以发布第二个摄像头采集的视频流。
+                    <li>调用 <xref keyref="startCameraCapture"/>，并设置 <codeph>sourceType</codeph>，以使用第二个摄像头开始采集。</li>
+                    <li>调用 <xref keyref="joinChannelEx"/>，并将 <codeph>publishSecondaryCameraTrack</codeph> 设置为 <xref keyref="true"/>，以发布第二个摄像头采集的视频流。
 若需关闭多摄像头采集，请按以下步骤操作：</li>
-                    <li>调用 <codeph>stopCameraCapture</codeph>。</li>
-                    <li>调用该方法并将 <codeph>enabled</codeph> 设置为 <codeph>false</codeph>。
+                    <li>调用 <xref keyref="stopCameraCapture"/>。</li>
+                    <li>调用该方法并将 <codeph>enabled</codeph> 设置为 <xref keyref="false"/>。
 该方法仅适用于 iOS 平台。
 使用该功能时，请确保系统版本为 13.0 或更高。
 支持多摄像头采集的最低 iOS 设备型号如下：</li>
@@ -85,31 +85,18 @@
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="cpp">
+                <plentry props="cpp ios">
                     <pt>enabled</pt>
                     <pd>是否启用多摄像头视频采集模式：
                         <ul>
-                            <li>
-                                <codeph>true</codeph>：启用多摄像头采集模式，SDK 使用多个摄像头进行视频采集。</li>
-                            <li>
-                                <codeph>false</codeph>：关闭多摄像头采集模式，SDK 使用单个摄像头进行视频采集。</li>
+                            <li><xref keyref="true"/>：启用多摄像头采集模式，SDK 使用多个摄像头进行视频采集。</li>
+                            <li><xref keyref="false"/>：关闭多摄像头采集模式，SDK 使用单个摄像头进行视频采集。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>config</pt>
-                    <pd>第二个摄像头的采集配置，详见 <codeph>CameraCapturerConfiguration</codeph>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>enabled</pt>
-                    <pd>是否启用多摄像头视频采集模式：
-                        <ul>
-                            <li>
-                                <xref keyref="true"/>：启用多摄像头采集模式，SDK 使用多个摄像头进行视频采集。</li>
-                            <li>
-                                <xref keyref="false"/>：关闭多摄像头采集模式，SDK 使用单个摄像头进行视频采集。</li>
-                        </ul>
-                    </pd>
+                    <pd>第二个摄像头的采集配置，详见 <xref keyref="CameraCapturerConfiguration"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>config</pt>

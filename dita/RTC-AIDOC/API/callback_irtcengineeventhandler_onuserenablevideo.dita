@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onuserenablevideo">
     <title>
-        <ph keyref="onUserEnableVideo"/>
+    <ph keyref="onUserEnableVideo"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">远端用户启用或关闭视频模块时触发的回调。</ph>
+    <ph id="shortdesc">远端用户启用或关闭视频模块时触发的回调。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -24,16 +24,14 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">一旦视频模块被关闭，用户只能进行语音通话，无法发送或接收任何视频。该回调在远端用户调用 <codeph>enableVideo</codeph> 或 <codeph>disableVideo</codeph> 时触发。</p>
+            <p props="cpp">一旦视频模块被关闭，用户只能进行语音通话，无法发送或接收任何视频。该回调在远端用户调用 <xref keyref="enableVideo"/> 或 <xref keyref="disableVideo"/> 时触发。</p>
             <p props="android">该回调在远端用户调用 <xref keyref="enableVideo"/> 或 <xref keyref="disableVideo"/> 方法时触发。关闭视频模块后，用户只能进行语音通话，无法发送或接收任何视频。</p>
-            <p props="ios">当远端用户调用 <xref keyref="enableVideo"/> 或 <xref keyref="disableVideo"/> 方法启用或关闭视频模块时，SDK 会触发该回调。一旦视频模块被关闭，用户只能进行语音通话，无法发送或接收任何视频。</p>
-            <p props="mac">当远端用户调用 <codeph>enableVideo</codeph> 或 <codeph>disableVideo</codeph> 方法启用或关闭视频模块时，SDK 会触发该回调。一旦视频模块被关闭，用户只能进行语音通话，无法发送或接收任何视频。</p>
+            <p props="ios mac">当远端用户调用 <xref keyref="enableVideo"/> 或 <xref keyref="disableVideo"/> 方法启用或关闭视频模块时，SDK 会触发该回调。一旦视频模块被关闭，用户只能进行语音通话，无法发送或接收任何视频。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
             <p props="android">该回调在远端用户启用或关闭视频模块时被触发。</p>
-            <p props="ios">该回调在远端用户调用 <xref keyref="enableVideo"/> 或 <xref keyref="disableVideo"/> 方法启用或关闭视频模块时被触发。</p>
-            <p props="mac">该回调在远端用户调用 <codeph>enableVideo</codeph> 或 <codeph>disableVideo</codeph> 方法启用或关闭视频模块时被触发。</p>
+            <p props="ios mac">该回调在远端用户调用 <xref keyref="enableVideo"/> 或 <xref keyref="disableVideo"/> 方法启用或关闭视频模块时被触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
@@ -44,7 +42,7 @@
             <parml>
                 <plentry props="cpp">
                     <pt>connection</pt>
-                    <pd>连接信息。详见 <codeph>RtcConnection</codeph>。</pd>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>remoteUid</pt>
@@ -54,10 +52,8 @@
                     <pt>enabled</pt>
                     <pd>远端用户的视频是否已启用：
                         <ul>
-                            <li>
-                                <codeph>true</codeph>：远端用户已启用视频。</li>
-                            <li>
-                                <codeph>false</codeph>：远端用户已关闭视频。</li>
+                            <li><xref keyref="true"/>：远端用户已启用视频。</li>
+                            <li><xref keyref="false"/>：远端用户已关闭视频。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -69,48 +65,27 @@
                     <pt>enabled</pt>
                     <pd>是否启用视频模块：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：启用视频模块。</li>
-                            <li>
-                                <xref keyref="false"/>：关闭视频模块。</li>
+                            <li><xref keyref="true"/>：启用视频模块。</li>
+                            <li><xref keyref="false"/>：关闭视频模块。</li>
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>engine</pt>
-                    <pd>
-                        <xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+                    <pd><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>enabled</pt>
                     <pd>
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：视频模块已启用。</li>
-                            <li>
-                                <xref keyref="false"/>：视频模块已关闭。</li>
+                            <li><xref keyref="true"/>：视频模块已启用。</li>
+                            <li><xref keyref="false"/>：视频模块已关闭。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="ios mac">
                     <pt>uid</pt>
                     <pd>远端用户 ID。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>engine</pt>
-                    <pd>
-                        <codeph>AgoraRtcEngineKit</codeph> 对象，详见 <codeph>AgoraRtcEngineKit</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>enabled</pt>
-                    <pd>
-                        <ul>
-                            <li>
-                                <codeph>YES</codeph>：视频模块已启用。</li>
-                            <li>
-                                <codeph>NO</codeph>：视频模块已关闭。</li>
-                        </ul>
-                    </pd>
                 </plentry>
             </parml>
         </section>

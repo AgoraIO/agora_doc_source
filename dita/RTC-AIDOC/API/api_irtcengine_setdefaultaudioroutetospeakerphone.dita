@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setdefaultaudioroutetospeakerphone">
     <title>
-        <ph keyref="setDefaultAudioRouteToSpeakerphone"/>
+    <ph keyref="setDefaultAudioRouteToSpeakerphone"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">设置默认音频播放路由。</ph>
+    <ph id="shortdesc">设置默认音频播放路由。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -58,7 +58,7 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="cpp">在加入频道前调用此方法。如果需要在加入频道后更改音频路由，请调用 <codeph>setEnableSpeakerphone</codeph>。</p>
+            <p props="cpp">在加入频道前调用此方法。如果需要在加入频道后更改音频路由，请调用 <xref keyref="setEnableSpeakerphone"/>。</p>
             <p props="android">请在加入频道前调用该方法。如果需要在加入频道后更改音频路由，请调用 <xref keyref="setEnableSpeakerphone"/>。</p>
             <p props="ios mac">该方法需要在加入频道前调用。</p>
         </section>
@@ -68,41 +68,17 @@
         </section>
         <section id="related" deliveryTarget="details">
             <title>相关回调</title>
-            <p props="cpp">成功调用该方法后，SDK 会触发 <codeph>onAudioRoutingChanged</codeph> 回调报告当前的音频路由。</p>
+            <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onAudioRoutingChanged"/> 回调报告当前的音频路由。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="cpp">
+                <plentry props="android cpp ios mac">
                     <pt>defaultToSpeaker</pt>
                     <pd>是否将扬声器设置为默认音频路由：
                         <ul>
-                            <li>
-                                <codeph>true</codeph>：将扬声器设置为默认音频路由。</li>
-                            <li>
-                                <codeph>false</codeph>：将听筒设置为默认音频路由。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="android ios">
-                    <pt>defaultToSpeaker</pt>
-                    <pd>是否将扬声器设置为默认音频路由：
-                        <ul>
-                            <li>
-                                <xref keyref="true"/>：将扬声器设置为默认音频路由。</li>
-                            <li>
-                                <xref keyref="false"/>：将听筒设置为默认音频路由。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>defaultToSpeaker</pt>
-                    <pd>是否将扬声器设置为默认音频路由：
-                        <ul>
-                            <li>
-                                <codeph>YES</codeph>：将扬声器设置为默认音频路由。</li>
-                            <li>
-                                <codeph>NO</codeph>：将听筒设置为默认音频路由。</li>
+                            <li><xref keyref="true"/>：将扬声器设置为默认音频路由。</li>
+                            <li><xref keyref="false"/>：将听筒设置为默认音频路由。</li>
                         </ul>
                     </pd>
                 </plentry>
