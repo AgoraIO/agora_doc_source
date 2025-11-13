@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_iaudiospectrumobserver_onremoteaudiospectrum">
     <title>
-        <ph keyref="onRemoteAudioSpectrum"/>
+    <ph keyref="onRemoteAudioSpectrum"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">远端音频频谱回调。</ph>
+    <ph id="shortdesc">远端音频频谱回调。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -24,10 +24,9 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">成功调用 <codeph>registerAudioSpectrumObserver</codeph> 实现 <codeph>onRemoteAudioSpectrum</codeph> 回调，并调用 <codeph>enableAudioSpectrumMonitor</codeph> 启用音频频谱监测后，SDK 会按照你设置的时间间隔触发该回调，报告接收到的远端音频数据频谱。</p>
+            <p props="cpp">成功调用 <xref keyref="registerAudioSpectrumObserver"/> 实现 <xref keyref="onRemoteAudioSpectrum"/> 回调，并调用 <xref keyref="enableAudioSpectrumMonitor"/> 启用音频频谱监测后，SDK 会按照你设置的时间间隔触发该回调，报告接收到的远端音频数据频谱。</p>
             <p props="android">成功调用 <xref keyref="registerAudioSpectrumObserver"/> 并调用 <xref keyref="enableAudioSpectrumMonitor"/> 启用音频频谱监测后，SDK 会按照你设置的时间间隔触发该回调。</p>
-            <p props="ios">你调用 <xref keyref="registerAudioSpectrumObserver"/> 注册 <xref keyref="IAudioSpectrumObserver"/> 协议并实现 <xref keyref="onRemoteAudioSpectrum"/> 回调，同时调用 <xref keyref="enableAudioSpectrumMonitor"/> 启用音频频谱监测后，该回调会按照设置的时间间隔触发，用于报告接收到的远端音频频谱数据。</p>
-            <p props="mac">你调用 <codeph>registerAudioSpectrumDelegate:</codeph> 注册 <codeph>AgoraAudioSpectrumDelegate</codeph> 协议并实现 <codeph>onRemoteAudioSpectrum:</codeph> 回调，同时调用 <codeph>enableAudioSpectrumMonitor:</codeph> 启用音频频谱监测后，该回调会按照设置的时间间隔触发，用于报告接收到的远端音频频谱数据。</p>
+            <p props="ios mac">你调用 <xref keyref="registerAudioSpectrumObserver"/> 注册 <xref keyref="IAudioSpectrumObserver"/> 协议并实现 <xref keyref="onRemoteAudioSpectrum"/> 回调，同时调用 <xref keyref="enableAudioSpectrumMonitor"/> 启用音频频谱监测后，该回调会按照设置的时间间隔触发，用于报告接收到的远端音频频谱数据。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
@@ -44,7 +43,7 @@
             <parml>
                 <plentry props="cpp">
                     <pt>spectrums</pt>
-                    <pd>远端用户的音频频谱信息。数组长度为 SDK 监测到的远端用户数量。如果该数组为 <codeph>NULL</codeph>，表示未检测到远端用户的音频频谱。详见 <codeph>UserAudioSpectrumInfo</codeph>。</pd>
+                    <pd>远端用户的音频频谱信息。数组长度为 SDK 监测到的远端用户数量。如果该数组为 <xref keyref="NULL"/>，表示未检测到远端用户的音频频谱。详见 <xref keyref="UserAudioSpectrumInfo"/>。</pd>
                 </plentry>
                 <plentry props="android cpp">
                     <pt>spectrumNumber</pt>
@@ -54,48 +53,24 @@
                     <pt>userAudioSpectrumInfos</pt>
                     <pd>远端用户的音频频谱信息。数组长度为 SDK 监测到的远端用户数量。如果该数组为 <xref keyref="NULL"/>，表示未检测到远端用户的音频频谱。详见 <xref keyref="UserAudioSpectrumInfo"/>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>AudioSpectrumInfo</pt>
                     <pd>远端用户的音频频谱信息。数组的数量为 SDK 监测到的远端用户数量。若该数组为 <xref keyref="NULL"/>，表示未检测到远端用户的音频频谱。详见 <xref keyref="UserAudioSpectrumInfo"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>AudioSpectrumInfo</pt>
-                    <pd>远端用户的音频频谱信息。数组的数量为 SDK 监测到的远端用户数量。若该数组为 <codeph>nil</codeph>，表示未检测到远端用户的音频频谱。详见 <codeph>AgoraAudioSpectrumInfo</codeph>。</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="cpp">
+            <p props="android cpp">
                 <ul>
-                    <li>
-                        <codeph>true</codeph>：接收到频谱数据。</li>
-                    <li>
-                        <codeph>false</codeph>：未接收到频谱数据。</li>
+                    <li><xref keyref="true"/>：接收到频谱数据。</li>
+                    <li><xref keyref="false"/>：未接收到频谱数据。</li>
                 </ul>
             </p>
-            <p props="android">
+            <p props="ios mac">
                 <ul>
-                    <li>
-                        <xref keyref="true"/>：接收到频谱数据。</li>
-                    <li>
-                        <xref keyref="false"/>：未接收到频谱数据。</li>
-                </ul>
-            </p>
-            <p props="ios">
-                <ul>
-                    <li>
-                        <xref keyref="true"/>：已接收到频谱数据。</li>
-                    <li>
-                        <xref keyref="false"/>：未接收到频谱数据。</li>
-                </ul>
-            </p>
-            <p props="mac">
-                <ul>
-                    <li>
-                        <codeph>YES</codeph>：已接收到频谱数据。</li>
-                    <li>
-                        <codeph>NO</codeph>：未接收到频谱数据。</li>
+                    <li><xref keyref="true"/>：已接收到频谱数据。</li>
+                    <li><xref keyref="false"/>：未接收到频谱数据。</li>
                 </ul>
             </p>
         </section>

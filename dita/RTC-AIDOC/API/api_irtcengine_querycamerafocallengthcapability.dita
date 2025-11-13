@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_querycamerafocallengthcapability">
     <title>
-        <ph keyref="queryCameraFocalLengthCapability"/>
+    <ph keyref="queryCameraFocalLengthCapability"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">查询摄像头支持的焦距能力。</ph>
+    <ph id="shortdesc">查询摄像头支持的焦距能力。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -24,10 +24,9 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">如果你希望在视频采集中启用广角或超广角模式，建议先调用该方法检查设备是否支持所需的焦距能力。然后根据查询结果调用 <codeph>setCameraCapturerConfiguration</codeph> 方法调整摄像头的焦距配置，以获得最佳的视频采集效果。</p>
+            <p props="cpp">如果你希望在视频采集中启用广角或超广角模式，建议先调用该方法检查设备是否支持所需的焦距能力。然后根据查询结果调用 <xref keyref="setCameraCapturerConfiguration"/> 方法调整摄像头的焦距配置，以获得最佳的视频采集效果。</p>
             <p props="android">建议在启用广角或超广角模式进行视频采集前，调用该方法检查设备是否支持所需的焦距能力。根据查询结果调用 <xref keyref="setCameraCapturerConfiguration"/> 方法调整摄像头的焦距配置，以确保最佳的视频采集性能。</p>
-            <p props="ios">如果你希望在视频采集中启用广角或超广角模式，建议你首先调用 <xref keyref="queryCameraFocalLengthCapability"/> 方法检查设备是否支持所需的焦距能力。然后，根据查询结果调用 <xref keyref="setCameraCapturerConfiguration"/> 方法调整摄像头的焦距配置，以确保最佳的视频采集性能。</p>
-            <p props="mac">如果你希望在视频采集中启用广角或超广角模式，建议你首先调用 <codeph>queryCameraFocalLengthCapability</codeph> 方法检查设备是否支持所需的焦距能力。然后，根据查询结果调用 <codeph>setCameraCapturerConfiguration:</codeph> 方法调整摄像头的焦距配置，以确保最佳的视频采集性能。</p>
+            <p props="ios mac">如果你希望在视频采集中启用广角或超广角模式，建议你首先调用 <xref keyref="queryCameraFocalLengthCapability"/> 方法检查设备是否支持所需的焦距能力。然后，根据查询结果调用 <xref keyref="setCameraCapturerConfiguration"/> 方法调整摄像头的焦距配置，以确保最佳的视频采集性能。</p>
             <note props="cpp">该方法仅适用于 Android 和 iOS 平台。</note>
         </section>
         <section id="timing" deliveryTarget="details">
@@ -43,7 +42,7 @@
             <parml>
                 <plentry props="cpp">
                     <pt>focalLengthInfos</pt>
-                    <pd>输入和输出参数，表示 <codeph>FocalLengthInfo</codeph> 对象数组的指针。方法执行后，填充查询到的焦距信息。详见 <codeph>FocalLengthInfo</codeph>。</pd>
+                    <pd>输入和输出参数，表示 <xref keyref="FocalLengthInfo"/> 对象数组的指针。方法执行后，填充查询到的焦距信息。详见 <xref keyref="FocalLengthInfo"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>size</pt>
@@ -65,16 +64,10 @@
                     <li>方法调用失败，返回空数组。</li>
                 </ul>
             </p>
-            <p props="ios">
+            <p props="ios mac">
                 <ul>
                     <li>方法调用成功，返回一个 <xref keyref="FocalLengthInfo"/> 对象数组，包含摄像头的方向和焦距类型，详见 <xref keyref="FocalLengthInfo"/>。</li>
                     <li>方法调用失败，返回 <xref keyref="NULL"/>。</li>
-                </ul>
-            </p>
-            <p props="mac">
-                <ul>
-                    <li>方法调用成功，返回一个 <codeph>AgoraFocalLengthInfo</codeph> 对象数组，包含摄像头的方向和焦距类型，详见 <codeph>AgoraFocalLengthInfo</codeph>。</li>
-                    <li>方法调用失败，返回 <codeph>nil</codeph>。</li>
                 </ul>
             </p>
         </section>

@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setsimulcastconfig">
     <title>
-        <ph keyref="setSimulcastConfig"/>
+    <ph keyref="setSimulcastConfig"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">设置不同分辨率的视频流配置。</ph>
+    <ph id="shortdesc">设置不同分辨率的视频流配置。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -30,10 +30,9 @@
                     <dd>自 v4.6.0 版本新增。</dd>
                 </dlentry>
             </dl>
-            <p props="cpp">你可以调用此方法为同一个视频源设置不同分辨率的视频流。订阅端可以调用 <codeph>setRemoteVideoStreamType</codeph> 选择接收的视频流层级。主播最多可以发布四层视频流：一层主流（最高分辨率）和三层不同质量等级的附加流。</p>
+            <p props="cpp">你可以调用此方法为同一个视频源设置不同分辨率的视频流。订阅端可以调用 <xref keyref="setRemoteVideoStreamType"/> 选择接收的视频流层级。主播最多可以发布四层视频流：一层主流（最高分辨率）和三层不同质量等级的附加流。</p>
             <p props="android">你可以调用该方法为同一个视频源设置多层不同分辨率的视频流。订阅端可以调用 <codeph>setRemoteVideoStreamType</codeph> 选择接收的流层级。主播最多可以发布四层视频流：一层主流（最高分辨率）和三层不同质量等级的附加流。</p>
-            <p props="ios">你可以调用此方法为同一个视频源设置不同分辨率的视频流。订阅端可以调用 <xref keyref="setRemoteVideoStreamType"/> 选择接收哪一层视频流。主播最多可以发布四层视频流：一层主流（最高分辨率）和三层不同质量的附加流。</p>
-            <p props="mac">你可以调用此方法为同一个视频源设置不同分辨率的视频流。订阅端可以调用 <codeph>setRemoteVideoStream:type:</codeph> 选择接收哪一层视频流。主播最多可以发布四层视频流：一层主流（最高分辨率）和三层不同质量的附加流。</p>
+            <p props="ios mac">你可以调用此方法为同一个视频源设置不同分辨率的视频流。订阅端可以调用 <xref keyref="setRemoteVideoStreamType"/> 选择接收哪一层视频流。主播最多可以发布四层视频流：一层主流（最高分辨率）和三层不同质量的附加流。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -48,19 +47,15 @@
             <parml>
                 <plentry props="cpp">
                     <pt>simulcastConfig</pt>
-                    <pd>视频流配置，包含从 <codeph>STREAM_LAYER_1</codeph> 到 <codeph>STREAM_LOW</codeph> 的七个层级，最多可同时启用三层。详见 <codeph>SimulcastConfig</codeph>。</pd>
+                    <pd>视频流配置，包含从 <codeph>STREAM_LAYER_1</codeph> 到 <codeph>STREAM_LOW</codeph> 的七个层级，最多可同时启用三层。详见 <xref keyref="SimulcastConfig"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>simulcastConfig</pt>
                     <pd>不同质量层级的视频流配置。详见 <xref keyref="SimulcastConfig"/>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>simulcastConfig</pt>
                     <pd>不同质量层级的视频流配置。该配置包含七个层级，从 <codeph>AgoraStreamLayer1</codeph> 到 <codeph>AgoraStreamLow</codeph>，同时最多可启用三层。详见 <xref keyref="SimulcastConfig"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>simulcastConfig</pt>
-                    <pd>不同质量层级的视频流配置。该配置包含七个层级，从 <codeph>AgoraStreamLayer1</codeph> 到 <codeph>AgoraStreamLow</codeph>，同时最多可启用三层。详见 <codeph>AgoraSimulcastConfig</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

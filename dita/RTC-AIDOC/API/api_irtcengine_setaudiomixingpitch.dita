@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setaudiomixingpitch">
     <title>
-        <ph keyref="setAudioMixingPitch"/>
+    <ph keyref="setAudioMixingPitch"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">设置本地音乐文件的音调。</ph>
+    <ph id="shortdesc">设置本地音乐文件的音调。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -24,13 +24,13 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">你需要在调用 <codeph>startAudioMixing</codeph> 并收到 <codeph>onAudioMixingStateChanged</codeph> 回调后调用此方法。</p>
+            <p props="cpp">你需要在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/> 回调后调用此方法。</p>
             <p props="android">当本地音乐文件与本地人声混音时，可调用该方法单独设置本地音乐文件的音调。</p>
             <p props="ios mac">调用该方法可在本地音乐文件与本地人声混音时，仅调整本地音乐文件的音调。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="cpp">你需要在调用 <codeph>startAudioMixing</codeph> 并收到 <codeph>onAudioMixingStateChanged</codeph> 回调后调用此方法。</p>
+            <p props="cpp">你需要在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/> 回调后调用此方法。</p>
             <p props="android">你需要在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/> 回调为 <codeph>AUDIO_MIXING_STATE_PLAYING</codeph> 后调用该方法。</p>
             <p props="ios mac">你需要在调用 <codeph>startAudioMixing:loopback:cycle:startPos:</codeph> 并收到 <codeph>audioMixingStateChanged:reasonCode:</codeph> 回调（状态为 <codeph>AgoraAudioMixingStateTypePlaying</codeph>）后调用该方法。</p>
         </section>

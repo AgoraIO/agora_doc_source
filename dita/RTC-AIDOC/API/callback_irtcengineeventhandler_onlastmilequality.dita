@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onlastmilequality">
     <title>
-        <ph keyref="onLastmileQuality"/>
+    <ph keyref="onLastmileQuality"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">报告本地用户的 last-mile 网络质量回调。</ph>
+    <ph id="shortdesc">报告本地用户的 last-mile 网络质量回调。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -24,16 +24,14 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">该回调在加入频道前触发，用于报告本地用户与声网边缘服务器之间连接的网络质量（即 last-mile 网络状况）。调用 <codeph>startLastmileProbeTest</codeph> 后，SDK 会触发该回调。</p>
+            <p props="cpp">该回调在加入频道前触发，用于报告本地用户与声网边缘服务器之间连接的网络质量（即 last-mile 网络状况）。调用 <xref keyref="startLastmileProbeTest"/> 后，SDK 会触发该回调。</p>
             <p props="android">该回调在用户加入频道前触发，用于上报本地用户与声网边缘服务器之间连接的 last-mile 网络质量。在调用 <xref keyref="startLastmileProbeTest"/> 后，SDK 会触发该回调。</p>
-            <p props="ios">该回调在用户加入频道前，由 SDK 在调用 <xref keyref="startLastmileProbeTest"/> 后触发一次，用于上报本地用户的 last-mile 网络状况。last-mile 指的是本地设备与声网边缘服务器之间的连接。</p>
-            <p props="mac">该回调在用户加入频道前，由 SDK 在调用 <codeph>startLastmileProbeTest:</codeph> 后触发一次，用于上报本地用户的 last-mile 网络状况。last-mile 指的是本地设备与声网边缘服务器之间的连接。</p>
+            <p props="ios mac">该回调在用户加入频道前，由 SDK 在调用 <xref keyref="startLastmileProbeTest"/> 后触发一次，用于上报本地用户的 last-mile 网络状况。last-mile 指的是本地设备与声网边缘服务器之间的连接。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
             <p props="android">该回调在调用 <xref keyref="startLastmileProbeTest"/> 方法后被触发。</p>
-            <p props="ios">该回调在调用 <xref keyref="startLastmileProbeTest"/> 后被触发，用于上报本地用户的 last-mile 网络状况。</p>
-            <p props="mac">该回调在调用 <codeph>startLastmileProbeTest:</codeph> 后被触发，用于上报本地用户的 last-mile 网络状况。</p>
+            <p props="ios mac">该回调在调用 <xref keyref="startLastmileProbeTest"/> 后被触发，用于上报本地用户的 last-mile 网络状况。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
@@ -42,44 +40,28 @@
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="cpp">
+                <plentry props="cpp ios">
                     <pt>quality</pt>
-                    <pd>last-mile 网络质量，详见 <codeph>QUALITY_TYPE</codeph>。</pd>
+                    <pd>last-mile 网络质量，详见 <xref keyref="QUALITY_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>quality</pt>
                     <pd>last-mile 网络质量：
                         <ul>
-                            <li>
-                                <codeph>QUALITY_UNKNOWN</codeph> (0)：网络质量未知。</li>
-                            <li>
-                                <codeph>QUALITY_EXCELLENT</codeph> (1)：网络质量极好。</li>
-                            <li>
-                                <codeph>QUALITY_GOOD</codeph> (2)：网络质量较好，但码率可能略低于极好。</li>
-                            <li>
-                                <codeph>QUALITY_POOR</codeph> (3)：通信质量略有下降。</li>
-                            <li>
-                                <codeph>QUALITY_BAD</codeph> (4)：无法流畅通信。</li>
-                            <li>
-                                <codeph>QUALITY_VBAD</codeph> (5)：网络质量极差，几乎无法通信。</li>
-                            <li>
-                                <codeph>QUALITY_DOWN</codeph> (6)：网络连接已断，无法通信。</li>
-                            <li>
-                                <codeph>QUALITY_DETECTING</codeph> (8)：正在进行 last-mile 探测。</li>
+                            <li><codeph>QUALITY_UNKNOWN</codeph> (0)：网络质量未知。</li>
+                            <li><codeph>QUALITY_EXCELLENT</codeph> (1)：网络质量极好。</li>
+                            <li><codeph>QUALITY_GOOD</codeph> (2)：网络质量较好，但码率可能略低于极好。</li>
+                            <li><codeph>QUALITY_POOR</codeph> (3)：通信质量略有下降。</li>
+                            <li><codeph>QUALITY_BAD</codeph> (4)：无法流畅通信。</li>
+                            <li><codeph>QUALITY_VBAD</codeph> (5)：网络质量极差，几乎无法通信。</li>
+                            <li><codeph>QUALITY_DOWN</codeph> (6)：网络连接已断，无法通信。</li>
+                            <li><codeph>QUALITY_DETECTING</codeph> (8)：正在进行 last-mile 探测。</li>
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>engine</pt>
                     <pd>引擎对象，详见 <xref keyref="IRtcEngine"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>quality</pt>
-                    <pd>last-mile 网络质量，详见 <xref keyref="QUALITY_TYPE"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>engine</pt>
-                    <pd>引擎对象，详见 <codeph>AgoraRtcEngineKit</codeph>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>quality</pt>

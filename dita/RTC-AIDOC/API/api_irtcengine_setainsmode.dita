@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setainsmode">
     <title>
-        <ph keyref="setAINSMode"/>
+    <ph keyref="setAINSMode"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">设置是否启用 AI 降噪功能，并指定降噪模式。</ph>
+    <ph id="shortdesc">设置是否启用 AI 降噪功能，并指定降噪模式。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -65,7 +65,7 @@
             </p>
             <note props="cpp">
                 <ul>
-                    <li>此方法依赖于 AI 降噪动态库 <codeph>libagora_ai_noise_suppression_extension.dll</codeph>。如果该动态库被删除，则无法启用该功能。</li>
+                    <li>此方法依赖于 AI 降噪动态库 <xref keyref="noisesuppression"/>。如果该动态库被删除，则无法启用该功能。</li>
                     <li>声网不建议在运行 Android 6.0 及以下版本的设备上启用此功能。</li>
                 </ul>
             </note>
@@ -75,8 +75,7 @@
                     <li>声网不建议在运行 Android 6.0 及以下版本的设备上启用此功能。</li>
                 </ul>
             </note>
-            <note props="ios">该方法依赖 AI 降噪动态库 <xref keyref="noisesuppression"/>。如果该动态库被删除，则无法启用该功能。</note>
-            <note props="mac">该方法依赖 AI 降噪动态库 <codeph>AgoraAiNoiseSuppressionExtension.xcframework</codeph>。如果该动态库被删除，则无法启用该功能。</note>
+            <note props="ios mac">该方法依赖 AI 降噪动态库 <xref keyref="noisesuppression"/>。如果该动态库被删除，则无法启用该功能。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -93,25 +92,21 @@
                     <pt>enabled</pt>
                     <pd>是否启用 AI 降噪功能：
                         <ul>
-                            <li>
-                                <codeph>true</codeph>：启用 AI 降噪。</li>
-                            <li>
-                                <codeph>false</codeph>：（默认）关闭 AI 降噪。</li>
+                            <li><xref keyref="true"/>：启用 AI 降噪。</li>
+                            <li><xref keyref="false"/>：（默认）关闭 AI 降噪。</li>
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="cpp mac">
+                <plentry props="cpp ios">
                     <pt>mode</pt>
-                    <pd>AI 降噪模式，详见 <codeph>AUDIO_AINS_MODE</codeph>。</pd>
+                    <pd>AI 降噪模式，详见 <xref keyref="AUDIO_AINS_MODE"/>。</pd>
                 </plentry>
-                <plentry props="android ios">
+                <plentry props="android ios mac">
                     <pt>enabled</pt>
                     <pd>是否启用 AI 降噪功能：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：启用 AI 降噪功能。</li>
-                            <li>
-                                <xref keyref="false"/>：（默认）关闭 AI 降噪功能。</li>
+                            <li><xref keyref="true"/>：启用 AI 降噪功能。</li>
+                            <li><xref keyref="false"/>：（默认）关闭 AI 降噪功能。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -125,20 +120,9 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
-                    <pt>mode</pt>
-                    <pd>AI 降噪模式，详见 <xref keyref="AUDIO_AINS_MODE"/>。</pd>
-                </plentry>
                 <plentry props="mac">
-                    <pt>enabled</pt>
-                    <pd>是否启用 AI 降噪功能：
-                        <ul>
-                            <li>
-                                <codeph>YES</codeph>：启用 AI 降噪功能。</li>
-                            <li>
-                                <codeph>NO</codeph>：（默认）关闭 AI 降噪功能。</li>
-                        </ul>
-                    </pd>
+                    <pt>mode</pt>
+                    <pd>AI 降噪模式，详见 <codeph>AUDIO_AINS_MODE</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

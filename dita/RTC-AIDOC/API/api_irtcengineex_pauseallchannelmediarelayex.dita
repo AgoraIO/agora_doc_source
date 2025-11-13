@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_pauseallchannelmediarelayex">
     <title>
-        <ph keyref="pauseAllChannelMediaRelayEx"/>
+    <ph keyref="pauseAllChannelMediaRelayEx"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">暂停向所有目标频道的跨频道媒体流转发。</ph>
+    <ph id="shortdesc">暂停向所有目标频道的跨频道媒体流转发。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -30,10 +30,9 @@
                     <dd>自 v4.2.0 版本废弃，请改用 `startOrUpdateChannelMediaRelayEx`。</dd>
                 </dlentry>
             </dl>
-            <p props="cpp">你可以在开始跨频道媒体流转发后调用该方法，暂停向所有目标频道转发媒体流。如需恢复转发，请调用 <codeph>resumeAllChannelMediaRelay</codeph> 方法。</p>
-            <p props="android ios">你可以调用该方法暂停向所有目标频道转发媒体流。如需恢复转发，请调用 <xref keyref="resumeAllChannelMediaRelay"/> 方法。</p>
-            <p props="mac">你可以调用该方法暂停向所有目标频道转发媒体流。如需恢复转发，请调用 <codeph>resumeAllChannelMediaRelay</codeph> 方法。</p>
-            <note props="cpp">请在调用 <codeph>startOrUpdateChannelMediaRelayEx</codeph> 方法后调用该方法。</note>
+            <p props="cpp">你可以在开始跨频道媒体流转发后调用该方法，暂停向所有目标频道转发媒体流。如需恢复转发，请调用 <xref keyref="resumeAllChannelMediaRelay"/> 方法。</p>
+            <p props="android ios mac">你可以调用该方法暂停向所有目标频道转发媒体流。如需恢复转发，请调用 <xref keyref="resumeAllChannelMediaRelay"/> 方法。</p>
+            <note props="cpp">请在调用 <xref keyref="startOrUpdateChannelMediaRelayEx"/> 方法后调用该方法。</note>
             <note props="android">请在调用 <xref keyref="startOrUpdateChannelMediaRelayEx"/> 方法后调用此方法。</note>
             <note props="ios mac">请在调用 <codeph>startOrUpdateChannelMediaRelayEx</codeph> 方法之后调用该方法。</note>
         </section>
@@ -48,17 +47,9 @@
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="cpp">
-                    <pt>connection</pt>
-                    <pd>连接信息。详见 <codeph>RtcConnection</codeph>。</pd>
-                </plentry>
-                <plentry props="android ios">
+                <plentry props="android cpp ios mac">
                     <pt>connection</pt>
                     <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>connection</pt>
-                    <pd>连接信息。详见 <codeph>AgoraRtcConnection</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

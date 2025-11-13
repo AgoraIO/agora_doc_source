@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onuserenablelocalvideo">
     <title>
-        <ph keyref="onUserEnableLocalVideo"/>
+    <ph keyref="onUserEnableLocalVideo"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">远端用户启用或关闭本地视频采集功能回调。</ph>
+    <ph id="shortdesc">远端用户启用或关闭本地视频采集功能回调。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -38,15 +38,13 @@
                     <dd>自 v4.5.0 版本废弃，请改用 `remoteVideoStateChangedOfUid:state:reason:`。</dd>
                 </dlentry>
             </dl>
-            <p props="cpp">当远端用户调用 <codeph>enableLocalVideo</codeph> 恢复或停止视频采集时，SDK 会触发该回调。</p>
+            <p props="cpp">当远端用户调用 <xref keyref="enableLocalVideo"/> 恢复或停止视频采集时，SDK 会触发该回调。</p>
             <p props="android">该回调已废弃，建议使用 <xref keyref="onRemoteVideoStateChanged"/> 回调，并结合以下参数：<codeph>REMOTE_VIDEO_STATE_STOPPED</codeph> 和 <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED</codeph>，或 <codeph>REMOTE_VIDEO_STATE_DECODING</codeph> 和 <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED</codeph>。</p>
-            <p props="ios">当远端用户调用 <xref keyref="enableLocalVideo"/> 方法启用或关闭本地视频采集功能时，SDK 会触发该回调。</p>
-            <p props="mac">当远端用户调用 <codeph>enableLocalVideo:</codeph> 方法启用或关闭本地视频采集功能时，SDK 会触发该回调。</p>
+            <p props="ios mac">当远端用户调用 <xref keyref="enableLocalVideo"/> 方法启用或关闭本地视频采集功能时，SDK 会触发该回调。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
-            <p props="android ios">该回调在远端用户调用 <xref keyref="enableLocalVideo"/> 启用或关闭本地视频采集功能时被触发。</p>
-            <p props="mac">该回调在远端用户调用 <codeph>enableLocalVideo:</codeph> 启用或关闭本地视频采集功能时被触发。</p>
+            <p props="android ios mac">该回调在远端用户调用 <xref keyref="enableLocalVideo"/> 启用或关闭本地视频采集功能时被触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
@@ -57,8 +55,7 @@
             <parml>
                 <plentry props="cpp">
                     <pt>connection</pt>
-                    <pd>
-                        <codeph>RtcConnection</codeph> 对象。详见 <codeph>RtcConnection</codeph>。</pd>
+                    <pd><xref keyref="RtcConnection"/> 对象。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>remoteUid</pt>
@@ -68,10 +65,8 @@
                     <pt>enabled</pt>
                     <pd>指定的远端用户是否启用本地视频采集：
                         <ul>
-                            <li>
-                                <codeph>true</codeph>：该远端用户已启用本地视频采集。</li>
-                            <li>
-                                <codeph>false</codeph>：该远端用户已关闭本地视频采集。</li>
+                            <li><xref keyref="true"/>：该远端用户已启用本地视频采集。</li>
+                            <li><xref keyref="false"/>：该远端用户已关闭本地视频采集。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -83,42 +78,21 @@
                     <pt>enabled</pt>
                     <pd>是否启用本地视频采集功能：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：启用视频模块，频道内其他用户可以看到该远端用户的视频。</li>
-                            <li>
-                                <xref keyref="false"/>：关闭视频模块，频道内其他用户无法接收该远端用户的视频流，但该远端用户仍可接收其他用户的视频流。</li>
+                            <li><xref keyref="true"/>：启用视频模块，频道内其他用户可以看到该远端用户的视频。</li>
+                            <li><xref keyref="false"/>：关闭视频模块，频道内其他用户无法接收该远端用户的视频流，但该远端用户仍可接收其他用户的视频流。</li>
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>engine</pt>
-                    <pd>
-                        <xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+                    <pd><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>enabled</pt>
                     <pd>指定的远端用户是否启用本地视频采集功能：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：启用视频模块，频道内其他用户可以看到该远端用户的视频。</li>
-                            <li>
-                                <xref keyref="false"/>：关闭视频模块，频道内其他用户无法接收该远端用户的视频流，但该远端用户仍可接收其他用户的视频流。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>engine</pt>
-                    <pd>
-                        <codeph>AgoraRtcEngineKit</codeph> 对象，详见 <codeph>AgoraRtcEngineKit</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>enabled</pt>
-                    <pd>指定的远端用户是否启用本地视频采集功能：
-                        <ul>
-                            <li>
-                                <codeph>YES</codeph>：启用视频模块，频道内其他用户可以看到该远端用户的视频。</li>
-                            <li>
-                                <codeph>NO</codeph>：关闭视频模块，频道内其他用户无法接收该远端用户的视频流，但该远端用户仍可接收其他用户的视频流。</li>
+                            <li><xref keyref="true"/>：启用视频模块，频道内其他用户可以看到该远端用户的视频。</li>
+                            <li><xref keyref="false"/>：关闭视频模块，频道内其他用户无法接收该远端用户的视频流，但该远端用户仍可接收其他用户的视频流。</li>
                         </ul>
                     </pd>
                 </plentry>

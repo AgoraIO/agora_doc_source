@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_imediaplayersourceobserver_onplayercachestats">
     <title>
-        <ph keyref="onPlayerCacheStats"/>
+    <ph keyref="onPlayerCacheStats"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">上报正在缓存的媒体文件的统计信息。</ph>
+    <ph id="shortdesc">上报正在缓存的媒体文件的统计信息。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -24,14 +24,13 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">调用 <codeph>openWithMediaSource</codeph> 方法并将 <codeph>enableCache</codeph> 设置为 <codeph>true</codeph> 后，SDK 每秒触发一次该回调，上报正在缓存的媒体文件的统计信息。</p>
+            <p props="cpp">调用 <xref keyref="openWithMediaSource"/> 方法并将 <codeph>enableCache</codeph> 设置为 <xref keyref="true"/> 后，SDK 每秒触发一次该回调，上报正在缓存的媒体文件的统计信息。</p>
             <p props="android">调用 <xref keyref="openWithMediaSource"/> 方法并将 <codeph>enableCache</codeph> 设置为 <xref keyref="true"/> 后，SDK 每秒触发一次该回调。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
             <p props="android">该回调在调用 <xref keyref="openWithMediaSource"/> 方法并将 <codeph>enableCache</codeph> 设置为 <xref keyref="true"/> 后，每秒触发一次。</p>
-            <p props="ios">该回调在你调用 <xref keyref="openWithMediaSource"/> 方法并将 <codeph>enableCache</codeph> 设置为 <xref keyref="true"/> 后，每秒触发一次。</p>
-            <p props="mac">该回调在你调用 <codeph>openWithMediaSource:</codeph> 方法并将 <codeph>enableCache</codeph> 设置为 <codeph>YES</codeph> 后，每秒触发一次。</p>
+            <p props="ios mac">该回调在你调用 <xref keyref="openWithMediaSource"/> 方法并将 <codeph>enableCache</codeph> 设置为 <xref keyref="true"/> 后，每秒触发一次。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
@@ -42,29 +41,19 @@
             <parml>
                 <plentry props="cpp">
                     <pt>stats</pt>
-                    <pd>媒体文件缓存统计信息。详见 <codeph>CacheStatistics</codeph>。</pd>
+                    <pd>媒体文件缓存统计信息。详见 <xref keyref="CacheStatistics"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>stats</pt>
                     <pd>正在缓存的媒体文件的统计信息。详见 <xref keyref="CacheStatistics"/>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>playerKit</pt>
-                    <pd>
-                        <xref keyref="IMediaPlayer"/> 实例。详见 <xref keyref="IMediaPlayer"/>。</pd>
+                    <pd><xref keyref="IMediaPlayer"/> 实例。详见 <xref keyref="IMediaPlayer"/>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>info</pt>
                     <pd>正在缓存的媒体文件的统计信息。详见 <xref keyref="CacheStatistics"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>playerKit</pt>
-                    <pd>
-                        <codeph>AgoraRtcMediaPlayerProtocol</codeph> 实例。详见 <codeph>AgoraRtcMediaPlayerProtocol</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>info</pt>
-                    <pd>正在缓存的媒体文件的统计信息。详见 <codeph>AgoraMediaPlayerCacheStatistics</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

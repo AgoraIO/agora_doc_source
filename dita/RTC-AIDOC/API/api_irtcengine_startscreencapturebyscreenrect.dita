@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startscreencapturebyscreenrect">
     <title>
-        <ph keyref="startScreenCaptureByScreenRect"/>
+    <ph keyref="startScreenCaptureByScreenRect"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">通过指定屏幕区域采集整个屏幕或部分屏幕。</ph>
+    <ph id="shortdesc">通过指定屏幕区域采集整个屏幕或部分屏幕。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -29,8 +29,8 @@
             </dl>
             <p props="cpp">你可以通过该方法共享整个屏幕或部分屏幕，需要指定要共享的屏幕区域。你可以在加入频道前或加入频道后调用该方法：
                 <ul>
-                    <li>加入频道前调用该方法，然后调用 <codeph>joinChannel</codeph> 加入频道，并将 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 设置为 <codeph>true</codeph>，以开始屏幕共享。</li>
-                    <li>加入频道后调用该方法，然后调用 <codeph>updateChannelMediaOptions</codeph>，并将 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 设置为 <codeph>true</codeph>，以开始屏幕共享。</li>
+                    <li>加入频道前调用该方法，然后调用 <codeph>joinChannel</codeph> 加入频道，并将 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 设置为 <xref keyref="true"/>，以开始屏幕共享。</li>
+                    <li>加入频道后调用该方法，然后调用 <xref keyref="updateChannelMediaOptions"/>，并将 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 设置为 <xref keyref="true"/>，以开始屏幕共享。</li>
                 </ul>
             </p>
             <note props="cpp">该方法仅适用于 Windows 平台。</note>
@@ -48,15 +48,15 @@
             <parml>
                 <plentry props="cpp">
                     <pt>screenRect</pt>
-                    <pd>屏幕相对于虚拟屏幕的位置。详见 <codeph>Rectangle</codeph>。</pd>
+                    <pd>屏幕相对于虚拟屏幕的位置。详见 <xref keyref="Rectangle"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>regionRect</pt>
-                    <pd>（可选）区域相对于屏幕的位置。详见 <codeph>Rectangle</codeph>。如果未设置该参数，SDK 会共享整个屏幕。如果指定的区域超出屏幕范围，SDK 仅共享屏幕内的部分；如果设置的宽或高为 0，SDK 会共享整个屏幕。</pd>
+                    <pd>（可选）区域相对于屏幕的位置。详见 <xref keyref="Rectangle"/>。如果未设置该参数，SDK 会共享整个屏幕。如果指定的区域超出屏幕范围，SDK 仅共享屏幕内的部分；如果设置的宽或高为 0，SDK 会共享整个屏幕。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>captureParams</pt>
-                    <pd>屏幕共享的编码参数。默认视频分辨率为 1920 × 1080（即 2,073,600 像素）。声网会根据该参数的值计算费用。详见 <codeph>ScreenCaptureParameters</codeph>。</pd>
+                    <pd>屏幕共享的编码参数。默认视频分辨率为 1920 × 1080（即 2,073,600 像素）。声网会根据该参数的值计算费用。详见 <xref keyref="ScreenCaptureParameters"/>。</pd>
                 </plentry>
             </parml>
         </section>

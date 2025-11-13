@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onstreammessageerror">
     <title>
-        <ph keyref="onStreamMessageError"/>
+    <ph keyref="onStreamMessageError"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">本地用户未收到远端用户发送的数据流消息时触发的回调。</ph>
+    <ph id="shortdesc">本地用户未收到远端用户发送的数据流消息时触发的回调。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -24,10 +24,9 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">该回调在本地用户未能接收到远端用户通过调用 <codeph>sendStreamMessage</codeph> 发送的流消息时触发。</p>
+            <p props="cpp">该回调在本地用户未能接收到远端用户通过调用 <xref keyref="sendStreamMessage"/> 发送的流消息时触发。</p>
             <p props="android">当本地用户未能接收到远端用户通过调用 <xref keyref="sendStreamMessage"/> 发送的数据流消息时，SDK 会触发该回调。</p>
-            <p props="ios">当本地用户未能接收到远端用户通过调用 <xref keyref="sendStreamMessage"/> 方法发送的数据流消息时，SDK 会触发该回调。</p>
-            <p props="mac">当本地用户未能接收到远端用户通过调用 <codeph>sendStreamMessage:data:</codeph> 方法发送的数据流消息时，SDK 会触发该回调。</p>
+            <p props="ios mac">当本地用户未能接收到远端用户通过调用 <xref keyref="sendStreamMessage"/> 方法发送的数据流消息时，SDK 会触发该回调。</p>
             <note props="cpp ios mac">如果你需要一个更全面的低延迟、高并发、可扩展的实时消息和状态同步解决方案，建议使用 <codeph>Signaling</codeph>。</note>
             <note props="android">如果你需要一个更全面的低延迟、高并发和可扩展的实时消息和状态同步解决方案，建议使用 <codeph>Signaling</codeph>。</note>
         </section>
@@ -45,7 +44,7 @@
             <parml>
                 <plentry props="cpp">
                     <pt>connection</pt>
-                    <pd>连接信息。详见 <codeph>RtcConnection</codeph>。</pd>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>remoteUid</pt>
@@ -83,7 +82,7 @@
                     <pt>cached</pt>
                     <pd>数据流中断时缓存的传入消息数量。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>engine</pt>
                     <pd>引擎对象，详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
@@ -94,10 +93,6 @@
                 <plentry props="ios mac">
                     <pt>streamId</pt>
                     <pd>接收消息所属的数据流 ID。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>engine</pt>
-                    <pd>引擎对象，详见 <codeph>AgoraRtcEngineKit</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

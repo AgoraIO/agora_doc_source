@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_setremotevideostreamtypeex">
     <title>
-        <ph keyref="setRemoteVideoStreamTypeEx"/>
+    <ph keyref="setRemoteVideoStreamTypeEx"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">设置要订阅的视频流类型。</ph>
+    <ph id="shortdesc">设置要订阅的视频流类型。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -58,10 +58,9 @@ SDK 会根据视频窗口的大小动态调整对应视频流的尺寸，以节�
 SDK 会根据视频窗口的大小动态调整对应视频流的尺寸，以节省带宽和计算资源。低质量视频流的默认宽高比与高质量视频流相同。系统会根据当前高质量视频流的宽高比，自动分配低质量视频流的分辨率、帧率和码率。</li>
                 </ul>
             </p>
-            <note props="cpp">如果发送端已调用 <codeph>setDualStreamModeEx</codeph> 并将 <codeph>mode</codeph> 设置为 <codeph>DISABLE_SIMULCAST_STREAM</codeph>，则调用此方法无效。你应在发送端重新调用 <codeph>setDualStreamModeEx</codeph> 并调整设置。</note>
+            <note props="cpp">如果发送端已调用 <xref keyref="setDualStreamModeEx"/> 并将 <codeph>mode</codeph> 设置为 <codeph>DISABLE_SIMULCAST_STREAM</codeph>，则调用此方法无效。你应在发送端重新调用 <xref keyref="setDualStreamModeEx"/> 并调整设置。</note>
             <note props="android">如果发送端已调用 <xref keyref="setDualStreamModeEx"/> 并将 <codeph>mode</codeph> 设置为 <codeph>DISABLE_SIMULCAST_STREAM</codeph>（从不发送低质量视频流），则调用该方法无效。你需要在发送端再次调用 <xref keyref="setDualStreamModeEx"/> 并调整设置。</note>
-            <note props="ios">如果发送端已调用 <xref keyref="setDualStreamModeEx"/> 并将 <codeph>mode</codeph> 设置为 <codeph>AgoraDisableSimulcastStream</codeph>（从不发送低质量视频流），则调用此方法无效。你需要在发送端再次调用 <xref keyref="setDualStreamModeEx"/> 并调整设置。</note>
-            <note props="mac">如果发送端已调用 <codeph>setDualStreamModeEx:streamConfig:connection:</codeph> 并将 <codeph>mode</codeph> 设置为 <codeph>AgoraDisableSimulcastStream</codeph>（从不发送低质量视频流），则调用此方法无效。你需要在发送端再次调用 <codeph>setDualStreamModeEx:streamConfig:connection:</codeph> 并调整设置。</note>
+            <note props="ios mac">如果发送端已调用 <xref keyref="setDualStreamModeEx"/> 并将 <codeph>mode</codeph> 设置为 <codeph>AgoraDisableSimulcastStream</codeph>（从不发送低质量视频流），则调用此方法无效。你需要在发送端再次调用 <xref keyref="setDualStreamModeEx"/> 并调整设置。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -78,13 +77,13 @@ SDK 会根据视频窗口的大小动态调整对应视频流的尺寸，以节�
                     <pt>uid</pt>
                     <pd>用户 ID。</pd>
                 </plentry>
-                <plentry props="cpp">
+                <plentry props="cpp ios mac">
                     <pt>streamType</pt>
-                    <pd>视频流类型，详见 <codeph>VIDEO_STREAM_TYPE</codeph>。</pd>
+                    <pd>视频流类型，详见 <xref keyref="VIDEO_STREAM_TYPE"/>。</pd>
                 </plentry>
-                <plentry props="cpp">
+                <plentry props="android cpp ios mac">
                     <pt>connection</pt>
-                    <pd>连接信息。详见 <codeph>RtcConnection</codeph>。</pd>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="android ios mac">
                     <pt>uid</pt>
@@ -98,22 +97,6 @@ SDK 会根据视频窗口的大小动态调整对应视频流的尺寸，以节�
                             <li>1：低质量视频流。</li>
                         </ul>
                     </pd>
-                </plentry>
-                <plentry props="android ios">
-                    <pt>connection</pt>
-                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>streamType</pt>
-                    <pd>视频流类型，详见 <xref keyref="VIDEO_STREAM_TYPE"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>streamType</pt>
-                    <pd>视频流类型，详见 <codeph>AgoraVideoStreamType</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>connection</pt>
-                    <pd>连接信息。详见 <codeph>AgoraRtcConnection</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

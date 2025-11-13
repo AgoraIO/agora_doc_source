@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_externalvideoframe">
     <title>
-        <ph keyref="ExternalVideoFrame"/>
+    <ph keyref="ExternalVideoFrame"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">表示外部视频帧。</ph>
+    <ph id="shortdesc">表示外部视频帧。</ph>
   </shortdesc>
     <refbody>
         <section id="prototype">
@@ -110,11 +110,11 @@
             <parml>
                 <plentry props="cpp">
                     <pt>type</pt>
-                    <pd>视频类型。详见 <codeph>VIDEO_BUFFER_TYPE</codeph>。</pd>
+                    <pd>视频类型。详见 <xref keyref="VIDEO_BUFFER_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>format</pt>
-                    <pd>像素格式。详见 <codeph>VIDEO_PIXEL_FORMAT</codeph>。</pd>
+                    <pd>像素格式。详见 <xref keyref="VIDEO_PIXEL_FORMAT"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>buffer</pt>
@@ -179,7 +179,7 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>metadataBuffer</pt>
-                    <pd>仅适用于 Texture 格式的视频数据。MetaData 缓冲区。默认值为 <codeph>NULL</codeph>。</pd>
+                    <pd>仅适用于 Texture 格式的视频数据。MetaData 缓冲区。默认值为 <xref keyref="NULL"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>metadataSize</pt>
@@ -193,16 +193,14 @@
                     <pt>fillAlphaBuffer</pt>
                     <pd>仅适用于 BGRA 或 RGBA 格式的视频数据。是否从视频帧中提取 Alpha 通道数据并自动填充到 <codeph>alphaBuffer</codeph>：
                         <ul>
-                            <li>
-                                <codeph>true</codeph>：提取并填充 Alpha 通道数据。</li>
-                            <li>
-                                <codeph>false</codeph>：不提取和填充 Alpha 通道数据。</li>
+                            <li><xref keyref="true"/>：提取并填充 Alpha 通道数据。</li>
+                            <li><xref keyref="false"/>：不提取和填充 Alpha 通道数据。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>alphaStitchMode</pt>
-                    <pd>当视频帧包含 Alpha 通道数据时，表示 <codeph>alphaBuffer</codeph> 与视频帧的相对位置。详见 <codeph>ALPHA_STITCH_MODE</codeph>。</pd>
+                    <pd>当视频帧包含 Alpha 通道数据时，表示 <codeph>alphaBuffer</codeph> 与视频帧的相对位置。详见 <xref keyref="ALPHA_STITCH_MODE"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>d3d11Texture2d</pt>
@@ -253,10 +251,8 @@
                     <pt>syncMode</pt>
                     <pd>是否启用同步模式，仅适用于纹理格式的视频数据：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：启用同步模式，SDK 会等待纹理处理完成。</li>
-                            <li>
-                                <xref keyref="false"/>：关闭同步模式。</li>
+                            <li><xref keyref="true"/>：启用同步模式，SDK 会等待纹理处理完成。</li>
+                            <li><xref keyref="false"/>：关闭同步模式。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -300,16 +296,11 @@
                     <pt>alphaStitchMode</pt>
                     <pd>视频帧包含 Alpha 通道数据时，表示 <codeph>alphaBuffer</codeph> 与视频帧的相对位置，详见 <codeph>AlphaStitchMode</codeph>：
                         <ul>
-                            <li>
-                                <codeph>ALPHA_NO_STITCH (0)</codeph>：默认，仅包含视频帧，<codeph>alphaBuffer</codeph> 未拼接。</li>
-                            <li>
-                                <codeph>ALPHA_STITCH_UP (1)</codeph>：<codeph>alphaBuffer</codeph> 在视频帧上方。</li>
-                            <li>
-                                <codeph>ALPHA_STITCH_BELOW (2)</codeph>：<codeph>alphaBuffer</codeph> 在视频帧下方。</li>
-                            <li>
-                                <codeph>ALPHA_STITCH_LEFT (3)</codeph>：<codeph>alphaBuffer</codeph> 在视频帧左侧。</li>
-                            <li>
-                                <codeph>ALPHA_STITCH_RIGHT (4)</codeph>：<codeph>alphaBuffer</codeph> 在视频帧右侧。</li>
+                            <li><codeph>ALPHA_NO_STITCH (0)</codeph>：默认，仅包含视频帧，<codeph>alphaBuffer</codeph> 未拼接。</li>
+                            <li><codeph>ALPHA_STITCH_UP (1)</codeph>：<codeph>alphaBuffer</codeph> 在视频帧上方。</li>
+                            <li><codeph>ALPHA_STITCH_BELOW (2)</codeph>：<codeph>alphaBuffer</codeph> 在视频帧下方。</li>
+                            <li><codeph>ALPHA_STITCH_LEFT (3)</codeph>：<codeph>alphaBuffer</codeph> 在视频帧左侧。</li>
+                            <li><codeph>ALPHA_STITCH_RIGHT (4)</codeph>：<codeph>alphaBuffer</codeph> 在视频帧右侧。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -345,7 +336,7 @@
                     <pt>dataBuf</pt>
                     <pd>原始数据缓冲区。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>alphaBuf</pt>
                     <pd>当前帧的 Alpha 通道，与视频帧的尺寸一致。每个像素的取值范围为 [0, 255]，其中 0 表示背景，255 表示前景。默认值为 <xref keyref="NULL"/>。</pd>
                 </plentry>
@@ -372,10 +363,6 @@
                 <plentry props="ios mac">
                     <pt>colorSpace</pt>
                     <pd>视频帧的色彩空间配置。默认采用 Full Range 和 BT.709 标准。详见 <codeph>AgoraColorSpace</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>alphaBuf</pt>
-                    <pd>当前帧的 Alpha 通道，与视频帧的尺寸一致。每个像素的取值范围为 [0, 255]，其中 0 表示背景，255 表示前景。默认值为 <codeph>nil</codeph>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>alphaStitchMode</pt>

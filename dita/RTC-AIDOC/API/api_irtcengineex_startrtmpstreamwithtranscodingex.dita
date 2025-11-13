@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_startrtmpstreamwithtranscodingex">
     <title>
-        <ph keyref="startRtmpStreamWithTranscodingEx"/>
+    <ph keyref="startRtmpStreamWithTranscodingEx"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">开始旁路推流并设置转码配置。</ph>
+    <ph id="shortdesc">开始旁路推流并设置转码配置。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -34,7 +34,7 @@
                     <li>使用该方法前，请确保已启用旁路推流服务。</li>
                     <li>请在加入频道后调用该方法。</li>
                     <li>仅在直播场景下的主播角色可以调用该方法。</li>
-                    <li>如果推流失败后需要重试，请先调用 <codeph>stopRtmpStreamEx</codeph> 停止推流，再调用该方法重试，否则 SDK 会返回与上次失败相同的错误码。</li>
+                    <li>如果推流失败后需要重试，请先调用 <xref keyref="stopRtmpStreamEx"/> 停止推流，再调用该方法重试，否则 SDK 会返回与上次失败相同的错误码。</li>
                 </ul>
             </note>
             <note props="android">
@@ -60,8 +60,7 @@
         </section>
         <section id="related" deliveryTarget="details">
             <title>相关回调</title>
-            <p props="android ios">成功调用该方法后，SDK 会触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调报告推流状态。</p>
-            <p props="mac">成功调用该方法后，SDK 会触发 <codeph>rtcEngine:rtmpStreamingChangedToState:state:reason:</codeph> 回调报告推流状态。</p>
+            <p props="android ios mac">成功调用该方法后，SDK 会触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调报告推流状态。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -72,35 +71,23 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>transcoding</pt>
-                    <pd>转码配置。详见 <codeph>LiveTranscoding</codeph>。</pd>
+                    <pd>转码配置。详见 <xref keyref="LiveTranscoding"/>。</pd>
                 </plentry>
-                <plentry props="cpp">
+                <plentry props="android cpp ios mac">
                     <pt>connection</pt>
-                    <pd>连接信息。详见 <codeph>RtcConnection</codeph>。</pd>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>url</pt>
                     <pd>旁路推流地址，格式为 RTMP 或 RTMPS，长度不能超过 1024 字节。不支持中文等特殊字符。</pd>
                 </plentry>
-                <plentry props="android ios">
+                <plentry props="android ios mac">
                     <pt>transcoding</pt>
                     <pd>旁路推流的转码配置。详见 <xref keyref="LiveTranscoding"/>。</pd>
-                </plentry>
-                <plentry props="android ios">
-                    <pt>connection</pt>
-                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="ios mac">
                     <pt>url</pt>
                     <pd>旁路推流地址，格式为 RTMP 或 RTMPS。地址长度不能超过 1024 字节，不支持中文等特殊字符。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>transcoding</pt>
-                    <pd>旁路推流的转码配置。详见 <codeph>AgoraLiveTranscoding</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>connection</pt>
-                    <pd>连接信息。详见 <codeph>AgoraRtcConnection</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

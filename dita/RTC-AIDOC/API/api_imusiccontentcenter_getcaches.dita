@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imusiccontentcenter_getcaches">
     <title>
-        <ph keyref="getCaches"/>
+    <ph keyref="getCaches"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">获取已缓存的音乐资源信息。</ph>
+    <ph id="shortdesc">获取已缓存的音乐资源信息。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -24,7 +24,7 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">调用该方法前，需要预先分配内存用于存储已缓存音乐资源的信息。如果希望设置可缓存的音乐资源数量，可以通过 <codeph>initialize</codeph> 中的 <codeph>configuration</codeph> 参数进行配置。当不再需要这些缓存资源时，应及时释放内存以避免内存泄漏。</p>
+            <p props="cpp">调用该方法前，需要预先分配内存用于存储已缓存音乐资源的信息。如果希望设置可缓存的音乐资源数量，可以通过 <xref keyref="initialize"/> 中的 <codeph>configuration</codeph> 参数进行配置。当不再需要这些缓存资源时，应及时释放内存以避免内存泄漏。</p>
             <p props="android">在调用该方法前，你需要预先分配内存空间，用于存储已缓存音乐资源的信息。如果需要设置可缓存的音乐资源数量，可以通过 <codeph>initialize</codeph> 的 <codeph>configuration</codeph> 参数进行配置。当不再需要这些缓存的音乐资源时，应及时释放内存，避免内存泄漏。</p>
             <p props="ios mac">在调用此方法前，你需要分配足够的内存来存储缓存音乐资源的信息。如果你想设置可缓存的音乐资源数量，可以通过 <codeph>sharedContentCenterWithConfig:</codeph> 方法中的 <codeph>config</codeph> 参数进行配置。当你不再需要缓存的音乐资源时，应及时释放内存以防止内存泄漏。</p>
         </section>
@@ -41,14 +41,14 @@
             <parml>
                 <plentry props="cpp">
                     <pt>cacheInfo</pt>
-                    <pd>输出参数，用于存储已缓存音乐资源信息的内存缓冲区指针。详见 <codeph>MusicCacheInfo</codeph>。</pd>
+                    <pd>输出参数，用于存储已缓存音乐资源信息的内存缓冲区指针。详见 <xref keyref="MusicCacheInfo"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>cacheInfoSize</pt>
-                    <pd>输入和输出参数，表示 <codeph>MusicCacheInfo</codeph> 数组的大小。
+                    <pd>输入和输出参数，表示 <xref keyref="MusicCacheInfo"/> 数组的大小。
                         <ul>
-                            <li>输入值：分配的 <codeph>MusicCacheInfo</codeph> 结构体数量。</li>
-                            <li>输出值：方法执行后返回的 <codeph>MusicCacheInfo</codeph> 结构体数量。</li>
+                            <li>输入值：分配的 <xref keyref="MusicCacheInfo"/> 结构体数量。</li>
+                            <li>输出值：方法执行后返回的 <xref keyref="MusicCacheInfo"/> 结构体数量。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -68,8 +68,7 @@
                     <li>方法调用失败，返回 <xref keyref="NULL"/>。</li>
                 </ul>
             </p>
-            <p props="ios">方法调用成功，返回包含 <xref keyref="MusicCacheInfo"/> 对象的数组。方法调用失败，返回 <xref keyref="NULL"/>。</p>
-            <p props="mac">方法调用成功，返回包含 <codeph>AgoraMusicCacheInfo</codeph> 对象的数组。方法调用失败，返回 <codeph>nil</codeph>。</p>
+            <p props="ios mac">方法调用成功，返回包含 <xref keyref="MusicCacheInfo"/> 对象的数组。方法调用失败，返回 <xref keyref="NULL"/>。</p>
         </section>
     </refbody>
 </reference>

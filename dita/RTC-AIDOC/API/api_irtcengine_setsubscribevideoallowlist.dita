@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setsubscribevideoallowlist">
     <title>
-        <ph keyref="setSubscribeVideoAllowlist"/>
+    <ph keyref="setSubscribeVideoAllowlist"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">设置视频流订阅的允许列表。</ph>
+    <ph id="shortdesc">设置视频流订阅的允许列表。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -28,7 +28,7 @@
             <note props="cpp">
                 <ul>
                     <li>你可以在加入频道前或加入频道后调用此方法。</li>
-                    <li>允许列表不受 <codeph>muteRemoteVideoStream</codeph>、<codeph>muteAllRemoteVideoStreams</codeph> 和 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
+                    <li>允许列表不受 <xref keyref="muteRemoteVideoStream"/>、<xref keyref="muteAllRemoteVideoStreams"/> 和 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
                     <li>一旦设置了订阅的允许列表，即使你离开当前频道并重新加入频道，该设置仍然有效。</li>
                     <li>如果某个用户同时被添加到允许列表和阻止列表中，则仅阻止列表生效。</li>
                 </ul>
@@ -41,18 +41,10 @@
                     <li>如果某个用户同时被添加到白名单和黑名单中，则仅黑名单生效。</li>
                 </ul>
             </note>
-            <note props="ios">
+            <note props="ios mac">
                 <ul>
                     <li>你可以在加入频道前或加入频道后调用该方法。</li>
                     <li>白名单不受 <xref keyref="muteRemoteVideoStream"/>、<xref keyref="muteAllRemoteVideoStreams"/> 和 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
-                    <li>一旦设置了订阅白名单，即使你离开当前频道并重新加入频道，该设置仍然有效。</li>
-                    <li>如果某个用户同时被添加到白名单和黑名单中，则只有黑名单生效。</li>
-                </ul>
-            </note>
-            <note props="mac">
-                <ul>
-                    <li>你可以在加入频道前或加入频道后调用该方法。</li>
-                    <li>白名单不受 <codeph>muteRemoteVideoStream:mute:</codeph>、<codeph>muteAllRemoteVideoStreams:</codeph> 和 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
                     <li>一旦设置了订阅白名单，即使你离开当前频道并重新加入频道，该设置仍然有效。</li>
                     <li>如果某个用户同时被添加到白名单和黑名单中，则只有黑名单生效。</li>
                 </ul>
@@ -71,7 +63,7 @@
             <parml>
                 <plentry props="cpp">
                     <pt>uidList</pt>
-                    <pd>希望订阅的视频流用户的用户 ID 列表。如果你想移除某个用户，需要调用 <codeph>setSubscribeVideoAllowlist</codeph> 更新该列表，仅保留你希望订阅的用户 ID。</pd>
+                    <pd>希望订阅的视频流用户的用户 ID 列表。如果你想移除某个用户，需要调用 <xref keyref="setSubscribeVideoAllowlist"/> 更新该列表，仅保留你希望订阅的用户 ID。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>uidNumber</pt>
@@ -86,13 +78,9 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>allowlist</pt>
                     <pd>你想要订阅的视频流用户的用户 ID 列表。如果你想指定某个用户的视频流进行订阅，请将该用户的用户 ID 添加到此列表中。如果你想将某个用户从白名单中移除，你需要调用 <xref keyref="setSubscribeVideoAllowlist"/> 方法更新用户 ID 列表；这意味着你只需在新的用户 ID 列表中添加你想要订阅的用户的用户 ID。详见 <codeph>NSArray</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>allowlist</pt>
-                    <pd>你想要订阅的视频流用户的用户 ID 列表。如果你想指定某个用户的视频流进行订阅，请将该用户的用户 ID 添加到此列表中。如果你想将某个用户从白名单中移除，你需要调用 <codeph>setSubscribeVideoAllowlist:</codeph> 方法更新用户 ID 列表；这意味着你只需在新的用户 ID 列表中添加你想要订阅的用户的用户 ID。详见 <codeph>NSArray</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

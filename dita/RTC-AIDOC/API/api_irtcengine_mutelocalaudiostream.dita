@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_mutelocalaudiostream">
     <title>
-        <ph keyref="muteLocalAudioStream"/>
+    <ph keyref="muteLocalAudioStream"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">停止或恢复发布本地音频流。</ph>
+    <ph id="shortdesc">停止或恢复发布本地音频流。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -27,10 +27,9 @@
             <p props="ios mac">该方法用于控制是否发布本地采集的音频流。调用该方法停止发布本地音频流时，音频采集设备仍会继续工作，不受影响。</p>
             <note props="cpp">该方法不会影响任何正在进行的音频录制，因为它不会禁用音频采集设备。
 请在调用 <codeph>joinChannel</codeph> 方法后调用。
-使用空间音效时，如果需要设置是否停止订阅指定用户的音频流，声网建议调用该方法，而不是 <codeph>muteLocalAudioStream</codeph> 方法。
-成功调用该方法后，远端会触发 <codeph>onUserMuteAudio</codeph> 和 <codeph>onRemoteAudioStateChanged</codeph> 回调。</note>
-            <note props="android">
-                <xref keyref="muteLocalAudioStream"/> 方法不会影响任何正在进行的音频录制，因为它不会禁用音频采集设备。
+使用空间音效时，如果需要设置是否停止订阅指定用户的音频流，声网建议调用该方法，而不是 <xref keyref="muteLocalAudioStream"/> 方法。
+成功调用该方法后，远端会触发 <xref keyref="onUserMuteAudio"/> 和 <xref keyref="onRemoteAudioStateChanged"/> 回调。</note>
+            <note props="android"><xref keyref="muteLocalAudioStream"/> 方法不会影响任何正在进行的音频录制，因为它不会禁用音频采集设备。
 请在调用 <codeph>joinChannel</codeph> 方法后调用该方法。
 使用空间音效时，如果需要设置是否停止订阅指定用户的音频流，声网建议调用该方法，而不是 <xref keyref="muteLocalAudioStream"/> 方法。
 成功调用该方法后，远端客户端会触发 <xref keyref="onUserMuteAudio"/> 和 <xref keyref="onRemoteAudioStateChanged"/> 回调。</note>
@@ -46,14 +45,12 @@
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="cpp">
+                <plentry props="cpp mac">
                     <pt>mute</pt>
                     <pd>是否停止发布本地音频流：
                         <ul>
-                            <li>
-                                <codeph>true</codeph>：停止发布本地音频流。</li>
-                            <li>
-                                <codeph>false</codeph>：（默认）恢复发布本地音频流。</li>
+                            <li><xref keyref="true"/>：停止发布本地音频流。</li>
+                            <li><xref keyref="false"/>：（默认）恢复发布本地音频流。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -61,10 +58,8 @@
                     <pt>muted</pt>
                     <pd>是否停止发布本地音频流：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：停止发布本地音频流。</li>
-                            <li>
-                                <xref keyref="false"/>：（默认）恢复发布本地音频流。</li>
+                            <li><xref keyref="true"/>：停止发布本地音频流。</li>
+                            <li><xref keyref="false"/>：（默认）恢复发布本地音频流。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -72,21 +67,8 @@
                     <pt>mute</pt>
                     <pd>是否停止发布本地音频流：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：停止发布本地音频流。</li>
-                            <li>
-                                <xref keyref="false"/>：发布本地音频流。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>mute</pt>
-                    <pd>是否停止发布本地音频流：
-                        <ul>
-                            <li>
-                                <codeph>YES</codeph>：停止发布本地音频流。</li>
-                            <li>
-                                <codeph>NO</codeph>：（默认）恢复发布本地音频流。</li>
+                            <li><xref keyref="true"/>：停止发布本地音频流。</li>
+                            <li><xref keyref="false"/>：发布本地音频流。</li>
                         </ul>
                     </pd>
                 </plentry>

@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setadvancedaudiooptions">
     <title>
-        <ph keyref="setAdvancedAudioOptions"/>
+    <ph keyref="setAdvancedAudioOptions"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">设置高级音频选项。</ph>
+    <ph id="shortdesc">设置高级音频选项。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -26,10 +26,8 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="android cpp">如果你有高级音频处理需求，例如采集和发送立体声音频，可以调用此方法。</p>
             <p props="ios mac">如果你有高级音频处理需求，例如采集和发送立体声音频，可以调用此方法设置音频高级选项。</p>
-            <note props="cpp">请在调用 <codeph>joinChannel</codeph>、<codeph>enableAudio</codeph> 和 <codeph>enableLocalAudio</codeph> 之后调用此方法。</note>
-            <note props="android">请在调用 <codeph>joinChannel</codeph>、<xref keyref="enableAudio"/> 和 <xref keyref="enableLocalAudio"/> 之后调用此方法。</note>
-            <note props="ios">请在调用 <codeph>joinChannelByToken</codeph>、<xref keyref="enableAudio"/> 和 <codeph>enableLocalAudio</codeph> 之后调用此方法。</note>
-            <note props="mac">请在调用 <codeph>joinChannelByToken</codeph>、<codeph>enableAudio</codeph> 和 <codeph>enableLocalAudio</codeph> 之后调用此方法。</note>
+            <note props="android cpp">请在调用 <codeph>joinChannel</codeph>、<xref keyref="enableAudio"/> 和 <xref keyref="enableLocalAudio"/> 之后调用此方法。</note>
+            <note props="ios mac">请在调用 <codeph>joinChannelByToken</codeph>、<xref keyref="enableAudio"/> 和 <codeph>enableLocalAudio</codeph> 之后调用此方法。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -42,25 +40,17 @@
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="cpp">
+                <plentry props="android cpp">
                     <pt>options</pt>
-                    <pd>高级音频选项。详见 <codeph>AdvancedAudioOptions</codeph>。</pd>
+                    <pd>高级音频选项。详见 <xref keyref="AdvancedAudioOptions"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>sourceType</pt>
                     <pd>音频源类型。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>options</pt>
-                    <pd>高级音频选项。详见 <xref keyref="AdvancedAudioOptions"/>。</pd>
-                </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>options</pt>
                     <pd>音频的高级选项，详见 <xref keyref="AdvancedAudioOptions"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>options</pt>
-                    <pd>音频的高级选项，详见 <codeph>AgoraAdvancedAudioOptions</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

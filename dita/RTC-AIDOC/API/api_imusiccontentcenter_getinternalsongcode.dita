@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imusiccontentcenter_getinternalsongcode">
     <title>
-        <ph keyref="getInternalSongCode"/>
+    <ph keyref="getInternalSongCode"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">创建音乐资源副歌片段的内部歌曲编码。</ph>
+    <ph id="shortdesc">创建音乐资源副歌片段的内部歌曲编码。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -41,7 +41,7 @@
             <parml>
                 <plentry props="cpp">
                     <pt>songCode</pt>
-                    <pd>音乐资源的歌曲编码，用于标识资源。你可以通过调用 <codeph>getMusicCollectionWithMusicChartId</codeph> 或 <codeph>searchMusic</codeph> 获取，并从这些方法触发的 <codeph>onMusicCollectionResult</codeph> 回调中获取该编码。</pd>
+                    <pd>音乐资源的歌曲编码，用于标识资源。你可以通过调用 <codeph>getMusicCollectionWithMusicChartId</codeph> 或 <xref keyref="searchMusic"/> 获取，并从这些方法触发的 <xref keyref="onMusicCollectionResult"/> 回调中获取该编码。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>jsonOption</pt>
@@ -59,7 +59,7 @@
                             </strow>
                             <strow>
                                 <stentry>highPart</stentry>
-                                <stentry>副歌片段的索引。你可以从 <codeph>onMusicCollectionResult</codeph> 回调中获取该索引并传入此处。索引从 0 开始。</stentry>
+                                <stentry>副歌片段的索引。你可以从 <xref keyref="onMusicCollectionResult"/> 回调中获取该索引并传入此处。索引从 0 开始。</stentry>
                                 <stentry>{"format": {"highpart": 0}}</stentry>
                             </strow>
                         </simpletable>
@@ -89,16 +89,15 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>songCode</pt>
                     <pd>音乐资源的唯一标识。你可以通过调用 <codeph>getMusicCollectionWithMusicChartId:page:pageSize:jsonOption:</codeph> 或 <xref keyref="searchMusic"/> 方法，并从 <xref keyref="onMusicCollectionResult"/> 回调中获取 <codeph>songCode</codeph>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>jsonOption</pt>
                     <pd>扩展 JSON 字段，默认为 <xref keyref="NULL"/>。当前支持以下字段：
                         <ul>
-                            <li>
-                                <codeph>sceneType</codeph>：频道场景。</li>
+                            <li><codeph>sceneType</codeph>：频道场景。</li>
                             <li>1：直播场景：在线 K 歌房和背景音乐播放。</li>
                             <li>2：直播场景：背景音乐播放。</li>
                             <li>3：（默认）语聊场景：在线 K 歌房。</li>
@@ -106,31 +105,7 @@
                             <li>5：VR 场景：在线 K 歌房和背景音乐播放。
   &gt; 注意：声网会根据你在 <codeph>sceneType</codeph> 中指定的频道场景计费。不同的频道场景对应不同的计费标准，详见计费文档。若需切换频道场景，必须重新调用该方法并传入新的 <codeph>sceneType</codeph> 值。
   示例：<codeph>{"sceneType":1}</codeph></li>
-                            <li>
-                                <codeph>highPart</codeph>：副歌片段的索引。你可以从 <xref keyref="onMusicCollectionResult"/> 回调中获取该索引并传入。索引从 0 开始。
-  示例：<codeph>{"format": {"highpart": 0}}</codeph></li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>songCode</pt>
-                    <pd>音乐资源的唯一标识。你可以通过调用 <codeph>getMusicCollectionWithMusicChartId:page:pageSize:jsonOption:</codeph> 或 <codeph>searchMusicWithKeyWord:page:pageSize:jsonOption:</codeph> 方法，并从 <codeph>onMusicCollectionResult:result:reason:</codeph> 回调中获取 <codeph>songCode</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>jsonOption</pt>
-                    <pd>扩展 JSON 字段，默认为 <codeph>nil</codeph>。当前支持以下字段：
-                        <ul>
-                            <li>
-                                <codeph>sceneType</codeph>：频道场景。</li>
-                            <li>1：直播场景：在线 K 歌房和背景音乐播放。</li>
-                            <li>2：直播场景：背景音乐播放。</li>
-                            <li>3：（默认）语聊场景：在线 K 歌房。</li>
-                            <li>4：语聊场景：背景音乐播放。</li>
-                            <li>5：VR 场景：在线 K 歌房和背景音乐播放。
-  &gt; 注意：声网会根据你在 <codeph>sceneType</codeph> 中指定的频道场景计费。不同的频道场景对应不同的计费标准，详见计费文档。若需切换频道场景，必须重新调用该方法并传入新的 <codeph>sceneType</codeph> 值。
-  示例：<codeph>{"sceneType":1}</codeph></li>
-                            <li>
-                                <codeph>highPart</codeph>：副歌片段的索引。你可以从 <codeph>onMusicCollectionResult:result:reason:</codeph> 回调中获取该索引并传入。索引从 0 开始。
+                            <li><codeph>highPart</codeph>：副歌片段的索引。你可以从 <xref keyref="onMusicCollectionResult"/> 回调中获取该索引并传入。索引从 0 开始。
   示例：<codeph>{"format": {"highpart": 0}}</codeph></li>
                         </ul>
                     </pd>

@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_lastmileprobeconfig">
     <title>
-        <ph keyref="LastmileProbeConfig"/>
+    <ph keyref="LastmileProbeConfig"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">用于配置最后一公里网络测试。</ph>
+    <ph id="shortdesc">用于配置最后一公里网络测试。</ph>
   </shortdesc>
     <refbody>
         <section id="prototype">
@@ -43,10 +43,8 @@
                     <pt>probeUplink</pt>
                     <pd>设置是否测试上行网络：
                         <ul>
-                            <li>
-                                <codeph>true</codeph>：测试上行网络。例如，在频道场景为 <codeph>LIVE_BROADCASTING</codeph> 时，观众用户不需要进行此测试。</li>
-                            <li>
-                                <codeph>false</codeph>：不测试上行网络。</li>
+                            <li><xref keyref="true"/>：测试上行网络。例如，在频道场景为 <codeph>LIVE_BROADCASTING</codeph> 时，观众用户不需要进行此测试。</li>
+                            <li><xref keyref="false"/>：不测试上行网络。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -54,16 +52,14 @@
                     <pt>probeDownlink</pt>
                     <pd>设置是否测试下行网络：
                         <ul>
-                            <li>
-                                <codeph>true</codeph>：测试下行网络。</li>
-                            <li>
-                                <codeph>false</codeph>：不测试下行网络。</li>
+                            <li><xref keyref="true"/>：测试下行网络。</li>
+                            <li><xref keyref="false"/>：不测试下行网络。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>expectedUplinkBitrate</pt>
-                    <pd>本地用户期望的最大上行码率（bps），取值范围为 [100000, 5000000]。建议参考 <codeph>setVideoEncoderConfiguration</codeph> 设置该值。</pd>
+                    <pd>本地用户期望的最大上行码率（bps），取值范围为 [100000, 5000000]。建议参考 <xref keyref="setVideoEncoderConfiguration"/> 设置该值。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>expectedDownlinkBitrate</pt>
@@ -73,10 +69,8 @@
                     <pt>probeUplink</pt>
                     <pd>是否测试上行网络。
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：测试上行网络。</li>
-                            <li>
-                                <xref keyref="false"/>：不测试上行网络。例如，在 <codeph>LIVE_BROADCASTING</codeph> 频道场景中，观众通常无需测试上行网络。</li>
+                            <li><xref keyref="true"/>：测试上行网络。</li>
+                            <li><xref keyref="false"/>：不测试上行网络。例如，在 <codeph>LIVE_BROADCASTING</codeph> 频道场景中，观众通常无需测试上行网络。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -84,10 +78,8 @@
                     <pt>probeDownlink</pt>
                     <pd>是否测试下行网络。
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：测试下行网络。</li>
-                            <li>
-                                <xref keyref="false"/>：不测试下行网络。</li>
+                            <li><xref keyref="true"/>：测试下行网络。</li>
+                            <li><xref keyref="false"/>：不测试下行网络。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -99,53 +91,27 @@
                     <pt>expectedDownlinkBitrate</pt>
                     <pd>本地用户期望的最大下行码率（bps）。取值范围为 [100000, 5000000]。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>probeUplink</pt>
                     <pd>是否测试上行网络：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：测试上行网络。</li>
-                            <li>
-                                <xref keyref="false"/>：不测试上行网络。例如，在 <codeph>LIVE_BROADCASTING</codeph> 频道场景中，观众用户无需进行此测试。</li>
+                            <li><xref keyref="true"/>：测试上行网络。</li>
+                            <li><xref keyref="false"/>：不测试上行网络。例如，在 <codeph>LIVE_BROADCASTING</codeph> 频道场景中，观众用户无需进行此测试。</li>
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>probeDownlink</pt>
                     <pd>是否测试下行网络：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：测试下行网络。</li>
-                            <li>
-                                <xref keyref="false"/>：不测试下行网络。</li>
+                            <li><xref keyref="true"/>：测试下行网络。</li>
+                            <li><xref keyref="false"/>：不测试下行网络。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="ios mac">
                     <pt>expectedUplinkBitrate</pt>
                     <pd>本地用户期望的最大上行码率（bps）。取值范围为 [100000, 5000000]。声网建议参考 <codeph>setVideoEncoderConfiguration</codeph> 设置该值。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>probeUplink</pt>
-                    <pd>是否测试上行网络：
-                        <ul>
-                            <li>
-                                <codeph>YES</codeph>：测试上行网络。</li>
-                            <li>
-                                <codeph>NO</codeph>：不测试上行网络。例如，在 <codeph>LIVE_BROADCASTING</codeph> 频道场景中，观众用户无需进行此测试。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>probeDownlink</pt>
-                    <pd>是否测试下行网络：
-                        <ul>
-                            <li>
-                                <codeph>YES</codeph>：测试下行网络。</li>
-                            <li>
-                                <codeph>NO</codeph>：不测试下行网络。</li>
-                        </ul>
-                    </pd>
                 </plentry>
             </parml>
         </section>

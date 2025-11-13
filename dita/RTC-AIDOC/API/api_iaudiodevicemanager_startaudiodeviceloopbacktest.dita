@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_iaudiodevicemanager_startaudiodeviceloopbacktest">
     <title>
-        <ph keyref="startAudioDeviceLoopbackTest"/>
+    <ph keyref="startAudioDeviceLoopbackTest"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">开始音频设备回环测试。</ph>
+    <ph id="shortdesc">开始音频设备回环测试。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -21,14 +21,14 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">该方法用于测试本地音频采集设备和播放设备是否正常工作。调用该方法后，音频采集设备会采集本地音频，音频播放设备会播放采集到的音频。SDK 会按照设置的时间间隔触发两个独立的 <codeph>onAudioVolumeIndication</codeph> 回调，分别报告采集设备（<codeph>uid</codeph> = 0）和播放设备（<codeph>uid</codeph> = 1）的音量信息。</p>
+            <p props="cpp">该方法用于测试本地音频采集设备和播放设备是否正常工作。调用该方法后，音频采集设备会采集本地音频，音频播放设备会播放采集到的音频。SDK 会按照设置的时间间隔触发两个独立的 <xref keyref="onAudioVolumeIndication"/> 回调，分别报告采集设备（<codeph>uid</codeph> = 0）和播放设备（<codeph>uid</codeph> = 1）的音量信息。</p>
             <note props="cpp">
                 <ul>
                     <li>该方法仅适用于 Windows 和 macOS 平台。</li>
                     <li>可以在加入频道前或加入频道后调用该方法。</li>
                     <li>该方法仅在主播角色调用时生效。</li>
                     <li>该方法仅测试本地音频设备，不涉及网络状况。</li>
-                    <li>测试完成后，请调用 <codeph>stopAudioDeviceLoopbackTest</codeph> 停止音频设备回环测试。</li>
+                    <li>测试完成后，请调用 <xref keyref="stopAudioDeviceLoopbackTest"/> 停止音频设备回环测试。</li>
                 </ul>
             </note>
         </section>
@@ -45,7 +45,7 @@
             <parml>
                 <plentry props="cpp">
                     <pt>indicationInterval</pt>
-                    <pd>SDK 触发 <codeph>onAudioVolumeIndication</codeph> 回调的时间间隔（毫秒）。建议设置为大于 200 毫秒的值。该值不能小于 10 毫秒，否则无法收到 <codeph>onAudioVolumeIndication</codeph> 回调。</pd>
+                    <pd>SDK 触发 <xref keyref="onAudioVolumeIndication"/> 回调的时间间隔（毫秒）。建议设置为大于 200 毫秒的值。该值不能小于 10 毫秒，否则无法收到 <xref keyref="onAudioVolumeIndication"/> 回调。</pd>
                 </plentry>
             </parml>
         </section>

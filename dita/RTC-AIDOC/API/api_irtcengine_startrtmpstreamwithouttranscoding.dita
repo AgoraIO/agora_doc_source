@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startrtmpstreamwithouttranscoding">
     <title>
-        <ph keyref="startRtmpStreamWithoutTranscoding"/>
+    <ph keyref="startRtmpStreamWithoutTranscoding"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">开始将媒体流以非转码方式推送到 CDN。</ph>
+    <ph id="shortdesc">开始将媒体流以非转码方式推送到 CDN。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -26,14 +26,14 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">你可以调用该方法将音频或视频流推送到指定的 CDN 地址。该方法每次只能推送到一个 CDN 地址，如果需要推送到多个地址，请多次调用该方法。
 
-调用该方法后，SDK 会通过本地客户端触发 <codeph>onRtmpStreamingStateChanged</codeph> 回调，报告推流状态。</p>
+调用该方法后，SDK 会通过本地客户端触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调，报告推流状态。</p>
             <p props="android">你可以调用该方法将音频或视频流推送到指定的 CDN 地址。该方法每次只能向一个 CDN 地址推送媒体流，如果需要推送到多个地址，请多次调用该方法。</p>
             <p props="ios mac">你可以调用该方法将音频或视频流推送到指定的 CDN 地址。该方法每次只能向一个 CDN 地址推流，如果需要推送到多个地址，请多次调用该方法。</p>
             <note props="cpp">
                 <ul>
                     <li>请在加入频道后调用该方法。</li>
                     <li>仅在 <codeph>LIVE_BROADCASTING</codeph> 频道场景中的主播可以调用该方法。</li>
-                    <li>如果推流失败后需要重试，请先调用 <codeph>stopRtmpStream</codeph> 停止推流，再调用该方法重新推流，否则 SDK 会返回与上次失败相同的错误码。</li>
+                    <li>如果推流失败后需要重试，请先调用 <xref keyref="stopRtmpStream"/> 停止推流，再调用该方法重新推流，否则 SDK 会返回与上次失败相同的错误码。</li>
                 </ul>
             </note>
             <note props="android">
@@ -43,18 +43,11 @@
                     <li>如果推流失败后需要重试，请先调用 <xref keyref="stopRtmpStream"/> 停止推流，再调用该方法重新推流；否则，SDK 会返回与上次失败相同的错误码。</li>
                 </ul>
             </note>
-            <note props="ios">
+            <note props="ios mac">
                 <ul>
                     <li>请在加入频道后调用该方法。</li>
                     <li>只有在 <codeph>LIVE_BROADCASTING</codeph> 频道场景中的主播可以调用该方法。</li>
                     <li>如果推流失败后需要重试，必须先调用 <xref keyref="stopRtmpStream"/> 停止推流，再调用该方法重新推流；否则，SDK 会返回与上次失败相同的错误码。</li>
-                </ul>
-            </note>
-            <note props="mac">
-                <ul>
-                    <li>请在加入频道后调用该方法。</li>
-                    <li>只有在 <codeph>LIVE_BROADCASTING</codeph> 频道场景中的主播可以调用该方法。</li>
-                    <li>如果推流失败后需要重试，必须先调用 <codeph>stopRtmpStream:</codeph> 停止推流，再调用该方法重新推流；否则，SDK 会返回与上次失败相同的错误码。</li>
                 </ul>
             </note>
         </section>
@@ -68,8 +61,7 @@
         </section>
         <section id="related" deliveryTarget="details">
             <title>相关回调</title>
-            <p props="android ios">成功调用该方法后，SDK 会触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调报告推流状态。</p>
-            <p props="mac">成功调用该方法后，SDK 会触发 <codeph>rtcEngine:rtmpStreamingChangedToState:state:reason:</codeph> 回调报告推流状态。</p>
+            <p props="android ios mac">成功调用该方法后，SDK 会触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调报告推流状态。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>

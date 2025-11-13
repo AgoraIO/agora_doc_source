@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setsubscribevideoblocklist">
     <title>
-        <ph keyref="setSubscribeVideoBlocklist"/>
+    <ph keyref="setSubscribeVideoBlocklist"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">设置视频流订阅的黑名单。</ph>
+    <ph id="shortdesc">设置视频流订阅的黑名单。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -28,7 +28,7 @@
             <note props="cpp">
                 <ul>
                     <li>你可以在加入频道前或加入频道后调用此方法。</li>
-                    <li>黑名单不受 <codeph>ChannelMediaOptions</codeph> 中 <codeph>muteRemoteVideoStream</codeph>、<codeph>muteAllRemoteVideoStreams</codeph> 和 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
+                    <li>黑名单不受 <xref keyref="ChannelMediaOptions"/> 中 <xref keyref="muteRemoteVideoStream"/>、<xref keyref="muteAllRemoteVideoStreams"/> 和 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
                     <li>一旦设置了订阅黑名单，即使离开当前频道并重新加入，该设置仍然有效。</li>
                     <li>如果某个用户同时出现在白名单和黑名单中，只有黑名单生效。</li>
                 </ul>
@@ -63,7 +63,7 @@
             <parml>
                 <plentry props="cpp">
                     <pt>uidList</pt>
-                    <pd>不希望订阅其视频流的用户 ID 列表。如果你希望将某个用户从黑名单中移除，需要调用 <codeph>setSubscribeVideoBlocklist</codeph> 更新该列表，即只需在新的用户 ID 列表中添加不希望订阅的用户的用户 ID。</pd>
+                    <pd>不希望订阅其视频流的用户 ID 列表。如果你希望将某个用户从黑名单中移除，需要调用 <xref keyref="setSubscribeVideoBlocklist"/> 更新该列表，即只需在新的用户 ID 列表中添加不希望订阅的用户的用户 ID。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>uidNumber</pt>
@@ -73,13 +73,9 @@
                     <pt>uidList</pt>
                     <pd>不希望订阅其视频流的用户 ID 列表。若要更新阻止名单，请重新调用 <xref keyref="setSubscribeVideoBlocklist"/> 并传入新的用户 ID 列表。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>blocklist</pt>
                     <pd>不希望订阅其视频流的用户 ID 列表。如果你希望指定不订阅某个用户的视频流，请将该用户的用户 ID 添加到此列表中。如果你希望将某个用户从 blocklist 中移除，需要调用 <xref keyref="setSubscribeVideoBlocklist"/> 方法更新用户 ID 列表；这意味着你只需在新的用户 ID 列表中添加不希望订阅的用户的用户 ID。详见 <codeph>NSArray</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>blocklist</pt>
-                    <pd>不希望订阅其视频流的用户 ID 列表。如果你希望指定不订阅某个用户的视频流，请将该用户的用户 ID 添加到此列表中。如果你希望将某个用户从 blocklist 中移除，需要调用 <codeph>setSubscribeVideoBlocklist:</codeph> 方法更新用户 ID 列表；这意味着你只需在新的用户 ID 列表中添加不希望订阅的用户的用户 ID。详见 <codeph>NSArray</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

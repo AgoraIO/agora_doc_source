@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_getaudiomixingcurrentposition">
     <title>
-        <ph keyref="getAudioMixingCurrentPosition"/>
+    <ph keyref="getAudioMixingCurrentPosition"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">获取当前混音的播放进度（毫秒）。</ph>
+    <ph id="shortdesc">获取当前混音的播放进度（毫秒）。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -25,28 +25,16 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="ios mac">获取音频混音的播放位置（毫秒）。</p>
-            <note props="cpp">
-                <ul>
-                    <li>你需要在调用 <codeph>startAudioMixing</codeph> 并收到 <codeph>onAudioMixingStateChanged</codeph>（<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>）回调后调用此方法。</li>
-                    <li>如果需要多次调用 <codeph>getAudioMixingCurrentPosition</codeph>，请确保两次调用之间的时间间隔大于 500 毫秒。</li>
-                </ul>
-            </note>
-            <note props="android">
+            <note props="android cpp">
                 <ul>
                     <li>你需要在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/>（<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>）回调后调用此方法。</li>
                     <li>如果需要多次调用 <xref keyref="getAudioMixingCurrentPosition"/>，请确保两次调用之间的时间间隔大于 500 毫秒。</li>
                 </ul>
             </note>
-            <note props="ios">
+            <note props="ios mac">
                 <ul>
                     <li>你需要在调用 <codeph>startAudioMixing:loopback:cycle:startPos:</codeph> 并收到 <codeph>audioMixingStateChanged</codeph> 回调（<codeph>AgoraAudioMixingStateTypePlaying</codeph>）后调用此方法。</li>
                     <li>如果你需要多次调用 <xref keyref="getAudioMixingCurrentPosition"/>，请确保两次调用之间的时间间隔大于 500 毫秒。</li>
-                </ul>
-            </note>
-            <note props="mac">
-                <ul>
-                    <li>你需要在调用 <codeph>startAudioMixing:loopback:cycle:startPos:</codeph> 并收到 <codeph>audioMixingStateChanged</codeph> 回调（<codeph>AgoraAudioMixingStateTypePlaying</codeph>）后调用此方法。</li>
-                    <li>如果你需要多次调用 <codeph>getAudioMixingCurrentPosition</codeph>，请确保两次调用之间的时间间隔大于 500 毫秒。</li>
                 </ul>
             </note>
         </section>

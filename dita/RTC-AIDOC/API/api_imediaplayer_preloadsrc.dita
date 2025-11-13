@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_preloadsrc">
     <title>
-        <ph keyref="preloadSrc"/>
+    <ph keyref="preloadSrc"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">预加载媒体资源。</ph>
+    <ph id="shortdesc">预加载媒体资源。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -23,13 +23,12 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">你可以调用该方法将媒体资源预加载到播放列表中。如果需要预加载多个媒体资源，可以多次调用该方法。调用该方法后，如果在 <codeph>onPreloadEvent</codeph> 回调中收到 <codeph>PLAYER_PRELOAD_EVENT_COMPLETE</codeph> 事件，表示预加载成功；如果收到 <codeph>PLAYER_PRELOAD_EVENT_ERROR</codeph> 事件，表示预加载失败。预加载成功后，如果你希望播放该媒体资源，请调用 <codeph>playPreloadedSrc</codeph>；如果希望清空播放列表，请调用 <codeph>stop</codeph>。</p>
+            <p props="cpp">你可以调用该方法将媒体资源预加载到播放列表中。如果需要预加载多个媒体资源，可以多次调用该方法。调用该方法后，如果在 <xref keyref="onPreloadEvent"/> 回调中收到 <codeph>PLAYER_PRELOAD_EVENT_COMPLETE</codeph> 事件，表示预加载成功；如果收到 <codeph>PLAYER_PRELOAD_EVENT_ERROR</codeph> 事件，表示预加载失败。预加载成功后，如果你希望播放该媒体资源，请调用 <xref keyref="playPreloadedSrc"/>；如果希望清空播放列表，请调用 <xref keyref="stop"/>。</p>
             <p props="android">调用该方法后，如果在 <xref keyref="onPreloadEvent"/> 回调中收到 <codeph>PLAYER_PRELOAD_EVENT_COMPLETE</codeph> 事件，表示预加载成功；如果收到 <codeph>PLAYER_PRELOAD_EVENT_ERROR</codeph> 事件，表示预加载失败。预加载成功后，如需播放该媒体资源，请调用 <xref keyref="playPreloadedSrc"/>；如需清空播放列表，请调用 <codeph>stop()</codeph>。</p>
-            <p props="ios">你可以调用此方法将媒体资源预加载到播放列表中。如果需要预加载多个媒体资源，可以多次调用此方法。如果预加载成功并希望播放该媒体资源，请调用 <xref keyref="playPreloadedSrc"/>；如果希望清空播放列表，请调用 <xref keyref="stop"/>。</p>
-            <p props="mac">你可以调用此方法将媒体资源预加载到播放列表中。如果需要预加载多个媒体资源，可以多次调用此方法。如果预加载成功并希望播放该媒体资源，请调用 <codeph>playPreloadedSrc:</codeph>；如果希望清空播放列表，请调用 <codeph>stop</codeph>。</p>
+            <p props="ios mac">你可以调用此方法将媒体资源预加载到播放列表中。如果需要预加载多个媒体资源，可以多次调用此方法。如果预加载成功并希望播放该媒体资源，请调用 <xref keyref="playPreloadedSrc"/>；如果希望清空播放列表，请调用 <xref keyref="stop"/>。</p>
             <note props="cpp">
                 <ul>
-                    <li>在调用该方法之前，请确保已成功调用 <codeph>open</codeph> 或 <codeph>openWithMediaSource</codeph> 打开媒体资源。</li>
+                    <li>在调用该方法之前，请确保已成功调用 <xref keyref="open"/> 或 <xref keyref="openWithMediaSource"/> 打开媒体资源。</li>
                     <li>声网不支持将重复的媒体资源预加载到播放列表中。但你可以将正在播放的媒体资源再次预加载到播放列表中。</li>
                 </ul>
             </note>
@@ -39,15 +38,9 @@
                     <li>声网不支持将重复的媒体资源预加载到播放列表中。但你可以将正在播放的媒体资源再次预加载到播放列表中。</li>
                 </ul>
             </note>
-            <note props="ios">
+            <note props="ios mac">
                 <ul>
                     <li>在调用此方法之前，请确保已成功调用 <xref keyref="open"/> 或 <xref keyref="openWithMediaSource"/> 打开媒体资源。</li>
-                    <li>不支持将重复的媒体资源预加载到播放列表中。但你可以将正在播放的媒体资源再次预加载到播放列表中。</li>
-                </ul>
-            </note>
-            <note props="mac">
-                <ul>
-                    <li>在调用此方法之前，请确保已成功调用 <codeph>open:startPos:</codeph> 或 <codeph>openWithMediaSource:</codeph> 打开媒体资源。</li>
                     <li>不支持将重复的媒体资源预加载到播放列表中。但你可以将正在播放的媒体资源再次预加载到播放列表中。</li>
                 </ul>
             </note>

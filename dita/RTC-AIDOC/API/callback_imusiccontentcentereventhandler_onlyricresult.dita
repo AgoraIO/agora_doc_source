@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_imusiccontentcentereventhandler_onlyricresult">
     <title>
-        <ph keyref="onLyricResult"/>
+    <ph keyref="onLyricResult"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">获取歌词下载链接的回调。</ph>
+    <ph id="shortdesc">获取歌词下载链接的回调。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -24,16 +24,14 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">调用 <codeph>getLyric</codeph> 获取某首歌曲的歌词下载链接后，SDK 会触发该回调。</p>
+            <p props="cpp">调用 <xref keyref="getLyric"/> 获取某首歌曲的歌词下载链接后，SDK 会触发该回调。</p>
             <p props="android">调用 <xref keyref="getLyric"/> 后，SDK 会触发该回调。</p>
-            <p props="ios">调用 <xref keyref="getLyric"/> 方法获取指定歌曲的歌词下载链接后，SDK 会触发该回调。</p>
-            <p props="mac">调用 <codeph>getLyricWithSongCode:lyricType:</codeph> 方法获取指定歌曲的歌词下载链接后，SDK 会触发该回调。</p>
+            <p props="ios mac">调用 <xref keyref="getLyric"/> 方法获取指定歌曲的歌词下载链接后，SDK 会触发该回调。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
             <p props="android">该回调在调用 <xref keyref="getLyric"/> 方法后被触发。</p>
-            <p props="ios">该回调在你调用 <xref keyref="getLyric"/> 获取指定歌曲的歌词下载链接后被触发。</p>
-            <p props="mac">该回调在你调用 <codeph>getLyricWithSongCode:lyricType:</codeph> 获取指定歌曲的歌词下载链接后被触发。</p>
+            <p props="ios mac">该回调在你调用 <xref keyref="getLyric"/> 获取指定歌曲的歌词下载链接后被触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
@@ -54,9 +52,9 @@
                     <pt>lyricUrl</pt>
                     <pd>歌词的下载链接。</pd>
                 </plentry>
-                <plentry props="cpp">
+                <plentry props="cpp ios">
                     <pt>reason</pt>
-                    <pd>请求状态码，详见 <codeph>MusicContentCenterStateReason</codeph>。</pd>
+                    <pd>请求状态码，详见 <xref keyref="MusicContentCenterStateReason"/>。</pd>
                 </plentry>
                 <plentry props="android ios mac">
                     <pt>requestId</pt>
@@ -70,35 +68,23 @@
                     <pt>reason</pt>
                     <pd>来自版权音乐内容中心的请求状态码：
                         <ul>
-                            <li>
-                                <codeph>MUSIC_CONTENT_CENTER_STATE_REASON_OK</codeph> (0)：请求成功。</li>
-                            <li>
-                                <codeph>MUSIC_CONTENT_CENTER_STATE_REASON_ERROR</codeph> (1)：通用错误，无具体原因。</li>
-                            <li>
-                                <codeph>MUSIC_CONTENT_CENTER_STATE_REASON_GATEWAY</codeph> (2)：网关错误。可能原因包括：</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_OK</codeph> (0)：请求成功。</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_ERROR</codeph> (1)：通用错误，无具体原因。</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_GATEWAY</codeph> (2)：网关错误。可能原因包括：</li>
                             <li>当前临时 Token 已过期。请重新生成 Token。</li>
                             <li>提供的 Token 无效。请确保使用的是 RTM Token。</li>
                             <li>网络错误。请检查网络连接。</li>
-                            <li>
-                                <codeph>MUSIC_CONTENT_CENTER_STATE_REASON_PERMISSION_AND_RESOURCE</codeph> (3)：权限错误或音乐资源不存在。请确保项目已启用版权音乐内容中心权限。如有疑问，请联系技术支持。</li>
-                            <li>
-                                <codeph>MUSIC_CONTENT_CENTER_STATE_REASON_INTERNAL_DATA_PARSE</codeph> (4)：内部数据解析错误。请联系技术支持。</li>
-                            <li>
-                                <codeph>MUSIC_CONTENT_CENTER_STATE_REASON_MUSIC_LOADING</codeph> (5)：加载音乐资源时发生错误。请联系技术支持。</li>
-                            <li>
-                                <codeph>MUSIC_CONTENT_CENTER_STATE_REASON_MUSIC_DECRYPTION</codeph> (6)：解密音乐资源时发生错误。请联系技术支持。</li>
-                            <li>
-                                <codeph>MUSIC_CONTENT_CENTER_STATE_REASON_HTTP_INTERNAL</codeph> (7)：HTTP 内部错误。请稍后重试。</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_PERMISSION_AND_RESOURCE</codeph> (3)：权限错误或音乐资源不存在。请确保项目已启用版权音乐内容中心权限。如有疑问，请联系技术支持。</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_INTERNAL_DATA_PARSE</codeph> (4)：内部数据解析错误。请联系技术支持。</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_MUSIC_LOADING</codeph> (5)：加载音乐资源时发生错误。请联系技术支持。</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_MUSIC_DECRYPTION</codeph> (6)：解密音乐资源时发生错误。请联系技术支持。</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_HTTP_INTERNAL</codeph> (7)：HTTP 内部错误。请稍后重试。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="ios mac">
                     <pt>songCode</pt>
                     <pd>音乐资源的标识符，用于指定音乐资源。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>reason</pt>
-                    <pd>请求状态码，详见 <xref keyref="MusicContentCenterStateReason"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>reason</pt>

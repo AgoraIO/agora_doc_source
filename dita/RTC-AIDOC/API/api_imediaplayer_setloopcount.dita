@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_setloopcount">
     <title>
-        <ph keyref="setLoopCount"/>
+    <ph keyref="setLoopCount"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">设置音效的循环播放次数。</ph>
+    <ph id="shortdesc">设置音效的循环播放次数。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -24,9 +24,8 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">调用该方法可设置音效的循环播放次数。循环播放完成后，SDK 会触发 <codeph>onPlayerSourceStateChanged</codeph> 回调，并报告播放状态为 <codeph>PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED</codeph>。</p>
-            <p props="ios">调用此方法可设置循环播放次数。循环播放完成后，SDK 会触发 <xref keyref="onPlayerSourceStateChanged"/> 回调，并报告播放状态为 <codeph>AgoraMediaPlayerStatePlayBackAllLoopsCompleted</codeph>。</p>
-            <p props="mac">调用此方法可设置循环播放次数。循环播放完成后，SDK 会触发 <codeph>AgoraRtcMediaPlayer:didChangedToState:reason:</codeph> 回调，并报告播放状态为 <codeph>AgoraMediaPlayerStatePlayBackAllLoopsCompleted</codeph>。</p>
+            <p props="cpp">调用该方法可设置音效的循环播放次数。循环播放完成后，SDK 会触发 <xref keyref="onPlayerSourceStateChanged"/> 回调，并报告播放状态为 <codeph>PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED</codeph>。</p>
+            <p props="ios mac">调用此方法可设置循环播放次数。循环播放完成后，SDK 会触发 <xref keyref="onPlayerSourceStateChanged"/> 回调，并报告播放状态为 <codeph>AgoraMediaPlayerStatePlayBackAllLoopsCompleted</codeph>。</p>
             <note props="android">当循环播放完成后，SDK 会触发 <xref keyref="onPlayerSourceStateChanged"/> 回调，并报告播放状态为 <codeph>PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED</codeph>。</note>
         </section>
         <section id="timing" deliveryTarget="details">
@@ -46,7 +45,7 @@
                         <ul>
                             <li>1：播放一次。</li>
                             <li>2：播放两次。</li>
-                            <li>&lt;= 0：无限循环播放，直到调用 <codeph>stop</codeph>。</li>
+                            <li>&lt;= 0：无限循环播放，直到调用 <xref keyref="stop"/>。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -54,12 +53,9 @@
                     <pt>count</pt>
                     <pd>媒体文件循环播放的次数：
                         <ul>
-                            <li>
-                                <codeph>1</codeph>：播放一次。</li>
-                            <li>
-                                <codeph>2</codeph>：播放两次。</li>
-                            <li>
-                                <codeph>-1</codeph>：无限循环播放，直到调用 <codeph>stop</codeph> 停止播放。</li>
+                            <li><codeph>1</codeph>：播放一次。</li>
+                            <li><codeph>2</codeph>：播放两次。</li>
+                            <li><codeph>-1</codeph>：无限循环播放，直到调用 <codeph>stop</codeph> 停止播放。</li>
                         </ul>
                     </pd>
                 </plentry>

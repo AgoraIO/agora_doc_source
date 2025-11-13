@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ivideoeffectobject_addorupdatevideoeffect">
     <title>
-        <ph keyref="addOrUpdateVideoEffect"/>
+    <ph keyref="addOrUpdateVideoEffect"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">添加或更新指定视频特效节点和模板的特效。</ph>
+    <ph id="shortdesc">添加或更新指定视频特效节点和模板的特效。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -36,8 +36,7 @@ NS_SWIFT_NAME(addOrUpdateVideoEffect(nodeId:templateName:));</codeblock>
             </dl>
             <note props="cpp">优先级规则：
                 <ul>
-                    <li>
-                        <codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph> 节点优先于 <codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph> 参数。</li>
+                    <li><codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph> 节点优先于 <codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph> 参数。</li>
                     <li>若要应用 <codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph> 参数，必须先移除 <codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph> 节点：
                         <codeblock outputclass="language-cpp">removeVideoEffect(VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP);
 addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codeblock>
@@ -76,7 +75,7 @@ addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codebloc
             <parml>
                 <plentry props="cpp">
                     <pt>nodeId</pt>
-                    <pd>视频特效节点的唯一标识符或标识符组合。详见 <codeph>VIDEO_EFFECT_NODE_ID</codeph>。
+                    <pd>视频特效节点的唯一标识符或标识符组合。详见 <xref keyref="VIDEO_EFFECT_NODE_ID"/>。
 示例：
                         <ul>
                             <li>单一特效：<codeph>VIDEO_EFFECT_NODE_ID::BEAUTY</codeph></li>
@@ -86,7 +85,7 @@ addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codebloc
                 </plentry>
                 <plentry props="cpp">
                     <pt>templateName</pt>
-                    <pd>特效模板名称。如果设置为 <codeph>NULL</codeph> 或空字符串，SDK 会从资源包中加载默认配置。</pd>
+                    <pd>特效模板名称。如果设置为 <xref keyref="NULL"/> 或空字符串，SDK 会从资源包中加载默认配置。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>nodeId</pt>
@@ -105,13 +104,9 @@ addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codebloc
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>templateName</pt>
                     <pd>特效模板名称。如果设置为 <xref keyref="NULL"/> 或空字符串，SDK 会自动从资源包中加载默认参数配置。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>templateName</pt>
-                    <pd>特效模板名称。如果设置为 <codeph>nil</codeph> 或空字符串，SDK 会自动从资源包中加载默认参数配置。</pd>
                 </plentry>
             </parml>
         </section>

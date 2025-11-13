@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_getstreamcount">
     <title>
-        <ph keyref="getStreamCount"/>
+    <ph keyref="getStreamCount"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">获取媒体资源中的媒体流数量。</ph>
+    <ph id="shortdesc">获取媒体资源中的媒体流数量。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -24,10 +24,9 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <note props="cpp">在调用该方法前，请先调用 <codeph>open</codeph> 方法，并等待 <codeph>onPlayerSourceStateChanged</codeph> 回调报告状态 <codeph>PLAYER_STATE_OPEN_COMPLETED</codeph>。</note>
+            <note props="cpp">在调用该方法前，请先调用 <xref keyref="open"/> 方法，并等待 <xref keyref="onPlayerSourceStateChanged"/> 回调报告状态 <codeph>PLAYER_STATE_OPEN_COMPLETED</codeph>。</note>
             <note props="android">调用该方法前，请先调用 <codeph>open</codeph> 方法，并等待 <xref keyref="onPlayerSourceStateChanged"/> 回调报告状态 <codeph>OPEN_COMPLETED</codeph>。</note>
-            <note props="ios">在调用该方法前，请先调用 <xref keyref="open"/> 方法，并等待 <codeph>didChangedToState:reason:</codeph> 回调报告 <codeph>AgoraMediaPlayerStateOpenCompleted</codeph> 状态。</note>
-            <note props="mac">在调用该方法前，请先调用 <codeph>open:startPos:</codeph> 方法，并等待 <codeph>didChangedToState:reason:</codeph> 回调报告 <codeph>AgoraMediaPlayerStateOpenCompleted</codeph> 状态。</note>
+            <note props="ios mac">在调用该方法前，请先调用 <xref keyref="open"/> 方法，并等待 <codeph>didChangedToState:reason:</codeph> 回调报告 <codeph>AgoraMediaPlayerStateOpenCompleted</codeph> 状态。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -51,7 +50,7 @@
             <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见 <codeph>MEDIA_PLAYER_REASON</codeph>。</li>
+                    <li>&lt; 0：方法调用失败。详见 <xref keyref="MEDIA_PLAYER_REASON"/>。</li>
                 </ul>
             </p>
             <p props="android">
@@ -60,16 +59,10 @@
                     <li>&lt; 0：方法调用失败，详见 <xref keyref="MEDIA_PLAYER_REASON"/>。</li>
                 </ul>
             </p>
-            <p props="ios">
+            <p props="ios mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败，详见 <xref keyref="MEDIA_PLAYER_REASON"/>。</li>
-                </ul>
-            </p>
-            <p props="mac">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败，详见 <codeph>AgoraMediaPlayerReason</codeph>。</li>
                 </ul>
             </p>
         </section>

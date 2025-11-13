@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_stopcameracapture">
     <title>
-        <ph keyref="stopCameraCapture"/>
+    <ph keyref="stopCameraCapture"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">停止视频采集。</ph>
+    <ph id="shortdesc">停止视频采集。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -24,22 +24,16 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">调用 <codeph>startCameraCapture</codeph> 开始通过一个或多个摄像头采集视频后，你可以调用此方法并设置 <codeph>sourceType</codeph> 参数以停止指定摄像头的视频采集。</p>
+            <p props="cpp">调用 <xref keyref="startCameraCapture"/> 开始通过一个或多个摄像头采集视频后，你可以调用此方法并设置 <codeph>sourceType</codeph> 参数以停止指定摄像头的视频采集。</p>
             <p props="android">你可以调用 <xref keyref="stopCameraCapture"/> 并设置 <codeph>sourceType</codeph> 参数，停止指定摄像头的视频采集。</p>
-            <p props="ios">调用 <xref keyref="startCameraCapture"/> 方法通过一个或多个摄像头开始视频采集后，你可以调用该方法并设置 <codeph>sourceType</codeph> 参数以停止指定摄像头的视频采集。
+            <p props="ios mac">调用 <xref keyref="startCameraCapture"/> 方法通过一个或多个摄像头开始视频采集后，你可以调用该方法并设置 <codeph>sourceType</codeph> 参数以停止指定摄像头的视频采集。
                 <ul>
                     <li>如果你正在使用本地视频合流功能，调用该方法可能会导致本地视频合流中断。</li>
                     <li>在 iOS 上，如果你想禁用多摄像头采集，需要在调用该方法后调用 <codeph>enableMultiCamera:</codeph> 并将 <codeph>enabled</codeph> 设置为 <xref keyref="false"/>。</li>
                 </ul>
             </p>
-            <p props="mac">调用 <codeph>startCameraCapture:config:</codeph> 方法通过一个或多个摄像头开始视频采集后，你可以调用该方法并设置 <codeph>sourceType</codeph> 参数以停止指定摄像头的视频采集。
-                <ul>
-                    <li>如果你正在使用本地视频合流功能，调用该方法可能会导致本地视频合流中断。</li>
-                    <li>在 iOS 上，如果你想禁用多摄像头采集，需要在调用该方法后调用 <codeph>enableMultiCamera:</codeph> 并将 <codeph>enabled</codeph> 设置为 <codeph>NO</codeph>。</li>
-                </ul>
-            </p>
             <note props="cpp">如果你正在使用本地视频混流功能，调用此方法可能会导致本地视频混流中断。
-在 iOS 平台上，如果你想禁用多摄像头采集，需要在调用此方法后调用 <codeph>enableMultiCamera</codeph> 并将 <codeph>enabled</codeph> 设置为 <codeph>false</codeph>。</note>
+在 iOS 平台上，如果你想禁用多摄像头采集，需要在调用此方法后调用 <xref keyref="enableMultiCamera"/> 并将 <codeph>enabled</codeph> 设置为 <xref keyref="false"/>。</note>
             <note props="android">如果你正在使用本地合图功能，调用此方法可能会导致本地合图中断。</note>
         </section>
         <section id="timing" deliveryTarget="details">
@@ -55,19 +49,15 @@
             <parml>
                 <plentry props="cpp">
                     <pt>sourceType</pt>
-                    <pd>视频源类型，详见 <codeph>VIDEO_SOURCE_TYPE</codeph>。</pd>
+                    <pd>视频源类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>sourceType</pt>
                     <pd>视频源的类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>sourceType</pt>
                     <pd>视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>sourceType</pt>
-                    <pd>视频源的类型，详见 <codeph>AgoraVideoSourceType</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

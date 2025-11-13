@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_iscameratorchsupported">
     <title>
-        <ph keyref="isCameraTorchSupported"/>
+    <ph keyref="isCameraTorchSupported"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">检查设备是否支持摄像头闪光灯。</ph>
+    <ph id="shortdesc">检查设备是否支持摄像头闪光灯。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -24,11 +24,9 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <note props="cpp">
-                <codeph>isCameraTorchSupported</codeph> 仅适用于 Android 和 iOS 平台。必须在 SDK 触发 <codeph>onLocalVideoStateChanged</codeph> 回调并返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>（1）后调用该方法。App 默认启用前置摄像头。如果前置摄像头不支持闪光灯，该方法返回 <codeph>false</codeph>。如果你想检查后置摄像头是否支持闪光灯功能，请在调用该方法前调用 <codeph>switchCamera</codeph>。iOS 15 系统版本的 iPad 上，即使 <codeph>isCameraTorchSupported</codeph> 返回 <codeph>true</codeph>，由于系统问题，调用 <codeph>setCameraTorchOn</codeph> 可能无法成功打开闪光灯。</note>
+            <note props="cpp"><xref keyref="isCameraTorchSupported"/> 仅适用于 Android 和 iOS 平台。必须在 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>（1）后调用该方法。App 默认启用前置摄像头。如果前置摄像头不支持闪光灯，该方法返回 <xref keyref="false"/>。如果你想检查后置摄像头是否支持闪光灯功能，请在调用该方法前调用 <xref keyref="switchCamera"/>。iOS 15 系统版本的 iPad 上，即使 <xref keyref="isCameraTorchSupported"/> 返回 <xref keyref="true"/>，由于系统问题，调用 <xref keyref="setCameraTorchOn"/> 可能无法成功打开闪光灯。</note>
             <note props="android">你必须在 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>（1）后调用该方法。App 默认启用前置摄像头。如果前置摄像头不支持闪光灯，该方法返回 <xref keyref="false"/>。如果你想检查后置摄像头是否支持闪光灯功能，请在调用该方法前调用 <codeph>switchCamera</codeph>。</note>
-            <note props="ios">你必须在 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>AgoraVideoLocalStateCapturing</codeph>（1）后调用该方法。App 默认启用前置摄像头。如果前置摄像头不支持闪光灯，该方法返回 <xref keyref="false"/>。如果你想检查后置摄像头是否支持闪光灯功能，请在调用该方法前调用 <xref keyref="switchCamera"/>。在系统版本为 15 的 iPad 上，即使 <xref keyref="isCameraTorchSupported"/> 返回 <xref keyref="true"/>，你也可能因系统问题调用 <xref keyref="setCameraTorchOn"/> 启用闪光灯失败。</note>
-            <note props="mac">你必须在 SDK 触发 <codeph>rtcEngine:localVideoStateChangedOfState:reason:sourceType:</codeph> 回调并返回本地视频状态为 <codeph>AgoraVideoLocalStateCapturing</codeph>（1）后调用该方法。App 默认启用前置摄像头。如果前置摄像头不支持闪光灯，该方法返回 <codeph>NO</codeph>。如果你想检查后置摄像头是否支持闪光灯功能，请在调用该方法前调用 <codeph>switchCamera</codeph>。在系统版本为 15 的 iPad 上，即使 <codeph>isCameraTorchSupported</codeph> 返回 <codeph>YES</codeph>，你也可能因系统问题调用 <codeph>setCameraTorchOn:</codeph> 启用闪光灯失败。</note>
+            <note props="ios mac">你必须在 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>AgoraVideoLocalStateCapturing</codeph>（1）后调用该方法。App 默认启用前置摄像头。如果前置摄像头不支持闪光灯，该方法返回 <xref keyref="false"/>。如果你想检查后置摄像头是否支持闪光灯功能，请在调用该方法前调用 <xref keyref="switchCamera"/>。在系统版本为 15 的 iPad 上，即使 <xref keyref="isCameraTorchSupported"/> 返回 <xref keyref="true"/>，你也可能因系统问题调用 <xref keyref="setCameraTorchOn"/> 启用闪光灯失败。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -42,34 +40,20 @@
             <title>返回值</title>
             <p props="cpp">
                 <ul>
-                    <li>
-                        <codeph>true</codeph>：设备支持摄像头闪光灯。</li>
-                    <li>
-                        <codeph>false</codeph>：设备不支持摄像头闪光灯。</li>
+                    <li><xref keyref="true"/>：设备支持摄像头闪光灯。</li>
+                    <li><xref keyref="false"/>：设备不支持摄像头闪光灯。</li>
                 </ul>
             </p>
             <p props="android">
                 <ul>
-                    <li>
-                        <xref keyref="true"/>：设备支持相机闪光灯功能。</li>
-                    <li>
-                        <xref keyref="false"/>：设备不支持相机闪光灯功能。</li>
+                    <li><xref keyref="true"/>：设备支持相机闪光灯功能。</li>
+                    <li><xref keyref="false"/>：设备不支持相机闪光灯功能。</li>
                 </ul>
             </p>
-            <p props="ios">
+            <p props="ios mac">
                 <ul>
-                    <li>
-                        <xref keyref="true"/>：设备支持相机闪光灯。</li>
-                    <li>
-                        <xref keyref="false"/>：设备不支持相机闪光灯。</li>
-                </ul>
-            </p>
-            <p props="mac">
-                <ul>
-                    <li>
-                        <codeph>YES</codeph>：设备支持相机闪光灯。</li>
-                    <li>
-                        <codeph>NO</codeph>：设备不支持相机闪光灯。</li>
+                    <li><xref keyref="true"/>：设备支持相机闪光灯。</li>
+                    <li><xref keyref="false"/>：设备不支持相机闪光灯。</li>
                 </ul>
             </p>
         </section>

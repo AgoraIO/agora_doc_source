@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onrenewtokenresult">
     <title>
-        <ph keyref="onRenewTokenResult"/>
+    <ph keyref="onRenewTokenResult"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">`renewToken` 方法调用结果回调。</ph>
+    <ph id="shortdesc">`renewToken` 方法调用结果回调。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -30,14 +30,13 @@
                     <dd>自 v4.6.0 版本新增。</dd>
                 </dlentry>
             </dl>
-            <p props="cpp">当你调用 <codeph>renewToken</codeph> 方法更新 Token 后，该回调会被触发，用于通知更新结果。</p>
+            <p props="cpp">当你调用 <xref keyref="renewToken"/> 方法更新 Token 后，该回调会被触发，用于通知更新结果。</p>
             <p props="android">该回调在调用 <xref keyref="renewToken"/> 后被触发，用于通知 App 更新结果。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
             <p props="android">该回调在调用 <xref keyref="renewToken"/> 后被触发。</p>
-            <p props="ios">该回调在你调用 <xref keyref="renewToken"/> 方法更新 Token 后被触发。</p>
-            <p props="mac">该回调在你调用 <codeph>renewToken:</codeph> 方法更新 Token 后被触发。</p>
+            <p props="ios mac">该回调在你调用 <xref keyref="renewToken"/> 方法更新 Token 后被触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
@@ -48,7 +47,7 @@
             <parml>
                 <plentry props="cpp">
                     <pt>connection</pt>
-                    <pd>连接信息。详见 <codeph>RtcConnection</codeph>。</pd>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>token</pt>
@@ -56,33 +55,23 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>code</pt>
-                    <pd>更新 Token 的结果。详见 <codeph>RENEW_TOKEN_ERROR_CODE</codeph>。</pd>
+                    <pd>更新 Token 的结果。详见 <xref keyref="RENEW_TOKEN_ERROR_CODE"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>token</pt>
                     <pd>用于鉴权的 Token。</pd>
                 </plentry>
-                <plentry props="android ios">
+                <plentry props="android ios mac">
                     <pt>code</pt>
                     <pd>错误码，详见 <xref keyref="RENEW_TOKEN_ERROR_CODE"/>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>engine</pt>
-                    <pd>
-                        <xref keyref="IRtcEngine"/> 实例。详见 <xref keyref="IRtcEngine"/>。</pd>
+                    <pd><xref keyref="IRtcEngine"/> 实例。详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
                 <plentry props="ios mac">
                     <pt>token</pt>
                     <pd>Token。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>engine</pt>
-                    <pd>
-                        <codeph>AgoraRtcEngineKit</codeph> 实例。详见 <codeph>AgoraRtcEngineKit</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>code</pt>
-                    <pd>错误码，详见 <codeph>AgoraRenewTokenErrorCode</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

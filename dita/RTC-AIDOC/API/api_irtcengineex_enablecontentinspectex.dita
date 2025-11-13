@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_enablecontentinspectex">
     <title>
-        <ph keyref="enableContentInspectEx"/>
+    <ph keyref="enableContentInspectEx"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">启用或关闭视频截图上传功能。</ph>
+    <ph id="shortdesc">启用或关闭视频截图上传功能。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -24,10 +24,9 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">该方法可对多个视频流进行截图并上传。启用该功能后，SDK 会根据你在 <codeph>ContentInspectConfig</codeph> 中设置的模块类型和频率，对本地用户发送的视频进行截图并上传。截图上传完成后，声网服务器会通过 HTTPS 请求将回调通知发送至你的应用服务器，并将所有截图上传至第三方云存储服务。</p>
+            <p props="cpp">该方法可对多个视频流进行截图并上传。启用该功能后，SDK 会根据你在 <xref keyref="ContentInspectConfig"/> 中设置的模块类型和频率，对本地用户发送的视频进行截图并上传。截图上传完成后，声网服务器会通过 HTTPS 请求将回调通知发送至你的应用服务器，并将所有截图上传至第三方云存储服务。</p>
             <p props="android">启用该功能后，SDK 会根据你在 <xref keyref="ContentInspectConfig"/> 中设置的模块类型和频率，对本地用户发送的视频进行截图并上传。截图上传后，声网服务器会通过 HTTPS 请求将回调通知发送到你的应用服务器，并将所有截图上传至第三方云存储服务。</p>
-            <p props="ios">该方法可对多个视频流进行截图并上传。启用该功能后，SDK 会根据你在 <xref keyref="ContentInspectConfig"/> 中设置的模块类型和频率，对本地用户发送的视频进行截图并上传。完成截图上传后，声网服务器会通过 HTTPS 请求向你的应用服务器发送回调通知，并将所有截图上传至第三方云存储服务。</p>
-            <p props="mac">该方法可对多个视频流进行截图并上传。启用该功能后，SDK 会根据你在 <codeph>AgoraContentInspectConfig</codeph> 中设置的模块类型和频率，对本地用户发送的视频进行截图并上传。完成截图上传后，声网服务器会通过 HTTPS 请求向你的应用服务器发送回调通知，并将所有截图上传至第三方云存储服务。</p>
+            <p props="ios mac">该方法可对多个视频流进行截图并上传。启用该功能后，SDK 会根据你在 <xref keyref="ContentInspectConfig"/> 中设置的模块类型和频率，对本地用户发送的视频进行截图并上传。完成截图上传后，声网服务器会通过 HTTPS 请求向你的应用服务器发送回调通知，并将所有截图上传至第三方云存储服务。</p>
             <note props="android cpp">在调用该方法前，请确保你已联系技术支持开通视频截图上传服务。</note>
             <note props="ios mac">调用该方法前，请确保你已联系技术支持开通视频截图上传服务。</note>
         </section>
@@ -43,35 +42,22 @@
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="cpp">
+                <plentry props="android cpp ios mac">
                     <pt>enabled</pt>
                     <pd>是否启用视频截图上传功能：
                         <ul>
-                            <li>
-                                <codeph>true</codeph>：启用视频截图上传功能。</li>
-                            <li>
-                                <codeph>false</codeph>：关闭视频截图上传功能。</li>
+                            <li><xref keyref="true"/>：启用视频截图上传功能。</li>
+                            <li><xref keyref="false"/>：关闭视频截图上传功能。</li>
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="cpp">
+                <plentry props="cpp ios mac">
                     <pt>config</pt>
-                    <pd>截图和上传的配置。详见 <codeph>ContentInspectConfig</codeph>。</pd>
+                    <pd>截图和上传的配置。详见 <xref keyref="ContentInspectConfig"/>。</pd>
                 </plentry>
-                <plentry props="cpp">
+                <plentry props="cpp ios mac">
                     <pt>connection</pt>
-                    <pd>连接信息。详见 <codeph>RtcConnection</codeph>。</pd>
-                </plentry>
-                <plentry props="android ios">
-                    <pt>enabled</pt>
-                    <pd>是否启用视频截图上传功能：
-                        <ul>
-                            <li>
-                                <xref keyref="true"/>：启用视频截图上传功能。</li>
-                            <li>
-                                <xref keyref="false"/>：关闭视频截图上传功能。</li>
-                        </ul>
-                    </pd>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>config</pt>
@@ -80,33 +66,6 @@
                 <plentry props="android">
                     <pt>connection</pt>
                     <pd>连接信息，详见 <xref keyref="RtcConnection"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>config</pt>
-                    <pd>截图和上传的配置。详见 <xref keyref="ContentInspectConfig"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>connection</pt>
-                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>enabled</pt>
-                    <pd>是否启用视频截图上传功能：
-                        <ul>
-                            <li>
-                                <codeph>YES</codeph>：启用视频截图上传功能。</li>
-                            <li>
-                                <codeph>NO</codeph>：关闭视频截图上传功能。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>config</pt>
-                    <pd>截图和上传的配置。详见 <codeph>AgoraContentInspectConfig</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>connection</pt>
-                    <pd>连接信息。详见 <codeph>AgoraRtcConnection</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

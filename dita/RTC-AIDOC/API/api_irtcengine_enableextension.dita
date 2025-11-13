@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enableextension">
     <title>
-        <ph keyref="enableExtension"/>
+    <ph keyref="enableExtension"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">启用或禁用扩展功能。</ph>
+    <ph id="shortdesc">启用或禁用扩展功能。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -32,8 +32,7 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">通过调用该方法，你可以在不更改处理流程的情况下动态启用或禁用扩展功能。例如，启用或禁用 <codeph>Extension_A</codeph> 意味着数据将被 <codeph>Extension_A</codeph> 处理或绕过。</p>
             <p props="android">通过调用该方法，你可以在不更改处理流程的情况下动态启用或禁用扩展功能。</p>
-            <note props="cpp">出于兼容性考虑，如果你尚未调用 <codeph>registerExtension</codeph>，<codeph>enableExtension</codeph> 会自动注册指定的扩展。建议你显式调用 <codeph>registerExtension</codeph>。</note>
-            <note props="android">出于兼容性考虑，如果你尚未调用 <xref keyref="registerExtension"/>，<xref keyref="enableExtension"/> 会自动注册指定的扩展。建议你显式调用 <xref keyref="registerExtension"/>。</note>
+            <note props="android cpp">出于兼容性考虑，如果你尚未调用 <xref keyref="registerExtension"/>，<xref keyref="enableExtension"/> 会自动注册指定的扩展。建议你显式调用 <xref keyref="registerExtension"/>。</note>
             <note props="ios mac">
                 <ul>
                     <li>如果你想启用多个扩展，需要多次调用该方法。</li>
@@ -64,16 +63,14 @@
                     <pt>enable</pt>
                     <pd>是否启用扩展组件：
                         <ul>
-                            <li>
-                                <codeph>true</codeph>：（默认）启用扩展组件。</li>
-                            <li>
-                                <codeph>false</codeph>：禁用扩展组件。</li>
+                            <li><xref keyref="true"/>：（默认）启用扩展组件。</li>
+                            <li><xref keyref="false"/>：禁用扩展组件。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>type</pt>
-                    <pd>扩展组件的数据源类型，详见 <codeph>MEDIA_SOURCE_TYPE</codeph>。</pd>
+                    <pd>扩展组件的数据源类型，详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>provider</pt>
@@ -91,10 +88,8 @@
                     <pt>enable</pt>
                     <pd>是否启用该扩展：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：（默认）启用扩展。</li>
-                            <li>
-                                <xref keyref="false"/>：禁用扩展。</li>
+                            <li><xref keyref="true"/>：（默认）启用扩展。</li>
+                            <li><xref keyref="false"/>：禁用扩展。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -106,35 +101,18 @@
                     <pt>extension</pt>
                     <pd>扩展的名称。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>enabled</pt>
                     <pd>是否启用该扩展：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：启用扩展。</li>
-                            <li>
-                                <xref keyref="false"/>：禁用扩展。</li>
+                            <li><xref keyref="true"/>：启用扩展。</li>
+                            <li><xref keyref="false"/>：禁用扩展。</li>
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>sourceType</pt>
                     <pd>扩展的来源类型，详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>enabled</pt>
-                    <pd>是否启用该扩展：
-                        <ul>
-                            <li>
-                                <codeph>YES</codeph>：启用扩展。</li>
-                            <li>
-                                <codeph>NO</codeph>：禁用扩展。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>sourceType</pt>
-                    <pd>扩展的来源类型，详见 <codeph>AgoraMediaSourceType</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onfirstremoteaudiodecoded">
     <title>
-        <ph keyref="onFirstRemoteAudioDecoded"/>
+    <ph keyref="onFirstRemoteAudioDecoded"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">首帧远端音频解码完成用于播放时触发的回调。</ph>
+    <ph id="shortdesc">首帧远端音频解码完成用于播放时触发的回调。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -40,8 +40,8 @@
                     <li>远端用户音频离线后重新上线并重新发送音频流，此时表示本地用户在 15 秒内未能接收到音频。可能的原因包括：</li>
                     <li>远端用户离开频道。</li>
                     <li>远端用户掉线。</li>
-                    <li>远端用户调用 <codeph>muteLocalAudioStream</codeph> 停止发送音频流。</li>
-                    <li>远端用户调用 <codeph>disableAudio</codeph> 禁用音频。</li>
+                    <li>远端用户调用 <xref keyref="muteLocalAudioStream"/> 停止发送音频流。</li>
+                    <li>远端用户调用 <xref keyref="disableAudio"/> 禁用音频。</li>
                 </ul>
             </p>
             <p props="android">SDK 在以下任一情况下触发该回调：
@@ -68,7 +68,7 @@
             <parml>
                 <plentry props="cpp">
                     <pt>connection</pt>
-                    <pd>连接信息。详见 <codeph>RtcConnection</codeph>。</pd>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>uid</pt>
@@ -86,10 +86,9 @@
                     <pt>elapsed</pt>
                     <pd>从本地用户调用 <codeph>joinChannel</codeph> 到 SDK 触发该回调的时间（毫秒）。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>engine</pt>
-                    <pd>
-                        <xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+                    <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
                 <plentry props="ios mac">
                     <pt>uid</pt>
@@ -98,11 +97,6 @@
                 <plentry props="ios mac">
                     <pt>elapsed</pt>
                     <pd>从调用 <codeph>joinChannelByToken:channelId:uid:mediaOptions:joinSuccess:</codeph> 方法到 SDK 触发该回调的时间间隔（毫秒）。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>engine</pt>
-                    <pd>
-                        <codeph>AgoraRtcEngineKit</codeph> 对象。详见 <codeph>AgoraRtcEngineKit</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

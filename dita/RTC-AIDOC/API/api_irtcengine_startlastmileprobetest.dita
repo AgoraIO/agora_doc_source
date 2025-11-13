@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startlastmileprobetest">
     <title>
-        <ph keyref="startLastmileProbeTest"/>
+    <ph keyref="startLastmileProbeTest"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">启动 last mile 网络探测测试。</ph>
+    <ph id="shortdesc">启动 last mile 网络探测测试。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -24,13 +24,11 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">调用时序：在收到 <codeph>onLastmileQuality</codeph> 和 <codeph>onLastmileProbeResult</codeph> 回调前，不要调用其他方法，否则可能会中断这些回调。
+            <p props="cpp">调用时序：在收到 <xref keyref="onLastmileQuality"/> 和 <xref keyref="onLastmileProbeResult"/> 回调前，不要调用其他方法，否则可能会中断这些回调。
 相关回调：成功调用该方法后，SDK 会依次触发以下两个回调：
                 <ul>
-                    <li>
-                        <codeph>onLastmileQuality</codeph>：SDK 会在约两秒内根据网络状况触发该回调。该回调用于评估网络质量，更贴近用户体验。</li>
-                    <li>
-                        <codeph>onLastmileProbeResult</codeph>：SDK 会在约 30 秒内根据网络状况触发该回调。该回调返回网络状况的实时统计数据，更加客观。</li>
+                    <li><xref keyref="onLastmileQuality"/>：SDK 会在约两秒内根据网络状况触发该回调。该回调用于评估网络质量，更贴近用户体验。</li>
+                    <li><xref keyref="onLastmileProbeResult"/>：SDK 会在约 30 秒内根据网络状况触发该回调。该回调返回网络状况的实时统计数据，更加客观。</li>
                 </ul>
             </p>
             <p props="android">该方法在加入频道前启动最后一公里网络探测测试，用于获取上行和下行的网络统计信息，包括带宽、丢包率、抖动和往返时延（RTT）。</p>
@@ -38,14 +36,11 @@
             <note props="android">调用时序：在收到 <xref keyref="onLastmileQuality"/> 和 <xref keyref="onLastmileProbeResult"/> 回调前，请勿调用其他方法，否则可能会中断这些回调。
 相关回调：成功调用该方法后，SDK 会依次触发以下两个回调：
                 <ul>
-                    <li>
-                        <xref keyref="onLastmileQuality"/>：SDK 会在约两秒内根据网络状况触发该回调。该回调用于评估网络质量，与用户体验更相关。</li>
-                    <li>
-                        <xref keyref="onLastmileProbeResult"/>：SDK 会在约 30 秒内根据网络状况触发该回调。该回调返回网络状况的实时统计数据，更加客观。</li>
+                    <li><xref keyref="onLastmileQuality"/>：SDK 会在约两秒内根据网络状况触发该回调。该回调用于评估网络质量，与用户体验更相关。</li>
+                    <li><xref keyref="onLastmileProbeResult"/>：SDK 会在约 30 秒内根据网络状况触发该回调。该回调返回网络状况的实时统计数据，更加客观。</li>
                 </ul>
             </note>
-            <note props="ios">在收到 <xref keyref="onLastmileQuality"/> 和 <xref keyref="onLastmileProbeResult"/> 回调前，不要调用其他方法，否则可能会中断这些回调。</note>
-            <note props="mac">在收到 <codeph>rtcEngine:lastmileQuality:</codeph> 和 <codeph>rtcEngine:lastmileProbeTestResult:</codeph> 回调前，不要调用其他方法，否则可能会中断这些回调。</note>
+            <note props="ios mac">在收到 <xref keyref="onLastmileQuality"/> 和 <xref keyref="onLastmileProbeResult"/> 回调前，不要调用其他方法，否则可能会中断这些回调。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -60,19 +55,15 @@
             <parml>
                 <plentry props="cpp">
                     <pt>config</pt>
-                    <pd>last mile 网络探测测试的配置。详见 <codeph>LastmileProbeConfig</codeph>。</pd>
+                    <pd>last mile 网络探测测试的配置。详见 <xref keyref="LastmileProbeConfig"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>config</pt>
                     <pd>最后一公里网络探测测试的配置。详见 <xref keyref="LastmileProbeConfig"/>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>config</pt>
                     <pd>Last mile 网络探测测试的配置。详见 <xref keyref="LastmileProbeConfig"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>config</pt>
-                    <pd>Last mile 网络探测测试的配置。详见 <codeph>AgoraLastmileProbeConfig</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

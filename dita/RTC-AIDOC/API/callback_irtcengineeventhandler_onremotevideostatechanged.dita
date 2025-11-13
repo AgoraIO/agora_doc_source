@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onremotevideostatechanged">
     <title>
-        <ph keyref="onRemoteVideoStateChanged"/>
+    <ph keyref="onRemoteVideoStateChanged"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">远端视频状态发生改变回调。</ph>
+    <ph id="shortdesc">远端视频状态发生改变回调。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -41,8 +41,7 @@
             <parml>
                 <plentry props="cpp">
                     <pt>connection</pt>
-                    <pd>
-                        <codeph>RtcConnection</codeph> 对象。详见 <codeph>RtcConnection</codeph>。</pd>
+                    <pd><xref keyref="RtcConnection"/> 对象。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>remoteUid</pt>
@@ -50,11 +49,11 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>state</pt>
-                    <pd>远端视频状态。详见 <codeph>REMOTE_VIDEO_STATE</codeph>。</pd>
+                    <pd>远端视频状态。详见 <xref keyref="REMOTE_VIDEO_STATE"/>。</pd>
                 </plentry>
-                <plentry props="cpp">
+                <plentry props="cpp ios">
                     <pt>reason</pt>
-                    <pd>远端视频状态变化的原因。详见 <codeph>REMOTE_VIDEO_STATE_REASON</codeph>。</pd>
+                    <pd>远端视频状态变化的原因。详见 <xref keyref="REMOTE_VIDEO_STATE_REASON"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>elapsed</pt>
@@ -68,16 +67,11 @@
                     <pt>state</pt>
                     <pd>远端视频的状态：
                         <ul>
-                            <li>
-                                <codeph>REMOTE_VIDEO_STATE_STOPPED</codeph> (0)：远端视频处于初始状态。该状态在 <codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED</codeph> (3)、<codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED</codeph> (5) 或 <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE</codeph> (7) 的情况下报告。</li>
-                            <li>
-                                <codeph>REMOTE_VIDEO_STATE_STARTING</codeph> (1)：已接收到第一帧远端视频包。</li>
-                            <li>
-                                <codeph>REMOTE_VIDEO_STATE_DECODING</codeph> (2)：远端视频流解码并正常播放。该状态在 <codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY</codeph> (2)、<codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED</codeph> (4)、<codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED</codeph> (6) 或 <codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY</codeph> (9) 的情况下报告。</li>
-                            <li>
-                                <codeph>REMOTE_VIDEO_STATE_FROZEN</codeph> (3)：远端视频卡顿。该状态在 <codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION</codeph> (1) 或 <codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK</codeph> (8) 的情况下报告。</li>
-                            <li>
-                                <codeph>REMOTE_VIDEO_STATE_FAILED</codeph> (4)：远端视频启动失败。该状态在 <codeph>REMOTE_VIDEO_STATE_REASON_INTERNAL</codeph> (0) 的情况下由 SDK 报告。</li>
+                            <li><codeph>REMOTE_VIDEO_STATE_STOPPED</codeph> (0)：远端视频处于初始状态。该状态在 <codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED</codeph> (3)、<codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED</codeph> (5) 或 <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE</codeph> (7) 的情况下报告。</li>
+                            <li><codeph>REMOTE_VIDEO_STATE_STARTING</codeph> (1)：已接收到第一帧远端视频包。</li>
+                            <li><codeph>REMOTE_VIDEO_STATE_DECODING</codeph> (2)：远端视频流解码并正常播放。该状态在 <codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY</codeph> (2)、<codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED</codeph> (4)、<codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED</codeph> (6) 或 <codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY</codeph> (9) 的情况下报告。</li>
+                            <li><codeph>REMOTE_VIDEO_STATE_FROZEN</codeph> (3)：远端视频卡顿。该状态在 <codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION</codeph> (1) 或 <codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK</codeph> (8) 的情况下报告。</li>
+                            <li><codeph>REMOTE_VIDEO_STATE_FAILED</codeph> (4)：远端视频启动失败。该状态在 <codeph>REMOTE_VIDEO_STATE_REASON_INTERNAL</codeph> (0) 的情况下由 SDK 报告。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -85,28 +79,17 @@
                     <pt>reason</pt>
                     <pd>远端视频状态变化的原因：
                         <ul>
-                            <li>
-                                <codeph>REMOTE_VIDEO_STATE_REASON_INTERNAL</codeph> (0)：内部原因。</li>
-                            <li>
-                                <codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION</codeph> (1)：网络拥塞。</li>
-                            <li>
-                                <codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY</codeph> (2)：网络恢复。</li>
-                            <li>
-                                <codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED</codeph> (3)：本地用户停止接收远端视频流或关闭视频模块。</li>
-                            <li>
-                                <codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED</codeph> (4)：本地用户恢复接收远端视频流或开启视频模块。</li>
-                            <li>
-                                <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED</codeph> (5)：远端用户停止发送视频流或关闭视频模块。</li>
-                            <li>
-                                <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED</codeph> (6)：远端用户恢复发送视频流或开启视频模块。</li>
-                            <li>
-                                <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE</codeph> (7)：远端用户离开频道。</li>
-                            <li>
-                                <codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK</codeph> (8)：由于网络条件差，远端媒体流降级为纯音频流。</li>
-                            <li>
-                                <codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY</codeph> (9)：网络条件改善后，远端媒体流从音频流恢复为视频流。</li>
-                            <li>
-                                <codeph>REMOTE_VIDEO_STATE_REASON_CODEC_NOT_SUPPORT</codeph> (13)：本地视频解码器不支持解码远端视频流。</li>
+                            <li><codeph>REMOTE_VIDEO_STATE_REASON_INTERNAL</codeph> (0)：内部原因。</li>
+                            <li><codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION</codeph> (1)：网络拥塞。</li>
+                            <li><codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY</codeph> (2)：网络恢复。</li>
+                            <li><codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED</codeph> (3)：本地用户停止接收远端视频流或关闭视频模块。</li>
+                            <li><codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED</codeph> (4)：本地用户恢复接收远端视频流或开启视频模块。</li>
+                            <li><codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED</codeph> (5)：远端用户停止发送视频流或关闭视频模块。</li>
+                            <li><codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED</codeph> (6)：远端用户恢复发送视频流或开启视频模块。</li>
+                            <li><codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE</codeph> (7)：远端用户离开频道。</li>
+                            <li><codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK</codeph> (8)：由于网络条件差，远端媒体流降级为纯音频流。</li>
+                            <li><codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY</codeph> (9)：网络条件改善后，远端媒体流从音频流恢复为视频流。</li>
+                            <li><codeph>REMOTE_VIDEO_STATE_REASON_CODEC_NOT_SUPPORT</codeph> (13)：本地视频解码器不支持解码远端视频流。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -114,7 +97,7 @@
                     <pt>elapsed</pt>
                     <pd>从本地用户调用 <codeph>joinChannel</codeph> 方法到 SDK 触发该回调的时间（毫秒）。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>engine</pt>
                     <pd>引擎对象。详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
@@ -122,17 +105,9 @@
                     <pt>state</pt>
                     <pd>远端视频的状态。详见 <xref keyref="REMOTE_VIDEO_STATE"/>。</pd>
                 </plentry>
-                <plentry props="ios">
-                    <pt>reason</pt>
-                    <pd>远端视频状态变化的原因。详见 <xref keyref="REMOTE_VIDEO_STATE_REASON"/>。</pd>
-                </plentry>
                 <plentry props="ios mac">
                     <pt>elapsed</pt>
                     <pd>从调用 <codeph>joinChannelByToken:channelId:uid:mediaOptions:joinSuccess:</codeph> 方法到 SDK 触发该回调的时间间隔（毫秒）。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>engine</pt>
-                    <pd>引擎对象。详见 <codeph>AgoraRtcEngineKit</codeph>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>state</pt>

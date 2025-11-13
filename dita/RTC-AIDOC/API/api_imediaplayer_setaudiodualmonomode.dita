@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_setaudiodualmonomode">
     <title>
-        <ph keyref="setAudioDualMonoMode"/>
+    <ph keyref="setAudioDualMonoMode"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">设置当前音频文件的声道模式。</ph>
+    <ph id="shortdesc">设置当前音频文件的声道模式。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -29,7 +29,7 @@
             <p props="ios mac">你可以使用该方法设置当前音频文件的声道模式，包括原始模式、左声道模式、右声道模式或混合声道模式。例如，在 KTV 场景中，音乐文件的左声道存储伴奏，右声道存储人声。如果你只需要听伴奏，可以调用该方法将声道模式设置为左声道模式；如果你需要同时听到伴奏和人声，可以将声道模式设置为混合声道模式。</p>
             <note props="cpp">
                 <ul>
-                    <li>调用该方法前需先调用 <codeph>open</codeph> 方法。</li>
+                    <li>调用该方法前需先调用 <xref keyref="open"/> 方法。</li>
                     <li>此方法仅适用于立体声音频文件。</li>
                 </ul>
             </note>
@@ -39,15 +39,9 @@
                     <li>该方法仅适用于立体声音频文件。</li>
                 </ul>
             </note>
-            <note props="ios">
+            <note props="ios mac">
                 <ul>
                     <li>请在调用 <xref keyref="open"/> 方法之后调用此方法。</li>
-                    <li>此方法仅适用于立体声音频文件。</li>
-                </ul>
-            </note>
-            <note props="mac">
-                <ul>
-                    <li>请在调用 <codeph>open:startPos:</codeph> 方法之后调用此方法。</li>
                     <li>此方法仅适用于立体声音频文件。</li>
                 </ul>
             </note>
@@ -65,30 +59,22 @@
             <parml>
                 <plentry props="cpp">
                     <pt>mode</pt>
-                    <pd>声道模式，详见 <codeph>AUDIO_DUAL_MONO_MODE</codeph>。</pd>
+                    <pd>声道模式，详见 <xref keyref="AUDIO_DUAL_MONO_MODE"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>mode</pt>
                     <pd>声道模式：
                         <ul>
-                            <li>
-                                <codeph>AUDIO_DUAL_MONO_STEREO</codeph> (0)：原始模式。</li>
-                            <li>
-                                <codeph>AUDIO_DUAL_MONO_L</codeph> (1)：左声道模式。该模式用左声道的音频替换右声道，你只能听到左声道的音频。</li>
-                            <li>
-                                <codeph>AUDIO_DUAL_MONO_R</codeph> (2)：右声道模式。该模式用右声道的音频替换左声道，你只能听到右声道的音频。</li>
-                            <li>
-                                <codeph>AUDIO_DUAL_MONO_MIX</codeph> (3)：混合声道模式。该模式将左右声道的音频混合，你可以同时听到左右声道的音频。</li>
+                            <li><codeph>AUDIO_DUAL_MONO_STEREO</codeph> (0)：原始模式。</li>
+                            <li><codeph>AUDIO_DUAL_MONO_L</codeph> (1)：左声道模式。该模式用左声道的音频替换右声道，你只能听到左声道的音频。</li>
+                            <li><codeph>AUDIO_DUAL_MONO_R</codeph> (2)：右声道模式。该模式用右声道的音频替换左声道，你只能听到右声道的音频。</li>
+                            <li><codeph>AUDIO_DUAL_MONO_MIX</codeph> (3)：混合声道模式。该模式将左右声道的音频混合，你可以同时听到左右声道的音频。</li>
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>mode</pt>
                     <pd>声道模式。详见 <xref keyref="AUDIO_DUAL_MONO_MODE"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>mode</pt>
-                    <pd>声道模式。详见 <codeph>AgoraAudioDualMonoMode</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_switchcamera">
     <title>
-        <ph keyref="switchCamera"/>
+    <ph keyref="switchCamera"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">切换前后摄像头。</ph>
+    <ph id="shortdesc">切换前后摄像头。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -29,20 +29,17 @@
             <p props="ios mac">你可以调用此方法，根据应用运行时实际可用的摄像头动态切换前后摄像头，无需重新启动视频流或重新配置视频源。</p>
             <note props="cpp">
                 <ul>
-                    <li>此方法仅切换由第一个摄像头采集的视频流的摄像头，即调用 <codeph>startCameraCapture</codeph> 时视频源设置为 <codeph>VIDEO_SOURCE_CAMERA</codeph>（0）的视频流。</li>
+                    <li>此方法仅切换由第一个摄像头采集的视频流的摄像头，即调用 <xref keyref="startCameraCapture"/> 时视频源设置为 <codeph>VIDEO_SOURCE_CAMERA</codeph>（0）的视频流。</li>
                     <li>此方法仅适用于 Android 和 iOS 平台。</li>
                 </ul>
             </note>
             <note props="android">该方法仅用于切换由第一个摄像头采集的视频流的摄像头，即调用 <xref keyref="startCameraCapture"/> 时视频源设置为 <codeph>VIDEO_SOURCE_CAMERA_PRIMARY</codeph>（0）的视频流。</note>
-            <note props="ios">此方法仅切换由第一个摄像头采集的视频流的摄像头，即调用 <xref keyref="startCameraCapture"/> 时视频源设置为 <codeph>AgoraVideoSourceTypeCamera</codeph>（0）的视频流。</note>
-            <note props="mac">此方法仅切换由第一个摄像头采集的视频流的摄像头，即调用 <codeph>startCameraCapture:config:</codeph> 时视频源设置为 <codeph>AgoraVideoSourceTypeCamera</codeph>（0）的视频流。</note>
+            <note props="ios mac">此方法仅切换由第一个摄像头采集的视频流的摄像头，即调用 <xref keyref="startCameraCapture"/> 时视频源设置为 <codeph>AgoraVideoSourceTypeCamera</codeph>（0）的视频流。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="cpp">必须在摄像头成功启用后调用，即 SDK 触发 <codeph>onLocalVideoStateChanged</codeph> 回调并返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>（1）之后。</p>
-            <p props="android">必须在摄像头成功启用后调用，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>（1）之后。</p>
-            <p props="ios">必须在摄像头成功启用后调用，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>AgoraVideoLocalStateCapturing</codeph>（1）之后。</p>
-            <p props="mac">必须在摄像头成功启用后调用，即 SDK 触发 <codeph>rtcEngine:localVideoStateChangedOfState:reason:sourceType:</codeph> 回调并返回本地视频状态为 <codeph>AgoraVideoLocalStateCapturing</codeph>（1）之后。</p>
+            <p props="android cpp">必须在摄像头成功启用后调用，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>（1）之后。</p>
+            <p props="ios mac">必须在摄像头成功启用后调用，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>AgoraVideoLocalStateCapturing</codeph>（1）之后。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>

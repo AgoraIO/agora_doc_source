@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enablesoundpositionindication">
     <title>
-        <ph keyref="enableSoundPositionIndication"/>
+    <ph keyref="enableSoundPositionIndication"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">启用或关闭远端用户的立体声声像功能。</ph>
+    <ph id="shortdesc">启用或关闭远端用户的立体声声像功能。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -24,10 +24,9 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">请确保在加入频道前调用该方法。本地用户随后可以调用 <codeph>setRemoteVoicePosition</codeph> 跟踪远端用户的位置。</p>
+            <p props="cpp">请确保在加入频道前调用该方法。本地用户随后可以调用 <xref keyref="setRemoteVoicePosition"/> 跟踪远端用户的位置。</p>
             <p props="android">请在加入频道前调用该方法。启用后，本地用户可以通过调用 <xref keyref="setRemoteVoicePosition"/> 跟踪远端用户的位置。</p>
-            <p props="ios">请确保在加入频道前调用该方法，从而使你可以通过调用 <xref keyref="setRemoteVoicePosition"/> 跟踪远端用户的位置。</p>
-            <p props="mac">请确保在加入频道前调用该方法，从而使你可以通过调用 <codeph>setRemoteVoicePosition:pan:gain:</codeph> 跟踪远端用户的位置。</p>
+            <p props="ios mac">请确保在加入频道前调用该方法，从而使你可以通过调用 <xref keyref="setRemoteVoicePosition"/> 跟踪远端用户的位置。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -40,36 +39,12 @@
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="cpp">
+                <plentry props="android cpp ios mac">
                     <pt>enabled</pt>
                     <pd>是否启用远端用户的立体声声像功能：
                         <ul>
-                            <li>
-                                <codeph>true</codeph>：启用立体声声像。</li>
-                            <li>
-                                <codeph>false</codeph>：关闭立体声声像。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="android ios">
-                    <pt>enabled</pt>
-                    <pd>是否启用远端用户的立体声声像功能：
-                        <ul>
-                            <li>
-                                <xref keyref="true"/>：启用立体声声像。</li>
-                            <li>
-                                <xref keyref="false"/>：关闭立体声声像。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>enabled</pt>
-                    <pd>是否启用远端用户的立体声声像功能：
-                        <ul>
-                            <li>
-                                <codeph>YES</codeph>：启用立体声声像。</li>
-                            <li>
-                                <codeph>NO</codeph>：关闭立体声声像。</li>
+                            <li><xref keyref="true"/>：启用立体声声像。</li>
+                            <li><xref keyref="false"/>：关闭立体声声像。</li>
                         </ul>
                     </pd>
                 </plentry>

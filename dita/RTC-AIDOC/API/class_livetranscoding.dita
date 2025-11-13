@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_livetranscoding">
     <title>
-        <ph keyref="LiveTranscoding"/>
+    <ph keyref="LiveTranscoding"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">用于配置媒体推流的转码参数。</ph>
+    <ph id="shortdesc">用于配置媒体推流的转码参数。</ph>
   </shortdesc>
     <refbody>
         <section id="prototype">
@@ -118,7 +118,7 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>videoBitrate</pt>
-                    <pd>视频编码码率（Kbps）。无需设置该参数，保持默认值 <codeph>STANDARD_BITRATE</codeph> 即可。SDK 会根据设置的视频分辨率和帧率自动匹配最合适的码率。有关视频分辨率与帧率的对应关系，详见 <codeph>Video profile</codeph>。</pd>
+                    <pd>视频编码码率（Kbps）。无需设置该参数，保持默认值 <xref keyref="STANDARD_BITRATE"/> 即可。SDK 会根据设置的视频分辨率和帧率自动匹配最合适的码率。有关视频分辨率与帧率的对应关系，详见 <codeph>Video profile</codeph>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>videoFramerate</pt>
@@ -129,10 +129,8 @@
                     <pd>已废弃。
 延迟模式：
                         <ul>
-                            <li>
-                                <codeph>true</codeph>：低延迟但画质不保证。</li>
-                            <li>
-                                <codeph>false</codeph>：（默认）高延迟但画质有保证。</li>
+                            <li><xref keyref="true"/>：低延迟但画质不保证。</li>
+                            <li><xref keyref="false"/>：（默认）高延迟但画质有保证。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -142,23 +140,23 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>videoCodecProfile</pt>
-                    <pd>媒体推流的视频编码器配置文件类型。可设置为 66、77 或 100（默认）。详见 <codeph>VIDEO_CODEC_PROFILE_TYPE</codeph>。</pd>
+                    <pd>媒体推流的视频编码器配置文件类型。可设置为 66、77 或 100（默认）。详见 <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>backgroundColor</pt>
                     <pd>背景颜色的 RGB 十六进制值，仅值，不包含前缀 #。例如，0xFFB6C1 表示浅粉色。默认值为 0x000000（黑色）。</pd>
                 </plentry>
-                <plentry props="cpp">
+                <plentry props="android cpp">
                     <pt>videoCodecType</pt>
-                    <pd>媒体推流使用的视频编码器类型。详见 <codeph>VIDEO_CODEC_TYPE_FOR_STREAM</codeph>。</pd>
+                    <pd>媒体推流使用的视频编码器类型。详见 <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>userCount</pt>
                     <pd>媒体推流中的用户数量。取值范围为 [0,17]。</pd>
                 </plentry>
-                <plentry props="cpp">
+                <plentry props="cpp ios mac">
                     <pt>transcodingUsers</pt>
-                    <pd>媒体推流中的用户布局配置。最多支持添加 17 个转码用户。详见 <codeph>TranscodingUser</codeph>。</pd>
+                    <pd>媒体推流中的用户布局配置。最多支持添加 17 个转码用户。详见 <xref keyref="TranscodingUser"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>transcodingExtraInfo</pt>
@@ -170,7 +168,7 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>watermark</pt>
-                    <pd>直播视频中的水印。图片格式需为 PNG。你可以添加一个水印，或使用数组添加多个水印。该参数与 <codeph>watermarkCount</codeph> 配合使用。详见 <codeph>RtcImage</codeph>。</pd>
+                    <pd>直播视频中的水印。图片格式需为 PNG。你可以添加一个水印，或使用数组添加多个水印。该参数与 <codeph>watermarkCount</codeph> 配合使用。详见 <xref keyref="RtcImage"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>watermarkCount</pt>
@@ -178,15 +176,15 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>backgroundImage</pt>
-                    <pd>直播视频中的背景图像。图片格式需为 PNG。你可以添加一个背景图像，或使用数组添加多个背景图像。该参数与 <codeph>backgroundImageCount</codeph> 配合使用。详见 <codeph>RtcImage</codeph>。</pd>
+                    <pd>直播视频中的背景图像。图片格式需为 PNG。你可以添加一个背景图像，或使用数组添加多个背景图像。该参数与 <codeph>backgroundImageCount</codeph> 配合使用。详见 <xref keyref="RtcImage"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>backgroundImageCount</pt>
                     <pd>直播视频中的背景图像数量。水印和背景图像的总数范围为 0 到 10。该参数与 <codeph>backgroundImage</codeph> 配合使用。</pd>
                 </plentry>
-                <plentry props="cpp">
+                <plentry props="cpp ios mac">
                     <pt>audioSampleRate</pt>
-                    <pd>输出媒体流的音频采样率（Hz）。详见 <codeph>AUDIO_SAMPLE_RATE_TYPE</codeph>。</pd>
+                    <pd>输出媒体流的音频采样率（Hz）。详见 <xref keyref="AUDIO_SAMPLE_RATE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="cpp ios mac">
                     <pt>audioBitrate</pt>
@@ -207,11 +205,11 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>audioCodecProfile</pt>
-                    <pd>媒体推流的音频编码器配置文件类型。详见 <codeph>AUDIO_CODEC_PROFILE_TYPE</codeph>。</pd>
+                    <pd>媒体推流的音频编码器配置文件类型。详见 <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>advancedFeatures</pt>
-                    <pd>带转码的媒体推流的高级功能。详见 <codeph>LiveStreamAdvancedFeature</codeph>。</pd>
+                    <pd>带转码的媒体推流的高级功能。详见 <xref keyref="LiveStreamAdvancedFeature"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>advancedFeatureCount</pt>
@@ -247,10 +245,8 @@
                     <pt>lowLatency</pt>
                     <pd>延迟模式：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：低延迟模式，但无法保证画质。</li>
-                            <li>
-                                <xref keyref="false"/>：默认值，高延迟但可保证画质。</li>
+                            <li><xref keyref="true"/>：低延迟模式，但无法保证画质。</li>
+                            <li><xref keyref="false"/>：默认值，高延迟但可保证画质。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -295,10 +291,6 @@
                     <pd>媒体推流使用的视频编码器配置类型。可设置为 66、77 或默认值 100。详见 <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="android">
-                    <pt>videoCodecType</pt>
-                    <pd>媒体推流使用的视频编码器类型。详见 <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/>。</pd>
-                </plentry>
-                <plentry props="android">
                     <pt>userCount</pt>
                     <pd>媒体推流中用户数量，取值范围为 [0,17]。</pd>
                 </plentry>
@@ -324,10 +316,6 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
-                    <pt>transcodingUsers</pt>
-                    <pd>媒体推流中的用户布局配置。最多支持添加 17 个转码用户。详见 <xref keyref="TranscodingUser"/>。</pd>
-                </plentry>
                 <plentry props="ios mac">
                     <pt>size</pt>
                     <pd>视频的尺寸（单位为像素）。
@@ -339,7 +327,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>videoBitrate</pt>
                     <pd>视频的编码码率（Kbps）。无需设置该参数，保持默认值 <xref keyref="STANDARD_BITRATE"/> 即可。SDK 会根据你设置的视频分辨率和帧率自动匹配最合适的码率。分辨率与帧率的对应关系详见 <codeph>Video profile</codeph>。</pd>
                 </plentry>
@@ -347,14 +335,12 @@
                     <pt>videoFramerate</pt>
                     <pd>媒体推流的视频输出帧率（fps）。默认值为 15，取值范围为 (0,30]。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>lowLatency</pt>
                     <pd>延迟模式：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：低延迟但画质无法保证。</li>
-                            <li>
-                                <xref keyref="false"/>：（默认）高延迟但画质有保障。</li>
+                            <li><xref keyref="true"/>：低延迟但画质无法保证。</li>
+                            <li><xref keyref="false"/>：（默认）高延迟但画质有保障。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -362,11 +348,11 @@
                     <pt>videoGop</pt>
                     <pd>媒体推流的视频帧的 GOP（图像组）帧率，单位为 fps。默认值为 30。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>videoCodecProfile</pt>
                     <pd>媒体推流的视频编解码器配置文件类型。可设置为 66、77 或 100（默认）。详见 <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>videoCodecType</pt>
                     <pd>媒体推流的视频编解码器类型。详见 <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/>。</pd>
                 </plentry>
@@ -374,11 +360,11 @@
                     <pt>transcodingExtraInfo</pt>
                     <pd>保留字段。用于通过 SEI 将用户自定义的额外信息发送到 CDN 直播客户端，适用于 H.264/H.265 视频流。最大长度为 4096 字节。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>watermarkArray</pt>
                     <pd>直播视频中的水印数组。你可以使用该属性添加一个或多个 PNG 格式的水印。直播视频中的水印和背景图总数必须在 0 到 10 之间。详见 <xref keyref="RtcImage"/>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>backgroundImageArray</pt>
                     <pd>直播视频中的背景图数组。你可以使用该属性添加一个或多个 PNG 格式的背景图。直播视频中的水印和背景图总数必须在 0 到 10 之间。详见 <xref keyref="RtcImage"/>。</pd>
                 </plentry>
@@ -390,10 +376,6 @@
                             <li>macOS：NSColor</li>
                         </ul>
                     </pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>audioSampleRate</pt>
-                    <pd>输出媒体流的音频采样率（Hz）。详见 <xref keyref="AUDIO_SAMPLE_RATE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="ios mac">
                     <pt>audioChannels</pt>
@@ -407,52 +389,9 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>audioCodecProfile</pt>
                     <pd>媒体推流的音频编解码器配置文件类型。详见 <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>transcodingUsers</pt>
-                    <pd>媒体推流中的用户布局配置。最多支持添加 17 个转码用户。详见 <codeph>AgoraLiveTranscodingUser</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>videoBitrate</pt>
-                    <pd>视频的编码码率（Kbps）。无需设置该参数，保持默认值 <codeph>AgoraVideoBitrateStandard</codeph> 即可。SDK 会根据你设置的视频分辨率和帧率自动匹配最合适的码率。分辨率与帧率的对应关系详见 <codeph>Video profile</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>lowLatency</pt>
-                    <pd>延迟模式：
-                        <ul>
-                            <li>
-                                <codeph>YES</codeph>：低延迟但画质无法保证。</li>
-                            <li>
-                                <codeph>NO</codeph>：（默认）高延迟但画质有保障。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>videoCodecProfile</pt>
-                    <pd>媒体推流的视频编解码器配置文件类型。可设置为 66、77 或 100（默认）。详见 <codeph>AgoraVideoCodecProfileType</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>videoCodecType</pt>
-                    <pd>媒体推流的视频编解码器类型。详见 <codeph>AgoraVideoCodecTypeForStream</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>watermarkArray</pt>
-                    <pd>直播视频中的水印数组。你可以使用该属性添加一个或多个 PNG 格式的水印。直播视频中的水印和背景图总数必须在 0 到 10 之间。详见 <codeph>AgoraImage</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>backgroundImageArray</pt>
-                    <pd>直播视频中的背景图数组。你可以使用该属性添加一个或多个 PNG 格式的背景图。直播视频中的水印和背景图总数必须在 0 到 10 之间。详见 <codeph>AgoraImage</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>audioSampleRate</pt>
-                    <pd>输出媒体流的音频采样率（Hz）。详见 <codeph>AgoraAudioSampleRateType</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>audioCodecProfile</pt>
-                    <pd>媒体推流的音频编解码器配置文件类型。详见 <codeph>AgoraAudioCodecProfileType</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_switchsrc">
     <title>
-        <ph keyref="switchSrc"/>
+    <ph keyref="switchSrc"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">切换当前正在播放的媒体资源。</ph>
+    <ph id="shortdesc">切换当前正在播放的媒体资源。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -28,7 +28,7 @@
                 <ul>
                     <li>当网络较差时，切换为码率较低的媒体资源地址；</li>
                     <li>当网络良好时，切换为码率较高的媒体资源地址。
-调用该方法后，如果收到 <codeph>onPlayerEvent</codeph> 回调报告 <codeph>PLAYER_EVENT_SWITCH_COMPLETE</codeph> 事件，表示切换成功；如果切换失败，SDK 会自动重试 3 次，若仍失败，将通过 <codeph>onPlayerEvent</codeph> 回调报告 <codeph>PLAYER_EVENT_SWITCH_ERROR</codeph> 事件，表示切换失败。</li>
+调用该方法后，如果收到 <xref keyref="onPlayerEvent"/> 回调报告 <codeph>PLAYER_EVENT_SWITCH_COMPLETE</codeph> 事件，表示切换成功；如果切换失败，SDK 会自动重试 3 次，若仍失败，将通过 <xref keyref="onPlayerEvent"/> 回调报告 <codeph>PLAYER_EVENT_SWITCH_ERROR</codeph> 事件，表示切换失败。</li>
                 </ul>
             </p>
             <p props="android">你可以调用此方法根据当前网络状态切换播放的媒体资源地址。例如：
@@ -46,10 +46,10 @@
             </p>
             <note props="cpp">
                 <ul>
-                    <li>请确保在调用 <codeph>open</codeph> 方法之后再调用该方法。</li>
+                    <li>请确保在调用 <xref keyref="open"/> 方法之后再调用该方法。</li>
                     <li>为确保正常播放，调用该方法时请注意以下事项：</li>
                     <li>播放暂停时不要调用该方法；</li>
-                    <li>切换过程中不要调用 <codeph>seek</codeph> 方法；</li>
+                    <li>切换过程中不要调用 <xref keyref="seek"/> 方法；</li>
                     <li>切换前请确保当前播放位置未超过目标媒体资源的总时长。</li>
                 </ul>
             </note>
@@ -62,19 +62,11 @@
                     <li>切换媒体资源前，请确保播放位置未超过待切换媒体资源的总时长。</li>
                 </ul>
             </note>
-            <note props="ios">确保在调用该方法前已调用 <xref keyref="open"/> 方法。
+            <note props="ios mac">确保在调用该方法前已调用 <xref keyref="open"/> 方法。
 为确保正常播放，调用该方法时请注意以下事项：
                 <ul>
                     <li>播放暂停时不要调用该方法。</li>
                     <li>切换过程中不要调用 <xref keyref="seek"/> 方法。</li>
-                    <li>切换媒体资源前，请确保播放位置未超过要切换的媒体资源的总时长。</li>
-                </ul>
-            </note>
-            <note props="mac">确保在调用该方法前已调用 <codeph>open:startPos:</codeph> 方法。
-为确保正常播放，调用该方法时请注意以下事项：
-                <ul>
-                    <li>播放暂停时不要调用该方法。</li>
-                    <li>切换过程中不要调用 <codeph>seekToPosition:</codeph> 方法。</li>
                     <li>切换媒体资源前，请确保播放位置未超过要切换的媒体资源的总时长。</li>
                 </ul>
             </note>
@@ -102,10 +94,8 @@
                     <pt>syncPts</pt>
                     <pd>是否同步 PTS：
                         <ul>
-                            <li>
-                                <codeph>true</codeph>：同步 PTS。</li>
-                            <li>
-                                <codeph>false</codeph>：不同步 PTS。直播流必须设置为 <codeph>false</codeph>。</li>
+                            <li><xref keyref="true"/>：同步 PTS。</li>
+                            <li><xref keyref="false"/>：不同步 PTS。直播流必须设置为 <xref keyref="false"/>。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -113,25 +103,12 @@
                     <pt>src</pt>
                     <pd>媒体资源的 URL 地址。</pd>
                 </plentry>
-                <plentry props="android ios">
+                <plentry props="android ios mac">
                     <pt>syncPts</pt>
                     <pd>是否在切换前后同步播放位置（毫秒）：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：同步切换前后的播放位置。</li>
-                            <li>
-                                <xref keyref="false"/>：（默认）不同步切换前后的播放位置。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>syncPts</pt>
-                    <pd>是否在切换前后同步播放位置（毫秒）：
-                        <ul>
-                            <li>
-                                <codeph>YES</codeph>：同步切换前后的播放位置。</li>
-                            <li>
-                                <codeph>NO</codeph>：（默认）不同步切换前后的播放位置。</li>
+                            <li><xref keyref="true"/>：同步切换前后的播放位置。</li>
+                            <li><xref keyref="false"/>：（默认）不同步切换前后的播放位置。</li>
                         </ul>
                     </pd>
                 </plentry>

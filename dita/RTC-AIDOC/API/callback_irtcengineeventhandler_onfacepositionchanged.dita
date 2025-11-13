@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onfacepositionchanged">
     <title>
-        <ph keyref="onFacePositionChanged"/>
+    <ph keyref="onFacePositionChanged"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">上报本地用户的人脸检测结果。</ph>
+    <ph id="shortdesc">上报本地用户的人脸检测结果。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -30,7 +30,7 @@
                     <dd>自 v3.0.1 版本新增。</dd>
                 </dlentry>
             </dl>
-            <p props="cpp">调用 <codeph>enableFaceDetection</codeph> 启用人脸检测后，你可以实时获取以下本地用户的信息：
+            <p props="cpp">调用 <xref keyref="enableFaceDetection"/> 启用人脸检测后，你可以实时获取以下本地用户的信息：
                 <ul>
                     <li>本地视频的宽度和高度。</li>
                     <li>人脸在本地视图中的位置。</li>
@@ -45,15 +45,7 @@
                     <li>人脸与屏幕之间的距离。该距离值基于本地视频尺寸和人脸位置的拟合计算得出。</li>
                 </ul>
             </p>
-            <p props="ios">调用 <xref keyref="enableFaceDetection"/> 传入 <xref keyref="true"/> 启用人脸检测后，你可以实时获取本地用户的以下信息：
-                <ul>
-                    <li>本地视频的宽度和高度。</li>
-                    <li>人脸在本地视图中的位置。</li>
-                    <li>人脸与屏幕之间的距离。
-该距离值是基于本地视频尺寸和人脸位置的拟合计算结果。</li>
-                </ul>
-            </p>
-            <p props="mac">调用 <codeph>enableFaceDetection:</codeph> 传入 <codeph>YES</codeph> 启用人脸检测后，你可以实时获取本地用户的以下信息：
+            <p props="ios mac">调用 <xref keyref="enableFaceDetection"/> 传入 <xref keyref="true"/> 启用人脸检测后，你可以实时获取本地用户的以下信息：
                 <ul>
                     <li>本地视频的宽度和高度。</li>
                     <li>人脸在本地视图中的位置。</li>
@@ -107,14 +99,10 @@
                     <pt>vecRectangle</pt>
                     <pd>长度为 <codeph>numFaces</codeph> 的数组，表示检测到的人脸信息：
                         <ul>
-                            <li>
-                                <codeph>x</codeph>：人脸在本地视图中的 x 坐标（像素），以视图左上角为原点，表示人脸相对于原点的水平位置。</li>
-                            <li>
-                                <codeph>y</codeph>：人脸在本地视图中的 y 坐标（像素），以视图左上角为原点，表示人脸相对于原点的垂直位置。</li>
-                            <li>
-                                <codeph>width</codeph>：人脸在捕获视图中的宽度（像素）。</li>
-                            <li>
-                                <codeph>height</codeph>：人脸在捕获视图中的高度（像素）。详见 <codeph>Rectangle</codeph>。</li>
+                            <li><codeph>x</codeph>：人脸在本地视图中的 x 坐标（像素），以视图左上角为原点，表示人脸相对于原点的水平位置。</li>
+                            <li><codeph>y</codeph>：人脸在本地视图中的 y 坐标（像素），以视图左上角为原点，表示人脸相对于原点的垂直位置。</li>
+                            <li><codeph>width</codeph>：人脸在捕获视图中的宽度（像素）。</li>
+                            <li><codeph>height</codeph>：人脸在捕获视图中的高度（像素）。详见 <xref keyref="Rectangle"/>。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -138,10 +126,9 @@
                     <pt>faceRectArr</pt>
                     <pd>检测到的人脸信息。该数组的长度取决于检测到的人脸数量，可能为 0，表示摄像头前未检测到人脸。详见 <xref keyref="AgoraFacePositionInfo"/>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>engine</pt>
-                    <pd>
-                        <xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+                    <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
                 <plentry props="ios mac">
                     <pt>width</pt>
@@ -154,11 +141,6 @@
                 <plentry props="ios">
                     <pt>faces</pt>
                     <pd>检测到的人脸信息，详见 <xref keyref="AgoraFacePositionInfo"/>。该回调中返回的 <xref keyref="AgoraFacePositionInfo"/> 数组数量取决于检测到的人脸数量。数组长度可能为 0，表示摄像头前未检测到人脸。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>engine</pt>
-                    <pd>
-                        <codeph>AgoraRtcEngineKit</codeph> 对象。详见 <codeph>AgoraRtcEngineKit</codeph>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>faces</pt>

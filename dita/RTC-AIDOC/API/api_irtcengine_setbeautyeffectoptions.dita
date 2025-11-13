@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setbeautyeffectoptions">
     <title>
-        <ph keyref="setBeautyEffectOptions"/>
+    <ph keyref="setBeautyEffectOptions"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">设置美颜特效选项。</ph>
+    <ph id="shortdesc">设置美颜特效选项。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -30,11 +30,10 @@
                     <dd>自 v2.4.0 版本新增。</dd>
                 </dlentry>
             </dl>
-            <p props="ios">你可以通过该方法启用或禁用图像增强功能，并设置相关选项。请在调用 <xref keyref="enableVideo"/> 或 <codeph>startPreview:</codeph> 方法之后调用本方法。</p>
-            <p props="mac">你可以通过该方法启用或禁用图像增强功能，并设置相关选项。请在调用 <codeph>enableVideo</codeph> 或 <codeph>startPreview:</codeph> 方法之后调用本方法。</p>
+            <p props="ios mac">你可以通过该方法启用或禁用图像增强功能，并设置相关选项。请在调用 <xref keyref="enableVideo"/> 或 <codeph>startPreview:</codeph> 方法之后调用本方法。</p>
             <note props="cpp">
                 <ul>
-                    <li>该方法依赖图像增强动态库 <codeph>libagora_clear_vision_extension.dll</codeph>。如果该动态库被删除，将无法正常启用该功能。</li>
+                    <li>该方法依赖图像增强动态库 <xref keyref="clearvision"/>。如果该动态库被删除，将无法正常启用该功能。</li>
                     <li>该功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的性能能力。</li>
                 </ul>
             </note>
@@ -53,17 +52,16 @@
             </note>
             <note props="mac">
                 <ul>
-                    <li>该方法依赖图像增强动态库 <codeph>AgoraClearVisionExtension.xcframework</codeph>（iOS）或 <codeph>AgoraClearVisionExtension.framework</codeph>（macOS）。如果该动态库被删除，则无法正常启用该功能。</li>
+                    <li>该方法依赖图像增强动态库 <codeph>AgoraClearVisionExtension.xcframework</codeph>（iOS）或 <xref keyref="clearvision"/>（macOS）。如果该动态库被删除，则无法正常启用该功能。</li>
                     <li>该功能对设备性能要求较高。调用该方法时，SDK 会自动检测当前设备的性能能力。</li>
                 </ul>
             </note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="cpp">在调用 <codeph>enableVideo</codeph> 或 <codeph>startPreview</codeph> 之后调用该方法。</p>
+            <p props="cpp">在调用 <xref keyref="enableVideo"/> 或 <codeph>startPreview</codeph> 之后调用该方法。</p>
             <p props="android">请在调用 <xref keyref="enableVideo"/> 或 <codeph>startPreview</codeph> 方法之后调用本方法。</p>
-            <p props="ios">请在调用 <xref keyref="enableVideo"/> 或 <codeph>startPreview:</codeph> 方法之后调用本方法。</p>
-            <p props="mac">请在调用 <codeph>enableVideo</codeph> 或 <codeph>startPreview:</codeph> 方法之后调用本方法。</p>
+            <p props="ios mac">请在调用 <xref keyref="enableVideo"/> 或 <codeph>startPreview:</codeph> 方法之后调用本方法。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -76,20 +74,18 @@
                     <pt>enabled</pt>
                     <pd>是否启用美颜特效功能：
                         <ul>
-                            <li>
-                                <codeph>true</codeph>：启用美颜特效功能。</li>
-                            <li>
-                                <codeph>false</codeph>：（默认）禁用美颜特效功能。</li>
+                            <li><xref keyref="true"/>：启用美颜特效功能。</li>
+                            <li><xref keyref="false"/>：（默认）禁用美颜特效功能。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>options</pt>
-                    <pd>美颜特效选项。详见 <codeph>BeautyOptions</codeph>。</pd>
+                    <pd>美颜特效选项。详见 <xref keyref="BeautyOptions"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>type</pt>
-                    <pd>应用滤镜效果的媒体源类型。详见 <codeph>MEDIA_SOURCE_TYPE</codeph>。
+                    <pd>应用滤镜效果的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。
                         <ul>
                             <li>如果使用摄像头采集本地视频，使用默认值 <codeph>PRIMARY_CAMERA_SOURCE</codeph>。</li>
                             <li>如果使用自定义视频源，设置为 <codeph>CUSTOM_VIDEO_SOURCE</codeph>。</li>
@@ -100,10 +96,8 @@
                     <pt>enabled</pt>
                     <pd>是否启用图像增强功能：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：启用图像增强功能。</li>
-                            <li>
-                                <xref keyref="false"/>：（默认）关闭图像增强功能。</li>
+                            <li><xref keyref="true"/>：启用图像增强功能。</li>
+                            <li><xref keyref="false"/>：（默认）关闭图像增强功能。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -111,35 +105,18 @@
                     <pt>options</pt>
                     <pd>图像增强参数。详见 <xref keyref="BeautyOptions"/>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>enable</pt>
                     <pd>是否启用图像增强功能：
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：启用图像增强功能。</li>
-                            <li>
-                                <xref keyref="false"/>：（默认）禁用图像增强功能。</li>
+                            <li><xref keyref="true"/>：启用图像增强功能。</li>
+                            <li><xref keyref="false"/>：（默认）禁用图像增强功能。</li>
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>options</pt>
                     <pd>图像增强选项，详见 <xref keyref="BeautyOptions"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>enable</pt>
-                    <pd>是否启用图像增强功能：
-                        <ul>
-                            <li>
-                                <codeph>YES</codeph>：启用图像增强功能。</li>
-                            <li>
-                                <codeph>NO</codeph>：（默认）禁用图像增强功能。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>options</pt>
-                    <pd>图像增强选项，详见 <codeph>AgoraBeautyOptions</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

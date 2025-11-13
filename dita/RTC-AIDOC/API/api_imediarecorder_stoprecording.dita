@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediarecorder_stoprecording">
     <title>
-        <ph keyref="stopRecording"/>
+    <ph keyref="stopRecording"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">停止音视频流的录制。</ph>
+    <ph id="shortdesc">停止音视频流的录制。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -30,9 +30,8 @@
                     <dd>自 v4.0.0 版本新增。</dd>
                 </dlentry>
             </dl>
-            <note props="cpp">调用 <codeph>startRecording</codeph> 后，必须调用该方法停止录制，否则生成的录制文件可能无法正常播放。</note>
-            <note props="android ios">调用 <xref keyref="startRecording"/> 后，如果你想停止录制，必须调用此方法；否则生成的录制文件可能无法正常播放。</note>
-            <note props="mac">调用 <codeph>startRecording:</codeph> 后，如果你想停止录制，必须调用此方法；否则生成的录制文件可能无法正常播放。</note>
+            <note props="cpp">调用 <xref keyref="startRecording"/> 后，必须调用该方法停止录制，否则生成的录制文件可能无法正常播放。</note>
+            <note props="android ios mac">调用 <xref keyref="startRecording"/> 后，如果你想停止录制，必须调用此方法；否则生成的录制文件可能无法正常播放。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -48,7 +47,7 @@
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败：</li>
-                    <li>-7：调用该方法时 <codeph>IRtcEngine</codeph> 未初始化。请确保在调用该方法前已创建 <codeph>IMediaRecorder</codeph> 实例。</li>
+                    <li>-7：调用该方法时 <xref keyref="IRtcEngine"/> 未初始化。请确保在调用该方法前已创建 <xref keyref="IMediaRecorder"/> 实例。</li>
                 </ul>
             </p>
             <p props="android">
@@ -58,18 +57,11 @@
                     <li>-7：在初始化 <xref keyref="IRtcEngine"/> 之前调用该方法。请确保在调用此方法之前已创建 <codeph>Recorder</codeph> 实例。</li>
                 </ul>
             </p>
-            <p props="ios">
+            <p props="ios mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败：</li>
                     <li>-7：在初始化 <xref keyref="IRtcEngine"/> 之前调用该方法。请确保在调用此方法之前已创建 <codeph>Recorder</codeph> 对象。</li>
-                </ul>
-            </p>
-            <p props="mac">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败：</li>
-                    <li>-7：在初始化 <codeph>AgoraRtcEngineKit</codeph> 之前调用该方法。请确保在调用此方法之前已创建 <codeph>Recorder</codeph> 对象。</li>
                 </ul>
             </p>
         </section>

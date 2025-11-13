@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onlocalaudiostatechanged">
     <title>
-        <ph keyref="onLocalAudioStateChanged"/>
+    <ph keyref="onLocalAudioStateChanged"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">本地音频流状态发生变化回调。</ph>
+    <ph id="shortdesc">本地音频流状态发生变化回调。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -27,8 +27,7 @@
             <p props="cpp">当本地音频流的状态（包括音频采集和编码状态）发生变化时，SDK 会触发该回调报告当前状态，帮助你排查音频异常问题。</p>
             <p props="android">当本地音频流的状态发生变化时，SDK 会触发该回调以报告当前状态，便于你在音频异常时排查问题。</p>
             <p props="ios mac">当本地音频流状态（包括音频采集和编码状态）发生变化时，SDK 会触发该回调以报告当前状态，便于你在出现音频异常时排查问题。</p>
-            <note props="cpp">当状态为 <codeph>LOCAL_AUDIO_STREAM_STATE_FAILED</codeph>（3）时，可以在 <codeph>error</codeph> 参数中查看错误信息。</note>
-            <note props="android">当状态为 <codeph>LOCAL_AUDIO_STREAM_STATE_FAILED</codeph>（3）时，可以在 <xref keyref="Error"/> 参数中查看错误信息。</note>
+            <note props="android cpp">当状态为 <codeph>LOCAL_AUDIO_STREAM_STATE_FAILED</codeph>（3）时，可以在 <xref keyref="Error"/> 参数中查看错误信息。</note>
             <note props="ios mac">当状态为 <codeph>AgoraAudioLocalStateFailed</codeph>（3）时，可以在 <codeph>error</codeph> 参数中查看错误信息。</note>
         </section>
         <section id="timing" deliveryTarget="details">
@@ -44,29 +43,24 @@
             <parml>
                 <plentry props="cpp">
                     <pt>connection</pt>
-                    <pd>
-                        <codeph>RtcConnection</codeph> 对象。详见 <codeph>RtcConnection</codeph>。</pd>
+                    <pd><xref keyref="RtcConnection"/> 对象。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>state</pt>
-                    <pd>本地音频流的状态。详见 <codeph>LOCAL_AUDIO_STREAM_STATE</codeph>。</pd>
+                    <pd>本地音频流的状态。详见 <xref keyref="LOCAL_AUDIO_STREAM_STATE"/>。</pd>
                 </plentry>
-                <plentry props="cpp">
+                <plentry props="cpp ios">
                     <pt>reason</pt>
-                    <pd>本地音频状态变化的原因。详见 <codeph>LOCAL_AUDIO_STREAM_REASON</codeph>。</pd>
+                    <pd>本地音频状态变化的原因。详见 <xref keyref="LOCAL_AUDIO_STREAM_REASON"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>state</pt>
                     <pd>本地音频的状态：
                         <ul>
-                            <li>
-                                <codeph>LOCAL_AUDIO_STREAM_STATE_STOPPED</codeph>（0）：本地音频处于初始状态。</li>
-                            <li>
-                                <codeph>LOCAL_AUDIO_STREAM_STATE_RECORDING</codeph>（1）：本地音频采集设备启动成功。</li>
-                            <li>
-                                <codeph>LOCAL_AUDIO_STREAM_STATE_ENCODING</codeph>（2）：首帧音频编码成功。</li>
-                            <li>
-                                <codeph>LOCAL_AUDIO_STREAM_STATE_FAILED</codeph>（3）：本地音频启动失败。</li>
+                            <li><codeph>LOCAL_AUDIO_STREAM_STATE_STOPPED</codeph>（0）：本地音频处于初始状态。</li>
+                            <li><codeph>LOCAL_AUDIO_STREAM_STATE_RECORDING</codeph>（1）：本地音频采集设备启动成功。</li>
+                            <li><codeph>LOCAL_AUDIO_STREAM_STATE_ENCODING</codeph>（2）：首帧音频编码成功。</li>
+                            <li><codeph>LOCAL_AUDIO_STREAM_STATE_FAILED</codeph>（3）：本地音频启动失败。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -74,40 +68,23 @@
                     <pt>reason</pt>
                     <pd>本地音频状态变化的原因：
                         <ul>
-                            <li>
-                                <codeph>LOCAL_AUDIO_STREAM_REASON_OK</codeph>（0）：本地音频状态正常。</li>
-                            <li>
-                                <codeph>LOCAL_AUDIO_STREAM_REASON_FAILURE</codeph>（1）：本地音频失败的原因不明确。提示用户尝试重新加入频道。</li>
-                            <li>
-                                <codeph>LOCAL_AUDIO_STREAM_REASON_DEVICE_NO_PERMISSION</codeph>（2）：没有权限使用本地音频采集设备。提示用户授予权限。</li>
-                            <li>
-                                <codeph>LOCAL_AUDIO_STREAM_REASON_DEVICE_BUSY</codeph>（3）：麦克风被占用。提示用户检查是否有其他应用占用了麦克风。麦克风空闲约五秒后本地音频采集会自动恢复，也可以在麦克风空闲后尝试重新加入频道。</li>
-                            <li>
-                                <codeph>LOCAL_AUDIO_STREAM_REASON_CAPTURE_FAILURE</codeph>（4）：本地音频采集失败。</li>
-                            <li>
-                                <codeph>LOCAL_AUDIO_STREAM_REASON_ENCODE_FAILURE</codeph>（5）：本地音频编码失败。</li>
-                            <li>
-                                <codeph>LOCAL_AUDIO_STREAM_REASON_INTERRUPTED</codeph>（8）：本地音频采集被系统电话、智能助手或闹钟中断。如果需要继续采集本地音频，提示用户结束电话、智能助手或闹钟。</li>
+                            <li><codeph>LOCAL_AUDIO_STREAM_REASON_OK</codeph>（0）：本地音频状态正常。</li>
+                            <li><codeph>LOCAL_AUDIO_STREAM_REASON_FAILURE</codeph>（1）：本地音频失败的原因不明确。提示用户尝试重新加入频道。</li>
+                            <li><codeph>LOCAL_AUDIO_STREAM_REASON_DEVICE_NO_PERMISSION</codeph>（2）：没有权限使用本地音频采集设备。提示用户授予权限。</li>
+                            <li><codeph>LOCAL_AUDIO_STREAM_REASON_DEVICE_BUSY</codeph>（3）：麦克风被占用。提示用户检查是否有其他应用占用了麦克风。麦克风空闲约五秒后本地音频采集会自动恢复，也可以在麦克风空闲后尝试重新加入频道。</li>
+                            <li><codeph>LOCAL_AUDIO_STREAM_REASON_CAPTURE_FAILURE</codeph>（4）：本地音频采集失败。</li>
+                            <li><codeph>LOCAL_AUDIO_STREAM_REASON_ENCODE_FAILURE</codeph>（5）：本地音频编码失败。</li>
+                            <li><codeph>LOCAL_AUDIO_STREAM_REASON_INTERRUPTED</codeph>（8）：本地音频采集被系统电话、智能助手或闹钟中断。如果需要继续采集本地音频，提示用户结束电话、智能助手或闹钟。</li>
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>engine</pt>
-                    <pd>
-                        <xref keyref="IRtcEngine"/> 实例。详见 <xref keyref="IRtcEngine"/>。</pd>
+                    <pd><xref keyref="IRtcEngine"/> 实例。详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>state</pt>
                     <pd>本地音频的状态。详见 <xref keyref="LOCAL_AUDIO_STREAM_STATE"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>reason</pt>
-                    <pd>本地音频状态变化的原因。详见 <xref keyref="LOCAL_AUDIO_STREAM_REASON"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>engine</pt>
-                    <pd>
-                        <codeph>AgoraRtcEngineKit</codeph> 实例。详见 <codeph>AgoraRtcEngineKit</codeph>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>state</pt>

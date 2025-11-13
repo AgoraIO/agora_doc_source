@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_querycodeccapability">
     <title>
-        <ph keyref="queryCodecCapability"/>
+    <ph keyref="queryCodecCapability"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">查询 SDK 支持的视频编解码器能力。</ph>
+    <ph id="shortdesc">查询 SDK 支持的视频编解码器能力。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -36,7 +36,7 @@
             <parml>
                 <plentry props="cpp">
                     <pt>codecInfo</pt>
-                    <pd>输入和输出参数，表示 SDK 支持的视频编解码器能力数组。你在调用该方法时传入一个 <codeph>CodecCapInfo</codeph> 数组，表示要查询的视频编解码器能力。方法执行完毕后，该数组将被填充为 SDK 实际支持的视频编解码器能力。详见 <codeph>CodecCapInfo</codeph>。</pd>
+                    <pd>输入和输出参数，表示 SDK 支持的视频编解码器能力数组。你在调用该方法时传入一个 <xref keyref="CodecCapInfo"/> 数组，表示要查询的视频编解码器能力。方法执行完毕后，该数组将被填充为 SDK 实际支持的视频编解码器能力。详见 <xref keyref="CodecCapInfo"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>size</pt>
@@ -53,16 +53,10 @@
                 </ul>
             </p>
             <p props="android">方法调用成功，返回 <xref keyref="CodecCapInfo"/> 数组，表示设备的视频编码能力。方法调用超时，请修改调用逻辑，避免在主线程中调用该方法。</p>
-            <p props="ios">
+            <p props="ios mac">
                 <ul>
                     <li>方法调用成功时，返回一个 <xref keyref="CodecCapInfo"/> 数组，表示设备的视频编码能力，详见 <xref keyref="CodecCapInfo"/>。</li>
                     <li>方法调用失败时，返回 <xref keyref="NULL"/>。如果调用超时，请调整调用逻辑，避免在主线程中调用该方法。</li>
-                </ul>
-            </p>
-            <p props="mac">
-                <ul>
-                    <li>方法调用成功时，返回一个 <codeph>AgoraVideoCodecCapInfo</codeph> 数组，表示设备的视频编码能力，详见 <codeph>AgoraVideoCodecCapInfo</codeph>。</li>
-                    <li>方法调用失败时，返回 <codeph>nil</codeph>。如果调用超时，请调整调用逻辑，避免在主线程中调用该方法。</li>
                 </ul>
             </p>
         </section>

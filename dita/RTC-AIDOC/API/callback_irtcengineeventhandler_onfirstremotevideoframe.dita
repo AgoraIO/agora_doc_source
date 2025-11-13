@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onfirstremotevideoframe">
     <title>
-        <ph keyref="onFirstRemoteVideoFrame"/>
+    <ph keyref="onFirstRemoteVideoFrame"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">远端视频首帧显示回调。</ph>
+    <ph id="shortdesc">远端视频首帧显示回调。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -24,12 +24,9 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <note props="cpp">
-                <codeph>onFirstRemoteVideoFrame</codeph> 回调仅在视频帧由 SDK 渲染时触发。如果你使用自定义视频渲染，则不会触发该回调。你需要使用 SDK 之外的方法独立实现此功能。</note>
-            <note props="android">
-                <xref keyref="onFirstRemoteVideoFrame"/> 回调仅在视频帧由 SDK 渲染时触发；如果你使用自定义视频渲染，则不会触发该回调。你需要使用 SDK 外的方法自行实现该功能。</note>
-            <note props="ios mac">
-                <codeph>该回调仅在视频帧由 SDK 渲染时触发；如果你使用自定义视频渲染，则不会触发该回调。你需要使用 SDK 之外的方法自行实现。</codeph></note>
+            <note props="cpp"><xref keyref="onFirstRemoteVideoFrame"/> 回调仅在视频帧由 SDK 渲染时触发。如果你使用自定义视频渲染，则不会触发该回调。你需要使用 SDK 之外的方法独立实现此功能。</note>
+            <note props="android"><xref keyref="onFirstRemoteVideoFrame"/> 回调仅在视频帧由 SDK 渲染时触发；如果你使用自定义视频渲染，则不会触发该回调。你需要使用 SDK 外的方法自行实现该功能。</note>
+            <note props="ios mac"><codeph>该回调仅在视频帧由 SDK 渲染时触发；如果你使用自定义视频渲染，则不会触发该回调。你需要使用 SDK 之外的方法自行实现。</codeph></note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
@@ -46,7 +43,7 @@
             <parml>
                 <plentry props="cpp">
                     <pt>connection</pt>
-                    <pd>连接信息。详见 <codeph>RtcConnection</codeph>。</pd>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>remoteUid</pt>
@@ -80,7 +77,7 @@
                     <pt>elapsed</pt>
                     <pd>从本地用户调用 <codeph>joinChannel</codeph> 到 SDK 触发该回调的时间（毫秒）。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>engine</pt>
                     <pd>引擎对象，详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
@@ -91,10 +88,6 @@
                 <plentry props="ios mac">
                     <pt>elapsed</pt>
                     <pd>从调用 <codeph>joinChannelByToken</codeph> 加入频道到触发该回调的时间（毫秒）。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>engine</pt>
-                    <pd>引擎对象，详见 <codeph>AgoraRtcEngineKit</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

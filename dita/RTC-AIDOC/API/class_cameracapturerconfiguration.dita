@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_cameracapturerconfiguration">
     <title>
-        <ph keyref="CameraCapturerConfiguration"/>
+    <ph keyref="CameraCapturerConfiguration"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">配置摄像头采集偏好。</ph>
+    <ph id="shortdesc">配置摄像头采集偏好。</ph>
   </shortdesc>
     <refbody>
         <section id="prototype">
@@ -59,15 +59,15 @@
             <parml>
                 <plentry props="cpp">
                     <pt>cameraDirection</pt>
-                    <pd>（可选）摄像头方向，详见 <codeph>CAMERA_DIRECTION</codeph>。</pd>
+                    <pd>（可选）摄像头方向，详见 <xref keyref="CAMERA_DIRECTION"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>cameraFocalLengthType</pt>
-                    <pd>（可选）摄像头焦距类型，详见 <codeph>CAMERA_FOCAL_LENGTH_TYPE</codeph>。</pd>
+                    <pd>（可选）摄像头焦距类型，详见 <xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>deviceId</pt>
-                    <pd>摄像头 ID，最大长度为 <codeph>MAX_DEVICE_ID_LENGTH_TYPE</codeph>。</pd>
+                    <pd>摄像头 ID，最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>cameraId</pt>
@@ -75,18 +75,16 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>followEncodeDimensionRatio</pt>
-                    <pd>（可选）是否遵循 <codeph>setVideoEncoderConfiguration</codeph> 中设置的视频宽高比：
+                    <pd>（可选）是否遵循 <xref keyref="setVideoEncoderConfiguration"/> 中设置的视频宽高比：
                         <ul>
-                            <li>
-                                <codeph>true</codeph>：（默认）遵循设置的视频宽高比。SDK 会根据设置的视频宽高比裁剪采集的视频，并同步更新本地预览画面以及 <codeph>onCaptureVideoFrame</codeph> 和 <codeph>onPreEncodeVideoFrame</codeph> 中的视频帧。</li>
-                            <li>
-                                <codeph>false</codeph>：不遵循设置的视频宽高比。SDK 不会更改采集视频帧的宽高比。</li>
+                            <li><xref keyref="true"/>：（默认）遵循设置的视频宽高比。SDK 会根据设置的视频宽高比裁剪采集的视频，并同步更新本地预览画面以及 <xref keyref="onCaptureVideoFrame"/> 和 <xref keyref="onPreEncodeVideoFrame"/> 中的视频帧。</li>
+                            <li><xref keyref="false"/>：不遵循设置的视频宽高比。SDK 不会更改采集视频帧的宽高比。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>format</pt>
-                    <pd>（可选）视频帧的格式，详见 <codeph>VideoFormat</codeph>。</pd>
+                    <pd>（可选）视频帧的格式，详见 <xref keyref="VideoFormat"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>cameraDirection</pt>
@@ -108,18 +106,16 @@
                     <pt>followEncodeDimensionRatio</pt>
                     <pd>（可选）是否遵循 <xref keyref="setVideoEncoderConfiguration"/> 中设置的视频宽高比。
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：（默认）遵循设置的视频宽高比。SDK 会根据设置的视频比例裁剪采集视频，并同步修改本地预览画面，以及 <xref keyref="onCaptureVideoFrame"/> 和 <xref keyref="onPreEncodeVideoFrame"/> 中的视频帧。</li>
-                            <li>
-                                <xref keyref="false"/>：不遵循设置的视频宽高比。SDK 不会修改采集的视频帧宽高比。</li>
+                            <li><xref keyref="true"/>：（默认）遵循设置的视频宽高比。SDK 会根据设置的视频比例裁剪采集视频，并同步修改本地预览画面，以及 <xref keyref="onCaptureVideoFrame"/> 和 <xref keyref="onPreEncodeVideoFrame"/> 中的视频帧。</li>
+                            <li><xref keyref="false"/>：不遵循设置的视频宽高比。SDK 不会修改采集的视频帧宽高比。</li>
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>cameraDirection</pt>
                     <pd>摄像头方向，仅适用于 iOS。详见 <xref keyref="CAMERA_DIRECTION"/>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>cameraFocalLengthType</pt>
                     <pd>摄像头焦距类型，仅适用于 iOS。详见 <xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/>。</pd>
                 </plentry>
@@ -135,33 +131,12 @@
                     <pt>frameRate</pt>
                     <pd>视频帧的帧率（单位：fps）。默认值为 15。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>followEncodeDimensionRatio</pt>
                     <pd>是否遵循通过 <codeph>setVideoEncoderConfiguration</codeph> 设置的视频宽高比。
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：（默认）遵循设置的视频宽高比。SDK 会根据设置的视频宽高比裁剪采集的视频，并同步更新本地预览画面以及 <codeph>onCaptureVideoFrame</codeph> 和 <codeph>onPreEncodeVideoFrame</codeph> 中的视频帧。</li>
-                            <li>
-                                <xref keyref="false"/>：不遵循设置的视频宽高比。SDK 不会更改采集视频帧的宽高比。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>cameraDirection</pt>
-                    <pd>摄像头方向，仅适用于 iOS。详见 <codeph>AgoraCameraDirection</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>cameraFocalLengthType</pt>
-                    <pd>摄像头焦距类型，仅适用于 iOS。详见 <codeph>AgoraFocalLength</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>followEncodeDimensionRatio</pt>
-                    <pd>是否遵循通过 <codeph>setVideoEncoderConfiguration</codeph> 设置的视频宽高比。
-                        <ul>
-                            <li>
-                                <codeph>YES</codeph>：（默认）遵循设置的视频宽高比。SDK 会根据设置的视频宽高比裁剪采集的视频，并同步更新本地预览画面以及 <codeph>onCaptureVideoFrame</codeph> 和 <codeph>onPreEncodeVideoFrame</codeph> 中的视频帧。</li>
-                            <li>
-                                <codeph>NO</codeph>：不遵循设置的视频宽高比。SDK 不会更改采集视频帧的宽高比。</li>
+                            <li><xref keyref="true"/>：（默认）遵循设置的视频宽高比。SDK 会根据设置的视频宽高比裁剪采集的视频，并同步更新本地预览画面以及 <codeph>onCaptureVideoFrame</codeph> 和 <codeph>onPreEncodeVideoFrame</codeph> 中的视频帧。</li>
+                            <li><xref keyref="false"/>：不遵循设置的视频宽高比。SDK 不会更改采集视频帧的宽高比。</li>
                         </ul>
                     </pd>
                 </plentry>

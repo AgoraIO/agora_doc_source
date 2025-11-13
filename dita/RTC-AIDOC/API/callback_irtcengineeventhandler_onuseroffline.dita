@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onuseroffline">
     <title>
-        <ph keyref="onUserOffline"/>
+    <ph keyref="onUserOffline"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">`onUserOffline` 回调：当远端用户（通信频道场景）或主播（极速直播频道场景）离开频道时触发。</ph>
+    <ph id="shortdesc">`onUserOffline` 回调：当远端用户（通信频道场景）或主播（极速直播频道场景）离开频道时触发。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -58,8 +58,7 @@
             <parml>
                 <plentry props="cpp">
                     <pt>connection</pt>
-                    <pd>
-                        <codeph>RtcConnection</codeph> 对象。详见 <codeph>RtcConnection</codeph>。</pd>
+                    <pd><xref keyref="RtcConnection"/> 对象。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>remoteUid</pt>
@@ -67,7 +66,7 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>reason</pt>
-                    <pd>远端用户离线的原因。详见 <codeph>USER_OFFLINE_REASON_TYPE</codeph>。</pd>
+                    <pd>远端用户离线的原因。详见 <xref keyref="USER_OFFLINE_REASON_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>uid</pt>
@@ -77,19 +76,15 @@
                     <pt>reason</pt>
                     <pd>远端用户（在频道场景中）或主播（在极速直播场景中）离线的原因：
                         <ul>
-                            <li>
-                                <codeph>USER_OFFLINE_QUIT</codeph> (0)：用户主动退出通话，发送离开消息。</li>
-                            <li>
-                                <codeph>USER_OFFLINE_DROPPED</codeph> (1)：SDK 超时未收到任何数据包，用户掉线。网络连接不佳可能导致误判，建议使用声网 RTM SDK 进行可靠的离线检测。</li>
-                            <li>
-                                <codeph>USER_OFFLINE_BECOME_AUDIENCE</codeph> (2)：用户将角色从主播切换为观众。</li>
+                            <li><codeph>USER_OFFLINE_QUIT</codeph> (0)：用户主动退出通话，发送离开消息。</li>
+                            <li><codeph>USER_OFFLINE_DROPPED</codeph> (1)：SDK 超时未收到任何数据包，用户掉线。网络连接不佳可能导致误判，建议使用声网 RTM SDK 进行可靠的离线检测。</li>
+                            <li><codeph>USER_OFFLINE_BECOME_AUDIENCE</codeph> (2)：用户将角色从主播切换为观众。</li>
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>engine</pt>
-                    <pd>
-                        <xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+                    <pd><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
                 <plentry props="ios mac">
                     <pt>uid</pt>
@@ -98,11 +93,6 @@
                 <plentry props="ios">
                     <pt>reason</pt>
                     <pd>远端用户（在频道场景中）或主播（在极速直播场景中）离线的原因，详见 <xref keyref="USER_OFFLINE_REASON_TYPE"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>engine</pt>
-                    <pd>
-                        <codeph>AgoraRtcEngineKit</codeph> 对象，详见 <codeph>AgoraRtcEngineKit</codeph>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>reason</pt>

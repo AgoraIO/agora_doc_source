@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_videoapplicationscenariotype">
     <title>
-        <ph keyref="VIDEO_APPLICATION_SCENARIO_TYPE"/>
+    <ph keyref="VIDEO_APPLICATION_SCENARIO_TYPE"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">视频应用场景类型。</ph>
+    <ph id="shortdesc">视频应用场景类型。</ph>
   </shortdesc>
     <refbody>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -25,7 +25,7 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>APPLICATION_SCENARIO_MEETING</pt>
-                    <pd>（1）：会议场景。适用于会议场景，SDK 会自动启用以下策略：在需要低质量视频流具备高码率的场景中，SDK 会启用多种抗网络拥塞技术，提升低质量流性能，确保订阅端流畅接收；SDK 实时监控高质量视频流的订阅人数，并动态调整配置：若无人订阅，自动降低码率和帧率以节省上行带宽；若有人订阅，则恢复为最近一次调用 <codeph>setVideoEncoderConfiguration</codeph> 设置的 <codeph>VideoEncoderConfiguration</codeph> 配置，若未设置，则使用以下默认值：Windows 和 macOS 分辨率为 1280 × 720，Android 和 iOS 为 960 × 540；帧率为 15 fps；码率为 Windows 和 macOS 为 1600 Kbps，Android 和 iOS 为 1000 Kbps。SDK 还会监控低质量视频流的订阅人数，并根据订阅情况动态启用或禁用：若无人订阅，自动禁用以节省上行带宽；若有人订阅，则启用并恢复为最近一次调用 <codeph>setDualStreamMode(SIMULCAST_STREAM_MODE mode, const SimulcastStreamConfig&amp; streamConfig)</codeph> 设置的 <codeph>SimulcastStreamConfig</codeph> 配置，若未设置，则使用以下默认值：分辨率为 480 × 272，帧率为 15 fps，码率为 500 Kbps。</pd>
+                    <pd>（1）：会议场景。适用于会议场景，SDK 会自动启用以下策略：在需要低质量视频流具备高码率的场景中，SDK 会启用多种抗网络拥塞技术，提升低质量流性能，确保订阅端流畅接收；SDK 实时监控高质量视频流的订阅人数，并动态调整配置：若无人订阅，自动降低码率和帧率以节省上行带宽；若有人订阅，则恢复为最近一次调用 <xref keyref="setVideoEncoderConfiguration"/> 设置的 <xref keyref="VideoEncoderConfiguration"/> 配置，若未设置，则使用以下默认值：Windows 和 macOS 分辨率为 1280 × 720，Android 和 iOS 为 960 × 540；帧率为 15 fps；码率为 Windows 和 macOS 为 1600 Kbps，Android 和 iOS 为 1000 Kbps。SDK 还会监控低质量视频流的订阅人数，并根据订阅情况动态启用或禁用：若无人订阅，自动禁用以节省上行带宽；若有人订阅，则启用并恢复为最近一次调用 <codeph>setDualStreamMode(SIMULCAST_STREAM_MODE mode, const SimulcastStreamConfig&amp; streamConfig)</codeph> 设置的 <xref keyref="SimulcastStreamConfig"/> 配置，若未设置，则使用以下默认值：分辨率为 480 × 272，帧率为 15 fps，码率为 500 Kbps。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>APPLICATION_SCENARIO_1V1</pt>
@@ -33,7 +33,7 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>APPLICATION_SCENARIO_LIVESHOW</pt>
-                    <pd>（3）：直播秀场景。适用于秀场类场景，强调快速渲染和高画质。SDK 进行了多项性能优化，包括自动启用音视频帧加速渲染以最小化首帧延迟（无需调用 <codeph>enableInstantMediaRendering</codeph>），并启用 B 帧编码以提升图像质量和带宽效率。即使在网络较差或低端设备上，也能提供更佳的视频质量和播放流畅性。</pd>
+                    <pd>（3）：直播秀场景。适用于秀场类场景，强调快速渲染和高画质。SDK 进行了多项性能优化，包括自动启用音视频帧加速渲染以最小化首帧延迟（无需调用 <xref keyref="enableInstantMediaRendering"/>），并启用 B 帧编码以提升图像质量和带宽效率。即使在网络较差或低端设备上，也能提供更佳的视频质量和播放流畅性。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>APPLICATION_SCENARIO_MEETING</pt>
@@ -61,7 +61,7 @@
                     <pt>AgoraApplicationGeneralScenario</pt>
                     <pd>（0）：通用场景（默认）。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>AgoraApplicationMeetingScenario</pt>
                     <pd>（1）：会议场景。SDK 会自动启用多项策略：在需要低质量视频流具备高码率的场景中，SDK 启用多种抗网络拥塞技术，提升低质量流性能，确保订阅端流畅接收；实时监控高质量视频流的订阅人数并动态调整配置：若无人订阅，高质量流的码率和帧率将自动降低以节省上行带宽；若有人订阅，则恢复为最近一次调用 <xref keyref="setVideoEncoderConfiguration"/> 设置的 <xref keyref="VideoEncoderConfiguration"/> 配置，若未设置，则默认参数为：iOS：分辨率 960 × 540，帧率 15 fps，码率 1000 Kbps；macOS：分辨率 1280 × 720，帧率 15 fps，码率 1600 Kbps。SDK 也会实时监控低质量视频流的订阅人数并动态启用或禁用该流：若无人订阅，自动禁用以节省带宽；若有人订阅，则启用并恢复为最近一次调用 <codeph>setDualStreamMode:streamConfig:</codeph> 设置的 <xref keyref="SimulcastStreamConfig"/> 配置，若未设置，则默认参数为：分辨率 480 × 272，帧率 15 fps，码率 500 Kbps。</pd>
                 </plentry>
@@ -69,17 +69,9 @@
                     <pt>AgoraApplication1V1Scenario</pt>
                     <pd>（2）：一对一直播场景。为满足低延迟和高质量视频的需求，SDK 优化了策略，提升了视频质量、首帧渲染速度、中低端设备的延迟表现以及弱网下的流畅性。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>AgoraApplicationLiveShowScenario</pt>
                     <pd>（3）：Show Room 场景。该场景对快速渲染和高画质要求较高。SDK 进行了多项优化，包括自动启用音视频帧加速渲染以最小化首帧延迟（无需调用 <xref keyref="enableInstantMediaRendering"/>），启用 B 帧编码以提升图像质量和带宽效率，即使在弱网或低端设备上也能提供更好的视频质量和播放流畅性。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>AgoraApplicationMeetingScenario</pt>
-                    <pd>（1）：会议场景。SDK 会自动启用多项策略：在需要低质量视频流具备高码率的场景中，SDK 启用多种抗网络拥塞技术，提升低质量流性能，确保订阅端流畅接收；实时监控高质量视频流的订阅人数并动态调整配置：若无人订阅，高质量流的码率和帧率将自动降低以节省上行带宽；若有人订阅，则恢复为最近一次调用 <codeph>setVideoEncoderConfiguration:</codeph> 设置的 <codeph>AgoraVideoEncoderConfiguration</codeph> 配置，若未设置，则默认参数为：iOS：分辨率 960 × 540，帧率 15 fps，码率 1000 Kbps；macOS：分辨率 1280 × 720，帧率 15 fps，码率 1600 Kbps。SDK 也会实时监控低质量视频流的订阅人数并动态启用或禁用该流：若无人订阅，自动禁用以节省带宽；若有人订阅，则启用并恢复为最近一次调用 <codeph>setDualStreamMode:streamConfig:</codeph> 设置的 <codeph>AgoraSimulcastStreamConfig</codeph> 配置，若未设置，则默认参数为：分辨率 480 × 272，帧率 15 fps，码率 500 Kbps。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>AgoraApplicationLiveShowScenario</pt>
-                    <pd>（3）：Show Room 场景。该场景对快速渲染和高画质要求较高。SDK 进行了多项优化，包括自动启用音视频帧加速渲染以最小化首帧延迟（无需调用 <codeph>enableInstantMediaRendering</codeph>），启用 B 帧编码以提升图像质量和带宽效率，即使在弱网或低端设备上也能提供更好的视频质量和播放流畅性。</pd>
                 </plentry>
             </parml>
         </section>

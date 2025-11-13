@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_muteallremotevideostreams">
     <title>
-        <ph keyref="muteAllRemoteVideoStreams"/>
+    <ph keyref="muteAllRemoteVideoStreams"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">停止或恢复接收所有远端用户的视频流。</ph>
+    <ph id="shortdesc">停止或恢复接收所有远端用户的视频流。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -29,8 +29,7 @@
             <p props="ios mac">调用该方法后，你会停止或恢复订阅所有远端用户的视频流，包括后续加入频道的用户。</p>
             <note props="cpp">如果在加入频道后调用 <codeph>muteAllRemoteVideoStreams(true)</codeph>，本地用户将停止接收频道中所有用户的视频流，包括在调用该方法后加入频道的用户。</note>
             <note props="android">如果你调用该方法后又调用了 <xref keyref="enableVideo"/> 或 <xref keyref="disableVideo"/>，以最后一次调用为准。默认情况下，加入频道时 SDK 会自动订阅所有远端用户的视频流。你可以在调用 <codeph>joinChannel</codeph> 加入频道时将 <codeph>autoSubscribeVideo</codeph> 设置为 <xref keyref="false"/>，以取消加入频道时对所有用户的视频流订阅。</note>
-            <note props="ios">如果你调用了该方法后又调用了 <xref keyref="enableVideo"/> 或 <xref keyref="disableVideo"/>，以最后一次调用为准。默认情况下，加入频道时 SDK 会自动订阅所有远端用户的视频流。你可以在调用 <codeph>joinChannelByToken</codeph> 加入频道时将 <codeph>autoSubscribeVideo</codeph> 设置为 <xref keyref="false"/>，以取消加入频道时对所有用户的视频流的订阅。</note>
-            <note props="mac">如果你调用了该方法后又调用了 <codeph>enableVideo</codeph> 或 <codeph>disableVideo</codeph>，以最后一次调用为准。默认情况下，加入频道时 SDK 会自动订阅所有远端用户的视频流。你可以在调用 <codeph>joinChannelByToken</codeph> 加入频道时将 <codeph>autoSubscribeVideo</codeph> 设置为 <codeph>NO</codeph>，以取消加入频道时对所有用户的视频流的订阅。</note>
+            <note props="ios mac">如果你调用了该方法后又调用了 <xref keyref="enableVideo"/> 或 <xref keyref="disableVideo"/>，以最后一次调用为准。默认情况下，加入频道时 SDK 会自动订阅所有远端用户的视频流。你可以在调用 <codeph>joinChannelByToken</codeph> 加入频道时将 <codeph>autoSubscribeVideo</codeph> 设置为 <xref keyref="false"/>，以取消加入频道时对所有用户的视频流的订阅。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -47,10 +46,8 @@
                     <pt>mute</pt>
                     <pd>是否停止订阅所有远端用户的视频流：
                         <ul>
-                            <li>
-                                <codeph>true</codeph>：停止订阅所有远端用户的视频流。</li>
-                            <li>
-                                <codeph>false</codeph>：（默认）订阅所有远端用户的视频流。</li>
+                            <li><xref keyref="true"/>：停止订阅所有远端用户的视频流。</li>
+                            <li><xref keyref="false"/>：（默认）订阅所有远端用户的视频流。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -58,25 +55,12 @@
                     <pt>muted</pt>
                     <pd>是否停止订阅所有远端用户的视频流。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>mute</pt>
                     <pd>是否停止订阅所有远端用户的视频流。
                         <ul>
-                            <li>
-                                <xref keyref="true"/>：停止订阅所有远端用户的视频流。</li>
-                            <li>
-                                <xref keyref="false"/>：（默认）订阅所有远端用户的视频流。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>mute</pt>
-                    <pd>是否停止订阅所有远端用户的视频流。
-                        <ul>
-                            <li>
-                                <codeph>YES</codeph>：停止订阅所有远端用户的视频流。</li>
-                            <li>
-                                <codeph>NO</codeph>：（默认）订阅所有远端用户的视频流。</li>
+                            <li><xref keyref="true"/>：停止订阅所有远端用户的视频流。</li>
+                            <li><xref keyref="false"/>：（默认）订阅所有远端用户的视频流。</li>
                         </ul>
                     </pd>
                 </plentry>

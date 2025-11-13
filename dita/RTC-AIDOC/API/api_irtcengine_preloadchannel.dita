@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_preloadchannel">
     <title>
-        <ph keyref="preloadChannel"/>
+    <ph keyref="preloadChannel"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">预加载指定频道。</ph>
+    <ph id="shortdesc">预加载指定频道。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -31,15 +31,7 @@
             <p props="cpp">当观众需要频繁切换不同频道时，调用该方法可以缩短加入频道的时间，从而减少观众听到和看到主播的延迟时间。如果你加入了一个已预加载的频道，离开后想要重新加入该频道，除非用于预加载频道的 Token 过期，否则无需再次调用该方法。为提升预加载频道的用户体验，声网建议在确认频道名和用户信息后尽早调用该方法。</p>
             <p props="android">当观众需要频繁切换不同频道时，调用该方法可以缩短加入频道的时间，从而减少观众听到和看到主播的延迟时间。如果你加入了一个已预加载的频道，离开后想重新加入该频道，除非用于预加载频道的 Token 过期，否则无需再次调用该方法。</p>
             <p props="ios mac">该方法用于预加载指定频道。当你作为观众需要频繁切换频道时，调用该方法可以缩短加入频道的时间，从而减少你听到和看到主播的延迟。该方法需要在加入频道前调用。如果你加入了一个已预加载的频道，离开后想要重新加入该频道，除非用于预加载的 Token 过期，否则无需再次调用该方法。为提升预加载频道的用户体验，声网建议你在确认频道名和用户信息后尽早调用该方法。</p>
-            <note props="cpp">
-                <ul>
-                    <li>调用该方法时，请确保将用户角色设置为观众，且未将音频场景设置为 <codeph>AUDIO_SCENARIO_CHORUS</codeph>，否则该方法不生效。</li>
-                    <li>你还需要确保用于预加载的频道名、用户 ID 和 Token 与加入频道时传入的值一致，否则该方法不生效。</li>
-                    <li>一个 <codeph>IRtcEngine</codeph> 实例最多支持预加载 20 个频道，超出限制时，仅最近的 20 个预加载频道生效。</li>
-                    <li>预加载频道失败并不意味着无法加入频道，也不会增加加入频道所需的时间。</li>
-                </ul>
-            </note>
-            <note props="android">
+            <note props="android cpp">
                 <ul>
                     <li>调用该方法时，请确保将用户角色设置为观众，且未将音频场景设置为 <codeph>AUDIO_SCENARIO_CHORUS</codeph>，否则该方法不生效。</li>
                     <li>你还需要确保用于预加载的频道名、用户 ID 和 Token 与加入频道时传入的值一致，否则该方法不生效。</li>
@@ -47,19 +39,11 @@
                     <li>预加载频道失败并不意味着无法加入频道，也不会增加加入频道所需的时间。</li>
                 </ul>
             </note>
-            <note props="ios">
+            <note props="ios mac">
                 <ul>
                     <li>调用该方法时，请确保将用户角色设置为观众，且未将音频场景设置为 <codeph>AgoraAudioScenarioChorus</codeph>，否则该方法不生效。</li>
                     <li>你还需要确保用于预加载的频道名、用户 ID 和 Token 与加入频道时传入的值一致，否则该方法不生效。</li>
                     <li>一个 <xref keyref="IRtcEngine"/> 实例最多支持预加载 20 个频道，超出限制时，仅最近的 20 个预加载频道生效。</li>
-                    <li>预加载频道失败并不意味着无法加入频道，也不会增加加入频道所需的时间。</li>
-                </ul>
-            </note>
-            <note props="mac">
-                <ul>
-                    <li>调用该方法时，请确保将用户角色设置为观众，且未将音频场景设置为 <codeph>AgoraAudioScenarioChorus</codeph>，否则该方法不生效。</li>
-                    <li>你还需要确保用于预加载的频道名、用户 ID 和 Token 与加入频道时传入的值一致，否则该方法不生效。</li>
-                    <li>一个 <codeph>AgoraRtcEngineKit</codeph> 实例最多支持预加载 20 个频道，超出限制时，仅最近的 20 个预加载频道生效。</li>
                     <li>预加载频道失败并不意味着无法加入频道，也不会增加加入频道所需的时间。</li>
                 </ul>
             </note>
@@ -81,7 +65,7 @@
                         <ul>
                             <li>如果只预加载一个频道，调用该方法传入新的 Token。</li>
                             <li>如果预加载多个频道：</li>
-                            <li>若使用通配符 Token 预加载所有频道，调用 <codeph>updatePreloadChannelToken</codeph> 更新 Token。注意：生成通配符 Token 时，确保用户 ID 不为 0。详见 <codeph>Secure authentication with tokens</codeph>。</li>
+                            <li>若使用通配符 Token 预加载所有频道，调用 <xref keyref="updatePreloadChannelToken"/> 更新 Token。注意：生成通配符 Token 时，确保用户 ID 不为 0。详见 <codeph>Secure authentication with tokens</codeph>。</li>
                             <li>若为不同频道使用不同的 Token 进行预加载，调用该方法传入用户 ID、频道名和新的 Token。</li>
                         </ul>
                     </pd>
@@ -99,7 +83,7 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>uid</pt>
-                    <pd>用户 ID。该参数用于标识频道中的用户以进行实时音视频互动。你需要自行设置和管理用户 ID，并确保同一频道中的每个用户 ID 唯一。该参数为 32 位无符号整数，取值范围为 1 到 2^32-1。如果未指定用户 ID（或设置为 0），SDK 会分配一个随机用户 ID，并在 <codeph>onJoinChannelSuccess</codeph> 回调中返回。你的应用必须记录并维护返回的用户 ID，SDK 不会保存该信息。</pd>
+                    <pd>用户 ID。该参数用于标识频道中的用户以进行实时音视频互动。你需要自行设置和管理用户 ID，并确保同一频道中的每个用户 ID 唯一。该参数为 32 位无符号整数，取值范围为 1 到 2^32-1。如果未指定用户 ID（或设置为 0），SDK 会分配一个随机用户 ID，并在 <xref keyref="onJoinChannelSuccess"/> 回调中返回。你的应用必须记录并维护返回的用户 ID，SDK 不会保存该信息。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>token</pt>
@@ -128,7 +112,7 @@
                     <pt>optionalUid</pt>
                     <pd>用户 ID。用于标识频道中的用户以进行实时音视频互动。你需要自行设置和管理用户 ID，并确保同一频道中的每个用户 ID 唯一。该参数为 32 位有符号整数，取值范围为 -2^31 到 2^31-1。如果未指定用户 ID（或设置为 0），SDK 会分配一个随机用户 ID，并在 <xref keyref="onJoinChannelSuccess"/> 回调中返回。你的应用必须记录并维护返回的用户 ID，SDK 不会保存该信息。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>token</pt>
                     <pd>在你的服务器上生成的用于鉴权的 Token。当用于预加载频道的 Token 过期时，你可以根据预加载的频道数量更新 Token。
                         <ul>
@@ -151,39 +135,15 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>uid</pt>
                     <pd>用户 ID。该参数用于标识频道中的用户以进行实时音视频互动。你需要自行设置和管理用户 ID，并确保同一频道中的每个用户 ID 唯一。该参数为 32 位无符号整数，取值范围为 1 到 2^32 - 1。如果未指定用户 ID（或设置为 0），SDK 会分配一个随机用户 ID，并在 <xref keyref="onJoinChannelSuccess"/> 回调中返回。你的应用必须记录并维护返回的用户 ID，SDK 不会保存该信息。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>token</pt>
-                    <pd>在你的服务器上生成的用于鉴权的 Token。当用于预加载频道的 Token 过期时，你可以根据预加载的频道数量更新 Token。
-                        <ul>
-                            <li>如果只预加载一个频道，调用该方法传入新的 Token。</li>
-                            <li>如果预加载多个频道：</li>
-                            <li>如果你为所有预加载频道使用通配符 Token，调用 <codeph>updatePreloadChannelToken:</codeph> 更新 Token。
-    注意：生成通配符 Token 时，确保用户 ID 不为 0。</li>
-                            <li>如果你为不同频道使用不同的 Token，调用该方法传入用户 ID、频道名和新的 Token。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>uid</pt>
-                    <pd>用户 ID。该参数用于标识频道中的用户以进行实时音视频互动。你需要自行设置和管理用户 ID，并确保同一频道中的每个用户 ID 唯一。该参数为 32 位无符号整数，取值范围为 1 到 2^32 - 1。如果未指定用户 ID（或设置为 0），SDK 会分配一个随机用户 ID，并在 <codeph>rtcEngine:didJoinChannel:withUid:elapsed:</codeph> 回调中返回。你的应用必须记录并维护返回的用户 ID，SDK 不会保存该信息。</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="cpp">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
-                    <li>-7：<codeph>IRtcEngine</codeph> 对象尚未初始化。你需要先初始化 <codeph>IRtcEngine</codeph> 对象再调用该方法。</li>
-                    <li>-102：频道名无效。你需要传入有效的频道名并重新加入频道。</li>
-                </ul>
-            </p>
-            <p props="android">
+            <p props="android cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>
@@ -191,19 +151,11 @@
                     <li>-102：频道名无效。你需要传入有效的频道名并重新加入频道。</li>
                 </ul>
             </p>
-            <p props="ios">
+            <p props="ios mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>
                     <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要先初始化该对象再调用此方法。</li>
-                    <li>-102：频道名无效。你需要传入有效的频道名并重新加入频道。</li>
-                </ul>
-            </p>
-            <p props="mac">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
-                    <li>-7：<codeph>AgoraRtcEngineKit</codeph> 对象尚未初始化。你需要先初始化该对象再调用此方法。</li>
                     <li>-102：频道名无效。你需要传入有效的频道名并重新加入频道。</li>
                 </ul>
             </p>

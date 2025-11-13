@@ -2,10 +2,10 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_ontranscodingupdated">
     <title>
-        <ph keyref="onTranscodingUpdated"/>
+    <ph keyref="onTranscodingUpdated"/>
   </title>
     <shortdesc id="short">
-        <ph id="shortdesc">当发布端的云端转码设置更新时触发的回调。</ph>
+    <ph id="shortdesc">当发布端的云端转码设置更新时触发的回调。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -24,14 +24,11 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">当你调用 <codeph>startRtmpStreamWithTranscoding</codeph> 方法并更新其中的 <codeph>LiveTranscoding</codeph> 配置时，SDK 会触发该回调以报告更新信息。</p>
+            <p props="cpp">当你调用 <xref keyref="startRtmpStreamWithTranscoding"/> 方法并更新其中的 <xref keyref="LiveTranscoding"/> 配置时，SDK 会触发该回调以报告更新信息。</p>
             <p props="android">当调用 <xref keyref="startRtmpStreamWithTranscoding"/> 更新 <xref keyref="LiveTranscoding"/> 配置时，SDK 会触发该回调以报告更新信息。</p>
-            <p props="ios">当你在 <xref keyref="startRtmpStreamWithTranscoding"/> 方法中更新 <xref keyref="LiveTranscoding"/> 时，SDK 会触发该回调以报告更新信息。</p>
-            <p props="mac">当你在 <codeph>startRtmpStreamWithTranscoding:transcoding:</codeph> 方法中更新 <codeph>AgoraLiveTranscoding</codeph> 时，SDK 会触发该回调以报告更新信息。</p>
-            <note props="cpp">如果你首次调用 <codeph>startRtmpStreamWithTranscoding</codeph> 方法设置 <codeph>LiveTranscoding</codeph>，SDK 不会触发该回调。</note>
+            <p props="ios mac">当你在 <xref keyref="startRtmpStreamWithTranscoding"/> 方法中更新 <xref keyref="LiveTranscoding"/> 时，SDK 会触发该回调以报告更新信息。</p>
+            <note props="cpp ios mac">如果你首次调用 <xref keyref="startRtmpStreamWithTranscoding"/> 方法设置 <xref keyref="LiveTranscoding"/>，SDK 不会触发该回调。</note>
             <note props="android">如果首次调用 <xref keyref="startRtmpStreamWithTranscoding"/> 设置 <xref keyref="LiveTranscoding"/> 配置，SDK 不会触发该回调。</note>
-            <note props="ios">如果你首次调用 <xref keyref="startRtmpStreamWithTranscoding"/> 方法设置 <xref keyref="LiveTranscoding"/>，SDK 不会触发该回调。</note>
-            <note props="mac">如果你首次调用 <codeph>startRtmpStreamWithTranscoding:transcoding:</codeph> 方法设置 <codeph>AgoraLiveTranscoding</codeph>，SDK 不会触发该回调。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
@@ -45,15 +42,9 @@
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>engine</pt>
-                    <pd>
-                        <xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>engine</pt>
-                    <pd>
-                        <codeph>AgoraRtcEngineKit</codeph> 对象，详见 <codeph>AgoraRtcEngineKit</codeph>。</pd>
+                    <pd><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
             </parml>
         </section>
