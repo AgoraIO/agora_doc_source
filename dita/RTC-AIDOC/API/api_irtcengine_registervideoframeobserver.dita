@@ -25,7 +25,7 @@
             <p props="ios">如果你希望观察原始视频帧（例如 YUV 或 RGBA 格式），声网建议你通过此方法实现一个 <xref keyref="IVideoFrameObserver"/> 类。当你调用此方法注册视频观察者时，可以根据需要在 <xref keyref="IVideoFrameObserver"/> 类中注册回调。注册成功后，SDK 每次接收到视频帧时都会触发已注册的回调。
 
 你可以在各种视频预处理场景中使用获取到的原始视频数据，例如虚拟背景和图像增强。声网在 GitHub 上提供了一个开源的 iOS 示例项目 <codeph>BeautyAPI</codeph> 供你参考。</p>
-            <p props="android">你需要实现 <codeph>IMediaPlayerVideoFrameObserver</codeph> 类，并注册回调。成功注册后，SDK 每次接收到视频帧时都会触发已注册的回调。</p>
+            <p props="android">你需要实现 <xref keyref="IMediaPlayerVideoFrameObserver"/> 类，并注册回调。成功注册后，SDK 每次接收到视频帧时都会触发已注册的回调。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -40,7 +40,7 @@
             <parml>
                 <plentry props="ios">
                     <pt>delegate</pt>
-                    <pd>代理实例。设置为 <xref keyref="NULL"/> 可释放该实例。详见 <codeph>AgoraRtcMediaPlayerVideoFrameDelegate</codeph>。</pd>
+                    <pd>代理实例。设置为 <xref keyref="NULL"/> 可释放该实例。详见 <xref keyref="AgoraRtcMediaPlayerVideoFrameDelegate"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>observer</pt>
