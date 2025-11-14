@@ -15,21 +15,6 @@
   virtual ~IVideoFrameObserver() {}
 };</codeblock>
                 <codeblock props="android" outputclass="language-java">public interface IVideoFrameObserver {
-  int PROCESS_MODE_READ_ONLY = 0;
-  int PROCESS_MODE_READ_WRITE = 1;
-  int POSITION_POST_CAPTURER = 1;
-  int POSITION_PRE_RENDERER = 1 &lt;&lt; 1;
-  int POSITION_PRE_ENCODER = 1 &lt;&lt; 2;
-  int VIDEO_PIXEL_DEFAULT = 0;
-  int VIDEO_PIXEL_I420 = 1;
-  int VIDEO_PIXEL_BGRA = 2;
-  int VIDEO_PIXEL_NV21 = 3;
-  int VIDEO_PIXEL_RGBA = 4;
-  int VIDEO_PIXEL_NV12 = 8;
-  int VIDEO_TEXTURE_2D = 10;
-  int VIDEO_TEXTURE_OES = 11;
-  int VIDEO_PIXEL_I422 = 16;
-  int VIDEO_PIXEL_I010 = 18;
 }</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">@protocol AgoraVideoFrameDelegate &lt;NSObject&gt;
 @end</codeblock>
@@ -38,6 +23,7 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">你可以通过实现 <xref keyref="IVideoFrameObserver"/> 接口中的方法，接收并处理本地设备采集或远端用户发送的视频帧。</p>
             <p props="ios mac">你可以通过实现该协议中的方法，接收并处理本地设备采集或远端用户发送的视频帧。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
@@ -46,74 +32,6 @@
                 <plentry props="cpp">
                     <pt>VideoFrame</pt>
                     <pd><codeph>media::base::VideoFrame</codeph> 类型的别名，表示视频帧。详见 <codeph>media::base::VideoFrame</codeph>。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>PROCESS_MODE_READ_ONLY</pt>
-                    <pd>处理模式：
-                        <ul>
-                            <li>0（<codeph>PROCESS_MODE_READ_ONLY</codeph>）：观察器作为纯渲染器使用，不会修改原始帧。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>PROCESS_MODE_READ_WRITE</pt>
-                    <pd>处理模式：
-                        <ul>
-                            <li>1（<codeph>PROCESS_MODE_READ_WRITE</codeph>）：观察器作为滤镜使用，将处理视频帧并影响 SDK 的后续帧处理流程。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>POSITION_POST_CAPTURER</pt>
-                    <pd>帧处理位置：采集到视频数据后，对应 <xref keyref="onCaptureVideoFrame"/> 回调。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>POSITION_PRE_RENDERER</pt>
-                    <pd>帧处理位置：接收远端视频数据之前，对应 <xref keyref="onRenderVideoFrame"/> 回调。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>POSITION_PRE_ENCODER</pt>
-                    <pd>帧处理位置：编码视频数据之前，对应 <xref keyref="onPreEncodeVideoFrame"/> 回调。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>VIDEO_PIXEL_DEFAULT</pt>
-                    <pd>视频像素格式：默认格式。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>VIDEO_PIXEL_I420</pt>
-                    <pd>视频像素格式：I420 格式。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>VIDEO_PIXEL_BGRA</pt>
-                    <pd>视频像素格式：BGRA 格式。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>VIDEO_PIXEL_NV21</pt>
-                    <pd>视频像素格式：NV21 格式。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>VIDEO_PIXEL_RGBA</pt>
-                    <pd>视频像素格式：RGBA 格式。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>VIDEO_PIXEL_NV12</pt>
-                    <pd>视频像素格式：NV12 格式。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>VIDEO_TEXTURE_2D</pt>
-                    <pd>视频纹理格式：GL_TEXTURE_2D。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>VIDEO_TEXTURE_OES</pt>
-                    <pd>视频纹理格式：GL_TEXTURE_OES。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>VIDEO_PIXEL_I422</pt>
-                    <pd>视频像素格式：I422 格式。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>VIDEO_PIXEL_I010</pt>
-                    <pd>视频像素格式：I010 格式，即 10bit 的 I420 数据。</pd>
                 </plentry>
             </parml>
         </section>

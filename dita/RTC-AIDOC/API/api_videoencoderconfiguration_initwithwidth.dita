@@ -1,28 +1,32 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_agoravideoencoderconfiguration_initwithsize">
+<reference id="api_videoencoderconfiguration_initwithwidth">
     <title>
-    <ph keyref="initWithSize"/>
+    <ph keyref="initWithWidth"/>
   </title>
     <shortdesc id="short">
-    <ph id="shortdesc">指定视频分辨率并初始化 `AgoraVideoEncoderConfiguration` 对象。</ph>
+    <ph id="shortdesc">指定视频宽高并初始化 `AgoraVideoEncoderConfiguration` 对象。</ph>
   </shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="initWithSize"/>
+                <indexterm keyref="initWithWidth"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="ios" outputclass="language-objectivec">- (instancetype _Nonnull)initWithSize:(CGSize)size
-                            frameRate:(AgoraVideoFrameRate)frameRate
-                              bitrate:(NSInteger)bitrate
-                      orientationMode:(AgoraVideoOutputOrientationMode)orientationMode
-                           mirrorMode:(AgoraVideoMirrorMode)mirrorMode NS_SWIFT_NAME(init(size:frameRate:bitrate:orientationMode:mirrorMode:));</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (instancetype _Nonnull)initWithWidth:(NSInteger)width
+                                height:(NSInteger)height
+                             frameRate:(AgoraVideoFrameRate)frameRate
+                               bitrate:(NSInteger)bitrate
+                       orientationMode:(AgoraVideoOutputOrientationMode)orientationMode
+                            mirrorMode:(AgoraVideoMirrorMode)mirrorMode NS_SWIFT_NAME(init(width:height:frameRate:bitrate:orientationMode:mirrorMode:));</codeblock>
             </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="ios">你可以通过该方法指定视频的宽度和高度，并初始化 <xref keyref="VideoEncoderConfiguration"/> 对象。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -36,8 +40,12 @@
             <title>参数</title>
             <parml>
                 <plentry props="ios">
-                    <pt>size</pt>
-                    <pd>视频分辨率。</pd>
+                    <pt>width</pt>
+                    <pd>视频的宽度。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>height</pt>
+                    <pd>视频的高度。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>frameRate</pt>
@@ -53,13 +61,13 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>mirrorMode</pt>
-                    <pd>本地视频流的镜像模式设置，仅影响远端用户看到的视频，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</pd>
+                    <pd>设置本地视频流的镜像模式，仅影响远端用户看到的视频，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="ios">方法调用成功，返回 <xref keyref="VideoEncoderConfiguration"/> 对象。</p>
+            <p props="ios">方法调用成功，返回初始化后的 <xref keyref="VideoEncoderConfiguration"/> 对象。</p>
         </section>
     </refbody>
 </reference>
