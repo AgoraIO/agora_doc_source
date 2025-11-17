@@ -17,7 +17,7 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="cpp" outputclass="language-cpp">virtual int getDevice(char deviceIdUTF8[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getDevice(int index, char deviceNameUTF8[MAX_DEVICE_ID_LENGTH], char deviceIdUTF8[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
             </p>
         </section>
         <section id="timing" deliveryTarget="details">
@@ -32,8 +32,16 @@
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
+                    <pt>index</pt>
+                    <pd>视频设备的索引值。该值必须小于 <xref keyref="getCount_IVideoDeviceCollection"/> 返回的值。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>deviceNameUTF8</pt>
+                    <pd>输出参数，表示设备名称。最大长度为 <codeph>MAX_DEVICE_ID_LENGTH</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
                     <pt>deviceIdUTF8</pt>
-                    <pd>输出参数，当前视频采集设备的设备 ID。</pd>
+                    <pd>输出参数，表示视频设备的设备 ID。最大长度为 <codeph>MAX_DEVICE_ID_LENGTH</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

@@ -48,11 +48,24 @@
             </dl>
             <p props="cpp">你可以调用该方法在频道中向所有用户播放指定音效。每次调用只能播放一个音效，若需同时播放多个音效，请多次调用该方法，并使用不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph> 参数。你还可以设置是否在频道中发布该音效。</p>
             <p props="android">你可以调用该方法将指定音效播放给频道内的所有用户。每次调用该方法只能播放一个音效。若需同时播放多个音效，请多次调用该方法，并使用不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph>。你可以设置是否在频道中发布该音效。</p>
-            <p props="ios mac">该方法用于设置是否在频道中发布音效。若需同时播放多个音效文件，只需使用不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph> 多次调用该方法。在调用 <xref keyref="preloadEffect"/> 预加载音效后，可调用此方法将指定音效播放给频道内所有用户。每次调用该方法只能播放一个音效。若需同时播放多个音效，请多次调用该方法。</p>
-            <note props="android ios mac">
+            <p props="ios">该方法用于设置是否在频道中发布音效。若需同时播放多个音效文件，只需使用不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph> 多次调用该方法。在调用 <xref keyref="preloadEffect2"/> 预加载音效后，可调用此方法将指定音效播放给频道内所有用户。每次调用该方法只能播放一个音效。若需同时播放多个音效，请多次调用该方法。</p>
+            <p props="mac">该方法用于设置是否在频道中发布音效。若需同时播放多个音效文件，只需使用不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph> 多次调用该方法。在调用 <codeph>preloadEffect:filePath:</codeph> 预加载音效后，可调用此方法将指定音效播放给频道内所有用户。每次调用该方法只能播放一个音效。若需同时播放多个音效，请多次调用该方法。</p>
+            <note props="android">
                 <ul>
                     <li>声网建议不要同时播放超过三个音效。</li>
-                    <li>此方法中的音效 ID 和文件路径必须与 <xref keyref="preloadEffect"/> 方法中的保持一致。</li>
+                    <li>此方法中的音效 ID 和文件路径必须与 <codeph>preloadEffect</codeph> 方法中的保持一致。</li>
+                </ul>
+            </note>
+            <note props="ios">
+                <ul>
+                    <li>声网建议不要同时播放超过三个音效。</li>
+                    <li>此方法中的音效 ID 和文件路径必须与 <xref keyref="preloadEffect2"/> 方法中的保持一致。</li>
+                </ul>
+            </note>
+            <note props="mac">
+                <ul>
+                    <li>声网建议不要同时播放超过三个音效。</li>
+                    <li>此方法中的音效 ID 和文件路径必须与 <codeph>preloadEffect:filePath:</codeph> 方法中的保持一致。</li>
                 </ul>
             </note>
         </section>
@@ -145,9 +158,9 @@
                     <pt>connection</pt>
                     <pd>连接对象，详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>soundId</pt>
-                    <pd>音效的 ID。每个音效文件的唯一标识。如果通过 <xref keyref="preloadEffect"/> 方法将音效预加载到内存中，请确保该参数值与 <xref keyref="preloadEffect"/> 方法中的值一致。</pd>
+                    <pd>音效的 ID。每个音效文件的唯一标识。如果通过 <xref keyref="preloadEffect2"/> 方法将音效预加载到内存中，请确保该参数值与 <xref keyref="preloadEffect2"/> 方法中的值一致。</pd>
                 </plentry>
                 <plentry props="ios mac">
                     <pt>filePath</pt>
@@ -189,6 +202,10 @@
                 <plentry props="ios mac">
                     <pt>startPos</pt>
                     <pd>音效文件的播放起始位置（单位为毫秒）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>soundId</pt>
+                    <pd>音效的 ID。每个音效文件的唯一标识。如果通过 <codeph>preloadEffect:filePath:</codeph> 方法将音效预加载到内存中，请确保该参数值与 <codeph>preloadEffect:filePath:</codeph> 方法中的值一致。</pd>
                 </plentry>
             </parml>
         </section>

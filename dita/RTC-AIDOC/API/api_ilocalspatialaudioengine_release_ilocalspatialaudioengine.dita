@@ -22,7 +22,9 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="ios">你必须在调用 <xref keyref="release_ILocalSpatialAudioEngine"/> 方法之前，先调用此方法。</p>
+            <p props="ios">该方法会释放 <xref keyref="ILocalSpatialAudioEngine"/> 下的所有资源。当你不再需要使用空间音效时，可以调用该方法释放资源。调用该方法后，将无法再使用 <xref keyref="ILocalSpatialAudioEngine"/> 下的任何 API。如需再次使用空间音效，需等待 <xref keyref="release_ILocalSpatialAudioEngine"/> 方法执行完成后，再调用 <xref keyref="initialize_ILocalSpatialAudioEngine"/> 创建新的 <xref keyref="ILocalSpatialAudioEngine"/> 实例。</p>
+            <p props="android">调用该方法后，将无法再使用 <xref keyref="ILocalSpatialAudioEngine"/> 下的任何 API。如需再次使用空间音效功能，需等待 <xref keyref="release_ILocalSpatialAudioEngine"/> 方法执行完成后，再调用 <xref keyref="initialize_IMusicContentCenter"/> 创建新的 <xref keyref="ILocalSpatialAudioEngine"/> 实例。</p>
+            <note props="android ios">请在调用 <xref keyref="release_ILocalSpatialAudioEngine"/> 方法之前调用此方法。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -40,15 +42,6 @@
                     <pd>{parameters.desc}</pd>
                 </plentry>
             </parml>
-        </section>
-        <section id="return_values">
-            <title>返回值</title>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
-                </ul>
-            </p>
         </section>
     </refbody>
 </reference>

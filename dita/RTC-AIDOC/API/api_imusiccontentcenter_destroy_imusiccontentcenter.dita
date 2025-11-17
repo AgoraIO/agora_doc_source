@@ -5,7 +5,7 @@
     <ph keyref="destroy_IMusicContentCenter"/>
   </title>
     <shortdesc id="short">
-    <ph id="shortdesc">销毁 <codeph>RtcEngine</codeph> 实例并释放相关资源。</ph>
+    <ph id="shortdesc">销毁媒体播放器实例。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -17,19 +17,13 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="ios" outputclass="language-objectivec">+ (void)destroy NS_SWIFT_NAME(destroy());</codeblock>
-                <codeblock props="android" outputclass="language-java">public static synchronized void destroy(@Nullable IRtcEngineReleaseCallback callback)</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">+ (void)destroy;</codeblock>
+                <codeblock props="android" outputclass="language-java">public static synchronized void destroy()</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <dl outputclass="since">
-                <dlentry props="android">
-                    <dt>自从</dt>
-                    <dd>自 v4.6.0 版本新增。</dd>
-                </dlentry>
-            </dl>
             <p props="ios">你必须在调用 <xref keyref="release_ILocalSpatialAudioEngine"/> 方法之前，先调用此方法。</p>
-            <p props="android">当你不再需要实时通信时，调用该方法以释放 <xref keyref="IRtcEngine"/> 实例，使相关资源可用于其他操作。推荐在语音通话或视频通话等场景中使用。</p>
+            <p props="android">你必须在调用 <xref keyref="release_ILocalSpatialAudioEngine"/> 方法之前调用该方法。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -42,14 +36,9 @@
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="android">
-                    <pt>callback</pt>
-                    <pd>用于配置引擎的同步或异步销毁方式：
-                        <ul>
-                            <li>非 <xref keyref="NULL"/>：异步销毁。方法会立即返回，但引擎资源可能尚未完全释放。引擎销毁后会触发 <xref keyref="onEngineReleased"/> 回调。</li>
-                            <li><xref keyref="NULL"/>：同步销毁。方法仅在引擎资源完全释放后才返回。详见 <xref keyref="IRtcEngineReleaseCallback"/>。</li>
-                        </ul>
-                    </pd>
+                <plentry props="{platform3}">
+                    <pt>{parameters.name}</pt>
+                    <pd>{parameters.desc}</pd>
                 </plentry>
             </parml>
         </section>

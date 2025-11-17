@@ -17,11 +17,11 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="cpp" outputclass="language-cpp">virtual int getCount() = 0;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual unsigned int getCount() = 0;</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">如果在调用该方法前调用了 <xref keyref="enumeratePlaybackDevices"/>，SDK 会返回音频播放设备的数量；如果在调用该方法前调用了 <xref keyref="enumerateRecordingDevices"/>，SDK 会返回音频采集设备的数量。</p>
+            <note props="cpp"><xref keyref="getCount_IVideoDeviceCollection"/> 方法仅适用于 macOS 和 Windows 平台。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -42,7 +42,7 @@
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="cpp">方法调用成功，返回音频播放设备或音频采集设备的总数。</p>
+            <p props="cpp">方法调用成功，返回可共享窗口和屏幕的数量。</p>
         </section>
     </refbody>
 </reference>

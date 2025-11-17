@@ -50,8 +50,9 @@
                     <li>如果在调用 <xref keyref="playEffect3"/> 之前未调用 <xref keyref="preloadEffect"/>，<xref keyref="playEffect3"/> 执行后会销毁资源。下次调用 <xref keyref="playEffect3"/> 时会尝试重新打开文件并从头播放。</li>
                 </ul>
             </note>
-            <note props="android">如果需要播放在线音效文件，声网建议你先将在线音效文件缓存到本地设备，调用 <xref keyref="preloadEffect"/> 将文件预加载到内存中，再调用该方法播放音效。否则，可能因加载超时或失败导致播放失败或无声。</note>
-            <note props="ios mac">如果你需要播放在线音效文件，声网建议你先将该文件缓存到本地设备，再调用 <xref keyref="preloadEffect"/> 将其预加载到内存中，然后调用 <xref keyref="playEffect3"/> 播放音效。否则，可能因加载超时或失败导致播放失败或无声。</note>
+            <note props="android">如果需要播放在线音效文件，声网建议你先将在线音效文件缓存到本地设备，调用 <codeph>preloadEffect</codeph> 将文件预加载到内存中，再调用该方法播放音效。否则，可能因加载超时或失败导致播放失败或无声。</note>
+            <note props="ios">如果你需要播放在线音效文件，声网建议你先将该文件缓存到本地设备，再调用 <xref keyref="preloadEffect2"/> 将其预加载到内存中，然后调用 <xref keyref="playEffect3"/> 播放音效。否则，可能因加载超时或失败导致播放失败或无声。</note>
+            <note props="mac">如果你需要播放在线音效文件，声网建议你先将该文件缓存到本地设备，再调用 <codeph>preloadEffect:filePath:</codeph> 将其预加载到内存中，然后调用 <xref keyref="playEffect3"/> 播放音效。否则，可能因加载超时或失败导致播放失败或无声。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -153,13 +154,13 @@
                     <pt>gain</pt>
                     <pd>音效的音量。取值范围为 0.0 到 100.0。默认值为 100.0，表示原始音量。值越小，音量越低。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>soundId</pt>
-                    <pd>音效 ID。每个音效文件的 ID 必须唯一。注意：如果你已通过调用 <xref keyref="preloadEffect"/> 将音效预加载到内存中，确保该参数的值与 <xref keyref="preloadEffect"/> 中的 <codeph>soundId</codeph> 一致。</pd>
+                    <pd>音效 ID。每个音效文件的 ID 必须唯一。注意：如果你已通过调用 <xref keyref="preloadEffect2"/> 将音效预加载到内存中，确保该参数的值与 <xref keyref="preloadEffect2"/> 中的 <codeph>soundId</codeph> 一致。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>filePath</pt>
-                    <pd>音效文件路径。支持以 <codeph>ipod-library://</codeph> 开头的路径、URL 以及本地文件的绝对路径。绝对路径需精确到文件名及扩展名。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV 和 3GP。注意：如果你已通过调用 <xref keyref="preloadEffect"/> 将音效预加载到内存中，确保该参数的值与 <xref keyref="preloadEffect"/> 中的 <codeph>filePath</codeph> 一致。</pd>
+                    <pd>音效文件路径。支持以 <codeph>ipod-library://</codeph> 开头的路径、URL 以及本地文件的绝对路径。绝对路径需精确到文件名及扩展名。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV 和 3GP。注意：如果你已通过调用 <xref keyref="preloadEffect2"/> 将音效预加载到内存中，确保该参数的值与 <xref keyref="preloadEffect2"/> 中的 <codeph>filePath</codeph> 一致。</pd>
                 </plentry>
                 <plentry props="ios mac">
                     <pt>loopCount</pt>
@@ -196,6 +197,14 @@
                 <plentry props="ios mac">
                     <pt>startPos</pt>
                     <pd>音效文件的播放起始位置（单位为毫秒）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>soundId</pt>
+                    <pd>音效 ID。每个音效文件的 ID 必须唯一。注意：如果你已通过调用 <codeph>preloadEffect:filePath:</codeph> 将音效预加载到内存中，确保该参数的值与 <codeph>preloadEffect:filePath:</codeph> 中的 <codeph>soundId</codeph> 一致。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>filePath</pt>
+                    <pd>音效文件路径。支持以 <codeph>ipod-library://</codeph> 开头的路径、URL 以及本地文件的绝对路径。绝对路径需精确到文件名及扩展名。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV 和 3GP。注意：如果你已通过调用 <codeph>preloadEffect:filePath:</codeph> 将音效预加载到内存中，确保该参数的值与 <codeph>preloadEffect:filePath:</codeph> 中的 <codeph>filePath</codeph> 一致。</pd>
                 </plentry>
             </parml>
         </section>

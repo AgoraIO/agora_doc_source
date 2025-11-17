@@ -17,22 +17,16 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="cpp" outputclass="language-cpp">virtual int initialize(const RtcEngineContext&amp; context) = 0;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int initialize(const MusicContentCenterConfiguration &amp; configuration) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int initialize(MusicContentCenterConfiguration configuration);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">+ (instancetype _Nullable)sharedContentCenterWithConfig:(AgoraMusicContentCenterConfig *)config NS_SWIFT_NAME(sharedContentCenter(config:));</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">+ (instancetype _Nullable)sharedContentCenterWithConfig:(AgoraMusicContentCenterConfig *)config NS_SWIFT_NAME(sharedContentCenter(config:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">在调用 <xref keyref="ILocalSpatialAudioEngine"/> 的其他方法前，你必须先调用 <xref keyref="queryInterface"/> 获取接口实例，并通过该方法初始化 <xref keyref="ILocalSpatialAudioEngine"/>。每个 App 仅支持创建一个 <xref keyref="ILocalSpatialAudioEngine"/> 实例。</p>
+            <p props="cpp">在调用 <xref keyref="IMusicContentCenter"/> 中的其他方法前，必须先调用该方法进行初始化。</p>
+            <p props="android">在调用 <xref keyref="initialize_IMusicContentCenter"/> 方法前，必须先进行初始化，才能调用其他方法。</p>
             <p props="ios mac">你必须先调用该方法初始化 <xref keyref="IMusicContentCenter"/>，然后才能调用该类中的其他方法。</p>
-            <note props="android">
-                <ul>
-                    <li>请在调用 <xref keyref="create_ILocalSpatialAudioEngine"/> 方法后调用此方法。</li>
-                    <li>在调用 <xref keyref="ILocalSpatialAudioEngine"/> 的其他方法前，必须先调用 <xref keyref="initialize_IMusicContentCenter"/> 初始化 <xref keyref="ILocalSpatialAudioEngine"/>。</li>
-                    <li>每个 App 仅支持创建一个 <xref keyref="ILocalSpatialAudioEngine"/> 实例。</li>
-                </ul>
-            </note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -46,8 +40,8 @@
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
-                    <pt>context</pt>
-                    <pd><xref keyref="IRtcEngine"/> 实例的配置参数。详见 <xref keyref="RtcEngineConfig"/>。</pd>
+                    <pt>configuration</pt>
+                    <pd><xref keyref="IMusicContentCenter"/> 的初始化配置。详见 <xref keyref="MusicContentCenterConfiguration"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>configuration</pt>
@@ -61,7 +55,13 @@
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见 <codeph>Error Codes</codeph>。</li>
+                </ul>
+            </p>
+            <p props="android">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

@@ -18,18 +18,12 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setRemoteDefaultVideoStreamType(VIDEO_STREAM_TYPE streamType) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">@Deprecated public abstract int setRemoteDefaultVideoStreamType(int streamType);</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setRemoteDefaultVideoStreamType(Constants.VideoStreamType streamType);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)setRemoteDefaultVideoStreamType:(AgoraVideoStreamType)streamType NS_SWIFT_NAME(setRemoteDefaultVideoStreamType(_:));</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)setRemoteDefaultVideoStreamType:(AgoraVideoStreamType)streamType NS_SWIFT_NAME(setRemoteDefaultVideoStreamType(_:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <dl outputclass="deprecated">
-                <dlentry props="android">
-                    <dt/>
-                    <dd>自 vX.X.X 版本废弃。</dd>
-                </dlentry>
-            </dl>
             <p props="cpp">根据发送端的默认行为，以及调用 <codeph>setDualStreamMode</codeph> 时的具体设置，接收端调用此方法的场景如下：
                 <ul>
                     <li>SDK 默认在发送端开启低质量视频流自适应模式（<codeph>AUTO_SIMULCAST_STREAM</codeph>），即仅发送高质量视频流。此时，仅角色为主播的接收端可以调用此方法发起低质量视频流请求。一旦发送端收到请求，会自动开始发送低质量视频流。此时，频道内所有用户均可调用此方法切换为低质量视频流订阅模式。</li>
@@ -40,11 +34,10 @@ SDK 会根据视频窗口的大小动态调整对应视频流的尺寸，以节�
             </p>
             <p props="android">根据发送端的默认行为以及调用 <codeph>setDualStreamMode</codeph> 时的具体设置，接收端调用该方法的场景如下：
                 <ul>
-                    <li>SDK 默认在发送端开启低质量视频流自适应模式（<codeph>AUTO_SIMULCAST_STREAM</codeph>），即仅发送高质量视频流。只有角色为主播的接收端可以调用该方法发起低质量视频流请求。发送端收到请求后会自动开始发送低质量视频流。此时，频道内所有用户都可以调用该方法切换为订阅低质量视频流模式。</li>
+                    <li>SDK 默认在发送端开启低质量视频流自适应模式（<codeph>AUTO_SIMULCAST_STREAM</codeph>），即仅发送高质量视频流。只有角色为主播的接收端可以调用该方法发起低质量视频流请求。一旦发送端收到请求后，会自动开始发送低质量视频流。此时，频道内所有用户都可以调用该方法切换为订阅低质量视频流模式。</li>
                     <li>如果发送端调用 <codeph>setDualStreamMode</codeph> 并将 <codeph>mode</codeph> 设置为 <codeph>DISABLE_SIMULCAST_STREAM</codeph>（从不发送低质量视频流），则调用该方法无效。</li>
                     <li>如果发送端调用 <codeph>setDualStreamMode</codeph> 并将 <codeph>mode</codeph> 设置为 <codeph>ENABLE_SIMULCAST_STREAM</codeph>（始终发送低质量视频流），则主播和观众角色的接收端都可以调用该方法切换为订阅低质量视频流模式。
-SDK 会根据视频窗口的大小动态调整对应视频流的尺寸，以节省带宽和计算资源。低质量视频流的默认宽高比与高质量视频流一致。系统会根据当前高质量视频流的宽高比自动分配低质量视频流的分辨率、帧率和码率。
-调用时机：请在加入频道前调用该方法。加入频道后，SDK 不支持修改默认订阅的视频流类型。</li>
+SDK 会根据视频窗口的大小动态调整对应视频流的尺寸，以节省带宽和计算资源。低质量视频流的默认宽高比与高质量视频流一致。系统会根据当前高质量视频流的宽高比，自动分配低质量视频流的分辨率、帧率和码率。</li>
                 </ul>
             </p>
             <p props="ios mac">根据发送端的默认行为以及调用 <xref keyref="setDualStreamMode2"/> 时的具体设置，你调用此方法的场景如下：
@@ -62,7 +55,7 @@ SDK 会根据视频窗口的大小动态调整对应视频流的尺寸，以节�
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p props="cpp">请在加入频道前调用此方法。</p>
-            <p props="android">请在加入频道前调用该方法。</p>
+            <p props="android">请在加入频道前调用该方法。SDK 不支持在加入频道后更改默认订阅的视频流类型。</p>
             <p props="ios mac">该方法需要在加入频道前调用。SDK 不支持在加入频道后更改默认订阅的视频流类型。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
@@ -78,12 +71,7 @@ SDK 会根据视频窗口的大小动态调整对应视频流的尺寸，以节�
                 </plentry>
                 <plentry props="android">
                     <pt>streamType</pt>
-                    <pd>默认订阅的视频流类型：
-                        <ul>
-                            <li><codeph>VIDEO_STREAM_HIGH</codeph>（0）：高质量视频流，即高分辨率和高码率的视频流。</li>
-                            <li><codeph>VIDEO_STREAM_LOW</codeph>（1）：低质量视频流，即低分辨率和低码率的视频流。</li>
-                        </ul>
-                    </pd>
+                    <pd>视频流类型。详见 <xref keyref="VIDEO_STREAM_TYPE"/>。</pd>
                 </plentry>
             </parml>
         </section>

@@ -17,8 +17,8 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioVolumeIndication(const RtcConnection&amp; connection, const AudioVolumeInfo* speakers, unsigned int speakerNumber, int totalVolume)</codeblock>
-                <codeblock props="android" outputclass="language-java">public void onAudioVolumeIndication(AudioVolumeInfo[] speakers, int totalVolume)</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioVolumeIndication(int volume) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">@CalledByNative void onAudioVolumeIndication(int volume);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol&gt; _Nonnull)playerKit
              volumeIndicationDidReceive:(NSInteger)volume NS_SWIFT_NAME(AgoraRtcMediaPlayer(_:volumeIndicationDidReceive:));</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol&gt; _Nonnull)playerKit
@@ -26,18 +26,11 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <dl outputclass="since">
-                <dlentry props="cpp">
-                    <dt>自从</dt>
-                    <dd>自 v4.4.0 版本新增。</dd>
-                </dlentry>
-            </dl>
-            <p props="android">该回调每 200 毫秒触发一次。</p>
+            <p props="android cpp">该回调每 200 毫秒触发一次。</p>
             <p props="ios mac">该回调每 200 毫秒触发一次，用于报告当前媒体播放器的音量。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
-            <p props="cpp">当播放器的音量发生变化时，SDK 会触发该回调。</p>
             <p props="android">该回调每 200 毫秒触发一次，用于报告媒体播放器的当前音量。</p>
             <p props="ios mac">该回调每 200 毫秒触发一次。</p>
         </section>
@@ -48,53 +41,13 @@
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="cpp">
-                    <pt>connection</pt>
-                    <pd><xref keyref="RtcConnection"/> 对象。详见 <xref keyref="RtcConnection"/>。</pd>
-                </plentry>
-                <plentry props="cpp">
-                    <pt>speakers</pt>
-                    <pd>用户的音量信息。当该数组为空时，表示频道中没有远端用户或没有用户发送音频流。详见 <xref keyref="AudioVolumeInfo"/>。</pd>
-                </plentry>
-                <plentry props="cpp">
-                    <pt>speakerNumber</pt>
-                    <pd>说话者的总人数。
-                        <ul>
-                            <li>在本地用户的回调中，当本地用户发送音频流时，该值为 1。</li>
-                            <li>在远端用户的回调中，该值范围为 [0, 3]。当发送音频流的远端用户数量大于或等于 3 时，该值为 3。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="cpp">
-                    <pt>totalVolume</pt>
-                    <pd>说话者的音量，取值范围为 0（最低）到 255（最高）。
-                        <ul>
-                            <li>在本地用户的回调中，该值表示本地用户的音量。</li>
-                            <li>在远端用户的回调中，该值表示瞬时音量最高的最多三位远端用户的音量总和。如果调用了 <codeph>startAudioMixing</codeph>，该值为混音后的音量。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>speakers</pt>
-                    <pd>用户的音量信息。当该数组为空时，表示频道中没有远端用户或远端用户未发送音频流。详见 <xref keyref="AudioVolumeInfo"/>。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>totalVolume</pt>
-                    <pd>说话者的音量，取值范围为 [0, 255]。
-                        <ul>
-                            <li>对于本地用户的回调，<codeph>totalVolume</codeph> 是发送音频流的本地用户的音量。</li>
-                            <li>对于远端用户的回调，<codeph>totalVolume</codeph> 是瞬时音量最高的最多三位远端用户的音量总和。</li>
-                            <li>如果调用了 <codeph>startAudioMixing</codeph>，则 <codeph>totalVolume</codeph> 是混音后的音量。</li>
-                        </ul>
-                    </pd>
+                <plentry props="android cpp ios mac">
+                    <pt>volume</pt>
+                    <pd>媒体播放器的音量，取值范围为 0 到 255。</pd>
                 </plentry>
                 <plentry props="ios mac">
                     <pt>playerKit</pt>
                     <pd><xref keyref="IMediaPlayer"/> 实例。详见 <xref keyref="IMediaPlayer"/>。</pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>volume</pt>
-                    <pd>媒体播放器的音量，取值范围为 0 到 255。</pd>
                 </plentry>
             </parml>
         </section>

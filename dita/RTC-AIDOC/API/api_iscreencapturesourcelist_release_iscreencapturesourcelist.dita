@@ -17,11 +17,12 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="cpp" outputclass="language-cpp">AGORA_CPP_API static void release(RtcEngineReleaseCallback callback = nullptr);</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void release() = 0;</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">你必须在调用 <xref keyref="release_IVideoDeviceManager"/> 方法之前调用该方法。</p>
+            <p props="cpp">调用该方法以释放 <xref keyref="IScreenCaptureSourceList"/>，以避免内存泄漏。请勿直接删除 <xref keyref="IScreenCaptureSourceList"/>。</p>
+            <note props="cpp">此方法仅适用于 macOS 和 Windows 平台。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -34,14 +35,9 @@
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="cpp">
-                    <pt>callback</pt>
-                    <pd>（可选）用于设置引擎销毁模式为同步或异步的回调函数指针。
-                        <ul>
-                            <li>非 <codeph>nullptr</codeph>：异步销毁引擎。该方法会立即返回，此时引擎资源可能尚未完全释放。引擎销毁后，SDK 会触发 <xref keyref="RtcEngineReleaseCallback"/>。</li>
-                            <li><codeph>nullptr</codeph>：同步销毁引擎。该方法仅在引擎资源完全释放后才返回。详见 <xref keyref="RtcEngineReleaseCallback"/>。</li>
-                        </ul>
-                    </pd>
+                <plentry props="{platform3}">
+                    <pt>{parameters.name}</pt>
+                    <pd>{parameters.desc}</pd>
                 </plentry>
             </parml>
         </section>
