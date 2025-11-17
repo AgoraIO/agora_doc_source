@@ -97,14 +97,17 @@
                     <pt>jsonOption</pt>
                     <pd>扩展 JSON 字段，默认为 <xref keyref="NULL"/>。当前支持以下字段：
                         <ul>
-                            <li><codeph>sceneType</codeph>：频道场景。</li>
-                            <li>1：直播场景：在线 K 歌房和背景音乐播放。</li>
-                            <li>2：直播场景：背景音乐播放。</li>
-                            <li>3：（默认）语聊场景：在线 K 歌房。</li>
-                            <li>4：语聊场景：背景音乐播放。</li>
-                            <li>5：VR 场景：在线 K 歌房和背景音乐播放。
+                            <li><codeph>sceneType</codeph>：频道场景。
+                                <ul>
+                                    <li>1：直播场景：在线 K 歌房和背景音乐播放。</li>
+                                    <li>2：直播场景：背景音乐播放。</li>
+                                    <li>3：（默认）语聊场景：在线 K 歌房。</li>
+                                    <li>4：语聊场景：背景音乐播放。</li>
+                                    <li>5：VR 场景：在线 K 歌房和背景音乐播放。
   &gt; 注意：声网会根据你在 <codeph>sceneType</codeph> 中指定的频道场景计费。不同的频道场景对应不同的计费标准，详见计费文档。若需切换频道场景，必须重新调用该方法并传入新的 <codeph>sceneType</codeph> 值。
   示例：<codeph>{"sceneType":1}</codeph></li>
+                                </ul>
+                            </li>
                             <li><codeph>highPart</codeph>：副歌片段的索引。你可以从 <xref keyref="onMusicCollectionResult"/> 回调中获取该索引并传入。索引从 0 开始。
   示例：<codeph>{"format": {"highpart": 0}}</codeph></li>
                         </ul>

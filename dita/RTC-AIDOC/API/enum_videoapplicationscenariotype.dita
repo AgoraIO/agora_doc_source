@@ -40,12 +40,18 @@
                     <pd>（1）：适用于会议场景。SDK 会自动启用以下策略：
                         <ul>
                             <li>在需要低质量视频流具备高码率的会议场景中，SDK 会启用多种网络拥塞应对技术，提升低质量视频流性能，确保订阅端流畅接收；</li>
-                            <li>实时监控高质量视频流的订阅人数，并动态调整配置：</li>
-                            <li>若无人订阅高质量视频流，SDK 会自动降低其码率和帧率以节省上行带宽；</li>
-                            <li>若有人订阅高质量视频流，SDK 会将其重置为最近一次调用 <xref keyref="setVideoEncoderConfiguration"/> 设置的 <xref keyref="VideoEncoderConfiguration"/> 配置，若未设置，则使用以下默认值：分辨率为 960 × 540，帧率为 15 fps，码率为 1000 Kbps；</li>
-                            <li>实时监控低质量视频流的订阅人数，并动态启用或禁用该流：</li>
-                            <li>若无人订阅低质量视频流，SDK 会自动禁用该流以节省上行带宽；</li>
-                            <li>若有人订阅低质量视频流，SDK 会启用该流并重置为最近一次调用 <codeph>setDualStreamMode(Constants.SimulcastStreamMode mode, SimulcastStreamConfig streamConfig)</codeph> 设置的 <xref keyref="SimulcastStreamConfig"/> 配置，若未设置，则使用以下默认值：分辨率为 480 × 272，帧率为 15 fps，码率为 500 Kbps。</li>
+                            <li>实时监控高质量视频流的订阅人数，并动态调整配置：
+                                <ul>
+                                    <li>若无人订阅高质量视频流，SDK 会自动降低其码率和帧率以节省上行带宽；</li>
+                                    <li>若有人订阅高质量视频流，SDK 会将其重置为最近一次调用 <xref keyref="setVideoEncoderConfiguration"/> 设置的 <xref keyref="VideoEncoderConfiguration"/> 配置，若未设置，则使用以下默认值：分辨率为 960 × 540，帧率为 15 fps，码率为 1000 Kbps；</li>
+                                </ul>
+                            </li>
+                            <li>实时监控低质量视频流的订阅人数，并动态启用或禁用该流：
+                                <ul>
+                                    <li>若无人订阅低质量视频流，SDK 会自动禁用该流以节省上行带宽；</li>
+                                    <li>若有人订阅低质量视频流，SDK 会启用该流并重置为最近一次调用 <codeph>setDualStreamMode(Constants.SimulcastStreamMode mode, SimulcastStreamConfig streamConfig)</codeph> 设置的 <xref keyref="SimulcastStreamConfig"/> 配置，若未设置，则使用以下默认值：分辨率为 480 × 272，帧率为 15 fps，码率为 500 Kbps。</li>
+                                </ul>
+                            </li>
                         </ul>
                     </pd>
                 </plentry>

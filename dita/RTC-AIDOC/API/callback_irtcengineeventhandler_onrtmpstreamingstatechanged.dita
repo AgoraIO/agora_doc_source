@@ -63,9 +63,12 @@
                             <li><codeph>RTMP_STREAM_PUBLISH_STATE_IDLE</codeph>(0)：旁路推流尚未开始或已结束。</li>
                             <li><codeph>RTMP_STREAM_PUBLISH_STATE_CONNECTING</codeph>(1)：正在连接推流服务器和 CDN 服务器。</li>
                             <li><codeph>RTMP_STREAM_PUBLISH_STATE_RUNNING</codeph>(2)：正在推流。SDK 成功推送 RTMP 或 RTMPS 流并返回该状态。</li>
-                            <li><codeph>RTMP_STREAM_PUBLISH_STATE_RECOVERING</codeph>(3)：正在恢复推流。当 CDN 出现异常或旁路推流中断时，SDK 会尝试恢复推流并返回该状态。</li>
-                            <li>如果 SDK 成功恢复推流，则返回 <codeph>RTMP_STREAM_PUBLISH_STATE_RUNNING</codeph>(2)。</li>
-                            <li>如果在 60 秒内未恢复推流或服务器发生错误，则返回 <codeph>RTMP_STREAM_PUBLISH_STATE_FAILURE</codeph>(4)。你也可以通过调用 <xref keyref="startRtmpStreamWithTranscoding"/>、<xref keyref="startRtmpStreamWithoutTranscoding"/> 和 <xref keyref="stopRtmpStream"/> 方法重新连接服务器。</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_STATE_RECOVERING</codeph>(3)：正在恢复推流。当 CDN 出现异常或旁路推流中断时，SDK 会尝试恢复推流并返回该状态。
+                                <ul>
+                                    <li>如果 SDK 成功恢复推流，则返回 <codeph>RTMP_STREAM_PUBLISH_STATE_RUNNING</codeph>(2)。</li>
+                                    <li>如果在 60 秒内未恢复推流或服务器发生错误，则返回 <codeph>RTMP_STREAM_PUBLISH_STATE_FAILURE</codeph>(4)。你也可以通过调用 <xref keyref="startRtmpStreamWithTranscoding"/>、<xref keyref="startRtmpStreamWithoutTranscoding"/> 和 <xref keyref="stopRtmpStream"/> 方法重新连接服务器。</li>
+                                </ul>
+                            </li>
                             <li><codeph>RTMP_STREAM_PUBLISH_STATE_FAILURE</codeph>(4)：推流失败。你可以参考错误码参数中的详细错误信息进行排查，也可以尝试重新推流。</li>
                             <li><codeph>RTMP_STREAM_PUBLISH_STATE_DISCONNECTING</codeph>(5)：SDK 正在断开与声网旁路推流服务器和 CDN 服务器的连接。当你调用 <xref keyref="stopRtmpStream"/> 正常停止旁路推流时，SDK 会依次返回 <codeph>RTMP_STREAM_PUBLISH_STATE_DISCONNECTING</codeph> 和 <codeph>RTMP_STREAM_PUBLISH_STATE_IDLE</codeph> 状态。</li>
                         </ul>

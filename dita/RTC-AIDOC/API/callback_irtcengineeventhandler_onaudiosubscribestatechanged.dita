@@ -72,15 +72,24 @@ elapseSinceLastState:(int)elapseSinceLastState NS_SWIFT_NAME(rtcEngine(_:didAudi
                     <pd>之前的订阅状态：
                         <ul>
                             <li><codeph>SUB_STATE_IDLE</codeph> (0)：加入频道后的初始订阅状态。</li>
-                            <li><codeph>SUB_STATE_NO_SUBSCRIBED</codeph> (1)：订阅远端流失败。可能原因包括：</li>
-                            <li>远端用户：</li>
-                            <li>调用 <codeph>muteLocalAudioStream(true)</codeph> 停止发送本地音频流。</li>
-                            <li>调用 <xref keyref="disableAudio"/> 禁用本地音频模块。</li>
-                            <li>调用 <codeph>enableLocalAudio(false)</codeph> 禁用本地音频采集。</li>
-                            <li>远端用户角色为观众。</li>
-                            <li>本地用户：</li>
-                            <li>在调用 <codeph>joinChannel</codeph> 或 <xref keyref="updateChannelMediaOptions"/> 时将 <codeph>autoSubscribeAudio</codeph> 设为 <xref keyref="false"/>，表示不自动订阅任何音频流。</li>
-                            <li>调用 <xref keyref="muteRemoteAudioStream"/> 或 <xref keyref="muteAllRemoteAudioStreams_IBaseSpatialAudioEngine"/> 并将 <codeph>muted</codeph> 设为 <xref keyref="true"/>，表示停止接收远端音频流。</li>
+                            <li><codeph>SUB_STATE_NO_SUBSCRIBED</codeph> (1)：订阅远端流失败。可能原因包括：
+                                <ul>
+                                    <li>远端用户：
+                                        <ul>
+                                            <li>调用 <codeph>muteLocalAudioStream(true)</codeph> 停止发送本地音频流。</li>
+                                            <li>调用 <xref keyref="disableAudio"/> 禁用本地音频模块。</li>
+                                            <li>调用 <codeph>enableLocalAudio(false)</codeph> 禁用本地音频采集。</li>
+                                            <li>远端用户角色为观众。</li>
+                                        </ul>
+                                    </li>
+                                    <li>本地用户：
+                                        <ul>
+                                            <li>在调用 <codeph>joinChannel</codeph> 或 <xref keyref="updateChannelMediaOptions"/> 时将 <codeph>autoSubscribeAudio</codeph> 设为 <xref keyref="false"/>，表示不自动订阅任何音频流。</li>
+                                            <li>调用 <xref keyref="muteRemoteAudioStream"/> 或 <xref keyref="muteAllRemoteAudioStreams_IBaseSpatialAudioEngine"/> 并将 <codeph>muted</codeph> 设为 <xref keyref="true"/>，表示停止接收远端音频流。</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
                             <li><codeph>SUB_STATE_SUBSCRIBING</codeph> (2)：正在订阅中。</li>
                             <li><codeph>SUB_STATE_SUBSCRIBED</codeph> (3)：已接收到远端流，订阅成功。</li>
                         </ul>
@@ -91,15 +100,24 @@ elapseSinceLastState:(int)elapseSinceLastState NS_SWIFT_NAME(rtcEngine(_:didAudi
                     <pd>当前的订阅状态：
                         <ul>
                             <li><codeph>SUB_STATE_IDLE</codeph> (0)：加入频道后的初始订阅状态。</li>
-                            <li><codeph>SUB_STATE_NO_SUBSCRIBED</codeph> (1)：订阅远端流失败。可能原因包括：</li>
-                            <li>远端用户：</li>
-                            <li>调用 <codeph>muteLocalAudioStream(true)</codeph> 停止发送本地音频流。</li>
-                            <li>调用 <xref keyref="disableAudio"/> 禁用本地音频模块。</li>
-                            <li>调用 <codeph>enableLocalAudio(false)</codeph> 禁用本地音频采集。</li>
-                            <li>远端用户角色为观众。</li>
-                            <li>本地用户：</li>
-                            <li>在调用 <codeph>joinChannel</codeph> 或 <xref keyref="updateChannelMediaOptions"/> 时将 <codeph>autoSubscribeAudio</codeph> 设为 <xref keyref="false"/>，表示不自动订阅任何音频流。</li>
-                            <li>调用 <xref keyref="muteRemoteAudioStream"/> 或 <xref keyref="muteAllRemoteAudioStreams_IBaseSpatialAudioEngine"/> 并将 <codeph>muted</codeph> 设为 <xref keyref="true"/>，表示停止接收远端音频流。</li>
+                            <li><codeph>SUB_STATE_NO_SUBSCRIBED</codeph> (1)：订阅远端流失败。可能原因包括：
+                                <ul>
+                                    <li>远端用户：
+                                        <ul>
+                                            <li>调用 <codeph>muteLocalAudioStream(true)</codeph> 停止发送本地音频流。</li>
+                                            <li>调用 <xref keyref="disableAudio"/> 禁用本地音频模块。</li>
+                                            <li>调用 <codeph>enableLocalAudio(false)</codeph> 禁用本地音频采集。</li>
+                                            <li>远端用户角色为观众。</li>
+                                        </ul>
+                                    </li>
+                                    <li>本地用户：
+                                        <ul>
+                                            <li>在调用 <codeph>joinChannel</codeph> 或 <xref keyref="updateChannelMediaOptions"/> 时将 <codeph>autoSubscribeAudio</codeph> 设为 <xref keyref="false"/>，表示不自动订阅任何音频流。</li>
+                                            <li>调用 <xref keyref="muteRemoteAudioStream"/> 或 <xref keyref="muteAllRemoteAudioStreams_IBaseSpatialAudioEngine"/> 并将 <codeph>muted</codeph> 设为 <xref keyref="true"/>，表示停止接收远端音频流。</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
                             <li><codeph>SUB_STATE_SUBSCRIBING</codeph> (2)：正在订阅中。</li>
                             <li><codeph>SUB_STATE_SUBSCRIBED</codeph> (3)：已接收到远端流，订阅成功。</li>
                         </ul>

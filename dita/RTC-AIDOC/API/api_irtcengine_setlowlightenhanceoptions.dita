@@ -49,36 +49,48 @@
                 <ul>
                     <li>该方法依赖图像增强动态库 <xref keyref="clearvision"/>。如果该动态库被删除，将无法启用该功能。</li>
                     <li>暗光增强对设备性能有一定要求。如果启用后设备出现过热，建议将暗光增强选项设置为较低的性能消耗等级，或关闭该功能。</li>
-                    <li>若希望在使用暗光增强功能时优先保证画质（<codeph>LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY</codeph>），需先调用 <xref keyref="setVideoDenoiserOptions"/> 实现视频降噪，具体对应关系如下：</li>
-                    <li>当暗光增强设置为自动模式（<codeph>LOW_LIGHT_ENHANCE_AUTO</codeph>）时，视频降噪需设置为优先保证画质（<codeph>VIDEO_DENOISER_LEVEL_HIGH_QUALITY</codeph>）和自动模式（<codeph>VIDEO_DENOISER_AUTO</codeph>）。</li>
-                    <li>当暗光增强设置为手动模式（<codeph>LOW_LIGHT_ENHANCE_MANUAL</codeph>）时，视频降噪需设置为优先保证画质（<codeph>VIDEO_DENOISER_LEVEL_HIGH_QUALITY</codeph>）和手动模式（<codeph>VIDEO_DENOISER_MANUAL</codeph>）。</li>
+                    <li>若希望在使用暗光增强功能时优先保证画质（<codeph>LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY</codeph>），需先调用 <xref keyref="setVideoDenoiserOptions"/> 实现视频降噪，具体对应关系如下：
+                        <ul>
+                            <li>当暗光增强设置为自动模式（<codeph>LOW_LIGHT_ENHANCE_AUTO</codeph>）时，视频降噪需设置为优先保证画质（<codeph>VIDEO_DENOISER_LEVEL_HIGH_QUALITY</codeph>）和自动模式（<codeph>VIDEO_DENOISER_AUTO</codeph>）。</li>
+                            <li>当暗光增强设置为手动模式（<codeph>LOW_LIGHT_ENHANCE_MANUAL</codeph>）时，视频降噪需设置为优先保证画质（<codeph>VIDEO_DENOISER_LEVEL_HIGH_QUALITY</codeph>）和手动模式（<codeph>VIDEO_DENOISER_MANUAL</codeph>）。</li>
+                        </ul>
+                    </li>
                 </ul>
             </note>
             <note props="android">
                 <ul>
                     <li>该方法依赖图像增强动态库 <xref keyref="clearvision"/>。如果该动态库被删除，将无法正常启用该功能。</li>
                     <li>暗光增强功能对设备性能有一定要求。如果启用后设备出现过热，声网建议将暗光增强选项设置为较低性能消耗的等级，或关闭该功能。</li>
-                    <li>如果你希望在使用暗光增强功能时优先保证画质（<codeph>LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY</codeph>），需要先调用 <codeph>setVideoDenoiserOptions</codeph> 实现视频降噪，具体对应关系如下：</li>
-                    <li>当暗光增强设置为自动模式（<codeph>LOW_LIGHT_ENHANCE_AUTO</codeph>）时，视频降噪需设置为优先保证画质（<codeph>VIDEO_DENOISER_LEVEL_HIGH_QUALITY</codeph>）和自动模式（<codeph>VIDEO_DENOISER_AUTO</codeph>）。</li>
-                    <li>当暗光增强设置为手动模式（<codeph>LOW_LIGHT_ENHANCE_MANUAL</codeph>）时，视频降噪需设置为优先保证画质（<codeph>VIDEO_DENOISER_LEVEL_HIGH_QUALITY</codeph>）和手动模式（<codeph>VIDEO_DENOISER_MANUAL</codeph>）。</li>
+                    <li>如果你希望在使用暗光增强功能时优先保证画质（<codeph>LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY</codeph>），需要先调用 <codeph>setVideoDenoiserOptions</codeph> 实现视频降噪，具体对应关系如下：
+                        <ul>
+                            <li>当暗光增强设置为自动模式（<codeph>LOW_LIGHT_ENHANCE_AUTO</codeph>）时，视频降噪需设置为优先保证画质（<codeph>VIDEO_DENOISER_LEVEL_HIGH_QUALITY</codeph>）和自动模式（<codeph>VIDEO_DENOISER_AUTO</codeph>）。</li>
+                            <li>当暗光增强设置为手动模式（<codeph>LOW_LIGHT_ENHANCE_MANUAL</codeph>）时，视频降噪需设置为优先保证画质（<codeph>VIDEO_DENOISER_LEVEL_HIGH_QUALITY</codeph>）和手动模式（<codeph>VIDEO_DENOISER_MANUAL</codeph>）。</li>
+                        </ul>
+                    </li>
                 </ul>
             </note>
             <note props="ios">
                 <ul>
                     <li>此方法依赖图像增强动态库 <xref keyref="clearvision"/>（iOS）或 <codeph>AgoraClearVisionExtension.framework</codeph>（macOS）。如果该动态库被删除，则无法正常启用该功能。</li>
                     <li>暗光增强对设备性能有一定要求。如果启用暗光增强后设备出现过热，声网建议将暗光增强选项设置为较低的性能消耗等级，或完全关闭暗光增强功能。</li>
-                    <li>如果你希望在使用暗光增强功能时优先保证画质（<codeph>AgoraLowlightEnhanceLevelQuality</codeph>），需要先调用 <xref keyref="setVideoDenoiserOptions"/> 实现视频降噪，具体对应关系如下：</li>
-                    <li>当暗光增强设置为自动模式（<codeph>AgoraLowlightEnhanceModeAuto</codeph>）时，视频降噪需设置为优先保证画质（<codeph>AgoraVideoDenoiserLevelHighQuality</codeph>）和自动模式（<codeph>AgoraVideoDenoiserModeAuto</codeph>）。</li>
-                    <li>当暗光增强设置为手动模式（<codeph>AgoraLowlightEnhanceModeManual</codeph>）时，视频降噪需设置为优先保证画质（<codeph>AgoraVideoDenoiserLevelHighQuality</codeph>）和手动模式（<codeph>AgoraVideoDenoiserModeManual</codeph>）。</li>
+                    <li>如果你希望在使用暗光增强功能时优先保证画质（<codeph>AgoraLowlightEnhanceLevelQuality</codeph>），需要先调用 <xref keyref="setVideoDenoiserOptions"/> 实现视频降噪，具体对应关系如下：
+                        <ul>
+                            <li>当暗光增强设置为自动模式（<codeph>AgoraLowlightEnhanceModeAuto</codeph>）时，视频降噪需设置为优先保证画质（<codeph>AgoraVideoDenoiserLevelHighQuality</codeph>）和自动模式（<codeph>AgoraVideoDenoiserModeAuto</codeph>）。</li>
+                            <li>当暗光增强设置为手动模式（<codeph>AgoraLowlightEnhanceModeManual</codeph>）时，视频降噪需设置为优先保证画质（<codeph>AgoraVideoDenoiserLevelHighQuality</codeph>）和手动模式（<codeph>AgoraVideoDenoiserModeManual</codeph>）。</li>
+                        </ul>
+                    </li>
                 </ul>
             </note>
             <note props="mac">
                 <ul>
                     <li>此方法依赖图像增强动态库 <codeph>AgoraClearVisionExtension.xcframework</codeph>（iOS）或 <xref keyref="clearvision"/>（macOS）。如果该动态库被删除，则无法正常启用该功能。</li>
                     <li>暗光增强对设备性能有一定要求。如果启用暗光增强后设备出现过热，声网建议将暗光增强选项设置为较低的性能消耗等级，或完全关闭暗光增强功能。</li>
-                    <li>如果你希望在使用暗光增强功能时优先保证画质（<codeph>AgoraLowlightEnhanceLevelQuality</codeph>），需要先调用 <xref keyref="setVideoDenoiserOptions"/> 实现视频降噪，具体对应关系如下：</li>
-                    <li>当暗光增强设置为自动模式（<codeph>AgoraLowlightEnhanceModeAuto</codeph>）时，视频降噪需设置为优先保证画质（<codeph>AgoraVideoDenoiserLevelHighQuality</codeph>）和自动模式（<codeph>AgoraVideoDenoiserModeAuto</codeph>）。</li>
-                    <li>当暗光增强设置为手动模式（<codeph>AgoraLowlightEnhanceModeManual</codeph>）时，视频降噪需设置为优先保证画质（<codeph>AgoraVideoDenoiserLevelHighQuality</codeph>）和手动模式（<codeph>AgoraVideoDenoiserModeManual</codeph>）。</li>
+                    <li>如果你希望在使用暗光增强功能时优先保证画质（<codeph>AgoraLowlightEnhanceLevelQuality</codeph>），需要先调用 <xref keyref="setVideoDenoiserOptions"/> 实现视频降噪，具体对应关系如下：
+                        <ul>
+                            <li>当暗光增强设置为自动模式（<codeph>AgoraLowlightEnhanceModeAuto</codeph>）时，视频降噪需设置为优先保证画质（<codeph>AgoraVideoDenoiserLevelHighQuality</codeph>）和自动模式（<codeph>AgoraVideoDenoiserModeAuto</codeph>）。</li>
+                            <li>当暗光增强设置为手动模式（<codeph>AgoraLowlightEnhanceModeManual</codeph>）时，视频降噪需设置为优先保证画质（<codeph>AgoraVideoDenoiserLevelHighQuality</codeph>）和手动模式（<codeph>AgoraVideoDenoiserModeManual</codeph>）。</li>
+                        </ul>
+                    </li>
                 </ul>
             </note>
         </section>

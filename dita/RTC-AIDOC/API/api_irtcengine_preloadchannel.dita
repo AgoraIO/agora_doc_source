@@ -64,9 +64,12 @@
                     <pd>在你的服务器上生成的用于鉴权的 Token。当用于预加载频道的 Token 过期时，你可以根据预加载的频道数量更新 Token。
                         <ul>
                             <li>如果只预加载一个频道，调用该方法传入新的 Token。</li>
-                            <li>如果预加载多个频道：</li>
-                            <li>若使用通配符 Token 预加载所有频道，调用 <xref keyref="updatePreloadChannelToken"/> 更新 Token。注意：生成通配符 Token 时，确保用户 ID 不为 0。详见 <codeph>Secure authentication with tokens</codeph>。</li>
-                            <li>若为不同频道使用不同的 Token 进行预加载，调用该方法传入用户 ID、频道名和新的 Token。</li>
+                            <li>如果预加载多个频道：
+                                <ul>
+                                    <li>若使用通配符 Token 预加载所有频道，调用 <xref keyref="updatePreloadChannelToken"/> 更新 Token。注意：生成通配符 Token 时，确保用户 ID 不为 0。详见 <codeph>Secure authentication with tokens</codeph>。</li>
+                                    <li>若为不同频道使用不同的 Token 进行预加载，调用该方法传入用户 ID、频道名和新的 Token。</li>
+                                </ul>
+                            </li>
                         </ul>
                     </pd>
                 </plentry>
@@ -90,10 +93,13 @@
                     <pd>声网开发平台中用于验证用户身份的动态密钥。当用于预加载频道的 Token 过期时，你可以根据预加载的频道数量更新 Token。
                         <ul>
                             <li>如果只预加载一个频道，调用该方法传入新的 Token。</li>
-                            <li>如果预加载多个频道：</li>
-                            <li>如果你为所有预加载频道使用通配符 Token，调用 <xref keyref="updatePreloadChannelToken"/> 更新 Token。
+                            <li>如果预加载多个频道：
+                                <ul>
+                                    <li>如果你为所有预加载频道使用通配符 Token，调用 <xref keyref="updatePreloadChannelToken"/> 更新 Token。
     注意：生成通配符 Token 时，确保用户 ID 不为 0。详见 <codeph>Secure authentication with tokens</codeph>。</li>
-                            <li>如果你为不同频道使用不同的 Token，调用该方法传入用户 ID、频道名和新的 Token。</li>
+                                    <li>如果你为不同频道使用不同的 Token，调用该方法传入用户 ID、频道名和新的 Token。</li>
+                                </ul>
+                            </li>
                         </ul>
                     </pd>
                 </plentry>
@@ -117,10 +123,13 @@
                     <pd>在你的服务器上生成的用于鉴权的 Token。当用于预加载频道的 Token 过期时，你可以根据预加载的频道数量更新 Token。
                         <ul>
                             <li>如果只预加载一个频道，调用该方法传入新的 Token。</li>
-                            <li>如果预加载多个频道：</li>
-                            <li>如果你为所有预加载频道使用通配符 Token，调用 <xref keyref="updatePreloadChannelToken"/> 更新 Token。
+                            <li>如果预加载多个频道：
+                                <ul>
+                                    <li>如果你为所有预加载频道使用通配符 Token，调用 <xref keyref="updatePreloadChannelToken"/> 更新 Token。
     注意：生成通配符 Token 时，确保用户 ID 不为 0。</li>
-                            <li>如果你为不同频道使用不同的 Token，调用该方法传入用户 ID、频道名和新的 Token。</li>
+                                    <li>如果你为不同频道使用不同的 Token，调用该方法传入用户 ID、频道名和新的 Token。</li>
+                                </ul>
+                            </li>
                         </ul>
                     </pd>
                 </plentry>
@@ -146,17 +155,23 @@
             <p props="android cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
-                    <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要先初始化 <xref keyref="IRtcEngine"/> 对象再调用该方法。</li>
-                    <li>-102：频道名无效。你需要传入有效的频道名并重新加入频道。</li>
+                    <li>&lt; 0：方法调用失败。
+                        <ul>
+                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要先初始化 <xref keyref="IRtcEngine"/> 对象再调用该方法。</li>
+                            <li>-102：频道名无效。你需要传入有效的频道名并重新加入频道。</li>
+                        </ul>
+                    </li>
                 </ul>
             </p>
             <p props="ios mac">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
-                    <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要先初始化该对象再调用此方法。</li>
-                    <li>-102：频道名无效。你需要传入有效的频道名并重新加入频道。</li>
+                    <li>&lt; 0：方法调用失败。
+                        <ul>
+                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要先初始化该对象再调用此方法。</li>
+                            <li>-102：频道名无效。你需要传入有效的频道名并重新加入频道。</li>
+                        </ul>
+                    </li>
                 </ul>
             </p>
         </section>

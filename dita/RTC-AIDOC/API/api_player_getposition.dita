@@ -19,15 +19,18 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">uint64_t GetPosition(Error *err = nullptr)</codeblock>
                 <codeblock props="android" outputclass="language-java">public long getPosition() throws RteException</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (uint64_t)getPosition:(AgoraRteError * _Nullable)error;</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (uint64_t)getPosition:(AgoraRteError * _Nullable)error;</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
-                <dlentry props="android cpp">
+                <dlentry props="android cpp ios mac">
                     <dt>自从</dt>
                     <dd>自 v4.5.1 版本新增。</dd>
                 </dlentry>
             </dl>
+            <p props="ios mac">该方法用于获取当前播放的时间位置，单位为毫秒。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -45,9 +48,26 @@
                     <pd>输出参数，状态或错误信息，详见 <xref keyref="Error"/>。
                         <ul>
                             <li><codeph>kRteOk</codeph>：调用成功。</li>
-                            <li><codeph>kRteErrorInvalidOperation</codeph>：</li>
-                            <li>对应的内部 <xref keyref="Player"/> 对象已被销毁或无效。</li>
-                            <li>打开的 URL 是 RTE URL，不支持调用 <xref keyref="GetPosition"/>。</li>
+                            <li><codeph>kRteErrorInvalidOperation</codeph>：
+                                <ul>
+                                    <li>对应的内部 <xref keyref="Player"/> 对象已被销毁或无效。</li>
+                                    <li>打开的 URL 是 RTE URL，不支持调用 <xref keyref="GetPosition"/>。</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>error</pt>
+                    <pd>输出参数，用于指示错误信息。可能的返回值包括：
+                        <ul>
+                            <li><codeph>AgoraRteOk</codeph>：调用成功。</li>
+                            <li><codeph>AgoraRteErrorInvalidOperation</codeph>：
+                                <ul>
+                                    <li>对应的内部 <xref keyref="Player"/> 对象已被销毁或无效。</li>
+                                    <li>打开的 URL 是 RTE URL，不支持调用 <xref keyref="GetPosition"/>。详见 <xref keyref="Error"/>。</li>
+                                </ul>
+                            </li>
                         </ul>
                     </pd>
                 </plentry>
@@ -58,6 +78,7 @@
             <p props="cpp">方法调用成功，返回当前播放位置，单位为毫秒。</p>
             <p props="android">方法调用成功，返回当前播放位置，单位为毫秒。
 方法调用失败，SDK 会抛出异常，并返回相应的错误信息。你需要捕获异常并进行处理。</p>
+            <p props="ios mac">方法调用成功时，返回当前播放位置，单位为毫秒。</p>
         </section>
     </refbody>
 </reference>
