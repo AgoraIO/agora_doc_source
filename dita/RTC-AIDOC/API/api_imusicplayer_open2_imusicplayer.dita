@@ -21,7 +21,8 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <note props="android">该方法为异步调用。</note>
+            <p props="android">调用该方法后，SDK 会触发 <xref keyref="onPlayerSourceStateChanged"/> 回调。当播放状态变为 <codeph>OPEN_COMPLETED</codeph> 后，你可以调用 <xref keyref="play"/> 方法播放媒体文件。</p>
+            <note props="android">如果要打开的音乐资源受数字版权保护，必须使用此方法。对于不受数字版权保护的音乐资源，可以使用此方法或 <codeph>open</codeph> 方法打开。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -49,7 +50,7 @@
             <p props="android">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
+                    <li>&lt; 0：方法调用失败。详见 <codeph>Error Codes</codeph>。</li>
                 </ul>
             </p>
         </section>

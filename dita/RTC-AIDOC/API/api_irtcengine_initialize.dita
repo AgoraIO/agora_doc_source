@@ -26,10 +26,10 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">在调用 <xref keyref="ILocalSpatialAudioEngine"/> 的其他方法前，你必须先调用 <xref keyref="queryInterface"/> 获取接口实例，并通过该方法初始化 <xref keyref="ILocalSpatialAudioEngine"/>。每个 App 仅支持创建一个 <xref keyref="ILocalSpatialAudioEngine"/> 实例。</p>
             <p props="android">你可以通过调用此方法或 <xref keyref="create_ILocalSpatialAudioEngine"/> 方法来创建 <xref keyref="IRtcEngine"/> 实例。与后者相比，此方法支持更多配置选项，例如指定连接区域和设置日志文件。</p>
             <p props="ios">你可以通过调用此方法或调用 <xref keyref="create"/> 来创建 <xref keyref="IRtcEngine"/> 实例。与 <xref keyref="create"/> 不同，此方法在创建 <xref keyref="IRtcEngine"/> 实例时支持更多配置，例如指定连接区域和设置日志文件。</p>
             <p props="mac">你可以通过调用此方法或调用 <codeph>sharedEngineWithAppId:delegate:</codeph> 来创建 <xref keyref="IRtcEngine"/> 实例。与 <codeph>sharedEngineWithAppId:delegate:</codeph> 不同，此方法在创建 <xref keyref="IRtcEngine"/> 实例时支持更多配置，例如指定连接区域和设置日志文件。</p>
+            <note props="cpp"><xref keyref="IRtcEngine"/> 提供的所有方法均为异步执行。建议你在同一线程中调用这些方法。SDK 仅支持为一个 App 创建一个 <xref keyref="IRtcEngine"/> 实例。</note>
             <note props="android">每个 App 仅支持创建一个 <xref keyref="IRtcEngine"/> 实例。<xref keyref="IRtcEngine"/> 类中的所有方法均为异步执行，声网建议在同一线程中调用这些方法。</note>
             <note props="ios mac"><xref keyref="IRtcEngine"/> 每个 App 仅支持创建一个实例。<xref keyref="IRtcEngine"/> 提供的所有方法均为异步执行。声网建议你在同一线程中调用这些方法。</note>
         </section>
@@ -64,6 +64,11 @@
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>
+                    <li>-1：发生通用错误（无明确原因）。</li>
+                    <li>-2：参数无效。</li>
+                    <li>-7：SDK 未初始化。</li>
+                    <li>-22：资源请求失败。由于 App 占用过多系统资源或系统资源不足，SDK 无法分配资源。</li>
+                    <li>-101：<codeph>App ID</codeph> 无效。</li>
                 </ul>
             </p>
             <p props="android">方法调用成功，返回初始化后的 <xref keyref="IRtcEngine"/> 对象。

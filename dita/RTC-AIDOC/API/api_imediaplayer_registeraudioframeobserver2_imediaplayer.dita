@@ -18,7 +18,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int registerAudioFrameObserver(media::IAudioPcmFrameSink* observer, RAW_AUDIO_FRAME_OP_MODE_TYPE mode) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int registerAudioFrameObserver(IAudioFrameObserver observer);</codeblock>
+                <codeblock props="android" outputclass="language-java">int registerAudioFrameObserver(IMediaPlayerAudioFrameObserver audioFrameObserver, int mode);</codeblock>
             </p>
         </section>
         <section id="timing" deliveryTarget="details">
@@ -41,8 +41,17 @@
                     <pd>音频帧的使用模式。详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="android">
-                    <pt>observer</pt>
-                    <pd>音频帧观测器实例。详见 <xref keyref="IAudioFrameObserver"/>。</pd>
+                    <pt>audioFrameObserver</pt>
+                    <pd>音频帧观测器对象。详见 <xref keyref="IMediaPlayerAudioFrameObserver"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mode</pt>
+                    <pd>音频帧的使用模式：
+                        <ul>
+                            <li><codeph>RAW_AUDIO_FRAME_OP_MODE_READ_ONLY</codeph> (0)：（默认）只读模式。例如，用户通过声网 SDK 获取数据后推送 RTMP 或 RTMPS 流。</li>
+                            <li><codeph>RAW_AUDIO_FRAME_OP_MODE_READ_WRITE</codeph> (2)：读写模式。用户从 <xref keyref="AudioFrame"/> 中读取数据并进行修改后播放。例如，用户有自己的音效处理模块并进行语音预处理，如变声。</li>
+                        </ul>
+                    </pd>
                 </plentry>
             </parml>
         </section>

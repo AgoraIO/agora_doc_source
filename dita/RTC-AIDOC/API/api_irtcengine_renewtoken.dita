@@ -20,12 +20,32 @@
                 <codeblock props="cpp" outputclass="language-cpp">virtual int renewToken(const char* token) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int renewToken(String token);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)renewToken:(NSString * _Nonnull)token NS_SWIFT_NAME(renewToken(_:));</codeblock>
-                <codeblock props="mac" outputclass="language-objectivec">- (NSInteger)renewToken:(NSString * _Nonnull)token;</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)renewToken:(NSString * _Nonnull)token NS_SWIFT_NAME(renewToken(_:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">当用于鉴权的 Token 即将过期或已经过期时，你可以调用该方法传入新生成的 Token。</p>
-            <p props="android ios mac">当用于鉴权的 Token 即将过期或已经过期时，可以调用该方法传入新生成的 Token。</p>
+            <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onRenewTokenResult"/> 回调。Token 在一段时间后会过期，届时 SDK 将无法与服务器建立连接。声网建议你在以下任一情况下，在你的服务器上生成新的 Token，并调用该方法进行更新：
+                <ul>
+                    <li>收到 <xref keyref="onTokenPrivilegeWillExpire"/> 回调，提示 Token 即将过期。</li>
+                    <li>收到 <xref keyref="onRequestToken"/> 回调，提示 Token 已过期。</li>
+                    <li>收到 <xref keyref="onConnectionStateChanged"/> 回调，报告 <codeph>CONNECTION_CHANGED_TOKEN_EXPIRED</codeph>（9）。</li>
+                </ul>
+            </p>
+            <p props="android">调用该方法更新 Token。调用成功后，SDK 会触发 <xref keyref="onRenewTokenResult"/> 回调。Token 会在一段时间后过期，届时 SDK 将无法与服务器建立连接。声网建议在以下任一情况下，在你的服务器上生成新的 Token，并调用该方法进行更新：
+                <ul>
+                    <li>收到 <xref keyref="onTokenPrivilegeWillExpire"/> 回调，提示 Token 即将过期。</li>
+                    <li>收到 <xref keyref="onRequestToken"/> 回调，提示 Token 已过期。</li>
+                    <li>收到 <xref keyref="onConnectionStateChanged"/> 回调，状态为 <codeph>CONNECTION_CHANGED_TOKEN_EXPIRED</codeph>（9）。</li>
+                </ul>
+            </p>
+            <p props="ios mac">该方法用于更新 Token。调用该方法成功后，SDK 会触发 <xref keyref="onRenewTokenResult"/> 回调。
+你可以在以下任一情况下调用该方法更新 Token：
+                <ul>
+                    <li>收到 <xref keyref="onTokenPrivilegeWillExpire"/> 回调，提示 Token 即将过期。</li>
+                    <li>收到 <xref keyref="onRequestToken"/> 回调，提示 Token 已过期。</li>
+                    <li>收到 <xref keyref="onConnectionStateChanged"/> 回调，且 <codeph>reason</codeph> 为 <codeph>AgoraConnectionChangedReasonTokenExpired</codeph>（9）。</li>
+                </ul>
+            </p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -49,19 +69,34 @@
             <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见 <codeph>Error Codes</codeph>。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                    <li>-2：参数无效，例如传入的 Token 为空。</li>
+                    <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。请先初始化 <xref keyref="IRtcEngine"/> 对象再调用该方法。</li>
+                    <li>110：Token 无效。请确保以下两点：</li>
+                    <li>生成 Token 时指定的用户 ID 与加入频道时使用的用户 ID 一致。</li>
+                    <li>生成的 Token 与加入频道时传入的 Token 相同。</li>
                 </ul>
             </p>
             <p props="android">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>
+                    <li>-2：参数无效，例如传入的 Token 为空。</li>
+                    <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。请先初始化 <xref keyref="IRtcEngine"/> 对象再调用该方法。</li>
+                    <li>110：Token 无效。请确保以下事项：</li>
+                    <li>生成 Token 时指定的用户 ID 与加入频道时使用的用户 ID 一致。</li>
+                    <li>生成的 Token 与加入频道时传入的 Token 相同。</li>
                 </ul>
             </p>
             <p props="ios mac">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见 <codeph>Error Codes</codeph> 获取错误码说明和排查建议。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                    <li>-2：参数无效。例如，<codeph>token</codeph> 为空。</li>
+                    <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。请在调用该方法前先初始化 <xref keyref="IRtcEngine"/> 对象。</li>
+                    <li>110：<codeph>token</codeph> 无效。请确保以下几点：</li>
+                    <li>生成 <codeph>token</codeph> 时指定的用户 ID 与加入频道时使用的用户 ID 一致。</li>
+                    <li>生成的 <codeph>token</codeph> 与加入频道时传入的 <codeph>token</codeph> 一致。</li>
                 </ul>
             </p>
         </section>

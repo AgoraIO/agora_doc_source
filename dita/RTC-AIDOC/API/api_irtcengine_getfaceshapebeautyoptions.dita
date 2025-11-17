@@ -20,7 +20,7 @@
                 <codeblock props="cpp" outputclass="language-cpp">virtual int getFaceShapeBeautyOptions(FaceShapeBeautyOptions&amp; options, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract FaceShapeBeautyOptions getFaceShapeBeautyOptions(Constants.MediaSourceType sourceType);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (AgoraFaceShapeBeautyOptions * _Nullable)getFaceShapeBeautyOptions:(AgoraMediaSourceType)sourceType NS_SWIFT_NAME(getFaceShapeBeautyOptions(_:));</codeblock>
-                <codeblock props="mac" outputclass="language-objectivec">- (AgoraFaceShapeBeautyOptions * _Nullable)getFaceShapeBeautyOptions:(AgoraMediaSourceType)sourceType NS_SWIFT_NAME(getFaceShapeBeautyOptions(_:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (AgoraFaceShapeBeautyOptions * _Nullable)getFaceShapeBeautyOptions NS_SWIFT_NAME(getFaceShapeBeautyOptions());</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -29,7 +29,7 @@
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p props="android cpp">在调用 <xref keyref="enableVideo"/> 方法之后调用。</p>
-            <p props="ios mac">在调用 <xref keyref="enableVideo"/> 后调用此方法。</p>
+            <p props="ios mac">在调用 <xref keyref="enableVideo"/> 方法之后调用此方法。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -55,7 +55,7 @@
                     <pt>sourceType</pt>
                     <pd>应用滤镜特效的媒体源类型，详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>sourceType</pt>
                     <pd>应用滤镜特效的媒体源类型，详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。在此方法中，该参数仅支持以下两种设置：
                         <ul>
@@ -80,7 +80,8 @@
                     <li>方法调用失败，返回 <xref keyref="NULL"/>。</li>
                 </ul>
             </p>
-            <p props="ios mac">方法调用成功，返回 <xref keyref="FaceShapeBeautyOptions"/> 对象，详见 <xref keyref="FaceShapeBeautyOptions"/>。方法调用失败，返回 <xref keyref="NULL"/>。</p>
+            <p props="ios mac">方法调用成功，返回 <xref keyref="FaceShapeBeautyOptions"/> 对象，详见 <xref keyref="FaceShapeBeautyOptions"/>。
+方法调用失败，返回 <xref keyref="NULL"/>。</p>
         </section>
     </refbody>
 </reference>

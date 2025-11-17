@@ -18,7 +18,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="ios" outputclass="language-objectivec">- (BOOL)pushExternalVideoFrame:(AgoraVideoFrame * _Nonnull)frame videoTrackId:(NSUInteger)videoTrackId NS_SWIFT_NAME(pushExternalVideoFrame(_:videoTrackId:));</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int pushExternalVideoFrameById(AgoraVideoFrame frame, int videoTrackId);</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int pushExternalVideoFrameById(VideoFrame frame, int videoTrackId);</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -33,15 +33,15 @@
                 <ol>
                     <li>调用 <xref keyref="createCustomVideoTrack"/> 创建视频轨道并获取视频轨道 ID。</li>
                     <li>调用 <codeph>joinChannel</codeph> 加入频道。在 <xref keyref="ChannelMediaOptions"/> 中，将 <codeph>customVideoTrackId</codeph> 设置为要发布的视频轨道 ID，并将 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/>。</li>
-                    <li>调用 <codeph>pushExternalVideoFrameById</codeph>，并将 <codeph>videoTrackId</codeph> 设置为步骤 2 中设置的视频轨道 ID，即可在频道中发布对应的自定义视频源。
-你可以通过调用 <codeph>pushExternalVideoFrameById</codeph> 或调用 <codeph>pushExternalVideoFrame</codeph> 推送视频帧。两者的区别在于 <codeph>pushExternalVideoFrameById</codeph> 不支持 Texture 格式的视频数据。</li>
+                    <li>调用 <codeph>pushExternalVideoFrameById</codeph>，并将 <codeph>videoTrackId</codeph> 设置为第 2 步中设置的视频轨道 ID，即可在频道中发布对应的自定义视频源。
+你可以通过调用 <codeph>pushExternalVideoFrameById</codeph> 或调用 <codeph>pushExternalVideoFrameById</codeph>（参数为 <xref keyref="ExternalVideoFrame"/>）推送视频帧。两者的区别在于本方法支持纹理格式的视频数据。</li>
                 </ol>
             </p>
-            <note props="android">如果你只需向频道中推送一个自定义视频源，可以直接调用 <xref keyref="setExternalVideoSource"/> 方法，SDK 会自动创建一个 <codeph>videoTrackId</codeph> 为 0 的视频轨道。
-警告：调用 <codeph>pushExternalVideoFrameById</codeph> 后，即使你停止向 SDK 推送外部视频帧，自定义视频流仍会被计入视频时长并产生费用。声网建议你根据实际情况采取适当措施以避免此类视频计费：
+            <note props="android">如果你只需向频道中推送一个自定义视频源，可以直接调用 <codeph>setExternalVideoSource</codeph>，SDK 会自动创建一个 <codeph>videoTrackId</codeph> 为 0 的视频轨道。
+危险：调用本方法后，即使你停止向 SDK 推送外部视频帧，自定义视频流仍会计入视频时长并产生费用。声网建议你根据实际情况采取适当措施以避免此类视频计费：
                 <ul>
                     <li>如果你不再需要采集外部视频数据，可以调用 <xref keyref="destroyCustomVideoTrack"/> 销毁自定义视频轨道。</li>
-                    <li>如果你只想将外部视频数据用于本地预览而不在频道中发布，可以调用 <xref keyref="muteLocalVideoStream"/> 取消发送视频流，或调用 <xref keyref="updateChannelMediaOptions"/> 将 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="false"/>。</li>
+                    <li>如果你只想将外部视频数据用于本地预览而不发布到频道中，可以调用 <xref keyref="muteLocalVideoStream"/> 取消发送视频流，或调用 <xref keyref="updateChannelMediaOptions"/> 将 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="false"/>。</li>
                 </ul>
             </note>
         </section>
@@ -56,7 +56,7 @@
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="android ios">
+                <plentry props="ios">
                     <pt>frame</pt>
                     <pd>要推送的外部原始视频帧。详见 <xref keyref="ExternalVideoFrame"/>。</pd>
                 </plentry>
@@ -67,6 +67,10 @@
                             <li>如果你只需推送一个自定义视频源，请将该参数设置为 0。</li>
                         </ul>
                     </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>frame</pt>
+                    <pd>要推送的视频帧。详见 <codeph>VideoFrame</codeph>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>videoTrackId</pt>

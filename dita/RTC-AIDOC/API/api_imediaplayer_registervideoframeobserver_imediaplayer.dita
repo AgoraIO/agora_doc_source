@@ -17,8 +17,8 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="cpp" outputclass="language-cpp">virtual int registerVideoFrameObserver(IVideoFrameObserver* observer) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int registerVideoFrameObserver(IVideoFrameObserver observer);</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int registerVideoFrameObserver(media::base::IVideoFrameObserver* observer) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">int registerVideoFrameObserver(IMediaPlayerVideoFrameObserver videoFrameObserver);</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -38,11 +38,11 @@
             <parml>
                 <plentry props="cpp">
                     <pt>observer</pt>
-                    <pd>观察器实例。若要释放该实例，请将该值设为 <xref keyref="NULL"/>。详见 <xref keyref="IVideoFrameObserver"/>。</pd>
+                    <pd>视频帧观察器。详见 <xref keyref="IVideoFrameObserver"/>。</pd>
                 </plentry>
                 <plentry props="android">
-                    <pt>observer</pt>
-                    <pd>观察器实例。详见 <xref keyref="IVideoFrameObserver"/>。</pd>
+                    <pt>videoFrameObserver</pt>
+                    <pd>用于上报每一帧视频的接收情况。详见 <xref keyref="IMediaPlayerVideoFrameObserver"/>。</pd>
                 </plentry>
             </parml>
         </section>

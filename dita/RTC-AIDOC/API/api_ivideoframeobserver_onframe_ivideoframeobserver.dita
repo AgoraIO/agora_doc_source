@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="callback_ivideoframeobserver_onframe_ivideoframeobserver">
+<reference id="api_ivideoframeobserver_onframe_ivideoframeobserver">
     <title>
     <ph keyref="onFrame_IVideoFrameObserver"/>
   </title>
@@ -17,7 +17,7 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="cpp" outputclass="language-cpp">virtual void onFrame(agora::media::base::AudioPcmFrame* frame) = 0;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onFrame(const VideoFrame* frame) = 0;</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol&gt; _Nonnull)playerKit
        didReceiveVideoFrame:(AgoraOutputVideoFrame * _Nonnull)videoFrame NS_SWIFT_NAME(AgoraRtcMediaPlayer(_:didReceiveVideoFrame:));</codeblock>
             </p>
@@ -26,11 +26,11 @@
             <p props="cpp">注册视频帧观察器后，该回调会在播放器每次接收到视频帧时触发，并上报视频帧的详细信息。</p>
         </section>
         <section id="timing" deliveryTarget="details">
-            <title>触发时机</title>
+            <title>调用时机</title>
             <p props="ios">该回调在播放器每次接收到视频帧时被触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
-            <title>使用限制</title>
+            <title>调用限制</title>
             <p props="cpp ios">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
@@ -38,7 +38,7 @@
             <parml>
                 <plentry props="cpp">
                     <pt>frame</pt>
-                    <pd>音频帧信息，详见 <xref keyref="AudioPcmFrame"/>。</pd>
+                    <pd>视频帧信息，详见 <xref keyref="VideoFrame"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>playerKit</pt>
