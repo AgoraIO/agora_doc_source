@@ -66,14 +66,17 @@
                     <li>你可以在加入频道前或加入频道后调用该方法。</li>
                     <li>不要将 <xref keyref="setAudioProfile2"/> 中的 <codeph>profile</codeph> 参数设置为 <codeph>AgoraAudioProfileSpeechStandard</codeph>（1），否则该方法不生效。</li>
                     <li>该方法在人声处理方面效果最佳，声网不建议使用该方法处理包含音乐的音频数据。</li>
-                    <li>调用 <xref keyref="setAudioEffectParameters"/> 后，不建议再调用以下方法，否则会覆盖该方法设置的效果：</li>
-                    <li><xref keyref="setAudioEffectPreset"/></li>
-                    <li><xref keyref="setVoiceBeautifierPreset"/></li>
-                    <li><xref keyref="setLocalVoicePitch"/></li>
-                    <li><xref keyref="setLocalVoiceEqualization"/></li>
-                    <li><xref keyref="setLocalVoiceReverb"/></li>
-                    <li><xref keyref="setVoiceBeautifierParameters"/></li>
-                    <li><xref keyref="setVoiceConversionPreset"/></li>
+                    <li>调用 <xref keyref="setAudioEffectParameters"/> 后，不建议再调用以下方法，否则会覆盖该方法设置的效果：
+                        <ul>
+                            <li><xref keyref="setAudioEffectPreset"/></li>
+                            <li><xref keyref="setVoiceBeautifierPreset"/></li>
+                            <li><xref keyref="setLocalVoicePitch"/></li>
+                            <li><xref keyref="setLocalVoiceEqualization"/></li>
+                            <li><xref keyref="setLocalVoiceReverb"/></li>
+                            <li><xref keyref="setVoiceBeautifierParameters"/></li>
+                            <li><xref keyref="setVoiceConversionPreset"/></li>
+                        </ul>
+                    </li>
                     <li>该方法依赖于语音美声动态库 <xref keyref="audiobeauty"/>（iOS）或 <codeph>AgoraAudioBeautyExtension.framework</codeph>（macOS）。如果该动态库被删除，则无法正常启用该功能。</li>
                 </ul>
             </note>
@@ -82,14 +85,17 @@
                     <li>你可以在加入频道前或加入频道后调用该方法。</li>
                     <li>不要将 <xref keyref="setAudioProfile2"/> 中的 <codeph>profile</codeph> 参数设置为 <codeph>AgoraAudioProfileSpeechStandard</codeph>（1），否则该方法不生效。</li>
                     <li>该方法在人声处理方面效果最佳，声网不建议使用该方法处理包含音乐的音频数据。</li>
-                    <li>调用 <xref keyref="setAudioEffectParameters"/> 后，不建议再调用以下方法，否则会覆盖该方法设置的效果：</li>
-                    <li><xref keyref="setAudioEffectPreset"/></li>
-                    <li><xref keyref="setVoiceBeautifierPreset"/></li>
-                    <li><xref keyref="setLocalVoicePitch"/></li>
-                    <li><xref keyref="setLocalVoiceEqualization"/></li>
-                    <li><xref keyref="setLocalVoiceReverb"/></li>
-                    <li><xref keyref="setVoiceBeautifierParameters"/></li>
-                    <li><xref keyref="setVoiceConversionPreset"/></li>
+                    <li>调用 <xref keyref="setAudioEffectParameters"/> 后，不建议再调用以下方法，否则会覆盖该方法设置的效果：
+                        <ul>
+                            <li><xref keyref="setAudioEffectPreset"/></li>
+                            <li><xref keyref="setVoiceBeautifierPreset"/></li>
+                            <li><xref keyref="setLocalVoicePitch"/></li>
+                            <li><xref keyref="setLocalVoiceEqualization"/></li>
+                            <li><xref keyref="setLocalVoiceReverb"/></li>
+                            <li><xref keyref="setVoiceBeautifierParameters"/></li>
+                            <li><xref keyref="setVoiceConversionPreset"/></li>
+                        </ul>
+                    </li>
                     <li>该方法依赖于语音美声动态库 <codeph>AgoraAudioBeautyExtension.xcframework</codeph>（iOS）或 <xref keyref="audiobeauty"/>（macOS）。如果该动态库被删除，则无法正常启用该功能。</li>
                 </ul>
             </note>
@@ -109,9 +115,12 @@
                     <pt>preset</pt>
                     <pd>SDK 预设音效选项，详见 <xref keyref="AUDIO_EFFECT_PRESET"/>：
                         <ul>
-                            <li><codeph>ROOM_ACOUSTICS_3D_VOICE</codeph>：3D 人声效果。</li>
-                            <li>设置该枚举值前，需要将 <codeph>setAudioProfile</codeph> 中的 <codeph>profile</codeph> 参数设置为 <codeph>AUDIO_PROFILE_MUSIC_STANDARD_STEREO</codeph>（3）或 <codeph>AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO</codeph>（5），否则该设置不生效。</li>
-                            <li>启用后，用户需使用立体声播放设备才能听到预期音效。</li>
+                            <li><codeph>ROOM_ACOUSTICS_3D_VOICE</codeph>：3D 人声效果。
+                                <ul>
+                                    <li>设置该枚举值前，需要将 <codeph>setAudioProfile</codeph> 中的 <codeph>profile</codeph> 参数设置为 <codeph>AUDIO_PROFILE_MUSIC_STANDARD_STEREO</codeph>（3）或 <codeph>AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO</codeph>（5），否则该设置不生效。</li>
+                                    <li>启用后，用户需使用立体声播放设备才能听到预期音效。</li>
+                                </ul>
+                            </li>
                             <li><codeph>PITCH_CORRECTION</codeph>：音高修正效果。</li>
                         </ul>
                     </pd>
@@ -121,10 +130,13 @@
                     <pd>参数含义取决于 <codeph>preset</codeph> 的取值：
                         <ul>
                             <li>当 <codeph>preset</codeph> 为 <codeph>ROOM_ACOUSTICS_3D_VOICE</codeph> 时，表示 3D 人声效果的循环周期，单位为秒，取值范围为 [1, 60]，默认值为 10，表示声音每 10 秒绕你一圈。</li>
-                            <li>当 <codeph>preset</codeph> 为 <codeph>PITCH_CORRECTION</codeph> 时，表示音高修正效果的基本模式：</li>
-                            <li><codeph>1</codeph>：（默认）自然大调。</li>
-                            <li><codeph>2</codeph>：自然小调。</li>
-                            <li><codeph>3</codeph>：日本五声音阶。</li>
+                            <li>当 <codeph>preset</codeph> 为 <codeph>PITCH_CORRECTION</codeph> 时，表示音高修正效果的基本模式：
+                                <ul>
+                                    <li><codeph>1</codeph>：（默认）自然大调。</li>
+                                    <li><codeph>2</codeph>：自然小调。</li>
+                                    <li><codeph>3</codeph>：日本五声音阶。</li>
+                                </ul>
+                            </li>
                         </ul>
                     </pd>
                 </plentry>
@@ -133,19 +145,22 @@
                     <pd>参数含义取决于 <codeph>preset</codeph> 的取值：
                         <ul>
                             <li>当 <codeph>preset</codeph> 为 <codeph>ROOM_ACOUSTICS_3D_VOICE</codeph> 时，需将 <codeph>param2</codeph> 设置为 <codeph>0</codeph>。</li>
-                            <li>当 <codeph>preset</codeph> 为 <codeph>PITCH_CORRECTION</codeph> 时，表示音高修正效果的主音：</li>
-                            <li><codeph>1</codeph>：A。</li>
-                            <li><codeph>2</codeph>：A#。</li>
-                            <li><codeph>3</codeph>：B。</li>
-                            <li><codeph>4</codeph>：（默认）C。</li>
-                            <li><codeph>5</codeph>：C#。</li>
-                            <li><codeph>6</codeph>：D。</li>
-                            <li><codeph>7</codeph>：D#。</li>
-                            <li><codeph>8</codeph>：E。</li>
-                            <li><codeph>9</codeph>：F。</li>
-                            <li><codeph>10</codeph>：F#。</li>
-                            <li><codeph>11</codeph>：G。</li>
-                            <li><codeph>12</codeph>：G#。</li>
+                            <li>当 <codeph>preset</codeph> 为 <codeph>PITCH_CORRECTION</codeph> 时，表示音高修正效果的主音：
+                                <ul>
+                                    <li><codeph>1</codeph>：A。</li>
+                                    <li><codeph>2</codeph>：A#。</li>
+                                    <li><codeph>3</codeph>：B。</li>
+                                    <li><codeph>4</codeph>：（默认）C。</li>
+                                    <li><codeph>5</codeph>：C#。</li>
+                                    <li><codeph>6</codeph>：D。</li>
+                                    <li><codeph>7</codeph>：D#。</li>
+                                    <li><codeph>8</codeph>：E。</li>
+                                    <li><codeph>9</codeph>：F。</li>
+                                    <li><codeph>10</codeph>：F#。</li>
+                                    <li><codeph>11</codeph>：G。</li>
+                                    <li><codeph>12</codeph>：G#。</li>
+                                </ul>
+                            </li>
                         </ul>
                     </pd>
                 </plentry>
@@ -163,10 +178,13 @@
                     <pd>
                         <ul>
                             <li>当 <codeph>preset</codeph> 为 <codeph>ROOM_ACOUSTICS_3D_VOICE</codeph> 时，表示 3D 语音效果的循环周期，单位为秒，取值范围为 [1, 60]，默认值为 10，表示语音每 10 秒围绕你移动一圈。</li>
-                            <li>当 <codeph>preset</codeph> 为 <codeph>PITCH_CORRECTION</codeph> 时，表示音高修正效果的基本模式：</li>
-                            <li><codeph>1</codeph>：（默认）自然大调。</li>
-                            <li><codeph>2</codeph>：自然小调。</li>
-                            <li><codeph>3</codeph>：日本五声音阶。</li>
+                            <li>当 <codeph>preset</codeph> 为 <codeph>PITCH_CORRECTION</codeph> 时，表示音高修正效果的基本模式：
+                                <ul>
+                                    <li><codeph>1</codeph>：（默认）自然大调。</li>
+                                    <li><codeph>2</codeph>：自然小调。</li>
+                                    <li><codeph>3</codeph>：日本五声音阶。</li>
+                                </ul>
+                            </li>
                         </ul>
                     </pd>
                 </plentry>
@@ -175,19 +193,22 @@
                     <pd>
                         <ul>
                             <li>当 <codeph>preset</codeph> 为 <codeph>ROOM_ACOUSTICS_3D_VOICE</codeph> 时，必须设置为 <codeph>0</codeph>。</li>
-                            <li>当 <codeph>preset</codeph> 为 <codeph>PITCH_CORRECTION</codeph> 时，表示音高修正效果的主音调：</li>
-                            <li><codeph>1</codeph>：A</li>
-                            <li><codeph>2</codeph>：A#</li>
-                            <li><codeph>3</codeph>：B</li>
-                            <li><codeph>4</codeph>：（默认）C</li>
-                            <li><codeph>5</codeph>：C#</li>
-                            <li><codeph>6</codeph>：D</li>
-                            <li><codeph>7</codeph>：D#</li>
-                            <li><codeph>8</codeph>：E</li>
-                            <li><codeph>9</codeph>：F</li>
-                            <li><codeph>10</codeph>：F#</li>
-                            <li><codeph>11</codeph>：G</li>
-                            <li><codeph>12</codeph>：G#</li>
+                            <li>当 <codeph>preset</codeph> 为 <codeph>PITCH_CORRECTION</codeph> 时，表示音高修正效果的主音调：
+                                <ul>
+                                    <li><codeph>1</codeph>：A</li>
+                                    <li><codeph>2</codeph>：A#</li>
+                                    <li><codeph>3</codeph>：B</li>
+                                    <li><codeph>4</codeph>：（默认）C</li>
+                                    <li><codeph>5</codeph>：C#</li>
+                                    <li><codeph>6</codeph>：D</li>
+                                    <li><codeph>7</codeph>：D#</li>
+                                    <li><codeph>8</codeph>：E</li>
+                                    <li><codeph>9</codeph>：F</li>
+                                    <li><codeph>10</codeph>：F#</li>
+                                    <li><codeph>11</codeph>：G</li>
+                                    <li><codeph>12</codeph>：G#</li>
+                                </ul>
+                            </li>
                         </ul>
                     </pd>
                 </plentry>
@@ -195,9 +216,12 @@
                     <pt>preset</pt>
                     <pd>SDK 预设音效的选项，详见 <xref keyref="AUDIO_EFFECT_PRESET"/>：
                         <ul>
-                            <li><codeph>AgoraAudioEffectPresetRoomAcous3DVoice</codeph>（10）：3D 人声效果。</li>
-                            <li>在设置该枚举值前，你需要将 <xref keyref="setAudioProfile2"/> 中的 <codeph>profile</codeph> 参数设置为 <codeph>AgoraAudioProfileMusicStandardStereo</codeph>（3）或 <codeph>AgoraAudioProfileMusicHighQualityStereo</codeph>（5），否则设置不生效。</li>
-                            <li>启用 3D 人声效果后，用户需使用立体声播放设备才能听到预期效果。</li>
+                            <li><codeph>AgoraAudioEffectPresetRoomAcous3DVoice</codeph>（10）：3D 人声效果。
+                                <ul>
+                                    <li>在设置该枚举值前，你需要将 <xref keyref="setAudioProfile2"/> 中的 <codeph>profile</codeph> 参数设置为 <codeph>AgoraAudioProfileMusicStandardStereo</codeph>（3）或 <codeph>AgoraAudioProfileMusicHighQualityStereo</codeph>（5），否则设置不生效。</li>
+                                    <li>启用 3D 人声效果后，用户需使用立体声播放设备才能听到预期效果。</li>
+                                </ul>
+                            </li>
                             <li><codeph>AgoraAudioEffectPresetPitchCorrection</codeph>（11）：音高修正效果。</li>
                         </ul>
                     </pd>
@@ -207,10 +231,13 @@
                     <pd>
                         <ul>
                             <li>如果将 <codeph>preset</codeph> 设置为 <codeph>AgoraAudioEffectPresetRoomAcous3DVoice</codeph>，该参数表示 3D 人声效果的循环周期，单位为秒，取值范围为 [1, 60]。默认值为 10，表示声音每 10 秒环绕一次。</li>
-                            <li>如果将 <codeph>preset</codeph> 设置为 <codeph>AgoraAudioEffectPresetPitchCorrection</codeph>，该参数表示音高修正效果的基本调式：</li>
-                            <li><codeph>1</codeph>：（默认）自然大调。</li>
-                            <li><codeph>2</codeph>：自然小调。</li>
-                            <li><codeph>3</codeph>：日本五声音阶。</li>
+                            <li>如果将 <codeph>preset</codeph> 设置为 <codeph>AgoraAudioEffectPresetPitchCorrection</codeph>，该参数表示音高修正效果的基本调式：
+                                <ul>
+                                    <li><codeph>1</codeph>：（默认）自然大调。</li>
+                                    <li><codeph>2</codeph>：自然小调。</li>
+                                    <li><codeph>3</codeph>：日本五声音阶。</li>
+                                </ul>
+                            </li>
                         </ul>
                     </pd>
                 </plentry>
@@ -219,19 +246,22 @@
                     <pd>
                         <ul>
                             <li>如果将 <codeph>preset</codeph> 设置为 <codeph>AgoraAudioEffectPresetRoomAcous3DVoice</codeph>，你需要将该参数设置为 <codeph>0</codeph>。</li>
-                            <li>如果将 <codeph>preset</codeph> 设置为 <codeph>AgoraAudioEffectPresetPitchCorrection</codeph>，该参数表示音高修正效果的主音：</li>
-                            <li><codeph>1</codeph>：A</li>
-                            <li><codeph>2</codeph>：A#</li>
-                            <li><codeph>3</codeph>：B</li>
-                            <li><codeph>4</codeph>：（默认）C</li>
-                            <li><codeph>5</codeph>：C#</li>
-                            <li><codeph>6</codeph>：D</li>
-                            <li><codeph>7</codeph>：D#</li>
-                            <li><codeph>8</codeph>：E</li>
-                            <li><codeph>9</codeph>：F</li>
-                            <li><codeph>10</codeph>：F#</li>
-                            <li><codeph>11</codeph>：G</li>
-                            <li><codeph>12</codeph>：G#</li>
+                            <li>如果将 <codeph>preset</codeph> 设置为 <codeph>AgoraAudioEffectPresetPitchCorrection</codeph>，该参数表示音高修正效果的主音：
+                                <ul>
+                                    <li><codeph>1</codeph>：A</li>
+                                    <li><codeph>2</codeph>：A#</li>
+                                    <li><codeph>3</codeph>：B</li>
+                                    <li><codeph>4</codeph>：（默认）C</li>
+                                    <li><codeph>5</codeph>：C#</li>
+                                    <li><codeph>6</codeph>：D</li>
+                                    <li><codeph>7</codeph>：D#</li>
+                                    <li><codeph>8</codeph>：E</li>
+                                    <li><codeph>9</codeph>：F</li>
+                                    <li><codeph>10</codeph>：F#</li>
+                                    <li><codeph>11</codeph>：G</li>
+                                    <li><codeph>12</codeph>：G#</li>
+                                </ul>
+                            </li>
                         </ul>
                     </pd>
                 </plentry>
@@ -239,9 +269,12 @@
                     <pt>preset</pt>
                     <pd>SDK 预设音效的选项，详见 <codeph>AgoraAudioEffectPreset</codeph>：
                         <ul>
-                            <li><codeph>AgoraAudioEffectPresetRoomAcous3DVoice</codeph>（10）：3D 人声效果。</li>
-                            <li>在设置该枚举值前，你需要将 <xref keyref="setAudioProfile2"/> 中的 <codeph>profile</codeph> 参数设置为 <codeph>AgoraAudioProfileMusicStandardStereo</codeph>（3）或 <codeph>AgoraAudioProfileMusicHighQualityStereo</codeph>（5），否则设置不生效。</li>
-                            <li>启用 3D 人声效果后，用户需使用立体声播放设备才能听到预期效果。</li>
+                            <li><codeph>AgoraAudioEffectPresetRoomAcous3DVoice</codeph>（10）：3D 人声效果。
+                                <ul>
+                                    <li>在设置该枚举值前，你需要将 <xref keyref="setAudioProfile2"/> 中的 <codeph>profile</codeph> 参数设置为 <codeph>AgoraAudioProfileMusicStandardStereo</codeph>（3）或 <codeph>AgoraAudioProfileMusicHighQualityStereo</codeph>（5），否则设置不生效。</li>
+                                    <li>启用 3D 人声效果后，用户需使用立体声播放设备才能听到预期效果。</li>
+                                </ul>
+                            </li>
                             <li><codeph>AgoraAudioEffectPresetPitchCorrection</codeph>（11）：音高修正效果。</li>
                         </ul>
                     </pd>

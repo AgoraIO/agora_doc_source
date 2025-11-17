@@ -44,9 +44,12 @@
                     <li>如果在加入频道前调用此方法将用户角色设置为主播，并通过 <xref keyref="setupLocalVideo"/> 方法设置本地视频属性，则你加入频道时会自动开启本地视频预览。</li>
                     <li>如果在加入频道后调用此方法设置用户角色，SDK 会自动调用 <xref keyref="muteLocalAudioStream_IBaseSpatialAudioEngine"/> 和 <xref keyref="muteLocalVideoStream"/> 方法来更改音视频流的发布状态。
 相关回调：</li>
-                    <li>如果你在加入频道后调用此方法切换用户角色，SDK 会触发以下回调：</li>
-                    <li>本地客户端触发 <xref keyref="onClientRoleChanged"/> 回调。</li>
-                    <li>远端客户端触发 <xref keyref="onUserJoined"/> 或 <xref keyref="onUserOffline"/> 回调。</li>
+                    <li>如果你在加入频道后调用此方法切换用户角色，SDK 会触发以下回调：
+                        <ul>
+                            <li>本地客户端触发 <xref keyref="onClientRoleChanged"/> 回调。</li>
+                            <li>远端客户端触发 <xref keyref="onUserJoined"/> 或 <xref keyref="onUserOffline"/> 回调。</li>
+                        </ul>
+                    </li>
                     <li>如果你在加入频道后调用此方法但设置失败，SDK 会触发 <xref keyref="onClientRoleChangeFailed"/> 回调，报告失败原因及当前角色。</li>
                 </ul>
             </p>
@@ -56,9 +59,12 @@
                     <li>如果在加入频道前调用此方法将用户角色设置为主播，并通过 <xref keyref="setupLocalVideo"/> 方法设置本地视频属性，则你加入频道时会自动开启本地视频预览。</li>
                     <li>如果在加入频道后调用此方法设置用户角色，SDK 会自动调用 <xref keyref="muteLocalAudioStream"/> 和 <xref keyref="muteLocalVideoStream"/> 方法来更改音视频流的发布状态。
 相关回调：</li>
-                    <li>如果你在加入频道后调用此方法切换用户角色，SDK 会触发以下回调：</li>
-                    <li>本地客户端触发 <xref keyref="onClientRoleChanged"/> 回调。</li>
-                    <li>远端客户端触发 <xref keyref="onUserJoined"/> 或 <xref keyref="onUserOffline"/> 回调。</li>
+                    <li>如果你在加入频道后调用此方法切换用户角色，SDK 会触发以下回调：
+                        <ul>
+                            <li>本地客户端触发 <xref keyref="onClientRoleChanged"/> 回调。</li>
+                            <li>远端客户端触发 <xref keyref="onUserJoined"/> 或 <xref keyref="onUserOffline"/> 回调。</li>
+                        </ul>
+                    </li>
                     <li>如果你在加入频道后调用此方法但设置失败，SDK 会触发 <xref keyref="onClientRoleChangeFailed"/> 回调，报告失败原因及当前角色。</li>
                 </ul>
             </p>
@@ -137,11 +143,14 @@
             <p props="android cpp ios mac">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
-                    <li>-1：发生通用错误（无明确原因）。</li>
-                    <li>-2：参数无效。</li>
-                    <li>-5：请求被拒绝。</li>
-                    <li>-7：SDK 未初始化。</li>
+                    <li>&lt; 0：方法调用失败。
+                        <ul>
+                            <li>-1：发生通用错误（无明确原因）。</li>
+                            <li>-2：参数无效。</li>
+                            <li>-5：请求被拒绝。</li>
+                            <li>-7：SDK 未初始化。</li>
+                        </ul>
+                    </li>
                 </ul>
             </p>
         </section>

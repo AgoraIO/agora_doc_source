@@ -19,8 +19,8 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">void SetRenderMode(VideoRenderMode mode, Error *err = nullptr)</codeblock>
                 <codeblock props="android" outputclass="language-java">public void setVideoRenderMode(Constants.VideoRenderMode mode) throws RteException</codeblock>
-                <codeblock props="ios" outputclass="language-objectivec">- (void)setVideoMirrorMode:(AgoraRteVideoMirrorMode)mode error:(AgoraRteError* _Nullable)error;</codeblock>
-                <codeblock props="mac" outputclass="language-objectivec">- (void)setVideoMirrorMode:(AgoraRteVideoMirrorMode)mode error:(AgoraRteError* _Nullable)error;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (void)setVideoRenderMode:(AgoraRteVideoRenderMode)mode error:(AgoraRteError * _Nullable)error;</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (void)setVideoRenderMode:(AgoraRteVideoRenderMode)mode error:(AgoraRteError * _Nullable)error;</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -34,7 +34,6 @@
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p props="cpp">该方法必须在调用 <codeph>SetConfigs</codeph> 之前调用。</p>
-            <p props="ios mac">你必须在调用 <xref keyref="SetConfigs_Rte"/> 之前调用此方法。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
@@ -57,11 +56,16 @@
                 </plentry>
                 <plentry props="ios mac">
                     <pt>mode</pt>
-                    <pd>镜像模式，详见 <xref keyref="RteVideoMirrorMode"/>。默认值为 <codeph>AgoraRteVideoMirrorModeAuto</codeph>，表示由 SDK 自动决定镜像模式。默认情况下，远端用户的视频镜像模式为关闭状态。</pd>
+                    <pd>要设置的视频渲染模式，详见 <xref keyref="RteVideoRenderMode"/>。默认值为 <codeph>AgoraRteVideoRenderModeHidden</codeph>。</pd>
                 </plentry>
                 <plentry props="ios mac">
                     <pt>error</pt>
-                    <pd>状态或错误信息，详见 <xref keyref="Error"/>。</pd>
+                    <pd>状态或错误信息。  
+                        <ul>
+                            <li><codeph>AgoraRteOk</codeph>：成功。  </li>
+                            <li><codeph>AgoraRteErrorInvalidArgument</codeph>：<codeph>mode</codeph> 参数设置为非法值。详见 <xref keyref="Error"/>。</li>
+                        </ul>
+                    </pd>
                 </plentry>
             </parml>
         </section>
