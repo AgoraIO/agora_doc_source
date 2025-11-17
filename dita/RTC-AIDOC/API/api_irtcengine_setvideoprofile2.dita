@@ -18,11 +18,12 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="ios" outputclass="language-objectivec">- (int)setVideoResolution:(CGSize)size andFrameRate:(NSInteger)frameRate bitrate:(NSInteger)bitrate NS_SWIFT_NAME(setVideoResolution(_:andFrameRate:bitrate:)) __deprecated_msg("use setVideoEncoderConfiguration: instead.");</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)setVideoResolution:(CGSize)size andFrameRate:(NSInteger)frameRate bitrate:(NSInteger)bitrate NS_SWIFT_NAME(setVideoResolution(_:andFrameRate:bitrate:)) __deprecated_msg("use setVideoEncoderConfiguration: instead.");</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="deprecated">
-                <dlentry props="ios">
+                <dlentry props="ios mac">
                     <dt>废弃</dt>
                     <dd>自 v2.3 版本废弃，请改用 <xref keyref="setVideoEncoderConfiguration"/>。</dd>
                 </dlentry>
@@ -30,24 +31,24 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="ios">加入频道前后均可调用。</p>
+            <p props="ios mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="ios">无。</p>
+            <p props="ios mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>size</pt>
                     <pd>你想要设置的视频尺寸。最大值为 1280 × 720。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>frameRate</pt>
                     <pd>你想要设置的视频帧率。最大值为 30。你可以设置为 5、10、15、24、30 等。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="ios mac">
                     <pt>bitrate</pt>
                     <pd>你想要设置的视频码率。你需要根据宽度、高度和帧率手动计算码率。在相同宽高下，码率会随着帧率的变化而变化：
                         <ul>
@@ -66,7 +67,7 @@
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="ios">
+            <p props="ios mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

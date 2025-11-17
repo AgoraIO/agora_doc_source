@@ -77,11 +77,11 @@
 在选择媒体设置选项（<xref keyref="DirectCdnStreamingMediaOptions"/>）时，可以参考以下示例：
 如果你希望从自定义源推送主播采集的音视频流，媒体设置选项应如下设置：
                 <ul>
-                    <li>将 <codeph>publishCustomAudioTrack</codeph> 设置为 <xref keyref="true"/>，并调用 <codeph>pushExternalAudioFrameSampleBuffer:sampleRate:channels:trackId:</codeph> 或 <codeph>pushExternalAudioFrameRawData:samples:sampleRate:channels:trackId:timestamp:</codeph> 方法；</li>
+                    <li>将 <codeph>publishCustomAudioTrack</codeph> 设置为 <xref keyref="true"/>，并调用 <xref keyref="pushExternalAudioFrameSampleBuffer2"/> 或 <codeph>pushExternalAudioFrameRawData:samples:sampleRate:channels:trackId:timestamp:</codeph> 方法；</li>
                     <li>将 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/>，并调用 <codeph>pushExternalVideoFrame:videoTrackId:</codeph> 方法；</li>
                     <li>将 <codeph>publishCameraTrack</codeph> 设置为 <xref keyref="false"/>（默认值）；</li>
                     <li>将 <codeph>publishMicrophoneTrack</codeph> 设置为 <xref keyref="false"/>（默认值）。
-你也可以通过将 <codeph>publishCustomAudioTrack</codeph> 或 <codeph>publishMicrophoneTrack</codeph> 设置为 <xref keyref="true"/>，并调用 <codeph>pushExternalAudioFrameSampleBuffer:sampleRate:channels:trackId:</codeph> 或 <codeph>pushExternalAudioFrameRawData:samples:sampleRate:channels:trackId:timestamp:</codeph> 方法实现纯音频直播。</li>
+你也可以通过将 <codeph>publishCustomAudioTrack</codeph> 或 <codeph>publishMicrophoneTrack</codeph> 设置为 <xref keyref="true"/>，并调用 <xref keyref="pushExternalAudioFrameSampleBuffer2"/> 或 <codeph>pushExternalAudioFrameRawData:samples:sampleRate:channels:trackId:timestamp:</codeph> 方法实现纯音频直播。</li>
                 </ul>
             </p>
             <note props="android cpp ios mac">声网仅支持将一路音视频流或一路音频流推送到 CDN。</note>
