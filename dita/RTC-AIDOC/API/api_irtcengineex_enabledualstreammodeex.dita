@@ -5,7 +5,7 @@
     <ph keyref="enableDualStreamModeEx"/>
   </title>
     <shortdesc id="short">
-    <ph id="shortdesc">在发送端启用或关闭双流模式。</ph>
+    <ph id="shortdesc">在发送端启用或关闭不同质量层级的视频流。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -29,57 +29,81 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="deprecated">
-                <dlentry props="android cpp">
+                <dlentry props="cpp">
                     <dt>废弃</dt>
                     <dd>自 v4.2.0 版本废弃，请改用 <xref keyref="setDualStreamModeEx"/>。</dd>
                 </dlentry>
-                <dlentry props="ios mac">
+                <dlentry props="android">
+                    <dt>废弃</dt>
+                    <dd>自 v4.2.0 版本废弃，请改用 <xref keyref="setDualStreamModeEx"/>。</dd>
+                </dlentry>
+                <dlentry props="ios">
+                    <dt>废弃</dt>
+                    <dd>自 v4.2.0 版本废弃，请改用 <codeph>setDualStreamModeEx</codeph>。</dd>
+                </dlentry>
+                <dlentry props="mac">
                     <dt>废弃</dt>
                     <dd>自 v4.2.0 版本废弃，请改用 <codeph>setDualStreamModeEx</codeph>。</dd>
                 </dlentry>
             </dl>
-            <p props="cpp">双流由高质量视频流和低质量视频流组成：
+            <p props="cpp">不同质量层级的视频流由一对高质量视频流和低质量视频流组成：
                 <ul>
-                    <li>高质量视频流：高码率、高分辨率。</li>
-                    <li>低质量视频流：低码率、低分辨率。
-启用双流模式后，你可以调用 <xref keyref="setRemoteVideoStreamType"/> 方法，在订阅端选择接收高质量或低质量的视频流。</li>
+                    <li>高质量视频流：高码率，高分辨率。</li>
+                    <li>低质量视频流：低码率，低分辨率。
+启用该功能后，你可以调用 <xref keyref="setRemoteVideoStreamType"/> 方法，在订阅端选择接收高质量或低质量的视频流。</li>
                 </ul>
             </p>
             <p props="android">启用该模式后，你可以调用 <codeph>setRemoteVideoStreamType</codeph> 方法，在订阅端选择接收高质量或低质量的视频流。</p>
-            <p props="ios mac">你可以调用此方法在发布端启用或关闭不同质量层级的视频流。不同质量层级的视频流由一对高质量视频流和低质量视频流组成：
+            <p props="ios">你可以调用此方法在发布端启用或关闭不同质量层级的视频流。不同质量层级的视频流由一对高质量视频流和低质量视频流组成：
                 <ul>
                     <li>高质量视频流：高码率，高分辨率。</li>
                     <li>低质量视频流：低码率，低分辨率。
 启用不同质量层级的视频流后，你可以调用 <codeph>setRemoteVideoStream</codeph> 方法，在订阅端选择接收高质量或低质量的视频流。</li>
                 </ul>
             </p>
-            <note props="android cpp ios mac">该方法适用于发送端的所有类型的视频流，包括但不限于摄像头采集的视频流、屏幕共享流和自定义采集的视频流。</note>
+            <p props="mac">你可以调用此方法在发布端启用或关闭不同质量层级的视频流。不同质量层级的视频流由一对高质量视频流和低质量视频流组成：
+                <ul>
+                    <li>高质量视频流：高码率，高分辨率。</li>
+                    <li>低质量视频流：低码率，低分辨率。
+启用不同质量层级的视频流后，你可以调用 <codeph>setRemoteVideoStream</codeph> 方法，在订阅端选择接收高质量或低质量的视频流。</li>
+                </ul>
+            </p>
+            <note props="cpp">该方法适用于发送端的所有类型视频流，包括但不限于摄像头采集的视频流、屏幕共享流和自定义采集的视频流。</note>
+            <note props="android">该方法适用于发送端的所有类型的视频流，包括但不限于摄像头采集的视频流、屏幕共享流和自定义采集的视频流。</note>
+            <note props="ios">该方法适用于发送端的所有类型的视频流，包括但不限于摄像头采集的视频流、屏幕共享流和自定义采集的视频流。</note>
+            <note props="mac">该方法适用于发送端的所有类型的视频流，包括但不限于摄像头采集的视频流、屏幕共享流和自定义采集的视频流。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
                     <pt>enabled</pt>
-                    <pd>是否启用双流模式：
+                    <pd>是否启用不同质量层级的视频流：
                         <ul>
-                            <li><xref keyref="true"/>：启用双流模式。</li>
-                            <li><xref keyref="false"/>：（默认）关闭双流模式。</li>
+                            <li><xref keyref="true"/>：启用不同质量层级的视频流。</li>
+                            <li><xref keyref="false"/>：（默认）关闭不同质量层级的视频流。</li>
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>streamConfig</pt>
                     <pd>低质量视频流的配置。详见 <xref keyref="SimulcastStreamConfig"/>。</pd>
                 </plentry>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>connection</pt>
                     <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
@@ -92,7 +116,15 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="android">
+                    <pt>streamConfig</pt>
+                    <pd>低质量视频流的配置。详见 <xref keyref="SimulcastStreamConfig"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>enabled</pt>
                     <pd>是否启用不同质量层级的视频流：
                         <ul>
@@ -101,11 +133,28 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>streamConfig</pt>
                     <pd>低质量视频流的配置，详见 <xref keyref="SimulcastStreamConfig"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>connection</pt>
+                    <pd>连接信息，详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>enabled</pt>
+                    <pd>是否启用不同质量层级的视频流：
+                        <ul>
+                            <li><xref keyref="true"/>：启用不同质量层级的视频流。</li>
+                            <li><xref keyref="false"/>（默认）：关闭不同质量层级的视频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>streamConfig</pt>
+                    <pd>低质量视频流的配置，详见 <xref keyref="SimulcastStreamConfig"/>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>connection</pt>
                     <pd>连接信息，详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
@@ -113,7 +162,25 @@
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

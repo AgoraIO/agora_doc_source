@@ -25,20 +25,39 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
-                <dlentry props="android cpp ios mac">
+                <dlentry props="cpp">
+                    <dt>自从</dt>
+                    <dd>自 v4.5.1 版本新增。</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>自从</dt>
+                    <dd>自 v4.5.1 版本新增。</dd>
+                </dlentry>
+                <dlentry props="ios">
+                    <dt>自从</dt>
+                    <dd>自 v4.5.1 版本新增。</dd>
+                </dlentry>
+                <dlentry props="mac">
                     <dt>自从</dt>
                     <dd>自 v4.5.1 版本新增。</dd>
                 </dlentry>
             </dl>
-            <p props="ios mac">你可以使用该方法设置播放音量。有效范围为 [0, 400]。</p>
+            <p props="ios">你可以使用该方法设置播放音量。有效范围为 [0, 400]。</p>
+            <p props="mac">你可以使用该方法设置播放音量。有效范围为 [0, 400]。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -60,11 +79,24 @@
                     <pt>volume</pt>
                     <pd>播放器的音量值。有效范围为 [0, 400]。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>volume</pt>
                     <pd>要设置的播放音量。有效范围为 [0, 400]。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>error</pt>
+                    <pd>输出参数，返回错误信息。详见 <xref keyref="Error"/>。
+                        <ul>
+                            <li><codeph>AgoraRteOk</codeph>：设置成功。</li>
+                            <li><codeph>AgoraRteErrorInvalidArgument</codeph>：音量参数无效。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>volume</pt>
+                    <pd>要设置的播放音量。有效范围为 [0, 400]。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>error</pt>
                     <pd>输出参数，返回错误信息。详见 <xref keyref="Error"/>。
                         <ul>

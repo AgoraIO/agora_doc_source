@@ -25,7 +25,15 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
-                <dlentry props="cpp ios mac">
+                <dlentry props="cpp">
+                    <dt>自从</dt>
+                    <dd>自 v4.0.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="ios">
+                    <dt>自从</dt>
+                    <dd>自 v4.0.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="mac">
                     <dt>自从</dt>
                     <dd>自 v4.0.0 版本新增。</dd>
                 </dlentry>
@@ -35,20 +43,24 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
-            <p props="ios mac">当音视频流的录制状态发生变化时触发。</p>
+            <p props="ios">当音视频流的录制状态发生变化时触发。</p>
+            <p props="mac">当音视频流的录制状态发生变化时触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
                     <pt>channelId</pt>
                     <pd>频道名。</pd>
                 </plentry>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
                     <pt>uid</pt>
                     <pd>用户 ID。</pd>
                 </plentry>
@@ -59,6 +71,14 @@
                 <plentry props="cpp">
                     <pt>reason</pt>
                     <pd>录制状态变化的原因。详见 <xref keyref="RecorderReasonCode"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>channelId</pt>
+                    <pd>频道名。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>state</pt>
@@ -82,9 +102,17 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>recorder</pt>
                     <pd>录制器实例。详见 <xref keyref="IMediaRecorder"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>channelId</pt>
+                    <pd>频道名。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>state</pt>
@@ -95,12 +123,24 @@
                     <pd>录制状态变化的原因，详见 <xref keyref="RecorderReasonCode"/>。</pd>
                 </plentry>
                 <plentry props="mac">
+                    <pt>recorder</pt>
+                    <pd>录制器实例。详见 <xref keyref="IMediaRecorder"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>channelId</pt>
+                    <pd>频道名。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>state</pt>
-                    <pd>当前的录制状态，详见 <codeph>AgoraMediaRecorderState</codeph>。</pd>
+                    <pd>当前的录制状态，详见 <xref keyref="RecorderState"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>reason</pt>
-                    <pd>录制状态变化的原因，详见 <codeph>AgoraMediaRecorderReasonCode</codeph>。</pd>
+                    <pd>录制状态变化的原因，详见 <xref keyref="RecorderReasonCode"/>。</pd>
                 </plentry>
             </parml>
         </section>

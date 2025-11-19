@@ -19,19 +19,25 @@
             <p outputclass="codeblock">
                 <codeblock props="ios" outputclass="language-objectivec">- (BOOL)setDestinationInfo:(AgoraChannelMediaRelayInfo *_Nonnull)destinationInfo forChannelName:(NSString *_Nonnull)channelName NS_SWIFT_NAME(setDestinationInfo(_:forChannelName:));</codeblock>
                 <codeblock props="android" outputclass="language-java">public void setDestChannelInfo(String channelName, ChannelMediaInfo destInfo)</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (BOOL)setDestinationInfo:(AgoraChannelMediaRelayInfo *_Nonnull)destinationInfo forChannelName:(NSString *_Nonnull)channelName NS_SWIFT_NAME(setDestinationInfo(_:forChannelName:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="android">如果你希望将媒体流转发到多个频道，最多可调用该方法四次。</p>
             <note props="ios">如果任一目标频道的 Token 过期，整个跨频道媒体流转发将停止。因此，声网建议你为所有目标频道指定相同的 Token 过期时间。</note>
+            <note props="mac">如果任一目标频道的 Token 过期，整个跨频道媒体流转发将停止。因此，声网建议你为所有目标频道指定相同的 Token 过期时间。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android ios">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android ios">无。</p>
+            <p props="ios">无。</p>
+            <p props="android">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -76,11 +82,37 @@
                         </ul>
                     </pd>
                 </plentry>
+                <plentry props="mac">
+                    <pt>destinationInfo</pt>
+                    <pd>目标频道的信息。包含以下成员：
+                        <ul>
+                            <li><codeph>channelName</codeph>：目标频道的名称。</li>
+                            <li><codeph>uid</codeph>：用于标识目标频道中转发流的唯一用户 ID，取值范围为 0 到 (2^32-1)。为避免用户 ID 冲突，该用户 ID 必须不同于目标频道中的其他用户 ID。默认值为 0，表示 SDK 会随机生成一个用户 ID。</li>
+                            <li><codeph>token</codeph>：加入目标频道所需的 Token，由你在 <codeph>destinationInfo</codeph> 中设置的 <codeph>channelName</codeph> 和 <codeph>uid</codeph> 生成。
+                                <ul>
+                                    <li>如果你未启用 App 证书，请将该参数设置为默认值 <xref keyref="NULL"/>，表示 SDK 使用 App ID。</li>
+                                    <li>如果你已启用 App 证书，则必须使用根据 <codeph>channelName</codeph> 和 <codeph>uid</codeph> 生成的 Token。
+详见 <xref keyref="ChannelMediaInfo"/>。</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>channelName</pt>
+                    <pd>目标频道的频道名称。</pd>
+                </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
             <p props="ios">
+                <ul>
+                    <li><xref keyref="true"/>：设置成功。</li>
+                    <li><xref keyref="false"/>：设置失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li><xref keyref="true"/>：设置成功。</li>
                     <li><xref keyref="false"/>：设置失败。</li>

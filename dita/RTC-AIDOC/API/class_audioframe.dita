@@ -103,7 +103,7 @@ uint32_t rtpTimestamp;
                     <pt>audioTrackNumber</pt>
                     <pd>音频轨道编号。</pd>
                 </plentry>
-                <plentry props="cpp ios mac">
+                <plentry props="cpp">
                     <pt>rtpTimestamp</pt>
                     <pd>音频帧中第一个采样点的 RTP 时间戳。</pd>
                 </plentry>
@@ -136,15 +136,15 @@ uint32_t rtpTimestamp;
                     <pt>timestamp</pt>
                     <pd>音频帧的时间戳（单位：毫秒）。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>samplesPerChannel</pt>
                     <pd>音频帧中每个声道的采样点数。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>bytesPerSample</pt>
                     <pd>每个采样点的字节数。对于 PCM，此参数通常设置为 16 位（2 字节）。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>channels</pt>
                     <pd>音频声道数（如果为立体声，则数据交错排列）。
                         <ul>
@@ -153,21 +153,62 @@ uint32_t rtpTimestamp;
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>samplesPerSec</pt>
                     <pd>音频帧中每个声道的采样率。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>buffer</pt>
                     <pd>音频帧的数据缓冲区。当音频帧使用立体声道时，数据缓冲区为交错格式。缓冲区大小为：<codeph>buffer</codeph> = <codeph>samples</codeph> × <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>renderTimeMs</pt>
                     <pd>外部音频帧的时间戳（毫秒）。你可以使用该时间戳恢复采集音频帧的顺序，并在视频场景中同步音频和视频帧，包括使用自定义视频源的场景。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>avSyncType</pt>
                     <pd>预留参数，供未来使用。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>rtpTimestamp</pt>
+                    <pd>音频帧中第一个采样点的 RTP 时间戳。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>samplesPerChannel</pt>
+                    <pd>音频帧中每个声道的采样点数。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>bytesPerSample</pt>
+                    <pd>每个采样点的字节数。对于 PCM，此参数通常设置为 16 位（2 字节）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>channels</pt>
+                    <pd>音频声道数（如果为立体声，则数据交错排列）。
+                        <ul>
+                            <li>1：单声道。</li>
+                            <li>2：立体声。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>samplesPerSec</pt>
+                    <pd>音频帧中每个声道的采样率。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>buffer</pt>
+                    <pd>音频帧的数据缓冲区。当音频帧使用立体声道时，数据缓冲区为交错格式。缓冲区大小为：<codeph>buffer</codeph> = <codeph>samples</codeph> × <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>renderTimeMs</pt>
+                    <pd>外部音频帧的时间戳（毫秒）。你可以使用该时间戳恢复采集音频帧的顺序，并在视频场景中同步音频和视频帧，包括使用自定义视频源的场景。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>avSyncType</pt>
+                    <pd>预留参数，供未来使用。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>rtpTimestamp</pt>
+                    <pd>音频帧中第一个采样点的 RTP 时间戳。</pd>
                 </plentry>
             </parml>
         </section>

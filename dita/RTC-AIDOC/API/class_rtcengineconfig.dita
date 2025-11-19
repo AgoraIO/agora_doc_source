@@ -255,7 +255,7 @@
                     <pt>channelProfile</pt>
                     <pd>频道场景，详见 <xref keyref="CHANNEL_PROFILE_TYPE"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>license</pt>
                     <pd>用于连接频道时验证的 License。根据 License 收费。</pd>
                 </plentry>
@@ -267,19 +267,19 @@
                     <pt>areaCode</pt>
                     <pd>连接区域。该高级功能适用于有区域限制的场景。支持的区域详见 <xref keyref="AREA_CODE"/>。区域码支持按位操作。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>logConfig</pt>
                     <pd>日志配置。默认情况下，SDK 会生成五个 SDK 日志文件和五个 API 调用日志文件，文件大小为 2,048 KB，采用 UTF-8 编码。日志轮转规则详见注释。详见 <xref keyref="LogConfig"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>threadPriority</pt>
                     <pd>SDK 通用线程的线程优先级。详见 <codeph>AgoraThreadPriorityType</codeph>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>eventDelegate</pt>
-                    <pd><codeph>AgoraMediaFilterEventDelegate</codeph> 实例。详见 <codeph>AgoraMediaFilterEventDelegate</codeph>。</pd>
+                    <pd><xref keyref="IMediaExtensionObserver"/> 实例。详见 <xref keyref="IMediaExtensionObserver"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>domainLimit</pt>
                     <pd>是否启用域名限制：
                         <ul>
@@ -288,7 +288,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>autoRegisterAgoraExtensions</pt>
                     <pd>初始化 <xref keyref="IRtcEngine"/> 时是否自动注册声网扩展：
                         <ul>
@@ -299,19 +299,53 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>appId</pt>
-                    <pd>由声网为你的项目签发的 App ID。只有使用相同 App ID 的用户才能加入同一个频道并互相通信。一个 App ID 只能用于创建一个 <xref keyref="IRtcEngine"/> 实例。如需更换 App ID，需先调用 <xref keyref="release"/> 销毁当前实例，再创建新的实例。</pd>
+                    <pd>由声网为你的项目签发的 App ID。只有使用相同 App ID 的用户才能加入同一个频道并互相通信。一个 App ID 只能用于创建一个 <xref keyref="IRtcEngine"/> 实例。如需更换 App ID，需先调用 <xref keyref="release_ILocalSpatialAudioEngine"/> 销毁当前实例，再创建新的实例。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>channelProfile</pt>
-                    <pd>频道场景，详见 <codeph>AgoraChannelProfile</codeph>。</pd>
+                    <pd>频道场景，详见 <xref keyref="CHANNEL_PROFILE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>license</pt>
+                    <pd>用于连接频道时验证的 License。根据 License 收费。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>audioScenario</pt>
-                    <pd>音频场景。在不同音频场景下，设备使用不同的音量类型。详见 <codeph>AgoraAudioScenario</codeph>。</pd>
+                    <pd>音频场景。在不同音频场景下，设备使用不同的音量类型。详见 <xref keyref="AUDIO_SCENARIO_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>areaCode</pt>
-                    <pd>连接区域。该高级功能适用于有区域限制的场景。支持的区域详见 <codeph>AgoraAreaCodeType</codeph>。区域码支持按位操作。</pd>
+                    <pd>连接区域。该高级功能适用于有区域限制的场景。支持的区域详见 <xref keyref="AREA_CODE"/>。区域码支持按位操作。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>logConfig</pt>
+                    <pd>日志配置。默认情况下，SDK 会生成五个 SDK 日志文件和五个 API 调用日志文件，文件大小为 2,048 KB，采用 UTF-8 编码。日志轮转规则详见注释。详见 <xref keyref="LogConfig"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>threadPriority</pt>
+                    <pd>SDK 通用线程的线程优先级。详见 <codeph>AgoraThreadPriorityType</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>eventDelegate</pt>
+                    <pd><xref keyref="IMediaExtensionObserver"/> 实例。详见 <xref keyref="IMediaExtensionObserver"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>domainLimit</pt>
+                    <pd>是否启用域名限制：
+                        <ul>
+                            <li><xref keyref="true"/>：启用域名限制。适用于物联网设备使用物联网卡接入网络的场景。SDK 仅连接已向运营商报备的域名或 IP 白名单中的服务器。</li>
+                            <li><xref keyref="false"/>：（默认）不启用域名限制。适用于大多数常见场景。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>autoRegisterAgoraExtensions</pt>
+                    <pd>初始化 <xref keyref="IRtcEngine"/> 时是否自动注册声网扩展：
+                        <ul>
+                            <li><xref keyref="true"/>：（默认）自动注册。</li>
+                            <li><xref keyref="false"/>：不自动注册。需调用 <xref keyref="enableExtension"/> 手动注册。</li>
+                        </ul>
+                    </pd>
                 </plentry>
             </parml>
         </section>

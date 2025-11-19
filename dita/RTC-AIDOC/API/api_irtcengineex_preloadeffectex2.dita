@@ -21,18 +21,42 @@
              soundId:(int)soundId
             filePath:(NSString* _Nonnull)filePath NS_SWIFT_NAME(preloadEffectEx(_:soundId:filePath:));</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int preloadEffectEx(RtcConnection connection, int soundId, String filePath);</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)preloadEffectEx:(AgoraRtcConnection* _Nonnull)connection
+             soundId:(int)soundId
+            filePath:(NSString* _Nonnull)filePath NS_SWIFT_NAME(preloadEffectEx(_:soundId:filePath:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
-                <dlentry props="android ios">
+                <dlentry props="ios">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="mac">
                     <dt>自从</dt>
                     <dd>自 v4.6.0 版本新增。</dd>
                 </dlentry>
             </dl>
             <p props="ios">每次调用该方法只能将一个音效文件预加载到内存中。如果你需要预加载多个音效文件，请多次调用该方法。预加载完成后，你可以调用 <codeph>playEffect</codeph> 播放预加载的音效，或调用 <codeph>playAllEffects</codeph> 播放所有预加载的音效。</p>
             <p props="android">每次调用该方法时只能将一个音效文件预加载到内存中。如果需要预加载多个音效文件，请多次调用该方法。预加载完成后，你可以调用 <codeph>playEffect</codeph> 播放预加载的音效，或调用 <xref keyref="playAllEffects"/> 播放所有预加载的音效。</p>
-            <note props="android ios">
+            <p props="mac">每次调用该方法只能将一个音效文件预加载到内存中。如果你需要预加载多个音效文件，请多次调用该方法。预加载完成后，你可以调用 <codeph>playEffect</codeph> 播放预加载的音效，或调用 <codeph>playAllEffects</codeph> 播放所有预加载的音效。</p>
+            <note props="ios">
+                <ul>
+                    <li>为确保使用体验流畅，音效文件的大小不应超过限制。</li>
+                    <li>声网建议你在加入频道前调用该方法。</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>为确保使用体验流畅，音效文件的大小不应超过限制。</li>
+                    <li>声网建议你在加入频道前调用该方法。</li>
+                </ul>
+            </note>
+            <note props="mac">
                 <ul>
                     <li>为确保使用体验流畅，音效文件的大小不应超过限制。</li>
                     <li>声网建议你在加入频道前调用该方法。</li>
@@ -41,11 +65,15 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android ios">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android ios">无。</p>
+            <p props="ios">无。</p>
+            <p props="android">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -54,11 +82,11 @@
                     <pt>connection</pt>
                     <pd>连接对象。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
-                <plentry props="android ios">
+                <plentry props="ios">
                     <pt>soundId</pt>
                     <pd>音效 ID。</pd>
                 </plentry>
-                <plentry props="android ios">
+                <plentry props="ios">
                     <pt>filePath</pt>
                     <pd>本地文件的绝对路径或在线文件的 URL。支持的音频格式包括：mp3、mp4、m4a、aac、3gp、mkv 和 wav。</pd>
                 </plentry>
@@ -66,11 +94,43 @@
                     <pt>connection</pt>
                     <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
+                <plentry props="android">
+                    <pt>soundId</pt>
+                    <pd>音效 ID。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>filePath</pt>
+                    <pd>本地文件的绝对路径或在线文件的 URL。支持的音频格式包括：mp3、mp4、m4a、aac、3gp、mkv 和 wav。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>connection</pt>
+                    <pd>连接对象。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>soundId</pt>
+                    <pd>音效 ID。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>filePath</pt>
+                    <pd>本地文件的绝对路径或在线文件的 URL。支持的音频格式包括：mp3、mp4、m4a、aac、3gp、mkv 和 wav。</pd>
+                </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android ios">
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

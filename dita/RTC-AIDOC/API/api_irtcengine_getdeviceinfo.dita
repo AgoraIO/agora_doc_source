@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getdeviceinfo">
+    <title>
+    <ph keyref="getDeviceInfo"/>
+  </title>
+    <shortdesc id="short">
+    <ph id="shortdesc">获取当前设备名称。</ph>
+  </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getDeviceInfo"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="mac" outputclass="language-objectivec">- (AgoraRtcDeviceInfo * _Nullable)getDeviceInfo:(AgoraMediaDeviceType)type NS_SWIFT_NAME(getDeviceInfo(_:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="mac">你可以通过该方法，根据 <codeph>type</codeph> 参数的设置，获取当前的音频或视频采集设备。</p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>调用时机</title>
+            <p props="mac">加入频道前后均可调用。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>调用限制</title>
+            <p props="mac">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>参数</title>
+            <parml>
+                <plentry props="mac">
+                    <pt>type</pt>
+                    <pd>设备类型，包括音频采集、音频播放、视频采集或视频播放设备。详见 <xref keyref="MEDIA_DEVICE_TYPE"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p props="mac">方法调用成功时，返回一个 <xref keyref="AgoraRtcDeviceInfo"/> 对象。方法调用失败时，返回 <xref keyref="NULL"/>。</p>
+        </section>
+    </refbody>
+</reference>

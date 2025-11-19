@@ -25,7 +25,7 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
-                <dlentry props="cpp ios mac">
+                <dlentry props="cpp">
                     <dt>自从</dt>
                     <dd>自 v4.0.0 版本新增。</dd>
                 </dlentry>
@@ -33,10 +33,19 @@
                     <dt>自从</dt>
                     <dd>自 v3.6.2 版本新增。</dd>
                 </dlentry>
+                <dlentry props="ios">
+                    <dt>自从</dt>
+                    <dd>自 v4.0.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="mac">
+                    <dt>自从</dt>
+                    <dd>自 v4.0.0 版本新增。</dd>
+                </dlentry>
             </dl>
             <p props="cpp">摄像头采集的视频图像可能存在色彩失真。颜色增强功能可智能调整视频的饱和度和对比度等特性，从而增强视频的色彩丰富度和还原度，使画面更加生动。</p>
             <p props="android">摄像头采集的视频图像可能存在色彩失真。该方法依赖图像增强动态库 <xref keyref="clearvision"/>。若该动态库被删除，将无法正常启用该功能。</p>
-            <p props="ios mac">摄像头采集的视频图像可能存在色彩失真。色彩增强功能可智能调整视频的饱和度和对比度等特性，从而增强视频的色彩丰富度和色彩还原度，使视频画面更加生动。你可以调用 <xref keyref="setColorEnhanceOptions"/> 方法开启色彩增强功能并设置色彩增强效果的参数。</p>
+            <p props="ios">摄像头采集的视频图像可能存在色彩失真。色彩增强功能可智能调整视频的饱和度和对比度等特性，从而增强视频的色彩丰富度和色彩还原度，使视频画面更加生动。你可以调用 <xref keyref="setColorEnhanceOptions"/> 方法开启色彩增强功能并设置色彩增强效果的参数。</p>
+            <p props="mac">摄像头采集的视频图像可能存在色彩失真。色彩增强功能可智能调整视频的饱和度和对比度等特性，从而增强视频的色彩丰富度和色彩还原度，使视频画面更加生动。你可以调用 <xref keyref="setColorEnhanceOptions"/> 方法开启色彩增强功能并设置色彩增强效果的参数。</p>
             <note props="cpp">
                 <ul>
                     <li>请在调用 <xref keyref="enableVideo"/> 方法后调用此方法。</li>
@@ -67,11 +76,17 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -111,7 +126,7 @@
                     <pt>options</pt>
                     <pd>颜色增强功能的相关参数。详见 <xref keyref="ColorEnhanceOptions"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>enable</pt>
                     <pd>是否开启色彩增强功能：
                         <ul>
@@ -120,7 +135,20 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>options</pt>
+                    <pd>色彩增强参数，详见 <xref keyref="ColorEnhanceOptions"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>enable</pt>
+                    <pd>是否开启色彩增强功能：
+                        <ul>
+                            <li><xref keyref="true"/>：开启色彩增强。</li>
+                            <li><xref keyref="false"/>：（默认）关闭色彩增强。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>options</pt>
                     <pd>色彩增强参数，详见 <xref keyref="ColorEnhanceOptions"/>。</pd>
                 </plentry>
@@ -128,7 +156,25 @@
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

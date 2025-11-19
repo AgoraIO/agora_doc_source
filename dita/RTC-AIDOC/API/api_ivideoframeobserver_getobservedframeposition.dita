@@ -38,14 +38,29 @@
                     <li><codeph>VIDEO_MODULE_POSITION_PRE_ENCODER</codeph> (1 &lt;&lt; 2)：视频编码前的位置。</li>
                 </ul>
             </p>
-            <p props="ios mac">在你成功注册视频数据观察器后，SDK 会通过该回调判断是否在特定的视频帧处理阶段触发 <xref keyref="onCaptureVideoFrame"/>、<xref keyref="onRenderVideoFrame"/> 和 <xref keyref="onPreEncodeVideoFrame"/> 回调，从而让你观察本地采集的视频数据、远端接收的视频数据以及编码前的视频数据。你可以根据实际场景，通过修改返回值设置一个或多个需要观察的位置：
+            <p props="ios">在你成功注册视频数据观察器后，SDK 会通过该回调判断是否在特定的视频帧处理阶段触发 <xref keyref="onCaptureVideoFrame"/>、<xref keyref="onRenderVideoFrame"/> 和 <xref keyref="onPreEncodeVideoFrame"/> 回调，从而让你观察本地采集的视频数据、远端接收的视频数据以及编码前的视频数据。你可以根据实际场景，通过修改返回值设置一个或多个需要观察的位置：
                 <ul>
                     <li><codeph>AgoraVideoModulePositionPostCapture</codeph> (1 &lt;&lt; 0)：视频数据采集后的位置，对应 <xref keyref="onCaptureVideoFrame"/> 回调。</li>
                     <li><codeph>AgoraVideoModulePositionPreRenderer</codeph> (1 &lt;&lt; 1)：接收到的远端视频数据在渲染前的位置，对应 <xref keyref="onRenderVideoFrame"/> 回调。</li>
                     <li><codeph>AgoraVideoModulePositionPreEncoder</codeph> (1 &lt;&lt; 2)：视频数据编码前的位置，对应 <xref keyref="onPreEncodeVideoFrame"/> 回调。</li>
                 </ul>
             </p>
-            <note props="ios mac">
+            <p props="mac">在你成功注册视频数据观察器后，SDK 会通过该回调判断是否在特定的视频帧处理阶段触发 <xref keyref="onCaptureVideoFrame"/>、<xref keyref="onRenderVideoFrame"/> 和 <xref keyref="onPreEncodeVideoFrame"/> 回调，从而让你观察本地采集的视频数据、远端接收的视频数据以及编码前的视频数据。你可以根据实际场景，通过修改返回值设置一个或多个需要观察的位置：
+                <ul>
+                    <li><codeph>AgoraVideoModulePositionPostCapture</codeph> (1 &lt;&lt; 0)：视频数据采集后的位置，对应 <xref keyref="onCaptureVideoFrame"/> 回调。</li>
+                    <li><codeph>AgoraVideoModulePositionPreRenderer</codeph> (1 &lt;&lt; 1)：接收到的远端视频数据在渲染前的位置，对应 <xref keyref="onRenderVideoFrame"/> 回调。</li>
+                    <li><codeph>AgoraVideoModulePositionPreEncoder</codeph> (1 &lt;&lt; 2)：视频数据编码前的位置，对应 <xref keyref="onPreEncodeVideoFrame"/> 回调。</li>
+                </ul>
+            </p>
+            <note props="ios">
+                <ul>
+                    <li>使用 <codeph>|</codeph>（按位或运算符）以观察多个帧位置。</li>
+                    <li>默认情况下，该回调会观察 <codeph>AgoraVideoModulePositionPostCapture</codeph> (1 &lt;&lt; 0) 和 <codeph>AgoraVideoModulePositionPreRenderer</codeph> (1 &lt;&lt; 1)。</li>
+                    <li>为节省系统资源，你可以减少需要观察的帧位置数量。</li>
+                    <li>当视频处理模式为 <codeph>AgoraVideoFrameProcessModeReadWrite</codeph> 且观察位置设置为 <codeph>AgoraVideoModulePositionPreEncoder | AgoraVideoModulePositionPostCapture</codeph> 时，<xref keyref="getMirrorApplied"/> 不生效。你需要修改视频处理模式或观察器的位置。</li>
+                </ul>
+            </note>
+            <note props="mac">
                 <ul>
                     <li>使用 <codeph>|</codeph>（按位或运算符）以观察多个帧位置。</li>
                     <li>默认情况下，该回调会观察 <codeph>AgoraVideoModulePositionPostCapture</codeph> (1 &lt;&lt; 0) 和 <codeph>AgoraVideoModulePositionPreRenderer</codeph> (1 &lt;&lt; 1)。</li>
@@ -56,20 +71,17 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
-        </section>
-        <section id="parameters" deliveryTarget="details">
-            <title>参数</title>
-            <parml>
-                <plentry props="{platform3}">
-                    <pt>{parameters.name}</pt>
-                    <pd>{parameters.desc}</pd>
-                </plentry>
-            </parml>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="return_values">
             <title>返回值</title>
@@ -82,7 +94,7 @@
                 </ul>
             </p>
             <p props="ios">方法调用成功，返回用于控制视频观察器帧位置的位掩码，详见 <xref keyref="VIDEO_FRAME_POSITION"/>。</p>
-            <p props="mac">方法调用成功，返回用于控制视频观察器帧位置的位掩码，详见 <codeph>AgoraVideoFramePosition</codeph>。</p>
+            <p props="mac">方法调用成功，返回用于控制视频观察器帧位置的位掩码，详见 <xref keyref="VIDEO_FRAME_POSITION"/>。</p>
         </section>
     </refbody>
 </reference>

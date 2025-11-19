@@ -18,30 +18,31 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onSongSimpleInfoResult(const char* requestId, int64_t songCode, const char* simpleInfo, MusicContentCenterStateReason reason) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">void onSongSimpleInfoResult(String requestId, long songCode, String simpleInfo, int reason);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)onSongSimpleInfoResult:(NSString*)requestId songCode:(NSInteger)songCode simpleInfo:(NSString* _Nullable)simpleInfo reason:(AgoraMusicContentCenterStateReason)reason;</codeblock>
-                <codeblock props="mac" outputclass="language-objectivec">- (void)onSongSimpleInfoResult:(NSString*)requestId songCode:(NSInteger)songCode simpleInfo:(NSString* _Nullable)simpleInfo reason:(AgoraMusicContentCenterStateReason)reason;</codeblock>
+                <codeblock props="android" outputclass="language-java">void onSongSimpleInfoResult(String requestId, long songCode, String simpleInfo, int reason);</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">调用 <xref keyref="getSongSimpleInfo"/> 后，SDK 会触发该回调。</p>
+            <p props="ios">当你调用 <xref keyref="getSongSimpleInfo"/> 获取某个音乐资源的详细信息后，SDK 会触发该回调。</p>
             <p props="android">该回调在调用 <xref keyref="getSongSimpleInfo"/> 后被触发。</p>
-            <p props="ios mac">当你调用 <xref keyref="getSongSimpleInfo"/> 获取某个音乐资源的详细信息后，SDK 会触发该回调。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
             <p props="cpp">调用 <xref keyref="getSongSimpleInfo"/> 后触发。</p>
+            <p props="ios">该回调在你调用 <xref keyref="getSongSimpleInfo"/> 获取音乐资源详细信息后被触发。</p>
             <p props="android">该回调在调用 <xref keyref="getSongSimpleInfo"/> 后被触发。</p>
-            <p props="ios mac">该回调在你调用 <xref keyref="getSongSimpleInfo"/> 获取音乐资源详细信息后被触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="ios">无。</p>
+            <p props="android">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>requestId</pt>
                     <pd>请求 ID，用于标识此次请求的唯一标识符。</pd>
                 </plentry>
@@ -61,11 +62,39 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="cpp ios">
+                <plentry props="cpp">
                     <pt>reason</pt>
                     <pd>请求状态码，详见 <xref keyref="MusicContentCenterStateReason"/>。</pd>
                 </plentry>
-                <plentry props="android ios mac">
+                <plentry props="ios">
+                    <pt>requestId</pt>
+                    <pd>请求 ID。该请求的唯一标识符。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>songCode</pt>
+                    <pd>音乐资源的标识符。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>simpleInfo</pt>
+                    <pd>音乐资源的相关信息，包括：
+                        <ul>
+                            <li>副歌片段的起始和结束时间（毫秒）。</li>
+                            <li>副歌片段的歌词下载 URL。</li>
+                            <li>副歌片段的时长（毫秒）。</li>
+                            <li>歌曲名称。</li>
+                            <li>歌手名称。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>reason</pt>
+                    <pd>请求状态码，详见 <xref keyref="MusicContentCenterStateReason"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>requestId</pt>
+                    <pd>请求 ID，用于标识此次请求的唯一标识符。</pd>
+                </plentry>
+                <plentry props="android">
                     <pt>songCode</pt>
                     <pd>音乐资源的标识符。</pd>
                 </plentry>
@@ -101,26 +130,6 @@
                             <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_HTTP_INTERNAL</codeph> (7)：内部 HTTP 错误。请稍后重试。</li>
                         </ul>
                     </pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>requestId</pt>
-                    <pd>请求 ID。该请求的唯一标识符。</pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>simpleInfo</pt>
-                    <pd>音乐资源的相关信息，包括：
-                        <ul>
-                            <li>副歌片段的起始和结束时间（毫秒）。</li>
-                            <li>副歌片段的歌词下载 URL。</li>
-                            <li>副歌片段的时长（毫秒）。</li>
-                            <li>歌曲名称。</li>
-                            <li>歌手名称。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>reason</pt>
-                    <pd>请求状态码，详见 <codeph>AgoraMusicContentCenterStateReason</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

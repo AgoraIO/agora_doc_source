@@ -36,7 +36,13 @@
                     <li>如果最活跃的远端说话人变更为其他用户，SDK 会再次触发该回调，并报告新的最活跃远端说话人的用户 ID。</li>
                 </ul>
             </p>
-            <p props="ios mac">成功调用 <codeph>enableAudioVolumeIndication</codeph> 方法后，SDK 会持续检测哪位远端用户的音量最大。在当前周期内，音量被检测为最大次数最多的远端用户即为最活跃用户。当频道中用户数不少于两人且存在活跃的远端说话人时，SDK 会触发该回调并报告最活跃远端说话人的用户 ID（<codeph>speakerUid</codeph>）。
+            <p props="ios">成功调用 <codeph>enableAudioVolumeIndication</codeph> 方法后，SDK 会持续检测哪位远端用户的音量最大。在当前周期内，音量被检测为最大次数最多的远端用户即为最活跃用户。当频道中用户数不少于两人且存在活跃的远端说话人时，SDK 会触发该回调并报告最活跃远端说话人的用户 ID（<codeph>speakerUid</codeph>）。
+                <ul>
+                    <li>如果最活跃的远端说话人始终是同一用户，SDK 只会触发一次该回调。</li>
+                    <li>如果最活跃的远端说话人变更为其他用户，SDK 会再次触发该回调并报告新的最活跃远端说话人的用户 ID。</li>
+                </ul>
+            </p>
+            <p props="mac">成功调用 <codeph>enableAudioVolumeIndication</codeph> 方法后，SDK 会持续检测哪位远端用户的音量最大。在当前周期内，音量被检测为最大次数最多的远端用户即为最活跃用户。当频道中用户数不少于两人且存在活跃的远端说话人时，SDK 会触发该回调并报告最活跃远端说话人的用户 ID（<codeph>speakerUid</codeph>）。
                 <ul>
                     <li>如果最活跃的远端说话人始终是同一用户，SDK 只会触发一次该回调。</li>
                     <li>如果最活跃的远端说话人变更为其他用户，SDK 会再次触发该回调并报告新的最活跃远端说话人的用户 ID。</li>
@@ -45,11 +51,16 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
-            <p props="android ios mac">该回调在检测到最活跃的远端说话人时被触发。</p>
+            <p props="android">该回调在检测到最活跃的远端说话人时被触发。</p>
+            <p props="ios">该回调在检测到最活跃的远端说话人时被触发。</p>
+            <p props="mac">该回调在检测到最活跃的远端说话人时被触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -66,11 +77,19 @@
                     <pt>uid</pt>
                     <pd>最活跃远端说话用户的用户 ID。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>engine</pt>
                     <pd>引擎实例。详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>speakerUid</pt>
+                    <pd>最活跃远端说话用户的用户 ID。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd>引擎实例。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>speakerUid</pt>
                     <pd>最活跃远端说话用户的用户 ID。</pd>
                 </plentry>

@@ -39,7 +39,8 @@
                     <li>在 SDK 处理本地采集的视频数据前获取其信息，例如视频帧的原始宽度、高度、帧率等。</li>
                 </ul>
             </p>
-            <p props="ios mac">你可以通过该回调获取本地设备采集的原始视频数据，并根据需要进行预处理。预处理完成后，你可以直接在该回调中修改 <codeph>videoFrame</codeph>，并将返回值设置为 <xref keyref="true"/>，以将修改后的视频数据发送给 SDK。如果你需要将预处理后的视频数据发送给 SDK，需先调用 <xref keyref="getVideoFrameProcessMode"/> 将视频处理模式设置为读写模式（<codeph>AgoraVideoFrameProcessModeReadWrite</codeph>）。</p>
+            <p props="ios">你可以通过该回调获取本地设备采集的原始视频数据，并根据需要进行预处理。预处理完成后，你可以直接在该回调中修改 <codeph>videoFrame</codeph>，并将返回值设置为 <xref keyref="true"/>，以将修改后的视频数据发送给 SDK。如果你需要将预处理后的视频数据发送给 SDK，需先调用 <xref keyref="getVideoFrameProcessMode"/> 将视频处理模式设置为读写模式（<codeph>AgoraVideoFrameProcessModeReadWrite</codeph>）。</p>
+            <p props="mac">你可以通过该回调获取本地设备采集的原始视频数据，并根据需要进行预处理。预处理完成后，你可以直接在该回调中修改 <codeph>videoFrame</codeph>，并将返回值设置为 <xref keyref="true"/>，以将修改后的视频数据发送给 SDK。如果你需要将预处理后的视频数据发送给 SDK，需先调用 <xref keyref="getVideoFrameProcessMode"/> 将视频处理模式设置为读写模式（<codeph>AgoraVideoFrameProcessModeReadWrite</codeph>）。</p>
             <note props="cpp">
                 <ul>
                     <li>如果获取的视频数据类型为 RGBA，SDK 不支持处理 alpha 通道的数据。</li>
@@ -54,7 +55,14 @@
                     <li>通过该回调获取的视频格式默认可能为 <codeph>I420Buffer</codeph> 或 <codeph>TextureBuffer</codeph>。<codeph>TextureBuffer</codeph> 的纹理格式可能为 <codeph>OES</codeph> 格式或 <codeph>RGB</codeph> 格式。如果需要其他格式的视频数据，可以在 <xref keyref="getVideoFormatPreference"/> 回调的返回值中设置期望的数据格式。</li>
                 </ul>
             </note>
-            <note props="ios mac">
+            <note props="ios">
+                <ul>
+                    <li>如果你获取的视频数据类型为 RGBA，SDK 不支持处理 alpha 通道的数据。</li>
+                    <li>建议你确保 <codeph>videoFrame</codeph> 中修改后的参数与视频帧缓冲区中视频帧的实际情况一致，否则可能导致本地预览和远端视频显示出现异常旋转、拉伸等问题。</li>
+                    <li>默认通过该回调获取的视频格式为 I420 或 <codeph>CVPixelBufferRef</codeph>。如果你需要其他格式，可以在 <xref keyref="getVideoFormatPreference"/> 回调中设置期望的数据格式。</li>
+                </ul>
+            </note>
+            <note props="mac">
                 <ul>
                     <li>如果你获取的视频数据类型为 RGBA，SDK 不支持处理 alpha 通道的数据。</li>
                     <li>建议你确保 <codeph>videoFrame</codeph> 中修改后的参数与视频帧缓冲区中视频帧的实际情况一致，否则可能导致本地预览和远端视频显示出现异常旋转、拉伸等问题。</li>
@@ -66,22 +74,30 @@
             <title>触发时机</title>
             <p props="cpp">成功注册视频数据观察器后，每次 SDK 采集到视频帧时。</p>
             <p props="android">该回调在成功注册视频数据观察者后，每次 SDK 采集到视频帧时被触发。</p>
-            <p props="ios mac">该回调在成功注册视频数据观察器后，每次 SDK 采集到视频帧时被触发。</p>
+            <p props="ios">该回调在成功注册视频数据观察器后，每次 SDK 采集到视频帧时被触发。</p>
+            <p props="mac">该回调在成功注册视频数据观察器后，每次 SDK 采集到视频帧时被触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
                     <pt>sourceType</pt>
                     <pd>视频源类型，包括摄像头、屏幕或媒体播放器。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>videoFrame</pt>
                     <pd>输出参数，表示视频帧。详见 <xref keyref="VideoFrame"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sourceType</pt>
+                    <pd>视频源类型，包括摄像头、屏幕或媒体播放器。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>videoFrame</pt>
@@ -95,13 +111,21 @@
                         </ul>
                     </pd>
                 </plentry>
+                <plentry props="ios">
+                    <pt>sourceType</pt>
+                    <pd>视频源类型，包括摄像头、屏幕或媒体播放器。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
                 <plentry props="mac">
                     <pt>videoFrame</pt>
                     <pd>视频帧。注意：通过该回调获取的视频帧数据格式的默认值如下：
                         <ul>
-                            <li>iOS/macOS：I420 或 <codeph>CVPixelBufferRef</codeph>。详见 <codeph>AgoraOutputVideoFrame</codeph>。</li>
+                            <li>iOS/macOS：I420 或 <codeph>CVPixelBufferRef</codeph>。详见 <xref keyref="VideoFrame"/>。</li>
                         </ul>
                     </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>sourceType</pt>
+                    <pd>视频源类型，包括摄像头、屏幕或媒体播放器。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
                 </plentry>
             </parml>
         </section>
@@ -139,7 +163,23 @@
                     </li>
                 </ul>
             </p>
-            <p props="ios mac">
+            <p props="ios">
+                <ul>
+                    <li>当视频处理模式为 <codeph>AgoraVideoFrameProcessModeReadOnly</codeph> 时：
+                        <ul>
+                            <li><xref keyref="true"/>：保留以供将来使用。</li>
+                            <li><xref keyref="false"/>：保留以供将来使用。</li>
+                        </ul>
+                    </li>
+                    <li>当视频处理模式为 <codeph>AgoraVideoFrameProcessModeReadWrite</codeph> 时：
+                        <ul>
+                            <li><xref keyref="true"/>：设置 SDK 接收该视频帧。</li>
+                            <li><xref keyref="false"/>：设置 SDK 丢弃该视频帧。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>当视频处理模式为 <codeph>AgoraVideoFrameProcessModeReadOnly</codeph> 时：
                         <ul>

@@ -26,16 +26,24 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="android cpp">请在用户离开频道后调用该方法。</p>
-            <p props="ios mac">请在你离开频道后调用该方法。</p>
+            <p props="cpp">请在用户离开频道后调用该方法。</p>
+            <p props="android">请在用户离开频道后调用该方法。</p>
+            <p props="ios">请在你离开频道后调用该方法。</p>
+            <p props="mac">请在你离开频道后调用该方法。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -44,7 +52,7 @@
                     <pt>callId</pt>
                     <pd>当前通话的通话 ID。你可以通过调用 <xref keyref="getCallId"/> 获取。</pd>
                 </plentry>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
                     <pt>description</pt>
                     <pd>（可选）对通话的描述。字符串长度应小于 800 字节。</pd>
                 </plentry>
@@ -52,15 +60,31 @@
                     <pt>callId</pt>
                     <pd>当前通话的 Call ID。你可以通过调用 <xref keyref="getCallId"/> 获取。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="android">
+                    <pt>description</pt>
+                    <pd>（可选）对通话的描述。字符串长度应小于 800 字节。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>callId</pt>
                     <pd>当前通话的 ID。你可以通过调用 <xref keyref="getCallId"/> 获取该 ID。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>description</pt>
+                    <pd>（可选）对通话的描述。字符串长度应小于 800 字节。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>callId</pt>
+                    <pd>当前通话的 ID。你可以通过调用 <xref keyref="getCallId"/> 获取该 ID。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>description</pt>
+                    <pd>（可选）对通话的描述。字符串长度应小于 800 字节。</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp">
+            <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。
@@ -72,7 +96,31 @@
                     </li>
                 </ul>
             </p>
-            <p props="ios mac">
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。
+                        <ul>
+                            <li>-1：发生通用错误（无明确原因）。</li>
+                            <li>-2：参数无效。</li>
+                            <li>-7：在 <xref keyref="IRtcEngine"/> 初始化之前调用该方法。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。
+                        <ul>
+                            <li>-1：发生通用错误（无明确原因）。</li>
+                            <li>-2：参数无效。</li>
+                            <li>-7：在初始化 <xref keyref="IRtcEngine"/> 之前调用该方法。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。

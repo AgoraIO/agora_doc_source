@@ -111,27 +111,56 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>cameraDirection</pt>
                     <pd>摄像头方向，仅适用于 iOS。详见 <xref keyref="CAMERA_DIRECTION"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>cameraFocalLengthType</pt>
                     <pd>摄像头焦距类型，仅适用于 iOS。详见 <xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>deviceId</pt>
                     <pd>摄像头设备 ID，仅适用于 macOS。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>dimensions</pt>
                     <pd>视频帧的尺寸（单位：像素）。默认值为 960 × 540。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>frameRate</pt>
                     <pd>视频帧的帧率（单位：fps）。默认值为 15。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>followEncodeDimensionRatio</pt>
+                    <pd>是否遵循通过 <codeph>setVideoEncoderConfiguration</codeph> 设置的视频宽高比。
+                        <ul>
+                            <li><xref keyref="true"/>：（默认）遵循设置的视频宽高比。SDK 会根据设置的视频宽高比裁剪采集的视频，并同步更新本地预览画面以及 <codeph>onCaptureVideoFrame</codeph> 和 <codeph>onPreEncodeVideoFrame</codeph> 中的视频帧。</li>
+                            <li><xref keyref="false"/>：不遵循设置的视频宽高比。SDK 不会更改采集视频帧的宽高比。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>cameraDirection</pt>
+                    <pd>摄像头方向，仅适用于 iOS。详见 <codeph>AgoraCameraDirection</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>cameraFocalLengthType</pt>
+                    <pd>摄像头焦距类型，仅适用于 iOS。详见 <codeph>AgoraFocalLength</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>deviceId</pt>
+                    <pd>摄像头设备 ID，仅适用于 macOS。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>dimensions</pt>
+                    <pd>视频帧的尺寸（单位：像素）。默认值为 960 × 540。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>frameRate</pt>
+                    <pd>视频帧的帧率（单位：fps）。默认值为 15。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>followEncodeDimensionRatio</pt>
                     <pd>是否遵循通过 <codeph>setVideoEncoderConfiguration</codeph> 设置的视频宽高比。
                         <ul>

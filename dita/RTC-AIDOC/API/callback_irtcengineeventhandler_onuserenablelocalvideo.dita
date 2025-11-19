@@ -27,28 +27,38 @@
             <dl outputclass="deprecated">
                 <dlentry props="cpp">
                     <dt>废弃</dt>
-                    <dd>自 vX.X.X 版本废弃。</dd>
+                    <dd>该方法已废弃。请改用 <xref keyref="onRemoteVideoStateChanged"/> 回调中的以下枚举值：<codeph>REMOTE_VIDEO_STATE_STOPPED</codeph> 和 <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED</codeph>，<codeph>REMOTE_VIDEO_STATE_DECODING</codeph> 和 <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED</codeph>。</dd>
                 </dlentry>
                 <dlentry props="android">
                     <dt>废弃</dt>
                     <dd>该回调已废弃，建议使用 <xref keyref="onRemoteVideoStateChanged"/> 回调，并结合以下参数：<codeph>REMOTE_VIDEO_STATE_STOPPED</codeph> 和 <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED</codeph>，或 <codeph>REMOTE_VIDEO_STATE_DECODING</codeph> 和 <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED</codeph>。</dd>
                 </dlentry>
-                <dlentry props="ios mac">
+                <dlentry props="ios">
+                    <dt>废弃</dt>
+                    <dd>自 v4.5.0 版本废弃，请改用 <codeph>remoteVideoStateChangedOfUid:state:reason:</codeph>。</dd>
+                </dlentry>
+                <dlentry props="mac">
                     <dt>废弃</dt>
                     <dd>自 v4.5.0 版本废弃，请改用 <codeph>remoteVideoStateChangedOfUid:state:reason:</codeph>。</dd>
                 </dlentry>
             </dl>
             <p props="cpp">当远端用户调用 <xref keyref="enableLocalVideo"/> 恢复或停止视频采集时，SDK 会触发该回调。</p>
             <p props="android">该回调已废弃，建议使用 <xref keyref="onRemoteVideoStateChanged"/> 回调，并结合以下参数：<codeph>REMOTE_VIDEO_STATE_STOPPED</codeph> 和 <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED</codeph>，或 <codeph>REMOTE_VIDEO_STATE_DECODING</codeph> 和 <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED</codeph>。</p>
-            <p props="ios mac">当远端用户调用 <xref keyref="enableLocalVideo"/> 方法启用或关闭本地视频采集功能时，SDK 会触发该回调。</p>
+            <p props="ios">当远端用户调用 <xref keyref="enableLocalVideo"/> 方法启用或关闭本地视频采集功能时，SDK 会触发该回调。</p>
+            <p props="mac">当远端用户调用 <xref keyref="enableLocalVideo"/> 方法启用或关闭本地视频采集功能时，SDK 会触发该回调。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
-            <p props="android ios mac">该回调在远端用户调用 <xref keyref="enableLocalVideo"/> 启用或关闭本地视频采集功能时被触发。</p>
+            <p props="android">该回调在远端用户调用 <xref keyref="enableLocalVideo"/> 启用或关闭本地视频采集功能时被触发。</p>
+            <p props="ios">该回调在远端用户调用 <xref keyref="enableLocalVideo"/> 启用或关闭本地视频采集功能时被触发。</p>
+            <p props="mac">该回调在远端用户调用 <xref keyref="enableLocalVideo"/> 启用或关闭本地视频采集功能时被触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -70,7 +80,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="android ios mac">
+                <plentry props="android">
                     <pt>uid</pt>
                     <pd>远端用户的用户 ID。</pd>
                 </plentry>
@@ -83,11 +93,11 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>engine</pt>
                     <pd><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>enabled</pt>
                     <pd>指定的远端用户是否启用本地视频采集功能：
                         <ul>
@@ -95,6 +105,27 @@
                             <li><xref keyref="false"/>：关闭视频模块，频道内其他用户无法接收该远端用户的视频流，但该远端用户仍可接收其他用户的视频流。</li>
                         </ul>
                     </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>uid</pt>
+                    <pd>远端用户的用户 ID。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>enabled</pt>
+                    <pd>指定的远端用户是否启用本地视频采集功能：
+                        <ul>
+                            <li><xref keyref="true"/>：启用视频模块，频道内其他用户可以看到该远端用户的视频。</li>
+                            <li><xref keyref="false"/>：关闭视频模块，频道内其他用户无法接收该远端用户的视频流，但该远端用户仍可接收其他用户的视频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>远端用户的用户 ID。</pd>
                 </plentry>
             </parml>
         </section>

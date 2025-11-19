@@ -27,14 +27,20 @@
             <p props="cpp">如果你希望根据 <xref keyref="VideoFrame"/> 类中的 <codeph>rotation</codeph> 成员旋转采集的视频，请确保在调用 <xref keyref="registerVideoFrameObserver_IMediaPlayer"/> 时注册该回调。注册成功后，SDK 每次接收到视频帧时都会触发该回调。你需要通过该回调的返回值设置是否旋转视频帧。</p>
             <p props="android">你需要通过该回调的返回值设置是否旋转视频帧。如果希望根据 <codeph>VideoFrame</codeph> 类中的 <codeph>rotation</codeph> 成员旋转采集的视频，请确保在调用 <xref keyref="registerVideoFrameObserver_IMediaPlayer"/> 时注册该回调。在成功注册视频帧观察器后，SDK 每次接收到视频帧时都会触发该回调。</p>
             <p props="ios">如果采集设备上的视频已根据 <xref keyref="VideoFrame"/> 中的 <codeph>rotation</codeph> 进行了旋转，则你无需调用此方法设置视频旋转。</p>
-            <p props="mac">如果采集设备上的视频已根据 <codeph>AgoraOutputVideoFrame</codeph> 中的 <codeph>rotation</codeph> 进行了旋转，则你无需调用此方法设置视频旋转。</p>
+            <p props="mac">如果采集设备上的视频已根据 <xref keyref="VideoFrame"/> 中的 <codeph>rotation</codeph> 进行了旋转，则你无需调用此方法设置视频旋转。</p>
             <note props="cpp">
                 <ul>
                     <li>在 Windows 平台，该回调支持的视频数据格式包括：<codeph>I420</codeph>、<codeph>RGBA</codeph> 和 <codeph>TextureBuffer</codeph>。</li>
                 </ul>
             </note>
             <note props="android">在 Android 平台上，该回调支持的视频数据格式包括：I420、RGBA 和 Texture。</note>
-            <note props="ios mac">
+            <note props="ios">
+                <ul>
+                    <li>在 iOS 上，该回调支持的视频数据格式包括：I420、RGBA 和 <codeph>CVPixelBuffer</codeph>。</li>
+                    <li>在 macOS 上，该回调支持的视频数据格式包括：I420 和 RGBA。</li>
+                </ul>
+            </note>
+            <note props="mac">
                 <ul>
                     <li>在 iOS 上，该回调支持的视频数据格式包括：I420、RGBA 和 <codeph>CVPixelBuffer</codeph>。</li>
                     <li>在 macOS 上，该回调支持的视频数据格式包括：I420 和 RGBA。</li>
@@ -48,20 +54,32 @@
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
-        </section>
-        <section id="parameters" deliveryTarget="details">
-            <title>参数</title>
-            <parml>
-                <plentry props="{platform3}">
-                    <pt>{parameters.name}</pt>
-                    <pd>{parameters.desc}</pd>
-                </plentry>
-            </parml>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li><xref keyref="true"/>：旋转采集的视频。</li>
+                    <li><xref keyref="false"/>：（默认）不旋转采集的视频。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li><xref keyref="true"/>：旋转采集的视频。</li>
+                    <li><xref keyref="false"/>：（默认）不旋转采集的视频。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li><xref keyref="true"/>：旋转采集的视频。</li>
+                    <li><xref keyref="false"/>：（默认）不旋转采集的视频。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li><xref keyref="true"/>：旋转采集的视频。</li>
                     <li><xref keyref="false"/>：（默认）不旋转采集的视频。</li>

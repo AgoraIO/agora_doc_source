@@ -25,7 +25,7 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="ios mac">要发布自定义音频源，请按照以下步骤操作：
+            <p props="ios">要发布自定义音频源，请按照以下步骤操作：
                 <ol>
                     <li>调用该方法创建一个自定义音频轨道并获取音频轨道 ID。</li>
                     <li>调用 <codeph>joinChannelByToken</codeph> 加入频道。在 <xref keyref="ChannelMediaOptions"/> 中，将 <codeph>publishCustomAudioTrackId</codeph> 设置为你想要发布的音频轨道 ID，并将 <codeph>publishCustomAudioTrack</codeph> 设置为 <xref keyref="true"/>。</li>
@@ -39,21 +39,33 @@
                     <li>调用 <xref keyref="pushAudioFrame2"/>，并将 <codeph>trackId</codeph> 设置为第 2 步中设置的音频轨道 ID，即可在频道中发布对应的自定义音频源。</li>
                 </ol>
             </p>
-            <note props="ios mac">请在加入频道前调用此方法。</note>
+            <p props="mac">要发布自定义音频源，请按照以下步骤操作：
+                <ol>
+                    <li>调用该方法创建一个自定义音频轨道并获取音频轨道 ID。</li>
+                    <li>调用 <codeph>joinChannelByToken</codeph> 加入频道。在 <xref keyref="ChannelMediaOptions"/> 中，将 <codeph>publishCustomAudioTrackId</codeph> 设置为你想要发布的音频轨道 ID，并将 <codeph>publishCustomAudioTrack</codeph> 设置为 <xref keyref="true"/>。</li>
+                    <li>调用 <codeph>pushExternalAudioFrameRawData</codeph>，并将 <codeph>trackId</codeph> 设置为第 2 步中设置的音频轨道 ID，即可在频道中发布相应的自定义音频源。</li>
+                </ol>
+            </p>
+            <note props="ios">请在加入频道前调用此方法。</note>
             <note props="android">该方法需要在加入频道前调用。</note>
+            <note props="mac">请在加入频道前调用此方法。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android ios mac">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android ios mac">无。</p>
+            <p props="ios">无。</p>
+            <p props="android">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>trackType</pt>
                     <pd>自定义音频轨道的类型，详见 <xref keyref="AUDIO_TRACK_TYPE"/>。
                         <ul>
@@ -61,7 +73,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>config</pt>
                     <pd>自定义音频轨道的配置，详见 <xref keyref="AudioTrackConfig"/>。</pd>
                 </plentry>
@@ -73,11 +85,23 @@
                     <pt>config</pt>
                     <pd>自定义音频轨道的配置。详见 <xref keyref="AudioTrackConfig"/>。</pd>
                 </plentry>
+                <plentry props="mac">
+                    <pt>trackType</pt>
+                    <pd>自定义音频轨道的类型，详见 <xref keyref="AUDIO_TRACK_TYPE"/>。
+                        <ul>
+                            <li>如果该参数设置为 <codeph>AgoraAudioTrackTypeDirect</codeph>，你必须在调用 <codeph>joinChannelByToken</codeph> 加入频道时，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishMicrophoneTrack</codeph> 设置为 <xref keyref="false"/>，否则加入频道会失败并返回错误码 -2。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>config</pt>
+                    <pd>自定义音频轨道的配置，详见 <xref keyref="AudioTrackConfig"/>。</pd>
+                </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="ios mac">
+            <p props="ios">
                 <ul>
                     <li>方法调用成功，返回音频轨道 ID，作为该音频轨道的唯一标识符。</li>
                     <li>方法调用失败，返回 0xffffffff。</li>
@@ -86,6 +110,12 @@
             <p props="android">
                 <ul>
                     <li>方法调用成功，返回音频轨道 ID，作为该音频轨道的唯一标识。</li>
+                    <li>方法调用失败，返回 0xffffffff。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>方法调用成功，返回音频轨道 ID，作为该音频轨道的唯一标识符。</li>
                     <li>方法调用失败，返回 0xffffffff。</li>
                 </ul>
             </p>

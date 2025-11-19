@@ -26,21 +26,26 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">该回调在加入频道前触发，用于报告本地用户与声网边缘服务器之间连接的网络质量（即 last-mile 网络状况）。调用 <xref keyref="startLastmileProbeTest"/> 后，SDK 会触发该回调。</p>
             <p props="android">该回调在用户加入频道前触发，用于上报本地用户与声网边缘服务器之间连接的 last-mile 网络质量。在调用 <xref keyref="startLastmileProbeTest"/> 后，SDK 会触发该回调。</p>
-            <p props="ios mac">该回调在用户加入频道前，由 SDK 在调用 <xref keyref="startLastmileProbeTest"/> 后触发一次，用于上报本地用户的 last-mile 网络状况。last-mile 指的是本地设备与声网边缘服务器之间的连接。</p>
+            <p props="ios">该回调在用户加入频道前，由 SDK 在调用 <xref keyref="startLastmileProbeTest"/> 后触发一次，用于上报本地用户的 last-mile 网络状况。last-mile 指的是本地设备与声网边缘服务器之间的连接。</p>
+            <p props="mac">该回调在用户加入频道前，由 SDK 在调用 <xref keyref="startLastmileProbeTest"/> 后触发一次，用于上报本地用户的 last-mile 网络状况。last-mile 指的是本地设备与声网边缘服务器之间的连接。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
             <p props="android">该回调在调用 <xref keyref="startLastmileProbeTest"/> 方法后被触发。</p>
-            <p props="ios mac">该回调在调用 <xref keyref="startLastmileProbeTest"/> 后被触发，用于上报本地用户的 last-mile 网络状况。</p>
+            <p props="ios">该回调在调用 <xref keyref="startLastmileProbeTest"/> 后被触发，用于上报本地用户的 last-mile 网络状况。</p>
+            <p props="mac">该回调在调用 <xref keyref="startLastmileProbeTest"/> 后被触发，用于上报本地用户的 last-mile 网络状况。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="cpp ios">
+                <plentry props="cpp">
                     <pt>quality</pt>
                     <pd>last-mile 网络质量，详见 <xref keyref="QUALITY_TYPE"/>。</pd>
                 </plentry>
@@ -59,13 +64,21 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>engine</pt>
+                    <pd>引擎对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>quality</pt>
+                    <pd>last-mile 网络质量，详见 <xref keyref="QUALITY_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>engine</pt>
                     <pd>引擎对象，详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>quality</pt>
-                    <pd>last-mile 网络质量，详见 <codeph>AgoraNetworkQuality</codeph>。</pd>
+                    <pd>last-mile 网络质量，详见 <xref keyref="QUALITY_TYPE"/>。</pd>
                 </plentry>
             </parml>
         </section>

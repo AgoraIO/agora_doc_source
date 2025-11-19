@@ -26,20 +26,27 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">你可以根据实际需求选择合适的音频配置文件。例如，在音乐教学等对音质要求较高的场景中，建议将 <codeph>profile</codeph> 设置为 <codeph>AUDIO_PROFILE_MUSIC_HIGH_QUALITY</codeph>（4）。如果你需要设置音频场景，可以调用 <xref keyref="setAudioScenario"/>，或者调用 <xref keyref="initialize_IMusicContentCenter"/> 并在 <xref keyref="RtcEngineConfig"/> 中设置 <codeph>audioScenario</codeph>。</p>
             <p props="android">如果你需要设置音频场景，可以调用 <xref keyref="setAudioScenario"/>，或调用 <xref keyref="create_ILocalSpatialAudioEngine"/> 并在 <xref keyref="RtcEngineConfig"/> 中设置 <codeph>mAudioScenario</codeph>。</p>
-            <p props="ios mac">你可以根据场景需求设置不同的音频配置文件。例如，在音乐教学等对音质要求较高的场景中，建议将 <codeph>profile</codeph> 设置为 <codeph>AgoraAudioProfileMusicHighQuality</codeph>（4）。如果你需要设置音频场景，可以调用 <xref keyref="setAudioScenario"/>，或者调用 <xref keyref="initialize"/> 并在 <xref keyref="RtcEngineConfig"/> 中设置 <codeph>audioScenario</codeph>。</p>
+            <p props="ios">你可以根据场景需求设置不同的音频配置文件。例如，在音乐教学等对音质要求较高的场景中，建议将 <codeph>profile</codeph> 设置为 <codeph>AgoraAudioProfileMusicHighQuality</codeph>（4）。如果你需要设置音频场景，可以调用 <xref keyref="setAudioScenario"/>，或者调用 <xref keyref="initialize"/> 并在 <xref keyref="RtcEngineConfig"/> 中设置 <codeph>audioScenario</codeph>。</p>
+            <p props="mac">你可以根据场景需求设置不同的音频配置文件。例如，在音乐教学等对音质要求较高的场景中，建议将 <codeph>profile</codeph> 设置为 <codeph>AgoraAudioProfileMusicHighQuality</codeph>（4）。如果你需要设置音频场景，可以调用 <xref keyref="setAudioScenario"/>，或者调用 <xref keyref="initialize"/> 并在 <xref keyref="RtcEngineConfig"/> 中设置 <codeph>audioScenario</codeph>。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">你可以在加入频道前或后调用该方法。</p>
+            <p props="cpp">你可以在加入频道前或后调用该方法。</p>
+            <p props="android">你可以在加入频道前或后调用该方法。</p>
+            <p props="ios">你可以在加入频道前或后调用该方法。</p>
+            <p props="mac">你可以在加入频道前或后调用该方法。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="cpp ios mac">
+                <plentry props="cpp">
                     <pt>profile</pt>
                     <pd>音频配置文件，包括采样率、码率、编码模式和声道数。详见 <xref keyref="AUDIO_PROFILE_TYPE"/>。</pd>
                 </plentry>
@@ -61,11 +68,37 @@
                         </ul>
                     </pd>
                 </plentry>
+                <plentry props="ios">
+                    <pt>profile</pt>
+                    <pd>音频配置文件，包括采样率、码率、编码模式和声道数。详见 <xref keyref="AUDIO_PROFILE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>profile</pt>
+                    <pd>音频配置文件，包括采样率、码率、编码模式和声道数。详见 <xref keyref="AUDIO_PROFILE_TYPE"/>。</pd>
+                </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

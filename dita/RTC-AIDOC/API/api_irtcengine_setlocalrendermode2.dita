@@ -28,9 +28,11 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">该方法仅影响本地用户看到的视频画面，不影响本地视频的发布。</p>
             <p props="android">你可以在初始化本地视频画面后调用该方法，更新其渲染模式和镜像模式。该方法仅影响本地用户看到的视频画面，不影响本地视频的发布。</p>
-            <p props="ios mac">你可以在初始化本地视频视图后调用该方法，更新其渲染模式和镜像模式。该方法仅影响你本地看到的视频视图，不影响本地视频的发布。</p>
+            <p props="ios">你可以在初始化本地视频视图后调用该方法，更新其渲染模式和镜像模式。该方法仅影响你本地看到的视频视图，不影响本地视频的发布。</p>
+            <p props="mac">你可以在初始化本地视频视图后调用该方法，更新其渲染模式和镜像模式。该方法仅影响你本地看到的视频视图，不影响本地视频的发布。</p>
             <note props="cpp">该方法仅对主摄像头（<codeph>PRIMARY_CAMERA_SOURCE</codeph>）生效。在使用自定义视频采集或其他视频源的场景中，请使用 <xref keyref="setupLocalVideo"/> 方法。</note>
-            <note props="ios mac">该方法仅对主摄像头（<codeph>AgoraMediaSourceTypePrimaryCamera</codeph>）生效。在使用自定义视频采集或其他视频源的场景中，应使用 <xref keyref="setupLocalVideo"/> 方法替代。</note>
+            <note props="ios">该方法仅对主摄像头（<codeph>AgoraMediaSourceTypePrimaryCamera</codeph>）生效。在使用自定义视频采集或其他视频源的场景中，应使用 <xref keyref="setupLocalVideo"/> 方法替代。</note>
+            <note props="mac">该方法仅对主摄像头（<codeph>AgoraMediaSourceTypePrimaryCamera</codeph>）生效。在使用自定义视频采集或其他视频源的场景中，应使用 <xref keyref="setupLocalVideo"/> 方法替代。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -46,7 +48,13 @@
                     <li>通话过程中，可多次调用该方法更新本地视频画面的显示模式。</li>
                 </ul>
             </p>
-            <p props="ios mac">调用时序：
+            <p props="ios">调用时序：
+                <ul>
+                    <li>请确保在调用该方法前已调用 <xref keyref="setupLocalVideo"/> 方法初始化本地视频视图。</li>
+                    <li>通话过程中，你可以多次调用该方法更新本地视频视图的显示模式。</li>
+                </ul>
+            </p>
+            <p props="mac">调用时序：
                 <ul>
                     <li>请确保在调用该方法前已调用 <xref keyref="setupLocalVideo"/> 方法初始化本地视频视图。</li>
                     <li>通话过程中，你可以多次调用该方法更新本地视频视图的显示模式。</li>
@@ -55,7 +63,10 @@
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -98,17 +109,35 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>mode</pt>
-                    <pd>本地视频的显示模式，详见 <codeph>AgoraVideoRenderMode</codeph>。</pd>
+                    <pd>本地视频的显示模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>mirror</pt>
-                    <pd>本地视频视图的镜像模式，详见 <codeph>AgoraVideoMirrorMode</codeph>。如果使用前置摄像头，SDK 默认启用镜像模式；如果使用后置摄像头，SDK 默认关闭镜像模式。</pd>
+                    <pd>本地视频视图的镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。如果使用前置摄像头，SDK 默认启用镜像模式；如果使用后置摄像头，SDK 默认关闭镜像模式。</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

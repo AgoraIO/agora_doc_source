@@ -29,7 +29,19 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="deprecated">
-                <dlentry props="android cpp ios mac">
+                <dlentry props="cpp">
+                    <dt>废弃</dt>
+                    <dd>自 v4.6.0 版本废弃。</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>废弃</dt>
+                    <dd>自 v4.6.0 版本废弃。</dd>
+                </dlentry>
+                <dlentry props="ios">
+                    <dt>废弃</dt>
+                    <dd>自 v4.6.0 版本废弃。</dd>
+                </dlentry>
+                <dlentry props="mac">
                     <dt>废弃</dt>
                     <dd>自 v4.6.0 版本废弃。</dd>
                 </dlentry>
@@ -77,22 +89,31 @@
 在选择媒体设置选项（<xref keyref="DirectCdnStreamingMediaOptions"/>）时，可以参考以下示例：
 如果你希望从自定义源推送主播采集的音视频流，媒体设置选项应如下设置：
                 <ul>
-                    <li>将 <codeph>publishCustomAudioTrack</codeph> 设置为 <xref keyref="true"/>，并调用 <xref keyref="pushExternalAudioFrameSampleBuffer2"/> 或 <codeph>pushExternalAudioFrameRawData:samples:sampleRate:channels:trackId:timestamp:</codeph> 方法；</li>
-                    <li>将 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/>，并调用 <codeph>pushExternalVideoFrame:videoTrackId:</codeph> 方法；</li>
+                    <li>将 <codeph>publishCustomAudioTrack</codeph> 设置为 <xref keyref="true"/>，并调用 <xref keyref="pushExternalAudioFrameSampleBuffer2"/> 或 <xref keyref="pushAudioFrame2"/> 方法；</li>
+                    <li>将 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/>，并调用 <xref keyref="pushVideoFrame"/> 方法；</li>
                     <li>将 <codeph>publishCameraTrack</codeph> 设置为 <xref keyref="false"/>（默认值）；</li>
                     <li>将 <codeph>publishMicrophoneTrack</codeph> 设置为 <xref keyref="false"/>（默认值）。
-你也可以通过将 <codeph>publishCustomAudioTrack</codeph> 或 <codeph>publishMicrophoneTrack</codeph> 设置为 <xref keyref="true"/>，并调用 <xref keyref="pushExternalAudioFrameSampleBuffer2"/> 或 <codeph>pushExternalAudioFrameRawData:samples:sampleRate:channels:trackId:timestamp:</codeph> 方法实现纯音频直播。</li>
+你也可以通过将 <codeph>publishCustomAudioTrack</codeph> 或 <codeph>publishMicrophoneTrack</codeph> 设置为 <xref keyref="true"/>，并调用 <xref keyref="pushExternalAudioFrameSampleBuffer2"/> 或 <xref keyref="pushAudioFrame2"/> 方法实现纯音频直播。</li>
                 </ul>
             </p>
-            <note props="android cpp ios mac">声网仅支持将一路音视频流或一路音频流推送到 CDN。</note>
+            <note props="cpp">声网仅支持将一路音视频流或一路音频流推送到 CDN。</note>
+            <note props="android">声网仅支持将一路音视频流或一路音频流推送到 CDN。</note>
+            <note props="ios">声网仅支持将一路音视频流或一路音频流推送到 CDN。</note>
+            <note props="mac">声网仅支持将一路音视频流或一路音频流推送到 CDN。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -101,7 +122,7 @@
                     <pt>eventHandler</pt>
                     <pd>事件回调接口，详见 <xref keyref="IDirectCdnStreamingEventHandler"/>。</pd>
                 </plentry>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>publishUrl</pt>
                     <pd>CDN 推流地址。</pd>
                 </plentry>
@@ -114,18 +135,34 @@
                     <pd>事件回调接口。详见 <xref keyref="IDirectCdnStreamingEventHandler"/>。</pd>
                 </plentry>
                 <plentry props="android">
+                    <pt>publishUrl</pt>
+                    <pd>CDN 推流地址。</pd>
+                </plentry>
+                <plentry props="android">
                     <pt>options</pt>
                     <pd>主播的媒体设置选项。详见 <xref keyref="DirectCdnStreamingMediaOptions"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>delegate</pt>
                     <pd>事件回调接口，详见 <xref keyref="IDirectCdnStreamingEventHandler"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>publishUrl</pt>
                     <pd>CDN 直播推流地址。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>mediaOptions</pt>
+                    <pd>主播的媒体设置选项，详见 <xref keyref="DirectCdnStreamingMediaOptions"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>delegate</pt>
+                    <pd>事件回调接口，详见 <xref keyref="IDirectCdnStreamingEventHandler"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>publishUrl</pt>
+                    <pd>CDN 直播推流地址。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>mediaOptions</pt>
                     <pd>主播的媒体设置选项，详见 <xref keyref="DirectCdnStreamingMediaOptions"/>。</pd>
                 </plentry>
@@ -133,7 +170,25 @@
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

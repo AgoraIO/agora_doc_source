@@ -26,16 +26,22 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">当用户在客户端加入频道时，SDK 会生成一个用于标识该通话的 <codeph>callId</codeph>。你可以调用该方法获取 <codeph>callId</codeph>，并在调用 <xref keyref="rate"/> 和 <xref keyref="complain"/> 等方法时传入该 ID。</p>
             <p props="android">你可以调用该方法获取 <codeph>callId</codeph>，并在调用 <xref keyref="rate"/> 和 <xref keyref="complain"/> 等方法时传入该值。</p>
-            <p props="ios mac">当你在客户端加入频道时，SDK 会生成一个用于标识该通话的 <codeph>callId</codeph>。你可以调用该方法获取 <codeph>callId</codeph>，并在调用如 <xref keyref="rate"/> 和 <xref keyref="complain"/> 等方法时传入该 <codeph>callId</codeph>。</p>
+            <p props="ios">当你在客户端加入频道时，SDK 会生成一个用于标识该通话的 <codeph>callId</codeph>。你可以调用该方法获取 <codeph>callId</codeph>，并在调用如 <xref keyref="rate"/> 和 <xref keyref="complain"/> 等方法时传入该 <codeph>callId</codeph>。</p>
+            <p props="mac">当你在客户端加入频道时，SDK 会生成一个用于标识该通话的 <codeph>callId</codeph>。你可以调用该方法获取 <codeph>callId</codeph>，并在调用如 <xref keyref="rate"/> 和 <xref keyref="complain"/> 等方法时传入该 <codeph>callId</codeph>。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="cpp ios mac">在加入频道后调用此方法。</p>
+            <p props="cpp">在加入频道后调用此方法。</p>
             <p props="android">请在加入频道后调用此方法。</p>
+            <p props="ios">在加入频道后调用此方法。</p>
+            <p props="mac">在加入频道后调用此方法。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -44,7 +50,19 @@
                     <pt>callId</pt>
                     <pd>输出参数，当前通话 ID。详见 <codeph>AString</codeph>。</pd>
                 </plentry>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>connection</pt>
                     <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
@@ -64,7 +82,13 @@
                     <li>方法调用失败，返回空字符串。</li>
                 </ul>
             </p>
-            <p props="ios mac">
+            <p props="ios">
+                <ul>
+                    <li>方法调用成功时，返回用于标识客户端通话的 <codeph>callId</codeph> 字符串。</li>
+                    <li>方法调用失败时，返回空字符串。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>方法调用成功时，返回用于标识客户端通话的 <codeph>callId</codeph> 字符串。</li>
                     <li>方法调用失败时，返回空字符串。</li>

@@ -38,13 +38,23 @@
             <p props="android">你可以多次调用该方法加入多个频道。
 
 在多摄像头采集场景中，调用该方法后需要调用 <codeph>startPreview</codeph> 方法，并将 <codeph>sourceType</codeph> 设置为 <codeph>VIDEO_SOURCE_CAMERA_SECONDARY</codeph>，以确保第二路摄像头正常采集。</p>
-            <p props="ios mac">在调用该方法之前，如果你尚未调用 <codeph>registerLocalUserAccountWithAppID:userAccount:</codeph> 注册用户账号，当你调用该方法加入频道时，SDK 会自动为你创建一个用户账号。先调用 <codeph>registerLocalUserAccountWithAppID:userAccount:</codeph> 注册用户账号，再调用该方法加入频道，可以缩短进入频道所需的时间。
+            <p props="ios">在调用该方法之前，如果你尚未调用 <codeph>registerLocalUserAccountWithAppID:userAccount:</codeph> 注册用户账号，当你调用该方法加入频道时，SDK 会自动为你创建一个用户账号。先调用 <codeph>registerLocalUserAccountWithAppID:userAccount:</codeph> 注册用户账号，再调用该方法加入频道，可以缩短进入频道所需的时间。
+一旦用户加入频道，默认会订阅频道中其他所有用户的音视频流，从而产生用量和计费。如果你希望停止订阅其他用户的媒体流，可以设置 <codeph>mediaOptions</codeph> 参数或调用相应的 <codeph>mute</codeph> 方法。</p>
+            <p props="mac">在调用该方法之前，如果你尚未调用 <codeph>registerLocalUserAccountWithAppID:userAccount:</codeph> 注册用户账号，当你调用该方法加入频道时，SDK 会自动为你创建一个用户账号。先调用 <codeph>registerLocalUserAccountWithAppID:userAccount:</codeph> 注册用户账号，再调用该方法加入频道，可以缩短进入频道所需的时间。
 一旦用户加入频道，默认会订阅频道中其他所有用户的音视频流，从而产生用量和计费。如果你希望停止订阅其他用户的媒体流，可以设置 <codeph>mediaOptions</codeph> 参数或调用相应的 <codeph>mute</codeph> 方法。</p>
             <note props="cpp">如果你已经在一个频道中，不能使用相同的用户 ID 重新加入该频道。
 在加入频道前，请确保用于生成 Token 的 App ID 与 <xref keyref="initialize_IMusicContentCenter"/> 方法中传入的 App ID 相同，否则可能会导致加入频道失败。</note>
             <note props="android">如果你已经在一个频道中，不能使用相同的用户 ID 重新加入该频道。
 在加入频道前，确保用于生成 Token 的 App ID 与调用 <xref keyref="create_ILocalSpatialAudioEngine"/> 方法时传入的 App ID 相同，否则可能会导致加入频道失败。</note>
-            <note props="ios mac">
+            <note props="ios">
+                <ul>
+                    <li>该方法仅支持用户同时加入一个频道。</li>
+                    <li>不同 App ID 的用户无法互通。</li>
+                    <li>加入频道前，请确保用于生成 Token 的 App ID 与 <xref keyref="initialize"/> 方法中传入的 App ID 一致，否则可能导致加入频道失败。</li>
+                    <li>为确保通信顺畅，请使用相同的参数类型标识用户。例如，如果某用户使用 UID 加入频道，则其他用户也应使用 UID。用户账号同理。如果用户使用声网 Web SDK 加入频道，请确保用户 ID 的参数类型一致。</li>
+                </ul>
+            </note>
+            <note props="mac">
                 <ul>
                     <li>该方法仅支持用户同时加入一个频道。</li>
                     <li>不同 App ID 的用户无法互通。</li>
@@ -57,11 +67,15 @@
             <title>调用时机</title>
             <p props="cpp">请在调用 <xref keyref="initialize_IMusicContentCenter"/> 方法后调用该方法。</p>
             <p props="android">请在调用 <xref keyref="create_ILocalSpatialAudioEngine"/> 方法之后调用该方法。</p>
-            <p props="ios mac">请在调用 <xref keyref="initialize"/> 之后调用该方法。</p>
+            <p props="ios">请在调用 <xref keyref="initialize"/> 之后调用该方法。</p>
+            <p props="mac">请在调用 <xref keyref="initialize"/> 之后调用该方法。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="related" deliveryTarget="details">
             <title>相关回调</title>
@@ -72,19 +86,19 @@
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="cpp ios mac">
+                <plentry props="cpp">
                     <pt>token</pt>
                     <pd>在你的服务器上生成的用于鉴权的 Token。</pd>
                 </plentry>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
                     <pt>connection</pt>
                     <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>options</pt>
                     <pd>频道媒体选项。详见 <xref keyref="ChannelMediaOptions"/>。</pd>
                 </plentry>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>eventHandler</pt>
                     <pd>回调类。你可以通过该参数传入的 <codeph>eventHandler</codeph> 对象获取多个频道的回调事件。详见 <xref keyref="IRtcEngineEventHandler"/>。</pd>
                 </plentry>
@@ -92,15 +106,55 @@
                     <pt>token</pt>
                     <pd>用于鉴权的 Token，由你的服务器生成。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="android">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>options</pt>
+                    <pd>频道媒体选项。详见 <xref keyref="ChannelMediaOptions"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>eventHandler</pt>
+                    <pd>回调类。你可以通过该参数传入的 <codeph>eventHandler</codeph> 对象获取多个频道的回调事件。详见 <xref keyref="IRtcEngineEventHandler"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>token</pt>
+                    <pd>在你的服务器上生成的用于鉴权的 Token。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>delegate</pt>
                     <pd><codeph>AgoraRtcEngine</codeph> 的回调类。你可以通过该参数传入的 <codeph>delegate</codeph> 对象获取多个频道的回调事件。详见 <xref keyref="IRtcEngineEventHandler"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>mediaOptions</pt>
                     <pd>频道媒体选项。详见 <xref keyref="ChannelMediaOptions"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>joinSuccessBlock</pt>
+                    <pd>用户加入频道成功时触发。<codeph>joinSuccessBlock</codeph> 的优先级高于 <xref keyref="onJoinChannelSuccess"/>。当两者同时实现时，<xref keyref="onJoinChannelSuccess"/> 不生效。声网建议将 <codeph>joinSuccessBlock</codeph> 设置为 <xref keyref="NULL"/>，以使用 <xref keyref="onJoinChannelSuccess"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>token</pt>
+                    <pd>在你的服务器上生成的用于鉴权的 Token。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>delegate</pt>
+                    <pd><codeph>AgoraRtcEngine</codeph> 的回调类。你可以通过该参数传入的 <codeph>delegate</codeph> 对象获取多个频道的回调事件。详见 <xref keyref="IRtcEngineEventHandler"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>mediaOptions</pt>
+                    <pd>频道媒体选项。详见 <xref keyref="ChannelMediaOptions"/>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>joinSuccessBlock</pt>
                     <pd>用户加入频道成功时触发。<codeph>joinSuccessBlock</codeph> 的优先级高于 <xref keyref="onJoinChannelSuccess"/>。当两者同时实现时，<xref keyref="onJoinChannelSuccess"/> 不生效。声网建议将 <codeph>joinSuccessBlock</codeph> 设置为 <xref keyref="NULL"/>，以使用 <xref keyref="onJoinChannelSuccess"/>。</pd>
                 </plentry>
@@ -140,7 +194,23 @@
                     </li>
                 </ul>
             </p>
-            <p props="ios mac">
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。
+                        <ul>
+                            <li>-2：参数无效。例如，Token 无效，<codeph>uid</codeph> 参数未设置为整数，或 <xref keyref="ChannelMediaOptions"/> 中的成员值无效。请传入有效参数并重新加入频道。</li>
+                            <li>-3：初始化 <xref keyref="IRtcEngine"/> 对象失败。请重新初始化该对象。</li>
+                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。请先初始化该对象再调用该方法。</li>
+                            <li>-8：<xref keyref="IRtcEngine"/> 对象的内部状态错误。常见原因是在调用 <xref keyref="startEchoTest3"/> 开始回声测试后，未调用 <xref keyref="stopEchoTest"/> 停止测试就调用该方法加入频道。请先调用 <xref keyref="stopEchoTest"/>。</li>
+                            <li>-17：加入频道请求被拒绝。常见原因是用户已在频道中。声网建议通过 <xref keyref="onConnectionStateChanged"/> 回调判断用户是否在频道中。仅当收到 <codeph>AgoraConnectionStateDisconnected</codeph>（1）状态时再调用该方法。</li>
+                            <li>-102：频道名无效。请在 <codeph>channelId</codeph> 中传入有效的频道名重新加入频道。</li>
+                            <li>-121：用户 ID 无效。请在 <codeph>uid</codeph> 中传入有效的用户 ID 重新加入频道。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。

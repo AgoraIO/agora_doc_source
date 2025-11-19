@@ -18,18 +18,22 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int adjustLoopbackSignalVolume(int volume) = 0;</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)adjustLoopbackSignalVolume:(NSInteger)volume NS_SWIFT_NAME(adjustLoopbackSignalVolume(_:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">在调用 <xref keyref="enableLoopbackRecording"/> 启用环路音频采集后，可以调用该方法调整声卡采集信号的音量。</p>
+            <p props="mac">调用 <xref keyref="enableLoopbackRecording"/> 后，可以调用该方法调节声卡采集信号的音量。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p props="cpp">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
             <p props="cpp">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -38,11 +42,21 @@
                     <pt>volume</pt>
                     <pd>混音音量。取值范围为 0 到 100。（默认值为 100，表示原始音量。）</pd>
                 </plentry>
+                <plentry props="mac">
+                    <pt>volume</pt>
+                    <pd>输入参数，混音音量。取值范围为 0 到 100。（默认值为 100，表示原始音量。）</pd>
+                </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
             <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

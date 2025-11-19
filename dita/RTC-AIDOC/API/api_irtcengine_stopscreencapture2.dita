@@ -18,19 +18,23 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int stopScreenCapture(VIDEO_SOURCE_TYPE sourceType) = 0;</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)stopScreenCapture:(AgoraVideoSourceType)sourceType NS_SWIFT_NAME(stopScreenCapture(_:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">如果你通过调用 <codeph>startScreenCapture</codeph> 开始了一个或多个屏幕的采集，则需要调用该方法停止屏幕采集，并通过 <codeph>sourceType</codeph> 参数指定要停止采集的屏幕。</p>
+            <p props="mac">调用 <xref keyref="startScreenCapture2"/> 开始从一个或多个屏幕采集屏幕后，需调用此方法停止屏幕采集。你需要通过 <codeph>sourceType</codeph> 参数指定要停止的屏幕。</p>
             <note props="cpp">该方法仅适用于 macOS 和 Windows 平台。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p props="cpp">你可以在加入频道前或后调用此方法。</p>
+            <p props="mac">你可以在加入频道前或后调用此方法。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
             <p props="cpp">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -39,11 +43,21 @@
                     <pt>sourceType</pt>
                     <pd>视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
                 </plentry>
+                <plentry props="mac">
+                    <pt>sourceType</pt>
+                    <pd>视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
             <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

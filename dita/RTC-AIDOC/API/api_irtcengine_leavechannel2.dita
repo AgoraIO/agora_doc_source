@@ -28,19 +28,26 @@ leaveChannelBlock:(void (^ _Nullable)(AgoraChannelStats * _Nonnull))leaveChannel
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">调用该方法后，SDK 会终止音视频互动，离开当前频道，并释放与会话相关的所有资源。如果你调用了 <xref keyref="joinChannelEx"/> 加入了多个频道，调用该方法会离开你加入的所有频道。</p>
             <p props="android">调用该方法后，SDK 会终止音视频互动，离开当前频道，并释放与会话相关的所有资源。如果调用了 <xref keyref="joinChannelEx"/> 加入了多个频道，调用该方法会离开所有已加入的频道。</p>
-            <p props="ios mac">调用该方法后，SDK 会终止音视频互动，离开当前频道，并释放与会话相关的所有资源。加入频道后，你必须调用该方法或 <xref keyref="leaveChannel"/> 来结束通话，否则无法开始下一次通话。如果你通过 <xref keyref="joinChannelEx"/> 加入了多个频道，调用该方法会离开你加入的所有频道。</p>
+            <p props="ios">调用该方法后，SDK 会终止音视频互动，离开当前频道，并释放与会话相关的所有资源。加入频道后，你必须调用该方法或 <xref keyref="leaveChannel"/> 来结束通话，否则无法开始下一次通话。如果你通过 <xref keyref="joinChannelEx"/> 加入了多个频道，调用该方法会离开你加入的所有频道。</p>
+            <p props="mac">调用该方法后，SDK 会终止音视频互动，离开当前频道，并释放与会话相关的所有资源。加入频道后，你必须调用该方法或 <xref keyref="leaveChannel"/> 来结束通话，否则无法开始下一次通话。如果你通过 <xref keyref="joinChannelEx"/> 加入了多个频道，调用该方法会离开你加入的所有频道。</p>
             <note props="cpp">如果在调用该方法后立即调用 <xref keyref="release_IVideoDeviceManager"/>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。该方法为异步调用。当该方法返回时，并不意味着用户已经离开频道。</note>
             <note props="android">如果在调用该方法后立即调用 <xref keyref="release_ILocalSpatialAudioEngine"/>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。该方法为异步调用，方法返回时并不代表用户已离开频道。</note>
             <note props="ios">如果在调用该方法后立即调用 <xref keyref="release_ILocalSpatialAudioEngine"/>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。该方法为异步调用，方法返回时并不代表你已离开频道。</note>
-            <note props="mac">如果在调用该方法后立即调用 <xref keyref="release"/>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。该方法为异步调用，方法返回时并不代表你已离开频道。</note>
+            <note props="mac">如果在调用该方法后立即调用 <xref keyref="release_ILocalSpatialAudioEngine"/>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。该方法为异步调用，方法返回时并不代表你已离开频道。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">在加入频道后调用该方法。</p>
+            <p props="cpp">在加入频道后调用该方法。</p>
+            <p props="android">在加入频道后调用该方法。</p>
+            <p props="ios">在加入频道后调用该方法。</p>
+            <p props="mac">在加入频道后调用该方法。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="related" deliveryTarget="details">
             <title>相关回调</title>
@@ -58,11 +65,23 @@ leaveChannelBlock:(void (^ _Nullable)(AgoraChannelStats * _Nonnull))leaveChannel
                     <pt>options</pt>
                     <pd>离开频道的选项。详见 <xref keyref="LeaveChannelOptions"/>。</pd>
                 </plentry>
-                <plentry props="android ios mac">
+                <plentry props="android">
                     <pt>options</pt>
                     <pd>离开频道的选项，详见 <xref keyref="LeaveChannelOptions"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>options</pt>
+                    <pd>离开频道的选项，详见 <xref keyref="LeaveChannelOptions"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>leaveChannelBlock</pt>
+                    <pd>离开频道的回调。在该回调中返回通话统计信息，详见 <xref keyref="RtcStats"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>options</pt>
+                    <pd>离开频道的选项，详见 <xref keyref="LeaveChannelOptions"/>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>leaveChannelBlock</pt>
                     <pd>离开频道的回调。在该回调中返回通话统计信息，详见 <xref keyref="RtcStats"/>。</pd>
                 </plentry>
@@ -70,7 +89,25 @@ leaveChannelBlock:(void (^ _Nullable)(AgoraChannelStats * _Nonnull))leaveChannel
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

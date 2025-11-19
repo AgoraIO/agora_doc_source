@@ -44,7 +44,7 @@
                     <li>在在线课堂中，老师可以将与学生互动的音频在本地混合后转发到其他频道。</li>
                 </ul>
             </p>
-            <p props="ios mac">该方法支持在本地将多个音频流合并为一个音频流。例如，将本地麦克风采集的音频流、媒体播放器、声卡和远端用户的音频流合并为一个音频流，并将该合并后的音频流发布到频道中。
+            <p props="ios">该方法支持在本地将多个音频流合并为一个音频流。例如，将本地麦克风采集的音频流、媒体播放器、声卡和远端用户的音频流合并为一个音频流，并将该合并后的音频流发布到频道中。
                 <ul>
                     <li>如果你希望混合本地采集的音频流，可以在 <codeph>publishMixedAudioTrack</codeph> 中设置为 <xref keyref="true"/>，然后将混合后的音频流发布到频道中。</li>
                     <li>如果你希望混合远端音频流，请确保远端音频流已在频道中发布，并且你已订阅需要混合的音频流。
@@ -55,17 +55,35 @@
 调用时机：你可以在加入频道前或后调用此方法。</li>
                 </ul>
             </p>
-            <note props="android cpp ios mac">为确保音频质量，建议混音的音频流数量不超过 10 路。</note>
+            <p props="mac">该方法支持在本地将多个音频流合并为一个音频流。例如，将本地麦克风采集的音频流、媒体播放器、声卡和远端用户的音频流合并为一个音频流，并将该合并后的音频流发布到频道中。
+                <ul>
+                    <li>如果你希望混合本地采集的音频流，可以在 <codeph>publishMixedAudioTrack</codeph> 中设置为 <xref keyref="true"/>，然后将混合后的音频流发布到频道中。</li>
+                    <li>如果你希望混合远端音频流，请确保远端音频流已在频道中发布，并且你已订阅需要混合的音频流。
+适用场景：</li>
+                    <li>利用本地视频合图功能，可以同时采集并发布合图视频流所关联的音频流。</li>
+                    <li>在直播场景中，用户可以接收频道内的音频流，在本地混合多个音频流后，将混合后的音频流转发到其他频道。</li>
+                    <li>在在线课堂中，老师可以将与学生互动的音频在本地混合后转发到其他频道。
+调用时机：你可以在加入频道前或后调用此方法。</li>
+                </ul>
+            </p>
+            <note props="cpp">为确保音频质量，建议混音的音频流数量不超过 10 路。</note>
+            <note props="android">为确保音频质量，建议混音的音频流数量不超过 10 路。</note>
+            <note props="ios">为确保音频质量，建议混音的音频流数量不超过 10 路。</note>
+            <note props="mac">为确保音频质量，建议混音的音频流数量不超过 10 路。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p props="cpp">你可以在加入频道前或后调用该方法。</p>
             <p props="android">你可以在加入频道前或加入频道后调用该方法。</p>
-            <p props="ios mac">你可以在加入频道前或后调用此方法。</p>
+            <p props="ios">你可以在加入频道前或后调用此方法。</p>
+            <p props="mac">你可以在加入频道前或后调用此方法。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -74,7 +92,15 @@
                     <pt>config</pt>
                     <pd>本地音频混音配置参数。详见 <xref keyref="LocalAudioMixerConfiguration"/>。</pd>
                 </plentry>
-                <plentry props="android ios mac">
+                <plentry props="android">
+                    <pt>config</pt>
+                    <pd>用于配置本地音频混音的参数。详见 <xref keyref="LocalAudioMixerConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>config</pt>
+                    <pd>用于配置本地音频混音的参数。详见 <xref keyref="LocalAudioMixerConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>config</pt>
                     <pd>用于配置本地音频混音的参数。详见 <xref keyref="LocalAudioMixerConfiguration"/>。</pd>
                 </plentry>
@@ -82,7 +108,7 @@
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp">
+            <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。
@@ -92,7 +118,27 @@
                     </li>
                 </ul>
             </p>
-            <p props="ios mac">
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。
+                        <ul>
+                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。请在调用该方法前先初始化 <xref keyref="IRtcEngine"/> 对象。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。
+                        <ul>
+                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要先初始化 <xref keyref="IRtcEngine"/> 对象再调用此方法。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。

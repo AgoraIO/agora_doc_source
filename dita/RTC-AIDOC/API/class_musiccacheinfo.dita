@@ -14,18 +14,14 @@
     int64_t songCode;
     MUSIC_CACHE_STATUS_TYPE status;
 };</codeblock>
-                <codeblock props="android" outputclass="language-java">public class MusicCacheInfo {
-  public long songCode;
-  public int status;
-}</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMusicCacheInfo : NSObject
 @property(nonatomic, assign) NSInteger songCode;
 @property(nonatomic, assign) AgoraMusicCacheStatusType statusType;
 @end</codeblock>
-                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMusicCacheInfo : NSObject
-@property(nonatomic, assign) NSInteger songCode;
-@property(nonatomic, assign) AgoraMusicCacheStatusType statusType;
-@end</codeblock>
+                <codeblock props="android" outputclass="language-java">public class MusicCacheInfo {
+  public long songCode;
+  public int status;
+}</codeblock>
             </p>
         </section>
         <section id="parameters" deliveryTarget="details">
@@ -39,6 +35,14 @@
                     <pt>status</pt>
                     <pd>音乐资源的缓存状态。详见 <xref keyref="MUSIC_CACHE_STATUS_TYPE"/>。</pd>
                 </plentry>
+                <plentry props="ios">
+                    <pt>songCode</pt>
+                    <pd>音乐资源的 ID，用于标识该音乐资源。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>statusType</pt>
+                    <pd>音乐资源的缓存状态，详见 <xref keyref="MUSIC_CACHE_STATUS_TYPE"/>。</pd>
+                </plentry>
                 <plentry props="android">
                     <pt>songCode</pt>
                     <pd>音乐资源的标识符，用于标识音乐资源。</pd>
@@ -51,18 +55,6 @@
                             <li><codeph>MUSIC_CACHE_STATUS_TYPE_CACHING</codeph> (1)：音乐资源正在缓存中。</li>
                         </ul>
                     </pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>songCode</pt>
-                    <pd>音乐资源的 ID，用于标识该音乐资源。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>statusType</pt>
-                    <pd>音乐资源的缓存状态，详见 <xref keyref="MUSIC_CACHE_STATUS_TYPE"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>statusType</pt>
-                    <pd>音乐资源的缓存状态，详见 <codeph>AgoraMusicCacheStatusType</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

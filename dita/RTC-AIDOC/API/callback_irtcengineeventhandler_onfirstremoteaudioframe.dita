@@ -34,11 +34,15 @@
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
             <p props="android">该回调在 SDK 收到来自某个远端用户的首帧音频时被触发。</p>
-            <p props="ios mac">该回调在接收到并解码远端用户的第一帧音频时触发。</p>
+            <p props="ios">该回调在接收到并解码远端用户的第一帧音频时触发。</p>
+            <p props="mac">该回调在接收到并解码远端用户的第一帧音频时触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -63,15 +67,27 @@
                     <pt>elapsed</pt>
                     <pd>从本地用户调用 <codeph>joinChannel</codeph> 到 SDK 触发该回调的时间（毫秒）。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>engine</pt>
                     <pd>声网引擎实例。详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>uid</pt>
                     <pd>远端用户 ID。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>elapsed</pt>
+                    <pd>从本地用户调用 <codeph>joinChannelByToken</codeph> 到该回调被触发的时间（毫秒）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd>声网引擎实例。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>远端用户 ID。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>elapsed</pt>
                     <pd>从本地用户调用 <codeph>joinChannelByToken</codeph> 到该回调被触发的时间（毫秒）。</pd>
                 </plentry>

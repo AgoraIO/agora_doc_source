@@ -18,6 +18,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int startScreenCapture(VIDEO_SOURCE_TYPE sourceType, const ScreenCaptureConfiguration&amp; config) = 0;</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)startScreenCapture:(AgoraVideoSourceType)sourceType config:(AgoraScreenCaptureConfiguration * _Nullable)config NS_SWIFT_NAME(startScreenCapture(_:config:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -34,10 +35,12 @@
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p props="cpp">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
             <p props="cpp">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -50,11 +53,25 @@
                     <pt>config</pt>
                     <pd>屏幕采集的配置。详见 <xref keyref="ScreenCaptureConfiguration"/>。</pd>
                 </plentry>
+                <plentry props="mac">
+                    <pt>sourceType</pt>
+                    <pd>屏幕来源类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>config</pt>
+                    <pd>屏幕共享的配置，详见 <xref keyref="ScreenCaptureConfiguration"/>。</pd>
+                </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
             <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

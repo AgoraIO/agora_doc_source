@@ -18,23 +18,26 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int initialize(const MusicContentCenterConfiguration &amp; configuration) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int initialize(MusicContentCenterConfiguration configuration);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">+ (instancetype _Nullable)sharedContentCenterWithConfig:(AgoraMusicContentCenterConfig *)config NS_SWIFT_NAME(sharedContentCenter(config:));</codeblock>
-                <codeblock props="mac" outputclass="language-objectivec">+ (instancetype _Nullable)sharedContentCenterWithConfig:(AgoraMusicContentCenterConfig *)config NS_SWIFT_NAME(sharedContentCenter(config:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int initialize(MusicContentCenterConfiguration configuration);</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">在调用 <xref keyref="IMusicContentCenter"/> 中的其他方法前，必须先调用该方法进行初始化。</p>
+            <p props="ios">你必须先调用该方法初始化 <xref keyref="IMusicContentCenter"/>，然后才能调用该类中的其他方法。</p>
             <p props="android">在调用 <xref keyref="initialize_IMusicContentCenter"/> 方法前，必须先进行初始化，才能调用其他方法。</p>
-            <p props="ios mac">你必须先调用该方法初始化 <xref keyref="IMusicContentCenter"/>，然后才能调用该类中的其他方法。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="ios">无。</p>
+            <p props="android">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -43,13 +46,13 @@
                     <pt>configuration</pt>
                     <pd><xref keyref="IMusicContentCenter"/> 的初始化配置。详见 <xref keyref="MusicContentCenterConfiguration"/>。</pd>
                 </plentry>
+                <plentry props="ios">
+                    <pt>config</pt>
+                    <pd>用于初始化 <xref keyref="IMusicContentCenter"/> 的配置，详见 <xref keyref="MusicContentCenterConfiguration"/>。</pd>
+                </plentry>
                 <plentry props="android">
                     <pt>configuration</pt>
                     <pd><xref keyref="IMusicContentCenter"/> 的配置参数。详见 <xref keyref="MusicContentCenterConfiguration"/>。</pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>config</pt>
-                    <pd>用于初始化 <xref keyref="IMusicContentCenter"/> 的配置，详见 <xref keyref="MusicContentCenterConfiguration"/>。</pd>
                 </plentry>
             </parml>
         </section>
@@ -61,13 +64,13 @@
                     <li>&lt; 0：方法调用失败。详见 <codeph>Error Codes</codeph>。</li>
                 </ul>
             </p>
+            <p props="ios">方法调用成功时，返回一个 <xref keyref="IMusicContentCenter"/> 对象。方法调用失败时，返回 <xref keyref="NULL"/>。</p>
             <p props="android">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>
                 </ul>
             </p>
-            <p props="ios mac">方法调用成功时，返回一个 <xref keyref="IMusicContentCenter"/> 对象。方法调用失败时，返回 <xref keyref="NULL"/>。</p>
         </section>
     </refbody>
 </reference>

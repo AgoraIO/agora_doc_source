@@ -23,19 +23,29 @@
             pitch:(double)pitch
               pan:(double)pan
              gain:(NSInteger)gain NS_SWIFT_NAME(playEffect(_:filePath:loopCount:pitch:pan:gain:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)playEffect:(int)soundId
+         filePath:(NSString* _Nonnull)filePath
+        loopCount:(NSInteger)loopCount
+            pitch:(double)pitch
+              pan:(double)pan
+             gain:(NSInteger)gain NS_SWIFT_NAME(playEffect(_:filePath:loopCount:pitch:pan:gain:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="ios">要同时播放多个音效文件，你可以使用不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph> 多次调用该方法。为获得最佳用户体验，声网建议你不要同时播放超过三个音效文件。</p>
+            <p props="mac">要同时播放多个音效文件，你可以使用不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph> 多次调用该方法。为获得最佳用户体验，声网建议你不要同时播放超过三个音效文件。</p>
             <note props="ios">如果你需要播放在线音效文件，声网建议你先将其缓存到本地设备，调用 <xref keyref="preloadEffect2"/> 将其预加载到内存中，再调用该方法播放音效。否则，可能因加载超时或失败导致播放失败或无声。</note>
+            <note props="mac">如果你需要播放在线音效文件，声网建议你先将其缓存到本地设备，调用 <xref keyref="preloadEffect2"/> 将其预加载到内存中，再调用该方法播放音效。否则，可能因加载超时或失败导致播放失败或无声。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p props="ios">你可以在加入频道前或加入频道后调用该方法。</p>
+            <p props="mac">你可以在加入频道前或加入频道后调用该方法。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
             <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -77,11 +87,54 @@
                     <pt>gain</pt>
                     <pd>音效的音量。取值范围为 0 到 100。默认值为 100，表示原始音量。值越小，音量越低。</pd>
                 </plentry>
+                <plentry props="mac">
+                    <pt>soundId</pt>
+                    <pd>音效 ID。每个音效文件的 ID 是唯一的。
+注意：如果你已通过调用 <xref keyref="preloadEffect2"/> 将音效预加载到内存中，请确保该参数的值与 <xref keyref="preloadEffect2"/> 中的 <codeph>soundId</codeph> 相同。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>filePath</pt>
+                    <pd>文件路径。支持以 <codeph>ipod-library://</codeph> 开头的路径、URL 以及本地文件的绝对路径，路径需精确到文件名及扩展名。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV 和 3GP。详见 <codeph>Supported Audio Formats</codeph>。
+注意：如果你已通过调用 <xref keyref="preloadEffect2"/> 将音效预加载到内存中，请确保该参数的值与 <xref keyref="preloadEffect2"/> 中的 <codeph>filePath</codeph> 相同。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>loopCount</pt>
+                    <pd>音效循环播放的次数。
+                        <ul>
+                            <li>≥ 0：播放的次数。例如，1 表示循环一次，即总共播放两次。</li>
+                            <li>-1：无限循环播放该音效文件。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>pitch</pt>
+                    <pd>音效的音调。取值范围为 0.5 到 2.0。默认值为 1.0，表示原始音调。值越小，音调越低。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>pan</pt>
+                    <pd>音效的空间位置。取值范围为 -1.0 到 1.0：
+                        <ul>
+                            <li>-1.0：音效从你左侧传来。</li>
+                            <li>0.0：音效从你正前方传来。</li>
+                            <li>1.0：音效从你右侧传来。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>gain</pt>
+                    <pd>音效的音量。取值范围为 0 到 100。默认值为 100，表示原始音量。值越小，音量越低。</pd>
+                </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
             <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

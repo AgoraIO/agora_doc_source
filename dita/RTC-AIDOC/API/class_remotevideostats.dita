@@ -96,11 +96,11 @@
         <section id="parameters" deliveryTarget="details">
             <title>属性</title>
             <parml>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>uid</pt>
                     <pd>发送视频流的远端用户 ID。</pd>
                 </plentry>
-                <plentry props="cpp ios mac">
+                <plentry props="cpp">
                     <pt>delay</pt>
                     <pd>视频延迟（毫秒）。</pd>
                 </plentry>
@@ -108,15 +108,15 @@
                     <pt>e2eDelay</pt>
                     <pd>端到端视频延迟（毫秒），即从远端用户采集视频到本地用户接收并渲染视频所经历的时间。</pd>
                 </plentry>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>width</pt>
                     <pd>视频宽度（像素）。</pd>
                 </plentry>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>height</pt>
                     <pd>视频高度（像素）。</pd>
                 </plentry>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
                     <pt>receivedBitrate</pt>
                     <pd>自上次统计以来接收到的远端视频码率（Kbps）。</pd>
                 </plentry>
@@ -132,11 +132,11 @@
                     <pt>rendererOutputFrameRate</pt>
                     <pd>远端视频的渲染输出帧率（fps）。</pd>
                 </plentry>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
                     <pt>frameLossRate</pt>
                     <pd>远端视频的丢帧率（%）。</pd>
                 </plentry>
-                <plentry props="cpp ios mac">
+                <plentry props="cpp">
                     <pt>packetLossRate</pt>
                     <pd>使用抗丢包技术后远端视频的丢包率（%）。</pd>
                 </plentry>
@@ -144,7 +144,7 @@
                     <pt>rxStreamType</pt>
                     <pd>视频流类型。详见 <xref keyref="VIDEO_STREAM_TYPE"/>。</pd>
                 </plentry>
-                <plentry props="cpp ios mac">
+                <plentry props="cpp">
                     <pt>totalFrozenTime</pt>
                     <pd>远端用户加入频道后远端视频流的总卡顿时长（毫秒）。在帧率不低于 5 fps 的视频通话中，若相邻两帧可渲染视频帧的时间间隔超过 500 毫秒，则视为视频卡顿。</pd>
                 </plentry>
@@ -152,7 +152,7 @@
                     <pt>frozenRate</pt>
                     <pd>视频卡顿时长占视频可用总时长的百分比（%）。只要远端用户在加入频道后未停止发送视频流或未关闭视频模块，视频即视为可用。</pd>
                 </plentry>
-                <plentry props="cpp ios mac">
+                <plentry props="cpp">
                     <pt>avSyncTimeMs</pt>
                     <pd>音频领先视频的时间（毫秒）。</pd>
                 </plentry>
@@ -173,6 +173,10 @@
                     <pd>接收到的视频字节总数（字节），包括 FEC 字节，按聚合值统计。</pd>
                 </plentry>
                 <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>发送视频流的远端用户 ID。</pd>
+                </plentry>
+                <plentry props="android">
                     <pt>delay</pt>
                     <pd>该字段已废弃。在音视频同步场景下，你可以通过 <xref keyref="RemoteAudioStats"/> 中的 <codeph>networkTransportDelay</codeph> 和 <codeph>jitterBufferDelay</codeph> 获取视频延迟数据。视频延迟（毫秒）。</pd>
                 </plentry>
@@ -181,12 +185,28 @@
                     <pd>端到端的视频延迟（毫秒），即从远端用户采集视频到本地用户接收并渲染视频的时间间隔。</pd>
                 </plentry>
                 <plentry props="android">
+                    <pt>width</pt>
+                    <pd>视频宽度（像素）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>height</pt>
+                    <pd>视频高度（像素）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>receivedBitrate</pt>
+                    <pd>自上次统计以来接收到的远端视频码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="android">
                     <pt>decoderOutputFrameRate</pt>
                     <pd>解码远端视频的帧率（fps）。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>rendererOutputFrameRate</pt>
                     <pd>渲染远端视频的帧率（fps）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>frameLossRate</pt>
+                    <pd>远端视频的丢帧率（%）。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>packetLossRate</pt>
@@ -229,51 +249,147 @@
                     <pt>rxVideoBytes</pt>
                     <pd>累计接收到的视频字节数（字节）。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>uid</pt>
                     <pd>发送该视频流的远端用户 ID。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>delay</pt>
+                    <pd>视频延迟（毫秒）。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>e2eDelay</pt>
                     <pd>端到端的视频延迟（毫秒）。即从远端用户采集视频到本地用户接收并渲染视频的时间。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>width</pt>
                     <pd>视频的宽度（像素）。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>height</pt>
                     <pd>视频的高度（像素）。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>receivedBitrate</pt>
+                    <pd>自上次统计以来接收到的远端视频码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>rxStreamType</pt>
                     <pd>视频流的类型。详见 <xref keyref="VIDEO_STREAM_TYPE"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>decoderOutputFrameRate</pt>
                     <pd>远端视频解码的帧率（fps）。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>rendererOutputFrameRate</pt>
                     <pd>远端视频渲染的帧率（fps）。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>frameLossRate</pt>
+                    <pd>远端视频的丢帧率（%）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>packetLossRate</pt>
+                    <pd>使用抗丢包技术后远端视频的丢包率（%）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>totalFrozenTime</pt>
+                    <pd>远端用户加入频道后远端视频流的总卡顿时长（毫秒）。在帧率不低于 5 fps 的视频通话中，若相邻两帧可渲染视频帧的时间间隔超过 500 毫秒，则视为视频卡顿。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>totalActiveTime</pt>
                     <pd>视频的总可用时长（毫秒）。只要远端用户在加入频道后未停止发送视频流或未关闭视频模块，视频即为可用状态。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>publishDuration</pt>
                     <pd>远端视频流的总时长（毫秒）。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>frozenRate</pt>
                     <pd>视频卡顿时长占视频总可用时长的百分比（%）。只要远端用户在加入频道后未停止发送视频流或未关闭视频模块，视频即为可用状态。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>avSyncTimeMs</pt>
+                    <pd>音频领先视频的时间（毫秒）。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>mosValue</pt>
                     <pd>在统计周期内远端视频流的质量。该值由声网实时视频 MOS（Mean Opinion Score）算法评估，取值范围为 [0, 500]。将该值除以 100 可得 MOS 评分，范围为 0 到 5，分数越高表示视频质量越好。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>rxVideoBytes</pt>
+                    <pd>接收到的视频字节总数（字节），为累计值。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>发送该视频流的远端用户 ID。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>delay</pt>
+                    <pd>视频延迟（毫秒）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>e2eDelay</pt>
+                    <pd>端到端的视频延迟（毫秒）。即从远端用户采集视频到本地用户接收并渲染视频的时间。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>width</pt>
+                    <pd>视频的宽度（像素）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>height</pt>
+                    <pd>视频的高度（像素）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>receivedBitrate</pt>
+                    <pd>自上次统计以来接收到的远端视频码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>rxStreamType</pt>
+                    <pd>视频流的类型。详见 <xref keyref="VIDEO_STREAM_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>decoderOutputFrameRate</pt>
+                    <pd>远端视频解码的帧率（fps）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>rendererOutputFrameRate</pt>
+                    <pd>远端视频渲染的帧率（fps）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>frameLossRate</pt>
+                    <pd>远端视频的丢帧率（%）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>packetLossRate</pt>
+                    <pd>使用抗丢包技术后远端视频的丢包率（%）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>totalFrozenTime</pt>
+                    <pd>远端用户加入频道后远端视频流的总卡顿时长（毫秒）。在帧率不低于 5 fps 的视频通话中，若相邻两帧可渲染视频帧的时间间隔超过 500 毫秒，则视为视频卡顿。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>totalActiveTime</pt>
+                    <pd>视频的总可用时长（毫秒）。只要远端用户在加入频道后未停止发送视频流或未关闭视频模块，视频即为可用状态。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>publishDuration</pt>
+                    <pd>远端视频流的总时长（毫秒）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>frozenRate</pt>
+                    <pd>视频卡顿时长占视频总可用时长的百分比（%）。只要远端用户在加入频道后未停止发送视频流或未关闭视频模块，视频即为可用状态。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>avSyncTimeMs</pt>
+                    <pd>音频领先视频的时间（毫秒）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>mosValue</pt>
+                    <pd>在统计周期内远端视频流的质量。该值由声网实时视频 MOS（Mean Opinion Score）算法评估，取值范围为 [0, 500]。将该值除以 100 可得 MOS 评分，范围为 0 到 5，分数越高表示视频质量越好。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>rxVideoBytes</pt>
                     <pd>接收到的视频字节总数（字节），为累计值。</pd>
                 </plentry>

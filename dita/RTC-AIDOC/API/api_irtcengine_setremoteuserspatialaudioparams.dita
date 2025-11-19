@@ -28,15 +28,22 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">调用 <xref keyref="enableSpatialAudio"/> 后调用该方法。设置成功后，你可以听到具有空间感的远端用户的声音。</p>
             <p props="android">在调用 <xref keyref="enableSpatialAudio"/> 后调用此方法。设置成功后，你可以听到具有空间感的远端用户的声音。</p>
-            <p props="ios mac">调用 <xref keyref="enableSpatialAudio"/> 方法后，使用该方法设置远端用户的空间音效参数。成功设置后，你可以听到具有空间感的远端用户的声音。</p>
+            <p props="ios">调用 <xref keyref="enableSpatialAudio"/> 方法后，使用该方法设置远端用户的空间音效参数。成功设置后，你可以听到具有空间感的远端用户的声音。</p>
+            <p props="mac">调用 <xref keyref="enableSpatialAudio"/> 方法后，使用该方法设置远端用户的空间音效参数。成功设置后，你可以听到具有空间感的远端用户的声音。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -45,7 +52,7 @@
                     <pt>uid</pt>
                     <pd>远端用户 ID。该参数必须与你调用加入频道方法时传入的用户 ID 相同。</pd>
                 </plentry>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
                     <pt>params</pt>
                     <pd>空间音效参数。详见 <xref keyref="SpatialAudioParams"/>。</pd>
                 </plentry>
@@ -53,15 +60,49 @@
                     <pt>uid</pt>
                     <pd>用户 ID，必须与该用户加入频道时使用的 ID 相同。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="android">
+                    <pt>params</pt>
+                    <pd>空间音效参数。详见 <xref keyref="SpatialAudioParams"/>。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>uid</pt>
                     <pd>用户 ID。该参数必须与用户加入频道时传入的用户 ID 相同。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>params</pt>
+                    <pd>空间音效参数。详见 <xref keyref="SpatialAudioParams"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>用户 ID。该参数必须与用户加入频道时传入的用户 ID 相同。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>params</pt>
+                    <pd>空间音效参数。详见 <xref keyref="SpatialAudioParams"/>。</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

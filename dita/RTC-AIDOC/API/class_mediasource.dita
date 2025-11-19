@@ -61,11 +61,11 @@
         <section id="parameters" deliveryTarget="details">
             <title>属性</title>
             <parml>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
                     <pt>url</pt>
                     <pd>要播放的媒体文件的 URL。</pd>
                 </plentry>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
                     <pt>uri</pt>
                     <pd>媒体文件的 URI（统一资源标识符）。</pd>
                 </plentry>
@@ -73,7 +73,7 @@
                     <pt>startPos</pt>
                     <pd>播放的起始位置（单位为毫秒）。默认值为 0。</pd>
                 </plentry>
-                <plentry props="cpp ios mac">
+                <plentry props="cpp">
                     <pt>autoPlay</pt>
                     <pd>打开媒体文件后是否自动播放：
                         <ul>
@@ -82,7 +82,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="cpp ios mac">
+                <plentry props="cpp">
                     <pt>enableCache</pt>
                     <pd>播放媒体文件时是否启用缓存：
                         <ul>
@@ -91,7 +91,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="cpp ios mac">
+                <plentry props="cpp">
                     <pt>enableMultiAudioTrack</pt>
                     <pd>播放该媒体文件时是否允许选择不同的音轨：
                         <ul>
@@ -121,6 +121,14 @@
                 <plentry props="cpp">
                     <pt>provider</pt>
                     <pd>自定义媒体资源文件的回调。详见 <xref keyref="IMediaPlayerCustomDataProvider"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>url</pt>
+                    <pd>要播放的媒体文件的 URL。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uri</pt>
+                    <pd>媒体文件的 URI（统一资源标识符）。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>startPos</pt>
@@ -175,11 +183,46 @@
                     <pt>provider</pt>
                     <pd>自定义媒体资源文件的数据提供回调，详见 <xref keyref="IMediaPlayerCustomDataProvider"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>url</pt>
+                    <pd>要播放的媒体文件的 URL。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>uri</pt>
+                    <pd>媒体文件的 URI（统一资源标识符）。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>startPos</pt>
                     <pd>播放的起始位置，单位为毫秒。默认值为 0。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>autoPlay</pt>
+                    <pd>打开媒体文件后是否自动播放：
+                        <ul>
+                            <li><xref keyref="true"/>：（默认）自动播放。</li>
+                            <li><xref keyref="false"/>：不自动播放。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>enableCache</pt>
+                    <pd>播放媒体文件时是否启用缓存：
+                        <ul>
+                            <li><xref keyref="true"/>：启用缓存。</li>
+                            <li><xref keyref="false"/>：（默认）不启用缓存。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>enableMultiAudioTrack</pt>
+                    <pd>播放该媒体文件时是否允许选择不同的音轨：
+                        <ul>
+                            <li><xref keyref="true"/>：允许选择不同音轨。</li>
+                            <li><xref keyref="false"/>：（默认）不允许选择不同音轨。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>isAgoraSource</pt>
                     <pd>要打开的媒体资源是否为通过媒体广播服务分发的直播或点播视频：
                         <ul>
@@ -188,7 +231,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>isLiveSource</pt>
                     <pd>要打开的媒体资源是否为直播流：
                         <ul>
@@ -206,12 +249,69 @@
                     <pd>当 SDK 定位媒体资源数据时触发。详见 <xref keyref="AgoraRtcMediaPlayerCustomSourceOnSeekCallback"/>。</pd>
                 </plentry>
                 <plentry props="mac">
+                    <pt>url</pt>
+                    <pd>要播放的媒体文件的 URL。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uri</pt>
+                    <pd>媒体文件的 URI（统一资源标识符）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>startPos</pt>
+                    <pd>播放的起始位置，单位为毫秒。默认值为 0。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>autoPlay</pt>
+                    <pd>打开媒体文件后是否自动播放：
+                        <ul>
+                            <li><xref keyref="true"/>：（默认）自动播放。</li>
+                            <li><xref keyref="false"/>：不自动播放。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>enableCache</pt>
+                    <pd>播放媒体文件时是否启用缓存：
+                        <ul>
+                            <li><xref keyref="true"/>：启用缓存。</li>
+                            <li><xref keyref="false"/>：（默认）不启用缓存。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>enableMultiAudioTrack</pt>
+                    <pd>播放该媒体文件时是否允许选择不同的音轨：
+                        <ul>
+                            <li><xref keyref="true"/>：允许选择不同音轨。</li>
+                            <li><xref keyref="false"/>：（默认）不允许选择不同音轨。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>isAgoraSource</pt>
+                    <pd>要打开的媒体资源是否为通过媒体广播服务分发的直播或点播视频：
+                        <ul>
+                            <li><xref keyref="true"/>：是。</li>
+                            <li><xref keyref="false"/>：（默认）否。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>isLiveSource</pt>
+                    <pd>要打开的媒体资源是否为直播流：
+                        <ul>
+                            <li><xref keyref="true"/>：是直播流。</li>
+                            <li><xref keyref="false"/>：（默认）不是直播流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>playerOnReadCallback</pt>
-                    <pd>当 SDK 读取媒体资源数据时触发。详见 <codeph>AgoraRtcMediaPlayerCustomSourceOnReadCallback</codeph>。</pd>
+                    <pd>当 SDK 读取媒体资源数据时触发。详见 <xref keyref="AgoraRtcMediaPlayerCustomSourceOnReadCallback"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>playerOnSeekCallback</pt>
-                    <pd>当 SDK 定位媒体资源数据时触发。详见 <codeph>AgoraRtcMediaPlayerCustomSourceOnSeekCallback</codeph>。</pd>
+                    <pd>当 SDK 定位媒体资源数据时触发。详见 <xref keyref="AgoraRtcMediaPlayerCustomSourceOnSeekCallback"/>。</pd>
                 </plentry>
             </parml>
         </section>

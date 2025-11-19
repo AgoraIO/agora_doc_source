@@ -26,16 +26,21 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">当旁路推流状态发生变化时，SDK 会触发该回调，并报告对应的 URL 和当前的旁路推流状态。当出现异常时，你可以参考错误码参数中的详细错误信息进行排查。</p>
             <p props="android">该回调用于指示旁路推流的状态。当旁路推流状态发生变化时，SDK 会触发该回调，并返回对应的 URL 地址和当前的推流状态。当出现异常时，你可以参考错误码参数中的详细错误信息进行排查。</p>
-            <p props="ios mac">当 RTMP 或 RTMPS 推流状态发生变化时，SDK 会触发该回调，用于报告你调用 <codeph>addPublishStreamUrl</codeph> 或 <codeph>removePublishStreamUrl</codeph> 的结果。该回调返回推流地址及其当前的推流状态。当出现异常时，你可以通过 <codeph>reason</codeph> 参数中的详细错误信息进行排查。</p>
+            <p props="ios">当 RTMP 或 RTMPS 推流状态发生变化时，SDK 会触发该回调，用于报告你调用 <codeph>addPublishStreamUrl</codeph> 或 <codeph>removePublishStreamUrl</codeph> 的结果。该回调返回推流地址及其当前的推流状态。当出现异常时，你可以通过 <codeph>reason</codeph> 参数中的详细错误信息进行排查。</p>
+            <p props="mac">当 RTMP 或 RTMPS 推流状态发生变化时，SDK 会触发该回调，用于报告你调用 <codeph>addPublishStreamUrl</codeph> 或 <codeph>removePublishStreamUrl</codeph> 的结果。该回调返回推流地址及其当前的推流状态。当出现异常时，你可以通过 <codeph>reason</codeph> 参数中的详细错误信息进行排查。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
             <p props="android">该回调在旁路推流状态发生变化时被触发。</p>
-            <p props="ios mac">该回调在你调用 <codeph>addPublishStreamUrl</codeph> 或 <codeph>removePublishStreamUrl</codeph> 方法后，推流状态发生变化时被触发。</p>
+            <p props="ios">该回调在你调用 <codeph>addPublishStreamUrl</codeph> 或 <codeph>removePublishStreamUrl</codeph> 方法后，推流状态发生变化时被触发。</p>
+            <p props="mac">该回调在你调用 <codeph>addPublishStreamUrl</codeph> 或 <codeph>removePublishStreamUrl</codeph> 方法后，推流状态发生变化时被触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -97,11 +102,11 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>engine</pt>
                     <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>url</pt>
                     <pd>CDN 推流地址。</pd>
                 </plentry>
@@ -114,12 +119,20 @@
                     <pd>推流的详细错误信息，详见 <xref keyref="RTMP_STREAM_PUBLISH_REASON"/>。</pd>
                 </plentry>
                 <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>url</pt>
+                    <pd>CDN 推流地址。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>state</pt>
-                    <pd>RTMP 或 RTMPS 推流状态，详见 <codeph>AgoraRtmpStreamingState</codeph>。</pd>
+                    <pd>RTMP 或 RTMPS 推流状态，详见 <xref keyref="RTMP_STREAM_PUBLISH_STATE"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>reason</pt>
-                    <pd>推流的详细错误信息，详见 <codeph>AgoraRtmpStreamingReason</codeph>。</pd>
+                    <pd>推流的详细错误信息，详见 <xref keyref="RTMP_STREAM_PUBLISH_REASON"/>。</pd>
                 </plentry>
             </parml>
         </section>

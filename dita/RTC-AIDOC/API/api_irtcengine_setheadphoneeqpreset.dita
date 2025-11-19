@@ -26,21 +26,31 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">该方法主要用于空间音效场景。你可以选择预设的耳机均衡器来聆听音频，以获得预期的音频体验。</p>
             <p props="android">该方法主要用于空间音效场景中。你可以选择预设的耳机均衡器来聆听音频，以实现预期的音频体验。</p>
-            <p props="ios mac">该方法主要用于空间音效场景。你可以选择预设的耳机均衡器来聆听音频，以实现预期的音频体验。</p>
-            <note props="android cpp ios mac">如果你使用的耳机本身已经具有良好的均衡效果，调用该方法可能不会带来显著提升，甚至可能降低体验。</note>
+            <p props="ios">该方法主要用于空间音效场景。你可以选择预设的耳机均衡器来聆听音频，以实现预期的音频体验。</p>
+            <p props="mac">该方法主要用于空间音效场景。你可以选择预设的耳机均衡器来聆听音频，以实现预期的音频体验。</p>
+            <note props="cpp">如果你使用的耳机本身已经具有良好的均衡效果，调用该方法可能不会带来显著提升，甚至可能降低体验。</note>
+            <note props="android">如果你使用的耳机本身已经具有良好的均衡效果，调用该方法可能不会带来显著提升，甚至可能降低体验。</note>
+            <note props="ios">如果你使用的耳机本身已经具有良好的均衡效果，调用该方法可能不会带来显著提升，甚至可能降低体验。</note>
+            <note props="mac">如果你使用的耳机本身已经具有良好的均衡效果，调用该方法可能不会带来显著提升，甚至可能降低体验。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="cpp ios">
+                <plentry props="cpp">
                     <pt>preset</pt>
                     <pd>预设的耳机均衡效果，详见 <xref keyref="HEADPHONE_EQUALIZER_PRESET"/>。</pd>
                 </plentry>
@@ -54,15 +64,49 @@
                         </ul>
                     </pd>
                 </plentry>
+                <plentry props="ios">
+                    <pt>preset</pt>
+                    <pd>预设的耳机均衡效果，详见 <xref keyref="HEADPHONE_EQUALIZER_PRESET"/>。</pd>
+                </plentry>
                 <plentry props="mac">
                     <pt>preset</pt>
-                    <pd>预设的耳机均衡效果，详见 <codeph>AgoraHeadphoneEQPreset</codeph>。</pd>
+                    <pd>预设的耳机均衡效果，详见 <xref keyref="HEADPHONE_EQUALIZER_PRESET"/>。</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。
+                        <ul>
+                            <li>-1：发生通用错误（无具体原因）。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。
+                        <ul>
+                            <li>-1：发生通用错误（无具体原因）。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。
+                        <ul>
+                            <li>-1：发生通用错误（无具体原因）。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。

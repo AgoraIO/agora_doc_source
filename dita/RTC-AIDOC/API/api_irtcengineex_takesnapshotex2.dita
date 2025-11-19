@@ -25,7 +25,14 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="android">该方法为异步调用，方法返回时 SDK 尚未完成截图操作。用于本地视频截图时，会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。如果用户的视频已进行预处理，例如添加水印或美颜，截图结果中会包含这些预处理效果。</p>
-            <p props="ios mac">该方法从指定用户的视频流中截取一帧图像，生成 JPG 图片，并保存到指定路径。
+            <p props="ios">该方法从指定用户的视频流中截取一帧图像，生成 JPG 图片，并保存到指定路径。
+
+该方法为异步调用，调用返回时 SDK 尚未完成截图。
+
+用于本地视频截图时，该方法会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。
+
+如果用户的视频已进行预处理（如添加水印或美颜），截图结果将包含预处理效果。</p>
+            <p props="mac">该方法从指定用户的视频流中截取一帧图像，生成 JPG 图片，并保存到指定路径。
 
 该方法为异步调用，调用返回时 SDK 尚未完成截图。
 
@@ -49,12 +56,17 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp">请在调用 <xref keyref="joinChannelEx"/> 后调用该方法。</p>
-            <p props="ios mac">请在调用 <codeph>joinChannelExByToken</codeph> 之后调用该方法。</p>
+            <p props="cpp">请在调用 <xref keyref="joinChannelEx"/> 后调用该方法。</p>
+            <p props="android">请在调用 <xref keyref="joinChannelEx"/> 后调用该方法。</p>
+            <p props="ios">请在调用 <codeph>joinChannelExByToken</codeph> 之后调用该方法。</p>
+            <p props="mac">请在调用 <codeph>joinChannelExByToken</codeph> 之后调用该方法。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="related" deliveryTarget="details">
             <title>相关回调</title>
@@ -63,7 +75,7 @@
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
                     <pt>connection</pt>
                     <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
@@ -76,22 +88,64 @@
                     <pd>截图配置。详见 <xref keyref="SnapshotConfig"/>。</pd>
                 </plentry>
                 <plentry props="android">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="android">
                     <pt>uid</pt>
                     <pd>用户 ID。若要截取本地用户的视频，设置为 0。</pd>
                 </plentry>
-                <plentry props="android ios mac">
+                <plentry props="android">
                     <pt>config</pt>
                     <pd>截图的配置信息。详见 <xref keyref="SnapshotConfig"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>uid</pt>
                     <pd>用户 ID。如果要截取本地用户的视频，设置 <codeph>uid</codeph> 为 0。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>config</pt>
+                    <pd>截图的配置信息。详见 <xref keyref="SnapshotConfig"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>用户 ID。如果要截取本地用户的视频，设置 <codeph>uid</codeph> 为 0。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>config</pt>
+                    <pd>截图的配置信息。详见 <xref keyref="SnapshotConfig"/>。</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

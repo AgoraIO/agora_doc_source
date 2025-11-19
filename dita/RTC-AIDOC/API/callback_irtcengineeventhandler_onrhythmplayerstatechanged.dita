@@ -27,17 +27,23 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="android">该回调用于报告虚拟节拍器的当前状态，指示本地音频流的状态，帮助你在音频异常发生时排查问题。</p>
-            <p props="ios mac">当虚拟节拍器状态发生变化时，SDK 会触发该回调以报告当前虚拟节拍器的状态。该回调指示本地音频流的状态，并帮助你在音频异常发生时排查问题。</p>
+            <p props="ios">当虚拟节拍器状态发生变化时，SDK 会触发该回调以报告当前虚拟节拍器的状态。该回调指示本地音频流的状态，并帮助你在音频异常发生时排查问题。</p>
+            <p props="mac">当虚拟节拍器状态发生变化时，SDK 会触发该回调以报告当前虚拟节拍器的状态。该回调指示本地音频流的状态，并帮助你在音频异常发生时排查问题。</p>
             <note props="cpp">该回调仅适用于 Android 和 iOS 平台。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
             <p props="cpp">当虚拟节拍器状态发生变化时触发。</p>
-            <p props="android ios mac">该回调在虚拟节拍器状态发生变化时被触发。</p>
+            <p props="android">该回调在虚拟节拍器状态发生变化时被触发。</p>
+            <p props="ios">该回调在虚拟节拍器状态发生变化时被触发。</p>
+            <p props="mac">该回调在虚拟节拍器状态发生变化时被触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -74,7 +80,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>engine</pt>
                     <pd>当前使用的 <xref keyref="IRtcEngine"/> 实例。</pd>
                 </plentry>
@@ -87,12 +93,16 @@
                     <pd>与虚拟节拍器错误相关的错误码和错误信息，详见 <xref keyref="RHYTHM_PLAYER_REASON"/>。</pd>
                 </plentry>
                 <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd>当前使用的 <xref keyref="IRtcEngine"/> 实例。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>state</pt>
-                    <pd>当前虚拟节拍器的状态，详见 <codeph>AgoraRhythmPlayerState</codeph>。</pd>
+                    <pd>当前虚拟节拍器的状态，详见 <xref keyref="RHYTHM_PLAYER_STATE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>reason</pt>
-                    <pd>与虚拟节拍器错误相关的错误码和错误信息，详见 <codeph>AgoraRhythmPlayerReason</codeph>。</pd>
+                    <pd>与虚拟节拍器错误相关的错误码和错误信息，详见 <xref keyref="RHYTHM_PLAYER_REASON"/>。</pd>
                 </plentry>
             </parml>
         </section>

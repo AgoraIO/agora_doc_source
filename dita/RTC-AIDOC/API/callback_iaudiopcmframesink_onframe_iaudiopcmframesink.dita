@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_iaudiopcmframesink_onframe_iaudiopcmframesink">
+<reference id="callback_iaudiopcmframesink_onframe_iaudiopcmframesink">
     <title>
     <ph keyref="onFrame_IAudioPcmFrameSink"/>
   </title>
@@ -20,19 +20,26 @@
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onFrame(agora::media::base::AudioPcmFrame* frame) = 0;</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol&gt; _Nonnull)playerKit
        didReceiveAudioFrame:(AgoraAudioFrame* _Nonnull)audioFrame NS_SWIFT_NAME(AgoraRtcMediaPlayer(_:didReceiveAudioFrame:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol&gt; _Nonnull)playerKit
+       didReceiveAudioFrame:(AgoraAudioFrame* _Nonnull)audioFrame NS_SWIFT_NAME(AgoraRtcMediaPlayer(_:didReceiveAudioFrame:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">注册音频帧观察器后，每次播放器接收到音频帧时，都会触发该回调，并报告该音频帧的详细信息。</p>
             <p props="ios">注册音频帧观察器后，每次播放器接收到音频帧时，都会触发该回调，报告音频帧的详细信息。</p>
+            <p props="mac">注册音频帧观察器后，每次播放器接收到音频帧时，都会触发该回调，报告音频帧的详细信息。</p>
         </section>
         <section id="timing" deliveryTarget="details">
-            <title>调用时机</title>
-            <p props="cpp ios">每次播放器接收到音频帧时触发。</p>
+            <title>触发时机</title>
+            <p props="cpp">每次播放器接收到音频帧时触发。</p>
+            <p props="ios">每次播放器接收到音频帧时触发。</p>
+            <p props="mac">每次播放器接收到音频帧时触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
-            <title>调用限制</title>
-            <p props="cpp ios">无。</p>
+            <title>使用限制</title>
+            <p props="cpp">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -46,6 +53,14 @@
                     <pd>播放器实例，详见 <xref keyref="IMediaPlayer"/>。</pd>
                 </plentry>
                 <plentry props="ios">
+                    <pt>audioFrame</pt>
+                    <pd>音频帧信息，详见 <xref keyref="AudioFrame"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>playerKit</pt>
+                    <pd>播放器实例，详见 <xref keyref="IMediaPlayer"/>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>audioFrame</pt>
                     <pd>音频帧信息，详见 <xref keyref="AudioFrame"/>。</pd>
                 </plentry>

@@ -23,7 +23,11 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="deprecated">
-                <dlentry props="ios mac">
+                <dlentry props="ios">
+                    <dt>废弃</dt>
+                    <dd>自 v2.3 版本废弃，请改用 <xref keyref="setVideoEncoderConfiguration"/>。</dd>
+                </dlentry>
+                <dlentry props="mac">
                     <dt>废弃</dt>
                     <dd>自 v2.3 版本废弃，请改用 <xref keyref="setVideoEncoderConfiguration"/>。</dd>
                 </dlentry>
@@ -31,24 +35,49 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="ios mac">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="ios mac">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>size</pt>
                     <pd>你想要设置的视频尺寸。最大值为 1280 × 720。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>frameRate</pt>
                     <pd>你想要设置的视频帧率。最大值为 30。你可以设置为 5、10、15、24、30 等。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>bitrate</pt>
+                    <pd>你想要设置的视频码率。你需要根据宽度、高度和帧率手动计算码率。在相同宽高下，码率会随着帧率的变化而变化：
+                        <ul>
+                            <li>如果帧率为 5 fps，推荐码率除以 2。</li>
+                            <li>如果帧率为 15 fps，使用推荐码率。</li>
+                            <li>如果帧率为 30 fps，推荐码率乘以 1.5。</li>
+                            <li>如果选择其他帧率，请按比例计算码率。
+例如，分辨率为 320 × 240，帧率为 15 fps，则码率为 200：</li>
+                            <li>如果帧率为 5 fps，码率为 100。</li>
+                            <li>如果帧率为 30 fps，码率为 300。
+如果你设置的码率超出合理范围，SDK 会自动将其调整到范围内的值。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>size</pt>
+                    <pd>你想要设置的视频尺寸。最大值为 1280 × 720。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>frameRate</pt>
+                    <pd>你想要设置的视频帧率。最大值为 30。你可以设置为 5、10、15、24、30 等。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>bitrate</pt>
                     <pd>你想要设置的视频码率。你需要根据宽度、高度和帧率手动计算码率。在相同宽高下，码率会随着帧率的变化而变化：
                         <ul>
@@ -67,7 +96,13 @@
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="ios mac">
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

@@ -31,35 +31,41 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="android">你可以在启用扩展组件后调用该方法设置其属性。</p>
-            <p props="ios mac">启用扩展后，可以调用该方法设置扩展的属性。</p>
+            <p props="ios">启用扩展后，可以调用该方法设置扩展的属性。</p>
+            <p props="mac">启用扩展后，可以调用该方法设置扩展的属性。</p>
             <note props="android">如果需要为多个扩展组件设置属性，需要多次调用该方法。</note>
-            <note props="ios mac">如果需要为多个扩展设置属性，需要多次调用该方法。</note>
+            <note props="ios">如果需要为多个扩展设置属性，需要多次调用该方法。</note>
+            <note props="mac">如果需要为多个扩展设置属性，需要多次调用该方法。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p props="android">在调用 <xref keyref="enableExtension"/> 方法之后调用该方法。</p>
-            <p props="ios mac">在调用 <xref keyref="enableExtension"/> 方法之后调用。</p>
+            <p props="ios">在调用 <xref keyref="enableExtension"/> 方法之后调用。</p>
+            <p props="mac">在调用 <xref keyref="enableExtension"/> 方法之后调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="cpp ios mac">
+                <plentry props="cpp">
                     <pt>provider</pt>
                     <pd>扩展提供方的名称。</pd>
                 </plentry>
-                <plentry props="cpp ios mac">
+                <plentry props="cpp">
                     <pt>extension</pt>
                     <pd>扩展的名称。</pd>
                 </plentry>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
                     <pt>key</pt>
                     <pd>扩展属性的键。</pd>
                 </plentry>
-                <plentry props="cpp ios mac">
+                <plentry props="cpp">
                     <pt>value</pt>
                     <pd>扩展属性键对应的值。</pd>
                 </plentry>
@@ -80,14 +86,68 @@
                     <pd>扩展的信息，详见 <codeph>ExtensionInfo</codeph>。</pd>
                 </plentry>
                 <plentry props="android">
+                    <pt>key</pt>
+                    <pd>扩展属性的键。</pd>
+                </plentry>
+                <plentry props="android">
                     <pt>value</pt>
                     <pd>扩展属性的值，采用 JSON 格式。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>provider</pt>
+                    <pd>扩展提供方的名称。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>extension</pt>
+                    <pd>扩展的名称。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>key</pt>
+                    <pd>扩展属性的键。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>value</pt>
+                    <pd>扩展属性键对应的值。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>provider</pt>
+                    <pd>扩展提供方的名称。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>extension</pt>
+                    <pd>扩展的名称。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>key</pt>
+                    <pd>扩展属性的键。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>value</pt>
+                    <pd>扩展属性键对应的值。</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

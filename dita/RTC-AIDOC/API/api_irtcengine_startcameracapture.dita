@@ -25,7 +25,8 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">你可以调用此方法，并通过指定 <codeph>sourceType</codeph> 从一个或多个摄像头开始采集视频。</p>
-            <p props="ios mac">你可以调用此方法并指定 <codeph>sourceType</codeph> 来开始从一个或多个摄像头进行视频采集。</p>
+            <p props="ios">你可以调用此方法并指定 <codeph>sourceType</codeph> 来开始从一个或多个摄像头进行视频采集。</p>
+            <p props="mac">你可以调用此方法并指定 <codeph>sourceType</codeph> 来开始从一个或多个摄像头进行视频采集。</p>
             <note props="cpp">在 iOS 平台上，如果你想启用多摄像头采集，需要在调用此方法前调用 <xref keyref="enableMultiCamera"/>，并将 <codeph>enabled</codeph> 设置为 <xref keyref="true"/>。</note>
             <note props="android">在 Android 设备上，如果设备具有多个摄像头或支持外接摄像头，你最多可以从 4 个摄像头采集视频。</note>
             <note props="ios">在 iOS 上，如果你想启用多摄像头采集，需要先调用 <xref keyref="enableMultiCamera"/> 并将 <codeph>enabled</codeph> 设置为 <xref keyref="true"/>，然后再调用此方法。</note>
@@ -33,11 +34,17 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -46,7 +53,7 @@
                     <pt>sourceType</pt>
                     <pd>视频源类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
                 </plentry>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>config</pt>
                     <pd>视频采集配置。详见 <xref keyref="CameraCapturerConfiguration"/>。</pd>
                 </plentry>
@@ -54,13 +61,21 @@
                     <pt>sourceType</pt>
                     <pd>视频源类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="android">
+                    <pt>config</pt>
+                    <pd>视频采集配置。详见 <xref keyref="CameraCapturerConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>sourceType</pt>
                     <pd>视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。在 iOS 上，如果设备有多个摄像头或支持外接摄像头，你最多可以从 2 个摄像头采集视频。在 macOS 上，你最多可以从 4 个摄像头采集视频。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>config</pt>
                     <pd>视频采集的配置。在 iOS 上，此参数无实际作用。请使用 <xref keyref="enableMultiCamera"/> 中的 <codeph>config</codeph> 参数来设置视频采集配置。详见 <xref keyref="CameraCapturerConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>sourceType</pt>
+                    <pd>视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。在 iOS 上，如果设备有多个摄像头或支持外接摄像头，你最多可以从 2 个摄像头采集视频。在 macOS 上，你最多可以从 4 个摄像头采集视频。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>config</pt>
@@ -70,7 +85,25 @@
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

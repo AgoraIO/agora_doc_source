@@ -38,7 +38,13 @@
                     <li>当缓冲数据可支持的播放时长大于阈值（默认值为 0）时，SDK 返回 <codeph>PLAYER_EVENT_BUFFER_RECOVER</codeph>（7）。</li>
                 </ul>
             </p>
-            <p props="ios mac">
+            <p props="ios">
+                <ul>
+                    <li>当缓冲数据可支持的播放时长小于阈值（默认值为 0）时，SDK 返回 <codeph>AgoraMediaPlayerEventBufferLow</codeph>（6）。</li>
+                    <li>当缓冲数据可支持的播放时长大于阈值（默认值为 0）时，SDK 返回 <codeph>AgoraMediaPlayerEventBufferRecover</codeph>（7）。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>当缓冲数据可支持的播放时长小于阈值（默认值为 0）时，SDK 返回 <codeph>AgoraMediaPlayerEventBufferLow</codeph>（6）。</li>
                     <li>当缓冲数据可支持的播放时长大于阈值（默认值为 0）时，SDK 返回 <codeph>AgoraMediaPlayerEventBufferRecover</codeph>（7）。</li>
@@ -47,25 +53,42 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
-            <p props="cpp ios mac">播放在线媒体资源时，SDK 每两秒触发一次该回调。</p>
+            <p props="cpp">播放在线媒体资源时，SDK 每两秒触发一次该回调。</p>
             <p props="android">该回调在播放在线媒体资源时每两秒被触发。</p>
+            <p props="ios">播放在线媒体资源时，SDK 每两秒触发一次该回调。</p>
+            <p props="mac">播放在线媒体资源时，SDK 每两秒触发一次该回调。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>playCachedBuffer</pt>
                     <pd>缓冲数据可支持的播放时长，单位为毫秒。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="android">
+                    <pt>playCachedBuffer</pt>
+                    <pd>缓冲数据可支持的播放时长，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>playerKit</pt>
                     <pd>播放器实例。详见 <xref keyref="IMediaPlayer"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>playCachedBuffer</pt>
+                    <pd>缓冲数据可支持的播放时长（毫秒）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>playerKit</pt>
+                    <pd>播放器实例。详见 <xref keyref="IMediaPlayer"/>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>playCachedBuffer</pt>
                     <pd>缓冲数据可支持的播放时长（毫秒）。</pd>
                 </plentry>

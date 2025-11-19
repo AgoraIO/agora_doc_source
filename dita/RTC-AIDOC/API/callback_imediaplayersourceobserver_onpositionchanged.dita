@@ -29,38 +29,63 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">播放媒体文件时，SDK 每两秒触发一次该回调。</p>
-            <p props="ios mac">该回调在播放过程中每秒触发一次，用于报告当前播放进度。</p>
+            <p props="ios">该回调在播放过程中每秒触发一次，用于报告当前播放进度。</p>
+            <p props="mac">该回调在播放过程中每秒触发一次，用于报告当前播放进度。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
             <p props="cpp">播放媒体文件时，SDK 每两秒触发一次该回调。</p>
             <p props="android">该回调在播放媒体文件时每两秒被触发。</p>
-            <p props="ios mac">该回调在播放过程中每秒触发一次。</p>
+            <p props="ios">该回调在播放过程中每秒触发一次。</p>
+            <p props="mac">该回调在播放过程中每秒触发一次。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>positionMs</pt>
                     <pd>媒体文件的播放位置，单位为毫秒。</pd>
                 </plentry>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>timestampMs</pt>
                     <pd>当前播放进度对应的 NTP 时间戳，单位为毫秒。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="android">
+                    <pt>positionMs</pt>
+                    <pd>媒体文件的播放位置，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>timestampMs</pt>
+                    <pd>当前播放进度对应的 NTP 时间戳，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>playerKit</pt>
                     <pd>播放器实例。详见 <xref keyref="IMediaPlayer"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>positionMs</pt>
                     <pd>当前播放进度，单位为毫秒。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>timestampMs</pt>
+                    <pd>发送 <codeph>positionMs</codeph> 时的 NTP 时间戳，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>playerKit</pt>
+                    <pd>播放器实例。详见 <xref keyref="IMediaPlayer"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>positionMs</pt>
+                    <pd>当前播放进度，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>timestampMs</pt>
                     <pd>发送 <codeph>positionMs</codeph> 时的 NTP 时间戳，单位为毫秒。</pd>
                 </plentry>

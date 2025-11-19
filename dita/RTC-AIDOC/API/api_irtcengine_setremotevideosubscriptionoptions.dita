@@ -42,7 +42,15 @@
 如果你希望修改默认行为，或为不同的用户 ID 设置不同的订阅选项，可以调用该方法进行设置。</li>
                 </ul>
             </p>
-            <p props="ios mac">当远端用户开启双流模式时，你可以调用此方法设置订阅该远端用户发送的视频流的选项。SDK 默认的远端视频流订阅行为取决于注册的视频观察者类型：
+            <p props="ios">当远端用户开启双流模式时，你可以调用此方法设置订阅该远端用户发送的视频流的选项。SDK 默认的远端视频流订阅行为取决于注册的视频观察者类型：
+                <ul>
+                    <li>如果注册了 <xref keyref="IVideoFrameObserver"/> 观察者，默认订阅原始数据和编码数据；</li>
+                    <li>如果注册了 <xref keyref="IVideoEncodedFrameObserver"/> 观察者，默认仅订阅编码数据；</li>
+                    <li>如果同时注册了两种观察者，默认行为遵循最后注册的观察者。例如，如果最后注册的是 <xref keyref="IVideoFrameObserver"/> 观察者，则默认订阅原始数据和编码数据。
+如果你希望修改默认行为，或为不同的 <codeph>uid</codeph> 设置不同的订阅选项，可以调用此方法进行设置。</li>
+                </ul>
+            </p>
+            <p props="mac">当远端用户开启双流模式时，你可以调用此方法设置订阅该远端用户发送的视频流的选项。SDK 默认的远端视频流订阅行为取决于注册的视频观察者类型：
                 <ul>
                     <li>如果注册了 <xref keyref="IVideoFrameObserver"/> 观察者，默认订阅原始数据和编码数据；</li>
                     <li>如果注册了 <xref keyref="IVideoEncodedFrameObserver"/> 观察者，默认仅订阅编码数据；</li>
@@ -53,16 +61,22 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
                     <pt>uid</pt>
                     <pd>远端用户的用户 ID。</pd>
                 </plentry>
@@ -70,7 +84,27 @@
                     <pt>options</pt>
                     <pd>视频订阅选项。详见 <xref keyref="VideoSubscriptionOptions"/>。</pd>
                 </plentry>
-                <plentry props="android ios mac">
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>远端用户的用户 ID。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>options</pt>
+                    <pd>视频订阅选项，详见 <xref keyref="VideoSubscriptionOptions"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>uid</pt>
+                    <pd>远端用户的用户 ID。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>options</pt>
+                    <pd>视频订阅选项，详见 <xref keyref="VideoSubscriptionOptions"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>远端用户的用户 ID。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>options</pt>
                     <pd>视频订阅选项，详见 <xref keyref="VideoSubscriptionOptions"/>。</pd>
                 </plentry>
@@ -78,7 +112,25 @@
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

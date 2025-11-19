@@ -143,6 +143,50 @@
                     <pt>AgoraErrorCodeTimedOut</pt>
                     <pd>（10）：超时错误。部分 API 调用需要 SDK 返回执行结果，若超过 10 秒未返回，则触发该错误。</pd>
                 </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeNoError</pt>
+                    <pd>（0）：无错误。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeFailed</pt>
+                    <pd>（1）：通用错误，原因未分类。请重试调用该方法。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeInvalidArgument</pt>
+                    <pd>（2）：参数无效。例如，频道名包含非法字符。请重新设置参数。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeNotReady</pt>
+                    <pd>（3）：SDK 尚未就绪。可能的原因包括：<xref keyref="IRtcEngine"/> 初始化失败；调用方法时无用户加入频道；调用 <xref keyref="rate"/> 或 <xref keyref="complain"/> 方法时用户尚未离开频道；音频模块被禁用；程序不完整。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeNotSupported</pt>
+                    <pd>（4）：<xref keyref="IRtcEngine"/> 不支持该请求。可能的原因包括：内置加密模式设置错误，或 SDK 加载外部加密库失败。请检查加密模式设置或重新加载外部加密库。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeRefused</pt>
+                    <pd>（5）：请求被拒绝。可能的原因包括：<xref keyref="IRtcEngine"/> 初始化失败；加入频道时频道名为空字符串 <codeph>""</codeph>；调用 <xref keyref="joinChannelEx"/> 方法加入多个频道时，指定的频道名已被使用。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeBufferTooSmall</pt>
+                    <pd>（6）：缓冲区大小不足，无法存储返回数据。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeNotInitialized</pt>
+                    <pd>（7）：在 <xref keyref="IRtcEngine"/> 初始化前调用了方法。请确保在调用该方法前已初始化 <xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeInvalidState</pt>
+                    <pd>（8）：状态无效。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeNoPermission</pt>
+                    <pd>（9）：无访问权限。请检查应用是否已获得音视频设备的访问权限。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeTimedOut</pt>
+                    <pd>（10）：超时错误。部分 API 调用需要 SDK 返回执行结果，若超过 10 秒未返回，则触发该错误。</pd>
+                </plentry>
             </parml>
         </section>
     </refbody>

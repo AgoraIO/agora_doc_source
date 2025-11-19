@@ -25,24 +25,38 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
-                <dlentry props="android ios mac">
+                <dlentry props="android">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="ios">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="mac">
                     <dt>自从</dt>
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
             </dl>
-            <p props="android">该方法为异步方法，通过回调函数返回初始化结果。你需要在创建 <xref keyref="Rte"/> 对象并设置 App ID 后调用该方法。</p>
-            <p props="ios mac">该方法为异步方法，通过回调函数返回初始化结果。你需要在创建 <codeph>RTE</codeph> 对象并设置 App ID 后调用该方法。</p>
+            <p props="android">该方法为异步方法，通过回调函数返回初始化结果。你需要在创建 <xref keyref="Rte_Rte"/> 对象并设置 App ID 后调用该方法。</p>
+            <p props="ios">该方法为异步方法，通过回调函数返回初始化结果。你需要在创建 <codeph>RTE</codeph> 对象并设置 App ID 后调用该方法。</p>
+            <p props="mac">该方法为异步方法，通过回调函数返回初始化结果。你需要在创建 <codeph>RTE</codeph> 对象并设置 App ID 后调用该方法。</p>
             <note props="cpp"><xref keyref="InitMediaEngine"/> 的返回值仅表示初始化操作是否已成功加入异步任务队列，并不表示初始化本身是否成功。</note>
-            <note props="ios mac">该返回值仅表示初始化操作是否已成功加入异步任务队列，并不表示初始化是否成功。</note>
+            <note props="ios">该返回值仅表示初始化操作是否已成功加入异步任务队列，并不表示初始化是否成功。</note>
+            <note props="mac">该返回值仅表示初始化操作是否已成功加入异步任务队列，并不表示初始化是否成功。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="cpp">该方法必须在创建 <xref keyref="Rte"/> 对象并设置 App ID 后调用。</p>
-            <p props="ios mac">你需要在创建 <codeph>RTE</codeph> 对象并设置 App ID 后调用该方法。</p>
+            <p props="cpp">该方法必须在创建 <xref keyref="Rte_Rte"/> 对象并设置 App ID 后调用。</p>
+            <p props="ios">你需要在创建 <codeph>RTE</codeph> 对象并设置 App ID 后调用该方法。</p>
+            <p props="mac">你需要在创建 <codeph>RTE</codeph> 对象并设置 App ID 后调用该方法。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -59,11 +73,19 @@
                     <pt>callBack</pt>
                     <pd>异步返回引擎初始化结果的回调。详见 <xref keyref="AsyncCallback"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>cb</pt>
                     <pd>用于返回引擎初始化结果的异步回调函数。你可以通过该回调的 <codeph>err</codeph> 参数判断引擎初始化的结果或错误码。详见 <xref keyref="Error"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>error</pt>
+                    <pd>初始化过程中发生的错误信息。当调用 <xref keyref="InitMediaEngine"/> 方法进行初始化时，如果发生可立即检测的错误（如参数无效或资源不足），SDK 会通过该参数同步返回错误信息。详见 <xref keyref="Error"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>cb</pt>
+                    <pd>用于返回引擎初始化结果的异步回调函数。你可以通过该回调的 <codeph>err</codeph> 参数判断引擎初始化的结果或错误码。详见 <xref keyref="Error"/>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>error</pt>
                     <pd>初始化过程中发生的错误信息。当调用 <xref keyref="InitMediaEngine"/> 方法进行初始化时，如果发生可立即检测的错误（如参数无效或资源不足），SDK 会通过该参数同步返回错误信息。详见 <xref keyref="Error"/>。</pd>
                 </plentry>
@@ -78,7 +100,14 @@
 该返回值仅表示初始化操作是否已成功加入异步任务队列，并不表示初始化本身是否成功。</li>
                 </ul>
             </p>
-            <p props="ios mac">
+            <p props="ios">
+                <ul>
+                    <li><xref keyref="true"/>：异步操作成功加入队列。</li>
+                    <li><xref keyref="false"/>：异步操作未能加入队列。
+该返回值仅表示初始化操作是否已成功加入异步任务队列，并不表示初始化是否成功。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li><xref keyref="true"/>：异步操作成功加入队列。</li>
                     <li><xref keyref="false"/>：异步操作未能加入队列。

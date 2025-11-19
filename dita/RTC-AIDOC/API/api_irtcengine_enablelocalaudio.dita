@@ -52,10 +52,10 @@
                 </ul>
             </p>
             <p props="mac"><xref keyref="enableLocalAudio"/> 方法用于启用或关闭本地音频采集功能。默认情况下，加入频道时会启用音频功能。调用该方法可以停止或重新启动本地音频采集。
-该方法与 <xref keyref="muteLocalAudioStream"/> 的区别如下：
+该方法与 <xref keyref="muteLocalAudioStream_IBaseSpatialAudioEngine"/> 的区别如下：
                 <ul>
                     <li><xref keyref="enableLocalAudio"/>：关闭或重新启用本地音频采集和处理。如果使用该方法关闭或重新启用本地音频采集，可能会导致远端音频播放出现短暂中断。</li>
-                    <li><xref keyref="muteLocalAudioStream"/>：仅停止或恢复发送本地音频流，不影响音频采集状态。
+                    <li><xref keyref="muteLocalAudioStream_IBaseSpatialAudioEngine"/>：仅停止或恢复发送本地音频流，不影响音频采集状态。
 该方法不会影响接收远端音频流。将 <codeph>enabled</codeph> 设为 <xref keyref="false"/> 适用于只接收远端音频而不发送本地音频的场景。
 你可以在加入频道前或加入频道后调用该方法。在加入频道前调用时，仅设置设备状态，加入频道后立即生效。</li>
                 </ul>
@@ -63,17 +63,23 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp">你可以在加入频道前或加入频道后调用该方法。在加入频道前调用该方法仅设置设备状态，并在加入频道后立即生效。</p>
-            <p props="ios mac">你可以在加入频道前或加入频道后调用该方法。在加入频道前调用时，仅设置设备状态，加入频道后立即生效。</p>
+            <p props="cpp">你可以在加入频道前或加入频道后调用该方法。在加入频道前调用该方法仅设置设备状态，并在加入频道后立即生效。</p>
+            <p props="android">你可以在加入频道前或加入频道后调用该方法。在加入频道前调用该方法仅设置设备状态，并在加入频道后立即生效。</p>
+            <p props="ios">你可以在加入频道前或加入频道后调用该方法。在加入频道前调用时，仅设置设备状态，加入频道后立即生效。</p>
+            <p props="mac">你可以在加入频道前或加入频道后调用该方法。在加入频道前调用时，仅设置设备状态，加入频道后立即生效。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="related" deliveryTarget="details">
             <title>相关回调</title>
             <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onLocalAudioStateChanged"/> 回调，报告 <codeph>LOCAL_AUDIO_STREAM_STATE_STOPPED</codeph>（0）或 <codeph>LOCAL_AUDIO_STREAM_STATE_RECORDING</codeph>（1）。</p>
-            <p props="ios mac">成功调用该方法后，SDK 会触发 <xref keyref="onLocalAudioStateChanged"/> 回调，报告 <codeph>AgoraAudioLocalStateStopped</codeph>（0）或 <codeph>AgoraAudioLocalStateRecording</codeph>（1）。</p>
+            <p props="ios">成功调用该方法后，SDK 会触发 <xref keyref="onLocalAudioStateChanged"/> 回调，报告 <codeph>AgoraAudioLocalStateStopped</codeph>（0）或 <codeph>AgoraAudioLocalStateRecording</codeph>（1）。</p>
+            <p props="mac">成功调用该方法后，SDK 会触发 <xref keyref="onLocalAudioStateChanged"/> 回调，报告 <codeph>AgoraAudioLocalStateStopped</codeph>（0）或 <codeph>AgoraAudioLocalStateRecording</codeph>（1）。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -96,7 +102,16 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>enabled</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>：（默认）重新启用本地音频功能，即启动本地音频采集设备（例如麦克风）。</li>
+                            <li><xref keyref="false"/>：关闭本地音频功能，即停止本地音频采集。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>enabled</pt>
                     <pd>
                         <ul>
@@ -109,7 +124,25 @@
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

@@ -24,17 +24,22 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="ios mac">该回调在本地用户成功加入指定频道时触发。</p>
+            <p props="ios">该回调在本地用户成功加入指定频道时触发。</p>
+            <p props="mac">该回调在本地用户成功加入指定频道时触发。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
             <p props="cpp">当你调用 <codeph>joinChannel</codeph>、<codeph>joinChannelWithUserAccount</codeph>、<xref keyref="joinChannelEx"/> 或 <xref keyref="joinChannelWithUserAccountEx"/> 加入频道时，SDK 会触发该回调。</p>
             <p props="android">该回调在你调用 <codeph>joinChannel</codeph>、<codeph>joinChannelWithUserAccount</codeph>、<xref keyref="joinChannelEx"/> 或 <xref keyref="joinChannelWithUserAccountEx"/> 加入频道时被触发。</p>
-            <p props="ios mac">该回调在调用 <codeph>joinChannelByToken</codeph>、<codeph>joinChannelExByToken</codeph> 等方法加入频道时被触发。</p>
+            <p props="ios">该回调在调用 <codeph>joinChannelByToken</codeph>、<codeph>joinChannelExByToken</codeph> 等方法加入频道时被触发。</p>
+            <p props="mac">该回调在调用 <codeph>joinChannelByToken</codeph>、<codeph>joinChannelExByToken</codeph> 等方法加入频道时被触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -47,7 +52,7 @@
                     <pt>elapsed</pt>
                     <pd>从本地用户调用 <codeph>joinChannel</codeph> 到 SDK 触发该回调的时间间隔，单位为毫秒。</pd>
                 </plentry>
-                <plentry props="android ios mac">
+                <plentry props="android">
                     <pt>channel</pt>
                     <pd>频道名。</pd>
                 </plentry>
@@ -59,15 +64,35 @@
                     <pt>elapsed</pt>
                     <pd>从本地用户调用 <codeph>joinChannel</codeph> 加入频道到 SDK 触发该回调的时间间隔，单位为毫秒。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>engine</pt>
                     <pd><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>channel</pt>
+                    <pd>频道名。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>uid</pt>
                     <pd>本地用户加入频道的用户 ID。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>elapsed</pt>
+                    <pd>从调用 <codeph>joinChannelByToken</codeph> 方法到 SDK 触发该回调的时间间隔（毫秒）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>channel</pt>
+                    <pd>频道名。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>本地用户加入频道的用户 ID。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>elapsed</pt>
                     <pd>从调用 <codeph>joinChannelByToken</codeph> 方法到 SDK 触发该回调的时间间隔（毫秒）。</pd>
                 </plentry>

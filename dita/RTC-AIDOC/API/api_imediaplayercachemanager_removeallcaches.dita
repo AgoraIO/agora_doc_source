@@ -24,35 +24,46 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <note props="cpp ios mac"><xref keyref="removeAllCaches"/> 不会删除当前正在播放的缓存媒体文件。</note>
+            <note props="cpp"><xref keyref="removeAllCaches"/> 不会删除当前正在播放的缓存媒体文件。</note>
             <note props="android">当前正在播放的缓存媒体文件不会被删除。</note>
+            <note props="ios"><xref keyref="removeAllCaches"/> 不会删除当前正在播放的缓存媒体文件。</note>
+            <note props="mac"><xref keyref="removeAllCaches"/> 不会删除当前正在播放的缓存媒体文件。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
-        </section>
-        <section id="parameters" deliveryTarget="details">
-            <title>参数</title>
-            <parml>
-                <plentry props="{platform3}">
-                    <pt>{parameters.name}</pt>
-                    <pd>{parameters.desc}</pd>
-                </plentry>
-            </parml>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp">
+            <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见 <xref keyref="MEDIA_PLAYER_REASON"/>。</li>
                 </ul>
             </p>
-            <p props="ios mac">
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见 <xref keyref="MEDIA_PLAYER_REASON"/>。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败，详见 <xref keyref="MEDIA_PLAYER_REASON"/>。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败，详见 <xref keyref="MEDIA_PLAYER_REASON"/>。</li>

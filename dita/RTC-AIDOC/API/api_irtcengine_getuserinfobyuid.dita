@@ -26,21 +26,27 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">当远端用户加入频道后，SDK 会获取该远端用户的用户 ID 和用户账号，并将其缓存在一个映射表中，并在本地客户端触发 <xref keyref="onUserInfoUpdated"/> 回调。收到该回调后，你可以调用 <xref keyref="getUserInfoByUid"/> 并传入用户 ID，从 <xref keyref="UserInfo"/> 对象中获取对应的用户账号。</p>
             <p props="android">当远端用户加入频道后，SDK 会获取该远端用户的用户 ID 和用户账号，并将其缓存在映射表中，同时在本地客户端触发 <xref keyref="onUserInfoUpdated"/> 回调。收到该回调后，你可以调用 <xref keyref="getUserInfoByUidEx"/> 方法并传入用户 ID，从 <xref keyref="UserInfo"/> 对象中获取指定用户的用户账号。</p>
-            <p props="ios mac">远端用户加入频道后，SDK 会获取该用户的用户 ID 和用户账号，并将其缓存在映射表对象中，同时在本地客户端触发 <xref keyref="onUserInfoUpdated"/> 回调。收到该回调后，你可以调用 <xref keyref="getUserInfoByUid"/> 方法并传入 <codeph>uid</codeph>，从 <xref keyref="UserInfo"/> 对象中获取指定用户的用户账号。</p>
+            <p props="ios">远端用户加入频道后，SDK 会获取该用户的用户 ID 和用户账号，并将其缓存在映射表对象中，同时在本地客户端触发 <xref keyref="onUserInfoUpdated"/> 回调。收到该回调后，你可以调用 <xref keyref="getUserInfoByUid"/> 方法并传入 <codeph>uid</codeph>，从 <xref keyref="UserInfo"/> 对象中获取指定用户的用户账号。</p>
+            <p props="mac">远端用户加入频道后，SDK 会获取该用户的用户 ID 和用户账号，并将其缓存在映射表对象中，同时在本地客户端触发 <xref keyref="onUserInfoUpdated"/> 回调。收到该回调后，你可以调用 <xref keyref="getUserInfoByUid"/> 方法并传入 <codeph>uid</codeph>，从 <xref keyref="UserInfo"/> 对象中获取指定用户的用户账号。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="cpp ios mac">在收到 <xref keyref="onUserInfoUpdated"/> 回调后调用该方法。</p>
+            <p props="cpp">在收到 <xref keyref="onUserInfoUpdated"/> 回调后调用该方法。</p>
             <p props="android">该方法在收到 <xref keyref="onUserInfoUpdated"/> 回调后调用。</p>
+            <p props="ios">在收到 <xref keyref="onUserInfoUpdated"/> 回调后调用该方法。</p>
+            <p props="mac">在收到 <xref keyref="onUserInfoUpdated"/> 回调后调用该方法。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>uid</pt>
                     <pd><codeph>uid</codeph>，表示用户 ID。</pd>
                 </plentry>
@@ -49,10 +55,14 @@
                     <pd>输入和输出参数，表示用户信息。输入值为一个 <xref keyref="UserInfo"/> 对象，输出值为一个包含用户账号和用户 ID 的 <xref keyref="UserInfo"/> 对象。详见 <xref keyref="UserInfo"/>。</pd>
                 </plentry>
                 <plentry props="android">
+                    <pt>uid</pt>
+                    <pd><codeph>uid</codeph>，表示用户 ID。</pd>
+                </plentry>
+                <plentry props="android">
                     <pt>userInfo</pt>
                     <pd>输入和输出参数，用于标识用户信息的 <xref keyref="UserInfo"/> 对象。详见 <xref keyref="UserInfo"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>uid</pt>
                     <pd>用户 ID。</pd>
                 </plentry>
@@ -61,20 +71,31 @@
                     <pd>错误码，详见 <xref keyref="ERROR_CODE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>error</pt>
-                    <pd>错误码，详见 <codeph>AgoraErrorCode</codeph>。</pd>
+                    <pd>错误码，详见 <xref keyref="ERROR_CODE_TYPE"/>。</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp">
+            <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>
                 </ul>
             </p>
-            <p props="ios mac">方法调用成功，返回 <xref keyref="UserInfo"/> 对象，详见 <xref keyref="UserInfo"/>。方法调用失败，返回 <xref keyref="NULL"/>。</p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">方法调用成功，返回 <xref keyref="UserInfo"/> 对象，详见 <xref keyref="UserInfo"/>。方法调用失败，返回 <xref keyref="NULL"/>。</p>
+            <p props="mac">方法调用成功，返回 <xref keyref="UserInfo"/> 对象，详见 <xref keyref="UserInfo"/>。方法调用失败，返回 <xref keyref="NULL"/>。</p>
         </section>
     </refbody>
 </reference>

@@ -46,11 +46,22 @@
                     <li>多频道场景：调用 <xref keyref="updateChannelMediaOptionsEx"/> 传入新的 Token。</li>
                 </ul>
             </p>
-            <p props="ios mac">当 Token 过期时，SDK 会触发该回调。收到该回调后，你需要在你的 Token 服务器上生成一个新的 Token，并可以通过以下方式之一更新 Token：
+            <p props="ios">当 Token 过期时，SDK 会触发该回调。收到该回调后，你需要在你的 Token 服务器上生成一个新的 Token，并可以通过以下方式之一更新 Token：
                 <ul>
                     <li>单频道场景：
                         <ul>
                             <li>调用 <xref keyref="renewToken_IMusicContentCenter"/> 传入新的 Token。</li>
+                            <li>调用 <xref keyref="leaveChannel2"/> 离开当前频道，然后在调用 <xref keyref="joinChannel2"/> 加入频道时传入新的 Token。</li>
+                        </ul>
+                    </li>
+                    <li>多频道场景：调用 <xref keyref="updateChannelMediaOptionsEx"/> 传入新的 Token。</li>
+                </ul>
+            </p>
+            <p props="mac">当 Token 过期时，SDK 会触发该回调。收到该回调后，你需要在你的 Token 服务器上生成一个新的 Token，并可以通过以下方式之一更新 Token：
+                <ul>
+                    <li>单频道场景：
+                        <ul>
+                            <li>调用 <xref keyref="renewToken"/> 传入新的 Token。</li>
                             <li>调用 <xref keyref="leaveChannel2"/> 离开当前频道，然后在调用 <xref keyref="joinChannel2"/> 加入频道时传入新的 Token。</li>
                         </ul>
                     </li>
@@ -62,11 +73,15 @@
             <title>触发时机</title>
             <p props="cpp">当 Token 过期时触发该回调。</p>
             <p props="android">该回调在 Token 过期时被触发。</p>
-            <p props="ios mac">当 Token 过期时触发。</p>
+            <p props="ios">当 Token 过期时触发。</p>
+            <p props="mac">当 Token 过期时触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -75,7 +90,11 @@
                     <pt>connection</pt>
                     <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>engine</pt>
                     <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>

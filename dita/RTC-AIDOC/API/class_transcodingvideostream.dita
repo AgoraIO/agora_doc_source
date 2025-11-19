@@ -64,11 +64,11 @@
         <section id="parameters" deliveryTarget="details">
             <title>属性</title>
             <parml>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>sourceType</pt>
                     <pd>视频源类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
                 </plentry>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>remoteUserUid</pt>
                     <pd>远端用户 ID。</pd>
                 </plentry>
@@ -76,7 +76,7 @@
                     <pt>imageUrl</pt>
                     <pd>本地图像的文件路径，例如：Windows: C:\Users\{username}\Pictures\image.png。</pd>
                 </plentry>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
                     <pt>mediaPlayerId</pt>
                     <pd>媒体播放器 ID。</pd>
                 </plentry>
@@ -88,11 +88,11 @@
                     <pt>y</pt>
                     <pd>视频左上角相对于画布原点（画布左上角）的纵向偏移。</pd>
                 </plentry>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>width</pt>
                     <pd>视频在画布上的宽度（像素）。</pd>
                 </plentry>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>height</pt>
                     <pd>视频在画布上的高度（像素）。</pd>
                 </plentry>
@@ -105,7 +105,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>alpha</pt>
                     <pd>视频的透明度，取值范围为 [0.0, 1.0]。
                         <ul>
@@ -124,8 +124,20 @@
                     </pd>
                 </plentry>
                 <plentry props="android">
+                    <pt>remoteUserUid</pt>
+                    <pd>远端用户 ID。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sourceType</pt>
+                    <pd>视频源类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="android">
                     <pt>imageUrl</pt>
                     <pd>本地图片的文件路径，例如：Android: <codeph>/storage/emulated/0/Pictures/image.png</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mediaPlayerId</pt>
+                    <pd>媒体播放器 ID。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>x</pt>
@@ -136,11 +148,28 @@
                     <pd>视频左上角相对画布原点（左上角）的纵向偏移。</pd>
                 </plentry>
                 <plentry props="android">
+                    <pt>width</pt>
+                    <pd>视频在画布上的宽度（像素）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>height</pt>
+                    <pd>视频在画布上的高度（像素）。</pd>
+                </plentry>
+                <plentry props="android">
                     <pt>zOrder</pt>
                     <pd>视频所属的图层编号，取值范围为 [0, 100]。
                         <ul>
                             <li>0：（默认）图层位于底部。</li>
                             <li>100：图层位于顶部。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>alpha</pt>
+                    <pd>视频的透明度，取值范围为 [0.0, 1.0]。
+                        <ul>
+                            <li>0.0：完全透明。</li>
+                            <li>1.0：完全不透明。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -153,23 +182,27 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>remoteUserUid</pt>
                     <pd>远端用户的用户 ID。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>sourceType</pt>
                     <pd>本地合图的视频源类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>imageUrl</pt>
                     <pd>本地图像的文件路径。例如：iOS：<codeph>/var/mobile/Containers/Data/Application/&lt;APP-UUID&gt;/Documents/image.png</codeph>，macOS：<codeph>~/Pictures/image.png</codeph>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>mediaPlayerId</pt>
+                    <pd>媒体播放器 ID。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>rect</pt>
                     <pd>本地合图中视频相对于画布原点（左上角）的位置和大小。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>zOrder</pt>
                     <pd>本地合图中视频所属图层的层级，取值范围为 [0, 100]。
                         <ul>
@@ -178,11 +211,53 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>alpha</pt>
                     <pd>本地合图中视频的透明度，取值范围为 [0.0, 1.0]。0.0 表示完全透明，1.0 表示不透明。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>mirror</pt>
+                    <pd>是否镜像本地合图中的视频。
+                        <ul>
+                            <li><xref keyref="true"/>：镜像视频。</li>
+                            <li><xref keyref="false"/>：（默认）不镜像视频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>remoteUserUid</pt>
+                    <pd>远端用户的用户 ID。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>sourceType</pt>
+                    <pd>本地合图的视频源类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>imageUrl</pt>
+                    <pd>本地图像的文件路径。例如：iOS：<codeph>/var/mobile/Containers/Data/Application/&lt;APP-UUID&gt;/Documents/image.png</codeph>，macOS：<codeph>~/Pictures/image.png</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>mediaPlayerId</pt>
+                    <pd>媒体播放器 ID。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>rect</pt>
+                    <pd>本地合图中视频相对于画布原点（左上角）的位置和大小。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>zOrder</pt>
+                    <pd>本地合图中视频所属图层的层级，取值范围为 [0, 100]。
+                        <ul>
+                            <li>0：（默认）图层位于底部。</li>
+                            <li>100：图层位于顶部。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>alpha</pt>
+                    <pd>本地合图中视频的透明度，取值范围为 [0.0, 1.0]。0.0 表示完全透明，1.0 表示不透明。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>mirror</pt>
                     <pd>是否镜像本地合图中的视频。
                         <ul>

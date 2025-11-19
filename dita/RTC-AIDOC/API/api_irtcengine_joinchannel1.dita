@@ -32,13 +32,18 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="android cpp">默认情况下，用户会订阅频道中其他所有用户的音视频流，从而产生使用量和计费。如需停止订阅指定流或所有远端流，请调用相应的 <xref keyref="mute"/> 方法。</p>
-            <p props="ios mac">默认情况下，你会订阅频道中其他所有用户的音视频流，从而产生使用量和计费。如需停止订阅指定流或所有远端流，请调用相应的 <codeph>mute</codeph> 方法。请在调用 <xref keyref="initialize"/> 方法后调用本方法。</p>
+            <p props="cpp">默认情况下，用户会订阅频道中其他所有用户的音视频流，从而产生使用量和计费。如需停止订阅指定流或所有远端流，请调用相应的 <xref keyref="mute"/> 方法。</p>
+            <p props="android">默认情况下，用户会订阅频道中其他所有用户的音视频流，从而产生使用量和计费。如需停止订阅指定流或所有远端流，请调用相应的 <xref keyref="mute"/> 方法。</p>
+            <p props="ios">默认情况下，你会订阅频道中其他所有用户的音视频流，从而产生使用量和计费。如需停止订阅指定流或所有远端流，请调用相应的 <codeph>mute</codeph> 方法。请在调用 <xref keyref="initialize"/> 方法后调用本方法。</p>
+            <p props="mac">默认情况下，你会订阅频道中其他所有用户的音视频流，从而产生使用量和计费。如需停止订阅指定流或所有远端流，请调用相应的 <codeph>mute</codeph> 方法。请在调用 <xref keyref="initialize"/> 方法后调用本方法。</p>
             <note props="cpp">该方法仅支持用户同时加入一个频道。
 不同 App ID 的用户无法互通。
 加入频道前，请确保用于生成 Token 的 App ID 与 <xref keyref="initialize_IMusicContentCenter"/> 方法中传入的 App ID 相同，否则可能导致加入频道失败。</note>
             <note props="android">该方法仅支持用户同时加入一个频道。不同 App ID 的用户无法互通。该方法需要在加入频道前调用。请确保用于生成 Token 的 App ID 与调用 <xref keyref="create_ILocalSpatialAudioEngine"/> 方法时传入的 App ID 相同，否则可能会导致加入频道失败。</note>
-            <note props="ios mac">该方法每次仅支持加入一个频道。
+            <note props="ios">该方法每次仅支持加入一个频道。
+不同 App ID 的用户无法互通。
+加入频道前，请确保用于生成 Token 的 App ID 与传入 <xref keyref="initialize"/> 方法中的 App ID 一致，否则可能导致加入频道失败。</note>
+            <note props="mac">该方法每次仅支持加入一个频道。
 不同 App ID 的用户无法互通。
 加入频道前，请确保用于生成 Token 的 App ID 与传入 <xref keyref="initialize"/> 方法中的 App ID 一致，否则可能导致加入频道失败。</note>
         </section>
@@ -46,18 +51,29 @@
             <title>调用时机</title>
             <p props="cpp">请在调用 <xref keyref="initialize_IMusicContentCenter"/> 方法后调用该方法。</p>
             <p props="android">该方法需要在加入频道前调用。</p>
-            <p props="ios mac">请在调用 <xref keyref="initialize"/> 方法后调用本方法。</p>
+            <p props="ios">请在调用 <xref keyref="initialize"/> 方法后调用本方法。</p>
+            <p props="mac">请在调用 <xref keyref="initialize"/> 方法后调用本方法。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="related" deliveryTarget="details">
             <title>相关回调</title>
             <p props="cpp">成功调用该方法后，本地客户端会触发 <xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/> 回调。
 远端客户端会触发 <xref keyref="onUserJoined"/> 回调（当用户以 <codeph>COMMUNICATION</codeph> 频道场景加入频道，或主播以 <codeph>LIVE_BROADCASTING</codeph> 频道场景加入频道时）。
 当由于网络状况不佳导致本地客户端与声网服务器的连接中断时，SDK 会尝试重连服务器。当本地客户端成功重回频道时，SDK 会在本地客户端触发 <xref keyref="onRejoinChannelSuccess"/> 回调。</p>
-            <p props="ios mac">成功调用该方法后，SDK 会触发以下回调：
+            <p props="ios">成功调用该方法后，SDK 会触发以下回调：
+                <ul>
+                    <li>本地客户端：<xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/>。</li>
+                    <li>远端客户端：如果是 <codeph>COMMUNICATION</codeph> 频道场景中的用户加入，或 <codeph>LIVE_BROADCASTING</codeph> 频道场景中的主播加入频道，会触发 <xref keyref="onUserJoined"/> 回调。
+当本地客户端因网络状况不佳与声网服务器断开连接时，SDK 会尝试重连。当本地客户端成功重回频道时，SDK 会触发 <xref keyref="onRejoinChannelSuccess"/> 回调。</li>
+                </ul>
+            </p>
+            <p props="mac">成功调用该方法后，SDK 会触发以下回调：
                 <ul>
                     <li>本地客户端：<xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/>。</li>
                     <li>远端客户端：如果是 <codeph>COMMUNICATION</codeph> 频道场景中的用户加入，或 <codeph>LIVE_BROADCASTING</codeph> 频道场景中的主播加入频道，会触发 <xref keyref="onUserJoined"/> 回调。
@@ -68,7 +84,7 @@
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
                     <pt>token</pt>
                     <pd>在你的服务器上生成的用于鉴权的 Token。</pd>
                 </plentry>
@@ -92,6 +108,10 @@
                     <pd>用户 ID。用于标识频道中的用户以进行实时音视频互动。你需要自行设置和管理用户 ID，并确保同一频道中每个用户 ID 唯一。该参数为 32 位无符号整数，取值范围为 1 到 2^32-1。如果未指定用户 ID（或设置为 0），SDK 会自动分配一个随机用户 ID，并在 <xref keyref="onJoinChannelSuccess"/> 回调中返回。你需要在应用中记录并维护该用户 ID，SDK 不会保存。</pd>
                 </plentry>
                 <plentry props="android">
+                    <pt>token</pt>
+                    <pd>在你的服务器上生成的用于鉴权的 Token。</pd>
+                </plentry>
+                <plentry props="android">
                     <pt>channelId</pt>
                     <pd>频道名。该参数表示用户进行实时音视频互动的频道。在相同 App ID 的前提下，填写相同频道名的用户会进入同一个频道进行音视频互动。字符串长度必须小于 64 字节。支持的字符（共 89 个）：
                         <ul>
@@ -110,7 +130,11 @@
                     <pt>uid</pt>
                     <pd>用户 ID。用于标识频道中的用户以进行实时音视频互动。你需要自行设置和管理用户 ID，并确保同一频道中每个用户 ID 唯一。该参数为 32 位有符号整数，取值范围为 -2^31 到 2^31-1。如果未指定用户 ID（或设置为 0），SDK 会自动分配一个随机用户 ID，并通过 <xref keyref="onJoinChannelSuccess"/> 回调返回。你的应用必须记录并维护返回的用户 ID，SDK 不会保存。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>token</pt>
+                    <pd>在你的服务器上生成的用于鉴权的 Token。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>channelId</pt>
                     <pd>频道名。该参数表示你进行实时音视频互动的频道。在相同 App ID 的前提下，填写相同频道名的用户会进入同一个频道进行音视频互动。字符串长度必须小于 64 字节。支持的字符（共 89 个）：
                         <ul>
@@ -121,15 +145,42 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>info</pt>
                     <pd>（可选）预留参数，供未来使用。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>uid</pt>
                     <pd>用户 ID。该参数用于标识频道内进行实时音视频互动的用户。你需要自行设置并管理用户 ID，确保同一频道内每个用户 ID 唯一。该参数为 32 位无符号整数，取值范围为 1 到 2^32-1。如果未指定用户 ID（或设置为 0），SDK 会自动分配一个随机用户 ID，并通过 <xref keyref="onJoinChannelSuccess"/> 回调返回。你必须记录并维护该返回的用户 ID，SDK 不会保存。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>joinSuccessBlock</pt>
+                    <pd>用户成功加入频道时触发。<codeph>joinSuccessBlock</codeph> 的优先级高于 <xref keyref="onJoinChannelSuccess"/>。当两者同时实现时，<xref keyref="onJoinChannelSuccess"/> 不生效。声网建议将 <codeph>joinSuccessBlock</codeph> 设置为 <xref keyref="NULL"/>，以使用 <xref keyref="onJoinChannelSuccess"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>token</pt>
+                    <pd>在你的服务器上生成的用于鉴权的 Token。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>channelId</pt>
+                    <pd>频道名。该参数表示你进行实时音视频互动的频道。在相同 App ID 的前提下，填写相同频道名的用户会进入同一个频道进行音视频互动。字符串长度必须小于 64 字节。支持的字符（共 89 个）：
+                        <ul>
+                            <li>所有小写英文字母：a 到 z。</li>
+                            <li>所有大写英文字母：A 到 Z。</li>
+                            <li>所有数字字符：0 到 9。</li>
+                            <li>"!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", "&gt;", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>info</pt>
+                    <pd>（可选）预留参数，供未来使用。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>用户 ID。该参数用于标识频道内进行实时音视频互动的用户。你需要自行设置并管理用户 ID，确保同一频道内每个用户 ID 唯一。该参数为 32 位无符号整数，取值范围为 1 到 2^32-1。如果未指定用户 ID（或设置为 0），SDK 会自动分配一个随机用户 ID，并通过 <xref keyref="onJoinChannelSuccess"/> 回调返回。你必须记录并维护该返回的用户 ID，SDK 不会保存。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>joinSuccessBlock</pt>
                     <pd>用户成功加入频道时触发。<codeph>joinSuccessBlock</codeph> 的优先级高于 <xref keyref="onJoinChannelSuccess"/>。当两者同时实现时，<xref keyref="onJoinChannelSuccess"/> 不生效。声网建议将 <codeph>joinSuccessBlock</codeph> 设置为 <xref keyref="NULL"/>，以使用 <xref keyref="onJoinChannelSuccess"/>。</pd>
                 </plentry>
@@ -169,7 +220,23 @@
                     </li>
                 </ul>
             </p>
-            <p props="ios mac">
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。
+                        <ul>
+                            <li>-2：参数无效。例如，Token 无效，<codeph>uid</codeph> 参数未设置为整数，或 <xref keyref="ChannelMediaOptions"/> 中的成员值无效。请传入有效参数并重新加入频道。</li>
+                            <li>-3：初始化 <xref keyref="IRtcEngine"/> 对象失败。请重新初始化该对象。</li>
+                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。请先初始化该对象再调用本方法。</li>
+                            <li>-8：<xref keyref="IRtcEngine"/> 对象的内部状态错误。常见原因是在调用 <xref keyref="startEchoTest3"/> 开始回声测试后，未调用 <xref keyref="stopEchoTest"/> 停止测试就调用本方法加入频道。请先调用 <xref keyref="stopEchoTest"/>。</li>
+                            <li>-17：加入频道请求被拒绝。常见原因是用户已在频道中。声网建议使用 <xref keyref="onConnectionStateChanged"/> 回调判断用户是否在频道中。仅当收到 <codeph>AgoraConnectionStateDisconnected</codeph>（1）状态时再调用本方法。</li>
+                            <li>-102：频道名无效。请在 <codeph>channelId</codeph> 中传入有效频道名重新加入。</li>
+                            <li>-121：用户 ID 无效。请在 <codeph>uid</codeph> 中传入有效用户 ID 重新加入频道。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。

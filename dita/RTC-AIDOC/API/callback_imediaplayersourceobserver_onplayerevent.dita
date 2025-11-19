@@ -32,42 +32,79 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">调用 <xref keyref="seek"/> 方法后，SDK 会触发该回调报告 <xref keyref="seek"/> 操作的结果。</p>
             <p props="android">调用 <xref keyref="seek"/> 方法后，SDK 会触发该回调报告操作结果。</p>
-            <p props="ios mac">调用 <xref keyref="seek"/> 方法后，SDK 会触发该回调，上报跳转播放位置操作的结果。</p>
+            <p props="ios">调用 <xref keyref="seek"/> 方法后，SDK 会触发该回调，上报跳转播放位置操作的结果。</p>
+            <p props="mac">调用 <xref keyref="seek"/> 方法后，SDK 会触发该回调，上报跳转播放位置操作的结果。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
-            <p props="ios mac">该回调在你调用 <xref keyref="seek"/> 方法后触发，用于上报跳转播放位置操作的结果。</p>
+            <p props="ios">该回调在你调用 <xref keyref="seek"/> 方法后触发，用于上报跳转播放位置操作的结果。</p>
+            <p props="mac">该回调在你调用 <xref keyref="seek"/> 方法后触发，用于上报跳转播放位置操作的结果。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>eventCode</pt>
                     <pd>播放器事件，详见 <xref keyref="MEDIA_PLAYER_EVENT"/>。</pd>
                 </plentry>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
                     <pt>elapsedTime</pt>
                     <pd>事件发生的时间，单位为毫秒。</pd>
                 </plentry>
-                <plentry props="cpp ios mac">
+                <plentry props="cpp">
                     <pt>message</pt>
                     <pd>事件的相关信息。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>eventCode</pt>
+                    <pd>播放器事件，详见 <xref keyref="MEDIA_PLAYER_EVENT"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>elapsedTime</pt>
+                    <pd>事件发生的时间，单位为毫秒。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>message</pt>
                     <pd>关于该事件的补充信息。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>playerKit</pt>
                     <pd>播放器实例。详见 <xref keyref="IMediaPlayer"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>eventCode</pt>
                     <pd>播放器事件类型。详见 <xref keyref="MEDIA_PLAYER_EVENT"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>elapsedTime</pt>
+                    <pd>事件发生的时间，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>message</pt>
+                    <pd>事件的相关信息。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>playerKit</pt>
+                    <pd>播放器实例。详见 <xref keyref="IMediaPlayer"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>eventCode</pt>
+                    <pd>播放器事件类型。详见 <xref keyref="MEDIA_PLAYER_EVENT"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>elapsedTime</pt>
+                    <pd>事件发生的时间，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>message</pt>
+                    <pd>事件的相关信息。</pd>
                 </plentry>
             </parml>
         </section>

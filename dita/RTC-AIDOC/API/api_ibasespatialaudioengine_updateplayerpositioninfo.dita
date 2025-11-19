@@ -19,6 +19,7 @@
             <p outputclass="codeblock">
                 <codeblock props="ios" outputclass="language-objectivec">- (int)updatePlayerPositionInfo:(NSInteger)playerId positionInfo:(AgoraRemoteVoicePositionInfo* _Nonnull)positionInfo NS_SWIFT_NAME(updatePlayerPositionInfo(_:positionInfo:));</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int updatePlayerPositionInfo(int playerId, RemoteVoicePositionInfo positionInfo);</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)updatePlayerPositionInfo:(NSInteger)playerId positionInfo:(AgoraRemoteVoicePositionInfo* _Nonnull)positionInfo NS_SWIFT_NAME(updatePlayerPositionInfo(_:positionInfo:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -28,10 +29,13 @@
             <title>调用时机</title>
             <p props="ios">你可以在加入频道前或后调用该方法。</p>
             <p props="android">该方法可以在加入频道前或加入频道后调用。</p>
+            <p props="mac">你可以在加入频道前或后调用该方法。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android ios">无。</p>
+            <p props="ios">无。</p>
+            <p props="android">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -52,11 +56,31 @@
                     <pt>positionInfo</pt>
                     <pd>媒体播放器的空间位置，详见 <xref keyref="RemoteVoicePositionInfo"/>。</pd>
                 </plentry>
+                <plentry props="mac">
+                    <pt>playerId</pt>
+                    <pd>媒体播放器的 ID。你可以通过调用 <xref keyref="getMediaPlayerId"/> 获取设备 ID。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>positionInfo</pt>
+                    <pd>媒体播放器的空间位置信息，详见 <xref keyref="RemoteVoicePositionInfo"/>。</pd>
+                </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android ios">
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

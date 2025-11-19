@@ -33,28 +33,42 @@
                     <dt>废弃</dt>
                     <dd>自 vX.X.X 版本废弃，请改用 <xref keyref="onAudioMixingStateChanged"/>。</dd>
                 </dlentry>
-                <dlentry props="ios mac">
+                <dlentry props="ios">
+                    <dt>废弃</dt>
+                    <dd>自 v4.5.0 版本废弃，请改用 <codeph>audioMixingStateChanged</codeph>。</dd>
+                </dlentry>
+                <dlentry props="mac">
                     <dt>废弃</dt>
                     <dd>自 v4.5.0 版本废弃，请改用 <codeph>audioMixingStateChanged</codeph>。</dd>
                 </dlentry>
             </dl>
             <p props="cpp">调用 <codeph>startAudioMixing</codeph> 播放本地音乐文件后，当播放结束时会触发该回调。如果调用 <codeph>startAudioMixing</codeph> 失败，会返回错误码 <codeph>WARN_AUDIO_MIXING_OPEN_ERROR</codeph>。</p>
             <p props="android">调用 <codeph>startAudioMixing</codeph> 播放本地音乐文件后，播放结束时会触发该回调。如果调用 <codeph>startAudioMixing</codeph> 失败，会返回错误码 <codeph>WARN_AUDIO_MIXING_OPEN_ERROR</codeph>。</p>
-            <p props="ios mac">调用 <codeph>startAudioMixing</codeph> 播放本地音乐文件后，当播放结束时会触发该回调。如果调用失败，会返回错误码 <codeph>WARN_AUDIO_MIXING_OPEN_ERROR</codeph>。</p>
+            <p props="ios">调用 <codeph>startAudioMixing</codeph> 播放本地音乐文件后，当播放结束时会触发该回调。如果调用失败，会返回错误码 <codeph>WARN_AUDIO_MIXING_OPEN_ERROR</codeph>。</p>
+            <p props="mac">调用 <codeph>startAudioMixing</codeph> 播放本地音乐文件后，当播放结束时会触发该回调。如果调用失败，会返回错误码 <codeph>WARN_AUDIO_MIXING_OPEN_ERROR</codeph>。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
-            <p props="cpp ios mac">调用 <codeph>startAudioMixing</codeph> 播放本地音乐文件后，当播放结束时触发。</p>
+            <p props="cpp">调用 <codeph>startAudioMixing</codeph> 播放本地音乐文件后，当播放结束时触发。</p>
             <p props="android">该回调在本地音乐文件播放结束时被触发。</p>
+            <p props="ios">调用 <codeph>startAudioMixing</codeph> 播放本地音乐文件后，当播放结束时触发。</p>
+            <p props="mac">调用 <codeph>startAudioMixing</codeph> 播放本地音乐文件后，当播放结束时触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>engine</pt>
                     <pd><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>

@@ -30,7 +30,8 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">确保所有预加载文件的总大小不超过限制。</p>
             <p props="android">你可以多次调用该方法，将多个音效文件预加载到内存中。预加载完成后，可以调用 <codeph>playEffect</codeph> 播放预加载的音效，或调用 <xref keyref="playAllEffects"/> 播放所有已预加载的音效。</p>
-            <p props="ios mac">确保所有预加载文件的总大小不超过限制。关于该方法支持的音频文件格式，详见 <codeph>What formats of audio files does the Agora RTC SDK support</codeph>。</p>
+            <p props="ios">确保所有预加载文件的总大小不超过限制。关于该方法支持的音频文件格式，详见 <codeph>What formats of audio files does the Agora RTC SDK support</codeph>。</p>
+            <p props="mac">确保所有预加载文件的总大小不超过限制。关于该方法支持的音频文件格式，详见 <codeph>What formats of audio files does the Agora RTC SDK support</codeph>。</p>
             <note props="cpp">
                 <ul>
                     <li>如果在调用 <xref keyref="playEffect3"/> 之前调用 <xref keyref="preloadEffect"/>，<xref keyref="playEffect3"/> 执行后不会关闭文件资源。下次调用 <xref keyref="playEffect3"/> 时会直接从头开始播放。</li>
@@ -45,7 +46,13 @@
                     <li>如果未在调用 <codeph>playEffect</codeph> 前调用 <codeph>preloadEffect</codeph>，则在 <codeph>playEffect</codeph> 执行后资源将被销毁。下次调用 <codeph>playEffect</codeph> 时将尝试重新打开文件并从头播放。</li>
                 </ul>
             </note>
-            <note props="ios mac">
+            <note props="ios">
+                <ul>
+                    <li>如果你在调用 <codeph>playEffect</codeph> 之前调用了 <codeph>preloadEffect</codeph>，则 <codeph>playEffect</codeph> 执行后不会关闭文件资源。下次调用 <codeph>playEffect</codeph> 时会直接从头开始播放。</li>
+                    <li>如果你在调用 <codeph>playEffect</codeph> 之前未调用 <codeph>preloadEffect</codeph>，则 <codeph>playEffect</codeph> 执行后会销毁资源。下次调用 <codeph>playEffect</codeph> 时会尝试重新打开文件并从头开始播放。</li>
+                </ul>
+            </note>
+            <note props="mac">
                 <ul>
                     <li>如果你在调用 <codeph>playEffect</codeph> 之前调用了 <codeph>preloadEffect</codeph>，则 <codeph>playEffect</codeph> 执行后不会关闭文件资源。下次调用 <codeph>playEffect</codeph> 时会直接从头开始播放。</li>
                     <li>如果你在调用 <codeph>playEffect</codeph> 之前未调用 <codeph>preloadEffect</codeph>，则 <codeph>playEffect</codeph> 执行后会销毁资源。下次调用 <codeph>playEffect</codeph> 时会尝试重新打开文件并从头开始播放。</li>
@@ -55,16 +62,20 @@
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p props="cpp">建议在加入频道前调用该方法。</p>
-            <p props="ios mac">声网建议你在加入频道前调用该方法。</p>
+            <p props="ios">声网建议你在加入频道前调用该方法。</p>
+            <p props="mac">声网建议你在加入频道前调用该方法。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="cpp ios mac">
+                <plentry props="cpp">
                     <pt>soundId</pt>
                     <pd>音效 ID。每个音效文件的 ID 必须唯一。</pd>
                 </plentry>
@@ -94,7 +105,11 @@
                     <pt>startPos</pt>
                     <pd>在线音效文件的起始播放位置。支持的音频格式包括：mp3、mp4、m4a、aac、3gp、mkv 和 wav。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>soundId</pt>
+                    <pd>音效 ID。每个音效文件的 ID 必须唯一。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>filePath</pt>
                     <pd>文件路径：
                         <ul>
@@ -102,7 +117,23 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>startPos</pt>
+                    <pd>音效文件的播放起始位置（单位为毫秒）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>soundId</pt>
+                    <pd>音效 ID。每个音效文件的 ID 必须唯一。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>filePath</pt>
+                    <pd>文件路径：
+                        <ul>
+                            <li>iOS 或 macOS：音效文件的绝对路径或 URL 地址（包括文件名后缀）。例如：<xref keyref="filePath-example"/>。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>startPos</pt>
                     <pd>音效文件的播放起始位置（单位为毫秒）。</pd>
                 </plentry>
@@ -110,7 +141,25 @@
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

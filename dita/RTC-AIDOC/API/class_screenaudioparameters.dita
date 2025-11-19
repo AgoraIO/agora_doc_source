@@ -15,18 +15,15 @@
   int channels = 2;
   int captureSignalVolume = 100;
 };</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenAudioParameters : NSObject
+@property(assign, nonatomic) NSInteger captureSignalVolume;
+@end</codeblock>
                 <codeblock props="android" outputclass="language-java">public static class AudioCaptureParameters {
     public int sampleRate = 16000;
     public int channels = 2;
     public int captureSignalVolume = 100;
     public boolean allowCaptureCurrentApp = true;
   }</codeblock>
-                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenAudioParameters : NSObject
-@property(assign, nonatomic) NSInteger captureSignalVolume;
-@end</codeblock>
-                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenAudioParameters : NSObject
-@property(assign, nonatomic) NSInteger captureSignalVolume;
-@end</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -36,22 +33,36 @@
                     <dd>自 v3.7.0 版本新增。</dd>
                 </dlentry>
             </dl>
-            <p props="android cpp ios mac">仅当 <codeph>captureAudio</codeph> 为 <xref keyref="true"/> 时生效。</p>
+            <p props="cpp">仅当 <codeph>captureAudio</codeph> 为 <xref keyref="true"/> 时生效。</p>
+            <p props="ios">仅当 <codeph>captureAudio</codeph> 为 <xref keyref="true"/> 时生效。</p>
+            <p props="android">仅当 <codeph>captureAudio</codeph> 为 <xref keyref="true"/> 时生效。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>属性</title>
             <parml>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>sampleRate</pt>
                     <pd>音频采样率（Hz）。默认值为 16000。</pd>
                 </plentry>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>channels</pt>
                     <pd>音频声道数。默认值为 2，表示立体声。</pd>
                 </plentry>
-                <plentry props="cpp ios mac">
+                <plentry props="cpp">
                     <pt>captureSignalVolume</pt>
                     <pd>采集的系统音频音量。取值范围为 [0, 100]，默认值为 100。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>captureSignalVolume</pt>
+                    <pd>采集的系统音频音量。取值范围为 [0, 100]，默认值为 100。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sampleRate</pt>
+                    <pd>音频采样率（Hz）。默认值为 16000。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>channels</pt>
+                    <pd>音频声道数。默认值为 2，表示立体声。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>captureSignalVolume</pt>

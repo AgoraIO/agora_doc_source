@@ -26,17 +26,22 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">调用 <codeph>joinChannel</codeph> 方法后，如果 SDK 与声网边缘服务器的连接中断，并在 10 秒内无法重新连接，则触发该回调。无论此时是否在频道中，都会触发该回调。如果在断开连接后 20 分钟内仍无法重新加入频道，SDK 将停止尝试重新加入。</p>
             <p props="android">无论是否在频道中，当调用 <codeph>joinChannel</codeph> 方法后，SDK 在连接中断后 10 秒内无法连接到服务器时会触发该回调。如果 SDK 在与声网边缘服务器断开连接后 20 分钟内仍无法重新加入频道，则停止重连。</p>
-            <p props="ios mac">调用 <codeph>joinChannelByToken</codeph> 方法后，无论是否已加入频道，如果 SDK 在连接中断后 10 秒内仍无法连接到服务器，则会触发该回调。如果在与声网边缘服务器断开连接后 20 分钟内仍无法重新加入频道，SDK 将停止尝试重新加入频道。</p>
+            <p props="ios">调用 <codeph>joinChannelByToken</codeph> 方法后，无论是否已加入频道，如果 SDK 在连接中断后 10 秒内仍无法连接到服务器，则会触发该回调。如果在与声网边缘服务器断开连接后 20 分钟内仍无法重新加入频道，SDK 将停止尝试重新加入频道。</p>
+            <p props="mac">调用 <codeph>joinChannelByToken</codeph> 方法后，无论是否已加入频道，如果 SDK 在连接中断后 10 秒内仍无法连接到服务器，则会触发该回调。如果在与声网边缘服务器断开连接后 20 分钟内仍无法重新加入频道，SDK 将停止尝试重新加入频道。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
             <p props="cpp">当 SDK 与声网边缘服务器的连接中断后 10 秒内无法重新连接时触发。</p>
             <p props="android">该回调在调用 <codeph>joinChannel</codeph> 后，SDK 与服务器连接中断并在 10 秒内无法重新连接时被触发。</p>
-            <p props="ios mac">当 SDK 与声网边缘服务器的连接中断后 10 秒仍无法重连时触发。</p>
+            <p props="ios">当 SDK 与声网边缘服务器的连接中断后 10 秒仍无法重连时触发。</p>
+            <p props="mac">当 SDK 与声网边缘服务器的连接中断后 10 秒仍无法重连时触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -45,7 +50,11 @@
                     <pt>connection</pt>
                     <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>engine</pt>
+                    <pd>当前使用的 <xref keyref="IRtcEngine"/> 实例。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>engine</pt>
                     <pd>当前使用的 <xref keyref="IRtcEngine"/> 实例。详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>

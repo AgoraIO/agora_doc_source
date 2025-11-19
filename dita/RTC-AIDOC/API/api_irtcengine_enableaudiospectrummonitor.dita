@@ -25,18 +25,26 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="android">你可以注册音频频谱观察器并调用该方法以获取本地或远端用户的音频频谱数据。</p>
-            <p props="ios mac">如果你希望获取本地或远端用户的音频频谱数据，可以注册音频频谱观察器并调用该方法。</p>
+            <p props="ios">如果你希望获取本地或远端用户的音频频谱数据，可以注册音频频谱观察器并调用该方法。</p>
+            <p props="mac">如果你希望获取本地或远端用户的音频频谱数据，可以注册音频频谱观察器并调用该方法。</p>
             <note props="cpp"><xref keyref="enableAudioSpectrumMonitor"/> 方法可以在加入频道前或加入频道后调用。</note>
             <note props="android">你可以在加入频道前或加入频道后调用此方法。</note>
-            <note props="ios mac">你可以在加入频道前或加入频道后调用该方法。</note>
+            <note props="ios">你可以在加入频道前或加入频道后调用该方法。</note>
+            <note props="mac">你可以在加入频道前或加入频道后调用该方法。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -49,7 +57,11 @@
                     <pt>intervalInMS</pt>
                     <pd>SDK 触发 <xref keyref="onLocalAudioSpectrum"/> 和 <xref keyref="onRemoteAudioSpectrum"/> 回调的时间间隔，单位为毫秒。（默认值为 100）</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>intervalInMS</pt>
+                    <pd>SDK 触发 <xref keyref="onLocalAudioSpectrum"/> 和 <xref keyref="onRemoteAudioSpectrum"/> 回调的时间间隔（单位为毫秒，默认值为 100）。该参数不能小于 10，否则调用该方法会失败。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>intervalInMS</pt>
                     <pd>SDK 触发 <xref keyref="onLocalAudioSpectrum"/> 和 <xref keyref="onRemoteAudioSpectrum"/> 回调的时间间隔（单位为毫秒，默认值为 100）。该参数不能小于 10，否则调用该方法会失败。</pd>
                 </plentry>
@@ -57,7 +69,37 @@
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。
+                        <ul>
+                            <li>-2：参数无效。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。
+                        <ul>
+                            <li>-2：参数无效。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。
+                        <ul>
+                            <li>-2：参数无效。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。

@@ -36,14 +36,21 @@
             <p props="android">你必须在调用 <codeph>joinChannel</codeph> 后调用该方法。调用 <codeph>leaveChannel</codeph> 时，录音会自动停止。
 
 请确保指定的目录存在且可写。</p>
-            <p props="ios mac">你可以在通话过程中调用该方法进行客户端录音。该方法会录制频道中所有用户的音频，并生成包含所有用户声音的录音文件。录音文件仅支持以下格式：
+            <p props="ios">你可以在通话过程中调用该方法进行客户端录音。该方法会录制频道中所有用户的音频，并生成包含所有用户声音的录音文件。录音文件仅支持以下格式：
+                <ul>
+                    <li><codeph>.wav</codeph>：文件体积大，音频保真度高。</li>
+                    <li><codeph>.aac</codeph>：文件体积小，音频保真度有损。</li>
+                </ul>
+            </p>
+            <p props="mac">你可以在通话过程中调用该方法进行客户端录音。该方法会录制频道中所有用户的音频，并生成包含所有用户声音的录音文件。录音文件仅支持以下格式：
                 <ul>
                     <li><codeph>.wav</codeph>：文件体积大，音频保真度高。</li>
                     <li><codeph>.aac</codeph>：文件体积小，音频保真度有损。</li>
                 </ul>
             </p>
             <note props="android">调用该方法时，默认的录音采样率为 32 kHz，且无法更改。</note>
-            <note props="ios mac">调用该方法时，默认的录音采样率为 32 kHz，且无法修改。</note>
+            <note props="ios">调用该方法时，默认的录音采样率为 32 kHz，且无法修改。</note>
+            <note props="mac">调用该方法时，默认的录音采样率为 32 kHz，且无法修改。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -51,7 +58,10 @@
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -60,7 +70,7 @@
                     <pt>filePath</pt>
                     <pd>录音文件的保存路径。</pd>
                 </plentry>
-                <plentry props="cpp ios">
+                <plentry props="cpp">
                     <pt>quality</pt>
                     <pd>录音质量，详见 <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>。</pd>
                 </plentry>
@@ -78,19 +88,45 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>filePath</pt>
+                    <pd>录音文件保存的本地绝对路径。路径必须包含文件名和扩展名，例如：<xref keyref="recordingPath-example"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>quality</pt>
+                    <pd>录音质量，详见 <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>filePath</pt>
                     <pd>录音文件保存的本地绝对路径。路径必须包含文件名和扩展名，例如：<xref keyref="recordingPath-example"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>quality</pt>
-                    <pd>录音质量，详见 <codeph>AgoraAudioRecordingQuality</codeph>。</pd>
+                    <pd>录音质量，详见 <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>。</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见 <codeph>Error Codes</codeph>。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见 <codeph>Error Codes</codeph>。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见 <codeph>Error Codes</codeph>。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见 <codeph>Error Codes</codeph>。</li>

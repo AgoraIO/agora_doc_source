@@ -25,20 +25,39 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
-                <dlentry props="android cpp ios mac">
+                <dlentry props="cpp">
+                    <dt>自从</dt>
+                    <dd>自 v4.5.1 版本新增。</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>自从</dt>
+                    <dd>自 v4.5.1 版本新增。</dd>
+                </dlentry>
+                <dlentry props="ios">
+                    <dt>自从</dt>
+                    <dd>自 v4.5.1 版本新增。</dd>
+                </dlentry>
+                <dlentry props="mac">
                     <dt>自从</dt>
                     <dd>自 v4.5.1 版本新增。</dd>
                 </dlentry>
             </dl>
-            <p props="ios mac">该方法用于获取当前播放的时间位置，单位为毫秒。</p>
+            <p props="ios">该方法用于获取当前播放的时间位置，单位为毫秒。</p>
+            <p props="mac">该方法用于获取当前播放的时间位置，单位为毫秒。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -57,7 +76,21 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>error</pt>
+                    <pd>输出参数，用于指示错误信息。可能的返回值包括：
+                        <ul>
+                            <li><codeph>AgoraRteOk</codeph>：调用成功。</li>
+                            <li><codeph>AgoraRteErrorInvalidOperation</codeph>：
+                                <ul>
+                                    <li>对应的内部 <xref keyref="Player"/> 对象已被销毁或无效。</li>
+                                    <li>打开的 URL 是 RTE URL，不支持调用 <xref keyref="GetPosition"/>。详见 <xref keyref="Error"/>。</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>error</pt>
                     <pd>输出参数，用于指示错误信息。可能的返回值包括：
                         <ul>
@@ -78,7 +111,8 @@
             <p props="cpp">方法调用成功，返回当前播放位置，单位为毫秒。</p>
             <p props="android">方法调用成功，返回当前播放位置，单位为毫秒。
 方法调用失败，SDK 会抛出异常，并返回相应的错误信息。你需要捕获异常并进行处理。</p>
-            <p props="ios mac">方法调用成功时，返回当前播放位置，单位为毫秒。</p>
+            <p props="ios">方法调用成功时，返回当前播放位置，单位为毫秒。</p>
+            <p props="mac">方法调用成功时，返回当前播放位置，单位为毫秒。</p>
         </section>
     </refbody>
 </reference>

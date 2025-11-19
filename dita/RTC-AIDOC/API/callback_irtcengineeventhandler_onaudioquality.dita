@@ -29,22 +29,30 @@
                     <dt>废弃</dt>
                     <dd>该回调已废弃，请改用 <xref keyref="onRemoteAudioStats"/>。</dd>
                 </dlentry>
-                <dlentry props="ios mac">
+                <dlentry props="android">
+                    <dt>废弃</dt>
+                    <dd>自某版本废弃，请改用 <xref keyref="onRemoteAudioStats"/>。</dd>
+                </dlentry>
+                <dlentry props="ios">
+                    <dt>废弃</dt>
+                    <dd>自 v1.1 版本废弃，请改用 delegate。</dd>
+                </dlentry>
+                <dlentry props="mac">
                     <dt>废弃</dt>
                     <dd>自 v1.1 版本废弃，请改用 delegate。</dd>
                 </dlentry>
             </dl>
             <p props="cpp">SDK 每两秒触发一次该回调，用于报告每个正在发送音频流的远端用户的音频质量。如果频道中有多个用户发送音频流，SDK 会触发多次该回调。</p>
-            <p props="android">该回调每两秒触发一次。如果频道中有多个用户发送音频流，SDK 会分别多次触发该回调。</p>
-            <p props="ios mac">每两秒报告一次音频质量。</p>
-        </section>
-        <section id="timing" deliveryTarget="details">
-            <title>触发时机</title>
-            <p props="android">该回调每两秒触发一次。</p>
+            <p props="android">该回调每两秒触发一次，用于报告每个正在发送音频流的远端用户的音频质量。</p>
+            <p props="ios">每两秒报告一次音频质量。</p>
+            <p props="mac">每两秒报告一次音频质量。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -61,7 +69,7 @@
                     <pt>quality</pt>
                     <pd>音频质量，详见 <xref keyref="QUALITY_TYPE"/>。</pd>
                 </plentry>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>delay</pt>
                     <pd>从发送端到接收端的网络延迟（毫秒），包括音频采样预处理、网络传输和网络抖动缓冲造成的延迟。</pd>
                 </plentry>
@@ -75,18 +83,22 @@
                 </plentry>
                 <plentry props="android">
                     <pt>quality</pt>
-                    <pd>该用户的音频质量：
+                    <pd>用户的音频质量：
                         <ul>
                             <li><codeph>QUALITY_UNKNOWN</codeph> (0)：音质未知。</li>
                             <li><codeph>QUALITY_EXCELLENT</codeph> (1)：音质极佳。</li>
                             <li><codeph>QUALITY_GOOD</codeph> (2)：网络质量很好，但码率略低于极佳。</li>
-                            <li><codeph>QUALITY_POOR</codeph> (3)：用户感觉通话有轻微卡顿。</li>
-                            <li><codeph>QUALITY_BAD</codeph> (4)：用户无法流畅通话。</li>
-                            <li><codeph>QUALITY_VBAD</codeph> (5)：音质非常差，几乎无法通话。</li>
-                            <li><codeph>QUALITY_DOWN</codeph> (6)：网络连接中断，完全无法通话。</li>
-                            <li><codeph>QUALITY_DETECTING</codeph> (8)：正在进行 Last-mile 网络探测。</li>
+                            <li><codeph>QUALITY_POOR</codeph> (3)：通话质量轻微受损。</li>
+                            <li><codeph>QUALITY_BAD</codeph> (4)：无法流畅沟通。</li>
+                            <li><codeph>QUALITY_VBAD</codeph> (5)：音质极差，几乎无法沟通。</li>
+                            <li><codeph>QUALITY_DOWN</codeph> (6)：网络连接中断，完全无法沟通。</li>
+                            <li><codeph>QUALITY_DETECTING</codeph> (8)：正在进行 last-mile 网络探测。</li>
                         </ul>
                     </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>delay</pt>
+                    <pd>从发送端到接收端的网络延迟（毫秒），包括音频采样预处理、网络传输和网络抖动缓冲造成的延迟。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>lost</pt>
@@ -108,7 +120,7 @@
                     <pd>回调 block，包含以下信息：
                         <ul>
                             <li><codeph>uid</codeph>：说话用户的用户 ID。</li>
-                            <li><codeph>quality</codeph>：网络质量，详见 <codeph>AgoraNetworkQuality</codeph>。</li>
+                            <li><codeph>quality</codeph>：网络质量，详见 <xref keyref="QUALITY_TYPE"/>。</li>
                             <li><codeph>delay</codeph>：延迟（毫秒）。</li>
                             <li><codeph>lost</codeph>：丢包率（%）。</li>
                         </ul>

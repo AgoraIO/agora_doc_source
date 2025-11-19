@@ -29,19 +29,26 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">你可以调用此方法创建数据流，以提升数据传输的可靠性和顺序性。</p>
-            <p props="ios mac">你可以调用该方法创建一个数据流，以提升数据传输的可靠性和顺序性。你可以在加入频道前或后调用该方法。</p>
+            <p props="ios">你可以调用该方法创建一个数据流，以提升数据传输的可靠性和顺序性。你可以在加入频道前或后调用该方法。</p>
+            <p props="mac">你可以调用该方法创建一个数据流，以提升数据传输的可靠性和顺序性。你可以在加入频道前或后调用该方法。</p>
             <note props="cpp">每个用户在 <xref keyref="IRtcEngine"/> 生命周期中最多可创建五个数据流。离开频道时，数据流会被销毁，如需继续使用需重新创建。如果你需要更全面的低延迟、高并发、可扩展的实时消息和状态同步方案，建议使用 <codeph>Signaling</codeph>。</note>
             <note props="android">每个用户在 <xref keyref="IRtcEngine"/> 生命周期内最多可创建五个数据流。离开频道时数据流会被销毁，如需继续使用需重新创建。如果你需要一个更全面的低延迟、高并发、可扩展的实时消息和状态同步解决方案，建议使用 <codeph>Signaling</codeph>。</note>
-            <note props="ios mac">每个用户在 <xref keyref="IRtcEngine"/> 的生命周期内最多可创建五个数据流。离开频道时数据流会被销毁，如需继续使用需重新创建。如果你需要更全面的低延时、高并发、可扩展的实时消息和状态同步方案，建议使用 <codeph>Signaling</codeph>。</note>
+            <note props="ios">每个用户在 <xref keyref="IRtcEngine"/> 的生命周期内最多可创建五个数据流。离开频道时数据流会被销毁，如需继续使用需重新创建。如果你需要更全面的低延时、高并发、可扩展的实时消息和状态同步方案，建议使用 <codeph>Signaling</codeph>。</note>
+            <note props="mac">每个用户在 <xref keyref="IRtcEngine"/> 的生命周期内最多可创建五个数据流。离开频道时数据流会被销毁，如需继续使用需重新创建。如果你需要更全面的低延时、高并发、可扩展的实时消息和状态同步方案，建议使用 <codeph>Signaling</codeph>。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp">你可以在加入频道前或后调用此方法。</p>
-            <p props="ios mac">你可以在加入频道前或后调用该方法。</p>
+            <p props="cpp">你可以在加入频道前或后调用此方法。</p>
+            <p props="android">你可以在加入频道前或后调用此方法。</p>
+            <p props="ios">你可以在加入频道前或后调用该方法。</p>
+            <p props="mac">你可以在加入频道前或后调用该方法。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="related" deliveryTarget="details">
             <title>相关回调</title>
@@ -50,7 +57,7 @@
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="cpp ios mac">
+                <plentry props="cpp">
                     <pt>streamId</pt>
                     <pd>输出参数，创建的数据流 ID。</pd>
                 </plentry>
@@ -64,7 +71,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>ordered</pt>
                     <pd>是否按发送顺序接收数据流：
                         <ul>
@@ -82,7 +89,20 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="android">
+                    <pt>ordered</pt>
+                    <pd>是否按发送顺序接收数据流：
+                        <ul>
+                            <li><xref keyref="true"/>：接收端按发送顺序接收数据。</li>
+                            <li><xref keyref="false"/>：接收端不按发送顺序接收数据。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>streamId</pt>
+                    <pd>输出参数，创建的数据流 ID。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>reliable</pt>
                     <pd>设置接收端是否保证在五秒内收到数据流：
                         <ul>
@@ -92,7 +112,30 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>ordered</pt>
+                    <pd>设置接收端是否按发送顺序接收数据流：
+                        <ul>
+                            <li><xref keyref="true"/>：接收端按发送顺序接收数据。</li>
+                            <li><xref keyref="false"/>：接收端不按发送顺序接收数据。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>streamId</pt>
+                    <pd>输出参数，创建的数据流 ID。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>reliable</pt>
+                    <pd>设置接收端是否保证在五秒内收到数据流：
+                        <ul>
+                            <li><xref keyref="true"/>：接收端会在五秒内收到发送方发送的数据。如果接收端在五秒内未收到数据，SDK 会触发 <xref keyref="onStreamMessageError"/> 回调并返回错误码。</li>
+                            <li><xref keyref="false"/>：不保证接收端在五秒内收到数据流，延迟或丢失数据不会返回错误信息。
+请确保 <codeph>reliable</codeph> 和 <codeph>ordered</codeph> 同时设置为 <xref keyref="true"/> 或同时设置为 <xref keyref="false"/>。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>ordered</pt>
                     <pd>设置接收端是否按发送顺序接收数据流：
                         <ul>
@@ -105,7 +148,7 @@
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="cpp ios mac">
+            <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>
@@ -114,6 +157,18 @@
             <p props="android">
                 <ul>
                     <li>方法调用成功，返回创建的数据流 ID。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>
                 </ul>
             </p>

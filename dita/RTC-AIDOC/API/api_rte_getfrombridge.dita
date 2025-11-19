@@ -25,24 +25,41 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
-                <dlentry props="android cpp ios mac">
+                <dlentry props="cpp">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="ios">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="mac">
                     <dt>自从</dt>
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
             </dl>
-            <p props="cpp">通过该方法创建的 <xref keyref="Rte"/> 对象无需再调用 <xref keyref="InitMediaEngine"/> 进行初始化。如果尚未创建并初始化 RTC 引擎，可以先调用 <xref keyref="Rte"/> 创建一个 <xref keyref="Rte"/> 对象，再调用 <xref keyref="InitMediaEngine"/> 进行初始化。</p>
-            <p props="android">通过该方法创建的 <xref keyref="Rte"/> 对象无需通过 <xref keyref="InitMediaEngine"/> 进行初始化。如果你尚未创建并初始化 RTC 引擎，可以先调用 <xref keyref="Rte"/> 创建一个 <xref keyref="Rte"/> 对象，再调用 <xref keyref="InitMediaEngine"/> 进行初始化。</p>
-            <p props="ios mac">通过调用此方法创建的 <codeph>RTE</codeph> 对象无需通过 <xref keyref="InitMediaEngine"/> 进行初始化。如果你尚未创建并初始化 RTC 引擎，可以先调用 <xref keyref="Rte"/> 创建一个 <codeph>RTE</codeph> 对象，然后使用 <xref keyref="InitMediaEngine"/> 进行初始化。</p>
+            <p props="cpp">通过该方法创建的 <xref keyref="Rte_Rte"/> 对象无需再调用 <xref keyref="InitMediaEngine"/> 进行初始化。如果尚未创建并初始化 RTC 引擎，可以先调用 <xref keyref="Rte_Rte"/> 创建一个 <xref keyref="Rte_Rte"/> 对象，再调用 <xref keyref="InitMediaEngine"/> 进行初始化。</p>
+            <p props="android">通过该方法创建的 <xref keyref="Rte_Rte"/> 对象无需通过 <xref keyref="InitMediaEngine"/> 进行初始化。如果你尚未创建并初始化 RTC 引擎，可以先调用 <xref keyref="Rte_Rte"/> 创建一个 <xref keyref="Rte_Rte"/> 对象，再调用 <xref keyref="InitMediaEngine"/> 进行初始化。</p>
+            <p props="ios">通过调用此方法创建的 <codeph>RTE</codeph> 对象无需通过 <xref keyref="InitMediaEngine"/> 进行初始化。如果你尚未创建并初始化 RTC 引擎，可以先调用 <xref keyref="Rte"/> 创建一个 <codeph>RTE</codeph> 对象，然后使用 <xref keyref="InitMediaEngine"/> 进行初始化。</p>
+            <p props="mac">通过调用此方法创建的 <codeph>RTE</codeph> 对象无需通过 <xref keyref="InitMediaEngine"/> 进行初始化。如果你尚未创建并初始化 RTC 引擎，可以先调用 <xref keyref="Rte"/> 创建一个 <codeph>RTE</codeph> 对象，然后使用 <xref keyref="InitMediaEngine"/> 进行初始化。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p props="cpp">在调用此方法之前，请确保你已调用 <xref keyref="initialize_IMusicContentCenter"/> 初始化 RTC 引擎。</p>
             <p props="android">在调用该方法之前，请确保你已调用 <xref keyref="create_ILocalSpatialAudioEngine"/> 初始化 RTC 引擎。</p>
-            <p props="ios mac">在调用此方法之前，请确保你已通过调用 <xref keyref="initialize"/> 初始化 RTC 引擎。</p>
+            <p props="ios">在调用此方法之前，请确保你已通过调用 <xref keyref="initialize"/> 初始化 RTC 引擎。</p>
+            <p props="mac">在调用此方法之前，请确保你已通过调用 <xref keyref="initialize"/> 初始化 RTC 引擎。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -51,7 +68,11 @@
                     <pt>err</pt>
                     <pd>输出参数，用于接收状态或错误信息，详见 <xref keyref="Error"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>error</pt>
+                    <pd>用于接收状态和错误码的指针，详见 <xref keyref="Error"/>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>error</pt>
                     <pd>用于接收状态和错误码的指针，详见 <xref keyref="Error"/>。</pd>
                 </plentry>
@@ -61,12 +82,13 @@
             <title>返回值</title>
             <p props="cpp">
                 <ul>
-                    <li>方法调用成功，返回一个 <xref keyref="Rte"/> 对象，详见 <xref keyref="Rte"/>。</li>
+                    <li>方法调用成功，返回一个 <xref keyref="Rte_Rte"/> 对象，详见 <xref keyref="Rte_Rte"/>。</li>
                     <li>方法调用失败，返回 <xref keyref="NULL"/>。</li>
                 </ul>
             </p>
-            <p props="android">方法调用成功，返回 <xref keyref="Rte"/> 实例。</p>
-            <p props="ios mac">方法调用成功，返回一个 <codeph>RTE</codeph> 对象，详见 <xref keyref="Rte"/>。</p>
+            <p props="android">方法调用成功，返回 <xref keyref="Rte_Rte"/> 实例。</p>
+            <p props="ios">方法调用成功，返回一个 <codeph>RTE</codeph> 对象，详见 <xref keyref="Rte"/>。</p>
+            <p props="mac">方法调用成功，返回一个 <codeph>RTE</codeph> 对象，详见 <xref keyref="Rte"/>。</p>
         </section>
     </refbody>
 </reference>

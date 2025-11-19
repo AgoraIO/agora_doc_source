@@ -187,7 +187,8 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">支持在同一个 <xref keyref="RtcConnection"/> 中同时发布多个音频流和一个视频流。例如，可以同时将 <codeph>publishMicrophoneTrack</codeph>、<codeph>publishCustomAudioTrack</codeph> 和 <codeph>publishMediaPlayerAudioTrack</codeph> 设置为 <xref keyref="true"/>，但 <codeph>publishCameraTrack</codeph>、<codeph>publishScreenCaptureVideo</codeph>、<codeph>publishScreenTrack</codeph>、<codeph>publishCustomVideoTrack</codeph> 或 <codeph>publishEncodedVideoTrack</codeph> 中只能有一个设置为 <xref keyref="true"/>。</p>
             <p props="android">支持在同一个 <xref keyref="RtcConnection"/> 中同时发布多个音频流和一个视频流。例如，可以同时启用 <codeph>publishMicrophoneTrack</codeph>、<codeph>publishCustomAudioTrack</codeph> 和 <codeph>publishMediaPlayerAudioTrack</codeph>，但 <codeph>publishCameraTrack</codeph>、<codeph>publishScreenCaptureVideo</codeph>、<codeph>publishCustomVideoTrack</codeph> 和 <codeph>publishEncodedVideoTrack</codeph> 中只能有一个设置为 <xref keyref="true"/>。</p>
-            <p props="ios mac">支持在同一个 <xref keyref="RtcConnection"/> 中同时发布多个音频流和一个视频流。例如，你可以同时将 <codeph>publishMicrophoneTrack</codeph>、<codeph>publishCustomAudioTrack</codeph> 和 <codeph>publishMediaPlayerAudioTrack</codeph> 设置为 <xref keyref="true"/>，但 <codeph>publishCameraTrack</codeph>、<codeph>publishScreenCaptureVideo</codeph>（iOS）/<codeph>publishScreenTrack</codeph>（macOS）、<codeph>publishCustomVideoTrack</codeph> 和 <codeph>publishEncodedVideoTrack</codeph> 中只能有一个设置为 <xref keyref="true"/>。</p>
+            <p props="ios">支持在同一个 <xref keyref="RtcConnection"/> 中同时发布多个音频流和一个视频流。例如，你可以同时将 <codeph>publishMicrophoneTrack</codeph>、<codeph>publishCustomAudioTrack</codeph> 和 <codeph>publishMediaPlayerAudioTrack</codeph> 设置为 <xref keyref="true"/>，但 <codeph>publishCameraTrack</codeph>、<codeph>publishScreenCaptureVideo</codeph>（iOS）/<codeph>publishScreenTrack</codeph>（macOS）、<codeph>publishCustomVideoTrack</codeph> 和 <codeph>publishEncodedVideoTrack</codeph> 中只能有一个设置为 <xref keyref="true"/>。</p>
+            <p props="mac">支持在同一个 <xref keyref="RtcConnection"/> 中同时发布多个音频流和一个视频流。例如，你可以同时将 <codeph>publishMicrophoneTrack</codeph>、<codeph>publishCustomAudioTrack</codeph> 和 <codeph>publishMediaPlayerAudioTrack</codeph> 设置为 <xref keyref="true"/>，但 <codeph>publishCameraTrack</codeph>、<codeph>publishScreenCaptureVideo</codeph>（iOS）/<codeph>publishScreenTrack</codeph>（macOS）、<codeph>publishCustomVideoTrack</codeph> 和 <codeph>publishEncodedVideoTrack</codeph> 中只能有一个设置为 <xref keyref="true"/>。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>属性</title>
@@ -241,23 +242,23 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="android ios mac">
+                <plentry props="android">
                     <pt>uplinkMultipathMode</pt>
                     <pd>上行传输模式。详见 <xref keyref="MultipathMode"/>。</pd>
                 </plentry>
-                <plentry props="android ios mac">
+                <plentry props="android">
                     <pt>downlinkMultipathMode</pt>
                     <pd>下行传输模式。详见 <xref keyref="MultipathMode"/>。</pd>
                 </plentry>
-                <plentry props="android ios mac">
+                <plentry props="android">
                     <pt>preferMultipathType</pt>
                     <pd>首选的传输路径类型。详见 <xref keyref="MultipathType"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>parameters</pt>
                     <pd>通过配置 JSON 选项为 SDK 提供技术预览功能或特殊定制功能。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>enableMultipath</pt>
                     <pd>是否启用多路径传输：
                         <ul>
@@ -265,6 +266,43 @@
                             <li><xref keyref="false"/>：禁用多路径传输。</li>
                         </ul>
                     </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>uplinkMultipathMode</pt>
+                    <pd>上行传输模式。详见 <xref keyref="MultipathMode"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>downlinkMultipathMode</pt>
+                    <pd>下行传输模式。详见 <xref keyref="MultipathMode"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>preferMultipathType</pt>
+                    <pd>首选的传输路径类型。详见 <xref keyref="MultipathType"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>parameters</pt>
+                    <pd>通过配置 JSON 选项为 SDK 提供技术预览功能或特殊定制功能。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>enableMultipath</pt>
+                    <pd>是否启用多路径传输：
+                        <ul>
+                            <li><xref keyref="true"/>：启用多路径传输。</li>
+                            <li><xref keyref="false"/>：禁用多路径传输。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uplinkMultipathMode</pt>
+                    <pd>上行传输模式。详见 <xref keyref="MultipathMode"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>downlinkMultipathMode</pt>
+                    <pd>下行传输模式。详见 <xref keyref="MultipathMode"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>preferMultipathType</pt>
+                    <pd>首选的传输路径类型。详见 <xref keyref="MultipathType"/>。</pd>
                 </plentry>
             </parml>
         </section>

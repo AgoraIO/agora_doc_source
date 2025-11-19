@@ -29,7 +29,11 @@
                     <dt>废弃</dt>
                     <dd>自 vX.X.X 版本废弃，请改用 <xref keyref="onRemoteAudioStateChanged"/>。</dd>
                 </dlentry>
-                <dlentry props="ios mac">
+                <dlentry props="ios">
+                    <dt>废弃</dt>
+                    <dd>自 v3.0.0 版本废弃，请改用 <xref keyref="onRemoteAudioStateChanged"/>。</dd>
+                </dlentry>
+                <dlentry props="mac">
                     <dt>废弃</dt>
                     <dd>自 v3.0.0 版本废弃，请改用 <xref keyref="onRemoteAudioStateChanged"/>。</dd>
                 </dlentry>
@@ -63,11 +67,15 @@
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
             <p props="android">该回调在 SDK 解码首帧远端音频用于播放时被触发。</p>
-            <p props="ios mac">该回调在 SDK 解码来自某个远端用户的首帧音频时被触发。</p>
+            <p props="ios">该回调在 SDK 解码来自某个远端用户的首帧音频时被触发。</p>
+            <p props="mac">该回调在 SDK 解码来自某个远端用户的首帧音频时被触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -92,15 +100,27 @@
                     <pt>elapsed</pt>
                     <pd>从本地用户调用 <codeph>joinChannel</codeph> 到 SDK 触发该回调的时间（毫秒）。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>engine</pt>
                     <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>uid</pt>
                     <pd>远端用户的用户 ID。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>elapsed</pt>
+                    <pd>从调用 <xref keyref="joinChannel2"/> 方法到 SDK 触发该回调的时间间隔（毫秒）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>远端用户的用户 ID。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>elapsed</pt>
                     <pd>从调用 <xref keyref="joinChannel2"/> 方法到 SDK 触发该回调的时间间隔（毫秒）。</pd>
                 </plentry>

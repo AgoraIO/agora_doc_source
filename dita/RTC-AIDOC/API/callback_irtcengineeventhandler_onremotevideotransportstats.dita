@@ -25,7 +25,19 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="deprecated">
-                <dlentry props="android cpp ios mac">
+                <dlentry props="cpp">
+                    <dt>废弃</dt>
+                    <dd>自 vX.X.X 版本废弃，请改用 <xref keyref="onRemoteVideoStats"/>。</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>废弃</dt>
+                    <dd>自 vX.X.X 版本废弃，请改用 <xref keyref="onRemoteVideoStats"/>。</dd>
+                </dlentry>
+                <dlentry props="ios">
+                    <dt>废弃</dt>
+                    <dd>自 vX.X.X 版本废弃，请改用 <xref keyref="onRemoteVideoStats"/>。</dd>
+                </dlentry>
+                <dlentry props="mac">
                     <dt>废弃</dt>
                     <dd>自 vX.X.X 版本废弃，请改用 <xref keyref="onRemoteVideoStats"/>。</dd>
                 </dlentry>
@@ -36,11 +48,15 @@
             <title>触发时机</title>
             <p props="cpp">通话过程中，当你接收到远端用户或主播发送的视频包时，每 2 秒触发一次该回调。</p>
             <p props="android">该回调在通话过程中，当本地用户接收到远端用户或主播发送的视频包时，每 2 秒触发一次。</p>
-            <p props="ios mac">该回调在通话过程中，每当接收到远端用户或主播发送的视频包时，每 2 秒触发一次。</p>
+            <p props="ios">该回调在通话过程中，每当接收到远端用户或主播发送的视频包时，每 2 秒触发一次。</p>
+            <p props="mac">该回调在通话过程中，每当接收到远端用户或主播发送的视频包时，每 2 秒触发一次。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -69,11 +85,11 @@
                     <pt>uid</pt>
                     <pd>远端用户 ID。</pd>
                 </plentry>
-                <plentry props="android ios mac">
+                <plentry props="android">
                     <pt>delay</pt>
                     <pd>从发送端到接收端的网络时延（毫秒）。</pd>
                 </plentry>
-                <plentry props="android ios mac">
+                <plentry props="android">
                     <pt>lost</pt>
                     <pd>远端用户发送的视频包的丢包率（%）。</pd>
                 </plentry>
@@ -81,15 +97,43 @@
                     <pt>rxKBitRate</pt>
                     <pd>接收视频的码率（Kbps）。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>engine</pt>
                     <pd><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>uid</pt>
                     <pd>发送视频包的远端用户 ID。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>delay</pt>
+                    <pd>从发送端到接收端的网络时延（毫秒）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>lost</pt>
+                    <pd>远端用户发送的视频包的丢包率（%）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>rxKBitRate</pt>
+                    <pd>接收到的视频码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>发送视频包的远端用户 ID。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>delay</pt>
+                    <pd>从发送端到接收端的网络时延（毫秒）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>lost</pt>
+                    <pd>远端用户发送的视频包的丢包率（%）。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>rxKBitRate</pt>
                     <pd>接收到的视频码率（Kbps）。</pd>
                 </plentry>

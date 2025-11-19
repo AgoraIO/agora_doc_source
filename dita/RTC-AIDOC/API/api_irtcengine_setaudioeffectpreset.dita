@@ -43,7 +43,14 @@
                     <li>调用 <codeph>setAudioProfile</codeph>，将 <codeph>profile</codeph> 参数设置为 <codeph>MUSIC_HIGH_QUALITY</codeph>（4）或 <codeph>MUSIC_HIGH_QUALITY_STEREO</codeph>（5）。</li>
                 </ul>
             </p>
-            <p props="ios mac">你可以调用该方法为发送音频流的本地用户设置声网预设的音效效果。该音效不会改变原始声音的性别特征。设置后，频道内所有用户都能听到该音效效果。
+            <p props="ios">你可以调用该方法为发送音频流的本地用户设置声网预设的音效效果。该音效不会改变原始声音的性别特征。设置后，频道内所有用户都能听到该音效效果。
+建议你在调用该方法前，先调用以下 API 以获得更好的人声效果：
+                <ul>
+                    <li>调用 <xref keyref="setAudioScenario"/> 将音频场景设置为高音质音频场景，即 <codeph>AgoraAudioScenarioGameStreaming</codeph>（3）。</li>
+                    <li>调用 <xref keyref="setAudioProfile2"/> 将 <codeph>profile</codeph> 参数设置为 <codeph>AgoraAudioProfileMusicHighQuality</codeph>（4）或 <codeph>AgoraAudioProfileMusicHighQualityStereo</codeph>（5）。</li>
+                </ul>
+            </p>
+            <p props="mac">你可以调用该方法为发送音频流的本地用户设置声网预设的音效效果。该音效不会改变原始声音的性别特征。设置后，频道内所有用户都能听到该音效效果。
 建议你在调用该方法前，先调用以下 API 以获得更好的人声效果：
                 <ul>
                     <li>调用 <xref keyref="setAudioScenario"/> 将音频场景设置为高音质音频场景，即 <codeph>AgoraAudioScenarioGameStreaming</codeph>（3）。</li>
@@ -121,12 +128,17 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="cpp ios mac">该方法可以在加入频道前或加入频道后调用。</p>
+            <p props="cpp">该方法可以在加入频道前或加入频道后调用。</p>
             <p props="android">该方法可在加入频道前或加入频道后调用。</p>
+            <p props="ios">该方法可以在加入频道前或加入频道后调用。</p>
+            <p props="mac">该方法可以在加入频道前或加入频道后调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -169,13 +181,31 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>preset</pt>
-                    <pd>声网预设的音效选项，详见 <codeph>AgoraAudioEffectPreset</codeph>。</pd>
+                    <pd>声网预设的音效选项，详见 <xref keyref="AUDIO_EFFECT_PRESET"/>。</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

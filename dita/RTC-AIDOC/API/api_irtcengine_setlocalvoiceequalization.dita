@@ -25,12 +25,17 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="cpp ios mac">该方法可以在加入频道前或加入频道后调用。</p>
+            <p props="cpp">该方法可以在加入频道前或加入频道后调用。</p>
             <p props="android">该方法可在加入频道前或加入频道后调用。</p>
+            <p props="ios">该方法可以在加入频道前或加入频道后调用。</p>
+            <p props="mac">该方法可以在加入频道前或加入频道后调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -39,7 +44,7 @@
                     <pt>bandFrequency</pt>
                     <pd>频段索引，取值范围为 0 到 9，分别对应语音效果的 10 个中心频率段：31、62、125、250、500、1k、2k、4k、8k 和 16k Hz。详见 <xref keyref="AUDIO_EQUALIZATION_BAND_FREQUENCY"/>。</pd>
                 </plentry>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>bandGain</pt>
                     <pd>每个频段的增益值，单位为 dB。取值范围为 -15 到 15，默认值为 0。</pd>
                 </plentry>
@@ -47,11 +52,23 @@
                     <pt>bandFrequency</pt>
                     <pd>频段索引，取值范围为 0 到 9，分别对应 10 个语音效果的中心频率段：31、62、125、250、500、1k、2k、4k、8k 和 16k Hz。详见 <xref keyref="AUDIO_EQUALIZATION_BAND_FREQUENCY"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="android">
+                    <pt>bandGain</pt>
+                    <pd>每个频段的增益值，单位为 dB。取值范围为 -15 到 15，默认值为 0。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>bandFrequency</pt>
                     <pd>频段频率，详见 <xref keyref="AUDIO_EQUALIZATION_BAND_FREQUENCY"/>。取值范围为 0 到 9，分别对应语音特效的 10 个中心频率段：31、62、125、250、500、1k、2k、4k、8k 和 16k Hz。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>gain</pt>
+                    <pd>每个频段的增益值，单位为 dB。取值范围为 -15 到 15，默认值为 0。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>bandFrequency</pt>
+                    <pd>频段频率，详见 <xref keyref="AUDIO_EQUALIZATION_BAND_FREQUENCY"/>。取值范围为 0 到 9，分别对应语音特效的 10 个中心频率段：31、62、125、250、500、1k、2k、4k、8k 和 16k Hz。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>gain</pt>
                     <pd>每个频段的增益值，单位为 dB。取值范围为 -15 到 15，默认值为 0。</pd>
                 </plentry>
@@ -59,7 +76,25 @@
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>
