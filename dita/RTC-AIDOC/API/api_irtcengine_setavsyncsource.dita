@@ -23,7 +23,7 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (int)setAVSyncSource:(NSString* _Nonnull)channelId uid:(NSUInteger)uid NS_SWIFT_NAME(setAVSyncSource(_:uid:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
             <p props="cpp">用户可能会使用两台独立设备分别发送音频和视频流。为了确保接收端的音视频同步，你可以在视频发送端调用该方法，并传入音频发送端的频道名和用户 ID。SDK 会以音频流的时间戳为参考，自动调整视频流，即使两台发送设备处于不同的上行网络（如 Wi-Fi 和 4G），也能实现音视频同步。</p>
             <p props="android">你可以在视频发布设备上调用该方法，并传入音频发布设备所在频道的频道名和用户 ID。SDK 会以发送的音频流的时间戳为参考，自动调整视频流，从而确保即使两个发布设备的上行网络条件不同（例如一个使用 Wi-Fi，另一个使用 4G），接收端的音视频也能实现时间同步。</p>
             <p props="ios">你可以使用两台独立设备分别发送音频和视频流。为了确保接收端的音视频同步，你需要在视频发布设备上调用该方法，并传入音频发布设备所在的频道名和用户 ID。SDK 会根据发送音频流的时间戳自动调整视频流，从而确保即使两个发布设备处于不同的上行网络（例如 Wi-Fi 和 4G）时，接收端也能实现音视频同步。</p>
@@ -33,21 +33,21 @@
             <note props="ios">该方法需要在加入频道前调用。</note>
             <note props="mac">该方法需要在加入频道前调用。</note>
         </section>
-        <section id="timing" deliveryTarget="details">
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">加入频道前后均可调用。</p>
             <p props="android">加入频道前后均可调用。</p>
             <p props="ios">加入频道前后均可调用。</p>
             <p props="mac">加入频道前后均可调用。</p>
         </section>
-        <section id="restriction" deliveryTarget="details">
+        <section id="restriction" deliveryTarget="details" props="android cpp ios mac">
             <title>调用限制</title>
             <p props="cpp">无。</p>
             <p props="android">无。</p>
             <p props="ios">无。</p>
             <p props="mac">无。</p>
         </section>
-        <section id="parameters" deliveryTarget="details">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
@@ -84,7 +84,7 @@
                 </plentry>
             </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="android cpp ios mac">
             <title>返回值</title>
             <p props="cpp">
                 <ul>

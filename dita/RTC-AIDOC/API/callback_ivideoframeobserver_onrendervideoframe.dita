@@ -23,7 +23,7 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (BOOL)onRenderVideoFrame:(AgoraOutputVideoFrame * _Nonnull)videoFrame uid:(NSUInteger)uid channelId:(NSString * _Nonnull)channelId NS_SWIFT_NAME(onRenderVideoFrame(_:uid:channelId:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
             <p props="cpp">在你成功注册视频帧观察器后，SDK 每次接收到远端用户发送的视频帧时会触发该回调。你可以在渲染前获取视频数据，并根据实际场景进行处理。默认视频帧格式为 YUV420。如需其他格式，可在 <xref keyref="getVideoFormatPreference"/> 回调中设置。</p>
             <p props="android">在成功注册视频帧观察器后，每次 SDK 接收到远端用户发送的视频帧时会触发该回调。你可以在渲染前获取视频数据，并根据具体场景进行处理。通过该回调获取的视频帧默认格式可能为 <codeph>I420Buffer</codeph> 或 <codeph>TextureBuffer</codeph>，<codeph>TextureBuffer</codeph> 的纹理格式可能为 <codeph>OES</codeph> 或 <codeph>RGB</codeph>。如果你需要其他格式的视频数据，可以通过 <xref keyref="getVideoFormatPreference"/> 回调设置期望的数据格式。</p>
             <p props="ios">在你成功注册视频帧观察器后，SDK 每次接收到视频帧时都会触发该回调。在该回调中，你可以在渲染前获取远端发送的视频数据，并根据具体场景进行处理。通过该回调获取的视频格式默认为 I420 或 <codeph>CVPixelBufferRef</codeph>。如果你需要其他格式，可以在 <xref keyref="getVideoFormatPreference"/> 回调中设置期望的数据格式。</p>
@@ -57,21 +57,21 @@
                 </ul>
             </note>
         </section>
-        <section id="timing" deliveryTarget="details">
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>触发时机</title>
             <p props="cpp">每次 SDK 接收到远端用户发送的视频帧时触发。</p>
             <p props="android">该回调在 SDK 接收到远端用户发送的视频帧时被触发。</p>
             <p props="ios">该回调在 SDK 每次接收到远端用户发送的视频帧时被触发。</p>
             <p props="mac">该回调在 SDK 每次接收到远端用户发送的视频帧时被触发。</p>
         </section>
-        <section id="restriction" deliveryTarget="details">
+        <section id="restriction" deliveryTarget="details" props="android cpp ios mac">
             <title>使用限制</title>
             <p props="cpp">无。</p>
             <p props="android">无。</p>
             <p props="ios">无。</p>
             <p props="mac">无。</p>
         </section>
-        <section id="parameters" deliveryTarget="details">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
@@ -132,7 +132,7 @@
                 </plentry>
             </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="android cpp ios mac">
             <title>返回值</title>
             <p props="cpp">
                 <ul>

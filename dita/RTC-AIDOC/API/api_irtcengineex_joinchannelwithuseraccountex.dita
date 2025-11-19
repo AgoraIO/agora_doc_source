@@ -33,7 +33,7 @@
                 joinSuccess:(void(^ _Nullable)(NSString* _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock NS_SWIFT_NAME(joinChannelEx(byToken:channelId:userAccount:delegate:mediaOptions:joinSuccess:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
             <p props="cpp">在调用该方法之前，如果你尚未调用 <xref keyref="registerLocalUserAccount"/> 注册用户账号，当你调用该方法加入频道时，SDK 会自动为你创建一个用户账号。调用 <xref keyref="registerLocalUserAccount"/> 注册用户账号后再调用该方法，可以缩短加入频道所需的时间。用户加入频道后，默认会订阅频道中所有其他用户的音视频流，从而产生使用量和计费。如果你希望停止订阅其他用户的媒体流，可以设置 <codeph>options</codeph> 参数或调用相应的 <xref keyref="mute"/> 方法。</p>
             <p props="android">在调用该方法之前，如果你尚未调用 <xref keyref="registerLocalUserAccount"/> 注册用户账号，SDK 会在你调用该方法加入频道时自动为你创建一个用户账号。建议你先调用 <xref keyref="registerLocalUserAccount"/> 注册用户账号，再调用该方法加入频道，以缩短加入频道所需的时间。
 
@@ -76,21 +76,21 @@
                 </ul>
             </note>
         </section>
-        <section id="timing" deliveryTarget="details">
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">请在调用 <xref keyref="initialize_IMusicContentCenter"/> 之后调用该方法。</p>
             <p props="android">请在调用 <xref keyref="create_ILocalSpatialAudioEngine"/> 方法后调用该方法。</p>
             <p props="ios">请在调用 <xref keyref="initialize"/> 之后调用该方法。</p>
             <p props="mac">请在调用 <xref keyref="initialize"/> 之后调用该方法。</p>
         </section>
-        <section id="restriction" deliveryTarget="details">
+        <section id="restriction" deliveryTarget="details" props="android cpp ios mac">
             <title>调用限制</title>
             <p props="cpp">无。</p>
             <p props="android">无。</p>
             <p props="ios">无。</p>
             <p props="mac">无。</p>
         </section>
-        <section id="related" deliveryTarget="details">
+        <section id="related" deliveryTarget="details" props="cpp">
             <title>相关回调</title>
             <p props="cpp">本地用户成功加入频道后，SDK 会触发以下回调：
                 <ul>
@@ -99,7 +99,7 @@
                 </ul>
             </p>
         </section>
-        <section id="parameters" deliveryTarget="details">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
@@ -252,7 +252,7 @@
                 </plentry>
             </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="android cpp ios mac">
             <title>返回值</title>
             <p props="cpp">
                 <ul>

@@ -22,7 +22,7 @@
                 <codeblock props="android" outputclass="language-java">public abstract int setDefaultAudioRoutetoSpeakerphone(boolean defaultToSpeaker);</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios">
             <p props="cpp">大多数手机有两个音频路由：顶部的听筒和底部的扬声器。听筒音量较低，扬声器音量较高。你可以通过该方法设置在未连接外部音频设备时，默认使用听筒或扬声器播放音频。
 不同场景下系统的默认音频路由如下：
                 <ul>
@@ -55,23 +55,23 @@
             <note props="ios">调用此方法设置默认音频路由后，系统的实际音频路由会随着外部音频设备（有线耳机或蓝牙耳机）的连接而变化。</note>
             <note props="android">调用该方法设置默认音频路由后，系统的实际音频路由会根据外部音频设备（如有线耳机或蓝牙耳机）的连接情况自动切换。</note>
         </section>
-        <section id="timing" deliveryTarget="details">
+        <section id="timing" deliveryTarget="details" props="android cpp ios">
             <title>调用时机</title>
             <p props="cpp">在加入频道前调用此方法。如果需要在加入频道后更改音频路由，请调用 <xref keyref="setEnableSpeakerphone"/>。</p>
             <p props="ios">该方法需要在加入频道前调用。</p>
             <p props="android">请在加入频道前调用该方法。如果需要在加入频道后更改音频路由，请调用 <xref keyref="setEnableSpeakerphone"/>。</p>
         </section>
-        <section id="restriction" deliveryTarget="details">
+        <section id="restriction" deliveryTarget="details" props="android cpp ios">
             <title>调用限制</title>
             <p props="cpp">无。</p>
             <p props="ios">无。</p>
             <p props="android">无。</p>
         </section>
-        <section id="related" deliveryTarget="details">
+        <section id="related" deliveryTarget="details" props="cpp">
             <title>相关回调</title>
             <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onAudioRoutingChanged"/> 回调报告当前的音频路由。</p>
         </section>
-        <section id="parameters" deliveryTarget="details">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
@@ -103,7 +103,7 @@
                 </plentry>
             </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="android cpp ios">
             <title>返回值</title>
             <p props="cpp">
                 <ul>

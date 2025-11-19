@@ -23,7 +23,7 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (int)startLocalVideoTranscoder:(AgoraLocalTranscoderConfiguration* _Nonnull)config NS_SWIFT_NAME(startLocalVideoTranscoder(_:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
             <p props="cpp">调用该方法后，可以在本地将多个视频流合并为一个视频流，例如摄像头采集的视频流、屏幕共享、媒体播放器、远端视频、视频文件、图片等，并将混流后的视频流发布到频道中。适用场景包括远程会议、直播、在线教育等，便于用户查看和管理多个视频内容，并支持画中画等效果。
 以下是实现画中画效果的典型用例：
                 <ol>
@@ -84,7 +84,7 @@
                 </ul>
             </note>
         </section>
-        <section id="timing" deliveryTarget="details">
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">如果需要混合本地采集的视频流，应在调用 <xref keyref="startCameraCapture"/> 或 <codeph>startScreenCapture</codeph> 之后调用 <xref keyref="startLocalVideoTranscoder"/>。
 如果希望将混流后的视频流发布到频道中，在调用 <codeph>joinChannel</codeph> 或 <xref keyref="updateChannelMediaOptions"/> 时，需要在 <xref keyref="ChannelMediaOptions"/> 中将 <codeph>publishTranscodedVideoTrack</codeph> 设置为 <xref keyref="true"/>。</p>
@@ -93,21 +93,21 @@
             <p props="ios">如果需要合成本地采集的视频流，需在调用 <codeph>startCameraCapture:</codeph> 或 <xref keyref="startScreenCapture"/>（iOS）/<xref keyref="startScreenCapture"/>（macOS）之后调用本方法。如果希望将合图后的视频流发布到频道中，需在调用 <codeph>joinChannelByToken:</codeph> 或 <xref keyref="updateChannelMediaOptions"/> 时，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishTranscodedVideoTrack</codeph> 设置为 <xref keyref="true"/>。</p>
             <p props="mac">如果需要合成本地采集的视频流，需在调用 <codeph>startCameraCapture:</codeph> 或 <xref keyref="startScreenCapture"/>（iOS）/<xref keyref="startScreenCapture"/>（macOS）之后调用本方法。如果希望将合图后的视频流发布到频道中，需在调用 <codeph>joinChannelByToken:</codeph> 或 <xref keyref="updateChannelMediaOptions"/> 时，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishTranscodedVideoTrack</codeph> 设置为 <xref keyref="true"/>。</p>
         </section>
-        <section id="restriction" deliveryTarget="details">
+        <section id="restriction" deliveryTarget="details" props="android cpp ios mac">
             <title>调用限制</title>
             <p props="cpp">无。</p>
             <p props="android">无。</p>
             <p props="ios">无。</p>
             <p props="mac">无。</p>
         </section>
-        <section id="related" deliveryTarget="details">
+        <section id="related" deliveryTarget="details" props="android cpp ios mac">
             <title>相关回调</title>
             <p props="cpp">调用该方法失败时，SDK 会触发 <xref keyref="onLocalVideoTranscoderError"/> 回调报告失败原因。</p>
             <p props="android">调用该方法失败时，SDK 会触发 <xref keyref="onLocalVideoTranscoderError"/> 回调报告失败原因。</p>
             <p props="ios">调用该方法失败时，SDK 会触发 <xref keyref="onLocalVideoTranscoderError"/> 回调报告失败原因。</p>
             <p props="mac">调用该方法失败时，SDK 会触发 <xref keyref="onLocalVideoTranscoderError"/> 回调报告失败原因。</p>
         </section>
-        <section id="parameters" deliveryTarget="details">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
@@ -134,7 +134,7 @@
                 </plentry>
             </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="android cpp ios mac">
             <title>返回值</title>
             <p props="cpp">
                 <ul>

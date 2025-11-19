@@ -20,7 +20,7 @@
                 <codeblock props="cpp" outputclass="language-cpp">virtual int pullAudioFrame(IAudioFrameObserverBase::AudioFrame* frame) = 0;</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="cpp">
             <p props="cpp">调用该方法后，App 会拉取解码并混音后的音频数据用于播放。该方法需要在加入频道后调用。在调用该方法前，请先调用 <xref keyref="setExternalAudioSink_IMediaEngine"/> 启用并设置外部音频渲染。</p>
             <note props="cpp"><xref keyref="pullAudioFrame_IMediaEngine"/> 和 <xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/> 回调都可用于获取远端混音后的音频数据。启用外部音频渲染（调用 <xref keyref="setExternalAudioSink_IMediaEngine"/>）后，App 将无法再通过 <xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/> 回调获取数据。请根据实际业务需求选择使用该方法或 <xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/> 回调。两者的区别如下：
                 <ul>
@@ -30,15 +30,15 @@
                 </ul>
             </note>
         </section>
-        <section id="timing" deliveryTarget="details">
+        <section id="timing" deliveryTarget="details" props="cpp">
             <title>调用时机</title>
             <p props="cpp">该方法需要在加入频道后调用。</p>
         </section>
-        <section id="restriction" deliveryTarget="details">
+        <section id="restriction" deliveryTarget="details" props="cpp">
             <title>调用限制</title>
             <p props="cpp">无。</p>
         </section>
-        <section id="parameters" deliveryTarget="details">
+        <section id="parameters" deliveryTarget="details" props="cpp">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
@@ -47,7 +47,7 @@
                 </plentry>
             </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="cpp">
             <title>返回值</title>
             <p props="cpp">
                 <ul>

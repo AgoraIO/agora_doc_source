@@ -23,7 +23,7 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (int)enableLocalVideo:(BOOL)enabled NS_SWIFT_NAME(enableLocalVideo(_:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
             <p props="cpp">该方法用于关闭或重新启用本地视频采集，不影响接收远端视频流。调用 <xref keyref="enableVideo"/> 后，默认启用本地视频采集。如果在频道内调用 <codeph>enableLocalVideo(false)</codeph> 关闭本地视频采集，则会同时停止在频道内发布视频流。若需重新开始视频采集，可调用 <codeph>enableLocalVideo(true)</codeph>，然后调用 <xref keyref="updateChannelMediaOptions"/> 设置 <codeph>options</codeph> 参数以在频道中发布本地采集的视频流。</p>
             <p props="android">调用 <xref keyref="enableVideo"/> 后，本地视频采集默认处于启用状态。如果在频道内调用 <codeph>enableLocalVideo(false)</codeph> 禁用本地视频采集，则会同时停止在频道内发布视频流。若要重新开始视频采集，可调用 <codeph>enableLocalVideo(true)</codeph>，然后调用 <xref keyref="updateChannelMediaOptions"/> 并设置 <codeph>options</codeph> 参数以在频道中发布本地采集的视频流。</p>
             <p props="ios">该方法用于关闭或重新开启本地视频采集，不影响接收远端视频流。调用 <xref keyref="enableVideo"/> 后，默认开启本地视频采集。如果你在频道内调用 <xref keyref="enableLocalVideo"/> 传入 <xref keyref="false"/> 关闭本地视频采集，同时会停止在频道内发布视频流。若需重新开启视频采集，你可以调用 <xref keyref="enableLocalVideo"/> 传入 <xref keyref="true"/>，然后调用 <xref keyref="updateChannelMediaOptions"/> 并设置 <codeph>options</codeph> 参数，以在频道内发布本地采集的视频流。</p>
@@ -53,25 +53,25 @@
                 </ul>
             </note>
         </section>
-        <section id="timing" deliveryTarget="details">
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">加入频道前后均可调用。</p>
             <p props="android">加入频道前后均可调用。</p>
             <p props="ios">加入频道前后均可调用。</p>
             <p props="mac">加入频道前后均可调用。</p>
         </section>
-        <section id="restriction" deliveryTarget="details">
+        <section id="restriction" deliveryTarget="details" props="android cpp ios mac">
             <title>调用限制</title>
             <p props="cpp">无。</p>
             <p props="android">无。</p>
             <p props="ios">无。</p>
             <p props="mac">无。</p>
         </section>
-        <section id="related" deliveryTarget="details">
+        <section id="related" deliveryTarget="details" props="cpp">
             <title>相关回调</title>
             <p props="cpp">成功关闭或重新启用本地视频采集后，SDK 会在远端客户端触发 <xref keyref="onRemoteVideoStateChanged"/> 回调报告状态变化。</p>
         </section>
-        <section id="parameters" deliveryTarget="details">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
@@ -112,7 +112,7 @@
                 </plentry>
             </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="android cpp ios mac">
             <title>返回值</title>
             <p props="cpp">
                 <ul>

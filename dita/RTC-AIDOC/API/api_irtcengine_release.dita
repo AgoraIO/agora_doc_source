@@ -23,7 +23,7 @@
                 <codeblock props="mac" outputclass="language-objectivec">+ (void)destroy NS_SWIFT_NAME(destroy());</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
             <p props="cpp">该方法释放声网 SDK 使用的所有资源。适用于用户偶尔进行语音或视频通话的 App。当用户不通话时，可以释放资源供其他操作使用。调用该方法成功后，将无法再使用 SDK 中的任何方法或回调。如需再次使用实时通信功能，必须调用 <xref keyref="createAgoraRtcEngine"/> 和 <xref keyref="initialize_IMusicContentCenter"/> 创建新的 <xref keyref="IRtcEngine"/> 实例。</p>
             <p props="android">该方法释放所有由声网 SDK 占用的资源。成功调用该方法后，将无法再使用 SDK 中的任何方法或回调。如需再次使用实时通信功能，必须调用 <xref keyref="create_ILocalSpatialAudioEngine"/> 创建新的 <xref keyref="IRtcEngine"/> 实例。</p>
             <p props="ios">该方法会释放 SDK 使用的所有资源。适用于用户偶尔进行语音或视频通话的场景。当你不再进行通话时，可以通过该方法释放资源，以便用于其他操作。成功调用该方法后，将无法再使用 SDK 中的任何方法或回调。如需再次使用实时通信功能，必须调用 <xref keyref="initialize"/> 方法重新创建 <xref keyref="IRtcEngine"/> 实例。</p>
@@ -33,21 +33,21 @@
             <note props="ios">声网不建议你在 SDK 的任何回调中调用 <xref keyref="release_ILocalSpatialAudioEngine"/> 方法。否则，SDK 需等待回调返回结果后才能释放资源，可能导致死锁。</note>
             <note props="mac">声网不建议你在 SDK 的任何回调中调用 <xref keyref="release_ILocalSpatialAudioEngine"/> 方法。否则，SDK 需等待回调返回结果后才能释放资源，可能导致死锁。</note>
         </section>
-        <section id="timing" deliveryTarget="details">
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">加入频道前后均可调用。</p>
             <p props="android">加入频道前后均可调用。</p>
             <p props="ios">加入频道前后均可调用。</p>
             <p props="mac">加入频道前后均可调用。</p>
         </section>
-        <section id="restriction" deliveryTarget="details">
+        <section id="restriction" deliveryTarget="details" props="android cpp ios mac">
             <title>调用限制</title>
             <p props="cpp">无。</p>
             <p props="android">无。</p>
             <p props="ios">无。</p>
             <p props="mac">无。</p>
         </section>
-        <section id="parameters" deliveryTarget="details">
+        <section id="parameters" deliveryTarget="details" props="cpp">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
