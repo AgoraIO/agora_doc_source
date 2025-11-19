@@ -87,7 +87,36 @@
                     </strow>
                 </simpletable>
             </p>
-            <p props="ios mac">
+            <p props="ios">
+                <simpletable>
+                    <sthead>
+                        <stentry><codeph>syncWithAudio</codeph></stentry>
+                        <stentry><codeph>ordered</codeph></stentry>
+                        <stentry>SDK 行为</stentry>
+                    </sthead>
+                    <strow>
+                        <stentry><xref keyref="false"/></stentry>
+                        <stentry><xref keyref="false"/></stentry>
+                        <stentry>接收端接收到数据包后，SDK 会立即触发 <xref keyref="onStreamMessage"/> 回调。</stentry>
+                    </strow>
+                    <strow>
+                        <stentry><xref keyref="true"/></stentry>
+                        <stentry><xref keyref="false"/></stentry>
+                        <stentry>如果数据包延迟在音频延迟范围内，SDK 会在同步的音频包播放时触发回调；如果数据包延迟超过音频延迟，SDK 会在接收到数据包时立即触发回调。</stentry>
+                    </strow>
+                    <strow>
+                        <stentry><xref keyref="false"/></stentry>
+                        <stentry><xref keyref="true"/></stentry>
+                        <stentry>如果数据包延迟小于 5 秒，SDK 会对数据包进行顺序校正；如果延迟超过 5 秒，SDK 会丢弃该数据包。</stentry>
+                    </strow>
+                    <strow>
+                        <stentry><xref keyref="true"/></stentry>
+                        <stentry><xref keyref="true"/></stentry>
+                        <stentry>如果数据包延迟在音频延迟范围内，SDK 会对数据包进行顺序校正；如果延迟超过音频延迟，SDK 会丢弃该数据包。</stentry>
+                    </strow>
+                </simpletable>
+            </p>
+            <p props="mac">
                 <simpletable>
                     <sthead>
                         <stentry><codeph>syncWithAudio</codeph></stentry>
@@ -158,7 +187,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>ordered</pt>
                     <pd>是否保证接收端按发送顺序接收数据。
                         <ul>
@@ -168,7 +197,26 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>syncWithAudio</pt>
+                    <pd>是否将数据包与发布的音频包同步。
+                        <ul>
+                            <li><xref keyref="true"/>：将数据包与音频包同步，适用于歌词同步等特殊场景。</li>
+                            <li><xref keyref="false"/>：不与音频包同步，适用于需要数据包立即到达接收端的场景。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>ordered</pt>
+                    <pd>是否保证接收端按发送顺序接收数据。
+                        <ul>
+                            <li><xref keyref="true"/>：保证接收端按发送顺序接收数据。</li>
+                            <li><xref keyref="false"/>：不保证接收端按发送顺序接收数据。
+如果你希望接收端立即接收数据包，请不要将该参数设置为 <xref keyref="true"/>。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>syncWithAudio</pt>
                     <pd>是否将数据包与发布的音频包同步。
                         <ul>

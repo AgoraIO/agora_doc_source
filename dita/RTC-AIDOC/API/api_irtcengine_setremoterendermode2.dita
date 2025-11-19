@@ -36,7 +36,8 @@
             </dl>
             <p props="cpp">你可以在初始化远端用户视频视图后调用此方法，更新其渲染模式和镜像模式。该方法仅影响本地用户看到的远端视频视图。</p>
             <p props="android">你可以调用该方法更新远端用户视频视图的渲染模式和镜像模式。该方法仅影响本地用户看到的视频视图。</p>
-            <p props="ios mac">初始化远端用户的视频视图后，你可以调用该方法更新其渲染模式和镜像模式。该方法仅影响本地用户看到的视频视图。</p>
+            <p props="ios">初始化远端用户的视频视图后，你可以调用该方法更新其渲染模式和镜像模式。该方法仅影响本地用户看到的视频视图。</p>
+            <p props="mac">初始化远端用户的视频视图后，你可以调用该方法更新其渲染模式和镜像模式。该方法仅影响本地用户看到的视频视图。</p>
             <note props="cpp">
                 <ul>
                     <li>请在调用 <xref keyref="setupRemoteVideo"/> 初始化远端视图后再调用此方法。</li>
@@ -49,7 +50,13 @@
                     <li>通话过程中，你可以多次调用此方法以更新远端用户视频视图的显示模式。</li>
                 </ul>
             </note>
-            <note props="ios mac">
+            <note props="ios">
+                <ul>
+                    <li>调用该方法前需先通过 <xref keyref="setupRemoteVideo"/> 方法初始化远端视图。</li>
+                    <li>通话过程中，你可以多次调用该方法以更新远端用户视频视图的显示模式。</li>
+                </ul>
+            </note>
+            <note props="mac">
                 <ul>
                     <li>调用该方法前需先通过 <xref keyref="setupRemoteVideo"/> 方法初始化远端视图。</li>
                     <li>通话过程中，你可以多次调用该方法以更新远端用户视频视图的显示模式。</li>
@@ -58,11 +65,17 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -79,7 +92,7 @@
                     <pt>mirrorMode</pt>
                     <pd>远端用户视图的镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</pd>
                 </plentry>
-                <plentry props="android ios mac">
+                <plentry props="android">
                     <pt>uid</pt>
                     <pd>远端用户的用户 ID。</pd>
                 </plentry>
@@ -104,6 +117,10 @@
                     </pd>
                 </plentry>
                 <plentry props="ios">
+                    <pt>uid</pt>
+                    <pd>远端用户的用户 ID。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>mode</pt>
                     <pd>远端用户视图的渲染模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</pd>
                 </plentry>
@@ -112,18 +129,40 @@
                     <pd>远端用户视图的镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>远端用户的用户 ID。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>mode</pt>
-                    <pd>远端用户视图的渲染模式，详见 <codeph>AgoraVideoRenderMode</codeph>。</pd>
+                    <pd>远端用户视图的渲染模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>mirror</pt>
-                    <pd>远端用户视图的镜像模式，详见 <codeph>AgoraVideoMirrorMode</codeph>。</pd>
+                    <pd>远端用户视图的镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

@@ -25,7 +25,8 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">你可以在加入频道前或后调用此方法。如果在加入频道后不需要重新设置视频编码属性，建议在调用 <xref keyref="enableVideo"/> 之前调用此方法，以减少首帧视频渲染时间。</p>
-            <p props="ios mac">设置本地视频的编码配置。每个配置文件对应一组视频参数，包括分辨率、帧率和码率。</p>
+            <p props="ios">设置本地视频的编码配置。每个配置文件对应一组视频参数，包括分辨率、帧率和码率。</p>
+            <p props="mac">设置本地视频的编码配置。每个配置文件对应一组视频参数，包括分辨率、帧率和码率。</p>
             <note props="cpp">
                 <ul>
                     <li>此方法和 <xref keyref="getMirrorApplied"/> 方法都支持设置镜像效果。声网建议只使用其中一种方法进行设置，同时使用两种方法会导致镜像效果叠加，镜像设置失效。</li>
@@ -38,7 +39,13 @@
                     <li>此方法中指定的 <xref keyref="Config"/> 是在理想网络条件下的最大值。如果由于网络条件不稳定，视频引擎无法使用指定的 <xref keyref="Config"/> 渲染视频，则会依次尝试列表中较低的参数，直到找到可用的配置。</li>
                 </ul>
             </note>
-            <note props="ios mac">
+            <note props="ios">
+                <ul>
+                    <li>此方法和 <xref keyref="getMirrorApplied"/> 方法都支持设置镜像效果。声网建议你只使用其中一种方法进行设置，同时使用会导致镜像效果叠加，设置失败。</li>
+                    <li>此方法中指定的 <codeph>config</codeph> 是在理想网络条件下的最大值。如果由于网络不稳定，视频引擎无法使用指定的 <codeph>config</codeph> 渲染视频，则会依次尝试列表中更低的参数，直到找到可用的配置。</li>
+                </ul>
+            </note>
+            <note props="mac">
                 <ul>
                     <li>此方法和 <xref keyref="getMirrorApplied"/> 方法都支持设置镜像效果。声网建议你只使用其中一种方法进行设置，同时使用会导致镜像效果叠加，设置失败。</li>
                     <li>此方法中指定的 <codeph>config</codeph> 是在理想网络条件下的最大值。如果由于网络不稳定，视频引擎无法使用指定的 <codeph>config</codeph> 渲染视频，则会依次尝试列表中更低的参数，直到找到可用的配置。</li>
@@ -48,11 +55,15 @@
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p props="android">你可以在加入频道前或后调用此方法。如果在加入频道后不需要重设视频编码属性，声网建议在调用 <xref keyref="enableVideo"/> 之前调用此方法，以减少首帧视频渲染时间。</p>
-            <p props="ios mac">你可以在加入频道前或后调用此方法。如果你在加入频道后不需要重新设置视频编码属性，声网建议你在调用 <xref keyref="enableVideo"/> 之前调用此方法，以减少首帧视频渲染时间。</p>
+            <p props="ios">你可以在加入频道前或后调用此方法。如果你在加入频道后不需要重新设置视频编码属性，声网建议你在调用 <xref keyref="enableVideo"/> 之前调用此方法，以减少首帧视频渲染时间。</p>
+            <p props="mac">你可以在加入频道前或后调用此方法。如果你在加入频道后不需要重新设置视频编码属性，声网建议你在调用 <xref keyref="enableVideo"/> 之前调用此方法，以减少首帧视频渲染时间。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -65,7 +76,11 @@
                     <pt>config</pt>
                     <pd>视频配置文件。详见 <xref keyref="VideoEncoderConfiguration"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>config</pt>
+                    <pd>视频配置参数。详见 <xref keyref="VideoEncoderConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>config</pt>
                     <pd>视频配置参数。详见 <xref keyref="VideoEncoderConfiguration"/>。</pd>
                 </plentry>
@@ -73,7 +88,25 @@
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

@@ -39,7 +39,14 @@
 如果启用了视频录制功能，视频录制服务会以虚拟客户端身份加入频道，其他客户端也会因此收到 <xref keyref="onUserJoined"/> 回调。请勿将虚拟客户端绑定到应用视图，因为其不会发送任何视频流。
 如需解除远端用户与视图的绑定，可将 <codeph>view</codeph> 参数设为 <xref keyref="NULL"/>。
 远端用户离开频道后，SDK 会自动解除其绑定。</p>
-            <p props="ios mac">该方法在本地设备上初始化远端视频流的视频视图，仅影响你所看到的远端视频画面。你可以调用该方法将远端视频流绑定到指定的视频视图，并设置渲染模式和镜像模式。
+            <p props="ios">该方法在本地设备上初始化远端视频流的视频视图，仅影响你所看到的远端视频画面。你可以调用该方法将远端视频流绑定到指定的视频视图，并设置渲染模式和镜像模式。
+
+你需要在远端用户加入频道前，通过 <xref keyref="VideoCanvas"/> 设置远端用户的 UID。如果你尚未获取远端用户的 UID，可在收到 <codeph>didJoinedOfUid</codeph> 回调后再设置。
+
+如果启用了视频录制功能，录制服务会以虚拟客户端身份加入频道，其他客户端也会因此收到 <codeph>onUserJoined</codeph> 回调。请勿将该虚拟客户端绑定到应用视图，因为它不会发送任何视频流。
+
+如需解绑远端用户与视图的绑定关系，请将 <codeph>view</codeph> 参数设为 <xref keyref="NULL"/>。一旦远端用户离开频道，SDK 会自动解绑该用户。</p>
+            <p props="mac">该方法在本地设备上初始化远端视频流的视频视图，仅影响你所看到的远端视频画面。你可以调用该方法将远端视频流绑定到指定的视频视图，并设置渲染模式和镜像模式。
 
 你需要在远端用户加入频道前，通过 <xref keyref="VideoCanvas"/> 设置远端用户的 UID。如果你尚未获取远端用户的 UID，可在收到 <codeph>didJoinedOfUid</codeph> 回调后再设置。
 
@@ -58,7 +65,13 @@
                     <li>若需在通话过程中更新远端视频视图的渲染或镜像模式，请使用 <xref keyref="setRemoteRenderModeEx"/> 方法。</li>
                 </ul>
             </note>
-            <note props="ios mac">
+            <note props="ios">
+                <ul>
+                    <li>请在调用 <codeph>joinChannelExByToken</codeph> 方法后再调用本方法。</li>
+                    <li>若需在通话过程中更新远端视频视图的渲染模式或镜像模式，请使用 <codeph>setRemoteRenderModeEx</codeph> 方法。</li>
+                </ul>
+            </note>
+            <note props="mac">
                 <ul>
                     <li>请在调用 <codeph>joinChannelExByToken</codeph> 方法后再调用本方法。</li>
                     <li>若需在通话过程中更新远端视频视图的渲染模式或镜像模式，请使用 <codeph>setRemoteRenderModeEx</codeph> 方法。</li>
@@ -67,11 +80,17 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -80,25 +99,53 @@
                     <pt>canvas</pt>
                     <pd>远端视频视图的设置。详见 <xref keyref="VideoCanvas"/>。</pd>
                 </plentry>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
                     <pt>connection</pt>
                     <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
-                <plentry props="android ios mac">
+                <plentry props="android">
                     <pt>remote</pt>
                     <pd>远端视频视图的设置。详见 <xref keyref="VideoCanvas"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>remote</pt>
+                    <pd>远端视频视图的设置。详见 <xref keyref="VideoCanvas"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>remote</pt>
+                    <pd>远端视频视图的设置。详见 <xref keyref="VideoCanvas"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp">
+            <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>
                 </ul>
             </p>
-            <p props="ios mac">0：方法调用成功。
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">0：方法调用成功。
+&lt; 0：方法调用失败。</p>
+            <p props="mac">0：方法调用成功。
 &lt; 0：方法调用失败。</p>
         </section>
     </refbody>

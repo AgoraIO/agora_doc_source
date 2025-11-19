@@ -34,7 +34,8 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="ios mac">用于设置本地客户端的视频合图参数。</p>
+            <p props="ios">用于设置本地客户端的视频合图参数。</p>
+            <p props="mac">用于设置本地客户端的视频合图参数。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>属性</title>
@@ -77,15 +78,32 @@
                     <pt>videoOutputConfiguration</pt>
                     <pd>本地视频合图后输出的视频流的编码参数配置。详见 <xref keyref="VideoEncoderConfiguration"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>videoInputStreams</pt>
                     <pd>用于本地合图的视频流。详见 <xref keyref="TranscodingVideoStream"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>videoOutputConfiguration</pt>
                     <pd>本地合图后混合视频流的编码配置。详见 <xref keyref="VideoEncoderConfiguration"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>syncWithPrimaryCamera</pt>
+                    <pd>是否使用主摄像头采集的视频帧的时间戳作为混合视频帧的时间戳。
+                        <ul>
+                            <li><xref keyref="true"/>：（默认）使用采集视频帧的时间戳作为混合视频帧的时间戳。</li>
+                            <li><xref keyref="false"/>：不使用采集视频帧的时间戳，而使用构建混合视频帧时的时间戳。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>videoInputStreams</pt>
+                    <pd>用于本地合图的视频流。详见 <xref keyref="TranscodingVideoStream"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>videoOutputConfiguration</pt>
+                    <pd>本地合图后混合视频流的编码配置。详见 <xref keyref="VideoEncoderConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>syncWithPrimaryCamera</pt>
                     <pd>是否使用主摄像头采集的视频帧的时间戳作为混合视频帧的时间戳。
                         <ul>

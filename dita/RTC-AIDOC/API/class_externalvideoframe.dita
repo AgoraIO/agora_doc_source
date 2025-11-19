@@ -144,7 +144,7 @@
                     <pt>cropBottom</pt>
                     <pd>从底部裁剪的像素数。默认值为 0。</pd>
                 </plentry>
-                <plentry props="cpp ios mac">
+                <plentry props="cpp">
                     <pt>rotation</pt>
                     <pd>视频帧的顺时针旋转角度。可设置为 0、90、180 或 270。默认值为 0。</pd>
                 </plentry>
@@ -304,39 +304,39 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>format</pt>
                     <pd>输入视频帧的格式。该参数必须指定为以下值之一：1：I420；2：BGRA；3：NV21；4：RGBA；5：IMC2；7：ARGB；8：NV12；12：iOS 纹理（<codeph>CVPixelBufferRef</codeph>）；16：I422。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>time</pt>
                     <pd>输入视频帧的时间戳（毫秒）。时间戳错误会导致帧丢失或音视频不同步。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>stride</pt>
                     <pd>帧的行跨度，即相邻两行视频帧之间的像素数。单位为像素，而非字节。处理视频数据时，需根据此参数处理每行像素数据之间的偏移，否则可能导致图像失真。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>strideInPixels</pt>
                     <pd>输入视频帧的行间距，单位为像素而非字节。对于纹理格式，该值为纹理的宽度。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>height</pt>
                     <pd>输入视频帧的高度（像素行数）。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>textureBuf</pt>
                     <pd>iOS 纹理的缓冲区。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>image</pt>
                     <pd>静态图像（iPhone 上为 <codeph>UIImage</codeph>，macOS 上为 <codeph>NSImage</codeph>）。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>dataBuf</pt>
                     <pd>原始数据缓冲区。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>alphaBuf</pt>
                     <pd>当前帧的 Alpha 通道，与视频帧的尺寸一致。每个像素的取值范围为 [0, 255]，其中 0 表示背景，255 表示前景。默认值为 <xref keyref="NULL"/>。</pd>
                 </plentry>
@@ -344,29 +344,93 @@
                     <pt>alphaStitchMode</pt>
                     <pd>Alpha 通道拼接模式，表示 <codeph>alphaBuf</codeph> 与视频帧的相对位置。详见 <xref keyref="ALPHA_STITCH_MODE"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>cropLeft</pt>
                     <pd>左侧裁剪的像素数。默认值为 0。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>cropTop</pt>
                     <pd>顶部裁剪的像素数。默认值为 0。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>cropRight</pt>
                     <pd>右侧裁剪的像素数。默认值为 0。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>cropBottom</pt>
                     <pd>底部裁剪的像素数。默认值为 0。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>rotation</pt>
+                    <pd>视频帧的顺时针旋转角度。可设置为 0、90、180 或 270。默认值为 0。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>colorSpace</pt>
                     <pd>视频帧的色彩空间配置。默认采用 Full Range 和 BT.709 标准。详见 <codeph>AgoraColorSpace</codeph>。</pd>
                 </plentry>
                 <plentry props="mac">
+                    <pt>format</pt>
+                    <pd>输入视频帧的格式。该参数必须指定为以下值之一：1：I420；2：BGRA；3：NV21；4：RGBA；5：IMC2；7：ARGB；8：NV12；12：iOS 纹理（<codeph>CVPixelBufferRef</codeph>）；16：I422。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>time</pt>
+                    <pd>输入视频帧的时间戳（毫秒）。时间戳错误会导致帧丢失或音视频不同步。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>stride</pt>
+                    <pd>帧的行跨度，即相邻两行视频帧之间的像素数。单位为像素，而非字节。处理视频数据时，需根据此参数处理每行像素数据之间的偏移，否则可能导致图像失真。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>strideInPixels</pt>
+                    <pd>输入视频帧的行间距，单位为像素而非字节。对于纹理格式，该值为纹理的宽度。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>height</pt>
+                    <pd>输入视频帧的高度（像素行数）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>textureBuf</pt>
+                    <pd>iOS 纹理的缓冲区。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>image</pt>
+                    <pd>静态图像（iPhone 上为 <codeph>UIImage</codeph>，macOS 上为 <codeph>NSImage</codeph>）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>dataBuf</pt>
+                    <pd>原始数据缓冲区。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>alphaBuf</pt>
+                    <pd>当前帧的 Alpha 通道，与视频帧的尺寸一致。每个像素的取值范围为 [0, 255]，其中 0 表示背景，255 表示前景。默认值为 <xref keyref="NULL"/>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>alphaStitchMode</pt>
-                    <pd>Alpha 通道拼接模式，表示 <codeph>alphaBuf</codeph> 与视频帧的相对位置。详见 <codeph>AgoraAlphaStitchMode</codeph>。</pd>
+                    <pd>Alpha 通道拼接模式，表示 <codeph>alphaBuf</codeph> 与视频帧的相对位置。详见 <xref keyref="ALPHA_STITCH_MODE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>cropLeft</pt>
+                    <pd>左侧裁剪的像素数。默认值为 0。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>cropTop</pt>
+                    <pd>顶部裁剪的像素数。默认值为 0。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>cropRight</pt>
+                    <pd>右侧裁剪的像素数。默认值为 0。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>cropBottom</pt>
+                    <pd>底部裁剪的像素数。默认值为 0。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>rotation</pt>
+                    <pd>视频帧的顺时针旋转角度。可设置为 0、90、180 或 270。默认值为 0。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>colorSpace</pt>
+                    <pd>视频帧的色彩空间配置。默认采用 Full Range 和 BT.709 标准。详见 <codeph>AgoraColorSpace</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

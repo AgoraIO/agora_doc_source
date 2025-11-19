@@ -56,7 +56,7 @@
 你可以在加入频道前或加入频道后调用该方法：
                 <ul>
                     <li>如果你在加入频道前调用该方法将用户角色设置为主播，并通过 <xref keyref="setupLocalVideo"/> 设置本地视频属性，则用户加入频道时会自动开启本地视频预览。</li>
-                    <li>如果你在加入频道后调用该方法设置用户角色，SDK 会自动调用 <xref keyref="muteLocalAudioStream"/> 和 <xref keyref="muteLocalVideoStream"/> 更改音视频流的发布状态。
+                    <li>如果你在加入频道后调用该方法设置用户角色，SDK 会自动调用 <xref keyref="muteLocalAudioStream_IBaseSpatialAudioEngine"/> 和 <xref keyref="muteLocalVideoStream"/> 更改音视频流的发布状态。
 如果你在加入频道后调用该方法切换用户角色，SDK 会触发以下回调：</li>
                     <li>本地客户端触发 <xref keyref="onClientRoleChanged"/> 回调。
                         <ul>
@@ -71,11 +71,17 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">你可以在加入频道前或加入频道后调用此方法。</p>
+            <p props="cpp">你可以在加入频道前或加入频道后调用此方法。</p>
+            <p props="android">你可以在加入频道前或加入频道后调用此方法。</p>
+            <p props="ios">你可以在加入频道前或加入频道后调用此方法。</p>
+            <p props="mac">你可以在加入频道前或加入频道后调用此方法。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="related" deliveryTarget="details">
             <title>相关回调</title>
@@ -117,13 +123,49 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>role</pt>
-                    <pd>用户角色。详见 <codeph>AgoraClientRole</codeph>。</pd>
+                    <pd>用户角色。详见 <xref keyref="CLIENT_ROLE_TYPE"/>。</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。
+                        <ul>
+                            <li>-1：发生通用错误（无明确原因）。</li>
+                            <li>-2：参数无效。</li>
+                            <li>-7：SDK 未初始化。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。
+                        <ul>
+                            <li>-1：发生通用错误（无明确原因）。</li>
+                            <li>-2：参数无效。</li>
+                            <li>-7：SDK 未初始化。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。
+                        <ul>
+                            <li>-1：发生通用错误（无明确原因）。</li>
+                            <li>-2：参数无效。</li>
+                            <li>-7：SDK 未初始化。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。

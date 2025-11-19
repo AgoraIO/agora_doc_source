@@ -73,7 +73,7 @@
                     <pt>token</pt>
                     <pd>用于保障音视频通话回路测试安全的动态密钥 Token。如果你未在声网控制台启用 App Certificate，则无需传入该参数；如果已启用 App Certificate，则必须传入 Token。生成 Token 时使用的 uid 必须为 0xFFFFFFFF，频道名必须为用于标识每次音视频通话回路测试的频道名。</pd>
                 </plentry>
-                <plentry props="cpp ios mac">
+                <plentry props="cpp">
                     <pt>channelId</pt>
                     <pd>用于标识每次音视频通话回路测试的频道名。为确保回路测试功能正常，同一项目（App ID）下的用户在不同设备上进行音视频通话回路测试时，传入的频道名不能相同。</pd>
                 </plentry>
@@ -125,11 +125,11 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>view</pt>
                     <pd>用于渲染本地用户视频的视图。该参数仅适用于测试视频设备的场景，即当 <xref keyref="enableVideo"/> 为 <xref keyref="true"/> 时。详见 <codeph>VIEW_CLASS</codeph>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>enableAudio</pt>
                     <pd>是否启用音频设备进行回路测试：
                         <ul>
@@ -138,7 +138,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>enableVideo</pt>
                     <pd>是否启用视频设备进行回路测试：
                         <ul>
@@ -147,11 +147,54 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>token</pt>
                     <pd>用于保障音视频通话回路测试安全的 Token。如果你未在声网控制台启用 App Certificate，则无需传入该参数；如果已启用 App Certificate，则必须传入 Token。生成 Token 时使用的 <codeph>uid</codeph> 必须为 0xFFFFFFFF，频道名必须为用于标识每次音视频通话回路测试的频道名。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>channelId</pt>
+                    <pd>用于标识每次音视频通话回路测试的频道名。为确保回路测试功能正常，同一项目（App ID）下的用户在不同设备上进行音视频通话回路测试时，传入的频道名不能相同。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>intervalInSeconds</pt>
+                    <pd>设置返回音视频回路测试结果的时间间隔或延迟，单位为秒，取值范围为 [2, 10]，默认值为 2 秒。
+                        <ul>
+                            <li>对于音频回路测试，测试结果将按照设置的时间间隔返回。</li>
+                            <li>对于视频回路测试，视频将在短时间内显示，之后延迟将逐渐增加，直到达到设置的延迟时间。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>view</pt>
+                    <pd>用于渲染本地用户视频的视图。该参数仅适用于测试视频设备的场景，即当 <xref keyref="enableVideo"/> 为 <xref keyref="true"/> 时。详见 <codeph>VIEW_CLASS</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>enableAudio</pt>
+                    <pd>是否启用音频设备进行回路测试：
+                        <ul>
+                            <li><xref keyref="true"/>：（默认）启用音频设备。若需测试音频设备，请将此参数设置为 <xref keyref="true"/>。</li>
+                            <li><xref keyref="false"/>：不启用音频设备。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>enableVideo</pt>
+                    <pd>是否启用视频设备进行回路测试：
+                        <ul>
+                            <li><xref keyref="true"/>：（默认）启用视频设备。若需测试视频设备，请将此参数设置为 <xref keyref="true"/>。</li>
+                            <li><xref keyref="false"/>：不启用视频设备。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>token</pt>
+                    <pd>用于保障音视频通话回路测试安全的 Token。如果你未在声网控制台启用 App Certificate，则无需传入该参数；如果已启用 App Certificate，则必须传入 Token。生成 Token 时使用的 <codeph>uid</codeph> 必须为 0xFFFFFFFF，频道名必须为用于标识每次音视频通话回路测试的频道名。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>channelId</pt>
+                    <pd>用于标识每次音视频通话回路测试的频道名。为确保回路测试功能正常，同一项目（App ID）下的用户在不同设备上进行音视频通话回路测试时，传入的频道名不能相同。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>intervalInSeconds</pt>
                     <pd>设置返回音视频回路测试结果的时间间隔或延迟，单位为秒，取值范围为 [2, 10]，默认值为 2 秒。
                         <ul>

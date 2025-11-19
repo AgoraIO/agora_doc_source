@@ -26,7 +26,8 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">你可以调用该方法将音视频流推送到指定的 CDN 地址，并设置转码配置。该方法每次只能将媒体流推送到一个 CDN 地址，如需推送到多个地址，请多次调用该方法。在一个声网项目下，默认最多支持 200 个并发的旁路推流任务。如需更高配额，请联系技术支持。</p>
             <p props="android">你可以调用该方法将实时音视频流推送到指定的 CDN 地址，并设置转码配置。该方法每次只能将媒体流推送到一个 CDN 地址。如果需要推送到多个地址，请多次调用该方法。在一个声网项目下，默认最多可同时进行 200 个媒体流推送任务。如需更高配额，请联系技术支持。</p>
-            <p props="ios mac">你可以调用该方法将音视频流推送到指定的 CDN 地址，并设置转码配置。该方法每次只能推送到一个 CDN 地址，如需推送到多个地址，请多次调用该方法。在一个声网项目下，默认最多支持 200 个并发的旁路推流任务。如需更高配额，请联系技术支持。</p>
+            <p props="ios">你可以调用该方法将音视频流推送到指定的 CDN 地址，并设置转码配置。该方法每次只能推送到一个 CDN 地址，如需推送到多个地址，请多次调用该方法。在一个声网项目下，默认最多支持 200 个并发的旁路推流任务。如需更高配额，请联系技术支持。</p>
+            <p props="mac">你可以调用该方法将音视频流推送到指定的 CDN 地址，并设置转码配置。该方法每次只能推送到一个 CDN 地址，如需推送到多个地址，请多次调用该方法。在一个声网项目下，默认最多支持 200 个并发的旁路推流任务。如需更高配额，请联系技术支持。</p>
             <note props="cpp">
                 <ul>
                     <li>请在加入频道后调用该方法。</li>
@@ -41,7 +42,14 @@
                     <li>如果推流失败后需要重试，请先调用 <xref keyref="stopRtmpStream"/> 停止推流，再调用该方法重新推流；否则，SDK 会返回与上次失败相同的错误码。</li>
                 </ul>
             </note>
-            <note props="ios mac">
+            <note props="ios">
+                <ul>
+                    <li>请在加入频道后调用该方法。</li>
+                    <li>只有在 <codeph>LIVE_BROADCASTING</codeph> 频道场景中的主播角色可以调用该方法。</li>
+                    <li>如果你在推流失败后需要重试，请先调用 <xref keyref="stopRtmpStream"/> 停止推流，再调用该方法重新推流；否则，SDK 会返回与上次失败相同的错误码。</li>
+                </ul>
+            </note>
+            <note props="mac">
                 <ul>
                     <li>请在加入频道后调用该方法。</li>
                     <li>只有在 <codeph>LIVE_BROADCASTING</codeph> 频道场景中的主播角色可以调用该方法。</li>
@@ -51,15 +59,22 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="related" deliveryTarget="details">
             <title>相关回调</title>
-            <p props="ios mac">成功调用该方法后，SDK 会触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调报告推流状态。</p>
+            <p props="ios">成功调用该方法后，SDK 会触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调报告推流状态。</p>
+            <p props="mac">成功调用该方法后，SDK 会触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调报告推流状态。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -68,7 +83,7 @@
                     <pt>url</pt>
                     <pd>旁路推流地址，格式为 RTMP 或 RTMPS。字符长度不能超过 1024 字节。不支持中文等特殊字符。</pd>
                 </plentry>
-                <plentry props="cpp ios mac">
+                <plentry props="cpp">
                     <pt>transcoding</pt>
                     <pd>旁路推流的转码配置，详见 <xref keyref="LiveTranscoding"/>。</pd>
                 </plentry>
@@ -80,9 +95,21 @@
                     <pt>transcoding</pt>
                     <pd>旁路推流的转码配置。详见 <xref keyref="LiveTranscoding"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>url</pt>
                     <pd>旁路推流地址，格式为 RTMP 或 RTMPS。地址长度不能超过 1024 字节，不支持中文等特殊字符。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>transcoding</pt>
+                    <pd>旁路推流的转码配置，详见 <xref keyref="LiveTranscoding"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>url</pt>
+                    <pd>旁路推流地址，格式为 RTMP 或 RTMPS。地址长度不能超过 1024 字节，不支持中文等特殊字符。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>transcoding</pt>
+                    <pd>旁路推流的转码配置，详见 <xref keyref="LiveTranscoding"/>。</pd>
                 </plentry>
             </parml>
         </section>
@@ -112,7 +139,19 @@
                     </li>
                 </ul>
             </p>
-            <p props="ios mac">
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。
+                        <ul>
+                            <li>-2：URL 或转码配置不合法；请检查 <codeph>url</codeph> 和 <codeph>transcoding</codeph>。</li>
+                            <li>-7：调用该方法前未初始化 SDK。</li>
+                            <li>-19：旁路推流地址已被使用，请更换地址。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。

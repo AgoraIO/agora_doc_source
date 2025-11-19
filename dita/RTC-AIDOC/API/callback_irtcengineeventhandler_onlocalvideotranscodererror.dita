@@ -28,20 +28,25 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">当调用 <xref keyref="startLocalVideoTranscoder"/> 或 <xref keyref="updateLocalTranscoderConfiguration"/> 失败时，SDK 会触发该回调报告失败原因。</p>
             <p props="android">当你调用 <xref keyref="startLocalVideoTranscoder"/> 或 <xref keyref="updateLocalTranscoderConfiguration"/> 失败时，SDK 会触发该回调并报告失败原因。</p>
-            <p props="ios mac">当你调用 <xref keyref="startLocalVideoTranscoder"/> 或 <xref keyref="updateLocalTranscoderConfiguration"/> 失败时，SDK 会触发该回调报告失败原因。</p>
+            <p props="ios">当你调用 <xref keyref="startLocalVideoTranscoder"/> 或 <xref keyref="updateLocalTranscoderConfiguration"/> 失败时，SDK 会触发该回调报告失败原因。</p>
+            <p props="mac">当你调用 <xref keyref="startLocalVideoTranscoder"/> 或 <xref keyref="updateLocalTranscoderConfiguration"/> 失败时，SDK 会触发该回调报告失败原因。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
-            <p props="ios mac">该回调在本地合图过程中发生错误时被触发。</p>
+            <p props="ios">该回调在本地合图过程中发生错误时被触发。</p>
+            <p props="mac">该回调在本地合图过程中发生错误时被触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
                     <pt>stream</pt>
                     <pd>在视频合图过程中无法被合图的视频流。详见 <xref keyref="TranscodingVideoStream"/>。</pd>
                 </plentry>
@@ -50,16 +55,28 @@
                     <pd>本地视频合图失败的原因。详见 <xref keyref="VIDEO_TRANSCODER_ERROR"/>。</pd>
                 </plentry>
                 <plentry props="android">
+                    <pt>stream</pt>
+                    <pd>在视频合图过程中无法被合图的视频流。详见 <xref keyref="TranscodingVideoStream"/>。</pd>
+                </plentry>
+                <plentry props="android">
                     <pt>error</pt>
                     <pd>本地视频合图失败的错误原因。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>stream</pt>
+                    <pd>在视频合图过程中无法被合图的视频流。详见 <xref keyref="TranscodingVideoStream"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>errorCode</pt>
                     <pd>本地合图错误的原因。详见 <xref keyref="VIDEO_TRANSCODER_ERROR"/>。</pd>
                 </plentry>
                 <plentry props="mac">
+                    <pt>stream</pt>
+                    <pd>在视频合图过程中无法被合图的视频流。详见 <xref keyref="TranscodingVideoStream"/>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>errorCode</pt>
-                    <pd>本地合图错误的原因。详见 <codeph>AgoraVideoTranscoderError</codeph>。</pd>
+                    <pd>本地合图错误的原因。详见 <xref keyref="VIDEO_TRANSCODER_ERROR"/>。</pd>
                 </plentry>
             </parml>
         </section>

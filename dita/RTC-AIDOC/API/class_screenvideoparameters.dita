@@ -16,6 +16,12 @@
   int bitrate;
   VIDEO_CONTENT_HINT contentHint = VIDEO_CONTENT_HINT::CONTENT_HINT_MOTION;
 };</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenVideoParameters : NSObject
+@property(assign, nonatomic) CGSize dimensions;
+@property(assign, nonatomic) NSInteger frameRate;
+@property(assign, nonatomic) NSInteger bitrate;
+@property(assign, nonatomic) AgoraVideoContentHint contentHint;
+@end</codeblock>
                 <codeblock props="android" outputclass="language-java">public static class VideoCaptureParameters {
     public int bitrate = 0;
     public int framerate = 15;
@@ -23,18 +29,6 @@
     public int height = 720;
     public int contentHint = Constants.SCREEN_CAPTURE_CONTENT_HINT_MOTION;
   }</codeblock>
-                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenVideoParameters : NSObject
-@property(assign, nonatomic) CGSize dimensions;
-@property(assign, nonatomic) AgoraVideoFrameRate frameRate;
-@property(assign, nonatomic) NSInteger bitrate;
-@property(assign, nonatomic) AgoraVideoContentHint contentHint;
-@end</codeblock>
-                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenVideoParameters : NSObject
-@property(assign, nonatomic) CGSize dimensions;
-@property(assign, nonatomic) AgoraVideoFrameRate frameRate;
-@property(assign, nonatomic) NSInteger bitrate;
-@property(assign, nonatomic) AgoraVideoContentHint contentHint;
-@end</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -61,9 +55,25 @@
                     <pt>bitrate</pt>
                     <pd>视频编码码率（Kbps）。</pd>
                 </plentry>
-                <plentry props="cpp ios">
+                <plentry props="cpp">
                     <pt>contentHint</pt>
                     <pd>屏幕共享的内容提示。详见 <xref keyref="VIDEO_CONTENT_HINT"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>dimensions</pt>
+                    <pd>视频编码的分辨率。默认值为 1280 × 720。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>frameRate</pt>
+                    <pd>视频编码的帧率（fps）。默认值为 15。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>bitrate</pt>
+                    <pd>视频编码的码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>contentHint</pt>
+                    <pd>屏幕共享的内容提示，详见 <xref keyref="VIDEO_CONTENT_HINT"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>bitrate</pt>
@@ -100,22 +110,6 @@
                             <li><codeph>SCREEN_CAPTURE_CONTENT_HINT_DETAILS</codeph>（2）：静态内容，适用于偏重清晰度或共享图片、PPT 或文本内容。</li>
                         </ul>
                     </pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>dimensions</pt>
-                    <pd>视频编码的分辨率。默认值为 1280 × 720。</pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>frameRate</pt>
-                    <pd>视频编码的帧率（fps）。默认值为 15。详见 <xref keyref="FRAME_RATE"/>。</pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>bitrate</pt>
-                    <pd>视频编码的码率（Kbps）。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>contentHint</pt>
-                    <pd>屏幕共享的内容提示。详见 <codeph>AgoraVideoContentHint</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

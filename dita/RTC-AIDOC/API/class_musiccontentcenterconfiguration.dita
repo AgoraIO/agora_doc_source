@@ -18,14 +18,6 @@
     const char* mccDomain;
     IMusicContentCenterEventHandler* eventHandler;
 };</codeblock>
-                <codeblock props="android" outputclass="language-java">public class MusicContentCenterConfiguration {
-  public String appId;
-  public String token;
-  public long mccUid;
-  public int maxCacheSize;
-  public IMusicContentCenterEventHandler eventHandler;
-  public String mccDomain;
-}</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMusicContentCenterConfig : NSObject
 @property(assign, nonatomic) AgoraRtcEngineKit* _Nullable rtcEngine;
 @property (nonatomic, copy) NSString *appId;
@@ -35,21 +27,20 @@
 @property(nonatomic, copy) NSString* mccDomain;
 @property(nonatomic, weak) id&lt;AgoraMusicContentCenterEventDelegate&gt; eventDelegate;
 @end</codeblock>
-                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMusicContentCenterConfig : NSObject
-@property(assign, nonatomic) AgoraRtcEngineKit* _Nullable rtcEngine;
-@property (nonatomic, copy) NSString *appId;
-@property (nonatomic, copy) NSString *token;
-@property (nonatomic, assign) NSInteger mccUid;
-@property (nonatomic, assign) NSUInteger maxCacheSize;
-@property(nonatomic, copy) NSString* mccDomain;
-@property(nonatomic, weak) id&lt;AgoraMusicContentCenterEventDelegate&gt; eventDelegate;
-@end</codeblock>
+                <codeblock props="android" outputclass="language-java">public class MusicContentCenterConfiguration {
+  public String appId;
+  public String token;
+  public long mccUid;
+  public int maxCacheSize;
+  public IMusicContentCenterEventHandler eventHandler;
+  public String mccDomain;
+}</codeblock>
             </p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>属性</title>
             <parml>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>appId</pt>
                     <pd>启用音乐内容中心的项目的 App ID。</pd>
                 </plentry>
@@ -69,6 +60,34 @@
                     <pt>eventHandler</pt>
                     <pd>用于接收回调的事件处理器。详见 <xref keyref="IMusicContentCenterEventHandler"/>。</pd>
                 </plentry>
+                <plentry props="ios">
+                    <pt>rtcEngine</pt>
+                    <pd>声网 <xref keyref="IRtcEngine"/> 实例。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>appId</pt>
+                    <pd>启用内容中心的项目的 App ID。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>token</pt>
+                    <pd>用于在使用版权音乐内容中心时进行鉴权的 Token。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>mccUid</pt>
+                    <pd>用于版权音乐内容中心的用户 ID。该 ID 可以与加入 RTC 频道时使用的 <codeph>uid</codeph> 相同，但不能为 0。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>maxCacheSize</pt>
+                    <pd>可缓存的音乐资源数量不能超过 50 个。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>eventDelegate</pt>
+                    <pd>事件回调处理器。详见 <xref keyref="IMusicContentCenterEventHandler"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>appId</pt>
+                    <pd>启用音乐内容中心的项目的 App ID。</pd>
+                </plentry>
                 <plentry props="android">
                     <pt>token</pt>
                     <pd>使用音乐内容中心时用于鉴权的 Token。</pd>
@@ -84,30 +103,6 @@
                 <plentry props="android">
                     <pt>eventHandler</pt>
                     <pd>事件回调接口，详见 <xref keyref="IMusicContentCenterEventHandler"/>。</pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>rtcEngine</pt>
-                    <pd>声网 <xref keyref="IRtcEngine"/> 实例。详见 <xref keyref="IRtcEngine"/>。</pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>appId</pt>
-                    <pd>启用内容中心的项目的 App ID。</pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>token</pt>
-                    <pd>用于在使用版权音乐内容中心时进行鉴权的 Token。</pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>mccUid</pt>
-                    <pd>用于版权音乐内容中心的用户 ID。该 ID 可以与加入 RTC 频道时使用的 <codeph>uid</codeph> 相同，但不能为 0。</pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>maxCacheSize</pt>
-                    <pd>可缓存的音乐资源数量不能超过 50 个。</pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>eventDelegate</pt>
-                    <pd>事件回调处理器。详见 <xref keyref="IMusicContentCenterEventHandler"/>。</pd>
                 </plentry>
             </parml>
         </section>

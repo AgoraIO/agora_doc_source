@@ -25,22 +25,40 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
-                <dlentry props="cpp ios mac">
+                <dlentry props="cpp">
+                    <dt>自从</dt>
+                    <dd>自 v4.2.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="ios">
+                    <dt>自从</dt>
+                    <dd>自 v4.2.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="mac">
                     <dt>自从</dt>
                     <dd>自 v4.2.0 版本新增。</dd>
                 </dlentry>
             </dl>
             <p props="android">成功调用该方法后，SDK 会根据指定的视频应用场景自动启用最佳实践策略，并调整关键性能指标，以优化视频体验。</p>
-            <p props="ios mac">调用该方法后，SDK 会根据指定的视频应用场景自动启用最佳实践策略，并调整关键性能指标，以优化视频体验。</p>
-            <note props="android cpp ios mac">请在加入频道前调用该方法。</note>
+            <p props="ios">调用该方法后，SDK 会根据指定的视频应用场景自动启用最佳实践策略，并调整关键性能指标，以优化视频体验。</p>
+            <p props="mac">调用该方法后，SDK 会根据指定的视频应用场景自动启用最佳实践策略，并调整关键性能指标，以优化视频体验。</p>
+            <note props="cpp">请在加入频道前调用该方法。</note>
+            <note props="android">请在加入频道前调用该方法。</note>
+            <note props="ios">请在加入频道前调用该方法。</note>
+            <note props="mac">请在加入频道前调用该方法。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -137,7 +155,58 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>scenarioType</pt>
+                    <pd>视频应用场景的类型，详见 <xref keyref="VIDEO_APPLICATION_SCENARIO_TYPE"/>。
+                        <ul>
+                            <li><codeph>AgoraApplicationMeetingScenario</codeph>（1）：适用于会议场景。SDK 会自动启用以下策略：
+                                <ul>
+                                    <li>若低画质视频流需要较高码率，SDK 会自动启用多种应对网络拥塞的技术，以增强低画质视频流的性能，确保订阅端的流畅接收。</li>
+                                    <li>SDK 实时监控高画质视频流的订阅人数，并根据订阅人数动态调整其配置：
+                                        <ul>
+                                            <li>若无人订阅高画质视频流，SDK 会自动降低其码率和帧率以节省上行带宽。</li>
+                                            <li>若有人订阅高画质视频流，SDK 会将其重置为最近一次调用 <xref keyref="setVideoEncoderConfiguration"/> 所设置的配置。如果你未设置过配置，则使用以下默认值：
+                                                <ul>
+                                                    <li>iOS：
+                                                        <ul>
+                                                            <li>分辨率：960 × 540。</li>
+                                                            <li>帧率：15 fps。</li>
+                                                            <li>码率：1000 Kbps。</li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>macOS：
+                                                        <ul>
+                                                            <li>分辨率：1280 × 720。</li>
+                                                            <li>帧率：15 fps。</li>
+                                                            <li>码率：1600 Kbps。</li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>SDK 实时监控低画质视频流的订阅人数，并根据订阅人数动态启用或禁用该流。
+                                        <ul>
+                                            <li>若无人订阅低画质视频流，SDK 会自动禁用该流以节省上行带宽。</li>
+                                            <li>若有人订阅低画质视频流，SDK 会启用该流，并将其重置为最近一次调用 <xref keyref="setDualStreamMode2"/> 所设置的配置。如果你未设置过配置，则使用以下默认值：
+                                                <ul>
+                                                    <li>分辨率：480 × 272。</li>
+                                                    <li>帧率：15 fps。</li>
+                                                    <li>码率：500 Kbps。</li>
+                                                </ul>
+                                            </li>
+                                            <li>注意：如果你调用了 <xref keyref="setDualStreamMode2"/> 并设置为永不发送低画质视频流（<codeph>AgoraDisableSimulcastStream</codeph>），则会议场景下低画质流的动态调整将不生效。</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><codeph>AgoraApplication1V1Scenario</codeph>（2）：适用于一对一直播场景。为满足该场景下低延迟和高画质的需求，SDK 会优化策略，提升视频质量、首帧渲染速度、中低端设备的延迟表现，以及弱网环境下的流畅度。
+  注意：该枚举值仅适用于主播对主播的场景。</li>
+                            <li><codeph>AgoraApplicationLiveShowScenario</codeph>（3）：适用于秀场场景。在该场景中，快速的视频渲染和高画质至关重要。SDK 会进行多项性能优化，包括自动启用音视频帧加速渲染以最小化首帧延迟（无需调用 <xref keyref="enableInstantMediaRendering"/>），以及启用 B 帧编码以提升图像质量和带宽效率。即使在网络较差或低端设备上，SDK 也能提供增强的视频质量和流畅的播放体验。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>scenarioType</pt>
                     <pd>视频应用场景的类型，详见 <xref keyref="VIDEO_APPLICATION_SCENARIO_TYPE"/>。
                         <ul>
@@ -192,7 +261,7 @@
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp">
+            <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。
@@ -204,7 +273,31 @@
                     </li>
                 </ul>
             </p>
-            <p props="ios mac">
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。
+                        <ul>
+                            <li>-1：发生通用错误（无具体原因）。</li>
+                            <li>-4：不支持视频应用场景。可能原因包括使用了语音 SDK 而非视频 SDK。</li>
+                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。请在调用该方法前初始化 <xref keyref="IRtcEngine"/> 对象。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。
+                        <ul>
+                            <li>-1：发生通用错误（无具体原因）。</li>
+                            <li>-4：不支持设置视频应用场景。可能原因包括你使用了语音 SDK 而非视频 SDK。</li>
+                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。请在调用该方法前先初始化该对象。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。

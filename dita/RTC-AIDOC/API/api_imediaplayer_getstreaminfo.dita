@@ -25,16 +25,22 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="android">调用 <xref keyref="getStreamCount"/> 后，调用该方法获取指定索引的媒体流的详细信息。</p>
-            <p props="ios mac">调用该方法可获取指定索引的媒体流的详细信息。</p>
+            <p props="ios">调用该方法可获取指定索引的媒体流的详细信息。</p>
+            <p props="mac">调用该方法可获取指定索引的媒体流的详细信息。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="cpp ios mac">在调用 <xref keyref="getStreamCount"/> 方法之后调用该方法。</p>
+            <p props="cpp">在调用 <xref keyref="getStreamCount"/> 方法之后调用该方法。</p>
             <p props="android">在调用 <xref keyref="getStreamCount"/> 方法之后调用。</p>
+            <p props="ios">在调用 <xref keyref="getStreamCount"/> 方法之后调用该方法。</p>
+            <p props="mac">在调用 <xref keyref="getStreamCount"/> 方法之后调用该方法。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -47,7 +53,15 @@
                     <pt>out_info</pt>
                     <pd>输出参数，媒体流的详细信息，详见 <xref keyref="PlayerStreamInfo"/>。</pd>
                 </plentry>
-                <plentry props="android ios mac">
+                <plentry props="android">
+                    <pt>index</pt>
+                    <pd>媒体流的索引。该参数必须小于 <xref keyref="getStreamCount"/> 的返回值。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>index</pt>
+                    <pd>媒体流的索引。该参数必须小于 <xref keyref="getStreamCount"/> 的返回值。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>index</pt>
                     <pd>媒体流的索引。该参数必须小于 <xref keyref="getStreamCount"/> 的返回值。</pd>
                 </plentry>
@@ -67,7 +81,8 @@
                     <li>方法调用失败，返回 <xref keyref="NULL"/>。</li>
                 </ul>
             </p>
-            <p props="ios mac">方法调用成功，返回一个 <xref keyref="PlayerStreamInfo"/> 对象，详见 <xref keyref="PlayerStreamInfo"/>。方法调用失败，返回 <xref keyref="NULL"/>。</p>
+            <p props="ios">方法调用成功，返回一个 <xref keyref="PlayerStreamInfo"/> 对象，详见 <xref keyref="PlayerStreamInfo"/>。方法调用失败，返回 <xref keyref="NULL"/>。</p>
+            <p props="mac">方法调用成功，返回一个 <xref keyref="PlayerStreamInfo"/> 对象，详见 <xref keyref="PlayerStreamInfo"/>。方法调用失败，返回 <xref keyref="NULL"/>。</p>
         </section>
     </refbody>
 </reference>

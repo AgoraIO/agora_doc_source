@@ -25,17 +25,22 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">你可以获取通话的总时长以及 SDK 的收发数据量。</p>
-            <p props="ios mac">该回调在用户调用 <xref keyref="leaveChannel"/>、<xref keyref="leaveChannel2"/>、<xref keyref="leaveChannelEx"/> 或 <xref keyref="leaveChannelEx2"/> 方法离开频道后触发。</p>
+            <p props="ios">该回调在用户调用 <xref keyref="leaveChannel"/>、<xref keyref="leaveChannel2"/>、<xref keyref="leaveChannelEx"/> 或 <xref keyref="leaveChannelEx2"/> 方法离开频道后触发。</p>
+            <p props="mac">该回调在用户调用 <xref keyref="leaveChannel"/>、<xref keyref="leaveChannel2"/>、<xref keyref="leaveChannelEx"/> 或 <xref keyref="leaveChannelEx2"/> 方法离开频道后触发。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
             <p props="cpp">在你调用 <codeph>leaveChannel</codeph>、<codeph>leaveChannel(const LeaveChannelOptions&amp; options)</codeph>、<codeph>leaveChannelEx(const RtcConnection&amp; connection)</codeph> 或 <codeph>leaveChannelEx(const RtcConnection&amp; connection, const LeaveChannelOptions&amp; options)</codeph> 离开频道后，SDK 会触发该回调。</p>
             <p props="android">该回调在你调用 <codeph>leaveChannel</codeph>、<codeph>leaveChannel(LeaveChannelOptions options)</codeph>、<codeph>leaveChannelEx(RtcConnection connection)</codeph> 或 <codeph>leaveChannelEx(RtcConnection connection, LeaveChannelOptions options)</codeph> 离开频道后被触发。</p>
-            <p props="ios mac">该回调在用户调用 <xref keyref="leaveChannel"/>、<xref keyref="leaveChannel2"/>、<xref keyref="leaveChannelEx"/> 或 <xref keyref="leaveChannelEx2"/> 方法离开频道后触发。</p>
+            <p props="ios">该回调在用户调用 <xref keyref="leaveChannel"/>、<xref keyref="leaveChannel2"/>、<xref keyref="leaveChannelEx"/> 或 <xref keyref="leaveChannelEx2"/> 方法离开频道后触发。</p>
+            <p props="mac">该回调在用户调用 <xref keyref="leaveChannel"/>、<xref keyref="leaveChannel2"/>、<xref keyref="leaveChannelEx"/> 或 <xref keyref="leaveChannelEx2"/> 方法离开频道后触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -44,15 +49,27 @@
                     <pt>connection</pt>
                     <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>stats</pt>
                     <pd>通话统计信息。详见 <xref keyref="RtcStats"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="android">
+                    <pt>stats</pt>
+                    <pd>通话统计信息。详见 <xref keyref="RtcStats"/>。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>engine</pt>
                     <pd><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>stats</pt>
+                    <pd>通话统计信息，详见 <xref keyref="RtcStats"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>stats</pt>
                     <pd>通话统计信息，详见 <xref keyref="RtcStats"/>。</pd>
                 </plentry>

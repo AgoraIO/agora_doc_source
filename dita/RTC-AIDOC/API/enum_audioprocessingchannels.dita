@@ -21,6 +21,12 @@
                     <li>后处理：调用 <codeph>setAudioProfile(int profile)</codeph>，并将 <codeph>profile</codeph> 设置为 <codeph>MUSIC_STANDARD_STEREO</codeph>（3）或 <codeph>MUSIC_HIGH_QUALITY_STEREO</codeph>（5）。</li>
                 </ol>
             </p>
+            <p props="mac">在需要增强真实感的场景中，例如音乐会，本地用户可能需要采集立体声并将立体声音频信号发送给远端用户。例如，歌手、吉他手和鼓手站在舞台上的不同位置，音频采集设备采集他们的立体声音频并将其发送给远端用户。远端用户可以从不同方向听到歌曲、吉他和鼓声，就像置身于音乐厅中一样。你可以设置双声道处理以实现立体声。声网推荐以下设置：
+                <ol>
+                    <li>预处理：调用 <xref keyref="setAdvancedAudioOptions"/>，并在 <xref keyref="AdvancedAudioOptions"/> 中将 <codeph>audioProcessingChannels</codeph> 设置为 <codeph>AgoraAudioProcessChannelstereo</codeph>（2）；</li>
+                    <li>后处理：调用 <xref keyref="setAudioProfile2"/>，并将 <codeph>profile</codeph> 设置为 <codeph>AgoraAudioProfileMusicStandardStereo</codeph>（3）或 <codeph>AgoraAudioProfileMusicHighQualityStereo</codeph>（5）。</li>
+                </ol>
+            </p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>枚举值</title>
@@ -39,6 +45,14 @@
                 </plentry>
                 <plentry props="android">
                     <pt>AGORA_AUDIO_STEREO_PROCESSING</pt>
+                    <pd>（2）：立体声。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraAudioProcessChannelsMono</pt>
+                    <pd>（1）：（默认）单声道。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraAudioProcessChannelstereo</pt>
                     <pd>（2）：立体声。</pd>
                 </plentry>
             </parml>

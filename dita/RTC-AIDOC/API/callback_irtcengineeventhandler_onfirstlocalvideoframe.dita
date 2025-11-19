@@ -26,16 +26,20 @@
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
             <p props="cpp">当本地视频画面首次在本地视图中显示时触发。</p>
-            <p props="ios mac">当本地视频视图上显示首帧本地视频画面时触发。</p>
+            <p props="ios">当本地视频视图上显示首帧本地视频画面时触发。</p>
+            <p props="mac">当本地视频视图上显示首帧本地视频画面时触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>source</pt>
                     <pd>视频源类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
                 </plentry>
@@ -47,9 +51,13 @@
                     <pt>height</pt>
                     <pd>本地首帧视频画面的高度，单位为像素。</pd>
                 </plentry>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>elapsed</pt>
                     <pd>从本地用户调用 <codeph>joinChannel</codeph> 加入频道到该回调触发的时间间隔，单位为毫秒。如果在加入频道前调用了 <codeph>startPreview</codeph>，该参数表示从调用 <codeph>startPreview</codeph> 到该事件触发的时间间隔。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>source</pt>
+                    <pd>视频源类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>width</pt>
@@ -59,19 +67,39 @@
                     <pt>height</pt>
                     <pd>首帧本地视频画面的高度，单位为像素。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="android">
+                    <pt>elapsed</pt>
+                    <pd>从本地用户调用 <codeph>joinChannel</codeph> 加入频道到该回调触发的时间间隔，单位为毫秒。如果在加入频道前调用了 <codeph>startPreview</codeph>，该参数表示从调用 <codeph>startPreview</codeph> 到该事件触发的时间间隔。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>engine</pt>
                     <pd>引擎对象，详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>size</pt>
                     <pd>首帧本地视频画面的尺寸。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>elapsed</pt>
                     <pd>从调用 <xref keyref="joinChannel1"/> 或 <xref keyref="joinChannel2"/> 加入频道到 SDK 触发该回调的时间间隔（毫秒）。如果在加入频道前调用了 <xref keyref="startPreview"/> 或 <xref keyref="startPreview2"/>，该参数表示从调用 <xref keyref="startPreview"/> 或 <xref keyref="startPreview2"/> 到触发该事件的时间间隔。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>sourceType</pt>
+                    <pd>视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd>引擎对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>size</pt>
+                    <pd>首帧本地视频画面的尺寸。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>elapsed</pt>
+                    <pd>从调用 <xref keyref="joinChannel1"/> 或 <xref keyref="joinChannel2"/> 加入频道到 SDK 触发该回调的时间间隔（毫秒）。如果在加入频道前调用了 <xref keyref="startPreview"/> 或 <xref keyref="startPreview2"/>，该参数表示从调用 <xref keyref="startPreview"/> 或 <xref keyref="startPreview2"/> 到触发该事件的时间间隔。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>sourceType</pt>
                     <pd>视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
                 </plentry>

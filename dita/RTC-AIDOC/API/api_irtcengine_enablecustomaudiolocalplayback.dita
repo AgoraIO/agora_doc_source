@@ -26,18 +26,26 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">调用该方法可开启外部音频源的本地播放。如需停止播放，可再次调用该方法并将 <codeph>enabled</codeph> 设置为 <xref keyref="false"/>。你可以调用 <xref keyref="adjustCustomAudioPlayoutVolume"/> 方法调整自定义音频轨道的本地播放音量。</p>
             <p props="android">你可以调用 <xref keyref="adjustCustomAudioPlayoutVolume"/> 方法调整自定义音频轨道的本地播放音量。</p>
-            <p props="ios mac">调用该方法启用外部音频源的本地播放后，如需停止本地播放，可再次调用该方法并将 <codeph>enabled</codeph> 设置为 <xref keyref="false"/>。你可以调用 <xref keyref="adjustCustomAudioPlayoutVolume"/> 方法调整自定义音频轨道的本地播放音量。</p>
+            <p props="ios">调用该方法启用外部音频源的本地播放后，如需停止本地播放，可再次调用该方法并将 <codeph>enabled</codeph> 设置为 <xref keyref="false"/>。你可以调用 <xref keyref="adjustCustomAudioPlayoutVolume"/> 方法调整自定义音频轨道的本地播放音量。</p>
+            <p props="mac">调用该方法启用外部音频源的本地播放后，如需停止本地播放，可再次调用该方法并将 <codeph>enabled</codeph> 设置为 <xref keyref="false"/>。你可以调用 <xref keyref="adjustCustomAudioPlayoutVolume"/> 方法调整自定义音频轨道的本地播放音量。</p>
             <note props="cpp">请确保在调用该方法前，已通过 <xref keyref="createCustomAudioTrack_IMediaEngine"/> 创建自定义音频轨道。</note>
             <note props="android">请确保在调用该方法前已调用 <xref keyref="createCustomAudioTrack"/> 方法创建自定义音频轨道。</note>
-            <note props="ios mac">请确保在调用该方法前已通过 <xref keyref="createCustomAudioTrack"/> 方法创建自定义音频轨道。</note>
+            <note props="ios">请确保在调用该方法前已通过 <xref keyref="createCustomAudioTrack"/> 方法创建自定义音频轨道。</note>
+            <note props="mac">请确保在调用该方法前已通过 <xref keyref="createCustomAudioTrack"/> 方法创建自定义音频轨道。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -59,7 +67,7 @@
                     <pt>trackId</pt>
                     <pd>音频轨道 ID，设置为 <xref keyref="createCustomAudioTrack"/> 返回的自定义音频轨道 ID。</pd>
                 </plentry>
-                <plentry props="android ios mac">
+                <plentry props="android">
                     <pt>enabled</pt>
                     <pd>是否播放外部音频源：
                         <ul>
@@ -68,15 +76,55 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>trackId</pt>
                     <pd>音频轨道 ID。该参数需设置为 <xref keyref="createCustomAudioTrack"/> 方法返回的自定义音频轨道 ID。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>enabled</pt>
+                    <pd>是否播放外部音频源：
+                        <ul>
+                            <li><xref keyref="true"/>：播放外部音频源。</li>
+                            <li><xref keyref="false"/>：（默认）不播放外部音频源。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>trackId</pt>
+                    <pd>音频轨道 ID。该参数需设置为 <xref keyref="createCustomAudioTrack"/> 方法返回的自定义音频轨道 ID。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>enabled</pt>
+                    <pd>是否播放外部音频源：
+                        <ul>
+                            <li><xref keyref="true"/>：播放外部音频源。</li>
+                            <li><xref keyref="false"/>：（默认）不播放外部音频源。</li>
+                        </ul>
+                    </pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

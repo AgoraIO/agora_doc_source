@@ -46,12 +46,13 @@
                 </dlentry>
             </dl>
             <p props="android">用于配置添加的水印图像。</p>
-            <p props="ios mac">用于设置水印图像的显示配置。</p>
+            <p props="ios">用于设置水印图像的显示配置。</p>
+            <p props="mac">用于设置水印图像的显示配置。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>属性</title>
             <parml>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>visibleInPreview</pt>
                     <pd>水印是否在本地预览视图中可见：
                         <ul>
@@ -76,9 +77,18 @@
                     <pt>mode</pt>
                     <pd>水印的适配模式。详见 <xref keyref="WATERMARK_FIT_MODE"/>。</pd>
                 </plentry>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
                     <pt>zOrder</pt>
                     <pd>水印图像的图层顺序，默认值为 0。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>visibleInPreview</pt>
+                    <pd>水印是否在本地预览视图中可见：
+                        <ul>
+                            <li><xref keyref="true"/>：（默认）水印在本地预览视图中可见。</li>
+                            <li><xref keyref="false"/>：水印在本地预览视图中不可见。</li>
+                        </ul>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>positionInLandscapeMode</pt>
@@ -88,7 +98,11 @@
                     <pt>positionInPortraitMode</pt>
                     <pd>竖屏模式下显示水印图像的区域，详见 <xref keyref="Rectangle"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="android">
+                    <pt>zOrder</pt>
+                    <pd>水印图像的图层顺序，默认值为 0。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>visibleInPreview</pt>
                     <pd>水印图像是否在本地预览视图中可见：
                         <ul>
@@ -97,7 +111,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>positionInLandscapeMode</pt>
                     <pd>横屏模式下水印图像的显示区域，包含以下成员：
                         <ul>
@@ -108,7 +122,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>positionInPortraitMode</pt>
                     <pd>竖屏模式下水印图像的显示区域，包含以下成员：
                         <ul>
@@ -118,6 +132,45 @@
                             <li>height：水印区域的高度（像素）。</li>
                         </ul>
                     </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>zOrder</pt>
+                    <pd>水印图像的图层顺序，默认值为 0。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>visibleInPreview</pt>
+                    <pd>水印图像是否在本地预览视图中可见：
+                        <ul>
+                            <li><xref keyref="true"/>：（默认）水印在本地预览视图中可见。</li>
+                            <li><xref keyref="false"/>：水印在本地预览视图中不可见。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>positionInLandscapeMode</pt>
+                    <pd>横屏模式下水印图像的显示区域，包含以下成员：
+                        <ul>
+                            <li>x：水印相对于左上角的水平位置。</li>
+                            <li>y：水印相对于左上角的垂直位置。</li>
+                            <li>width：水印区域的宽度（像素）。</li>
+                            <li>height：水印区域的高度（像素）。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>positionInPortraitMode</pt>
+                    <pd>竖屏模式下水印图像的显示区域，包含以下成员：
+                        <ul>
+                            <li>x：水印相对于左上角的水平位置。</li>
+                            <li>y：水印相对于左上角的垂直位置。</li>
+                            <li>width：水印区域的宽度（像素）。</li>
+                            <li>height：水印区域的高度（像素）。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>zOrder</pt>
+                    <pd>水印图像的图层顺序，默认值为 0。</pd>
                 </plentry>
             </parml>
         </section>

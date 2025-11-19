@@ -40,7 +40,15 @@
                     <li>本地客户端调用 <xref keyref="pushAudioFrame2"/> 并成功将音频帧推送至 SDK。</li>
                 </ul>
             </p>
-            <p props="ios mac">该回调在本地音频首帧成功发布时被触发，触发时机包括：
+            <p props="ios">该回调在本地音频首帧成功发布时被触发，触发时机包括：
+                <ul>
+                    <li>启用音频模块并成功调用 <codeph>joinChannelByToken</codeph> 加入频道。</li>
+                    <li>依次调用 <codeph>muteLocalAudioStream</codeph>（设为 <xref keyref="true"/>）和 <codeph>muteLocalAudioStream</codeph>（设为 <xref keyref="false"/>）。</li>
+                    <li>依次调用 <xref keyref="disableAudio"/> 和 <xref keyref="enableAudio"/>。</li>
+                    <li>调用 <codeph>pushExternalAudioFrameRawData</codeph> 成功向 SDK 推送自定义音频帧。</li>
+                </ul>
+            </p>
+            <p props="mac">该回调在本地音频首帧成功发布时被触发，触发时机包括：
                 <ul>
                     <li>启用音频模块并成功调用 <codeph>joinChannelByToken</codeph> 加入频道。</li>
                     <li>依次调用 <codeph>muteLocalAudioStream</codeph>（设为 <xref keyref="true"/>）和 <codeph>muteLocalAudioStream</codeph>（设为 <xref keyref="false"/>）。</li>
@@ -60,11 +68,15 @@
                 </ul>
             </p>
             <p props="android">该回调在本地用户发布首帧音频时被触发。</p>
-            <p props="ios mac">该回调在本地音频首帧成功发布时被触发。</p>
+            <p props="ios">该回调在本地音频首帧成功发布时被触发。</p>
+            <p props="mac">该回调在本地音频首帧成功发布时被触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -81,11 +93,19 @@
                     <pt>elapsed</pt>
                     <pd>从本地用户调用 <codeph>joinChannel</codeph> 到 SDK 触发该回调的时间间隔（毫秒）。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>engine</pt>
                     <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>elapsed</pt>
+                    <pd>从调用 <codeph>joinChannelByToken</codeph> 到 SDK 触发该回调的时间间隔（毫秒）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>elapsed</pt>
                     <pd>从调用 <codeph>joinChannelByToken</codeph> 到 SDK 触发该回调的时间间隔（毫秒）。</pd>
                 </plentry>

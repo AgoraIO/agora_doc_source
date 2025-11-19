@@ -25,7 +25,15 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
-                <dlentry props="android ios mac">
+                <dlentry props="android">
+                    <dt>自从</dt>
+                    <dd>自 v3.1.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="ios">
+                    <dt>自从</dt>
+                    <dd>自 v3.1.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="mac">
                     <dt>自从</dt>
                     <dd>自 v3.1.0 版本新增。</dd>
                 </dlentry>
@@ -33,22 +41,30 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
-            <p props="ios mac">该回调在旁路推流过程中发生事件时被触发。</p>
+            <p props="ios">该回调在旁路推流过程中发生事件时被触发。</p>
+            <p props="mac">该回调在旁路推流过程中发生事件时被触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>url</pt>
                     <pd>旁路推流的地址。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>eventCode</pt>
                     <pd>旁路推流的事件码，详见 <xref keyref="RTMP_STREAMING_EVENT"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>url</pt>
+                    <pd>旁路推流的地址。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>event</pt>
@@ -61,11 +77,11 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>engine</pt>
                     <pd>引擎对象。详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>url</pt>
                     <pd>旁路推流的 URL。</pd>
                 </plentry>
@@ -74,8 +90,16 @@
                     <pd>旁路推流的事件码。详见 <xref keyref="RTMP_STREAMING_EVENT"/>。</pd>
                 </plentry>
                 <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd>引擎对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>url</pt>
+                    <pd>旁路推流的 URL。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>eventCode</pt>
-                    <pd>旁路推流的事件码。详见 <codeph>AgoraRtmpStreamingEvent</codeph>。</pd>
+                    <pd>旁路推流的事件码。详见 <xref keyref="RTMP_STREAMING_EVENT"/>。</pd>
                 </plentry>
             </parml>
         </section>

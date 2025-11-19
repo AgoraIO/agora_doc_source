@@ -26,7 +26,8 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">调用该方法后，本地用户将停止或恢复订阅所有远端用户的音频流，包括后续加入频道的用户。</p>
             <p props="android">请在加入频道后调用该方法。本地用户将停止或恢复订阅所有远端用户的音频流，包括之后加入频道的用户。</p>
-            <p props="ios mac">调用该方法后，你将停止或恢复订阅所有远端用户的音频流，包括之后加入频道的用户。</p>
+            <p props="ios">调用该方法后，你将停止或恢复订阅所有远端用户的音频流，包括之后加入频道的用户。</p>
+            <p props="mac">调用该方法后，你将停止或恢复订阅所有远端用户的音频流，包括之后加入频道的用户。</p>
             <note props="cpp">
                 <ul>
                     <li>请在调用 <codeph>joinChannel</codeph> 方法后调用本方法。</li>
@@ -36,21 +37,25 @@
             </note>
             <note props="android">如果你调用该方法后又调用了 <xref keyref="enableAudio"/> 或 <xref keyref="disableAudio"/>，以最后一次调用为准。默认情况下，加入频道时 SDK 会自动订阅所有远端用户的音频流。你可以在调用 <codeph>joinChannel</codeph> 加入频道时将 <codeph>autoSubscribeAudio</codeph> 设置为 <xref keyref="false"/>，以取消加入频道时对所有用户音频流的订阅。</note>
             <note props="ios"><xref keyref="muteAllRemoteAudioStreams_IBaseSpatialAudioEngine"/> 方法调用后，如果你调用了 <xref keyref="enableAudio"/> 或 <xref keyref="disableAudio"/>，以最后一次调用为准。默认情况下，加入频道时 SDK 会自动订阅所有远端用户的音频流。你可以在调用 <codeph>joinChannelByToken</codeph> 加入频道时将 <codeph>autoSubscribeAudio</codeph> 设置为 <xref keyref="false"/>，以取消加入频道时对所有用户音频流的订阅。</note>
-            <note props="mac"><xref keyref="muteAllRemoteAudioStreams"/> 方法调用后，如果你调用了 <xref keyref="enableAudio"/> 或 <xref keyref="disableAudio"/>，以最后一次调用为准。默认情况下，加入频道时 SDK 会自动订阅所有远端用户的音频流。你可以在调用 <codeph>joinChannelByToken</codeph> 加入频道时将 <codeph>autoSubscribeAudio</codeph> 设置为 <xref keyref="false"/>，以取消加入频道时对所有用户音频流的订阅。</note>
+            <note props="mac"><xref keyref="muteAllRemoteAudioStreams_IBaseSpatialAudioEngine"/> 方法调用后，如果你调用了 <xref keyref="enableAudio"/> 或 <xref keyref="disableAudio"/>，以最后一次调用为准。默认情况下，加入频道时 SDK 会自动订阅所有远端用户的音频流。你可以在调用 <codeph>joinChannelByToken</codeph> 加入频道时将 <codeph>autoSubscribeAudio</codeph> 设置为 <xref keyref="false"/>，以取消加入频道时对所有用户音频流的订阅。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p props="android">请在加入频道后调用该方法。</p>
-            <p props="ios mac">该方法需要在加入频道后调用。</p>
+            <p props="ios">该方法需要在加入频道后调用。</p>
+            <p props="mac">该方法需要在加入频道后调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="cpp ios mac">
+                <plentry props="cpp">
                     <pt>mute</pt>
                     <pd>是否停止订阅所有远端用户的音频流：
                         <ul>
@@ -68,11 +73,47 @@
                         </ul>
                     </pd>
                 </plentry>
+                <plentry props="ios">
+                    <pt>mute</pt>
+                    <pd>是否停止订阅所有远端用户的音频流：
+                        <ul>
+                            <li><xref keyref="true"/>：停止订阅所有远端用户的音频流。</li>
+                            <li><xref keyref="false"/>：（默认）订阅所有远端用户的音频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>mute</pt>
+                    <pd>是否停止订阅所有远端用户的音频流：
+                        <ul>
+                            <li><xref keyref="true"/>：停止订阅所有远端用户的音频流。</li>
+                            <li><xref keyref="false"/>：（默认）订阅所有远端用户的音频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

@@ -25,7 +25,19 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="deprecated">
-                <dlentry props="android cpp ios mac">
+                <dlentry props="cpp">
+                    <dt>废弃</dt>
+                    <dd>自 v4.6.0 版本废弃。</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>废弃</dt>
+                    <dd>自 v4.6.0 版本废弃。</dd>
+                </dlentry>
+                <dlentry props="ios">
+                    <dt>废弃</dt>
+                    <dd>自 v4.6.0 版本废弃。</dd>
+                </dlentry>
+                <dlentry props="mac">
                     <dt>废弃</dt>
                     <dd>自 v4.6.0 版本废弃。</dd>
                 </dlentry>
@@ -36,17 +48,26 @@
             <p props="android">该方法仅影响通过摄像头、屏幕或自定义视频源采集的视频流。也就是说，当你在 <xref keyref="DirectCdnStreamingMediaOptions"/> 中将 <codeph>publishCameraTrack</codeph> 或 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/> 时，可以调用该方法设置视频属性配置。
 
 如果本地摄像头不支持你设置的视频分辨率，SDK 会自动将其调整为最接近的分辨率进行采集、编码或推流，并保持你设置的分辨率的宽高比。你可以通过 <xref keyref="onDirectCdnStreamingStats"/> 回调获取视频流的实际分辨率。</p>
-            <p props="ios mac">该方法仅影响通过摄像头、屏幕或自定义视频源采集的视频流。也就是说，当你在 <xref keyref="DirectCdnStreamingMediaOptions"/> 中将 <codeph>publishCameraTrack</codeph> 或 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/> 以采集视频时，可以调用该方法设置视频属性。如果本地摄像头不支持你设置的视频分辨率，SDK 会自动将其调整为最接近你设置值的分辨率进行采集、编码或传输，并保持你设置的宽高比。你可以通过 <xref keyref="onDirectCdnStreamingStats"/> 回调获取视频流的实际分辨率。</p>
-            <note props="android cpp">在 CDN 直播过程中，声网仅支持将 <xref keyref="ORIENTATION_MODE"/> 设置为 <codeph>ORIENTATION_MODE_FIXED_LANDSCAPE</codeph> 或 <codeph>ORIENTATION_MODE_FIXED_PORTRAIT</codeph>。</note>
-            <note props="ios mac">在 CDN 直播过程中，声网仅支持将 <xref keyref="ORIENTATION_MODE"/> 设置为 <codeph>AgoraVideoOutputOrientationModeFixedLandscape</codeph> 或 <codeph>AgoraVideoOutputOrientationModeFixedPortrait</codeph>。</note>
+            <p props="ios">该方法仅影响通过摄像头、屏幕或自定义视频源采集的视频流。也就是说，当你在 <xref keyref="DirectCdnStreamingMediaOptions"/> 中将 <codeph>publishCameraTrack</codeph> 或 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/> 以采集视频时，可以调用该方法设置视频属性。如果本地摄像头不支持你设置的视频分辨率，SDK 会自动将其调整为最接近你设置值的分辨率进行采集、编码或传输，并保持你设置的宽高比。你可以通过 <xref keyref="onDirectCdnStreamingStats"/> 回调获取视频流的实际分辨率。</p>
+            <p props="mac">该方法仅影响通过摄像头、屏幕或自定义视频源采集的视频流。也就是说，当你在 <xref keyref="DirectCdnStreamingMediaOptions"/> 中将 <codeph>publishCameraTrack</codeph> 或 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/> 以采集视频时，可以调用该方法设置视频属性。如果本地摄像头不支持你设置的视频分辨率，SDK 会自动将其调整为最接近你设置值的分辨率进行采集、编码或传输，并保持你设置的宽高比。你可以通过 <xref keyref="onDirectCdnStreamingStats"/> 回调获取视频流的实际分辨率。</p>
+            <note props="cpp">在 CDN 直播过程中，声网仅支持将 <xref keyref="ORIENTATION_MODE"/> 设置为 <codeph>ORIENTATION_MODE_FIXED_LANDSCAPE</codeph> 或 <codeph>ORIENTATION_MODE_FIXED_PORTRAIT</codeph>。</note>
+            <note props="android">在 CDN 直播过程中，声网仅支持将 <xref keyref="ORIENTATION_MODE"/> 设置为 <codeph>ORIENTATION_MODE_FIXED_LANDSCAPE</codeph> 或 <codeph>ORIENTATION_MODE_FIXED_PORTRAIT</codeph>。</note>
+            <note props="ios">在 CDN 直播过程中，声网仅支持将 <xref keyref="ORIENTATION_MODE"/> 设置为 <codeph>AgoraVideoOutputOrientationModeFixedLandscape</codeph> 或 <codeph>AgoraVideoOutputOrientationModeFixedPortrait</codeph>。</note>
+            <note props="mac">在 CDN 直播过程中，声网仅支持将 <xref keyref="ORIENTATION_MODE"/> 设置为 <codeph>AgoraVideoOutputOrientationModeFixedLandscape</codeph> 或 <codeph>AgoraVideoOutputOrientationModeFixedPortrait</codeph>。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -59,7 +80,11 @@
                     <pt>config</pt>
                     <pd>视频属性配置。详见 <xref keyref="VideoEncoderConfiguration"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>config</pt>
+                    <pd>视频属性，详见 <xref keyref="VideoEncoderConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>config</pt>
                     <pd>视频属性，详见 <xref keyref="VideoEncoderConfiguration"/>。</pd>
                 </plentry>
@@ -67,7 +92,25 @@
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

@@ -19,6 +19,7 @@
             <p outputclass="codeblock">
                 <codeblock props="ios" outputclass="language-objectivec">- (int)muteLocalAudioStream:(BOOL)mute NS_SWIFT_NAME(muteLocalAudioStream(_:));</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int muteLocalAudioStream(boolean mute);</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)muteLocalAudioStream:(BOOL)mute NS_SWIFT_NAME(muteLocalAudioStream(_:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -30,19 +31,45 @@
 请在调用 <codeph>joinChannel</codeph> 方法后调用该方法。
 使用空间音效时，如果需要设置是否停止订阅指定用户的音频流，声网建议调用该方法，而不是 <xref keyref="muteLocalAudioStream_IBaseSpatialAudioEngine"/> 方法。
 成功调用该方法后，远端客户端会触发 <xref keyref="onUserMuteAudio"/> 和 <xref keyref="onRemoteAudioStateChanged"/> 回调。</note>
+            <note props="mac">该方法不会影响任何正在进行的音频录制，因为它不会禁用音频采集设备。
+请在调用 <codeph>joinChannelByToken</codeph> 方法之后调用该方法。
+使用空间音效时，如果你需要设置是否停止订阅指定用户的音频流，声网建议调用该方法，而不是 <xref keyref="muteLocalAudioStream_IBaseSpatialAudioEngine"/> 方法。
+成功调用该方法后，远端会触发 <xref keyref="onUserMuteAudio"/> 和 <xref keyref="onRemoteAudioStateChanged"/> 回调。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android ios">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android ios">无。</p>
+            <p props="ios">无。</p>
+            <p props="android">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="android ios">
+                <plentry props="ios">
+                    <pt>mute</pt>
+                    <pd>是否停止发布本地音频流：
+                        <ul>
+                            <li><xref keyref="true"/>：停止发布本地音频流。</li>
+                            <li><xref keyref="false"/>：发布本地音频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mute</pt>
+                    <pd>是否停止发布本地音频流：
+                        <ul>
+                            <li><xref keyref="true"/>：停止发布本地音频流。</li>
+                            <li><xref keyref="false"/>：发布本地音频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>mute</pt>
                     <pd>是否停止发布本地音频流：
                         <ul>
@@ -55,7 +82,19 @@
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android ios">
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

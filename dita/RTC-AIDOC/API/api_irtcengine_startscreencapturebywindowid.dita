@@ -18,6 +18,9 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int startScreenCaptureByWindowId(int64_t windowId, const Rectangle&amp; regionRect, const ScreenCaptureParameters&amp; captureParams) = 0;</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)startScreenCaptureByWindowId:(UInt32)windowId
+                         regionRect:(CGRect)regionRect
+                      captureParams:(AgoraScreenCaptureParameters *_Nonnull)captureParams  NS_SWIFT_NAME(startScreenCapture(byWindowId:regionRect:captureParams:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -175,8 +178,10 @@
                     </strow>
                 </simpletable>
             </p>
+            <p props="mac">你需要指定要采集的窗口的 ID，可以采集整个窗口或窗口的部分区域。</p>
             <note props="cpp"><xref keyref="startScreenCaptureByWindowId"/> 依赖于 WGC（Windows 图形采集）或 GDI（图形设备接口）进行窗口共享。在 Windows 10 2004 之前的系统中，WGC 无法禁用鼠标采集。因此，在系统版本低于 Windows 10 2004 的设备上调用 <codeph>captureMouseCursor(false)</codeph> 可能无效。详见 <xref keyref="ScreenCaptureParameters"/>。
 该方法仅适用于 macOS 和 Windows 平台。</note>
+            <note props="mac">该方法仅适用于 macOS 和 Windows 平台。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
@@ -186,10 +191,17 @@
                     <li>在加入频道后调用该方法，然后调用 <xref keyref="updateChannelMediaOptions"/> 并将 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 设置为 <xref keyref="true"/> 以开始屏幕共享。</li>
                 </ul>
             </p>
+            <p props="mac">你可以在加入频道前或加入频道后调用该方法，具体如下：
+                <ul>
+                    <li>在加入频道前调用该方法，然后调用 <codeph>joinChannelByToken</codeph> 加入频道，并将 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 设置为 <xref keyref="true"/>，以开始屏幕共享。</li>
+                    <li>在加入频道后调用该方法，然后调用 <xref keyref="updateChannelMediaOptions"/> 并将 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 设置为 <xref keyref="true"/>，以开始屏幕共享。</li>
+                </ul>
+            </p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
             <p props="cpp">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -213,6 +225,26 @@
                     <pt>captureParams</pt>
                     <pd>屏幕共享配置。默认视频分辨率为 1920 × 1080，即 2,073,600 像素。声网使用该参数的值计算费用。详见 <xref keyref="ScreenCaptureParameters"/>。</pd>
                 </plentry>
+                <plentry props="mac">
+                    <pt>windowId</pt>
+                    <pd>要共享的窗口的 ID。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>regionRect</pt>
+                    <pd>（可选）相对于窗口的区域位置。如果未设置该参数，SDK 会共享整个窗口。该参数包含以下字段：
+                        <ul>
+                            <li>x：距窗口左上角的水平偏移。</li>
+                            <li>y：距窗口左上角的垂直偏移。</li>
+                            <li>width：区域的宽度。</li>
+                            <li>height：区域的高度。
+如果指定的区域超出窗口范围，SDK 只共享窗口内的区域；如果设置 width 或 height 为 0，SDK 会共享整个窗口。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>captureParams</pt>
+                    <pd>屏幕共享配置。默认视频分辨率为 1920 × 1080，即 2,073,600 像素。声网会根据该参数的值计算费用。详见 <xref keyref="ScreenCaptureParameters"/>。</pd>
+                </plentry>
             </parml>
         </section>
         <section id="return_values">
@@ -224,6 +256,17 @@
                         <ul>
                             <li>-2：参数无效。</li>
                             <li>-8：屏幕共享状态无效。可能是因为你已共享了其他屏幕或窗口。请调用 <codeph>stopScreenCapture</codeph> 停止当前共享后重新开始。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。
+                        <ul>
+                            <li>-2：参数无效。</li>
+                            <li>-8：屏幕共享状态无效。可能是因为你已共享了其他屏幕或窗口。请尝试调用 <xref keyref="stopScreenCapture"/> 停止当前共享，然后重新开始共享屏幕。</li>
                         </ul>
                     </li>
                 </ul>

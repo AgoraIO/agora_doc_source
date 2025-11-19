@@ -32,7 +32,7 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="deprecated">
-                <dlentry props="ios mac">
+                <dlentry props="ios">
                     <dt>废弃</dt>
                     <dd>自 vX.X.X 版本废弃，请改用 <xref keyref="createCustomAudioTrack"/>。</dd>
                 </dlentry>
@@ -40,21 +40,28 @@
                     <dt>废弃</dt>
                     <dd>该方法已废弃，请改用 <xref keyref="createCustomAudioTrack"/>。</dd>
                 </dlentry>
+                <dlentry props="mac">
+                    <dt>废弃</dt>
+                    <dd>自 vX.X.X 版本废弃，请改用 <xref keyref="createCustomAudioTrack"/>。</dd>
+                </dlentry>
             </dl>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="ios mac">请你在加入频道前调用该方法。</p>
+            <p props="ios">请你在加入频道前调用该方法。</p>
             <p props="android">在加入频道前调用该方法。</p>
+            <p props="mac">请你在加入频道前调用该方法。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android ios mac">无。</p>
+            <p props="ios">无。</p>
+            <p props="android">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="android ios mac">
+                <plentry props="ios">
                     <pt>enabled</pt>
                     <pd>是否启用外部音频源：
                         <ul>
@@ -63,15 +70,15 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>sampleRate</pt>
                     <pd>外部音频源的采样率（Hz），可设置为 8000、16000、32000、44100 或 48000。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>channels</pt>
                     <pd>外部音频源的声道数，可设置为 1（单声道）或 2（立体声）。</pd>
                 </plentry>
-                <plentry props="android ios mac">
+                <plentry props="ios">
                     <pt>localPlayback</pt>
                     <pd>是否播放外部音频源：
                         <ul>
@@ -80,12 +87,21 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="android ios mac">
+                <plentry props="ios">
                     <pt>publish</pt>
                     <pd>是否向远端用户发布音频：
                         <ul>
                             <li><xref keyref="true"/>：（默认）发布音频到远端用户。</li>
                             <li><xref keyref="false"/>：不发布音频到远端用户。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enabled</pt>
+                    <pd>是否启用外部音频源：
+                        <ul>
+                            <li><xref keyref="true"/>：启用外部音频源。</li>
+                            <li><xref keyref="false"/>：（默认）不启用外部音频源。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -110,11 +126,76 @@
                         </ul>
                     </pd>
                 </plentry>
+                <plentry props="android">
+                    <pt>localPlayback</pt>
+                    <pd>是否播放外部音频源：
+                        <ul>
+                            <li><xref keyref="true"/>：播放外部音频源。</li>
+                            <li><xref keyref="false"/>：（默认）不播放外部音频源。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>publish</pt>
+                    <pd>是否向远端用户发布音频：
+                        <ul>
+                            <li><xref keyref="true"/>：（默认）发布音频到远端用户。</li>
+                            <li><xref keyref="false"/>：不发布音频到远端用户。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>enabled</pt>
+                    <pd>是否启用外部音频源：
+                        <ul>
+                            <li><xref keyref="true"/>：启用外部音频源。</li>
+                            <li><xref keyref="false"/>：（默认）不启用外部音频源。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>sampleRate</pt>
+                    <pd>外部音频源的采样率（Hz），可设置为 8000、16000、32000、44100 或 48000。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>channels</pt>
+                    <pd>外部音频源的声道数，可设置为 1（单声道）或 2（立体声）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>localPlayback</pt>
+                    <pd>是否播放外部音频源：
+                        <ul>
+                            <li><xref keyref="true"/>：播放外部音频源。</li>
+                            <li><xref keyref="false"/>：（默认）不播放外部音频源。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>publish</pt>
+                    <pd>是否向远端用户发布音频：
+                        <ul>
+                            <li><xref keyref="true"/>：（默认）发布音频到远端用户。</li>
+                            <li><xref keyref="false"/>：不发布音频到远端用户。</li>
+                        </ul>
+                    </pd>
+                </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android ios mac">
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

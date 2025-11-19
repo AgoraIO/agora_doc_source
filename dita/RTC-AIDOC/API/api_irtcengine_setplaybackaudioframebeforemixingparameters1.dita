@@ -30,15 +30,21 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">设置 <xref keyref="onPlaybackAudioFrameBeforeMixing_IAudioFrameObserverBase"/> 回调中返回音频数据的采样率、声道数和每次回调的采样点数。</p>
             <p props="ios">用于设置 <xref keyref="onPlaybackAudioFrameBeforeMixing"/> 回调中返回的音频数据的采样率、声道数和每次回调的采样点数。</p>
-            <p props="mac">用于设置 <codeph>onPlaybackAudioFrameBeforeMixing:channelId:uid:</codeph> 回调中返回的音频数据的采样率、声道数和每次回调的采样点数。</p>
+            <p props="mac">用于设置 <xref keyref="onPlaybackAudioFrameBeforeMixing"/> 回调中返回的音频数据的采样率、声道数和每次回调的采样点数。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -104,11 +110,11 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>sampleRate</pt>
-                    <pd>输入参数。设置 <codeph>onPlaybackAudioFrameBeforeMixing:channelId:uid:</codeph> 回调中返回的采样率（Hz）。可设置为以下值：8000、16000、32000、44100 或 48000。</pd>
+                    <pd>输入参数。设置 <xref keyref="onPlaybackAudioFrameBeforeMixing"/> 回调中返回的采样率（Hz）。可设置为以下值：8000、16000、32000、44100 或 48000。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>channel</pt>
-                    <pd>输入参数。设置 <codeph>onPlaybackAudioFrameBeforeMixing:channelId:uid:</codeph> 回调中返回的音频数据的声道数。
+                    <pd>输入参数。设置 <xref keyref="onPlaybackAudioFrameBeforeMixing"/> 回调中返回的音频数据的声道数。
                         <ul>
                             <li>1：单声道。</li>
                             <li>2：立体声。</li>
@@ -117,13 +123,31 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>samplesPerCall</pt>
-                    <pd>输入参数。设置 <codeph>onPlaybackAudioFrameBeforeMixing:channelId:uid:</codeph> 回调中返回的数据的每次回调采样点数。例如，在 RTMP 推流场景中，建议设置为 1024。</pd>
+                    <pd>输入参数。设置 <xref keyref="onPlaybackAudioFrameBeforeMixing"/> 回调中返回的数据的每次回调采样点数。例如，在 RTMP 推流场景中，建议设置为 1024。</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

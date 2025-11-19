@@ -40,11 +40,11 @@
         <section id="parameters" deliveryTarget="details">
             <title>属性</title>
             <parml>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
                     <pt>channelId</pt>
                     <pd>频道名。</pd>
                 </plentry>
-                <plentry props="cpp ios mac">
+                <plentry props="cpp">
                     <pt>uid</pt>
                     <pd>用户 ID。
                         <ul>
@@ -66,6 +66,10 @@
                     <pd>发送 <xref keyref="Metadata"/> 时的时间戳（单位为毫秒）。</pd>
                 </plentry>
                 <plentry props="android">
+                    <pt>channelId</pt>
+                    <pd>频道名。</pd>
+                </plentry>
+                <plentry props="android">
                     <pt>uid</pt>
                     <pd>用户 ID。
                         <ul>
@@ -82,11 +86,45 @@
                     <pt>timeStampMs</pt>
                     <pd><xref keyref="Metadata"/> 发送时的时间戳（单位为毫秒）。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>channelId</pt>
+                    <pd>频道名。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>uid</pt>
+                    <pd>用户 ID。
+                        <ul>
+                            <li>对于接收方：发送该 <xref keyref="Metadata"/> 的远端用户 ID。</li>
+                            <li>对于发送方：忽略该字段。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>data</pt>
                     <pd>接收到的元数据。详见 <codeph>NSData</codeph>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>timestamp</pt>
+                    <pd>发送该 <xref keyref="Metadata"/> 时的时间戳（毫秒）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>channelId</pt>
+                    <pd>频道名。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>用户 ID。
+                        <ul>
+                            <li>对于接收方：发送该 <xref keyref="Metadata"/> 的远端用户 ID。</li>
+                            <li>对于发送方：忽略该字段。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>data</pt>
+                    <pd>接收到的元数据。详见 <codeph>NSData</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>timestamp</pt>
                     <pd>发送该 <xref keyref="Metadata"/> 时的时间戳（毫秒）。</pd>
                 </plentry>

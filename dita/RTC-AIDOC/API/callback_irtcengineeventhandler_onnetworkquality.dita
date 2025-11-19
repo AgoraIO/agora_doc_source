@@ -26,18 +26,25 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">该回调报告频道中每个用户的 last mile 网络状况。last mile 指的是本地设备与声网边缘服务器之间的连接。SDK 每两秒触发一次该回调。如果频道中有多个用户，SDK 会触发多次该回调。该回调通过在频道内发送和接收广播数据包来反馈网络质量。为避免广播风暴导致频道内数据传输量过大，该回调默认最多同时反馈 4 个远端用户的网络质量。</p>
             <p props="android">该回调通过在频道内发送和接收广播数据包来反馈网络质量。过多的广播数据包可能导致广播风暴。为防止广播风暴造成频道内大量数据传输，该回调默认最多同时反馈 4 个远端用户的网络质量。</p>
-            <p props="ios mac"><xref keyref="onNetworkQuality"/> 回调报告频道中每个用户的 last mile 网络状况。last mile 指的是本地设备与声网边缘服务器之间的连接。SDK 每两秒触发一次该回调。如果频道中有多个用户，SDK 会触发多次该回调。该回调通过在频道内发送和接收广播数据包来反馈网络质量。过多的广播数据包可能会导致广播风暴。为防止广播风暴造成频道内大量数据传输，该回调默认支持同时反馈最多 4 个远端用户的网络质量。</p>
-            <note props="android cpp"><codeph>txQuality</codeph> 在用户未发送流时为 <codeph>UNKNOWN</codeph>；<codeph>rxQuality</codeph> 在用户未接收流时为 <codeph>UNKNOWN</codeph>。</note>
-            <note props="ios mac"><codeph>txQuality</codeph> 在用户未发送流时为 <codeph>Unknown</codeph>；<codeph>rxQuality</codeph> 在用户未接收流时为 <codeph>Unknown</codeph>。</note>
+            <p props="ios"><xref keyref="onNetworkQuality"/> 回调报告频道中每个用户的 last mile 网络状况。last mile 指的是本地设备与声网边缘服务器之间的连接。SDK 每两秒触发一次该回调。如果频道中有多个用户，SDK 会触发多次该回调。该回调通过在频道内发送和接收广播数据包来反馈网络质量。过多的广播数据包可能会导致广播风暴。为防止广播风暴造成频道内大量数据传输，该回调默认支持同时反馈最多 4 个远端用户的网络质量。</p>
+            <p props="mac"><xref keyref="onNetworkQuality"/> 回调报告频道中每个用户的 last mile 网络状况。last mile 指的是本地设备与声网边缘服务器之间的连接。SDK 每两秒触发一次该回调。如果频道中有多个用户，SDK 会触发多次该回调。该回调通过在频道内发送和接收广播数据包来反馈网络质量。过多的广播数据包可能会导致广播风暴。为防止广播风暴造成频道内大量数据传输，该回调默认支持同时反馈最多 4 个远端用户的网络质量。</p>
+            <note props="cpp"><codeph>txQuality</codeph> 在用户未发送流时为 <codeph>UNKNOWN</codeph>；<codeph>rxQuality</codeph> 在用户未接收流时为 <codeph>UNKNOWN</codeph>。</note>
+            <note props="android"><codeph>txQuality</codeph> 在用户未发送流时为 <codeph>UNKNOWN</codeph>；<codeph>rxQuality</codeph> 在用户未接收流时为 <codeph>UNKNOWN</codeph>。</note>
+            <note props="ios"><codeph>txQuality</codeph> 在用户未发送流时为 <codeph>Unknown</codeph>；<codeph>rxQuality</codeph> 在用户未接收流时为 <codeph>Unknown</codeph>。</note>
+            <note props="mac"><codeph>txQuality</codeph> 在用户未发送流时为 <codeph>Unknown</codeph>；<codeph>rxQuality</codeph> 在用户未接收流时为 <codeph>Unknown</codeph>。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
             <p props="android">该回调每两秒触发一次。</p>
-            <p props="ios mac">该回调在 SDK 每两秒检测一次网络质量时被触发。</p>
+            <p props="ios">该回调在 SDK 每两秒检测一次网络质量时被触发。</p>
+            <p props="mac">该回调在 SDK 每两秒检测一次网络质量时被触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -96,11 +103,11 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>engine</pt>
                     <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>uid</pt>
                     <pd>用户 ID。该参数报告指定用户的网络质量。如果 <codeph>uid</codeph> 为 0，则报告本地用户的网络质量。</pd>
                 </plentry>
@@ -113,12 +120,20 @@
                     <pd>用户的下行网络质量评分，依据丢包率、平均 RTT 和抖动等指标评估。详见 <xref keyref="QUALITY_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>用户 ID。该参数报告指定用户的网络质量。如果 <codeph>uid</codeph> 为 0，则报告本地用户的网络质量。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>txQuality</pt>
-                    <pd>用户的上行网络质量评分，依据传输码率、丢包率、平均往返时延（RTT）和抖动等指标评估。该评分有助于你了解当前上行网络状况是否能支持所选的视频编码器配置。例如，1000 Kbps 的上行网络可能足以支持在 <codeph>LIVE_BROADCASTING</codeph> 场景下分辨率为 640 × 480、帧率为 15 fps 的视频帧，但可能不足以支持高于 1280 × 720 的分辨率。详见 <codeph>AgoraNetworkQuality</codeph>。</pd>
+                    <pd>用户的上行网络质量评分，依据传输码率、丢包率、平均往返时延（RTT）和抖动等指标评估。该评分有助于你了解当前上行网络状况是否能支持所选的视频编码器配置。例如，1000 Kbps 的上行网络可能足以支持在 <codeph>LIVE_BROADCASTING</codeph> 场景下分辨率为 640 × 480、帧率为 15 fps 的视频帧，但可能不足以支持高于 1280 × 720 的分辨率。详见 <xref keyref="QUALITY_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>rxQuality</pt>
-                    <pd>用户的下行网络质量评分，依据丢包率、平均 RTT 和抖动等指标评估。详见 <codeph>AgoraNetworkQuality</codeph>。</pd>
+                    <pd>用户的下行网络质量评分，依据丢包率、平均 RTT 和抖动等指标评估。详见 <xref keyref="QUALITY_TYPE"/>。</pd>
                 </plentry>
             </parml>
         </section>

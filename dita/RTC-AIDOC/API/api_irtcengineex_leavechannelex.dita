@@ -40,7 +40,8 @@
                     <li>远端用户：本地主播离开频道后，触发 <xref keyref="onUserOffline"/> 回调，即远端用户收到本地用户离开频道的回调。</li>
                 </ul>
             </p>
-            <p props="ios mac">调用该方法后，SDK 会终止音视频互动，离开当前频道，并释放与会话相关的所有资源。调用 <codeph>joinChannelExByToken</codeph> 加入频道后，必须调用此方法或 <xref keyref="leaveChannelEx2"/> 结束通话，否则无法开始下一次通话。</p>
+            <p props="ios">调用该方法后，SDK 会终止音视频互动，离开当前频道，并释放与会话相关的所有资源。调用 <codeph>joinChannelExByToken</codeph> 加入频道后，必须调用此方法或 <xref keyref="leaveChannelEx2"/> 结束通话，否则无法开始下一次通话。</p>
+            <p props="mac">调用该方法后，SDK 会终止音视频互动，离开当前频道，并释放与会话相关的所有资源。调用 <codeph>joinChannelExByToken</codeph> 加入频道后，必须调用此方法或 <xref keyref="leaveChannelEx2"/> 结束通话，否则无法开始下一次通话。</p>
             <note props="android">
                 <ul>
                     <li>如果在调用该方法后立即调用 <xref keyref="release_ILocalSpatialAudioEngine"/>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。</li>
@@ -54,7 +55,7 @@
                     <li>如果调用 <xref keyref="leaveChannel"/> 或 <xref keyref="leaveChannel2"/>，你将离开通过 <codeph>joinChannelByToken</codeph>、<codeph>joinChannelByToken</codeph> 或 <codeph>joinChannelExByToken</codeph> 加入的所有频道。</li>
                 </ul>
             </note>
-            <note props="mac">如果在调用该方法后立即调用 <xref keyref="release"/>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。
+            <note props="mac">如果在调用该方法后立即调用 <xref keyref="release_ILocalSpatialAudioEngine"/>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。
                 <ul>
                     <li>此方法为异步调用。当该方法返回时，并不代表你已完全离开频道。</li>
                     <li>如果调用 <xref keyref="leaveChannel"/> 或 <xref keyref="leaveChannel2"/>，你将离开通过 <codeph>joinChannelByToken</codeph>、<codeph>joinChannelByToken</codeph> 或 <codeph>joinChannelExByToken</codeph> 加入的所有频道。</li>
@@ -63,12 +64,17 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp">该方法需要在调用 <xref keyref="joinChannelEx"/> 之后调用。</p>
-            <p props="ios mac">在调用 <codeph>joinChannelExByToken</codeph> 之后调用该方法。</p>
+            <p props="cpp">该方法需要在调用 <xref keyref="joinChannelEx"/> 之后调用。</p>
+            <p props="android">该方法需要在调用 <xref keyref="joinChannelEx"/> 之后调用。</p>
+            <p props="ios">在调用 <codeph>joinChannelExByToken</codeph> 之后调用该方法。</p>
+            <p props="mac">在调用 <codeph>joinChannelExByToken</codeph> 之后调用该方法。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="related" deliveryTarget="details">
             <title>相关回调</title>
@@ -82,15 +88,27 @@
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>connection</pt>
                     <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="android">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>connection</pt>
                     <pd>连接信息，详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>leaveChannelBlock</pt>
+                    <pd>该回调表示你离开频道，并在 <xref keyref="RtcStats"/> 中提供通话统计信息。详见 <xref keyref="RtcStats"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>connection</pt>
+                    <pd>连接信息，详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>leaveChannelBlock</pt>
                     <pd>该回调表示你离开频道，并在 <xref keyref="RtcStats"/> 中提供通话统计信息。详见 <xref keyref="RtcStats"/>。</pd>
                 </plentry>
@@ -98,7 +116,25 @@
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

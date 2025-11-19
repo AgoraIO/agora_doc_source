@@ -19,19 +19,25 @@
             <p outputclass="codeblock">
                 <codeblock props="ios" outputclass="language-objectivec">- (int)setMaxAudioRecvCount:(NSUInteger)maxCount NS_SWIFT_NAME(setMaxAudioRecvCount(_:));</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int setMaxAudioRecvCount(int maxCount);</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)setMaxAudioRecvCount:(NSUInteger)maxCount NS_SWIFT_NAME(setMaxAudioRecvCount(_:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="ios">如果可接收的音频流数量超过该设置值，你将接收距离你最近的 <codeph>maxCount</codeph> 条音频流。</p>
             <p props="android">如果可接收的音频流数量超过该设置值，本地用户将接收距离其最近的 <codeph>maxCount</codeph> 条音频流。</p>
+            <p props="mac">如果可接收的音频流数量超过该设置值，你将接收距离你最近的 <codeph>maxCount</codeph> 条音频流。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android ios">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android ios">无。</p>
+            <p props="ios">无。</p>
+            <p props="android">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -44,11 +50,27 @@
                     <pt>maxCount</pt>
                     <pd>你在指定音频接收范围内可接收的最大音频流数量。该参数的取值应小于或等于 16。（默认值为 10）</pd>
                 </plentry>
+                <plentry props="mac">
+                    <pt>maxCount</pt>
+                    <pd>你在指定音频接收范围内可接收的最大音频流数量。该值应小于或等于 16，默认值为 10。</pd>
+                </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android ios">
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

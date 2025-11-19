@@ -26,13 +26,20 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">SDK 会根据不同的频道场景采用不同的优化策略。例如，在极速直播场景中，SDK 会优先保证视频质量。初始化 SDK 后，默认频道场景为极速直播。</p>
             <p props="android">SDK 会根据不同的频道场景采用不同的优化策略，例如在极速直播场景中优先保证视频质量。初始化 SDK 后，默认频道场景为极速直播。</p>
-            <p props="ios mac">你可以调用该方法设置频道场景。SDK 会针对不同的频道场景采用不同的优化策略。例如，在极速直播场景中，SDK 会优先保证视频质量。初始化 SDK 后，默认频道场景为极速直播。</p>
+            <p props="ios">你可以调用该方法设置频道场景。SDK 会针对不同的频道场景采用不同的优化策略。例如，在极速直播场景中，SDK 会优先保证视频质量。初始化 SDK 后，默认频道场景为极速直播。</p>
+            <p props="mac">你可以调用该方法设置频道场景。SDK 会针对不同的频道场景采用不同的优化策略。例如，在极速直播场景中，SDK 会优先保证视频质量。初始化 SDK 后，默认频道场景为极速直播。</p>
             <note props="cpp">为保证实时通信质量，声网建议频道内所有用户使用相同的频道场景。在不同的频道场景中，SDK 的默认音频路由也不同。详见 <xref keyref="setDefaultAudioRouteToSpeakerphone"/>。</note>
             <note props="android">为确保实时通信质量，建议频道内所有用户使用相同的频道场景。不同频道场景下，SDK 的默认音频路由也不同，详见 <xref keyref="setDefaultAudioRouteToSpeakerphone"/>。</note>
-            <note props="ios mac">
+            <note props="ios">
                 <ul>
                     <li>为保证实时通信质量，声网建议频道内所有用户使用相同的频道场景。</li>
                     <li>在 iOS 平台，不同频道场景下 SDK 的默认音频路由不同，详见 <xref keyref="setDefaultAudioRouteToSpeakerphone"/>。</li>
+                </ul>
+            </note>
+            <note props="mac">
+                <ul>
+                    <li>为保证实时通信质量，声网建议频道内所有用户使用相同的频道场景。</li>
+                    <li>在 iOS 平台，不同频道场景下 SDK 的默认音频路由不同，详见 <codeph>setDefaultAudioRouteToSpeakerphone:</codeph>。</li>
                 </ul>
             </note>
         </section>
@@ -40,16 +47,20 @@
             <title>调用时机</title>
             <p props="cpp">请在加入频道前调用此方法。</p>
             <p props="android">在加入频道前调用此方法。</p>
-            <p props="ios mac">该方法需要在加入频道前调用。</p>
+            <p props="ios">该方法需要在加入频道前调用。</p>
+            <p props="mac">该方法需要在加入频道前调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="cpp ios">
+                <plentry props="cpp">
                     <pt>profile</pt>
                     <pd>频道场景。详见 <xref keyref="CHANNEL_PROFILE_TYPE"/>。</pd>
                 </plentry>
@@ -64,15 +75,19 @@
                         </ul>
                     </pd>
                 </plentry>
+                <plentry props="ios">
+                    <pt>profile</pt>
+                    <pd>频道场景。详见 <xref keyref="CHANNEL_PROFILE_TYPE"/>。</pd>
+                </plentry>
                 <plentry props="mac">
                     <pt>profile</pt>
-                    <pd>频道场景。详见 <codeph>AgoraChannelProfile</codeph>。</pd>
+                    <pd>频道场景。详见 <xref keyref="CHANNEL_PROFILE_TYPE"/>。</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp">
+            <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。
@@ -83,7 +98,25 @@
                     </li>
                 </ul>
             </p>
-            <p props="ios mac">0：方法调用成功。
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。
+                        <ul>
+                            <li>-2：参数无效。</li>
+                            <li>-7：SDK 未初始化。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="ios">0：方法调用成功。
+&lt; 0：方法调用失败。
+                <ul>
+                    <li>-2：参数无效。</li>
+                    <li>-7：SDK 尚未初始化。</li>
+                </ul>
+            </p>
+            <p props="mac">0：方法调用成功。
 &lt; 0：方法调用失败。
                 <ul>
                     <li>-2：参数无效。</li>

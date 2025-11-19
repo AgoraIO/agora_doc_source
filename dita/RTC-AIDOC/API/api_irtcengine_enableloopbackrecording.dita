@@ -18,9 +18,11 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int enableLoopbackRecording(bool enabled, const char* deviceName = NULL) = 0;</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)enableLoopbackRecording:(BOOL)enabled deviceName:(NSString* _Nullable)deviceName NS_SWIFT_NAME(enableLoopbackRecording(_:deviceName:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="mac">如果你启用了声卡回采功能，声卡的输出会被混入发送到远端的音频流中。</p>
             <note props="cpp">
                 <ul>
                     <li>该方法仅适用于 macOS 和 Windows 平台。</li>
@@ -28,14 +30,23 @@
                     <li>如果你调用 <xref keyref="disableAudio"/> 方法禁用了音频模块，音频采集也会被禁用。若需启用音频采集，请先调用 <xref keyref="enableAudio"/> 方法启用音频模块，再调用 <xref keyref="enableLoopbackRecording"/> 方法。</li>
                 </ul>
             </note>
+            <note props="mac">
+                <ul>
+                    <li>macOS 系统的默认声卡不支持录音功能。从 v4.5.0 起，当你首次调用该方法时，SDK 会自动安装由声网开发的内置虚拟声卡 <codeph>AgoraALD</codeph>。安装成功后，音频路由会自动切换到虚拟声卡，并使用其进行音频采集。</li>
+                    <li>你可以在加入频道前或加入频道后调用该方法。</li>
+                    <li>如果你调用 <xref keyref="disableAudio"/> 方法禁用了音频模块，音频采集也会被禁用。如果你需要启用音频采集，请先调用 <xref keyref="enableAudio"/> 方法启用音频模块，然后再调用 <xref keyref="enableLoopbackRecording"/> 方法。</li>
+                </ul>
+            </note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p props="cpp">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
             <p props="cpp">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -58,11 +69,30 @@
                         </ul>
                     </pd>
                 </plentry>
+                <plentry props="mac">
+                    <pt>enabled</pt>
+                    <pd>是否启用声卡回采功能。
+                        <ul>
+                            <li><xref keyref="true"/>：启用声卡采集。你可以在系统的 **Audio Devices &gt; Output** 中找到虚拟声卡的名称。</li>
+                            <li><xref keyref="false"/>：禁用声卡采集。虚拟声卡的名称不会显示在系统的 **Audio Devices &gt; Output** 中。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>deviceName</pt>
+                    <pd>虚拟声卡的设备名称。默认值为 <xref keyref="NULL"/>，表示使用 <codeph>AgoraALD</codeph> 进行声卡回采。</pd>
+                </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
             <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

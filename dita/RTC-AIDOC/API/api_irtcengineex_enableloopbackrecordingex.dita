@@ -18,9 +18,13 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int enableLoopbackRecordingEx(const RtcConnection&amp; connection, bool enabled, const char* deviceName = NULL) = 0;</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)enableLoopbackRecordingEx:(BOOL)enabled
+                      deviceName:(NSString* _Nullable)deviceName
+                      connection:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(enableLoopbackRecordingEx(_:deviceName:connection:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="mac">启用该方法后，声卡的输出会被混入发送到远端的音频流中。</p>
             <note props="cpp">
                 <ul>
                     <li>该方法仅适用于 macOS 和 Windows 平台。</li>
@@ -28,14 +32,17 @@
                     <li>该方法仅支持使用一个声卡进行音频采集。</li>
                 </ul>
             </note>
+            <note props="mac">该方法仅支持使用一个声卡进行音频采集。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p props="cpp">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
             <p props="cpp">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -62,11 +69,34 @@
                         </ul>
                     </pd>
                 </plentry>
+                <plentry props="mac">
+                    <pt>enabled</pt>
+                    <pd>是否启用回环音频采集：
+                        <ul>
+                            <li><xref keyref="true"/>：启用回环音频采集。</li>
+                            <li><xref keyref="false"/>：（默认）关闭回环音频采集。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>deviceName</pt>
+                    <pd>虚拟声卡的设备名称。默认值为 <xref keyref="NULL"/>，表示使用 <codeph>AgoraALD</codeph> 进行回环音频采集。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>connection</pt>
+                    <pd>连接信息，详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
             <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

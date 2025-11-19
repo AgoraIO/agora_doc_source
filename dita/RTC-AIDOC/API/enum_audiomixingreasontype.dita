@@ -10,6 +10,7 @@
     <refbody>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="ios">在 <codeph>audioMixingStateChanged</codeph> 回调中报告。</p>
+            <p props="mac">在 <codeph>audioMixingStateChanged</codeph> 回调中报告。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>枚举值</title>
@@ -75,6 +76,38 @@
                     <pd>（726）：音频混音播放已由用户恢复。</pd>
                 </plentry>
                 <plentry props="ios">
+                    <pt>AgoraAudioMixingReasonTypeOk</pt>
+                    <pd>（0）：SDK 成功打开音乐文件。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraAudioMixingReasonCanNotOpen</pt>
+                    <pd>（701）：SDK 无法打开音乐文件。例如，本地音乐文件不存在、SDK 不支持该文件格式，或无法访问音乐文件的 URL。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraAudioMixingReasonTooFrequentlyCall</pt>
+                    <pd>（702）：SDK 打开音乐文件过于频繁。如果需要多次调用 <codeph>startAudioMixing</codeph>，请确保调用间隔大于 500 毫秒。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraAudioMixingReasonInterruptedEOF</pt>
+                    <pd>（703）：音乐文件播放被中断。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraAudioMixingReasonOneLoopCompleted</pt>
+                    <pd>（721）：音乐文件完成一次循环播放。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraAudioMixingReasonAllLoopsCompleted</pt>
+                    <pd>（723）：音乐文件完成所有循环播放。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraAudioMixingReasonStoppedByUser</pt>
+                    <pd>（724）：调用 <xref keyref="stopAudioMixing"/> 成功，停止播放音乐文件。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraAudioMixingReasonResumedByUser</pt>
+                    <pd>（726）：音频混音播放已由用户恢复。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>AgoraAudioMixingReasonTypeOk</pt>
                     <pd>（0）：SDK 成功打开音乐文件。</pd>
                 </plentry>

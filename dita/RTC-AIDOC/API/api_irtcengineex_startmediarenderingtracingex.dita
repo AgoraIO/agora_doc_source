@@ -25,13 +25,27 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
-                <dlentry props="android cpp ios mac">
+                <dlentry props="cpp">
+                    <dt>自从</dt>
+                    <dd>自 v4.1.1 版本新增。</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>自从</dt>
+                    <dd>自 v4.1.1 版本新增。</dd>
+                </dlentry>
+                <dlentry props="ios">
+                    <dt>自从</dt>
+                    <dd>自 v4.1.1 版本新增。</dd>
+                </dlentry>
+                <dlentry props="mac">
                     <dt>自从</dt>
                     <dd>自 v4.1.1 版本新增。</dd>
                 </dlentry>
             </dl>
             <p props="cpp">调用该方法后，SDK 会从调用时刻开始追踪频道中视频帧的渲染状态，并通过 <xref keyref="onVideoRenderingTracingResult"/> 回调报告相关信息。你可以结合应用中的 UI 控件（如按钮、滑块）调用该方法，以优化用户体验，例如在用户点击“加入频道”按钮时调用该方法，并通过 <xref keyref="onVideoRenderingTracingResult"/> 回调获取视频帧渲染过程所耗时间，从而优化相关指标。</p>
-            <p props="android ios mac">从成功调用该方法开始，SDK 会追踪频道中视频帧的渲染状态，并通过 <xref keyref="onVideoRenderingTracingResult"/> 回调报告相关信息。</p>
+            <p props="android">从成功调用该方法开始，SDK 会追踪频道中视频帧的渲染状态，并通过 <xref keyref="onVideoRenderingTracingResult"/> 回调报告相关信息。</p>
+            <p props="ios">从成功调用该方法开始，SDK 会追踪频道中视频帧的渲染状态，并通过 <xref keyref="onVideoRenderingTracingResult"/> 回调报告相关信息。</p>
+            <p props="mac">从成功调用该方法开始，SDK 会追踪频道中视频帧的渲染状态，并通过 <xref keyref="onVideoRenderingTracingResult"/> 回调报告相关信息。</p>
             <note props="cpp">
                 <ul>
                     <li>如果你未调用该方法，SDK 会从调用 <codeph>joinChannel</codeph> 加入频道时开始追踪视频帧的渲染事件。你可以根据实际应用场景在合适的时间调用该方法，以设置追踪视频渲染事件的起始位置。</li>
@@ -44,7 +58,13 @@
                     <li>本地用户离开当前频道后，SDK 会自动从再次加入频道时开始追踪视频渲染事件。</li>
                 </ul>
             </note>
-            <note props="ios mac">
+            <note props="ios">
+                <ul>
+                    <li>如果你未调用该方法，SDK 会从调用 <codeph>joinChannelByToken</codeph> 加入频道时开始追踪视频帧的渲染事件。你可以根据实际应用场景在合适的时机调用该方法，以设置追踪视频渲染事件的起始位置。</li>
+                    <li>本地用户离开当前频道后，SDK 会自动从你加入频道的时刻开始追踪视频渲染事件。</li>
+                </ul>
+            </note>
+            <note props="mac">
                 <ul>
                     <li>如果你未调用该方法，SDK 会从调用 <codeph>joinChannelByToken</codeph> 加入频道时开始追踪视频帧的渲染事件。你可以根据实际应用场景在合适的时机调用该方法，以设置追踪视频渲染事件的起始位置。</li>
                     <li>本地用户离开当前频道后，SDK 会自动从你加入频道的时刻开始追踪视频渲染事件。</li>
@@ -53,16 +73,34 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>connection</pt>
                     <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
@@ -70,7 +108,25 @@
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

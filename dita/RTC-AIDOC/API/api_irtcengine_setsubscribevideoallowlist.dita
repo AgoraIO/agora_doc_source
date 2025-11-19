@@ -24,7 +24,8 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="ios mac">你可以调用该方法来指定你想要订阅的用户的视频流。</p>
+            <p props="ios">你可以调用该方法来指定你想要订阅的用户的视频流。</p>
+            <p props="mac">你可以调用该方法来指定你想要订阅的用户的视频流。</p>
             <note props="cpp">
                 <ul>
                     <li>你可以在加入频道前或加入频道后调用此方法。</li>
@@ -41,7 +42,15 @@
                     <li>如果某个用户同时被添加到白名单和黑名单中，则仅黑名单生效。</li>
                 </ul>
             </note>
-            <note props="ios mac">
+            <note props="ios">
+                <ul>
+                    <li>你可以在加入频道前或加入频道后调用该方法。</li>
+                    <li>白名单不受 <xref keyref="muteRemoteVideoStream"/>、<xref keyref="muteAllRemoteVideoStreams"/> 和 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
+                    <li>一旦设置了订阅白名单，即使你离开当前频道并重新加入频道，该设置仍然有效。</li>
+                    <li>如果某个用户同时被添加到白名单和黑名单中，则只有黑名单生效。</li>
+                </ul>
+            </note>
+            <note props="mac">
                 <ul>
                     <li>你可以在加入频道前或加入频道后调用该方法。</li>
                     <li>白名单不受 <xref keyref="muteRemoteVideoStream"/>、<xref keyref="muteAllRemoteVideoStreams"/> 和 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
@@ -52,11 +61,17 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -78,7 +93,11 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>allowlist</pt>
+                    <pd>你想要订阅的视频流用户的用户 ID 列表。如果你想指定某个用户的视频流进行订阅，请将该用户的用户 ID 添加到此列表中。如果你想将某个用户从白名单中移除，你需要调用 <xref keyref="setSubscribeVideoAllowlist"/> 方法更新用户 ID 列表；这意味着你只需在新的用户 ID 列表中添加你想要订阅的用户的用户 ID。详见 <codeph>NSArray</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>allowlist</pt>
                     <pd>你想要订阅的视频流用户的用户 ID 列表。如果你想指定某个用户的视频流进行订阅，请将该用户的用户 ID 添加到此列表中。如果你想将某个用户从白名单中移除，你需要调用 <xref keyref="setSubscribeVideoAllowlist"/> 方法更新用户 ID 列表；这意味着你只需在新的用户 ID 列表中添加你想要订阅的用户的用户 ID。详见 <codeph>NSArray</codeph>。</pd>
                 </plentry>
@@ -86,7 +105,25 @@
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

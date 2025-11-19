@@ -31,11 +31,15 @@
             <title>触发时机</title>
             <p props="cpp">当用户因网络问题与服务器断开连接后，SDK 自动尝试重连并成功后触发该回调。</p>
             <p props="android">该回调在用户因网络问题与服务器断开连接后，SDK 自动尝试重连并成功时触发。</p>
-            <p props="ios mac">该回调在因网络问题与服务器断开连接后，SDK 自动尝试重连并在重新连接成功时触发。</p>
+            <p props="ios">该回调在因网络问题与服务器断开连接后，SDK 自动尝试重连并在重新连接成功时触发。</p>
+            <p props="mac">该回调在因网络问题与服务器断开连接后，SDK 自动尝试重连并在重新连接成功时触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -60,19 +64,35 @@
                     <pt>elapsed</pt>
                     <pd>从本地用户调用 <codeph>joinChannel</codeph> 到触发该回调的时间间隔，单位为毫秒。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>engine</pt>
                     <pd>输入参数，声网引擎对象。详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>channel</pt>
                     <pd>输入参数，频道名。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>uid</pt>
                     <pd>输入参数，重新加入频道的用户 ID。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>elapsed</pt>
+                    <pd>输入参数，从调用 <xref keyref="joinChannel2"/> 到 SDK 触发该回调所经过的时间（毫秒）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd>输入参数，声网引擎对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>channel</pt>
+                    <pd>输入参数，频道名。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>输入参数，重新加入频道的用户 ID。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>elapsed</pt>
                     <pd>输入参数，从调用 <xref keyref="joinChannel2"/> 到 SDK 触发该回调所经过的时间（毫秒）。</pd>
                 </plentry>

@@ -78,7 +78,7 @@
         <section id="parameters" deliveryTarget="details">
             <title>属性</title>
             <parml>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
                     <pt>uid</pt>
                     <pd>发布视频源的用户 ID。</pd>
                 </plentry>
@@ -86,11 +86,11 @@
                     <pt>subviewUid</pt>
                     <pd>在视频合流中发布特定子视频流的用户 ID。</pd>
                 </plentry>
-                <plentry props="cpp ios mac">
+                <plentry props="cpp">
                     <pt>view</pt>
                     <pd>视频显示窗口。</pd>
                 </plentry>
-                <plentry props="cpp ios mac">
+                <plentry props="cpp">
                     <pt>backgroundColor</pt>
                     <pd>视频画布的背景颜色，使用 RGBA 格式。默认值为 0x00000000，表示黑色。</pd>
                 </plentry>
@@ -110,7 +110,7 @@
                     <pt>sourceType</pt>
                     <pd>视频源的类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
                 </plentry>
-                <plentry props="cpp ios mac">
+                <plentry props="cpp">
                     <pt>mediaPlayerId</pt>
                     <pd>媒体播放器的 ID。可通过调用 <xref keyref="getMediaPlayerId"/> 获取设备 ID。</pd>
                 </plentry>
@@ -131,6 +131,10 @@ Alpha 蒙版渲染可创建具有透明效果的图像，并从视频中提取�
                 <plentry props="cpp">
                     <pt>position</pt>
                     <pd>视频帧在视频链路中的观测位置。详见 <xref keyref="VIDEO_MODULE_POSITION"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>发布视频源的用户 ID。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>subviewUid</pt>
@@ -228,9 +232,17 @@ Alpha 蒙版渲染可创建具有透明效果的图像，并从视频中提取�
                     <pt>position</pt>
                     <pd>视频帧在视频链路中的观察位置。详见 <xref keyref="VIDEO_MODULE_POSITION"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>uid</pt>
+                    <pd>发布视频源的用户 ID。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>subviewUid</pt>
                     <pd>视频显示窗口的用户 ID。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>view</pt>
+                    <pd>视频显示窗口。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>renderMode</pt>
@@ -244,15 +256,23 @@ Alpha 蒙版渲染可创建具有透明效果的图像，并从视频中提取�
                     <pt>setupMode</pt>
                     <pd>视图的设置模式，详见 <xref keyref="VIDEO_VIEW_SETUP_MODE"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>sourceType</pt>
                     <pd>视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>mediaPlayerId</pt>
+                    <pd>媒体播放器的 ID。可通过调用 <xref keyref="getMediaPlayerId"/> 获取设备 ID。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>cropArea</pt>
                     <pd>（可选）视频帧的显示区域。<codeph>width</codeph> 和 <codeph>height</codeph> 表示该区域的视频像素宽度和高度。默认值为 <xref keyref="NULL"/>（即宽或高为 0），表示显示视频帧的实际分辨率。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>backgroundColor</pt>
+                    <pd>视频画布的背景颜色，使用 RGBA 格式。默认值为 0x00000000，表示黑色。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>enableAlphaMask</pt>
                     <pd>是否启用 Alpha 蒙版渲染：
                         <ul>
@@ -262,21 +282,63 @@ Alpha 蒙版渲染可创建具有透明效果的图像，并从视频中提取�
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>position</pt>
                     <pd>视频帧在视频链路中的观测位置，详见 <xref keyref="VIDEO_MODULE_POSITION"/>。</pd>
                 </plentry>
                 <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>发布视频源的用户 ID。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>subviewUid</pt>
+                    <pd>视频显示窗口的用户 ID。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>view</pt>
+                    <pd>视频显示窗口。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>renderMode</pt>
-                    <pd>视频的渲染模式，详见 <codeph>AgoraVideoRenderMode</codeph>。</pd>
+                    <pd>视频的渲染模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>mirrorMode</pt>
-                    <pd>视图的镜像模式，详见 <codeph>AgoraVideoMirrorMode</codeph>。</pd>
+                    <pd>视图的镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>setupMode</pt>
-                    <pd>视图的设置模式，详见 <codeph>AgoraVideoViewSetupMode</codeph>。</pd>
+                    <pd>视图的设置模式，详见 <xref keyref="VIDEO_VIEW_SETUP_MODE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>sourceType</pt>
+                    <pd>视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>mediaPlayerId</pt>
+                    <pd>媒体播放器的 ID。可通过调用 <xref keyref="getMediaPlayerId"/> 获取设备 ID。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>cropArea</pt>
+                    <pd>（可选）视频帧的显示区域。<codeph>width</codeph> 和 <codeph>height</codeph> 表示该区域的视频像素宽度和高度。默认值为 <xref keyref="NULL"/>（即宽或高为 0），表示显示视频帧的实际分辨率。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>backgroundColor</pt>
+                    <pd>视频画布的背景颜色，使用 RGBA 格式。默认值为 0x00000000，表示黑色。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>enableAlphaMask</pt>
+                    <pd>是否启用 Alpha 蒙版渲染：
+                        <ul>
+                            <li><xref keyref="true"/>：启用 Alpha 蒙版渲染。</li>
+                            <li><xref keyref="false"/>：（默认）不启用 Alpha 蒙版渲染。
+Alpha 蒙版渲染可创建具有透明效果的图像，并从视频中提取人像。结合其他方法使用时，可实现画中画、人像水印等效果。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>position</pt>
+                    <pd>视频帧在视频链路中的观测位置，详见 <xref keyref="VIDEO_MODULE_POSITION"/>。</pd>
                 </plentry>
             </parml>
         </section>

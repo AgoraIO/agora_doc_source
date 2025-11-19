@@ -5,7 +5,7 @@
     <ph keyref="setLocalVideoMirrorMode"/>
   </title>
     <shortdesc id="short">
-    <ph id="shortdesc">设置本地视频的镜像模式。</ph>
+    <ph id="shortdesc">设置本地视频镜像模式。</ph>
   </shortdesc>
     <prolog>
         <metadata>
@@ -25,7 +25,19 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="deprecated">
-                <dlentry props="android cpp ios mac">
+                <dlentry props="cpp">
+                    <dt>废弃</dt>
+                    <dd>该方法已废弃，请改用 <xref keyref="setupLocalVideo"/> 或 <codeph>setLocalRenderMode</codeph>。</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>废弃</dt>
+                    <dd>自 vX.X.X 版本废弃。</dd>
+                </dlentry>
+                <dlentry props="ios">
+                    <dt>废弃</dt>
+                    <dd>自 vX.X.X 版本废弃。</dd>
+                </dlentry>
+                <dlentry props="mac">
                     <dt>废弃</dt>
                     <dd>自 vX.X.X 版本废弃。</dd>
                 </dlentry>
@@ -33,18 +45,24 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
                     <pt>mirrorMode</pt>
-                    <pd>本地视频的镜像模式。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</pd>
+                    <pd>本地视频镜像模式。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>mode</pt>
@@ -62,13 +80,31 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>mode</pt>
-                    <pd>本地视频镜像模式。详见 <codeph>AgoraVideoMirrorMode</codeph>。</pd>
+                    <pd>本地视频镜像模式。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

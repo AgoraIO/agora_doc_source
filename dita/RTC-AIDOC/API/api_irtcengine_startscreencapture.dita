@@ -20,7 +20,7 @@
                 <codeblock props="cpp" outputclass="language-cpp">virtual int startScreenCapture(const ScreenCaptureParameters2&amp; captureParams) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int startScreenCapture(ScreenCaptureParameters screenCaptureParameters);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)startScreenCapture:(AgoraScreenCaptureParameters2* _Nullable)parameters  NS_SWIFT_NAME(startScreenCapture(_:));</codeblock>
-                <codeblock props="mac" outputclass="language-objectivec">- (int)startScreenCapture:(AgoraVideoSourceType)sourceType config:(AgoraScreenCaptureConfiguration * _Nullable)config NS_SWIFT_NAME(startScreenCapture(_:config:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)startScreenCapture:(AgoraScreenCaptureParameters2* _Nullable)parameters  NS_SWIFT_NAME(startScreenCapture(_:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -40,6 +40,18 @@
                 <ul>
                     <li>先调用 <xref keyref="startScreenCapture"/>，再调用 <codeph>joinChannel</codeph> 加入频道，并将 <codeph>publishScreenCaptureVideo</codeph> 设置为 <xref keyref="true"/>，以开始屏幕共享。</li>
                     <li>加入频道后调用 <xref keyref="startScreenCapture"/>，再调用 <xref keyref="updateChannelMediaOptions"/> 并将 <codeph>publishScreenCaptureVideo</codeph> 设置为 <xref keyref="true"/>，以开始屏幕共享。</li>
+                </ul>
+            </p>
+            <p props="ios">在屏幕共享场景中，调用该方法开始采集屏幕视频流。你可以在加入频道前或加入频道后调用该方法，调用时机不同，使用方式如下：
+                <ul>
+                    <li>先调用该方法，再调用 <codeph>joinChannelByToken</codeph> 加入频道，并将 <codeph>publishScreenCaptureVideo</codeph> 设置为 <xref keyref="true"/>，即可开始屏幕共享。</li>
+                    <li>加入频道后调用该方法，再调用 <codeph>updateChannelWithMediaOptions</codeph> 并将 <codeph>publishScreenCaptureVideo</codeph> 设置为 <xref keyref="true"/>，即可开始屏幕共享。</li>
+                </ul>
+            </p>
+            <p props="mac">在屏幕共享场景中，调用该方法开始采集屏幕视频流。你可以在加入频道前或加入频道后调用该方法，调用时机不同，使用方式如下：
+                <ul>
+                    <li>先调用该方法，再调用 <codeph>joinChannelByToken</codeph> 加入频道，并将 <codeph>publishScreenCaptureVideo</codeph> 设置为 <xref keyref="true"/>，即可开始屏幕共享。</li>
+                    <li>加入频道后调用该方法，再调用 <codeph>updateChannelWithMediaOptions</codeph> 并将 <codeph>publishScreenCaptureVideo</codeph> 设置为 <xref keyref="true"/>，即可开始屏幕共享。</li>
                 </ul>
             </p>
             <note props="cpp">
@@ -79,14 +91,50 @@
                     </li>
                 </ul>
             </note>
+            <note props="ios">
+                <ul>
+                    <li>在 iOS 平台，屏幕共享仅支持 iOS 12.0 及以上版本。</li>
+                    <li>如果你使用自定义音频源而非 SDK 采集音频，声网建议你在应用中添加保活逻辑，以避免应用进入后台后屏幕共享中断。</li>
+                    <li>此功能对设备性能要求较高，声网建议在 iPhone X 及以上机型上使用。</li>
+                    <li>此方法依赖 iOS 屏幕共享动态库 <codeph>AgoraReplayKitExtension.xcframework</codeph>。如果该动态库被删除，屏幕共享将无法正常启用。</li>
+                    <li>为避免屏幕共享时系统音频采集失败，声网建议你在加入频道前调用 <xref keyref="setAudioScenario"/> 方法将音频应用场景设置为 <codeph>AgoraAudioScenarioGameStreaming</codeph>。</li>
+                    <li>屏幕共享流的计费基于 <xref keyref="ScreenVideoParameters"/> 中的 <codeph>dimensions</codeph>：
+                        <ul>
+                            <li>如果未传入该值，声网按 1280 × 720 计费。</li>
+                            <li>如果传入该值，声网按传入的值计费。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </note>
+            <note props="mac">
+                <ul>
+                    <li>在 iOS 平台，屏幕共享仅支持 iOS 12.0 及以上版本。</li>
+                    <li>如果你使用自定义音频源而非 SDK 采集音频，声网建议你在应用中添加保活逻辑，以避免应用进入后台后屏幕共享中断。</li>
+                    <li>此功能对设备性能要求较高，声网建议在 iPhone X 及以上机型上使用。</li>
+                    <li>此方法依赖 iOS 屏幕共享动态库 <codeph>AgoraReplayKitExtension.xcframework</codeph>。如果该动态库被删除，屏幕共享将无法正常启用。</li>
+                    <li>为避免屏幕共享时系统音频采集失败，声网建议你在加入频道前调用 <xref keyref="setAudioScenario"/> 方法将音频应用场景设置为 <codeph>AgoraAudioScenarioGameStreaming</codeph>。</li>
+                    <li>屏幕共享流的计费基于 <codeph>AgoraScreenVideoParameters</codeph> 中的 <codeph>dimensions</codeph>：
+                        <ul>
+                            <li>如果未传入该值，声网按 1280 × 720 计费。</li>
+                            <li>如果传入该值，声网按传入的值计费。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -104,12 +152,8 @@
                     <pd>屏幕共享的编码参数。详见 <xref keyref="ScreenCaptureParameters2"/>。</pd>
                 </plentry>
                 <plentry props="mac">
-                    <pt>sourceType</pt>
-                    <pd>屏幕来源类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>config</pt>
-                    <pd>屏幕共享的配置，详见 <codeph>AgoraScreenCaptureConfiguration</codeph>。</pd>
+                    <pt>parameters</pt>
+                    <pd>屏幕共享的编码参数。详见 <codeph>AgoraScreenCaptureParameters2</codeph>。</pd>
                 </plentry>
             </parml>
         </section>
@@ -138,10 +182,24 @@
                     </li>
                 </ul>
             </p>
-            <p props="ios mac">
+            <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
+                    <li>&lt; 0：方法调用失败。
+                        <ul>
+                            <li>-2：参数为 <xref keyref="NULL"/>。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。
+                        <ul>
+                            <li>-2：参数为 <xref keyref="NULL"/>。</li>
+                        </ul>
+                    </li>
                 </ul>
             </p>
         </section>

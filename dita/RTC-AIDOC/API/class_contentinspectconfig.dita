@@ -48,7 +48,8 @@
             </dl>
             <p props="cpp">SDK 会将视频截图和附加信息上传至声网服务器。上传完成后，声网服务器会将回调通知和附加信息发送至你的服务器。</p>
             <p props="android">用于设置截图和上传的相关参数。</p>
-            <p props="ios mac">用于配置视频截图上传功能。上传完成后，声网服务器会将附加信息和回调通知发送至你的服务器。</p>
+            <p props="ios">用于配置视频截图上传功能。上传完成后，声网服务器会将附加信息和回调通知发送至你的服务器。</p>
+            <p props="mac">用于配置视频截图上传功能。上传完成后，声网服务器会将附加信息和回调通知发送至你的服务器。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>属性</title>
@@ -105,15 +106,27 @@
                     <pt>moduleCount</pt>
                     <pd>功能模块的数量，即配置的 <xref keyref="ContentInspectModule"/> 实例数量。必须与 <codeph>modules</codeph> 中配置的实例数量一致，最大值为 32。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>extraInfo</pt>
                     <pd>视频内容的附加信息（最大长度为 1024 字节）。SDK 会将截图和视频内容的附加信息上传至声网服务器。上传完成后，声网服务器会将附加信息和回调通知发送至你的服务器。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>serverConfig</pt>
                     <pd>通过声网 Extensions Marketplace 上传视频截图的扩展相关的服务器配置。仅当 <xref keyref="ContentInspectModule"/> 中的 <codeph>type</codeph> 设置为 <codeph>AgoraContentInspectTypeImageModeration</codeph> 时该参数才生效。如需使用该功能，请联系技术支持。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>modules</pt>
+                    <pd>功能模块。最多可配置 32 个 <xref keyref="ContentInspectModule"/> 实例，<codeph>MAX_CONTENT_INSPECT_MODULE_COUNT</codeph> 的取值范围为 [1, 32] 的整数。详见 <xref keyref="ContentInspectModule"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>extraInfo</pt>
+                    <pd>视频内容的附加信息（最大长度为 1024 字节）。SDK 会将截图和视频内容的附加信息上传至声网服务器。上传完成后，声网服务器会将附加信息和回调通知发送至你的服务器。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>serverConfig</pt>
+                    <pd>通过声网 Extensions Marketplace 上传视频截图的扩展相关的服务器配置。仅当 <xref keyref="ContentInspectModule"/> 中的 <codeph>type</codeph> 设置为 <codeph>AgoraContentInspectTypeImageModeration</codeph> 时该参数才生效。如需使用该功能，请联系技术支持。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>modules</pt>
                     <pd>功能模块。最多可配置 32 个 <xref keyref="ContentInspectModule"/> 实例，<codeph>MAX_CONTENT_INSPECT_MODULE_COUNT</codeph> 的取值范围为 [1, 32] 的整数。详见 <xref keyref="ContentInspectModule"/>。</pd>
                 </plentry>

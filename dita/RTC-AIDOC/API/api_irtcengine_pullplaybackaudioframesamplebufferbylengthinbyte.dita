@@ -18,18 +18,22 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="ios" outputclass="language-objectivec">- (CMSampleBufferRef _Nullable)pullPlaybackAudioFrameSampleBufferByLengthInByte:(NSUInteger)lengthInByte NS_SWIFT_NAME(pullPlaybackAudioFrameSampleBufferBy(lengthInByte:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (CMSampleBufferRef _Nullable)pullPlaybackAudioFrameSampleBufferByLengthInByte:(NSUInteger)lengthInByte NS_SWIFT_NAME(pullPlaybackAudioFrameSampleBufferBy(lengthInByte:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="ios">调用该方法后，你可以拉取解码并混音后的音频数据用于播放。</p>
+            <p props="mac">调用该方法后，你可以拉取解码并混音后的音频数据用于播放。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
             <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -38,11 +42,16 @@
                     <pt>lengthInByte</pt>
                     <pd>输入参数，数据长度（字节）。该参数的值与你设置的音频时长、<codeph>sampleRate</codeph> 和 <codeph>channels</codeph> 参数有关。<codeph>lengthInByte = sampleRate / 1000 × 2 × channels × 音频时长（毫秒）</codeph>。</pd>
                 </plentry>
+                <plentry props="mac">
+                    <pt>lengthInByte</pt>
+                    <pd>输入参数，数据长度（字节）。该参数的值与你设置的音频时长、<codeph>sampleRate</codeph> 和 <codeph>channels</codeph> 参数有关。<codeph>lengthInByte = sampleRate / 1000 × 2 × channels × 音频时长（毫秒）</codeph>。</pd>
+                </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
             <p props="ios">方法调用成功，返回 <codeph>CMSampleBufferRef</codeph> 对象；失败时返回 <xref keyref="NULL"/>。</p>
+            <p props="mac">方法调用成功，返回 <codeph>CMSampleBufferRef</codeph> 对象；失败时返回 <xref keyref="NULL"/>。</p>
         </section>
     </refbody>
 </reference>

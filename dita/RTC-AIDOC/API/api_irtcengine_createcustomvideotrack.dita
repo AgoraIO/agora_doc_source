@@ -34,7 +34,14 @@
             <p props="android">调用该方法创建一个视频轨道，并获取视频轨道 ID。该方法需要在加入频道前调用。
 加入频道时，在 <xref keyref="ChannelMediaOptions"/> 中将 <codeph>customVideoTrackId</codeph> 设置为要发布的视频轨道 ID，并将 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/>。
 加入频道后，调用 <codeph>pushExternalVideoFrameById</codeph>，并将 <codeph>videoTrackId</codeph> 设置为前面创建的视频轨道 ID，即可在频道中发布对应的自定义视频源。</p>
-            <p props="ios mac">要发布自定义视频源，请按照以下步骤操作：
+            <p props="ios">要发布自定义视频源，请按照以下步骤操作：
+                <ol>
+                    <li>调用该方法创建一个视频轨道，并获取视频轨道 ID。</li>
+                    <li>调用 <codeph>joinChannelByToken</codeph> 加入频道。在 <xref keyref="ChannelMediaOptions"/> 中，将 <codeph>customVideoTrackId</codeph> 设置为你想要发布的视频轨道 ID，并将 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/>。</li>
+                    <li>调用 <codeph>pushExternalVideoFrame</codeph>，并将 <codeph>videoTrackId</codeph> 设置为第 2 步中设置的视频轨道 ID，即可在频道中发布对应的自定义视频源。</li>
+                </ol>
+            </p>
+            <p props="mac">要发布自定义视频源，请按照以下步骤操作：
                 <ol>
                     <li>调用该方法创建一个视频轨道，并获取视频轨道 ID。</li>
                     <li>调用 <codeph>joinChannelByToken</codeph> 加入频道。在 <xref keyref="ChannelMediaOptions"/> 中，将 <codeph>customVideoTrackId</codeph> 设置为你想要发布的视频轨道 ID，并将 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/>。</li>
@@ -44,30 +51,39 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
-        </section>
-        <section id="parameters" deliveryTarget="details">
-            <title>参数</title>
-            <parml>
-                <plentry props="{platform3}">
-                    <pt>{parameters.name}</pt>
-                    <pd>{parameters.desc}</pd>
-                </plentry>
-            </parml>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp">
+            <p props="cpp">
                 <ul>
                     <li>方法调用成功，返回视频轨道 ID，作为该视频轨道的唯一标识符。</li>
                     <li>方法调用失败，返回 <codeph>0xffffffff</codeph>。</li>
                 </ul>
             </p>
-            <p props="ios mac">
+            <p props="android">
+                <ul>
+                    <li>方法调用成功，返回视频轨道 ID，作为该视频轨道的唯一标识符。</li>
+                    <li>方法调用失败，返回 <codeph>0xffffffff</codeph>。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>方法调用成功时，返回视频轨道 ID，作为该视频轨道的唯一标识符。</li>
+                    <li>方法调用失败时，返回 <codeph>0xffffffff</codeph>。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>方法调用成功时，返回视频轨道 ID，作为该视频轨道的唯一标识符。</li>
                     <li>方法调用失败时，返回 <codeph>0xffffffff</codeph>。</li>

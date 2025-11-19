@@ -32,7 +32,8 @@
                 </ul>
             </p>
             <p props="android">该方法在加入频道前启动最后一公里网络探测测试，用于获取上行和下行的网络统计信息，包括带宽、丢包率、抖动和往返时延（RTT）。</p>
-            <p props="ios mac">该方法在加入频道前启动 Last mile 网络探测测试，以获取上行和下行 Last mile 网络的统计数据，包括带宽、丢包率、抖动和往返时延（RTT）。</p>
+            <p props="ios">该方法在加入频道前启动 Last mile 网络探测测试，以获取上行和下行 Last mile 网络的统计数据，包括带宽、丢包率、抖动和往返时延（RTT）。</p>
+            <p props="mac">该方法在加入频道前启动 Last mile 网络探测测试，以获取上行和下行 Last mile 网络的统计数据，包括带宽、丢包率、抖动和往返时延（RTT）。</p>
             <note props="android">调用时序：在收到 <xref keyref="onLastmileQuality"/> 和 <xref keyref="onLastmileProbeResult"/> 回调前，请勿调用其他方法，否则可能会中断这些回调。
 相关回调：成功调用该方法后，SDK 会依次触发以下两个回调：
                 <ul>
@@ -40,15 +41,22 @@
                     <li><xref keyref="onLastmileProbeResult"/>：SDK 会在约 30 秒内根据网络状况触发该回调。该回调返回网络状况的实时统计数据，更加客观。</li>
                 </ul>
             </note>
-            <note props="ios mac">在收到 <xref keyref="onLastmileQuality"/> 和 <xref keyref="onLastmileProbeResult"/> 回调前，不要调用其他方法，否则可能会中断这些回调。</note>
+            <note props="ios">在收到 <xref keyref="onLastmileQuality"/> 和 <xref keyref="onLastmileProbeResult"/> 回调前，不要调用其他方法，否则可能会中断这些回调。</note>
+            <note props="mac">在收到 <xref keyref="onLastmileQuality"/> 和 <xref keyref="onLastmileProbeResult"/> 回调前，不要调用其他方法，否则可能会中断这些回调。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -61,7 +69,11 @@
                     <pt>config</pt>
                     <pd>最后一公里网络探测测试的配置。详见 <xref keyref="LastmileProbeConfig"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>config</pt>
+                    <pd>Last mile 网络探测测试的配置。详见 <xref keyref="LastmileProbeConfig"/>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>config</pt>
                     <pd>Last mile 网络探测测试的配置。详见 <xref keyref="LastmileProbeConfig"/>。</pd>
                 </plentry>
@@ -69,7 +81,25 @@
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

@@ -25,19 +25,26 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="android">该方法用于在本地客户端和远端客户端上调节混音音量。</p>
-            <p props="ios mac">你可以通过该方法在本地客户端和远端客户端调节混音音量。</p>
+            <p props="ios">你可以通过该方法在本地客户端和远端客户端调节混音音量。</p>
+            <p props="mac">你可以通过该方法在本地客户端和远端客户端调节混音音量。</p>
             <note props="cpp"><xref keyref="adjustAudioMixingVolume"/> 方法不会影响通过 <xref keyref="playEffect3"/> 方法设置的音频文件的音量。</note>
             <note props="android"><xref keyref="adjustAudioMixingVolume"/> 不会影响通过 <codeph>playEffect</codeph> 方法设置的音效文件的音量。</note>
-            <note props="ios mac">该方法不会影响通过 <xref keyref="playEffect3"/> 方法设置的音效文件的音量。</note>
+            <note props="ios">该方法不会影响通过 <xref keyref="playEffect3"/> 方法设置的音效文件的音量。</note>
+            <note props="mac">该方法不会影响通过 <xref keyref="playEffect3"/> 方法设置的音效文件的音量。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp">请在调用 <codeph>startAudioMixing</codeph> 方法之后调用该方法。</p>
-            <p props="ios mac">请在调用 <xref keyref="startAudioMixing2"/> 方法之后调用该方法。</p>
+            <p props="cpp">请在调用 <codeph>startAudioMixing</codeph> 方法之后调用该方法。</p>
+            <p props="android">请在调用 <codeph>startAudioMixing</codeph> 方法之后调用该方法。</p>
+            <p props="ios">请在调用 <xref keyref="startAudioMixing2"/> 方法之后调用该方法。</p>
+            <p props="mac">请在调用 <xref keyref="startAudioMixing2"/> 方法之后调用该方法。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -50,7 +57,11 @@
                     <pt>volume</pt>
                     <pd>混音音量，取值范围为 0 到 100。（默认值为 100，表示原始音量。）</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>volume</pt>
+                    <pd>混音音量。取值范围为 0 到 100。默认值为 100，表示原始音量。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>volume</pt>
                     <pd>混音音量。取值范围为 0 到 100。默认值为 100，表示原始音量。</pd>
                 </plentry>
@@ -58,7 +69,25 @@
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

@@ -25,16 +25,23 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">调用该方法可设置音效的循环播放次数。循环播放完成后，SDK 会触发 <xref keyref="onPlayerSourceStateChanged"/> 回调，并报告播放状态为 <codeph>PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED</codeph>。</p>
-            <p props="ios mac">调用此方法可设置循环播放次数。循环播放完成后，SDK 会触发 <xref keyref="onPlayerSourceStateChanged"/> 回调，并报告播放状态为 <codeph>AgoraMediaPlayerStatePlayBackAllLoopsCompleted</codeph>。</p>
+            <p props="ios">调用此方法可设置循环播放次数。循环播放完成后，SDK 会触发 <xref keyref="onPlayerSourceStateChanged"/> 回调，并报告播放状态为 <codeph>AgoraMediaPlayerStatePlayBackAllLoopsCompleted</codeph>。</p>
+            <p props="mac">调用此方法可设置循环播放次数。循环播放完成后，SDK 会触发 <xref keyref="onPlayerSourceStateChanged"/> 回调，并报告播放状态为 <codeph>AgoraMediaPlayerStatePlayBackAllLoopsCompleted</codeph>。</p>
             <note props="android">当循环播放完成后，SDK 会触发 <xref keyref="onPlayerSourceStateChanged"/> 回调，并报告播放状态为 <codeph>PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED</codeph>。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -58,7 +65,16 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>loopCount</pt>
+                    <pd>音频效果的循环播放次数：
+                        <ul>
+                            <li>≥ 0：播放的次数。例如，设置为 0 表示不循环播放，仅播放一次；设置为 1 表示循环播放一次，总共播放两次。</li>
+                            <li>-1：无限循环播放音频文件。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>loopCount</pt>
                     <pd>音频效果的循环播放次数：
                         <ul>
@@ -71,7 +87,25 @@
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

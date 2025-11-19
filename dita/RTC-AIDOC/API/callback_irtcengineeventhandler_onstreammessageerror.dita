@@ -26,18 +26,25 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">该回调在本地用户未能接收到远端用户通过调用 <xref keyref="sendStreamMessage"/> 发送的流消息时触发。</p>
             <p props="android">当本地用户未能接收到远端用户通过调用 <xref keyref="sendStreamMessage"/> 发送的数据流消息时，SDK 会触发该回调。</p>
-            <p props="ios mac">当本地用户未能接收到远端用户通过调用 <xref keyref="sendStreamMessage"/> 方法发送的数据流消息时，SDK 会触发该回调。</p>
-            <note props="cpp ios mac">如果你需要一个更全面的低延迟、高并发、可扩展的实时消息和状态同步解决方案，建议使用 <codeph>Signaling</codeph>。</note>
+            <p props="ios">当本地用户未能接收到远端用户通过调用 <xref keyref="sendStreamMessage"/> 方法发送的数据流消息时，SDK 会触发该回调。</p>
+            <p props="mac">当本地用户未能接收到远端用户通过调用 <xref keyref="sendStreamMessage"/> 方法发送的数据流消息时，SDK 会触发该回调。</p>
+            <note props="cpp">如果你需要一个更全面的低延迟、高并发、可扩展的实时消息和状态同步解决方案，建议使用 <codeph>Signaling</codeph>。</note>
             <note props="android">如果你需要一个更全面的低延迟、高并发和可扩展的实时消息和状态同步解决方案，建议使用 <codeph>Signaling</codeph>。</note>
+            <note props="ios">如果你需要一个更全面的低延迟、高并发、可扩展的实时消息和状态同步解决方案，建议使用 <codeph>Signaling</codeph>。</note>
+            <note props="mac">如果你需要一个更全面的低延迟、高并发、可扩展的实时消息和状态同步解决方案，建议使用 <codeph>Signaling</codeph>。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
             <p props="android">该回调在本地用户未能接收到远端用户发送的数据流消息时被触发。</p>
-            <p props="ios mac">该回调在本地用户未收到远端用户发送的数据流时被触发。</p>
+            <p props="ios">该回调在本地用户未收到远端用户发送的数据流时被触发。</p>
+            <p props="mac">该回调在本地用户未收到远端用户发送的数据流时被触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -58,7 +65,7 @@
                     <pt>code</pt>
                     <pd>错误码。</pd>
                 </plentry>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
                     <pt>missed</pt>
                     <pd>丢失的消息数量。</pd>
                 </plentry>
@@ -74,25 +81,65 @@
                     <pt>streamId</pt>
                     <pd>消息所属的数据流 ID。</pd>
                 </plentry>
-                <plentry props="android ios mac">
+                <plentry props="android">
                     <pt>error</pt>
                     <pd>错误码。</pd>
                 </plentry>
-                <plentry props="android ios mac">
+                <plentry props="android">
+                    <pt>missed</pt>
+                    <pd>丢失的消息数量。</pd>
+                </plentry>
+                <plentry props="android">
                     <pt>cached</pt>
                     <pd>数据流中断时缓存的传入消息数量。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>engine</pt>
                     <pd>引擎对象，详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>uid</pt>
                     <pd>远端用户 ID。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>streamId</pt>
                     <pd>接收消息所属的数据流 ID。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>error</pt>
+                    <pd>错误码。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>missed</pt>
+                    <pd>丢失的消息数量。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>cached</pt>
+                    <pd>数据流中断时缓存的传入消息数量。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd>引擎对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>远端用户 ID。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>streamId</pt>
+                    <pd>接收消息所属的数据流 ID。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>error</pt>
+                    <pd>错误码。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>missed</pt>
+                    <pd>丢失的消息数量。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>cached</pt>
+                    <pd>数据流中断时缓存的传入消息数量。</pd>
                 </plentry>
             </parml>
         </section>

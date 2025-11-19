@@ -5,24 +5,11 @@
     <ph keyref="SimulcastStreamConfig"/>
   </title>
     <shortdesc id="short">
-    <ph id="shortdesc">用于配置不同质量层级的视频流参数。</ph>
+    <ph id="shortdesc">配置低质量视频流。</ph>
   </shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="cpp" outputclass="language-cpp">struct SimulcastStreamConfig {
-  VideoDimensions dimensions;
-  int kBitrate;
-  int framerate;
-  bool operator==(const SimulcastStreamConfig&amp; rhs) const {
-    return dimensions == rhs.dimensions &amp;&amp; kBitrate == rhs.kBitrate &amp;&amp; framerate == rhs.framerate;
-  }
-};</codeblock>
-                <codeblock props="android" outputclass="language-java">public class SimulcastStreamConfig {
-  public VideoEncoderConfiguration.VideoDimensions dimensions;
-  public int bitrate;
-  public int framerate;
-}</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraSimulcastStreamConfig: NSObject
 @property (assign, nonatomic) int kBitrate;
 @property (assign, nonatomic) int framerate;
@@ -38,31 +25,27 @@
         <section id="parameters" deliveryTarget="details">
             <title>属性</title>
             <parml>
-                <plentry props="cpp">
-                    <pt>dimensions</pt>
-                    <pd>视频尺寸。默认值为高质量视频流的 50%。详见 <xref keyref="VideoDimensions"/>。</pd>
-                </plentry>
-                <plentry props="cpp">
-                    <pt>kBitrate</pt>
-                    <pd>视频码率（Kbps）。默认值为 -1。无需设置该参数，SDK 会根据你设置的视频分辨率和帧率自动匹配最合适的码率。</pd>
-                </plentry>
-                <plentry props="android cpp ios mac">
-                    <pt>framerate</pt>
-                    <pd>本地视频的帧率（fps）。默认值为 5。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>dimensions</pt>
-                    <pd>视频尺寸。默认值为高质量视频流尺寸的 50%。详见 <xref keyref="VideoDimensions"/>。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>bitrate</pt>
-                    <pd>视频码率（Kbps）。默认值为 -1。无需设置该参数，SDK 会根据设定的视频分辨率和帧率自动匹配最合适的码率。</pd>
-                </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>kBitrate</pt>
                     <pd>视频码率（Kbps）。默认值为 -1。无需设置该参数，SDK 会根据设置的视频分辨率和帧率自动匹配最合适的码率。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>framerate</pt>
+                    <pd>本地视频的帧率（fps）。默认值为 5。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>dimensions</pt>
+                    <pd>视频分辨率。默认值为高质量视频流的 50%。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>kBitrate</pt>
+                    <pd>视频码率（Kbps）。默认值为 -1。无需设置该参数，SDK 会根据设置的视频分辨率和帧率自动匹配最合适的码率。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>framerate</pt>
+                    <pd>本地视频的帧率（fps）。默认值为 5。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>dimensions</pt>
                     <pd>视频分辨率。默认值为高质量视频流的 50%。</pd>
                 </plentry>

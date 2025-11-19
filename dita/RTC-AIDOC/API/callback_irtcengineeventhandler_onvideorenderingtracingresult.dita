@@ -26,16 +26,21 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">调用 <xref keyref="startMediaRenderingTracing"/> 方法或加入频道后，SDK 会触发该回调，用于上报视频帧渲染事件及渲染过程中的各项指标。你可以通过优化这些指标，提高首帧视频的渲染效率。</p>
             <p props="android">调用 <xref keyref="startMediaRenderingTracing"/> 方法或加入频道后，SDK 会触发该回调，报告视频帧渲染事件及渲染过程中的各项指标。你可以通过优化这些指标，提高首帧视频渲染的效率。</p>
-            <p props="ios mac">调用 <xref keyref="startMediaRenderingTracing"/> 方法或加入频道后，SDK 会触发该回调，用于上报视频帧渲染的事件及渲染过程中的指标。你可以通过优化这些指标，提高首帧视频渲染的效率。</p>
+            <p props="ios">调用 <xref keyref="startMediaRenderingTracing"/> 方法或加入频道后，SDK 会触发该回调，用于上报视频帧渲染的事件及渲染过程中的指标。你可以通过优化这些指标，提高首帧视频渲染的效率。</p>
+            <p props="mac">调用 <xref keyref="startMediaRenderingTracing"/> 方法或加入频道后，SDK 会触发该回调，用于上报视频帧渲染的事件及渲染过程中的指标。你可以通过优化这些指标，提高首帧视频渲染的效率。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
             <p props="cpp">调用 <xref keyref="startMediaRenderingTracing"/> 方法或加入频道后触发。</p>
-            <p props="ios mac">该回调在调用 <xref keyref="startMediaRenderingTracing"/> 方法或加入频道后被触发。</p>
+            <p props="ios">该回调在调用 <xref keyref="startMediaRenderingTracing"/> 方法或加入频道后被触发。</p>
+            <p props="mac">该回调在调用 <xref keyref="startMediaRenderingTracing"/> 方法或加入频道后被触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -44,7 +49,7 @@
                     <pt>connection</pt>
                     <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
                     <pt>uid</pt>
                     <pd>用户 ID。</pd>
                 </plentry>
@@ -57,6 +62,10 @@
                     <pd>视频渲染追踪结果。详见 <xref keyref="VideoRenderingTracingInfo"/>。</pd>
                 </plentry>
                 <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry props="android">
                     <pt>currentEvent</pt>
                     <pd>当前的视频帧渲染事件，详见 <xref keyref="MEDIA_TRACE_EVENT"/>。</pd>
                 </plentry>
@@ -64,15 +73,35 @@
                     <pt>tracingInfo</pt>
                     <pd>视频帧渲染过程中的各项指标。详见 <xref keyref="VideoRenderingTracingInfo"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>engine</pt>
                     <pd><xref keyref="IRtcEngine"/> 实例。详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>currentEvent</pt>
                     <pd>当前的视频帧渲染事件。详见 <xref keyref="MEDIA_TRACE_EVENT"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>tracingInfo</pt>
+                    <pd>视频帧渲染过程中的指标信息。你需要尽可能降低这些指标的数值，以提高首帧视频渲染的效率。详见 <xref keyref="VideoRenderingTracingInfo"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 实例。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>currentEvent</pt>
+                    <pd>当前的视频帧渲染事件。详见 <xref keyref="MEDIA_TRACE_EVENT"/>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>tracingInfo</pt>
                     <pd>视频帧渲染过程中的指标信息。你需要尽可能降低这些指标的数值，以提高首帧视频渲染的效率。详见 <xref keyref="VideoRenderingTracingInfo"/>。</pd>
                 </plentry>

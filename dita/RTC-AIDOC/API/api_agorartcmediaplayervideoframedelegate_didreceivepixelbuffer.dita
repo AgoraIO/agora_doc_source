@@ -19,18 +19,23 @@
             <p outputclass="codeblock">
                 <codeblock props="ios" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol&gt; _Nonnull)playerKit
        didReceivePixelBuffer:(CVPixelBufferRef _Nonnull)pixelBuffer NS_SWIFT_NAME(AgoraRtcMediaPlayer(_:didReceivePixelBuffer:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol&gt; _Nonnull)playerKit
+       didReceivePixelBuffer:(CVPixelBufferRef _Nonnull)pixelBuffer NS_SWIFT_NAME(AgoraRtcMediaPlayer(_:didReceivePixelBuffer:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="ios">触发该回调以报告类型为 <codeph>CVPixelBufferRef</codeph> 的像素缓冲区的详细信息。你可以使用这些信息进行图像处理与分析、自定义渲染等。</p>
+            <p props="mac">触发该回调以报告类型为 <codeph>CVPixelBufferRef</codeph> 的像素缓冲区的详细信息。你可以使用这些信息进行图像处理与分析、自定义渲染等。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p props="ios">该回调在媒体播放器接收到视频源的像素缓冲区时被触发。</p>
+            <p props="mac">该回调在媒体播放器接收到视频源的像素缓冲区时被触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
             <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -40,6 +45,14 @@
                     <pd>媒体播放器对象，详见 <xref keyref="IMediaPlayer"/>。</pd>
                 </plentry>
                 <plentry props="ios">
+                    <pt>pixelBuffer</pt>
+                    <pd>包含像素缓冲区详细信息的 <codeph>CVPixelBufferRef</codeph> 对象。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>playerKit</pt>
+                    <pd>媒体播放器对象，详见 <xref keyref="IMediaPlayer"/>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>pixelBuffer</pt>
                     <pd>包含像素缓冲区详细信息的 <codeph>CVPixelBufferRef</codeph> 对象。</pd>
                 </plentry>

@@ -26,29 +26,26 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">在调用 <xref keyref="IMediaPlayerCacheManager"/> 中的任何 API 前，你需要调用该方法获取媒体播放器的缓存管理器实例。</p>
             <p props="android">在调用 <xref keyref="IMediaPlayerCacheManager"/> 中的任何 API 之前，你需要调用 <xref keyref="getMediaPlayerCacheManager"/> 获取媒体播放器的缓存管理器实例。</p>
-            <p props="ios mac">在调用 <xref keyref="IMediaPlayerCacheManager"/> 中的任何 API 之前，你需要调用此方法以获取媒体播放器的缓存管理器实例。</p>
+            <p props="ios">在调用 <xref keyref="IMediaPlayerCacheManager"/> 中的任何 API 之前，你需要调用此方法以获取媒体播放器的缓存管理器实例。</p>
+            <p props="mac">在调用 <xref keyref="IMediaPlayerCacheManager"/> 中的任何 API 之前，你需要调用此方法以获取媒体播放器的缓存管理器实例。</p>
             <note props="cpp"><xref keyref="IMediaPlayerCacheManager"/> 采用单例模式，因此多次调用该方法会返回同一个实例。</note>
             <note props="android"><xref keyref="IMediaPlayerCacheManager"/> 采用单例模式，因此多次调用 <xref keyref="getMediaPlayerCacheManager"/> 会返回同一个实例。</note>
-            <note props="ios mac"><xref keyref="getMediaPlayerCacheManager"/> 返回的缓存管理器为单例模式。因此，多次调用此方法会返回相同的实例。</note>
+            <note props="ios"><xref keyref="getMediaPlayerCacheManager"/> 返回的缓存管理器为单例模式。因此，多次调用此方法会返回相同的实例。</note>
+            <note props="mac"><xref keyref="getMediaPlayerCacheManager"/> 返回的缓存管理器为单例模式。因此，多次调用此方法会返回相同的实例。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p props="cpp">调用时序：请确保在调用该方法前已初始化 <xref keyref="IRtcEngine"/>。</p>
             <p props="android">确保在调用 <xref keyref="getMediaPlayerCacheManager"/> 前已初始化 <xref keyref="IRtcEngine"/>。</p>
-            <p props="ios mac">确保在调用此方法之前已初始化 <xref keyref="IRtcEngine"/>。</p>
+            <p props="ios">确保在调用此方法之前已初始化 <xref keyref="IRtcEngine"/>。</p>
+            <p props="mac">确保在调用此方法之前已初始化 <xref keyref="IRtcEngine"/>。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
-        </section>
-        <section id="parameters" deliveryTarget="details">
-            <title>参数</title>
-            <parml>
-                <plentry props="{platform3}">
-                    <pt>{parameters.name}</pt>
-                    <pd>{parameters.desc}</pd>
-                </plentry>
-            </parml>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="return_values">
             <title>返回值</title>
@@ -59,7 +56,8 @@
                 </ul>
             </p>
             <p props="android">方法调用成功，返回 <xref keyref="IMediaPlayerCacheManager"/> 实例。</p>
-            <p props="ios mac">方法调用成功，返回 <xref keyref="IMediaPlayerCacheManager"/> 对象。</p>
+            <p props="ios">方法调用成功，返回 <xref keyref="IMediaPlayerCacheManager"/> 对象。</p>
+            <p props="mac">方法调用成功，返回 <xref keyref="IMediaPlayerCacheManager"/> 对象。</p>
         </section>
     </refbody>
 </reference>

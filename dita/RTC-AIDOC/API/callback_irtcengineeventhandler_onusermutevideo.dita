@@ -26,18 +26,25 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">当远端用户调用 <xref keyref="muteLocalVideoStream"/> 方法停止或恢复发布视频流时，SDK 会触发该回调，向本地用户报告该远端用户的视频发布状态。</p>
             <p props="android">当远端用户调用 <xref keyref="muteLocalVideoStream"/> 时，SDK 会触发该回调，向本地用户报告远端用户发布的视频流状态。</p>
-            <p props="ios mac">当远端用户调用 <xref keyref="muteLocalVideoStream"/> 方法停止或恢复发布视频流时，SDK 会触发该回调，报告远端用户的视频流状态。</p>
+            <p props="ios">当远端用户调用 <xref keyref="muteLocalVideoStream"/> 方法停止或恢复发布视频流时，SDK 会触发该回调，报告远端用户的视频流状态。</p>
+            <p props="mac">当远端用户调用 <xref keyref="muteLocalVideoStream"/> 方法停止或恢复发布视频流时，SDK 会触发该回调，报告远端用户的视频流状态。</p>
             <note props="cpp">当频道中的用户数（在通信场景下）或主播数（在极速直播场景下）超过 32 时，该回调可能不准确。</note>
             <note props="android">当频道中通信场景下的用户数或极速直播场景下的主播数超过 32 时，该回调可能不准确。</note>
-            <note props="ios mac">当通信场景中的用户数或直播场景中的主播数超过 32 时，该回调可能不准确。</note>
+            <note props="ios">当通信场景中的用户数或直播场景中的主播数超过 32 时，该回调可能不准确。</note>
+            <note props="mac">当通信场景中的用户数或直播场景中的主播数超过 32 时，该回调可能不准确。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
-            <p props="android ios mac">该回调在远端用户调用 <xref keyref="muteLocalVideoStream"/> 停止或恢复发布视频流时被触发。</p>
+            <p props="android">该回调在远端用户调用 <xref keyref="muteLocalVideoStream"/> 停止或恢复发布视频流时被触发。</p>
+            <p props="ios">该回调在远端用户调用 <xref keyref="muteLocalVideoStream"/> 停止或恢复发布视频流时被触发。</p>
+            <p props="mac">该回调在远端用户调用 <xref keyref="muteLocalVideoStream"/> 停止或恢复发布视频流时被触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -63,7 +70,7 @@
                     <pt>uid</pt>
                     <pd>远端用户的用户 ID。</pd>
                 </plentry>
-                <plentry props="android ios mac">
+                <plentry props="android">
                     <pt>muted</pt>
                     <pd>远端用户是否停止发布视频流：
                         <ul>
@@ -72,11 +79,37 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>engine</pt>
                     <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>muted</pt>
+                    <pd>远端用户是否停止发布视频流：
+                        <ul>
+                            <li><xref keyref="true"/>：远端用户停止发布视频流。</li>
+                            <li><xref keyref="false"/>：远端用户恢复发布视频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>uid</pt>
+                    <pd>远端用户 ID。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>muted</pt>
+                    <pd>远端用户是否停止发布视频流：
+                        <ul>
+                            <li><xref keyref="true"/>：远端用户停止发布视频流。</li>
+                            <li><xref keyref="false"/>：远端用户恢复发布视频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>uid</pt>
                     <pd>远端用户 ID。</pd>
                 </plentry>

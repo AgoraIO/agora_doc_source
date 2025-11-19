@@ -33,20 +33,26 @@
 采样间隔（秒） = <codeph>samplesPerCall</codeph> / (<codeph>sampleRate</codeph> × <codeph>channel</codeph>)，请确保采样间隔 ≥ 0.01 秒。
 SDK 会根据采样间隔触发 <xref keyref="onMixedAudioFrame"/> 回调。</p>
             <p props="ios">SDK 会根据你设置的 <codeph>samplesPerCall</codeph>、<codeph>sampleRate</codeph> 和 <codeph>channel</codeph> 参数计算采样间隔。采样间隔（秒） = <codeph>samplesPerCall</codeph> / (<codeph>sampleRate</codeph> × <codeph>channel</codeph>)，请确保采样间隔 ≥ 0.01 秒。SDK 会根据采样间隔触发 <xref keyref="onMixedAudioFrame"/> 回调。</p>
-            <p props="mac">SDK 会根据你设置的 <codeph>samplesPerCall</codeph>、<codeph>sampleRate</codeph> 和 <codeph>channel</codeph> 参数计算采样间隔。采样间隔（秒） = <codeph>samplesPerCall</codeph> / (<codeph>sampleRate</codeph> × <codeph>channel</codeph>)，请确保采样间隔 ≥ 0.01 秒。SDK 会根据采样间隔触发 <codeph>onMixedAudioFrame:channelId:</codeph> 回调。</p>
+            <p props="mac">SDK 会根据你设置的 <codeph>samplesPerCall</codeph>、<codeph>sampleRate</codeph> 和 <codeph>channel</codeph> 参数计算采样间隔。采样间隔（秒） = <codeph>samplesPerCall</codeph> / (<codeph>sampleRate</codeph> × <codeph>channel</codeph>)，请确保采样间隔 ≥ 0.01 秒。SDK 会根据采样间隔触发 <xref keyref="onMixedAudioFrame"/> 回调。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">请在加入频道前调用该方法。</p>
+            <p props="cpp">请在加入频道前调用该方法。</p>
+            <p props="android">请在加入频道前调用该方法。</p>
+            <p props="ios">请在加入频道前调用该方法。</p>
+            <p props="mac">请在加入频道前调用该方法。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
                     <pt>sampleRate</pt>
                     <pd>回调中返回的采样率，可设置为 8000、16000、32000、44100 或 48000 Hz。</pd>
                 </plentry>
@@ -64,6 +70,10 @@ SDK 会根据采样间隔触发 <xref keyref="onMixedAudioFrame"/> 回调。</p>
                     <pd>每次调用的数据采样数，例如媒体推流时为 1024。</pd>
                 </plentry>
                 <plentry props="android">
+                    <pt>sampleRate</pt>
+                    <pd>回调中返回的采样率，可设置为 8000、16000、32000、44100 或 48000 Hz。</pd>
+                </plentry>
+                <plentry props="android">
                     <pt>channel</pt>
                     <pd>音频声道数，可设置为以下取值：
                         <ul>
@@ -72,11 +82,15 @@ SDK 会根据采样间隔触发 <xref keyref="onMixedAudioFrame"/> 回调。</p>
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="android ios mac">
+                <plentry props="android">
                     <pt>samplesPerCall</pt>
                     <pd>每次回调的数据采样数，例如媒体推流时为 1024。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>sampleRate</pt>
+                    <pd>回调中返回的采样率，可设置为 8000、16000、32000、44100 或 48000 Hz。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>channel</pt>
                     <pd>音频声道数，可设置为 1 或 2。
                         <ul>
@@ -85,11 +99,50 @@ SDK 会根据采样间隔触发 <xref keyref="onMixedAudioFrame"/> 回调。</p>
                         </ul>
                     </pd>
                 </plentry>
+                <plentry props="ios">
+                    <pt>samplesPerCall</pt>
+                    <pd>每次回调的数据采样数，例如媒体推流时为 1024。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>sampleRate</pt>
+                    <pd>回调中返回的采样率，可设置为 8000、16000、32000、44100 或 48000 Hz。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>channel</pt>
+                    <pd>音频声道数，可设置为 1 或 2。
+                        <ul>
+                            <li>1：单声道。</li>
+                            <li>2：立体声。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>samplesPerCall</pt>
+                    <pd>每次回调的数据采样数，例如媒体推流时为 1024。</pd>
+                </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

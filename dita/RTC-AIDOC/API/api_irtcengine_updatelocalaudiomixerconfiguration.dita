@@ -26,17 +26,26 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">调用 <xref keyref="startLocalAudioMixer"/> 后，如需更新本地混音配置，可调用该方法。</p>
             <p props="android">调用 <xref keyref="startLocalAudioMixer"/> 后，可调用该方法更新本地混音配置。</p>
-            <p props="ios mac">调用 <codeph>startLocalAudioMixer</codeph> 后，如果你想更新本地混音配置，可以调用此方法。</p>
-            <note props="android cpp ios mac">为确保音频质量，建议混音的音频流数量不超过 10。</note>
+            <p props="ios">调用 <codeph>startLocalAudioMixer</codeph> 后，如果你想更新本地混音配置，可以调用此方法。</p>
+            <p props="mac">调用 <codeph>startLocalAudioMixer</codeph> 后，如果你想更新本地混音配置，可以调用此方法。</p>
+            <note props="cpp">为确保音频质量，建议混音的音频流数量不超过 10。</note>
+            <note props="android">为确保音频质量，建议混音的音频流数量不超过 10。</note>
+            <note props="ios">为确保音频质量，建议混音的音频流数量不超过 10。</note>
+            <note props="mac">为确保音频质量，建议混音的音频流数量不超过 10。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp">请在调用 <xref keyref="startLocalAudioMixer"/> 之后调用此方法。</p>
-            <p props="ios mac">在调用 <codeph>startLocalAudioMixer</codeph> 之后调用此方法。</p>
+            <p props="cpp">请在调用 <xref keyref="startLocalAudioMixer"/> 之后调用此方法。</p>
+            <p props="android">请在调用 <xref keyref="startLocalAudioMixer"/> 之后调用此方法。</p>
+            <p props="ios">在调用 <codeph>startLocalAudioMixer</codeph> 之后调用此方法。</p>
+            <p props="mac">在调用 <codeph>startLocalAudioMixer</codeph> 之后调用此方法。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -49,7 +58,11 @@
                     <pt>config</pt>
                     <pd>本地混音的配置。详见 <xref keyref="LocalAudioMixerConfiguration"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>config</pt>
+                    <pd>用于本地混音的配置。详见 <xref keyref="LocalAudioMixerConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>config</pt>
                     <pd>用于本地混音的配置。详见 <xref keyref="LocalAudioMixerConfiguration"/>。</pd>
                 </plentry>
@@ -57,7 +70,7 @@
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp">
+            <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。
@@ -67,7 +80,27 @@
                     </li>
                 </ul>
             </p>
-            <p props="ios mac">
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。
+                        <ul>
+                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。请在调用此方法前先初始化 <xref keyref="IRtcEngine"/> 对象。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。
+                        <ul>
+                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要先初始化 <xref keyref="IRtcEngine"/> 对象再调用此方法。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。

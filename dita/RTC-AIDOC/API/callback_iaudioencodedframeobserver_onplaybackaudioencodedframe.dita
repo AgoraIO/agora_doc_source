@@ -26,16 +26,21 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">调用 <xref keyref="registerAudioEncodedFrameObserver"/> 并将编码音频位置设置为 <codeph>AUDIO_ENCODED_FRAME_OBSERVER_POSITION_PLAYBACK</codeph> 后，可以通过该回调获取所有远端用户的编码音频数据。</p>
             <p props="android">调用 <xref keyref="registerAudioEncodedFrameObserver"/> 并将编码音频设置为 <codeph>AUDIO_ENCODED_FRAME_OBSERVER_POSITION_PLAYBACK</codeph> 后，可以通过该回调获取所有远端用户的编码音频数据。</p>
-            <p props="ios mac">调用 <xref keyref="registerAudioEncodedFrameObserver"/> 并将编码音频设置为 <codeph>AgoraAudioEncodedFrameObserverPositionPlayback</codeph> 后，该回调会返回所有远端用户的编码音频数据。</p>
+            <p props="ios">调用 <xref keyref="registerAudioEncodedFrameObserver"/> 并将编码音频设置为 <codeph>AgoraAudioEncodedFrameObserverPositionPlayback</codeph> 后，该回调会返回所有远端用户的编码音频数据。</p>
+            <p props="mac">调用 <xref keyref="registerAudioEncodedFrameObserver"/> 并将编码音频设置为 <codeph>AgoraAudioEncodedFrameObserverPositionPlayback</codeph> 后，该回调会返回所有远端用户的编码音频数据。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
             <p props="android">该回调在获取远端用户编码音频数据时被触发。</p>
-            <p props="ios mac">该回调在获取到所有远端用户的编码音频数据时被触发。</p>
+            <p props="ios">该回调在获取到所有远端用户的编码音频数据时被触发。</p>
+            <p props="mac">该回调在获取到所有远端用户的编码音频数据时被触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -84,7 +89,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>frameData</pt>
                     <pd>音频缓冲区。</pd>
                 </plentry>
@@ -93,8 +98,12 @@
                     <pd>编码后的音频信息，详见 <xref keyref="EncodedAudioFrameInfo"/>。</pd>
                 </plentry>
                 <plentry props="mac">
+                    <pt>frameData</pt>
+                    <pd>音频缓冲区。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>info</pt>
-                    <pd>编码后的音频信息，详见 <codeph>AgoraEncodedAudioFrameInfo</codeph>。</pd>
+                    <pd>编码后的音频信息，详见 <xref keyref="EncodedAudioFrameInfo"/>。</pd>
                 </plentry>
             </parml>
         </section>

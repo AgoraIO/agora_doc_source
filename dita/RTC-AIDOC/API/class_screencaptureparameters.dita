@@ -59,7 +59,8 @@
                     <dd>自 v3.7.0 版本新增。</dd>
                 </dlentry>
             </dl>
-            <p props="ios mac">用于设置屏幕共享的视频编码参数。</p>
+            <p props="ios">用于设置屏幕共享的视频编码参数。</p>
+            <p props="mac">用于设置屏幕共享的视频编码参数。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>属性</title>
@@ -156,7 +157,7 @@
                     <pt>audioCaptureParameters</pt>
                     <pd>共享屏幕音频流的音频采集参数。详见 <xref keyref="ScreenAudioParameters"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>dimensions</pt>
                     <pd>屏幕共享视频流的编码分辨率。若屏幕尺寸与该参数不同，SDK 会采用以下编码策略。例如将 <codeph>dimensions</codeph> 设置为 1920 × 1080：
                         <ul>
@@ -165,15 +166,15 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>frameRate</pt>
                     <pd>共享区域的帧率（fps）。默认值为 5。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>bitrate</pt>
                     <pd>共享区域的码率（Kbps）。默认值为 0，表示 SDK 会根据当前屏幕的分辨率计算码率。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>captureMouseCursor</pt>
                     <pd>是否在屏幕共享中采集鼠标：
                         <ul>
@@ -182,7 +183,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>windowFocus</pt>
                     <pd>调用 <codeph>startScreenCaptureByWindowId</codeph> 方法共享窗口时，是否将该窗口置顶：
                         <ul>
@@ -191,11 +192,11 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>excludeWindowList</pt>
                     <pd>要屏蔽的窗口 ID 列表。调用 <codeph>startScreenCaptureByDisplayId</codeph> 开始屏幕共享时，可使用该参数屏蔽指定窗口。调用 <codeph>updateScreenCaptureParameters</codeph> 更新屏幕共享配置时，也可动态屏蔽指定窗口。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>highLighted</pt>
                     <pd>是否在共享的窗口或屏幕周围添加边框：
                         <ul>
@@ -204,11 +205,67 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>highLightColor</pt>
                     <pd>边框颜色。在 macOS 上，<codeph>COLOR_CLASS</codeph> 表示 <codeph>NSColor</codeph>。详见 <codeph>COLOR_CLASS</codeph>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>highLightWidth</pt>
+                    <pd>边框宽度（像素）。默认值为 5，取值范围为 (0, 50]。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>dimensions</pt>
+                    <pd>屏幕共享视频流的编码分辨率。若屏幕尺寸与该参数不同，SDK 会采用以下编码策略。例如将 <codeph>dimensions</codeph> 设置为 1920 × 1080：
+                        <ul>
+                            <li>如果屏幕尺寸小于 <codeph>dimensions</codeph>，如 1000 × 1000 像素，SDK 会使用屏幕尺寸（即 1000 × 1000 像素）进行编码。</li>
+                            <li>如果屏幕尺寸大于 <codeph>dimensions</codeph>，如 2000 × 1500 像素，SDK 会在保持屏幕宽高比（4:3）的前提下，使用不超过 <codeph>dimensions</codeph> 的最大值进行编码，即 1440 × 1080。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>frameRate</pt>
+                    <pd>共享区域的帧率（fps）。默认值为 5。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>bitrate</pt>
+                    <pd>共享区域的码率（Kbps）。默认值为 0，表示 SDK 会根据当前屏幕的分辨率计算码率。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>captureMouseCursor</pt>
+                    <pd>是否在屏幕共享中采集鼠标：
+                        <ul>
+                            <li><xref keyref="true"/>：（默认）采集鼠标。</li>
+                            <li><xref keyref="false"/>：不采集鼠标。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>windowFocus</pt>
+                    <pd>调用 <codeph>startScreenCaptureByWindowId</codeph> 方法共享窗口时，是否将该窗口置顶：
+                        <ul>
+                            <li><xref keyref="true"/>：将窗口置顶。</li>
+                            <li><xref keyref="false"/>：（默认）不置顶。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>excludeWindowList</pt>
+                    <pd>要屏蔽的窗口 ID 列表。调用 <codeph>startScreenCaptureByDisplayId</codeph> 开始屏幕共享时，可使用该参数屏蔽指定窗口。调用 <codeph>updateScreenCaptureParameters</codeph> 更新屏幕共享配置时，也可动态屏蔽指定窗口。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>highLighted</pt>
+                    <pd>是否在共享的窗口或屏幕周围添加边框：
+                        <ul>
+                            <li><xref keyref="true"/>：添加边框。</li>
+                            <li><xref keyref="false"/>：（默认）不添加边框。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>highLightColor</pt>
+                    <pd>边框颜色。在 macOS 上，<codeph>COLOR_CLASS</codeph> 表示 <codeph>NSColor</codeph>。详见 <codeph>COLOR_CLASS</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>highLightWidth</pt>
                     <pd>边框宽度（像素）。默认值为 5，取值范围为 (0, 50]。</pd>
                 </plentry>

@@ -36,7 +36,13 @@
                     <li>掉线：在一段时间内（频道场景为 20 秒，极速直播场景更长）未收到用户或主播的数据包时，SDK 会认为其掉线。网络连接不佳可能导致误判，建议使用声网 RTM SDK 进行可靠的离线检测。</li>
                 </ul>
             </p>
-            <p props="ios mac">用户离线通常有两个原因：
+            <p props="ios">用户离线通常有两个原因：
+                <ul>
+                    <li>离开频道：当用户或主播离开频道时，会发送离开消息。</li>
+                    <li>掉线：在一段时间内（频道场景为 20 秒，极速直播场景更长）未收到用户或主播的数据包时，SDK 会认为其掉线。网络连接不佳可能导致误判。建议使用声网 RTM SDK 进行可靠的离线检测。</li>
+                </ul>
+            </p>
+            <p props="mac">用户离线通常有两个原因：
                 <ul>
                     <li>离开频道：当用户或主播离开频道时，会发送离开消息。</li>
                     <li>掉线：在一段时间内（频道场景为 20 秒，极速直播场景更长）未收到用户或主播的数据包时，SDK 会认为其掉线。网络连接不佳可能导致误判。建议使用声网 RTM SDK 进行可靠的离线检测。</li>
@@ -47,11 +53,15 @@
             <title>触发时机</title>
             <p props="cpp">当远端用户（通信频道场景）或主播（极速直播频道场景）离开频道时触发该回调。</p>
             <p props="android">该回调在远端用户（在频道场景中）或主播（在极速直播场景中）离开频道时被触发。</p>
-            <p props="ios mac">该回调在远端用户（在频道场景中）或主播（在极速直播场景中）离开频道时触发。</p>
+            <p props="ios">该回调在远端用户（在频道场景中）或主播（在极速直播场景中）离开频道时触发。</p>
+            <p props="mac">该回调在远端用户（在频道场景中）或主播（在极速直播场景中）离开频道时触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -82,11 +92,11 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>engine</pt>
                     <pd><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>uid</pt>
                     <pd>离开频道或掉线的远端用户 ID。</pd>
                 </plentry>
@@ -95,8 +105,16 @@
                     <pd>远端用户（在频道场景中）或主播（在极速直播场景中）离线的原因，详见 <xref keyref="USER_OFFLINE_REASON_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>离开频道或掉线的远端用户 ID。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>reason</pt>
-                    <pd>远端用户（在频道场景中）或主播（在极速直播场景中）离线的原因，详见 <codeph>AgoraUserOfflineReason</codeph>。</pd>
+                    <pd>远端用户（在频道场景中）或主播（在极速直播场景中）离线的原因，详见 <xref keyref="USER_OFFLINE_REASON_TYPE"/>。</pd>
                 </plentry>
             </parml>
         </section>

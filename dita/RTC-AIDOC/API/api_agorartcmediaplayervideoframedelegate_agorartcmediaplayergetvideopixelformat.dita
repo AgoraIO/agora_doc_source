@@ -18,31 +18,27 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="ios" outputclass="language-objectivec">- (AgoraVideoFormat)AgoraRtcMediaPlayerGetVideoPixelFormat NS_SWIFT_NAME(AgoraRtcMediaPlayerGetVideoPixelFormat());</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (AgoraVideoFormat)AgoraRtcMediaPlayerGetVideoPixelFormat NS_SWIFT_NAME(AgoraRtcMediaPlayerGetVideoPixelFormat());</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="ios">你需要在调用 <xref keyref="setVideoFrameDelegate"/> 方法时注册回调。当媒体播放器接收到每一帧视频时，会触发该回调。你可以在该回调的返回值中设置期望的视频数据格式。</p>
+            <p props="mac">你需要在调用 <xref keyref="setVideoFrameDelegate"/> 方法时注册回调。当媒体播放器接收到每一帧视频时，会触发该回调。你可以在该回调的返回值中设置期望的视频数据格式。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
             <p props="ios">无。</p>
-        </section>
-        <section id="parameters" deliveryTarget="details">
-            <title>参数</title>
-            <parml>
-                <plentry props="{platform3}">
-                    <pt>{parameters.name}</pt>
-                    <pd>{parameters.desc}</pd>
-                </plentry>
-            </parml>
+            <p props="mac">无。</p>
         </section>
         <section id="return_values">
             <title>返回值</title>
             <p props="ios">你为原始视频数据设置的期望格式，详见 <xref keyref="VIDEO_PIXEL_FORMAT"/>。默认情况下，原始视频像素格式（<codeph>AgoraVideoFormatDefault</codeph>）可能是 <codeph>I420</codeph> 或 <codeph>CVPixelBufferRef</codeph>。</p>
+            <p props="mac">你为原始视频数据设置的期望格式，详见 <xref keyref="VIDEO_PIXEL_FORMAT"/>。默认情况下，原始视频像素格式（<codeph>AgoraVideoFormatDefault</codeph>）可能是 <codeph>I420</codeph> 或 <codeph>CVPixelBufferRef</codeph>。</p>
         </section>
     </refbody>
 </reference>

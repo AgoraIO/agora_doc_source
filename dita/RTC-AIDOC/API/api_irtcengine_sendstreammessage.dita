@@ -39,7 +39,13 @@
                     <li>每个数据流通道最多支持每秒发送 60 个数据包，每个数据包最大为 1 KB。</li>
                 </ul>
             </p>
-            <p props="ios mac">调用 <xref keyref="createDataStream2"/> 后，你可以使用此方法向频道内的所有用户发送数据流消息。SDK 对此方法有以下限制：
+            <p props="ios">调用 <xref keyref="createDataStream2"/> 后，你可以使用此方法向频道内的所有用户发送数据流消息。SDK 对此方法有以下限制：
+                <ul>
+                    <li>每个客户端在频道中最多可同时拥有 5 个数据通道，所有数据通道共享的总包比特率上限为 30 KB/s。</li>
+                    <li>每个数据通道每秒最多可发送 60 个数据包，每个数据包最大为 1 KB。</li>
+                </ul>
+            </p>
+            <p props="mac">调用 <xref keyref="createDataStream2"/> 后，你可以使用此方法向频道内的所有用户发送数据流消息。SDK 对此方法有以下限制：
                 <ul>
                     <li>每个客户端在频道中最多可同时拥有 5 个数据通道，所有数据通道共享的总包比特率上限为 30 KB/s。</li>
                     <li>每个数据通道每秒最多可发送 60 个数据包，每个数据包最大为 1 KB。</li>
@@ -57,7 +63,13 @@
                     <li>该方法仅适用于主播。</li>
                 </ul>
             </note>
-            <note props="ios mac">如果你需要一个更全面的解决方案来实现低延迟、高并发和可扩展的实时消息传递和状态同步，建议使用 <codeph>Signaling</codeph>。
+            <note props="ios">如果你需要一个更全面的解决方案来实现低延迟、高并发和可扩展的实时消息传递和状态同步，建议使用 <codeph>Signaling</codeph>。
+                <ul>
+                    <li>必须在调用 <xref keyref="createDataStream2"/> 并加入频道后调用此方法。</li>
+                    <li>此方法仅适用于主播。</li>
+                </ul>
+            </note>
+            <note props="mac">如果你需要一个更全面的解决方案来实现低延迟、高并发和可扩展的实时消息传递和状态同步，建议使用 <codeph>Signaling</codeph>。
                 <ul>
                     <li>必须在调用 <xref keyref="createDataStream2"/> 并加入频道后调用此方法。</li>
                     <li>此方法仅适用于主播。</li>
@@ -66,11 +78,17 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="related" deliveryTarget="details">
             <title>相关回调</title>
@@ -99,11 +117,19 @@
                     <pt>message</pt>
                     <pd>要发送的消息内容。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>streamId</pt>
                     <pd>数据流 ID。你可以通过调用 <xref keyref="createDataStream2"/> 获取该 ID。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>data</pt>
+                    <pd>要发送的消息。详见 <codeph>NSData</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>streamId</pt>
+                    <pd>数据流 ID。你可以通过调用 <xref keyref="createDataStream2"/> 获取该 ID。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>data</pt>
                     <pd>要发送的消息。详见 <codeph>NSData</codeph>。</pd>
                 </plentry>
@@ -111,7 +137,25 @@
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

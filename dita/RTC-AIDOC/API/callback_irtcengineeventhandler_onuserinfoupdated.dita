@@ -32,20 +32,26 @@
             </dl>
             <p props="cpp">远端用户加入频道后，SDK 会获取该用户的用户 ID 和用户账号，并将其缓存在映射表中，然后在本地客户端触发该回调。</p>
             <p props="android">当远端用户加入频道后，SDK 会获取该用户的用户 ID 和用户账号，并将其缓存在映射表中，然后在本地客户端触发该回调。</p>
-            <p props="ios mac">远端用户加入频道后，SDK 会获取该远端用户的用户 ID 和用户账号，并将其缓存在映射表对象中，然后在本地客户端触发该回调。</p>
+            <p props="ios">远端用户加入频道后，SDK 会获取该远端用户的用户 ID 和用户账号，并将其缓存在映射表对象中，然后在本地客户端触发该回调。</p>
+            <p props="mac">远端用户加入频道后，SDK 会获取该远端用户的用户 ID 和用户账号，并将其缓存在映射表对象中，然后在本地客户端触发该回调。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
-            <p props="android ios mac">该回调在远端用户加入频道后，SDK 获取到其用户 ID 和用户账号时被触发。</p>
+            <p props="android">该回调在远端用户加入频道后，SDK 获取到其用户 ID 和用户账号时被触发。</p>
+            <p props="ios">该回调在远端用户加入频道后，SDK 获取到其用户 ID 和用户账号时被触发。</p>
+            <p props="mac">该回调在远端用户加入频道后，SDK 获取到其用户 ID 和用户账号时被触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
                     <pt>uid</pt>
                     <pd>远端用户的用户 ID。</pd>
                 </plentry>
@@ -54,14 +60,34 @@
                     <pd>包含远端用户的用户 ID 和用户账号信息的对象。详见 <xref keyref="UserInfo"/>。</pd>
                 </plentry>
                 <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>远端用户的用户 ID。</pd>
+                </plentry>
+                <plentry props="android">
                     <pt>userInfo</pt>
                     <pd>包含远端用户的用户 ID 和用户账号信息。详见 <xref keyref="UserInfo"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>engine</pt>
                     <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>uid</pt>
+                    <pd>远端用户的用户 ID。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>userInfo</pt>
+                    <pd>包含远端用户的用户 ID 和用户账号的对象。详见 <xref keyref="UserInfo"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>远端用户的用户 ID。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>userInfo</pt>
                     <pd>包含远端用户的用户 ID 和用户账号的对象。详见 <xref keyref="UserInfo"/>。</pd>
                 </plentry>

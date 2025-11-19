@@ -26,15 +26,22 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">在空间音效场景中，如果调用 <xref keyref="setHeadphoneEQPreset"/> 后未达到预期的耳机均衡效果，可以通过调用该方法进一步调整。</p>
             <p props="android">如果调用 <xref keyref="setHeadphoneEQPreset"/> 后未达到预期效果，可以调用 <xref keyref="setHeadphoneEQParameters"/> 进一步调整耳机均衡器的低频和高频参数。</p>
-            <p props="ios mac">如果你调用 <xref keyref="setHeadphoneEQPreset"/> 方法后未达到预设的耳机均衡效果，可以通过调用该方法进一步调整耳机均衡效果。</p>
+            <p props="ios">如果你调用 <xref keyref="setHeadphoneEQPreset"/> 方法后未达到预设的耳机均衡效果，可以通过调用该方法进一步调整耳机均衡效果。</p>
+            <p props="mac">如果你调用 <xref keyref="setHeadphoneEQPreset"/> 方法后未达到预设的耳机均衡效果，可以通过调用该方法进一步调整耳机均衡效果。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -43,7 +50,7 @@
                     <pt>lowGain</pt>
                     <pd>耳机均衡器的低频参数，取值范围为 [-10, 10]。值越大，声音越浑厚。</pd>
                 </plentry>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>highGain</pt>
                     <pd>耳机均衡器的高频参数，取值范围为 [-10, 10]。值越大，声音越清晰。</pd>
                 </plentry>
@@ -51,11 +58,23 @@
                     <pt>lowGain</pt>
                     <pd>耳机均衡器的低频参数，取值范围为 [-10, 10]。值越大，声音越深沉。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="android">
+                    <pt>highGain</pt>
+                    <pd>耳机均衡器的高频参数，取值范围为 [-10, 10]。值越大，声音越清晰。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>lowGain</pt>
                     <pd>耳机均衡器的低频参数。取值范围为 [-10, 10]。值越大，声音越浑厚。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>highGain</pt>
+                    <pd>耳机均衡器的高频参数。取值范围为 [-10, 10]。值越大，声音越清晰。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>lowGain</pt>
+                    <pd>耳机均衡器的低频参数。取值范围为 [-10, 10]。值越大，声音越浑厚。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>highGain</pt>
                     <pd>耳机均衡器的高频参数。取值范围为 [-10, 10]。值越大，声音越清晰。</pd>
                 </plentry>
@@ -83,7 +102,17 @@
                     </li>
                 </ul>
             </p>
-            <p props="ios mac">
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。
+                        <ul>
+                            <li>-1：发生通用错误（无明确原因）。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。

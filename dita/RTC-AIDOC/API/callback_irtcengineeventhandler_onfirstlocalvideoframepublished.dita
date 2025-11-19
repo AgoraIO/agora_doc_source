@@ -45,7 +45,15 @@
             <title>触发时机</title>
             <p props="cpp">当首帧本地视频发布时触发。</p>
             <p props="android">该回调在本地视频首帧发布时被触发。</p>
-            <p props="ios mac">该回调在发布首帧本地视频时触发，触发时机包括：
+            <p props="ios">该回调在发布首帧本地视频时触发，触发时机包括：
+                <ul>
+                    <li>启用视频模块并调用 <codeph>joinChannelByToken</codeph> 成功加入频道；</li>
+                    <li>依次调用 <codeph>muteLocalVideoStream:YES</codeph> 和 <codeph>muteLocalVideoStream:NO</codeph>；</li>
+                    <li>依次调用 <xref keyref="disableVideo"/> 和 <xref keyref="enableVideo"/>；</li>
+                    <li>调用 <codeph>pushExternalVideoFrame</codeph> 成功向 SDK 推送视频帧。</li>
+                </ul>
+            </p>
+            <p props="mac">该回调在发布首帧本地视频时触发，触发时机包括：
                 <ul>
                     <li>启用视频模块并调用 <codeph>joinChannelByToken</codeph> 成功加入频道；</li>
                     <li>依次调用 <codeph>muteLocalVideoStream:YES</codeph> 和 <codeph>muteLocalVideoStream:NO</codeph>；</li>
@@ -56,7 +64,10 @@
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -77,15 +88,27 @@
                     <pt>elapsed</pt>
                     <pd>从本地用户调用 <codeph>joinChannel</codeph> 成功加入频道到该回调触发的时间（毫秒）。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>engine</pt>
                     <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>elapsed</pt>
                     <pd>从调用 <codeph>joinChannelByToken</codeph> 加入频道到该回调被触发的时间间隔（毫秒）。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>sourceType</pt>
+                    <pd>视频源的类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>elapsed</pt>
+                    <pd>从调用 <codeph>joinChannelByToken</codeph> 加入频道到该回调被触发的时间间隔（毫秒）。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>sourceType</pt>
                     <pd>视频源的类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
                 </plentry>

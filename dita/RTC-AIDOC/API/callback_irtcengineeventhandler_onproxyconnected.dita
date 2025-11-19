@@ -26,39 +26,52 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp"><xref keyref="onProxyConnected"/> 回调用于监听 SDK 连接代理的状态。当用户调用 <xref keyref="setCloudProxy"/> 并成功加入频道后，SDK 会触发该回调，报告用户 ID、连接的代理类型，以及从调用 <codeph>joinChannel</codeph> 到触发该回调所经历的时间（毫秒）。</p>
             <p props="android">当用户调用 <xref keyref="setCloudProxy"/> 并成功加入频道后，SDK 会触发该回调，报告用户 ID、连接的代理类型，以及从调用 <codeph>joinChannel</codeph> 到触发该回调所经历的时间（毫秒）。</p>
-            <p props="ios mac">你可以使用该回调监听 SDK 的代理连接状态。例如，当你调用 <xref keyref="setCloudProxy"/> 并成功加入频道后，SDK 会触发该回调，上报用户 ID、连接的代理类型，以及从调用 <codeph>joinChannelByToken</codeph> 到触发该回调所经历的时间（毫秒）。</p>
+            <p props="ios">你可以使用该回调监听 SDK 的代理连接状态。例如，当你调用 <xref keyref="setCloudProxy"/> 并成功加入频道后，SDK 会触发该回调，上报用户 ID、连接的代理类型，以及从调用 <codeph>joinChannelByToken</codeph> 到触发该回调所经历的时间（毫秒）。</p>
+            <p props="mac">你可以使用该回调监听 SDK 的代理连接状态。例如，当你调用 <xref keyref="setCloudProxy"/> 并成功加入频道后，SDK 会触发该回调，上报用户 ID、连接的代理类型，以及从调用 <codeph>joinChannelByToken</codeph> 到触发该回调所经历的时间（毫秒）。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
             <p props="android">该回调在用户调用 <xref keyref="setCloudProxy"/> 并成功加入频道后被触发。</p>
-            <p props="ios mac">该回调在你调用 <xref keyref="setCloudProxy"/> 并成功加入频道后被触发。</p>
+            <p props="ios">该回调在你调用 <xref keyref="setCloudProxy"/> 并成功加入频道后被触发。</p>
+            <p props="mac">该回调在你调用 <xref keyref="setCloudProxy"/> 并成功加入频道后被触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>channel</pt>
                     <pd>频道名。</pd>
                 </plentry>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
                     <pt>uid</pt>
                     <pd>用户 ID。</pd>
                 </plentry>
-                <plentry props="cpp ios">
+                <plentry props="cpp">
                     <pt>proxyType</pt>
                     <pd>连接的代理类型，详见 <xref keyref="PROXY_TYPE"/>。</pd>
                 </plentry>
-                <plentry props="cpp ios mac">
+                <plentry props="cpp">
                     <pt>localProxyIp</pt>
                     <pd>预留参数，暂未使用。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>elapsed</pt>
                     <pd>从调用 <codeph>joinChannel</codeph> 到触发该回调所经历的时间，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>channel</pt>
+                    <pd>频道名。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>proxyType</pt>
@@ -80,21 +93,53 @@
                     <pt>elapsed</pt>
                     <pd>从调用 <codeph>joinChannel</codeph> 到触发该回调所经历的时间（毫秒）。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>engine</pt>
                     <pd><xref keyref="IRtcEngine"/> 对象。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>channel</pt>
                     <pd>频道名称。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>proxyType</pt>
+                    <pd>连接的代理类型，详见 <xref keyref="PROXY_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>localProxyIp</pt>
+                    <pd>预留参数，暂未使用。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>elapsed</pt>
                     <pd>从调用 <codeph>joinChannelByToken</codeph> 到触发该回调所经历的时间（毫秒）。</pd>
                 </plentry>
                 <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>channel</pt>
+                    <pd>频道名称。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>proxyType</pt>
-                    <pd>连接的代理类型，详见 <codeph>AgoraProxyType</codeph>。</pd>
+                    <pd>连接的代理类型，详见 <xref keyref="PROXY_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>localProxyIp</pt>
+                    <pd>预留参数，暂未使用。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>elapsed</pt>
+                    <pd>从调用 <codeph>joinChannelByToken</codeph> 到触发该回调所经历的时间（毫秒）。</pd>
                 </plentry>
             </parml>
         </section>

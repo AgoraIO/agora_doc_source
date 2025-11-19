@@ -69,6 +69,35 @@
                     <pt>AgoraRtmpStreamingStateDisconnecting</pt>
                     <pd>（5）：SDK 正在断开与声网推流服务器和 CDN 的连接。当调用 <xref keyref="stopRtmpStream"/> 正常停止旁路推流时，SDK 会依次上报状态为 AgoraRtmpStreamingStateDisconnecting 和 AgoraRtmpStreamingStateIdle。</pd>
                 </plentry>
+                <plentry props="mac">
+                    <pt>AgoraRtmpStreamingStateIdle</pt>
+                    <pd>（0）：旁路推流未开始或已结束。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraRtmpStreamingStateConnecting</pt>
+                    <pd>（1）：正在连接推流服务器和 CDN 服务器。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraRtmpStreamingStateRunning</pt>
+                    <pd>（2）：RTMP 或 RTMPS 推流已发布。SDK 成功发布 RTMP 或 RTMPS 推流后返回该状态。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraRtmpStreamingStateRecovering</pt>
+                    <pd>（3）：RTMP 或 RTMPS 推流正在恢复。当 CDN 异常或推流中断时，SDK 会尝试恢复推流并返回该状态。
+                        <ul>
+                            <li>如果恢复成功，将返回 AgoraRtmpStreamingStateRunning（2）。</li>
+                            <li>如果在 60 秒内未恢复或发生服务器错误，将返回 AgoraRtmpStreamingStateFailure（4）。如认为 60 秒过长，也可主动尝试重连。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraRtmpStreamingStateFailure</pt>
+                    <pd>（4）：RTMP 或 RTMPS 推流失败。你可以通过返回的错误码排查失败原因。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraRtmpStreamingStateDisconnecting</pt>
+                    <pd>（5）：SDK 正在断开与声网推流服务器和 CDN 的连接。当调用 <xref keyref="stopRtmpStream"/> 正常停止旁路推流时，SDK 会依次上报状态为 AgoraRtmpStreamingStateDisconnecting 和 AgoraRtmpStreamingStateIdle。</pd>
+                </plentry>
             </parml>
         </section>
     </refbody>

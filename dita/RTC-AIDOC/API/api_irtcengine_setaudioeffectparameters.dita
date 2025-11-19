@@ -50,7 +50,18 @@
                     <li>调用 <codeph>setAudioProfile</codeph>，将 <codeph>profile</codeph> 参数设置为 <codeph>MUSIC_HIGH_QUALITY</codeph>（4）或 <codeph>MUSIC_HIGH_QUALITY_STEREO</codeph>（5）。</li>
                 </ul>
             </p>
-            <p props="ios mac">调用该方法可为发送音频流的本地用户设置以下参数：
+            <p props="ios">调用该方法可为发送音频流的本地用户设置以下参数：
+                <ul>
+                    <li>3D 人声效果：设置 3D 人声效果的循环周期。</li>
+                    <li>音高修正效果：设置音高修正效果的基本调式和主音。
+不同的歌曲有不同的调式和主音。声网建议将该方法与界面元素绑定，以便你交互式地调整音高修正效果。
+设置音效参数后，频道内所有用户都能听到效果。
+为了获得更好的人声效果，建议你在调用该方法前调用以下 API：</li>
+                    <li>调用 <xref keyref="setAudioScenario"/> 将音频场景设置为高音质音频场景，即 <codeph>AgoraAudioScenarioGameStreaming</codeph>（3）。</li>
+                    <li>调用 <xref keyref="setAudioProfile2"/> 将 <codeph>profile</codeph> 参数设置为 <codeph>AgoraAudioProfileMusicHighQuality</codeph>（4）或 <codeph>AgoraAudioProfileMusicHighQualityStereo</codeph>（5）。</li>
+                </ul>
+            </p>
+            <p props="mac">调用该方法可为发送音频流的本地用户设置以下参数：
                 <ul>
                     <li>3D 人声效果：设置 3D 人声效果的循环周期。</li>
                     <li>音高修正效果：设置音高修正效果的基本调式和主音。
@@ -102,11 +113,17 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -226,7 +243,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>param1</pt>
                     <pd>
                         <ul>
@@ -241,7 +258,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>param2</pt>
                     <pd>
                         <ul>
@@ -267,7 +284,7 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>preset</pt>
-                    <pd>SDK 预设音效的选项，详见 <codeph>AgoraAudioEffectPreset</codeph>：
+                    <pd>SDK 预设音效的选项，详见 <xref keyref="AUDIO_EFFECT_PRESET"/>：
                         <ul>
                             <li><codeph>AgoraAudioEffectPresetRoomAcous3DVoice</codeph>（10）：3D 人声效果。
                                 <ul>
@@ -279,11 +296,68 @@
                         </ul>
                     </pd>
                 </plentry>
+                <plentry props="mac">
+                    <pt>param1</pt>
+                    <pd>
+                        <ul>
+                            <li>如果将 <codeph>preset</codeph> 设置为 <codeph>AgoraAudioEffectPresetRoomAcous3DVoice</codeph>，该参数表示 3D 人声效果的循环周期，单位为秒，取值范围为 [1, 60]。默认值为 10，表示声音每 10 秒环绕一次。</li>
+                            <li>如果将 <codeph>preset</codeph> 设置为 <codeph>AgoraAudioEffectPresetPitchCorrection</codeph>，该参数表示音高修正效果的基本调式：
+                                <ul>
+                                    <li><codeph>1</codeph>：（默认）自然大调。</li>
+                                    <li><codeph>2</codeph>：自然小调。</li>
+                                    <li><codeph>3</codeph>：日本五声音阶。</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>param2</pt>
+                    <pd>
+                        <ul>
+                            <li>如果将 <codeph>preset</codeph> 设置为 <codeph>AgoraAudioEffectPresetRoomAcous3DVoice</codeph>，你需要将该参数设置为 <codeph>0</codeph>。</li>
+                            <li>如果将 <codeph>preset</codeph> 设置为 <codeph>AgoraAudioEffectPresetPitchCorrection</codeph>，该参数表示音高修正效果的主音：
+                                <ul>
+                                    <li><codeph>1</codeph>：A</li>
+                                    <li><codeph>2</codeph>：A#</li>
+                                    <li><codeph>3</codeph>：B</li>
+                                    <li><codeph>4</codeph>：（默认）C</li>
+                                    <li><codeph>5</codeph>：C#</li>
+                                    <li><codeph>6</codeph>：D</li>
+                                    <li><codeph>7</codeph>：D#</li>
+                                    <li><codeph>8</codeph>：E</li>
+                                    <li><codeph>9</codeph>：F</li>
+                                    <li><codeph>10</codeph>：F#</li>
+                                    <li><codeph>11</codeph>：G</li>
+                                    <li><codeph>12</codeph>：G#</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

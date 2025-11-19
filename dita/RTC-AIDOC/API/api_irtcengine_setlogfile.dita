@@ -25,19 +25,26 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">用于指定 SDK 输出日志的文件路径。日志文件记录 SDK 运行过程中的所有日志数据。你需要在调用 <xref keyref="initialize_IMusicContentCenter"/> 后立即调用该方法，否则日志输出可能不完整。</p>
-            <p props="ios mac">指定一个 SDK 输出日志文件。该日志文件记录 SDK 运行过程中的所有日志数据。</p>
+            <p props="ios">指定一个 SDK 输出日志文件。该日志文件记录 SDK 运行过程中的所有日志数据。</p>
+            <p props="mac">指定一个 SDK 输出日志文件。该日志文件记录 SDK 运行过程中的所有日志数据。</p>
             <note props="cpp">请确保日志文件所在目录已存在且可写。</note>
-            <note props="android ios mac">确保日志文件所在的目录存在且可写。</note>
+            <note props="android">确保日志文件所在的目录存在且可写。</note>
+            <note props="ios">确保日志文件所在的目录存在且可写。</note>
+            <note props="mac">确保日志文件所在的目录存在且可写。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p props="cpp">该方法需在调用 <xref keyref="initialize_IMusicContentCenter"/> 后立即调用，否则输出日志可能不完整。</p>
             <p props="android">该方法需在调用 <xref keyref="create_ILocalSpatialAudioEngine"/> 后立即调用，否则输出日志可能不完整。</p>
-            <p props="ios mac">该方法需在调用 <xref keyref="initialize"/> 后立即调用，否则输出的日志可能不完整。</p>
+            <p props="ios">该方法需在调用 <xref keyref="initialize"/> 后立即调用，否则输出的日志可能不完整。</p>
+            <p props="mac">该方法需在调用 <xref keyref="initialize"/> 后立即调用，否则输出的日志可能不完整。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -50,7 +57,11 @@
                     <pt>filePath</pt>
                     <pd>日志文件的完整路径，日志文件使用 UTF-8 编码。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>filePath</pt>
+                    <pd>日志文件的完整路径。日志文件使用 UTF-8 编码。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>filePath</pt>
                     <pd>日志文件的完整路径。日志文件使用 UTF-8 编码。</pd>
                 </plentry>
@@ -58,7 +69,25 @@
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

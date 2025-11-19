@@ -27,16 +27,21 @@
             <p props="cpp">调用 <xref keyref="preloadEffect"/> 将音效文件加载到内存后，如需释放该音效文件，可调用该方法。</p>
             <p props="android">调用 <codeph>preloadEffect</codeph> 将音效文件加载到内存后，如需释放该音效文件，可调用 <xref keyref="unloadEffect"/>。</p>
             <p props="ios">调用 <xref keyref="preloadEffect2"/> 方法将音效文件加载到内存后，如需释放该音效文件，可调用 <xref keyref="unloadEffect"/> 方法。</p>
-            <p props="mac">调用 <codeph>preloadEffect:filePath:</codeph> 方法将音效文件加载到内存后，如需释放该音效文件，可调用 <xref keyref="unloadEffect"/> 方法。</p>
+            <p props="mac">调用 <xref keyref="preloadEffect2"/> 方法将音效文件加载到内存后，如需释放该音效文件，可调用 <xref keyref="unloadEffect"/> 方法。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp">你可以在加入频道前或加入频道后调用此方法。</p>
-            <p props="ios mac">你可以在加入频道前或后调用此方法。</p>
+            <p props="cpp">你可以在加入频道前或加入频道后调用此方法。</p>
+            <p props="android">你可以在加入频道前或加入频道后调用此方法。</p>
+            <p props="ios">你可以在加入频道前或后调用此方法。</p>
+            <p props="mac">你可以在加入频道前或后调用此方法。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -49,7 +54,11 @@
                     <pt>soundId</pt>
                     <pd>音效的 ID。每个音效都有唯一的 ID。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>soundId</pt>
+                    <pd>音效的 ID。每个音效均有唯一的 ID。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>soundId</pt>
                     <pd>音效的 ID。每个音效均有唯一的 ID。</pd>
                 </plentry>
@@ -63,7 +72,19 @@
                     <li>&lt; 0: 方法调用失败。</li>
                 </ul>
             </p>
-            <p props="android ios mac">
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

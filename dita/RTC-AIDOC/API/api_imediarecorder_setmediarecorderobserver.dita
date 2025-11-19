@@ -25,7 +25,19 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
-                <dlentry props="android cpp ios mac">
+                <dlentry props="cpp">
+                    <dt>自从</dt>
+                    <dd>自 v4.0.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>自从</dt>
+                    <dd>自 v4.0.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="ios">
+                    <dt>自从</dt>
+                    <dd>自 v4.0.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="mac">
                     <dt>自从</dt>
                     <dd>自 v4.0.0 版本新增。</dd>
                 </dlentry>
@@ -38,7 +50,10 @@
                 </ul>
             </p>
             <p props="android">该方法用于设置音视频录制的回调，以便在录制过程中获取录制状态和相关信息。</p>
-            <p props="ios mac">该方法用于设置音视频录制的回调，使你在录制过程中能够获取音视频流的录制状态和相关信息。
+            <p props="ios">该方法用于设置音视频录制的回调，使你在录制过程中能够获取音视频流的录制状态和相关信息。
+
+在调用该方法前，请确保已创建并初始化 <xref keyref="IRtcEngine"/> 对象，并使用 <xref keyref="createMediaRecorder"/> 创建录制器实例。</p>
+            <p props="mac">该方法用于设置音视频录制的回调，使你在录制过程中能够获取音视频流的录制状态和相关信息。
 
 在调用该方法前，请确保已创建并初始化 <xref keyref="IRtcEngine"/> 对象，并使用 <xref keyref="createMediaRecorder"/> 创建录制器实例。</p>
             <note props="android">在调用该方法前，请确保：
@@ -50,20 +65,34 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>callback</pt>
                     <pd>音视频流录制的回调。详见 <xref keyref="IMediaRecorderObserver"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="android">
+                    <pt>callback</pt>
+                    <pd>音视频流录制的回调。详见 <xref keyref="IMediaRecorderObserver"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>delegate</pt>
+                    <pd>音视频流录制的回调。详见 <xref keyref="IMediaRecorderObserver"/>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>delegate</pt>
                     <pd>音视频流录制的回调。详见 <xref keyref="IMediaRecorderObserver"/>。</pd>
                 </plentry>
@@ -71,7 +100,7 @@
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="cpp ios mac">
+            <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>
@@ -79,6 +108,18 @@
             </p>
             <p props="android">0：方法调用成功。
 &lt; 0：方法调用失败。详见 <codeph>Error Codes</codeph>。</p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
         </section>
     </refbody>
 </reference>

@@ -49,6 +49,26 @@
                     </strow>
                 </simpletable>
             </p>
+            <p props="mac">
+                <simpletable>
+                    <sthead>
+                        <stentry>预设音效效果</stentry>
+                        <stentry><codeph>profile</codeph></stentry>
+                    </sthead>
+                    <strow>
+                        <stentry>
+                            <ul>
+                                <li>AgoraAudioEffectPresetRoomAcousVirtualStereo - AgoraAudioEffectPresetRoomAcous3DVoice - AgoraAudioEffectPresetRoomAcousVirtualSurroundSound</li>
+                            </ul>
+                        </stentry>
+                        <stentry><codeph>AgoraAudioProfileMusicHighQualityStereo</codeph> 或 <codeph>AgoraAudioProfileMusicStandardStereo</codeph></stentry>
+                    </strow>
+                    <strow>
+                        <stentry>其他预设音效（不包括 <codeph>AgoraAudioEffectPresetOff</codeph>）</stentry>
+                        <stentry><codeph>AgoraAudioProfileMusicHighQuality</codeph> 或 <codeph>AgoraAudioProfileMusicHighQualityStereo</codeph></stentry>
+                    </strow>
+                </simpletable>
+            </p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>枚举值</title>
@@ -218,6 +238,90 @@
                     <pd>（0x02030200）：流行音乐风格音效。</pd>
                 </plentry>
                 <plentry props="ios">
+                    <pt>AgoraAudioEffectPresetPitchCorrection</pt>
+                    <pd>（0x02040100）：音高修正效果，基于自然 C 大调音阶修正用户音高。设置该效果后，可调用 <xref keyref="setAudioEffectParameters"/> 调整调音模式和主音音高。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraAudioEffectPresetOff</pt>
+                    <pd>（0x00000000）：关闭音效处理，使用原始声音。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraAudioEffectPresetRoomAcousticsKTV</pt>
+                    <pd>（0x02010100）：KTV 场景音效。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraAudioEffectPresetRoomAcousVocalConcer</pt>
+                    <pd>（0x02010200）：音乐厅场景音效。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraAudioEffectPresetRoomAcousStudio</pt>
+                    <pd>（0x02010300）：录音棚场景音效。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraAudioEffectPresetRoomAcousPhonograph</pt>
+                    <pd>（0x02010400）：老式留声机音效。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraAudioEffectPresetRoomAcousVirtualStereo</pt>
+                    <pd>（0x02010500）：虚拟立体声效果，将单声道音频渲染为立体声。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraAudioEffectPresetRoomAcousSpatial</pt>
+                    <pd>（0x02010600）：增强空间感的音效。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraAudioEffectPresetRoomAcousEthereal</pt>
+                    <pd>（0x02010700）：增强空灵感的音效。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraAudioEffectPresetRoomAcous3DVoice</pt>
+                    <pd>（0x02010800）：3D 音效，使声音围绕用户移动，默认循环周期为 10 秒。设置该效果后，可调用 <xref keyref="setAudioEffectParameters"/> 修改移动周期。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraAudioEffectPresetRoomAcousVirtualSurroundSound</pt>
+                    <pd>（0x02010900）：虚拟环绕音效，基于立体声通道生成模拟环绕声场。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraAudioEffectPresetRoomAcousticsChorus</pt>
+                    <pd>（0x02010D00）：合唱音效，增强人声的层次感和空间感，适用于合唱场景。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraAudioEffectPresetVoiceChangerEffectUncle</pt>
+                    <pd>（0x02020100）：中年男性音色。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraAudioEffectPresetVoiceChangerEffectOldMan</pt>
+                    <pd>（0x02020200）：年长男性音色。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraAudioEffectPresetVoiceChangerEffectBoy</pt>
+                    <pd>（0x02020300）：男孩音色。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraAudioEffectPresetVoiceChangerEffectSister</pt>
+                    <pd>（0x02020400）：年轻女性音色。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraAudioEffectPresetVoiceChangerEffectGirl</pt>
+                    <pd>（0x02020500）：女孩音色。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraAudioEffectPresetVoiceChangerEffectPigKin</pt>
+                    <pd>（0x02020600）：猪八戒音色，类似熊吼的声音。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraAudioEffectPresetVoiceChangerEffectHulk</pt>
+                    <pd>（0x02020700）：绿巨人音色。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraAudioEffectPresetStyleTransformationRnb</pt>
+                    <pd>（0x02030100）：R&amp;B 音乐风格音效。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraAudioEffectPresetStyleTransformationPopular</pt>
+                    <pd>（0x02030200）：流行音乐风格音效。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>AgoraAudioEffectPresetPitchCorrection</pt>
                     <pd>（0x02040100）：音高修正效果，基于自然 C 大调音阶修正用户音高。设置该效果后，可调用 <xref keyref="setAudioEffectParameters"/> 调整调音模式和主音音高。</pd>
                 </plentry>

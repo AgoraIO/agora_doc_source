@@ -78,7 +78,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>alpha</pt>
                     <pd>图像的透明度，取值范围为 [0.0, 1.0]：
                         <ul>
@@ -117,15 +117,24 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="android">
+                    <pt>alpha</pt>
+                    <pd>图像的透明度，取值范围为 [0.0, 1.0]：
+                        <ul>
+                            <li>0.0：完全透明。</li>
+                            <li>1.0：（默认）不透明。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>url</pt>
                     <pd>直播视频中图像的 HTTP 或 HTTPS URL 地址。最大长度为 1024 字节。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>rect</pt>
                     <pd>图像在视频帧中的位置和尺寸。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>zOrder</pt>
                     <pd>水印或背景图像的图层索引。
                         <ul>
@@ -135,7 +144,34 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>alpha</pt>
+                    <pd>水印或背景图像的透明度。取值范围为 [0.0, 1.0]：
+                        <ul>
+                            <li>0.0：完全透明。</li>
+                            <li>1.0：（默认）不透明。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>url</pt>
+                    <pd>直播视频中图像的 HTTP 或 HTTPS URL 地址。最大长度为 1024 字节。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>rect</pt>
+                    <pd>图像在视频帧中的位置和尺寸。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>zOrder</pt>
+                    <pd>水印或背景图像的图层索引。
+                        <ul>
+                            <li>当使用水印数组添加一个或多个水印时，必须设置为 [1, 255] 范围内的值，否则 SDK 会报错。</li>
+                            <li>其他情况下为可选，取值范围为 [0, 255]，默认值为 0。</li>
+                            <li>0 表示底层，255 表示顶层。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>alpha</pt>
                     <pd>水印或背景图像的透明度。取值范围为 [0.0, 1.0]：
                         <ul>

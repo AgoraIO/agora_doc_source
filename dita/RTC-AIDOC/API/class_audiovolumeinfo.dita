@@ -37,7 +37,8 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="ios mac">用于表示本地或远端用户的音量、语音活动状态和音高信息。</p>
+            <p props="ios">用于表示本地或远端用户的音量、语音活动状态和音高信息。</p>
+            <p props="mac">用于表示本地或远端用户的音量、语音活动状态和音高信息。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>属性</title>
@@ -69,7 +70,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="android cpp">
+                <plentry props="cpp">
                     <pt>voicePitch</pt>
                     <pd>本地用户的语音音高，取值范围为 0.0 到 4000.0。</pd>
                 </plentry>
@@ -95,7 +96,11 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="android">
+                    <pt>voicePitch</pt>
+                    <pd>本地用户的语音音高，取值范围为 0.0 到 4000.0。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>uid</pt>
                     <pd>用户 ID。 
                         <ul>
@@ -104,11 +109,11 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>volume</pt>
                     <pd>用户的音量，取值范围为 0（最低）到 255（最高）。如果本地用户开启了音频采集并调用 <codeph>muteLocalAudioStream</codeph> 设置为 <xref keyref="true"/> 以静音，则该值表示本地采集的音频信号的音量。如果用户调用了 <codeph>startAudioMixing</codeph>，则该值表示混音后的音量。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>vad</pt>
                     <pd>本地用户的语音活动状态。 
                         <ul>
@@ -117,7 +122,33 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>voicePitch</pt>
+                    <pd>本地用户的音高，取值范围为 0.0 到 4000.0。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>用户 ID。 
+                        <ul>
+                            <li>在本地用户的回调中，<codeph>uid</codeph> 为 0。 </li>
+                            <li>在远端用户的回调中，<codeph>uid</codeph> 为音量瞬时值最大的远端用户的用户 ID。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>volume</pt>
+                    <pd>用户的音量，取值范围为 0（最低）到 255（最高）。如果本地用户开启了音频采集并调用 <codeph>muteLocalAudioStream</codeph> 设置为 <xref keyref="true"/> 以静音，则该值表示本地采集的音频信号的音量。如果用户调用了 <codeph>startAudioMixing</codeph>，则该值表示混音后的音量。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>vad</pt>
+                    <pd>本地用户的语音活动状态。 
+                        <ul>
+                            <li>0：本地用户未说话。 </li>
+                            <li>1：本地用户正在说话。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>voicePitch</pt>
                     <pd>本地用户的音高，取值范围为 0.0 到 4000.0。</pd>
                 </plentry>

@@ -29,28 +29,45 @@
                     <dt>废弃</dt>
                     <dd>自 vX.X.X 版本废弃，请改用 <xref keyref="onLocalVideoStateChanged"/> 回调中的 <codeph>LOCAL_VIDEO_STREAM_STATE_STOPPED</codeph>。</dd>
                 </dlentry>
-                <dlentry props="android ios mac">
+                <dlentry props="android">
+                    <dt>废弃</dt>
+                    <dd>自 vX.X.X 版本废弃，请改用 <xref keyref="onLocalVideoStateChanged"/>。</dd>
+                </dlentry>
+                <dlentry props="ios">
+                    <dt>废弃</dt>
+                    <dd>自 vX.X.X 版本废弃，请改用 <xref keyref="onLocalVideoStateChanged"/>。</dd>
+                </dlentry>
+                <dlentry props="mac">
                     <dt>废弃</dt>
                     <dd>自 vX.X.X 版本废弃，请改用 <xref keyref="onLocalVideoStateChanged"/>。</dd>
                 </dlentry>
             </dl>
             <p props="android">你可以在该回调中更改视图的配置，例如在视图中显示其他图片。</p>
-            <p props="ios mac">该回调在视频停止播放时触发。你可以通过该回调更改视图的配置，例如在视图中显示其他图片。</p>
+            <p props="ios">该回调在视频停止播放时触发。你可以通过该回调更改视图的配置，例如在视图中显示其他图片。</p>
+            <p props="mac">该回调在视频停止播放时触发。你可以通过该回调更改视图的配置，例如在视图中显示其他图片。</p>
             <note props="cpp">你可以在视频停止播放后使用该回调更改视图配置，例如在视图中显示其他图片。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
             <p props="android">该回调在视频停止播放时被触发。</p>
-            <p props="ios mac">该回调在视频停止播放时触发。</p>
+            <p props="ios">该回调在视频停止播放时触发。</p>
+            <p props="mac">该回调在视频停止播放时触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>engine</pt>
                     <pd><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>

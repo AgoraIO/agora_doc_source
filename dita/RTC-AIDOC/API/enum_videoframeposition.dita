@@ -28,6 +28,23 @@
                         </ul>
                     </pd>
                 </plentry>
+                <plentry props="mac">
+                    <pt>AgoraVideoFramePositionPostCapture</pt>
+                    <pd>（1）：本地采集的视频数据在预处理后的位置，对应 <xref keyref="onCaptureVideoFrame"/> 回调。此位置的视频已应用视频预处理效果，可通过启用图像增强、虚拟背景或水印进行验证。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraVideoFramePositionPreRenderer</pt>
+                    <pd>（2）：渲染器前的位置，对应 <xref keyref="onRenderVideoFrame"/> 回调中的视频数据。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraVideoFramePositionPreEncoder</pt>
+                    <pd>（4）：编码器前的位置，对应 <xref keyref="onPreEncodeVideoFrame"/> 回调中的视频数据。此位置的视频已应用视频预处理和编码前处理效果。
+                        <ul>
+                            <li>若要验证视频预处理效果，可启用图像增强、虚拟背景或水印。</li>
+                            <li>若要验证编码前处理效果，可设置较低帧率（如 5 fps）。</li>
+                        </ul>
+                    </pd>
+                </plentry>
             </parml>
         </section>
     </refbody>

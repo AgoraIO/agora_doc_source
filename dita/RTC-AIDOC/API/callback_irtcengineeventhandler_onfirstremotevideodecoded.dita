@@ -33,7 +33,11 @@
                     <dt>废弃</dt>
                     <dd>该回调已废弃。请改用 <codeph>REMOTE_VIDEO_STATE_STARTING</codeph> 或 <codeph>REMOTE_VIDEO_STATE_DECODING</codeph>，并在 <xref keyref="onRemoteVideoStateChanged"/> 回调中处理。</dd>
                 </dlentry>
-                <dlentry props="ios mac">
+                <dlentry props="ios">
+                    <dt>废弃</dt>
+                    <dd>自 v4.5.0 版本废弃，请改用 <codeph>remoteVideoStateChangedOfUid</codeph>。</dd>
+                </dlentry>
+                <dlentry props="mac">
                     <dt>废弃</dt>
                     <dd>自 v4.5.0 版本废弃，请改用 <codeph>remoteVideoStateChangedOfUid</codeph>。</dd>
                 </dlentry>
@@ -54,7 +58,13 @@
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
             <p props="cpp">当远端用户加入频道并发送视频流，或在停止发送视频流 15 秒后重新发送时触发。中断的原因包括：远端用户离开频道、远端用户掉线、远端用户调用 <xref keyref="disableVideo"/> 关闭视频。</p>
-            <p props="ios mac">该回调在以下场景中被触发：
+            <p props="ios">该回调在以下场景中被触发：
+                <ul>
+                    <li>远端用户加入频道并发送视频流。</li>
+                    <li>远端用户停止发送视频流 15 秒后重新发送。中断的原因包括：远端用户离开频道、掉线，或调用 <xref keyref="disableVideo"/> 关闭视频。</li>
+                </ul>
+            </p>
+            <p props="mac">该回调在以下场景中被触发：
                 <ul>
                     <li>远端用户加入频道并发送视频流。</li>
                     <li>远端用户停止发送视频流 15 秒后重新发送。中断的原因包括：远端用户离开频道、掉线，或调用 <xref keyref="disableVideo"/> 关闭视频。</li>
@@ -63,7 +73,10 @@
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -88,7 +101,7 @@
                     <pt>elapsed</pt>
                     <pd>从本地用户调用 <codeph>joinChannel</codeph> 到触发该回调的时间（单位：毫秒）。</pd>
                 </plentry>
-                <plentry props="android ios mac">
+                <plentry props="android">
                     <pt>uid</pt>
                     <pd>发送视频流的远端用户 ID。</pd>
                 </plentry>
@@ -104,15 +117,35 @@
                     <pt>elapsed</pt>
                     <pd>从本地用户调用 <codeph>joinChannel</codeph> 加入频道到触发该回调的时间（单位为毫秒）。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>engine</pt>
                     <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>uid</pt>
+                    <pd>发送视频流的远端用户 ID。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>size</pt>
                     <pd>视频尺寸。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>elapsed</pt>
+                    <pd>从调用 <codeph>joinChannelByToken</codeph> 方法到触发该回调的时间（毫秒）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>发送视频流的远端用户 ID。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>size</pt>
+                    <pd>视频尺寸。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>elapsed</pt>
                     <pd>从调用 <codeph>joinChannelByToken</codeph> 方法到触发该回调的时间（毫秒）。</pd>
                 </plentry>

@@ -18,7 +18,12 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="ios" outputclass="language-objectivec">- (instancetype _Nonnull)initWithSize:(CGSize)size
-                            frameRate:(AgoraVideoFrameRate)frameRate
+                            frameRate:(NSInteger)frameRate
+                              bitrate:(NSInteger)bitrate
+                      orientationMode:(AgoraVideoOutputOrientationMode)orientationMode
+                           mirrorMode:(AgoraVideoMirrorMode)mirrorMode NS_SWIFT_NAME(init(size:frameRate:bitrate:orientationMode:mirrorMode:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (instancetype _Nonnull)initWithSize:(CGSize)size
+                            frameRate:(NSInteger)frameRate
                               bitrate:(NSInteger)bitrate
                       orientationMode:(AgoraVideoOutputOrientationMode)orientationMode
                            mirrorMode:(AgoraVideoMirrorMode)mirrorMode NS_SWIFT_NAME(init(size:frameRate:bitrate:orientationMode:mirrorMode:));</codeblock>
@@ -27,10 +32,12 @@
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
             <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -49,17 +56,38 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>orientationMode</pt>
-                    <pd>编码视频的方向，详见 <xref keyref="ORIENTATION_MODE"/>。</pd>
+                    <pd>编码视频的方向模式，详见 <xref keyref="ORIENTATION_MODE"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>mirrorMode</pt>
-                    <pd>本地视频流的镜像模式设置，仅影响远端用户看到的视频，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</pd>
+                    <pd>设置本地视频流的镜像模式，仅影响远端用户看到的视频，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>size</pt>
+                    <pd>视频分辨率。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>frameRate</pt>
+                    <pd>视频帧率，详见 <xref keyref="FRAME_RATE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>bitrate</pt>
+                    <pd>编码视频的码率。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>orientationMode</pt>
+                    <pd>编码视频的方向模式，详见 <xref keyref="ORIENTATION_MODE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>mirrorMode</pt>
+                    <pd>设置本地视频流的镜像模式，仅影响远端用户看到的视频，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="ios">方法调用成功，返回 <xref keyref="VideoEncoderConfiguration"/> 对象。</p>
+            <p props="ios">方法调用成功，返回初始化后的 <xref keyref="VideoEncoderConfiguration"/> 对象。</p>
+            <p props="mac">方法调用成功，返回初始化后的 <xref keyref="VideoEncoderConfiguration"/> 对象。</p>
         </section>
     </refbody>
 </reference>

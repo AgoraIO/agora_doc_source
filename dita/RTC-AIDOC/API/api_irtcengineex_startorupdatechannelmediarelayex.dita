@@ -25,7 +25,19 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
-                <dlentry props="android cpp ios mac">
+                <dlentry props="cpp">
+                    <dt>自从</dt>
+                    <dd>自 v4.2.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>自从</dt>
+                    <dd>自 v4.2.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="ios">
+                    <dt>自从</dt>
+                    <dd>自 v4.2.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="mac">
                     <dt>自从</dt>
                     <dd>自 v4.2.0 版本新增。</dd>
                 </dlentry>
@@ -37,7 +49,8 @@
                 </ul>
             </p>
             <p props="android">首次成功调用该方法会将媒体流从源频道转发到目标频道。若需将媒体流转发到其他频道，或退出当前的某个媒体流转发，可再次调用该方法以更新目标频道。该功能最多支持将媒体流转发到六个目标频道。</p>
-            <p props="ios mac">首次成功调用该方法会开始将媒体流从源频道转发到目标频道。若需将媒体流转发到其他频道，或退出当前的某个媒体流转发，可再次调用该方法更新目标频道。该功能最多支持将媒体流转发到六个目标频道。</p>
+            <p props="ios">首次成功调用该方法会开始将媒体流从源频道转发到目标频道。若需将媒体流转发到其他频道，或退出当前的某个媒体流转发，可再次调用该方法更新目标频道。该功能最多支持将媒体流转发到六个目标频道。</p>
+            <p props="mac">首次成功调用该方法会开始将媒体流从源频道转发到目标频道。若需将媒体流转发到其他频道，或退出当前的某个媒体流转发，可再次调用该方法更新目标频道。该功能最多支持将媒体流转发到六个目标频道。</p>
             <note props="cpp">
                 <ul>
                     <li>请在加入频道后调用该方法。</li>
@@ -54,7 +67,15 @@
                     <li>该 API 不支持字符串用户账号。</li>
                 </ul>
             </note>
-            <note props="ios mac">
+            <note props="ios">
+                <ul>
+                    <li>请在加入频道后调用该方法。</li>
+                    <li>该方法仅在你是极速直播频道中的主播时生效。</li>
+                    <li>跨频道媒体流转发功能需联系技术支持开启。</li>
+                    <li>该 API 不支持字符串用户账号。</li>
+                </ul>
+            </note>
+            <note props="mac">
                 <ul>
                     <li>请在加入频道后调用该方法。</li>
                     <li>该方法仅在你是极速直播频道中的主播时生效。</li>
@@ -65,11 +86,17 @@
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="related" deliveryTarget="details">
             <title>相关回调</title>
@@ -79,7 +106,13 @@
                     <li>若回调返回 <codeph>RELAY_STATE_FAILURE</codeph>（3），表示媒体流转发过程中发生异常。</li>
                 </ul>
             </p>
-            <p props="ios mac">成功调用该方法后，SDK 会触发 <xref keyref="onChannelMediaRelayStateChanged"/> 回调报告媒体流转发的状态。常见状态如下：
+            <p props="ios">成功调用该方法后，SDK 会触发 <xref keyref="onChannelMediaRelayStateChanged"/> 回调报告媒体流转发的状态。常见状态如下：
+                <ul>
+                    <li>若回调返回 <codeph>AgoraChannelMediaRelayStateRunning</codeph>（2）和 <codeph>AgoraChannelMediaRelayErrorNone</codeph>（0），表示 SDK 成功开始将媒体流从源频道转发到目标频道。</li>
+                    <li>若回调返回 <codeph>AgoraChannelMediaRelayStateFailure</codeph>（3），表示媒体流转发过程中发生异常。</li>
+                </ul>
+            </p>
+            <p props="mac">成功调用该方法后，SDK 会触发 <xref keyref="onChannelMediaRelayStateChanged"/> 回调报告媒体流转发的状态。常见状态如下：
                 <ul>
                     <li>若回调返回 <codeph>AgoraChannelMediaRelayStateRunning</codeph>（2）和 <codeph>AgoraChannelMediaRelayErrorNone</codeph>（0），表示 SDK 成功开始将媒体流从源频道转发到目标频道。</li>
                     <li>若回调返回 <codeph>AgoraChannelMediaRelayStateFailure</codeph>（3），表示媒体流转发过程中发生异常。</li>
@@ -93,7 +126,7 @@
                     <pt>configuration</pt>
                     <pd>媒体流转发的配置。详见 <xref keyref="ChannelMediaRelayConfiguration"/>。</pd>
                 </plentry>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
                     <pt>connection</pt>
                     <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
@@ -101,15 +134,31 @@
                     <pt>channelMediaRelayConfiguration</pt>
                     <pd>媒体流转发的配置。详见 <xref keyref="ChannelMediaRelayConfiguration"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="android">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>config</pt>
                     <pd>媒体流转发的配置。详见 <xref keyref="ChannelMediaRelayConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>config</pt>
+                    <pd>媒体流转发的配置。详见 <xref keyref="ChannelMediaRelayConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp">
+            <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。
@@ -121,7 +170,27 @@
                     </li>
                 </ul>
             </p>
-            <p props="ios mac">0：方法调用成功。
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。
+                        <ul>
+                            <li>-1：发生通用错误（无明确原因）。</li>
+                            <li>-2：参数无效。</li>
+                            <li>-8：内部状态错误，可能是因为用户不是主播。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="ios">0：方法调用成功。
+&lt; 0：方法调用失败。
+                <ul>
+                    <li>-1：发生通用错误（无明确原因）。</li>
+                    <li>-2：参数无效。</li>
+                    <li>-8：内部状态错误，可能是因为用户不是主播。</li>
+                </ul>
+            </p>
+            <p props="mac">0：方法调用成功。
 &lt; 0：方法调用失败。
                 <ul>
                     <li>-1：发生通用错误（无明确原因）。</li>

@@ -32,31 +32,64 @@
             </dl>
             <p props="cpp">当本地用户成功调用 <xref keyref="registerLocalUserAccount"/> 注册用户账号，或调用 <codeph>joinChannelWithUserAccount</codeph> 加入频道后，SDK 会触发该回调，并返回本地用户的用户 ID 和用户账号。</p>
             <p props="android">当本地用户成功调用 <xref keyref="registerLocalUserAccount"/> 方法注册用户账号，或调用 <codeph>joinChannelWithUserAccount</codeph> 方法加入频道后，SDK 会触发该回调，并返回本地用户的用户 ID 和用户账号。</p>
-            <p props="ios mac">当你成功调用 <codeph>registerLocalUserAccountWithAppID:userAccount:</codeph> 方法注册用户账号，或调用 <xref keyref="joinChannelWithUserAccount2"/> 方法加入频道后，SDK 会触发该回调，并返回你的用户 ID 和用户账号。</p>
+            <p props="ios">当你成功调用 <codeph>registerLocalUserAccountWithAppID:userAccount:</codeph> 方法注册用户账号，或调用 <xref keyref="joinChannelWithUserAccount2"/> 方法加入频道后，SDK 会触发该回调，并返回你的用户 ID 和用户账号。</p>
+            <p props="mac">当你成功调用 <codeph>registerLocalUserAccountWithAppID:userAccount:</codeph> 方法注册用户账号，或调用 <xref keyref="joinChannelWithUserAccount2"/> 方法加入频道后，SDK 会触发该回调，并返回你的用户 ID 和用户账号。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
             <p props="android">该回调在本地用户成功注册用户账号或加入频道后被触发。</p>
-            <p props="ios mac">该回调在你注册用户账号或加入频道成功后被触发。</p>
+            <p props="ios">该回调在你注册用户账号或加入频道成功后被触发。</p>
+            <p props="mac">该回调在你注册用户账号或加入频道成功后被触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
                     <pt>uid</pt>
                     <pd>本地用户的用户 ID。</pd>
                 </plentry>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
                     <pt>userAccount</pt>
                     <pd>本地用户的用户账号。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>本地用户的用户 ID。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>userAccount</pt>
+                    <pd>本地用户的用户账号。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>engine</pt>
                     <pd><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>uid</pt>
+                    <pd>本地用户的用户 ID。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>userAccount</pt>
+                    <pd>本地用户的用户账号。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>本地用户的用户 ID。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>userAccount</pt>
+                    <pd>本地用户的用户账号。</pd>
                 </plentry>
             </parml>
         </section>

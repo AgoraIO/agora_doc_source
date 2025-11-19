@@ -29,7 +29,19 @@ NS_SWIFT_NAME(addOrUpdateVideoEffect(nodeId:templateName:));</codeblock>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
-                <dlentry props="android cpp ios mac">
+                <dlentry props="cpp">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="ios">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="mac">
                     <dt>自从</dt>
                     <dd>自 v4.6.0 版本新增。</dd>
                 </dlentry>
@@ -52,7 +64,16 @@ addOrUpdateVideoEffect(`FILTER`, "template name");</codeblock>
                     </li>
                 </ul>
             </note>
-            <note props="ios mac">优先级规则：
+            <note props="ios">优先级规则：
+                <ul>
+                    <li>视频特效节点 <codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph> 的优先级高于 <codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph>。</li>
+                    <li>若要应用 <codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph>，必须先移除 <codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph>：
+                        <codeblock outputclass="language-objectivec">removeVideoEffect(VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP);
+addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codeblock>
+                    </li>
+                </ul>
+            </note>
+            <note props="mac">优先级规则：
                 <ul>
                     <li>视频特效节点 <codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph> 的优先级高于 <codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph>。</li>
                     <li>若要应用 <codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph>，必须先移除 <codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph>：
@@ -64,11 +85,17 @@ addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codebloc
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -95,7 +122,7 @@ addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codebloc
                     <pt>templateName</pt>
                     <pd>特效模板名称。如果设置为 <xref keyref="NULL"/> 或空字符串，SDK 会从资源包中加载默认参数配置。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>nodeId</pt>
                     <pd>视频特效节点的唯一标识符或标识符组合。例如：
                         <ul>
@@ -104,7 +131,20 @@ addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codebloc
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>templateName</pt>
+                    <pd>特效模板名称。如果设置为 <xref keyref="NULL"/> 或空字符串，SDK 会自动从资源包中加载默认参数配置。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>nodeId</pt>
+                    <pd>视频特效节点的唯一标识符或标识符组合。例如：
+                        <ul>
+                            <li>单个特效：<codeph>VIDEO_EFFECT_NODE_ID::BEAUTY</codeph>。</li>
+                            <li>组合特效：<codeph>VIDEO_EFFECT_NODE_ID::BEAUTY | VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph>。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>templateName</pt>
                     <pd>特效模板名称。如果设置为 <xref keyref="NULL"/> 或空字符串，SDK 会自动从资源包中加载默认参数配置。</pd>
                 </plentry>
@@ -112,7 +152,7 @@ addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codebloc
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="cpp ios mac">
+            <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>
@@ -122,6 +162,18 @@ addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codebloc
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见 <codeph>AgoraBaseConstants</codeph> 中的错误码。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
                 </ul>
             </p>
         </section>

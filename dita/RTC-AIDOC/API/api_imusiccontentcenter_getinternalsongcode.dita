@@ -18,23 +18,26 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int getInternalSongCode(int64_t songCode, const char* jsonOption, int64_t&amp; internalSongCode) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract long getInternalSongCode(long songCode, String jsonOption);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (NSInteger)getInternalSongCode:(NSInteger)songCode jsonOption:(NSString * _Nullable)jsonOption  NS_SWIFT_NAME(getInternalSongCode(songCode:jsonOption:));</codeblock>
-                <codeblock props="mac" outputclass="language-objectivec">- (NSInteger)getInternalSongCode:(NSInteger)songCode jsonOption:(NSString * _Nullable)jsonOption  NS_SWIFT_NAME(getInternalSongCode(songCode:jsonOption:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract long getInternalSongCode(long songCode, String jsonOption);</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">在播放音乐资源的副歌片段前，需调用该方法，结合参数 <codeph>jsonOption</codeph> 和音乐资源的 <codeph>songCode</codeph> 创建副歌片段的内部歌曲编码。该编码作为资源的唯一标识。获取该编码后，在调用打开、预加载或移除资源的方法时，将其作为 <codeph>songCode</codeph> 参数传入。</p>
+            <p props="ios">调用该方法可结合音乐资源的 <codeph>songCode</codeph> 和 <codeph>jsonOption</codeph> 参数，为该资源的副歌片段创建一个内部 ID。该 ID 是该资源的唯一标识。获取该 ID 后，你需要在调用打开、预加载或移除资源的方法时，将其作为 <codeph>songCode</codeph> 参数传入。</p>
             <p props="android">在播放音乐资源的副歌片段前，需调用该方法，结合音乐资源的 <codeph>songCode</codeph> 和 <codeph>jsonOption</codeph> 参数创建副歌片段的内部标识符。该标识符作为资源的唯一引用。在调用相关方法以打开、预加载或移除资源时，应将该标识符作为 <codeph>songCode</codeph> 参数传入。</p>
-            <p props="ios mac">调用该方法可结合音乐资源的 <codeph>songCode</codeph> 和 <codeph>jsonOption</codeph> 参数，为该资源的副歌片段创建一个内部 ID。该 ID 是该资源的唯一标识。获取该 ID 后，你需要在调用打开、预加载或移除资源的方法时，将其作为 <codeph>songCode</codeph> 参数传入。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android cpp ios mac">加入频道前后均可调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="ios">无。</p>
+            <p props="android">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -69,6 +72,30 @@
                     <pt>internalSongCode</pt>
                     <pd>输出参数，音乐资源的内部歌曲编码。</pd>
                 </plentry>
+                <plentry props="ios">
+                    <pt>songCode</pt>
+                    <pd>音乐资源的唯一标识。你可以通过调用 <xref keyref="getMusicCollectionByMusicChartId"/> 或 <xref keyref="searchMusic"/> 方法，并从 <xref keyref="onMusicCollectionResult"/> 回调中获取 <codeph>songCode</codeph>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>jsonOption</pt>
+                    <pd>扩展 JSON 字段，默认为 <xref keyref="NULL"/>。当前支持以下字段：
+                        <ul>
+                            <li><codeph>sceneType</codeph>：频道场景。
+                                <ul>
+                                    <li>1：直播场景：在线 K 歌房和背景音乐播放。</li>
+                                    <li>2：直播场景：背景音乐播放。</li>
+                                    <li>3：（默认）语聊场景：在线 K 歌房。</li>
+                                    <li>4：语聊场景：背景音乐播放。</li>
+                                    <li>5：VR 场景：在线 K 歌房和背景音乐播放。
+  &gt; 注意：声网会根据你在 <codeph>sceneType</codeph> 中指定的频道场景计费。不同的频道场景对应不同的计费标准，详见计费文档。若需切换频道场景，必须重新调用该方法并传入新的 <codeph>sceneType</codeph> 值。
+  示例：<codeph>{"sceneType":1}</codeph></li>
+                                </ul>
+                            </li>
+                            <li><codeph>highPart</codeph>：副歌片段的索引。你可以从 <xref keyref="onMusicCollectionResult"/> 回调中获取该索引并传入。索引从 0 开始。
+  示例：<codeph>{"format": {"highpart": 0}}</codeph></li>
+                        </ul>
+                    </pd>
+                </plentry>
                 <plentry props="android">
                     <pt>songCode</pt>
                     <pd>音乐资源的标识符。可通过调用 <codeph>getMusicCollectionByMusicChartId</codeph> 或 <codeph>searchMusic</codeph> 获取，并从这两个方法触发的 <xref keyref="onMusicCollectionResult"/> 回调中获取 <codeph>songCode</codeph>。</pd>
@@ -89,30 +116,6 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
-                    <pt>songCode</pt>
-                    <pd>音乐资源的唯一标识。你可以通过调用 <xref keyref="getMusicCollectionByMusicChartId"/> 或 <xref keyref="searchMusic"/> 方法，并从 <xref keyref="onMusicCollectionResult"/> 回调中获取 <codeph>songCode</codeph>。</pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>jsonOption</pt>
-                    <pd>扩展 JSON 字段，默认为 <xref keyref="NULL"/>。当前支持以下字段：
-                        <ul>
-                            <li><codeph>sceneType</codeph>：频道场景。
-                                <ul>
-                                    <li>1：直播场景：在线 K 歌房和背景音乐播放。</li>
-                                    <li>2：直播场景：背景音乐播放。</li>
-                                    <li>3：（默认）语聊场景：在线 K 歌房。</li>
-                                    <li>4：语聊场景：背景音乐播放。</li>
-                                    <li>5：VR 场景：在线 K 歌房和背景音乐播放。
-  &gt; 注意：声网会根据你在 <codeph>sceneType</codeph> 中指定的频道场景计费。不同的频道场景对应不同的计费标准，详见计费文档。若需切换频道场景，必须重新调用该方法并传入新的 <codeph>sceneType</codeph> 值。
-  示例：<codeph>{"sceneType":1}</codeph></li>
-                                </ul>
-                            </li>
-                            <li><codeph>highPart</codeph>：副歌片段的索引。你可以从 <xref keyref="onMusicCollectionResult"/> 回调中获取该索引并传入。索引从 0 开始。
-  示例：<codeph>{"format": {"highpart": 0}}</codeph></li>
-                        </ul>
-                    </pd>
-                </plentry>
             </parml>
         </section>
         <section id="return_values">
@@ -123,16 +126,16 @@
                     <li>&lt; 0：方法调用失败。详见错误码及其解决建议。</li>
                 </ul>
             </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见错误码文档获取详细信息和排查建议。</li>
+                </ul>
+            </p>
             <p props="android">
                 <ul>
                     <li>方法调用成功，返回创建的音乐资源内部标识符。</li>
                     <li>&lt; 0：方法调用失败。详见 <codeph>Error Codes</codeph>。</li>
-                </ul>
-            </p>
-            <p props="ios mac">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见错误码文档获取详细信息和排查建议。</li>
                 </ul>
             </p>
         </section>

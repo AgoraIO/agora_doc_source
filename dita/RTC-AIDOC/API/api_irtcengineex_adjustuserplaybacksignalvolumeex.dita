@@ -30,22 +30,27 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">你可以调用该方法调整指定远端用户的播放音量。若需调整多个远端用户的播放音量，请分别多次调用该方法，每次针对一个远端用户。</p>
             <p props="android">你可以调用此方法调整指定远端用户的播放音量。若需调整多个远端用户的播放音量，请分别多次调用此方法，每次针对一个远端用户。</p>
-            <p props="ios mac">你可以调用此方法调节指定远端用户的播放音量。若需调节多个远端用户的播放音量，请分别多次调用此方法，每次针对一个远端用户。</p>
+            <p props="ios">你可以调用此方法调节指定远端用户的播放音量。若需调节多个远端用户的播放音量，请分别多次调用此方法，每次针对一个远端用户。</p>
+            <p props="mac">你可以调用此方法调节指定远端用户的播放音量。若需调节多个远端用户的播放音量，请分别多次调用此方法，每次针对一个远端用户。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
             <p props="cpp">请在调用 <xref keyref="joinChannelEx"/> 后调用该方法。</p>
             <p props="android">请在调用 <xref keyref="joinChannelEx"/> 后调用此方法。</p>
-            <p props="ios mac">请在调用 <xref keyref="joinChannelEx"/> 之后调用此方法。</p>
+            <p props="ios">请在调用 <xref keyref="joinChannelEx"/> 之后调用此方法。</p>
+            <p props="mac">请在调用 <xref keyref="joinChannelEx"/> 之后调用此方法。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
             <parml>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
                     <pt>uid</pt>
                     <pd>远端用户的用户 ID。</pd>
                 </plentry>
@@ -59,9 +64,13 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="cpp ios mac">
+                <plentry props="cpp">
                     <pt>connection</pt>
                     <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>远端用户的用户 ID。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>volume</pt>
@@ -77,7 +86,11 @@
                     <pt>connection</pt>
                     <pd>连接信息，详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>uid</pt>
+                    <pd>远端用户的用户 ID。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>volume</pt>
                     <pd>用户的音量，取值范围为 [0,400]。
                         <ul>
@@ -87,11 +100,51 @@
                         </ul>
                     </pd>
                 </plentry>
+                <plentry props="ios">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>远端用户的用户 ID。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>volume</pt>
+                    <pd>用户的音量，取值范围为 [0,400]。
+                        <ul>
+                            <li>0：静音。</li>
+                            <li>100：（默认）原始音量。</li>
+                            <li>400：原始音量的四倍（将音频信号放大四倍）。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android cpp ios mac">
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。</li>

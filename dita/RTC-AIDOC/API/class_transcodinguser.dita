@@ -48,12 +48,13 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="ios mac">用于设置每位主播在合流转码中的视频位置、图层顺序、透明度以及音频通道。</p>
+            <p props="ios">用于设置每位主播在合流转码中的视频位置、图层顺序、透明度以及音频通道。</p>
+            <p props="mac">用于设置每位主播在合流转码中的视频位置、图层顺序、透明度以及音频通道。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>属性</title>
             <parml>
-                <plentry props="android cpp ios mac">
+                <plentry props="cpp">
                     <pt>uid</pt>
                     <pd>主播的用户 ID。</pd>
                 </plentry>
@@ -106,6 +107,10 @@
                     </pd>
                 </plentry>
                 <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>主播的用户 ID。</pd>
+                </plentry>
+                <plentry props="android">
                     <pt>x</pt>
                     <pd>主播视频在合成画面中的 x 坐标（以画面左上角为原点，单位为像素）。取值范围为 [0, width]，其中 width 为 <xref keyref="LiveTranscoding"/> 中设置的画面宽度。</pd>
                 </plentry>
@@ -153,11 +158,15 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>uid</pt>
+                    <pd>主播的用户 ID。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>rect</pt>
                     <pd>主播视频在输出画面中的位置和大小。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>zOrder</pt>
                     <pd>主播视频的图层索引，取值范围为 [0, 100]。
                         <ul>
@@ -166,7 +175,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>alpha</pt>
                     <pd>主播视频的透明度，取值范围为 [0.0, 1.0]。
                         <ul>
@@ -175,7 +184,47 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
+                    <pt>audioChannel</pt>
+                    <pd>主播音频在输出音频中使用的音频通道。默认值为 0，取值范围为 [0, 5]。
+                        <ul>
+                            <li>0：（推荐）默认设置，最多支持双通道，取决于主播的上行音频。</li>
+                            <li>1：使用 FL 音频通道，若主播上行使用多通道，声网服务器会先混合为单声道。</li>
+                            <li>2：使用 FC 音频通道，若主播上行使用多通道，声网服务器会先混合为单声道。</li>
+                            <li>3：使用 FR 音频通道，若主播上行使用多通道，声网服务器会先混合为单声道。</li>
+                            <li>4：使用 BL 音频通道，若主播上行使用多通道，声网服务器会先混合为单声道。</li>
+                            <li>5：使用 BR 音频通道，若主播上行使用多通道，声网服务器会先混合为单声道。</li>
+                            <li>0xFF 或大于 5 的值：静音该主播音频，声网服务器会移除该主播音频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>主播的用户 ID。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>rect</pt>
+                    <pd>主播视频在输出画面中的位置和大小。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>zOrder</pt>
+                    <pd>主播视频的图层索引，取值范围为 [0, 100]。
+                        <ul>
+                            <li>0：（默认）主播视频处于底层。</li>
+                            <li>100：主播视频处于顶层。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>alpha</pt>
+                    <pd>主播视频的透明度，取值范围为 [0.0, 1.0]。
+                        <ul>
+                            <li>0.0：完全透明。</li>
+                            <li>1.0：（默认）不透明。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>audioChannel</pt>
                     <pd>主播音频在输出音频中使用的音频通道。默认值为 0，取值范围为 [0, 5]。
                         <ul>

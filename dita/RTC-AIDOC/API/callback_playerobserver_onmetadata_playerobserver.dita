@@ -25,24 +25,41 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
-                <dlentry props="android cpp ios mac">
+                <dlentry props="cpp">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="ios">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="mac">
                     <dt>自从</dt>
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
             </dl>
             <p props="cpp">如果你需要从媒体流中获取元数据，必须先调用 <xref keyref="RegisterObserver_Player"/> 注册播放器观察者对象。</p>
             <p props="android">调用 <xref keyref="RegisterObserver_Player"/> 注册播放器观察者对象后，才能接收媒体流中的附加信息。</p>
-            <p props="ios mac">如果你需要从输入在线媒体流中获取元数据，必须先调用 <xref keyref="RegisterObserver_Player"/> 注册一个播放器观察者对象。</p>
+            <p props="ios">如果你需要从输入在线媒体流中获取元数据，必须先调用 <xref keyref="RegisterObserver_Player"/> 注册一个播放器观察者对象。</p>
+            <p props="mac">如果你需要从输入在线媒体流中获取元数据，必须先调用 <xref keyref="RegisterObserver_Player"/> 注册一个播放器观察者对象。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
             <p props="cpp">当 SDK 从正在播放的媒体流中解析出元数据后，会触发该回调报告元数据类型及其内容。</p>
             <p props="android">该回调在 SDK 解析播放器正在播放的媒体流中的附加信息后触发，报告数据类型及其具体内容。</p>
-            <p props="ios mac">该回调在 SDK 从输入在线媒体流中解析出元数据后触发，用于上报数据的类型和内容。</p>
+            <p props="ios">该回调在 SDK 从输入在线媒体流中解析出元数据后触发，用于上报数据的类型和内容。</p>
+            <p props="mac">该回调在 SDK 从输入在线媒体流中解析出元数据后触发，用于上报数据的类型和内容。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -51,7 +68,7 @@
                     <pt>type</pt>
                     <pd>元数据类型，详见 <codeph>PlayerMetadataType</codeph>。</pd>
                 </plentry>
-                <plentry props="cpp ios mac">
+                <plentry props="cpp">
                     <pt>data</pt>
                     <pd>解析后的元数据内容。</pd>
                 </plentry>
@@ -75,9 +92,17 @@
                     <pt>type</pt>
                     <pd>元数据的类型，详见 <xref keyref="RtePlayerMetadataType"/>。</pd>
                 </plentry>
+                <plentry props="ios">
+                    <pt>data</pt>
+                    <pd>解析后的元数据内容。</pd>
+                </plentry>
                 <plentry props="mac">
                     <pt>type</pt>
-                    <pd>元数据的类型，详见 <codeph>AgoraRtePlayerMetadataType</codeph>。</pd>
+                    <pd>元数据的类型，详见 <xref keyref="RtePlayerMetadataType"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>data</pt>
+                    <pd>解析后的元数据内容。</pd>
                 </plentry>
             </parml>
         </section>

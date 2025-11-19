@@ -19,24 +19,20 @@
             <p outputclass="codeblock">
                 <codeblock props="ios" outputclass="language-objectivec">- (NSArray&lt;AgoraLiveStreamAdvancedFeature*&gt;* _Nullable)getAdvancedFeatures NS_SWIFT_NAME(getAdvancedFeatures());</codeblock>
                 <codeblock props="android" outputclass="language-java">public Map&lt;String, Boolean&gt; getAdvancedFeatures()</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (NSArray&lt;AgoraLiveStreamAdvancedFeature*&gt;* _Nullable)getAdvancedFeatures NS_SWIFT_NAME(getAdvancedFeatures());</codeblock>
             </p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>
-            <p props="android ios">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>调用限制</title>
-            <p props="android ios">无。</p>
-        </section>
-        <section id="parameters" deliveryTarget="details">
-            <title>参数</title>
-            <parml>
-                <plentry props="{platform3}">
-                    <pt>{parameters.name}</pt>
-                    <pd>{parameters.desc}</pd>
-                </plentry>
-            </parml>
+            <p props="ios">无。</p>
+            <p props="android">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="return_values">
             <title>返回值</title>
@@ -50,6 +46,12 @@
                 <ul>
                     <li>方法调用成功，返回每个高级功能的名称及其启用状态的 <codeph>Map</codeph>。</li>
                     <li>方法调用失败，返回空的 <codeph>Map</codeph>。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>方法调用成功，返回包含每个高级功能名称及其启用状态的 <xref keyref="LiveStreamAdvancedFeature"/> 对象数组，详见 <xref keyref="LiveStreamAdvancedFeature"/>。</li>
+                    <li>方法调用失败，返回 <xref keyref="NULL"/>。</li>
                 </ul>
             </p>
         </section>

@@ -18,24 +18,25 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onMusicChartsResult(const char* requestId, agora_refptr&lt;MusicChartCollection&gt; result, MusicContentCenterStateReason reason) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">@CalledByNative void onMusicChartsResult(String requestId, MusicChartInfo[] list, int reason);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)onMusicChartsResult:(NSString *)requestId result:(NSArray&lt;AgoraMusicChartInfo*&gt; *)result reason:(AgoraMusicContentCenterStateReason)reason;</codeblock>
-                <codeblock props="mac" outputclass="language-objectivec">- (void)onMusicChartsResult:(NSString *)requestId result:(NSArray&lt;AgoraMusicChartInfo*&gt; *)result reason:(AgoraMusicContentCenterStateReason)reason;</codeblock>
+                <codeblock props="android" outputclass="language-java">@CalledByNative void onMusicChartsResult(String requestId, MusicChartInfo[] list, int reason);</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">调用 <xref keyref="getMusicCharts"/> 后，SDK 会触发该回调。</p>
+            <p props="ios">你调用 <xref keyref="getMusicCharts"/> 方法后，SDK 会触发该回调。</p>
             <p props="android">该回调在调用 <xref keyref="getMusicCharts"/> 后被触发。</p>
-            <p props="ios mac">你调用 <xref keyref="getMusicCharts"/> 方法后，SDK 会触发该回调。</p>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
+            <p props="ios">该回调在你调用 <xref keyref="getMusicCharts"/> 方法后被触发。</p>
             <p props="android">该回调在调用 <xref keyref="getMusicCharts"/> 方法后被触发。</p>
-            <p props="ios mac">该回调在你调用 <xref keyref="getMusicCharts"/> 方法后被触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="ios">无。</p>
+            <p props="android">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -48,7 +49,19 @@
                     <pt>result</pt>
                     <pd>当前可播放的音乐排行榜列表。详见 <xref keyref="MusicChartCollection"/>。</pd>
                 </plentry>
-                <plentry props="cpp ios">
+                <plentry props="cpp">
+                    <pt>reason</pt>
+                    <pd>请求的状态码。详见 <xref keyref="MusicContentCenterStateReason"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>requestId</pt>
+                    <pd>请求 ID，用于唯一标识该请求。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>result</pt>
+                    <pd>当前可播放的音乐排行榜列表。详见 <xref keyref="MusicChartInfo"/>。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>reason</pt>
                     <pd>请求的状态码。详见 <xref keyref="MusicContentCenterStateReason"/>。</pd>
                 </plentry>
@@ -80,18 +93,6 @@
                             <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_HTTP_INTERNAL</codeph> (7)：内部 HTTP 错误。请稍后重试。</li>
                         </ul>
                     </pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>requestId</pt>
-                    <pd>请求 ID，用于唯一标识该请求。</pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>result</pt>
-                    <pd>当前可播放的音乐排行榜列表。详见 <xref keyref="MusicChartInfo"/>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>reason</pt>
-                    <pd>请求的状态码。详见 <codeph>AgoraMusicContentCenterStateReason</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

@@ -25,19 +25,26 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="android">该回调在语音/视频通话频道中的远端用户或直播频道中的主播的音频状态发生变化时被触发，用于报告远端音频流的当前状态。</p>
-            <p props="ios mac">当语音/视频通话频道中的远端用户，或直播频道中的主播的音频状态发生变化时，SDK 会触发该回调以报告远端音频流的当前状态。</p>
+            <p props="ios">当语音/视频通话频道中的远端用户，或直播频道中的主播的音频状态发生变化时，SDK 会触发该回调以报告远端音频流的当前状态。</p>
+            <p props="mac">当语音/视频通话频道中的远端用户，或直播频道中的主播的音频状态发生变化时，SDK 会触发该回调以报告远端音频流的当前状态。</p>
             <note props="cpp">当通信场景下的用户或直播场景下的主播数量超过 32 时，该回调无法正常工作。</note>
             <note props="android">当频道中的用户（通信场景）或主播（直播场景）数量超过 32 时，该回调可能无法正常工作。</note>
-            <note props="ios mac">当频道中的用户（通信场景）或主播（直播频道）数量超过 32 时，该回调可能无法正常工作。</note>
+            <note props="ios">当频道中的用户（通信场景）或主播（直播频道）数量超过 32 时，该回调可能无法正常工作。</note>
+            <note props="mac">当频道中的用户（通信场景）或主播（直播频道）数量超过 32 时，该回调可能无法正常工作。</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>触发时机</title>
             <p props="cpp">当远端用户的音频状态发生变化时触发。</p>
-            <p props="android ios mac">该回调在远端用户的音频状态发生变化时被触发。</p>
+            <p props="android">该回调在远端用户的音频状态发生变化时被触发。</p>
+            <p props="ios">该回调在远端用户的音频状态发生变化时被触发。</p>
+            <p props="mac">该回调在远端用户的音频状态发生变化时被触发。</p>
         </section>
         <section id="restriction" deliveryTarget="details">
             <title>使用限制</title>
-            <p props="android cpp ios mac">无。</p>
+            <p props="cpp">无。</p>
+            <p props="android">无。</p>
+            <p props="ios">无。</p>
+            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details">
             <title>参数</title>
@@ -62,7 +69,7 @@
                     <pt>elapsed</pt>
                     <pd>从本地用户调用 <codeph>joinChannel</codeph> 到 SDK 触发该回调的时间（毫秒）。</pd>
                 </plentry>
-                <plentry props="android ios mac">
+                <plentry props="android">
                     <pt>uid</pt>
                     <pd>音频状态发生变化的远端用户 ID。</pd>
                 </plentry>
@@ -97,9 +104,13 @@
                     <pt>elapsed</pt>
                     <pd>从本地用户调用 <codeph>joinChannel</codeph> 方法到 SDK 触发该回调的时间（毫秒）。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>engine</pt>
                     <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>uid</pt>
+                    <pd>音频状态发生变化的远端用户 ID。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>state</pt>
@@ -109,17 +120,29 @@
                     <pt>reason</pt>
                     <pd>远端音频状态变化的原因，详见 <xref keyref="REMOTE_AUDIO_STATE_REASON"/>。</pd>
                 </plentry>
-                <plentry props="ios mac">
+                <plentry props="ios">
                     <pt>elapsed</pt>
                     <pd>从调用 <codeph>joinChannelByToken</codeph> 方法到 SDK 触发该回调的时间（毫秒）。</pd>
                 </plentry>
                 <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>音频状态发生变化的远端用户 ID。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>state</pt>
-                    <pd>远端音频的状态，详见 <codeph>AgoraAudioRemoteState</codeph>。</pd>
+                    <pd>远端音频的状态，详见 <xref keyref="REMOTE_AUDIO_STATE"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>reason</pt>
-                    <pd>远端音频状态变化的原因，详见 <codeph>AgoraAudioRemoteReason</codeph>。</pd>
+                    <pd>远端音频状态变化的原因，详见 <xref keyref="REMOTE_AUDIO_STATE_REASON"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>elapsed</pt>
+                    <pd>从调用 <codeph>joinChannelByToken</codeph> 方法到 SDK 触发该回调的时间（毫秒）。</pd>
                 </plentry>
             </parml>
         </section>
