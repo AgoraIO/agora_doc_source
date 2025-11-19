@@ -20,19 +20,19 @@
                 <codeblock props="cpp" outputclass="language-cpp">virtual int startPlaybackDeviceTest(const char *testAudioFilePath) = 0;</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="cpp">
             <p props="cpp">该方法用于测试本地音频播放设备是否正常工作。调用该方法后，SDK 会播放你指定的音频文件。如果你能听到声音，说明播放设备工作正常。调用该方法后，SDK 每 100 毫秒触发一次 <xref keyref="onAudioVolumeIndication_PlayerObserver"/> 回调，报告 <codeph>uid</codeph> = 1 及播放设备的音量信息。该方法与 <xref keyref="startEchoTest3"/> 的区别在于，<xref keyref="startPlaybackDeviceTest_IAudioDeviceManager"/> 仅检测本地音频播放设备是否正常，而 <xref keyref="startEchoTest3"/> 可同时检测音视频设备和网络状况。</p>
             <note props="cpp">请在加入频道前调用该方法。测试完成后，请调用 <xref keyref="stopPlaybackDeviceTest_IAudioDeviceManager"/> 停止测试，再加入频道。</note>
         </section>
-        <section id="timing" deliveryTarget="details">
+        <section id="timing" deliveryTarget="details" props="cpp">
             <title>调用时机</title>
             <p props="cpp">加入频道前后均可调用。</p>
         </section>
-        <section id="restriction" deliveryTarget="details">
+        <section id="restriction" deliveryTarget="details" props="cpp">
             <title>调用限制</title>
             <p props="cpp">无。</p>
         </section>
-        <section id="parameters" deliveryTarget="details">
+        <section id="parameters" deliveryTarget="details" props="cpp">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
@@ -41,7 +41,7 @@
                 </plentry>
             </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="cpp">
             <title>返回值</title>
             <p props="cpp">
                 <ul>

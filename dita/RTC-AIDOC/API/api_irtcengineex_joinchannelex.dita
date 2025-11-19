@@ -31,7 +31,7 @@
                 joinSuccess:(void(^ _Nullable)(NSString* _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock NS_SWIFT_NAME(joinChannelEx(byToken:connection:delegate:mediaOptions:joinSuccess:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
             <p props="cpp">你可以多次调用该方法加入多个频道。如果你希望从不同设备加入同一个频道，确保每个设备的用户 ID 不同。
 
 在多摄像头采集场景中，调用该方法后需要调用 <codeph>startPreview</codeph> 方法，并将 <codeph>sourceType</codeph> 设置为 <codeph>VIDEO_SOURCE_CAMERA_SECONDARY</codeph>，以确保第二路摄像头正常采集。</p>
@@ -63,27 +63,27 @@
                 </ul>
             </note>
         </section>
-        <section id="timing" deliveryTarget="details">
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">请在调用 <xref keyref="initialize_IMusicContentCenter"/> 方法后调用该方法。</p>
             <p props="android">请在调用 <xref keyref="create_ILocalSpatialAudioEngine"/> 方法之后调用该方法。</p>
             <p props="ios">请在调用 <xref keyref="initialize"/> 之后调用该方法。</p>
             <p props="mac">请在调用 <xref keyref="initialize"/> 之后调用该方法。</p>
         </section>
-        <section id="restriction" deliveryTarget="details">
+        <section id="restriction" deliveryTarget="details" props="android cpp ios mac">
             <title>调用限制</title>
             <p props="cpp">无。</p>
             <p props="android">无。</p>
             <p props="ios">无。</p>
             <p props="mac">无。</p>
         </section>
-        <section id="related" deliveryTarget="details">
+        <section id="related" deliveryTarget="details" props="cpp">
             <title>相关回调</title>
             <p props="cpp">成功调用该方法后，本地用户会触发 <xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/> 回调。
 远端用户会触发 <xref keyref="onUserJoined"/> 回调（当频道场景为 <codeph>COMMUNICATION</codeph>，或主播加入 <codeph>LIVE_BROADCASTING</codeph> 场景的频道时）。
 当由于网络状况不佳导致本地用户与声网服务器的连接中断时，SDK 会尝试重连服务器。当本地用户成功重回频道时，SDK 会触发本地用户的 <xref keyref="onRejoinChannelSuccess"/> 回调。</p>
         </section>
-        <section id="parameters" deliveryTarget="details">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
@@ -160,7 +160,7 @@
                 </plentry>
             </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="android cpp ios mac">
             <title>返回值</title>
             <p props="cpp">
                 <ul>

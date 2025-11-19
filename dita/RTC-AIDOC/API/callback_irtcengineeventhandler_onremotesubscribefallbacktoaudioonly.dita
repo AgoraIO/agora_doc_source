@@ -23,7 +23,7 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didRemoteSubscribeFallbackToAudioOnly:(BOOL)isFallbackOrRecover byUid:(NSUInteger)uid NS_SWIFT_NAME(rtcEngine(_:didRemoteSubscribeFallbackToAudioOnly:byUid:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
             <p props="cpp">如果你调用了 <xref keyref="setRemoteSubscribeFallbackOption"/> 并将 <codeph>option</codeph> 设置为 <codeph>STREAM_FALLBACK_OPTION_AUDIO_ONLY</codeph>，SDK 会在以下情况下触发该回调：
                 <ul>
                     <li>下行网络条件较差，已订阅的视频流被降级为纯音频流。</li>
@@ -53,20 +53,20 @@
             <note props="ios">一旦远端媒体流因网络较弱切换为低质量视频流，你可以在 <codeph>remoteVideoStats</codeph> 回调中监控高质量与低质量视频流之间的切换。</note>
             <note props="mac">一旦远端媒体流因网络较弱切换为低质量视频流，你可以在 <codeph>remoteVideoStats</codeph> 回调中监控高质量与低质量视频流之间的切换。</note>
         </section>
-        <section id="timing" deliveryTarget="details">
+        <section id="timing" deliveryTarget="details" props="android ios mac">
             <title>触发时机</title>
             <p props="android">该回调在远端媒体流因网络变化在音频流与视频流之间切换时被触发。</p>
             <p props="ios">该回调在远端媒体流因网络不佳降级为纯音频流，或在网络改善后恢复为视频流时被触发。</p>
             <p props="mac">该回调在远端媒体流因网络不佳降级为纯音频流，或在网络改善后恢复为视频流时被触发。</p>
         </section>
-        <section id="restriction" deliveryTarget="details">
+        <section id="restriction" deliveryTarget="details" props="android cpp ios mac">
             <title>使用限制</title>
             <p props="cpp">无。</p>
             <p props="android">无。</p>
             <p props="ios">无。</p>
             <p props="mac">无。</p>
         </section>
-        <section id="parameters" deliveryTarget="details">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">

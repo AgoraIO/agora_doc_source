@@ -23,7 +23,7 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (int)enableLocalAudio:(BOOL)enabled NS_SWIFT_NAME(enableLocalAudio(_:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
             <p props="cpp">该方法用于关闭或重新启用本地音频功能，从而停止或重新开始本地音频采集。
 该方法与 <xref keyref="muteLocalAudioStream"/> 的区别如下：
                 <ul>
@@ -61,27 +61,27 @@
                 </ul>
             </p>
         </section>
-        <section id="timing" deliveryTarget="details">
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">你可以在加入频道前或加入频道后调用该方法。在加入频道前调用该方法仅设置设备状态，并在加入频道后立即生效。</p>
             <p props="android">你可以在加入频道前或加入频道后调用该方法。在加入频道前调用该方法仅设置设备状态，并在加入频道后立即生效。</p>
             <p props="ios">你可以在加入频道前或加入频道后调用该方法。在加入频道前调用时，仅设置设备状态，加入频道后立即生效。</p>
             <p props="mac">你可以在加入频道前或加入频道后调用该方法。在加入频道前调用时，仅设置设备状态，加入频道后立即生效。</p>
         </section>
-        <section id="restriction" deliveryTarget="details">
+        <section id="restriction" deliveryTarget="details" props="android cpp ios mac">
             <title>调用限制</title>
             <p props="cpp">无。</p>
             <p props="android">无。</p>
             <p props="ios">无。</p>
             <p props="mac">无。</p>
         </section>
-        <section id="related" deliveryTarget="details">
+        <section id="related" deliveryTarget="details" props="cpp ios mac">
             <title>相关回调</title>
             <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onLocalAudioStateChanged"/> 回调，报告 <codeph>LOCAL_AUDIO_STREAM_STATE_STOPPED</codeph>（0）或 <codeph>LOCAL_AUDIO_STREAM_STATE_RECORDING</codeph>（1）。</p>
             <p props="ios">成功调用该方法后，SDK 会触发 <xref keyref="onLocalAudioStateChanged"/> 回调，报告 <codeph>AgoraAudioLocalStateStopped</codeph>（0）或 <codeph>AgoraAudioLocalStateRecording</codeph>（1）。</p>
             <p props="mac">成功调用该方法后，SDK 会触发 <xref keyref="onLocalAudioStateChanged"/> 回调，报告 <codeph>AgoraAudioLocalStateStopped</codeph>（0）或 <codeph>AgoraAudioLocalStateRecording</codeph>（1）。</p>
         </section>
-        <section id="parameters" deliveryTarget="details">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
@@ -122,7 +122,7 @@
                 </plentry>
             </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="android cpp ios mac">
             <title>返回值</title>
             <p props="cpp">
                 <ul>

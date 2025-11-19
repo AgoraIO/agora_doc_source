@@ -23,24 +23,24 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (BOOL)onLocalAudioSpectrum:(NSArray&lt;NSNumber *&gt; * _Nullable)audioSpectrumData NS_SWIFT_NAME(onLocalAudioSpectrum(_:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
             <p props="cpp">调用 <xref keyref="registerAudioSpectrumObserver"/> 注册 <xref keyref="IAudioSpectrumObserver"/> 接口并实现 <xref keyref="onLocalAudioSpectrum"/> 回调，同时调用 <xref keyref="enableAudioSpectrumMonitor"/> 启用音频频谱监测后，SDK 会按照设置的时间间隔，在编码前触发该回调，报告本地音频频谱数据。</p>
             <p props="android">在成功调用 <xref keyref="registerAudioSpectrumObserver"/> 实现 <xref keyref="onLocalAudioSpectrum"/> 回调，并调用 <xref keyref="enableAudioSpectrumMonitor"/> 启用音频频谱监测后，SDK 会按照你设置的时间间隔，在编码前触发该回调报告本地用户的音频频谱数据。</p>
             <p props="ios">成功调用 <xref keyref="registerAudioSpectrumObserver"/> 实现 <xref keyref="IAudioSpectrumObserver"/> 中的 <xref keyref="onLocalAudioSpectrum"/> 回调，并调用 <xref keyref="enableAudioSpectrumMonitor"/> 启用音频频谱监测后，SDK 会按照你设置的时间间隔触发该回调，在编码前报告接收到的远端音频数据频谱。</p>
             <p props="mac">成功调用 <xref keyref="registerAudioSpectrumObserver"/> 实现 <xref keyref="IAudioSpectrumObserver"/> 中的 <xref keyref="onLocalAudioSpectrum"/> 回调，并调用 <xref keyref="enableAudioSpectrumMonitor"/> 启用音频频谱监测后，SDK 会按照你设置的时间间隔触发该回调，在编码前报告接收到的远端音频数据频谱。</p>
         </section>
-        <section id="timing" deliveryTarget="details">
+        <section id="timing" deliveryTarget="details" props="android">
             <title>触发时机</title>
             <p props="android">该回调在启用音频频谱监测并设置时间间隔后，由 SDK 按照设置的时间间隔在编码前触发。</p>
         </section>
-        <section id="restriction" deliveryTarget="details">
+        <section id="restriction" deliveryTarget="details" props="android cpp ios mac">
             <title>使用限制</title>
             <p props="cpp">无。</p>
             <p props="android">无。</p>
             <p props="ios">无。</p>
             <p props="mac">无。</p>
         </section>
-        <section id="parameters" deliveryTarget="details">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
@@ -61,7 +61,7 @@
                 </plentry>
             </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="android cpp ios mac">
             <title>返回值</title>
             <p props="cpp">
                 <ul>

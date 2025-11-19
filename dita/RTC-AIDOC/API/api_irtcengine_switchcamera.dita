@@ -22,7 +22,7 @@
                 <codeblock props="android" outputclass="language-java">public abstract int switchCamera();</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios">
             <p props="cpp">你可以调用此方法在应用运行过程中根据实际可用的摄像头动态切换前后摄像头，无需重启视频流或重新配置视频源。</p>
             <p props="ios">你可以调用此方法，根据应用运行时实际可用的摄像头动态切换前后摄像头，无需重新启动视频流或重新配置视频源。</p>
             <p props="android">你可以调用该方法在应用运行过程中根据实际可用的摄像头动态切换前置或后置摄像头，无需重启视频流或重新配置视频源。该方法与 <codeph>switchCamera</codeph>（带参数版本）都可用于切换摄像头。不同之处在于，<codeph>switchCamera(String cameraId)</codeph> 通过指定摄像头 ID 切换到特定摄像头，而本方法则切换摄像头的方向（前置或后置）。</p>
@@ -35,19 +35,19 @@
             <note props="ios">此方法仅切换由第一个摄像头采集的视频流的摄像头，即调用 <xref keyref="startCameraCapture"/> 时视频源设置为 <codeph>AgoraVideoSourceTypeCamera</codeph>（0）的视频流。</note>
             <note props="android">该方法仅用于切换由第一个摄像头采集的视频流的摄像头，即调用 <xref keyref="startCameraCapture"/> 时视频源设置为 <codeph>VIDEO_SOURCE_CAMERA_PRIMARY</codeph>（0）的视频流。</note>
         </section>
-        <section id="timing" deliveryTarget="details">
+        <section id="timing" deliveryTarget="details" props="android cpp ios">
             <title>调用时机</title>
             <p props="cpp">必须在摄像头成功启用后调用，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>（1）之后。</p>
             <p props="ios">必须在摄像头成功启用后调用，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>AgoraVideoLocalStateCapturing</codeph>（1）之后。</p>
             <p props="android">必须在摄像头成功启用后调用，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>（1）之后。</p>
         </section>
-        <section id="restriction" deliveryTarget="details">
+        <section id="restriction" deliveryTarget="details" props="android cpp ios">
             <title>调用限制</title>
             <p props="cpp">无。</p>
             <p props="ios">无。</p>
             <p props="android">无。</p>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="android cpp ios">
             <title>返回值</title>
             <p props="cpp">
                 <ul>

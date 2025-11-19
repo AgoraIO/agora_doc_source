@@ -23,7 +23,7 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (int)muteAllRemoteAudioStreams:(BOOL)mute NS_SWIFT_NAME(muteAllRemoteAudioStreams(_:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
             <p props="cpp">调用该方法后，本地用户将停止或恢复订阅所有远端用户的音频流，包括后续加入频道的用户。</p>
             <p props="android">请在加入频道后调用该方法。本地用户将停止或恢复订阅所有远端用户的音频流，包括之后加入频道的用户。</p>
             <p props="ios">调用该方法后，你将停止或恢复订阅所有远端用户的音频流，包括之后加入频道的用户。</p>
@@ -39,20 +39,20 @@
             <note props="ios"><xref keyref="muteAllRemoteAudioStreams_IBaseSpatialAudioEngine"/> 方法调用后，如果你调用了 <xref keyref="enableAudio"/> 或 <xref keyref="disableAudio"/>，以最后一次调用为准。默认情况下，加入频道时 SDK 会自动订阅所有远端用户的音频流。你可以在调用 <codeph>joinChannelByToken</codeph> 加入频道时将 <codeph>autoSubscribeAudio</codeph> 设置为 <xref keyref="false"/>，以取消加入频道时对所有用户音频流的订阅。</note>
             <note props="mac"><xref keyref="muteAllRemoteAudioStreams_IBaseSpatialAudioEngine"/> 方法调用后，如果你调用了 <xref keyref="enableAudio"/> 或 <xref keyref="disableAudio"/>，以最后一次调用为准。默认情况下，加入频道时 SDK 会自动订阅所有远端用户的音频流。你可以在调用 <codeph>joinChannelByToken</codeph> 加入频道时将 <codeph>autoSubscribeAudio</codeph> 设置为 <xref keyref="false"/>，以取消加入频道时对所有用户音频流的订阅。</note>
         </section>
-        <section id="timing" deliveryTarget="details">
+        <section id="timing" deliveryTarget="details" props="android ios mac">
             <title>调用时机</title>
             <p props="android">请在加入频道后调用该方法。</p>
             <p props="ios">该方法需要在加入频道后调用。</p>
             <p props="mac">该方法需要在加入频道后调用。</p>
         </section>
-        <section id="restriction" deliveryTarget="details">
+        <section id="restriction" deliveryTarget="details" props="android cpp ios mac">
             <title>调用限制</title>
             <p props="cpp">无。</p>
             <p props="android">无。</p>
             <p props="ios">无。</p>
             <p props="mac">无。</p>
         </section>
-        <section id="parameters" deliveryTarget="details">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
@@ -93,7 +93,7 @@
                 </plentry>
             </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="android cpp ios mac">
             <title>返回值</title>
             <p props="cpp">
                 <ul>

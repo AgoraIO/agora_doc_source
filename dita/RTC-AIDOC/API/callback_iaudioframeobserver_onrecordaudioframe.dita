@@ -22,7 +22,7 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (BOOL)onRecordAudioFrame:(AgoraAudioFrame* _Nonnull)frame channelId:(NSString * _Nonnull)channelId  NS_SWIFT_NAME(onRecordAudioFrame(_:channelId:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android ios mac">
             <p props="ios">你可以通过以下两种方式之一设置音频数据格式，以确保采集到的音频帧格式符合预期：
                 <ul>
                     <li>方法一：调用 <xref keyref="setRecordingAudioFrameParameters"/> 设置音频数据格式，并调用 <xref keyref="registerAudioFrameObserver"/> 注册音频帧观察者对象。SDK 会根据设置的参数计算采样间隔，并按照采样间隔触发该回调。</li>
@@ -45,18 +45,18 @@
             <note props="android"><xref keyref="setRecordingAudioFrameParameters"/> 的设置优先级高于 <xref keyref="getObservedAudioFramePosition"/>。如果使用方法一设置音频数据格式，则方法二的设置无效。</note>
             <note props="mac"><xref keyref="setRecordingAudioFrameParameters"/> 的设置优先级高于 <xref keyref="getObservedAudioFramePosition"/> 和 <xref keyref="getRecordAudioParams"/> 的设置。如果使用方法一设置音频数据格式，则方法二的设置无效。</note>
         </section>
-        <section id="timing" deliveryTarget="details">
+        <section id="timing" deliveryTarget="details" props="ios mac">
             <title>触发时机</title>
             <p props="ios">该回调在采集到音频帧时被触发。</p>
             <p props="mac">该回调在采集到音频帧时被触发。</p>
         </section>
-        <section id="restriction" deliveryTarget="details">
+        <section id="restriction" deliveryTarget="details" props="android ios mac">
             <title>使用限制</title>
             <p props="ios">无。</p>
             <p props="android">无。</p>
             <p props="mac">无。</p>
         </section>
-        <section id="parameters" deliveryTarget="details">
+        <section id="parameters" deliveryTarget="details" props="android ios mac">
             <title>参数</title>
             <parml>
                 <plentry props="ios">
@@ -118,7 +118,7 @@
                 </plentry>
             </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="android ios mac">
             <title>返回值</title>
             <p props="ios">
                 <ul>
