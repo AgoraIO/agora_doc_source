@@ -28,7 +28,7 @@ leaveChannelBlock:(void (^ _Nullable)(AgoraChannelStats * _Nonnull))leaveChannel
             <p props="mac">调用该方法后，SDK 会终止音视频互动，离开当前频道，并释放与会话相关的所有资源。加入频道后，你必须调用该方法或 <xref keyref="leaveChannel"/> 来结束通话，否则无法开始下一次通话。如果你通过 <xref keyref="joinChannelEx"/> 加入了多个频道，调用该方法会离开你加入的所有频道。</p>
             <note props="cpp">如果在调用该方法后立即调用 <xref keyref="release"/>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。该方法为异步调用。当该方法返回时，并不意味着用户已经离开频道。</note>
             <note props="android">如果在调用该方法后立即调用 <xref keyref="Destroy_Rte"/>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。该方法为异步调用，方法返回时并不代表用户已离开频道。</note>
-            <note props="ios">如果在调用该方法后立即调用 <xref keyref="destroy_IMusicContentCenter"/>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。该方法为异步调用，方法返回时并不代表你已离开频道。</note>
+            <note props="ios">如果在调用该方法后立即调用 <xref keyref="release"/>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。该方法为异步调用，方法返回时并不代表你已离开频道。</note>
             <note props="mac">如果在调用该方法后立即调用 <xref keyref="release"/>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。该方法为异步调用，方法返回时并不代表你已离开频道。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
