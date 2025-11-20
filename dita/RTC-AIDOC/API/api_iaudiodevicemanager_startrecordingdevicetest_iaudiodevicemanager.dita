@@ -17,7 +17,7 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="cpp">
-            <p props="cpp">调用该方法可以测试本地音频采集设备是否正常工作。调用后，SDK 会按照设定的时间间隔触发 <xref keyref="onAudioVolumeIndication_PlayerObserver"/> 回调，报告 <codeph>uid</codeph> 为 0 的采集设备音量信息。该方法仅检测本地音频采集设备，而 <xref keyref="startEchoTest3"/> 方法还可检测音视频设备和网络状况。</p>
+            <p props="cpp">调用该方法可以测试本地音频采集设备是否正常工作。调用后，SDK 会按照设定的时间间隔触发 <xref keyref="onAudioVolumeIndication"/> 回调，报告 <codeph>uid</codeph> 为 0 的采集设备音量信息。该方法仅检测本地音频采集设备，而 <xref keyref="startEchoTest3"/> 方法还可检测音视频设备和网络状况。</p>
             <note props="cpp">请在加入频道前调用该方法。测试完成后，请在加入频道前调用 <xref keyref="stopRecordingDeviceTest_IAudioDeviceManager"/> 停止测试。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="cpp">
@@ -33,7 +33,7 @@
             <parml>
                 <plentry props="cpp">
                     <pt>indicationInterval</pt>
-                    <pd>触发 <xref keyref="onAudioVolumeIndication_PlayerObserver"/> 回调的时间间隔（毫秒）。该值必须大于 10，否则无法收到 <xref keyref="onAudioVolumeIndication_PlayerObserver"/> 回调，且 SDK 返回错误码 -2。建议设置为 100。</pd>
+                    <pd>触发 <xref keyref="onAudioVolumeIndication"/> 回调的时间间隔（毫秒）。该值必须大于 10，否则无法收到 <xref keyref="onAudioVolumeIndication"/> 回调，且 SDK 返回错误码 -2。建议设置为 100。</pd>
                 </plentry>
             </parml>
         </section>

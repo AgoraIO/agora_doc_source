@@ -48,25 +48,25 @@
             <p props="mac">调用该方法后，SDK 会终止音视频互动，离开当前频道，并释放与会话相关的所有资源。调用 <codeph>joinChannelExByToken</codeph> 加入频道后，必须调用该方法或 <xref keyref="leaveChannelEx"/> 结束通话，否则无法开始下一次通话。</p>
             <note props="cpp">
                 <ul>
-                    <li>如果在调用该方法后立即调用 <xref keyref="release_IVideoDeviceManager"/>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。</li>
+                    <li>如果在调用该方法后立即调用 <xref keyref="release"/>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。</li>
                     <li>该方法为异步调用，方法返回时并不代表用户已离开频道。</li>
                     <li>如果调用 <codeph>leaveChannel</codeph> 或 <codeph>leaveChannel</codeph>，你将离开通过 <codeph>joinChannel</codeph>、<codeph>joinChannel</codeph> 或 <xref keyref="joinChannelEx"/> 加入的所有频道。</li>
                 </ul>
             </note>
             <note props="android">
                 <ul>
-                    <li>如果在调用该方法后立即调用 <xref keyref="release_ILocalSpatialAudioEngine"/>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。</li>
+                    <li>如果在调用该方法后立即调用 <xref keyref="Destroy_Rte"/>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。</li>
                     <li>此方法为异步调用。方法返回时，并不代表你已完全离开频道。</li>
                     <li>如果调用 <codeph>leaveChannel</codeph> 或 <codeph>leaveChannel</codeph>，将会离开通过 <codeph>joinChannel</codeph>、<codeph>joinChannel</codeph> 或 <xref keyref="joinChannelEx"/> 加入的所有频道。</li>
                 </ul>
             </note>
-            <note props="ios">如果在调用该方法后立即调用 <xref keyref="release_ILocalSpatialAudioEngine"/>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。
+            <note props="ios">如果在调用该方法后立即调用 <xref keyref="destroy_IMusicContentCenter"/>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。
                 <ul>
                     <li>此方法为异步调用。当该方法返回时，并不代表你已离开频道。</li>
                     <li>如果调用 <xref keyref="leaveChannel"/> 或 <xref keyref="leaveChannel2"/>，你将离开通过 <codeph>joinChannelByToken</codeph>、<codeph>joinChannelByToken</codeph> 或 <codeph>joinChannelExByToken</codeph> 加入的所有频道。</li>
                 </ul>
             </note>
-            <note props="mac">如果在调用该方法后立即调用 <xref keyref="release_ILocalSpatialAudioEngine"/>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。
+            <note props="mac">如果在调用该方法后立即调用 <xref keyref="release"/>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。
                 <ul>
                     <li>此方法为异步调用。当该方法返回时，并不代表你已离开频道。</li>
                     <li>如果调用 <xref keyref="leaveChannel"/> 或 <xref keyref="leaveChannel2"/>，你将离开通过 <codeph>joinChannelByToken</codeph>、<codeph>joinChannelByToken</codeph> 或 <codeph>joinChannelExByToken</codeph> 加入的所有频道。</li>

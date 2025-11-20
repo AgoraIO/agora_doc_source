@@ -35,7 +35,7 @@
                 <ul>
                     <li>调用 <codeph>pullPlaybackAudioFrame</codeph> 方法后，App 会自动从 SDK 拉取音频数据。通过设置音频数据参数，SDK 会调整帧缓冲区以帮助 App 处理延迟，有效避免音频播放抖动。</li>
                     <li>注册 <xref keyref="onPlaybackAudioFrame"/> 回调后，SDK 会通过回调将音频数据发送给 App。若处理音频帧存在延迟，可能会导致音频抖动。
-该方法仅用于获取远端混音后的音频数据。如需获取采集、播放等其他音频处理阶段的数据，可通过调用 <xref keyref="registerAudioFrameObserver2_IMediaPlayer"/> 注册相应的回调。</li>
+该方法仅用于获取远端混音后的音频数据。如需获取采集、播放等其他音频处理阶段的数据，可通过调用 <xref keyref="registerAudioFrameObserver"/> 注册相应的回调。</li>
                 </ul>
             </note>
             <note props="mac"><xref keyref="pullAudioFrame"/> 方法和 <codeph>onPlaybackAudioFrame:</codeph> 回调都可用于获取远端混音后的音频数据。调用 <xref keyref="setExternalAudioSink"/> 开启外部音频渲染后，将无法再通过 <codeph>onPlaybackAudioFrame:</codeph> 回调获取数据。请根据实际业务需求选择使用该方法或 <codeph>onPlaybackAudioFrame:</codeph> 回调。两者的具体区别如下：

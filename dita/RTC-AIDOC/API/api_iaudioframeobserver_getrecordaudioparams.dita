@@ -20,7 +20,7 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android ios mac">
             <p props="ios">调用 <xref keyref="registerAudioFrameObserver"/> 方法注册回调后，SDK 会触发 <xref keyref="onRecordAudioFrame"/> 回调。你可以在该回调的返回值中设置音频格式。</p>
-            <p props="android">调用 <xref keyref="registerAudioFrameObserver2_IMediaPlayer"/> 注册回调后，SDK 会触发该回调。你可以在该回调的返回值中设置音频格式。</p>
+            <p props="android">调用 <xref keyref="registerAudioFrameObserver"/> 注册回调后，SDK 会触发该回调。你可以在该回调的返回值中设置音频格式。</p>
             <p props="mac">调用 <xref keyref="registerAudioFrameObserver"/> 方法注册回调后，SDK 会触发 <xref keyref="onRecordAudioFrame"/> 回调。你可以在该回调的返回值中设置音频格式。</p>
             <note props="ios">SDK 会根据你在返回值中设置的采样间隔计算公式触发 <xref keyref="onRecordAudioFrame"/> 回调。采样间隔（秒） = <codeph>samplePerCall</codeph> / (<codeph>sampleRate</codeph> × <codeph>channel</codeph>)。确保采样间隔 ≥ 0.01 秒。</note>
             <note props="android">SDK 会根据你在返回值中设置的 <xref keyref="AudioParams"/> 计算采样间隔并触发 <xref keyref="onRecordAudioFrame"/> 回调。采样间隔（秒） = <codeph>samplePerCall</codeph> /（<codeph>sampleRate</codeph> × <codeph>channel</codeph>）。请确保采样间隔 ≥ 0.01 秒。</note>
