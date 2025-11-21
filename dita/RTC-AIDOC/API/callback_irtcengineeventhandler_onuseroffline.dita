@@ -13,7 +13,7 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="cpp" outputclass="language-cpp">virtual void onUserOffline(const RtcConnection&amp; connection, uid_t remoteUid, USER_OFFLINE_REASON_TYPE reason)</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onUserOffline(uid_t uid, USER_OFFLINE_REASON_TYPE reason)</codeblock>
                 <codeblock props="android" outputclass="language-java">public void onUserOffline(int uid, int reason)</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didOfflineOfUid:(NSUInteger)uid reason:(AgoraUserOfflineReason)reason NS_SWIFT_NAME(rtcEngine(_:didOfflineOfUid:reason:));</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didOfflineOfUid:(NSUInteger)uid reason:(AgoraUserOfflineReason)reason NS_SWIFT_NAME(rtcEngine(_:didOfflineOfUid:reason:));</codeblock>
@@ -63,16 +63,12 @@
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
-                    <pt>connection</pt>
-                    <pd><xref keyref="RtcConnection"/> 对象。详见 <xref keyref="RtcConnection"/>。</pd>
-                </plentry>
-                <plentry props="cpp">
-                    <pt>remoteUid</pt>
-                    <pd>离线的远端用户或主播的用户 ID。</pd>
+                    <pt>uid</pt>
+                    <pd>离开频道或掉线的用户 ID。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>reason</pt>
-                    <pd>远端用户离线的原因。详见 <xref keyref="USER_OFFLINE_REASON_TYPE"/>。</pd>
+                    <pd>用户离线的原因，详见 <xref keyref="USER_OFFLINE_REASON_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>uid</pt>

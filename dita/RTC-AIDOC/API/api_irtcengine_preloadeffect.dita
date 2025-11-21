@@ -26,8 +26,8 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
             <p props="cpp">确保所有预加载文件的总大小不超过限制。</p>
             <p props="android">你可以多次调用该方法，将多个音效文件预加载到内存中。预加载完成后，可以调用 <codeph>playEffect</codeph> 播放预加载的音效，或调用 <xref keyref="playAllEffects"/> 播放所有已预加载的音效。</p>
-            <p props="ios">确保所有预加载文件的总大小不超过限制。关于该方法支持的音频文件格式，详见 <codeph>What formats of audio files does the Agora RTC SDK support</codeph>。</p>
-            <p props="mac">确保所有预加载文件的总大小不超过限制。关于该方法支持的音频文件格式，详见 <codeph>What formats of audio files does the Agora RTC SDK support</codeph>。</p>
+            <p props="ios">确保所有预加载文件的总大小不超过限制。</p>
+            <p props="mac">确保所有预加载文件的总大小不超过限制。</p>
             <note props="cpp">
                 <ul>
                     <li>如果在调用 <xref keyref="playEffect3"/> 之前调用 <xref keyref="preloadEffect"/>，<xref keyref="playEffect3"/> 执行后不会关闭文件资源。下次调用 <xref keyref="playEffect3"/> 时会直接从头开始播放。</li>
@@ -44,14 +44,14 @@
             </note>
             <note props="ios">
                 <ul>
-                    <li>如果你在调用 <codeph>playEffect</codeph> 之前调用了 <codeph>preloadEffect</codeph>，则 <codeph>playEffect</codeph> 执行后不会关闭文件资源。下次调用 <codeph>playEffect</codeph> 时会直接从头开始播放。</li>
-                    <li>如果你在调用 <codeph>playEffect</codeph> 之前未调用 <codeph>preloadEffect</codeph>，则 <codeph>playEffect</codeph> 执行后会销毁资源。下次调用 <codeph>playEffect</codeph> 时会尝试重新打开文件并从头开始播放。</li>
+                    <li>如果你在调用 <codeph>playEffect</codeph> 之前调用了 <codeph>preloadEffect</codeph>，<codeph>playEffect</codeph> 执行后不会关闭文件资源。下次调用 <codeph>playEffect</codeph> 时会直接从头开始播放。</li>
+                    <li>如果你未在调用 <codeph>playEffect</codeph> 之前调用 <codeph>preloadEffect</codeph>，<codeph>playEffect</codeph> 执行后会销毁资源。下次调用 <codeph>playEffect</codeph> 时会尝试重新打开文件并从头开始播放。</li>
                 </ul>
             </note>
             <note props="mac">
                 <ul>
-                    <li>如果你在调用 <codeph>playEffect</codeph> 之前调用了 <codeph>preloadEffect</codeph>，则 <codeph>playEffect</codeph> 执行后不会关闭文件资源。下次调用 <codeph>playEffect</codeph> 时会直接从头开始播放。</li>
-                    <li>如果你在调用 <codeph>playEffect</codeph> 之前未调用 <codeph>preloadEffect</codeph>，则 <codeph>playEffect</codeph> 执行后会销毁资源。下次调用 <codeph>playEffect</codeph> 时会尝试重新打开文件并从头开始播放。</li>
+                    <li>如果你在调用 <codeph>playEffect</codeph> 之前调用了 <codeph>preloadEffect</codeph>，<codeph>playEffect</codeph> 执行后不会关闭文件资源。下次调用 <codeph>playEffect</codeph> 时会直接从头开始播放。</li>
+                    <li>如果你未在调用 <codeph>playEffect</codeph> 之前调用 <codeph>preloadEffect</codeph>，<codeph>playEffect</codeph> 执行后会销毁资源。下次调用 <codeph>playEffect</codeph> 时会尝试重新打开文件并从头开始播放。</li>
                 </ul>
             </note>
         </section>

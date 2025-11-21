@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_joinchannelwithuseraccountex_irtcengine">
+    <title><ph keyref="joinChannelWithUserAccountEx_IRtcEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc">使用用户账号和 Token 加入频道，并设置媒体选项。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="joinChannelWithUserAccountEx_IRtcEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int joinChannelWithUserAccountEx(const char* token, const char* channelId, const char* userAccount, const ChannelMediaOptions&amp; options, IRtcEngineEventHandler* eventHandler) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="cpp">
+            <p props="cpp">在调用该方法之前，如果你尚未调用 <xref keyref="registerLocalUserAccount"/> 注册用户账号，当你调用该方法加入频道时，SDK 会自动为你创建一个用户账号。调用 <xref keyref="registerLocalUserAccount"/> 注册用户账号后再调用该方法，可以缩短加入频道所需的时间。用户加入频道后，默认会订阅频道中所有其他用户的音视频流，从而产生使用量和计费。如果你希望停止订阅其他用户的媒体流，可以设置 <codeph>options</codeph> 参数或调用相应的 <xref keyref="mute"/> 方法。</p>
+            <note props="cpp">
+                <ul>
+                    <li>该方法仅支持用户同时加入一个频道。</li>
+                    <li>不同 App ID 的用户无法互通。</li>
+                    <li>加入频道前，请确保用于生成 Token 的 App ID 与调用 <xref keyref="initialize"/> 方法时传入的 App ID 相同，否则可能会导致使用该 Token 加入频道失败。</li>
+                    <li>为确保通信顺畅，请使用相同的参数类型标识用户。例如，如果某用户使用 UID 加入频道，则其他用户也应使用 UID；用户账号同理。如果用户使用声网 Web SDK 加入频道，请确保用户 ID 设置为相同的参数类型。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="cpp">
+            <title>调用时机</title>
+            <p props="cpp">请在调用 <xref keyref="initialize"/> 之后调用该方法。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details" props="cpp">
+            <title>调用限制</title>
+            <p props="cpp">无。</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="cpp">
+            <title>相关回调</title>
+            <p props="cpp">本地用户成功加入频道后，SDK 会触发以下回调：
+                <ul>
+                    <li>本地客户端：<xref keyref="onLocalUserRegistered"/>、<xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/> 回调。</li>
+                    <li>远端客户端：如果用户在 <codeph>COMMUNICATION</codeph> 频道场景中加入频道，或主播在 <codeph>LIVE_BROADCASTING</codeph> 频道场景中加入频道，SDK 会触发 <xref keyref="onUserJoined"/> 和 <xref keyref="onUserInfoUpdated"/> 回调。</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>token</pt>
+                    <pd>用于鉴权的 Token，由你的服务器生成。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>channelId</pt>
+                    <pd>频道名。该参数表示用户进行实时音视频互动的频道。在相同 App ID 的前提下，填写相同频道名的用户会进入同一个频道。字符串长度必须小于 64 字节。支持的字符（共 89 个）：
+                        <ul>
+                            <li>所有小写英文字母：a 到 z。</li>
+                            <li>所有大写英文字母：A 到 Z。</li>
+                            <li>所有数字字符：0 到 9。</li>
+                            <li>"!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", "&gt;", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>userAccount</pt>
+                    <pd>用户账号。用于标识频道中的用户以进行实时音视频互动。你需要自行设置和管理用户账号，并确保同一频道中每个用户账号唯一。该参数的最大长度为 255 字节，不能为空。支持的字符如下（共 89 个）：
+                        <ul>
+                            <li>26 个小写英文字母：a 到 z。</li>
+                            <li>26 个大写英文字母：A 到 Z。</li>
+                            <li>所有数字字符：0 到 9。</li>
+                            <li>空格</li>
+                            <li>"!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", "&gt;", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>options</pt>
+                    <pd>频道媒体选项。详见 <xref keyref="ChannelMediaOptions"/>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>eventHandler</pt>
+                    <pd>回调类。你可以通过该参数传入的 <codeph>eventHandler</codeph> 对象获取多个频道的回调事件。详见 <xref keyref="IRtcEngineEventHandler"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。
+                        <ul>
+                            <li>-2：参数无效。例如，Token 无效，<codeph>uid</codeph> 参数未设置为整数，或 <xref keyref="ChannelMediaOptions"/> 中的成员值无效。请传入有效参数并重新加入频道。</li>
+                            <li>-3：初始化 <xref keyref="IRtcEngine"/> 对象失败。请重新初始化 <xref keyref="IRtcEngine"/> 对象。</li>
+                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。请先初始化 <xref keyref="IRtcEngine"/> 对象再调用该方法。</li>
+                            <li>-8：<xref keyref="IRtcEngine"/> 对象内部状态错误。典型原因是在调用 <xref keyref="startEchoTest3"/> 开始通话回声测试后，未调用 <xref keyref="stopEchoTest"/> 停止测试就调用该方法加入频道。请先调用 <xref keyref="stopEchoTest"/> 再调用该方法。</li>
+                            <li>-17：加入频道请求被拒绝。典型原因是用户已在频道中。声网建议使用 <xref keyref="onConnectionStateChanged"/> 回调判断用户是否在频道中，仅当收到 <codeph>CONNECTION_STATE_DISCONNECTED</codeph>（1）状态时再调用该方法。</li>
+                            <li>-102：频道名无效。请在 <codeph>channelId</codeph> 中传入有效的频道名重新加入频道。</li>
+                            <li>-121：用户 ID 无效。请在 <codeph>uid</codeph> 中传入有效的用户 ID 重新加入频道。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

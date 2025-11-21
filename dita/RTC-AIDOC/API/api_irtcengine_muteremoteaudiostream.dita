@@ -19,16 +19,9 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (int)muteRemoteAudioStream:(NSUInteger)uid mute:(BOOL)mute NS_SWIFT_NAME(muteRemoteAudioStream(_:mute:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="cpp">
-            <note props="cpp">
-                <ul>
-                    <li>请在调用 <codeph>joinChannel</codeph> 方法后调用此方法。</li>
-                    <li>使用空间音效时，如需设置是否停止订阅指定用户的音频流，声网建议调用此方法，而非 <xref keyref="muteRemoteAudioStream"/> 方法。</li>
-                </ul>
-            </note>
-        </section>
-        <section id="timing" deliveryTarget="details" props="android ios mac">
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
+            <p props="cpp">请在加入频道后调用该方法。</p>
             <p props="android">在加入频道后调用该方法。</p>
             <p props="ios">在加入频道后调用该方法。</p>
             <p props="mac">在加入频道后调用该方法。</p>
@@ -40,8 +33,9 @@
             <p props="ios">无。</p>
             <p props="mac">无。</p>
         </section>
-        <section id="related" deliveryTarget="details" props="ios mac">
+        <section id="related" deliveryTarget="details" props="cpp ios mac">
             <title>相关回调</title>
+            <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onAudioSubscribeStateChanged"/> 回调。</p>
             <p props="ios">成功调用该方法后，SDK 会触发 <xref keyref="onAudioSubscribeStateChanged"/> 回调。</p>
             <p props="mac">成功调用该方法后，SDK 会触发 <xref keyref="onAudioSubscribeStateChanged"/> 回调。</p>
         </section>

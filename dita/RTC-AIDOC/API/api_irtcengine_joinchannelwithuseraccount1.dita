@@ -226,9 +226,9 @@
                     <li>&lt; 0：方法调用失败。
                         <ul>
                             <li>-2：参数无效。例如，Token 无效，<codeph>uid</codeph> 参数未设置为整数，或 <xref keyref="ChannelMediaOptions"/> 中的成员值无效。你需要传入有效参数并重新加入频道。</li>
-                            <li>-3：<xref keyref="IRtcEngine"/> 对象初始化失败。你需要重新初始化 <xref keyref="IRtcEngine"/> 对象。</li>
-                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要先初始化 <xref keyref="IRtcEngine"/> 对象再调用该方法。</li>
-                            <li>-8：<xref keyref="IRtcEngine"/> 对象内部状态错误。典型原因是在调用 <xref keyref="startEchoTest3"/> 开始回声测试后，未调用 <xref keyref="stopEchoTest"/> 停止测试就调用该方法加入频道。你需要先调用 <xref keyref="stopEchoTest"/> 再调用该方法。</li>
+                            <li>-3：<xref keyref="RtcEngine"/> 对象初始化失败。你需要重新初始化 <xref keyref="RtcEngine"/> 对象。</li>
+                            <li>-7：<xref keyref="RtcEngine"/> 对象尚未初始化。你需要先初始化 <xref keyref="RtcEngine"/> 对象再调用该方法。</li>
+                            <li>-8：<xref keyref="RtcEngine"/> 对象内部状态错误。典型原因是在调用 <xref keyref="startEchoTest3"/> 开始回声测试后，未调用 <xref keyref="stopEchoTest"/> 停止测试就调用该方法加入频道。你需要先调用 <xref keyref="stopEchoTest"/> 再调用该方法。</li>
                             <li>-17：加入频道请求被拒绝。典型原因是用户已在频道中。声网建议你通过 <xref keyref="onConnectionStateChanged"/> 回调判断用户是否在频道中。只有在收到 <codeph>CONNECTION_STATE_DISCONNECTED</codeph>（1）状态时才调用该方法加入频道。</li>
                             <li>-102：频道名无效。你需要传入有效的 <codeph>channelId</codeph> 重新加入频道。</li>
                             <li>-121：用户 ID 无效。你需要传入有效的 <codeph>uid</codeph> 重新加入频道。</li>
