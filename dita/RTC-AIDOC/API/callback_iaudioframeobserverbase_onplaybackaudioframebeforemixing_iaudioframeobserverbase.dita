@@ -13,7 +13,7 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="cpp" outputclass="language-cpp">virtual bool onPlaybackAudioFrameBeforeMixing(const char* channelId, rtc::uid_t uid, AudioFrame&amp; audioFrame) = 0;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual bool onPlaybackAudioFrameBeforeMixing(const char* channelId, base::user_id_t userId, AudioFrame&amp; audioFrame)</codeblock>
             </p>
         </section>
         <section id="restriction" deliveryTarget="details" props="cpp">
@@ -25,15 +25,15 @@
             <parml>
                 <plentry props="cpp">
                     <pt>channelId</pt>
-                    <pd>频道 ID。</pd>
+                    <pd>频道名。</pd>
                 </plentry>
                 <plentry props="cpp">
-                    <pt>uid</pt>
+                    <pt>userId</pt>
                     <pd>远端用户 ID。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>audioFrame</pt>
-                    <pd>输出参数，原始音频数据。详见 <xref keyref="AudioFrame"/>。</pd>
+                    <pd>音频帧。详见 <xref keyref="AudioFrame"/>。</pd>
                 </plentry>
             </parml>
         </section>

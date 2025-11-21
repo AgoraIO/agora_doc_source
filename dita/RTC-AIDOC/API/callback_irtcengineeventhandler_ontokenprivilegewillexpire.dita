@@ -13,7 +13,7 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="cpp" outputclass="language-cpp">virtual void onTokenPrivilegeWillExpire(const RtcConnection&amp; connection, const char* token)</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onTokenPrivilegeWillExpire(const char* token)</codeblock>
                 <codeblock props="android" outputclass="language-java">public void onTokenPrivilegeWillExpire(String token)</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine tokenPrivilegeWillExpire:(NSString *_Nonnull)token NS_SWIFT_NAME(rtcEngine(_:tokenPrivilegeWillExpire:));</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine tokenPrivilegeWillExpire:(NSString *_Nonnull)token NS_SWIFT_NAME(rtcEngine(_:tokenPrivilegeWillExpire:));</codeblock>
@@ -86,12 +86,8 @@ SDK 会在 Token 过期前 30 秒触发该回调，提醒应用更新 Token。</
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
-                    <pt>connection</pt>
-                    <pd><xref keyref="RtcConnection"/> 对象。详见 <xref keyref="RtcConnection"/>。</pd>
-                </plentry>
-                <plentry props="cpp">
                     <pt>token</pt>
-                    <pd>将在 30 秒后过期的 Token。</pd>
+                    <pd>即将过期的 Token。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>token</pt>

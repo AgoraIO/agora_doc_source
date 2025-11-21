@@ -13,7 +13,7 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="cpp" outputclass="language-cpp">virtual void onSnapshotTaken(const RtcConnection&amp; connection, uid_t uid, const char* filePath, int width, int height, int errCode)</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onSnapshotTaken(uid_t uid, const char* filePath, int width, int height, int errCode)</codeblock>
                 <codeblock props="android" outputclass="language-java">public void onSnapshotTaken(int uid, String filePath, int width, int height, int errCode)</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine snapshotTaken:(NSUInteger)uid filePath:(NSString* _Nonnull)filePath width:(NSInteger)width height:(NSInteger)height errCode:(NSInteger)errCode NS_SWIFT_NAME(rtcEngine(_:snapshotTaken:filePath:width:height:errCode:));</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine snapshotTaken:(NSUInteger)uid filePath:(NSString* _Nonnull)filePath width:(NSInteger)width height:(NSInteger)height errCode:(NSInteger)errCode NS_SWIFT_NAME(rtcEngine(_:snapshotTaken:filePath:width:height:errCode:));</codeblock>
@@ -43,35 +43,31 @@
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
-                    <pt>connection</pt>
-                    <pd><xref keyref="RtcConnection"/> 对象。详见 <xref keyref="RtcConnection"/>。</pd>
-                </plentry>
-                <plentry props="cpp">
                     <pt>uid</pt>
-                    <pd>用户 ID，值为 0 表示本地用户。</pd>
+                    <pd>用户 ID。<codeph>uid</codeph> 为 0 表示本地用户。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>filePath</pt>
-                    <pd>截图文件的本地路径。</pd>
+                    <pd>截图的本地路径。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>width</pt>
-                    <pd>截图的宽度（单位：像素）。</pd>
+                    <pd>截图的宽度（像素）。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>height</pt>
-                    <pd>截图的高度（单位：像素）。</pd>
+                    <pd>截图的高度（像素）。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>errCode</pt>
-                    <pd>截图结果状态码：
+                    <pd>截图结果的错误码：
                         <ul>
-                            <li>0：截图成功。</li>
-                            <li>&lt; 0：截图失败。
+                            <li>0：成功。</li>
+                            <li>&lt; 0：失败：
                                 <ul>
-                                    <li>-1：SDK 无法将数据写入文件或编码 JPEG 图像失败。</li>
-                                    <li>-2：调用 <codeph>takeSnapshot</codeph> 成功后 1 秒内未找到指定用户的视频流。</li>
-                                    <li>-3：调用 <codeph>takeSnapshot</codeph> 过于频繁。请在收到上一次 <xref keyref="onSnapshotTaken"/> 回调后再调用。</li>
+                                    <li>-1：SDK 写入文件或编码 JPEG 图像失败。</li>
+                                    <li>-2：调用 <codeph>takeSnapshot</codeph> 方法成功后 1 秒内未找到指定用户的视频流。可能原因包括：本地采集停止、远端停止发布或视频数据处理阻塞。</li>
+                                    <li>-3：调用 <codeph>takeSnapshot</codeph> 方法过于频繁。</li>
                                 </ul>
                             </li>
                         </ul>

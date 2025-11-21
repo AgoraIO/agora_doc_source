@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaengine_setexternalremoteeglcontext_imediaengine">
+    <title><ph keyref="setExternalRemoteEglContext_IMediaEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置用于渲染远端视频流的 <codeph>EGL</codeph> 上下文。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setExternalRemoteEglContext_IMediaEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setExternalRemoteEglContext(void* eglContext) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="cpp">
+            <p props="cpp">该方法用于替换 SDK 默认的远端 <codeph>EGL</codeph> 上下文，便于你自行管理 <codeph>EGL</codeph> 上下文。当引擎被销毁时，SDK 会自动释放该上下文。</p>
+            <note props="cpp">该方法仅适用于 Android 平台。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="cpp">
+            <title>调用时机</title>
+            <p props="cpp">请在加入频道前调用该方法。</p>
+        </section>
+        <section id="restriction" deliveryTarget="details" props="cpp">
+            <title>调用限制</title>
+            <p props="cpp">无。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>eglContext</pt>
+                    <pd>用于渲染远端视频流的 <codeph>EGL</codeph> 上下文。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

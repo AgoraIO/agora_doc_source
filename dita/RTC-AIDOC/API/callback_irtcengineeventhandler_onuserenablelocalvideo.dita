@@ -13,7 +13,7 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="cpp" outputclass="language-cpp">virtual void onUserEnableLocalVideo(const RtcConnection&amp; connection, uid_t remoteUid, bool enabled) __deprecated</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onUserEnableLocalVideo(uid_t uid, bool enabled) __deprecated</codeblock>
                 <codeblock props="android" outputclass="language-java">public void onUserEnableLocalVideo(int uid, boolean enabled)</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didLocalVideoEnabled:(BOOL)enabled byUid:(NSUInteger)uid NS_SWIFT_NAME(rtcEngine(_:didLocalVideoEnabled:byUid:)) __deprecated_msg("use rtcEngine:remoteVideoStateChangedOfUid:state:reason: instead.");</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didLocalVideoEnabled:(BOOL)enabled byUid:(NSUInteger)uid NS_SWIFT_NAME(rtcEngine(_:didLocalVideoEnabled:byUid:)) __deprecated_msg("use rtcEngine:remoteVideoStateChangedOfUid:state:reason: instead.");</codeblock>
@@ -60,19 +60,15 @@
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
-                    <pt>connection</pt>
-                    <pd><xref keyref="RtcConnection"/> 对象。详见 <xref keyref="RtcConnection"/>。</pd>
-                </plentry>
-                <plentry props="cpp">
-                    <pt>remoteUid</pt>
+                    <pt>uid</pt>
                     <pd>远端用户 ID。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>enabled</pt>
-                    <pd>指定的远端用户是否启用本地视频采集：
+                    <pd>指定的远端用户是否启用本地视频采集功能：
                         <ul>
-                            <li><xref keyref="true"/>：该远端用户已启用本地视频采集。</li>
-                            <li><xref keyref="false"/>：该远端用户已关闭本地视频采集。</li>
+                            <li><xref keyref="true"/>：启用视频模块，频道内其他用户可以看到该远端用户的视频。</li>
+                            <li><xref keyref="false"/>：关闭视频模块，频道内其他用户无法接收该远端用户的视频流，但该远端用户仍可接收其他用户的视频流。</li>
                         </ul>
                     </pd>
                 </plentry>
