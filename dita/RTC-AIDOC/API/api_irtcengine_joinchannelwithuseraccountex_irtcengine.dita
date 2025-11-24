@@ -31,10 +31,6 @@
             <title>调用时机</title>
             <p props="cpp">请在调用 <xref keyref="initialize"/> 之后调用该方法。</p>
         </section>
-        <section id="restriction" deliveryTarget="details" props="cpp">
-            <title>调用限制</title>
-            <p props="cpp">无。</p>
-        </section>
         <section id="related" deliveryTarget="details" props="cpp">
             <title>相关回调</title>
             <p props="cpp">本地用户成功加入频道后，SDK 会触发以下回调：
@@ -89,7 +85,7 @@
             <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。
                         <ul>
                             <li>-2：参数无效。例如，Token 无效，<codeph>uid</codeph> 参数未设置为整数，或 <xref keyref="ChannelMediaOptions"/> 中的成员值无效。请传入有效参数并重新加入频道。</li>
                             <li>-3：初始化 <xref keyref="IRtcEngine"/> 对象失败。请重新初始化 <xref keyref="IRtcEngine"/> 对象。</li>

@@ -21,8 +21,7 @@
                 <ol>
                     <li>调用 <xref keyref="createCustomVideoTrack"/> 创建视频轨道并获取视频轨道 ID。</li>
                     <li>调用 <codeph>joinChannel</codeph> 加入频道。在 <xref keyref="ChannelMediaOptions"/> 中，将 <codeph>customVideoTrackId</codeph> 设置为要发布的视频轨道 ID，并将 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/>。</li>
-                    <li>调用 <xref keyref="pushVideoFrame_IMediaEngine"/>，并将 <codeph>videoTrackId</codeph> 设置为第 2 步中设置的视频轨道 ID，即可在频道中发布对应的自定义视频源。
-适用场景：自 v4.2.3 起，SDK 支持 <codeph>ID3D11Texture2D</codeph> 视频格式，该格式广泛应用于游戏场景。当你需要将此类视频帧推送到 SDK 时，调用 <xref keyref="pushVideoFrame_IMediaEngine"/>，并将 <codeph>frame</codeph> 中的 <codeph>format</codeph> 设置为 <codeph>VIDEO_TEXTURE_ID3D11TEXTURE2D</codeph>，设置 <codeph>d3d11_texture_2d</codeph> 和 <codeph>texture_slice_index</codeph> 成员，并将视频帧格式设置为 <codeph>ID3D11Texture2D</codeph>。</li>
+                    <li>调用 <xref keyref="pushVideoFrame_IMediaEngine"/>，并将 <codeph>videoTrackId</codeph> 设置为第 2 步中设置的视频轨道 ID，即可在频道中发布对应的自定义视频源。</li>
                 </ol>
             </p>
             <note props="cpp">如果你只需向频道中推送一个自定义视频源，可以直接调用 <xref keyref="setExternalVideoSource_IMediaEngine"/> 方法，SDK 会自动创建一个 <codeph>videoTrackId</codeph> 为 0 的视频轨道。
@@ -36,10 +35,6 @@
         <section id="timing" deliveryTarget="details" props="cpp">
             <title>调用时机</title>
             <p props="cpp">加入频道前后均可调用。</p>
-        </section>
-        <section id="restriction" deliveryTarget="details" props="cpp">
-            <title>调用限制</title>
-            <p props="cpp">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="cpp">
             <title>参数</title>
@@ -59,7 +54,7 @@
             <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
         </section>

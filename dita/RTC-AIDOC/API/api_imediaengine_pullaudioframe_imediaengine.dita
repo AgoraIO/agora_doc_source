@@ -21,18 +21,14 @@
             <note props="cpp"><xref keyref="pullAudioFrame_IMediaEngine"/> 和 <xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/> 回调都可用于获取远端混音后的音频数据。启用外部音频渲染（调用 <xref keyref="setExternalAudioSink_IMediaEngine"/>）后，App 将无法再通过 <xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/> 回调获取数据。请根据实际业务需求选择使用该方法或 <xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/> 回调。两者的区别如下：
                 <ul>
                     <li>调用 <xref keyref="pullAudioFrame_IMediaEngine"/> 后，App 会自动从 SDK 拉取音频数据。通过设置音频数据参数，SDK 会调整帧缓冲区，帮助 App 处理延迟，有效避免音频播放抖动。</li>
-                    <li>注册 <xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/> 回调后，SDK 会通过回调将音频数据发送给 App。若 App 处理音频帧的过程存在延迟，可能会导致音频抖动。
-该方法仅用于获取远端混音后的音频数据。如果你需要获取采集、播放等不同音频处理阶段的数据，可以通过调用 <xref keyref="registerAudioFrameObserver_IMediaEngine"/> 注册相应的回调。</li>
+                    <li>注册 <xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/> 回调后，SDK 会通过回调将音频数据发送给 App。若 App 处理音频帧的过程存在延迟，可能会导致音频抖动。</li>
                 </ul>
+                <p><ph>该方法仅用于获取远端混音后的音频数据。如果你需要获取采集、播放等不同音频处理阶段的数据，可以通过调用 <xref keyref="registerAudioFrameObserver_IMediaEngine"/> 注册相应的回调。</ph></p>
             </note>
         </section>
         <section id="timing" deliveryTarget="details" props="cpp">
             <title>调用时机</title>
             <p props="cpp">该方法需要在加入频道后调用。</p>
-        </section>
-        <section id="restriction" deliveryTarget="details" props="cpp">
-            <title>调用限制</title>
-            <p props="cpp">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="cpp">
             <title>参数</title>
@@ -48,7 +44,7 @@
             <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
         </section>

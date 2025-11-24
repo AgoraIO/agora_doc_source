@@ -22,7 +22,7 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android ios mac">
             <p props="ios">你可以使用该方法创建并初始化 <xref keyref="IRtcEngine"/> 实例。该类中所有方法均为异步执行，建议你在同一线程中调用这些方法。</p>
-            <p props="android"><xref keyref="RtcEngine"/> 类中的所有方法均为异步执行，声网建议在同一线程中调用这些方法。</p>
+            <p props="android"><xref keyref="IRtcEngine"/> 类中的所有方法均为异步执行，声网建议在同一线程中调用这些方法。</p>
             <p props="mac">你可以使用该方法创建并初始化 <xref keyref="IRtcEngine"/> 实例。该类中所有方法均为异步执行，建议你在同一线程中调用这些方法。</p>
             <note props="ios">
                 <ul>
@@ -33,9 +33,9 @@
             </note>
             <note props="android">
                 <ul>
-                    <li>在调用其他 API 之前，必须先调用此方法以创建 <xref keyref="RtcEngine"/> 实例。</li>
-                    <li>你可以通过调用此方法或调用 <codeph>create(RtcEngineConfig config)</codeph> 来创建 <xref keyref="RtcEngine"/> 实例。与此方法相比，<codeph>create(RtcEngineConfig config)</codeph> 支持更多配置，例如指定连接区域和设置日志文件。</li>
-                    <li>每个 App 仅支持创建一个 <xref keyref="RtcEngine"/> 实例。</li>
+                    <li>在调用其他 API 之前，必须先调用此方法以创建 <xref keyref="IRtcEngine"/> 实例。</li>
+                    <li>你可以通过调用此方法或调用 <codeph>create(RtcEngineConfig config)</codeph> 来创建 <xref keyref="IRtcEngine"/> 实例。与此方法相比，<codeph>create(RtcEngineConfig config)</codeph> 支持更多配置，例如指定连接区域和设置日志文件。</li>
+                    <li>每个 App 仅支持创建一个 <xref keyref="IRtcEngine"/> 实例。</li>
                 </ul>
             </note>
             <note props="mac">
@@ -51,12 +51,6 @@
             <p props="ios">加入频道前后均可调用。</p>
             <p props="android">加入频道前后均可调用。</p>
             <p props="mac">加入频道前后均可调用。</p>
-        </section>
-        <section id="restriction" deliveryTarget="details" props="android ios mac">
-            <title>调用限制</title>
-            <p props="ios">无。</p>
-            <p props="android">无。</p>
-            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android ios mac">
             <title>参数</title>
@@ -75,11 +69,11 @@
                 </plentry>
                 <plentry props="android">
                     <pt>appId</pt>
-                    <pd>声网为你的项目签发的 App ID。只有使用相同 App ID 的用户才能加入同一个频道并进行通信。一个 App ID 只能用于创建一个 <xref keyref="RtcEngine"/> 实例。若需更换 App ID，请调用 <xref keyref="Destroy_Rte"/> 销毁当前 <xref keyref="RtcEngine"/> 实例，然后再创建新的实例。</pd>
+                    <pd>声网为你的项目签发的 App ID。只有使用相同 App ID 的用户才能加入同一个频道并进行通信。一个 App ID 只能用于创建一个 <xref keyref="IRtcEngine"/> 实例。若需更换 App ID，请调用 <xref keyref="Destroy_Rte"/> 销毁当前 <xref keyref="IRtcEngine"/> 实例，然后再创建新的实例。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>handler</pt>
-                    <pd><xref keyref="RtcEngine"/> 的事件处理器。详见 <xref keyref="IRtcEngineEventHandler"/>。</pd>
+                    <pd><xref keyref="IRtcEngine"/> 的事件处理器。详见 <xref keyref="IRtcEngineEventHandler"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>appId</pt>
@@ -94,7 +88,7 @@
         <section id="return_values" props="android ios mac">
             <title>返回值</title>
             <p props="ios">方法调用成功，返回 <xref keyref="IRtcEngine"/> 对象。方法调用失败，返回一个其内部引擎字段为 <xref keyref="NULL"/> 的 <xref keyref="IRtcEngine"/> 对象。你可以通过 <codeph>delegate</codeph> 的 <xref keyref="onError"/> 回调获取错误码。</p>
-            <p props="android">方法调用成功，返回已初始化的 <xref keyref="RtcEngine"/> 实例。
+            <p props="android">方法调用成功，返回已初始化的 <xref keyref="IRtcEngine"/> 实例。
 方法调用失败，SDK 会抛出异常，并返回相应的错误信息。你需要捕获异常并进行处理。</p>
             <p props="mac">方法调用成功，返回 <xref keyref="IRtcEngine"/> 对象。方法调用失败，返回一个其内部引擎字段为 <xref keyref="NULL"/> 的 <xref keyref="IRtcEngine"/> 对象。你可以通过 <codeph>delegate</codeph> 的 <xref keyref="onError"/> 回调获取错误码。</p>
         </section>

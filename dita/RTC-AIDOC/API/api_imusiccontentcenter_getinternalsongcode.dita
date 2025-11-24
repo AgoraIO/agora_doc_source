@@ -29,12 +29,6 @@
             <p props="ios">加入频道前后均可调用。</p>
             <p props="android">加入频道前后均可调用。</p>
         </section>
-        <section id="restriction" deliveryTarget="details" props="android cpp ios">
-            <title>调用限制</title>
-            <p props="cpp">无。</p>
-            <p props="ios">无。</p>
-            <p props="android">无。</p>
-        </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios">
             <title>参数</title>
             <parml>
@@ -82,13 +76,13 @@
                                     <li>2：直播场景：背景音乐播放。</li>
                                     <li>3：（默认）语聊场景：在线 K 歌房。</li>
                                     <li>4：语聊场景：背景音乐播放。</li>
-                                    <li>5：VR 场景：在线 K 歌房和背景音乐播放。
-  &gt; 注意：声网会根据你在 <codeph>sceneType</codeph> 中指定的频道场景计费。不同的频道场景对应不同的计费标准，详见计费文档。若需切换频道场景，必须重新调用该方法并传入新的 <codeph>sceneType</codeph> 值。
-  示例：<codeph>{"sceneType":1}</codeph></li>
+                                    <li>5：VR 场景：在线 K 歌房和背景音乐播放。</li>
                                 </ul>
                             </li>
-                            <li><codeph>highPart</codeph>：副歌片段的索引。你可以从 <xref keyref="onMusicCollectionResult"/> 回调中获取该索引并传入。索引从 0 开始。
-  示例：<codeph>{"format": {"highpart": 0}}</codeph></li>
+                        </ul>  &gt; 注意：声网会根据你在 `sceneType` 中指定的频道场景计费。不同的频道场景对应不同的计费标准，详见计费文档。若需切换频道场景，必须重新调用该方法并传入新的 `sceneType` 值。
+  示例：`{"sceneType":1}`
+                        <ul>
+                            <li><codeph>highPart</codeph>：副歌片段的索引。你可以从 <xref keyref="onMusicCollectionResult"/> 回调中获取该索引并传入。索引从 0 开始。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -107,9 +101,9 @@
                             <li>2：直播场景：背景音乐播放。</li>
                             <li>3：（默认）声动语聊场景：在线 K 歌房。</li>
                             <li>4：声动语聊场景：背景音乐播放。</li>
-                            <li>5：VR 场景：在线 K 歌房和背景音乐播放。 | {"sceneType":1} |
-| highPart | 副歌片段的索引，从 <xref keyref="onMusicCollectionResult"/> 回调中获取，索引从 0 开始。 | {"format": {"highpart": 0}} |</li>
+                            <li>5：VR 场景：在线 K 歌房和背景音乐播放。 | {"sceneType":1} |</li>
                         </ul>
+                        <p><ph>| highPart | 副歌片段的索引，从 <xref keyref="onMusicCollectionResult"/> 回调中获取，索引从 0 开始。 | {"format": {"highpart": 0}} |</ph></p>
                     </pd>
                 </plentry>
             </parml>
@@ -119,19 +113,19 @@
             <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见错误码及其解决建议。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。详见错误码及其解决建议。</li>
                 </ul>
             </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见错误码文档获取详细信息和排查建议。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。详见错误码文档获取详细信息和排查建议。</li>
                 </ul>
             </p>
             <p props="android">
                 <ul>
                     <li>方法调用成功，返回创建的音乐资源内部标识符。</li>
-                    <li>&lt; 0：方法调用失败。详见 <codeph>Error Codes</codeph>。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。详见 <codeph>Error Codes</codeph>。</li>
                 </ul>
             </p>
         </section>

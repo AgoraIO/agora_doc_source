@@ -29,7 +29,7 @@
             <p props="ios">你可以调用此方法创建一个数据流，以提升数据传输的可靠性和顺序性。</p>
             <p props="mac">你可以调用此方法创建一个数据流，以提升数据传输的可靠性和顺序性。</p>
             <note props="cpp">每个用户在 <xref keyref="IRtcEngine"/> 的生命周期内最多可创建五个数据流。离开频道时数据流会被销毁，如需继续使用需重新创建。</note>
-            <note props="android">每个用户在 <xref keyref="RtcEngine"/> 生命周期内最多可创建五个数据流。离开频道时数据流会被销毁，如需继续使用需重新创建。</note>
+            <note props="android">每个用户在 <xref keyref="IRtcEngine"/> 生命周期内最多可创建五个数据流。离开频道时数据流会被销毁，如需继续使用需重新创建。</note>
             <note props="ios">每个用户在 <xref keyref="IRtcEngine"/> 的生命周期中最多可创建五个数据流。离开频道时数据流会被销毁，如需使用需重新创建。</note>
             <note props="mac">每个用户在 <xref keyref="IRtcEngine"/> 的生命周期中最多可创建五个数据流。离开频道时数据流会被销毁，如需使用需重新创建。</note>
         </section>
@@ -39,13 +39,6 @@
             <p props="android">请在调用 <xref keyref="joinChannelEx"/> 后调用此方法。</p>
             <p props="ios">请在调用 <codeph>joinChannelExByToken</codeph> 之后调用此方法。</p>
             <p props="mac">请在调用 <codeph>joinChannelExByToken</codeph> 之后调用此方法。</p>
-        </section>
-        <section id="restriction" deliveryTarget="details" props="android cpp ios mac">
-            <title>调用限制</title>
-            <p props="cpp">无。</p>
-            <p props="android">无。</p>
-            <p props="ios">无。</p>
-            <p props="mac">无。</p>
         </section>
         <section id="related" deliveryTarget="details" props="cpp">
             <title>相关回调</title>
@@ -63,8 +56,7 @@
                     <pd>是否保证接收端在五秒内收到数据流：
                         <ul>
                             <li><xref keyref="true"/>：接收端会在五秒内收到发送方的数据。如果未收到，SDK 会触发 <xref keyref="onStreamMessageError"/> 回调并返回错误码。</li>
-                            <li><xref keyref="false"/>：不保证接收端在五秒内收到数据流，延迟或丢失不会返回错误信息。
-注意：请确保 <codeph>reliable</codeph> 和 <codeph>ordered</codeph> 同时为 <xref keyref="true"/> 或同时为 <xref keyref="false"/>。</li>
+                            <li><xref keyref="false"/>：不保证接收端在五秒内收到数据流，延迟或丢失不会返回错误信息。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -112,8 +104,7 @@
                     <pd>设置是否保证接收端在五秒内收到数据流：
                         <ul>
                             <li><xref keyref="true"/>：接收端会在五秒内收到发送方发送的数据。如果五秒内未收到，SDK 会触发 <xref keyref="onStreamMessageError"/> 回调并返回错误码。</li>
-                            <li><xref keyref="false"/>：不保证接收端在五秒内收到数据流，延迟或丢失不会返回错误信息。
-注意：请确保 <codeph>reliable</codeph> 和 <codeph>ordered</codeph> 同时设置为 <xref keyref="true"/> 或同时设置为 <xref keyref="false"/>。</li>
+                            <li><xref keyref="false"/>：不保证接收端在五秒内收到数据流，延迟或丢失不会返回错误信息。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -139,8 +130,7 @@
                     <pd>设置是否保证接收端在五秒内收到数据流：
                         <ul>
                             <li><xref keyref="true"/>：接收端会在五秒内收到发送方发送的数据。如果五秒内未收到，SDK 会触发 <xref keyref="onStreamMessageError"/> 回调并返回错误码。</li>
-                            <li><xref keyref="false"/>：不保证接收端在五秒内收到数据流，延迟或丢失不会返回错误信息。
-注意：请确保 <codeph>reliable</codeph> 和 <codeph>ordered</codeph> 同时设置为 <xref keyref="true"/> 或同时设置为 <xref keyref="false"/>。</li>
+                            <li><xref keyref="false"/>：不保证接收端在五秒内收到数据流，延迟或丢失不会返回错误信息。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -164,25 +154,25 @@
             <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="android">
                 <ul>
                     <li>方法调用成功，返回创建的数据流 ID。</li>
-                    <li>&lt; 0：方法调用失败。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
         </section>

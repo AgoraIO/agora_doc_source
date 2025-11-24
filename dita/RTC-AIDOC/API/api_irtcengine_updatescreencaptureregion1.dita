@@ -23,10 +23,6 @@
             <title>调用时机</title>
             <p props="cpp">加入频道前后均可调用。</p>
         </section>
-        <section id="restriction" deliveryTarget="details" props="cpp">
-            <title>调用限制</title>
-            <p props="cpp">无。</p>
-        </section>
         <section id="parameters" deliveryTarget="details" props="cpp">
             <title>参数</title>
             <parml>
@@ -36,9 +32,9 @@
                         <ul>
                             <li>如果不设置该参数，SDK 会共享整个屏幕或窗口。</li>
                             <li>如果设置的区域超出屏幕或窗口范围，SDK 仅共享其中的有效区域。</li>
-                            <li>如果设置的宽度或高度为 0，SDK 会共享整个屏幕或窗口。
-详见 <xref keyref="Rectangle"/>。</li>
+                            <li>如果设置的宽度或高度为 0，SDK 会共享整个屏幕或窗口。</li>
                         </ul>
+                        <p><ph>详见 <xref keyref="Rectangle"/>。</ph></p>
                     </pd>
                 </plentry>
             </parml>
@@ -48,7 +44,7 @@
             <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。
                         <ul>
                             <li>-2：参数无效。</li>
                             <li>-8：屏幕共享状态无效。可能是因为你已共享了其他屏幕或窗口。请尝试调用 <codeph>stopScreenCapture</codeph> 停止当前共享，然后重新开始共享屏幕。</li>

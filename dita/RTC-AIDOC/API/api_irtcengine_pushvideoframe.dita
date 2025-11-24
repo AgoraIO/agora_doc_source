@@ -30,9 +30,9 @@
                 <ol>
                     <li>调用 <xref keyref="createCustomVideoTrack"/> 创建视频轨道并获取视频轨道 ID。</li>
                     <li>调用 <codeph>joinChannel</codeph> 加入频道。在 <xref keyref="ChannelMediaOptions"/> 中，将 <codeph>customVideoTrackId</codeph> 设置为要发布的视频轨道 ID，并将 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/>。</li>
-                    <li>调用 <codeph>pushExternalVideoFrameById</codeph>，并将 <codeph>videoTrackId</codeph> 设置为第 2 步中设置的视频轨道 ID，即可在频道中发布对应的自定义视频源。
-你可以通过调用 <codeph>pushExternalVideoFrameById</codeph> 或调用 <codeph>pushExternalVideoFrameById</codeph>（参数为 <xref keyref="ExternalVideoFrame"/>）推送视频帧。两者的区别在于本方法支持纹理格式的视频数据。</li>
+                    <li>调用 <codeph>pushExternalVideoFrameById</codeph>，并将 <codeph>videoTrackId</codeph> 设置为第 2 步中设置的视频轨道 ID，即可在频道中发布对应的自定义视频源。</li>
                 </ol>
+                <p><ph>你可以通过调用 <codeph>pushExternalVideoFrameById</codeph> 或调用 <codeph>pushExternalVideoFrameById</codeph>（参数为 <xref keyref="ExternalVideoFrame"/>）推送视频帧。两者的区别在于本方法支持纹理格式的视频数据。</ph></p>
             </p>
             <p props="mac">要发布自定义视频源，请按照以下步骤操作：
                 <ol>
@@ -54,12 +54,6 @@
             <p props="ios">加入频道前后均可调用。</p>
             <p props="android">加入频道前后均可调用。</p>
             <p props="mac">加入频道前后均可调用。</p>
-        </section>
-        <section id="restriction" deliveryTarget="details" props="android ios mac">
-            <title>调用限制</title>
-            <p props="ios">无。</p>
-            <p props="android">无。</p>
-            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android ios mac">
             <title>参数</title>
@@ -109,7 +103,7 @@
             <p props="android">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

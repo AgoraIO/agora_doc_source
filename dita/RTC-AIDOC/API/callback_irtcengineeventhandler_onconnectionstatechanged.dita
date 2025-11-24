@@ -37,13 +37,6 @@
             <p props="ios">该回调在网络连接状态发生变化时被触发。</p>
             <p props="mac">该回调在网络连接状态发生变化时被触发。</p>
         </section>
-        <section id="restriction" deliveryTarget="details" props="android cpp ios mac">
-            <title>使用限制</title>
-            <p props="cpp">无。</p>
-            <p props="android">无。</p>
-            <p props="ios">无。</p>
-            <p props="mac">无。</p>
-        </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
@@ -90,13 +83,16 @@
                                 <ul>
                                     <li>项目在声网控制台启用了 App Certificate，但加入频道时未传入 Token。</li>
                                     <li>调用 <codeph>joinChannel</codeph> 加入频道时指定的 <codeph>uid</codeph> 与生成 Token 时传入的 <codeph>uid</codeph> 不一致。</li>
-                                    <li>使用的 Token 与生成的 Token 不一致。
-  请确保：</li>
-                                    <li>项目启用 App Certificate 时，加入频道必须传入 Token。</li>
-                                    <li>生成 Token 时指定的用户 ID 与加入频道时使用的用户 ID 一致。</li>
-                                    <li>使用的 Token 与生成的 Token 一致。</li>
+                                    <li>使用的 Token 与生成的 Token 不一致。</li>
                                 </ul>
                             </li>
+                        </ul>  请确保：
+                        <ul>
+                            <li>项目启用 App Certificate 时，加入频道必须传入 Token。</li>
+                            <li>生成 Token 时指定的用户 ID 与加入频道时使用的用户 ID 一致。</li>
+                            <li>使用的 Token 与生成的 Token 一致。</li>
+                        </ul>
+                        <ul>
                             <li><codeph>CONNECTION_CHANGED_TOKEN_EXPIRED</codeph> (9)：当前使用的 Token 已过期。你需要在服务器上生成新的 Token，并使用新 Token 重新加入频道。</li>
                             <li><codeph>CONNECTION_CHANGED_REJECTED_BY_SERVER</codeph> (10)：用户被服务器禁止。</li>
                             <li><codeph>CONNECTION_CHANGED_SETTING_PROXY_SERVER</codeph> (11)：设置代理服务器后，SDK 尝试重新连接。</li>
@@ -107,10 +103,10 @@
                             <li><codeph>CONNECTION_CHANGED_LOST</codeph> (16)：SDK 与服务器之间的连接丢失。</li>
                             <li><codeph>CONNECTION_CHANGED_ECHO_TEST</codeph> (17)：由于回声测试，连接状态发生变化。</li>
                             <li><codeph>CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED_BY_USER</codeph> (18)：本地 IP 地址被用户更改。</li>
-                            <li><codeph>CONNECTION_CHANGED_SAME_UID_LOGIN</codeph> (19)：用户在不同设备上以相同的 <codeph>uid</codeph> 加入同一频道。
-  注意：以相同 <codeph>uid</codeph> 加入同一 RTC 频道属于未定义行为，声网不保证在相同情况下始终触发该错误码。</li>
+                            <li><codeph>CONNECTION_CHANGED_SAME_UID_LOGIN</codeph> (19)：用户在不同设备上以相同的 <codeph>uid</codeph> 加入同一频道。</li>
                             <li><codeph>CONNECTION_CHANGED_TOO_MANY_BROADCASTERS</codeph> (20)：频道中的主播数量已达上限。</li>
                         </ul>
+                        <p><ph>  注意：以相同 <codeph>uid</codeph> 加入同一 RTC 频道属于未定义行为，声网不保证在相同情况下始终触发该错误码。</ph></p>
                     </pd>
                 </plentry>
                 <plentry props="ios">

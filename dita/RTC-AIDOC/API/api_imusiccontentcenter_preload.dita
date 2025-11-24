@@ -38,19 +38,13 @@
             <p props="android">调用该方法后，SDK 会触发 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调报告预加载事件。在调用该方法前，你需要先调用 <codeph>getMusicCollectionByMusicChartId</codeph> 或 <codeph>searchMusic</codeph> 获取音乐资源，并从 <xref keyref="onMusicCollectionResult"/> 回调中获取资源标识符 <codeph>songCode</codeph>。</p>
             <note props="cpp">在销毁 <xref keyref="IRtcEngine"/> 对象前，请确保已收到 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调后再调用 <xref keyref="release_IMusicContentCenter"/> 方法。</note>
             <note props="ios">在销毁 <xref keyref="IRtcEngine"/> 对象前，请确保等待 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调后再调用 <xref keyref="destroy_IMusicContentCenter"/> 方法。</note>
-            <note props="android">销毁 <xref keyref="RtcEngine"/> 对象前，请确保在收到 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调后调用 <codeph>destroy()</codeph> 方法。</note>
+            <note props="android">销毁 <xref keyref="IRtcEngine"/> 对象前，请确保在收到 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调后调用 <codeph>destroy()</codeph> 方法。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios">
             <title>调用时机</title>
             <p props="cpp">加入频道前后均可调用。</p>
             <p props="ios">加入频道前后均可调用。</p>
             <p props="android">加入频道前后均可调用。</p>
-        </section>
-        <section id="restriction" deliveryTarget="details" props="android cpp ios">
-            <title>调用限制</title>
-            <p props="cpp">无。</p>
-            <p props="ios">无。</p>
-            <p props="android">无。</p>
         </section>
         <section id="related" deliveryTarget="details" props="ios">
             <title>相关回调</title>
@@ -71,10 +65,9 @@
                             <li>2：直播场景：背景音乐播放。</li>
                             <li>3：（默认）声动语聊场景：在线 K 歌房。</li>
                             <li>4：声动语聊场景：背景音乐播放。</li>
-                            <li>5：VR 场景：在线 K 歌房和背景音乐播放。
-如果你需要切换到其他场景，请再次调用该方法并在该字段中传入新的 <codeph>sceneType</codeph> 值。
-示例：<codeph>{"sceneType":1}</codeph>。</li>
+                            <li>5：VR 场景：在线 K 歌房和背景音乐播放。</li>
                         </ul>
+                        <p><ph>如果你需要切换到其他场景，请再次调用该方法并在该字段中传入新的 <codeph>sceneType</codeph> 值。</ph><ph>示例：<codeph>{"sceneType":1}</codeph>。</ph></p>
                     </pd>
                 </plentry>
                 <plentry props="ios">
@@ -89,10 +82,9 @@
                             <li>2：频道场景：直播中的背景音乐播放。</li>
                             <li>3：（默认）频道场景：声动语聊中的在线 K 歌。</li>
                             <li>4：频道场景：声动语聊中的背景音乐播放。</li>
-                            <li>5：频道场景：VR 中的在线 K 歌和背景音乐播放。
-如果你需要切换到其他场景，必须重新调用此方法并在该字段中传入新的 <codeph>sceneType</codeph> 值。
-示例：<codeph>{"sceneType":1}</codeph>。</li>
+                            <li>5：频道场景：VR 中的在线 K 歌和背景音乐播放。</li>
                         </ul>
+                        <p><ph>如果你需要切换到其他场景，必须重新调用此方法并在该字段中传入新的 <codeph>sceneType</codeph> 值。</ph><ph>示例：<codeph>{"sceneType":1}</codeph>。</ph></p>
                     </pd>
                 </plentry>
                 <plentry props="android">
@@ -107,10 +99,9 @@
                             <li>2：直播场景：背景音乐播放。</li>
                             <li>3：（默认）声动语聊场景：在线 K 歌房。</li>
                             <li>4：声动语聊场景：背景音乐播放。</li>
-                            <li>5：VR 场景：在线 K 歌房和背景音乐播放。
-如果你需要切换到其他场景，必须重新调用该方法并在该字段中传入新的 <codeph>sceneType</codeph> 值。
-示例：<codeph>{"sceneType":1}</codeph>。</li>
+                            <li>5：VR 场景：在线 K 歌房和背景音乐播放。</li>
                         </ul>
+                        <p><ph>如果你需要切换到其他场景，必须重新调用该方法并在该字段中传入新的 <codeph>sceneType</codeph> 值。</ph><ph>示例：<codeph>{"sceneType":1}</codeph>。</ph></p>
                     </pd>
                 </plentry>
             </parml>
@@ -120,19 +111,19 @@
             <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="android">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见 <codeph>Error Codes</codeph>。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。详见 <codeph>Error Codes</codeph>。</li>
                 </ul>
             </p>
         </section>

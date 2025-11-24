@@ -40,7 +40,7 @@
                 <ul>
                     <li>调用该方法时，请确保将用户角色设置为观众，且未将音频场景设置为 <codeph>AUDIO_SCENARIO_CHORUS</codeph>，否则该方法不生效。</li>
                     <li>你还需要确保用于预加载的频道名、用户 ID 和 Token 与加入频道时传入的值一致，否则该方法不生效。</li>
-                    <li>一个 <xref keyref="RtcEngine"/> 实例最多支持预加载 20 个频道，超出限制时，仅最近的 20 个预加载频道生效。</li>
+                    <li>一个 <xref keyref="IRtcEngine"/> 实例最多支持预加载 20 个频道，超出限制时，仅最近的 20 个预加载频道生效。</li>
                     <li>预加载频道失败并不意味着无法加入频道，也不会增加加入频道所需的时间。</li>
                 </ul>
             </note>
@@ -66,13 +66,6 @@
             <p props="android">该方法需要在加入频道前调用。</p>
             <p props="ios">该方法需要在加入频道前调用。</p>
             <p props="mac">该方法需要在加入频道前调用。</p>
-        </section>
-        <section id="restriction" deliveryTarget="details" props="android cpp ios mac">
-            <title>调用限制</title>
-            <p props="cpp">无。</p>
-            <p props="android">无。</p>
-            <p props="ios">无。</p>
-            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
@@ -113,12 +106,12 @@
                             <li>如果只预加载一个频道，调用该方法传入新的 Token。</li>
                             <li>如果预加载多个频道：
                                 <ul>
-                                    <li>如果你为所有预加载频道使用通配符 Token，调用 <xref keyref="updatePreloadChannelToken"/> 更新 Token。
-    注意：生成通配符 Token 时，确保用户 ID 不为 0。详见 <codeph>Secure authentication with tokens</codeph>。</li>
+                                    <li>如果你为所有预加载频道使用通配符 Token，调用 <xref keyref="updatePreloadChannelToken"/> 更新 Token。</li>
                                     <li>如果你为不同频道使用不同的 Token，调用该方法传入用户 ID、频道名和新的 Token。</li>
                                 </ul>
                             </li>
                         </ul>
+                        <p><ph>    注意：生成通配符 Token 时，确保用户 ID 不为 0。详见 <codeph>Secure authentication with tokens</codeph>。</ph></p>
                     </pd>
                 </plentry>
                 <plentry props="android">
@@ -143,12 +136,12 @@
                             <li>如果只预加载一个频道，调用该方法传入新的 Token。</li>
                             <li>如果预加载多个频道：
                                 <ul>
-                                    <li>如果你为所有预加载频道使用通配符 Token，调用 <xref keyref="updatePreloadChannelToken"/> 更新 Token。
-    注意：生成通配符 Token 时，确保用户 ID 不为 0。</li>
+                                    <li>如果你为所有预加载频道使用通配符 Token，调用 <xref keyref="updatePreloadChannelToken"/> 更新 Token。</li>
                                     <li>如果你为不同频道使用不同的 Token，调用该方法传入用户 ID、频道名和新的 Token。</li>
                                 </ul>
                             </li>
                         </ul>
+                        <p><ph>    注意：生成通配符 Token 时，确保用户 ID 不为 0。</ph></p>
                     </pd>
                 </plentry>
                 <plentry props="ios">
@@ -173,12 +166,12 @@
                             <li>如果只预加载一个频道，调用该方法传入新的 Token。</li>
                             <li>如果预加载多个频道：
                                 <ul>
-                                    <li>如果你为所有预加载频道使用通配符 Token，调用 <xref keyref="updatePreloadChannelToken"/> 更新 Token。
-    注意：生成通配符 Token 时，确保用户 ID 不为 0。</li>
+                                    <li>如果你为所有预加载频道使用通配符 Token，调用 <xref keyref="updatePreloadChannelToken"/> 更新 Token。</li>
                                     <li>如果你为不同频道使用不同的 Token，调用该方法传入用户 ID、频道名和新的 Token。</li>
                                 </ul>
                             </li>
                         </ul>
+                        <p><ph>    注意：生成通配符 Token 时，确保用户 ID 不为 0。</ph></p>
                     </pd>
                 </plentry>
                 <plentry props="mac">
@@ -203,7 +196,7 @@
             <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。
                         <ul>
                             <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要先初始化 <xref keyref="IRtcEngine"/> 对象再调用该方法。</li>
                             <li>-102：频道名无效。你需要传入有效的频道名并重新加入频道。</li>
@@ -214,9 +207,9 @@
             <p props="android">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
                         <ul>
-                            <li>-7：<xref keyref="RtcEngine"/> 对象尚未初始化。你需要先初始化 <xref keyref="RtcEngine"/> 对象再调用该方法。</li>
+                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要先初始化 <xref keyref="IRtcEngine"/> 对象再调用该方法。</li>
                             <li>-102：频道名无效。你需要传入有效的频道名并重新加入频道。</li>
                         </ul>
                     </li>
@@ -225,7 +218,7 @@
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。
                         <ul>
                             <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要先初始化该对象再调用此方法。</li>
                             <li>-102：频道名无效。你需要传入有效的频道名并重新加入频道。</li>
@@ -236,7 +229,7 @@
             <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。
                         <ul>
                             <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要先初始化该对象再调用此方法。</li>
                             <li>-102：频道名无效。你需要传入有效的频道名并重新加入频道。</li>

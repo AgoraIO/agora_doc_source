@@ -80,13 +80,6 @@
             <p props="ios">你可以在加入频道前或加入频道后调用该方法。</p>
             <p props="mac">你可以在加入频道前或加入频道后调用该方法。</p>
         </section>
-        <section id="restriction" deliveryTarget="details" props="android cpp ios mac">
-            <title>调用限制</title>
-            <p props="cpp">无。</p>
-            <p props="android">无。</p>
-            <p props="ios">无。</p>
-            <p props="mac">无。</p>
-        </section>
         <section id="related" deliveryTarget="details" props="cpp">
             <title>相关回调</title>
             <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onAudioMixingStateChanged"/>（<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>）回调。当音频混音文件播放结束时，SDK 会在本地客户端触发 <xref keyref="onAudioMixingStateChanged"/>（<codeph>AUDIO_MIXING_STATE_STOPPED</codeph>）回调。</p>
@@ -197,7 +190,7 @@
             <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。
                         <ul>
                             <li>-1：发生通用错误（无明确原因）。</li>
                             <li>-2：参数无效。</li>
@@ -215,7 +208,7 @@
             <p props="android">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
                         <ul>
                             <li>-1：发生通用错误（无明确原因）。</li>
                             <li>-2：参数无效。</li>
@@ -223,7 +216,7 @@
                                 <ul>
                                     <li>音频模块未启用。</li>
                                     <li>程序未完整。</li>
-                                    <li><xref keyref="RtcEngine"/> 初始化失败。请重新初始化 <xref keyref="RtcEngine"/>。</li>
+                                    <li><xref keyref="IRtcEngine"/> 初始化失败。请重新初始化 <xref keyref="IRtcEngine"/>。</li>
                                 </ul>
                             </li>
                         </ul>
@@ -233,7 +226,7 @@
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。
                         <ul>
                             <li>-1：发生通用错误（无明确原因）。</li>
                             <li>-2：参数无效。</li>
@@ -251,7 +244,7 @@
             <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。
                         <ul>
                             <li>-1：发生通用错误（无明确原因）。</li>
                             <li>-2：参数无效。</li>
