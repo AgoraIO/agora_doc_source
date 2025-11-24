@@ -19,13 +19,12 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (int)registerLocalUserAccount:(NSString* _Nonnull)userAccount appId:(NSString* _Nonnull)appId  NS_SWIFT_NAME(registerLocalUserAccount(_:appId:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">该方法用于注册用户账号。注册成功后，用户账号可用于在加入频道时标识本地用户身份。你可以选择以下任一方式使用用户账号加入频道：
                 <ul>
                     <li>先调用 <xref keyref="registerLocalUserAccount"/> 注册用户账号，再调用 <codeph>joinChannelWithUserAccount</codeph> 加入频道，可缩短进入频道的时间。</li>
                     <li>直接调用 <codeph>joinChannelWithUserAccount</codeph> 加入频道。</li>
-                </ul>
-            </p>
+                </ul><ph>从 v4.6.0 版本开始，SDK 不再自动将 <codeph>int</codeph> 类型的用户 ID 映射为注册用户账号时使用的 <codeph>string</codeph> 类型 <codeph>userAccount</codeph>。如果你希望使用注册时的原始 <codeph>string</codeph> 类型 <codeph>userAccount</codeph> 加入频道，请调用 <codeph>joinChannelWithUserAccount</codeph>，而不是调用 <codeph>joinChannel</codeph> 并传入通过该方法获取的 <codeph>int</codeph> 类型用户 ID。</ph><ph>确保 <codeph>userAccount</codeph> 在频道内唯一。</ph><ph>为确保通信顺畅，建议使用相同的参数类型标识用户。例如，如果某用户使用用户 ID 加入频道，则其他用户也应使用用户 ID；同理，如果使用用户账号加入频道，则其他用户也应使用用户账号。如果用户使用声网 Web SDK 加入频道，确保用户 ID 设置为相同的参数类型。</ph></p>
             <p props="android">该方法用于注册用户账号。注册成功后，用户账号可用于在加入频道时标识本地用户身份。该方法为可选项。如果你希望使用用户账号加入频道，可以选择以下任一方式：
                 <ul>
                     <li>先调用 <xref keyref="registerLocalUserAccount"/> 方法注册用户账号，再调用 <codeph>joinChannelWithUserAccount</codeph> 方法加入频道，可缩短进入频道所需时间。</li>
@@ -36,21 +35,12 @@
                 <ul>
                     <li>调用 <xref keyref="registerLocalUserAccount"/> 方法注册用户账号，然后调用 <xref keyref="joinChannelWithUserAccount1"/> 或 <xref keyref="joinChannelWithUserAccount2"/> 方法加入频道，可缩短进入频道所需的时间。</li>
                     <li>直接调用 <xref keyref="joinChannelWithUserAccount1"/> 或 <xref keyref="joinChannelWithUserAccount2"/> 方法加入频道。</li>
-                </ul>
-            </p>
+                </ul><ph>从 v4.6.0 版本开始，SDK 不再自动将 <codeph>NSInteger</codeph> 类型的用户 ID 映射为注册用户账号时使用的 <codeph>NSString</codeph> 类型 <codeph>userAccount</codeph>。如果你希望使用注册时的原始 <codeph>userAccount</codeph> 加入频道，请调用 <xref keyref="joinChannelWithUserAccount2"/> 方法，而不是调用 <xref keyref="joinChannel2"/> 并传入通过该方法获取的 <codeph>NSInteger</codeph> 用户 ID。</ph><ph>确保 <codeph>userAccount</codeph> 在频道内唯一。</ph><ph>为确保通信顺畅，建议使用相同的参数类型标识用户。例如，如果某用户使用用户 ID 加入频道，则其他用户也应使用用户 ID；同理，如果使用用户账号加入频道，则其他用户也应使用用户账号。如果用户使用声网 Web SDK 加入频道，确保其 ID 设置为相同的参数类型。</ph></p>
             <p props="mac">注册成功后，用户账号可用于标识本地用户身份，并可用于加入频道。该方法为可选项。如果你希望使用用户账号加入频道，可以选择以下任一方式：
                 <ul>
                     <li>调用 <xref keyref="registerLocalUserAccount"/> 方法注册用户账号，然后调用 <xref keyref="joinChannelWithUserAccount1"/> 或 <xref keyref="joinChannelWithUserAccount2"/> 方法加入频道，可缩短进入频道所需的时间。</li>
                     <li>直接调用 <xref keyref="joinChannelWithUserAccount1"/> 或 <xref keyref="joinChannelWithUserAccount2"/> 方法加入频道。</li>
-                </ul>
-            </p>
-        </section>
-        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
-            <title>调用时机</title>
-            <p props="cpp">加入频道前后均可调用。</p>
-            <p props="android">加入频道前后均可调用。</p>
-            <p props="ios">加入频道前后均可调用。</p>
-            <p props="mac">加入频道前后均可调用。</p>
+                </ul><ph>从 v4.6.0 版本开始，SDK 不再自动将 <codeph>NSInteger</codeph> 类型的用户 ID 映射为注册用户账号时使用的 <codeph>NSString</codeph> 类型 <codeph>userAccount</codeph>。如果你希望使用注册时的原始 <codeph>userAccount</codeph> 加入频道，请调用 <xref keyref="joinChannelWithUserAccount2"/> 方法，而不是调用 <xref keyref="joinChannel2"/> 并传入通过该方法获取的 <codeph>NSInteger</codeph> 用户 ID。</ph><ph>确保 <codeph>userAccount</codeph> 在频道内唯一。</ph><ph>为确保通信顺畅，建议使用相同的参数类型标识用户。例如，如果某用户使用用户 ID 加入频道，则其他用户也应使用用户 ID；同理，如果使用用户账号加入频道，则其他用户也应使用用户账号。如果用户使用声网 Web SDK 加入频道，确保其 ID 设置为相同的参数类型。</ph></p>
         </section>
         <section id="related" deliveryTarget="details" props="android cpp ios mac">
             <title>相关回调</title>

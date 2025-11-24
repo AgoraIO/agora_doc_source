@@ -23,7 +23,7 @@
                          uid:(NSUInteger)uid NS_SWIFT_NAME(preloadChannel(byToken:channelId:uid:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">当观众需要频繁切换不同频道时，调用该方法可以缩短加入频道的时间，从而减少观众听到和看到主播的延迟时间。如果你加入了一个已预加载的频道，离开后想要重新加入该频道，除非用于预加载频道的 Token 过期，否则无需再次调用该方法。为提升预加载频道的用户体验，声网建议在确认频道名和用户信息后尽早调用该方法。</p>
             <p props="android">当观众需要频繁切换不同频道时，调用该方法可以缩短加入频道的时间，从而减少观众听到和看到主播的延迟时间。如果你加入了一个已预加载的频道，离开后想重新加入该频道，除非用于预加载频道的 Token 过期，否则无需再次调用该方法。</p>
             <p props="ios">该方法用于预加载指定频道。当你作为观众需要频繁切换频道时，调用该方法可以缩短加入频道的时间，从而减少你听到和看到主播的延迟。该方法需要在加入频道前调用。如果你加入了一个已预加载的频道，离开后想要重新加入该频道，除非用于预加载的 Token 过期，否则无需再次调用该方法。为提升预加载频道的用户体验，声网建议你在确认频道名和用户信息后尽早调用该方法。</p>
@@ -107,11 +107,12 @@
                             <li>如果预加载多个频道：
                                 <ul>
                                     <li>如果你为所有预加载频道使用通配符 Token，调用 <xref keyref="updatePreloadChannelToken"/> 更新 Token。</li>
-                                    <li>如果你为不同频道使用不同的 Token，调用该方法传入用户 ID、频道名和新的 Token。</li>
                                 </ul>
                             </li>
+                        </ul><ph>    注意：生成通配符 Token 时，确保用户 ID 不为 0。详见 <codeph>Secure authentication with tokens</codeph>。</ph>
+                        <ul>
+                            <li>如果你为不同频道使用不同的 Token，调用该方法传入用户 ID、频道名和新的 Token。</li>
                         </ul>
-                        <p><ph>    注意：生成通配符 Token 时，确保用户 ID 不为 0。详见 <codeph>Secure authentication with tokens</codeph>。</ph></p>
                     </pd>
                 </plentry>
                 <plentry props="android">
@@ -137,11 +138,12 @@
                             <li>如果预加载多个频道：
                                 <ul>
                                     <li>如果你为所有预加载频道使用通配符 Token，调用 <xref keyref="updatePreloadChannelToken"/> 更新 Token。</li>
-                                    <li>如果你为不同频道使用不同的 Token，调用该方法传入用户 ID、频道名和新的 Token。</li>
                                 </ul>
                             </li>
+                        </ul><ph>    注意：生成通配符 Token 时，确保用户 ID 不为 0。</ph>
+                        <ul>
+                            <li>如果你为不同频道使用不同的 Token，调用该方法传入用户 ID、频道名和新的 Token。</li>
                         </ul>
-                        <p><ph>    注意：生成通配符 Token 时，确保用户 ID 不为 0。</ph></p>
                     </pd>
                 </plentry>
                 <plentry props="ios">
@@ -167,11 +169,12 @@
                             <li>如果预加载多个频道：
                                 <ul>
                                     <li>如果你为所有预加载频道使用通配符 Token，调用 <xref keyref="updatePreloadChannelToken"/> 更新 Token。</li>
-                                    <li>如果你为不同频道使用不同的 Token，调用该方法传入用户 ID、频道名和新的 Token。</li>
                                 </ul>
                             </li>
+                        </ul><ph>    注意：生成通配符 Token 时，确保用户 ID 不为 0。</ph>
+                        <ul>
+                            <li>如果你为不同频道使用不同的 Token，调用该方法传入用户 ID、频道名和新的 Token。</li>
                         </ul>
-                        <p><ph>    注意：生成通配符 Token 时，确保用户 ID 不为 0。</ph></p>
                     </pd>
                 </plentry>
                 <plentry props="mac">

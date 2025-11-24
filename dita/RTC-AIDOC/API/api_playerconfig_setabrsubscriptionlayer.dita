@@ -19,7 +19,7 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (void)setAbrSubscriptionLayer:(AgoraRteAbrSubscriptionLayer)layer error:(AgoraRteError * _Nullable)error;</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
                 <dlentry props="cpp">
                     <dt>自从</dt>
@@ -52,8 +52,8 @@
             <title>调用时机</title>
             <p props="cpp">该方法必须在调用 <codeph>SetConfigs</codeph> 之前调用。</p>
             <p props="android">必须在调用 <codeph>setConfigs</codeph> 之前调用该方法。</p>
-            <p props="ios">你必须在调用 <xref keyref="SetConfigs_Canvas"/> 之前调用该方法。</p>
-            <p props="mac">你必须在调用 <xref keyref="SetConfigs_Canvas"/> 之前调用该方法。</p>
+            <p props="ios">你必须在调用 <codeph>setConfigs:error:</codeph> 之前调用该方法。</p>
+            <p props="mac">你必须在调用 <codeph>setConfigs:error:</codeph> 之前调用该方法。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
@@ -63,8 +63,7 @@
                     <pd>要订阅的视频质量层，详见 <xref keyref="RteAbrSubscriptionLayer"/>。当自定义 <codeph>kRteAbrSubscriptionLayer1</codeph> 到 <codeph>kRteAbrSubscriptionLayer6</codeph> 的分辨率时，可参考下表或根据实际需求设置：
                         <ul>
                             <li>注意：自定义分辨率时，需按分辨率从高到低排序；当分辨率相同时，按帧率从高到低排序。</li>
-                        </ul>
-                    </pd>
+                        </ul><ph>| 视频质量层 | 分辨率 |</ph><ph>| --------------------------- | --------- |</ph><ph>| <codeph>kRteAbrSubscriptionLayer1</codeph> | 2160p (4K) |</ph><ph>| <codeph>kRteAbrSubscriptionLayer2</codeph> | 1440p (2K) |</ph><ph>| <codeph>kRteAbrSubscriptionLayer3</codeph> | 1080p (HD) |</ph><ph>| <codeph>kRteAbrSubscriptionLayer4</codeph> | 720p (HD)  |</ph><ph>| <codeph>kRteAbrSubscriptionLayer5</codeph> | 540p (SD)  |</ph><ph>| <codeph>kRteAbrSubscriptionLayer6</codeph> | 480p (SD)  |</ph></pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>err</pt>

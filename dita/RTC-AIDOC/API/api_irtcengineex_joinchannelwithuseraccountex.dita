@@ -28,7 +28,7 @@
                 joinSuccess:(void(^ _Nullable)(NSString* _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock NS_SWIFT_NAME(joinChannelEx(byToken:channelId:userAccount:delegate:mediaOptions:joinSuccess:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="ios">调用该方法前，如果你没有调用 <codeph>registerLocalUserAccountWithAppID:userAccount:</codeph> 注册用户账号，SDK 会在你调用该方法加入频道时自动为你创建一个用户账号。建议先调用 <codeph>registerLocalUserAccountWithAppID:userAccount:</codeph> 注册用户账号，再调用该方法加入频道，以缩短进入频道的时间。
 用户加入频道后，默认会订阅频道中所有其他用户的音视频流，从而产生用量和计费。如果你希望取消订阅其他用户的媒体流，可以设置 <codeph>mediaOptions</codeph> 参数或调用相应的 <codeph>mute</codeph> 方法。</p>
             <p props="android">在调用该方法之前，如果你尚未调用 <xref keyref="registerLocalUserAccount"/> 注册用户账号，SDK 会在你调用该方法加入频道时自动为你创建一个用户账号。建议你先调用 <xref keyref="registerLocalUserAccount"/> 注册用户账号，再调用该方法加入频道，以缩短加入频道所需的时间。

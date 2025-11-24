@@ -18,16 +18,10 @@
                 <codeblock props="android" outputclass="language-java">public abstract boolean isCameraTorchSupported();</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <note props="cpp"><xref keyref="isCameraTorchSupported"/> 仅适用于 Android 和 iOS 平台。必须在 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>（1）后调用该方法。App 默认启用前置摄像头。如果前置摄像头不支持闪光灯，该方法返回 <xref keyref="false"/>。如果你想检查后置摄像头是否支持闪光灯功能，请在调用该方法前调用 <xref keyref="switchCamera"/>。iOS 15 系统版本的 iPad 上，即使 <xref keyref="isCameraTorchSupported"/> 返回 <xref keyref="true"/>，由于系统问题，调用 <xref keyref="setCameraTorchOn"/> 可能无法成功打开闪光灯。</note>
             <note props="ios">你必须在 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>AgoraVideoLocalStateCapturing</codeph>（1）后调用该方法。App 默认启用前置摄像头。如果前置摄像头不支持闪光灯，该方法返回 <xref keyref="false"/>。如果你想检查后置摄像头是否支持闪光灯功能，请在调用该方法前调用 <xref keyref="switchCamera"/>。在系统版本为 15 的 iPad 上，即使 <xref keyref="isCameraTorchSupported"/> 返回 <xref keyref="true"/>，你也可能因系统问题调用 <xref keyref="setCameraTorchOn"/> 启用闪光灯失败。</note>
             <note props="android">你必须在 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>（1）后调用该方法。App 默认启用前置摄像头。如果前置摄像头不支持闪光灯，该方法返回 <xref keyref="false"/>。如果你想检查后置摄像头是否支持闪光灯功能，请在调用该方法前调用 <codeph>switchCamera</codeph>。</note>
-        </section>
-        <section id="timing" deliveryTarget="details" props="android cpp ios">
-            <title>调用时机</title>
-            <p props="cpp">加入频道前后均可调用。</p>
-            <p props="ios">加入频道前后均可调用。</p>
-            <p props="android">加入频道前后均可调用。</p>
         </section>
         <section id="return_values" props="android cpp ios">
             <title>返回值</title>

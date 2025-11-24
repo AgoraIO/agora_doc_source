@@ -19,7 +19,7 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (int)setAudioScenario:(AgoraAudioScenario)scenario NS_SWIFT_NAME(setAudioScenario(_:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">该方法适用于多种音频场景。例如，在对音质要求较高的音乐教学场景中，建议将 <codeph>scenario</codeph> 设置为 <codeph>AUDIO_SCENARIO_GAME_STREAMING</codeph>（3）。</p>
             <p props="android">该方法适用于多种音频场景，可根据需要选择。例如，在对音质要求较高的音乐教学场景中，建议将 <codeph>scenario</codeph> 设置为 <codeph>AUDIO_SCENARIO_GAME_STREAMING</codeph>（3）。</p>
             <p props="ios">该方法适用于多种音频场景。你可以根据需要进行选择。例如，在音乐教学等对音质要求较高的场景中，建议将 <codeph>scenario</codeph> 设置为 <codeph>AgoraAudioScenarioGameStreaming</codeph>（3）。</p>
@@ -50,10 +50,11 @@
                             <li><codeph>AUDIO_SCENARIO_GAME_STREAMING</codeph>（3）：高音质音频场景，适用于主要播放音乐的场景。</li>
                             <li><codeph>AUDIO_SCENARIO_CHATROOM</codeph>（5）：聊天室场景，适用于频繁切换用户角色或静音/取消静音麦克风的场景。</li>
                             <li><codeph>AUDIO_SCENARIO_CHORUS</codeph>（7）：实时合唱场景，适用于网络状况良好且对超低延迟有要求的场景。</li>
+                        </ul><ph>  注意：使用该枚举前需调用 <xref keyref="getAudioDeviceInfo"/> 查看音频设备是否支持超低延迟采集和播放。要体验超低延迟，需确保音频设备支持超低延迟（<codeph>isLowLatencyAudioSupported</codeph> = <xref keyref="true"/>）。</ph>
+                        <ul>
                             <li><codeph>AUDIO_SCENARIO_MEETING</codeph>（8）：会议场景，主要以人声为主。</li>
                             <li><codeph>AUDIO_SCENARIO_AI_CLIENT</codeph>（10）：AI 对话场景，仅适用于用户与由 <codeph>Conversational AI Engine</codeph> 创建的对话式智能体交互的场景。</li>
                         </ul>
-                        <p><ph>  注意：使用该枚举前需调用 <xref keyref="getAudioDeviceInfo"/> 查看音频设备是否支持超低延迟采集和播放。要体验超低延迟，需确保音频设备支持超低延迟（<codeph>isLowLatencyAudioSupported</codeph> = <xref keyref="true"/>）。</ph></p>
                     </pd>
                 </plentry>
                 <plentry props="ios">

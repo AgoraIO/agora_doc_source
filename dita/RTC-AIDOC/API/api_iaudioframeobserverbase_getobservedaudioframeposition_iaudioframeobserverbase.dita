@@ -16,7 +16,7 @@
                 <codeblock props="cpp" outputclass="language-cpp">virtual int getObservedAudioFramePosition() = 0;</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="cpp">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">成功注册音频数据观察器后，SDK 会在每个特定的音频帧处理节点调用该回调，以判断是否触发以下回调：
                 <ul>
                     <li><xref keyref="onRecordAudioFrame_IAudioFrameObserverBase"/></li>
@@ -24,13 +24,7 @@
                     <li><xref keyref="onPlaybackAudioFrameBeforeMixing_IAudioFrameObserverBase"/></li>
                     <li><xref keyref="onMixedAudioFrame_IAudioFrameObserverBase"/></li>
                     <li><xref keyref="onEarMonitoringAudioFrame_IAudioFrameObserverBase"/></li>
-                </ul>
-                <p><ph>你可以根据实际场景，通过修改 <xref keyref="getObservedAudioFramePosition_IAudioFrameObserverBase"/> 的返回值设置需要观察的一个或多个位置。</ph><ph>如果需要同时观察多个位置，需使用按位或运算符（|）。为节省系统资源，建议只设置必要的观察位置。</ph></p>
-            </p>
-        </section>
-        <section id="timing" deliveryTarget="details" props="cpp">
-            <title>调用时机</title>
-            <p props="cpp">加入频道前后均可调用。</p>
+                </ul><ph>你可以根据实际场景，通过修改 <xref keyref="getObservedAudioFramePosition_IAudioFrameObserverBase"/> 的返回值设置需要观察的一个或多个位置。</ph><ph>如果需要同时观察多个位置，需使用按位或运算符（|）。为节省系统资源，建议只设置必要的观察位置。</ph></p>
         </section>
         <section id="return_values" props="cpp">
             <title>返回值</title>

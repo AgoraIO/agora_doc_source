@@ -19,14 +19,13 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (BOOL)onCaptureVideoFrame:(AgoraOutputVideoFrame * _Nonnull)videoFrame sourceType:(AgoraVideoSourceType)sourceType;</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
-            <p props="cpp">你可以通过该回调获取本地设备采集的原始视频数据，并根据需要进行预处理。预处理完成后，可以直接在该回调中修改 <xref keyref="VideoFrame"/>，并将返回值设置为 <xref keyref="true"/>，以将修改后的视频数据发送给 SDK。如果需要将预处理后的视频数据发送给 SDK，需先调用 <xref keyref="getVideoFrameProcessMode"/> 将视频处理模式设置为读写模式（<codeph>PROCESS_MODE_READ_WRITE</codeph>）。
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">你可以通过该回调获取本地设备采集的原始视频数据，并根据需要进行预处理。预处理完成后，可以直接在该回调中修改 <codeph>videoFrame</codeph>，并将返回值设置为 <xref keyref="true"/>，以将修改后的视频数据发送给 SDK。如果需要将预处理后的视频数据发送给 SDK，需先调用 <xref keyref="getVideoFrameProcessMode"/> 将视频处理模式设置为读写模式（<codeph>PROCESS_MODE_READ_WRITE</codeph>）。
 适用场景：
                 <ul>
                     <li>在 SDK 处理本地采集的视频数据之前对其进行预处理，例如添加滤镜、水印、裁剪、旋转等。</li>
                     <li>在 SDK 处理本地采集的视频数据之前获取其信息，例如视频帧的原始宽度、高度、帧率等。</li>
-                </ul>
-            </p>
+                </ul><ph>调用时机：成功注册视频数据观察器后，每次 SDK 采集到视频帧时。</ph></p>
             <p props="android">你可以通过该回调获取本地设备采集的原始视频数据，并根据需要进行预处理。预处理完成后，可以直接在该回调中修改 <codeph>videoFrame</codeph>，并将返回值设置为 <xref keyref="true"/>，以将修改后的视频数据发送给 SDK。如果需要将预处理后的视频数据发送给 SDK，需先调用 <xref keyref="getVideoFrameProcessMode"/> 将视频处理模式设置为读写模式（<codeph>PROCESS_MODE_READ_WRITE</codeph>）。
 适用场景包括：
                 <ul>
@@ -39,7 +38,7 @@
             <note props="cpp">
                 <ul>
                     <li>如果获取的视频数据类型为 RGBA，SDK 不支持处理 alpha 通道的数据。</li>
-                    <li>建议确保 <xref keyref="VideoFrame"/> 中修改后的参数与视频帧缓冲区中视频帧的实际情况一致，否则可能导致本地预览和远端视频显示出现异常旋转、拉伸等问题。</li>
+                    <li>建议确保 <codeph>videoFrame</codeph> 中修改后的参数与视频帧缓冲区中视频帧的实际情况一致，否则可能导致本地预览和远端视频显示出现异常旋转、拉伸等问题。</li>
                     <li>默认从该回调获取的视频格式为 YUV420。如果需要其他格式，可以在 <xref keyref="getVideoFormatPreference"/> 回调中设置期望的数据格式。</li>
                 </ul>
             </note>

@@ -19,7 +19,7 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (AgoraVideoFramePosition)getObservedFramePosition NS_SWIFT_NAME(getObservedFramePosition());</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">成功注册视频数据观察器后，SDK 会通过该回调判断是否在特定的视频帧处理位置触发 <xref keyref="onCaptureVideoFrame"/>、<xref keyref="onRenderVideoFrame"/> 和 <xref keyref="onPreEncodeVideoFrame"/> 回调，以便你观察本地采集的视频数据、远端发送的视频数据以及编码前的视频数据。你可以根据实际场景，通过修改返回值设置一个或多个需要观察的位置：
                 <ul>
                     <li><codeph>POSITION_POST_CAPTURER</codeph> (1 &lt;&lt; 0)：视频采集后的位置。对应 <xref keyref="onCaptureVideoFrame"/> 回调。</li>
@@ -64,13 +64,6 @@
                     <li>当视频处理模式为 <codeph>AgoraVideoFrameProcessModeReadWrite</codeph> 且观察位置设置为 <codeph>AgoraVideoModulePositionPreEncoder | AgoraVideoModulePositionPostCapture</codeph> 时，<xref keyref="getMirrorApplied"/> 不生效。你需要修改视频处理模式或观察器的位置。</li>
                 </ul>
             </note>
-        </section>
-        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
-            <title>调用时机</title>
-            <p props="cpp">加入频道前后均可调用。</p>
-            <p props="android">加入频道前后均可调用。</p>
-            <p props="ios">加入频道前后均可调用。</p>
-            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="return_values" props="android cpp ios mac">
             <title>返回值</title>

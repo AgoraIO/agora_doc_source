@@ -16,13 +16,9 @@
                 <codeblock props="cpp" outputclass="language-cpp">virtual AudioParams getPlaybackAudioParams() = 0;</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="cpp">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">你需要在调用 <xref keyref="registerAudioFrameObserver_IMediaEngine"/> 方法时注册回调。注册成功后，SDK 会触发该回调，你可以在该回调的返回值中设置音频格式。</p>
             <note props="cpp">SDK 会根据你在返回值中设置的 <xref keyref="AudioParams"/> 计算采样间隔，并以此触发 <xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/> 回调。采样间隔的计算公式为：采样间隔（秒） = <codeph>samplePerCall</codeph> /（<codeph>sampleRate</codeph> × <codeph>channel</codeph>）。请确保采样间隔 ≥ 0.01 秒。</note>
-        </section>
-        <section id="timing" deliveryTarget="details" props="cpp">
-            <title>调用时机</title>
-            <p props="cpp">加入频道前后均可调用。</p>
         </section>
         <section id="return_values" props="cpp">
             <title>返回值</title>

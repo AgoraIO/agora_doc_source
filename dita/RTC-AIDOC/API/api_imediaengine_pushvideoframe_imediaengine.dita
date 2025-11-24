@@ -16,14 +16,13 @@
                 <codeblock props="cpp" outputclass="language-cpp">virtual int pushVideoFrame(base::ExternalVideoFrame* frame, unsigned int videoTrackId = 0) = 0;</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="cpp">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">要发布自定义视频源，请按照以下步骤操作：
                 <ol>
                     <li>调用 <xref keyref="createCustomVideoTrack"/> 创建视频轨道并获取视频轨道 ID。</li>
                     <li>调用 <codeph>joinChannel</codeph> 加入频道。在 <xref keyref="ChannelMediaOptions"/> 中，将 <codeph>customVideoTrackId</codeph> 设置为要发布的视频轨道 ID，并将 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/>。</li>
                     <li>调用 <xref keyref="pushVideoFrame_IMediaEngine"/>，并将 <codeph>videoTrackId</codeph> 设置为第 2 步中设置的视频轨道 ID，即可在频道中发布对应的自定义视频源。</li>
-                </ol>
-            </p>
+                </ol><ph>适用场景：自 v4.2.3 起，SDK 支持 <codeph>ID3D11Texture2D</codeph> 视频格式，该格式广泛应用于游戏场景。当你需要将此类视频帧推送到 SDK 时，调用 <xref keyref="pushVideoFrame_IMediaEngine"/>，并将 <codeph>frame</codeph> 中的 <codeph>format</codeph> 设置为 <codeph>VIDEO_TEXTURE_ID3D11TEXTURE2D</codeph>，设置 <codeph>d3d11_texture_2d</codeph> 和 <codeph>texture_slice_index</codeph> 成员，并将视频帧格式设置为 <codeph>ID3D11Texture2D</codeph>。</ph></p>
             <note props="cpp">如果你只需向频道中推送一个自定义视频源，可以直接调用 <xref keyref="setExternalVideoSource_IMediaEngine"/> 方法，SDK 会自动创建一个 <codeph>videoTrackId</codeph> 为 0 的视频轨道。
 警告：调用 <xref keyref="pushVideoFrame_IMediaEngine"/> 后，即使你停止向 SDK 推送外部视频帧，自定义视频流仍会计入视频时长并产生费用。声网建议你根据实际情况采取适当措施以避免此类视频计费：
                 <ul>
@@ -31,10 +30,6 @@
                     <li>如果你只想将外部视频数据用于本地预览而不在频道中发布，可以调用 <xref keyref="muteLocalVideoStream"/> 停止发送视频流，或调用 <xref keyref="updateChannelMediaOptions"/> 将 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="false"/>。</li>
                 </ul>
             </note>
-        </section>
-        <section id="timing" deliveryTarget="details" props="cpp">
-            <title>调用时机</title>
-            <p props="cpp">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="cpp">
             <title>参数</title>

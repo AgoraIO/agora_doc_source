@@ -19,21 +19,17 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (int)switchSrc:(NSString *)src syncPts:(BOOL)syncPts NS_SWIFT_NAME(switchSrc(_:syncPts:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">你可以根据当前的网络状况调用该方法切换播放的媒体资源。例如：
                 <ul>
                     <li>当网络较差时，切换为码率较低的媒体资源地址；</li>
                     <li>当网络良好时，切换为码率较高的媒体资源地址。</li>
-                </ul>
-                <p><ph>调用该方法后，如果收到 <xref keyref="onPlayerEvent"/> 回调报告 <codeph>PLAYER_EVENT_SWITCH_COMPLETE</codeph> 事件，表示切换成功；如果切换失败，SDK 会自动重试 3 次，若仍失败，将通过 <xref keyref="onPlayerEvent"/> 回调报告 <codeph>PLAYER_EVENT_SWITCH_ERROR</codeph> 事件，表示切换失败。</ph></p>
-            </p>
+                </ul><ph>调用该方法后，如果收到 <xref keyref="onPlayerEvent"/> 回调报告 <codeph>PLAYER_EVENT_SWITCH_COMPLETE</codeph> 事件，表示切换成功；如果切换失败，SDK 会自动重试 3 次，若仍失败，将通过 <xref keyref="onPlayerEvent"/> 回调报告 <codeph>PLAYER_EVENT_SWITCH_ERROR</codeph> 事件，表示切换失败。</ph></p>
             <p props="android">你可以调用此方法根据当前网络状态切换播放的媒体资源地址。例如：
                 <ul>
                     <li>当网络较差时，将播放的媒体资源切换为码率较低的媒体资源地址。</li>
                     <li>当网络良好时，将播放的媒体资源切换为码率较高的媒体资源地址。</li>
-                </ul>
-                <p><ph>调用此方法后，如果收到 <xref keyref="onPlayerEvent"/> 回调报告 <codeph>PLAYER_EVENT_SWITCH_COMPLETE</codeph> 事件，表示切换成功。如果切换失败，SDK 会自动重试 3 次。如果仍然失败，你将收到 <xref keyref="onPlayerEvent"/> 回调报告 <codeph>PLAYER_EVENT_SWITCH_ERROR</codeph> 事件，表示切换过程中发生错误。</ph></p>
-            </p>
+                </ul><ph>调用此方法后，如果收到 <xref keyref="onPlayerEvent"/> 回调报告 <codeph>PLAYER_EVENT_SWITCH_COMPLETE</codeph> 事件，表示切换成功。如果切换失败，SDK 会自动重试 3 次。如果仍然失败，你将收到 <xref keyref="onPlayerEvent"/> 回调报告 <codeph>PLAYER_EVENT_SWITCH_ERROR</codeph> 事件，表示切换过程中发生错误。</ph></p>
             <p props="ios">你可以根据当前的网络状态调用该方法切换要播放的媒体资源。例如：
                 <ul>
                     <li>当网络较差时，将播放的媒体资源切换为码率较低的媒体资源地址。</li>
@@ -86,13 +82,6 @@
                     <li>切换媒体资源前，请确保播放位置未超过要切换的媒体资源的总时长。</li>
                 </ul>
             </note>
-        </section>
-        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
-            <title>调用时机</title>
-            <p props="cpp">加入频道前后均可调用。</p>
-            <p props="android">加入频道前后均可调用。</p>
-            <p props="ios">加入频道前后均可调用。</p>
-            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="related" deliveryTarget="details" props="ios mac">
             <title>相关回调</title>

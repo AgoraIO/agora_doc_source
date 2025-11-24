@@ -19,7 +19,7 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (int)setClientRole:(AgoraClientRole)role options:(AgoraClientRoleOptions * _Nullable)options NS_SWIFT_NAME(setClientRole(_:options:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">默认情况下，SDK 会将用户角色设置为观众。你可以调用此方法将用户角色设置为主播。用户角色（<codeph>role</codeph>）决定了用户在 SDK 层的权限，例如是否可以在频道中发布音视频流。
 该方法与 <codeph>setClientRole</codeph> 的区别在于，它支持设置 <codeph>audienceLatencyLevel</codeph>。你需要将 <codeph>audienceLatencyLevel</codeph> 与 <codeph>role</codeph> 搭配使用，以确定用户在其权限范围内可享受的服务等级。例如，观众可以选择接收低延迟或超低延迟的远端流。
 你可以在加入频道前或加入频道后调用此方法。
@@ -39,7 +39,7 @@
                 <ul>
                     <li>如果在加入频道前调用此方法将用户角色设置为主播，并通过 <xref keyref="setupLocalVideo"/> 方法设置本地视频属性，则你加入频道时会自动开启本地视频预览。</li>
                     <li>如果在加入频道后调用此方法设置用户角色，SDK 会自动调用 <xref keyref="muteLocalAudioStream"/> 和 <xref keyref="muteLocalVideoStream"/> 方法来更改音视频流的发布状态。</li>
-                </ul>相关回调：
+                </ul><ph>相关回调：</ph>
                 <ul>
                     <li>如果你在加入频道后调用此方法切换用户角色，SDK 会触发以下回调：
                         <ul>
@@ -55,7 +55,7 @@
                 <ul>
                     <li>如果在加入频道前调用此方法将用户角色设置为主播，并通过 <xref keyref="setupLocalVideo"/> 方法设置本地视频属性，则你加入频道时会自动开启本地视频预览。</li>
                     <li>如果在加入频道后调用此方法设置用户角色，SDK 会自动调用 <xref keyref="muteLocalAudioStream"/> 和 <xref keyref="muteLocalVideoStream"/> 方法来更改音视频流的发布状态。</li>
-                </ul>相关回调：
+                </ul><ph>相关回调：</ph>
                 <ul>
                     <li>如果你在加入频道后调用此方法切换用户角色，SDK 会触发以下回调：
                         <ul>
@@ -96,18 +96,15 @@
             <p props="cpp">如果你在加入频道后调用此方法切换用户角色，SDK 会触发以下回调：
                 <ul>
                     <li>本地客户端触发 <xref keyref="onClientRoleChanged"/> 回调。</li>
+                </ul><ph>  注意：在加入频道前调用此方法并将 <codeph>role</codeph> 设置为 <codeph>AUDIENCE</codeph> 时，也会触发该回调。</ph>
+                <ul>
                     <li>远端客户端触发 <xref keyref="onUserJoined"/> 或 <xref keyref="onUserOffline"/> 回调。</li>
-                </ul>
-                <p><ph>  注意：在加入频道前调用此方法并将 <codeph>role</codeph> 设置为 <codeph>AUDIENCE</codeph> 时，也会触发该回调。</ph></p>
-                <p><ph>如果你在加入频道后调用此方法设置用户角色但失败，SDK 会触发 <xref keyref="onClientRoleChangeFailed"/> 回调，报告失败原因及当前用户角色。</ph></p>
-            </p>
+                </ul><ph>如果你在加入频道后调用此方法设置用户角色但失败，SDK 会触发 <xref keyref="onClientRoleChangeFailed"/> 回调，报告失败原因及当前用户角色。</ph></p>
             <p props="android">成功调用该方法后，如果在加入频道后切换用户角色，SDK 会触发以下回调：
                 <ul>
                     <li>本地客户端触发 <xref keyref="onClientRoleChanged"/> 回调。</li>
                     <li>远端客户端触发 <xref keyref="onUserJoined"/> 或 <xref keyref="onUserOffline"/> 回调。</li>
-                </ul>
-                <p><ph>如果调用失败，SDK 会触发 <xref keyref="onClientRoleChangeFailed"/> 回调，报告失败原因及当前用户角色。</ph></p>
-            </p>
+                </ul><ph>如果调用失败，SDK 会触发 <xref keyref="onClientRoleChangeFailed"/> 回调，报告失败原因及当前用户角色。</ph></p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>

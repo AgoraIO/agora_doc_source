@@ -19,13 +19,13 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine reportAudioVolumeIndicationOfSpeakers:(NSArray&lt;AgoraRtcAudioVolumeInfo *&gt; * _Nonnull)speakers totalVolume:(NSInteger)totalVolume NS_SWIFT_NAME(rtcEngine(_:reportAudioVolumeIndicationOfSpeakers:totalVolume:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">默认情况下，该回调处于关闭状态。你可以通过调用 <xref keyref="enableAudioVolumeIndication"/> 方法开启该回调。开启后，当频道中有用户发送音频流时，SDK 会按照 <xref keyref="enableAudioVolumeIndication"/> 中设置的时间间隔触发该回调。SDK 会同时触发两个独立的 <xref keyref="onAudioVolumeIndication"/> 回调，分别报告发送音频流的本地用户和瞬时音量最高的最多三位远端用户的音量信息。</p>
             <p props="android">默认情况下，该回调处于关闭状态。你可以通过调用 <xref keyref="enableAudioVolumeIndication"/> 方法开启该回调。开启后，当用户在频道中发送音频流时，SDK 会根据 <xref keyref="enableAudioVolumeIndication"/> 中设置的时间间隔触发该回调。SDK 会同时触发两个独立的 <xref keyref="onAudioVolumeIndication"/> 回调，分别报告发送音频流的本地用户和瞬时音量最高的最多三位远端用户的音量信息。</p>
             <p props="ios">你可以通过调用 <codeph>enableAudioVolumeIndication</codeph> 方法开启该回调。开启后，当用户在频道中发送音频流时，SDK 会根据 <codeph>enableAudioVolumeIndication</codeph> 中设置的时间间隔触发该回调。SDK 会同时触发两个独立的回调，分别报告发送音频流的本地用户和瞬时音量最高的最多三位远端用户的音量信息。</p>
             <p props="mac">你可以通过调用 <codeph>enableAudioVolumeIndication</codeph> 方法开启该回调。开启后，当用户在频道中发送音频流时，SDK 会根据 <codeph>enableAudioVolumeIndication</codeph> 中设置的时间间隔触发该回调。SDK 会同时触发两个独立的回调，分别报告发送音频流的本地用户和瞬时音量最高的最多三位远端用户的音量信息。</p>
             <note props="cpp">开启该回调后，即使本地用户调用 <xref keyref="muteLocalAudioStream"/> 方法将音频静音，SDK 仍会继续报告本地用户的音量信息。如果某位远端用户的音量为频道中前三高之一，但停止发布音频流超过 20 秒，该回调将不再包含该用户的信息；如果所有远端用户都停止发布音频流超过 20 秒，SDK 将不再触发远端用户的音量回调。</note>
-            <note props="android">开启该回调后，即使本地用户调用 <xref keyref="muteLocalAudioStream"/> 方法静音，SDK 仍会继续报告本地用户的音量信息。
+            <note props="android">开启该回调后，即使本地用户调用 <codeph>muteLocalAudioStream</codeph> 方法静音，SDK 仍会继续报告本地用户的音量信息。
                 <ul>
                     <li>如果某位远端用户的音量在频道中排名前三，但停止发布音频流超过 20 秒，该回调将不再包含该用户的信息。</li>
                     <li>如果所有远端用户都停止发布音频流超过 20 秒，SDK 将不再触发远端用户的音量回调。</li>

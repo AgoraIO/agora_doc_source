@@ -21,42 +21,31 @@
                                  options:(AgoraVideoSubscriptionOptions* _Nonnull)options NS_SWIFT_NAME(setRemoteVideoSubscriptionOptions(_:options:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">当远端用户开启双流模式时，你可以调用该方法设置订阅该远端用户发送的视频流的选项。SDK 默认的远端视频流订阅行为取决于注册的视频观察器类型：
                 <ul>
                     <li>如果注册了 <xref keyref="IVideoFrameObserver"/> 观察器，默认订阅原始数据和编码数据；</li>
                     <li>如果注册了 <xref keyref="IVideoEncodedFrameObserver"/> 观察器，默认仅订阅编码数据；</li>
                     <li>如果同时注册了上述两种观察器，默认行为遵循最后注册的观察器。例如，如果最后注册的是 <xref keyref="IVideoFrameObserver"/>，则默认订阅原始数据和编码数据。</li>
-                </ul>
-            </p>
+                </ul><ph>如果你希望修改默认行为，或为不同的用户 ID 设置不同的订阅选项，可以调用该方法进行设置。</ph></p>
             <p props="android">你可以调用该方法设置订阅远端用户发送的视频流的选项，适用于远端用户开启双流模式的场景。SDK 默认的远端视频流订阅行为取决于注册的视频观察器类型：
                 <ul>
                     <li>如果注册了 <xref keyref="IVideoFrameObserver"/> 观察器，默认订阅原始数据和编码数据；</li>
                     <li>如果注册了 <xref keyref="IVideoEncodedFrameObserver"/> 观察器，默认仅订阅编码数据；</li>
                     <li>如果同时注册了两种观察器，默认行为遵循最后注册的视频观察器。例如，如果最后注册的是 <xref keyref="IVideoFrameObserver"/>，则默认订阅原始数据和编码数据。</li>
-                </ul>
-            </p>
+                </ul><ph>如果你希望修改默认行为，或为不同的用户 ID 设置不同的订阅选项，可以调用该方法进行设置。</ph></p>
             <p props="ios">当远端用户开启双流模式时，你可以调用此方法设置订阅该远端用户发送的视频流的选项。SDK 默认的远端视频流订阅行为取决于注册的视频观察者类型：
                 <ul>
                     <li>如果注册了 <xref keyref="IVideoFrameObserver"/> 观察者，默认订阅原始数据和编码数据；</li>
                     <li>如果注册了 <xref keyref="IVideoEncodedFrameObserver"/> 观察者，默认仅订阅编码数据；</li>
                     <li>如果同时注册了两种观察者，默认行为遵循最后注册的观察者。例如，如果最后注册的是 <xref keyref="IVideoFrameObserver"/> 观察者，则默认订阅原始数据和编码数据。</li>
-                </ul>
-            </p>
+                </ul><ph>如果你希望修改默认行为，或为不同的 <codeph>uid</codeph> 设置不同的订阅选项，可以调用此方法进行设置。</ph></p>
             <p props="mac">当远端用户开启双流模式时，你可以调用此方法设置订阅该远端用户发送的视频流的选项。SDK 默认的远端视频流订阅行为取决于注册的视频观察者类型：
                 <ul>
                     <li>如果注册了 <xref keyref="IVideoFrameObserver"/> 观察者，默认订阅原始数据和编码数据；</li>
                     <li>如果注册了 <xref keyref="IVideoEncodedFrameObserver"/> 观察者，默认仅订阅编码数据；</li>
                     <li>如果同时注册了两种观察者，默认行为遵循最后注册的观察者。例如，如果最后注册的是 <xref keyref="IVideoFrameObserver"/> 观察者，则默认订阅原始数据和编码数据。</li>
-                </ul>
-            </p>
-        </section>
-        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
-            <title>调用时机</title>
-            <p props="cpp">加入频道前后均可调用。</p>
-            <p props="android">加入频道前后均可调用。</p>
-            <p props="ios">加入频道前后均可调用。</p>
-            <p props="mac">加入频道前后均可调用。</p>
+                </ul><ph>如果你希望修改默认行为，或为不同的 <codeph>uid</codeph> 设置不同的订阅选项，可以调用此方法进行设置。</ph></p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>

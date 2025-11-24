@@ -18,16 +18,10 @@
                 <codeblock props="android" outputclass="language-java">public abstract long getInternalSongCode(long songCode, String jsonOption);</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">在播放音乐资源的副歌片段前，需调用该方法，结合参数 <codeph>jsonOption</codeph> 和音乐资源的 <codeph>songCode</codeph> 创建副歌片段的内部歌曲编码。该编码作为资源的唯一标识。获取该编码后，在调用打开、预加载或移除资源的方法时，将其作为 <codeph>songCode</codeph> 参数传入。</p>
             <p props="ios">调用该方法可结合音乐资源的 <codeph>songCode</codeph> 和 <codeph>jsonOption</codeph> 参数，为该资源的副歌片段创建一个内部 ID。该 ID 是该资源的唯一标识。获取该 ID 后，你需要在调用打开、预加载或移除资源的方法时，将其作为 <codeph>songCode</codeph> 参数传入。</p>
             <p props="android">在播放音乐资源的副歌片段前，需调用该方法，结合音乐资源的 <codeph>songCode</codeph> 和 <codeph>jsonOption</codeph> 参数创建副歌片段的内部标识符。该标识符作为资源的唯一引用。在调用相关方法以打开、预加载或移除资源时，应将该标识符作为 <codeph>songCode</codeph> 参数传入。</p>
-        </section>
-        <section id="timing" deliveryTarget="details" props="android cpp ios">
-            <title>调用时机</title>
-            <p props="cpp">加入频道前后均可调用。</p>
-            <p props="ios">加入频道前后均可调用。</p>
-            <p props="android">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios">
             <title>参数</title>
@@ -79,12 +73,10 @@
                                     <li>5：VR 场景：在线 K 歌房和背景音乐播放。</li>
                                 </ul>
                             </li>
-                        </ul>  &gt; 注意：声网会根据你在 `sceneType` 中指定的频道场景计费。不同的频道场景对应不同的计费标准，详见计费文档。若需切换频道场景，必须重新调用该方法并传入新的 `sceneType` 值。
-  示例：`{"sceneType":1}`
+                        </ul><ph>  &gt; 注意：声网会根据你在 <codeph>sceneType</codeph> 中指定的频道场景计费。不同的频道场景对应不同的计费标准，详见计费文档。若需切换频道场景，必须重新调用该方法并传入新的 <codeph>sceneType</codeph> 值。</ph><ph>  示例：<codeph>{"sceneType":1}</codeph></ph>
                         <ul>
                             <li><codeph>highPart</codeph>：副歌片段的索引。你可以从 <xref keyref="onMusicCollectionResult"/> 回调中获取该索引并传入。索引从 0 开始。</li>
-                        </ul>
-                    </pd>
+                        </ul><ph>  示例：<codeph>{"format": {"highpart": 0}}</codeph></ph></pd>
                 </plentry>
                 <plentry props="android">
                     <pt>songCode</pt>
@@ -92,7 +84,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>jsonOption</pt>
-                    <pd>扩展 JSON 字段，默认为 <xref keyref="NULL"/>。目前支持以下字段：
+                    <pd>扩展 JSON 字段，默认为 <codeph>null</codeph>。目前支持以下字段：
 | Key | Value | Example |
 | --- | ----- | ------- |
 | sceneType | 频道场景：
@@ -102,9 +94,7 @@
                             <li>3：（默认）声动语聊场景：在线 K 歌房。</li>
                             <li>4：声动语聊场景：背景音乐播放。</li>
                             <li>5：VR 场景：在线 K 歌房和背景音乐播放。 | {"sceneType":1} |</li>
-                        </ul>
-                        <p><ph>| highPart | 副歌片段的索引，从 <xref keyref="onMusicCollectionResult"/> 回调中获取，索引从 0 开始。 | {"format": {"highpart": 0}} |</ph></p>
-                    </pd>
+                        </ul><ph>| highPart | 副歌片段的索引，从 <xref keyref="onMusicCollectionResult"/> 回调中获取，索引从 0 开始。 | {"format": {"highpart": 0}} |</ph></pd>
                 </plentry>
             </parml>
         </section>

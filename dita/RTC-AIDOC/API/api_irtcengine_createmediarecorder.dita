@@ -19,7 +19,7 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (AgoraMediaRecorder * _Nullable)createMediaRecorder:(AgoraRecorderStreamInfo * _Nonnull)info NS_SWIFT_NAME(createMediaRecorder(withInfo:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">在开始录制音频和视频流之前，你需要调用该方法创建一个录制器实例。SDK 支持录制来自本地或远端用户的多个音视频流。你可以多次调用该方法创建多个录制器实例，并通过参数 <codeph>info</codeph> 指定要录制的频道名和远端用户 ID。创建成功后，你需要调用 <xref keyref="setMediaRecorderObserver"/> 为录制器实例注册观察者以监听相关回调，然后调用 <xref keyref="startRecording"/> 开始录制。</p>
             <p props="android">在开始录制音视频流之前，你需要调用该方法创建一个录制器实例。你可以多次调用该方法创建多个录制器，并通过 <codeph>info</codeph> 参数指定要录制的频道名和用户 ID。
 
@@ -30,13 +30,6 @@
             <p props="mac">在开始音视频流录制之前，你需要调用该方法创建一个媒体录制器实例。SDK 支持录制来自本地或远端用户的多个音视频流。你可以多次调用该方法创建多个录制器实例，并使用 <codeph>info</codeph> 参数指定要录制的频道名和远端用户 ID。
 
 成功创建录制器实例后，你需要调用 <xref keyref="setMediaRecorderObserver"/> 方法为该录制器注册一个观察者，以监听相关回调，然后调用 <xref keyref="startRecording"/> 方法开始录制。</p>
-        </section>
-        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
-            <title>调用时机</title>
-            <p props="cpp">加入频道前后均可调用。</p>
-            <p props="android">加入频道前后均可调用。</p>
-            <p props="ios">加入频道前后均可调用。</p>
-            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
@@ -63,7 +56,7 @@
             <title>返回值</title>
             <p props="cpp">方法调用成功，返回 <xref keyref="IMediaRecorder"/> 实例。详见 <xref keyref="IMediaRecorder"/>。
 方法调用失败，返回 <xref keyref="NULL"/>。</p>
-            <p props="android">方法调用成功，返回 <xref keyref="IMediaRecorder"/> 实例。方法调用失败，返回 <xref keyref="NULL"/>。</p>
+            <p props="android">方法调用成功，返回 <xref keyref="IMediaRecorder"/> 实例。方法调用失败，返回 <codeph>null</codeph>。</p>
             <p props="ios">方法调用成功，返回 <xref keyref="IMediaRecorder"/> 对象。方法调用失败，返回 <xref keyref="NULL"/>。</p>
             <p props="mac">方法调用成功，返回 <xref keyref="IMediaRecorder"/> 对象。方法调用失败，返回 <xref keyref="NULL"/>。</p>
         </section>

@@ -19,7 +19,7 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (int)enableAudio NS_SWIFT_NAME(enableAudio());</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">音频模块默认处于启用状态。调用 <xref keyref="disableAudio"/> 方法禁用音频模块后，可以调用该方法重新启用音频模块。</p>
             <p props="android">调用 <xref keyref="disableAudio"/> 方法禁用音频模块后，可以调用 <xref keyref="enableAudio"/> 方法重新启用。</p>
             <p props="ios">音频模块默认处于启用状态。你在调用 <xref keyref="disableAudio"/> 方法禁用音频模块后，可以调用该方法重新启用音频模块。</p>
@@ -30,9 +30,7 @@
                     <li><xref keyref="muteLocalAudioStream"/>：是否发布本地音频流。</li>
                     <li><xref keyref="muteRemoteAudioStream"/>：是否订阅并播放远端音频流。</li>
                     <li><xref keyref="muteAllRemoteAudioStreams"/>：是否订阅并播放所有远端音频流。</li>
-                </ul>
-                <p><ph>成功调用该方法会重置 <xref keyref="enableLocalAudio"/>、<xref keyref="muteRemoteAudioStream"/> 和 <xref keyref="muteAllRemoteAudioStreams"/> 的设置，请谨慎使用。</ph></p>
-            </note>
+                </ul><ph>成功调用该方法会重置 <xref keyref="enableLocalAudio"/>、<xref keyref="muteRemoteAudioStream"/> 和 <xref keyref="muteAllRemoteAudioStreams"/> 的设置，请谨慎使用。</ph></note>
             <note props="android">
                 <ul>
                     <li>调用此方法会重置整个引擎，可能导致响应时间变慢。你可以根据实际需求，使用以下方法分别控制音频模块的具体功能：

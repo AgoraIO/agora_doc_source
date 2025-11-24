@@ -21,13 +21,12 @@
                     data:(NSData * _Nonnull)data NS_SWIFT_NAME(sendStreamMessage(_:data:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">调用 <codeph>createDataStream</codeph> 后，可以使用该方法向频道内的所有用户发送数据流消息。SDK 对该方法有限制：
                 <ul>
                     <li>每个客户端在频道中最多可同时拥有 5 个数据通道，所有数据通道共享的总包比特率上限为 30 KB/s。</li>
                     <li>每个数据通道每秒最多可发送 60 个数据包，每个数据包最大为 1 KB。</li>
-                </ul>
-            </p>
+                </ul><ph>调用成功后，远端用户会收到 <xref keyref="onStreamMessage"/> 回调；调用失败时，远端用户会收到 <xref keyref="onStreamMessageError"/> 回调。</ph></p>
             <p props="android">
                 <ul>
                     <li>每个客户端最多可同时创建 5 个数据流通道，所有通道共享的总发送速率上限为 30 KB/s。</li>
@@ -70,13 +69,6 @@
                     <li>此方法仅适用于主播。</li>
                 </ul>
             </note>
-        </section>
-        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
-            <title>调用时机</title>
-            <p props="cpp">加入频道前后均可调用。</p>
-            <p props="android">加入频道前后均可调用。</p>
-            <p props="ios">加入频道前后均可调用。</p>
-            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="related" deliveryTarget="details" props="android">
             <title>相关回调</title>

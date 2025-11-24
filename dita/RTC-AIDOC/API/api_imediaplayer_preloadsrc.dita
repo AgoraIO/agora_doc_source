@@ -19,7 +19,7 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (int)preloadSrc:(NSString *)src startPos:(int)startPos NS_SWIFT_NAME(preloadSrc(_:startPos:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">你可以调用该方法将媒体资源预加载到播放列表中。如果需要预加载多个媒体资源，可以多次调用该方法。调用该方法后，如果在 <xref keyref="onPreloadEvent"/> 回调中收到 <codeph>PLAYER_PRELOAD_EVENT_COMPLETE</codeph> 事件，表示预加载成功；如果收到 <codeph>PLAYER_PRELOAD_EVENT_ERROR</codeph> 事件，表示预加载失败。预加载成功后，如果你希望播放该媒体资源，请调用 <xref keyref="playPreloadedSrc"/>；如果希望清空播放列表，请调用 <xref keyref="stop"/>。</p>
             <p props="android">调用该方法后，如果在 <xref keyref="onPreloadEvent"/> 回调中收到 <codeph>PLAYER_PRELOAD_EVENT_COMPLETE</codeph> 事件，表示预加载成功；如果收到 <codeph>PLAYER_PRELOAD_EVENT_ERROR</codeph> 事件，表示预加载失败。预加载成功后，如需播放该媒体资源，请调用 <xref keyref="playPreloadedSrc"/>；如需清空播放列表，请调用 <codeph>stop()</codeph>。</p>
             <p props="ios">你可以调用此方法将媒体资源预加载到播放列表中。如果需要预加载多个媒体资源，可以多次调用此方法。如果预加载成功并希望播放该媒体资源，请调用 <xref keyref="playPreloadedSrc"/>；如果希望清空播放列表，请调用 <codeph>stop</codeph>。</p>
@@ -48,13 +48,6 @@
                     <li>不支持将重复的媒体资源预加载到播放列表中。但你可以将正在播放的媒体资源再次预加载到播放列表中。</li>
                 </ul>
             </note>
-        </section>
-        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
-            <title>调用时机</title>
-            <p props="cpp">加入频道前后均可调用。</p>
-            <p props="android">加入频道前后均可调用。</p>
-            <p props="ios">加入频道前后均可调用。</p>
-            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>

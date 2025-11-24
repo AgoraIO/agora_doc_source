@@ -27,7 +27,7 @@
               joinSuccess:(void(^ _Nullable)(NSString * _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock NS_SWIFT_NAME(joinChannel(byToken:channelId:info:uid:joinSuccess:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">默认情况下，用户会订阅频道中其他所有用户的音视频流，从而产生使用量和计费。如需停止订阅指定流或所有远端流，请调用相应的 <xref keyref="mute"/> 方法。</p>
             <p props="android">默认情况下，用户会订阅频道中其他所有用户的音视频流，从而产生使用量和计费。如需停止订阅指定流或所有远端流，请调用相应的 <xref keyref="mute"/> 方法。</p>
             <p props="ios">默认情况下，你会订阅频道中其他所有用户的音视频流，从而产生使用量和计费。如需停止订阅指定流或所有远端流，请调用相应的 <codeph>mute</codeph> 方法。请在调用 <xref keyref="initialize"/> 方法后调用本方法。</p>
@@ -59,16 +59,12 @@
                 <ul>
                     <li>本地客户端：<xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/>。</li>
                     <li>远端客户端：如果是 <codeph>COMMUNICATION</codeph> 频道场景中的用户加入，或 <codeph>LIVE_BROADCASTING</codeph> 频道场景中的主播加入频道，会触发 <xref keyref="onUserJoined"/> 回调。</li>
-                </ul>
-                <p><ph>当本地客户端因网络状况不佳与声网服务器断开连接时，SDK 会尝试重连。当本地客户端成功重回频道时，SDK 会触发 <xref keyref="onRejoinChannelSuccess"/> 回调。</ph></p>
-            </p>
+                </ul><ph>当本地客户端因网络状况不佳与声网服务器断开连接时，SDK 会尝试重连。当本地客户端成功重回频道时，SDK 会触发 <xref keyref="onRejoinChannelSuccess"/> 回调。</ph></p>
             <p props="mac">成功调用该方法后，SDK 会触发以下回调：
                 <ul>
                     <li>本地客户端：<xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/>。</li>
                     <li>远端客户端：如果是 <codeph>COMMUNICATION</codeph> 频道场景中的用户加入，或 <codeph>LIVE_BROADCASTING</codeph> 频道场景中的主播加入频道，会触发 <xref keyref="onUserJoined"/> 回调。</li>
-                </ul>
-                <p><ph>当本地客户端因网络状况不佳与声网服务器断开连接时，SDK 会尝试重连。当本地客户端成功重回频道时，SDK 会触发 <xref keyref="onRejoinChannelSuccess"/> 回调。</ph></p>
-            </p>
+                </ul><ph>当本地客户端因网络状况不佳与声网服务器断开连接时，SDK 会尝试重连。当本地客户端成功重回频道时，SDK 会触发 <xref keyref="onRejoinChannelSuccess"/> 回调。</ph></p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>

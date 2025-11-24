@@ -19,7 +19,7 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (BOOL)onPreEncodeVideoFrame:(AgoraOutputVideoFrame * _Nonnull)videoFrame sourceType:(AgoraVideoSourceType)sourceType;</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">在成功注册视频帧观察器后，SDK 每次接收到视频帧时都会触发该回调。在该回调中，你可以获取编码前的视频数据，并根据具体场景进行处理。处理完成后，可以将处理后的视频数据返回给 SDK。</p>
             <p props="android">在成功注册视频帧观察器后，SDK 每次接收到视频帧时会触发该回调。你可以在该回调中获取编码前的视频数据，并根据具体场景进行处理。处理完成后，可以将处理后的视频数据返回给 SDK。</p>
             <p props="ios">在你成功注册视频帧观察器后，SDK 每次接收到视频帧时都会触发该回调。在该回调中，你可以获取编码前的视频数据，并根据具体场景对其进行处理。处理完成后，你可以将处理后的视频数据返回给 SDK。</p>
@@ -29,7 +29,7 @@
                     <li>如果你需要将预处理后的视频数据发送回 SDK，需要先调用 <xref keyref="getVideoFrameProcessMode"/> 将视频处理模式设置为读写模式（<codeph>PROCESS_MODE_READ_WRITE</codeph>）。</li>
                     <li>如果你需要获取从第二路屏幕采集的编码前视频数据，需要通过 <xref keyref="getObservedFramePosition"/> 设置帧位置为 <codeph>POSITION_PRE_ENCODER</codeph>（1 &lt;&lt; 2）。</li>
                     <li>该回调返回的视频数据已经过预处理，包括裁剪、旋转和图像增强。</li>
-                    <li>建议确保 <xref keyref="VideoFrame"/> 中修改后的参数与视频帧缓冲区中的实际视频帧一致，否则可能导致本地预览或远端显示出现旋转异常、图像拉伸等问题。</li>
+                    <li>建议确保 <codeph>videoFrame</codeph> 中修改后的参数与视频帧缓冲区中的实际视频帧一致，否则可能导致本地预览或远端显示出现旋转异常、图像拉伸等问题。</li>
                 </ul>
             </note>
             <note props="android">
