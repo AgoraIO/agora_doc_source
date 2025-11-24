@@ -21,7 +21,7 @@
                connection:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(setupRemoteVideoEx(_:connection:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">该方法在本地设备上初始化远端视频流的视图，仅影响你本地看到的画面。调用该方法可以将远端视频流绑定到指定视图，并设置该视图的渲染模式和镜像模式。
 
 你需要在远端用户加入频道前，通过 <xref keyref="VideoCanvas"/> 设置远端用户的用户 ID。如果你尚未获取远端用户 ID，可以在收到 <xref keyref="onUserJoined"/> 回调后再设置。
@@ -33,7 +33,7 @@
 应用需在远端用户加入频道前，通过 <xref keyref="VideoCanvas"/> 指定远端用户 ID。
 如果应用尚未获取远端用户 ID，可在收到 <xref keyref="onUserJoined"/> 回调后设置。
 如果启用了视频录制功能，视频录制服务会以虚拟客户端身份加入频道，其他客户端也会因此收到 <xref keyref="onUserJoined"/> 回调。请勿将虚拟客户端绑定到应用视图，因为其不会发送任何视频流。
-如需解除远端用户与视图的绑定，可将 <codeph>view</codeph> 参数设为 <xref keyref="NULL"/>。
+如需解除远端用户与视图的绑定，可将 <codeph>view</codeph> 参数设为 <codeph>null</codeph>。
 远端用户离开频道后，SDK 会自动解除其绑定。</p>
             <p props="ios">该方法在本地设备上初始化远端视频流的视频视图，仅影响你所看到的远端视频画面。你可以调用该方法将远端视频流绑定到指定的视频视图，并设置渲染模式和镜像模式。
 
@@ -73,13 +73,6 @@
                     <li>若需在通话过程中更新远端视频视图的渲染模式或镜像模式，请使用 <codeph>setRemoteRenderModeEx</codeph> 方法。</li>
                 </ul>
             </note>
-        </section>
-        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
-            <title>调用时机</title>
-            <p props="cpp">加入频道前后均可调用。</p>
-            <p props="android">加入频道前后均可调用。</p>
-            <p props="ios">加入频道前后均可调用。</p>
-            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>

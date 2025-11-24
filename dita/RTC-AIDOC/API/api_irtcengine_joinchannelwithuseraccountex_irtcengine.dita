@@ -16,7 +16,7 @@
                 <codeblock props="cpp" outputclass="language-cpp">virtual int joinChannelWithUserAccountEx(const char* token, const char* channelId, const char* userAccount, const ChannelMediaOptions&amp; options, IRtcEngineEventHandler* eventHandler) = 0;</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="cpp">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">在调用该方法之前，如果你尚未调用 <xref keyref="registerLocalUserAccount"/> 注册用户账号，当你调用该方法加入频道时，SDK 会自动为你创建一个用户账号。调用 <xref keyref="registerLocalUserAccount"/> 注册用户账号后再调用该方法，可以缩短加入频道所需的时间。用户加入频道后，默认会订阅频道中所有其他用户的音视频流，从而产生使用量和计费。如果你希望停止订阅其他用户的媒体流，可以设置 <codeph>options</codeph> 参数或调用相应的 <xref keyref="mute"/> 方法。</p>
             <note props="cpp">
                 <ul>

@@ -19,7 +19,7 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (int)leaveChannel:(void(^ _Nullable)(AgoraChannelStats * _Nonnull stat))leaveChannelBlock NS_SWIFT_NAME(leaveChannel(_:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">调用该方法后，SDK 会终止音视频互动，离开当前频道，并释放与会话相关的所有资源。加入频道后，必须调用该方法结束通话，否则无法开始下一次通话。</p>
             <p props="android">调用该方法后，SDK 会终止音视频互动，释放与会话相关的所有资源。加入频道后，必须调用该方法结束通话，否则无法开始下一次通话。</p>
             <p props="ios">调用该方法后，SDK 会终止音视频互动，离开当前频道，并释放与会话相关的所有资源。加入频道后，必须调用该方法结束通话，否则无法开始下一次通话。</p>
@@ -33,7 +33,7 @@
             </note>
             <note props="android">
                 <ul>
-                    <li>如果在调用该方法后立即调用 <xref keyref="Destroy_Rte"/>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。</li>
+                    <li>如果在调用该方法后立即调用 <codeph>destroy</codeph>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。</li>
                     <li>此方法为异步调用。方法返回时，并不代表你已完全离开频道。</li>
                     <li>如果你调用了 <xref keyref="joinChannelEx"/> 加入了多个频道，调用该方法会离开你加入的所有频道。</li>
                 </ul>

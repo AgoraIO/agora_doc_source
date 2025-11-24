@@ -16,13 +16,12 @@
                 <codeblock props="cpp" outputclass="language-cpp">virtual bool onRecordAudioFrame(const char* channelId, AudioFrame&amp; audioFrame) = 0;</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="cpp">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">为了确保采集到的音频帧格式符合预期，你可以通过以下两种方式之一设置音频数据格式：
                 <ul>
                     <li>方法一：调用 <xref keyref="setRecordingAudioFrameParameters"/> 设置音频数据格式，并调用 <xref keyref="registerAudioFrameObserver_IMediaEngine"/> 注册音频帧观察者对象后，SDK 会根据设置的参数计算采样间隔，并按该间隔触发该回调。</li>
                     <li>方法二：调用 <xref keyref="registerAudioFrameObserver_IMediaEngine"/> 注册音频帧观察者对象后，在 <xref keyref="getObservedAudioFramePosition_IAudioFrameObserverBase"/> 的返回值中设置音频数据格式。然后 SDK 会根据 <xref keyref="getRecordAudioParams_IAudioFrameObserverBase"/> 的返回值计算采样间隔，并按该间隔触发该回调。</li>
-                </ul>
-            </p>
+                </ul><ph>方法一的优先级高于方法二。如果使用方法一设置音频数据格式，则方法二的设置无效。</ph></p>
         </section>
         <section id="timing" deliveryTarget="details" props="cpp">
             <title>触发时机</title>

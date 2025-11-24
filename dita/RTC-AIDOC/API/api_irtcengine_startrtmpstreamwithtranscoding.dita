@@ -19,7 +19,7 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (int)startRtmpStreamWithTranscoding:(NSString* _Nonnull)url transcoding:(AgoraLiveTranscoding* _Nullable)transcoding NS_SWIFT_NAME(startRtmpStream(withTranscoding:transcoding:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">你可以调用该方法将音视频流推送到指定的 CDN 地址，并设置转码配置。该方法每次只能将媒体流推送到一个 CDN 地址，如需推送到多个地址，请多次调用该方法。在一个声网项目下，默认最多支持 200 个并发的旁路推流任务。如需更高配额，请[联系技术支持](https://ticket.shengwang.cn/)。</p>
             <p props="android">你可以调用该方法将实时音视频流推送到指定的 CDN 地址，并设置转码配置。该方法每次只能将媒体流推送到一个 CDN 地址。如果需要推送到多个地址，请多次调用该方法。在一个声网项目下，默认最多可同时进行 200 个媒体流推送任务。如需更高配额，请[联系技术支持](https://ticket.shengwang.cn/)。</p>
             <p props="ios">你可以调用该方法将音视频流推送到指定的 CDN 地址，并设置转码配置。该方法每次只能推送到一个 CDN 地址，如需推送到多个地址，请多次调用该方法。在一个声网项目下，默认最多支持 200 个并发的旁路推流任务。如需更高配额，请[联系技术支持](https://ticket.shengwang.cn/)。</p>
@@ -52,13 +52,6 @@
                     <li>如果你在推流失败后需要重试，请先调用 <xref keyref="stopRtmpStream"/> 停止推流，再调用该方法重新推流；否则，SDK 会返回与上次失败相同的错误码。</li>
                 </ul>
             </note>
-        </section>
-        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
-            <title>调用时机</title>
-            <p props="cpp">加入频道前后均可调用。</p>
-            <p props="android">加入频道前后均可调用。</p>
-            <p props="ios">加入频道前后均可调用。</p>
-            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="related" deliveryTarget="details" props="ios mac">
             <title>相关回调</title>

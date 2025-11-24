@@ -17,7 +17,7 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (int)setVideoResolution:(CGSize)size andFrameRate:(NSInteger)frameRate bitrate:(NSInteger)bitrate NS_SWIFT_NAME(setVideoResolution(_:andFrameRate:bitrate:)) __deprecated_msg("use setVideoEncoderConfiguration: instead.");</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="deprecated">
                 <dlentry props="ios">
                     <dt>废弃</dt>
@@ -28,11 +28,6 @@
                     <dd>自 v2.3 版本废弃，请改用 <xref keyref="setVideoEncoderConfiguration"/>。</dd>
                 </dlentry>
             </dl>
-        </section>
-        <section id="timing" deliveryTarget="details" props="ios mac">
-            <title>调用时机</title>
-            <p props="ios">加入频道前后均可调用。</p>
-            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="ios mac">
             <title>参数</title>
@@ -53,12 +48,11 @@
                             <li>如果帧率为 15 fps，使用推荐码率。</li>
                             <li>如果帧率为 30 fps，推荐码率乘以 1.5。</li>
                             <li>如果选择其他帧率，请按比例计算码率。</li>
-                        </ul>例如，分辨率为 320 × 240，帧率为 15 fps，则码率为 200：
+                        </ul><ph>例如，分辨率为 320 × 240，帧率为 15 fps，则码率为 200：</ph>
                         <ul>
                             <li>如果帧率为 5 fps，码率为 100。</li>
                             <li>如果帧率为 30 fps，码率为 300。</li>
-                        </ul>
-                    </pd>
+                        </ul><ph>如果你设置的码率超出合理范围，SDK 会自动将其调整到范围内的值。</ph></pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>size</pt>
@@ -76,12 +70,11 @@
                             <li>如果帧率为 15 fps，使用推荐码率。</li>
                             <li>如果帧率为 30 fps，推荐码率乘以 1.5。</li>
                             <li>如果选择其他帧率，请按比例计算码率。</li>
-                        </ul>例如，分辨率为 320 × 240，帧率为 15 fps，则码率为 200：
+                        </ul><ph>例如，分辨率为 320 × 240，帧率为 15 fps，则码率为 200：</ph>
                         <ul>
                             <li>如果帧率为 5 fps，码率为 100。</li>
                             <li>如果帧率为 30 fps，码率为 300。</li>
-                        </ul>
-                    </pd>
+                        </ul><ph>如果你设置的码率超出合理范围，SDK 会自动将其调整到范围内的值。</ph></pd>
                 </plentry>
             </parml>
         </section>

@@ -18,7 +18,7 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (BOOL)onEarMonitoringAudioFrame:(AgoraAudioFrame* _Nonnull)frame NS_SWIFT_NAME(onEarMonitoringAudioFrame(_:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="ios">为了确保你获取的耳返音频数据符合预期，声网建议你通过以下两种方式之一设置耳返音频数据格式：
                 <ul>
                     <li>方法一：调用 <xref keyref="setEarMonitoringAudioFrameParameters"/> 设置音频数据格式，并调用 <xref keyref="registerAudioFrameObserver"/> 注册音频帧观察者对象。SDK 会根据设置的参数计算采样间隔，并按照采样间隔触发该回调。</li>
@@ -27,8 +27,8 @@
             </p>
             <p props="android">该回调用于获取耳返音频数据。为了确保获取的数据符合预期，声网建议你通过以下任一方式设置音频数据格式：
                 <ul>
-                    <li>方法一：调用 <xref keyref="setEarMonitoringAudioFrameParameters"/> 设置音频数据格式，并调用 <xref keyref="registerAudioFrameObserver"/> 注册音频帧观察者对象后，SDK 会根据设置的参数计算采样间隔，并按该间隔触发 <xref keyref="onEarMonitoringAudioFrame"/> 回调。</li>
-                    <li>方法二：调用 <xref keyref="registerAudioFrameObserver"/> 注册音频帧观察者对象后，在 <xref keyref="getObservedAudioFramePosition"/> 的返回值中设置音频数据格式。然后 SDK 会根据 <xref keyref="getEarMonitoringAudioParams"/> 的返回值计算采样间隔，并按该间隔触发 <xref keyref="onEarMonitoringAudioFrame"/> 回调。</li>
+                    <li>方法一：调用 <xref keyref="setEarMonitoringAudioFrameParameters"/> 设置音频数据格式，并调用 <codeph>registerAudioFrameObserver</codeph> 注册音频帧观察者对象后，SDK 会根据设置的参数计算采样间隔，并按该间隔触发 <xref keyref="onEarMonitoringAudioFrame"/> 回调。</li>
+                    <li>方法二：调用 <codeph>registerAudioFrameObserver</codeph> 注册音频帧观察者对象后，在 <xref keyref="getObservedAudioFramePosition"/> 的返回值中设置音频数据格式。然后 SDK 会根据 <xref keyref="getEarMonitoringAudioParams"/> 的返回值计算采样间隔，并按该间隔触发 <xref keyref="onEarMonitoringAudioFrame"/> 回调。</li>
                 </ul>
             </p>
             <p props="mac">为了确保你获取的耳返音频数据符合预期，声网建议你通过以下两种方式之一设置耳返音频数据格式：

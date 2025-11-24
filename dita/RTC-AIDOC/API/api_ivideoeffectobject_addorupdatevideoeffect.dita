@@ -23,7 +23,7 @@ NS_SWIFT_NAME(addOrUpdateVideoEffect(nodeId:templateName:));</codeblock>
 NS_SWIFT_NAME(addOrUpdateVideoEffect(nodeId:templateName:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
                 <dlentry props="cpp">
                     <dt>自从</dt>
@@ -47,40 +47,33 @@ NS_SWIFT_NAME(addOrUpdateVideoEffect(nodeId:templateName:));</codeblock>
                     <li><codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph> 节点优先于 <codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph> 参数。</li>
                     <li>若要应用 <codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph> 参数，必须先移除 <codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph> 节点：</li>
                 </ul>
-                <p><ph><codeblock outputclass="language-cpp">removeVideoEffect(VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP);
-addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codeblock></ph></p>
+                <codeblock outputclass="language-cpp">removeVideoEffect(VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP);
+addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codeblock>
             </note>
             <note props="android">优先级规则：
                 <ul>
                     <li>风格妆特效节点优先于 <codeph>FILTER</codeph> 参数。</li>
                     <li>若要应用 <codeph>FILTER</codeph> 参数，必须先移除风格妆特效节点：</li>
                 </ul>
-                <p><ph><codeblock outputclass="language-java">removeVideoEffect(`STYLE_MAKEUP`);
-addOrUpdateVideoEffect(`FILTER`, "template name");</codeblock></ph></p>
+                <codeblock outputclass="language-java">removeVideoEffect(`STYLE_MAKEUP`);
+addOrUpdateVideoEffect(`FILTER`, "template name");</codeblock>
             </note>
             <note props="ios">优先级规则：
                 <ul>
                     <li>视频特效节点 <codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph> 的优先级高于 <codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph>。</li>
                     <li>若要应用 <codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph>，必须先移除 <codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph>：</li>
                 </ul>
-                <p><ph><codeblock outputclass="language-objectivec">removeVideoEffect(VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP);
-addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codeblock></ph></p>
+                <codeblock outputclass="language-objectivec">removeVideoEffect(VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP);
+addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codeblock>
             </note>
             <note props="mac">优先级规则：
                 <ul>
                     <li>视频特效节点 <codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph> 的优先级高于 <codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph>。</li>
                     <li>若要应用 <codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph>，必须先移除 <codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph>：</li>
                 </ul>
-                <p><ph><codeblock outputclass="language-objectivec">removeVideoEffect(VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP);
-addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codeblock></ph></p>
+                <codeblock outputclass="language-objectivec">removeVideoEffect(VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP);
+addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codeblock>
             </note>
-        </section>
-        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
-            <title>调用时机</title>
-            <p props="cpp">加入频道前后均可调用。</p>
-            <p props="android">加入频道前后均可调用。</p>
-            <p props="ios">加入频道前后均可调用。</p>
-            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
@@ -105,7 +98,7 @@ addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codebloc
                 </plentry>
                 <plentry props="android">
                     <pt>templateName</pt>
-                    <pd>特效模板名称。如果设置为 <xref keyref="NULL"/> 或空字符串，SDK 会从资源包中加载默认参数配置。</pd>
+                    <pd>特效模板名称。如果设置为 <codeph>null</codeph> 或空字符串，SDK 会从资源包中加载默认参数配置。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>nodeId</pt>

@@ -19,7 +19,7 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (int)startRecording:(AgoraMediaRecorderConfiguration* _Nonnull)config NS_SWIFT_NAME(startRecording(_:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
                 <dlentry props="cpp">
                     <dt>自从</dt>
@@ -40,52 +40,48 @@
                     <li>已通过 <xref keyref="createMediaRecorder"/> 创建录制器实例。</li>
                     <li>已通过 <xref keyref="setMediaRecorderObserver"/> 注册录制器观察者以监听录制回调。</li>
                     <li>已加入频道。</li>
-                </ul>该方法支持录制以下内容：
+                </ul><ph>该方法支持录制以下内容：</ph>
                 <ul>
                     <li>以 AAC 编码格式采集的麦克风音频。</li>
                     <li>以 H.264 或 H.265 编码格式采集的摄像头视频。</li>
-                </ul>录制开始后：
+                </ul><ph>录制开始后：</ph>
                 <ul>
                     <li>如果录制过程中视频分辨率发生变化，SDK 会停止录制。</li>
                     <li>如果音频采样率或声道数发生变化，SDK 会继续录制，并生成一个 MP4 文件。</li>
-                </ul>
-            </p>
+                </ul><ph>仅当检测到可录制的音视频流时，录制文件才会成功生成。如果没有可录制的流，或录制过程中流中断超过 5 秒，SDK 会停止录制，并触发 <xref keyref="onRecorderStateChanged"/>（<codeph>RECORDER_STATE_ERROR</codeph>，<codeph>RECORDER_REASON_NO_STREAM</codeph>）回调。</ph></p>
             <p props="android">该方法用于开始录制音频和视频流。声网 SDK 支持同时录制本地和远端用户的音视频流。
 在调用该方法前，请确保：
                 <ul>
                     <li>已使用 <xref keyref="createMediaRecorder"/> 创建媒体录制器对象。</li>
                     <li>已使用 <xref keyref="setMediaRecorderObserver"/> 注册媒体录制器观察者以监听录制相关的回调。</li>
                     <li>已加入频道。</li>
-                </ul>该方法支持录制以下数据：
+                </ul><ph>该方法支持录制以下数据：</ph>
                 <ul>
                     <li>由麦克风采集的音频，格式为 AAC。</li>
                     <li>由摄像头采集的视频，格式为 H.264 或 H.265。</li>
-                </ul>
-            </p>
+                </ul><ph>录制开始后，如果视频分辨率发生变化，SDK 会停止录制；如果音频采样率或声道数发生变化，SDK 会继续录制并生成一个 MP4 文件。</ph><ph>仅当检测到可录制的音视频流时，才会生成录制文件。如果没有可录制的流，或录制过程中音视频流中断超过 5 秒，SDK 会停止录制并触发 <xref keyref="onRecorderStateChanged"/>（<codeph>RECORDER_STATE_ERROR</codeph>, <codeph>RECORDER_REASON_NO_STREAM</codeph>）回调。</ph></p>
             <p props="ios">该方法用于开始录制音频和视频流。声网 SDK 支持同时录制本地和远端用户的音视频流。
 在开始录制前，请确保：
                 <ul>
                     <li>已调用 <xref keyref="createMediaRecorder"/> 创建媒体录制器对象。</li>
                     <li>已调用 <xref keyref="setMediaRecorderObserver"/> 注册媒体录制器观察者以监听录制相关的回调。</li>
                     <li>已加入频道。</li>
-                </ul>该方法支持录制以下数据：
+                </ul><ph>该方法支持录制以下数据：</ph>
                 <ul>
                     <li>通过麦克风采集的音频，编码格式为 AAC。</li>
                     <li>通过摄像头采集的视频，编码格式为 H.264 或 H.265。</li>
-                </ul>
-            </p>
+                </ul><ph>录制开始后，如果录制过程中视频分辨率发生变化，SDK 会停止录制。如果音频采样率或声道数发生变化，SDK 会继续录制并生成一个 MP4 文件。</ph><ph>仅当检测到可录制的音视频流时，才会生成录制文件。如果在录制过程中未检测到可录制的音视频流，或音视频流中断超过 5 秒，SDK 会停止录制并触发 <xref keyref="onRecorderStateChanged"/> 回调（<codeph>AgoraMediaRecorderStateError</codeph>，<codeph>AgoraMediaRecorderReasonCodeNoStream</codeph>）。</ph></p>
             <p props="mac">该方法用于开始录制音频和视频流。声网 SDK 支持同时录制本地和远端用户的音视频流。
 在开始录制前，请确保：
                 <ul>
                     <li>已调用 <xref keyref="createMediaRecorder"/> 创建媒体录制器对象。</li>
                     <li>已调用 <xref keyref="setMediaRecorderObserver"/> 注册媒体录制器观察者以监听录制相关的回调。</li>
                     <li>已加入频道。</li>
-                </ul>该方法支持录制以下数据：
+                </ul><ph>该方法支持录制以下数据：</ph>
                 <ul>
                     <li>通过麦克风采集的音频，编码格式为 AAC。</li>
                     <li>通过摄像头采集的视频，编码格式为 H.264 或 H.265。</li>
-                </ul>
-            </p>
+                </ul><ph>录制开始后，如果录制过程中视频分辨率发生变化，SDK 会停止录制。如果音频采样率或声道数发生变化，SDK 会继续录制并生成一个 MP4 文件。</ph><ph>仅当检测到可录制的音视频流时，才会生成录制文件。如果在录制过程中未检测到可录制的音视频流，或音视频流中断超过 5 秒，SDK 会停止录制并触发 <xref keyref="onRecorderStateChanged"/> 回调（<codeph>AgoraMediaRecorderStateError</codeph>，<codeph>AgoraMediaRecorderReasonCodeNoStream</codeph>）。</ph></p>
             <note props="cpp">
                 <ul>
                     <li>如果你希望录制本地音视频流，请确保在开始录制前将本地用户角色设置为 <codeph>broadcaster</codeph>。</li>
@@ -110,13 +106,6 @@
                     <li>如果需要录制远端用户的音视频流，请确保在开始录制前已订阅目标用户的音视频流。</li>
                 </ul>
             </note>
-        </section>
-        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
-            <title>调用时机</title>
-            <p props="cpp">加入频道前后均可调用。</p>
-            <p props="android">加入频道前后均可调用。</p>
-            <p props="ios">加入频道前后均可调用。</p>
-            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>

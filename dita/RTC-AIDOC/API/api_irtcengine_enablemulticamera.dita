@@ -17,20 +17,18 @@
                 <codeblock props="ios" outputclass="language-objectivec">- (int)enableMultiCamera:(BOOL)enabled config:(AgoraCameraCapturerConfiguration* _Nullable)config NS_SWIFT_NAME(enableMultiCamera(_:config:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="cpp ios">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">声网建议你在已有摄像头用于视频采集的场景中，按照以下步骤使用多个摄像头进行视频采集和发布：
                 <ol>
                     <li>调用该方法启用多摄像头采集。</li>
                     <li>调用 <codeph>startPreview</codeph> 启动本地视频预览。</li>
                     <li>调用 <xref keyref="startCameraCapture"/>，并设置 <codeph>sourceType</codeph>，以使用第二个摄像头开始采集。</li>
                     <li>调用 <xref keyref="joinChannelEx"/>，并将 <codeph>publishSecondaryCameraTrack</codeph> 设置为 <xref keyref="true"/>，以发布第二个摄像头采集的视频流。</li>
-                </ol>若需关闭多摄像头采集，请按以下步骤操作：
+                </ol><ph>若需关闭多摄像头采集，请按以下步骤操作：</ph>
                 <ol>
                     <li>调用 <xref keyref="stopCameraCapture"/>。</li>
                     <li>调用该方法并将 <codeph>enabled</codeph> 设置为 <xref keyref="false"/>。</li>
-                </ol>该方法仅适用于 iOS 平台。
-使用该功能时，请确保系统版本为 13.0 或更高。
-支持多摄像头采集的最低 iOS 设备型号如下：
+                </ol><ph>该方法仅适用于 iOS 平台。</ph><ph>使用该功能时，请确保系统版本为 13.0 或更高。</ph><ph>支持多摄像头采集的最低 iOS 设备型号如下：</ph>
                 <ul>
                     <li>iPhone XR。</li>
                     <li>iPhone XS。</li>
@@ -44,12 +42,11 @@
                     <li>调用 <xref keyref="startPreview2"/> 启动本地视频预览。</li>
                     <li>调用 <xref keyref="startCameraCapture"/>，并设置 <codeph>sourceType</codeph> 以使用第二个摄像头进行视频采集。</li>
                     <li>调用 <xref keyref="joinChannelEx"/>，并将 <codeph>publishSecondaryCameraTrack</codeph> 设置为 <xref keyref="true"/>，以在频道中发布第二个摄像头采集的视频流。</li>
-                </ol>如果你想关闭多摄像头采集模式，请按以下步骤操作：
+                </ol><ph>如果你想关闭多摄像头采集模式，请按以下步骤操作：</ph>
                 <ol>
                     <li>调用 <xref keyref="stopCameraCapture"/>。</li>
                     <li>调用该方法并将 <codeph>enabled</codeph> 设置为 <xref keyref="false"/>。</li>
-                </ol>使用该功能时，请确保系统版本为 iOS 13.0 或更高。
-支持多摄像头采集的最低 iOS 设备型号如下：
+                </ol><ph>使用该功能时，请确保系统版本为 iOS 13.0 或更高。</ph><ph>支持多摄像头采集的最低 iOS 设备型号如下：</ph>
                 <ul>
                     <li>iPhone XR</li>
                     <li>iPhone XS</li>
@@ -69,11 +66,6 @@
                     <li>如果在 <xref keyref="startPreview2"/> 之后启用，SDK 会先停止当前摄像头采集，然后启用主摄像头和第二个摄像头。本地视频预览会短暂变黑，然后自动恢复正常。</li>
                 </ul>
             </note>
-        </section>
-        <section id="timing" deliveryTarget="details" props="cpp ios">
-            <title>调用时机</title>
-            <p props="cpp">加入频道前后均可调用。</p>
-            <p props="ios">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="cpp ios">
             <title>参数</title>

@@ -21,19 +21,17 @@
             streamConfig:(AgoraSimulcastStreamConfig* _Nonnull)streamConfig NS_SWIFT_NAME(setDualStreamMode(_:streamConfig:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">SDK 默认在发送端开启低质量视频流自适应模式（<codeph>AUTO_SIMULCAST_STREAM</codeph>），即发送端不会主动发送低质量视频流。角色为主播的接收端可以通过调用 <xref keyref="setRemoteVideoStreamType"/> 发起低质量视频流请求，发送端在收到请求后会自动开始发送低质量视频流。
                 <ul>
                     <li>如果你希望修改此行为，可以调用此方法并将 <codeph>mode</codeph> 设置为 <codeph>DISABLE_SIMULCAST_STREAM</codeph>（从不发送低质量视频流）或 <codeph>ENABLE_SIMULCAST_STREAM</codeph>（始终发送低质量视频流）。</li>
                     <li>如果你希望恢复默认行为，可以再次调用此方法并将 <codeph>mode</codeph> 设置为 <codeph>AUTO_SIMULCAST_STREAM</codeph>。</li>
-                </ul>
-            </p>
+                </ul><ph>与 <codeph>setDualStreamMode</codeph> 方法（参数为 <codeph>SIMULCAST_STREAM_MODE mode</codeph>）的区别在于：该方法还支持配置低质量视频流，SDK 会根据 <codeph>streamConfig</codeph> 中的配置发送视频流。</ph></p>
             <p props="android">SDK 默认在发送端启用低质量视频流的自适应模式（<codeph>AUTO_SIMULCAST_STREAM</codeph>）。发送端不会主动发送低质量视频流，只有当角色为主播的接收端调用 <codeph>setRemoteVideoStreamType</codeph> 发起低质量视频流请求时，发送端才会自动开始发送低质量视频流。
                 <ul>
                     <li>如果你希望修改此行为，可以调用该方法，并将 <codeph>mode</codeph> 设置为 <codeph>DISABLE_SIMULCAST_STREAM</codeph>（从不发送低质量视频流）或 <codeph>ENABLE_SIMULCAST_STREAM</codeph>（始终发送低质量视频流）。</li>
                     <li>如果你希望恢复默认行为，可以再次调用该方法，并将 <codeph>mode</codeph> 设置为 <codeph>AUTO_SIMULCAST_STREAM</codeph>。</li>
-                </ul>
-            </p>
+                </ul><ph>该方法与 <codeph>setDualStreamMode</codeph>（仅带一个 <codeph>mode</codeph> 参数）不同，它还支持配置低质量视频流。SDK 会根据 <codeph>streamConfig</codeph> 中的配置发送视频流。</ph></p>
             <p props="ios">SDK 默认在发送端开启低质量视频流的自适应模式（<codeph>AgoraAutoSimulcastStream</codeph>），即发送端不会主动发送低质量视频流。角色为主播的接收端可以通过调用 <xref keyref="setRemoteVideoStreamType"/> 发起低质量视频流请求，发送端在收到请求后自动开始发送低质量视频流。
 
 如果你希望修改此行为，可以调用本方法并将 <codeph>mode</codeph> 设置为 <codeph>AgoraDisableSimulcastStream</codeph>（从不发送低质量视频流）或 <codeph>AgoraEnableSimulcastStream</codeph>（始终发送低质量视频流）。
@@ -76,13 +74,6 @@
                     <li>两个方法都可以在加入频道前或后调用。如果两个方法都被调用，则以后调用的方法中的设置生效。</li>
                 </ul>
             </note>
-        </section>
-        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
-            <title>调用时机</title>
-            <p props="cpp">加入频道前后均可调用。</p>
-            <p props="android">加入频道前后均可调用。</p>
-            <p props="ios">加入频道前后均可调用。</p>
-            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>

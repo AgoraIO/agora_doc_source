@@ -19,7 +19,7 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (int)playPreloadedSrc:(NSString *)src NS_SWIFT_NAME(playPreloadedSrc(_:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">调用 <xref keyref="preloadSrc"/> 将媒体资源预加载到播放列表后，可以调用该方法播放该资源。调用成功后，如果收到 <xref keyref="onPlayerSourceStateChanged"/> 回调并报告 <codeph>PLAYER_STATE_PLAYING</codeph> 状态，表示播放成功。
 
 如果你想更换要播放的预加载媒体资源，可以再次调用该方法并传入新的媒体资源 URL。若想重新播放该媒体资源，需要先调用 <xref keyref="preloadSrc"/> 重新预加载资源。
@@ -45,13 +45,6 @@
             <note props="android">如果在播放暂停时调用该方法，该方法在播放恢复之前不会生效。</note>
             <note props="ios">如果在播放暂停时调用此方法，该方法在播放恢复前不会生效。</note>
             <note props="mac">如果在播放暂停时调用此方法，该方法在播放恢复前不会生效。</note>
-        </section>
-        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
-            <title>调用时机</title>
-            <p props="cpp">加入频道前后均可调用。</p>
-            <p props="android">加入频道前后均可调用。</p>
-            <p props="ios">加入频道前后均可调用。</p>
-            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>

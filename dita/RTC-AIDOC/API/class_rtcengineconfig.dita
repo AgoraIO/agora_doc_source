@@ -71,7 +71,7 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>appId</pt>
-                    <pd>由声网为你的项目签发的 App ID。只有在相同 App ID 下的用户才能加入同一个频道并互相通信。一个 App ID 只能用于创建一个 <xref keyref="IRtcEngine"/> 实例。若需更换 App ID，需调用 <xref keyref="release"/> 销毁当前的 <xref keyref="IRtcEngine"/> 实例，然后创建一个新的实例。</pd>
+                    <pd>由声网为你的项目签发的 App ID。只有在相同 App ID 下的用户才能加入同一个频道并互相通信。一个 App ID 只能用于创建一个 <xref keyref="IRtcEngine"/> 实例。若需更换 App ID，需调用 <codeph>release</codeph> 销毁当前的 <xref keyref="IRtcEngine"/> 实例，然后创建一个新的实例。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>context</pt>
@@ -156,7 +156,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>mAppId</pt>
-                    <pd>由声网为项目颁发的 App ID。只有使用相同 App ID 的用户才能加入同一频道进行音视频通话。一个 App ID 只能用于创建一个 <xref keyref="IRtcEngine"/> 实例。更换 App ID 时需调用 <xref keyref="Destroy_Rte"/> 销毁原实例后再创建新实例。</pd>
+                    <pd>由声网为项目颁发的 App ID。只有使用相同 App ID 的用户才能加入同一频道进行音视频通话。一个 App ID 只能用于创建一个 <xref keyref="IRtcEngine"/> 实例。更换 App ID 时需调用 <codeph>destroy</codeph> 销毁原实例后再创建新实例。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>mAreaCode</pt>
@@ -230,7 +230,7 @@
                     <pd><codeph>.so</codeph> 文件的存储目录。该目录必须是 App 的有效私有目录，可通过 <codeph>Context.getDir</codeph> 获取。
                         <ul>
                             <li>设置该参数后，SDK 会从指定目录加载 <codeph>.so</codeph> 文件，实现动态加载以减小包体积。</li>
-                            <li>若不设置或设为 <xref keyref="NULL"/>，SDK 会从默认编译路径加载 <codeph>.so</codeph> 文件，包体积会增大。</li>
+                            <li>若不设置或设为 <codeph>null</codeph>，SDK 会从默认编译路径加载 <codeph>.so</codeph> 文件，包体积会增大。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -245,7 +245,7 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>appId</pt>
-                    <pd>由声网为你的项目签发的 App ID。只有使用相同 App ID 的用户才能加入同一个频道并互相通信。一个 App ID 只能用于创建一个 <xref keyref="IRtcEngine"/> 实例。如需更换 App ID，需先调用 <xref keyref="destroy_IMusicContentCenter"/> 销毁当前实例，再创建新的实例。</pd>
+                    <pd>由声网为你的项目签发的 App ID。只有使用相同 App ID 的用户才能加入同一个频道并互相通信。一个 App ID 只能用于创建一个 <xref keyref="IRtcEngine"/> 实例。如需更换 App ID，需先调用 <codeph>destroy</codeph> 销毁当前实例，再创建新的实例。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>channelProfile</pt>
@@ -295,7 +295,7 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>appId</pt>
-                    <pd>由声网为你的项目签发的 App ID。只有使用相同 App ID 的用户才能加入同一个频道并互相通信。一个 App ID 只能用于创建一个 <xref keyref="IRtcEngine"/> 实例。如需更换 App ID，需先调用 <xref keyref="release"/> 销毁当前实例，再创建新的实例。</pd>
+                    <pd>由声网为你的项目签发的 App ID。只有使用相同 App ID 的用户才能加入同一个频道并互相通信。一个 App ID 只能用于创建一个 <xref keyref="IRtcEngine"/> 实例。如需更换 App ID，需先调用 <codeph>destroy</codeph> 销毁当前实例，再创建新的实例。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>channelProfile</pt>

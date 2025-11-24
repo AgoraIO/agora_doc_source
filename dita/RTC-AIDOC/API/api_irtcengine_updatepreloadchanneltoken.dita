@@ -19,7 +19,7 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (int)updatePreloadChannelToken:(NSString * _Nonnull)token NS_SWIFT_NAME(updatePreloadChannelToken(_:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">你需要自行维护通配 Token 的生命周期。当该 Token 过期时，需要生成新的通配 Token，并调用该方法传入新 Token。
 适用场景：在涉及多个频道的场景中，例如在不同频道之间切换时，使用通配 Token 可以避免用户每次加入新频道时都申请新的 Token，从而节省用户切换频道的时间，并减轻你的 Token 服务器的压力。</p>
             <p props="android">你需要自行维护通配 Token 的生命周期。当 Token 过期时，需要生成新的通配 Token，并调用 <xref keyref="updatePreloadChannelToken"/> 传入新 Token。
@@ -30,13 +30,6 @@
             <p props="mac">你需要自行维护通配 Token 的生命周期。当该 Token 过期时，你需要生成一个新的通配 Token，并调用该方法传入新的 Token。
 
 适用场景：在涉及多个频道的场景中，例如在不同频道之间切换时，使用通配 Token 可以避免你每次加入新频道时都申请新的 Token，从而节省切换频道的时间，并减轻你的 Token 服务器的压力。</p>
-        </section>
-        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
-            <title>调用时机</title>
-            <p props="cpp">加入频道前后均可调用。</p>
-            <p props="android">加入频道前后均可调用。</p>
-            <p props="ios">加入频道前后均可调用。</p>
-            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>

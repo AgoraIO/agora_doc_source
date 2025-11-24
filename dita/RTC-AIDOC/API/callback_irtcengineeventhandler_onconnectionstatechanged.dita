@@ -19,7 +19,7 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine connectionChangedToState:(AgoraConnectionState)state reason:(AgoraConnectionChangedReason)reason NS_SWIFT_NAME(rtcEngine(_:connectionChangedTo:reason:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
                 <dlentry props="android">
                     <dt>自从</dt>
@@ -86,7 +86,7 @@
                                     <li>使用的 Token 与生成的 Token 不一致。</li>
                                 </ul>
                             </li>
-                        </ul>  请确保：
+                        </ul><ph>  请确保：</ph>
                         <ul>
                             <li>项目启用 App Certificate 时，加入频道必须传入 Token。</li>
                             <li>生成 Token 时指定的用户 ID 与加入频道时使用的用户 ID 一致。</li>
@@ -104,9 +104,10 @@
                             <li><codeph>CONNECTION_CHANGED_ECHO_TEST</codeph> (17)：由于回声测试，连接状态发生变化。</li>
                             <li><codeph>CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED_BY_USER</codeph> (18)：本地 IP 地址被用户更改。</li>
                             <li><codeph>CONNECTION_CHANGED_SAME_UID_LOGIN</codeph> (19)：用户在不同设备上以相同的 <codeph>uid</codeph> 加入同一频道。</li>
+                        </ul><ph>  注意：以相同 <codeph>uid</codeph> 加入同一 RTC 频道属于未定义行为，声网不保证在相同情况下始终触发该错误码。</ph>
+                        <ul>
                             <li><codeph>CONNECTION_CHANGED_TOO_MANY_BROADCASTERS</codeph> (20)：频道中的主播数量已达上限。</li>
                         </ul>
-                        <p><ph>  注意：以相同 <codeph>uid</codeph> 加入同一 RTC 频道属于未定义行为，声网不保证在相同情况下始终触发该错误码。</ph></p>
                     </pd>
                 </plentry>
                 <plentry props="ios">

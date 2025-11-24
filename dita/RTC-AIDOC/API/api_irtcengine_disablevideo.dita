@@ -19,7 +19,7 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (int)disableVideo NS_SWIFT_NAME(disableVideo());</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">该方法会影响内部引擎，且可以在离开频道后调用。调用该方法会重置整个引擎，可能导致响应时间变慢。你可以根据实际需求，使用以下方法分别控制视频模块的具体功能：
                 <ul>
                     <li><xref keyref="enableLocalVideo"/>：是否启用摄像头以创建本地视频流。</li>
@@ -61,16 +61,12 @@
                 <ul>
                     <li>如果在加入频道前调用，则进入纯语音模式。</li>
                     <li>如果在加入频道后调用，则从视频模式切换为纯语音模式。</li>
-                </ul>
-                <p><ph>之后调用 <xref keyref="enableVideo"/> 可重新切换回视频模式。</ph></p>
-            </p>
+                </ul><ph>之后调用 <xref keyref="enableVideo"/> 可重新切换回视频模式。</ph></p>
             <p props="android">该方法可以在加入频道前或加入频道后调用。
                 <ul>
                     <li>如果在加入频道前调用，则会启用语音通话，进入纯语音互动模式。</li>
                     <li>如果在加入频道后调用，则会从视频通话模式切换为语音通话，进入纯语音互动模式。</li>
-                </ul>
-                <p><ph>之后调用 <xref keyref="enableVideo"/> 可重新切换为视频通话模式。</ph></p>
-            </p>
+                </ul><ph>之后调用 <xref keyref="enableVideo"/> 可重新切换为视频通话模式。</ph></p>
             <p props="ios">该方法可在加入频道前或加入频道后调用。
                 <ul>
                     <li>如果在加入频道前调用，则进入语音通话模式。</li>

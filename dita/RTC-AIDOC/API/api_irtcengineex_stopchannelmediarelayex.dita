@@ -19,7 +19,7 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (int)stopChannelMediaRelayEx:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(stopChannelMediaRelayEx(_:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="android">调用该方法停止跨频道媒体流转发。一旦转发停止，主播会退出所有目标频道。</p>
             <p props="ios">调用该方法停止跨频道媒体流转发。调用成功后，主播会退出所有目标频道，SDK 会触发 <xref keyref="onChannelMediaRelayStateChanged"/> 回调。如果该回调返回 <codeph>AgoraChannelMediaRelayStateIdle</codeph>（0）和 <codeph>AgoraChannelMediaRelayErrorNone</codeph>（0），表示主播已成功停止转发。</p>
             <p props="mac">调用该方法停止跨频道媒体流转发。调用成功后，主播会退出所有目标频道，SDK 会触发 <xref keyref="onChannelMediaRelayStateChanged"/> 回调。如果该回调返回 <codeph>AgoraChannelMediaRelayStateIdle</codeph>（0）和 <codeph>AgoraChannelMediaRelayErrorNone</codeph>（0），表示主播已成功停止转发。</p>
@@ -27,13 +27,6 @@
             <note props="android">如果方法调用失败，SDK 会通过 <xref keyref="onChannelMediaRelayStateChanged"/> 回调报告 <codeph>RELAY_ERROR_SERVER_NO_RESPONSE</codeph>（2）或 <codeph>RELAY_ERROR_SERVER_CONNECTION_LOST</codeph>（8）错误码。你可以调用 <codeph>leaveChannel</codeph> 方法离开频道，跨频道媒体流转发会自动停止。</note>
             <note props="ios">如果方法调用失败，SDK 会通过 <xref keyref="onChannelMediaRelayStateChanged"/> 回调报告 <codeph>AgoraChannelMediaRelayErrorServerNoResponse</codeph>（2）或 <codeph>AgoraChannelMediaRelayErrorServerConnectionLost</codeph>（8）错误码。你可以调用 <xref keyref="leaveChannel2"/> 方法离开频道，媒体流转发会自动停止。</note>
             <note props="mac">如果方法调用失败，SDK 会通过 <xref keyref="onChannelMediaRelayStateChanged"/> 回调报告 <codeph>AgoraChannelMediaRelayErrorServerNoResponse</codeph>（2）或 <codeph>AgoraChannelMediaRelayErrorServerConnectionLost</codeph>（8）错误码。你可以调用 <xref keyref="leaveChannel2"/> 方法离开频道，媒体流转发会自动停止。</note>
-        </section>
-        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
-            <title>调用时机</title>
-            <p props="cpp">加入频道前后均可调用。</p>
-            <p props="android">加入频道前后均可调用。</p>
-            <p props="ios">加入频道前后均可调用。</p>
-            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="related" deliveryTarget="details" props="android cpp">
             <title>相关回调</title>

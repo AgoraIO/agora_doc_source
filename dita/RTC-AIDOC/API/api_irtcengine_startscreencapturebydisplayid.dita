@@ -19,7 +19,7 @@
                        captureParams:(AgoraScreenCaptureParameters *_Nonnull)captureParams  NS_SWIFT_NAME(startScreenCapture(byDisplayId:regionRect:captureParams:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="cpp mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="mac">采集整个屏幕或部分屏幕区域的视频流。适用场景：在屏幕共享场景中，你需要调用此方法开始采集屏幕视频流。调用时机：你可以在加入频道前或加入频道后调用此方法，具体区别如下：
                 <ul>
                     <li>在加入频道前调用此方法，然后调用 <codeph>joinChannelByToken</codeph> 加入频道，并将 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 设置为 <xref keyref="true"/>，以开始屏幕共享。</li>
@@ -64,9 +64,7 @@
                             <li><codeph>y</codeph>：距窗口左上角的垂直偏移。</li>
                             <li><codeph>width</codeph>：区域的宽度。</li>
                             <li><codeph>height</codeph>：区域的高度。</li>
-                        </ul>
-                        <p><ph>如果指定的区域超出窗口范围，SDK 仅共享窗口内的区域；如果设置 <codeph>width</codeph> 或 <codeph>height</codeph> 为 0，SDK 共享整个窗口。</ph></p>
-                    </pd>
+                        </ul><ph>如果指定的区域超出窗口范围，SDK 仅共享窗口内的区域；如果设置 <codeph>width</codeph> 或 <codeph>height</codeph> 为 0，SDK 共享整个窗口。</ph></pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>captureParams</pt>

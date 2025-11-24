@@ -25,7 +25,7 @@
                connection:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(createDataStreamEx(_:reliable:ordered:connection:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="ios">你可以调用此方法创建一个数据流，以提升数据传输的可靠性和顺序性。</p>
             <p props="mac">你可以调用此方法创建一个数据流，以提升数据传输的可靠性和顺序性。</p>
             <note props="cpp">每个用户在 <xref keyref="IRtcEngine"/> 的生命周期内最多可创建五个数据流。离开频道时数据流会被销毁，如需继续使用需重新创建。</note>
@@ -57,8 +57,7 @@
                         <ul>
                             <li><xref keyref="true"/>：接收端会在五秒内收到发送方的数据。如果未收到，SDK 会触发 <xref keyref="onStreamMessageError"/> 回调并返回错误码。</li>
                             <li><xref keyref="false"/>：不保证接收端在五秒内收到数据流，延迟或丢失不会返回错误信息。</li>
-                        </ul>
-                    </pd>
+                        </ul><ph>注意：请确保 <codeph>reliable</codeph> 和 <codeph>ordered</codeph> 同时为 <xref keyref="true"/> 或同时为 <xref keyref="false"/>。</ph></pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>ordered</pt>
@@ -105,8 +104,7 @@
                         <ul>
                             <li><xref keyref="true"/>：接收端会在五秒内收到发送方发送的数据。如果五秒内未收到，SDK 会触发 <xref keyref="onStreamMessageError"/> 回调并返回错误码。</li>
                             <li><xref keyref="false"/>：不保证接收端在五秒内收到数据流，延迟或丢失不会返回错误信息。</li>
-                        </ul>
-                    </pd>
+                        </ul><ph>注意：请确保 <codeph>reliable</codeph> 和 <codeph>ordered</codeph> 同时设置为 <xref keyref="true"/> 或同时设置为 <xref keyref="false"/>。</ph></pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>ordered</pt>
@@ -131,8 +129,7 @@
                         <ul>
                             <li><xref keyref="true"/>：接收端会在五秒内收到发送方发送的数据。如果五秒内未收到，SDK 会触发 <xref keyref="onStreamMessageError"/> 回调并返回错误码。</li>
                             <li><xref keyref="false"/>：不保证接收端在五秒内收到数据流，延迟或丢失不会返回错误信息。</li>
-                        </ul>
-                    </pd>
+                        </ul><ph>注意：请确保 <codeph>reliable</codeph> 和 <codeph>ordered</codeph> 同时设置为 <xref keyref="true"/> 或同时设置为 <xref keyref="false"/>。</ph></pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>ordered</pt>
