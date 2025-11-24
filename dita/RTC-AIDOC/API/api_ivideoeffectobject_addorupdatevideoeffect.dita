@@ -45,38 +45,34 @@ NS_SWIFT_NAME(addOrUpdateVideoEffect(nodeId:templateName:));</codeblock>
             <note props="cpp">优先级规则：
                 <ul>
                     <li><codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph> 节点优先于 <codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph> 参数。</li>
-                    <li>若要应用 <codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph> 参数，必须先移除 <codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph> 节点：
-                        <codeblock outputclass="language-cpp">removeVideoEffect(VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP);
-addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codeblock>
-                    </li>
+                    <li>若要应用 <codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph> 参数，必须先移除 <codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph> 节点：</li>
                 </ul>
+                <p><ph><codeblock outputclass="language-cpp">removeVideoEffect(VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP);
+addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codeblock></ph></p>
             </note>
             <note props="android">优先级规则：
                 <ul>
                     <li>风格妆特效节点优先于 <codeph>FILTER</codeph> 参数。</li>
-                    <li>若要应用 <codeph>FILTER</codeph> 参数，必须先移除风格妆特效节点：
-                        <codeblock outputclass="language-java">removeVideoEffect(`STYLE_MAKEUP`);
-addOrUpdateVideoEffect(`FILTER`, "template name");</codeblock>
-                    </li>
+                    <li>若要应用 <codeph>FILTER</codeph> 参数，必须先移除风格妆特效节点：</li>
                 </ul>
+                <p><ph><codeblock outputclass="language-java">removeVideoEffect(`STYLE_MAKEUP`);
+addOrUpdateVideoEffect(`FILTER`, "template name");</codeblock></ph></p>
             </note>
             <note props="ios">优先级规则：
                 <ul>
                     <li>视频特效节点 <codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph> 的优先级高于 <codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph>。</li>
-                    <li>若要应用 <codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph>，必须先移除 <codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph>：
-                        <codeblock outputclass="language-objectivec">removeVideoEffect(VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP);
-addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codeblock>
-                    </li>
+                    <li>若要应用 <codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph>，必须先移除 <codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph>：</li>
                 </ul>
+                <p><ph><codeblock outputclass="language-objectivec">removeVideoEffect(VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP);
+addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codeblock></ph></p>
             </note>
             <note props="mac">优先级规则：
                 <ul>
                     <li>视频特效节点 <codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph> 的优先级高于 <codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph>。</li>
-                    <li>若要应用 <codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph>，必须先移除 <codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph>：
-                        <codeblock outputclass="language-objectivec">removeVideoEffect(VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP);
-addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codeblock>
-                    </li>
+                    <li>若要应用 <codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph>，必须先移除 <codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph>：</li>
                 </ul>
+                <p><ph><codeblock outputclass="language-objectivec">removeVideoEffect(VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP);
+addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codeblock></ph></p>
             </note>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
@@ -85,13 +81,6 @@ addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codebloc
             <p props="android">加入频道前后均可调用。</p>
             <p props="ios">加入频道前后均可调用。</p>
             <p props="mac">加入频道前后均可调用。</p>
-        </section>
-        <section id="restriction" deliveryTarget="details" props="android cpp ios mac">
-            <title>调用限制</title>
-            <p props="cpp">无。</p>
-            <p props="android">无。</p>
-            <p props="ios">无。</p>
-            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
@@ -151,25 +140,25 @@ addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codebloc
             <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="android">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见 <codeph>AgoraBaseConstants</codeph> 中的错误码。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。详见 <codeph>AgoraBaseConstants</codeph> 中的错误码。</li>
                 </ul>
             </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
         </section>

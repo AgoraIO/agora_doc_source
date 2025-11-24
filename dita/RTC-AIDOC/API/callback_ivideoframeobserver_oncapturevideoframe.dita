@@ -24,8 +24,7 @@
 适用场景：
                 <ul>
                     <li>在 SDK 处理本地采集的视频数据之前对其进行预处理，例如添加滤镜、水印、裁剪、旋转等。</li>
-                    <li>在 SDK 处理本地采集的视频数据之前获取其信息，例如视频帧的原始宽度、高度、帧率等。
-调用时机：成功注册视频数据观察器后，每次 SDK 采集到视频帧时。</li>
+                    <li>在 SDK 处理本地采集的视频数据之前获取其信息，例如视频帧的原始宽度、高度、帧率等。</li>
                 </ul>
             </p>
             <p props="android">你可以通过该回调获取本地设备采集的原始视频数据，并根据需要进行预处理。预处理完成后，可以直接在该回调中修改 <codeph>videoFrame</codeph>，并将返回值设置为 <xref keyref="true"/>，以将修改后的视频数据发送给 SDK。如果需要将预处理后的视频数据发送给 SDK，需先调用 <xref keyref="getVideoFrameProcessMode"/> 将视频处理模式设置为读写模式（<codeph>PROCESS_MODE_READ_WRITE</codeph>）。
@@ -72,13 +71,6 @@
             <p props="android">该回调在成功注册视频数据观察者后，每次 SDK 采集到视频帧时被触发。</p>
             <p props="ios">该回调在成功注册视频数据观察器后，每次 SDK 采集到视频帧时被触发。</p>
             <p props="mac">该回调在成功注册视频数据观察器后，每次 SDK 采集到视频帧时被触发。</p>
-        </section>
-        <section id="restriction" deliveryTarget="details" props="android cpp ios mac">
-            <title>使用限制</title>
-            <p props="cpp">无。</p>
-            <p props="android">无。</p>
-            <p props="ios">无。</p>
-            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>

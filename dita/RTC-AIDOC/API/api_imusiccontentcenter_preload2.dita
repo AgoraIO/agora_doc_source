@@ -24,19 +24,13 @@
             <p props="android">调用该方法预加载想要播放的版权音乐资源。调用成功后，SDK 会触发 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调，报告预加载事件。在调用该方法之前，需要先调用 <codeph>getMusicCollectionByMusicChartId</codeph> 或 <codeph>searchMusic</codeph> 获取目标音乐资源，并通过这两个方法触发的 <xref keyref="onMusicCollectionResult"/> 回调获取音乐资源标识符（<codeph>songCode</codeph>）。</p>
             <note props="cpp">在销毁 <xref keyref="IRtcEngine"/> 对象前，请确保已收到 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调后再调用 <xref keyref="release_IMusicContentCenter"/> 方法。</note>
             <note props="ios">在销毁 <xref keyref="IRtcEngine"/> 对象前，必须等待收到 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调后再调用 <xref keyref="destroy_IMusicContentCenter"/> 方法。</note>
-            <note props="android">销毁 <xref keyref="RtcEngine"/> 对象前，请确保已收到 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调，再调用 <xref keyref="destroy_IMusicContentCenter"/> 方法。</note>
+            <note props="android">销毁 <xref keyref="IRtcEngine"/> 对象前，请确保已收到 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调，再调用 <xref keyref="destroy_IMusicContentCenter"/> 方法。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios">
             <title>调用时机</title>
             <p props="cpp">加入频道前后均可调用。</p>
             <p props="ios">加入频道前后均可调用。</p>
             <p props="android">加入频道前后均可调用。</p>
-        </section>
-        <section id="restriction" deliveryTarget="details" props="android cpp ios">
-            <title>调用限制</title>
-            <p props="cpp">无。</p>
-            <p props="ios">无。</p>
-            <p props="android">无。</p>
         </section>
         <section id="related" deliveryTarget="details" props="ios">
             <title>相关回调</title>
@@ -68,7 +62,7 @@
             <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见 <codeph>Error Codes</codeph>。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。详见 <codeph>Error Codes</codeph>。</li>
                 </ul>
             </p>
             <p props="ios">方法调用成功时，返回请求 ID，用于唯一标识该请求。方法调用失败时，返回空字符串。</p>

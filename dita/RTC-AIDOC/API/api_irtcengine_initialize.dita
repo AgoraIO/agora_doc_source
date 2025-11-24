@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_initialize">
     <title><ph keyref="initialize"/></title>
-    <shortdesc id="short"><ph id="shortdesc">初始化 <codeph>IRtcEngine</codeph>。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">初始化 <xref keyref="IRtcEngine"/>。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -22,26 +22,19 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
-            <p props="android">你可以通过调用此方法或 <xref keyref="create_ILocalSpatialAudioEngine"/> 方法来创建 <xref keyref="RtcEngine"/> 实例。与后者相比，此方法支持更多配置选项，例如指定连接区域和设置日志文件。</p>
+            <p props="android">你可以通过调用此方法或 <xref keyref="create_ILocalSpatialAudioEngine"/> 方法来创建 <xref keyref="IRtcEngine"/> 实例。与后者相比，此方法支持更多配置选项，例如指定连接区域和设置日志文件。</p>
             <p props="ios">你可以通过调用此方法或调用 <xref keyref="create"/> 来创建 <xref keyref="IRtcEngine"/> 实例。与 <xref keyref="create"/> 不同，此方法在创建 <xref keyref="IRtcEngine"/> 实例时支持更多配置，例如指定连接区域和设置日志文件。</p>
             <p props="mac">你可以通过调用此方法或调用 <xref keyref="create"/> 来创建 <xref keyref="IRtcEngine"/> 实例。与 <xref keyref="create"/> 不同，此方法在创建 <xref keyref="IRtcEngine"/> 实例时支持更多配置，例如指定连接区域和设置日志文件。</p>
             <note props="cpp"><xref keyref="IRtcEngine"/> 提供的所有方法均为异步执行。建议你在同一线程中调用这些方法。SDK 仅支持为一个 App 创建一个 <xref keyref="IRtcEngine"/> 实例。</note>
-            <note props="android">每个 App 仅支持创建一个 <xref keyref="RtcEngine"/> 实例。<xref keyref="RtcEngine"/> 类中的所有方法均为异步执行，声网建议在同一线程中调用这些方法。</note>
+            <note props="android">每个 App 仅支持创建一个 <xref keyref="IRtcEngine"/> 实例。<xref keyref="IRtcEngine"/> 类中的所有方法均为异步执行，声网建议在同一线程中调用这些方法。</note>
             <note props="ios"><xref keyref="IRtcEngine"/> 每个 App 仅支持创建一个实例。<xref keyref="IRtcEngine"/> 提供的所有方法均为异步执行。声网建议你在同一线程中调用这些方法。</note>
             <note props="mac"><xref keyref="IRtcEngine"/> 每个 App 仅支持创建一个实例。<xref keyref="IRtcEngine"/> 提供的所有方法均为异步执行。声网建议你在同一线程中调用这些方法。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="android ios mac">
             <title>调用时机</title>
-            <p props="android">在调用其他 API 之前，必须先调用此方法创建 <xref keyref="RtcEngine"/> 对象。</p>
+            <p props="android">在调用其他 API 之前，必须先调用此方法创建 <xref keyref="IRtcEngine"/> 对象。</p>
             <p props="ios">在调用其他 API 之前，必须先调用此方法创建 <xref keyref="IRtcEngine"/> 对象。</p>
             <p props="mac">在调用其他 API 之前，必须先调用此方法创建 <xref keyref="IRtcEngine"/> 对象。</p>
-        </section>
-        <section id="restriction" deliveryTarget="details" props="android cpp ios mac">
-            <title>调用限制</title>
-            <p props="cpp">无。</p>
-            <p props="android">无。</p>
-            <p props="ios">无。</p>
-            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
@@ -52,7 +45,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>config</pt>
-                    <pd>用于配置 <xref keyref="RtcEngine"/> 实例的参数。详见 <xref keyref="RtcEngineConfig"/>。</pd>
+                    <pd>用于配置 <xref keyref="IRtcEngine"/> 实例的参数。详见 <xref keyref="RtcEngineConfig"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>config</pt>
@@ -77,7 +70,7 @@
             <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。
                         <ul>
                             <li>-1：发生通用错误（无明确原因）。</li>
                             <li>-2：参数无效。</li>
@@ -88,7 +81,7 @@
                     </li>
                 </ul>
             </p>
-            <p props="android">方法调用成功，返回初始化后的 <xref keyref="RtcEngine"/> 对象。
+            <p props="android">方法调用成功，返回初始化后的 <xref keyref="IRtcEngine"/> 对象。
 方法调用失败，SDK 会抛出异常，并返回相应的错误信息。你需要捕获异常并进行处理。</p>
             <p props="ios">
                 <ul>

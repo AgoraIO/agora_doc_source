@@ -50,13 +50,6 @@
             <p props="ios">请在调用 <xref keyref="initialize"/> 方法后调用本方法。</p>
             <p props="mac">请在调用 <xref keyref="initialize"/> 方法后调用本方法。</p>
         </section>
-        <section id="restriction" deliveryTarget="details" props="android cpp ios mac">
-            <title>调用限制</title>
-            <p props="cpp">无。</p>
-            <p props="android">无。</p>
-            <p props="ios">无。</p>
-            <p props="mac">无。</p>
-        </section>
         <section id="related" deliveryTarget="details" props="cpp ios mac">
             <title>相关回调</title>
             <p props="cpp">成功调用该方法后，本地客户端会触发 <xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/> 回调。
@@ -65,16 +58,16 @@
             <p props="ios">成功调用该方法后，SDK 会触发以下回调：
                 <ul>
                     <li>本地客户端：<xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/>。</li>
-                    <li>远端客户端：如果是 <codeph>COMMUNICATION</codeph> 频道场景中的用户加入，或 <codeph>LIVE_BROADCASTING</codeph> 频道场景中的主播加入频道，会触发 <xref keyref="onUserJoined"/> 回调。
-当本地客户端因网络状况不佳与声网服务器断开连接时，SDK 会尝试重连。当本地客户端成功重回频道时，SDK 会触发 <xref keyref="onRejoinChannelSuccess"/> 回调。</li>
+                    <li>远端客户端：如果是 <codeph>COMMUNICATION</codeph> 频道场景中的用户加入，或 <codeph>LIVE_BROADCASTING</codeph> 频道场景中的主播加入频道，会触发 <xref keyref="onUserJoined"/> 回调。</li>
                 </ul>
+                <p><ph>当本地客户端因网络状况不佳与声网服务器断开连接时，SDK 会尝试重连。当本地客户端成功重回频道时，SDK 会触发 <xref keyref="onRejoinChannelSuccess"/> 回调。</ph></p>
             </p>
             <p props="mac">成功调用该方法后，SDK 会触发以下回调：
                 <ul>
                     <li>本地客户端：<xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/>。</li>
-                    <li>远端客户端：如果是 <codeph>COMMUNICATION</codeph> 频道场景中的用户加入，或 <codeph>LIVE_BROADCASTING</codeph> 频道场景中的主播加入频道，会触发 <xref keyref="onUserJoined"/> 回调。
-当本地客户端因网络状况不佳与声网服务器断开连接时，SDK 会尝试重连。当本地客户端成功重回频道时，SDK 会触发 <xref keyref="onRejoinChannelSuccess"/> 回调。</li>
+                    <li>远端客户端：如果是 <codeph>COMMUNICATION</codeph> 频道场景中的用户加入，或 <codeph>LIVE_BROADCASTING</codeph> 频道场景中的主播加入频道，会触发 <xref keyref="onUserJoined"/> 回调。</li>
                 </ul>
+                <p><ph>当本地客户端因网络状况不佳与声网服务器断开连接时，SDK 会尝试重连。当本地客户端成功重回频道时，SDK 会触发 <xref keyref="onRejoinChannelSuccess"/> 回调。</ph></p>
             </p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -187,7 +180,7 @@
             <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。
                         <ul>
                             <li>-2：参数无效。例如，Token 无效，<codeph>uid</codeph> 参数未设置为整数，或 <xref keyref="ChannelMediaOptions"/> 中的成员值无效。请传入有效参数并重新加入频道。</li>
                             <li>-3：<xref keyref="IRtcEngine"/> 对象初始化失败。请重新初始化 <xref keyref="IRtcEngine"/> 对象。</li>
@@ -203,12 +196,12 @@
             <p props="android">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
                         <ul>
                             <li>-2：参数无效。例如，Token 无效，<codeph>uid</codeph> 参数未设置为整数，或 <xref keyref="ChannelMediaOptions"/> 中的成员值无效。你需要传入有效参数并重新加入频道。</li>
-                            <li>-3：<xref keyref="RtcEngine"/> 对象初始化失败。你需要重新初始化 <xref keyref="RtcEngine"/> 对象。</li>
-                            <li>-7：<xref keyref="RtcEngine"/> 对象尚未初始化。你需要先初始化 <xref keyref="RtcEngine"/> 对象再调用该方法。</li>
-                            <li>-8：<xref keyref="RtcEngine"/> 对象的内部状态错误。典型原因是在调用 <xref keyref="startEchoTest3"/> 开始通话回声测试后，未调用 <xref keyref="stopEchoTest"/> 停止测试就调用该方法加入频道。你需要先调用 <xref keyref="stopEchoTest"/> 再调用该方法。</li>
+                            <li>-3：<xref keyref="IRtcEngine"/> 对象初始化失败。你需要重新初始化 <xref keyref="IRtcEngine"/> 对象。</li>
+                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要先初始化 <xref keyref="IRtcEngine"/> 对象再调用该方法。</li>
+                            <li>-8：<xref keyref="IRtcEngine"/> 对象的内部状态错误。典型原因是在调用 <xref keyref="startEchoTest3"/> 开始通话回声测试后，未调用 <xref keyref="stopEchoTest"/> 停止测试就调用该方法加入频道。你需要先调用 <xref keyref="stopEchoTest"/> 再调用该方法。</li>
                             <li>-17：加入频道请求被拒绝。典型原因是用户已在频道中。声网建议你通过 <xref keyref="onConnectionStateChanged"/> 回调判断用户是否在频道中。只有在收到 <codeph>CONNECTION_STATE_DISCONNECTED</codeph>（1）状态时才调用该方法加入频道。</li>
                             <li>-102：频道名无效。你需要在 <codeph>channelId</codeph> 中传入有效的频道名重新加入频道。</li>
                             <li>-121：用户 ID 无效。你需要在 <codeph>uid</codeph> 中传入有效的用户 ID 重新加入频道。</li>
@@ -219,7 +212,7 @@
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。
                         <ul>
                             <li>-2：参数无效。例如，Token 无效，<codeph>uid</codeph> 参数未设置为整数，或 <xref keyref="ChannelMediaOptions"/> 中的成员值无效。请传入有效参数并重新加入频道。</li>
                             <li>-3：初始化 <xref keyref="IRtcEngine"/> 对象失败。请重新初始化该对象。</li>
@@ -235,7 +228,7 @@
             <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。
                         <ul>
                             <li>-2：参数无效。例如，Token 无效，<codeph>uid</codeph> 参数未设置为整数，或 <xref keyref="ChannelMediaOptions"/> 中的成员值无效。请传入有效参数并重新加入频道。</li>
                             <li>-3：初始化 <xref keyref="IRtcEngine"/> 对象失败。请重新初始化该对象。</li>

@@ -64,13 +64,6 @@
             <p props="ios">请在调用 <xref keyref="initialize"/> 之后调用该方法。</p>
             <p props="mac">请在调用 <xref keyref="initialize"/> 之后调用该方法。</p>
         </section>
-        <section id="restriction" deliveryTarget="details" props="android cpp ios mac">
-            <title>调用限制</title>
-            <p props="cpp">无。</p>
-            <p props="android">无。</p>
-            <p props="ios">无。</p>
-            <p props="mac">无。</p>
-        </section>
         <section id="related" deliveryTarget="details" props="cpp">
             <title>相关回调</title>
             <p props="cpp">成功调用该方法后，本地客户端会触发 <xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/> 回调；远端客户端会触发 <xref keyref="onUserJoined"/> 回调（当用户在 <codeph>COMMUNICATION</codeph> 频道场景中加入频道，或主播在 <codeph>LIVE_BROADCASTING</codeph> 频道场景中加入频道时）。当由于网络状况不佳导致本地客户端与声网服务器的连接中断时，SDK 会尝试重连服务器。当本地客户端成功重回频道时，SDK 会触发本地客户端的 <xref keyref="onRejoinChannelSuccess"/> 回调。</p>
@@ -185,7 +178,7 @@
             <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。
                         <ul>
                             <li>-2：参数无效。例如，Token 无效，<codeph>uid</codeph> 参数未设置为整数，或 <xref keyref="ChannelMediaOptions"/> 中的成员值无效。请传入有效参数并重新加入频道。</li>
                             <li>-3：<xref keyref="IRtcEngine"/> 对象初始化失败。请重新初始化 <xref keyref="IRtcEngine"/> 对象。</li>
@@ -201,12 +194,12 @@
             <p props="android">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
                         <ul>
                             <li>-2：参数无效。例如，Token 无效，<codeph>uid</codeph> 参数未设置为整数，或 <xref keyref="ChannelMediaOptions"/> 中的成员值无效。请传入有效参数并重新加入频道。</li>
-                            <li>-3：<xref keyref="RtcEngine"/> 对象初始化失败。请重新初始化 <xref keyref="RtcEngine"/> 对象。</li>
-                            <li>-7：<xref keyref="RtcEngine"/> 对象尚未初始化。请先初始化 <xref keyref="RtcEngine"/> 对象再调用该方法。</li>
-                            <li>-8：<xref keyref="RtcEngine"/> 对象内部状态错误。典型原因是在调用 <xref keyref="startEchoTest3"/> 开始通话回路测试后，未调用 <xref keyref="stopEchoTest"/> 停止测试就调用该方法加入频道。请先调用 <xref keyref="stopEchoTest"/> 再调用该方法。</li>
+                            <li>-3：<xref keyref="IRtcEngine"/> 对象初始化失败。请重新初始化 <xref keyref="IRtcEngine"/> 对象。</li>
+                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。请先初始化 <xref keyref="IRtcEngine"/> 对象再调用该方法。</li>
+                            <li>-8：<xref keyref="IRtcEngine"/> 对象内部状态错误。典型原因是在调用 <xref keyref="startEchoTest3"/> 开始通话回路测试后，未调用 <xref keyref="stopEchoTest"/> 停止测试就调用该方法加入频道。请先调用 <xref keyref="stopEchoTest"/> 再调用该方法。</li>
                             <li>-17：加入频道请求被拒绝。典型原因是用户已在频道中。声网建议使用 <xref keyref="onConnectionStateChanged"/> 回调判断用户是否在频道中。仅当收到 <codeph>CONNECTION_STATE_DISCONNECTED</codeph>（1）状态时再调用该方法加入频道。</li>
                             <li>-102：频道名无效。请在 <codeph>channelId</codeph> 中传入有效的频道名重新加入频道。</li>
                             <li>-121：用户 ID 无效。请在 <codeph>uid</codeph> 中传入有效的用户 ID 重新加入频道。</li>
@@ -217,7 +210,7 @@
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。
                         <ul>
                             <li>-2：参数无效。例如，Token 无效，<codeph>uid</codeph> 参数未设置为整数，或 <xref keyref="ChannelMediaOptions"/> 中的成员值无效。请传入有效参数并重新加入频道。</li>
                             <li>-3：初始化 <xref keyref="IRtcEngine"/> 对象失败。请重新初始化该对象。</li>
@@ -233,7 +226,7 @@
             <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。
                         <ul>
                             <li>-2：参数无效。例如，Token 无效，<codeph>uid</codeph> 参数未设置为整数，或 <xref keyref="ChannelMediaOptions"/> 中的成员值无效。请传入有效参数并重新加入频道。</li>
                             <li>-3：初始化 <xref keyref="IRtcEngine"/> 对象失败。请重新初始化该对象。</li>

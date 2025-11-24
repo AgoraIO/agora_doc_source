@@ -49,13 +49,6 @@
             <p props="ios">加入频道前后均可调用。</p>
             <p props="mac">加入频道前后均可调用。</p>
         </section>
-        <section id="restriction" deliveryTarget="details" props="android cpp ios mac">
-            <title>调用限制</title>
-            <p props="cpp">无。</p>
-            <p props="android">无。</p>
-            <p props="ios">无。</p>
-            <p props="mac">无。</p>
-        </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
@@ -196,8 +189,12 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li><codeph>AgoraApplication1V1Scenario</codeph>（2）：适用于一对一直播场景。为满足该场景下低延迟和高画质的需求，SDK 会优化策略，提升视频质量、首帧渲染速度、中低端设备的延迟表现，以及弱网环境下的流畅度。
-  注意：该枚举值仅适用于主播对主播的场景。</li>
+                        </ul>
+                        <ul>
+                            <li><codeph>AgoraApplication1V1Scenario</codeph>（2）：适用于一对一直播场景。为满足该场景下低延迟和高画质的需求，SDK 会优化策略，提升视频质量、首帧渲染速度、中低端设备的延迟表现，以及弱网环境下的流畅度。</li>
+                        </ul>
+                        <p><ph>  注意：该枚举值仅适用于主播对主播的场景。</ph></p>
+                        <ul>
                             <li><codeph>AgoraApplicationLiveShowScenario</codeph>（3）：适用于秀场场景。在该场景中，快速的视频渲染和高画质至关重要。SDK 会进行多项性能优化，包括自动启用音视频帧加速渲染以最小化首帧延迟（无需调用 <xref keyref="enableInstantMediaRendering"/>），以及启用 B 帧编码以提升图像质量和带宽效率。即使在网络较差或低端设备上，SDK 也能提供增强的视频质量和流畅的播放体验。</li>
                         </ul>
                     </pd>
@@ -247,8 +244,12 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li><codeph>AgoraApplication1V1Scenario</codeph>（2）：适用于一对一直播场景。为满足该场景下低延迟和高画质的需求，SDK 会优化策略，提升视频质量、首帧渲染速度、中低端设备的延迟表现，以及弱网环境下的流畅度。
-  注意：该枚举值仅适用于主播对主播的场景。</li>
+                        </ul>
+                        <ul>
+                            <li><codeph>AgoraApplication1V1Scenario</codeph>（2）：适用于一对一直播场景。为满足该场景下低延迟和高画质的需求，SDK 会优化策略，提升视频质量、首帧渲染速度、中低端设备的延迟表现，以及弱网环境下的流畅度。</li>
+                        </ul>
+                        <p><ph>  注意：该枚举值仅适用于主播对主播的场景。</ph></p>
+                        <ul>
                             <li><codeph>AgoraApplicationLiveShowScenario</codeph>（3）：适用于秀场场景。在该场景中，快速的视频渲染和高画质至关重要。SDK 会进行多项性能优化，包括自动启用音视频帧加速渲染以最小化首帧延迟（无需调用 <xref keyref="enableInstantMediaRendering"/>），以及启用 B 帧编码以提升图像质量和带宽效率。即使在网络较差或低端设备上，SDK 也能提供增强的视频质量和流畅的播放体验。</li>
                         </ul>
                     </pd>
@@ -260,7 +261,7 @@
             <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。
                         <ul>
                             <li>-1：发生通用错误（无具体原因）。</li>
                             <li>-4：不支持视频应用场景。可能原因包括使用了语音 SDK 而非视频 SDK。</li>
@@ -272,11 +273,11 @@
             <p props="android">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
                         <ul>
                             <li>-1：发生通用错误（无具体原因）。</li>
                             <li>-4：不支持视频应用场景。可能原因包括使用了语音 SDK 而非视频 SDK。</li>
-                            <li>-7：<xref keyref="RtcEngine"/> 对象尚未初始化。请在调用该方法前初始化 <xref keyref="RtcEngine"/> 对象。</li>
+                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。请在调用该方法前初始化 <xref keyref="IRtcEngine"/> 对象。</li>
                         </ul>
                     </li>
                 </ul>
@@ -284,7 +285,7 @@
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。
                         <ul>
                             <li>-1：发生通用错误（无具体原因）。</li>
                             <li>-4：不支持设置视频应用场景。可能原因包括你使用了语音 SDK 而非视频 SDK。</li>
@@ -296,7 +297,7 @@
             <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。
                         <ul>
                             <li>-1：发生通用错误（无具体原因）。</li>
                             <li>-4：不支持设置视频应用场景。可能原因包括你使用了语音 SDK 而非视频 SDK。</li>

@@ -21,8 +21,9 @@
             <p props="cpp">在屏幕共享场景中，你需要调用此方法开始采集屏幕视频流。SDK 提供了多种屏幕采集方法，具体区别如下，请根据实际场景选择：
                 <ul>
                     <li><codeph>startScreenCapture(const ScreenCaptureParameters2&amp; captureParams)</codeph> / <xref keyref="startScreenCaptureByDisplayId"/> / <xref keyref="startScreenCaptureByWindowId"/>：仅支持采集单个屏幕或窗口，适用于只共享一个屏幕的场景。</li>
-                    <li><codeph>startScreenCapture</codeph>：支持指定多个视频源以采集多个屏幕共享流，适用于本地视频合流或多频道场景。
-调用时机：你可以在加入频道前或加入频道后调用此方法，具体如下：</li>
+                    <li><codeph>startScreenCapture</codeph>：支持指定多个视频源以采集多个屏幕共享流，适用于本地视频合流或多频道场景。</li>
+                </ul>调用时机：你可以在加入频道前或加入频道后调用此方法，具体如下：
+                <ul>
                     <li>先调用此方法，再调用 <codeph>joinChannel</codeph> 加入频道，并设置 <codeph>publishScreenCaptureVideo</codeph> 为 <xref keyref="true"/>，以开始屏幕共享。</li>
                     <li>加入频道后调用此方法，再调用 <xref keyref="updateChannelMediaOptions"/> 并设置 <codeph>publishScreenCaptureVideo</codeph> 为 <xref keyref="true"/>，以开始屏幕共享。</li>
                 </ul>
@@ -32,11 +33,6 @@
             <title>调用时机</title>
             <p props="cpp">加入频道前后均可调用。</p>
             <p props="mac">加入频道前后均可调用。</p>
-        </section>
-        <section id="restriction" deliveryTarget="details" props="cpp mac">
-            <title>调用限制</title>
-            <p props="cpp">无。</p>
-            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="cpp mac">
             <title>参数</title>
@@ -64,13 +60,13 @@
             <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
         </section>

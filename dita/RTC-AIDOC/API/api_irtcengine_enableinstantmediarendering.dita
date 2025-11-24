@@ -43,7 +43,7 @@
             <p props="ios">调用该方法后，SDK 会启用极速帧渲染模式，从而加快你加入频道后首帧的渲染速度。</p>
             <p props="mac">调用该方法后，SDK 会启用极速帧渲染模式，从而加快你加入频道后首帧的渲染速度。</p>
             <note props="cpp">主播和观众都需要调用该方法，才能体验音视频帧的极速渲染。如需关闭该模式，只能通过调用 <xref keyref="release"/> 销毁 <xref keyref="IRtcEngine"/> 对象。</note>
-            <note props="android">主播和观众都需要调用该方法，才能体验音视频帧的即时渲染效果。一旦成功调用该方法，只能通过调用 <xref keyref="Destroy_Rte"/> 方法销毁 <xref keyref="RtcEngine"/> 对象来取消即时渲染。</note>
+            <note props="android">主播和观众都需要调用该方法，才能体验音视频帧的即时渲染效果。一旦成功调用该方法，只能通过调用 <xref keyref="Destroy_Rte"/> 方法销毁 <xref keyref="IRtcEngine"/> 对象来取消即时渲染。</note>
             <note props="ios">主播和观众都需调用该方法，才能体验音视频帧的极速渲染。若需取消极速渲染，需调用 <xref keyref="release"/> 方法销毁 <xref keyref="IRtcEngine"/> 对象。</note>
             <note props="mac">主播和观众都需调用该方法，才能体验音视频帧的极速渲染。若需取消极速渲染，需调用 <xref keyref="release"/> 方法销毁 <xref keyref="IRtcEngine"/> 对象。</note>
         </section>
@@ -54,19 +54,12 @@
             <p props="ios">请在加入频道前调用该方法。</p>
             <p props="mac">请在加入频道前调用该方法。</p>
         </section>
-        <section id="restriction" deliveryTarget="details" props="android cpp ios mac">
-            <title>调用限制</title>
-            <p props="cpp">无。</p>
-            <p props="android">无。</p>
-            <p props="ios">无。</p>
-            <p props="mac">无。</p>
-        </section>
         <section id="return_values" props="android cpp ios mac">
             <title>返回值</title>
             <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。
                         <ul>
                             <li>-7：在 <xref keyref="IRtcEngine"/> 初始化之前调用了该方法。</li>
                         </ul>
@@ -76,9 +69,9 @@
             <p props="android">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
                         <ul>
-                            <li>-7：在 <xref keyref="RtcEngine"/> 初始化之前调用该方法。</li>
+                            <li>-7：在 <xref keyref="IRtcEngine"/> 初始化之前调用该方法。</li>
                         </ul>
                     </li>
                 </ul>
@@ -86,7 +79,7 @@
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。
                         <ul>
                             <li>-7：在 <xref keyref="IRtcEngine"/> 初始化前调用该方法。</li>
                         </ul>
@@ -96,7 +89,7 @@
             <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。
                         <ul>
                             <li>-7：在 <xref keyref="IRtcEngine"/> 初始化前调用该方法。</li>
                         </ul>

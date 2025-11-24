@@ -43,35 +43,7 @@
                 <ul>
                     <li>如果方向模式 <xref keyref="ORIENTATION_MODE"/> 为固定横屏或自适应横屏，水印图像将以横屏方向显示。</li>
                     <li>如果方向模式为固定竖屏或自适应竖屏，水印图像将以竖屏方向显示。</li>
-                    <li>
-                        <simpletable>
-                            <sthead>
-                                <stentry>视频帧位置</stentry>
-                                <stentry><codeph>visibleInPreview</codeph> 值</stentry>
-                                <stentry>水印是否可见</stentry>
-                            </sthead>
-                            <strow>
-                                <stentry>（默认）<codeph>POSITION_POST_CAPTURER</codeph></stentry>
-                                <stentry><xref keyref="true"/></stentry>
-                                <stentry>是</stentry>
-                            </strow>
-                            <strow>
-                                <stentry></stentry>
-                                <stentry><xref keyref="false"/></stentry>
-                                <stentry>否</stentry>
-                            </strow>
-                            <strow>
-                                <stentry><codeph>POSITION_PRE_ENCODER</codeph></stentry>
-                                <stentry><xref keyref="true"/></stentry>
-                                <stentry>是</stentry>
-                            </strow>
-                            <strow>
-                                <stentry></stentry>
-                                <stentry><xref keyref="false"/></stentry>
-                                <stentry>是</stentry>
-                            </strow>
-                        </simpletable>
-                    </li>
+                    <li>设置水印位置时，区域必须小于 <xref keyref="setVideoEncoderConfiguration"/> 中设置的视频尺寸，否则水印图像将被裁剪。</li>
                 </ul>
             </p>
             <p props="android">该方法在直播中向本地视频添加 PNG 格式的水印图像。添加后，频道中的所有观众（包括 CDN 观众）以及采集设备都可以看到并采集到该水印图像。声网 SDK 每个直播视频流仅支持添加一张水印图像，新添加的图像会替换之前的图像。
@@ -79,35 +51,7 @@
                 <ul>
                     <li>如果编码视频的方向模式（<xref keyref="ORIENTATION_MODE"/>）为固定横屏模式或自适应横屏模式，则水印使用横屏方向。</li>
                     <li>如果编码视频的方向模式为固定竖屏模式或自适应竖屏模式，则水印使用竖屏方向。</li>
-                    <li>
-                        <simpletable>
-                            <sthead>
-                                <stentry>观察位置</stentry>
-                                <stentry>visibleInPreview 值</stentry>
-                                <stentry>水印可见性</stentry>
-                            </sthead>
-                            <strow>
-                                <stentry>（默认）<codeph>VIDEO_MODULE_POSITION_POST_CAPTURER</codeph></stentry>
-                                <stentry><xref keyref="true"/></stentry>
-                                <stentry>是</stentry>
-                            </strow>
-                            <strow>
-                                <stentry></stentry>
-                                <stentry><xref keyref="false"/></stentry>
-                                <stentry>否</stentry>
-                            </strow>
-                            <strow>
-                                <stentry><codeph>VIDEO_MODULE_POSITION_PRE_ENCODER</codeph></stentry>
-                                <stentry><xref keyref="true"/></stentry>
-                                <stentry>是</stentry>
-                            </strow>
-                            <strow>
-                                <stentry></stentry>
-                                <stentry><xref keyref="false"/></stentry>
-                                <stentry>是</stentry>
-                            </strow>
-                        </simpletable>
-                    </li>
+                    <li>设置水印位置时，区域必须小于 <xref keyref="setVideoEncoderConfiguration"/> 方法中设置的尺寸，否则水印图像会被裁剪。</li>
                 </ul>
             </p>
             <p props="ios">该方法在直播中向本地视频添加 PNG 格式的水印图像。添加水印图像后，频道中的所有观众（包括 CDN 观众）以及采集设备都可以看到并采集该图像。声网 SDK 仅支持在一个直播视频流中添加一张水印图像，新添加的水印图像会替换之前的图像。
@@ -115,35 +59,7 @@
                 <ul>
                     <li>如果编码视频的方向模式（<xref keyref="ORIENTATION_MODE"/>）为固定横屏或自适应横屏模式，水印图像将使用横屏方向。</li>
                     <li>如果编码视频的方向模式为固定竖屏或自适应竖屏模式，水印图像将使用竖屏方向。</li>
-                    <li>
-                        <simpletable>
-                            <sthead>
-                                <stentry>观察位置</stentry>
-                                <stentry><codeph>visibleInPreview</codeph> 值</stentry>
-                                <stentry>水印可见性</stentry>
-                            </sthead>
-                            <strow>
-                                <stentry>（默认）<codeph>AgoraVideoModulePositionPostCapture</codeph></stentry>
-                                <stentry><xref keyref="true"/></stentry>
-                                <stentry>是</stentry>
-                            </strow>
-                            <strow>
-                                <stentry></stentry>
-                                <stentry><xref keyref="false"/></stentry>
-                                <stentry>否</stentry>
-                            </strow>
-                            <strow>
-                                <stentry><codeph>AgoraVideoModulePositionPreEncoder</codeph></stentry>
-                                <stentry><xref keyref="true"/></stentry>
-                                <stentry>是</stentry>
-                            </strow>
-                            <strow>
-                                <stentry></stentry>
-                                <stentry><xref keyref="false"/></stentry>
-                                <stentry>是</stentry>
-                            </strow>
-                        </simpletable>
-                    </li>
+                    <li>设置水印位置时，区域必须小于 <xref keyref="setVideoEncoderConfiguration"/> 方法中设置的尺寸，否则水印图像将被裁剪。</li>
                 </ul>
             </p>
             <p props="mac">该方法在直播中向本地视频添加 PNG 格式的水印图像。添加水印图像后，频道中的所有观众（包括 CDN 观众）以及采集设备都可以看到并采集该图像。声网 SDK 仅支持在一个直播视频流中添加一张水印图像，新添加的水印图像会替换之前的图像。
@@ -151,35 +67,7 @@
                 <ul>
                     <li>如果编码视频的方向模式（<xref keyref="ORIENTATION_MODE"/>）为固定横屏或自适应横屏模式，水印图像将使用横屏方向。</li>
                     <li>如果编码视频的方向模式为固定竖屏或自适应竖屏模式，水印图像将使用竖屏方向。</li>
-                    <li>
-                        <simpletable>
-                            <sthead>
-                                <stentry>观察位置</stentry>
-                                <stentry><codeph>visibleInPreview</codeph> 值</stentry>
-                                <stentry>水印可见性</stentry>
-                            </sthead>
-                            <strow>
-                                <stentry>（默认）<codeph>AgoraVideoModulePositionPostCapture</codeph></stentry>
-                                <stentry><xref keyref="true"/></stentry>
-                                <stentry>是</stentry>
-                            </strow>
-                            <strow>
-                                <stentry></stentry>
-                                <stentry><xref keyref="false"/></stentry>
-                                <stentry>否</stentry>
-                            </strow>
-                            <strow>
-                                <stentry><codeph>AgoraVideoModulePositionPreEncoder</codeph></stentry>
-                                <stentry><xref keyref="true"/></stentry>
-                                <stentry>是</stentry>
-                            </strow>
-                            <strow>
-                                <stentry></stentry>
-                                <stentry><xref keyref="false"/></stentry>
-                                <stentry>是</stentry>
-                            </strow>
-                        </simpletable>
-                    </li>
+                    <li>设置水印位置时，区域必须小于 <xref keyref="setVideoEncoderConfiguration"/> 方法中设置的尺寸，否则水印图像将被裁剪。</li>
                 </ul>
             </p>
             <note props="cpp">
@@ -226,13 +114,6 @@
             <p props="ios">加入频道前后均可调用。</p>
             <p props="mac">加入频道前后均可调用。</p>
         </section>
-        <section id="restriction" deliveryTarget="details" props="android cpp ios mac">
-            <title>调用限制</title>
-            <p props="cpp">无。</p>
-            <p props="android">无。</p>
-            <p props="ios">无。</p>
-            <p props="mac">无。</p>
-        </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
@@ -275,25 +156,25 @@
             <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="android">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
         </section>

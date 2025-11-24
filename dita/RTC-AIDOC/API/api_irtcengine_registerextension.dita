@@ -28,7 +28,7 @@
             <p props="android">
                 <ul>
                     <li>对于 SDK 外部的扩展（例如来自云市场和 SDK 扩展），你需要在调用 <xref keyref="registerExtension"/> 之前先通过 <xref keyref="addExtension"/> 加载它们。</li>
-                    <li>对于 SDK 内部的扩展（即包含在完整 SDK 包中的扩展），在初始化 <xref keyref="RtcEngine"/> 后会自动加载并注册。</li>
+                    <li>对于 SDK 内部的扩展（即包含在完整 SDK 包中的扩展），在初始化 <xref keyref="IRtcEngine"/> 后会自动加载并注册。</li>
                 </ul>
             </p>
             <p props="ios">对于 SDK 外部的扩展（例如来自 Extensions Marketplace 和 SDK Extensions 的扩展），你需要在调用此方法前加载它们。对于 SDK 内部的扩展（即包含在完整 SDK 包中的扩展），在初始化 <xref keyref="IRtcEngine"/> 后会自动加载并注册。</p>
@@ -66,7 +66,7 @@
                     <li>在调用此方法前，你需要先调用 <xref keyref="loadExtensionProvider"/> 加载扩展。</li>
                 </ul>
             </p>
-            <p props="android">声网建议你在初始化 <xref keyref="RtcEngine"/> 后、加入频道前调用此方法。
+            <p props="android">声网建议你在初始化 <xref keyref="IRtcEngine"/> 后、加入频道前调用此方法。
                 <ul>
                     <li>对于视频扩展（如图像增强扩展），你需要在调用 <xref keyref="enableVideo"/> 或 <xref keyref="enableLocalVideo"/> 启用视频模块后再调用此方法。</li>
                     <li>在调用此方法之前，你需要先调用 <xref keyref="addExtension"/> 加载扩展。</li>
@@ -84,13 +84,6 @@
                     <li>在调用此方法之前，你需要将扩展动态库（.xcframework）链接到 Xcode 项目中以加载扩展。</li>
                 </ul>
             </p>
-        </section>
-        <section id="restriction" deliveryTarget="details" props="android cpp ios mac">
-            <title>调用限制</title>
-            <p props="cpp">无。</p>
-            <p props="android">无。</p>
-            <p props="ios">无。</p>
-            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
@@ -150,7 +143,7 @@
             <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。
                         <ul>
                             <li>-3：扩展库未加载。声网建议你检查动态库的存储位置或名称。</li>
                         </ul>
@@ -160,7 +153,7 @@
             <p props="android">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
                         <ul>
                             <li>-3：扩展库未加载。建议你检查动态库的存储位置或名称。</li>
                         </ul>
@@ -170,7 +163,7 @@
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。
                         <ul>
                             <li>-3：扩展库未加载。声网建议你检查动态库的存储位置或名称。</li>
                         </ul>
@@ -180,7 +173,7 @@
             <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。
                         <ul>
                             <li>-3：扩展库未加载。声网建议你检查动态库的存储位置或名称。</li>
                         </ul>

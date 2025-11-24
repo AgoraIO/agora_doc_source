@@ -51,8 +51,7 @@
                     <li>将 <codeph>publishCustomAudioTrack</codeph> 设置为 <xref keyref="true"/>，并调用 <xref keyref="pushAudioFrame"/> 方法；</li>
                     <li>将 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/>，并调用 <xref keyref="pushVideoFrame_IMediaEngine"/> 方法；</li>
                     <li>将 <codeph>publishCameraTrack</codeph> 设置为 <xref keyref="false"/>（默认）；</li>
-                    <li>将 <codeph>publishMicrophoneTrack</codeph> 设置为 <xref keyref="false"/>（默认）。
-自 v4.2.0 起，声网 SDK 支持纯音频直播。你可以在 <xref keyref="DirectCdnStreamingMediaOptions"/> 中将 <codeph>publishCustomAudioTrack</codeph> 或 <codeph>publishMicrophoneTrack</codeph> 设置为 <xref keyref="true"/>，并调用 <xref keyref="pushAudioFrame"/> 推送音频流。</li>
+                    <li>将 <codeph>publishMicrophoneTrack</codeph> 设置为 <xref keyref="false"/>（默认）。</li>
                 </ul>
             </p>
             <p props="android">**媒体选项**
@@ -62,10 +61,7 @@
                     <li>将 <codeph>publishCustomAudioTrack</codeph> 设置为 <xref keyref="true"/>，并调用 <xref keyref="pushAudioFrame2"/> 方法；</li>
                     <li>将 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/>，并调用 <codeph>pushExternalVideoFrameById</codeph> 方法；</li>
                     <li>将 <codeph>publishCameraTrack</codeph> 设置为 <xref keyref="false"/>（默认值）；</li>
-                    <li>将 <codeph>publishMicrophoneTrack</codeph> 设置为 <xref keyref="false"/>（默认值）。
-自 v4.2.0 起，声网 SDK 支持纯音频直播。你可以在 <xref keyref="DirectCdnStreamingMediaOptions"/> 中将 <codeph>publishCustomAudioTrack</codeph> 或 <codeph>publishMicrophoneTrack</codeph> 设置为 <xref keyref="true"/>，并调用 <xref keyref="pushAudioFrame2"/> 推送音频流。
-该方法自 v4.6.0 起废弃。
-仅支持将一路音视频流或一路音频流推送到 CDN。</li>
+                    <li>将 <codeph>publishMicrophoneTrack</codeph> 设置为 <xref keyref="false"/>（默认值）。</li>
                 </ul>
             </p>
             <p props="ios">声网不支持将媒体流重复推送到同一个 URL。
@@ -76,8 +72,7 @@
                     <li>将 <codeph>publishCustomAudioTrack</codeph> 设置为 <xref keyref="true"/>，并调用 <xref keyref="pushExternalAudioFrameSampleBuffer2"/> 或 <xref keyref="pushAudioFrame2"/> 方法；</li>
                     <li>将 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/>，并调用 <xref keyref="pushVideoFrame"/> 方法；</li>
                     <li>将 <codeph>publishCameraTrack</codeph> 设置为 <xref keyref="false"/>（默认值）；</li>
-                    <li>将 <codeph>publishMicrophoneTrack</codeph> 设置为 <xref keyref="false"/>（默认值）。
-你也可以通过将 <codeph>publishCustomAudioTrack</codeph> 或 <codeph>publishMicrophoneTrack</codeph> 设置为 <xref keyref="true"/>，并调用 <xref keyref="pushExternalAudioFrameSampleBuffer2"/> 或 <xref keyref="pushAudioFrame2"/> 方法实现纯音频直播。</li>
+                    <li>将 <codeph>publishMicrophoneTrack</codeph> 设置为 <xref keyref="false"/>（默认值）。</li>
                 </ul>
             </p>
             <p props="mac">声网不支持将媒体流重复推送到同一个 URL。
@@ -88,8 +83,7 @@
                     <li>将 <codeph>publishCustomAudioTrack</codeph> 设置为 <xref keyref="true"/>，并调用 <xref keyref="pushExternalAudioFrameSampleBuffer2"/> 或 <xref keyref="pushAudioFrame2"/> 方法；</li>
                     <li>将 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/>，并调用 <xref keyref="pushVideoFrame"/> 方法；</li>
                     <li>将 <codeph>publishCameraTrack</codeph> 设置为 <xref keyref="false"/>（默认值）；</li>
-                    <li>将 <codeph>publishMicrophoneTrack</codeph> 设置为 <xref keyref="false"/>（默认值）。
-你也可以通过将 <codeph>publishCustomAudioTrack</codeph> 或 <codeph>publishMicrophoneTrack</codeph> 设置为 <xref keyref="true"/>，并调用 <xref keyref="pushExternalAudioFrameSampleBuffer2"/> 或 <xref keyref="pushAudioFrame2"/> 方法实现纯音频直播。</li>
+                    <li>将 <codeph>publishMicrophoneTrack</codeph> 设置为 <xref keyref="false"/>（默认值）。</li>
                 </ul>
             </p>
             <note props="cpp">声网仅支持将一路音视频流或一路音频流推送到 CDN。</note>
@@ -103,13 +97,6 @@
             <p props="android">加入频道前后均可调用。</p>
             <p props="ios">加入频道前后均可调用。</p>
             <p props="mac">加入频道前后均可调用。</p>
-        </section>
-        <section id="restriction" deliveryTarget="details" props="android cpp ios mac">
-            <title>调用限制</title>
-            <p props="cpp">无。</p>
-            <p props="android">无。</p>
-            <p props="ios">无。</p>
-            <p props="mac">无。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
@@ -169,25 +156,25 @@
             <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="android">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
         </section>

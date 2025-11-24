@@ -30,13 +30,6 @@
             <p props="ios">加入频道前后均可调用。</p>
             <p props="mac">加入频道前后均可调用。</p>
         </section>
-        <section id="restriction" deliveryTarget="details" props="android cpp ios mac">
-            <title>调用限制</title>
-            <p props="cpp">无。</p>
-            <p props="android">无。</p>
-            <p props="ios">无。</p>
-            <p props="mac">无。</p>
-        </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
@@ -63,7 +56,7 @@
             <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。
                         <ul>
                             <li>-2：<xref keyref="ChannelMediaOptions"/> 中某个成员的值无效，例如 <codeph>token</codeph> 或用户 ID 无效。你需要填写有效的参数。</li>
                             <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要先初始化 <xref keyref="IRtcEngine"/> 对象再调用该方法。</li>
@@ -75,11 +68,11 @@
             <p props="android">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
                         <ul>
                             <li>-2：<xref keyref="ChannelMediaOptions"/> 中某个成员的值无效，例如 Token 或用户 ID 无效。你需要填写有效的参数。</li>
-                            <li>-7：<xref keyref="RtcEngine"/> 对象尚未初始化。你需要先初始化 <xref keyref="RtcEngine"/> 对象再调用该方法。</li>
-                            <li>-8：<xref keyref="RtcEngine"/> 对象的内部状态错误。可能的原因是用户不在频道中。声网建议你使用 <xref keyref="onConnectionStateChanged"/> 回调判断用户是否在频道中。如果你收到 <codeph>CONNECTION_STATE_DISCONNECTED</codeph>（1）或 <codeph>CONNECTION_STATE_FAILED</codeph>（5）状态，说明用户不在频道中。你需要先调用 <codeph>joinChannel</codeph> 加入频道，再调用该方法。</li>
+                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要先初始化 <xref keyref="IRtcEngine"/> 对象再调用该方法。</li>
+                            <li>-8：<xref keyref="IRtcEngine"/> 对象的内部状态错误。可能的原因是用户不在频道中。声网建议你使用 <xref keyref="onConnectionStateChanged"/> 回调判断用户是否在频道中。如果你收到 <codeph>CONNECTION_STATE_DISCONNECTED</codeph>（1）或 <codeph>CONNECTION_STATE_FAILED</codeph>（5）状态，说明用户不在频道中。你需要先调用 <codeph>joinChannel</codeph> 加入频道，再调用该方法。</li>
                         </ul>
                     </li>
                 </ul>
@@ -87,7 +80,7 @@
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。
                         <ul>
                             <li>-2：<xref keyref="ChannelMediaOptions"/> 中某个成员的值无效，例如 token 或用户 ID 无效。你需要填写有效的参数。</li>
                             <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要先初始化 <xref keyref="IRtcEngine"/> 对象再调用该方法。</li>
@@ -99,7 +92,7 @@
             <p props="mac">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。
                         <ul>
                             <li>-2：<xref keyref="ChannelMediaOptions"/> 中某个成员的值无效，例如 token 或用户 ID 无效。你需要填写有效的参数。</li>
                             <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要先初始化 <xref keyref="IRtcEngine"/> 对象再调用该方法。</li>
