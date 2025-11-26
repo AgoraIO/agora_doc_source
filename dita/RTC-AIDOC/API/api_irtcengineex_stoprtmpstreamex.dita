@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_stoprtmpstreamex">
     <title><ph keyref="stopRtmpStreamEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc">停止向指定 CDN 地址推送媒体流。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">停止向指定 CDN 地址推送媒体流。</ph><ph id="shortdesc" props="android">停止向指定 CDN 地址推送媒体流。</ph><ph id="shortdesc" props="ios">停止向指定 CDN 地址推送媒体流。</ph><ph id="shortdesc" props="mac">停止向指定 CDN 地址推送媒体流。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -22,18 +22,26 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">你可以调用该方法停止向指定的 CDN 地址推送媒体流。该方法每次只能停止向一个地址推流，如需停止多个地址的推流，请多次调用该方法。</p>
-            <p props="android">你可以调用该方法停止向指定 CDN 地址的直播流。该方法每次只能停止向一个 CDN 地址推送媒体流，如果需要停止多个地址的推流，请多次调用该方法。</p>
+            <p props="cpp">你可以调用该方法停止向指定的 CDN 地址推送媒体流。该方法每次只能停止一个地址的推流，如需停止多个地址的推流，请多次调用该方法。</p>
+            <p props="android">你可以调用该方法停止向指定 CDN 地址的直播推流。该方法每次只能停止向一个 CDN 地址推流，如果需要停止多个地址的推流，请多次调用该方法。</p>
             <p props="ios">你可以调用该方法停止向指定的 CDN 地址进行直播推流。该方法每次只能停止向一个 CDN 地址推送媒体流，如果需要停止多个地址的推流，请多次调用该方法。</p>
             <p props="mac">你可以调用该方法停止向指定的 CDN 地址进行直播推流。该方法每次只能停止向一个 CDN 地址推送媒体流，如果需要停止多个地址的推流，请多次调用该方法。</p>
-            <note props="cpp">声网推荐使用服务端的旁路推流功能。详见 <codeph>Use RESTful API</codeph>。</note>
-            <note props="android">声网推荐使用服务端的旁路推流功能。详见 <codeph>Use RESTful API</codeph>。</note>
+            <note props="cpp">声网建议你使用服务端的旁路推流功能。详见 <codeph>使用 RESTful API 实现推流</codeph>。</note>
+            <note props="android">声网建议你使用服务端的旁路推流功能。详见 <codeph>Push streams using RESTful APIs</codeph>。</note>
             <note props="ios">声网建议你使用服务端的旁路推流功能。详见 <codeph>RESTful API</codeph>。</note>
             <note props="mac">声网建议你使用服务端的旁路推流功能。详见 <codeph>RESTful API</codeph>。</note>
         </section>
-        <section id="related" deliveryTarget="details" props="cpp ios mac">
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="android cpp ios mac">
             <title>相关回调</title>
             <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调报告推流状态。</p>
+            <p props="android">成功调用该方法后，SDK 会触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调报告推流状态。</p>
             <p props="ios">成功调用该方法后，SDK 会触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调报告推流状态。</p>
             <p props="mac">成功调用该方法后，SDK 会触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调报告推流状态。</p>
         </section>
@@ -50,7 +58,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>url</pt>
-                    <pd>旁路推流地址，格式为 RTMP 或 RTMPS，字符长度不能超过 1024 字节。不支持中文等特殊字符。</pd>
+                    <pd>旁路推流地址。格式为 RTMP 或 RTMPS，长度不能超过 1024 字节。不支持中文等特殊字符。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>connection</pt>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startorupdatechannelmediarelay">
     <title><ph keyref="startOrUpdateChannelMediaRelay"/></title>
-    <shortdesc id="short"><ph id="shortdesc">开始或更新跨频道媒体流转发。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">开始或更新跨频道媒体流转发。</ph><ph id="shortdesc" props="android">开始或更新跨频道媒体流转发。</ph><ph id="shortdesc" props="ios">开始或更新跨频道媒体流转发。</ph><ph id="shortdesc" props="mac">开始或更新跨频道媒体流转发。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -39,7 +39,7 @@
                 </dlentry>
             </dl>
             <p props="cpp">首次成功调用该方法会开始将媒体流从源频道转发到目标频道。若需将媒体流转发到其他频道，或退出当前的某个媒体流转发，可再次调用该方法以更新目标频道。该功能最多支持将媒体流转发到六个目标频道。</p>
-            <p props="android">首次成功调用该方法会开始将媒体流从源频道转发到目标频道。若需将媒体流转发到其他频道，或退出当前的某个媒体流转发，可再次调用该方法以更新目标频道。该功能最多支持将媒体流转发到六个目标频道。</p>
+            <p props="android">首次成功调用该方法会将媒体流从源频道转发到目标频道。若需将媒体流转发到其他频道，或退出当前的某个媒体流转发，可再次调用该方法以更新目标频道。该功能最多支持将媒体流转发到六个目标频道。</p>
             <p props="ios">首次成功调用该方法会开始将媒体流从源频道转发到目标频道。若需将媒体流转发到其他频道，或退出当前的某个媒体流转发，可再次调用该方法更新目标频道。该功能最多支持将媒体流转发到六个目标频道。
 调用该方法成功后，SDK 会触发 <xref keyref="onChannelMediaRelayStateChanged"/> 回调，报告媒体流转发的状态。
                 <ul>
@@ -58,18 +58,11 @@
                 <ul>
                     <li>请在加入频道后调用该方法。</li>
                     <li>该方法仅在你是极速直播频道中的主播时生效。</li>
-                    <li>跨频道媒体流转发功能需[联系技术支持](https://ticket.shengwang.cn/)启用。</li>
+                    <li>跨频道媒体流转发功能需[联系技术支持](https://ticket.shengwang.cn/)开启。</li>
                     <li>该方法不支持字符串用户账号。</li>
                 </ul>
             </note>
-            <note props="android">
-                <ul>
-                    <li>请在加入频道后调用该方法。</li>
-                    <li>该方法仅在你是极速直播频道中的主播时生效。</li>
-                    <li>跨频道媒体流转发功能需[联系技术支持](https://ticket.shengwang.cn/)开启。</li>
-                    <li>该 API 不支持字符串用户账号。</li>
-                </ul>
-            </note>
+            <note props="android">请在加入频道后调用该方法。该方法仅在你是极速直播频道中的主播时生效。跨频道媒体流转发功能需[联系技术支持](https://ticket.shengwang.cn/)开启。该 API 不支持字符串用户账号。</note>
             <note props="ios">
                 <ul>
                     <li>请在加入频道后调用该方法。</li>
@@ -87,12 +80,25 @@
                 </ul>
             </note>
         </section>
-        <section id="related" deliveryTarget="details" props="android">
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="android cpp">
             <title>相关回调</title>
+            <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onChannelMediaRelayStateChanged"/> 回调，并返回媒体流转发的状态。
+                <ul>
+                    <li>如果 <xref keyref="onChannelMediaRelayStateChanged"/> 回调返回 <codeph>RELAY_STATE_RUNNING</codeph>（2）和 <codeph>RELAY_OK</codeph>（0），表示 SDK 成功开始将媒体流从源频道转发到目标频道。</li>
+                    <li>如果 <xref keyref="onChannelMediaRelayStateChanged"/> 回调返回 <codeph>RELAY_STATE_FAILURE</codeph>（3），表示媒体流转发过程中发生异常。</li>
+                </ul>
+            </p>
             <p props="android">成功调用该方法后，SDK 会触发 <xref keyref="onChannelMediaRelayStateChanged"/> 回调报告媒体流转发的状态。
                 <ul>
-                    <li>若回调返回 <codeph>RELAY_STATE_RUNNING</codeph>（2）和 <codeph>RELAY_OK</codeph>（0），表示 SDK 成功开始将媒体流从源频道转发到目标频道。</li>
-                    <li>若回调返回 <codeph>RELAY_STATE_FAILURE</codeph>（3），表示媒体流转发过程中发生异常。</li>
+                    <li>如果 <xref keyref="onChannelMediaRelayStateChanged"/> 回调返回 <codeph>RELAY_STATE_RUNNING</codeph>（2）和 <codeph>RELAY_OK</codeph>（0），表示 SDK 成功开始将媒体流从源频道转发到目标频道。</li>
+                    <li>如果回调返回 <codeph>RELAY_STATE_FAILURE</codeph>（3），表示媒体流转发过程中发生异常。</li>
                 </ul>
             </p>
         </section>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_setrendermode">
     <title><ph keyref="setRenderMode"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置媒体播放器的渲染模式。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置媒体播放器的渲染模式。</ph><ph id="shortdesc" props="android">设置媒体播放器的渲染模式。</ph><ph id="shortdesc" props="ios">设置媒体播放器的渲染模式。</ph><ph id="shortdesc" props="mac">设置媒体播放器的渲染模式。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -19,13 +19,13 @@
                 <codeblock props="mac" outputclass="language-objectivec">- (int)setRenderMode:(AgoraMediaPlayerRenderMode)mode NS_SWIFT_NAME(setRenderMode(_:));</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <dl outputclass="deprecated">
-                <dlentry props="android">
-                    <dt>废弃</dt>
-                    <dd>该枚举值已废弃，不推荐使用。</dd>
-                </dlentry>
-            </dl>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
@@ -38,9 +38,9 @@
                     <pt>mode</pt>
                     <pd>设置视图的渲染模式：
                         <ul>
-                            <li><codeph>RENDER_MODE_HIDDEN</codeph>（1）：隐藏模式。按比例缩放视频，直到其填满可视区域，可能会裁剪部分内容。</li>
-                            <li><codeph>RENDER_MODE_FIT</codeph>（2）：适应模式。按比例缩放视频，直到其某一维度适配边界。由于宽高比不一致，未填满的区域将以黑色填充。</li>
-                            <li><codeph>RENDER_MODE_ADAPTIVE</codeph>（3）：自适应模式。</li>
+                            <li><codeph>RENDER_MODE_HIDDEN</codeph>（1）：隐藏模式。按比例缩放视频，直到填满视图边界，可能会裁剪视频的一部分内容。</li>
+                            <li><codeph>RENDER_MODE_FIT</codeph>（2）：适应模式。按比例缩放视频，直到某一边适配视图边界。由于宽高比不一致，未填满的区域将以黑色填充。</li>
+                            <li><codeph>RENDER_MODE_ADAPTIVE</codeph>（3）：自适应模式。该枚举值已废弃，不推荐使用。</li>
                         </ul>
                     </pd>
                 </plentry>

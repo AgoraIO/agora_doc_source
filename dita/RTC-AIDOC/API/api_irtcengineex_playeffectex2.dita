@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_playeffectex2">
     <title><ph keyref="playEffectEx2"/></title>
-    <shortdesc id="short"><ph id="shortdesc">在频道中播放指定音效。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="ios">在频道中播放指定的音效。</ph><ph id="shortdesc" props="android">在频道中播放指定音效。</ph><ph id="shortdesc" props="mac">在频道中播放指定的音效。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -48,7 +48,7 @@
                 </dlentry>
             </dl>
             <p props="ios">该方法用于设置是否在频道中发布音效。若需同时播放多个音效文件，只需使用不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph> 多次调用该方法。在调用 <xref keyref="preloadEffect2"/> 预加载音效后，可调用此方法将指定音效播放给频道内所有用户。每次调用该方法只能播放一个音效。若需同时播放多个音效，请多次调用该方法。</p>
-            <p props="android">该方法用于设置是否在频道中发布音效。调用 <codeph>preloadEffect</codeph> 预加载音效后，你可以调用该方法将指定音效播放给频道内所有用户。每次调用该方法只能播放一个音效，若需同时播放多个音效，请使用不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph> 多次调用该方法。</p>
+            <p props="android">调用 <codeph>preloadEffect</codeph> 预加载音效后，你可以调用 <codeph>playEffectEx</codeph> 将指定音效播放给频道内所有用户。每次调用该方法只能播放一个音效，若需同时播放多个音效，请使用不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph> 多次调用该方法。</p>
             <p props="mac">该方法用于设置是否在频道中发布音效。若需同时播放多个音效文件，只需使用不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph> 多次调用该方法。在调用 <xref keyref="preloadEffect2"/> 预加载音效后，可调用此方法将指定音效播放给频道内所有用户。每次调用该方法只能播放一个音效。若需同时播放多个音效，请多次调用该方法。</p>
             <note props="ios">
                 <ul>
@@ -59,7 +59,7 @@
             <note props="android">
                 <ul>
                     <li>声网建议不要同时播放超过三个音效。</li>
-                    <li>此方法中的音效 ID 和文件路径必须与 <codeph>preloadEffect</codeph> 中的保持一致。</li>
+                    <li>本方法中的音效 ID 和文件路径必须与 <codeph>preloadEffect</codeph> 中保持一致。</li>
                 </ul>
             </note>
             <note props="mac">
@@ -68,6 +68,12 @@
                     <li>本方法中的音效 ID 和文件路径必须与 <xref keyref="preloadEffect2"/> 中的保持一致。</li>
                 </ul>
             </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android ios mac">
+            <title>调用时机</title>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android ios mac">
             <title>参数</title>
@@ -131,11 +137,11 @@
                 </plentry>
                 <plentry props="android">
                     <pt>filePath</pt>
-                    <pd>本地文件的绝对路径或在线文件的 URL。支持的音频格式包括：mp3、mp4、m4a、aac、3gp、mkv 和 wav。</pd>
+                    <pd>本地文件的绝对路径或在线文件的 URL。支持的音频格式包括 mp3、mp4、m4a、aac、3gp、mkv 和 wav。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>loopCount</pt>
-                    <pd>音效循环播放的次数：
+                    <pd>音效的循环播放次数：
                         <ul>
                             <li><codeph>-1</codeph>：无限循环，直到调用 <xref keyref="stopEffect"/> 或 <xref keyref="stopAllEffects"/>。</li>
                             <li><codeph>0</codeph>：播放一次。</li>
@@ -145,7 +151,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>pitch</pt>
-                    <pd>音效的音调。取值范围为 0.5 到 2.0，默认值为 1.0（原始音调）。值越小，音调越低。</pd>
+                    <pd>音效的音调。取值范围为 0.5 到 2.0，默认值为 1.0（原始音调）。数值越小，音调越低。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>pan</pt>
@@ -159,11 +165,11 @@
                 </plentry>
                 <plentry props="android">
                     <pt>gain</pt>
-                    <pd>音效的音量。取值范围为 0.0 到 100.0，默认值为 100（原始音量）。值越小，音量越低。</pd>
+                    <pd>音效的音量。取值范围为 0.0 到 100.0，默认值为 100（原始音量）。数值越小，音量越低。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>publish</pt>
-                    <pd>是否在频道中发布该音效：
+                    <pd>是否在频道中发布音效：
                         <ul>
                             <li><xref keyref="true"/>：在频道中发布音效。</li>
                             <li><xref keyref="false"/>：不在频道中发布音效。</li>

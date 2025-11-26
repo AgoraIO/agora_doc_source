@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_rteplayerinfo_audiobitspersample">
     <title><ph keyref="AudioBitsPerSample"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获取每个音频采样的位数。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取每个音频采样的位数。</ph><ph id="shortdesc" props="android">获取每个音频采样点的位数。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -28,8 +28,13 @@
                     <dd>自 v4.5.1 版本新增。</dd>
                 </dlentry>
             </dl>
-            <note props="cpp">仅在打开非 <codeph>RTE</codeph> URL 时该字段有效。</note>
+            <note props="cpp">仅在打开非 <xref keyref="Rte"/> URL 时该字段有效。</note>
             <note props="android"><xref keyref="AudioBitsPerSample"/> 仅在打开非 RTM URL 时有效。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
         </section>
         <section id="return_values" props="android cpp">
             <title>返回值</title>

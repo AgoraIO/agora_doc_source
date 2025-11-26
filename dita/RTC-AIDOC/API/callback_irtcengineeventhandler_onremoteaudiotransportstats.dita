@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onremoteaudiotransportstats">
     <title><ph keyref="onRemoteAudioTransportStats"/></title>
-    <shortdesc id="short"><ph id="shortdesc">远端音频流传输层统计信息回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">报告每个远端音频流的传输层统计信息回调。</ph><ph id="shortdesc" props="android">远端音频流传输层统计信息回调。</ph><ph id="shortdesc" props="ios">报告每个远端音频流的传输层统计信息。</ph><ph id="shortdesc" props="mac">报告每个远端音频流的传输层统计信息。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -39,12 +39,12 @@
                 </dlentry>
             </dl>
             <p props="cpp">该回调报告传输层的统计信息，例如在本地用户接收到远端用户的音频数据包后，数据包的丢失率和网络时延。该回调在通话过程中每 2 秒触发一次。</p>
-            <p props="android">该回调在本地用户接收到远端用户发送的音频包时被触发，每 2 秒触发一次。</p>
+            <p props="android">该回调上报远端音频流的传输层统计信息，例如本地用户接收到远端用户音频包后的丢包率和网络时延。</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>触发时机</title>
             <p props="cpp">在通话过程中，每当本地用户接收到远端用户发送的音频数据包时，每 2 秒触发一次。</p>
-            <p props="android">该回调在本地用户接收到远端用户发送的音频包时被触发，每 2 秒触发一次。</p>
+            <p props="android">该回调在通话过程中，每当接收到远端用户发送的音频包时，每 2 秒触发一次。</p>
             <p props="ios">该回调在通话过程中，当你接收到远端用户发送的音频包时，每 2 秒触发一次。</p>
             <p props="mac">该回调在通话过程中，当你接收到远端用户发送的音频包时，每 2 秒触发一次。</p>
         </section>
@@ -53,19 +53,19 @@
             <parml>
                 <plentry props="cpp">
                     <pt>uid</pt>
-                    <pd>远端用户 ID。</pd>
+                    <pd>远端用户 ID，即发送音频流的用户。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>delay</pt>
-                    <pd>从远端用户到接收端的网络时延，单位为毫秒。</pd>
+                    <pd>从远端用户到本地接收端的网络时延（毫秒）。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>lost</pt>
-                    <pd>从远端用户到接收端的音频数据包丢失率，单位为百分比（%）。</pd>
+                    <pd>从远端用户到本地接收端的音频数据包丢失率（%）。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>rxKBitRate</pt>
-                    <pd>接收到的音频码率，单位为 Kbps。</pd>
+                    <pd>接收到的音频码率（Kbps）。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>uid</pt>
@@ -73,7 +73,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>delay</pt>
-                    <pd>从远端用户到接收端的网络延迟（毫秒）。</pd>
+                    <pd>从远端用户到接收端的网络时延（毫秒）。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>lost</pt>

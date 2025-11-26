@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_sendcustomreportmessageex">
     <title><ph keyref="sendCustomReportMessageEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc">支持上报和分析自定义消息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">支持上报和分析自定义消息。</ph><ph id="shortdesc" props="android">支持上报和分析自定义消息。</ph><ph id="shortdesc" props="ios">支持上报和分析自定义消息。</ph><ph id="shortdesc" props="mac">支持上报和分析自定义消息。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -30,10 +30,17 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">该功能目前处于测试阶段，提供免费试用。在测试版本中，最多支持在 6 秒内上报 10 条消息，每条消息不超过 256 字节，每个字符串不超过 100 字节。如需试用该功能，请联系 support@agora.io，并与我们讨论自定义消息的格式。</p>
+            <p props="cpp">该功能目前处于测试阶段，提供免费试用。在测试版本中，最多支持在 6 秒内上报 10 条消息，每条消息不超过 256 字节，每个字符串不超过 100 字节。如需试用该功能，请联系销售并与我们讨论自定义消息的格式。</p>
             <p props="android">该功能目前处于测试阶段，提供免费试用。在测试版本中，最多支持在 6 秒内上报 10 条消息，每条消息不超过 256 字节，每个字符串不超过 100 字节。如需试用该功能，请联系 <codeph>support@agora.io</codeph> 并与我们讨论自定义消息的格式。</p>
             <p props="ios">该方法支持上报和分析自定义消息。目前该功能处于测试阶段，提供免费试用。在测试版本中，最多支持在 6 秒内上报 10 条消息，每条消息不超过 256 字节，每个字符串不超过 100 字节。如需试用该功能，请联系 support@agora.io，并与我们讨论自定义消息的格式。</p>
             <p props="mac">该方法支持上报和分析自定义消息。目前该功能处于测试阶段，提供免费试用。在测试版本中，最多支持在 6 秒内上报 10 条消息，每条消息不超过 256 字节，每个字符串不超过 100 字节。如需试用该功能，请联系 support@agora.io，并与我们讨论自定义消息的格式。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
@@ -60,7 +67,7 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>connection</pt>
-                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                    <pd><xref keyref="RtcConnection"/> 对象。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>id</pt>

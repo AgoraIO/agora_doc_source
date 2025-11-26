@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onfirstlocalaudioframepublished">
     <title><ph keyref="onFirstLocalAudioFramePublished"/></title>
-    <shortdesc id="short"><ph id="shortdesc">首帧本地音频发布回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">本地用户发布首帧音频时触发的回调。</ph><ph id="shortdesc" props="android">本地音频首帧发布回调。</ph><ph id="shortdesc" props="ios">本地音频首帧发布回调。</ph><ph id="shortdesc" props="mac">本地音频首帧发布回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,26 +14,18 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onFirstLocalAudioFramePublished(int elapsed)</codeblock>
-                <codeblock props="android" outputclass="language-java">public void onFirstLocalAudioFramePublished(int elapsed) {}</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onFirstLocalAudioFramePublished(int elapsed)</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine firstLocalAudioFramePublished:(NSInteger)elapsed NS_SWIFT_NAME(rtcEngine(_:firstLocalAudioFramePublished:));</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine firstLocalAudioFramePublished:(NSInteger)elapsed NS_SWIFT_NAME(rtcEngine(_:firstLocalAudioFramePublished:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">当本地音频模块启用并成功发布首帧音频时触发该回调，包括以下情况：
+            <p props="android">当满足以下任一条件时，SDK 会触发该回调：
                 <ul>
                     <li>本地客户端启用音频模块并成功调用 <codeph>joinChannel</codeph>。</li>
                     <li>本地客户端依次调用 <codeph>muteLocalAudioStream(true)</codeph> 和 <codeph>muteLocalAudioStream(false)</codeph>。</li>
                     <li>本地客户端依次调用 <xref keyref="disableAudio"/> 和 <xref keyref="enableAudio"/>。</li>
-                    <li>本地客户端调用 <xref keyref="pushAudioFrame"/> 成功将音频帧推送至 SDK。</li>
-                </ul>
-            </p>
-            <p props="android">当以下任一情况发生时，SDK 会触发该回调：
-                <ul>
-                    <li>本地客户端启用音频模块并成功调用 <codeph>joinChannel</codeph>。</li>
-                    <li>本地客户端依次调用 <codeph>muteLocalAudioStream(true)</codeph> 和 <codeph>muteLocalAudioStream(false)</codeph>。</li>
-                    <li>本地客户端依次调用 <xref keyref="disableAudio"/> 和 <xref keyref="enableAudio"/>。</li>
-                    <li>本地客户端调用 <xref keyref="pushAudioFrame2"/> 并成功将音频帧推送至 SDK。</li>
+                    <li>本地客户端调用 <xref keyref="pushAudioFrame2"/> 成功将音频帧推送至 SDK。</li>
                 </ul>
             </p>
             <p props="ios">该回调在本地音频首帧成功发布时被触发，触发时机包括：
@@ -55,15 +47,15 @@
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>触发时机</title>
-            <p props="cpp">当本地音频模块启用并成功发布首帧音频时触发，包括以下情况：
+            <p props="cpp">当本地客户端在以下任一情况下发布首帧音频时触发：
                 <ul>
-                    <li>本地客户端启用音频模块并成功调用 <codeph>joinChannel</codeph>。</li>
-                    <li>本地客户端依次调用 <codeph>muteLocalAudioStream(true)</codeph> 和 <codeph>muteLocalAudioStream(false)</codeph>。</li>
-                    <li>本地客户端依次调用 <xref keyref="disableAudio"/> 和 <xref keyref="enableAudio"/>。</li>
-                    <li>本地客户端调用 <xref keyref="pushAudioFrame"/> 成功将音频帧推送至 SDK。</li>
+                    <li>启用音频模块并成功调用 <codeph>joinChannel</codeph>。</li>
+                    <li>依次调用 <codeph>muteLocalAudioStream(true)</codeph> 和 <codeph>muteLocalAudioStream(false)</codeph>。</li>
+                    <li>依次调用 <xref keyref="disableAudio"/> 和 <xref keyref="enableAudio"/>。</li>
+                    <li>成功调用 <xref keyref="pushAudioFrame"/> 将音频帧推送至 SDK。</li>
                 </ul>
             </p>
-            <p props="android">该回调在本地用户发布首帧音频时被触发。</p>
+            <p props="android">该回调在本地音频首帧发布时被触发。</p>
             <p props="ios">该回调在本地音频首帧成功发布时被触发。</p>
             <p props="mac">该回调在本地音频首帧成功发布时被触发。</p>
         </section>
@@ -72,7 +64,7 @@
             <parml>
                 <plentry props="cpp">
                     <pt>elapsed</pt>
-                    <pd>从本地用户调用 <codeph>joinChannel</codeph> 到 SDK 触发该回调的时间间隔（单位：毫秒）。</pd>
+                    <pd>从本地用户调用 <codeph>joinChannel</codeph> 到 SDK 触发该回调的时间间隔（毫秒）。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>elapsed</pt>

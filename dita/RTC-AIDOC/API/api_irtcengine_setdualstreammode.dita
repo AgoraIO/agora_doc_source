@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setdualstreammode">
     <title><ph keyref="setDualStreamMode"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置发送端的视频流模式，用于控制是否发送低质量视频流。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置发送端的视频流模式，用于控制是否发送低质量视频流。</ph><ph id="shortdesc" props="android">设置发送端的不同质量层级的视频流模式。</ph><ph id="shortdesc" props="ios">设置发送端的不同质量层级的视频流模式。</ph><ph id="shortdesc" props="mac">设置发送端的不同质量层级的视频流模式。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -72,24 +72,31 @@
                 </ul>
             </note>
         </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
+        </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
                     <pt>mode</pt>
-                    <pd>发送视频流的模式。详见 <xref keyref="SIMULCAST_STREAM_MODE"/>。</pd>
+                    <pd>发送视频流的模式。详见 <codeph>SIMULCAST_STREAM_MODE</codeph>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>mode</pt>
-                    <pd>发送视频流的模式。详见 <xref keyref="SIMULCAST_STREAM_MODE"/>。</pd>
+                    <pd>发送视频流的模式。详见 <codeph>SimulcastStreamMode</codeph>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>mode</pt>
-                    <pd>发送视频流的模式，详见 <xref keyref="SIMULCAST_STREAM_MODE"/>。</pd>
+                    <pd>发送视频流的模式，详见 <codeph>AgoraSimulcastStreamMode</codeph>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>mode</pt>
-                    <pd>发送视频流的模式，详见 <xref keyref="SIMULCAST_STREAM_MODE"/>。</pd>
+                    <pd>发送视频流的模式，详见 <codeph>AgoraSimulcastStreamMode</codeph>。</pd>
                 </plentry>
             </parml>
         </section>

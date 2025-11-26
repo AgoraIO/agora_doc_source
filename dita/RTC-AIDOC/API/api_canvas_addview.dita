@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_canvas_addview">
     <title><ph keyref="AddView"/></title>
-    <shortdesc id="short"><ph id="shortdesc">添加一个渲染视图。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">添加一个渲染视图。</ph><ph id="shortdesc" props="android">添加一个用于渲染的视频视图。</ph><ph id="shortdesc" props="ios">添加一个渲染视图。</ph><ph id="shortdesc" props="mac">添加一个渲染视图。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -38,7 +38,7 @@
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
             </dl>
-            <p props="cpp">调用该方法可向视频渲染器添加一个视图，用于显示视频内容。该方法适用于使用播放器播放视频的场景。此方法必须在调用 <xref keyref="SetCanvas"/> 之前调用。</p>
+            <p props="cpp">调用该方法可向视频渲染器添加一个视图，用于显示视频内容。该方法在使用播放器播放视频时调用。必须在调用 <xref keyref="SetCanvas"/> 之前调用。</p>
             <p props="android">调用该方法可将一个视图添加到视频渲染器中，以显示视频内容。</p>
             <p props="ios">你可以调用该方法将视图添加到视频渲染器中，以显示视频内容。</p>
             <p props="mac">你可以调用该方法将视图添加到视频渲染器中，以显示视频内容。</p>
@@ -63,11 +63,11 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>config</pt>
-                    <pd><codeph>View</codeph> 对象的设置，目前传入 <xref keyref="NULL"/>。</pd>
+                    <pd><codeph>View</codeph> 对象的设置。当前传入 <xref keyref="NULL"/>。详见 <codeph>ViewConfig</codeph>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>err</pt>
-                    <pd>输出参数，状态或错误信息，详见 <xref keyref="Error"/>。</pd>
+                    <pd>状态或错误信息，详见 <xref keyref="Error"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>view</pt>

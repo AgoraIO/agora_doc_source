@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setvideodenoiseroptions2">
     <title><ph keyref="setVideoDenoiserOptions2"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置视频降噪并指定媒体源。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="ios">设置视频降噪并指定媒体源。</ph><ph id="shortdesc" props="android">设置视频降噪并指定媒体源。</ph><ph id="shortdesc" props="mac">设置视频降噪并指定媒体源。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -36,7 +36,7 @@
             <p props="ios">你可以调用此方法启用视频降噪功能并设置视频降噪效果的选项。此方法与 <xref keyref="setVideoDenoiserOptions"/> 都可设置视频降噪，但此方法允许你指定应用降噪的媒体源类型。
 
 适用场景：在光线较暗的环境中或使用低端视频采集设备时，视频图像可能会出现明显噪点，影响视频质量。在实时互动场景中，视频噪点还会占用码流资源，降低编码效率。</p>
-            <p props="android">你可以调用该方法启用视频降噪功能并设置降噪效果的选项。该方法与 <codeph>setVideoDenoiserOptions</codeph> 类似，但允许你指定应用降噪的媒体源类型。</p>
+            <p props="android">你可以调用该方法启用视频降噪功能并设置降噪效果的参数。该方法与 <codeph>setVideoDenoiserOptions</codeph> 类似，但允许你指定应用降噪的媒体源类型。</p>
             <p props="mac">你可以调用此方法启用视频降噪功能并设置视频降噪效果的选项。此方法与 <xref keyref="setVideoDenoiserOptions"/> 都可设置视频降噪，但此方法允许你指定应用降噪的媒体源类型。
 
 适用场景：在光线较暗的环境中或使用低端视频采集设备时，视频图像可能会出现明显噪点，影响视频质量。在实时互动场景中，视频噪点还会占用码流资源，降低编码效率。</p>
@@ -59,7 +59,7 @@
                 <ul>
                     <li>此方法依赖图像增强动态库 <xref keyref="clearvision"/>。如果该动态库被删除，则无法正常启用该功能。</li>
                     <li>视频降噪对设备性能有一定要求。如果启用视频降噪后设备出现过热，声网建议你将视频降噪选项设置为较低的性能消耗等级，或完全关闭视频降噪功能。</li>
-                    <li>如果该方法实现的视频降噪效果无法满足你的需求，声网建议你调用 <codeph>setBeautyEffectOptions</codeph> 方法启用美颜和磨皮功能，以获得更好的视频降噪效果。强降噪效果推荐的 <xref keyref="BeautyOptions"/> 设置如下：
+                    <li>如果该方法实现的视频降噪效果无法满足你的需求，声网建议你调用 <codeph>setBeautyEffectOptions</codeph> 方法启用美颜和磨皮功能，以获得更好的视频降噪效果。推荐用于强降噪效果的 <xref keyref="BeautyOptions"/> 设置如下：
                         <ul>
                             <li><codeph>lighteningContrastLevel</codeph>: <codeph>LIGHTENING_CONTRAST_NORMAL</codeph></li>
                             <li><codeph>lighteningLevel</codeph>: 0.0</li>
@@ -128,11 +128,11 @@
                 </plentry>
                 <plentry props="android">
                     <pt>options</pt>
-                    <pd>视频降噪选项。详见 <xref keyref="VideoDenoiserOptions"/>。</pd>
+                    <pd>视频降噪选项，详见 <xref keyref="VideoDenoiserOptions"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>sourceType</pt>
-                    <pd>应用滤镜效果的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
+                    <pd>应用滤镜效果的媒体源类型，详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>enable</pt>

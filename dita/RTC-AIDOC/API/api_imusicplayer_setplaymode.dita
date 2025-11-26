@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imusicplayer_setplaymode">
     <title><ph keyref="setPlayMode"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置音乐资源的播放模式。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置音乐资源的播放模式。</ph><ph id="shortdesc" props="ios">设置音乐资源的播放模式。</ph><ph id="shortdesc" props="android">设置音乐曲目的播放模式。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,27 +20,27 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">你可以调用此方法启用原唱、人声伴奏或导唱模式。如果不调用此方法，默认播放人声伴奏；如果音乐资源没有人声伴奏，则播放原唱。
-适用场景：在在线 K 歌或才艺展示等娱乐场景中，如果需要播放由声网内容中心提供的版权音乐，可以调用此方法设置播放模式。
-调用时序：必须在调用 <xref keyref="createMusicPlayer"/> 之后调用此方法。</p>
-            <p props="ios">你可以调用此方法启用原唱、人声伴奏或导唱。如果不调用此方法，默认播放人声伴奏。如果音乐资源不包含人声伴奏，则播放原唱。</p>
-            <p props="android">你可以调用此方法启用原唱、人声伴奏或导唱模式。默认播放人声伴奏；如果音乐资源不包含人声伴奏，则播放原唱。
 
-适用场景：在在线 K 歌或才艺展示等娱乐场景中，如需播放由声网内容中心提供的版权音乐资源，可以调用此方法设置播放模式。</p>
-            <note props="cpp">你可以通过 <xref keyref="onMusicCollectionResult"/> 回调获取音乐资源的详细信息，并从 <codeph>result</codeph> 参数中判断版权音乐支持的播放类型。</note>
+适用场景：在在线 K 歌或才艺展示等娱乐场景中，如果需要播放由声网内容中心提供的版权音乐，可以调用此方法设置播放模式。
+
+调用时机：必须在调用 <xref keyref="createMusicPlayer"/> 之后调用此方法。</p>
+            <p props="ios">你可以调用此方法启用原唱、人声伴奏或导唱。如果不调用此方法，默认播放人声伴奏。如果音乐资源不包含人声伴奏，则播放原唱。</p>
+            <p props="android">如果你未调用该方法设置播放模式，默认播放人声伴奏；如果音乐资源不包含人声伴奏，则播放原唱。</p>
+            <note props="cpp">你可以通过 <xref keyref="onMusicCollectionResult"/> 回调获取音乐资源的详细信息，并通过 <codeph>result</codeph> 参数判断该版权音乐支持的播放类型。</note>
             <note props="ios">你可以通过 <codeph>onMusicCollectionResult</codeph> 回调获取音乐资源的详细信息。从 <codeph>result</codeph> 参数中可以了解该版权音乐支持哪些播放模式。</note>
             <note props="android">你可以通过 <xref keyref="onMusicCollectionResult"/> 回调获取音乐资源的详细信息，并使用该回调中的 <codeph>list</codeph> 参数查看该版权音乐支持的播放模式。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="android ios">
             <title>调用时机</title>
             <p props="ios">你必须在调用 <xref keyref="createMusicPlayer"/> 方法之后调用此方法。</p>
-            <p props="android">你必须在调用 <xref keyref="createMusicPlayer"/> 方法之后调用此方法。</p>
+            <p props="android">你必须在调用 <xref keyref="createMusicPlayer"/> 方法之后调用该方法。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
                     <pt>mode</pt>
-                    <pd>播放模式，详见 <xref keyref="MusicPlayMode"/>。</pd>
+                    <pd>播放模式。详见 <xref keyref="MusicPlayMode"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>mode</pt>
@@ -59,7 +59,7 @@
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。
                         <ul>
-                            <li>-2：参数无效。请重新设置参数。</li>
+                            <li>-2：参数无效，请重新设置参数。</li>
                         </ul>
                     </li>
                 </ul>
@@ -77,9 +77,9 @@
             <p props="android">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。详见 <codeph>Error Codes</codeph> 获取详细信息和排查建议。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。详见 <codeph>Error Codes</codeph>。
                         <ul>
-                            <li>-2：参数无效。请重新设置参数。</li>
+                            <li>-2：参数无效，请重新设置参数。</li>
                         </ul>
                     </li>
                 </ul>

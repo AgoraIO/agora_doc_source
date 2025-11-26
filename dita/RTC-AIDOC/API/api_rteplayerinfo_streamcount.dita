@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_rteplayerinfo_streamcount">
     <title><ph keyref="StreamCount"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获取当前播放源中的流数量。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取当前播放源中的流数量。</ph><ph id="shortdesc" props="android">获取当前播放源中的流的数量。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -25,7 +25,12 @@
                 </dlentry>
             </dl>
             <p props="android">该方法仅在打开非 RTE URL 时有效。</p>
-            <note props="cpp">该方法在打开非 RTM URL 时有效。</note>
+            <note props="cpp"><xref keyref="StreamCount"/> 方法在打开非 <xref keyref="Rte"/> URL 时有效。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
         </section>
         <section id="return_values" props="android cpp">
             <title>返回值</title>

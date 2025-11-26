@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_iaudioframeobserverbase_onplaybackaudioframebeforemixing_iaudioframeobserverbase">
     <title><ph keyref="onPlaybackAudioFrameBeforeMixing_IAudioFrameObserverBase"/></title>
-    <shortdesc id="short"><ph id="shortdesc"><xref keyref="onPlaybackAudioFrameBeforeMixing_IAudioFrameObserverBase"/> 回调。在接收到混音前的播放音频帧时触发。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取订阅远端用户混音前的音频帧回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -22,15 +22,15 @@
             <parml>
                 <plentry props="cpp">
                     <pt>channelId</pt>
-                    <pd>频道名。</pd>
+                    <pd>频道 ID。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>userId</pt>
-                    <pd>远端用户 ID。</pd>
+                    <pd>订阅远端用户的用户 ID。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>audioFrame</pt>
-                    <pd>音频帧。详见 <xref keyref="AudioFrame"/>。</pd>
+                    <pd>输出参数，原始音频数据。详见 <xref keyref="AudioFrame"/>。</pd>
                 </plentry>
             </parml>
         </section>
@@ -38,8 +38,8 @@
             <title>返回值</title>
             <p props="cpp">
                 <ul>
-                    <li><xref keyref="true"/>：混音前的播放音频帧有效，已编码并发送。</li>
-                    <li><xref keyref="false"/>：混音前的播放音频帧无效，未编码或发送。</li>
+                    <li><xref keyref="true"/>：回调处理成功。</li>
+                    <li><xref keyref="false"/>：回调处理失败。</li>
                 </ul>
             </p>
         </section>

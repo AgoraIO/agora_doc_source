@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_addvideowatermark1">
     <title><ph keyref="addVideoWatermark1"/></title>
-    <shortdesc id="short"><ph id="shortdesc">向本地视频流添加水印图像。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">向本地视频流添加 PNG 格式的水印图像。</ph><ph id="shortdesc" props="android">向本地视频添加水印图像。</ph><ph id="shortdesc" props="ios">向本地视频添加水印图像。</ph><ph id="shortdesc" props="mac">向本地视频添加水印图像。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -23,7 +23,7 @@
             <dl outputclass="deprecated">
                 <dlentry props="cpp">
                     <dt>废弃</dt>
-                    <dd>自 v4.5.0 版本废弃。</dd>
+                    <dd>自 vX.X.X 版本废弃。</dd>
                 </dlentry>
                 <dlentry props="android">
                     <dt>废弃</dt>
@@ -38,12 +38,13 @@
                     <dd>自 v4.5.0 版本废弃，请改用 <xref keyref="addVideoWatermark3"/>。</dd>
                 </dlentry>
             </dl>
-            <p props="android">该方法在直播场景中向本地视频流添加 PNG 格式的水印图像。添加水印图像后，频道内的所有用户（包括 CDN 观众）以及视频采集设备都可以看到并采集该水印图像。如果你只想向 CDN 推流添加水印，请使用 <xref keyref="startRtmpStreamWithTranscoding"/>。</p>
+            <p props="cpp">添加水印图像后，频道内的所有用户（包括 CDN 观众）以及视频采集设备都可以看到并采集该图像。如果你只想在 CDN 推流中添加水印，请参见 <xref keyref="startRtmpStreamWithTranscoding"/>。</p>
+            <p props="android">该方法在直播场景中向本地视频流添加 PNG 格式的水印图像。频道内的所有用户（包括 CDN 观众）以及视频采集设备都可以看到并采集该水印图像。如果你只想向 CDN 推流添加水印，请使用 <xref keyref="startRtmpStreamWithTranscoding"/> 方法。</p>
             <p props="ios">该方法在直播场景中向本地视频流添加 PNG 格式的水印图像。添加水印图像后，频道内的所有用户（包括 CDN 观众）以及视频采集设备都可以看到并采集该图像。如果你只想向 CDN 推流添加水印，请参见 <codeph>startRtmpStreamWithTranscoding:</codeph> 方法。</p>
             <p props="mac">该方法在直播场景中向本地视频流添加 PNG 格式的水印图像。添加水印图像后，频道内的所有用户（包括 CDN 观众）以及视频采集设备都可以看到并采集该图像。如果你只想向 CDN 推流添加水印，请参见 <codeph>startRtmpStreamWithTranscoding:</codeph> 方法。</p>
             <note props="cpp">
                 <ul>
-                    <li>本地视频和 CDN 推流中 URL 的含义不同：在本地视频流中，URL 指的是水印图像文件在本地的绝对路径；在 CDN 推流中，URL 指的是水印图像在 CDN 推流中的地址。</li>
+                    <li>本地视频和 CDN 推流中 URL 的含义不同：在本地视频流中，URL 指的是添加的水印图像文件在本地视频流中的绝对路径；在 CDN 推流中，URL 指的是添加的水印图像在 CDN 推流中的 URL 地址。</li>
                     <li>水印图像的源文件必须为 PNG 格式。如果 PNG 文件的宽高与该方法中的设置不一致，SDK 会裁剪该文件以符合设置。</li>
                     <li>声网 SDK 仅支持在本地视频或 CDN 推流中添加一张水印图像。新添加的水印图像会替换之前的图像。</li>
                 </ul>
@@ -69,6 +70,13 @@
                     <li>SDK 仅支持在本地视频或 CDN 推流中添加一个水印图像。新添加的水印图像会替换之前的图像。</li>
                 </ul>
             </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>

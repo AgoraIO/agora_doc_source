@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onfirstremotevideodecoded">
     <title><ph keyref="onFirstRemoteVideoDecoded"/></title>
-    <shortdesc id="short"><ph id="shortdesc">首帧远端视频解码完成回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">接收到并解码首帧远端视频时触发的回调。</ph><ph id="shortdesc" props="android">首帧远端视频解码完成回调。</ph><ph id="shortdesc" props="ios">接收到并解码首帧远端视频时触发的回调。</ph><ph id="shortdesc" props="mac">接收到并解码首帧远端视频时触发的回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -27,7 +27,7 @@
                 </dlentry>
                 <dlentry props="android">
                     <dt>废弃</dt>
-                    <dd>该回调已废弃。请改用 <codeph>REMOTE_VIDEO_STATE_STARTING</codeph> 或 <codeph>REMOTE_VIDEO_STATE_DECODING</codeph>，并在 <xref keyref="onRemoteVideoStateChanged"/> 回调中处理。</dd>
+                    <dd>自某版本起废弃，请改用 <codeph>REMOTE_VIDEO_STATE_STARTING</codeph> 或 <codeph>REMOTE_VIDEO_STATE_DECODING</codeph>，并在 <xref keyref="onRemoteVideoStateChanged"/> 回调中处理。</dd>
                 </dlentry>
                 <dlentry props="ios">
                     <dt>废弃</dt>
@@ -38,10 +38,10 @@
                     <dd>自 v4.5.0 版本废弃，请改用 <codeph>remoteVideoStateChangedOfUid</codeph>。</dd>
                 </dlentry>
             </dl>
-            <p props="android">当满足以下任一条件时，SDK 会触发该回调：
+            <p props="android">该回调在以下任一情况下被触发：
                 <ul>
                     <li>远端用户加入频道并发送视频流。</li>
-                    <li>远端用户停止发送视频流并在 15 秒后重新发送。导致中断的原因包括：
+                    <li>远端用户停止发送视频流并在 15 秒后重新发送。中断的原因可能包括：
                         <ul>
                             <li>远端用户离开频道。</li>
                             <li>远端用户掉线。</li>
@@ -51,9 +51,10 @@
                 </ul>
             </p>
         </section>
-        <section id="timing" deliveryTarget="details" props="cpp ios mac">
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>触发时机</title>
-            <p props="cpp">当远端用户加入频道并发送视频流，或在停止发送视频流 15 秒后重新发送时触发。中断的原因包括：远端用户离开频道、远端用户掉线、远端用户调用 <xref keyref="disableVideo"/> 关闭视频。</p>
+            <p props="cpp">当远端用户加入频道并发送视频流，或在停止发送视频流 15 秒后重新发送时触发。中断的原因包括：远端用户离开频道、掉线或调用 <xref keyref="disableVideo"/> 关闭视频。</p>
+            <p props="android">该回调在接收到并解码首帧远端视频时被触发。</p>
             <p props="ios">该回调在以下场景中被触发：
                 <ul>
                     <li>远端用户加入频道并发送视频流。</li>
@@ -100,7 +101,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>elapsed</pt>
-                    <pd>从本地用户调用 <codeph>joinChannel</codeph> 加入频道到触发该回调的时间（单位为毫秒）。</pd>
+                    <pd>从本地用户调用 <codeph>joinChannel</codeph> 加入频道到 SDK 触发该回调的时间（单位为毫秒）。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>engine</pt>

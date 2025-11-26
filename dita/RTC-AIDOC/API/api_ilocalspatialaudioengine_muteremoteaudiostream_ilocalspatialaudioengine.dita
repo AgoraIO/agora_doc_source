@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ilocalspatialaudioengine_muteremoteaudiostream_ilocalspatialaudioengine">
+    <title><ph keyref="muteRemoteAudioStream_ILocalSpatialAudioEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">停止或恢复订阅指定远端用户的音频流。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="muteRemoteAudioStream_ILocalSpatialAudioEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int muteRemoteAudioStream(uid_t uid, bool mute) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="cpp">
+                <ul>
+                    <li>请在调用 <codeph>joinChannel</codeph> 方法后调用此方法。</li>
+                    <li>使用空间音效时，如需设置是否停止订阅指定用户的音频流，声网建议调用此方法，而非 <xref keyref="muteRemoteAudioStream_ILocalSpatialAudioEngine"/> 方法。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="cpp">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>用户 ID。该值必须与用户加入频道时传入的用户 ID 相同。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>mute</pt>
+                    <pd>是否订阅指定远端用户的音频流：
+                        <ul>
+                            <li><xref keyref="true"/>：停止订阅该用户的音频流。</li>
+                            <li><xref keyref="false"/>：（默认）订阅该用户的音频流。SDK 会根据本地用户与远端用户之间的距离决定是否订阅。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

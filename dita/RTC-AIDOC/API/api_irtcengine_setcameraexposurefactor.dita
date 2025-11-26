@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setcameraexposurefactor">
     <title><ph keyref="setCameraExposureFactor"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置摄像头曝光值。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置摄像头曝光值。</ph><ph id="shortdesc" props="ios">设置摄像头曝光值。</ph><ph id="shortdesc" props="android">设置摄像头曝光值。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -33,15 +33,13 @@
                     <dd>自 v4.2.2 版本新增。</dd>
                 </dlentry>
             </dl>
-            <p props="cpp">你可以通过该方法调整摄像头的曝光值，以优化视频采集画面在光线不足或过强环境下的图像质量。</p>
             <p props="ios">你可以通过此方法调整摄像头的曝光值，以获得最佳的视频质量。</p>
-            <p props="android">你可以通过该方法调整摄像头的曝光值，以获得最佳的视频质量。</p>
             <note props="cpp">
                 <ul>
-                    <li>该方法仅适用于 Android 和 iOS 平台。</li>
-                    <li>你必须在调用 <xref keyref="enableVideo"/> 后再调用该方法。设置将在摄像头成功开启后生效，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>（1）后生效。</li>
-                    <li>在调用该方法前，建议先调用 <xref keyref="isCameraExposureSupported"/> 检查当前摄像头是否支持调整曝光值。</li>
-                    <li>该方法调整的是当前激活摄像头的曝光值，即调用 <xref keyref="setCameraCapturerConfiguration"/> 时指定的摄像头。</li>
+                    <li>此方法仅适用于 Android 和 iOS 平台。</li>
+                    <li>你必须在调用 <xref keyref="enableVideo"/> 后再调用此方法。设置结果在摄像头成功开启后生效，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>（1）后。</li>
+                    <li>在调用此方法前，建议先调用 <xref keyref="isCameraExposureSupported"/> 检查当前摄像头是否支持调整曝光值。</li>
+                    <li>该方法用于调整当前激活摄像头的曝光值，即调用 <xref keyref="setCameraCapturerConfiguration"/> 时指定的摄像头。</li>
                 </ul>
             </note>
             <note props="ios">
@@ -53,18 +51,24 @@
             </note>
             <note props="android">
                 <ul>
-                    <li>你必须在调用 <xref keyref="enableVideo"/> 后再调用此方法。设置将在摄像头成功开启后生效，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>（1）后。</li>
+                    <li>你必须在调用 <xref keyref="enableVideo"/> 后再调用此方法。设置结果将在摄像头成功开启后生效，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>（1）后。</li>
                     <li>在调用此方法前，声网建议调用 <xref keyref="isCameraExposureSupported"/> 检查当前摄像头是否支持调整曝光值。</li>
-                    <li>该方法调整的是当前激活摄像头的曝光值，即调用 <xref keyref="setCameraCapturerConfiguration"/> 时指定的摄像头。</li>
+                    <li>通过调用此方法，你可以调整当前激活摄像头的曝光值，即调用 <xref keyref="setCameraCapturerConfiguration"/> 时指定的摄像头。</li>
                 </ul>
             </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
                     <pt>factor</pt>
-                    <pd>摄像头曝光值。默认值为 0，表示使用摄像头默认曝光值。值越大，曝光越强。当图像过曝时可降低该值；当图像曝光不足且暗部细节丢失时可提高该值。若设置值超出设备支持范围，SDK 会自动调整为设备实际支持的范围。</pd>
+                    <pd>摄像头曝光值。默认值为 0，表示使用摄像头的默认曝光值。值越大，曝光越强。当视频图像过曝时，可以降低曝光值；当视频图像曝光不足且暗部细节丢失时，可以提高曝光值。如果设置的曝光值超出设备支持的范围，SDK 会自动将其调整为设备实际支持的范围。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>exposureFactor</pt>
@@ -72,7 +76,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>factor</pt>
-                    <pd>摄像头的曝光值。默认值为 0（默认），表示使用摄像头的默认曝光值。值越大，曝光越强。当视频图像过曝时，可以降低曝光值；当视频图像曝光不足且暗部细节丢失时，可以提高曝光值。如果设置的曝光值超出设备支持的范围，SDK 会自动将其调整为设备实际支持的范围。取值范围为 [-20, 20]。</pd>
+                    <pd>摄像头曝光值。默认值为 0，表示使用摄像头的默认曝光值。值越大，曝光越强。当视频图像过曝时，可以降低曝光值；当视频图像曝光不足且暗部细节丢失时，可以提高曝光值。如果设置的曝光值超出设备支持的范围，SDK 会自动将其调整为设备实际支持的范围。取值范围为 [-20, 20]。</pd>
                 </plentry>
             </parml>
         </section>

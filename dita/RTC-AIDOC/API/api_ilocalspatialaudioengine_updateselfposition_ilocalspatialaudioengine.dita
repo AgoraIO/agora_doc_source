@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ilocalspatialaudioengine_updateselfposition_ilocalspatialaudioengine">
+    <title><ph keyref="updateSelfPosition_ILocalSpatialAudioEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">更新本地用户的空间位置。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="updateSelfPosition_ILocalSpatialAudioEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int updateSelfPosition(const float position[3], const float axisForward[3], const float axisRight[3], const float axisUp[3]) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">该方法属于 <xref keyref="ILocalSpatialAudioEngine"/> 类，需要与 <xref keyref="updateRemotePosition"/> 搭配使用。SDK 会根据该方法和 <xref keyref="updateRemotePosition"/> 中的参数设置，计算本地用户与远端用户之间的相对位置，并据此生成空间音效参数。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="cpp">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>position</pt>
+                    <pd>世界坐标系中的位置坐标。该参数为长度为 3 的数组，三个值依次表示前、右、上的坐标。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>axisForward</pt>
+                    <pd>坐标系中 x 轴的单位向量。该参数为长度为 3 的数组，三个值依次表示前、右、上的坐标。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>axisRight</pt>
+                    <pd>坐标系中 y 轴的单位向量。该参数为长度为 3 的数组，三个值依次表示前、右、上的坐标。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>axisUp</pt>
+                    <pd>坐标系中 z 轴的单位向量。该参数为长度为 3 的数组，三个值依次表示前、右、上的坐标。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

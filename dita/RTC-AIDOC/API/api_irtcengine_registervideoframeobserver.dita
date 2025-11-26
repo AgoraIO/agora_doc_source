@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_registervideoframeobserver">
     <title><ph keyref="registerVideoFrameObserver"/></title>
-    <shortdesc id="short"><ph id="shortdesc">注册原始视频帧观察器对象。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="ios">注册原始视频帧观察者对象。</ph><ph id="shortdesc" props="android">注册原始视频帧观察器对象。</ph><ph id="shortdesc" props="mac">注册原始视频帧观察者对象。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -22,7 +22,7 @@
             <p props="ios">如果你希望观察原始视频帧（例如 YUV 或 RGBA 格式），声网建议你通过此方法实现一个 <xref keyref="IVideoFrameObserver"/> 类。当你调用此方法注册视频观察者时，可以根据需要在 <xref keyref="IVideoFrameObserver"/> 类中注册回调。注册成功后，SDK 每次接收到视频帧时都会触发已注册的回调。
 
 你可以在各种视频预处理场景中使用获取到的原始视频数据，例如虚拟背景和图像增强。声网在 GitHub 上提供了一个开源的 iOS 示例项目 <codeph>BeautyAPI</codeph> 供你参考。</p>
-            <p props="android">如果你希望观察原始视频帧（例如 YUV 或 RGBA 格式），建议通过此方法实现一个 <xref keyref="IVideoFrameObserver"/> 类。你可以在 <xref keyref="IVideoFrameObserver"/> 中注册回调。成功注册后，SDK 会在接收到视频帧时触发相应回调。你可以在虚拟背景、图像增强等视频预处理场景中使用这些原始视频数据。GitHub 上提供了一个开源示例项目 <codeph>beautyapi</codeph> 供你参考。</p>
+            <p props="android">建议通过该方法注册一个 <xref keyref="IVideoFrameObserver"/> 实例，并在该类中根据需要实现回调。成功注册后，每当接收到视频帧时，SDK 会触发相应的回调。你可以在虚拟背景、图像增强等视频预处理场景中使用这些原始视频数据。</p>
             <p props="mac">如果你希望观察原始视频帧（例如 YUV 或 RGBA 格式），声网建议你通过此方法实现一个 <xref keyref="IVideoFrameObserver"/> 类。当你调用此方法注册视频观察者时，可以根据需要在 <xref keyref="IVideoFrameObserver"/> 类中注册回调。注册成功后，SDK 每次接收到视频帧时都会触发已注册的回调。
 
 你可以在各种视频预处理场景中使用获取到的原始视频数据，例如虚拟背景和图像增强。声网在 GitHub 上提供了一个开源的 iOS 示例项目 <codeph>BeautyAPI</codeph> 供你参考。</p>

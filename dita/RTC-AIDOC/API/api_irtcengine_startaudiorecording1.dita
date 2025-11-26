@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startaudiorecording1">
     <title><ph keyref="startAudioRecording1"/></title>
-    <shortdesc id="short"><ph id="shortdesc">使用录音配置开始客户端音频录制。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">开始客户端音频录制并设置录制采样率。</ph><ph id="shortdesc" props="android">开始客户端录音。</ph><ph id="shortdesc" props="ios">开始客户端录音。</ph><ph id="shortdesc" props="mac">开始客户端录音。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -22,11 +22,12 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">调用该方法后，你可以在通话过程中录制频道中用户的音频，并生成录音文件。录音文件仅支持以下格式：
+            <p props="cpp">调用该方法后，你可以在通话过程中录制频道中所有用户的音频，并生成包含所有声音的录音文件。录音文件仅支持以下格式：
                 <ul>
-                    <li>WAV：音频保真度高，文件体积大。例如，在采样率为 32000 Hz 的情况下，10 分钟录音约为 73 MB。</li>
-                    <li>AAC：音频保真度较低，文件体积小。例如，在采样率为 32000 Hz 且录音质量设置为 <codeph>AUDIO_RECORDING_QUALITY_MEDIUM</codeph> 的情况下，10 分钟录音约为 2 MB。</li>
-                </ul><ph>当用户离开频道时，录音会自动停止。</ph></p>
+                    <li><codeph>.wav</codeph>：文件体积大，音频保真度高。</li>
+                    <li><codeph>.aac</codeph>：文件体积小，音频保真度低。</li>
+                </ul>
+            </p>
             <p props="android">你必须在调用 <codeph>joinChannel</codeph> 后调用该方法。调用 <codeph>leaveChannel</codeph> 时，录音会自动停止。
 
 请确保指定的目录存在且可写。</p>
@@ -42,20 +43,29 @@
                     <li><codeph>.aac</codeph>：文件体积小，音频保真度有损。</li>
                 </ul>
             </p>
+            <note props="cpp">
+                <ul>
+                    <li>确保你指定的路径存在且可写。</li>
+                    <li>必须在调用 <codeph>joinChannel</codeph> 后调用该方法。如果在录音过程中调用了 <codeph>leaveChannel</codeph>，录音将自动停止。</li>
+                </ul>
+            </note>
             <note props="android">调用该方法时，默认的录音采样率为 32 kHz，且无法更改。</note>
             <note props="ios">调用该方法时，默认的录音采样率为 32 kHz，且无法修改。</note>
             <note props="mac">调用该方法时，默认的录音采样率为 32 kHz，且无法修改。</note>
         </section>
-        <section id="timing" deliveryTarget="details" props="cpp">
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
-            <p props="cpp">该方法必须在加入频道后调用。</p>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
                     <pt>filePath</pt>
-                    <pd>录音文件的保存路径。</pd>
+                    <pd>本地保存录音文件的绝对路径，包括文件名和扩展名。例如：<xref keyref="recordingPath-example"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>quality</pt>
@@ -98,7 +108,7 @@
             <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。详见 <codeph>Error Codes</codeph>。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="android">

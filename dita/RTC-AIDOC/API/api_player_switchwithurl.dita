@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_player_switchwithurl">
     <title><ph keyref="SwitchWithUrl"/></title>
-    <shortdesc id="short"><ph id="shortdesc">在播放过程中切换到新的 URL。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">在播放过程中切换到新的 URL。</ph><ph id="shortdesc" props="android">在播放过程中切换到新的 URL。</ph><ph id="shortdesc" props="ios">在播放过程中切换到新的 URL。</ph><ph id="shortdesc" props="mac">在播放过程中切换到新的 URL。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -39,10 +39,17 @@
                 </dlentry>
             </dl>
             <p props="android">当 SDK 返回播放器状态为 <codeph>OPEN_COMPLETED</codeph> 时，必须调用该方法。</p>
-            <note props="cpp">该方法仅在播放器已打开非 <codeph>RTE</codeph> URL 时有效。请在 SDK 报告播放器状态为 <codeph>kRtePlayerStateOpenCompleted</codeph> 时调用该方法。</note>
+            <note props="cpp">该方法仅在播放器已打开非 <xref keyref="Rte"/> URL 时有效。请在 SDK 报告播放器状态为 <codeph>kRtePlayerStateOpenCompleted</codeph> 时调用该方法。</note>
             <note props="android">该方法仅在播放器打开非 RTE URL 时有效。</note>
             <note props="ios">该方法仅在使用非 RTE URL 打开播放器时有效。你必须在 SDK 返回播放器状态为 <codeph>AgoraRtePlayerStateOpenCompleted</codeph> 后调用此方法。</note>
             <note props="mac">该方法仅在使用非 RTE URL 打开播放器时有效。你必须在 SDK 返回播放器状态为 <codeph>AgoraRtePlayerStateOpenCompleted</codeph> 后调用此方法。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
@@ -71,7 +78,7 @@
                             <li><codeph>kRteErrorInvalidOperation</codeph>：
                                 <ul>
                                     <li>对应的内部 <xref keyref="Player_Player"/> 对象已被销毁或无效。</li>
-                                    <li>当前打开的 URL 是 <codeph>RTE</codeph> URL，不支持切换。</li>
+                                    <li>当前打开的 URL 是 <xref keyref="Rte"/> URL，不支持切换。</li>
                                 </ul>
                             </li>
                         </ul>

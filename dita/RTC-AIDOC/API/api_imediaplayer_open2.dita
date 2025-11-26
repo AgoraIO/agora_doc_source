@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_open2">
     <title><ph keyref="open2"/></title>
-    <shortdesc id="short"><ph id="shortdesc">通过 URI 地址打开媒体文件。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="android">通过 URI 地址打开媒体文件。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -19,16 +19,20 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <note props="android">该方法为异步调用。</note>
         </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>调用时机</title>
+            <p props="android">加入频道前后均可调用。</p>
+        </section>
         <section id="parameters" deliveryTarget="details" props="android">
             <title>参数</title>
             <parml>
                 <plentry props="android">
                     <pt>uri</pt>
-                    <pd>媒体文件的 URI 地址。详见 <codeph>Uri</codeph>。</pd>
+                    <pd>媒体文件的 URI（统一资源标识符）地址。详见 <codeph>Uri</codeph>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>startPos</pt>
-                    <pd>播放的起始位置（毫秒）（默认值为 0）。</pd>
+                    <pd>播放的起始位置，单位为毫秒。（默认值为 0）</pd>
                 </plentry>
             </parml>
         </section>

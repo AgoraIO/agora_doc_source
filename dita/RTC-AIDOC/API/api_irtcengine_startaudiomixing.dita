@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startaudiomixing">
     <title><ph keyref="startAudioMixing"/></title>
-    <shortdesc id="short"><ph id="shortdesc">开始播放音乐文件。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">开始播放音乐文件。</ph><ph id="shortdesc" props="android">开始播放音乐文件。</ph><ph id="shortdesc" props="ios">开始播放音乐文件。</ph><ph id="shortdesc" props="mac">开始播放音乐文件。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -25,37 +25,40 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="deprecated">
+                <dlentry props="cpp">
+                    <dt>废弃</dt>
+                    <dd>该方法已废弃，请改用 <codeph>startAudioMixing</codeph>。</dd>
+                </dlentry>
                 <dlentry props="android">
                     <dt>废弃</dt>
                     <dd>该方法已废弃，请改用 <codeph>startAudioMixing</codeph>。</dd>
                 </dlentry>
             </dl>
-            <p props="cpp">你可以在加入频道前或加入频道后调用该方法开始播放音乐文件。如果本地音乐文件不存在、SDK 不支持该文件格式，或无法访问音乐文件的 URL，SDK 会返回 <codeph>AUDIO_MIXING_REASON_CAN_NOT_OPEN</codeph>。</p>
-            <p props="android">该方法支持播放以 <codeph>content://</codeph> 开头的 URI 文件。支持的音频文件格式详见 <codeph>声网 RTC SDK 支持的音频文件格式</codeph>。如果本地音乐文件不存在、SDK 不支持该文件格式，或无法访问音乐文件的 URL，SDK 会上报 <codeph>AUDIO_MIXING_REASON_CAN_NOT_OPEN</codeph>。</p>
+            <p props="android">该方法支持播放以 <codeph>content://</codeph> 开头的 URI 文件。支持的音频文件格式详见 <codeph>声网 RTC SDK 支持的音频文件格式</codeph>。如果本地音乐文件不存在、SDK 不支持该文件格式，或无法访问音乐文件的 URL，SDK 会返回 <codeph>AUDIO_MIXING_REASON_CAN_NOT_OPEN</codeph>。</p>
             <p props="ios">关于该方法支持的音频文件格式，详见 <codeph>声网 RTC SDK 支持哪些音频文件格式</codeph>。如果本地音乐文件不存在、SDK 不支持该文件格式，或 SDK 无法访问音乐文件的 URL，SDK 会返回 <codeph>AgoraAudioMixingReasonCanNotOpen</codeph>。</p>
             <p props="mac">关于该方法支持的音频文件格式，详见 <codeph>声网 RTC SDK 支持哪些音频文件格式</codeph>。如果本地音乐文件不存在、SDK 不支持该文件格式，或 SDK 无法访问音乐文件的 URL，SDK 会返回 <codeph>AgoraAudioMixingReasonCanNotOpen</codeph>。</p>
             <note props="cpp">
                 <ul>
-                    <li>如果你调用该方法播放短音效文件，可能会播放失败。建议使用 <xref keyref="playEffect3"/> 方法播放此类文件。</li>
-                    <li>如果需要多次调用该方法，确保两次调用之间的时间间隔大于 500 毫秒。</li>
-                    <li>在 Android 平台上，有以下注意事项：
+                    <li>如果你调用该方法播放短音效文件，可能会播放失败。建议使用 <xref keyref="playEffect3"/> 播放此类文件。</li>
+                    <li>如果需要多次调用该方法，确保两次调用的时间间隔大于 500 毫秒。</li>
+                    <li>在 Android 平台上需注意：
                         <ul>
-                            <li>请确保 Android 设备版本为 v4.2 或更高，API 版本为 v16 或更高。</li>
-                            <li>如果需要播放在线音乐文件，不建议使用重定向的 URL 地址。部分 Android 设备可能无法打开重定向的 URL。</li>
-                            <li>如果在模拟器上调用该方法，请确保音乐文件位于 <codeph>/sdcard/</codeph> 目录下，且格式为 MP3。</li>
+                            <li>使用该方法前，请确保 Android 设备版本为 v4.2 或更高，API 版本为 v16 或更高。</li>
+                            <li>如果播放在线音乐文件，不建议使用重定向的 URL 地址，部分 Android 设备可能无法打开。</li>
+                            <li>在模拟器上调用该方法时，请确保音乐文件位于 <codeph>/sdcard/</codeph> 目录下，且格式为 MP3。</li>
                         </ul>
                     </li>
                 </ul>
             </note>
             <note props="android">
                 <ul>
-                    <li>如果你调用该方法播放短音效文件，可能会播放失败。声网建议使用 <codeph>playEffect</codeph> 播放此类文件。</li>
-                    <li>如果你需要多次调用该方法，确保每次调用的时间间隔大于 500 毫秒。</li>
+                    <li>如果使用该方法播放短音效文件，可能会播放失败。声网建议使用 <codeph>playEffect</codeph> 播放此类文件。</li>
+                    <li>如果需要多次调用该方法，确保两次调用之间的时间间隔大于 500 毫秒。</li>
                     <li>在 Android 平台上，有以下注意事项：
                         <ul>
-                            <li>使用该方法前，请确保 Android 设备版本为 v4.2 或更高，API 版本为 v16 或更高。</li>
+                            <li>使用该方法时，需确保 Android 设备版本为 v4.2 或更高，API 版本为 v16 或更高。</li>
                             <li>如果需要播放在线音乐文件，声网不建议使用重定向的 URL 地址。部分 Android 设备可能无法打开重定向的 URL 地址。</li>
-                            <li>如果在模拟器上调用该方法，请确保音乐文件位于 <codeph>/sdcard/</codeph> 目录下，且格式为 MP3。</li>
+                            <li>如果在模拟器上调用该方法，需确保音乐文件位于 <codeph>/sdcard/</codeph> 目录下，且格式为 MP3。</li>
                         </ul>
                     </li>
                 </ul>
@@ -75,28 +78,29 @@
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
-            <p props="cpp">你可以在加入频道前或加入频道后调用该方法。</p>
+            <p props="cpp">你可以在加入频道前或后调用该方法。</p>
             <p props="android">你可以在加入频道前或加入频道后调用该方法。</p>
             <p props="ios">你可以在加入频道前或加入频道后调用该方法。</p>
             <p props="mac">你可以在加入频道前或加入频道后调用该方法。</p>
         </section>
-        <section id="related" deliveryTarget="details" props="cpp">
+        <section id="related" deliveryTarget="details" props="android cpp">
             <title>相关回调</title>
             <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onAudioMixingStateChanged"/>（<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>）回调。当音频混音文件播放结束时，SDK 会在本地客户端触发 <xref keyref="onAudioMixingStateChanged"/>（<codeph>AUDIO_MIXING_STATE_STOPPED</codeph>）回调。</p>
+            <p props="android">成功调用该方法后，SDK 会触发 <xref keyref="onAudioMixingStateChanged"/>（<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>）回调。当音频混音文件播放结束时，SDK 会在本地客户端触发 <xref keyref="onAudioMixingStateChanged"/>（<codeph>AUDIO_MIXING_STATE_STOPPED</codeph>）回调。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
                     <pt>filePath</pt>
-                    <pd>文件路径。支持 URL 和本地文件的绝对路径，路径需精确到文件名及扩展名。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV 和 3GP。注意：如果你已通过 <xref keyref="preloadEffect"/> 将音效预加载到内存中，请确保该参数的值与 <xref keyref="preloadEffect"/> 中的 <codeph>filePath</codeph> 参数一致。</pd>
+                    <pd>文件路径，支持 URL 和本地文件的绝对路径，需精确到文件名及扩展名。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV 和 3GP。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>loopback</pt>
-                    <pd>是否仅在本地播放音乐文件：
+                    <pd>是否只在本地播放音乐文件：
                         <ul>
-                            <li><xref keyref="true"/>：仅在本地播放，只有本地用户能听到音乐。</li>
-                            <li><xref keyref="false"/>：将音乐文件发布到远端，本地和远端用户都能听到音乐。</li>
+                            <li><xref keyref="true"/>：只在本地播放音乐文件，只有本地用户能听到音乐。</li>
+                            <li><xref keyref="false"/>：将音乐文件发布到远端，使本地和远端用户都能听到音乐。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -105,7 +109,7 @@
                     <pd>音乐文件的播放次数：
                         <ul>
                             <li>&gt;0：播放指定次数，例如 1 表示播放 1 次。</li>
-                            <li>-1：无限循环播放该音频文件。</li>
+                            <li>-1：无限循环播放音频文件。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -118,7 +122,7 @@
                     <pd>是否只在本地客户端播放音乐文件：
                         <ul>
                             <li><xref keyref="true"/>：只在本地客户端播放音乐文件，只有本地用户能听到音乐。</li>
-                            <li><xref keyref="false"/>：将音乐文件发布到远端客户端，远端用户和本地用户都能听到音乐。</li>
+                            <li><xref keyref="false"/>：将音乐文件发布到远端客户端，本地用户和远端用户都能听到音乐。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -127,7 +131,7 @@
                     <pd>音乐文件的播放次数：
                         <ul>
                             <li>&gt; 0：播放指定次数。例如，1 表示播放 1 次。</li>
-                            <li>-1：无限循环播放该音频文件。</li>
+                            <li>-1：无限循环播放音频文件。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -194,11 +198,11 @@
                         <ul>
                             <li>-1：发生通用错误（无明确原因）。</li>
                             <li>-2：参数无效。</li>
-                            <li>-3：SDK 尚未就绪：
+                            <li>-3：SDK 尚未就绪。
                                 <ul>
                                     <li>音频模块未启用。</li>
-                                    <li>程序未完整。</li>
-                                    <li><xref keyref="IRtcEngine"/> 初始化失败，请重新初始化 <xref keyref="IRtcEngine"/>。</li>
+                                    <li>程序未完成。</li>
+                                    <li><xref keyref="IRtcEngine"/> 初始化失败。请重新初始化 <xref keyref="IRtcEngine"/>。</li>
                                 </ul>
                             </li>
                         </ul>
@@ -215,7 +219,7 @@
                             <li>-3：SDK 尚未就绪。
                                 <ul>
                                     <li>音频模块未启用。</li>
-                                    <li>程序未完整。</li>
+                                    <li>程序未完成。</li>
                                     <li><xref keyref="IRtcEngine"/> 初始化失败。请重新初始化 <xref keyref="IRtcEngine"/>。</li>
                                 </ul>
                             </li>

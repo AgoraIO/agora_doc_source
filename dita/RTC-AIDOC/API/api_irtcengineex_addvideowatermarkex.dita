@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_addvideowatermarkex">
     <title><ph keyref="addVideoWatermarkEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc">向本地视频添加水印图像。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">向本地视频添加水印图像。</ph><ph id="shortdesc" props="android">向本地视频添加水印图像。</ph><ph id="shortdesc" props="ios">向本地视频添加水印图像。</ph><ph id="shortdesc" props="mac">向本地视频添加水印图像。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,7 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int addVideoWatermarkEx(const char* watermarkUrl, const WatermarkOptions&amp; options, const RtcConnection&amp; connection) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int addVideoWatermarkEx(String watermarkUrl, WatermarkOptions options, RtcConnection connection);</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int addVideoWatermarkEx(String watermarkUrl, WatermarkOptions options, RtcConnection connection)</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)addVideoWatermarkEx:(NSURL* _Nonnull)url options:(WatermarkOptions* _Nonnull)options connection:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(addVideoWatermarkEx(_:options:connection:)) __deprecated_msg("use addVideoWatermark:config connection instead.");</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)addVideoWatermarkEx:(NSURL* _Nonnull)url options:(WatermarkOptions* _Nonnull)options connection:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(addVideoWatermarkEx(_:options:connection:)) __deprecated_msg("use addVideoWatermark:config connection instead.");</codeblock>
             </p>
@@ -38,20 +38,20 @@
                     <dd>自 v4.5.0 版本废弃，请改用 <codeph>addVideoWatermark:config connection</codeph>。</dd>
                 </dlentry>
             </dl>
-            <p props="cpp">该方法在直播中向本地视频添加 PNG 格式的水印图像。添加后，频道中的所有观众（包括 CDN 观众）以及采集设备都可以看到并采集该图像。SDK 仅支持在一个直播视频流中添加一张水印图像，新添加的图像会替换之前的图像。
-水印图像的坐标依赖于 <xref keyref="setVideoEncoderConfigurationEx"/> 方法中的设置：
+            <p props="cpp">该方法在直播中向本地视频添加 PNG 格式的水印图像。添加后，频道中的所有观众（包括 CDN 观众）以及采集设备都可以看到并采集该图像。声网 SDK 每个直播视频流仅支持添加一张水印图像，后添加的图像会替换之前的图像。
+水印图像的位置依赖于 <xref keyref="setVideoEncoderConfigurationEx"/> 方法中的设置：
                 <ul>
-                    <li>如果编码视频的方向模式（<xref keyref="ORIENTATION_MODE"/>）为固定横屏模式或自适应横屏模式，水印图像使用横屏方向。</li>
-                    <li>如果编码视频的方向模式为固定竖屏模式或自适应竖屏模式，水印图像使用竖屏方向。</li>
-                    <li>设置水印位置时，区域必须小于 <xref keyref="setVideoEncoderConfigurationEx"/> 方法中设置的尺寸，否则水印图像会被裁剪。</li>
+                    <li>如果编码视频的方向模式（<xref keyref="ORIENTATION_MODE"/>）为固定横屏或自适应横屏，水印图像将以横屏方向显示。</li>
+                    <li>如果方向模式为固定竖屏或自适应竖屏，水印图像将以竖屏方向显示。</li>
+                    <li>设置水印位置时，区域必须小于 <xref keyref="setVideoEncoderConfigurationEx"/> 中设置的视频尺寸，否则水印图像会被裁剪。</li>
                 </ul>
             </p>
-            <p props="android">该方法在直播中向本地视频添加 PNG 格式的水印图像。频道中的所有观众（包括 CDN 观众）以及采集设备都可以看到并采集该图像。声网 SDK 仅支持在一个直播视频流中添加一张水印图像，新添加的水印图像会替换之前的图像。
+            <p props="android">该方法在直播中向本地视频添加 PNG 格式的水印图像。添加水印图像后，频道中的所有观众（包括 CDN 观众）以及采集设备都可以看到并采集该图像。声网 SDK 仅支持在一个直播视频流中添加一张水印图像，新添加的水印图像会替换之前的图像。
 水印图像的坐标依赖于 <xref keyref="setVideoEncoderConfigurationEx"/> 方法中的设置：
                 <ul>
-                    <li>如果编码视频的方向模式（<xref keyref="ORIENTATION_MODE"/>）为固定横屏模式或自适应横屏模式，水印图像将使用横屏方向。</li>
-                    <li>如果编码视频的方向模式为固定竖屏模式或自适应竖屏模式，水印图像将使用竖屏方向。</li>
-                    <li>设置水印位置时，区域必须小于 <xref keyref="setVideoEncoderConfigurationEx"/> 方法中设置的尺寸，否则水印图像将被裁剪。</li>
+                    <li>如果编码视频的方向模式（<xref keyref="ORIENTATION_MODE"/>）为固定横屏模式或自适应横屏模式，则水印使用横屏方向。</li>
+                    <li>如果编码视频的方向模式为固定竖屏模式或自适应竖屏模式，则水印使用竖屏方向。</li>
+                    <li>设置水印位置时，区域必须小于 <xref keyref="setVideoEncoderConfigurationEx"/> 方法中设置的尺寸，否则水印图像会被裁剪。</li>
                 </ul>
             </p>
             <p props="ios">该方法在直播中向本地视频添加 PNG 格式的水印图像。添加水印图像后，频道中的所有观众（包括 CDN 观众）以及采集设备都可以看到并采集该图像。声网 SDK 仅支持在一个直播视频流中添加一张水印图像，新添加的水印图像会替换之前的图像。
@@ -70,13 +70,22 @@
                     <li>设置水印位置时，区域必须小于 <codeph>setVideoEncoderConfigurationEx</codeph> 方法中设置的尺寸，否则水印图像将被裁剪。</li>
                 </ul>
             </p>
+            <note props="cpp">
+                <ul>
+                    <li>请确保在调用该方法前已调用 <xref keyref="enableVideo"/>。</li>
+                    <li>该方法仅支持 PNG 格式的水印图像。支持的 PNG 像素格式包括 RGBA、RGB、Palette、Gray 和 Alpha_gray。</li>
+                    <li>如果 PNG 图像的尺寸与设置不一致，图像将被裁剪或缩放以适配设置。</li>
+                    <li>如果已通过调用 <codeph>startPreview</codeph> 启用本地视频预览，可通过 <codeph>visibleInPreview</codeph> 成员设置水印在预览中是否可见。</li>
+                    <li>如果启用了本地视频的镜像模式，水印图像也会被镜像。为避免水印被镜像，声网建议不要同时使用本地视频的镜像和水印功能。你也可以在应用层实现水印功能。</li>
+                </ul>
+            </note>
             <note props="android">
                 <ul>
                     <li>请确保在调用该方法前已调用 <xref keyref="enableVideo"/> 方法。</li>
                     <li>该方法仅支持添加 PNG 文件格式的水印图像。支持的 PNG 图像像素格式包括 RGBA、RGB、Palette、Gray 和 Alpha_gray。</li>
-                    <li>如果 PNG 图像的尺寸与该方法中的设置不一致，图像将被裁剪或缩放以适配设置。</li>
-                    <li>如果已通过调用 <codeph>startPreview</codeph> 方法启用本地视频预览，可使用 <codeph>visibleInPreview</codeph> 成员设置水印在预览中是否可见。</li>
-                    <li>如果已启用本地视频的镜像模式，本地视频中的水印也会被镜像。为避免水印被镜像，声网建议不要同时使用本地视频的镜像和水印功能。你可以在应用层实现水印功能。</li>
+                    <li>如果 PNG 图像的尺寸与该方法中的设置不一致，图像将被裁剪或缩放以符合设置。</li>
+                    <li>如果你已通过调用 <codeph>startPreview</codeph> 方法启用了本地视频预览，可以使用 <codeph>visibleInPreview</codeph> 成员设置水印在预览中是否可见。</li>
+                    <li>如果你为本地视频启用了镜像模式，则本地视频中的水印也会被镜像。为避免水印被镜像，声网建议不要同时使用本地视频的镜像和水印功能。你可以在应用层实现水印功能。</li>
                 </ul>
             </note>
             <note props="ios">
@@ -97,6 +106,13 @@
                     <li>如果你已为本地视频启用镜像模式，本地视频中的水印也会被镜像。为避免水印被镜像，声网建议你不要同时使用本地视频的镜像和水印功能。你可以在应用层实现水印功能。</li>
                 </ul>
             </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>

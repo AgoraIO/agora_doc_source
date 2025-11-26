@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_pushexternalaudioframesamplebuffer2">
     <title><ph keyref="pushExternalAudioFrameSampleBuffer2"/></title>
-    <shortdesc id="short"><ph id="shortdesc">通过自定义音频轨道将外部 <codeph>CMSampleBuffer</codeph> 音频帧推送到频道中。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="ios">通过自定义音频轨道将外部 <codeph>CMSampleBuffer</codeph> 音频帧推送到频道中。</ph><ph id="shortdesc" props="mac">通过自定义音频轨道将外部 <codeph>CMSampleBuffer</codeph> 音频帧推送到频道中。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -36,6 +36,11 @@
                     <li>调用 <codeph>joinChannelByToken</codeph> 加入频道。在 <xref keyref="ChannelMediaOptions"/> 中，将 <codeph>publishCustomAudioTrackId</codeph> 设置为你要发布的音频轨道 ID，并将 <codeph>publishCustomAudioTrack</codeph> 设置为 <xref keyref="true"/>。</li>
                 </ol>
             </p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="ios mac">
+            <title>调用时机</title>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="ios mac">
             <title>参数</title>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_player_play_player">
     <title><ph keyref="Play_Player"/></title>
-    <shortdesc id="short"><ph id="shortdesc">播放一个 URL 资源。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">播放一个 URL 资源。</ph><ph id="shortdesc" props="android">播放一个 URL 资源。</ph><ph id="shortdesc" props="ios">播放一个以 <codeph>rte://</codeph> 开头的 URL 资源。</ph><ph id="shortdesc" props="mac">播放一个以 <codeph>rte://</codeph> 开头的 URL 资源。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -47,13 +47,13 @@
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">在收到 <xref keyref="onStateChanged"/> 回调报告状态为 <codeph>kRtePlayerStateOpenCompleted</codeph> 后调用此方法。</p>
-            <p props="android">仅在收到状态为 <codeph>OPEN_COMPLETED</codeph> 的 <xref keyref="onStateChanged"/> 回调后调用此方法。</p>
+            <p props="android">仅在收到状态为 <codeph>OPEN_COMPLETED</codeph> 的 <xref keyref="onStateChanged"/> 回调后调用 <xref keyref="Play_Player"/>。</p>
             <p props="ios">仅在收到 <xref keyref="onStateChanged"/> 回调并报告状态为 <codeph>AgoraRtePlayerStateOpenCompleted</codeph> 后调用此方法。</p>
             <p props="mac">仅在收到 <xref keyref="onStateChanged"/> 回调并报告状态为 <codeph>AgoraRtePlayerStateOpenCompleted</codeph> 后调用此方法。</p>
         </section>
         <section id="related" deliveryTarget="details" props="android">
             <title>相关回调</title>
-            <p props="android">成功调用该方法后，SDK 会触发 <xref keyref="onStateChanged"/> 回调报告播放器状态。</p>
+            <p props="android">成功调用 <xref keyref="Play_Player"/> 后，SDK 会触发 <xref keyref="onStateChanged"/> 回调报告播放器状态。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>参数</title>

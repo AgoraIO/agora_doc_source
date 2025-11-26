@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onconnectioninterrupted">
     <title><ph keyref="onConnectionInterrupted"/></title>
-    <shortdesc id="short"><ph id="shortdesc"><xref keyref="onConnectionInterrupted"/> 回调。当 SDK 与服务器连接中断超过 4 秒时触发。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp"><xref keyref="onConnectionInterrupted"/> 回调。</ph><ph id="shortdesc" props="android"><xref keyref="onConnectionInterrupted"/> 回调。</ph><ph id="shortdesc" props="ios">连接中断回调。</ph><ph id="shortdesc" props="mac">连接中断回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -23,16 +23,16 @@
             <dl outputclass="deprecated">
                 <dlentry props="cpp">
                     <dt>废弃</dt>
-                    <dd>自 vX.X.X 版本废弃，请改用 <xref keyref="onConnectionStateChanged"/>。</dd>
+                    <dd>自 v4.x.x 版本废弃，请改用 <xref keyref="onConnectionStateChanged"/>。</dd>
                 </dlentry>
             </dl>
-            <p props="cpp">该回调在 SDK 建立连接后，与服务器断开连接超过 4 秒时触发。触发该回调后，SDK 会尝试重新连接服务器。你可以通过该回调实现弹窗提醒功能。</p>
-            <p props="android">该回调在 <codeph>SDK</codeph> 建立连接后与服务器断开连接超过 4 秒时被触发。触发该回调后，<codeph>SDK</codeph> 会尝试重新连接服务器。你可以通过该回调实现弹窗提醒功能。
+            <p props="cpp">当 SDK 建立连接后与服务器断开超过 4 秒时，会触发该回调。触发后，SDK 会尝试重新连接服务器。你可以通过该回调实现弹窗提醒功能。</p>
+            <p props="android">该回调在 SDK 建立连接后与服务器断开连接超过四秒时被触发。触发该回调后，SDK 会尝试重新连接服务器。你可以通过该回调实现弹窗提醒功能。
 该回调与 <xref keyref="onConnectionLost"/> 的区别如下：
                 <ul>
-                    <li>当 <codeph>SDK</codeph> 成功加入频道后，与服务器断开连接超过 4 秒时，会触发 <xref keyref="onConnectionInterrupted"/> 回调。</li>
-                    <li>无论是否加入频道，当 <codeph>SDK</codeph> 与服务器断开连接超过 10 秒时，会触发 <xref keyref="onConnectionLost"/> 回调。</li>
-                </ul><ph>如果 <codeph>SDK</codeph> 在与声网边缘服务器断开连接后 20 分钟内仍未重新加入频道，则停止重连。</ph></p>
+                    <li>当 SDK 成功加入频道后，与服务器断开连接超过四秒时，会触发 <xref keyref="onConnectionInterrupted"/> 回调。</li>
+                    <li>无论是否加入频道，当 SDK 与服务器断开连接超过 10 秒时，会触发 <xref keyref="onConnectionLost"/> 回调。</li>
+                </ul><ph>如果 SDK 在与声网边缘服务器断开连接后 20 分钟内仍未重新加入频道，则停止重连。</ph></p>
             <p props="ios">当 SDK 在建立连接后与服务器断开连接超过四秒时，会触发该回调。触发该回调后，SDK 会尝试重新连接服务器。你可以使用该回调实现弹窗提醒功能。该回调与 <xref keyref="onConnectionLost"/> 的区别如下：
                 <ul>
                     <li>当 SDK 成功加入频道后，与服务器断开连接超过四秒时，会触发 <xref keyref="onConnectionInterrupted"/> 回调。</li>
@@ -52,7 +52,7 @@
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>触发时机</title>
             <p props="cpp">当 SDK 与服务器的连接中断超过 4 秒时触发。</p>
-            <p props="android">该回调在 <codeph>SDK</codeph> 与服务器断开连接超过 4 秒时被触发。</p>
+            <p props="android">该回调在 SDK 与服务器断开连接超过四秒时被触发。</p>
             <p props="ios">该回调在 SDK 与服务器的连接中断超过四秒时被触发。</p>
             <p props="mac">该回调在 SDK 与服务器的连接中断超过四秒时被触发。</p>
         </section>

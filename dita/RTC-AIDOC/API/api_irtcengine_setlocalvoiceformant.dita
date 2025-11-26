@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setlocalvoiceformant">
     <title><ph keyref="setLocalVoiceFormant"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置本地人声的共振峰比例，从而改变音色。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置共振峰比例以改变人声音色。</ph><ph id="shortdesc" props="android">设置本地语音的共振峰比率以改变人声音色。</ph><ph id="shortdesc" props="ios">设置共振峰比例以改变人声音色。</ph><ph id="shortdesc" props="mac">设置共振峰比例以改变人声音色。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,15 +20,15 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">共振峰比例会影响人声的音色。值越小，声音越低沉；值越大，声音越尖锐。设置共振峰比例后，频道内所有用户都能听到变化后的人声。如果你希望同时改变音色和音调，建议同时使用 <xref keyref="setLocalVoiceFormant"/> 和 <xref keyref="setLocalVoicePitch"/>。</p>
-            <p props="android">设置共振峰比例后，频道内所有用户都能听到变化后的人声。如果你希望同时改变音色和音调，声网建议同时使用该方法和 <xref keyref="setLocalVoicePitch"/> 方法。</p>
+            <p props="cpp">共振峰比例会影响声音的音色。值越小，声音越低沉；值越大，声音越尖锐。如果你希望同时改变音色和音调，建议同时使用该方法和 <xref keyref="setLocalVoicePitch"/>。设置共振峰比例后，频道内所有用户都能听到变化后的声音。</p>
+            <p props="android">如果你希望同时改变音色和音调，声网建议同时使用该方法和 <xref keyref="setLocalVoicePitch"/> 方法。</p>
             <p props="ios">共振峰比例会影响声音的音色。值越小，声音越低沉；值越大，声音越尖锐。设置共振峰比例后，频道内所有用户都能听到改变后的声音。如果你希望同时改变音色和音调，声网建议同时使用该方法和 <xref keyref="setLocalVoicePitch"/> 方法。</p>
             <p props="mac">共振峰比例会影响声音的音色。值越小，声音越低沉；值越大，声音越尖锐。设置共振峰比例后，频道内所有用户都能听到改变后的声音。如果你希望同时改变音色和音调，声网建议同时使用该方法和 <xref keyref="setLocalVoicePitch"/> 方法。</p>
-            <note props="cpp">建议将该值设置在 [-0.4, 0.6] 范围内，否则可能会导致声音严重失真。</note>
+            <note props="cpp">建议将该值设置在 [-0.4, 0.6] 范围内，否则声音可能会严重失真。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
-            <p props="cpp">该方法可在加入频道前或加入频道后调用。</p>
+            <p props="cpp">该方法可以在加入频道前或加入频道后调用。</p>
             <p props="android">该方法可以在加入频道前或加入频道后调用。</p>
             <p props="ios">该方法可以在加入频道前或加入频道后调用。</p>
             <p props="mac">该方法可以在加入频道前或加入频道后调用。</p>
@@ -38,11 +38,11 @@
             <parml>
                 <plentry props="cpp">
                     <pt>formantRatio</pt>
-                    <pd>共振峰比例。取值范围为 [-1.0, 1.0]。默认值为 0.0，表示不改变人声音色。</pd>
+                    <pd>共振峰比例。取值范围为 [-1.0, 1.0]。默认值为 0.0，表示不改变声音的音色。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>formantRatio</pt>
-                    <pd>共振峰比例。取值范围为 [-1.0, 1.0]。默认值为 0.0。</pd>
+                    <pd>共振峰比率。取值范围为 [-1.0, 1.0]。默认值为 0.0，表示不改变人声音色。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>formantRatio</pt>

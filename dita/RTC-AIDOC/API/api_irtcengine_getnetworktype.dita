@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_getnetworktype">
     <title><ph keyref="getNetworkType"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获取本地网络连接类型。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取本地网络连接类型。</ph><ph id="shortdesc" props="android">获取本地网络连接类型。</ph><ph id="shortdesc" props="ios">获取本地网络连接类型。</ph><ph id="shortdesc" props="mac">获取本地网络连接类型。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,12 +20,20 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">你可以在任意阶段调用此方法获取当前使用的网络类型。</p>
             <p props="ios">你可以在任意阶段调用此方法获取当前使用的网络类型。</p>
             <p props="mac">你可以在任意阶段调用此方法获取当前使用的网络类型。</p>
-            <note props="cpp">你可以在加入频道前或后调用此方法。</note>
-            <note props="android"><xref keyref="getNetworkType"/> 方法可在加入频道前或后调用。</note>
+            <note props="cpp"><xref keyref="getNetworkType"/> 方法可在加入频道前或后调用。</note>
+            <note props="android">你可以在加入频道前或后调用此方法。</note>
             <note props="ios">你可以在加入频道前或后调用此方法。</note>
             <note props="mac">你可以在加入频道前或后调用此方法。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="return_values" props="android cpp ios mac">
             <title>返回值</title>
@@ -34,8 +42,8 @@
                     <li>0：方法调用成功，返回本地网络连接类型：
                         <ul>
                             <li>0：<codeph>SDK</codeph> 与网络断开连接。</li>
-                            <li>1：网络类型为 LAN。</li>
-                            <li>2：网络类型为 Wi-Fi（包括热点）。</li>
+                            <li>1：网络类型为 <codeph>LAN</codeph>。</li>
+                            <li>2：网络类型为 <codeph>Wi-Fi</codeph>（包括热点）。</li>
                             <li>3：网络类型为移动 2G。</li>
                             <li>4：网络类型为移动 3G。</li>
                             <li>5：网络类型为移动 4G。</li>
@@ -51,7 +59,7 @@
             </p>
             <p props="android">
                 <ul>
-                    <li>方法调用成功时，返回本地网络连接类型：
+                    <li>方法调用成功，返回本地网络连接类型：
                         <ul>
                             <li>0：SDK 与网络断开连接。</li>
                             <li>1：网络类型为 LAN。</li>
@@ -62,7 +70,7 @@
                             <li>6：网络类型为移动 5G。</li>
                         </ul>
                     </li>
-                    <li>方法调用失败时，返回错误码：
+                    <li>方法调用失败，返回错误码：
                         <ul>
                             <li>-1：网络类型未知。</li>
                         </ul>
@@ -71,7 +79,7 @@
             </p>
             <p props="ios">
                 <ul>
-                    <li>≥ 0：方法调用成功，返回本地网络连接类型，详见返回值说明。
+                    <li>0：方法调用成功，返回本地网络连接类型：
                         <ul>
                             <li>0：<codeph>SDK</codeph> 与网络断开连接。</li>
                             <li>1：网络类型为 <codeph>LAN</codeph>。</li>
@@ -91,7 +99,7 @@
             </p>
             <p props="mac">
                 <ul>
-                    <li>≥ 0：方法调用成功，返回本地网络连接类型，详见返回值说明。
+                    <li>0：方法调用成功，返回本地网络连接类型：
                         <ul>
                             <li>0：<codeph>SDK</codeph> 与网络断开连接。</li>
                             <li>1：网络类型为 <codeph>LAN</codeph>。</li>

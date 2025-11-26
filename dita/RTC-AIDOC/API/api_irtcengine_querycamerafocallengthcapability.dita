@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_querycamerafocallengthcapability">
     <title><ph keyref="queryCameraFocalLengthCapability"/></title>
-    <shortdesc id="short"><ph id="shortdesc">查询摄像头支持的焦距能力。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">查询摄像头支持的焦距能力。</ph><ph id="shortdesc" props="ios">查询摄像头支持的焦距能力。</ph><ph id="shortdesc" props="android">查询摄像头支持的焦距能力。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -23,6 +23,12 @@
             <p props="ios">如果你希望在视频采集中启用广角或超广角模式，建议你首先调用 <xref keyref="queryCameraFocalLengthCapability"/> 方法检查设备是否支持所需的焦距能力。然后，根据查询结果调用 <xref keyref="setCameraCapturerConfiguration"/> 方法调整摄像头的焦距配置，以确保最佳的视频采集性能。</p>
             <p props="android">建议在启用广角或超广角模式进行视频采集前，调用该方法检查设备是否支持所需的焦距能力。根据查询结果调用 <xref keyref="setCameraCapturerConfiguration"/> 方法调整摄像头的焦距配置，以确保最佳的视频采集性能。</p>
             <note props="cpp">该方法仅适用于 Android 和 iOS 平台。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="cpp">
             <title>参数</title>

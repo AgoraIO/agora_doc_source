@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_setsubscribeaudioblocklistex">
     <title><ph keyref="setSubscribeAudioBlocklistEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置不订阅的音频流用户黑名单。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置不订阅的音频流用户黑名单。</ph><ph id="shortdesc" props="android">设置音频流订阅的黑名单。</ph><ph id="shortdesc" props="ios">设置音频流订阅的黑名单。</ph><ph id="shortdesc" props="mac">设置音频流订阅的黑名单。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -33,7 +33,7 @@
             <note props="android">
                 <ul>
                     <li>你可以在加入频道前或加入频道后调用此方法。</li>
-                    <li>黑名单设置不受 <xref keyref="ChannelMediaOptions"/> 中的 <xref keyref="muteRemoteAudioStream"/>、<codeph>muteAllRemoteAudioStreams</codeph> 和 <codeph>autoSubscribeAudio</codeph> 的影响。</li>
+                    <li>黑名单设置不受 <xref keyref="ChannelMediaOptions"/> 中的 <xref keyref="muteRemoteAudioStream"/>、<xref keyref="muteAllRemoteAudioStreams"/> 和 <codeph>autoSubscribeAudio</codeph> 的影响。</li>
                     <li>一旦设置了订阅黑名单，即使你离开当前频道并重新加入，该设置仍然有效。</li>
                     <li>如果某个用户同时被加入白名单和黑名单，仅黑名单生效。</li>
                 </ul>
@@ -41,7 +41,7 @@
             <note props="ios">
                 <ul>
                     <li>你可以在加入频道前或加入频道后调用此方法。</li>
-                    <li>黑名单不受 <codeph>muteRemoteAudioStream:mute:</codeph>、<codeph>muteAllRemoteAudioStreams:</codeph> 和 <codeph>autoSubscribeAudio</codeph> 设置影响。</li>
+                    <li>黑名单不受 <xref keyref="muteRemoteAudioStream"/>、<xref keyref="muteAllRemoteAudioStreams"/> 和 <codeph>autoSubscribeAudio</codeph> 设置影响。</li>
                     <li>一旦设置了订阅黑名单，即使你离开当前频道并重新加入，该设置仍然有效。</li>
                     <li>如果某个用户同时被加入白名单和黑名单，则仅黑名单生效。</li>
                 </ul>
@@ -49,11 +49,18 @@
             <note props="mac">
                 <ul>
                     <li>你可以在加入频道前或加入频道后调用此方法。</li>
-                    <li>黑名单不受 <codeph>muteRemoteAudioStream:mute:</codeph>、<codeph>muteAllRemoteAudioStreams:</codeph> 和 <codeph>autoSubscribeAudio</codeph> 设置影响。</li>
+                    <li>黑名单不受 <xref keyref="muteRemoteAudioStream"/>、<xref keyref="muteAllRemoteAudioStreams"/> 和 <codeph>autoSubscribeAudio</codeph> 设置影响。</li>
                     <li>一旦设置了订阅黑名单，即使你离开当前频道并重新加入，该设置仍然有效。</li>
                     <li>如果某个用户同时被加入白名单和黑名单，则仅黑名单生效。</li>
                 </ul>
             </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>

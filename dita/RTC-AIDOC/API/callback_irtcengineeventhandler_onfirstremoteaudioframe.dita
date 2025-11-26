@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onfirstremoteaudioframe">
     <title><ph keyref="onFirstRemoteAudioFrame"/></title>
-    <shortdesc id="short"><ph id="shortdesc">远端用户音频首帧到达回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">远端用户音频首帧到达回调。</ph><ph id="shortdesc" props="android">远端用户音频首帧已接收回调。</ph><ph id="shortdesc" props="ios"><xref keyref="onFirstRemoteAudioFrame"/> 回调。远端用户的第一帧音频被接收并解码时触发。</ph><ph id="shortdesc" props="mac"><xref keyref="onFirstRemoteAudioFrame"/> 回调。远端用户的第一帧音频被接收并解码时触发。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -25,6 +25,10 @@
                     <dt>废弃</dt>
                     <dd>自 vX.X.X 版本废弃，请改用 <xref keyref="onRemoteAudioStateChanged"/>。</dd>
                 </dlentry>
+                <dlentry props="android">
+                    <dt>废弃</dt>
+                    <dd>自 vX.X.X 版本废弃，请改用 <xref keyref="onRemoteAudioStateChanged"/>。</dd>
+                </dlentry>
             </dl>
         </section>
         <section id="timing" deliveryTarget="details" props="android ios mac">
@@ -42,7 +46,7 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>elapsed</pt>
-                    <pd>从本地用户调用 <codeph>joinChannel</codeph> 加入频道到 SDK 触发该回调所经过的时间（毫秒）。</pd>
+                    <pd>从本地用户调用 <codeph>joinChannel</codeph> 到 SDK 触发该回调的时间间隔（毫秒）。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>uid</pt>

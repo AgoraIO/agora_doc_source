@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setlocalrendermode1">
     <title><ph keyref="setLocalRenderMode1"/></title>
-    <shortdesc id="short"><ph id="shortdesc">更新本地视频画面的显示模式。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">更新本地视频画面的显示模式。</ph><ph id="shortdesc" props="android">设置本地视频的显示模式。</ph><ph id="shortdesc" props="ios">设置本地视频显示模式。</ph><ph id="shortdesc" props="mac">设置本地视频显示模式。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -29,7 +29,7 @@
                 </dlentry>
                 <dlentry props="android">
                     <dt>废弃</dt>
-                    <dd>自 vX.X.X 版本废弃。</dd>
+                    <dd>该枚举值已废弃，不推荐使用。</dd>
                 </dlentry>
                 <dlentry props="ios">
                     <dt>废弃</dt>
@@ -41,15 +41,22 @@
                 </dlentry>
             </dl>
             <p props="cpp">该方法仅影响本地用户看到的视频画面，不影响发布的视频流。</p>
-            <p props="android">你可以调用该方法在通话过程中设置或更改本地视频的显示模式。</p>
+            <p props="android">你可以多次调用该方法以动态调整本地视频的显示效果。</p>
             <p props="ios">你可以在通话过程中多次调用该方法以更改本地视频的显示模式。</p>
             <p props="mac">你可以在通话过程中多次调用该方法以更改本地视频的显示模式。</p>
             <note props="cpp">
                 <ul>
-                    <li>请确保在调用此方法前已调用 <xref keyref="setupLocalVideo"/> 初始化本地视频画面。</li>
-                    <li>通话过程中，你可以多次调用此方法以更新本地视频画面。</li>
+                    <li>请确保在调用该方法前已调用 <xref keyref="setupLocalVideo"/> 初始化本地视频画面。</li>
+                    <li>通话过程中，你可以多次调用该方法以更新本地视频画面。</li>
                 </ul>
             </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
@@ -60,11 +67,11 @@
                 </plentry>
                 <plentry props="android">
                     <pt>renderMode</pt>
-                    <pd>本地视频的显示模式。
+                    <pd>本地视频的显示模式：
                         <ul>
-                            <li><codeph>RENDER_MODE_HIDDEN</codeph>（1）：隐藏模式。按比例缩放视频，直到填满视图边界，可能会裁剪视频的一部分内容。</li>
-                            <li><codeph>RENDER_MODE_FIT</codeph>（2）：适应模式。按比例缩放视频，直到某一维度适配视图边界。由于宽高比不一致，未填满的区域将以黑色填充。</li>
-                            <li><codeph>RENDER_MODE_ADAPTIVE</codeph>（3）：自适应模式。该枚举值已废弃，不推荐使用。</li>
+                            <li><codeph>RENDER_MODE_HIDDEN</codeph> (1)：隐藏模式。按比例缩放视频，直到填满视图边界（可能被裁剪）。视频的一条边可能会被截断。</li>
+                            <li><codeph>RENDER_MODE_FIT</codeph> (2)：适应模式。按比例缩放视频，直到某一边与视图边界匹配。由于宽高比不一致而未填满的区域将以黑色填充。</li>
+                            <li><codeph>RENDER_MODE_ADAPTIVE</codeph> (3)：自适应模式。</li>
                         </ul>
                     </pd>
                 </plentry>

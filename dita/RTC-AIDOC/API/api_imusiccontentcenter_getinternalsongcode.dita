@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imusiccontentcenter_getinternalsongcode">
     <title><ph keyref="getInternalSongCode"/></title>
-    <shortdesc id="short"><ph id="shortdesc">创建音乐资源副歌片段的内部歌曲编码。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">创建音乐资源副歌片段的内部歌曲编码。</ph><ph id="shortdesc" props="ios">创建音乐资源副歌片段的内部 ID。</ph><ph id="shortdesc" props="android">创建音乐资源副歌片段的内部标识符。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -22,6 +22,12 @@
             <p props="cpp">在播放音乐资源的副歌片段前，需调用该方法，结合参数 <codeph>jsonOption</codeph> 和音乐资源的 <codeph>songCode</codeph> 创建副歌片段的内部歌曲编码。该编码作为资源的唯一标识。获取该编码后，在调用打开、预加载或移除资源的方法时，将其作为 <codeph>songCode</codeph> 参数传入。</p>
             <p props="ios">调用该方法可结合音乐资源的 <codeph>songCode</codeph> 和 <codeph>jsonOption</codeph> 参数，为该资源的副歌片段创建一个内部 ID。该 ID 是该资源的唯一标识。获取该 ID 后，你需要在调用打开、预加载或移除资源的方法时，将其作为 <codeph>songCode</codeph> 参数传入。</p>
             <p props="android">在播放音乐资源的副歌片段前，需调用该方法，结合音乐资源的 <codeph>songCode</codeph> 和 <codeph>jsonOption</codeph> 参数创建副歌片段的内部标识符。该标识符作为资源的唯一引用。在调用相关方法以打开、预加载或移除资源时，应将该标识符作为 <codeph>songCode</codeph> 参数传入。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios">
             <title>参数</title>
@@ -84,7 +90,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>jsonOption</pt>
-                    <pd>扩展 JSON 字段，默认为 <codeph>null</codeph>。目前支持以下字段：
+                    <pd>扩展 JSON 字段，默认为 <xref keyref="NULL"/>。目前支持以下字段：
 | Key | Value | Example |
 | --- | ----- | ------- |
 | sceneType | 频道场景：

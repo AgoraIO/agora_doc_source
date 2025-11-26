@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ivideoframeobserver_getvideoformatpreference">
     <title><ph keyref="getVideoFormatPreference"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置 SDK 输出的原始视频数据格式。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置 SDK 输出的原始视频数据格式。</ph><ph id="shortdesc" props="android">设置 SDK 输出的原始视频数据格式。</ph><ph id="shortdesc" props="ios">设置 SDK 输出的原始视频数据格式。</ph><ph id="shortdesc" props="mac">设置 SDK 输出的原始视频数据格式。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,10 +20,10 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">调用 <codeph>registerVideoFrameObserver</codeph> 方法注册回调后，每次接收到视频帧时，SDK 会触发该回调。你需要在该回调的返回值中设置偏好的视频数据格式。</p>
-            <p props="android">调用 <codeph>registerVideoFrameObserver</codeph> 方法注册回调后，SDK 每次接收到视频帧时会触发该回调。你需要在该回调的返回值中设置期望的视频数据格式。</p>
-            <p props="ios">调用 <codeph>setVideoFrameDelegate:</codeph> 方法注册回调后，SDK 每次接收到视频帧时会触发该回调。你需要在该回调的返回值中设置所需的视频数据格式。</p>
-            <p props="mac">调用 <codeph>setVideoFrameDelegate:</codeph> 方法注册回调后，SDK 每次接收到视频帧时会触发该回调。你需要在该回调的返回值中设置所需的视频数据格式。</p>
+            <p props="cpp">调用 <xref keyref="registerVideoFrameObserver_IMediaEngine"/> 方法注册回调后，每次接收到视频帧时，SDK 会触发该回调。你需要在该回调的返回值中设置偏好的视频数据格式。</p>
+            <p props="android">调用 <xref keyref="registerVideoFrameObserver"/> 方法注册回调后，SDK 每次接收到视频帧时会触发该回调。你需要在该回调的返回值中设置期望的视频数据格式。</p>
+            <p props="ios">调用 <xref keyref="registerVideoFrameObserver"/> 方法注册回调后，SDK 每次接收到视频帧时会触发该回调。你需要在该回调的返回值中设置所需的视频数据格式。</p>
+            <p props="mac">调用 <xref keyref="registerVideoFrameObserver"/> 方法注册回调后，SDK 每次接收到视频帧时会触发该回调。你需要在该回调的返回值中设置所需的视频数据格式。</p>
             <note props="cpp">原始视频的默认像素格式（<codeph>VIDEO_PIXEL_DEFAULT</codeph>）如下：
                 <ul>
                     <li>在 Windows 平台，默认的视频帧类型为 <codeph>YUV420</codeph>。</li>
@@ -55,6 +55,13 @@
                     <li>默认的视频帧类型可能为 <codeph>I420</codeph> 或 <codeph>CVPixelBufferRef</codeph>。</li>
                 </ul>
             </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="return_values" props="android cpp ios mac">
             <title>返回值</title>

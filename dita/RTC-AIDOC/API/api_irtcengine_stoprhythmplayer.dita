@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_stoprhythmplayer">
     <title><ph keyref="stopRhythmPlayer"/></title>
-    <shortdesc id="short"><ph id="shortdesc">禁用虚拟节拍器。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">禁用虚拟节拍器。</ph><ph id="shortdesc" props="android">禁用虚拟节拍器。</ph><ph id="shortdesc" props="ios">禁用虚拟节拍器。</ph><ph id="shortdesc" props="mac">禁用虚拟节拍器。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,18 +20,31 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">调用 <xref keyref="startRhythmPlayer"/> 后，可以调用 <xref keyref="stopRhythmPlayer"/> 来禁用虚拟节拍器。</p>
+            <dl outputclass="deprecated">
+                <dlentry props="cpp">
+                    <dt>废弃</dt>
+                    <dd>自 v4.6.0 版本废弃。</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">调用 <xref keyref="startRhythmPlayer"/> 后，可以调用该方法禁用虚拟节拍器。</p>
             <p props="android">你可以调用该方法来禁用虚拟节拍器。</p>
             <p props="ios">调用 <codeph>startRhythmPlayer</codeph> 方法后，你可以调用该方法来禁用虚拟节拍器。</p>
             <p props="mac">调用 <codeph>startRhythmPlayer</codeph> 方法后，你可以调用该方法来禁用虚拟节拍器。</p>
-            <note props="cpp">此方法仅适用于 Android 和 iOS 平台。</note>
+            <note props="cpp">该方法仅适用于 Android 和 iOS 平台。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="return_values" props="android cpp ios mac">
             <title>返回值</title>
             <p props="cpp">
                 <ul>
-                    <li>0: 方法调用成功。</li>
-                    <li>&lt; 0: 方法调用失败。</li>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="android">

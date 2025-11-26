@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_takesnapshotex2">
     <title><ph keyref="takeSnapshotEx2"/></title>
-    <shortdesc id="short"><ph id="shortdesc">使用连接 ID 获取指定用户的视频截图。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">使用连接 ID 获取指定用户的视频截图。</ph><ph id="shortdesc" props="android">获取指定观察点的视频截图。</ph><ph id="shortdesc" props="ios">获取指定用户视频流的截图。</ph><ph id="shortdesc" props="mac">获取指定用户视频流的截图。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,7 +20,13 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="android">该方法为异步调用，方法返回时 SDK 尚未完成截图操作。用于本地视频截图时，会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。如果用户的视频已进行预处理，例如添加水印或美颜，截图结果中会包含这些预处理效果。</p>
+            <p props="cpp">该方法为异步调用，调用返回时 SDK 尚未完成截图操作。用于本地视频截图时，会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。如果用户的视频已进行预处理（如添加水印或美颜），截图结果中会包含这些预处理效果。</p>
+            <p props="android">该方法为异步调用，调用该方法时 SDK 尚未完成截图操作。
+                <ul>
+                    <li>用于本地视频截图时，该方法会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。</li>
+                    <li>如果用户的视频已进行预处理，例如添加水印或美颜，截图结果中会包含这些预处理效果。</li>
+                </ul>
+            </p>
             <p props="ios">该方法从指定用户的视频流中截取一帧图像，生成 JPG 图片，并保存到指定路径。
 
 该方法为异步调用，调用返回时 SDK 尚未完成截图。
@@ -35,18 +41,11 @@
 用于本地视频截图时，该方法会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。
 
 如果用户的视频已进行预处理（如添加水印或美颜），截图结果将包含预处理效果。</p>
-            <note props="cpp">
-                <ul>
-                    <li>该方法为异步调用，调用返回时 SDK 尚未完成截图操作。</li>
-                    <li>用于本地视频截图时，该方法会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。</li>
-                    <li>如果用户的视频已进行预处理，例如添加水印或美颜，截图结果中会包含这些预处理效果。</li>
-                </ul>
-            </note>
             <note props="android">
                 <ul>
-                    <li>该方法为异步调用，方法返回时 SDK 尚未完成截图操作。</li>
-                    <li>当用于本地视频截图时，该方法会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。</li>
+                    <li>该方法为异步调用，调用该方法时 SDK 尚未完成截图操作。</li>
                     <li>如果用户的视频已进行预处理，例如添加水印或美颜，截图结果中会包含这些预处理效果。</li>
+                    <li>成功调用该方法后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调，报告截图是否成功以及截图的详细信息。</li>
                 </ul>
             </note>
         </section>
@@ -70,7 +69,7 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>uid</pt>
-                    <pd>用户 ID。如果要截取本地用户的视频，请将 <codeph>uid</codeph> 设置为 0。</pd>
+                    <pd>用户 ID。若要截取本地用户的视频，设置为 0。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>config</pt>
@@ -78,15 +77,15 @@
                 </plentry>
                 <plentry props="android">
                     <pt>connection</pt>
-                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                    <pd>连接信息，详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>uid</pt>
-                    <pd>用户 ID。若要截取本地用户的视频，设置为 0。</pd>
+                    <pd>用户 ID。如果要截取本地用户的视频，设置为 0。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>config</pt>
-                    <pd>截图的配置信息。详见 <xref keyref="SnapshotConfig"/>。</pd>
+                    <pd>截图的配置信息，详见 <xref keyref="SnapshotConfig"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>connection</pt>

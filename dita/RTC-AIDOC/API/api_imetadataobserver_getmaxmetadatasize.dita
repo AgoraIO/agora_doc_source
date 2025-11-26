@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imetadataobserver_getmaxmetadatasize">
     <title><ph keyref="getMaxMetadataSize"/></title>
-    <shortdesc id="short"><ph id="shortdesc">当 SDK 请求元数据最大大小时触发的回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">当 SDK 请求元数据最大大小时触发的回调。</ph><ph id="shortdesc" props="android">当 SDK 请求元数据最大大小时触发的回调。</ph><ph id="shortdesc" props="ios">当 SDK 请求元数据的最大大小时触发。</ph><ph id="shortdesc" props="mac">当 SDK 请求元数据的最大大小时触发。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -24,6 +24,13 @@
             <p props="android">调用 <xref keyref="registerMediaMetadataObserver"/> 成功注册后，SDK 在每发送一帧视频时会触发该回调。你需要在该回调的返回值中指定元数据的最大大小。</p>
             <p props="ios">调用 <xref keyref="registerMediaMetadataObserver"/> 方法成功注册后，SDK 每发送一帧视频时会触发该回调。你需要在该回调的返回值中指定元数据的最大大小。</p>
             <p props="mac">调用 <xref keyref="registerMediaMetadataObserver"/> 方法成功注册后，SDK 每发送一帧视频时会触发该回调。你需要在该回调的返回值中指定元数据的最大大小。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="return_values" props="android cpp ios mac">
             <title>返回值</title>

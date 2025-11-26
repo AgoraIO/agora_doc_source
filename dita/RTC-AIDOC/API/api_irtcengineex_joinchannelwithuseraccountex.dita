@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_joinchannelwithuseraccountex">
     <title><ph keyref="joinChannelWithUserAccountEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc">使用用户账号和 Token 加入频道并设置媒体选项。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="ios">使用用户账号和 Token 加入频道，并设置媒体选项。</ph><ph id="shortdesc" props="android">使用用户账号和 Token 加入频道并设置媒体选项。</ph><ph id="shortdesc" props="mac">使用用户账号和 Token 加入频道，并设置媒体选项。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -31,9 +31,9 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="ios">调用该方法前，如果你没有调用 <codeph>registerLocalUserAccountWithAppID:userAccount:</codeph> 注册用户账号，SDK 会在你调用该方法加入频道时自动为你创建一个用户账号。建议先调用 <codeph>registerLocalUserAccountWithAppID:userAccount:</codeph> 注册用户账号，再调用该方法加入频道，以缩短进入频道的时间。
 用户加入频道后，默认会订阅频道中所有其他用户的音视频流，从而产生用量和计费。如果你希望取消订阅其他用户的媒体流，可以设置 <codeph>mediaOptions</codeph> 参数或调用相应的 <codeph>mute</codeph> 方法。</p>
-            <p props="android">在调用该方法之前，如果你尚未调用 <xref keyref="registerLocalUserAccount"/> 注册用户账号，SDK 会在你调用该方法加入频道时自动为你创建一个用户账号。建议你先调用 <xref keyref="registerLocalUserAccount"/> 注册用户账号，再调用该方法加入频道，以缩短加入频道所需的时间。
+            <p props="android">如果你尚未调用 <xref keyref="registerLocalUserAccount"/> 注册用户账号，SDK 会在你调用 <xref keyref="joinChannelWithUserAccountEx"/> 加入频道时自动为你创建一个用户账号。先调用 <xref keyref="registerLocalUserAccount"/> 注册用户账号，再调用 <xref keyref="joinChannelWithUserAccountEx"/> 加入频道可以缩短进入频道所需的时间。
 
-用户加入频道后，默认会订阅频道中所有其他用户的音视频流，从而产生使用量和计费。如果你希望停止订阅其他用户的媒体流，可以设置 <codeph>options</codeph> 参数或调用相应的 <xref keyref="mute"/> 方法。</p>
+一旦用户加入频道，默认会订阅频道中所有其他用户的音视频流，从而产生使用量和计费。如果你希望停止订阅其他用户的媒体流，可以设置 <codeph>options</codeph> 参数或调用相应的 <xref keyref="mute"/> 方法。</p>
             <p props="mac">调用该方法前，如果你没有调用 <codeph>registerLocalUserAccountWithAppID:userAccount:</codeph> 注册用户账号，SDK 会在你调用该方法加入频道时自动为你创建一个用户账号。建议先调用 <codeph>registerLocalUserAccountWithAppID:userAccount:</codeph> 注册用户账号，再调用该方法加入频道，以缩短进入频道的时间。
 用户加入频道后，默认会订阅频道中所有其他用户的音视频流，从而产生用量和计费。如果你希望取消订阅其他用户的媒体流，可以设置 <codeph>mediaOptions</codeph> 参数或调用相应的 <codeph>mute</codeph> 方法。</p>
             <note props="ios">
@@ -48,8 +48,8 @@
                 <ul>
                     <li>该方法仅支持用户同时加入一个频道。</li>
                     <li>不同 App ID 的用户无法互通。</li>
-                    <li>加入频道前，请确保用于生成 Token 的 App ID 与调用 <xref keyref="create_ILocalSpatialAudioEngine"/> 方法时传入的 App ID 相同，否则可能会导致使用该 Token 加入频道失败。</li>
-                    <li>为确保通信顺畅，请使用相同的参数类型标识用户。例如，如果某用户使用 UID 加入频道，则其他用户也应使用 UID；如果使用用户账号加入频道，则其他用户也应使用用户账号。</li>
+                    <li>在加入频道前，请确保用于生成 Token 的 App ID 与调用 <xref keyref="create_ILocalSpatialAudioEngine"/> 方法时传入的 App ID 相同，否则可能会导致使用该 Token 加入频道失败。</li>
+                    <li>为确保通信顺畅，请使用相同的参数类型标识用户。例如，如果某用户使用 UID 加入频道，则其他用户也应使用 UID；用户账号同理。</li>
                     <li>如果用户使用声网 Web SDK 加入频道，请确保用户 ID 设置为相同的参数类型。</li>
                 </ul>
             </note>
@@ -210,12 +210,12 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
                         <ul>
                             <li>-2：参数无效。例如，Token 无效，<codeph>uid</codeph> 参数未设置为整数，或 <xref keyref="ChannelMediaOptions"/> 中某个成员的值无效。你需要传入有效参数并重新加入频道。</li>
-                            <li>-3：<xref keyref="IRtcEngine"/> 对象初始化失败。你需要重新初始化 <xref keyref="IRtcEngine"/> 对象。</li>
+                            <li>-3：初始化 <xref keyref="IRtcEngine"/> 对象失败。你需要重新初始化 <xref keyref="IRtcEngine"/> 对象。</li>
                             <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要先初始化 <xref keyref="IRtcEngine"/> 对象再调用该方法。</li>
-                            <li>-8：<xref keyref="IRtcEngine"/> 对象的内部状态错误。典型原因是调用 <xref keyref="startEchoTest3"/> 开始通话回路测试后，未调用 <xref keyref="stopEchoTest"/> 停止测试就调用该方法加入频道。你需要先调用 <xref keyref="stopEchoTest"/> 再调用该方法。</li>
+                            <li>-8：<xref keyref="IRtcEngine"/> 对象的内部状态错误。典型原因是在调用 <xref keyref="startEchoTest3"/> 开始通话回路测试后，未调用 <xref keyref="stopEchoTest"/> 停止测试就调用该方法加入频道。你需要先调用 <xref keyref="stopEchoTest"/> 再调用该方法。</li>
                             <li>-17：加入频道请求被拒绝。典型原因是用户已在频道中。声网建议你使用 <xref keyref="onConnectionStateChanged"/> 回调查看用户是否在频道中。除非收到 <codeph>CONNECTION_STATE_DISCONNECTED</codeph>（1）状态，否则不要调用该方法加入频道。</li>
-                            <li>-102：频道名无效。你需要在 <codeph>channelId</codeph> 中传入有效的频道名以重新加入频道。</li>
-                            <li>-121：用户 ID 无效。你需要在 <codeph>uid</codeph> 中传入有效的用户 ID 以重新加入频道。</li>
+                            <li>-102：频道名无效。你需要在 <codeph>channelId</codeph> 中传入有效的频道名重新加入频道。</li>
+                            <li>-121：用户 ID 无效。你需要在 <codeph>uid</codeph> 中传入有效的用户 ID 重新加入频道。</li>
                         </ul>
                     </li>
                 </ul>

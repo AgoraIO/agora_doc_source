@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_enabledualstreammodeex">
     <title><ph keyref="enableDualStreamModeEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc">在发送端启用或关闭不同质量层级的视频流。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">在发送端启用或关闭不同质量层级的视频流。</ph><ph id="shortdesc" props="android">在发送端启用或关闭不同质量层级的视频流。</ph><ph id="shortdesc" props="ios">在发送端启用或关闭不同质量层级的视频流。</ph><ph id="shortdesc" props="mac">在发送端启用或关闭不同质量层级的视频流。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -63,6 +63,13 @@
             <note props="ios">该方法适用于发送端的所有类型的视频流，包括但不限于摄像头采集的视频流、屏幕共享流和自定义采集的视频流。</note>
             <note props="mac">该方法适用于发送端的所有类型的视频流，包括但不限于摄像头采集的视频流、屏幕共享流和自定义采集的视频流。</note>
         </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
+        </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
@@ -77,7 +84,7 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>streamConfig</pt>
-                    <pd>低质量视频流的配置。详见 <xref keyref="SimulcastStreamConfig"/>。</pd>
+                    <pd>低质量视频流的配置。详见 <codeph>SimulcastStreamConfig</codeph>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>connection</pt>
@@ -94,7 +101,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>streamConfig</pt>
-                    <pd>低质量视频流的配置。详见 <xref keyref="SimulcastStreamConfig"/>。</pd>
+                    <pd>低质量视频流的配置。详见 <codeph>SimulcastStreamConfig</codeph>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>connection</pt>
@@ -111,7 +118,7 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>streamConfig</pt>
-                    <pd>低质量视频流的配置，详见 <xref keyref="SimulcastStreamConfig"/>。</pd>
+                    <pd>低质量视频流的配置，详见 <codeph>AgoraSimulcastStreamConfig</codeph>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>connection</pt>
@@ -128,7 +135,7 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>streamConfig</pt>
-                    <pd>低质量视频流的配置，详见 <xref keyref="SimulcastStreamConfig"/>。</pd>
+                    <pd>低质量视频流的配置，详见 <codeph>AgoraSimulcastStreamConfig</codeph>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>connection</pt>

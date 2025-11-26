@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setsubscribevideoblocklist">
     <title><ph keyref="setSubscribeVideoBlocklist"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置视频流订阅的黑名单。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置视频流订阅的黑名单。</ph><ph id="shortdesc" props="android">设置视频流订阅的阻止名单。</ph><ph id="shortdesc" props="ios">设置不订阅的视频流用户的 blocklist。</ph><ph id="shortdesc" props="mac">设置不订阅的视频流用户的 blocklist。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -33,9 +33,9 @@
             <note props="android">
                 <ul>
                     <li>你可以在加入频道前或加入频道后调用此方法。</li>
-                    <li>该阻止名单不受 <xref keyref="ChannelMediaOptions"/> 中 <xref keyref="muteRemoteVideoStream"/>、<xref keyref="muteAllRemoteVideoStreams"/> 和 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
+                    <li>阻止名单不受 <xref keyref="muteRemoteVideoStream"/>、<xref keyref="muteAllRemoteVideoStreams"/> 和 <codeph>autoSubscribeVideo</codeph> 的设置影响。</li>
                     <li>一旦设置了订阅的阻止名单，即使你离开当前频道并重新加入频道，该设置仍然有效。</li>
-                    <li>如果某个用户同时被添加到允许名单和阻止名单中，只有阻止名单生效。</li>
+                    <li>如果某个用户同时被添加到允许名单和阻止名单中，则仅阻止名单生效。</li>
                 </ul>
             </note>
             <note props="ios">
@@ -55,6 +55,13 @@
                 </ul>
             </note>
         </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
+        </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
@@ -68,7 +75,12 @@
                 </plentry>
                 <plentry props="android">
                     <pt>uidList</pt>
-                    <pd>不希望订阅其视频流的用户 ID 列表。若要更新阻止名单，请重新调用 <xref keyref="setSubscribeVideoBlocklist"/> 并传入新的用户 ID 列表。</pd>
+                    <pd>不希望订阅其视频流的用户 ID 列表。
+                        <ul>
+                            <li>如果你希望屏蔽某个用户的视频流，请将该用户的用户 ID 添加到该列表中。</li>
+                            <li>如果你希望将某个用户从阻止名单中移除，需要调用 <xref keyref="setSubscribeVideoBlocklist"/> 方法更新该列表，即仅在新的列表中保留你仍希望屏蔽的用户 ID。</li>
+                        </ul>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>blocklist</pt>
