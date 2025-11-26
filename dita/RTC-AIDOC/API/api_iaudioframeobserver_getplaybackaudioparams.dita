@@ -26,12 +26,6 @@
             <note props="android">SDK 会根据你在返回值中设置的 <xref keyref="AudioParams"/> 计算采样间隔，并以此触发 <xref keyref="onPlaybackAudioFrame"/> 回调。采样间隔的计算公式为：采样间隔（秒） = <codeph>samplePerCall</codeph> /（<codeph>sampleRate</codeph> × <codeph>channel</codeph>）。确保采样间隔 ≥ 0.01 秒。</note>
             <note props="mac">SDK 会根据你在返回值中设置的 <xref keyref="AudioParams"/> 计算采样间隔，并以此触发 <codeph>onPlaybackAudioFrame:</codeph> 回调。采样间隔（秒）= <codeph>samplePerCall</codeph> / (<codeph>sampleRate</codeph> × <codeph>channel</codeph>)。确保采样间隔 ≥ 0.01 秒。</note>
         </section>
-        <section id="timing" deliveryTarget="details" props="android ios mac">
-            <title>调用时机</title>
-            <p props="ios">加入频道前后均可调用。</p>
-            <p props="android">加入频道前后均可调用。</p>
-            <p props="mac">加入频道前后均可调用。</p>
-        </section>
         <section id="return_values" props="android ios mac">
             <title>返回值</title>
             <p props="ios">方法调用成功，返回用于播放的音频参数对象，详见 <xref keyref="AudioParams"/>。</p>
