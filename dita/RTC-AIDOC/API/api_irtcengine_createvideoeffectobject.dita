@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_createvideoeffectobject">
     <title><ph keyref="createVideoEffectObject"/></title>
-    <shortdesc id="short"><ph id="shortdesc">创建一个 <xref keyref="IVideoEffectObject"/> 视频特效对象。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">创建一个 <xref keyref="IVideoEffectObject"/> 视频特效对象。</ph><ph id="shortdesc" props="android">创建一个 <xref keyref="IVideoEffectObject"/> 视频特效对象。</ph><ph id="shortdesc" props="ios">创建一个视频特效对象。</ph><ph id="shortdesc" props="mac">创建一个视频特效对象。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -45,6 +45,13 @@
             <p props="ios">返回一个 <xref keyref="IVideoEffectObject"/> 视频特效对象的指针。</p>
             <p props="mac">返回一个 <xref keyref="IVideoEffectObject"/> 视频特效对象的指针。</p>
             <note props="android">你必须先调用 <xref keyref="enableVideo"/> 方法再调用此方法。该方法适用于 Android 4.4 及以上版本。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
@@ -92,7 +99,7 @@
                 </ul>
             </p>
             <p props="android">方法调用成功，返回 <xref keyref="IVideoEffectObject"/> 对象。
-方法调用失败，返回 <codeph>null</codeph>。</p>
+方法调用失败，返回 <xref keyref="NULL"/>。</p>
             <p props="ios">
                 <ul>
                     <li>方法调用成功，返回 <xref keyref="IVideoEffectObject"/> 对象，详见 <xref keyref="IVideoEffectObject"/>。</li>

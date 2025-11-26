@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_create">
     <title><ph keyref="create"/></title>
-    <shortdesc id="short"><ph id="shortdesc">创建并初始化 <codeph>RtcEngine</codeph> 实例。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="ios">创建并初始化 <xref keyref="IRtcEngine"/> 实例。</ph><ph id="shortdesc" props="android">创建并初始化 <xref keyref="IRtcEngine"/> 实例。</ph><ph id="shortdesc" props="mac">创建并初始化 <xref keyref="IRtcEngine"/> 实例。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -46,6 +46,12 @@
                 </ul>
             </note>
         </section>
+        <section id="timing" deliveryTarget="details" props="android ios mac">
+            <title>调用时机</title>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
+        </section>
         <section id="parameters" deliveryTarget="details" props="android ios mac">
             <title>参数</title>
             <parml>
@@ -63,7 +69,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>appId</pt>
-                    <pd>声网为你的项目签发的 App ID。只有使用相同 App ID 的用户才能加入同一个频道并进行通信。一个 App ID 只能用于创建一个 <xref keyref="IRtcEngine"/> 实例。若需更换 App ID，请调用 <codeph>destroy</codeph> 销毁当前 <xref keyref="IRtcEngine"/> 实例，然后再创建新的实例。</pd>
+                    <pd>声网为你的项目签发的 App ID。只有使用相同 App ID 的用户才能加入同一个频道并进行通信。一个 App ID 只能用于创建一个 <xref keyref="IRtcEngine"/> 实例。若需更换 App ID，请调用 <xref keyref="Destroy_Rte"/> 销毁当前 <xref keyref="IRtcEngine"/> 实例，然后再创建新的实例。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>handler</pt>

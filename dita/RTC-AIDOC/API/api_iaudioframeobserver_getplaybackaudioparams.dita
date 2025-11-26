@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_iaudioframeobserver_getplaybackaudioparams">
     <title><ph keyref="getPlaybackAudioParams"/></title>
-    <shortdesc id="short"><ph id="shortdesc"><xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/> 回调的音频格式设置方法。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="ios">设置 <codeph>onPlaybackAudioFrame:</codeph> 回调的音频格式。</ph><ph id="shortdesc" props="android"><xref keyref="onPlaybackAudioFrame"/> 回调的音频格式设置方法。</ph><ph id="shortdesc" props="mac">设置 <codeph>onPlaybackAudioFrame:</codeph> 回调的音频格式。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,11 +20,17 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="ios">你需要在调用 <xref keyref="registerAudioFrameObserver"/> 方法时注册回调。成功注册音频观察器后，SDK 会触发该回调，你可以在该回调的返回值中设置音频格式。</p>
-            <p props="android">你需要在调用 <codeph>registerAudioFrameObserver</codeph> 方法时注册回调。在成功注册音频观测器后，SDK 会触发该回调。你可以在该回调的返回值中设置音频格式。</p>
+            <p props="android">你需要在调用 <xref keyref="registerAudioFrameObserver"/> 方法时注册回调。在成功注册音频观测器后，SDK 会触发该回调。你可以在该回调的返回值中设置音频格式。</p>
             <p props="mac">你需要在调用 <xref keyref="registerAudioFrameObserver"/> 方法时注册回调。成功注册音频观察器后，SDK 会触发该回调，你可以在该回调的返回值中设置音频格式。</p>
             <note props="ios">SDK 会根据你在返回值中设置的 <xref keyref="AudioParams"/> 计算采样间隔，并以此触发 <codeph>onPlaybackAudioFrame:</codeph> 回调。采样间隔（秒）= <codeph>samplePerCall</codeph> / (<codeph>sampleRate</codeph> × <codeph>channel</codeph>)。确保采样间隔 ≥ 0.01 秒。</note>
             <note props="android">SDK 会根据你在返回值中设置的 <xref keyref="AudioParams"/> 计算采样间隔，并以此触发 <xref keyref="onPlaybackAudioFrame"/> 回调。采样间隔的计算公式为：采样间隔（秒） = <codeph>samplePerCall</codeph> /（<codeph>sampleRate</codeph> × <codeph>channel</codeph>）。确保采样间隔 ≥ 0.01 秒。</note>
             <note props="mac">SDK 会根据你在返回值中设置的 <xref keyref="AudioParams"/> 计算采样间隔，并以此触发 <codeph>onPlaybackAudioFrame:</codeph> 回调。采样间隔（秒）= <codeph>samplePerCall</codeph> / (<codeph>sampleRate</codeph> × <codeph>channel</codeph>)。确保采样间隔 ≥ 0.01 秒。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android ios mac">
+            <title>调用时机</title>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="return_values" props="android ios mac">
             <title>返回值</title>

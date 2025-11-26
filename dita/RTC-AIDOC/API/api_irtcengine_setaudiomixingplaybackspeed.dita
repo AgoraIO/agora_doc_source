@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setaudiomixingplaybackspeed">
     <title><ph keyref="setAudioMixingPlaybackSpeed"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置当前音频文件的播放速度。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置当前音频文件的播放速度。</ph><ph id="shortdesc" props="android">设置当前音频文件的播放速度。</ph><ph id="shortdesc" props="ios">设置当前音频文件的播放速度。</ph><ph id="shortdesc" props="mac">设置当前音频文件的播放速度。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -24,6 +24,13 @@
             <p props="android">请确保在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/> 回调，报告状态为 <codeph>AUDIO_MIXING_STATE_PLAYING</codeph> 后再调用此方法。</p>
             <p props="ios">请在调用 <xref keyref="startAudioMixing2"/> 并收到 <codeph>audioMixingStateChanged:reasonCode:</codeph> 回调报告状态为 <codeph>AgoraAudioMixingStateTypePlaying</codeph> 后调用此方法。</p>
             <p props="mac">请在调用 <xref keyref="startAudioMixing2"/> 并收到 <codeph>audioMixingStateChanged:reasonCode:</codeph> 回调报告状态为 <codeph>AgoraAudioMixingStateTypePlaying</codeph> 后调用此方法。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>

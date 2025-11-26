@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_createdatastreamex2">
     <title><ph keyref="createDataStreamEx2"/></title>
-    <shortdesc id="short"><ph id="shortdesc">创建一个数据流。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">创建一个数据流。</ph><ph id="shortdesc" props="android">创建一个数据流。</ph><ph id="shortdesc" props="ios">创建一个数据流。</ph><ph id="shortdesc" props="mac">创建一个数据流。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -24,20 +24,18 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">与 <codeph>createDataStreamEx</codeph> 相比，该方法不保证数据传输的可靠性。如果数据包在发送后五秒内未被接收，SDK 会直接丢弃该数据。</p>
+            <p props="cpp"><codeph>createDataStreamEx</codeph> 与 <codeph>createDataStreamEx(int* streamId, bool reliable, bool ordered, const RtcConnection&amp; connection)</codeph> 相比，不保证数据传输的可靠性。如果数据包在发送后五秒内未被接收，SDK 会直接丢弃该数据。建议在调用 <xref keyref="joinChannelEx"/> 后调用此方法。</p>
             <p props="android">该方法不保证数据传输的可靠性。如果数据包在发送后五秒内未被接收，SDK 会直接丢弃该数据。</p>
             <p props="ios">该方法不保证数据传输的可靠性。如果数据包在发送后五秒内未被接收，SDK 会直接丢弃该数据。调用时机：请在调用 <codeph>joinChannelExByToken</codeph> 方法后调用该方法。</p>
             <p props="mac">该方法不保证数据传输的可靠性。如果数据包在发送后五秒内未被接收，SDK 会直接丢弃该数据。调用时机：请在调用 <codeph>joinChannelExByToken</codeph> 方法后调用该方法。</p>
             <note props="cpp">每个用户在 <xref keyref="IRtcEngine"/> 的生命周期中最多可以创建五个数据流。离开频道时，数据流会被销毁，如需再次使用需重新创建。如果你需要一个更全面的低延迟、高并发、可扩展的实时消息和状态同步解决方案，建议使用 <codeph>Signaling</codeph>。</note>
-            <note props="android">每个用户在 <xref keyref="IRtcEngine"/> 的生命周期内最多可创建五个数据流。离开频道时数据流会被销毁，如需继续使用需重新创建。
-
-如果你需要一个更全面的低延迟、高并发、可扩展的实时消息和状态同步解决方案，建议使用 <codeph>Signaling</codeph>。</note>
+            <note props="android">每个用户在 <xref keyref="IRtcEngine"/> 的生命周期内最多可创建五个数据流。离开频道时数据流会被销毁，如需继续使用需重新创建。如果你需要一个更全面的低延迟、高并发、可扩展的实时消息和状态同步解决方案，建议使用 <codeph>Signaling</codeph>。</note>
             <note props="ios">每个用户在 <xref keyref="IRtcEngine"/> 的生命周期内最多可以创建五个数据流。离开频道时数据流会被销毁，如需使用需重新创建。如果你需要一个更全面的低延迟、高并发、可扩展的实时消息和状态同步解决方案，建议使用 <codeph>Signaling</codeph>。</note>
             <note props="mac">每个用户在 <xref keyref="IRtcEngine"/> 的生命周期内最多可以创建五个数据流。离开频道时数据流会被销毁，如需使用需重新创建。如果你需要一个更全面的低延迟、高并发、可扩展的实时消息和状态同步解决方案，建议使用 <codeph>Signaling</codeph>。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
-            <p props="cpp">建议在调用 <xref keyref="joinChannelEx"/> 后调用该方法。</p>
+            <p props="cpp">在调用 <xref keyref="joinChannelEx"/> 后调用。</p>
             <p props="android">请在调用 <xref keyref="joinChannelEx"/> 后使用该方法。</p>
             <p props="ios">请在调用 <codeph>joinChannelExByToken</codeph> 方法后调用该方法。</p>
             <p props="mac">请在调用 <codeph>joinChannelExByToken</codeph> 方法后调用该方法。</p>
@@ -59,11 +57,11 @@
                 </plentry>
                 <plentry props="android">
                     <pt>config</pt>
-                    <pd>数据流的配置，详见 <xref keyref="DataStreamConfig"/>。</pd>
+                    <pd>数据流的配置。详见 <xref keyref="DataStreamConfig"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>connection</pt>
-                    <pd>连接信息，详见 <xref keyref="RtcConnection"/>。</pd>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>streamId</pt>
@@ -101,7 +99,7 @@
             </p>
             <p props="android">
                 <ul>
-                    <li>方法调用成功，返回创建的数据流 ID。</li>
+                    <li>0：方法调用成功，返回创建的数据流 ID。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>

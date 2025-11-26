@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startrtmpstreamwithtranscoding">
     <title><ph keyref="startRtmpStreamWithTranscoding"/></title>
-    <shortdesc id="short"><ph id="shortdesc">开始旁路推流并设置转码配置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">开始旁路推流并设置转码配置。</ph><ph id="shortdesc" props="android">开始旁路推流并设置转码配置。</ph><ph id="shortdesc" props="ios">开始旁路推流并设置转码配置。</ph><ph id="shortdesc" props="mac">开始旁路推流并设置转码配置。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,21 +20,21 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">你可以调用该方法将音视频流推送到指定的 CDN 地址，并设置转码配置。该方法每次只能将媒体流推送到一个 CDN 地址，如需推送到多个地址，请多次调用该方法。在一个声网项目下，默认最多支持 200 个并发的旁路推流任务。如需更高配额，请[联系技术支持](https://ticket.shengwang.cn/)。</p>
+            <p props="cpp">声网建议你使用服务端旁路推流功能，详见 <codeph>使用 RESTful API 实现推流</codeph>。你可以调用该方法将实时音视频流推送到指定的 CDN 地址，并设置转码配置。该方法每次只能将媒体流推送到一个 CDN 地址。如果你需要推送到多个地址，请多次调用该方法。在同一个声网项目下，默认最多支持 200 个并发的媒体流推送任务。如果你需要更高的配额，请[联系技术支持](https://ticket.shengwang.cn/)。</p>
             <p props="android">你可以调用该方法将实时音视频流推送到指定的 CDN 地址，并设置转码配置。该方法每次只能将媒体流推送到一个 CDN 地址。如果需要推送到多个地址，请多次调用该方法。在一个声网项目下，默认最多可同时进行 200 个媒体流推送任务。如需更高配额，请[联系技术支持](https://ticket.shengwang.cn/)。</p>
             <p props="ios">你可以调用该方法将音视频流推送到指定的 CDN 地址，并设置转码配置。该方法每次只能推送到一个 CDN 地址，如需推送到多个地址，请多次调用该方法。在一个声网项目下，默认最多支持 200 个并发的旁路推流任务。如需更高配额，请[联系技术支持](https://ticket.shengwang.cn/)。</p>
             <p props="mac">你可以调用该方法将音视频流推送到指定的 CDN 地址，并设置转码配置。该方法每次只能推送到一个 CDN 地址，如需推送到多个地址，请多次调用该方法。在一个声网项目下，默认最多支持 200 个并发的旁路推流任务。如需更高配额，请[联系技术支持](https://ticket.shengwang.cn/)。</p>
             <note props="cpp">
                 <ul>
                     <li>请在加入频道后调用该方法。</li>
-                    <li>仅在 <codeph>LIVE_BROADCASTING</codeph> 频道场景中的主播可以调用该方法。</li>
-                    <li>如果你想在推流失败后重试推流，请确保先调用 <xref keyref="stopRtmpStream"/> 停止推流，再调用该方法重试，否则 SDK 会返回与上次失败相同的错误码。</li>
+                    <li>只有在极速直播频道场景中的主播角色可以调用该方法。</li>
+                    <li>如果你想在推流失败后重试推流，请先调用 <xref keyref="stopRtmpStream"/> 停止推流，再调用该方法重试，否则 SDK 会返回与上次推流失败相同的错误码。</li>
                 </ul>
             </note>
             <note props="android">
                 <ul>
                     <li>请在加入频道后调用该方法。</li>
-                    <li>只有在 <codeph>LIVE_BROADCASTING</codeph> 频道场景中的主播角色可以调用该方法。</li>
+                    <li>仅在极速直播频道场景中，主播角色可以调用该方法。</li>
                     <li>如果推流失败后需要重试，请先调用 <xref keyref="stopRtmpStream"/> 停止推流，再调用该方法重新推流；否则，SDK 会返回与上次失败相同的错误码。</li>
                 </ul>
             </note>
@@ -53,8 +53,16 @@
                 </ul>
             </note>
         </section>
-        <section id="related" deliveryTarget="details" props="ios mac">
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="android ios mac">
             <title>相关回调</title>
+            <p props="android">成功调用该方法后，SDK 会触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调报告推流状态。</p>
             <p props="ios">成功调用该方法后，SDK 会触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调报告推流状态。</p>
             <p props="mac">成功调用该方法后，SDK 会触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调报告推流状态。</p>
         </section>
@@ -63,19 +71,19 @@
             <parml>
                 <plentry props="cpp">
                     <pt>url</pt>
-                    <pd>旁路推流地址，格式为 RTMP 或 RTMPS。字符长度不能超过 1024 字节。不支持中文等特殊字符。</pd>
+                    <pd>旁路推流地址，格式为 RTMP 或 RTMPS。地址长度不能超过 1024 字节，不支持中文等特殊字符。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>transcoding</pt>
-                    <pd>旁路推流的转码配置，详见 <xref keyref="LiveTranscoding"/>。</pd>
+                    <pd>旁路推流的转码配置。详见 <xref keyref="LiveTranscoding"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>url</pt>
-                    <pd>旁路推流地址。格式为 RTMP 或 RTMPS，字符长度不能超过 1024 字节。不支持中文等特殊字符。</pd>
+                    <pd>旁路推流地址，格式为 RTMP 或 RTMPS，字符长度不能超过 1024 字节。不支持中文等特殊字符。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>transcoding</pt>
-                    <pd>旁路推流的转码配置。详见 <xref keyref="LiveTranscoding"/>。</pd>
+                    <pd>旁路推流的转码配置，详见 <xref keyref="LiveTranscoding"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>url</pt>
@@ -104,7 +112,7 @@
                         <ul>
                             <li>-2：URL 或转码配置不合法，请检查 <codeph>url</codeph> 和 <codeph>transcoding</codeph>。</li>
                             <li>-7：调用该方法前未初始化 SDK。</li>
-                            <li>-19：旁路推流地址已被使用，请更换其他地址。</li>
+                            <li>-19：旁路推流地址已被使用，请更换地址。</li>
                         </ul>
                     </li>
                 </ul>
@@ -114,9 +122,9 @@
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
                         <ul>
-                            <li>-2：<codeph>url</codeph> 或转码配置不合法；请检查 <codeph>url</codeph> 和转码配置。</li>
+                            <li>-2：<codeph>url</codeph> 或转码配置不合法，请检查 <codeph>url</codeph> 和转码配置。</li>
                             <li>-7：调用该方法前未初始化 SDK。</li>
-                            <li>-19：旁路推流地址已被使用；请更换其他地址。</li>
+                            <li>-19：旁路推流地址已被使用，请更换其他地址。</li>
                         </ul>
                     </li>
                 </ul>

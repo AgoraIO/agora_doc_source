@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_getfaceshapebeautyoptions">
     <title><ph keyref="getFaceShapeBeautyOptions"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获取当前的美颜特效设置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取当前的美型选项。</ph><ph id="shortdesc" props="android">获取当前的美颜特效设置。</ph><ph id="shortdesc" props="ios">获取美颜特效选项。</ph><ph id="shortdesc" props="mac">获取美颜特效选项。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,12 +20,12 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="android">你可以调用该方法获取当前的美颜特效设置，用于在应用中打开美颜样式和强度菜单时，刷新界面并更新 UI。</p>
+            <p props="android">当用户在应用中打开美颜风格和风格强度菜单时，可以调用 <codeph>getFaceShapeBeautyOptions</codeph> 获取当前的美颜特效设置，并根据返回结果刷新菜单和更新 UI。</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">在调用 <xref keyref="enableVideo"/> 方法之后调用。</p>
-            <p props="android">在调用 <xref keyref="enableVideo"/> 方法之后调用。</p>
+            <p props="android">在调用 <xref keyref="enableVideo"/> 之后调用此方法。</p>
             <p props="ios">在调用 <xref keyref="enableVideo"/> 后调用此方法。</p>
             <p props="mac">在调用 <xref keyref="enableVideo"/> 后调用此方法。</p>
         </section>
@@ -34,14 +34,14 @@
             <parml>
                 <plentry props="cpp">
                     <pt>options</pt>
-                    <pd>输出参数，表示当前的美型风格选项。详见 <xref keyref="FaceShapeBeautyOptions"/>。</pd>
+                    <pd>输出参数，美型风格选项。详见 <xref keyref="FaceShapeBeautyOptions"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>type</pt>
                     <pd>应用滤镜特效的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。
                         <ul>
                             <li>如果使用摄像头采集本地视频，使用默认值 <codeph>PRIMARY_CAMERA_SOURCE</codeph>。</li>
-                            <li>如果使用自定义视频源，将该参数设置为 <codeph>CUSTOM_VIDEO_SOURCE</codeph>。</li>
+                            <li>如果使用自定义视频源，设置为 <codeph>CUSTOM_VIDEO_SOURCE</codeph>。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -80,7 +80,7 @@
             <p props="android">
                 <ul>
                     <li>方法调用成功，返回 <xref keyref="FaceShapeBeautyOptions"/> 实例。</li>
-                    <li>方法调用失败，返回 <codeph>null</codeph>。</li>
+                    <li>方法调用失败，返回 <xref keyref="NULL"/>。</li>
                 </ul>
             </p>
             <p props="ios">方法调用成功，返回 <xref keyref="FaceShapeBeautyOptions"/> 对象，详见 <xref keyref="FaceShapeBeautyOptions"/>。方法调用失败，返回 <xref keyref="NULL"/>。</p>

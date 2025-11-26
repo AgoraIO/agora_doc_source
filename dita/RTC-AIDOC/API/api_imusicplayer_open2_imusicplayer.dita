@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imusicplayer_open2_imusicplayer">
     <title><ph keyref="open2_IMusicPlayer"/></title>
-    <shortdesc id="short"><ph id="shortdesc">通过 URL 打开音乐资源。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="android">通过 URL 打开音乐资源。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -17,8 +17,12 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="android">调用该方法后，SDK 会触发 <xref keyref="onPlayerSourceStateChanged"/> 回调。当播放状态变为 <codeph>OPEN_COMPLETED</codeph> 后，你可以调用 <codeph>play</codeph> 方法播放媒体文件。</p>
-            <note props="android">如果要打开的音乐资源受数字版权保护，必须使用此方法。对于不受数字版权保护的音乐资源，可以使用此方法或 <codeph>open</codeph> 方法打开。</note>
+            <p props="android">调用该方法会触发 <xref keyref="onPlayerSourceStateChanged"/> 回调。在收到播放状态为 <codeph>OPEN_COMPLETED</codeph> 的上报后，你可以调用 <xref keyref="Play_Player"/> 方法播放媒体文件。</p>
+            <note props="android">如果你要打开的音乐资源受数字版权保护，必须使用此方法打开。对于不受数字版权保护的音乐资源，你可以选择使用此方法，或使用 <codeph>open</codeph> 方法打开。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>调用时机</title>
+            <p props="android">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android">
             <title>参数</title>

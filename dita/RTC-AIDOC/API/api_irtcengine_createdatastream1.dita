@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_createdatastream1">
     <title><ph keyref="createDataStream1"/></title>
-    <shortdesc id="short"><ph id="shortdesc">创建数据流。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">创建一个数据流。</ph><ph id="shortdesc" props="android">创建一个数据流以提升数据传输的可靠性和顺序性。</ph><ph id="shortdesc" props="ios">创建数据流。</ph><ph id="shortdesc" props="mac">创建数据流。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -24,24 +24,25 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">你可以调用此方法创建数据流，以提升数据传输的可靠性和顺序性。</p>
             <p props="ios">你可以调用该方法创建一个数据流，以提升数据传输的可靠性和顺序性。你可以在加入频道前或后调用该方法。</p>
             <p props="mac">你可以调用该方法创建一个数据流，以提升数据传输的可靠性和顺序性。你可以在加入频道前或后调用该方法。</p>
-            <note props="cpp">每个用户在 <xref keyref="IRtcEngine"/> 生命周期中最多可创建五个数据流。离开频道时，数据流会被销毁，如需继续使用需重新创建。如果你需要更全面的低延迟、高并发、可扩展的实时消息和状态同步方案，建议使用 <codeph>Signaling</codeph>。</note>
-            <note props="android">每个用户在 <xref keyref="IRtcEngine"/> 生命周期内最多可创建五个数据流。离开频道时数据流会被销毁，如需继续使用需重新创建。如果你需要一个更全面的低延迟、高并发、可扩展的实时消息和状态同步解决方案，建议使用 <codeph>Signaling</codeph>。</note>
+            <note props="cpp">每个用户在 <xref keyref="IRtcEngine"/> 的生命周期内最多可以创建五个数据流。离开频道时，数据流会被销毁，如需继续使用需重新创建。
+如果你需要一个更全面的低延迟、高并发、可扩展的实时消息和状态同步解决方案，建议使用 <codeph>Signaling</codeph>。</note>
+            <note props="android">每个用户在 <xref keyref="IRtcEngine"/> 生命周期内最多可创建五个数据流。离开频道时，数据流会被销毁，如需继续使用需重新创建。如果你需要一个更全面的低延迟、高并发、可扩展的实时消息和状态同步解决方案，建议使用 <codeph>Signaling</codeph>。</note>
             <note props="ios">每个用户在 <xref keyref="IRtcEngine"/> 的生命周期内最多可创建五个数据流。离开频道时数据流会被销毁，如需继续使用需重新创建。如果你需要更全面的低延时、高并发、可扩展的实时消息和状态同步方案，建议使用 <codeph>Signaling</codeph>。</note>
             <note props="mac">每个用户在 <xref keyref="IRtcEngine"/> 的生命周期内最多可创建五个数据流。离开频道时数据流会被销毁，如需继续使用需重新创建。如果你需要更全面的低延时、高并发、可扩展的实时消息和状态同步方案，建议使用 <codeph>Signaling</codeph>。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">你可以在加入频道前或后调用此方法。</p>
-            <p props="android">你可以在加入频道前或后调用此方法。</p>
+            <p props="android">你可以在加入频道前或加入频道后调用此方法。</p>
             <p props="ios">你可以在加入频道前或后调用该方法。</p>
             <p props="mac">你可以在加入频道前或后调用该方法。</p>
         </section>
-        <section id="related" deliveryTarget="details" props="cpp">
+        <section id="related" deliveryTarget="details" props="android cpp">
             <title>相关回调</title>
-            <p props="cpp">设置 <codeph>reliable</codeph> 为 <xref keyref="true"/> 后，如果接收端在五秒内未收到数据，SDK 会触发 <xref keyref="onStreamMessageError"/> 回调并返回错误码。</p>
+            <p props="cpp">成功调用该方法后，如果接收端在五秒内未收到数据，SDK 会触发 <xref keyref="onStreamMessageError"/> 回调并返回错误码。</p>
+            <p props="android">成功调用该方法后，如果设置 <codeph>reliable</codeph> 为 <xref keyref="true"/> 且接收端在五秒内未收到数据，SDK 会触发 <xref keyref="onStreamMessageError"/> 回调并返回错误码。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
@@ -71,8 +72,8 @@
                     <pt>reliable</pt>
                     <pd>是否保证接收端在五秒内收到数据流：
                         <ul>
-                            <li><xref keyref="true"/>：接收端会在五秒内收到发送端的数据。如果接收端在五秒内未收到数据，SDK 会触发 <xref keyref="onStreamMessageError"/> 回调并返回错误码。</li>
-                            <li><xref keyref="false"/>：不保证接收端在五秒内收到数据流，延迟或丢失数据流不会返回错误信息。</li>
+                            <li><xref keyref="true"/>：接收端会在五秒内收到发送方的数据。如果未收到，SDK 会触发 <xref keyref="onStreamMessageError"/> 回调并返回错误码。</li>
+                            <li><xref keyref="false"/>：不保证接收端在五秒内收到数据，延迟或丢失不会触发错误回调。</li>
                         </ul>
                     </pd>
                 </plentry>

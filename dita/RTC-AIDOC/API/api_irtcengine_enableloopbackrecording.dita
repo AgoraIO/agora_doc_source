@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enableloopbackrecording">
     <title><ph keyref="enableLoopbackRecording"/></title>
-    <shortdesc id="short"><ph id="shortdesc">启用声卡回采功能。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">启用声卡回采功能。</ph><ph id="shortdesc" props="mac">启用声卡回采功能。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -23,7 +23,7 @@
                 <ul>
                     <li>该方法仅适用于 macOS 和 Windows 平台。</li>
                     <li>你可以在加入频道前或加入频道后调用该方法。</li>
-                    <li>如果你调用 <xref keyref="disableAudio"/> 方法禁用了音频模块，音频采集也会被禁用。若需启用音频采集，请先调用 <xref keyref="enableAudio"/> 方法启用音频模块，再调用 <xref keyref="enableLoopbackRecording"/> 方法。</li>
+                    <li>如果你调用了 <xref keyref="disableAudio"/> 方法禁用了音频模块，音频采集也会被禁用。若需启用音频采集，请先调用 <xref keyref="enableAudio"/> 方法启用音频模块，再调用 <xref keyref="enableLoopbackRecording"/> 方法。</li>
                 </ul>
             </note>
             <note props="mac">
@@ -34,6 +34,11 @@
                 </ul>
             </note>
         </section>
+        <section id="timing" deliveryTarget="details" props="cpp mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
+        </section>
         <section id="parameters" deliveryTarget="details" props="cpp mac">
             <title>参数</title>
             <parml>
@@ -41,8 +46,8 @@
                     <pt>enabled</pt>
                     <pd>是否启用声卡回采功能：
                         <ul>
-                            <li><xref keyref="true"/>：启用声卡回采。你可以在系统的 Audio Devices &gt; Output 中查看虚拟声卡名称。</li>
-                            <li><xref keyref="false"/>：禁用声卡回采。系统的 Audio Devices &gt; Output 中不会显示虚拟声卡名称。</li>
+                            <li><xref keyref="true"/>：启用声卡回采。你可以在系统的音频设备 &gt; 输出中找到虚拟声卡的名称。</li>
+                            <li><xref keyref="false"/>：禁用声卡回采。系统的音频设备 &gt; 输出中将不会显示虚拟声卡的名称。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -51,7 +56,7 @@
                     <pd>
                         <ul>
                             <li>macOS：虚拟声卡的设备名称。默认值为 <xref keyref="NULL"/>，表示使用 <codeph>AgoraALD</codeph> 进行声卡回采。</li>
-                            <li>Windows：声卡的设备名称。默认值为 <xref keyref="NULL"/>，表示 SDK 使用设备默认声卡进行声卡回采。</li>
+                            <li>Windows：声卡的设备名称。默认值为 <xref keyref="NULL"/>，表示 SDK 使用你设备的声卡进行声卡回采。</li>
                         </ul>
                     </pd>
                 </plentry>

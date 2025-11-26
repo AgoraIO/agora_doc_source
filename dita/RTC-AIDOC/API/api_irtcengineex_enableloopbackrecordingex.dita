@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_enableloopbackrecordingex">
     <title><ph keyref="enableLoopbackRecordingEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc">启用声卡回采功能。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">启用声卡回环音频采集。</ph><ph id="shortdesc" props="mac">启用回环音频采集。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -24,11 +24,16 @@
             <note props="cpp">
                 <ul>
                     <li>该方法仅适用于 macOS 和 Windows 平台。</li>
-                    <li>macOS 不支持默认声卡的回采。如需使用该功能，请使用虚拟声卡，并将其名称传入 <codeph>deviceName</codeph> 参数。推荐使用 <codeph>AgoraALD</codeph> 作为音频采集的虚拟声卡。</li>
+                    <li>macOS 不支持默认声卡的回环音频采集。如需使用该功能，请使用虚拟声卡，并将其名称传入 <codeph>deviceName</codeph> 参数。推荐使用 <codeph>AgoraALD</codeph> 作为音频采集的虚拟声卡。</li>
                     <li>该方法仅支持使用一个声卡进行音频采集。</li>
                 </ul>
             </note>
             <note props="mac">该方法仅支持使用一个声卡进行音频采集。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="cpp mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="cpp mac">
             <title>参数</title>
@@ -39,10 +44,10 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>enabled</pt>
-                    <pd>是否启用声卡回采：
+                    <pd>是否启用回环音频采集：
                         <ul>
-                            <li><xref keyref="true"/>：启用声卡回采。</li>
-                            <li><xref keyref="false"/>：（默认）关闭声卡回采。</li>
+                            <li><xref keyref="true"/>：启用回环音频采集。</li>
+                            <li><xref keyref="false"/>：（默认）禁用回环音频采集。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -50,8 +55,8 @@
                     <pt>deviceName</pt>
                     <pd>
                         <ul>
-                            <li>macOS：虚拟声卡的设备名称。默认值为 <xref keyref="NULL"/>，表示使用 <codeph>AgoraALD</codeph> 进行声卡回采。</li>
-                            <li>Windows：声卡的设备名称。默认值为 <xref keyref="NULL"/>，表示 SDK 使用你设备的声卡进行声卡回采。</li>
+                            <li>macOS：虚拟声卡的设备名称。默认值为 <xref keyref="NULL"/>，表示使用 <codeph>AgoraALD</codeph> 进行回环音频采集。</li>
+                            <li>Windows：声卡的设备名称。默认值为 <xref keyref="NULL"/>，表示 SDK 使用设备的默认声卡进行回环音频采集。</li>
                         </ul>
                     </pd>
                 </plentry>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onrhythmplayerstatechanged">
     <title><ph keyref="onRhythmPlayerStateChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc">虚拟节拍器状态发生变化时的回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">虚拟节拍器状态发生变化时的回调。</ph><ph id="shortdesc" props="android">虚拟节拍器状态发生变化回调。</ph><ph id="shortdesc" props="ios">当虚拟节拍器状态发生变化时触发的回调。</ph><ph id="shortdesc" props="mac">当虚拟节拍器状态发生变化时触发的回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -22,6 +22,13 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="cpp">
+                    <dt>废弃</dt>
+                    <dd>自 v4.6.0 版本废弃。</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">该回调用于报告虚拟节拍器的当前状态，指示本地音频流的状态，帮助你在音频异常时排查问题。</p>
             <p props="android">该回调用于报告虚拟节拍器的当前状态，指示本地音频流的状态，帮助你在音频异常发生时排查问题。</p>
             <p props="ios">当虚拟节拍器状态发生变化时，SDK 会触发该回调以报告当前虚拟节拍器的状态。该回调指示本地音频流的状态，并帮助你在音频异常发生时排查问题。</p>
             <p props="mac">当虚拟节拍器状态发生变化时，SDK 会触发该回调以报告当前虚拟节拍器的状态。该回调指示本地音频流的状态，并帮助你在音频异常发生时排查问题。</p>
@@ -39,11 +46,11 @@
             <parml>
                 <plentry props="cpp">
                     <pt>state</pt>
-                    <pd>虚拟节拍器的当前状态。详见 <xref keyref="RHYTHM_PLAYER_STATE_TYPE"/>。</pd>
+                    <pd>虚拟节拍器的当前状态，详见 <xref keyref="RHYTHM_PLAYER_STATE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>reason</pt>
-                    <pd>与虚拟节拍器相关的错误码和错误信息。详见 <xref keyref="RHYTHM_PLAYER_REASON"/>。</pd>
+                    <pd>与虚拟节拍器错误相关的错误码和错误信息，详见 <xref keyref="RHYTHM_PLAYER_REASON"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>state</pt>

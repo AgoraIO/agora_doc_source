@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_sendstreammessage">
     <title><ph keyref="sendStreamMessage"/></title>
-    <shortdesc id="short"><ph id="shortdesc">发送数据流消息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">发送数据流消息。</ph><ph id="shortdesc" props="android">发送数据流消息。</ph><ph id="shortdesc" props="ios">发送数据流消息。</ph><ph id="shortdesc" props="mac">发送数据流消息。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -22,15 +22,11 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">调用 <codeph>createDataStream</codeph> 后，可以使用该方法向频道内的所有用户发送数据流消息。SDK 对该方法有限制：
+            <p props="cpp">调用 <codeph>createDataStream</codeph> 后，可以调用该方法向频道内的所有用户发送数据流消息。</p>
+            <p props="android">你可以在调用 <codeph>createDataStream</codeph> 方法并加入频道后，调用该方法向频道内的所有用户发送数据流消息。SDK 对该方法有限制：
                 <ul>
-                    <li>每个客户端在频道中最多可同时拥有 5 个数据通道，所有数据通道共享的总包比特率上限为 30 KB/s。</li>
+                    <li>每个客户端实例在频道中最多可同时拥有 5 个数据通道，所有数据通道共享的总包传输码率上限为 30 KB/s。</li>
                     <li>每个数据通道每秒最多可发送 60 个数据包，每个数据包最大为 1 KB。</li>
-                </ul><ph>调用成功后，远端用户会收到 <xref keyref="onStreamMessage"/> 回调；调用失败时，远端用户会收到 <xref keyref="onStreamMessageError"/> 回调。</ph></p>
-            <p props="android">
-                <ul>
-                    <li>每个客户端最多可同时创建 5 个数据流通道，所有通道共享的总发送速率上限为 30 KB/s。</li>
-                    <li>每个数据流通道最多支持每秒发送 60 个数据包，每个数据包最大为 1 KB。</li>
                 </ul>
             </p>
             <p props="ios">调用 <xref keyref="createDataStream2"/> 后，你可以使用此方法向频道内的所有用户发送数据流消息。SDK 对此方法有以下限制：
@@ -45,16 +41,17 @@
                     <li>每个数据通道每秒最多可发送 60 个数据包，每个数据包最大为 1 KB。</li>
                 </ul>
             </p>
-            <note props="cpp">如果你需要一个更全面的解决方案，以实现低延迟、高并发和可扩展的实时消息传递与状态同步，建议使用 <codeph>Signaling</codeph>。
+            <note props="cpp">
                 <ul>
+                    <li>如果你需要一个更全面的解决方案，以实现低延迟、高并发和可扩展的实时消息传递和状态同步，建议使用 <codeph>Signaling</codeph>。</li>
                     <li>该方法需在调用 <codeph>createDataStream</codeph> 并加入频道后调用。</li>
-                    <li>此方法仅适用于主播角色。</li>
+                    <li>该方法仅适用于主播角色。</li>
                 </ul>
             </note>
-            <note props="android">如果你需要一个更全面的解决方案，以实现低延迟、高并发和可扩展的实时消息传递和状态同步，建议使用 <codeph>Signaling</codeph>。
+            <note props="android">如果你需要更全面的低延时、高并发、可扩展的实时消息和状态同步解决方案，建议使用 <codeph>Signaling</codeph>。
                 <ul>
                     <li>该方法需在调用 <codeph>createDataStream</codeph> 并加入频道后调用。</li>
-                    <li>该方法仅适用于主播。</li>
+                    <li>该方法仅适用于主播角色。</li>
                 </ul>
             </note>
             <note props="ios">如果你需要一个更全面的解决方案来实现低延迟、高并发和可扩展的实时消息传递和状态同步，建议使用 <codeph>Signaling</codeph>。
@@ -70,9 +67,17 @@
                 </ul>
             </note>
         </section>
-        <section id="related" deliveryTarget="details" props="android">
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="android cpp">
             <title>相关回调</title>
-            <p props="android">成功调用该方法后，远端客户端会触发 <xref keyref="onStreamMessage"/> 回调以接收数据流消息。调用失败时，远端客户端会触发 <xref keyref="onStreamMessageError"/> 回调。</p>
+            <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onStreamMessage"/> 回调，远端用户可通过该回调接收数据流消息。调用失败时，SDK 会触发远端的 <xref keyref="onStreamMessageError"/> 回调。</p>
+            <p props="android">成功调用该方法后，远端会触发 <xref keyref="onStreamMessage"/> 回调接收数据流消息。调用失败时，远端会触发 <xref keyref="onStreamMessageError"/> 回调。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>

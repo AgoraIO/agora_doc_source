@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_joinchannel2">
     <title><ph keyref="joinChannel2"/></title>
-    <shortdesc id="short"><ph id="shortdesc">加入频道并设置媒体选项。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">加入频道并设置媒体选项。</ph><ph id="shortdesc" props="android">加入频道并设置媒体选项。</ph><ph id="shortdesc" props="ios">加入频道并设置媒体选项。</ph><ph id="shortdesc" props="mac">加入频道并设置媒体选项。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -29,7 +29,7 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">该方法新增了 <codeph>options</codeph> 参数，用于设置媒体选项，例如是否在频道内发布音视频流，或在加入频道时是否自动订阅所有远端用户的音视频流。默认情况下，用户会订阅频道中所有其他用户的音视频流，从而产生使用量和计费。如需停止订阅其他流，请设置 <codeph>options</codeph> 参数或调用相应的 <xref keyref="mute"/> 方法。</p>
-            <p props="android">该方法相比 <codeph>joinChannel</codeph> 新增了 <codeph>options</codeph> 参数，用于设置媒体选项，例如是否在频道内发布音视频流，或在加入频道时是否自动订阅所有远端用户的音视频流。默认情况下，用户会订阅频道中所有其他用户的音视频流，从而产生使用量和计费。如需停止订阅其他流，请设置 <codeph>options</codeph> 参数或调用相应的 <xref keyref="mute"/> 方法。</p>
+            <p props="android">该方法相比 <codeph>joinChannel</codeph> 增加了 <codeph>options</codeph> 参数，用于设置媒体选项，例如是否在频道内发布音视频流，或在加入频道时是否自动订阅所有远端用户的音视频流。默认情况下，用户会订阅频道中所有其他用户的音视频流，从而产生使用量和计费。如需停止订阅其他流，请设置 <codeph>options</codeph> 参数或调用相应的 <xref keyref="mute"/> 方法。</p>
             <p props="ios">该方法新增了 <codeph>mediaOptions</codeph> 参数，用于设置媒体选项，例如是否在频道内发布音视频流，或在加入频道时是否自动订阅所有远端用户的音视频流。默认情况下，用户会订阅频道中所有其他用户的音视频流，从而产生使用量和计费。如需停止订阅其他流，请设置 <codeph>mediaOptions</codeph> 参数或调用相应的 <codeph>mute</codeph> 方法。</p>
             <p props="mac">该方法新增了 <codeph>mediaOptions</codeph> 参数，用于设置媒体选项，例如是否在频道内发布音视频流，或在加入频道时是否自动订阅所有远端用户的音视频流。默认情况下，用户会订阅频道中所有其他用户的音视频流，从而产生使用量和计费。如需停止订阅其他流，请设置 <codeph>mediaOptions</codeph> 参数或调用相应的 <codeph>mute</codeph> 方法。</p>
             <note props="cpp">
@@ -60,13 +60,13 @@
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">请在调用 <xref keyref="initialize"/> 方法后调用该方法。</p>
-            <p props="android">请在调用 <xref keyref="create_ILocalSpatialAudioEngine"/> 方法之后调用该方法。</p>
+            <p props="android">请在调用 <xref keyref="create_ILocalSpatialAudioEngine"/> 方法后调用该方法。</p>
             <p props="ios">请在调用 <xref keyref="initialize"/> 之后调用该方法。</p>
             <p props="mac">请在调用 <xref keyref="initialize"/> 之后调用该方法。</p>
         </section>
         <section id="related" deliveryTarget="details" props="cpp">
             <title>相关回调</title>
-            <p props="cpp">成功调用该方法后，本地客户端会触发 <xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/> 回调；远端客户端会触发 <xref keyref="onUserJoined"/> 回调（当用户在 <codeph>COMMUNICATION</codeph> 频道场景中加入频道，或主播在 <codeph>LIVE_BROADCASTING</codeph> 频道场景中加入频道时）。当由于网络状况不佳导致本地客户端与声网服务器的连接中断时，SDK 会尝试重连服务器。当本地客户端成功重回频道时，SDK 会触发本地客户端的 <xref keyref="onRejoinChannelSuccess"/> 回调。</p>
+            <p props="cpp">成功调用该方法后，本地客户端会触发 <xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/> 回调。若在 <codeph>COMMUNICATION</codeph> 频道场景中有用户加入频道，或在 <codeph>LIVE_BROADCASTING</codeph> 频道场景中有主播加入频道，远端客户端会触发 <xref keyref="onUserJoined"/> 回调。当由于网络状况不佳导致本地客户端与声网服务器的连接中断时，SDK 会尝试重连服务器。当本地客户端成功重回频道时，SDK 会在本地客户端触发 <xref keyref="onRejoinChannelSuccess"/> 回调。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
@@ -77,18 +77,18 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>channelId</pt>
-                    <pd>频道名。在相同 App ID 的前提下，填写相同频道名的用户会进入同一个频道进行音视频互动。字符串长度不得超过 64 字节。支持的字符（共 89 个）：
+                    <pd>频道名。在相同 App ID 前提下，填写相同频道名的用户会进入同一个频道进行音视频互动。字符串长度必须小于 64 字节。支持的字符（共 89 个）：
                         <ul>
                             <li>所有小写英文字母：a 到 z。</li>
                             <li>所有大写英文字母：A 到 Z。</li>
                             <li>所有数字字符：0 到 9。</li>
-                            <li>"!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", "&gt;", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","。</li>
+                            <li>"!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", "&gt;", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>uid</pt>
-                    <pd>用户 ID。用于标识频道中的用户以进行实时音视频互动。你需要自行设置和管理用户 ID，并确保同一频道内每个用户 ID 唯一。该参数为 32 位无符号整数，取值范围为 1 到 2^32-1。如果未指定用户 ID（或设置为 0），SDK 会自动分配一个随机用户 ID，并在 <xref keyref="onJoinChannelSuccess"/> 回调中返回。你的应用程序必须记录并维护返回的用户 ID，SDK 不会保存。</pd>
+                    <pd>用户 ID。用于标识频道中的用户以进行实时音视频互动。你需要自行设置和管理用户 ID，并确保同一频道中每个用户 ID 唯一。该参数为 32 位无符号整数，取值范围为 1 到 2^32-1。如果未指定用户 ID（或设置为 0），SDK 会自动分配一个随机用户 ID，并在 <xref keyref="onJoinChannelSuccess"/> 回调中返回。你的应用程序必须记录并维护返回的用户 ID，SDK 不会保存。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>options</pt>
@@ -96,11 +96,11 @@
                 </plentry>
                 <plentry props="android">
                     <pt>token</pt>
-                    <pd>在你的服务器上生成的用于鉴权的 Token。</pd>
+                    <pd>用于鉴权的 Token，由你的服务器生成。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>channelId</pt>
-                    <pd>频道名。该参数表示用户进行实时音视频互动的频道。在相同 App ID 的前提下，填写相同频道名的用户会进入同一个频道进行音视频互动。字符串长度必须小于 64 字节。支持的字符（共 89 个）：
+                    <pd>频道名。在相同 App ID 前提下，填写相同频道名的用户会进入同一个频道进行音视频互动。字符串长度需小于 64 字节。支持的字符（共 89 个）：
                         <ul>
                             <li>所有小写英文字母：a 到 z。</li>
                             <li>所有大写英文字母：A 到 Z。</li>
@@ -111,7 +111,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>uid</pt>
-                    <pd>用户 ID。用于标识频道中的用户以进行实时音视频互动。你需要自行设置和管理用户 ID，并确保同一频道中每个用户 ID 唯一。该参数为 32 位有符号整数，取值范围为 -2³¹ 到 2³¹-1。如果未指定用户 ID（或设置为 0），SDK 会自动分配一个随机用户 ID，并在 <xref keyref="onJoinChannelSuccess"/> 回调中返回。你的应用程序必须记录并维护返回的用户 ID，SDK 不会保存。</pd>
+                    <pd>用户 ID。用于标识频道中的用户以进行实时音视频互动。你需要自行设置和管理用户 ID，并确保同一频道中每个用户 ID 唯一。该参数为 32 位有符号整数，取值范围为 -2^31 到 2^31-1。如果未指定用户 ID（或设置为 0），SDK 会自动分配一个随机用户 ID，并通过 <xref keyref="onJoinChannelSuccess"/> 回调返回。你的应用需记录并维护该返回的用户 ID，SDK 不会保存。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>options</pt>
@@ -183,10 +183,10 @@
                             <li>-2：参数无效。例如，Token 无效，<codeph>uid</codeph> 参数未设置为整数，或 <xref keyref="ChannelMediaOptions"/> 中的成员值无效。请传入有效参数并重新加入频道。</li>
                             <li>-3：<xref keyref="IRtcEngine"/> 对象初始化失败。请重新初始化 <xref keyref="IRtcEngine"/> 对象。</li>
                             <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。请先初始化 <xref keyref="IRtcEngine"/> 对象再调用该方法。</li>
-                            <li>-8：<xref keyref="IRtcEngine"/> 对象内部状态错误。典型原因是在调用 <xref keyref="startEchoTest3"/> 开始通话回路测试后，未调用 <xref keyref="stopEchoTest"/> 停止测试就调用该方法加入频道。请先调用 <xref keyref="stopEchoTest"/> 再调用该方法。</li>
-                            <li>-17：加入频道请求被拒绝。典型原因是用户已在频道中。声网建议使用 <xref keyref="onConnectionStateChanged"/> 回调判断用户是否在频道中。仅当收到 <codeph>CONNECTION_STATE_DISCONNECTED</codeph>（1）状态时再调用该方法加入频道。</li>
-                            <li>-102：频道名无效。请在 <codeph>channelId</codeph> 中传入有效的频道名重新加入频道。</li>
-                            <li>-121：用户 ID 无效。请在 <codeph>uid</codeph> 中传入有效的用户 ID 重新加入频道。</li>
+                            <li>-8：<xref keyref="IRtcEngine"/> 对象内部状态错误。常见原因是在调用 <xref keyref="startEchoTest3"/> 开始通话回路测试后，未调用 <xref keyref="stopEchoTest"/> 停止测试就调用该方法加入频道。请先调用 <xref keyref="stopEchoTest"/> 再调用该方法。</li>
+                            <li>-17：加入频道请求被拒绝。常见原因是用户已在频道中。声网建议使用 <xref keyref="onConnectionStateChanged"/> 回调判断用户是否在频道中。仅当收到 <codeph>CONNECTION_STATE_DISCONNECTED</codeph>（1）状态时再调用该方法加入频道。</li>
+                            <li>-102：频道名无效。请在 <codeph>channelId</codeph> 中传入有效频道名重新加入频道。</li>
+                            <li>-121：用户 ID 无效。请在 <codeph>uid</codeph> 中传入有效用户 ID 重新加入频道。</li>
                         </ul>
                     </li>
                 </ul>
@@ -196,13 +196,13 @@
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
                         <ul>
-                            <li>-2：参数无效。例如，Token 无效，<codeph>uid</codeph> 参数未设置为整数，或 <xref keyref="ChannelMediaOptions"/> 中的成员值无效。请传入有效参数并重新加入频道。</li>
+                            <li>-2：参数无效。例如，Token 无效，<codeph>uid</codeph> 参数未设置为整数，或 <codeph>options</codeph> 中的成员值无效。请传入有效参数并重新加入频道。</li>
                             <li>-3：<xref keyref="IRtcEngine"/> 对象初始化失败。请重新初始化 <xref keyref="IRtcEngine"/> 对象。</li>
                             <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。请先初始化 <xref keyref="IRtcEngine"/> 对象再调用该方法。</li>
-                            <li>-8：<xref keyref="IRtcEngine"/> 对象内部状态错误。典型原因是在调用 <xref keyref="startEchoTest3"/> 开始通话回路测试后，未调用 <xref keyref="stopEchoTest"/> 停止测试就调用该方法加入频道。请先调用 <xref keyref="stopEchoTest"/> 再调用该方法。</li>
-                            <li>-17：加入频道请求被拒绝。典型原因是用户已在频道中。声网建议使用 <xref keyref="onConnectionStateChanged"/> 回调判断用户是否在频道中。仅当收到 <codeph>CONNECTION_STATE_DISCONNECTED</codeph>（1）状态时再调用该方法加入频道。</li>
-                            <li>-102：频道名无效。请在 <codeph>channelId</codeph> 中传入有效的频道名重新加入频道。</li>
-                            <li>-121：用户 ID 无效。请在 <codeph>uid</codeph> 中传入有效的用户 ID 重新加入频道。</li>
+                            <li>-8：<xref keyref="IRtcEngine"/> 对象内部状态错误。常见原因是在调用 <xref keyref="startEchoTest3"/> 开始通话回路测试后，未调用 <xref keyref="stopEchoTest"/> 停止测试就调用该方法加入频道。请先调用 <xref keyref="stopEchoTest"/> 再调用该方法。</li>
+                            <li>-17：加入频道请求被拒绝。常见原因是用户已在频道中。声网建议使用 <xref keyref="onConnectionStateChanged"/> 回调判断用户是否在频道中。仅当收到 <codeph>CONNECTION_STATE_DISCONNECTED</codeph>（1）状态时再调用该方法加入频道。</li>
+                            <li>-102：频道名无效。请在 <codeph>channelId</codeph> 中传入有效频道名重新加入频道。</li>
+                            <li>-121：用户 ID 无效。请在 <codeph>uid</codeph> 中传入有效用户 ID 重新加入频道。</li>
                         </ul>
                     </li>
                 </ul>

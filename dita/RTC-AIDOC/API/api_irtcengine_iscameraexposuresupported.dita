@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_iscameraexposuresupported">
     <title><ph keyref="isCameraExposureSupported"/></title>
-    <shortdesc id="short"><ph id="shortdesc">查询当前摄像头是否支持调节曝光值。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">查询当前摄像头是否支持调节曝光值。</ph><ph id="shortdesc" props="ios">查询当前摄像头是否支持调节曝光值。</ph><ph id="shortdesc" props="android">查询当前摄像头是否支持调节曝光值。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -49,6 +49,12 @@
                 </ul>
             </note>
             <note props="android">该方法必须在 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>（1）后调用。在调用 <xref keyref="setCameraExposureFactor"/> 之前，建议先调用该方法查询当前摄像头是否支持调节曝光值。该方法会调节当前激活摄像头的曝光值，即调用 <xref keyref="setCameraCapturerConfiguration"/> 时指定的摄像头。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
         </section>
         <section id="return_values" props="android cpp ios">
             <title>返回值</title>

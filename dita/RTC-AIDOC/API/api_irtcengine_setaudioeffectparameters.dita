@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setaudioeffectparameters">
     <title><ph keyref="setAudioEffectParameters"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置 SDK 预设音效的参数。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置 SDK 预设音效的参数。</ph><ph id="shortdesc" props="android">设置 SDK 预设音效的参数。</ph><ph id="shortdesc" props="ios">设置 SDK 预设音效的参数。</ph><ph id="shortdesc" props="mac">设置 SDK 预设音效的参数。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -26,21 +26,21 @@
                     <dd>自 v3.2.0 版本新增。</dd>
                 </dlentry>
             </dl>
-            <p props="cpp">调用该方法可为发送音频流的本地用户设置以下参数：
+            <p props="cpp">调用该方法可以为发送音频流的本地用户设置以下参数：
                 <ul>
-                    <li>3D 人声效果：设置 3D 人声效果的循环周期。</li>
-                    <li>音高修正效果：设置音高修正效果的基本模式和主音。</li>
-                </ul><ph>不同的歌曲有不同的模式和主音。声网建议将该方法与界面元素绑定，以便用户可以交互式地调整音高修正效果。</ph><ph>设置音频参数后，频道内所有用户都可以听到该效果。</ph><ph>为了获得更好的人声效果，建议在调用该方法前调用以下方法：</ph>
+                    <li>3D 人声效果：设置声音绕用户旋转的周期。</li>
+                    <li>音高修正效果：设置音高修正的基本模式和主音。</li>
+                </ul><ph>不同的歌曲有不同的模式和主音，建议将该方法与界面元素绑定，方便用户交互式调整音高修正效果。</ph><ph>设置后，频道内所有用户都能听到该音效。</ph><ph>为了获得更好的人声效果，建议在调用该方法前先调用以下方法：</ph>
                 <ul>
-                    <li>调用 <xref keyref="setAudioScenario"/> 将音频场景设置为高音质音频场景，即 <codeph>AUDIO_SCENARIO_GAME_STREAMING</codeph>（3）。</li>
-                    <li>调用 <codeph>setAudioProfile</codeph>，并将 <codeph>profile</codeph> 参数设置为 <codeph>AUDIO_PROFILE_MUSIC_HIGH_QUALITY</codeph>（4）或 <codeph>AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO</codeph>（5）。</li>
+                    <li>调用 <xref keyref="setAudioScenario"/> 将音频场景设置为高音质场景，即 <codeph>AUDIO_SCENARIO_GAME_STREAMING</codeph>（3）。</li>
+                    <li>调用 <codeph>setAudioProfile</codeph>，将 <codeph>profile</codeph> 设置为 <codeph>AUDIO_PROFILE_MUSIC_HIGH_QUALITY</codeph>（4）或 <codeph>AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO</codeph>（5）。</li>
                 </ul>
             </p>
             <p props="android">调用该方法为发送音频流的本地用户设置以下参数：
                 <ul>
                     <li><codeph>ROOM_ACOUSTICS_3D_VOICE</codeph>：设置 3D 语音效果的循环周期。</li>
-                    <li><codeph>PITCH_CORRECTION</codeph>：设置音高修正效果的基本模式和主音调。</li>
-                </ul><ph>为了获得更好的人声效果，建议在调用该方法前调用以下 API：</ph>
+                    <li><codeph>PITCH_CORRECTION</codeph>：设置音高修正效果的基本模式和主音。</li>
+                </ul><ph>不同的歌曲有不同的模式和主音。声网建议将该方法与界面元素绑定，以便用户可以交互式地调整音高修正效果。</ph><ph>设置音频参数后，频道内所有用户都可以听到该效果。</ph><ph>为了获得更好的人声效果，建议在调用该方法前调用以下 API：</ph>
                 <ul>
                     <li>调用 <xref keyref="setAudioScenario"/> 将音频场景设置为高音质音频场景，即 <codeph>AUDIO_SCENARIO_GAME_STREAMING</codeph>（3）。</li>
                     <li>调用 <codeph>setAudioProfile</codeph>，将 <codeph>profile</codeph> 参数设置为 <codeph>MUSIC_HIGH_QUALITY</codeph>（4）或 <codeph>MUSIC_HIGH_QUALITY_STEREO</codeph>（5）。</li>
@@ -105,6 +105,13 @@
                 </ul>
             </note>
         </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
+        </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
@@ -112,13 +119,13 @@
                     <pt>preset</pt>
                     <pd>SDK 预设音效选项，详见 <xref keyref="AUDIO_EFFECT_PRESET"/>：
                         <ul>
-                            <li><codeph>ROOM_ACOUSTICS_3D_VOICE</codeph>：3D 人声效果。
+                            <li><codeph>ROOM_ACOUSTICS_3D_VOICE</codeph>（10）：3D 人声效果。
                                 <ul>
-                                    <li>设置该枚举值前，需要将 <codeph>setAudioProfile</codeph> 中的 <codeph>profile</codeph> 参数设置为 <codeph>AUDIO_PROFILE_MUSIC_STANDARD_STEREO</codeph>（3）或 <codeph>AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO</codeph>（5），否则该设置不生效。</li>
-                                    <li>启用后，用户需使用立体声播放设备才能听到预期音效。</li>
+                                    <li>设置该枚举值前，需要将 <codeph>setAudioProfile</codeph> 中的 <codeph>profile</codeph> 设置为 <codeph>AUDIO_PROFILE_MUSIC_STANDARD_STEREO</codeph>（3）或 <codeph>AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO</codeph>（5），否则设置不生效。</li>
+                                    <li>启用后，用户需使用立体声播放设备才能听到预期效果。</li>
                                 </ul>
                             </li>
-                            <li><codeph>PITCH_CORRECTION</codeph>：音高修正效果。</li>
+                            <li><codeph>PITCH_CORRECTION</codeph>（11）：音高修正效果。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -126,8 +133,8 @@
                     <pt>param1</pt>
                     <pd>参数含义取决于 <codeph>preset</codeph> 的取值：
                         <ul>
-                            <li>当 <codeph>preset</codeph> 为 <codeph>ROOM_ACOUSTICS_3D_VOICE</codeph> 时，表示 3D 人声效果的循环周期，单位为秒，取值范围为 [1, 60]，默认值为 10，表示声音每 10 秒绕你一圈。</li>
-                            <li>当 <codeph>preset</codeph> 为 <codeph>PITCH_CORRECTION</codeph> 时，表示音高修正效果的基本模式：
+                            <li>若 <codeph>preset</codeph> 为 <codeph>ROOM_ACOUSTICS_3D_VOICE</codeph>，表示 3D 人声效果的循环周期，单位为秒，取值范围为 [1, 60]，默认值为 10，表示声音每 10 秒绕你一圈。</li>
+                            <li>若 <codeph>preset</codeph> 为 <codeph>PITCH_CORRECTION</codeph>，表示音高修正的基本模式：
                                 <ul>
                                     <li><codeph>1</codeph>：（默认）自然大调。</li>
                                     <li><codeph>2</codeph>：自然小调。</li>
@@ -141,8 +148,8 @@
                     <pt>param2</pt>
                     <pd>参数含义取决于 <codeph>preset</codeph> 的取值：
                         <ul>
-                            <li>当 <codeph>preset</codeph> 为 <codeph>ROOM_ACOUSTICS_3D_VOICE</codeph> 时，需将 <codeph>param2</codeph> 设置为 <codeph>0</codeph>。</li>
-                            <li>当 <codeph>preset</codeph> 为 <codeph>PITCH_CORRECTION</codeph> 时，表示音高修正效果的主音：
+                            <li>若 <codeph>preset</codeph> 为 <codeph>ROOM_ACOUSTICS_3D_VOICE</codeph>，需将 <codeph>param2</codeph> 设置为 <codeph>0</codeph>。</li>
+                            <li>若 <codeph>preset</codeph> 为 <codeph>PITCH_CORRECTION</codeph>，表示音高修正的主音：
                                 <ul>
                                     <li><codeph>1</codeph>：A。</li>
                                     <li><codeph>2</codeph>：A#。</li>
@@ -163,10 +170,15 @@
                 </plentry>
                 <plentry props="android">
                     <pt>preset</pt>
-                    <pd>SDK 预设音效的选项：
+                    <pd><codeph>SDK</codeph> 预设音效的选项：
                         <ul>
-                            <li><codeph>ROOM_ACOUSTICS_3D_VOICE</codeph>（3D 语音效果）：设置该枚举值前，需要将 <codeph>setAudioProfile</codeph> 中的 <codeph>profile</codeph> 参数设置为 <codeph>MUSIC_STANDARD_STEREO</codeph>（3）或 <codeph>MUSIC_HIGH_QUALITY_STEREO</codeph>（5），否则该设置不生效。启用该效果后，用户需使用立体声播放设备才能听到预期效果。</li>
-                            <li><codeph>PITCH_CORRECTION</codeph>（音高修正效果）。</li>
+                            <li><codeph>ROOM_ACOUSTICS_3D_VOICE</codeph>（3）：3D 语音效果。
+                                <ul>
+                                    <li>设置该枚举值前，需要将 <codeph>setAudioProfile</codeph> 中的 <codeph>profile</codeph> 参数设置为 <codeph>MUSIC_STANDARD_STEREO</codeph>（3）或 <codeph>MUSIC_HIGH_QUALITY_STEREO</codeph>（5），否则该设置不生效。</li>
+                                    <li>启用 3D 语音效果后，用户需使用立体声播放设备才能听到预期的语音效果。</li>
+                                </ul>
+                            </li>
+                            <li><codeph>PITCH_CORRECTION</codeph>（4）：音高修正效果。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -174,8 +186,8 @@
                     <pt>param1</pt>
                     <pd>
                         <ul>
-                            <li>当 <codeph>preset</codeph> 为 <codeph>ROOM_ACOUSTICS_3D_VOICE</codeph> 时，表示 3D 语音效果的循环周期，单位为秒，取值范围为 [1, 60]，默认值为 10，表示语音每 10 秒围绕你移动一圈。</li>
-                            <li>当 <codeph>preset</codeph> 为 <codeph>PITCH_CORRECTION</codeph> 时，表示音高修正效果的基本模式：
+                            <li>当 <codeph>preset</codeph> 为 <codeph>ROOM_ACOUSTICS_3D_VOICE</codeph> 时，<codeph>param1</codeph> 表示 3D 语音效果的循环周期，单位为秒，取值范围为 [1, 60]，默认值为 10，表示语音每 10 秒围绕你移动一圈。</li>
+                            <li>当 <codeph>preset</codeph> 为 <codeph>PITCH_CORRECTION</codeph> 时，<codeph>param1</codeph> 表示音高修正效果的基本模式：
                                 <ul>
                                     <li><codeph>1</codeph>：（默认）自然大调。</li>
                                     <li><codeph>2</codeph>：自然小调。</li>
@@ -189,8 +201,8 @@
                     <pt>param2</pt>
                     <pd>
                         <ul>
-                            <li>当 <codeph>preset</codeph> 为 <codeph>ROOM_ACOUSTICS_3D_VOICE</codeph> 时，必须设置为 <codeph>0</codeph>。</li>
-                            <li>当 <codeph>preset</codeph> 为 <codeph>PITCH_CORRECTION</codeph> 时，表示音高修正效果的主音调：
+                            <li>当 <codeph>preset</codeph> 为 <codeph>ROOM_ACOUSTICS_3D_VOICE</codeph> 时，<codeph>param2</codeph> 必须设置为 <codeph>0</codeph>。</li>
+                            <li>当 <codeph>preset</codeph> 为 <codeph>PITCH_CORRECTION</codeph> 时，<codeph>param2</codeph> 表示音高修正效果的主音：
                                 <ul>
                                     <li><codeph>1</codeph>：A</li>
                                     <li><codeph>2</codeph>：A#</li>

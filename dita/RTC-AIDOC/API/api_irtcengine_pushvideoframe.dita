@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_pushvideoframe">
     <title><ph keyref="pushVideoFrame"/></title>
-    <shortdesc id="short"><ph id="shortdesc">通过视频轨道向 SDK 推送外部原始视频帧。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="ios">通过视频轨道将外部原始视频帧推送到 SDK。</ph><ph id="shortdesc" props="android">通过视频轨道向 SDK 推送外部原始视频帧。</ph><ph id="shortdesc" props="mac">通过视频轨道将外部原始视频帧推送到 SDK。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -46,6 +46,12 @@
                     <li>如果你只想将外部视频数据用于本地预览而不发布到频道中，可以调用 <xref keyref="muteLocalVideoStream"/> 取消发送视频流，或调用 <xref keyref="updateChannelMediaOptions"/> 将 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="false"/>。</li>
                 </ul>
             </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android ios mac">
+            <title>调用时机</title>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android ios mac">
             <title>参数</title>

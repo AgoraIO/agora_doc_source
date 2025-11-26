@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onremotevideotransportstats">
     <title><ph keyref="onRemoteVideoTransportStats"/></title>
-    <shortdesc id="short"><ph id="shortdesc">报告每个远端视频流的传输层统计信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">报告每个远端视频流的传输层统计信息。</ph><ph id="shortdesc" props="android">远端视频流传输层统计信息回调。</ph><ph id="shortdesc" props="ios">上报每个远端视频流的传输层统计信息。</ph><ph id="shortdesc" props="mac">上报每个远端视频流的传输层统计信息。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -38,7 +38,7 @@
                     <dd>自 vX.X.X 版本废弃，请改用 <xref keyref="onRemoteVideoStats"/>。</dd>
                 </dlentry>
             </dl>
-            <p props="android">该回调上报传输层统计信息，例如远端视频包的丢包率和网络时延。自 vX.X.X 版本废弃，请改用 <xref keyref="onRemoteVideoStats"/>。</p>
+            <p props="android">该回调上报传输层的统计信息，例如丢包率和网络时延。该回调在通话过程中，当本地用户接收到远端用户或主播发送的视频包时，每 2 秒触发一次。</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>触发时机</title>
@@ -76,7 +76,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>lost</pt>
-                    <pd>远端用户发送的视频包的丢包率（%）。</pd>
+                    <pd>从远端用户发送的视频包的丢包率（%）。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>rxKBitRate</pt>

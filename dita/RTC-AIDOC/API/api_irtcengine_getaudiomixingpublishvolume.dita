@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_getaudiomixingpublishvolume">
     <title><ph keyref="getAudioMixingPublishVolume"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获取用于发布的混音音量。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取用于发布的混音音量。</ph><ph id="shortdesc" props="android">获取用于发布的混音音量。</ph><ph id="shortdesc" props="ios">获取用于发布的混音音量。</ph><ph id="shortdesc" props="mac">获取用于发布的混音音量。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -27,6 +27,13 @@
             <note props="android">你需要在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/>（<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>）回调后调用该方法。</note>
             <note props="ios">你需要在调用 <codeph>startAudioMixing</codeph> 并收到 <codeph>audioMixingStateChanged</codeph> 回调（<codeph>AgoraAudioMixingStateTypePlaying</codeph>）后调用此方法。</note>
             <note props="mac">你需要在调用 <codeph>startAudioMixing</codeph> 并收到 <codeph>audioMixingStateChanged</codeph> 回调（<codeph>AgoraAudioMixingStateTypePlaying</codeph>）后调用此方法。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="return_values" props="android cpp ios mac">
             <title>返回值</title>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ivideoeffectobject_addorupdatevideoeffect">
     <title><ph keyref="addOrUpdateVideoEffect"/></title>
-    <shortdesc id="short"><ph id="shortdesc">添加或更新指定视频特效节点和模板的特效。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">添加或更新指定视频特效节点和模板的特效。</ph><ph id="shortdesc" props="android">为指定的视频特效节点 ID 和模板添加或更新视频特效。</ph><ph id="shortdesc" props="ios">添加或更新指定节点 ID 和模板的视频特效。</ph><ph id="shortdesc" props="mac">添加或更新指定节点 ID 和模板的视频特效。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -75,6 +75,13 @@ addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codebloc
 addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codeblock>
             </note>
         </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
+        </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
@@ -98,7 +105,7 @@ addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codebloc
                 </plentry>
                 <plentry props="android">
                     <pt>templateName</pt>
-                    <pd>特效模板名称。如果设置为 <codeph>null</codeph> 或空字符串，SDK 会从资源包中加载默认参数配置。</pd>
+                    <pd>特效模板名称。如果设置为 <xref keyref="NULL"/> 或空字符串，SDK 会从资源包中加载默认参数配置。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>nodeId</pt>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setcamerastabilizationmode">
     <title><ph keyref="setCameraStabilizationMode"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置摄像头防抖模式。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置摄像头防抖模式。</ph><ph id="shortdesc" props="ios">设置摄像头防抖模式。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -18,10 +18,11 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">摄像头防抖模式默认关闭。你需要调用此方法开启防抖功能并设置合适的防抖模式。</p>
             <p props="ios">你需要调用该方法以开启防抖功能并设置合适的防抖模式。摄像头防抖模式默认关闭。</p>
             <note props="cpp">
                 <ul>
-                    <li>摄像头防抖仅适用于分辨率大于 1280 × 720 的场景。</li>
+                    <li>摄像头防抖仅适用于分辨率大于 1280 × 720 的视频场景。</li>
                     <li>启用摄像头防抖后，防抖等级越高，摄像头的视野越小，延迟越大。为提升用户体验，建议将 <codeph>mode</codeph> 参数设置为 <codeph>CAMERA_STABILIZATION_MODE_LEVEL_1</codeph>。</li>
                     <li>此方法仅适用于 iOS 平台。</li>
                 </ul>

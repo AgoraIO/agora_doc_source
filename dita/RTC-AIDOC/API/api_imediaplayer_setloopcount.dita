@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_setloopcount">
     <title><ph keyref="setLoopCount"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置音效的循环播放次数。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置音效的循环播放次数。</ph><ph id="shortdesc" props="android">设置音效的循环播放次数。</ph><ph id="shortdesc" props="ios">设置循环播放次数。</ph><ph id="shortdesc" props="mac">设置循环播放次数。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -24,6 +24,13 @@
             <p props="ios">调用此方法可设置循环播放次数。循环播放完成后，SDK 会触发 <xref keyref="onPlayerSourceStateChanged"/> 回调，并报告播放状态为 <codeph>AgoraMediaPlayerStatePlayBackAllLoopsCompleted</codeph>。</p>
             <p props="mac">调用此方法可设置循环播放次数。循环播放完成后，SDK 会触发 <xref keyref="onPlayerSourceStateChanged"/> 回调，并报告播放状态为 <codeph>AgoraMediaPlayerStatePlayBackAllLoopsCompleted</codeph>。</p>
             <note props="android">当循环播放完成后，SDK 会触发 <xref keyref="onPlayerSourceStateChanged"/> 回调，并报告播放状态为 <codeph>PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED</codeph>。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>

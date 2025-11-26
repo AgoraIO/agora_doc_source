@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_selectmultiaudiotrack">
     <title><ph keyref="selectMultiAudioTrack"/></title>
-    <shortdesc id="short"><ph id="shortdesc">选择用于本地播放和发布到频道的音轨。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">选择用于本地播放和发布到频道的音轨。</ph><ph id="shortdesc" props="android">选择要在本地设备播放和发布到频道的音轨。</ph><ph id="shortdesc" props="ios">分别选择要在本地设备播放和发布到频道的音轨。</ph><ph id="shortdesc" props="mac">分别选择要在本地设备播放和发布到频道的音轨。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -24,6 +24,13 @@
             <p props="android">在调用该方法前，你需要通过 <xref keyref="openWithMediaSource"/> 打开媒体文件，并在 <xref keyref="MediaSource"/> 中将 <codeph>enableMultiAudioTrack</codeph> 设置为 <xref keyref="true"/>。该方法适用于需要分别控制本地播放和频道发布音轨的场景，例如 KTV 场景中，主持人可以选择本地播放原唱音轨，同时将伴奏音轨发布到频道中。</p>
             <p props="ios">调用该方法可分别设置要在本地设备上播放和发布到频道的音轨。在调用该方法前，需要先调用 <xref keyref="openWithMediaSource"/> 打开媒体文件，并在 <xref keyref="MediaSource"/> 中将 <codeph>enableMultiAudioTrack</codeph> 设置为 <xref keyref="true"/>。</p>
             <p props="mac">调用该方法可分别设置要在本地设备上播放和发布到频道的音轨。在调用该方法前，需要先调用 <xref keyref="openWithMediaSource"/> 打开媒体文件，并在 <xref keyref="MediaSource"/> 中将 <codeph>enableMultiAudioTrack</codeph> 设置为 <xref keyref="true"/>。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>

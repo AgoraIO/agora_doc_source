@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_setremotevideostreamtypeex">
     <title><ph keyref="setRemoteVideoStreamTypeEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置要订阅的视频流类型。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置要订阅的视频流类型。</ph><ph id="shortdesc" props="android">设置要订阅的视频流类型。</ph><ph id="shortdesc" props="ios">设置你要订阅的视频流类型。</ph><ph id="shortdesc" props="mac">设置你要订阅的视频流类型。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -52,6 +52,13 @@
             <note props="android">如果发送端已调用 <xref keyref="setDualStreamModeEx"/> 并将 <codeph>mode</codeph> 设置为 <codeph>DISABLE_SIMULCAST_STREAM</codeph>，则调用该方法无效。你需要在发送端再次调用 <xref keyref="setDualStreamModeEx"/> 并调整设置。</note>
             <note props="ios">如果发送端已调用 <xref keyref="setDualStreamModeEx"/> 并将 <codeph>mode</codeph> 设置为 <codeph>AgoraDisableSimulcastStream</codeph>（从不发送低质量视频流），则调用此方法无效。你需要在发送端再次调用 <xref keyref="setDualStreamModeEx"/> 并调整设置。</note>
             <note props="mac">如果发送端已调用 <xref keyref="setDualStreamModeEx"/> 并将 <codeph>mode</codeph> 设置为 <codeph>AgoraDisableSimulcastStream</codeph>（从不发送低质量视频流），则调用此方法无效。你需要在发送端再次调用 <xref keyref="setDualStreamModeEx"/> 并调整设置。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>

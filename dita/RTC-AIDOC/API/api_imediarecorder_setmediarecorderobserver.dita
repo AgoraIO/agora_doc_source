@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediarecorder_setmediarecorderobserver">
     <title><ph keyref="setMediaRecorderObserver"/></title>
-    <shortdesc id="short"><ph id="shortdesc">注册 <xref keyref="IMediaRecorderObserver"/> 观察器。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">注册 <xref keyref="IMediaRecorderObserver"/> 观察器。</ph><ph id="shortdesc" props="android">注册一个用于音视频录制的回调观察者。</ph><ph id="shortdesc" props="ios">注册 <xref keyref="IMediaRecorderObserver"/> 观察者。</ph><ph id="shortdesc" props="mac">注册 <xref keyref="IMediaRecorderObserver"/> 观察者。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -45,7 +45,6 @@
                     <li>已使用 <xref keyref="createMediaRecorder"/> 创建媒体录制器对象。</li>
                 </ul>
             </p>
-            <p props="android">该方法用于设置音视频录制的回调，以便在录制过程中获取录制状态和相关信息。</p>
             <p props="ios">该方法用于设置音视频录制的回调，使你在录制过程中能够获取音视频流的录制状态和相关信息。
 
 在调用该方法前，请确保已创建并初始化 <xref keyref="IRtcEngine"/> 对象，并使用 <xref keyref="createMediaRecorder"/> 创建录制器实例。</p>
@@ -54,10 +53,17 @@
 在调用该方法前，请确保已创建并初始化 <xref keyref="IRtcEngine"/> 对象，并使用 <xref keyref="createMediaRecorder"/> 创建录制器实例。</p>
             <note props="android">在调用该方法前，请确保：
                 <ul>
-                    <li>已创建并初始化 <xref keyref="IRtcEngine"/> 实例。</li>
-                    <li>已通过 <xref keyref="createMediaRecorder"/> 创建音视频录制器实例。</li>
+                    <li><xref keyref="IRtcEngine"/> 对象已创建并初始化。</li>
+                    <li>已通过 <xref keyref="createMediaRecorder"/> 创建音视频录制对象。</li>
                 </ul>
             </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
@@ -88,8 +94,12 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">0：方法调用成功。
-&lt; 0：方法调用失败。详见 <codeph>Error Codes</codeph>。</p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>

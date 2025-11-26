@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startaudiorecording2">
     <title><ph keyref="startAudioRecording2"/></title>
-    <shortdesc id="short"><ph id="shortdesc">开始客户端音频录制并设置录制采样率。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">开始客户端音频录制并设置录制采样率。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -17,12 +17,23 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">调用该方法后，你可以在通话过程中录制频道内所有用户的音频，并生成包含所有声音的录音文件。录音文件仅支持以下格式：
+            <p props="cpp">调用该方法后，你可以在通话过程中在客户端录制频道中所有用户的音频，并生成包含所有声音的录音文件。录音文件仅支持以下格式：
                 <ul>
                     <li><codeph>.wav</codeph>：文件体积大，音频保真度高。</li>
                     <li><codeph>.aac</codeph>：文件体积小，音频保真度低。</li>
                 </ul>
             </p>
+            <note props="cpp">
+                <ul>
+                    <li>请确保在该方法中指定的路径存在且可写。</li>
+                    <li>必须在调用 <codeph>joinChannel</codeph> 后调用该方法。如果在录音过程中调用 <codeph>leaveChannel</codeph>，录音将自动停止。</li>
+                    <li>为确保录音质量，当 <codeph>sampleRate</codeph> 设置为 44.1 kHz 或 48 kHz 时，建议将 <codeph>quality</codeph> 设置为 <codeph>AUDIO_RECORDING_QUALITY_MEDIUM</codeph> 或 <codeph>AUDIO_RECORDING_QUALITY_HIGH</codeph>。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="cpp">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="cpp">
             <title>参数</title>
@@ -33,7 +44,7 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>sampleRate</pt>
-                    <pd>录音采样率（Hz）。可设置为以下值之一：
+                    <pd>录音采样率（Hz）。你可以设置为以下值之一：
                         <ul>
                             <li>16000</li>
                             <li>32000（默认）</li>
@@ -53,7 +64,7 @@
             <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。详见 <codeph>Error Codes</codeph>。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
         </section>

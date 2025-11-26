@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_adjustaudiomixingplayoutvolume">
     <title><ph keyref="adjustAudioMixingPlayoutVolume"/></title>
-    <shortdesc id="short"><ph id="shortdesc">调整本地播放的混音音量。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">调整本地播放的混音音量。</ph><ph id="shortdesc" props="android">调节本地播放的混音音量。</ph><ph id="shortdesc" props="ios">调整本地播放的混音音量。</ph><ph id="shortdesc" props="mac">调整本地播放的混音音量。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,15 +20,15 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">你需要在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/>（<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>）回调后调用此方法，以调整本地播放的混音音量。</p>
-            <p props="android">你需要在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/>（<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>）回调后，调用该方法。</p>
+            <p props="cpp">你需要在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/>（<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>）回调后调用此方法。</p>
+            <p props="android">你需要在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/>（<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>）回调后调用此方法。</p>
             <p props="ios">你需要在调用 <codeph>startAudioMixing</codeph> 方法，并收到 <codeph>audioMixingStateChanged</codeph> 回调（状态为 <codeph>AgoraAudioMixingStateTypePlaying</codeph>）后调用该方法。</p>
             <p props="mac">你需要在调用 <codeph>startAudioMixing</codeph> 方法，并收到 <codeph>audioMixingStateChanged</codeph> 回调（状态为 <codeph>AgoraAudioMixingStateTypePlaying</codeph>）后调用该方法。</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">你需要在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/>（<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>）回调后调用此方法。</p>
-            <p props="android">你需要在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/>（<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>）回调后调用该方法。</p>
+            <p props="android">你需要在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/>（<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>）回调后调用此方法。</p>
             <p props="ios">你需要在调用 <codeph>startAudioMixing</codeph> 方法，并收到 <codeph>audioMixingStateChanged</codeph> 回调（状态为 <codeph>AgoraAudioMixingStateTypePlaying</codeph>）后调用该方法。</p>
             <p props="mac">你需要在调用 <codeph>startAudioMixing</codeph> 方法，并收到 <codeph>audioMixingStateChanged</codeph> 回调（状态为 <codeph>AgoraAudioMixingStateTypePlaying</codeph>）后调用该方法。</p>
         </section>
@@ -43,8 +43,8 @@
                     <pt>volume</pt>
                     <pd>本地播放的混音音量。取值范围为 0 到 100，默认值为 100。
                         <ul>
-                            <li>100：表示原始音量。</li>
-                            <li>0：表示静音。</li>
+                            <li>0：静音。</li>
+                            <li>100：原始音量。</li>
                         </ul>
                     </pd>
                 </plentry>

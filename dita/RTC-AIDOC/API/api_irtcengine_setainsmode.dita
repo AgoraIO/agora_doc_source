@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setainsmode">
     <title><ph keyref="setAINSMode"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置是否启用 AI 降噪功能，并指定降噪模式。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置是否启用 AI 降噪功能，并指定降噪模式。</ph><ph id="shortdesc" props="android">设置是否启用 AI 降噪功能并设置降噪模式。</ph><ph id="shortdesc" props="ios">设置是否启用 AI 降噪功能并设置降噪模式。</ph><ph id="shortdesc" props="mac">设置是否启用 AI 降噪功能并设置降噪模式。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,16 +20,16 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">你可以调用该方法启用 AI 降噪功能。启用后，SDK 会在保证人声质量的前提下，自动检测并减少音频中的稳态和非稳态噪声。
+            <p props="cpp">你可以调用此方法启用 AI 降噪功能。启用后，SDK 会在保证人声质量的前提下，自动检测并减少音频中的稳态和非稳态噪声。
                 <ul>
-                    <li>稳态噪声是指在观察时间内具有恒定平均统计特性且电平波动极小的噪声信号，常见来源包括：
+                    <li>稳态噪声是指在观察时间内平均统计特性恒定、幅度波动极小的噪声信号，常见来源包括：
                         <ul>
                             <li>电视；</li>
                             <li>空调；</li>
                             <li>机械设备等。</li>
                         </ul>
                     </li>
-                    <li>非稳态噪声是指在观察时间内电平波动剧烈的噪声信号，常见来源包括：
+                    <li>非稳态噪声是指在观察时间内幅度波动剧烈的噪声信号，常见来源包括：
                         <ul>
                             <li>雷声；</li>
                             <li>爆炸声；</li>
@@ -37,18 +37,23 @@
                         </ul>
                     </li>
                 </ul><ph>适用场景：在连麦、在线教育和视频会议等场景中，该功能可检测并减少背景噪声，从而提升音频体验。</ph></p>
-            <p props="android">你可以调用此方法启用 AI 降噪功能。启用后，SDK 会在保证人声质量的前提下，自动检测并减少音频中的稳定噪声和非稳定噪声。
-稳定噪声是指在观察时间内平均统计特性恒定、幅度波动极小的噪声信号。常见的稳定噪声来源包括：
+            <p props="android">你可以调用此方法启用 AI 降噪功能。启用后，SDK 会在保证人声质量的前提下，自动检测并减少音频中的稳态和非稳态噪声。
                 <ul>
-                    <li>电视；</li>
-                    <li>空调；</li>
-                    <li>机械设备等。</li>
-                </ul><ph>非稳定噪声是指在观察时间内幅度波动剧烈的噪声信号。常见的非稳定噪声来源包括：</ph>
-                <ul>
-                    <li>雷声；</li>
-                    <li>爆炸声；</li>
-                    <li>破裂声等。</li>
-                </ul><ph>适用场景：在合流互动、在线教育和视频会议等场景中，该功能可检测并减少背景噪声，从而提升音频体验。</ph></p>
+                    <li>稳态噪声是指在观察时间内平均统计特性恒定、幅度波动极小的噪声信号，常见来源包括：
+                        <ul>
+                            <li>电视；</li>
+                            <li>空调；</li>
+                            <li>机械设备等。</li>
+                        </ul>
+                    </li>
+                    <li>非稳态噪声是指在观察时间内幅度波动剧烈的噪声信号，常见来源包括：
+                        <ul>
+                            <li>雷声；</li>
+                            <li>爆炸声；</li>
+                            <li>破裂声等。</li>
+                        </ul>
+                    </li>
+                </ul><ph>适用场景：在合流互动、在线教育、视频会议等场景中，该功能可检测并降低背景噪声，提升音频体验。</ph></p>
             <p props="ios">你可以调用此方法启用 AI 降噪功能。启用后，SDK 会在保证人声质量的前提下，自动检测并减少音频中的稳定噪声和非稳定噪声。
 稳定噪声是指在观察时间内平均统计特性恒定、音量波动极小的噪声信号。常见的稳定噪声来源包括：
                 <ul>
@@ -74,12 +79,6 @@
                     <li>破裂声等。</li>
                 </ul><ph>适用场景：在合流互动、在线教育和视频会议等场景中，该功能可检测并减少背景噪声，提升体验。</ph></p>
             <note props="cpp">
-                <ul>
-                    <li>此方法依赖于 AI 降噪动态库 <xref keyref="noisesuppression"/>。如果该动态库被删除，则无法启用该功能。</li>
-                    <li>声网不建议在运行 Android 6.0 及以下版本的设备上启用此功能。</li>
-                </ul>
-            </note>
-            <note props="android">
                 <ul>
                     <li>此方法依赖 AI 降噪动态库 <xref keyref="noisesuppression"/>。如果该动态库被删除，则无法启用此功能。</li>
                     <li>声网不建议在运行 Android 6.0 及以下版本的设备上启用此功能。</li>
@@ -115,8 +114,8 @@
                     <pt>enabled</pt>
                     <pd>是否启用 AI 降噪功能：
                         <ul>
-                            <li><xref keyref="true"/>：启用 AI 降噪功能。</li>
-                            <li><xref keyref="false"/>：（默认）关闭 AI 降噪功能。</li>
+                            <li><xref keyref="true"/>：启用 AI 降噪。</li>
+                            <li><xref keyref="false"/>：（默认）关闭 AI 降噪。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -125,8 +124,8 @@
                     <pd>AI 降噪模式：
                         <ul>
                             <li>0：（默认）平衡模式。该模式在降噪效果和延迟之间提供平衡表现。</li>
-                            <li>1：激进模式。适用于对降噪效果要求较高的场景，如户外活动直播。该模式降噪更强，但可能会影响音频的原始特性。</li>
-                            <li>2：低延迟激进模式。该模式的降噪延迟约为平衡模式和激进模式的一半，适用于对低延迟降噪有较高要求的场景，如实时在线合唱。</li>
+                            <li>1：强降噪模式。适用于如户外直播等对降噪效果要求较高的场景，降噪更强，但可能影响音频原始特性。</li>
+                            <li>2：低延迟强降噪模式。该模式的降噪延迟约为平衡模式和强降噪模式的一半，适用于如实时在线合唱等对低延迟降噪有较高要求的场景。</li>
                         </ul>
                     </pd>
                 </plentry>

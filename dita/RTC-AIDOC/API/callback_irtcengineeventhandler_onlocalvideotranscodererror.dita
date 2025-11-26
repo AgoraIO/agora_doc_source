@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onlocalvideotranscodererror">
     <title><ph keyref="onLocalVideoTranscoderError"/></title>
-    <shortdesc id="short"><ph id="shortdesc">本地视频合图过程中发生错误的回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">本地视频合图过程中发生错误的回调。</ph><ph id="shortdesc" props="android">本地视频合图过程中发生错误回调。</ph><ph id="shortdesc" props="ios">本地合图过程中发生错误时触发的回调。</ph><ph id="shortdesc" props="mac">本地合图过程中发生错误时触发的回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -23,12 +23,13 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">当调用 <xref keyref="startLocalVideoTranscoder"/> 或 <xref keyref="updateLocalTranscoderConfiguration"/> 失败时，SDK 会触发该回调报告失败原因。</p>
-            <p props="android">当你调用 <xref keyref="startLocalVideoTranscoder"/> 或 <xref keyref="updateLocalTranscoderConfiguration"/> 失败时，SDK 会触发该回调并报告失败原因。</p>
+            <p props="android">当调用 <xref keyref="startLocalVideoTranscoder"/> 或 <xref keyref="updateLocalTranscoderConfiguration"/> 失败时，SDK 会触发该回调报告失败原因。</p>
             <p props="ios">当你调用 <xref keyref="startLocalVideoTranscoder"/> 或 <xref keyref="updateLocalTranscoderConfiguration"/> 失败时，SDK 会触发该回调报告失败原因。</p>
             <p props="mac">当你调用 <xref keyref="startLocalVideoTranscoder"/> 或 <xref keyref="updateLocalTranscoderConfiguration"/> 失败时，SDK 会触发该回调报告失败原因。</p>
         </section>
-        <section id="timing" deliveryTarget="details" props="ios mac">
+        <section id="timing" deliveryTarget="details" props="android ios mac">
             <title>触发时机</title>
+            <p props="android">该回调在调用 <xref keyref="startLocalVideoTranscoder"/> 或 <xref keyref="updateLocalTranscoderConfiguration"/> 失败时被触发。</p>
             <p props="ios">该回调在本地合图过程中发生错误时被触发。</p>
             <p props="mac">该回调在本地合图过程中发生错误时被触发。</p>
         </section>
@@ -49,7 +50,16 @@
                 </plentry>
                 <plentry props="android">
                     <pt>error</pt>
-                    <pd>本地视频合图失败的错误原因。</pd>
+                    <pd>本地视频合图错误的原因：
+                        <ul>
+                            <li>1：指定的视频源尚未开始视频采集。你需要创建视频轨道并开始采集。</li>
+                            <li>2：无效的视频源类型。你需要指定支持的视频源类型。</li>
+                            <li>3：无效的图片路径。你需要指定正确的图片路径。</li>
+                            <li>4：无效的图片格式。请确保图片格式为 PNG、JPEG 或 GIF。</li>
+                            <li>5：合图后的视频分辨率无效。</li>
+                            <li>20：内部错误。</li>
+                        </ul>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>stream</pt>

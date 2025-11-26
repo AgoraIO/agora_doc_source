@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enablecameracenterstage">
     <title><ph keyref="enableCameraCenterStage"/></title>
-    <shortdesc id="short"><ph id="shortdesc">启用或关闭人像锁定功能。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">启用或关闭人像锁定功能。</ph><ph id="shortdesc" props="ios">启用或关闭人像锁定功能。</ph><ph id="shortdesc" props="mac">启用或关闭人像锁定功能。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -19,10 +19,11 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">默认情况下，人像锁定功能处于关闭状态。你需要调用该方法开启该功能；如需关闭，再次调用该方法并将 <codeph>enabled</codeph> 设置为 <xref keyref="false"/>。</p>
+            <p props="cpp">默认情况下，人像锁定功能处于关闭状态。你需要调用此方法来开启该功能。如需关闭该功能，请再次调用该方法并将 <codeph>enabled</codeph> 设置为 <xref keyref="false"/>。</p>
             <p props="ios">默认情况下，人像锁定功能处于关闭状态。你需要调用此方法来开启该功能。如果需要关闭此功能，需要再次调用此方法并将 <codeph>enabled</codeph> 设置为 <xref keyref="false"/>。</p>
             <p props="mac">默认情况下，人像锁定功能处于关闭状态。你需要调用此方法来开启该功能。如果需要关闭此功能，需要再次调用此方法并将 <codeph>enabled</codeph> 设置为 <xref keyref="false"/>。</p>
-            <note props="cpp">由于该功能对设备性能要求较高，你需要在以下设备或性能更高的设备上使用：
+            <note props="cpp">该方法仅适用于 iOS 和 macOS 平台。
+由于该功能对设备性能要求较高，建议在以下设备或性能更高的设备上使用：
                 <ul>
                     <li>iPad：
                         <ul>
@@ -33,8 +34,8 @@
                             <li>iPad Air（第 5 代）</li>
                         </ul>
                     </li>
-                    <li>2020 款 M1 芯片的 13 英寸 MacBook Pro + iPhone 11（将 iPhone 用作 MacBook 的外部摄像头）</li>
-                </ul><ph>声网建议你在启用该功能前调用 <xref keyref="isCameraCenterStageSupported"/> 方法检查当前设备是否支持人像锁定功能。</ph><ph>该方法仅适用于 iOS 和 macOS 平台。</ph></note>
+                    <li>2020 款 M1 芯片 13 英寸 MacBook Pro + iPhone 11（将 iPhone 用作 MacBook 的外部摄像头）</li>
+                </ul><ph>声网建议在启用该功能前调用 <xref keyref="isCameraCenterStageSupported"/> 方法，检查当前设备是否支持人像锁定功能。</ph></note>
             <note props="ios">由于该功能对设备性能要求较高，你需要在以下类型的设备或性能更高的设备上使用：
                 <ul>
                     <li>iPad：
@@ -64,7 +65,7 @@
         </section>
         <section id="timing" deliveryTarget="details" props="cpp ios mac">
             <title>调用时机</title>
-            <p props="cpp">必须在成功开启摄像头之后调用，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>（1）之后。</p>
+            <p props="cpp">必须在成功启用摄像头之后调用此方法，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>（1）之后。</p>
             <p props="ios">必须在成功开启摄像头之后调用此方法，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>AgoraVideoLocalStateCapturing</codeph>（1）之后。</p>
             <p props="mac">必须在成功开启摄像头之后调用此方法，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>AgoraVideoLocalStateCapturing</codeph>（1）之后。</p>
         </section>

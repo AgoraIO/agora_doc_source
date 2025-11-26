@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setclientrole2">
     <title><ph keyref="setClientRole2"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置直播场景中用户角色及观众延迟等级。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置用户角色和观众延迟等级。</ph><ph id="shortdesc" props="android">设置直播场景中用户角色及观众延迟等级。</ph><ph id="shortdesc" props="ios">设置用户角色及观众延迟等级。</ph><ph id="shortdesc" props="mac">设置用户角色及观众延迟等级。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,18 +20,18 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">默认情况下，SDK 会将用户角色设置为观众。你可以调用此方法将用户角色设置为主播。用户角色（<codeph>role</codeph>）决定了用户在 SDK 层的权限，例如是否可以在频道中发布音视频流。
-该方法与 <codeph>setClientRole</codeph> 的区别在于，它支持设置 <codeph>audienceLatencyLevel</codeph>。你需要将 <codeph>audienceLatencyLevel</codeph> 与 <codeph>role</codeph> 搭配使用，以确定用户在其权限范围内可享受的服务等级。例如，观众可以选择接收低延迟或超低延迟的远端流。
-你可以在加入频道前或加入频道后调用此方法。
+            <p props="cpp">默认情况下，SDK 会将用户角色设置为观众。你可以调用此方法将用户角色设置为主播。用户角色（<codeph>role</codeph>）决定了用户在 SDK 层的权限，例如是否可以在频道中发布音视频流。该方法与 <codeph>setClientRole</codeph> 的区别在于，它支持设置 <codeph>audienceLatencyLevel</codeph>。你需要将 <codeph>audienceLatencyLevel</codeph> 与 <codeph>role</codeph> 搭配使用，以决定用户在其权限范围内可享受的服务等级，例如观众可以选择接收低延迟或超低延迟的远端流。
+调用时机：你可以在加入频道前或加入频道后调用此方法。
                 <ul>
                     <li>如果你在加入频道前调用此方法将用户角色设置为主播，并通过 <xref keyref="setupLocalVideo"/> 设置本地视频属性，则用户加入频道时会自动开启本地视频预览。</li>
-                    <li>如果你在加入频道后调用此方法设置用户角色，SDK 会自动调用 <xref keyref="muteLocalAudioStream"/> 和 <xref keyref="muteLocalVideoStream"/> 方法来更改音视频流的发布状态。</li>
+                    <li>如果你在加入频道后调用此方法设置用户角色，SDK 会自动调用 <xref keyref="muteLocalAudioStream"/> 和 <xref keyref="muteLocalVideoStream"/> 方法来改变音视频流的发布状态。</li>
                 </ul>
             </p>
-            <p props="android">你可以在加入频道前或加入频道后调用此方法：
+            <p props="android">你可以调用该方法将用户角色设置为主播或观众。用户角色（<codeph>role</codeph>）决定了用户在 SDK 层的权限，包括是否可以在频道中发布音视频流。该方法与 <codeph>setClientRole(int role)</codeph> 的区别在于，它支持设置 <codeph>audienceLatencyLevel</codeph>。你需要将 <codeph>audienceLatencyLevel</codeph> 与 <codeph>role</codeph> 搭配使用，以决定用户在权限范围内可享受的服务等级。例如，观众可以选择接收低延迟或超低延迟的远端流。
+调用时机：你可以在加入频道前或加入频道后调用此方法。
                 <ul>
-                    <li>如果在加入频道前调用此方法将用户角色设置为主播，并通过 <xref keyref="setupLocalVideo"/> 方法设置本地视频属性，则用户加入频道时会自动开启本地视频预览。</li>
-                    <li>如果在加入频道后调用此方法设置用户角色，SDK 会自动调用 <xref keyref="muteLocalAudioStream"/> 和 <xref keyref="muteLocalVideoStream"/> 方法来改变音视频流的发布状态。</li>
+                    <li>如果你在加入频道前调用此方法将用户角色设置为主播，并通过 <xref keyref="setupLocalVideo"/> 方法设置本地视频属性，则用户加入频道时会自动开启本地视频预览。</li>
+                    <li>如果你在加入频道后调用此方法设置用户角色，SDK 会自动调用 <xref keyref="muteLocalAudioStream"/> 和 <xref keyref="muteLocalVideoStream"/> 方法来改变音视频流的发布状态。</li>
                 </ul>
             </p>
             <p props="ios">你可以调用该方法将用户角色设置为主播或观众。用户角色（<codeph>role</codeph>）决定了你在 SDK 层级的权限，包括是否可以在频道中发布音视频流。与 <xref keyref="setClientRole1"/> 方法的区别在于，该方法支持设置 <codeph>audienceLatencyLevel</codeph>。<codeph>audienceLatencyLevel</codeph> 需要与 <codeph>role</codeph> 配合使用，以确定你在权限范围内可享受的服务等级。例如，观众可以选择接收低延迟或超低延迟的远端流。
@@ -71,7 +71,7 @@
 在加入频道前调用此方法并将 <codeph>role</codeph> 设置为 <codeph>AUDIENCE</codeph> 时，会触发该回调。</note>
             <note props="android">当用户角色设置为主播时，观众延迟等级只能设置为 <codeph>AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY</codeph>。
 在加入频道前调用此方法并将 <codeph>role</codeph> 设置为 <codeph>BROADCASTER</codeph> 时，本地客户端不会触发 <xref keyref="onClientRoleChanged"/> 回调。
-在加入频道前调用此方法并将 <codeph>role</codeph> 设置为 <codeph>AUDIENCE</codeph> 时，会触发该回调。</note>
+在加入频道前调用此方法并将 <codeph>role</codeph> 设置为 <codeph>AUDIENCE</codeph> 时，也会触发该回调。</note>
             <note props="ios">当用户角色设置为主播时，观众延迟等级只能设置为 <codeph>AgoraAudienceLatencyLevelUltraLowLatency</codeph>。
                 <ul>
                     <li>在加入频道前调用此方法并将 <codeph>role</codeph> 设置为 <codeph>BROADCASTER</codeph> 时，本地客户端不会触发 <xref keyref="onClientRoleChanged"/> 回调。</li>
@@ -85,8 +85,9 @@
                 </ul>
             </note>
         </section>
-        <section id="timing" deliveryTarget="details" props="android ios mac">
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
+            <p props="cpp">你可以在加入频道前或加入频道后调用此方法。</p>
             <p props="android">你可以在加入频道前或加入频道后调用此方法。</p>
             <p props="ios">你可以在加入频道前或加入频道后调用此方法。</p>
             <p props="mac">你可以在加入频道前或加入频道后调用此方法。</p>
@@ -99,23 +100,25 @@
                 </ul><ph>  注意：在加入频道前调用此方法并将 <codeph>role</codeph> 设置为 <codeph>AUDIENCE</codeph> 时，也会触发该回调。</ph>
                 <ul>
                     <li>远端客户端触发 <xref keyref="onUserJoined"/> 或 <xref keyref="onUserOffline"/> 回调。</li>
-                </ul><ph>如果你在加入频道后调用此方法设置用户角色但失败，SDK 会触发 <xref keyref="onClientRoleChangeFailed"/> 回调，报告失败原因及当前用户角色。</ph></p>
+                </ul><ph>如果你在加入频道后调用此方法设置用户角色但失败，SDK 会触发 <xref keyref="onClientRoleChangeFailed"/> 回调，报告失败原因和当前用户角色。</ph></p>
             <p props="android">成功调用该方法后，如果在加入频道后切换用户角色，SDK 会触发以下回调：
                 <ul>
                     <li>本地客户端触发 <xref keyref="onClientRoleChanged"/> 回调。</li>
+                </ul><ph>  注意：在加入频道前调用此方法并将 <codeph>role</codeph> 设置为 <codeph>AUDIENCE</codeph> 也会触发该回调。</ph>
+                <ul>
                     <li>远端客户端触发 <xref keyref="onUserJoined"/> 或 <xref keyref="onUserOffline"/> 回调。</li>
-                </ul><ph>如果调用失败，SDK 会触发 <xref keyref="onClientRoleChangeFailed"/> 回调，报告失败原因及当前用户角色。</ph></p>
+                </ul><ph>如果在加入频道后调用此方法设置用户角色失败，SDK 会触发 <xref keyref="onClientRoleChangeFailed"/> 回调，报告失败原因及当前用户角色。</ph></p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
                     <pt>role</pt>
-                    <pd>用户角色，详见 <xref keyref="CLIENT_ROLE_TYPE"/>。</pd>
+                    <pd>用户角色。详见 <xref keyref="CLIENT_ROLE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>options</pt>
-                    <pd>用户的详细选项，详见 <xref keyref="ClientRoleOptions"/>。</pd>
+                    <pd>用户的详细选项，包括用户等级。详见 <xref keyref="ClientRoleOptions"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>role</pt>
@@ -128,7 +131,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>options</pt>
-                    <pd>用户的详细选项，包括用户等级。详见 <xref keyref="ClientRoleOptions"/>。</pd>
+                    <pd>用户的详细选项。详见 <xref keyref="ClientRoleOptions"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>role</pt>

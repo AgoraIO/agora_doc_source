@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setaudiomixingdualmonomode">
     <title><ph keyref="setAudioMixingDualMonoMode"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置当前音频文件的声道模式。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置当前音频文件的声道模式。</ph><ph id="shortdesc" props="android">设置当前音频文件的声道模式。</ph><ph id="shortdesc" props="ios">设置当前音频文件的声道模式。</ph><ph id="shortdesc" props="mac">设置当前音频文件的声道模式。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,18 +20,18 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">在立体声音频文件中，左右声道可以存储不同的音频数据。你可以根据需要将声道模式设置为原始模式、左声道模式、右声道模式或混合声道模式。
+            <p props="cpp">在立体声音乐文件中，左右声道可以存储不同的音频数据。你可以根据需要将声道模式设置为原始模式、左声道模式、右声道模式或混合声道模式。
 适用场景：例如，在 KTV 场景中，音乐文件的左声道存储伴奏，右声道存储原唱人声。你可以根据实际需求进行设置：
                 <ul>
                     <li>如果你只想听到伴奏，可以调用该方法将声道模式设置为左声道模式。</li>
-                    <li>如果你希望同时听到伴奏和原唱人声，可以调用该方法将声道模式设置为混合模式。</li>
+                    <li>如果你需要同时听到伴奏和原唱人声，可以调用该方法将声道模式设置为混合模式。</li>
                 </ul>
             </p>
-            <p props="android">在立体声音乐文件中，左右声道可以存储不同的音频数据。你可以根据需要将声道模式设置为原始模式、左声道模式、右声道模式或合流模式。
+            <p props="android">你可以根据需要将音频文件的声道模式设置为原始模式、左声道模式、右声道模式或混合声道模式。
 适用场景：例如，在 KTV 场景中，音乐文件的左声道存储伴奏，右声道存储原唱人声。你可以根据实际需求进行设置：
                 <ul>
                     <li>如果你只想听到伴奏，可以将音频文件的声道模式设置为左声道模式。</li>
-                    <li>如果你需要同时听到伴奏和原唱人声，可以将声道模式设置为合流模式。</li>
+                    <li>如果你需要同时听到伴奏和原唱人声，可以将声道模式设置为混合模式。</li>
                 </ul>
             </p>
             <p props="ios">在立体声音乐文件中，左声道和右声道可以存储不同的音频数据。你可以根据需要将声道模式设置为原始模式、左声道模式、右声道模式或混合声道模式。例如，在 KTV 场景中，音乐文件的左声道存储伴奏，右声道存储原唱人声：
@@ -47,14 +47,14 @@
                 </ul>
             </p>
             <note props="cpp">该方法仅适用于立体声音频文件。</note>
-            <note props="android">该方法仅适用于立体声音频文件。</note>
+            <note props="android"><xref keyref="setAudioMixingDualMonoMode"/> 仅适用于立体声音频文件。</note>
             <note props="ios">该方法仅适用于立体声音频文件。</note>
             <note props="mac">该方法仅适用于立体声音频文件。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
-            <p props="cpp">在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/> 回调后调用此方法。</p>
-            <p props="android">请在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/>（<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>）回调后调用此方法。</p>
+            <p props="cpp">请在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/> 回调后调用该方法。</p>
+            <p props="android">请在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/> 回调后调用该方法。</p>
             <p props="ios">在调用 <xref keyref="startAudioMixing2"/> 方法并收到 <codeph>audioMixingStateChanged:reasonCode:</codeph>（<codeph>AgoraAudioMixingStateTypePlaying</codeph>）回调后调用该方法。</p>
             <p props="mac">在调用 <xref keyref="startAudioMixing2"/> 方法并收到 <codeph>audioMixingStateChanged:reasonCode:</codeph>（<codeph>AgoraAudioMixingStateTypePlaying</codeph>）回调后调用该方法。</p>
         </section>
@@ -63,11 +63,11 @@
             <parml>
                 <plentry props="cpp">
                     <pt>mode</pt>
-                    <pd>声道模式。详见 <xref keyref="AUDIO_MIXING_DUAL_MONO_MODE"/>。</pd>
+                    <pd>声道模式，详见 <xref keyref="AUDIO_MIXING_DUAL_MONO_MODE"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>mode</pt>
-                    <pd>声道模式。详见 <xref keyref="AUDIO_MIXING_DUAL_MONO_MODE"/>。</pd>
+                    <pd>声道模式，详见 <xref keyref="AUDIO_MIXING_DUAL_MONO_MODE"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>mode</pt>

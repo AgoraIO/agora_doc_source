@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startplaybackdevicetest">
     <title><ph keyref="startPlaybackDeviceTest"/></title>
-    <shortdesc id="short"><ph id="shortdesc">启动本地音频播放设备测试。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="ios">启动本地音频播放设备测试。</ph><ph id="shortdesc" props="android">启动本地音频播放设备测试。</ph><ph id="shortdesc" props="mac">启动本地音频播放设备测试。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,11 +20,17 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="ios">该方法用于测试本地音频播放设备是否正常工作。调用该方法后，SDK 会播放你指定的音频文件。如果你能听到声音，说明播放设备工作正常。</p>
-            <p props="android">调用该方法后，SDK 会播放你指定的音频文件。如果你能听到音频，说明播放设备工作正常。调用该方法后，SDK 每 100 毫秒触发一次 <codeph>onAudioVolumeIndication</codeph> 回调，报告 <codeph>uid</codeph> 为 1 的播放设备音量信息。该方法与 <xref keyref="startEchoTest3"/> 的区别在于，<xref keyref="startPlaybackDeviceTest"/> 仅检测本地音频播放设备是否正常，而 <xref keyref="startEchoTest3"/> 可同时检测音视频设备和网络状况。</p>
+            <p props="android">调用该方法后，SDK 会播放你指定的音频文件。如果你能听到音频，说明播放设备工作正常。调用该方法后，SDK 每 100 毫秒触发一次 <xref keyref="onAudioVolumeIndication"/> 回调，报告 <codeph>uid</codeph> 为 1 的播放设备音量信息。该方法与 <xref keyref="startEchoTest3"/> 的区别在于，<xref keyref="startPlaybackDeviceTest"/> 仅检测本地音频播放设备是否正常，而 <xref keyref="startEchoTest3"/> 可同时检测音视频设备和网络状况。</p>
             <p props="mac">该方法用于测试本地音频播放设备是否正常工作。调用该方法后，SDK 会播放你指定的音频文件。如果你能听到声音，说明播放设备工作正常。</p>
             <note props="ios">请在加入频道前调用该方法。测试完成后，在加入频道前调用 <xref keyref="stopPlaybackDeviceTest"/> 停止测试。</note>
             <note props="android">请在加入频道前调用该方法。测试完成后，请在加入频道前调用 <xref keyref="stopPlaybackDeviceTest"/> 停止测试。</note>
             <note props="mac">请在加入频道前调用该方法。测试完成后，在加入频道前调用 <xref keyref="stopPlaybackDeviceTest"/> 停止测试。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android ios mac">
+            <title>调用时机</title>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="related" deliveryTarget="details" props="ios mac">
             <title>相关回调</title>

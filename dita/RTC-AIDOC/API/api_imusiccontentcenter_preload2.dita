@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imusiccontentcenter_preload2">
     <title><ph keyref="preload2"/></title>
-    <shortdesc id="short"><ph id="shortdesc">预加载音乐资源。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">预加载音乐资源。</ph><ph id="shortdesc" props="ios">预加载音乐资源。</ph><ph id="shortdesc" props="android">预加载版权音乐资源。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -19,12 +19,18 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">你可以调用该方法预加载你想播放的音乐资源。成功调用该方法后，SDK 会触发 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调报告预加载事件。在调用该方法之前，你需要先调用 <xref keyref="getMusicCollectionByMusicChartId"/> 或 <xref keyref="searchMusic"/> 获取目标音乐资源，并从 <xref keyref="onMusicCollectionResult"/> 回调中获取歌曲编码（<codeph>songCode</codeph>）。</p>
+            <p props="cpp">调用该方法可以预加载想要播放的音乐资源。调用成功后，SDK 会触发 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调报告预加载事件。在调用该方法之前，需要先调用 <xref keyref="getMusicCollectionByMusicChartId"/> 或 <xref keyref="searchMusic"/> 获取目标音乐资源，并从 <xref keyref="onMusicCollectionResult"/> 回调中获取歌曲编码（<codeph>songCode</codeph>）。</p>
             <p props="ios">你可以调用此方法预加载你想播放的音乐资源。调用成功后，SDK 会触发 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调，报告音乐资源的预加载事件。</p>
-            <p props="android">调用该方法预加载想要播放的版权音乐资源。调用成功后，SDK 会触发 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调，报告预加载事件。在调用该方法之前，需要先调用 <codeph>getMusicCollectionByMusicChartId</codeph> 或 <codeph>searchMusic</codeph> 获取目标音乐资源，并通过这两个方法触发的 <xref keyref="onMusicCollectionResult"/> 回调获取音乐资源标识符（<codeph>songCode</codeph>）。</p>
+            <p props="android">成功调用该方法后，SDK 会触发 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调，报告预加载事件。在调用该方法前，你需要先调用 <codeph>getMusicCollectionByMusicChartId</codeph> 或 <codeph>searchMusic</codeph> 获取你想播放的版权音乐资源，并通过这些方法触发的 <xref keyref="onMusicCollectionResult"/> 回调获取音乐资源标识符（<codeph>songCode</codeph>）。</p>
             <note props="cpp">在销毁 <xref keyref="IRtcEngine"/> 对象前，请确保已收到 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调后再调用 <xref keyref="release_IMusicContentCenter"/> 方法。</note>
             <note props="ios">在销毁 <xref keyref="IRtcEngine"/> 对象前，必须等待收到 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调后再调用 <xref keyref="destroy_IMusicContentCenter"/> 方法。</note>
-            <note props="android">销毁 <xref keyref="IRtcEngine"/> 对象前，请确保已收到 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调，再调用 <xref keyref="destroy_IMusicContentCenter"/> 方法。</note>
+            <note props="android">销毁 <xref keyref="IRtcEngine"/> 对象前，请确保在收到 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调后再调用 <xref keyref="destroy_IMusicContentCenter"/> 方法。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
         </section>
         <section id="related" deliveryTarget="details" props="ios">
             <title>相关回调</title>
@@ -56,13 +62,13 @@
             <p props="cpp">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。详见 <codeph>Error Codes</codeph>。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="ios">方法调用成功时，返回请求 ID，用于唯一标识该请求。方法调用失败时，返回空字符串。</p>
             <p props="android">
                 <ul>
-                    <li>方法调用成功时，返回该请求的唯一标识符 <codeph>requestId</codeph>。</li>
+                    <li>方法调用成功时，返回请求的唯一标识符 <codeph>requestId</codeph>。</li>
                     <li>方法调用失败，返回空字符串。</li>
                 </ul>
             </p>

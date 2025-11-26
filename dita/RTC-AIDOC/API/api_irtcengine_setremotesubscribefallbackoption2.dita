@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setremotesubscribefallbackoption2">
     <title><ph keyref="setRemoteSubscribeFallbackOption2"/></title>
-    <shortdesc id="short"><ph id="shortdesc">根据网络状况设置已订阅视频流的回退选项。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="android">根据网络状况设置已订阅视频流的回退选项。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -25,6 +25,10 @@
             </dl>
             <p props="android">不稳定的网络会影响视频通话或互动直播中的音视频质量。当下行网络无法同时支持音视频时，若将 <codeph>option</codeph> 设置为 <codeph>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW</codeph> 或 <codeph>STREAM_FALLBACK_OPTION_AUDIO_ONLY</codeph>，SDK 会自动将视频从高质量流切换为低质量流，或关闭视频以保障音频质量。SDK 会持续监测网络质量，在网络改善后恢复订阅音视频流。</p>
             <note props="android">当已订阅的视频流回退为纯音频流，或从纯音频流恢复为音视频流时，SDK 会触发 <xref keyref="onRemoteSubscribeFallbackToAudioOnly"/> 回调。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>调用时机</title>
+            <p props="android">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android">
             <title>参数</title>

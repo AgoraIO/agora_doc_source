@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setlogfilter">
     <title><ph keyref="setLogFilter"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置 SDK 的日志输出等级。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置 SDK 的日志输出等级。</ph><ph id="shortdesc" props="android">设置 SDK 的日志输出等级。</ph><ph id="shortdesc" props="ios">设置 SDK 的日志输出等级。</ph><ph id="shortdesc" props="mac">设置 SDK 的日志输出等级。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,25 +20,38 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">你可以使用一个或多个日志过滤等级的组合来设置 SDK 的日志输出等级。日志等级的顺序为 <codeph>LOG_FILTER_OFF</codeph>、<codeph>LOG_FILTER_CRITICAL</codeph>、<codeph>LOG_FILTER_ERROR</codeph>、<codeph>LOG_FILTER_WARN</codeph>、<codeph>LOG_FILTER_INFO</codeph> 和 <codeph>LOG_FILTER_DEBUG</codeph>。设置某个等级后，将输出该等级及其更高级别的日志。例如，如果将日志等级设置为 <codeph>LOG_FILTER_WARN</codeph>，你将看到 <codeph>LOG_FILTER_CRITICAL</codeph>、<codeph>LOG_FILTER_ERROR</codeph> 和 <codeph>LOG_FILTER_WARN</codeph> 等级的日志。</p>
-            <p props="android">你可以使用一个或多个日志过滤等级的组合。日志等级的顺序为 <codeph>LOG_FILTER_OFF</codeph>、<codeph>LOG_FILTER_CRITICAL</codeph>、<codeph>LOG_FILTER_ERROR</codeph>、<codeph>LOG_FILTER_WARN</codeph>、<codeph>LOG_FILTER_INFO</codeph> 和 <codeph>LOG_FILTER_DEBUG</codeph>。选择某个等级后，将输出该等级及其更高级别的日志信息。例如，如果将日志等级设置为 <codeph>LOG_FILTER_WARN</codeph>，你将看到 <codeph>LOG_FILTER_CRITICAL</codeph>、<codeph>LOG_FILTER_ERROR</codeph> 和 <codeph>LOG_FILTER_WARN</codeph> 等级的日志信息。</p>
+            <dl outputclass="deprecated">
+                <dlentry props="cpp">
+                    <dt>废弃</dt>
+                    <dd>自 vX.X.X 版本废弃，请改用 <xref keyref="initialize"/> 中的 <xref keyref="LogConfig"/> 设置日志过滤等级。</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">你可以使用一个或多个日志过滤等级的组合来设置 SDK 的日志输出等级。日志等级的顺序为 <codeph>LOG_FILTER_OFF</codeph>、<codeph>LOG_FILTER_CRITICAL</codeph>、<codeph>LOG_FILTER_ERROR</codeph>、<codeph>LOG_FILTER_WARN</codeph>、<codeph>LOG_FILTER_INFO</codeph> 和 <codeph>LOG_FILTER_DEBUG</codeph>。选择某个等级后，将输出该等级及更高级别的日志。例如，如果将日志等级设置为 <codeph>LOG_FILTER_WARN</codeph>，你将看到 <codeph>LOG_FILTER_CRITICAL</codeph>、<codeph>LOG_FILTER_ERROR</codeph> 和 <codeph>LOG_FILTER_WARN</codeph> 等级的日志。</p>
+            <p props="android">你可以使用一个或多个日志过滤等级的组合。日志等级的顺序为 <codeph>LOG_FILTER_OFF</codeph>、<codeph>LOG_FILTER_CRITICAL</codeph>、<codeph>LOG_FILTER_ERROR</codeph>、<codeph>LOG_FILTER_WARN</codeph>、<codeph>LOG_FILTER_INFO</codeph> 和 <codeph>LOG_FILTER_DEBUG</codeph>。选择一个等级可以查看该等级及其之前的日志信息。例如，如果将日志等级设置为 <codeph>LOG_FILTER_WARN</codeph>，你将看到 <codeph>LOG_FILTER_CRITICAL</codeph>、<codeph>LOG_FILTER_ERROR</codeph> 和 <codeph>LOG_FILTER_WARN</codeph> 等级的日志信息。</p>
             <p props="ios">你可以使用该方法设置 SDK 的日志输出等级。日志等级按以下顺序排列：<codeph>AgoraLogFilterOff</codeph>、<codeph>AgoraLogFilterCritical</codeph>、<codeph>AgoraLogFilterError</codeph>、<codeph>AgoraLogFilterWarning</codeph>、<codeph>AgoraLogFilterInfo</codeph> 和 <codeph>AgoraLogFilterDebug</codeph>。选择某个等级后，你可以查看该等级及其之前的日志内容。例如，如果将日志等级设置为 <codeph>AgoraLogFilterWarning</codeph>，你将看到 <codeph>AgoraLogFilterCritical</codeph>、<codeph>AgoraLogFilterError</codeph> 和 <codeph>AgoraLogFilterWarning</codeph> 等级的日志。</p>
             <p props="mac">你可以使用该方法设置 SDK 的日志输出等级。日志等级按以下顺序排列：<codeph>AgoraLogFilterOff</codeph>、<codeph>AgoraLogFilterCritical</codeph>、<codeph>AgoraLogFilterError</codeph>、<codeph>AgoraLogFilterWarning</codeph>、<codeph>AgoraLogFilterInfo</codeph> 和 <codeph>AgoraLogFilterDebug</codeph>。选择某个等级后，你可以查看该等级及其之前的日志内容。例如，如果将日志等级设置为 <codeph>AgoraLogFilterWarning</codeph>，你将看到 <codeph>AgoraLogFilterCritical</codeph>、<codeph>AgoraLogFilterError</codeph> 和 <codeph>AgoraLogFilterWarning</codeph> 等级的日志。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
                     <pt>filter</pt>
-                    <pd>日志输出等级，详见 <xref keyref="LOG_FILTER_TYPE"/>。</pd>
+                    <pd>SDK 的日志输出等级，详见 <xref keyref="LOG_FILTER_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>filter</pt>
                     <pd>SDK 的日志输出等级。
                         <ul>
                             <li><codeph>LOG_FILTER_OFF</codeph> (0)：不输出任何日志信息。</li>
-                            <li><codeph>LOG_FILTER_DEBUG</codeph> (0x080f)：输出所有日志信息。如果你希望获取最完整的日志文件，请将日志等级设置为该等级。</li>
-                            <li><codeph>LOG_FILTER_INFO</codeph> (0x0f)：输出 <codeph>LOG_FILTER_CRITICAL</codeph>、<codeph>LOG_FILTER_ERROR</codeph>、<codeph>LOG_FILTER_WARN</codeph> 和 <codeph>LOG_FILTER_INFO</codeph> 等级的日志信息。建议设置为该等级。</li>
+                            <li><codeph>LOG_FILTER_DEBUG</codeph> (0x080f)：输出所有日志信息。如果你希望获取最完整的日志文件，请将日志过滤等级设置为 <codeph>LOG_FILTER_DEBUG</codeph>。</li>
+                            <li><codeph>LOG_FILTER_INFO</codeph> (0x0f)：输出 <codeph>LOG_FILTER_CRITICAL</codeph>、<codeph>LOG_FILTER_ERROR</codeph>、<codeph>LOG_FILTER_WARN</codeph> 和 <codeph>LOG_FILTER_INFO</codeph> 等级的日志信息。建议将日志等级设置为该等级。</li>
                             <li><codeph>LOG_FILTER_WARN</codeph> (0x0e)：输出 <codeph>LOG_FILTER_CRITICAL</codeph>、<codeph>LOG_FILTER_ERROR</codeph> 和 <codeph>LOG_FILTER_WARN</codeph> 等级的日志信息。</li>
                             <li><codeph>LOG_FILTER_ERROR</codeph> (0x0c)：输出 <codeph>LOG_FILTER_CRITICAL</codeph> 和 <codeph>LOG_FILTER_ERROR</codeph> 等级的日志信息。</li>
                             <li><codeph>LOG_FILTER_CRITICAL</codeph> (0x08)：仅输出 <codeph>LOG_FILTER_CRITICAL</codeph> 等级的日志信息。</li>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_channelmediarelayconfiguration_setdestchannelinfo">
     <title><ph keyref="setDestChannelInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置目标频道的信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="ios">设置目标频道的信息。</ph><ph id="shortdesc" props="android">设置目标频道的信息。</ph><ph id="shortdesc" props="mac">设置目标频道的信息。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -22,6 +22,12 @@
             <p props="android">如果你希望将媒体流转发到多个频道，最多可调用该方法四次。</p>
             <note props="ios">如果任一目标频道的 Token 过期，整个跨频道媒体流转发将停止。因此，声网建议你为所有目标频道指定相同的 Token 过期时间。</note>
             <note props="mac">如果任一目标频道的 Token 过期，整个跨频道媒体流转发将停止。因此，声网建议你为所有目标频道指定相同的 Token 过期时间。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android ios mac">
+            <title>调用时机</title>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android ios mac">
             <title>参数</title>
@@ -56,7 +62,7 @@
                             <li><codeph>uid</codeph>：目标频道中主播的用户 ID，取值范围为 0 到 (2&lt;sup&gt;32&lt;/sup&gt; - 1)。为避免用户 ID 冲突，该值必须与目标频道中其他用户 ID 不同。默认值为 0，表示 SDK 会随机生成一个用户 ID。</li>
                             <li><codeph>token</codeph>：加入目标频道所需的 Token。该 Token 是根据 <codeph>channelName</codeph> 和 <codeph>uid</codeph> 生成的。
                                 <ul>
-                                    <li>如果未启用 App Certificate，将该参数设置为 <codeph>null</codeph>，表示 SDK 使用 App ID。</li>
+                                    <li>如果未启用 App Certificate，将该参数设置为 <xref keyref="NULL"/>，表示 SDK 使用 App ID。</li>
                                     <li>如果已启用 App Certificate，必须使用根据 <codeph>channelName</codeph> 和 <codeph>uid</codeph> 生成的 Token。</li>
                                 </ul>
                             </li>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setlogfilesize">
     <title><ph keyref="setLogFileSize"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置 SDK 日志文件的大小。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置日志文件大小。</ph><ph id="shortdesc" props="android">设置 SDK 日志文件的大小。</ph><ph id="shortdesc" props="ios">设置 <codeph>agorasdk.log</codeph> 文件的大小。</ph><ph id="shortdesc" props="mac">设置 <codeph>agorasdk.log</codeph> 文件的大小。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -36,24 +36,23 @@
                         </ol>
                     </li>
                     <li><codeph>agoraapi.log</codeph> 的覆盖规则与 <codeph>agorasdk.log</codeph> 相同。</li>
-                </ul>
-            </p>
+                </ul><ph>该方法已自 vX.X.X 版本废弃，请改用 <xref keyref="initialize"/> 中的 <xref keyref="LogConfig"/> 设置日志文件大小。</ph></p>
             <p props="android">默认情况下，SDK 会生成五个 SDK 日志文件和五个 API 调用日志文件，规则如下：
                 <ul>
                     <li>SDK 日志文件包括：<codeph>agorasdk.log</codeph>、<codeph>agorasdk.1.log</codeph>、<codeph>agorasdk.2.log</codeph>、<codeph>agorasdk.3.log</codeph> 和 <codeph>agorasdk.4.log</codeph>。</li>
                     <li>API 调用日志文件包括：<codeph>agoraapi.log</codeph>、<codeph>agoraapi.1.log</codeph>、<codeph>agoraapi.2.log</codeph>、<codeph>agoraapi.3.log</codeph> 和 <codeph>agoraapi.4.log</codeph>。</li>
-                    <li>每个 SDK 日志文件和 API 日志文件的默认大小为 2,048 KB，采用 UTF-8 编码。</li>
-                    <li>SDK 会将最新日志写入 <codeph>agorasdk.log</codeph> 或 <codeph>agoraapi.log</codeph> 文件中。</li>
-                    <li>当 <codeph>agorasdk.log</codeph> 文件写满时，SDK 会按以下顺序处理日志文件：
+                    <li>每个日志文件的默认大小为 2,048 KB，采用 UTF-8 编码。</li>
+                    <li>SDK 会将最新日志写入 <codeph>agorasdk.log</codeph> 或 <codeph>agoraapi.log</codeph> 文件。</li>
+                    <li>当 <codeph>agorasdk.log</codeph> 写满时，SDK 会按以下顺序处理日志文件：
                         <ol>
-                            <li>删除 <codeph>agorasdk.4.log</codeph> 文件（如果存在）。</li>
+                            <li>删除 <codeph>agorasdk.4.log</codeph>（如果存在）。</li>
                             <li>将 <codeph>agorasdk.3.log</codeph> 重命名为 <codeph>agorasdk.4.log</codeph>。</li>
                             <li>将 <codeph>agorasdk.2.log</codeph> 重命名为 <codeph>agorasdk.3.log</codeph>。</li>
                             <li>将 <codeph>agorasdk.1.log</codeph> 重命名为 <codeph>agorasdk.2.log</codeph>。</li>
                             <li>创建新的 <codeph>agorasdk.log</codeph> 文件。</li>
                         </ol>
                     </li>
-                    <li><codeph>agoraapi.log</codeph> 文件的覆盖规则与 <codeph>agorasdk.log</codeph> 相同。</li>
+                    <li><codeph>agoraapi.log</codeph> 的覆盖规则与 <codeph>agorasdk.log</codeph> 相同。</li>
                 </ul>
             </p>
             <p props="ios">默认情况下，SDK 会生成五个 SDK 日志文件和五个 API 调用日志文件，规则如下：
@@ -92,21 +91,29 @@
                     <li><codeph>agoraapi.log</codeph> 文件的覆盖规则与 <codeph>agorasdk.log</codeph> 相同。</li>
                 </ul>
             </p>
+            <note props="android"><xref keyref="setLogFileSize"/> 仅用于设置 <codeph>agorasdk.log</codeph> 文件的大小，不影响 <codeph>agoraapi.log</codeph> 文件。</note>
             <note props="ios">该方法仅用于设置 <codeph>agorasdk.log</codeph> 文件的大小，不影响 <codeph>agoraapi.log</codeph> 文件。</note>
             <note props="mac">该方法仅用于设置 <codeph>agorasdk.log</codeph> 文件的大小，不影响 <codeph>agoraapi.log</codeph> 文件。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
                     <pt>fileSizeInKBytes</pt>
-                    <pd><codeph>agorasdk.log</codeph> 文件的大小（单位：KB）。取值范围为 [128, 20480]，默认值为 2,048 KB。如果设置值小于 128 KB，SDK 会自动调整为 128 KB；如果设置值大于 20,480 KB，SDK 会自动调整为 20,480 KB。</pd>
+                    <pd><codeph>agorasdk.log</codeph> 文件的大小，单位为 KB。取值范围为 [128, 20480]，默认值为 2,048 KB。如果设置值小于 128 KB，SDK 会自动调整为 128 KB；如果设置值大于 20,480 KB，SDK 会自动调整为 20,480 KB。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>fileSizeInKBytes</pt>
-                    <pd><codeph>agorasdk.log</codeph> 文件的大小（单位：KB），取值范围为 [128, 20480]，默认值为 2,048 KB。
+                    <pd><codeph>agorasdk.log</codeph> 文件的大小，单位为 KB。取值范围为 [128, 20480]，默认值为 2,048 KB。
                         <ul>
-                            <li>如果设置值小于 128 KB，SDK 会自动调整为 128 KB；</li>
+                            <li>如果设置值小于 128 KB，SDK 会自动调整为 128 KB。</li>
                             <li>如果设置值大于 20,480 KB，SDK 会自动调整为 20,480 KB。</li>
                         </ul>
                     </pd>

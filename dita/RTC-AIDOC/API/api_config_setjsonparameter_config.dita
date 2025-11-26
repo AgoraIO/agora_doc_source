@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_config_setjsonparameter_config">
     <title><ph keyref="SetJsonParameter_Config"/></title>
-    <shortdesc id="short"><ph id="shortdesc">使用 JSON 配置 SDK 的技术预览或自定义功能。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">使用 JSON 配置 SDK 的技术预览功能或自定义功能。</ph><ph id="shortdesc" props="android">设置播放器的私有参数。</ph><ph id="shortdesc" props="ios">通过 JSON 配置 SDK 提供的技术预览或定制功能。</ph><ph id="shortdesc" props="mac">通过 JSON 配置 SDK 提供的技术预览或定制功能。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -38,23 +38,23 @@
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
             </dl>
-            <p props="cpp">当你需要设置私有参数或启用自定义功能时，调用该方法。必须在调用 <codeph>SetConfigs</codeph> 之前调用该方法。</p>
+            <p props="cpp">当你需要设置私有参数或启用自定义功能时，可调用该方法。</p>
             <p props="android">你可以根据实际需要设置播放器的私有参数，具体设置可参考声网 SA 的建议。</p>
             <p props="ios">当你需要设置私有参数或使用定制功能时，可以调用此方法。</p>
             <p props="mac">当你需要设置私有参数或使用定制功能时，可以调用此方法。</p>
-            <note props="ios">你必须在调用 <codeph>setConfigs:error:</codeph> 之前调用此方法。</note>
-            <note props="mac">你必须在调用 <codeph>setConfigs:error:</codeph> 之前调用此方法。</note>
+            <note props="ios">你必须在调用 <xref keyref="SetConfigs_Canvas"/> 之前调用此方法。</note>
+            <note props="mac">你必须在调用 <xref keyref="SetConfigs_Canvas"/> 之前调用此方法。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="cpp">
             <title>调用时机</title>
-            <p props="cpp">必须在调用 <codeph>SetConfigs</codeph> 之前调用该方法。</p>
+            <p props="cpp">必须在调用 <codeph>SetConfigs</codeph> 之前调用此方法。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
                     <pt>json_parameter</pt>
-                    <pd>JSON 字符串格式的参数。</pd>
+                    <pd>以 JSON 字符串格式传入的参数。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>err</pt>

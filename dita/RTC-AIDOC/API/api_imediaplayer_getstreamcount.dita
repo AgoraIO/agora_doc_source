@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_getstreamcount">
     <title><ph keyref="getStreamCount"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获取媒体资源中的媒体流数量。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取媒体资源中的媒体流数量。</ph><ph id="shortdesc" props="android">获取媒体资源中媒体流的数量。</ph><ph id="shortdesc" props="ios">获取媒体资源中的流的数量。</ph><ph id="shortdesc" props="mac">获取媒体资源中的流的数量。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -24,6 +24,13 @@
             <note props="android">调用该方法前，请先调用 <codeph>open</codeph> 方法，并等待 <xref keyref="onPlayerSourceStateChanged"/> 回调报告状态 <codeph>OPEN_COMPLETED</codeph>。</note>
             <note props="ios">在调用该方法前，请先调用 <xref keyref="open"/> 方法，并等待 <codeph>didChangedToState:reason:</codeph> 回调报告 <codeph>AgoraMediaPlayerStateOpenCompleted</codeph> 状态。</note>
             <note props="mac">在调用该方法前，请先调用 <xref keyref="open"/> 方法，并等待 <codeph>didChangedToState:reason:</codeph> 回调报告 <codeph>AgoraMediaPlayerStateOpenCompleted</codeph> 状态。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="cpp">
             <title>参数</title>

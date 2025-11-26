@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imusiccontentcenter_getmusiccollectionbymusicchartid2">
     <title><ph keyref="getMusicCollectionByMusicChartId2"/></title>
-    <shortdesc id="short"><ph id="shortdesc">根据音乐榜单 ID 获取音乐资源列表。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="android">根据音乐榜单 ID 获取音乐资源列表。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -18,6 +18,10 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="android">成功调用该方法后，SDK 会触发 <xref keyref="onMusicCollectionResult"/> 回调，返回榜单中的音乐资源详细信息。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>调用时机</title>
+            <p props="android">加入频道前后均可调用。</p>
         </section>
         <section id="related" deliveryTarget="details" props="android">
             <title>相关回调</title>
@@ -40,7 +44,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>jsonOption</pt>
-                    <pd>可选的 JSON 扩展字段，默认为 <codeph>null</codeph>。你可以使用该字段筛选所需的音乐资源。目前支持以下筛选项：
+                    <pd>可选的 JSON 扩展字段，默认为 <xref keyref="NULL"/>。你可以使用该字段筛选所需的音乐资源。目前支持以下筛选项：
                         <ul>
                             <li><codeph>pitchType</codeph>：音乐资源是否支持评分。
                                 <ul>

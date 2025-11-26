@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_registerlocaluseraccount">
     <title><ph keyref="registerLocalUserAccount"/></title>
-    <shortdesc id="short"><ph id="shortdesc">注册用户账号。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">注册用户账号。</ph><ph id="shortdesc" props="android">注册用户账号。</ph><ph id="shortdesc" props="ios">注册用户账号。</ph><ph id="shortdesc" props="mac">注册用户账号。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -41,6 +41,13 @@
                     <li>调用 <xref keyref="registerLocalUserAccount"/> 方法注册用户账号，然后调用 <xref keyref="joinChannelWithUserAccount1"/> 或 <xref keyref="joinChannelWithUserAccount2"/> 方法加入频道，可缩短进入频道所需的时间。</li>
                     <li>直接调用 <xref keyref="joinChannelWithUserAccount1"/> 或 <xref keyref="joinChannelWithUserAccount2"/> 方法加入频道。</li>
                 </ul><ph>从 v4.6.0 版本开始，SDK 不再自动将 <codeph>NSInteger</codeph> 类型的用户 ID 映射为注册用户账号时使用的 <codeph>NSString</codeph> 类型 <codeph>userAccount</codeph>。如果你希望使用注册时的原始 <codeph>userAccount</codeph> 加入频道，请调用 <xref keyref="joinChannelWithUserAccount2"/> 方法，而不是调用 <xref keyref="joinChannel2"/> 并传入通过该方法获取的 <codeph>NSInteger</codeph> 用户 ID。</ph><ph>确保 <codeph>userAccount</codeph> 在频道内唯一。</ph><ph>为确保通信顺畅，建议使用相同的参数类型标识用户。例如，如果某用户使用用户 ID 加入频道，则其他用户也应使用用户 ID；同理，如果使用用户账号加入频道，则其他用户也应使用用户账号。如果用户使用声网 Web SDK 加入频道，确保其 ID 设置为相同的参数类型。</ph></p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="related" deliveryTarget="details" props="android cpp ios mac">
             <title>相关回调</title>

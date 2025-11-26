@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setsubscribevideoallowlist">
     <title><ph keyref="setSubscribeVideoAllowlist"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置视频流订阅的允许列表。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置视频流订阅的允许列表。</ph><ph id="shortdesc" props="android">设置视频流订阅的白名单。</ph><ph id="shortdesc" props="ios">设置视频流订阅的白名单。</ph><ph id="shortdesc" props="mac">设置视频流订阅的白名单。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -33,7 +33,7 @@
             <note props="android">
                 <ul>
                     <li>你可以在加入频道前或加入频道后调用此方法。</li>
-                    <li>白名单不受 <xref keyref="ChannelMediaOptions"/> 中 <xref keyref="muteRemoteVideoStream"/>、<xref keyref="muteAllRemoteVideoStreams"/> 和 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
+                    <li>白名单不受 <xref keyref="ChannelMediaOptions"/> 中 <xref keyref="muteRemoteVideoStream"/>、<xref keyref="muteAllRemoteVideoStreams"/> 和 <codeph>autoSubscribeVideo</codeph> 设置的影响。</li>
                     <li>一旦设置了订阅白名单，即使你离开当前频道并重新加入，该设置仍然有效。</li>
                     <li>如果某个用户同时被添加到白名单和黑名单中，则仅黑名单生效。</li>
                 </ul>
@@ -55,6 +55,13 @@
                 </ul>
             </note>
         </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
+        </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
@@ -70,8 +77,8 @@
                     <pt>uidList</pt>
                     <pd>希望订阅的视频流所属用户的用户 ID 列表。
                         <ul>
-                            <li>如果希望订阅某个用户的视频流，请将该用户的用户 ID 添加到该列表中。</li>
-                            <li>如果希望将某个用户从白名单中移除，需要调用 <xref keyref="setSubscribeVideoAllowlist"/> 方法更新用户 ID 列表，即在新的列表中仅保留希望订阅的用户 ID。</li>
+                            <li>如果你希望订阅某个用户的视频流，请将该用户的用户 ID 添加到该列表中。</li>
+                            <li>如果你希望将某个用户从白名单中移除，需要调用 <xref keyref="setSubscribeVideoAllowlist"/> 方法更新用户 ID 列表，即在新的用户 ID 列表中仅包含你希望订阅的用户的用户 ID。</li>
                         </ul>
                     </pd>
                 </plentry>

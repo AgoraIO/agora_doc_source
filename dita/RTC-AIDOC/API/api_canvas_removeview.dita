@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_canvas_removeview">
     <title><ph keyref="RemoveView"/></title>
-    <shortdesc id="short"><ph id="shortdesc">移除一个渲染视图。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">移除一个渲染视图。</ph><ph id="shortdesc" props="android">移除一个渲染视图。</ph><ph id="shortdesc" props="ios">移除一个渲染视图。</ph><ph id="shortdesc" props="mac">移除一个渲染视图。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -40,14 +40,14 @@
             </dl>
             <p props="ios">调用 <xref keyref="AddView"/> 方法添加视图后，可以调用该方法移除渲染视图。</p>
             <p props="mac">调用 <xref keyref="AddView"/> 方法添加视图后，可以调用该方法移除渲染视图。</p>
-            <note props="cpp">每次只能移除一个视图。</note>
+            <note props="cpp">一次只能移除一个视图。</note>
             <note props="android">每次只能移除一个视图。</note>
             <note props="ios">每次只能移除一个视图。</note>
             <note props="mac">每次只能移除一个视图。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
-            <p props="cpp">该方法必须在调用 <xref keyref="AddView"/> 之后调用。</p>
+            <p props="cpp">此方法必须在调用 <xref keyref="AddView"/> 之后执行。</p>
             <p props="android">该方法必须在调用 <xref keyref="AddView"/> 之后调用。</p>
             <p props="ios">必须在调用 <xref keyref="AddView"/> 方法之后调用。</p>
             <p props="mac">必须在调用 <xref keyref="AddView"/> 方法之后调用。</p>
@@ -57,15 +57,15 @@
             <parml>
                 <plentry props="cpp">
                     <pt>view</pt>
-                    <pd>要移除的视图对象。详见 <codeph>View</codeph>。</pd>
+                    <pd>要移除的视图对象。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>config</pt>
-                    <pd>视图配置。目前传入 <xref keyref="NULL"/>。详见 <codeph>ViewConfig</codeph>。</pd>
+                    <pd>视图对象的设置，目前传入 <xref keyref="NULL"/>。详见 <codeph>ViewConfig</codeph>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>err</pt>
-                    <pd>输出参数，状态或错误信息。详见 <xref keyref="Error"/>。</pd>
+                    <pd>输出参数，状态或错误信息，详见 <xref keyref="Error"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>view</pt>

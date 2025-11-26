@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_addhandler">
     <title><ph keyref="addHandler"/></title>
-    <shortdesc id="short"><ph id="shortdesc">添加事件处理器。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="android">添加事件处理器。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -19,6 +19,10 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="android">SDK 使用 <xref keyref="IRtcEngineEventHandler"/> 将回调发送到 App。你可以继承该类中的方法以接收回调。该类中的所有方法都有默认（空）实现，因此你只需根据实际场景继承所需的回调方法。
 在回调中应避免执行耗时操作或调用可能阻塞线程的 API，例如 <xref keyref="sendStreamMessage"/>，否则可能导致 SDK 无法正常工作。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>调用时机</title>
+            <p props="android">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android">
             <title>参数</title>

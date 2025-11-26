@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imusiccontentcenter_getmusiccollectionbymusicchartid">
     <title><ph keyref="getMusicCollectionByMusicChartId"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获取指定音乐榜单 ID 的音乐资源列表。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取指定音乐榜单 ID 的音乐资源列表。</ph><ph id="shortdesc" props="ios">获取指定音乐榜单中的音乐资源列表。</ph><ph id="shortdesc" props="android">根据音乐榜单 ID 获取音乐资源列表。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -21,6 +21,12 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">调用该方法后，SDK 会触发 <xref keyref="onMusicCollectionResult"/> 回调，报告该榜单中的音乐资源详情。</p>
             <p props="android">成功调用该方法后，SDK 会触发 <xref keyref="onMusicCollectionResult"/> 回调，返回榜单中的音乐资源详细信息。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
         </section>
         <section id="related" deliveryTarget="details" props="ios">
             <title>相关回调</title>

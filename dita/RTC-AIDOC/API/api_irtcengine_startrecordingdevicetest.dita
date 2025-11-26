@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startrecordingdevicetest">
     <title><ph keyref="startRecordingDeviceTest"/></title>
-    <shortdesc id="short"><ph id="shortdesc">启动音频采集设备测试。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="ios">启动音频采集设备测试。</ph><ph id="shortdesc" props="android">启动音频采集设备测试。</ph><ph id="shortdesc" props="mac">启动音频采集设备测试。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,11 +20,17 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="ios">该方法用于测试音频采集设备是否正常工作。调用该方法后，SDK 会按照设置的时间间隔触发 <xref keyref="onAudioVolumeIndication"/> 回调，报告 <codeph>uid</codeph> 为 0 的本地采集设备的音量信息。该方法与 <xref keyref="startEchoTest3"/> 方法的区别在于，<xref keyref="startRecordingDeviceTest"/> 仅检测本地音频采集设备是否正常工作，而 <xref keyref="startEchoTest3"/> 可以检测音视频设备和网络状况。</p>
-            <p props="android">调用该方法后，SDK 会按照设置的时间间隔触发 <codeph>onAudioVolumeIndication</codeph> 回调，报告 <codeph>uid</codeph> = 0 以及采集设备的音量信息。该方法与 <xref keyref="startEchoTest3"/> 的区别在于，<xref keyref="startRecordingDeviceTest"/> 仅检测本地音频采集设备是否正常工作，而 <xref keyref="startEchoTest3"/> 可同时检测音视频设备和网络状况。</p>
+            <p props="android">调用该方法后，SDK 会按照设置的时间间隔触发 <xref keyref="onAudioVolumeIndication"/> 回调，报告 <codeph>uid</codeph> = 0 以及采集设备的音量信息。该方法与 <xref keyref="startEchoTest3"/> 的区别在于，<xref keyref="startRecordingDeviceTest"/> 仅检测本地音频采集设备是否正常工作，而 <xref keyref="startEchoTest3"/> 可同时检测音视频设备和网络状况。</p>
             <p props="mac">该方法用于测试音频采集设备是否正常工作。调用该方法后，SDK 会按照设置的时间间隔触发 <xref keyref="onAudioVolumeIndication"/> 回调，报告 <codeph>uid</codeph> 为 0 的本地采集设备的音量信息。该方法与 <xref keyref="startEchoTest3"/> 方法的区别在于，<xref keyref="startRecordingDeviceTest"/> 仅检测本地音频采集设备是否正常工作，而 <xref keyref="startEchoTest3"/> 可以检测音视频设备和网络状况。</p>
             <note props="ios">请在加入频道前调用该方法。测试完成后，在加入频道前调用 <xref keyref="stopRecordingDeviceTest"/> 停止测试。</note>
             <note props="android">请在加入频道前调用该方法。测试完成后，在加入频道前调用 <xref keyref="stopRecordingDeviceTest"/> 停止测试。</note>
             <note props="mac">请在加入频道前调用该方法。测试完成后，在加入频道前调用 <xref keyref="stopRecordingDeviceTest"/> 停止测试。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android ios mac">
+            <title>调用时机</title>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android ios mac">
             <title>参数</title>
@@ -35,7 +41,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>indicationInterval</pt>
-                    <pd>触发 <codeph>onAudioVolumeIndication</codeph> 回调的时间间隔（毫秒）。该值应大于 10，否则将无法收到 <codeph>onAudioVolumeIndication</codeph> 回调，且 SDK 返回错误码 -2。建议设置为 100。</pd>
+                    <pd>触发 <xref keyref="onAudioVolumeIndication"/> 回调的时间间隔（毫秒）。该值应大于 10，否则将无法收到 <xref keyref="onAudioVolumeIndication"/> 回调，且 SDK 返回错误码 -2。建议设置为 100。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>indicationInterval</pt>

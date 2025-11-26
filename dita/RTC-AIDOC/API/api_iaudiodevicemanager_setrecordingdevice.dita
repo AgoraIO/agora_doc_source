@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_iaudiodevicemanager_setrecordingdevice">
     <title><ph keyref="setRecordingDevice"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置音频采集设备。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置音频采集设备。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -19,6 +19,10 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">你可以调用此方法更改当前使用的音频路由，但不会更改默认音频路由。例如，默认音频路由为麦克风，在加入频道前调用此方法将音频路由设置为蓝牙耳机并开始设备测试，SDK 会在蓝牙耳机上进行设备测试。设备测试完成并加入频道后，SDK 仍使用麦克风进行音频采集。</p>
             <note props="cpp">该方法仅适用于 Windows 和 macOS 平台。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="cpp">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="cpp">
             <title>参数</title>

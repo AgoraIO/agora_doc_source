@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_stopcameracapture">
     <title><ph keyref="stopCameraCapture"/></title>
-    <shortdesc id="short"><ph id="shortdesc">停止视频采集。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">停止视频采集。</ph><ph id="shortdesc" props="android">停止摄像头采集。</ph><ph id="shortdesc" props="ios">停止视频采集。</ph><ph id="shortdesc" props="mac">停止视频采集。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -37,6 +37,13 @@
             <note props="cpp">如果你正在使用本地视频混流功能，调用此方法可能会导致本地视频混流中断。
 在 iOS 平台上，如果你想禁用多摄像头采集，需要在调用此方法后调用 <xref keyref="enableMultiCamera"/> 并将 <codeph>enabled</codeph> 设置为 <xref keyref="false"/>。</note>
             <note props="android">如果你正在使用本地合图功能，调用此方法可能会导致本地合图中断。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>

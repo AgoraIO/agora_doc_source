@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_iaudioframeobserver_getobservedaudioframeposition">
     <title><ph keyref="getObservedAudioFramePosition"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置音频数据观察位置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="ios">设置音频数据观察位置。</ph><ph id="shortdesc" props="android">设置音频数据观察位置。</ph><ph id="shortdesc" props="mac">设置音频数据观察位置。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -43,6 +43,12 @@
                     <li><xref keyref="onMixedAudioFrame"/></li>
                     <li><xref keyref="onEarMonitoringAudioFrame"/></li>
                 </ul><ph>你可以根据场景需求，通过修改 <xref keyref="getObservedAudioFramePosition"/> 的返回值设置需要观察的一个或多个位置。</ph><ph>当你需要观察多个位置时，需使用 |（或运算符）。为节省系统资源，建议减少观察位置的数量。</ph></p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android ios mac">
+            <title>调用时机</title>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="return_values" props="android ios mac">
             <title>返回值</title>

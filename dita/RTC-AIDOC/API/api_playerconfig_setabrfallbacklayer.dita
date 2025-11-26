@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_playerconfig_setabrfallbacklayer">
     <title><ph keyref="SetAbrFallbackLayer"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置已订阅视频流的回退质量层。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置已订阅视频流的回退质量层。</ph><ph id="shortdesc" props="android">设置已订阅远端视频流的回退选项。</ph><ph id="shortdesc" props="ios">设置已订阅远端视频流的分层推流回退选项。</ph><ph id="shortdesc" props="mac">设置已订阅远端视频流的分层推流回退选项。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -46,14 +46,12 @@
                     <li>若对回退视频的分辨率有更高要求，可[联系技术支持](https://ticket.shengwang.cn/)开启 ABR 功能，启用后可自定义每一层的分辨率。SDK 会以你设置的最低质量层为下限，根据网络状况动态调整分辨率。</li>
                 </ul>
             </p>
-            <p props="android">调用该方法后，当网络变差时，SDK 会将视频流的分辨率降级到指定的质量层级。每个视频质量层级对应特定的分辨率和码率。SDK 会持续监测网络状况，在网络改善时将已订阅的远端视频流恢复到原始质量层级。
-默认情况下，只能设置回退到 <codeph>LOW</codeph> 或 <codeph>AUDIO_ONLY</codeph>。如需更高的视频质量层级，可[联系技术支持](https://ticket.shengwang.cn/)开启 ABR 功能。开启后，可回退到多质量层级视频流的任意层级，并自定义每个层级的分辨率。
+            <p props="android">默认情况下，只能设置回退到 <codeph>LOW</codeph> 或 <codeph>AUDIO_ONLY</codeph>。如需更高质量的回退层级，可[联系技术支持](https://ticket.shengwang.cn/)开启 ABR 功能。开启后，你可以回退到多层级视频流中的任意层级，并自定义每个层级的分辨率。
 适用场景：
                 <ul>
-                    <li>一般视频场景中，可调用该方法并将回退质量层级设置为 <codeph>LOW</codeph> 或 <codeph>AUDIO_ONLY</codeph>，当网络较差时，SDK 会将视频流降级为低质量流或仅接收音频流。</li>
-                    <li>如对回退视频流的分辨率有更高要求，可[联系技术支持](https://ticket.shengwang.cn/)开启 ABR 功能。开启后，可自定义每个层级的分辨率，SDK 会根据网络状况，在你指定的最低分辨率层级起始的范围内动态调整分辨率。详见 <codeph>Audience-side URL streaming</codeph>。</li>
-                </ul>
-            </p>
+                    <li>一般视频场景下，可设置回退层级为 <codeph>LOW</codeph> 或 <codeph>AUDIO_ONLY</codeph>，在网络较差时降级为低质量视频或仅接收音频。</li>
+                    <li>若对回退分辨率有更高要求，可开启 ABR 功能并自定义各层级分辨率，SDK 会根据网络状况在指定范围内动态调整。</li>
+                </ul><ph>调用时机：必须在调用 <codeph>setConfigs</codeph> 之前调用该方法。</ph></p>
             <p props="ios">在网络条件较差时，实时音视频通信的质量可能会下降。调用该方法后，SDK 会在网络变差时将远端视频流的分辨率回退到指定的视频质量层级。每个视频质量层级对应特定的分辨率和码率。SDK 会持续监测网络质量，在网络改善时恢复到原始订阅的视频质量层级。
 默认情况下，调用该方法后只能选择回退到 <codeph>AgoraRteAbrFallbackLow</codeph> 或 <codeph>AgoraRteAbrFallbackAudioOnly</codeph>。如果你对视频体验有更高要求，可以[联系技术支持](https://ticket.shengwang.cn/)开启 ABR 功能。开启后，可以回退到所有视频质量层级，并自定义每个层级的分辨率。
 适用场景：
@@ -70,7 +68,6 @@
                     <li>如果对远端视频流的回退分辨率有更高要求，可以[联系技术支持](https://ticket.shengwang.cn/)开启 ABR 功能。开启后，可以自定义每个层级的分辨率。SDK 会以你指定的最低质量层级的分辨率为下限，并根据网络状况在该范围内动态调整分辨率。详细实现方式可参考 Viewer-side URL Streaming。</li>
                 </ul>
             </p>
-            <note props="android">如果在调用该方法时未开启 ABR 功能，视频流的回退质量层级只能设置为 <codeph>LOW</codeph> 或 <codeph>AUDIO_ONLY</codeph>。</note>
             <note props="ios">如果未开启 ABR 功能，远端视频流的回退质量层级只能设置为 <codeph>AgoraRteAbrFallbackLow</codeph> 或 <codeph>AgoraRteAbrFallbackAudioOnly</codeph>。</note>
             <note props="mac">如果未开启 ABR 功能，远端视频流的回退质量层级只能设置为 <codeph>AgoraRteAbrFallbackLow</codeph> 或 <codeph>AgoraRteAbrFallbackAudioOnly</codeph>。</note>
         </section>
@@ -78,8 +75,8 @@
             <title>调用时机</title>
             <p props="cpp">必须在调用 <codeph>SetConfigs</codeph> 之前调用此方法。</p>
             <p props="android">必须在调用 <codeph>setConfigs</codeph> 之前调用该方法。</p>
-            <p props="ios">必须在调用 <codeph>setConfigs:error:</codeph> 之前调用该方法。</p>
-            <p props="mac">必须在调用 <codeph>setConfigs:error:</codeph> 之前调用该方法。</p>
+            <p props="ios">必须在调用 <xref keyref="SetConfigs_Canvas"/> 之前调用该方法。</p>
+            <p props="mac">必须在调用 <xref keyref="SetConfigs_Canvas"/> 之前调用该方法。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
@@ -125,7 +122,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>fallbackLayer</pt>
-                    <pd>视频流的回退质量层级。详见 <xref keyref="RteAbrFallbackLayer"/>。</pd>
+                    <pd>视频流的回退质量层级，详见 <xref keyref="RteAbrFallbackLayer"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>layer</pt>

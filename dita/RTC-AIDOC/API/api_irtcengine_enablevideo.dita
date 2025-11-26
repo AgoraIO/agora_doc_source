@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enablevideo">
     <title><ph keyref="enableVideo"/></title>
-    <shortdesc id="short"><ph id="shortdesc">启用视频模块。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">启用视频模块。</ph><ph id="shortdesc" props="android">启用视频模块。</ph><ph id="shortdesc" props="ios">启用视频模块。</ph><ph id="shortdesc" props="mac">启用视频模块。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -21,57 +21,55 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">默认情况下，视频模块处于禁用状态。调用该方法可启用视频模块。如果之后需要禁用视频模块，请调用 <xref keyref="disableVideo"/> 方法。
-你可以在加入频道前或加入频道后调用该方法：
+该方法可以在加入频道前或加入频道后调用：
                 <ul>
                     <li>如果在加入频道前调用，则启用视频模块。</li>
-                    <li>如果在语音通话过程中调用，语音通话会自动切换为视频通话。</li>
-                </ul>
-            </p>
-            <p props="android">默认情况下，视频模块处于禁用状态。调用该方法可启用视频模块。如果需要禁用视频模块，请调用 <xref keyref="disableVideo"/>。
-该方法可在加入频道前或加入频道后调用：
+                    <li>如果在语音通话过程中调用，则语音通话会自动切换为视频通话。</li>
+                </ul><ph>调用该方法会启用内部引擎，离开频道后仍然有效。调用该方法会重置整个引擎，可能导致响应时间变慢。你可以根据实际需求，使用以下方法分别控制视频模块的具体功能：</ph>
+                <ul>
+                    <li><xref keyref="enableLocalVideo"/>：是否启用摄像头以创建本地视频流。</li>
+                    <li><xref keyref="muteLocalVideoStream"/>：是否发布本地视频流。</li>
+                    <li><xref keyref="muteRemoteVideoStream"/>：是否订阅并播放远端视频流。</li>
+                    <li><xref keyref="muteAllRemoteVideoStreams"/>：是否订阅并播放所有远端视频流。</li>
+                </ul><ph>成功调用该方法会重置 <xref keyref="enableLocalVideo"/>、<xref keyref="muteRemoteVideoStream"/> 和 <xref keyref="muteAllRemoteVideoStreams"/> 的设置，请谨慎使用。</ph></p>
+            <p props="android">默认情况下，视频模块处于关闭状态。调用该方法可启用视频模块。如果你需要在之后关闭视频模块，需要调用 <xref keyref="disableVideo"/> 方法。
+该方法可以在加入频道前或加入频道后调用：
                 <ul>
                     <li>如果在加入频道前调用，则启用视频模块。</li>
-                    <li>如果在语音通话中调用，则语音通话会自动切换为视频通话。</li>
+                    <li>如果在语音通话过程中调用，则语音通话会自动切换为视频通话。</li>
                 </ul>
             </p>
-            <p props="ios">默认情况下，视频模块处于禁用状态。调用该方法可启用视频模块。如果你需要在之后禁用视频模块，需要调用 <xref keyref="disableVideo"/> 方法。</p>
-            <p props="mac">默认情况下，视频模块处于禁用状态。调用该方法可启用视频模块。如果你需要在之后禁用视频模块，需要调用 <xref keyref="disableVideo"/> 方法。</p>
-            <note props="cpp">
+            <p props="ios">默认情况下视频模块处于关闭状态，调用该方法可启用视频模块。如果需要关闭视频模块，需要调用 <xref keyref="disableVideo"/> 方法。
+该方法可以在加入频道前或加入频道后调用：
                 <ul>
-                    <li>该方法会启用内部引擎，即使在离开频道后仍然有效。</li>
-                    <li>调用该方法会重置整个引擎，可能导致响应时间变慢。你可以根据实际需求，使用以下方法分别控制视频模块的具体功能：
-                        <ul>
-                            <li><xref keyref="enableLocalVideo"/>：是否启用摄像头以创建本地视频流。</li>
-                            <li><xref keyref="muteLocalVideoStream"/>：是否发布本地视频流。</li>
-                            <li><xref keyref="muteRemoteVideoStream"/>：是否订阅并播放远端视频流。</li>
-                            <li><xref keyref="muteAllRemoteVideoStreams"/>：是否订阅并播放所有远端视频流。</li>
-                        </ul>
-                    </li>
-                    <li>成功调用该方法会重置 <xref keyref="enableLocalVideo"/>、<xref keyref="muteRemoteVideoStream"/> 和 <xref keyref="muteAllRemoteVideoStreams"/> 的状态，请谨慎使用。</li>
+                    <li>如果在加入频道前调用，则启用视频模块。</li>
+                    <li>如果在语音通话过程中调用，则语音通话会自动切换为视频通话。</li>
                 </ul>
-            </note>
-            <note props="android">
+            </p>
+            <p props="mac">默认情况下视频模块处于关闭状态，调用该方法可启用视频模块。如果需要关闭视频模块，需要调用 <xref keyref="disableVideo"/> 方法。
+该方法可以在加入频道前或加入频道后调用：
                 <ul>
-                    <li>该方法会启用内部引擎，并在离开频道后依然有效。</li>
-                    <li>调用该方法会重置整个引擎，可能导致响应变慢。你可以根据实际需求，使用以下方法分别控制视频模块的具体功能：
-                        <ul>
-                            <li><xref keyref="enableLocalVideo"/>：是否启用摄像头以创建本地视频流。</li>
-                            <li><xref keyref="muteLocalVideoStream"/>：是否发布本地视频流。</li>
-                            <li><xref keyref="muteRemoteVideoStream"/>：是否订阅并播放远端视频流。</li>
-                            <li><xref keyref="muteAllRemoteVideoStreams"/>：是否订阅并播放所有远端视频流。</li>
-                        </ul>
-                    </li>
-                    <li>成功调用该方法会重置 <xref keyref="enableLocalVideo"/>、<xref keyref="muteRemoteVideoStream"/> 和 <xref keyref="muteAllRemoteVideoStreams"/> 的状态，请谨慎使用。</li>
+                    <li>如果在加入频道前调用，则启用视频模块。</li>
+                    <li>如果在语音通话过程中调用，则语音通话会自动切换为视频通话。</li>
                 </ul>
-            </note>
-            <note props="ios">该方法启用内部引擎，离开频道后仍然有效。调用该方法会重置整个引擎，导致响应时间变慢。你可以根据实际需求，使用以下方法分别控制视频模块的具体功能：
+            </p>
+            <note props="android">该方法会启用内部引擎，并在离开频道后依然有效。调用该方法会重置整个引擎，可能导致响应变慢。你可以根据实际需求，使用以下方法分别控制视频模块的具体功能：
+                <ul>
+                    <li><xref keyref="enableLocalVideo"/>：是否启用摄像头以创建本地视频流。</li>
+                    <li><xref keyref="muteLocalVideoStream"/>：是否发布本地视频流。</li>
+                    <li><xref keyref="muteRemoteVideoStream"/>：是否订阅并播放远端视频流。</li>
+                    <li><xref keyref="muteAllRemoteVideoStreams"/>：是否订阅并播放所有远端视频流。</li>
+                </ul><ph>成功调用该方法会重置 <xref keyref="enableLocalVideo"/>、<xref keyref="muteRemoteVideoStream"/> 和 <xref keyref="muteAllRemoteVideoStreams"/> 的设置，请谨慎操作。</ph><ph>成功调用该方法后，客户端实例会触发 <xref keyref="onRemoteVideoStateChanged"/> 回调。</ph></note>
+            <note props="ios">该方法启用内部引擎，离开频道后仍然有效。
+调用该方法会重置整个引擎，导致响应时间变慢。你可以根据实际需求，使用以下方法分别控制视频模块的具体功能：
                 <ul>
                     <li><xref keyref="enableLocalVideo"/>：是否启用摄像头以创建本地视频流。</li>
                     <li><xref keyref="muteLocalVideoStream"/>：是否发布本地视频流。</li>
                     <li><xref keyref="muteRemoteVideoStream"/>：是否订阅并播放远端视频流。</li>
                     <li><xref keyref="muteAllRemoteVideoStreams"/>：是否订阅并播放所有远端视频流。</li>
                 </ul><ph>成功调用该方法会重置 <xref keyref="enableLocalVideo"/>、<xref keyref="muteRemoteVideoStream"/> 和 <xref keyref="muteAllRemoteVideoStreams"/>，请谨慎使用。</ph></note>
-            <note props="mac">该方法启用内部引擎，离开频道后仍然有效。调用该方法会重置整个引擎，导致响应时间变慢。你可以根据实际需求，使用以下方法分别控制视频模块的具体功能：
+            <note props="mac">该方法启用内部引擎，离开频道后仍然有效。
+调用该方法会重置整个引擎，导致响应时间变慢。你可以根据实际需求，使用以下方法分别控制视频模块的具体功能：
                 <ul>
                     <li><xref keyref="enableLocalVideo"/>：是否启用摄像头以创建本地视频流。</li>
                     <li><xref keyref="muteLocalVideoStream"/>：是否发布本地视频流。</li>
@@ -79,26 +77,17 @@
                     <li><xref keyref="muteAllRemoteVideoStreams"/>：是否订阅并播放所有远端视频流。</li>
                 </ul><ph>成功调用该方法会重置 <xref keyref="enableLocalVideo"/>、<xref keyref="muteRemoteVideoStream"/> 和 <xref keyref="muteAllRemoteVideoStreams"/>，请谨慎使用。</ph></note>
         </section>
-        <section id="timing" deliveryTarget="details" props="android ios mac">
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
-            <p props="android">该方法可在加入频道前或加入频道后调用。</p>
-            <p props="ios">该方法可以在加入频道前或加入频道后调用：
-                <ul>
-                    <li>如果在加入频道前调用，则启用视频模块。</li>
-                    <li>如果在语音通话中调用，则语音通话会自动切换为视频通话。</li>
-                </ul>
-            </p>
-            <p props="mac">该方法可以在加入频道前或加入频道后调用：
-                <ul>
-                    <li>如果在加入频道前调用，则启用视频模块。</li>
-                    <li>如果在语音通话中调用，则语音通话会自动切换为视频通话。</li>
-                </ul>
-            </p>
+            <p props="cpp">该方法可以在加入频道前或加入频道后调用。</p>
+            <p props="android">该方法可以在加入频道前或加入频道后调用。</p>
+            <p props="ios">该方法可以在加入频道前或加入频道后调用。</p>
+            <p props="mac">该方法可以在加入频道前或加入频道后调用。</p>
         </section>
         <section id="related" deliveryTarget="details" props="ios mac">
             <title>相关回调</title>
-            <p props="ios">成功调用该方法后，SDK 会触发 <xref keyref="onRemoteVideoStateChanged"/> 回调，报告远端视频状态变化。</p>
-            <p props="mac">成功调用该方法后，SDK 会触发 <xref keyref="onRemoteVideoStateChanged"/> 回调，报告远端视频状态变化。</p>
+            <p props="ios">成功调用该方法后，SDK 会触发 <xref keyref="onRemoteVideoStateChanged"/> 回调报告远端视频状态变化。</p>
+            <p props="mac">成功调用该方法后，SDK 会触发 <xref keyref="onRemoteVideoStateChanged"/> 回调报告远端视频状态变化。</p>
         </section>
         <section id="return_values" props="android cpp ios mac">
             <title>返回值</title>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setmediametadatadatasource">
     <title><ph keyref="setMediaMetadataDataSource"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置元数据的数据源。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="ios">设置元数据的数据源。</ph><ph id="shortdesc" props="mac">设置元数据的数据源。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -22,6 +22,11 @@
             <p props="mac">你需要在该方法中实现 <xref keyref="AgoraMediaMetadataDataSource"/> 协议，并指定元数据的数据格式。成功调用该方法后，SDK 会触发 <xref keyref="getMaxMetadataSize"/> 回调。你可以结合 <xref keyref="registerMediaMetadataObserver"/> 方法，在视频流中添加同步的元数据，实现更丰富的直播互动，例如发送购物链接、数字优惠券和在线问答。</p>
             <note props="ios">该方法需要在加入频道前调用。</note>
             <note props="mac">该方法需要在加入频道前调用。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="ios mac">
+            <title>调用时机</title>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="mac">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="ios mac">
             <title>参数</title>

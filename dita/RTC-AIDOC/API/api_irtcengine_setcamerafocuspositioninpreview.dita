@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setcamerafocuspositioninpreview">
     <title><ph keyref="setCameraFocusPositionInPreview"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置摄像头的手动对焦位置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置摄像头的手动对焦位置。</ph><ph id="shortdesc" props="ios">设置摄像头的手动对焦位置。</ph><ph id="shortdesc" props="android">设置摄像头的手动对焦位置。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,21 +20,27 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <note props="cpp">该方法仅适用于 Android 和 iOS 平台。
-你必须在调用 <xref keyref="enableVideo"/> 后再调用该方法。设置将在摄像头成功开启后生效，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>（1）后生效。
-方法调用成功后，SDK 会触发 <xref keyref="onCameraFocusAreaChanged"/> 回调。</note>
+你必须在调用 <xref keyref="enableVideo"/> 后再调用该方法。设置将在摄像头成功开启后生效，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>（1）后。
+调用该方法成功后，SDK 会触发 <xref keyref="onCameraFocusAreaChanged"/> 回调。</note>
             <note props="ios">你必须在调用 <xref keyref="enableVideo"/> 方法之后再调用本方法。设置结果会在摄像头成功开启后生效，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>AgoraVideoLocalStateCapturing</codeph>（1）后生效。成功调用该方法后，SDK 会触发 <xref keyref="onCameraFocusAreaChanged"/> 回调。</note>
             <note props="android">你必须在调用 <xref keyref="enableVideo"/> 之后再调用此方法。设置结果会在摄像头成功开启后生效，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>（1）后生效。成功调用该方法后，SDK 会触发 <xref keyref="onCameraFocusAreaChanged"/> 回调。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios">
+            <title>调用时机</title>
+            <p props="cpp">加入频道前后均可调用。</p>
+            <p props="ios">加入频道前后均可调用。</p>
+            <p props="android">加入频道前后均可调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
                     <pt>positionX</pt>
-                    <pd>视图中触摸点的横坐标。</pd>
+                    <pd>视图中触摸点的水平坐标。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>positionY</pt>
-                    <pd>视图中触摸点的纵坐标。</pd>
+                    <pd>视图中触摸点的垂直坐标。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>position</pt>
