@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_canvas_addview">
     <title><ph keyref="AddView"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">添加一个渲染视图。</ph><ph id="shortdesc" props="android">添加一个用于渲染的视频视图。</ph><ph id="shortdesc" props="ios">添加一个渲染视图。</ph><ph id="shortdesc" props="mac">添加一个渲染视图。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">添加一个渲染视图。</ph><ph id="shortdesc" props="android">添加一个渲染视图。</ph><ph id="shortdesc" props="ios">添加一个渲染视图。</ph><ph id="shortdesc" props="mac">添加一个渲染视图。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -38,8 +38,7 @@
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
             </dl>
-            <p props="cpp">调用该方法可向视频渲染器添加一个视图，用于显示视频内容。该方法在使用播放器播放视频时调用。必须在调用 <xref keyref="SetCanvas"/> 之前调用。</p>
-            <p props="android">调用该方法可将一个视图添加到视频渲染器中，以显示视频内容。</p>
+            <p props="android">当你需要使用播放器播放视频时，可以调用该方法将视图添加到视频渲染器中，以显示视频内容。</p>
             <p props="ios">你可以调用该方法将视图添加到视频渲染器中，以显示视频内容。</p>
             <p props="mac">你可以调用该方法将视图添加到视频渲染器中，以显示视频内容。</p>
             <note props="cpp">当前仅支持一个视图。</note>
@@ -49,7 +48,7 @@
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
-            <p props="cpp">此方法必须在调用 <xref keyref="SetCanvas"/> 之前调用。</p>
+            <p props="cpp">该方法必须在调用 <xref keyref="SetCanvas"/> 之前调用。</p>
             <p props="android">必须在调用 <xref keyref="SetCanvas"/> 之前调用该方法。</p>
             <p props="ios">你必须在调用 <xref keyref="SetCanvas"/> 之前调用此方法。</p>
             <p props="mac">你必须在调用 <xref keyref="SetCanvas"/> 之前调用此方法。</p>
@@ -59,11 +58,11 @@
             <parml>
                 <plentry props="cpp">
                     <pt>view</pt>
-                    <pd>窗口句柄。</pd>
+                    <pd><codeph>HWND</codeph> 窗口句柄。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>config</pt>
-                    <pd><codeph>View</codeph> 对象的设置。当前传入 <xref keyref="NULL"/>。详见 <codeph>ViewConfig</codeph>。</pd>
+                    <pd><codeph>View</codeph> 对象的设置，当前传入 <xref keyref="NULL"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>err</pt>
@@ -75,7 +74,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>viewConfig</pt>
-                    <pd><codeph>View</codeph> 对象的设置。详见 <codeph>ViewConfig</codeph>。</pd>
+                    <pd>视图的相关设置。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>view</pt>
@@ -115,7 +114,7 @@
         </section>
         <section id="return_values" props="cpp ios mac">
             <title>返回值</title>
-            <p props="cpp">
+            <p props="cpp">视图是否添加成功：
                 <ul>
                     <li><xref keyref="true"/>：视图添加成功。</li>
                     <li><xref keyref="false"/>：添加视图失败。</li>

@@ -33,7 +33,8 @@
                     <li>调用 <codeph>setAudioProfile</codeph>，并将 <codeph>profile</codeph> 参数设置为 <codeph>AUDIO_PROFILE_MUSIC_HIGH_QUALITY</codeph>（4）或 <codeph>AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO</codeph>（5）。</li>
                 </ul>
             </p>
-            <p props="android">为获得更好的人声效果，建议在调用该方法前先调用以下 API：
+            <p props="android">该方法不会改变原始声音的性别特征。设置后，频道内所有用户都能听到该效果。
+为获得更好的人声效果，建议在调用该方法前先调用以下方法：
                 <ul>
                     <li>调用 <xref keyref="setAudioScenario"/> 将音频场景设置为高音质音频场景，即 <codeph>AUDIO_SCENARIO_GAME_STREAMING</codeph>（3）。</li>
                     <li>调用 <codeph>setAudioProfile</codeph>，将 <codeph>profile</codeph> 参数设置为 <codeph>MUSIC_HIGH_QUALITY</codeph>（4）或 <codeph>MUSIC_HIGH_QUALITY_STEREO</codeph>（5）。</li>
@@ -73,8 +74,8 @@
             <note props="android">
                 <ul>
                     <li>不要将 <codeph>setAudioProfile</codeph> 中的 <codeph>profile</codeph> 参数设置为 <codeph>SPEECH_STANDARD</codeph>（1），否则该方法不生效。</li>
-                    <li>如果调用 <xref keyref="setAudioEffectPreset"/> 并设置除 <codeph>ROOM_ACOUSTICS_3D_VOICE</codeph> 或 <codeph>PITCH_CORRECTION</codeph> 以外的枚举值，不要调用 <xref keyref="setAudioEffectParameters"/>，否则 <xref keyref="setAudioEffectPreset"/> 的设置会被覆盖。</li>
-                    <li>调用 <xref keyref="setAudioEffectPreset"/> 后，不建议再调用以下方法，否则会覆盖该方法设置的效果：
+                    <li>如果调用 <xref keyref="setAudioEffectPreset"/> 设置的枚举值不是 <codeph>ROOM_ACOUSTICS_3D_VOICE</codeph> 或 <codeph>PITCH_CORRECTION</codeph>，则不要调用 <xref keyref="setAudioEffectParameters"/>，否则 <xref keyref="setAudioEffectPreset"/> 的设置会被覆盖。</li>
+                    <li>调用 <xref keyref="setAudioEffectPreset"/> 后，声网不建议再调用以下方法，否则 <xref keyref="setAudioEffectPreset"/> 设置的效果会被覆盖：
                         <ul>
                             <li><xref keyref="setVoiceBeautifierPreset"/></li>
                             <li><xref keyref="setLocalVoicePitch"/></li>
@@ -84,7 +85,7 @@
                             <li><xref keyref="setVoiceConversionPreset"/></li>
                         </ul>
                     </li>
-                    <li>此方法依赖语音美声动态库 <xref keyref="audiobeauty"/>。如果该动态库被删除，则无法正常启用该功能。</li>
+                    <li>该方法依赖语音美声动态库 <xref keyref="audiobeauty"/>。如果该动态库被删除，则无法正常启用该功能。</li>
                 </ul>
             </note>
             <note props="ios">
@@ -138,29 +139,29 @@
                 </plentry>
                 <plentry props="android">
                     <pt>preset</pt>
-                    <pd>预设的音效效果。
+                    <pd>预设的音效效果：
                         <ul>
                             <li><codeph>AUDIO_EFFECT_OFF</codeph>（0）：关闭音效，使用原始声音。</li>
-                            <li><codeph>ROOM_ACOUSTICS_KTV</codeph>（1）：典型 KTV 场所的混响风格。</li>
-                            <li><codeph>ROOM_ACOUSTICS_VOCAL_CONCERT</codeph>（2）：典型音乐会场所的混响风格。</li>
-                            <li><codeph>ROOM_ACOUSTICS_STUDIO</codeph>（3）：典型录音棚的混响风格。</li>
-                            <li><codeph>ROOM_ACOUSTICS_PHONOGRAPH</codeph>（4）：典型老式留声机的混响风格。</li>
-                            <li><codeph>ROOM_ACOUSTICS_VIRTUAL_STEREO</codeph>（5）：虚拟立体声效果，将单声道音频渲染为立体声。使用该预设前，需将 <codeph>setAudioProfile</codeph> 的 <codeph>profile</codeph> 参数设置为 <codeph>MUSIC_HIGH_QUALITY</codeph>（4）或 <codeph>MUSIC_HIGH_QUALITY_STEREO</codeph>（5），否则设置无效。</li>
+                            <li><codeph>ROOM_ACOUSTICS_KTV</codeph>（1）：KTV 场所典型的混响风格。</li>
+                            <li><codeph>ROOM_ACOUSTICS_VOCAL_CONCERT</codeph>（2）：音乐会场所典型的混响风格。</li>
+                            <li><codeph>ROOM_ACOUSTICS_STUDIO</codeph>（3）：录音棚典型的混响风格。</li>
+                            <li><codeph>ROOM_ACOUSTICS_PHONOGRAPH</codeph>（4）：老式留声机典型的混响风格。</li>
+                            <li><codeph>ROOM_ACOUSTICS_VIRTUAL_STEREO</codeph>（5）：虚拟立体声效果，将单声道音频渲染为立体声。使用前需将 <codeph>setAudioProfile</codeph> 的 <codeph>profile</codeph> 参数设置为 <codeph>MUSIC_HIGH_QUALITY</codeph>（4）或 <codeph>MUSIC_HIGH_QUALITY_STEREO</codeph>（5），否则该预设无效。</li>
                             <li><codeph>ROOM_ACOUSTICS_SPACIAL</codeph>（6）：更具空间感的音效。</li>
                             <li><codeph>ROOM_ACOUSTICS_ETHEREAL</codeph>（7）：更空灵的音效。</li>
-                            <li><codeph>ROOM_ACOUSTICS_VIRTUAL_SURROUND_SOUND</codeph>（8）：虚拟环绕声效果，SDK 基于立体声通道生成模拟环绕声场。启用后，用户需使用立体声播放设备才能听到预期音效。</li>
+                            <li><codeph>ROOM_ACOUSTICS_VIRTUAL_SURROUND_SOUND</codeph>（8）：虚拟环绕声效果，SDK 在立体声通道基础上生成模拟环绕声场。启用后，用户需使用立体声播放设备才能听到预期音效。</li>
                             <li><codeph>ROOM_ACOUSTICS_CHORUS</codeph>（9）：合唱音效，适用于合唱场景，可增强人声的层次感和空间感。</li>
-                            <li><codeph>ROOM_ACOUSTICS_3D_VOICE</codeph>（10）：3D 声音效果，使声音在用户周围移动，默认循环周期为 10 秒。使用该预设前，需将 <codeph>setAudioProfile</codeph> 的 <codeph>profile</codeph> 参数设置为 <codeph>MUSIC_STANDARD_STEREO</codeph>（3）或 <codeph>MUSIC_HIGH_QUALITY_STEREO</codeph>（5），否则设置无效。启用后，用户需使用立体声播放设备才能听到预期音效。</li>
-                            <li><codeph>VOICE_CHANGER_EFFECT_UNCLE</codeph>（11）：典型大叔声音的混响风格，建议用于处理男性音色，否则可能无法听到预期效果。</li>
-                            <li><codeph>VOICE_CHANGER_EFFECT_OLDMAN</codeph>（12）：老年男性的声音，建议用于处理男性音色，否则可能无法听到预期效果。</li>
-                            <li><codeph>VOICE_CHANGER_EFFECT_BOY</codeph>（13）：男孩的声音，建议用于处理男性音色，否则可能无法听到预期效果。</li>
-                            <li><codeph>VOICE_CHANGER_EFFECT_SISTER</codeph>（14）：年轻女性的声音，建议用于处理女性音色，否则可能无法听到预期效果。</li>
-                            <li><codeph>VOICE_CHANGER_EFFECT_GIRL</codeph>（15）：女孩的声音，建议用于处理女性音色，否则可能无法听到预期效果。</li>
-                            <li><codeph>VOICE_CHANGER_EFFECT_PIGKING</codeph>（16）：《西游记》中猪八戒的声音，类似熊吼。</li>
-                            <li><codeph>VOICE_CHANGER_EFFECT_HULK</codeph>（17）：绿巨人的声音。</li>
-                            <li><codeph>STYLE_TRANSFORMATION_RNB</codeph>（18）：典型 R&amp;B 音乐的混响风格。使用该预设前，需将 <codeph>setAudioProfile</codeph> 的 <codeph>profile</codeph> 参数设置为 <codeph>MUSIC_HIGH_QUALITY</codeph>（4）或 <codeph>MUSIC_HIGH_QUALITY_STEREO</codeph>（5），否则设置无效。</li>
-                            <li><codeph>STYLE_TRANSFORMATION_POPULAR</codeph>（19）：典型流行音乐的混响风格。使用该预设前，需将 <codeph>setAudioProfile</codeph> 的 <codeph>profile</codeph> 参数设置为 <codeph>MUSIC_HIGH_QUALITY</codeph>（4）或 <codeph>MUSIC_HIGH_QUALITY_STEREO</codeph>（5），否则设置无效。</li>
-                            <li><codeph>PITCH_CORRECTION</codeph>（20）：基于自然 C 大调音阶的音高修正效果。设置该音效后，可调用 <xref keyref="setAudioEffectParameters"/> 调整调音的基本模式和主音音高。</li>
+                            <li><codeph>ROOM_ACOUSTICS_3D_VOICE</codeph>（10）：3D 声音效果，使声音在用户周围移动，默认循环周期为 10 秒。使用前需将 <codeph>setAudioProfile</codeph> 的 <codeph>profile</codeph> 参数设置为 <codeph>MUSIC_STANDARD_STEREO</codeph>（3）或 <codeph>MUSIC_HIGH_QUALITY_STEREO</codeph>（5），否则该预设无效。启用后，用户需使用立体声播放设备才能听到预期音效。</li>
+                            <li><codeph>VOICE_CHANGER_EFFECT_UNCLE</codeph>（11）：大叔音效，建议用于处理男性音色，否则可能无法听到预期效果。</li>
+                            <li><codeph>VOICE_CHANGER_EFFECT_OLDMAN</codeph>（12）：老人音效，建议用于处理男性音色，否则可能无法听到预期效果。</li>
+                            <li><codeph>VOICE_CHANGER_EFFECT_BOY</codeph>（13）：男孩音效，建议用于处理男性音色，否则可能无法听到预期效果。</li>
+                            <li><codeph>VOICE_CHANGER_EFFECT_SISTER</codeph>（14）：年轻女性音效，建议用于处理女性音色，否则可能无法听到预期效果。</li>
+                            <li><codeph>VOICE_CHANGER_EFFECT_GIRL</codeph>（15）：女孩音效，建议用于处理女性音色，否则可能无法听到预期效果。</li>
+                            <li><codeph>VOICE_CHANGER_EFFECT_PIGKING</codeph>（16）：猪八戒音效，声音如熊吼。</li>
+                            <li><codeph>VOICE_CHANGER_EFFECT_HULK</codeph>（17）：绿巨人音效。</li>
+                            <li><codeph>STYLE_TRANSFORMATION_RNB</codeph>（18）：R&amp;B 音乐典型的混响风格。使用前需将 <codeph>setAudioProfile</codeph> 的 <codeph>profile</codeph> 参数设置为 <codeph>MUSIC_HIGH_QUALITY</codeph>（4）或 <codeph>MUSIC_HIGH_QUALITY_STEREO</codeph>（5），否则该预设无效。</li>
+                            <li><codeph>STYLE_TRANSFORMATION_POPULAR</codeph>（19）：流行音乐典型的混响风格。使用前需将 <codeph>setAudioProfile</codeph> 的 <codeph>profile</codeph> 参数设置为 <codeph>MUSIC_HIGH_QUALITY</codeph>（4）或 <codeph>MUSIC_HIGH_QUALITY_STEREO</codeph>（5），否则该预设无效。</li>
+                            <li><codeph>PITCH_CORRECTION</codeph>（20）：音高修正效果，根据自然 C 大调音阶修正用户音高。设置该效果后，可调用 <xref keyref="setAudioEffectParameters"/> 调整调音的基本模式和主音音高。</li>
                         </ul>
                     </pd>
                 </plentry>

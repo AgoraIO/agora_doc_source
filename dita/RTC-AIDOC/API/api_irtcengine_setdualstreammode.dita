@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setdualstreammode">
     <title><ph keyref="setDualStreamMode"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置发送端的视频流模式，用于控制是否发送低质量视频流。</ph><ph id="shortdesc" props="android">设置发送端的不同质量层级的视频流模式。</ph><ph id="shortdesc" props="ios">设置发送端的不同质量层级的视频流模式。</ph><ph id="shortdesc" props="mac">设置发送端的不同质量层级的视频流模式。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置发送端的视频流模式，用于控制是否发送低质量视频流。</ph><ph id="shortdesc" props="android">设置发送端的视频流模式，用于控制是否发送视频小流。</ph><ph id="shortdesc" props="ios">设置发送端的不同质量层级的视频流模式。</ph><ph id="shortdesc" props="mac">设置发送端的不同质量层级的视频流模式。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -25,10 +25,11 @@
 如果你希望修改此行为，可以调用该方法并将 <codeph>mode</codeph> 设置为 <codeph>DISABLE_SIMULCAST_STREAM</codeph>（从不发送低质量视频流）或 <codeph>ENABLE_SIMULCAST_STREAM</codeph>（始终发送低质量视频流）。
 
 如果你希望恢复默认行为，可以再次调用该方法并将 <codeph>mode</codeph> 设置为 <codeph>AUTO_SIMULCAST_STREAM</codeph>。</p>
-            <p props="android">
+            <p props="android">你可以调用该方法设置发送端的视频流模式。
+SDK 默认在发送端启用视频小流自适应模式（<codeph>AUTO_SIMULCAST_STREAM</codeph>），即发送端不会主动发送视频小流。角色为主播的接收端可以通过调用 <codeph>setRemoteVideoStreamType</codeph> 发起视频小流请求，发送端在收到请求后会自动开始发送视频小流。
                 <ul>
-                    <li>如果你希望修改默认行为，可以调用该方法，并将 <codeph>mode</codeph> 设置为 <codeph>DISABLE_SIMULCAST_STREAM</codeph>（从不发送低质量视频流）或 <codeph>ENABLE_SIMULCAST_STREAM</codeph>（始终发送低质量视频流）。</li>
-                    <li>如果你希望恢复默认行为，可以再次调用该方法，并将 <codeph>mode</codeph> 设置为 <codeph>AUTO_SIMULCAST_STREAM</codeph>。</li>
+                    <li>如果你希望修改此行为，可以调用该方法并将 <codeph>mode</codeph> 设置为 <codeph>DISABLE_SIMULCAST_STREAM</codeph>（从不发送视频小流）或 <codeph>ENABLE_SIMULCAST_STREAM</codeph>（始终发送视频小流）。</li>
+                    <li>如果你希望恢复默认行为，可以再次调用该方法并将 <codeph>mode</codeph> 设置为 <codeph>AUTO_SIMULCAST_STREAM</codeph>。</li>
                 </ul>
             </p>
             <p props="ios">SDK 默认在发送端开启低质量视频流自适应模式（<codeph>AgoraAutoSimulcastStream</codeph>），即发送端不会主动发送低质量视频流。角色为主播的接收端可以通过调用 <xref keyref="setRemoteVideoStreamType"/> 方法发起低质量视频流请求，发送端在收到请求后会自动开始发送低质量视频流。
@@ -52,9 +53,9 @@
             </note>
             <note props="android">该方法与 <codeph>enableDualStreamMode</codeph> 的区别如下：
                 <ul>
-                    <li>将 <codeph>mode</codeph> 设置为 <codeph>DISABLE_SIMULCAST_STREAM</codeph>，等效于调用 <codeph>enableDualStreamMode(false)</codeph>。</li>
-                    <li>将 <codeph>mode</codeph> 设置为 <codeph>ENABLE_SIMULCAST_STREAM</codeph>，等效于调用 <codeph>enableDualStreamMode(true)</codeph>。</li>
-                    <li>两个方法均可在加入频道前后调用。如果两个方法都被调用，则以后调用的方法设置优先生效。</li>
+                    <li>当调用该方法并将 <codeph>mode</codeph> 设置为 <codeph>DISABLE_SIMULCAST_STREAM</codeph> 时，效果等同于调用 <codeph>enableDualStreamMode(false)</codeph>。</li>
+                    <li>当调用该方法并将 <codeph>mode</codeph> 设置为 <codeph>ENABLE_SIMULCAST_STREAM</codeph> 时，效果等同于调用 <codeph>enableDualStreamMode(true)</codeph>。</li>
+                    <li>两个方法都可以在加入频道前或后调用。如果两个方法都被调用，则以后调用的方法设置优先生效。</li>
                 </ul>
             </note>
             <note props="ios">本方法与 <xref keyref="enableDualStreamMode"/> 方法的区别如下：
@@ -77,19 +78,19 @@
             <parml>
                 <plentry props="cpp">
                     <pt>mode</pt>
-                    <pd>发送视频流的模式。详见 <codeph>SIMULCAST_STREAM_MODE</codeph>。</pd>
+                    <pd>发送视频流的模式。详见 <xref keyref="SIMULCAST_STREAM_MODE"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>mode</pt>
-                    <pd>发送视频流的模式。详见 <codeph>SimulcastStreamMode</codeph>。</pd>
+                    <pd>发送视频流的模式。详见 <xref keyref="SIMULCAST_STREAM_MODE"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>mode</pt>
-                    <pd>发送视频流的模式，详见 <codeph>AgoraSimulcastStreamMode</codeph>。</pd>
+                    <pd>发送视频流的模式，详见 <xref keyref="SIMULCAST_STREAM_MODE"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>mode</pt>
-                    <pd>发送视频流的模式，详见 <codeph>AgoraSimulcastStreamMode</codeph>。</pd>
+                    <pd>发送视频流的模式，详见 <xref keyref="SIMULCAST_STREAM_MODE"/>。</pd>
                 </plentry>
             </parml>
         </section>

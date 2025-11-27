@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_enabledualstreammodeex">
     <title><ph keyref="enableDualStreamModeEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">在发送端启用或关闭不同质量层级的视频流。</ph><ph id="shortdesc" props="android">在发送端启用或关闭不同质量层级的视频流。</ph><ph id="shortdesc" props="ios">在发送端启用或关闭不同质量层级的视频流。</ph><ph id="shortdesc" props="mac">在发送端启用或关闭不同质量层级的视频流。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">在发送端启用或关闭不同质量层级的视频流。</ph><ph id="shortdesc" props="android">在发送端启用或关闭双流模式。</ph><ph id="shortdesc" props="ios">在发送端启用或关闭不同质量层级的视频流。</ph><ph id="shortdesc" props="mac">在发送端启用或关闭不同质量层级的视频流。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -31,7 +31,7 @@
                 </dlentry>
                 <dlentry props="android">
                     <dt>废弃</dt>
-                    <dd>自 v4.2.0 版本废弃，请改用 <xref keyref="setDualStreamModeEx"/>。</dd>
+                    <dd>自 v4.2.0 版本废弃。请使用 <xref keyref="setDualStreamModeEx"/> 代替。</dd>
                 </dlentry>
                 <dlentry props="ios">
                     <dt>废弃</dt>
@@ -47,7 +47,11 @@
                     <li>高质量视频流：高码率，高分辨率。</li>
                     <li>低质量视频流：低码率，低分辨率。</li>
                 </ul><ph>启用该功能后，你可以调用 <xref keyref="setRemoteVideoStreamType"/> 方法，在订阅端选择接收高质量或低质量的视频流。</ph></p>
-            <p props="android">启用该模式后，你可以调用 <codeph>setRemoteVideoStreamType</codeph> 方法，在订阅端选择接收高质量或低质量的视频流。</p>
+            <p props="android">你可以调用此方法在发送端启用或关闭双流模式。双流由一对视频大流和视频小流组成：
+                <ul>
+                    <li>视频大流：高码率，高分辨率。</li>
+                    <li>视频小流：低码率，低分辨率。</li>
+                </ul><ph>启用双流模式后，你可以调用 <codeph>setRemoteVideoStreamType</codeph> 方法，在订阅端选择接收视频大流或视频小流。</ph></p>
             <p props="ios">你可以调用此方法在发布端启用或关闭不同质量层级的视频流。不同质量层级的视频流由一对高质量视频流和低质量视频流组成：
                 <ul>
                     <li>高质量视频流：高码率，高分辨率。</li>
@@ -59,7 +63,7 @@
                     <li>低质量视频流：低码率，低分辨率。</li>
                 </ul><ph>启用不同质量层级的视频流后，你可以调用 <codeph>setRemoteVideoStream</codeph> 方法，在订阅端选择接收高质量或低质量的视频流。</ph></p>
             <note props="cpp">该方法适用于发送端的所有类型视频流，包括但不限于摄像头采集的视频流、屏幕共享流和自定义采集的视频流。</note>
-            <note props="android">该方法适用于发送端的所有类型的视频流，包括但不限于摄像头采集的视频流、屏幕共享流和自定义采集的视频流。</note>
+            <note props="android">该方法适用于发送端的所有类型视频流，包括但不限于摄像头采集的视频流、屏幕共享流和自定义采集的视频流。</note>
             <note props="ios">该方法适用于发送端的所有类型的视频流，包括但不限于摄像头采集的视频流、屏幕共享流和自定义采集的视频流。</note>
             <note props="mac">该方法适用于发送端的所有类型的视频流，包括但不限于摄像头采集的视频流、屏幕共享流和自定义采集的视频流。</note>
         </section>
@@ -77,7 +81,9 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>streamConfig</pt>
-                    <pd>低质量视频流的配置。详见 <codeph>SimulcastStreamConfig</codeph>。</pd>
+                    <pd>低质量视频流的配置。详见 <xref keyref="SimulcastStreamConfig"/>。
+                        <note>当 <codeph>mode</codeph> 设置为 <codeph>DISABLE_SIMULCAST_STREAM</codeph> 时，设置 <codeph>streamConfig</codeph> 无效。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>connection</pt>
@@ -85,20 +91,22 @@
                 </plentry>
                 <plentry props="android">
                     <pt>enabled</pt>
-                    <pd>是否启用不同质量层级的视频流：
+                    <pd>是否启用双流模式：
                         <ul>
-                            <li><xref keyref="true"/>：启用。</li>
-                            <li><xref keyref="false"/>：（默认）关闭。</li>
+                            <li><xref keyref="true"/>：启用双流模式。</li>
+                            <li><xref keyref="false"/>：（默认）关闭双流模式。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>streamConfig</pt>
-                    <pd>低质量视频流的配置。详见 <codeph>SimulcastStreamConfig</codeph>。</pd>
+                    <pd>视频小流的配置，详见 <xref keyref="SimulcastStreamConfig"/>。
+                        <note>当 <codeph>mode</codeph> 设置为 <codeph>DISABLE_SIMULCAST_STREAM</codeph> 时，设置 <codeph>streamConfig</codeph> 不生效。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>connection</pt>
-                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                    <pd>连接信息，详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>enabled</pt>
@@ -111,7 +119,9 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>streamConfig</pt>
-                    <pd>低质量视频流的配置，详见 <codeph>AgoraSimulcastStreamConfig</codeph>。</pd>
+                    <pd>低质量视频流的配置，详见 <xref keyref="SimulcastStreamConfig"/>。
+                        <note>当 <codeph>mode</codeph> 设置为 <codeph>AgoraDisableSimulcastStream</codeph> 时，设置 <codeph>streamConfig</codeph> 无效。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>connection</pt>
@@ -128,7 +138,9 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>streamConfig</pt>
-                    <pd>低质量视频流的配置，详见 <codeph>AgoraSimulcastStreamConfig</codeph>。</pd>
+                    <pd>低质量视频流的配置，详见 <xref keyref="SimulcastStreamConfig"/>。
+                        <note>当 <codeph>mode</codeph> 设置为 <codeph>AgoraDisableSimulcastStream</codeph> 时，设置 <codeph>streamConfig</codeph> 无效。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>connection</pt>

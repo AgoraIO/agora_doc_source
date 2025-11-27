@@ -23,7 +23,7 @@
             <dl outputclass="deprecated">
                 <dlentry props="cpp">
                     <dt>废弃</dt>
-                    <dd>自 v4.6.0 版本废弃，请改用 <codeph>addVideoWatermarkEx</codeph>。</dd>
+                    <dd>自 v4.6.0 版本废弃，请改用 <codeph>addVideoWatermarkEx(const WatermarkConfig&amp; config, const RtcConnection&amp; connection)</codeph>。</dd>
                 </dlentry>
                 <dlentry props="android">
                     <dt>废弃</dt>
@@ -38,11 +38,11 @@
                     <dd>自 v4.5.0 版本废弃，请改用 <codeph>addVideoWatermark:config connection</codeph>。</dd>
                 </dlentry>
             </dl>
-            <p props="cpp">该方法在直播中向本地视频添加 PNG 格式的水印图像。添加后，频道中的所有观众（包括 CDN 观众）以及采集设备都可以看到并采集该图像。声网 SDK 每个直播视频流仅支持添加一张水印图像，后添加的图像会替换之前的图像。
+            <p props="cpp">该方法在直播中向本地视频添加 PNG 格式的水印图像。添加后，频道中的所有观众（包括 CDN 观众）和采集设备都可以看到并采集该图像。声网 SDK 每个直播视频流仅支持添加一张水印图像，新添加的图像会替换之前的图像。
 水印图像的位置依赖于 <xref keyref="setVideoEncoderConfigurationEx"/> 方法中的设置：
                 <ul>
-                    <li>如果编码视频的方向模式（<xref keyref="ORIENTATION_MODE"/>）为固定横屏或自适应横屏，水印图像将以横屏方向显示。</li>
-                    <li>如果方向模式为固定竖屏或自适应竖屏，水印图像将以竖屏方向显示。</li>
+                    <li>如果编码视频的方向模式（<xref keyref="ORIENTATION_MODE"/>）为固定横屏或自适应横屏，水印将按横屏方向显示。</li>
+                    <li>如果方向模式为固定竖屏或自适应竖屏，水印将按竖屏方向显示。</li>
                     <li>设置水印位置时，区域必须小于 <xref keyref="setVideoEncoderConfigurationEx"/> 中设置的视频尺寸，否则水印图像会被裁剪。</li>
                 </ul>
             </p>
@@ -74,9 +74,9 @@
                 <ul>
                     <li>请确保在调用该方法前已调用 <xref keyref="enableVideo"/>。</li>
                     <li>该方法仅支持 PNG 格式的水印图像。支持的 PNG 像素格式包括 RGBA、RGB、Palette、Gray 和 Alpha_gray。</li>
-                    <li>如果 PNG 图像的尺寸与设置不一致，图像将被裁剪或缩放以适配设置。</li>
-                    <li>如果已通过调用 <codeph>startPreview</codeph> 启用本地视频预览，可通过 <codeph>visibleInPreview</codeph> 成员设置水印在预览中是否可见。</li>
-                    <li>如果启用了本地视频的镜像模式，水印图像也会被镜像。为避免水印被镜像，声网建议不要同时使用本地视频的镜像和水印功能。你也可以在应用层实现水印功能。</li>
+                    <li>如果 PNG 图像尺寸与该方法设置不一致，图像将被裁剪或缩放以适配设置。</li>
+                    <li>如果已调用 <codeph>startPreview</codeph> 启用本地视频预览，可通过 <codeph>visibleInPreview</codeph> 成员设置水印是否在预览中可见。</li>
+                    <li>如果启用了本地视频的镜像模式，水印也会被镜像。为避免水印被镜像，声网建议不要同时使用镜像和水印功能。你也可以在应用层实现水印功能。</li>
                 </ul>
             </note>
             <note props="android">
@@ -112,15 +112,15 @@
             <parml>
                 <plentry props="cpp">
                     <pt>watermarkUrl</pt>
-                    <pd>要添加的水印图像的本地文件路径，支持使用本地绝对路径或相对路径。</pd>
+                    <pd>要添加的水印图像的本地文件路径，支持本地绝对路径或相对路径。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>options</pt>
-                    <pd>水印图像的选项。详见 <xref keyref="WatermarkOptions"/>。</pd>
+                    <pd>水印图像的相关设置，详见 <xref keyref="WatermarkOptions"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>connection</pt>
-                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                    <pd>连接信息，详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>watermarkUrl</pt>

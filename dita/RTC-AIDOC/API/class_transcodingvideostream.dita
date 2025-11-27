@@ -66,15 +66,21 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>remoteUserUid</pt>
-                    <pd>远端用户 ID。</pd>
+                    <pd>远端用户 ID。
+                        <note>仅当视频源类型为 <codeph>VIDEO_SOURCE_REMOTE</codeph> 时使用该参数。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>imageUrl</pt>
-                    <pd>本地图像的文件路径，例如：Windows: C:\Users\{username}\Pictures\image.png。</pd>
+                    <pd>本地图像的文件路径，例如：Windows: C:\Users\{username}\Pictures\image.png。
+                        <note>仅当视频源类型为图像时使用该参数。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>mediaPlayerId</pt>
-                    <pd>媒体播放器 ID。</pd>
+                    <pd>媒体播放器 ID。
+                        <note>仅当视频源类型为 <codeph>VIDEO_SOURCE_MEDIA_PLAYER</codeph> 时使用该参数。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>x</pt>
@@ -112,7 +118,8 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>mirror</pt>
-                    <pd>是否对视频进行镜像处理。
+                    <pd>
+                        <note>该参数仅对摄像头类型的视频源生效。</note><ph>是否对视频进行镜像处理。</ph>
                         <ul>
                             <li><xref keyref="true"/>：镜像视频。</li>
                             <li><xref keyref="false"/>：（默认）不镜像视频。</li>
@@ -121,7 +128,9 @@
                 </plentry>
                 <plentry props="android">
                     <pt>remoteUserUid</pt>
-                    <pd>远端用户 ID。</pd>
+                    <pd>远端用户 ID。
+                        <note>仅当 <codeph>sourceType</codeph> 设置为 <codeph>VIDEO_SOURCE_REMOTE</codeph> 进行本地合图时使用该参数。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>sourceType</pt>
@@ -129,11 +138,15 @@
                 </plentry>
                 <plentry props="android">
                     <pt>imageUrl</pt>
-                    <pd>本地图片的文件路径，例如：Android: <codeph>/storage/emulated/0/Pictures/image.png</codeph>。</pd>
+                    <pd>本地图片的文件路径，例如：Android: <codeph>/storage/emulated/0/Pictures/image.png</codeph>。
+                        <note>仅当 <codeph>sourceType</codeph> 设置为图片时使用该参数进行本地合图。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>mediaPlayerId</pt>
-                    <pd>媒体播放器 ID。</pd>
+                    <pd>媒体播放器 ID。
+                        <note>仅当 <codeph>sourceType</codeph> 设置为 <codeph>VIDEO_SOURCE_MEDIA_PLAYER</codeph> 时使用该参数。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>x</pt>
@@ -171,7 +184,8 @@
                 </plentry>
                 <plentry props="android">
                     <pt>mirror</pt>
-                    <pd>是否对视频进行镜像处理。
+                    <pd>
+                        <note>该参数仅对摄像头类型的视频源生效。</note><ph>是否对视频进行镜像处理。</ph>
                         <ul>
                             <li><xref keyref="true"/>：镜像视频。</li>
                             <li><xref keyref="false"/>：（默认）不镜像。</li>
@@ -180,7 +194,9 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>remoteUserUid</pt>
-                    <pd>远端用户的用户 ID。</pd>
+                    <pd>远端用户的用户 ID。
+                        <note>仅当视频源类型为 <codeph>AgoraVideoSourceTypeRemote</codeph> 且用于本地合图时使用该参数。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>sourceType</pt>
@@ -188,11 +204,15 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>imageUrl</pt>
-                    <pd>本地图像的文件路径。例如：iOS：<codeph>/var/mobile/Containers/Data/Application/&lt;APP-UUID&gt;/Documents/image.png</codeph>，macOS：<codeph>~/Pictures/image.png</codeph>。</pd>
+                    <pd>本地图像的文件路径。例如：iOS：<codeph>/var/mobile/Containers/Data/Application/&lt;APP-UUID&gt;/Documents/image.png</codeph>，macOS：<codeph>~/Pictures/image.png</codeph>。
+                        <note>仅当视频源类型为图像且用于本地合图时使用该参数。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>mediaPlayerId</pt>
-                    <pd>媒体播放器 ID。</pd>
+                    <pd>媒体播放器 ID。
+                        <note>仅当你将 <codeph>sourceType</codeph> 设置为 <codeph>AgoraVideoSourceTypeMediaPlayer</codeph> 时使用该参数。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>rect</pt>
@@ -213,7 +233,8 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>mirror</pt>
-                    <pd>是否镜像本地合图中的视频。
+                    <pd>
+                        <note>该参数仅对摄像头类型的视频源生效。</note><ph>是否镜像本地合图中的视频。</ph>
                         <ul>
                             <li><xref keyref="true"/>：镜像视频。</li>
                             <li><xref keyref="false"/>：（默认）不镜像视频。</li>
@@ -222,7 +243,9 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>remoteUserUid</pt>
-                    <pd>远端用户的用户 ID。</pd>
+                    <pd>远端用户的用户 ID。
+                        <note>仅当视频源类型为 <codeph>AgoraVideoSourceTypeRemote</codeph> 且用于本地合图时使用该参数。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>sourceType</pt>
@@ -230,11 +253,15 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>imageUrl</pt>
-                    <pd>本地图像的文件路径。例如：iOS：<codeph>/var/mobile/Containers/Data/Application/&lt;APP-UUID&gt;/Documents/image.png</codeph>，macOS：<codeph>~/Pictures/image.png</codeph>。</pd>
+                    <pd>本地图像的文件路径。例如：iOS：<codeph>/var/mobile/Containers/Data/Application/&lt;APP-UUID&gt;/Documents/image.png</codeph>，macOS：<codeph>~/Pictures/image.png</codeph>。
+                        <note>仅当视频源类型为图像且用于本地合图时使用该参数。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>mediaPlayerId</pt>
-                    <pd>媒体播放器 ID。</pd>
+                    <pd>媒体播放器 ID。
+                        <note>仅当你将 <codeph>sourceType</codeph> 设置为 <codeph>AgoraVideoSourceTypeMediaPlayer</codeph> 时使用该参数。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>rect</pt>
@@ -255,7 +282,8 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>mirror</pt>
-                    <pd>是否镜像本地合图中的视频。
+                    <pd>
+                        <note>该参数仅对摄像头类型的视频源生效。</note><ph>是否镜像本地合图中的视频。</ph>
                         <ul>
                             <li><xref keyref="true"/>：镜像视频。</li>
                             <li><xref keyref="false"/>：（默认）不镜像视频。</li>

@@ -209,7 +209,8 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishThirdCameraTrack</pt>
-                    <pd>是否发布第三路摄像头采集的视频：
+                    <pd>
+                        <note>该参数仅适用于 Android、Windows 和 macOS。</note><ph>是否发布第三路摄像头采集的视频：</ph>
                         <ul>
                             <li><xref keyref="true"/>：发布第三路摄像头采集的视频。</li>
                             <li><xref keyref="false"/>：不发布第三路摄像头采集的视频。</li>
@@ -217,6 +218,43 @@
                     </pd>
                 </plentry>
                 <plentry props="cpp">
+                    <pt>publishFourthCameraTrack</pt>
+                    <pd>
+                        <note>该参数仅适用于 Android、Windows 和 macOS。</note><ph>是否发布第四路摄像头采集的视频：</ph>
+                        <ul>
+                            <li><xref keyref="true"/>：发布第四路摄像头采集的视频。</li>
+                            <li><xref keyref="false"/>：不发布第四路摄像头采集的视频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>publishCameraTrack</pt>
+                    <pd>是否发布摄像头采集的视频：
+                        <ul>
+                            <li><xref keyref="true"/>：发布摄像头采集的视频。</li>
+                            <li><xref keyref="false"/>：不发布摄像头采集的视频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>publishSecondaryCameraTrack</pt>
+                    <pd>是否发布第二路摄像头采集的视频轨道：
+                        <ul>
+                            <li><xref keyref="true"/>：发布第二路摄像头采集的视频轨道。</li>
+                            <li><xref keyref="false"/>：（默认）不发布第二路摄像头采集的视频轨道。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>publishThirdCameraTrack</pt>
+                    <pd>是否发布第三路摄像头采集的视频：
+                        <ul>
+                            <li><xref keyref="true"/>：发布第三路摄像头采集的视频。</li>
+                            <li><xref keyref="false"/>：不发布第三路摄像头采集的视频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
                     <pt>publishFourthCameraTrack</pt>
                     <pd>是否发布第四路摄像头采集的视频：
                         <ul>
@@ -226,12 +264,256 @@
                     </pd>
                 </plentry>
                 <plentry props="android">
+                    <pt>publishMicrophoneTrack</pt>
+                    <pd>是否发布麦克风采集的音频：
+                        <ul>
+                            <li><xref keyref="true"/>：发布麦克风采集的音频。</li>
+                            <li><xref keyref="false"/>：不发布麦克风采集的音频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>publishScreenCaptureVideo</pt>
+                    <pd>
+                        <note>从 v4.0.0 起，参数由 <codeph>publishScreenTrack</codeph> 重命名为 <codeph>publishScreenCaptureVideo</codeph>。</note><ph>是否发布屏幕采集的视频：</ph>
+                        <ul>
+                            <li><xref keyref="true"/>：发布屏幕采集的视频。</li>
+                            <li><xref keyref="false"/>：不发布屏幕采集的视频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>publishScreenCaptureAudio</pt>
+                    <pd>是否发布屏幕采集的音频：
+                        <ul>
+                            <li><xref keyref="true"/>：发布屏幕采集的音频。</li>
+                            <li><xref keyref="false"/>：不发布屏幕采集的音频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>publishCustomAudioTrack</pt>
+                    <pd>是否发布自定义音频源采集的音频：
+                        <ul>
+                            <li><xref keyref="true"/>：发布自定义音频源采集的音频。</li>
+                            <li><xref keyref="false"/>：不发布自定义音频源采集的音频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>publishCustomAudioTrackId</pt>
+                    <pd>要发布的自定义音频轨道的 ID。可通过 <xref keyref="createCustomAudioTrack"/> 方法获取该 ID。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>publishCustomVideoTrack</pt>
+                    <pd>是否发布自定义视频源采集的视频：
+                        <ul>
+                            <li><xref keyref="true"/>：发布自定义视频源采集的视频。</li>
+                            <li><xref keyref="false"/>：不发布自定义视频源采集的视频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>publishEncodedVideoTrack</pt>
+                    <pd>是否发布编码后的视频：
+                        <ul>
+                            <li><xref keyref="true"/>：发布编码后的视频。</li>
+                            <li><xref keyref="false"/>：不发布编码后的视频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>publishMediaPlayerAudioTrack</pt>
+                    <pd>是否发布媒体播放器的音频：
+                        <ul>
+                            <li><xref keyref="true"/>：发布媒体播放器的音频。</li>
+                            <li><xref keyref="false"/>：不发布媒体播放器的音频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>publishMediaPlayerVideoTrack</pt>
+                    <pd>是否发布媒体播放器的视频：
+                        <ul>
+                            <li><xref keyref="true"/>：发布媒体播放器的视频。</li>
+                            <li><xref keyref="false"/>：不发布媒体播放器的视频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>publishTranscodedVideoTrack</pt>
+                    <pd>是否发布本地转码后的视频轨道：
+                        <ul>
+                            <li><xref keyref="true"/>：发布本地转码后的视频轨道。</li>
+                            <li><xref keyref="false"/>：（默认）不发布本地转码后的视频轨道。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>publishMixedAudioTrack</pt>
+                    <pd>是否发布音频合流轨道：
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>：发布音频合流轨道。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不发布音频合流轨道。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>publishLipSyncTrack</pt>
+                    <pd>是否发布由语音驱动扩展处理后的视频轨道：
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>：发布由语音驱动扩展处理后的视频轨道。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：（默认）不发布由语音驱动扩展处理后的视频轨道。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>autoSubscribeAudio</pt>
+                    <pd>用户加入频道时是否自动订阅所有远端音频流：
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>：订阅所有远端音频流。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不自动订阅任何远端音频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>autoSubscribeVideo</pt>
+                    <pd>用户加入频道时是否自动订阅所有远端视频流：
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>：订阅所有远端视频流。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不自动订阅任何远端视频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enableAudioRecordingOrPlayout</pt>
+                    <pd>
+                        <note>如果需要发布麦克风采集的音频流，请确保该参数设置为 <codeph><ph keyref="true"/></codeph>。</note><ph>是否开启音频采集或播放功能：</ph>
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>：开启音频采集或播放功能。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不开启音频采集或播放功能。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>publishMediaPlayerId</pt>
+                    <pd>要发布的媒体播放器的 ID。默认值为 0。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>clientRoleType</pt>
+                    <pd>
+                        <note>如果将用户角色设置为观众，则无法在频道中发布音视频流。若你希望在直播过程中发布媒体流，请确保将用户角色设置为主播。</note><ph>用户角色类型：</ph>
+                        <ul>
+                            <li>CLIENT_ROLE_BROADCASTER (1)：主播。</li>
+                            <li>CLIENT_ROLE_AUDIENCE (2)：观众。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>audienceLatencyLevel</pt>
+                    <pd>互动直播场景下观众的延迟等级：
+                        <ul>
+                            <li>AUDIENCE_LATENCY_LEVEL_LOW_LATENCY (1)：低延迟。</li>
+                            <li>AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY (2)：超低延迟（默认）。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>defaultVideoStreamType</pt>
+                    <pd>默认的视频流类型：
+                        <ul>
+                            <li>VIDEO_STREAM_HIGH (0)：视频大流，即高分辨率高码率的视频流。</li>
+                            <li>VIDEO_STREAM_LOW (1)：视频小流，即低分辨率低码率的视频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>channelProfile</pt>
+                    <pd>
+                        <note>自 v4.x.x 版本废弃。请改用 CHANNEL_PROFILE_LIVE_BROADCASTING。</note><ph>频道场景：</ph>
+                        <ul>
+                            <li>CHANNEL_PROFILE_COMMUNICATION (0)：通信场景。声网推荐使用直播场景以获得更佳的音视频体验。</li>
+                            <li>CHANNEL_PROFILE_LIVE_BROADCASTING (1)：直播场景（默认）。</li>
+                            <li>CHANNEL_PROFILE_GAME (2)：游戏场景。</li>
+                            <li>CHANNEL_PROFILE_CLOUD_GAMING (3)：互动场景。该场景对延迟进行了优化，适用于用户之间需要频繁互动的场景。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>audioDelayMs</pt>
+                    <pd>发送音频帧的延迟（单位：毫秒）。你可以使用该参数设置发送音频帧的延迟，以实现音视频同步。如需关闭延迟，设置该值为 0。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mediaPlayerAudioDelayMs</pt>
+                    <pd>发送媒体播放器音频帧的延迟（单位：毫秒），用于显式控制音视频同步。如需关闭延迟，设置该值为 0。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>token</pt>
+                    <pd>（可选）由你的服务器生成的用于鉴权的 Token。
+                        <note>该参数仅在调用 updateChannelMediaOptions 或 updateChannelMediaOptionsEx 时生效。请确保用于生成 token 的 App ID、频道名和用户名称与调用 create 初始化 RTC 引擎，以及调用 joinChannel 和 joinChannelEx 加入频道时使用的值一致。</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enableBuiltInMediaEncryption</pt>
+                    <pd>
+                        <note>调用 updateChannelMediaOptions 方法时将忽略此设置。</note><ph>是否启用媒体包加密：</ph>
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>：启用媒体包加密。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：（默认）不启用媒体包加密。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>publishRhythmPlayerTrack</pt>
+                    <pd>是否向远端用户发布节拍器的声音：
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>：发布处理后的音频帧，本地用户和远端用户都能听到节拍器。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不发布节拍器的声音，只有本地用户能听到节拍器。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>isInteractiveAudience</pt>
+                    <pd>
+                        <note>该参数仅适用于主播互通场景。联播主播需调用 joinChannelEx 方法以观众身份加入其他主播频道，并将 isInteractiveAudience 设置为 <codeph><ph keyref="true"/></codeph>。
+该参数仅在用户角色为 CLIENT_ROLE_AUDIENCE 时生效。</note><ph>是否开启互动模式：</ph>
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>：开启互动模式。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不开启互动模式。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>customVideoTrackId</pt>
+                    <pd>通过调用 createCustomVideoTrack 方法返回的视频轨道 ID。默认值为 0。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>isAudioFilterable</pt>
+                    <pd>
+                        <note>如需启用该功能，请[联系技术支持](https://ticket.shengwang.cn/)</note><ph>发布的音频流是否根据音量算法进行过滤：</ph>
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>：音频流会被过滤。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：音频流不会被过滤。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>startPreview</pt>
+                    <pd>在已设置画布时，加入频道时是否启动预览：
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>：（默认）加入频道时启动预览。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不启动预览。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
                     <pt>parameters</pt>
                     <pd>通过配置 JSON 选项以启用技术预览功能或特殊定制。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>enableMultipath</pt>
-                    <pd>是否启用多传输路径：
+                    <pd>
+                        <note>权限与系统要求：Android 7.0 或更高版本（API 等级 24 或更高），需要 <codeph>ACCESS_NETWORK_STATE</codeph> 和 <codeph>CHANGE_NETWORK_STATE</codeph> 权限。</note><ph>是否启用多传输路径：</ph>
                         <ul>
                             <li><xref keyref="true"/>：启用多传输路径。</li>
                             <li><xref keyref="false"/>：禁用多传输路径。</li>
@@ -240,15 +522,21 @@
                 </plentry>
                 <plentry props="android">
                     <pt>uplinkMultipathMode</pt>
-                    <pd>上行传输模式。详见 <xref keyref="MultipathMode"/>。</pd>
+                    <pd>上行传输模式。详见 <xref keyref="MultipathMode"/>。
+                        <note>使用该参数时，需确保 <codeph>enableMultipath</codeph> 设置为 <xref keyref="true"/>。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>downlinkMultipathMode</pt>
-                    <pd>下行传输模式。详见 <xref keyref="MultipathMode"/>。</pd>
+                    <pd>下行传输模式。详见 <xref keyref="MultipathMode"/>。
+                        <note>使用该参数时，需确保 <codeph>enableMultipath</codeph> 设置为 <xref keyref="true"/>。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>preferMultipathType</pt>
-                    <pd>首选的传输路径类型。详见 <xref keyref="MultipathType"/>。</pd>
+                    <pd>首选的传输路径类型。详见 <xref keyref="MultipathType"/>。
+                        <note>使用该参数时，需确保 <codeph>enableMultipath</codeph> 设置为 <xref keyref="true"/>。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>parameters</pt>
@@ -256,7 +544,13 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>enableMultipath</pt>
-                    <pd>是否启用多路径传输：
+                    <pd>
+                        <note>权限和系统要求：
+                            <ul>
+                                <li>iOS：iOS 12.0 或更高版本。</li>
+                                <li>macOS：10.14 或更高版本。</li>
+                            </ul>
+                        </note><ph>是否启用多路径传输：</ph>
                         <ul>
                             <li><xref keyref="true"/>：启用多路径传输。</li>
                             <li><xref keyref="false"/>：禁用多路径传输。</li>
@@ -265,15 +559,21 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>uplinkMultipathMode</pt>
-                    <pd>上行传输模式。详见 <xref keyref="MultipathMode"/>。</pd>
+                    <pd>上行传输模式。详见 <xref keyref="MultipathMode"/>。
+                        <note>使用该参数时，请确保 <codeph>enableMultipath</codeph> 设置为 <xref keyref="true"/>。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>downlinkMultipathMode</pt>
-                    <pd>下行传输模式。详见 <xref keyref="MultipathMode"/>。</pd>
+                    <pd>下行传输模式。详见 <xref keyref="MultipathMode"/>。
+                        <note>使用该参数时，请确保 <codeph>enableMultipath</codeph> 设置为 <xref keyref="true"/>。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>preferMultipathType</pt>
-                    <pd>首选的传输路径类型。详见 <xref keyref="MultipathType"/>。</pd>
+                    <pd>首选的传输路径类型。详见 <xref keyref="MultipathType"/>。
+                        <note>使用该参数时，请确保 <codeph>enableMultipath</codeph> 设置为 <xref keyref="true"/>。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>parameters</pt>
@@ -281,7 +581,13 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>enableMultipath</pt>
-                    <pd>是否启用多路径传输：
+                    <pd>
+                        <note>权限和系统要求：
+                            <ul>
+                                <li>iOS：iOS 12.0 或更高版本。</li>
+                                <li>macOS：10.14 或更高版本。</li>
+                            </ul>
+                        </note><ph>是否启用多路径传输：</ph>
                         <ul>
                             <li><xref keyref="true"/>：启用多路径传输。</li>
                             <li><xref keyref="false"/>：禁用多路径传输。</li>
@@ -290,15 +596,21 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>uplinkMultipathMode</pt>
-                    <pd>上行传输模式。详见 <xref keyref="MultipathMode"/>。</pd>
+                    <pd>上行传输模式。详见 <xref keyref="MultipathMode"/>。
+                        <note>使用该参数时，请确保 <codeph>enableMultipath</codeph> 设置为 <xref keyref="true"/>。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>downlinkMultipathMode</pt>
-                    <pd>下行传输模式。详见 <xref keyref="MultipathMode"/>。</pd>
+                    <pd>下行传输模式。详见 <xref keyref="MultipathMode"/>。
+                        <note>使用该参数时，请确保 <codeph>enableMultipath</codeph> 设置为 <xref keyref="true"/>。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>preferMultipathType</pt>
-                    <pd>首选的传输路径类型。详见 <xref keyref="MultipathType"/>。</pd>
+                    <pd>首选的传输路径类型。详见 <xref keyref="MultipathType"/>。
+                        <note>使用该参数时，请确保 <codeph>enableMultipath</codeph> 设置为 <xref keyref="true"/>。</note>
+                    </pd>
                 </plentry>
             </parml>
         </section>

@@ -33,9 +33,9 @@
             <note props="android">
                 <ul>
                     <li>你可以在加入频道前或加入频道后调用此方法。</li>
-                    <li>白名单不受 <xref keyref="ChannelMediaOptions"/> 中 <xref keyref="muteRemoteAudioStream"/>、<xref keyref="muteAllRemoteAudioStreams"/> 和 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
-                    <li>一旦设置了订阅白名单，即使你离开当前频道并重新加入频道，该设置仍然有效。</li>
-                    <li>如果某个用户同时被加入白名单和黑名单，则仅黑名单生效。</li>
+                    <li>白名单不受 <xref keyref="muteRemoteAudioStream"/>、<xref keyref="muteAllRemoteAudioStreams"/> 和 <xref keyref="ChannelMediaOptions"/> 中 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
+                    <li>一旦设置了订阅白名单，即使你离开当前频道并重新加入，该设置仍然有效。</li>
+                    <li>如果某个用户同时被添加到白名单和黑名单中，则以黑名单为准。</li>
                 </ul>
             </note>
             <note props="ios">
@@ -72,11 +72,11 @@
                 </plentry>
                 <plentry props="android">
                     <pt>uidList</pt>
-                    <pd>希望订阅的用户的用户 ID 列表。如果你希望将某个用户从白名单中移除，需要调用 <xref keyref="setSubscribeAudioAllowlist"/> 方法更新用户 ID 列表；也就是说，你只需在新的用户 ID 列表中添加你希望订阅的用户的用户 ID。</pd>
+                    <pd>你想要订阅的用户 ID 列表。如果你希望将某个用户从白名单中移除，需要调用 <xref keyref="setSubscribeAudioAllowlist"/> 方法更新用户 ID 列表；也就是说，你只需在新的用户 ID 列表中添加你希望订阅的用户的用户 ID。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>connection</pt>
-                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                    <pd>连接信息，详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>allowlist</pt>

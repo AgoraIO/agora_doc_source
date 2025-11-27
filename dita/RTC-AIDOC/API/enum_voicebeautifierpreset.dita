@@ -110,19 +110,27 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>CHAT_BEAUTIFIER_MAGNETIC</pt>
-                    <pd>（0x01010100）：更具磁性的声音。</pd>
+                    <pd>（0x01010100）：更具磁性的声音。
+                        <note>声网建议用于处理男性音色，否则可能会出现声音失真。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>CHAT_BEAUTIFIER_FRESH</pt>
-                    <pd>（0x01010200）：更清新的声音。</pd>
+                    <pd>（0x01010200）：更清新的声音。
+                        <note>声网建议用于处理女性音色，否则可能会出现声音失真。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>CHAT_BEAUTIFIER_VITALITY</pt>
-                    <pd>（0x01010300）：更有活力的声音。</pd>
+                    <pd>（0x01010300）：更有活力的声音。
+                        <note>声网建议用于处理女性音色，否则可能会出现声音失真。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>SINGING_BEAUTIFIER</pt>
-                    <pd>（0x01020100）：歌唱美声效果。</pd>
+                    <pd>（0x01020100）：歌唱美声效果。
+                        <note>调用 <codeph>setVoiceBeautifierPreset(SINGING_BEAUTIFIER)</codeph> 可美化男性音色并添加小房间混响效果，建议用于男性音色，否则可能出现声音失真。调用 <codeph>setVoiceBeautifierParameters(SINGING_BEAUTIFIER, param1, param2)</codeph> 可美化男性或女性音色并添加混响效果。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>TIMBRE_TRANSFORMATION_VIGOROUS</pt>
@@ -158,7 +166,9 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>ULTRA_HIGH_QUALITY_VOICE</pt>
-                    <pd>（0x01040100）：超高音质效果，使音频更清晰并还原更多细节。</pd>
+                    <pd>（0x01040100）：超高音质效果，使音频更清晰并还原更多细节。
+                        <note>为获得更好的音效质量，建议在调用 <xref keyref="setVoiceBeautifierPreset"/> 前，将 <codeph>setAudioProfile(AUDIO_PROFILE_TYPE profile)</codeph> 的 <codeph>profile</codeph> 设置为 <codeph>AUDIO_PROFILE_MUSIC_HIGH_QUALITY</codeph>（4）或 <codeph>AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO</codeph>（5），并将 <codeph>scenario</codeph> 设置为 <codeph>AUDIO_SCENARIO_GAME_STREAMING</codeph>（3）。如果音频采集设备本身已具备高保真能力，建议不要启用超高音质，否则 SDK 可能会过度还原音频细节，导致无法获得预期的声音效果。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraVoiceBeautifierPresetOff</pt>
@@ -166,19 +176,27 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraVoiceBeautifierPresetChatBeautifierMagnetic</pt>
-                    <pd>（0x01010100）：更具磁性的声音。</pd>
+                    <pd>（0x01010100）：更具磁性的声音。
+                        <note>声网建议用于处理男性音色，否则可能会出现声音失真。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraVoiceBeautifierPresetChatBeautifierFresh</pt>
-                    <pd>（0x01010200）：更清新的声音。</pd>
+                    <pd>（0x01010200）：更清新的声音。
+                        <note>声网建议用于处理女性音色，否则可能会出现声音失真。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraVoiceBeautifierPresetChatBeautifierVitality</pt>
-                    <pd>（0x01010300）：更有活力的声音。</pd>
+                    <pd>（0x01010300）：更有活力的声音。
+                        <note>声网建议用于处理女性音色，否则可能会出现声音失真。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraVoiceBeautifierPresetSingingBeautifier</pt>
-                    <pd>（0x01020100）：歌唱美声效果。</pd>
+                    <pd>（0x01020100）：歌唱美声效果。
+                        <note>如果调用 <xref keyref="setVoiceBeautifierPreset"/>（AgoraVoiceBeautifierPresetSingingBeautifier），可美化男性音色并添加小房间混响效果。声网建议用于处理男性音色，否则可能会出现声音失真。若调用 <xref keyref="setVoiceBeautifierParameters"/>（AgoraVoiceBeautifierPresetSingingBeautifier, param1, param2），可美化男性或女性音色并添加混响效果。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraVoiceBeautifierTimbreTransformationVigorous</pt>
@@ -214,7 +232,9 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraVoiceBeautifierUltraHighQuality</pt>
-                    <pd>（0x01040100）：超高音质效果，使音频更清晰并还原更多细节。</pd>
+                    <pd>（0x01040100）：超高音质效果，使音频更清晰并还原更多细节。
+                        <note>为获得更好的音效质量，声网建议在调用 <xref keyref="setVoiceBeautifierPreset"/> 前，将 <xref keyref="setAudioProfile2"/> 的 <codeph>profile</codeph> 设置为 <codeph>AgoraAudioProfileMusicHighQuality</codeph>（4）或 <codeph>AgoraAudioProfileMusicHighQualityStereo</codeph>（5），并将 <codeph>scenario</codeph> 设置为 <codeph>AgoraAudioScenarioGameStreaming</codeph>（3）。如果你的音频采集设备已能高度还原音频细节，声网建议不要启用超高音质，否则 SDK 可能会过度还原音频细节，导致无法听到预期的声音效果。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraVoiceBeautifierPresetOff</pt>
@@ -222,19 +242,27 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraVoiceBeautifierPresetChatBeautifierMagnetic</pt>
-                    <pd>（0x01010100）：更具磁性的声音。</pd>
+                    <pd>（0x01010100）：更具磁性的声音。
+                        <note>声网建议用于处理男性音色，否则可能会出现声音失真。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraVoiceBeautifierPresetChatBeautifierFresh</pt>
-                    <pd>（0x01010200）：更清新的声音。</pd>
+                    <pd>（0x01010200）：更清新的声音。
+                        <note>声网建议用于处理女性音色，否则可能会出现声音失真。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraVoiceBeautifierPresetChatBeautifierVitality</pt>
-                    <pd>（0x01010300）：更有活力的声音。</pd>
+                    <pd>（0x01010300）：更有活力的声音。
+                        <note>声网建议用于处理女性音色，否则可能会出现声音失真。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraVoiceBeautifierPresetSingingBeautifier</pt>
-                    <pd>（0x01020100）：歌唱美声效果。</pd>
+                    <pd>（0x01020100）：歌唱美声效果。
+                        <note>如果调用 <xref keyref="setVoiceBeautifierPreset"/>（AgoraVoiceBeautifierPresetSingingBeautifier），可美化男性音色并添加小房间混响效果。声网建议用于处理男性音色，否则可能会出现声音失真。若调用 <xref keyref="setVoiceBeautifierParameters"/>（AgoraVoiceBeautifierPresetSingingBeautifier, param1, param2），可美化男性或女性音色并添加混响效果。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraVoiceBeautifierTimbreTransformationVigorous</pt>
@@ -270,7 +298,9 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraVoiceBeautifierUltraHighQuality</pt>
-                    <pd>（0x01040100）：超高音质效果，使音频更清晰并还原更多细节。</pd>
+                    <pd>（0x01040100）：超高音质效果，使音频更清晰并还原更多细节。
+                        <note>为获得更好的音效质量，声网建议在调用 <xref keyref="setVoiceBeautifierPreset"/> 前，将 <xref keyref="setAudioProfile2"/> 的 <codeph>profile</codeph> 设置为 <codeph>AgoraAudioProfileMusicHighQuality</codeph>（4）或 <codeph>AgoraAudioProfileMusicHighQualityStereo</codeph>（5），并将 <codeph>scenario</codeph> 设置为 <codeph>AgoraAudioScenarioGameStreaming</codeph>（3）。如果你的音频采集设备已能高度还原音频细节，声网建议不要启用超高音质，否则 SDK 可能会过度还原音频细节，导致无法听到预期的声音效果。</note>
+                    </pd>
                 </plentry>
             </parml>
         </section>

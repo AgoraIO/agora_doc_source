@@ -49,15 +49,26 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>color</pt>
-                    <pd>自定义背景图像的颜色。颜色格式为 RGB 定义的十六进制整数，不带 # 符号，例如 0xFFB6C1 表示浅粉色。默认值为 0xFFFFFF（白色）。取值范围为 [0x000000, 0xFFFFFF]。如果取值无效，SDK 会将原始背景图像替换为白色背景图像。</pd>
+                    <pd>自定义背景图像的颜色。颜色格式为 RGB 定义的十六进制整数，不带 # 符号，例如 0xFFB6C1 表示浅粉色。默认值为 0xFFFFFF（白色）。取值范围为 [0x000000, 0xFFFFFF]。如果取值无效，SDK 会将原始背景图像替换为白色背景图像。
+                        <note>该参数仅适用于以下类型的自定义背景：
+                            <ul>
+                                <li><codeph>BACKGROUND_COLOR</codeph>：背景图像为传入颜色的纯色图像。</li>
+                                <li><codeph>BACKGROUND_IMG</codeph>：如果 <codeph>source</codeph> 中的图像具有透明背景，则透明部分将使用该参数指定的颜色填充。</li>
+                            </ul>
+                        </note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>source</pt>
-                    <pd>自定义背景图像的本地绝对路径。支持 PNG、JPG、MP4、AVI、MKV 和 FLV 格式。如果路径无效，SDK 将使用原始背景图像或由 <codeph>color</codeph> 指定的纯色图像。</pd>
+                    <pd>自定义背景图像的本地绝对路径。支持 PNG、JPG、MP4、AVI、MKV 和 FLV 格式。如果路径无效，SDK 将使用原始背景图像或由 <codeph>color</codeph> 指定的纯色图像。
+                        <note>该参数仅在自定义背景类型为 <codeph>BACKGROUND_IMG</codeph> 或 <codeph>BACKGROUND_VIDEO</codeph> 时生效。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>blur_degree</pt>
-                    <pd>背景图像的模糊程度。详见 <xref keyref="BACKGROUND_BLUR_DEGREE"/>。</pd>
+                    <pd>背景图像的模糊程度。详见 <xref keyref="BACKGROUND_BLUR_DEGREE"/>。
+                        <note>该参数仅在自定义背景类型为 <codeph>BACKGROUND_BLUR</codeph> 时生效。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>backgroundSourceType</pt>
@@ -73,15 +84,25 @@
                 </plentry>
                 <plentry props="android">
                     <pt>color</pt>
-                    <pd>自定义背景图像的颜色。格式为 RGB 定义的十六进制整数，不带 #，例如浅粉色为 0xFFB6C1，默认值为 0xFFFFFF（白色）。取值范围为 [0x000000, 0xFFFFFF]。若该值无效，SDK 会将原始背景图像替换为白色背景图像。</pd>
+                    <pd>自定义背景图像的颜色。格式为 RGB 定义的十六进制整数，不带 #，例如浅粉色为 0xFFB6C1，默认值为 0xFFFFFF（白色）。取值范围为 [0x000000, 0xFFFFFF]。若该值无效，SDK 会将原始背景图像替换为白色背景图像。
+                        <note>该参数仅适用于以下类型的自定义背景：
+                            <ul>
+                                <li><codeph>BACKGROUND_COLOR</codeph>：背景为传入颜色的纯色图像。</li>
+                                <li><codeph>BACKGROUND_IMG</codeph>：若 <codeph>source</codeph> 中的图像具有透明背景，该透明区域将被本参数指定的颜色填充。</li>
+                            </ul>
+                        </note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>source</pt>
-                    <pd>自定义背景图像的本地绝对路径。支持的格式包括 PNG、JPG、MP4、AVI、MKV 和 FLV。若路径无效，SDK 将使用原始背景图像或由 <codeph>color</codeph> 指定的纯色图像。</pd>
+                    <pd>自定义背景图像的本地绝对路径。支持的格式包括 PNG、JPG、MP4、AVI、MKV 和 FLV。若路径无效，SDK 将使用原始背景图像或由 <codeph>color</codeph> 指定的纯色图像。
+                        <note>该参数仅在自定义背景类型为 <codeph>BACKGROUND_IMG</codeph> 或 <codeph>BACKGROUND_VIDEO</codeph> 时生效。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>blurDegree</pt>
-                    <pd>自定义背景图像的模糊程度。
+                    <pd>
+                        <note>该参数仅在背景类型为 <codeph>BACKGROUND_BLUR</codeph> 时生效。</note><ph>自定义背景图像的模糊程度。</ph>
                         <ul>
                             <li><codeph>BLUR_DEGREE_LOW</codeph> (1)：模糊程度低，背景几乎可见。</li>
                             <li><codeph>BLUR_DEGREE_MEDIUM</codeph> (2)：中等模糊，难以识别背景细节。</li>
@@ -95,15 +116,26 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>color</pt>
-                    <pd>自定义背景图像的颜色。颜色格式为 RGB 十六进制整数，不带 # 符号，例如浅粉色为 0xFFB6C1。默认值为 0xFFFFFF（白色）。取值范围为 [0x000000, 0xFFFFFF]。如果取值无效，SDK 会将原始背景图替换为白色背景图。</pd>
+                    <pd>自定义背景图像的颜色。颜色格式为 RGB 十六进制整数，不带 # 符号，例如浅粉色为 0xFFB6C1。默认值为 0xFFFFFF（白色）。取值范围为 [0x000000, 0xFFFFFF]。如果取值无效，SDK 会将原始背景图替换为白色背景图。
+                        <note>该参数仅适用于以下类型的自定义背景：
+                            <ul>
+                                <li><codeph>AgoraVirtualBackgroundColor</codeph>：背景图为传入颜色的纯色图像。</li>
+                                <li><codeph>AgoraVirtualBackgroundImg</codeph>：如果 <codeph>source</codeph> 中的图像具有透明背景，则透明部分将使用该参数传入的颜色填充。</li>
+                            </ul>
+                        </note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>source</pt>
-                    <pd>自定义背景图像的本地绝对路径。支持 PNG、JPG、MP4、AVI、MKV 和 FLV 格式。如果路径无效，SDK 将使用原始背景图或由 <codeph>color</codeph> 指定的纯色图像。</pd>
+                    <pd>自定义背景图像的本地绝对路径。支持 PNG、JPG、MP4、AVI、MKV 和 FLV 格式。如果路径无效，SDK 将使用原始背景图或由 <codeph>color</codeph> 指定的纯色图像。
+                        <note>该参数仅在自定义背景类型为 <codeph>AgoraVirtualBackgroundImg</codeph> 或 <codeph>AgoraVirtualBackgroundVideo</codeph> 时生效。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>blurDegree</pt>
-                    <pd>自定义背景图像的模糊程度。详见 <xref keyref="BACKGROUND_BLUR_DEGREE"/>。</pd>
+                    <pd>自定义背景图像的模糊程度。详见 <xref keyref="BACKGROUND_BLUR_DEGREE"/>。
+                        <note>该参数仅在自定义背景类型为 <codeph>AgoraVirtualBackgroundBlur</codeph> 时生效。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>backgroundSourceType</pt>
@@ -111,15 +143,26 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>color</pt>
-                    <pd>自定义背景图像的颜色。颜色格式为 RGB 十六进制整数，不带 # 符号，例如浅粉色为 0xFFB6C1。默认值为 0xFFFFFF（白色）。取值范围为 [0x000000, 0xFFFFFF]。如果取值无效，SDK 会将原始背景图替换为白色背景图。</pd>
+                    <pd>自定义背景图像的颜色。颜色格式为 RGB 十六进制整数，不带 # 符号，例如浅粉色为 0xFFB6C1。默认值为 0xFFFFFF（白色）。取值范围为 [0x000000, 0xFFFFFF]。如果取值无效，SDK 会将原始背景图替换为白色背景图。
+                        <note>该参数仅适用于以下类型的自定义背景：
+                            <ul>
+                                <li><codeph>AgoraVirtualBackgroundColor</codeph>：背景图为传入颜色的纯色图像。</li>
+                                <li><codeph>AgoraVirtualBackgroundImg</codeph>：如果 <codeph>source</codeph> 中的图像具有透明背景，则透明部分将使用该参数传入的颜色填充。</li>
+                            </ul>
+                        </note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>source</pt>
-                    <pd>自定义背景图像的本地绝对路径。支持 PNG、JPG、MP4、AVI、MKV 和 FLV 格式。如果路径无效，SDK 将使用原始背景图或由 <codeph>color</codeph> 指定的纯色图像。</pd>
+                    <pd>自定义背景图像的本地绝对路径。支持 PNG、JPG、MP4、AVI、MKV 和 FLV 格式。如果路径无效，SDK 将使用原始背景图或由 <codeph>color</codeph> 指定的纯色图像。
+                        <note>该参数仅在自定义背景类型为 <codeph>AgoraVirtualBackgroundImg</codeph> 或 <codeph>AgoraVirtualBackgroundVideo</codeph> 时生效。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>blurDegree</pt>
-                    <pd>自定义背景图像的模糊程度。详见 <xref keyref="BACKGROUND_BLUR_DEGREE"/>。</pd>
+                    <pd>自定义背景图像的模糊程度。详见 <xref keyref="BACKGROUND_BLUR_DEGREE"/>。
+                        <note>该参数仅在自定义背景类型为 <codeph>AgoraVirtualBackgroundBlur</codeph> 时生效。</note>
+                    </pd>
                 </plentry>
             </parml>
         </section>

@@ -26,13 +26,13 @@
                     <dd>自 v3.7.0 版本新增。</dd>
                 </dlentry>
             </dl>
-            <p props="cpp">你可以在加入频道前或加入频道后调用该方法开始采集屏幕视频流，具体如下：
+            <p props="cpp">你可以在加入频道前或后调用该方法，具体如下：
                 <ul>
                     <li>先调用该方法，再调用 <codeph>joinChannel</codeph> 加入频道，并将 <codeph>publishScreenCaptureVideo</codeph> 设置为 <xref keyref="true"/>，以开始屏幕共享。</li>
                     <li>加入频道后调用该方法，再调用 <xref keyref="updateChannelMediaOptions"/> 并将 <codeph>publishScreenCaptureVideo</codeph> 设置为 <xref keyref="true"/>，以开始屏幕共享。</li>
                 </ul>
             </p>
-            <p props="android">你可以在加入频道前或加入频道后调用该方法开始采集屏幕视频流，调用时机如下：
+            <p props="android">你可以在加入频道前或加入频道后调用该方法开始采集屏幕视频流，具体如下：
                 <ul>
                     <li>先调用该方法，再调用 <codeph>joinChannel</codeph> 加入频道，并将 <codeph>publishScreenCaptureVideo</codeph> 设置为 <xref keyref="true"/>，以开始屏幕共享。</li>
                     <li>加入频道后调用该方法，再调用 <xref keyref="updateChannelMediaOptions"/> 并将 <codeph>publishScreenCaptureVideo</codeph> 设置为 <xref keyref="true"/>，以开始屏幕共享。</li>
@@ -57,10 +57,10 @@
                     <li>如果你使用自定义音频源而非 SDK 采集音频，声网建议你在应用中添加保活处理逻辑，以避免应用进入后台后屏幕共享中断。</li>
                     <li>该功能对设备性能要求较高，声网建议你在 iPhone X 及以上机型上使用。</li>
                     <li>该方法依赖 iOS 屏幕共享动态库 <codeph>AgoraReplayKitExtension.xcframework</codeph>。如果该动态库被删除，屏幕共享将无法正常启用。</li>
-                    <li>在 Android 平台，如果用户未授予应用屏幕采集权限，SDK 会触发 <codeph>onPermissionError(2)</codeph> 回调。</li>
+                    <li>在 Android 平台，如果用户未授予应用屏幕采集权限，SDK 会触发 <xref keyref="onPermissionError"/> <codeph>(2)</codeph> 回调。</li>
                     <li>在 Android 9 及以上版本，为避免应用进入后台后被系统杀死，声网建议你在 <codeph>/app/Manifests/AndroidManifest.xml</codeph> 文件中添加前台服务权限 <codeph>android.permission.FOREGROUND_SERVICE</codeph>。</li>
                     <li>由于性能限制，Android TV 不支持屏幕共享。</li>
-                    <li>由于系统限制，使用华为手机时，请勿在屏幕共享过程中调整屏幕共享流的视频编码分辨率，否则可能会导致崩溃。</li>
+                    <li>由于系统限制，使用华为手机时，请勿在屏幕共享过程中调整屏幕共享流的视频编码分辨率，否则可能导致崩溃。</li>
                     <li>由于系统限制，部分小米设备在屏幕共享时不支持采集系统音频。</li>
                     <li>为避免屏幕共享时系统音频采集失败，声网建议你在加入频道前通过 <xref keyref="setAudioScenario"/> 方法将音频应用场景设置为 <codeph>AUDIO_SCENARIO_GAME_STREAMING</codeph>。</li>
                     <li>屏幕共享流的计费基于 <xref keyref="ScreenVideoParameters"/> 中的 <codeph>dimensions</codeph>：
@@ -73,16 +73,16 @@
             </note>
             <note props="android">
                 <ul>
-                    <li>在 Android 平台，如果用户未授予应用屏幕采集权限，SDK 会触发 <xref keyref="onPermissionError"/> 回调，错误码为 2。</li>
+                    <li>在 Android 平台，如果用户未授予应用屏幕采集权限，SDK 会触发 <xref keyref="onPermissionError"/>（错误码 2）回调。</li>
                     <li>在 Android 9 及以上版本，为避免应用进入后台后被系统杀死，声网建议你在 <codeph>/app/Manifests/AndroidManifest.xml</codeph> 文件中添加前台服务权限 <codeph>android.permission.FOREGROUND_SERVICE</codeph>。</li>
                     <li>由于性能限制，Android TV 不支持屏幕共享。</li>
-                    <li>由于系统限制，使用华为手机时，屏幕共享过程中请勿调整屏幕共享流的视频编码分辨率，否则可能会导致崩溃。</li>
+                    <li>由于系统限制，使用华为手机时，请勿在屏幕共享过程中调整屏幕共享流的视频编码分辨率，否则可能会导致崩溃。</li>
                     <li>由于系统限制，部分小米设备在屏幕共享时不支持采集系统音频。</li>
                     <li>为避免屏幕共享时系统音频采集失败，声网建议你在加入频道前通过 <xref keyref="setAudioScenario"/> 方法将音频应用场景设置为 <codeph>AUDIO_SCENARIO_GAME_STREAMING</codeph>。</li>
                     <li>屏幕共享流的计费基于 <xref keyref="ScreenVideoParameters"/> 中的 <codeph>dimensions</codeph>：
                         <ul>
-                            <li>若未传入该值，声网按 1280 × 720 计费。</li>
-                            <li>若传入该值，声网按传入的值计费。</li>
+                            <li>如果未传入该值，声网按 1280 × 720 计费。</li>
+                            <li>如果传入该值，声网按传入的值计费。</li>
                         </ul>
                     </li>
                 </ul>
@@ -118,16 +118,20 @@
                 </ul>
             </note>
         </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>调用时机</title>
+            <p props="android">你可以在加入频道前或加入频道后调用此方法。</p>
+        </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
                     <pt>captureParams</pt>
-                    <pd>屏幕共享的编码参数。详见 <xref keyref="ScreenCaptureParameters2"/>。</pd>
+                    <pd>屏幕共享的编码参数，详见 <xref keyref="ScreenCaptureParameters2"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>screenCaptureParameters</pt>
-                    <pd>屏幕共享的编码参数。详见 <xref keyref="ScreenCaptureParameters2"/>。</pd>
+                    <pd>屏幕共享的编码参数，详见 <xref keyref="ScreenCaptureParameters2"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>parameters</pt>

@@ -25,7 +25,7 @@
             <note props="cpp">
                 <ul>
                     <li>你可以在加入频道前或加入频道后调用此方法。</li>
-                    <li>黑名单设置不受 <xref keyref="muteRemoteAudioStream"/>、<xref keyref="muteAllRemoteAudioStreams"/> 和 <codeph>autoSubscribeAudio</codeph> 的影响。</li>
+                    <li>黑名单设置不受 <xref keyref="muteRemoteAudioStream"/>、<xref keyref="muteAllRemoteAudioStreams"/> 和 <xref keyref="ChannelMediaOptions"/> 中 <codeph>autoSubscribeAudio</codeph> 的影响。</li>
                     <li>一旦设置了订阅黑名单，即使你离开当前频道并重新加入频道，该设置仍然有效。</li>
                     <li>如果某个用户同时被加入白名单和黑名单，仅黑名单生效。</li>
                 </ul>
@@ -33,9 +33,9 @@
             <note props="android">
                 <ul>
                     <li>你可以在加入频道前或加入频道后调用此方法。</li>
-                    <li>黑名单设置不受 <xref keyref="ChannelMediaOptions"/> 中的 <xref keyref="muteRemoteAudioStream"/>、<xref keyref="muteAllRemoteAudioStreams"/> 和 <codeph>autoSubscribeAudio</codeph> 的影响。</li>
-                    <li>一旦设置了订阅黑名单，即使你离开当前频道并重新加入，该设置仍然有效。</li>
-                    <li>如果某个用户同时出现在白名单和黑名单中，只有黑名单生效。</li>
+                    <li>黑名单不受 <xref keyref="muteRemoteAudioStream"/>、<xref keyref="muteAllRemoteAudioStreams"/> 和 <xref keyref="ChannelMediaOptions"/> 中 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
+                    <li>一旦设置了订阅黑名单，即使你离开当前频道并重新加入频道，该设置仍然有效。</li>
+                    <li>如果某个用户同时被加入白名单和黑名单，则仅黑名单生效。</li>
                 </ul>
             </note>
             <note props="ios">
@@ -68,7 +68,11 @@
                 </plentry>
                 <plentry props="android">
                     <pt>uidList</pt>
-                    <pd>不希望订阅其音频流的用户 ID 列表。</pd>
+                    <pd>不希望订阅其音频流的用户 ID 列表。
+                        <ul>
+                            <li>如果你希望将某个用户从黑名单中移除，需要调用 <xref keyref="setSubscribeAudioBlocklist"/> 方法更新用户 ID 列表，即在新的列表中仅保留不希望订阅的用户 ID。</li>
+                        </ul>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>blocklist</pt>

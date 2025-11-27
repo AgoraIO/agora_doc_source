@@ -35,13 +35,13 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">要同时播放多个音效文件，请使用不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph> 多次调用该方法。为获得最佳用户体验，声网建议不要同时播放超过三个音效文件。</p>
-            <p props="android">该方法支持播放以 <codeph>content://</codeph> 开头的 URI 文件。支持的音频文件格式包括 MP3、AAC、M4A、MP4、WAV 和 3GP。详见 <codeph>声网 RTC SDK 支持的音频文件格式</codeph>。如果本地音频文件不存在、SDK 不支持该文件格式，或无法访问音频文件的 URL，SDK 会返回错误码 <codeph>AUDIO_MIXING_REASON_CAN_NOT_OPEN</codeph>。</p>
+            <p props="android">该方法支持播放以 <codeph>content://</codeph> 开头的 URI 文件。支持的音频文件格式详见声网文档。如果本地音频文件不存在、SDK 不支持该文件格式，或无法访问音频文件的 URL，SDK 会返回错误码 <codeph>AUDIO_MIXING_REASON_CAN_NOT_OPEN</codeph>。</p>
             <p props="ios">你可以多次调用该方法并传入不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph>，以同时播放多个音效文件。为获得最佳用户体验，声网建议你不要同时播放超过三个音效文件。</p>
             <p props="mac">你可以多次调用该方法并传入不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph>，以同时播放多个音效文件。为获得最佳用户体验，声网建议你不要同时播放超过三个音效文件。</p>
             <note props="cpp">如果需要播放在线音效文件，声网建议先将其缓存到本地设备，调用 <xref keyref="preloadEffect"/> 将其预加载到内存中，再调用该方法播放音效。否则，可能因加载超时或失败导致播放失败或无声。
 如果在调用 <xref keyref="playEffect3"/> 前调用了 <xref keyref="preloadEffect"/>，则在 <xref keyref="playEffect3"/> 执行后文件资源不会被关闭。下次调用 <xref keyref="playEffect3"/> 时将直接从头开始播放。
 如果在调用 <xref keyref="playEffect3"/> 前未调用 <xref keyref="preloadEffect"/>，则在 <xref keyref="playEffect3"/> 执行后资源将被销毁。下次调用 <xref keyref="playEffect3"/> 时将尝试重新打开文件并从头播放。</note>
-            <note props="android">如果需要播放在线音效文件，声网建议先将其缓存到本地设备，并调用 <codeph>preloadEffect</codeph> 将文件预加载到内存中，再调用该方法播放音效。否则，可能因加载超时或失败导致播放失败或无声。</note>
+            <note props="android">如果需要播放在线音效文件，声网建议先将其缓存到本地设备，调用 <codeph>preloadEffect</codeph> 将文件预加载到内存中，再调用该方法播放音效。否则，可能因加载超时或失败导致播放失败或无声。</note>
             <note props="ios">如果你需要播放在线音效文件，声网建议你先将该文件缓存到本地设备，再调用 <xref keyref="preloadEffect2"/> 将其预加载到内存中，然后调用该方法播放音效。否则，可能因加载超时或失败导致播放失败或无声。</note>
             <note props="mac">如果你需要播放在线音效文件，声网建议你先将该文件缓存到本地设备，再调用 <xref keyref="preloadEffect2"/> 将其预加载到内存中，然后调用该方法播放音效。否则，可能因加载超时或失败导致播放失败或无声。</note>
         </section>
@@ -55,7 +55,7 @@
         <section id="related" deliveryTarget="details" props="android cpp ios mac">
             <title>相关回调</title>
             <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onAudioEffectFinished"/> 回调报告音效播放完成。</p>
-            <p props="android">成功调用该方法后，SDK 会触发 <xref keyref="onAudioEffectFinished"/> 回调报告音效播放完成。</p>
+            <p props="android">音效文件播放完成后，SDK 会触发 <xref keyref="onAudioEffectFinished"/> 回调。</p>
             <p props="ios">成功播放音效文件后，SDK 会触发 <xref keyref="onAudioEffectFinished"/> 回调。</p>
             <p props="mac">成功播放音效文件后，SDK 会触发 <xref keyref="onAudioEffectFinished"/> 回调。</p>
         </section>
@@ -112,15 +112,19 @@
                 </plentry>
                 <plentry props="android">
                     <pt>soundId</pt>
-                    <pd>音效 ID。每个音效文件的 ID 是唯一的。</pd>
+                    <pd>音效 ID。每个音效文件的 ID 必须唯一。
+                        <note>如果你已通过调用 <codeph>preloadEffect</codeph> 将音效预加载到内存中，请确保该参数的值与 <codeph>preloadEffect</codeph> 中的 <codeph>soundId</codeph> 相同。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>filePath</pt>
-                    <pd>音效文件路径。支持以 <codeph>content://</codeph> 开头的 URI 地址、以 <codeph>/assets/</codeph> 开头的路径、URL 以及本地文件的绝对路径。路径需精确到文件名及扩展名。</pd>
+                    <pd>音效文件路径。支持以 <codeph>content://</codeph> 开头的 URI 地址、以 <codeph>/assets/</codeph> 开头的路径、URL 以及本地文件的绝对路径。路径需精确到文件名及扩展名。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV 和 3GP。
+                        <note>如果你已通过调用 <codeph>preloadEffect</codeph> 将音效预加载到内存中，请确保该参数的值与 <codeph>preloadEffect</codeph> 中的 <codeph>filePath</codeph> 相同。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>loopCount</pt>
-                    <pd>音效的循环播放次数：
+                    <pd>音效循环播放的次数：
                         <ul>
                             <li>≥ 0：播放的次数。例如，1 表示循环播放一次，即总共播放两次。</li>
                             <li>-1：无限循环播放该音频文件。</li>

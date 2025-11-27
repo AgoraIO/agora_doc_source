@@ -20,6 +20,7 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="ios">调用该方法后，SDK 会触发 <xref keyref="onMusicCollectionResult"/> 回调，返回检索到的音乐资源列表。</p>
+            <p props="android">调用该方法后，SDK 会触发 <xref keyref="onMusicCollectionResult"/> 回调，返回检索到的音乐资源列表。</p>
         </section>
         <section id="related" deliveryTarget="details" props="cpp">
             <title>相关回调</title>
@@ -96,15 +97,15 @@
                 </plentry>
                 <plentry props="android">
                     <pt>keyword</pt>
-                    <pd>搜索关键词。支持按歌曲标题或歌手名称搜索。</pd>
+                    <pd>搜索关键词。支持按歌曲标题或艺术家名称搜索。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>page</pt>
-                    <pd>要获取的音乐资源列表的目标页码。</pd>
+                    <pd>要获取的音乐资源列表的页码。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>pageSize</pt>
-                    <pd>每页显示的最大音乐资源数量。最大值为 50。</pd>
+                    <pd>每页返回的最大音乐资源数量，最大值为 50。</pd>
                 </plentry>
             </parml>
         </section>
@@ -117,7 +118,12 @@
                 </ul>
             </p>
             <p props="ios">方法调用成功时，返回请求 ID，用于标识此次请求的唯一标识符。方法调用失败时，返回空字符串。</p>
-            <p props="android">方法调用成功时，返回唯一标识该请求的 <codeph>requestId</codeph>。方法调用失败，返回空字符串。</p>
+            <p props="android">
+                <ul>
+                    <li>方法调用成功时，返回唯一标识该请求的 <codeph>requestId</codeph>。</li>
+                    <li>方法调用失败，返回空字符串。</li>
+                </ul>
+            </p>
         </section>
     </refbody>
 </reference>

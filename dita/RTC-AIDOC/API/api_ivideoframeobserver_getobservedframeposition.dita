@@ -20,18 +20,18 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">成功注册视频数据观察器后，SDK 会通过该回调判断是否在特定的视频帧处理位置触发 <xref keyref="onCaptureVideoFrame"/>、<xref keyref="onRenderVideoFrame"/> 和 <xref keyref="onPreEncodeVideoFrame"/> 回调，从而让你能够观察本地采集的视频数据、远端接收的视频数据以及编码前的视频数据。你可以根据业务场景，通过修改返回值设置一个或多个需要观察的位置：
+            <p props="cpp">在成功注册视频数据观察器后，SDK 会通过该回调判断是否在特定的视频帧处理位置触发 <xref keyref="onCaptureVideoFrame"/>、<xref keyref="onRenderVideoFrame"/> 和 <xref keyref="onPreEncodeVideoFrame"/> 回调，从而让你观察本地采集的视频数据、远端接收的视频数据以及编码前的视频数据。你可以根据实际场景，通过修改返回值设置一个或多个需要观察的位置：
                 <ul>
-                    <li><codeph>POSITION_POST_CAPTURER</codeph> (1 &lt;&lt; 0)：采集视频数据后的位置。对应 <xref keyref="onCaptureVideoFrame"/> 回调。</li>
-                    <li><codeph>POSITION_PRE_RENDERER</codeph> (1 &lt;&lt; 1)：渲染远端视频数据前的位置。对应 <xref keyref="onRenderVideoFrame"/> 回调。</li>
-                    <li><codeph>POSITION_PRE_ENCODER</codeph> (1 &lt;&lt; 2)：编码前的位置。对应 <xref keyref="onPreEncodeVideoFrame"/> 回调。</li>
+                    <li><codeph>POSITION_POST_CAPTURER</codeph> (1 &lt;&lt; 0)：视频采集后的位置，对应 <xref keyref="onCaptureVideoFrame"/> 回调。</li>
+                    <li><codeph>POSITION_PRE_RENDERER</codeph> (1 &lt;&lt; 1)：远端视频数据在渲染前的位置，对应 <xref keyref="onRenderVideoFrame"/> 回调。</li>
+                    <li><codeph>POSITION_PRE_ENCODER</codeph> (1 &lt;&lt; 2)：编码前的位置，对应 <xref keyref="onPreEncodeVideoFrame"/> 回调。</li>
                 </ul>
             </p>
-            <p props="android">成功注册视频数据观察器后，SDK 会通过该回调判断是否在特定的视频帧处理位置触发 <xref keyref="onCaptureVideoFrame"/>、<xref keyref="onRenderVideoFrame"/> 和 <xref keyref="onPreEncodeVideoFrame"/> 回调，以便你观察本地采集的视频数据、远端发送的视频数据以及编码前的视频数据。你可以根据实际场景，通过修改返回值设置一个或多个需要观察的位置：
+            <p props="android">在成功注册视频数据观察器后，SDK 会通过该回调判断是否在特定的视频帧处理位置触发 <xref keyref="onCaptureVideoFrame"/>、<xref keyref="onRenderVideoFrame"/> 和 <xref keyref="onPreEncodeVideoFrame"/> 回调。你可以根据业务场景，通过修改返回值设置一个或多个需要观察的位置：
                 <ul>
                     <li><codeph>VIDEO_MODULE_POSITION_POST_CAPTURER</codeph> (1 &lt;&lt; 0)：视频采集后的位置，对应 <xref keyref="onCaptureVideoFrame"/> 回调。</li>
-                    <li><codeph>VIDEO_MODULE_POSITION_PRE_RENDERER</codeph> (1 &lt;&lt; 1)：接收的远端视频数据在渲染前的位置，对应 <xref keyref="onRenderVideoFrame"/> 回调。</li>
-                    <li><codeph>VIDEO_MODULE_POSITION_PRE_ENCODER</codeph> (1 &lt;&lt; 2)：视频编码前的位置，对应 <xref keyref="onPreEncodeVideoFrame"/> 回调。</li>
+                    <li><codeph>VIDEO_MODULE_POSITION_PRE_RENDERER</codeph> (1 &lt;&lt; 1)：远端视频渲染前的位置，对应 <xref keyref="onRenderVideoFrame"/> 回调。</li>
+                    <li><codeph>VIDEO_MODULE_POSITION_PRE_ENCODER</codeph> (1 &lt;&lt; 2)：编码前的位置，对应 <xref keyref="onPreEncodeVideoFrame"/> 回调。</li>
                 </ul>
             </p>
             <p props="ios">在你成功注册视频数据观察器后，SDK 会通过该回调判断是否在特定的视频帧处理位置触发 <codeph>onCaptureVideoFrame</codeph>、<codeph>onRenderVideoFrame</codeph> 和 <codeph>onPreEncodeVideoFrame</codeph> 回调，从而让你观察本地采集的视频数据、远端发送的视频数据以及编码前的视频数据。你可以根据实际场景，通过修改返回值设置一个或多个需要观察的位置：
@@ -50,10 +50,10 @@
             </p>
             <note props="cpp">
                 <ul>
-                    <li>使用 <codeph>|</codeph>（按位或运算符）以同时观察多个帧位置。</li>
+                    <li>使用 <codeph>|</codeph>（按位或运算符）设置多个观察位置。</li>
                     <li>默认观察位置为 <codeph>POSITION_POST_CAPTURER</codeph> (1 &lt;&lt; 0) 和 <codeph>POSITION_PRE_RENDERER</codeph> (1 &lt;&lt; 1)。</li>
-                    <li>为节省系统资源，建议只设置必要的观察位置。</li>
-                    <li>当视频处理模式为 <codeph>PROCESS_MODE_READ_WRITE</codeph> 且观察位置为 <codeph>POSITION_PRE_ENCODER | POSITION_POST_CAPTURER</codeph> 时，<xref keyref="getMirrorApplied"/> 不生效。你需要调整视频处理模式或观察位置。</li>
+                    <li>为节省系统资源，建议减少观察的位置数量。</li>
+                    <li>当视频处理模式为 <codeph>PROCESS_MODE_READ_WRITE</codeph> 且观察位置为 <codeph>POSITION_PRE_ENCODER | POSITION_POST_CAPTURER</codeph> 时，<xref keyref="getMirrorApplied"/> 不生效。你需要修改视频处理模式或观察位置。</li>
                 </ul>
             </note>
             <note props="ios">
@@ -75,12 +75,12 @@
         </section>
         <section id="return_values" props="android cpp ios mac">
             <title>返回值</title>
-            <p props="cpp">方法调用成功，返回一个位掩码，用于控制视频观察器的帧位置。详见 <xref keyref="VIDEO_MODULE_POSITION"/>。</p>
+            <p props="cpp">方法调用成功，返回用于控制视频观察器帧位置的位掩码。详见 <xref keyref="VIDEO_MODULE_POSITION"/>。</p>
             <p props="android">方法调用成功，返回用于控制视频观察器帧位置的位掩码：
                 <ul>
-                    <li><codeph>VIDEO_MODULE_POSITION_POST_CAPTURER</codeph> (1 &lt;&lt; 0)：视频采集后的位置，对应 <xref keyref="onCaptureVideoFrame"/> 回调。</li>
-                    <li><codeph>VIDEO_MODULE_POSITION_PRE_RENDERER</codeph> (1 &lt;&lt; 1)：接收的远端视频数据在渲染前的位置，对应 <xref keyref="onRenderVideoFrame"/> 回调。</li>
-                    <li><codeph>VIDEO_MODULE_POSITION_PRE_ENCODER</codeph> (1 &lt;&lt; 2)：视频编码前的位置，对应 <xref keyref="onPreEncodeVideoFrame"/> 回调。</li>
+                    <li><codeph>VIDEO_MODULE_POSITION_POST_CAPTURER</codeph> (1 &lt;&lt; 0)：视频采集后的位置。</li>
+                    <li><codeph>VIDEO_MODULE_POSITION_PRE_RENDERER</codeph> (1 &lt;&lt; 1)：远端视频渲染前的位置。</li>
+                    <li><codeph>VIDEO_MODULE_POSITION_PRE_ENCODER</codeph> (1 &lt;&lt; 2)：编码前的位置。</li>
                 </ul>
             </p>
             <p props="ios">用于控制你希望观察的视频帧位置的位掩码。详见 <xref keyref="VIDEO_FRAME_POSITION"/>。</p>

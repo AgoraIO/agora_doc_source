@@ -94,15 +94,21 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>yStride</pt>
-                    <pd>对于 YUV 数据，为 Y 缓冲区的每行跨度；对于 RGBA 数据，为总数据长度。</pd>
+                    <pd>对于 YUV 数据，为 Y 缓冲区的每行跨度；对于 RGBA 数据，为总数据长度。
+                        <note>处理视频数据时，必须根据该参数处理每行像素数据之间的偏移，否则可能导致图像失真。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>uStride</pt>
-                    <pd>对于 YUV 数据，为 U 缓冲区的每行跨度；对于 RGBA 数据，该值为 0。</pd>
+                    <pd>对于 YUV 数据，为 U 缓冲区的每行跨度；对于 RGBA 数据，该值为 0。
+                        <note>处理视频数据时，必须根据该参数处理每行像素数据之间的偏移，否则可能导致图像失真。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>vStride</pt>
-                    <pd>对于 YUV 数据，为 V 缓冲区的每行跨度；对于 RGBA 数据，该值为 0。</pd>
+                    <pd>对于 YUV 数据，为 V 缓冲区的每行跨度；对于 RGBA 数据，该值为 0。
+                        <note>处理视频数据时，必须根据该参数处理每行像素数据之间的偏移，否则可能导致图像失真。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>yBuffer</pt>
@@ -154,7 +160,9 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>alphaBuffer</pt>
-                    <pd>输出参数，使用人像分割算法生成的 Alpha 通道数据。该数据与视频帧大小一致，每个像素值范围为 [0, 255]，其中 0 表示背景，255 表示前景（人像）。通过设置该参数，可以将视频背景渲染为透明、纯色、图像、视频等多种效果。</pd>
+                    <pd>输出参数，使用人像分割算法生成的 Alpha 通道数据。该数据与视频帧大小一致，每个像素值范围为 [0, 255]，其中 0 表示背景，255 表示前景（人像）。通过设置该参数，可以将视频背景渲染为透明、纯色、图像、视频等多种效果。
+                        <note>请确保 <codeph>alphaBuffer</codeph> 的大小与视频帧（width × height）完全一致，否则可能导致应用崩溃。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>alphaStitchMode</pt>
@@ -222,7 +230,7 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>avSyncType</pt>
-                    <pd>预留参数，供未来使用。</pd>
+                    <pd>预留参数</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>pixelBuffer</pt>
@@ -230,7 +238,9 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>alphaBuffer</pt>
-                    <pd>使用人像分割算法输出的 Alpha 通道数据。该数据与视频帧大小一致，每个像素值范围为 [0, 255]，其中 0 表示背景，255 表示前景（人像）。通过设置该参数，可以将视频背景渲染为透明、纯色、图像、视频等多种效果。</pd>
+                    <pd>使用人像分割算法输出的 Alpha 通道数据。该数据与视频帧大小一致，每个像素值范围为 [0, 255]，其中 0 表示背景，255 表示前景（人像）。通过设置该参数，可以将视频背景渲染为透明、纯色、图像、视频等多种效果。
+                        <note>请确保 <codeph>alphaBuffer</codeph> 的大小与视频帧（width × height）完全一致，否则可能导致应用崩溃。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>alphaStitchMode</pt>
@@ -290,7 +300,7 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>avSyncType</pt>
-                    <pd>预留参数，供未来使用。</pd>
+                    <pd>预留参数</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>pixelBuffer</pt>
@@ -298,7 +308,9 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>alphaBuffer</pt>
-                    <pd>使用人像分割算法输出的 Alpha 通道数据。该数据与视频帧大小一致，每个像素值范围为 [0, 255]，其中 0 表示背景，255 表示前景（人像）。通过设置该参数，可以将视频背景渲染为透明、纯色、图像、视频等多种效果。</pd>
+                    <pd>使用人像分割算法输出的 Alpha 通道数据。该数据与视频帧大小一致，每个像素值范围为 [0, 255]，其中 0 表示背景，255 表示前景（人像）。通过设置该参数，可以将视频背景渲染为透明、纯色、图像、视频等多种效果。
+                        <note>请确保 <codeph>alphaBuffer</codeph> 的大小与视频帧（width × height）完全一致，否则可能导致应用崩溃。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>alphaStitchMode</pt>

@@ -26,24 +26,24 @@
                     <li>人脸与屏幕之间的距离。</li>
                 </ul>
             </p>
-            <p props="android">该方法需在摄像头启动后调用，例如调用 <codeph>startPreview</codeph> 或 <xref keyref="enableVideo"/> 后。启用人脸检测后，SDK 会触发 <xref keyref="onFacePositionChanged"/> 回调，报告本地用户的人脸信息，包括：
-                <ul>
-                    <li>本地视频的宽高。</li>
-                    <li>人脸在本地视图中的位置。</li>
-                    <li>人脸与屏幕的距离。</li>
-                </ul>
-            </p>
             <note props="cpp">该方法仅适用于 Android 和 iOS 平台。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios">
             <title>调用时机</title>
             <p props="cpp">该方法需在调用 <codeph>startPreview</codeph> 或 <xref keyref="enableVideo"/> 开启摄像头之后调用。</p>
             <p props="ios">该方法需要在摄像头启动后调用，例如调用 <xref keyref="startPreview2"/> 或 <xref keyref="enableVideo"/> 方法后。</p>
-            <p props="android">该方法需在摄像头启动后调用，例如调用 <codeph>startPreview</codeph> 或 <xref keyref="enableVideo"/> 后。</p>
+            <p props="android">该方法需在调用 <codeph>startPreview</codeph> 或 <xref keyref="enableVideo"/> 启动相机后调用。</p>
         </section>
-        <section id="related" deliveryTarget="details" props="cpp">
+        <section id="related" deliveryTarget="details" props="android cpp">
             <title>相关回调</title>
             <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onFacePositionChanged"/> 回调，报告本地用户的人脸信息，包括：
+                <ul>
+                    <li>本地视频的宽度和高度。</li>
+                    <li>人脸在本地视图中的位置。</li>
+                    <li>人脸与屏幕之间的距离。</li>
+                </ul>
+            </p>
+            <p props="android">启用人脸检测后，SDK 会触发 <xref keyref="onFacePositionChanged"/> 回调，报告本地用户的人脸信息，包括：
                 <ul>
                     <li>本地视频的宽度和高度。</li>
                     <li>人脸在本地视图中的位置。</li>

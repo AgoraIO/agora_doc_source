@@ -46,11 +46,15 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>encryptionKey</pt>
-                    <pd>字符串类型的加密密钥，长度不受限制。声网建议使用 32 字节的密钥。</pd>
+                    <pd>字符串类型的加密密钥，长度不受限制。声网建议使用 32 字节的密钥。
+                        <note>如果未设置加密密钥或将其设置为 <xref keyref="NULL"/>，则无法使用内置加密，SDK 会返回 <codeph>-2</codeph>。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>encryptionKdfSalt</pt>
-                    <pd>用于加密的盐值，长度为 32 字节。</pd>
+                    <pd>用于加密的盐值，长度为 32 字节。
+                        <note>该参数仅在 <codeph>AES_128_GCM2</codeph> 或 <codeph>AES_256_GCM2</codeph> 加密模式下生效。在此情况下，请确保该参数不为 <codeph>0</codeph>。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>datastreamEncryptionEnabled</pt>
@@ -67,11 +71,15 @@
                 </plentry>
                 <plentry props="android">
                     <pt>encryptionKey</pt>
-                    <pd>加密密钥，类型为字符串，长度无限制。声网建议使用 32 字节长度的密钥。</pd>
+                    <pd>加密密钥，类型为字符串，长度无限制。声网建议使用 32 字节长度的密钥。
+                        <note>如果未设置加密密钥或将其设置为 <xref keyref="NULL"/>，则无法使用内置加密，且 SDK 返回值为 <codeph>-2</codeph>。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>encryptionKdfSalt</pt>
-                    <pd>用于加密的盐值，长度为 32 字节。声网建议在服务器端使用 OpenSSL 生成该盐值。详见 Media Stream Encryption。</pd>
+                    <pd>用于加密的盐值，长度为 32 字节。声网建议在服务器端使用 OpenSSL 生成该盐值。详见 Media Stream Encryption。
+                        <note>该参数仅在 <codeph>AES_128_GCM2</codeph> 或 <codeph>AES_256_GCM2</codeph> 加密模式下生效。在此情况下，请确保该参数值不为 0。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>datastreamEncryptionEnabled</pt>
@@ -88,11 +96,15 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>encryptionKey</pt>
-                    <pd>字符串类型的加密密钥，长度不受限制。声网推荐使用 32 字节的密钥。</pd>
+                    <pd>字符串类型的加密密钥，长度不受限制。声网推荐使用 32 字节的密钥。
+                        <note>如果未设置加密密钥或将其设置为 <xref keyref="NULL"/>，则无法使用内置加密，SDK 会返回 <codeph>-2</codeph>。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>encryptionKdfSalt</pt>
-                    <pd>用于加密的盐值，长度为 32 字节。声网推荐在服务器端使用 OpenSSL 生成该盐值。详见 <codeph>Media Stream Encryption</codeph>。详见 <codeph>NSData</codeph>。</pd>
+                    <pd>用于加密的盐值，长度为 32 字节。声网推荐在服务器端使用 OpenSSL 生成该盐值。详见 <codeph>Media Stream Encryption</codeph>。详见 <codeph>NSData</codeph>。
+                        <note>该参数仅在 <codeph>AgoraEncryptionModeAES128GCM2</codeph> 或 <codeph>AgoraEncryptionModeAES256GCM2</codeph> 加密模式下生效。在此情况下，请确保该参数不为 <codeph>0</codeph>。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>datastreamEncryptionEnabled</pt>
@@ -109,11 +121,15 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>encryptionKey</pt>
-                    <pd>字符串类型的加密密钥，长度不受限制。声网推荐使用 32 字节的密钥。</pd>
+                    <pd>字符串类型的加密密钥，长度不受限制。声网推荐使用 32 字节的密钥。
+                        <note>如果未设置加密密钥或将其设置为 <xref keyref="NULL"/>，则无法使用内置加密，SDK 会返回 <codeph>-2</codeph>。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>encryptionKdfSalt</pt>
-                    <pd>用于加密的盐值，长度为 32 字节。声网推荐在服务器端使用 OpenSSL 生成该盐值。详见 <codeph>Media Stream Encryption</codeph>。详见 <codeph>NSData</codeph>。</pd>
+                    <pd>用于加密的盐值，长度为 32 字节。声网推荐在服务器端使用 OpenSSL 生成该盐值。详见 <codeph>Media Stream Encryption</codeph>。详见 <codeph>NSData</codeph>。
+                        <note>该参数仅在 <codeph>AgoraEncryptionModeAES128GCM2</codeph> 或 <codeph>AgoraEncryptionModeAES256GCM2</codeph> 加密模式下生效。在此情况下，请确保该参数不为 <codeph>0</codeph>。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>datastreamEncryptionEnabled</pt>

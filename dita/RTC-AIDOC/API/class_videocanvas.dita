@@ -84,7 +84,9 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>view</pt>
-                    <pd>视频显示窗口。</pd>
+                    <pd>视频显示窗口。
+                        <note>在一个 <xref keyref="VideoCanvas"/> 中，只能设置 <codeph>view</codeph> 或 <codeph>surfaceTexture</codeph> 其中之一。如果两者都设置，仅 <codeph>view</codeph> 的设置生效。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>backgroundColor</pt>
@@ -96,7 +98,14 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>mirrorMode</pt>
-                    <pd>视图的镜像模式。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</pd>
+                    <pd>视图的镜像模式。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。
+                        <note>
+                            <ul>
+                                <li>本地视频视图的镜像模式：使用前置摄像头时，SDK 默认开启镜像模式；使用后置摄像头时，SDK 默认关闭镜像模式。</li>
+                                <li>远端用户默认关闭镜像模式。</li>
+                            </ul>
+                        </note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>setupMode</pt>
@@ -116,7 +125,13 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>enableAlphaMask</pt>
-                    <pd>是否启用 Alpha 蒙版渲染：
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>仅当发送端开启 Alpha 通道传输时，接收端才能渲染 Alpha 通道信息。</li>
+                                <li>如需开启 Alpha 通道传输，请[联系技术支持](https://ticket.shengwang.cn/)。</li>
+                            </ul>
+                        </note><ph>是否启用 Alpha 蒙版渲染：</ph>
                         <ul>
                             <li><xref keyref="true"/>：启用 Alpha 蒙版渲染。</li>
                             <li><xref keyref="false"/>：（默认）关闭 Alpha 蒙版渲染。</li>
@@ -160,11 +175,15 @@
                 </plentry>
                 <plentry props="android">
                     <pt>view</pt>
-                    <pd>用于显示视频的视图窗口，必须为 <codeph>SurfaceView</codeph> 或 <codeph>TextureView</codeph> 类型。</pd>
+                    <pd>用于显示视频的视图窗口，必须为 <codeph>SurfaceView</codeph> 或 <codeph>TextureView</codeph> 类型。
+                        <note>在一个 <xref keyref="VideoCanvas"/> 中只能设置 <codeph>view</codeph> 或 <codeph>surfaceTexture</codeph>，若同时设置，仅 <codeph>view</codeph> 生效。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>surfaceTexture</pt>
-                    <pd>提供视频图像的容器。</pd>
+                    <pd>提供视频图像的容器。
+                        <note>在一个 <xref keyref="VideoCanvas"/> 中只能设置 <codeph>view</codeph> 或 <codeph>surfaceTexture</codeph>，若同时设置，仅 <codeph>view</codeph> 生效。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>renderMode</pt>
@@ -178,7 +197,13 @@
                 </plentry>
                 <plentry props="android">
                     <pt>mirrorMode</pt>
-                    <pd>镜像模式：
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>本地视频视图镜像模式：使用前置摄像头时默认开启，后置摄像头时默认关闭。</li>
+                                <li>远端用户默认关闭镜像模式。</li>
+                            </ul>
+                        </note><ph>镜像模式：</ph>
                         <ul>
                             <li><codeph>VIDEO_MIRROR_MODE_AUTO</codeph> (0)：SDK 自动判断是否开启镜像模式。</li>
                             <li><codeph>VIDEO_MIRROR_MODE_ENABLED</codeph> (1)：开启本地视图镜像模式。</li>
@@ -188,7 +213,8 @@
                 </plentry>
                 <plentry props="android">
                     <pt>setupMode</pt>
-                    <pd>视图设置模式：
+                    <pd>
+                        <note>不再使用视图时建议将 <codeph>setupMode</codeph> 设置为 <codeph>VIEW_SETUP_MODE_REMOVE</codeph>，以防止渲染资源泄漏。</note><ph>视图设置模式：</ph>
                         <ul>
                             <li><codeph>VIEW_SETUP_MODE_REPLACE</codeph> (0)：替换视图，默认值。</li>
                             <li><codeph>VIEW_SETUP_MODE_ADD</codeph> (1)：新增视图。</li>
@@ -218,7 +244,14 @@
                 </plentry>
                 <plentry props="android">
                     <pt>backgroundColor</pt>
-                    <pd>视频画布的背景颜色，RGBA 格式。默认值为 0x00000000，表示黑色。</pd>
+                    <pd>视频画布的背景颜色，RGBA 格式。默认值为 0x00000000，表示黑色。
+                        <note>
+                            <ul>
+                                <li>如果使用 Kotlin 开发并设置为 <codeph>0xFFFFFFFF</codeph> 时出现编译错误，可使用 <codeph>(0xFFFFFFFF).toInt()</codeph> 或 <codeph>android.graphics.Color.parseColor("#FFFFFFFF")</codeph>。</li>
+                                <li>当前使用 RGBA 格式时不支持 Alpha 通道。</li>
+                            </ul>
+                        </note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>position</pt>
@@ -230,11 +263,15 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>subviewUid</pt>
-                    <pd>视频显示窗口的用户 ID。</pd>
+                    <pd>视频显示窗口的用户 ID。
+                        <note>在一个 <xref keyref="VideoCanvas"/> 中，只能设置 <codeph>view</codeph> 或 <codeph>surfaceTexture</codeph> 其中之一。如果两者都设置，仅 <codeph>view</codeph> 的设置生效。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>view</pt>
-                    <pd>视频显示窗口。</pd>
+                    <pd>视频显示窗口。
+                        <note>在一个 <xref keyref="VideoCanvas"/> 中，只能设置 <codeph>view</codeph> 或 <codeph>surfaceTexture</codeph> 其中之一。如果两者都设置，仅 <codeph>view</codeph> 的设置生效。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>renderMode</pt>
@@ -242,7 +279,14 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>mirrorMode</pt>
-                    <pd>视图的镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</pd>
+                    <pd>视图的镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。
+                        <note>
+                            <ul>
+                                <li>本地视频视图的镜像模式：使用前置摄像头时，SDK 默认开启镜像模式；使用后置摄像头时，SDK 默认关闭镜像模式。</li>
+                                <li>远端用户默认关闭镜像模式。</li>
+                            </ul>
+                        </note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>setupMode</pt>
@@ -266,7 +310,13 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>enableAlphaMask</pt>
-                    <pd>是否启用 Alpha 蒙版渲染：
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>接收端仅在发送端启用 Alpha 通道传输时才能渲染 Alpha 通道信息。</li>
+                                <li>启用 Alpha 通道传输，请[联系技术支持](https://ticket.shengwang.cn/)。</li>
+                            </ul>
+                        </note><ph>是否启用 Alpha 蒙版渲染：</ph>
                         <ul>
                             <li><xref keyref="true"/>：启用 Alpha 蒙版渲染。</li>
                             <li><xref keyref="false"/>：（默认）不启用 Alpha 蒙版渲染。</li>
@@ -282,11 +332,15 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>subviewUid</pt>
-                    <pd>视频显示窗口的用户 ID。</pd>
+                    <pd>视频显示窗口的用户 ID。
+                        <note>在一个 <xref keyref="VideoCanvas"/> 中，只能设置 <codeph>view</codeph> 或 <codeph>surfaceTexture</codeph> 其中之一。如果两者都设置，仅 <codeph>view</codeph> 的设置生效。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>view</pt>
-                    <pd>视频显示窗口。</pd>
+                    <pd>视频显示窗口。
+                        <note>在一个 <xref keyref="VideoCanvas"/> 中，只能设置 <codeph>view</codeph> 或 <codeph>surfaceTexture</codeph> 其中之一。如果两者都设置，仅 <codeph>view</codeph> 的设置生效。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>renderMode</pt>
@@ -294,7 +348,14 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>mirrorMode</pt>
-                    <pd>视图的镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</pd>
+                    <pd>视图的镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。
+                        <note>
+                            <ul>
+                                <li>本地视频视图的镜像模式：使用前置摄像头时，SDK 默认开启镜像模式；使用后置摄像头时，SDK 默认关闭镜像模式。</li>
+                                <li>远端用户默认关闭镜像模式。</li>
+                            </ul>
+                        </note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>setupMode</pt>
@@ -318,7 +379,13 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>enableAlphaMask</pt>
-                    <pd>是否启用 Alpha 蒙版渲染：
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>接收端仅在发送端启用 Alpha 通道传输时才能渲染 Alpha 通道信息。</li>
+                                <li>启用 Alpha 通道传输，请[联系技术支持](https://ticket.shengwang.cn/)。</li>
+                            </ul>
+                        </note><ph>是否启用 Alpha 蒙版渲染：</ph>
                         <ul>
                             <li><xref keyref="true"/>：启用 Alpha 蒙版渲染。</li>
                             <li><xref keyref="false"/>：（默认）不启用 Alpha 蒙版渲染。</li>

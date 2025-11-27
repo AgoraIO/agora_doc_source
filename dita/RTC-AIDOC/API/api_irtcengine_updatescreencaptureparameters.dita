@@ -38,7 +38,9 @@
                 </plentry>
                 <plentry props="android">
                     <pt>screenCaptureParameters</pt>
-                    <pd>屏幕共享的编码参数。详见 <xref keyref="ScreenCaptureParameters2"/>。</pd>
+                    <pd>屏幕共享的编码参数，详见 <xref keyref="ScreenCaptureParameters2"/>。
+                        <note>屏幕共享视频流的视频属性仅需通过此参数设置，与 <xref keyref="setVideoEncoderConfiguration"/> 无关。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>captureParams</pt>
@@ -65,7 +67,7 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
                         <ul>
                             <li>-2：参数无效。</li>
-                            <li>-8：屏幕共享状态无效。可能是因为你已共享了其他屏幕或窗口。请尝试调用 <xref keyref="stopScreenCapture"/> 停止当前共享后重新开始共享。</li>
+                            <li>-8：屏幕共享状态无效。可能是因为你已共享了其他屏幕或窗口。请尝试调用 <xref keyref="stopScreenCapture"/> 停止当前共享，然后重新开始共享屏幕。</li>
                         </ul>
                     </li>
                 </ul>

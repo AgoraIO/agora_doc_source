@@ -22,28 +22,23 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">你可以调用该方法更新本地视频画面的渲染模式和镜像模式。该方法仅影响本地用户看到的视频画面，不影响本地视频的发布。</p>
-            <p props="android">你可以在初始化本地视频画面后调用该方法，更新其渲染模式和镜像模式。该方法仅影响本地用户看到的视频画面，不影响本地视频的发布。</p>
+            <p props="cpp">你可以在初始化本地视频画面后调用该方法，更新其渲染模式和镜像模式。该方法仅影响本地用户看到的视频画面，不影响本地视频的发布。</p>
+            <p props="android">该方法仅影响本地用户看到的视频画面，不影响本地视频的发布。</p>
             <p props="ios">你可以在初始化本地视频视图后调用该方法，更新其渲染模式和镜像模式。该方法仅影响你本地看到的视频视图，不影响本地视频的发布。</p>
             <p props="mac">你可以在初始化本地视频视图后调用该方法，更新其渲染模式和镜像模式。该方法仅影响你本地看到的视频视图，不影响本地视频的发布。</p>
-            <note props="cpp">该方法仅对主摄像头（<codeph>PRIMARY_CAMERA_SOURCE</codeph>）生效。在使用自定义视频采集或其他视频源的场景中，请使用 <xref keyref="setupLocalVideo"/> 方法代替本方法。</note>
+            <note props="cpp"><codeph>setLocalRenderMode</codeph> 仅对主摄像头（<codeph>PRIMARY_CAMERA_SOURCE</codeph>）生效。在使用自定义视频采集或其他视频源的场景中，请使用 <xref keyref="setupLocalVideo"/> 代替。</note>
             <note props="ios">该方法仅对主摄像头（<codeph>AgoraMediaSourceTypePrimaryCamera</codeph>）生效。在使用自定义视频采集或其他视频源的场景中，应使用 <xref keyref="setupLocalVideo"/> 方法替代。</note>
             <note props="mac">该方法仅对主摄像头（<codeph>AgoraMediaSourceTypePrimaryCamera</codeph>）生效。在使用自定义视频采集或其他视频源的场景中，应使用 <xref keyref="setupLocalVideo"/> 方法替代。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
-            <p props="cpp">调用时序：
+            <p props="cpp">
                 <ul>
-                    <li>请确保在调用本方法前已调用 <xref keyref="setupLocalVideo"/> 方法初始化本地视频画面。</li>
-                    <li>通话过程中，你可以根据需要多次调用本方法更新本地视频画面的显示模式。</li>
+                    <li>请确保在调用该方法前已调用 <xref keyref="setupLocalVideo"/> 初始化本地视频画面。</li>
+                    <li>通话过程中，可多次调用该方法更新本地视频画面的显示模式。</li>
                 </ul>
             </p>
-            <p props="android">调用时序：
-                <ul>
-                    <li>请确保在调用此方法前已调用 <xref keyref="setupLocalVideo"/> 方法初始化本地视频画面。</li>
-                    <li>通话过程中，你可以多次调用此方法更新本地视频画面的显示模式。</li>
-                </ul>
-            </p>
+            <p props="android">确保在调用此方法前已调用 <xref keyref="setupLocalVideo"/> 方法初始化本地视频画面。在通话过程中，你可以根据需要多次调用此方法更新本地视频画面的显示模式。</p>
             <p props="ios">调用时序：
                 <ul>
                     <li>请确保在调用该方法前已调用 <xref keyref="setupLocalVideo"/> 方法初始化本地视频视图。</li>
@@ -62,29 +57,32 @@
             <parml>
                 <plentry props="cpp">
                     <pt>renderMode</pt>
-                    <pd>本地视频画面的显示模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</pd>
+                    <pd>本地视频画面的显示模式。详见 <xref keyref="RENDER_MODE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>mirrorMode</pt>
-                    <pd>本地视频画面的镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</pd>
+                    <pd>本地视频画面的镜像模式。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。
+                        <note>如果使用前置摄像头，SDK 默认开启镜像模式；如果使用后置摄像头，SDK 默认关闭镜像模式。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>renderMode</pt>
-                    <pd>本地视频的显示模式：
+                    <pd>本地视频的显示模式，详见 <codeph>RENDER_MODE_TYPE</codeph>。
                         <ul>
-                            <li><codeph>RENDER_MODE_HIDDEN</codeph>（1）：隐藏模式。按比例缩放视频，直到填满视图边界（可能被裁剪）。视频的一边可能会被截断。</li>
-                            <li><codeph>RENDER_MODE_FIT</codeph>（2）：适应模式。按比例缩放视频，直到某一边适配视图边界。由于宽高比不一致而未填满的区域会以黑色填充。</li>
-                            <li><codeph>RENDER_MODE_ADAPTIVE</codeph>（3）：自适应模式。该枚举值已废弃，不推荐使用。</li>
+                            <li><codeph>RENDER_MODE_HIDDEN</codeph> (1)：隐藏模式。按比例缩放视频，直到填满视图边界（可能被裁剪）。视频的一条边可能会被裁剪。</li>
+                            <li><codeph>RENDER_MODE_FIT</codeph> (2)：适应模式。按比例缩放视频，直到某一边适配视图边界。由于宽高比不一致而未填满的区域将以黑色填充。</li>
+                            <li><codeph>RENDER_MODE_ADAPTIVE</codeph> (3)：自适应模式（已废弃，不推荐使用）。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>mirrorMode</pt>
-                    <pd>本地用户的镜像模式：
+                    <pd>
+                        <note>如果你使用前置摄像头，SDK 默认启用镜像模式；如果你使用后置摄像头，SDK 默认关闭镜像模式。</note><ph>本地用户的视频镜像模式，详见 <codeph>VIDEO_MIRROR_MODE_TYPE</codeph>。</ph>
                         <ul>
-                            <li><codeph>VIDEO_MIRROR_MODE_AUTO</codeph>（0）：SDK 自动决定是否启用镜像模式。使用前置摄像头时，默认启用镜像模式；使用后置摄像头时，默认关闭镜像模式。</li>
-                            <li><codeph>VIDEO_MIRROR_MODE_ENABLED</codeph>（1）：启用本地视图的镜像模式。</li>
-                            <li><codeph>VIDEO_MIRROR_MODE_DISABLED</codeph>（2）：关闭本地视图的镜像模式。</li>
+                            <li><codeph>VIDEO_MIRROR_MODE_AUTO</codeph> (0)：SDK 自动决定是否启用镜像模式。</li>
+                            <li><codeph>VIDEO_MIRROR_MODE_ENABLED</codeph> (1)：启用本地视图的镜像模式。</li>
+                            <li><codeph>VIDEO_MIRROR_MODE_DISABLED</codeph> (2)：关闭本地视图的镜像模式。</li>
                         </ul>
                     </pd>
                 </plentry>

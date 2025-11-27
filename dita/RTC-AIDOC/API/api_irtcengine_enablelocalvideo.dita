@@ -21,7 +21,7 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">该方法用于关闭或重新启用本地视频采集，不影响接收远端视频流。调用 <xref keyref="enableVideo"/> 后，默认启用本地视频采集。如果在频道内调用 <codeph>enableLocalVideo(false)</codeph> 关闭本地视频采集，则会同时停止在频道内发布视频流。若需重新开始视频采集，可调用 <codeph>enableLocalVideo(true)</codeph>，然后调用 <xref keyref="updateChannelMediaOptions"/> 设置 <codeph>options</codeph> 参数以在频道中发布本地采集的视频流。</p>
-            <p props="android">调用 <xref keyref="enableVideo"/> 后，本地视频采集默认处于启用状态。如果在频道内调用 <codeph>enableLocalVideo(false)</codeph> 禁用本地视频采集，则会同时停止在频道内发布视频流。若要重新开始视频采集，可调用 <codeph>enableLocalVideo(true)</codeph>，然后调用 <xref keyref="updateChannelMediaOptions"/> 并设置 <codeph>options</codeph> 参数以在频道中发布本地采集的视频流。</p>
+            <p props="android">该方法用于禁用或重新启用本地视频采集，不影响接收远端视频流。如果在频道内调用 <codeph>enableLocalVideo(false)</codeph> 禁用本地视频采集，则会同时停止在频道内发布视频流。若要重新开始视频采集，可调用 <codeph>enableLocalVideo(true)</codeph>，然后调用 <xref keyref="updateChannelMediaOptions"/> 设置 <codeph>options</codeph> 参数以在频道中发布本地采集的视频流。调用该方法成功禁用或启用本地视频采集后，远端会触发 <xref keyref="onRemoteVideoStateChanged"/> 回调。</p>
             <p props="ios">该方法用于关闭或重新开启本地视频采集，不影响接收远端视频流。调用 <xref keyref="enableVideo"/> 后，默认开启本地视频采集。如果你在频道内调用 <xref keyref="enableLocalVideo"/> 传入 <xref keyref="false"/> 关闭本地视频采集，同时会停止在频道内发布视频流。若需重新开启视频采集，你可以调用 <xref keyref="enableLocalVideo"/> 传入 <xref keyref="true"/>，然后调用 <xref keyref="updateChannelMediaOptions"/> 并设置 <codeph>options</codeph> 参数，以在频道内发布本地采集的视频流。</p>
             <p props="mac">该方法用于关闭或重新开启本地视频采集，不影响接收远端视频流。调用 <xref keyref="enableVideo"/> 后，默认开启本地视频采集。如果你在频道内调用 <xref keyref="enableLocalVideo"/> 传入 <xref keyref="false"/> 关闭本地视频采集，同时会停止在频道内发布视频流。若需重新开启视频采集，你可以调用 <xref keyref="enableLocalVideo"/> 传入 <xref keyref="true"/>，然后调用 <xref keyref="updateChannelMediaOptions"/> 并设置 <codeph>options</codeph> 参数，以在频道内发布本地采集的视频流。</p>
             <note props="cpp">
@@ -32,8 +32,8 @@
             </note>
             <note props="android">
                 <ul>
-                    <li>可在加入频道前或加入频道后调用该方法。但如果在加入频道前调用，设置将在加入频道后生效。</li>
-                    <li>该方法会启用内部引擎，离开频道后依然有效。</li>
+                    <li>你可以在加入频道前或加入频道后调用该方法。但如果在加入频道前调用，设置将在加入频道后生效。</li>
+                    <li>该方法会启用内部引擎，并在离开频道后依然有效。</li>
                 </ul>
             </note>
             <note props="ios">
@@ -49,9 +49,10 @@
                 </ul>
             </note>
         </section>
-        <section id="related" deliveryTarget="details" props="cpp">
+        <section id="related" deliveryTarget="details" props="android cpp">
             <title>相关回调</title>
             <p props="cpp">成功关闭或重新启用本地视频采集后，SDK 会在远端客户端触发 <xref keyref="onRemoteVideoStateChanged"/> 回调报告状态变化。</p>
+            <p props="android">成功禁用或重新启用本地视频采集器后，SDK 会在远端客户端触发 <xref keyref="onRemoteVideoStateChanged"/> 回调。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
@@ -67,10 +68,10 @@
                 </plentry>
                 <plentry props="android">
                     <pt>enabled</pt>
-                    <pd>是否启用本地视频采集：
+                    <pd>是否启用本地视频采集。
                         <ul>
                             <li><xref keyref="true"/>：（默认）启用本地视频采集。</li>
-                            <li><xref keyref="false"/>：禁用本地视频采集。禁用后，远端用户无法接收本地用户的视频流，但本地用户仍可接收远端用户的视频流。设置为 <xref keyref="false"/> 时，无需本地摄像头。</li>
+                            <li><xref keyref="false"/>：禁用本地视频采集。禁用后，远端用户无法接收到本地用户的视频流，但本地用户仍可接收远端用户的视频流。设置为 <xref keyref="false"/> 时，无需本地摄像头。</li>
                         </ul>
                     </pd>
                 </plentry>

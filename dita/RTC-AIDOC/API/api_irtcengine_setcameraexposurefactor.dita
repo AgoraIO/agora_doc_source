@@ -36,9 +36,9 @@
             <p props="ios">你可以通过此方法调整摄像头的曝光值，以获得最佳的视频质量。</p>
             <note props="cpp">
                 <ul>
-                    <li>此方法仅适用于 Android 和 iOS 平台。</li>
-                    <li>你必须在调用 <xref keyref="enableVideo"/> 后再调用此方法。设置结果在摄像头成功开启后生效，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>（1）后。</li>
-                    <li>在调用此方法前，建议先调用 <xref keyref="isCameraExposureSupported"/> 检查当前摄像头是否支持调整曝光值。</li>
+                    <li>该方法仅适用于 Android 和 iOS 平台。</li>
+                    <li>你必须在调用 <xref keyref="enableVideo"/> 后再调用该方法。设置结果在摄像头成功开启后生效，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>（1）后。</li>
+                    <li>在调用该方法前，声网建议调用 <xref keyref="isCameraExposureSupported"/> 检查当前摄像头是否支持调整曝光值。</li>
                     <li>该方法用于调整当前激活摄像头的曝光值，即调用 <xref keyref="setCameraCapturerConfiguration"/> 时指定的摄像头。</li>
                 </ul>
             </note>
@@ -62,7 +62,14 @@
             <parml>
                 <plentry props="cpp">
                     <pt>factor</pt>
-                    <pd>摄像头曝光值。默认值为 0，表示使用摄像头的默认曝光值。值越大，曝光越强。当视频图像过曝时，可以降低曝光值；当视频图像曝光不足且暗部细节丢失时，可以提高曝光值。如果设置的曝光值超出设备支持的范围，SDK 会自动将其调整为设备实际支持的范围。</pd>
+                    <pd>摄像头曝光值。默认值为 0，表示使用摄像头的默认曝光值。值越大，曝光越强。当视频图像过曝时，可以降低曝光值；当视频图像曝光不足且暗部细节丢失时，可以提高曝光值。如果设置的曝光值超出设备支持的范围，SDK 会自动将其调整为设备实际支持的范围。
+                        <note>
+                            <ul>
+                                <li>在 Android 上，取值范围为 [-20.0, 20.0]。</li>
+                                <li>在 iOS 上，取值范围为 [-8.0, 8.0]。</li>
+                            </ul>
+                        </note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>exposureFactor</pt>

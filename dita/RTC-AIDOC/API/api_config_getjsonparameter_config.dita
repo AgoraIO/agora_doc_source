@@ -39,11 +39,12 @@
                 </dlentry>
             </dl>
             <p props="cpp">调用 <xref keyref="SetJsonParameter_Config"/> 设置 JSON 配置后，可调用本方法获取已配置的信息。</p>
+            <p props="android">调用 <xref keyref="SetJsonParameter_Config"/> 设置 JSON 配置后，可以调用该方法获取已配置的设置。</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp">
             <title>调用时机</title>
             <p props="cpp">必须在调用 <codeph>GetConfigs</codeph> 之后调用此方法。</p>
-            <p props="android">必须在调用 <codeph>getConfigs</codeph> 之后调用此方法。</p>
+            <p props="android">该方法必须在调用 <codeph>getConfigs</codeph> 之后调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>参数</title>
@@ -74,11 +75,8 @@
                     <li>方法调用失败，返回空字符串。</li>
                 </ul>
             </p>
-            <p props="android">方法调用成功时，返回已配置的 JSON 设置。方法调用失败，返回空字符串。
-
-## 异常
-
-<xref keyref="GetJsonParameter_Config"/> 调用失败，SDK 会抛出异常，并返回相应的错误信息。你需要捕获异常并进行处理。</p>
+            <p props="android">方法调用成功时，返回已配置的 JSON 设置。
+方法调用失败，返回空字符串。</p>
             <p props="ios">
                 <ul>
                     <li>方法调用成功时，返回已设置的 JSON 格式参数集。</li>

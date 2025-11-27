@@ -25,13 +25,19 @@
             <p props="android">你可以通过调用此方法或 <xref keyref="create_ILocalSpatialAudioEngine"/> 方法来创建 <xref keyref="IRtcEngine"/> 实例。与后者相比，此方法支持更多配置选项，例如指定连接区域和设置日志文件。</p>
             <p props="ios">你可以通过调用此方法或调用 <xref keyref="create"/> 来创建 <xref keyref="IRtcEngine"/> 实例。与 <xref keyref="create"/> 不同，此方法在创建 <xref keyref="IRtcEngine"/> 实例时支持更多配置，例如指定连接区域和设置日志文件。</p>
             <p props="mac">你可以通过调用此方法或调用 <xref keyref="create"/> 来创建 <xref keyref="IRtcEngine"/> 实例。与 <xref keyref="create"/> 不同，此方法在创建 <xref keyref="IRtcEngine"/> 实例时支持更多配置，例如指定连接区域和设置日志文件。</p>
-            <note props="cpp"><xref keyref="IRtcEngine"/> 提供的所有方法均为异步执行。建议你在同一线程中调用这些方法。SDK 仅支持为一个 App 创建一个 <xref keyref="IRtcEngine"/> 实例。</note>
+            <note props="cpp">
+                <ul>
+                    <li><xref keyref="IRtcEngine"/> 提供的所有方法均为异步执行。建议你在同一线程中调用这些方法。</li>
+                    <li>SDK 仅支持为一个 App 创建一个 <xref keyref="IRtcEngine"/> 实例。</li>
+                </ul>
+            </note>
             <note props="android">每个 App 仅支持创建一个 <xref keyref="IRtcEngine"/> 实例。<xref keyref="IRtcEngine"/> 类中的所有方法均为异步执行，声网建议在同一线程中调用这些方法。</note>
             <note props="ios"><xref keyref="IRtcEngine"/> 每个 App 仅支持创建一个实例。<xref keyref="IRtcEngine"/> 提供的所有方法均为异步执行。声网建议你在同一线程中调用这些方法。</note>
             <note props="mac"><xref keyref="IRtcEngine"/> 每个 App 仅支持创建一个实例。<xref keyref="IRtcEngine"/> 提供的所有方法均为异步执行。声网建议你在同一线程中调用这些方法。</note>
         </section>
-        <section id="timing" deliveryTarget="details" props="android ios mac">
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
+            <p props="cpp">在调用其他 API 之前，必须先调用 <xref keyref="createAgoraRtcEngine"/> 和 <xref keyref="initialize"/> 来创建并初始化 <xref keyref="IRtcEngine"/> 对象。</p>
             <p props="android">在调用其他 API 之前，必须先调用此方法创建 <xref keyref="IRtcEngine"/> 对象。</p>
             <p props="ios">在调用其他 API 之前，必须先调用此方法创建 <xref keyref="IRtcEngine"/> 对象。</p>
             <p props="mac">在调用其他 API 之前，必须先调用此方法创建 <xref keyref="IRtcEngine"/> 对象。</p>
@@ -41,7 +47,7 @@
             <parml>
                 <plentry props="cpp">
                     <pt>context</pt>
-                    <pd><xref keyref="IRtcEngine"/> 实例的配置参数。详见 <xref keyref="RtcEngineConfig"/>。</pd>
+                    <pd><xref keyref="IRtcEngine"/> 实例的配置，详见 <xref keyref="RtcEngineConfig"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>config</pt>
@@ -74,8 +80,8 @@
                         <ul>
                             <li>-1：发生通用错误（无明确原因）。</li>
                             <li>-2：参数无效。</li>
-                            <li>-7：SDK 未初始化。</li>
-                            <li>-22：资源请求失败。由于 App 占用过多系统资源或系统资源不足，SDK 无法分配资源。</li>
+                            <li>-7：<codeph>SDK</codeph> 未初始化。</li>
+                            <li>-22：资源请求失败。由于你的 App 占用过多系统资源或系统资源不足，<codeph>SDK</codeph> 无法分配资源。</li>
                             <li>-101：<codeph>App ID</codeph> 无效。</li>
                         </ul>
                     </li>

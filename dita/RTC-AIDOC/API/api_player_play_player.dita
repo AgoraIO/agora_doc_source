@@ -38,22 +38,22 @@
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
             </dl>
-            <p props="android">如果你已关闭自动播放，在使用 <xref keyref="OpenWithUrl"/> 成功打开在线媒体流后，可以调用 <xref keyref="Play_Player"/> 开始播放。</p>
+            <p props="android">如果你已关闭自动播放，在使用 <xref keyref="OpenWithUrl"/> 成功打开一个在线媒体流后，可以调用该方法开始播放。</p>
             <p props="ios">如果你已关闭自动播放，在使用 <xref keyref="OpenWithUrl"/> 成功打开直播流后，可以调用此方法开始播放。</p>
             <p props="mac">如果你已关闭自动播放，在使用 <xref keyref="OpenWithUrl"/> 成功打开直播流后，可以调用此方法开始播放。</p>
             <note props="cpp">该方法当前仅支持以 <codeph>rte://</codeph> 开头的 URL。</note>
-            <note props="android">该方法当前仅支持以 <codeph>rte://</codeph> 前缀开头的 URL。</note>
+            <note props="android">该方法当前仅支持以 <codeph>rte://</codeph> 为前缀的 URL。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">在收到 <xref keyref="onStateChanged"/> 回调报告状态为 <codeph>kRtePlayerStateOpenCompleted</codeph> 后调用此方法。</p>
-            <p props="android">仅在收到状态为 <codeph>OPEN_COMPLETED</codeph> 的 <xref keyref="onStateChanged"/> 回调后调用 <xref keyref="Play_Player"/>。</p>
+            <p props="android">仅在收到状态为 <codeph>OPEN_COMPLETED</codeph> 的 <xref keyref="onStateChanged"/> 回调后调用该方法。</p>
             <p props="ios">仅在收到 <xref keyref="onStateChanged"/> 回调并报告状态为 <codeph>AgoraRtePlayerStateOpenCompleted</codeph> 后调用此方法。</p>
             <p props="mac">仅在收到 <xref keyref="onStateChanged"/> 回调并报告状态为 <codeph>AgoraRtePlayerStateOpenCompleted</codeph> 后调用此方法。</p>
         </section>
         <section id="related" deliveryTarget="details" props="android">
             <title>相关回调</title>
-            <p props="android">成功调用 <xref keyref="Play_Player"/> 后，SDK 会触发 <xref keyref="onStateChanged"/> 回调报告播放器状态。</p>
+            <p props="android">调用该方法成功后，会触发 <xref keyref="onStateChanged"/> 回调以上报播放器状态。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>参数</title>

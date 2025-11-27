@@ -36,9 +36,9 @@
             </note>
             <note props="android">
                 <ul>
-                    <li>本方法仅适用于 Android 5.0 或更高版本。</li>
-                    <li>本方法依赖图像增强动态库 <xref keyref="clearvision"/>。如果该动态库被删除，则无法正常启用该功能。</li>
-                    <li>此功能对设备性能要求较高。调用本方法时，SDK 会自动检测当前设备的性能能力。</li>
+                    <li>此方法仅适用于 Android 5.0 或更高版本。</li>
+                    <li>此方法依赖图像增强动态库 <xref keyref="clearvision"/>。如果该动态库被删除，则无法正常启用该功能。</li>
+                    <li>此功能对设备性能要求较高。调用此方法时，SDK 会自动检测当前设备的能力。</li>
                 </ul>
             </note>
             <note props="ios">
@@ -57,7 +57,7 @@
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">在调用 <xref keyref="enableVideo"/> 或 <codeph>startPreview</codeph> 之后调用该方法。</p>
-            <p props="android">请在调用 <xref keyref="enableVideo"/> 或 <codeph>startPreview</codeph> 方法之后调用本方法。</p>
+            <p props="android">在调用 <xref keyref="enableVideo"/> 或 <codeph>startPreview</codeph> 之后调用此方法。</p>
             <p props="ios">请在调用 <xref keyref="enableVideo"/> 或 <xref keyref="startPreview2"/> 方法之后调用本方法。</p>
             <p props="mac">请在调用 <xref keyref="enableVideo"/> 或 <xref keyref="startPreview2"/> 方法之后调用本方法。</p>
         </section>
@@ -91,7 +91,7 @@
                     <pd>是否启用图像增强功能：
                         <ul>
                             <li><xref keyref="true"/>：启用图像增强功能。</li>
-                            <li><xref keyref="false"/>：（默认）关闭图像增强功能。</li>
+                            <li><xref keyref="false"/>：（默认）禁用图像增强功能。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -148,10 +148,10 @@
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
                         <ul>
-                            <li>-4：当前设备不支持该功能。可能原因包括：
+                            <li>-4：当前设备不支持该功能。可能的原因包括：
                                 <ul>
-                                    <li>当前设备性能不满足图像增强功能的要求，建议更换为高性能设备。</li>
-                                    <li>当前设备系统版本低于 Android 5.0，不支持该功能，建议更换设备或升级操作系统。</li>
+                                    <li>当前设备能力不满足图像增强的要求。声网建议更换为高性能设备。</li>
+                                    <li>当前设备版本低于 Android 5.0，不支持该功能。声网建议更换设备或升级操作系统。</li>
                                 </ul>
                             </li>
                         </ul>

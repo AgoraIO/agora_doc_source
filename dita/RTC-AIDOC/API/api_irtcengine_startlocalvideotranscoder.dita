@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startlocalvideotranscoder">
     <title><ph keyref="startLocalVideoTranscoder"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">开始本地视频混流。</ph><ph id="shortdesc" props="android">开始本地视频混流。</ph><ph id="shortdesc" props="ios">启动本地合图功能。</ph><ph id="shortdesc" props="mac">启动本地合图功能。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">开始本地视频合图。</ph><ph id="shortdesc" props="android">开始本地视频合图。</ph><ph id="shortdesc" props="ios">启动本地合图功能。</ph><ph id="shortdesc" props="mac">启动本地合图功能。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,22 +20,19 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">调用该方法后，可以在本地将多个视频流合并为一个视频流，例如摄像头采集的视频流、屏幕共享、媒体播放器、远端视频、视频文件、图片等，并将混流后的视频流发布到频道中。
-适用场景：你可以在远程会议、直播、在线教育等场景中启用本地视频混流功能，便于用户查看和管理多个视频内容，并支持画中画等效果。
-以下是实现画中画效果的典型用例：
+            <p props="cpp">你可以调用该方法在本地将多个视频流合并为一个视频流，例如摄像头采集的视频流、屏幕共享、媒体播放器、远端视频、视频文件、图片等，并将混流后的视频流发布到频道中。
+以下是实现人像画中画效果的典型用例：
                 <ol>
-                    <li>调用 <xref keyref="enableVirtualBackground"/>，并将自定义背景图设置为 <codeph>BACKGROUND_NONE</codeph>，以实现摄像头采集视频中的人像与背景分离。</li>
+                    <li>调用 <xref keyref="enableVirtualBackground"/>，并将自定义背景图设置为 <codeph>BACKGROUND_NONE</codeph>，实现摄像头采集视频中人像与背景的分离。</li>
                     <li>调用 <codeph>startScreenCapture</codeph> 开始采集屏幕共享视频流。</li>
-                    <li>调用 <xref keyref="startLocalVideoTranscoder"/>，并将采集人像的视频源设置为参与本地视频混流的视频源之一，即可在混流视频中实现人像画中画效果。</li>
+                    <li>调用 <xref keyref="startLocalVideoTranscoder"/>，并将采集人像的视频源设置为参与本地视频合图的视频源之一，即可在混流视频中实现人像画中画效果。</li>
                 </ol>
             </p>
-            <p props="android">调用该方法后，你可以在本地将多个视频流合并为一个视频流。例如，可以将摄像头采集的视频流、屏幕共享、媒体播放器、远端视频、视频文件、图片等视频流合并为一个视频流，并将混流后的视频流发布到频道中。
-适用场景包括远程会议、直播、在线教育等，便于用户查看和管理多个视频流，并支持画中画等功能。
-以下是实现画中画效果的典型用例：
+            <p props="android">调用该方法后，你可以在本地将多个视频流合并为一个视频流，例如摄像头采集的视频流、屏幕共享、媒体播放器、远端视频、视频文件、图片等，然后将混合后的视频流发布到频道中。以下是实现人像画中画效果的典型用例：
                 <ol>
-                    <li>调用 <codeph>enableVirtualBackground</codeph>，并将自定义背景图设置为 <codeph>BACKGROUND_NONE</codeph>，实现摄像头采集视频中人像与背景的分离。</li>
+                    <li>调用 <codeph>enableVirtualBackground</codeph>，并将自定义背景图设置为 <codeph>BACKGROUND_NONE</codeph>，即将摄像头采集的视频中的人像与背景分离。</li>
                     <li>调用 <xref keyref="startScreenCapture"/> 开始采集屏幕共享视频流。</li>
-                    <li>调用 <xref keyref="startLocalVideoTranscoder"/>，并将采集人像的视频源设置为参与本地视频混流的视频源之一，即可在混流视频中实现人像画中画效果。</li>
+                    <li>调用 <xref keyref="startLocalVideoTranscoder"/>，并将采集人像的视频源设置为参与本地视频合图的视频源之一，即可在视频中实现人像画中画效果。</li>
                 </ol>
             </p>
             <p props="ios">调用该方法后，你可以在本地将多个视频流合并为一个视频流。例如，可以将摄像头采集的视频流、屏幕共享、媒体播放器、远端视频、视频文件、图片等合并为一个视频流，并将该合图后的视频流发布到频道中。
@@ -58,15 +55,28 @@
             </p>
             <note props="cpp">
                 <ul>
-                    <li>本地视频混流对 CPU 性能要求较高，建议在高性能设备上使用。</li>
-                    <li>如果需要混合本地采集的视频流，SDK 支持以下采集组合：
+                    <li>本地视频合图对设备性能要求较高，建议在高性能设备上使用。</li>
+                    <li>若需混合本地采集的视频流，SDK 支持以下组合：
                         <ul>
                             <li>Windows 平台：最多支持 4 路摄像头采集的视频流 + 4 路屏幕共享流。</li>
                             <li>macOS 平台：最多支持 4 路摄像头采集的视频流 + 1 路屏幕共享流。</li>
-                            <li>Android 和 iOS 平台：最多支持 2 路摄像头采集的视频流（设备需支持双摄或外接摄像头）+ 1 路屏幕共享流。</li>
+                            <li>Android 和 iOS 平台：最多支持 2 路摄像头采集的视频流（需设备支持双摄或外接摄像头）+ 1 路屏幕共享流。</li>
                         </ul>
                     </li>
-                    <li>配置本地视频混流时，需要确保采集人像的视频流的图层编号大于屏幕共享流的图层编号，否则人像会被屏幕共享遮挡，无法在最终混流视频中显示。</li>
+                    <li>配置本地视频混流时，需确保采集人像的视频流的图层编号大于屏幕共享流的图层编号，否则人像会被屏幕共享遮挡，无法在最终混流视频中显示。</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>本地视频合图需要更多的 CPU 资源。声网建议在性能较高的设备上启用此功能。</li>
+                    <li>如果需要混合本地采集的视频流，SDK 支持以下采集组合：
+                        <ul>
+                            <li>在 Android 平台上，支持最多 2 路摄像头采集的视频流（设备需支持双摄像头或支持外接摄像头）+ 1 路屏幕共享流。</li>
+                        </ul>
+                    </li>
+                    <li>配置本地视频合图时，需要确保采集人像的视频流的图层编号大于屏幕共享流的图层编号。否则，人像会被屏幕共享遮挡，无法在最终视频合图中显示。</li>
+                    <li>参与本地视频合图的每路视频流的最大分辨率为 4096 × 2160。如果超过该限制，视频合图将不生效。</li>
+                    <li>混合后的视频流的最大分辨率为 4096 × 2160。</li>
                 </ul>
             </note>
             <note props="ios">
@@ -96,17 +106,25 @@
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
-            <p props="cpp">如果需要混合本地采集的视频流，需在调用 <xref keyref="startCameraCapture"/> 或 <codeph>startScreenCapture</codeph> 之后调用 <xref keyref="startLocalVideoTranscoder"/>。
-如果希望将混流后的视频流发布到频道中，需在调用 <codeph>joinChannel</codeph> 或 <xref keyref="updateChannelMediaOptions"/> 时，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishTranscodedVideoTrack</codeph> 设置为 <xref keyref="true"/>。</p>
-            <p props="android">如果需要混合本地采集的视频流，需要在调用 <xref keyref="startCameraCapture"/> 或 <xref keyref="startScreenCapture"/> 后调用 <xref keyref="startLocalVideoTranscoder"/>。
-如果希望将混流后的视频流发布到频道中，需要在调用 <codeph>joinChannel</codeph> 或 <xref keyref="updateChannelMediaOptions"/> 时，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishTranscodedVideoTrack</codeph> 设置为 <xref keyref="true"/>。</p>
+            <p props="cpp">
+                <ul>
+                    <li>若需混合本地采集的视频流，需在调用 <xref keyref="startCameraCapture"/> 或 <codeph>startScreenCapture</codeph> 后调用本方法。</li>
+                    <li>若希望将合图后的视频流发布到频道中，需在调用 <codeph>joinChannel</codeph> 或 <xref keyref="updateChannelMediaOptions"/> 时，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishTranscodedVideoTrack</codeph> 设置为 <xref keyref="true"/>。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>如果需要混合本地采集的视频流，需要在调用 <xref keyref="startCameraCapture"/> 或 <xref keyref="startScreenCapture"/> 之后调用该方法。</li>
+                    <li>如果希望将混合后的视频流发布到频道中，需要在调用 <codeph>joinChannel</codeph> 或 <xref keyref="updateChannelMediaOptions"/> 时，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishTranscodedVideoTrack</codeph> 设置为 <xref keyref="true"/>。</li>
+                </ul>
+            </p>
             <p props="ios">如果需要合成本地采集的视频流，需在调用 <codeph>startCameraCapture:</codeph> 或 <xref keyref="startScreenCapture"/>（iOS）/<xref keyref="startScreenCapture"/>（macOS）之后调用本方法。如果希望将合图后的视频流发布到频道中，需在调用 <codeph>joinChannelByToken:</codeph> 或 <xref keyref="updateChannelMediaOptions"/> 时，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishTranscodedVideoTrack</codeph> 设置为 <xref keyref="true"/>。</p>
             <p props="mac">如果需要合成本地采集的视频流，需在调用 <codeph>startCameraCapture:</codeph> 或 <xref keyref="startScreenCapture"/>（iOS）/<xref keyref="startScreenCapture"/>（macOS）之后调用本方法。如果希望将合图后的视频流发布到频道中，需在调用 <codeph>joinChannelByToken:</codeph> 或 <xref keyref="updateChannelMediaOptions"/> 时，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishTranscodedVideoTrack</codeph> 设置为 <xref keyref="true"/>。</p>
         </section>
         <section id="related" deliveryTarget="details" props="android cpp ios mac">
             <title>相关回调</title>
             <p props="cpp">调用该方法失败时，SDK 会触发 <xref keyref="onLocalVideoTranscoderError"/> 回调报告失败原因。</p>
-            <p props="android">调用该方法失败时，SDK 会触发 <xref keyref="onLocalVideoTranscoderError"/> 回调报告失败原因。</p>
+            <p props="android">当调用该方法失败时，SDK 会触发 <xref keyref="onLocalVideoTranscoderError"/> 回调报告失败原因。</p>
             <p props="ios">调用该方法失败时，SDK 会触发 <xref keyref="onLocalVideoTranscoderError"/> 回调报告失败原因。</p>
             <p props="mac">调用该方法失败时，SDK 会触发 <xref keyref="onLocalVideoTranscoderError"/> 回调报告失败原因。</p>
         </section>
@@ -115,15 +133,18 @@
             <parml>
                 <plentry props="cpp">
                     <pt>config</pt>
-                    <pd>本地视频混流的配置。
-                        <ul>
-                            <li>参与本地视频混流的每路视频流的最大分辨率为 4096 × 2160，超出该限制将无法进行视频混流。</li>
-                            <li>混流后的视频流最大分辨率为 4096 × 2160。</li>
-                        </ul><ph>详见 <xref keyref="LocalTranscoderConfiguration"/>。</ph></pd>
+                    <pd>本地视频合图的配置，详见 <xref keyref="LocalTranscoderConfiguration"/>。
+                        <note>
+                            <ul>
+                                <li>参与本地视频合图的每路视频流的最大分辨率为 4096 × 2160，超出该限制将导致合图失败。</li>
+                                <li>合图后的视频流最大分辨率为 4096 × 2160。</li>
+                            </ul>
+                        </note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>config</pt>
-                    <pd>本地视频混流的配置。详见 <xref keyref="LocalTranscoderConfiguration"/>。</pd>
+                    <pd>本地视频合图的配置，详见 <xref keyref="LocalTranscoderConfiguration"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>config</pt>
